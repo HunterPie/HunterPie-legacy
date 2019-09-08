@@ -55,15 +55,15 @@ namespace HunterPie.Core {
             Int64 ThirdMonsterAddress = Scanner.READ_MULTILEVEL_PTR(Address, Offset);
             ThirdMonsterAddress = Scanner.READ_LONGLONG(ThirdMonsterAddress + 0x0);
             if (MonsterNumber == 3) {
-                if (ThirdMonsterAddress != MonsterAddress) Debugger.Log($"Found 3rd monster address: 0x{ThirdMonsterAddress:X}");
+                if (ThirdMonsterAddress != MonsterAddress) Debugger.Log($"Found 3rd Monster address -> 0x{ThirdMonsterAddress:X}");
                 MonsterAddress = ThirdMonsterAddress;
             } else if (MonsterNumber == 2) {
                 Int64 SecondMonsterAddress = Scanner.READ_LONGLONG(ThirdMonsterAddress + 0x28);
-                if (SecondMonsterAddress != MonsterAddress) Debugger.Log($"Found 2nd monster address: 0x{SecondMonsterAddress:X}");
+                if (SecondMonsterAddress != MonsterAddress) Debugger.Log($"Found 2nd Monster address -> 0x{SecondMonsterAddress:X}");
                 MonsterAddress = SecondMonsterAddress;
             } else {
                 Int64 FirstMonsterAddress = Scanner.READ_LONGLONG(Scanner.READ_LONGLONG(ThirdMonsterAddress + 0x28) + 0x28);
-                if (FirstMonsterAddress != MonsterAddress) Debugger.Log($"Found 1st monster address: 0x{FirstMonsterAddress:X}");
+                if (FirstMonsterAddress != MonsterAddress) Debugger.Log($"Found 1st Monster address -> 0x{FirstMonsterAddress:X}");
                 MonsterAddress = FirstMonsterAddress;
             }
         }

@@ -122,7 +122,12 @@ namespace HunterPie.Core {
 
         public static void LoadPlayerConfig() {
             LoadPlayerSerializedConfig();
-            PlayerConfig = JsonConvert.DeserializeObject<Config.Rootobject>(ConfigSerialized);
+            try {
+                PlayerConfig = JsonConvert.DeserializeObject<Config.Rootobject>(ConfigSerialized);
+            } catch(Exception err) {
+                Debugger.Error(err.Message);
+            }
+            
         }
 
         public static void SaveNewConfig() {

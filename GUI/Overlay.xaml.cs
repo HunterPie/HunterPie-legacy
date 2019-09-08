@@ -36,6 +36,18 @@ namespace HunterPie.GUI {
             OverlayWnd.Height = w_Height;
         }
 
+        public void ChangeMonsterComponentPosition(double X, double Y) {
+            double Left = MonstersContainer.Margin.Left;
+            double Top = MonstersContainer.Margin.Top;
+            if (X == Left && Y == Top) {
+                return;
+            }
+            double Right = MonstersContainer.Margin.Right;
+            double Bottom = MonstersContainer.Margin.Bottom;
+            MonstersContainer.Margin = new Thickness(X, Y, Right, Bottom);
+            Debugger.Warn($"Changed Monster component position to X:{X} Y:{Y}");
+        }
+
         public void HideMonster(StackPanel Monster) {
             Monster.Visibility = Visibility.Hidden;
         }
@@ -44,11 +56,15 @@ namespace HunterPie.GUI {
             Monster.Visibility = Visibility.Visible;
         }
 
+        private string FormatHPText(float[] HP) {
+            return $"{HP[0]}/{HP[1]} ({(HP[0] / HP[1]) * 100:F2}%)";
+        }
+
         public void UpdateFirstMonsterInformation(float[] HP, string Name) {
             fMonsterHpBar.Value = (int)HP[0];
             fMonsterHpBar.Maximum = (int)HP[1];
             fMonsterName.Content = Name.ToUpper();
-            string HPText = $"{HP[0]}/{HP[1]} ({(HP[0] / HP[1]) * 100}%)";
+            string HPText = FormatHPText(HP);
             fMonsterHpText.Content = HPText;
         }
 
@@ -56,7 +72,7 @@ namespace HunterPie.GUI {
             sMonsterHpBar.Value = (int)HP[0];
             sMonsterHpBar.Maximum = (int)HP[1];
             sMonsterName.Content = Name.ToUpper();
-            string HPText = $"{HP[0]}/{HP[1]} ({(HP[0] / HP[1]) * 100}%)";
+            string HPText = FormatHPText(HP);
             sMonsterHpText.Content = HPText;
         }
 
@@ -64,7 +80,7 @@ namespace HunterPie.GUI {
             tMonsterHpBar.Value = (int)HP[0];
             tMonsterHpBar.Maximum = (int)HP[1];
             tMonsterName.Content = Name.ToUpper();
-            string HPText = $"{HP[0]}/{HP[1]} ({(int)(HP[0] / HP[1]) * 100}%)";
+            string HPText = FormatHPText(HP);
             tMonsterHpText.Content = HPText;
         }
     }

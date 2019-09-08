@@ -70,7 +70,13 @@ namespace HunterPie {
                         GameOverlay.Show();
                     }));
                 }
-                
+                // Moves overlay components 
+                GameOverlay.Dispatch(new Action(() => {
+                    double posX = UserSettings.PlayerConfig.Overlay.MonstersComponent.Position[0];
+                    double posY = UserSettings.PlayerConfig.Overlay.MonstersComponent.Position[1];
+                    GameOverlay.ChangeMonsterComponentPosition(posX, posY);
+                }));
+
                 if (Scanner.GameIsRunning) {
                     if (MonsterHunter.FirstMonster.TotalHP > 0) {
                         GameOverlay.Dispatch(new Action(() => {

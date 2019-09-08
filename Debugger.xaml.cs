@@ -48,15 +48,25 @@ namespace HunterPie {
             PrintOnConsole(message, NORMAL);
         }
 
+        private static void ScrollToEnd() {
+            double ScrollableSize = _Instance.Console.ViewportHeight;
+            double ScrollPosition = _Instance.Console.VerticalOffset;
+            double ExtentHeight = _Instance.Console.ExtentHeight;
+            if (ScrollableSize + ScrollPosition == ExtentHeight || ExtentHeight < ScrollableSize) {
+                _Instance.Console.ScrollToEnd();
+            }
+        }
+
         private static void PrintOnConsole(string message, object color) {
-            message = $"[HunterPie] {message}\n";
+            DateTime TimeStamp = DateTime.Now;
+            message = $"{TimeStamp:%H:%m} [HunterPie] {message}\n";
             _Instance.Console.Dispatcher.BeginInvoke(
                 System.Windows.Threading.DispatcherPriority.Background,
                 new Action( () => {
                     TextRange msg = new TextRange(_Instance.Console.Document.ContentEnd, _Instance.Console.Document.ContentEnd);
                     msg.Text = message;
                     msg.ApplyPropertyValue(TextElement.ForegroundProperty, color);
-                    _Instance.Console.ScrollToEnd();
+                    ScrollToEnd();
                 })
             );
         }
