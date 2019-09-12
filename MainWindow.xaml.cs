@@ -60,16 +60,6 @@ namespace HunterPie {
             while (true) {
                 UserSettings.LoadPlayerConfig();
 
-                // Hides/show overlay when user disable/enable it
-                if (!UserSettings.PlayerConfig.Overlay.Enabled && GameOverlay.IsVisible) {
-                    GameOverlay.Dispatch(new Action(() => {
-                        GameOverlay.Hide();
-                    }));
-                } else if (UserSettings.PlayerConfig.Overlay.Enabled && !GameOverlay.IsVisible) {
-                    GameOverlay.Dispatch(new Action(() => {
-                        GameOverlay.Show();
-                    }));
-                }
                 // Moves overlay components 
                 GameOverlay.Dispatch(new Action(() => {
                     double posX = UserSettings.PlayerConfig.Overlay.MonstersComponent.Position[0];
@@ -78,6 +68,16 @@ namespace HunterPie {
                 }));
 
                 if (Scanner.GameIsRunning) {
+                    // Hides/show overlay when user disable/enable it
+                    if (!UserSettings.PlayerConfig.Overlay.Enabled) {
+                        GameOverlay.Dispatch(new Action(() => {
+                            GameOverlay.HideOverlay();
+                        }));
+                    } else if (UserSettings.PlayerConfig.Overlay.Enabled) {
+                        GameOverlay.Dispatch(new Action(() => {
+                            GameOverlay.ShowOverlay();
+                        }));
+                    }
                     if (MonsterHunter.FirstMonster.TotalHP > 0) {
                         GameOverlay.Dispatch(new Action(() => {
                             GameOverlay.ShowMonster(GameOverlay.fMonsterBox);
@@ -116,9 +116,13 @@ namespace HunterPie {
                             GameOverlay.HideMonster(GameOverlay.tMonsterBox);
                         }));
                     }
+                } else {
+                    GameOverlay.Dispatch(new Action(() => {
+                        GameOverlay.Hide();
+                    }));
                 }
 
-                Thread.Sleep(500);
+                Thread.Sleep(200);
             }
         }
 

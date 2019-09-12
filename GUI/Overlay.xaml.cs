@@ -31,6 +31,18 @@ namespace HunterPie.GUI {
             this.Dispatcher.BeginInvoke(System.Windows.Threading.DispatcherPriority.Background, todo);
         } 
 
+        public void HideOverlay() {
+            if (this.IsVisible) {
+                this.Hide();
+            }
+        }
+
+        public void ShowOverlay() {
+            if (!this.IsVisible) {
+                this.Show();
+            }
+        }
+
         private void SetOverlaySize() {
             OverlayWnd.Width = w_Width;
             OverlayWnd.Height = w_Height;
@@ -82,6 +94,22 @@ namespace HunterPie.GUI {
             tMonsterName.Content = Name.ToUpper();
             string HPText = FormatHPText(HP);
             tMonsterHpText.Content = HPText;
+        }
+
+        public void HideMonstersContainer() {
+            if (MonstersContainer.IsVisible) {
+                MonstersContainer.Visibility = Visibility.Hidden;
+            }
+        }
+
+        public void ShowMonstersContainer() {
+            if (!MonstersContainer.IsVisible) {
+                MonstersContainer.Visibility = Visibility.Visible;
+            }
+        }
+
+        public void HideEverything() {
+            HideMonstersContainer();
         }
     }
 }

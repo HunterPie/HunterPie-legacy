@@ -55,15 +55,15 @@ namespace HunterPie.Core {
             Int64 ThirdMonsterAddress = Scanner.READ_MULTILEVEL_PTR(Address, Offset);
             ThirdMonsterAddress = Scanner.READ_LONGLONG(ThirdMonsterAddress + 0x0);
             if (MonsterNumber == 3) {
-                if (ThirdMonsterAddress != MonsterAddress) Debugger.Log($"Found 3rd Monster address -> 0x{ThirdMonsterAddress:X}");
+                //if (ThirdMonsterAddress != MonsterAddress) Debugger.Log($"Found 3rd Monster address -> 0x{ThirdMonsterAddress:X}");
                 MonsterAddress = ThirdMonsterAddress;
             } else if (MonsterNumber == 2) {
                 Int64 SecondMonsterAddress = Scanner.READ_LONGLONG(ThirdMonsterAddress + 0x28);
-                if (SecondMonsterAddress != MonsterAddress) Debugger.Log($"Found 2nd Monster address -> 0x{SecondMonsterAddress:X}");
+                //if (SecondMonsterAddress != MonsterAddress) Debugger.Log($"Found 2nd Monster address -> 0x{SecondMonsterAddress:X}");
                 MonsterAddress = SecondMonsterAddress;
             } else {
                 Int64 FirstMonsterAddress = Scanner.READ_LONGLONG(Scanner.READ_LONGLONG(ThirdMonsterAddress + 0x28) + 0x28);
-                if (FirstMonsterAddress != MonsterAddress) Debugger.Log($"Found 1st Monster address -> 0x{FirstMonsterAddress:X}");
+                //if (FirstMonsterAddress != MonsterAddress) Debugger.Log($"Found 1st Monster address -> 0x{FirstMonsterAddress:X}");
                 MonsterAddress = FirstMonsterAddress;
             }
         }
@@ -88,10 +88,23 @@ namespace HunterPie.Core {
         private void GetMonsterIDAndName() {
             Int64 NamePtr = Scanner.READ_LONGLONG(this.MonsterAddress + 0x290);
             string MonsterId = Scanner.READ_STRING(NamePtr + 0x0c, 64).Replace("\x00", "");
-            
+
             if (MonsterId != "") {
-                this.ID = MonsterId.Split('\\')[4];
-                this.Name = GStrings.MonsterName(this.ID);
+                try {
+                    string ActualID = MonsterId.Split('\\')[4];
+                    if (ActualID.StartsWith("em")) {
+                        if (ActualID != this.ID) Debugger.Log($"Found new monster #{MonsterNumber} address -> 0x{MonsterAddress:X}");
+                        this.ID = ActualID;
+                        this.Name = GStrings.MonsterName(this.ID);
+                    } else {
+                        this.ID = null;
+                        this.Name = null;
+                    }
+                } catch {
+                    this.ID = null;
+                    this.Name = null;
+                }
+                
             }
         }
 
