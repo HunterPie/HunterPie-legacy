@@ -22,10 +22,10 @@ namespace HunterPie.Core {
         public string SessionID { get; private set; }
         public int HarvestedItemsCounter { get; private set; }
         public object[] HarvestBoxFertilizers = new object[4];
-        public int PrimaryMantle { get; private set; }
-        public float[] PrimaryMantleInfo = new float[4];
-        public int SecondaryMantle { get; private set; }
-        public float[] SecondaryMantleInfo = new float[4];
+
+        // Mantles
+        public Mantle PrimaryMantle = new Mantle();
+        public Mantle SecondaryMantle = new Mantle();
 
         // Threading
         private ThreadStart ScanPlayerInfoRef;
@@ -61,6 +61,7 @@ namespace HunterPie.Core {
             Int64 Address = Memory.Address.BASE + Memory.Address.LEVEL_OFFSET;
             Int64[] Offset = new Int64[4] { 0x70, 0x68, 0x8, 0x20 };
             Int64 AddressValue = Scanner.READ_MULTILEVEL_PTR(Address, Offset);
+            if (LEVEL_ADDRESS != AddressValue + 0x108) Debugger.Log($"Found player address at 0x{AddressValue:X}");
             LEVEL_ADDRESS = AddressValue + 0x108;
             Level = Scanner.READ_INT(LEVEL_ADDRESS);
         }
@@ -96,39 +97,38 @@ namespace HunterPie.Core {
             Int64 Address = Memory.Address.BASE + Memory.Address.EQUIPMENT_OFFSET;
             Int64[] Offset = new Int64[4] { 0x78, 0x50, 0x40, 0x450 };
             Address = Scanner.READ_MULTILEVEL_PTR(Address, Offset);
+            if (EQUIPMENT_ADDRESS != Address) Debugger.Log($"New equipment address found -> 0x{Address:X}");
             EQUIPMENT_ADDRESS = Address;
         }
 
         private void GetPrimaryMantle() {
             Int64 Address = LEVEL_ADDRESS + 0x34;
-            PrimaryMantle = Scanner.READ_INT(Address);
+            int mantleId = Scanner.READ_INT(Address);
+            PrimaryMantle.SetID(mantleId);
         }
 
         private void GetSecondaryMantle() {
             Int64 Address = LEVEL_ADDRESS + 0x34 + 0x4;
-            SecondaryMantle = Scanner.READ_INT(Address);
+            int mantleId = Scanner.READ_INT(Address);
+            SecondaryMantle.SetID(mantleId);
         }
 
         private void GetPrimaryMantleTimers() {
-            Int64 PrimaryMantleTimerFixed = (PrimaryMantle * 4) + Address.timerFixed;
-            Int64 PrimaryMantleTimer = (PrimaryMantle * 4) + Address.timerDynamic;
-            Int64 PrimaryMantleCdFixed = (PrimaryMantle * 4) + Address.cooldownFixed;
-            Int64 PrimaryMantleCdDynamic = (PrimaryMantle * 4) + Address.cooldownDynamic;
-            PrimaryMantleInfo[0] = Scanner.READ_FLOAT(EQUIPMENT_ADDRESS + PrimaryMantleTimerFixed);
-            PrimaryMantleInfo[1] = Scanner.READ_FLOAT(EQUIPMENT_ADDRESS + PrimaryMantleTimer);
-            PrimaryMantleInfo[2] = Scanner.READ_FLOAT(EQUIPMENT_ADDRESS + PrimaryMantleCdFixed);
-            PrimaryMantleInfo[3] = Scanner.READ_FLOAT(EQUIPMENT_ADDRESS + PrimaryMantleCdDynamic);
+            Int64 PrimaryMantleTimerFixed = (PrimaryMantle.ID * 4) + Address.timerFixed;
+            Int64 PrimaryMantleTimer = (PrimaryMantle.ID * 4) + Address.timerDynamic;
+            Int64 PrimaryMantleCdFixed = (PrimaryMantle.ID * 4) + Address.cooldownFixed;
+            Int64 PrimaryMantleCdDynamic = (PrimaryMantle.ID * 4) + Address.cooldownDynamic;
+            PrimaryMantle.SetCooldown(Scanner.READ_FLOAT(EQUIPMENT_ADDRESS + PrimaryMantleCdDynamic), Scanner.READ_FLOAT(EQUIPMENT_ADDRESS + PrimaryMantleCdFixed));
+            PrimaryMantle.SetTimer(Scanner.READ_FLOAT(EQUIPMENT_ADDRESS + PrimaryMantleTimer), Scanner.READ_FLOAT(EQUIPMENT_ADDRESS + PrimaryMantleTimerFixed));
         }
 
         private void GetSecondaryMantleTimers() {
-            Int64 SecondaryMantleTimerFixed = (SecondaryMantle * 4) + Address.timerFixed;
-            Int64 SecondaryMantleTimer = (SecondaryMantle * 4) + Address.timerDynamic;
-            Int64 SecondaryMantleCdFixed = (SecondaryMantle * 4) + Address.cooldownFixed;
-            Int64 SecondaryMantleCdDynamic = (SecondaryMantle * 4) + Address.cooldownDynamic;
-            SecondaryMantleInfo[0] = Scanner.READ_FLOAT(EQUIPMENT_ADDRESS + SecondaryMantleTimerFixed);
-            SecondaryMantleInfo[1] = Scanner.READ_FLOAT(EQUIPMENT_ADDRESS + SecondaryMantleTimer);
-            SecondaryMantleInfo[2] = Scanner.READ_FLOAT(EQUIPMENT_ADDRESS + SecondaryMantleCdFixed);
-            SecondaryMantleInfo[3] = Scanner.READ_FLOAT(EQUIPMENT_ADDRESS + SecondaryMantleCdDynamic);
+            Int64 SecondaryMantleTimerFixed = (SecondaryMantle.ID * 4) + Address.timerFixed;
+            Int64 SecondaryMantleTimer = (SecondaryMantle.ID * 4) + Address.timerDynamic;
+            Int64 SecondaryMantleCdFixed = (SecondaryMantle.ID * 4) + Address.cooldownFixed;
+            Int64 SecondaryMantleCdDynamic = (SecondaryMantle.ID * 4) + Address.cooldownDynamic;
+            SecondaryMantle.SetCooldown(Scanner.READ_FLOAT(EQUIPMENT_ADDRESS + SecondaryMantleCdDynamic), Scanner.READ_FLOAT(EQUIPMENT_ADDRESS + SecondaryMantleCdFixed));
+            SecondaryMantle.SetTimer(Scanner.READ_FLOAT(EQUIPMENT_ADDRESS + SecondaryMantleTimer), Scanner.READ_FLOAT(EQUIPMENT_ADDRESS + SecondaryMantleTimerFixed));
         }
 
     }
