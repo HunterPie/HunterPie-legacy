@@ -101,6 +101,16 @@ namespace HunterPie.GUI {
             }
         }
 
+        public void ChangePrimaryMantleColor(string newColor) {
+            if (PrimaryMantleTimer.Fill.ToString() == newColor) {
+                return;
+            }
+            Color primaryColor = (Color)ColorConverter.ConvertFromString(newColor);
+            Brush primaryColorBrush = new SolidColorBrush(primaryColor);
+            PrimaryMantleTimer.Fill = primaryColorBrush;
+            PrimaryMantleBorder.BorderBrush = primaryColorBrush;
+        }
+
         public void ChangeSecondaryMantlePosition(double X, double Y) {
             double Left = SecondaryMantleContainer.Margin.Left;
             double Top = SecondaryMantleContainer.Margin.Top;
@@ -137,6 +147,16 @@ namespace HunterPie.GUI {
             if (!SecondaryMantleContainer.IsVisible) {
                 SecondaryMantleContainer.Visibility = Visibility.Visible;
             }
+        }
+
+        public void ChangeSecondaryMantleColor(string newColor) {
+            if (SecondaryMantleTimer.Fill.ToString() == newColor) {
+                return;
+            }
+            Color secondaryColor = (Color)ColorConverter.ConvertFromString(newColor);
+            Brush secondaryColorBrush = new SolidColorBrush(secondaryColor);
+            SecondaryMantleTimer.Fill = secondaryColorBrush;
+            SecondaryMantleBorder.BorderBrush = secondaryColorBrush;
         }
 
         public void HideMonster(StackPanel Monster) {

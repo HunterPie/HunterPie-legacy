@@ -59,22 +59,28 @@ namespace HunterPie {
         }
 
         private void MainLoop() {
+            UserSettings.InitializePlayerConfig();
             while (true) {
                 UserSettings.LoadPlayerConfig();
 
-                // Moves overlay components 
+                // Set components
                 GameOverlay.Dispatch(new Action(() => {
+                    // Monsters component
                     double MonsterComponentPosX = UserSettings.PlayerConfig.Overlay.MonstersComponent.Position[0];
                     double MonsterComponentPosY = UserSettings.PlayerConfig.Overlay.MonstersComponent.Position[1];
                     GameOverlay.ChangeMonsterComponentPosition(MonsterComponentPosX, MonsterComponentPosY);
 
+                    // Primary mantle component
                     double PrimaryMantlePosX = UserSettings.PlayerConfig.Overlay.PrimaryMantle.Position[0];
                     double PrimaryMantlePosY = UserSettings.PlayerConfig.Overlay.PrimaryMantle.Position[1];
                     GameOverlay.ChangePrimaryMantlePosition(PrimaryMantlePosX, PrimaryMantlePosY);
+                    GameOverlay.ChangePrimaryMantleColor(UserSettings.PlayerConfig.Overlay.PrimaryMantle.Color);
 
+                    // Secondary mantle component
                     double SecondaryMantlePosX = UserSettings.PlayerConfig.Overlay.SecondaryMantle.Position[0];
                     double SecondaryMantlePosY = UserSettings.PlayerConfig.Overlay.SecondaryMantle.Position[1];
                     GameOverlay.ChangeSecondaryMantlePosition(SecondaryMantlePosX, SecondaryMantlePosY);
+                    GameOverlay.ChangeSecondaryMantleColor(UserSettings.PlayerConfig.Overlay.SecondaryMantle.Color);
                 }));
 
                 if (Scanner.GameIsRunning) {
@@ -162,7 +168,6 @@ namespace HunterPie {
                         }));
                     }
 
-
                 } else {
                     GameOverlay.Dispatch(new Action(() => {
                         GameOverlay.Hide();
@@ -213,7 +218,6 @@ namespace HunterPie {
 
         private void settingsButton_Click(object sender, RoutedEventArgs e) {
             OpenSettingsWindow();
-            
         }
     }
 }

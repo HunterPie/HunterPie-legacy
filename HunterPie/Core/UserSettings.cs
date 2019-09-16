@@ -41,11 +41,13 @@ namespace HunterPie.Core {
             public class Primarymantle {
                 public bool Enabled { get; set; } = true;
                 public int[] Position { get; set; } = new int[2] { 1170, 500 };
+                public string Color { get; set; } = "#99C500AA";
             }
 
             public class Secondarymantle {
                 public bool Enabled { get; set; } = true;
                 public int[] Position { get; set; } = new int[2] { 1170, 540 };
+                public string Color { get; set; } = "#996900FF";
             }
 
             public class Richpresence {
@@ -77,11 +79,13 @@ namespace HunterPie.Core {
                 },
                 PrimaryMantle = new Config.Primarymantle {
                     Enabled = true,
-                    Position = new int[2] { 1170, 500 }
+                    Position = new int[2] { 1170, 500 },
+                    Color = "#99C500AA"
                 },
                 SecondaryMantle = new Config.Secondarymantle {
                     Enabled = true,
-                    Position = new int[2] { 1170, 540 }
+                    Position = new int[2] { 1170, 540 },
+                    Color = "#996900FF"
                 }
             },
             RichPresence = new Config.Richpresence {
@@ -94,6 +98,12 @@ namespace HunterPie.Core {
                 }
             }
         };
+
+        public static void InitializePlayerConfig() {
+            // This is called only once when HunterPie starts
+            LoadPlayerConfig();
+            SaveNewConfig();
+        }
 
         public static string GetSerializedDefaultConfig() {
             return JsonConvert.SerializeObject(Default_Config, Formatting.Indented);
@@ -127,7 +137,6 @@ namespace HunterPie.Core {
             } catch(Exception err) {
                 Debugger.Error(err.Message);
             }
-            
         }
 
         public static void SaveNewConfig() {
