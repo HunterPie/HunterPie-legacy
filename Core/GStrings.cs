@@ -1,8 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using System.Collections.Generic;
 
 namespace HunterPie.Core {
     class GStrings {
@@ -11,12 +7,37 @@ namespace HunterPie.Core {
         static private Dictionary<int, string> Weapons = new Dictionary<int, string>();
         static private Dictionary<string, string> Monsters = new Dictionary<string, string>();
         static private Dictionary<int, string> Fertilizers = new Dictionary<int, string>();
+        static private Dictionary<int, string> Mantles = new Dictionary<int, string>();
 
         public static void InitStrings() {
             PopulateMonsters();
             PopulateWeapons();
             PopulateZones();
             PopulateFertilizers();
+            PopulateMantles();
+        }
+
+        private static void PopulateMantles() {
+            Mantles.Add(0, "Ghillie Mantle");
+            Mantles.Add(1, "Temporal Mantle");
+            Mantles.Add(2, "Health Booster");
+            Mantles.Add(3, "Rocksteady Mantle");
+            Mantles.Add(4, "Challenger Mantle");
+            Mantles.Add(5, "Vitality Mantle");
+            Mantles.Add(6, "Fireproof Mantle");
+            Mantles.Add(7, "Waterproof Mantle");
+            Mantles.Add(8, "Iceproof Mantle");
+            Mantles.Add(9, "Thunderproof Mantle");
+            Mantles.Add(10, "Dragonproof Mantle");
+            Mantles.Add(11, "Cleanser Booster");
+            Mantles.Add(12, "Glider Mantle");
+            Mantles.Add(13, "Evasion Mantle");
+            Mantles.Add(14, "Impact Mantle");
+            Mantles.Add(15, "Apothecary Mantle");
+            Mantles.Add(16, "Immunity Mantle");
+            Mantles.Add(17, "Affinity Booster");
+            Mantles.Add(18, "Bandit Mantle");
+            Mantles.Add(19, "Assassin's Hood");
         }
 
         private static void PopulateFertilizers() {
@@ -107,6 +128,14 @@ namespace HunterPie.Core {
             Monsters.Add("em106_00", "Zorah Magdaros");
             Monsters.Add("em127_00", "Leshen");
             Monsters.Add("em127_01", "Ancient Leshen");
+        }
+
+        public static string MantleName(int ID) {
+            if (Mantles.ContainsKey(ID)) {
+                return Mantles[ID];
+            } else {
+                return null;
+            }
         }
 
         public static string WeaponName(int ID) {

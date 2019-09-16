@@ -27,6 +27,9 @@ namespace HunterPie {
         Game MonsterHunter = new Game();
         Overlay GameOverlay;
 
+        ThreadStart ThreadScannerRef;
+        Thread MainThreadScanner;
+
         public MainWindow() {
             InitializeComponent();
             OpenDebugger();
@@ -34,10 +37,6 @@ namespace HunterPie {
             Debugger.Warn("Initializing HunterPie!");
             GStrings.InitStrings();
             StartEverything();
-        }
-
-        private void MainLoop(object sender, EventArgs e) {
-
         }
 
         private void StartEverything() {
@@ -48,12 +47,15 @@ namespace HunterPie {
             GameOverlay.Show();
         }
 
+        private void StopMainThread() {
+            MainThreadScanner.Abort();
+        }
+
         private void ThreadScanner() {
-            ThreadStart ThreadScannerRef = new ThreadStart(MainLoop);
-            Thread MainThreadScanner = new Thread(ThreadScannerRef);
+            ThreadScannerRef = new ThreadStart(MainLoop);
+            MainThreadScanner = new Thread(ThreadScannerRef);
             MainThreadScanner.Name = "Scanner_Main";
             MainThreadScanner.Start();
-            
         }
 
         private void MainLoop() {
@@ -62,9 +64,17 @@ namespace HunterPie {
 
                 // Moves overlay components 
                 GameOverlay.Dispatch(new Action(() => {
-                    double posX = UserSettings.PlayerConfig.Overlay.MonstersComponent.Position[0];
-                    double posY = UserSettings.PlayerConfig.Overlay.MonstersComponent.Position[1];
-                    GameOverlay.ChangeMonsterComponentPosition(posX, posY);
+                    double MonsterComponentPosX = UserSettings.PlayerConfig.Overlay.MonstersComponent.Position[0];
+                    double MonsterComponentPosY = UserSettings.PlayerConfig.Overlay.MonstersComponent.Position[1];
+                    GameOverlay.ChangeMonsterComponentPosition(MonsterComponentPosX, MonsterComponentPosY);
+
+                    double PrimaryMantlePosX = UserSettings.PlayerConfig.Overlay.PrimaryMantle.Position[0];
+                    double PrimaryMantlePosY = UserSettings.PlayerConfig.Overlay.PrimaryMantle.Position[1];
+                    GameOverlay.ChangePrimaryMantlePosition(PrimaryMantlePosX, PrimaryMantlePosY);
+
+                    double SecondaryMantlePosX = UserSettings.PlayerConfig.Overlay.SecondaryMantle.Position[0];
+                    double SecondaryMantlePosY = UserSettings.PlayerConfig.Overlay.SecondaryMantle.Position[1];
+                    GameOverlay.ChangeSecondaryMantlePosition(SecondaryMantlePosX, SecondaryMantlePosY);
                 }));
 
                 if (Scanner.GameIsRunning) {
@@ -78,6 +88,7 @@ namespace HunterPie {
                             GameOverlay.ShowOverlay();
                         }));
                     }
+                    // Monsters
                     if (MonsterHunter.FirstMonster.TotalHP > 0) {
                         GameOverlay.Dispatch(new Action(() => {
                             GameOverlay.ShowMonster(GameOverlay.fMonsterBox);
@@ -116,6 +127,42 @@ namespace HunterPie {
                             GameOverlay.HideMonster(GameOverlay.tMonsterBox);
                         }));
                     }
+
+                    // Mantle components
+                    if (MonsterHunter.Player.PrimaryMantle.Cooldown > 0 || MonsterHunter.Player.PrimaryMantle.Timer > 0) {
+                        double cooldown = MonsterHunter.Player.PrimaryMantle.Cooldown / MonsterHunter.Player.PrimaryMantle.staticCooldown;
+                        double timer = MonsterHunter.Player.PrimaryMantle.Timer / MonsterHunter.Player.PrimaryMantle.staticTimer;
+                        double Timer = cooldown != 1 ? cooldown : timer;
+                        float TimeLeft = cooldown != 1 ? MonsterHunter.Player.PrimaryMantle.Cooldown : MonsterHunter.Player.PrimaryMantle.Timer;
+
+                        GameOverlay.Dispatch(new Action(() => {
+                            GameOverlay.ShowPrimaryMantle();
+                            GameOverlay.UpdatePrimaryMantleTimer(Timer);
+                            GameOverlay.UpdatePrimaryMantleText($"({(int)TimeLeft}s) {MonsterHunter.Player.PrimaryMantle.Name.ToUpper()}");
+                        }));
+                    } else {
+                        GameOverlay.Dispatch(new Action(() => {
+                            GameOverlay.HidePrimaryMantle();
+                        }));
+                    }
+
+                    if (MonsterHunter.Player.SecondaryMantle.Cooldown > 0 || MonsterHunter.Player.SecondaryMantle.Timer > 0) {
+                        double cooldown = MonsterHunter.Player.SecondaryMantle.Cooldown / MonsterHunter.Player.SecondaryMantle.staticCooldown;
+                        double timer = MonsterHunter.Player.SecondaryMantle.Timer / MonsterHunter.Player.SecondaryMantle.staticTimer;
+                        double Timer = cooldown != 1 ? cooldown : timer;
+                        float TimeLeft = cooldown != 1 ? MonsterHunter.Player.SecondaryMantle.Cooldown : MonsterHunter.Player.SecondaryMantle.Timer;
+                        GameOverlay.Dispatch(new Action(() => {
+                            GameOverlay.ShowSecondaryMantle();
+                            GameOverlay.UpdateSecondaryMantleTimer(Timer);
+                            GameOverlay.UpdateSecondaryMantleText($"({(int)TimeLeft}s) {MonsterHunter.Player.SecondaryMantle.Name.ToUpper()}");
+                        }));
+                    } else {
+                        GameOverlay.Dispatch(new Action(() => {
+                            GameOverlay.HideSecondaryMantle();
+                        }));
+                    }
+
+
                 } else {
                     GameOverlay.Dispatch(new Action(() => {
                         GameOverlay.Hide();
@@ -130,6 +177,13 @@ namespace HunterPie {
             // X button function
             bool ExitConfirmation = MessageBox.Show("Are you sure you want to exit HunterPie?", "HunterPie", MessageBoxButton.YesNo, MessageBoxImage.Question) == MessageBoxResult.Yes;
             if (ExitConfirmation) {
+                // Stop Threads
+                MonsterHunter.StopScanning();
+                StopMainThread();
+                Scanner.StopScanning();
+                // Close stuff
+                GameOverlay.Close();
+                this.Close();
                 Environment.Exit(0);
             }
         }

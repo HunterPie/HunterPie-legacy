@@ -39,6 +39,10 @@ namespace HunterPie.Core {
             ScanPlayerInfo.Start();
         }
 
+        public void StopScanning() {
+            ScanPlayerInfo.Abort();
+        }
+
         private void GetPlayerInfo() {
             while (Scanner.GameIsRunning) {
                 GetPlayerLevel();
@@ -105,12 +109,14 @@ namespace HunterPie.Core {
             Int64 Address = LEVEL_ADDRESS + 0x34;
             int mantleId = Scanner.READ_INT(Address);
             PrimaryMantle.SetID(mantleId);
+            PrimaryMantle.SetName(GStrings.MantleName(mantleId));
         }
 
         private void GetSecondaryMantle() {
             Int64 Address = LEVEL_ADDRESS + 0x34 + 0x4;
             int mantleId = Scanner.READ_INT(Address);
             SecondaryMantle.SetID(mantleId);
+            SecondaryMantle.SetName(GStrings.MantleName(mantleId));
         }
 
         private void GetPrimaryMantleTimers() {

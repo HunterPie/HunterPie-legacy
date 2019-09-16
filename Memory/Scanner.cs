@@ -43,6 +43,10 @@ namespace HunterPie.Memory {
             ScanGameMemory.Start();
         }
 
+        public static void StopScanning() {
+            ScanGameMemory.Abort();
+        }
+
         public static void GetProcess() {
             while (true) {
                 MonsterHunter = Process.GetProcessesByName(PROCESS_NAME);

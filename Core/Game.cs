@@ -26,6 +26,13 @@ namespace HunterPie.Core {
             Debugger.Warn("Starting Game scanner");
         }
 
+        public void StopScanning() {
+            FirstMonster.StopThread();
+            SecondMonster.StopThread();
+            ThirdMonster.StopThread();
+            Player.StopScanning();
+        }
+
         private void StartGameScanner() {
             ScanGameThreadingRef = new ThreadStart(GameScanner);
             ScanGameThreading = new Thread(ScanGameThreadingRef);

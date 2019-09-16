@@ -41,9 +41,7 @@
             </Border>
             <ControlTemplate.Triggers>
                 <Trigger Property="IsMouseOver" Value="True">
-                    <Setter Property="Foreground" Value="#FFFF5454"/>
-                    <Setter Property="BorderThickness" Value="1"/>
-                    <Setter Property="BorderBrush" Value="#FF171717"/>
+                    <Setter Property="Background" Value="#FFFF5454"/>
                 </Trigger>
             </ControlTemplate.Triggers>
         </ControlTemplate>
@@ -70,8 +68,8 @@
         </Rectangle>
         <Image HorizontalAlignment="Left" Height="52" Margin="5,33,0,0" Grid.Row="1" VerticalAlignment="Top" Width="201" Source="pack://siteoforigin:,,,/media/hunterPyConsole.png"/>
         <Rectangle x:Name="WindowTopBar" Fill="#FF1F1F1F" HorizontalAlignment="Left" Height="32" Stroke="#FF1F1F1F" VerticalAlignment="Top" Width="1000" Grid.ColumnSpan="2" MouseDown="WindowTopBar_MouseDown"/>
-        <Label x:Name="closeWindow" Content="✕" Grid.Column="1" HorizontalAlignment="Center" Margin="734,7,2,2" VerticalAlignment="Center" Height="23" Width="20" Foreground="#FFD8D8D8" Padding="3,0,0,0" Cursor="Hand" MouseDown="Label_MouseDown" FontSize="14" Background="#00000000" Template="{DynamicResource LabelButtonType}" OverridesDefaultStyle="True" Style="{Binding Mode=OneWay, Source={StaticResource LabelButtonType}}" />
-        <Label x:Name="minimizeWindow" Content="-" Grid.Column="1" HorizontalAlignment="Center" Margin="709,7,29,2" VerticalAlignment="Center" Height="23" Width="18" Foreground="#FFD8D8D8" Padding="4,0,0,0" Cursor="Hand" FontSize="18" Background="#00000000" MouseDown="minimizeWindow_MouseDown" Template="{DynamicResource LabelButtonType}"/>
+        <Label x:Name="closeWindow" Content="✕" Grid.Column="1" HorizontalAlignment="Center" Margin="726,0,0,0" VerticalAlignment="Center" Height="32" Width="30" Foreground="#FFD8D8D8" Padding="0,0,1,0" Cursor="Hand" MouseDown="Label_MouseDown" FontSize="14" Template="{DynamicResource LabelButtonType}" OverridesDefaultStyle="True" Style="{Binding Mode=OneWay, Source={StaticResource LabelButtonType}}" VerticalContentAlignment="Center" Background="#FFB02B2B" HorizontalContentAlignment="Center" />
+        <Label x:Name="minimizeWindow" Content="__" Grid.Column="1" HorizontalAlignment="Left" Margin="693,0,0,0" Width="32" Foreground="#FFD8D8D8" Padding="0,0,13,6" Cursor="Hand" FontSize="18" Background="#00000000" MouseDown="minimizeWindow_MouseDown" Template="{DynamicResource LabelButtonType}" HorizontalContentAlignment="Right"/>
         <Button x:Name="consoleButton" HorizontalAlignment="Left" Margin="0,1,0,0" Grid.Row="2" VerticalAlignment="Top" Width="244" Height="45" BorderBrush="#00707070" Foreground="#FFDEDEDE" FontFamily="Yu Gothic UI" FontSize="18" Cursor="Hand" Background="#FF1F1F1F" BorderThickness="0" Template="{DynamicResource ButtonControlTemplate1}" Content="CONSOLE" Padding="-50,1,1,1" Click="consoleButton_Click"/>
         <Border x:Name="windowBorder" BorderBrush="#FF1F1F1F" BorderThickness="1" HorizontalAlignment="Left" Height="568" Grid.Row="1" VerticalAlignment="Top" Width="1000" Grid.ColumnSpan="2" Grid.RowSpan="2" d:IsLocked="True"/>
         <Button x:Name="settingsButton" Content="SETTINGS" HorizontalAlignment="Center" Margin="0,48,0,0" Grid.Row="2" VerticalAlignment="Top" Width="244" Height="45" BorderBrush="#00707070" Foreground="#FFDEDEDE" FontFamily="Yu Gothic UI" FontSize="18" Cursor="Hand" Background="#FF1F1F1F" BorderThickness="0" Template="{DynamicResource ButtonControlTemplate1}" Padding="-50,1,1,1" Click="settingsButton_Click"/>

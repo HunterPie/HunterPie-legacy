@@ -12,6 +12,7 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
 using System.Windows.Forms;
+using Xceed.Wpf.Toolkit;
 
 namespace HunterPie.GUI {
     /// <summary>
@@ -44,8 +45,10 @@ namespace HunterPie.GUI {
         }
 
         private void SetOverlaySize() {
-            OverlayWnd.Width = w_Width;
+            OverlayWnd.Width = w_Width * 2;
             OverlayWnd.Height = w_Height;
+            OverlayGrid.Width = OverlayWnd.Width;
+            OverlayGrid.Height = OverlayWnd.Height;
         }
 
         public void ChangeMonsterComponentPosition(double X, double Y) {
@@ -58,6 +61,82 @@ namespace HunterPie.GUI {
             double Bottom = MonstersContainer.Margin.Bottom;
             MonstersContainer.Margin = new Thickness(X, Y, Right, Bottom);
             Debugger.Warn($"Changed Monster component position to X:{X} Y:{Y}");
+        }
+
+        public void ChangePrimaryMantlePosition(double X, double Y) {
+            double Left = PrimaryMantleContainer.Margin.Left;
+            double Top = PrimaryMantleContainer.Margin.Top;
+            if (X == Left && Y == Top) {
+                return;
+            }
+            double Right = PrimaryMantleContainer.Margin.Right;
+            double Bottom = PrimaryMantleContainer.Margin.Bottom;
+            PrimaryMantleContainer.Margin = new Thickness(X, Y, Right, Bottom);
+            Debugger.Warn($"Changed primary mantle position to X: {X} Y:{Y}");
+        }
+
+        public void UpdatePrimaryMantleTimer(double percentage) {
+            if (percentage == PrimaryMantleTimer.Slice) {
+                return;
+            }
+            PrimaryMantleTimer.Slice = percentage;
+        }
+
+        public void UpdatePrimaryMantleText(string newText) {
+            if (newText == PrimaryMantleName.Content.ToString()) {
+                return;
+            }
+            PrimaryMantleName.Content = newText;
+        }
+
+        public void HidePrimaryMantle() {
+            if (PrimaryMantleContainer.IsVisible) {
+                PrimaryMantleContainer.Visibility = Visibility.Hidden;
+            }
+        }
+
+        public void ShowPrimaryMantle() {
+            if (!PrimaryMantleContainer.IsVisible) {
+                PrimaryMantleContainer.Visibility = Visibility.Visible;
+            }
+        }
+
+        public void ChangeSecondaryMantlePosition(double X, double Y) {
+            double Left = SecondaryMantleContainer.Margin.Left;
+            double Top = SecondaryMantleContainer.Margin.Top;
+            if (X == Left && Y == Top) {
+                return;
+            }
+            double Right = SecondaryMantleContainer.Margin.Right;
+            double Bottom = SecondaryMantleContainer.Margin.Bottom;
+            SecondaryMantleContainer.Margin = new Thickness(X, Y, Right, Bottom);
+            Debugger.Warn($"Changed primary mantle position to X: {X} Y:{Y}");
+        }
+
+        public void UpdateSecondaryMantleTimer(double percentage) {
+            if (percentage == SecondaryMantleTimer.Slice) {
+                return;
+            }
+            SecondaryMantleTimer.Slice = percentage;
+        }
+
+        public void UpdateSecondaryMantleText(string newText) {
+            if (newText == SecondaryMantleName.Content.ToString()) {
+                return;
+            }
+            SecondaryMantleName.Content = newText;
+        }
+
+        public void HideSecondaryMantle() {
+            if (SecondaryMantleContainer.IsVisible) {
+                SecondaryMantleContainer.Visibility = Visibility.Hidden;
+            }
+        }
+
+        public void ShowSecondaryMantle() {
+            if (!SecondaryMantleContainer.IsVisible) {
+                SecondaryMantleContainer.Visibility = Visibility.Visible;
+            }
         }
 
         public void HideMonster(StackPanel Monster) {
