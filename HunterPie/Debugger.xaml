@@ -26,7 +26,7 @@
         </ControlTemplate>
     </UserControl.Resources>
     <Grid Width="749" Height="443">
-        <RichTextBox x:Name="Console" HorizontalAlignment="Left" IsReadOnly="True" Height="443" Width="749" Background="#FF2E2E2E" Foreground="#FFEEEEEE" FontFamily="Consolas" FontSize="14" BorderBrush="#00ABADB3" VerticalScrollBarVisibility="Visible" Template="{DynamicResource RichTextStyle}" UseLayoutRounding="False" VerticalAlignment="Top" AllowDrop="False" Block.LineHeight="1" HorizontalScrollBarVisibility="Disabled" IsReadOnlyCaretVisible="True">
+        <RichTextBox x:Name="Console" HorizontalAlignment="Left" IsReadOnly="True" Height="443" Width="749" Background="#FF2E2E2E" Foreground="#FFEEEEEE" FontFamily="Sometype Mono" FontSize="14" BorderBrush="#00ABADB3" VerticalScrollBarVisibility="Visible" Template="{DynamicResource RichTextStyle}" UseLayoutRounding="False" VerticalAlignment="Top" AllowDrop="False" Block.LineHeight="1" HorizontalScrollBarVisibility="Disabled" IsReadOnlyCaretVisible="True">
             <FlowDocument>
                 <Paragraph/>
             </FlowDocument>

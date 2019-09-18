@@ -1,19 +1,7 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows;
-using System.Windows.Controls;
-using System.Windows.Data;
-using System.Windows.Documents;
 using System.Windows.Input;
-using System.Windows.Media;
-using System.Windows.Media.Imaging;
-using System.Windows.Navigation;
-using System.Windows.Shapes;
 using System.Threading;
-using System.Windows.Media.Animation;
 using HunterPie.Memory;
 using HunterPie.Core;
 using HunterPie.GUI;
@@ -31,6 +19,7 @@ namespace HunterPie {
         Thread MainThreadScanner;
 
         public MainWindow() {
+            this.Margin = new Thickness(0, 0, 1366, 768);
             InitializeComponent();
             OpenDebugger();
             // Initialize everything under this line
@@ -218,6 +207,14 @@ namespace HunterPie {
 
         private void settingsButton_Click(object sender, RoutedEventArgs e) {
             OpenSettingsWindow();
+        }
+
+        private void window_Closing(object sender, System.ComponentModel.CancelEventArgs e) {
+            GameOverlay.Close();
+        }
+
+        private void githubButton_Click(object sender, RoutedEventArgs e) {
+            System.Diagnostics.Process.Start("https://github.com/Haato3o/HunterPie");
         }
     }
 }

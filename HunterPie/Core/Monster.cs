@@ -1,8 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Threading;
 using HunterPie.Memory;
 
@@ -14,7 +10,8 @@ namespace HunterPie.Core {
         public string ID { get; private set; }
         public float TotalHP { get; private set; }
         public float CurrentHP { get; private set; }
-        public bool isTarget { get; private set; }
+        public float HPPercentage { get; private set; }
+        public bool isTarget { get; set; }
         private Int64 MonsterAddress;
 
         // Threading
@@ -79,6 +76,7 @@ namespace HunterPie.Core {
             if ((this.ID != null) && f_CurrentHP <= f_TotalHP && f_CurrentHP > 0 && !this.ID.StartsWith("ems")) {
                 this.TotalHP = f_TotalHP;
                 this.CurrentHP = f_CurrentHP;
+                this.HPPercentage = f_CurrentHP / f_TotalHP;
             } else {
                 this.TotalHP = 0.0f;
                 this.CurrentHP = 0.0f;

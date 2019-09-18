@@ -48,7 +48,31 @@ namespace HunterPie.Core {
         }
 
         private void PredictTarget() {
-
+            float minimum = Math.Min(FirstMonster.HPPercentage, SecondMonster.HPPercentage);
+            minimum = Math.Min(minimum, ThirdMonster.HPPercentage);
+            if (minimum == 1) {
+                FirstMonster.isTarget = false;
+                SecondMonster.isTarget = false;
+                ThirdMonster.isTarget = false;
+                return;
+            }
+            if (minimum == FirstMonster.HPPercentage) {
+                FirstMonster.isTarget = true;
+                SecondMonster.isTarget = false;
+                ThirdMonster.isTarget = false;
+            } else if (minimum == SecondMonster.HPPercentage) {
+                FirstMonster.isTarget = false;
+                SecondMonster.isTarget = true;
+                ThirdMonster.isTarget = false;
+            } else if (minimum == ThirdMonster.HPPercentage) {
+                FirstMonster.isTarget = false;
+                SecondMonster.isTarget = false;
+                ThirdMonster.isTarget = true;
+            } else {
+                FirstMonster.isTarget = false;
+                SecondMonster.isTarget = false;
+                ThirdMonster.isTarget = false;
+            }
         }
 
     }

@@ -22,6 +22,7 @@ namespace HunterPie.GUI {
 
         double w_Height = Screen.PrimaryScreen.Bounds.Height;
         double w_Width = Screen.PrimaryScreen.Bounds.Width;
+        
 
         public Overlay() {
             InitializeComponent();

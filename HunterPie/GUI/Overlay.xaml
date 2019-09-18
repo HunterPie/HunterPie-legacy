@@ -6,7 +6,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:HunterPie.GUI"
         mc:Ignorable="d"
-        Title="Overlay" Width="1920" Height="1080" ShowInTaskbar="False" Topmost="True" AllowsTransparency="True" WindowStyle="None" Background="Transparent" WindowStartupLocation="CenterOwner" Top="0" Left="0">
+        Title="Overlay" Width="1920" Height="1080" ShowInTaskbar="False" Topmost="True" AllowsTransparency="True" WindowStyle="None" Background="Transparent" WindowStartupLocation="Manual" Top="0" Left="0">
     <Window.Resources>
         <SolidColorBrush x:Key="ProgressBar.Progress" Color="#FF06B025"/>
         <SolidColorBrush x:Key="ProgressBar.Background" Color="#FFE6E6E6"/>
