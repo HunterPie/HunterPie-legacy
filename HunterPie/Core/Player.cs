@@ -8,6 +8,9 @@ using HunterPie.Memory;
 
 namespace HunterPie.Core {
     class Player {
+        // Game info
+        private int[] PeaceZones = new int[11] { 0, 5, 7, 11, 15, 16, 21, 23, 24, 31, 33 };
+
         // Player info
         private Int64 LEVEL_ADDRESS;
         private Int64 EQUIPMENT_ADDRESS;
@@ -20,6 +23,14 @@ namespace HunterPie.Core {
         public int WeaponID { get; private set; }
         public string WeaponName { get; private set; }
         public string SessionID { get; private set; }
+        public bool inPeaceZone = true;
+
+        // Party
+        public string[] Party = new string[4];
+        public int PartySize = 0;
+        public int PartyMax = 4;
+
+        // Harvesting
         public int HarvestedItemsCounter { get; private set; }
         public object[] HarvestBoxFertilizers = new object[4];
 
@@ -55,6 +66,7 @@ namespace HunterPie.Core {
                 GetSecondaryMantle();
                 GetPrimaryMantleTimers();
                 GetSecondaryMantleTimers();
+                GetParty();
                 Thread.Sleep(1000);
             }
             Thread.Sleep(1000);
@@ -79,7 +91,17 @@ namespace HunterPie.Core {
             Int64 Address = Memory.Address.BASE + Memory.Address.ZONE_OFFSET;
             Int64[] Offset = new Int64[4] { 0x660, 0x28, 0x18, 0x440 };
             Int64 ZoneAddress = Scanner.READ_MULTILEVEL_PTR(Address, Offset);
-            ZoneID = Scanner.READ_INT(ZoneAddress + 0x2B0);
+            int zoneId = Scanner.READ_INT(ZoneAddress + 0x2B0);
+            if (zoneId != ZoneID) {
+                this.LastZoneID = ZoneID;
+                this.ZoneID = zoneId;
+                this.inPeaceZone = PeaceZones.Contains(this.ZoneID);
+            }
+            ZoneName = GStrings.ZoneName(ZoneID);
+        }
+
+        public void ChangeLastZone() {
+            this.LastZoneID = ZoneID;
         }
 
         private void GetWeaponId() {
@@ -135,6 +157,32 @@ namespace HunterPie.Core {
             Int64 SecondaryMantleCdDynamic = (SecondaryMantle.ID * 4) + Address.cooldownDynamic;
             SecondaryMantle.SetCooldown(Scanner.READ_FLOAT(EQUIPMENT_ADDRESS + SecondaryMantleCdDynamic), Scanner.READ_FLOAT(EQUIPMENT_ADDRESS + SecondaryMantleCdFixed));
             SecondaryMantle.SetTimer(Scanner.READ_FLOAT(EQUIPMENT_ADDRESS + SecondaryMantleTimer), Scanner.READ_FLOAT(EQUIPMENT_ADDRESS + SecondaryMantleTimerFixed));
+        }
+
+        private void GetParty() {
+            Int64 address = Address.BASE + Address.PARTY_OFFSET;
+            Int64[] offsets = new Int64[1] { 0x0 };
+            Int64 PartyContainer = Scanner.READ_LONGLONG(address) + 0x54A45;
+            this.PartySize = 0;
+            for (int member = 0; member < PartyMax; member++) {
+                string partyMemberName = GetPartyMemberName(PartyContainer + (member * 0x21));
+                if (partyMemberName == null) {
+                    this.Party[member] = null;
+                    continue;
+                } else {
+                    this.Party[member] = partyMemberName;
+                    this.PartySize++;
+                }
+            }
+        }
+
+        private string GetPartyMemberName(Int64 NameAddress) {
+            try {
+                string PartyMemberName = Scanner.READ_STRING(NameAddress, 32);
+                return PartyMemberName[0] == '\x00' ? null : PartyMemberName;
+            } catch {
+                return null;
+            }
         }
 
     }

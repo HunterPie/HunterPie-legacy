@@ -14,6 +14,7 @@ namespace HunterPie.Memory {
         public const Int64 SESSION_OFFSET = 0x048D95E0;
         public const Int64 EQUIPMENT_OFFSET = 0x03B4CD48;
         public const Int64 WEAPON_OFFSET = 0x03BEA538;
+        public const Int64 PARTY_OFFSET = 0x48DDF20;
 
         // Consts
         public const Int64 cooldownFixed = 0x9EC;

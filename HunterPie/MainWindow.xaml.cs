@@ -5,6 +5,7 @@ using System.Threading;
 using HunterPie.Memory;
 using HunterPie.Core;
 using HunterPie.GUI;
+using DiscordRPC;
 
 namespace HunterPie {
     /// <summary>
@@ -13,10 +14,14 @@ namespace HunterPie {
     public partial class MainWindow : Window {
 
         Game MonsterHunter = new Game();
+        Presence Discord = new Presence();
         Overlay GameOverlay;
 
         ThreadStart ThreadScannerRef;
         Thread MainThreadScanner;
+
+        ThreadStart RichPresenceThreadRef;
+        Thread RichPresenceThread;
 
         public MainWindow() {
             this.Margin = new Thickness(0, 0, 1366, 768);
@@ -25,6 +30,7 @@ namespace HunterPie {
             // Initialize everything under this line
             Debugger.Warn("Initializing HunterPie!");
             GStrings.InitStrings();
+            Discord.InitializePresence();
             StartEverything();
         }
 
@@ -32,12 +38,20 @@ namespace HunterPie {
             ThreadScanner();
             MonsterHunter.StartScanning();
             Scanner.StartScanning(); // Scans game memory
+            StartRichPresenceThread();
             GameOverlay = new Overlay();
             GameOverlay.Show();
         }
 
         private void StopMainThread() {
             MainThreadScanner.Abort();
+        }
+
+        private void StartRichPresenceThread() {
+            RichPresenceThreadRef = new ThreadStart(HandlePresence);
+            RichPresenceThread = new Thread(RichPresenceThreadRef);
+            RichPresenceThread.Name = "Thread_RichPresence";
+            RichPresenceThread.Start();
         }
 
         private void ThreadScanner() {
@@ -47,11 +61,39 @@ namespace HunterPie {
             MainThreadScanner.Start();
         }
 
+        private void HandlePresence() {
+            try {
+                while (Scanner.GameIsRunning) {
+                    if (UserSettings.PlayerConfig.RichPresence.Enabled) {
+                        Discord.ShowPresence();
+
+                        string BigImage = MonsterHunter.Player.ZoneName.Replace(' ', '-').Replace("'", string.Empty).ToLower();
+                        string SmallImage = MonsterHunter.Player.WeaponName.Replace(' ', '-').ToLower();
+                        string PartyHash = "test";
+                        string Details = MonsterHunter.HuntedMonster == null ? MonsterHunter.Player.inPeaceZone ? "Idle" : "Exploring" : $"Hunting {MonsterHunter.HuntedMonster.Name} ({(int)(MonsterHunter.HuntedMonster.HPPercentage * 100)}%)";
+                        string State = MonsterHunter.Player.PartySize > 1 ? "In Party" : "Solo";
+                        Assets presenceAssets = Discord.GenerateAssets(BigImage, MonsterHunter.Player.ZoneName == "Main Menu" ? null : MonsterHunter.Player.ZoneName, SmallImage, MonsterHunter.Player.WeaponName);
+                        Party presenceParty = Discord.MakeParty(MonsterHunter.Player.PartySize, MonsterHunter.Player.PartyMax, PartyHash);
+                        Timestamps presenceTime = Discord.NewTimestamp(MonsterHunter.Time);
+                        Discord.UpdatePresenceInfo(Details, State, presenceAssets, presenceParty, presenceTime);
+                    } else {
+                        Discord.HidePresence();
+                    }
+                    Thread.Sleep(10000);
+                }
+                Thread.Sleep(500);
+                HandlePresence();
+            } catch(Exception err) {
+                Debugger.Error(err.ToString());
+                Thread.Sleep(500);
+                HandlePresence();
+            }
+        }
+
         private void MainLoop() {
             UserSettings.InitializePlayerConfig();
             while (true) {
                 UserSettings.LoadPlayerConfig();
-
                 // Set components
                 GameOverlay.Dispatch(new Action(() => {
                     // Monsters component
@@ -74,6 +116,7 @@ namespace HunterPie {
 
                 if (Scanner.GameIsRunning) {
                     // Hides/show overlay when user disable/enable it
+                    
                     if (!UserSettings.PlayerConfig.Overlay.Enabled) {
                         GameOverlay.Dispatch(new Action(() => {
                             GameOverlay.HideOverlay();
@@ -156,11 +199,12 @@ namespace HunterPie {
                             GameOverlay.HideSecondaryMantle();
                         }));
                     }
-
+                    
                 } else {
                     GameOverlay.Dispatch(new Action(() => {
                         GameOverlay.Hide();
                     }));
+                    Discord.HidePresence();
                 }
 
                 Thread.Sleep(200);
@@ -172,6 +216,7 @@ namespace HunterPie {
             bool ExitConfirmation = MessageBox.Show("Are you sure you want to exit HunterPie?", "HunterPie", MessageBoxButton.YesNo, MessageBoxImage.Question) == MessageBoxResult.Yes;
             if (ExitConfirmation) {
                 // Stop Threads
+                Discord.DisconnectPresence();
                 MonsterHunter.StopScanning();
                 StopMainThread();
                 Scanner.StopScanning();

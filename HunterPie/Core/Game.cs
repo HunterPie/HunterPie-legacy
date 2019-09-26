@@ -1,8 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Threading;
 
 namespace HunterPie.Core {
@@ -12,6 +8,30 @@ namespace HunterPie.Core {
         public Monster FirstMonster = new Monster(1);
         public Monster SecondMonster = new Monster(2);
         public Monster ThirdMonster = new Monster(3);
+        public Monster HuntedMonster {
+            get {
+                if (FirstMonster.isTarget) {
+                    return FirstMonster;
+                } else if (SecondMonster.isTarget) {
+                    return SecondMonster;
+                } else if (ThirdMonster.isTarget) {
+                    return ThirdMonster;
+                } else {
+                    return null;
+                }
+            }
+        }
+
+        private DateTime _Time;
+        public DateTime Time {
+            get {
+                if (Player.LastZoneID != Player.ZoneID) {
+                    _Time = DateTime.UtcNow;
+                    Player.ChangeLastZone();
+                }
+                return _Time;
+            }
+        }
 
         // Threading
         ThreadStart ScanGameThreadingRef;
@@ -45,6 +65,8 @@ namespace HunterPie.Core {
                 PredictTarget();
                 Thread.Sleep(1000);
             }
+            Thread.Sleep(1000);
+            GameScanner();
         }
 
         private void PredictTarget() {
