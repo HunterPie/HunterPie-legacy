@@ -36,7 +36,7 @@ namespace HunterPie.Core {
         }
 
         public void HidePresence() {
-            if (!isVisible) {
+            if (isVisible) {
                 Instance.Details = null;
                 Instance.State = null;
                 Instance.Assets = null;
@@ -71,8 +71,11 @@ namespace HunterPie.Core {
 
         public Timestamps NewTimestamp(DateTime start) {
             Timestamps timestamp = new Timestamps();
-            timestamp.Start = start;
-            timestamp.End = null;
+            try {
+                timestamp.Start = start;
+            } catch {
+                timestamp.Start = null;
+            }
             return timestamp;
         }
 

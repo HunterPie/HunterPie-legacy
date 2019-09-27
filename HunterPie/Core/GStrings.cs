@@ -63,6 +63,7 @@ namespace HunterPie.Core {
             Zones.Add(12, "Caverns of El Dorado");
             Zones.Add(15, "Private Suite");
             Zones.Add(16, "Private Quarters");
+            Zones.Add(17, "Main Menu");
             Zones.Add(18, "Elder's Recess");
             Zones.Add(21, "Gathering Hub"); // During events
             Zones.Add(23, "Training Area");

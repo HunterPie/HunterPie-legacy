@@ -62,9 +62,11 @@ namespace HunterPie {
         }
 
         private void HandlePresence() {
+            bool GameLoaded = false;
             try {
                 while (Scanner.GameIsRunning) {
-                    if (UserSettings.PlayerConfig.RichPresence.Enabled) {
+                    GameLoaded = MonsterHunter.Player.ZoneID != 0;
+                    if (UserSettings.PlayerConfig.RichPresence.Enabled && GameLoaded) {
                         Discord.ShowPresence();
 
                         string BigImage = MonsterHunter.Player.ZoneName.Replace(' ', '-').Replace("'", string.Empty).ToLower();
@@ -84,7 +86,7 @@ namespace HunterPie {
                 Thread.Sleep(500);
                 HandlePresence();
             } catch(Exception err) {
-                Debugger.Error(err.ToString());
+                Debugger.Error(err.Message);
                 Thread.Sleep(500);
                 HandlePresence();
             }
