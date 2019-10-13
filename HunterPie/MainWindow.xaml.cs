@@ -83,6 +83,7 @@ namespace HunterPie {
                     }
                     Thread.Sleep(10000);
                 }
+                Discord.HidePresence();
                 Thread.Sleep(500);
                 HandlePresence();
             } catch(Exception err) {

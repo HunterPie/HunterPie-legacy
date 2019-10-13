@@ -37,13 +37,7 @@ namespace HunterPie.Core {
 
         public void HidePresence() {
             if (isVisible) {
-                Instance.Details = null;
-                Instance.State = null;
-                Instance.Assets = null;
-                Instance.Party = null;
-                Instance.Timestamps = null;
-                UpdatePresence();
-                isVisible = false;
+                Client.ClearPresence();
             }
         }
 
