@@ -48,16 +48,21 @@ namespace HunterPie.Memory {
         }
 
         public static void GetProcess() {
+            bool lockSpam = false;
             while (true) {
                 MonsterHunter = Process.GetProcessesByName(PROCESS_NAME);
                 if (MonsterHunter.Length == 0) {
-                    Debugger.Log("MonsterHunterWorld.exe not found!");
+                    if (!lockSpam) {
+                        Debugger.Log("HunterPie is ready! Waiting for game process to start...");
+                        lockSpam = true;
+                    }
+                    if (GameIsRunning) Debugger.Log("Game process was closed by user!");
                     GameIsRunning = false;
                     PID = 0;
                 } else if (!GameIsRunning) {
                     PID = MonsterHunter[0].Id;
                     ProcessHandle = OpenProcess(PROCESS_ALL_ACCESS, false, PID);
-                    Debugger.Log($"MonsterHunterWorld.exe found! PID -> {PID}");
+                    Debugger.Log($"MonsterHunterWorld.exe found! (PID: {PID})");
                     GameIsRunning = true;
                 }
                 Thread.Sleep(1000);
