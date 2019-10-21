@@ -74,7 +74,9 @@ namespace HunterPie {
                         string PartyHash = "test";
                         string Details = MonsterHunter.HuntedMonster == null ? MonsterHunter.Player.inPeaceZone ? "Idle" : "Exploring" : $"Hunting {MonsterHunter.HuntedMonster.Name} ({(int)(MonsterHunter.HuntedMonster.HPPercentage * 100)}%)";
                         string State = MonsterHunter.Player.PartySize > 1 ? "In Party" : "Solo";
-                        Assets presenceAssets = Discord.GenerateAssets(BigImage, MonsterHunter.Player.ZoneName == "Main Menu" ? null : MonsterHunter.Player.ZoneName, SmallImage, MonsterHunter.Player.WeaponName);
+                        string SmallText = $"{MonsterHunter.Player.Name} | Lvl: {MonsterHunter.Player.Level}";
+
+                        Assets presenceAssets = Discord.GenerateAssets(BigImage, MonsterHunter.Player.ZoneName == "Main Menu" ? null : MonsterHunter.Player.ZoneName, SmallImage, SmallText);
                         Party presenceParty = Discord.MakeParty(MonsterHunter.Player.PartySize, MonsterHunter.Player.PartyMax, PartyHash);
                         Timestamps presenceTime = Discord.NewTimestamp(MonsterHunter.Time);
                         Discord.UpdatePresenceInfo(Details, State, presenceAssets, presenceParty, presenceTime);
@@ -87,7 +89,7 @@ namespace HunterPie {
                 Thread.Sleep(500);
                 HandlePresence();
             } catch(Exception err) {
-                Debugger.Error(err.Message);
+                //Debugger.Error(err.Message);
                 Thread.Sleep(500);
                 HandlePresence();
             }
@@ -95,6 +97,7 @@ namespace HunterPie {
 
         private void MainLoop() {
             UserSettings.InitializePlayerConfig();
+            bool lockSpam = false;
             while (true) {
                 UserSettings.LoadPlayerConfig();
                 // Set components
@@ -118,8 +121,22 @@ namespace HunterPie {
                 }));
 
                 if (Scanner.GameIsRunning) {
+
+                    if (Scanner.GameVersion != Address.GAME_VERSION) {
+                        // Checks if the current game version is equal to the HunterPie mapped version
+                        Debugger.Error($"Detected game version ({Scanner.GameVersion}) not mapped yet!");
+                        GameOverlay.Dispatch(new Action(() => {
+                            GameOverlay.Close();
+                        }));
+                        return;
+                    } else {
+                        if (!lockSpam) {
+                            Debugger.Log($"Game version: {Scanner.GameVersion}");
+                            lockSpam = true;
+                        }
+                    }
+
                     // Hides/show overlay when user disable/enable it
-                    
                     if (!UserSettings.PlayerConfig.Overlay.Enabled) {
                         GameOverlay.Dispatch(new Action(() => {
                             GameOverlay.HideOverlay();
@@ -208,8 +225,8 @@ namespace HunterPie {
                         GameOverlay.Hide();
                     }));
                     Discord.HidePresence();
+                    lockSpam = false;
                 }
-
                 Thread.Sleep(200);
             }
         }
@@ -218,13 +235,15 @@ namespace HunterPie {
             // X button function
             bool ExitConfirmation = MessageBox.Show("Are you sure you want to exit HunterPie?", "HunterPie", MessageBoxButton.YesNo, MessageBoxImage.Question) == MessageBoxResult.Yes;
             if (ExitConfirmation) {
-                // Stop Threads
-                Discord.DisconnectPresence();
-                MonsterHunter.StopScanning();
-                StopMainThread();
-                Scanner.StopScanning();
+                try {
+                    // Stop Threads
+                    Discord.DisconnectPresence();
+                    MonsterHunter.StopScanning();
+                    StopMainThread();
+                    Scanner.StopScanning();
+                    GameOverlay.Close();
+                } catch {}
                 // Close stuff
-                GameOverlay.Close();
                 this.Close();
                 Environment.Exit(0);
             }
@@ -258,7 +277,7 @@ namespace HunterPie {
         }
 
         private void window_Closing(object sender, System.ComponentModel.CancelEventArgs e) {
-            GameOverlay.Close();
+            if (GameOverlay != null) GameOverlay.Close();
         }
 
         private void githubButton_Click(object sender, RoutedEventArgs e) {

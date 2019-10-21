@@ -41,7 +41,7 @@ namespace HunterPie {
         }
 
         public static void Error(string message) {
-            PrintOnConsole(message, ERROR);
+            PrintOnConsole($"[WARNING] {message}", ERROR);
         }
 
         public static void Log(string message) {

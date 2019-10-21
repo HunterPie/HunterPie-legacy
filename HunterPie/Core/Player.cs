@@ -77,7 +77,7 @@ namespace HunterPie.Core {
             Int64 Address = Memory.Address.BASE + Memory.Address.LEVEL_OFFSET;
             Int64[] Offset = new Int64[4] { 0x70, 0x68, 0x8, 0x20 };
             Int64 AddressValue = Scanner.READ_MULTILEVEL_PTR(Address, Offset);
-            if (LEVEL_ADDRESS != AddressValue + 0x108) Debugger.Log($"Found player address at 0x{AddressValue:X}");
+            if (LEVEL_ADDRESS != AddressValue + 0x108 && AddressValue != 0x0) Debugger.Log($"Found player address at 0x{AddressValue:X}");
             LEVEL_ADDRESS = AddressValue + 0x108;
             Level = Scanner.READ_INT(LEVEL_ADDRESS);
         }

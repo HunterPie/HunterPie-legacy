@@ -1,16 +1,7 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
-using System.Windows.Data;
-using System.Windows.Documents;
-using System.Windows.Input;
 using System.Windows.Media;
-using System.Windows.Media.Imaging;
-using System.Windows.Shapes;
 using System.Windows.Forms;
 using Xceed.Wpf.Toolkit;
 
@@ -61,7 +52,7 @@ namespace HunterPie.GUI {
             double Right = MonstersContainer.Margin.Right;
             double Bottom = MonstersContainer.Margin.Bottom;
             MonstersContainer.Margin = new Thickness(X, Y, Right, Bottom);
-            Debugger.Warn($"Changed Monster component position to X:{X} Y:{Y}");
+            //Debugger.Warn($"Changed Monster component position to X:{X} Y:{Y}");
         }
 
         public void ChangePrimaryMantlePosition(double X, double Y) {
@@ -73,7 +64,7 @@ namespace HunterPie.GUI {
             double Right = PrimaryMantleContainer.Margin.Right;
             double Bottom = PrimaryMantleContainer.Margin.Bottom;
             PrimaryMantleContainer.Margin = new Thickness(X, Y, Right, Bottom);
-            Debugger.Warn($"Changed primary mantle position to X: {X} Y:{Y}");
+            //Debugger.Warn($"Changed primary mantle position to X: {X} Y:{Y}");
         }
 
         public void UpdatePrimaryMantleTimer(double percentage) {
@@ -121,7 +112,7 @@ namespace HunterPie.GUI {
             double Right = SecondaryMantleContainer.Margin.Right;
             double Bottom = SecondaryMantleContainer.Margin.Bottom;
             SecondaryMantleContainer.Margin = new Thickness(X, Y, Right, Bottom);
-            Debugger.Warn($"Changed primary mantle position to X: {X} Y:{Y}");
+            //Debugger.Warn($"Changed primary mantle position to X: {X} Y:{Y}");
         }
 
         public void UpdateSecondaryMantleTimer(double percentage) {

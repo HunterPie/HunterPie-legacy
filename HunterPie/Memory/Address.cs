@@ -6,15 +6,18 @@ using System.Threading.Tasks;
 
 namespace HunterPie.Memory {
     class Address {
+
+        public const string GAME_VERSION = "167898";
+
         // Static addresses
         public const Int64 BASE = 0x140000000;
-        public const Int64 LEVEL_OFFSET = 0x03B48998;
-        public const Int64 ZONE_OFFSET = 0x048EF560;
-        public const Int64 MONSTER_OFFSET = 0x48DCDB8;
+        public const Int64 LEVEL_OFFSET = 0x03B4A278;
+        public const Int64 ZONE_OFFSET = 0x048F0E20;
+        public const Int64 MONSTER_OFFSET = 0x48DE698;
         public const Int64 SESSION_OFFSET = 0x048D95E0;
-        public const Int64 EQUIPMENT_OFFSET = 0x03B4CD48;
-        public const Int64 WEAPON_OFFSET = 0x03BEA538;
-        public const Int64 PARTY_OFFSET = 0x48DDF20;
+        public const Int64 EQUIPMENT_OFFSET = 0x03BE71E0;
+        public const Int64 WEAPON_OFFSET = 0x03BEBE18;
+        public const Int64 PARTY_OFFSET = 0x48DF800;
 
         // Consts
         public const Int64 cooldownFixed = 0x9EC;
