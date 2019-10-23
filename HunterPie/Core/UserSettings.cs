@@ -126,7 +126,7 @@ namespace HunterPie.Core {
             }
             if (ConfigSerialized != configContent) {
                 ConfigSerialized = configContent;
-                Debugger.Warn("Config.json loaded!");
+                Debugger.Warn("User config loaded!");
             }
         }
 

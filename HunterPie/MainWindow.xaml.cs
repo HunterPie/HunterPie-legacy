@@ -24,23 +24,31 @@ namespace HunterPie {
         Thread RichPresenceThread;
 
         public MainWindow() {
-            this.Margin = new Thickness(0, 0, 1366, 768);
             InitializeComponent();
             OpenDebugger();
             // Initialize everything under this line
+            UserSettings.InitializePlayerConfig();
+            CheckIfUpdateEnableAndStart();
             Debugger.Warn("Initializing HunterPie!");
             GStrings.InitStrings();
             Discord.InitializePresence();
             StartEverything();
         }
 
+        private void CheckIfUpdateEnableAndStart() {
+            if (UserSettings.PlayerConfig.HunterPie.Update.Enabled) {
+                
+                Environment.Exit(0);
+            }
+        }
+
         private void StartEverything() {
-            ThreadScanner();
             MonsterHunter.StartScanning();
             Scanner.StartScanning(); // Scans game memory
             StartRichPresenceThread();
             GameOverlay = new Overlay();
             GameOverlay.Show();
+            ThreadScanner();
         }
 
         private void StopMainThread() {
