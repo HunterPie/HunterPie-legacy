@@ -6,6 +6,8 @@ using HunterPie.Memory;
 using HunterPie.Core;
 using HunterPie.GUI;
 using DiscordRPC;
+using System.Diagnostics;
+using System.IO;
 
 namespace HunterPie {
     /// <summary>
@@ -23,22 +25,70 @@ namespace HunterPie {
         ThreadStart RichPresenceThreadRef;
         Thread RichPresenceThread;
 
+        const string HUNTERPIE_VERSION = "1.0.0.4";
+
         public MainWindow() {
             InitializeComponent();
             OpenDebugger();
             // Initialize everything under this line
             UserSettings.InitializePlayerConfig();
             CheckIfUpdateEnableAndStart();
+            // Updates version_text
+            this.version_text.Content = $"Version: {HUNTERPIE_VERSION}";
             Debugger.Warn("Initializing HunterPie!");
             GStrings.InitStrings();
             Discord.InitializePresence();
             StartEverything();
         }
 
+        private bool StartUpdateProcess() {
+            if (!File.Exists("Update.exe")) return false;
+
+            Process UpdateProcess = new Process();
+            UpdateProcess.StartInfo.FileName = "Update.exe";
+            UpdateProcess.StartInfo.Arguments = $"version={HUNTERPIE_VERSION}";
+            UpdateProcess.Start();
+            return true;
+        }
+
         private void CheckIfUpdateEnableAndStart() {
             if (UserSettings.PlayerConfig.HunterPie.Update.Enabled) {
-                
-                Environment.Exit(0);
+                bool justUpdated = false;
+                bool latestVersion = false;
+                string[] args = Environment.GetCommandLineArgs();
+                foreach (string argument in args) {
+                    if (argument.StartsWith("justUpdated")) {
+                        string parsed = ParseArgs(argument);
+                        justUpdated = parsed == "True" ? true : false;
+                    }
+                    if (argument.StartsWith("latestVersion")) {
+                        string parsed = ParseArgs(argument);
+                        latestVersion = parsed == "True" ? true : false;
+                    }
+                }
+                if (justUpdated) {
+                    // Show changelog
+                    return;
+                }
+                if (latestVersion) {
+                    return;
+                }
+                bool StartUpdate = StartUpdateProcess();
+                if (StartUpdate) {
+                    Environment.Exit(0);
+                } else {
+                    MessageBox.Show("Update.exe not found! Skipping auto-update...", "Error", MessageBoxButton.OK, MessageBoxImage.Error);
+                }
+            } else {
+                Debugger.Error("Auto-update is disabled. If your HunterPie has any issues or doesn't support the current game version, try re-enabling auto-update!");
+            }
+        }
+
+        private string ParseArgs(string arg) {
+            try {
+                return arg.Split('=')[1];
+            } catch {
+                return "";
             }
         }
 

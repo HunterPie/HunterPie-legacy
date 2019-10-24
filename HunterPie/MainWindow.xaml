@@ -76,7 +76,7 @@
         <Image Margin="26,10,199,411" Grid.Row="2" Source="media/consoleIcon.png"/>
         <Image Margin="26,57,199,364" Grid.Row="2" Source="media/settingsIcon.png"/>
         <Grid Name="ConsolePanel" Grid.Column="1" HorizontalAlignment="Left" Height="443" Margin="0,5,0,0" Grid.Row="2" VerticalAlignment="Top" Width="756"/>
-        <Label Content="Version: BETA 1.0.0.0" HorizontalAlignment="Left" Grid.Row="2" Width="244" Background="{x:Null}" Foreground="#FFF3F3F3" FontFamily="Roboto" VerticalAlignment="Bottom" Height="19" FontSize="10" VerticalContentAlignment="Stretch" Padding="5,5,5,0"/>
+        <Label x:Name="version_text" Content="Version: BETA 1.0.0.0" HorizontalAlignment="Left" Grid.Row="2" Width="244" Background="{x:Null}" Foreground="#FFF3F3F3" FontFamily="Roboto" VerticalAlignment="Bottom" Height="19" FontSize="10" VerticalContentAlignment="Stretch" Padding="5,5,5,0"/>
         <Button x:Name="githubButton" Content="GITHUB" HorizontalAlignment="Center" Margin="0,95,0,0" Grid.Row="2" VerticalAlignment="Top" Width="244" Height="45" BorderBrush="#00707070" Foreground="#FFDEDEDE" FontFamily="Roboto" FontSize="18" Cursor="Hand" Background="#FF1F1F1F" BorderThickness="0" Template="{DynamicResource ButtonControlTemplate1}" Padding="-69,1,1,1" FontWeight="Bold" Click="githubButton_Click"/>
         <Image Margin="26,103,199,318" Grid.Row="2" Source="media/GitHub-Mark-Light-32px.png"/>
     </Grid>
