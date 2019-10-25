@@ -1,8 +1,5 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
 using System.Text;
-using System.Threading.Tasks;
 using System.Runtime.InteropServices;
 using System.Threading;
 using System.Diagnostics;
@@ -63,10 +60,12 @@ namespace HunterPie.Memory {
                 } else if (!GameIsRunning) {
                     PID = MonsterHunter[0].Id;
                     ProcessHandle = OpenProcess(PROCESS_ALL_ACCESS, false, PID);
-                    if (MonsterHunter[0].MainWindowTitle == "") {
+                    while (MonsterHunter[0].MainWindowTitle == "") {
                         MonsterHunter = Process.GetProcessesByName(PROCESS_NAME);
+                        Thread.Sleep(100);
                     }
                     GameVersion = MonsterHunter[0].MainWindowTitle.Split('(')[1].Trim(')');
+                    
                     Debugger.Log($"MonsterHunterWorld.exe found! (PID: {PID})");
                     GameIsRunning = true;
                 }
