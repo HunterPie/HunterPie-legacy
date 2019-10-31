@@ -3,7 +3,7 @@
 namespace HunterPie.Memory {
     class Address {
 
-        public const string GAME_VERSION = "167898";
+        public const string GAME_VERSION = "167907";
 
         // Static addresses
         public const Int64 BASE = 0x140000000;

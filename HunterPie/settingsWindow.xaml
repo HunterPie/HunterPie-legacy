@@ -4,14 +4,55 @@
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              xmlns:local="clr-namespace:HunterPie"
-             mc:Ignorable="d" d:DesignWidth="800" Width="749" Height="753">
-    <StackPanel HorizontalAlignment="Left" Height="753" VerticalAlignment="Top" Width="749" Background="#FF2E2E2E">
-        <Label x:Name="GeneralStaticText" Content="- General -" Height="34" FontFamily="Roboto" FontSize="20" FontWeight="Bold" HorizontalAlignment="Center" Width="749" HorizontalContentAlignment="Center" Foreground="#FFE0E0E0" Padding="0" UseLayoutRounding="False" VerticalContentAlignment="Center"/>
-        <CheckBox x:Name="enableAutoUpdate" Content="Enable auto-update" Padding="2,-2,0,0" HorizontalAlignment="Center" Foreground="#FFE0E0E0" Height="19" Margin="304,0,285,0" FontSize="15" Width="160" VerticalAlignment="Top" HorizontalContentAlignment="Center" Cursor="Hand"/>
+             mc:Ignorable="d" d:DesignWidth="800" Width="749" Height="859">
+    <StackPanel HorizontalAlignment="Left" Height="859" VerticalAlignment="Top" Width="749" Background="#FF2E2E2E">
+        <Label x:Name="GeneralStaticText" Content="- General -" Height="34" FontFamily="Roboto" FontSize="20" FontWeight="Bold" HorizontalAlignment="Center" Width="749" HorizontalContentAlignment="Center" Foreground="#FFE0E0E0" Padding="0" UseLayoutRounding="False" VerticalContentAlignment="Center" Background="#FF292929"/>
+        <CheckBox x:Name="enableAutoUpdate" Content="Enable auto-update" Padding="2,-2,0,0" HorizontalAlignment="Center" Foreground="#FFE0E0E0" Height="19" Margin="304,0,285,0" FontSize="15" Width="160" VerticalAlignment="Top" HorizontalContentAlignment="Center" Cursor="Hand" FontWeight="Light"/>
         <ComboBox x:Name="branchesCombobox" Margin="304,0,285,0" IsReadOnly="True" Cursor="Hand"/>
-        <Label x:Name="updateBranchStaticText" Content="Update branch:" HorizontalAlignment="Left" Height="21" Margin="196,-21,0,0" Width="108" FontFamily="Roboto" Foreground="#FFE0E0E0" FontSize="15" Padding="0"/>
-        <Label x:Name="RichPresenceStaticText" Content="- Discord Presence -" Height="34" FontFamily="Roboto" FontSize="20" FontWeight="Bold" HorizontalAlignment="Center" Width="749" HorizontalContentAlignment="Center" Foreground="#FFE0E0E0" Padding="0" UseLayoutRounding="False" VerticalContentAlignment="Center" Margin="0,12,0,0"/>
-        <CheckBox x:Name="enableRichPresence" Content="Enable rich presence" Padding="2,-2,0,0" HorizontalAlignment="Center" Foreground="#FFE0E0E0" Height="19" Margin="304,0,285,0" FontSize="15" Width="160" VerticalAlignment="Top" HorizontalContentAlignment="Center" Cursor="Hand"/>
-        <Label x:Name="OverlayStaticText" Content="- In-Game Overlay -" Height="34" FontFamily="Roboto" FontSize="20" FontWeight="Bold" HorizontalAlignment="Center" Width="749" HorizontalContentAlignment="Center" Foreground="#FFE0E0E0" Padding="0" UseLayoutRounding="False" VerticalContentAlignment="Center" Margin="0,12,0,0"/>
+        <Label x:Name="updateBranchStaticText" Content="Update branch:" HorizontalAlignment="Left" Height="21" Margin="196,-21,0,0" Width="108" FontFamily="Roboto" Foreground="#FFE0E0E0" FontSize="15" Padding="0" FontWeight="Light"/>
+        <Label x:Name="RichPresenceStaticText" Content="- Discord Presence -" Height="34" FontFamily="Roboto" FontSize="20" FontWeight="Bold" HorizontalAlignment="Center" Width="749" HorizontalContentAlignment="Center" Foreground="#FFE0E0E0" Padding="0,2,0,0" UseLayoutRounding="False" VerticalContentAlignment="Center" Margin="0,25,0,0" Background="#FF292929"/>
+        <CheckBox x:Name="enableRichPresence" Content="Enable rich presence" Padding="2,-2,0,0" HorizontalAlignment="Center" Foreground="#FFE0E0E0" Height="19" Margin="304,4,285,0" FontSize="15" Width="160" VerticalAlignment="Top" HorizontalContentAlignment="Center" Cursor="Hand" FontWeight="Light"/>
+        <Label x:Name="OverlayStaticText" Content="- In-Game Overlay -" Height="34" FontFamily="Roboto" FontSize="20" FontWeight="Bold" HorizontalAlignment="Center" Width="749" HorizontalContentAlignment="Center" Foreground="#FFE0E0E0" Padding="0" UseLayoutRounding="False" VerticalContentAlignment="Center" Margin="0,25,0,0" Background="#FF292929"/>
+        <CheckBox x:Name="enableOverlay" Content="Enable in-game overlay" Padding="2,-2,0,0" HorizontalAlignment="Center" Foreground="#FFE0E0E0" Height="19" Margin="283,4,262,0" FontSize="15" Width="183" VerticalAlignment="Top" HorizontalContentAlignment="Center" Cursor="Hand" FontWeight="Light"/>
+        <StackPanel x:Name="Position" Height="32" Margin="288,0,272,0" Orientation="Horizontal">
+            <Label x:Name="updateBranchStaticText_Copy" Content="Position:" HorizontalAlignment="Right" Width="66" FontFamily="Roboto" Foreground="#FFE0E0E0" FontSize="15" Padding="0" FontWeight="Light" VerticalContentAlignment="Center" HorizontalContentAlignment="Right"/>
+            <TextBox x:Name="positionOverlayX" TextWrapping="Wrap" Text="X" Margin="0,1" Background="{x:Null}" Foreground="#FFE0E0E0" BorderBrush="#FFABADB3" BorderThickness="0,0,0,1" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" HorizontalAlignment="Right" Width="54"/>
+            <TextBox x:Name="positionOverlayY" TextWrapping="Wrap" Text="Y" Margin="6,1,0,1" Background="{x:Null}" Foreground="#FFE0E0E0" BorderBrush="#FFABADB3" BorderThickness="0,0,0,1" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" HorizontalAlignment="Right" Width="54"/>
+        </StackPanel>
+        <Label x:Name="MonsterCompStaticText" Content="Monster overlay" Height="34" FontFamily="Roboto" FontSize="16" HorizontalAlignment="Center" Width="749" HorizontalContentAlignment="Center" Foreground="#FFE0E0E0" Padding="0" UseLayoutRounding="False" VerticalContentAlignment="Center" Margin="0,25,0,0" Background="#FF292929"/>
+        <CheckBox x:Name="enableMonsterComponent" Content="Enable monster overlay" Padding="2,-2,0,0" HorizontalAlignment="Center" Foreground="#FFE0E0E0" Height="19" Margin="293.5,4,272.5,0" FontSize="15" Width="183" VerticalAlignment="Top" HorizontalContentAlignment="Center" Cursor="Hand" FontWeight="Light"/>
+        <StackPanel x:Name="Position_Copy" Height="32" Margin="288,0,272,0" Orientation="Horizontal">
+            <Label x:Name="updateBranchStaticText_Copy1" Content="Position:" HorizontalAlignment="Right" Width="66" FontFamily="Roboto" Foreground="#FFE0E0E0" FontSize="15" Padding="0" FontWeight="Light" VerticalContentAlignment="Center" HorizontalContentAlignment="Right"/>
+            <TextBox x:Name="positionMonsterCompX" TextWrapping="Wrap" Text="X" Margin="0,1" Background="{x:Null}" Foreground="#FFE0E0E0" BorderBrush="#FFABADB3" BorderThickness="0,0,0,1" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" HorizontalAlignment="Right" Width="54"/>
+            <TextBox x:Name="positionMonsterCompY" TextWrapping="Wrap" Text="Y" Margin="6,1,0,1" Background="{x:Null}" Foreground="#FFE0E0E0" BorderBrush="#FFABADB3" BorderThickness="0,0,0,1" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" HorizontalAlignment="Right" Width="54"/>
+        </StackPanel>
+        <Label x:Name="HarvestBoxCompStaticText" Content="Harvest Box overlay" Height="34" FontFamily="Roboto" FontSize="16" HorizontalAlignment="Center" Width="749" HorizontalContentAlignment="Center" Foreground="#FFE0E0E0" Padding="0" UseLayoutRounding="False" VerticalContentAlignment="Center" Margin="0,25,0,0" Background="#FF292929"/>
+        <CheckBox x:Name="enableHarvestBoxComponent" Content="Enable harvest box overlay" Padding="2,-2,0,0" HorizontalAlignment="Center" Foreground="#FFE0E0E0" Height="19" Margin="294,4,261,0" FontSize="15" Width="194" VerticalAlignment="Top" HorizontalContentAlignment="Center" Cursor="Hand" FontWeight="Light"/>
+        <StackPanel x:Name="Position_Copy1" Height="32" Margin="288,0,272,0" Orientation="Horizontal">
+            <Label x:Name="updateBranchStaticText_Copy2" Content="Position:" HorizontalAlignment="Right" Width="66" FontFamily="Roboto" Foreground="#FFE0E0E0" FontSize="15" Padding="0" FontWeight="Light" VerticalContentAlignment="Center" HorizontalContentAlignment="Right"/>
+            <TextBox x:Name="harvestBoxPosX" TextWrapping="Wrap" Text="X" Margin="0,1" Background="{x:Null}" Foreground="#FFE0E0E0" BorderBrush="#FFABADB3" BorderThickness="0,0,0,1" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" HorizontalAlignment="Right" Width="54"/>
+            <TextBox x:Name="harvestBoxPosY" TextWrapping="Wrap" Text="Y" Margin="6,1,0,1" Background="{x:Null}" Foreground="#FFE0E0E0" BorderBrush="#FFABADB3" BorderThickness="0,0,0,1" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" HorizontalAlignment="Right" Width="54"/>
+        </StackPanel>
+        <Label x:Name="MantlesStaticText" Content="Mantles &amp; Equipments" Height="34" FontFamily="Roboto" FontSize="16" HorizontalAlignment="Center" Width="749" HorizontalContentAlignment="Center" Foreground="#FFE0E0E0" Padding="0" UseLayoutRounding="False" VerticalContentAlignment="Center" Margin="0,25,0,0" Background="#FF292929"/>
+        <GroupBox Header="Primary mantle&#xD;&#xA;" Height="187" Margin="10,0,388,0" FontFamily="Roboto" Foreground="#FFE0E0E0" BorderBrush="{x:Null}" Background="#FF37373A">
+            <StackPanel Margin="55,32,84,68" Orientation="Vertical">
+                <CheckBox x:Name="enablePrimaryMantle" Content="Enable primary mantle timer" Padding="2,-2,0,0" HorizontalAlignment="Center" Foreground="#FFE0E0E0" Height="19" Margin="6,0,-18,0" FontSize="15" Width="212" VerticalAlignment="Top" HorizontalContentAlignment="Center" Cursor="Hand" FontWeight="Light"/>
+                <StackPanel x:Name="Position_Copy2" Height="32" Margin="13,0,-2,0" Orientation="Horizontal">
+                    <Label x:Name="updateBranchStaticText_Copy3" Content="Position:" HorizontalAlignment="Right" Width="66" FontFamily="Roboto" Foreground="#FFE0E0E0" FontSize="15" Padding="0" FontWeight="Light" VerticalContentAlignment="Center" HorizontalContentAlignment="Right"/>
+                    <TextBox x:Name="primMantlePosX" TextWrapping="Wrap" Text="X" Margin="0,1" Background="{x:Null}" Foreground="#FFE0E0E0" BorderBrush="#FFABADB3" BorderThickness="0,0,0,1" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" HorizontalAlignment="Right" Width="54"/>
+                    <TextBox x:Name="primMantlePosY" TextWrapping="Wrap" Text="Y" Margin="6,1,0,1" Background="{x:Null}" Foreground="#FFE0E0E0" BorderBrush="#FFABADB3" BorderThickness="0,0,0,1" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" HorizontalAlignment="Right" Width="54"/>
+                </StackPanel>
+            </StackPanel>
+        </GroupBox>
+        <GroupBox Header="Secondary mantle&#xA;" Height="187" Margin="392,-187,14,0" FontFamily="Roboto" Foreground="#FFE0E0E0" BorderBrush="{x:Null}" Background="#FF37373A">
+            <StackPanel Margin="55,32,84,68" Orientation="Vertical">
+                <CheckBox x:Name="enableSecondaryMantle" Content="Enable secondary mantle timer" Padding="2,-2,0,0" HorizontalAlignment="Center" Foreground="#FFE0E0E0" Height="19" Margin="2,0,-40,0" FontSize="15" Width="230" VerticalAlignment="Top" HorizontalContentAlignment="Center" Cursor="Hand" FontWeight="Light"/>
+                <StackPanel x:Name="Position_Copy3" Height="32" Margin="20,0,-9,0" Orientation="Horizontal">
+                    <Label x:Name="updateBranchStaticText_Copy4" Content="Position:" HorizontalAlignment="Right" Width="66" FontFamily="Roboto" Foreground="#FFE0E0E0" FontSize="15" Padding="0" FontWeight="Light" VerticalContentAlignment="Center" HorizontalContentAlignment="Right"/>
+                    <TextBox x:Name="secMantlePosX" TextWrapping="Wrap" Text="X" Margin="0,1" Background="{x:Null}" Foreground="#FFE0E0E0" BorderBrush="#FFABADB3" BorderThickness="0,0,0,1" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" HorizontalAlignment="Right" Width="54"/>
+                    <TextBox x:Name="secMantlePosY" TextWrapping="Wrap" Text="Y" Margin="6,1,0,1" Background="{x:Null}" Foreground="#FFE0E0E0" BorderBrush="#FFABADB3" BorderThickness="0,0,0,1" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" HorizontalAlignment="Right" Width="54"/>
+                </StackPanel>
+            </StackPanel>
+        </GroupBox>
     </StackPanel>
 </UserControl>
