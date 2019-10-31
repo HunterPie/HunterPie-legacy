@@ -324,6 +324,7 @@ namespace HunterPie {
         private void OpenSettingsWindow() {
             ConsolePanel.Children.Clear();
             ConsolePanel.Children.Add(Settings.Instance);
+            Settings.RefreshSettingsUI();
         }
 
         private void consoleButton_Click(object sender, RoutedEventArgs e) {
@@ -339,7 +340,7 @@ namespace HunterPie {
         }
 
         private void githubButton_Click(object sender, RoutedEventArgs e) {
-            System.Diagnostics.Process.Start("https://github.com/Haato3o/HunterPie");
+            Process.Start("https://github.com/Haato3o/HunterPie");
         }
     }
 }
