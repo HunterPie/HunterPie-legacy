@@ -1,17 +1,8 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using System.Windows;
 using System.Windows.Controls;
-using System.Windows.Data;
-using System.Windows.Documents;
 using System.Windows.Input;
-using System.Windows.Media;
-using System.Windows.Media.Imaging;
-using System.Windows.Navigation;
-using System.Windows.Shapes;
+
 
 namespace HunterPie {
     /// <summary>
@@ -45,13 +36,43 @@ namespace HunterPie {
         }
 
         private void TypeColor(object sender, TextChangedEventArgs e) {
-
+            TextBox obj = (TextBox)sender;
+            char[] HEX_CHARS = new char[17] {'#' , '0', '1', '2', '3', '4', '5', '6', '7', '8', '9', 'A', 'B', 'C', 'D', 'E', 'F' };
+            int offset = 0;
+            if (!obj.Text.StartsWith("#")) {
+                obj.Text = "";
+                return;
+            }
+            if (obj.Text.Length > 9) {
+                obj.Text = obj.Text.Substring(0, 9);
+                obj.CaretIndex = 10;
+                return;
+            }
+            foreach (char character in obj.Text) {
+                
+                if (!HEX_CHARS.Contains(char.ToUpper(character))) {
+                    break;
+                } else {
+                    offset++;
+                }
+            }
+            obj.Text = obj.Text.Substring(0, offset).ToUpper();
+            obj.CaretIndex = offset;
         }
 
-        private void TypeNumber(object sender, KeyEventArgs e) {
-            TextBox source = (TextBox)sender;
-            
-            Console.WriteLine(source.Text.ToString());
+        private void TypeNumber(object sender, TextChangedEventArgs e) {
+            char[] NUMBERS = new char[10] { '0', '1', '2', '3', '4', '5', '6', '7', '8', '9' };
+            TextBox obj = (TextBox)sender;
+            int offset = 0;
+            foreach (char n in obj.Text) {
+                if (!NUMBERS.Contains(n)) {
+                    break;
+                } else {
+                    offset++;
+                }
+            }
+            obj.Text = obj.Text.Substring(0, offset);
+            obj.CaretIndex = offset;
         }
     }
 }
