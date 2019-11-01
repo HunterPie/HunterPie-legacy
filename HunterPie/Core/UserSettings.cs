@@ -39,13 +39,13 @@ namespace HunterPie.Core {
 
             public class Primarymantle {
                 public bool Enabled { get; set; } = true;
-                public int[] Position { get; set; } = new int[2] { 1170, 500 };
+                public int[] Position { get; set; } = new int[2] { 1145, 300 };
                 public string Color { get; set; } = "#99C500AA";
             }
 
             public class Secondarymantle {
                 public bool Enabled { get; set; } = true;
-                public int[] Position { get; set; } = new int[2] { 1170, 540 };
+                public int[] Position { get; set; } = new int[2] { 1145, 300 };
                 public string Color { get; set; } = "#996900FF";
             }
 
@@ -78,12 +78,12 @@ namespace HunterPie.Core {
                 },
                 PrimaryMantle = new Config.Primarymantle {
                     Enabled = true,
-                    Position = new int[2] { 1170, 500 },
+                    Position = new int[2] { 1145, 300 },
                     Color = "#99C500AA"
                 },
                 SecondaryMantle = new Config.Secondarymantle {
                     Enabled = true,
-                    Position = new int[2] { 1170, 540 },
+                    Position = new int[2] { 1145, 350 },
                     Color = "#996900FF"
                 }
             },
