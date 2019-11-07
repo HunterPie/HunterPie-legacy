@@ -7,6 +7,7 @@ namespace HunterPie.Core {
     class Player {
         // Game info
         private int[] PeaceZones = new int[11] { 0, 5, 7, 11, 15, 16, 21, 23, 24, 31, 33 };
+        private int[] _HBZones = new int[4] { 31, 33, 11, 21 };
 
         // Player info
         private Int64 LEVEL_ADDRESS;
@@ -21,15 +22,18 @@ namespace HunterPie.Core {
         public string WeaponName { get; private set; }
         public string SessionID { get; private set; }
         public bool inPeaceZone = true;
-
+        public bool inHarvestZone {
+            get {
+                return _HBZones.Contains(ZoneID);
+            }
+        }
         // Party
         public string[] Party = new string[4];
         public int PartySize = 0;
         public int PartyMax = 4;
 
         // Harvesting
-        public int HarvestedItemsCounter { get; private set; }
-        public object[] HarvestBoxFertilizers = new object[4];
+        public HarvestBox Harvest = new HarvestBox();
 
         // Mantles
         public Mantle PrimaryMantle = new Mantle();
@@ -57,6 +61,7 @@ namespace HunterPie.Core {
                 GetPlayerName();
                 GetZoneId();
                 GetWeaponId();
+                GetFertilizers();
                 GetSessionId();
                 GetEquipmentAddress();
                 GetPrimaryMantle();
@@ -182,5 +187,32 @@ namespace HunterPie.Core {
             }
         }
 
+        private void GetFertilizers() {
+            Int64 Address = this.LEVEL_ADDRESS;
+            for (int fertCount = 0; fertCount < 4; fertCount++) {
+                // Calculates memory address
+                Int64 FertilizerAddress = Address + 0x6740C + (0x10 * fertCount);
+                // Read memory
+                int FertilizerId = Scanner.READ_INT(FertilizerAddress - 0x4);
+                string FertilizerName = GStrings.FertilizerName(FertilizerId);
+                int FertilizerCount = Scanner.READ_INT(FertilizerAddress);
+                // update fertilizer data
+                Harvest.Box[fertCount].Name = FertilizerName;
+                Harvest.Box[fertCount].ID = FertilizerId;
+                Harvest.Box[fertCount].Amount = FertilizerCount;
+            }
+            UpdateHarvestBoxCounter(Address + 0x6740C + (0x10 * 3));
+        }
+
+        private void UpdateHarvestBoxCounter(Int64 LastFertAddress) {
+            Int64 Address = LastFertAddress + 0x10;
+            Harvest.Counter = 0;
+            for (long iAddress = Address; iAddress < Address + 0x1F0; iAddress += 0x10) {
+                int memValue = Scanner.READ_INT(iAddress);
+                if (memValue > 0) {
+                    Harvest.Counter++;
+                }
+            }
+        }
     }
 }

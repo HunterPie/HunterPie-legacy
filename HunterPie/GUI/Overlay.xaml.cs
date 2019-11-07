@@ -4,6 +4,7 @@ using System.Windows.Controls;
 using System.Windows.Media;
 using System.Windows.Forms;
 using Xceed.Wpf.Toolkit;
+using HunterPie.Core;
 
 namespace HunterPie.GUI {
     /// <summary>
@@ -55,6 +56,7 @@ namespace HunterPie.GUI {
             //Debugger.Warn($"Changed Monster component position to X:{X} Y:{Y}");
         }
 
+
         public void ChangePrimaryMantlePosition(double X, double Y) {
             double Left = PrimaryMantleContainer.Margin.Left;
             double Top = PrimaryMantleContainer.Margin.Top;
@@ -91,6 +93,54 @@ namespace HunterPie.GUI {
             if (!PrimaryMantleContainer.IsVisible) {
                 PrimaryMantleContainer.Visibility = Visibility.Visible;
             }
+        }
+
+        public void ChangeHarvestBoxPosition(double X, double Y) {
+            double Left = HarvestBoxComponent.Margin.Left;
+            double Top = HarvestBoxComponent.Margin.Top;
+            if (X == Left && Y == Top) {
+                return;
+            }
+            double Right = HarvestBoxComponent.Margin.Right;
+            double Bottom = HarvestBoxComponent.Margin.Bottom;
+            HarvestBoxComponent.Margin = new Thickness(X, Y, Right, Bottom);
+            //Debugger.Warn($"Changed harvest box position to X: {X} Y:{Y}");
+        }
+
+        public void ShowHarvestBoxContainer() {
+            if (!HarvestBoxComponent.IsVisible) {
+                HarvestBoxComponent.Visibility = Visibility.Visible;
+            }
+        }
+
+        public void HideHarvestBoxContainer() {
+            if (HarvestBoxComponent.IsVisible) {
+                HarvestBoxComponent.Visibility = Visibility.Hidden;
+            }
+        }
+
+        public void UpdateFirstFertilizer(string Name, int Amount) {
+            fert1Name.Content = Name;
+            fert1Counter.Content = $"x{Amount}";
+        }
+
+        public void UpdateSecondFertilizer(string Name, int Amount) {
+            fert2Name.Content = Name;
+            fert2Counter.Content = $"x{Amount}";
+        }
+
+        public void UpdateThirdFertilizer(string Name, int Amount) {
+            fert3Name.Content = Name;
+            fert3Counter.Content = $"x{Amount}";
+        }
+
+        public void UpdateFourthFertilizer(string Name, int Amount) {
+            fert4Name.Content = Name;
+            fert4Counter.Content = $"x{Amount}";
+        }
+
+        public void UpdateHarvestBoxCounter(int counter, int max) {
+            HarvestBoxItemsCounter.Content = $"{counter}/{max}";
         }
 
         public void ChangePrimaryMantleColor(string newColor) {

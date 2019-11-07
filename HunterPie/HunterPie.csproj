@@ -72,6 +72,7 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
+    <Compile Include="Core\HarvestBox.cs" />
     <Compile Include="Core\Mantle.cs" />
     <Compile Include="Core\Presence.cs" />
     <Compile Include="Settings.xaml.cs">

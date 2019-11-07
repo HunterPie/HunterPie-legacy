@@ -64,6 +64,11 @@ namespace HunterPie {
             settingsUI.secMantlePosX.Text = settings.Overlay.SecondaryMantle.Position[0].ToString();
             settingsUI.secMantlePosY.Text = settings.Overlay.SecondaryMantle.Position[1].ToString();
             settingsUI.secMantleColor.Text = settings.Overlay.SecondaryMantle.Color;
+
+            // Harvest Box
+            settingsUI.enableHarvestBoxComponent.IsChecked = settings.Overlay.HarvestBoxComponent.Enabled;
+            settingsUI.harvestBoxPosX.Text = settings.Overlay.HarvestBoxComponent.Position[0].ToString();
+            settingsUI.harvestBoxPosY.Text = settings.Overlay.HarvestBoxComponent.Position[1].ToString();
         }
 
         private void saveSettings_Click(object sender, RoutedEventArgs e) {
@@ -96,6 +101,11 @@ namespace HunterPie {
             settings.Overlay.SecondaryMantle.Position[0] = int.Parse(settingsUI.secMantlePosX.Text);
             settings.Overlay.SecondaryMantle.Position[1] = int.Parse(settingsUI.secMantlePosY.Text);
             settings.Overlay.SecondaryMantle.Color = settingsUI.secMantleColor.Text;
+
+            // Harvest Box
+            settings.Overlay.HarvestBoxComponent.Enabled = (bool)settingsUI.enableHarvestBoxComponent.IsChecked;
+            settings.Overlay.HarvestBoxComponent.Position[0] = int.Parse(settingsUI.harvestBoxPosX.Text);
+            settings.Overlay.HarvestBoxComponent.Position[1] = int.Parse(settingsUI.harvestBoxPosY.Text);
 
             // and then save settings
             UserSettings.SaveNewConfig();

@@ -25,7 +25,7 @@ namespace HunterPie {
         ThreadStart RichPresenceThreadRef;
         Thread RichPresenceThread;
 
-        const string HUNTERPIE_VERSION = "1.0.0.8";
+        const string HUNTERPIE_VERSION = "1.0.0.9";
 
         public MainWindow() {
             InitializeComponent();
@@ -59,11 +59,11 @@ namespace HunterPie {
                 foreach (string argument in args) {
                     if (argument.StartsWith("justUpdated")) {
                         string parsed = ParseArgs(argument);
-                        justUpdated = parsed == "True" ? true : false;
+                        justUpdated = parsed == "True";
                     }
                     if (argument.StartsWith("latestVersion")) {
                         string parsed = ParseArgs(argument);
-                        latestVersion = parsed == "True" ? true : false;
+                        latestVersion = parsed == "True";
                     }
                 }
                 if (justUpdated) {
@@ -176,6 +176,11 @@ namespace HunterPie {
                     double SecondaryMantlePosY = UserSettings.PlayerConfig.Overlay.SecondaryMantle.Position[1];
                     GameOverlay.ChangeSecondaryMantlePosition(SecondaryMantlePosX, SecondaryMantlePosY);
                     GameOverlay.ChangeSecondaryMantleColor(UserSettings.PlayerConfig.Overlay.SecondaryMantle.Color);
+
+                    // Harvest Box
+                    double HarvestBoxPosX = UserSettings.PlayerConfig.Overlay.HarvestBoxComponent.Position[0];
+                    double HarvestBoxPosY = UserSettings.PlayerConfig.Overlay.HarvestBoxComponent.Position[1];
+                    GameOverlay.ChangeHarvestBoxPosition(HarvestBoxPosX, HarvestBoxPosY);
                 }));
 
                 if (Scanner.GameIsRunning) {
@@ -278,6 +283,23 @@ namespace HunterPie {
                         }));
                     }
                     
+                    // Harvest box
+                    if (UserSettings.PlayerConfig.Overlay.HarvestBoxComponent.Enabled && MonsterHunter.Player.inHarvestZone) {
+                        GameOverlay.Dispatch(new Action(() => {
+                            GameOverlay.ShowHarvestBoxContainer();
+                            Fertilizer[] fertilizer = MonsterHunter.Player.Harvest.Box;
+                            GameOverlay.UpdateFirstFertilizer(fertilizer[0].Name, fertilizer[0].Amount);
+                            GameOverlay.UpdateSecondFertilizer(fertilizer[1].Name, fertilizer[1].Amount);
+                            GameOverlay.UpdateThirdFertilizer(fertilizer[2].Name, fertilizer[2].Amount);
+                            GameOverlay.UpdateFourthFertilizer(fertilizer[3].Name, fertilizer[3].Amount);
+                            GameOverlay.UpdateHarvestBoxCounter(MonsterHunter.Player.Harvest.Counter, MonsterHunter.Player.Harvest.Max);
+                        }));
+                    } else {
+                        GameOverlay.Dispatch(new Action(() => {
+                            GameOverlay.HideHarvestBoxContainer();
+                        }));
+                    }
+
                 } else {
                     GameOverlay.Dispatch(new Action(() => {
                         GameOverlay.Hide();

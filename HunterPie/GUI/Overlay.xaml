@@ -82,8 +82,7 @@
             <ColumnDefinition/>
         </Grid.ColumnDefinitions>
         <Grid.RowDefinitions>
-            <RowDefinition Height="216"/>
-            <RowDefinition/>
+            <RowDefinition Height="1080"/>
         </Grid.RowDefinitions>
         <StackPanel x:Name="MonstersContainer" Margin="560,19,0,0" Orientation="Horizontal" MinHeight="62" MinWidth="778" MaxWidth="778" MaxHeight="62" HorizontalAlignment="Left" Width="778" Height="62" VerticalAlignment="Top">
 
@@ -141,7 +140,7 @@
             </StackPanel>
         </StackPanel>
 
-        <StackPanel x:Name="PrimaryMantleContainer" Margin="1692,652,0,0" Grid.Row="1" Background="#4C000000" HorizontalAlignment="Left" Width="218" Height="38" VerticalAlignment="Top">
+        <StackPanel x:Name="PrimaryMantleContainer" Margin="1692,868,0,0" Background="#4C000000" HorizontalAlignment="Left" Width="218" Height="38" VerticalAlignment="Top">
             <Border x:Name="PrimaryMantleBorder" BorderBrush="#FF7D076D" BorderThickness="2,0.5,0.5,0.5" HorizontalAlignment="Left" VerticalAlignment="Center" Height="38" Width="218" CornerRadius="1"/>
             <xctk:Pie x:Name="PrimaryMantleTimer" Slice="1" StartAngle="0" EndAngle="1" Height="26" Margin="5,-38,187,0" RenderTransformOrigin="0.5,0.5" Fill="#99C500AA">
                 <xctk:Pie.RenderTransform>
@@ -155,7 +154,7 @@
             </xctk:Pie>
             <Label x:Name="PrimaryMantleName" Content="(30s) MANTLE NAME" Height="38" Foreground="White" FontFamily="Roboto" VerticalAlignment="Top" FontWeight="Bold" VerticalContentAlignment="Center" Margin="31,-38,0,0"/>
         </StackPanel>
-        <StackPanel x:Name="SecondaryMantleContainer" Margin="1692,695,0,0" Grid.Row="1" Background="#4C000000" HorizontalAlignment="Left" Width="218" Height="38" VerticalAlignment="Top">
+        <StackPanel x:Name="SecondaryMantleContainer" Margin="1692,911,0,0" Background="#4C000000" HorizontalAlignment="Left" Width="218" Height="38" VerticalAlignment="Top">
             <Border x:Name="SecondaryMantleBorder" BorderBrush="#FF4607A0" BorderThickness="2,0.5,0.5,0.5" HorizontalAlignment="Left" VerticalAlignment="Center" Height="38" Width="218" CornerRadius="1"/>
             <xctk:Pie x:Name="SecondaryMantleTimer" Slice="1" StartAngle="0" EndAngle="1" Height="26" Margin="5,-38,187,0" RenderTransformOrigin="0.5,0.5" Fill="#996900FF">
                 <xctk:Pie.RenderTransform>
@@ -169,6 +168,20 @@
             </xctk:Pie>
             <Label x:Name="SecondaryMantleName" Content="(30s) MANTLE NAME" Height="38" Foreground="White" FontFamily="Roboto" VerticalAlignment="Top" FontWeight="Bold" VerticalContentAlignment="Center" Margin="31,-38,0,0"/>
         </StackPanel>
+        <Grid x:Name="HarvestBoxComponent" Margin="1692,607,10,308">
+            <Rectangle x:Name="HarvestBoxContainer" Fill="#4C111111" HorizontalAlignment="Left" Height="165" Stroke="#FF171717" VerticalAlignment="Top" Width="218"/>
+            <Label x:Name="HarvestBoxTitle" Content="HARVEST BOX" HorizontalAlignment="Left" VerticalAlignment="Top" Height="29" Width="218" Opacity="0.8" Foreground="White" HorizontalContentAlignment="Center" Padding="0" VerticalContentAlignment="Center" FontFamily="Roboto" FontWeight="Bold" Background="#66000000"/>
+            <Label x:Name="fert1Name" Content="Empty" HorizontalAlignment="Left" Margin="0,29,0,0" VerticalAlignment="Top" Height="29" Width="176" Opacity="0.8" Foreground="White" HorizontalContentAlignment="Center" Padding="0" VerticalContentAlignment="Center" FontFamily="Roboto" Background="#66000000" FontWeight="Light"/>
+            <Label x:Name="fert2Name" Content="Empty" HorizontalAlignment="Left" Margin="0,58,0,0" VerticalAlignment="Top" Height="29" Width="176" Opacity="0.8" Foreground="White" HorizontalContentAlignment="Center" Padding="0" VerticalContentAlignment="Center" FontFamily="Roboto" Background="#66000000" FontWeight="Light"/>
+            <Label x:Name="fert3Name" Content="Empty" HorizontalAlignment="Left" Margin="0,87,0,0" VerticalAlignment="Top" Height="29" Width="176" Opacity="0.8" Foreground="White" HorizontalContentAlignment="Center" Padding="0" VerticalContentAlignment="Center" FontFamily="Roboto" Background="#66000000" FontWeight="Light"/>
+            <Label x:Name="fert4Name" Content="Empty" HorizontalAlignment="Left" Margin="0,116,0,0" VerticalAlignment="Top" Height="29" Width="176" Opacity="0.8" Foreground="White" HorizontalContentAlignment="Center" Padding="0" VerticalContentAlignment="Center" FontFamily="Roboto" Background="#66000000" FontWeight="Light"/>
+            <Label x:Name="fert1Counter" Content="x0" HorizontalAlignment="Left" Margin="176,29,0,0" VerticalAlignment="Top" Height="29" Width="42" Opacity="0.8" Foreground="White" HorizontalContentAlignment="Center" Padding="0" VerticalContentAlignment="Center" FontFamily="Roboto" Background="#66000000" FontWeight="ExtraLight"/>
+            <Label x:Name="fert2Counter" Content="x0" HorizontalAlignment="Left" Margin="176,58,0,0" VerticalAlignment="Top" Height="29" Width="42" Opacity="0.8" Foreground="White" HorizontalContentAlignment="Center" Padding="0" VerticalContentAlignment="Center" FontFamily="Roboto" Background="#66000000" FontWeight="ExtraLight"/>
+            <Label x:Name="fert3Counter" Content="x0" HorizontalAlignment="Left" Margin="176,87,0,0" VerticalAlignment="Top" Height="29" Width="42" Opacity="0.8" Foreground="White" HorizontalContentAlignment="Center" Padding="0" VerticalContentAlignment="Center" FontFamily="Roboto" Background="#66000000" FontWeight="ExtraLight"/>
+            <Label x:Name="fert4Counter" Content="x0" HorizontalAlignment="Left" Margin="176,116,0,0" VerticalAlignment="Top" Height="29" Width="42" Opacity="0.8" Foreground="White" HorizontalContentAlignment="Center" Padding="0" VerticalContentAlignment="Center" FontFamily="Roboto" Background="#66000000" FontWeight="ExtraLight"/>
+            <Label x:Name="HarvestBoxItemsCounter" Content="(0/30)" HorizontalAlignment="Left" Margin="0,145,0,0" VerticalAlignment="Top" Height="20" Width="218" Opacity="0.8" Foreground="White" HorizontalContentAlignment="Center" Padding="0" VerticalContentAlignment="Center" FontFamily="Roboto" FontWeight="ExtraLight" Background="#66000000" FontSize="9"/>
+
+        </Grid>
 
     </Grid>
 </Window>
