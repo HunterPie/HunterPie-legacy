@@ -364,5 +364,10 @@ namespace HunterPie {
         private void githubButton_Click(object sender, RoutedEventArgs e) {
             Process.Start("https://github.com/Haato3o/HunterPie");
         }
+
+        private void changelogButton_click(object sender, RoutedEventArgs e) {
+            ConsolePanel.Children.Clear();
+            ConsolePanel.Children.Add(Changelog.Instance);
+        }
     }
 }
