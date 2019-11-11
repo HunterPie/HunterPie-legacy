@@ -186,6 +186,8 @@ namespace HunterPie {
                 if (Scanner.GameIsRunning) {
 
                     if (Scanner.GameVersion != Address.GAME_VERSION) {
+                        // try loading older version of memory address
+                        if (Address.LoadOlderGameVersion(Scanner.GameVersion)) continue;
                         // Checks if the current game version is equal to the HunterPie mapped version
                         Debugger.Error($"Detected game version ({Scanner.GameVersion}) not mapped yet!");
                         GameOverlay.Dispatch(new Action(() => {
@@ -194,7 +196,7 @@ namespace HunterPie {
                         return;
                     } else {
                         if (!lockSpam) {
-                            Debugger.Log($"Game version: {Scanner.GameVersion}");
+                            Debugger.Warn($"Loaded 'MonsterHunterWorld.{Scanner.GameVersion}.map'");
                             lockSpam = true;
                         }
                     }
