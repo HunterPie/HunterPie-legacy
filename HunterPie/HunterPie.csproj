@@ -75,6 +75,7 @@
     <Compile Include="Changelog.xaml.cs">
       <DependentUpon>Changelog.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Core\AutoUpdate.cs" />
     <Compile Include="Core\HarvestBox.cs" />
     <Compile Include="Core\Mantle.cs" />
     <Compile Include="Core\Presence.cs" />

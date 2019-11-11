@@ -25,7 +25,7 @@ namespace HunterPie {
         ThreadStart RichPresenceThreadRef;
         Thread RichPresenceThread;
 
-        const string HUNTERPIE_VERSION = "1.0.1.0";
+        const string HUNTERPIE_VERSION = "1.0.1.1";
 
         public MainWindow() {
             InitializeComponent();
@@ -73,6 +73,9 @@ namespace HunterPie {
                 if (latestVersion) {
                     return;
                 }
+                // This will update Update.exe
+                AutoUpdate au = new AutoUpdate(UserSettings.PlayerConfig.HunterPie.Update.Branch);
+                au.checkAutoUpdate();
                 bool StartUpdate = StartUpdateProcess();
                 if (StartUpdate) {
                     Environment.Exit(0);
@@ -146,8 +149,7 @@ namespace HunterPie {
                 Discord.HidePresence();
                 Thread.Sleep(500);
                 HandlePresence();
-            } catch(Exception err) {
-                //Debugger.Error(err.Message);
+            } catch {
                 Thread.Sleep(500);
                 HandlePresence();
             }
