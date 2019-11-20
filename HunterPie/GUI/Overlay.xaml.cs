@@ -5,6 +5,8 @@ using System.Windows.Media;
 using System.Windows.Forms;
 using Xceed.Wpf.Toolkit;
 using HunterPie.Core;
+using System.Runtime.InteropServices;
+using System.Windows.Interop;
 
 namespace HunterPie.GUI {
     /// <summary>
@@ -14,11 +16,32 @@ namespace HunterPie.GUI {
 
         double w_Height = Screen.PrimaryScreen.Bounds.Height;
         double w_Width = Screen.PrimaryScreen.Bounds.Width;
-        
+
+        [DllImport("user32.dll")]
+        private static extern int SetWindowLong(IntPtr hwnd, int index, int style);
+
+        [DllImport("user32.dll")]
+        private static extern int GetWindowLong(IntPtr hwnd, int index);
+
+        [DllImport("user32.dll")]
+        private static extern IntPtr GetForegroundWindow();
 
         public Overlay() {
             InitializeComponent();
             SetOverlaySize();
+            makeOverlayClickThrough();
+        }
+
+        private void makeOverlayClickThrough() {
+            // flags to make overlay click-through
+            int WS_EX_TRANSPARENT = 0x20;
+            int GWL_EXSTYLE = (-20);
+
+            var wnd = GetWindow(this);
+            IntPtr hwnd = new WindowInteropHelper(wnd).EnsureHandle();
+            // Get overlay flags
+            int Styles = GetWindowLong(hwnd, GWL_EXSTYLE);
+            SetWindowLong(hwnd, GWL_EXSTYLE, Styles | WS_EX_TRANSPARENT);
         }
 
         public void Dispatch(Action todo) {

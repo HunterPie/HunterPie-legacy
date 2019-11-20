@@ -25,7 +25,7 @@ namespace HunterPie {
         ThreadStart RichPresenceThreadRef;
         Thread RichPresenceThread;
 
-        const string HUNTERPIE_VERSION = "1.0.1.1";
+        const string HUNTERPIE_VERSION = "1.0.1.3";
 
         public MainWindow() {
             InitializeComponent();
@@ -189,7 +189,7 @@ namespace HunterPie {
 
                     if (Scanner.GameVersion != Address.GAME_VERSION) {
                         // try loading older version of memory address
-                        if (Address.LoadOlderGameVersion(Scanner.GameVersion)) continue;
+                        if (Address.LoadMemoryMap(Scanner.GameVersion)) continue;
                         // Checks if the current game version is equal to the HunterPie mapped version
                         Debugger.Error($"Detected game version ({Scanner.GameVersion}) not mapped yet!");
                         GameOverlay.Dispatch(new Action(() => {
@@ -198,6 +198,7 @@ namespace HunterPie {
                         return;
                     } else {
                         if (!lockSpam) {
+                            Address.LoadMemoryMap(Scanner.GameVersion);
                             Debugger.Warn($"Loaded 'MonsterHunterWorld.{Scanner.GameVersion}.map'");
                             lockSpam = true;
                         }

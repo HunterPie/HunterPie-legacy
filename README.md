@@ -20,6 +20,9 @@ Shows monsters name, current health, total health and has a health bar.
 ### Mantles Cooldown
 Shows the mantles cooldown and timer when wearing one, this widget only appears when the cooldown and timer are actually running. You can also change the widget color in HunterPie settings, it uses HEX color with alpha (#RRGGBBAA)
 
+### Harvest Box
+Shows fertilizer names and amount left and the total items in harvest box. It only appears in Astera and gathering hub.
+
 ### More widgets and info to be added soon...
 
 ## Bugs and suggestions
