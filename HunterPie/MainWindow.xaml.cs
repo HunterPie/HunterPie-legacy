@@ -15,6 +15,8 @@ namespace HunterPie {
     /// </summary>
     public partial class MainWindow : Window {
 
+        bool OfflineMode = false;
+
         Game MonsterHunter = new Game();
         Presence Discord = new Presence();
         Overlay GameOverlay;
@@ -25,7 +27,7 @@ namespace HunterPie {
         ThreadStart RichPresenceThreadRef;
         Thread RichPresenceThread;
 
-        const string HUNTERPIE_VERSION = "1.0.1.3";
+        const string HUNTERPIE_VERSION = "1.0.1.4";
 
         public MainWindow() {
             InitializeComponent();
@@ -76,6 +78,12 @@ namespace HunterPie {
                 // This will update Update.exe
                 AutoUpdate au = new AutoUpdate(UserSettings.PlayerConfig.HunterPie.Update.Branch);
                 au.checkAutoUpdate();
+                if (au.offlineMode) {
+                    Debugger.Error("Failed to update HunterPie. Check if you're connected to the internet.");
+                    Debugger.Warn("HunterPie is now in offline mode.");
+                    OfflineMode = true;
+                    return;
+                }
                 bool StartUpdate = StartUpdateProcess();
                 if (StartUpdate) {
                     Environment.Exit(0);
@@ -98,7 +106,7 @@ namespace HunterPie {
         private void StartEverything() {
             MonsterHunter.StartScanning();
             Scanner.StartScanning(); // Scans game memory
-            StartRichPresenceThread();
+            if (!OfflineMode) StartRichPresenceThread();
             GameOverlay = new Overlay();
             GameOverlay.Show();
             ThreadScanner();

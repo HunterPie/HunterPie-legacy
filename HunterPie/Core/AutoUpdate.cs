@@ -11,6 +11,7 @@ namespace HunterPie.Core {
         private string BranchURI = "https://bitbucket.org/Haato/hunterpie/raw/";
         private string LocalUpdateHash;
         private string OnlineUpdateHash;
+        public bool offlineMode;
 
         public AutoUpdate(string branch) {
             BranchURI = $"{BranchURI}{branch}/";
@@ -19,7 +20,7 @@ namespace HunterPie.Core {
         public void checkAutoUpdate() {
             CheckLocalHash();
             CheckOnlineHash();
-            if (LocalUpdateHash == OnlineUpdateHash) return;
+            if (LocalUpdateHash == OnlineUpdateHash || offlineMode) return;
             DownloadNewUpdater();
         }
 
@@ -43,17 +44,24 @@ namespace HunterPie.Core {
 
         private void CheckOnlineHash() {
             WebRequest request = WebRequest.Create($"{BranchURI}Update.exe");
-            WebResponse r_response = request.GetResponse();
-            using (Stream r_content = r_response.GetResponseStream()) {
-                using (SHA256 sha256 = SHA256.Create()) {
-                    byte[] bytes = sha256.ComputeHash(r_content);
+            // Check if request was successfully made
+            try {
+                WebResponse r_response = request.GetResponse();
+                using (Stream r_content = r_response.GetResponseStream()) {
+                    using (SHA256 sha256 = SHA256.Create()) {
+                        byte[] bytes = sha256.ComputeHash(r_content);
 
-                    StringBuilder builder = new StringBuilder();
-                    for (int c = 0; c < bytes.Length; c++) {
-                        builder.Append(bytes[c].ToString("x2"));
+                        StringBuilder builder = new StringBuilder();
+                        for (int c = 0; c < bytes.Length; c++) {
+                            builder.Append(bytes[c].ToString("x2"));
+                        }
+                        OnlineUpdateHash = builder.ToString();
                     }
-                    OnlineUpdateHash = builder.ToString();
                 }
+                offlineMode = false;
+            } catch {
+                offlineMode = true;
+                return;
             }
         }
         
