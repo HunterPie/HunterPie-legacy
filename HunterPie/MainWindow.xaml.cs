@@ -27,7 +27,7 @@ namespace HunterPie {
         ThreadStart RichPresenceThreadRef;
         Thread RichPresenceThread;
 
-        const string HUNTERPIE_VERSION = "1.0.1.4";
+        const string HUNTERPIE_VERSION = "1.0.1.5";
 
         public MainWindow() {
             InitializeComponent();
@@ -48,7 +48,7 @@ namespace HunterPie {
 
             Process UpdateProcess = new Process();
             UpdateProcess.StartInfo.FileName = "Update.exe";
-            UpdateProcess.StartInfo.Arguments = $"version={HUNTERPIE_VERSION}";
+            UpdateProcess.StartInfo.Arguments = $"version={HUNTERPIE_VERSION} branch={UserSettings.PlayerConfig.HunterPie.Update.Branch}";
             UpdateProcess.Start();
             return true;
         }
