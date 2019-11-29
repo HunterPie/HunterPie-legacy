@@ -27,7 +27,7 @@ namespace HunterPie {
         ThreadStart RichPresenceThreadRef;
         Thread RichPresenceThread;
 
-        const string HUNTERPIE_VERSION = "1.0.1.5";
+        const string HUNTERPIE_VERSION = "1.0.1.6";
 
         public MainWindow() {
             InitializeComponent();

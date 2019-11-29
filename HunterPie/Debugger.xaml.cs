@@ -19,9 +19,10 @@ namespace HunterPie {
     /// </summary>
     public partial class Debugger : UserControl {
         // Colors
-        private static object ERROR = Brushes.Red;
-        private static object WARN = Brushes.Yellow;
-        private static object NORMAL = Brushes.White;
+        private static string ERROR = "#FF6459";
+        private static string WARN = "#FFC13D";
+        private static string DISCORD = "#52A0FF";
+        private static string NORMAL = "#FFFFFF";
 
         public static Debugger _Instance;
         public static Debugger Instance {
@@ -45,7 +46,11 @@ namespace HunterPie {
         }
 
         public static void Log(string message) {
-            PrintOnConsole(message, NORMAL);
+            PrintOnConsole($"[LOG] {message}", NORMAL);
+        }
+
+        public static void Discord(string message) {
+            PrintOnConsole($"[DISCORD] {message}", DISCORD);
         }
 
         private static void ScrollToEnd() {
@@ -59,7 +64,7 @@ namespace HunterPie {
 
         private static void PrintOnConsole(string message, object color) {
             DateTime TimeStamp = DateTime.Now;
-            message = $"{TimeStamp:%H:%m} [HunterPie] {message}\n";
+            message = $"[{TimeStamp.ToLongTimeString()}] {message}\n";
             _Instance.Console.Dispatcher.BeginInvoke(
                 System.Windows.Threading.DispatcherPriority.Background,
                 new Action( () => {

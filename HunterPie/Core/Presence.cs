@@ -13,7 +13,7 @@ namespace HunterPie.Core {
         public void InitializePresence() {
             Client = new DiscordRpcClient(APP_ID);
             Client.Initialize();
-            Debugger.Warn("Connecting to Discord...");
+            Debugger.Discord("Connecting to Discord...");
         }
 
         public void UpdatePresenceInfo(string details, string state, Assets PresenceAssets, Party PresenceParty, Timestamps PresenceTimestamps) {
