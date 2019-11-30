@@ -388,10 +388,15 @@ namespace HunterPie {
         }
 
         private void LaunchGame() {
-            Process createGameProcess = new Process();
-            createGameProcess.StartInfo.FileName = UserSettings.PlayerConfig.HunterPie.Launch.GamePath;
-            createGameProcess.StartInfo.Arguments = UserSettings.PlayerConfig.HunterPie.Launch.LaunchArgs;
-            createGameProcess.Start();
+            try {
+                Process createGameProcess = new Process();
+                createGameProcess.StartInfo.FileName = UserSettings.PlayerConfig.HunterPie.Launch.GamePath;
+                createGameProcess.StartInfo.Arguments = UserSettings.PlayerConfig.HunterPie.Launch.LaunchArgs;
+                createGameProcess.Start();
+            } catch {
+                Debugger.Error("Failed to launch Monster Hunter World. Common reasons for this error are:\n- Wrong file path;");
+            }
+            
         }
 
         private void launchGameButton_Click(object sender, RoutedEventArgs e) {
