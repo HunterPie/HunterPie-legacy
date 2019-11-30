@@ -38,6 +38,7 @@ namespace HunterPie {
             settingsUI.branchesCombobox.SelectedItem = _Instance.SettingsBox.branchesCombobox.Items.Contains(settings.HunterPie.Update.Branch) ? settings.HunterPie.Update.Branch : "master";
             settingsUI.selectPathBttn.Content = settings.HunterPie.Launch.GamePath == "" ? "Select path" : settings.HunterPie.Launch.GamePath.Length > 15 ? "..." + settings.HunterPie.Launch.GamePath.Substring((settings.HunterPie.Launch.GamePath.Length / 2) - 10) : settings.HunterPie.Launch.GamePath;
             settingsUI.argsTextBox.Text = settings.HunterPie.Launch.LaunchArgs == "" ? "No arguments" : settings.HunterPie.Launch.LaunchArgs;
+            settingsUI.enableCloseWhenExit.IsChecked = settings.HunterPie.Options.CloseWhenGameCloses;
 
             // Rich Presence
             settingsUI.enableRichPresence.IsChecked = settings.RichPresence.Enabled;
@@ -77,6 +78,7 @@ namespace HunterPie {
             settings.HunterPie.Update.Branch = (string)settingsUI.branchesCombobox.SelectedItem;
             settings.HunterPie.Launch.GamePath = settingsUI.fullGamePath;
             settings.HunterPie.Launch.LaunchArgs = settingsUI.fullLaunchArgs == "No arguments" ? "" : settingsUI.fullLaunchArgs;
+            settings.HunterPie.Options.CloseWhenGameCloses = (bool)settingsUI.enableCloseWhenExit.IsChecked;
 
             // Rich Presence
             settings.RichPresence.Enabled = (bool)settingsUI.enableRichPresence.IsChecked;

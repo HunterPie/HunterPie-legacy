@@ -56,6 +56,7 @@ namespace HunterPie.Core {
             public class Hunterpie {
                 public Update Update { get; set; } = new Update();
                 public Launch Launch { get; set; } = new Launch();
+                public Options Options { get; set; } = new Options();
             }
 
             public class Update {
@@ -66,6 +67,10 @@ namespace HunterPie.Core {
             public class Launch {
                 public string GamePath { get; set; } = "";
                 public string LaunchArgs { get; set; } = "";
+            }
+
+            public class Options {
+                public bool CloseWhenGameCloses { get; set; } = false;
             }
 
         }
@@ -100,6 +105,13 @@ namespace HunterPie.Core {
                 Update = new Config.Update {
                     Enabled = true,
                     Branch = "master"
+                },
+                Launch = new Config.Launch {
+                    GamePath = "",
+                    LaunchArgs = ""
+                },
+                Options = new Config.Options {
+                    CloseWhenGameCloses = false
                 }
             }
         };

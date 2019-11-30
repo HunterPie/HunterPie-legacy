@@ -54,7 +54,13 @@ namespace HunterPie.Memory {
                         Debugger.Log("HunterPie is ready! Waiting for game process to start...");
                         lockSpam = true;
                     }
-                    if (GameIsRunning) Debugger.Log("Game process was closed by user!");
+                    if (GameIsRunning) {
+                        Debugger.Log("Game process was closed by user!");
+                        if (Core.UserSettings.PlayerConfig.HunterPie.Options.CloseWhenGameCloses) {
+                            // Kinda hacky but works, so Imma keep it like this for now
+                            Environment.Exit(0);
+                        }
+                    }
                     GameIsRunning = false;
                     PID = 0;
                 } else if (!GameIsRunning) {
