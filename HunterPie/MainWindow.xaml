@@ -110,6 +110,6 @@
         <Image Margin="26,308,199,271" Source="media/GitHub-Mark-Light-32px.png" Cursor="Hand"/>
         <Button x:Name="changelogButton" Content="CHANGELOG" HorizontalAlignment="Center" Margin="0,249,0,0" VerticalAlignment="Top" Width="244" Height="45" BorderBrush="#00707070" Foreground="#FFDEDEDE" FontFamily="Roboto" FontSize="18" Cursor="Hand" Background="#FF1F1F1F" BorderThickness="0" Template="{DynamicResource ButtonStyle}" Padding="-31,1,1,1" FontWeight="Bold" Click="changelogButton_click"/>
         <Image Margin="26,261,199,319" Source="media/changelog.png" Cursor="Hand"/>
-        <Button x:Name="launchGameButton" HorizontalAlignment="Left" Margin="499,59,0,0" VerticalAlignment="Top" Width="241" Height="46" BorderBrush="#FF9C1313" Foreground="#FFDEDEDE" FontFamily="Roboto" FontSize="18" Cursor="Hand" Background="#FFBB1A1A" BorderThickness="1"  Template="{DynamicResource ButtonStyle}" Content="LAUNCH GAME" Padding="0" Grid.Column="1" FontWeight="Bold" HorizontalContentAlignment="Center"/>
+        <Button x:Name="launchGameButton" HorizontalAlignment="Left" Margin="499,59,0,0" VerticalAlignment="Top" Width="241" Height="46" BorderBrush="#FF9C1313" Foreground="#FFDEDEDE" FontFamily="Roboto" FontSize="18" Cursor="Hand" Background="#FFBB1A1A" BorderThickness="1"  Template="{DynamicResource ButtonStyle}" Content="LAUNCH GAME" Padding="0" Grid.Column="1" FontWeight="Bold" HorizontalContentAlignment="Center" Click="launchGameButton_Click"/>
     </Grid>
 </Window>

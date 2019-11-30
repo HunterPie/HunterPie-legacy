@@ -37,10 +37,15 @@ namespace HunterPie {
         static public void RefreshSettingsUI() {
             var settings = UserSettings.PlayerConfig;
             var settingsUI = _Instance.SettingsBox;
+            settingsUI.fullGamePath = settings.HunterPie.Launch.GamePath;
+            settingsUI.fullLaunchArgs = settings.HunterPie.Launch.LaunchArgs;
+
             // HunterPie
             settingsUI.enableAutoUpdate.IsChecked = settings.HunterPie.Update.Enabled;
             settingsUI.branchesCombobox.SelectedItem = _Instance.SettingsBox.branchesCombobox.Items.Contains(settings.HunterPie.Update.Branch) ? settings.HunterPie.Update.Branch : "master";
-            
+            settingsUI.selectPathBttn.Content = settings.HunterPie.Launch.GamePath == "" ? "Select path" : settings.HunterPie.Launch.GamePath;
+            settingsUI.argsTextBox.Text = settings.HunterPie.Launch.LaunchArgs == "" ? "No arguments" : settings.HunterPie.Launch.LaunchArgs;
+
             // Rich Presence
             settingsUI.enableRichPresence.IsChecked = settings.RichPresence.Enabled;
             
@@ -77,6 +82,8 @@ namespace HunterPie {
             // HunterPie
             settings.HunterPie.Update.Enabled = (bool)settingsUI.enableAutoUpdate.IsChecked;
             settings.HunterPie.Update.Branch = (string)settingsUI.branchesCombobox.SelectedItem;
+            settings.HunterPie.Launch.GamePath = settingsUI.fullGamePath;
+            settings.HunterPie.Launch.LaunchArgs = settingsUI.fullLaunchArgs == "No arguments" ? "" : settingsUI.fullLaunchArgs;
 
             // Rich Presence
             settings.RichPresence.Enabled = (bool)settingsUI.enableRichPresence.IsChecked;

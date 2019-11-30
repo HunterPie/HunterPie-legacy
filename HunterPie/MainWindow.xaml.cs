@@ -382,5 +382,14 @@ namespace HunterPie {
             ConsolePanel.Children.Clear();
             ConsolePanel.Children.Add(Changelog.Instance);
         }
+
+        private void launchGameButton_Click(object sender, RoutedEventArgs e) {
+            // Shorten the class name
+            var launchOptions = UserSettings.PlayerConfig.HunterPie.Launch;
+
+            if (launchOptions.GamePath == "") {
+                MessageBox.Show("You haven't added the game path yet. Do you want to do it now?", "Monster Hunter World path not found", MessageBoxButton.YesNo, MessageBoxImage.Error);
+            }
+        }
     }
 }

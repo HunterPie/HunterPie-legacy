@@ -4,13 +4,92 @@
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              xmlns:local="clr-namespace:HunterPie"
-             mc:Ignorable="d" d:DesignWidth="800" Width="749" Height="859">
-    <StackPanel HorizontalAlignment="Left" Height="859" VerticalAlignment="Top" Width="749" Background="#FF2E2E2E">
+             mc:Ignorable="d" d:DesignWidth="800" Width="749" Height="983.5">
+    <UserControl.Resources>
+        <Style x:Key="FocusVisual">
+            <Setter Property="Control.Template">
+                <Setter.Value>
+                    <ControlTemplate>
+                        <Rectangle Margin="2" SnapsToDevicePixels="true" Stroke="{DynamicResource {x:Static SystemColors.ControlTextBrushKey}}" StrokeThickness="1" StrokeDashArray="1 2"/>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+        </Style>
+        <SolidColorBrush x:Key="Button.Static.Background" Color="#FFDDDDDD"/>
+        <SolidColorBrush x:Key="Button.Static.Border" Color="#FF707070"/>
+        <SolidColorBrush x:Key="Button.MouseOver.Background" Color="#FFBEE6FD"/>
+        <SolidColorBrush x:Key="Button.MouseOver.Border" Color="#FF3C7FB1"/>
+        <SolidColorBrush x:Key="Button.Pressed.Background" Color="#FFC4E5F6"/>
+        <SolidColorBrush x:Key="Button.Pressed.Border" Color="#FF2C628B"/>
+        <SolidColorBrush x:Key="Button.Disabled.Background" Color="#FFF4F4F4"/>
+        <SolidColorBrush x:Key="Button.Disabled.Border" Color="#FFADB2B5"/>
+        <SolidColorBrush x:Key="Button.Disabled.Foreground" Color="#FF838383"/>
+        <Style x:Key="ButtonStyle" TargetType="{x:Type Button}">
+            <Setter Property="FocusVisualStyle" Value="{StaticResource FocusVisual}"/>
+            <Setter Property="Background" Value="{StaticResource Button.Static.Background}"/>
+            <Setter Property="BorderBrush" Value="{StaticResource Button.Static.Border}"/>
+            <Setter Property="Foreground" Value="{DynamicResource {x:Static SystemColors.ControlTextBrushKey}}"/>
+            <Setter Property="BorderThickness" Value="1"/>
+            <Setter Property="HorizontalContentAlignment" Value="Center"/>
+            <Setter Property="VerticalContentAlignment" Value="Center"/>
+            <Setter Property="Padding" Value="1"/>
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="{x:Type Button}">
+                        <Border x:Name="border" BorderBrush="{TemplateBinding BorderBrush}" BorderThickness="{TemplateBinding BorderThickness}" Background="{TemplateBinding Background}" SnapsToDevicePixels="true">
+                            <ContentPresenter x:Name="contentPresenter" Focusable="False" HorizontalAlignment="{TemplateBinding HorizontalContentAlignment}" Margin="{TemplateBinding Padding}" RecognizesAccessKey="True" SnapsToDevicePixels="{TemplateBinding SnapsToDevicePixels}" VerticalAlignment="{TemplateBinding VerticalContentAlignment}"/>
+                        </Border>
+                        <ControlTemplate.Triggers>
+                            <Trigger Property="IsMouseOver" Value="True">
+                                <Trigger.EnterActions>
+                                    <BeginStoryboard>
+                                        <Storyboard>
+                                            <DoubleAnimation Duration="0:0:0.150" To="0.5" Storyboard.TargetProperty="Opacity"/>
+                                        </Storyboard>
+                                    </BeginStoryboard>
+                                </Trigger.EnterActions>
+                                <Trigger.ExitActions>
+                                    <BeginStoryboard>
+                                        <Storyboard>
+                                            <DoubleAnimation Duration="0:0:0.150" To="1" Storyboard.TargetProperty="Opacity"/>
+                                        </Storyboard>
+                                    </BeginStoryboard>
+                                </Trigger.ExitActions>
+                            </Trigger>
+                            <Trigger Property="IsDefaulted" Value="True">
+                                <Setter Property="BorderBrush" TargetName="border" Value="{DynamicResource {x:Static SystemColors.HighlightBrushKey}}"/>
+                            </Trigger>
+                            <Trigger Property="IsPressed" Value="True">
+                                <Setter Property="Background" TargetName="border" Value="#FF191919"/>
+                                <Setter Property="BorderBrush" TargetName="border" Value="#003C7FB1"/>
+                            </Trigger>
+                            <Trigger Property="ToggleButton.IsChecked" Value="True">
+                                <Setter Property="Background" TargetName="border" Value="#FFBCDDEE"/>
+                                <Setter Property="BorderBrush" TargetName="border" Value="#FF245A83"/>
+                            </Trigger>
+                            <Trigger Property="IsEnabled" Value="False">
+                                <Setter Property="Background" TargetName="border" Value="#FF191919"/>
+                                <Setter Property="BorderBrush" TargetName="border" Value="#003C7FB1"/>
+                                <Setter Property="Foreground" Value="#FF838383"/>
+                            </Trigger>
+                        </ControlTemplate.Triggers>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+        </Style>
+    </UserControl.Resources>
+    <StackPanel HorizontalAlignment="Left" Height="984" VerticalAlignment="Top" Width="749" Background="#FF2E2E2E">
         <Label x:Name="GeneralStaticText" Content="- General -" Height="34" FontFamily="Roboto" FontSize="20" FontWeight="Bold" HorizontalAlignment="Center" Width="749" HorizontalContentAlignment="Center" Foreground="#FFE0E0E0" Padding="0" UseLayoutRounding="False" VerticalContentAlignment="Center" Background="#FF292929"/>
         <CheckBox x:Name="enableAutoUpdate" Content="Enable auto-update" Padding="2,-2,0,0" HorizontalAlignment="Center" Foreground="#FFE0E0E0" Height="19" Margin="304,0,285,0" FontSize="15" Width="160" VerticalAlignment="Top" HorizontalContentAlignment="Center" Cursor="Hand" FontWeight="Light"/>
         <ComboBox x:Name="branchesCombobox" Margin="304,0,285,0" IsReadOnly="True" Cursor="Hand"/>
-        <Label x:Name="updateBranchStaticText" Content="Update branch:" HorizontalAlignment="Left" Height="21" Margin="196,-21,0,0" Width="108" FontFamily="Roboto" Foreground="#FFE0E0E0" FontSize="15" Padding="0" FontWeight="Light"/>
-        <Label x:Name="RichPresenceStaticText" Content="- Discord Presence -" Height="34" FontFamily="Roboto" FontSize="20" FontWeight="Bold" HorizontalAlignment="Center" Width="749" HorizontalContentAlignment="Center" Foreground="#FFE0E0E0" Padding="0,2,0,0" UseLayoutRounding="False" VerticalContentAlignment="Center" Margin="0,25,0,0" Background="#FF292929"/>
+        <Label x:Name="updateBranchStaticText_Copy7" Content="Update branch:" HorizontalAlignment="Left" Height="23" Margin="196,-21,0,0" Width="103" FontFamily="Roboto" Foreground="#FFE0E0E0" FontSize="15" Padding="0" FontWeight="Light"/>
+        <Label x:Name="gamePathLabel" Content="Game path:" HorizontalAlignment="Left" Height="30" Margin="196,7,0,0" Width="108" FontFamily="Roboto" Foreground="#FFE0E0E0" FontSize="15" Padding="0" FontWeight="Light" VerticalContentAlignment="Center"/>
+        <Button x:Name="selectPathBttn" Content="Select path" Cursor="Hand" Margin="278,-30,94,0" Style="{DynamicResource ButtonStyle}" Background="#FF1F1F1F" Foreground="#FFE8E8E8" FontFamily="Roboto" BorderBrush="{x:Null}" Height="30" Click="selectPathBttn_Click" Padding="3,1"/>
+        <StackPanel x:Name="launchArgsBox" Height="32" Margin="192,7,94,0" Orientation="Horizontal">
+            <Label x:Name="launchArgsLabel" Content="Launch arguments:" HorizontalAlignment="Right" Width="133" FontFamily="Roboto" Foreground="#FFE0E0E0" FontSize="15" Padding="0" FontWeight="Light" VerticalContentAlignment="Center" HorizontalContentAlignment="Right"/>
+            <TextBox x:Name="argsTextBox" TextWrapping="Wrap" Margin="0,1" Background="{x:Null}" Foreground="#FFE0E0E0" BorderBrush="#FFABADB3" BorderThickness="0,0,0,1" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" HorizontalAlignment="Right" Width="330" TextChanged="argsTextBox_TextChanged"/>
+        </StackPanel>
+        <Label x:Name="RichPresenceStaticText" Content="- Discord Presence -" Height="34" FontFamily="Roboto" FontSize="20" FontWeight="Bold" HorizontalAlignment="Center" Width="749" HorizontalContentAlignment="Center" Foreground="#FFE0E0E0" Padding="0,2,0,0" UseLayoutRounding="False" VerticalContentAlignment="Center" Margin="0,17,0,0" Background="#FF292929"/>
         <CheckBox x:Name="enableRichPresence" Content="Enable rich presence" Padding="2,-2,0,0" HorizontalAlignment="Center" Foreground="#FFE0E0E0" Height="19" Margin="304,4,285,0" FontSize="15" Width="160" VerticalAlignment="Top" HorizontalContentAlignment="Center" Cursor="Hand" FontWeight="Light"/>
         <Label x:Name="OverlayStaticText" Content="- In-Game Overlay -" Height="34" FontFamily="Roboto" FontSize="20" FontWeight="Bold" HorizontalAlignment="Center" Width="749" HorizontalContentAlignment="Center" Foreground="#FFE0E0E0" Padding="0" UseLayoutRounding="False" VerticalContentAlignment="Center" Margin="0,25,0,0" Background="#FF292929"/>
         <CheckBox x:Name="enableOverlay" Content="Enable in-game overlay" Padding="2,-2,0,0" HorizontalAlignment="Center" Foreground="#FFE0E0E0" Height="19" Margin="283,4,262,0" FontSize="15" Width="183" VerticalAlignment="Top" HorizontalContentAlignment="Center" Cursor="Hand" FontWeight="Light"/>
@@ -58,5 +137,7 @@
                 <TextBox x:Name="secMantleColor" TextWrapping="Wrap" Text="Color" Margin="0,-30,51,0" Background="{x:Null}" Foreground="#FFE0E0E0" BorderBrush="#FFABADB3" BorderThickness="0,0,0,1" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" HorizontalAlignment="Right" Width="130" Height="28" TextChanged="TypeColor"/>
             </StackPanel>
         </GroupBox>
+
+
     </StackPanel>
 </UserControl>

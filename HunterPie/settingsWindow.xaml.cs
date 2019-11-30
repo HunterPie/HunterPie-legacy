@@ -9,7 +9,8 @@ namespace HunterPie {
     /// Interaction logic for settingsWindow.xaml
     /// </summary>
     public partial class settingsWindow : UserControl {
-
+        public string fullGamePath = "";
+        public string fullLaunchArgs = "";
         private string[] AvailableBranches = new string[2] { "master", "BETA" };
 
         public settingsWindow()
@@ -73,6 +74,23 @@ namespace HunterPie {
             }
             obj.Text = obj.Text.Substring(0, offset);
             obj.CaretIndex = offset;
+        }
+
+        private void selectPathBttn_Click(object sender, System.Windows.RoutedEventArgs e) {
+            using (var filePicker = new System.Windows.Forms.OpenFileDialog()) {
+                filePicker.Filter = "Executable|MonsterHunterWorld.exe";
+                System.Windows.Forms.DialogResult result = filePicker.ShowDialog();
+
+                if (result == System.Windows.Forms.DialogResult.OK) {
+                    fullGamePath = filePicker.FileName;
+                    selectPathBttn.Content = fullGamePath;
+                }
+
+            }
+        }
+
+        private void argsTextBox_TextChanged(object sender, TextChangedEventArgs e) {
+            fullLaunchArgs = argsTextBox.Text;
         }
     }
 }

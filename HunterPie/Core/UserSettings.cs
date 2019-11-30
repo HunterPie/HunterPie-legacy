@@ -55,11 +55,17 @@ namespace HunterPie.Core {
 
             public class Hunterpie {
                 public Update Update { get; set; } = new Update();
+                public Launch Launch { get; set; } = new Launch();
             }
 
             public class Update {
                 public bool Enabled { get; set; } = true;
                 public string Branch { get; set; } = "master";
+            }
+
+            public class Launch {
+                public string GamePath { get; set; } = "";
+                public string LaunchArgs { get; set; } = "";
             }
 
         }
