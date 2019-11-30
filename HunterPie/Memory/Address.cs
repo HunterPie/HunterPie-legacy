@@ -39,6 +39,8 @@ namespace HunterPie.Memory {
         }
 
         private static void LoadMemoryAddresses(string filename) {
+            // Clear all loaded values
+            MappedAddresses.Clear();
             string[] fileLines = File.ReadAllLines($"address/{filename}");
             foreach (string line in fileLines) {
                 string[] parsed = line.Split(' ');

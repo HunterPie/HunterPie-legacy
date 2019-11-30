@@ -60,7 +60,7 @@ namespace HunterPie.Memory {
                 } else if (!GameIsRunning) {
                     PID = MonsterHunter[0].Id;
                     ProcessHandle = OpenProcess(PROCESS_ALL_ACCESS, false, PID);
-                    while (MonsterHunter[0].MainWindowTitle == "") {
+                    while (MonsterHunter.Length == 0 || MonsterHunter[0].MainWindowTitle == "") {
                         MonsterHunter = Process.GetProcessesByName(PROCESS_NAME);
                         Thread.Sleep(100);
                     }

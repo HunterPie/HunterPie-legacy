@@ -36,7 +36,7 @@
             <Setter Property="Template">
                 <Setter.Value>
                     <ControlTemplate TargetType="{x:Type Button}">
-                        <Border x:Name="border" BorderBrush="{TemplateBinding BorderBrush}" BorderThickness="{TemplateBinding BorderThickness}" Background="{TemplateBinding Background}" SnapsToDevicePixels="true">
+                        <Border x:Name="border" BorderBrush="{TemplateBinding BorderBrush}" BorderThickness="{TemplateBinding BorderThickness}" Background="{TemplateBinding Background}" SnapsToDevicePixels="true" CornerRadius="3">
                             <ContentPresenter x:Name="contentPresenter" Focusable="False" HorizontalAlignment="{TemplateBinding HorizontalContentAlignment}" Margin="{TemplateBinding Padding}" RecognizesAccessKey="True" SnapsToDevicePixels="{TemplateBinding SnapsToDevicePixels}" VerticalAlignment="{TemplateBinding VerticalContentAlignment}"/>
                         </Border>
                         <ControlTemplate.Triggers>
@@ -87,7 +87,7 @@
         <Button x:Name="selectPathBttn" Content="Select path" Cursor="Hand" Margin="278,-30,94,0" Style="{DynamicResource ButtonStyle}" Background="#FF1F1F1F" Foreground="#FFE8E8E8" FontFamily="Roboto" BorderBrush="{x:Null}" Height="30" Click="selectPathBttn_Click" Padding="3,1"/>
         <StackPanel x:Name="launchArgsBox" Height="32" Margin="192,7,94,0" Orientation="Horizontal">
             <Label x:Name="launchArgsLabel" Content="Launch arguments:" HorizontalAlignment="Right" Width="133" FontFamily="Roboto" Foreground="#FFE0E0E0" FontSize="15" Padding="0" FontWeight="Light" VerticalContentAlignment="Center" HorizontalContentAlignment="Right"/>
-            <TextBox x:Name="argsTextBox" TextWrapping="Wrap" Margin="0,1" Background="{x:Null}" Foreground="#FFE0E0E0" BorderBrush="#FFABADB3" BorderThickness="0,0,0,1" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" HorizontalAlignment="Right" Width="330" TextChanged="argsTextBox_TextChanged"/>
+            <TextBox x:Name="argsTextBox" TextWrapping="Wrap" Margin="0,1" Background="{x:Null}" Foreground="#FFE0E0E0" BorderBrush="#FFABADB3" BorderThickness="0,0,0,1" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" HorizontalAlignment="Right" Width="330" TextChanged="argsTextBox_TextChanged" GotFocus="argsTextBox_GotFocus" LostFocus="argsTextBox_LostFocus"/>
         </StackPanel>
         <Label x:Name="RichPresenceStaticText" Content="- Discord Presence -" Height="34" FontFamily="Roboto" FontSize="20" FontWeight="Bold" HorizontalAlignment="Center" Width="749" HorizontalContentAlignment="Center" Foreground="#FFE0E0E0" Padding="0,2,0,0" UseLayoutRounding="False" VerticalContentAlignment="Center" Margin="0,17,0,0" Background="#FF292929"/>
         <CheckBox x:Name="enableRichPresence" Content="Enable rich presence" Padding="2,-2,0,0" HorizontalAlignment="Center" Foreground="#FFE0E0E0" Height="19" Margin="304,4,285,0" FontSize="15" Width="160" VerticalAlignment="Top" HorizontalContentAlignment="Center" Cursor="Hand" FontWeight="Light"/>

@@ -83,6 +83,11 @@ namespace HunterPie {
 
                 if (result == System.Windows.Forms.DialogResult.OK) {
                     fullGamePath = filePicker.FileName;
+                    if (filePicker.FileName.Length > 15) {
+                        int i = (fullGamePath.Length / 2) - 10;
+                        selectPathBttn.Content = "..." + fullGamePath.Substring(i);
+                        return;
+                    }
                     selectPathBttn.Content = fullGamePath;
                 }
 
@@ -91,6 +96,14 @@ namespace HunterPie {
 
         private void argsTextBox_TextChanged(object sender, TextChangedEventArgs e) {
             fullLaunchArgs = argsTextBox.Text;
+        }
+
+        private void argsTextBox_GotFocus(object sender, System.Windows.RoutedEventArgs e) {
+            if (argsTextBox.Text == "No arguments") argsTextBox.Text = "";
+        }
+
+        private void argsTextBox_LostFocus(object sender, System.Windows.RoutedEventArgs e) {
+            if (argsTextBox.Text == "") argsTextBox.Text = "No arguments";
         }
     }
 }

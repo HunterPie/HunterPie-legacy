@@ -69,7 +69,7 @@ namespace HunterPie {
                     }
                 }
                 if (justUpdated) {
-                    // Show changelog
+                    openChangeLog();
                     return;
                 }
                 if (latestVersion) {
@@ -378,9 +378,20 @@ namespace HunterPie {
             Process.Start("https://github.com/Haato3o/HunterPie");
         }
 
-        private void changelogButton_click(object sender, RoutedEventArgs e) {
+        private void openChangeLog() {
             ConsolePanel.Children.Clear();
             ConsolePanel.Children.Add(Changelog.Instance);
+        }
+
+        private void changelogButton_click(object sender, RoutedEventArgs e) {
+            openChangeLog();
+        }
+
+        private void LaunchGame() {
+            Process createGameProcess = new Process();
+            createGameProcess.StartInfo.FileName = UserSettings.PlayerConfig.HunterPie.Launch.GamePath;
+            createGameProcess.StartInfo.Arguments = UserSettings.PlayerConfig.HunterPie.Launch.LaunchArgs;
+            createGameProcess.Start();
         }
 
         private void launchGameButton_Click(object sender, RoutedEventArgs e) {
@@ -388,7 +399,11 @@ namespace HunterPie {
             var launchOptions = UserSettings.PlayerConfig.HunterPie.Launch;
 
             if (launchOptions.GamePath == "") {
-                MessageBox.Show("You haven't added the game path yet. Do you want to do it now?", "Monster Hunter World path not found", MessageBoxButton.YesNo, MessageBoxImage.Error);
+                if (MessageBox.Show("You haven't added the game path yet. Do you want to do it now?", "Monster Hunter World path not found", MessageBoxButton.YesNo, MessageBoxImage.Error) == MessageBoxResult.Yes) {
+                    OpenSettingsWindow();
+                }
+            } else {
+                LaunchGame();
             }
         }
     }

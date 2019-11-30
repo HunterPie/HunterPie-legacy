@@ -17,7 +17,7 @@
                     <Trigger.EnterActions>
                         <BeginStoryboard>
                             <Storyboard>
-                                <DoubleAnimation Duration="0:0:0.150" To="0.5" Storyboard.TargetProperty="Opacity"/>
+                                <DoubleAnimation Duration="0:0:0.150" To="0.75" Storyboard.TargetProperty="Opacity"/>
                             </Storyboard>
                         </BeginStoryboard>
                     </Trigger.EnterActions>
@@ -86,7 +86,7 @@
                 <DropShadowEffect ShadowDepth="2" Direction="180"/>
             </Rectangle.Effect>
         </Rectangle>
-        <Image HorizontalAlignment="Left" Height="52" Margin="26,53,0,0" VerticalAlignment="Top" Width="198" Source="media/hunterPyConsole.png"/>
+        <Image HorizontalAlignment="Left" Height="52" Margin="26,59,0,0" VerticalAlignment="Top" Width="198" Source="media/hunterPyConsole.png"/>
         <Rectangle x:Name="WindowTopBar" Fill="#FF1F1F1F" HorizontalAlignment="Left" Height="22" VerticalAlignment="Top" Width="1000" Grid.ColumnSpan="2" MouseDown="WindowTopBar_MouseDown"/>
         <Label x:Name="closeWindow" Content="✕" Grid.Column="1" HorizontalAlignment="Center" Margin="731,0,0,578" VerticalAlignment="Center" Height="22" Width="25" Foreground="#FFD8D8D8" Padding="0,0,1,0" Cursor="Hand" MouseDown="Label_MouseDown" FontSize="14" Template="{DynamicResource LabelButtonType}" OverridesDefaultStyle="True" Style="{Binding Mode=OneWay, Source={StaticResource LabelButtonType}}" VerticalContentAlignment="Center" Background="#FFB02B2B" HorizontalContentAlignment="Center" />
         <Label x:Name="minimizeWindow" Content="__" Grid.Column="1" HorizontalAlignment="Left" Margin="700,-9,0,578" Width="28" Foreground="#FFD8D8D8" Padding="0,0,13,6" Cursor="Hand" FontSize="18" Background="#00000000" MouseDown="minimizeWindow_MouseDown" Template="{DynamicResource LabelButtonType}" HorizontalContentAlignment="Right" BorderThickness="0"/>
@@ -110,6 +110,13 @@
         <Image Margin="26,308,199,271" Source="media/GitHub-Mark-Light-32px.png" Cursor="Hand"/>
         <Button x:Name="changelogButton" Content="CHANGELOG" HorizontalAlignment="Center" Margin="0,249,0,0" VerticalAlignment="Top" Width="244" Height="45" BorderBrush="#00707070" Foreground="#FFDEDEDE" FontFamily="Roboto" FontSize="18" Cursor="Hand" Background="#FF1F1F1F" BorderThickness="0" Template="{DynamicResource ButtonStyle}" Padding="-31,1,1,1" FontWeight="Bold" Click="changelogButton_click"/>
         <Image Margin="26,261,199,319" Source="media/changelog.png" Cursor="Hand"/>
-        <Button x:Name="launchGameButton" HorizontalAlignment="Left" Margin="499,59,0,0" VerticalAlignment="Top" Width="241" Height="46" BorderBrush="#FF9C1313" Foreground="#FFDEDEDE" FontFamily="Roboto" FontSize="18" Cursor="Hand" Background="#FFBB1A1A" BorderThickness="1"  Template="{DynamicResource ButtonStyle}" Content="LAUNCH GAME" Padding="0" Grid.Column="1" FontWeight="Bold" HorizontalContentAlignment="Center" Click="launchGameButton_Click"/>
+        <Button x:Name="launchGameButton" HorizontalAlignment="Left" Margin="499,59,0,0" VerticalAlignment="Top" Width="241" Height="46" BorderBrush="{x:Null}" Foreground="#FFDEDEDE" FontFamily="Roboto" FontSize="18" Cursor="Hand" BorderThickness="1"  Template="{DynamicResource ButtonStyle}" Content="LAUNCH GAME" Padding="0" Grid.Column="1" FontWeight="Bold" HorizontalContentAlignment="Center" Click="launchGameButton_Click">
+            <Button.Background>
+                <LinearGradientBrush EndPoint="0.5,1" MappingMode="RelativeToBoundingBox" StartPoint="1,0">
+                    <GradientStop Color="#FFC52B2B"/>
+                    <GradientStop Color="#FF9B0505" Offset="1"/>
+                </LinearGradientBrush>
+            </Button.Background>
+        </Button>
     </Grid>
 </Window>
