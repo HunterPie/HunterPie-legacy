@@ -98,7 +98,6 @@ namespace HunterPie.Core {
                 this.LastZoneID = ZoneID;
                 this.ZoneID = zoneId;
                 this.inPeaceZone = PeaceZones.Contains(this.ZoneID);
-                Debugger.Log(ZoneID.ToString());
             }
             ZoneName = GStrings.ZoneName(ZoneID);
         }

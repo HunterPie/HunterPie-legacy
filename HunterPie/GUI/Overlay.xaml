@@ -142,7 +142,13 @@
 
         <StackPanel x:Name="PrimaryMantleContainer" Margin="1692,868,0,0" Background="#4C000000" HorizontalAlignment="Left" Width="218" Height="38" VerticalAlignment="Top">
             <Border x:Name="PrimaryMantleBorder" BorderBrush="#FF7D076D" BorderThickness="2,0.5,0.5,0.5" HorizontalAlignment="Left" VerticalAlignment="Center" Height="38" Width="218" CornerRadius="1"/>
-            <xctk:Pie x:Name="PrimaryMantleTimer" Slice="1" StartAngle="0" EndAngle="1" Height="26" Margin="5,-38,187,0" RenderTransformOrigin="0.5,0.5" Fill="#99C500AA">
+            <xctk:Pie x:Name="PrimaryMantleTimer" Slice="1" StartAngle="0" EndAngle="1" Height="26" Margin="5,-38,187,0" RenderTransformOrigin="0.5,0.5">
+                <xctk:Pie.Fill>
+                    <RadialGradientBrush Center="13,13" GradientOrigin="13,13" MappingMode="Absolute" RadiusY="13" RadiusX="13">
+                        <GradientStop Color="#00000000" Offset="0.409"/>
+                        <GradientStop Color="#FF7D076D" Offset="0.409"/>
+                    </RadialGradientBrush>
+                </xctk:Pie.Fill>
                 <xctk:Pie.RenderTransform>
                     <TransformGroup>
                         <ScaleTransform/>
@@ -156,7 +162,13 @@
         </StackPanel>
         <StackPanel x:Name="SecondaryMantleContainer" Margin="1692,911,0,0" Background="#4C000000" HorizontalAlignment="Left" Width="218" Height="38" VerticalAlignment="Top">
             <Border x:Name="SecondaryMantleBorder" BorderBrush="#FF4607A0" BorderThickness="2,0.5,0.5,0.5" HorizontalAlignment="Left" VerticalAlignment="Center" Height="38" Width="218" CornerRadius="1"/>
-            <xctk:Pie x:Name="SecondaryMantleTimer" Slice="1" StartAngle="0" EndAngle="1" Height="26" Margin="5,-38,187,0" RenderTransformOrigin="0.5,0.5" Fill="#996900FF">
+            <xctk:Pie x:Name="SecondaryMantleTimer" Slice="1" StartAngle="0" EndAngle="1" Height="26" Margin="5,-38,187,0" RenderTransformOrigin="0.5,0.5">
+                <xctk:Pie.Fill>
+                    <RadialGradientBrush Center="13,13" GradientOrigin="13,13" MappingMode="Absolute" RadiusY="13" RadiusX="13">
+                        <GradientStop Color="#00000000" Offset="0.409"/>
+                        <GradientStop Color="#FF4607A0" Offset="0.409"/>
+                    </RadialGradientBrush>
+                </xctk:Pie.Fill>
                 <xctk:Pie.RenderTransform>
                     <TransformGroup>
                         <ScaleTransform/>

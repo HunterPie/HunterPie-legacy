@@ -166,13 +166,28 @@ namespace HunterPie.GUI {
             HarvestBoxItemsCounter.Content = $"{counter}/{max}";
         }
 
+        private RadialGradientBrush DonutBrush(Color customColor) {
+            Color C_TRANSPARENT = (Color)ColorConverter.ConvertFromString("#00000000");
+            RadialGradientBrush brush = new RadialGradientBrush();
+            brush.Center = new Point(13, 13);
+            brush.GradientOrigin = new Point(13, 13);
+            brush.MappingMode = BrushMappingMode.Absolute;
+            brush.RadiusX = 13;
+            brush.RadiusX = 13;
+            // Add the colors to make a donut
+            brush.GradientStops.Add(new GradientStop(C_TRANSPARENT, 0.409));
+            brush.GradientStops.Add(new GradientStop(customColor, 0.409));
+            return brush;
+        }
+
         public void ChangePrimaryMantleColor(string newColor) {
             if (PrimaryMantleTimer.Fill.ToString() == newColor) {
                 return;
             }
             Color primaryColor = (Color)ColorConverter.ConvertFromString(newColor);
             Brush primaryColorBrush = new SolidColorBrush(primaryColor);
-            PrimaryMantleTimer.Fill = primaryColorBrush;
+            
+            PrimaryMantleTimer.Fill = DonutBrush(primaryColor);
             PrimaryMantleBorder.BorderBrush = primaryColorBrush;
         }
 
@@ -220,7 +235,8 @@ namespace HunterPie.GUI {
             }
             Color secondaryColor = (Color)ColorConverter.ConvertFromString(newColor);
             Brush secondaryColorBrush = new SolidColorBrush(secondaryColor);
-            SecondaryMantleTimer.Fill = secondaryColorBrush;
+
+            SecondaryMantleTimer.Fill = DonutBrush(secondaryColor);
             SecondaryMantleBorder.BorderBrush = secondaryColorBrush;
         }
 
