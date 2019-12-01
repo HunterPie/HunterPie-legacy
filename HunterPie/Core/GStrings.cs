@@ -73,6 +73,7 @@ namespace HunterPie.Core {
             Zones.Add(37, "Rotten Vale");
             Zones.Add(58, "Coral Highlands");
             Zones.Add(64, "Wildspire Waste");
+            Zones.Add(88, "Ancient Forest"); // Tutorial map
             Zones.Add(94, "Ancient Forest");
         }
 

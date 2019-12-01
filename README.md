@@ -25,8 +25,12 @@ Shows fertilizer names and amount left and the total items in harvest box. It on
 
 ### More widgets and info to be added soon...
 
+### Uninstallation
+
+Just delete HunterPie folder.
+
 ## Bugs and suggestions
-If you find any bug or have and suggestion, please contact me on Discord (Haato#0704) or open a issue ticket [here](https://github.com/Haato3o/HunterPie/issues)
+If you find any bug or have any suggestion, please contact me on Discord (Haato#0704) or open an issue ticket [here](https://github.com/Haato3o/HunterPie/issues)
 
 ## Credits
 + [R00telement](https://github.com/r00telement) for his [SmartHunter](https://github.com/r00telement/SmartHunter) application that helped me finding the monsters health
