@@ -7,19 +7,16 @@ namespace HunterPie.Core {
     class Player {
         
         // Private variables
-        private int _slot = 0;
         private int _level;
         private string _name;
         private int _zoneId;
         private string _zoneName;
         private int _weaponId;
         private string _weaponName;
+        private string _sessionId;
         private bool _inPeaceZone;
         private bool _inHarvestZone;
-
-        private Mantle _primaryMantle;
-        private Mantle _secondaryMantle;
-
+        private int _partySize;
 
         // Game info
         private int[] PeaceZones = new int[11] { 0, 5, 7, 11, 15, 16, 21, 23, 24, 31, 33 };
@@ -29,14 +26,75 @@ namespace HunterPie.Core {
         private Int64 LEVEL_ADDRESS;
         private Int64 EQUIPMENT_ADDRESS;
         public int Slot = 0;
-        public int Level { get; private set; }
-        public string Name { get; private set; }
-        public int ZoneID { get; private set; }
-        public string ZoneName { get; private set; }
+        public int Level {
+            get {
+                return _level;
+            } set {
+                if (_level != value) {
+                    _level = value;
+                    dispatchLevelUp();
+                }
+            }
+        }
+        public string Name {
+            get {
+                return _name;
+            } set {
+                if (_name != value) {
+                    _name = value;
+                    dispatchNameChange();
+                }
+            }
+        }
+        public int ZoneID {
+            get {
+                return _zoneId;
+            } set {
+                if (_zoneId != value) {
+                    _zoneId = value;
+                    dispatchZoneChange();
+                }
+            }
+        }
+        public string ZoneName {
+            get {
+                return _zoneName;
+            } set {
+                if (_zoneName != value) {
+                    _zoneName = value;
+                }
+            }
+        }
         public int LastZoneID { get; private set; }
-        public int WeaponID { get; private set; }
-        public string WeaponName { get; private set; }
-        public string SessionID { get; private set; }
+        public int WeaponID {
+            get {
+                return _weaponId;
+            } set {
+                if (_weaponId != value) {
+                    _weaponId = value;
+                    dispatchWeaponChange();
+                }
+            }
+        }
+        public string WeaponName {
+            get {
+                return _weaponName;
+            } set {
+                if (_weaponName != value) {
+                    _weaponName = value;
+                }
+            }
+        }
+        public string SessionID {
+            get {
+                return _sessionId;
+            } set {
+                if (_sessionId != value) {
+                    _sessionId = value;
+                    dispatchSessionChange();
+                }
+            }
+        }
         public bool inPeaceZone = true;
         public bool inHarvestZone {
             get {
@@ -45,7 +103,16 @@ namespace HunterPie.Core {
         }
         // Party
         public string[] Party = new string[4];
-        public int PartySize = 0;
+        public int PartySize {
+            get {
+                return _partySize;
+            } set {
+                if (_partySize != value) {
+                    _partySize = value;
+                    dispatchPartyChange();
+                }
+            }
+        }
         public int PartyMax = 4;
 
         // Harvesting
@@ -62,43 +129,52 @@ namespace HunterPie.Core {
         // Event handlers
         // Level event handler
         public delegate void LevelEventHandler(object source, EventArgs args);
-        public event LevelEventHandler LevelEvent;
+        public event LevelEventHandler onLevelChange;
 
         // Name event handler
         public delegate void NameEventHandler(object source, EventArgs args);
-        public event NameEventHandler NameEvent;
+        public event NameEventHandler onNameChange;
         
         // Zone change event
         public delegate void ZoneEventHandler(object source, EventArgs args);
-        public event ZoneEventHandler ZoneEvent;
+        public event ZoneEventHandler onZoneChange;
 
         // Weapon change event
         public delegate void WeaponEventHandler(object source, EventArgs args);
-        public event WeaponEventHandler WeaponEvent;
+        public event WeaponEventHandler onWeaponChange;
+
+        // Session change
+        public delegate void SessionEventHandler(object source, EventArgs args);
+        public event SessionEventHandler onSessionChange;
+
+        // Got in a party
+        public delegate void PartyEventHandler(object source, EventArgs args);
+        public event PartyEventHandler onPartyChange;
 
         // Dispatchers
-        protected virtual void onLevelUp() {
-            LevelEvent?.Invoke(this, EventArgs.Empty);
+        protected virtual void dispatchLevelUp() {
+            onLevelChange?.Invoke(this, EventArgs.Empty);
         }
 
-        protected virtual void onNameChange() {
-            NameEvent?.Invoke(this, EventArgs.Empty);
+        protected virtual void dispatchNameChange() {
+            onNameChange?.Invoke(this, EventArgs.Empty);
         }
 
-        protected virtual void onZoneChange() {
-            ZoneEvent?.Invoke(this, EventArgs.Empty);
+        protected virtual void dispatchZoneChange() {
+            onZoneChange?.Invoke(this, EventArgs.Empty);
         }
 
-        protected virtual void onPeaceZoneEnter() {
-            ZoneEvent?.Invoke(this, EventArgs.Empty);
+        protected virtual void dispatchWeaponChange() {
+            onWeaponChange?.Invoke(this, EventArgs.Empty);
         }
 
-        protected virtual void onWeaponChange() {
-            WeaponEvent?.Invoke(this, EventArgs.Empty);
+        protected virtual void dispatchSessionChange() {
+            onSessionChange?.Invoke(this, EventArgs.Empty);
         }
-
         
-        
+        protected virtual void dispatchPartyChange() {
+            onPartyChange?.Invoke(this, EventArgs.Empty);
+        }
 
         public void StartScanning() {
             ScanPlayerInfoRef = new ThreadStart(GetPlayerInfo);
@@ -126,7 +202,7 @@ namespace HunterPie.Core {
                 GetPrimaryMantleTimers();
                 GetSecondaryMantleTimers();
                 GetParty();
-                Thread.Sleep(1000);
+                Thread.Sleep(500);
             }
             Thread.Sleep(1000);
             GetPlayerInfo();
@@ -222,7 +298,7 @@ namespace HunterPie.Core {
             Int64 address = Address.BASE + Address.PARTY_OFFSET;
             Int64[] offsets = new Int64[1] { 0x0 };
             Int64 PartyContainer = Scanner.READ_LONGLONG(address) + 0x54A45;
-            this.PartySize = 0;
+            int partySize = 0;
             for (int member = 0; member < PartyMax; member++) {
                 string partyMemberName = GetPartyMemberName(PartyContainer + (member * 0x21));
                 if (partyMemberName == null) {
@@ -230,9 +306,10 @@ namespace HunterPie.Core {
                     continue;
                 } else {
                     this.Party[member] = partyMemberName;
-                    this.PartySize++;
+                    partySize++;
                 }
             }
+            this.PartySize = partySize;
         }
 
         private string GetPartyMemberName(Int64 NameAddress) {
