@@ -1,11 +1,67 @@
-﻿namespace HunterPie.Core {
+﻿using System;
+
+namespace HunterPie.Core {
     class Mantle {
-        public string Name { get; private set; }
-        public int ID { get; private set; }
-        public float Cooldown { get; private set; }
-        public float Timer { get; private set; }
-        public float staticCooldown { get; private set; }
-        public float staticTimer { get; private set; }
+        private string _name;
+        private int _id;
+        private float _cooldown;
+        private float _timer;
+        private float _staticCooldown;
+        private float _staticTimer;
+
+        public string Name {
+            get {
+                return _name;
+            } set {
+                if (_name != value) {
+                    _name = value;
+                }
+            }
+        }
+        public int ID {
+            get {
+                return _id;
+            } set {
+                if (_id != value) {
+                    _id = value;
+                    this.onMantleChange();
+                }
+            }
+        }
+        public float Cooldown {
+            get {
+                return _cooldown;
+            } set {
+                if (_cooldown != value) {
+                    _cooldown = value;
+                    this.onMantleCooldownUpdate();
+                }
+            }
+        }
+        public float Timer {
+            get {
+                return _timer;
+            } set {
+                if (_timer != value) {
+                    _timer = value;
+                    this.onMantleTimerUpdate();
+                }
+            }
+        }
+        public float staticCooldown {
+            get {
+                return _staticCooldown;
+            } set {
+                if (_staticCooldown != value) _staticCooldown = value;
+            }
+        }
+        public float staticTimer {
+            get {
+                return _staticTimer;
+            } set {
+                if (_staticTimer != value) _staticTimer = value;
+            }
+        }
 
         public void SetCooldown(float cd, float staticCd) {
             this.Cooldown = cd;
@@ -23,6 +79,29 @@
 
         public void SetName(string newName) {
             this.Name = newName;
+        }
+
+        // Events
+
+        public delegate void MantleCooldownHandler(object source, EventArgs args);
+        public event MantleCooldownHandler MantleCooldown;
+
+        public delegate void MantleTimerHandler(object source, EventArgs args);
+        public event MantleTimerHandler MantleTimer;
+
+        public delegate void MantleChangeHandler(object source, EventArgs args);
+        public event MantleChangeHandler MantleChange;
+
+        protected virtual void onMantleCooldownUpdate() {
+            MantleCooldown?.Invoke(this, EventArgs.Empty);
+        }
+
+        protected virtual void onMantleTimerUpdate() {
+            MantleTimer?.Invoke(this, EventArgs.Empty);
+        }
+
+        protected virtual void onMantleChange() {
+            MantleChange?.Invoke(this, EventArgs.Empty);
         }
 
     }

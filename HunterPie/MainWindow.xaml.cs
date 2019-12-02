@@ -105,11 +105,17 @@ namespace HunterPie {
 
         private void StartEverything() {
             MonsterHunter.StartScanning();
+            SetGameEventHandlers();
             Scanner.StartScanning(); // Scans game memory
             if (!OfflineMode) StartRichPresenceThread();
             GameOverlay = new Overlay();
             GameOverlay.Show();
             ThreadScanner();
+        }
+
+        private void SetGameEventHandlers() {
+            MonsterHunter.Player.PrimaryMantle.MantleTimer += onPrimaryMantleTimerUpdate;
+            MonsterHunter.Player.PrimaryMantle.MantleCooldown += onPrimaryMantleCooldownUpdate;
         }
 
         private void StopMainThread() {
@@ -161,6 +167,37 @@ namespace HunterPie {
                 Thread.Sleep(500);
                 HandlePresence();
             }
+        }
+
+        // Game events instead of infinite loop :)
+        public void onPrimaryMantleTimerUpdate(object sender, EventArgs e) {
+            if (MonsterHunter.Player.PrimaryMantle.Timer == 0 || !UserSettings.PlayerConfig.Overlay.PrimaryMantle.Enabled) {
+                GameOverlay.Dispatch(new Action(() => {
+                    GameOverlay.HidePrimaryMantle();
+                }));
+                return;
+            } 
+            // Update overlay container
+            GameOverlay.Dispatch(new Action(() => {
+                GameOverlay.ShowPrimaryMantle();
+                GameOverlay.UpdatePrimaryMantleTimer(MonsterHunter.Player.PrimaryMantle.Timer / MonsterHunter.Player.PrimaryMantle.staticTimer);
+                GameOverlay.UpdatePrimaryMantleText($"({(int)MonsterHunter.Player.PrimaryMantle.Timer}s) {MonsterHunter.Player.PrimaryMantle.Name.ToUpper()}");
+            }));
+        }
+
+        public void onPrimaryMantleCooldownUpdate(object sender, EventArgs e) {
+            if (MonsterHunter.Player.PrimaryMantle.Cooldown == 0 || !UserSettings.PlayerConfig.Overlay.PrimaryMantle.Enabled) {
+                GameOverlay.Dispatch(new Action(() => {
+                    GameOverlay.HidePrimaryMantle();
+                }));
+                return;
+            }
+            // Update Overlay container
+            GameOverlay.Dispatch(new Action(() => {
+                GameOverlay.ShowPrimaryMantle();
+                GameOverlay.UpdatePrimaryMantleTimer(MonsterHunter.Player.PrimaryMantle.Cooldown / MonsterHunter.Player.PrimaryMantle.staticCooldown);
+                GameOverlay.UpdatePrimaryMantleText($"({(int)MonsterHunter.Player.PrimaryMantle.Cooldown}s) {MonsterHunter.Player.PrimaryMantle.Name.ToUpper()}");
+            }));
         }
 
         private void MainLoop() {
@@ -263,22 +300,6 @@ namespace HunterPie {
                     }
 
                     // Mantle components
-                    if (MonsterHunter.Player.PrimaryMantle.Cooldown > 0 || MonsterHunter.Player.PrimaryMantle.Timer > 0) {
-                        double cooldown = MonsterHunter.Player.PrimaryMantle.Cooldown / MonsterHunter.Player.PrimaryMantle.staticCooldown;
-                        double timer = MonsterHunter.Player.PrimaryMantle.Timer / MonsterHunter.Player.PrimaryMantle.staticTimer;
-                        double Timer = cooldown != 1 ? cooldown : timer;
-                        float TimeLeft = cooldown != 1 ? MonsterHunter.Player.PrimaryMantle.Cooldown : MonsterHunter.Player.PrimaryMantle.Timer;
-
-                        GameOverlay.Dispatch(new Action(() => {
-                            GameOverlay.ShowPrimaryMantle();
-                            GameOverlay.UpdatePrimaryMantleTimer(Timer);
-                            GameOverlay.UpdatePrimaryMantleText($"({(int)TimeLeft}s) {MonsterHunter.Player.PrimaryMantle.Name.ToUpper()}");
-                        }));
-                    } else {
-                        GameOverlay.Dispatch(new Action(() => {
-                            GameOverlay.HidePrimaryMantle();
-                        }));
-                    }
 
                     if (MonsterHunter.Player.SecondaryMantle.Cooldown > 0 || MonsterHunter.Player.SecondaryMantle.Timer > 0) {
                         double cooldown = MonsterHunter.Player.SecondaryMantle.Cooldown / MonsterHunter.Player.SecondaryMantle.staticCooldown;

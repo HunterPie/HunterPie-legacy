@@ -5,6 +5,22 @@ using HunterPie.Memory;
 
 namespace HunterPie.Core {
     class Player {
+        
+        // Private variables
+        private int _slot = 0;
+        private int _level;
+        private string _name;
+        private int _zoneId;
+        private string _zoneName;
+        private int _weaponId;
+        private string _weaponName;
+        private bool _inPeaceZone;
+        private bool _inHarvestZone;
+
+        private Mantle _primaryMantle;
+        private Mantle _secondaryMantle;
+
+
         // Game info
         private int[] PeaceZones = new int[11] { 0, 5, 7, 11, 15, 16, 21, 23, 24, 31, 33 };
         private int[] _HBZones = new int[4] { 31, 33, 11, 21 };
@@ -42,6 +58,47 @@ namespace HunterPie.Core {
         // Threading
         private ThreadStart ScanPlayerInfoRef;
         private Thread ScanPlayerInfo;
+
+        // Event handlers
+        // Level event handler
+        public delegate void LevelEventHandler(object source, EventArgs args);
+        public event LevelEventHandler LevelEvent;
+
+        // Name event handler
+        public delegate void NameEventHandler(object source, EventArgs args);
+        public event NameEventHandler NameEvent;
+        
+        // Zone change event
+        public delegate void ZoneEventHandler(object source, EventArgs args);
+        public event ZoneEventHandler ZoneEvent;
+
+        // Weapon change event
+        public delegate void WeaponEventHandler(object source, EventArgs args);
+        public event WeaponEventHandler WeaponEvent;
+
+        // Dispatchers
+        protected virtual void onLevelUp() {
+            LevelEvent?.Invoke(this, EventArgs.Empty);
+        }
+
+        protected virtual void onNameChange() {
+            NameEvent?.Invoke(this, EventArgs.Empty);
+        }
+
+        protected virtual void onZoneChange() {
+            ZoneEvent?.Invoke(this, EventArgs.Empty);
+        }
+
+        protected virtual void onPeaceZoneEnter() {
+            ZoneEvent?.Invoke(this, EventArgs.Empty);
+        }
+
+        protected virtual void onWeaponChange() {
+            WeaponEvent?.Invoke(this, EventArgs.Empty);
+        }
+
+        
+        
 
         public void StartScanning() {
             ScanPlayerInfoRef = new ThreadStart(GetPlayerInfo);
