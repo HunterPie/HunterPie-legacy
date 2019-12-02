@@ -33,6 +33,24 @@ namespace HunterPie.Memory {
         [DllImport("kernel32.dll")]
         public static extern bool ReadProcessMemory(int hProcess, IntPtr lpBaseAddress, byte[] lpBuffer, int dwSize, ref int lpNumberOfBytesRead);
 
+        // Events
+        // On Game start
+        public delegate void GameStartHandler(object source, EventArgs args);
+        public static event GameStartHandler onGameStart;
+
+        protected static void _onGameStart() {
+            onGameStart?.Invoke(typeof(Scanner), EventArgs.Empty);
+        }
+
+        // On game close
+        public delegate void GameStopHandler(object source, EventArgs args);
+        public static GameStopHandler onGameClosed;
+
+        protected static void _onGameClosed() {
+            onGameClosed?.Invoke(typeof(Scanner), EventArgs.Empty);
+        }
+        
+
         public static void StartScanning() {
             // Start scanner thread
             ScanGameMemoryRef = new ThreadStart(GetProcess);
@@ -56,10 +74,7 @@ namespace HunterPie.Memory {
                     }
                     if (GameIsRunning) {
                         Debugger.Log("Game process was closed by user!");
-                        if (Core.UserSettings.PlayerConfig.HunterPie.Options.CloseWhenGameCloses) {
-                            // Kinda hacky but works, so Imma keep it like this for now
-                            Environment.Exit(0);
-                        }
+                        _onGameClosed();
                     }
                     GameIsRunning = false;
                     PID = 0;
@@ -71,7 +86,7 @@ namespace HunterPie.Memory {
                     PID = MonsterHunter[0].Id;
                     ProcessHandle = OpenProcess(PROCESS_ALL_ACCESS, false, PID);
                     GameVersion = MonsterHunter[0].MainWindowTitle.Split('(')[1].Trim(')');
-                    
+                    _onGameStart();
                     Debugger.Log($"MonsterHunterWorld.exe found! (PID: {PID})");
                     GameIsRunning = true;
                 }

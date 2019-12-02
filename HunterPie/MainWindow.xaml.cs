@@ -105,8 +105,8 @@ namespace HunterPie {
 
         private void StartEverything() {
             MonsterHunter.StartScanning();
-            SetGameEventHandlers();
             Scanner.StartScanning(); // Scans game memory
+            SetGameEventHandlers();
             if (!OfflineMode) StartRichPresenceThread();
             GameOverlay = new Overlay();
             GameOverlay.Show();
@@ -114,11 +114,36 @@ namespace HunterPie {
         }
 
         private void SetGameEventHandlers() {
+            // Scanner events
+            Scanner.onGameStart += onGameStart;
+            Scanner.onGameClosed += onGameClose;
+            // Primary mantle
             MonsterHunter.Player.PrimaryMantle.MantleTimer += onPrimaryMantleTimerUpdate;
             MonsterHunter.Player.PrimaryMantle.MantleCooldown += onPrimaryMantleCooldownUpdate;
             // Secondary mantle
             MonsterHunter.Player.SecondaryMantle.MantleTimer += onSecondaryMantleTimerUpdate;
             MonsterHunter.Player.SecondaryMantle.MantleCooldown += onSecondaryMantleCooldownUpdate;
+        }
+
+        public void onGameStart(object source, EventArgs e) {
+            if (Address.LoadMemoryMap(Scanner.GameVersion) || Scanner.GameVersion == Address.GAME_VERSION) {
+                Debugger.Warn($"Loaded 'MonsterHunterWorld.{Scanner.GameVersion}.map'");
+            } else {
+                Debugger.Error($"Detected game version ({Scanner.GameVersion}) not mapped yet!");
+                try {
+                    GameOverlay.Dispatch(new Action(() => {
+                        GameOverlay.Close();
+                    }));
+                } catch {}
+                return;
+            }
+        }
+
+        public void onGameClose(object source, EventArgs e) {
+            if (UserSettings.PlayerConfig.HunterPie.Options.CloseWhenGameCloses) {
+                this.Close();
+                Environment.Exit(0);
+            }
         }
 
         private void StopMainThread() {
@@ -235,7 +260,6 @@ namespace HunterPie {
 
         private void MainLoop() {
             UserSettings.InitializePlayerConfig();
-            bool lockSpam = false;
             while (true) {
                 UserSettings.LoadPlayerConfig();
                 // Set components
@@ -264,23 +288,6 @@ namespace HunterPie {
                 }));
 
                 if (Scanner.GameIsRunning) {
-
-                    if (Scanner.GameVersion != Address.GAME_VERSION) {
-                        // try loading older version of memory address
-                        if (Address.LoadMemoryMap(Scanner.GameVersion)) continue;
-                        // Checks if the current game version is equal to the HunterPie mapped version
-                        Debugger.Error($"Detected game version ({Scanner.GameVersion}) not mapped yet!");
-                        GameOverlay.Dispatch(new Action(() => {
-                            GameOverlay.Close();
-                        }));
-                        return;
-                    } else {
-                        if (!lockSpam) {
-                            Address.LoadMemoryMap(Scanner.GameVersion);
-                            Debugger.Warn($"Loaded 'MonsterHunterWorld.{Scanner.GameVersion}.map'");
-                            lockSpam = true;
-                        }
-                    }
 
                     // Hides/show overlay when user disable/enable it
                     if (!UserSettings.PlayerConfig.Overlay.Enabled) {
@@ -331,24 +338,6 @@ namespace HunterPie {
                             GameOverlay.HideMonster(GameOverlay.tMonsterBox);
                         }));
                     }
-
-                    // Mantle components
-                    /*
-                    if (MonsterHunter.Player.SecondaryMantle.Cooldown > 0 || MonsterHunter.Player.SecondaryMantle.Timer > 0) {
-                        double cooldown = MonsterHunter.Player.SecondaryMantle.Cooldown / MonsterHunter.Player.SecondaryMantle.staticCooldown;
-                        double timer = MonsterHunter.Player.SecondaryMantle.Timer / MonsterHunter.Player.SecondaryMantle.staticTimer;
-                        double Timer = cooldown != 1 ? cooldown : timer;
-                        float TimeLeft = cooldown != 1 ? MonsterHunter.Player.SecondaryMantle.Cooldown : MonsterHunter.Player.SecondaryMantle.Timer;
-                        GameOverlay.Dispatch(new Action(() => {
-                            GameOverlay.ShowSecondaryMantle();
-                            GameOverlay.UpdateSecondaryMantleTimer(Timer);
-                            GameOverlay.UpdateSecondaryMantleText($"({(int)TimeLeft}s) {MonsterHunter.Player.SecondaryMantle.Name.ToUpper()}");
-                        }));
-                    } else {
-                        GameOverlay.Dispatch(new Action(() => {
-                            GameOverlay.HideSecondaryMantle();
-                        }));
-                    } */ 
                     
                     // Harvest box
                     if (UserSettings.PlayerConfig.Overlay.HarvestBoxComponent.Enabled && MonsterHunter.Player.inHarvestZone) {
@@ -372,7 +361,6 @@ namespace HunterPie {
                         GameOverlay.Hide();
                     }));
                     Discord.HidePresence();
-                    lockSpam = false;
                 }
                 Thread.Sleep(200);
             }
