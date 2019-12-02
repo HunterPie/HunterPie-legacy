@@ -167,16 +167,15 @@ namespace HunterPie.GUI {
         }
 
         private RadialGradientBrush DonutBrush(Color customColor) {
-            Color C_TRANSPARENT = (Color)ColorConverter.ConvertFromString("#00000000");
             RadialGradientBrush brush = new RadialGradientBrush();
             brush.Center = new Point(13, 13);
             brush.GradientOrigin = new Point(13, 13);
             brush.MappingMode = BrushMappingMode.Absolute;
             brush.RadiusX = 13;
-            brush.RadiusX = 13;
+            brush.RadiusY = 13;
             // Add the colors to make a donut
-            brush.GradientStops.Add(new GradientStop(C_TRANSPARENT, 0.409));
-            brush.GradientStops.Add(new GradientStop(customColor, 0.409));
+            brush.GradientStops.Add(new GradientStop(Colors.Transparent, 0.4));
+            brush.GradientStops.Add(new GradientStop(customColor, 0.4));
             return brush;
         }
 
