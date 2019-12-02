@@ -116,6 +116,9 @@ namespace HunterPie {
         private void SetGameEventHandlers() {
             MonsterHunter.Player.PrimaryMantle.MantleTimer += onPrimaryMantleTimerUpdate;
             MonsterHunter.Player.PrimaryMantle.MantleCooldown += onPrimaryMantleCooldownUpdate;
+            // Secondary mantle
+            MonsterHunter.Player.SecondaryMantle.MantleTimer += onSecondaryMantleTimerUpdate;
+            MonsterHunter.Player.SecondaryMantle.MantleCooldown += onSecondaryMantleCooldownUpdate;
         }
 
         private void StopMainThread() {
@@ -197,6 +200,36 @@ namespace HunterPie {
                 GameOverlay.ShowPrimaryMantle();
                 GameOverlay.UpdatePrimaryMantleTimer(MonsterHunter.Player.PrimaryMantle.Cooldown / MonsterHunter.Player.PrimaryMantle.staticCooldown);
                 GameOverlay.UpdatePrimaryMantleText($"({(int)MonsterHunter.Player.PrimaryMantle.Cooldown}s) {MonsterHunter.Player.PrimaryMantle.Name.ToUpper()}");
+            }));
+        }
+
+        public void onSecondaryMantleTimerUpdate(object sender, EventArgs e) {
+            if (MonsterHunter.Player.SecondaryMantle.Timer == 0 || !UserSettings.PlayerConfig.Overlay.SecondaryMantle.Enabled) {
+                GameOverlay.Dispatch(new Action(() => {
+                    GameOverlay.HideSecondaryMantle();
+                }));
+                return;
+            }
+            // Update overlay container
+            GameOverlay.Dispatch(new Action(() => {
+                GameOverlay.ShowSecondaryMantle();
+                GameOverlay.UpdateSecondaryMantleTimer(MonsterHunter.Player.SecondaryMantle.Timer / MonsterHunter.Player.SecondaryMantle.staticTimer);
+                GameOverlay.UpdateSecondaryMantleText($"({(int)MonsterHunter.Player.SecondaryMantle.Timer}s) {MonsterHunter.Player.SecondaryMantle.Name.ToUpper()}");
+            }));
+        }
+
+        public void onSecondaryMantleCooldownUpdate(object sender, EventArgs e) {
+            if (MonsterHunter.Player.SecondaryMantle.Cooldown == 0 || !UserSettings.PlayerConfig.Overlay.SecondaryMantle.Enabled) {
+                GameOverlay.Dispatch(new Action(() => {
+                    GameOverlay.HideSecondaryMantle();
+                }));
+                return;
+            }
+            // Update Overlay container
+            GameOverlay.Dispatch(new Action(() => {
+                GameOverlay.ShowSecondaryMantle();
+                GameOverlay.UpdateSecondaryMantleTimer(MonsterHunter.Player.SecondaryMantle.Cooldown / MonsterHunter.Player.SecondaryMantle.staticCooldown);
+                GameOverlay.UpdateSecondaryMantleText($"({(int)MonsterHunter.Player.SecondaryMantle.Cooldown}s) {MonsterHunter.Player.SecondaryMantle.Name.ToUpper()}");
             }));
         }
 
@@ -300,7 +333,7 @@ namespace HunterPie {
                     }
 
                     // Mantle components
-
+                    /*
                     if (MonsterHunter.Player.SecondaryMantle.Cooldown > 0 || MonsterHunter.Player.SecondaryMantle.Timer > 0) {
                         double cooldown = MonsterHunter.Player.SecondaryMantle.Cooldown / MonsterHunter.Player.SecondaryMantle.staticCooldown;
                         double timer = MonsterHunter.Player.SecondaryMantle.Timer / MonsterHunter.Player.SecondaryMantle.staticTimer;
@@ -315,7 +348,7 @@ namespace HunterPie {
                         GameOverlay.Dispatch(new Action(() => {
                             GameOverlay.HideSecondaryMantle();
                         }));
-                    }
+                    } */ 
                     
                     // Harvest box
                     if (UserSettings.PlayerConfig.Overlay.HarvestBoxComponent.Enabled && MonsterHunter.Player.inHarvestZone) {
