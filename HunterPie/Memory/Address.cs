@@ -64,48 +64,23 @@ namespace HunterPie.Memory {
         }
 
         private static void LoadValuesToMemory() {
-            // kill me pls
+            LoadFromDict(nameof(BASE), out BASE, BASE);
+            LoadFromDict(nameof(LEVEL_OFFSET), out LEVEL_OFFSET, LEVEL_OFFSET);
+            LoadFromDict(nameof(ZONE_OFFSET), out ZONE_OFFSET, ZONE_OFFSET);
+            LoadFromDict(nameof(MONSTER_OFFSET), out MONSTER_OFFSET, MONSTER_OFFSET);
+            LoadFromDict(nameof(SESSION_OFFSET), out SESSION_OFFSET, SESSION_OFFSET);
+            LoadFromDict(nameof(EQUIPMENT_OFFSET), out EQUIPMENT_OFFSET, EQUIPMENT_OFFSET);
+            LoadFromDict(nameof(WEAPON_OFFSET), out WEAPON_OFFSET, WEAPON_OFFSET);
+            LoadFromDict(nameof(PARTY_OFFSET), out PARTY_OFFSET, PARTY_OFFSET);
+        }
+
+        private static void LoadFromDict(string name, out Int64 variable, Int64 oldValue) {
             try {
-                BASE = MappedAddresses["BASE"] == 0xFFFFFFFF ? BASE : MappedAddresses["BASE"];
+                variable = MappedAddresses[name] == 0xFFFFFFFF ? oldValue : MappedAddresses[name];
             } catch {
-                Debugger.Error($"MonsterHunterWorld.{GAME_VERSION}.map missing value for BASE");
+                variable = oldValue;
+                Debugger.Error($"MonsterHunterWorld.{GAME_VERSION}.map missing value for {name}");
             }
-            try {
-                LEVEL_OFFSET = MappedAddresses["LEVEL_OFFSET"] == 0xFFFFFFFF ? LEVEL_OFFSET : MappedAddresses["LEVEL_OFFSET"];
-            } catch {
-                Debugger.Error($"MonsterHunterWorld.{GAME_VERSION}.map missing value for LEVEL_OFFSET");
-            }
-            try {
-                ZONE_OFFSET = MappedAddresses["ZONE_OFFSET"] == 0xFFFFFFFF ? ZONE_OFFSET : MappedAddresses["ZONE_OFFSET"];
-            } catch {
-                Debugger.Error($"MonsterHunterWorld.{GAME_VERSION}.map missing value for ZONE_OFFSET");
-            }
-            try {
-                MONSTER_OFFSET = MappedAddresses["MONSTER_OFFSET"] == 0xFFFFFFFF ? MONSTER_OFFSET : MappedAddresses["MONSTER_OFFSET"];
-            } catch {
-                Debugger.Error($"MonsterHunterWorld.{GAME_VERSION}.map missing value for MONSTER_OFFSET");
-            }
-            try {
-                SESSION_OFFSET = MappedAddresses["SESSION_OFFSET"] == 0xFFFFFFFF ? SESSION_OFFSET : MappedAddresses["SESSION_OFFSET"];
-            } catch {
-                Debugger.Error($"MonsterHunterWorld.{GAME_VERSION}.map missing value for SESSION_OFFSET");
-            }
-            try {
-                EQUIPMENT_OFFSET = MappedAddresses["EQUIPMENT_OFFSET"] == 0xFFFFFFFF ? EQUIPMENT_OFFSET : MappedAddresses["EQUIPMENT_OFFSET"];
-            } catch {
-                Debugger.Error($"MonsterHunterWorld.{GAME_VERSION}.map missing value for EQUIPMENT_OFFSET");
-            }
-            try {
-                WEAPON_OFFSET = MappedAddresses["WEAPON_OFFSET"] == 0xFFFFFFFF ? WEAPON_OFFSET : MappedAddresses["WEAPON_OFFSET"];
-            } catch {
-                Debugger.Error($"MonsterHunterWorld.{GAME_VERSION}.map missing value for WEAPON_OFFSET");
-            }
-            try {
-                PARTY_OFFSET = MappedAddresses["PARTY_OFFSET"] == 0xFFFFFFFF ? PARTY_OFFSET : MappedAddresses["PARTY_OFFSET"];
-            } catch {
-                Debugger.Error($"MonsterHunterWorld.{GAME_VERSION}.map missing value for PARTY_OFFSET");
-            }
-            
         }
     }
 }

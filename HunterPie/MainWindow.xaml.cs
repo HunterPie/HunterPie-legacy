@@ -129,11 +129,11 @@ namespace HunterPie {
         }
 
         public void onZoneChange(object source, EventArgs e) {
-            Debugger.Log($"ZoneID: {MonsterHunter.Player.ZoneID}");
+            //Debugger.Log($"ZoneID: {MonsterHunter.Player.ZoneID}");
         }
 
         public void onLogin(object source, EventArgs e) {
-            Debugger.Log(MonsterHunter.Player.Slot.ToString());
+            //Debugger.Log(MonsterHunter.Player.Slot.ToString());
         }
 
         public void onGameStart(object source, EventArgs e) {
