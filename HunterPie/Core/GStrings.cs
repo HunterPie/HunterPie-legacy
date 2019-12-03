@@ -55,7 +55,7 @@ namespace HunterPie.Core {
         private static void PopulateZones() {
             Zones.Add(0, "Main Menu");
             Zones.Add(3, "Great Ravine");
-            Zones.Add(5, "Main Menu");
+            Zones.Add(5, "Living Quarters");
             Zones.Add(7, "Main Menu");
             Zones.Add(8, "Special Arena");
             Zones.Add(10, "Confluence of Fates");
