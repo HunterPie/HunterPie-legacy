@@ -22,16 +22,7 @@ namespace HunterPie.Core {
             }
         }
 
-        private DateTime _Time;
-        public DateTime Time {
-            get {
-                if (Player.LastZoneID != Player.ZoneID) {
-                    _Time = DateTime.UtcNow;
-                    Player.ChangeLastZone();
-                }
-                return _Time;
-            }
-        }
+        public DateTime Time { get; private set; }
 
         // Threading
         ThreadStart ScanGameThreadingRef;
@@ -39,6 +30,7 @@ namespace HunterPie.Core {
 
         public void StartScanning() {
             StartGameScanner();
+            bindEvents();
             Player.StartScanning();
             FirstMonster.StartThreadingScan();
             SecondMonster.StartThreadingScan();
@@ -51,6 +43,14 @@ namespace HunterPie.Core {
             SecondMonster.StopThread();
             ThirdMonster.StopThread();
             Player.StopScanning();
+        }
+
+        private void bindEvents() {
+            Player.onZoneChange += onZoneChange;
+        }
+
+        public void onZoneChange(object source, EventArgs e) {
+            Time = DateTime.UtcNow;
         }
 
         private void StartGameScanner() {

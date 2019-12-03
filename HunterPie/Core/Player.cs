@@ -11,7 +11,7 @@ namespace HunterPie.Core {
         private int _slot = -1;
         private int _level;
         private string _name;
-        private int _zoneId;
+        private int _zoneId = -1;
         private string _zoneName;
         private int _weaponId;
         private string _weaponName;
@@ -210,8 +210,8 @@ namespace HunterPie.Core {
 
         private void GetPlayerInfo() {
             while (Scanner.GameIsRunning) {
-                GetPlayerLevel();
                 GetPlayerSlot();
+                GetPlayerLevel();
                 GetPlayerName();
                 GetZoneId();
                 GetWeaponId();
@@ -234,14 +234,15 @@ namespace HunterPie.Core {
             // This method is based on character playtime, checking which one is being updated
             Int64 Address = Memory.Address.BASE + Memory.Address.LEVEL_OFFSET;
             Int64[] Offset = new Int64[4] { 0x70, 0x68, 0x8, 0x20 };
-            Int64 AddressValue = Scanner.READ_MULTILEVEL_PTR(Address, Offset) + 0x118;
+            Int64 AddressValue = Scanner.READ_MULTILEVEL_PTR(Address, Offset);
             Int64 currentChar;
             Int64 nextChar = 0x139F20;
             int playtime;
             int charId = 999;
+            // TODO: FIX THIS
             for (int charIndex = 2; charIndex >= 0; charIndex--) {
-                currentChar = AddressValue + (nextChar * charIndex);
-                playtime = Scanner.READ_INT(currentChar + 0x10);
+                currentChar = AddressValue + 0x118 + (nextChar * charIndex);
+                playtime = Scanner.READ_INT(currentChar);
                 if (_charPlaytimes[charIndex] != playtime) {
                     if (_charPlaytimes.Length == 3 && _charPlaytimes[0] != -1) charId = charIndex;
                     _charPlaytimes[charIndex] = playtime;

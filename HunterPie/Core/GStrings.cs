@@ -68,6 +68,7 @@ namespace HunterPie.Core {
             Zones.Add(21, "Gathering Hub"); // During events
             Zones.Add(23, "Training Area");
             Zones.Add(24, "Research Base");
+            Zones.Add(28, "Astera"); // For new players?
             Zones.Add(31, "Astera");
             Zones.Add(33, "Astera"); // During events
             Zones.Add(37, "Rotten Vale");
