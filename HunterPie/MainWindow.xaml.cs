@@ -27,7 +27,7 @@ namespace HunterPie {
         ThreadStart RichPresenceThreadRef;
         Thread RichPresenceThread;
 
-        const string HUNTERPIE_VERSION = "1.0.1.9";
+        const string HUNTERPIE_VERSION = "1.0.2.0";
 
         public MainWindow() {
             InitializeComponent();
@@ -123,6 +123,12 @@ namespace HunterPie {
             // Secondary mantle
             MonsterHunter.Player.SecondaryMantle.MantleTimer += onSecondaryMantleTimerUpdate;
             MonsterHunter.Player.SecondaryMantle.MantleCooldown += onSecondaryMantleCooldownUpdate;
+            // Session
+            MonsterHunter.Player.onCharacterLogin += onLogin;
+        }
+
+        public void onLogin(object source, EventArgs e) {
+            Debugger.Log(MonsterHunter.Player.Slot.ToString());
         }
 
         public void onGameStart(object source, EventArgs e) {
@@ -172,12 +178,28 @@ namespace HunterPie {
                     if (UserSettings.PlayerConfig.RichPresence.Enabled && GameLoaded) {
                         Discord.ShowPresence();
 
-                        string BigImage = MonsterHunter.Player.ZoneName.Replace(' ', '-').Replace("'", string.Empty).ToLower();
-                        string SmallImage = MonsterHunter.Player.WeaponName.Replace(' ', '-').ToLower();
+                        string BigImage;
+                        string SmallImage;
                         string PartyHash = "test";
-                        string Details = MonsterHunter.HuntedMonster == null ? MonsterHunter.Player.inPeaceZone ? "Idle" : "Exploring" : $"Hunting {MonsterHunter.HuntedMonster.Name} ({(int)(MonsterHunter.HuntedMonster.HPPercentage * 100)}%)";
-                        string State = MonsterHunter.Player.PartySize > 1 ? "In Party" : "Solo";
-                        string SmallText = $"{MonsterHunter.Player.Name} | Lvl: {MonsterHunter.Player.Level}";
+                        string Details;
+                        string State;
+                        string SmallText;
+                        if (MonsterHunter.Player.Slot == 999) {
+                            BigImage = "main-menu";
+                            SmallImage = null;
+                            Details = "In Main menu";
+                            State = null;
+                            SmallText = null;
+                        } else {
+                            BigImage = MonsterHunter.Player.ZoneName.Replace(' ', '-').Replace("'", string.Empty).ToLower();
+                            SmallImage = MonsterHunter.Player.WeaponName.Replace(' ', '-').ToLower();
+                            Details = MonsterHunter.HuntedMonster == null ? MonsterHunter.Player.inPeaceZone ? "Idle" : "Exploring" : $"Hunting {MonsterHunter.HuntedMonster.Name} ({(int)(MonsterHunter.HuntedMonster.HPPercentage * 100)}%)";
+                            State = MonsterHunter.Player.PartySize > 1 ? "In Party" : "Solo";
+                            SmallText = $"{MonsterHunter.Player.Name} | Lvl: {MonsterHunter.Player.Level}";
+                        }
+                         
+                         
+                         
 
                         Assets presenceAssets = Discord.GenerateAssets(BigImage, MonsterHunter.Player.ZoneName == "Main Menu" ? null : MonsterHunter.Player.ZoneName, SmallImage, SmallText);
                         Party presenceParty = Discord.MakeParty(MonsterHunter.Player.PartySize, MonsterHunter.Player.PartyMax, PartyHash);

@@ -12,7 +12,7 @@ namespace HunterPie.Memory {
         public static Int64 LEVEL_OFFSET = 0x03B4A278;
         public static Int64 ZONE_OFFSET = 0x048F0E20;
         public static Int64 MONSTER_OFFSET = 0x48DE698;
-        public static Int64 SESSION_OFFSET = 0x048D95E0;
+        public static Int64 SESSION_OFFSET = 0x048E6570;
         public static Int64 EQUIPMENT_OFFSET = 0x03BE71E0;
         public static Int64 WEAPON_OFFSET = 0x03BEBE18;
         public static Int64 PARTY_OFFSET = 0x48DF800;
@@ -105,6 +105,7 @@ namespace HunterPie.Memory {
             } catch {
                 Debugger.Error($"MonsterHunterWorld.{GAME_VERSION}.map missing value for PARTY_OFFSET");
             }
+            
         }
     }
 }

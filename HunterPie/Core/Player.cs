@@ -5,8 +5,10 @@ using HunterPie.Memory;
 
 namespace HunterPie.Core {
     class Player {
-        
+
         // Private variables
+        private int[] _charPlaytimes = new int[3] { -1, -1, -1 };
+        private int _slot = -1;
         private int _level;
         private string _name;
         private int _zoneId;
@@ -25,7 +27,16 @@ namespace HunterPie.Core {
         // Player info
         private Int64 LEVEL_ADDRESS;
         private Int64 EQUIPMENT_ADDRESS;
-        public int Slot = 0;
+        public int Slot {
+            get {
+                return _slot;
+            } set {
+                if (_slot != value) {
+                    _slot = value;
+                    dispatchLogin();
+                }
+            }
+        }
         public int Level {
             get {
                 return _level;
@@ -151,7 +162,16 @@ namespace HunterPie.Core {
         public delegate void PartyEventHandler(object source, EventArgs args);
         public event PartyEventHandler onPartyChange;
 
+        // On login
+        public delegate void LoginEventHandler(object source, EventArgs args);
+        public event LoginEventHandler onCharacterLogin;
+
         // Dispatchers
+
+        protected virtual void dispatchLogin() {
+            onCharacterLogin?.Invoke(this, EventArgs.Empty);
+        }
+
         protected virtual void dispatchLevelUp() {
             onLevelChange?.Invoke(this, EventArgs.Empty);
         }
@@ -191,6 +211,7 @@ namespace HunterPie.Core {
         private void GetPlayerInfo() {
             while (Scanner.GameIsRunning) {
                 GetPlayerLevel();
+                GetPlayerSlot();
                 GetPlayerName();
                 GetZoneId();
                 GetWeaponId();
@@ -202,17 +223,39 @@ namespace HunterPie.Core {
                 GetPrimaryMantleTimers();
                 GetSecondaryMantleTimers();
                 GetParty();
-                Thread.Sleep(500);
+                Thread.Sleep(1200);
             }
             Thread.Sleep(1000);
             GetPlayerInfo();
         }
 
-        private void GetPlayerLevel() {
+        private void GetPlayerSlot() {
+            // This is a workaround until I find a better way to get which character is the user on.
+            // This method is based on character playtime, checking which one is being updated
             Int64 Address = Memory.Address.BASE + Memory.Address.LEVEL_OFFSET;
             Int64[] Offset = new Int64[4] { 0x70, 0x68, 0x8, 0x20 };
-            Int64 AddressValue = Scanner.READ_MULTILEVEL_PTR(Address, Offset);
-            if (LEVEL_ADDRESS != AddressValue + 0x108 && AddressValue != 0x0) Debugger.Log($"Found player address at 0x{AddressValue:X}");
+            Int64 AddressValue = Scanner.READ_MULTILEVEL_PTR(Address, Offset) + 0x118;
+            Int64 currentChar;
+            Int64 nextChar = 0x139F20;
+            int playtime;
+            int charId = 999;
+            for (int charIndex = 2; charIndex >= 0; charIndex--) {
+                currentChar = AddressValue + (nextChar * charIndex);
+                playtime = Scanner.READ_INT(currentChar + 0x10);
+                if (_charPlaytimes[charIndex] != playtime) {
+                    if (_charPlaytimes.Length == 3 && _charPlaytimes[0] != -1) charId = charIndex;
+                    _charPlaytimes[charIndex] = playtime;
+                }
+            }
+            Slot = charId;
+        }
+
+        private void GetPlayerLevel() {
+            Int64 nextChar = 0x139F20; // Next char offset
+            Int64 Address = Memory.Address.BASE + Memory.Address.LEVEL_OFFSET;
+            Int64[] Offset = new Int64[4] { 0x70, 0x68, 0x8, 0x20 };
+            Int64 AddressValue = Scanner.READ_MULTILEVEL_PTR(Address, Offset) + (nextChar * (Slot == 999 || Slot == -1 ? 0 : Slot));
+            if (LEVEL_ADDRESS != AddressValue + 0x108 && AddressValue != 0x0) Debugger.Log($"Found player address at 0x{AddressValue+0x108:X}");
             LEVEL_ADDRESS = AddressValue + 0x108;
             Level = Scanner.READ_INT(LEVEL_ADDRESS);
         }
