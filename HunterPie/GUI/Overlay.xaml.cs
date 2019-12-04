@@ -307,9 +307,5 @@ namespace HunterPie.GUI {
             SecondaryMantleTimer.Fill = DonutBrush(secondaryColor);
             SecondaryMantleBorder.BorderBrush = secondaryColorBrush;
         }
-
-        public void HideEverything() {
-            HideMonstersContainer();
-        }
     }
 }
