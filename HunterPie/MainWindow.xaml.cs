@@ -106,9 +106,9 @@ namespace HunterPie {
         private void StartEverything() {
             MonsterHunter.StartScanning();
             Scanner.StartScanning(); // Scans game memory
-            SetGameEventHandlers();
             if (!OfflineMode) StartRichPresenceThread();
             GameOverlay = new Overlay();
+            SetGameEventHandlers();
             GameOverlay.Show();
             ThreadScanner();
         }
@@ -123,13 +123,25 @@ namespace HunterPie {
             // Secondary mantle
             MonsterHunter.Player.SecondaryMantle.MantleTimer += onSecondaryMantleTimerUpdate;
             MonsterHunter.Player.SecondaryMantle.MantleCooldown += onSecondaryMantleCooldownUpdate;
+            // First monster
+            MonsterHunter.FirstMonster.OnMonsterSpawn += GameOverlay.OnFirstMonsterSpawn;
+            MonsterHunter.FirstMonster.OnMonsterDespawn += GameOverlay.OnFirstMonsterDespawn;
+            MonsterHunter.FirstMonster.OnHPUpdate += GameOverlay.UpdateFirstMonster;
+            // Second monster
+            MonsterHunter.SecondMonster.OnMonsterSpawn += GameOverlay.OnSecondMonsterSpawn;
+            MonsterHunter.SecondMonster.OnMonsterDespawn += GameOverlay.OnSecondMonsterDespawn;
+            MonsterHunter.SecondMonster.OnHPUpdate += GameOverlay.UpdateSecondMonster;
+            // Third monster
+            MonsterHunter.ThirdMonster.OnMonsterSpawn += GameOverlay.OnThirdMonsterSpawn;
+            MonsterHunter.ThirdMonster.OnMonsterDespawn += GameOverlay.OnThirdMonsterDespawn;
+            MonsterHunter.ThirdMonster.OnHPUpdate += GameOverlay.UpdateThirdMonster;
             // Session
             MonsterHunter.Player.OnZoneChange += OnZoneChange;
             MonsterHunter.Player.OnCharacterLogin += OnLogin;
         }
 
         public void OnZoneChange(object source, EventArgs e) {
-            //Debugger.Log($"ZoneID: {MonsterHunter.Player.ZoneID}");
+            Debugger.Log($"ZoneID: {MonsterHunter.Player.ZoneID}");
         }
 
         public void OnLogin(object source, EventArgs e) {
@@ -199,7 +211,7 @@ namespace HunterPie {
                             State = null;
                             SmallText = null;
                         } else {
-                            BigImage = MonsterHunter.Player.ZoneName.Replace(' ', '-').Replace("'", string.Empty).ToLower();
+                            BigImage = MonsterHunter.Player.ZoneName == null ? "main-menu" : MonsterHunter.Player.ZoneName.Replace(' ', '-').Replace("'", string.Empty).ToLower();
                             SmallImage = MonsterHunter.Player.WeaponName == null ? "hunter-rank" : MonsterHunter.Player.WeaponName.Replace(' ', '-').ToLower();
                             Details = MonsterHunter.HuntedMonster == null ? MonsterHunter.Player.inPeaceZone ? "Idle" : "Exploring" : $"Hunting {MonsterHunter.HuntedMonster.Name} ({(int)(MonsterHunter.HuntedMonster.HPPercentage * 100)}%)";
                             State = MonsterHunter.Player.PartySize > 1 ? "In Party" : "Solo";
@@ -325,45 +337,6 @@ namespace HunterPie {
                     } else if (UserSettings.PlayerConfig.Overlay.Enabled) {
                         GameOverlay.Dispatch(new Action(() => {
                             GameOverlay.ShowOverlay();
-                        }));
-                    }
-                    // Monsters
-                    if (MonsterHunter.FirstMonster.TotalHP > 0) {
-                        GameOverlay.Dispatch(new Action(() => {
-                            GameOverlay.ShowMonster(GameOverlay.fMonsterBox);
-                            float[] HP = { MonsterHunter.FirstMonster.CurrentHP, MonsterHunter.FirstMonster.TotalHP };
-                            string Name = MonsterHunter.FirstMonster.Name;
-                            GameOverlay.UpdateFirstMonsterInformation(HP, Name);
-                        }));
-                    } else {
-                        GameOverlay.Dispatch(new Action(() => {
-                            GameOverlay.HideMonster(GameOverlay.fMonsterBox);
-                        }));
-                    }
-
-                    if (MonsterHunter.SecondMonster.TotalHP > 0) {
-                        GameOverlay.Dispatch(new Action(() => {
-                            GameOverlay.ShowMonster(GameOverlay.sMonsterBox);
-                            float[] HP = { MonsterHunter.SecondMonster.CurrentHP, MonsterHunter.SecondMonster.TotalHP };
-                            string Name = MonsterHunter.SecondMonster.Name;
-                            GameOverlay.UpdateSecondMonsterInformation(HP, Name);
-                        }));
-                    } else {
-                        GameOverlay.Dispatch(new Action(() => {
-                            GameOverlay.HideMonster(GameOverlay.sMonsterBox);
-                        }));
-                    }
-
-                    if (MonsterHunter.ThirdMonster.TotalHP > 0) {
-                        GameOverlay.Dispatch(new Action(() => {
-                            GameOverlay.ShowMonster(GameOverlay.tMonsterBox);
-                            float[] HP = { MonsterHunter.ThirdMonster.CurrentHP, MonsterHunter.ThirdMonster.TotalHP };
-                            string Name = MonsterHunter.ThirdMonster.Name;
-                            GameOverlay.UpdateThirdMonsterInformation(HP, Name);
-                        }));
-                    } else {
-                        GameOverlay.Dispatch(new Action(() => {
-                            GameOverlay.HideMonster(GameOverlay.tMonsterBox);
                         }));
                     }
                     

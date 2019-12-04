@@ -3,7 +3,24 @@ using System.Threading;
 using HunterPie.Memory;
 
 namespace HunterPie.Core {
-    class Monster {
+    public class MonsterEventArgs : EventArgs {
+        public string Name;
+        public string ID;
+        public float CurrentHP;
+        public float TotalHP;
+        public bool isTarget;
+
+        public MonsterEventArgs(Monster m) {
+            Name = m.Name;
+            ID = m.ID;
+            CurrentHP = m.CurrentHP;
+            TotalHP = m.TotalHP;
+            isTarget = m.isTarget;
+        }
+
+    }
+
+    public class Monster {
         // Private vars
         private string _name;
         private float _currentHP;
@@ -17,6 +34,9 @@ namespace HunterPie.Core {
                 if (value != null && _name != value) {
                     _name = value;
                     _onMonsterSpawn();
+                } else if (value == null && _name != value) {
+                    _name = value;
+                    _onMonsterDespawn();
                 }
             }
         }
@@ -48,21 +68,30 @@ namespace HunterPie.Core {
         Thread MonsterInfoScan;
 
         // Game events
-        public delegate void MonsterEvents(object source, EventArgs args);
+        public delegate void MonsterEvents(object source, MonsterEventArgs args);
         public event MonsterEvents OnMonsterSpawn;
+        public event MonsterEvents OnMonsterDespawn;
         public event MonsterEvents OnHPUpdate;
         public event MonsterEvents OnTargetted;
 
         protected virtual void _onMonsterSpawn() {
-            OnMonsterSpawn?.Invoke(this, EventArgs.Empty);
+            MonsterEventArgs args = new MonsterEventArgs(this);
+            OnMonsterSpawn?.Invoke(this, args);
+        }
+
+        protected virtual void _onMonsterDespawn() {
+            MonsterEventArgs args = new MonsterEventArgs(this);
+            OnMonsterDespawn?.Invoke(this, args);
         }
 
         protected virtual void _onHPUpdate() {
-            OnHPUpdate?.Invoke(this, EventArgs.Empty);
+            MonsterEventArgs args = new MonsterEventArgs(this);
+            OnHPUpdate?.Invoke(this, args);
         }
 
         protected virtual void _onTargetted() {
-            OnTargetted?.Invoke(this, EventArgs.Empty);
+            MonsterEventArgs args = new MonsterEventArgs(this);
+            OnTargetted?.Invoke(this, args);
         }
 
         public Monster(int initMonsterNumber) {
@@ -137,8 +166,8 @@ namespace HunterPie.Core {
             if (MonsterId != "") {
                 try {
                     string ActualID = MonsterId.Split('\\')[4];
-                    if (ActualID.StartsWith("em")) {
-                        if (ActualID != this.ID && GStrings.MonsterName(this.ID) != null) Debugger.Log($"Found new monster #{MonsterNumber} address -> 0x{MonsterAddress:X}");
+                    if (GStrings.MonsterName(ActualID) != null) {
+                        if (ActualID != this.ID) Debugger.Log($"Found new monster #{MonsterNumber} address -> 0x{MonsterAddress:X}");
                         this.ID = ActualID;
                         this.Name = GStrings.MonsterName(this.ID);
                     } else {
@@ -149,7 +178,9 @@ namespace HunterPie.Core {
                     this.ID = null;
                     this.Name = null;
                 }
-                
+            } else {
+                this.ID = null;
+                this.Name = null;
             }
         }
 

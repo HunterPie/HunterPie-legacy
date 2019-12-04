@@ -79,6 +79,75 @@ namespace HunterPie.GUI {
             //Debugger.Warn($"Changed Monster component position to X:{X} Y:{Y}");
         }
 
+        // First monster
+        public void OnFirstMonsterSpawn(object source, MonsterEventArgs e) {
+            Dispatch(() => {
+                fMonsterBox.Visibility = Visibility.Visible;
+            });
+        }
+
+        public void OnFirstMonsterDespawn(object source, MonsterEventArgs e) {
+            Dispatch(() => {
+                fMonsterBox.Visibility = Visibility.Hidden;
+            });
+        }
+
+        public void UpdateFirstMonster(object source, MonsterEventArgs e) {
+            if (e.Name == null) return;
+            Dispatch(() => {
+                fMonsterName.Content = e.Name.ToUpper();
+                fMonsterHpBar.Maximum = e.TotalHP;
+                fMonsterHpBar.Value = e.CurrentHP;
+                fMonsterHpText.Content = $"{e.CurrentHP}/{e.TotalHP} ({(e.CurrentHP / e.TotalHP) * 100:F2}%)";
+            });
+        }
+
+        // Second monster
+        public void OnSecondMonsterSpawn(object source, MonsterEventArgs e) {
+            Dispatch(() => {
+                sMonsterBox.Visibility = Visibility.Visible;
+            });
+        }
+
+        public void OnSecondMonsterDespawn(object source, MonsterEventArgs e) {
+            Dispatch(() => {
+                sMonsterBox.Visibility = Visibility.Hidden;
+            });
+        }
+
+        public void UpdateSecondMonster(object source, MonsterEventArgs e) {
+            if (e.Name == null) return;
+            Dispatch(() => {
+                sMonsterName.Content = e.Name.ToUpper();
+                sMonsterHpBar.Maximum = e.TotalHP;
+                sMonsterHpBar.Value = e.CurrentHP;
+                sMonsterHpText.Content = $"{e.CurrentHP}/{e.TotalHP} ({(e.CurrentHP / e.TotalHP) * 100:F2}%)";
+            });
+        }
+
+        // Third monster
+
+        public void OnThirdMonsterSpawn(object source, MonsterEventArgs e) {
+            Dispatch(() => {
+                tMonsterBox.Visibility = Visibility.Visible;
+            });
+        }
+
+        public void OnThirdMonsterDespawn(object source, MonsterEventArgs e) {
+            Dispatch(() => {
+                tMonsterBox.Visibility = Visibility.Hidden;
+            });
+        }
+
+        public void UpdateThirdMonster(object source, MonsterEventArgs e) {
+            if (e.Name == null) return;
+            Dispatch(() => {
+                tMonsterName.Content = e.Name.ToUpper();
+                tMonsterHpBar.Maximum = e.TotalHP;
+                tMonsterHpBar.Value = e.CurrentHP;
+                tMonsterHpText.Content = $"{e.CurrentHP}/{e.TotalHP} ({(e.CurrentHP / e.TotalHP) * 100:F2}%)";
+            });
+        }
 
         public void ChangePrimaryMantlePosition(double X, double Y) {
             double Left = PrimaryMantleContainer.Margin.Left;
