@@ -5,21 +5,42 @@ using HunterPie.Memory;
 namespace HunterPie.Core {
     class Monster {
         // Private vars
-        private int _name;
-        private string _id;
-        private float _totalHP;
+        private string _name;
         private float _currentHP;
-        private float _hpPercentage;
         private bool _isTarget;
 
         // Monster basic info
         private int MonsterNumber;
-        public string Name { get; private set; }
+        public string Name {
+            get { return _name; }
+            set {
+                if (value != null && _name != value) {
+                    _name = value;
+                    _onMonsterSpawn();
+                }
+            }
+        }
         public string ID { get; private set; }
         public float TotalHP { get; private set; }
-        public float CurrentHP { get; private set; }
+        public float CurrentHP {
+            get { return _currentHP; }
+            set {
+                if (value != _currentHP) {
+                    _currentHP = value;
+                    _onHPUpdate();
+                }
+            }
+        }
         public float HPPercentage { get; private set; } = 1;
-        public bool isTarget { get; set; }
+        public bool isTarget {
+            get { return _isTarget; }
+            set {
+                if (value != _isTarget) {
+                    _isTarget = value;
+                    _onTargetted();
+                }
+            }
+        }
         private Int64 MonsterAddress;
 
         // Threading
@@ -28,7 +49,21 @@ namespace HunterPie.Core {
 
         // Game events
         public delegate void MonsterEvents(object source, EventArgs args);
-        public event MonsterEvents onMonsterSpawn;
+        public event MonsterEvents OnMonsterSpawn;
+        public event MonsterEvents OnHPUpdate;
+        public event MonsterEvents OnTargetted;
+
+        protected virtual void _onMonsterSpawn() {
+            OnMonsterSpawn?.Invoke(this, EventArgs.Empty);
+        }
+
+        protected virtual void _onHPUpdate() {
+            OnHPUpdate?.Invoke(this, EventArgs.Empty);
+        }
+
+        protected virtual void _onTargetted() {
+            OnTargetted?.Invoke(this, EventArgs.Empty);
+        }
 
         public Monster(int initMonsterNumber) {
             MonsterNumber = initMonsterNumber;
