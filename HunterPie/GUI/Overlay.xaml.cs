@@ -308,54 +308,6 @@ namespace HunterPie.GUI {
             SecondaryMantleBorder.BorderBrush = secondaryColorBrush;
         }
 
-        public void HideMonster(StackPanel Monster) {
-            Monster.Visibility = Visibility.Hidden;
-        }
-
-        public void ShowMonster(StackPanel Monster) {
-            Monster.Visibility = Visibility.Visible;
-        }
-
-        private string FormatHPText(float[] HP) {
-            return $"{HP[0]}/{HP[1]} ({(HP[0] / HP[1]) * 100:F2}%)";
-        }
-
-        public void UpdateFirstMonsterInformation(float[] HP, string Name) {
-            fMonsterHpBar.Value = (int)HP[0];
-            fMonsterHpBar.Maximum = (int)HP[1];
-            fMonsterName.Content = Name.ToUpper();
-            string HPText = FormatHPText(HP);
-            fMonsterHpText.Content = HPText;
-        }
-
-        public void UpdateSecondMonsterInformation(float[] HP, string Name) {
-            sMonsterHpBar.Value = (int)HP[0];
-            sMonsterHpBar.Maximum = (int)HP[1];
-            sMonsterName.Content = Name.ToUpper();
-            string HPText = FormatHPText(HP);
-            sMonsterHpText.Content = HPText;
-        }
-
-        public void UpdateThirdMonsterInformation(float[] HP, string Name) {
-            tMonsterHpBar.Value = (int)HP[0];
-            tMonsterHpBar.Maximum = (int)HP[1];
-            tMonsterName.Content = Name.ToUpper();
-            string HPText = FormatHPText(HP);
-            tMonsterHpText.Content = HPText;
-        }
-
-        public void HideMonstersContainer() {
-            if (MonstersContainer.IsVisible) {
-                MonstersContainer.Visibility = Visibility.Hidden;
-            }
-        }
-
-        public void ShowMonstersContainer() {
-            if (!MonstersContainer.IsVisible) {
-                MonstersContainer.Visibility = Visibility.Visible;
-            }
-        }
-
         public void HideEverything() {
             HideMonstersContainer();
         }
