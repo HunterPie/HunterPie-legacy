@@ -44,9 +44,9 @@ namespace HunterPie.Memory {
             string[] fileLines = File.ReadAllLines($"address/{filename}");
             foreach (string line in fileLines) {
                 string[] parsed = line.Split(' ');
-                // parsed[0] = type
-                // parsed[1] = name
-                // parsed[2] = value
+                // parsed[0]: type
+                // parsed[1]: name
+                // parsed[2]: value
                 Int64 parsedValue;
                 try {
                     parsedValue = ParseHex(parsed[2]);

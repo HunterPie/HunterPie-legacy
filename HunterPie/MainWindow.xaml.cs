@@ -115,8 +115,8 @@ namespace HunterPie {
 
         private void SetGameEventHandlers() {
             // Scanner events
-            Scanner.onGameStart += onGameStart;
-            Scanner.onGameClosed += onGameClose;
+            Scanner.OnGameStart += OnGameStart;
+            Scanner.OnGameClosed += OnGameClose;
             // Primary mantle
             MonsterHunter.Player.PrimaryMantle.MantleTimer += onPrimaryMantleTimerUpdate;
             MonsterHunter.Player.PrimaryMantle.MantleCooldown += onPrimaryMantleCooldownUpdate;
@@ -124,19 +124,19 @@ namespace HunterPie {
             MonsterHunter.Player.SecondaryMantle.MantleTimer += onSecondaryMantleTimerUpdate;
             MonsterHunter.Player.SecondaryMantle.MantleCooldown += onSecondaryMantleCooldownUpdate;
             // Session
-            MonsterHunter.Player.onZoneChange += onZoneChange;
-            MonsterHunter.Player.onCharacterLogin += onLogin;
+            MonsterHunter.Player.OnZoneChange += OnZoneChange;
+            MonsterHunter.Player.OnCharacterLogin += OnLogin;
         }
 
-        public void onZoneChange(object source, EventArgs e) {
+        public void OnZoneChange(object source, EventArgs e) {
             //Debugger.Log($"ZoneID: {MonsterHunter.Player.ZoneID}");
         }
 
-        public void onLogin(object source, EventArgs e) {
+        public void OnLogin(object source, EventArgs e) {
             //Debugger.Log(MonsterHunter.Player.Slot.ToString());
         }
 
-        public void onGameStart(object source, EventArgs e) {
+        public void OnGameStart(object source, EventArgs e) {
             if (Address.LoadMemoryMap(Scanner.GameVersion) || Scanner.GameVersion == Address.GAME_VERSION) {
                 Debugger.Warn($"Loaded 'MonsterHunterWorld.{Scanner.GameVersion}.map'");
             } else {
@@ -150,7 +150,7 @@ namespace HunterPie {
             }
         }
 
-        public void onGameClose(object source, EventArgs e) {
+        public void OnGameClose(object source, EventArgs e) {
             if (UserSettings.PlayerConfig.HunterPie.Options.CloseWhenGameCloses) {
                 this.Close();
                 Environment.Exit(0);

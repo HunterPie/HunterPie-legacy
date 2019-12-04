@@ -4,6 +4,14 @@ using HunterPie.Memory;
 
 namespace HunterPie.Core {
     class Monster {
+        // Private vars
+        private int _name;
+        private string _id;
+        private float _totalHP;
+        private float _currentHP;
+        private float _hpPercentage;
+        private bool _isTarget;
+
         // Monster basic info
         private int MonsterNumber;
         public string Name { get; private set; }
@@ -17,6 +25,10 @@ namespace HunterPie.Core {
         // Threading
         ThreadStart MonsterInfoScanRef;
         Thread MonsterInfoScan;
+
+        // Game events
+        public delegate void MonsterEvents(object source, EventArgs args);
+        public event MonsterEvents onMonsterSpawn;
 
         public Monster(int initMonsterNumber) {
             MonsterNumber = initMonsterNumber;
@@ -69,7 +81,6 @@ namespace HunterPie.Core {
             Int64 MonsterHPComponent = Scanner.READ_LONGLONG(this.MonsterAddress + 0x129D8 + 0x48);
             Int64 MonsterTotalHPAddress = MonsterHPComponent + 0x60;
             Int64 MonsterCurrentHPAddress = MonsterTotalHPAddress + 0x4;
-
             float f_TotalHP = Scanner.READ_FLOAT(MonsterTotalHPAddress);
             float f_CurrentHP = Scanner.READ_FLOAT(MonsterCurrentHPAddress);
 
@@ -92,7 +103,7 @@ namespace HunterPie.Core {
                 try {
                     string ActualID = MonsterId.Split('\\')[4];
                     if (ActualID.StartsWith("em")) {
-                        if (ActualID != this.ID) Debugger.Log($"Found new monster #{MonsterNumber} address -> 0x{MonsterAddress:X}");
+                        if (ActualID != this.ID && GStrings.MonsterName(this.ID) != null) Debugger.Log($"Found new monster #{MonsterNumber} address -> 0x{MonsterAddress:X}");
                         this.ID = ActualID;
                         this.Name = GStrings.MonsterName(this.ID);
                     } else {

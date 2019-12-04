@@ -33,7 +33,7 @@ namespace HunterPie.Core {
             } set {
                 if (_slot != value) {
                     _slot = value;
-                    dispatchLogin();
+                    DispatchLogin();
                 }
             }
         }
@@ -43,7 +43,7 @@ namespace HunterPie.Core {
             } set {
                 if (_level != value) {
                     _level = value;
-                    dispatchLevelUp();
+                    DispatchLevelUp();
                 }
             }
         }
@@ -53,7 +53,7 @@ namespace HunterPie.Core {
             } set {
                 if (_name != value) {
                     _name = value;
-                    dispatchNameChange();
+                    DispatchNameChange();
                 }
             }
         }
@@ -63,7 +63,7 @@ namespace HunterPie.Core {
             } set {
                 if (_zoneId != value) {
                     _zoneId = value;
-                    dispatchZoneChange();
+                    DispatchZoneChange();
                 }
             }
         }
@@ -83,7 +83,7 @@ namespace HunterPie.Core {
             } set {
                 if (_weaponId != value) {
                     _weaponId = value;
-                    dispatchWeaponChange();
+                    DispatchWeaponChange();
                 }
             }
         }
@@ -102,7 +102,7 @@ namespace HunterPie.Core {
             } set {
                 if (_sessionId != value) {
                     _sessionId = value;
-                    dispatchSessionChange();
+                    DispatchSessionChange();
                 }
             }
         }
@@ -120,7 +120,7 @@ namespace HunterPie.Core {
             } set {
                 if (_partySize != value) {
                     _partySize = value;
-                    dispatchPartyChange();
+                    DispatchPartyChange();
                 }
             }
         }
@@ -140,60 +140,60 @@ namespace HunterPie.Core {
         // Event handlers
         // Level event handler
         public delegate void LevelEventHandler(object source, EventArgs args);
-        public event LevelEventHandler onLevelChange;
+        public event LevelEventHandler OnLevelChange;
 
         // Name event handler
         public delegate void NameEventHandler(object source, EventArgs args);
-        public event NameEventHandler onNameChange;
+        public event NameEventHandler OnNameChange;
         
         // Zone change event
         public delegate void ZoneEventHandler(object source, EventArgs args);
-        public event ZoneEventHandler onZoneChange;
+        public event ZoneEventHandler OnZoneChange;
 
         // Weapon change event
         public delegate void WeaponEventHandler(object source, EventArgs args);
-        public event WeaponEventHandler onWeaponChange;
+        public event WeaponEventHandler OnWeaponChange;
 
         // Session change
         public delegate void SessionEventHandler(object source, EventArgs args);
-        public event SessionEventHandler onSessionChange;
+        public event SessionEventHandler OnSessionChange;
 
         // Got in a party
         public delegate void PartyEventHandler(object source, EventArgs args);
-        public event PartyEventHandler onPartyChange;
+        public event PartyEventHandler OnPartyChange;
 
         // On login
         public delegate void LoginEventHandler(object source, EventArgs args);
-        public event LoginEventHandler onCharacterLogin;
+        public event LoginEventHandler OnCharacterLogin;
 
         // Dispatchers
 
-        protected virtual void dispatchLogin() {
-            onCharacterLogin?.Invoke(this, EventArgs.Empty);
+        protected virtual void DispatchLogin() {
+            OnCharacterLogin?.Invoke(this, EventArgs.Empty);
         }
 
-        protected virtual void dispatchLevelUp() {
-            onLevelChange?.Invoke(this, EventArgs.Empty);
+        protected virtual void DispatchLevelUp() {
+            OnLevelChange?.Invoke(this, EventArgs.Empty);
         }
 
-        protected virtual void dispatchNameChange() {
-            onNameChange?.Invoke(this, EventArgs.Empty);
+        protected virtual void DispatchNameChange() {
+            OnNameChange?.Invoke(this, EventArgs.Empty);
         }
 
-        protected virtual void dispatchZoneChange() {
-            onZoneChange?.Invoke(this, EventArgs.Empty);
+        protected virtual void DispatchZoneChange() {
+            OnZoneChange?.Invoke(this, EventArgs.Empty);
         }
 
-        protected virtual void dispatchWeaponChange() {
-            onWeaponChange?.Invoke(this, EventArgs.Empty);
+        protected virtual void DispatchWeaponChange() {
+            OnWeaponChange?.Invoke(this, EventArgs.Empty);
         }
 
-        protected virtual void dispatchSessionChange() {
-            onSessionChange?.Invoke(this, EventArgs.Empty);
+        protected virtual void DispatchSessionChange() {
+            OnSessionChange?.Invoke(this, EventArgs.Empty);
         }
         
-        protected virtual void dispatchPartyChange() {
-            onPartyChange?.Invoke(this, EventArgs.Empty);
+        protected virtual void DispatchPartyChange() {
+            OnPartyChange?.Invoke(this, EventArgs.Empty);
         }
 
         public void StartScanning() {

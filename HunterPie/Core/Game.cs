@@ -30,7 +30,7 @@ namespace HunterPie.Core {
 
         public void StartScanning() {
             StartGameScanner();
-            bindEvents();
+            BindEvents();
             Player.StartScanning();
             FirstMonster.StartThreadingScan();
             SecondMonster.StartThreadingScan();
@@ -45,11 +45,11 @@ namespace HunterPie.Core {
             Player.StopScanning();
         }
 
-        private void bindEvents() {
-            Player.onZoneChange += onZoneChange;
+        private void BindEvents() {
+            Player.OnZoneChange += OnZoneChange;
         }
 
-        public void onZoneChange(object source, EventArgs e) {
+        public void OnZoneChange(object source, EventArgs e) {
             Time = DateTime.UtcNow;
         }
 

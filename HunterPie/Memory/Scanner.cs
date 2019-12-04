@@ -36,18 +36,18 @@ namespace HunterPie.Memory {
         // Events
         // On Game start
         public delegate void GameStartHandler(object source, EventArgs args);
-        public static event GameStartHandler onGameStart;
+        public static event GameStartHandler OnGameStart;
 
         protected static void _onGameStart() {
-            onGameStart?.Invoke(typeof(Scanner), EventArgs.Empty);
+            OnGameStart?.Invoke(typeof(Scanner), EventArgs.Empty);
         }
 
         // On game close
         public delegate void GameStopHandler(object source, EventArgs args);
-        public static GameStopHandler onGameClosed;
+        public static GameStopHandler OnGameClosed;
 
         protected static void _onGameClosed() {
-            onGameClosed?.Invoke(typeof(Scanner), EventArgs.Empty);
+            OnGameClosed?.Invoke(typeof(Scanner), EventArgs.Empty);
         }
         
 
