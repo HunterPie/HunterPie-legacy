@@ -139,32 +139,14 @@ namespace HunterPie.Core {
 
         // Event handlers
         // Level event handler
-        public delegate void LevelEventHandler(object source, EventArgs args);
-        public event LevelEventHandler OnLevelChange;
-
-        // Name event handler
-        public delegate void NameEventHandler(object source, EventArgs args);
-        public event NameEventHandler OnNameChange;
-        
-        // Zone change event
-        public delegate void ZoneEventHandler(object source, EventArgs args);
-        public event ZoneEventHandler OnZoneChange;
-
-        // Weapon change event
-        public delegate void WeaponEventHandler(object source, EventArgs args);
-        public event WeaponEventHandler OnWeaponChange;
-
-        // Session change
-        public delegate void SessionEventHandler(object source, EventArgs args);
-        public event SessionEventHandler OnSessionChange;
-
-        // Got in a party
-        public delegate void PartyEventHandler(object source, EventArgs args);
-        public event PartyEventHandler OnPartyChange;
-
-        // On login
-        public delegate void LoginEventHandler(object source, EventArgs args);
-        public event LoginEventHandler OnCharacterLogin;
+        public delegate void PlayerEvents(object source, EventArgs args);
+        public event PlayerEvents OnLevelChange;
+        public event PlayerEvents OnNameChange;
+        public event PlayerEvents OnZoneChange;
+        public event PlayerEvents OnWeaponChange;
+        public event PlayerEvents OnSessionChange;
+        public event PlayerEvents OnPartyChange;
+        public event PlayerEvents OnCharacterLogin;
 
         // Dispatchers
 

@@ -83,14 +83,10 @@ namespace HunterPie.Core {
 
         // Events
 
-        public delegate void MantleCooldownHandler(object source, EventArgs args);
-        public event MantleCooldownHandler MantleCooldown;
-
-        public delegate void MantleTimerHandler(object source, EventArgs args);
-        public event MantleTimerHandler MantleTimer;
-
-        public delegate void MantleChangeHandler(object source, EventArgs args);
-        public event MantleChangeHandler MantleChange;
+        public delegate void MantleEvents(object source, EventArgs args);
+        public event MantleEvents MantleCooldown;
+        public event MantleEvents MantleTimer;
+        public event MantleEvents MantleChange;
 
         protected virtual void onMantleCooldownUpdate() {
             MantleCooldown?.Invoke(this, EventArgs.Empty);
