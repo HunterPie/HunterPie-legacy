@@ -16,8 +16,6 @@ namespace HunterPie.Core {
         private int _weaponId;
         private string _weaponName;
         private string _sessionId;
-        private bool _inPeaceZone;
-        private bool _inHarvestZone;
         private int _partySize;
 
         // Game info
@@ -33,7 +31,7 @@ namespace HunterPie.Core {
             } set {
                 if (_slot != value) {
                     _slot = value;
-                    DispatchLogin();
+                    _onLogin();
                 }
             }
         }
@@ -43,7 +41,7 @@ namespace HunterPie.Core {
             } set {
                 if (_level != value) {
                     _level = value;
-                    DispatchLevelUp();
+                    _onLevelUp();
                 }
             }
         }
@@ -53,7 +51,7 @@ namespace HunterPie.Core {
             } set {
                 if (_name != value) {
                     _name = value;
-                    DispatchNameChange();
+                    _onNameChange();
                 }
             }
         }
@@ -62,8 +60,12 @@ namespace HunterPie.Core {
                 return _zoneId;
             } set {
                 if (_zoneId != value) {
+                    if (PeaceZones.Contains(_zoneId) && !PeaceZones.Contains(value)) _onPeaceZoneLeave();
+                    if (_HBZones.Contains(_zoneId) && !_HBZones.Contains(value)) _onVillageLeave();
                     _zoneId = value;
-                    DispatchZoneChange();
+                    _onZoneChange();
+                    if (PeaceZones.Contains(value)) _onPeaceZoneEnter();
+                    if (_HBZones.Contains(value)) _onVillageEnter();
                 }
             }
         }
@@ -83,7 +85,7 @@ namespace HunterPie.Core {
             } set {
                 if (_weaponId != value) {
                     _weaponId = value;
-                    DispatchWeaponChange();
+                    _onWeaponChange();
                 }
             }
         }
@@ -102,7 +104,7 @@ namespace HunterPie.Core {
             } set {
                 if (_sessionId != value) {
                     _sessionId = value;
-                    DispatchSessionChange();
+                    _onSessionChange();
                 }
             }
         }
@@ -120,7 +122,7 @@ namespace HunterPie.Core {
             } set {
                 if (_partySize != value) {
                     _partySize = value;
-                    DispatchPartyChange();
+                    _onPartyChange();
                 }
             }
         }
@@ -147,35 +149,55 @@ namespace HunterPie.Core {
         public event PlayerEvents OnSessionChange;
         public event PlayerEvents OnPartyChange;
         public event PlayerEvents OnCharacterLogin;
+        public event PlayerEvents OnPeaceZoneEnter;
+        public event PlayerEvents OnVillageEnter;
+        public event PlayerEvents OnPeaceZoneLeave;
+        public event PlayerEvents OnVillageLeave;
 
         // Dispatchers
 
-        protected virtual void DispatchLogin() {
+        protected virtual void _onLogin() {
             OnCharacterLogin?.Invoke(this, EventArgs.Empty);
         }
 
-        protected virtual void DispatchLevelUp() {
+        protected virtual void _onLevelUp() {
             OnLevelChange?.Invoke(this, EventArgs.Empty);
         }
 
-        protected virtual void DispatchNameChange() {
+        protected virtual void _onNameChange() {
             OnNameChange?.Invoke(this, EventArgs.Empty);
         }
 
-        protected virtual void DispatchZoneChange() {
+        protected virtual void _onZoneChange() {
             OnZoneChange?.Invoke(this, EventArgs.Empty);
         }
 
-        protected virtual void DispatchWeaponChange() {
+        protected virtual void _onWeaponChange() {
             OnWeaponChange?.Invoke(this, EventArgs.Empty);
         }
 
-        protected virtual void DispatchSessionChange() {
+        protected virtual void _onSessionChange() {
             OnSessionChange?.Invoke(this, EventArgs.Empty);
         }
         
-        protected virtual void DispatchPartyChange() {
+        protected virtual void _onPartyChange() {
             OnPartyChange?.Invoke(this, EventArgs.Empty);
+        }
+
+        protected virtual void _onPeaceZoneEnter() {
+            OnPeaceZoneEnter?.Invoke(this, EventArgs.Empty);
+        }
+
+        protected virtual void _onVillageEnter() {
+            OnVillageEnter?.Invoke(this, EventArgs.Empty);
+        }
+
+        protected virtual void _onPeaceZoneLeave() {
+            OnPeaceZoneLeave?.Invoke(this, EventArgs.Empty);
+        }
+
+        protected virtual void _onVillageLeave() {
+            OnVillageLeave?.Invoke(this, EventArgs.Empty);
         }
 
         public void StartScanning() {
