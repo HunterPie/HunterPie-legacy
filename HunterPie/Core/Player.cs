@@ -243,7 +243,6 @@ namespace HunterPie.Core {
             Int64 nextChar = 0x139F20;
             int playtime;
             int charId = 999;
-            // TODO: FIX THIS
             for (int charIndex = 2; charIndex >= 0; charIndex--) {
                 currentChar = AddressValue + 0x118 + (nextChar * charIndex);
                 playtime = Scanner.READ_INT(currentChar);
@@ -388,13 +387,14 @@ namespace HunterPie.Core {
 
         private void UpdateHarvestBoxCounter(Int64 LastFertAddress) {
             Int64 Address = LastFertAddress + 0x10;
-            Harvest.Counter = 0;
+            int counter = 0;
             for (long iAddress = Address; iAddress < Address + 0x1F0; iAddress += 0x10) {
                 int memValue = Scanner.READ_INT(iAddress);
                 if (memValue > 0) {
-                    Harvest.Counter++;
+                    counter++;
                 }
             }
+            Harvest.Counter = counter;
         }
     }
 }

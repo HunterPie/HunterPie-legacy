@@ -38,6 +38,28 @@ namespace HunterPie.GUI {
         private void HookEvents() {
             HookMonsterEvents();
             HookMantleEvents();
+            HookHarvestBoxEvents();
+        }
+
+        private void HookHarvestBoxEvents() {
+            // Hooks player location event
+            ctx.Player.OnVillageEnter += this.ShowHarvestBox;
+            ctx.Player.OnVillageLeave += this.HideHarvestBox;
+            // Hook fertilizer and Harvest box events
+            ctx.Player.Harvest.OnCounterChange += this.UpdateHarvestBoxCounter;
+            // Ugly code :(
+            // First fertilizer
+            ctx.Player.Harvest.Box[0].OnAmountUpdate += this.UpdateFirstFertilizer;
+            ctx.Player.Harvest.Box[0].OnFertilizerChange += this.UpdateFirstFertilizer;
+            // Second fertilizer
+            ctx.Player.Harvest.Box[1].OnAmountUpdate += this.UpdateSecondFertilizer;
+            ctx.Player.Harvest.Box[1].OnFertilizerChange += this.UpdateSecondFertilizer;
+            // Third fertilizer
+            ctx.Player.Harvest.Box[2].OnAmountUpdate += this.UpdateThirdFertilizer;
+            ctx.Player.Harvest.Box[2].OnFertilizerChange += this.UpdateThirdFertilizer;
+            // Fourth fertilizer
+            ctx.Player.Harvest.Box[3].OnAmountUpdate += this.UpdateFourthFertilizer;
+            ctx.Player.Harvest.Box[3].OnFertilizerChange += this.UpdateFourthFertilizer;
         }
 
         private void HookMonsterEvents() {
@@ -115,6 +137,21 @@ namespace HunterPie.GUI {
             double Bottom = MonstersContainer.Margin.Bottom;
             MonstersContainer.Margin = new Thickness(X, Y, Right, Bottom);
             //Debugger.Warn($"Changed Monster component position to X:{X} Y:{Y}");
+        }
+
+        /* Harvest box */
+        public void ShowHarvestBox(object source, EventArgs e) {
+            if (HarvestBoxComponent.Visibility == Visibility.Visible || !UserSettings.PlayerConfig.Overlay.HarvestBoxComponent.Enabled) return;
+            Dispatch(() => {
+                HarvestBoxComponent.Visibility = Visibility.Visible;
+            });
+        }
+
+        public void HideHarvestBox(object source, EventArgs e) {
+            if (HarvestBoxComponent.Visibility == Visibility.Hidden) return;
+            Dispatch(() => {
+                HarvestBoxComponent.Visibility = Visibility.Hidden;
+            });
         }
 
         /* Mantles */
@@ -303,28 +340,39 @@ namespace HunterPie.GUI {
             }
         }
 
-        public void UpdateFirstFertilizer(string Name, int Amount) {
-            fert1Name.Content = Name;
-            fert1Counter.Content = $"x{Amount}";
+        public void UpdateFirstFertilizer(object source, FertilizerEventArgs e) {
+            Dispatch(() => {
+                Debugger.Log(e.Name);
+                fert1Name.Content = e.Name;
+                fert1Counter.Content = $"x{e.Amount}";
+            });
         }
 
-        public void UpdateSecondFertilizer(string Name, int Amount) {
-            fert2Name.Content = Name;
-            fert2Counter.Content = $"x{Amount}";
+        public void UpdateSecondFertilizer(object source, FertilizerEventArgs e) {
+            Dispatch(() => {
+                fert2Name.Content = e.Name;
+                fert2Counter.Content = $"x{e.Amount}";
+            }); ;
         }
 
-        public void UpdateThirdFertilizer(string Name, int Amount) {
-            fert3Name.Content = Name;
-            fert3Counter.Content = $"x{Amount}";
+        public void UpdateThirdFertilizer(object source, FertilizerEventArgs e) {
+            Dispatch(() => {
+                fert3Name.Content = e.Name;
+                fert3Counter.Content = $"x{e.Amount}";
+            });
         }
 
-        public void UpdateFourthFertilizer(string Name, int Amount) {
-            fert4Name.Content = Name;
-            fert4Counter.Content = $"x{Amount}";
+        public void UpdateFourthFertilizer(object source, FertilizerEventArgs e) {
+            Dispatch(() => {
+                fert4Name.Content = e.Name;
+                fert4Counter.Content = $"x{e.Amount}";
+            });
         }
 
-        public void UpdateHarvestBoxCounter(int counter, int max) {
-            HarvestBoxItemsCounter.Content = $"{counter}/{max}";
+        public void UpdateHarvestBoxCounter(object source, HarvestBoxEventArgs e) {
+            Dispatch(() => {
+                HarvestBoxItemsCounter.Content = $"{e.Counter}/{e.Max}";
+            });
         }
 
         private RadialGradientBrush DonutBrush(Color customColor) {

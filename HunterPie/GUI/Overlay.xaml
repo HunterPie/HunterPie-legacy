@@ -180,7 +180,7 @@
             </xctk:Pie>
             <Label x:Name="SecondaryMantleName" Content="(30s) MANTLE NAME" Height="38" Foreground="White" FontFamily="Roboto" VerticalAlignment="Top" FontWeight="Bold" VerticalContentAlignment="Center" Margin="31,-38,0,0"/>
         </StackPanel>
-        <Grid x:Name="HarvestBoxComponent" Margin="1680,601,0,0" HorizontalAlignment="Left" Width="230" Height="171" VerticalAlignment="Top">
+        <Grid x:Name="HarvestBoxComponent" Margin="1680,601,0,0" HorizontalAlignment="Left" Width="230" Height="171" VerticalAlignment="Top" Visibility="Hidden">
             <Rectangle x:Name="HarvestBoxContainer" Fill="#4C111111" Stroke="#FF171717"/>
             <Label x:Name="HarvestBoxTitle" Content="HARVEST BOX" Opacity="0.8" Foreground="White" HorizontalContentAlignment="Center" Padding="0" VerticalContentAlignment="Center" FontFamily="Roboto" FontWeight="Bold" Background="#66000000" Height="29" VerticalAlignment="Top" FontSize="16"/>
             <Label x:Name="fert1Name" Content="Empty" Margin="0,29,42,0" Opacity="0.8" Foreground="White" HorizontalContentAlignment="Center" Padding="0" VerticalContentAlignment="Center" FontFamily="Roboto" Background="#66000000" FontWeight="Light" Height="29" VerticalAlignment="Top" FontSize="14"/>

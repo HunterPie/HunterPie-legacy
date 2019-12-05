@@ -33,10 +33,19 @@
             set {
                 if (value != _id) {
                     _id = value;
+                    _onFertilizerChange();
                 }
             }
         }
-        public int Amount;
+        public int Amount {
+            get { return _amount; }
+            set {
+                if (value != _amount) {
+                    _amount = value;
+                    _onAmountUpdate();
+                }
+            }
+        }
 
         public delegate void FertilizerEvents(object source, FertilizerEventArgs args);
         public event FertilizerEvents OnFertilizerChange;
@@ -63,6 +72,7 @@
             set {
                 if (_counter != value) {
                     _counter = value;
+                    _onCounterChange();
                 }
             }
         }
