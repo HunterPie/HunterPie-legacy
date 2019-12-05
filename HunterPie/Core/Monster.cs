@@ -32,8 +32,11 @@ namespace HunterPie.Core {
             get { return _name; }
             set {
                 if (value != null && _name != value) {
-                    _name = value;
-                    _onMonsterSpawn();
+                    if (CurrentHP > 0) {
+                        _name = value;
+                        // Only call this if monster is actually alive
+                        _onMonsterSpawn();
+                    }
                 } else if (value == null && _name != value) {
                     _name = value;
                     _onMonsterDespawn();
@@ -48,6 +51,9 @@ namespace HunterPie.Core {
                 if (value != _currentHP) {
                     _currentHP = value;
                     _onHPUpdate();
+                    if (_currentHP <= 0.0f) {
+                        _onMonsterDeath();
+                    }
                 }
             }
         }
@@ -71,8 +77,10 @@ namespace HunterPie.Core {
         public delegate void MonsterEvents(object source, MonsterEventArgs args);
         public event MonsterEvents OnMonsterSpawn;
         public event MonsterEvents OnMonsterDespawn;
+        public event MonsterEvents OnMonsterDeath;
         public event MonsterEvents OnHPUpdate;
         public event MonsterEvents OnTargetted;
+        
 
         protected virtual void _onMonsterSpawn() {
             MonsterEventArgs args = new MonsterEventArgs(this);
@@ -82,6 +90,11 @@ namespace HunterPie.Core {
         protected virtual void _onMonsterDespawn() {
             MonsterEventArgs args = new MonsterEventArgs(this);
             OnMonsterDespawn?.Invoke(this, args);
+        }
+
+        protected virtual void _onMonsterDeath() {
+            MonsterEventArgs args = new MonsterEventArgs(this);
+            OnMonsterDeath?.Invoke(this, args);
         }
 
         protected virtual void _onHPUpdate() {
@@ -115,7 +128,7 @@ namespace HunterPie.Core {
                 GetMonsterAddress();
                 GetMonsterIDAndName();
                 GetMonsterHp();
-                Thread.Sleep(1000);
+                Thread.Sleep(200);
             }
             Thread.Sleep(1000);
             ScanMonsterInfo();

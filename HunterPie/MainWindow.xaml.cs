@@ -126,14 +126,17 @@ namespace HunterPie {
             // First monster
             MonsterHunter.FirstMonster.OnMonsterSpawn += GameOverlay.OnFirstMonsterSpawn;
             MonsterHunter.FirstMonster.OnMonsterDespawn += GameOverlay.OnFirstMonsterDespawn;
+            MonsterHunter.FirstMonster.OnMonsterDeath += GameOverlay.OnFirstMonsterDespawn;
             MonsterHunter.FirstMonster.OnHPUpdate += GameOverlay.UpdateFirstMonster;
             // Second monster
             MonsterHunter.SecondMonster.OnMonsterSpawn += GameOverlay.OnSecondMonsterSpawn;
             MonsterHunter.SecondMonster.OnMonsterDespawn += GameOverlay.OnSecondMonsterDespawn;
+            MonsterHunter.SecondMonster.OnMonsterDeath += GameOverlay.OnSecondMonsterDespawn;
             MonsterHunter.SecondMonster.OnHPUpdate += GameOverlay.UpdateSecondMonster;
             // Third monster
             MonsterHunter.ThirdMonster.OnMonsterSpawn += GameOverlay.OnThirdMonsterSpawn;
             MonsterHunter.ThirdMonster.OnMonsterDespawn += GameOverlay.OnThirdMonsterDespawn;
+            MonsterHunter.ThirdMonster.OnMonsterDeath += GameOverlay.OnThirdMonsterDespawn;
             MonsterHunter.ThirdMonster.OnHPUpdate += GameOverlay.UpdateThirdMonster;
             // Session
             MonsterHunter.Player.OnZoneChange += OnZoneChange;

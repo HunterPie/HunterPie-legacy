@@ -151,6 +151,10 @@ namespace HunterPie.GUI {
         public void OnFirstMonsterSpawn(object source, MonsterEventArgs e) {
             Dispatch(() => {
                 fMonsterBox.Visibility = Visibility.Visible;
+                fMonsterName.Content = e.Name.ToUpper();
+                fMonsterHpBar.Maximum = e.TotalHP;
+                fMonsterHpBar.Value = e.CurrentHP;
+                fMonsterHpText.Content = $"{e.CurrentHP}/{e.TotalHP} ({(e.CurrentHP / e.TotalHP) * 100:F2}%)";
             });
         }
 
@@ -174,6 +178,10 @@ namespace HunterPie.GUI {
         public void OnSecondMonsterSpawn(object source, MonsterEventArgs e) {
             Dispatch(() => {
                 sMonsterBox.Visibility = Visibility.Visible;
+                sMonsterName.Content = e.Name.ToUpper();
+                sMonsterHpBar.Maximum = e.TotalHP;
+                sMonsterHpBar.Value = e.CurrentHP;
+                sMonsterHpText.Content = $"{e.CurrentHP}/{e.TotalHP} ({(e.CurrentHP / e.TotalHP) * 100:F2}%)";
             });
         }
 
@@ -198,6 +206,10 @@ namespace HunterPie.GUI {
         public void OnThirdMonsterSpawn(object source, MonsterEventArgs e) {
             Dispatch(() => {
                 tMonsterBox.Visibility = Visibility.Visible;
+                tMonsterName.Content = e.Name.ToUpper();
+                tMonsterHpBar.Maximum = e.TotalHP;
+                tMonsterHpBar.Value = e.CurrentHP;
+                tMonsterHpText.Content = $"{e.CurrentHP}/{e.TotalHP} ({(e.CurrentHP / e.TotalHP) * 100:F2}%)";
             });
         }
 
