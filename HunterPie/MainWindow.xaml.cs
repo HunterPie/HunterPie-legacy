@@ -260,7 +260,7 @@ namespace HunterPie {
                             GameOverlay.ShowOverlay();
                         }));
                     }
-                    
+                    /*
                     // Harvest box
                     if (UserSettings.PlayerConfig.Overlay.HarvestBoxComponent.Enabled && MonsterHunter.Player.inHarvestZone) {
                         GameOverlay.Dispatch(new Action(() => {
@@ -276,7 +276,7 @@ namespace HunterPie {
                         GameOverlay.Dispatch(new Action(() => {
                             GameOverlay.HideHarvestBoxContainer();
                         }));
-                    }
+                    }*/
 
                 } else {
                     GameOverlay.Dispatch(new Action(() => {
