@@ -42,7 +42,7 @@ namespace HunterPie.Core {
             } set {
                 if (_id != value) {
                     _id = value;
-                    this.onMantleChange();
+                    this._onMantleChange();
                 }
             }
         }
@@ -52,7 +52,7 @@ namespace HunterPie.Core {
             } set {
                 if (_cooldown != value) {
                     _cooldown = value;
-                    this.onMantleCooldownUpdate();
+                    this._onMantleCooldownUpdate();
                 }
             }
         }
@@ -62,7 +62,7 @@ namespace HunterPie.Core {
             } set {
                 if (_timer != value) {
                     _timer = value;
-                    this.onMantleTimerUpdate();
+                    this._onMantleTimerUpdate();
                 }
             }
         }
@@ -104,23 +104,23 @@ namespace HunterPie.Core {
         // Events
 
         public delegate void MantleEvents(object source, MantleEventArgs args);
-        public event MantleEvents MantleCooldown;
-        public event MantleEvents MantleTimer;
-        public event MantleEvents MantleChange;
+        public event MantleEvents OnMantleCooldownUpdate;
+        public event MantleEvents OnMantleTimerUpdate;
+        public event MantleEvents OnMantleChange;
 
-        protected virtual void onMantleCooldownUpdate() {
+        protected virtual void _onMantleCooldownUpdate() {
             MantleEventArgs args = new MantleEventArgs(this);
-            MantleCooldown?.Invoke(this, args);
+            OnMantleCooldownUpdate?.Invoke(this, args);
         }
 
-        protected virtual void onMantleTimerUpdate() {
+        protected virtual void _onMantleTimerUpdate() {
             MantleEventArgs args = new MantleEventArgs(this);
-            MantleTimer?.Invoke(this, args);
+            OnMantleTimerUpdate?.Invoke(this, args);
         }
 
-        protected virtual void onMantleChange() {
+        protected virtual void _onMantleChange() {
             MantleEventArgs args = new MantleEventArgs(this);
-            MantleChange?.Invoke(this, args);
+            OnMantleChange?.Invoke(this, args);
         }
 
     }

@@ -37,6 +37,7 @@ namespace HunterPie.GUI {
 
         private void HookEvents() {
             HookMonsterEvents();
+            HookMantleEvents();
         }
 
         private void HookMonsterEvents() {
@@ -45,11 +46,13 @@ namespace HunterPie.GUI {
             ctx.FirstMonster.OnMonsterDespawn += this.OnFirstMonsterDespawn;
             ctx.FirstMonster.OnMonsterDeath += this.OnFirstMonsterDespawn;
             ctx.FirstMonster.OnHPUpdate += this.UpdateFirstMonster;
+
             // Second monster
             ctx.SecondMonster.OnMonsterSpawn += this.OnSecondMonsterSpawn;
             ctx.SecondMonster.OnMonsterDespawn += this.OnSecondMonsterDespawn;
             ctx.SecondMonster.OnMonsterDeath += this.OnSecondMonsterDespawn;
             ctx.SecondMonster.OnHPUpdate += this.UpdateSecondMonster;
+
             // Third monster
             ctx.ThirdMonster.OnMonsterSpawn += this.OnThirdMonsterSpawn;
             ctx.ThirdMonster.OnMonsterDespawn += this.OnThirdMonsterDespawn;
@@ -59,12 +62,12 @@ namespace HunterPie.GUI {
 
         private void HookMantleEvents() {
             // Primary mantle
-            ctx.Player.PrimaryMantle.MantleTimer += this.UpdatePrimaryMantleTimer;
-            ctx.Player.PrimaryMantle.MantleCooldown += this.UpdatePrimaryMantleCooldown;
+            ctx.Player.PrimaryMantle.OnMantleTimerUpdate += this.UpdatePrimaryMantleTimer;
+            ctx.Player.PrimaryMantle.OnMantleCooldownUpdate += this.UpdatePrimaryMantleCooldown;
 
             // Secondary mantle
-            ctx.Player.SecondaryMantle.MantleTimer += this.UpdateSecondaryMantleTimer;
-            ctx.Player.SecondaryMantle.MantleCooldown += this.UpdateSecondaryMantleCooldown;
+            ctx.Player.SecondaryMantle.OnMantleTimerUpdate += this.UpdateSecondaryMantleTimer;
+            ctx.Player.SecondaryMantle.OnMantleCooldownUpdate += this.UpdateSecondaryMantleCooldown;
         }
 
         private void makeOverlayClickThrough() {
