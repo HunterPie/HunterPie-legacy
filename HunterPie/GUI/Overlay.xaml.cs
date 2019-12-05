@@ -44,8 +44,8 @@ namespace HunterPie.GUI {
             SetWindowLong(hwnd, GWL_EXSTYLE, Styles | WS_EX_TRANSPARENT);
         }
 
-        public void Dispatch(Action todo) {
-            this.Dispatcher.BeginInvoke(System.Windows.Threading.DispatcherPriority.Background, todo);
+        public void Dispatch(Action function) {
+            this.Dispatcher.BeginInvoke(System.Windows.Threading.DispatcherPriority.Background, function);
         } 
 
         public void HideOverlay() {
@@ -79,6 +79,74 @@ namespace HunterPie.GUI {
             //Debugger.Warn($"Changed Monster component position to X:{X} Y:{Y}");
         }
 
+        /* Mantles */
+        // Primary mantle
+        public void UpdatePrimaryMantleCooldown(object source, MantleEventArgs e) {
+            bool ContainerEnabled = UserSettings.PlayerConfig.Overlay.PrimaryMantle.Enabled;
+            if (e.Cooldown == 0) {
+                Dispatch(() => {
+                    if (PrimaryMantleContainer.Visibility == Visibility.Visible) PrimaryMantleContainer.Visibility = Visibility.Hidden;
+                });
+                return;
+            }
+            Dispatch(() => {
+                if (ContainerEnabled && PrimaryMantleContainer.Visibility == Visibility.Hidden) PrimaryMantleContainer.Visibility = Visibility.Visible;
+                string FormatMantleName = $"({(int)e.Cooldown}) {e.Name.ToUpper()}";
+                PrimaryMantleName.Content = FormatMantleName;
+                PrimaryMantleTimer.Slice = e.Cooldown / e.staticCooldown;
+            });
+        }
+
+        public void UpdatePrimaryMantleTimer(object source, MantleEventArgs e) {
+            bool ContainerEnabled = UserSettings.PlayerConfig.Overlay.PrimaryMantle.Enabled;
+            if (e.Timer == 0) {
+                Dispatch(() => {
+                    if (PrimaryMantleContainer.Visibility == Visibility.Visible) PrimaryMantleContainer.Visibility = Visibility.Hidden;
+                });
+                return;
+            }
+            Dispatch(() => {
+                if (ContainerEnabled && PrimaryMantleContainer.Visibility == Visibility.Hidden) PrimaryMantleContainer.Visibility = Visibility.Visible;
+                string FormatMantleName = $"({(int)e.Timer}) {e.Name.ToUpper()}";
+                PrimaryMantleName.Content = FormatMantleName;
+                PrimaryMantleTimer.Slice = e.Timer / e.staticTimer;
+            });
+        }
+
+        // Secondary mantle
+        public void UpdateSecondaryMantleCooldown(object source, MantleEventArgs e) {
+            bool ContainerEnabled = UserSettings.PlayerConfig.Overlay.SecondaryMantle.Enabled;
+            if (e.Cooldown == 0) {
+                Dispatch(() => {
+                    if (SecondaryMantleContainer.Visibility == Visibility.Visible) SecondaryMantleContainer.Visibility = Visibility.Hidden;
+                });
+                return;
+            }
+            Dispatch(() => {
+                if (ContainerEnabled && SecondaryMantleContainer.Visibility == Visibility.Hidden) SecondaryMantleContainer.Visibility = Visibility.Visible;
+                string FormatMantleName = $"({(int)e.Cooldown}) {e.Name.ToUpper()}";
+                SecondaryMantleName.Content = FormatMantleName;
+                SecondaryMantleTimer.Slice = e.Cooldown / e.staticCooldown;
+            });
+        }
+
+        public void UpdateSecondaryMantleTimer(object source, MantleEventArgs e) {
+            bool ContainerEnabled = UserSettings.PlayerConfig.Overlay.SecondaryMantle.Enabled;
+            if (e.Timer == 0) {
+                Dispatch(() => {
+                    if (SecondaryMantleContainer.Visibility == Visibility.Visible) SecondaryMantleContainer.Visibility = Visibility.Hidden;
+                });
+                return;
+            }
+            Dispatch(() => {
+                if (ContainerEnabled && SecondaryMantleContainer.Visibility == Visibility.Hidden) SecondaryMantleContainer.Visibility = Visibility.Visible;
+                string FormatMantleName = $"({(int)e.Timer}) {e.Name.ToUpper()}";
+                SecondaryMantleName.Content = FormatMantleName;
+                SecondaryMantleTimer.Slice = e.Timer / e.staticTimer;
+            });
+        }
+
+        /*  Monsters  */
         // First monster
         public void OnFirstMonsterSpawn(object source, MonsterEventArgs e) {
             Dispatch(() => {

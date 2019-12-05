@@ -1,7 +1,25 @@
 ﻿using System;
 
 namespace HunterPie.Core {
-    class Mantle {
+    public class MantleEventArgs {
+        public string Name;
+        public int ID;
+        public float Timer;
+        public float staticTimer;
+        public float Cooldown;
+        public float staticCooldown;
+
+        public MantleEventArgs(Mantle m) {
+            this.Name = m.Name;
+            this.ID = m.ID;
+            this.Timer = m.Timer;
+            this.staticTimer = m.staticTimer;
+            this.Cooldown = m.Cooldown;
+            this.staticCooldown = m.staticCooldown;
+        }
+    }
+
+    public class Mantle {
         private string _name;
         private int _id;
         private float _cooldown;
@@ -83,21 +101,24 @@ namespace HunterPie.Core {
 
         // Events
 
-        public delegate void MantleEvents(object source, EventArgs args);
+        public delegate void MantleEvents(object source, MantleEventArgs args);
         public event MantleEvents MantleCooldown;
         public event MantleEvents MantleTimer;
         public event MantleEvents MantleChange;
 
         protected virtual void onMantleCooldownUpdate() {
-            MantleCooldown?.Invoke(this, EventArgs.Empty);
+            MantleEventArgs args = new MantleEventArgs(this);
+            MantleCooldown?.Invoke(this, args);
         }
 
         protected virtual void onMantleTimerUpdate() {
-            MantleTimer?.Invoke(this, EventArgs.Empty);
+            MantleEventArgs args = new MantleEventArgs(this);
+            MantleTimer?.Invoke(this, args);
         }
 
         protected virtual void onMantleChange() {
-            MantleChange?.Invoke(this, EventArgs.Empty);
+            MantleEventArgs args = new MantleEventArgs(this);
+            MantleChange?.Invoke(this, args);
         }
 
     }
