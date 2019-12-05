@@ -86,7 +86,7 @@
         </Grid.RowDefinitions>
         <StackPanel x:Name="MonstersContainer" Margin="560,19,0,0" Orientation="Horizontal" MinHeight="62" MinWidth="778" MaxWidth="778" MaxHeight="62" HorizontalAlignment="Left" Width="778" Height="62" VerticalAlignment="Top">
 
-            <StackPanel x:Name="fMonsterBox" Orientation="Vertical" MinWidth="62" MaxHeight="62" HorizontalAlignment="Left" Width="262">
+            <StackPanel x:Name="fMonsterBox" Orientation="Vertical" MinWidth="62" MaxHeight="62" HorizontalAlignment="Left" Width="262" Visibility="Hidden">
                 <Label x:Name="fMonsterName" Content="MONSTER NAME 1" VerticalAlignment="Top" Foreground="WhiteSmoke" HorizontalContentAlignment="Center" Padding="5,0" Height="19" FontSize="13" FontWeight="Bold" FontFamily="Roboto">
                     <Label.Effect>
                         <DropShadowEffect Opacity="0.5" Direction="360" ShadowDepth="2"/>
@@ -104,7 +104,7 @@
 
             </StackPanel>
 
-            <StackPanel x:Name="sMonsterBox" Orientation="Vertical" MinWidth="62" HorizontalAlignment="Left" Width="258">
+            <StackPanel x:Name="sMonsterBox" Orientation="Vertical" MinWidth="62" HorizontalAlignment="Left" Width="258" Visibility="Hidden">
                 <Label x:Name="sMonsterName" Content="MONSTER NAME 2" VerticalAlignment="Top" Foreground="WhiteSmoke" HorizontalContentAlignment="Center" Padding="5,0" Height="19" FontSize="13" FontWeight="Bold" FontFamily="Roboto">
                     <Label.Effect>
                         <DropShadowEffect Opacity="0.5" Direction="360" ShadowDepth="2"/>
@@ -121,7 +121,7 @@
                 </ProgressBar>
 
             </StackPanel>
-            <StackPanel x:Name="tMonsterBox" Orientation="Vertical" MinWidth="257" HorizontalAlignment="Left" Width="257" MinHeight="62">
+            <StackPanel x:Name="tMonsterBox" Orientation="Vertical" MinWidth="257" HorizontalAlignment="Left" Width="257" MinHeight="62" Visibility="Hidden">
                 <Label x:Name="tMonsterName" Content="MONSTER NAME 3" VerticalAlignment="Top" Foreground="WhiteSmoke" HorizontalContentAlignment="Center" Padding="5,0" Height="19" FontSize="13" FontWeight="Bold" FontFamily="Roboto">
                     <Label.Effect>
                         <DropShadowEffect Opacity="0.5" Direction="360" ShadowDepth="2"/>

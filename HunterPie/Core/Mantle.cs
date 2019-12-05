@@ -82,13 +82,15 @@ namespace HunterPie.Core {
         }
 
         public void SetCooldown(float cd, float staticCd) {
-            this.Cooldown = cd;
+            // Set the static cooldown first to trigger the event after everything is ready
             this.staticCooldown = staticCd;
+            this.Cooldown = cd;
         }
 
         public void SetTimer(float Timer, float staticTimer) {
-            this.Timer = Timer;
+            // Same for timer
             this.staticTimer = staticTimer;
+            this.Timer = Timer;
         }
 
         public void SetID(int newID) {
