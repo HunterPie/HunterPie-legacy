@@ -1,10 +1,10 @@
 ﻿namespace HunterPie.Core {
-    class Fertilizer {
+    public class Fertilizer {
         public string Name;
         public int ID;
         public int Amount;
     }
-    class HarvestBox {
+    public class HarvestBox {
 
         public Fertilizer[] Box = new Fertilizer[4];
         public int Counter = 0;

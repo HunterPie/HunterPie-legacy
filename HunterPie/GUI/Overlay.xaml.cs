@@ -14,6 +14,7 @@ namespace HunterPie.GUI {
     /// </summary>
     public partial class Overlay : Window {
 
+        Game ctx;
         double w_Height = Screen.PrimaryScreen.Bounds.Height;
         double w_Width = Screen.PrimaryScreen.Bounds.Width;
 
@@ -26,10 +27,44 @@ namespace HunterPie.GUI {
         [DllImport("user32.dll")]
         private static extern IntPtr GetForegroundWindow();
 
-        public Overlay() {
+        public Overlay(Game Context) {
+            ctx = Context;
             InitializeComponent();
             SetOverlaySize();
+            HookEvents();
             makeOverlayClickThrough();
+        }
+
+        private void HookEvents() {
+            HookMonsterEvents();
+        }
+
+        private void HookMonsterEvents() {
+            // First monster
+            ctx.FirstMonster.OnMonsterSpawn += this.OnFirstMonsterSpawn;
+            ctx.FirstMonster.OnMonsterDespawn += this.OnFirstMonsterDespawn;
+            ctx.FirstMonster.OnMonsterDeath += this.OnFirstMonsterDespawn;
+            ctx.FirstMonster.OnHPUpdate += this.UpdateFirstMonster;
+            // Second monster
+            ctx.SecondMonster.OnMonsterSpawn += this.OnSecondMonsterSpawn;
+            ctx.SecondMonster.OnMonsterDespawn += this.OnSecondMonsterDespawn;
+            ctx.SecondMonster.OnMonsterDeath += this.OnSecondMonsterDespawn;
+            ctx.SecondMonster.OnHPUpdate += this.UpdateSecondMonster;
+            // Third monster
+            ctx.ThirdMonster.OnMonsterSpawn += this.OnThirdMonsterSpawn;
+            ctx.ThirdMonster.OnMonsterDespawn += this.OnThirdMonsterDespawn;
+            ctx.ThirdMonster.OnMonsterDespawn += this.OnThirdMonsterDespawn;
+            ctx.SecondMonster.OnHPUpdate += this.UpdateThirdMonster;
+        }
+
+        private void HookMantleEvents() {
+            // Primary mantle
+            ctx.Player.PrimaryMantle.MantleTimer += this.UpdatePrimaryMantleTimer;
+            ctx.Player.PrimaryMantle.MantleCooldown += this.UpdatePrimaryMantleCooldown;
+
+            // Secondary mantle
+            ctx.Player.SecondaryMantle.MantleTimer += this.UpdateSecondaryMantleTimer;
+            ctx.Player.SecondaryMantle.MantleCooldown += this.UpdateSecondaryMantleCooldown;
         }
 
         private void makeOverlayClickThrough() {
@@ -241,32 +276,6 @@ namespace HunterPie.GUI {
             //Debugger.Warn($"Changed primary mantle position to X: {X} Y:{Y}");
         }
 
-        public void UpdatePrimaryMantleTimer(double percentage) {
-            if (percentage == PrimaryMantleTimer.Slice) {
-                return;
-            }
-            PrimaryMantleTimer.Slice = percentage;
-        }
-
-        public void UpdatePrimaryMantleText(string newText) {
-            if (newText == PrimaryMantleName.Content.ToString()) {
-                return;
-            }
-            PrimaryMantleName.Content = newText;
-        }
-
-        public void HidePrimaryMantle() {
-            if (PrimaryMantleContainer.IsVisible) {
-                PrimaryMantleContainer.Visibility = Visibility.Hidden;
-            }
-        }
-
-        public void ShowPrimaryMantle() {
-            if (!PrimaryMantleContainer.IsVisible) {
-                PrimaryMantleContainer.Visibility = Visibility.Visible;
-            }
-        }
-
         public void ChangeHarvestBoxPosition(double X, double Y) {
             double Left = HarvestBoxComponent.Margin.Left;
             double Top = HarvestBoxComponent.Margin.Top;
@@ -349,32 +358,6 @@ namespace HunterPie.GUI {
             double Bottom = SecondaryMantleContainer.Margin.Bottom;
             SecondaryMantleContainer.Margin = new Thickness(X, Y, Right, Bottom);
             //Debugger.Warn($"Changed primary mantle position to X: {X} Y:{Y}");
-        }
-
-        public void UpdateSecondaryMantleTimer(double percentage) {
-            if (percentage == SecondaryMantleTimer.Slice) {
-                return;
-            }
-            SecondaryMantleTimer.Slice = percentage;
-        }
-
-        public void UpdateSecondaryMantleText(string newText) {
-            if (newText == SecondaryMantleName.Content.ToString()) {
-                return;
-            }
-            SecondaryMantleName.Content = newText;
-        }
-
-        public void HideSecondaryMantle() {
-            if (SecondaryMantleContainer.IsVisible) {
-                SecondaryMantleContainer.Visibility = Visibility.Hidden;
-            }
-        }
-
-        public void ShowSecondaryMantle() {
-            if (!SecondaryMantleContainer.IsVisible) {
-                SecondaryMantleContainer.Visibility = Visibility.Visible;
-            }
         }
 
         public void ChangeSecondaryMantleColor(string newColor) {

@@ -4,7 +4,7 @@ using System.Threading;
 using HunterPie.Memory;
 
 namespace HunterPie.Core {
-    class Player {
+    public class Player {
 
         // Private variables
         private int[] _charPlaytimes = new int[3] { -1, -1, -1 };

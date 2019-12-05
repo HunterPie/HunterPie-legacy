@@ -107,7 +107,7 @@ namespace HunterPie {
             MonsterHunter.StartScanning();
             Scanner.StartScanning(); // Scans game memory
             if (!OfflineMode) StartRichPresenceThread();
-            GameOverlay = new Overlay();
+            GameOverlay = new Overlay(MonsterHunter);
             SetGameEventHandlers();
             GameOverlay.Show();
             ThreadScanner();
@@ -117,27 +117,6 @@ namespace HunterPie {
             // Scanner events
             Scanner.OnGameStart += OnGameStart;
             Scanner.OnGameClosed += OnGameClose;
-            // Primary mantle
-            MonsterHunter.Player.PrimaryMantle.MantleTimer += GameOverlay.UpdatePrimaryMantleTimer;
-            MonsterHunter.Player.PrimaryMantle.MantleCooldown += GameOverlay.UpdatePrimaryMantleCooldown;
-            // Secondary mantle
-            MonsterHunter.Player.SecondaryMantle.MantleTimer += GameOverlay.UpdateSecondaryMantleTimer;
-            MonsterHunter.Player.SecondaryMantle.MantleCooldown += GameOverlay.UpdateSecondaryMantleCooldown;
-            // First monster
-            MonsterHunter.FirstMonster.OnMonsterSpawn += GameOverlay.OnFirstMonsterSpawn;
-            MonsterHunter.FirstMonster.OnMonsterDespawn += GameOverlay.OnFirstMonsterDespawn;
-            MonsterHunter.FirstMonster.OnMonsterDeath += GameOverlay.OnFirstMonsterDespawn;
-            MonsterHunter.FirstMonster.OnHPUpdate += GameOverlay.UpdateFirstMonster;
-            // Second monster
-            MonsterHunter.SecondMonster.OnMonsterSpawn += GameOverlay.OnSecondMonsterSpawn;
-            MonsterHunter.SecondMonster.OnMonsterDespawn += GameOverlay.OnSecondMonsterDespawn;
-            MonsterHunter.SecondMonster.OnMonsterDeath += GameOverlay.OnSecondMonsterDespawn;
-            MonsterHunter.SecondMonster.OnHPUpdate += GameOverlay.UpdateSecondMonster;
-            // Third monster
-            MonsterHunter.ThirdMonster.OnMonsterSpawn += GameOverlay.OnThirdMonsterSpawn;
-            MonsterHunter.ThirdMonster.OnMonsterDespawn += GameOverlay.OnThirdMonsterDespawn;
-            MonsterHunter.ThirdMonster.OnMonsterDeath += GameOverlay.OnThirdMonsterDespawn;
-            MonsterHunter.ThirdMonster.OnHPUpdate += GameOverlay.UpdateThirdMonster;
             // Session
             MonsterHunter.Player.OnZoneChange += OnZoneChange;
             MonsterHunter.Player.OnCharacterLogin += OnLogin;

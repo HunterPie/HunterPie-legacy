@@ -2,7 +2,7 @@
 using System.Threading;
 
 namespace HunterPie.Core {
-    class Game {
+    public class Game {
         // Game classes
         public Player Player = new Player();
         public Monster FirstMonster = new Monster(1);
