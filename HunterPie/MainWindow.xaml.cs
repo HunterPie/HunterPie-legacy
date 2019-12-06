@@ -106,10 +106,10 @@ namespace HunterPie {
 
         private void StartEverything() {
             MonsterHunter.StartScanning();
+            SetGameEventHandlers();
             Scanner.StartScanning(); // Scans game memory
             if (!OfflineMode) StartRichPresenceThread();
             GameOverlay = new Overlay(MonsterHunter);
-            SetGameEventHandlers();
             GameOverlay.Show();
             ThreadScanner();
         }
@@ -140,6 +140,7 @@ namespace HunterPie {
         }
 
         public void OnGameStart(object source, EventArgs e) {
+            Debugger.Log("hi");
             if (Address.LoadMemoryMap(Scanner.GameVersion) || Scanner.GameVersion == Address.GAME_VERSION) {
                 Debugger.Warn($"Loaded 'MonsterHunterWorld.{Scanner.GameVersion}.map'");
             } else {
@@ -230,32 +231,6 @@ namespace HunterPie {
 
         private void MainLoop() {
             while (true) {
-                //UserSettings.LoadPlayerConfig();
-                // Set components
-                /*
-                GameOverlay.Dispatch(new Action(() => {
-                    // Monsters component
-                    double MonsterComponentPosX = UserSettings.PlayerConfig.Overlay.MonstersComponent.Position[0];
-                    double MonsterComponentPosY = UserSettings.PlayerConfig.Overlay.MonstersComponent.Position[1];
-                    GameOverlay.ChangeMonsterComponentPosition(MonsterComponentPosX, MonsterComponentPosY);
-
-                    // Primary mantle component
-                    double PrimaryMantlePosX = UserSettings.PlayerConfig.Overlay.PrimaryMantle.Position[0];
-                    double PrimaryMantlePosY = UserSettings.PlayerConfig.Overlay.PrimaryMantle.Position[1];
-                    GameOverlay.ChangePrimaryMantlePosition(PrimaryMantlePosX, PrimaryMantlePosY);
-                    GameOverlay.ChangePrimaryMantleColor(UserSettings.PlayerConfig.Overlay.PrimaryMantle.Color);
-
-                    // Secondary mantle component
-                    double SecondaryMantlePosX = UserSettings.PlayerConfig.Overlay.SecondaryMantle.Position[0];
-                    double SecondaryMantlePosY = UserSettings.PlayerConfig.Overlay.SecondaryMantle.Position[1];
-                    GameOverlay.ChangeSecondaryMantlePosition(SecondaryMantlePosX, SecondaryMantlePosY);
-                    GameOverlay.ChangeSecondaryMantleColor(UserSettings.PlayerConfig.Overlay.SecondaryMantle.Color);
-
-                    // Harvest Box
-                    double HarvestBoxPosX = UserSettings.PlayerConfig.Overlay.HarvestBoxComponent.Position[0];
-                    double HarvestBoxPosY = UserSettings.PlayerConfig.Overlay.HarvestBoxComponent.Position[1];
-                    GameOverlay.ChangeHarvestBoxPosition(HarvestBoxPosX, HarvestBoxPosY);
-                }));*/
 
                 if (Scanner.GameIsRunning) {
 

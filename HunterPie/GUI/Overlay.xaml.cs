@@ -39,11 +39,6 @@ namespace HunterPie.GUI {
             HookMonsterEvents();
             HookMantleEvents();
             HookHarvestBoxEvents();
-            //HookSettingsEvent();
-        }
-
-        private void HookSettingsEvent() {
-            UserSettings.OnSettingsUpdate += GlobalSettingsEventHandler;
         }
 
         public void GlobalSettingsEventHandler(object source, EventArgs e) {
@@ -329,17 +324,22 @@ namespace HunterPie.GUI {
             double Y = UserSettings.PlayerConfig.Overlay.PrimaryMantle.Position[1];
             double Left = PrimaryMantleContainer.Margin.Left;
             double Top = PrimaryMantleContainer.Margin.Top;
-            if (X == Left && Y == Top) {
-                return;
-            }
             double Right = PrimaryMantleContainer.Margin.Right;
             double Bottom = PrimaryMantleContainer.Margin.Bottom;
             Dispatch(() => {
-                PrimaryMantleContainer.Margin = new Thickness(X, Y, Right, Bottom);
-                PrimaryMantleContainer.Visibility = UserSettings.PlayerConfig.Overlay.PrimaryMantle.Enabled ? Visibility.Visible : Visibility.Hidden;
+                if (X != Left || Y != Top) {
+                    PrimaryMantleContainer.Margin = new Thickness(X, Y, Right, Bottom);
+                }
+                if (PrimaryMantleContainer.IsVisible && !UserSettings.PlayerConfig.Overlay.PrimaryMantle.Enabled) {
+                    PrimaryMantleContainer.Visibility = Visibility.Hidden;
+                } else if (UserSettings.PlayerConfig.Overlay.PrimaryMantle.Enabled) {
+                    if (ctx.Player.PrimaryMantle.Timer > 0 || ctx.Player.PrimaryMantle.Cooldown > 0) {
+                        PrimaryMantleContainer.Visibility = Visibility.Visible;
+                    } else {
+                        PrimaryMantleContainer.Visibility = Visibility.Hidden;
+                    }
+                }
             });
-            
-            //Debugger.Warn($"Changed primary mantle position to X: {X} Y:{Y}");
         }
 
         public void ChangeHarvestBoxPosition(object source, EventArgs e) {
@@ -347,17 +347,22 @@ namespace HunterPie.GUI {
             double Y = UserSettings.PlayerConfig.Overlay.HarvestBoxComponent.Position[1];
             double Left = HarvestBoxComponent.Margin.Left;
             double Top = HarvestBoxComponent.Margin.Top;
-            if (X == Left && Y == Top) {
-                return;
-            }
             double Right = HarvestBoxComponent.Margin.Right;
             double Bottom = HarvestBoxComponent.Margin.Bottom;
             Dispatch(() => {
-                HarvestBoxComponent.Margin = new Thickness(X, Y, Right, Bottom);
-                HarvestBoxComponent.Visibility = UserSettings.PlayerConfig.Overlay.Enabled ? Visibility.Visible : Visibility.Hidden;
+                if (X != Left || Y != Top) {
+                    HarvestBoxComponent.Margin = new Thickness(X, Y, Right, Bottom);
+                }
+                if (HarvestBoxComponent.IsVisible && !UserSettings.PlayerConfig.Overlay.HarvestBoxComponent.Enabled) {
+                    HarvestBoxComponent.Visibility = Visibility.Hidden;
+                } else if (UserSettings.PlayerConfig.Overlay.HarvestBoxComponent.Enabled) {
+                    if (ctx.Player.inHarvestZone) {
+                        HarvestBoxComponent.Visibility = Visibility.Visible;
+                    } else {
+                        HarvestBoxComponent.Visibility = Visibility.Hidden;
+                    }
+                }
             });
-            
-            //Debugger.Warn($"Changed harvest box position to X: {X} Y:{Y}");
         }
 
         public void ShowHarvestBoxContainer() {
@@ -437,16 +442,23 @@ namespace HunterPie.GUI {
             double Y = UserSettings.PlayerConfig.Overlay.SecondaryMantle.Position[1];
             double Left = SecondaryMantleContainer.Margin.Left;
             double Top = SecondaryMantleContainer.Margin.Top;
-            if (X == Left && Y == Top) {
-                return;
-            }
             double Right = SecondaryMantleContainer.Margin.Right;
             double Bottom = SecondaryMantleContainer.Margin.Bottom;
             Dispatch(() => {
-                SecondaryMantleContainer.Margin = new Thickness(X, Y, Right, Bottom);
-                SecondaryMantleContainer.Visibility = UserSettings.PlayerConfig.Overlay.SecondaryMantle.Enabled ? Visibility.Visible : Visibility.Hidden;
+                if (X != Left || Y != Top) {
+                    SecondaryMantleContainer.Margin = new Thickness(X, Y, Right, Bottom);
+                }
+                if (SecondaryMantleContainer.IsVisible && !UserSettings.PlayerConfig.Overlay.SecondaryMantle.Enabled) {
+                    SecondaryMantleContainer.Visibility = Visibility.Hidden;
+                } else if (UserSettings.PlayerConfig.Overlay.SecondaryMantle.Enabled) {
+                    if (ctx.Player.SecondaryMantle.Timer > 0 || ctx.Player.SecondaryMantle.Cooldown > 0) {
+                        SecondaryMantleContainer.Visibility = Visibility.Visible;
+                    } else {
+                        SecondaryMantleContainer.Visibility = Visibility.Hidden;
+                    }
+                }
+
             });
-            Debugger.Warn($"Changed primary mantle position to X: {X} Y:{Y}");
         }
 
         public void ChangeSecondaryMantleColor(object source, EventArgs e) {
