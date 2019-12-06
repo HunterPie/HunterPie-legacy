@@ -3,12 +3,15 @@ using System;
 using System.IO;
 
 namespace HunterPie.Core {
-    class UserSettings {
+    public class UserSettings {
 
         static private string ConfigFileName = @"config.json";
         public static Config.Rootobject PlayerConfig;
         private static string ConfigSerialized;
-        
+
+        // Config events
+        public delegate void SettingsEvents(object source, SettingsArgs args);
+
         // Config template
         public class Config {
 

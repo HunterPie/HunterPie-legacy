@@ -3,23 +3,6 @@ using System.Threading;
 using HunterPie.Memory;
 
 namespace HunterPie.Core {
-    public class MonsterEventArgs : EventArgs {
-        public string Name;
-        public string ID;
-        public float CurrentHP;
-        public float TotalHP;
-        public bool isTarget;
-
-        public MonsterEventArgs(Monster m) {
-            Name = m.Name;
-            ID = m.ID;
-            CurrentHP = m.CurrentHP;
-            TotalHP = m.TotalHP;
-            isTarget = m.isTarget;
-        }
-
-    }
-
     public class Monster {
         // Private vars
         private string _name;

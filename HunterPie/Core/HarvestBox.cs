@@ -1,28 +1,4 @@
 ﻿namespace HunterPie.Core {
-
-    public class FertilizerEventArgs {
-        public int ID;
-        public string Name;
-        public int Amount;
-
-        public FertilizerEventArgs(Fertilizer m) {
-            this.ID = m.ID;
-            this.Name = m.Name;
-            this.Amount = m.Amount;
-        }
-    }
-
-    public class HarvestBoxEventArgs {
-        public int Counter;
-        public int Max;
-
-        public HarvestBoxEventArgs(HarvestBox m) {
-            this.Counter = m.Counter;
-            this.Max = m.Max;
-        }
-
-    }
-
     public class Fertilizer {
         private int _id;
         private int _amount;
@@ -47,6 +23,7 @@
             }
         }
 
+        // Fertilizer Events
         public delegate void FertilizerEvents(object source, FertilizerEventArgs args);
         public event FertilizerEvents OnFertilizerChange;
         public event FertilizerEvents OnAmountUpdate;
@@ -82,6 +59,7 @@
             PopulateBox();
         }
 
+        // Harvest Box Events
         public delegate void HarvestBoxEvents(object source, HarvestBoxEventArgs args);
         public event HarvestBoxEvents OnCounterChange;
         

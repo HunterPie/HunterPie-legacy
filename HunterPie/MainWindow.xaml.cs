@@ -8,6 +8,7 @@ using HunterPie.GUI;
 using DiscordRPC;
 using System.Diagnostics;
 using System.IO;
+using System.Reflection;
 
 namespace HunterPie {
     /// <summary>

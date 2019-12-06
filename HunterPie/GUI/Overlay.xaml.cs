@@ -342,7 +342,6 @@ namespace HunterPie.GUI {
 
         public void UpdateFirstFertilizer(object source, FertilizerEventArgs e) {
             Dispatch(() => {
-                Debugger.Log(e.Name);
                 fert1Name.Content = e.Name;
                 fert1Counter.Content = $"x{e.Amount}";
             });
