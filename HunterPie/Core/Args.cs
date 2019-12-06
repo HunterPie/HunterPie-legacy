@@ -40,4 +40,8 @@ namespace HunterPie.Core {
         }
 
     }
+
+    public class SettingsArgs : EventArgs {
+
+    }
 }

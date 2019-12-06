@@ -5,12 +5,20 @@ using System.IO;
 namespace HunterPie.Core {
     public class UserSettings {
 
+        // Config file watcher
+        private static FileSystemWatcher ConfigWatcher;
+
         static private string ConfigFileName = @"config.json";
         public static Config.Rootobject PlayerConfig;
         private static string ConfigSerialized;
 
         // Config events
-        public delegate void SettingsEvents(object source, SettingsArgs args);
+        public delegate void SettingsEvents(object source, EventArgs args);
+        public static event SettingsEvents OnSettingsUpdate;
+
+        protected static void _onSettingsUpdate() {
+            OnSettingsUpdate?.Invoke(typeof(UserSettings), EventArgs.Empty);
+        }
 
         // Config template
         public class Config {
@@ -123,6 +131,28 @@ namespace HunterPie.Core {
             // This is called only once when HunterPie starts
             LoadPlayerConfig();
             SaveNewConfig();
+            CreateFileWatcher();
+        }
+
+        private static void CreateFileWatcher() {
+            // Prevents it from hooking the event multiple times
+            if (ConfigWatcher != null) return;
+            ConfigWatcher = new FileSystemWatcher();
+            ConfigWatcher.Path = Environment.CurrentDirectory;
+            ConfigWatcher.Filter = ConfigFileName;
+            ConfigWatcher.Changed += OnConfigChanged;
+            ConfigWatcher.EnableRaisingEvents = true;
+        }
+
+        private static void OnConfigChanged(object source, FileSystemEventArgs e) {
+            // Use try/catch because FileSystemWatcher sends the same event twice
+            // and one of them is when the file is still open 
+            try {
+                using (var fw = File.OpenWrite(e.FullPath)) {
+                    fw.Close();
+                }
+                LoadPlayerConfig();
+            } catch {}
         }
 
         public static string GetSerializedDefaultConfig() {
@@ -134,7 +164,7 @@ namespace HunterPie.Core {
             File.WriteAllText(ConfigFileName, d_Config);
         }
 
-        private static void LoadPlayerSerializedConfig() {
+        private static string LoadPlayerSerializedConfig() {
             string configContent;
             try {
                 configContent = File.ReadAllText(ConfigFileName);
@@ -146,16 +176,20 @@ namespace HunterPie.Core {
             }
             if (ConfigSerialized != configContent) {
                 ConfigSerialized = configContent;
-                Debugger.Warn("User config loaded!");
+                return ConfigSerialized;
             }
+            return null;
         }
 
         public static void LoadPlayerConfig() {
             LoadPlayerSerializedConfig();
             try {
+                if (ConfigSerialized == null) return;
                 PlayerConfig = JsonConvert.DeserializeObject<Config.Rootobject>(ConfigSerialized);
+                _onSettingsUpdate();
+                Debugger.Warn("Loaded user config!");
             } catch(Exception err) {
-                Debugger.Error(err.Message);
+                Debugger.Error("peepee");
             }
         }
 

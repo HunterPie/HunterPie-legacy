@@ -35,7 +35,7 @@ namespace HunterPie {
             OpenDebugger();
             // Initialize everything under this line
             UserSettings.InitializePlayerConfig();
-            CheckIfUpdateEnableAndStart();
+            //CheckIfUpdateEnableAndStart();
             // Updates version_text
             this.version_text.Content = $"Version: {HUNTERPIE_VERSION}";
             Debugger.Warn("Initializing HunterPie!");
@@ -121,6 +121,14 @@ namespace HunterPie {
             // Session
             MonsterHunter.Player.OnZoneChange += OnZoneChange;
             MonsterHunter.Player.OnCharacterLogin += OnLogin;
+            // Settings
+            UserSettings.OnSettingsUpdate += SendToOverlay;
+        }
+
+        public void SendToOverlay(object source, EventArgs e) {
+            GameOverlay.Dispatch(() => {
+                GameOverlay.GlobalSettingsEventHandler(source, e);
+            });
         }
 
         public void OnZoneChange(object source, EventArgs e) {
@@ -221,10 +229,10 @@ namespace HunterPie {
         }
 
         private void MainLoop() {
-            UserSettings.InitializePlayerConfig();
             while (true) {
-                UserSettings.LoadPlayerConfig();
+                //UserSettings.LoadPlayerConfig();
                 // Set components
+                /*
                 GameOverlay.Dispatch(new Action(() => {
                     // Monsters component
                     double MonsterComponentPosX = UserSettings.PlayerConfig.Overlay.MonstersComponent.Position[0];
@@ -247,7 +255,7 @@ namespace HunterPie {
                     double HarvestBoxPosX = UserSettings.PlayerConfig.Overlay.HarvestBoxComponent.Position[0];
                     double HarvestBoxPosY = UserSettings.PlayerConfig.Overlay.HarvestBoxComponent.Position[1];
                     GameOverlay.ChangeHarvestBoxPosition(HarvestBoxPosX, HarvestBoxPosY);
-                }));
+                }));*/
 
                 if (Scanner.GameIsRunning) {
 
