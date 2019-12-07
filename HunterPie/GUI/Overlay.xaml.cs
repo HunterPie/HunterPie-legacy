@@ -42,6 +42,7 @@ namespace HunterPie.GUI {
         }
 
         public void GlobalSettingsEventHandler(object source, EventArgs e) {
+            this.ToggleOverlay(source, e);
             this.ChangeHarvestBoxPosition(source, e);
             this.ChangeMonsterComponentPosition(source, e);
             this.ChangePrimaryMantlePosition(source, e);
@@ -116,18 +117,6 @@ namespace HunterPie.GUI {
         public void Dispatch(Action function) {
             this.Dispatcher.BeginInvoke(System.Windows.Threading.DispatcherPriority.Background, function);
         } 
-
-        public void HideOverlay() {
-            if (this.IsVisible) {
-                this.Hide();
-            }
-        }
-
-        public void ShowOverlay() {
-            if (!this.IsVisible) {
-                this.Show();
-            }
-        }
 
         private void SetOverlaySize() {
             OverlayWnd.Width = w_Width * 2;
@@ -316,6 +305,14 @@ namespace HunterPie.GUI {
                 tMonsterHpBar.Maximum = e.TotalHP;
                 tMonsterHpBar.Value = e.CurrentHP;
                 tMonsterHpText.Content = $"{e.CurrentHP}/{e.TotalHP} ({(e.CurrentHP / e.TotalHP) * 100:F2}%)";
+            });
+        }
+
+        /* Positions and enable/disable components */
+
+        public void ToggleOverlay(object source, EventArgs e) {
+            Dispatch(() => {
+                this.Visibility = UserSettings.PlayerConfig.Overlay.Enabled ? Visibility.Visible : Visibility.Hidden;
             });
         }
 

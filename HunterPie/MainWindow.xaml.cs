@@ -111,7 +111,6 @@ namespace HunterPie {
             if (!OfflineMode) StartRichPresenceThread();
             GameOverlay = new Overlay(MonsterHunter);
             GameOverlay.Show();
-            ThreadScanner();
         }
 
         private void SetGameEventHandlers() {
@@ -155,6 +154,7 @@ namespace HunterPie {
         }
 
         public void OnGameClose(object source, EventArgs e) {
+            Discord.HidePresence();
             if (UserSettings.PlayerConfig.HunterPie.Options.CloseWhenGameCloses) {
                 this.Close();
                 Environment.Exit(0);
@@ -170,13 +170,6 @@ namespace HunterPie {
             RichPresenceThread = new Thread(RichPresenceThreadRef);
             RichPresenceThread.Name = "Thread_RichPresence";
             RichPresenceThread.Start();
-        }
-
-        private void ThreadScanner() {
-            ThreadScannerRef = new ThreadStart(MainLoop);
-            MainThreadScanner = new Thread(ThreadScannerRef);
-            MainThreadScanner.Name = "Scanner_Main";
-            MainThreadScanner.Start();
         }
 
         private void HandlePresence() {
@@ -226,32 +219,6 @@ namespace HunterPie {
                 Debugger.Error(err.ToString());
                 Thread.Sleep(500);
                 HandlePresence();
-            }
-        }
-
-        private void MainLoop() {
-            while (true) {
-
-                if (Scanner.GameIsRunning) {
-
-                    // Hides/show overlay when user disable/enable it
-                    if (!UserSettings.PlayerConfig.Overlay.Enabled) {
-                        GameOverlay.Dispatch(new Action(() => {
-                            GameOverlay.HideOverlay();
-                        }));
-                    } else if (UserSettings.PlayerConfig.Overlay.Enabled) {
-                        GameOverlay.Dispatch(new Action(() => {
-                            GameOverlay.ShowOverlay();
-                        }));
-                    }
-
-                } else {
-                    GameOverlay.Dispatch(new Action(() => {
-                        GameOverlay.Hide();
-                    }));
-                    Discord.HidePresence();
-                }
-                Thread.Sleep(200);
             }
         }
 
