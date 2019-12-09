@@ -89,7 +89,7 @@ namespace HunterPie.GUI {
             ctx.ThirdMonster.OnMonsterSpawn += this.OnThirdMonsterSpawn;
             ctx.ThirdMonster.OnMonsterDespawn += this.OnThirdMonsterDespawn;
             ctx.ThirdMonster.OnMonsterDespawn += this.OnThirdMonsterDespawn;
-            ctx.SecondMonster.OnHPUpdate += this.UpdateThirdMonster;
+            ctx.ThirdMonster.OnHPUpdate += this.UpdateThirdMonster;
         }
 
         private void HookMantleEvents() {
@@ -126,18 +126,22 @@ namespace HunterPie.GUI {
         }
 
         public void ChangeMonsterComponentPosition(object source, EventArgs e) {
+            bool ContainerEnabled = UserSettings.PlayerConfig.Overlay.MonstersComponent.Enabled;
             double X = UserSettings.PlayerConfig.Overlay.MonstersComponent.Position[0];
             double Y = UserSettings.PlayerConfig.Overlay.MonstersComponent.Position[1];
             double Left = MonstersContainer.Margin.Left;
             double Top = MonstersContainer.Margin.Top;
-            if (X == Left && Y == Top) {
-                return;
-            }
             double Right = MonstersContainer.Margin.Right;
             double Bottom = MonstersContainer.Margin.Bottom;
             Dispatch(() => {
-                MonstersContainer.Margin = new Thickness(X, Y, Right, Bottom);
-                MonstersContainer.Visibility = UserSettings.PlayerConfig.Overlay.Enabled ? Visibility.Visible : Visibility.Hidden;
+                if (X != Left || Y != Top) {
+                    MonstersContainer.Margin = new Thickness(X, Y, Right, Bottom);
+                }
+                if (ContainerEnabled) {
+                    MonstersContainer.Visibility = Visibility.Visible;
+                } else {
+                    MonstersContainer.Visibility = Visibility.Hidden;
+                }
             });
             
             //Debugger.Warn($"Changed Monster component position to X:{X} Y:{Y}");

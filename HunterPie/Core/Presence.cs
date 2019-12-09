@@ -8,7 +8,20 @@ namespace HunterPie.Core {
         private bool isVisible = true;
         private RichPresence Instance = new RichPresence();
         public DiscordRpcClient Client;
-        
+        public Game ctx;
+
+        public Presence(Game context) {
+            ctx = context;
+        }
+
+        private void HookEvents() {
+            ctx.Player.OnZoneChange += HandleZoneChange;
+        }
+ 
+        public void HandleZoneChange(object source, EventArgs e) {
+            // Only update RPC if player isn't in loading screen
+            
+        }
 
         public void InitializePresence() {
             Client = new DiscordRpcClient(APP_ID);

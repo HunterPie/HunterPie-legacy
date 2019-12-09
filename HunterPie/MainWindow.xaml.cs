@@ -8,7 +8,6 @@ using HunterPie.GUI;
 using DiscordRPC;
 using System.Diagnostics;
 using System.IO;
-using System.Reflection;
 
 namespace HunterPie {
     /// <summary>
@@ -19,23 +18,22 @@ namespace HunterPie {
         bool OfflineMode = false;
 
         Game MonsterHunter = new Game();
-        Presence Discord = new Presence();
+        Presence Discord;
         Overlay GameOverlay;
-
-        ThreadStart ThreadScannerRef;
-        Thread MainThreadScanner;
 
         ThreadStart RichPresenceThreadRef;
         Thread RichPresenceThread;
 
-        const string HUNTERPIE_VERSION = "1.0.2.0";
+        const string HUNTERPIE_VERSION = "1.0.2.1";
 
         public MainWindow() {
             InitializeComponent();
             OpenDebugger();
+            // Initialize rich presence
+            Discord = new Presence(MonsterHunter);
             // Initialize everything under this line
             UserSettings.InitializePlayerConfig();
-            //CheckIfUpdateEnableAndStart();
+            CheckIfUpdateEnableAndStart();
             // Updates version_text
             this.version_text.Content = $"Version: {HUNTERPIE_VERSION}";
             Debugger.Warn("Initializing HunterPie!");
@@ -117,7 +115,7 @@ namespace HunterPie {
             // Scanner events
             Scanner.OnGameStart += OnGameStart;
             Scanner.OnGameClosed += OnGameClose;
-            // Session
+            // Game events
             MonsterHunter.Player.OnZoneChange += OnZoneChange;
             MonsterHunter.Player.OnCharacterLogin += OnLogin;
             // Settings
@@ -131,7 +129,7 @@ namespace HunterPie {
         }
 
         public void OnZoneChange(object source, EventArgs e) {
-            Debugger.Log($"ZoneID: {MonsterHunter.Player.ZoneID}");
+            //Debugger.Log($"ZoneID: {MonsterHunter.Player.ZoneID}");
         }
 
         public void OnLogin(object source, EventArgs e) {
@@ -139,16 +137,10 @@ namespace HunterPie {
         }
 
         public void OnGameStart(object source, EventArgs e) {
-            Debugger.Log("hi");
             if (Address.LoadMemoryMap(Scanner.GameVersion) || Scanner.GameVersion == Address.GAME_VERSION) {
                 Debugger.Warn($"Loaded 'MonsterHunterWorld.{Scanner.GameVersion}.map'");
             } else {
                 Debugger.Error($"Detected game version ({Scanner.GameVersion}) not mapped yet!");
-                try {
-                    GameOverlay.Dispatch(new Action(() => {
-                        GameOverlay.Close();
-                    }));
-                } catch {}
                 return;
             }
         }
@@ -159,10 +151,6 @@ namespace HunterPie {
                 this.Close();
                 Environment.Exit(0);
             }
-        }
-
-        private void StopMainThread() {
-            MainThreadScanner.Abort();
         }
 
         private void StartRichPresenceThread() {
@@ -230,7 +218,6 @@ namespace HunterPie {
                     // Stop Threads
                     Discord.DisconnectPresence();
                     MonsterHunter.StopScanning();
-                    StopMainThread();
                     Scanner.StopScanning();
                     GameOverlay.Close();
                 } catch {}
