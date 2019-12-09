@@ -127,6 +127,10 @@ namespace HunterPie.Core {
             }
         };
 
+        public static void TriggerSettingsEvent() {
+            _onSettingsUpdate();
+        }
+
         public static void InitializePlayerConfig() {
             // This is called only once when HunterPie starts
             LoadPlayerConfig();
