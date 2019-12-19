@@ -21,12 +21,31 @@ namespace HunterPie.Core {
                 }
             }
         }
-
+        private DateTime _clock = DateTime.UtcNow;
+        private DateTime Clock {
+            get => _clock;
+            set {
+                if (value != _clock) {
+                    _clock = value;
+                    _onClockChange();
+                }
+            }
+        }
         public DateTime Time { get; private set; }
 
         // Threading
         ThreadStart ScanGameThreadingRef;
         Thread ScanGameThreading;
+
+        // Clock event
+        
+        public delegate void ClockEvent(object source, EventArgs args);
+        /* This Event is dispatched every 10 seconds to update the rich presence */
+        public event ClockEvent OnClockChange;
+
+        protected virtual void _onClockChange() {
+            OnClockChange?.Invoke(this, EventArgs.Empty);
+        }
 
         public void StartScanning() {
             StartGameScanner();
@@ -62,6 +81,9 @@ namespace HunterPie.Core {
 
         private void GameScanner() {
             while (Memory.Scanner.GameIsRunning) {
+                if (DateTime.UtcNow - Clock >= new TimeSpan(0, 0, 10)) {
+                    Clock = DateTime.UtcNow;
+                }
                 PredictTarget();
                 Thread.Sleep(1000);
             }

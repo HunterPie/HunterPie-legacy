@@ -12,15 +12,38 @@ namespace HunterPie.Core {
 
         public Presence(Game context) {
             ctx = context;
+            HookEvents();
         }
 
         private void HookEvents() {
-            ctx.Player.OnZoneChange += HandleZoneChange;
+            ctx.Player.OnZoneChange += HandlePresence;
         }
  
-        public void HandleZoneChange(object source, EventArgs e) {
+        public void HandlePresence(object source, EventArgs e) {
             // Only update RPC if player isn't in loading screen
-            
+            switch(ctx.Player.ZoneID) {
+                case 0:
+                    Instance.Details = ctx.Player.Slot == 999 ? "In main menu" : "In loading screen";
+                    Instance.State = null;
+                    Instance.Assets = GenerateAssets("main-menu", null, null, null);
+                    Instance.Party = null;
+                    break;
+                default:
+                    if (ctx.Player.Slot == 999) {
+                        Instance.Details = "In main menu";
+                        Instance.State = null;
+                        Instance.Assets = GenerateAssets("main-menu", null, null, null);
+                        Instance.Party = null;
+                        break;
+                    }
+                    Instance.Details = ctx.HuntedMonster == null ? ctx.Player.inPeaceZone ? "Idle" : "Exploring" : $"Hunting {ctx.HuntedMonster.Name} ({(int)(ctx.HuntedMonster.HPPercentage * 100)}%)";
+                    Instance.State = ctx.Player.PartySize > 1 ? "In Party" : "Solo";
+                    Instance.Assets = GenerateAssets(ctx.Player.ZoneName == null ? "main-menu" : ctx.Player.ZoneName.Replace(' ', '-').Replace("'", string.Empty).ToLower(), ctx.Player.ZoneName == "Main Menu" ? null : ctx.Player.ZoneName, ctx.Player.WeaponName == null ? "hunter-rank" : ctx.Player.WeaponName.Replace(' ', '-').ToLower(), $"{ctx.Player.Name} | Lvl: {ctx.Player.Level}");
+                    // TODO: Generate party hash
+                    Instance.Party = MakeParty(ctx.Player.PartySize, ctx.Player.PartyMax, "test");
+                    break;
+            }
+            Client.SetPresence(Instance);
         }
 
         public void InitializePresence() {
