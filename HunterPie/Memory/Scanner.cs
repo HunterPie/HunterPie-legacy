@@ -33,24 +33,22 @@ namespace HunterPie.Memory {
         [DllImport("kernel32.dll")]
         public static extern bool ReadProcessMemory(int hProcess, IntPtr lpBaseAddress, byte[] lpBuffer, int dwSize, ref int lpNumberOfBytesRead);
 
-        // Events
-        // On Game start
-        public delegate void GameStartHandler(object source, EventArgs args);
-        public static event GameStartHandler OnGameStart;
+        /* Events */
+        public delegate void ProcessHandler(object source, EventArgs args);
+        public static event ProcessHandler OnGameStart;
+        public static ProcessHandler OnGameClosed;
 
+        // On Game start
         protected static void _onGameStart() {
             OnGameStart?.Invoke(typeof(Scanner), EventArgs.Empty);
         }
 
         // On game close
-        public delegate void GameStopHandler(object source, EventArgs args);
-        public static GameStopHandler OnGameClosed;
-
         protected static void _onGameClosed() {
             OnGameClosed?.Invoke(typeof(Scanner), EventArgs.Empty);
         }
         
-
+        /* Core code */
         public static void StartScanning() {
             // Start scanner thread
             ScanGameMemoryRef = new ThreadStart(GetProcess);
@@ -94,6 +92,7 @@ namespace HunterPie.Memory {
             }
         }
 
+        /* Helpers */
         public static int READ_INT(Int64 Address) {
             int bytesRead = 0;
             byte[] Buffer = new byte[INT];
