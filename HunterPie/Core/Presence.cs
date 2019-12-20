@@ -16,10 +16,24 @@ namespace HunterPie.Core {
         }
 
         private void HookEvents() {
+            UserSettings.OnSettingsUpdate += HandleSettings;
+            ctx.OnClockChange += HandlePresence;
             ctx.Player.OnZoneChange += HandlePresence;
         }
  
+        public void HandleSettings(object source, EventArgs e) {
+            if (UserSettings.PlayerConfig.RichPresence.Enabled && !isVisible) {
+                isVisible = true;
+            } else if (!UserSettings.PlayerConfig.RichPresence.Enabled && isVisible) {
+                Client.ClearPresence();
+                isVisible = false;
+            }
+        }
+
         public void HandlePresence(object source, EventArgs e) {
+            // Do nothing if RPC is disabled
+            if (!isVisible) return;
+
             // Only update RPC if player isn't in loading screen
             switch(ctx.Player.ZoneID) {
                 case 0:
@@ -50,31 +64,6 @@ namespace HunterPie.Core {
             Client = new DiscordRpcClient(APP_ID);
             Client.Initialize();
             Debugger.Discord("Connecting to Discord...");
-        }
-
-        public void UpdatePresenceInfo(string details, string state, Assets PresenceAssets, Party PresenceParty, Timestamps PresenceTimestamps) {
-            if (isVisible) {
-                Instance.Details = details;
-                Instance.State = state;
-                Instance.Assets = PresenceAssets;
-                Instance.Party = PresenceParty;
-                Instance.Timestamps = PresenceTimestamps;
-                UpdatePresence();
-            }
-        }
-
-        private void UpdatePresence() {
-            Client.SetPresence(Instance);
-        }
-
-        public void ShowPresence() {
-            isVisible = true;
-        }
-
-        public void HidePresence() {
-            if (isVisible) {
-                Client.ClearPresence();
-            }
         }
 
         public void DisconnectPresence() {
