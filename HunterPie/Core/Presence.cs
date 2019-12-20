@@ -1,26 +1,39 @@
 ﻿using DiscordRPC;
 using HunterPie;
+using HunterPie.Memory;
 using System;
 
 namespace HunterPie.Core {
     class Presence {
         private string APP_ID = "567152028070051859";
+        private bool isOffline = false;
         private bool isVisible = true;
         private RichPresence Instance = new RichPresence();
         public DiscordRpcClient Client;
         public Game ctx;
+
+        /* Constructor */
 
         public Presence(Game context) {
             ctx = context;
             HookEvents();
         }
 
+        /* Events handler */
+
         private void HookEvents() {
             UserSettings.OnSettingsUpdate += HandleSettings;
+            // Process
+            Scanner.OnGameStart += StartRPC;
+            // Game context
             ctx.OnClockChange += HandlePresence;
             ctx.Player.OnZoneChange += HandlePresence;
         }
  
+        public void StartRPC(object source, EventArgs e) {
+            Debugger.Log("Starting new RPC connection");
+        }
+
         public void HandleSettings(object source, EventArgs e) {
             if (UserSettings.PlayerConfig.RichPresence.Enabled && !isVisible) {
                 isVisible = true;
@@ -59,6 +72,8 @@ namespace HunterPie.Core {
             }
             Client.SetPresence(Instance);
         }
+
+        /* Helpers */
 
         public void InitializePresence() {
             Client = new DiscordRpcClient(APP_ID);
