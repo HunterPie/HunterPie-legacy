@@ -12,26 +12,45 @@ namespace HunterPie.Core {
         public DiscordRpcClient Client;
         public Game ctx;
 
-        /* Constructor */
+        /* Constructor and base functions */
 
         public Presence(Game context) {
             ctx = context;
             HookEvents();
         }
 
-        /* Events handler */
+        public void SetOfflineMode() {
+            isOffline = true;
+        }
+
+        /* Event handlers */
 
         private void HookEvents() {
             UserSettings.OnSettingsUpdate += HandleSettings;
             // Process
             Scanner.OnGameStart += StartRPC;
+            Scanner.OnGameClosed += CloseRPCConnection;
             // Game context
             ctx.OnClockChange += HandlePresence;
             ctx.Player.OnZoneChange += HandlePresence;
         }
- 
+        
+            /* Connection */
+
         public void StartRPC(object source, EventArgs e) {
-            Debugger.Log("Starting new RPC connection");
+            if (isOffline) return;
+            // Check if connection exists to avoid creating multiple connections
+            if (Client == null || Client.IsDisposed) {
+                Debugger.Discord("Starting new RPC connection");
+                Client = new DiscordRpcClient(APP_ID);
+                Client.Initialize();
+            }
+        }
+
+        public void CloseRPCConnection(object source, EventArgs e) {
+            Debugger.Discord("Closed connection");
+            Client.ClearPresence();
+            Client.Dispose();
         }
 
         public void HandleSettings(object source, EventArgs e) {
@@ -79,11 +98,6 @@ namespace HunterPie.Core {
             Client = new DiscordRpcClient(APP_ID);
             Client.Initialize();
             Debugger.Discord("Connecting to Discord...");
-        }
-
-        public void DisconnectPresence() {
-            Client.ClearPresence();
-            Client.Dispose();
         }
 
         public Assets GenerateAssets(string largeImage, string largeImageText, string smallImage, string smallImageText) {

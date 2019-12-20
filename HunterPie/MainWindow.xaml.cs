@@ -5,7 +5,6 @@ using System.Threading;
 using HunterPie.Memory;
 using HunterPie.Core;
 using HunterPie.GUI;
-using DiscordRPC;
 using System.Diagnostics;
 using System.IO;
 
@@ -14,16 +13,13 @@ namespace HunterPie {
     /// Interaction logic for MainWindow.xaml
     /// </summary>
     public partial class MainWindow : Window {
-
-        bool OfflineMode = false;
-
+        
+        // Classes
         Game MonsterHunter = new Game();
         Presence Discord;
         Overlay GameOverlay;
 
-        ThreadStart RichPresenceThreadRef;
-        Thread RichPresenceThread;
-
+        // HunterPie version
         const string HUNTERPIE_VERSION = "1.0.2.1";
 
         public MainWindow() {
@@ -38,7 +34,6 @@ namespace HunterPie {
             this.version_text.Content = $"Version: {HUNTERPIE_VERSION}";
             Debugger.Warn("Initializing HunterPie!");
             GStrings.InitStrings();
-            Discord.InitializePresence();
             StartEverything();
         }
 
@@ -80,7 +75,7 @@ namespace HunterPie {
                 if (au.offlineMode) {
                     Debugger.Error("Failed to update HunterPie. Check if you're connected to the internet.");
                     Debugger.Warn("HunterPie is now in offline mode.");
-                    OfflineMode = true;
+                    Discord.SetOfflineMode();
                     return;
                 }
                 bool StartUpdate = StartUpdateProcess();
@@ -146,7 +141,6 @@ namespace HunterPie {
         }
 
         public void OnGameClose(object source, EventArgs e) {
-            Discord.HidePresence();
             if (UserSettings.PlayerConfig.HunterPie.Options.CloseWhenGameCloses) {
                 this.Close();
                 Environment.Exit(0);
@@ -159,7 +153,6 @@ namespace HunterPie {
             if (ExitConfirmation) {
                 try {
                     // Stop Threads
-                    Discord.DisconnectPresence();
                     MonsterHunter.StopScanning();
                     Scanner.StopScanning();
                     GameOverlay.Close();

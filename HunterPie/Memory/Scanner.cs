@@ -36,7 +36,7 @@ namespace HunterPie.Memory {
         /* Events */
         public delegate void ProcessHandler(object source, EventArgs args);
         public static event ProcessHandler OnGameStart;
-        public static ProcessHandler OnGameClosed;
+        public static event ProcessHandler OnGameClosed;
 
         // On Game start
         protected static void _onGameStart() {
