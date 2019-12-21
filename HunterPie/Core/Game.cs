@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Threading;
+using HunterPie.Logger;
 
 namespace HunterPie.Core {
     public class Game {

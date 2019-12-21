@@ -14,7 +14,7 @@ using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
 
-namespace HunterPie {
+namespace HunterPie.GUIControls {
     /// <summary>
     /// Interaction logic for Changelog.xaml
     /// </summary>

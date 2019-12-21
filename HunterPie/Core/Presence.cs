@@ -1,7 +1,7 @@
 ﻿using DiscordRPC;
-using HunterPie;
-using HunterPie.Memory;
 using System;
+using HunterPie.Memory;
+using HunterPie.Logger;
 
 namespace HunterPie.Core {
     class Presence {

@@ -3,7 +3,7 @@ using System.Windows.Controls;
 using System.Windows.Documents;
 
 
-namespace HunterPie {
+namespace HunterPie.Logger {
     /// <summary>
     /// Interaction logic for Debugger.xaml
     /// </summary>

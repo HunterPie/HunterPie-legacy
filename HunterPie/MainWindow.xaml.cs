@@ -1,12 +1,13 @@
-﻿using System;
-using System.Windows;
-using System.Windows.Input;
-using System.Threading;
+﻿using HunterPie.GUIControls;
+using HunterPie.Logger;
 using HunterPie.Memory;
 using HunterPie.Core;
 using HunterPie.GUI;
-using System.Diagnostics;
+using System;
+using System.Windows;
+using System.Windows.Input;
 using System.IO;
+
 
 namespace HunterPie {
     /// <summary>
@@ -20,7 +21,7 @@ namespace HunterPie {
         Overlay GameOverlay;
 
         // HunterPie version
-        const string HUNTERPIE_VERSION = "1.0.2.1";
+        const string HUNTERPIE_VERSION = "1.0.2.3";
 
         public MainWindow() {
             InitializeComponent();
@@ -40,7 +41,7 @@ namespace HunterPie {
         private bool StartUpdateProcess() {
             if (!File.Exists("Update.exe")) return false;
 
-            Process UpdateProcess = new Process();
+            System.Diagnostics.Process UpdateProcess = new System.Diagnostics.Process();
             UpdateProcess.StartInfo.FileName = "Update.exe";
             UpdateProcess.StartInfo.Arguments = $"version={HUNTERPIE_VERSION} branch={UserSettings.PlayerConfig.HunterPie.Update.Branch}";
             UpdateProcess.Start();
@@ -196,7 +197,7 @@ namespace HunterPie {
         }
 
         private void githubButton_Click(object sender, RoutedEventArgs e) {
-            Process.Start("https://github.com/Haato3o/HunterPie");
+            System.Diagnostics.Process.Start("https://github.com/Haato3o/HunterPie");
         }
 
         private void openChangeLog() {
@@ -210,7 +211,7 @@ namespace HunterPie {
 
         private void LaunchGame() {
             try {
-                Process createGameProcess = new Process();
+                System.Diagnostics.Process createGameProcess = new System.Diagnostics.Process();
                 createGameProcess.StartInfo.FileName = UserSettings.PlayerConfig.HunterPie.Launch.GamePath;
                 createGameProcess.StartInfo.Arguments = UserSettings.PlayerConfig.HunterPie.Launch.LaunchArgs;
                 createGameProcess.Start();

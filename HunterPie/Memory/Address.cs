@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.IO;
+using HunterPie.Logger;
 
 namespace HunterPie.Memory {
     class Address {

@@ -1,13 +1,9 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using System.Linq;
 using System.Windows;
 using System.Windows.Controls;
 using HunterPie.Core;
 
-namespace HunterPie {
+namespace HunterPie.GUIControls {
     /// <summary>
     /// Interaction logic for Settings.xaml
     /// </summary>

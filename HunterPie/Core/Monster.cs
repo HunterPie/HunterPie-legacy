@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Threading;
 using HunterPie.Memory;
+using HunterPie.Logger;
 
 namespace HunterPie.Core {
     public class Monster {

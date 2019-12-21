@@ -1,6 +1,7 @@
 ﻿using Newtonsoft.Json;
 using System;
 using System.IO;
+using HunterPie.Logger;
 
 namespace HunterPie.Core {
     public class UserSettings {

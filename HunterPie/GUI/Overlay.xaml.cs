@@ -4,9 +4,10 @@ using System.Windows.Controls;
 using System.Windows.Media;
 using System.Windows.Forms;
 using Xceed.Wpf.Toolkit;
-using HunterPie.Core;
 using System.Runtime.InteropServices;
 using System.Windows.Interop;
+using HunterPie.Core;
+using HunterPie.GUIControls;
 
 namespace HunterPie.GUI {
     /// <summary>

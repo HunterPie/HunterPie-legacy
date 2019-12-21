@@ -4,7 +4,7 @@ using System.Windows.Controls;
 using System.Windows.Input;
 
 
-namespace HunterPie {
+namespace HunterPie.GUIControls {
     /// <summary>
     /// Interaction logic for settingsWindow.xaml
     /// </summary>

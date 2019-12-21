@@ -2,7 +2,8 @@
 using System.Text;
 using System.Runtime.InteropServices;
 using System.Threading;
-using System.Diagnostics;
+using System.Diagnostics ;
+using HunterPie.Logger;
 
 namespace HunterPie.Memory {
     class Scanner {
@@ -67,11 +68,11 @@ namespace HunterPie.Memory {
                 MonsterHunter = Process.GetProcessesByName(PROCESS_NAME);
                 if (MonsterHunter.Length == 0) {
                     if (!lockSpam) {
-                        Debugger.Log("HunterPie is ready! Waiting for game process to start...");
+                        Logger.Debugger.Log("HunterPie is ready! Waiting for game process to start...");
                         lockSpam = true;
                     }
                     if (GameIsRunning) {
-                        Debugger.Log("Game process was closed by user!");
+                        Logger.Debugger.Log("Game process was closed by user!");
                         _onGameClosed();
                     }
                     GameIsRunning = false;
@@ -85,7 +86,7 @@ namespace HunterPie.Memory {
                     ProcessHandle = OpenProcess(PROCESS_ALL_ACCESS, false, PID);
                     GameVersion = MonsterHunter[0].MainWindowTitle.Split('(')[1].Trim(')');
                     _onGameStart();
-                    Debugger.Log($"MonsterHunterWorld.exe found! (PID: {PID})");
+                    Logger.Debugger.Log($"MonsterHunterWorld.exe found! (PID: {PID})");
                     GameIsRunning = true;
                 }
                 Thread.Sleep(1000);

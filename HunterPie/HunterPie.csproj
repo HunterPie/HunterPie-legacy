@@ -34,7 +34,7 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <PropertyGroup>
-    <ApplicationIcon>icon.ico</ApplicationIcon>
+    <ApplicationIcon>media\icon.ico</ApplicationIcon>
   </PropertyGroup>
   <PropertyGroup>
     <StartupObject />
@@ -78,7 +78,7 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
-    <Compile Include="Changelog.xaml.cs">
+    <Compile Include="GUIControls\Changelog.xaml.cs">
       <DependentUpon>Changelog.xaml</DependentUpon>
     </Compile>
     <Compile Include="Core\Args.cs" />
@@ -86,17 +86,17 @@
     <Compile Include="Core\HarvestBox.cs" />
     <Compile Include="Core\Mantle.cs" />
     <Compile Include="Core\Presence.cs" />
-    <Compile Include="Settings.xaml.cs">
+    <Compile Include="GUIControls\Settings.xaml.cs">
       <DependentUpon>Settings.xaml</DependentUpon>
     </Compile>
-    <Compile Include="settingsWindow.xaml.cs">
+    <Compile Include="GUIControls\settingsWindow.xaml.cs">
       <DependentUpon>settingsWindow.xaml</DependentUpon>
     </Compile>
-    <Page Include="Changelog.xaml">
+    <Page Include="GUIControls\Changelog.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="Debugger.xaml">
+    <Page Include="GUIControls\Debugger.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -117,7 +117,7 @@
     <Compile Include="Core\Monster.cs" />
     <Compile Include="Core\Player.cs" />
     <Compile Include="Core\UserSettings.cs" />
-    <Compile Include="Debugger.xaml.cs">
+    <Compile Include="GUIControls\Debugger.xaml.cs">
       <DependentUpon>Debugger.xaml</DependentUpon>
     </Compile>
     <Compile Include="GUI\Overlay.xaml.cs">
@@ -127,11 +127,11 @@
       <DependentUpon>MainWindow.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
-    <Page Include="Settings.xaml">
+    <Page Include="GUIControls\Settings.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="settingsWindow.xaml">
+    <Page Include="GUIControls\settingsWindow.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -176,7 +176,7 @@
     </Resource>
   </ItemGroup>
   <ItemGroup>
-    <Resource Include="icon.ico" />
+    <Resource Include="media\icon.ico" />
   </ItemGroup>
   <ItemGroup>
     <Resource Include="media\GitHub-Mark-Light-32px.png">
