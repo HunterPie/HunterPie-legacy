@@ -13,7 +13,7 @@ namespace HunterPie {
     /// <summary>
     /// Interaction logic for MainWindow.xaml
     /// </summary>
-    public partial class MainWindow : Window {
+    public partial class Hunterpie : Window {
         
         // Classes
         Game MonsterHunter = new Game();
@@ -23,7 +23,7 @@ namespace HunterPie {
         // HunterPie version
         const string HUNTERPIE_VERSION = "1.0.2.3";
 
-        public MainWindow() {
+        public Hunterpie() {
             InitializeComponent();
             OpenDebugger();
             // Initialize rich presence

@@ -4,7 +4,7 @@
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:HunterPie"
-        xmlns:Properties="clr-namespace:HunterPie.Properties" x:Name="window" x:Class="HunterPie.MainWindow"
+        xmlns:Properties="clr-namespace:HunterPie.Properties" x:Name="window" x:Class="HunterPie.Hunterpie"
         mc:Ignorable="d"
         Title="HunterPie" Height="593" Width="980" Background="#FF2E2E2E" MinWidth="1000" MinHeight="600" MaxWidth="1000" MaxHeight="600" ResizeMode="NoResize" WindowStyle="None" Closing="window_Closing">
     <Window.Resources>
