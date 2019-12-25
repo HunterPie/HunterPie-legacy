@@ -100,14 +100,14 @@ namespace HunterPie {
 
         private void StartEverything() {
             MonsterHunter.StartScanning();
-            SetGameEventHandlers();
+            HookEvents();
             Scanner.StartScanning(); // Scans game memory
             GameOverlay = new Overlay(MonsterHunter);
             UserSettings.TriggerSettingsEvent();
             GameOverlay.Show();
         }
 
-        private void SetGameEventHandlers() {
+        private void HookEvents() {
             // Scanner events
             Scanner.OnGameStart += OnGameStart;
             Scanner.OnGameClosed += OnGameClose;
@@ -116,6 +116,17 @@ namespace HunterPie {
             MonsterHunter.Player.OnCharacterLogin += OnLogin;
             // Settings
             UserSettings.OnSettingsUpdate += SendToOverlay;
+        }
+
+        private void UnhookEvents() {
+            // Scanner events
+            Scanner.OnGameStart -= OnGameStart;
+            Scanner.OnGameClosed -= OnGameClose;
+            // Game events
+            MonsterHunter.Player.OnZoneChange -= OnZoneChange;
+            MonsterHunter.Player.OnCharacterLogin -= OnLogin;
+            // Settings
+            UserSettings.OnSettingsUpdate -= SendToOverlay;
         }
 
         public void SendToOverlay(object source, EventArgs e) {
@@ -193,7 +204,8 @@ namespace HunterPie {
         }
 
         private void window_Closing(object sender, System.ComponentModel.CancelEventArgs e) {
-            if (GameOverlay != null) GameOverlay.Close();
+            if (GameOverlay != null) GameOverlay.Destroy();
+            this.UnhookEvents();
         }
 
         private void githubButton_Click(object sender, RoutedEventArgs e) {

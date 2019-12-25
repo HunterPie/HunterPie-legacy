@@ -8,6 +8,7 @@ using System.Runtime.InteropServices;
 using System.Windows.Interop;
 using HunterPie.Core;
 using HunterPie.GUIControls;
+using HunterPie.Logger;
 
 namespace HunterPie.GUI {
     /// <summary>
@@ -36,10 +37,21 @@ namespace HunterPie.GUI {
             makeOverlayClickThrough();
         }
 
+        public void Destroy() {
+            UnhookEvents();
+            this.Close();
+        }
+
         private void HookEvents() {
             HookMonsterEvents();
             HookMantleEvents();
             HookHarvestBoxEvents();
+        }
+
+        public void UnhookEvents() {
+            UnhookMonsterEvents();
+            UnhookMantleEvents();
+            UnhookHarvestBoxEvents();
         }
 
         public void GlobalSettingsEventHandler(object source, EventArgs e) {
@@ -58,7 +70,6 @@ namespace HunterPie.GUI {
             ctx.Player.OnVillageLeave += this.HideHarvestBox;
             // Hook fertilizer and Harvest box events
             ctx.Player.Harvest.OnCounterChange += this.UpdateHarvestBoxCounter;
-            // Ugly code :(
             // First fertilizer
             ctx.Player.Harvest.Box[0].OnAmountUpdate += this.UpdateFirstFertilizer;
             ctx.Player.Harvest.Box[0].OnFertilizerChange += this.UpdateFirstFertilizer;
@@ -71,6 +82,26 @@ namespace HunterPie.GUI {
             // Fourth fertilizer
             ctx.Player.Harvest.Box[3].OnAmountUpdate += this.UpdateFourthFertilizer;
             ctx.Player.Harvest.Box[3].OnFertilizerChange += this.UpdateFourthFertilizer;
+        }
+
+        private void UnhookHarvestBoxEvents() {
+            // Hooks player location event
+            ctx.Player.OnVillageEnter -= this.ShowHarvestBox;
+            ctx.Player.OnVillageLeave -= this.HideHarvestBox;
+            // Hook fertilizer and Harvest box events
+            ctx.Player.Harvest.OnCounterChange -= this.UpdateHarvestBoxCounter;
+            // First fertilizer
+            ctx.Player.Harvest.Box[0].OnAmountUpdate -= this.UpdateFirstFertilizer;
+            ctx.Player.Harvest.Box[0].OnFertilizerChange -= this.UpdateFirstFertilizer;
+            // Second fertilizer
+            ctx.Player.Harvest.Box[1].OnAmountUpdate -= this.UpdateSecondFertilizer;
+            ctx.Player.Harvest.Box[1].OnFertilizerChange -= this.UpdateSecondFertilizer;
+            // Third fertilizer
+            ctx.Player.Harvest.Box[2].OnAmountUpdate -= this.UpdateThirdFertilizer;
+            ctx.Player.Harvest.Box[2].OnFertilizerChange -= this.UpdateThirdFertilizer;
+            // Fourth fertilizer
+            ctx.Player.Harvest.Box[3].OnAmountUpdate -= this.UpdateFourthFertilizer;
+            ctx.Player.Harvest.Box[3].OnFertilizerChange -= this.UpdateFourthFertilizer;
         }
 
         private void HookMonsterEvents() {
@@ -93,6 +124,26 @@ namespace HunterPie.GUI {
             ctx.ThirdMonster.OnHPUpdate += this.UpdateThirdMonster;
         }
 
+        private void UnhookMonsterEvents() {
+            // First monster
+            ctx.FirstMonster.OnMonsterSpawn -= this.OnFirstMonsterSpawn;
+            ctx.FirstMonster.OnMonsterDespawn -= this.OnFirstMonsterDespawn;
+            ctx.FirstMonster.OnMonsterDeath -= this.OnFirstMonsterDespawn;
+            ctx.FirstMonster.OnHPUpdate -= this.UpdateFirstMonster;
+
+            // Second monster
+            ctx.SecondMonster.OnMonsterSpawn -= this.OnSecondMonsterSpawn;
+            ctx.SecondMonster.OnMonsterDespawn -= this.OnSecondMonsterDespawn;
+            ctx.SecondMonster.OnMonsterDeath -= this.OnSecondMonsterDespawn;
+            ctx.SecondMonster.OnHPUpdate -= this.UpdateSecondMonster;
+
+            // Third monster
+            ctx.ThirdMonster.OnMonsterSpawn -= this.OnThirdMonsterSpawn;
+            ctx.ThirdMonster.OnMonsterDespawn -= this.OnThirdMonsterDespawn;
+            ctx.ThirdMonster.OnMonsterDespawn -= this.OnThirdMonsterDespawn;
+            ctx.ThirdMonster.OnHPUpdate -= this.UpdateThirdMonster;
+        }
+
         private void HookMantleEvents() {
             // Primary mantle
             ctx.Player.PrimaryMantle.OnMantleTimerUpdate += this.UpdatePrimaryMantleTimer;
@@ -101,6 +152,16 @@ namespace HunterPie.GUI {
             // Secondary mantle
             ctx.Player.SecondaryMantle.OnMantleTimerUpdate += this.UpdateSecondaryMantleTimer;
             ctx.Player.SecondaryMantle.OnMantleCooldownUpdate += this.UpdateSecondaryMantleCooldown;
+        }
+
+        private void UnhookMantleEvents() {
+            // Primary mantle
+            ctx.Player.PrimaryMantle.OnMantleTimerUpdate -= this.UpdatePrimaryMantleTimer;
+            ctx.Player.PrimaryMantle.OnMantleCooldownUpdate -= this.UpdatePrimaryMantleCooldown;
+
+            // Secondary mantle
+            ctx.Player.SecondaryMantle.OnMantleTimerUpdate -= this.UpdateSecondaryMantleTimer;
+            ctx.Player.SecondaryMantle.OnMantleCooldownUpdate -= this.UpdateSecondaryMantleCooldown;
         }
 
         private void makeOverlayClickThrough() {
