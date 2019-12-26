@@ -20,7 +20,7 @@ namespace HunterPie.Memory {
         static public string GameVersion;
         static public int PID;
         static Process[] MonsterHunter;
-        static IntPtr ProcessHandle;
+        static public IntPtr ProcessHandle { get; private set; } = (IntPtr)0;
         static public bool GameIsRunning = false;
 
         // Scanner Thread
@@ -33,6 +33,9 @@ namespace HunterPie.Memory {
 
         [DllImport("kernel32.dll")]
         public static extern bool ReadProcessMemory(int hProcess, IntPtr lpBaseAddress, byte[] lpBuffer, int dwSize, ref int lpNumberOfBytesRead);
+
+        [DllImport("kerneel32.dll")]
+        public static extern bool CloseHandle(IntPtr hObject);
 
         /* Events */
         public delegate void ProcessHandler(object source, EventArgs args);
@@ -59,6 +62,7 @@ namespace HunterPie.Memory {
         }
 
         public static void StopScanning() {
+            if (ProcessHandle != (IntPtr)0) CloseHandle(ProcessHandle);
             ScanGameMemory.Abort();
         }
 
@@ -73,6 +77,8 @@ namespace HunterPie.Memory {
                     }
                     if (GameIsRunning) {
                         Logger.Debugger.Log("Game process was closed by user!");
+                        CloseHandle(ProcessHandle);
+                        ProcessHandle = (IntPtr)0;
                         _onGameClosed();
                     }
                     GameIsRunning = false;

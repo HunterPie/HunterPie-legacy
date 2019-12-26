@@ -21,7 +21,7 @@ namespace HunterPie {
         Overlay GameOverlay;
 
         // HunterPie version
-        const string HUNTERPIE_VERSION = "1.0.2.3";
+        const string HUNTERPIE_VERSION = "1.0.2.4";
 
         public Hunterpie() {
             InitializeComponent();
@@ -206,6 +206,7 @@ namespace HunterPie {
         private void window_Closing(object sender, System.ComponentModel.CancelEventArgs e) {
             if (GameOverlay != null) GameOverlay.Destroy();
             this.UnhookEvents();
+            
         }
 
         private void githubButton_Click(object sender, RoutedEventArgs e) {
