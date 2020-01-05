@@ -35,9 +35,10 @@ namespace HunterPie.GUIControls {
         }
 
         private string GetLineColor(string line) {
-            if (line.StartsWith("+")) return "#59FF85";
-            if (line.StartsWith("~")) return "#FFC13D";
-            if (line.StartsWith("-")) return "#FF6459";
+            // TODO: Find a better way for this detection LOL
+            if (line.StartsWith("+") || line.StartsWith("    +")) return "#59FF85";
+            if (line.StartsWith("~") || line.StartsWith("    ~")) return "#FFC13D";
+            if (line.StartsWith("-") || line.StartsWith("    -")) return "#FF6459";
             return "#FFFFFF";
         }
 
