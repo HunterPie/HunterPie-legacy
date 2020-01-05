@@ -34,6 +34,13 @@ namespace HunterPie.GUIControls {
             LoadChangelogText();
         }
 
+        private string GetLineColor(string line) {
+            if (line.StartsWith("+")) return "#0EB54C";
+            if (line.StartsWith("~")) return "#EBD934";
+            if (line.StartsWith("-")) return "#EB4334";
+            return "#FFFFFF";
+        }
+
         private void LoadChangelogText() {
             if (!File.Exists("changelog.log")) {
                 ChangelogBox.AppendText("Changelog not found!");
@@ -41,8 +48,18 @@ namespace HunterPie.GUIControls {
             }
             string[] _changelog = File.ReadAllLines("changelog.log");
             foreach (string line in _changelog) {
-                ChangelogBox.AppendText($"{line}\n");
+                TextRange fLine = new TextRange(ChangelogBox.Document.ContentEnd, ChangelogBox.Document.ContentEnd);
+                fLine.Text = $"{line}\n";
+                if (line.StartsWith("PATCH")) {
+                    fLine.ApplyPropertyValue(TextElement.BackgroundProperty, "#363636");
+                }
+                fLine.ApplyPropertyValue(TextElement.ForegroundProperty, GetLineColor(line));
+                
             }
+        }
+
+        private void ChangelogBox_TextChanged(object sender, TextChangedEventArgs e) {
+
         }
     }
 }
