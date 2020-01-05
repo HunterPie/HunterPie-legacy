@@ -35,9 +35,9 @@ namespace HunterPie.GUIControls {
         }
 
         private string GetLineColor(string line) {
-            if (line.StartsWith("+")) return "#0EB54C";
-            if (line.StartsWith("~")) return "#EBD934";
-            if (line.StartsWith("-")) return "#EB4334";
+            if (line.StartsWith("+")) return "#59FF85";
+            if (line.StartsWith("~")) return "#FFC13D";
+            if (line.StartsWith("-")) return "#FF6459";
             return "#FFFFFF";
         }
 
@@ -51,15 +51,14 @@ namespace HunterPie.GUIControls {
                 TextRange fLine = new TextRange(ChangelogBox.Document.ContentEnd, ChangelogBox.Document.ContentEnd);
                 fLine.Text = $"{line}\n";
                 if (line.StartsWith("PATCH")) {
-                    fLine.ApplyPropertyValue(TextElement.BackgroundProperty, "#363636");
+                    fLine.ApplyPropertyValue(TextElement.FontWeightProperty, "Bold");
+                } else {
+                    fLine.ApplyPropertyValue(TextElement.FontWeightProperty, "Light");
                 }
                 fLine.ApplyPropertyValue(TextElement.ForegroundProperty, GetLineColor(line));
                 
             }
         }
 
-        private void ChangelogBox_TextChanged(object sender, TextChangedEventArgs e) {
-
-        }
     }
 }
