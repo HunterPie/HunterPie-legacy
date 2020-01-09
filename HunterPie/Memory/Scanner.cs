@@ -17,7 +17,7 @@ namespace HunterPie.Memory {
         // Process info
         const int PROCESS_ALL_ACCESS = 0x1F0FFF;
         const string PROCESS_NAME = "MonsterHunterWorld";
-        static public string GameVersion;
+        static public int GameVersion;
         static public int PID;
         static Process[] MonsterHunter;
         static public IntPtr ProcessHandle { get; private set; } = (IntPtr)0;
@@ -90,7 +90,7 @@ namespace HunterPie.Memory {
                     }
                     PID = MonsterHunter[0].Id;
                     ProcessHandle = OpenProcess(PROCESS_ALL_ACCESS, false, PID);
-                    GameVersion = MonsterHunter[0].MainWindowTitle.Split('(')[1].Trim(')');
+                    GameVersion = int.Parse(MonsterHunter[0].MainWindowTitle.Split('(')[1].Trim(')'));
                     _onGameStart();
                     Logger.Debugger.Log($"MonsterHunterWorld.exe found! (PID: {PID})");
                     GameIsRunning = true;
