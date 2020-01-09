@@ -238,14 +238,14 @@ namespace HunterPie.Core {
             // This is a workaround until I find a better way to get which character is the user on.
             // This method is based on character playtime, checking which one is being updated
             Int64 Address = Memory.Address.BASE + Memory.Address.LEVEL_OFFSET;
-            Int64[] Offset = new Int64[4] { 0x70, 0x68, 0x8, 0x20 };
-            Int64 AddressValue = Scanner.READ_MULTILEVEL_PTR(Address, Offset);
+            //Int64[] Offset = new Int64[4] { 0x70, 0x68, 0x8, 0x20 };
+            Int64 AddressValue = Scanner.READ_MULTILEVEL_PTR(Address, Memory.Address.Offsets.LevelOffsets);
             Int64 currentChar;
             Int64 nextChar = 0x139F20;
             int playtime;
             int charId = 999;
             for (int charIndex = 2; charIndex >= 0; charIndex--) {
-                currentChar = AddressValue + 0x118 + (nextChar * charIndex);
+                currentChar = AddressValue + Memory.Address.Offsets.LevelLastOffset + 0x10 + (nextChar * charIndex);
                 playtime = Scanner.READ_INT(currentChar);
                 if (_charPlaytimes[charIndex] != playtime) {
                     if (_charPlaytimes.Length == 3 && _charPlaytimes[0] != -1) charId = charIndex;
@@ -258,10 +258,10 @@ namespace HunterPie.Core {
         private void GetPlayerLevel() {
             Int64 nextChar = 0x139F20; // Next char offset
             Int64 Address = Memory.Address.BASE + Memory.Address.LEVEL_OFFSET;
-            Int64[] Offset = new Int64[4] { 0x70, 0x68, 0x8, 0x20 };
-            Int64 AddressValue = Scanner.READ_MULTILEVEL_PTR(Address, Offset) + (nextChar * (Slot == 999 || Slot == -1 ? 0 : Slot));
-            if (LEVEL_ADDRESS != AddressValue + 0x108 && AddressValue != 0x0) Debugger.Log($"Found player address at 0x{AddressValue+0x108:X}");
-            LEVEL_ADDRESS = AddressValue + 0x108;
+            //Int64[] Offset = new Int64[4] { 0x70, 0x68, 0x8, 0x20 };
+            Int64 AddressValue = Scanner.READ_MULTILEVEL_PTR(Address, Memory.Address.Offsets.LevelOffsets) + (nextChar * (Slot == 999 || Slot == -1 ? 0 : Slot));
+            if (LEVEL_ADDRESS != AddressValue + Memory.Address.Offsets.LevelLastOffset && AddressValue != 0x0) Debugger.Log($"Found player address at 0x{AddressValue+ Memory.Address.Offsets.LevelLastOffset:X}");
+            LEVEL_ADDRESS = AddressValue + Memory.Address.Offsets.LevelLastOffset;
             Level = Scanner.READ_INT(LEVEL_ADDRESS);
         }
 
@@ -272,9 +272,8 @@ namespace HunterPie.Core {
 
         private void GetZoneId() {
             Int64 Address = Memory.Address.BASE + Memory.Address.ZONE_OFFSET;
-            Int64[] Offset = new Int64[4] { 0x660, 0x28, 0x18, 0x440 };
-            Int64 ZoneAddress = Scanner.READ_MULTILEVEL_PTR(Address, Offset);
-            int zoneId = Scanner.READ_INT(ZoneAddress + 0x2B0);
+            Int64 ZoneAddress = Scanner.READ_MULTILEVEL_PTR(Address, Memory.Address.Offsets.ZoneOffsets);
+            int zoneId = Scanner.READ_INT(ZoneAddress + Memory.Address.Offsets.ZoneLastOffset);
             if (zoneId != ZoneID) {
                 this.LastZoneID = ZoneID;
                 this.ZoneID = zoneId;
@@ -289,23 +288,20 @@ namespace HunterPie.Core {
 
         private void GetWeaponId() {
             Int64 Address = Memory.Address.BASE + Memory.Address.WEAPON_OFFSET;
-            Int64[] Offset = new Int64[4] { 0x70, 0x5A8, 0x310, 0x148 };
-            Address = Scanner.READ_MULTILEVEL_PTR(Address, Offset);
-            WeaponID = Scanner.READ_INT(Address+0x2B8);
+            Address = Scanner.READ_MULTILEVEL_PTR(Address, Memory.Address.Offsets.WeaponOffsets);
+            WeaponID = Scanner.READ_INT(Address+ Memory.Address.Offsets.WeaponLastOffset);
             WeaponName = GStrings.WeaponName(WeaponID);
         }
 
         private void GetSessionId() {
             Int64 Address = Memory.Address.BASE + Memory.Address.SESSION_OFFSET;
-            Int64[] Offset = new Int64[4] { 0xA0, 0x20, 0x80, 0x9C };
-            Address = Scanner.READ_MULTILEVEL_PTR(Address, Offset);
-            SessionID = Scanner.READ_STRING(Address+0x3C8, 12);
+            Address = Scanner.READ_MULTILEVEL_PTR(Address, Memory.Address.Offsets.SessionOffsets);
+            SessionID = Scanner.READ_STRING(Address+ Memory.Address.Offsets.SessionLastOffset, 12);
         }
 
         private void GetEquipmentAddress() {
             Int64 Address = Memory.Address.BASE + Memory.Address.EQUIPMENT_OFFSET;
-            Int64[] Offset = new Int64[4] { 0x78, 0x50, 0x40, 0x450 };
-            Address = Scanner.READ_MULTILEVEL_PTR(Address, Offset);
+            Address = Scanner.READ_MULTILEVEL_PTR(Address, Memory.Address.Offsets.EquipmentOffsets);
             if (EQUIPMENT_ADDRESS != Address) Debugger.Log($"New equipment address found -> 0x{Address:X}");
             EQUIPMENT_ADDRESS = Address;
         }
@@ -344,7 +340,6 @@ namespace HunterPie.Core {
 
         private void GetParty() {
             Int64 address = Address.BASE + Address.PARTY_OFFSET;
-            Int64[] offsets = new Int64[1] { 0x0 };
             Int64 PartyContainer = Scanner.READ_LONGLONG(address) + 0x54A45;
             int partySize = 0;
             for (int member = 0; member < PartyMax; member++) {

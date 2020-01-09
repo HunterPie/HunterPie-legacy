@@ -21,7 +21,7 @@ namespace HunterPie {
         Overlay GameOverlay;
 
         // HunterPie version
-        const string HUNTERPIE_VERSION = "1.0.2.5";
+        const string HUNTERPIE_VERSION = "1.0.2.6";
 
         public Hunterpie() {
             InitializeComponent();

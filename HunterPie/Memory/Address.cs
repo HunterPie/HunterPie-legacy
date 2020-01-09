@@ -5,7 +5,7 @@ using HunterPie.Logger;
 
 namespace HunterPie.Memory {
     class Address {
-        class Offsets {
+        public class Offsets {
             public static Int64[] LevelOffsets = new Int64[4] { 0x70, 0x68, 0x8, 0x20 };
             public static Int64 LevelLastOffset = 0x108;
 
