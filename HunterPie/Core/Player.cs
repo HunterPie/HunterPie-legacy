@@ -18,6 +18,7 @@ namespace HunterPie.Core {
         private string _weaponName;
         private string _sessionId;
         private int _partySize;
+        private int _masterRank; // TODO: Add this
 
         // Game info
         private int[] PeaceZones = new int[11] { 0, 5, 7, 11, 15, 16, 21, 23, 24, 31, 33 };
@@ -368,7 +369,7 @@ namespace HunterPie.Core {
             Int64 Address = this.LEVEL_ADDRESS;
             for (int fertCount = 0; fertCount < 4; fertCount++) {
                 // Calculates memory address
-                Int64 FertilizerAddress = Address + 0x6740C + (0x10 * fertCount);
+                Int64 FertilizerAddress = Address + Memory.Address.Offsets.FertilizersOffset + (0x10 * fertCount);
                 // Read memory
                 int FertilizerId = Scanner.READ_INT(FertilizerAddress - 0x4);
                 string FertilizerName = GStrings.FertilizerName(FertilizerId);
@@ -378,11 +379,11 @@ namespace HunterPie.Core {
                 Harvest.Box[fertCount].ID = FertilizerId;
                 Harvest.Box[fertCount].Amount = FertilizerCount;
             }
-            UpdateHarvestBoxCounter(Address + 0x6740C + (0x10 * 3));
+            UpdateHarvestBoxCounter(Address + Memory.Address.Offsets.FertilizersOffset + (0x10 * 3));
         }
 
         private void UpdateHarvestBoxCounter(Int64 LastFertAddress) {
-            Int64 Address = LastFertAddress + 0x10;
+            Int64 Address = LastFertAddress + Memory.Address.Offsets.HarvestBoxOffset;
             int counter = 0;
             for (long iAddress = Address; iAddress < Address + 0x1F0; iAddress += 0x10) {
                 int memValue = Scanner.READ_INT(iAddress);

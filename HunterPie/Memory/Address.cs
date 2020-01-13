@@ -26,6 +26,9 @@ namespace HunterPie.Memory {
 
             public static Int64[] MonsterOffsets = new Int64[2] { 0xAF738, 0x47CDE0 };
             public static Int64 MonsterLastOffset = 0x0;
+
+            public static Int64 FertilizersOffset = 0x6740C;
+            public static Int64 HarvestBoxOffset = 0x10;
         }
         public static int GAME_VERSION = 168031;
 
@@ -123,6 +126,9 @@ namespace HunterPie.Memory {
 
             Offsets.SessionOffsets = new Int64[4] { 0x1C0, 0x1B8, 0x8, 0x30 };
             Offsets.SessionLastOffset = 0x3C8;
+
+            Offsets.FertilizersOffset = 0x102FE4;
+            Offsets.HarvestBoxOffset = 0x20;
             Debugger.Warn("Updated offsets to Iceborne's version");
         }
     }
