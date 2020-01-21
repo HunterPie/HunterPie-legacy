@@ -26,6 +26,9 @@ namespace HunterPie.Memory {
 
             public static Int64[] MonsterOffsets = new Int64[2] { 0xAF738, 0x47CDE0 };
             public static Int64 MonsterLastOffset = 0x0;
+            public static Int64 NextMonsterPtr = 0x28;
+            public static Int64 MonsterHPComponentOffset = 0x129D8 + 0x48;
+            public static Int64 MonsterNamePtr = 0x290;
 
             public static Int64 FertilizersOffset = 0x6740C;
             public static Int64 HarvestBoxOffset = 0x10;
@@ -121,7 +124,7 @@ namespace HunterPie.Memory {
             Offsets.LevelOffsets = new Int64[4] { 0x70, 0x18, 0x18, 0xE8 };
             Offsets.LevelLastOffset = 0x90;
 
-            Offsets.ZoneOffsets = new Int64[4] { 0xB8, 0x58, 0x18, 0x6D0 };
+            Offsets.ZoneOffsets = new Int64[4] { 0xB8, 0x10, 0x58, 0x18 };
             Offsets.ZoneLastOffset = 0x358;
 
             Offsets.SessionOffsets = new Int64[4] { 0x1C0, 0x1B8, 0x8, 0x30 };
@@ -129,6 +132,13 @@ namespace HunterPie.Memory {
 
             Offsets.FertilizersOffset = 0x102FE4;
             Offsets.HarvestBoxOffset = 0x20;
+
+            // Monster Iceborne offsets
+            Offsets.NextMonsterPtr = 0x10;
+            Offsets.MonsterHPComponentOffset = 0x76B0;
+            Offsets.MonsterOffsets = new Int64[2] { 0x110, 0x10 };
+            Offsets.MonsterLastOffset = 0x18;
+            Offsets.MonsterNamePtr = 0x2e0;
             Debugger.Warn("Updated offsets to Iceborne's version");
         }
     }
