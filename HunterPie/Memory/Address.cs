@@ -98,7 +98,7 @@ namespace HunterPie.Memory {
         private static void LoadValuesToMemory() {
             LoadFromDict(nameof(BASE), out BASE, BASE);
             LoadFromDict(nameof(LEVEL_OFFSET), out LEVEL_OFFSET, LEVEL_OFFSET);
-            LoadFromDict(nameof(ZONE_OFFSET), out ZONE_OFFSET, ZONE_OFFSET);
+            //Deprecated: LoadFromDict(nameof(ZONE_OFFSET), out ZONE_OFFSET, ZONE_OFFSET);
             LoadFromDict(nameof(MONSTER_OFFSET), out MONSTER_OFFSET, MONSTER_OFFSET);
             LoadFromDict(nameof(SESSION_OFFSET), out SESSION_OFFSET, SESSION_OFFSET);
             LoadFromDict(nameof(EQUIPMENT_OFFSET), out EQUIPMENT_OFFSET, EQUIPMENT_OFFSET);
@@ -124,16 +124,13 @@ namespace HunterPie.Memory {
         }
 
         private static void UpdateToIceborneOffsets() {
-            Offsets.LevelOffsets = new Int64[4] { 0x88, 0x8, 0x30, 0x350 };
-            Offsets.LevelLastOffset = 0xE8;
+            Offsets.LevelOffsets = new Int64[1] { 0xA8 };
+            Offsets.LevelLastOffset = 0x90;
 
-            Offsets.ZoneOffsets = new Int64[0];
-            Offsets.ZoneLastOffset = 0x318;
+            Offsets.SessionOffsets = new Int64[4] { 0x110, 0xE58, 0x1E0, 0x8 };
+            Offsets.SessionLastOffset = 0xE8;
 
-            Offsets.SessionOffsets = new Int64[4] { 0x1C0, 0x1B8, 0x8, 0x30 };
-            Offsets.SessionLastOffset = 0x3C8;
-
-            Offsets.WeaponOffsets = new Int64[2] { 0x58, 0x20 };
+            Offsets.WeaponOffsets = new Int64[4] { 0x50, 0xC0, 0x8, 0x78 };
             Offsets.WeaponLastOffset = 0x2E8;
 
             Offsets.FertilizersOffset = 0x102FE4;

@@ -77,7 +77,6 @@ namespace HunterPie.Memory {
                     }
                     if (GameIsRunning) {
                         Logger.Debugger.Log("Game process was closed by user!");
-                        CloseHandle(ProcessHandle);
                         ProcessHandle = (IntPtr)0;
                         _onGameClosed();
                     }

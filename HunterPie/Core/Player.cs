@@ -21,19 +21,21 @@ namespace HunterPie.Core {
         private int _masterRank; // TODO: Add this
 
         // Game info
-        private int[] PeaceZones = new int[12] { 0, 5, 7, 11, 15, 17, 16, 21, 23, 24, 31, 33 };
-        private int[] _HBZones = new int[5] { 17, 31, 33, 11, 21 };
+        private int[] PeaceZones = new int[9] { 0, 301, 302, 303, 305, 306, 501, 502, 503 };
+        private int[] _HBZones = new int[8] { 301, 302, 303, 305, 306, 501, 502, 503 };
 
         // Player info
         private Int64 LEVEL_ADDRESS;
         private Int64 EQUIPMENT_ADDRESS;
+        private Int64 PlayerSelectedPointer;
+        private int PlayerSlot;
         public Int64 PlayerAddress {
             get {
                 return _playerAddress;
             } set {
                 if (_playerAddress != value) {
                     _playerAddress = value;
-                    _onLogin();
+                    if (value != 0x0) _onLogin();
                 }
             }
         }
@@ -237,13 +239,32 @@ namespace HunterPie.Core {
         }
 
         private bool GetPlayerAddress() {
-            Int64 Address = Memory.Address.BASE + Memory.Address.LEVEL_OFFSET;
-            Int64 AddressValue = Scanner.READ_MULTILEVEL_PTR(Address, Memory.Address.Offsets.LevelOffsets);
-            AddressValue = Scanner.READ_LONGLONG(AddressValue + Memory.Address.Offsets.LevelLastOffset);
+            // TODO: Find a better way to detect the player character
+            Int64 Address = Memory.Address.BASE + Memory.Address.WEAPON_OFFSET;
+            Int64 AddressValue = Scanner.READ_MULTILEVEL_PTR(Address, Memory.Address.Offsets.WeaponOffsets) + Memory.Address.Offsets.WeaponLastOffset;
+            Int64 pAddress = 0x0;
+            Int64 nextPlayer = 0x27E9F0;
             if (AddressValue > 0x0) {
-                PlayerAddress = AddressValue;
-                LEVEL_ADDRESS = AddressValue + 0x40;
-                return true;
+                PlayerSelectedPointer = AddressValue;
+                string pName = Scanner.READ_STRING(AddressValue - 0x270, 32);
+                int pLevel = Scanner.READ_INT(AddressValue - 0x230);
+                // If char name starts with a null char then the game haven't launched yet
+                if (pName[0] == '\x00') return false;
+                for (int playerSlot = 0; playerSlot < 3; playerSlot++) {
+                    Address = Memory.Address.BASE + Memory.Address.LEVEL_OFFSET;
+                    pAddress = Scanner.READ_MULTILEVEL_PTR(Address, Memory.Address.Offsets.LevelOffsets) + Memory.Address.Offsets.LevelLastOffset + (nextPlayer * playerSlot);
+                    if (Scanner.READ_INT(pAddress) == pLevel && Scanner.READ_STRING(pAddress - 0x40, 32) == pName && PlayerAddress != pAddress) {
+                        LEVEL_ADDRESS = pAddress;
+                        GetPlayerLevel();
+                        GetPlayerName();
+                        PlayerAddress = pAddress;
+                        this.PlayerSlot = playerSlot;
+                        return true;
+                    }
+                }
+            } else {
+                PlayerAddress = 0x0;
+                LEVEL_ADDRESS = 0x0;
             }
             return false;
         }
@@ -258,9 +279,8 @@ namespace HunterPie.Core {
         }
 
         private void GetZoneId() {
-            Int64 Address = Memory.Address.BASE + Memory.Address.ZONE_OFFSET;
-            Int64 ZoneAddress = Scanner.READ_MULTILEVEL_PTR(Address, Memory.Address.Offsets.ZoneOffsets);
-            int zoneId = Scanner.READ_INT(ZoneAddress + Memory.Address.Offsets.ZoneLastOffset);
+            int ZoneOffset = PlayerSlot == 0 ? 0x95D0 : 0xAB90;
+            int zoneId = Scanner.READ_INT(PlayerSelectedPointer + ZoneOffset);
             if (zoneId != ZoneID) {
                 this.LastZoneID = ZoneID;
                 this.ZoneID = zoneId;
@@ -276,7 +296,7 @@ namespace HunterPie.Core {
         private void GetWeaponId() {
             Int64 Address = Memory.Address.BASE + Memory.Address.WEAPON_OFFSET;
             Address = Scanner.READ_MULTILEVEL_PTR(Address, Memory.Address.Offsets.WeaponOffsets);
-            WeaponID = Scanner.READ_INT(Address+ Memory.Address.Offsets.WeaponLastOffset);
+            WeaponID = Scanner.READ_INT(Address + Memory.Address.Offsets.WeaponLastOffset);
             WeaponName = GStrings.WeaponName(WeaponID);
         }
 

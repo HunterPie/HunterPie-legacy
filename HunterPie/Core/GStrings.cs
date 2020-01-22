@@ -54,28 +54,31 @@ namespace HunterPie.Core {
 
         private static void PopulateZones() {
             Zones.Add(0, "Main Menu");
-            Zones.Add(3, "Great Ravine");
-            Zones.Add(5, "Living Quarters");
-            Zones.Add(7, "Main Menu");
-            Zones.Add(8, "Special Arena");
-            Zones.Add(10, "Confluence of Fates");
-            Zones.Add(11, "Gathering Hub");
-            Zones.Add(12, "Caverns of El Dorado");
-            Zones.Add(15, "Private Suite");
-            Zones.Add(16, "Private Quarters");
-            Zones.Add(17, "Seliana");
-            Zones.Add(18, "Elder's Recess");
-            Zones.Add(21, "Gathering Hub"); // During events
-            Zones.Add(23, "Training Area");
-            Zones.Add(24, "Research Base");
-            Zones.Add(28, "Astera"); // For new players?
-            Zones.Add(31, "Astera");
-            Zones.Add(33, "Astera"); // During events
-            Zones.Add(37, "Rotten Vale");
-            Zones.Add(58, "Coral Highlands");
-            Zones.Add(64, "Wildspire Waste");
-            Zones.Add(88, "Ancient Forest"); // Tutorial map
-            Zones.Add(94, "Ancient Forest");
+            Zones.Add(101, "Ancient Forest");
+            Zones.Add(102, "Wildspire Waste");
+            Zones.Add(103, "Coral Highlands");
+            Zones.Add(104, "Rotten Vale");
+            Zones.Add(105, "Elder's Recess");
+            Zones.Add(106, "Great Ravine");
+            Zones.Add(107, "Great Ravine");
+            Zones.Add(108, "Hoarfrost Reach");
+            Zones.Add(201, "Special Arena");
+            Zones.Add(202, "Arena");
+            Zones.Add(301, "Astera");
+            Zones.Add(302, "Gathering Hub");
+            Zones.Add(303, "Research Base");
+            Zones.Add(305, "Seliana");
+            Zones.Add(306, "Gathering Hub"); // Seliana's
+            Zones.Add(401, "Ancient Forest"); // Intro
+            Zones.Add(403, "Everstream");
+            Zones.Add(405, "Confluence of Fates");
+            Zones.Add(406, "Ancient Forest"); // Tutorial
+            Zones.Add(409, "Caverns of El Dorado");
+            Zones.Add(501, "Living Quarters");
+            Zones.Add(502, "Private Quarters");
+            Zones.Add(503, "Suite");
+            Zones.Add(504, "Training Area");
+            Zones.Add(505, "Chamber of Five");
         }
 
         private static void PopulateWeapons() {
