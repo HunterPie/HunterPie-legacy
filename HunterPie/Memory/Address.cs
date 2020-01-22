@@ -117,18 +117,24 @@ namespace HunterPie.Memory {
 
         // Support Iceborne and older versions
         private static bool isOlderThanIceborne(int game_version) {
+            if (game_version <= GAME_VERSION) {
+                Debugger.Error("Pre-Iceborne game not supported anymore.");
+            }
             return game_version <= GAME_VERSION;
         }
 
         private static void UpdateToIceborneOffsets() {
-            Offsets.LevelOffsets = new Int64[4] { 0x70, 0x18, 0x18, 0xE8 };
-            Offsets.LevelLastOffset = 0x90;
+            Offsets.LevelOffsets = new Int64[4] { 0x88, 0x8, 0x30, 0x350 };
+            Offsets.LevelLastOffset = 0xE8;
 
-            Offsets.ZoneOffsets = new Int64[4] { 0xB8, 0x10, 0x58, 0x18 };
-            Offsets.ZoneLastOffset = 0x358;
+            Offsets.ZoneOffsets = new Int64[0];
+            Offsets.ZoneLastOffset = 0x318;
 
             Offsets.SessionOffsets = new Int64[4] { 0x1C0, 0x1B8, 0x8, 0x30 };
             Offsets.SessionLastOffset = 0x3C8;
+
+            Offsets.WeaponOffsets = new Int64[2] { 0x58, 0x20 };
+            Offsets.WeaponLastOffset = 0x2E8;
 
             Offsets.FertilizersOffset = 0x102FE4;
             Offsets.HarvestBoxOffset = 0x20;

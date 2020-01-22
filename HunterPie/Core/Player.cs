@@ -9,7 +9,7 @@ namespace HunterPie.Core {
 
         // Private variables
         private int[] _charPlaytimes = new int[3] { -1, -1, -1 };
-        private int _slot = -1;
+        private Int64 _playerAddress = 0x0;
         private int _level;
         private string _name;
         private int _zoneId = -1;
@@ -21,18 +21,18 @@ namespace HunterPie.Core {
         private int _masterRank; // TODO: Add this
 
         // Game info
-        private int[] PeaceZones = new int[11] { 0, 5, 7, 11, 15, 16, 21, 23, 24, 31, 33 };
-        private int[] _HBZones = new int[4] { 31, 33, 11, 21 };
+        private int[] PeaceZones = new int[12] { 0, 5, 7, 11, 15, 17, 16, 21, 23, 24, 31, 33 };
+        private int[] _HBZones = new int[5] { 17, 31, 33, 11, 21 };
 
         // Player info
         private Int64 LEVEL_ADDRESS;
         private Int64 EQUIPMENT_ADDRESS;
-        public int Slot {
+        public Int64 PlayerAddress {
             get {
-                return _slot;
+                return _playerAddress;
             } set {
-                if (_slot != value) {
-                    _slot = value;
+                if (_playerAddress != value) {
+                    _playerAddress = value;
                     _onLogin();
                 }
             }
@@ -216,11 +216,12 @@ namespace HunterPie.Core {
 
         private void GetPlayerInfo() {
             while (Scanner.GameIsRunning) {
-                GetPlayerSlot();
-                GetPlayerLevel();
-                GetPlayerName();
+                if (GetPlayerAddress()) {
+                    GetPlayerLevel();
+                    GetPlayerName();
+                    GetWeaponId();
+                }
                 GetZoneId();
-                GetWeaponId();
                 GetFertilizers();
                 GetSessionId();
                 GetEquipmentAddress();
@@ -229,45 +230,30 @@ namespace HunterPie.Core {
                 GetPrimaryMantleTimers();
                 GetSecondaryMantleTimers();
                 GetParty();
-                Thread.Sleep(1200);
+                Thread.Sleep(200);
             }
             Thread.Sleep(1000);
             GetPlayerInfo();
         }
 
-        private void GetPlayerSlot() {
-            // This is a workaround until I find a better way to get which character is the user on.
-            // This method is based on character playtime, checking which one is being updated
+        private bool GetPlayerAddress() {
             Int64 Address = Memory.Address.BASE + Memory.Address.LEVEL_OFFSET;
-            //Int64[] Offset = new Int64[4] { 0x70, 0x68, 0x8, 0x20 };
             Int64 AddressValue = Scanner.READ_MULTILEVEL_PTR(Address, Memory.Address.Offsets.LevelOffsets);
-            Int64 currentChar;
-            Int64 nextChar = 0x139F20;
-            int playtime;
-            int charId = 999;
-            for (int charIndex = 2; charIndex >= 0; charIndex--) {
-                currentChar = AddressValue + Memory.Address.Offsets.LevelLastOffset + 0x10 + (nextChar * charIndex);
-                playtime = Scanner.READ_INT(currentChar);
-                if (_charPlaytimes[charIndex] != playtime) {
-                    if (_charPlaytimes.Length == 3 && _charPlaytimes[0] != -1) charId = charIndex;
-                    _charPlaytimes[charIndex] = playtime;
-                }
+            AddressValue = Scanner.READ_LONGLONG(AddressValue + Memory.Address.Offsets.LevelLastOffset);
+            if (AddressValue > 0x0) {
+                PlayerAddress = AddressValue;
+                LEVEL_ADDRESS = AddressValue + 0x40;
+                return true;
             }
-            Slot = charId;
+            return false;
         }
 
         private void GetPlayerLevel() {
-            Int64 nextChar = 0x139F20; // Next char offset
-            Int64 Address = Memory.Address.BASE + Memory.Address.LEVEL_OFFSET;
-            //Int64[] Offset = new Int64[4] { 0x70, 0x68, 0x8, 0x20 };
-            Int64 AddressValue = Scanner.READ_MULTILEVEL_PTR(Address, Memory.Address.Offsets.LevelOffsets) + (nextChar * (Slot == 999 || Slot == -1 ? 0 : Slot));
-            if (LEVEL_ADDRESS != AddressValue + Memory.Address.Offsets.LevelLastOffset && AddressValue != 0x0) Debugger.Log($"Found player address at 0x{AddressValue+ Memory.Address.Offsets.LevelLastOffset:X}");
-            LEVEL_ADDRESS = AddressValue + Memory.Address.Offsets.LevelLastOffset;
             Level = Scanner.READ_INT(LEVEL_ADDRESS);
         }
 
         private void GetPlayerName() {
-            Int64 Address = LEVEL_ADDRESS - 64;
+            Int64 Address = LEVEL_ADDRESS - 0x40;
             Name = Scanner.READ_STRING(Address, 32).Trim('\x00');
         }
 

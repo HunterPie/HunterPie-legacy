@@ -69,13 +69,13 @@ namespace HunterPie.Core {
             // Only update RPC if player isn't in loading screen
             switch(ctx.Player.ZoneID) {
                 case 0:
-                    Instance.Details = ctx.Player.Slot == 999 ? "In main menu" : "In loading screen";
+                    Instance.Details = ctx.Player.PlayerAddress == 0 ? "In main menu" : "In loading screen";
                     Instance.State = null;
                     Instance.Assets = GenerateAssets("main-menu", null, null, null);
                     Instance.Party = null;
                     break;
                 default:
-                    if (ctx.Player.Slot == 999) {
+                    if (ctx.Player.PlayerAddress == 0) {
                         Instance.Details = "In main menu";
                         Instance.State = null;
                         Instance.Assets = GenerateAssets("main-menu", null, null, null);
