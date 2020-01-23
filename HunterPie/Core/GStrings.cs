@@ -62,6 +62,7 @@ namespace HunterPie.Core {
             Zones.Add(106, "Great Ravine");
             Zones.Add(107, "Great Ravine");
             Zones.Add(108, "Hoarfrost Reach");
+            Zones.Add(109, "The Guiding Lands");
             Zones.Add(201, "Special Arena");
             Zones.Add(202, "Arena");
             Zones.Add(301, "Astera");
@@ -79,6 +80,7 @@ namespace HunterPie.Core {
             Zones.Add(503, "Suite");
             Zones.Add(504, "Training Area");
             Zones.Add(505, "Chamber of Five");
+            Zones.Add(506, "Seliana Room");
         }
 
         private static void PopulateWeapons() {

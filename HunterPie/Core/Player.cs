@@ -271,6 +271,7 @@ namespace HunterPie.Core {
 
         private void GetPlayerLevel() {
             Level = Scanner.READ_INT(LEVEL_ADDRESS);
+            Debugger.Log($"{LEVEL_ADDRESS:X}");
         }
 
         private void GetPlayerName() {

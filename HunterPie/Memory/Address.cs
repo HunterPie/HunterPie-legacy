@@ -6,23 +6,17 @@ using HunterPie.Logger;
 namespace HunterPie.Memory {
     class Address {
         public class Offsets {
-            public static Int64[] LevelOffsets = new Int64[4] { 0x70, 0x68, 0x8, 0x20 };
-            public static Int64 LevelLastOffset = 0x108;
+            public static Int64[] LevelOffsets = new Int64[5] { 0x70, 0x68, 0x8, 0x20, 0x108 };
 
-            public static Int64[] WeaponOffsets = new Int64[4] { 0x70, 0x5A8, 0x310, 0x148 };
-            public static Int64 WeaponLastOffset = 0x2B8;
+            public static Int64[] WeaponOffsets = new Int64[5] { 0x70, 0x5A8, 0x310, 0x148, 0x2B8 };
 
-            public static Int64[] SessionOffsets = new Int64[4] { 0xA0, 0x20, 0x80, 0x9C };
-            public static Int64 SessionLastOffset = 0x3C8;
+            public static Int64[] SessionOffsets = new Int64[5] { 0xA0, 0x20, 0x80, 0x9C, 0x3C8 };
 
-            public static Int64[] EquipmentOffsets = new Int64[4] { 0x78, 0x50, 0x40, 0x450 };
-            public static Int64 EquipmentLastOffset = 0x0;
+            public static Int64[] EquipmentOffsets = new Int64[5] { 0x78, 0x50, 0x40, 0x450, 0x0 };
 
-            public static Int64[] PartyOffsets = new Int64[1] { 0x0 };
-            public static Int64 PartyLastOffset = 0x0;
+            public static Int64[] PartyOffsets = new Int64[2] { 0x0, 0x0 };
 
-            public static Int64[] MonsterOffsets = new Int64[2] { 0xAF738, 0x47CDE0 };
-            public static Int64 MonsterLastOffset = 0x0;
+            public static Int64[] MonsterOffsets = new Int64[3] { 0xAF738, 0x47CDE0, 0x0 };
             public static Int64 NextMonsterPtr = 0x28;
             public static Int64 MonsterHPComponentOffset = 0x129D8 + 0x48;
             public static Int64 MonsterNamePtr = 0x290;
@@ -134,6 +128,7 @@ namespace HunterPie.Memory {
             LoadOffsetsFromDict("SessionOffsets", out Offsets.SessionOffsets, Offsets.SessionOffsets);
             LoadOffsetsFromDict("WeaponOffsets", out Offsets.WeaponOffsets, Offsets.WeaponOffsets);
             LoadOffsetsFromDict("MonsterOffsets", out Offsets.MonsterOffsets, Offsets.MonsterOffsets);
+            LoadOffsetsFromDict("EquipmentOffsets", out Offsets.EquipmentOffsets, Offsets.EquipmentOffsets);
         }
 
         private static void LoadAddressFromDict(string name, out Int64 variable, Int64 oldValue) {
