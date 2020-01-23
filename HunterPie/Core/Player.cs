@@ -241,7 +241,7 @@ namespace HunterPie.Core {
         private bool GetPlayerAddress() {
             // TODO: Find a better way to detect the player character
             Int64 Address = Memory.Address.BASE + Memory.Address.WEAPON_OFFSET;
-            Int64 AddressValue = Scanner.READ_MULTILEVEL_PTR(Address, Memory.Address.Offsets.WeaponOffsets) + Memory.Address.Offsets.WeaponLastOffset;
+            Int64 AddressValue = Scanner.READ_MULTILEVEL_PTR(Address, Memory.Address.Offsets.WeaponOffsets);
             Int64 pAddress = 0x0;
             Int64 nextPlayer = 0x27E9F0;
             if (AddressValue > 0x0) {
@@ -252,7 +252,7 @@ namespace HunterPie.Core {
                 if (pName[0] == '\x00') return false;
                 for (int playerSlot = 0; playerSlot < 3; playerSlot++) {
                     Address = Memory.Address.BASE + Memory.Address.LEVEL_OFFSET;
-                    pAddress = Scanner.READ_MULTILEVEL_PTR(Address, Memory.Address.Offsets.LevelOffsets) + Memory.Address.Offsets.LevelLastOffset + (nextPlayer * playerSlot);
+                    pAddress = Scanner.READ_MULTILEVEL_PTR(Address, Memory.Address.Offsets.LevelOffsets) + (nextPlayer * playerSlot);
                     if (Scanner.READ_INT(pAddress) == pLevel && Scanner.READ_STRING(pAddress - 0x40, 32) == pName && PlayerAddress != pAddress) {
                         LEVEL_ADDRESS = pAddress;
                         GetPlayerLevel();
@@ -296,14 +296,14 @@ namespace HunterPie.Core {
         private void GetWeaponId() {
             Int64 Address = Memory.Address.BASE + Memory.Address.WEAPON_OFFSET;
             Address = Scanner.READ_MULTILEVEL_PTR(Address, Memory.Address.Offsets.WeaponOffsets);
-            WeaponID = Scanner.READ_INT(Address + Memory.Address.Offsets.WeaponLastOffset);
+            WeaponID = Scanner.READ_INT(Address);
             WeaponName = GStrings.WeaponName(WeaponID);
         }
 
         private void GetSessionId() {
             Int64 Address = Memory.Address.BASE + Memory.Address.SESSION_OFFSET;
             Address = Scanner.READ_MULTILEVEL_PTR(Address, Memory.Address.Offsets.SessionOffsets);
-            SessionID = Scanner.READ_STRING(Address+ Memory.Address.Offsets.SessionLastOffset, 12);
+            SessionID = Scanner.READ_STRING(Address, 12);
         }
 
         private void GetEquipmentAddress() {

@@ -115,9 +115,10 @@ namespace HunterPie.Memory {
 
         public static Int64 READ_MULTILEVEL_PTR(Int64 Base_Address, Int64[] offsets) {
             Int64 Address = READ_LONGLONG(Base_Address);
-            foreach (Int64 offset in offsets) {
-                Address = READ_LONGLONG(Address + offset);
+            for (int offsetIndex = 0; offsetIndex < offsets.Length - 1; offsetIndex++) {
+                Address = READ_LONGLONG(Address + offsets[offsetIndex]);
             }
+            Address = Address + offsets[offsets.Length - 1];
             return Address;
         }
 

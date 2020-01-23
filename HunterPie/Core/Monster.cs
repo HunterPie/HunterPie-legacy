@@ -122,7 +122,7 @@ namespace HunterPie.Core {
             Int64 Address = Memory.Address.BASE + Memory.Address.MONSTER_OFFSET;
             // This will give us the third monster's address, so we can find the second and first monster with it
             Int64 ThirdMonsterAddress = Scanner.READ_MULTILEVEL_PTR(Address, Memory.Address.Offsets.MonsterOffsets);
-            ThirdMonsterAddress = Scanner.READ_LONGLONG(ThirdMonsterAddress + Memory.Address.Offsets.MonsterLastOffset);
+            ThirdMonsterAddress = Scanner.READ_LONGLONG(ThirdMonsterAddress);
             if (MonsterNumber == 3) {
                 //if (ThirdMonsterAddress != MonsterAddress) Debugger.Log($"Found 3rd Monster address -> 0x{ThirdMonsterAddress:X}");
                 MonsterAddress = ThirdMonsterAddress;
