@@ -8,7 +8,6 @@ namespace HunterPie.Core {
     public class Player {
 
         // Private variables
-        private int[] _charPlaytimes = new int[3] { -1, -1, -1 };
         private Int64 _playerAddress = 0x0;
         private int _level;
         private string _name;
@@ -22,7 +21,7 @@ namespace HunterPie.Core {
 
         // Game info
         private int[] PeaceZones = new int[9] { 0, 301, 302, 303, 305, 306, 501, 502, 503 };
-        private int[] _HBZones = new int[8] { 301, 302, 303, 305, 306, 501, 502, 503 };
+        private int[] _HBZones = new int[9] { 301, 302, 303, 305, 306, 501, 502, 503, 506 };
 
         // Player info
         private Int64 LEVEL_ADDRESS;
@@ -30,9 +29,8 @@ namespace HunterPie.Core {
         private Int64 PlayerSelectedPointer;
         private int PlayerSlot;
         public Int64 PlayerAddress {
-            get {
-                return _playerAddress;
-            } set {
+            get { return _playerAddress; }
+            set {
                 if (_playerAddress != value) {
                     _playerAddress = value;
                     if (value != 0x0) _onLogin();
@@ -40,9 +38,8 @@ namespace HunterPie.Core {
             }
         }
         public int Level { // Hunter Rank
-            get {
-                return _level;
-            } set {
+            get { return _level; }
+            set {
                 if (_level != value) {
                     _level = value;
                     _onLevelUp();
@@ -59,9 +56,8 @@ namespace HunterPie.Core {
             }
         }
         public string Name {
-            get {
-                return _name;
-            } set {
+            get { return _name; }
+            set {
                 if (_name != value) {
                     _name = value;
                     _onNameChange();
@@ -69,9 +65,8 @@ namespace HunterPie.Core {
             }
         }
         public int ZoneID {
-            get {
-                return _zoneId;
-            } set {
+            get { return _zoneId; }
+            set {
                 if (_zoneId != value) {
                     if (PeaceZones.Contains(_zoneId) && !PeaceZones.Contains(value)) _onPeaceZoneLeave();
                     if (_HBZones.Contains(_zoneId) && !_HBZones.Contains(value)) _onVillageLeave();
@@ -83,9 +78,8 @@ namespace HunterPie.Core {
             }
         }
         public string ZoneName {
-            get {
-                return _zoneName;
-            } set {
+            get { return _zoneName; }
+            set {
                 if (_zoneName != value) {
                     _zoneName = value;
                 }
@@ -93,9 +87,8 @@ namespace HunterPie.Core {
         }
         public int LastZoneID { get; private set; }
         public int WeaponID {
-            get {
-                return _weaponId;
-            } set {
+            get { return _weaponId; }
+            set {
                 if (_weaponId != value) {
                     _weaponId = value;
                     _onWeaponChange();
@@ -103,18 +96,16 @@ namespace HunterPie.Core {
             }
         }
         public string WeaponName {
-            get {
-                return _weaponName;
-            } set {
+            get { return _weaponName; }
+            set {
                 if (_weaponName != value) {
                     _weaponName = value;
                 }
             }
         }
         public string SessionID {
-            get {
-                return _sessionId;
-            } set {
+            get { return _sessionId; }
+            set {
                 if (_sessionId != value) {
                     _sessionId = value;
                     _onSessionChange();
@@ -123,16 +114,13 @@ namespace HunterPie.Core {
         }
         public bool inPeaceZone = true;
         public bool inHarvestZone {
-            get {
-                return _HBZones.Contains(ZoneID);
-            }
+            get { return _HBZones.Contains(ZoneID); }
         }
         // Party
         public string[] Party = new string[4];
         public int PartySize {
-            get {
-                return _partySize;
-            } set {
+            get { return _partySize; }
+            set {
                 if (_partySize != value) {
                     _partySize = value;
                     _onPartyChange();
@@ -281,8 +269,9 @@ namespace HunterPie.Core {
             } else {
                 PlayerAddress = 0x0;
                 LEVEL_ADDRESS = 0x0;
+                return false;
             }
-            return false;
+            return true;
         }
 
         private void GetPlayerLevel() {

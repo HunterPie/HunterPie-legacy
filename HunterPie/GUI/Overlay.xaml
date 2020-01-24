@@ -22,7 +22,7 @@
                         <Grid x:Name="TemplateRoot">
                             <Grid.LayoutTransform>
                                 <TransformGroup>
-                                    <SkewTransform AngleX="45"/>
+                                    <SkewTransform/>
                                 </TransformGroup>
                             </Grid.LayoutTransform>
                             <VisualStateManager.VisualStateGroups>
@@ -84,16 +84,16 @@
         <Grid.RowDefinitions>
             <RowDefinition Height="1080"/>
         </Grid.RowDefinitions>
-        <StackPanel x:Name="MonstersContainer" Margin="560,19,0,0" Orientation="Horizontal" MinHeight="62" MinWidth="778" MaxWidth="778" MaxHeight="62" HorizontalAlignment="Left" Width="778" Height="62" VerticalAlignment="Top">
+        <StackPanel x:Name="MonstersContainer" Margin="560,19,0,0" Orientation="Horizontal" MinHeight="62" MinWidth="778" MaxWidth="778" MaxHeight="62" HorizontalAlignment="Left" Width="786" Height="27" VerticalAlignment="Top">
 
             <StackPanel x:Name="fMonsterBox" Orientation="Vertical" MinWidth="62" MaxHeight="62" HorizontalAlignment="Left" Width="262" Visibility="Hidden">
-                <Label x:Name="fMonsterName" Content="MONSTER NAME 1" VerticalAlignment="Top" Foreground="WhiteSmoke" HorizontalContentAlignment="Center" Padding="5,0" Height="19" FontSize="13" FontWeight="Bold" FontFamily="Roboto">
+                <Label x:Name="fMonsterName" Content="MONSTER NAME 1" VerticalAlignment="Top" Foreground="WhiteSmoke" HorizontalContentAlignment="Center" Padding="5,0" Height="19" FontSize="13" FontWeight="Bold" FontFamily="Roboto" VerticalContentAlignment="Center">
                     <Label.Effect>
-                        <DropShadowEffect Opacity="0.5" Direction="360" ShadowDepth="2"/>
+                        <DropShadowEffect Opacity="0.5"/>
                     </Label.Effect>
                 </Label>
                 <Label x:Name="fMonsterHpText" Content="9999/9999 (100%)" VerticalAlignment="Top" HorizontalContentAlignment="Center" Height="19" VerticalContentAlignment="Center" Foreground="WhiteSmoke" FontSize="10" Padding="0" FontFamily="Roboto"/>
-                <ProgressBar x:Name="fMonsterHpBar" Height="6" Margin="31,0,10,0" VerticalAlignment="Top" BorderThickness="0" BorderBrush="{x:Null}" Background="#339C9C9C" Maximum="9999" Value="5000" Style="{DynamicResource MonsterBar}">
+                <ProgressBar x:Name="fMonsterHpBar" Height="8" Margin="10,0" VerticalAlignment="Top" BorderThickness="0" BorderBrush="{x:Null}" Background="#339C9C9C" Maximum="9999" Value="5000" Style="{DynamicResource MonsterBar}">
                     <ProgressBar.Foreground>
                         <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
                             <GradientStop Color="#FFA80404" Offset="0"/>
@@ -104,14 +104,14 @@
 
             </StackPanel>
 
-            <StackPanel x:Name="sMonsterBox" Orientation="Vertical" MinWidth="62" HorizontalAlignment="Left" Width="258" Visibility="Hidden">
-                <Label x:Name="sMonsterName" Content="MONSTER NAME 2" VerticalAlignment="Top" Foreground="WhiteSmoke" HorizontalContentAlignment="Center" Padding="5,0" Height="19" FontSize="13" FontWeight="Bold" FontFamily="Roboto">
+            <StackPanel x:Name="sMonsterBox" Orientation="Vertical" MinWidth="62" HorizontalAlignment="Left" Width="262" Margin="0" Visibility="Hidden">
+                <Label x:Name="sMonsterName" Content="MONSTER NAME 2" VerticalAlignment="Top" Foreground="WhiteSmoke" HorizontalContentAlignment="Center" Padding="5,0" Height="19" FontSize="13" FontWeight="Bold" FontFamily="Roboto" VerticalContentAlignment="Center">
                     <Label.Effect>
-                        <DropShadowEffect Opacity="0.5" Direction="360" ShadowDepth="2"/>
+                        <DropShadowEffect Opacity="0.5"/>
                     </Label.Effect>
                 </Label>
                 <Label x:Name="sMonsterHpText" Content="9999/9999 (100%)" VerticalAlignment="Top" HorizontalContentAlignment="Center" Height="19" VerticalContentAlignment="Center" Foreground="WhiteSmoke" FontSize="10" Padding="0" FontFamily="Roboto"/>
-                <ProgressBar x:Name="sMonsterHpBar" HorizontalAlignment="Left" Height="6" Margin="31,0,0,0" VerticalAlignment="Top" Width="206" BorderThickness="0" BorderBrush="{x:Null}" Background="#339C9C9C" Maximum="9999" Value="5000" Style="{DynamicResource MonsterBar}">
+                <ProgressBar x:Name="sMonsterHpBar" HorizontalAlignment="Left" Height="8" Margin="10,0,0,0" VerticalAlignment="Top" Width="242" BorderThickness="0" BorderBrush="{x:Null}" Background="#339C9C9C" Maximum="9999" Value="5000" Style="{DynamicResource MonsterBar}">
                     <ProgressBar.Foreground>
                         <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
                             <GradientStop Color="#FFA80404" Offset="0"/>
@@ -121,14 +121,16 @@
                 </ProgressBar>
 
             </StackPanel>
-            <StackPanel x:Name="tMonsterBox" Orientation="Vertical" MinWidth="257" HorizontalAlignment="Left" Width="257" MinHeight="62" Visibility="Hidden">
-                <Label x:Name="tMonsterName" Content="MONSTER NAME 3" VerticalAlignment="Top" Foreground="WhiteSmoke" HorizontalContentAlignment="Center" Padding="5,0" Height="19" FontSize="13" FontWeight="Bold" FontFamily="Roboto">
+
+
+            <StackPanel x:Name="tMonsterBox" Orientation="Vertical" MinWidth="62" HorizontalAlignment="Left" Width="262" Margin="0" Visibility="Hidden">
+                <Label x:Name="tMonsterName" Content="MONSTER NAME 3" VerticalAlignment="Top" Foreground="WhiteSmoke" HorizontalContentAlignment="Center" Padding="5,0" Height="19" FontSize="13" FontWeight="Bold" FontFamily="Roboto" VerticalContentAlignment="Center">
                     <Label.Effect>
-                        <DropShadowEffect Opacity="0.5" Direction="360" ShadowDepth="2"/>
+                        <DropShadowEffect Opacity="0.5"/>
                     </Label.Effect>
                 </Label>
                 <Label x:Name="tMonsterHpText" Content="9999/9999 (100%)" VerticalAlignment="Top" HorizontalContentAlignment="Center" Height="19" VerticalContentAlignment="Center" Foreground="WhiteSmoke" FontSize="10" Padding="0" FontFamily="Roboto"/>
-                <ProgressBar x:Name="tMonsterHpBar" HorizontalAlignment="Left" Height="6" Margin="31,0,0,0" VerticalAlignment="Top" Width="206" BorderThickness="0" BorderBrush="{x:Null}" Background="#339C9C9C" Maximum="9999" Value="5000" Style="{DynamicResource MonsterBar}">
+                <ProgressBar x:Name="tMonsterHpBar" HorizontalAlignment="Left" Height="8" Margin="10,0,0,0" VerticalAlignment="Top" Width="242" BorderThickness="0" BorderBrush="{x:Null}" Background="#339C9C9C" Maximum="9999" Value="5000" Style="{DynamicResource MonsterBar}">
                     <ProgressBar.Foreground>
                         <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
                             <GradientStop Color="#FFA80404" Offset="0"/>
