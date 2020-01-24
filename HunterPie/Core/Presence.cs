@@ -57,7 +57,9 @@ namespace HunterPie.Core {
             if (UserSettings.PlayerConfig.RichPresence.Enabled && !isVisible) {
                 isVisible = true;
             } else if (!UserSettings.PlayerConfig.RichPresence.Enabled && isVisible) {
-                Client.ClearPresence();
+                try {
+                    Client.ClearPresence();
+                } catch {}
                 isVisible = false;
             }
         }
