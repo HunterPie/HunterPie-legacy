@@ -39,13 +39,22 @@ namespace HunterPie.Core {
                 }
             }
         }
-        public int Level {
+        public int Level { // Hunter Rank
             get {
                 return _level;
             } set {
                 if (_level != value) {
                     _level = value;
                     _onLevelUp();
+                }
+            }
+        }
+        public int MasterRank {
+            get { return _masterRank; }
+            set {
+                if (_masterRank != value) {
+                    _masterRank = value;
+                    _onMasterRankLevelUp();
                 }
             }
         }
@@ -147,6 +156,7 @@ namespace HunterPie.Core {
         // Level event handler
         public delegate void PlayerEvents(object source, EventArgs args);
         public event PlayerEvents OnLevelChange;
+        public event PlayerEvents OnMasterRankChange;
         public event PlayerEvents OnNameChange;
         public event PlayerEvents OnZoneChange;
         public event PlayerEvents OnWeaponChange;
@@ -157,6 +167,7 @@ namespace HunterPie.Core {
         public event PlayerEvents OnVillageEnter;
         public event PlayerEvents OnPeaceZoneLeave;
         public event PlayerEvents OnVillageLeave;
+        
 
         // Dispatchers
 
@@ -166,6 +177,10 @@ namespace HunterPie.Core {
 
         protected virtual void _onLevelUp() {
             OnLevelChange?.Invoke(this, EventArgs.Empty);
+        }
+
+        protected virtual void _onMasterRankLevelUp() {
+            OnMasterRankChange?.Invoke(this, EventArgs.Empty);
         }
 
         protected virtual void _onNameChange() {
@@ -220,6 +235,7 @@ namespace HunterPie.Core {
             while (Scanner.GameIsRunning) {
                 if (GetPlayerAddress()) {
                     GetPlayerLevel();
+                    GetPlayerMasterRank();
                     GetPlayerName();
                     GetWeaponId();
                 }
@@ -271,7 +287,10 @@ namespace HunterPie.Core {
 
         private void GetPlayerLevel() {
             Level = Scanner.READ_INT(LEVEL_ADDRESS);
-            Debugger.Log($"{LEVEL_ADDRESS:X}");
+        }
+
+        private void GetPlayerMasterRank() {
+            MasterRank = Scanner.READ_INT(LEVEL_ADDRESS + 0x44);
         }
 
         private void GetPlayerName() {

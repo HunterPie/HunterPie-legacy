@@ -77,10 +77,10 @@ namespace HunterPie.Core {
             Zones.Add(409, "Caverns of El Dorado");
             Zones.Add(501, "Living Quarters");
             Zones.Add(502, "Private Quarters");
-            Zones.Add(503, "Suite");
+            Zones.Add(503, "Private Suite");
             Zones.Add(504, "Training Area");
             Zones.Add(505, "Chamber of Five");
-            Zones.Add(506, "Seliana Room");
+            Zones.Add(506, "Seliana Room"); // TODO: Rename this to something better
         }
 
         private static void PopulateWeapons() {

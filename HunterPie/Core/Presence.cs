@@ -84,7 +84,7 @@ namespace HunterPie.Core {
                     }
                     Instance.Details = ctx.HuntedMonster == null ? ctx.Player.inPeaceZone ? "Idle" : "Exploring" : $"Hunting {ctx.HuntedMonster.Name} ({(int)(ctx.HuntedMonster.HPPercentage * 100)}%)";
                     Instance.State = ctx.Player.PartySize > 1 ? "In Party" : "Solo";
-                    Instance.Assets = GenerateAssets(ctx.Player.ZoneName == null ? "main-menu" : ctx.Player.ZoneName.Replace(' ', '-').Replace("'", string.Empty).ToLower(), ctx.Player.ZoneName == "Main Menu" ? null : ctx.Player.ZoneName, ctx.Player.WeaponName == null ? "hunter-rank" : ctx.Player.WeaponName.Replace(' ', '-').ToLower(), $"{ctx.Player.Name} | Lvl: {ctx.Player.Level}");
+                    Instance.Assets = GenerateAssets(ctx.Player.ZoneName == null ? "main-menu" : $"st{ctx.Player.ZoneID}", ctx.Player.ZoneName == "Main Menu" ? null : ctx.Player.ZoneName, ctx.Player.WeaponName == null ? "hunter-rank" : ctx.Player.WeaponName.Replace(' ', '-').ToLower(), $"{ctx.Player.Name} | HR: {ctx.Player.Level} | MR: {ctx.Player.MasterRank}");
                     // TODO: Generate party hash
                     Instance.Party = MakeParty(ctx.Player.PartySize, ctx.Player.PartyMax, "test");
                     break;
