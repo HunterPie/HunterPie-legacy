@@ -24,6 +24,7 @@ namespace HunterPie.Memory {
             public static Int64 FertilizersOffset = 0x6740C;
             public static Int64 HarvestBoxOffset = 0x10;
         }
+        public static int PREICEBORNE_VERSION = 168031;
         public static int GAME_VERSION = 168031;
 
         // Static addresses
@@ -65,6 +66,7 @@ namespace HunterPie.Memory {
         private static void LoadMemoryAddresses(string filename) {
             // Clear all loaded values
             MappedAddresses.Clear();
+            MappedOffsets.Clear();
             string[] fileLines = File.ReadAllLines($"address/{filename}");
             foreach (string line in fileLines) {
                 if (line.StartsWith("#")) continue; // Ignore comments
@@ -152,10 +154,10 @@ namespace HunterPie.Memory {
 
         // Support Iceborne and older versions
         private static bool isOlderThanIceborne(int game_version) {
-            if (game_version <= GAME_VERSION) {
+            if (game_version <= PREICEBORNE_VERSION) {
                 Debugger.Error("Pre-Iceborne game not supported anymore.");
             }
-            return game_version <= GAME_VERSION;
+            return game_version <= PREICEBORNE_VERSION;
         }
 
         private static void UpdateToIceborneOffsets() {
