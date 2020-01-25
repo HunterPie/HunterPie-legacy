@@ -63,17 +63,10 @@ namespace HunterPie.Core {
         }
         
         private void DownloadNewUpdater() {
-            WebRequest xrequest = WebRequest.Create($"{BranchURI}Update.exe");
-            WebResponse xr_response = xrequest.GetResponse();
-            using (Stream r_content = xr_response.GetResponseStream()) {
-                StreamReader content = new StreamReader(r_content);
-                MemoryStream ms = new MemoryStream();
-                content.BaseStream.CopyTo(ms);
-                byte[] contentBytes = ms.ToArray();
-                var _file = File.OpenWrite("Update.exe");
-                _file.Write(contentBytes, 0, contentBytes.Length);
-                _file.Close();
-                
+            WebClient _WebClient = new WebClient();
+            byte[] FileData = _WebClient.DownloadData($"{BranchURI}Update.exe");
+            using (var UpdateFile = File.OpenWrite("Update.exe")) {
+                UpdateFile.Write(FileData, 0, FileData.Length);
             }
         }
     }
