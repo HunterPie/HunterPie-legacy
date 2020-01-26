@@ -19,8 +19,6 @@ namespace HunterPie.Core {
         public void checkAutoUpdate() {
             CheckLocalHash();
             CheckOnlineHash();
-            Console.WriteLine($"Local: {LocalUpdateHash}");
-            Console.WriteLine($"Online: {OnlineUpdateHash}");
             if (LocalUpdateHash == OnlineUpdateHash || offlineMode) {
                 FileData = null; // clear byte array
                 return;
