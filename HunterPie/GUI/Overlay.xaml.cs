@@ -1,14 +1,10 @@
 ﻿using System;
 using System.Windows;
-using System.Windows.Controls;
 using System.Windows.Media;
 using System.Windows.Forms;
-using Xceed.Wpf.Toolkit;
 using System.Runtime.InteropServices;
 using System.Windows.Interop;
 using HunterPie.Core;
-using HunterPie.GUIControls;
-using HunterPie.Logger;
 
 namespace HunterPie.GUI {
     /// <summary>

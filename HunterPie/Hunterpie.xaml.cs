@@ -155,7 +155,6 @@ namespace HunterPie {
         public void OnGameClose(object source, EventArgs e) {
             if (UserSettings.PlayerConfig.HunterPie.Options.CloseWhenGameCloses) {
                 this.Close();
-                Environment.Exit(0);
             }
         }
 
@@ -163,15 +162,7 @@ namespace HunterPie {
             // X button function
             bool ExitConfirmation = MessageBox.Show("Are you sure you want to exit HunterPie?", "HunterPie", MessageBoxButton.YesNo, MessageBoxImage.Question) == MessageBoxResult.Yes;
             if (ExitConfirmation) {
-                try {
-                    // Stop Threads
-                    MonsterHunter.StopScanning();
-                    Scanner.StopScanning();
-                    GameOverlay.Close();
-                } catch {}
-                // Close stuff
                 this.Close();
-                Environment.Exit(0);
             }
         }
 
@@ -204,9 +195,16 @@ namespace HunterPie {
         }
 
         private void window_Closing(object sender, System.ComponentModel.CancelEventArgs e) {
-            if (GameOverlay != null) GameOverlay.Destroy();
+            this.WindowState = WindowState.Minimized;
+            try {
+                // Stop Threads
+                GameOverlay.Destroy();
+                MonsterHunter.StopScanning();
+                Scanner.StopScanning();
+            } catch { }
+            // Close stuff
             this.UnhookEvents();
-            
+            Environment.Exit(0);
         }
 
         private void githubButton_Click(object sender, RoutedEventArgs e) {
