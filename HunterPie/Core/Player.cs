@@ -17,7 +17,7 @@ namespace HunterPie.Core {
         private string _weaponName;
         private string _sessionId;
         private int _partySize;
-        private int _masterRank; // TODO: Add this
+        private int _masterRank;
 
         // Game info
         private int[] PeaceZones = new int[9] { 0, 301, 302, 303, 305, 306, 501, 502, 503 };
