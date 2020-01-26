@@ -35,7 +35,7 @@ namespace HunterPie.Core {
                 if (value != _currentHP) {
                     _currentHP = value;
                     _onHPUpdate();
-                    if (_currentHP <= 0.0f) {
+                    if (value <= 0) {
                         _onMonsterDeath();
                     }
                 }

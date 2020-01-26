@@ -140,7 +140,7 @@ namespace HunterPie.GUI {
             // Third monster
             ctx.ThirdMonster.OnMonsterSpawn -= this.OnThirdMonsterSpawn;
             ctx.ThirdMonster.OnMonsterDespawn -= this.OnThirdMonsterDespawn;
-            ctx.ThirdMonster.OnMonsterDespawn -= this.OnThirdMonsterDespawn;
+            ctx.ThirdMonster.OnMonsterDeath -= this.OnThirdMonsterDespawn;
             ctx.ThirdMonster.OnHPUpdate -= this.UpdateThirdMonster;
         }
 
@@ -304,6 +304,7 @@ namespace HunterPie.GUI {
         }
 
         public void OnFirstMonsterDespawn(object source, MonsterEventArgs e) {
+            Debugger.Log("Monster 1 ded");
             Dispatch(() => {
                 fMonsterBox.Visibility = Visibility.Hidden;
             });
@@ -321,6 +322,7 @@ namespace HunterPie.GUI {
 
         // Second monster
         public void OnSecondMonsterSpawn(object source, MonsterEventArgs e) {
+            Debugger.Log("Monster 2 spawn");
             Dispatch(() => {
                 sMonsterBox.Visibility = Visibility.Visible;
                 sMonsterName.Content = e.Name.ToUpper();
@@ -331,6 +333,7 @@ namespace HunterPie.GUI {
         }
 
         public void OnSecondMonsterDespawn(object source, MonsterEventArgs e) {
+            Debugger.Log("Monster 2 ded");
             Dispatch(() => {
                 sMonsterBox.Visibility = Visibility.Hidden;
             });
@@ -349,6 +352,7 @@ namespace HunterPie.GUI {
         // Third monster
 
         public void OnThirdMonsterSpawn(object source, MonsterEventArgs e) {
+            Debugger.Log("Monster 3 spawn");
             Dispatch(() => {
                 tMonsterBox.Visibility = Visibility.Visible;
                 tMonsterName.Content = e.Name.ToUpper();
@@ -359,6 +363,7 @@ namespace HunterPie.GUI {
         }
 
         public void OnThirdMonsterDespawn(object source, MonsterEventArgs e) {
+            Debugger.Log("Monster 3 ded");
             Dispatch(() => {
                 tMonsterBox.Visibility = Visibility.Hidden;
             });
@@ -366,6 +371,7 @@ namespace HunterPie.GUI {
 
         public void UpdateThirdMonster(object source, MonsterEventArgs e) {
             if (e.Name == null) return;
+            Debugger.Log(e.CurrentHP.ToString());
             Dispatch(() => {
                 tMonsterName.Content = e.Name.ToUpper();
                 tMonsterHpBar.Maximum = e.TotalHP;

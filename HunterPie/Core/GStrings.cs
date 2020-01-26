@@ -80,7 +80,7 @@ namespace HunterPie.Core {
             Zones.Add(503, "Private Suite");
             Zones.Add(504, "Training Area");
             Zones.Add(505, "Chamber of Five");
-            Zones.Add(506, "Seliana Room"); // TODO: Rename this to something better
+            Zones.Add(506, "Seliana Room");
         }
 
         private static void PopulateWeapons() {
