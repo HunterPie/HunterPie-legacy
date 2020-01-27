@@ -224,7 +224,7 @@ namespace HunterPie.GUI {
         // Primary mantle
         public void UpdatePrimaryMantleCooldown(object source, MantleEventArgs e) {
             bool ContainerEnabled = UserSettings.PlayerConfig.Overlay.PrimaryMantle.Enabled;
-            if (e.Cooldown == 0) {
+            if (e.Cooldown <= 0) {
                 Dispatch(() => {
                     if (PrimaryMantleContainer.Visibility == Visibility.Visible) PrimaryMantleContainer.Visibility = Visibility.Hidden;
                 });
@@ -240,7 +240,7 @@ namespace HunterPie.GUI {
 
         public void UpdatePrimaryMantleTimer(object source, MantleEventArgs e) {
             bool ContainerEnabled = UserSettings.PlayerConfig.Overlay.PrimaryMantle.Enabled;
-            if (e.Timer == 0) {
+            if (e.Timer <= 0) {
                 Dispatch(() => {
                     if (PrimaryMantleContainer.Visibility == Visibility.Visible) PrimaryMantleContainer.Visibility = Visibility.Hidden;
                 });
