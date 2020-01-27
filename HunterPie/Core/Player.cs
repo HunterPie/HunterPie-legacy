@@ -46,7 +46,7 @@ namespace HunterPie.Core {
                 }
             }
         }
-        public int MasterRank {
+        public int MasterRank { // Master Rank
             get { return _masterRank; }
             set {
                 if (_masterRank != value) {

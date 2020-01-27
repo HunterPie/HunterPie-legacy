@@ -64,7 +64,7 @@ namespace HunterPie {
                     }
                 }
                 if (justUpdated) {
-                    openChangeLog();
+                    OpenChangelog();
                     return;
                 }
                 if (latestVersion) {
@@ -107,6 +107,7 @@ namespace HunterPie {
             GameOverlay.Show();
         }
 
+        /* Game events */
         private void HookEvents() {
             // Scanner events
             Scanner.OnGameStart += OnGameStart;
@@ -158,7 +159,27 @@ namespace HunterPie {
             }
         }
 
-        private void Label_MouseDown(object sender, MouseButtonEventArgs e) {
+        /* Open sub windows */
+
+        private void OpenDebugger() {
+            ConsolePanel.Children.Clear();
+            ConsolePanel.Children.Add(Debugger.Instance);
+        }
+
+        private void OpenSettings() {
+            ConsolePanel.Children.Clear();
+            ConsolePanel.Children.Add(Settings.Instance);
+            Settings.RefreshSettingsUI();
+        }
+
+        private void OpenChangelog() {
+            ConsolePanel.Children.Clear();
+            ConsolePanel.Children.Add(Changelog.Instance);
+        }
+
+        /* Events */
+
+        private void OnCloseWindowButtonClick(object sender, MouseButtonEventArgs e) {
             // X button function
             bool ExitConfirmation = MessageBox.Show("Are you sure you want to exit HunterPie?", "HunterPie", MessageBoxButton.YesNo, MessageBoxImage.Question) == MessageBoxResult.Yes;
             if (ExitConfirmation) {
@@ -166,35 +187,16 @@ namespace HunterPie {
             }
         }
 
-        private void WindowTopBar_MouseDown(object sender, MouseButtonEventArgs e) {
+        private void OnWindowDrag(object sender, MouseButtonEventArgs e) {
             // When top bar is held by LMB
             this.DragMove();
         }
 
-        private void minimizeWindow_MouseDown(object sender, MouseButtonEventArgs e) {
+        private void OnMinimizeButtonClick(object sender, MouseButtonEventArgs e) {
             this.WindowState = WindowState.Minimized;
         }
 
-        private void OpenDebugger() {
-            ConsolePanel.Children.Clear();
-            ConsolePanel.Children.Add(Debugger.Instance);
-        }
-
-        private void OpenSettingsWindow() {
-            ConsolePanel.Children.Clear();
-            ConsolePanel.Children.Add(Settings.Instance);
-            Settings.RefreshSettingsUI();
-        }
-
-        private void consoleButton_Click(object sender, RoutedEventArgs e) {
-            OpenDebugger();
-        }
-
-        private void settingsButton_Click(object sender, RoutedEventArgs e) {
-            OpenSettingsWindow();
-        }
-
-        private void window_Closing(object sender, System.ComponentModel.CancelEventArgs e) {
+        private void OnWindowClosing(object sender, System.ComponentModel.CancelEventArgs e) {
             this.WindowState = WindowState.Minimized;
             try {
                 // Stop Threads
@@ -207,17 +209,33 @@ namespace HunterPie {
             Environment.Exit(0);
         }
 
-        private void githubButton_Click(object sender, RoutedEventArgs e) {
+        private void OnGithubButtonClick(object sender, RoutedEventArgs e) {
             System.Diagnostics.Process.Start("https://github.com/Haato3o/HunterPie");
         }
 
-        private void openChangeLog() {
-            ConsolePanel.Children.Clear();
-            ConsolePanel.Children.Add(Changelog.Instance);
+        private void OnConsoleButtonClick(object sender, RoutedEventArgs e) {
+            OpenDebugger();
         }
 
-        private void changelogButton_click(object sender, RoutedEventArgs e) {
-            openChangeLog();
+        private void OnSettingsButtonClick(object sender, RoutedEventArgs e) {
+            OpenSettings();
+        }
+
+        private void OnChangelogButtonClick(object sender, RoutedEventArgs e) {
+            OpenChangelog();
+        }
+
+        private void OnLaunchGameButtonClick(object sender, RoutedEventArgs e) {
+            // Shorten the class name
+            var launchOptions = UserSettings.PlayerConfig.HunterPie.Launch;
+
+            if (launchOptions.GamePath == "") {
+                if (MessageBox.Show("You haven't added the game path yet. Do you want to do it now?", "Monster Hunter World path not found", MessageBoxButton.YesNo, MessageBoxImage.Error) == MessageBoxResult.Yes) {
+                    OpenSettings();
+                }
+            } else {
+                LaunchGame();
+            }
         }
 
         private void LaunchGame() {
@@ -229,20 +247,7 @@ namespace HunterPie {
             } catch {
                 Debugger.Error("Failed to launch Monster Hunter World. Common reasons for this error are:\n- Wrong file path;");
             }
-            
         }
 
-        private void launchGameButton_Click(object sender, RoutedEventArgs e) {
-            // Shorten the class name
-            var launchOptions = UserSettings.PlayerConfig.HunterPie.Launch;
-
-            if (launchOptions.GamePath == "") {
-                if (MessageBox.Show("You haven't added the game path yet. Do you want to do it now?", "Monster Hunter World path not found", MessageBoxButton.YesNo, MessageBoxImage.Error) == MessageBoxResult.Yes) {
-                    OpenSettingsWindow();
-                }
-            } else {
-                LaunchGame();
-            }
-        }
     }
 }
