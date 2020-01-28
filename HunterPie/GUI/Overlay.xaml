@@ -101,7 +101,6 @@
                         </LinearGradientBrush>
                     </ProgressBar.Foreground>
                 </ProgressBar>
-
             </StackPanel>
 
             <StackPanel x:Name="sMonsterBox" Orientation="Vertical" MinWidth="62" HorizontalAlignment="Left" Width="262" Margin="0" Visibility="Hidden">
