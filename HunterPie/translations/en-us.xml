@@ -1,0 +1,147 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<Strings lang="English">
+  <Monsters>
+    <Monster ID="em001_00" Name="Rathian"/>
+    <Monster ID="em001_01" Name="Pink Rathian"/>
+    <Monster ID="em001_02" Name="Gold Rathian"/>
+    <Monster ID="em002_00" Name="Rathalos"/>
+    <Monster ID="em002_01" Name="Azure Rathalos"/>
+    <Monster ID="em002_02" Name="Silver Rathalos"/>
+    <Monster ID="em007_00" Name="Diablos"/>
+    <Monster ID="em007_01" Name="Black Diablos"/>
+    <Monster ID="em011_00" Name="Kirin"/>
+    <Monster ID="em018_00" Name="Yian Garuga"/>
+    <Monster ID="em018_05" Name="Scarred Yian Garuga"/>
+    <Monster ID="em024_00" Name="Kushala Daora"/>
+    <Monster ID="em026_00" Name="Lunastra"/>
+    <Monster ID="em027_00" Name="Teostra"/>
+    <Monster ID="em032_00" Name="Tigrex"/>
+    <Monster ID="em032_01" Name="Brute Tigrex"/>
+    <Monster ID="em036_00" Name="Lavasioth"/>
+    <Monster ID="em037_00" Name="Nargacuga"/>
+    <Monster ID="em042_00" Name="Barioth"/>
+    <Monster ID="em043_00" Name="Deviljho"/>
+    <Monster ID="em043_05" Name="Savage Deviljho"/>
+    <Monster ID="em044_00" Name="Barroth"/>
+    <Monster ID="em045_00" Name="Uragaan"/>
+    <Monster ID="em057_00" Name="Zinogre"/>
+    <Monster ID="em063_00" Name="Brachydios"/>
+    <Monster ID="em080_00" Name="Glavenus"/>
+    <Monster ID="em080_01" Name="Acidic Glavenus"/>
+    <Monster ID="em100_00" Name="Anjanath"/>
+    <Monster ID="em100_01" Name="Fulgur Anjanath"/>
+    <Monster ID="em101_00" Name="Great Jagras"/>
+    <Monster ID="em102_00" Name="Pukei-Pukei"/>
+    <Monster ID="em102_01" Name="Coral Pukei-Pukei"/>
+    <Monster ID="em103_00" Name="Nergigante"/>
+    <Monster ID="em103_05" Name="Ruiner Nergigante"/>
+    <Monster ID="em105_00" Name="Xeno'jiiva"/>
+    <Monster ID="em106_00" Name="Zorah Magdaros"/>
+    <Monster ID="em107_00" Name="Kulu-Ya-Ku"/>
+    <Monster ID="em108_00" Name="Jyuratodus"/>
+    <Monster ID="em109_00" Name="Tobi-Kadachi"/>
+    <Monster ID="em109_01" Name="Viper Tobi-Kadachi"/>
+    <Monster ID="em110_00" Name="Paolumu"/>
+    <Monster ID="em110_01" Name="Nightshade Paolumu"/>
+    <Monster ID="em111_00" Name="Legiana"/>
+    <Monster ID="em111_05" Name="Shrieking Legiana"/>
+    <Monster ID="em112_00" Name="Great Girros"/>
+    <Monster ID="em113_00" Name="Odogaron"/>
+    <Monster ID="em113_01" Name="Ebony Odogaron"/>
+    <Monster ID="em114_00" Name="Radobaan"/>
+    <Monster ID="em115_00" Name="Vaal Hazak"/>
+    <Monster ID="em115_05" Name="Blackveil Vaal Hazak"/>
+    <Monster ID="em116_00" Name="Dodogama"/>
+    <Monster ID="em117_00" Name="Kulve Taroth"/>
+    <Monster ID="em118_00" Name="Bazelgeuse"/>
+    <Monster ID="em118_05" Name="Seething Bazelgeuse"/>
+    <Monster ID="em120_00" Name="Tzitzi-Ya-Ku"/>
+    <Monster ID="em121_00" Name="Behemoth"/>
+    <Monster ID="em122_00" Name="Beotodus"/>
+    <Monster ID="em123_00" Name="Banbaro"/>
+    <Monster ID="em124_00" Name="Velkhana"/>
+    <Monster ID="em125_00" Name="Namielle"/>
+    <Monster ID="em126_00" Name="Shara Ishvalda"/>
+    <Monster ID="em127_00" Name="Leshen"/>
+    <Monster ID="em127_01" Name="Ancient Leshen"/>
+  </Monsters>
+  <Mantles>
+    <Mantle ID="0" Name="Ghillie Mantle"/>
+    <Mantle ID="1" Name="Temporal Mantle"/>
+    <Mantle ID="2" Name="Health Booster"/>
+    <Mantle ID="3" Name="Rocksteady Mantle"/>
+    <Mantle ID="4" Name="Challenger Mantle"/>
+    <Mantle ID="5" Name="Vitality Mantle"/>
+    <Mantle ID="6" Name="Fireproof Mantle"/>
+    <Mantle ID="7" Name="Waterproof Mantle"/>
+    <Mantle ID="8" Name="Iceproof Mantle"/>
+    <Mantle ID="9" Name="Thunderproof Mantle"/>
+    <Mantle ID="10" Name="Dragonproof Mantle"/>
+    <Mantle ID="11" Name="Cleanser Booster"/>
+    <Mantle ID="12" Name="Glider Mantle"/>
+    <Mantle ID="13" Name="Evasion Mantle"/>
+    <Mantle ID="14" Name="Impact Mantle"/>
+    <Mantle ID="15" Name="Apothecary Mantle"/>
+    <Mantle ID="16" Name="Immunity Mantle"/>
+    <Mantle ID="17" Name="Affinity Booster"/>
+    <Mantle ID="18" Name="Bandit Mantle"/>
+    <Mantle ID="19" Name="Assassin's Hood"/>
+  </Mantles>
+  <Fertilizers>
+    <Fertilizer ID="0" Name="Empty"/>
+    <Fertilizer ID="1" Name="Plant Harvest Up (S)"/>
+    <Fertilizer ID="2" Name="Plant Harvest Up (L)"/>
+    <Fertilizer ID="3" Name="Fungi Harvest Up (S)"/>
+    <Fertilizer ID="4" Name="Fungi Harvest Up (L)"/>
+    <Fertilizer ID="5" Name="Bug/Honey Harvest Up (S)"/>
+    <Fertilizer ID="6" Name="Bug/Honey Harvest Up (L)"/>
+    <Fertilizer ID="7" Name="Growth Up (S)"/>
+    <Fertilizer ID="8" Name="Growth Up (L)"/>
+  </Fertilizers>
+  <Stages>
+    <Stage ID="0" Name="Main Menu"/>
+    <Stage ID="101" Name="Ancient Forest"/>
+    <Stage ID="102" Name="Wildspire Waste"/>
+    <Stage ID="103" Name="Coral Highlands"/>
+    <Stage ID="104" Name="Rotten Vale"/>
+    <Stage ID="105" Name="Elder's Recess"/>
+    <Stage ID="106" Name="Great Ravine"/>
+    <Stage ID="107" Name="Great Ravine"/>
+    <Stage ID="108" Name="Hoarfrost Reach"/>
+    <Stage ID="109" Name="The Guiding Lands"/>
+    <Stage ID="201" Name="Special Arena"/>
+    <Stage ID="202" Name="Arena"/>
+    <Stage ID="301" Name="Astera"/>
+    <Stage ID="302" Name="Astera Gathering Hub"/>
+    <Stage ID="303" Name="Research Base"/>
+    <Stage ID="305" Name="Seliana"/>
+    <Stage ID="306" Name="Seliana Gathering Hub"/>
+    <Stage ID="401" Name="Introduction"/>
+    <Stage ID="403" Name="Everstream"/>
+    <Stage ID="405" Name="Confluence of Fates"/>
+    <Stage ID="406" Name="Ancient Forest"/>
+    <Stage ID="409" Name="Caverns of El Dorado"/>
+    <Stage ID="501" Name="Living Quarters"/>
+    <Stage ID="502" Name="Private Quarters"/>
+    <Stage ID="503" Name="Private Suite"/>
+    <Stage ID="504" Name="Training Area"/>
+    <Stage ID="505" Name="Chamber of Five"/>
+    <Stage ID="506" Name="Seliana Room"/>
+  </Stages>
+  <Weapons>
+    <Weapon ID="0" Name="Greatsword"/>
+    <Weapon ID="1" Name="Sword and Shield"/>
+    <Weapon ID="2" Name="Dual Blades"/>
+    <Weapon ID="3" Name="Long Sword"/>
+    <Weapon ID="4" Name="Hammer"/>
+    <Weapon ID="5" Name="Hunting Horn"/>
+    <Weapon ID="6" Name="Lance"/>
+    <Weapon ID="7" Name="Gunlance"/>
+    <Weapon ID="8" Name="Switch Axe"/>
+    <Weapon ID="9" Name="Charge Blade"/>
+    <Weapon ID="10" Name="Insect Glaive"/>
+    <Weapon ID="11" Name="Bow"/>
+    <Weapon ID="12" Name="Heavy Bowgun"/>
+    <Weapon ID="13" Name="Light Bowgun"/>
+  </Weapons>
+</Strings>

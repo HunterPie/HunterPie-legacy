@@ -161,10 +161,10 @@ namespace HunterPie.Core {
             if (MonsterId != "") {
                 try {
                     string ActualID = MonsterId.Split('\\')[4];
-                    if (GStrings.MonsterName(ActualID) != null) {
+                    if (GStrings.GetMonsterNameByID(ActualID) != null) {
                         if (ActualID != this.ID) Debugger.Log($"Found new monster #{MonsterNumber} address -> 0x{MonsterAddress:X}");
                         this.ID = ActualID;
-                        this.Name = GStrings.MonsterName(this.ID);
+                        this.Name = GStrings.GetMonsterNameByID(this.ID);
                     } else {
                         this.ID = null;
                         this.Name = null;

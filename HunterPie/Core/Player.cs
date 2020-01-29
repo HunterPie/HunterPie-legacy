@@ -293,7 +293,7 @@ namespace HunterPie.Core {
                 this.ZoneID = zoneId;
                 this.inPeaceZone = PeaceZones.Contains(this.ZoneID);
             }
-            ZoneName = GStrings.ZoneName(ZoneID);
+            ZoneName = GStrings.GetStageNameByID(ZoneID);
         }
 
         public void ChangeLastZone() {
@@ -304,7 +304,7 @@ namespace HunterPie.Core {
             Int64 Address = Memory.Address.BASE + Memory.Address.WEAPON_OFFSET;
             Address = Scanner.READ_MULTILEVEL_PTR(Address, Memory.Address.Offsets.WeaponOffsets);
             WeaponID = Scanner.READ_INT(Address);
-            WeaponName = GStrings.WeaponName(WeaponID);
+            WeaponName = GStrings.GetWeaponNameByID(WeaponID);
         }
 
         private void GetSessionId() {
@@ -324,14 +324,14 @@ namespace HunterPie.Core {
             Int64 Address = LEVEL_ADDRESS + 0x34;
             int mantleId = Scanner.READ_INT(Address);
             PrimaryMantle.SetID(mantleId);
-            PrimaryMantle.SetName(GStrings.MantleName(mantleId));
+            PrimaryMantle.SetName(GStrings.GetMantleNameByID(mantleId));
         }
 
         private void GetSecondaryMantle() {
             Int64 Address = LEVEL_ADDRESS + 0x34 + 0x4;
             int mantleId = Scanner.READ_INT(Address);
             SecondaryMantle.SetID(mantleId);
-            SecondaryMantle.SetName(GStrings.MantleName(mantleId));
+            SecondaryMantle.SetName(GStrings.GetMantleNameByID(mantleId));
         }
 
         private void GetPrimaryMantleTimers() {
@@ -385,7 +385,7 @@ namespace HunterPie.Core {
                 Int64 FertilizerAddress = Address + Memory.Address.Offsets.FertilizersOffset + (0x10 * fertCount);
                 // Read memory
                 int FertilizerId = Scanner.READ_INT(FertilizerAddress - 0x4);
-                string FertilizerName = GStrings.FertilizerName(FertilizerId);
+                string FertilizerName = GStrings.GetFertilizerNameByID(FertilizerId);
                 int FertilizerCount = Scanner.READ_INT(FertilizerAddress);
                 // update fertilizer data
                 Harvest.Box[fertCount].Name = FertilizerName;
