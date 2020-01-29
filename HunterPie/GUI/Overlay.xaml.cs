@@ -369,11 +369,6 @@ namespace HunterPie.GUI {
         public void ToggleOverlay(object source, EventArgs e) {
             Dispatch(() => {
                 this.Visibility = UserSettings.PlayerConfig.Overlay.Enabled ? Visibility.Visible : Visibility.Hidden;
-                if (this.Visibility == Visibility.Visible) {
-                    HookEvents();
-                } else {
-                    UnhookEvents();
-                }
             });
         }
 
@@ -422,8 +417,6 @@ namespace HunterPie.GUI {
                 }
             });
         }
-
-        
 
         public void UpdateFirstFertilizer(object source, FertilizerEventArgs e) {
             Dispatch(() => {
