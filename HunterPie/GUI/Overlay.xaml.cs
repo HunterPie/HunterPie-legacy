@@ -295,7 +295,6 @@ namespace HunterPie.GUI {
                 fMonsterName.Content = e.Name.ToUpper();
                 fMonsterHpBar.Maximum = e.TotalHP;
                 fMonsterHpBar.Value = e.CurrentHP;
-                fMonsterHpText.Content = $"{e.CurrentHP}/{e.TotalHP} ({(e.CurrentHP / e.TotalHP) * 100:F2}%)";
             });
         }
 
@@ -311,7 +310,6 @@ namespace HunterPie.GUI {
                 fMonsterName.Content = e.Name.ToUpper();
                 fMonsterHpBar.Maximum = e.TotalHP;
                 fMonsterHpBar.Value = e.CurrentHP;
-                fMonsterHpText.Content = $"{e.CurrentHP}/{e.TotalHP} ({(e.CurrentHP / e.TotalHP) * 100:F2}%)";
             });
         }
 
@@ -322,7 +320,6 @@ namespace HunterPie.GUI {
                 sMonsterName.Content = e.Name.ToUpper();
                 sMonsterHpBar.Maximum = e.TotalHP;
                 sMonsterHpBar.Value = e.CurrentHP;
-                sMonsterHpText.Content = $"{e.CurrentHP}/{e.TotalHP} ({(e.CurrentHP / e.TotalHP) * 100:F2}%)";
             });
         }
 
@@ -338,7 +335,6 @@ namespace HunterPie.GUI {
                 sMonsterName.Content = e.Name.ToUpper();
                 sMonsterHpBar.Maximum = e.TotalHP;
                 sMonsterHpBar.Value = e.CurrentHP;
-                sMonsterHpText.Content = $"{e.CurrentHP}/{e.TotalHP} ({(e.CurrentHP / e.TotalHP) * 100:F2}%)";
             });
         }
 
@@ -350,7 +346,6 @@ namespace HunterPie.GUI {
                 tMonsterName.Content = e.Name.ToUpper();
                 tMonsterHpBar.Maximum = e.TotalHP;
                 tMonsterHpBar.Value = e.CurrentHP;
-                tMonsterHpText.Content = $"{e.CurrentHP}/{e.TotalHP} ({(e.CurrentHP / e.TotalHP) * 100:F2}%)";
             });
         }
 
@@ -366,7 +361,6 @@ namespace HunterPie.GUI {
                 tMonsterName.Content = e.Name.ToUpper();
                 tMonsterHpBar.Maximum = e.TotalHP;
                 tMonsterHpBar.Value = e.CurrentHP;
-                tMonsterHpText.Content = $"{e.CurrentHP}/{e.TotalHP} ({(e.CurrentHP / e.TotalHP) * 100:F2}%)";
             });
         }
 
@@ -375,6 +369,11 @@ namespace HunterPie.GUI {
         public void ToggleOverlay(object source, EventArgs e) {
             Dispatch(() => {
                 this.Visibility = UserSettings.PlayerConfig.Overlay.Enabled ? Visibility.Visible : Visibility.Hidden;
+                if (this.Visibility == Visibility.Visible) {
+                    HookEvents();
+                } else {
+                    UnhookEvents();
+                }
             });
         }
 
@@ -424,17 +423,7 @@ namespace HunterPie.GUI {
             });
         }
 
-        public void ShowHarvestBoxContainer() {
-            if (!HarvestBoxComponent.IsVisible) {
-                HarvestBoxComponent.Visibility = Visibility.Visible;
-            }
-        }
-
-        public void HideHarvestBoxContainer() {
-            if (HarvestBoxComponent.IsVisible) {
-                HarvestBoxComponent.Visibility = Visibility.Hidden;
-            }
-        }
+        
 
         public void UpdateFirstFertilizer(object source, FertilizerEventArgs e) {
             Dispatch(() => {

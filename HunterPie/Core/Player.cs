@@ -22,7 +22,7 @@ namespace HunterPie.Core {
         // Game info
         private int[] PeaceZones = new int[9] { 0, 301, 302, 303, 305, 306, 501, 502, 503 };
         private int[] _HBZones = new int[9] { 301, 302, 303, 305, 306, 501, 502, 503, 506 };
-
+        
         // Player info
         private Int64 LEVEL_ADDRESS;
         private Int64 EQUIPMENT_ADDRESS;
@@ -158,7 +158,7 @@ namespace HunterPie.Core {
         
 
         // Dispatchers
-
+        
         protected virtual void _onLogin() {
             OnCharacterLogin?.Invoke(this, EventArgs.Empty);
         }
@@ -244,8 +244,7 @@ namespace HunterPie.Core {
 
         private bool GetPlayerAddress() {
             // TODO: Find a better way to detect the player character
-            Int64 Address = Memory.Address.BASE + Memory.Address.WEAPON_OFFSET;
-            Int64 AddressValue = Scanner.READ_MULTILEVEL_PTR(Address, Memory.Address.Offsets.WeaponOffsets);
+            Int64 AddressValue = Scanner.READ_MULTILEVEL_PTR(Address.BASE + Address.WEAPON_OFFSET, Address.Offsets.WeaponOffsets);
             Int64 pAddress = 0x0;
             Int64 nextPlayer = 0x27E9F0;
             if (AddressValue > 0x0) {
@@ -255,8 +254,7 @@ namespace HunterPie.Core {
                 // If char name starts with a null char then the game haven't launched yet
                 if (pName[0] == '\x00') return false;
                 for (int playerSlot = 0; playerSlot < 3; playerSlot++) {
-                    Address = Memory.Address.BASE + Memory.Address.LEVEL_OFFSET;
-                    pAddress = Scanner.READ_MULTILEVEL_PTR(Address, Memory.Address.Offsets.LevelOffsets) + (nextPlayer * playerSlot);
+                    pAddress = Scanner.READ_MULTILEVEL_PTR(Address.BASE + Address.LEVEL_OFFSET, Address.Offsets.LevelOffsets) + (nextPlayer * playerSlot);
                     if (Scanner.READ_INT(pAddress) == pLevel && Scanner.READ_STRING(pAddress - 0x40, 32) == pName && PlayerAddress != pAddress) {
                         LEVEL_ADDRESS = pAddress;
                         GetPlayerLevel();

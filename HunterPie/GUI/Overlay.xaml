@@ -11,6 +11,19 @@
         <SolidColorBrush x:Key="ProgressBar.Progress" Color="#FF06B025"/>
         <SolidColorBrush x:Key="ProgressBar.Background" Color="#FFE6E6E6"/>
         <SolidColorBrush x:Key="ProgressBar.Border" Color="#FFBCBCBC"/>
+        <Style x:Key="StackPanelAnimations" TargetType="{x:Type StackPanel}">
+            <Style.Triggers>
+                <DataTrigger Binding="{Binding RelativeSource={x:Static RelativeSource.Self}, Path=IsVisible}" Value="True">
+                    <DataTrigger.EnterActions>
+                        <BeginStoryboard>
+                            <Storyboard>
+                                <DoubleAnimation Storyboard.TargetProperty="Opacity" From="0" To="1" Duration="0:0:0.250"/>
+                            </Storyboard>
+                        </BeginStoryboard>
+                    </DataTrigger.EnterActions>
+                </DataTrigger>
+            </Style.Triggers>
+        </Style>
         <Style x:Key="MonsterBar" TargetType="{x:Type ProgressBar}">
             <Setter Property="Foreground" Value="{StaticResource ProgressBar.Progress}"/>
             <Setter Property="Background" Value="{StaticResource ProgressBar.Background}"/>
@@ -20,44 +33,11 @@
                 <Setter.Value>
                     <ControlTemplate TargetType="{x:Type ProgressBar}">
                         <Grid x:Name="TemplateRoot">
-                            <Grid.LayoutTransform>
-                                <TransformGroup>
-                                    <SkewTransform/>
-                                </TransformGroup>
-                            </Grid.LayoutTransform>
-                            <VisualStateManager.VisualStateGroups>
-                                <VisualStateGroup x:Name="CommonStates">
-                                    <VisualState x:Name="Determinate"/>
-                                    <VisualState x:Name="Indeterminate">
-                                        <Storyboard RepeatBehavior="Forever">
-                                            <DoubleAnimationUsingKeyFrames Storyboard.TargetProperty="(UIElement.RenderTransform).(TransformGroup.Children)[0].(ScaleTransform.ScaleX)" Storyboard.TargetName="Animation">
-                                                <EasingDoubleKeyFrame KeyTime="0" Value="0.25"/>
-                                                <EasingDoubleKeyFrame KeyTime="0:0:1" Value="0.25"/>
-                                                <EasingDoubleKeyFrame KeyTime="0:0:2" Value="0.25"/>
-                                            </DoubleAnimationUsingKeyFrames>
-                                            <PointAnimationUsingKeyFrames Storyboard.TargetProperty="(UIElement.RenderTransformOrigin)" Storyboard.TargetName="Animation">
-                                                <EasingPointKeyFrame KeyTime="0" Value="-0.5,0.5"/>
-                                                <EasingPointKeyFrame KeyTime="0:0:1" Value="0.5,0.5"/>
-                                                <EasingPointKeyFrame KeyTime="0:0:2" Value="1.5,0.5"/>
-                                            </PointAnimationUsingKeyFrames>
-                                        </Storyboard>
-                                    </VisualState>
-                                </VisualStateGroup>
-                            </VisualStateManager.VisualStateGroups>
-                            <Border BorderBrush="{TemplateBinding BorderBrush}" BorderThickness="{TemplateBinding BorderThickness}" Background="{TemplateBinding Background}"/>
+                            <Border BorderBrush="{TemplateBinding BorderBrush}" BorderThickness="{TemplateBinding BorderThickness}" Background="{TemplateBinding Background}" CornerRadius="2"/>
                             <Rectangle x:Name="PART_Track" />
-                            <Grid x:Name="PART_Indicator" HorizontalAlignment="Left">
-                                <Rectangle x:Name="Indicator" Fill="{TemplateBinding Foreground}"/>
-                                <Rectangle x:Name="Animation" Fill="{TemplateBinding Foreground}" RenderTransformOrigin="0.5,0.5">
-                                    <Rectangle.RenderTransform>
-                                        <TransformGroup>
-                                            <ScaleTransform/>
-                                            <SkewTransform/>
-                                            <RotateTransform/>
-                                            <TranslateTransform/>
-                                        </TransformGroup>
-                                    </Rectangle.RenderTransform>
-                                </Rectangle>
+                            <Grid x:Name="PART_Indicator" HorizontalAlignment="Left" ClipToBounds="True">
+                                <Rectangle x:Name="Indicator" Fill="{TemplateBinding Foreground}" RadiusX="2" RadiusY="2"/>
+                                <Rectangle x:Name="Animation" Fill="{TemplateBinding Foreground}" RenderTransformOrigin="0.5,0.5" RadiusX="2" RadiusY="2"/>
                             </Grid>
                         </Grid>
                         <ControlTemplate.Triggers>
@@ -84,16 +64,15 @@
         <Grid.RowDefinitions>
             <RowDefinition Height="1080"/>
         </Grid.RowDefinitions>
-        <StackPanel x:Name="MonstersContainer" Margin="560,19,0,0" Orientation="Horizontal" MinHeight="62" MinWidth="778" MaxWidth="778" MaxHeight="62" HorizontalAlignment="Left" Width="786" Height="27" VerticalAlignment="Top">
+        <StackPanel x:Name="MonstersContainer" Margin="560,19,0,0" Orientation="Horizontal" MinHeight="62" MinWidth="778" MaxWidth="778" MaxHeight="62" HorizontalAlignment="Left" Width="786" Height="27" VerticalAlignment="Top" Style="{StaticResource StackPanelAnimations}">
 
-            <StackPanel x:Name="fMonsterBox" Orientation="Vertical" MinWidth="62" MaxHeight="62" HorizontalAlignment="Left" Width="262" Visibility="Hidden">
+            <StackPanel x:Name="fMonsterBox" Visibility="Hidden" Orientation="Vertical" MinWidth="62" MaxHeight="62" HorizontalAlignment="Left" Width="262" Style="{StaticResource StackPanelAnimations}">
                 <Label x:Name="fMonsterName" Content="MONSTER NAME 1" VerticalAlignment="Top" Foreground="WhiteSmoke" HorizontalContentAlignment="Center" Padding="5,0" Height="19" FontSize="13" FontWeight="Bold" FontFamily="Roboto" VerticalContentAlignment="Center">
                     <Label.Effect>
                         <DropShadowEffect Opacity="0.5"/>
                     </Label.Effect>
                 </Label>
-                <Label x:Name="fMonsterHpText" Content="9999/9999 (100%)" VerticalAlignment="Top" HorizontalContentAlignment="Center" Height="19" VerticalContentAlignment="Center" Foreground="WhiteSmoke" FontSize="10" Padding="0" FontFamily="Roboto"/>
-                <ProgressBar x:Name="fMonsterHpBar" Height="8" Margin="10,0" VerticalAlignment="Top" BorderThickness="0" BorderBrush="{x:Null}" Background="#339C9C9C" Maximum="9999" Value="5000" Style="{DynamicResource MonsterBar}">
+                <ProgressBar x:Name="fMonsterHpBar" Height="13" Margin="10,0" VerticalAlignment="Top" BorderThickness="0" BorderBrush="{x:Null}" Background="#339C9C9C" Maximum="9999" Value="5000" Style="{DynamicResource MonsterBar}">
                     <ProgressBar.Foreground>
                         <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
                             <GradientStop Color="#FFA80404" Offset="0"/>
@@ -101,16 +80,23 @@
                         </LinearGradientBrush>
                     </ProgressBar.Foreground>
                 </ProgressBar>
+                <TextBlock x:Name="fMonsterHpText" HorizontalAlignment="Center" VerticalAlignment="Center" Margin="10,-13,10,0" Width="242" FontFamily="Roboto" Foreground="#CCF5F5F5" TextAlignment="Center" Height="13" FontSize="11" FontWeight="Medium">
+                    <TextBlock.Text>
+                        <MultiBinding StringFormat="{}{0:0.00}/{1:0.00}">
+                            <Binding Path="Value" ElementName="fMonsterHpBar"/>
+                            <Binding Path="Maximum" ElementName="fMonsterHpBar"/>
+                        </MultiBinding>
+                    </TextBlock.Text>
+                </TextBlock>
             </StackPanel>
 
-            <StackPanel x:Name="sMonsterBox" Orientation="Vertical" MinWidth="62" HorizontalAlignment="Left" Width="262" Margin="0" Visibility="Hidden">
+            <StackPanel x:Name="sMonsterBox" Style="{StaticResource StackPanelAnimations}" Orientation="Vertical" MinWidth="62" HorizontalAlignment="Left" Width="262" Margin="0" Visibility="Hidden">
                 <Label x:Name="sMonsterName" Content="MONSTER NAME 2" VerticalAlignment="Top" Foreground="WhiteSmoke" HorizontalContentAlignment="Center" Padding="5,0" Height="19" FontSize="13" FontWeight="Bold" FontFamily="Roboto" VerticalContentAlignment="Center">
                     <Label.Effect>
                         <DropShadowEffect Opacity="0.5"/>
                     </Label.Effect>
                 </Label>
-                <Label x:Name="sMonsterHpText" Content="9999/9999 (100%)" VerticalAlignment="Top" HorizontalContentAlignment="Center" Height="19" VerticalContentAlignment="Center" Foreground="WhiteSmoke" FontSize="10" Padding="0" FontFamily="Roboto"/>
-                <ProgressBar x:Name="sMonsterHpBar" HorizontalAlignment="Left" Height="8" Margin="10,0,0,0" VerticalAlignment="Top" Width="242" BorderThickness="0" BorderBrush="{x:Null}" Background="#339C9C9C" Maximum="9999" Value="5000" Style="{DynamicResource MonsterBar}">
+                <ProgressBar x:Name="sMonsterHpBar" Height="13" Margin="10,0" VerticalAlignment="Top" BorderThickness="0" BorderBrush="{x:Null}" Background="#339C9C9C" Maximum="9999" Value="5000" Style="{DynamicResource MonsterBar}">
                     <ProgressBar.Foreground>
                         <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
                             <GradientStop Color="#FFA80404" Offset="0"/>
@@ -118,18 +104,24 @@
                         </LinearGradientBrush>
                     </ProgressBar.Foreground>
                 </ProgressBar>
-
+                <TextBlock x:Name="sMonsterHpText" HorizontalAlignment="Center" VerticalAlignment="Center" Margin="10,-13,10,0" Width="242" FontFamily="Roboto" Foreground="#CCF5F5F5" TextAlignment="Center" Height="13" FontSize="11" FontWeight="Medium">
+                    <TextBlock.Text>
+                        <MultiBinding StringFormat="{}{0:0.00}/{1:0.00}">
+                            <Binding Path="Value" ElementName="sMonsterHpBar"/>
+                            <Binding Path="Maximum" ElementName="sMonsterHpBar"/>
+                        </MultiBinding>
+                    </TextBlock.Text>
+                </TextBlock>
             </StackPanel>
 
 
-            <StackPanel x:Name="tMonsterBox" Orientation="Vertical" MinWidth="62" HorizontalAlignment="Left" Width="262" Margin="0" Visibility="Hidden">
+            <StackPanel x:Name="tMonsterBox" Style="{StaticResource StackPanelAnimations}" Orientation="Vertical" MinWidth="62" HorizontalAlignment="Left" Width="262" Margin="0" Visibility="Hidden">
                 <Label x:Name="tMonsterName" Content="MONSTER NAME 3" VerticalAlignment="Top" Foreground="WhiteSmoke" HorizontalContentAlignment="Center" Padding="5,0" Height="19" FontSize="13" FontWeight="Bold" FontFamily="Roboto" VerticalContentAlignment="Center">
                     <Label.Effect>
                         <DropShadowEffect Opacity="0.5"/>
                     </Label.Effect>
                 </Label>
-                <Label x:Name="tMonsterHpText" Content="9999/9999 (100%)" VerticalAlignment="Top" HorizontalContentAlignment="Center" Height="19" VerticalContentAlignment="Center" Foreground="WhiteSmoke" FontSize="10" Padding="0" FontFamily="Roboto"/>
-                <ProgressBar x:Name="tMonsterHpBar" HorizontalAlignment="Left" Height="8" Margin="10,0,0,0" VerticalAlignment="Top" Width="242" BorderThickness="0" BorderBrush="{x:Null}" Background="#339C9C9C" Maximum="9999" Value="5000" Style="{DynamicResource MonsterBar}">
+                <ProgressBar x:Name="tMonsterHpBar" Height="13" Margin="10,0" VerticalAlignment="Top" BorderThickness="0" BorderBrush="{x:Null}" Background="#339C9C9C" Maximum="9999" Value="5000" Style="{DynamicResource MonsterBar}">
                     <ProgressBar.Foreground>
                         <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
                             <GradientStop Color="#FFA80404" Offset="0"/>
@@ -137,11 +129,18 @@
                         </LinearGradientBrush>
                     </ProgressBar.Foreground>
                 </ProgressBar>
-
+                <TextBlock x:Name="tMonsterHpText" HorizontalAlignment="Center" VerticalAlignment="Center" Margin="10,-13,10,0" Width="242" FontFamily="Roboto" Foreground="#CCF5F5F5" TextAlignment="Center" Height="13" FontSize="11" FontWeight="Medium">
+                    <TextBlock.Text>
+                        <MultiBinding StringFormat="{}{0:0.00}/{1:0.00}">
+                            <Binding Path="Value" ElementName="tMonsterHpBar"/>
+                            <Binding Path="Maximum" ElementName="tMonsterHpBar"/>
+                        </MultiBinding>
+                    </TextBlock.Text>
+                </TextBlock>
             </StackPanel>
         </StackPanel>
 
-        <StackPanel Visibility="Hidden" x:Name="PrimaryMantleContainer" Margin="1692,868,0,0" Background="#4C000000" HorizontalAlignment="Left" Width="218" Height="38" VerticalAlignment="Top">
+        <StackPanel Visibility="Hidden" x:Name="PrimaryMantleContainer" Margin="1692,868,0,0" Background="#4C000000" HorizontalAlignment="Left" Width="218" Height="38" VerticalAlignment="Top"  Style="{StaticResource StackPanelAnimations}">
             <Border x:Name="PrimaryMantleBorder" BorderBrush="#FF7D076D" BorderThickness="2,0.5,0.5,0.5" HorizontalAlignment="Left" VerticalAlignment="Center" Height="38" Width="218" CornerRadius="1"/>
             <xctk:Pie x:Name="PrimaryMantleTimer" Slice="1" StartAngle="0" EndAngle="1" Height="26" Margin="5,-38,187,0" RenderTransformOrigin="0.5,0.5">
                 <xctk:Pie.Fill>
@@ -159,9 +158,9 @@
                     </TransformGroup>
                 </xctk:Pie.RenderTransform>
             </xctk:Pie>
-            <Label x:Name="PrimaryMantleName" Content="(30s) MANTLE NAME" Height="38" Foreground="White" FontFamily="Roboto" VerticalAlignment="Top" FontWeight="Bold" VerticalContentAlignment="Center" Margin="31,-38,0,0"/>
+            <Label x:Name="PrimaryMantleName" Content="(30s) MANTLE NAME" Height="38" Foreground="White" FontFamily="Roboto" VerticalAlignment="Top" FontWeight="Bold" VerticalContentAlignment="Center" Margin="31,-38,0,0" />
         </StackPanel>
-        <StackPanel Visibility="Hidden" x:Name="SecondaryMantleContainer" Margin="1692,911,0,0" Background="#4C000000" HorizontalAlignment="Left" Width="218" Height="38" VerticalAlignment="Top">
+        <StackPanel Visibility="Hidden" x:Name="SecondaryMantleContainer" Margin="1692,911,0,0" Background="#4C000000" HorizontalAlignment="Left" Width="218" Height="38" VerticalAlignment="Top" Style="{StaticResource StackPanelAnimations}">
             <Border x:Name="SecondaryMantleBorder" BorderBrush="#FF4607A0" BorderThickness="2,0.5,0.5,0.5" HorizontalAlignment="Left" VerticalAlignment="Center" Height="38" Width="218" CornerRadius="1"/>
             <xctk:Pie x:Name="SecondaryMantleTimer" Slice="1" StartAngle="0" EndAngle="1" Height="26" Margin="5,-38,187,0" RenderTransformOrigin="0.5,0.5">
                 <xctk:Pie.Fill>

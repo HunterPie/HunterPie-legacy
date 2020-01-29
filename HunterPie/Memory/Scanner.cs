@@ -94,7 +94,7 @@ namespace HunterPie.Memory {
                     Logger.Debugger.Log($"MonsterHunterWorld.exe found! (PID: {PID})");
                     GameIsRunning = true;
                 }
-                Thread.Sleep(1000);
+                Thread.Sleep(2000);
             }
         }
 

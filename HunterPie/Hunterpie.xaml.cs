@@ -32,7 +32,7 @@ namespace HunterPie {
             UserSettings.InitializePlayerConfig();
             CheckIfUpdateEnableAndStart();
             // Updates version_text
-            this.version_text.Content = $"Version: {HUNTERPIE_VERSION}";
+            this.version_text.Content = $"Version: {HUNTERPIE_VERSION} ({UserSettings.PlayerConfig.HunterPie.Update.Branch})";
             Debugger.Warn("Initializing HunterPie!");
             GStrings.InitStrings();
             StartEverything();
@@ -151,6 +151,7 @@ namespace HunterPie {
                 Debugger.Error($"Detected game version ({Scanner.GameVersion}) not mapped yet!");
                 return;
             }
+            
         }
 
         public void OnGameClose(object source, EventArgs e) {
