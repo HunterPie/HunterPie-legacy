@@ -69,7 +69,7 @@ namespace HunterPie.Core {
             Zones.Add(302, "Gathering Hub");
             Zones.Add(303, "Research Base");
             Zones.Add(305, "Seliana");
-            Zones.Add(306, "Gathering Hub"); // Seliana's
+            Zones.Add(306, "Seliana Gathering Hub"); // Seliana's
             Zones.Add(401, "Ancient Forest"); // Intro
             Zones.Add(403, "Everstream");
             Zones.Add(405, "Confluence of Fates");
