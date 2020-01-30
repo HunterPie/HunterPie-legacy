@@ -83,6 +83,8 @@
         <CheckBox x:Name="enableAutoUpdate" Content="Enable auto-update" Padding="2,-2,0,0" HorizontalAlignment="Center" Foreground="#FFE0E0E0" Height="19" Margin="304,0,285,0" FontSize="15" Width="160" VerticalAlignment="Top" HorizontalContentAlignment="Center" Cursor="Hand" FontWeight="Light"/>
         <ComboBox x:Name="branchesCombobox" Margin="304,0,285,0" IsReadOnly="True" Cursor="Hand"/>
         <Label x:Name="updateBranchStaticText_Copy7" Content="Update branch:" HorizontalAlignment="Left" Height="23" Margin="196,-21,0,0" Width="103" FontFamily="Roboto" Foreground="#FFE0E0E0" FontSize="15" Padding="0" FontWeight="Light"/>
+        <ComboBox x:Name="LanguageFilesCombobox" Margin="304,5,285,0" IsReadOnly="True" Cursor="Hand"/>
+        <Label x:Name="LanguageStaticText" Content="Language file:" HorizontalAlignment="Left" Height="23" Margin="196,-22,0,0" Width="103" FontFamily="Roboto" Foreground="#FFE0E0E0" FontSize="15" Padding="0" FontWeight="Light"/>
         <Label x:Name="gamePathLabel" Content="Game path:" HorizontalAlignment="Left" Height="30" Margin="196,7,0,0" Width="108" FontFamily="Roboto" Foreground="#FFE0E0E0" FontSize="15" Padding="0" FontWeight="Light" VerticalContentAlignment="Center"/>
         <Button x:Name="selectPathBttn" Content="Select path" Cursor="Hand" Margin="278,-30,94,0" Style="{DynamicResource ButtonStyle}" Background="#FF1F1F1F" Foreground="#FFE8E8E8" FontFamily="Roboto" BorderBrush="{x:Null}" Height="30" Click="selectPathBttn_Click" Padding="3,1"/>
         <StackPanel x:Name="launchArgsBox" Height="32" Margin="192,7,94,0" Orientation="Horizontal">

@@ -34,7 +34,7 @@ namespace HunterPie {
             // Updates version_text
             this.version_text.Content = $"Version: {HUNTERPIE_VERSION} ({UserSettings.PlayerConfig.HunterPie.Update.Branch})";
             Debugger.Warn("Initializing HunterPie!");
-            GStrings.InitStrings();
+            GStrings.InitStrings(UserSettings.PlayerConfig.HunterPie.Language);
             StartEverything();
         }
 

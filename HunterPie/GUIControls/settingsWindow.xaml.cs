@@ -2,6 +2,7 @@
 using System.Linq;
 using System.Windows.Controls;
 using System.Windows.Input;
+using System.IO;
 
 
 namespace HunterPie.GUIControls {
@@ -17,11 +18,18 @@ namespace HunterPie.GUIControls {
         {
             InitializeComponent();
             PopulateBranchBox();
+            PopulateLanguageBox();
         }
 
         private void PopulateBranchBox() {
             foreach (string branch in AvailableBranches) {
                 branchesCombobox.Items.Add(branch);
+            }
+        }
+
+        private void PopulateLanguageBox() { 
+            foreach (string filename in Directory.GetFiles("Languages")) {
+                LanguageFilesCombobox.Items.Add(filename);
             }
         }
 

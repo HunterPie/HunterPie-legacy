@@ -66,6 +66,7 @@ namespace HunterPie.Core {
             }
 
             public class Hunterpie {
+                public string Language { get; set; } = @"Languages\en-us.xml";
                 public Update Update { get; set; } = new Update();
                 public Launch Launch { get; set; } = new Launch();
                 public Options Options { get; set; } = new Options();
@@ -114,6 +115,7 @@ namespace HunterPie.Core {
                 Enabled = true
             },
             HunterPie = new Config.Hunterpie {
+                Language = @"Languages\en-us.xml",
                 Update = new Config.Update {
                     Enabled = true,
                     Branch = "master"

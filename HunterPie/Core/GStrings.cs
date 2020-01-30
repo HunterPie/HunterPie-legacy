@@ -5,13 +5,13 @@ namespace HunterPie.Core {
     class GStrings {
         static private XmlDocument Translations = new XmlDocument();
 
-        public static void InitStrings() {
-            LoadTranslationXML();
+        public static void InitStrings(string LangXml) {
+            LoadTranslationXML(LangXml);
         }
 
-        private static void LoadTranslationXML() {
+        private static void LoadTranslationXML(string LangXML) {
             try {
-                Translations.Load(@"translations\en-us.xml");
+                Translations.Load($@"{LangXML}");
                 Debugger.Log($"Loaded {Translations.DocumentElement.Attributes["lang"].Value} game strings");
             } catch {
                 Debugger.Error("Failed to load en-us.xml");
