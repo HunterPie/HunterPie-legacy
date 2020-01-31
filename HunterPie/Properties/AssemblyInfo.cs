@@ -10,7 +10,7 @@ using System.Windows;
 [assembly: AssemblyTitle("HunterPie")]
 [assembly: AssemblyDescription("Rich presence and overlay for Monster Hunter World")]
 [assembly: AssemblyConfiguration("")]
-[assembly: AssemblyCompany("")]
+[assembly: AssemblyCompany("Haato")]
 [assembly: AssemblyProduct("HunterPie")]
 [assembly: AssemblyCopyright("Copyright ©  2019")]
 [assembly: AssemblyTrademark("")]
@@ -51,7 +51,7 @@ using System.Windows;
 // You can specify all the values or you can default the Build and Revision Numbers
 // by using the '*' as shown below:
 // [assembly: AssemblyVersion("1.0.*")]
-[assembly: AssemblyVersion("1.0.1.8")]
-[assembly: AssemblyFileVersion("1.0.1.8")]
+[assembly: AssemblyVersion("1.0.2.7")]
+[assembly: AssemblyFileVersion("1.0.2.7")]
 [assembly: NeutralResourcesLanguage("en")]
 

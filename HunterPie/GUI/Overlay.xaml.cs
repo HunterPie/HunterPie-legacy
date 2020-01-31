@@ -5,6 +5,7 @@ using System.Windows.Forms;
 using System.Runtime.InteropServices;
 using System.Windows.Interop;
 using HunterPie.Core;
+using HunterPie.Logger;
 
 namespace HunterPie.GUI {
     /// <summary>
@@ -513,6 +514,10 @@ namespace HunterPie.GUI {
                 SecondaryMantleTimer.Fill = DonutBrush(secondaryColor);
                 SecondaryMantleBorder.BorderBrush = secondaryColorBrush;
             });
+        }
+
+        private void Image_MouseEnter(object sender, System.Windows.Input.MouseEventArgs e) {
+            Debugger.Log("mouse over");
         }
     }
 }

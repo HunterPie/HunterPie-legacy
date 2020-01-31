@@ -8,54 +8,59 @@
         mc:Ignorable="d"
         Title="Overlay" Width="1920" Height="1080" ShowInTaskbar="False" Topmost="True" AllowsTransparency="True" WindowStyle="None" Background="Transparent" WindowStartupLocation="Manual" Top="0" Left="0">
     <Window.Resources>
-        <SolidColorBrush x:Key="ProgressBar.Progress" Color="#FF06B025"/>
-        <SolidColorBrush x:Key="ProgressBar.Background" Color="#FFE6E6E6"/>
-        <SolidColorBrush x:Key="ProgressBar.Border" Color="#FFBCBCBC"/>
-        <Style x:Key="StackPanelAnimations" TargetType="{x:Type StackPanel}">
-            <Style.Triggers>
-                <DataTrigger Binding="{Binding RelativeSource={x:Static RelativeSource.Self}, Path=IsVisible}" Value="True">
-                    <DataTrigger.EnterActions>
-                        <BeginStoryboard>
-                            <Storyboard>
-                                <DoubleAnimation Storyboard.TargetProperty="Opacity" From="0" To="1" Duration="0:0:0.250"/>
-                            </Storyboard>
-                        </BeginStoryboard>
-                    </DataTrigger.EnterActions>
-                </DataTrigger>
-            </Style.Triggers>
-        </Style>
-        <Style x:Key="MonsterBar" TargetType="{x:Type ProgressBar}">
-            <Setter Property="Foreground" Value="{StaticResource ProgressBar.Progress}"/>
-            <Setter Property="Background" Value="{StaticResource ProgressBar.Background}"/>
-            <Setter Property="BorderBrush" Value="{StaticResource ProgressBar.Border}"/>
-            <Setter Property="BorderThickness" Value="1"/>
-            <Setter Property="Template">
-                <Setter.Value>
-                    <ControlTemplate TargetType="{x:Type ProgressBar}">
-                        <Grid x:Name="TemplateRoot">
-                            <Border BorderBrush="{TemplateBinding BorderBrush}" BorderThickness="{TemplateBinding BorderThickness}" Background="{TemplateBinding Background}" CornerRadius="2"/>
-                            <Rectangle x:Name="PART_Track" />
-                            <Grid x:Name="PART_Indicator" HorizontalAlignment="Left" ClipToBounds="True">
-                                <Rectangle x:Name="Indicator" Fill="{TemplateBinding Foreground}" RadiusX="2" RadiusY="2"/>
-                                <Rectangle x:Name="Animation" Fill="{TemplateBinding Foreground}" RenderTransformOrigin="0.5,0.5" RadiusX="2" RadiusY="2"/>
+        <ResourceDictionary>
+            <ResourceDictionary.MergedDictionaries>
+                <ResourceDictionary Source="/Resources/Resources.xaml"/>
+            </ResourceDictionary.MergedDictionaries>
+            <SolidColorBrush x:Key="ProgressBar.Progress" Color="#FF06B025"/>
+            <SolidColorBrush x:Key="ProgressBar.Background" Color="#FFE6E6E6"/>
+            <SolidColorBrush x:Key="ProgressBar.Border" Color="#FFBCBCBC"/>
+            <Style x:Key="StackPanelAnimations" TargetType="{x:Type StackPanel}">
+                <Style.Triggers>
+                    <DataTrigger Binding="{Binding RelativeSource={x:Static RelativeSource.Self}, Path=IsVisible}" Value="True">
+                        <DataTrigger.EnterActions>
+                            <BeginStoryboard>
+                                <Storyboard>
+                                    <DoubleAnimation Storyboard.TargetProperty="Opacity" From="0" To="1" Duration="0:0:0.250"/>
+                                </Storyboard>
+                            </BeginStoryboard>
+                        </DataTrigger.EnterActions>
+                    </DataTrigger>
+                </Style.Triggers>
+            </Style>
+            <Style x:Key="MonsterBar" TargetType="{x:Type ProgressBar}">
+                <Setter Property="Foreground" Value="{StaticResource ProgressBar.Progress}"/>
+                <Setter Property="Background" Value="{StaticResource ProgressBar.Background}"/>
+                <Setter Property="BorderBrush" Value="{StaticResource ProgressBar.Border}"/>
+                <Setter Property="BorderThickness" Value="1"/>
+                <Setter Property="Template">
+                    <Setter.Value>
+                        <ControlTemplate TargetType="{x:Type ProgressBar}">
+                            <Grid x:Name="TemplateRoot">
+                                <Border BorderBrush="{TemplateBinding BorderBrush}" BorderThickness="{TemplateBinding BorderThickness}" Background="{TemplateBinding Background}" CornerRadius="2"/>
+                                <Rectangle x:Name="PART_Track" />
+                                <Grid x:Name="PART_Indicator" HorizontalAlignment="Left" ClipToBounds="True">
+                                    <Rectangle x:Name="Indicator" Fill="{TemplateBinding Foreground}" RadiusX="2" RadiusY="2"/>
+                                    <Rectangle x:Name="Animation" Fill="{TemplateBinding Foreground}" RenderTransformOrigin="0.5,0.5" RadiusX="2" RadiusY="2"/>
+                                </Grid>
                             </Grid>
-                        </Grid>
-                        <ControlTemplate.Triggers>
-                            <Trigger Property="Orientation" Value="Vertical">
-                                <Setter Property="LayoutTransform" TargetName="TemplateRoot">
-                                    <Setter.Value>
-                                        <RotateTransform Angle="-90"/>
-                                    </Setter.Value>
-                                </Setter>
-                            </Trigger>
-                            <Trigger Property="IsIndeterminate" Value="true">
-                                <Setter Property="Visibility" TargetName="Indicator" Value="Collapsed"/>
-                            </Trigger>
-                        </ControlTemplate.Triggers>
-                    </ControlTemplate>
-                </Setter.Value>
-            </Setter>
-        </Style>
+                            <ControlTemplate.Triggers>
+                                <Trigger Property="Orientation" Value="Vertical">
+                                    <Setter Property="LayoutTransform" TargetName="TemplateRoot">
+                                        <Setter.Value>
+                                            <RotateTransform Angle="-90"/>
+                                        </Setter.Value>
+                                    </Setter>
+                                </Trigger>
+                                <Trigger Property="IsIndeterminate" Value="true">
+                                    <Setter Property="Visibility" TargetName="Indicator" Value="Collapsed"/>
+                                </Trigger>
+                            </ControlTemplate.Triggers>
+                        </ControlTemplate>
+                    </Setter.Value>
+                </Setter>
+            </Style>
+        </ResourceDictionary>        
     </Window.Resources>
     <Grid x:Name="OverlayGrid">
         <Grid.ColumnDefinitions>
@@ -65,21 +70,13 @@
             <RowDefinition Height="1080"/>
         </Grid.RowDefinitions>
         <StackPanel x:Name="MonstersContainer" Margin="560,19,0,0" Orientation="Horizontal" MinHeight="62" MinWidth="778" MaxWidth="778" MaxHeight="62" HorizontalAlignment="Left" Width="786" Height="27" VerticalAlignment="Top" Style="{StaticResource StackPanelAnimations}">
-
-            <StackPanel x:Name="fMonsterBox" Visibility="Hidden" Orientation="Vertical" MinWidth="62" MaxHeight="62" HorizontalAlignment="Left" Width="262" Style="{StaticResource StackPanelAnimations}">
+            <StackPanel x:Name="fMonsterBox" Visibility="Visible" Orientation="Vertical" MinWidth="62" MaxHeight="62" HorizontalAlignment="Left" Width="262" Style="{StaticResource StackPanelAnimations}">
                 <Label x:Name="fMonsterName" Content="MONSTER NAME 1" VerticalAlignment="Top" Foreground="WhiteSmoke" HorizontalContentAlignment="Center" Padding="5,0" Height="19" FontSize="13" FontWeight="Bold" FontFamily="Roboto" VerticalContentAlignment="Center">
                     <Label.Effect>
                         <DropShadowEffect Opacity="0.5"/>
                     </Label.Effect>
                 </Label>
-                <ProgressBar x:Name="fMonsterHpBar" Height="13" Margin="10,0" VerticalAlignment="Top" BorderThickness="0" BorderBrush="{x:Null}" Background="#339C9C9C" Maximum="9999" Value="5000" Style="{DynamicResource MonsterBar}">
-                    <ProgressBar.Foreground>
-                        <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
-                            <GradientStop Color="#FFA80404" Offset="0"/>
-                            <GradientStop Color="#FF810707" Offset="1"/>
-                        </LinearGradientBrush>
-                    </ProgressBar.Foreground>
-                </ProgressBar>
+                <ProgressBar x:Name="fMonsterHpBar" Height="13" Margin="10,0" VerticalAlignment="Top" BorderThickness="0" BorderBrush="{x:Null}" Background="#339C9C9C" Maximum="9999" Value="5000" Style="{DynamicResource MonsterBar}" Foreground="#FF930000"/>
                 <TextBlock x:Name="fMonsterHpText" HorizontalAlignment="Center" VerticalAlignment="Center" Margin="10,-13,10,0" Width="242" FontFamily="Roboto" Foreground="#CCF5F5F5" TextAlignment="Center" Height="13" FontSize="11" FontWeight="Medium">
                     <TextBlock.Text>
                         <MultiBinding StringFormat="{}{0:0.00}/{1:0.00}">
@@ -88,6 +85,13 @@
                         </MultiBinding>
                     </TextBlock.Text>
                 </TextBlock>
+                <StackPanel x:Name="fMonsterWeakness" Height="20" Margin="10,2,10,0" Orientation="Horizontal" Width="242" HorizontalAlignment="Center">
+                    <Image Source="{StaticResource ELEMENT_FIRE}" Height="18" Width="18" Margin="0"/>
+                    <Image Source="{StaticResource ELEMENT_WATER}" Height="18" Width="18" />
+                    <Image Source="{StaticResource ELEMENT_ICE}" Height="18" Width="18" />
+                    <Image Source="{StaticResource ELEMENT_DRAGON}" Height="18" Width="18" />
+                    <Image Source="{StaticResource ELEMENT_THUNDER}" Height="18" Width="18" />
+                </StackPanel>
             </StackPanel>
 
             <StackPanel x:Name="sMonsterBox" Style="{StaticResource StackPanelAnimations}" Orientation="Vertical" MinWidth="62" HorizontalAlignment="Left" Width="262" Margin="0" Visibility="Hidden">
