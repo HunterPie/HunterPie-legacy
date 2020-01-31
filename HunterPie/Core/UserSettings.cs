@@ -42,6 +42,7 @@ namespace HunterPie.Core {
             public class Monsterscomponent {
                 public bool Enabled { get; set; } = true;
                 public int[] Position { get; set; } = new int[2] { 335, 10 };
+                public bool ShowMonsterWeakness { get; set; } = true;
             }
 
             public class Harvestboxcomponent {
@@ -94,7 +95,8 @@ namespace HunterPie.Core {
                 Position = new int[2] { 0, 0 },
                 MonstersComponent = new Config.Monsterscomponent {
                     Enabled = true,
-                    Position = new int[2] { 335, 10 }
+                    Position = new int[2] { 335, 10 },
+                    ShowMonsterWeakness = true
                 },
                 HarvestBoxComponent = new Config.Harvestboxcomponent {
                     Enabled = true,

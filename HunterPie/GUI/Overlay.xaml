@@ -87,9 +87,7 @@
                         </MultiBinding>
                     </TextBlock.Text>
                 </TextBlock>
-                <StackPanel x:Name="fMonsterWeakness" Height="20" Margin="10,2,10,0" Orientation="Horizontal" Width="242" HorizontalAlignment="Center">
-                    
-                </StackPanel>
+                <StackPanel x:Name="fMonsterWeakness" Height="20" Margin="10,2,10,0" Orientation="Horizontal" Width="242" HorizontalAlignment="Center" Style="{StaticResource StackPanelAnimations}"/>
             </StackPanel>
 
             <StackPanel x:Name="sMonsterBox" Style="{StaticResource StackPanelAnimations}" Orientation="Vertical" MinWidth="62" HorizontalAlignment="Left" Width="262" Margin="0" Visibility="Hidden">
@@ -114,9 +112,7 @@
                         </MultiBinding>
                     </TextBlock.Text>
                 </TextBlock>
-                <StackPanel x:Name="sMonsterWeakness" Height="20" Margin="10,2,10,0" Orientation="Horizontal" Width="242" HorizontalAlignment="Center">
-
-                </StackPanel>
+                <StackPanel x:Name="sMonsterWeakness" Height="20" Margin="10,2,10,0" Orientation="Horizontal" Width="242" HorizontalAlignment="Center" Style="{StaticResource StackPanelAnimations}"/>
             </StackPanel>
 
 
@@ -142,9 +138,7 @@
                         </MultiBinding>
                     </TextBlock.Text>
                 </TextBlock>
-                <StackPanel x:Name="tMonsterWeakness" Height="20" Margin="10,2,10,0" Orientation="Horizontal" Width="242" HorizontalAlignment="Center">
-
-                </StackPanel>
+                <StackPanel x:Name="tMonsterWeakness" Height="20" Margin="10,2,10,0" Orientation="Horizontal" Width="242" HorizontalAlignment="Center" Style="{StaticResource StackPanelAnimations}"/>
             </StackPanel>
         </StackPanel>
 

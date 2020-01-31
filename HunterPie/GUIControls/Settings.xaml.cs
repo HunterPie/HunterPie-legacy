@@ -48,6 +48,7 @@ namespace HunterPie.GUIControls {
             settingsUI.enableMonsterComponent.IsChecked = settings.Overlay.MonstersComponent.Enabled;
             settingsUI.positionMonsterCompX.Text = settings.Overlay.MonstersComponent.Position[0].ToString();
             settingsUI.positionMonsterCompY.Text = settings.Overlay.MonstersComponent.Position[1].ToString();
+            settingsUI.showMonsterWeakness.IsChecked = settings.Overlay.MonstersComponent.Enabled;
 
             // Primary Mantle
             settingsUI.enablePrimaryMantle.IsChecked = settings.Overlay.PrimaryMantle.Enabled;
@@ -89,6 +90,7 @@ namespace HunterPie.GUIControls {
             settings.Overlay.MonstersComponent.Enabled = (bool)settingsUI.enableMonsterComponent.IsChecked;
             settings.Overlay.MonstersComponent.Position[0] = int.Parse(settingsUI.positionMonsterCompX.Text);
             settings.Overlay.MonstersComponent.Position[1] = int.Parse(settingsUI.positionMonsterCompY.Text);
+            settings.Overlay.MonstersComponent.ShowMonsterWeakness = (bool)settingsUI.showMonsterWeakness.IsChecked;
 
             // Primary Mantle
             settings.Overlay.PrimaryMantle.Enabled = (bool)settingsUI.enablePrimaryMantle.IsChecked;

@@ -187,6 +187,7 @@ namespace HunterPie.GUI {
 
         public void ChangeMonsterComponentPosition(object source, EventArgs e) {
             bool ContainerEnabled = UserSettings.PlayerConfig.Overlay.MonstersComponent.Enabled;
+            bool MonsterWeaknessEnabled = UserSettings.PlayerConfig.Overlay.MonstersComponent.ShowMonsterWeakness;
             double X = UserSettings.PlayerConfig.Overlay.MonstersComponent.Position[0];
             double Y = UserSettings.PlayerConfig.Overlay.MonstersComponent.Position[1];
             double Left = MonstersContainer.Margin.Left;
@@ -201,6 +202,15 @@ namespace HunterPie.GUI {
                     MonstersContainer.Visibility = Visibility.Visible;
                 } else {
                     MonstersContainer.Visibility = Visibility.Hidden;
+                }
+                if (MonsterWeaknessEnabled) {
+                    fMonsterWeakness.Visibility = Visibility.Visible;
+                    sMonsterWeakness.Visibility = Visibility.Visible;
+                    tMonsterWeakness.Visibility = Visibility.Visible;
+                } else {
+                    fMonsterWeakness.Visibility = Visibility.Hidden;
+                    sMonsterWeakness.Visibility = Visibility.Hidden;
+                    tMonsterWeakness.Visibility = Visibility.Hidden;
                 }
             });
             
