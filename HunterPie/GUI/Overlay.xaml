@@ -72,7 +72,7 @@
             <RowDefinition Height="1080"/>
         </Grid.RowDefinitions>
         <StackPanel x:Name="MonstersContainer" Margin="560,19,0,0" Orientation="Horizontal" MinHeight="62" MinWidth="778" MaxWidth="778" MaxHeight="62" HorizontalAlignment="Left" Width="786" Height="27" VerticalAlignment="Top" Style="{StaticResource StackPanelAnimations}">
-            <StackPanel x:Name="fMonsterBox" Visibility="Visible" Orientation="Vertical" MinWidth="62" MaxHeight="62" HorizontalAlignment="Left" Width="262" Style="{StaticResource StackPanelAnimations}">
+            <StackPanel x:Name="fMonsterBox" Visibility="Hidden" Orientation="Vertical" MinWidth="62" MaxHeight="62" HorizontalAlignment="Left" Width="262" Style="{StaticResource StackPanelAnimations}">
                 <Label x:Name="fMonsterName" Content="MONSTER NAME 1" VerticalAlignment="Top" Foreground="WhiteSmoke" HorizontalContentAlignment="Center" Padding="5,0" Height="19" FontSize="13" FontWeight="Bold" FontFamily="Roboto" VerticalContentAlignment="Center">
                     <Label.Effect>
                         <DropShadowEffect Opacity="0.5"/>
@@ -88,11 +88,7 @@
                     </TextBlock.Text>
                 </TextBlock>
                 <StackPanel x:Name="fMonsterWeakness" Height="20" Margin="10,2,10,0" Orientation="Horizontal" Width="242" HorizontalAlignment="Center">
-                    <Image Source="{StaticResource ELEMENT_FIRE}" Height="18" Width="18" Margin="0"/>
-                    <Image Source="{StaticResource ELEMENT_WATER}" Height="18" Width="18" />
-                    <Image Source="{StaticResource ELEMENT_ICE}" Height="18" Width="18" />
-                    <Image Source="{StaticResource ELEMENT_DRAGON}" Height="18" Width="18" />
-                    <Image Source="{StaticResource ELEMENT_THUNDER}" Height="18" Width="18" />
+                    
                 </StackPanel>
             </StackPanel>
 
@@ -118,6 +114,9 @@
                         </MultiBinding>
                     </TextBlock.Text>
                 </TextBlock>
+                <StackPanel x:Name="sMonsterWeakness" Height="20" Margin="10,2,10,0" Orientation="Horizontal" Width="242" HorizontalAlignment="Center">
+
+                </StackPanel>
             </StackPanel>
 
 
@@ -143,6 +142,9 @@
                         </MultiBinding>
                     </TextBlock.Text>
                 </TextBlock>
+                <StackPanel x:Name="tMonsterWeakness" Height="20" Margin="10,2,10,0" Orientation="Horizontal" Width="242" HorizontalAlignment="Center">
+
+                </StackPanel>
             </StackPanel>
         </StackPanel>
 

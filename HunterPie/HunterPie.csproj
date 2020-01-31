@@ -113,13 +113,14 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
+    <Compile Include="Core\Monster\MonsterData.cs" />
     <Compile Include="GUIControls\Changelog.xaml.cs">
       <DependentUpon>Changelog.xaml</DependentUpon>
     </Compile>
     <Compile Include="Core\Args.cs" />
     <Compile Include="Core\AutoUpdate.cs" />
-    <Compile Include="Core\HarvestBox.cs" />
-    <Compile Include="Core\Mantle.cs" />
+    <Compile Include="Core\Player\HarvestBox.cs" />
+    <Compile Include="Core\Player\Mantle.cs" />
     <Compile Include="Core\Presence.cs" />
     <Compile Include="GUIControls\Settings.xaml.cs">
       <DependentUpon>Settings.xaml</DependentUpon>
@@ -150,8 +151,8 @@
     </Compile>
     <Compile Include="Core\Game.cs" />
     <Compile Include="Core\GStrings.cs" />
-    <Compile Include="Core\Monster.cs" />
-    <Compile Include="Core\Player.cs" />
+    <Compile Include="Core\Monster\Monster.cs" />
+    <Compile Include="Core\Player\Player.cs" />
     <Compile Include="Core\UserSettings.cs" />
     <Compile Include="GUIControls\Debugger.xaml.cs">
       <DependentUpon>Debugger.xaml</DependentUpon>
@@ -254,6 +255,9 @@
       <ProductName>.NET Framework 3.5 SP1</ProductName>
       <Install>false</Install>
     </BootstrapperPackage>
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Core\Monster\MonsterData.xml" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

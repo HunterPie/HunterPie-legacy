@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 
 namespace HunterPie.Core {
     public class FertilizerEventArgs : EventArgs {
@@ -30,6 +31,7 @@ namespace HunterPie.Core {
         public float CurrentHP;
         public float TotalHP;
         public bool isTarget;
+        public Dictionary<string, int> Weaknesses;
 
         public MonsterEventArgs(Monster m) {
             this.Name = m.Name;
@@ -37,11 +39,8 @@ namespace HunterPie.Core {
             this.CurrentHP = m.CurrentHP;
             this.TotalHP = m.TotalHP;
             this.isTarget = m.isTarget;
+            this.Weaknesses = m.Weaknesses;
         }
-
-    }
-
-    public class SettingsArgs : EventArgs {
 
     }
 }

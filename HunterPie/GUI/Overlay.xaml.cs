@@ -5,6 +5,7 @@ using System.Windows.Forms;
 using System.Runtime.InteropServices;
 using System.Windows.Interop;
 using HunterPie.Core;
+using System.Windows.Controls;
 using HunterPie.Logger;
 
 namespace HunterPie.GUI {
@@ -296,6 +297,13 @@ namespace HunterPie.GUI {
                 fMonsterName.Content = e.Name.ToUpper();
                 fMonsterHpBar.Maximum = e.TotalHP;
                 fMonsterHpBar.Value = e.CurrentHP;
+                fMonsterWeakness.Children.Clear();
+                foreach (string Weakness in e.Weaknesses.Keys) {
+                    Image MonsterWeaknessImg = new Image();
+                    MonsterWeaknessImg.Source = this.Resources[Weakness] as ImageSource;
+                    MonsterWeaknessImg.Height = MonsterWeaknessImg.Width = 18;
+                    fMonsterWeakness.Children.Add(MonsterWeaknessImg);
+                }
             });
         }
 
@@ -321,6 +329,13 @@ namespace HunterPie.GUI {
                 sMonsterName.Content = e.Name.ToUpper();
                 sMonsterHpBar.Maximum = e.TotalHP;
                 sMonsterHpBar.Value = e.CurrentHP;
+                sMonsterWeakness.Children.Clear();
+                foreach (string Weakness in e.Weaknesses.Keys) {
+                    Image MonsterWeaknessImg = new Image();
+                    MonsterWeaknessImg.Source = this.Resources[Weakness] as ImageSource;
+                    MonsterWeaknessImg.Height = MonsterWeaknessImg.Width = 18;
+                    sMonsterWeakness.Children.Add(MonsterWeaknessImg);
+                }
             });
         }
 
@@ -347,6 +362,13 @@ namespace HunterPie.GUI {
                 tMonsterName.Content = e.Name.ToUpper();
                 tMonsterHpBar.Maximum = e.TotalHP;
                 tMonsterHpBar.Value = e.CurrentHP;
+                tMonsterWeakness.Children.Clear();
+                foreach (string Weakness in e.Weaknesses.Keys) {
+                    Image MonsterWeaknessImg = new Image();
+                    MonsterWeaknessImg.Source = this.Resources[Weakness] as ImageSource;
+                    MonsterWeaknessImg.Height = MonsterWeaknessImg.Width = 18;
+                    tMonsterWeakness.Children.Add(MonsterWeaknessImg);
+                }
             });
         }
 
@@ -514,10 +536,6 @@ namespace HunterPie.GUI {
                 SecondaryMantleTimer.Fill = DonutBrush(secondaryColor);
                 SecondaryMantleBorder.BorderBrush = secondaryColorBrush;
             });
-        }
-
-        private void Image_MouseEnter(object sender, System.Windows.Input.MouseEventArgs e) {
-            Debugger.Log("mouse over");
         }
     }
 }

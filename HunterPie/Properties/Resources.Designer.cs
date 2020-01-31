@@ -59,5 +59,31 @@ namespace HunterPie.Properties {
                 resourceCulture = value;
             }
         }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to &lt;?xml version=&quot;1.0&quot; encoding=&quot;utf-8&quot; ?&gt;
+        ///&lt;Monsters&gt;
+        ///  &lt;Monster ID=&quot;em001_00&quot;&gt;
+        ///    &lt;Weaknesses&gt;
+        ///      &lt;Weakness ID=&quot;ELEMENT_DRAGON&quot; Stars=&quot;3&quot;/&gt;
+        ///      &lt;Weakness ID=&quot;ELEMENT_THUNDER&quot; Stars=&quot;2&quot;/&gt;
+        ///    &lt;/Weaknesses&gt;
+        ///  &lt;/Monster&gt;
+        ///  &lt;Monster ID=&quot;em001_01&quot;&gt;
+        ///    &lt;Weaknesses&gt;
+        ///      &lt;Weakness ID=&quot;ELEMENT_DRAGON&quot; Stars=&quot;3&quot;/&gt;
+        ///      &lt;Weakness ID=&quot;ELEMENT_THUNDER&quot; Stars=&quot;2&quot;/&gt;
+        ///    &lt;/Weaknesses&gt;
+        ///  &lt;/Monster&gt;
+        ///  &lt;Monster ID=&quot;em001_02&quot;&gt;
+        ///    &lt;Weaknesses&gt;
+        ///      &lt;Weakness ID=&quot;ELEMENT_THUNDER&quot; Stars=&quot;3&quot;/&gt;
+        ///      &lt;Wea [rest of string was truncated]&quot;;.
+        /// </summary>
+        internal static string MonsterData {
+            get {
+                return ResourceManager.GetString("MonsterData", resourceCulture);
+            }
+        }
     }
 }

@@ -2,6 +2,7 @@
 using System.Threading;
 using HunterPie.Memory;
 using HunterPie.Logger;
+using System.Collections.Generic;
 
 namespace HunterPie.Core {
     public class Monster {
@@ -19,6 +20,7 @@ namespace HunterPie.Core {
                     if (CurrentHP > 0) {
                         _name = value;
                         // Only call this if monster is actually alive
+                        GetMonsterWeaknesses();
                         _onMonsterSpawn();
                     }
                 } else if (value == null && _name != value) {
@@ -41,6 +43,7 @@ namespace HunterPie.Core {
                 }
             }
         }
+        public Dictionary<string, int> Weaknesses;
         public float HPPercentage { get; private set; } = 1;
         public bool isTarget {
             get { return _isTarget; }
@@ -177,6 +180,10 @@ namespace HunterPie.Core {
                 this.ID = null;
                 this.Name = null;
             }
+        }
+
+        private void GetMonsterWeaknesses() {
+            Weaknesses = MonsterData.GetMonsterWeaknessById(this.ID);
         }
 
     }
