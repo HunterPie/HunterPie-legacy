@@ -320,7 +320,7 @@ namespace HunterPie.GUI {
 
         public void OnFirstMonsterDespawn(object source, MonsterEventArgs e) {
             Dispatch(() => {
-                fMonsterBox.Visibility = Visibility.Hidden;
+                fMonsterBox.Visibility = Visibility.Collapsed;
             });
         }
 
@@ -352,7 +352,7 @@ namespace HunterPie.GUI {
 
         public void OnSecondMonsterDespawn(object source, MonsterEventArgs e) {
             Dispatch(() => {
-                sMonsterBox.Visibility = Visibility.Hidden;
+                sMonsterBox.Visibility = Visibility.Collapsed;
             });
         }
 
@@ -385,7 +385,7 @@ namespace HunterPie.GUI {
 
         public void OnThirdMonsterDespawn(object source, MonsterEventArgs e) {
             Dispatch(() => {
-                tMonsterBox.Visibility = Visibility.Hidden;
+                tMonsterBox.Visibility = Visibility.Collapsed;
             });
         }
 
