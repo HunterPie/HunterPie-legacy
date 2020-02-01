@@ -3,7 +3,6 @@ using System.Text;
 using System.Runtime.InteropServices;
 using System.Threading;
 using System.Diagnostics ;
-using HunterPie.Logger;
 
 namespace HunterPie.Memory {
     class Scanner {
@@ -34,7 +33,7 @@ namespace HunterPie.Memory {
         [DllImport("kernel32.dll")]
         public static extern bool ReadProcessMemory(int hProcess, IntPtr lpBaseAddress, byte[] lpBuffer, int dwSize, ref int lpNumberOfBytesRead);
 
-        [DllImport("kerneel32.dll")]
+        [DllImport("kernel32.dll")]
         public static extern bool CloseHandle(IntPtr hObject);
 
         /* Events */
@@ -56,8 +55,9 @@ namespace HunterPie.Memory {
         public static void StartScanning() {
             // Start scanner thread
             ScanGameMemoryRef = new ThreadStart(GetProcess);
-            ScanGameMemory = new Thread(ScanGameMemoryRef);
-            ScanGameMemory.Name = "Scanner_Memory";
+            ScanGameMemory = new Thread(ScanGameMemoryRef) {
+                Name = "Scanner_Memory"
+            };
             ScanGameMemory.Start();
         }
 

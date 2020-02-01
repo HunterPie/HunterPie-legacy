@@ -103,19 +103,21 @@ namespace HunterPie.Core {
         }
 
         public Assets GenerateAssets(string largeImage, string largeImageText, string smallImage, string smallImageText) {
-            Assets assets = new Assets();
-            assets.LargeImageKey = largeImage;
-            assets.LargeImageText = largeImageText;
-            assets.SmallImageKey = smallImage;
-            assets.SmallImageText = smallImageText;
+            Assets assets = new Assets {
+                LargeImageKey = largeImage,
+                LargeImageText = largeImageText,
+                SmallImageKey = smallImage,
+                SmallImageText = smallImageText
+            };
             return assets;
         }
 
         public Party MakeParty(int partySize, int maxParty, string partyHash) {
-            Party party = new Party();
-            party.Size = partySize;
-            party.Max = maxParty;
-            party.ID = partyHash;
+            Party party = new Party {
+                Size = partySize,
+                Max = maxParty,
+                ID = partyHash
+            };
             return party;
         }
 

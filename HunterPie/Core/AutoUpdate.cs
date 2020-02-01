@@ -72,7 +72,7 @@ namespace HunterPie.Core {
                 Instance.Dispose();
                 return;
             }
-            //DownloadNewUpdater();
+            DownloadNewUpdater();
         }
 
         private void DownloadNewUpdater() {

@@ -6,7 +6,6 @@ using System.Runtime.InteropServices;
 using System.Windows.Interop;
 using HunterPie.Core;
 using System.Windows.Controls;
-using HunterPie.Logger;
 
 namespace HunterPie.GUI {
     /// <summary>
