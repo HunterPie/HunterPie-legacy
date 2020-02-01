@@ -32,7 +32,7 @@ namespace HunterPie.GUI {
             InitializeComponent();
             SetOverlaySize();
             HookEvents();
-            makeOverlayClickThrough();
+            MakeOverlayClickThrough();
         }
 
         public void Destroy() {
@@ -162,16 +162,18 @@ namespace HunterPie.GUI {
             ctx.Player.SecondaryMantle.OnMantleCooldownUpdate -= this.UpdateSecondaryMantleCooldown;
         }
 
-        private void makeOverlayClickThrough() {
+        private void MakeOverlayClickThrough() {
             // flags to make overlay click-through
             int WS_EX_TRANSPARENT = 0x20;
+            int WS_EX_TOOLWINDOW = 0x80; // Flag to hide overlay from ALT+TAB
             int GWL_EXSTYLE = (-20);
 
             var wnd = GetWindow(this);
             IntPtr hwnd = new WindowInteropHelper(wnd).EnsureHandle();
             // Get overlay flags
             int Styles = GetWindowLong(hwnd, GWL_EXSTYLE);
-            SetWindowLong(hwnd, GWL_EXSTYLE, Styles | WS_EX_TRANSPARENT);
+            // Apply new flags
+            SetWindowLong(hwnd, GWL_EXSTYLE, Styles | WS_EX_TRANSPARENT | WS_EX_TOOLWINDOW);
         }
 
         public void Dispatch(Action function) {

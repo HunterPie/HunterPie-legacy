@@ -73,21 +73,26 @@ namespace HunterPie {
                 }
                 // This will update Update.exe
                 AutoUpdate au = new AutoUpdate(UserSettings.PlayerConfig.HunterPie.Update.Branch);
+                au.Instance.DownloadDataCompleted += OnUpdaterDownloadComplete;
                 au.checkAutoUpdate();
-                if (au.offlineMode) {
-                    Debugger.Error("Failed to update HunterPie. Check if you're connected to the internet.");
-                    Debugger.Warn("HunterPie is now in offline mode.");
-                    Discord.SetOfflineMode();
-                    return;
-                }
-                bool StartUpdate = StartUpdateProcess();
-                if (StartUpdate) {
-                    Environment.Exit(0);
-                } else {
-                    MessageBox.Show("Update.exe not found! Skipping auto-update...", "Error", MessageBoxButton.OK, MessageBoxImage.Error);
-                }
+                this.Hide();
             } else {
                 Debugger.Error("Auto-update is disabled. If your HunterPie has any issues or doesn't support the current game version, try re-enabling auto-update!");
+            }
+        }
+
+        private void OnUpdaterDownloadComplete(object sender, System.Net.DownloadDataCompletedEventArgs e) {
+            if (e.Error != null) {
+                Debugger.Error("Failed to update HunterPie. Check if you're connected to the internet.");
+                Debugger.Warn("HunterPie is now in offline mode.");
+                Discord.SetOfflineMode();
+                return;
+            }
+            bool StartUpdate = StartUpdateProcess();
+            if (StartUpdate) {
+                Environment.Exit(0);
+            } else {
+                MessageBox.Show("Update.exe not found! Skipping auto-update...", "Error", MessageBoxButton.OK, MessageBoxImage.Error);
             }
         }
 
@@ -105,7 +110,7 @@ namespace HunterPie {
             Scanner.StartScanning(); // Scans game memory
             GameOverlay = new Overlay(MonsterHunter);
             UserSettings.TriggerSettingsEvent();
-            GameOverlay.Show();
+            GameOverlay.Hide();
         }
 
         /* Game events */

@@ -7,7 +7,7 @@
         xmlns:local="clr-namespace:HunterPie.GUI"
         xmlns:converters="clr-namespace:HunterPie.GUI.Helpers"
         mc:Ignorable="d"
-        Title="Overlay" Width="1920" Height="1080" ShowInTaskbar="False" Topmost="True" AllowsTransparency="True" WindowStyle="None" Background="Transparent" WindowStartupLocation="Manual" Top="0" Left="0">
+        Title="HunterPie - Overlay" Width="1920" Height="1080" ShowInTaskbar="False" Topmost="True" Background="{x:Null}" WindowStartupLocation="Manual" Top="0" Left="0" ResizeMode="NoResize" Foreground="{x:Null}" WindowStyle="None" AllowsTransparency="True">
     <Window.Resources>
         <ResourceDictionary>
             <ResourceDictionary.MergedDictionaries>
@@ -62,7 +62,7 @@
                     </Setter.Value>
                 </Setter>
             </Style>
-        </ResourceDictionary>        
+        </ResourceDictionary>
     </Window.Resources>
     <Grid x:Name="OverlayGrid">
         <Grid.ColumnDefinitions>

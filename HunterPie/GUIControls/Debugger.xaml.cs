@@ -43,6 +43,10 @@ namespace HunterPie.Logger {
             PrintOnConsole($"[DISCORD] {message}", DISCORD);
         }
 
+        public static void Update(string message) {
+            PrintOnConsole($"[UPDATE] {message}", NORMAL);
+        }
+
         private static void ScrollToEnd() {
             double ScrollableSize = _Instance.Console.ViewportHeight;
             double ScrollPosition = _Instance.Console.VerticalOffset;
