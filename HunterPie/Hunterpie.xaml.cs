@@ -204,13 +204,12 @@ namespace HunterPie {
         }
 
         private void OnWindowClosing(object sender, System.ComponentModel.CancelEventArgs e) {
-            this.WindowState = WindowState.Minimized;
-            try {
-                // Stop Threads
-                GameOverlay.Destroy();
-                MonsterHunter.StopScanning();
-                Scanner.StopScanning();
-            } catch { }
+            this.Hide();
+            // Stop Threads
+            GameOverlay.Destroy();
+            MonsterHunter.StopScanning();
+            Discord.CloseConnection();
+            Scanner.StopScanning();
             // Close stuff
             this.UnhookEvents();
             Environment.Exit(0);

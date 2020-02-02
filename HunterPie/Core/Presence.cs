@@ -35,6 +35,14 @@ namespace HunterPie.Core {
             ctx.Player.OnZoneChange += HandlePresence;
         }
         
+        private void UnhookEvents() {
+            UserSettings.OnSettingsUpdate -= HandleSettings;
+            Scanner.OnGameStart -= StartRPC;
+            Scanner.OnGameClosed -= CloseRPCConnection;
+            ctx.OnClockChange -= HandlePresence;
+            ctx.Player.OnZoneChange -= HandlePresence;
+        }
+
             /* Connection */
 
         public void StartRPC(object source, EventArgs e) {
@@ -47,10 +55,17 @@ namespace HunterPie.Core {
             }
         }
 
+        public void CloseConnection() {
+            UnhookEvents();
+            if (Client != null) {
+                Debugger.Discord("Closed connection");
+                Client.ClearPresence();
+                Client.Dispose();
+            }
+        }
+
         public void CloseRPCConnection(object source, EventArgs e) {
-            Debugger.Discord("Closed connection");
-            Client.ClearPresence();
-            Client.Dispose();
+            CloseConnection();
         }
 
         public void HandleSettings(object source, EventArgs e) {
