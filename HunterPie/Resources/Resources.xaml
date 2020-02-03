@@ -82,4 +82,7 @@
             </DrawingGroup>
         </DrawingImage.Drawing>
     </DrawingImage>
+    <Storyboard x:Key="Enraged" RepeatBehavior="Forever" AutoReverse="True">
+        <DoubleAnimation Storyboard.TargetProperty="(Effect).Opacity" From="0" To="1" Duration="0:0:0.6"/>
+    </Storyboard>
 </ResourceDictionary>

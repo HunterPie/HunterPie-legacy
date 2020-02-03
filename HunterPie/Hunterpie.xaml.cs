@@ -121,8 +121,13 @@ namespace HunterPie {
             // Game events
             MonsterHunter.Player.OnZoneChange += OnZoneChange;
             MonsterHunter.Player.OnCharacterLogin += OnLogin;
+            MonsterHunter.Player.OnSessionChange += OnSessionChange;
             // Settings
             UserSettings.OnSettingsUpdate += SendToOverlay;
+        }
+
+        private void OnSessionChange(object source, EventArgs args) {
+            Debugger.Log($"SESSION: {MonsterHunter.Player.SessionID}");
         }
 
         private void UnhookEvents() {

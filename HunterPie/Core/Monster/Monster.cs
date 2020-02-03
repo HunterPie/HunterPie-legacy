@@ -10,6 +10,8 @@ namespace HunterPie.Core {
         private string _name;
         private float _currentHP;
         private bool _isTarget;
+        private float _enrageTimer;
+        private float _enrageStaticTimer;
 
         // Monster basic info
         private int MonsterNumber;
@@ -54,6 +56,22 @@ namespace HunterPie.Core {
                 }
             }
         }
+        public float EnrageTimer {
+            get { return _enrageTimer; }
+            set {
+                if (value != _enrageTimer) {
+                    if (value > 0 && _enrageTimer == 0) {
+                        _onEnrage();
+                    } else if (value == 0 && _enrageTimer > 0) {
+                        _onUnenrage();
+                    }
+                    _enrageTimer = value;
+                }
+            }
+        }
+        public bool isEnraged {
+            get { return _enrageTimer > 0; }
+        }
         private Int64 MonsterAddress;
 
         // Threading
@@ -61,12 +79,15 @@ namespace HunterPie.Core {
         Thread MonsterInfoScan;
 
         // Game events
+        public delegate void MonsterEnrageEvents(object source, EventArgs args);
         public delegate void MonsterEvents(object source, MonsterEventArgs args);
         public event MonsterEvents OnMonsterSpawn;
         public event MonsterEvents OnMonsterDespawn;
         public event MonsterEvents OnMonsterDeath;
         public event MonsterEvents OnHPUpdate;
         public event MonsterEvents OnTargetted;
+        public event MonsterEnrageEvents OnEnrage;
+        public event MonsterEnrageEvents OnUnenrage;
         
 
         protected virtual void _onMonsterSpawn() {
@@ -94,6 +115,14 @@ namespace HunterPie.Core {
             OnTargetted?.Invoke(this, args);
         }
 
+        protected virtual void _onEnrage() {
+            OnEnrage?.Invoke(this, EventArgs.Empty);
+        }
+
+        protected virtual void _onUnenrage() {
+            OnUnenrage?.Invoke(this, EventArgs.Empty);
+        }
+
         public Monster(int initMonsterNumber) {
             MonsterNumber = initMonsterNumber;
         }
@@ -115,6 +144,7 @@ namespace HunterPie.Core {
                 GetMonsterAddress();
                 GetMonsterIDAndName();
                 GetMonsterHp();
+                GetMonsterEnrageTimer();
                 Thread.Sleep(200);
             }
             Thread.Sleep(1000);
@@ -184,6 +214,10 @@ namespace HunterPie.Core {
 
         private void GetMonsterWeaknesses() {
             Weaknesses = MonsterData.GetMonsterWeaknessById(this.ID);
+        }
+
+        private void GetMonsterEnrageTimer() {
+            EnrageTimer = Scanner.READ_FLOAT(MonsterAddress + 0x1BE2C);
         }
 
     }

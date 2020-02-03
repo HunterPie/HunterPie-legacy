@@ -4,8 +4,10 @@ using System.Windows.Media;
 using System.Windows.Forms;
 using System.Runtime.InteropServices;
 using System.Windows.Interop;
-using HunterPie.Core;
 using System.Windows.Controls;
+using System.Windows.Media.Animation;
+using System.Windows.Media.Effects;
+using HunterPie.Core;
 
 namespace HunterPie.GUI {
     /// <summary>
@@ -17,6 +19,9 @@ namespace HunterPie.GUI {
         double w_Height = Screen.PrimaryScreen.Bounds.Height;
         double w_Width = Screen.PrimaryScreen.Bounds.Width;
 
+        // Animations (Will refactor this later)
+        Storyboard ANIM_ENRAGED;
+        
         [DllImport("user32.dll")]
         private static extern int SetWindowLong(IntPtr hwnd, int index, int style);
 
@@ -32,6 +37,7 @@ namespace HunterPie.GUI {
             SetOverlaySize();
             HookEvents();
             MakeOverlayClickThrough();
+            ANIM_ENRAGED = FindResource("Enraged") as Storyboard;
         }
 
         public void Destroy() {
@@ -107,18 +113,24 @@ namespace HunterPie.GUI {
             ctx.FirstMonster.OnMonsterDespawn += this.OnFirstMonsterDespawn;
             ctx.FirstMonster.OnMonsterDeath += this.OnFirstMonsterDespawn;
             ctx.FirstMonster.OnHPUpdate += this.UpdateFirstMonster;
+            ctx.FirstMonster.OnEnrage += this.OnFirstMonsterEnrage;
+            ctx.FirstMonster.OnUnenrage += this.OnFirstMonsterUnenrage;
 
             // Second monster
             ctx.SecondMonster.OnMonsterSpawn += this.OnSecondMonsterSpawn;
             ctx.SecondMonster.OnMonsterDespawn += this.OnSecondMonsterDespawn;
             ctx.SecondMonster.OnMonsterDeath += this.OnSecondMonsterDespawn;
             ctx.SecondMonster.OnHPUpdate += this.UpdateSecondMonster;
+            ctx.SecondMonster.OnEnrage += this.OnSecondMonsterEnrage;
+            ctx.SecondMonster.OnUnenrage += this.OnSecondMonsterUnenrage;
 
             // Third monster
             ctx.ThirdMonster.OnMonsterSpawn += this.OnThirdMonsterSpawn;
             ctx.ThirdMonster.OnMonsterDespawn += this.OnThirdMonsterDespawn;
             ctx.ThirdMonster.OnMonsterDeath += this.OnThirdMonsterDespawn;
             ctx.ThirdMonster.OnHPUpdate += this.UpdateThirdMonster;
+            ctx.ThirdMonster.OnEnrage += this.OnThirdMonsterEnrage;
+            ctx.ThirdMonster.OnUnenrage += this.OnThirdMonsterUnenrage;
         }
 
         private void UnhookMonsterEvents() {
@@ -139,6 +151,8 @@ namespace HunterPie.GUI {
             ctx.ThirdMonster.OnMonsterDespawn -= this.OnThirdMonsterDespawn;
             ctx.ThirdMonster.OnMonsterDeath -= this.OnThirdMonsterDespawn;
             ctx.ThirdMonster.OnHPUpdate -= this.UpdateThirdMonster;
+            ctx.ThirdMonster.OnEnrage -= this.OnThirdMonsterEnrage;
+            ctx.ThirdMonster.OnUnenrage -= this.OnThirdMonsterUnenrage;
         }
 
         private void HookMantleEvents() {
@@ -176,7 +190,7 @@ namespace HunterPie.GUI {
         }
 
         public void Dispatch(Action function) {
-            this.Dispatcher.BeginInvoke(System.Windows.Threading.DispatcherPriority.Background, function);
+            this.Dispatcher.BeginInvoke(System.Windows.Threading.DispatcherPriority.Loaded, function);
         } 
 
         private void SetOverlaySize() {
@@ -333,6 +347,19 @@ namespace HunterPie.GUI {
             });
         }
 
+        private void OnFirstMonsterEnrage(object source, EventArgs args) {
+            Dispatch(() => {
+                ANIM_ENRAGED.Begin(fMonsterHpBar, true);
+            });
+        }
+
+        private void OnFirstMonsterUnenrage(object source, EventArgs args) {
+            Dispatch(() => {
+                ANIM_ENRAGED.Remove(fMonsterHpBar);
+            });
+            
+        }
+
         // Second monster
         public void OnSecondMonsterSpawn(object source, MonsterEventArgs e) {
             Dispatch(() => {
@@ -365,6 +392,20 @@ namespace HunterPie.GUI {
             });
         }
 
+        private void OnSecondMonsterEnrage(object source, EventArgs args) {
+            Dispatch(() => {
+                ANIM_ENRAGED.Begin(sMonsterHpBar, true);
+            });
+            
+        }
+
+        private void OnSecondMonsterUnenrage(object source, EventArgs args) {
+            Dispatch(() => {
+                ANIM_ENRAGED.Remove(sMonsterHpBar);
+            });
+            
+        }
+
         // Third monster
 
         public void OnThirdMonsterSpawn(object source, MonsterEventArgs e) {
@@ -395,6 +436,18 @@ namespace HunterPie.GUI {
                 tMonsterName.Content = e.Name.ToUpper();
                 tMonsterHpBar.Maximum = e.TotalHP;
                 tMonsterHpBar.Value = e.CurrentHP;
+            });
+        }
+
+        private void OnThirdMonsterEnrage(object source, EventArgs args) {
+            Dispatch(() => {
+                ANIM_ENRAGED.Begin(tMonsterHpBar, true);
+            });
+        }
+
+        private void OnThirdMonsterUnenrage(object source, EventArgs args) {
+            Dispatch(() => {
+                ANIM_ENRAGED.Remove(tMonsterHpBar);
             });
         }
 
