@@ -26,6 +26,7 @@ namespace HunterPie {
         public Hunterpie() {
             InitializeComponent();
             OpenDebugger();
+            AppDomain.CurrentDomain.FirstChanceException += ExceptionLogger;
             // Initialize rich presence
             Discord = new Presence(MonsterHunter);
             // Initialize everything under this line
@@ -37,6 +38,13 @@ namespace HunterPie {
             GStrings.InitStrings(UserSettings.PlayerConfig.HunterPie.Language);
             MonsterData.LoadMonsterData();
             StartEverything();
+        }
+
+        private void ExceptionLogger(object sender, System.Runtime.ExceptionServices.FirstChanceExceptionEventArgs e) {
+            if (!Directory.Exists("Crashes")) {
+                Directory.CreateDirectory("Crashes");
+            }
+            File.WriteAllText(@"Crashes\CrashLog.txt", e.Exception.ToString());
         }
 
         private bool StartUpdateProcess() {

@@ -20,7 +20,7 @@ namespace HunterPie.GUI {
         double w_Width = Screen.PrimaryScreen.Bounds.Width;
 
         // Animations (Will refactor this later)
-        Storyboard ANIM_ENRAGED;
+        //Storyboard ANIM_ENRAGED;
         
         [DllImport("user32.dll")]
         private static extern int SetWindowLong(IntPtr hwnd, int index, int style);
@@ -34,39 +34,36 @@ namespace HunterPie.GUI {
         public Overlay(Game Context) {
             ctx = Context;
             InitializeComponent();
+            SetWidgetsContext();
             SetOverlaySize();
-            HookEvents();
+            //HookEvents();
             MakeOverlayClickThrough();
-            ANIM_ENRAGED = FindResource("Enraged") as Storyboard;
+            //ANIM_ENRAGED = FindResource("Enraged") as Storyboard;
+            
+        }
+
+        public void SetWidgetsContext() {
+            this.FirstMonster.SetContext(ctx.FirstMonster);
+            this.SecondMonster.SetContext(ctx.SecondMonster);
+            this.ThirdMonster.SetContext(ctx.ThirdMonster);
+            this.PrimaryMantle.SetContext(ctx.Player.PrimaryMantle);
+            this.SecondaryMantle.SetContext(ctx.Player.SecondaryMantle);
         }
 
         public void Destroy() {
-            UnhookEvents();
             this.Close();
         }
-
-        private void HookEvents() {
-            HookMonsterEvents();
-            HookMantleEvents();
-            HookHarvestBoxEvents();
-        }
-
-        public void UnhookEvents() {
-            UnhookMonsterEvents();
-            UnhookMantleEvents();
-            UnhookHarvestBoxEvents();
-        }
-
+        
         public void GlobalSettingsEventHandler(object source, EventArgs e) {
             this.ToggleOverlay(source, e);
-            this.ChangeHarvestBoxPosition(source, e);
+            //this.ChangeHarvestBoxPosition(source, e);
             this.ChangeMonsterComponentPosition(source, e);
             this.ChangePrimaryMantlePosition(source, e);
             this.ChangeSecondaryMantlePosition(source, e);
             this.ChangePrimaryMantleColor(source, e);
             this.ChangeSecondaryMantleColor(source, e);
         }
-
+        
         private void HookHarvestBoxEvents() {
             // Hooks player location event
             ctx.Player.OnVillageEnter += this.ShowHarvestBox;
@@ -107,74 +104,6 @@ namespace HunterPie.GUI {
             ctx.Player.Harvest.Box[3].OnFertilizerChange -= this.UpdateFourthFertilizer;
         }
 
-        private void HookMonsterEvents() {
-            // First monster
-            ctx.FirstMonster.OnMonsterSpawn += this.OnFirstMonsterSpawn;
-            ctx.FirstMonster.OnMonsterDespawn += this.OnFirstMonsterDespawn;
-            ctx.FirstMonster.OnMonsterDeath += this.OnFirstMonsterDespawn;
-            ctx.FirstMonster.OnHPUpdate += this.UpdateFirstMonster;
-            ctx.FirstMonster.OnEnrage += this.OnFirstMonsterEnrage;
-            ctx.FirstMonster.OnUnenrage += this.OnFirstMonsterUnenrage;
-
-            // Second monster
-            ctx.SecondMonster.OnMonsterSpawn += this.OnSecondMonsterSpawn;
-            ctx.SecondMonster.OnMonsterDespawn += this.OnSecondMonsterDespawn;
-            ctx.SecondMonster.OnMonsterDeath += this.OnSecondMonsterDespawn;
-            ctx.SecondMonster.OnHPUpdate += this.UpdateSecondMonster;
-            ctx.SecondMonster.OnEnrage += this.OnSecondMonsterEnrage;
-            ctx.SecondMonster.OnUnenrage += this.OnSecondMonsterUnenrage;
-
-            // Third monster
-            ctx.ThirdMonster.OnMonsterSpawn += this.OnThirdMonsterSpawn;
-            ctx.ThirdMonster.OnMonsterDespawn += this.OnThirdMonsterDespawn;
-            ctx.ThirdMonster.OnMonsterDeath += this.OnThirdMonsterDespawn;
-            ctx.ThirdMonster.OnHPUpdate += this.UpdateThirdMonster;
-            ctx.ThirdMonster.OnEnrage += this.OnThirdMonsterEnrage;
-            ctx.ThirdMonster.OnUnenrage += this.OnThirdMonsterUnenrage;
-        }
-
-        private void UnhookMonsterEvents() {
-            // First monster
-            ctx.FirstMonster.OnMonsterSpawn -= this.OnFirstMonsterSpawn;
-            ctx.FirstMonster.OnMonsterDespawn -= this.OnFirstMonsterDespawn;
-            ctx.FirstMonster.OnMonsterDeath -= this.OnFirstMonsterDespawn;
-            ctx.FirstMonster.OnHPUpdate -= this.UpdateFirstMonster;
-
-            // Second monster
-            ctx.SecondMonster.OnMonsterSpawn -= this.OnSecondMonsterSpawn;
-            ctx.SecondMonster.OnMonsterDespawn -= this.OnSecondMonsterDespawn;
-            ctx.SecondMonster.OnMonsterDeath -= this.OnSecondMonsterDespawn;
-            ctx.SecondMonster.OnHPUpdate -= this.UpdateSecondMonster;
-
-            // Third monster
-            ctx.ThirdMonster.OnMonsterSpawn -= this.OnThirdMonsterSpawn;
-            ctx.ThirdMonster.OnMonsterDespawn -= this.OnThirdMonsterDespawn;
-            ctx.ThirdMonster.OnMonsterDeath -= this.OnThirdMonsterDespawn;
-            ctx.ThirdMonster.OnHPUpdate -= this.UpdateThirdMonster;
-            ctx.ThirdMonster.OnEnrage -= this.OnThirdMonsterEnrage;
-            ctx.ThirdMonster.OnUnenrage -= this.OnThirdMonsterUnenrage;
-        }
-
-        private void HookMantleEvents() {
-            // Primary mantle
-            ctx.Player.PrimaryMantle.OnMantleTimerUpdate += this.UpdatePrimaryMantleTimer;
-            ctx.Player.PrimaryMantle.OnMantleCooldownUpdate += this.UpdatePrimaryMantleCooldown;
-
-            // Secondary mantle
-            ctx.Player.SecondaryMantle.OnMantleTimerUpdate += this.UpdateSecondaryMantleTimer;
-            ctx.Player.SecondaryMantle.OnMantleCooldownUpdate += this.UpdateSecondaryMantleCooldown;
-        }
-
-        private void UnhookMantleEvents() {
-            // Primary mantle
-            ctx.Player.PrimaryMantle.OnMantleTimerUpdate -= this.UpdatePrimaryMantleTimer;
-            ctx.Player.PrimaryMantle.OnMantleCooldownUpdate -= this.UpdatePrimaryMantleCooldown;
-
-            // Secondary mantle
-            ctx.Player.SecondaryMantle.OnMantleTimerUpdate -= this.UpdateSecondaryMantleTimer;
-            ctx.Player.SecondaryMantle.OnMantleCooldownUpdate -= this.UpdateSecondaryMantleCooldown;
-        }
-
         private void MakeOverlayClickThrough() {
             // flags to make overlay click-through
             int WS_EX_TRANSPARENT = 0x20;
@@ -190,7 +119,7 @@ namespace HunterPie.GUI {
         }
 
         public void Dispatch(Action function) {
-            this.Dispatcher.BeginInvoke(System.Windows.Threading.DispatcherPriority.Loaded, function);
+            this.Dispatcher.BeginInvoke(System.Windows.Threading.DispatcherPriority.Send, function);
         } 
 
         private void SetOverlaySize() {
@@ -199,7 +128,7 @@ namespace HunterPie.GUI {
             OverlayGrid.Width = OverlayWnd.Width;
             OverlayGrid.Height = OverlayWnd.Height;
         }
-
+        
         public void ChangeMonsterComponentPosition(object source, EventArgs e) {
             bool ContainerEnabled = UserSettings.PlayerConfig.Overlay.MonstersComponent.Enabled;
             bool MonsterWeaknessEnabled = UserSettings.PlayerConfig.Overlay.MonstersComponent.ShowMonsterWeakness;
@@ -218,18 +147,17 @@ namespace HunterPie.GUI {
                 } else {
                     MonstersContainer.Visibility = Visibility.Hidden;
                 }
+                
                 if (MonsterWeaknessEnabled) {
-                    fMonsterWeakness.Visibility = Visibility.Visible;
-                    sMonsterWeakness.Visibility = Visibility.Visible;
-                    tMonsterWeakness.Visibility = Visibility.Visible;
+                    FirstMonster.Weaknesses.Visibility = Visibility.Visible;
+                    SecondMonster.Weaknesses.Visibility = Visibility.Visible;
+                    ThirdMonster.Weaknesses.Visibility = Visibility.Visible;
                 } else {
-                    fMonsterWeakness.Visibility = Visibility.Hidden;
-                    sMonsterWeakness.Visibility = Visibility.Hidden;
-                    tMonsterWeakness.Visibility = Visibility.Hidden;
+                    FirstMonster.Weaknesses.Visibility = Visibility.Collapsed;
+                    SecondMonster.Weaknesses.Visibility = Visibility.Collapsed;
+                    ThirdMonster.Weaknesses.Visibility = Visibility.Collapsed;
                 }
-            });
-            
-            //Debugger.Warn($"Changed Monster component position to X:{X} Y:{Y}");
+            });   
         }
 
         /* Harvest box */
@@ -247,210 +175,6 @@ namespace HunterPie.GUI {
             });
         }
 
-        /* Mantles */
-        // Primary mantle
-        public void UpdatePrimaryMantleCooldown(object source, MantleEventArgs e) {
-            bool ContainerEnabled = UserSettings.PlayerConfig.Overlay.PrimaryMantle.Enabled;
-            if (e.Cooldown <= 0) {
-                Dispatch(() => {
-                    if (PrimaryMantleContainer.Visibility == Visibility.Visible) PrimaryMantleContainer.Visibility = Visibility.Hidden;
-                });
-                return;
-            }
-            Dispatch(() => {
-                if (ContainerEnabled && PrimaryMantleContainer.Visibility == Visibility.Hidden) PrimaryMantleContainer.Visibility = Visibility.Visible;
-                string FormatMantleName = $"({(int)e.Cooldown}) {e.Name.ToUpper()}";
-                PrimaryMantleName.Content = FormatMantleName;
-                PrimaryMantleTimer.Slice = e.Cooldown / e.staticCooldown;
-            });
-        }
-
-        public void UpdatePrimaryMantleTimer(object source, MantleEventArgs e) {
-            bool ContainerEnabled = UserSettings.PlayerConfig.Overlay.PrimaryMantle.Enabled;
-            if (e.Timer <= 0) {
-                Dispatch(() => {
-                    if (PrimaryMantleContainer.Visibility == Visibility.Visible) PrimaryMantleContainer.Visibility = Visibility.Hidden;
-                });
-                return;
-            }
-            Dispatch(() => {
-                if (ContainerEnabled && PrimaryMantleContainer.Visibility == Visibility.Hidden) PrimaryMantleContainer.Visibility = Visibility.Visible;
-                string FormatMantleName = $"({(int)e.Timer}) {e.Name.ToUpper()}";
-                PrimaryMantleName.Content = FormatMantleName;
-                PrimaryMantleTimer.Slice = e.Timer / e.staticTimer;
-            });
-        }
-
-        // Secondary mantle
-        public void UpdateSecondaryMantleCooldown(object source, MantleEventArgs e) {
-            bool ContainerEnabled = UserSettings.PlayerConfig.Overlay.SecondaryMantle.Enabled;
-            if (e.Cooldown == 0) {
-                Dispatch(() => {
-                    if (SecondaryMantleContainer.Visibility == Visibility.Visible) SecondaryMantleContainer.Visibility = Visibility.Hidden;
-                });
-                return;
-            }
-            Dispatch(() => {
-                if (ContainerEnabled && SecondaryMantleContainer.Visibility == Visibility.Hidden) SecondaryMantleContainer.Visibility = Visibility.Visible;
-                string FormatMantleName = $"({(int)e.Cooldown}) {e.Name.ToUpper()}";
-                SecondaryMantleName.Content = FormatMantleName;
-                SecondaryMantleTimer.Slice = e.Cooldown / e.staticCooldown;
-            });
-        }
-
-        public void UpdateSecondaryMantleTimer(object source, MantleEventArgs e) {
-            bool ContainerEnabled = UserSettings.PlayerConfig.Overlay.SecondaryMantle.Enabled;
-            if (e.Timer == 0) {
-                Dispatch(() => {
-                    if (SecondaryMantleContainer.Visibility == Visibility.Visible) SecondaryMantleContainer.Visibility = Visibility.Hidden;
-                });
-                return;
-            }
-            Dispatch(() => {
-                if (ContainerEnabled && SecondaryMantleContainer.Visibility == Visibility.Hidden) SecondaryMantleContainer.Visibility = Visibility.Visible;
-                string FormatMantleName = $"({(int)e.Timer}) {e.Name.ToUpper()}";
-                SecondaryMantleName.Content = FormatMantleName;
-                SecondaryMantleTimer.Slice = e.Timer / e.staticTimer;
-            });
-        }
-
-        /*  Monsters  */
-        // First monster
-        public void OnFirstMonsterSpawn(object source, MonsterEventArgs e) {
-            Dispatch(() => {
-                fMonsterBox.Visibility = Visibility.Visible;
-                fMonsterName.Content = e.Name.ToUpper();
-                fMonsterHpBar.Maximum = e.TotalHP;
-                fMonsterHpBar.Value = e.CurrentHP;
-                fMonsterWeakness.Children.Clear();
-                foreach (string Weakness in e.Weaknesses.Keys) {
-                    Image MonsterWeaknessImg = new Image();
-                    MonsterWeaknessImg.Source = this.Resources[Weakness] as ImageSource;
-                    MonsterWeaknessImg.Height = MonsterWeaknessImg.Width = 18;
-                    fMonsterWeakness.Children.Add(MonsterWeaknessImg);
-                }
-            });
-        }
-
-        public void OnFirstMonsterDespawn(object source, MonsterEventArgs e) {
-            Dispatch(() => {
-                fMonsterBox.Visibility = Visibility.Collapsed;
-            });
-        }
-
-        public void UpdateFirstMonster(object source, MonsterEventArgs e) {
-            if (e.Name == null) return;
-            Dispatch(() => {
-                fMonsterName.Content = e.Name.ToUpper();
-                fMonsterHpBar.Maximum = e.TotalHP;
-                fMonsterHpBar.Value = e.CurrentHP;
-            });
-        }
-
-        private void OnFirstMonsterEnrage(object source, EventArgs args) {
-            Dispatch(() => {
-                ANIM_ENRAGED.Begin(fMonsterHpBar, true);
-            });
-        }
-
-        private void OnFirstMonsterUnenrage(object source, EventArgs args) {
-            Dispatch(() => {
-                ANIM_ENRAGED.Remove(fMonsterHpBar);
-            });
-            
-        }
-
-        // Second monster
-        public void OnSecondMonsterSpawn(object source, MonsterEventArgs e) {
-            Dispatch(() => {
-                sMonsterBox.Visibility = Visibility.Visible;
-                sMonsterName.Content = e.Name.ToUpper();
-                sMonsterHpBar.Maximum = e.TotalHP;
-                sMonsterHpBar.Value = e.CurrentHP;
-                sMonsterWeakness.Children.Clear();
-                foreach (string Weakness in e.Weaknesses.Keys) {
-                    Image MonsterWeaknessImg = new Image();
-                    MonsterWeaknessImg.Source = this.Resources[Weakness] as ImageSource;
-                    MonsterWeaknessImg.Height = MonsterWeaknessImg.Width = 18;
-                    sMonsterWeakness.Children.Add(MonsterWeaknessImg);
-                }
-            });
-        }
-
-        public void OnSecondMonsterDespawn(object source, MonsterEventArgs e) {
-            Dispatch(() => {
-                sMonsterBox.Visibility = Visibility.Collapsed;
-            });
-        }
-
-        public void UpdateSecondMonster(object source, MonsterEventArgs e) {
-            if (e.Name == null) return;
-            Dispatch(() => {
-                sMonsterName.Content = e.Name.ToUpper();
-                sMonsterHpBar.Maximum = e.TotalHP;
-                sMonsterHpBar.Value = e.CurrentHP;
-            });
-        }
-
-        private void OnSecondMonsterEnrage(object source, EventArgs args) {
-            Dispatch(() => {
-                ANIM_ENRAGED.Begin(sMonsterHpBar, true);
-            });
-            
-        }
-
-        private void OnSecondMonsterUnenrage(object source, EventArgs args) {
-            Dispatch(() => {
-                ANIM_ENRAGED.Remove(sMonsterHpBar);
-            });
-            
-        }
-
-        // Third monster
-
-        public void OnThirdMonsterSpawn(object source, MonsterEventArgs e) {
-            Dispatch(() => {
-                tMonsterBox.Visibility = Visibility.Visible;
-                tMonsterName.Content = e.Name.ToUpper();
-                tMonsterHpBar.Maximum = e.TotalHP;
-                tMonsterHpBar.Value = e.CurrentHP;
-                tMonsterWeakness.Children.Clear();
-                foreach (string Weakness in e.Weaknesses.Keys) {
-                    Image MonsterWeaknessImg = new Image();
-                    MonsterWeaknessImg.Source = this.Resources[Weakness] as ImageSource;
-                    MonsterWeaknessImg.Height = MonsterWeaknessImg.Width = 18;
-                    tMonsterWeakness.Children.Add(MonsterWeaknessImg);
-                }
-            });
-        }
-
-        public void OnThirdMonsterDespawn(object source, MonsterEventArgs e) {
-            Dispatch(() => {
-                tMonsterBox.Visibility = Visibility.Collapsed;
-            });
-        }
-
-        public void UpdateThirdMonster(object source, MonsterEventArgs e) {
-            if (e.Name == null) return;
-            Dispatch(() => {
-                tMonsterName.Content = e.Name.ToUpper();
-                tMonsterHpBar.Maximum = e.TotalHP;
-                tMonsterHpBar.Value = e.CurrentHP;
-            });
-        }
-
-        private void OnThirdMonsterEnrage(object source, EventArgs args) {
-            Dispatch(() => {
-                ANIM_ENRAGED.Begin(tMonsterHpBar, true);
-            });
-        }
-
-        private void OnThirdMonsterUnenrage(object source, EventArgs args) {
-            Dispatch(() => {
-                ANIM_ENRAGED.Remove(tMonsterHpBar);
-            });
-        }
-
         /* Positions and enable/disable components */
 
         public void ToggleOverlay(object source, EventArgs e) {
@@ -458,30 +182,26 @@ namespace HunterPie.GUI {
                 this.Visibility = UserSettings.PlayerConfig.Overlay.Enabled ? Visibility.Visible : Visibility.Hidden;
             });
         }
-
+        
         public void ChangePrimaryMantlePosition(object source, EventArgs e) {
             double X = UserSettings.PlayerConfig.Overlay.PrimaryMantle.Position[0];
             double Y = UserSettings.PlayerConfig.Overlay.PrimaryMantle.Position[1];
-            double Left = PrimaryMantleContainer.Margin.Left;
-            double Top = PrimaryMantleContainer.Margin.Top;
-            double Right = PrimaryMantleContainer.Margin.Right;
-            double Bottom = PrimaryMantleContainer.Margin.Bottom;
+            double Left = PrimaryMantle.Margin.Left;
+            double Top = PrimaryMantle.Margin.Top;
+            double Right = PrimaryMantle.Margin.Right;
+            double Bottom = PrimaryMantle.Margin.Bottom;
             Dispatch(() => {
                 if (X != Left || Y != Top) {
-                    PrimaryMantleContainer.Margin = new Thickness(X, Y, Right, Bottom);
+                    PrimaryMantle.Margin = new Thickness(X, Y, Right, Bottom);
                 }
-                if (PrimaryMantleContainer.IsVisible && !UserSettings.PlayerConfig.Overlay.PrimaryMantle.Enabled) {
-                    PrimaryMantleContainer.Visibility = Visibility.Hidden;
+                if (PrimaryMantle.IsVisible && !UserSettings.PlayerConfig.Overlay.PrimaryMantle.Enabled) {
+                    PrimaryMantle.Visibility = Visibility.Hidden;
                 } else if (UserSettings.PlayerConfig.Overlay.PrimaryMantle.Enabled) {
-                    if (ctx.Player.PrimaryMantle.Timer > 0 || ctx.Player.PrimaryMantle.Cooldown > 0) {
-                        PrimaryMantleContainer.Visibility = Visibility.Visible;
-                    } else {
-                        PrimaryMantleContainer.Visibility = Visibility.Hidden;
-                    }
+                    PrimaryMantle.Visibility = Visibility.Visible;
                 }
             });
         }
-
+        /*
         public void ChangeHarvestBoxPosition(object source, EventArgs e) {
             double X = UserSettings.PlayerConfig.Overlay.HarvestBoxComponent.Position[0];
             double Y = UserSettings.PlayerConfig.Overlay.HarvestBoxComponent.Position[1];
@@ -503,7 +223,7 @@ namespace HunterPie.GUI {
                     }
                 }
             });
-        }
+        }*/
 
         public void UpdateFirstFertilizer(object source, FertilizerEventArgs e) {
             Dispatch(() => {
@@ -552,53 +272,49 @@ namespace HunterPie.GUI {
             return brush;
         }
 
+        
         public void ChangePrimaryMantleColor(object source, EventArgs e) {
             string newColor = UserSettings.PlayerConfig.Overlay.PrimaryMantle.Color;
-            if (PrimaryMantleTimer.Fill.ToString() == newColor) {
+            if (PrimaryMantle.MantleCooldown.Fill.ToString() == newColor) {
                 return;
             }
             Color primaryColor = (Color)ColorConverter.ConvertFromString(newColor);
             Brush primaryColorBrush = new SolidColorBrush(primaryColor);
             Dispatch(() => {
-                PrimaryMantleTimer.Fill = DonutBrush(primaryColor);
-                PrimaryMantleBorder.BorderBrush = primaryColorBrush;
+                PrimaryMantle.MantleCooldown.Fill = DonutBrush(primaryColor);
+                PrimaryMantle.MantleBorder.BorderBrush = primaryColorBrush;
             });
         }
 
         public void ChangeSecondaryMantlePosition(object source, EventArgs e) {
             double X = UserSettings.PlayerConfig.Overlay.SecondaryMantle.Position[0];
             double Y = UserSettings.PlayerConfig.Overlay.SecondaryMantle.Position[1];
-            double Left = SecondaryMantleContainer.Margin.Left;
-            double Top = SecondaryMantleContainer.Margin.Top;
-            double Right = SecondaryMantleContainer.Margin.Right;
-            double Bottom = SecondaryMantleContainer.Margin.Bottom;
+            double Left = SecondaryMantle.Margin.Left;
+            double Top = SecondaryMantle.Margin.Top;
+            double Right = SecondaryMantle.Margin.Right;
+            double Bottom = SecondaryMantle.Margin.Bottom;
             Dispatch(() => {
                 if (X != Left || Y != Top) {
-                    SecondaryMantleContainer.Margin = new Thickness(X, Y, Right, Bottom);
+                    SecondaryMantle.Margin = new Thickness(X, Y, Right, Bottom);
                 }
-                if (SecondaryMantleContainer.IsVisible && !UserSettings.PlayerConfig.Overlay.SecondaryMantle.Enabled) {
-                    SecondaryMantleContainer.Visibility = Visibility.Hidden;
+                if (SecondaryMantle.IsVisible && !UserSettings.PlayerConfig.Overlay.SecondaryMantle.Enabled) {
+                    SecondaryMantle.Visibility = Visibility.Hidden;
                 } else if (UserSettings.PlayerConfig.Overlay.SecondaryMantle.Enabled) {
-                    if (ctx.Player.SecondaryMantle.Timer > 0 || ctx.Player.SecondaryMantle.Cooldown > 0) {
-                        SecondaryMantleContainer.Visibility = Visibility.Visible;
-                    } else {
-                        SecondaryMantleContainer.Visibility = Visibility.Hidden;
-                    }
+                    SecondaryMantle.Visibility = Visibility.Visible;
                 }
-
             });
         }
-
+        
         public void ChangeSecondaryMantleColor(object source, EventArgs e) {
             string newColor = UserSettings.PlayerConfig.Overlay.SecondaryMantle.Color;
-            if (SecondaryMantleTimer.Fill.ToString() == newColor) {
+            if (SecondaryMantle.MantleCooldown.Fill.ToString() == newColor) {
                 return;
             }
             Color secondaryColor = (Color)ColorConverter.ConvertFromString(newColor);
             Brush secondaryColorBrush = new SolidColorBrush(secondaryColor);
             Dispatch(() => {
-                SecondaryMantleTimer.Fill = DonutBrush(secondaryColor);
-                SecondaryMantleBorder.BorderBrush = secondaryColorBrush;
+                SecondaryMantle.MantleCooldown.Fill = DonutBrush(secondaryColor);
+                SecondaryMantle.MantleBorder.BorderBrush = secondaryColorBrush;
             });
         }
     }

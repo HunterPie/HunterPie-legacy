@@ -66,6 +66,7 @@
     <Monster ID="em127_01" Name="Ancient Leshen"/>
   </Monsters>
   <Mantles>
+    <Mantle ID="-1" Name="No Mantle"/>
     <Mantle ID="0" Name="Ghillie Mantle"/>
     <Mantle ID="1" Name="Temporal Mantle"/>
     <Mantle ID="2" Name="Health Booster"/>
