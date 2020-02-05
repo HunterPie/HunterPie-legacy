@@ -39,7 +39,7 @@ namespace HunterPie.GUI.Widgets {
             Context.OnMantleTimerUpdate += OnTimerChange;
         }
 
-        private void UnhookEvents() {
+        public void UnhookEvents() {
             Context.OnMantleTimerUpdate -= OnCooldownChange;
             Context.OnMantleTimerUpdate -= OnTimerChange;
         }

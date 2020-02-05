@@ -52,22 +52,9 @@
             <widgets:MonsterHealth x:Name="SecondMonster" Visibility="Collapsed"/>
             <widgets:MonsterHealth x:Name="ThirdMonster" Visibility="Collapsed"/>
         </StackPanel>
-        <widgets:MantleTimer x:Name="PrimaryMantle" HorizontalAlignment="Left" Width="218" VerticalAlignment="Top"/>
-        <widgets:MantleTimer x:Name="SecondaryMantle"  HorizontalAlignment="Left" Width="218" VerticalAlignment="Top"/>
-        <Grid x:Name="HarvestBoxComponent" Margin="1680,601,0,0" HorizontalAlignment="Left" Width="230" Height="171" VerticalAlignment="Top" Visibility="Hidden">
-            <Rectangle x:Name="HarvestBoxContainer" Fill="#4C111111" Stroke="#FF171717"/>
-            <Label x:Name="HarvestBoxTitle" Content="HARVEST BOX" Opacity="0.8" Foreground="White" HorizontalContentAlignment="Center" Padding="0" VerticalContentAlignment="Center" FontFamily="Roboto" FontWeight="Bold" Background="#66000000" Height="29" VerticalAlignment="Top" FontSize="16"/>
-            <Label x:Name="fert1Name" Content="Empty" Margin="0,29,42,0" Opacity="0.8" Foreground="White" HorizontalContentAlignment="Center" Padding="0" VerticalContentAlignment="Center" FontFamily="Roboto" Background="#66000000" FontWeight="Light" Height="29" VerticalAlignment="Top" FontSize="14"/>
-            <Label x:Name="fert2Name" Content="Empty" Margin="0,58,42,0" Opacity="0.8" Foreground="White" HorizontalContentAlignment="Center" Padding="0" VerticalContentAlignment="Center" FontFamily="Roboto" Background="#66000000" FontWeight="Light" Height="29" VerticalAlignment="Top" FontSize="14"/>
-            <Label x:Name="fert3Name" Content="Empty" Margin="0,87,42,0" Opacity="0.8" Foreground="White" HorizontalContentAlignment="Center" Padding="0" VerticalContentAlignment="Center" FontFamily="Roboto" Background="#66000000" FontWeight="Light" Height="29" VerticalAlignment="Top" FontSize="14"/>
-            <Label x:Name="fert4Name" Content="Empty" Margin="0,116,42,0" Opacity="0.8" Foreground="White" HorizontalContentAlignment="Center" Padding="0" VerticalContentAlignment="Center" FontFamily="Roboto" Background="#66000000" FontWeight="Light" Height="29" VerticalAlignment="Top" FontSize="14"/>
-            <Label x:Name="fert1Counter" Content="x0" Margin="0,29,0,0" Opacity="0.8" Foreground="White" HorizontalContentAlignment="Center" Padding="0" VerticalContentAlignment="Center" FontFamily="Roboto" Background="#66000000" FontWeight="ExtraLight" Height="29" VerticalAlignment="Top" HorizontalAlignment="Right" Width="42" FontSize="13"/>
-            <Label x:Name="fert2Counter" Content="x0" Margin="0,58,0,0" Opacity="0.8" Foreground="White" HorizontalContentAlignment="Center" Padding="0" VerticalContentAlignment="Center" FontFamily="Roboto" Background="#66000000" FontWeight="ExtraLight" Height="29" VerticalAlignment="Top" HorizontalAlignment="Right" Width="42" FontSize="13"/>
-            <Label x:Name="fert3Counter" Content="x0" Margin="0,87,0,0" Opacity="0.8" Foreground="White" HorizontalContentAlignment="Center" Padding="0" VerticalContentAlignment="Center" FontFamily="Roboto" Background="#66000000" FontWeight="ExtraLight" Height="29" VerticalAlignment="Top" HorizontalAlignment="Right" Width="42" FontSize="13"/>
-            <Label x:Name="fert4Counter" Content="x0" Margin="0,116,0,0" Opacity="0.8" Foreground="White" HorizontalContentAlignment="Center" Padding="0" VerticalContentAlignment="Center" FontFamily="Roboto" Background="#66000000" FontWeight="ExtraLight" Height="29" VerticalAlignment="Top" HorizontalAlignment="Right" Width="42" FontSize="13"/>
-            <Label x:Name="HarvestBoxItemsCounter" Content="(0/30)" Margin="0,145,0,0" Opacity="0.8" Foreground="White" HorizontalContentAlignment="Center" Padding="0" VerticalContentAlignment="Center" FontFamily="Roboto" FontWeight="ExtraLight" Background="#66000000"/>
-
-        </Grid>
+        <widgets:MantleTimer x:Name="PrimaryMantle" HorizontalAlignment="Left" Width="218" VerticalAlignment="Top" Visibility="Hidden"/>
+        <widgets:MantleTimer x:Name="SecondaryMantle"  HorizontalAlignment="Left" Width="218" VerticalAlignment="Top" Visibility="Hidden"/>
+        <widgets:HarvestBox x:Name="HarvestBoxComponent" HorizontalAlignment="Left" Margin="845,454,0,0" VerticalAlignment="Top" Visibility="Hidden"/>
 
     </Grid>
 </Window>

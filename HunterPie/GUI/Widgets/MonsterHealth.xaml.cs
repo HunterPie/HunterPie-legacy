@@ -49,7 +49,7 @@ namespace HunterPie.GUI.Widgets {
             Context.OnHPUpdate += OnMonsterUpdate;
         }
 
-        private void UnhookEvents() {
+        public void UnhookEvents() {
             Context.OnMonsterSpawn -= OnMonsterSpawn;
             Context.OnMonsterDespawn -= OnMonsterDespawn;
             Context.OnMonsterDeath -= OnMonsterDespawn;

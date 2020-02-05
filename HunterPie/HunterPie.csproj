@@ -141,6 +141,10 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
+    <Page Include="GUI\Widgets\HarvestBox.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="GUI\Widgets\MantleTimer.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -167,6 +171,9 @@
     </Compile>
     <Compile Include="GUI\Overlay.xaml.cs">
       <DependentUpon>Overlay.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="GUI\Widgets\HarvestBox.xaml.cs">
+      <DependentUpon>HarvestBox.xaml</DependentUpon>
     </Compile>
     <Compile Include="GUI\Widgets\MantleTimer.xaml.cs">
       <DependentUpon>MantleTimer.xaml</DependentUpon>

@@ -99,7 +99,12 @@
         </Style.Triggers>
     </Style>
     <!-- Animations -->
+    <!-- Monster Enraged -->
     <Storyboard x:Key="Enraged" RepeatBehavior="Forever" AutoReverse="True" Storyboard.TargetProperty="(Effect).Opacity">
         <DoubleAnimation From="0" To="1" Duration="0:0:0.500" Timeline.DesiredFrameRate="30"/>
+    </Storyboard>
+    <!-- Harvest box fertilizer close to expire -->
+    <Storyboard x:Key="FertilizerExpiring" RepeatBehavior="Forever" AutoReverse="True" Storyboard.TargetProperty="(Foreground).(SolidColorBrush.Color)">
+        <ColorAnimation From="White" To="Red" Duration="0:0:1" Timeline.DesiredFrameRate="30"/>
     </Storyboard>
 </ResourceDictionary>

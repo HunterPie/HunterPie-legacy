@@ -26,7 +26,7 @@ namespace HunterPie {
         public Hunterpie() {
             InitializeComponent();
             OpenDebugger();
-            AppDomain.CurrentDomain.FirstChanceException += ExceptionLogger;
+            AppDomain.CurrentDomain.UnhandledException += ExceptionLogger;
             // Initialize rich presence
             Discord = new Presence(MonsterHunter);
             // Initialize everything under this line
@@ -40,11 +40,10 @@ namespace HunterPie {
             StartEverything();
         }
 
-        private void ExceptionLogger(object sender, System.Runtime.ExceptionServices.FirstChanceExceptionEventArgs e) {
-            if (!Directory.Exists("Crashes")) {
-                Directory.CreateDirectory("Crashes");
+        private void ExceptionLogger(object sender, UnhandledExceptionEventArgs e) {
+            using (var crashfile = File.AppendText("crashes.txt")) {
+                crashfile.Write(e.ExceptionObject.ToString());
             }
-            File.WriteAllText(@"Crashes\CrashLog.txt", e.Exception.ToString());
         }
 
         private bool StartUpdateProcess() {

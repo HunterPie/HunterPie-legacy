@@ -36,10 +36,7 @@ namespace HunterPie.GUI {
             InitializeComponent();
             SetWidgetsContext();
             SetOverlaySize();
-            //HookEvents();
             MakeOverlayClickThrough();
-            //ANIM_ENRAGED = FindResource("Enraged") as Storyboard;
-            
         }
 
         public void SetWidgetsContext() {
@@ -48,60 +45,27 @@ namespace HunterPie.GUI {
             this.ThirdMonster.SetContext(ctx.ThirdMonster);
             this.PrimaryMantle.SetContext(ctx.Player.PrimaryMantle);
             this.SecondaryMantle.SetContext(ctx.Player.SecondaryMantle);
+            this.HarvestBoxComponent.SetContext(ctx.Player);
         }
 
         public void Destroy() {
+            this.FirstMonster.UnhookEvents();
+            this.SecondaryMantle.UnhookEvents();
+            this.ThirdMonster.UnhookEvents();
+            this.PrimaryMantle.UnhookEvents();
+            this.SecondaryMantle.UnhookEvents();
+            this.HarvestBoxComponent.UnhookEvents();
             this.Close();
         }
         
         public void GlobalSettingsEventHandler(object source, EventArgs e) {
             this.ToggleOverlay(source, e);
-            //this.ChangeHarvestBoxPosition(source, e);
+            this.ChangeHarvestBoxPosition(source, e);
             this.ChangeMonsterComponentPosition(source, e);
             this.ChangePrimaryMantlePosition(source, e);
             this.ChangeSecondaryMantlePosition(source, e);
             this.ChangePrimaryMantleColor(source, e);
             this.ChangeSecondaryMantleColor(source, e);
-        }
-        
-        private void HookHarvestBoxEvents() {
-            // Hooks player location event
-            ctx.Player.OnVillageEnter += this.ShowHarvestBox;
-            ctx.Player.OnVillageLeave += this.HideHarvestBox;
-            // Hook fertilizer and Harvest box events
-            ctx.Player.Harvest.OnCounterChange += this.UpdateHarvestBoxCounter;
-            // First fertilizer
-            ctx.Player.Harvest.Box[0].OnAmountUpdate += this.UpdateFirstFertilizer;
-            ctx.Player.Harvest.Box[0].OnFertilizerChange += this.UpdateFirstFertilizer;
-            // Second fertilizer
-            ctx.Player.Harvest.Box[1].OnAmountUpdate += this.UpdateSecondFertilizer;
-            ctx.Player.Harvest.Box[1].OnFertilizerChange += this.UpdateSecondFertilizer;
-            // Third fertilizer
-            ctx.Player.Harvest.Box[2].OnAmountUpdate += this.UpdateThirdFertilizer;
-            ctx.Player.Harvest.Box[2].OnFertilizerChange += this.UpdateThirdFertilizer;
-            // Fourth fertilizer
-            ctx.Player.Harvest.Box[3].OnAmountUpdate += this.UpdateFourthFertilizer;
-            ctx.Player.Harvest.Box[3].OnFertilizerChange += this.UpdateFourthFertilizer;
-        }
-
-        private void UnhookHarvestBoxEvents() {
-            // Hooks player location event
-            ctx.Player.OnVillageEnter -= this.ShowHarvestBox;
-            ctx.Player.OnVillageLeave -= this.HideHarvestBox;
-            // Hook fertilizer and Harvest box events
-            ctx.Player.Harvest.OnCounterChange -= this.UpdateHarvestBoxCounter;
-            // First fertilizer
-            ctx.Player.Harvest.Box[0].OnAmountUpdate -= this.UpdateFirstFertilizer;
-            ctx.Player.Harvest.Box[0].OnFertilizerChange -= this.UpdateFirstFertilizer;
-            // Second fertilizer
-            ctx.Player.Harvest.Box[1].OnAmountUpdate -= this.UpdateSecondFertilizer;
-            ctx.Player.Harvest.Box[1].OnFertilizerChange -= this.UpdateSecondFertilizer;
-            // Third fertilizer
-            ctx.Player.Harvest.Box[2].OnAmountUpdate -= this.UpdateThirdFertilizer;
-            ctx.Player.Harvest.Box[2].OnFertilizerChange -= this.UpdateThirdFertilizer;
-            // Fourth fertilizer
-            ctx.Player.Harvest.Box[3].OnAmountUpdate -= this.UpdateFourthFertilizer;
-            ctx.Player.Harvest.Box[3].OnFertilizerChange -= this.UpdateFourthFertilizer;
         }
 
         private void MakeOverlayClickThrough() {
@@ -160,21 +124,6 @@ namespace HunterPie.GUI {
             });   
         }
 
-        /* Harvest box */
-        public void ShowHarvestBox(object source, EventArgs e) {
-            if (HarvestBoxComponent.Visibility == Visibility.Visible || !UserSettings.PlayerConfig.Overlay.HarvestBoxComponent.Enabled) return;
-            Dispatch(() => {
-                HarvestBoxComponent.Visibility = Visibility.Visible;
-            });
-        }
-
-        public void HideHarvestBox(object source, EventArgs e) {
-            if (HarvestBoxComponent.Visibility == Visibility.Hidden) return;
-            Dispatch(() => {
-                HarvestBoxComponent.Visibility = Visibility.Hidden;
-            });
-        }
-
         /* Positions and enable/disable components */
 
         public void ToggleOverlay(object source, EventArgs e) {
@@ -201,7 +150,7 @@ namespace HunterPie.GUI {
                 }
             });
         }
-        /*
+        
         public void ChangeHarvestBoxPosition(object source, EventArgs e) {
             double X = UserSettings.PlayerConfig.Overlay.HarvestBoxComponent.Position[0];
             double Y = UserSettings.PlayerConfig.Overlay.HarvestBoxComponent.Position[1];
@@ -223,49 +172,16 @@ namespace HunterPie.GUI {
                     }
                 }
             });
-        }*/
-
-        public void UpdateFirstFertilizer(object source, FertilizerEventArgs e) {
-            Dispatch(() => {
-                fert1Name.Content = e.Name;
-                fert1Counter.Content = $"x{e.Amount}";
-            });
-        }
-
-        public void UpdateSecondFertilizer(object source, FertilizerEventArgs e) {
-            Dispatch(() => {
-                fert2Name.Content = e.Name;
-                fert2Counter.Content = $"x{e.Amount}";
-            }); ;
-        }
-
-        public void UpdateThirdFertilizer(object source, FertilizerEventArgs e) {
-            Dispatch(() => {
-                fert3Name.Content = e.Name;
-                fert3Counter.Content = $"x{e.Amount}";
-            });
-        }
-
-        public void UpdateFourthFertilizer(object source, FertilizerEventArgs e) {
-            Dispatch(() => {
-                fert4Name.Content = e.Name;
-                fert4Counter.Content = $"x{e.Amount}";
-            });
-        }
-
-        public void UpdateHarvestBoxCounter(object source, HarvestBoxEventArgs e) {
-            Dispatch(() => {
-                HarvestBoxItemsCounter.Content = $"{e.Counter}/{e.Max}";
-            });
         }
 
         private RadialGradientBrush DonutBrush(Color customColor) {
-            RadialGradientBrush brush = new RadialGradientBrush();
-            brush.Center = new Point(13, 13);
-            brush.GradientOrigin = new Point(13, 13);
-            brush.MappingMode = BrushMappingMode.Absolute;
-            brush.RadiusX = 13;
-            brush.RadiusY = 13;
+            RadialGradientBrush brush = new RadialGradientBrush {
+                Center = new Point(13, 13),
+                GradientOrigin = new Point(13, 13),
+                MappingMode = BrushMappingMode.Absolute,
+                RadiusX = 13,
+                RadiusY = 13
+            };
             // Add the colors to make a donut
             brush.GradientStops.Add(new GradientStop(Colors.Transparent, 0.4));
             brush.GradientStops.Add(new GradientStop(customColor, 0.4));
