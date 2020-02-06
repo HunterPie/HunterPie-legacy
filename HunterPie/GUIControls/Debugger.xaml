@@ -7,77 +7,82 @@
              mc:Ignorable="d" 
              d:DesignHeight="450" d:DesignWidth="800" Width="749" Height="443" Background="#FF2E2E2E">
     <UserControl.Resources>
-        <SolidColorBrush x:Key="TextBox.Static.Border" Color="#FFABAdB3"/>
-        <SolidColorBrush x:Key="TextBox.MouseOver.Border" Color="#FF7EB4EA"/>
-        <SolidColorBrush x:Key="TextBox.Focus.Border" Color="#FF569DE5"/>
-        <Style x:Key="{x:Type TextBoxBase}" TargetType="{x:Type TextBoxBase}">
-            <Setter Property="Background" Value="{DynamicResource {x:Static SystemColors.WindowBrushKey}}"/>
-            <Setter Property="BorderBrush" Value="{StaticResource TextBox.Static.Border}"/>
-            <Setter Property="Foreground" Value="{DynamicResource {x:Static SystemColors.ControlTextBrushKey}}"/>
-            <Setter Property="BorderThickness" Value="1"/>
-            <Setter Property="KeyboardNavigation.TabNavigation" Value="None"/>
-            <Setter Property="HorizontalContentAlignment" Value="Left"/>
-            <Setter Property="FocusVisualStyle" Value="{x:Null}"/>
-            <Setter Property="AllowDrop" Value="true"/>
-            <Setter Property="ScrollViewer.PanningMode" Value="VerticalFirst"/>
-            <Setter Property="Stylus.IsFlicksEnabled" Value="False"/>
-            <Setter Property="Template">
-                <Setter.Value>
-                    <ControlTemplate TargetType="{x:Type TextBoxBase}">
-                        <Border x:Name="border" BorderBrush="{TemplateBinding BorderBrush}" BorderThickness="{TemplateBinding BorderThickness}" Background="{TemplateBinding Background}" SnapsToDevicePixels="True">
-                            <ScrollViewer x:Name="PART_ContentHost" Focusable="false" HorizontalScrollBarVisibility="Hidden" VerticalScrollBarVisibility="Auto"/>
-                        </Border>
-                        <ControlTemplate.Triggers>
+        <ResourceDictionary>
+            <ResourceDictionary.MergedDictionaries>
+                <ResourceDictionary Source="/Resources/ScrollBarStyle.xaml"/>
+            </ResourceDictionary.MergedDictionaries>
+            <SolidColorBrush x:Key="TextBox.Static.Border" Color="#FFABAdB3"/>
+            <SolidColorBrush x:Key="TextBox.MouseOver.Border" Color="#FF7EB4EA"/>
+            <SolidColorBrush x:Key="TextBox.Focus.Border" Color="#FF569DE5"/>
+            <Style x:Key="{x:Type TextBoxBase}" TargetType="{x:Type TextBoxBase}">
+                <Setter Property="Background" Value="{DynamicResource {x:Static SystemColors.WindowBrushKey}}"/>
+                <Setter Property="BorderBrush" Value="{StaticResource TextBox.Static.Border}"/>
+                <Setter Property="Foreground" Value="{DynamicResource {x:Static SystemColors.ControlTextBrushKey}}"/>
+                <Setter Property="BorderThickness" Value="1"/>
+                <Setter Property="KeyboardNavigation.TabNavigation" Value="None"/>
+                <Setter Property="HorizontalContentAlignment" Value="Left"/>
+                <Setter Property="FocusVisualStyle" Value="{x:Null}"/>
+                <Setter Property="AllowDrop" Value="true"/>
+                <Setter Property="ScrollViewer.PanningMode" Value="VerticalFirst"/>
+                <Setter Property="Stylus.IsFlicksEnabled" Value="False"/>
+                <Setter Property="Template">
+                    <Setter.Value>
+                        <ControlTemplate TargetType="{x:Type TextBoxBase}">
+                            <Border x:Name="border" BorderBrush="{TemplateBinding BorderBrush}" BorderThickness="{TemplateBinding BorderThickness}" Background="{TemplateBinding Background}" SnapsToDevicePixels="True">
+                                <ScrollViewer x:Name="PART_ContentHost" Focusable="false" HorizontalScrollBarVisibility="Hidden" VerticalScrollBarVisibility="Auto"/>
+                            </Border>
+                            <ControlTemplate.Triggers>
+                                <Trigger Property="IsEnabled" Value="false">
+                                    <Setter Property="Opacity" TargetName="border" Value="0.56"/>
+                                </Trigger>
+                            </ControlTemplate.Triggers>
+                        </ControlTemplate>
+                    </Setter.Value>
+                </Setter>
+                <Style.Triggers>
+                    <MultiTrigger>
+                        <MultiTrigger.Conditions>
+                            <Condition Property="IsInactiveSelectionHighlightEnabled" Value="true"/>
+                            <Condition Property="IsSelectionActive" Value="false"/>
+                        </MultiTrigger.Conditions>
+                        <Setter Property="SelectionBrush" Value="{DynamicResource {x:Static SystemColors.InactiveSelectionHighlightBrushKey}}"/>
+                    </MultiTrigger>
+                </Style.Triggers>
+            </Style>
+            <Style x:Key="{x:Type Hyperlink}" TargetType="{x:Type Hyperlink}">
+                <Setter Property="Foreground" Value="{DynamicResource {x:Static SystemColors.HotTrackBrushKey}}"/>
+                <Setter Property="TextDecorations" Value="Underline"/>
+                <Style.Triggers>
+                    <Trigger Property="IsMouseOver" Value="true">
+                        <Setter Property="Foreground" Value="Red"/>
+                    </Trigger>
+                    <Trigger Property="IsEnabled" Value="false">
+                        <Setter Property="Foreground" Value="{DynamicResource {x:Static SystemColors.GrayTextBrushKey}}"/>
+                    </Trigger>
+                    <Trigger Property="IsEnabled" Value="true">
+                        <Setter Property="Cursor" Value="Hand"/>
+                    </Trigger>
+                </Style.Triggers>
+            </Style>
+            <Style x:Key="DebuggerStyle" TargetType="{x:Type RichTextBox}">
+                <Style.Resources>
+                    <Style x:Key="{x:Type FlowDocument}" TargetType="{x:Type FlowDocument}">
+                        <Setter Property="OverridesDefaultStyle" Value="true"/>
+                    </Style>
+                    <Style x:Key="{x:Type Hyperlink}" BasedOn="{StaticResource {x:Type Hyperlink}}" TargetType="{x:Type Hyperlink}">
+                        <Style.Triggers>
                             <Trigger Property="IsEnabled" Value="false">
-                                <Setter Property="Opacity" TargetName="border" Value="0.56"/>
+                                <Setter Property="Foreground" Value="{DynamicResource {x:Static SystemColors.GrayTextBrushKey}}"/>
                             </Trigger>
-                        </ControlTemplate.Triggers>
-                    </ControlTemplate>
-                </Setter.Value>
-            </Setter>
-            <Style.Triggers>
-                <MultiTrigger>
-                    <MultiTrigger.Conditions>
-                        <Condition Property="IsInactiveSelectionHighlightEnabled" Value="true"/>
-                        <Condition Property="IsSelectionActive" Value="false"/>
-                    </MultiTrigger.Conditions>
-                    <Setter Property="SelectionBrush" Value="{DynamicResource {x:Static SystemColors.InactiveSelectionHighlightBrushKey}}"/>
-                </MultiTrigger>
-            </Style.Triggers>
-        </Style>
-        <Style x:Key="{x:Type Hyperlink}" TargetType="{x:Type Hyperlink}">
-            <Setter Property="Foreground" Value="{DynamicResource {x:Static SystemColors.HotTrackBrushKey}}"/>
-            <Setter Property="TextDecorations" Value="Underline"/>
-            <Style.Triggers>
-                <Trigger Property="IsMouseOver" Value="true">
-                    <Setter Property="Foreground" Value="Red"/>
-                </Trigger>
-                <Trigger Property="IsEnabled" Value="false">
-                    <Setter Property="Foreground" Value="{DynamicResource {x:Static SystemColors.GrayTextBrushKey}}"/>
-                </Trigger>
-                <Trigger Property="IsEnabled" Value="true">
-                    <Setter Property="Cursor" Value="Hand"/>
-                </Trigger>
-            </Style.Triggers>
-        </Style>
-        <Style x:Key="DebuggerStyle" TargetType="{x:Type RichTextBox}">
-            <Style.Resources>
-                <Style x:Key="{x:Type FlowDocument}" TargetType="{x:Type FlowDocument}">
-                    <Setter Property="OverridesDefaultStyle" Value="true"/>
-                </Style>
-                <Style x:Key="{x:Type Hyperlink}" BasedOn="{StaticResource {x:Type Hyperlink}}" TargetType="{x:Type Hyperlink}">
-                    <Style.Triggers>
-                        <Trigger Property="IsEnabled" Value="false">
-                            <Setter Property="Foreground" Value="{DynamicResource {x:Static SystemColors.GrayTextBrushKey}}"/>
-                        </Trigger>
-                    </Style.Triggers>
-                </Style>
-            </Style.Resources>
-            <Setter Property="MinWidth" Value="10"/>
-            <Style.BasedOn>
-                <StaticResource ResourceKey="{x:Type TextBoxBase}"/>
-            </Style.BasedOn>
-        </Style>
+                        </Style.Triggers>
+                    </Style>
+                </Style.Resources>
+                <Setter Property="MinWidth" Value="10"/>
+                <Style.BasedOn>
+                    <StaticResource ResourceKey="{x:Type TextBoxBase}"/>
+                </Style.BasedOn>
+            </Style>
+        </ResourceDictionary>
     </UserControl.Resources>
     <Grid Width="749" Height="443">
         <RichTextBox x:Name="Console" HorizontalAlignment="Left" IsReadOnly="True" Height="443" Width="749" Background="#FF2E2E2E" Foreground="#FFEEEEEE" FontFamily="Consolas" BorderBrush="#00ABADB3" VerticalScrollBarVisibility="Visible" UseLayoutRounding="False" VerticalAlignment="Top" AllowDrop="False" Block.LineHeight="1" HorizontalScrollBarVisibility="Disabled" IsReadOnlyCaretVisible="False" FontSize="14" Style="{DynamicResource DebuggerStyle}">

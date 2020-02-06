@@ -81,6 +81,7 @@ namespace HunterPie.GUIControls {
                 }
             }
             obj.Text = obj.Text.Substring(0, offset);
+            if (obj.Text.Length == 0) obj.Text = "0";
             obj.CaretIndex = offset;
         }
 
