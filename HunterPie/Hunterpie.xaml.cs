@@ -176,7 +176,9 @@ namespace HunterPie {
 
         public void OnGameClose(object source, EventArgs e) {
             if (UserSettings.PlayerConfig.HunterPie.Options.CloseWhenGameCloses) {
-                this.Close();
+                Dispatcher.BeginInvoke(System.Windows.Threading.DispatcherPriority.Normal, new Action(() => {
+                    this.Close();
+                }));
             }
         }
 
