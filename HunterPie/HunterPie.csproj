@@ -263,7 +263,7 @@
     </Resource>
   </ItemGroup>
   <ItemGroup>
-    <None Include="address\MonsterHunterWorld.401727.map">
+    <None Include="address\MonsterHunterWorld.402862.map">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
   </ItemGroup>

@@ -354,7 +354,7 @@ namespace HunterPie.Core {
 
         private void GetParty() {
             Int64 address = Address.BASE + Address.PARTY_OFFSET;
-            Int64 PartyContainer = Scanner.READ_LONGLONG(address) + 0x0526AD;
+            Int64 PartyContainer = Scanner.READ_LONGLONG(address) + Address.Offsets.PartyOffsets[0];
             int partySize = 0;
             for (int member = 0; member < PartyMax; member++) {
                 string partyMemberName = GetPartyMemberName(PartyContainer + (member * 0x21));

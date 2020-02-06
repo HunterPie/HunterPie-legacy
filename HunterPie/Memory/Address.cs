@@ -14,7 +14,7 @@ namespace HunterPie.Memory {
 
             public static Int64[] EquipmentOffsets = new Int64[5] { 0x78, 0x50, 0x40, 0x450, 0x0 };
 
-            public static Int64[] PartyOffsets = new Int64[2] { 0x0, 0x0 };
+            public static Int64[] PartyOffsets = new Int64[1] { 0x0526AD };
 
             public static Int64[] MonsterOffsets = new Int64[3] { 0xAF738, 0x47CDE0, 0x0 };
             public static Int64 NextMonsterPtr = 0x28;
@@ -131,6 +131,7 @@ namespace HunterPie.Memory {
             LoadOffsetsFromDict("WeaponOffsets", out Offsets.WeaponOffsets, Offsets.WeaponOffsets);
             LoadOffsetsFromDict("MonsterOffsets", out Offsets.MonsterOffsets, Offsets.MonsterOffsets);
             LoadOffsetsFromDict("EquipmentOffsets", out Offsets.EquipmentOffsets, Offsets.EquipmentOffsets);
+            LoadOffsetsFromDict("PartyOffsets", out Offsets.PartyOffsets, Offsets.PartyOffsets);
         }
 
         private static void LoadAddressFromDict(string name, out Int64 variable, Int64 oldValue) {
