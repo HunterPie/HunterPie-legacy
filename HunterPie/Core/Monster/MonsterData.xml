@@ -66,6 +66,12 @@
       <Weakness ID="ELEMENT_DRAGON" Stars="2"/>
     </Weaknesses>
   </Monster>
+  <Monster ID="em023_00">
+    <Weaknesses>
+      <Weakness ID="ELEMENT_ICE" Stars="3"/>
+      <Weakness ID="ELEMENT_WATER" Stars="1"/>
+    </Weaknesses>
+  </Monster>
   <Monster ID="em024_00">
     <Weaknesses>
       <Weakness ID="ELEMENT_THUNDER" Stars="3"/>
