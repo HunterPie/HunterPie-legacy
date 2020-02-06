@@ -21,7 +21,7 @@ namespace HunterPie {
         Overlay GameOverlay;
 
         // HunterPie version
-        const string HUNTERPIE_VERSION = "1.0.2.7";
+        const string HUNTERPIE_VERSION = "1.0.2.8";
 
         public Hunterpie() {
             InitializeComponent();
@@ -138,6 +138,8 @@ namespace HunterPie {
         }
 
         private void UnhookEvents() {
+            // Debug
+            AppDomain.CurrentDomain.UnhandledException -= ExceptionLogger;
             // Scanner events
             Scanner.OnGameStart -= OnGameStart;
             Scanner.OnGameClosed -= OnGameClose;

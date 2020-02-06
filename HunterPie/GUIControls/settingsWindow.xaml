@@ -4,7 +4,8 @@
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              xmlns:local="clr-namespace:HunterPie.GUIControls"
-             mc:Ignorable="d" d:DesignWidth="800" Width="749" Height="983.5">
+             xmlns:custom="clr-namespace:HunterPie.GUIControls.Custom_Controls"
+             mc:Ignorable="d" d:DesignWidth="800" Width="749" Height="1136.5">
     <UserControl.Resources>
         <Style x:Key="FocusVisual">
             <Setter Property="Control.Template">
@@ -78,12 +79,15 @@
             </Setter>
         </Style>
     </UserControl.Resources>
-    <StackPanel HorizontalAlignment="Left" Height="984" VerticalAlignment="Top" Width="749" Background="#FF2E2E2E">
+    <StackPanel HorizontalAlignment="Left" Height="1136" VerticalAlignment="Top" Width="749" Background="#FF2E2E2E">
         <Label x:Name="GeneralStaticText" Content="- General -" Height="34" FontFamily="Roboto" FontSize="20" FontWeight="Bold" HorizontalAlignment="Center" Width="749" HorizontalContentAlignment="Center" Foreground="#FFE0E0E0" Padding="0" UseLayoutRounding="False" VerticalContentAlignment="Center" Background="#FF292929"/>
-        <CheckBox x:Name="enableAutoUpdate" Content="Enable auto-update" Padding="2,-2,0,0" HorizontalAlignment="Center" Foreground="#FFE0E0E0" Height="19" Margin="304,0,285,0" FontSize="15" Width="160" VerticalAlignment="Top" HorizontalContentAlignment="Center" Cursor="Hand" FontWeight="Light"/>
-        <ComboBox x:Name="branchesCombobox" Margin="304,0,285,0" IsReadOnly="True" Cursor="Hand"/>
-        <Label x:Name="updateBranchStaticText_Copy7" Content="Update branch:" HorizontalAlignment="Left" Height="23" Margin="196,-21,0,0" Width="103" FontFamily="Roboto" Foreground="#FFE0E0E0" FontSize="15" Padding="0" FontWeight="Light"/>
-        <ComboBox x:Name="LanguageFilesCombobox" Margin="304,5,285,0" IsReadOnly="True" Cursor="Hand"/>
+        <StackPanel Orientation="Horizontal" Margin="238,3,271,0" Width="240">
+            <custom:Switcher x:Name="switchEnableAutoUpdate" Height="27" Width="52"/>
+            <TextBlock Text="Enable Auto-Update" Margin="10,0,0,0" FontFamily="Roboto" FontSize="16" Foreground="#FFF9F9F9" HorizontalAlignment="Center" VerticalAlignment="Center" FontWeight="ExtraLight" />
+        </StackPanel>
+        <ComboBox x:Name="branchesCombobox" IsReadOnly="True" Cursor="Hand" HorizontalAlignment="Center" Width="148" Margin="106,10,0,0"/>
+        <Label x:Name="updateBranchStaticText_Copy7" Content="Update branch:" HorizontalAlignment="Center" Height="23" Margin="-150,-21,0,0" Width="103" FontFamily="Roboto" Foreground="#FFE0E0E0" FontSize="15" Padding="0" FontWeight="Light"/>
+        <ComboBox x:Name="LanguageFilesCombobox" Margin="299,10,211,0" IsReadOnly="True" Cursor="Hand"/>
         <Label x:Name="LanguageStaticText" Content="Language file:" HorizontalAlignment="Left" Height="23" Margin="196,-22,0,0" Width="103" FontFamily="Roboto" Foreground="#FFE0E0E0" FontSize="15" Padding="0" FontWeight="Light"/>
         <Label x:Name="gamePathLabel" Content="Game path:" HorizontalAlignment="Left" Height="30" Margin="196,7,0,0" Width="108" FontFamily="Roboto" Foreground="#FFE0E0E0" FontSize="15" Padding="0" FontWeight="Light" VerticalContentAlignment="Center"/>
         <Button x:Name="selectPathBttn" Content="Select path" Cursor="Hand" Margin="278,-30,94,0" Style="{DynamicResource ButtonStyle}" Background="#FF1F1F1F" Foreground="#FFE8E8E8" FontFamily="Roboto" BorderBrush="{x:Null}" Height="30" Click="selectPathBttn_Click" Padding="3,1"/>
@@ -91,54 +95,78 @@
             <Label x:Name="launchArgsLabel" Content="Launch arguments:" HorizontalAlignment="Right" Width="133" FontFamily="Roboto" Foreground="#FFE0E0E0" FontSize="15" Padding="0" FontWeight="Light" VerticalContentAlignment="Center" HorizontalContentAlignment="Right"/>
             <TextBox x:Name="argsTextBox" TextWrapping="Wrap" Margin="0,1" Background="{x:Null}" Foreground="#FFE0E0E0" BorderBrush="#FFABADB3" BorderThickness="0,0,0,1" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" HorizontalAlignment="Right" Width="330" TextChanged="argsTextBox_TextChanged" GotFocus="argsTextBox_GotFocus" LostFocus="argsTextBox_LostFocus"/>
         </StackPanel>
-        <CheckBox x:Name="enableCloseWhenExit" Content="Close HunterPie when game is closed" Padding="2,-2,0,0" HorizontalAlignment="Center" Foreground="#FFE0E0E0" Height="19" Margin="263,0,222,0" FontSize="15" Width="264" VerticalAlignment="Top" HorizontalContentAlignment="Center" Cursor="Hand" FontWeight="Light"/>
+        <StackPanel Orientation="Horizontal" Margin="238,3,160,0">
+            <custom:Switcher x:Name="switchEnableCloseWhenExit"/>
+            <TextBlock Text="Close HunterPie when game is closed" Margin="10,0,0,0" FontFamily="Roboto" FontSize="16" Foreground="#FFF9F9F9" HorizontalAlignment="Center" VerticalAlignment="Center" FontWeight="ExtraLight" />
+        </StackPanel>
         <Label x:Name="RichPresenceStaticText" Content="- Discord Presence -" Height="34" FontFamily="Roboto" FontSize="20" FontWeight="Bold" HorizontalAlignment="Center" Width="749" HorizontalContentAlignment="Center" Foreground="#FFE0E0E0" Padding="0,2,0,0" UseLayoutRounding="False" VerticalContentAlignment="Center" Margin="0,17,0,0" Background="#FF292929"/>
-        <CheckBox x:Name="enableRichPresence" Content="Enable rich presence" Padding="2,-2,0,0" HorizontalAlignment="Center" Foreground="#FFE0E0E0" Height="19" Margin="304,4,285,0" FontSize="15" Width="160" VerticalAlignment="Top" HorizontalContentAlignment="Center" Cursor="Hand" FontWeight="Light"/>
+        <StackPanel Orientation="Horizontal" Margin="238,3,0,0">
+            <custom:Switcher x:Name="switchEnableRichPresence"/>
+            <TextBlock Text="Enable Discord Rich Presence" Margin="10,0,0,0" FontFamily="Roboto" FontSize="16" Foreground="#FFF9F9F9" HorizontalAlignment="Center" VerticalAlignment="Center" FontWeight="ExtraLight" />
+        </StackPanel>
         <Label x:Name="OverlayStaticText" Content="- In-Game Overlay -" Height="34" FontFamily="Roboto" FontSize="20" FontWeight="Bold" HorizontalAlignment="Center" Width="749" HorizontalContentAlignment="Center" Foreground="#FFE0E0E0" Padding="0" UseLayoutRounding="False" VerticalContentAlignment="Center" Margin="0,25,0,0" Background="#FF292929"/>
-        <CheckBox x:Name="enableOverlay" Content="Enable in-game overlay" Padding="2,-2,0,0" HorizontalAlignment="Center" Foreground="#FFE0E0E0" Height="19" Margin="288,4,272,0" FontSize="15" Width="189" VerticalAlignment="Top" HorizontalContentAlignment="Center" Cursor="Hand" FontWeight="Light"/>
+        <StackPanel Orientation="Horizontal" Margin="238,3,0,0">
+            <custom:Switcher x:Name="switchEnableOverlay"/>
+            <TextBlock Text="Enable In-Game Overlay" Margin="10,0,0,0" FontFamily="Roboto" FontSize="16" Foreground="#FFF9F9F9" HorizontalAlignment="Center" VerticalAlignment="Center" FontWeight="ExtraLight" />
+        </StackPanel>
         <StackPanel x:Name="Position" Height="32" Margin="288,0,272,0" Orientation="Horizontal">
             <Label x:Name="updateBranchStaticText_Copy" Content="Position:" HorizontalAlignment="Right" Width="66" FontFamily="Roboto" Foreground="#FFE0E0E0" FontSize="15" Padding="0" FontWeight="Light" VerticalContentAlignment="Center" HorizontalContentAlignment="Right"/>
             <TextBox x:Name="positionOverlayX" TextWrapping="Wrap" Text="X" Margin="0,1" Background="{x:Null}" Foreground="#FFE0E0E0" BorderBrush="#FFABADB3" BorderThickness="0,0,0,1" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" HorizontalAlignment="Right" Width="54" TextChanged="TypeNumber"/>
             <TextBox x:Name="positionOverlayY" TextWrapping="Wrap" Text="Y" Margin="6,1,0,1" Background="{x:Null}" Foreground="#FFE0E0E0" BorderBrush="#FFABADB3" BorderThickness="0,0,0,1" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" HorizontalAlignment="Right" Width="54" TextChanged="TypeNumber"/>
         </StackPanel>
         <Label x:Name="MonsterCompStaticText" Content="Monster overlay" Height="34" FontFamily="Roboto" FontSize="16" HorizontalAlignment="Center" Width="749" HorizontalContentAlignment="Center" Foreground="#FFE0E0E0" Padding="0" UseLayoutRounding="False" VerticalContentAlignment="Center" Margin="0,25,0,0" Background="#FF292929"/>
-        <CheckBox x:Name="enableMonsterComponent" Content="Enable monster overlay" Padding="2,-2,0,0" HorizontalAlignment="Center" Foreground="#FFE0E0E0" Height="19" Margin="288,4,272,0" FontSize="15" Width="189" VerticalAlignment="Top" HorizontalContentAlignment="Center" Cursor="Hand" FontWeight="Light"/>
-        <CheckBox x:Name="showMonsterWeakness" Content="Show monster weakness" Padding="2,-2,0,0" HorizontalAlignment="Center" Foreground="#FFE0E0E0" Height="19" Margin="288,4,272,0" FontSize="15" Width="189" VerticalAlignment="Top" HorizontalContentAlignment="Center" Cursor="Hand" FontWeight="Light"/>
+        <StackPanel Orientation="Horizontal" Margin="238,3,0,0">
+            <custom:Switcher x:Name="switchEnableMonsterComponent"/>
+            <TextBlock Text="Enable monster widget" Margin="10,0,0,0" FontFamily="Roboto" FontSize="16" Foreground="#FFF9F9F9" HorizontalAlignment="Center" VerticalAlignment="Center" FontWeight="ExtraLight" />
+        </StackPanel>
+        <StackPanel Orientation="Horizontal" Margin="238,3,0,0">
+            <custom:Switcher x:Name="switchEnableMonsterWeakness"/>
+            <TextBlock Text="Show monster weaknesses" Margin="10,0,0,0" FontFamily="Roboto" FontSize="16" Foreground="#FFF9F9F9" HorizontalAlignment="Center" VerticalAlignment="Center" FontWeight="ExtraLight" />
+        </StackPanel>
         <StackPanel x:Name="Position_Copy" Height="32" Margin="288,0,272,0" Orientation="Horizontal">
             <Label x:Name="updateBranchStaticText_Copy1" Content="Position:" HorizontalAlignment="Right" Width="66" FontFamily="Roboto" Foreground="#FFE0E0E0" FontSize="15" Padding="0" FontWeight="Light" VerticalContentAlignment="Center" HorizontalContentAlignment="Right"/>
             <TextBox x:Name="positionMonsterCompX" TextWrapping="Wrap" Text="X" Margin="0,1" Background="{x:Null}" Foreground="#FFE0E0E0" BorderBrush="#FFABADB3" BorderThickness="0,0,0,1" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" HorizontalAlignment="Right" Width="54" TextChanged="TypeNumber"/>
             <TextBox x:Name="positionMonsterCompY" TextWrapping="Wrap" Text="Y" Margin="6,1,0,1" Background="{x:Null}" Foreground="#FFE0E0E0" BorderBrush="#FFABADB3" BorderThickness="0,0,0,1" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" HorizontalAlignment="Right" Width="54" TextChanged="TypeNumber"/>
         </StackPanel>
         <Label x:Name="HarvestBoxCompStaticText" Content="Harvest Box overlay" Height="34" FontFamily="Roboto" FontSize="16" HorizontalAlignment="Center" Width="749" HorizontalContentAlignment="Center" Foreground="#FFE0E0E0" Padding="0" UseLayoutRounding="False" VerticalContentAlignment="Center" Margin="0,25,0,0" Background="#FF292929"/>
-        <CheckBox x:Name="enableHarvestBoxComponent" Content="Enable harvest box overlay" Padding="2,-2,0,0" HorizontalAlignment="Center" Foreground="#FFE0E0E0" Height="19" Margin="288,4,272,0" FontSize="15" Width="189" VerticalAlignment="Top" HorizontalContentAlignment="Center" Cursor="Hand" FontWeight="Light"/>
+        <StackPanel Orientation="Horizontal" Margin="238,3,0,0">
+            <custom:Switcher x:Name="switchEnableHarvestBox"/>
+            <TextBlock Text="Enable Harvest box widget" Margin="10,0,0,0" FontFamily="Roboto" FontSize="16" Foreground="#FFF9F9F9" HorizontalAlignment="Center" VerticalAlignment="Center" FontWeight="ExtraLight" />
+        </StackPanel>
         <StackPanel x:Name="Position_Copy1" Height="32" Margin="288,0,272,0" Orientation="Horizontal">
             <Label x:Name="updateBranchStaticText_Copy2" Content="Position:" HorizontalAlignment="Right" Width="66" FontFamily="Roboto" Foreground="#FFE0E0E0" FontSize="15" Padding="0" FontWeight="Light" VerticalContentAlignment="Center" HorizontalContentAlignment="Right"/>
             <TextBox x:Name="harvestBoxPosX" TextWrapping="Wrap" Text="X" Margin="0,1" Background="{x:Null}" Foreground="#FFE0E0E0" BorderBrush="#FFABADB3" BorderThickness="0,0,0,1" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" HorizontalAlignment="Right" Width="54" TextChanged="TypeNumber"/>
             <TextBox x:Name="harvestBoxPosY" TextWrapping="Wrap" Text="Y" Margin="6,1,0,1" Background="{x:Null}" Foreground="#FFE0E0E0" BorderBrush="#FFABADB3" BorderThickness="0,0,0,1" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" HorizontalAlignment="Right" Width="54" TextChanged="TypeNumber"/>
         </StackPanel>
         <Label x:Name="MantlesStaticText" Content="Mantles &amp; Equipments" Height="34" FontFamily="Roboto" FontSize="16" HorizontalAlignment="Center" Width="749" HorizontalContentAlignment="Center" Foreground="#FFE0E0E0" Padding="0" UseLayoutRounding="False" VerticalContentAlignment="Center" Margin="0,25,0,0" Background="#FF292929"/>
-        <GroupBox Header="Primary mantle&#xD;&#xA;" Height="187" Margin="10,0,388,0" FontFamily="Roboto" Foreground="#FFE0E0E0" BorderBrush="{x:Null}">
-            <StackPanel Margin="55,32,84,31" Orientation="Vertical">
-                <CheckBox x:Name="enablePrimaryMantle" Content="Enable primary mantle timer" Padding="2,-2,0,0" HorizontalAlignment="Center" Foreground="#FFE0E0E0" Height="19" Margin="6,0,-18,0" FontSize="15" Width="212" VerticalAlignment="Top" HorizontalContentAlignment="Center" Cursor="Hand" FontWeight="Light"/>
-                <StackPanel x:Name="Position_Copy2" Height="32" Margin="13,0,-2,0" Orientation="Horizontal">
+        <GroupBox Header="Primary mantle&#xD;&#xA;" Height="187" Margin="10,0,0,0" FontFamily="Roboto" Foreground="#FFE0E0E0" BorderBrush="{x:Null}" Width="359" HorizontalAlignment="Left">
+            <StackPanel Margin="0,32,-2,12" Orientation="Vertical">
+                <StackPanel Orientation="Horizontal" HorizontalAlignment="Center" Margin="0,3,0,0">
+                    <custom:Switcher x:Name="switchEnablePrimaryMantle"/>
+                    <TextBlock Text="Enable Primary mantle widget" Margin="10,0,0,0" FontFamily="Roboto" FontSize="16" Foreground="#FFF9F9F9" HorizontalAlignment="Center" VerticalAlignment="Center" FontWeight="ExtraLight" />
+                </StackPanel>
+                <StackPanel x:Name="Position_Copy2" Height="32" Margin="13,0,0,0" Orientation="Horizontal" HorizontalAlignment="Center" Width="195">
                     <Label x:Name="updateBranchStaticText_Copy3" Content="Position:" HorizontalAlignment="Right" Width="66" FontFamily="Roboto" Foreground="#FFE0E0E0" FontSize="15" Padding="0" FontWeight="Light" VerticalContentAlignment="Center" HorizontalContentAlignment="Right"/>
                     <TextBox x:Name="primMantlePosX" TextWrapping="Wrap" Text="X" Margin="0,1" Background="{x:Null}" Foreground="#FFE0E0E0" BorderBrush="#FFABADB3" BorderThickness="0,0,0,1" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" HorizontalAlignment="Right" Width="54" TextChanged="TypeNumber"/>
                     <TextBox x:Name="primMantlePosY" TextWrapping="Wrap" Text="Y" Margin="6,1,0,1" Background="{x:Null}" Foreground="#FFE0E0E0" BorderBrush="#FFABADB3" BorderThickness="0,0,0,1" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" HorizontalAlignment="Right" Width="54" TextChanged="TypeNumber"/>
                 </StackPanel>
-                <Label x:Name="updateBranchStaticText_Copy5" Content="Color:" HorizontalAlignment="Right" Width="46" FontFamily="Roboto" Foreground="#FFE0E0E0" FontSize="15" Padding="0" FontWeight="Light" VerticalContentAlignment="Center" HorizontalContentAlignment="Right" Height="32" Margin="0,0,141,0"/>
-                <TextBox x:Name="primMantleColor" TextWrapping="Wrap" Text="Color" Margin="0,-30,6,0" Background="{x:Null}" Foreground="#FFE0E0E0" BorderBrush="#FFABADB3" BorderThickness="0,0,0,1" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" HorizontalAlignment="Right" Width="130" Height="27" TextChanged="TypeColor"/>
+                <Label x:Name="updateBranchStaticText_Copy5" Content="Color:" HorizontalAlignment="Left" Width="46" FontFamily="Roboto" Foreground="#FFE0E0E0" FontSize="15" Padding="0" FontWeight="Light" VerticalContentAlignment="Center" HorizontalContentAlignment="Right" Height="32" Margin="101,0,0,0"/>
+                <TextBox x:Name="primMantleColor" TextWrapping="Wrap" Text="Color" Margin="149,-30,0,0" Background="{x:Null}" Foreground="#FFE0E0E0" BorderBrush="#FFABADB3" BorderThickness="0,0,0,1" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" HorizontalAlignment="Left" Width="130" Height="26" TextChanged="TypeColor" VerticalAlignment="Center"/>
             </StackPanel>
         </GroupBox>
-        <GroupBox Header="Secondary mantle&#xA;" Height="187" Margin="392,-187,14,0" FontFamily="Roboto" Foreground="#FFE0E0E0" BorderBrush="{x:Null}">
-            <StackPanel Margin="55,32,24,31" Orientation="Vertical">
-                <CheckBox x:Name="enableSecondaryMantle" Content="Enable secondary mantle timer" Padding="2,-2,0,0" HorizontalAlignment="Left" Foreground="#FFE0E0E0" Height="19" Margin="13,0,0,0" FontSize="15" Width="223" VerticalAlignment="Top" HorizontalContentAlignment="Center" Cursor="Hand" FontWeight="Light"/>
-                <StackPanel x:Name="Position_Copy3" Height="32" Margin="20,0,0,0" Orientation="Horizontal" HorizontalAlignment="Left" Width="203">
+        <GroupBox Header="Secondary mantle&#xA;" Height="187" Margin="384,-187,14,0" FontFamily="Roboto" Foreground="#FFE0E0E0" BorderBrush="{x:Null}">
+            <StackPanel Margin="0,32,-2,4" Orientation="Vertical">
+                <StackPanel Orientation="Horizontal" HorizontalAlignment="Center" Margin="0,3,0,0">
+                    <custom:Switcher x:Name="switchEnableSecondaryMantle"/>
+                    <TextBlock Text="Enable Secondary mantle widget" Margin="10,0,0,0" FontFamily="Roboto" FontSize="16" Foreground="#FFF9F9F9" HorizontalAlignment="Center" VerticalAlignment="Center" FontWeight="ExtraLight" />
+                </StackPanel>
+                <StackPanel x:Name="Position_Copy3" Height="32" Margin="20,0,0,0" Orientation="Horizontal" HorizontalAlignment="Center" Width="203">
                     <Label x:Name="updateBranchStaticText_Copy4" Content="Position:" HorizontalAlignment="Right" Width="66" FontFamily="Roboto" Foreground="#FFE0E0E0" FontSize="15" Padding="0" FontWeight="Light" VerticalContentAlignment="Center" HorizontalContentAlignment="Right"/>
                     <TextBox x:Name="secMantlePosX" TextWrapping="Wrap" Text="X" Margin="0,1" Background="{x:Null}" Foreground="#FFE0E0E0" BorderBrush="#FFABADB3" BorderThickness="0,0,0,1" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" HorizontalAlignment="Right" Width="54" TextChanged="TypeNumber"/>
                     <TextBox x:Name="secMantlePosY" TextWrapping="Wrap" Text="Y" Margin="6,1,0,1" Background="{x:Null}" Foreground="#FFE0E0E0" BorderBrush="#FFABADB3" BorderThickness="0,0,0,1" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" HorizontalAlignment="Right" Width="54" TextChanged="TypeNumber"/>
                 </StackPanel>
-                <Label x:Name="updateBranchStaticText_Copy6" Content="Color:" HorizontalAlignment="Right" Width="46" FontFamily="Roboto" Foreground="#FFE0E0E0" FontSize="15" Padding="0" FontWeight="Light" VerticalContentAlignment="Center" HorizontalContentAlignment="Right" Height="32" Margin="0,0,186,0"/>
-                <TextBox x:Name="secMantleColor" TextWrapping="Wrap" Text="Color" Margin="0,-30,51,0" Background="{x:Null}" Foreground="#FFE0E0E0" BorderBrush="#FFABADB3" BorderThickness="0,0,0,1" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" HorizontalAlignment="Right" Width="130" Height="28" TextChanged="TypeColor"/>
+                <Label x:Name="updateBranchStaticText_Copy6" Content="Color:" HorizontalAlignment="Left" Width="46" FontFamily="Roboto" Foreground="#FFE0E0E0" FontSize="15" Padding="0" FontWeight="Light" VerticalContentAlignment="Center" HorizontalContentAlignment="Right" Height="32" Margin="98,0,0,0"/>
+                <TextBox x:Name="secMantleColor" TextWrapping="Wrap" Text="Color" Margin="147,-30,0,0" Background="{x:Null}" Foreground="#FFE0E0E0" BorderBrush="#FFABADB3" BorderThickness="0,0,0,1" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" HorizontalAlignment="Left" Width="130" Height="28" TextChanged="TypeColor"/>
             </StackPanel>
         </GroupBox>
 

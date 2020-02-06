@@ -1,0 +1,58 @@
+﻿<UserControl x:Class="HunterPie.GUIControls.Custom_Controls.Switcher"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:local="clr-namespace:HunterPie.GUIControls.Custom_Controls"
+             mc:Ignorable="d" Width="50.083" Height="26.75" MouseDown="Switcher_OnClick" Cursor="Hand"
+             >
+    <UserControl.Resources>
+        <Color x:Key="BackgroundColorOff">#FF151515</Color>
+        <Color x:Key="BackgroundColorOn">#8F1313</Color>
+        <Color x:Key="ForegroundColorOff">#FF252525</Color>
+        <Color x:Key="ForegroundColorOn">#FFE6E6</Color>
+        <Duration x:Key="AnimationDurations">0:0:0.15</Duration>
+        <Storyboard x:Key="SwitchEllipseOn" Storyboard.TargetProperty="Margin">
+            <ThicknessAnimation From="2,2,0,0" To="25,2,0,0" Duration="{StaticResource AnimationDurations}" />
+        </Storyboard>
+        <Storyboard x:Key="SwitchEllipseOff" Storyboard.TargetProperty="Margin">
+            <ThicknessAnimation From="25,2,0,0" To="2,2,0,0" Duration="{StaticResource AnimationDurations}"/>
+        </Storyboard>
+        <Storyboard x:Key="BackgroundOn" Storyboard.TargetProperty="Fill.(SolidColorBrush.Color)">
+            <ColorAnimation From="{StaticResource BackgroundColorOff}" To="{StaticResource BackgroundColorOn}" Duration="{StaticResource AnimationDurations}"/>
+        </Storyboard>
+        <Storyboard x:Key="BackgroundOff" Storyboard.TargetProperty="Fill.(SolidColorBrush.Color)">
+            <ColorAnimation From="{StaticResource BackgroundColorOn}" To="{StaticResource BackgroundColorOff}" Duration="{StaticResource AnimationDurations}"/>
+        </Storyboard>
+        <Storyboard x:Key="ForegroundOn" Storyboard.TargetProperty="Fill.(SolidColorBrush.Color)">
+            <ColorAnimation From="{StaticResource ForegroundColorOff}" To="{StaticResource ForegroundColorOn}" Duration="{StaticResource AnimationDurations}"/>
+        </Storyboard>
+        <Storyboard x:Key="ForegroundOff" Storyboard.TargetProperty="Fill.(SolidColorBrush.Color)">
+            <ColorAnimation From="{StaticResource ForegroundColorOn}" To="{StaticResource ForegroundColorOff}" Duration="{StaticResource AnimationDurations}"/>
+        </Storyboard>
+    </UserControl.Resources>
+    <UserControl.Triggers>
+        <EventTrigger RoutedEvent="Mouse.MouseEnter">
+            <EventTrigger.Actions>
+                <BeginStoryboard>
+                    <Storyboard Storyboard.TargetProperty="Opacity">
+                        <DoubleAnimation From="1" To="0.6" Duration="0:0:0.250" />
+                    </Storyboard>
+                </BeginStoryboard>
+            </EventTrigger.Actions>
+        </EventTrigger>
+        <EventTrigger RoutedEvent="Mouse.MouseLeave">
+            <EventTrigger.Actions>
+                <BeginStoryboard>
+                    <Storyboard Storyboard.TargetProperty="Opacity">
+                        <DoubleAnimation From="0.6" To="1" Duration="0:0:0.250" />
+                    </Storyboard>
+                </BeginStoryboard>
+            </EventTrigger.Actions>
+        </EventTrigger>
+    </UserControl.Triggers>
+    <Grid>
+        <Rectangle x:Name="SwitchBackground" Fill="#FF151515" RadiusY="13.333" RadiusX="13.333" StrokeThickness="0" ClipToBounds="True" SnapsToDevicePixels="True" HorizontalAlignment="Left" Width="49" Height="27" VerticalAlignment="Top"/>
+        <Ellipse x:Name="SwitchCircle" Margin="2,2,0,0" Fill="#FF252525" StrokeThickness="0" SnapsToDevicePixels="True" HorizontalAlignment="Left" Width="22" Height="22" VerticalAlignment="Top"/>
+    </Grid>
+</UserControl>
