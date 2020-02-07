@@ -85,6 +85,31 @@
             </DrawingGroup>
         </DrawingImage.Drawing>
     </DrawingImage>
+    <!-- Icons -->
+    <DrawingImage x:Key="ICON_ENRAGED">
+        <DrawingImage.Drawing>
+            <DrawingGroup>
+                <DrawingGroup.Children>
+                    <GeometryDrawing Brush="#FF9D0707" Geometry="F1 M 27.2433,10.5744L 11.9038,10.5819L 5.95917,10.5848C 5.95569,11.4825 5.95222,12.3802 5.96669,13.354C 5.98116,14.3278 6.01357,15.3777 6.11949,16.2832C 6.22541,17.1887 6.40483,17.9498 7.24463,19.0319C 8.08443,20.1139 9.5846,21.5169 11.3348,22.2236C 13.0851,22.9303 15.0853,22.9407 16.9703,22.9475C 18.8553,22.9543 20.625,22.9574 22.1939,22.2454C 23.7629,21.5333 25.1311,20.106 25.9021,19.0173C 26.673,17.9286 26.8467,17.1785 26.9838,16.2774C 27.121,15.3762 27.2217,14.324 27.2589,13.3483C 27.296,12.3726 27.2697,11.4735 27.2433,10.5744 Z ">
+                        <GeometryDrawing.Pen>
+                            <Pen Thickness="0.50007" LineJoin="Round" Brush="#FF000000"/>
+                        </GeometryDrawing.Pen>
+                    </GeometryDrawing>
+                    <GeometryDrawing Brush="#FF7E0000" Geometry="F1 M 11.6536,10.78C 11.664,13.8924 11.6744,17.0048 13.2041,18.5806C 14.7338,20.1565 17.7827,20.1958 19.276,18.6346C 20.7693,17.0735 20.7069,13.9121 20.6444,10.7506">
+                        <GeometryDrawing.Pen>
+                            <Pen Thickness="0.50007" LineJoin="Round" Brush="#FF000000"/>
+                        </GeometryDrawing.Pen>
+                    </GeometryDrawing>
+                    <GeometryDrawing Brush="#FF000000" Geometry="F1 M 15.352,10.4172C 15.352,12.4209 15.352,14.4247 15.6281,15.4266C 15.9042,16.4284 16.4563,16.4284 16.7324,15.4526C 17.0085,14.4768 17.0085,12.5251 17.0085,10.5734">
+                        <GeometryDrawing.Pen>
+                            <Pen Thickness="1.00014" LineJoin="Round" Brush="#FF000000"/>
+                        </GeometryDrawing.Pen>
+                    </GeometryDrawing>
+                </DrawingGroup.Children>
+            </DrawingGroup>
+        </DrawingImage.Drawing>
+    </DrawingImage>
+    <!-- Styles -->
     <Style x:Key="StackPanelAnimations" TargetType="{x:Type StackPanel}">
         <Style.Triggers>
             <DataTrigger Binding="{Binding RelativeSource={x:Static RelativeSource.Self}, Path=IsVisible}" Value="True">
@@ -100,8 +125,11 @@
     </Style>
     <!-- Animations -->
     <!-- Monster Enraged -->
-    <Storyboard x:Key="Enraged" RepeatBehavior="Forever" AutoReverse="True" Storyboard.TargetProperty="(Effect).Opacity">
-        <DoubleAnimation From="0" To="1" Duration="0:0:0.500" Timeline.DesiredFrameRate="30"/>
+    <Storyboard x:Key="EnragedIcon" RepeatBehavior="Forever" AutoReverse="True" Storyboard.TargetProperty="Opacity">
+        <DoubleAnimation From="0" To="1" Duration="0:0:1" Timeline.DesiredFrameRate="30"/>
+    </Storyboard>
+    <Storyboard x:Key="EnragedName" RepeatBehavior="Forever" AutoReverse="True" Storyboard.TargetProperty="(Foreground).(SolidColorBrush.Color)">
+        <ColorAnimation To="#FFCD0202" Duration="0:0:1" Timeline.DesiredFrameRate="30"/>
     </Storyboard>
     <!-- Harvest box fertilizer close to expire -->
     <Storyboard x:Key="FertilizerExpiring" RepeatBehavior="Forever" AutoReverse="True" Storyboard.TargetProperty="(Foreground).(SolidColorBrush.Color)">

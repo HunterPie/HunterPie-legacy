@@ -14,6 +14,7 @@ using System.Windows.Navigation;
 using System.Windows.Shapes;
 using System.Windows.Media.Animation;
 using HunterPie.Core;
+using System.Windows.Media.Effects;
 
 namespace HunterPie.GUI.Widgets {
     /// <summary>
@@ -24,7 +25,8 @@ namespace HunterPie.GUI.Widgets {
         private Monster Context;
         
         // Animations
-        private Storyboard ANIM_ENRAGE;
+        //private Storyboard ANIM_ENRAGEDNAME;
+        //private Storyboard ANIM_ENRAGEDICON;
 
         public MonsterHealth() {
             InitializeComponent();
@@ -59,24 +61,28 @@ namespace HunterPie.GUI.Widgets {
         }
 
         private void LoadAnimations() {
-            ANIM_ENRAGE = this.FindResource("Enraged") as Storyboard;
+            //ANIM_ENRAGEDBAR = this.FindResource("EnragedBar") as Storyboard;
+            //ANIM_ENRAGEDNAME = this.FindResource("EnragedName") as Storyboard;
         }
 
         private void OnEnrage(object source, EventArgs args) {
             this.Dispatch(() => {
-                ANIM_ENRAGE.Begin(this.MonsterHPBar, true);
+                MonsterStatus.Source = (ImageSource)FindResource("ICON_ENRAGED");
             });
         }
 
         private void OnUnenrage(object source, EventArgs args) {
             this.Dispatch(() => {
-                ANIM_ENRAGE.Remove(this.MonsterHPBar);
+                MonsterStatus.Source = null;
+                //ANIM_ENRAGEDNAME.Remove(this.MonsterStatus);
+                //ANIM_ENRAGEDBAR.Remove(this.MonsterHPBar);
             });
         }
 
         private void OnMonsterDespawn(object source, MonsterEventArgs args) {
             this.Dispatch(() => {
                 this.Visibility = Visibility.Collapsed;
+                this.Weaknesses.Children.Clear();
             });
         }
 
@@ -86,6 +92,7 @@ namespace HunterPie.GUI.Widgets {
                 this.MonsterName.Text = args.Name.ToUpper();
                 this.MonsterHPBar.Value = args.CurrentHP;
                 this.MonsterHPBar.Maximum = args.TotalHP;
+                Weaknesses.Children.Clear(); // Removes every weakness icon
                 foreach (string Weakness in args.Weaknesses.Keys) {
                     Image MonsterWeaknessImg = new Image {
                         Source = this.Resources[Weakness] as ImageSource,

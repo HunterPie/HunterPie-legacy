@@ -16,16 +16,16 @@
         </ResourceDictionary>
     </UserControl.Resources>
     <StackPanel Style="{StaticResource StackPanelAnimations}">
-        <TextBlock x:Name="MonsterName" Text="MONSTER NAME" VerticalAlignment="Center" Foreground="WhiteSmoke" Padding="5,0" Height="19" FontSize="13" FontWeight="Bold" FontFamily="Roboto" HorizontalAlignment="Center" Width="262" TextAlignment="Center">
-            <TextBlock.Effect>
-                <DropShadowEffect Opacity="0.5"/>
-            </TextBlock.Effect>
-        </TextBlock>
-        <ProgressBar x:Name="MonsterHPBar" Height="13" Margin="10,2,10,0" VerticalAlignment="Top" BorderThickness="0" BorderBrush="{x:Null}" Background="#7F474747" Maximum="9999" Value="5000" Foreground="#FF930000">
-            <ProgressBar.Effect>
-                <DropShadowEffect Color="Red" BlurRadius="8" Direction="180" ShadowDepth="0" Opacity="0"/>
-            </ProgressBar.Effect>
-        </ProgressBar>
+        <StackPanel x:Name="MonsterInfoPanel" Orientation="Horizontal" HorizontalAlignment="Center" VerticalAlignment="Center">
+            <TextBlock x:Name="MonsterName" Text="MONSTER NAME" VerticalAlignment="Center" Foreground="WhiteSmoke" Padding="5,0" Height="19" FontSize="13" FontWeight="Bold" FontFamily="Roboto" HorizontalAlignment="Center" TextAlignment="Center" Margin="0">
+                <TextBlock.Effect>
+                    <DropShadowEffect Opacity="0.5"/>
+                </TextBlock.Effect>
+            </TextBlock>
+            <Image x:Name="MonsterStatus" Opacity="0" Width="15" Height="15"/>
+        </StackPanel>
+        
+        <ProgressBar x:Name="MonsterHPBar" Height="13" Margin="10,2,10,0" VerticalAlignment="Top" BorderThickness="0" BorderBrush="{x:Null}" Background="#7F474747" Maximum="9999" Value="5000" Foreground="#FF930000"/>
         <TextBlock x:Name="MonsterHPText" HorizontalAlignment="Center" VerticalAlignment="Center" Margin="10,-13,10,0" Width="242" FontFamily="Roboto" Foreground="#CCF5F5F5" TextAlignment="Center" Height="13" FontSize="11" FontWeight="Medium">
             <TextBlock.Text>
                 <MultiBinding Converter="{StaticResource PercentageConverter}">

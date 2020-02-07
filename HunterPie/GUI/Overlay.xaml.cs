@@ -36,7 +36,7 @@ namespace HunterPie.GUI {
             InitializeComponent();
             SetWidgetsContext();
             SetOverlaySize();
-            MakeOverlayClickThrough();
+            SetWindowFlags();
         }
 
         public void SetWidgetsContext() {
@@ -68,9 +68,10 @@ namespace HunterPie.GUI {
             this.ChangeSecondaryMantleColor(source, e);
         }
 
-        private void MakeOverlayClickThrough() {
+        private void SetWindowFlags() {
             // flags to make overlay click-through
             int WS_EX_TRANSPARENT = 0x20;
+            int WS_EX_TOPMOST = 0x8;
             int WS_EX_TOOLWINDOW = 0x80; // Flag to hide overlay from ALT+TAB
             int GWL_EXSTYLE = (-20);
 
@@ -79,7 +80,7 @@ namespace HunterPie.GUI {
             // Get overlay flags
             int Styles = GetWindowLong(hwnd, GWL_EXSTYLE);
             // Apply new flags
-            SetWindowLong(hwnd, GWL_EXSTYLE, Styles | WS_EX_TRANSPARENT | WS_EX_TOOLWINDOW);
+            SetWindowLong(hwnd, GWL_EXSTYLE, Styles | WS_EX_TRANSPARENT | WS_EX_TOOLWINDOW | WS_EX_TOPMOST);
         }
 
         public void Dispatch(Action function) {
