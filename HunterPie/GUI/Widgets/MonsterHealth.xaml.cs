@@ -72,6 +72,8 @@ namespace HunterPie.GUI.Widgets {
 
         private void OnMonsterDespawn(object source, EventArgs args) {
             this.Dispatch(() => {
+                this.MonsterCrown.Source = null;
+                this.MonsterCrown.Visibility = Visibility.Collapsed;
                 this.Visibility = Visibility.Collapsed;
                 this.Weaknesses.Children.Clear();
             });
@@ -83,6 +85,9 @@ namespace HunterPie.GUI.Widgets {
                 this.MonsterName.Content = args.Name.ToUpper();
                 this.MonsterHPBar.Value = args.CurrentHP;
                 this.MonsterHPBar.Maximum = args.TotalHP;
+                // Set monster crown
+                this.MonsterCrown.Source = args.Crown == null ? null : (ImageSource)FindResource(args.Crown);
+                this.MonsterCrown.Visibility = Visibility.Visible;
                 Weaknesses.Children.Clear(); // Removes every weakness icon
                 foreach (string Weakness in args.Weaknesses.Keys) {
                     Image MonsterWeaknessImg = new Image {

@@ -27,9 +27,10 @@ namespace HunterPie.Core {
         static public string GetMonsterCrownByMultiplier(string ID, float multiplier) {
             XmlNode Crowns = MonsterDataDocument.SelectSingleNode($"//Monsters/Monster[@ID='{ID}']/Crown");
             if (Crowns == null) return null;
-            float Mini = float.Parse(Crowns.Attributes["Mini"].Value);
-            float Silver = float.Parse(Crowns.Attributes["Silver"].Value);
-            float Gold = float.Parse(Crowns.Attributes["Gold"].Value);
+            float Mini = float.Parse(Crowns.Attributes["Mini"].Value) / 10;
+            float Silver = float.Parse(Crowns.Attributes["Silver"].Value) / 100;
+            float Gold = float.Parse(Crowns.Attributes["Gold"].Value) / 100;
+            //Logger.Debugger.Log($"Multiplier: {multiplier} and {Mini}, {Silver}, {Gold}");
             if (multiplier >= Gold) return "CROWN_GOLD";
             if (multiplier >= Silver) return "CROWN_SILVER";
             if (multiplier <= Mini) return "CROWN_MINI";

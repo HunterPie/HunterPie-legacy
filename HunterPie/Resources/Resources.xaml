@@ -109,6 +109,61 @@
             </DrawingGroup>
         </DrawingImage.Drawing>
     </DrawingImage>
+    <!-- Monster Crowns -->
+    <DrawingImage x:Key="CROWN_MINI">
+        <DrawingImage.Drawing>
+            <DrawingGroup>
+                <DrawingGroup.Children>
+                    <GeometryDrawing Brush="#FFFFC800" Geometry="F1 M 17.2917,9.15625C 18.5458,9.15625 19.5625,10.1729 19.5625,11.4271C 19.5625,12.6812 18.5458,13.6979 17.2917,13.6979C 16.0375,13.6979 15.0208,12.6812 15.0208,11.4271C 15.0208,10.1729 16.0375,9.15625 17.2917,9.15625 Z "/>
+                    <GeometryDrawing Brush="#FFFFC800" Geometry="F1 M 5.60416,10.0729C 6.89283,10.0729 7.9375,11.1176 7.9375,12.4063C 7.9375,13.6949 6.89283,14.7396 5.60416,14.7396C 4.3155,14.7396 3.27083,13.6949 3.27083,12.4063C 3.27083,11.1176 4.3155,10.0729 5.60416,10.0729 Z "/>
+                    <GeometryDrawing Brush="#FFFFC800" Geometry="F1 M 28.8125,10.1354C 30.1012,10.1354 31.1458,11.1801 31.1458,12.4688C 31.1458,13.7574 30.1012,14.8021 28.8125,14.8021C 27.5238,14.8021 26.4792,13.7574 26.4792,12.4688C 26.4792,11.1801 27.5238,10.1354 28.8125,10.1354 Z "/>
+                    <GeometryDrawing Brush="#FFFFC800" Geometry="F1 M 23.1458,19.5313L 29.5208,13.2396L 29.5208,21.1146L 5.3125,21.0729L 5.3125,12.7396L 11.3125,19.3229L 17.2292,12.7292L 23.1458,19.5313 Z "/>
+                    <GeometryDrawing Brush="#FFFFC800" Geometry="F1 M 5.27083,21.8646L 29.5208,21.8646L 29.5208,26.7813L 5.27083,26.7813L 5.27083,21.8646 Z "/>
+                    <GeometryDrawing Brush="#FF1FD272" Geometry="F1 M 17.375,18.8229C 18.261,18.8229 18.9792,19.9795 18.9792,21.4063C 18.9792,22.833 18.261,23.9896 17.375,23.9896C 16.489,23.9896 15.7708,22.833 15.7708,21.4063C 15.7708,19.9795 16.489,18.8229 17.375,18.8229 Z ">
+                        <GeometryDrawing.Pen>
+                            <Pen LineJoin="Round" Brush="#FFEEBB03"/>
+                        </GeometryDrawing.Pen>
+                    </GeometryDrawing>
+                </DrawingGroup.Children>
+            </DrawingGroup>
+        </DrawingImage.Drawing>
+    </DrawingImage>
+    <DrawingImage x:Key="CROWN_SILVER">
+        <DrawingImage.Drawing>
+            <DrawingGroup>
+                <DrawingGroup.Children>
+                    <GeometryDrawing Brush="#FFEAEAEA" Geometry="F1 M 17.2917,3.15625C 18.5458,3.15625 19.5625,4.17294 19.5625,5.42709C 19.5625,6.68123 18.5458,7.69792 17.2917,7.69792C 16.0375,7.69792 15.0208,6.68123 15.0208,5.42709C 15.0208,4.17294 16.0375,3.15625 17.2917,3.15625 Z "/>
+                    <GeometryDrawing Brush="#FFEAEAEA" Geometry="F1 M 5.60416,4.07292C 6.89283,4.07292 7.9375,5.11759 7.9375,6.40625C 7.9375,7.69492 6.89283,8.73959 5.60416,8.73959C 4.3155,8.73959 3.27083,7.69492 3.27083,6.40625C 3.27083,5.11759 4.3155,4.07292 5.60416,4.07292 Z "/>
+                    <GeometryDrawing Brush="#FFEAEAEA" Geometry="F1 M 28.8125,4.13542C 30.1012,4.13542 31.1458,5.18009 31.1458,6.46875C 31.1458,7.75742 30.1012,8.80209 28.8125,8.80209C 27.5238,8.80209 26.4792,7.75742 26.4792,6.46875C 26.4792,5.18009 27.5238,4.13542 28.8125,4.13542 Z "/>
+                    <GeometryDrawing Brush="#FFEAEAEA" Geometry="F1 M 23.1458,18.2774L 29.5208,7.00315L 29.5208,21.1146L 5.3125,21.0399L 5.3125,6.10719L 11.3125,17.904L 17.2292,6.08852L 23.1458,18.2774 Z "/>
+                    <GeometryDrawing Brush="#FFEAEAEA" Geometry="F1 M 5.27083,21.8646L 29.5208,21.8646L 29.5208,26.7813L 5.27083,26.7813L 5.27083,21.8646 Z "/>
+                    <GeometryDrawing Brush="#FFDC473A" Geometry="F1 M 17.375,13.8229C 18.261,13.8229 18.9792,14.9795 18.9792,16.4063C 18.9792,17.833 18.261,18.9896 17.375,18.9896C 16.489,18.9896 15.7708,17.833 15.7708,16.4063C 15.7708,14.9795 16.489,13.8229 17.375,13.8229 Z ">
+                        <GeometryDrawing.Pen>
+                            <Pen Thickness="0.5" LineJoin="Round" Brush="#FFD2D2D2"/>
+                        </GeometryDrawing.Pen>
+                    </GeometryDrawing>
+                </DrawingGroup.Children>
+            </DrawingGroup>
+        </DrawingImage.Drawing>
+    </DrawingImage>
+    <DrawingImage x:Key="CROWN_GOLD">
+        <DrawingImage.Drawing>
+            <DrawingGroup>
+                <DrawingGroup.Children>
+                    <GeometryDrawing Brush="#FFFFC800" Geometry="F1 M 17.2917,3.15625C 18.5458,3.15625 19.5625,4.17294 19.5625,5.42709C 19.5625,6.68123 18.5458,7.69792 17.2917,7.69792C 16.0375,7.69792 15.0208,6.68123 15.0208,5.42709C 15.0208,4.17294 16.0375,3.15625 17.2917,3.15625 Z "/>
+                    <GeometryDrawing Brush="#FFFFC800" Geometry="F1 M 5.60416,4.07292C 6.89283,4.07292 7.9375,5.11759 7.9375,6.40625C 7.9375,7.69492 6.89283,8.73959 5.60416,8.73959C 4.3155,8.73959 3.27083,7.69492 3.27083,6.40625C 3.27083,5.11759 4.3155,4.07292 5.60416,4.07292 Z "/>
+                    <GeometryDrawing Brush="#FFFFC800" Geometry="F1 M 28.8125,4.13542C 30.1012,4.13542 31.1458,5.18009 31.1458,6.46875C 31.1458,7.75742 30.1012,8.80209 28.8125,8.80209C 27.5238,8.80209 26.4792,7.75742 26.4792,6.46875C 26.4792,5.18009 27.5238,4.13542 28.8125,4.13542 Z "/>
+                    <GeometryDrawing Brush="#FFFFC800" Geometry="F1 M 23.1458,18.2774L 29.5208,7.00315L 29.5208,21.1146L 5.3125,21.0399L 5.3125,6.10719L 11.3125,17.904L 17.2292,6.08852L 23.1458,18.2774 Z "/>
+                    <GeometryDrawing Brush="#FFFFC800" Geometry="F1 M 5.27083,21.8646L 29.5208,21.8646L 29.5208,26.7813L 5.27083,26.7813L 5.27083,21.8646 Z "/>
+                    <GeometryDrawing Brush="#FFDC473A" Geometry="F1 M 17.375,13.8229C 18.261,13.8229 18.9792,14.9795 18.9792,16.4063C 18.9792,17.833 18.261,18.9896 17.375,18.9896C 16.489,18.9896 15.7708,17.833 15.7708,16.4063C 15.7708,14.9795 16.489,13.8229 17.375,13.8229 Z ">
+                        <GeometryDrawing.Pen>
+                            <Pen Thickness="0.5" LineJoin="Round" Brush="#FFD5A700"/>
+                        </GeometryDrawing.Pen>
+                    </GeometryDrawing>
+                </DrawingGroup.Children>
+            </DrawingGroup>
+        </DrawingImage.Drawing>
+    </DrawingImage>
     <!-- Styles -->
     <Style x:Key="StackPanelAnimations" TargetType="{x:Type StackPanel}">
         <Style.Triggers>
