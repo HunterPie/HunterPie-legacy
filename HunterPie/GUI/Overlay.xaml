@@ -46,9 +46,9 @@
             <RowDefinition Height="1080"/>
         </Grid.RowDefinitions>
         <StackPanel x:Name="MonstersContainer" Margin="560,19,0,0" Orientation="Horizontal" MinHeight="62" MinWidth="778" MaxWidth="778" MaxHeight="62" HorizontalAlignment="Left" Width="786" Height="27" VerticalAlignment="Top" Style="{StaticResource StackPanelAnimations}">
-            <widgets:MonsterHealth x:Name="FirstMonster" Visibility="Visible"/>
-            <widgets:MonsterHealth x:Name="SecondMonster" Visibility="Visible"/>
-            <widgets:MonsterHealth x:Name="ThirdMonster" Visibility="Visible"/>
+            <widgets:MonsterHealth x:Name="FirstMonster" Visibility="Collapsed"/>
+            <widgets:MonsterHealth x:Name="SecondMonster" Visibility="Collapsed"/>
+            <widgets:MonsterHealth x:Name="ThirdMonster" Visibility="Collapsed"/>
         </StackPanel>
         <widgets:MantleTimer x:Name="PrimaryMantle" HorizontalAlignment="Left" Width="218" VerticalAlignment="Top" Visibility="Hidden"/>
         <widgets:MantleTimer x:Name="SecondaryMantle"  HorizontalAlignment="Left" Width="218" VerticalAlignment="Top" Visibility="Hidden"/>

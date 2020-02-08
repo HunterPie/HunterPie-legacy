@@ -139,6 +139,7 @@ namespace HunterPie.Core {
             MonsterInfoScan.Abort();
         }
 
+        /* Debugging purposes
         private void SimulateMonster() {
             this.ID = "em002_00";
             this.Name = "Rathalos";
@@ -148,15 +149,16 @@ namespace HunterPie.Core {
             while (true) {
                 this.ID = "em002_00";
                 this.Name = "Rathalos";
+                _onMonsterSpawn();
                 CurrentHP -= 11;
                 x++;
-                if (x == 10) EnrageTimer = 120;
+                if (x == 100) EnrageTimer = 120;
                 Thread.Sleep(200);
             }
-        }
+        }*/
 
         private void ScanMonsterInfo() {
-            SimulateMonster(); // Debugging purposes
+            //SimulateMonster(); // Debugging purposes
             while (Scanner.GameIsRunning) {
                 GetMonsterAddress();
                 GetMonsterIDAndName();
