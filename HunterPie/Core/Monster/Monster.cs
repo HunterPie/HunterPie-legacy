@@ -184,22 +184,23 @@ namespace HunterPie.Core {
             // This will give us the third monster's address, so we can find the second and first monster with it
             Int64 ThirdMonsterAddress = Scanner.READ_MULTILEVEL_PTR(Address, Memory.Address.Offsets.MonsterOffsets);
             ThirdMonsterAddress = Scanner.READ_LONGLONG(ThirdMonsterAddress);
-            if (MonsterNumber == 3) {
-                //if (ThirdMonsterAddress != MonsterAddress) Debugger.Log($"Found 3rd Monster address -> 0x{ThirdMonsterAddress:X}");
-                MonsterAddress = ThirdMonsterAddress;
-            } else if (MonsterNumber == 2) {
-                Int64 SecondMonsterAddress = Scanner.READ_LONGLONG(ThirdMonsterAddress + Memory.Address.Offsets.NextMonsterPtr);
-                //if (SecondMonsterAddress != MonsterAddress) Debugger.Log($"Found 2nd Monster address -> 0x{SecondMonsterAddress:X}");
-                MonsterAddress = SecondMonsterAddress;
-            } else {
-                Int64 FirstMonsterAddress = Scanner.READ_LONGLONG(Scanner.READ_LONGLONG(ThirdMonsterAddress + Memory.Address.Offsets.NextMonsterPtr) + Memory.Address.Offsets.NextMonsterPtr);
-                //if (FirstMonsterAddress != MonsterAddress) Debugger.Log($"Found 1st Monster address -> 0x{FirstMonsterAddress:X}");
-                MonsterAddress = FirstMonsterAddress;
+            switch(MonsterNumber) {
+                case 3:
+                    MonsterAddress = ThirdMonsterAddress;
+                    break;
+                case 2:
+                    MonsterAddress = Scanner.READ_LONGLONG(ThirdMonsterAddress + Memory.Address.Offsets.NextMonsterPtr);
+                    break;
+                case 1:
+                    MonsterAddress = Scanner.READ_LONGLONG(Scanner.READ_LONGLONG(ThirdMonsterAddress + Memory.Address.Offsets.NextMonsterPtr) + Memory.Address.Offsets.NextMonsterPtr);
+                    break;
+                default:
+                    break;
             }
         }
 
         private void GetMonsterHp() {
-            Int64 MonsterHPComponent = Scanner.READ_LONGLONG(this.MonsterAddress + Memory.Address.Offsets.MonsterHPComponentOffset);
+            Int64 MonsterHPComponent = Scanner.READ_LONGLONG(this.MonsterAddress + Address.Offsets.MonsterHPComponentOffset);
             Int64 MonsterTotalHPAddress = MonsterHPComponent + 0x60;
             Int64 MonsterCurrentHPAddress = MonsterTotalHPAddress + 0x4;
             float f_TotalHP = Scanner.READ_FLOAT(MonsterTotalHPAddress);
@@ -226,6 +227,7 @@ namespace HunterPie.Core {
                         if (ActualID != this.ID) Debugger.Log($"Found new monster #{MonsterNumber} address -> 0x{MonsterAddress:X}");
                         this.ID = ActualID;
                         this.Name = GStrings.GetMonsterNameByID(this.ID);
+                        return;
                     } else {
                         this.ID = null;
                         this.Name = null;
