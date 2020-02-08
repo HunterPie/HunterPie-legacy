@@ -125,11 +125,31 @@
     </Style>
     <!-- Animations -->
     <!-- Monster Enraged -->
-    <Storyboard x:Key="EnragedIcon" RepeatBehavior="Forever" AutoReverse="True" Storyboard.TargetProperty="Opacity">
-        <DoubleAnimation From="0" To="1" Duration="0:0:1" Timeline.DesiredFrameRate="30"/>
+    <Storyboard x:Key="EnragedIcon" RepeatBehavior="Forever">
+        <DoubleAnimationUsingKeyFrames Duration="0:0:3" Storyboard.TargetProperty="Opacity" Timeline.DesiredFrameRate="30">
+            <EasingDoubleKeyFrame Value="0.5" KeyTime="0:0:0"/>
+            <EasingDoubleKeyFrame Value="1" KeyTime="0:0:0.2"/>
+            <EasingDoubleKeyFrame Value="0.5" KeyTime="0:0:0.3"/>
+            <EasingDoubleKeyFrame Value="1" KeyTime="0:0:0.5"/>
+            <EasingDoubleKeyFrame Value="0.5" KeyTime="0:0:0.7"/>
+        </DoubleAnimationUsingKeyFrames>
+        <DoubleAnimationUsingKeyFrames Duration="0:0:3" Storyboard.TargetProperty="(Image.RenderTransform).(TransformGroup.Children)[0].(ScaleTransform.ScaleX)" Timeline.DesiredFrameRate="30">
+            <EasingDoubleKeyFrame Value="1" KeyTime="0:0:0"/>
+            <EasingDoubleKeyFrame Value="1.25" KeyTime="0:0:0.2"/>
+            <EasingDoubleKeyFrame Value="1" KeyTime="0:0:0.3"/>
+            <EasingDoubleKeyFrame Value="1.25" KeyTime="0:0:0.5"/>
+            <EasingDoubleKeyFrame Value="1" KeyTime="0:0:7"/>
+        </DoubleAnimationUsingKeyFrames>
+        <DoubleAnimationUsingKeyFrames Duration="0:0:3" Storyboard.TargetProperty="(Image.RenderTransform).(TransformGroup.Children)[0].(ScaleTransform.ScaleY)" Timeline.DesiredFrameRate="30">
+            <EasingDoubleKeyFrame Value="1" KeyTime="0:0:0"/>
+            <EasingDoubleKeyFrame Value="1.25" KeyTime="0:0:0.2"/>
+            <EasingDoubleKeyFrame Value="1" KeyTime="0:0:0.3"/>
+            <EasingDoubleKeyFrame Value="1.25" KeyTime="0:0:0.5"/>
+            <EasingDoubleKeyFrame Value="1" KeyTime="0:0:7"/>
+        </DoubleAnimationUsingKeyFrames>
     </Storyboard>
-    <Storyboard x:Key="EnragedName" RepeatBehavior="Forever" AutoReverse="True" Storyboard.TargetProperty="(Foreground).(SolidColorBrush.Color)">
-        <ColorAnimation To="#FFCD0202" Duration="0:0:1" Timeline.DesiredFrameRate="30"/>
+    <Storyboard x:Key="EnragedHealthBar" RepeatBehavior="Forever" AutoReverse="True" Storyboard.TargetProperty="(Foreground).(SolidColorBrush.Color)">
+        <ColorAnimation To="#FF610000" Duration="0:0:0.7" Timeline.DesiredFrameRate="30"/>
     </Storyboard>
     <!-- Harvest box fertilizer close to expire -->
     <Storyboard x:Key="FertilizerExpiring" RepeatBehavior="Forever" AutoReverse="True" Storyboard.TargetProperty="(Foreground).(SolidColorBrush.Color)">

@@ -80,7 +80,7 @@ namespace HunterPie.GUI {
             // Get overlay flags
             int Styles = GetWindowLong(hwnd, GWL_EXSTYLE);
             // Apply new flags
-            SetWindowLong(hwnd, GWL_EXSTYLE, Styles | WS_EX_TRANSPARENT | WS_EX_TOOLWINDOW | WS_EX_TOPMOST);
+            SetWindowLong(hwnd, GWL_EXSTYLE, Styles | WS_EX_TOOLWINDOW | WS_EX_TRANSPARENT | WS_EX_TOPMOST);
         }
 
         public void Dispatch(Action function) {
