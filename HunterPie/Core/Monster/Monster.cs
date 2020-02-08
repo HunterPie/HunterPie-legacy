@@ -11,10 +11,12 @@ namespace HunterPie.Core {
         private float _currentHP;
         private bool _isTarget;
         private float _enrageTimer;
-        private float _enrageStaticTimer;
+        //private float _enrageStaticTimer; Implement this maybe?
+
+        private Int64 MonsterAddress;
+        private int MonsterNumber;
 
         // Monster basic info
-        private int MonsterNumber;
         public string Name {
             get { return _name; }
             set {
@@ -32,6 +34,12 @@ namespace HunterPie.Core {
             }
         }
         public string ID { get; private set; }
+        public float SizeMultiplier { get; private set; }
+        public string Crown {
+            get {
+                
+            }
+        }
         public float TotalHP { get; private set; }
         public float CurrentHP {
             get { return _currentHP; }
@@ -45,7 +53,7 @@ namespace HunterPie.Core {
                 }
             }
         }
-        public Dictionary<string, int> Weaknesses;
+        public Dictionary<string, int> Weaknesses { get; private set; }
         public float HPPercentage { get; private set; } = 1;
         public bool isTarget {
             get { return _isTarget; }
@@ -69,10 +77,9 @@ namespace HunterPie.Core {
                 }
             }
         }
-        public bool isEnraged {
+        public bool IsEnraged {
             get { return _enrageTimer > 0; }
         }
-        private Int64 MonsterAddress;
 
         // Threading
         ThreadStart MonsterInfoScanRef;
@@ -80,39 +87,37 @@ namespace HunterPie.Core {
 
         // Game events
         public delegate void MonsterEnrageEvents(object source, EventArgs args);
-        public delegate void MonsterEvents(object source, MonsterEventArgs args);
-        public event MonsterEvents OnMonsterSpawn;
+        public delegate void MonsterEvents(object source, EventArgs args);
+        public delegate void MonsterSpawnEvents(object source, MonsterSpawnEventArgs args);
+        public delegate void MonsterUpdateEvents(object source, MonsterUpdateEventArgs args);
+        public event MonsterSpawnEvents OnMonsterSpawn;
         public event MonsterEvents OnMonsterDespawn;
         public event MonsterEvents OnMonsterDeath;
-        public event MonsterEvents OnHPUpdate;
+        public event MonsterUpdateEvents OnHPUpdate;
         public event MonsterEvents OnTargetted;
         public event MonsterEnrageEvents OnEnrage;
         public event MonsterEnrageEvents OnUnenrage;
         
 
         protected virtual void _onMonsterSpawn() {
-            MonsterEventArgs args = new MonsterEventArgs(this);
+            MonsterSpawnEventArgs args = new MonsterSpawnEventArgs(this);
             OnMonsterSpawn?.Invoke(this, args);
         }
 
         protected virtual void _onMonsterDespawn() {
-            MonsterEventArgs args = new MonsterEventArgs(this);
-            OnMonsterDespawn?.Invoke(this, args);
+            OnMonsterDespawn?.Invoke(this, EventArgs.Empty);
         }
 
         protected virtual void _onMonsterDeath() {
-            MonsterEventArgs args = new MonsterEventArgs(this);
-            OnMonsterDeath?.Invoke(this, args);
+            OnMonsterDeath?.Invoke(this, EventArgs.Empty);
         }
 
         protected virtual void _onHPUpdate() {
-            MonsterEventArgs args = new MonsterEventArgs(this);
-            OnHPUpdate?.Invoke(this, args);
+            OnHPUpdate?.Invoke(this, new MonsterUpdateEventArgs(this));
         }
 
         protected virtual void _onTargetted() {
-            MonsterEventArgs args = new MonsterEventArgs(this);
-            OnTargetted?.Invoke(this, args);
+            OnTargetted?.Invoke(this, EventArgs.Empty);
         }
 
         protected virtual void _onEnrage() {
@@ -162,6 +167,7 @@ namespace HunterPie.Core {
             while (Scanner.GameIsRunning) {
                 GetMonsterAddress();
                 GetMonsterIDAndName();
+                GetMonsterSizeModifier();
                 GetMonsterHp();
                 GetMonsterEnrageTimer();
                 Thread.Sleep(150);
@@ -229,6 +235,10 @@ namespace HunterPie.Core {
                 this.ID = null;
                 this.Name = null;
             }
+        }
+
+        private void GetMonsterSizeModifier() {
+            SizeMultiplier = Scanner.READ_FLOAT(MonsterAddress + 0x1C0);
         }
 
         private void GetMonsterWeaknesses() {

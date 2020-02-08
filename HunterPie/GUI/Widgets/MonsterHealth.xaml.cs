@@ -70,14 +70,14 @@ namespace HunterPie.GUI.Widgets {
             });
         }
 
-        private void OnMonsterDespawn(object source, MonsterEventArgs args) {
+        private void OnMonsterDespawn(object source, EventArgs args) {
             this.Dispatch(() => {
                 this.Visibility = Visibility.Collapsed;
                 this.Weaknesses.Children.Clear();
             });
         }
 
-        private void OnMonsterSpawn(object source, MonsterEventArgs args) {
+        private void OnMonsterSpawn(object source, MonsterSpawnEventArgs args) {
             this.Dispatch(() => {
                 this.Visibility = Visibility.Visible;
                 this.MonsterName.Content = args.Name.ToUpper();
@@ -95,7 +95,7 @@ namespace HunterPie.GUI.Widgets {
             });
         }
 
-        private void OnMonsterUpdate(object source, MonsterEventArgs args) {
+        private void OnMonsterUpdate(object source, MonsterUpdateEventArgs args) {
             this.Dispatch(() => {
                 this.MonsterHPBar.Value = args.CurrentHP;
             });
