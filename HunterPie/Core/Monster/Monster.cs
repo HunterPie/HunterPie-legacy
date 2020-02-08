@@ -37,7 +37,7 @@ namespace HunterPie.Core {
         public float SizeMultiplier { get; private set; }
         public string Crown {
             get {
-                
+                return MonsterData.GetMonsterCrownByMultiplier(ID, SizeMultiplier);
             }
         }
         public float TotalHP { get; private set; }

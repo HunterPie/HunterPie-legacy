@@ -30,6 +30,7 @@ namespace HunterPie.Core {
     public class MonsterSpawnEventArgs : EventArgs {
         public string Name;
         public string ID;
+        public string Crown;
         public float CurrentHP;
         public float TotalHP;
         public bool isTarget;
@@ -38,6 +39,7 @@ namespace HunterPie.Core {
         public MonsterSpawnEventArgs(Monster m) {
             this.Name = m.Name;
             this.ID = m.ID;
+            this.Crown = m.Crown;
             this.CurrentHP = m.CurrentHP;
             this.TotalHP = m.TotalHP;
             this.isTarget = m.isTarget;
