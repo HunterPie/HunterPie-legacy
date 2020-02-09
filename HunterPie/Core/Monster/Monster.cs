@@ -23,8 +23,10 @@ namespace HunterPie.Core {
                 if (value != null && _name != value) {
                     if (CurrentHP > 0) {
                         _name = value;
-                        // Only call this if monster is actually alive
+                        // Static stuff that can be scanned only once
                         GetMonsterWeaknesses();
+                        GetMonsterSizeModifier();
+                        // Only call this if monster is actually alive
                         _onMonsterSpawn();
                     }
                 } else if (value == null && _name != value) {
@@ -171,7 +173,6 @@ namespace HunterPie.Core {
             while (Scanner.GameIsRunning) {
                 GetMonsterAddress();
                 GetMonsterIDAndName();
-                GetMonsterSizeModifier();
                 GetMonsterHp();
                 GetMonsterEnrageTimer();
                 Thread.Sleep(200);
