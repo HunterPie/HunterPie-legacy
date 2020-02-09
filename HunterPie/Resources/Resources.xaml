@@ -181,15 +181,7 @@
     <!-- Animations -->
     <!-- Monster Enraged -->
     <Storyboard x:Key="EnragedIcon" RepeatBehavior="Forever">
-        <DoubleAnimation From="0.4" To="1" Duration="0:0:0.7" Storyboard.TargetProperty="Opacity" AutoReverse="True" Timeline.DesiredFrameRate="30"/>
-        <DoubleAnimationUsingKeyFrames Duration="0:0:3" Storyboard.TargetProperty="(Image.RenderTransform).(TransformGroup.Children)[0].(ScaleTransform.ScaleX)" Timeline.DesiredFrameRate="30">
-            <LinearDoubleKeyFrame Value="1" KeyTime="0:0:0"/>
-            <LinearDoubleKeyFrame Value="1.25" KeyTime="0:0:0.2"/>
-            <LinearDoubleKeyFrame Value="1" KeyTime="0:0:0.3"/>
-            <LinearDoubleKeyFrame Value="1.25" KeyTime="0:0:0.5"/>
-            <LinearDoubleKeyFrame Value="1" KeyTime="0:0:7"/>
-        </DoubleAnimationUsingKeyFrames>
-        <DoubleAnimationUsingKeyFrames Duration="0:0:3" Storyboard.TargetProperty="(Image.RenderTransform).(TransformGroup.Children)[0].(ScaleTransform.ScaleY)" Timeline.DesiredFrameRate="30">
+        <DoubleAnimationUsingKeyFrames Duration="0:0:3" Storyboard.TargetProperty="(Image.RenderTransform).(TransformGroup.Children)[0].(ScaleTransform.ScaleX)">
             <LinearDoubleKeyFrame Value="1" KeyTime="0:0:0"/>
             <LinearDoubleKeyFrame Value="1.25" KeyTime="0:0:0.2"/>
             <LinearDoubleKeyFrame Value="1" KeyTime="0:0:0.3"/>
@@ -198,10 +190,10 @@
         </DoubleAnimationUsingKeyFrames>
     </Storyboard>
     <Storyboard x:Key="EnragedHealthBar" RepeatBehavior="Forever" AutoReverse="True" Storyboard.TargetProperty="(Foreground).(SolidColorBrush.Color)">
-        <ColorAnimation To="#FF610000" Duration="0:0:0.5" Timeline.DesiredFrameRate="30"/>
+        <ColorAnimation To="#FF610000" Duration="0:0:1"/>
     </Storyboard>
     <!-- Harvest box fertilizer close to expire -->
     <Storyboard x:Key="FertilizerExpiring" RepeatBehavior="Forever" AutoReverse="True" Storyboard.TargetProperty="(Foreground).(SolidColorBrush.Color)">
-        <ColorAnimation From="White" To="Red" Duration="0:0:1" Timeline.DesiredFrameRate="30"/>
+        <ColorAnimation From="White" To="Red" Duration="0:0:1"/>
     </Storyboard>
 </ResourceDictionary>

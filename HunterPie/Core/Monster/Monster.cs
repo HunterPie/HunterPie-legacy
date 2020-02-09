@@ -157,10 +157,11 @@ namespace HunterPie.Core {
                 this.ID = "em002_00";
                 this.Name = "Rathalos";
                 _onMonsterSpawn();
+                _onHPUpdate();
                 CurrentHP -= 11;
                 x++;
-                if (x == 100) EnrageTimer = 120;
-                if (x == 220) EnrageTimer = 0;
+                if (x == 2) EnrageTimer = 120;
+                //if (x == 220) EnrageTimer = 0;
                 Thread.Sleep(200);
             }
         }*/
@@ -173,7 +174,7 @@ namespace HunterPie.Core {
                 GetMonsterSizeModifier();
                 GetMonsterHp();
                 GetMonsterEnrageTimer();
-                Thread.Sleep(150);
+                Thread.Sleep(200);
             }
             Thread.Sleep(1000);
             ScanMonsterInfo();
