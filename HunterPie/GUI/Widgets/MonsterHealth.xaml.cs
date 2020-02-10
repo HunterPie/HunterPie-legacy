@@ -103,6 +103,7 @@ namespace HunterPie.GUI.Widgets {
         private void OnMonsterUpdate(object source, MonsterUpdateEventArgs args) {
             this.Dispatch(() => {
                 this.MonsterHPBar.Value = args.CurrentHP;
+                this.MonsterHPBar.Maximum = args.TotalHP;
             });
         }
     }

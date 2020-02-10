@@ -49,9 +49,11 @@ namespace HunterPie.Core {
     
     public class MonsterUpdateEventArgs : EventArgs {
         public float CurrentHP;
+        public float TotalHP;
 
         public MonsterUpdateEventArgs(Monster m) {
             this.CurrentHP = m.CurrentHP;
+            this.TotalHP = m.TotalHP;
         }
     }
 
