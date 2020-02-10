@@ -42,6 +42,7 @@ namespace HunterPie.GUIControls {
             
             // Overlay
             settingsUI.switchEnableOverlay.IsEnabled = settings.Overlay.Enabled;
+            settingsUI.switchHideWhenUnfocused.IsEnabled = settings.Overlay.HideWhenGameIsUnfocused;
             settingsUI.positionOverlayX.Text = settings.Overlay.Position[0].ToString();
             settingsUI.positionOverlayY.Text = settings.Overlay.Position[1].ToString();
             // Monsters
@@ -84,6 +85,7 @@ namespace HunterPie.GUIControls {
 
             // Overlay
             settings.Overlay.Enabled = settingsUI.switchEnableOverlay.IsEnabled;
+            settings.Overlay.HideWhenGameIsUnfocused = settingsUI.switchHideWhenUnfocused.IsEnabled;
             settings.Overlay.Position[0] = int.Parse(settingsUI.positionOverlayX.Text);
             settings.Overlay.Position[1] = int.Parse(settingsUI.positionOverlayY.Text);
             // Monsters

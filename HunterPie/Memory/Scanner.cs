@@ -16,11 +16,25 @@ namespace HunterPie.Memory {
         // Process info
         const int PROCESS_VM_READ = 0x0010;
         const string PROCESS_NAME = "MonsterHunterWorld";
+        static private IntPtr WindowHandle;
         static public int GameVersion;
         static public int PID;
         static Process[] MonsterHunter;
         static public IntPtr ProcessHandle { get; private set; } = (IntPtr)0;
         static public bool GameIsRunning = false;
+        static private bool _isForegroundWindow = true;
+        static public bool IsForegroundWindow {
+            get { return _isForegroundWindow; }
+            private set {
+                if (value != _isForegroundWindow) {
+                    // Wait until there's a subscriber to dispatch the event
+                    if (OnGameFocus == null || OnGameUnfocus == null) return;
+                    _isForegroundWindow = value;
+                    if (_isForegroundWindow) { _onGameFocus(); } 
+                    else { _onGameUnfocus(); }
+                }
+            }
+        }
 
         // Scanner Thread
         static private ThreadStart ScanGameMemoryRef;
@@ -36,10 +50,15 @@ namespace HunterPie.Memory {
         [DllImport("kernel32.dll")]
         public static extern bool CloseHandle(IntPtr hObject);
 
+        [DllImport("user32.dll")]
+        private static extern IntPtr GetForegroundWindow();
+
         /* Events */
         public delegate void ProcessHandler(object source, EventArgs args);
         public static event ProcessHandler OnGameStart;
         public static event ProcessHandler OnGameClosed;
+        public static event ProcessHandler OnGameFocus;
+        public static event ProcessHandler OnGameUnfocus;
 
         // On Game start
         protected static void _onGameStart() {
@@ -51,6 +70,14 @@ namespace HunterPie.Memory {
             OnGameClosed?.Invoke(typeof(Scanner), EventArgs.Empty);
         }
         
+        protected static void _onGameFocus() {
+            OnGameFocus?.Invoke(typeof(Scanner), EventArgs.Empty);
+        }
+
+        protected static void _onGameUnfocus() {
+            OnGameUnfocus?.Invoke(typeof(Scanner), EventArgs.Empty);
+        }
+
         /* Core code */
         public static void StartScanning() {
             // Start scanner thread
@@ -94,11 +121,15 @@ namespace HunterPie.Memory {
                         return;
                     }
                     GameVersion = int.Parse(MonsterHunter[0].MainWindowTitle.Split('(')[1].Trim(')'));
+                    WindowHandle = MonsterHunter[0].MainWindowHandle;
                     _onGameStart();
                     Logger.Debugger.Log($"MonsterHunterWorld.exe found! (PID: {PID})");
                     GameIsRunning = true;
                 }
-                Thread.Sleep(2000);
+                if (GameIsRunning) {
+                    IsForegroundWindow = GetForegroundWindow() == WindowHandle;
+                }
+                Thread.Sleep(200);
             }
         }
 

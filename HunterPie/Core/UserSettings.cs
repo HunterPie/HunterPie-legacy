@@ -33,6 +33,7 @@ namespace HunterPie.Core {
             public class Overlay {
                 public bool Enabled { get; set; } = false;
                 public int[] Position { get; set; } = new int[2] { 0, 0 };
+                public bool HideWhenGameIsUnfocused { get; set; } = false;
                 public Monsterscomponent MonstersComponent { get; set; } = new Monsterscomponent();
                 public Harvestboxcomponent HarvestBoxComponent { get; set; } = new Harvestboxcomponent();
                 public Primarymantle PrimaryMantle { get; set; } = new Primarymantle();
@@ -89,10 +90,11 @@ namespace HunterPie.Core {
 
         }
 
-        private static Config.Rootobject Default_Config = new Config.Rootobject {
+        private static readonly Config.Rootobject Default_Config = new Config.Rootobject {
             Overlay = new Config.Overlay {
                 Enabled = true,
                 Position = new int[2] { 0, 0 },
+                HideWhenGameIsUnfocused = true,
                 MonstersComponent = new Config.Monsterscomponent {
                     Enabled = true,
                     Position = new int[2] { 335, 10 },
@@ -146,9 +148,10 @@ namespace HunterPie.Core {
         private static void CreateFileWatcher() {
             // Prevents it from hooking the event multiple times
             if (ConfigWatcher != null) return;
-            ConfigWatcher = new FileSystemWatcher();
-            ConfigWatcher.Path = Environment.CurrentDirectory;
-            ConfigWatcher.Filter = ConfigFileName;
+            ConfigWatcher = new FileSystemWatcher {
+                Path = Environment.CurrentDirectory,
+                Filter = ConfigFileName
+            };
             ConfigWatcher.Changed += OnConfigChanged;
             ConfigWatcher.EnableRaisingEvents = true;
         }

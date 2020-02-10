@@ -88,7 +88,7 @@
     <Grid>
         <Button x:Name="saveSettings" Content="Save" HorizontalAlignment="Left" Margin="650,397,0,0" VerticalAlignment="Top" Width="89" Height="36" Background="#FF212121" BorderBrush="{x:Null}" Foreground="#FFE8E8E8" Cursor="Hand" FontFamily="Roboto" FontSize="14" FontWeight="Bold" Style="{DynamicResource buttons_settings}" Click="saveSettings_Click"/>
         <ScrollViewer VerticalScrollBarVisibility="Auto" Margin="0,0,-22,67" Template="{DynamicResource ScrollViewerControlTemplate1}" CanContentScroll="False">
-            <local:settingsWindow x:Name="SettingsBox" Height="995" Width="777"/>
+            <local:settingsWindow x:Name="SettingsBox" Height="1064" Width="777"/>
         </ScrollViewer>
     </Grid>
 </UserControl>

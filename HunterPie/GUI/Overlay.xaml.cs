@@ -8,6 +8,7 @@ using System.Windows.Controls;
 using System.Windows.Media.Animation;
 using System.Windows.Media.Effects;
 using HunterPie.Core;
+using HunterPie.Memory;
 
 namespace HunterPie.GUI {
     /// <summary>
@@ -28,9 +29,6 @@ namespace HunterPie.GUI {
         [DllImport("user32.dll")]
         private static extern int GetWindowLong(IntPtr hwnd, int index);
 
-        [DllImport("user32.dll")]
-        private static extern IntPtr GetForegroundWindow();
-
         public Overlay(Game Context) {
             ctx = Context;
             InitializeComponent();
@@ -39,13 +37,23 @@ namespace HunterPie.GUI {
             SetWindowFlags();
         }
 
-        public void SetWidgetsContext() {
+        private void SetWidgetsContext() {
             this.FirstMonster.SetContext(ctx.FirstMonster);
             this.SecondMonster.SetContext(ctx.SecondMonster);
             this.ThirdMonster.SetContext(ctx.ThirdMonster);
             this.PrimaryMantle.SetContext(ctx.Player.PrimaryMantle);
             this.SecondaryMantle.SetContext(ctx.Player.SecondaryMantle);
             this.HarvestBoxComponent.SetContext(ctx.Player);
+        }
+
+        public void HookEvents() {
+            Scanner.OnGameFocus += OnGameFocus;
+            Scanner.OnGameUnfocus += OnGameUnfocus;
+        }
+
+        private void UnhookEvents() {
+            Scanner.OnGameFocus -= OnGameFocus;
+            Scanner.OnGameUnfocus -= OnGameUnfocus;
         }
 
         public void Destroy() {
@@ -55,6 +63,7 @@ namespace HunterPie.GUI {
             this.PrimaryMantle.UnhookEvents();
             this.SecondaryMantle.UnhookEvents();
             this.HarvestBoxComponent.UnhookEvents();
+            this.UnhookEvents();
             this.Close();
         }
         
@@ -93,7 +102,17 @@ namespace HunterPie.GUI {
             OverlayGrid.Width = OverlayWnd.Width;
             OverlayGrid.Height = OverlayWnd.Height;
         }
-        
+
+        private void OnGameUnfocus(object source, EventArgs args) {
+            if (UserSettings.PlayerConfig.Overlay.HideWhenGameIsUnfocused)
+                Dispatch(() => { this.Hide(); });
+        }
+
+        private void OnGameFocus(object source, EventArgs args) {
+            if (UserSettings.PlayerConfig.Overlay.Enabled)
+                Dispatch(() => { this.Show(); });
+        }
+
         public void ChangeMonsterComponentPosition(object source, EventArgs e) {
             bool ContainerEnabled = UserSettings.PlayerConfig.Overlay.MonstersComponent.Enabled;
             bool MonsterWeaknessEnabled = UserSettings.PlayerConfig.Overlay.MonstersComponent.ShowMonsterWeakness;
@@ -129,7 +148,9 @@ namespace HunterPie.GUI {
 
         public void ToggleOverlay(object source, EventArgs e) {
             Dispatch(() => {
-                this.Visibility = UserSettings.PlayerConfig.Overlay.Enabled ? Visibility.Visible : Visibility.Hidden;
+                if (UserSettings.PlayerConfig.Overlay.Enabled && Scanner.IsForegroundWindow) this.Show();
+                else if (UserSettings.PlayerConfig.Overlay.Enabled && !Scanner.IsForegroundWindow) this.Hide();
+                else if (!UserSettings.PlayerConfig.Overlay.Enabled) this.Hide();
             });
         }
         

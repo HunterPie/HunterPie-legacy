@@ -224,6 +224,10 @@
             <custom:Switcher x:Name="switchEnableOverlay"/>
             <TextBlock Text="Enable In-Game Overlay" Margin="10,0,0,0" FontFamily="Roboto" FontSize="16" Foreground="#FFF9F9F9" HorizontalAlignment="Center" VerticalAlignment="Center" FontWeight="ExtraLight" />
         </StackPanel>
+        <StackPanel Orientation="Horizontal" Margin="238,3,0,0">
+            <custom:Switcher x:Name="switchHideWhenUnfocused"/>
+            <TextBlock Text="Hide Overlay when game is unfocused" Margin="10,0,0,0" FontFamily="Roboto" FontSize="16" Foreground="#FFF9F9F9" HorizontalAlignment="Center" VerticalAlignment="Center" FontWeight="ExtraLight" />
+        </StackPanel>
         <StackPanel x:Name="Position" Height="32" Margin="288,0,272,0" Orientation="Horizontal">
             <Label x:Name="updateBranchStaticText_Copy" Content="Position:" HorizontalAlignment="Right" Width="66" FontFamily="Roboto" Foreground="#FFE0E0E0" FontSize="15" Padding="0" FontWeight="Light" VerticalContentAlignment="Center" HorizontalContentAlignment="Right"/>
             <TextBox x:Name="positionOverlayX" TextWrapping="Wrap" Text="X" Margin="0,1" Background="{x:Null}" Foreground="#FFE0E0E0" BorderBrush="#FFABADB3" BorderThickness="0,0,0,1" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" HorizontalAlignment="Right" Width="54" TextChanged="TypeNumber"/>

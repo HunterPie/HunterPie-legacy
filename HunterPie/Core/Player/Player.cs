@@ -33,6 +33,7 @@ namespace HunterPie.Core {
             set {
                 if (_playerAddress != value) {
                     _playerAddress = value;
+                    Debugger.Log($"{PlayerAddress:X}");
                     if (value != 0x0) _onLogin();
                 }
             }
@@ -209,8 +210,9 @@ namespace HunterPie.Core {
 
         public void StartScanning() {
             ScanPlayerInfoRef = new ThreadStart(GetPlayerInfo);
-            ScanPlayerInfo = new Thread(ScanPlayerInfoRef);
-            ScanPlayerInfo.Name = "Scanner_Player";
+            ScanPlayerInfo = new Thread(ScanPlayerInfoRef) {
+                Name = "Scanner_Player"
+            };
             Debugger.Warn("Initializing Player memory scanner...");
             ScanPlayerInfo.Start();
         }
@@ -398,7 +400,7 @@ namespace HunterPie.Core {
         private void UpdateHarvestBoxCounter(Int64 LastFertAddress) {
             Int64 Address = LastFertAddress + Memory.Address.Offsets.HarvestBoxOffset;
             int counter = 0;
-            for (long iAddress = Address; iAddress < Address + 0x1F0; iAddress += 0x10) {
+            for (long iAddress = Address; iAddress < Address + 0x330; iAddress += 0x10) {
                 int memValue = Scanner.READ_INT(iAddress);
                 if (memValue > 0) {
                     counter++;

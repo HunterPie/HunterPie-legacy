@@ -117,6 +117,7 @@ namespace HunterPie {
             Scanner.StartScanning(); // Scans game memory
             GameOverlay = new Overlay(MonsterHunter);
             UserSettings.TriggerSettingsEvent();
+            GameOverlay.HookEvents(); // Calls this after settings
             GameOverlay.Hide();
         }
 

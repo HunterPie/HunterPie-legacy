@@ -53,7 +53,7 @@
                 }
             }
         }
-        public int Max = 30;
+        public int Max = 50;
 
         public HarvestBox() {
             PopulateBox();
