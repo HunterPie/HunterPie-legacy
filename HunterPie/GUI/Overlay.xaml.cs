@@ -149,6 +149,7 @@ namespace HunterPie.GUI {
         public void ToggleOverlay(object source, EventArgs e) {
             Dispatch(() => {
                 if (UserSettings.PlayerConfig.Overlay.Enabled && Scanner.IsForegroundWindow) this.Show();
+                else if (UserSettings.PlayerConfig.Overlay.Enabled && !UserSettings.PlayerConfig.Overlay.HideWhenGameIsUnfocused) this.Show();
                 else if (UserSettings.PlayerConfig.Overlay.Enabled && !Scanner.IsForegroundWindow) this.Hide();
                 else if (!UserSettings.PlayerConfig.Overlay.Enabled) this.Hide();
             });

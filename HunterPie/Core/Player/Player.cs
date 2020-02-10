@@ -33,7 +33,6 @@ namespace HunterPie.Core {
             set {
                 if (_playerAddress != value) {
                     _playerAddress = value;
-                    Debugger.Log($"{PlayerAddress:X}");
                     if (value != 0x0) _onLogin();
                 }
             }
