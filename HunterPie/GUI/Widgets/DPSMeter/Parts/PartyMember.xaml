@@ -4,10 +4,12 @@
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              xmlns:local="clr-namespace:HunterPie.GUI.Widgets.DPSMeter.Parts"
+             xmlns:converters="clr-namespace:HunterPie.GUI.Helpers"
              mc:Ignorable="d" 
              x:Name="PlayerContainer" d:DesignWidth="320" Height="45">
     <UserControl.Resources>
         <ResourceDictionary>
+            <converters:DPSBarWidthConverter x:Key="DPSBarWidthConverter"/>
             <ResourceDictionary.MergedDictionaries>
                 <ResourceDictionary Source="/Resources/Resources.xaml"/>
             </ResourceDictionary.MergedDictionaries>
@@ -15,13 +17,13 @@
     </UserControl.Resources>
     <StackPanel ClipToBounds="True">
         <StackPanel Height="45" Background="#33000000" Orientation="Horizontal">
-            <Image x:Name="PlayerClassIcon" Source="{StaticResource CROWN_SILVER}" Width="20" Height="20" HorizontalAlignment="Center" VerticalAlignment="Bottom" Margin="3,0,3,15"/>
+            <Image x:Name="PlayerClassIcon" Source="{Binding DataContext.Class}" Width="20" Height="20" HorizontalAlignment="Center" VerticalAlignment="Bottom" Margin="3,0,3,15" Opacity="0.8"/>
             <TextBlock x:Name="PlayerName" TextWrapping="Wrap" Text="{Binding Path=DataContext.Player}" Foreground="{Binding Path=DataContext.Color}" HorizontalAlignment="Left" VerticalAlignment="Center" FontSize="18" Margin="0" FontFamily="Roboto" FontWeight="Medium" MinWidth="211" MaxWidth="211" Height="41" MaxHeight="41" TextAlignment="Left" Padding="0,9,0,0" Opacity="0.8"/>
             <Viewbox MaxWidth="80" Width="80">
                 <TextBlock Text="{Binding Path=DataContext.DPS}" Foreground="#FFEAEAEA" FontWeight="ExtraLight"/>
             </Viewbox>
         </StackPanel>
-        <Rectangle x:Name="PlayerDPSBar" Height="3" Fill="{Binding Path=DataContext.Color}" Width="{Binding Path=DataContext.DPSPercentage}" MaxWidth="320" HorizontalAlignment="Left" Margin="-2,-9,0,0" RadiusX="5" RadiusY="5">
+        <Rectangle x:Name="PlayerDPSBar" Height="3" Fill="{Binding Path=DataContext.Color}" Width="{Binding Converter={StaticResource DPSBarWidthConverter}, Path=DataContext.DPSPercentage}" MaxWidth="320" HorizontalAlignment="Left" Margin="-2,-9,0,0" RadiusX="5" RadiusY="5">
             <Rectangle.Effect>
                 <DropShadowEffect Color="{Binding Path=DataContext.Color}" Direction="180" ShadowDepth="0" BlurRadius="10" Opacity="0.5"/>
             </Rectangle.Effect>

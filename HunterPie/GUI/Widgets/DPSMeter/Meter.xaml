@@ -11,13 +11,18 @@
             <ResourceDictionary.MergedDictionaries>
                 <ResourceDictionary Source="/Resources/Resources.xaml"/>
             </ResourceDictionary.MergedDictionaries>
-        </ResourceDictionary>
+        </ResourceDictionary> 
     </UserControl.Resources>
-    <StackPanel x:Name="Party">
-        <Label Content="00:01:52" Foreground="#FFEAEAEA" FontFamily="Roboto" FontWeight="Bold" FontSize="16" Background="#7F000000"/>
-        <Parts:PartyMember Player="I'm gey" Color="#f54242" DPSPercentage="160" DPS="69/s (54%)"/>
-        <Parts:PartyMember Player="Geystro is gey" Color="#f5ad42" DPSPercentage="76.8" DPS="28/s (24%)"/>
-        <Parts:PartyMember Player="Lyss" Color="#42f584" DPSPercentage="51.2" DPS="999/s (16%)"/>
-        <Parts:PartyMember Player="Haato" Color="#42b9f5" DPSPercentage="32" DPS="6.9/s (10%)"/>
+    <StackPanel>
+        <StackPanel Orientation="Horizontal" Background="#7F000000">
+            <Image Source="{StaticResource ICON_STOPWATCH}" Width="20" Height="20" Margin="5,0,0,0"/>
+            <Label Content="00:01:52" Foreground="#FFEAEAEA" FontFamily="Roboto" FontWeight="Bold" FontSize="16" />
+        </StackPanel>
+        <StackPanel x:Name="Party">
+            <Parts:PartyMember Player="I'm gey" Color="#f54242" DPSPercentage="54" DPS="69/s (54%)" Class="{StaticResource ICON_GREATSWORD}"/>
+            <Parts:PartyMember Player="Geystro is gey" Color="#f5ad42" DPSPercentage="24" DPS="28/s (24%)" Class="{StaticResource ICON_LONGSWORD}"/>
+            <Parts:PartyMember Player="Lyss" Color="#42f584" DPSPercentage="16" DPS="999/s (16%)" Class="{StaticResource ICON_SWORDANDSHIELD}"/>
+            <Parts:PartyMember Player="Haato" Color="#42b9f5" DPSPercentage="10" DPS="6.9/s (10%)"/>
+        </StackPanel>
     </StackPanel>
 </UserControl>

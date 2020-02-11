@@ -132,6 +132,7 @@
     <Compile Include="GUIControls\settingsWindow.xaml.cs">
       <DependentUpon>settingsWindow.xaml</DependentUpon>
     </Compile>
+    <Compile Include="GUI\Helpers\DPSBarWidthConverter.cs" />
     <Compile Include="GUI\Helpers\PercentageConverter.cs" />
     <Page Include="GUIControls\Changelog.xaml">
       <SubType>Designer</SubType>

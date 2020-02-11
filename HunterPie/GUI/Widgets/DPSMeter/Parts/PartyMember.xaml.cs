@@ -43,6 +43,12 @@ namespace HunterPie.GUI.Widgets.DPSMeter.Parts {
         }
         public static readonly DependencyProperty DPSPercentageProperty = DependencyProperty.Register("DPSPercentage", typeof(object), typeof(Rectangle), new PropertyMetadata(0));
 
+        public object Class {
+            get { return (object)GetValue(ClassProperty); }
+            set { SetValue(ClassProperty, value); }
+        }
+
+    public static readonly DependencyProperty ClassProperty = DependencyProperty.Register("Class", typeof(object), typeof(Image), new PropertyMetadata(0));
 
         public PartyMember() { 
             InitializeComponent();
