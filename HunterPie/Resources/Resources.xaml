@@ -179,6 +179,7 @@
         </Style.Triggers>
     </Style>
     <!-- Animations -->
+    <!-- Rainbow -->
     <!-- Monster Enraged -->
     <Storyboard x:Key="EnragedIcon" RepeatBehavior="Forever">
         <DoubleAnimationUsingKeyFrames Duration="0:0:3" Storyboard.TargetProperty="(Image.RenderTransform).(TransformGroup.Children)[0].(ScaleTransform.ScaleX)">

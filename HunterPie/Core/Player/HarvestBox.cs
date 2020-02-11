@@ -70,10 +70,11 @@
 
         private void PopulateBox() {
             for (int i = 0; i < 4; i++) {
-                Fertilizer fert = new Fertilizer();
-                fert.Name = "Unknown";
-                fert.ID = 0;
-                fert.Amount = 0;
+                Fertilizer fert = new Fertilizer {
+                    Name = "Unknown",
+                    ID = 0,
+                    Amount = 0
+                };
                 Box[i] = fert;
             }
         }

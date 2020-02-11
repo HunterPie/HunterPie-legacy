@@ -5,6 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:converters="clr-namespace:HunterPie.GUI.Helpers"
         xmlns:widgets="clr-namespace:HunterPie.GUI.Widgets"
+        xmlns:meter="clr-namespace:HunterPie.GUI.Widgets.DPSMeter"
         mc:Ignorable="d"
         Title="HunterPie - Overlay" Width="1920" Height="1080" ShowInTaskbar="False" Topmost="True" Background="{x:Null}" WindowStartupLocation="Manual" Top="0" Left="0" ResizeMode="NoResize" Foreground="{x:Null}" AllowsTransparency="True" WindowStyle="None">
     <Window.Resources>
@@ -53,5 +54,15 @@
         <widgets:MantleTimer x:Name="PrimaryMantle" HorizontalAlignment="Left" Width="218" VerticalAlignment="Top" Visibility="Hidden"/>
         <widgets:MantleTimer x:Name="SecondaryMantle"  HorizontalAlignment="Left" Width="218" VerticalAlignment="Top" Visibility="Hidden"/>
         <widgets:HarvestBox x:Name="HarvestBoxComponent" HorizontalAlignment="Left" Margin="845,454,0,0" VerticalAlignment="Top" Visibility="Hidden"/>
+        <meter:Meter x:Name="DPSMeter" HorizontalAlignment="Left" Margin="800,380,0,0" VerticalAlignment="Top" Width="320" RenderTransformOrigin="0.5,0.5">
+            <meter:Meter.RenderTransform>
+                <TransformGroup>
+                    <ScaleTransform ScaleX="1" ScaleY="1"/>
+                    <SkewTransform/>
+                    <RotateTransform/>
+                    <TranslateTransform/>
+                </TransformGroup>
+            </meter:Meter.RenderTransform>
+        </meter:Meter>
     </Grid>
 </Window>

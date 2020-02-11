@@ -47,7 +47,7 @@ namespace HunterPie.GUI.Widgets {
         private void OnTimerChange(object source, MantleEventArgs args) {
             if (args.Timer <= 0) {
                 Dispatch(() => {
-                    if (MantleContainer.IsVisible) MantleContainer.Visibility = Visibility.Hidden;
+                    MantleContainer.Visibility = Visibility.Hidden;
                 });
                 return;
             }
@@ -62,7 +62,7 @@ namespace HunterPie.GUI.Widgets {
         private void OnCooldownChange(object source, MantleEventArgs args) {
             if (args.Cooldown <= 0) {
                 Dispatch(() => {
-                    if (MantleContainer.IsVisible) MantleContainer.Visibility = Visibility.Hidden;
+                    MantleContainer.Visibility = Visibility.Hidden;
                 });
                 return;
             }

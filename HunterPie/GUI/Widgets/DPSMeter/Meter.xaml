@@ -1,0 +1,23 @@
+﻿<UserControl x:Class="HunterPie.GUI.Widgets.DPSMeter.Meter"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:local="clr-namespace:HunterPie.GUI.Widgets.DPSMeter"
+             xmlns:Parts="clr-namespace:HunterPie.GUI.Widgets.DPSMeter.Parts"
+             mc:Ignorable="d" Height="320.018" Width="320.006">
+    <UserControl.Resources>
+        <ResourceDictionary>
+            <ResourceDictionary.MergedDictionaries>
+                <ResourceDictionary Source="/Resources/Resources.xaml"/>
+            </ResourceDictionary.MergedDictionaries>
+        </ResourceDictionary>
+    </UserControl.Resources>
+    <StackPanel x:Name="Party">
+        <Label Content="00:01:52" Foreground="#FFEAEAEA" FontFamily="Roboto" FontWeight="Bold" FontSize="16" Background="#7F000000"/>
+        <Parts:PartyMember Player="I'm gey" Color="#f54242" DPSPercentage="160" DPS="69/s (54%)"/>
+        <Parts:PartyMember Player="Geystro is gey" Color="#f5ad42" DPSPercentage="76.8" DPS="28/s (24%)"/>
+        <Parts:PartyMember Player="Lyss" Color="#42f584" DPSPercentage="51.2" DPS="999/s (16%)"/>
+        <Parts:PartyMember Player="Haato" Color="#42b9f5" DPSPercentage="32" DPS="6.9/s (10%)"/>
+    </StackPanel>
+</UserControl>

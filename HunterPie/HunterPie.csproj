@@ -149,6 +149,14 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
+    <Page Include="GUI\Widgets\DPSMeter\Meter.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="GUI\Widgets\DPSMeter\Parts\PartyMember.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="GUI\Widgets\HarvestBox.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -179,6 +187,12 @@
     </Compile>
     <Compile Include="GUI\Overlay.xaml.cs">
       <DependentUpon>Overlay.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="GUI\Widgets\DPSMeter\Meter.xaml.cs">
+      <DependentUpon>Meter.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="GUI\Widgets\DPSMeter\Parts\PartyMember.xaml.cs">
+      <DependentUpon>PartyMember.xaml</DependentUpon>
     </Compile>
     <Compile Include="GUI\Widgets\HarvestBox.xaml.cs">
       <DependentUpon>HarvestBox.xaml</DependentUpon>

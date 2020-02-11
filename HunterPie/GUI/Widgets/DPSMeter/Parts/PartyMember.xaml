@@ -1,0 +1,31 @@
+﻿<UserControl x:Class="HunterPie.GUI.Widgets.DPSMeter.Parts.PartyMember"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:local="clr-namespace:HunterPie.GUI.Widgets.DPSMeter.Parts"
+             mc:Ignorable="d" 
+             x:Name="PlayerContainer"
+             d:DesignHeight="48" d:DesignWidth="320">
+    <UserControl.Resources>
+        <ResourceDictionary>
+            <ResourceDictionary.MergedDictionaries>
+                <ResourceDictionary Source="/Resources/Resources.xaml"/>
+            </ResourceDictionary.MergedDictionaries>
+        </ResourceDictionary>
+    </UserControl.Resources>
+    <StackPanel>
+        <StackPanel Height="45" Background="#33000000" Orientation="Horizontal">
+            <Image x:Name="PlayerClassIcon" Source="{StaticResource CROWN_SILVER}" Width="20" Height="20" HorizontalAlignment="Center" VerticalAlignment="Bottom" Margin="3,0,3,15"/>
+            <TextBlock x:Name="PlayerName" TextWrapping="Wrap" Text="{Binding Path=DataContext.Player}" HorizontalAlignment="Left" VerticalAlignment="Center" FontSize="18" Margin="0" Foreground="{Binding Path=DataContext.Color}" FontFamily="Roboto" FontWeight="Medium" MinWidth="211" MaxWidth="211" Height="41" MaxHeight="41" TextAlignment="Left" Padding="0,9,0,0" Opacity="0.8"/>
+            <Viewbox MaxWidth="80" Width="80">
+                <TextBlock Text="{Binding Path=DataContext.DPS}" Foreground="#FFEAEAEA" FontWeight="ExtraLight"/>
+            </Viewbox>
+        </StackPanel>
+        <Rectangle x:Name="PlayerDPSBar" Height="3" Fill="{Binding Path=DataContext.Color}" Width="{Binding Path=DataContext.DPSPercentage}" MaxWidth="320" HorizontalAlignment="Left">
+            <Rectangle.Effect>
+                <DropShadowEffect Color="{Binding Path=DataContext.Color}" Direction="180" ShadowDepth="0" BlurRadius="10" Opacity="0.5"/>
+            </Rectangle.Effect>
+        </Rectangle>
+    </StackPanel>
+</UserControl>
