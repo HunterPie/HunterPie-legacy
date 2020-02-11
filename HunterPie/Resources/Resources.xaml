@@ -180,6 +180,16 @@
     </Style>
     <!-- Animations -->
     <!-- Rainbow -->
+    <Storyboard x:Key="RGB" RepeatBehavior="Forever">
+        <ColorAnimationUsingKeyFrames Storyboard.TargetProperty="(Foreground).(SolidColorBrush.Color)">
+            <LinearColorKeyFrame Value="Red" KeyTime="0:0:0"/>
+            <LinearColorKeyFrame Value="Yellow" KeyTime="0:0:0.250"/>
+            <LinearColorKeyFrame Value="Orange" KeyTime="0:0:0.500"/>
+            <LinearColorKeyFrame Value="Green" KeyTime="0:0:0.750"/>
+            <LinearColorKeyFrame Value="Blue" KeyTime="0:0:1"/>
+            <LinearColorKeyFrame Value="Purple" KeyTime="0:0:1.250"/>
+        </ColorAnimationUsingKeyFrames>
+    </Storyboard>
     <!-- Monster Enraged -->
     <Storyboard x:Key="EnragedIcon" RepeatBehavior="Forever">
         <DoubleAnimationUsingKeyFrames Duration="0:0:3" Storyboard.TargetProperty="(Image.RenderTransform).(TransformGroup.Children)[0].(ScaleTransform.ScaleX)">
