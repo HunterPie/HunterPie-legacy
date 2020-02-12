@@ -56,7 +56,6 @@ namespace HunterPie.Core {
         }
 
         public void CloseConnection() {
-            UnhookEvents();
             if (Client != null) {
                 Debugger.Discord("Closed connection");
                 Client.ClearPresence();

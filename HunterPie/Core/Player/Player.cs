@@ -6,7 +6,6 @@ using HunterPie.Logger;
 
 namespace HunterPie.Core {
     public class Player {
-
         // Private variables
         private Int64 _playerAddress = 0x0;
         private int _level;
@@ -16,7 +15,6 @@ namespace HunterPie.Core {
         private int _weaponId;
         private string _weaponName;
         private string _sessionId;
-        private int _partySize;
         private int _masterRank;
 
         // Game info
@@ -26,6 +24,7 @@ namespace HunterPie.Core {
         // Player info
         private Int64 LEVEL_ADDRESS;
         private Int64 EQUIPMENT_ADDRESS;
+        private Int64 PlayerStructAddress;
         private Int64 PlayerSelectedPointer;
         private int PlayerSlot;
         public Int64 PlayerAddress {
@@ -117,17 +116,7 @@ namespace HunterPie.Core {
             get { return _HBZones.Contains(ZoneID); }
         }
         // Party
-        public string[] Party = new string[4];
-        public int PartySize {
-            get { return _partySize; }
-            set {
-                if (_partySize != value) {
-                    _partySize = value;
-                    _onPartyChange();
-                }
-            }
-        }
-        public int PartyMax = 4;
+        public Party PlayerParty = new Party();
 
         // Harvesting
         public HarvestBox Harvest = new HarvestBox();
@@ -304,6 +293,7 @@ namespace HunterPie.Core {
         private void GetWeaponId() {
             Int64 Address = Memory.Address.BASE + Memory.Address.WEAPON_OFFSET;
             Address = Scanner.READ_MULTILEVEL_PTR(Address, Memory.Address.Offsets.WeaponOffsets);
+            PlayerStructAddress = Address;
             WeaponID = Scanner.READ_INT(Address);
             WeaponName = GStrings.GetWeaponNameByID(WeaponID);
         }
@@ -356,18 +346,18 @@ namespace HunterPie.Core {
         private void GetParty() {
             Int64 address = Address.BASE + Address.PARTY_OFFSET;
             Int64 PartyContainer = Scanner.READ_LONGLONG(address) + Address.Offsets.PartyOffsets[0];
-            int partySize = 0;
-            for (int member = 0; member < PartyMax; member++) {
-                string partyMemberName = GetPartyMemberName(PartyContainer + (member * 0x21));
-                if (partyMemberName == null) {
-                    this.Party[member] = null;
-                    continue;
+            for (int member = 0; member < PlayerParty.MaxSize; member++) {
+                int memberWeaponId = Scanner.READ_INT(PlayerStructAddress - (member * 0x740));
+                if (memberWeaponId == 255) {
+                    PlayerParty[PlayerParty.MaxSize - member-1].IsInParty = false;
+                    if (member == 0) PlayerParty[PlayerParty.MaxSize - 1].IsPartyLeader = true;
                 } else {
-                    this.Party[member] = partyMemberName;
-                    partySize++;
+                    PlayerParty[PlayerParty.MaxSize - member-1].IsInParty = true;
+                    PlayerParty[PlayerParty.MaxSize - member-1].Name = Scanner.READ_STRING(PlayerStructAddress - (member * 0x740) - 0x270, 32);
+                    PlayerParty[PlayerParty.MaxSize - member-1].Weapon = memberWeaponId;
+                    if (member == 0) PlayerParty[PlayerParty.MaxSize - member - 1].IsPartyLeader = true;
                 }
             }
-            this.PartySize = partySize;
         }
 
         private string GetPartyMemberName(Int64 NameAddress) {

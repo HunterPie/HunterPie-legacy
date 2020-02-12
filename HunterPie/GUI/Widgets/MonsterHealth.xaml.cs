@@ -12,13 +12,14 @@ namespace HunterPie.GUI.Widgets {
     public partial class MonsterHealth : UserControl {
 
         private Monster Context;
-        
+
         // Animations
         private Storyboard ANIM_ENRAGEDICON;
         private Storyboard ANIM_ENRAGEDBAR;
 
         public MonsterHealth() {
             InitializeComponent();
+            this.DataContext = this;
         }
 
         public void SetContext(Monster ctx) {
@@ -82,7 +83,7 @@ namespace HunterPie.GUI.Widgets {
         private void OnMonsterSpawn(object source, MonsterSpawnEventArgs args) {
             this.Dispatch(() => {
                 this.Visibility = Visibility.Visible;
-                this.MonsterName.Content = args.Name.ToUpper();
+                this.MonsterName.Content = args.Name;
                 this.MonsterHPBar.Value = args.CurrentHP;
                 this.MonsterHPBar.Maximum = args.TotalHP;
                 // Set monster crown

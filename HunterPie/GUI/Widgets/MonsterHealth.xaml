@@ -18,7 +18,7 @@
     <StackPanel Style="{StaticResource StackPanelAnimations}">
         <StackPanel x:Name="MonsterInfoPanel" Orientation="Horizontal" HorizontalAlignment="Center" VerticalAlignment="Center">
             <Image x:Name="MonsterCrown" Width="13" Height="13" Margin="0,0,2,0" Visibility="Collapsed"/>
-            <Label x:Name="MonsterName" Content="MONSTER NAME" VerticalAlignment="Center" Foreground="WhiteSmoke" Height="19" FontSize="13" FontWeight="Bold" FontFamily="Roboto" HorizontalAlignment="Center" Margin="0" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" BorderThickness="1,0,0,0" Padding="0,0,5,0"/>
+            <Label x:Name="MonsterName" Content="Monster name" VerticalAlignment="Center" Foreground="WhiteSmoke" Height="19" FontSize="13" FontWeight="Bold" FontFamily="Roboto" HorizontalAlignment="Center" Margin="0" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" BorderThickness="1,0,0,0" Padding="0,0,5,0"/>
             <Image x:Name="MonsterStatus" Width="15" Height="15" RenderTransformOrigin="0.5,0.5">
                 <Image.RenderTransform>
                     <TransformGroup>

@@ -1,7 +1,22 @@
 ﻿using System;
 using System.Collections.Generic;
+using HunterPie.Core.Party;
 
 namespace HunterPie.Core {
+    /* Party and Members */
+    public class PartyMemberEventArgs : EventArgs {
+        public string Name;
+        public int Damage;
+        public string Weapon;
+
+        public PartyMemberEventArgs(Member m) {
+            this.Name = m.Name;
+            this.Damage = m.Damage;
+            this.Weapon = m.Weapon;
+        }
+    }
+
+    /* HB and Fertilizers */
     public class FertilizerEventArgs : EventArgs {
         public int ID;
         public string Name;

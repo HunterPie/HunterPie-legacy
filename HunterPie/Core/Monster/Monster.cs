@@ -14,7 +14,7 @@ namespace HunterPie.Core {
         //private float _enrageStaticTimer; Implement this maybe?
 
         private Int64 MonsterAddress;
-        private int MonsterNumber;
+        public int MonsterNumber { get; private set; }
 
         // Monster basic info
         public string Name {
@@ -157,6 +157,7 @@ namespace HunterPie.Core {
             int x = 0;
             while (true) {
                 this.ID = "em002_00";
+                this.SizeMultiplier = MonsterNumber == 1 ? 1.23f : MonsterNumber == 2 ? 1.15f : 1;
                 this.Name = "Rathalos";
                 _onMonsterSpawn();
                 _onHPUpdate();
@@ -185,8 +186,7 @@ namespace HunterPie.Core {
             Int64 Address = Memory.Address.BASE + Memory.Address.MONSTER_OFFSET;
             // This will give us the third monster's address, so we can find the second and first monster with it
             Int64 ThirdMonsterAddress = Scanner.READ_MULTILEVEL_PTR(Address, Memory.Address.Offsets.MonsterOffsets);
-            ThirdMonsterAddress = Scanner.READ_LONGLONG(ThirdMonsterAddress);
-            switch(MonsterNumber) {
+            switch (MonsterNumber) {
                 case 3:
                     MonsterAddress = ThirdMonsterAddress;
                     break;
