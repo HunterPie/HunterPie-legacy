@@ -115,6 +115,8 @@
       <SubType>Designer</SubType>
     </ApplicationDefinition>
     <Compile Include="Core\Monster\MonsterData.cs" />
+    <Compile Include="Core\Party\Member.cs" />
+    <Compile Include="Core\Party\Party.cs" />
     <Compile Include="GUIControls\Changelog.xaml.cs">
       <DependentUpon>Changelog.xaml</DependentUpon>
     </Compile>
@@ -307,8 +309,6 @@
   <ItemGroup>
     <EmbeddedResource Include="Core\Monster\MonsterData.xml" />
   </ItemGroup>
-  <ItemGroup>
-    <Folder Include="Core\Party\" />
-  </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

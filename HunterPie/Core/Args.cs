@@ -1,6 +1,5 @@
 ﻿using System;
 using System.Collections.Generic;
-using HunterPie.Core.Party;
 
 namespace HunterPie.Core {
     /* Party and Members */
@@ -8,11 +7,13 @@ namespace HunterPie.Core {
         public string Name;
         public int Damage;
         public string Weapon;
+        public bool IsInParty;
 
         public PartyMemberEventArgs(Member m) {
             this.Name = m.Name;
             this.Damage = m.Damage;
-            this.Weapon = m.Weapon;
+            this.Weapon = m.WeaponIconName;
+            this.IsInParty = m.IsInParty;
         }
     }
 

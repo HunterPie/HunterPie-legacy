@@ -16,6 +16,8 @@ namespace HunterPie.Memory {
 
             public static Int64[] PartyOffsets = new Int64[1] { 0x0526AD };
 
+            public static Int64[] DamageOffsets;
+
             public static Int64[] MonsterOffsets = new Int64[3] { 0xAF738, 0x47CDE0, 0x0 };
             public static Int64 NextMonsterPtr = 0x28;
             public static Int64 MonsterHPComponentOffset = 0x129D8 + 0x48;
@@ -36,6 +38,7 @@ namespace HunterPie.Memory {
         public static Int64 EQUIPMENT_OFFSET = 0x3B50668;
         public static Int64 WEAPON_OFFSET = 0x3BEDE58;
         public static Int64 PARTY_OFFSET = 0x48E1850;
+        public static Int64 DAMAGE_OFFSET = 0x0;
 
         // Consts
         public const Int64 cooldownFixed = 0x9EC;
@@ -125,6 +128,7 @@ namespace HunterPie.Memory {
             LoadAddressFromDict(nameof(WEAPON_OFFSET), out WEAPON_OFFSET, WEAPON_OFFSET);
             LoadAddressFromDict(nameof(SESSION_OFFSET), out SESSION_OFFSET, SESSION_OFFSET);
             LoadAddressFromDict(nameof(PARTY_OFFSET), out PARTY_OFFSET, PARTY_OFFSET);
+            LoadAddressFromDict(nameof(DAMAGE_OFFSET), out DAMAGE_OFFSET, DAMAGE_OFFSET);
             // Load offsets
             LoadOffsetsFromDict("LevelOffsets", out Offsets.LevelOffsets, Offsets.LevelOffsets);
             LoadOffsetsFromDict("SessionOffsets", out Offsets.SessionOffsets, Offsets.SessionOffsets);
@@ -132,6 +136,10 @@ namespace HunterPie.Memory {
             LoadOffsetsFromDict("MonsterOffsets", out Offsets.MonsterOffsets, Offsets.MonsterOffsets);
             LoadOffsetsFromDict("EquipmentOffsets", out Offsets.EquipmentOffsets, Offsets.EquipmentOffsets);
             LoadOffsetsFromDict("PartyOffsets", out Offsets.PartyOffsets, Offsets.PartyOffsets);
+            LoadOffsetsFromDict("DamageOffsets", out Offsets.DamageOffsets, Offsets.DamageOffsets);
+            // Clear addresses loaded into memory
+            MappedAddresses.Clear();
+            MappedOffsets.Clear();
         }
 
         private static void LoadAddressFromDict(string name, out Int64 variable, Int64 oldValue) {

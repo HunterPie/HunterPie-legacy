@@ -226,6 +226,7 @@ namespace HunterPie.Core {
                 GetPrimaryMantleTimers();
                 GetSecondaryMantleTimers();
                 GetParty();
+                GetPartyDPS();
                 Thread.Sleep(150);
             }
             Thread.Sleep(1000);
@@ -347,17 +348,49 @@ namespace HunterPie.Core {
             Int64 address = Address.BASE + Address.PARTY_OFFSET;
             Int64 PartyContainer = Scanner.READ_LONGLONG(address) + Address.Offsets.PartyOffsets[0];
             for (int member = 0; member < PlayerParty.MaxSize; member++) {
+                string partyMemberName = GetPartyMemberName(PartyContainer + (member * 0x21));
+                Debugger.Log(partyMemberName);
+                if (partyMemberName != null) {
+                    GetPartyInfo();
+                    break;
+                }  else {
+                    PlayerParty[member].IsInParty = false;
+                }
+            }
+        }
+
+        private void GetPartyInfo() {
+            Debugger.Log($"{PlayerStructAddress:X}");
+            for (int member = 0; member < PlayerParty.MaxSize; member++) {
                 int memberWeaponId = Scanner.READ_INT(PlayerStructAddress - (member * 0x740));
                 if (memberWeaponId == 255) {
-                    PlayerParty[PlayerParty.MaxSize - member-1].IsInParty = false;
+                    PlayerParty[PlayerParty.MaxSize - member - 1].IsInParty = false;
                     if (member == 0) PlayerParty[PlayerParty.MaxSize - 1].IsPartyLeader = true;
                 } else {
-                    PlayerParty[PlayerParty.MaxSize - member-1].IsInParty = true;
-                    PlayerParty[PlayerParty.MaxSize - member-1].Name = Scanner.READ_STRING(PlayerStructAddress - (member * 0x740) - 0x270, 32);
-                    PlayerParty[PlayerParty.MaxSize - member-1].Weapon = memberWeaponId;
+                    PlayerParty[PlayerParty.MaxSize - member - 1].IsInParty = true;
+                    PlayerParty[PlayerParty.MaxSize - member - 1].Name = Scanner.READ_STRING(PlayerStructAddress - (member * 0x740) - 0x270, 32);
+                    PlayerParty[PlayerParty.MaxSize - member - 1].Weapon = memberWeaponId;
                     if (member == 0) PlayerParty[PlayerParty.MaxSize - member - 1].IsPartyLeader = true;
                 }
             }
+        }
+
+        private void GetPartyDPS() {
+            Int64 DPSAddress = Scanner.READ_MULTILEVEL_PTR(Address.BASE + Address.DAMAGE_OFFSET, Address.Offsets.DamageOffsets);
+            Int64 NextPlayerDPS = 0x0;
+            int totalPartyDamage = 0;
+            for (int member = 0; member < PlayerParty.MaxSize; member++) {
+                if (!PlayerParty[member].IsInParty) {
+                    PlayerParty[member].Damage = 0;
+                    continue;
+                }
+                else {
+                    PlayerParty[member].Damage = Scanner.READ_INT(DPSAddress + NextPlayerDPS);
+                    totalPartyDamage += PlayerParty[member].Damage;
+                    NextPlayerDPS += 0x150;
+                }
+            }
+            PlayerParty.TotalDamage = totalPartyDamage;
         }
 
         private string GetPartyMemberName(Int64 NameAddress) {

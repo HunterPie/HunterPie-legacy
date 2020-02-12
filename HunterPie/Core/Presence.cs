@@ -99,10 +99,10 @@ namespace HunterPie.Core {
                         break;
                     }
                     Instance.Details = ctx.HuntedMonster == null ? ctx.Player.inPeaceZone ? "Idle" : "Exploring" : $"Hunting {ctx.HuntedMonster.Name} ({(int)(ctx.HuntedMonster.HPPercentage * 100)}%)";
-                    Instance.State = ctx.Player.PartySize > 1 ? "In Party" : "Solo";
+                    Instance.State = ctx.Player.PlayerParty.Size > 1 ? "In Party" : "Solo";
                     Instance.Assets = GenerateAssets(ctx.Player.ZoneName == null ? "main-menu" : $"st{ctx.Player.ZoneID}", ctx.Player.ZoneName == "Main Menu" ? null : ctx.Player.ZoneName, ctx.Player.WeaponName == null ? "hunter-rank" : $"weap{ctx.Player.WeaponID}", $"{ctx.Player.Name} | HR: {ctx.Player.Level} | MR: {ctx.Player.MasterRank}");
                     // TODO: Generate party hash
-                    Instance.Party = MakeParty(ctx.Player.PartySize, ctx.Player.PartyMax, "test");
+                    Instance.Party = MakeParty(ctx.Player.PlayerParty.Size, ctx.Player.PlayerParty.MaxSize, "test");
                     break;
             }
             Client.SetPresence(Instance);
@@ -126,8 +126,8 @@ namespace HunterPie.Core {
             return assets;
         }
 
-        public Party MakeParty(int partySize, int maxParty, string partyHash) {
-            Party party = new Party {
+        public DiscordRPC.Party MakeParty(int partySize, int maxParty, string partyHash) {
+            DiscordRPC.Party party = new DiscordRPC.Party {
                 Size = partySize,
                 Max = maxParty,
                 ID = partyHash

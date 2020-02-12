@@ -6,11 +6,14 @@ using System.Threading.Tasks;
 
 namespace HunterPie.Core {
     public class Party {
-        List<Member> Members = new List<Member>();
+        public List<Member> Members = new List<Member>();
+        public int TotalDamage;
+
         public Member this[int index] {
             get { return Members[index]; }
             set { Members[index] = value; }
         }
+        
         public int Size {
             get {
                 int x = 0;
@@ -21,6 +24,11 @@ namespace HunterPie.Core {
             }
         }
         public int MaxSize = 4;
+
+        public Party() {
+            // Populates party with empty players
+            for (int i = 0; i < MaxSize; i++) AddMember(new Member());
+        }
 
         public void AddMember(Member pMember) {
             Members.Add(pMember);
