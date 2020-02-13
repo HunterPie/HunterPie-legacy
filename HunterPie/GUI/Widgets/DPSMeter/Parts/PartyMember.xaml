@@ -6,7 +6,7 @@
              xmlns:local="clr-namespace:HunterPie.GUI.Widgets.DPSMeter.Parts"
              xmlns:converters="clr-namespace:HunterPie.GUI.Helpers"
              mc:Ignorable="d" 
-             x:Name="PlayerContainer" d:DesignWidth="320" Height="45" Foreground="{x:Null}">
+             x:Name="PlayerContainer" d:DesignWidth="320" Height="46" Foreground="{x:Null}">
     <UserControl.Resources>
         <ResourceDictionary>
             <converters:DPSBarWidthConverter x:Key="DPSBarWidthConverter"/>
@@ -22,13 +22,11 @@
                 <GradientStop Color="#4C404040" Offset="1"/>
             </LinearGradientBrush>
         </StackPanel.Background>
-        <StackPanel Height="45" Orientation="Horizontal">
-            <Image x:Name="PlayerClassIcon" Width="20" Height="20" HorizontalAlignment="Center" VerticalAlignment="Bottom" Margin="3,0,3,15" Opacity="0.8"/>
-            <TextBlock x:Name="PlayerName" Foreground="{Binding Path=DataContext.Color}" TextWrapping="Wrap" Text="Player" HorizontalAlignment="Left" VerticalAlignment="Center" FontSize="20" Margin="0,2" FontFamily="Roboto" MinWidth="200" MaxWidth="211" Height="41" MaxHeight="41" TextAlignment="Left" Padding="4,9,0,0" Width="199" TextTrimming="CharacterEllipsis"/>
-            <Viewbox MaxWidth="94" Width="94">
-                <TextBlock x:Name="DPSText" Text="0 (0%)" Foreground="#FFEAEAEA" FontWeight="Normal" FontFamily="Roboto" FontSize="18" Margin="0,12,0,11" Padding="0,0,5,0"/>
-            </Viewbox>
-        </StackPanel>
-        <Rectangle x:Name="PlayerDPSBar" Height="2" Fill="{Binding Path=DataContext.Color}" MaxWidth="320" HorizontalAlignment="Left" Margin="0,-7,0,0" />
+        <DockPanel Height="43">
+            <Image x:Name="PlayerClassIcon" Width="20" Height="20" HorizontalAlignment="Left" Margin="4,0,0,0" />
+            <Label x:Name="PlayerName" Content="Player" Foreground="{Binding Path=DataContext.Color}"  MaxWidth="200" Width="178" DockPanel.Dock="Left" VerticalContentAlignment="Center" FontSize="18" FontFamily="Roboto" FontWeight="Medium"/>
+            <Label x:Name="DPSText" Foreground="WhiteSmoke" DockPanel.Dock="Right" HorizontalAlignment="Right" Width="117" HorizontalContentAlignment="Right" VerticalContentAlignment="Center" FontFamily="Roboto" FontSize="16"/>
+        </DockPanel>
+        <Rectangle x:Name="PlayerDPSBar" Height="3" Fill="{Binding Path=DataContext.Color}" MaxWidth="320" HorizontalAlignment="Left" Margin="0,0,0,0" />
     </StackPanel>
 </UserControl>

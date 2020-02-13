@@ -20,15 +20,46 @@ namespace HunterPie.GUI.Widgets.DPSMeter {
     /// </summary>
     public partial class Meter : UserControl {
 
+        Game GameContext;
         Party Context;
 
         public Meter() {
             InitializeComponent();
         }
 
-        public void SetContext(Party ctx) {
-            Context = ctx;
+        public void SetContext(Game ctx) {
+            Context = ctx.Player.PlayerParty;
+            GameContext = ctx;
             PassContextToPlayerComponents();
+            HookEvents();
+        }
+
+        private void HookEvents() {
+            Context.OnTotalDamageChange += OnTotalDamageChange;
+            GameContext.Player.OnPeaceZoneEnter += OnPeaceZoneEnter;
+            GameContext.Player.OnPeaceZoneLeave += OnPeaceZoneLeave;
+        }
+
+        private void OnPeaceZoneLeave(object source, EventArgs args) {
+            Dispatcher.BeginInvoke(System.Windows.Threading.DispatcherPriority.Background, new Action(() => {
+                Visibility = Visibility.Visible;
+            }));
+        }
+
+        private void OnPeaceZoneEnter(object source, EventArgs args) {
+            Dispatcher.BeginInvoke(System.Windows.Threading.DispatcherPriority.Background, new Action(() => {
+                Visibility = Visibility.Hidden;
+            }));
+        }
+
+        public void UnhookEvents() {
+            Context.OnTotalDamageChange -= OnTotalDamageChange;
+        }
+
+        private void OnTotalDamageChange(object source, EventArgs args) {
+            Dispatcher.BeginInvoke(System.Windows.Threading.DispatcherPriority.Background, new Action(() => {
+                Timer.Content = string.Format("{0:hh\\:mm\\:ss}", Context.Epoch);
+            }));
         }
 
         private void PassContextToPlayerComponents() {
@@ -37,5 +68,11 @@ namespace HunterPie.GUI.Widgets.DPSMeter {
                 pMember.SetContext(Context[i], Context);
             }
         }
+
+        public void DestroyPlayerComponents() {
+            this.Party.Children.Clear();
+            UnhookEvents();
+        }
+
     }
 }

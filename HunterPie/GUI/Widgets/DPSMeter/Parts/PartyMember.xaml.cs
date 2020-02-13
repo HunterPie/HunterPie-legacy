@@ -60,11 +60,8 @@ namespace HunterPie.GUI.Widgets.DPSMeter.Parts {
         }
 
         private void OnPlayerSpawn(object source, PartyMemberEventArgs args) {
-            Logger.Debugger.Log($"Spawned {args.Name}");
             Dispatch(() => {
-                PlayerName.Text = args.Name;
-                DPSText.Text = $"0 (0%)";
-                PlayerDPSBar.Width = 0;
+                PlayerName.Content = args.Name;
                 PlayerClassIcon.Source = args.Weapon == null ? null : (ImageSource)TryFindResource(args.Weapon);
                 this.Visibility = args.IsInParty ? Visibility.Visible : Visibility.Collapsed;
             });
@@ -78,13 +75,21 @@ namespace HunterPie.GUI.Widgets.DPSMeter.Parts {
 
         private void OnPlayerDamageChange(object source, PartyMemberEventArgs args) {
             float percentage;
+            string DamageText;
             if (PartyContext.TotalDamage == 0) {
                 percentage = 0;
             } else {
                 percentage =  args.Damage / (float)PartyContext.TotalDamage;
             }
+            if (PartyContext.ShowDPS) {
+                float TimeElapsed = (float)PartyContext.Epoch.TotalSeconds;
+                TimeElapsed = TimeElapsed > 0 ? TimeElapsed : 1;
+                DamageText = $"{args.Damage / TimeElapsed:0.00}/s ({percentage * 100:0}%)";
+            } else {
+                DamageText = $"{args.Damage} ({percentage * 100:0}%)";
+            }
             Dispatch(() => {
-                DPSText.Text = $"{args.Damage} ({percentage * 100:0}%)";
+                DPSText.Content = DamageText;
                 PlayerDPSBar.Width = percentage * PlayerDPSBar.MaxWidth;
             });
         }

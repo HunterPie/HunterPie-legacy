@@ -44,7 +44,7 @@ namespace HunterPie.GUI {
             this.PrimaryMantle.SetContext(ctx.Player.PrimaryMantle);
             this.SecondaryMantle.SetContext(ctx.Player.SecondaryMantle);
             this.HarvestBoxComponent.SetContext(ctx.Player);
-            this.DPSMeter.SetContext(ctx.Player.PlayerParty);
+            this.DPSMeter.SetContext(ctx);
         }
 
         public void HookEvents() {
@@ -64,6 +64,7 @@ namespace HunterPie.GUI {
             this.PrimaryMantle.UnhookEvents();
             this.SecondaryMantle.UnhookEvents();
             this.HarvestBoxComponent.UnhookEvents();
+            this.DPSMeter.DestroyPlayerComponents();
             this.UnhookEvents();
             this.Close();
         }

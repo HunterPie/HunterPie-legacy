@@ -7,7 +7,19 @@ using System.Threading.Tasks;
 namespace HunterPie.Core {
     public class Party {
         public List<Member> Members = new List<Member>();
-        public int TotalDamage;
+        public TimeSpan Epoch;
+        public bool ShowDPS = true;
+        private int _TotalDamage;
+        public int TotalDamage {
+            get { return _TotalDamage; }
+            set {
+                if (_TotalDamage != value) {
+                    _TotalDamage = value;
+                    _OnTotalDamageChange();
+                }
+                
+            }
+        }
 
         public Member this[int index] {
             get { return Members[index]; }
@@ -46,6 +58,12 @@ namespace HunterPie.Core {
             Members.Clear();
         }
 
-        
+        // Timer event
+        public delegate void PartyEvents(object source, EventArgs args);
+        public event PartyEvents OnTotalDamageChange;
+
+        protected virtual void _OnTotalDamageChange() {
+            OnTotalDamageChange?.Invoke(this, EventArgs.Empty);
+        }
     }
 }

@@ -349,13 +349,18 @@ namespace HunterPie.Core {
             int totalDamage = 0;
             for (int i = 0; i < PlayerParty.MaxSize; i++) totalDamage += GetPartyMemberDamage(i);
             PlayerParty.TotalDamage = totalDamage;
+            GetQuestElapsedTime();
             bool shiftNextPlayer = false;
             for (int member = 0; member < PlayerParty.MaxSize; member++) {
                 string partyMemberName = GetPartyMemberName(PartyContainer + (member * 0x21));
                 Member PartyMember = PlayerParty[member];
                 PartyMember.Damage = GetPartyMemberDamage(member);
-                if (partyMemberName != null) PartyMember.IsInParty = true;
-                if (partyMemberName == null && PartyMember.Damage == 0) PartyMember.IsInParty = false;
+                if ( partyMemberName != null || (partyMemberName == null && PartyMember.Damage > 0)) {
+                    partyMemberName = partyMemberName ?? "Player";
+                    PartyMember.IsInParty = true;
+                } else if (partyMemberName == null && PartyMember.Damage == 0) {
+                    PartyMember.IsInParty = false;
+                }
                 // TODO: Find a better way to get the player weapon ID
                 if (partyMemberName == this.Name) {
                     PartyMember.Weapon = GetPartyMemberWeapon(member, true);
@@ -372,6 +377,14 @@ namespace HunterPie.Core {
                 PartyMember.Weapon = GetPartyMemberWeapon(member, false);
                 PartyMember.Name = partyMemberName;
             }
+            
+        }
+
+        private void GetQuestElapsedTime() {
+            Int64 EpochAddress = Scanner.READ_MULTILEVEL_PTR(Address.BASE + Address.DAMAGE_OFFSET, Address.Offsets.DamageOffsets);
+            Int64 Epoch = Scanner.READ_LONGLONG(EpochAddress + 0x1028);
+            if (Epoch == 0) return;
+            PlayerParty.Epoch = DateTime.UtcNow - DateTimeOffset.FromUnixTimeSeconds(Epoch);
         }
 
         private int GetPartyMemberWeapon(int playerIndex, bool isLocalPLayer) {

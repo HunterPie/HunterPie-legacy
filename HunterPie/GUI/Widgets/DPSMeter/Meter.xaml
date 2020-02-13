@@ -16,13 +16,13 @@
     <StackPanel>
         <StackPanel Orientation="Horizontal" Background="#7F000000">
             <Image Source="{StaticResource ICON_STOPWATCH}" Width="20" Height="20" Margin="5,0,0,0"/>
-            <Label Content="00:01:52" Foreground="#FFEAEAEA" FontFamily="Roboto" FontWeight="Bold" FontSize="16" />
+            <Label x:Name="Timer" Content="" Foreground="#FFEAEAEA" FontFamily="Roboto" FontWeight="Bold" FontSize="16" />
         </StackPanel>
         <StackPanel x:Name="Party">
-            <Parts:PartyMember Color="#ff1919"/>
-            <Parts:PartyMember Color="#ffe019"/>
-            <Parts:PartyMember Color="#19ffc6"/>
-            <Parts:PartyMember Color="#b669ff"/>
+            <Parts:PartyMember Color="#DC143C"/>
+            <Parts:PartyMember Color="#FF8C00"/>
+            <Parts:PartyMember Color="#6A5ACD"/>
+            <Parts:PartyMember Color="#00FF7F"/>
         </StackPanel>
     </StackPanel>
 </UserControl>

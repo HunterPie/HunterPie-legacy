@@ -6,6 +6,7 @@ using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
 using HunterPie.Core;
+using HunterPie.Logger;
 
 namespace HunterPie.Core {
     public class Member {
