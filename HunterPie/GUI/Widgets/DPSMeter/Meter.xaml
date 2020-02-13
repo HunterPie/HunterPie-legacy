@@ -19,10 +19,10 @@
             <Label Content="00:01:52" Foreground="#FFEAEAEA" FontFamily="Roboto" FontWeight="Bold" FontSize="16" />
         </StackPanel>
         <StackPanel x:Name="Party">
-            <Parts:PartyMember Color="#f54242"/>
-            <Parts:PartyMember Color="#f5ad42"/>
-            <Parts:PartyMember Color="#42f584"/>
-            <Parts:PartyMember Color="#42b9f5"/>
+            <Parts:PartyMember Color="#ff1919"/>
+            <Parts:PartyMember Color="#ffe019"/>
+            <Parts:PartyMember Color="#19ffc6"/>
+            <Parts:PartyMember Color="#b669ff"/>
         </StackPanel>
     </StackPanel>
 </UserControl>

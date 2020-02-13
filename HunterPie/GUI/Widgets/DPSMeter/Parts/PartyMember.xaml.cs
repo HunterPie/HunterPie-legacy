@@ -34,6 +34,7 @@ namespace HunterPie.GUI.Widgets.DPSMeter.Parts {
         public PartyMember() { 
             InitializeComponent();
             this.DataContext = this;
+            this.Visibility = Visibility.Collapsed;
         }
 
         ~PartyMember() {
@@ -59,17 +60,20 @@ namespace HunterPie.GUI.Widgets.DPSMeter.Parts {
         }
 
         private void OnPlayerSpawn(object source, PartyMemberEventArgs args) {
+            Logger.Debugger.Log($"Spawned {args.Name}");
             Dispatch(() => {
                 PlayerName.Text = args.Name;
-                PlayerClassIcon.Source = args.Weapon == null ? null : (ImageSource)TryFindResource(args.Weapon);
+                DPSText.Text = $"0 (0%)";
                 PlayerDPSBar.Width = 0;
-                DPSText.Text = "0/s (0%)";
+                PlayerClassIcon.Source = args.Weapon == null ? null : (ImageSource)TryFindResource(args.Weapon);
                 this.Visibility = args.IsInParty ? Visibility.Visible : Visibility.Collapsed;
             });
         }
 
         private void OnPlayerWeaponChange(object source, PartyMemberEventArgs args) {
-            Dispatch(() => { PlayerClassIcon.Source = args.Weapon == null ? null : (ImageSource)TryFindResource(args.Weapon); });
+            Dispatch(() => {
+                PlayerClassIcon.Source = args.Weapon == null ? null : (ImageSource)TryFindResource(args.Weapon);
+            });
         }
 
         private void OnPlayerDamageChange(object source, PartyMemberEventArgs args) {
@@ -77,7 +81,7 @@ namespace HunterPie.GUI.Widgets.DPSMeter.Parts {
             if (PartyContext.TotalDamage == 0) {
                 percentage = 0;
             } else {
-                percentage =  args.Damage / PartyContext.TotalDamage;
+                percentage =  args.Damage / (float)PartyContext.TotalDamage;
             }
             Dispatch(() => {
                 DPSText.Text = $"{args.Damage} ({percentage * 100:0}%)";

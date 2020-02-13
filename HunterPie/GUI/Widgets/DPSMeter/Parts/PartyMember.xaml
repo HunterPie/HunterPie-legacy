@@ -6,7 +6,7 @@
              xmlns:local="clr-namespace:HunterPie.GUI.Widgets.DPSMeter.Parts"
              xmlns:converters="clr-namespace:HunterPie.GUI.Helpers"
              mc:Ignorable="d" 
-             x:Name="PlayerContainer" d:DesignWidth="320" Height="45">
+             x:Name="PlayerContainer" d:DesignWidth="320" Height="45" Foreground="{x:Null}">
     <UserControl.Resources>
         <ResourceDictionary>
             <converters:DPSBarWidthConverter x:Key="DPSBarWidthConverter"/>
@@ -15,18 +15,20 @@
             </ResourceDictionary.MergedDictionaries>
         </ResourceDictionary>
     </UserControl.Resources>
-    <StackPanel ClipToBounds="True">
-        <StackPanel Height="45" Background="#33000000" Orientation="Horizontal">
+    <StackPanel ClipToBounds="True" >
+        <StackPanel.Background>
+            <LinearGradientBrush EndPoint="1,0" StartPoint="0,1">
+                <GradientStop Color="#4C111111" Offset="0"/>
+                <GradientStop Color="#4C404040" Offset="1"/>
+            </LinearGradientBrush>
+        </StackPanel.Background>
+        <StackPanel Height="45" Orientation="Horizontal">
             <Image x:Name="PlayerClassIcon" Width="20" Height="20" HorizontalAlignment="Center" VerticalAlignment="Bottom" Margin="3,0,3,15" Opacity="0.8"/>
-            <TextBlock x:Name="PlayerName" TextWrapping="Wrap" Text="Player Name" Foreground="{Binding Path=DataContext.Color}" HorizontalAlignment="Left" VerticalAlignment="Center" FontSize="18" Margin="0" FontFamily="Roboto" FontWeight="Medium" MinWidth="211" MaxWidth="211" Height="41" MaxHeight="41" TextAlignment="Left" Padding="0,9,0,0" Opacity="0.8"/>
-            <Viewbox MaxWidth="80" Width="80">
-                <TextBlock x:Name="DPSText" Text="50/s (50%)" Foreground="#FFEAEAEA" FontWeight="ExtraLight"/>
+            <TextBlock x:Name="PlayerName" Foreground="{Binding Path=DataContext.Color}" TextWrapping="Wrap" Text="Player" HorizontalAlignment="Left" VerticalAlignment="Center" FontSize="20" Margin="0,2" FontFamily="Roboto" MinWidth="200" MaxWidth="211" Height="41" MaxHeight="41" TextAlignment="Left" Padding="4,9,0,0" Width="199" TextTrimming="CharacterEllipsis"/>
+            <Viewbox MaxWidth="94" Width="94">
+                <TextBlock x:Name="DPSText" Text="0 (0%)" Foreground="#FFEAEAEA" FontWeight="Normal" FontFamily="Roboto" FontSize="18" Margin="0,12,0,11" Padding="0,0,5,0"/>
             </Viewbox>
         </StackPanel>
-        <Rectangle x:Name="PlayerDPSBar" Height="3" Fill="{Binding Path=DataContext.Color}" MaxWidth="320" HorizontalAlignment="Left" Margin="-2,-9,0,0" RadiusX="5" RadiusY="5">
-            <Rectangle.Effect>
-                <DropShadowEffect Color="{Binding Path=DataContext.Color}" Direction="180" ShadowDepth="0" BlurRadius="10" Opacity="0.5"/>
-            </Rectangle.Effect>
-        </Rectangle>
+        <Rectangle x:Name="PlayerDPSBar" Height="2" Fill="{Binding Path=DataContext.Color}" MaxWidth="320" HorizontalAlignment="Left" Margin="0,-7,0,0" />
     </StackPanel>
 </UserControl>

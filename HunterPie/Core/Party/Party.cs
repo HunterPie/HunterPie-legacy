@@ -18,7 +18,7 @@ namespace HunterPie.Core {
             get {
                 int x = 0;
                 foreach (Member member in Members) {
-                    if (member.IsInParty) x++;
+                    if (member.IsInParty == true) x++;
                 }
                 return x;
             }

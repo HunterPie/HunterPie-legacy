@@ -9,12 +9,33 @@ using HunterPie.Core;
 
 namespace HunterPie.Core {
     public class Member {
-        
+
+        private string _Name;
         private int _Damage;
         private int _Weapon;
-        private bool _IsInParty = true;
 
-        public string Name { get; set; }
+        public string Name {
+            get { return _Name; }
+            set {
+                if (value == null && value == _Name && Damage > 0) {
+                    _Name = "Player";
+                    _OnSpawn();
+                    return;
+                }
+                if (value != null && value != _Name) {
+                    if (value == null && Damage > 0) {
+                        _OnSpawn();
+                    } else {
+                        _Name = value;
+                        _OnSpawn();
+                    }
+                }
+                if (value == null && value != _Name) {
+                    _Name = value;
+                    _OnSpawn();
+                }
+            }
+        }
         public int Damage {
             get { return _Damage; }
             set {
@@ -36,15 +57,7 @@ namespace HunterPie.Core {
         }
         public string WeaponIconName;
         public bool IsPartyLeader { get; set; }
-        public bool IsInParty {
-            get { return _IsInParty; }
-            set {
-                if (value != _IsInParty) {
-                    _IsInParty = value;
-                    _OnSpawn();
-                }
-            }
-        }
+        public bool IsInParty { get; set; }
 
         public delegate void PartyMemberEvents(object source, PartyMemberEventArgs args);
         public event PartyMemberEvents OnDamageChange;
