@@ -53,6 +53,8 @@ namespace HunterPie.GUI.Widgets.DPSMeter {
         }
 
         public void UnhookEvents() {
+            GameContext.Player.OnPeaceZoneEnter -= OnPeaceZoneEnter;
+            GameContext.Player.OnPeaceZoneLeave -= OnPeaceZoneLeave;
             Context.OnTotalDamageChange -= OnTotalDamageChange;
         }
 

@@ -223,24 +223,21 @@ namespace HunterPie.Core {
             Int64 NamePtr = Scanner.READ_LONGLONG(this.MonsterAddress + Address.Offsets.MonsterNamePtr);
             string MonsterId = Scanner.READ_STRING(NamePtr + 0x0c, 64).Replace("\x00", "");
             if (MonsterId != "") {
-                try {
-                    string ActualID = MonsterId.Split('\\')[4];
-                    if (GStrings.GetMonsterNameByID(ActualID) != null) {
-                        if (ActualID != this.ID) Debugger.Log($"Found new monster #{MonsterNumber} address -> 0x{MonsterAddress:X}");
-                        this.ID = ActualID;
-                        this.Name = GStrings.GetMonsterNameByID(this.ID);
-                        return;
-                    } else {
-                        this.ID = null;
-                        this.Name = null;
-                    }
-                } catch {
+                string[] MonsterID = MonsterId.Split('\\');
+                if (MonsterID.Length < 4) {
                     this.ID = null;
                     this.Name = null;
                 }
-            } else {
-                this.ID = null;
-                this.Name = null;
+                string MonsterModelID = MonsterID[4].Trim('\x00');
+                if (MonsterModelID.StartsWith("em") && !MonsterModelID.StartsWith("ems")) {
+                    if (MonsterModelID != this.ID) Debugger.Log($"Found new monster ID: {MonsterID[4]} #{MonsterNumber} @ 0x{MonsterAddress:X}");
+                    this.ID = MonsterModelID;
+                    this.Name = GStrings.GetMonsterNameByID(this.ID) ?? "Unknown Monster";
+                    return;
+                } else {
+                    this.ID = null;
+                    this.Name = null;
+                }
             }
         }
 
