@@ -5,7 +5,7 @@
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              xmlns:local="clr-namespace:HunterPie.GUI.Widgets.DPSMeter"
              xmlns:Parts="clr-namespace:HunterPie.GUI.Widgets.DPSMeter.Parts"
-             mc:Ignorable="d" Height="320.018" Width="320.006">
+             mc:Ignorable="d" BorderBrush="Black" BorderThickness="1">
     <UserControl.Resources>
         <ResourceDictionary>
             <ResourceDictionary.MergedDictionaries>
@@ -18,7 +18,7 @@
             <Image Source="{StaticResource ICON_STOPWATCH}" Width="20" Height="20" Margin="5,0,0,0"/>
             <Label x:Name="Timer" Content="" Foreground="#FFEAEAEA" FontFamily="Roboto" FontWeight="Bold" FontSize="16" />
         </StackPanel>
-        <StackPanel x:Name="Party">
+        <StackPanel x:Name="Party" Background="#7F000000">
             <Parts:PartyMember Color="#DC143C"/>
             <Parts:PartyMember Color="#FF8C00"/>
             <Parts:PartyMember Color="#6A5ACD"/>

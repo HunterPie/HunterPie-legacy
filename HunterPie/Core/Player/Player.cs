@@ -383,7 +383,11 @@ namespace HunterPie.Core {
         private void GetQuestElapsedTime() {
             Int64 EpochAddress = Scanner.READ_MULTILEVEL_PTR(Address.BASE + Address.DAMAGE_OFFSET, Address.Offsets.DamageOffsets);
             Int64 Epoch = Scanner.READ_LONGLONG(EpochAddress + 0x1028);
-            if (Epoch == 0) return;
+            if (Epoch == 0) {
+                PlayerParty.ShowDPS = false;
+                return;
+            }
+            PlayerParty.ShowDPS = true;
             PlayerParty.Epoch = DateTime.UtcNow - DateTimeOffset.FromUnixTimeSeconds(Epoch);
         }
 

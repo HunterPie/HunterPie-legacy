@@ -54,7 +54,7 @@
         <widgets:MantleTimer x:Name="PrimaryMantle" HorizontalAlignment="Left" Width="218" VerticalAlignment="Top" Visibility="Hidden"/>
         <widgets:MantleTimer x:Name="SecondaryMantle"  HorizontalAlignment="Left" Width="218" VerticalAlignment="Top" Visibility="Hidden"/>
         <widgets:HarvestBox x:Name="HarvestBoxComponent" HorizontalAlignment="Left" Margin="845,454,0,0" VerticalAlignment="Top" Visibility="Hidden"/>
-        <meter:Meter x:Name="DPSMeter" HorizontalAlignment="Left" Margin="0,415,0,0" VerticalAlignment="Top" Width="320" RenderTransformOrigin="0.5,0.5" Height="320" Visibility="Hidden">
+        <meter:Meter x:Name="DPSMeter" HorizontalAlignment="Left" Margin="0,415,0,0" VerticalAlignment="Top" Width="320" RenderTransformOrigin="0.5,0.5">
             <meter:Meter.RenderTransform>
                 <TransformGroup>
                     <ScaleTransform ScaleX="0.8" ScaleY="0.8"/>

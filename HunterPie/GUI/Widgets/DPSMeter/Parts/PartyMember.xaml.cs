@@ -91,6 +91,7 @@ namespace HunterPie.GUI.Widgets.DPSMeter.Parts {
             Dispatch(() => {
                 DPSText.Content = DamageText;
                 PlayerDPSBar.Width = percentage * PlayerDPSBar.MaxWidth;
+                PlayerDPSBarEffect.Width = PlayerDPSBar.Width;
             });
         }
 
