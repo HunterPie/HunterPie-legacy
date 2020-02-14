@@ -20,6 +20,7 @@ namespace HunterPie.GUI.Widgets.DPSMeter {
     /// </summary>
     public partial class Meter : UserControl {
 
+        List<Parts.PartyMember> Players = new List<Parts.PartyMember>();
         Game GameContext;
         Party Context;
 
@@ -32,6 +33,7 @@ namespace HunterPie.GUI.Widgets.DPSMeter {
             GameContext = ctx;
             PassContextToPlayerComponents();
             HookEvents();
+
         }
 
         private void HookEvents() {
@@ -60,20 +62,33 @@ namespace HunterPie.GUI.Widgets.DPSMeter {
 
         private void OnTotalDamageChange(object source, EventArgs args) {
             Dispatcher.BeginInvoke(System.Windows.Threading.DispatcherPriority.Background, new Action(() => {
+                SortPlayersByDamage();
                 Timer.Content = string.Format("{0:hh\\:mm\\:ss}", Context.Epoch);
             }));
         }
 
         private void PassContextToPlayerComponents() {
             for (int i = 0; i < Context.MaxSize; i++) {
-                Parts.PartyMember pMember = (Parts.PartyMember)this.Party.Children[i];
+                Parts.PartyMember pMember = new Parts.PartyMember {
+                    Color = "#FFFFFF"
+                };
                 pMember.SetContext(Context[i], Context);
+                Players.Add(pMember);
             }
+            this.Party.ItemsSource = Players;
+            
         }
 
         public void DestroyPlayerComponents() {
-            this.Party.Children.Clear();
+            Players.Clear();
             UnhookEvents();
+        }
+
+        private void SortPlayersByDamage() {
+            Players.Sort(delegate (Parts.PartyMember x, Parts.PartyMember y) {
+                return x.CompareTo(y);
+            });
+            Party.Items.Refresh();
         }
 
     }

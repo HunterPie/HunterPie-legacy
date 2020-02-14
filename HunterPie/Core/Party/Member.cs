@@ -31,7 +31,7 @@ namespace HunterPie.Core {
                         _OnSpawn();
                     }
                 }
-                if (value == null && value != _Name) {
+                if (value == null && value != _Name && Damage == 0) {
                     _Name = value;
                     _OnSpawn();
                 }
@@ -50,6 +50,7 @@ namespace HunterPie.Core {
             get { return _Weapon; }
             set {
                 if (value != _Weapon) {
+                    if (_Weapon != 255 && value == 255) return;
                     _Weapon = value;
                     WeaponIconName = GetWeaponIconNameByID(value);
                     _OnWeaponChange();

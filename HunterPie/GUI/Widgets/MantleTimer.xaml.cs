@@ -31,7 +31,7 @@ namespace HunterPie.GUI.Widgets {
         }
 
         private void Dispatch(Action function) {
-            this.Dispatcher.BeginInvoke(System.Windows.Threading.DispatcherPriority.Send, function);
+            this.Dispatcher.BeginInvoke(System.Windows.Threading.DispatcherPriority.Background, function);
         }
 
         private void HookEvents() {

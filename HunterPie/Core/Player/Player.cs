@@ -356,7 +356,6 @@ namespace HunterPie.Core {
                 Member PartyMember = PlayerParty[member];
                 PartyMember.Damage = GetPartyMemberDamage(member);
                 if ( partyMemberName != null || (partyMemberName == null && PartyMember.Damage > 0)) {
-                    partyMemberName = partyMemberName ?? "Player";
                     PartyMember.IsInParty = true;
                 } else if (partyMemberName == null && PartyMember.Damage == 0) {
                     PartyMember.IsInParty = false;

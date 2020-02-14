@@ -18,7 +18,7 @@ namespace HunterPie.GUI.Widgets.DPSMeter.Parts {
     /// <summary>
     /// Interaction logic for PartyMember.xaml
     /// </summary>
-    public partial class PartyMember : UserControl {
+    public partial class PartyMember : UserControl, IEquatable<PartyMember>, IComparable<PartyMember> {
         
         public object Color {
             get { return (object)GetValue(ColorProperty); }
@@ -28,7 +28,7 @@ namespace HunterPie.GUI.Widgets.DPSMeter.Parts {
 
     public static readonly DependencyProperty ClassProperty = DependencyProperty.Register("Class", typeof(object), typeof(Image), new PropertyMetadata(0));
 
-        Member Context;
+        public Member Context { get; private set; }
         Party PartyContext;
 
         public PartyMember() { 
@@ -99,5 +99,16 @@ namespace HunterPie.GUI.Widgets.DPSMeter.Parts {
             this.Dispatcher.BeginInvoke(System.Windows.Threading.DispatcherPriority.Normal, f);
         }
 
+        public bool Equals(PartyMember other) {
+            if (other == null) return false;
+            else return this.Context.Damage.Equals(other.Context.Damage);
+        }
+
+        public int CompareTo(PartyMember other) {
+            if (this.Context.Damage > other.Context.Damage) return -1;
+            else if (this.Context.Damage < other.Context.Damage) return 1;
+            else if (this.Equals(other)) return 0;
+            else return 0;
+        }
     }
 }
