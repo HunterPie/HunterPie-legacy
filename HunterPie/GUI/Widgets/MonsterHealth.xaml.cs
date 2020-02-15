@@ -73,6 +73,7 @@ namespace HunterPie.GUI.Widgets {
 
         private void OnMonsterDespawn(object source, EventArgs args) {
             this.Dispatch(() => {
+                this.MonsterStatus.Source = null;
                 this.MonsterCrown.Source = null;
                 this.MonsterCrown.Visibility = Visibility.Collapsed;
                 this.Visibility = Visibility.Collapsed;
@@ -83,7 +84,7 @@ namespace HunterPie.GUI.Widgets {
         private void OnMonsterSpawn(object source, MonsterSpawnEventArgs args) {
             this.Dispatch(() => {
                 this.Visibility = Visibility.Visible;
-                this.MonsterName.Content = args.Name;
+                this.MonsterName.Text = args.Name;
                 this.MonsterHPBar.Value = args.CurrentHP;
                 this.MonsterHPBar.Maximum = args.TotalHP;
                 // Set monster crown

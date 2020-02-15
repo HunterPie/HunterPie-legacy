@@ -32,6 +32,7 @@ namespace HunterPie.Core {
                 } else if (value == null && _name != value) {
                     _name = value;
                     _onMonsterDespawn();
+                    Weaknesses.Clear();
                 }
             }
         }
@@ -173,9 +174,10 @@ namespace HunterPie.Core {
             //SimulateMonster(); // Debugging purposes
             while (Scanner.GameIsRunning) {
                 GetMonsterAddress();
-                GetMonsterIDAndName();
-                GetMonsterHp();
-                GetMonsterEnrageTimer();
+                if (GetMonsterIDAndName()) {
+                    GetMonsterHp();
+                    GetMonsterEnrageTimer();
+                }
                 Thread.Sleep(200);
             }
             Thread.Sleep(1000);
@@ -219,7 +221,7 @@ namespace HunterPie.Core {
             }
         }
 
-        private void GetMonsterIDAndName() {
+        private bool GetMonsterIDAndName() {
             Int64 NamePtr = Scanner.READ_LONGLONG(this.MonsterAddress + Address.Offsets.MonsterNamePtr);
             string MonsterId = Scanner.READ_STRING(NamePtr + 0x0c, 64).Replace("\x00", "");
             if (MonsterId != "") {
@@ -227,18 +229,21 @@ namespace HunterPie.Core {
                 if (MonsterID.Length < 4) {
                     this.ID = null;
                     this.Name = null;
+                    return false;
                 }
                 string MonsterModelID = MonsterID[4].Trim('\x00');
                 if (MonsterModelID.StartsWith("em") && !MonsterModelID.StartsWith("ems")) {
                     if (MonsterModelID != this.ID) Debugger.Log($"Found new monster ID: {MonsterID[4]} #{MonsterNumber} @ 0x{MonsterAddress:X}");
                     this.ID = MonsterModelID;
                     this.Name = GStrings.GetMonsterNameByID(this.ID) ?? "Unknown Monster";
-                    return;
+                    return true;
                 } else {
                     this.ID = null;
                     this.Name = null;
+                    return false;
                 }
             }
+            return false;
         }
 
         private void GetMonsterSizeModifier() {

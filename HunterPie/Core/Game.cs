@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Threading;
+using System.Collections.Generic;
 using HunterPie.Logger;
 
 namespace HunterPie.Core {
@@ -33,6 +34,7 @@ namespace HunterPie.Core {
             }
         }
         public DateTime Time { get; private set; }
+        public bool IsActive { get; private set; }
 
         // Threading
         ThreadStart ScanGameThreadingRef;
@@ -50,23 +52,32 @@ namespace HunterPie.Core {
 
         public void StartScanning() {
             StartGameScanner();
-            BindEvents();
+            HookEvents();
             Player.StartScanning();
             FirstMonster.StartThreadingScan();
             SecondMonster.StartThreadingScan();
             ThirdMonster.StartThreadingScan();
             Debugger.Warn("Starting Game scanner");
+            IsActive = true;
         }
 
         public void StopScanning() {
+            Debugger.Warn("Stopping Game scanner");
+            UnhookEvents();
             FirstMonster.StopThread();
             SecondMonster.StopThread();
             ThirdMonster.StopThread();
             Player.StopScanning();
+            ScanGameThreading.Abort();
+            IsActive = false;
         }
 
-        private void BindEvents() {
+        private void HookEvents() {
             Player.OnZoneChange += OnZoneChange;
+        }
+
+        private void UnhookEvents() {
+            Player.OnZoneChange -= OnZoneChange;
         }
 
         public void OnZoneChange(object source, EventArgs e) {
@@ -75,17 +86,19 @@ namespace HunterPie.Core {
 
         private void StartGameScanner() {
             ScanGameThreadingRef = new ThreadStart(GameScanner);
-            ScanGameThreading = new Thread(ScanGameThreadingRef);
-            ScanGameThreading.Name = "Scanner_Game";
+            ScanGameThreading = new Thread(ScanGameThreadingRef) {
+                Name = "Scanner_Game"
+            };
             ScanGameThreading.Start();
         }
 
         private void GameScanner() {
+            
             while (Memory.Scanner.GameIsRunning) {
+                PredictTarget();
                 if (DateTime.UtcNow - Clock >= new TimeSpan(0, 0, 10)) {
                     Clock = DateTime.UtcNow;
                 }
-                PredictTarget();
                 Thread.Sleep(1000);
             }
             Thread.Sleep(1000);

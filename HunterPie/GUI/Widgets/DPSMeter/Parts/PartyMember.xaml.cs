@@ -31,20 +31,16 @@ namespace HunterPie.GUI.Widgets.DPSMeter.Parts {
         public Member Context { get; private set; }
         Party PartyContext;
 
-        public PartyMember() { 
+        public PartyMember() {
             InitializeComponent();
             this.DataContext = this;
-            this.Visibility = Visibility.Collapsed;
-        }
-
-        ~PartyMember() {
-            UnhookEvents();
         }
 
         public void SetContext(Member ctx, Party pctx) {
             Context = ctx;
             PartyContext = pctx;
             HookEvents();
+            SetPlayerInformation();
         }
 
         private void HookEvents() {
@@ -92,6 +88,15 @@ namespace HunterPie.GUI.Widgets.DPSMeter.Parts {
                 DPSText.Content = DamageText;
                 PlayerDPSBar.Width = percentage * PlayerDPSBar.MaxWidth;
                 PlayerDPSBarEffect.Width = PlayerDPSBar.Width;
+            });
+        }
+
+        private void SetPlayerInformation() {
+            Dispatch(() => {
+                PlayerName.Content = Context.Name;
+                DPSText.Content = "0 (0%)";
+                PlayerClassIcon.Source = Context.WeaponIconName == null ? null : (ImageSource)TryFindResource(Context.WeaponIconName);
+                this.Visibility = Context.IsInParty ? Visibility.Visible : Visibility.Collapsed;
             });
         }
 

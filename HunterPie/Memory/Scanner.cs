@@ -104,6 +104,7 @@ namespace HunterPie.Memory {
                     }
                     if (GameIsRunning) {
                         Logger.Debugger.Log("Game process was closed by user!");
+                        CloseHandle(ProcessHandle);
                         ProcessHandle = (IntPtr)0;
                         _onGameClosed();
                     }
@@ -112,7 +113,7 @@ namespace HunterPie.Memory {
                 } else if (!GameIsRunning) {
                     while (MonsterHunter.Length == 0 || MonsterHunter[0].MainWindowTitle == "") {
                         MonsterHunter = Process.GetProcessesByName(PROCESS_NAME);
-                        Thread.Sleep(100);
+                        Thread.Sleep(500);
                     }
                     PID = MonsterHunter[0].Id;
                     ProcessHandle = OpenProcess(PROCESS_VM_READ, false, PID);
@@ -129,7 +130,7 @@ namespace HunterPie.Memory {
                 if (GameIsRunning) {
                     IsForegroundWindow = GetForegroundWindow() == WindowHandle;
                 }
-                Thread.Sleep(200);
+                Thread.Sleep(1000);
             }
         }
 

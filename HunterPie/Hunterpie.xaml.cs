@@ -112,13 +112,13 @@ namespace HunterPie {
         }
 
         private void StartEverything() {
-            MonsterHunter.StartScanning();
             HookEvents();
             Scanner.StartScanning(); // Scans game memory
             GameOverlay = new Overlay(MonsterHunter);
             UserSettings.TriggerSettingsEvent();
             GameOverlay.HookEvents(); // Calls this after settings
-            GameOverlay.Hide();
+            GameOverlay.Show();
+            //GameOverlay.Hide();
         }
 
         /* Game events */
@@ -136,6 +136,7 @@ namespace HunterPie {
 
         private void OnSessionChange(object source, EventArgs args) {
             Debugger.Log($"SESSION: {MonsterHunter.Player.SessionID}");
+            
         }
 
         private void UnhookEvents() {
@@ -166,6 +167,7 @@ namespace HunterPie {
         }
 
         public void OnGameStart(object source, EventArgs e) {
+            MonsterHunter.StartScanning();
             if (Address.LoadMemoryMap(Scanner.GameVersion) || Scanner.GameVersion == Address.GAME_VERSION) {
                 Debugger.Warn($"Loaded 'MonsterHunterWorld.{Scanner.GameVersion}.map'");
             } else {
@@ -181,6 +183,7 @@ namespace HunterPie {
                     this.Close();
                 }));
             }
+            MonsterHunter.StopScanning();
         }
 
         /* Open sub windows */
@@ -224,9 +227,10 @@ namespace HunterPie {
             this.Hide();
             // Stop Threads
             GameOverlay.Destroy();
-            MonsterHunter.StopScanning();
+            if (MonsterHunter.IsActive) MonsterHunter.StopScanning();
             Discord.CloseConnection();
             Scanner.StopScanning();
+            
             // Close stuff
             this.UnhookEvents();
             Environment.Exit(0);

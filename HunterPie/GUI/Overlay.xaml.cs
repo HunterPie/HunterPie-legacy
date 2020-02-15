@@ -19,9 +19,6 @@ namespace HunterPie.GUI {
         Game ctx;
         double w_Height = Screen.PrimaryScreen.Bounds.Height;
         double w_Width = Screen.PrimaryScreen.Bounds.Width;
-
-        // Animations (Will refactor this later)
-        //Storyboard ANIM_ENRAGED;
         
         [DllImport("user32.dll")]
         private static extern int SetWindowLong(IntPtr hwnd, int index, int style);

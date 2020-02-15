@@ -31,9 +31,8 @@ namespace HunterPie.GUI.Widgets.DPSMeter {
         public void SetContext(Game ctx) {
             Context = ctx.Player.PlayerParty;
             GameContext = ctx;
-            PassContextToPlayerComponents();
             HookEvents();
-
+            this.Party.ItemsSource = Players;
         }
 
         private void HookEvents() {
@@ -44,12 +43,14 @@ namespace HunterPie.GUI.Widgets.DPSMeter {
 
         private void OnPeaceZoneLeave(object source, EventArgs args) {
             Dispatcher.BeginInvoke(System.Windows.Threading.DispatcherPriority.Background, new Action(() => {
+                CreatePlayerComponents();
                 Visibility = Visibility.Visible;
             }));
         }
 
         private void OnPeaceZoneEnter(object source, EventArgs args) {
             Dispatcher.BeginInvoke(System.Windows.Threading.DispatcherPriority.Background, new Action(() => {
+                DestroyPlayerComponents();
                 Visibility = Visibility.Hidden;
             }));
         }
@@ -67,7 +68,7 @@ namespace HunterPie.GUI.Widgets.DPSMeter {
             }));
         }
 
-        private void PassContextToPlayerComponents() {
+        private void CreatePlayerComponents() {
             for (int i = 0; i < Context.MaxSize; i++) {
                 Parts.PartyMember pMember = new Parts.PartyMember {
                     Color = "#FFFFFF"
@@ -75,13 +76,14 @@ namespace HunterPie.GUI.Widgets.DPSMeter {
                 pMember.SetContext(Context[i], Context);
                 Players.Add(pMember);
             }
-            this.Party.ItemsSource = Players;
-            
+            Party.Items.Refresh();
         }
 
         public void DestroyPlayerComponents() {
+            foreach (Parts.PartyMember player in Players) {
+                player.UnhookEvents();
+            }
             Players.Clear();
-            UnhookEvents();
         }
 
         private void SortPlayersByDamage() {

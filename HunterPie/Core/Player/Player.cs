@@ -9,13 +9,11 @@ namespace HunterPie.Core {
         // Private variables
         private Int64 _playerAddress = 0x0;
         private int _level;
-        private string _name;
         private int _zoneId = -1;
         private string _zoneName;
         private int _weaponId;
         private string _weaponName;
         private string _sessionId;
-        private int _masterRank;
 
         // Game info
         private int[] PeaceZones = new int[9] { 0, 301, 302, 303, 305, 306, 501, 502, 503 };
@@ -45,29 +43,13 @@ namespace HunterPie.Core {
                 }
             }
         }
-        public int MasterRank { // Master Rank
-            get { return _masterRank; }
-            set {
-                if (_masterRank != value) {
-                    _masterRank = value;
-                    _onMasterRankLevelUp();
-                }
-            }
-        }
-        public string Name {
-            get { return _name; }
-            set {
-                if (_name != value) {
-                    _name = value;
-                    _onNameChange();
-                }
-            }
-        }
+        public int MasterRank { get; private set; }
+        public string Name { get; private set; }
         public int ZoneID {
             get { return _zoneId; }
             set {
                 if (_zoneId != value) {
-                    if (PeaceZones.Contains(_zoneId) && !PeaceZones.Contains(value)) _onPeaceZoneLeave();
+                    if ((_zoneId == -1 || PeaceZones.Contains(_zoneId)) && !PeaceZones.Contains(value)) _onPeaceZoneLeave();
                     if (_HBZones.Contains(_zoneId) && !_HBZones.Contains(value)) _onVillageLeave();
                     _zoneId = value;
                     _onZoneChange();
@@ -133,12 +115,9 @@ namespace HunterPie.Core {
         // Level event handler
         public delegate void PlayerEvents(object source, EventArgs args);
         public event PlayerEvents OnLevelChange;
-        public event PlayerEvents OnMasterRankChange;
-        public event PlayerEvents OnNameChange;
         public event PlayerEvents OnZoneChange;
         public event PlayerEvents OnWeaponChange;
         public event PlayerEvents OnSessionChange;
-        public event PlayerEvents OnPartyChange;
         public event PlayerEvents OnCharacterLogin;
         public event PlayerEvents OnPeaceZoneEnter;
         public event PlayerEvents OnVillageEnter;
@@ -156,14 +135,6 @@ namespace HunterPie.Core {
             OnLevelChange?.Invoke(this, EventArgs.Empty);
         }
 
-        protected virtual void _onMasterRankLevelUp() {
-            OnMasterRankChange?.Invoke(this, EventArgs.Empty);
-        }
-
-        protected virtual void _onNameChange() {
-            OnNameChange?.Invoke(this, EventArgs.Empty);
-        }
-
         protected virtual void _onZoneChange() {
             OnZoneChange?.Invoke(this, EventArgs.Empty);
         }
@@ -174,10 +145,6 @@ namespace HunterPie.Core {
 
         protected virtual void _onSessionChange() {
             OnSessionChange?.Invoke(this, EventArgs.Empty);
-        }
-        
-        protected virtual void _onPartyChange() {
-            OnPartyChange?.Invoke(this, EventArgs.Empty);
         }
 
         protected virtual void _onPeaceZoneEnter() {
@@ -216,16 +183,16 @@ namespace HunterPie.Core {
                     GetPlayerMasterRank();
                     GetPlayerName();
                     GetWeaponId();
+                    GetFertilizers();
+                    GetPrimaryMantle();
+                    GetSecondaryMantle();
+                    GetPrimaryMantleTimers();
+                    GetSecondaryMantleTimers();
+                    GetParty();
                 }
                 GetZoneId();
-                GetFertilizers();
                 GetSessionId();
                 GetEquipmentAddress();
-                GetPrimaryMantle();
-                GetSecondaryMantle();
-                GetPrimaryMantleTimers();
-                GetSecondaryMantleTimers();
-                GetParty();
                 Thread.Sleep(150);
             }
             Thread.Sleep(1000);
