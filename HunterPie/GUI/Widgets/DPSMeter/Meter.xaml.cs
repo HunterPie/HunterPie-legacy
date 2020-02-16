@@ -66,7 +66,14 @@ namespace HunterPie.GUI.Widgets.DPSMeter {
             Dispatcher.BeginInvoke(System.Windows.Threading.DispatcherPriority.Background, new Action(() => {
                 if (Context.TotalDamage > 0 && UserSettings.PlayerConfig.Overlay.DPSMeter.Enabled) this.Visibility = Visibility.Visible;
                 SortPlayersByDamage();
-                Timer.Content = string.Format("{0:hh\\:mm\\:ss}", Context.Epoch);
+                if (Context.Epoch.TotalSeconds > 0) {
+                    TypeIcon.Visibility = Visibility.Visible;
+                    Timer.Content = string.Format("{0:hh\\:mm\\:ss}", Context.Epoch);
+                } else {
+                    TypeIcon.Visibility = Visibility.Hidden;
+                    Timer.Content = "Total Damage";
+                }
+                
             }));
         }
 
