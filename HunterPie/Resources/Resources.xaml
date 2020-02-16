@@ -2,8 +2,6 @@
                     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
                     xmlns:local="clr-namespace:HunterPie.Resources"
                     xmlns:converters="clr-namespace:HunterPie.GUI.Helpers">
-    <!-- Converters -->
-    <converters:PercentageConverter x:Key="PercentageConverter"/>
     <!-- Elements -->
     <DrawingImage x:Key="ELEMENT_FIRE">
         <DrawingImage.Drawing>

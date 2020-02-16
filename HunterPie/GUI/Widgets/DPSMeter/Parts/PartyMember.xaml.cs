@@ -34,6 +34,7 @@ namespace HunterPie.GUI.Widgets.DPSMeter.Parts {
             PartyContext = pctx;
             HookEvents();
             SetPlayerInformation();
+            Logger.Debugger.Log(ctx.Damage);
         }
 
         private void HookEvents() {
@@ -46,6 +47,8 @@ namespace HunterPie.GUI.Widgets.DPSMeter.Parts {
             Context.OnSpawn -= OnPlayerSpawn;
             Context.OnDamageChange -= OnPlayerDamageChange;
             Context.OnWeaponChange -= OnPlayerWeaponChange;
+            Context = null;
+            PartyContext = null;
         }
 
         private void OnPlayerSpawn(object source, PartyMemberEventArgs args) {

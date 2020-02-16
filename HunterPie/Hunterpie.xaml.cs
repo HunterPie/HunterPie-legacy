@@ -36,7 +36,7 @@ namespace HunterPie {
             this.version_text.Content = $"Version: {HUNTERPIE_VERSION} ({UserSettings.PlayerConfig.HunterPie.Update.Branch})";
             Debugger.Warn("Initializing HunterPie!");
             GStrings.InitStrings(UserSettings.PlayerConfig.HunterPie.Language);
-            MonsterData.LoadMonsterData();
+
             StartEverything();
         }
 
@@ -117,8 +117,6 @@ namespace HunterPie {
             GameOverlay = new Overlay(MonsterHunter);
             UserSettings.TriggerSettingsEvent();
             GameOverlay.HookEvents(); // Calls this after settings
-            GameOverlay.Show();
-            //GameOverlay.Hide();
         }
 
         /* Game events */
@@ -167,6 +165,7 @@ namespace HunterPie {
         }
 
         public void OnGameStart(object source, EventArgs e) {
+            MonsterData.LoadMonsterData();
             MonsterHunter.StartScanning();
             if (Address.LoadMemoryMap(Scanner.GameVersion) || Scanner.GameVersion == Address.GAME_VERSION) {
                 Debugger.Warn($"Loaded 'MonsterHunterWorld.{Scanner.GameVersion}.map'");
@@ -178,6 +177,7 @@ namespace HunterPie {
         }
 
         public void OnGameClose(object source, EventArgs e) {
+            MonsterData.UnloadMonsterData();
             if (UserSettings.PlayerConfig.HunterPie.Options.CloseWhenGameCloses) {
                 Dispatcher.BeginInvoke(System.Windows.Threading.DispatcherPriority.Normal, new Action(() => {
                     this.Close();

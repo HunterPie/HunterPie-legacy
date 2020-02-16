@@ -13,6 +13,11 @@ namespace HunterPie.Core {
             Debugger.Warn("Loaded monster data");
         }
 
+        static public void UnloadMonsterData() {
+            MonsterDataDocument = null;
+            Debugger.Warn("Unloaded monster data");
+        }
+
         static public Dictionary<string, int> GetMonsterWeaknessById(string ID) {
             XmlNode Weaknesses = MonsterDataDocument.SelectSingleNode($"//Monsters/Monster[@ID='{ID}']/Weaknesses");
             if (Weaknesses == null) return null;

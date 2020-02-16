@@ -13,7 +13,7 @@ namespace HunterPie.Core {
 
         private string _Name;
         private int _Damage;
-        private int _Weapon;
+        private int _Weapon = 255;
 
         public string Name {
             get { return _Name; }

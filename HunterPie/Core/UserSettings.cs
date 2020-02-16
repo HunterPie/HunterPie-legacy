@@ -66,7 +66,7 @@ namespace HunterPie.Core {
 
             public class DPSMeter {
                 public bool Enabled { get; set; } = true;
-                public int[] Position { get; set; } = new int[2] { 500, 0 };
+                public int[] Position { get; set; } = new int[2] { 10, 350 };
                 public Players[] PartyMembers { get; set; } = new Players[4] { new Players(), new Players(), new Players(), new Players() };
             }
 

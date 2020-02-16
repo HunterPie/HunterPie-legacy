@@ -23,6 +23,7 @@ namespace HunterPie.GUI.Widgets.DPSMeter {
         List<Parts.PartyMember> Players = new List<Parts.PartyMember>();
         Game GameContext;
         Party Context;
+        public bool IsActive { get; private set; }
 
         public Meter() {
             InitializeComponent();
@@ -84,6 +85,7 @@ namespace HunterPie.GUI.Widgets.DPSMeter {
                 Players.Add(pMember);
             }
             Party.Items.Refresh();
+            IsActive = true;
         }
 
         public void DestroyPlayerComponents() {
@@ -91,6 +93,7 @@ namespace HunterPie.GUI.Widgets.DPSMeter {
                 player.UnhookEvents();
             }
             Players.Clear();
+            IsActive = false;
         }
 
         private void SortPlayersByDamage() {

@@ -186,9 +186,9 @@ namespace HunterPie.GUI {
                 if (X != Left || Y != Top) {
                     DPSMeter.Margin = new Thickness(X, Y, Right, Bottom);
                 }
-                if (DPSMeter.IsVisible && !UserSettings.PlayerConfig.Overlay.DPSMeter.Enabled) {
+                if (!UserSettings.PlayerConfig.Overlay.DPSMeter.Enabled) {
                     DPSMeter.Visibility = Visibility.Hidden;
-                } else if (UserSettings.PlayerConfig.Overlay.DPSMeter.Enabled && DPSMeter.Visibility == Visibility.Hidden) {
+                } else if (UserSettings.PlayerConfig.Overlay.DPSMeter.Enabled && DPSMeter.IsActive) {
                     DPSMeter.Visibility = Visibility.Visible;
                 }
             });
