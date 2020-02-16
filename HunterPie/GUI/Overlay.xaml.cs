@@ -188,7 +188,7 @@ namespace HunterPie.GUI {
                 }
                 if (DPSMeter.IsVisible && !UserSettings.PlayerConfig.Overlay.DPSMeter.Enabled) {
                     DPSMeter.Visibility = Visibility.Hidden;
-                } else if (UserSettings.PlayerConfig.Overlay.DPSMeter.Enabled) {
+                } else if (UserSettings.PlayerConfig.Overlay.DPSMeter.Enabled && DPSMeter.Visibility == Visibility.Collapsed) {
                     DPSMeter.Visibility = Visibility.Visible;
                 }
             });

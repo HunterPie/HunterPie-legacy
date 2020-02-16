@@ -44,7 +44,8 @@ namespace HunterPie.GUI.Widgets.DPSMeter {
         private void OnPeaceZoneLeave(object source, EventArgs args) {
             Dispatcher.BeginInvoke(System.Windows.Threading.DispatcherPriority.Background, new Action(() => {
                 CreatePlayerComponents();
-                Visibility = Context.TotalDamage > 0 ? Visibility.Visible : Visibility.Collapsed;
+                if (UserSettings.PlayerConfig.Overlay.DPSMeter.Enabled) Visibility = Context.TotalDamage > 0 ? Visibility.Visible : Visibility.Collapsed;
+                else { Visibility = Visibility.Collapsed; }
             }));
         }
 
