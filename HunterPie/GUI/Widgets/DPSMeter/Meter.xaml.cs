@@ -44,14 +44,14 @@ namespace HunterPie.GUI.Widgets.DPSMeter {
         private void OnPeaceZoneLeave(object source, EventArgs args) {
             Dispatcher.BeginInvoke(System.Windows.Threading.DispatcherPriority.Background, new Action(() => {
                 CreatePlayerComponents();
-                Visibility = Visibility.Visible;
+                Visibility = Context.TotalDamage > 0 ? Visibility.Visible : Visibility.Collapsed;
             }));
         }
 
         private void OnPeaceZoneEnter(object source, EventArgs args) {
             Dispatcher.BeginInvoke(System.Windows.Threading.DispatcherPriority.Background, new Action(() => {
                 DestroyPlayerComponents();
-                Visibility = Visibility.Hidden;
+                Visibility = Visibility.Collapsed;
             }));
         }
 
@@ -63,6 +63,7 @@ namespace HunterPie.GUI.Widgets.DPSMeter {
 
         private void OnTotalDamageChange(object source, EventArgs args) {
             Dispatcher.BeginInvoke(System.Windows.Threading.DispatcherPriority.Background, new Action(() => {
+                if (Context.TotalDamage > 0 && UserSettings.PlayerConfig.Overlay.DPSMeter.Enabled) this.Visibility = Visibility.Visible;
                 SortPlayersByDamage();
                 Timer.Content = string.Format("{0:hh\\:mm\\:ss}", Context.Epoch);
             }));
@@ -70,9 +71,7 @@ namespace HunterPie.GUI.Widgets.DPSMeter {
 
         private void CreatePlayerComponents() {
             for (int i = 0; i < Context.MaxSize; i++) {
-                Parts.PartyMember pMember = new Parts.PartyMember {
-                    Color = "#FFFFFF"
-                };
+                Parts.PartyMember pMember = new Parts.PartyMember(UserSettings.PlayerConfig.Overlay.DPSMeter.PartyMembers[i].Color);
                 pMember.SetContext(Context[i], Context);
                 Players.Add(pMember);
             }
@@ -90,6 +89,14 @@ namespace HunterPie.GUI.Widgets.DPSMeter {
             Players.Sort(delegate (Parts.PartyMember x, Parts.PartyMember y) {
                 return x.CompareTo(y);
             });
+            Party.Items.Refresh();
+        }
+
+        public void UpdatePlayersColor() {
+            if (Players.Count <= 0) return;
+            for (int i = 0; i < Context.MaxSize; i++) {
+                Players[i].ChangeColor(UserSettings.PlayerConfig.Overlay.DPSMeter.PartyMembers[i].Color);
+            }
             Party.Items.Refresh();
         }
 

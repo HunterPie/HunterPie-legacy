@@ -74,6 +74,7 @@ namespace HunterPie.GUI {
             this.ChangeSecondaryMantlePosition(source, e);
             this.ChangePrimaryMantleColor(source, e);
             this.ChangeSecondaryMantleColor(source, e);
+            this.ChangeDPSMeterPosition(source, e);
         }
 
         private void SetWindowFlags() {
@@ -172,7 +173,27 @@ namespace HunterPie.GUI {
                 }
             });
         }
-        
+
+        public void ChangeDPSMeterPosition(object source, EventArgs e) {
+            double X = UserSettings.PlayerConfig.Overlay.DPSMeter.Position[0];
+            double Y = UserSettings.PlayerConfig.Overlay.DPSMeter.Position[1];
+            double Left = DPSMeter.Margin.Left;
+            double Top = DPSMeter.Margin.Top;
+            double Right = DPSMeter.Margin.Right;
+            double Bottom = DPSMeter.Margin.Bottom;
+            Dispatch(() => {
+                DPSMeter.UpdatePlayersColor();
+                if (X != Left || Y != Top) {
+                    DPSMeter.Margin = new Thickness(X, Y, Right, Bottom);
+                }
+                if (DPSMeter.IsVisible && !UserSettings.PlayerConfig.Overlay.DPSMeter.Enabled) {
+                    DPSMeter.Visibility = Visibility.Hidden;
+                } else if (UserSettings.PlayerConfig.Overlay.DPSMeter.Enabled) {
+                    DPSMeter.Visibility = Visibility.Visible;
+                }
+            });
+        }
+
         public void ChangeHarvestBoxPosition(object source, EventArgs e) {
             double X = UserSettings.PlayerConfig.Overlay.HarvestBoxComponent.Position[0];
             double Y = UserSettings.PlayerConfig.Overlay.HarvestBoxComponent.Position[1];
@@ -210,7 +231,6 @@ namespace HunterPie.GUI {
             return brush;
         }
 
-        
         public void ChangePrimaryMantleColor(object source, EventArgs e) {
             string newColor = UserSettings.PlayerConfig.Overlay.PrimaryMantle.Color;
             if (PrimaryMantle.MantleCooldown.Fill.ToString() == newColor) {

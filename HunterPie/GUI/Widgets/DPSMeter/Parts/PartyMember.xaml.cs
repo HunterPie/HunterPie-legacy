@@ -20,20 +20,13 @@ namespace HunterPie.GUI.Widgets.DPSMeter.Parts {
     /// </summary>
     public partial class PartyMember : UserControl, IEquatable<PartyMember>, IComparable<PartyMember> {
         
-        public object Color {
-            get { return (object)GetValue(ColorProperty); }
-            set { SetValue(ColorProperty, value); }
-        }
-        public static readonly DependencyProperty ColorProperty = DependencyProperty.Register("Color", typeof(object), typeof(Rectangle), new PropertyMetadata(0));
-
-    public static readonly DependencyProperty ClassProperty = DependencyProperty.Register("Class", typeof(object), typeof(Image), new PropertyMetadata(0));
-
         public Member Context { get; private set; }
         Party PartyContext;
 
-        public PartyMember() {
+        public PartyMember(string Color) {
             InitializeComponent();
             this.DataContext = this;
+            ChangeColor(Color);
         }
 
         public void SetContext(Member ctx, Party pctx) {
@@ -92,12 +85,40 @@ namespace HunterPie.GUI.Widgets.DPSMeter.Parts {
         }
 
         private void SetPlayerInformation() {
+            float percentage;
+            string DamageText;
+            if (PartyContext.TotalDamage == 0) {
+                percentage = 0;
+            } else {
+                percentage = Context.Damage / (float)PartyContext.TotalDamage;
+            }
+            if (PartyContext.ShowDPS) {
+                float TimeElapsed = (float)PartyContext.Epoch.TotalSeconds;
+                TimeElapsed = TimeElapsed > 0 ? TimeElapsed : 1;
+                DamageText = $"{Context.Damage / TimeElapsed:0.00}/s ({percentage * 100:0}%)";
+            } else {
+                DamageText = $"{Context.Damage} ({percentage * 100:0}%)";
+            }
             Dispatch(() => {
                 PlayerName.Content = Context.Name;
-                DPSText.Content = "0 (0%)";
+                DPSText.Content = DamageText;
                 PlayerClassIcon.Source = Context.WeaponIconName == null ? null : (ImageSource)TryFindResource(Context.WeaponIconName);
+                PlayerDPSBarEffect.Width = PlayerDPSBar.Width = percentage * PlayerDPSBar.MaxWidth;
                 this.Visibility = Context.IsInParty ? Visibility.Visible : Visibility.Collapsed;
             });
+        }
+
+        public void ChangeColor(string hexColor) {
+            Color PlayerColor = (Color)ColorConverter.ConvertFromString(hexColor);
+            LinearGradientBrush ShinyEffect = new LinearGradientBrush() {
+                StartPoint = new Point(1, 1.15),
+                EndPoint = new Point(1, 0),
+                Opacity = 0.4
+            };
+            ShinyEffect.GradientStops.Add(new GradientStop(PlayerColor, 0));
+            ShinyEffect.GradientStops.Add(new GradientStop((Color)ColorConverter.ConvertFromString("#00000000"), 1));
+            this.PlayerDPSBarEffect.Fill = ShinyEffect;
+            this.PlayerDPSBar.Fill = new SolidColorBrush(PlayerColor);
         }
 
         private void Dispatch(Action f) {

@@ -38,6 +38,7 @@ namespace HunterPie.Core {
                 public Harvestboxcomponent HarvestBoxComponent { get; set; } = new Harvestboxcomponent();
                 public Primarymantle PrimaryMantle { get; set; } = new Primarymantle();
                 public Secondarymantle SecondaryMantle { get; set; } = new Secondarymantle();
+                public DPSMeter DPSMeter { get; set; } = new DPSMeter();
             }
 
             public class Monsterscomponent {
@@ -61,6 +62,16 @@ namespace HunterPie.Core {
                 public bool Enabled { get; set; } = true;
                 public int[] Position { get; set; } = new int[2] { 1145, 300 };
                 public string Color { get; set; } = "#996900FF";
+            }
+
+            public class DPSMeter {
+                public bool Enabled { get; set; } = true;
+                public int[] Position { get; set; } = new int[2] { 500, 0 };
+                public Players[] PartyMembers { get; set; } = new Players[4] { new Players(), new Players(), new Players(), new Players() };
+            }
+
+            public class Players {
+                public string Color { get; set; } = "#FFFFFF";
             }
 
             public class Richpresence {
@@ -87,52 +98,7 @@ namespace HunterPie.Core {
             public class Options {
                 public bool CloseWhenGameCloses { get; set; } = false;
             }
-
         }
-
-        private static readonly Config.Rootobject Default_Config = new Config.Rootobject {
-            Overlay = new Config.Overlay {
-                Enabled = true,
-                Position = new int[2] { 0, 0 },
-                HideWhenGameIsUnfocused = true,
-                MonstersComponent = new Config.Monsterscomponent {
-                    Enabled = true,
-                    Position = new int[2] { 335, 10 },
-                    ShowMonsterWeakness = true
-                },
-                HarvestBoxComponent = new Config.Harvestboxcomponent {
-                    Enabled = true,
-                    Position = new int[2] { 1110, 30 }
-                },
-                PrimaryMantle = new Config.Primarymantle {
-                    Enabled = true,
-                    Position = new int[2] { 1145, 300 },
-                    Color = "#99C500AA"
-                },
-                SecondaryMantle = new Config.Secondarymantle {
-                    Enabled = true,
-                    Position = new int[2] { 1145, 350 },
-                    Color = "#996900FF"
-                }
-            },
-            RichPresence = new Config.Richpresence {
-                Enabled = true
-            },
-            HunterPie = new Config.Hunterpie {
-                Language = @"Languages\en-us.xml",
-                Update = new Config.Update {
-                    Enabled = true,
-                    Branch = "master"
-                },
-                Launch = new Config.Launch {
-                    GamePath = "",
-                    LaunchArgs = ""
-                },
-                Options = new Config.Options {
-                    CloseWhenGameCloses = false
-                }
-            }
-        };
 
         public static void TriggerSettingsEvent() {
             _onSettingsUpdate();
@@ -168,7 +134,7 @@ namespace HunterPie.Core {
         }
 
         public static string GetSerializedDefaultConfig() {
-            return JsonConvert.SerializeObject(Default_Config, Formatting.Indented);
+            return JsonConvert.SerializeObject(new Config.Rootobject(), Formatting.Indented);
         }
 
         public static void MakeNewConfig() {
@@ -201,7 +167,7 @@ namespace HunterPie.Core {
                 _onSettingsUpdate();
                 Debugger.Warn("Loaded user config!");
             } catch(Exception err) {
-                Debugger.Error("peepee");
+                Debugger.Error($"Failed to parse config.json!\n{err.Message}");
             }
         }
 

@@ -18,7 +18,7 @@
         <Rectangle x:Name="PlayerDPSBarEffect" Height="46" MaxWidth="320" HorizontalAlignment="Left" Margin="0">
             <Rectangle.Fill>
                 <LinearGradientBrush EndPoint="1,0" StartPoint="1,1.5" Opacity="0.4">
-                    <GradientStop Color="{Binding Path=DataContext.Color}" Offset="0"/>
+                    <GradientStop Color="#FFFFFF" Offset="0"/>
                     <GradientStop Offset="1" Color="#00000000"/>
                 </LinearGradientBrush>
             </Rectangle.Fill>
@@ -28,6 +28,6 @@
             <Label x:Name="PlayerName" Content="Player" Foreground="WhiteSmoke"  MaxWidth="200" Width="178" DockPanel.Dock="Left" VerticalContentAlignment="Center" FontSize="18" FontFamily="Roboto" FontWeight="Medium" Padding="11,5,5,5"/>
             <Label x:Name="DPSText" Foreground="WhiteSmoke" DockPanel.Dock="Right" HorizontalAlignment="Right" Width="117" HorizontalContentAlignment="Right" VerticalContentAlignment="Center" FontFamily="Roboto" FontSize="16" FontWeight="Medium"/>
         </DockPanel>
-        <Rectangle x:Name="PlayerDPSBar" Opacity="0.8" Height="3" Fill="{Binding Path=DataContext.Color}" MaxWidth="320" HorizontalAlignment="Left" Margin="0,-3,0,0" />
+        <Rectangle x:Name="PlayerDPSBar" Opacity="0.8" Height="3" Fill="#FFFFFF" MaxWidth="320" HorizontalAlignment="Left" Margin="0,-3,0,0" />
     </StackPanel>
 </UserControl>

@@ -47,6 +47,14 @@
             <RowDefinition Height="1080"/>
         </Grid.RowDefinitions>
         <StackPanel x:Name="MonstersContainer" Margin="560,19,0,0" Orientation="Horizontal" MinHeight="62" MinWidth="778" MaxWidth="778" MaxHeight="62" HorizontalAlignment="Left" Width="786" Height="27" VerticalAlignment="Top" Style="{StaticResource StackPanelAnimations}" RenderTransformOrigin="0.5,0.5">
+            <StackPanel.RenderTransform>
+                <TransformGroup>
+                    <ScaleTransform/>
+                    <SkewTransform/>
+                    <RotateTransform/>
+                    <TranslateTransform/>
+                </TransformGroup>
+            </StackPanel.RenderTransform>
             <widgets:MonsterHealth x:Name="FirstMonster" Visibility="Collapsed"/>
             <widgets:MonsterHealth x:Name="SecondMonster" Visibility="Collapsed"/>
             <widgets:MonsterHealth x:Name="ThirdMonster" Visibility="Collapsed"/>
@@ -54,15 +62,15 @@
         <widgets:MantleTimer x:Name="PrimaryMantle" HorizontalAlignment="Left" Width="218" VerticalAlignment="Top" Visibility="Hidden"/>
         <widgets:MantleTimer x:Name="SecondaryMantle"  HorizontalAlignment="Left" Width="218" VerticalAlignment="Top" Visibility="Hidden"/>
         <widgets:HarvestBox x:Name="HarvestBoxComponent" HorizontalAlignment="Left" Margin="845,454,0,0" VerticalAlignment="Top" Visibility="Hidden"/>
-        <meter:Meter x:Name="DPSMeter" Visibility="Hidden" HorizontalAlignment="Left" Margin="0,415,0,0" VerticalAlignment="Top" Width="320" RenderTransformOrigin="0.5,0.5">
-            <meter:Meter.RenderTransform>
+        <meter:Meter x:Name="DPSMeter" HorizontalAlignment="Left" Margin="0,500,0,0" VerticalAlignment="Top" RenderTransformOrigin="0.5,0.5" Width="322">
+            <meter:Meter.LayoutTransform>
                 <TransformGroup>
-                    <ScaleTransform ScaleX="0.8" ScaleY="0.8"/>
+                    <ScaleTransform ScaleY="0.8" ScaleX="0.8"/>
                     <SkewTransform/>
                     <RotateTransform/>
                     <TranslateTransform/>
                 </TransformGroup>
-            </meter:Meter.RenderTransform>
+            </meter:Meter.LayoutTransform>
         </meter:Meter>
     </Grid>
 </Window>
