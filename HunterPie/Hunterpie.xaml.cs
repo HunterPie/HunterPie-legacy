@@ -276,5 +276,8 @@ namespace HunterPie {
             }
         }
 
+        private void OnDiscordButtonClick(object sender, RoutedEventArgs e) {
+            System.Diagnostics.Process.Start("https://discord.gg/5pdDq4Q");
+        }
     }
 }

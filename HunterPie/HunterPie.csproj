@@ -50,7 +50,7 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <PropertyGroup>
-    <ApplicationIcon>media\icon.ico</ApplicationIcon>
+    <ApplicationIcon>LOGO_HunterPie.ico</ApplicationIcon>
   </PropertyGroup>
   <PropertyGroup>
     <StartupObject />
@@ -263,30 +263,25 @@
     <None Include="App.config" />
   </ItemGroup>
   <ItemGroup>
-    <Resource Include="media\hunterPyConsole.png">
+    <Resource Include="media\ICON_SETTINGS.png">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Resource>
   </ItemGroup>
   <ItemGroup>
-    <Resource Include="media\settingsIcon.png">
+    <Resource Include="media\ICON_GITHUB.png">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Resource>
   </ItemGroup>
   <ItemGroup>
-    <Resource Include="media\icon.ico" />
-  </ItemGroup>
-  <ItemGroup>
-    <Resource Include="media\GitHub-Mark-Light-32px.png">
+    <Resource Include="media\ICON_CONSOLE.png">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Resource>
   </ItemGroup>
   <ItemGroup>
-    <Resource Include="media\consoleIcon.png">
+    <Resource Include="media\ICON_DISCORD.png">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Resource>
-  </ItemGroup>
-  <ItemGroup>
-    <Resource Include="media\changelog.png">
+    <Resource Include="media\ICON_CHANGELOG.png">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Resource>
   </ItemGroup>
@@ -315,6 +310,11 @@
   <ItemGroup>
     <EmbeddedResource Include="Core\Monster\MonsterData.xml" />
   </ItemGroup>
-  <ItemGroup />
+  <ItemGroup>
+    <Resource Include="LOGO_HunterPie.ico" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="media\LOGO_HunterPie.png" />
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
