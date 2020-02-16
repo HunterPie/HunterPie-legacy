@@ -76,10 +76,8 @@ namespace HunterPie.Core {
         }
 
         private void DownloadNewUpdater() {
-            using (var UpdateFile = File.OpenWrite("Update.exe")) {
-                UpdateFile.Write(FileData, 0, FileData.Length);
-                FileData = null;
-            }
+            File.WriteAllBytes("Update.exe", FileData);
+            FileData = null;
         }
     }
 }

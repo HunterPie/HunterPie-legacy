@@ -25,7 +25,6 @@ namespace HunterPie.GUI.Widgets.DPSMeter.Parts {
 
         public PartyMember(string Color) {
             InitializeComponent();
-            this.DataContext = this;
             ChangeColor(Color);
         }
 
@@ -34,7 +33,6 @@ namespace HunterPie.GUI.Widgets.DPSMeter.Parts {
             PartyContext = pctx;
             HookEvents();
             SetPlayerInformation();
-            Logger.Debugger.Log(ctx.Damage);
         }
 
         private void HookEvents() {
