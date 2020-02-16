@@ -44,31 +44,6 @@ namespace HunterPie.GUIControls {
             return;
         }
 
-        private void TypeColor(object sender, TextChangedEventArgs e) {
-            TextBox obj = (TextBox)sender;
-            char[] HEX_CHARS = new char[17] {'#' , '0', '1', '2', '3', '4', '5', '6', '7', '8', '9', 'A', 'B', 'C', 'D', 'E', 'F' };
-            int offset = 0;
-            if (!obj.Text.StartsWith("#")) {
-                obj.Text = "";
-                return;
-            }
-            if (obj.Text.Length > 9) {
-                obj.Text = obj.Text.Substring(0, 9);
-                obj.CaretIndex = 10;
-                return;
-            }
-            foreach (char character in obj.Text) {
-                
-                if (!HEX_CHARS.Contains(char.ToUpper(character))) {
-                    break;
-                } else {
-                    offset++;
-                }
-            }
-            obj.Text = obj.Text.Substring(0, offset).ToUpper();
-            obj.CaretIndex = offset;
-        }
-
         private void TypeNumber(object sender, TextChangedEventArgs e) {
             char[] NUMBERS = new char[10] { '0', '1', '2', '3', '4', '5', '6', '7', '8', '9' };
             TextBox obj = (TextBox)sender;

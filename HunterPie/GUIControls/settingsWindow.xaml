@@ -5,7 +5,7 @@
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              xmlns:local="clr-namespace:HunterPie.GUIControls"
              xmlns:custom="clr-namespace:HunterPie.GUIControls.Custom_Controls"
-             mc:Ignorable="d" d:DesignWidth="800" Width="749" Height="1136.5">
+             mc:Ignorable="d" d:DesignWidth="800" Width="749" Height="1156">
     <UserControl.Resources>
         <Style x:Key="FocusVisual">
             <Setter Property="Control.Template">
@@ -194,7 +194,7 @@
             </Setter>
         </Style>
     </UserControl.Resources>
-    <StackPanel HorizontalAlignment="Left" Height="1136" VerticalAlignment="Top" Width="749" Background="#FF2E2E2E">
+    <StackPanel HorizontalAlignment="Left" Height="1255" VerticalAlignment="Top" Width="749" Background="#FF2E2E2E" Margin="0,0,0,-99">
         <Label x:Name="GeneralStaticText" Content="- General -" Height="34" FontFamily="Roboto" FontSize="20" FontWeight="Bold" HorizontalAlignment="Center" Width="749" HorizontalContentAlignment="Center" Foreground="#FFE0E0E0" Padding="0" UseLayoutRounding="False" VerticalContentAlignment="Center" Background="#FF292929"/>
         <StackPanel Orientation="Horizontal" Margin="238,3,271,0" Width="240">
             <custom:Switcher x:Name="switchEnableAutoUpdate" Height="27" Width="52"/>
@@ -247,15 +247,29 @@
             <TextBox x:Name="positionMonsterCompX" TextWrapping="Wrap" Text="X" Margin="0,1" Background="{x:Null}" Foreground="#FFE0E0E0" BorderBrush="#FFABADB3" BorderThickness="0,0,0,1" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" HorizontalAlignment="Right" Width="54" TextChanged="TypeNumber"/>
             <TextBox x:Name="positionMonsterCompY" TextWrapping="Wrap" Text="Y" Margin="6,1,0,1" Background="{x:Null}" Foreground="#FFE0E0E0" BorderBrush="#FFABADB3" BorderThickness="0,0,0,1" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" HorizontalAlignment="Right" Width="54" TextChanged="TypeNumber"/>
         </StackPanel>
-        <Label x:Name="HarvestBoxCompStaticText" Content="Harvest Box overlay" Height="34" FontFamily="Roboto" FontSize="16" HorizontalAlignment="Center" Width="749" HorizontalContentAlignment="Center" Foreground="#FFE0E0E0" Padding="0" UseLayoutRounding="False" VerticalContentAlignment="Center" Margin="0,25,0,0" Background="#FF292929"/>
+        <TextBlock Text="Harvest Box" Height="34" FontFamily="Roboto" FontSize="16" HorizontalAlignment="Center" Width="749" Foreground="#FFE0E0E0" Padding="0,7,0,0" UseLayoutRounding="False" Margin="0,25,0,0" Background="#FF292929" VerticalAlignment="Center" TextAlignment="Center"/>
         <StackPanel Orientation="Horizontal" Margin="238,3,0,0">
             <custom:Switcher x:Name="switchEnableHarvestBox"/>
             <TextBlock Text="Enable Harvest box widget" Margin="10,0,0,0" FontFamily="Roboto" FontSize="16" Foreground="#FFF9F9F9" HorizontalAlignment="Center" VerticalAlignment="Center" FontWeight="ExtraLight" />
         </StackPanel>
-        <StackPanel x:Name="Position_Copy1" Height="32" Margin="288,0,272,0" Orientation="Horizontal">
+        <StackPanel Height="32" Margin="288,0,272,0" Orientation="Horizontal">
             <Label x:Name="updateBranchStaticText_Copy2" Content="Position:" HorizontalAlignment="Right" Width="66" FontFamily="Roboto" Foreground="#FFE0E0E0" FontSize="15" Padding="0" FontWeight="Light" VerticalContentAlignment="Center" HorizontalContentAlignment="Right"/>
             <TextBox x:Name="harvestBoxPosX" TextWrapping="Wrap" Text="X" Margin="0,1" Background="{x:Null}" Foreground="#FFE0E0E0" BorderBrush="#FFABADB3" BorderThickness="0,0,0,1" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" HorizontalAlignment="Right" Width="54" TextChanged="TypeNumber"/>
             <TextBox x:Name="harvestBoxPosY" TextWrapping="Wrap" Text="Y" Margin="6,1,0,1" Background="{x:Null}" Foreground="#FFE0E0E0" BorderBrush="#FFABADB3" BorderThickness="0,0,0,1" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" HorizontalAlignment="Right" Width="54" TextChanged="TypeNumber"/>
+        </StackPanel>
+        <TextBlock Text="DPS Meter" Height="34" FontFamily="Roboto" FontSize="16" HorizontalAlignment="Center" Width="749" Foreground="#FFE0E0E0" Padding="0,7,0,0" UseLayoutRounding="False" Margin="0,25,0,0" Background="#FF292929" VerticalAlignment="Center" TextAlignment="Center"/>
+        <StackPanel Orientation="Horizontal" Margin="238,3,0,0">
+            <custom:Switcher x:Name="switchEnableDPSMeter"/>
+            <TextBlock Text="Enable DPS Meter" Margin="10,0,0,0" FontFamily="Roboto" FontSize="16" Foreground="#FFF9F9F9" HorizontalAlignment="Center" VerticalAlignment="Center" FontWeight="ExtraLight" />
+        </StackPanel>
+        <custom:ColorPicker NameText="First Player" x:Name="FirstPlayerColor"/>
+        <custom:ColorPicker NameText="Second Player" x:Name="SecondPlayerColor"/>
+        <custom:ColorPicker NameText="Third Player" x:Name="ThirdPlayerColor"/>
+        <custom:ColorPicker NameText="Fourth Player" x:Name="FourthPlayerColor"/>
+        <StackPanel Height="32" Margin="288,0,272,0" Orientation="Horizontal">
+            <Label Content="Position:" HorizontalAlignment="Right" Width="66" FontFamily="Roboto" Foreground="#FFE0E0E0" FontSize="15" Padding="0" FontWeight="Light" VerticalContentAlignment="Center" HorizontalContentAlignment="Right"/>
+            <TextBox x:Name="DPSMeterPosX" TextWrapping="Wrap" Text="X" Margin="0,1" Background="{x:Null}" Foreground="#FFE0E0E0" BorderBrush="#FFABADB3" BorderThickness="0,0,0,1" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" HorizontalAlignment="Right" Width="54" TextChanged="TypeNumber"/>
+            <TextBox x:Name="DPSMeterPosY" TextWrapping="Wrap" Text="Y" Margin="6,1,0,1" Background="{x:Null}" Foreground="#FFE0E0E0" BorderBrush="#FFABADB3" BorderThickness="0,0,0,1" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" HorizontalAlignment="Right" Width="54" TextChanged="TypeNumber"/>
         </StackPanel>
         <Label x:Name="MantlesStaticText" Content="Mantles &amp; Equipments" Height="34" FontFamily="Roboto" FontSize="16" HorizontalAlignment="Center" Width="749" HorizontalContentAlignment="Center" Foreground="#FFE0E0E0" Padding="0" UseLayoutRounding="False" VerticalContentAlignment="Center" Margin="0,25,0,0" Background="#FF292929"/>
         <GroupBox Header="Primary mantle&#xD;&#xA;" Height="187" Margin="10,0,0,0" FontFamily="Roboto" Foreground="#FFE0E0E0" BorderBrush="{x:Null}" Width="359" HorizontalAlignment="Left">
@@ -269,8 +283,7 @@
                     <TextBox x:Name="primMantlePosX" TextWrapping="Wrap" Text="X" Margin="0,1" Background="{x:Null}" Foreground="#FFE0E0E0" BorderBrush="#FFABADB3" BorderThickness="0,0,0,1" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" HorizontalAlignment="Right" Width="54" TextChanged="TypeNumber"/>
                     <TextBox x:Name="primMantlePosY" TextWrapping="Wrap" Text="Y" Margin="6,1,0,1" Background="{x:Null}" Foreground="#FFE0E0E0" BorderBrush="#FFABADB3" BorderThickness="0,0,0,1" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" HorizontalAlignment="Right" Width="54" TextChanged="TypeNumber"/>
                 </StackPanel>
-                <Label x:Name="updateBranchStaticText_Copy5" Content="Color:" HorizontalAlignment="Left" Width="46" FontFamily="Roboto" Foreground="#FFE0E0E0" FontSize="15" Padding="0" FontWeight="Light" VerticalContentAlignment="Center" HorizontalContentAlignment="Right" Height="32" Margin="101,0,0,0"/>
-                <TextBox x:Name="primMantleColor" TextWrapping="Wrap" Text="Color" Margin="149,-30,0,0" Background="{x:Null}" Foreground="#FFE0E0E0" BorderBrush="#FFABADB3" BorderThickness="0,0,0,1" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" HorizontalAlignment="Left" Width="130" Height="26" TextChanged="TypeColor" VerticalAlignment="Center"/>
+                <custom:ColorPicker x:Name="PrimaryMantleColor" NameText="Color:"/>
             </StackPanel>
         </GroupBox>
         <GroupBox Header="Secondary mantle&#xA;" Height="187" Margin="384,-187,14,0" FontFamily="Roboto" Foreground="#FFE0E0E0" BorderBrush="{x:Null}">
@@ -284,8 +297,7 @@
                     <TextBox x:Name="secMantlePosX" TextWrapping="Wrap" Text="X" Margin="0,1" Background="{x:Null}" Foreground="#FFE0E0E0" BorderBrush="#FFABADB3" BorderThickness="0,0,0,1" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" HorizontalAlignment="Right" Width="54" TextChanged="TypeNumber"/>
                     <TextBox x:Name="secMantlePosY" TextWrapping="Wrap" Text="Y" Margin="6,1,0,1" Background="{x:Null}" Foreground="#FFE0E0E0" BorderBrush="#FFABADB3" BorderThickness="0,0,0,1" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" HorizontalAlignment="Right" Width="54" TextChanged="TypeNumber"/>
                 </StackPanel>
-                <Label x:Name="updateBranchStaticText_Copy6" Content="Color:" HorizontalAlignment="Left" Width="46" FontFamily="Roboto" Foreground="#FFE0E0E0" FontSize="15" Padding="0" FontWeight="Light" VerticalContentAlignment="Center" HorizontalContentAlignment="Right" Height="32" Margin="98,0,0,0"/>
-                <TextBox x:Name="secMantleColor" TextWrapping="Wrap" Text="Color" Margin="147,-30,0,0" Background="{x:Null}" Foreground="#FFE0E0E0" BorderBrush="#FFABADB3" BorderThickness="0,0,0,1" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" HorizontalAlignment="Left" Width="130" Height="28" TextChanged="TypeColor"/>
+                <custom:ColorPicker x:Name="SecondaryMantleColor" NameText="Color:"/>
             </StackPanel>
         </GroupBox>
 

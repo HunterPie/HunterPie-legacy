@@ -55,18 +55,27 @@ namespace HunterPie.GUIControls {
             settingsUI.switchEnablePrimaryMantle.IsEnabled = settings.Overlay.PrimaryMantle.Enabled;
             settingsUI.primMantlePosX.Text = settings.Overlay.PrimaryMantle.Position[0].ToString();
             settingsUI.primMantlePosY.Text = settings.Overlay.PrimaryMantle.Position[1].ToString();
-            settingsUI.primMantleColor.Text = settings.Overlay.PrimaryMantle.Color;
+            settingsUI.PrimaryMantleColor.Color = settings.Overlay.PrimaryMantle.Color;
 
             // Secondary Mantle
             settingsUI.switchEnableSecondaryMantle.IsEnabled = settings.Overlay.SecondaryMantle.Enabled;
             settingsUI.secMantlePosX.Text = settings.Overlay.SecondaryMantle.Position[0].ToString();
             settingsUI.secMantlePosY.Text = settings.Overlay.SecondaryMantle.Position[1].ToString();
-            settingsUI.secMantleColor.Text = settings.Overlay.SecondaryMantle.Color;
+            settingsUI.SecondaryMantleColor.Color = settings.Overlay.SecondaryMantle.Color;
 
             // Harvest Box
             settingsUI.switchEnableHarvestBox.IsEnabled = settings.Overlay.HarvestBoxComponent.Enabled;
             settingsUI.harvestBoxPosX.Text = settings.Overlay.HarvestBoxComponent.Position[0].ToString();
             settingsUI.harvestBoxPosY.Text = settings.Overlay.HarvestBoxComponent.Position[1].ToString();
+
+            // DPS Meter
+            settingsUI.switchEnableDPSMeter.IsEnabled = settings.Overlay.DPSMeter.Enabled;
+            settingsUI.DPSMeterPosX.Text = settings.Overlay.DPSMeter.Position[0].ToString();
+            settingsUI.DPSMeterPosY.Text = settings.Overlay.DPSMeter.Position[1].ToString();
+            settingsUI.FirstPlayerColor.Color = settings.Overlay.DPSMeter.PartyMembers[0].Color;
+            settingsUI.SecondPlayerColor.Color = settings.Overlay.DPSMeter.PartyMembers[1].Color;
+            settingsUI.ThirdPlayerColor.Color = settings.Overlay.DPSMeter.PartyMembers[2].Color;
+            settingsUI.FourthPlayerColor.Color = settings.Overlay.DPSMeter.PartyMembers[3].Color;
         }
 
         private void saveSettings_Click(object sender, RoutedEventArgs e) {
@@ -98,18 +107,28 @@ namespace HunterPie.GUIControls {
             settings.Overlay.PrimaryMantle.Enabled = settingsUI.switchEnablePrimaryMantle.IsEnabled;
             settings.Overlay.PrimaryMantle.Position[0] = int.Parse(settingsUI.primMantlePosX.Text);
             settings.Overlay.PrimaryMantle.Position[1] = int.Parse(settingsUI.primMantlePosY.Text);
-            settings.Overlay.PrimaryMantle.Color = settingsUI.primMantleColor.Text;
+            settings.Overlay.PrimaryMantle.Color = settingsUI.PrimaryMantleColor.Color;
 
             // Secondary Mantle
             settings.Overlay.SecondaryMantle.Enabled = settingsUI.switchEnableSecondaryMantle.IsEnabled;
             settings.Overlay.SecondaryMantle.Position[0] = int.Parse(settingsUI.secMantlePosX.Text);
             settings.Overlay.SecondaryMantle.Position[1] = int.Parse(settingsUI.secMantlePosY.Text);
-            settings.Overlay.SecondaryMantle.Color = settingsUI.secMantleColor.Text;
+            settings.Overlay.SecondaryMantle.Color = settingsUI.SecondaryMantleColor.Color;
 
             // Harvest Box
             settings.Overlay.HarvestBoxComponent.Enabled = settingsUI.switchEnableHarvestBox.IsEnabled;
             settings.Overlay.HarvestBoxComponent.Position[0] = int.Parse(settingsUI.harvestBoxPosX.Text);
             settings.Overlay.HarvestBoxComponent.Position[1] = int.Parse(settingsUI.harvestBoxPosY.Text);
+
+            // DPS Meter
+            settings.Overlay.DPSMeter.Enabled = settingsUI.switchEnableDPSMeter.IsEnabled;
+            settings.Overlay.DPSMeter.Position[0] = int.Parse(settingsUI.DPSMeterPosX.Text);
+            settings.Overlay.DPSMeter.Position[1] = int.Parse(settingsUI.DPSMeterPosY.Text);
+            settings.Overlay.DPSMeter.PartyMembers[0].Color = settingsUI.FirstPlayerColor.Color;
+            settings.Overlay.DPSMeter.PartyMembers[1].Color = settingsUI.SecondPlayerColor.Color;
+            settings.Overlay.DPSMeter.PartyMembers[2].Color = settingsUI.ThirdPlayerColor.Color;
+            settings.Overlay.DPSMeter.PartyMembers[3].Color = settingsUI.FourthPlayerColor.Color;
+
 
             // and then save settings
             UserSettings.SaveNewConfig();
