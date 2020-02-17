@@ -153,6 +153,7 @@
                 <Setter Property="Height" Value="Auto" />
                 <Setter Property="Template" Value="{StaticResource VerticalScrollBar}" />
             </Trigger>
+            
         </Style.Triggers>
     </Style>
 

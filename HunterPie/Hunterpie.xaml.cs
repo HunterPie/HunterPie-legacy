@@ -187,7 +187,7 @@ namespace HunterPie {
         }
 
         /* Open sub windows */
-
+        
         private void OpenDebugger() {
             ConsolePanel.Children.Clear();
             ConsolePanel.Children.Add(Debugger.Instance);

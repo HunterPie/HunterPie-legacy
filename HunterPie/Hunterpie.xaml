@@ -6,10 +6,10 @@
         xmlns:local="clr-namespace:HunterPie"
         xmlns:Properties="clr-namespace:HunterPie.Properties" x:Name="window" x:Class="HunterPie.Hunterpie"
         mc:Ignorable="d"
-        Title="HunterPie" Height="593" Width="980" Background="#FF2E2E2E" MinWidth="1000" MinHeight="600" MaxWidth="1000" MaxHeight="600" ResizeMode="NoResize" WindowStyle="None" Closing="OnWindowClosing">
+        Title="HunterPie" Height="592" Width="980" Background="#F41F1F1F" MinWidth="1000" MaxWidth="1000" MaxHeight="600" ResizeMode="CanMinimize" WindowStyle="None" Closing="OnWindowClosing" AllowsTransparency="True" BorderBrush="#7F000000" BorderThickness="1">
     <Window.Resources>
         <ControlTemplate x:Key="ButtonStyle" TargetType="{x:Type Button}">
-            <Border x:Name="border" BorderBrush="{TemplateBinding BorderBrush}" BorderThickness="{TemplateBinding BorderThickness}" Background="{TemplateBinding Background}" SnapsToDevicePixels="True" CornerRadius="3">
+            <Border x:Name="border" BorderBrush="{TemplateBinding BorderBrush}" BorderThickness="{TemplateBinding BorderThickness}" Background="{TemplateBinding Background}" SnapsToDevicePixels="True">
                 <ContentPresenter x:Name="contentPresenter" ContentTemplate="{TemplateBinding ContentTemplate}" Content="{TemplateBinding Content}" ContentStringFormat="{TemplateBinding ContentStringFormat}" Focusable="False" HorizontalAlignment="{TemplateBinding HorizontalContentAlignment}" Margin="{TemplateBinding Padding}" RecognizesAccessKey="True" SnapsToDevicePixels="{TemplateBinding SnapsToDevicePixels}" VerticalAlignment="{TemplateBinding VerticalContentAlignment}"/>
             </Border>
             <ControlTemplate.Triggers>
@@ -71,56 +71,53 @@
             </ControlTemplate.Triggers>
         </ControlTemplate>
     </Window.Resources>
-    <Grid Height="600">
-        <Grid.ColumnDefinitions>
-            <ColumnDefinition Width="61*"/>
-            <ColumnDefinition Width="189*"/>
-        </Grid.ColumnDefinitions>
-        <Rectangle x:Name="leftSideContainer" Fill="#FF282828" HorizontalAlignment="Left" Height="447" Stroke="#FF282828" VerticalAlignment="Top" Width="244" Margin="0,153,0,0">
-            <Rectangle.Effect>
-                <DropShadowEffect Direction="360" Opacity="0.5" ShadowDepth="2"/>
-            </Rectangle.Effect>
-        </Rectangle>
-        <Rectangle HorizontalAlignment="Left" Height="130" VerticalAlignment="Top" Width="1000" Grid.ColumnSpan="2" Margin="0,22,0,0" Fill="#FF282828">
-            <Rectangle.Effect>
-                <DropShadowEffect ShadowDepth="2" Direction="180"/>
-            </Rectangle.Effect>
-        </Rectangle>
-        <Rectangle x:Name="WindowTopBar" Fill="#FF1F1F1F" HorizontalAlignment="Left" Height="22" VerticalAlignment="Top" Width="1000" Grid.ColumnSpan="2" MouseDown="OnWindowDrag"/>
-        <Label x:Name="closeWindow" Content="✕" Grid.Column="1" HorizontalAlignment="Center" Margin="731,0,0,578" VerticalAlignment="Center" Height="22" Width="25" Foreground="#FFD8D8D8" Padding="0,0,1,0" Cursor="Hand" MouseDown="OnCloseWindowButtonClick" FontSize="14" Template="{DynamicResource LabelButtonType}" OverridesDefaultStyle="True" Style="{Binding Mode=OneWay, Source={StaticResource LabelButtonType}}" VerticalContentAlignment="Center" Background="#FFB02B2B" HorizontalContentAlignment="Center" />
-        <Label x:Name="minimizeWindow" Content="__" Grid.Column="1" HorizontalAlignment="Left" Margin="700,-9,0,578" Width="28" Foreground="#FFD8D8D8" Padding="0,0,13,6" Cursor="Hand" FontSize="18" Background="#00000000" MouseDown="OnMinimizeButtonClick" Template="{DynamicResource LabelButtonType}" HorizontalContentAlignment="Right" BorderThickness="0"/>
-        <Button x:Name="consoleButton" HorizontalAlignment="Left" Margin="0,154,0,0" VerticalAlignment="Top" Width="244" Height="46" BorderBrush="#00707070" Foreground="White" FontFamily="Roboto" FontSize="18" Cursor="Hand" Background="#FF1F1F1F" BorderThickness="0" Template="{DynamicResource ButtonStyle}" Content="CONSOLE" Padding="-50,1,1,1" Click="OnConsoleButtonClick" FontWeight="Bold"/>
-        <Border x:Name="windowBorder" BorderBrush="#FF1F1F1F" BorderThickness="1" HorizontalAlignment="Left" Height="568" VerticalAlignment="Top" Width="1000" Grid.ColumnSpan="2" d:IsLocked="True" Margin="0,22,0,0"/>
-        <Button x:Name="settingsButton" Content="SETTINGS" HorizontalAlignment="Center" Margin="0,202,0,0" VerticalAlignment="Top" Width="244" Height="45" BorderBrush="#00707070" Foreground="White" FontFamily="Roboto" FontSize="18" Cursor="Hand" Background="#FF1F1F1F" BorderThickness="0" Template="{DynamicResource ButtonStyle}" Padding="-50,1,1,1" Click="OnSettingsButtonClick" FontWeight="Bold"/>
-        <Image Margin="26,166,199,413" Source="media/ICON_CONSOLE.png" Cursor="Hand"/>
-        <Image Margin="26,214,199,366" Source="media/ICON_SETTINGS.png" Cursor="Hand"/>
-        <Grid Name="ConsolePanel" Grid.Column="1" HorizontalAlignment="Left" Height="447" Margin="0,153,0,0" VerticalAlignment="Top" Width="756"/>
-        <Label x:Name="version_text" Content="Version: BETA 1.0.0.0" HorizontalAlignment="Left" Width="244" Background="{x:Null}" Foreground="#FFF3F3F3" FontFamily="Roboto" VerticalAlignment="Bottom" Height="20" VerticalContentAlignment="Stretch" Padding="5,5,5,0" Margin="0,0,0,16" RenderTransformOrigin="0.5,0.5">
-            <Label.RenderTransform>
-                <TransformGroup>
-                    <ScaleTransform/>
-                    <SkewTransform AngleX="-0.955"/>
-                    <RotateTransform/>
-                    <TranslateTransform X="-0.108"/>
-                </TransformGroup>
-            </Label.RenderTransform>
-        </Label>
-        <Button x:Name="DiscordButton" Content="DISCORD" HorizontalAlignment="Center" Margin="0,296,0,0" VerticalAlignment="Top" Width="244" Height="47" BorderBrush="#00707070" Foreground="White" FontFamily="Roboto" FontSize="18" Cursor="Hand" Background="#FF1F1F1F" BorderThickness="0" Template="{DynamicResource ButtonStyle}" Padding="-69,1,1,1" FontWeight="Bold" Click="OnDiscordButtonClick"/>
-        <Image Margin="21,306,195,265" Source="media/ICON_DISCORD.png" Cursor="Hand"/>
-        <Button x:Name="changelogButton" Content="CHANGELOG" HorizontalAlignment="Center" Margin="0,249,0,0" VerticalAlignment="Top" Width="244" Height="45" BorderBrush="#00707070" Foreground="White" FontFamily="Roboto" FontSize="18" Cursor="Hand" Background="#FF1F1F1F" BorderThickness="0" Template="{DynamicResource ButtonStyle}" Padding="-31,1,1,1" FontWeight="Bold" Click="OnChangelogButtonClick"/>
-        <Image Margin="26,261,199,319" Source="media/ICON_CHANGELOG.png" Cursor="Hand"/>
-        <Button x:Name="launchGameButton" HorizontalAlignment="Left" Margin="499,59,0,0" VerticalAlignment="Top" Width="241" Height="46" BorderBrush="{x:Null}" Foreground="#FFDEDEDE" FontFamily="Roboto" FontSize="18" Cursor="Hand" BorderThickness="1"  Template="{DynamicResource ButtonStyle}" Content="LAUNCH GAME" Padding="0" Grid.Column="1" FontWeight="Bold" HorizontalContentAlignment="Center" Click="OnLaunchGameButtonClick">
-            <Button.Background>
-                <LinearGradientBrush EndPoint="0.5,1" MappingMode="RelativeToBoundingBox" StartPoint="1,0">
-                    <GradientStop Color="#FFC52B2B"/>
-                    <GradientStop Color="#FF9B0505" Offset="1"/>
-                </LinearGradientBrush>
-            </Button.Background>
-        </Button>
-        <Button x:Name="githubButton_Copy" Content="GITHUB" HorizontalAlignment="Center" Margin="0,345,0,0" VerticalAlignment="Top" Width="244" Height="47" BorderBrush="#00707070" Foreground="White" FontFamily="Roboto" FontSize="18" Cursor="Hand" Background="#FF1F1F1F" BorderThickness="0" Template="{DynamicResource ButtonStyle}" Padding="-69,1,1,1" FontWeight="Bold" Click="OnGithubButtonClick"/>
-        <Image Margin="26,357,199,222" Source="media/ICON_GITHUB.png" Cursor="Hand"/>
-        <Image HorizontalAlignment="Left" Height="59" Margin="21,58,0,0" VerticalAlignment="Top" Width="59" Source="media/LOGO_HunterPie.png"/>
-        <TextBlock HorizontalAlignment="Left" Margin="80,58,0,0" TextWrapping="Wrap" Text="Hunter" VerticalAlignment="Top" Height="59" FontFamily="Roboto" FontWeight="Bold" Width="70" FontSize="22" Padding="0,16,0,0">
+    <Grid>
+        <Grid x:Name="ConsolePanel" Margin="51,157,0,2"/>
+        <Rectangle HorizontalAlignment="Left" Height="130" VerticalAlignment="Top" Width="1000" Grid.ColumnSpan="2" Margin="0,22,0,0" Fill="#4C0E0E0E"/>
+        <Rectangle x:Name="WindowTopBar" Fill="#FF131313" HorizontalAlignment="Left" Height="22" VerticalAlignment="Top" Width="1000" Grid.ColumnSpan="2" MouseDown="OnWindowDrag"/>
+        <Label x:Name="closeWindow" Content="✕" HorizontalAlignment="Center" Margin="973,0,0,568" VerticalAlignment="Center" Height="22" Width="25" Foreground="#FFD8D8D8" Padding="0,0,1,0" Cursor="Hand" MouseDown="OnCloseWindowButtonClick" FontSize="14" Template="{DynamicResource LabelButtonType}" OverridesDefaultStyle="True" Style="{Binding Mode=OneWay, Source={StaticResource LabelButtonType}}" VerticalContentAlignment="Center" Background="#FFB02B2B" HorizontalContentAlignment="Center" />
+        <Label x:Name="minimizeWindow" Content="__" HorizontalAlignment="Left" Margin="945,-7,0,568" Width="28" Foreground="#FFD8D8D8" Padding="0" Cursor="Hand" FontSize="18" Background="#00000000" MouseDown="OnMinimizeButtonClick" Template="{DynamicResource LabelButtonType}" HorizontalContentAlignment="Center" BorderThickness="0" VerticalContentAlignment="Center"/>
+        <!-- Side bar -->
+        <Grid HorizontalAlignment="Left" Width="45" Margin="0,152,0,0" Background="#CC151515">
+            <Image Margin="11,0,0,407" Panel.ZIndex="1" Source="media/ICON_CONSOLE.png" Cursor="Hand" HorizontalAlignment="Left" Width="23" Height="21" VerticalAlignment="Bottom"/>
+            <Image Margin="11,0,0,366" Panel.ZIndex="1" Source="media/ICON_SETTINGS.png" Cursor="Hand" HorizontalAlignment="Left" Width="23" Height="20" VerticalAlignment="Bottom"/>
+            <Image Margin="11,0,0,288" Panel.ZIndex="1" Source="media/ICON_DISCORD.png" Cursor="Hand" HorizontalAlignment="Left" Width="23" Height="19" VerticalAlignment="Bottom"/>
+            <Image Margin="11,0,0,326" Panel.ZIndex="1" Source="media/ICON_CHANGELOG.png" Cursor="Hand" HorizontalAlignment="Left" Width="23" Height="20" VerticalAlignment="Bottom"/>
+            <Image Margin="11,0,0,247" Panel.ZIndex="1" Source="media/ICON_GITHUB.png" Cursor="Hand" Height="21" VerticalAlignment="Bottom" HorizontalAlignment="Left" Width="23"/>
+            <Button Content="CONSOLE"  HorizontalAlignment="Left" Margin="-1,2,0,0" VerticalAlignment="Top" Width="206" Height="40" Background="#E51B1B1B" Template="{DynamicResource ButtonStyle}" BorderBrush="{x:Null}" Foreground="#FFF3F3F3" FontFamily="Roboto" FontWeight="Bold" HorizontalContentAlignment="Left" FontSize="16" Padding="55,0,0,0" Cursor="Hand" Click="OnConsoleButtonClick"/>
+            <Button Content="SETTINGS" HorizontalAlignment="Left" Margin="-1,42,0,0" VerticalAlignment="Top" Width="206" Height="40" Background="#E51B1B1B" Template="{DynamicResource ButtonStyle}" BorderBrush="{x:Null}" Foreground="#FFF3F3F3" FontFamily="Roboto" FontWeight="Bold" HorizontalContentAlignment="Left" FontSize="16" Padding="55,0,0,0" Cursor="Hand" Click="OnSettingsButtonClick"/>
+            <Button Content="PATCH NOTES" HorizontalAlignment="Left" Margin="-1,82,0,0" VerticalAlignment="Top" Width="206" Height="40" Background="#E51B1B1B" Template="{DynamicResource ButtonStyle}" BorderBrush="{x:Null}" Foreground="#FFF3F3F3" FontFamily="Roboto" FontWeight="Bold" HorizontalContentAlignment="Left" FontSize="16" Padding="55,0,0,0" Cursor="Hand" Click="OnChangelogButtonClick"/>
+            <Button Content="DISCORD" HorizontalAlignment="Left" Margin="-1,122,0,0" VerticalAlignment="Top" Width="206" Height="40" Background="#E51B1B1B" Template="{DynamicResource ButtonStyle}" BorderBrush="{x:Null}" Foreground="#FFF3F3F3" FontFamily="Roboto" FontWeight="Bold" HorizontalContentAlignment="Left" FontSize="16" Padding="55,0,0,0" Cursor="Hand" Click="OnDiscordButtonClick"/>
+            <Button Content="GITHUB" HorizontalAlignment="Left" Margin="-1,162,0,0" VerticalAlignment="Top" Width="206" Height="40" Background="#E51B1B1B" Template="{DynamicResource ButtonStyle}" BorderBrush="{x:Null}" Foreground="#FFF3F3F3" FontFamily="Roboto" FontWeight="Bold" HorizontalContentAlignment="Left" FontSize="16" Padding="55,0,0,0" Cursor="Hand" Click="OnGithubButtonClick"/>
+            <Grid.Style>
+                <Style TargetType="Grid">
+                    <Style.Triggers>
+                        <EventTrigger RoutedEvent="Mouse.MouseEnter">
+                            <EventTrigger.Actions>
+                                <BeginStoryboard>
+                                    <Storyboard Storyboard.TargetProperty="Width">
+                                        <DoubleAnimation To="206" Duration="0:0:0.150"/>
+                                    </Storyboard>
+                                </BeginStoryboard>
+                            </EventTrigger.Actions>
+                        </EventTrigger>
+                        <EventTrigger RoutedEvent="Mouse.MouseLeave">
+                            <EventTrigger.Actions>
+                                <BeginStoryboard>
+                                    <Storyboard Storyboard.TargetProperty="Width">
+                                        <DoubleAnimation To="50" Duration="0:0:0.150"/>
+                                    </Storyboard>
+                                </BeginStoryboard>
+                            </EventTrigger.Actions>
+                        </EventTrigger>
+                    </Style.Triggers>
+                </Style>
+            </Grid.Style>
+        </Grid>
+        <Label x:Name="version_text" Content="Version: BETA 1.0.0.0" HorizontalAlignment="Left" Width="150" Background="{x:Null}" Foreground="#FFF3F3F3" FontFamily="Roboto" VerticalAlignment="Bottom" Height="20" VerticalContentAlignment="Center" Padding="0,0,5,0" Margin="850,0,0,438" RenderTransformOrigin="0.5,0.5" HorizontalContentAlignment="Right"/>
+        <Button x:Name="launchGameButton" HorizontalAlignment="Left" Margin="746,55,0,0" VerticalAlignment="Top" Width="242" Height="46" BorderBrush="{x:Null}" Foreground="#FFDEDEDE" FontFamily="Roboto" FontSize="18" Cursor="Hand" BorderThickness="1"  Template="{DynamicResource ButtonStyle}" Content="LAUNCH GAME" Padding="0" FontWeight="Bold" HorizontalContentAlignment="Center" Click="OnLaunchGameButtonClick" Background="#FFAF0000"/>
+        <Image HorizontalAlignment="Left" Height="59" Margin="20,50,0,0" VerticalAlignment="Top" Width="59" Source="media/LOGO_HunterPie.png"/>
+        <TextBlock HorizontalAlignment="Left" Margin="79,50,0,0" TextWrapping="Wrap" Text="Hunter" VerticalAlignment="Top" Height="59" FontFamily="Roboto" FontWeight="Bold" Width="70" FontSize="22" Padding="0,16,0,0">
             <TextBlock.Foreground>
                 <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
                     <GradientStop Color="White" Offset="0"/>
@@ -128,7 +125,7 @@
                 </LinearGradientBrush>
             </TextBlock.Foreground>
         </TextBlock>
-        <TextBlock HorizontalAlignment="Left" Margin="150,58,0,0" TextWrapping="Wrap" Text="Pie" VerticalAlignment="Top" Height="59" FontFamily="Roboto" FontWeight="ExtraLight" Width="56" FontSize="22" Padding="0,16,0,0">
+        <TextBlock HorizontalAlignment="Left" Margin="149,50,0,0" TextWrapping="Wrap" Text="Pie" VerticalAlignment="Top" Height="59" FontFamily="Roboto" FontWeight="Light" Width="56" FontSize="22" Padding="0,16,0,0">
             <TextBlock.Foreground>
                 <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
                     <GradientStop Color="White" Offset="0"/>

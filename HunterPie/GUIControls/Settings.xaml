@@ -5,7 +5,7 @@
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              xmlns:local="clr-namespace:HunterPie.GUIControls"
              mc:Ignorable="d" 
-             d:DesignHeight="450" d:DesignWidth="800" Width="749" Height="443" Background="#FF2E2E2E">
+             d:DesignHeight="450" d:DesignWidth="800" Width="949" Height="433">
     <UserControl.Resources>
         <ResourceDictionary>
             <ResourceDictionary.MergedDictionaries>
@@ -49,11 +49,23 @@
                                     <Setter Property="BorderBrush" TargetName="border" Value="{DynamicResource {x:Static SystemColors.HighlightBrushKey}}"/>
                                 </Trigger>
                                 <Trigger Property="IsMouseOver" Value="true">
-                                    <Setter Property="Background" TargetName="border" Value="#FF171717"/>
-                                    <Setter Property="BorderBrush" TargetName="border" Value="#FF171717"/>
+                                    <Trigger.EnterActions>
+                                        <BeginStoryboard>
+                                            <Storyboard Storyboard.TargetProperty="(Background).(SolidColorBrush.Color)">
+                                                <ColorAnimation To="#FFAA0D0D" Duration="0:0:0.250" />
+                                            </Storyboard>
+                                        </BeginStoryboard>
+                                    </Trigger.EnterActions>
+                                    <Trigger.ExitActions>
+                                        <BeginStoryboard>
+                                            <Storyboard Storyboard.TargetProperty="(Background).(SolidColorBrush.Color)">
+                                                <ColorAnimation To="#FF212121" Duration="0:0:0.250" />
+                                            </Storyboard>
+                                        </BeginStoryboard>
+                                    </Trigger.ExitActions>
                                 </Trigger>
                                 <Trigger Property="IsPressed" Value="true">
-                                    <Setter Property="Background" TargetName="border" Value="#FF080808"/>
+                                    <Setter Property="Background" TargetName="border" Value="#FF930505"/>
                                     <Setter Property="BorderBrush" TargetName="border" Value="#FF171717"/>
                                 </Trigger>
                                 <Trigger Property="IsEnabled" Value="false">
@@ -86,9 +98,9 @@
         </ResourceDictionary>
     </UserControl.Resources>
     <Grid>
-        <Button x:Name="saveSettings" Content="Save" HorizontalAlignment="Left" Margin="650,397,0,0" VerticalAlignment="Top" Width="89" Height="36" Background="#FF212121" BorderBrush="{x:Null}" Foreground="#FFE8E8E8" Cursor="Hand" FontFamily="Roboto" FontSize="14" FontWeight="Bold" Style="{DynamicResource buttons_settings}" Click="saveSettings_Click"/>
-        <ScrollViewer VerticalScrollBarVisibility="Auto" Margin="0,0,-22,67" Template="{DynamicResource ScrollViewerControlTemplate1}" CanContentScroll="False">
-            <local:settingsWindow x:Name="SettingsBox" Height="1319" Width="777"/>
+        <Button Style="{StaticResource buttons_settings}" x:Name="saveSettings" Panel.ZIndex="1" Content="Save" HorizontalAlignment="Left" Margin="832,387,0,0" VerticalAlignment="Top" Width="89" Height="36" Background="#FF212121" BorderBrush="{x:Null}" Foreground="#FFE8E8E8" Cursor="Hand" FontFamily="Roboto" FontSize="14" FontWeight="Bold" Click="saveSettings_Click"/>
+        <ScrollViewer VerticalScrollBarVisibility="Auto" CanContentScroll="False" Padding="0,0,-16,0" Margin="0,0,10,0">
+            <local:settingsWindow x:Name="SettingsBox"/>
         </ScrollViewer>
     </Grid>
 </UserControl>
