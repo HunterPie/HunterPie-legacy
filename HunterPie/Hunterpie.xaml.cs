@@ -7,7 +7,8 @@ using System;
 using System.Windows;
 using System.Windows.Input;
 using System.IO;
-
+using System.Windows.Resources;
+using System.Windows.Markup;
 
 namespace HunterPie {
     /// <summary>
@@ -24,8 +25,10 @@ namespace HunterPie {
         const string HUNTERPIE_VERSION = "1.0.3.0";
 
         public Hunterpie() {
-            InitializeComponent();
+            LoadCustomTheme();
+            InitializeComponent();     
             OpenDebugger();
+            App
             AppDomain.CurrentDomain.UnhandledException += ExceptionLogger;
             // Initialize rich presence
             Discord = new Presence(MonsterHunter);
@@ -38,6 +41,14 @@ namespace HunterPie {
             GStrings.InitStrings(UserSettings.PlayerConfig.HunterPie.Language);
 
             StartEverything();
+        }
+
+        private void LoadCustomTheme() {
+            using (FileStream stream = new FileStream("Themes/Dark.xaml", FileMode.Open)) {
+                XamlReader reader = new XamlReader();
+                ResourceDictionary ThemeDictionary = (ResourceDictionary)reader.LoadAsync(stream);
+                Application.Current.Resources.MergedDictionaries.Add(ThemeDictionary);
+            }
         }
 
         private void ExceptionLogger(object sender, UnhandledExceptionEventArgs e) {

@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Documents;
 
@@ -24,6 +25,7 @@ namespace HunterPie.Logger {
             }
         }
         public Debugger() {
+            ERROR = FindResource("CONSOLE_ERROR_FOREGROUND") as string;
             InitializeComponent();
         }
 
