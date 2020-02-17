@@ -11,16 +11,16 @@ namespace HunterPie.Core {
         private string LocalUpdateHash;
         private string OnlineUpdateHash;
         public bool offlineMode;
-        private byte[] FileData;
         public WebClient Instance = new WebClient();
 
         public AutoUpdate(string branch) {
             BranchURI = $"{BranchURI}{branch}/";
         }
 
-        public void checkAutoUpdate() {
+        public bool CheckAutoUpdate() {
             CheckLocalHash();
-            CheckOnlineHash();
+            return CheckOnlineHash();
+
         }
 
         private void CheckLocalHash() {
@@ -41,21 +41,18 @@ namespace HunterPie.Core {
             }
         }
 
-        private void CheckOnlineHash() {
+        private bool CheckOnlineHash() {
             try {
-                Uri UpdateUrl = new Uri($"{BranchURI}Update.exe");
                 Debugger.Update("Checking for new versions of auto-updater");
-                Instance.DownloadDataCompleted += OnDownloadDataCompleted;
-                Instance.DownloadDataAsync(UpdateUrl);
+                return CheckOnlineHash(Instance.DownloadData($"{BranchURI}Update.exe"));
             } catch {
                 Instance.Dispose();
                 offlineMode = true;
-                return;
+                return false;
             }
         }
 
-        private void OnDownloadDataCompleted(object sender, DownloadDataCompletedEventArgs e) {
-            FileData = e.Result;
+        private bool CheckOnlineHash(byte[] FileData) {
             MemoryStream FileBytes = new MemoryStream(FileData);
             using (SHA256 hash = SHA256.Create()) {
                 byte[] computedHash = hash.ComputeHash(FileBytes);
@@ -68,16 +65,17 @@ namespace HunterPie.Core {
             offlineMode = false;
             if (LocalUpdateHash == OnlineUpdateHash || offlineMode) {
                 Debugger.Update("No newer version found!");
-                FileData = null; // clear byte array
                 Instance.Dispose();
-                return;
+                return false;
             }
             DownloadNewUpdater();
+            return true;
         }
 
         private void DownloadNewUpdater() {
-            File.WriteAllBytes("Update.exe", FileData);
-            FileData = null;
+            Uri UpdateUrl = new Uri($"{BranchURI}Update.exe");
+            Instance.DownloadFileAsync(UpdateUrl, "Update.exe");
+            Instance.Dispose();
         }
     }
 }

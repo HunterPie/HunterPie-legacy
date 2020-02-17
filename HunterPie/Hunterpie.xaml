@@ -117,7 +117,7 @@
         <Label x:Name="version_text" Content="Version: BETA 1.0.0.0" HorizontalAlignment="Left" Width="150" Background="{x:Null}" Foreground="#FFF3F3F3" FontFamily="Roboto" VerticalAlignment="Bottom" Height="20" VerticalContentAlignment="Center" Padding="0,0,5,0" Margin="850,0,0,438" RenderTransformOrigin="0.5,0.5" HorizontalContentAlignment="Right"/>
         <Button x:Name="launchGameButton" HorizontalAlignment="Left" Margin="746,55,0,0" VerticalAlignment="Top" Width="242" Height="46" BorderBrush="{x:Null}" Foreground="#FFDEDEDE" FontFamily="Roboto" FontSize="18" Cursor="Hand" BorderThickness="1"  Template="{DynamicResource ButtonStyle}" Content="LAUNCH GAME" Padding="0" FontWeight="Bold" HorizontalContentAlignment="Center" Click="OnLaunchGameButtonClick" Background="#FFAF0000"/>
         <Image HorizontalAlignment="Left" Height="59" Margin="20,50,0,0" VerticalAlignment="Top" Width="59" Source="media/LOGO_HunterPie.png"/>
-        <TextBlock HorizontalAlignment="Left" Margin="79,50,0,0" TextWrapping="Wrap" Text="Hunter" VerticalAlignment="Top" Height="59" FontFamily="Roboto" FontWeight="Bold" Width="70" FontSize="22" Padding="0,16,0,0">
+        <TextBlock HorizontalAlignment="Left" Margin="79,50,0,0" TextWrapping="Wrap" Text="Hunter" VerticalAlignment="Top" Height="59" FontFamily="Roboto" FontWeight="Bold" Width="126" FontSize="22" Padding="0,16,0,0">
             <TextBlock.Foreground>
                 <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
                     <GradientStop Color="White" Offset="0"/>
