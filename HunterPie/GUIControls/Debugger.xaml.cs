@@ -25,7 +25,6 @@ namespace HunterPie.Logger {
             }
         }
         public Debugger() {
-            ERROR = FindResource("CONSOLE_ERROR_FOREGROUND") as string;
             InitializeComponent();
         }
 

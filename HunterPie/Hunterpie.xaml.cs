@@ -28,7 +28,6 @@ namespace HunterPie {
             LoadCustomTheme();
             InitializeComponent();     
             OpenDebugger();
-            App
             AppDomain.CurrentDomain.UnhandledException += ExceptionLogger;
             // Initialize rich presence
             Discord = new Presence(MonsterHunter);
