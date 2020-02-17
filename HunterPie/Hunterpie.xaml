@@ -8,7 +8,6 @@
         mc:Ignorable="d"
         Title="HunterPie" Height="592" Width="980" MinWidth="1000" MaxWidth="1000" MaxHeight="600" ResizeMode="CanMinimize" WindowStyle="None" Closing="OnWindowClosing" AllowsTransparency="True" BorderBrush="#7F000000" BorderThickness="1" Background="{x:Null}">
     <Window.Resources>
-        <!-- Colors -->
 
         <ControlTemplate x:Key="ButtonStyle" TargetType="{x:Type Button}">
             <Border x:Name="border" BorderBrush="{TemplateBinding BorderBrush}" BorderThickness="{TemplateBinding BorderThickness}" Background="{TemplateBinding Background}" SnapsToDevicePixels="True">
@@ -19,14 +18,14 @@
                     <Trigger.EnterActions>
                         <BeginStoryboard>
                             <Storyboard>
-                                <DoubleAnimation Duration="0:0:0.150" To="0.75" Storyboard.TargetProperty="Opacity"/>
+                                <ThicknessAnimation Storyboard.TargetProperty="BorderThickness" To="4,0,0,0" Duration="0:0:0.150"/>
                             </Storyboard>
                         </BeginStoryboard>
                     </Trigger.EnterActions>
                     <Trigger.ExitActions>
                         <BeginStoryboard>
                             <Storyboard>
-                                <DoubleAnimation Duration="0:0:0.150" To="1" Storyboard.TargetProperty="Opacity"/>
+                                <ThicknessAnimation Storyboard.TargetProperty="BorderThickness" To="0,0,0,0" Duration="0:0:0.150"/>
                             </Storyboard>
                         </BeginStoryboard>
                     </Trigger.ExitActions>
@@ -35,6 +34,7 @@
                     <Setter Property="BorderBrush" TargetName="border" Value="{DynamicResource {x:Static SystemColors.HighlightBrushKey}}"/>
                 </Trigger>
                 <Trigger Property="IsPressed" Value="True">
+                    
                     <Setter Property="Background" TargetName="border" Value="#FF191919"/>
                     <Setter Property="BorderBrush" TargetName="border" Value="#003C7FB1"/>
                 </Trigger>
@@ -83,14 +83,14 @@
         <Grid HorizontalAlignment="Left" Width="45" Margin="0,152,0,0" Background="{StaticResource CONSOLE_SIDEBAR_BACKGROUND}">
             <Image Margin="11,0,0,407" Panel.ZIndex="1" Source="media/ICON_CONSOLE.png" Cursor="Hand" HorizontalAlignment="Left" Width="23" Height="21" VerticalAlignment="Bottom"/>
             <Image Margin="11,0,0,366" Panel.ZIndex="1" Source="media/ICON_SETTINGS.png" Cursor="Hand" HorizontalAlignment="Left" Width="23" Height="20" VerticalAlignment="Bottom"/>
-            <Image Margin="11,0,0,288" Panel.ZIndex="1" Source="media/ICON_DISCORD.png" Cursor="Hand" HorizontalAlignment="Left" Width="23" Height="19" VerticalAlignment="Bottom"/>
+            <Image Margin="8,0,0,281" Panel.ZIndex="1" Source="media/ICON_DISCORD.png" Cursor="Hand" HorizontalAlignment="Left" Width="26" Height="27" VerticalAlignment="Bottom" Stretch="UniformToFill"/>
             <Image Margin="11,0,0,326" Panel.ZIndex="1" Source="media/ICON_CHANGELOG.png" Cursor="Hand" HorizontalAlignment="Left" Width="23" Height="20" VerticalAlignment="Bottom"/>
             <Image Margin="11,0,0,247" Panel.ZIndex="1" Source="media/ICON_GITHUB.png" Cursor="Hand" Height="21" VerticalAlignment="Bottom" HorizontalAlignment="Left" Width="23"/>
-            <Button Content="CONSOLE"  HorizontalAlignment="Left" Margin="-1,2,0,0" VerticalAlignment="Top" Width="206" Height="40" Background="{StaticResource BUTTON_COMMONBUTTON_BACKGROUND}" Template="{DynamicResource ButtonStyle}" BorderBrush="{x:Null}" Foreground="{StaticResource BUTTON_COMMONBUTTON_FOREGROUND}" FontFamily="Roboto" FontWeight="Bold" HorizontalContentAlignment="Left" FontSize="16" Padding="55,0,0,0" Cursor="Hand" Click="OnConsoleButtonClick"/>
-            <Button Content="SETTINGS" HorizontalAlignment="Left" Margin="-1,42,0,0" VerticalAlignment="Top" Width="206" Height="40" Background="{StaticResource BUTTON_COMMONBUTTON_BACKGROUND}" Template="{DynamicResource ButtonStyle}" BorderBrush="{x:Null}" Foreground="{StaticResource BUTTON_COMMONBUTTON_FOREGROUND}" FontFamily="Roboto" FontWeight="Bold" HorizontalContentAlignment="Left" FontSize="16" Padding="55,0,0,0" Cursor="Hand" Click="OnSettingsButtonClick"/>
-            <Button Content="PATCH NOTES" HorizontalAlignment="Left" Margin="-1,82,0,0" VerticalAlignment="Top" Width="206" Height="40" Background="{StaticResource BUTTON_COMMONBUTTON_BACKGROUND}" Template="{DynamicResource ButtonStyle}" BorderBrush="{x:Null}" Foreground="{StaticResource BUTTON_COMMONBUTTON_FOREGROUND}" FontFamily="Roboto" FontWeight="Bold" HorizontalContentAlignment="Left" FontSize="16" Padding="55,0,0,0" Cursor="Hand" Click="OnChangelogButtonClick"/>
-            <Button Content="DISCORD" HorizontalAlignment="Left" Margin="-1,122,0,0" VerticalAlignment="Top" Width="206" Height="40" Background="{StaticResource BUTTON_COMMONBUTTON_BACKGROUND}" Template="{DynamicResource ButtonStyle}" BorderBrush="{x:Null}" Foreground="{StaticResource BUTTON_COMMONBUTTON_FOREGROUND}" FontFamily="Roboto" FontWeight="Bold" HorizontalContentAlignment="Left" FontSize="16" Padding="55,0,0,0" Cursor="Hand" Click="OnDiscordButtonClick"/>
-            <Button Content="GITHUB" HorizontalAlignment="Left" Margin="-1,162,0,0" VerticalAlignment="Top" Width="206" Height="40" Background="{StaticResource BUTTON_COMMONBUTTON_BACKGROUND}" Template="{DynamicResource ButtonStyle}" BorderBrush="{x:Null}" Foreground="{StaticResource BUTTON_COMMONBUTTON_FOREGROUND}" FontFamily="Roboto" FontWeight="Bold" HorizontalContentAlignment="Left" FontSize="16" Padding="55,0,0,0" Cursor="Hand" Click="OnGithubButtonClick"/>
+            <Button Content="CONSOLE" HorizontalAlignment="Left" BorderThickness="0,0,0,0" Margin="-1,2,0,0" VerticalAlignment="Top" Width="206" Height="40" Background="{StaticResource BUTTON_COMMONBUTTON_BACKGROUND}" Template="{DynamicResource ButtonStyle}" BorderBrush="{StaticResource BUTTON_COMMONBUTTON_BORDER}" Foreground="{StaticResource BUTTON_COMMONBUTTON_FOREGROUND}" FontFamily="Roboto" FontWeight="Bold" HorizontalContentAlignment="Left" FontSize="16" Padding="55,0,0,0" Cursor="Hand" Click="OnConsoleButtonClick"/>
+            <Button Content="SETTINGS" HorizontalAlignment="Left" BorderThickness="0,0,0,0" Margin="-1,42,0,0" VerticalAlignment="Top" Width="206" Height="40" Background="{StaticResource BUTTON_COMMONBUTTON_BACKGROUND}" Template="{DynamicResource ButtonStyle}" BorderBrush="{StaticResource BUTTON_COMMONBUTTON_BORDER}"  Foreground="{StaticResource BUTTON_COMMONBUTTON_FOREGROUND}" FontFamily="Roboto" FontWeight="Bold" HorizontalContentAlignment="Left" FontSize="16" Padding="55,0,0,0" Cursor="Hand" Click="OnSettingsButtonClick"/>
+            <Button Content="PATCH NOTES" HorizontalAlignment="Left" BorderThickness="0,0,0,0" Margin="-1,82,0,0" VerticalAlignment="Top" Width="206" Height="40" Background="{StaticResource BUTTON_COMMONBUTTON_BACKGROUND}" Template="{DynamicResource ButtonStyle}" BorderBrush="{StaticResource BUTTON_COMMONBUTTON_BORDER}"  Foreground="{StaticResource BUTTON_COMMONBUTTON_FOREGROUND}" FontFamily="Roboto" FontWeight="Bold" HorizontalContentAlignment="Left" FontSize="16" Padding="55,0,0,0" Cursor="Hand" Click="OnChangelogButtonClick"/>
+            <Button Content="DISCORD" HorizontalAlignment="Left" BorderThickness="0,0,0,0" Margin="-1,122,0,0" VerticalAlignment="Top" Width="206" Height="40" Background="{StaticResource BUTTON_COMMONBUTTON_BACKGROUND}" Template="{DynamicResource ButtonStyle}" BorderBrush="{StaticResource BUTTON_COMMONBUTTON_BORDER}"  Foreground="{StaticResource BUTTON_COMMONBUTTON_FOREGROUND}" FontFamily="Roboto" FontWeight="Bold" HorizontalContentAlignment="Left" FontSize="16" Padding="55,0,0,0" Cursor="Hand" Click="OnDiscordButtonClick"/>
+            <Button Content="GITHUB" HorizontalAlignment="Left" BorderThickness="0,0,0,0" Margin="-1,162,0,0" VerticalAlignment="Top" Width="206" Height="40" Background="{StaticResource BUTTON_COMMONBUTTON_BACKGROUND}" Template="{DynamicResource ButtonStyle}" BorderBrush="{StaticResource BUTTON_COMMONBUTTON_BORDER}"  Foreground="{StaticResource BUTTON_COMMONBUTTON_FOREGROUND}" FontFamily="Roboto" FontWeight="Bold" HorizontalContentAlignment="Left" FontSize="16" Padding="55,0,0,0" Cursor="Hand" Click="OnGithubButtonClick"/>
             <Grid.Style>
                 <Style TargetType="Grid">
                     <Style.Triggers>
@@ -116,7 +116,7 @@
                 </Style>
             </Grid.Style>
         </Grid>
-        <Label x:Name="version_text" Content="Version: BETA 1.0.0.0" HorizontalAlignment="Left" Width="150" Background="{x:Null}" Foreground="{StaticResource CONSOLE_VERSIONTEXT_FOREGROUND}" FontFamily="Roboto" VerticalAlignment="Bottom" Height="20" VerticalContentAlignment="Center" Padding="0,0,5,0" Margin="850,0,0,438" RenderTransformOrigin="0.5,0.5" HorizontalContentAlignment="Right"/>
+        <Label x:Name="version_text" Content="Version: BETA 1.0.0.0" HorizontalAlignment="Left" Width="150" Background="{x:Null}" Foreground="{StaticResource CONSOLE_VERSIONTEXT_FOREGROUND}" FontFamily="Roboto" VerticalAlignment="Bottom" Height="20" VerticalContentAlignment="Center" Padding="0,0,5,0" Margin="838,0,0,438" RenderTransformOrigin="0.5,0.5" HorizontalContentAlignment="Right"/>
         <Button x:Name="launchGameButton" HorizontalAlignment="Left" Margin="746,55,0,0" VerticalAlignment="Top" Width="242" Height="46" BorderBrush="{x:Null}" Foreground="{StaticResource BUTTON_LAUNCHGAME_FOREGROUND}" FontFamily="Roboto" FontSize="18" Cursor="Hand" BorderThickness="1"  Template="{DynamicResource ButtonStyle}" Content="LAUNCH GAME" Padding="0" FontWeight="Bold" HorizontalContentAlignment="Center" Click="OnLaunchGameButtonClick" Background="{StaticResource BUTTON_LAUNCHGAME_BACKGROUND}"/>
         <Image HorizontalAlignment="Left" Height="59" Margin="20,50,0,0" VerticalAlignment="Top" Width="59" Source="media/LOGO_HunterPie.png"/>
         <TextBlock HorizontalAlignment="Left" Margin="79,50,0,0" TextWrapping="Wrap" Text="Hunter" VerticalAlignment="Top" Height="59" FontFamily="Roboto" FontWeight="Bold" Width="126" FontSize="22" Padding="0,16,0,0" Foreground="{StaticResource CONSOLE_LOGO_FOREGROUND}"/>

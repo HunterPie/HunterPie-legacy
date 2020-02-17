@@ -13,6 +13,7 @@
     <SolidColorBrush x:Key="BUTTON_CLOSEWINDOW_BACKGROUND">#FFB02B2B</SolidColorBrush>
     <SolidColorBrush x:Key="BUTTON_COMMONBUTTON_FOREGROUND">#FFF3F3F3</SolidColorBrush>
     <SolidColorBrush x:Key="BUTTON_COMMONBUTTON_BACKGROUND">#E51B1B1B</SolidColorBrush>
+    <SolidColorBrush x:Key="BUTTON_COMMONBUTTON_BORDER">#FFAF0000</SolidColorBrush>
     <SolidColorBrush x:Key="CONSOLE_VERSIONTEXT_FOREGROUND">#FFDEDEDE</SolidColorBrush>
     <LinearGradientBrush x:Key="CONSOLE_LOGO_FOREGROUND" EndPoint="0.5,1" StartPoint="0.5,0">
         <GradientStop Color="White" Offset="0"/>
