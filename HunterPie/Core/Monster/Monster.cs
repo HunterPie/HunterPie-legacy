@@ -236,12 +236,10 @@ namespace HunterPie.Core {
                     this.ID = MonsterModelID;
                     this.Name = GStrings.GetMonsterNameByID(this.ID) ?? "Unknown Monster";
                     return;
-                } else {
-                    this.ID = null;
-                    this.Name = null;
-                    return;
                 }
             }
+            this.ID = null;
+            this.Name = null;
             return;
         }
 

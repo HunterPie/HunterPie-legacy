@@ -28,23 +28,23 @@ namespace HunterPie.Logger {
         }
 
         public static void Warn(object message) {
-            PrintOnConsole(message.ToString(), WARN);
+            PrintOnConsole(message?.ToString(), WARN);
         }
 
         public static void Error(object message) {
-            PrintOnConsole($"[ERROR] {message.ToString()}", ERROR);
+            PrintOnConsole($"[ERROR] {message?.ToString()}", ERROR);
         }
 
         public static void Log(object message) {
-            PrintOnConsole($"[LOG] {message.ToString()}", NORMAL);
+            PrintOnConsole($"[LOG] {message?.ToString()}", NORMAL);
         }
 
         public static void Discord(object message) {
-            PrintOnConsole($"[DISCORD] {message.ToString()}", DISCORD);
+            PrintOnConsole($"[DISCORD] {message?.ToString()}", DISCORD);
         }
 
         public static void Update(object message) {
-            PrintOnConsole($"[UPDATE] {message.ToString()}", NORMAL);
+            PrintOnConsole($"[UPDATE] {message?.ToString()}", NORMAL);
         }
 
         private static void ScrollToEnd() {
