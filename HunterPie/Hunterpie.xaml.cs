@@ -1,14 +1,16 @@
-﻿using HunterPie.GUIControls;
-using HunterPie.Logger;
-using HunterPie.Memory;
-using HunterPie.Core;
-using HunterPie.GUI;
-using System;
+﻿using System;
 using System.Windows;
 using System.Windows.Input;
 using System.IO;
 using System.Windows.Resources;
 using System.Windows.Markup;
+using System.Windows.Controls;
+using System.Windows.Media.Animation;
+using HunterPie.GUIControls;
+using HunterPie.Logger;
+using HunterPie.Memory;
+using HunterPie.Core;
+using HunterPie.GUI;
 
 namespace HunterPie {
     /// <summary>
@@ -25,8 +27,9 @@ namespace HunterPie {
         const string HUNTERPIE_VERSION = "1.0.3.0";
 
         public Hunterpie() {
+            Debugger.InitializeDebugger();
             LoadCustomTheme();
-            InitializeComponent();     
+            InitializeComponent();
             OpenDebugger();
             AppDomain.CurrentDomain.UnhandledException += ExceptionLogger;
             // Initialize rich presence
@@ -43,11 +46,17 @@ namespace HunterPie {
         }
 
         private void LoadCustomTheme() {
-            using (FileStream stream = new FileStream("Themes/Dark.xaml", FileMode.Open)) {
-                XamlReader reader = new XamlReader();
-                ResourceDictionary ThemeDictionary = (ResourceDictionary)reader.LoadAsync(stream);
-                Application.Current.Resources.MergedDictionaries.Add(ThemeDictionary);
+            /*
+            try {
+                using (FileStream stream = new FileStream("Themes/Light.xaml", FileMode.Open)) {
+                    XamlReader reader = new XamlReader();
+                    ResourceDictionary ThemeDictionary = (ResourceDictionary)reader.LoadAsync(stream);
+                    Application.Current.Resources.MergedDictionaries.Add(ThemeDictionary);
+                }
+            } catch {
+                Debugger.Error("Failed to load custom theme");
             }
+            */
         }
 
         private void ExceptionLogger(object sender, UnhandledExceptionEventArgs e) {
@@ -205,19 +214,37 @@ namespace HunterPie {
         /* Open sub windows */
         
         private void OpenDebugger() {
+            this.SwitchButtonOn(BUTTON_CONSOLE);
+            this.SwitchButtonOff(BUTTON_CHANGELOG);
+            this.SwitchButtonOff(BUTTON_SETTINGS);
             ConsolePanel.Children.Clear();
             ConsolePanel.Children.Add(Debugger.Instance);
         }
 
         private void OpenSettings() {
+            this.SwitchButtonOff(BUTTON_CONSOLE);
+            this.SwitchButtonOff(BUTTON_CHANGELOG);
+            this.SwitchButtonOn(BUTTON_SETTINGS);
             ConsolePanel.Children.Clear();
             ConsolePanel.Children.Add(Settings.Instance);
             Settings.RefreshSettingsUI();
         }
 
         private void OpenChangelog() {
+            this.SwitchButtonOff(BUTTON_CONSOLE);
+            this.SwitchButtonOn(BUTTON_CHANGELOG);
+            this.SwitchButtonOff(BUTTON_SETTINGS);
             ConsolePanel.Children.Clear();
             ConsolePanel.Children.Add(Changelog.Instance);
+        }
+
+        /* Animations */
+        private void SwitchButtonOn(Button buttonActive) {
+            buttonActive.SetValue(BorderThicknessProperty, new Thickness(4, 0, 0, 0));
+        }
+
+        private void SwitchButtonOff(Button buttonActive) {
+            buttonActive.SetValue(BorderThicknessProperty, new Thickness(0, 0, 0, 0));
         }
 
         /* Events */

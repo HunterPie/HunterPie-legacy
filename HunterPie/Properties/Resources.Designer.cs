@@ -68,17 +68,16 @@ namespace HunterPie.Properties {
         ///      &lt;Weakness ID=&quot;ELEMENT_DRAGON&quot; Stars=&quot;3&quot;/&gt;
         ///      &lt;Weakness ID=&quot;ELEMENT_THUNDER&quot; Stars=&quot;2&quot;/&gt;
         ///    &lt;/Weaknesses&gt;
+        ///    &lt;Crown Mini=&quot;90&quot; Silver=&quot;115&quot; Gold=&quot;123&quot;/&gt;
         ///  &lt;/Monster&gt;
         ///  &lt;Monster ID=&quot;em001_01&quot;&gt;
         ///    &lt;Weaknesses&gt;
         ///      &lt;Weakness ID=&quot;ELEMENT_DRAGON&quot; Stars=&quot;3&quot;/&gt;
         ///      &lt;Weakness ID=&quot;ELEMENT_THUNDER&quot; Stars=&quot;2&quot;/&gt;
         ///    &lt;/Weaknesses&gt;
+        ///    &lt;Crown Mini=&quot;90&quot; Silver=&quot;115&quot; Gold=&quot;123&quot;/&gt;
         ///  &lt;/Monster&gt;
-        ///  &lt;Monster ID=&quot;em001_02&quot;&gt;
-        ///    &lt;Weaknesses&gt;
-        ///      &lt;Weakness ID=&quot;ELEMENT_THUNDER&quot; Stars=&quot;3&quot;/&gt;
-        ///      &lt;Wea [rest of string was truncated]&quot;;.
+        ///  &lt;Monste [rest of string was truncated]&quot;;.
         /// </summary>
         internal static string MonsterData {
             get {

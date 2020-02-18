@@ -15,7 +15,7 @@ namespace HunterPie.Logger {
         private static string DISCORD = "#52A0FF";
         private static string NORMAL = "#FFFFFF";
 
-        public static Debugger _Instance;
+        private static Debugger _Instance;
         public static Debugger Instance {
             get {
                 if (_Instance == null) {
@@ -26,6 +26,10 @@ namespace HunterPie.Logger {
         }
         public Debugger() {
             InitializeComponent();
+        }
+
+        public static Debugger InitializeDebugger() {
+            return Instance;
         }
 
         public static void Warn(object message) {
