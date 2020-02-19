@@ -81,7 +81,8 @@ namespace HunterPie.Core {
         public void SetPlayerInfo(string name, byte weapon_id, int damage) {
             this.Name = name;
             this.Weapon = weapon_id;
-            this.IsInParty = name != null;
+            if (name == null && damage == 0) IsInParty = false;
+            else { IsInParty = true; }
             this.Damage = damage;
         }
 

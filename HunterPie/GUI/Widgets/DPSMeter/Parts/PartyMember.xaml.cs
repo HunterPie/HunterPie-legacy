@@ -33,7 +33,6 @@ namespace HunterPie.GUI.Widgets.DPSMeter.Parts {
             PartyContext = pctx;
             HookEvents();
             SetPlayerInformation();
-            //Logger.Debugger.Log($"{ctx.Name} {ctx.Weapon}");
         }
 
         private void HookEvents() {
