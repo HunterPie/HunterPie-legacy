@@ -135,6 +135,13 @@ namespace HunterPie.Memory {
         }
 
         /* Helpers */
+        public static byte READ_BYTE(Int64 Address) {
+            int bytesRead = 0;
+            byte[] Buffer = new byte[1];
+            ReadProcessMemory((int)ProcessHandle, (IntPtr)Address, Buffer, 1, ref bytesRead);
+            return Buffer[0];
+        }
+
         public static int READ_INT(Int64 Address) {
             int bytesRead = 0;
             byte[] Buffer = new byte[INT];

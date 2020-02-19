@@ -13,7 +13,7 @@ namespace HunterPie.Core {
 
         private string _Name;
         private int _Damage;
-        private int _Weapon = 255;
+        private byte _Weapon = 255;
 
         public string Name {
             get { return _Name; }
@@ -46,7 +46,7 @@ namespace HunterPie.Core {
                 }
             }
         }
-        public int Weapon {
+        public byte Weapon {
             get { return _Weapon; }
             set {
                 if (value != _Weapon) {
@@ -76,6 +76,13 @@ namespace HunterPie.Core {
 
         protected virtual void _OnSpawn() {
             OnSpawn?.Invoke(this, new PartyMemberEventArgs(this));
+        }
+
+        public void SetPlayerInfo(string name, byte weapon_id, int damage) {
+            this.Name = name;
+            this.Weapon = weapon_id;
+            this.IsInParty = name != null;
+            this.Damage = damage;
         }
 
         private string GetWeaponIconNameByID(int id) {

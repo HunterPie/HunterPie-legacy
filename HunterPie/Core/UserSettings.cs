@@ -60,7 +60,7 @@ namespace HunterPie.Core {
 
             public class Secondarymantle {
                 public bool Enabled { get; set; } = true;
-                public int[] Position { get; set; } = new int[2] { 1145, 300 };
+                public int[] Position { get; set; } = new int[2] { 1145, 350 };
                 public string Color { get; set; } = "#996900FF";
             }
 

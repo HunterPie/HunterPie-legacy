@@ -312,38 +312,18 @@ namespace HunterPie.Core {
 
         private void GetParty() {
             Int64 address = Address.BASE + Address.PARTY_OFFSET;
-            Int64 PartyContainer = Scanner.READ_LONGLONG(address) + Address.Offsets.PartyOffsets[0];
+            Int64 PartyContainer = Scanner.READ_MULTILEVEL_PTR(address, Address.Offsets.PartyOffsets) - 0x22B7;
             int totalDamage = 0;
             for (int i = 0; i < PlayerParty.MaxSize; i++) totalDamage += GetPartyMemberDamage(i);
             PlayerParty.TotalDamage = totalDamage;
             GetQuestElapsedTime();
-            bool shiftNextPlayer = false;
-            for (int member = 0; member < PlayerParty.MaxSize; member++) {
-                string partyMemberName = GetPartyMemberName(PartyContainer + (member * 0x21));
-                Member PartyMember = PlayerParty[member];
-                PartyMember.Damage = GetPartyMemberDamage(member);
-                if ( partyMemberName != null || (partyMemberName == null && PartyMember.Damage > 0)) {
-                    PartyMember.IsInParty = true;
-                } else if (partyMemberName == null && PartyMember.Damage == 0) {
-                    PartyMember.IsInParty = false;
-                }
-                // TODO: Find a better way to get the player weapon ID
-                if (partyMemberName == this.Name) {
-                    PartyMember.Weapon = GetPartyMemberWeapon(member, true);
-                    shiftNextPlayer = true;
-                    PartyMember.Name = partyMemberName;
-                    continue;
-                }
-                if (shiftNextPlayer) {
-                    PartyMember.Weapon = GetPartyMemberWeapon(member - 1, false);
-                    shiftNextPlayer = false;
-                    PartyMember.Name = partyMemberName;
-                    continue;
-                }
-                PartyMember.Weapon = GetPartyMemberWeapon(member, false);
-                PartyMember.Name = partyMemberName;
+            for (int i = 0; i < PlayerParty.MaxSize; i++) {
+                string playerName = GetPartyMemberName(PartyContainer + (i * 0x1C0));
+                byte playerWeapon = Scanner.READ_BYTE(PartyContainer + (i * 0x1C0 + 0x33));
+                int playerDamage = GetPartyMemberDamage(i);
+                PlayerParty[i].SetPlayerInfo(playerName, playerWeapon, playerDamage);
             }
-            
+
         }
 
         private void GetQuestElapsedTime() {
@@ -355,12 +335,6 @@ namespace HunterPie.Core {
             }
             PlayerParty.ShowDPS = true;
             PlayerParty.Epoch = DateTime.UtcNow - DateTimeOffset.FromUnixTimeSeconds(Epoch);
-        }
-
-        private int GetPartyMemberWeapon(int playerIndex, bool isLocalPLayer) {
-            Int64 PlayerStruct = isLocalPLayer ? PlayerStructAddress : PlayerStructAddress - ((PlayerParty.MaxSize - 1 -  playerIndex) * 0x740);
-            int memberWeaponId = Scanner.READ_INT(PlayerStruct);
-            return memberWeaponId;
         }
 
         private int GetPartyMemberDamage(int playerIndex) {
