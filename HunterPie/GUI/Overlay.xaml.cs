@@ -4,9 +4,6 @@ using System.Windows.Media;
 using System.Windows.Forms;
 using System.Runtime.InteropServices;
 using System.Windows.Interop;
-using System.Windows.Controls;
-using System.Windows.Media.Animation;
-using System.Windows.Media.Effects;
 using HunterPie.Core;
 using HunterPie.Memory;
 
@@ -56,13 +53,14 @@ namespace HunterPie.GUI {
 
         public void Destroy() {
             this.FirstMonster.UnhookEvents();
-            this.SecondaryMantle.UnhookEvents();
             this.ThirdMonster.UnhookEvents();
             this.PrimaryMantle.UnhookEvents();
             this.SecondaryMantle.UnhookEvents();
             this.HarvestBoxComponent.UnhookEvents();
             this.DPSMeter.DestroyPlayerComponents();
+            this.DPSMeter.UnhookEvents();
             this.UnhookEvents();
+            this.ctx = null;
             this.Close();
         }
         

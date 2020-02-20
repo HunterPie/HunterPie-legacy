@@ -28,16 +28,14 @@ namespace HunterPie.Core {
         private void HookEvents() {
             UserSettings.OnSettingsUpdate += HandleSettings;
             // Process
-            Scanner.OnGameStart += StartRPC;
             Scanner.OnGameClosed += CloseRPCConnection;
             // Game context
             ctx.OnClockChange += HandlePresence;
-            ctx.Player.OnZoneChange += HandlePresence;
+            
         }
         
         private void UnhookEvents() {
             UserSettings.OnSettingsUpdate -= HandleSettings;
-            Scanner.OnGameStart -= StartRPC;
             Scanner.OnGameClosed -= CloseRPCConnection;
             ctx.OnClockChange -= HandlePresence;
             ctx.Player.OnZoneChange -= HandlePresence;
@@ -45,9 +43,10 @@ namespace HunterPie.Core {
 
             /* Connection */
 
-        public void StartRPC(object source, EventArgs e) {
+        public void StartRPC() {
             if (isOffline) return;
             // Check if connection exists to avoid creating multiple connections
+            ctx.Player.OnZoneChange += HandlePresence;
             if (Client == null || Client.IsDisposed) {
                 Debugger.Discord("Starting new RPC connection");
                 Client = new DiscordRpcClient(APP_ID);

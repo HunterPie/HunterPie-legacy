@@ -76,7 +76,7 @@ namespace HunterPie.Core {
             Player.OnZoneChange += OnZoneChange;
         }
 
-        private void UnhookEvents() {
+        public void UnhookEvents() {
             Player.OnZoneChange -= OnZoneChange;
         }
 

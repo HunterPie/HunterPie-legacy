@@ -61,6 +61,8 @@ namespace HunterPie.GUI.Widgets.DPSMeter {
             GameContext.Player.OnPeaceZoneEnter -= OnPeaceZoneEnter;
             GameContext.Player.OnPeaceZoneLeave -= OnPeaceZoneLeave;
             Context.OnTotalDamageChange -= OnTotalDamageChange;
+            GameContext = null;
+            Context = null;
         }
 
         private void OnTotalDamageChange(object source, EventArgs args) {

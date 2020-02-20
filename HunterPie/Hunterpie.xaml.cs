@@ -32,8 +32,6 @@ namespace HunterPie {
             InitializeComponent();
             OpenDebugger();
             AppDomain.CurrentDomain.UnhandledException += ExceptionLogger;
-            // Initialize rich presence
-            Discord = new Presence(MonsterHunter);
             // Initialize everything under this line
             UserSettings.InitializePlayerConfig();
             CheckIfUpdateEnableAndStart();
@@ -41,7 +39,7 @@ namespace HunterPie {
             this.version_text.Content = $"Version: {HUNTERPIE_VERSION} ({UserSettings.PlayerConfig.HunterPie.Update.Branch})";
             Debugger.Warn("Initializing HunterPie!");
             GStrings.InitStrings(UserSettings.PlayerConfig.HunterPie.Language);
-
+            MonsterData.LoadMonsterData();
             StartEverything();
         }
 
@@ -139,9 +137,6 @@ namespace HunterPie {
         private void StartEverything() {
             HookEvents();
             Scanner.StartScanning(); // Scans game memory
-            GameOverlay = new Overlay(MonsterHunter);
-            UserSettings.TriggerSettingsEvent();
-            GameOverlay.HookEvents(); // Calls this after settings
         }
 
         /* Game events */
@@ -149,10 +144,6 @@ namespace HunterPie {
             // Scanner events
             Scanner.OnGameStart += OnGameStart;
             Scanner.OnGameClosed += OnGameClose;
-            // Game events
-            MonsterHunter.Player.OnZoneChange += OnZoneChange;
-            MonsterHunter.Player.OnCharacterLogin += OnLogin;
-            MonsterHunter.Player.OnSessionChange += OnSessionChange;
             // Settings
             UserSettings.OnSettingsUpdate += SendToOverlay;
         }
@@ -175,8 +166,15 @@ namespace HunterPie {
             UserSettings.OnSettingsUpdate -= SendToOverlay;
         }
 
+        private void HookGameEvents() {
+            // Game events
+            MonsterHunter.Player.OnZoneChange += OnZoneChange;
+            MonsterHunter.Player.OnCharacterLogin += OnLogin;
+            MonsterHunter.Player.OnSessionChange += OnSessionChange;
+        }
+
         public void SendToOverlay(object source, EventArgs e) {
-            GameOverlay.Dispatch(() => {
+            GameOverlay?.Dispatch(() => {
                 GameOverlay.GlobalSettingsEventHandler(source, e);
             });
         }
@@ -190,25 +188,43 @@ namespace HunterPie {
         }
 
         public void OnGameStart(object source, EventArgs e) {
-            MonsterData.LoadMonsterData();
-            MonsterHunter.StartScanning();
+            // Hook game events
+            HookGameEvents();
+
+            // Creates new overlay
+            Dispatcher.Invoke(System.Windows.Threading.DispatcherPriority.Background, new Action(() => {
+                GameOverlay = new Overlay(MonsterHunter);
+                GameOverlay.HookEvents();
+                UserSettings.TriggerSettingsEvent();
+            }));
+            
+            // Loads memory map
             if (Address.LoadMemoryMap(Scanner.GameVersion) || Scanner.GameVersion == Address.GAME_VERSION) {
                 Debugger.Warn($"Loaded 'MonsterHunterWorld.{Scanner.GameVersion}.map'");
             } else {
                 Debugger.Error($"Detected game version ({Scanner.GameVersion}) not mapped yet!");
                 return;
             }
-            
+
+            // Starts scanning
+            MonsterHunter.StartScanning();
+
+            // Initializes rich presence
+            Discord = new Presence(MonsterHunter);
+            Discord.StartRPC();
         }
 
         public void OnGameClose(object source, EventArgs e) {
-            MonsterData.UnloadMonsterData();
             if (UserSettings.PlayerConfig.HunterPie.Options.CloseWhenGameCloses) {
                 Dispatcher.BeginInvoke(System.Windows.Threading.DispatcherPriority.Normal, new Action(() => {
                     this.Close();
                 }));
             }
             MonsterHunter.StopScanning();
+            Dispatcher.BeginInvoke(System.Windows.Threading.DispatcherPriority.Background, new Action(() => {
+                GameOverlay?.Destroy();
+            }));
+            
         }
 
         /* Open sub windows */
@@ -269,14 +285,13 @@ namespace HunterPie {
         private void OnWindowClosing(object sender, System.ComponentModel.CancelEventArgs e) {
             this.Hide();
             // Stop Threads
-            GameOverlay.Destroy();
+            GameOverlay?.Destroy();
             if (MonsterHunter.IsActive) MonsterHunter.StopScanning();
-            Discord.CloseConnection();
+            Discord?.CloseConnection();
             Scanner.StopScanning();
-            
+
             // Close stuff
             this.UnhookEvents();
-            Environment.Exit(0);
         }
 
         private void OnGithubButtonClick(object sender, RoutedEventArgs e) {

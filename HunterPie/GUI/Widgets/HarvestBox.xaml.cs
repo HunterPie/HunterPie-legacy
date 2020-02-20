@@ -20,7 +20,7 @@ namespace HunterPie.GUI.Widgets {
     public partial class HarvestBox : UserControl {
         Player PlayerContext;
         Core.HarvestBox Context {
-            get { return PlayerContext.Harvest; }
+            get { return PlayerContext?.Harvest; }
         }
 
         // Animations
@@ -32,8 +32,8 @@ namespace HunterPie.GUI.Widgets {
 
         public void SetContext(Player ctx) {
             PlayerContext = ctx;
-            HookEvents();
             GetAnimations();
+            HookEvents();
         }
 
         private void Dispatch(Action function) {
@@ -74,6 +74,7 @@ namespace HunterPie.GUI.Widgets {
 
             Context.Box[3].OnAmountUpdate -= UpdateFourthFertilizer;
             Context.Box[3].OnFertilizerChange -= UpdateFourthFertilizer;
+            PlayerContext = null;
         }
 
 
