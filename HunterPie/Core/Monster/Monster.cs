@@ -137,14 +137,14 @@ namespace HunterPie.Core {
 
         public void StartThreadingScan() {
             MonsterInfoScanRef = new ThreadStart(ScanMonsterInfo);
-            MonsterInfoScan = new Thread(MonsterInfoScanRef);
-            MonsterInfoScan.Name = $"Scanner_Monster.{MonsterNumber}";
+            MonsterInfoScan = new Thread(MonsterInfoScanRef) {
+                Name = $"Scanner_Monster.{MonsterNumber}"
+            };
             Debugger.Warn($"Initializing monster({MonsterNumber}) scanner...");
             MonsterInfoScan.Start();
         }
 
         public void StopThread() {
-            Debugger.Warn($"Stopped Monster({MonsterNumber}) thread");
             MonsterInfoScan.Abort();
         }
 

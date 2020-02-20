@@ -10,7 +10,7 @@ namespace HunterPie.Core {
         private Int64 _playerAddress = 0x0;
         private int _level;
         private int _zoneId = -1;
-        private int _weaponId;
+        private byte _weaponId;
         private string _sessionId;
 
         // Game info
@@ -60,7 +60,7 @@ namespace HunterPie.Core {
             get { return GStrings.GetStageNameByID(ZoneID); }
         }
         public int LastZoneID { get; private set; }
-        public int WeaponID {
+        public byte WeaponID {
             get { return _weaponId; }
             set {
                 if (_weaponId != value) {
@@ -248,7 +248,7 @@ namespace HunterPie.Core {
             Int64 Address = Memory.Address.BASE + Memory.Address.WEAPON_OFFSET;
             Address = Scanner.READ_MULTILEVEL_PTR(Address, Memory.Address.Offsets.WeaponOffsets);
             PlayerStructAddress = Address;
-            WeaponID = Scanner.READ_INT(Address);
+            WeaponID = Scanner.READ_BYTE(Address);
         }
 
         private void GetSessionId() {

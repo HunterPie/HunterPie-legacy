@@ -170,6 +170,12 @@ namespace HunterPie {
             MonsterHunter.Player.OnSessionChange += OnSessionChange;
         }
 
+        private void UnhookGameEvents() {
+            MonsterHunter.Player.OnZoneChange -= OnZoneChange;
+            MonsterHunter.Player.OnCharacterLogin -= OnLogin;
+            MonsterHunter.Player.OnSessionChange -= OnSessionChange;
+        }
+
         public void SendToOverlay(object source, EventArgs e) {
             GameOverlay?.Dispatch(() => {
                 GameOverlay.GlobalSettingsEventHandler(source, e);
@@ -216,6 +222,7 @@ namespace HunterPie {
         }
 
         public void OnGameClose(object source, EventArgs e) {
+            UnhookGameEvents();
             Discord.Dispose();
             Discord = null;
             if (UserSettings.PlayerConfig.HunterPie.Options.CloseWhenGameCloses) {
@@ -228,7 +235,6 @@ namespace HunterPie {
                 GameOverlay.Dispose();
                 GameOverlay = null;
             }));
-            
         }
 
         /* Open sub windows */
