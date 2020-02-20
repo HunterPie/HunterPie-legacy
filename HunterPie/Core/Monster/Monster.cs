@@ -7,7 +7,7 @@ using System.Collections.Generic;
 namespace HunterPie.Core {
     public class Monster {
         // Private vars
-        private string _name;
+        private string _id;
         private float _currentHP;
         private bool _isTarget;
         private float _enrageTimer;
@@ -18,30 +18,30 @@ namespace HunterPie.Core {
 
         // Monster basic info
         public string Name {
-            get { return _name; }
+            get { return GStrings.GetMonsterNameByID(ID); }
+        }
+        public string ID {
+            get { return _id; }
             set {
-                if (value != null && _name != value) {
+                if (value != null && _id != value) {
                     if (CurrentHP > 0) {
-                        _name = value;
+                        _id = value;
                         // Static stuff that can be scanned only once
                         GetMonsterWeaknesses();
                         GetMonsterSizeModifier();
                         // Only call this if monster is actually alive
                         _onMonsterSpawn();
                     }
-                } else if (value == null && _name != value) {
-                    _name = value;
+                } else if (value == null && _id != value) {
+                    _id = value;
                     _onMonsterDespawn();
                     Weaknesses.Clear();
                 }
             }
         }
-        public string ID { get; private set; }
         public float SizeMultiplier { get; private set; }
         public string Crown {
-            get {
-                return MonsterData.GetMonsterCrownByMultiplier(ID, SizeMultiplier);
-            }
+            get { return MonsterData.GetMonsterCrownByMultiplier(ID, SizeMultiplier); }
         }
         public float TotalHP { get; private set; }
         public float CurrentHP {
@@ -144,6 +144,7 @@ namespace HunterPie.Core {
         }
 
         public void StopThread() {
+            Debugger.Warn($"Stopped Monster({MonsterNumber}) thread");
             MonsterInfoScan.Abort();
         }
 
@@ -151,7 +152,6 @@ namespace HunterPie.Core {
         /*
         private void SimulateMonster() {
             this.ID = "em002_00";
-            this.Name = "Rathalos";
             this.CurrentHP = 19008.5f;
             this.TotalHP = 19008.5f;
             this.SizeMultiplier = MonsterNumber == 1 ? 1.23f : MonsterNumber == 2 ? 1.15f : 0.9f;
@@ -159,7 +159,6 @@ namespace HunterPie.Core {
             while (true) {
                 this.ID = "em002_00";
                 this.SizeMultiplier = MonsterNumber == 1 ? 1.23f : MonsterNumber == 2 ? 1.15f : 1;
-                this.Name = "Rathalos";
                 _onMonsterSpawn();
                 _onHPUpdate();
                 CurrentHP -= 11;
@@ -175,7 +174,6 @@ namespace HunterPie.Core {
             while (Scanner.GameIsRunning) {
                 GetMonsterAddress();
                 GetMonsterIDAndName();
-                GetMonsterHp();
                 GetMonsterEnrageTimer();
                 Thread.Sleep(200);
             }
@@ -202,14 +200,14 @@ namespace HunterPie.Core {
             }
         }
 
-        private void GetMonsterHp() {
+        private void GetMonsterHp(string MonsterModel) {
             Int64 MonsterHPComponent = Scanner.READ_LONGLONG(this.MonsterAddress + Address.Offsets.MonsterHPComponentOffset);
             Int64 MonsterTotalHPAddress = MonsterHPComponent + 0x60;
             Int64 MonsterCurrentHPAddress = MonsterTotalHPAddress + 0x4;
             float f_TotalHP = Scanner.READ_FLOAT(MonsterTotalHPAddress);
             float f_CurrentHP = Scanner.READ_FLOAT(MonsterCurrentHPAddress);
 
-            if ((this.ID != null) && f_CurrentHP <= f_TotalHP && f_CurrentHP > 0 && !this.ID.StartsWith("ems")) {
+            if ((MonsterModel != null) && f_CurrentHP <= f_TotalHP && f_CurrentHP > 0 && !MonsterModel.StartsWith("ems")) {
                 this.TotalHP = f_TotalHP;
                 this.CurrentHP = f_CurrentHP;
                 this.HPPercentage = f_CurrentHP / f_TotalHP == 0 ? 1 : f_CurrentHP / f_TotalHP;
@@ -227,19 +225,17 @@ namespace HunterPie.Core {
                 string[] MonsterID = MonsterId.Split('\\');
                 if (MonsterID.Length < 4) {
                     this.ID = null;
-                    this.Name = null;
                     return;
                 }
-                string MonsterModelID = MonsterID[4].Trim('\x00');
-                if (MonsterModelID.StartsWith("em") && !MonsterModelID.StartsWith("ems")) {
-                    if (MonsterModelID != this.ID) Debugger.Log($"Found new monster ID: {MonsterID[4]} #{MonsterNumber} @ 0x{MonsterAddress:X}");
-                    this.ID = MonsterModelID;
-                    this.Name = GStrings.GetMonsterNameByID(this.ID) ?? "Unknown Monster";
+                MonsterId = MonsterID[4].Trim('\x00');
+                GetMonsterHp(MonsterId);
+                if (MonsterId.StartsWith("em") && !MonsterId.StartsWith("ems")) {
+                    if (MonsterId != this.ID) Debugger.Log($"Found new monster ID: {MonsterID[4]} #{MonsterNumber} @ 0x{MonsterAddress:X}");
+                    this.ID = MonsterId;
                     return;
                 }
             }
             this.ID = null;
-            this.Name = null;
             return;
         }
 

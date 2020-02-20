@@ -48,6 +48,7 @@ namespace HunterPie.GUI.Widgets {
             Context.OnEnrage -= OnEnrage;
             Context.OnUnenrage -= OnUnenrage;
             Context.OnHPUpdate -= OnMonsterUpdate;
+            Context = null;
         }
 
         private void LoadAnimations() {

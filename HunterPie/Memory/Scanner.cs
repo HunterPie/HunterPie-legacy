@@ -3,6 +3,7 @@ using System.Text;
 using System.Runtime.InteropServices;
 using System.Threading;
 using System.Diagnostics ;
+using System.Linq;
 
 namespace HunterPie.Memory {
     class Scanner {
@@ -19,7 +20,7 @@ namespace HunterPie.Memory {
         static private IntPtr WindowHandle;
         static public int GameVersion;
         static public int PID;
-        static Process[] MonsterHunter;
+        static Process MonsterHunter;
         static public IntPtr ProcessHandle { get; private set; } = (IntPtr)0;
         static public bool GameIsRunning = false;
         static private bool _isForegroundWindow = true;
@@ -96,8 +97,8 @@ namespace HunterPie.Memory {
         public static void GetProcess() {
             bool lockSpam = false;
             while (true) {
-                MonsterHunter = Process.GetProcessesByName(PROCESS_NAME);
-                if (MonsterHunter.Length == 0) {
+                MonsterHunter = Process.GetProcessesByName(PROCESS_NAME).FirstOrDefault();
+                if (MonsterHunter == null) {
                     if (!lockSpam) {
                         Logger.Debugger.Log("HunterPie is ready! Waiting for game process to start...");
                         lockSpam = true;
@@ -111,18 +112,18 @@ namespace HunterPie.Memory {
                     GameIsRunning = false;
                     PID = 0;
                 } else if (!GameIsRunning) {
-                    while (MonsterHunter.Length == 0 || MonsterHunter[0].MainWindowTitle == "") {
-                        MonsterHunter = Process.GetProcessesByName(PROCESS_NAME);
-                        Thread.Sleep(500);
+                    while (MonsterHunter == null || MonsterHunter?.MainWindowTitle == "") {
+                        MonsterHunter = Process.GetProcessesByName(PROCESS_NAME).FirstOrDefault();
+                        Thread.Sleep(1000);
                     }
-                    PID = MonsterHunter[0].Id;
+                    PID = MonsterHunter.Id;
                     ProcessHandle = OpenProcess(PROCESS_VM_READ, false, PID);
                     if (ProcessHandle == (IntPtr)0) {
                         Logger.Debugger.Error("Failed to open game process. Try running HunterPie as administrator.");
                         return;
                     }
-                    GameVersion = int.Parse(MonsterHunter[0].MainWindowTitle.Split('(')[1].Trim(')'));
-                    WindowHandle = MonsterHunter[0].MainWindowHandle;
+                    GameVersion = int.Parse(MonsterHunter.MainWindowTitle.Split('(')[1].Trim(')'));
+                    WindowHandle = MonsterHunter.MainWindowHandle;
                     _onGameStart();
                     Logger.Debugger.Log($"MonsterHunterWorld.exe found! (PID: {PID})");
                     GameIsRunning = true;
@@ -130,6 +131,7 @@ namespace HunterPie.Memory {
                 if (GameIsRunning) {
                     IsForegroundWindow = GetForegroundWindow() == WindowHandle;
                 }
+                MonsterHunter?.Dispose();
                 Thread.Sleep(1000);
             }
         }

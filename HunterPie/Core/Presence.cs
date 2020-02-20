@@ -4,11 +4,12 @@ using HunterPie.Memory;
 using HunterPie.Logger;
 
 namespace HunterPie.Core {
-    class Presence {
+    class Presence : IDisposable {
+        public bool IsDisposed { get; private set; }
         private string APP_ID = "567152028070051859";
         private bool isOffline = false;
         private bool isVisible = true;
-        private RichPresence Instance = new RichPresence();
+        private RichPresence Instance;
         public DiscordRpcClient Client;
         public Game ctx;
 
@@ -23,20 +24,21 @@ namespace HunterPie.Core {
             isOffline = true;
         }
 
+        ~Presence() {
+            Dispose(false);
+        }
+
         /* Event handlers */
 
         private void HookEvents() {
             UserSettings.OnSettingsUpdate += HandleSettings;
-            // Process
-            Scanner.OnGameClosed += CloseRPCConnection;
             // Game context
             ctx.OnClockChange += HandlePresence;
-            
+            ctx.Player.OnZoneChange += HandlePresence;
         }
         
         private void UnhookEvents() {
             UserSettings.OnSettingsUpdate -= HandleSettings;
-            Scanner.OnGameClosed -= CloseRPCConnection;
             ctx.OnClockChange -= HandlePresence;
             ctx.Player.OnZoneChange -= HandlePresence;
         }
@@ -45,25 +47,13 @@ namespace HunterPie.Core {
 
         public void StartRPC() {
             if (isOffline) return;
+            
             // Check if connection exists to avoid creating multiple connections
-            ctx.Player.OnZoneChange += HandlePresence;
-            if (Client == null || Client.IsDisposed) {
-                Debugger.Discord("Starting new RPC connection");
-                Client = new DiscordRpcClient(APP_ID);
-                Client.Initialize();
-            }
-        }
-
-        public void CloseConnection() {
-            if (Client != null) {
-                Debugger.Discord("Closed connection");
-                Client.ClearPresence();
-                Client.Dispose();
-            }
-        }
-
-        public void CloseRPCConnection(object source, EventArgs e) {
-            CloseConnection();
+            Instance = new RichPresence();
+            Debugger.Discord("Starting new RPC connection");
+            Client = new DiscordRpcClient(APP_ID);
+            Client.Initialize();
+            
         }
 
         public void HandleSettings(object source, EventArgs e) {
@@ -78,6 +68,8 @@ namespace HunterPie.Core {
         }
 
         public void HandlePresence(object source, EventArgs e) {
+            if (Instance == null) return;
+
             // Do nothing if RPC is disabled
             if (!isVisible) return;
 
@@ -109,12 +101,6 @@ namespace HunterPie.Core {
 
         /* Helpers */
 
-        public void InitializePresence() {
-            Client = new DiscordRpcClient(APP_ID);
-            Client.Initialize();
-            Debugger.Discord("Connecting to Discord...");
-        }
-
         public Assets GenerateAssets(string largeImage, string largeImageText, string smallImage, string smallImageText) {
             Assets assets = new Assets {
                 LargeImageKey = largeImage,
@@ -144,5 +130,23 @@ namespace HunterPie.Core {
             return timestamp;
         }
 
+
+        /* Dispose */
+        public void Dispose() {
+            Debugger.Log("Closed Connection to discord");
+            Dispose(true);
+            GC.SuppressFinalize(this);
+        }
+
+        protected virtual void Dispose(bool disposing) {
+            if (IsDisposed) return;
+            if (disposing) {
+                UnhookEvents();
+                Client?.ClearPresence();
+                Client?.Dispose();
+                Instance = null;
+            }
+            this.IsDisposed = true;
+        }
     }
 }

@@ -11,8 +11,8 @@ namespace HunterPie.GUI {
     /// <summary>
     /// Interaction logic for Overlay.xaml
     /// </summary>
-    public partial class Overlay : Window {
-
+    public partial class Overlay : Window, IDisposable {
+        public bool IsDisposed { get; private set; }
         Game ctx;
         double w_Height = Screen.PrimaryScreen.Bounds.Height;
         double w_Width = Screen.PrimaryScreen.Bounds.Width;
@@ -53,6 +53,7 @@ namespace HunterPie.GUI {
 
         public void Destroy() {
             this.FirstMonster.UnhookEvents();
+            this.SecondMonster.UnhookEvents();
             this.ThirdMonster.UnhookEvents();
             this.PrimaryMantle.UnhookEvents();
             this.SecondaryMantle.UnhookEvents();
@@ -61,7 +62,6 @@ namespace HunterPie.GUI {
             this.DPSMeter.UnhookEvents();
             this.UnhookEvents();
             this.ctx = null;
-            this.Close();
         }
         
         public void GlobalSettingsEventHandler(object source, EventArgs e) {
@@ -272,6 +272,19 @@ namespace HunterPie.GUI {
                 SecondaryMantle.MantleCooldown.Fill = DonutBrush(secondaryColor);
                 SecondaryMantle.MantleBorder.BorderBrush = secondaryColorBrush;
             });
+        }
+
+        protected virtual void Dispose(bool disposing) {
+            if (disposing) {
+                this.UnhookEvents();
+                this.Destroy();
+            }
+            this.Close();
+        }
+
+        public void Dispose() {
+            Dispose(true);
+            GC.SuppressFinalize(this);
         }
     }
 }

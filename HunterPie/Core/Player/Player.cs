@@ -10,9 +10,7 @@ namespace HunterPie.Core {
         private Int64 _playerAddress = 0x0;
         private int _level;
         private int _zoneId = -1;
-        private string _zoneName;
         private int _weaponId;
-        private string _weaponName;
         private string _sessionId;
 
         // Game info
@@ -59,12 +57,7 @@ namespace HunterPie.Core {
             }
         }
         public string ZoneName {
-            get { return _zoneName; }
-            set {
-                if (_zoneName != value) {
-                    _zoneName = value;
-                }
-            }
+            get { return GStrings.GetStageNameByID(ZoneID); }
         }
         public int LastZoneID { get; private set; }
         public int WeaponID {
@@ -77,12 +70,7 @@ namespace HunterPie.Core {
             }
         }
         public string WeaponName {
-            get { return _weaponName; }
-            set {
-                if (_weaponName != value) {
-                    _weaponName = value;
-                }
-            }
+            get { return GStrings.GetWeaponNameByID(WeaponID); }
         }
         public string SessionID {
             get { return _sessionId; }
@@ -93,7 +81,9 @@ namespace HunterPie.Core {
                 }
             }
         }
-        public bool inPeaceZone = true;
+        public bool inPeaceZone {
+            get { return PeaceZones.Contains(this.ZoneID); }
+        }
         public bool inHarvestZone {
             get { return _HBZones.Contains(ZoneID); }
         }
@@ -123,7 +113,6 @@ namespace HunterPie.Core {
         public event PlayerEvents OnVillageEnter;
         public event PlayerEvents OnPeaceZoneLeave;
         public event PlayerEvents OnVillageLeave;
-        
 
         // Dispatchers
         
@@ -248,9 +237,7 @@ namespace HunterPie.Core {
             if (zoneId != ZoneID) {
                 this.LastZoneID = ZoneID;
                 this.ZoneID = zoneId;
-                this.inPeaceZone = PeaceZones.Contains(this.ZoneID);
             }
-            ZoneName = GStrings.GetStageNameByID(ZoneID);
         }
 
         public void ChangeLastZone() {
@@ -262,7 +249,6 @@ namespace HunterPie.Core {
             Address = Scanner.READ_MULTILEVEL_PTR(Address, Memory.Address.Offsets.WeaponOffsets);
             PlayerStructAddress = Address;
             WeaponID = Scanner.READ_INT(Address);
-            WeaponName = GStrings.GetWeaponNameByID(WeaponID);
         }
 
         private void GetSessionId() {
@@ -282,14 +268,12 @@ namespace HunterPie.Core {
             Int64 Address = LEVEL_ADDRESS + 0x34;
             int mantleId = Scanner.READ_INT(Address);
             PrimaryMantle.SetID(mantleId);
-            PrimaryMantle.SetName(GStrings.GetMantleNameByID(mantleId));
         }
 
         private void GetSecondaryMantle() {
             Int64 Address = LEVEL_ADDRESS + 0x34 + 0x4;
             int mantleId = Scanner.READ_INT(Address);
             SecondaryMantle.SetID(mantleId);
-            SecondaryMantle.SetName(GStrings.GetMantleNameByID(mantleId));
         }
 
         private void GetPrimaryMantleTimers() {
@@ -358,10 +342,8 @@ namespace HunterPie.Core {
                 Int64 FertilizerAddress = Address + Memory.Address.Offsets.FertilizersOffset + (0x10 * fertCount);
                 // Read memory
                 int FertilizerId = Scanner.READ_INT(FertilizerAddress - 0x4);
-                string FertilizerName = GStrings.GetFertilizerNameByID(FertilizerId);
                 int FertilizerCount = Scanner.READ_INT(FertilizerAddress);
                 // update fertilizer data
-                Harvest.Box[fertCount].Name = FertilizerName;
                 Harvest.Box[fertCount].ID = FertilizerId;
                 Harvest.Box[fertCount].Amount = FertilizerCount;
             }

@@ -3,7 +3,9 @@
         private int _id;
         private int _amount;
 
-        public string Name;
+        public string Name {
+            get { return GStrings.GetFertilizerNameByID(ID); }
+        }
         public int ID {
             get { return _id; }
             set {
@@ -71,7 +73,6 @@
         private void PopulateBox() {
             for (int i = 0; i < 4; i++) {
                 Fertilizer fert = new Fertilizer {
-                    Name = "Unknown",
                     ID = 0,
                     Amount = 0
                 };

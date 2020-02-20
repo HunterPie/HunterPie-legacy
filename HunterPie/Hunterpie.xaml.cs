@@ -2,10 +2,7 @@
 using System.Windows;
 using System.Windows.Input;
 using System.IO;
-using System.Windows.Resources;
-using System.Windows.Markup;
 using System.Windows.Controls;
-using System.Windows.Media.Animation;
 using HunterPie.GUIControls;
 using HunterPie.Logger;
 using HunterPie.Memory;
@@ -193,9 +190,11 @@ namespace HunterPie {
 
             // Creates new overlay
             Dispatcher.Invoke(System.Windows.Threading.DispatcherPriority.Background, new Action(() => {
-                GameOverlay = new Overlay(MonsterHunter);
-                GameOverlay.HookEvents();
-                UserSettings.TriggerSettingsEvent();
+                if (GameOverlay == null) {
+                    GameOverlay = new Overlay(MonsterHunter);
+                    GameOverlay.HookEvents();
+                    UserSettings.TriggerSettingsEvent();
+                } 
             }));
             
             // Loads memory map
@@ -210,11 +209,15 @@ namespace HunterPie {
             MonsterHunter.StartScanning();
 
             // Initializes rich presence
-            Discord = new Presence(MonsterHunter);
-            Discord.StartRPC();
+            if (Discord == null) {
+                Discord = new Presence(MonsterHunter);
+                Discord.StartRPC();
+            }
         }
 
         public void OnGameClose(object source, EventArgs e) {
+            Discord.Dispose();
+            Discord = null;
             if (UserSettings.PlayerConfig.HunterPie.Options.CloseWhenGameCloses) {
                 Dispatcher.BeginInvoke(System.Windows.Threading.DispatcherPriority.Normal, new Action(() => {
                     this.Close();
@@ -222,7 +225,8 @@ namespace HunterPie {
             }
             MonsterHunter.StopScanning();
             Dispatcher.BeginInvoke(System.Windows.Threading.DispatcherPriority.Background, new Action(() => {
-                GameOverlay?.Destroy();
+                GameOverlay.Dispose();
+                GameOverlay = null;
             }));
             
         }
@@ -285,9 +289,9 @@ namespace HunterPie {
         private void OnWindowClosing(object sender, System.ComponentModel.CancelEventArgs e) {
             this.Hide();
             // Stop Threads
-            GameOverlay?.Destroy();
+            GameOverlay?.Dispose();
             if (MonsterHunter.IsActive) MonsterHunter.StopScanning();
-            Discord?.CloseConnection();
+            Discord?.Dispose();
             Scanner.StopScanning();
 
             // Close stuff
@@ -337,5 +341,6 @@ namespace HunterPie {
         private void OnDiscordButtonClick(object sender, RoutedEventArgs e) {
             System.Diagnostics.Process.Start("https://discord.gg/5pdDq4Q");
         }
+        
     }
 }

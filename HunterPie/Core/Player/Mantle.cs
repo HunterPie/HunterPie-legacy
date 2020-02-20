@@ -20,7 +20,6 @@ namespace HunterPie.Core {
     }
 
     public class Mantle {
-        private string _name;
         private int _id;
         private float _cooldown;
         private float _timer;
@@ -28,13 +27,7 @@ namespace HunterPie.Core {
         private float _staticTimer;
 
         public string Name {
-            get {
-                return _name;
-            } set {
-                if (_name != value) {
-                    _name = value;
-                }
-            }
+            get { return GStrings.GetMantleNameByID(ID); }
         }
         public int ID {
             get {
@@ -105,10 +98,6 @@ namespace HunterPie.Core {
 
         public void SetID(int newID) {
             this.ID = newID;
-        }
-
-        public void SetName(string newName) {
-            this.Name = newName;
         }
 
         // Events
