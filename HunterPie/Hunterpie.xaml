@@ -8,92 +8,134 @@
         mc:Ignorable="d"
         Title="HunterPie" Height="592" Width="980" MinWidth="1000" MaxWidth="1000" MaxHeight="600" ResizeMode="CanMinimize" WindowStyle="None" Closing="OnWindowClosing" AllowsTransparency="True" BorderBrush="#7F000000" BorderThickness="1" Background="{x:Null}">
     <Window.Resources>
-        <SolidColorBrush x:Key="CONSOLE_BACKGROUND">#F41F1F1F</SolidColorBrush>
-        <SolidColorBrush x:Key="CONSOLE_HEADER_BACKGROUND">#4C0E0E0E</SolidColorBrush>
-        <SolidColorBrush x:Key="CONSOLE_SIDEBAR_BACKGROUND">#CC151515</SolidColorBrush>
-        <SolidColorBrush x:Key="CONSOLE_WINDOWBAR_BACKGROUND">#FF131313</SolidColorBrush>
-        <SolidColorBrush x:Key="BUTTON_LAUNCHGAME_BACKGROUND">#FFAF0000</SolidColorBrush>
-        <SolidColorBrush x:Key="BUTTON_LAUNCHGAME_FOREGROUND">#FFDEDEDE</SolidColorBrush>
-        <SolidColorBrush x:Key="BUTTON_TOPBUTTON_FOREGROUND">#FFD8D8D8</SolidColorBrush>
-        <SolidColorBrush x:Key="BUTTON_TOPBUTTON_BACKGROUND">#00000000</SolidColorBrush>
-        <SolidColorBrush x:Key="BUTTON_CLOSEWINDOW_BACKGROUND">#FFB02B2B</SolidColorBrush>
-        <SolidColorBrush x:Key="BUTTON_COMMONBUTTON_FOREGROUND">#FFF3F3F3</SolidColorBrush>
-        <SolidColorBrush x:Key="BUTTON_COMMONBUTTON_BACKGROUND">#E51B1B1B</SolidColorBrush>
-        <SolidColorBrush x:Key="BUTTON_COMMONBUTTON_BORDER">#FFAF0000</SolidColorBrush>
-        <SolidColorBrush x:Key="CONSOLE_VERSIONTEXT_FOREGROUND">#FFDEDEDE</SolidColorBrush>
-        <LinearGradientBrush x:Key="CONSOLE_LOGO_FOREGROUND" EndPoint="0.5,1" StartPoint="0.5,0">
-            <GradientStop Color="White" Offset="0"/>
-            <GradientStop Color="#FFE0E0E0" Offset="1"/>
-        </LinearGradientBrush>
+        <ResourceDictionary>
+            <ResourceDictionary.MergedDictionaries>
+                <ResourceDictionary Source="/Resources/ConsoleResources.xaml"/>
+            </ResourceDictionary.MergedDictionaries>
+            <SolidColorBrush x:Key="CONSOLE_BACKGROUND">#F41F1F1F</SolidColorBrush>
+            <SolidColorBrush x:Key="CONSOLE_HEADER_BACKGROUND">#4C0E0E0E</SolidColorBrush>
+            <SolidColorBrush x:Key="CONSOLE_SIDEBAR_BACKGROUND">#CC151515</SolidColorBrush>
+            <SolidColorBrush x:Key="CONSOLE_WINDOWBAR_BACKGROUND">#FF131313</SolidColorBrush>
+            <SolidColorBrush x:Key="BUTTON_LAUNCHGAME_BACKGROUND">#FFAF0000</SolidColorBrush>
+            <SolidColorBrush x:Key="BUTTON_LAUNCHGAME_FOREGROUND">#FFDEDEDE</SolidColorBrush>
+            <SolidColorBrush x:Key="BUTTON_TOPBUTTON_FOREGROUND">#FFD8D8D8</SolidColorBrush>
+            <SolidColorBrush x:Key="BUTTON_TOPBUTTON_BACKGROUND">#00000000</SolidColorBrush>
+            <SolidColorBrush x:Key="BUTTON_CLOSEWINDOW_BACKGROUND">#FFB02B2B</SolidColorBrush>
+            <SolidColorBrush x:Key="BUTTON_COMMONBUTTON_FOREGROUND">#FFF3F3F3</SolidColorBrush>
+            <SolidColorBrush x:Key="BUTTON_COMMONBUTTON_BACKGROUND">#E51B1B1B</SolidColorBrush>
+            <SolidColorBrush x:Key="BUTTON_COMMONBUTTON_BORDER">#FFAF0000</SolidColorBrush>
+            <SolidColorBrush x:Key="CONSOLE_VERSIONTEXT_FOREGROUND">#FFDEDEDE</SolidColorBrush>
+            <LinearGradientBrush x:Key="CONSOLE_LOGO_FOREGROUND" EndPoint="0.5,1" StartPoint="0.5,0">
+                <GradientStop Color="White" Offset="0"/>
+                <GradientStop Color="#FFE0E0E0" Offset="1"/>
+            </LinearGradientBrush>
 
-        <ControlTemplate x:Key="ButtonStyle" TargetType="{x:Type Button}">
-            <Border x:Name="border" BorderBrush="{TemplateBinding BorderBrush}" BorderThickness="{TemplateBinding BorderThickness}" Background="{TemplateBinding Background}" SnapsToDevicePixels="True">
-                <ContentPresenter x:Name="contentPresenter" ContentTemplate="{TemplateBinding ContentTemplate}" Content="{TemplateBinding Content}" ContentStringFormat="{TemplateBinding ContentStringFormat}" Focusable="False" HorizontalAlignment="{TemplateBinding HorizontalContentAlignment}" Margin="{TemplateBinding Padding}" RecognizesAccessKey="True" SnapsToDevicePixels="{TemplateBinding SnapsToDevicePixels}" VerticalAlignment="{TemplateBinding VerticalContentAlignment}"/>
-            </Border>
-            <ControlTemplate.Triggers>
-                <Trigger Property="IsDefaulted" Value="True">
-                    <Setter Property="BorderBrush" TargetName="border" Value="{DynamicResource {x:Static SystemColors.HighlightBrushKey}}"/>
-                </Trigger>
-                <Trigger Property="IsMouseOver" Value="True">
-                    <Trigger.EnterActions>
-                        <BeginStoryboard>
-                            <Storyboard Storyboard.TargetProperty="Opacity">
-                                <DoubleAnimation To="0.7" Duration="0:0:0.15"/>
-                            </Storyboard>
-                        </BeginStoryboard>
-                    </Trigger.EnterActions>
-                    <Trigger.ExitActions>
-                        <BeginStoryboard>
-                            <Storyboard Storyboard.TargetProperty="Opacity">
-                                <DoubleAnimation To="1" Duration="0:0:0.15"/>
-                            </Storyboard>
-                        </BeginStoryboard>
-                    </Trigger.ExitActions>
-                </Trigger>
-            </ControlTemplate.Triggers>
-        </ControlTemplate>
-        <ControlTemplate x:Key="LabelButtonType" TargetType="{x:Type Label}">
-            <Border BorderBrush="{TemplateBinding BorderBrush}" BorderThickness="{TemplateBinding BorderThickness}" Background="{TemplateBinding Background}" Padding="{TemplateBinding Padding}" SnapsToDevicePixels="True">
-                <ContentPresenter ContentTemplate="{TemplateBinding ContentTemplate}" Content="{TemplateBinding Content}" ContentStringFormat="{TemplateBinding ContentStringFormat}" HorizontalAlignment="{TemplateBinding HorizontalContentAlignment}" RecognizesAccessKey="True" SnapsToDevicePixels="{TemplateBinding SnapsToDevicePixels}" VerticalAlignment="{TemplateBinding VerticalContentAlignment}"/>
-            </Border>
-            <ControlTemplate.Triggers>
-                <Trigger Property="IsMouseOver" Value="True">
-                    <Trigger.EnterActions>
-                        <BeginStoryboard>
-                            <Storyboard>
-                                <DoubleAnimation Duration="0:0:0.200" To="0.5" Storyboard.TargetProperty="Opacity"/>
-                            </Storyboard>
-                        </BeginStoryboard>
-                    </Trigger.EnterActions>
-                    <Trigger.ExitActions>
-                        <BeginStoryboard>
-                            <Storyboard>
-                                <DoubleAnimation Duration="0:0:0.200" To="1" Storyboard.TargetProperty="Opacity"/>
-                            </Storyboard>
-                        </BeginStoryboard>
-                    </Trigger.ExitActions>
-                </Trigger>
-            </ControlTemplate.Triggers>
-        </ControlTemplate>
+            <Style x:Key="STYLE_SIDEBARBUTTONS" TargetType="StackPanel">
+                <Style.Triggers>
+                    <Trigger Property="IsMouseOver" Value="True">
+                        <Trigger.EnterActions>
+                            <BeginStoryboard>
+                                <Storyboard Storyboard.TargetProperty="Opacity">
+                                    <DoubleAnimation To="0.6"  Duration="0:0:0.25"/>
+                                </Storyboard>
+                            </BeginStoryboard>
+                        </Trigger.EnterActions>
+                        <Trigger.ExitActions>
+                            <BeginStoryboard>
+                                <Storyboard Storyboard.TargetProperty="Opacity">
+                                    <DoubleAnimation To="1"  Duration="0:0:0.25"/>
+                                </Storyboard>
+                            </BeginStoryboard>
+                        </Trigger.ExitActions>
+                    </Trigger>
+                </Style.Triggers>
+            </Style>
+            
+            <ControlTemplate x:Key="ButtonStyle" TargetType="{x:Type Button}">
+                <Border x:Name="border" BorderBrush="{TemplateBinding BorderBrush}" BorderThickness="{TemplateBinding BorderThickness}" Background="{TemplateBinding Background}" SnapsToDevicePixels="True">
+                    <ContentPresenter x:Name="contentPresenter" ContentTemplate="{TemplateBinding ContentTemplate}" Content="{TemplateBinding Content}" ContentStringFormat="{TemplateBinding ContentStringFormat}" Focusable="False" HorizontalAlignment="{TemplateBinding HorizontalContentAlignment}" Margin="{TemplateBinding Padding}" RecognizesAccessKey="True" SnapsToDevicePixels="{TemplateBinding SnapsToDevicePixels}" VerticalAlignment="{TemplateBinding VerticalContentAlignment}"/>
+                </Border>
+                <ControlTemplate.Triggers>
+                    <Trigger Property="IsDefaulted" Value="True">
+                        <Setter Property="BorderBrush" TargetName="border" Value="{DynamicResource {x:Static SystemColors.HighlightBrushKey}}"/>
+                    </Trigger>
+                    <Trigger Property="IsMouseOver" Value="True">
+                        <Trigger.EnterActions>
+                            <BeginStoryboard>
+                                <Storyboard Storyboard.TargetProperty="Opacity">
+                                    <DoubleAnimation To="0.7" Duration="0:0:0.15"/>
+                                </Storyboard>
+                            </BeginStoryboard>
+                        </Trigger.EnterActions>
+                        <Trigger.ExitActions>
+                            <BeginStoryboard>
+                                <Storyboard Storyboard.TargetProperty="Opacity">
+                                    <DoubleAnimation To="1" Duration="0:0:0.15"/>
+                                </Storyboard>
+                            </BeginStoryboard>
+                        </Trigger.ExitActions>
+                    </Trigger>
+                </ControlTemplate.Triggers>
+            </ControlTemplate>
+            <ControlTemplate x:Key="LabelButtonType" TargetType="{x:Type Label}">
+                <Border BorderBrush="{TemplateBinding BorderBrush}" BorderThickness="{TemplateBinding BorderThickness}" Background="{TemplateBinding Background}" Padding="{TemplateBinding Padding}" SnapsToDevicePixels="True">
+                    <ContentPresenter ContentTemplate="{TemplateBinding ContentTemplate}" Content="{TemplateBinding Content}" ContentStringFormat="{TemplateBinding ContentStringFormat}" HorizontalAlignment="{TemplateBinding HorizontalContentAlignment}" RecognizesAccessKey="True" SnapsToDevicePixels="{TemplateBinding SnapsToDevicePixels}" VerticalAlignment="{TemplateBinding VerticalContentAlignment}"/>
+                </Border>
+                <ControlTemplate.Triggers>
+                    <Trigger Property="IsMouseOver" Value="True">
+                        <Trigger.EnterActions>
+                            <BeginStoryboard>
+                                <Storyboard>
+                                    <DoubleAnimation Duration="0:0:0.200" To="0.5" Storyboard.TargetProperty="Opacity"/>
+                                </Storyboard>
+                            </BeginStoryboard>
+                        </Trigger.EnterActions>
+                        <Trigger.ExitActions>
+                            <BeginStoryboard>
+                                <Storyboard>
+                                    <DoubleAnimation Duration="0:0:0.200" To="1" Storyboard.TargetProperty="Opacity"/>
+                                </Storyboard>
+                            </BeginStoryboard>
+                        </Trigger.ExitActions>
+                    </Trigger>
+                </ControlTemplate.Triggers>
+            </ControlTemplate>
+        </ResourceDictionary>
     </Window.Resources>
     <Grid Background="{StaticResource CONSOLE_BACKGROUND}">
         <Grid x:Name="ConsolePanel" Margin="51,157,0,2"/>
         <Rectangle HorizontalAlignment="Left" Height="130" VerticalAlignment="Top" Width="1000" Grid.ColumnSpan="2" Margin="0,22,0,0" Fill="{StaticResource CONSOLE_HEADER_BACKGROUND}"/>
         <Rectangle x:Name="WindowTopBar" Fill="{StaticResource CONSOLE_WINDOWBAR_BACKGROUND}" HorizontalAlignment="Left" Height="22" VerticalAlignment="Top" Width="1000" Grid.ColumnSpan="2" MouseDown="OnWindowDrag"/>
+        
+        <!-- Top buttons -->
         <Label x:Name="closeWindow" Content="✕" HorizontalAlignment="Center" Margin="973,0,0,568" VerticalAlignment="Center" Height="22" Width="25" Foreground="{StaticResource BUTTON_TOPBUTTON_FOREGROUND}" Padding="0,0,1,0" Cursor="Hand" MouseDown="OnCloseWindowButtonClick" FontSize="14" Template="{DynamicResource LabelButtonType}" OverridesDefaultStyle="True" Style="{Binding Mode=OneWay, Source={StaticResource LabelButtonType}}" VerticalContentAlignment="Center" Background="{StaticResource BUTTON_CLOSEWINDOW_BACKGROUND}" HorizontalContentAlignment="Center" />
         <Label x:Name="minimizeWindow" Content="__" HorizontalAlignment="Left" Margin="945,-7,0,568" Width="28" Foreground="{StaticResource BUTTON_TOPBUTTON_FOREGROUND}" Padding="0" Cursor="Hand" FontSize="18" Background="{StaticResource BUTTON_TOPBUTTON_BACKGROUND}" MouseDown="OnMinimizeButtonClick" Template="{DynamicResource LabelButtonType}" HorizontalContentAlignment="Center" BorderThickness="0" VerticalContentAlignment="Center"/>
+        
         <!-- Side bar -->
-        <Grid HorizontalAlignment="Left" Width="45" Margin="0,152,0,0" Background="{StaticResource CONSOLE_SIDEBAR_BACKGROUND}">
-            <Image Margin="11,0,0,407" Panel.ZIndex="1" Source="media/ICON_CONSOLE.png" Cursor="Hand" HorizontalAlignment="Left" Width="23" Height="21" VerticalAlignment="Bottom"/>
-            <Image Margin="11,0,0,366" Panel.ZIndex="1" Source="media/ICON_SETTINGS.png" Cursor="Hand" HorizontalAlignment="Left" Width="23" Height="20" VerticalAlignment="Bottom"/>
-            <Image Margin="8,0,0,281" Panel.ZIndex="1" Source="media/ICON_DISCORD.png" Cursor="Hand" HorizontalAlignment="Left" Width="26" Height="27" VerticalAlignment="Bottom" Stretch="UniformToFill"/>
-            <Image Margin="11,0,0,326" Panel.ZIndex="1" Source="media/ICON_CHANGELOG.png" Cursor="Hand" HorizontalAlignment="Left" Width="23" Height="20" VerticalAlignment="Bottom"/>
-            <Image Margin="11,0,0,247" Panel.ZIndex="1" Source="media/ICON_GITHUB.png" Cursor="Hand" Height="21" VerticalAlignment="Bottom" HorizontalAlignment="Left" Width="23"/>
-            <Button x:Name="BUTTON_CONSOLE" Content="CONSOLE" HorizontalAlignment="Left" BorderThickness="0,0,0,0" Margin="-1,2,0,0" VerticalAlignment="Top" Width="206" Height="40" Background="{StaticResource BUTTON_COMMONBUTTON_BACKGROUND}" Template="{DynamicResource ButtonStyle}" BorderBrush="{StaticResource BUTTON_COMMONBUTTON_BORDER}" Foreground="{StaticResource BUTTON_COMMONBUTTON_FOREGROUND}" FontFamily="Roboto" FontWeight="Bold" HorizontalContentAlignment="Left" FontSize="16" Padding="55,0,0,0" Cursor="Hand" Click="OnConsoleButtonClick"/>
-            <Button x:Name="BUTTON_SETTINGS" Content="SETTINGS" HorizontalAlignment="Left" BorderThickness="0,0,0,0" Margin="-1,42,0,0" VerticalAlignment="Top" Width="206" Height="40" Background="{StaticResource BUTTON_COMMONBUTTON_BACKGROUND}" Template="{DynamicResource ButtonStyle}" BorderBrush="{StaticResource BUTTON_COMMONBUTTON_BORDER}"  Foreground="{StaticResource BUTTON_COMMONBUTTON_FOREGROUND}" FontFamily="Roboto" FontWeight="Bold" HorizontalContentAlignment="Left" FontSize="16" Padding="55,0,0,0" Cursor="Hand" Click="OnSettingsButtonClick"/>
-            <Button x:Name="BUTTON_CHANGELOG" Content="PATCH NOTES" HorizontalAlignment="Left" BorderThickness="0,0,0,0" Margin="-1,82,0,0" VerticalAlignment="Top" Width="206" Height="40" Background="{StaticResource BUTTON_COMMONBUTTON_BACKGROUND}" Template="{DynamicResource ButtonStyle}" BorderBrush="{StaticResource BUTTON_COMMONBUTTON_BORDER}"  Foreground="{StaticResource BUTTON_COMMONBUTTON_FOREGROUND}" FontFamily="Roboto" FontWeight="Bold" HorizontalContentAlignment="Left" FontSize="16" Padding="55,0,0,0" Cursor="Hand" Click="OnChangelogButtonClick"/>
-            <Button Content="DISCORD" HorizontalAlignment="Left" BorderThickness="0,0,0,0" Margin="-1,122,0,0" VerticalAlignment="Top" Width="206" Height="40" Background="{StaticResource BUTTON_COMMONBUTTON_BACKGROUND}" Template="{DynamicResource ButtonStyle}" BorderBrush="{StaticResource BUTTON_COMMONBUTTON_BORDER}"  Foreground="{StaticResource BUTTON_COMMONBUTTON_FOREGROUND}" FontFamily="Roboto" FontWeight="Bold" HorizontalContentAlignment="Left" FontSize="16" Padding="55,0,0,0" Cursor="Hand" Click="OnDiscordButtonClick"/>
-            <Button Content="GITHUB" HorizontalAlignment="Left" BorderThickness="0,0,0,0" Margin="-1,162,0,0" VerticalAlignment="Top" Width="206" Height="40" Background="{StaticResource BUTTON_COMMONBUTTON_BACKGROUND}" Template="{DynamicResource ButtonStyle}" BorderBrush="{StaticResource BUTTON_COMMONBUTTON_BORDER}"  Foreground="{StaticResource BUTTON_COMMONBUTTON_FOREGROUND}" FontFamily="Roboto" FontWeight="Bold" HorizontalContentAlignment="Left" FontSize="16" Padding="55,0,0,0" Cursor="Hand" Click="OnGithubButtonClick"/>
+        <Grid HorizontalAlignment="Left" Width="50" Margin="0,152,0,0" Background="{StaticResource CONSOLE_SIDEBAR_BACKGROUND}" ClipToBounds="True">
+            <StackPanel x:Name="BUTTON_CONSOLE" Style="{StaticResource STYLE_SIDEBARBUTTONS}" Background="{StaticResource BUTTON_COMMONBUTTON_BACKGROUND}" Cursor="Hand"  Width="205" Height="40" Margin="0,2,0,396" Orientation="Horizontal" HorizontalAlignment="Left" MouseDown="OnConsoleButtonClick">
+                <Border BorderBrush="{StaticResource BUTTON_COMMONBUTTON_BORDER}" Width="4" BorderThickness="0,0,0,0" />
+                <Image Panel.ZIndex="1" Source="{StaticResource ICON_CONSOLE}" HorizontalAlignment="Center" Width="25" VerticalAlignment="Center" Margin="6,0,0,0"/>
+                <TextBlock Text="CONSOLE" Padding="20,0,0,0" VerticalAlignment="Center" FontSize="18" FontFamily="Roboto" FontWeight="Bold" Foreground="{StaticResource BUTTON_COMMONBUTTON_FOREGROUND}"/>
+            </StackPanel>
+            <StackPanel x:Name="BUTTON_SETTINGS" Style="{StaticResource STYLE_SIDEBARBUTTONS}"  Background="{StaticResource BUTTON_COMMONBUTTON_BACKGROUND}" Cursor="Hand"  Width="205" Height="40" Margin="0,42,0,356" Orientation="Horizontal" HorizontalAlignment="Left" MouseDown="OnSettingsButtonClick">
+                <Border BorderBrush="{StaticResource BUTTON_COMMONBUTTON_BORDER}" Width="4" BorderThickness="0,0,0,0" />
+                <Image Panel.ZIndex="1" Source="{StaticResource ICON_SETTINGS}" HorizontalAlignment="Center" Width="25" VerticalAlignment="Center" Margin="6,0,0,0"/>
+                <TextBlock Text="SETTINGS" Padding="20,0,0,0" VerticalAlignment="Center" FontSize="18" FontFamily="Roboto" FontWeight="Bold" Foreground="{StaticResource BUTTON_COMMONBUTTON_FOREGROUND}"/>
+            </StackPanel>
+            <StackPanel x:Name="BUTTON_CHANGELOG" Style="{StaticResource STYLE_SIDEBARBUTTONS}"  Background="{StaticResource BUTTON_COMMONBUTTON_BACKGROUND}" Cursor="Hand"  Width="205" Height="40" Margin="0,82,0,316" Orientation="Horizontal" HorizontalAlignment="Left" MouseDown="OnChangelogButtonClick">
+                <Border BorderBrush="{StaticResource BUTTON_COMMONBUTTON_BORDER}" Width="4" BorderThickness="0,0,0,0" />
+                <Image Panel.ZIndex="1" Source="{StaticResource ICON_CHANGELOG}" HorizontalAlignment="Center" Width="25" VerticalAlignment="Center" Margin="6,0,0,0"/>
+                <TextBlock Text="PATCH NOTES" Padding="20,0,0,0" VerticalAlignment="Center" FontSize="18" FontFamily="Roboto" FontWeight="Bold" Foreground="{StaticResource BUTTON_COMMONBUTTON_FOREGROUND}"/>
+            </StackPanel>
+            <StackPanel Style="{StaticResource STYLE_SIDEBARBUTTONS}"  Background="{StaticResource BUTTON_COMMONBUTTON_BACKGROUND}" Cursor="Hand"  Width="205" Height="40" Margin="0,122,0,276" Orientation="Horizontal" HorizontalAlignment="Left" MouseDown="OnDiscordButtonClick">
+                <Image Panel.ZIndex="1" Source="{StaticResource ICON_DISCORD}" HorizontalAlignment="Center" Width="25" VerticalAlignment="Center" Margin="10,0,0,0"/>
+                <TextBlock Text="DISCORD" Padding="20,0,0,0" VerticalAlignment="Center" FontSize="18" FontFamily="Roboto" FontWeight="Bold" Foreground="{StaticResource BUTTON_COMMONBUTTON_FOREGROUND}"/>
+            </StackPanel>
+            <StackPanel Style="{StaticResource STYLE_SIDEBARBUTTONS}"  Background="{StaticResource BUTTON_COMMONBUTTON_BACKGROUND}" Cursor="Hand"  Width="205" Height="40" Margin="0,162,0,236" Orientation="Horizontal" HorizontalAlignment="Left" MouseDown="OnGithubButtonClick">
+                <Image Panel.ZIndex="1" Source="{StaticResource ICON_GITHUB}" HorizontalAlignment="Center" Width="25" VerticalAlignment="Center" Margin="10,0,0,0"/>
+                <TextBlock Text="GITHUB" Padding="20,0,0,0" VerticalAlignment="Center" FontSize="18" FontFamily="Roboto" FontWeight="Bold" Foreground="{StaticResource BUTTON_COMMONBUTTON_FOREGROUND}"/>
+            </StackPanel>
             <Grid.Style>
                 <Style TargetType="Grid">
                     <Style.Triggers>
@@ -122,8 +164,8 @@
         <Label x:Name="version_text" Content="Version: BETA 1.0.0.0" HorizontalAlignment="Left" Width="150" Background="{x:Null}" Foreground="{StaticResource CONSOLE_VERSIONTEXT_FOREGROUND}" FontFamily="Roboto" VerticalAlignment="Bottom" Height="20" VerticalContentAlignment="Center" Padding="0,0,5,0" Margin="838,0,0,438" RenderTransformOrigin="0.5,0.5" HorizontalContentAlignment="Right"/>
         <Button x:Name="launchGameButton" HorizontalAlignment="Left" Margin="746,55,0,0" VerticalAlignment="Top" Width="242" Height="46" BorderBrush="{x:Null}" Foreground="{StaticResource BUTTON_LAUNCHGAME_FOREGROUND}" FontFamily="Roboto" FontSize="18" Cursor="Hand" BorderThickness="1"  Template="{DynamicResource ButtonStyle}" Content="LAUNCH GAME" Padding="0" FontWeight="Bold" HorizontalContentAlignment="Center" Click="OnLaunchGameButtonClick" Background="{StaticResource BUTTON_LAUNCHGAME_BACKGROUND}"/>
         <StackPanel Orientation="Horizontal" Height="59" VerticalAlignment="Top" HorizontalAlignment="Left" Width="185" Margin="20,50,0,0">
-            <Image HorizontalAlignment="Right" Height="59" VerticalAlignment="Top" Width="59" Source="media/LOGO_HunterPie.png"/>
-            <TextBlock HorizontalAlignment="Right" TextWrapping="Wrap" Text="Hunter" VerticalAlignment="Bottom" Height="59" FontFamily="Roboto" FontWeight="Bold" FontSize="22" Padding="0,16,0,0" Foreground="{StaticResource CONSOLE_LOGO_FOREGROUND}"/>
+            <Image HorizontalAlignment="Right" Height="59" VerticalAlignment="Top" Width="59" Source="{StaticResource LOGO_HunterPie}"/>
+            <TextBlock HorizontalAlignment="Right" TextWrapping="Wrap" Text="Hunter" VerticalAlignment="Bottom" Height="59" FontFamily="Roboto" FontWeight="Bold" FontSize="22" Padding="1,16,0,0" Foreground="{StaticResource CONSOLE_LOGO_FOREGROUND}"/>
             <TextBlock HorizontalAlignment="Right" TextWrapping="Wrap" Text="Pie" VerticalAlignment="Bottom" Height="59" FontFamily="Roboto" FontWeight="Light" Width="56" FontSize="22" Padding="0,16,0,0" Foreground="{StaticResource CONSOLE_LOGO_FOREGROUND}"/>
         </StackPanel>
 

@@ -293,12 +293,14 @@ namespace HunterPie {
         }
 
         /* Animations */
-        private void SwitchButtonOn(Button buttonActive) {
-            buttonActive.SetValue(BorderThicknessProperty, new Thickness(4, 0, 0, 0));
+        private void SwitchButtonOn(StackPanel buttonActive) {
+            Border ButtonBorder = (Border)buttonActive.Children[0];
+            ButtonBorder.SetValue(BorderThicknessProperty, new Thickness(4, 0, 0, 0));
         }
 
-        private void SwitchButtonOff(Button buttonActive) {
-            buttonActive.SetValue(BorderThicknessProperty, new Thickness(0, 0, 0, 0));
+        private void SwitchButtonOff(StackPanel buttonActive) {
+            Border ButtonBorder = (Border)buttonActive.Children[0];
+            ButtonBorder.SetValue(BorderThicknessProperty, new Thickness(0, 0, 0, 0));
         }
 
         /* Events */
@@ -343,19 +345,19 @@ namespace HunterPie {
             this.UnhookEvents();
         }
 
-        private void OnGithubButtonClick(object sender, RoutedEventArgs e) {
+        private void OnGithubButtonClick(object sender, MouseButtonEventArgs e) {
             System.Diagnostics.Process.Start("https://github.com/Haato3o/HunterPie");
         }
 
-        private void OnConsoleButtonClick(object sender, RoutedEventArgs e) {
+        private void OnConsoleButtonClick(object sender, MouseButtonEventArgs e) {
             OpenDebugger();
         }
 
-        private void OnSettingsButtonClick(object sender, RoutedEventArgs e) {
+        private void OnSettingsButtonClick(object sender, MouseButtonEventArgs e) {
             OpenSettings();
         }
 
-        private void OnChangelogButtonClick(object sender, RoutedEventArgs e) {
+        private void OnChangelogButtonClick(object sender, MouseButtonEventArgs e) {
             OpenChangelog();
         }
 
@@ -383,9 +385,8 @@ namespace HunterPie {
             }
         }
 
-        private void OnDiscordButtonClick(object sender, RoutedEventArgs e) {
+        private void OnDiscordButtonClick(object sender, MouseButtonEventArgs e) {
             System.Diagnostics.Process.Start("https://discord.gg/5pdDq4Q");
         }
-        
     }
 }

@@ -15,6 +15,7 @@ namespace HunterPie.GUIControls {
 
         protected virtual void Dispose(bool disposing) {
             if (!disposedValue) {
+                NotifyIcon.Visible = false;
                 if (disposing) {
                     this.NotifyIcon.Dispose();
                     this.ContextMenu.Dispose();
