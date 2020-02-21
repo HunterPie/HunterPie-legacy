@@ -135,6 +135,11 @@ namespace HunterPie.Core {
             MonsterNumber = initMonsterNumber;
         }
 
+        ~Monster() {
+            this.ID = null;
+            Weaknesses.Clear();
+        }
+
         public void StartThreadingScan() {
             MonsterInfoScanRef = new ThreadStart(ScanMonsterInfo);
             MonsterInfoScan = new Thread(MonsterInfoScanRef) {
@@ -240,7 +245,9 @@ namespace HunterPie.Core {
         }
 
         private void GetMonsterSizeModifier() {
-            SizeMultiplier = Scanner.READ_FLOAT(MonsterAddress + 0x1C0);
+            float SizeModifier = Scanner.READ_FLOAT(MonsterAddress + 0x7770);
+            if (SizeModifier <= 0 || SizeModifier >= 2) SizeModifier = 1;
+            SizeMultiplier = Scanner.READ_FLOAT(MonsterAddress + 0x1C0) / SizeModifier;
         }
 
         private void GetMonsterWeaknesses() {

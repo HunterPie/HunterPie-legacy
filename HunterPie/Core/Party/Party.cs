@@ -42,6 +42,11 @@ namespace HunterPie.Core {
             for (int i = 0; i < MaxSize; i++) AddMember(new Member());
         }
 
+        ~Party() {
+            Members.Clear();
+            Members = null;
+        }
+
         public void AddMember(Member pMember) {
             Members.Add(pMember);
         }

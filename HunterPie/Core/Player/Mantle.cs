@@ -1,6 +1,4 @@
-﻿using System;
-
-namespace HunterPie.Core {
+﻿namespace HunterPie.Core {
     public class MantleEventArgs {
         public string Name;
         public int ID;

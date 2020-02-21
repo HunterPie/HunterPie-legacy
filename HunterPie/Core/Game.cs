@@ -6,10 +6,10 @@ using HunterPie.Logger;
 namespace HunterPie.Core {
     public class Game {
         // Game classes
-        public Player Player = new Player();
-        public Monster FirstMonster = new Monster(1);
-        public Monster SecondMonster = new Monster(2);
-        public Monster ThirdMonster = new Monster(3);
+        public Player Player;
+        public Monster FirstMonster;
+        public Monster SecondMonster;
+        public Monster ThirdMonster;
         public Monster HuntedMonster {
             get {
                 if (FirstMonster.isTarget) {
@@ -25,7 +25,7 @@ namespace HunterPie.Core {
         }
         private DateTime _clock = DateTime.UtcNow;
         private DateTime Clock {
-            get => _clock;
+            get { return _clock; }
             set {
                 if (value != _clock) {
                     _clock = value;
@@ -48,6 +48,20 @@ namespace HunterPie.Core {
 
         protected virtual void _onClockChange() {
             OnClockChange?.Invoke(this, EventArgs.Empty);
+        }
+
+        public void CreateInstances() {
+            Player = new Player();
+            FirstMonster = new Monster(1);
+            SecondMonster = new Monster(2);
+            ThirdMonster = new Monster(3);
+        }
+
+        public void DestroyInstances() {
+            Player = null;
+            FirstMonster = null;
+            SecondMonster = null;
+            ThirdMonster = null;
         }
 
         public void StartScanning() {

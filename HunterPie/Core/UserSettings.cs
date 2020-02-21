@@ -122,6 +122,12 @@ namespace HunterPie.Core {
             ConfigWatcher.EnableRaisingEvents = true;
         }
 
+        public static void RemoveFileWatcher() {
+            if (ConfigWatcher == null) return;
+            ConfigWatcher.Changed -= OnConfigChanged;
+            ConfigWatcher.Dispose();
+        }
+
         private static void OnConfigChanged(object source, FileSystemEventArgs e) {
             // Use try/catch because FileSystemWatcher sends the same event twice
             // and one of them is when the file is still open 

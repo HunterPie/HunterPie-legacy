@@ -14,8 +14,8 @@ namespace HunterPie.Core {
         private string _sessionId;
 
         // Game info
-        private int[] PeaceZones = new int[9] { 0, 301, 302, 303, 305, 306, 501, 502, 503 };
-        private int[] _HBZones = new int[9] { 301, 302, 303, 305, 306, 501, 502, 503, 506 };
+        private readonly int[] PeaceZones = new int[9] { 0, 301, 302, 303, 305, 306, 501, 502, 503 };
+        private readonly int[] _HBZones = new int[9] { 301, 302, 303, 305, 306, 501, 502, 503, 506 };
         
         // Player info
         private Int64 LEVEL_ADDRESS;
@@ -87,6 +87,7 @@ namespace HunterPie.Core {
         public bool inHarvestZone {
             get { return _HBZones.Contains(ZoneID); }
         }
+        
         // Party
         public Party PlayerParty = new Party();
 
@@ -100,6 +101,13 @@ namespace HunterPie.Core {
         // Threading
         private ThreadStart ScanPlayerInfoRef;
         private Thread ScanPlayerInfo;
+
+        ~Player() {
+            PlayerParty = null;
+            Harvest = null;
+            PrimaryMantle = null;
+            SecondaryMantle = null;
+        }
 
         // Event handlers
         // Level event handler
@@ -189,7 +197,6 @@ namespace HunterPie.Core {
         }
 
         private bool GetPlayerAddress() {
-            // TODO: Find a better way to detect the player character
             Int64 AddressValue = Scanner.READ_MULTILEVEL_PTR(Address.BASE + Address.WEAPON_OFFSET, Address.Offsets.WeaponOffsets);
             Int64 pAddress = 0x0;
             Int64 nextPlayer = 0x27E9F0;

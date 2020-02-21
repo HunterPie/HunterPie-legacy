@@ -156,9 +156,6 @@ namespace HunterPie {
             // Scanner events
             Scanner.OnGameStart -= OnGameStart;
             Scanner.OnGameClosed -= OnGameClose;
-            // Game events
-            MonsterHunter.Player.OnZoneChange -= OnZoneChange;
-            MonsterHunter.Player.OnCharacterLogin -= OnLogin;
             // Settings
             UserSettings.OnSettingsUpdate -= SendToOverlay;
         }
@@ -191,6 +188,9 @@ namespace HunterPie {
         }
 
         public void OnGameStart(object source, EventArgs e) {
+            // Create game instances
+            MonsterHunter.CreateInstances();
+
             // Hook game events
             HookGameEvents();
 
@@ -226,15 +226,16 @@ namespace HunterPie {
             Discord.Dispose();
             Discord = null;
             if (UserSettings.PlayerConfig.HunterPie.Options.CloseWhenGameCloses) {
-                Dispatcher.BeginInvoke(System.Windows.Threading.DispatcherPriority.Normal, new Action(() => {
+                Dispatcher.Invoke(System.Windows.Threading.DispatcherPriority.Normal, new Action(() => {
                     this.Close();
                 }));
             }
             MonsterHunter.StopScanning();
-            Dispatcher.BeginInvoke(System.Windows.Threading.DispatcherPriority.Background, new Action(() => {
+            Dispatcher.Invoke(System.Windows.Threading.DispatcherPriority.Background, new Action(() => {
                 GameOverlay.Dispose();
                 GameOverlay = null;
             }));
+            MonsterHunter.DestroyInstances();
         }
 
         /* Open sub windows */
@@ -299,8 +300,9 @@ namespace HunterPie {
             if (MonsterHunter.IsActive) MonsterHunter.StopScanning();
             Discord?.Dispose();
             Scanner.StopScanning();
-
-            // Close stuff
+            UserSettings.RemoveFileWatcher();
+            // Unhook events
+            if (MonsterHunter.Player != null) UnhookGameEvents();
             this.UnhookEvents();
         }
 
