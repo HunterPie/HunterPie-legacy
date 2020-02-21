@@ -52,11 +52,21 @@ namespace HunterPie {
 
             // Menu items
             System.Windows.Forms.MenuItem ExitItem = new System.Windows.Forms.MenuItem() {
-                Index = 0,
                 Text = "Close"
             };
             ExitItem.Click += OnTrayIconExitClick;
-            TrayIcon.ContextMenu.MenuItems.Add(ExitItem);
+            System.Windows.Forms.MenuItem SettingsItem = new System.Windows.Forms.MenuItem() {
+                Text = "Settings"
+            };
+            SettingsItem.Click += OnTrayIconSettingsClick;
+
+            TrayIcon.ContextMenu.MenuItems.AddRange(new System.Windows.Forms.MenuItem[] { SettingsItem, ExitItem });
+        }
+
+        private void OnTrayIconSettingsClick(object sender, EventArgs e) {
+            this.Show();
+            this.Focus();
+            OpenSettings();
         }
 
         private void OnTrayIconExitClick(object sender, EventArgs e) {
@@ -65,6 +75,7 @@ namespace HunterPie {
 
         private void OnTrayIconClick(object sender, EventArgs e) {
             this.Show();
+            this.Focus();
         }
 
         private void LoadCustomTheme() {
@@ -161,6 +172,7 @@ namespace HunterPie {
         private void StartEverything() {
             HookEvents();
             Scanner.StartScanning(); // Scans game memory
+            this.Show();
         }
 
         /* Game events */
@@ -331,6 +343,8 @@ namespace HunterPie {
             this.Hide();
             // Dispose tray icon
             TrayIcon.NotifyIcon.Click -= OnTrayIconClick;
+            TrayIcon.ContextMenu.MenuItems[0].Click -= OnTrayIconSettingsClick;
+            TrayIcon.ContextMenu.MenuItems[1].Click -= OnTrayIconExitClick;
             TrayIcon.Dispose();
 
             // Dispose stuff & stop scanning threads
