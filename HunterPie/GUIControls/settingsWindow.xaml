@@ -5,7 +5,7 @@
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              xmlns:local="clr-namespace:HunterPie.GUIControls"
              xmlns:custom="clr-namespace:HunterPie.GUIControls.Custom_Controls"
-             mc:Ignorable="d" d:DesignWidth="800" Width="949" Height="1231" >
+             mc:Ignorable="d" d:DesignWidth="800" Width="949" Height="1278" >
     <UserControl.Resources>
         <Style x:Key="FocusVisual">
             <Setter Property="Control.Template">
@@ -194,14 +194,18 @@
             </Setter>
         </Style>
     </UserControl.Resources>
-    <StackPanel HorizontalAlignment="Left" Height="1231" VerticalAlignment="Top" Width="949">
-        <Label x:Name="GeneralStaticText" Content="- General -" Height="34" FontFamily="Roboto" FontSize="20" FontWeight="Bold" HorizontalAlignment="Center" Width="949" HorizontalContentAlignment="Center" Foreground="#FFE0E0E0" Padding="0" UseLayoutRounding="False" VerticalContentAlignment="Center" Background="#FF0F0F0F"/>
+    <StackPanel HorizontalAlignment="Left" Width="949">
+        <Label Content="- General -" Height="34" FontFamily="Roboto" FontSize="20" FontWeight="Bold" HorizontalAlignment="Center" Width="949" HorizontalContentAlignment="Center" Foreground="#FFE0E0E0" Padding="0" UseLayoutRounding="False" VerticalContentAlignment="Center" Background="#FF0F0F0F"/>
         <StackPanel Orientation="Horizontal" Margin="238,3,271,0" Width="240">
             <custom:Switcher x:Name="switchEnableAutoUpdate" Height="27" Width="52"/>
             <TextBlock Text="Enable Auto-Update" Margin="10,0,0,0" FontFamily="Roboto" FontSize="16" Foreground="#FFF9F9F9" HorizontalAlignment="Center" VerticalAlignment="Center" FontWeight="ExtraLight" />
         </StackPanel>
+        <StackPanel Orientation="Horizontal" Margin="338,3,0,0">
+            <custom:Switcher x:Name="switchEnableMinimizeToSystemTray" Height="27" Width="52"/>
+            <TextBlock Text="Minimize HunterPie to system tray" Margin="10,0,0,0" FontFamily="Roboto" FontSize="16" Foreground="#FFF9F9F9" HorizontalAlignment="Center" VerticalAlignment="Center" FontWeight="ExtraLight" />
+        </StackPanel>
         <ComboBox Style="{StaticResource ComboBoxFlatStyle}" x:Name="branchesCombobox" IsReadOnly="True" Cursor="Hand" HorizontalAlignment="Center" Width="148" Margin="106,10,0,0" FontSize="14" Foreground="#FFF9F9F9"/>
-        <Label x:Name="updateBranchStaticText_Copy7" Content="Update branch:" HorizontalAlignment="Center" Height="23" Margin="-150,-21,0,0" Width="103" FontFamily="Roboto" Foreground="#FFE0E0E0" FontSize="15" Padding="0" FontWeight="Light"/>
+        <Label Content="Update branch:" HorizontalAlignment="Center" Height="23" Margin="-150,-21,0,0" Width="103" FontFamily="Roboto" Foreground="#FFE0E0E0" FontSize="15" Padding="0" FontWeight="Light"/>
         <ComboBox Style="{StaticResource ComboBoxFlatStyle}" x:Name="LanguageFilesCombobox" Margin="299,10,211,0" IsReadOnly="True" Cursor="Hand" FontSize="14" Foreground="#FFE0E0E0"/>
         <Label x:Name="LanguageStaticText" Content="Language file:" HorizontalAlignment="Left" Height="23" Margin="196,-22,0,0" Width="103" FontFamily="Roboto" Foreground="#FFE0E0E0" FontSize="15" Padding="0" FontWeight="Light"/>
         <Label x:Name="gamePathLabel" Content="Game path:" HorizontalAlignment="Left" Height="30" Margin="196,7,0,0" Width="108" FontFamily="Roboto" Foreground="#FFE0E0E0" FontSize="15" Padding="0" FontWeight="Light" VerticalContentAlignment="Center"/>
@@ -210,21 +214,21 @@
             <Label x:Name="launchArgsLabel" Content="Launch arguments:" HorizontalAlignment="Right" Width="133" FontFamily="Roboto" Foreground="#FFE0E0E0" FontSize="15" Padding="0" FontWeight="Light" VerticalContentAlignment="Center" HorizontalContentAlignment="Right"/>
             <TextBox x:Name="argsTextBox" TextWrapping="Wrap" Margin="0,1" Background="{x:Null}" Foreground="#FFE0E0E0" BorderBrush="#FFABADB3" BorderThickness="0,0,0,1" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" HorizontalAlignment="Right" Width="330" TextChanged="argsTextBox_TextChanged" GotFocus="argsTextBox_GotFocus" LostFocus="argsTextBox_LostFocus"/>
         </StackPanel>
-        <StackPanel Orientation="Horizontal" Margin="238,3,160,0">
+        <StackPanel Orientation="Horizontal" Margin="338,3,160,0">
             <custom:Switcher x:Name="switchEnableCloseWhenExit"/>
             <TextBlock Text="Close HunterPie when game is closed" Margin="10,0,0,0" FontFamily="Roboto" FontSize="16" Foreground="#FFF9F9F9" HorizontalAlignment="Center" VerticalAlignment="Center" FontWeight="ExtraLight" />
         </StackPanel>
         <Label x:Name="RichPresenceStaticText" Content="- Discord Presence -" Height="34" FontFamily="Roboto" FontSize="20" FontWeight="Bold" HorizontalAlignment="Center" Width="949" HorizontalContentAlignment="Center" Foreground="#FFE0E0E0" Padding="0,2,0,0" UseLayoutRounding="False" VerticalContentAlignment="Center" Margin="0,17,0,0" Background="#FF0F0F0F"/>
-        <StackPanel Orientation="Horizontal" Margin="238,3,0,0">
+        <StackPanel Orientation="Horizontal" Margin="338,3,0,0">
             <custom:Switcher x:Name="switchEnableRichPresence"/>
             <TextBlock Text="Enable Discord Rich Presence" Margin="10,0,0,0" FontFamily="Roboto" FontSize="16" Foreground="#FFF9F9F9" HorizontalAlignment="Center" VerticalAlignment="Center" FontWeight="ExtraLight" />
         </StackPanel>
         <Label x:Name="OverlayStaticText" Content="- In-Game Overlay -" Height="34" FontFamily="Roboto" FontSize="20" FontWeight="Bold" HorizontalAlignment="Center" Width="949" HorizontalContentAlignment="Center" Foreground="#FFE0E0E0" Padding="0" UseLayoutRounding="False" VerticalContentAlignment="Center" Margin="0,25,0,0" Background="#FF0F0F0F"/>
-        <StackPanel Orientation="Horizontal" Margin="238,3,0,0">
+        <StackPanel Orientation="Horizontal" Margin="338,3,0,0">
             <custom:Switcher x:Name="switchEnableOverlay"/>
             <TextBlock Text="Enable In-Game Overlay" Margin="10,0,0,0" FontFamily="Roboto" FontSize="16" Foreground="#FFF9F9F9" HorizontalAlignment="Center" VerticalAlignment="Center" FontWeight="ExtraLight" />
         </StackPanel>
-        <StackPanel Orientation="Horizontal" Margin="238,3,0,0">
+        <StackPanel Orientation="Horizontal" Margin="338,3,0,0">
             <custom:Switcher x:Name="switchHideWhenUnfocused"/>
             <TextBlock Text="Hide Overlay when game is unfocused" Margin="10,0,0,0" FontFamily="Roboto" FontSize="16" Foreground="#FFF9F9F9" HorizontalAlignment="Center" VerticalAlignment="Center" FontWeight="ExtraLight" />
         </StackPanel>
@@ -234,11 +238,11 @@
             <TextBox x:Name="positionOverlayY" TextWrapping="Wrap" Text="Y" Margin="6,1,0,1" Background="{x:Null}" Foreground="#FFE0E0E0" BorderBrush="#FFABADB3" BorderThickness="0,0,0,1" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" HorizontalAlignment="Right" Width="54" TextChanged="TypeNumber"/>
         </StackPanel>
         <Label x:Name="MonsterCompStaticText" Content="Monster overlay" Height="34" FontFamily="Roboto" FontSize="16" HorizontalAlignment="Center" Width="949" HorizontalContentAlignment="Center" Foreground="#FFE0E0E0" Padding="0" UseLayoutRounding="False" VerticalContentAlignment="Center" Margin="0,25,0,0" Background="#FF0F0F0F"/>
-        <StackPanel Orientation="Horizontal" Margin="238,3,0,0">
+        <StackPanel Orientation="Horizontal" Margin="338,3,0,0">
             <custom:Switcher x:Name="switchEnableMonsterComponent"/>
             <TextBlock Text="Enable monster widget" Margin="10,0,0,0" FontFamily="Roboto" FontSize="16" Foreground="#FFF9F9F9" HorizontalAlignment="Center" VerticalAlignment="Center" FontWeight="ExtraLight" />
         </StackPanel>
-        <StackPanel Orientation="Horizontal" Margin="238,3,0,0">
+        <StackPanel Orientation="Horizontal" Margin="338,3,0,0">
             <custom:Switcher x:Name="switchEnableMonsterWeakness"/>
             <TextBlock Text="Show monster weaknesses" Margin="10,0,0,0" FontFamily="Roboto" FontSize="16" Foreground="#FFF9F9F9" HorizontalAlignment="Center" VerticalAlignment="Center" FontWeight="ExtraLight" />
         </StackPanel>
@@ -248,7 +252,7 @@
             <TextBox x:Name="positionMonsterCompY" TextWrapping="Wrap" Text="Y" Margin="6,1,0,1" Background="{x:Null}" Foreground="#FFE0E0E0" BorderBrush="#FFABADB3" BorderThickness="0,0,0,1" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" HorizontalAlignment="Right" Width="54" TextChanged="TypeNumber"/>
         </StackPanel>
         <TextBlock Text="Harvest Box" Height="34" FontFamily="Roboto" FontSize="16" HorizontalAlignment="Center" Width="949" Foreground="#FFE0E0E0" Padding="0,7,0,0" UseLayoutRounding="False" Margin="0,25,0,0" Background="#FF0F0F0F" VerticalAlignment="Center" TextAlignment="Center"/>
-        <StackPanel Orientation="Horizontal" Margin="238,3,0,0">
+        <StackPanel Orientation="Horizontal" Margin="338,3,0,0">
             <custom:Switcher x:Name="switchEnableHarvestBox"/>
             <TextBlock Text="Enable Harvest box widget" Margin="10,0,0,0" FontFamily="Roboto" FontSize="16" Foreground="#FFF9F9F9" HorizontalAlignment="Center" VerticalAlignment="Center" FontWeight="ExtraLight" />
         </StackPanel>
@@ -258,7 +262,7 @@
             <TextBox x:Name="harvestBoxPosY" TextWrapping="Wrap" Text="Y" Margin="6,1,0,1" Background="{x:Null}" Foreground="#FFE0E0E0" BorderBrush="#FFABADB3" BorderThickness="0,0,0,1" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" HorizontalAlignment="Right" Width="54" TextChanged="TypeNumber"/>
         </StackPanel>
         <TextBlock Text="DPS Meter" Height="34" FontFamily="Roboto" FontSize="16" HorizontalAlignment="Center" Width="949" Foreground="#FFE0E0E0" Padding="0,7,0,0" UseLayoutRounding="False" Margin="0,25,0,0" Background="#FF0F0F0F" VerticalAlignment="Center" TextAlignment="Center"/>
-        <StackPanel Orientation="Horizontal" Margin="238,3,0,0">
+        <StackPanel Orientation="Horizontal" Margin="338,3,0,0">
             <custom:Switcher x:Name="switchEnableDPSMeter"/>
             <TextBlock Text="Enable DPS Meter" Margin="10,0,0,0" FontFamily="Roboto" FontSize="16" Foreground="#FFF9F9F9" HorizontalAlignment="Center" VerticalAlignment="Center" FontWeight="ExtraLight" />
         </StackPanel>

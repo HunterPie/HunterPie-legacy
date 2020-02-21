@@ -61,6 +61,16 @@ namespace HunterPie.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Icon similar to (Icon).
+        /// </summary>
+        internal static System.Drawing.Icon LOGO_HunterPie {
+            get {
+                object obj = ResourceManager.GetObject("LOGO_HunterPie", resourceCulture);
+                return ((System.Drawing.Icon)(obj));
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to &lt;?xml version=&quot;1.0&quot; encoding=&quot;utf-8&quot; ?&gt;
         ///&lt;Monsters&gt;
         ///  &lt;Monster ID=&quot;em001_00&quot;&gt;

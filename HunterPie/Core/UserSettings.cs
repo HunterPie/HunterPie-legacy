@@ -80,6 +80,7 @@ namespace HunterPie.Core {
 
             public class Hunterpie {
                 public string Language { get; set; } = @"Languages\en-us.xml";
+                public bool MinimizeToSystemTray { get; set; } = true;
                 public Update Update { get; set; } = new Update();
                 public Launch Launch { get; set; } = new Launch();
                 public Options Options { get; set; } = new Options();

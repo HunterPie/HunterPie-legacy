@@ -33,17 +33,6 @@ namespace HunterPie.GUIControls {
             }
         }
 
-        private void TypeColor(object sender, KeyEventArgs e) {
-            char[] HEX_CHARS = new char[16] { '0', '1', '2', '3', '4', '5', '6', '7', '8', '9', 'A', 'B', 'C', 'D', 'E', 'F' };
-            Console.WriteLine(e.Key);
-            if (HEX_CHARS.Contains(e.Key.ToString()[e.Key.ToString().Length - 1])) {
-                e.Handled = false;
-            } else {
-                e.Handled = true;
-            }
-            return;
-        }
-
         private void TypeNumber(object sender, TextChangedEventArgs e) {
             char[] NUMBERS = new char[10] { '0', '1', '2', '3', '4', '5', '6', '7', '8', '9' };
             TextBox obj = (TextBox)sender;

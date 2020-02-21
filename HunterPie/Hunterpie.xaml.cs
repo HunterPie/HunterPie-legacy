@@ -14,8 +14,9 @@ namespace HunterPie {
     /// Interaction logic for MainWindow.xaml
     /// </summary>
     public partial class Hunterpie : Window {
-        
+
         // Classes
+        TrayIcon TrayIcon = new TrayIcon();
         Game MonsterHunter = new Game();
         Presence Discord;
         Overlay GameOverlay;
@@ -30,6 +31,7 @@ namespace HunterPie {
             OpenDebugger();
             AppDomain.CurrentDomain.UnhandledException += ExceptionLogger;
             // Initialize everything under this line
+            InitializeTrayIcon();
             UserSettings.InitializePlayerConfig();
             CheckIfUpdateEnableAndStart();
             // Updates version_text
@@ -38,6 +40,31 @@ namespace HunterPie {
             GStrings.InitStrings(UserSettings.PlayerConfig.HunterPie.Language);
             MonsterData.LoadMonsterData();
             StartEverything();
+        }
+
+        private void InitializeTrayIcon() {
+            // Tray icon itself
+            TrayIcon.NotifyIcon.BalloonTipTitle = "HunterPie";
+            TrayIcon.NotifyIcon.Text = "HunterPie";
+            TrayIcon.NotifyIcon.Icon = Properties.Resources.LOGO_HunterPie;
+            TrayIcon.NotifyIcon.Visible = true;
+            TrayIcon.NotifyIcon.Click += OnTrayIconClick;
+
+            // Menu items
+            System.Windows.Forms.MenuItem ExitItem = new System.Windows.Forms.MenuItem() {
+                Index = 0,
+                Text = "Close"
+            };
+            ExitItem.Click += OnTrayIconExitClick;
+            TrayIcon.ContextMenu.MenuItems.Add(ExitItem);
+        }
+
+        private void OnTrayIconExitClick(object sender, EventArgs e) {
+            this.Close();
+        }
+
+        private void OnTrayIconClick(object sender, EventArgs e) {
+            this.Show();
         }
 
         private void LoadCustomTheme() {
@@ -290,17 +317,27 @@ namespace HunterPie {
         }
 
         private void OnMinimizeButtonClick(object sender, MouseButtonEventArgs e) {
-            this.WindowState = WindowState.Minimized;
+            if (UserSettings.PlayerConfig.HunterPie.MinimizeToSystemTray) {
+                this.Hide();
+            } else {
+                this.WindowState = WindowState.Minimized;
+            }
+            
         }
 
         private void OnWindowClosing(object sender, System.ComponentModel.CancelEventArgs e) {
             this.Hide();
-            // Stop Threads
+            // Dispose tray icon
+            TrayIcon.NotifyIcon.Click -= OnTrayIconClick;
+            TrayIcon.Dispose();
+
+            // Dispose stuff & stop scanning threads
             GameOverlay?.Dispose();
             if (MonsterHunter.IsActive) MonsterHunter.StopScanning();
             Discord?.Dispose();
             Scanner.StopScanning();
             UserSettings.RemoveFileWatcher();
+
             // Unhook events
             if (MonsterHunter.Player != null) UnhookGameEvents();
             this.UnhookEvents();

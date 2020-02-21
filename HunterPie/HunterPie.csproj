@@ -80,6 +80,10 @@
     <CodeAnalysisRuleSet>MinimumRecommendedRules.ruleset</CodeAnalysisRuleSet>
     <Prefer32Bit>true</Prefer32Bit>
   </PropertyGroup>
+  <PropertyGroup>
+    <Win32Resource>
+    </Win32Resource>
+  </PropertyGroup>
   <ItemGroup>
     <Reference Include="DiscordRPC, Version=1.0.121.0, Culture=neutral, processorArchitecture=MSIL">
       <HintPath>..\packages\DiscordRichPresence.1.0.121\lib\net35\DiscordRPC.dll</HintPath>
@@ -137,6 +141,7 @@
     <Compile Include="GUIControls\settingsWindow.xaml.cs">
       <DependentUpon>settingsWindow.xaml</DependentUpon>
     </Compile>
+    <Compile Include="GUIControls\TrayIcon.cs" />
     <Compile Include="GUI\Helpers\PercentageConverter.cs" />
     <Page Include="GUIControls\Changelog.xaml">
       <SubType>Designer</SubType>
@@ -314,7 +319,7 @@
     <EmbeddedResource Include="Core\Monster\MonsterData.xml" />
   </ItemGroup>
   <ItemGroup>
-    <Resource Include="LOGO_HunterPie.ico" />
+    <EmbeddedResource Include="LOGO_HunterPie.ico" />
   </ItemGroup>
   <ItemGroup>
     <Resource Include="media\LOGO_HunterPie.png" />

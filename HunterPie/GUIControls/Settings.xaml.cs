@@ -36,6 +36,7 @@ namespace HunterPie.GUIControls {
             settingsUI.argsTextBox.Text = settings.HunterPie.Launch.LaunchArgs == "" ? "No arguments" : settings.HunterPie.Launch.LaunchArgs;
             settingsUI.switchEnableCloseWhenExit.IsEnabled = settings.HunterPie.Options.CloseWhenGameCloses;
             settingsUI.LanguageFilesCombobox.SelectedItem = settings.HunterPie.Language;
+            settingsUI.switchEnableMinimizeToSystemTray.IsEnabled = settings.HunterPie.MinimizeToSystemTray;
 
             // Rich Presence
             settingsUI.switchEnableRichPresence.IsEnabled = settings.RichPresence.Enabled;
@@ -88,6 +89,7 @@ namespace HunterPie.GUIControls {
             settings.HunterPie.Launch.LaunchArgs = settingsUI.fullLaunchArgs == "No arguments" ? "" : settingsUI.fullLaunchArgs;
             settings.HunterPie.Options.CloseWhenGameCloses = settingsUI.switchEnableCloseWhenExit.IsEnabled;
             settings.HunterPie.Language = (string)settingsUI.LanguageFilesCombobox.SelectedItem;
+            settings.HunterPie.MinimizeToSystemTray = settingsUI.switchEnableMinimizeToSystemTray.IsEnabled;
 
             // Rich Presence
             settings.RichPresence.Enabled = settingsUI.switchEnableRichPresence.IsEnabled;
@@ -97,6 +99,7 @@ namespace HunterPie.GUIControls {
             settings.Overlay.HideWhenGameIsUnfocused = settingsUI.switchHideWhenUnfocused.IsEnabled;
             settings.Overlay.Position[0] = int.Parse(settingsUI.positionOverlayX.Text);
             settings.Overlay.Position[1] = int.Parse(settingsUI.positionOverlayY.Text);
+
             // Monsters
             settings.Overlay.MonstersComponent.Enabled = settingsUI.switchEnableMonsterComponent.IsEnabled;
             settings.Overlay.MonstersComponent.Position[0] = int.Parse(settingsUI.positionMonsterCompX.Text);
