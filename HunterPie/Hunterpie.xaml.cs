@@ -8,6 +8,7 @@ using HunterPie.Logger;
 using HunterPie.Memory;
 using HunterPie.Core;
 using HunterPie.GUI;
+using System.Windows.Markup;
 
 namespace HunterPie {
     /// <summary>
@@ -22,13 +23,16 @@ namespace HunterPie {
         Overlay GameOverlay;
 
         // HunterPie version
-        const string HUNTERPIE_VERSION = "1.0.3.0";
+        const string HUNTERPIE_VERSION = "1.0.3.1";
 
         public Hunterpie() {
+            // Initialize debugger and theme
             Debugger.InitializeDebugger();
             LoadCustomTheme();
+            Debugger.LoadNewColors();
             InitializeComponent();
             OpenDebugger();
+
             AppDomain.CurrentDomain.UnhandledException += ExceptionLogger;
             // Initialize everything under this line
             InitializeTrayIcon();
@@ -48,7 +52,7 @@ namespace HunterPie {
             TrayIcon.NotifyIcon.Text = "HunterPie";
             TrayIcon.NotifyIcon.Icon = Properties.Resources.LOGO_HunterPie;
             TrayIcon.NotifyIcon.Visible = true;
-            TrayIcon.NotifyIcon.Click += OnTrayIconClick;
+            TrayIcon.NotifyIcon.MouseDoubleClick += OnTrayIconClick;
 
             // Menu items
             System.Windows.Forms.MenuItem ExitItem = new System.Windows.Forms.MenuItem() {
@@ -74,12 +78,12 @@ namespace HunterPie {
         }
 
         private void OnTrayIconClick(object sender, EventArgs e) {
+            this.WindowState = WindowState.Normal;
             this.Show();
             this.Focus();
         }
 
         private void LoadCustomTheme() {
-            /*
             try {
                 using (FileStream stream = new FileStream("Themes/Light.xaml", FileMode.Open)) {
                     XamlReader reader = new XamlReader();
@@ -89,7 +93,6 @@ namespace HunterPie {
             } catch {
                 Debugger.Error("Failed to load custom theme");
             }
-            */
         }
 
         private void ExceptionLogger(object sender, UnhandledExceptionEventArgs e) {

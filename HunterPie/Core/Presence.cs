@@ -133,7 +133,7 @@ namespace HunterPie.Core {
 
         /* Dispose */
         public void Dispose() {
-            Debugger.Log("Closed Connection to discord");
+            Debugger.Discord("Closed Connection to discord");
             Dispose(true);
             GC.SuppressFinalize(this);
         }

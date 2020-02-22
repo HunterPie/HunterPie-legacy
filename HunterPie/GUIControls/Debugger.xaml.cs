@@ -10,10 +10,10 @@ namespace HunterPie.Logger {
     /// </summary>
     public partial class Debugger : UserControl {
         // Colors
-        private static string ERROR = "#FF6459";
-        private static string WARN = "#FFC13D";
-        private static string DISCORD = "#52A0FF";
-        private static string NORMAL = "#FFFFFF";
+        private static object ERROR = "#FF6459";
+        private static object WARN = "#FFC13D";
+        private static object DISCORD = "#52A0FF";
+        private static object NORMAL = "#FFFFFF";
 
         private static Debugger _Instance;
         public static Debugger Instance {
@@ -30,6 +30,13 @@ namespace HunterPie.Logger {
 
         public static Debugger InitializeDebugger() {
             return Instance;
+        }
+        
+        public static void LoadNewColors() {
+            ERROR = Application.Current.FindResource("DEBUGGER_ERROR");
+            WARN = Application.Current.FindResource("DEBUGGER_WARN");
+            DISCORD = Application.Current.FindResource("DEBUGGER_DISCORD");
+            NORMAL = Application.Current.FindResource("DEBUGGER_LOG");
         }
 
         public static void Warn(object message) {
