@@ -9,6 +9,11 @@ namespace HunterPie.Core {
         public List<Member> Members = new List<Member>();
         public TimeSpan Epoch;
         public bool ShowDPS = true;
+        public string PartyHash {
+            get {
+                return $"{Members[0].Name}{Members[1].Name}{Members[2].Name}{Members[3].Name}";
+            }
+        }
         private int _TotalDamage;
         public int TotalDamage {
             get { return _TotalDamage; }

@@ -89,14 +89,24 @@ namespace HunterPie.Core {
                         Instance.Party = null;
                         break;
                     }
-                    Instance.Details = ctx.HuntedMonster == null ? ctx.Player.inPeaceZone ? "Idle" : "Exploring" : $"Hunting {ctx.HuntedMonster.Name} ({(int)(ctx.HuntedMonster.HPPercentage * 100)}%)";
-                    Instance.State = ctx.Player.PlayerParty.Size > 1 ? "In Party" : "Solo";
+                    Instance.Details = GetDescription();
+                    Instance.State = GetState();
                     Instance.Assets = GenerateAssets(ctx.Player.ZoneName == null ? "main-menu" : $"st{ctx.Player.ZoneID}", ctx.Player.ZoneName == "Main Menu" ? null : ctx.Player.ZoneName, ctx.Player.WeaponName == null ? "hunter-rank" : $"weap{ctx.Player.WeaponID}", $"{ctx.Player.Name} | HR: {ctx.Player.Level} | MR: {ctx.Player.MasterRank}");
-                    // TODO: Generate party hash
-                    Instance.Party = MakeParty(ctx.Player.PlayerParty.Size, ctx.Player.PlayerParty.MaxSize, "test");
+                    Instance.Party = MakeParty(ctx.Player.PlayerParty.Size, ctx.Player.PlayerParty.MaxSize, ctx.Player.PlayerParty.PartyHash);
                     break;
             }
             Client.SetPresence(Instance);
+        }
+
+        private string GetDescription() {
+            if (ctx.Player.inPeaceZone) return "Idle";
+            if (ctx.HuntedMonster == null) return "Exploring";
+            else { return $"Hunting {ctx.HuntedMonster.Name} ({(int)(ctx.HuntedMonster.HPPercentage * 100)}%)"; }
+        }
+
+        private string GetState() {
+            if (ctx.Player.PlayerParty.Size > 1) return "In Party";
+            else { return "Solo"; }
         }
 
         /* Helpers */
