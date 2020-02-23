@@ -28,6 +28,7 @@ namespace HunterPie {
         public Hunterpie() {
             // Initialize debugger and theme
             Debugger.InitializeDebugger();
+            UserSettings.InitializePlayerConfig();
             LoadCustomTheme();
             Debugger.LoadNewColors();
             InitializeComponent();
@@ -36,7 +37,6 @@ namespace HunterPie {
             AppDomain.CurrentDomain.UnhandledException += ExceptionLogger;
             // Initialize everything under this line
             InitializeTrayIcon();
-            UserSettings.InitializePlayerConfig();
             CheckIfUpdateEnableAndStart();
             // Updates version_text
             this.version_text.Content = $"Version: {HUNTERPIE_VERSION} ({UserSettings.PlayerConfig.HunterPie.Update.Branch})";
@@ -84,8 +84,10 @@ namespace HunterPie {
         }
 
         private void LoadCustomTheme() {
+            if (!Directory.Exists(@"Themes")) { Directory.CreateDirectory(@"Themes"); }
+            if (!File.Exists($@"Themes/{UserSettings.PlayerConfig.HunterPie.Theme}")) return;
             try {
-                using (FileStream stream = new FileStream("Themes/Light.xaml", FileMode.Open)) {
+                using (FileStream stream = new FileStream($@"Themes/{UserSettings.PlayerConfig.HunterPie.Theme}", FileMode.Open)) {
                     XamlReader reader = new XamlReader();
                     ResourceDictionary ThemeDictionary = (ResourceDictionary)reader.LoadAsync(stream);
                     Application.Current.Resources.MergedDictionaries.Add(ThemeDictionary);
@@ -335,6 +337,7 @@ namespace HunterPie {
 
         private void OnMinimizeButtonClick(object sender, MouseButtonEventArgs e) {
             if (UserSettings.PlayerConfig.HunterPie.MinimizeToSystemTray) {
+                this.WindowState = WindowState.Minimized;
                 this.Hide();
             } else {
                 this.WindowState = WindowState.Minimized;
