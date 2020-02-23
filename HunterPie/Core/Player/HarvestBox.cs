@@ -43,7 +43,7 @@
     }
     public class HarvestBox {
 
-        private int _counter;
+        private int _counter = -1;
 
         public Fertilizer[] Box = new Fertilizer[4];
         public int Counter {

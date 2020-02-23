@@ -69,6 +69,7 @@ namespace HunterPie {
 
         private void OnTrayIconSettingsClick(object sender, EventArgs e) {
             this.Show();
+            this.WindowState = WindowState.Normal;
             this.Focus();
             OpenSettings();
         }
@@ -78,8 +79,8 @@ namespace HunterPie {
         }
 
         private void OnTrayIconClick(object sender, EventArgs e) {
-            this.WindowState = WindowState.Normal;
             this.Show();
+            this.WindowState = WindowState.Normal;
             this.Focus();
         }
 
