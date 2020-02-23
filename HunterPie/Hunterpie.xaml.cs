@@ -17,7 +17,7 @@ namespace HunterPie {
     public partial class Hunterpie : Window {
 
         // Classes
-        TrayIcon TrayIcon = new TrayIcon();
+        TrayIcon TrayIcon;
         Game MonsterHunter = new Game();
         Presence Discord;
         Overlay GameOverlay;
@@ -36,8 +36,8 @@ namespace HunterPie {
 
             AppDomain.CurrentDomain.UnhandledException += ExceptionLogger;
             // Initialize everything under this line
+            if (!CheckIfUpdateEnableAndStart()) return;
             InitializeTrayIcon();
-            CheckIfUpdateEnableAndStart();
             // Updates version_text
             this.version_text.Content = $"Version: {HUNTERPIE_VERSION} ({UserSettings.PlayerConfig.HunterPie.Update.Branch})";
             Debugger.Warn("Initializing HunterPie!");
@@ -47,6 +47,7 @@ namespace HunterPie {
         }
 
         private void InitializeTrayIcon() {
+            TrayIcon = new TrayIcon();
             // Tray icon itself
             TrayIcon.NotifyIcon.BalloonTipTitle = "HunterPie";
             TrayIcon.NotifyIcon.Text = "HunterPie";
@@ -114,7 +115,7 @@ namespace HunterPie {
             return true;
         }
 
-        private void CheckIfUpdateEnableAndStart() {
+        private bool CheckIfUpdateEnableAndStart() {
             if (UserSettings.PlayerConfig.HunterPie.Update.Enabled) {
                 bool justUpdated = false;
                 bool latestVersion = false;
@@ -131,10 +132,10 @@ namespace HunterPie {
                 }
                 if (justUpdated) {
                     OpenChangelog();
-                    return;
+                    return true;
                 }
                 if (latestVersion) {
-                    return;
+                    return true;
                 }
                 // This will update Update.exe
                 AutoUpdate au = new AutoUpdate(UserSettings.PlayerConfig.HunterPie.Update.Branch);
@@ -143,8 +144,10 @@ namespace HunterPie {
                     HandleUpdaterUpdate();
                 }
                 this.Hide();
+                return false;
             } else {
                 Debugger.Error("Auto-update is disabled. If your HunterPie has any issues or doesn't support the current game version, try re-enabling auto-update!");
+                return true;
             }
         }
 
@@ -161,7 +164,7 @@ namespace HunterPie {
         private void HandleUpdaterUpdate() {
             bool StartUpdate = StartUpdateProcess();
             if (StartUpdate) {
-                Environment.Exit(0);
+                this.Close();
             } else {
                 MessageBox.Show("Update.exe not found! Skipping auto-update...", "Error", MessageBoxButton.OK, MessageBoxImage.Error);
             }
@@ -349,11 +352,13 @@ namespace HunterPie {
         private void OnWindowClosing(object sender, System.ComponentModel.CancelEventArgs e) {
             this.Hide();
             // Dispose tray icon
-            TrayIcon.NotifyIcon.Click -= OnTrayIconClick;
-            TrayIcon.ContextMenu.MenuItems[0].Click -= OnTrayIconSettingsClick;
-            TrayIcon.ContextMenu.MenuItems[1].Click -= OnTrayIconExitClick;
-            TrayIcon.Dispose();
-
+            if (TrayIcon != null) {
+                TrayIcon.NotifyIcon.Click -= OnTrayIconClick;
+                TrayIcon.ContextMenu.MenuItems[0].Click -= OnTrayIconSettingsClick;
+                TrayIcon.ContextMenu.MenuItems[1].Click -= OnTrayIconExitClick;
+                TrayIcon.Dispose();
+            }
+            
             // Dispose stuff & stop scanning threads
             GameOverlay?.Dispose();
             if (MonsterHunter.IsActive) MonsterHunter.StopScanning();

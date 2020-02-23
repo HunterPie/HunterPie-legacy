@@ -91,7 +91,7 @@ namespace HunterPie.Memory {
 
         public static void StopScanning() {
             if (ProcessHandle != (IntPtr)0) CloseHandle(ProcessHandle);
-            ScanGameMemory.Abort();
+            ScanGameMemory?.Abort();
         }
 
         public static void GetProcess() {
