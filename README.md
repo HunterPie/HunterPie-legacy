@@ -17,6 +17,13 @@ HunterPie has an overlay that can be toggled on/off. You can also disable any of
 ### Monster health
 Shows monsters name, current health, total health and has a health bar.
 
+### DPS Meter
+
+This widget shows your party DPS. You can customize colors in HunterPie settings tab.
+> **Note:** It does not work in expeditions due to how Monster Hunter World works.
+![DPS Meter solo](https://cdn.discordapp.com/attachments/402557384209203200/681543050337714189/unknown.png) 
+![DPS Meter Party](https://cdn.discordapp.com/attachments/402557384209203200/681546567748157482/unknown.png)
+
 ### Mantles Cooldown
 Shows the mantles cooldown and timer when wearing one, this widget only appears when the cooldown and timer are actually running. You can also change the widget color in HunterPie settings, it uses HEX color with alpha (#RRGGBBAA)
 
