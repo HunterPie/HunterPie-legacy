@@ -1,3 +1,5 @@
+[![Discord](https://img.shields.io/discord/678286768046342147?color=%237289DA&label=Discord&logo=Discord&logoColor=%2399AAB5&style=for-the-badge)](https://discord.gg/5pdDq4Q)
+
 # HunterPie
 HunterPie is a software that reads the game memory (only reads, it doesn't write anything to it) to find the necessary data for discord rich presence and to update the overlay with useful stuff.
 HunterPie is a C# version of [HunterPy](https://github.com/Haato3o/HunterPy/), it has a better UI and overlay compared to the Python version and is also faster and lighter.
@@ -15,12 +17,14 @@ The discord integration is enabled by default, you just need to open your game a
 HunterPie has an overlay that can be toggled on/off. You can also disable any of the widgets in the overlay separately in case you don't like one of them as well as change the widgets position.
 
 ### Monster health
-Shows monsters name, current health, total health and has a health bar.
+Shows monsters name, current health, total health, monster weaknesses, monster size crown, the enrage icon pops up next to monster's name and the health bar starts blinking whenever monster is enraged.
+![Monsters health widget](https://camo.githubusercontent.com/2b9e5ac20443a947446005d2e6ac132417adb6f3/68747470733a2f2f692e696d6775722e636f6d2f625642364148772e706e67)
 
 ### DPS Meter
 
-This widget shows your party DPS. You can customize colors in HunterPie settings tab.
+This widget shows your party DPS. You can customize colors in HunterPie settings tab. This widget will show your damage per second if you joined the quest at the start, and total damage if you joined after the quest was started (e.g: in a S.O.S)
 > **Note:** It does not work in expeditions due to how Monster Hunter World works.
+
 ![DPS Meter solo](https://cdn.discordapp.com/attachments/402557384209203200/681543050337714189/unknown.png) 
 ![DPS Meter Party](https://cdn.discordapp.com/attachments/402557384209203200/681546567748157482/unknown.png)
 
