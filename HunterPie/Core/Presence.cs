@@ -53,7 +53,10 @@ namespace HunterPie.Core {
             Debugger.Discord("Starting new RPC connection");
             Client = new DiscordRpcClient(APP_ID);
             Client.Initialize();
-            
+            if (!UserSettings.PlayerConfig.RichPresence.Enabled && isVisible) {
+                Client?.ClearPresence();
+                isVisible = false;
+            }
         }
 
         public void HandleSettings(object source, EventArgs e) {
