@@ -21,6 +21,7 @@ namespace HunterPie {
         Game MonsterHunter = new Game();
         Presence Discord;
         Overlay GameOverlay;
+        bool OfflineMode = false;
 
         // HunterPie version
         const string HUNTERPIE_VERSION = "1.0.3.1";
@@ -155,7 +156,7 @@ namespace HunterPie {
             if (e.Error != null) {
                 Debugger.Error("Failed to update HunterPie. Check if you're connected to the internet.");
                 Debugger.Warn("HunterPie is now in offline mode.");
-                Discord.SetOfflineMode();
+                this.OfflineMode = true;
                 return;
             }
             HandleUpdaterUpdate();
@@ -265,6 +266,7 @@ namespace HunterPie {
             // Initializes rich presence
             if (Discord == null) {
                 Discord = new Presence(MonsterHunter);
+                if (this.OfflineMode) Discord.SetOfflineMode();
                 Discord.StartRPC();
             }
         }

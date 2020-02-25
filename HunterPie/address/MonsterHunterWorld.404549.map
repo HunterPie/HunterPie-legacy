@@ -1,6 +1,7 @@
 ﻿# Addresses
 Address BASE 0x140000000
 Address LEVEL_OFFSET 0x04DF6F00
+Address ZONE_OFFSET 0x04DF2800
 Address MONSTER_OFFSET 0x04ECF5A0
 Address WEAPON_OFFSET 0x04DF6F50
 Address EQUIPMENT_OFFSET 0x04DF6F50
@@ -9,6 +10,7 @@ Address SESSION_OFFSET 0x04FA7078
 Address DAMAGE_OFFSET 0x04FA7078
 # Offsets
 Offset LevelOffsets 0xA8,0x90
+Offset ZoneOffsets 0xAED0
 Offset SessionOffsets 0x68,0x1D0,0x208,0x30,0x3C8
 Offset WeaponOffsets 0x50,0xC0,0x8,0x78,0x2E8
 Offset MonsterOffsets 0x110,0x0

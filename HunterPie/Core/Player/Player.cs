@@ -239,8 +239,8 @@ namespace HunterPie.Core {
         }
 
         private void GetZoneId() {
-            int ZoneOffset = PlayerSlot == 0 ? 0x95D0 : 0xAB90;
-            int zoneId = Scanner.READ_INT(PlayerSelectedPointer + ZoneOffset);
+            Int64 ZoneAddress = Scanner.READ_MULTILEVEL_PTR(Address.BASE + Address.ZONE_OFFSET, Address.Offsets.ZoneOffsets);
+            int zoneId = Scanner.READ_INT(ZoneAddress);
             if (zoneId != ZoneID) {
                 this.LastZoneID = ZoneID;
                 this.ZoneID = zoneId;

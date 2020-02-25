@@ -8,6 +8,8 @@ namespace HunterPie.Memory {
         public class Offsets {
             public static int[] LevelOffsets = new int[5] { 0x70, 0x68, 0x8, 0x20, 0x108 };
 
+            public static int[] ZoneOffsets;
+
             public static int[] WeaponOffsets = new int[5] { 0x70, 0x5A8, 0x310, 0x148, 0x2B8 };
 
             public static int[] SessionOffsets = new int[5] { 0xA0, 0x20, 0x80, 0x9C, 0x3C8 };
@@ -126,6 +128,7 @@ namespace HunterPie.Memory {
         private static void LoadValuesToMemory() {
             LoadAddressFromDict(nameof(BASE), out BASE, BASE);
             LoadAddressFromDict(nameof(LEVEL_OFFSET), out LEVEL_OFFSET, LEVEL_OFFSET);
+            LoadAddressFromDict(nameof(ZONE_OFFSET), out ZONE_OFFSET, ZONE_OFFSET);
             LoadAddressFromDict(nameof(MONSTER_OFFSET), out MONSTER_OFFSET, MONSTER_OFFSET);
             LoadAddressFromDict(nameof(EQUIPMENT_OFFSET), out EQUIPMENT_OFFSET, EQUIPMENT_OFFSET);
             LoadAddressFromDict(nameof(WEAPON_OFFSET), out WEAPON_OFFSET, WEAPON_OFFSET);
@@ -134,6 +137,7 @@ namespace HunterPie.Memory {
             LoadAddressFromDict(nameof(DAMAGE_OFFSET), out DAMAGE_OFFSET, DAMAGE_OFFSET);
             // Load offsets
             LoadOffsetsFromDict("LevelOffsets", out Offsets.LevelOffsets, Offsets.LevelOffsets);
+            LoadOffsetsFromDict("ZoneOffsets", out Offsets.ZoneOffsets, Offsets.ZoneOffsets);
             LoadOffsetsFromDict("SessionOffsets", out Offsets.SessionOffsets, Offsets.SessionOffsets);
             LoadOffsetsFromDict("WeaponOffsets", out Offsets.WeaponOffsets, Offsets.WeaponOffsets);
             LoadOffsetsFromDict("MonsterOffsets", out Offsets.MonsterOffsets, Offsets.MonsterOffsets);
