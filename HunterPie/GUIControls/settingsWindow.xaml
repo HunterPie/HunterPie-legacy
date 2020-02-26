@@ -261,7 +261,7 @@
             <TextBox x:Name="harvestBoxPosX" TextWrapping="Wrap" Text="X" Margin="0,1" Background="{x:Null}" Foreground="#FFE0E0E0" BorderBrush="#FFABADB3" BorderThickness="0,0,0,1" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" HorizontalAlignment="Right" Width="54" TextChanged="TypeNumber"/>
             <TextBox x:Name="harvestBoxPosY" TextWrapping="Wrap" Text="Y" Margin="6,1,0,1" Background="{x:Null}" Foreground="#FFE0E0E0" BorderBrush="#FFABADB3" BorderThickness="0,0,0,1" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" HorizontalAlignment="Right" Width="54" TextChanged="TypeNumber"/>
         </StackPanel>
-        <TextBlock Text="DPS Meter" Height="34" FontFamily="Roboto" FontSize="16" HorizontalAlignment="Center" Width="949" Foreground="#FFE0E0E0" Padding="0,7,0,0" UseLayoutRounding="False" Margin="0,25,0,0" Background="#FF0F0F0F" VerticalAlignment="Center" TextAlignment="Center"/>
+        <TextBlock Text="DPS Meter (BETA)" Height="34" FontFamily="Roboto" FontSize="16" HorizontalAlignment="Center" Width="949" Foreground="#FFE0E0E0" Padding="0,7,0,0" UseLayoutRounding="False" Margin="0,25,0,0" Background="#FF0F0F0F" VerticalAlignment="Center" TextAlignment="Center"/>
         <StackPanel Orientation="Horizontal" Margin="338,3,0,0">
             <custom:Switcher x:Name="switchEnableDPSMeter"/>
             <TextBlock Text="Enable DPS Meter" Margin="10,0,0,0" FontFamily="Roboto" FontSize="16" Foreground="#FFF9F9F9" HorizontalAlignment="Center" VerticalAlignment="Center" FontWeight="ExtraLight" />

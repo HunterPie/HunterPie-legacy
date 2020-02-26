@@ -1,4 +1,5 @@
-﻿using System.Xml;
+﻿using System;
+using System.Xml;
 using HunterPie.Logger;
 
 namespace HunterPie.Core {
@@ -12,11 +13,12 @@ namespace HunterPie.Core {
         private static void LoadTranslationXML(string LangXML) {
             try {
                 Translations.Load($@"{LangXML}");
-                Debugger.Log($"Loaded {Translations.DocumentElement.Attributes["lang"].Value} game strings");
-            } catch {
-                Debugger.Error("Failed to load en-us.xml");
+                Debugger.Warn($"Loaded {Translations.DocumentElement.Attributes["lang"]?.Value ?? "Unknown language"} game strings");
+            } catch(Exception err) {
+                Debugger.Error(err);
+                Debugger.Error($"Failed to load {LangXML}.xml");
+                LoadTranslationXML(@"Languages\en-us.xml");
             }
-            
         }
 
         public static string GetMantleNameByID(int ID) {
