@@ -1,7 +1,7 @@
 ﻿namespace HunterPie.Core {
     public class Fertilizer {
-        private int _id;
-        private int _amount;
+        private int _id = -1;
+        private int _amount = -1;
 
         public string Name {
             get { return GStrings.GetFertilizerNameByID(ID); }
@@ -72,10 +72,7 @@
 
         private void PopulateBox() {
             for (int i = 0; i < 4; i++) {
-                Fertilizer fert = new Fertilizer {
-                    ID = 0,
-                    Amount = 0
-                };
+                Fertilizer fert = new Fertilizer();
                 Box[i] = fert;
             }
         }

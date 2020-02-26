@@ -546,6 +546,6 @@
     </Storyboard>
     <!-- Harvest box fertilizer close to expire -->
     <Storyboard x:Key="FertilizerExpiring" RepeatBehavior="Forever" AutoReverse="True" Storyboard.TargetProperty="(Foreground).(SolidColorBrush.Color)">
-        <ColorAnimation From="White" To="Red" Duration="0:0:1"/>
+        <ColorAnimation To="White" From="Red" Duration="0:0:1.5"/>
     </Storyboard>
 </ResourceDictionary>

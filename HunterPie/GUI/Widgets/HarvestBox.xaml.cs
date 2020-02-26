@@ -87,6 +87,7 @@ namespace HunterPie.GUI.Widgets {
         private void UpdateFirstFertilizer(object source, FertilizerEventArgs args) {
             bool ApplyAnimation = false;
             if (args.Amount <= 4) ApplyAnimation = true;
+            Logger.Debugger.Log(args.ID);
             Dispatch(() => {
                 if (ApplyAnimation) {
                     ANIM_FERTILIZER_EXPIRE.Begin(fert1Counter, true);

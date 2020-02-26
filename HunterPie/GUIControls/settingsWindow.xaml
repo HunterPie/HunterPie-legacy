@@ -266,11 +266,15 @@
             <custom:Switcher x:Name="switchEnableDPSMeter"/>
             <TextBlock Text="Enable DPS Meter" Margin="10,0,0,0" FontFamily="Roboto" FontSize="16" Foreground="#FFF9F9F9" HorizontalAlignment="Center" VerticalAlignment="Center" FontWeight="ExtraLight" />
         </StackPanel>
+        <StackPanel Orientation="Horizontal" Margin="338,3,0,0" ToolTip="If enabled the damage meter will show party damage instead of damage per second.">
+            <custom:Switcher x:Name="switchEnableDPSWheneverPossible"/>
+            <TextBlock Text="Show DPS instead of total damage whenever possible" Margin="10,0,0,0" FontFamily="Roboto" FontSize="16" Foreground="#FFF9F9F9" HorizontalAlignment="Center" VerticalAlignment="Center" FontWeight="ExtraLight" />
+        </StackPanel>
         <custom:ColorPicker NameText="First Player" x:Name="FirstPlayerColor"/>
         <custom:ColorPicker NameText="Second Player" x:Name="SecondPlayerColor"/>
         <custom:ColorPicker NameText="Third Player" x:Name="ThirdPlayerColor"/>
         <custom:ColorPicker NameText="Fourth Player" x:Name="FourthPlayerColor"/>
-        <StackPanel Height="32" Margin="288,0,272,0" Orientation="Horizontal">
+        <StackPanel Height="32" Margin="288,0,477,0" Orientation="Horizontal" HorizontalAlignment="Center" VerticalAlignment="Center">
             <Label Content="Position:" HorizontalAlignment="Right" Width="66" FontFamily="Roboto" Foreground="#FFE0E0E0" FontSize="15" Padding="0" FontWeight="Light" VerticalContentAlignment="Center" HorizontalContentAlignment="Right"/>
             <TextBox x:Name="DPSMeterPosX" TextWrapping="Wrap" Text="X" Margin="0,1" Background="{x:Null}" Foreground="#FFE0E0E0" BorderBrush="#FFABADB3" BorderThickness="0,0,0,1" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" HorizontalAlignment="Right" Width="54" TextChanged="TypeNumber"/>
             <TextBox x:Name="DPSMeterPosY" TextWrapping="Wrap" Text="Y" Margin="6,1,0,1" Background="{x:Null}" Foreground="#FFE0E0E0" BorderBrush="#FFABADB3" BorderThickness="0,0,0,1" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" HorizontalAlignment="Right" Width="54" TextChanged="TypeNumber"/>
