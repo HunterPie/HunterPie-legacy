@@ -40,12 +40,6 @@
         </ResourceDictionary>
     </Window.Resources>
     <Grid x:Name="OverlayGrid">
-        <Grid.ColumnDefinitions>
-            <ColumnDefinition/>
-        </Grid.ColumnDefinitions>
-        <Grid.RowDefinitions>
-            <RowDefinition Height="1080"/>
-        </Grid.RowDefinitions>
         <StackPanel x:Name="MonstersContainer" Margin="560,19,0,0" Orientation="Horizontal" MinHeight="62" MinWidth="778" MaxWidth="778" MaxHeight="62" HorizontalAlignment="Left" Width="786" Height="27" VerticalAlignment="Top" Style="{StaticResource StackPanelAnimations}" RenderTransformOrigin="0.5,0.5">
             <StackPanel.RenderTransform>
                 <TransformGroup>
@@ -61,7 +55,7 @@
         </StackPanel>
         <widgets:MantleTimer x:Name="PrimaryMantle" HorizontalAlignment="Left" Width="218" VerticalAlignment="Top" Visibility="Hidden"/>
         <widgets:MantleTimer x:Name="SecondaryMantle"  HorizontalAlignment="Left" Width="218" VerticalAlignment="Top" Visibility="Hidden"/>
-        <widgets:HarvestBox x:Name="HarvestBoxComponent" HorizontalAlignment="Left" Margin="845,454,0,0" VerticalAlignment="Top" Visibility="Hidden"/>
+        <widgets:HarvestBox x:Name="HarvestBoxComponent" HorizontalAlignment="Left" Margin="1680,550,0,0" VerticalAlignment="Top" Visibility="Hidden"/>
         <meter:Meter x:Name="DPSMeter" Visibility="Hidden" HorizontalAlignment="Left" Margin="0,500,0,0" VerticalAlignment="Top" RenderTransformOrigin="0.5,0.5" Width="322">
             <meter:Meter.LayoutTransform>
                 <TransformGroup>
