@@ -196,11 +196,11 @@
     </UserControl.Resources>
     <StackPanel HorizontalAlignment="Left" Width="949">
         <Label Content="- General -" Height="34" FontFamily="Roboto" FontSize="20" FontWeight="Bold" HorizontalAlignment="Center" Width="949" HorizontalContentAlignment="Center" Foreground="#FFE0E0E0" Padding="0" UseLayoutRounding="False" VerticalContentAlignment="Center" Background="#FF0F0F0F"/>
-        <StackPanel Orientation="Horizontal" Margin="238,3,271,0" Width="240">
+        <StackPanel Orientation="Horizontal" Margin="238,3,271,0" Width="240" ToolTip="Enables auto-update">
             <custom:Switcher x:Name="switchEnableAutoUpdate" Height="27" Width="52"/>
             <TextBlock Text="Enable Auto-Update" Margin="10,0,0,0" FontFamily="Roboto" FontSize="16" Foreground="#FFF9F9F9" HorizontalAlignment="Center" VerticalAlignment="Center" FontWeight="ExtraLight" />
         </StackPanel>
-        <StackPanel Orientation="Horizontal" Margin="338,3,0,0">
+        <StackPanel Orientation="Horizontal" Margin="338,3,0,0" ToolTip="When enabled, HunterPie will be minimized to the system tray instead of windows bar.">
             <custom:Switcher x:Name="switchEnableMinimizeToSystemTray" Height="27" Width="52"/>
             <TextBlock Text="Minimize HunterPie to system tray" Margin="10,0,0,0" FontFamily="Roboto" FontSize="16" Foreground="#FFF9F9F9" HorizontalAlignment="Center" VerticalAlignment="Center" FontWeight="ExtraLight" />
         </StackPanel>
@@ -214,7 +214,7 @@
             <Label x:Name="launchArgsLabel" Content="Launch arguments:" HorizontalAlignment="Right" Width="133" FontFamily="Roboto" Foreground="#FFE0E0E0" FontSize="15" Padding="0" FontWeight="Light" VerticalContentAlignment="Center" HorizontalContentAlignment="Right"/>
             <TextBox x:Name="argsTextBox" TextWrapping="Wrap" Margin="0,1" Background="{x:Null}" Foreground="#FFE0E0E0" BorderBrush="#FFABADB3" BorderThickness="0,0,0,1" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" HorizontalAlignment="Right" Width="330" TextChanged="argsTextBox_TextChanged" GotFocus="argsTextBox_GotFocus" LostFocus="argsTextBox_LostFocus"/>
         </StackPanel>
-        <StackPanel Orientation="Horizontal" Margin="338,3,160,0">
+        <StackPanel Orientation="Horizontal" Margin="338,3,160,0" ToolTip="If enabled HunterPie will automatically close whenever the game stops running.">
             <custom:Switcher x:Name="switchEnableCloseWhenExit"/>
             <TextBlock Text="Close HunterPie when game is closed" Margin="10,0,0,0" FontFamily="Roboto" FontSize="16" Foreground="#FFF9F9F9" HorizontalAlignment="Center" VerticalAlignment="Center" FontWeight="ExtraLight" />
         </StackPanel>
@@ -228,11 +228,11 @@
             <custom:Switcher x:Name="switchEnableOverlay"/>
             <TextBlock Text="Enable In-Game Overlay" Margin="10,0,0,0" FontFamily="Roboto" FontSize="16" Foreground="#FFF9F9F9" HorizontalAlignment="Center" VerticalAlignment="Center" FontWeight="ExtraLight" />
         </StackPanel>
-        <StackPanel Orientation="Horizontal" Margin="338,3,0,0">
+        <StackPanel Orientation="Horizontal" Margin="338,3,0,0" ToolTip="If enabled, HunterPie's overlay will be automatically hidden when the game loses focus (e.g: When you alt+tab)">
             <custom:Switcher x:Name="switchHideWhenUnfocused"/>
             <TextBlock Text="Hide Overlay when game is unfocused" Margin="10,0,0,0" FontFamily="Roboto" FontSize="16" Foreground="#FFF9F9F9" HorizontalAlignment="Center" VerticalAlignment="Center" FontWeight="ExtraLight" />
         </StackPanel>
-        <StackPanel Orientation="Horizontal" Margin="338,3,0,0" ToolTip="Enabling hardware acceleration will make the overlay be rendered using the GPU. Turning this off will make the overlay be rendered using the CPU. Turn this off if you're having FPS issues.">
+        <StackPanel Orientation="Horizontal" Margin="338,3,0,0" ToolTip="Enabling hardware acceleration will make the overlay be rendered using the GPU. Turning this off will make the overlay be rendered using the CPU. Turn this off if you're having FPS issues. REQUIRES RESTART">
             <custom:Switcher x:Name="switchHardwareAcceleration"/>
             <TextBlock Text="Enable Hardware acceleration" Margin="10,0,0,0" FontFamily="Roboto" FontSize="16" Foreground="#FFF9F9F9" HorizontalAlignment="Center" VerticalAlignment="Center" FontWeight="ExtraLight" />
         </StackPanel>

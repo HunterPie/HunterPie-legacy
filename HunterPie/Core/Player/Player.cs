@@ -202,10 +202,10 @@ namespace HunterPie.Core {
             Int64 nextPlayer = 0x27E9F0;
             if (AddressValue > 0x0) {
                 PlayerSelectedPointer = AddressValue;
-                string pName = Scanner.READ_STRING(AddressValue - 0x270, 32)?.Trim('\x00');
+                string pName = Scanner.READ_STRING(AddressValue - 0x270, 32);
                 int pLevel = Scanner.READ_INT(AddressValue - 0x230);
                 // If char name starts with a null char then the game haven't launched yet
-                if (pName == null) return false;
+                if (pName == "") return false;
                 for (int playerSlot = 0; playerSlot < 3; playerSlot++) {
                     pAddress = Scanner.READ_MULTILEVEL_PTR(Address.BASE + Address.LEVEL_OFFSET, Address.Offsets.LevelOffsets) + (nextPlayer * playerSlot);
                     if (Scanner.READ_INT(pAddress) == pLevel && Scanner.READ_STRING(pAddress - 0x40, 32)?.Trim('\x00') == pName && PlayerAddress != pAddress) {
