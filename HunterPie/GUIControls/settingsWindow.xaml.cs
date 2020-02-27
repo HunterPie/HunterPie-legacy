@@ -34,19 +34,21 @@ namespace HunterPie.GUIControls {
         }
 
         private void TypeNumber(object sender, TextChangedEventArgs e) {
-            char[] NUMBERS = new char[10] { '0', '1', '2', '3', '4', '5', '6', '7', '8', '9' };
+            char[] NUMBERS = new char[11] { '-', '0', '1', '2', '3', '4', '5', '6', '7', '8', '9' };
             TextBox obj = (TextBox)sender;
             int offset = 0;
+            int charIndex = 0;
             foreach (char n in obj.Text) {
+                if (charIndex > 0 && n == '-') { break; }
                 if (!NUMBERS.Contains(n)) {
                     break;
                 } else {
                     offset++;
                 }
+                charIndex++;
             }
             obj.Text = obj.Text.Substring(0, offset);
             if (obj.Text.Length == 0) obj.Text = "0";
-            obj.CaretIndex = offset;
         }
 
         private void selectPathBttn_Click(object sender, System.Windows.RoutedEventArgs e) {
