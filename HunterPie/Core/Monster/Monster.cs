@@ -137,7 +137,7 @@ namespace HunterPie.Core {
 
         ~Monster() {
             this.ID = null;
-            Weaknesses.Clear();
+            Weaknesses?.Clear();
         }
 
         public void StartThreadingScan() {
