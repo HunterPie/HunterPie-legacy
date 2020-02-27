@@ -235,7 +235,7 @@ namespace HunterPie.Core {
 
         private void GetPlayerName() {
             Int64 Address = LEVEL_ADDRESS - 0x40;
-            Name = Scanner.READ_STRING(Address, 32).Trim('\x00');
+            Name = Scanner.READ_STRING(Address, 32);
         }
 
         private void GetZoneId() {

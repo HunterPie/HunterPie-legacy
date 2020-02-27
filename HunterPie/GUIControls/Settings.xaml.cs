@@ -43,9 +43,11 @@ namespace HunterPie.GUIControls {
             
             // Overlay
             settingsUI.switchEnableOverlay.IsEnabled = settings.Overlay.Enabled;
+            settingsUI.switchHardwareAcceleration.IsEnabled = settings.Overlay.EnableHardwareAcceleration;
             settingsUI.switchHideWhenUnfocused.IsEnabled = settings.Overlay.HideWhenGameIsUnfocused;
             settingsUI.positionOverlayX.Text = settings.Overlay.Position[0].ToString();
             settingsUI.positionOverlayY.Text = settings.Overlay.Position[1].ToString();
+
             // Monsters
             settingsUI.switchEnableMonsterComponent.IsEnabled = settings.Overlay.MonstersComponent.Enabled;
             settingsUI.positionMonsterCompX.Text = settings.Overlay.MonstersComponent.Position[0].ToString();
@@ -71,6 +73,7 @@ namespace HunterPie.GUIControls {
 
             // DPS Meter
             settingsUI.switchEnableDPSMeter.IsEnabled = settings.Overlay.DPSMeter.Enabled;
+            settingsUI.switchEnableDPSWheneverPossible.IsEnabled = settings.Overlay.DPSMeter.ShowDPSWheneverPossible;
             settingsUI.DPSMeterPosX.Text = settings.Overlay.DPSMeter.Position[0].ToString();
             settingsUI.DPSMeterPosY.Text = settings.Overlay.DPSMeter.Position[1].ToString();
             settingsUI.FirstPlayerColor.Color = settings.Overlay.DPSMeter.PartyMembers[0].Color;
@@ -96,6 +99,7 @@ namespace HunterPie.GUIControls {
 
             // Overlay
             settings.Overlay.Enabled = settingsUI.switchEnableOverlay.IsEnabled;
+            settings.Overlay.EnableHardwareAcceleration = settingsUI.switchHardwareAcceleration.IsEnabled;
             settings.Overlay.HideWhenGameIsUnfocused = settingsUI.switchHideWhenUnfocused.IsEnabled;
             settings.Overlay.Position[0] = int.Parse(settingsUI.positionOverlayX.Text);
             settings.Overlay.Position[1] = int.Parse(settingsUI.positionOverlayY.Text);
@@ -125,6 +129,7 @@ namespace HunterPie.GUIControls {
 
             // DPS Meter
             settings.Overlay.DPSMeter.Enabled = settingsUI.switchEnableDPSMeter.IsEnabled;
+            settings.Overlay.DPSMeter.ShowDPSWheneverPossible = settingsUI.switchEnableDPSWheneverPossible.IsEnabled;
             settings.Overlay.DPSMeter.Position[0] = int.Parse(settingsUI.DPSMeterPosX.Text);
             settings.Overlay.DPSMeter.Position[1] = int.Parse(settingsUI.DPSMeterPosY.Text);
             settings.Overlay.DPSMeter.PartyMembers[0].Color = settingsUI.FirstPlayerColor.Color;

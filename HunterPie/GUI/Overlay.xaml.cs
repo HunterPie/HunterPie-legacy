@@ -25,10 +25,19 @@ namespace HunterPie.GUI {
 
         public Overlay(Game Context) {
             ctx = Context;
+            SetRenderMode();
             InitializeComponent();
             SetWidgetsContext();
             SetOverlaySize();
             SetWindowFlags();
+        }
+
+        private void SetRenderMode() {
+            if (UserSettings.PlayerConfig.Overlay.EnableHardwareAcceleration) {
+                RenderOptions.ProcessRenderMode = RenderMode.Default;
+            } else {
+                RenderOptions.ProcessRenderMode = RenderMode.SoftwareOnly;
+            }
         }
 
         private void SetWidgetsContext() {

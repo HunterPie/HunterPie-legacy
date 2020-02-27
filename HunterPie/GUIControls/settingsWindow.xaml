@@ -5,7 +5,7 @@
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              xmlns:local="clr-namespace:HunterPie.GUIControls"
              xmlns:custom="clr-namespace:HunterPie.GUIControls.Custom_Controls"
-             mc:Ignorable="d" d:DesignWidth="800" Width="949" Height="1278" >
+             mc:Ignorable="d" d:DesignWidth="800" Width="949" Height="1321.5" >
     <UserControl.Resources>
         <Style x:Key="FocusVisual">
             <Setter Property="Control.Template">
@@ -232,6 +232,10 @@
             <custom:Switcher x:Name="switchHideWhenUnfocused"/>
             <TextBlock Text="Hide Overlay when game is unfocused" Margin="10,0,0,0" FontFamily="Roboto" FontSize="16" Foreground="#FFF9F9F9" HorizontalAlignment="Center" VerticalAlignment="Center" FontWeight="ExtraLight" />
         </StackPanel>
+        <StackPanel Orientation="Horizontal" Margin="338,3,0,0" ToolTip="Enabling hardware acceleration will make the overlay be rendered using the GPU. Turning this off will make the overlay be rendered using the CPU. Turn this off if you're having FPS issues.">
+            <custom:Switcher x:Name="switchHardwareAcceleration"/>
+            <TextBlock Text="Enable Hardware acceleration" Margin="10,0,0,0" FontFamily="Roboto" FontSize="16" Foreground="#FFF9F9F9" HorizontalAlignment="Center" VerticalAlignment="Center" FontWeight="ExtraLight" />
+        </StackPanel>
         <StackPanel x:Name="Position" Height="32" Margin="288,0,272,0" Orientation="Horizontal">
             <Label x:Name="updateBranchStaticText_Copy" Content="Position:" HorizontalAlignment="Right" Width="66" FontFamily="Roboto" Foreground="#FFE0E0E0" FontSize="15" Padding="0" FontWeight="Light" VerticalContentAlignment="Center" HorizontalContentAlignment="Right"/>
             <TextBox x:Name="positionOverlayX" TextWrapping="Wrap" Text="X" Margin="0,1" Background="{x:Null}" Foreground="#FFE0E0E0" BorderBrush="#FFABADB3" BorderThickness="0,0,0,1" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" HorizontalAlignment="Right" Width="54" TextChanged="TypeNumber"/>
@@ -279,29 +283,29 @@
             <TextBox x:Name="DPSMeterPosX" TextWrapping="Wrap" Text="X" Margin="0,1" Background="{x:Null}" Foreground="#FFE0E0E0" BorderBrush="#FFABADB3" BorderThickness="0,0,0,1" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" HorizontalAlignment="Right" Width="54" TextChanged="TypeNumber"/>
             <TextBox x:Name="DPSMeterPosY" TextWrapping="Wrap" Text="Y" Margin="6,1,0,1" Background="{x:Null}" Foreground="#FFE0E0E0" BorderBrush="#FFABADB3" BorderThickness="0,0,0,1" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" HorizontalAlignment="Right" Width="54" TextChanged="TypeNumber"/>
         </StackPanel>
-        <Label x:Name="MantlesStaticText" Content="Mantles &amp; Equipments" Height="34" FontFamily="Roboto" FontSize="16" HorizontalAlignment="Center" Width="949" HorizontalContentAlignment="Center" Foreground="#FFE0E0E0" Padding="0" UseLayoutRounding="False" VerticalContentAlignment="Center" Margin="0,25,0,0" Background="#FF0F0F0F"/>
-        <GroupBox Header="Primary mantle&#xD;&#xA;" Height="187" Margin="99,0,0,0" FontFamily="Roboto" Foreground="#FFE0E0E0" BorderBrush="{x:Null}" Width="359" HorizontalAlignment="Left">
+        <Label Content="Specialized Tools" Height="34" FontFamily="Roboto" FontSize="16" HorizontalAlignment="Center" Width="949" HorizontalContentAlignment="Center" Foreground="#FFE0E0E0" Padding="0" UseLayoutRounding="False" VerticalContentAlignment="Center" Margin="0,25,0,0" Background="#FF0F0F0F"/>
+        <GroupBox Header="Primary Specialized tool" Height="187" Margin="99,0,0,0" FontFamily="Roboto" Foreground="#FFE0E0E0" BorderBrush="{x:Null}" Width="359" HorizontalAlignment="Left">
             <StackPanel Margin="0,32,-2,12" Orientation="Vertical">
                 <StackPanel Orientation="Horizontal" HorizontalAlignment="Center" Margin="0,3,0,0">
                     <custom:Switcher x:Name="switchEnablePrimaryMantle"/>
                     <TextBlock Text="Enable Primary mantle widget" Margin="10,0,0,0" FontFamily="Roboto" FontSize="16" Foreground="#FFF9F9F9" HorizontalAlignment="Center" VerticalAlignment="Center" FontWeight="ExtraLight" />
                 </StackPanel>
-                <StackPanel x:Name="Position_Copy2" Height="32" Margin="13,0,0,0" Orientation="Horizontal" HorizontalAlignment="Center" Width="195">
-                    <Label x:Name="updateBranchStaticText_Copy3" Content="Position:" HorizontalAlignment="Right" Width="66" FontFamily="Roboto" Foreground="#FFE0E0E0" FontSize="15" Padding="0" FontWeight="Light" VerticalContentAlignment="Center" HorizontalContentAlignment="Right"/>
+                <StackPanel Height="32" Margin="13,0,0,0" Orientation="Horizontal" HorizontalAlignment="Center" Width="195">
+                    <Label Content="Position:" HorizontalAlignment="Right" Width="66" FontFamily="Roboto" Foreground="#FFE0E0E0" FontSize="15" Padding="0" FontWeight="Light" VerticalContentAlignment="Center" HorizontalContentAlignment="Right"/>
                     <TextBox x:Name="primMantlePosX" TextWrapping="Wrap" Text="X" Margin="0,1" Background="{x:Null}" Foreground="#FFE0E0E0" BorderBrush="#FFABADB3" BorderThickness="0,0,0,1" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" HorizontalAlignment="Right" Width="54" TextChanged="TypeNumber"/>
                     <TextBox x:Name="primMantlePosY" TextWrapping="Wrap" Text="Y" Margin="6,1,0,1" Background="{x:Null}" Foreground="#FFE0E0E0" BorderBrush="#FFABADB3" BorderThickness="0,0,0,1" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" HorizontalAlignment="Right" Width="54" TextChanged="TypeNumber"/>
                 </StackPanel>
                 <custom:ColorPicker x:Name="PrimaryMantleColor" NameText="Color:"/>
             </StackPanel>
         </GroupBox>
-        <GroupBox Header="Secondary mantle&#xA;" Height="187" Width="359" Margin="473,-187,71,0" FontFamily="Roboto" Foreground="#FFE0E0E0" BorderBrush="{x:Null}">
+        <GroupBox Header="Secondary Specialized Tool" Height="187" Width="359" Margin="473,-187,71,0" FontFamily="Roboto" Foreground="#FFE0E0E0" BorderBrush="{x:Null}">
             <StackPanel Margin="0,32,-2,4" Orientation="Vertical">
                 <StackPanel Orientation="Horizontal" HorizontalAlignment="Center" Margin="0,3,0,0">
                     <custom:Switcher x:Name="switchEnableSecondaryMantle"/>
                     <TextBlock Text="Enable Secondary mantle widget" Margin="10,0,0,0" FontFamily="Roboto" FontSize="16" Foreground="#FFF9F9F9" HorizontalAlignment="Center" VerticalAlignment="Center" FontWeight="ExtraLight" />
                 </StackPanel>
-                <StackPanel x:Name="Position_Copy3" Height="32" Margin="20,0,0,0" Orientation="Horizontal" HorizontalAlignment="Center" Width="203">
-                    <Label x:Name="updateBranchStaticText_Copy4" Content="Position:" HorizontalAlignment="Right" Width="66" FontFamily="Roboto" Foreground="#FFE0E0E0" FontSize="15" Padding="0" FontWeight="Light" VerticalContentAlignment="Center" HorizontalContentAlignment="Right"/>
+                <StackPanel Height="32" Margin="20,0,0,0" Orientation="Horizontal" HorizontalAlignment="Center" Width="203">
+                    <Label Content="Position:" HorizontalAlignment="Right" Width="66" FontFamily="Roboto" Foreground="#FFE0E0E0" FontSize="15" Padding="0" FontWeight="Light" VerticalContentAlignment="Center" HorizontalContentAlignment="Right"/>
                     <TextBox x:Name="secMantlePosX" TextWrapping="Wrap" Text="X" Margin="0,1" Background="{x:Null}" Foreground="#FFE0E0E0" BorderBrush="#FFABADB3" BorderThickness="0,0,0,1" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" HorizontalAlignment="Right" Width="54" TextChanged="TypeNumber"/>
                     <TextBox x:Name="secMantlePosY" TextWrapping="Wrap" Text="Y" Margin="6,1,0,1" Background="{x:Null}" Foreground="#FFE0E0E0" BorderBrush="#FFABADB3" BorderThickness="0,0,0,1" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" HorizontalAlignment="Right" Width="54" TextChanged="TypeNumber"/>
                 </StackPanel>

@@ -33,6 +33,7 @@ namespace HunterPie.Core {
             public class Overlay {
                 public bool Enabled { get; set; } = false;
                 public int[] Position { get; set; } = new int[2] { 0, 0 };
+                public bool EnableHardwareAcceleration { get; set; } = true;
                 public bool HideWhenGameIsUnfocused { get; set; } = false;
                 public Monsterscomponent MonstersComponent { get; set; } = new Monsterscomponent();
                 public Harvestboxcomponent HarvestBoxComponent { get; set; } = new Harvestboxcomponent();

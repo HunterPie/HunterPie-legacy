@@ -171,7 +171,12 @@ namespace HunterPie.Memory {
             byte[] Buffer = new byte[size];
             int bytesRead = 0;
             ReadProcessMemory((int)ProcessHandle, (IntPtr)Address, Buffer, size, ref bytesRead);
-            return Encoding.UTF8.GetString(Buffer, 0, size);
+            string String = Encoding.UTF8.GetString(Buffer, 0, size);
+            int nullCharIndex = String.IndexOf('\x00');
+            // If there's no null char in the string, just return the string itself
+            if (nullCharIndex < 0) return String;
+            // If there's a null char, return a substring
+            else { return String.Substring(0, String.IndexOf('\x00')); }
         }
 
         public static float READ_FLOAT(Int64 Address) {

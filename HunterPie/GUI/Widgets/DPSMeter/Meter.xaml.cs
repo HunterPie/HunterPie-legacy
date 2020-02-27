@@ -20,10 +20,20 @@ namespace HunterPie.GUI.Widgets.DPSMeter {
     /// </summary>
     public partial class Meter : UserControl {
 
+        private bool _IsActive;
+
         List<Parts.PartyMember> Players = new List<Parts.PartyMember>();
         Game GameContext;
         Party Context;
-        public bool IsActive { get; private set; }
+        public bool IsActive {
+            get { return _IsActive; }
+            set {
+                if (value != _IsActive) {
+                    _IsActive = value;
+                    this.Visibility = (_IsActive && UserSettings.PlayerConfig.Overlay.DPSMeter.Enabled) ? Visibility.Visible : Visibility.Hidden;
+                }
+            }
+        }
 
         public Meter() {
             InitializeComponent();
@@ -67,16 +77,15 @@ namespace HunterPie.GUI.Widgets.DPSMeter {
 
         private void OnTotalDamageChange(object source, EventArgs args) {
             Dispatcher.BeginInvoke(System.Windows.Threading.DispatcherPriority.Background, new Action(() => {
-                if (Context.TotalDamage > 0 && UserSettings.PlayerConfig.Overlay.DPSMeter.Enabled) this.Visibility = Visibility.Visible;
+                if (Context.TotalDamage > 0) this.IsActive = true;
                 SortPlayersByDamage();
-                if (Context.Epoch.TotalSeconds > 0) {
+                if (Context.Epoch.TotalSeconds > 0 && UserSettings.PlayerConfig.Overlay.DPSMeter.ShowDPSWheneverPossible) {
                     TypeIcon.Visibility = Visibility.Visible;
                     Timer.Content = string.Format("{0:hh\\:mm\\:ss}", Context.Epoch);
                 } else {
                     TypeIcon.Visibility = Visibility.Hidden;
                     Timer.Content = "Total Damage";
                 }
-                
             }));
         }
 
@@ -87,7 +96,7 @@ namespace HunterPie.GUI.Widgets.DPSMeter {
                 Players.Add(pMember);
             }
             Party.Items.Refresh();
-            IsActive = true;
+            if (Context.TotalDamage > 0) IsActive = true;
         }
 
         public void DestroyPlayerComponents() {
