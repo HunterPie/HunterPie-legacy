@@ -38,9 +38,7 @@ namespace HunterPie.GUI {
         }
 
         private void SetWidgetsContext() {
-            this.FirstMonster.SetContext(ctx.FirstMonster);
-            this.SecondMonster.SetContext(ctx.SecondMonster);
-            this.ThirdMonster.SetContext(ctx.ThirdMonster);
+            this.MonstersWidget.SetContext(ctx);
             this.PrimaryMantle.SetContext(ctx.Player.PrimaryMantle);
             this.SecondaryMantle.SetContext(ctx.Player.SecondaryMantle);
             this.HarvestBoxComponent.SetContext(ctx.Player);
@@ -58,9 +56,7 @@ namespace HunterPie.GUI {
         }
 
         public void Destroy() {
-            this.FirstMonster.UnhookEvents();
-            this.SecondMonster.UnhookEvents();
-            this.ThirdMonster.UnhookEvents();
+            this.MonstersWidget.UnhookEvents();
             this.PrimaryMantle.UnhookEvents();
             this.SecondaryMantle.UnhookEvents();
             this.HarvestBoxComponent.UnhookEvents();
@@ -136,29 +132,21 @@ namespace HunterPie.GUI {
             bool MonsterWeaknessEnabled = UserSettings.PlayerConfig.Overlay.MonstersComponent.ShowMonsterWeakness;
             double X = UserSettings.PlayerConfig.Overlay.MonstersComponent.Position[0];
             double Y = UserSettings.PlayerConfig.Overlay.MonstersComponent.Position[1];
-            double Left = MonstersContainer.Margin.Left;
-            double Top = MonstersContainer.Margin.Top;
-            double Right = MonstersContainer.Margin.Right;
-            double Bottom = MonstersContainer.Margin.Bottom;
+            double Left = MonstersWidget.Margin.Left;
+            double Top = MonstersWidget.Margin.Top;
+            double Right = MonstersWidget.Margin.Right;
+            double Bottom = MonstersWidget.Margin.Bottom;
             Dispatch(() => {
                 if (X != Left || Y != Top) {
-                    MonstersContainer.Margin = new Thickness(X, Y, Right, Bottom);
+                    MonstersWidget.Margin = new Thickness(X, Y, Right, Bottom);
                 }
                 if (ContainerEnabled) {
-                    MonstersContainer.Visibility = Visibility.Visible;
+                    MonstersWidget.Visibility = Visibility.Visible;
                 } else {
-                    MonstersContainer.Visibility = Visibility.Hidden;
+                    MonstersWidget.Visibility = Visibility.Hidden;
                 }
-                
-                if (MonsterWeaknessEnabled) {
-                    FirstMonster.Weaknesses.Visibility = Visibility.Visible;
-                    SecondMonster.Weaknesses.Visibility = Visibility.Visible;
-                    ThirdMonster.Weaknesses.Visibility = Visibility.Visible;
-                } else {
-                    FirstMonster.Weaknesses.Visibility = Visibility.Collapsed;
-                    SecondMonster.Weaknesses.Visibility = Visibility.Collapsed;
-                    ThirdMonster.Weaknesses.Visibility = Visibility.Collapsed;
-                }
+
+                MonstersWidget.UpdateMonstersWidgetsSettings(MonsterWeaknessEnabled);
             }); 
         }
 

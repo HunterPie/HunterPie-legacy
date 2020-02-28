@@ -24,13 +24,16 @@ namespace HunterPie.GUI.Widgets {
         ~MonsterHealth() {
             ANIM_ENRAGEDBAR = null;
             ANIM_ENRAGEDICON = null;
-            //Logger.Debugger.Log("Monster into the tRASH");
+            Logger.Debugger.Log("Monster into the tRASH");
         }
 
         public void SetContext(Monster ctx) {
             Context = ctx;
             HookEvents();
             LoadAnimations();
+            if (Context.Name != null) {
+                UpdateMonsterInfo();
+            } else { this.Visibility = Visibility.Collapsed; } 
         }
 
         private void Dispatch(Action function) {
@@ -44,6 +47,26 @@ namespace HunterPie.GUI.Widgets {
             Context.OnEnrage += OnEnrage;
             Context.OnUnenrage += OnUnenrage;
             Context.OnHPUpdate += OnMonsterUpdate;
+        }
+
+        private void UpdateMonsterInfo() {
+            // Used when starting HunterPie for the first time, since the events won't be triggered
+            this.Visibility = Visibility.Visible;
+            this.MonsterName.Text = Context.Name;
+            this.MonsterHPBar.Value = Context.CurrentHP;
+            this.MonsterHPBar.Maximum = Context.TotalHP;
+            // Set monster crown
+            this.MonsterCrown.Source = Context.Crown == null ? null : (ImageSource)FindResource(Context.Crown);
+            this.MonsterCrown.Visibility = Visibility.Visible;
+            Weaknesses.Children.Clear(); // Removes every weakness icon
+            foreach (string Weakness in Context.Weaknesses.Keys) {
+                Image MonsterWeaknessImg = new Image {
+                    Source = this.Resources[Weakness] as ImageSource,
+                    Height = 15,
+                    Width = 15
+                };
+                Weaknesses.Children.Add(MonsterWeaknessImg);
+            }
         }
 
         public void UnhookEvents() {

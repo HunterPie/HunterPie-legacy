@@ -31,6 +31,7 @@ namespace HunterPie.GUI.Widgets {
 
         public void SetContext(Game Ctx) {
             Context = Ctx;
+            HookEvents();
         }
 
         private void HookEvents() {
@@ -41,14 +42,49 @@ namespace HunterPie.GUI.Widgets {
         public void UnhookEvents() {
             Context.Player.OnPeaceZoneEnter -= OnPeaceZoneEnter;
             Context.Player.OnPeaceZoneLeave -= OnPeaceZoneLeave;
+            DestroyMonstersWidgets();
+            this.Context = null;
         }
 
         private void OnPeaceZoneLeave(object source, EventArgs args) {
-            throw new NotImplementedException();
+            Dispatcher.BeginInvoke(System.Windows.Threading.DispatcherPriority.Render, new Action(() => {
+                CreateMonstersWidgets();
+            }));
         }
 
         private void OnPeaceZoneEnter(object source, EventArgs args) {
-            f_MonsterWidget?.UnhookEvents();
+            Dispatcher.BeginInvoke(System.Windows.Threading.DispatcherPriority.Render, new Action(() => {
+                DestroyMonstersWidgets();
+            }));   
         }
+
+        private void DestroyMonstersWidgets() {
+            f_MonsterWidget?.UnhookEvents();
+            s_MonsterWidget?.UnhookEvents();
+            t_MonsterWidget?.UnhookEvents();
+            f_MonsterWidget = null;
+            s_MonsterWidget = null;
+            t_MonsterWidget = null;
+            Container.Children.Clear();
+        }
+
+        private void CreateMonstersWidgets() {
+            f_MonsterWidget = new MonsterHealth();
+            s_MonsterWidget = new MonsterHealth();
+            t_MonsterWidget = new MonsterHealth();
+            f_MonsterWidget.SetContext(Context.FirstMonster);
+            s_MonsterWidget.SetContext(Context.SecondMonster);
+            t_MonsterWidget.SetContext(Context.ThirdMonster);
+            Container.Children.Add(f_MonsterWidget);
+            Container.Children.Add(s_MonsterWidget);
+            Container.Children.Add(t_MonsterWidget);
+        }
+
+        public void UpdateMonstersWidgetsSettings(bool weaknessEnabled) {
+            if (f_MonsterWidget != null) f_MonsterWidget.Weaknesses.Visibility = weaknessEnabled ? Visibility.Visible : Visibility.Collapsed;
+            if (s_MonsterWidget != null) s_MonsterWidget.Weaknesses.Visibility = weaknessEnabled ? Visibility.Visible : Visibility.Collapsed;
+            if (t_MonsterWidget != null) t_MonsterWidget.Weaknesses.Visibility = weaknessEnabled ? Visibility.Visible : Visibility.Collapsed;
+        }
+
     }
 }

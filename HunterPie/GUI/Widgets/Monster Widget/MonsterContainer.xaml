@@ -6,7 +6,7 @@
              xmlns:local="clr-namespace:HunterPie.GUI.Widgets"
              mc:Ignorable="d" 
              d:DesignHeight="62" d:DesignWidth="778" Width="778" Height="62">
-    <Grid>
+    <StackPanel x:Name="Container" Orientation="Horizontal">
             
-    </Grid>
+    </StackPanel>
 </UserControl>
