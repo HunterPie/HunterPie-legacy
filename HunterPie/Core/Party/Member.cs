@@ -1,14 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using System.Windows;
-using System.Windows.Controls;
-using HunterPie.Core;
-using HunterPie.Logger;
-
-namespace HunterPie.Core {
+﻿namespace HunterPie.Core {
     public class Member {
 
         private string _Name;
@@ -79,11 +69,11 @@ namespace HunterPie.Core {
         }
 
         public void SetPlayerInfo(string name, byte weapon_id, int damage) {
-            this.Name = name;
             this.Weapon = weapon_id;
             if (name == null && damage == 0) IsInParty = false;
             else { IsInParty = true; }
             this.Damage = damage;
+            this.Name = name;
         }
 
         private string GetWeaponIconNameByID(int id) {

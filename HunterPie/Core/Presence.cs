@@ -81,27 +81,32 @@ namespace HunterPie.Core {
                 case 0:
                     Instance.Details = ctx.Player.PlayerAddress == 0 ? "In main menu" : "In loading screen";
                     Instance.State = null;
-                    Instance.Assets = GenerateAssets("main-menu", null, null, null);
+                    GenerateAssets("main-menu", null, null, null);
                     Instance.Party = null;
                     break;
                 default:
                     if (ctx.Player.PlayerAddress == 0) {
                         Instance.Details = "In main menu";
                         Instance.State = null;
-                        Instance.Assets = GenerateAssets("main-menu", null, null, null);
+                        GenerateAssets("main-menu", null, null, null);
                         Instance.Party = null;
                         break;
                     }
                     Instance.Details = GetDescription();
                     Instance.State = GetState();
-                    Instance.Assets = GenerateAssets(ctx.Player.ZoneName == null ? "main-menu" : $"st{ctx.Player.ZoneID}", ctx.Player.ZoneName == "Main Menu" ? null : ctx.Player.ZoneName, ctx.Player.WeaponName == null ? "hunter-rank" : $"weap{ctx.Player.WeaponID}", $"{ctx.Player.Name} | HR: {ctx.Player.Level} | MR: {ctx.Player.MasterRank}");
-                    Instance.Party = MakeParty(ctx.Player.PlayerParty.Size, ctx.Player.PlayerParty.MaxSize, ctx.Player.PlayerParty.PartyHash);
+                    GenerateAssets(ctx.Player.ZoneName == null ? "main-menu" : $"st{ctx.Player.ZoneID}", ctx.Player.ZoneName == "Main Menu" ? null : ctx.Player.ZoneName, ctx.Player.WeaponName == null ? "hunter-rank" : $"weap{ctx.Player.WeaponID}", $"{ctx.Player.Name} | HR: {ctx.Player.Level} | MR: {ctx.Player.MasterRank}");
+                    MakeParty(ctx.Player.PlayerParty.Size, ctx.Player.PlayerParty.MaxSize, ctx.Player.PlayerParty.PartyHash);
                     break;
             }
             Client.SetPresence(Instance);
         }
 
         private string GetDescription() {
+            // Custom description for special zones
+            switch(ctx.Player.ZoneID) {
+                case 504:
+                    return "Training";
+            }
             if (ctx.Player.inPeaceZone) return "Idle";
             if (ctx.HuntedMonster == null) return "Exploring";
             else { return $"Hunting {ctx.HuntedMonster.Name} ({(int)(ctx.HuntedMonster.HPPercentage * 100)}%)"; }
@@ -114,23 +119,19 @@ namespace HunterPie.Core {
 
         /* Helpers */
 
-        public Assets GenerateAssets(string largeImage, string largeImageText, string smallImage, string smallImageText) {
-            Assets assets = new Assets {
-                LargeImageKey = largeImage,
-                LargeImageText = largeImageText,
-                SmallImageKey = smallImage,
-                SmallImageText = smallImageText
-            };
-            return assets;
+        public void GenerateAssets(string largeImage, string largeImageText, string smallImage, string smallImageText) {
+            if (Instance.Assets == null) { Instance.Assets = new Assets(); }
+            Instance.Assets.LargeImageKey = largeImage;
+            Instance.Assets.LargeImageText = largeImageText;
+            Instance.Assets.SmallImageKey = smallImage;
+            Instance.Assets.SmallImageText = smallImageText;
         }
 
-        public DiscordRPC.Party MakeParty(int partySize, int maxParty, string partyHash) {
-            DiscordRPC.Party party = new DiscordRPC.Party {
-                Size = partySize,
-                Max = maxParty,
-                ID = partyHash
-            };
-            return party;
+        public void MakeParty(int partySize, int maxParty, string partyHash) {
+            if (Instance.Party == null) { Instance.Party = new DiscordRPC.Party(); }
+            Instance.Party.Size = partySize;
+            Instance.Party.Max = maxParty;
+            Instance.Party.ID = partyHash;
         }
 
         public Timestamps NewTimestamp(DateTime start) {

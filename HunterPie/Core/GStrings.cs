@@ -1,6 +1,8 @@
 ﻿using System;
 using System.Xml;
+using System.IO;
 using HunterPie.Logger;
+using System.Text;
 
 namespace HunterPie.Core {
     class GStrings {
@@ -12,11 +14,11 @@ namespace HunterPie.Core {
 
         private static void LoadTranslationXML(string LangXML) {
             try {
-                Translations.Load($@"{LangXML}");
+                Translations.Load(LangXML);
                 Debugger.Warn($"Loaded {Translations.DocumentElement.Attributes["lang"]?.Value ?? "Unknown language"} game strings");
             } catch(Exception err) {
                 Debugger.Error(err);
-                Debugger.Error($"Failed to load {LangXML}.xml");
+                Debugger.Error($"Failed to load {LangXML}");
                 LoadTranslationXML(@"Languages\en-us.xml");
             }
         }

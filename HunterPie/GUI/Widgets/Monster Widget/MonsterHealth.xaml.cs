@@ -19,7 +19,12 @@ namespace HunterPie.GUI.Widgets {
 
         public MonsterHealth() {
             InitializeComponent();
-            this.DataContext = this;
+        }
+
+        ~MonsterHealth() {
+            ANIM_ENRAGEDBAR = null;
+            ANIM_ENRAGEDICON = null;
+            //Logger.Debugger.Log("Monster into the tRASH");
         }
 
         public void SetContext(Monster ctx) {
@@ -74,6 +79,7 @@ namespace HunterPie.GUI.Widgets {
 
         private void OnMonsterDespawn(object source, EventArgs args) {
             this.Dispatch(() => {
+                this.MonsterName = null;
                 this.MonsterStatus.Source = null;
                 this.MonsterCrown.Source = null;
                 this.MonsterCrown.Visibility = Visibility.Collapsed;

@@ -6,6 +6,7 @@ using System.Runtime.InteropServices;
 using System.Windows.Interop;
 using HunterPie.Core;
 using HunterPie.Memory;
+using System.Windows.Controls.Primitives;
 
 namespace HunterPie.GUI {
     /// <summary>
@@ -14,8 +15,6 @@ namespace HunterPie.GUI {
     public partial class Overlay : Window, IDisposable {
         public bool IsDisposed { get; private set; }
         Game ctx;
-        double w_Height = Screen.PrimaryScreen.Bounds.Height;
-        double w_Width = Screen.PrimaryScreen.Bounds.Width;
         
         [DllImport("user32.dll")]
         private static extern int SetWindowLong(IntPtr hwnd, int index, int style);
@@ -33,9 +32,7 @@ namespace HunterPie.GUI {
         }
 
         private void SetRenderMode() {
-            if (UserSettings.PlayerConfig.Overlay.EnableHardwareAcceleration) {
-                RenderOptions.ProcessRenderMode = RenderMode.Default;
-            } else {
+            if (!UserSettings.PlayerConfig.Overlay.EnableHardwareAcceleration) {
                 RenderOptions.ProcessRenderMode = RenderMode.SoftwareOnly;
             }
         }
@@ -104,10 +101,23 @@ namespace HunterPie.GUI {
         } 
 
         private void SetOverlaySize() {
-            OverlayWnd.Width = w_Width * 2;
-            OverlayWnd.Height = w_Height;
-            OverlayGrid.Width = OverlayWnd.Width;
-            OverlayGrid.Height = OverlayWnd.Height;
+            /* Looks for all monitors available and sets the overlay to the total width, height */
+            double Width = 0;
+            double Height = 0;
+            int MonitorX = -1;
+            int MonitorY = -1;
+            foreach (Screen Monitor in Screen.AllScreens) {
+                if (MonitorX != Monitor.Bounds.X) {
+                    Width += Monitor.Bounds.Width;
+                    MonitorX = Monitor.Bounds.X;
+                }
+                if (MonitorY != Monitor.Bounds.Y) {
+                    Height += Monitor.Bounds.Height;
+                    MonitorY = Monitor.Bounds.Y;
+                }
+            }
+            this.Width = Width;
+            this.Height = Height;
         }
 
         private void OnGameUnfocus(object source, EventArgs args) {
@@ -121,6 +131,7 @@ namespace HunterPie.GUI {
         }
 
         public void ChangeMonsterComponentPosition(object source, EventArgs e) {
+            
             bool ContainerEnabled = UserSettings.PlayerConfig.Overlay.MonstersComponent.Enabled;
             bool MonsterWeaknessEnabled = UserSettings.PlayerConfig.Overlay.MonstersComponent.ShowMonsterWeakness;
             double X = UserSettings.PlayerConfig.Overlay.MonstersComponent.Position[0];
@@ -148,7 +159,7 @@ namespace HunterPie.GUI {
                     SecondMonster.Weaknesses.Visibility = Visibility.Collapsed;
                     ThirdMonster.Weaknesses.Visibility = Visibility.Collapsed;
                 }
-            });   
+            }); 
         }
 
         /* Positions and enable/disable components */

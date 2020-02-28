@@ -179,7 +179,11 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="GUI\Widgets\MonsterHealth.xaml">
+    <Page Include="GUI\Widgets\Monster Widget\MonsterContainer.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="GUI\Widgets\Monster Widget\MonsterHealth.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -214,7 +218,10 @@
     <Compile Include="GUI\Widgets\MantleTimer.xaml.cs">
       <DependentUpon>MantleTimer.xaml</DependentUpon>
     </Compile>
-    <Compile Include="GUI\Widgets\MonsterHealth.xaml.cs">
+    <Compile Include="GUI\Widgets\Monster Widget\MonsterContainer.xaml.cs">
+      <DependentUpon>MonsterContainer.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="GUI\Widgets\Monster Widget\MonsterHealth.xaml.cs">
       <DependentUpon>MonsterHealth.xaml</DependentUpon>
     </Compile>
     <Compile Include="Hunterpie.xaml.cs">
