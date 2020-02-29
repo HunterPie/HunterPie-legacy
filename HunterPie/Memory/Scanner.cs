@@ -23,7 +23,7 @@ namespace HunterPie.Memory {
         static Process MonsterHunter;
         static public IntPtr ProcessHandle { get; private set; } = (IntPtr)0;
         static public bool GameIsRunning = false;
-        static private bool _isForegroundWindow = true;
+        static private bool _isForegroundWindow = false;
         static public bool IsForegroundWindow {
             get { return _isForegroundWindow; }
             private set {

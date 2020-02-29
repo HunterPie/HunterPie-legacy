@@ -51,13 +51,17 @@ namespace HunterPie.GUI.Widgets {
 
         private void OnPeaceZoneLeave(object source, EventArgs args) {
             Dispatcher.BeginInvoke(System.Windows.Threading.DispatcherPriority.Render, new Action(() => {
+                this.WidgetHasContent = true;
                 CreateMonstersWidgets();
+                ChangeVisibility();
             }));
         }
 
         private void OnPeaceZoneEnter(object source, EventArgs args) {
             Dispatcher.BeginInvoke(System.Windows.Threading.DispatcherPriority.Render, new Action(() => {
+                this.WidgetHasContent = false;
                 DestroyMonstersWidgets();
+                ChangeVisibility();
             }));   
         }
 
@@ -97,8 +101,8 @@ namespace HunterPie.GUI.Widgets {
             Dispatcher.BeginInvoke(System.Windows.Threading.DispatcherPriority.Background, new Action(() => {
                 this.Top = UserSettings.PlayerConfig.Overlay.MonstersComponent.Position[1];
                 this.Left = UserSettings.PlayerConfig.Overlay.MonstersComponent.Position[0];
-                this.Visibility = UserSettings.PlayerConfig.Overlay.MonstersComponent.Enabled ? Visibility.Visible : Visibility.Hidden;
-                
+                this.WidgetActive = UserSettings.PlayerConfig.Overlay.MonstersComponent.Enabled;
+                base.ApplySettings();
             }));
         }
 

@@ -10,6 +10,7 @@ namespace HunterPie.GUI.Widgets {
     /// Interaction logic for MantleTimer.xaml
     /// </summary>
     public partial class MantleTimer : Widget {
+        
         private Mantle Context { get; set; }
         private int MantleNumber { get; set; }
 
@@ -44,13 +45,15 @@ namespace HunterPie.GUI.Widgets {
         private void OnTimerChange(object source, MantleEventArgs args) {
             if (args.Timer <= 0) {
                 Dispatch(() => {
-                    MantleContainer.Visibility = Visibility.Hidden;
+                    this.WidgetHasContent = false;
+                    ChangeVisibility();
                 });
                 return;
             }
             string FormatMantleName = $"({(int)args.Timer}) {args.Name.ToUpper()}";
             Dispatch(() => {
-                if (this.IsVisible && !MantleContainer.IsVisible) MantleContainer.Visibility = Visibility.Visible;
+                this.WidgetHasContent = true;
+                ChangeVisibility();
                 MantleName.Content = FormatMantleName;
                 MantleCooldown.Slice = args.Timer / args.staticTimer;
             });
@@ -59,12 +62,14 @@ namespace HunterPie.GUI.Widgets {
         private void OnCooldownChange(object source, MantleEventArgs args) {
             if (args.Cooldown <= 0) {
                 Dispatch(() => {
-                    MantleContainer.Visibility = Visibility.Hidden;
+                    this.WidgetHasContent = false;
+                    ChangeVisibility();
                 });
                 return;
             }
             Dispatch(() => {
-                if (this.IsVisible && !MantleContainer.IsVisible) MantleContainer.Visibility = Visibility.Visible;
+                this.WidgetHasContent = true;
+                ChangeVisibility();
                 string FormatMantleName = $"({(int)args.Cooldown}) {args.Name.ToUpper()}";
                 MantleName.Content = FormatMantleName;
                 MantleCooldown.Slice = args.Cooldown / args.staticCooldown;
@@ -90,7 +95,8 @@ namespace HunterPie.GUI.Widgets {
 
                 // Sets visibility if enabled/disabled
                 bool IsEnabled = MantleNumber == 0 ? UserSettings.PlayerConfig.Overlay.PrimaryMantle.Enabled : UserSettings.PlayerConfig.Overlay.SecondaryMantle.Enabled;
-                this.Visibility = IsEnabled ? Visibility.Visible : Visibility.Hidden;
+                this.WidgetActive = IsEnabled;
+                base.ApplySettings();
             }));
         }
 

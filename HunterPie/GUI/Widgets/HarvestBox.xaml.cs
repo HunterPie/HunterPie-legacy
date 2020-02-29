@@ -24,14 +24,14 @@ namespace HunterPie.GUI.Widgets {
             ApplySettings();
             SetWindowFlags(this);
             SetContext(Context);
-            this.Show();
         }
 
         public override void ApplySettings() {
             Dispatcher.BeginInvoke(System.Windows.Threading.DispatcherPriority.Background, new Action(() => {
                 this.Top = UserSettings.PlayerConfig.Overlay.HarvestBoxComponent.Position[1];
                 this.Left = UserSettings.PlayerConfig.Overlay.HarvestBoxComponent.Position[0];
-                this.Visibility = UserSettings.PlayerConfig.Overlay.HarvestBoxComponent.Enabled ? Visibility.Visible : Visibility.Hidden;
+                this.WidgetActive = UserSettings.PlayerConfig.Overlay.HarvestBoxComponent.Enabled;
+                base.ApplySettings();
             }));
         }
 
@@ -45,7 +45,6 @@ namespace HunterPie.GUI.Widgets {
             PlayerContext = ctx;
             GetAnimations();
             HookEvents();
-            this.Show();
         }
 
         private void Dispatch(Action function) {
@@ -93,17 +92,17 @@ namespace HunterPie.GUI.Widgets {
 
 
         private void ShowHarvestBox(object source, EventArgs args) {
-            if (this.Visibility == Visibility.Visible || !UserSettings.PlayerConfig.Overlay.HarvestBoxComponent.Enabled) return;
-            Dispatch(() => {
-                this.Visibility = Visibility.Visible;
-            });
+            Dispatcher.BeginInvoke(System.Windows.Threading.DispatcherPriority.Background, new Action(() => {
+                WidgetHasContent = true;
+                ChangeVisibility();
+            }));
         }
 
         private void HideHarvestBox(object source, EventArgs args) {
-            if (this.Visibility == Visibility.Hidden) return;
-            Dispatch(() => {
-                this.Visibility = Visibility.Hidden;
-            });
+            Dispatcher.BeginInvoke(System.Windows.Threading.DispatcherPriority.Background, new Action(() => {
+                WidgetHasContent = false;
+                ChangeVisibility();
+            }));
         }
 
 

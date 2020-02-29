@@ -13,6 +13,12 @@ namespace HunterPie.GUI {
 
     public partial class Widget : Window {
 
+        public bool OverlayActive { get; set; }
+        public bool OverlayFocusActive { get; set; }
+        public bool OverlayIsFocused { get; set; }
+        public bool WidgetActive { get; set; }
+        public bool WidgetHasContent { get; set; }
+
         public double BaseWidth { get; set; }
         public double BaseHeight { get; set; }
 
@@ -25,6 +31,7 @@ namespace HunterPie.GUI {
 
         public void SetWindowFlags(Window widget) {
             SetWidgetBaseSize(widget.Width, widget.Height);
+            Background = Brushes.Red;
             // flags to make overlay click-through
             int WS_EX_TRANSPARENT = 0x20;
             int WS_EX_TOPMOST = 0x8;
@@ -39,10 +46,33 @@ namespace HunterPie.GUI {
             Scanner.SetWindowLong(hwnd, GWL_EXSTYLE, Styles | WS_EX_TOOLWINDOW | WS_EX_TRANSPARENT | WS_EX_TOPMOST);
         }
 
-        public virtual void ApplySettings() { }
+        public virtual void ApplySettings() {
+            ChangeVisibility();
+        } 
 
-        public virtual void MoveWidget() {
+        public virtual void MoveWidget() {}
 
+        public new void Show() {
+            Dispatcher.BeginInvoke(System.Windows.Threading.DispatcherPriority.Background, new Action(() => {
+                base.Show();
+            }));
+        }
+
+        public new void Hide() {
+            Dispatcher.BeginInvoke(System.Windows.Threading.DispatcherPriority.Background, new Action(() => {
+                base.Hide();
+            }));
+        }
+
+        public virtual void ChangeVisibility() {
+            if (WidgetHasContent && OverlayActive && WidgetActive && ((!OverlayFocusActive) || (OverlayFocusActive && OverlayIsFocused))) {
+                this.Show();
+            } else {
+                this.Hide();
+            }
+#if DEBUG
+            Logger.Debugger.Log($"OverlayActive: {OverlayActive} | OverlayFocusActive: {OverlayFocusActive} | OverlayIsFocused: {OverlayIsFocused} | WidgetActive: {WidgetActive} | WidgetHasContent: {WidgetHasContent}");
+#endif
         }
 
     }

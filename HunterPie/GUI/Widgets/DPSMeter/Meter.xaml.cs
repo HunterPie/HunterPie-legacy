@@ -19,26 +19,15 @@ namespace HunterPie.GUI.Widgets.DPSMeter {
     /// Interaction logic for DPSMeter.xaml
     /// </summary>
     public partial class Meter : Widget {
-
-        private bool _IsActive;
-
         List<Parts.PartyMember> Players = new List<Parts.PartyMember>();
         Game GameContext;
         Party Context;
-        public bool IsActive {
-            get { return _IsActive; }
-            set {
-                if (value != _IsActive) {
-                    _IsActive = value;
-                    this.Visibility = (_IsActive && UserSettings.PlayerConfig.Overlay.DPSMeter.Enabled) ? Visibility.Visible : Visibility.Hidden;
-                }
-            }
-        }
 
         public Meter(Game ctx) {
             InitializeComponent();
             SetWindowFlags(this);
             SetContext(ctx);
+            ScaleWidget(0.8, 0.8);
             ApplySettings();
         }
 
@@ -58,15 +47,16 @@ namespace HunterPie.GUI.Widgets.DPSMeter {
         private void OnPeaceZoneLeave(object source, EventArgs args) {
             Dispatcher.BeginInvoke(System.Windows.Threading.DispatcherPriority.Background, new Action(() => {
                 CreatePlayerComponents();
-                if (UserSettings.PlayerConfig.Overlay.DPSMeter.Enabled) Visibility = Context.TotalDamage > 0 ? Visibility.Visible : Visibility.Collapsed;
-                else { Visibility = Visibility.Collapsed; }
+                this.WidgetHasContent = true;
+                ChangeVisibility();
             }));
         }
 
         private void OnPeaceZoneEnter(object source, EventArgs args) {
             Dispatcher.BeginInvoke(System.Windows.Threading.DispatcherPriority.Background, new Action(() => {
                 DestroyPlayerComponents();
-                Visibility = Visibility.Collapsed;
+                this.WidgetHasContent = false;
+                ChangeVisibility();
             }));
         }
 
@@ -80,7 +70,11 @@ namespace HunterPie.GUI.Widgets.DPSMeter {
 
         private void OnTotalDamageChange(object source, EventArgs args) {
             Dispatcher.BeginInvoke(System.Windows.Threading.DispatcherPriority.Background, new Action(() => {
-                if (Context.TotalDamage > 0) this.IsActive = true;
+                Logger.Debugger.Log(Context.TotalDamage);
+                if (Context.TotalDamage > 0) {
+                    this.WidgetHasContent = true;
+                    ChangeVisibility();
+                }
                 SortPlayersByDamage();
                 if (Context.Epoch.TotalSeconds > 0 && UserSettings.PlayerConfig.Overlay.DPSMeter.ShowDPSWheneverPossible) {
                     TypeIcon.Visibility = Visibility.Visible;
@@ -99,7 +93,10 @@ namespace HunterPie.GUI.Widgets.DPSMeter {
                 Players.Add(pMember);
             }
             Party.Items.Refresh();
-            if (Context.TotalDamage > 0) IsActive = true;
+            if (Context.TotalDamage > 0) {
+                WidgetHasContent = true;
+                ChangeVisibility();
+            }
         }
 
         public void DestroyPlayerComponents() {
@@ -107,7 +104,10 @@ namespace HunterPie.GUI.Widgets.DPSMeter {
                 player.UnhookEvents();
             }
             Players.Clear();
-            IsActive = false;
+            Dispatcher.BeginInvoke(System.Windows.Threading.DispatcherPriority.Background, new Action(() => {
+                WidgetHasContent = false;
+                ChangeVisibility();
+            }));
         }
 
         private void SortPlayersByDamage() {
@@ -133,8 +133,8 @@ namespace HunterPie.GUI.Widgets.DPSMeter {
             Dispatcher.BeginInvoke(System.Windows.Threading.DispatcherPriority.Background, new Action(() => {
                 this.Top = UserSettings.PlayerConfig.Overlay.DPSMeter.Position[1];
                 this.Left = UserSettings.PlayerConfig.Overlay.DPSMeter.Position[0];
-                this.Visibility = UserSettings.PlayerConfig.Overlay.DPSMeter.Enabled ? Visibility.Visible : Visibility.Hidden;
-                ScaleWidget(0.8, 0.8);
+                this.WidgetActive = UserSettings.PlayerConfig.Overlay.DPSMeter.Enabled;
+                base.ApplySettings();
             }));
         }
         
