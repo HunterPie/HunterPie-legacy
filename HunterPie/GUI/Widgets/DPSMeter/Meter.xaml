@@ -6,7 +6,7 @@
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              xmlns:local="clr-namespace:HunterPie.GUI.Widgets.DPSMeter"
              xmlns:Parts="clr-namespace:HunterPie.GUI.Widgets.DPSMeter.Parts"
-             mc:Ignorable="d" BorderBrush="#7F000000" BorderThickness="1" Width="322" Height="226" ResizeMode="NoResize" WindowStyle="None" AllowsTransparency="True" ShowInTaskbar="False" Topmost="True" Closing="OnClosing" Background="{x:Null}">
+             mc:Ignorable="d" Width="320" Height="226" ResizeMode="NoResize" WindowStyle="None" AllowsTransparency="True" ShowInTaskbar="False" Topmost="True" Closing="OnClosing" Background="{x:Null}">
     <src:Widget.Resources>
         <ResourceDictionary>
             <ResourceDictionary.MergedDictionaries>
@@ -14,13 +14,13 @@
             </ResourceDictionary.MergedDictionaries>
         </ResourceDictionary>
     </src:Widget.Resources>
-    <StackPanel x:Name="DamageContainer" Height="226" VerticalAlignment="Top" HorizontalAlignment="Left" Width="320">
+    <StackPanel x:Name="DamageContainer" VerticalAlignment="Top" >
         <StackPanel Orientation="Horizontal" Background="#7F000000">
             <Image x:Name="TypeIcon" Source="{StaticResource ICON_STOPWATCH}" Width="20" Height="20" Margin="5,0,0,0" Visibility="Hidden"/>
             <Label x:Name="Timer" Content="" Width="237" Foreground="#FFEAEAEA" FontFamily="Roboto" FontWeight="Bold" FontSize="16" />
             <Label x:Name="BetaStaticText" Content="(BETA)" Foreground="#FFEAEAEA" FontFamily="Roboto" FontWeight="Light" FontSize="16" Opacity="0.85"/>
         </StackPanel>
-        <ListView x:Name="Party" Background="#7F000000" BorderBrush="{x:Null}" Foreground="{x:Null}" BorderThickness="0" Padding="-6,-4,-5,-2" ScrollViewer.HorizontalScrollBarVisibility="Disabled" ScrollViewer.VerticalScrollBarVisibility="Disabled" ScrollViewer.CanContentScroll="False" HorizontalAlignment="Left" Width="320">
+        <ListView x:Name="Party" Background="#7F000000" BorderBrush="{x:Null}" Foreground="{x:Null}" BorderThickness="0" ScrollViewer.HorizontalScrollBarVisibility="Disabled" ScrollViewer.VerticalScrollBarVisibility="Disabled" ScrollViewer.CanContentScroll="False" HorizontalAlignment="Left" Width="325" HorizontalContentAlignment="Left" Margin="-5,0,0,0">
         </ListView>
     </StackPanel>
 </src:Widget>

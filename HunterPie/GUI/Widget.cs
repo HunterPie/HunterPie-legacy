@@ -31,7 +31,7 @@ namespace HunterPie.GUI {
 
         public void SetWindowFlags(Window widget) {
             SetWidgetBaseSize(widget.Width, widget.Height);
-            Background = Brushes.Red;
+            
             // flags to make overlay click-through
             int WS_EX_TRANSPARENT = 0x20;
             int WS_EX_TOPMOST = 0x8;

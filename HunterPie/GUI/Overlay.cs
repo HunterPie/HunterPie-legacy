@@ -23,8 +23,8 @@ namespace HunterPie.GUI {
         }
 
         private void SetKeyboardHook() {
-            //KeyHook = new KeyboardHook();
-            //KeyboardHook.SetWindowsHookEx(KeyboardHook.WindowsHook.WH_KEYBOARD_LL, KeyHook)
+            KeyHook = new KeyboardHook();
+            KeyboardHook.SetWindowsHookEx(KeyboardHook.WindowsHook.WH_KEYBOARD_LL, KeyHook)
         }
 
         private void SetRenderMode() {

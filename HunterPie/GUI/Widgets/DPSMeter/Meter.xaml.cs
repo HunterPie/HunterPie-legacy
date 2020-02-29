@@ -27,8 +27,8 @@ namespace HunterPie.GUI.Widgets.DPSMeter {
             InitializeComponent();
             SetWindowFlags(this);
             SetContext(ctx);
-            ScaleWidget(0.8, 0.8);
             ApplySettings();
+            ScaleWidget(0.85, 0.85);
         }
 
         public void SetContext(Game ctx) {
@@ -39,14 +39,15 @@ namespace HunterPie.GUI.Widgets.DPSMeter {
         }
 
         private void HookEvents() {
-            Context.OnTotalDamageChange += OnTotalDamageChange;
             GameContext.Player.OnPeaceZoneEnter += OnPeaceZoneEnter;
+            Context.OnTotalDamageChange += OnTotalDamageChange;
             GameContext.Player.OnPeaceZoneLeave += OnPeaceZoneLeave;
         }
 
         private void OnPeaceZoneLeave(object source, EventArgs args) {
             Dispatcher.BeginInvoke(System.Windows.Threading.DispatcherPriority.Background, new Action(() => {
                 CreatePlayerComponents();
+                SortPlayersByDamage();
                 this.WidgetHasContent = true;
                 ChangeVisibility();
             }));
@@ -70,7 +71,6 @@ namespace HunterPie.GUI.Widgets.DPSMeter {
 
         private void OnTotalDamageChange(object source, EventArgs args) {
             Dispatcher.BeginInvoke(System.Windows.Threading.DispatcherPriority.Background, new Action(() => {
-                Logger.Debugger.Log(Context.TotalDamage);
                 if (Context.TotalDamage > 0) {
                     this.WidgetHasContent = true;
                     ChangeVisibility();
@@ -134,6 +134,7 @@ namespace HunterPie.GUI.Widgets.DPSMeter {
                 this.Top = UserSettings.PlayerConfig.Overlay.DPSMeter.Position[1];
                 this.Left = UserSettings.PlayerConfig.Overlay.DPSMeter.Position[0];
                 this.WidgetActive = UserSettings.PlayerConfig.Overlay.DPSMeter.Enabled;
+                UpdatePlayersColor();
                 base.ApplySettings();
             }));
         }
