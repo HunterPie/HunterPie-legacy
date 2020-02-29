@@ -26,6 +26,7 @@ namespace HunterPie.Logger {
         }
         public Debugger() {
             InitializeComponent();
+
         }
 
         public static Debugger InitializeDebugger() {
@@ -71,9 +72,9 @@ namespace HunterPie.Logger {
         private static void PrintOnConsole(string message, object color) {
             DateTime TimeStamp = DateTime.Now;
             message = $"[{TimeStamp.ToLongTimeString()}] {message}\n";
-            _Instance.Console.Dispatcher.BeginInvoke(
-                System.Windows.Threading.DispatcherPriority.Background,
-                new Action( () => {
+            _Instance.Dispatcher.BeginInvoke(
+                System.Windows.Threading.DispatcherPriority.ApplicationIdle,
+                new Action(() => {
                     TextRange msg = new TextRange(_Instance.Console.Document.ContentEnd, _Instance.Console.Document.ContentEnd) {
                         Text = message
                     };

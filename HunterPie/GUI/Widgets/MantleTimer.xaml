@@ -1,4 +1,5 @@
-﻿<UserControl x:Class="HunterPie.GUI.Widgets.MantleTimer"
+﻿<src:Widget x:Class="HunterPie.GUI.Widgets.MantleTimer"
+             xmlns:src="clr-namespace:HunterPie.GUI"
              xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
              xmlns:xctk="http://schemas.xceed.com/wpf/xaml/toolkit"
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
@@ -6,15 +7,15 @@
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              xmlns:local="clr-namespace:HunterPie.GUI.Widgets"
              mc:Ignorable="d" 
-             d:DesignHeight="450" d:DesignWidth="800" Width="218" Height="38">
-    <UserControl.Resources>
+             d:DesignHeight="450" d:DesignWidth="800" Width="218" Height="38" ResizeMode="NoResize" WindowStyle="None" AllowsTransparency="True" ShowInTaskbar="False" Topmost="True" Closing="OnClosing" Background="{x:Null}">
+    <src:Widget.Resources>
         <ResourceDictionary>
             <ResourceDictionary.MergedDictionaries>
                 <ResourceDictionary Source="/Resources/Resources.xaml"/>
             </ResourceDictionary.MergedDictionaries>
         </ResourceDictionary>
-    </UserControl.Resources>
-    <StackPanel x:Name="MantleContainer" Background="#4C000000" Width="218" Height="38" Style="{StaticResource StackPanelAnimations}" Visibility="Hidden">
+    </src:Widget.Resources>
+    <StackPanel x:Name="MantleContainer" Background="#4C000000" Width="218" Height="38" Style="{StaticResource StackPanelAnimations}">
         <Border x:Name="MantleBorder" BorderBrush="#FF7D076D" BorderThickness="2,0.5,0.5,0.5" HorizontalAlignment="Left" VerticalAlignment="Center" Height="38" Width="218" CornerRadius="1"/>
         <xctk:Pie x:Name="MantleCooldown" Slice="1" StartAngle="0" EndAngle="1" Height="26" Margin="5,-38,187,0" RenderTransformOrigin="0.5,0.5">
             <xctk:Pie.Fill>
@@ -34,4 +35,4 @@
         </xctk:Pie>
         <Label x:Name="MantleName" Content="(30s) MANTLE NAME" Height="38" Foreground="White" FontFamily="Roboto" VerticalAlignment="Top" FontWeight="Bold" VerticalContentAlignment="Center" Margin="31,-38,0,0" />
     </StackPanel>
-</UserControl>
+</src:Widget>

@@ -18,7 +18,7 @@ namespace HunterPie.GUI.Widgets.DPSMeter {
     /// <summary>
     /// Interaction logic for DPSMeter.xaml
     /// </summary>
-    public partial class Meter : UserControl {
+    public partial class Meter : Widget {
 
         private bool _IsActive;
 
@@ -35,8 +35,11 @@ namespace HunterPie.GUI.Widgets.DPSMeter {
             }
         }
 
-        public Meter() {
+        public Meter(Game ctx) {
             InitializeComponent();
+            SetWindowFlags(this);
+            SetContext(ctx);
+            ApplySettings();
         }
 
         public void SetContext(Game ctx) {
@@ -120,6 +123,25 @@ namespace HunterPie.GUI.Widgets.DPSMeter {
                 Players[i].ChangeColor(UserSettings.PlayerConfig.Overlay.DPSMeter.PartyMembers[i].Color);
             }
             Party.Items.Refresh();
+        }
+
+        private void OnClosing(object sender, System.ComponentModel.CancelEventArgs e) {
+            this.UnhookEvents();
+        }
+
+        public override void ApplySettings() {
+            Dispatcher.BeginInvoke(System.Windows.Threading.DispatcherPriority.Background, new Action(() => {
+                this.Top = UserSettings.PlayerConfig.Overlay.DPSMeter.Position[1];
+                this.Left = UserSettings.PlayerConfig.Overlay.DPSMeter.Position[0];
+                this.Visibility = UserSettings.PlayerConfig.Overlay.DPSMeter.Enabled ? Visibility.Visible : Visibility.Hidden;
+                ScaleWidget(0.8, 0.8);
+            }));
+        }
+        
+        public void ScaleWidget(double NewScaleX, double NewScaleY) {
+            Width = BaseWidth * NewScaleX;
+            Height = BaseHeight * NewScaleY;
+            this.DamageContainer.LayoutTransform = new ScaleTransform(NewScaleX, NewScaleY);
         }
 
     }

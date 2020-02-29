@@ -18,15 +18,18 @@ namespace HunterPie.GUI.Widgets {
     /// <summary>
     /// Interaction logic for MonsterContainer.xaml
     /// </summary>
-    public partial class MonsterContainer : UserControl {
+    public partial class MonsterContainer : Widget {
 
         Game Context;
         MonsterHealth f_MonsterWidget;
         MonsterHealth s_MonsterWidget;
         MonsterHealth t_MonsterWidget;
 
-        public MonsterContainer() {
+        public MonsterContainer(Game ctx) {
             InitializeComponent();
+            SetWindowFlags(this);
+            SetContext(ctx);
+            ApplySettings();
         }
 
         public void SetContext(Game Ctx) {
@@ -84,6 +87,19 @@ namespace HunterPie.GUI.Widgets {
             if (f_MonsterWidget != null) f_MonsterWidget.Weaknesses.Visibility = weaknessEnabled ? Visibility.Visible : Visibility.Collapsed;
             if (s_MonsterWidget != null) s_MonsterWidget.Weaknesses.Visibility = weaknessEnabled ? Visibility.Visible : Visibility.Collapsed;
             if (t_MonsterWidget != null) t_MonsterWidget.Weaknesses.Visibility = weaknessEnabled ? Visibility.Visible : Visibility.Collapsed;
+        }
+
+        private void OnClosing(object sender, System.ComponentModel.CancelEventArgs e) {
+            this.UnhookEvents();
+        }
+
+        public override void ApplySettings() {
+            Dispatcher.BeginInvoke(System.Windows.Threading.DispatcherPriority.Background, new Action(() => {
+                this.Top = UserSettings.PlayerConfig.Overlay.MonstersComponent.Position[1];
+                this.Left = UserSettings.PlayerConfig.Overlay.MonstersComponent.Position[0];
+                this.Visibility = UserSettings.PlayerConfig.Overlay.MonstersComponent.Enabled ? Visibility.Visible : Visibility.Hidden;
+                
+            }));
         }
 
     }

@@ -1,12 +1,14 @@
 ﻿using System;
 using System.Windows;
 using System.Windows.Controls;
+using System.Windows.Media;
 using System.Windows.Media.Animation;
 using HunterPie.Core;
 
 namespace HunterPie.GUI.Widgets {
 
-    public partial class HarvestBox : UserControl {
+    public partial class HarvestBox : Widget {
+
         Player PlayerContext;
         Core.HarvestBox Context {
             get { return PlayerContext?.Harvest; }
@@ -15,14 +17,35 @@ namespace HunterPie.GUI.Widgets {
         // Animations
         Storyboard ANIM_FERTILIZER_EXPIRE;
 
-        public HarvestBox() {
+        public HarvestBox(Player Context) {
             InitializeComponent();
+            BaseWidth = Width;
+            BaseHeight = Height;
+            ApplySettings();
+            SetWindowFlags(this);
+            SetContext(Context);
+            this.Show();
+        }
+
+        public override void ApplySettings() {
+            Dispatcher.BeginInvoke(System.Windows.Threading.DispatcherPriority.Background, new Action(() => {
+                this.Top = UserSettings.PlayerConfig.Overlay.HarvestBoxComponent.Position[1];
+                this.Left = UserSettings.PlayerConfig.Overlay.HarvestBoxComponent.Position[0];
+                this.Visibility = UserSettings.PlayerConfig.Overlay.HarvestBoxComponent.Enabled ? Visibility.Visible : Visibility.Hidden;
+            }));
+        }
+
+        public void ScaleWidget(double NewScaleX, double NewScaleY) {
+            Width = BaseWidth * NewScaleX;
+            Height = BaseHeight * NewScaleY;
+            this.HarvestBoxComponent.LayoutTransform = new ScaleTransform(NewScaleX, NewScaleY);
         }
 
         public void SetContext(Player ctx) {
             PlayerContext = ctx;
             GetAnimations();
             HookEvents();
+            this.Show();
         }
 
         private void Dispatch(Action function) {
@@ -152,6 +175,11 @@ namespace HunterPie.GUI.Widgets {
             Dispatch(() => {
                 this.HarvestBoxItemsCounter.Content = $"{args.Counter}/{args.Max}";
             });
+        }
+
+        private void OnClosing(object sender, System.ComponentModel.CancelEventArgs e) {
+            this.UnhookEvents();
+            this.PlayerContext = null;
         }
     }
 }

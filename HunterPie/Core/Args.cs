@@ -2,6 +2,17 @@
 using System.Collections.Generic;
 
 namespace HunterPie.Core {
+    /* Keyboard input */
+    public class KeyboardInputEventArgs : EventArgs {
+        public int Key { get; private set; }
+        public KeyboardHookHelper.KeyboardMessage KeyMessage { get; private set; }
+        
+        public KeyboardInputEventArgs(int KeyCode, KeyboardHookHelper.KeyboardMessage Message) {
+            this.Key = KeyCode;
+            this.KeyMessage = Message;
+        }
+
+    }
     /* Party and Members */
     public class PartyMemberEventArgs : EventArgs {
         public string Name;

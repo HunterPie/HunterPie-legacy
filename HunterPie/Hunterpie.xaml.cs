@@ -24,7 +24,7 @@ namespace HunterPie {
         bool OfflineMode = false;
 
         // HunterPie version
-        const string HUNTERPIE_VERSION = "1.0.3.2";
+        const string HUNTERPIE_VERSION = "1.0.3.21";
 
         public Hunterpie() {
             // Initialize debugger and theme
@@ -223,9 +223,7 @@ namespace HunterPie {
         }
 
         public void SendToOverlay(object source, EventArgs e) {
-            GameOverlay?.Dispatch(() => {
-                GameOverlay.GlobalSettingsEventHandler(source, e);
-            });
+            GameOverlay.GlobalSettingsEventHandler(source, e);
         }
 
         public void OnZoneChange(object source, EventArgs e) {

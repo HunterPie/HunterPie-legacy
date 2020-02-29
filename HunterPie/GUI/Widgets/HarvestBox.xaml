@@ -1,18 +1,19 @@
-﻿<UserControl x:Class="HunterPie.GUI.Widgets.HarvestBox"
+﻿<src:Widget x:Class="HunterPie.GUI.Widgets.HarvestBox"
+             xmlns:src="clr-namespace:HunterPie.GUI"
              xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              xmlns:local="clr-namespace:HunterPie.GUI.Widgets"
              mc:Ignorable="d" 
-             d:DesignHeight="450" d:DesignWidth="800" Width="230" Height="171">
-    <UserControl.Resources>
+             Width="230" Height="171" Background="#FFEE0000" ResizeMode="NoResize" WindowStyle="None" AllowsTransparency="True" ShowInTaskbar="False" Topmost="True" Closing="OnClosing">
+    <src:Widget.Resources>
         <ResourceDictionary>
             <ResourceDictionary.MergedDictionaries>
                 <ResourceDictionary Source="/Resources/Resources.xaml"/>
             </ResourceDictionary.MergedDictionaries>
         </ResourceDictionary>
-    </UserControl.Resources>
+    </src:Widget.Resources>
     <Grid x:Name="HarvestBoxComponent" HorizontalAlignment="Left" Width="230" Height="171" VerticalAlignment="Top">
         <Rectangle x:Name="HarvestBoxContainer" Fill="#4C111111" Stroke="#FF171717"/>
         <TextBlock x:Name="HarvestBoxTitle" Text="HARVEST BOX" Opacity="0.8" Foreground="White" Padding="0,5,0,0" FontWeight="Bold" Background="#66000000" Height="29" VerticalAlignment="Top" FontSize="16" TextAlignment="Center" FontFamily="Roboto"/>
@@ -27,4 +28,4 @@
         <Label x:Name="HarvestBoxItemsCounter" Content="(0/30)" Margin="0,145,0,0" Opacity="0.8" Foreground="White" HorizontalContentAlignment="Center" Padding="0" VerticalContentAlignment="Center" FontWeight="ExtraLight" Background="#66000000" FontFamily="Roboto"/>
 
     </Grid>
-</UserControl>
+</src:Widget>

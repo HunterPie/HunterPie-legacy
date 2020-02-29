@@ -51,8 +51,15 @@ namespace HunterPie.Memory {
         [DllImport("kernel32.dll")]
         public static extern bool CloseHandle(IntPtr hObject);
 
+        // user32 DLL
         [DllImport("user32.dll")]
         private static extern IntPtr GetForegroundWindow();
+
+        [DllImport("user32.dll")]
+        public static extern int SetWindowLong(IntPtr hwnd, int index, int style);
+
+        [DllImport("user32.dll")]
+        public static extern int GetWindowLong(IntPtr hwnd, int index);
 
         /* Events */
         public delegate void ProcessHandler(object source, EventArgs args);
@@ -106,7 +113,7 @@ namespace HunterPie.Memory {
                     if (GameIsRunning) {
                         Logger.Debugger.Log("Game process was closed by user!");
                         CloseHandle(ProcessHandle);
-                        ProcessHandle = (IntPtr)0;
+                        ProcessHandle = IntPtr.Zero;
                         _onGameClosed();
                     }
                     GameIsRunning = false;
