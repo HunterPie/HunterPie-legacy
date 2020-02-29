@@ -1,0 +1,152 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<Strings lang="French">
+  <Monsters>
+    <Monster ID="em001_00" Name="Rathian"/>
+    <Monster ID="em001_01" Name="Rathian stakura"/>
+    <Monster ID="em001_02" Name="Rathian d'or"/>
+    <Monster ID="em002_00" Name="Rathalos"/>
+    <Monster ID="em002_01" Name="Rathalos azur"/>
+    <Monster ID="em002_02" Name="Rathalos d'argent"/>
+    <Monster ID="em007_00" Name="Diablos"/>
+    <Monster ID="em007_01" Name="Diablos noire"/>
+    <Monster ID="em011_00" Name="Kirin"/>
+    <Monster ID="em018_00" Name="Yian Garuga"/>
+    <Monster ID="em018_05" Name="Yian Garuga balafré"/>
+    <Monster ID="em023_00" Name="Rajang"/>
+    <Monster ID="em024_00" Name="Kushala Daora"/>
+    <Monster ID="em026_00" Name="Lunastra"/>
+    <Monster ID="em027_00" Name="Teostra"/>
+    <Monster ID="em032_00" Name="Tigrex"/>
+    <Monster ID="em032_01" Name="Tigrex berserk"/>
+    <Monster ID="em036_00" Name="Lavasioth"/>
+    <Monster ID="em037_00" Name="Nargacuga"/>
+    <Monster ID="em042_00" Name="Barioth"/>
+    <Monster ID="em043_00" Name="Deviljho"/>
+    <Monster ID="em043_05" Name="Deviljho carnage"/>
+    <Monster ID="em044_00" Name="Barroth"/>
+    <Monster ID="em045_00" Name="Uragaan"/>
+    <Monster ID="em057_00" Name="Zinogre"/>
+    <Monster ID="em063_00" Name="Brachydios"/>
+    <Monster ID="em080_00" Name="Glavenus"/>
+    <Monster ID="em080_01" Name="Glavenus acide"/>
+    <Monster ID="em100_00" Name="Anjanath"/>
+    <Monster ID="em100_01" Name="Anjanath tonnerre"/>
+    <Monster ID="em101_00" Name="Grand Jagras"/>
+    <Monster ID="em102_00" Name="Pukei-Pukei"/>
+    <Monster ID="em102_01" Name="Pukei-Pukei corail"/>
+    <Monster ID="em103_00" Name="Nergigante"/>
+    <Monster ID="em103_05" Name="Nergigante chaos"/>
+    <Monster ID="em105_00" Name="Xeno'jiiva"/>
+    <Monster ID="em106_00" Name="Zorah Magdaros"/>
+    <Monster ID="em107_00" Name="Kulu-Ya-Ku"/>
+    <Monster ID="em108_00" Name="Jyuratodus"/>
+    <Monster ID="em109_00" Name="Tobi-Kadachi"/>
+    <Monster ID="em109_01" Name="Tobi-Kadachi vipère"/>
+    <Monster ID="em110_00" Name="Paolumu"/>
+    <Monster ID="em110_01" Name="Paolumu belladone"/>
+    <Monster ID="em111_00" Name="Legiana"/>
+    <Monster ID="em111_05" Name="Legiana blizzard"/>
+    <Monster ID="em112_00" Name="Grand Girross"/>
+    <Monster ID="em113_00" Name="Odogaron"/>
+    <Monster ID="em113_01" Name="Odogaron désastre"/>
+    <Monster ID="em114_00" Name="Radobaan"/>
+    <Monster ID="em115_00" Name="Vaal Hazak"/>
+    <Monster ID="em115_05" Name="Vaal Hazak fléau"/>
+    <Monster ID="em116_00" Name="Dodogama"/>
+    <Monster ID="em117_00" Name="Kulve Taroth"/>
+    <Monster ID="em118_00" Name="Bazelgeuse"/>
+    <Monster ID="em118_05" Name="Bazelgeuse vulcan"/>
+    <Monster ID="em120_00" Name="Tzitzi-Ya-Ku"/>
+    <Monster ID="em121_00" Name="Béhémoth"/>
+    <Monster ID="em122_00" Name="Beotodus"/>
+    <Monster ID="em123_00" Name="Banbaro"/>
+    <Monster ID="em124_00" Name="Velkhana"/>
+    <Monster ID="em125_00" Name="Namielle"/>
+    <Monster ID="em126_00" Name="Shara Ishvalda"/>
+    <Monster ID="em127_00" Name="Leshen"/>
+    <Monster ID="em127_01" Name="Vieux Leshen"/>
+  </Monsters>
+  <Mantles>
+    <Mantle ID="-1" Name="Pas de cape"/>
+    <Mantle ID="0" Name="Cape du caméléon"/>
+    <Mantle ID="1" Name="Cape temporelle"/>
+    <Mantle ID="2" Name="Amplificateur de vie"/>
+    <Mantle ID="3" Name="Cape immuable"/>
+    <Mantle ID="4" Name="Cape de provocation"/>
+    <Mantle ID="5" Name="Cape du gardien"/>
+    <Mantle ID="6" Name="Cape ignifuge"/>
+    <Mantle ID="7" Name="Cape anti-eau"/>
+    <Mantle ID="8" Name="Cape anti-glace"/>
+    <Mantle ID="9" Name="Cape Paratonnerre"/>
+    <Mantle ID="10" Name="Cape anti-dragon"/>
+    <Mantle ID="11" Name="Purificateur"/>
+    <Mantle ID="12" Name="Cape planeur"/>
+    <Mantle ID="13" Name="Cape d'évasion"/>
+    <Mantle ID="14" Name="Cape du Champion"/>
+    <Mantle ID="15" Name="Cape du Scélérat"/>
+    <Mantle ID="16" Name="Cape angélique"/>
+    <Mantle ID="17" Name="Amplificateur d'affinité"/>
+    <Mantle ID="18" Name="Cape du voleur"/>
+    <Mantle ID="19" Name="Capuche d'assassin"/>
+  </Mantles>
+  <Fertilizers>
+    <Fertilizer ID="0" Name="Vide"/>
+    <Fertilizer ID="1" Name="Plante : Récolte +"/>
+    <Fertilizer ID="2" Name="Plante : Récolte ++"/>
+    <Fertilizer ID="3" Name="Champignon : Récolte +"/>
+    <Fertilizer ID="4" Name="Champignon : Récolte ++"/>
+    <Fertilizer ID="5" Name="Insecte/Miel : Récolte +"/>
+    <Fertilizer ID="6" Name="Insecte/Miel : Récolte ++"/>
+    <Fertilizer ID="7" Name="Croissance +"/>
+    <Fertilizer ID="8" Name="Croissance ++"/>
+  </Fertilizers>
+  <Stages>
+    <Stage ID="0" Name="Menu principal"/>
+    <Stage ID="101" Name="Forêt ancienne"/>
+    <Stage ID="102" Name="Désert des termites"/>
+    <Stage ID="103" Name="Plateau de corail"/>
+    <Stage ID="104" Name="Val putride"/>
+    <Stage ID="105" Name="Terre des anciens"/>
+    <Stage ID="106" Name="Grand ravin"/>
+    <Stage ID="107" Name="Grand ravin"/>
+    <Stage ID="108" Name="Givre éternel"/>
+    <Stage ID="109" Name="Le Fief glorieux"/>
+    <Stage ID="201" Name="Arène spécial"/>
+    <Stage ID="202" Name="Arène"/>
+    <Stage ID="301" Name="Astera"/>
+    <Stage ID="302" Name="Grand-Pont Astera"/>
+    <Stage ID="303" Name="Poste de recherche"/>
+    <Stage ID="305" Name="Seliana"/>
+    <Stage ID="306" Name="Grand-Salle Seliana"/>
+    <Stage ID="401" Name="Introduction"/>
+    <Stage ID="403" Name="Rivière éternelle"/>
+    <Stage ID="405" Name="Croisée des destins"/>
+    <Stage ID="406" Name="Forêt ancienne"/>
+    <Stage ID="409" Name="Cavernes d'El Dorado"/>
+    <Stage ID="411" Name="Garde-provisions Seliana"/>
+    <Stage ID="412" Name="Berceau oublié"/>
+    <Stage ID="413" Name="Berceau oublié"/>
+    <Stage ID="501" Name="Dortoir"/>
+    <Stage ID="502" Name="Quartiers privés"/>
+    <Stage ID="503" Name="Suite royale"/>
+    <Stage ID="504" Name="Aire d'entraînement"/>
+    <Stage ID="505" Name="Sanctuaire des cinq"/>
+    <Stage ID="506" Name="Chambre Seliana"/>
+  </Stages>
+  <Weapons>
+    <Weapon ID="0" Name="Grande épée"/>
+    <Weapon ID="1" Name="Épée et bouclier"/>
+    <Weapon ID="2" Name="Lames doubles"/>
+    <Weapon ID="3" Name="Épée longue"/>
+    <Weapon ID="4" Name="Marteau"/>
+    <Weapon ID="5" Name="Corne de chasse"/>
+    <Weapon ID="6" Name="Lance"/>
+    <Weapon ID="7" Name="Lancecanon"/>
+    <Weapon ID="8" Name="Morpho-hache"/>
+    <Weapon ID="9" Name="Volto-hache"/>
+    <Weapon ID="10" Name="Insectoglaive"/>
+    <Weapon ID="11" Name="Arc"/>
+    <Weapon ID="12" Name="Fusarbalète lourd"/>
+    <Weapon ID="13" Name="Fusarbalète léger"/>
+  </Weapons>
+</Strings>
