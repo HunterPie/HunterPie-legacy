@@ -33,7 +33,7 @@ namespace HunterPie.Core {
                 }
             }
         }
-        public DateTime Time { get; private set; }
+        public DateTime? Time { get; private set; }
         public bool IsActive { get; private set; }
 
         // Threading
@@ -95,7 +95,9 @@ namespace HunterPie.Core {
         }
 
         public void OnZoneChange(object source, EventArgs e) {
-            Time = DateTime.UtcNow;
+            if (Player.inPeaceZone) Time = null;
+            else { Time = DateTime.UtcNow; }
+            
         }
 
         private void StartGameScanner() {

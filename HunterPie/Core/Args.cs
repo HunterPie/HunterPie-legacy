@@ -2,6 +2,23 @@
 using System.Collections.Generic;
 
 namespace HunterPie.Core {
+    /* Activities */
+    public class SteamFuelEventArgs : EventArgs {
+        public int Available;
+        public int Max;
+
+        public SteamFuelEventArgs(int available, int max) {
+            this.Available = available;
+            this.Max = max;
+        }
+    }
+    public class DaysLeftEventArgs : EventArgs {
+        public int Days;
+
+        public DaysLeftEventArgs(int Days) {
+            this.Days = Days;
+        }
+    }
     /* Keyboard input */
     public class KeyboardInputEventArgs : EventArgs {
         public int Key { get; private set; }

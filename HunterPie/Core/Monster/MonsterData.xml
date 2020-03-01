@@ -152,7 +152,7 @@
       <Weakness ID="ELEMENT_DRAGON" Stars="3"/>
       <Weakness ID="ELEMENT_THUNDER" Stars="3"/>
     </Weaknesses>
-    <Crown Mini="909" Silver="114" Gold="120"/>
+    <Crown Mini="90" Silver="114" Gold="120"/>
   </Monster>
   <Monster ID="em044_00">
     <Weaknesses>

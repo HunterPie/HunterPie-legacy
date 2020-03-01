@@ -26,6 +26,7 @@ namespace HunterPie.Memory {
             public static int MonsterNamePtr = 0x290;
 
             public static int FertilizersOffset = 0x6740C;
+            public static int SteamFuelOffset = 0x102F4C;
             public static int HarvestBoxOffset = 0x10;
         }
         public static int PREICEBORNE_VERSION = 168031;

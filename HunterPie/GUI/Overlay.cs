@@ -97,7 +97,9 @@ namespace HunterPie.GUI {
             Application.Current.Dispatcher.BeginInvoke(System.Windows.Threading.DispatcherPriority.Background, new Action(() => {
                 foreach (Widget widget in Widgets) {
                     widget.OverlayIsFocused = false;
-                    widget.ApplySettings();
+                    if (!widget.InDesignMode) {
+                        widget.ApplySettings();
+                    }
                 }
             }));
         }
@@ -106,7 +108,9 @@ namespace HunterPie.GUI {
             Application.Current.Dispatcher.BeginInvoke(System.Windows.Threading.DispatcherPriority.Background, new Action(() => {
                 foreach (Widget widget in Widgets) {
                     widget.OverlayIsFocused = true;
-                    widget.ApplySettings();
+                    if (!widget.InDesignMode) {
+                        widget.ApplySettings();
+                    }
                 }
             }));
         }

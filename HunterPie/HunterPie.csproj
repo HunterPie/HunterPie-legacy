@@ -122,6 +122,7 @@
     <Compile Include="Core\Monster\MonsterData.cs" />
     <Compile Include="Core\Party\Member.cs" />
     <Compile Include="Core\Party\Party.cs" />
+    <Compile Include="Core\Player\Activities.cs" />
     <Compile Include="GUIControls\Changelog.xaml.cs">
       <DependentUpon>Changelog.xaml</DependentUpon>
     </Compile>

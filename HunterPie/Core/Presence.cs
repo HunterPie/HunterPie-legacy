@@ -96,6 +96,7 @@ namespace HunterPie.Core {
                     Instance.State = GetState();
                     GenerateAssets(ctx.Player.ZoneName == null ? "main-menu" : $"st{ctx.Player.ZoneID}", ctx.Player.ZoneName == "Main Menu" ? null : ctx.Player.ZoneName, ctx.Player.WeaponName == null ? "hunter-rank" : $"weap{ctx.Player.WeaponID}", $"{ctx.Player.Name} | HR: {ctx.Player.Level} | MR: {ctx.Player.MasterRank}");
                     MakeParty(ctx.Player.PlayerParty.Size, ctx.Player.PlayerParty.MaxSize, ctx.Player.PlayerParty.PartyHash);
+                    Instance.Timestamps = NewTimestamp(ctx.Time);
                     break;
             }
             Client.SetPresence(Instance);
@@ -134,7 +135,7 @@ namespace HunterPie.Core {
             Instance.Party.ID = partyHash;
         }
 
-        public Timestamps NewTimestamp(DateTime start) {
+        public Timestamps NewTimestamp(DateTime? start) {
             Timestamps timestamp = new Timestamps();
             try {
                 timestamp.Start = start;

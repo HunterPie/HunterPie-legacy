@@ -91,8 +91,9 @@ namespace HunterPie.Core {
         // Party
         public Party PlayerParty = new Party();
 
-        // Harvesting
+        // Harvesting & Activities
         public HarvestBox Harvest = new HarvestBox();
+        public Activities Activity = new Activities();
 
         // Mantles
         public Mantle PrimaryMantle = new Mantle();
@@ -344,6 +345,7 @@ namespace HunterPie.Core {
 
         private void GetFertilizers() {
             Int64 Address = this.LEVEL_ADDRESS;
+            
             for (int fertCount = 0; fertCount < 4; fertCount++) {
                 // Calculates memory address
                 Int64 FertilizerAddress = Address + Memory.Address.Offsets.FertilizersOffset + (0x10 * fertCount);
@@ -367,6 +369,12 @@ namespace HunterPie.Core {
                 }
             }
             Harvest.Counter = counter;
+        }
+
+        private void GetSteamFuel() {
+            Int64 NaturalFuelAddress = this.LEVEL_ADDRESS + Address.Offsets.SteamFuelOffset;
+            Activity.NaturalFuel = Scanner.READ_INT(NaturalFuelAddress);
+            Activity.StoredFuel = Scanner.READ_INT(NaturalFuelAddress + 0x4);
         }
     }
 }

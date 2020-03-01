@@ -64,7 +64,7 @@
         // Harvest Box Events
         public delegate void HarvestBoxEvents(object source, HarvestBoxEventArgs args);
         public event HarvestBoxEvents OnCounterChange;
-        
+
         protected virtual void _onCounterChange() {
             HarvestBoxEventArgs args = new HarvestBoxEventArgs(this);
             OnCounterChange?.Invoke(this, args);
