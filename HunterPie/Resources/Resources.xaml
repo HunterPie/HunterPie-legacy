@@ -530,6 +530,19 @@
             </DataTrigger>
         </Style.Triggers>
     </Style>
+    <Style x:Key="WidgetStyle" TargetType="{x:Type Window}">
+        <Style.Triggers>
+            <DataTrigger Binding="{Binding RelativeSource={x:Static RelativeSource.Self}, Path=IsVisible}" Value="True">
+                <DataTrigger.EnterActions>
+                    <BeginStoryboard>
+                        <Storyboard>
+                            <DoubleAnimation Storyboard.TargetProperty="Opacity" From="0" To="1" Duration="0:0:0.250"/>
+                        </Storyboard>
+                    </BeginStoryboard>
+                </DataTrigger.EnterActions>
+            </DataTrigger>
+        </Style.Triggers>
+    </Style>
     <!-- Animations -->
     <!-- Monster Enraged -->
     <Storyboard x:Key="EnragedIcon" RepeatBehavior="Forever" Timeline.DesiredFrameRate="24">

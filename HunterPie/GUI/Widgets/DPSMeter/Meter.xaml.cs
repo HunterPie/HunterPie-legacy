@@ -1,17 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows;
-using System.Windows.Controls;
-using System.Windows.Data;
-using System.Windows.Documents;
-using System.Windows.Input;
 using System.Windows.Media;
-using System.Windows.Media.Imaging;
-using System.Windows.Navigation;
-using System.Windows.Shapes;
 using HunterPie.Core;
 
 namespace HunterPie.GUI.Widgets.DPSMeter {
@@ -28,7 +18,6 @@ namespace HunterPie.GUI.Widgets.DPSMeter {
             SetWindowFlags(this);
             SetContext(ctx);
             ApplySettings();
-            ScaleWidget(0.85, 0.85);
         }
 
         public void SetContext(Game ctx) {
@@ -38,10 +27,27 @@ namespace HunterPie.GUI.Widgets.DPSMeter {
             this.Party.ItemsSource = Players;
         }
 
+        public override void EnterWidgetDesignMode() {
+            base.EnterWidgetDesignMode();
+            RemoveWindowTransparencyFlag(this);
+        }
+
+        public override void LeaveWidgetDesignMode() {
+            base.LeaveWidgetDesignMode();
+            ApplyWindowTransparencyFlag(this);
+            SaveSettings();
+        }
+
         private void HookEvents() {
             GameContext.Player.OnPeaceZoneEnter += OnPeaceZoneEnter;
             Context.OnTotalDamageChange += OnTotalDamageChange;
             GameContext.Player.OnPeaceZoneLeave += OnPeaceZoneLeave;
+        }
+
+        private void SaveSettings() {
+            UserSettings.PlayerConfig.Overlay.DPSMeter.Position[0] = (int)Left;
+            UserSettings.PlayerConfig.Overlay.DPSMeter.Position[1] = (int)Top;
+            UserSettings.PlayerConfig.Overlay.DPSMeter.Scale = DefaultScaleX;
         }
 
         private void OnPeaceZoneLeave(object source, EventArgs args) {
@@ -135,6 +141,7 @@ namespace HunterPie.GUI.Widgets.DPSMeter {
                 this.Left = UserSettings.PlayerConfig.Overlay.DPSMeter.Position[0];
                 this.WidgetActive = UserSettings.PlayerConfig.Overlay.DPSMeter.Enabled;
                 UpdatePlayersColor();
+                ScaleWidget(UserSettings.PlayerConfig.Overlay.DPSMeter.Scale, UserSettings.PlayerConfig.Overlay.DPSMeter.Scale);
                 base.ApplySettings();
             }));
         }
@@ -143,7 +150,30 @@ namespace HunterPie.GUI.Widgets.DPSMeter {
             Width = BaseWidth * NewScaleX;
             Height = BaseHeight * NewScaleY;
             this.DamageContainer.LayoutTransform = new ScaleTransform(NewScaleX, NewScaleY);
+            this.DefaultScaleX = NewScaleX;
+            this.DefaultScaleY = NewScaleY;
         }
 
+        private void OnMouseEnter(object sender, System.Windows.Input.MouseEventArgs e) {
+            this.MouseOver = true;
+        }
+
+        private void OnMouseDown(object sender, System.Windows.Input.MouseButtonEventArgs e) {
+            this.MoveWidget();
+        }
+
+        private void OnMouseWheel(object sender, System.Windows.Input.MouseWheelEventArgs e) {
+            if (this.MouseOver) {
+                if (e.Delta > 0) {
+                    ScaleWidget(DefaultScaleX + 0.05, DefaultScaleY + 0.05);
+                } else {
+                    ScaleWidget(DefaultScaleX - 0.05, DefaultScaleY - 0.05);
+                }
+            }
+        }
+
+        private void OnMouseLeave(object sender, System.Windows.Input.MouseEventArgs e) {
+            this.MouseOver = false;
+        }
     }
 }

@@ -4,6 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows;
+using System.Windows.Controls;
 using System.Windows.Interop;
 using System.Windows.Media;
 using HunterPie.Core;
@@ -13,20 +14,78 @@ namespace HunterPie.GUI {
 
     public partial class Widget : Window {
 
+        private bool _InDesignMode { get; set; }
+        public double DefaultScaleX { get; set; } = 1;
+        public double DefaultScaleY { get; set; } = 1;
+        public bool MouseOver { get; set; }
         public bool OverlayActive { get; set; }
         public bool OverlayFocusActive { get; set; }
         public bool OverlayIsFocused { get; set; }
         public bool WidgetActive { get; set; }
         public bool WidgetHasContent { get; set; }
+        public bool InDesignMode {
+            get { return _InDesignMode; }
+            set {
+                _InDesignMode = value;
+                if (_InDesignMode) { EnterWidgetDesignMode(); }
+                else { LeaveWidgetDesignMode(); }
+            }
+        }
 
         public double BaseWidth { get; set; }
         public double BaseHeight { get; set; }
 
-        public Widget() {}
+        public Widget() {
+            
+        }
+
+        public virtual void EnterWidgetDesignMode() {
+            ChangeVisibility();
+            SolidColorBrush BorderColorBrush = new SolidColorBrush((Color)ColorConverter.ConvertFromString("#2c99f2"));
+            SolidColorBrush BackgroundBrush = new SolidColorBrush((Color)ColorConverter.ConvertFromString("#800d7cd6"));
+            BorderColorBrush.Freeze();
+            BackgroundBrush.Freeze();
+            this.BorderBrush = BorderColorBrush;
+            this.BorderThickness = new Thickness(1, 1, 1, 1);
+            this.Background = BackgroundBrush;
+        }
+
+        public virtual void LeaveWidgetDesignMode() {
+            ChangeVisibility();
+            this.BorderBrush = null;
+            this.BorderThickness = new Thickness(0, 0, 0, 0);
+            this.Background = Brushes.Transparent;
+        }
 
         public void SetWidgetBaseSize(double Width, double Height) {
             this.BaseWidth = Width;
             this.BaseHeight = Height;
+        }
+
+        public void RemoveWindowTransparencyFlag(Window widget) {
+            int WS_EX_TRANSPARENT = 0x20;
+            int GWL_EXSTYLE = (-20);
+
+            var wnd = GetWindow(widget);
+            IntPtr hwnd = new WindowInteropHelper(wnd).EnsureHandle();
+            // Get overlay flags
+            int Styles = Scanner.GetWindowLong(hwnd, GWL_EXSTYLE);
+            Styles &= ~WS_EX_TRANSPARENT;
+            // Apply new flags
+            Scanner.SetWindowLong(hwnd, GWL_EXSTYLE, Styles);
+        }
+
+        public void ApplyWindowTransparencyFlag(Window widget) {
+            // flags to make overlay click-through
+            int WS_EX_TRANSPARENT = 0x20;
+            int GWL_EXSTYLE = (-20);
+
+            var wnd = GetWindow(widget);
+            IntPtr hwnd = new WindowInteropHelper(wnd).EnsureHandle();
+            // Get overlay flags
+            int Styles = Scanner.GetWindowLong(hwnd, GWL_EXSTYLE);
+            // Apply new flags
+            Scanner.SetWindowLong(hwnd, GWL_EXSTYLE, Styles | WS_EX_TRANSPARENT);
         }
 
         public void SetWindowFlags(Window widget) {
@@ -50,7 +109,9 @@ namespace HunterPie.GUI {
             ChangeVisibility();
         } 
 
-        public virtual void MoveWidget() {}
+        public virtual void MoveWidget() {
+            this.DragMove();
+        }
 
         public new void Show() {
             Dispatcher.BeginInvoke(System.Windows.Threading.DispatcherPriority.Background, new Action(() => {
@@ -65,14 +126,13 @@ namespace HunterPie.GUI {
         }
 
         public virtual void ChangeVisibility() {
-            if (WidgetHasContent && OverlayActive && WidgetActive && ((!OverlayFocusActive) || (OverlayFocusActive && OverlayIsFocused))) {
+            if (InDesignMode || (WidgetHasContent && OverlayActive && WidgetActive && ((!OverlayFocusActive) || (OverlayFocusActive && OverlayIsFocused)))) {
                 this.Show();
             } else {
                 this.Hide();
             }
-#if DEBUG
-            Logger.Debugger.Log($"OverlayActive: {OverlayActive} | OverlayFocusActive: {OverlayFocusActive} | OverlayIsFocused: {OverlayIsFocused} | WidgetActive: {WidgetActive} | WidgetHasContent: {WidgetHasContent}");
-#endif
+            //Logger.Debugger.Log($"OverlayActive: {OverlayActive} | OverlayFocusActive: {OverlayFocusActive} | OverlayIsFocused: {OverlayIsFocused} | WidgetActive: {WidgetActive} | WidgetHasContent: {WidgetHasContent}");
+
         }
 
     }

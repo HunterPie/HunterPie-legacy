@@ -6,7 +6,7 @@
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              xmlns:local="clr-namespace:HunterPie.GUI.Widgets"
              mc:Ignorable="d" 
-             Width="230" Height="171" Background="{x:Null}" ResizeMode="NoResize" WindowStyle="None" AllowsTransparency="True" ShowInTaskbar="False" Topmost="True" Closing="OnClosing">
+             Width="230" Height="171" Background="{x:Null}" ResizeMode="NoResize" WindowStyle="None" AllowsTransparency="True" ShowInTaskbar="False" Topmost="True" Closing="OnClosing" MouseEnter="OnMouseEnter" MouseDown="OnMouseDown" MouseWheel="OnMouseWheel" MouseLeave="OnMouseLeave">
     <src:Widget.Resources>
         <ResourceDictionary>
             <ResourceDictionary.MergedDictionaries>
@@ -14,6 +14,28 @@
             </ResourceDictionary.MergedDictionaries>
         </ResourceDictionary>
     </src:Widget.Resources>
+    <src:Widget.Style>
+        <Style TargetType="src:Widget">
+            <Style.Triggers>
+                <DataTrigger Binding="{Binding RelativeSource={x:Static RelativeSource.Self}, Path=IsVisible}" Value="True">
+                    <DataTrigger.EnterActions>
+                        <BeginStoryboard>
+                            <Storyboard>
+                                <DoubleAnimation Storyboard.TargetProperty="Opacity" To="1" Duration="0:0:0.250"/>
+                            </Storyboard>
+                        </BeginStoryboard>
+                    </DataTrigger.EnterActions>
+                    <DataTrigger.ExitActions>
+                        <BeginStoryboard>
+                            <Storyboard>
+                                <DoubleAnimation Storyboard.TargetProperty="Opacity" To="0" Duration="0:0:0.250"/>
+                            </Storyboard>
+                        </BeginStoryboard>
+                    </DataTrigger.ExitActions>
+                </DataTrigger>
+            </Style.Triggers>
+        </Style>
+    </src:Widget.Style>
     <Grid x:Name="HarvestBoxComponent" HorizontalAlignment="Left" Width="230" Height="171" VerticalAlignment="Top">
         <Rectangle x:Name="HarvestBoxContainer" Fill="#4C111111" Stroke="#FF171717"/>
         <TextBlock x:Name="HarvestBoxTitle" Text="HARVEST BOX" Opacity="0.8" Foreground="White" Padding="0,5,0,0" FontWeight="Bold" Background="#66000000" Height="29" VerticalAlignment="Top" FontSize="16" TextAlignment="Center" FontFamily="Roboto"/>

@@ -26,11 +26,29 @@ namespace HunterPie.GUI.Widgets {
             SetContext(Context);
         }
 
+        public override void EnterWidgetDesignMode() {
+            base.EnterWidgetDesignMode();
+            RemoveWindowTransparencyFlag(this);
+        }
+
+        public override void LeaveWidgetDesignMode() {
+            base.LeaveWidgetDesignMode();
+            ApplyWindowTransparencyFlag(this);
+            SaveSettings();
+        }
+
+        private void SaveSettings() {
+            UserSettings.PlayerConfig.Overlay.HarvestBoxComponent.Position[0] = (int)Left;
+            UserSettings.PlayerConfig.Overlay.HarvestBoxComponent.Position[1] = (int)Top;
+            UserSettings.PlayerConfig.Overlay.HarvestBoxComponent.Scale = DefaultScaleX;
+        }
+
         public override void ApplySettings() {
             Dispatcher.BeginInvoke(System.Windows.Threading.DispatcherPriority.Background, new Action(() => {
                 this.Top = UserSettings.PlayerConfig.Overlay.HarvestBoxComponent.Position[1];
                 this.Left = UserSettings.PlayerConfig.Overlay.HarvestBoxComponent.Position[0];
                 this.WidgetActive = UserSettings.PlayerConfig.Overlay.HarvestBoxComponent.Enabled;
+                this.ScaleWidget(UserSettings.PlayerConfig.Overlay.HarvestBoxComponent.Scale, UserSettings.PlayerConfig.Overlay.HarvestBoxComponent.Scale);
                 base.ApplySettings();
             }));
         }
@@ -39,6 +57,8 @@ namespace HunterPie.GUI.Widgets {
             Width = BaseWidth * NewScaleX;
             Height = BaseHeight * NewScaleY;
             this.HarvestBoxComponent.LayoutTransform = new ScaleTransform(NewScaleX, NewScaleY);
+            this.DefaultScaleX = NewScaleX;
+            this.DefaultScaleY = NewScaleY;
         }
 
         public void SetContext(Player ctx) {
@@ -179,6 +199,28 @@ namespace HunterPie.GUI.Widgets {
         private void OnClosing(object sender, System.ComponentModel.CancelEventArgs e) {
             this.UnhookEvents();
             this.PlayerContext = null;
+        }
+
+        private void OnMouseEnter(object sender, System.Windows.Input.MouseEventArgs e) {
+            this.MouseOver = true;
+        }
+
+        private void OnMouseDown(object sender, System.Windows.Input.MouseButtonEventArgs e) {
+            this.MoveWidget();
+        }
+
+        private void OnMouseWheel(object sender, System.Windows.Input.MouseWheelEventArgs e) {
+            if (this.MouseOver) {
+                if (e.Delta > 0) {
+                    ScaleWidget(DefaultScaleX + 0.05, DefaultScaleY + 0.05);
+                } else {
+                    ScaleWidget(DefaultScaleX - 0.05, DefaultScaleY - 0.05);
+                }
+            }
+        }
+
+        private void OnMouseLeave(object sender, System.Windows.Input.MouseEventArgs e) {
+            this.MouseOver = false;
         }
     }
 }

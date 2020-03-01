@@ -1,7 +1,5 @@
 ﻿using System;
 using System.Windows;
-using System.Windows.Controls;
-using HunterPie.GUI;
 using HunterPie.Core;
 using System.Windows.Media;
 
@@ -20,6 +18,33 @@ namespace HunterPie.GUI.Widgets {
             this.SetContext(context);
             SetWindowFlags(this);
             ApplySettings();
+        }
+
+        public override void EnterWidgetDesignMode() {
+            base.EnterWidgetDesignMode();
+            RemoveWindowTransparencyFlag(this);
+        }
+
+        public override void LeaveWidgetDesignMode() {
+            base.LeaveWidgetDesignMode();
+            ApplyWindowTransparencyFlag(this);
+            SaveSettings();
+        }
+
+        private void SaveSettings() {
+            switch (MantleNumber) {
+                case 0:
+                    UserSettings.PlayerConfig.Overlay.PrimaryMantle.Position[0] = (int)Left;
+                    UserSettings.PlayerConfig.Overlay.PrimaryMantle.Position[1] = (int)Top;
+                    UserSettings.PlayerConfig.Overlay.PrimaryMantle.Scale = DefaultScaleX;
+                    break;
+                case 1:
+                    UserSettings.PlayerConfig.Overlay.SecondaryMantle.Position[0] = (int)Left;
+                    UserSettings.PlayerConfig.Overlay.SecondaryMantle.Position[1] = (int)Top;
+                    UserSettings.PlayerConfig.Overlay.SecondaryMantle.Scale = DefaultScaleX;
+                    break;
+            }
+            
         }
 
         public void SetContext(Mantle ctx) {
@@ -92,12 +117,44 @@ namespace HunterPie.GUI.Widgets {
                 WidgetColorBrush.Freeze();
                 this.MantleCooldown.Fill = DonutBrush(WidgetColor);
                 this.MantleBorder.BorderBrush = WidgetColorBrush;
-
+                double ScaleFactor = MantleNumber == 0 ? UserSettings.PlayerConfig.Overlay.PrimaryMantle.Scale : UserSettings.PlayerConfig.Overlay.SecondaryMantle.Scale;
+                ScaleWidget(ScaleFactor, ScaleFactor);
                 // Sets visibility if enabled/disabled
                 bool IsEnabled = MantleNumber == 0 ? UserSettings.PlayerConfig.Overlay.PrimaryMantle.Enabled : UserSettings.PlayerConfig.Overlay.SecondaryMantle.Enabled;
                 this.WidgetActive = IsEnabled;
                 base.ApplySettings();
             }));
+        }
+
+
+        public void ScaleWidget(double NewScaleX, double NewScaleY) {
+            Width = BaseWidth * NewScaleX;
+            Height = BaseHeight * NewScaleY;
+            this.MantleContainer.LayoutTransform = new ScaleTransform(NewScaleX, NewScaleY);
+            this.DefaultScaleX = NewScaleX;
+            this.DefaultScaleY = NewScaleY;
+        }
+
+        private void OnMouseEnter(object sender, System.Windows.Input.MouseEventArgs e) {
+            this.MouseOver = true;
+        }
+
+        private void OnMouseDown(object sender, System.Windows.Input.MouseButtonEventArgs e) {
+            this.MoveWidget();
+        }
+
+        private void OnMouseWheel(object sender, System.Windows.Input.MouseWheelEventArgs e) {
+            if (this.MouseOver) {
+                if (e.Delta > 0) {
+                    ScaleWidget(DefaultScaleX + 0.05, DefaultScaleY + 0.05);
+                } else {
+                    ScaleWidget(DefaultScaleX - 0.05, DefaultScaleY - 0.05);
+                }
+            }
+        }
+
+        private void OnMouseLeave(object sender, System.Windows.Input.MouseEventArgs e) {
+            this.MouseOver = false;
         }
 
         // Helper

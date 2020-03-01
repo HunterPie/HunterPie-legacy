@@ -44,23 +44,27 @@ namespace HunterPie.Core {
 
             public class Monsterscomponent {
                 public bool Enabled { get; set; } = true;
+                public double Scale { get; set; } = 1;
                 public int[] Position { get; set; } = new int[2] { 335, 10 };
                 public bool ShowMonsterWeakness { get; set; } = true;
             }
 
             public class Harvestboxcomponent {
                 public bool Enabled { get; set; } = true;
+                public double Scale { get; set; } = 1;
                 public int[] Position { get; set; } = new int[2] { 1110, 30 };
             }
 
             public class Primarymantle {
                 public bool Enabled { get; set; } = true;
+                public double Scale { get; set; } = 1;
                 public int[] Position { get; set; } = new int[2] { 1145, 300 };
                 public string Color { get; set; } = "#99C500AA";
             }
 
             public class Secondarymantle {
                 public bool Enabled { get; set; } = true;
+                public double Scale { get; set; } = 1;
                 public int[] Position { get; set; } = new int[2] { 1145, 350 };
                 public string Color { get; set; } = "#996900FF";
             }
@@ -68,6 +72,7 @@ namespace HunterPie.Core {
             public class DPSMeter {
                 public bool Enabled { get; set; } = true;
                 public bool ShowDPSWheneverPossible { get; set; } = false;
+                public double Scale { get; set; } = 0.8;
                 public int[] Position { get; set; } = new int[2] { 10, 350 };
                 public Players[] PartyMembers { get; set; } = new Players[4] { new Players(), new Players(), new Players(), new Players() };
             }

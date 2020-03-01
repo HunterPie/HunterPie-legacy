@@ -43,7 +43,7 @@ namespace HunterPie.GUI.Widgets.DPSMeter.Parts {
             Dispatch(() => {
                 PlayerName.Content = args.Name;
                 PlayerClassIcon.Source = args.Weapon == null ? null : (ImageSource)TryFindResource(args.Weapon);
-                this.Visibility = args.IsInParty ? Visibility.Visible : Visibility.Collapsed;
+                this.Visibility = args.IsInParty ? Visibility.Visible : Visibility.Hidden;
             });
         }
 

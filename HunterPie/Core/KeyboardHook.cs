@@ -4,6 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Runtime.InteropServices;
 using System.Windows.Input;
+using HunterPie.Core;
 
 namespace HunterPie.Core {
     public class KeyboardHookHelper {
@@ -31,19 +32,30 @@ namespace HunterPie.Core {
         public static extern IntPtr CallNextHookEx(IntPtr hhk, int nCode, IntPtr wParam, IntPtr lParam);
     }
     public class KeyboardHook {
+        [StructLayout(LayoutKind.Sequential)]
+        internal struct KeyboardLowLevelHookStruct {
+            public int vkCode;
+            public int scanCode;
+            public int flags;
+            public int time;
+            public IntPtr dwExtraInfo;
+        }
         KeyboardHookHelper.HookProc KeyboardProc;
+        public event EventHandler<KeyboardInputEventArgs> OnKeyboardKeyPress;
 
         public IntPtr KeyboardHk { get; private set; } = IntPtr.Zero;
 
         public KeyboardHook() {
-            //KeyboardProc = 
+            KeyboardProc = LowLevelKeyboardProc;
         }
-        /*
+        
         private IntPtr LowLevelKeyboardProc(int nCode, IntPtr wParam, IntPtr lParam) {
             if (nCode >= 0) {
-                var s
+                var st = Marshal.PtrToStructure<KeyboardLowLevelHookStruct>(lParam);
+                OnKeyboardKeyPress?.Invoke(this, new KeyboardInputEventArgs(st.vkCode, (KeyboardHookHelper.KeyboardMessage)wParam));
             }
-        }*/
+            return KeyboardHookHelper.CallNextHookEx(IntPtr.Zero, nCode, wParam, lParam);
+        }
 
         public void InstallHooks() {
             if (KeyboardHk == IntPtr.Zero) {

@@ -102,8 +102,56 @@ namespace HunterPie.GUI.Widgets {
                 this.Top = UserSettings.PlayerConfig.Overlay.MonstersComponent.Position[1];
                 this.Left = UserSettings.PlayerConfig.Overlay.MonstersComponent.Position[0];
                 this.WidgetActive = UserSettings.PlayerConfig.Overlay.MonstersComponent.Enabled;
+                ScaleWidget(UserSettings.PlayerConfig.Overlay.MonstersComponent.Scale, UserSettings.PlayerConfig.Overlay.MonstersComponent.Scale);
                 base.ApplySettings();
             }));
+        }
+
+        public override void EnterWidgetDesignMode() {
+            base.EnterWidgetDesignMode();
+            RemoveWindowTransparencyFlag(this);
+        }
+
+        public override void LeaveWidgetDesignMode() {
+            base.LeaveWidgetDesignMode();
+            ApplyWindowTransparencyFlag(this);
+            SaveSettings();
+        }
+
+        private void SaveSettings() {
+            UserSettings.PlayerConfig.Overlay.MonstersComponent.Position[0] = (int)Left;
+            UserSettings.PlayerConfig.Overlay.MonstersComponent.Position[1] = (int)Top;
+            UserSettings.PlayerConfig.Overlay.MonstersComponent.Scale = DefaultScaleX;
+        }
+
+        public void ScaleWidget(double NewScaleX, double NewScaleY) {
+            Width = BaseWidth * NewScaleX;
+            Height = BaseHeight * NewScaleY;
+            this.Container.LayoutTransform = new ScaleTransform(NewScaleX, NewScaleY);
+            this.DefaultScaleX = NewScaleX;
+            this.DefaultScaleY = NewScaleY;
+        }
+
+        private void OnMouseEnter(object sender, System.Windows.Input.MouseEventArgs e) {
+            this.MouseOver = true;
+        }
+
+        private void OnMouseDown(object sender, System.Windows.Input.MouseButtonEventArgs e) {
+            this.MoveWidget();
+        }
+
+        private void OnMouseWheel(object sender, System.Windows.Input.MouseWheelEventArgs e) {
+            if (this.MouseOver) {
+                if (e.Delta > 0) {
+                    ScaleWidget(DefaultScaleX + 0.05, DefaultScaleY + 0.05);
+                } else {
+                    ScaleWidget(DefaultScaleX - 0.05, DefaultScaleY - 0.05);
+                }
+            }
+        }
+
+        private void OnMouseLeave(object sender, System.Windows.Input.MouseEventArgs e) {
+            this.MouseOver = false;
         }
 
     }

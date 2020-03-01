@@ -8,6 +8,7 @@ using System.Windows.Interop;
 using HunterPie.Core;
 using HunterPie.Memory;
 using HunterPie.GUI;
+using System.Linq;
 
 namespace HunterPie.GUI {
     class Overlay : IDisposable {
@@ -20,11 +21,32 @@ namespace HunterPie.GUI {
             ctx = Context;
             SetRenderMode();
             CreateWidgets();
+            SetKeyboardHook();
         }
 
         private void SetKeyboardHook() {
             KeyHook = new KeyboardHook();
-            KeyboardHook.SetWindowsHookEx(KeyboardHook.WindowsHook.WH_KEYBOARD_LL, KeyHook)
+            KeyHook.InstallHooks();
+            KeyHook.OnKeyboardKeyPress += OnKeyboardKeyPress;
+        }
+
+        private void RemoveKeyboardHook() {
+            KeyHook.UninstallHooks();
+            KeyHook.OnKeyboardKeyPress -= OnKeyboardKeyPress;
+        }
+
+        private void OnKeyboardKeyPress(object sender, KeyboardInputEventArgs e) {
+            if (e.Key == 145 && e.KeyMessage == KeyboardHookHelper.KeyboardMessage.WM_KEYDOWN) {
+                ToggleDesignMode();
+            }
+            
+        }
+
+        private void ToggleDesignMode() {
+            foreach (Widget widget in Widgets) {
+                widget.InDesignMode = !widget.InDesignMode;   
+            }
+            if (!Widgets.First().InDesignMode) UserSettings.SaveNewConfig();
         }
 
         private void SetRenderMode() {
@@ -101,6 +123,7 @@ namespace HunterPie.GUI {
         protected virtual void Dispose(bool disposing) {
             if (disposing) {
                 this.UnhookEvents();
+                this.RemoveKeyboardHook();
                 this.Destroy();
             }
         }
