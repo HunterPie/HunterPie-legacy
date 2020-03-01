@@ -34,13 +34,13 @@ namespace HunterPie.GUI.Widgets {
         private void SaveSettings() {
             switch (MantleNumber) {
                 case 0:
-                    UserSettings.PlayerConfig.Overlay.PrimaryMantle.Position[0] = (int)Left;
-                    UserSettings.PlayerConfig.Overlay.PrimaryMantle.Position[1] = (int)Top;
+                    UserSettings.PlayerConfig.Overlay.PrimaryMantle.Position[0] = (int)Left - UserSettings.PlayerConfig.Overlay.Position[0];
+                    UserSettings.PlayerConfig.Overlay.PrimaryMantle.Position[1] = (int)Top - UserSettings.PlayerConfig.Overlay.Position[1];
                     UserSettings.PlayerConfig.Overlay.PrimaryMantle.Scale = DefaultScaleX;
                     break;
                 case 1:
-                    UserSettings.PlayerConfig.Overlay.SecondaryMantle.Position[0] = (int)Left;
-                    UserSettings.PlayerConfig.Overlay.SecondaryMantle.Position[1] = (int)Top;
+                    UserSettings.PlayerConfig.Overlay.SecondaryMantle.Position[0] = (int)Left - UserSettings.PlayerConfig.Overlay.Position[0];
+                    UserSettings.PlayerConfig.Overlay.SecondaryMantle.Position[1] = (int)Top - UserSettings.PlayerConfig.Overlay.Position[1];
                     UserSettings.PlayerConfig.Overlay.SecondaryMantle.Scale = DefaultScaleX;
                     break;
             }
@@ -108,8 +108,8 @@ namespace HunterPie.GUI.Widgets {
         public override void ApplySettings() {
             Dispatcher.BeginInvoke(System.Windows.Threading.DispatcherPriority.Background, new Action(() => {
                 // Changes widget position
-                this.Top = MantleNumber == 0 ? UserSettings.PlayerConfig.Overlay.PrimaryMantle.Position[1] : UserSettings.PlayerConfig.Overlay.SecondaryMantle.Position[1];
-                this.Left = MantleNumber == 0 ? UserSettings.PlayerConfig.Overlay.PrimaryMantle.Position[0] : UserSettings.PlayerConfig.Overlay.SecondaryMantle.Position[0];
+                this.Top = (MantleNumber == 0 ? UserSettings.PlayerConfig.Overlay.PrimaryMantle.Position[1] : UserSettings.PlayerConfig.Overlay.SecondaryMantle.Position[1]) + UserSettings.PlayerConfig.Overlay.Position[1];
+                this.Left = (MantleNumber == 0 ? UserSettings.PlayerConfig.Overlay.PrimaryMantle.Position[0] : UserSettings.PlayerConfig.Overlay.SecondaryMantle.Position[0]) + UserSettings.PlayerConfig.Overlay.Position[0];
 
                 // Sets widget custom color
                 Color WidgetColor = (Color)ColorConverter.ConvertFromString(MantleNumber == 0 ? UserSettings.PlayerConfig.Overlay.PrimaryMantle.Color : UserSettings.PlayerConfig.Overlay.SecondaryMantle.Color);

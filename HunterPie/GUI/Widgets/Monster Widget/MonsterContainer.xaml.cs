@@ -99,8 +99,8 @@ namespace HunterPie.GUI.Widgets {
 
         public override void ApplySettings() {
             Dispatcher.BeginInvoke(System.Windows.Threading.DispatcherPriority.Background, new Action(() => {
-                this.Top = UserSettings.PlayerConfig.Overlay.MonstersComponent.Position[1];
-                this.Left = UserSettings.PlayerConfig.Overlay.MonstersComponent.Position[0];
+                this.Top = UserSettings.PlayerConfig.Overlay.MonstersComponent.Position[1] + UserSettings.PlayerConfig.Overlay.Position[1];
+                this.Left = UserSettings.PlayerConfig.Overlay.MonstersComponent.Position[0] + UserSettings.PlayerConfig.Overlay.Position[0];
                 this.WidgetActive = UserSettings.PlayerConfig.Overlay.MonstersComponent.Enabled;
                 ScaleWidget(UserSettings.PlayerConfig.Overlay.MonstersComponent.Scale, UserSettings.PlayerConfig.Overlay.MonstersComponent.Scale);
                 base.ApplySettings();
@@ -119,8 +119,8 @@ namespace HunterPie.GUI.Widgets {
         }
 
         private void SaveSettings() {
-            UserSettings.PlayerConfig.Overlay.MonstersComponent.Position[0] = (int)Left;
-            UserSettings.PlayerConfig.Overlay.MonstersComponent.Position[1] = (int)Top;
+            UserSettings.PlayerConfig.Overlay.MonstersComponent.Position[0] = (int)Left - UserSettings.PlayerConfig.Overlay.Position[0];
+            UserSettings.PlayerConfig.Overlay.MonstersComponent.Position[1] = (int)Top - UserSettings.PlayerConfig.Overlay.Position[1];
             UserSettings.PlayerConfig.Overlay.MonstersComponent.Scale = DefaultScaleX;
         }
 

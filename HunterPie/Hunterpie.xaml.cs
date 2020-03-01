@@ -224,6 +224,9 @@ namespace HunterPie {
 
         public void SendToOverlay(object source, EventArgs e) {
             GameOverlay.GlobalSettingsEventHandler(source, e);
+            Dispatcher.BeginInvoke(System.Windows.Threading.DispatcherPriority.ApplicationIdle, new Action(() => {
+                Settings.RefreshSettingsUI();
+            }));
         }
 
         public void OnZoneChange(object source, EventArgs e) {

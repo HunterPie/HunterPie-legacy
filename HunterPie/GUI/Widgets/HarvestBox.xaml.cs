@@ -1,6 +1,4 @@
 ﻿using System;
-using System.Windows;
-using System.Windows.Controls;
 using System.Windows.Media;
 using System.Windows.Media.Animation;
 using HunterPie.Core;
@@ -38,15 +36,15 @@ namespace HunterPie.GUI.Widgets {
         }
 
         private void SaveSettings() {
-            UserSettings.PlayerConfig.Overlay.HarvestBoxComponent.Position[0] = (int)Left;
-            UserSettings.PlayerConfig.Overlay.HarvestBoxComponent.Position[1] = (int)Top;
+            UserSettings.PlayerConfig.Overlay.HarvestBoxComponent.Position[0] = (int)Left - UserSettings.PlayerConfig.Overlay.Position[0];
+            UserSettings.PlayerConfig.Overlay.HarvestBoxComponent.Position[1] = (int)Top - UserSettings.PlayerConfig.Overlay.Position[1];
             UserSettings.PlayerConfig.Overlay.HarvestBoxComponent.Scale = DefaultScaleX;
         }
 
         public override void ApplySettings() {
             Dispatcher.BeginInvoke(System.Windows.Threading.DispatcherPriority.Background, new Action(() => {
-                this.Top = UserSettings.PlayerConfig.Overlay.HarvestBoxComponent.Position[1];
-                this.Left = UserSettings.PlayerConfig.Overlay.HarvestBoxComponent.Position[0];
+                this.Top = UserSettings.PlayerConfig.Overlay.HarvestBoxComponent.Position[1] + UserSettings.PlayerConfig.Overlay.Position[1];
+                this.Left = UserSettings.PlayerConfig.Overlay.HarvestBoxComponent.Position[0] + UserSettings.PlayerConfig.Overlay.Position[0];
                 this.WidgetActive = UserSettings.PlayerConfig.Overlay.HarvestBoxComponent.Enabled;
                 this.ScaleWidget(UserSettings.PlayerConfig.Overlay.HarvestBoxComponent.Scale, UserSettings.PlayerConfig.Overlay.HarvestBoxComponent.Scale);
                 base.ApplySettings();

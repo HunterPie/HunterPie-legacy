@@ -35,6 +35,7 @@ namespace HunterPie.Core {
                 public int[] Position { get; set; } = new int[2] { 0, 0 };
                 public bool EnableHardwareAcceleration { get; set; } = true;
                 public bool HideWhenGameIsUnfocused { get; set; } = false;
+                public int ToggleDesignModeKey { get; set; } = 145;
                 public Monsterscomponent MonstersComponent { get; set; } = new Monsterscomponent();
                 public Harvestboxcomponent HarvestBoxComponent { get; set; } = new Harvestboxcomponent();
                 public Primarymantle PrimaryMantle { get; set; } = new Primarymantle();
@@ -83,6 +84,7 @@ namespace HunterPie.Core {
 
             public class Richpresence {
                 public bool Enabled { get; set; } = true;
+                public bool ShowMonsterHealth { get; set; } = true;
             }
 
             public class Hunterpie {

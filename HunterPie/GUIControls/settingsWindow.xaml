@@ -5,7 +5,7 @@
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              xmlns:local="clr-namespace:HunterPie.GUIControls"
              xmlns:custom="clr-namespace:HunterPie.GUIControls.Custom_Controls"
-             mc:Ignorable="d" d:DesignWidth="800" Width="949" Height="1321.5" >
+             mc:Ignorable="d" d:DesignWidth="800" Width="949" Height="1369.5" >
     <UserControl.Resources>
         <Style x:Key="FocusVisual">
             <Setter Property="Control.Template">
@@ -223,6 +223,10 @@
             <custom:Switcher x:Name="switchEnableRichPresence"/>
             <TextBlock Text="Enable Discord Rich Presence" Margin="10,0,0,0" FontFamily="Roboto" FontSize="16" Foreground="#FFF9F9F9" HorizontalAlignment="Center" VerticalAlignment="Center" FontWeight="ExtraLight" />
         </StackPanel>
+        <StackPanel Orientation="Horizontal" Margin="338,3,0,0" ToolTip="If enabled, the monster health will be shown in rich presence">
+            <custom:Switcher x:Name="switchShowMonsterHealth"/>
+            <TextBlock Text="Show monster health percentage" Margin="10,0,0,0" FontFamily="Roboto" FontSize="16" Foreground="#FFF9F9F9" HorizontalAlignment="Center" VerticalAlignment="Center" FontWeight="ExtraLight" />
+        </StackPanel>
         <Label x:Name="OverlayStaticText" Content="- In-Game Overlay -" Height="34" FontFamily="Roboto" FontSize="20" FontWeight="Bold" HorizontalAlignment="Center" Width="949" HorizontalContentAlignment="Center" Foreground="#FFE0E0E0" Padding="0" UseLayoutRounding="False" VerticalContentAlignment="Center" Margin="0,25,0,0" Background="#FF0F0F0F"/>
         <StackPanel Orientation="Horizontal" Margin="338,3,0,0">
             <custom:Switcher x:Name="switchEnableOverlay"/>
@@ -236,7 +240,9 @@
             <custom:Switcher x:Name="switchHardwareAcceleration"/>
             <TextBlock Text="Enable Hardware acceleration" Margin="10,0,0,0" FontFamily="Roboto" FontSize="16" Foreground="#FFF9F9F9" HorizontalAlignment="Center" VerticalAlignment="Center" FontWeight="ExtraLight" />
         </StackPanel>
-        <StackPanel x:Name="Position" Height="32" Margin="288,0,272,0" Orientation="Horizontal">
+        <Label Content="Toggle design mode:" HorizontalAlignment="Left" Height="30" Margin="278,7,0,0" Width="152" FontFamily="Roboto" Foreground="#FFE0E0E0" FontSize="15" Padding="0" FontWeight="Light" VerticalContentAlignment="Center"/>
+        <Button x:Name="DesignModeKeyCode" Cursor="Hand" Margin="420,-30,404,0" Style="{DynamicResource ButtonStyle}" Background="#FF1F1F1F" Foreground="#FFE8E8E8" FontFamily="Roboto" BorderBrush="{x:Null}" Height="30" Click="SelectDesignModeKeyBind" Padding="3,1" KeyDown="DesignModeKeyCode_KeyDown"/>
+        <StackPanel x:Name="Position" Height="32" Margin="288,5,272,0" Orientation="Horizontal">
             <Label x:Name="updateBranchStaticText_Copy" Content="Position:" HorizontalAlignment="Right" Width="66" FontFamily="Roboto" Foreground="#FFE0E0E0" FontSize="15" Padding="0" FontWeight="Light" VerticalContentAlignment="Center" HorizontalContentAlignment="Right"/>
             <TextBox x:Name="positionOverlayX" TextWrapping="Wrap" Text="X" Margin="0,1" Background="{x:Null}" Foreground="#FFE0E0E0" BorderBrush="#FFABADB3" BorderThickness="0,0,0,1" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" HorizontalAlignment="Right" Width="54" TextChanged="TypeNumber"/>
             <TextBox x:Name="positionOverlayY" TextWrapping="Wrap" Text="Y" Margin="6,1,0,1" Background="{x:Null}" Foreground="#FFE0E0E0" BorderBrush="#FFABADB3" BorderThickness="0,0,0,1" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" HorizontalAlignment="Right" Width="54" TextChanged="TypeNumber"/>

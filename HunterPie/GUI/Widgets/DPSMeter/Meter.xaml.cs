@@ -45,8 +45,8 @@ namespace HunterPie.GUI.Widgets.DPSMeter {
         }
 
         private void SaveSettings() {
-            UserSettings.PlayerConfig.Overlay.DPSMeter.Position[0] = (int)Left;
-            UserSettings.PlayerConfig.Overlay.DPSMeter.Position[1] = (int)Top;
+            UserSettings.PlayerConfig.Overlay.DPSMeter.Position[0] = (int)Left - UserSettings.PlayerConfig.Overlay.Position[0];
+            UserSettings.PlayerConfig.Overlay.DPSMeter.Position[1] = (int)Top - UserSettings.PlayerConfig.Overlay.Position[1];
             UserSettings.PlayerConfig.Overlay.DPSMeter.Scale = DefaultScaleX;
         }
 
@@ -54,7 +54,6 @@ namespace HunterPie.GUI.Widgets.DPSMeter {
             Dispatcher.BeginInvoke(System.Windows.Threading.DispatcherPriority.Background, new Action(() => {
                 CreatePlayerComponents();
                 SortPlayersByDamage();
-                this.WidgetHasContent = true;
                 ChangeVisibility();
             }));
         }
@@ -62,7 +61,6 @@ namespace HunterPie.GUI.Widgets.DPSMeter {
         private void OnPeaceZoneEnter(object source, EventArgs args) {
             Dispatcher.BeginInvoke(System.Windows.Threading.DispatcherPriority.Background, new Action(() => {
                 DestroyPlayerComponents();
-                this.WidgetHasContent = false;
                 ChangeVisibility();
             }));
         }
@@ -82,9 +80,9 @@ namespace HunterPie.GUI.Widgets.DPSMeter {
                     ChangeVisibility();
                 }
                 SortPlayersByDamage();
-                if (Context.Epoch.TotalSeconds > 0 && UserSettings.PlayerConfig.Overlay.DPSMeter.ShowDPSWheneverPossible) {
+                if (UserSettings.PlayerConfig.Overlay.DPSMeter.ShowDPSWheneverPossible) {
                     TypeIcon.Visibility = Visibility.Visible;
-                    Timer.Content = string.Format("{0:hh\\:mm\\:ss}", Context.Epoch);
+                    Timer.Content = string.Format("{0:hh\\:mm\\:ss}", GameContext.Time);
                 } else {
                     TypeIcon.Visibility = Visibility.Hidden;
                     Timer.Content = "Total Damage";
@@ -137,8 +135,8 @@ namespace HunterPie.GUI.Widgets.DPSMeter {
 
         public override void ApplySettings() {
             Dispatcher.BeginInvoke(System.Windows.Threading.DispatcherPriority.Background, new Action(() => {
-                this.Top = UserSettings.PlayerConfig.Overlay.DPSMeter.Position[1];
-                this.Left = UserSettings.PlayerConfig.Overlay.DPSMeter.Position[0];
+                this.Top = UserSettings.PlayerConfig.Overlay.DPSMeter.Position[1] + UserSettings.PlayerConfig.Overlay.Position[1];
+                this.Left = UserSettings.PlayerConfig.Overlay.DPSMeter.Position[0] + UserSettings.PlayerConfig.Overlay.Position[0];
                 this.WidgetActive = UserSettings.PlayerConfig.Overlay.DPSMeter.Enabled;
                 UpdatePlayersColor();
                 ScaleWidget(UserSettings.PlayerConfig.Overlay.DPSMeter.Scale, UserSettings.PlayerConfig.Overlay.DPSMeter.Scale);

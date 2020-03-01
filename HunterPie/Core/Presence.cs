@@ -110,7 +110,9 @@ namespace HunterPie.Core {
             }
             if (ctx.Player.inPeaceZone) return "Idle";
             if (ctx.HuntedMonster == null) return "Exploring";
-            else { return $"Hunting {ctx.HuntedMonster.Name} ({(int)(ctx.HuntedMonster.HPPercentage * 100)}%)"; }
+            else {
+                return UserSettings.PlayerConfig.RichPresence.ShowMonsterHealth ? $"Hunting {ctx.HuntedMonster.Name} ({(int)(ctx.HuntedMonster.HPPercentage * 100)}%)" : $"Hunting {ctx.HuntedMonster.Name}";
+            }
         }
 
         private string GetState() {

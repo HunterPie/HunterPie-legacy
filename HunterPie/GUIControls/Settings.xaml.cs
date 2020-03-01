@@ -24,6 +24,7 @@ namespace HunterPie.GUIControls {
         }
 
         static public void RefreshSettingsUI() {
+            if (_Instance == null) return;
             var settings = UserSettings.PlayerConfig;
             var settingsUI = _Instance.SettingsBox;
             settingsUI.fullGamePath = settings.HunterPie.Launch.GamePath;
@@ -40,6 +41,7 @@ namespace HunterPie.GUIControls {
 
             // Rich Presence
             settingsUI.switchEnableRichPresence.IsEnabled = settings.RichPresence.Enabled;
+            settingsUI.switchShowMonsterHealth.IsEnabled = settings.RichPresence.ShowMonsterHealth;
             
             // Overlay
             settingsUI.switchEnableOverlay.IsEnabled = settings.Overlay.Enabled;
@@ -96,6 +98,7 @@ namespace HunterPie.GUIControls {
 
             // Rich Presence
             settings.RichPresence.Enabled = settingsUI.switchEnableRichPresence.IsEnabled;
+            settings.RichPresence.ShowMonsterHealth = settingsUI.switchShowMonsterHealth.IsEnabled;
 
             // Overlay
             settings.Overlay.Enabled = settingsUI.switchEnableOverlay.IsEnabled;

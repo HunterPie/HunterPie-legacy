@@ -80,5 +80,20 @@ namespace HunterPie.GUIControls {
         private void argsTextBox_LostFocus(object sender, System.Windows.RoutedEventArgs e) {
             if (argsTextBox.Text == "") argsTextBox.Text = "No arguments";
         }
+
+        private bool CanChooseKey = false;
+        Key KeyChoosen;
+        private void SelectDesignModeKeyBind(object sender, System.Windows.RoutedEventArgs e) {
+            CanChooseKey = true;   
+        }
+
+        private void DesignModeKeyCode_KeyDown(object sender, KeyEventArgs e) {
+            // TODO: FINISH THIS
+            if (CanChooseKey) {
+                KeyChoosen = e.Key;
+                this.DesignModeKeyCode.Content = e.Key.ToString();
+                CanChooseKey = false;
+            }
+        }
     }
 }

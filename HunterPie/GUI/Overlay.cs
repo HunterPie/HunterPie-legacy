@@ -2,12 +2,9 @@
 using System.Windows;
 using System.Windows.Media;
 using System.Collections.Generic;
-using System.Runtime.InteropServices;
-using System.Threading;
 using System.Windows.Interop;
 using HunterPie.Core;
 using HunterPie.Memory;
-using HunterPie.GUI;
 using System.Linq;
 
 namespace HunterPie.GUI {
@@ -64,7 +61,9 @@ namespace HunterPie.GUI {
         }
 
         private void DestroyWidgets() {
+            if (!Widgets.First().InDesignMode) UserSettings.SaveNewConfig();
             foreach (Widget widget in Widgets) {
+                widget.InDesignMode = false;
                 widget.Close();
             }
             Widgets.Clear();
