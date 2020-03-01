@@ -32,9 +32,15 @@ namespace HunterPie.GUI {
             KeyHook.OnKeyboardKeyPress -= OnKeyboardKeyPress;
         }
 
+        // Implemented IsHoldingKey to avoid toggle spam
+        private bool IsHoldingKey = false;
         private void OnKeyboardKeyPress(object sender, KeyboardInputEventArgs e) {
-            if (e.Key == 145 && e.KeyMessage == KeyboardHookHelper.KeyboardMessage.WM_KEYDOWN) {
+            if (e.Key == UserSettings.PlayerConfig.Overlay.ToggleDesignModeKey && e.KeyMessage == KeyboardHookHelper.KeyboardMessage.WM_KEYDOWN && !IsHoldingKey) {
                 ToggleDesignMode();
+                IsHoldingKey = true;
+            }
+            if (e.Key == UserSettings.PlayerConfig.Overlay.ToggleDesignModeKey && e.KeyMessage == KeyboardHookHelper.KeyboardMessage.WM_KEYUP) {
+                IsHoldingKey = false;
             }
             
         }
