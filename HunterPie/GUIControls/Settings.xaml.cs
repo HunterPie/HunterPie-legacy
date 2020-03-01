@@ -1,6 +1,7 @@
 ﻿using System.Linq;
 using System.Windows;
 using System.Windows.Controls;
+using System.Windows.Input;
 using HunterPie.Core;
 
 namespace HunterPie.GUIControls {
@@ -21,6 +22,10 @@ namespace HunterPie.GUIControls {
 
         public Settings() {
             InitializeComponent();
+        }
+
+        public void UninstallKeyboardHook() {
+            _Instance?.SettingsBox.UnhookEvents();
         }
 
         static public void RefreshSettingsUI() {
@@ -45,6 +50,7 @@ namespace HunterPie.GUIControls {
             
             // Overlay
             settingsUI.switchEnableOverlay.IsEnabled = settings.Overlay.Enabled;
+            settingsUI.DesignModeKeyCode.Content = KeyboardHookHelper.GetKeyboardKeyByID(settings.Overlay.ToggleDesignModeKey).ToString();
             settingsUI.switchHardwareAcceleration.IsEnabled = settings.Overlay.EnableHardwareAcceleration;
             settingsUI.switchHideWhenUnfocused.IsEnabled = settings.Overlay.HideWhenGameIsUnfocused;
             settingsUI.positionOverlayX.Text = settings.Overlay.Position[0].ToString();
@@ -54,7 +60,7 @@ namespace HunterPie.GUIControls {
             settingsUI.switchEnableMonsterComponent.IsEnabled = settings.Overlay.MonstersComponent.Enabled;
             settingsUI.positionMonsterCompX.Text = settings.Overlay.MonstersComponent.Position[0].ToString();
             settingsUI.positionMonsterCompY.Text = settings.Overlay.MonstersComponent.Position[1].ToString();
-            settingsUI.switchEnableMonsterWeakness.IsEnabled = settings.Overlay.MonstersComponent.Enabled;
+            settingsUI.switchEnableMonsterWeakness.IsEnabled = settings.Overlay.MonstersComponent.ShowMonsterWeakness;
 
             // Primary Mantle
             settingsUI.switchEnablePrimaryMantle.IsEnabled = settings.Overlay.PrimaryMantle.Enabled;
@@ -102,6 +108,7 @@ namespace HunterPie.GUIControls {
 
             // Overlay
             settings.Overlay.Enabled = settingsUI.switchEnableOverlay.IsEnabled;
+            settings.Overlay.ToggleDesignModeKey = (int)settingsUI.KeyChoosen;
             settings.Overlay.EnableHardwareAcceleration = settingsUI.switchHardwareAcceleration.IsEnabled;
             settings.Overlay.HideWhenGameIsUnfocused = settingsUI.switchHideWhenUnfocused.IsEnabled;
             settings.Overlay.Position[0] = int.Parse(settingsUI.positionOverlayX.Text);

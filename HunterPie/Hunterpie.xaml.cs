@@ -223,7 +223,7 @@ namespace HunterPie {
         }
 
         public void SendToOverlay(object source, EventArgs e) {
-            GameOverlay.GlobalSettingsEventHandler(source, e);
+            GameOverlay?.GlobalSettingsEventHandler(source, e);
             Dispatcher.BeginInvoke(System.Windows.Threading.DispatcherPriority.ApplicationIdle, new Action(() => {
                 Settings.RefreshSettingsUI();
             }));
@@ -368,7 +368,7 @@ namespace HunterPie {
             Discord?.Dispose();
             Scanner.StopScanning();
             UserSettings.RemoveFileWatcher();
-
+            Settings.Instance.UninstallKeyboardHook();
             // Unhook events
             if (MonsterHunter.Player != null) UnhookGameEvents();
             this.UnhookEvents();

@@ -184,7 +184,7 @@ namespace HunterPie.Core {
                 _onSettingsUpdate();
                 Debugger.Warn("Loaded user config!");
             } catch(Exception err) {
-                Debugger.Error($"Failed to parse config.json!\n{err.Message}");
+                Debugger.Error($"Failed to parse config.json!\n{err}");
             }
         }
 

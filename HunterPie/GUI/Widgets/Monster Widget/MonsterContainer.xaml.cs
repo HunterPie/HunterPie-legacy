@@ -85,6 +85,7 @@ namespace HunterPie.GUI.Widgets {
             Container.Children.Add(f_MonsterWidget);
             Container.Children.Add(s_MonsterWidget);
             Container.Children.Add(t_MonsterWidget);
+            UpdateMonstersWidgetsSettings(UserSettings.PlayerConfig.Overlay.MonstersComponent.ShowMonsterWeakness);
         }
 
         public void UpdateMonstersWidgetsSettings(bool weaknessEnabled) {
@@ -102,6 +103,7 @@ namespace HunterPie.GUI.Widgets {
                 this.Top = UserSettings.PlayerConfig.Overlay.MonstersComponent.Position[1] + UserSettings.PlayerConfig.Overlay.Position[1];
                 this.Left = UserSettings.PlayerConfig.Overlay.MonstersComponent.Position[0] + UserSettings.PlayerConfig.Overlay.Position[0];
                 this.WidgetActive = UserSettings.PlayerConfig.Overlay.MonstersComponent.Enabled;
+                UpdateMonstersWidgetsSettings(UserSettings.PlayerConfig.Overlay.MonstersComponent.ShowMonsterWeakness);
                 ScaleWidget(UserSettings.PlayerConfig.Overlay.MonstersComponent.Scale, UserSettings.PlayerConfig.Overlay.MonstersComponent.Scale);
                 base.ApplySettings();
             }));

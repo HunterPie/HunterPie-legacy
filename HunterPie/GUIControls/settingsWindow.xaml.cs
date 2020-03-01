@@ -3,7 +3,8 @@ using System.Linq;
 using System.Windows.Controls;
 using System.Windows.Input;
 using System.IO;
-
+using HunterPie.Core;
+using System.Windows.Media;
 
 namespace HunterPie.GUIControls {
     /// <summary>
@@ -13,12 +14,20 @@ namespace HunterPie.GUIControls {
         public string fullGamePath = "";
         public string fullLaunchArgs = "";
         private string[] AvailableBranches = new string[2] { "master", "BETA" };
+        private KeyboardHook KeyboardInputHook = new KeyboardHook();
 
-        public settingsWindow()
-        {
+        public settingsWindow() {
             InitializeComponent();
+            KeyboardInputHook.InstallHooks();
+            KeyboardInputHook.OnKeyboardKeyPress += KeyboardInputHook_OnKeyboardKeyPress;
             PopulateBranchBox();
             PopulateLanguageBox();
+        }
+
+        public void UnhookEvents() {
+            KeyboardInputHook.UninstallHooks();
+            KeyboardInputHook.OnKeyboardKeyPress -= KeyboardInputHook_OnKeyboardKeyPress;
+
         }
 
         private void PopulateBranchBox() {
@@ -61,12 +70,14 @@ namespace HunterPie.GUIControls {
                     if (filePicker.FileName.Length > 15) {
                         int i = (fullGamePath.Length / 2) - 10;
                         selectPathBttn.Content = "..." + fullGamePath.Substring(i);
+                        selectPathBttn.Focusable = false;
                         return;
                     }
                     selectPathBttn.Content = fullGamePath;
                 }
-
+                selectPathBttn.Focusable = false;
             }
+            
         }
 
         private void argsTextBox_TextChanged(object sender, TextChangedEventArgs e) {
@@ -81,19 +92,31 @@ namespace HunterPie.GUIControls {
             if (argsTextBox.Text == "") argsTextBox.Text = "No arguments";
         }
 
-        private bool CanChooseKey = false;
-        Key KeyChoosen;
-        private void SelectDesignModeKeyBind(object sender, System.Windows.RoutedEventArgs e) {
-            CanChooseKey = true;   
+        private void SelectPathBttn_LostFocus(object sender, System.Windows.RoutedEventArgs e) {
+            selectPathBttn.Focusable = true;
         }
 
-        private void DesignModeKeyCode_KeyDown(object sender, KeyEventArgs e) {
-            // TODO: FINISH THIS
-            if (CanChooseKey) {
-                KeyChoosen = e.Key;
-                this.DesignModeKeyCode.Content = e.Key.ToString();
+        private bool CanChooseKey = false;
+        private bool HasFocus = false;
+        public KeyboardHookHelper.KeyboardKeys KeyChoosen = KeyboardHookHelper.GetKeyboardKeyByID(UserSettings.PlayerConfig.Overlay.ToggleDesignModeKey);
+        private void SelectDesignModeKeyBind(object sender, System.Windows.RoutedEventArgs e) {
+            CanChooseKey = true;
+            HasFocus = true;
+        }
+
+        private void KeyboardInputHook_OnKeyboardKeyPress(object sender, KeyboardInputEventArgs e) {
+            if (CanChooseKey && HasFocus) {
+                KeyChoosen = (KeyboardHookHelper.KeyboardKeys)Enum.Parse(typeof(KeyboardHookHelper.KeyboardKeys), e.Key.ToString());
+                this.DesignModeKeyCode.Content = KeyChoosen.ToString();
+                DesignModeKeyCode.Focusable = false;
                 CanChooseKey = false;
             }
+        }
+
+        private void OnKeybindingButtonLoseFocus(object sender, System.Windows.RoutedEventArgs e) {
+            HasFocus = false;
+            CanChooseKey = false;
+            DesignModeKeyCode.Focusable = true;
         }
     }
 }
