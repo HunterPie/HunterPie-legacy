@@ -23,15 +23,16 @@ namespace HunterPie.GUI.Widgets {
             ApplySettings();
             SetWindowFlags();
             SetContext(Context);
-#if DEBUG
-            
+#if false
+
             CompositionTarget.Rendering += CompositionTarget_Rendering;
             System.Threading.Thread x = new System.Threading.Thread(new System.Threading.ThreadStart(cb));
             x.IsBackground = true;
             x.Start();
 #endif
         }
-#if DEBUG // A simple and bad FPS counter
+        
+#if false // A simple and bad FPS counter
         int x = 0;
         private void cb() {
             if (x == 0) {

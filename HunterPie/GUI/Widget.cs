@@ -39,6 +39,10 @@ namespace HunterPie.GUI {
             
         }
 
+        ~Widget() {
+            Logger.Debugger.Log("rip");
+        }
+
         public virtual void EnterWidgetDesignMode() {
             ChangeVisibility();
             SolidColorBrush BorderColorBrush = new SolidColorBrush((Color)ColorConverter.ConvertFromString("#2c99f2"));

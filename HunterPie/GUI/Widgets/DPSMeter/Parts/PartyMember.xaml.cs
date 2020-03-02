@@ -113,7 +113,7 @@ namespace HunterPie.GUI.Widgets.DPSMeter.Parts {
         }
 
         private void Dispatch(Action f) {
-            this.Dispatcher.BeginInvoke(System.Windows.Threading.DispatcherPriority.Normal, f);
+            this.Dispatcher.BeginInvoke(System.Windows.Threading.DispatcherPriority.Render, f);
         }
 
         public bool Equals(PartyMember other) {

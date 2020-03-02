@@ -44,6 +44,17 @@ namespace HunterPie.GUI.Widgets.DPSMeter {
             GameContext.Player.OnPeaceZoneLeave += OnPeaceZoneLeave;
         }
 
+        public void UnhookEvents() {
+            GameContext.Player.OnPeaceZoneEnter -= OnPeaceZoneEnter;
+            GameContext.Player.OnPeaceZoneLeave -= OnPeaceZoneLeave;
+            Context.OnTotalDamageChange -= OnTotalDamageChange;
+            DestroyPlayerComponents();
+            Party.Items.Clear();
+            Players = null;
+            GameContext = null;
+            Context = null;
+        }
+
         private void SaveSettings() {
             UserSettings.PlayerConfig.Overlay.DPSMeter.Position[0] = (int)Left - UserSettings.PlayerConfig.Overlay.Position[0];
             UserSettings.PlayerConfig.Overlay.DPSMeter.Position[1] = (int)Top - UserSettings.PlayerConfig.Overlay.Position[1];
@@ -63,16 +74,6 @@ namespace HunterPie.GUI.Widgets.DPSMeter {
                 DestroyPlayerComponents();
                 ChangeVisibility();
             }));
-        }
-
-        public void UnhookEvents() {
-            GameContext.Player.OnPeaceZoneEnter -= OnPeaceZoneEnter;
-            GameContext.Player.OnPeaceZoneLeave -= OnPeaceZoneLeave;
-            Context.OnTotalDamageChange -= OnTotalDamageChange;
-            DestroyPlayerComponents();
-            Players = null;
-            GameContext = null;
-            Context = null;
         }
 
         private void OnTotalDamageChange(object source, EventArgs args) {
@@ -124,7 +125,7 @@ namespace HunterPie.GUI.Widgets.DPSMeter {
         }
 
         public void UpdatePlayersColor() {
-            if (Players.Count <= 0) return;
+            if (Players == null || Players?.Count <= 0) return;
             for (int i = 0; i < Context.MaxSize; i++) {
                 Players[i].ChangeColor(UserSettings.PlayerConfig.Overlay.DPSMeter.PartyMembers[i].Color);
             }
