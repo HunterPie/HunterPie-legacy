@@ -99,25 +99,22 @@ namespace HunterPie.GUI {
         }
 
         private void OnGameUnfocus(object source, EventArgs args) {
-            Application.Current.Dispatcher.BeginInvoke(System.Windows.Threading.DispatcherPriority.Background, new Action(() => {
-                foreach (Widget widget in Widgets) {
-                    widget.OverlayIsFocused = false;
-                    if (!widget.InDesignMode) {
-                        widget.ApplySettings();
-                    }
+            foreach (Widget widget in Widgets) {
+                widget.OverlayIsFocused = false;
+                if (!widget.InDesignMode) {
+                    widget.ApplySettings();
                 }
-            }));
+            }
+            
         }
 
         private void OnGameFocus(object source, EventArgs args) {
-            Application.Current.Dispatcher.BeginInvoke(System.Windows.Threading.DispatcherPriority.Background, new Action(() => {
-                foreach (Widget widget in Widgets) {
-                    widget.OverlayIsFocused = true;
-                    if (!widget.InDesignMode) {
-                        widget.ApplySettings();
-                    }
+            foreach (Widget widget in Widgets) {
+                widget.OverlayIsFocused = true;
+                if (!widget.InDesignMode) {
+                    widget.ApplySettings();
                 }
-            }));
+            }
         }
 
         /* Positions and enable/disable components */

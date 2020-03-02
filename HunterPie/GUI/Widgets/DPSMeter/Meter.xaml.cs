@@ -15,7 +15,7 @@ namespace HunterPie.GUI.Widgets.DPSMeter {
 
         public Meter(Game ctx) {
             InitializeComponent();
-            SetWindowFlags(this);
+            SetWindowFlags();
             SetContext(ctx);
             ApplySettings();
         }
@@ -29,12 +29,12 @@ namespace HunterPie.GUI.Widgets.DPSMeter {
 
         public override void EnterWidgetDesignMode() {
             base.EnterWidgetDesignMode();
-            RemoveWindowTransparencyFlag(this);
+            RemoveWindowTransparencyFlag();
         }
 
         public override void LeaveWidgetDesignMode() {
             base.LeaveWidgetDesignMode();
-            ApplyWindowTransparencyFlag(this);
+            ApplyWindowTransparencyFlag();
             SaveSettings();
         }
 
@@ -69,13 +69,15 @@ namespace HunterPie.GUI.Widgets.DPSMeter {
             GameContext.Player.OnPeaceZoneEnter -= OnPeaceZoneEnter;
             GameContext.Player.OnPeaceZoneLeave -= OnPeaceZoneLeave;
             Context.OnTotalDamageChange -= OnTotalDamageChange;
+            DestroyPlayerComponents();
+            Players = null;
             GameContext = null;
             Context = null;
         }
 
         private void OnTotalDamageChange(object source, EventArgs args) {
-            Dispatcher.BeginInvoke(System.Windows.Threading.DispatcherPriority.Background, new Action(() => {
-                if (Context.TotalDamage > 0) {
+            Dispatcher.BeginInvoke(System.Windows.Threading.DispatcherPriority.Render, new Action(() => {
+                if (Context.TotalDamage > 0 && !WidgetHasContent) {
                     this.WidgetHasContent = true;
                     ChangeVisibility();
                 }
@@ -145,6 +147,7 @@ namespace HunterPie.GUI.Widgets.DPSMeter {
         }
         
         public void ScaleWidget(double NewScaleX, double NewScaleY) {
+            if (NewScaleX <= 0.2) return;
             Width = BaseWidth * NewScaleX;
             Height = BaseHeight * NewScaleY;
             this.DamageContainer.LayoutTransform = new ScaleTransform(NewScaleX, NewScaleY);

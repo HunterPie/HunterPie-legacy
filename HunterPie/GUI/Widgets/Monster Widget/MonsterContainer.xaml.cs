@@ -1,17 +1,6 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows;
-using System.Windows.Controls;
-using System.Windows.Data;
-using System.Windows.Documents;
-using System.Windows.Input;
 using System.Windows.Media;
-using System.Windows.Media.Imaging;
-using System.Windows.Navigation;
-using System.Windows.Shapes;
 using HunterPie.Core;
 
 namespace HunterPie.GUI.Widgets {
@@ -27,7 +16,7 @@ namespace HunterPie.GUI.Widgets {
 
         public MonsterContainer(Game ctx) {
             InitializeComponent();
-            SetWindowFlags(this);
+            SetWindowFlags();
             SetContext(ctx);
             ApplySettings();
         }
@@ -111,12 +100,12 @@ namespace HunterPie.GUI.Widgets {
 
         public override void EnterWidgetDesignMode() {
             base.EnterWidgetDesignMode();
-            RemoveWindowTransparencyFlag(this);
+            RemoveWindowTransparencyFlag();
         }
 
         public override void LeaveWidgetDesignMode() {
             base.LeaveWidgetDesignMode();
-            ApplyWindowTransparencyFlag(this);
+            ApplyWindowTransparencyFlag();
             SaveSettings();
         }
 
@@ -127,6 +116,7 @@ namespace HunterPie.GUI.Widgets {
         }
 
         public void ScaleWidget(double NewScaleX, double NewScaleY) {
+            if (NewScaleX <= 0.2) return;
             Width = BaseWidth * NewScaleX;
             Height = BaseHeight * NewScaleY;
             this.Container.LayoutTransform = new ScaleTransform(NewScaleX, NewScaleY);

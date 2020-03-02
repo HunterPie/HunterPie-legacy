@@ -17,7 +17,7 @@ namespace HunterPie.Memory {
         // Process info
         const int PROCESS_VM_READ = 0x0010;
         const string PROCESS_NAME = "MonsterHunterWorld";
-        static private IntPtr WindowHandle;
+        static public IntPtr WindowHandle { get; private set; }
         static public int GameVersion;
         static public int PID;
         static Process MonsterHunter;
@@ -60,6 +60,9 @@ namespace HunterPie.Memory {
 
         [DllImport("user32.dll")]
         public static extern int GetWindowLong(IntPtr hwnd, int index);
+
+        [DllImport("user32.dll")]
+        public static extern bool SetWindowPos(IntPtr hWnd, int hWndInsertAfter, int X, int Y, int cx, int cy, uint uFlags);
 
         /* Events */
         public delegate void ProcessHandler(object source, EventArgs args);
@@ -118,10 +121,13 @@ namespace HunterPie.Memory {
                     }
                     GameIsRunning = false;
                     PID = 0;
-                } else if (!GameIsRunning) {
+                } else if (!GameIsRunning || PID != MonsterHunter?.Id) {
                     while (MonsterHunter == null || MonsterHunter?.MainWindowTitle == "") {
                         MonsterHunter = Process.GetProcessesByName(PROCESS_NAME).FirstOrDefault();
                         Thread.Sleep(1000);
+                    }
+                    if (PID != 0 && PID != MonsterHunter.Id) {
+                        _onGameClosed();
                     }
                     PID = MonsterHunter.Id;
                     ProcessHandle = OpenProcess(PROCESS_VM_READ, false, PID);

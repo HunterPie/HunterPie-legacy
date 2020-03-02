@@ -16,18 +16,18 @@ namespace HunterPie.GUI.Widgets {
             this.MantleNumber = MantleNumber;
             InitializeComponent();
             this.SetContext(context);
-            SetWindowFlags(this);
+            SetWindowFlags();
             ApplySettings();
         }
 
         public override void EnterWidgetDesignMode() {
             base.EnterWidgetDesignMode();
-            RemoveWindowTransparencyFlag(this);
+            RemoveWindowTransparencyFlag();
         }
 
         public override void LeaveWidgetDesignMode() {
             base.LeaveWidgetDesignMode();
-            ApplyWindowTransparencyFlag(this);
+            ApplyWindowTransparencyFlag();
             SaveSettings();
         }
 
@@ -53,7 +53,7 @@ namespace HunterPie.GUI.Widgets {
         }
 
         private void Dispatch(Action function) {
-            this.Dispatcher.BeginInvoke(System.Windows.Threading.DispatcherPriority.Background, function);
+            this.Dispatcher.BeginInvoke(System.Windows.Threading.DispatcherPriority.Render, function);
         }
 
         private void HookEvents() {
@@ -128,6 +128,7 @@ namespace HunterPie.GUI.Widgets {
 
 
         public void ScaleWidget(double NewScaleX, double NewScaleY) {
+            if (NewScaleX <= 0.2) return;
             Width = BaseWidth * NewScaleX;
             Height = BaseHeight * NewScaleY;
             this.MantleContainer.LayoutTransform = new ScaleTransform(NewScaleX, NewScaleY);

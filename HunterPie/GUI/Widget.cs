@@ -62,12 +62,11 @@ namespace HunterPie.GUI {
             this.BaseHeight = Height;
         }
 
-        public void RemoveWindowTransparencyFlag(Window widget) {
+        public void RemoveWindowTransparencyFlag() {
             int WS_EX_TRANSPARENT = 0x20;
             int GWL_EXSTYLE = (-20);
 
-            var wnd = GetWindow(widget);
-            IntPtr hwnd = new WindowInteropHelper(wnd).EnsureHandle();
+            IntPtr hwnd = new WindowInteropHelper(this).EnsureHandle();
             // Get overlay flags
             int Styles = Scanner.GetWindowLong(hwnd, GWL_EXSTYLE);
             Styles &= ~WS_EX_TRANSPARENT;
@@ -75,21 +74,20 @@ namespace HunterPie.GUI {
             Scanner.SetWindowLong(hwnd, GWL_EXSTYLE, Styles);
         }
 
-        public void ApplyWindowTransparencyFlag(Window widget) {
+        public void ApplyWindowTransparencyFlag() {
             // flags to make overlay click-through
             int WS_EX_TRANSPARENT = 0x20;
             int GWL_EXSTYLE = (-20);
 
-            var wnd = GetWindow(widget);
-            IntPtr hwnd = new WindowInteropHelper(wnd).EnsureHandle();
+            IntPtr hwnd = new WindowInteropHelper(this).EnsureHandle();
             // Get overlay flags
             int Styles = Scanner.GetWindowLong(hwnd, GWL_EXSTYLE);
             // Apply new flags
             Scanner.SetWindowLong(hwnd, GWL_EXSTYLE, Styles | WS_EX_TRANSPARENT);
         }
 
-        public void SetWindowFlags(Window widget) {
-            SetWidgetBaseSize(widget.Width, widget.Height);
+        public void SetWindowFlags() {
+            SetWidgetBaseSize(this.Width, this.Height);
             
             // flags to make overlay click-through
             int WS_EX_TRANSPARENT = 0x20;
@@ -97,12 +95,20 @@ namespace HunterPie.GUI {
             int WS_EX_TOOLWINDOW = 0x80; // Flag to hide overlay from ALT+TAB
             int GWL_EXSTYLE = (-20);
 
-            var wnd = GetWindow(widget);
-            IntPtr hwnd = new WindowInteropHelper(wnd).EnsureHandle();
+            IntPtr hwnd = new WindowInteropHelper(this).EnsureHandle();
             // Get overlay flags
             int Styles = Scanner.GetWindowLong(hwnd, GWL_EXSTYLE);
             // Apply new flags
             Scanner.SetWindowLong(hwnd, GWL_EXSTYLE, Styles | WS_EX_TOOLWINDOW | WS_EX_TRANSPARENT | WS_EX_TOPMOST);
+        }
+
+        public void ForceAlwaysOnTop() {
+            uint SWP_SHOWWINDOW = 0x0040;
+            uint SWP_NOMOVE = 0x0002;
+            uint SWP_NOSIZE = 0x0001;
+            uint Flags = SWP_SHOWWINDOW | SWP_NOSIZE | SWP_NOMOVE;
+            IntPtr hwnd = new WindowInteropHelper(this).EnsureHandle();
+            Scanner.SetWindowPos(hwnd, -1, 0, 0, 0, 0, Flags);
         }
 
         public virtual void ApplySettings() {
@@ -114,19 +120,20 @@ namespace HunterPie.GUI {
         }
 
         public new void Show() {
-            Dispatcher.BeginInvoke(System.Windows.Threading.DispatcherPriority.Background, new Action(() => {
+            Dispatcher.BeginInvoke(System.Windows.Threading.DispatcherPriority.Render, new Action(() => {
                 base.Show();
             }));
         }
 
         public new void Hide() {
-            Dispatcher.BeginInvoke(System.Windows.Threading.DispatcherPriority.Background, new Action(() => {
+            Dispatcher.BeginInvoke(System.Windows.Threading.DispatcherPriority.Render, new Action(() => {
                 base.Hide();
             }));
         }
 
         public virtual void ChangeVisibility() {
             if (InDesignMode || (WidgetHasContent && OverlayActive && WidgetActive && ((!OverlayFocusActive) || (OverlayFocusActive && OverlayIsFocused)))) {
+                this.ForceAlwaysOnTop();
                 this.Show();
             } else {
                 this.Hide();

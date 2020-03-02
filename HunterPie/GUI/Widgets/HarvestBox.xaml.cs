@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Windows;
 using System.Windows.Media;
 using System.Windows.Media.Animation;
 using HunterPie.Core;
@@ -20,18 +21,47 @@ namespace HunterPie.GUI.Widgets {
             BaseWidth = Width;
             BaseHeight = Height;
             ApplySettings();
-            SetWindowFlags(this);
+            SetWindowFlags();
             SetContext(Context);
+#if DEBUG
+            
+            CompositionTarget.Rendering += CompositionTarget_Rendering;
+            System.Threading.Thread x = new System.Threading.Thread(new System.Threading.ThreadStart(cb));
+            x.IsBackground = true;
+            x.Start();
+#endif
+        }
+#if DEBUG // A simple and bad FPS counter
+        int x = 0;
+        private void cb() {
+            if (x == 0) {
+                System.Threading.Thread.Sleep(1000);
+                x = 1;
+                cb();
+            }
+            Logger.Debugger.Log($"{this.frames / (elapsed / 10000 / 1000)}");
+            System.Threading.Thread.Sleep(1000);
+            cb();
         }
 
+        DateTime start = DateTime.UtcNow;
+        int frames = 0;
+        long elapsed;
+        private void CompositionTarget_Rendering(object sender, EventArgs e) {
+            RenderingEventArgs x = (RenderingEventArgs)e;
+            elapsed = x.RenderingTime.Ticks;
+            frames++;
+
+        }
+#endif
         public override void EnterWidgetDesignMode() {
             base.EnterWidgetDesignMode();
-            RemoveWindowTransparencyFlag(this);
+            RemoveWindowTransparencyFlag();
         }
 
         public override void LeaveWidgetDesignMode() {
             base.LeaveWidgetDesignMode();
-            ApplyWindowTransparencyFlag(this);
+            ApplyWindowTransparencyFlag();
             SaveSettings();
         }
 
@@ -52,6 +82,7 @@ namespace HunterPie.GUI.Widgets {
         }
 
         public void ScaleWidget(double NewScaleX, double NewScaleY) {
+            if (NewScaleX <= 0.2) return;
             Width = BaseWidth * NewScaleX;
             Height = BaseHeight * NewScaleY;
             this.HarvestBoxComponent.LayoutTransform = new ScaleTransform(NewScaleX, NewScaleY);
@@ -66,7 +97,7 @@ namespace HunterPie.GUI.Widgets {
         }
 
         private void Dispatch(Action function) {
-            this.Dispatcher.BeginInvoke(System.Windows.Threading.DispatcherPriority.Send, function);
+            this.Dispatcher.BeginInvoke(System.Windows.Threading.DispatcherPriority.Render, function);
         }
 
         private void GetAnimations() {

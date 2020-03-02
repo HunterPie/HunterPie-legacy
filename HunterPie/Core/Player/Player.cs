@@ -321,10 +321,6 @@ namespace HunterPie.Core {
         private void GetQuestElapsedTime() {
             Int64 EpochAddress = Scanner.READ_MULTILEVEL_PTR(Address.BASE + Address.DAMAGE_OFFSET, Address.Offsets.DamageOffsets);
             Int64 Epoch = Scanner.READ_LONGLONG(EpochAddress + 0x1028);
-            if (Epoch == 0) {
-                PlayerParty.ShowDPS = false;
-                return;
-            }
             PlayerParty.ShowDPS = true;
             PlayerParty.Epoch = DateTime.UtcNow - DateTimeOffset.FromUnixTimeSeconds(Epoch);
         }
@@ -335,12 +331,8 @@ namespace HunterPie.Core {
         }
 
         private string GetPartyMemberName(Int64 NameAddress) {
-            try {
-                string PartyMemberName = Scanner.READ_STRING(NameAddress, 32);
-                return PartyMemberName[0] == '\x00' ? null : PartyMemberName.Trim('\x00');
-            } catch {
-                return null;
-            }
+            string PartyMemberName = Scanner.READ_STRING(NameAddress, 32);
+            return PartyMemberName ?? PartyMemberName.Trim('\x00');
         }
 
         private void GetFertilizers() {
