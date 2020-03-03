@@ -255,7 +255,9 @@ namespace HunterPie.GUI.Widgets {
         }
 
         private void OnMouseDown(object sender, System.Windows.Input.MouseButtonEventArgs e) {
-            this.MoveWidget();
+            if (e.LeftButton == System.Windows.Input.MouseButtonState.Pressed) {
+                this.MoveWidget();
+            }
         }
 
         private void OnMouseWheel(object sender, System.Windows.Input.MouseWheelEventArgs e) {

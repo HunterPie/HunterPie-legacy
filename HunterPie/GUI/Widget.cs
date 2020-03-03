@@ -35,14 +35,8 @@ namespace HunterPie.GUI {
         public double BaseWidth { get; set; }
         public double BaseHeight { get; set; }
 
-        public Widget() {
-            
-        }
-#if DEBUG
-        ~Widget() {
-            Logger.Debugger.Log("rip");
-        }
-#endif
+        public Widget() {}
+
         public virtual void EnterWidgetDesignMode() {
             ChangeVisibility();
             SolidColorBrush BorderColorBrush = new SolidColorBrush((Color)ColorConverter.ConvertFromString("#2c99f2"));
