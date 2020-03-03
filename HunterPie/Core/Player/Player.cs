@@ -314,7 +314,11 @@ namespace HunterPie.Core {
                 string playerName = GetPartyMemberName(PartyContainer + (i * 0x1C0));
                 byte playerWeapon = Scanner.READ_BYTE(PartyContainer + (i * 0x1C0 + 0x33));
                 int playerDamage = GetPartyMemberDamage(i);
-                PlayerParty[i].SetPlayerInfo(playerName, playerWeapon, playerDamage);
+                float playerDamagePercentage = 0;
+                if (totalDamage != 0) {
+                    playerDamagePercentage = playerDamage / (float)totalDamage;
+                }
+                PlayerParty[i].SetPlayerInfo(playerName, playerWeapon, playerDamage, playerDamagePercentage);
             }
 
         }

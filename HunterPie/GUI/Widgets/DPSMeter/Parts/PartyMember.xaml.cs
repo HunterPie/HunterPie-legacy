@@ -43,7 +43,7 @@ namespace HunterPie.GUI.Widgets.DPSMeter.Parts {
             Dispatch(() => {
                 PlayerName.Content = args.Name;
                 PlayerClassIcon.Source = args.Weapon == null ? null : (ImageSource)TryFindResource(args.Weapon);
-                this.Visibility = args.IsInParty ? Visibility.Visible : Visibility.Hidden;
+                this.Visibility = args.IsInParty ? Visibility.Visible : Visibility.Collapsed;
             });
         }
 
@@ -54,47 +54,35 @@ namespace HunterPie.GUI.Widgets.DPSMeter.Parts {
         }
 
         private void OnPlayerDamageChange(object source, PartyMemberEventArgs args) {
-            float percentage;
             string DamageText;
-            if (PartyContext.TotalDamage == 0) {
-                percentage = 0;
-            } else {
-                percentage =  args.Damage / (float)PartyContext.TotalDamage;
-            }
             if (UserSettings.PlayerConfig.Overlay.DPSMeter.ShowDPSWheneverPossible) {
                 float TimeElapsed = (float)PartyContext.Epoch.TotalSeconds;
                 TimeElapsed = TimeElapsed > 0 ? TimeElapsed : 1;
-                DamageText = $"{args.Damage / TimeElapsed:0.00}/s ({percentage * 100:0}%)";
+                DamageText = $"{args.Damage / TimeElapsed:0.00}/s ({Context.DamagePercentage * 100:0}%)";
             } else {
-                DamageText = $"{args.Damage} ({percentage * 100:0}%)";
+                DamageText = $"{args.Damage} ({Context.DamagePercentage * 100:0}%)";
             }
             Dispatch(() => {
                 DPSText.Content = DamageText;
-                PlayerDPSBar.Width = percentage * PlayerDPSBar.MaxWidth;
+                PlayerDPSBar.Width = Context.DamagePercentage * PlayerDPSBar.MaxWidth;
                 PlayerDPSBarEffect.Width = PlayerDPSBar.Width;
             });
         }
 
         public void SetPlayerInformation() {
-            float percentage;
             string DamageText;
-            if (PartyContext.TotalDamage == 0) {
-                percentage = 0;
-            } else {
-                percentage = Context.Damage / (float)PartyContext.TotalDamage;
-            }
             if (UserSettings.PlayerConfig.Overlay.DPSMeter.ShowDPSWheneverPossible) {
                 float TimeElapsed = (float)PartyContext.Epoch.TotalSeconds;
                 TimeElapsed = TimeElapsed > 0 ? TimeElapsed : 1;
-                DamageText = $"{Context.Damage / TimeElapsed:0.00}/s ({percentage * 100:0}%)";
+                DamageText = $"{Context.Damage / TimeElapsed:0.00}/s ({Context.DamagePercentage * 100:0}%)";
             } else {
-                DamageText = $"{Context.Damage} ({percentage * 100:0}%)";
+                DamageText = $"{Context.Damage} ({Context.DamagePercentage * 100:0}%)";
             }
             Dispatch(() => {
                 PlayerName.Content = Context.Name;
                 DPSText.Content = DamageText;
                 PlayerClassIcon.Source = Context.WeaponIconName == null ? null : (ImageSource)TryFindResource(Context.WeaponIconName);
-                PlayerDPSBarEffect.Width = PlayerDPSBar.Width = percentage * PlayerDPSBar.MaxWidth;
+                PlayerDPSBarEffect.Width = PlayerDPSBar.Width = Context.DamagePercentage * PlayerDPSBar.MaxWidth;
                 this.Visibility = Context.IsInParty ? Visibility.Visible : Visibility.Collapsed;
             });
         }

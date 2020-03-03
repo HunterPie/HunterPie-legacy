@@ -12,19 +12,20 @@
                     _Name = "Player";
                     _OnSpawn();
                     return;
-                }
-                if (value != "" && value != _Name) {
-                    if (Damage > 0) {
+                } else if (value != "" && value != _Name) {
+                    if (value == "" && Damage > 0) {
+                        _OnSpawn();
+                    } else {
                         _Name = value;
                         _OnSpawn();
                     }
-                }
-                if (value == null && value != _Name && Damage == 0) {
+                } else if (value == "" && value != _Name && Damage == 0) {
                     _Name = value;
                     _OnSpawn();
                 }
             }
         }
+        public float DamagePercentage { get; set; }
         public int Damage {
             get { return _Damage; }
             set {
@@ -66,11 +67,12 @@
             OnSpawn?.Invoke(this, new PartyMemberEventArgs(this));
         }
 
-        public void SetPlayerInfo(string name, byte weapon_id, int damage) {
+        public void SetPlayerInfo(string name, byte weapon_id, int damage, float damagePercentage) {
             this.Weapon = weapon_id;
-            if (name == null && damage == 0) IsInParty = false;
+            if (string.IsNullOrEmpty(name) && damage == 0) IsInParty = false;
             else { IsInParty = true; }
             this.Damage = damage;
+            this.DamagePercentage = damagePercentage;
             this.Name = name;
         }
 
