@@ -7,18 +7,6 @@
              mc:Ignorable="d" 
              d:DesignHeight="450" d:DesignWidth="800" Width="949" Height="431">
     <Grid Margin="0,5,0,0">
-        <RichTextBox x:Name="ChangelogBox" Background="{x:Null}" BorderBrush="{x:Null}" Foreground="#FFEAEAEA" FontFamily="Roboto" FontSize="16" BorderThickness="0" VerticalScrollBarVisibility="Auto" IsReadOnly="True" Block.LineHeight="1" FontWeight="Bold" Margin="0,0,10,0">
-            <FlowDocument>
-                <Paragraph>
-                    <Run Text="CHANGELOG"/>
-                </Paragraph>
-                <Paragraph>
-                    <Run/>
-                </Paragraph>
-                <Paragraph>
-                    <Run/>
-                </Paragraph>
-            </FlowDocument>
-        </RichTextBox>
+        <RichTextBox x:Name="ChangelogBox" Background="{x:Null}" BorderBrush="{x:Null}" Foreground="#FFEAEAEA" FontFamily="Roboto" FontSize="16" BorderThickness="0" VerticalScrollBarVisibility="Auto" IsReadOnly="True" Block.LineHeight="1" Margin="0,0,10,0"/>
     </Grid>
 </UserControl>

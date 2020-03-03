@@ -34,7 +34,6 @@ namespace HunterPie {
             Debugger.LoadNewColors();
             InitializeComponent();
             OpenDebugger();
-
             AppDomain.CurrentDomain.UnhandledException += ExceptionLogger;
             // Initialize everything under this line
             if (!CheckIfUpdateEnableAndStart()) return;

@@ -14,7 +14,7 @@ namespace HunterPie.Core {
         private string _sessionId;
 
         // Game info
-        private readonly int[] PeaceZones = new int[9] { 0, 301, 302, 303, 305, 306, 501, 502, 503 };
+        private readonly int[] PeaceZones = new int[10] { 0, 301, 302, 303, 305, 306, 501, 502, 503, 506 };
         private readonly int[] _HBZones = new int[9] { 301, 302, 303, 305, 306, 501, 502, 503, 506 };
         
         // Player info
@@ -182,6 +182,7 @@ namespace HunterPie.Core {
                     GetPlayerName();
                     GetWeaponId();
                     GetFertilizers();
+                    GetSteamFuel();
                     GetPrimaryMantle();
                     GetSecondaryMantle();
                     GetPrimaryMantleTimers();

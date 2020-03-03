@@ -1,14 +1,17 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Linq;
 using System.Windows;
 using System.Windows.Media;
 using HunterPie.Core;
+using System.Windows.Controls;
 
 namespace HunterPie.GUI.Widgets.DPSMeter {
     /// <summary>
     /// Interaction logic for DPSMeter.xaml
     /// </summary>
     public partial class Meter : Widget {
+        //List<Parts.PartyMember> Players = new List<Parts.PartyMember>();
         List<Parts.PartyMember> Players = new List<Parts.PartyMember>();
         Game GameContext;
         Party Context;
@@ -24,7 +27,6 @@ namespace HunterPie.GUI.Widgets.DPSMeter {
             Context = ctx.Player.PlayerParty;
             GameContext = ctx;
             HookEvents();
-            this.Party.ItemsSource = Players;
         }
 
         public override void EnterWidgetDesignMode() {
@@ -42,17 +44,6 @@ namespace HunterPie.GUI.Widgets.DPSMeter {
             GameContext.Player.OnPeaceZoneEnter += OnPeaceZoneEnter;
             Context.OnTotalDamageChange += OnTotalDamageChange;
             GameContext.Player.OnPeaceZoneLeave += OnPeaceZoneLeave;
-        }
-
-        public void UnhookEvents() {
-            GameContext.Player.OnPeaceZoneEnter -= OnPeaceZoneEnter;
-            GameContext.Player.OnPeaceZoneLeave -= OnPeaceZoneLeave;
-            Context.OnTotalDamageChange -= OnTotalDamageChange;
-            DestroyPlayerComponents();
-            Party.Items.Clear();
-            Players = null;
-            GameContext = null;
-            Context = null;
         }
 
         private void SaveSettings() {
@@ -74,6 +65,20 @@ namespace HunterPie.GUI.Widgets.DPSMeter {
                 DestroyPlayerComponents();
                 ChangeVisibility();
             }));
+        }
+
+        public void UnhookEvents() {
+            GameContext.Player.OnPeaceZoneEnter -= OnPeaceZoneEnter;
+            GameContext.Player.OnPeaceZoneLeave -= OnPeaceZoneLeave;
+            Context.OnTotalDamageChange -= OnTotalDamageChange;
+            Party.Children.Clear();
+            foreach (Parts.PartyMember player in Players) {
+                player.UnhookEvents();
+            }
+            Players.Clear();
+            Players = null;
+            GameContext = null;
+            Context = null;
         }
 
         private void OnTotalDamageChange(object source, EventArgs args) {
@@ -99,7 +104,9 @@ namespace HunterPie.GUI.Widgets.DPSMeter {
                 pMember.SetContext(Context[i], Context);
                 Players.Add(pMember);
             }
-            Party.Items.Refresh();
+            foreach (Parts.PartyMember Member in Players) {
+                Party.Children.Add(Member);
+            }
             if (Context.TotalDamage > 0) {
                 WidgetHasContent = true;
                 ChangeVisibility();
@@ -121,7 +128,10 @@ namespace HunterPie.GUI.Widgets.DPSMeter {
             Players.Sort(delegate (Parts.PartyMember x, Parts.PartyMember y) {
                 return x.CompareTo(y);
             });
-            Party.Items.Refresh();
+            Party.Children.Clear();
+            foreach (Parts.PartyMember Player in Players) {
+                Party.Children.Add(Player);
+            }
         }
 
         public void UpdatePlayersColor() {
@@ -129,7 +139,6 @@ namespace HunterPie.GUI.Widgets.DPSMeter {
             for (int i = 0; i < Context.MaxSize; i++) {
                 Players[i].ChangeColor(UserSettings.PlayerConfig.Overlay.DPSMeter.PartyMembers[i].Color);
             }
-            Party.Items.Refresh();
         }
 
         private void OnClosing(object sender, System.ComponentModel.CancelEventArgs e) {
@@ -146,7 +155,7 @@ namespace HunterPie.GUI.Widgets.DPSMeter {
                 base.ApplySettings();
             }));
         }
-        
+
         public void ScaleWidget(double NewScaleX, double NewScaleY) {
             if (NewScaleX <= 0.2) return;
             Width = BaseWidth * NewScaleX;

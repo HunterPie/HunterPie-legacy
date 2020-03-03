@@ -34,6 +34,8 @@ namespace HunterPie.Core {
                     }
                 } else if (value == null && _id != value) {
                     _id = value;
+                    this.HPPercentage = 1f;
+                    this.isTarget = false;
                     _onMonsterDespawn();
                     Weaknesses.Clear();
                 }

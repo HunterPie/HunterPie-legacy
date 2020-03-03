@@ -37,15 +37,16 @@ namespace HunterPie.GUIControls {
             }
             string[] _changelog = File.ReadAllLines("changelog.log");
             foreach (string line in _changelog) {
-                TextRange fLine = new TextRange(ChangelogBox.Document.ContentEnd, ChangelogBox.Document.ContentEnd);
-                fLine.Text = $"{line}\n";
+                TextRange fLine = new TextRange(ChangelogBox.Document.ContentEnd, ChangelogBox.Document.ContentEnd) {
+                    Text = $"{line}\n"
+                };
                 if (line.StartsWith("PATCH")) {
                     fLine.ApplyPropertyValue(TextElement.FontWeightProperty, "Bold");
                 } else {
                     fLine.ApplyPropertyValue(TextElement.FontWeightProperty, "Light");
                 }
                 fLine.ApplyPropertyValue(TextElement.ForegroundProperty, GetLineColor(line));
-                
+
             }
         }
 

@@ -109,6 +109,7 @@ namespace HunterPie.GUI.Widgets {
             PlayerContext.OnVillageEnter += ShowHarvestBox;
             PlayerContext.OnVillageLeave += HideHarvestBox;
             Context.OnCounterChange += OnCounterChange;
+            // TODO: Make fertilizers a separate usercontrol
             Context.Box[0].OnAmountUpdate += UpdateFirstFertilizer;
             Context.Box[0].OnFertilizerChange += UpdateFirstFertilizer;
 
@@ -120,6 +121,9 @@ namespace HunterPie.GUI.Widgets {
 
             Context.Box[3].OnAmountUpdate += UpdateFourthFertilizer;
             Context.Box[3].OnFertilizerChange += UpdateFourthFertilizer;
+
+            PlayerContext.Activity.OnNaturalSteamChange += OnNaturalSteamFuelChange;
+            PlayerContext.Activity.OnStoredSteamChange += OnStoredSteamFuelChange;
         }
 
         public void UnhookEvents() {
@@ -137,9 +141,24 @@ namespace HunterPie.GUI.Widgets {
 
             Context.Box[3].OnAmountUpdate -= UpdateFourthFertilizer;
             Context.Box[3].OnFertilizerChange -= UpdateFourthFertilizer;
+
+            PlayerContext.Activity.OnNaturalSteamChange -= OnNaturalSteamFuelChange;
+            PlayerContext.Activity.OnStoredSteamChange -= OnStoredSteamFuelChange;
+
             PlayerContext = null;
         }
 
+        private void OnStoredSteamFuelChange(object source, SteamFuelEventArgs args) {
+            Dispatch(() => {
+                this.StoredFuelText.Text = args.Available.ToString();
+            });
+        }
+
+        private void OnNaturalSteamFuelChange(object source, SteamFuelEventArgs args) {
+            Dispatch(() => {
+                this.NaturalFuelText.Text = args.Available.ToString();
+            });
+        }
 
         private void ShowHarvestBox(object source, EventArgs args) {
             Dispatcher.BeginInvoke(System.Windows.Threading.DispatcherPriority.Background, new Action(() => {

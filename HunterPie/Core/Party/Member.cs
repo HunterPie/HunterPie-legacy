@@ -1,22 +1,20 @@
 ﻿namespace HunterPie.Core {
     public class Member {
 
-        private string _Name;
+        private string _Name = "";
         private int _Damage;
         private byte _Weapon = 255;
 
         public string Name {
             get { return _Name; }
             set {
-                if (value == null && value == _Name && Damage > 0) {
+                if (value == "" && "" == _Name && Damage > 0) {
                     _Name = "Player";
                     _OnSpawn();
                     return;
                 }
-                if (value != null && value != _Name) {
-                    if (value == null && Damage > 0) {
-                        _OnSpawn();
-                    } else {
+                if (value != "" && value != _Name) {
+                    if (Damage > 0) {
                         _Name = value;
                         _OnSpawn();
                     }

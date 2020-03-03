@@ -6,7 +6,7 @@
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              xmlns:local="clr-namespace:HunterPie.GUI.Widgets"
              mc:Ignorable="d" 
-             Width="230" Height="171" Background="{x:Null}" ResizeMode="NoResize" WindowStyle="None" AllowsTransparency="True" ShowInTaskbar="False" Topmost="True" Closing="OnClosing" MouseEnter="OnMouseEnter" MouseDown="OnMouseDown" MouseWheel="OnMouseWheel" MouseLeave="OnMouseLeave">
+             Width="230" Height="205.333" Background="{x:Null}" ResizeMode="NoResize" WindowStyle="None" AllowsTransparency="True" ShowInTaskbar="False" Topmost="True" Closing="OnClosing" MouseEnter="OnMouseEnter" MouseDown="OnMouseDown" MouseWheel="OnMouseWheel" MouseLeave="OnMouseLeave">
     <src:Widget.Resources>
         <ResourceDictionary>
             <ResourceDictionary.MergedDictionaries>
@@ -36,7 +36,7 @@
             </Style.Triggers>
         </Style>
     </src:Widget.Style>
-    <Grid x:Name="HarvestBoxComponent" HorizontalAlignment="Left" Width="230" Height="171" VerticalAlignment="Top">
+    <Grid x:Name="HarvestBoxComponent" HorizontalAlignment="Left" Width="230">
         <Rectangle x:Name="HarvestBoxContainer" Fill="#4C111111" Stroke="#FF171717"/>
         <TextBlock x:Name="HarvestBoxTitle" Text="HARVEST BOX" Opacity="0.8" Foreground="White" Padding="0,5,0,0" FontWeight="Bold" Background="#66000000" Height="29" VerticalAlignment="Top" FontSize="16" TextAlignment="Center" FontFamily="Roboto"/>
         <Label x:Name="fert1Name" Margin="0,29,42,0" Opacity="0.8" Foreground="White" Padding="5,0,0,0" VerticalContentAlignment="Center" Background="#66000000" FontWeight="Light" Height="29" VerticalAlignment="Top" FontSize="14" TextOptions.TextHintingMode="Animated" FontFamily="Roboto"/>
@@ -47,7 +47,13 @@
         <Label x:Name="fert2Counter" Margin="0,58,0,0" Opacity="0.8" Foreground="White" HorizontalContentAlignment="Center" Padding="0" VerticalContentAlignment="Center" Background="#66000000" FontWeight="ExtraLight" Height="29" VerticalAlignment="Top" HorizontalAlignment="Right" Width="42" FontSize="13" FontFamily="Roboto"/>
         <Label x:Name="fert3Counter" Margin="0,87,0,0" Opacity="0.8" Foreground="White" HorizontalContentAlignment="Center" Padding="0" VerticalContentAlignment="Center" Background="#66000000" FontWeight="ExtraLight" Height="29" VerticalAlignment="Top" HorizontalAlignment="Right" Width="42" FontSize="13" FontFamily="Roboto"/>
         <Label x:Name="fert4Counter" Margin="0,116,0,0" Opacity="0.8" Foreground="White" HorizontalContentAlignment="Center" Padding="0" VerticalContentAlignment="Center" Background="#66000000" FontWeight="ExtraLight" Height="29" VerticalAlignment="Top" HorizontalAlignment="Right" Width="42" FontSize="13" FontFamily="Roboto"/>
-        <Label x:Name="HarvestBoxItemsCounter" Margin="0,145,0,0" Opacity="0.8" Foreground="White" HorizontalContentAlignment="Center" Padding="0" VerticalContentAlignment="Center" FontWeight="ExtraLight" Background="#66000000" FontFamily="Roboto"/>
-
+        <Label x:Name="HarvestBoxItemsCounter" Margin="0,145,0,0" Opacity="0.8" Foreground="White" HorizontalContentAlignment="Center" Padding="0" VerticalContentAlignment="Center" FontWeight="ExtraLight" Background="#66000000" FontFamily="Roboto" Height="29" VerticalAlignment="Top"/>
+        <StackPanel x:Name="ActivitiesPanel" Background="#99000000" Margin="0,174,0,0" Orientation="Horizontal">
+            <Canvas Width="62">
+                <Image Source="{StaticResource ICON_STEAMWORKS}" Width="25" Canvas.Left="4" Canvas.Top="3" Height="25"/>
+                <TextBlock x:Name="NaturalFuelText" Text="0" Foreground="#FFCBCBCB" TextAlignment="Center" MinWidth="30" HorizontalAlignment="Center" Canvas.Left="32" Canvas.Top="0" FontSize="16" FontWeight="Medium"/>
+                <TextBlock x:Name="StoredFuelText" Text="0" Foreground="#FFCBCBCB" MinWidth="30" FontWeight="Light" TextAlignment="Center" Canvas.Left="32" Canvas.Top="15"/>
+            </Canvas>
+        </StackPanel>
     </Grid>
 </src:Widget>
