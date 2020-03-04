@@ -163,8 +163,8 @@ namespace HunterPie.Core {
             string configContent;
             try {
                 configContent = File.ReadAllText(ConfigFileName);
-            } catch {
-                Debugger.Error("Config.json not found!");
+            } catch(Exception err) {
+                Debugger.Error($"Failed to parse config.json!\n{err}");
                 Debugger.Warn("Generating new config");
                 MakeNewConfig();
                 configContent = File.ReadAllText(ConfigFileName);

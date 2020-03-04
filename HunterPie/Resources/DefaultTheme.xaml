@@ -1,6 +1,5 @@
 ﻿<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
-                    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-                    xmlns:local="clr-namespace:HunterPie.Resources">
+                    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
     <!-- Console -->
     <SolidColorBrush x:Key="CONSOLE_BACKGROUND">#F41F1F1F</SolidColorBrush>
     <SolidColorBrush x:Key="CONSOLE_HEADER_BACKGROUND">#4C0E0E0E</SolidColorBrush>
