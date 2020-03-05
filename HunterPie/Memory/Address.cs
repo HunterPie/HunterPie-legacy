@@ -27,6 +27,7 @@ namespace HunterPie.Memory {
 
             public static int FertilizersOffset = 0x6740C;
             public static int SteamFuelOffset = 0x102F4C;
+            public static int ArgosyOffset = 0x103430;
             public static int HarvestBoxOffset = 0x10;
         }
         public static int PREICEBORNE_VERSION = 168031;

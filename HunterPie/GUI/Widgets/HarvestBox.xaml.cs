@@ -124,6 +124,7 @@ namespace HunterPie.GUI.Widgets {
 
             PlayerContext.Activity.OnNaturalSteamChange += OnNaturalSteamFuelChange;
             PlayerContext.Activity.OnStoredSteamChange += OnStoredSteamFuelChange;
+            PlayerContext.Activity.OnArgosyDaysChange += OnArgosyDaysChange;
         }
 
         public void UnhookEvents() {
@@ -144,8 +145,16 @@ namespace HunterPie.GUI.Widgets {
 
             PlayerContext.Activity.OnNaturalSteamChange -= OnNaturalSteamFuelChange;
             PlayerContext.Activity.OnStoredSteamChange -= OnStoredSteamFuelChange;
-
+            PlayerContext.Activity.OnArgosyDaysChange -= OnArgosyDaysChange;
             PlayerContext = null;
+        }
+
+        private void OnArgosyDaysChange(object source, DaysLeftEventArgs args) {
+            Dispatch(() => {
+                this.ArgosyWarnIcon.Visibility = args.IsInTown ? Visibility.Visible : Visibility.Hidden;
+                ArgosyDaysText.Text = args.Days.ToString();
+            });
+            
         }
 
         private void OnStoredSteamFuelChange(object source, SteamFuelEventArgs args) {
@@ -156,6 +165,7 @@ namespace HunterPie.GUI.Widgets {
 
         private void OnNaturalSteamFuelChange(object source, SteamFuelEventArgs args) {
             Dispatch(() => {
+                this.SteamFuelWarnIcon.Visibility = args.Available >= args.Max ? Visibility.Visible : Visibility.Hidden;
                 this.NaturalFuelText.Text = args.Available.ToString();
             });
         }

@@ -182,6 +182,7 @@ namespace HunterPie.Core {
                     GetPlayerName();
                     GetWeaponId();
                     GetFertilizers();
+                    GetArgosyData();
                     GetSteamFuel();
                     GetPrimaryMantle();
                     GetSecondaryMantle();
@@ -372,6 +373,14 @@ namespace HunterPie.Core {
             Int64 NaturalFuelAddress = this.LEVEL_ADDRESS + Address.Offsets.SteamFuelOffset;
             Activity.NaturalFuel = Scanner.READ_INT(NaturalFuelAddress);
             Activity.StoredFuel = Scanner.READ_INT(NaturalFuelAddress + 0x4);
+        }
+
+        private void GetArgosyData() {
+            Int64 ArgosyDaysAddress = this.LEVEL_ADDRESS + Address.Offsets.ArgosyOffset;
+            byte ArgosyDays = Scanner.READ_BYTE(ArgosyDaysAddress);
+            bool ArgosyInTown = ArgosyDays < 250;
+            if (ArgosyDays >= 250) { ArgosyDays = (byte)(byte.MaxValue - ArgosyDays + 1); }
+            Activity.SetArgosyInfo(ArgosyDays, ArgosyInTown);
         }
     }
 }

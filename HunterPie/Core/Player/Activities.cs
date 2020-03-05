@@ -9,8 +9,9 @@ namespace HunterPie.Core {
         // Argosy, Steamworks and Tailraiders
         int _NaturalFuel { get; set; }
         int _StoredFuel { get; set; }
-        int _ArgosyDaysLeft { get; set; }
-        int _TailraidersDaysLeft { get; set; }
+        byte _ArgosyDaysLeft { get; set; }
+        bool ArgosyInTown { get; set; }
+        byte _TailraidersDaysLeft { get; set; }
         private readonly int NaturalFuelMax = 700;
 
         public int NaturalFuel {
@@ -31,7 +32,7 @@ namespace HunterPie.Core {
                 }
             }
         }
-        public int ArgosyDaysLeft {
+        public byte ArgosyDaysLeft {
             get { return _ArgosyDaysLeft; }
             set {
                 if (value != _ArgosyDaysLeft) {
@@ -40,7 +41,7 @@ namespace HunterPie.Core {
                 }
             }
         }
-        public int TailraidersDaysLeft {
+        public byte TailraidersDaysLeft {
             get { return _TailraidersDaysLeft; }
             set {
                 if (value != _TailraidersDaysLeft) {
@@ -50,7 +51,7 @@ namespace HunterPie.Core {
             }
         }
 
-        #region EVENTS
+        #region ACTIVITY EVENTS
         // Tail raiders, steam fuel and argosy events;
         public delegate void SteamFuelEvents(object source, SteamFuelEventArgs args);
         public delegate void DaysLeftEvents(object source, DaysLeftEventArgs args);
@@ -68,7 +69,7 @@ namespace HunterPie.Core {
         }
 
         protected virtual void _OnArgosyDaysChange() {
-            OnArgosyDaysChange?.Invoke(this, new DaysLeftEventArgs(ArgosyDaysLeft));
+            OnArgosyDaysChange?.Invoke(this, new DaysLeftEventArgs(ArgosyDaysLeft, ArgosyInTown));
         }
         
         protected virtual void _OnTailraidersDaysChange() {
@@ -76,6 +77,18 @@ namespace HunterPie.Core {
         }
         #endregion
 
+        #region INFO SETTERS
+
+        public void SetSteamFuelInfo(int NaturalFuel, int StoredFuel) {
+            this.NaturalFuel = NaturalFuel;
+            this.StoredFuel = StoredFuel;
+        }
+
+        public void SetArgosyInfo(byte Days, bool IsInTown) {
+            this.ArgosyInTown = IsInTown;
+            this.ArgosyDaysLeft = Days;
+        }
+        #endregion
 
     }
 }

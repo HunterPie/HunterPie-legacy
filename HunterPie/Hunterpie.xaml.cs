@@ -24,7 +24,7 @@ namespace HunterPie {
         bool OfflineMode = false;
 
         // HunterPie version
-        const string HUNTERPIE_VERSION = "1.0.3.3";
+        const string HUNTERPIE_VERSION = "1.0.3.4";
 
         public Hunterpie() {
             // Initialize debugger and theme
@@ -128,6 +128,9 @@ namespace HunterPie {
                     if (argument.StartsWith("latestVersion")) {
                         string parsed = ParseArgs(argument);
                         latestVersion = parsed == "True";
+                    }
+                    if (argument.StartsWith("offlineMode")) {
+                        OfflineMode = ParseArgs(argument) == "True";
                     }
                 }
                 if (justUpdated) {

@@ -25,8 +25,8 @@
         </Rectangle>
         <DockPanel Height="43" Margin="0,-48,0,0">
             <Image x:Name="PlayerClassIcon" Width="23" Height="23" HorizontalAlignment="Left" Margin="8,0,0,0" />
-            <Label x:Name="PlayerName" Content="Player" Foreground="WhiteSmoke"  MaxWidth="200" Width="172" DockPanel.Dock="Left" VerticalContentAlignment="Center" FontSize="18" FontFamily="Roboto" FontWeight="Medium" Padding="11,5,5,5"/>
-            <Label x:Name="DPSText" Content="0 (0%)" Foreground="WhiteSmoke" DockPanel.Dock="Right" HorizontalAlignment="Right" Width="136" HorizontalContentAlignment="Right" VerticalContentAlignment="Center" FontFamily="Roboto" FontSize="16" FontWeight="Medium" Padding="0,0,13,0"/>
+            <Label x:Name="PlayerName" Foreground="WhiteSmoke"  MaxWidth="200" Width="153" DockPanel.Dock="Left" VerticalContentAlignment="Center" FontSize="18" FontFamily="Roboto" FontWeight="Medium" Padding="11,5,5,5"/>
+            <Label x:Name="DPSText" Content="28,53/s (100%)" ClipToBounds="False" Foreground="WhiteSmoke" DockPanel.Dock="Right" HorizontalAlignment="Right" Width="136" HorizontalContentAlignment="Right" VerticalContentAlignment="Center" FontFamily="Roboto" FontSize="16" FontWeight="Medium" Padding="0,0,13,0"/>
         </DockPanel>
         <Rectangle x:Name="PlayerDPSBar" ClipToBounds="True" Fill="Aqua" Opacity="0.8" Height="2.5" MaxWidth="322" HorizontalAlignment="Left" Margin="0,-3,0,0" />
     </StackPanel>

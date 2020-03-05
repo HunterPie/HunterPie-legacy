@@ -13,10 +13,12 @@ namespace HunterPie.Core {
         }
     }
     public class DaysLeftEventArgs : EventArgs {
-        public int Days;
+        public byte Days;
+        public bool IsInTown; // Used for Argosy
 
-        public DaysLeftEventArgs(int Days) {
+        public DaysLeftEventArgs(byte Days, bool IsInTown = false) {
             this.Days = Days;
+            this.IsInTown = IsInTown;
         }
     }
     /* Keyboard input */
