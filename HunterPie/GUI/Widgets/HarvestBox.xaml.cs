@@ -73,10 +73,17 @@ namespace HunterPie.GUI.Widgets {
         }
 
         public override void ApplySettings() {
+            bool ShowEverywhere = false;
+            if (UserSettings.PlayerConfig.Overlay.HarvestBoxComponent.AlwaysShow) {
+                ShowEverywhere = true;
+            } else {
+                if (PlayerContext != null && PlayerContext.inHarvestZone) { ShowEverywhere = true; } else { ShowEverywhere = false; }
+            }
             Dispatcher.BeginInvoke(System.Windows.Threading.DispatcherPriority.Background, new Action(() => {
                 this.Top = UserSettings.PlayerConfig.Overlay.HarvestBoxComponent.Position[1] + UserSettings.PlayerConfig.Overlay.Position[1];
                 this.Left = UserSettings.PlayerConfig.Overlay.HarvestBoxComponent.Position[0] + UserSettings.PlayerConfig.Overlay.Position[0];
                 this.WidgetActive = UserSettings.PlayerConfig.Overlay.HarvestBoxComponent.Enabled;
+                this.WidgetHasContent = ShowEverywhere;
                 this.ScaleWidget(UserSettings.PlayerConfig.Overlay.HarvestBoxComponent.Scale, UserSettings.PlayerConfig.Overlay.HarvestBoxComponent.Scale);
                 base.ApplySettings();
             }));
@@ -106,8 +113,7 @@ namespace HunterPie.GUI.Widgets {
         }
 
         private void HookEvents() {
-            PlayerContext.OnVillageEnter += ShowHarvestBox;
-            PlayerContext.OnVillageLeave += HideHarvestBox;
+            PlayerContext.OnZoneChange += ChangeHarvestBoxState;
             Context.OnCounterChange += OnCounterChange;
             // TODO: Make fertilizers a separate usercontrol
             Context.Box[0].OnAmountUpdate += UpdateFirstFertilizer;
@@ -128,8 +134,7 @@ namespace HunterPie.GUI.Widgets {
         }
 
         public void UnhookEvents() {
-            PlayerContext.OnVillageEnter -= ShowHarvestBox;
-            PlayerContext.OnVillageLeave -= HideHarvestBox;
+            PlayerContext.OnZoneChange -= ChangeHarvestBoxState;
             Context.OnCounterChange -= OnCounterChange;
             Context.Box[0].OnAmountUpdate -= UpdateFirstFertilizer;
             Context.Box[0].OnFertilizerChange -= UpdateFirstFertilizer;
@@ -170,20 +175,17 @@ namespace HunterPie.GUI.Widgets {
             });
         }
 
-        private void ShowHarvestBox(object source, EventArgs args) {
+        private void ChangeHarvestBoxState(object source, EventArgs args) {
             Dispatcher.BeginInvoke(System.Windows.Threading.DispatcherPriority.Background, new Action(() => {
-                WidgetHasContent = true;
+                if (UserSettings.PlayerConfig.Overlay.HarvestBoxComponent.AlwaysShow) {
+                    WidgetHasContent = true;
+                } else {
+                    if (PlayerContext.inHarvestZone) { WidgetHasContent = true; }
+                    else { WidgetHasContent = false; }
+                }
                 ChangeVisibility();
             }));
         }
-
-        private void HideHarvestBox(object source, EventArgs args) {
-            Dispatcher.BeginInvoke(System.Windows.Threading.DispatcherPriority.Background, new Action(() => {
-                WidgetHasContent = false;
-                ChangeVisibility();
-            }));
-        }
-
 
         private void UpdateFirstFertilizer(object source, FertilizerEventArgs args) {
             bool ApplyAnimation = false;

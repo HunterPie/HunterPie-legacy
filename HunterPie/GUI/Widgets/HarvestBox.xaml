@@ -51,13 +51,59 @@
         <StackPanel x:Name="ActivitiesPanel" Background="#99000000" Margin="0,174,0,0" Orientation="Horizontal">
             <Canvas Width="62">
                 <Image Source="{StaticResource ICON_STEAMWORKS}" Width="25" Canvas.Left="4" Canvas.Top="3" Height="25"/>
-                <Image x:Name="SteamFuelWarnIcon" Source="{StaticResource ICON_WARN}" Height="11" Canvas.Left="23" Canvas.Top="2" Visibility="Hidden"/>
+                <Image x:Name="SteamFuelWarnIcon" Source="{StaticResource ICON_WARN}" Height="11" Canvas.Left="23" Canvas.Top="2" Visibility="Hidden" RenderTransformOrigin="0.5,0.5">
+                    <Image.RenderTransform>
+                        <TransformGroup>
+                            <ScaleTransform ScaleX="1" ScaleY="1"/>
+                            <SkewTransform/>
+                            <RotateTransform/>
+                            <TranslateTransform/>
+                        </TransformGroup>
+                    </Image.RenderTransform>
+                    <Image.Style>
+                        <Style TargetType="Image">
+                            <Style.Triggers>
+                                <Trigger Property="IsVisible" Value="True">
+                                    <Trigger.EnterActions>
+                                        <BeginStoryboard Name="ActivityWarningBubble" Storyboard="{StaticResource ActivityWarningBubble}"/>
+                                    </Trigger.EnterActions>
+                                    <Trigger.ExitActions>
+                                        <StopStoryboard BeginStoryboardName="ActivityWarningBubble"/>
+                                    </Trigger.ExitActions>
+                                </Trigger>
+                            </Style.Triggers>
+                        </Style>
+                    </Image.Style>
+                </Image>
                 <TextBlock x:Name="NaturalFuelText" Text="0" Foreground="#FFCBCBCB" TextAlignment="Center" MinWidth="30" HorizontalAlignment="Center" Canvas.Left="32" Canvas.Top="0" FontSize="16" FontWeight="Medium" Background="#35000000"/>
                 <TextBlock x:Name="StoredFuelText" Text="0" Foreground="#FFCBCBCB" MinWidth="30" FontWeight="Light" TextAlignment="Center" Canvas.Left="32" Canvas.Top="15"/>
             </Canvas>
             <Canvas Width="62" Margin="20,0,0,0">
                 <Image Source="{StaticResource ICON_ARGOSY}" Width="25" Canvas.Left="4" Canvas.Top="3" Height="25"/>
-                <Image x:Name="ArgosyWarnIcon" Source="{StaticResource ICON_WARN}" Height="11" Canvas.Left="23" Canvas.Top="2" Visibility="Hidden"/>
+                <Image x:Name="ArgosyWarnIcon" Source="{StaticResource ICON_WARN}" Height="11" Canvas.Left="21" Canvas.Top="3" Visibility="Hidden" RenderTransformOrigin="0.5,0.5">
+                    <Image.RenderTransform>
+                        <TransformGroup>
+                            <ScaleTransform ScaleX="1" ScaleY="1"/>
+                            <SkewTransform/>
+                            <RotateTransform/>
+                            <TranslateTransform/>
+                        </TransformGroup>
+                    </Image.RenderTransform>
+                    <Image.Style>
+                        <Style TargetType="Image">
+                            <Style.Triggers>
+                                <Trigger Property="IsVisible" Value="True">
+                                    <Trigger.EnterActions>
+                                        <BeginStoryboard Name="ActivityWarningBubble" Storyboard="{StaticResource ActivityWarningBubble}"/>
+                                    </Trigger.EnterActions>
+                                    <Trigger.ExitActions>
+                                        <StopStoryboard BeginStoryboardName="ActivityWarningBubble"/>
+                                    </Trigger.ExitActions>
+                                </Trigger>
+                            </Style.Triggers>
+                        </Style>
+                    </Image.Style>
+                </Image>
                 <TextBlock x:Name="ArgosyDaysText" Text="0" Foreground="#FFCBCBCB" TextAlignment="Center" MinWidth="30" HorizontalAlignment="Center" Canvas.Left="29" Canvas.Top="0" FontSize="16" FontWeight="Medium" Height="31" VerticalAlignment="Center" Padding="0,4,0,0"/>
             </Canvas>
         </StackPanel>

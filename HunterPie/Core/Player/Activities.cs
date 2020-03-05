@@ -1,10 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-namespace HunterPie.Core {
+﻿namespace HunterPie.Core {
     public class Activities {
         // Argosy, Steamworks and Tailraiders
         int _NaturalFuel { get; set; }

@@ -607,12 +607,19 @@
     </Storyboard>
     <!-- Activities warning bubble  -->
     <Storyboard x:Key="ActivityWarningBubble" RepeatBehavior="Forever">
-        <DoubleAnimationUsingKeyFrames Duration="0:0:4" Storyboard.TargetProperty="(Image.RenderTransform).(TransformGroup.Children)[0].(ScaleTransform.ScaleX)">
+        <DoubleAnimationUsingKeyFrames Duration="0:0:3" Storyboard.TargetProperty="(Image.RenderTransform).(TransformGroup.Children)[0].(ScaleTransform.ScaleX)">
             <EasingDoubleKeyFrame Value="1" KeyTime="0:0:0"/>
-            <EasingDoubleKeyFrame Value="1.25" KeyTime="0:0:0.2"/>
+            <EasingDoubleKeyFrame Value="1.3" KeyTime="0:0:0.2"/>
             <EasingDoubleKeyFrame Value="1" KeyTime="0:0:0.3"/>
-            <EasingDoubleKeyFrame Value="1.25" KeyTime="0:0:0.5"/>
-            <EasingDoubleKeyFrame Value="1" KeyTime="0:0:7"/>
+            <EasingDoubleKeyFrame Value="1.3" KeyTime="0:0:0.5"/>
+            <EasingDoubleKeyFrame Value="1" KeyTime="0:0:0.7"/>
+        </DoubleAnimationUsingKeyFrames>
+        <DoubleAnimationUsingKeyFrames Duration="0:0:3" Storyboard.TargetProperty="(Image.RenderTransform).(TransformGroup.Children)[0].(ScaleTransform.ScaleY)">
+            <EasingDoubleKeyFrame Value="1" KeyTime="0:0:0"/>
+            <EasingDoubleKeyFrame Value="1.3" KeyTime="0:0:0.2"/>
+            <EasingDoubleKeyFrame Value="1" KeyTime="0:0:0.3"/>
+            <EasingDoubleKeyFrame Value="1.3" KeyTime="0:0:0.5"/>
+            <EasingDoubleKeyFrame Value="1" KeyTime="0:0:0.7"/>
         </DoubleAnimationUsingKeyFrames>
     </Storyboard>
     <!-- Harvest box fertilizer close to expire -->

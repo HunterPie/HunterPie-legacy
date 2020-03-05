@@ -52,6 +52,7 @@ namespace HunterPie.Core {
 
             public class Harvestboxcomponent {
                 public bool Enabled { get; set; } = true;
+                public bool AlwaysShow { get; set; } = false;
                 public double Scale { get; set; } = 1;
                 public int[] Position { get; set; } = new int[2] { 1110, 30 };
             }

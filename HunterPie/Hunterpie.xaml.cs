@@ -24,7 +24,7 @@ namespace HunterPie {
         bool OfflineMode = false;
 
         // HunterPie version
-        const string HUNTERPIE_VERSION = "1.0.3.4";
+        const string HUNTERPIE_VERSION = "1.0.3.5";
 
         public Hunterpie() {
             // Initialize debugger and theme

@@ -71,8 +71,8 @@
             this.Weapon = weapon_id;
             if (string.IsNullOrEmpty(name) && damage == 0) IsInParty = false;
             else { IsInParty = true; }
-            this.Damage = damage;
             this.DamagePercentage = damagePercentage;
+            this.Damage = damage;
             this.Name = name;
         }
 

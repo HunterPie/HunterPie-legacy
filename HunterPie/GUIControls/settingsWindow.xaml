@@ -253,6 +253,10 @@
             <custom:Switcher x:Name="switchEnableHarvestBox"/>
             <TextBlock Text="Enable Harvest box widget" Margin="10,0,0,0" FontFamily="Roboto" FontSize="16" Foreground="#FFF9F9F9" HorizontalAlignment="Center" VerticalAlignment="Center" FontWeight="ExtraLight" />
         </StackPanel>
+        <StackPanel Orientation="Horizontal" Margin="338,3,0,0" ToolTip="If enabled, this widget will be shown in every place, including expeditions, guiding lands and any monster zone.">
+            <custom:Switcher x:Name="switchAlwaysShow"/>
+            <TextBlock Text="Show widget everywhere" Margin="10,0,0,0" FontFamily="Roboto" FontSize="16" Foreground="#FFF9F9F9" HorizontalAlignment="Center" VerticalAlignment="Center" FontWeight="ExtraLight" />
+        </StackPanel>
         <StackPanel Height="32" Margin="288,0,272,0" Orientation="Horizontal">
             <Label x:Name="updateBranchStaticText_Copy2" Content="Position:" HorizontalAlignment="Right" Width="66" FontFamily="Roboto" Foreground="#FFE0E0E0" FontSize="15" Padding="0" FontWeight="Light" VerticalContentAlignment="Center" HorizontalContentAlignment="Right"/>
             <TextBox x:Name="harvestBoxPosX" TextWrapping="Wrap" Text="X" Margin="0,1" Background="{x:Null}" Foreground="#FFE0E0E0" BorderBrush="#FFABADB3" BorderThickness="0,0,0,1" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" HorizontalAlignment="Right" Width="54" TextChanged="TypeNumber"/>

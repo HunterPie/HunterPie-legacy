@@ -76,6 +76,7 @@ namespace HunterPie.GUIControls {
 
             // Harvest Box
             settingsUI.switchEnableHarvestBox.IsEnabled = settings.Overlay.HarvestBoxComponent.Enabled;
+            settingsUI.switchAlwaysShow.IsEnabled = settings.Overlay.HarvestBoxComponent.AlwaysShow;
             settingsUI.harvestBoxPosX.Text = settings.Overlay.HarvestBoxComponent.Position[0].ToString();
             settingsUI.harvestBoxPosY.Text = settings.Overlay.HarvestBoxComponent.Position[1].ToString();
 
@@ -134,6 +135,7 @@ namespace HunterPie.GUIControls {
 
             // Harvest Box
             settings.Overlay.HarvestBoxComponent.Enabled = settingsUI.switchEnableHarvestBox.IsEnabled;
+            settings.Overlay.HarvestBoxComponent.AlwaysShow = settingsUI.switchAlwaysShow.IsEnabled;
             settings.Overlay.HarvestBoxComponent.Position[0] = int.Parse(settingsUI.harvestBoxPosX.Text);
             settings.Overlay.HarvestBoxComponent.Position[1] = int.Parse(settingsUI.harvestBoxPosY.Text);
 
