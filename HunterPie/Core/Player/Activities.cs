@@ -5,8 +5,8 @@
         int _StoredFuel { get; set; }
         byte _ArgosyDaysLeft { get; set; }
         bool ArgosyInTown { get; set; }
-        byte _TailraidersDaysLeft { get; set; }
-        bool TailraidersDeployed { get; set; }
+        byte _TailraidersDaysLeft { get; set; } = 255;
+        bool _TailraidersDeployed { get; set; } = true;
         private readonly int NaturalFuelMax = 700;
         public readonly byte TailraidersMaxQuest = 5;
 
@@ -46,7 +46,16 @@
                 }
             }
         }
+        bool TailraidersDeployed {
+            get { return _TailraidersDeployed; }
+            set {
+                if (value != _TailraidersDeployed) {
+                    _TailraidersDeployed = value;
+                    _OnTailraidersDaysChange();
 
+                }
+            }
+        }
         #region ACTIVITY EVENTS
         // Tail raiders, steam fuel and argosy events;
         public delegate void SteamFuelEvents(object source, SteamFuelEventArgs args);
@@ -69,7 +78,7 @@
         }
         
         protected virtual void _OnTailraidersDaysChange() {
-            OnTailraidersDaysChange?.Invoke(this, new DaysLeftEventArgs(TailraidersDaysLeft));
+            OnTailraidersDaysChange?.Invoke(this, new DaysLeftEventArgs(TailraidersDaysLeft, TailraidersDeployed));
         }
         #endregion
 

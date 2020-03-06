@@ -40,7 +40,7 @@ namespace HunterPie.GUIControls {
                 TextRange fLine = new TextRange(ChangelogBox.Document.ContentEnd, ChangelogBox.Document.ContentEnd) {
                     Text = $"{line}\n"
                 };
-                if (line.StartsWith("PATCH")) {
+                if (line.StartsWith("UPDATE")) {
                     fLine.ApplyPropertyValue(TextElement.FontWeightProperty, "Bold");
                 } else {
                     fLine.ApplyPropertyValue(TextElement.FontWeightProperty, "Light");

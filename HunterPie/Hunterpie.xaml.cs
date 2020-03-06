@@ -346,7 +346,6 @@ namespace HunterPie {
 
         private void OnMinimizeButtonClick(object sender, MouseButtonEventArgs e) {
             if (UserSettings.PlayerConfig.HunterPie.MinimizeToSystemTray) {
-                this.WindowState = WindowState.Minimized;
                 this.Hide();
             } else {
                 this.WindowState = WindowState.Minimized;
