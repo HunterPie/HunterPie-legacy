@@ -183,6 +183,7 @@ namespace HunterPie.Core {
                     GetWeaponId();
                     GetFertilizers();
                     GetArgosyData();
+                    GetTailraidersData();
                     GetSteamFuel();
                     GetPrimaryMantle();
                     GetSecondaryMantle();
@@ -382,5 +383,14 @@ namespace HunterPie.Core {
             if (ArgosyDays >= 250) { ArgosyDays = (byte)(byte.MaxValue - ArgosyDays + 1); }
             Activity.SetArgosyInfo(ArgosyDays, ArgosyInTown);
         }
+
+        private void GetTailraidersData() {
+            Int64 TailraidersDaysAddress = this.LEVEL_ADDRESS + Address.Offsets.TailRaidersOffset;
+            byte TailraidersQuestsDone = Scanner.READ_BYTE(TailraidersDaysAddress);
+            bool isDeployed = TailraidersQuestsDone != 255;
+            byte QuestsLeft = !isDeployed ? (byte)0 : (byte)(Activity.TailraidersMaxQuest - TailraidersQuestsDone);
+            Activity.SetTailraidersInfo(QuestsLeft, isDeployed);
+        }
+
     }
 }

@@ -130,6 +130,7 @@ namespace HunterPie.GUI.Widgets {
 
             PlayerContext.Activity.OnNaturalSteamChange += OnNaturalSteamFuelChange;
             PlayerContext.Activity.OnStoredSteamChange += OnStoredSteamFuelChange;
+            PlayerContext.Activity.OnTailraidersDaysChange += OnTailraidersQuestChange;
             PlayerContext.Activity.OnArgosyDaysChange += OnArgosyDaysChange;
         }
 
@@ -151,12 +152,20 @@ namespace HunterPie.GUI.Widgets {
             PlayerContext.Activity.OnNaturalSteamChange -= OnNaturalSteamFuelChange;
             PlayerContext.Activity.OnStoredSteamChange -= OnStoredSteamFuelChange;
             PlayerContext.Activity.OnArgosyDaysChange -= OnArgosyDaysChange;
+            PlayerContext.Activity.OnTailraidersDaysChange -= OnTailraidersQuestChange;
             PlayerContext = null;
+        }
+
+        private void OnTailraidersQuestChange(object source, DaysLeftEventArgs args) {
+            Dispatch(() => {
+                this.TailraidersWarnIcon.Visibility = (args.Modifier && args.Days == 0 ) ? Visibility.Visible : Visibility.Hidden;
+                TailraidersDaysText.Text = args.Days.ToString();
+            });
         }
 
         private void OnArgosyDaysChange(object source, DaysLeftEventArgs args) {
             Dispatch(() => {
-                this.ArgosyWarnIcon.Visibility = args.IsInTown ? Visibility.Visible : Visibility.Hidden;
+                this.ArgosyWarnIcon.Visibility = args.Modifier ? Visibility.Visible : Visibility.Hidden;
                 ArgosyDaysText.Text = args.Days.ToString();
             });
             

@@ -14,11 +14,14 @@ namespace HunterPie.Core {
     }
     public class DaysLeftEventArgs : EventArgs {
         public byte Days;
-        public bool IsInTown; // Used for Argosy
+        // Generic name
+        // Argosy 
+        // Tailraiders means
+        public bool Modifier; 
 
-        public DaysLeftEventArgs(byte Days, bool IsInTown = false) {
+        public DaysLeftEventArgs(byte Days, bool Modifier = false) {
             this.Days = Days;
-            this.IsInTown = IsInTown;
+            this.Modifier = Modifier;
         }
     }
     /* Keyboard input */

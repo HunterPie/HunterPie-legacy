@@ -6,7 +6,9 @@
         byte _ArgosyDaysLeft { get; set; }
         bool ArgosyInTown { get; set; }
         byte _TailraidersDaysLeft { get; set; }
+        bool TailraidersDeployed { get; set; }
         private readonly int NaturalFuelMax = 700;
+        public readonly byte TailraidersMaxQuest = 5;
 
         public int NaturalFuel {
             get { return _NaturalFuel; }
@@ -81,6 +83,11 @@
         public void SetArgosyInfo(byte Days, bool IsInTown) {
             this.ArgosyInTown = IsInTown;
             this.ArgosyDaysLeft = Days;
+        }
+
+        public void SetTailraidersInfo(byte Days, bool IsDeployed) {
+            this.TailraidersDaysLeft = Days;
+            this.TailraidersDeployed = IsDeployed;
         }
         #endregion
 
