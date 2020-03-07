@@ -332,5 +332,8 @@
   <ItemGroup>
     <Folder Include="media\" />
   </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Core\Player\AbnormalityData.xml" />
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

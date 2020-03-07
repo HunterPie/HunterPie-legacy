@@ -216,31 +216,9 @@ namespace HunterPie {
             MonsterHunter.Player.OnZoneChange += OnZoneChange;
             MonsterHunter.Player.OnCharacterLogin += OnLogin;
             MonsterHunter.Player.OnSessionChange += OnSessionChange;
-#if DEBUG
-            MonsterHunter.Player.Abnormalities.OnNewAbnormality += AbnormTest;
-#endif
-        }
-#if DEBUG
-        private void AbnormTest(object source, AbnormalityEventArgs args) {
-            Debugger.Log($"New abnormality: {args.Abnormality.Name} | ID: {args.Abnormality.ID}");
-            args.Abnormality.OnAbnormalityUpdate += Abnormality_OnAbnormalityUpdate;
-            args.Abnormality.OnAbnormalityEnd += Abnormality_OnAbnormalityEnd;
         }
 
-        private void Abnormality_OnAbnormalityEnd(object source, AbnormalityEventArgs args) {
-            Debugger.Log($"Abnormality {args.Abnormality.Name} is over");
-            args.Abnormality.OnAbnormalityUpdate -= Abnormality_OnAbnormalityUpdate;
-            args.Abnormality.OnAbnormalityEnd -= Abnormality_OnAbnormalityEnd;
-        }
-
-        private void Abnormality_OnAbnormalityUpdate(object source, AbnormalityEventArgs args) {
-            //Debugger.Log($"Abnormality update: {args.Abnormality.Duration} ({args.Abnormality.Name})");
-        }
-#endif
         private void UnhookGameEvents() {
-#if DEBUG
-            MonsterHunter.Player.Abnormalities.OnNewAbnormality -= AbnormTest;
-#endif
             MonsterHunter.Player.OnZoneChange -= OnZoneChange;
             MonsterHunter.Player.OnCharacterLogin -= OnLogin;
             MonsterHunter.Player.OnSessionChange -= OnSessionChange;

@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Linq;
 using System.Collections.Generic;
+using System.Xml;
 using System.Threading;
 using HunterPie.Memory;
 using HunterPie.Logger;
@@ -9,7 +10,8 @@ namespace HunterPie.Core {
     public class Player {
         // Consts (TODO: Move this somewhere else)
         private readonly int MaxHHBuffs = 56;
-        private readonly int MaxPalicoBuffs = 15;
+        private readonly int MaxPalicoBuffs = 17;
+        private readonly int MaxBlights = 11;
         private readonly int MaxMiscBuffs = 28;
 
         // Private variables
@@ -403,47 +405,81 @@ namespace HunterPie.Core {
         }
 
         private void GetPlayerAbnormalities() {
-            GetPlayerHuntingHornAbnormalities();
-            GetPlayerPalicoAbnormalities();
-            GetPlayerMiscAbnormalities();
+            Int64 AbnormalityBaseAddress = Scanner.READ_MULTILEVEL_PTR(Address.BASE + Address.ABNORMALITY_OFFSET, Address.Offsets.AbnormalityOffsets);
+            GetPlayerHuntingHornAbnormalities(AbnormalityBaseAddress);
+            GetPlayerPalicoAbnormalities(AbnormalityBaseAddress);
+            GetPlayerMiscAbnormalities(AbnormalityBaseAddress);
         }
 
-        private void GetPlayerHuntingHornAbnormalities() {
+        private void GetPlayerHuntingHornAbnormalities(Int64 AbnormalityBaseAddress) {
             // Gets the player abnormalities caused by HH
-            Int64 HHAbnormalityAddress = Scanner.READ_MULTILEVEL_PTR(Address.BASE + Address.ABNORMALITY_OFFSET, Address.Offsets.AbnormalityOffsets) - 0x4;
-            for (int AbnormalityNumber = 0; AbnormalityNumber <= MaxHHBuffs; AbnormalityNumber++) {
-                HHAbnormalityAddress += 0x4;
-                float Duration = Scanner.READ_FLOAT(HHAbnormalityAddress);
-                byte Stack = Scanner.READ_BYTE(HHAbnormalityAddress + (0x12C - (0x3 * AbnormalityNumber)));
-
-                string AbnormalityID = $"HH_{AbnormalityNumber}";
-                //Debugger.Log($"{HHAbnormalityAddress:X} = {AbnormalityNumber}");
-                if (Duration <= 0) {
-                    // Check if there's an abnormality with that ID
-                    if (Abnormalities[AbnormalityID] != null) { Abnormalities.Remove(AbnormalityID); }
-                    else { continue; }
-                } else {
-                    // Check for existing abnormalities before making a new one
-                    if (Abnormalities[AbnormalityID] != null) { Abnormalities[AbnormalityID].UpdateAbnormalityInfo("HUNTINGHORN", Duration, Stack, AbnormalityNumber, true); }
-                    else {
-                        Abnormality NewAbnorm = new Abnormality();
-                        NewAbnorm.UpdateAbnormalityInfo("HUNTINGHORN", Duration, Stack, AbnormalityNumber, true);
-                        Abnormalities.Add(AbnormalityID, NewAbnorm);
-                    }
-                }
+            foreach (XmlNode HHBuff in Abnormalities.GetHuntingHornAbnormalities()) {
+                int BuffOffset = int.Parse(HHBuff.Attributes["Offset"].Value, System.Globalization.NumberStyles.HexNumber);
+                bool IsDebuff = bool.Parse(HHBuff.Attributes["IsDebuff"].Value);
+                int ID = int.Parse(HHBuff.Attributes["ID"].Value);
+                GetAbnormality("HUNTINGHORN", AbnormalityBaseAddress + BuffOffset, ID, $"HH_{ID}", IsDebuff);
             }
         }
 
-        private void GetPlayerPalicoAbnormalities() {
+        private void GetPlayerPalicoAbnormalities(Int64 AbnormalityBaseAddress) {
             // Gets the player abnormalities caused by palico's skills
-            Int64 FirstHHBuffAddress = Scanner.READ_MULTILEVEL_PTR(Address.BASE + Address.ABNORMALITY_OFFSET, Address.Offsets.AbnormalityOffsets) + 0xE4;
-
+            foreach (XmlNode PalBuff in Abnormalities.GetPalicoAbnormalities()) {
+                int BuffOffset = int.Parse(PalBuff.Attributes["Offset"].Value, System.Globalization.NumberStyles.HexNumber);
+                bool IsDebuff = bool.Parse(PalBuff.Attributes["IsDebuff"].Value);
+                int ID = int.Parse(PalBuff.Attributes["ID"].Value);
+                GetAbnormality("PALICO", AbnormalityBaseAddress + BuffOffset, ID, $"PAL_{ID}", IsDebuff);
+            }
         }
 
-        private void GetPlayerMiscAbnormalities() {
+        private void GetPlayerMiscAbnormalities(Int64 AbnormalityBaseAddress) {
             // Gets the player abnormalities caused by consumables and blights
-            Int64 FirstHHBuffAddress = Scanner.READ_MULTILEVEL_PTR(Address.BASE + Address.ABNORMALITY_OFFSET, Address.Offsets.AbnormalityOffsets) + 0x5B4;
+            // Blights
+            foreach (XmlNode Blight in Abnormalities.GetBlightAbnormalities()) {
+                int BuffOffset = int.Parse(Blight.Attributes["Offset"].Value, System.Globalization.NumberStyles.HexNumber);
+                bool IsDebuff = bool.Parse(Blight.Attributes["IsDebuff"].Value);
+                int ID = int.Parse(Blight.Attributes["ID"].Value);
+                GetAbnormality("BLIGHT", AbnormalityBaseAddress + BuffOffset, ID, $"BL_{ID}", IsDebuff);
+            }
+            foreach (XmlNode MiscBuff in Abnormalities.GetMiscAbnormalities()) {
+                int BuffOffset = int.Parse(MiscBuff.Attributes["Offset"].Value, System.Globalization.NumberStyles.HexNumber);
+                bool IsDebuff = bool.Parse(MiscBuff.Attributes["IsDebuff"].Value);
+                int ID = int.Parse(MiscBuff.Attributes["ID"].Value);
+                bool HasConditions = bool.Parse(MiscBuff.Attributes["HasConditions"].Value);
+                GetAbnormality("MISC", AbnormalityBaseAddress + BuffOffset, ID, $"MISC_{ID}", IsDebuff, HasConditions);
+            }
+        }
 
+        private void GetAbnormality(string Type, Int64 AbnormalityAddress, int AbnormNumber, string AbnormInternalID, bool IsDebuff, bool HasConditions = false) {
+            float Duration = Scanner.READ_FLOAT(AbnormalityAddress);
+            byte Stack;
+            // Palico and misc buffs don't stack
+            switch (Type) {
+                case "HUNTINGHORN":
+                    Stack = Scanner.READ_BYTE(AbnormalityAddress + (0x12C - (0x3 * AbnormNumber)));
+                    break;
+                case "MISC":
+                    if (HasConditions) {
+                        Stack = (byte)(Scanner.READ_BYTE(AbnormalityAddress + 0x8));
+                        if (Stack == (byte)0) { HasConditions = false; }
+                    } else { Stack = 0; }
+                    break;
+                default:
+                    Stack = 0;
+                    break;
+            }
+            if ((int)Duration <= 0 && HasConditions != true) {
+                // Check if there's an abnormality with that ID
+                if (Abnormalities[AbnormInternalID] != null) { Abnormalities.Remove(AbnormInternalID); } 
+                else { return; }
+            } else {
+                // Check for existing abnormalities before making a new one
+                if (Abnormalities[AbnormInternalID] != null) { Abnormalities[AbnormInternalID].UpdateAbnormalityInfo(Type, AbnormInternalID, Duration, Stack, AbnormNumber, IsDebuff, (HasConditions && Duration == 0)); } 
+                else {
+                    Abnormality NewAbnorm = new Abnormality();
+                    NewAbnorm.UpdateAbnormalityInfo(Type, AbnormInternalID, Duration, Stack, AbnormNumber, IsDebuff, (HasConditions && Duration == 0));
+                    Abnormalities.Add(AbnormInternalID, NewAbnorm);
+                }
+            }
         }
     }
 }

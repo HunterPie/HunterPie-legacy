@@ -3,15 +3,17 @@
         private int _Duration { get; set; }
 
         public string Name {
-            get { Logger.Debugger.Log($"{Type}_{ID:000}_{Stack:00}"); return GStrings.GetAbnormalityByID(Type, ID, Stack); }
+            get { return GStrings.GetAbnormalityByID(Type, ID, Stack); }
         }
         public string Type { get; private set; }
         public int ID { get; private set; }
         public byte Stack { get; private set; }
+        public string InternalID { get; private set; }
+        public bool IsInfinite { get; private set; }
         public int Duration {
             get { return _Duration; }
             set {
-                if (value <= 0) {
+                if (value <= 0 && !IsInfinite) {
                     _OnAbnormalityEnd();
                     return;
                 }
@@ -47,16 +49,19 @@
 
         #region Methods
 
-        public void UpdateAbnormalityInfo(string Type, float ab_duration, byte ab_stack, int ab_id, bool ab_isBuff) {
+        public void UpdateAbnormalityInfo(string Type, string InternalID,float ab_duration, byte ab_stack, int ab_id, bool ab_isBuff, bool IsInfinite) {
             this.Type = Type;
+            this.InternalID = InternalID;
             this.MaxDuration = MaxDuration < ab_duration ? ab_duration : MaxDuration;
-            this.Stack = (byte)(ab_stack + 1);
+            this.Stack = (byte)(ab_stack);
             this.IsBuff = ab_isBuff;
+            this.IsInfinite = IsInfinite;
             this.Duration = (int)ab_duration;
             this.ID = ab_id;
         }
 
         public void ResetDuration() {
+            this.IsInfinite = false;
             this.Duration = 0;
         }
 

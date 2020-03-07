@@ -113,14 +113,19 @@ namespace HunterPie.GUI {
 
         public new void Show() {
             Dispatcher.BeginInvoke(System.Windows.Threading.DispatcherPriority.Render, new Action(() => {
-                // TODO: Investigate crash
-                base.Show();
+                // Try/Catch to avoid crashes after widget is closed
+                try {
+                    base.Show();
+                } catch {}
+                
             }));
         }
 
         public new void Hide() {
             Dispatcher.BeginInvoke(System.Windows.Threading.DispatcherPriority.Render, new Action(() => {
-                base.Hide();
+                try {
+                    base.Hide();
+                } catch {}
             }));
         }
 

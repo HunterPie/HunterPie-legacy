@@ -61,6 +61,25 @@ namespace HunterPie.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to &lt;?xml version=&quot;1.0&quot; encoding=&quot;utf-8&quot; ?&gt;
+        ///&lt;Abnormalities&gt;
+        ///  &lt;HUNTINGHORN_Abnormalities&gt;
+        ///    &lt;Abnormality ID=&quot;0&quot; IsDebuff=&quot;False&quot; Offset=&quot;0x38&quot;/&gt;
+        ///    &lt;Abnormality ID=&quot;1&quot; IsDebuff=&quot;False&quot; Offset=&quot;0x3C&quot;/&gt;
+        ///    &lt;Abnormality ID=&quot;2&quot; IsDebuff=&quot;False&quot; Offset=&quot;0x40&quot;/&gt;
+        ///    &lt;Abnormality ID=&quot;3&quot; IsDebuff=&quot;False&quot; Offset=&quot;0x44&quot;/&gt;
+        ///    &lt;Abnormality ID=&quot;4&quot; IsDebuff=&quot;False&quot; Offset=&quot;0x48&quot;/&gt;
+        ///    &lt;Abnormality ID=&quot;5&quot; IsDebuff=&quot;False&quot; Offset=&quot;0x4C&quot;/&gt;
+        ///    &lt;Abnormality ID=&quot;6&quot; IsDebuff=&quot;False&quot; Offset=&quot;0x50&quot;/&gt;
+        ///    &lt;Abnormality  [rest of string was truncated]&quot;;.
+        /// </summary>
+        internal static string AbnormalityData {
+            get {
+                return ResourceManager.GetString("AbnormalityData", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Icon similar to (Icon).
         /// </summary>
         internal static System.Drawing.Icon LOGO_HunterPie {

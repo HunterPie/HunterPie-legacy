@@ -150,57 +150,116 @@
     <Weapon ID="13" Name="Light Bowgun"/>
   </Weapons>
   <Abnormalities>
-    <Abnormality ID="UNKNOWN_ABNORMALITY" Name="Unknown"/>
-    <Abnormality ID="HUNTINGHORN_000_01" Name="Self Improvement"/>
-    <Abnormality ID="HUNTINGHORN_001_01" Name="Attack Up (S)"/>
-    <Abnormality ID="HUNTINGHORN_001_02" Name="Attack Up (L)"/>
-    <Abnormality ID="HUNTINGHORN_002_01" Name="Attack Up (L)"/>
-    <Abnormality ID="HUNTINGHORN_002_02" Name="Attack Up (XL)"/>
-    <Abnormality ID="HUNTINGHORN_003_01" Name="Health Up (S)"/>
-    <Abnormality ID="HUNTINGHORN_004_01" Name="Health Up (L)"/>
-    <Abnormality ID="HUNTINGHORN_005_01" Name="Stamina Use Reduced (S)"/>
-    <Abnormality ID="HUNTINGHORN_006_01" Name="Stamina Use Reduced (L)"/>
-    <Abnormality ID="HUNTINGHORN_007_01" Name="Wind Pressure Negated"/>
-    <Abnormality ID="HUNTINGHORN_008_01" Name="All Wind Pressure Negated"/>
-    <Abnormality ID="HUNTINGHORN_009_01" Name="Defense Up (S)"/>
-    <Abnormality ID="HUNTINGHORN_009_02" Name="Defense Up (L)"/>
-    <Abnormality ID="HUNTINGHORN_010_01" Name="Defense Up (L)"/>
-    <Abnormality ID="HUNTINGHORN_010_02" Name="Defense Up (XL)"/>
-    <Abnormality ID="HUNTINGHORN_011_01" Name="Tool Use Drain Reduced (S)"/>
-    <Abnormality ID="HUNTINGHORN_012_01" Name="Tool Use Drain Reduced (L)"/>
-    <Abnormality ID="HUNTINGHORN_018_01" Name="Recovery Up (S)"/>
-    <Abnormality ID="HUNTINGHORN_019_01" Name="Recovery Up (L)"/>
-    <Abnormality ID="HUNTINGHORN_020_01" Name="Earplugs (S)"/>
-    <Abnormality ID="HUNTINGHORN_021_01" Name="Earplugs (L)"/>
-    <Abnormality ID="HUNTINGHORN_022_01" Name="Divine Protection"/>
-    <Abnormality ID="HUNTINGHORN_023_01" Name="Scoutfly Power Up"/>
-    <Abnormality ID="HUNTINGHORN_024_01" Name="Environmental Damage Negated"/>
-    <Abnormality ID="HUNTINGHORN_025_01" Name="Stun Negated"/>
-    <Abnormality ID="HUNTINGHORN_026_01" Name="Paralysis Negated"/>
-    <Abnormality ID="HUNTINGHORN_027_01" Name="Tremors Negated"/>
-    <Abnormality ID="HUNTINGHORN_028_01" Name="Much/Water/Deep Snow Resistance"/>
-    <Abnormality ID="HUNTINGHORN_029_01" Name="Fire Resistance Up (S)"/>
-    <Abnormality ID="HUNTINGHORN_030_01" Name="Fire Resistance Up (L)"/>
-    <Abnormality ID="HUNTINGHORN_031_01" Name="Water Resistance Up (S)"/>
-    <Abnormality ID="HUNTINGHORN_032_01" Name="Water Resistance Up (L)"/>
-    <Abnormality ID="HUNTINGHORN_033_01" Name="Thunder Resistance Up (S)"/>
-    <Abnormality ID="HUNTINGHORN_034_01" Name="Thunder Resistance Up (L)"/>
-    <Abnormality ID="HUNTINGHORN_035_01" Name="Ice Resistance Up (S)"/>
-    <Abnormality ID="HUNTINGHORN_036_01" Name="Ice Resistance Up (L)"/>
-    <Abnormality ID="HUNTINGHORN_037_01" Name="Dragon Resistance Up (S)"/>
-    <Abnormality ID="HUNTINGHORN_038_01" Name="Dragon Resistance Up (L)"/>
-    <Abnormality ID="HUNTINGHORN_039_01" Name="Elemental Attack Boost"/>
-    <Abnormality ID="HUNTINGHORN_040_01" Name="Blight Negated"/>
-    <Abnormality ID="HUNTINGHORN_041_01" Name="Unknown"/>
-    <Abnormality ID="HUNTINGHORN_043_01" Name="Knockbacks Negated"/>
-    <Abnormality ID="HUNTINGHORN_045_01" Name="Blight Resistance Up"/>
-    <Abnormality ID="HUNTINGHORN_046_01" Name="Affinity Up (S)"/>
-    <Abnormality ID="HUNTINGHORN_047_01" Name="All Ailments Negated"/>
-    <Abnormality ID="HUNTINGHORN_048_01" Name="Wind &amp; Earplugs"/>
-    <Abnormality ID="HUNTINGHORN_049_01" Name="Abnormal Status Attack Increase"/>
-    <Abnormality ID="HUNTINGHORN_053_01" Name="Max Stamina Up + Recovery"/>
-    <Abnormality ID="HUNTINGHORN_054_01" Name="Extended Health Recovery"/>
-    <Abnormality ID="HUNTINGHORN_055_01" Name="Speed Boost + Evade Window Up"/>
-    <Abnormality ID="HUNTINGHORN_056_01" Name="Elemental Effectiveness"/>
+    <Abnormality ID="UNKNOWN_ABNORMALITY" Name="Unknown Buff (ID: {AbnormalityID})"/>
+    <Abnormality ID="HUNTINGHORN_000_00" Name="Self Improvement"/>
+    <Abnormality ID="HUNTINGHORN_001_00" Name="Attack Up (S)"/>
+    <Abnormality ID="HUNTINGHORN_001_01" Name="Attack Up (L)"/>
+    <Abnormality ID="HUNTINGHORN_002_00" Name="Attack Up (L)"/>
+    <Abnormality ID="HUNTINGHORN_002_01" Name="Attack Up (XL)"/>
+    <Abnormality ID="HUNTINGHORN_003_00" Name="Health Up (S)"/>
+    <Abnormality ID="HUNTINGHORN_004_00" Name="Health Up (L)"/>
+    <Abnormality ID="HUNTINGHORN_005_00" Name="Stamina Use Reduced (S)"/>
+    <Abnormality ID="HUNTINGHORN_006_00" Name="Stamina Use Reduced (L)"/>
+    <Abnormality ID="HUNTINGHORN_007_00" Name="Wind Pressure Negated"/>
+    <Abnormality ID="HUNTINGHORN_008_00" Name="All Wind Pressure Negated"/>
+    <Abnormality ID="HUNTINGHORN_009_00" Name="Defense Up (S)"/>
+    <Abnormality ID="HUNTINGHORN_009_01" Name="Defense Up (L)"/>
+    <Abnormality ID="HUNTINGHORN_010_00" Name="Defense Up (L)"/>
+    <Abnormality ID="HUNTINGHORN_010_01" Name="Defense Up (XL)"/>
+    <Abnormality ID="HUNTINGHORN_011_00" Name="Tool Use Drain Reduced (S)"/>
+    <Abnormality ID="HUNTINGHORN_012_00" Name="Tool Use Drain Reduced (L)"/>
+    <Abnormality ID="HUNTINGHORN_018_00" Name="Recovery Up (S)"/>
+    <Abnormality ID="HUNTINGHORN_019_00" Name="Recovery Up (L)"/>
+    <Abnormality ID="HUNTINGHORN_020_00" Name="Earplugs (S)"/>
+    <Abnormality ID="HUNTINGHORN_021_00" Name="Earplugs (L)"/>
+    <Abnormality ID="HUNTINGHORN_022_00" Name="Divine Protection"/>
+    <Abnormality ID="HUNTINGHORN_023_00" Name="Scoutfly Power Up"/>
+    <Abnormality ID="HUNTINGHORN_024_00" Name="Environ. Resistance"/>
+    <Abnormality ID="HUNTINGHORN_025_00" Name="Stun Negated"/>
+    <Abnormality ID="HUNTINGHORN_026_00" Name="Paralysis Negated"/>
+    <Abnormality ID="HUNTINGHORN_027_00" Name="Tremors Negated"/>
+    <Abnormality ID="HUNTINGHORN_028_00" Name="Much/Water/Deep Snow Resistance"/>
+    <Abnormality ID="HUNTINGHORN_029_00" Name="Fire Res Up (S)"/>
+    <Abnormality ID="HUNTINGHORN_029_01" Name="Fire Res Up (L)"/>
+    <Abnormality ID="HUNTINGHORN_030_00" Name="Fire Res Up (L)"/>
+    <Abnormality ID="HUNTINGHORN_030_01" Name="Fire Res Up (XL)"/>
+    <Abnormality ID="HUNTINGHORN_031_00" Name="Water Res Up (S)"/>
+    <Abnormality ID="HUNTINGHORN_031_01" Name="Water Res Up (L)"/>
+    <Abnormality ID="HUNTINGHORN_032_00" Name="Water Res Up (L)"/>
+    <Abnormality ID="HUNTINGHORN_032_01" Name="Water Res Up (XL)"/>
+    <Abnormality ID="HUNTINGHORN_033_00" Name="Thunder Res Up (S)"/>
+    <Abnormality ID="HUNTINGHORN_033_01" Name="Thunder Res Up (L)"/>
+    <Abnormality ID="HUNTINGHORN_034_00" Name="Thunder Res Up (L)"/>
+    <Abnormality ID="HUNTINGHORN_034_01" Name="Thunder Res Up (XL)"/>
+    <Abnormality ID="HUNTINGHORN_035_00" Name="Ice Res Up (S)"/>
+    <Abnormality ID="HUNTINGHORN_035_01" Name="Ice Res Up (L)"/>
+    <Abnormality ID="HUNTINGHORN_036_00" Name="Ice Res Up (L)"/>
+    <Abnormality ID="HUNTINGHORN_036_01" Name="Ice Res Up (XL)"/>
+    <Abnormality ID="HUNTINGHORN_037_00" Name="Dragon Res Up (S)"/>
+    <Abnormality ID="HUNTINGHORN_037_01" Name="Dragon Res Up (L)"/>
+    <Abnormality ID="HUNTINGHORN_038_00" Name="Dragon Res Up (L)"/>
+    <Abnormality ID="HUNTINGHORN_038_01" Name="Dragon Res Up (XL)"/>
+    <Abnormality ID="HUNTINGHORN_039_00" Name="Elemental Attack Boost"/>
+    <Abnormality ID="HUNTINGHORN_040_00" Name="DEBUFF Negated"/>
+    <Abnormality ID="HUNTINGHORN_041_00" Name="Unknown Buff"/>
+    <Abnormality ID="HUNTINGHORN_043_00" Name="Knockbacks Negated"/>
+    <Abnormality ID="HUNTINGHORN_045_00" Name="DEBUFF Resistance Up"/>
+    <Abnormality ID="HUNTINGHORN_046_00" Name="Affinity Up (S)"/>
+    <Abnormality ID="HUNTINGHORN_047_00" Name="All Ailments Negated"/>
+    <Abnormality ID="HUNTINGHORN_048_00" Name="Wind &amp; Earplugs"/>
+    <Abnormality ID="HUNTINGHORN_049_00" Name="Abnormal Status Attack Increase"/>
+    <Abnormality ID="HUNTINGHORN_053_00" Name="Max Stamina Up + Recovery"/>
+    <Abnormality ID="HUNTINGHORN_054_00" Name="Extended Health Recovery"/>
+    <Abnormality ID="HUNTINGHORN_055_00" Name="Speed Boost + Evade Window Up"/>
+    <Abnormality ID="HUNTINGHORN_056_00" Name="Elemental Effectiveness"/>
+    <Abnormality ID="PALICO_000_00" Name="Resuscitate"/>
+    <Abnormality ID="PALICO_001_00" Name="Attack Up (S)"/>
+    <Abnormality ID="PALICO_002_00" Name="Attack Up (L)"/>
+    <Abnormality ID="PALICO_003_00" Name="Defense Up (S)"/>
+    <Abnormality ID="PALICO_004_00" Name="Defense Up (L)"/>
+    <Abnormality ID="PALICO_005_00" Name="Affinity Up"/>
+    <Abnormality ID="PALICO_006_00" Name="Recovery Up"/>
+    <Abnormality ID="PALICO_007_00" Name="Health Up"/>
+    <Abnormality ID="PALICO_008_00" Name="Stamina Up"/>
+    <Abnormality ID="PALICO_009_00" Name="Unknown Buff"/>
+    <Abnormality ID="PALICO_010_00" Name="Divine Protection"/>
+    <Abnormality ID="PALICO_011_00" Name="Divine Protection"/>
+    <Abnormality ID="PALICO_012_00" Name="Negate Stun"/>
+    <Abnormality ID="PALICO_013_00" Name="Negate Thunder"/>
+    <Abnormality ID="PALICO_014_00" Name="Tremor Resistance"/>
+    <Abnormality ID="PALICO_015_00" Name="Earplugs"/>
+    <Abnormality ID="PALICO_016_00" Name="Windproof"/>
+    <Abnormality ID="PALICO_017_00" Name="Environm. Resistance"/>
+    <Abnormality ID="PALICO_018_00" Name="Unknown"/>
+    <Abnormality ID="DEBUFF_000_00" Name="Fire Blight"/>
+    <Abnormality ID="DEBUFF_001_00" Name="Thunder Blight"/>
+    <Abnormality ID="DEBUFF_002_00" Name="Ice Blight"/>
+    <Abnormality ID="DEBUFF_003_00" Name="Dragon Blight"/>
+    <Abnormality ID="DEBUFF_004_00" Name="Bleed"/>
+    <Abnormality ID="DEBUFF_005_00" Name="Bleed Recovery"/>
+    <Abnormality ID="DEBUFF_006_00" Name="Effluvial"/>
+    <Abnormality ID="DEBUFF_007_00" Name="Poison"/>
+    <Abnormality ID="DEBUFF_008_00" Name="Venom"/>
+    <Abnormality ID="DEBUFF_027_00" Name="Blastcourge"/>
+    <Abnormality ID="MISC_000_00" Name="Dash Juice"/>
+    <Abnormality ID="MISC_001_00" Name="Wiggle Litch"/>
+    <Abnormality ID="MISC_002_00" Name="Recovery Up"/>
+    <Abnormality ID="MISC_004_00" Name="Might Seed"/>
+    <Abnormality ID="MISC_004_01" Name="Might Pill"/>
+    <Abnormality ID="MISC_008_00" Name="Adamant Seed"/>
+    <Abnormality ID="MISC_008_01" Name="Adamant Pill"/>
+    <Abnormality ID="MISC_013_00" Name="Demon Powder"/>
+    <Abnormality ID="MISC_014_00" Name="Hardshell Powder"/>
+    <Abnormality ID="MISC_015_01" Name="Demon Drug"/>
+    <Abnormality ID="MISC_015_02" Name="Mega Demon Drug"/>
+    <Abnormality ID="MISC_016_01" Name="Armorskin"/>
+    <Abnormality ID="MISC_016_02" Name="Mega Armorskin"/>
+    <Abnormality ID="MISC_023_00" Name="Cool Drink"/>
+    <Abnormality ID="MISC_024_00" Name="Hot Drink"/>
+    <Abnormality ID="MISC_026_00" Name="HP Regen"/>
+    <Abnormality ID="MISC_027_00" Name="Cold Res"/>
+    <Abnormality ID="MISC_034_00" Name="Powercone"/>
+    <Abnormality ID="MISC_035_00" Name="Ice Res (L)"/>
+    <Abnormality ID="MISC_073_00" Name="Attack Up &amp; Def Up (S)"/>
   </Abnormalities>
 </Strings>

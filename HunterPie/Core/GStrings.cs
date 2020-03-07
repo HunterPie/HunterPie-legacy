@@ -51,12 +51,12 @@ namespace HunterPie.Core {
         public static string GetAbnormalityByID(string Type, int ID, byte Stack) {
             XmlNode Abnormality = Translations.SelectSingleNode($"//Strings/Abnormalities/Abnormality[@ID='{Type}_{ID:000}_{Stack:00}']");
             if (Abnormality == null) {
-                Abnormality = Translations.SelectSingleNode($"//Strings/Abnormalities/Abnormality[@ID='{Type}_{ID:000}_{Stack-1:00}']");
+                Abnormality = Translations.SelectSingleNode($"//Strings/Abnormalities/Abnormality[@ID='{Type}_{ID:000}_{0:00}']");
             }
             if (Abnormality == null) {
                 Abnormality = Translations.SelectSingleNode($"//Strings/Abnormalities/Abnormality[@ID='UNKNOWN_ABNORMALITY']");
             }
-            return Abnormality?.Attributes["Name"].Value;
+            return Abnormality?.Attributes["Name"].Value.Replace("{AbnormalityID}", ID.ToString());
         }
 
     }
