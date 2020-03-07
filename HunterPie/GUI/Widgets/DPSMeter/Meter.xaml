@@ -4,8 +4,6 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
-             xmlns:local="clr-namespace:HunterPie.GUI.Widgets.DPSMeter"
-             xmlns:Parts="clr-namespace:HunterPie.GUI.Widgets.DPSMeter.Parts"
              mc:Ignorable="d" Width="320" Height="229" ResizeMode="NoResize" WindowStyle="None" AllowsTransparency="True" ShowInTaskbar="False" Topmost="True" Closing="OnClosing" Background="{x:Null}" MouseEnter="OnMouseEnter" MouseDown="OnMouseDown" MouseWheel="OnMouseWheel" MouseLeave="OnMouseLeave">
     <src:Widget.Resources>
         <ResourceDictionary>
@@ -17,8 +15,7 @@
     <StackPanel x:Name="DamageContainer" VerticalAlignment="Top">
         <StackPanel Orientation="Horizontal" Background="#7F000000">
             <Image x:Name="TypeIcon" Source="{StaticResource ICON_STOPWATCH}" Width="20" Height="20" Margin="5,0,0,0" Visibility="Hidden"/>
-            <Label x:Name="Timer" Content="" Width="237" Foreground="#FFEAEAEA" FontFamily="Roboto" FontWeight="Bold" FontSize="16" />
-            <Label x:Name="BetaStaticText" Content="(BETA)" Foreground="#FFEAEAEA" FontFamily="Roboto" FontWeight="Light" FontSize="16" Opacity="0.85"/>
+            <Label x:Name="Timer" Content="" Width="295" Foreground="#FFEAEAEA" FontFamily="Roboto" FontWeight="Bold" FontSize="16" />
         </StackPanel>
         <StackPanel x:Name="Party" Background="#7F000000" Canvas.Top="29" />
     </StackPanel>

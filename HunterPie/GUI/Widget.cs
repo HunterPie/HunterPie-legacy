@@ -113,6 +113,7 @@ namespace HunterPie.GUI {
 
         public new void Show() {
             Dispatcher.BeginInvoke(System.Windows.Threading.DispatcherPriority.Render, new Action(() => {
+                // TODO: Investigate crash
                 base.Show();
             }));
         }

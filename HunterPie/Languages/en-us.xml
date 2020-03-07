@@ -149,4 +149,58 @@
     <Weapon ID="12" Name="Heavy Bowgun"/>
     <Weapon ID="13" Name="Light Bowgun"/>
   </Weapons>
+  <Abnormalities>
+    <Abnormality ID="UNKNOWN_ABNORMALITY" Name="Unknown"/>
+    <Abnormality ID="HUNTINGHORN_000_01" Name="Self Improvement"/>
+    <Abnormality ID="HUNTINGHORN_001_01" Name="Attack Up (S)"/>
+    <Abnormality ID="HUNTINGHORN_001_02" Name="Attack Up (L)"/>
+    <Abnormality ID="HUNTINGHORN_002_01" Name="Attack Up (L)"/>
+    <Abnormality ID="HUNTINGHORN_002_02" Name="Attack Up (XL)"/>
+    <Abnormality ID="HUNTINGHORN_003_01" Name="Health Up (S)"/>
+    <Abnormality ID="HUNTINGHORN_004_01" Name="Health Up (L)"/>
+    <Abnormality ID="HUNTINGHORN_005_01" Name="Stamina Use Reduced (S)"/>
+    <Abnormality ID="HUNTINGHORN_006_01" Name="Stamina Use Reduced (L)"/>
+    <Abnormality ID="HUNTINGHORN_007_01" Name="Wind Pressure Negated"/>
+    <Abnormality ID="HUNTINGHORN_008_01" Name="All Wind Pressure Negated"/>
+    <Abnormality ID="HUNTINGHORN_009_01" Name="Defense Up (S)"/>
+    <Abnormality ID="HUNTINGHORN_009_02" Name="Defense Up (L)"/>
+    <Abnormality ID="HUNTINGHORN_010_01" Name="Defense Up (L)"/>
+    <Abnormality ID="HUNTINGHORN_010_02" Name="Defense Up (XL)"/>
+    <Abnormality ID="HUNTINGHORN_011_01" Name="Tool Use Drain Reduced (S)"/>
+    <Abnormality ID="HUNTINGHORN_012_01" Name="Tool Use Drain Reduced (L)"/>
+    <Abnormality ID="HUNTINGHORN_018_01" Name="Recovery Up (S)"/>
+    <Abnormality ID="HUNTINGHORN_019_01" Name="Recovery Up (L)"/>
+    <Abnormality ID="HUNTINGHORN_020_01" Name="Earplugs (S)"/>
+    <Abnormality ID="HUNTINGHORN_021_01" Name="Earplugs (L)"/>
+    <Abnormality ID="HUNTINGHORN_022_01" Name="Divine Protection"/>
+    <Abnormality ID="HUNTINGHORN_023_01" Name="Scoutfly Power Up"/>
+    <Abnormality ID="HUNTINGHORN_024_01" Name="Environmental Damage Negated"/>
+    <Abnormality ID="HUNTINGHORN_025_01" Name="Stun Negated"/>
+    <Abnormality ID="HUNTINGHORN_026_01" Name="Paralysis Negated"/>
+    <Abnormality ID="HUNTINGHORN_027_01" Name="Tremors Negated"/>
+    <Abnormality ID="HUNTINGHORN_028_01" Name="Much/Water/Deep Snow Resistance"/>
+    <Abnormality ID="HUNTINGHORN_029_01" Name="Fire Resistance Up (S)"/>
+    <Abnormality ID="HUNTINGHORN_030_01" Name="Fire Resistance Up (L)"/>
+    <Abnormality ID="HUNTINGHORN_031_01" Name="Water Resistance Up (S)"/>
+    <Abnormality ID="HUNTINGHORN_032_01" Name="Water Resistance Up (L)"/>
+    <Abnormality ID="HUNTINGHORN_033_01" Name="Thunder Resistance Up (S)"/>
+    <Abnormality ID="HUNTINGHORN_034_01" Name="Thunder Resistance Up (L)"/>
+    <Abnormality ID="HUNTINGHORN_035_01" Name="Ice Resistance Up (S)"/>
+    <Abnormality ID="HUNTINGHORN_036_01" Name="Ice Resistance Up (L)"/>
+    <Abnormality ID="HUNTINGHORN_037_01" Name="Dragon Resistance Up (S)"/>
+    <Abnormality ID="HUNTINGHORN_038_01" Name="Dragon Resistance Up (L)"/>
+    <Abnormality ID="HUNTINGHORN_039_01" Name="Elemental Attack Boost"/>
+    <Abnormality ID="HUNTINGHORN_040_01" Name="Blight Negated"/>
+    <Abnormality ID="HUNTINGHORN_041_01" Name="Unknown"/>
+    <Abnormality ID="HUNTINGHORN_043_01" Name="Knockbacks Negated"/>
+    <Abnormality ID="HUNTINGHORN_045_01" Name="Blight Resistance Up"/>
+    <Abnormality ID="HUNTINGHORN_046_01" Name="Affinity Up (S)"/>
+    <Abnormality ID="HUNTINGHORN_047_01" Name="All Ailments Negated"/>
+    <Abnormality ID="HUNTINGHORN_048_01" Name="Wind &amp; Earplugs"/>
+    <Abnormality ID="HUNTINGHORN_049_01" Name="Abnormal Status Attack Increase"/>
+    <Abnormality ID="HUNTINGHORN_053_01" Name="Max Stamina Up + Recovery"/>
+    <Abnormality ID="HUNTINGHORN_054_01" Name="Extended Health Recovery"/>
+    <Abnormality ID="HUNTINGHORN_055_01" Name="Speed Boost + Evade Window Up"/>
+    <Abnormality ID="HUNTINGHORN_056_01" Name="Elemental Effectiveness"/>
+  </Abnormalities>
 </Strings>

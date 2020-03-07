@@ -6,26 +6,19 @@ using HunterPie.Logger;
 namespace HunterPie.Memory {
     class Address {
         public class Offsets {
-            public static int[] LevelOffsets = new int[5] { 0x70, 0x68, 0x8, 0x20, 0x108 };
-
+            public static int[] LevelOffsets;
             public static int[] ZoneOffsets;
-
-            public static int[] WeaponOffsets = new int[5] { 0x70, 0x5A8, 0x310, 0x148, 0x2B8 };
-
-            public static int[] SessionOffsets = new int[5] { 0xA0, 0x20, 0x80, 0x9C, 0x3C8 };
-
-            public static int[] EquipmentOffsets = new int[5] { 0x78, 0x50, 0x40, 0x450, 0x0 };
-
-            public static int[] PartyOffsets = new int[1] { 0x0526AD };
-
+            public static int[] WeaponOffsets;
+            public static int[] SessionOffsets;
+            public static int[] EquipmentOffsets;
+            public static int[] PartyOffsets;
             public static int[] DamageOffsets;
-
-            public static int[] MonsterOffsets = new int[3] { 0xAF738, 0x47CDE0, 0x0 };
-            public static int NextMonsterPtr = 0x28;
-            public static int MonsterHPComponentOffset = 0x129D8 + 0x48;
-            public static int MonsterNamePtr = 0x290;
-
-            public static int FertilizersOffset = 0x6740C;
+            public static int[] AbnormalityOffsets;
+            public static int[] MonsterOffsets;
+            public static int NextMonsterPtr;
+            public static int MonsterHPComponentOffset;
+            public static int MonsterNamePtr;
+            public static int FertilizersOffset;
             public static int TailRaidersOffset = 0x10344C;
             public static int SteamFuelOffset = 0x102F4C;
             public static int ArgosyOffset = 0x103430;
@@ -44,6 +37,7 @@ namespace HunterPie.Memory {
         public static Int64 WEAPON_OFFSET = 0x3BEDE58;
         public static Int64 PARTY_OFFSET = 0x48E1850;
         public static Int64 DAMAGE_OFFSET = 0x0;
+        public static Int64 ABNORMALITY_OFFSET = 0x0;
 
         // Consts
         public const Int64 cooldownFixed = 0x9EC;
@@ -138,6 +132,7 @@ namespace HunterPie.Memory {
             LoadAddressFromDict(nameof(SESSION_OFFSET), out SESSION_OFFSET, SESSION_OFFSET);
             LoadAddressFromDict(nameof(PARTY_OFFSET), out PARTY_OFFSET, PARTY_OFFSET);
             LoadAddressFromDict(nameof(DAMAGE_OFFSET), out DAMAGE_OFFSET, DAMAGE_OFFSET);
+            LoadAddressFromDict(nameof(ABNORMALITY_OFFSET), out ABNORMALITY_OFFSET, ABNORMALITY_OFFSET);
             // Load offsets
             LoadOffsetsFromDict("LevelOffsets", out Offsets.LevelOffsets, Offsets.LevelOffsets);
             LoadOffsetsFromDict("ZoneOffsets", out Offsets.ZoneOffsets, Offsets.ZoneOffsets);
@@ -147,6 +142,7 @@ namespace HunterPie.Memory {
             LoadOffsetsFromDict("EquipmentOffsets", out Offsets.EquipmentOffsets, Offsets.EquipmentOffsets);
             LoadOffsetsFromDict("PartyOffsets", out Offsets.PartyOffsets, Offsets.PartyOffsets);
             LoadOffsetsFromDict("DamageOffsets", out Offsets.DamageOffsets, Offsets.DamageOffsets);
+            LoadOffsetsFromDict("AbnormalityOffsets", out Offsets.AbnormalityOffsets, Offsets.AbnormalityOffsets);
             // Clear addresses loaded into memory
             MappedAddresses.Clear();
             MappedOffsets.Clear();

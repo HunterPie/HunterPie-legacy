@@ -1,11 +1,17 @@
 ﻿using System;
 using System.Linq;
+using System.Collections.Generic;
 using System.Threading;
 using HunterPie.Memory;
 using HunterPie.Logger;
 
 namespace HunterPie.Core {
     public class Player {
+        // Consts (TODO: Move this somewhere else)
+        private readonly int MaxHHBuffs = 56;
+        private readonly int MaxPalicoBuffs = 15;
+        private readonly int MaxMiscBuffs = 28;
+
         // Private variables
         private Int64 _playerAddress = 0x0;
         private int _level;
@@ -99,6 +105,9 @@ namespace HunterPie.Core {
         public Mantle PrimaryMantle = new Mantle();
         public Mantle SecondaryMantle = new Mantle();
 
+        // Abnormalities
+        public Abnormalities Abnormalities = new Abnormalities();
+
         // Threading
         private ThreadStart ScanPlayerInfoRef;
         private Thread ScanPlayerInfo;
@@ -190,6 +199,7 @@ namespace HunterPie.Core {
                     GetPrimaryMantleTimers();
                     GetSecondaryMantleTimers();
                     GetParty();
+                    GetPlayerAbnormalities();
                 }
                 GetZoneId();
                 GetSessionId();
@@ -392,5 +402,48 @@ namespace HunterPie.Core {
             Activity.SetTailraidersInfo(QuestsLeft, isDeployed);
         }
 
+        private void GetPlayerAbnormalities() {
+            GetPlayerHuntingHornAbnormalities();
+            GetPlayerPalicoAbnormalities();
+            GetPlayerMiscAbnormalities();
+        }
+
+        private void GetPlayerHuntingHornAbnormalities() {
+            // Gets the player abnormalities caused by HH
+            Int64 HHAbnormalityAddress = Scanner.READ_MULTILEVEL_PTR(Address.BASE + Address.ABNORMALITY_OFFSET, Address.Offsets.AbnormalityOffsets) - 0x4;
+            for (int AbnormalityNumber = 0; AbnormalityNumber <= MaxHHBuffs; AbnormalityNumber++) {
+                HHAbnormalityAddress += 0x4;
+                float Duration = Scanner.READ_FLOAT(HHAbnormalityAddress);
+                byte Stack = Scanner.READ_BYTE(HHAbnormalityAddress + (0x12C - (0x3 * AbnormalityNumber)));
+
+                string AbnormalityID = $"HH_{AbnormalityNumber}";
+                //Debugger.Log($"{HHAbnormalityAddress:X} = {AbnormalityNumber}");
+                if (Duration <= 0) {
+                    // Check if there's an abnormality with that ID
+                    if (Abnormalities[AbnormalityID] != null) { Abnormalities.Remove(AbnormalityID); }
+                    else { continue; }
+                } else {
+                    // Check for existing abnormalities before making a new one
+                    if (Abnormalities[AbnormalityID] != null) { Abnormalities[AbnormalityID].UpdateAbnormalityInfo("HUNTINGHORN", Duration, Stack, AbnormalityNumber, true); }
+                    else {
+                        Abnormality NewAbnorm = new Abnormality();
+                        NewAbnorm.UpdateAbnormalityInfo("HUNTINGHORN", Duration, Stack, AbnormalityNumber, true);
+                        Abnormalities.Add(AbnormalityID, NewAbnorm);
+                    }
+                }
+            }
+        }
+
+        private void GetPlayerPalicoAbnormalities() {
+            // Gets the player abnormalities caused by palico's skills
+            Int64 FirstHHBuffAddress = Scanner.READ_MULTILEVEL_PTR(Address.BASE + Address.ABNORMALITY_OFFSET, Address.Offsets.AbnormalityOffsets) + 0xE4;
+
+        }
+
+        private void GetPlayerMiscAbnormalities() {
+            // Gets the player abnormalities caused by consumables and blights
+            Int64 FirstHHBuffAddress = Scanner.READ_MULTILEVEL_PTR(Address.BASE + Address.ABNORMALITY_OFFSET, Address.Offsets.AbnormalityOffsets) + 0x5B4;
+
+        }
     }
 }

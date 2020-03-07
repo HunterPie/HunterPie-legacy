@@ -2,6 +2,14 @@
 using System.Collections.Generic;
 
 namespace HunterPie.Core {
+    /* Abnormalities */
+    public class AbnormalityEventArgs : EventArgs {
+        public Abnormality Abnormality;
+
+        public AbnormalityEventArgs(Abnormality abnorm) {
+            this.Abnormality = abnorm;
+        }
+    }
     /* Activities */
     public class SteamFuelEventArgs : EventArgs {
         public int Available;

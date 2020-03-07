@@ -123,6 +123,8 @@
     <Compile Include="Core\Monster\MonsterData.cs" />
     <Compile Include="Core\Party\Member.cs" />
     <Compile Include="Core\Party\Party.cs" />
+    <Compile Include="Core\Player\Abnormalities.cs" />
+    <Compile Include="Core\Player\Abnormality.cs" />
     <Compile Include="Core\Player\Activities.cs" />
     <Compile Include="GUIControls\Changelog.xaml.cs">
       <DependentUpon>Changelog.xaml</DependentUpon>
@@ -159,6 +161,14 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="GUIControls\Debugger.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="GUI\Widgets\Abnormality Widget\AbnormalityContainer.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="GUI\Widgets\Abnormality Widget\Parts\Abnormality.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -203,6 +213,12 @@
       <DependentUpon>Debugger.xaml</DependentUpon>
     </Compile>
     <Compile Include="GUI\Overlay.cs" />
+    <Compile Include="GUI\Widgets\Abnormality Widget\AbnormalityContainer.xaml.cs">
+      <DependentUpon>AbnormalityContainer.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="GUI\Widgets\Abnormality Widget\Parts\Abnormality.xaml.cs">
+      <DependentUpon>Abnormality.xaml</DependentUpon>
+    </Compile>
     <Compile Include="GUI\Widgets\DPSMeter\Meter.xaml.cs">
       <DependentUpon>Meter.xaml</DependentUpon>
     </Compile>
