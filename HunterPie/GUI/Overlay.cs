@@ -64,10 +64,7 @@ namespace HunterPie.GUI {
             Widgets.Add(new Widgets.MantleTimer(1, ctx.Player.SecondaryMantle));
             Widgets.Add(new Widgets.MonsterContainer(ctx));
             Widgets.Add(new Widgets.DPSMeter.Meter(ctx));
-            Widgets.Add(new Widgets.Abnormality_Widget.AbnormalityContainer(ctx.Player, "HUNTINGHORN"));
-            Widgets.Add(new Widgets.Abnormality_Widget.AbnormalityContainer(ctx.Player, "PALICO"));
-            Widgets.Add(new Widgets.Abnormality_Widget.AbnormalityContainer(ctx.Player, "DEBUFF"));
-            Widgets.Add(new Widgets.Abnormality_Widget.AbnormalityContainer(ctx.Player, "MISC"));
+            Widgets.Add(new Widgets.Abnormality_Widget.AbnormalityContainer(ctx.Player, "*"));
         }
 
         private void DestroyWidgets() {

@@ -9,7 +9,7 @@
         mc:Ignorable="d"
         Title="AbnormalityContainer" Top="500" Left="300" SizeToContent="WidthAndHeight" Background="{x:Null}" WindowStyle="None" AllowsTransparency="True" ShowInTaskbar="False" Topmost="True" Closing="OnClosing" MouseEnter="OnMouseEnter" MouseDown="OnMouseDown" MouseWheel="OnMouseWheel" MouseLeave="OnMouseLeave">
     <Grid>
-        <Rectangle Fill="#B20E0E0E" RadiusY="20" RadiusX="40" Stroke="#99000000"/>
-        <StackPanel x:Name="HuntingHornBuffTray" Orientation="Vertical"/>
+        <Rectangle Fill="#B20E0E0E" Stroke="#99000000"/>
+        <WrapPanel x:Name="BuffTray" Margin="1"/>
     </Grid>
 </widget:Widget>

@@ -220,12 +220,12 @@
     <Abnormality ID="PALICO_005_00" Name="Affinity Up"/>
     <Abnormality ID="PALICO_006_00" Name="Recovery Up"/>
     <Abnormality ID="PALICO_007_00" Name="Health Up"/>
-    <Abnormality ID="PALICO_008_00" Name="Stamina Up"/>
+    <Abnormality ID="PALICO_008_00" Name="Stamina Use Reduced"/>
     <Abnormality ID="PALICO_009_00" Name="Unknown Buff"/>
     <Abnormality ID="PALICO_010_00" Name="Divine Protection"/>
     <Abnormality ID="PALICO_011_00" Name="Divine Protection"/>
     <Abnormality ID="PALICO_012_00" Name="Negate Stun"/>
-    <Abnormality ID="PALICO_013_00" Name="Negate Thunder"/>
+    <Abnormality ID="PALICO_013_00" Name="Negate Paralysis"/>
     <Abnormality ID="PALICO_014_00" Name="Tremor Resistance"/>
     <Abnormality ID="PALICO_015_00" Name="Earplugs"/>
     <Abnormality ID="PALICO_016_00" Name="Windproof"/>

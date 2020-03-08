@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Linq;
 using System.Windows.Controls;
 using System.Windows.Media;
 using HunterPie.Core;
@@ -29,7 +30,7 @@ namespace HunterPie.GUI.Widgets.Abnormality_Widget.Parts {
 
         private void OnAbnormalityStackChange(object source, AbnormalityEventArgs args) {
             Dispatcher.BeginInvoke(System.Windows.Threading.DispatcherPriority.Background, new Action(() => {
-                ImageSource NewIcon = TryFindResource($"{args.Abnormality.Icon}+") as ImageSource;
+                ImageSource NewIcon = TryFindResource($"{args.Abnormality.Icon}" + string.Concat(Enumerable.Repeat("+", args.Abnormality.Stack))) as ImageSource;
                 if (NewIcon == null) NewIcon = FindResource($"{args.Abnormality.Icon}") as ImageSource;
                 this.AbnormalityIcon.Source = NewIcon;
             }));
@@ -42,7 +43,7 @@ namespace HunterPie.GUI.Widgets.Abnormality_Widget.Parts {
             this.AbnormalityDurationArc.EndAngle = angle;
             ImageSource AbnormIcon;
             if (Abnorm.Stack >= 1) {
-                AbnormIcon = TryFindResource($"{Abnorm.Icon}+") as ImageSource ?? FindResource($"{Abnorm.Icon}") as ImageSource;
+                AbnormIcon = TryFindResource($"{Abnorm.Icon}" + string.Concat(Enumerable.Repeat("+", Abnorm.Stack))) as ImageSource ?? FindResource($"{Abnorm.Icon}") as ImageSource;
             } else {
                 AbnormIcon = FindResource(Abnorm.Icon) as ImageSource;
             }

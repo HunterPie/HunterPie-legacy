@@ -77,7 +77,7 @@ namespace HunterPie.GUI.Widgets.Abnormality_Widget {
         }
 
         private void OnPlayerNewAbnormality(object source, AbnormalityEventArgs args) {
-            if (args.Abnormality.Type != this.AcceptableType) return;
+            if (this.AcceptableType != "*" && args.Abnormality.Type != this.AcceptableType) return;
             Dispatcher.BeginInvoke(System.Windows.Threading.DispatcherPriority.Loaded, new Action(() => {
                 Parts.AbnormalityControl AbnormalityBox = new Parts.AbnormalityControl(args.Abnormality);
                 this.ActiveAbnormalities.Add(args.Abnormality.InternalID, AbnormalityBox);
@@ -91,9 +91,9 @@ namespace HunterPie.GUI.Widgets.Abnormality_Widget {
 
         private void RedrawComponent() {
             Dispatcher.BeginInvoke(System.Windows.Threading.DispatcherPriority.Render, new Action(() => {
-                this.HuntingHornBuffTray.Children.Clear();
+                this.BuffTray.Children.Clear();
                 foreach (string key in this.ActiveAbnormalities.Keys) {
-                    HuntingHornBuffTray.Children.Add(ActiveAbnormalities[key]);
+                    BuffTray.Children.Add(ActiveAbnormalities[key]);
                 }
             }));
         }

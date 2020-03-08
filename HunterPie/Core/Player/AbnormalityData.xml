@@ -51,32 +51,29 @@
     <Abnormality ID="56" IsDebuff="False" Offset="118" Icon="ICON_ALLRESUP" Stack="0"/>
   </HUNTINGHORN_Abnormalities>
   <PALICO_Abnormalities>
-    <Abnormality ID="0" IsDebuff="False" Offset="11C" Icon=""/>
-    <Abnormality ID="1" IsDebuff="False" Offset="120" Icon=""/>
-    <Abnormality ID="2" IsDebuff="False" Offset="124" Icon=""/>
-    <Abnormality ID="3" IsDebuff="False" Offset="128" Icon=""/>
-    <Abnormality ID="4" IsDebuff="False" Offset="12C" Icon=""/>
-    <Abnormality ID="5" IsDebuff="False" Offset="130" Icon=""/>
+    <Abnormality ID="0" IsDebuff="False" Offset="11C" Icon="ICON_EVASION"/>
+    <Abnormality ID="1" IsDebuff="False" Offset="120" Icon="ICON_ATTACKUP"/>
+    <Abnormality ID="2" IsDebuff="False" Offset="124" Icon="ICON_ATTACKUP"/>
+    <Abnormality ID="3" IsDebuff="False" Offset="128" Icon="ICON_DEFUP"/>
+    <Abnormality ID="4" IsDebuff="False" Offset="12C" Icon="ICON_DEFUP"/>
+    <Abnormality ID="5" IsDebuff="False" Offset="130" Icon="ICON_AFFINITYUP"/>
     <Abnormality ID="6" IsDebuff="False" Offset="134" Icon=""/>
-    <Abnormality ID="7" IsDebuff="False" Offset="138" Icon=""/>
-    <Abnormality ID="8" IsDebuff="False" Offset="13C" Icon=""/>
+    <Abnormality ID="7" IsDebuff="False" Offset="138" Icon="ICON_HEALTHUP"/>
+    <Abnormality ID="8" IsDebuff="False" Offset="13C" Icon="ICON_STAMINAUP"/>
     <Abnormality ID="9" IsDebuff="False" Offset="140" Icon=""/>
-    <Abnormality ID="10" IsDebuff="False" Offset="144" Icon=""/>
-    <Abnormality ID="11" IsDebuff="False" Offset="148" Icon=""/>
-    <Abnormality ID="12" IsDebuff="False" Offset="14C" Icon=""/>
-    <Abnormality ID="13" IsDebuff="False" Offset="150" Icon=""/>
-    <Abnormality ID="14" IsDebuff="False" Offset="154" Icon=""/>
-    <Abnormality ID="15" IsDebuff="False" Offset="158" Icon=""/>
-    <Abnormality ID="16" IsDebuff="False" Offset="15C" Icon=""/>
-    <Abnormality ID="17" IsDebuff="False" Offset="160" Icon=""/>
+    <Abnormality ID="10" IsDebuff="False" Offset="144" Icon="ICON_DIVINEPROTECTION"/>
+    <Abnormality ID="11" IsDebuff="False" Offset="148" Icon="ICON_DIVINEPROTECTION"/>
+    <Abnormality ID="12" IsDebuff="False" Offset="14C" Icon="ICON_STUNNEG"/>
+    <Abnormality ID="13" IsDebuff="False" Offset="150" Icon="ICON_PARALYSISNEG"/>
+    <Abnormality ID="14" IsDebuff="False" Offset="154" Icon="ICON_TREMORNEG"/>
+    <Abnormality ID="15" IsDebuff="False" Offset="158" Icon="ICON_EARPLUGS"/>
+    <Abnormality ID="16" IsDebuff="False" Offset="15C" Icon="ICON_WINDRES+"/>
+    <Abnormality ID="17" IsDebuff="False" Offset="160" Icon="ICON_ENV"/>
     <Abnormality ID="18" IsDebuff="False" Offset="164" Icon=""/>
   </PALICO_Abnormalities>
   <DEBUFF_Abnormalities>
     <Abnormality ID="0" IsDebuff="True" Offset="5DC" Icon="ICON_POISON"/>
     <Abnormality ID="1" IsDebuff="True" Offset="5E0" Icon=""/>
-    <!-- Not a buff 
-    <Abnormality ID="2" IsDebuff="True" Offset="5E4" Icon=""/>
-    -->
     <Abnormality ID="3" IsDebuff="True" Offset="5E8" Icon=""/>
     <Abnormality ID="4" IsDebuff="True" Offset="5EC" Icon="ELEMENT_FIRE"/>
     <Abnormality ID="5" IsDebuff="True" Offset="5F0" Icon="ELEMENT_THUNDER"/>
@@ -93,17 +90,17 @@
     <Abnormality ID="20" IsDebuff="True" Offset="62C" Icon="ICON_BLASTSCOURGE"/>
   </DEBUFF_Abnormalities>
   <MISC_Abnormalities>
-    <Abnormality ID="0" IsDebuff="False" Offset="694" HasConditions="False" Icon=""/>
-    <Abnormality ID="1" IsDebuff="False" Offset="698" HasConditions="False" Icon=""/>
-    <Abnormality ID="2" IsDebuff="False" Offset="69C" HasConditions="False" Icon=""/>
-    <Abnormality ID="4" IsDebuff="False" Offset="6A4" HasConditions="True" Icon=""/>
-    <Abnormality ID="8" IsDebuff="False" Offset="6B4" HasConditions="True" Icon=""/>
+    <Abnormality ID="0" IsDebuff="False" Offset="694" HasConditions="False" Icon="ITEM_DASH"/>
+    <Abnormality ID="1" IsDebuff="False" Offset="698" HasConditions="False" Icon="ICON_STAMINAUP"/>
+    <Abnormality ID="2" IsDebuff="False" Offset="69C" HasConditions="False" Icon="" />
+    <Abnormality ID="4" IsDebuff="False" Offset="6A4" HasConditions="True" Icon="ITEM_MIGHT"/>
+    <Abnormality ID="8" IsDebuff="False" Offset="6B4" HasConditions="True" Icon="ITEM_ADAMANT"/>
     <Abnormality ID="13" IsDebuff="False" Offset="6C8" HasConditions="False" Icon=""/>
     <Abnormality ID="14" IsDebuff="False" Offset="6CC" HasConditions="False" Icon=""/>
-    <Abnormality ID="15" IsDebuff="False" Offset="6D0" HasConditions="True" Icon=""/>
-    <Abnormality ID="16" IsDebuff="False" Offset="6D4" HasConditions="True" Icon=""/>
-    <Abnormality ID="23" IsDebuff="False" Offset="6F0" HasConditions="False" Icon=""/>
-    <Abnormality ID="24" IsDebuff="False" Offset="6F4" HasConditions="False" Icon=""/>
+    <Abnormality ID="15" IsDebuff="False" Offset="6D0" HasConditions="True" Icon="ITEM_DEMONDRUG"/>
+    <Abnormality ID="16" IsDebuff="False" Offset="6D4" HasConditions="True" Icon="ITEM_ARMORSKIN"/>
+    <Abnormality ID="23" IsDebuff="False" Offset="6F0" HasConditions="False" Icon="ICON_HOTRES"/>
+    <Abnormality ID="24" IsDebuff="False" Offset="6F4" HasConditions="False" Icon="ICON_COLDRES"/>
     <Abnormality ID="26" IsDebuff="False" Offset="6FC" HasConditions="False" Icon=""/>
     <Abnormality ID="27" IsDebuff="False" Offset="700" HasConditions="False" Icon=""/>
     <Abnormality ID="34" IsDebuff="False" Offset="71C" HasConditions="False" Icon=""/>
