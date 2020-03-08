@@ -20,13 +20,14 @@ namespace HunterPie.GUI.Widgets.Abnormality_Widget {
     public partial class AbnormalityContainer : Widget {
 
         Dictionary<string, Parts.AbnormalityControl> ActiveAbnormalities = new Dictionary<string, Parts.AbnormalityControl>();
-
+        string AcceptableType;
         Player Context;
 
-        public AbnormalityContainer(Player context) {
+        public AbnormalityContainer(Player context, string Type) {
             InitializeComponent();
             BaseWidth = Width;
             BaseHeight = Height;
+            this.AcceptableType = Type;
             ApplySettings();
             SetWindowFlags();
             SetContext(context);
@@ -76,6 +77,7 @@ namespace HunterPie.GUI.Widgets.Abnormality_Widget {
         }
 
         private void OnPlayerNewAbnormality(object source, AbnormalityEventArgs args) {
+            if (args.Abnormality.Type != this.AcceptableType) return;
             Dispatcher.BeginInvoke(System.Windows.Threading.DispatcherPriority.Loaded, new Action(() => {
                 Parts.AbnormalityControl AbnormalityBox = new Parts.AbnormalityControl(args.Abnormality);
                 this.ActiveAbnormalities.Add(args.Abnormality.InternalID, AbnormalityBox);
@@ -105,17 +107,17 @@ namespace HunterPie.GUI.Widgets.Abnormality_Widget {
             this.UnhookEvents();
         }
 
-        private void OnMouseEnter(object sender, System.Windows.Input.MouseEventArgs e) {
+        private void OnMouseEnter(object sender, MouseEventArgs e) {
             this.MouseOver = true;
         }
 
-        private void OnMouseDown(object sender, System.Windows.Input.MouseButtonEventArgs e) {
-            if (e.LeftButton == System.Windows.Input.MouseButtonState.Pressed) {
+        private void OnMouseDown(object sender, MouseButtonEventArgs e) {
+            if (e.LeftButton == MouseButtonState.Pressed) {
                 this.MoveWidget();
             }
         }
 
-        private void OnMouseWheel(object sender, System.Windows.Input.MouseWheelEventArgs e) {
+        private void OnMouseWheel(object sender, MouseWheelEventArgs e) {
             if (this.MouseOver) {
                 if (e.Delta > 0) {
                     //ScaleWidget(DefaultScaleX + 0.05, DefaultScaleY + 0.05);

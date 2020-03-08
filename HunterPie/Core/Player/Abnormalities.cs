@@ -96,7 +96,7 @@ namespace HunterPie.Core {
             args.Abnormality.OnAbnormalityEnd -= RemoveObsoleteAbnormality;
             // Remove abnormality
             Remove(args.Abnormality.InternalID);
-            Logger.Debugger.Log($"REMOVED ABNORMALITY: {args.Abnormality.Name}");
+            //Logger.Debugger.Log($"REMOVED ABNORMALITY: {args.Abnormality.Name}");
         }
 
         #endregion

@@ -15,6 +15,6 @@
     </UserControl.Resources>
     <Canvas Margin="3">
         <Image x:Name="AbnormalityIcon" Visibility="Visible" Width="18" Height="18" Canvas.Left="6" Canvas.Top="6"/>
-        <helpers:Arc x:Name="AbnormalityDurationArc" Width="30" Height="30" StartAngle="90" Stroke="#FF329745" StrokeThickness="2"/>
+        <helpers:Arc x:Name="AbnormalityDurationArc" Width="30" Height="30" StartAngle="90" StrokeThickness="2"/>
     </Canvas>
 </UserControl>

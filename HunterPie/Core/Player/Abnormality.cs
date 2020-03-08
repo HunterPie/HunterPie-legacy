@@ -25,12 +25,13 @@
             }
         }
         public float MaxDuration { get; private set; }
-        public bool IsBuff { get; private set; }
+        public bool IsDebuff { get; private set; }
 
         #region Events
 
         public delegate void AbnormalityEvents(object source, AbnormalityEventArgs args);
         public event AbnormalityEvents OnAbnormalityStart;
+        public event AbnormalityEvents OnStackChange;
         public event AbnormalityEvents OnAbnormalityUpdate;
         public event AbnormalityEvents OnAbnormalityEnd;
 
@@ -46,17 +47,24 @@
             OnAbnormalityEnd?.Invoke(this, new AbnormalityEventArgs(this));
         }
 
+        protected virtual void _OnStackChange() {
+            OnStackChange?.Invoke(this, new AbnormalityEventArgs(this));
+        }
+
         #endregion
 
         #region Methods
 
-        public void UpdateAbnormalityInfo(string Type, string InternalID,float ab_duration, byte ab_stack, int ab_id, bool ab_isBuff, bool IsInfinite, string icon) {
+        public void UpdateAbnormalityInfo(string Type, string InternalID,float ab_duration, byte ab_stack, int ab_id, bool ab_isDebuff, bool IsInfinite, string icon) {
             this.Type = Type;
             this.Icon = icon;
             this.InternalID = InternalID;
             this.MaxDuration = MaxDuration < ab_duration ? ab_duration : MaxDuration;
-            this.Stack = (byte)(ab_stack);
-            this.IsBuff = ab_isBuff;
+            if (this.Stack == 0 && ab_stack > this.Stack) {
+                this.Stack = (byte)(ab_stack);
+                _OnStackChange();
+            }
+            this.IsDebuff = ab_isDebuff;
             this.IsInfinite = IsInfinite;
             this.Duration = (int)ab_duration;
             this.ID = ab_id;

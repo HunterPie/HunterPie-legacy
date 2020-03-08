@@ -231,18 +231,25 @@
     <Abnormality ID="PALICO_016_00" Name="Windproof"/>
     <Abnormality ID="PALICO_017_00" Name="Environm. Resistance"/>
     <Abnormality ID="PALICO_018_00" Name="Unknown"/>
-    <Abnormality ID="DEBUFF_000_00" Name="Fire Blight"/>
-    <Abnormality ID="DEBUFF_001_00" Name="Thunder Blight"/>
-    <Abnormality ID="DEBUFF_002_00" Name="Ice Blight"/>
-    <Abnormality ID="DEBUFF_003_00" Name="Dragon Blight"/>
-    <Abnormality ID="DEBUFF_004_00" Name="Bleed"/>
-    <Abnormality ID="DEBUFF_005_00" Name="Bleed Recovery"/>
-    <Abnormality ID="DEBUFF_006_00" Name="Effluvial"/>
-    <Abnormality ID="DEBUFF_007_00" Name="Poison"/>
-    <Abnormality ID="DEBUFF_008_00" Name="Venom"/>
-    <Abnormality ID="DEBUFF_027_00" Name="Blastcourge"/>
+    <Abnormality ID="DEBUFF_000_00" Name="Poison"/>
+    <Abnormality ID="DEBUFF_001_00" Name="Unknown"/>
+    <Abnormality ID="DEBUFF_002_00" Name="Unknown"/>
+    <Abnormality ID="DEBUFF_003_00" Name="Unknown"/>
+    <Abnormality ID="DEBUFF_004_00" Name="Fireblight"/>
+    <Abnormality ID="DEBUFF_005_00" Name="Thunderblight"/>
+    <Abnormality ID="DEBUFF_006_00" Name="Waterblight"/>
+    <Abnormality ID="DEBUFF_007_00" Name="Iceblight"/>
+    <Abnormality ID="DEBUFF_008_00" Name="Dragonblight"/>
+    <Abnormality ID="DEBUFF_009_00" Name="Bleed"/>
+    <Abnormality ID="DEBUFF_010_00" Name="Bleed Recovery"/>
+    <Abnormality ID="DEBUFF_011_00" Name="Effluvia"/>
+    <Abnormality ID="DEBUFF_012_00" Name="Defense Down"/>
+    <Abnormality ID="DEBUFF_014_00" Name="Elemental Res. Down"/>
+    <Abnormality ID="DEBUFF_016_00" Name="No Items"/>
+    <Abnormality ID="DEBUFF_017_00" Name="Blastblight"/>
+    <Abnormality ID="DEBUFF_020_00" Name="Blastcourge"/>
     <Abnormality ID="MISC_000_00" Name="Dash Juice"/>
-    <Abnormality ID="MISC_001_00" Name="Wiggle Litch"/>
+    <Abnormality ID="MISC_001_00" Name="Wiggly Litchy"/>
     <Abnormality ID="MISC_002_00" Name="Recovery Up"/>
     <Abnormality ID="MISC_004_00" Name="Might Seed"/>
     <Abnormality ID="MISC_004_01" Name="Might Pill"/>
@@ -250,8 +257,8 @@
     <Abnormality ID="MISC_008_01" Name="Adamant Pill"/>
     <Abnormality ID="MISC_013_00" Name="Demon Powder"/>
     <Abnormality ID="MISC_014_00" Name="Hardshell Powder"/>
-    <Abnormality ID="MISC_015_01" Name="Demon Drug"/>
-    <Abnormality ID="MISC_015_02" Name="Mega Demon Drug"/>
+    <Abnormality ID="MISC_015_01" Name="Demondrug"/>
+    <Abnormality ID="MISC_015_02" Name="Mega Demondrug"/>
     <Abnormality ID="MISC_016_01" Name="Armorskin"/>
     <Abnormality ID="MISC_016_02" Name="Mega Armorskin"/>
     <Abnormality ID="MISC_023_00" Name="Cool Drink"/>
