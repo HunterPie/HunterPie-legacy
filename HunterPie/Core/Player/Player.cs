@@ -288,13 +288,13 @@ namespace HunterPie.Core {
         }
 
         private void GetPrimaryMantle() {
-            Int64 Address = LEVEL_ADDRESS + 0x34;
+            Int64 Address = PlayerStructAddress + 0x34;
             int mantleId = Scanner.READ_INT(Address);
             PrimaryMantle.SetID(mantleId);
         }
 
         private void GetSecondaryMantle() {
-            Int64 Address = LEVEL_ADDRESS + 0x34 + 0x4;
+            Int64 Address = PlayerStructAddress + 0x34 + 0x4;
             int mantleId = Scanner.READ_INT(Address);
             SecondaryMantle.SetID(mantleId);
         }
@@ -326,7 +326,7 @@ namespace HunterPie.Core {
             GetQuestElapsedTime();
             for (int i = 0; i < PlayerParty.MaxSize; i++) {
                 string playerName = GetPartyMemberName(PartyContainer + (i * 0x1C0));
-                byte playerWeapon = Scanner.READ_BYTE(PartyContainer + (i * 0x1C0 + 0x33));
+                byte playerWeapon = playerName == this.Name ? this.WeaponID : Scanner.READ_BYTE(PartyContainer + (i * 0x1C0 + 0x33));
                 int playerDamage = GetPartyMemberDamage(i);
                 float playerDamagePercentage = 0;
                 if (totalDamage != 0) {
@@ -438,7 +438,7 @@ namespace HunterPie.Core {
                 int BuffOffset = int.Parse(Blight.Attributes["Offset"].Value, System.Globalization.NumberStyles.HexNumber);
                 bool IsDebuff = bool.Parse(Blight.Attributes["IsDebuff"].Value);
                 int ID = int.Parse(Blight.Attributes["ID"].Value);
-                GetAbnormality("BLIGHT", AbnormalityBaseAddress + BuffOffset, ID, $"BL_{ID}", IsDebuff);
+                GetAbnormality("DEBUFF", AbnormalityBaseAddress + BuffOffset, ID, $"DE_{ID}", IsDebuff);
             }
             foreach (XmlNode MiscBuff in Abnormalities.GetMiscAbnormalities()) {
                 int BuffOffset = int.Parse(MiscBuff.Attributes["Offset"].Value, System.Globalization.NumberStyles.HexNumber);
@@ -473,10 +473,10 @@ namespace HunterPie.Core {
                 else { return; }
             } else {
                 // Check for existing abnormalities before making a new one
-                if (Abnormalities[AbnormInternalID] != null) { Abnormalities[AbnormInternalID].UpdateAbnormalityInfo(Type, AbnormInternalID, Duration, Stack, AbnormNumber, IsDebuff, (HasConditions && Duration == 0)); } 
+                if (Abnormalities[AbnormInternalID] != null) { Abnormalities[AbnormInternalID].UpdateAbnormalityInfo(Type, AbnormInternalID, Duration, Stack, AbnormNumber, IsDebuff, (HasConditions && Duration == 0), Abnormalities.GetAbnormalityIconByID(Type, AbnormNumber)); } 
                 else {
                     Abnormality NewAbnorm = new Abnormality();
-                    NewAbnorm.UpdateAbnormalityInfo(Type, AbnormInternalID, Duration, Stack, AbnormNumber, IsDebuff, (HasConditions && Duration == 0));
+                    NewAbnorm.UpdateAbnormalityInfo(Type, AbnormInternalID, Duration, Stack, AbnormNumber, IsDebuff, (HasConditions && Duration == 0), Abnormalities.GetAbnormalityIconByID(Type, AbnormNumber));
                     Abnormalities.Add(AbnormInternalID, NewAbnorm);
                 }
             }

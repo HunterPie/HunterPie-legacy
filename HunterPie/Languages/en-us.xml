@@ -178,7 +178,7 @@
     <Abnormality ID="HUNTINGHORN_025_00" Name="Stun Negated"/>
     <Abnormality ID="HUNTINGHORN_026_00" Name="Paralysis Negated"/>
     <Abnormality ID="HUNTINGHORN_027_00" Name="Tremors Negated"/>
-    <Abnormality ID="HUNTINGHORN_028_00" Name="Much/Water/Deep Snow Resistance"/>
+    <Abnormality ID="HUNTINGHORN_028_00" Name="Muck/Water/Deep Snow Resistance"/>
     <Abnormality ID="HUNTINGHORN_029_00" Name="Fire Res Up (S)"/>
     <Abnormality ID="HUNTINGHORN_029_01" Name="Fire Res Up (L)"/>
     <Abnormality ID="HUNTINGHORN_030_00" Name="Fire Res Up (L)"/>
@@ -200,13 +200,13 @@
     <Abnormality ID="HUNTINGHORN_038_00" Name="Dragon Res Up (L)"/>
     <Abnormality ID="HUNTINGHORN_038_01" Name="Dragon Res Up (XL)"/>
     <Abnormality ID="HUNTINGHORN_039_00" Name="Elemental Attack Boost"/>
-    <Abnormality ID="HUNTINGHORN_040_00" Name="DEBUFF Negated"/>
+    <Abnormality ID="HUNTINGHORN_040_00" Name="Blights Negated"/>
     <Abnormality ID="HUNTINGHORN_041_00" Name="Unknown Buff"/>
     <Abnormality ID="HUNTINGHORN_043_00" Name="Knockbacks Negated"/>
-    <Abnormality ID="HUNTINGHORN_045_00" Name="DEBUFF Resistance Up"/>
+    <Abnormality ID="HUNTINGHORN_045_00" Name="Blights Resistance Up"/>
     <Abnormality ID="HUNTINGHORN_046_00" Name="Affinity Up (S)"/>
     <Abnormality ID="HUNTINGHORN_047_00" Name="All Ailments Negated"/>
-    <Abnormality ID="HUNTINGHORN_048_00" Name="Wind &amp; Earplugs"/>
+    <Abnormality ID="HUNTINGHORN_048_00" Name="Wind res &amp; Earplugs"/>
     <Abnormality ID="HUNTINGHORN_049_00" Name="Abnormal Status Attack Increase"/>
     <Abnormality ID="HUNTINGHORN_053_00" Name="Max Stamina Up + Recovery"/>
     <Abnormality ID="HUNTINGHORN_054_00" Name="Extended Health Recovery"/>

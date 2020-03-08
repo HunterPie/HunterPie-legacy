@@ -34,7 +34,7 @@ namespace HunterPie.Core {
         }
 
         public XmlNodeList GetBlightAbnormalities() {
-            XmlNodeList BlightAbnormalitiesData = AbnormalitiesData.SelectNodes("//Abnormalities/BLIGHT_Abnormalities/Abnormality");
+            XmlNodeList BlightAbnormalitiesData = AbnormalitiesData.SelectNodes("//Abnormalities/DEBUFF_Abnormalities/Abnormality");
             return BlightAbnormalitiesData;
         }
 
@@ -43,14 +43,26 @@ namespace HunterPie.Core {
             return BlightAbnormalitiesData;
         }
 
+        public string GetAbnormalityIconByID(string Type, int ID) {
+            XmlNode Abnormality = AbnormalitiesData.SelectSingleNode($"//Abnormalities/{Type}_Abnormalities/Abnormality[@ID='{ID}']");
+            string IconName = Abnormality?.Attributes["Icon"].Value;
+            IconName = string.IsNullOrEmpty(IconName) ? "ICON_MISSING" : IconName;
+            return IconName;
+        }
+
         #endregion
 
         #region Events
         public delegate void AbnormalitiesEvents(object source, AbnormalityEventArgs args);
         public event AbnormalitiesEvents OnNewAbnormality;
+        public event AbnormalitiesEvents OnAbnormalityRemove;
 
         protected virtual void _OnNewAbnormality(Abnormality abnorm) {
             OnNewAbnormality?.Invoke(this, new AbnormalityEventArgs(abnorm));
+        }
+
+        protected virtual void _OnAbnormalityRemove(Abnormality abnorm) {
+            OnAbnormalityRemove?.Invoke(this, new AbnormalityEventArgs(abnorm));
         }
         #endregion
 
@@ -63,6 +75,7 @@ namespace HunterPie.Core {
         }
 
         public void Remove(string AbnormId) {
+            _OnAbnormalityRemove(CurrentAbnormalities[AbnormId]);
             CurrentAbnormalities[AbnormId].ResetDuration();
             CurrentAbnormalities.Remove(AbnormId);
         } 
@@ -82,7 +95,7 @@ namespace HunterPie.Core {
             // Unhook event to release references
             args.Abnormality.OnAbnormalityEnd -= RemoveObsoleteAbnormality;
             // Remove abnormality
-            CurrentAbnormalities.Remove(args.Abnormality.InternalID);
+            Remove(args.Abnormality.InternalID);
             Logger.Debugger.Log($"REMOVED ABNORMALITY: {args.Abnormality.Name}");
         }
 

@@ -5,6 +5,7 @@
         public string Name {
             get { return GStrings.GetAbnormalityByID(Type, ID, Stack); }
         }
+        public string Icon { get; private set; }
         public string Type { get; private set; }
         public int ID { get; private set; }
         public byte Stack { get; private set; }
@@ -49,8 +50,9 @@
 
         #region Methods
 
-        public void UpdateAbnormalityInfo(string Type, string InternalID,float ab_duration, byte ab_stack, int ab_id, bool ab_isBuff, bool IsInfinite) {
+        public void UpdateAbnormalityInfo(string Type, string InternalID,float ab_duration, byte ab_stack, int ab_id, bool ab_isBuff, bool IsInfinite, string icon) {
             this.Type = Type;
+            this.Icon = icon;
             this.InternalID = InternalID;
             this.MaxDuration = MaxDuration < ab_duration ? ab_duration : MaxDuration;
             this.Stack = (byte)(ab_stack);
