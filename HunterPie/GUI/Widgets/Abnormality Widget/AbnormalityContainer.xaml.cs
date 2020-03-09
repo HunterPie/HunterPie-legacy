@@ -48,11 +48,14 @@ namespace HunterPie.GUI.Widgets.Abnormality_Widget {
 
         public override void EnterWidgetDesignMode() {
             base.EnterWidgetDesignMode();
+            this.ResizeMode = ResizeMode.CanResizeWithGrip;
             RemoveWindowTransparencyFlag();
         }
 
         public override void LeaveWidgetDesignMode() {
             base.LeaveWidgetDesignMode();
+            this.ResizeMode = ResizeMode.CanResize;
+            SizeToContent = SizeToContent.WidthAndHeight;
             ApplyWindowTransparencyFlag();
             //SaveSettings();
         }
@@ -92,8 +95,11 @@ namespace HunterPie.GUI.Widgets.Abnormality_Widget {
         private void RedrawComponent() {
             Dispatcher.BeginInvoke(System.Windows.Threading.DispatcherPriority.Render, new Action(() => {
                 this.BuffTray.Children.Clear();
-                foreach (string key in this.ActiveAbnormalities.Keys) {
-                    BuffTray.Children.Add(ActiveAbnormalities[key]);
+                if (this.ActiveAbnormalities.Count == 0) {
+                    this.WidgetHasContent = false;
+                }
+                foreach(Parts.AbnormalityControl Abnorm in this.ActiveAbnormalities.Values) {
+                    this.BuffTray.Children.Add(Abnorm);
                 }
             }));
         }
@@ -114,6 +120,8 @@ namespace HunterPie.GUI.Widgets.Abnormality_Widget {
         private void OnMouseDown(object sender, MouseButtonEventArgs e) {
             if (e.LeftButton == MouseButtonState.Pressed) {
                 this.MoveWidget();
+            } else if (e.RightButton == MouseButtonState.Pressed) {
+
             }
         }
 
@@ -127,10 +135,24 @@ namespace HunterPie.GUI.Widgets.Abnormality_Widget {
             }
         }
 
-        private void OnMouseLeave(object sender, System.Windows.Input.MouseEventArgs e) {
+        private void OnMouseLeave(object sender, MouseEventArgs e) {
             this.MouseOver = false;
         }
         #endregion
-
+        private void OnSizeChange(object sender, SizeChangedEventArgs e) {
+            
+            // This means the user didn't resize the widget
+            if (this.BuffTray.ActualWidth + 4 == e.NewSize.Width && this.BuffTray.ActualHeight + 4 == e.NewSize.Height) return;
+            // Only resize if in design mode
+            if (!this.InDesignMode) return;
+            // Resize depending on the orientation
+            if (this.BuffTray.Orientation == Orientation.Horizontal) {
+                if (e.NewSize.Width < 40) return;
+                this.BuffTray.MaxWidth = e.NewSize.Width;
+            } else {
+                if (e.NewSize.Height < 40) return;
+                this.BuffTray.MaxHeight = e.NewSize.Height;
+            }
+        }
     }
 }

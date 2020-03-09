@@ -8,7 +8,7 @@ namespace HunterPie.GUI.Widgets.Abnormality_Widget.Parts {
     /// <summary>
     /// Interaction logic for Abnormality.xaml
     /// </summary>
-    public partial class AbnormalityControl : UserControl {
+    public partial class AbnormalityControl : UserControl, IEquatable<AbnormalityControl>, IComparable<AbnormalityControl> {
 
         Brush Debuff_Color = new SolidColorBrush(Color.FromArgb(0xFF, 0x97, 0x32, 0x32)) ;
         Brush Buff_Color = new SolidColorBrush(Color.FromArgb(0xFF, 0x32, 0x97, 0x45)); ///; // #FF329745
@@ -77,5 +77,19 @@ namespace HunterPie.GUI.Widgets.Abnormality_Widget.Parts {
             if (angle < max) angle = max;
             return angle;
         }
+
+
+        public bool Equals(AbnormalityControl other) {
+            if (other == null) return false;
+            else return this.Context.Duration.Equals(other.Context.Duration);
+        }
+
+        public int CompareTo(AbnormalityControl other) {
+            if (this.Context.Duration > other.Context.Duration) return -1;
+            else if (this.Context.Duration < other.Context.Duration) return 1;
+            else if (this.Equals(other)) return 0;
+            else return 0;
+        }
+
     }
 }

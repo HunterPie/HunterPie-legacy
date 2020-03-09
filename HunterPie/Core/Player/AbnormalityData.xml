@@ -93,15 +93,15 @@
     <Abnormality ID="0" IsDebuff="False" Offset="694" HasConditions="False" Icon="ITEM_DASH"/>
     <Abnormality ID="1" IsDebuff="False" Offset="698" HasConditions="False" Icon="ICON_STAMINAUP"/>
     <Abnormality ID="2" IsDebuff="False" Offset="69C" HasConditions="False" Icon="" />
-    <Abnormality ID="4" IsDebuff="False" Offset="6A4" HasConditions="True" Icon="ITEM_MIGHT"/>
-    <Abnormality ID="8" IsDebuff="False" Offset="6B4" HasConditions="True" Icon="ITEM_ADAMANT"/>
-    <Abnormality ID="13" IsDebuff="False" Offset="6C8" HasConditions="False" Icon=""/>
-    <Abnormality ID="14" IsDebuff="False" Offset="6CC" HasConditions="False" Icon=""/>
-    <Abnormality ID="15" IsDebuff="False" Offset="6D0" HasConditions="True" Icon="ITEM_DEMONDRUG"/>
-    <Abnormality ID="16" IsDebuff="False" Offset="6D4" HasConditions="True" Icon="ITEM_ARMORSKIN"/>
+    <Abnormality ID="4" IsDebuff="False" Offset="6A4" HasConditions="True" ConditionOffset="8" IsInfinite="False" Icon="ITEM_MIGHT"/>
+    <Abnormality ID="8" IsDebuff="False" Offset="6B4" HasConditions="True" ConditionOffset="12" IsInfinite="False" Icon="ITEM_ADAMANT"/>
+    <Abnormality ID="13" IsDebuff="False" Offset="6C8" HasConditions="False" Icon="ITEM_ATKPOWDER"/>
+    <Abnormality ID="14" IsDebuff="False" Offset="6CC" HasConditions="False" Icon="ITEM_DEFPOWDER"/>
+    <Abnormality ID="15" IsDebuff="False" Offset="6D0" HasConditions="True" ConditionOffset="8" IsInfinite="True" Icon="ITEM_DEMONDRUG"/>
+    <Abnormality ID="16" IsDebuff="False" Offset="6D4" HasConditions="True" ConditionOffset="8" IsInfinite="True" Icon="ITEM_ARMORSKIN"/>
     <Abnormality ID="23" IsDebuff="False" Offset="6F0" HasConditions="False" Icon="ICON_HOTRES"/>
     <Abnormality ID="24" IsDebuff="False" Offset="6F4" HasConditions="False" Icon="ICON_COLDRES"/>
-    <Abnormality ID="26" IsDebuff="False" Offset="6FC" HasConditions="False" Icon=""/>
+    <Abnormality ID="26" IsDebuff="False" Offset="6FC" HasConditions="False" Icon="ICON_EXT_HEALTHRECOVERY"/>
     <Abnormality ID="27" IsDebuff="False" Offset="700" HasConditions="False" Icon=""/>
     <Abnormality ID="34" IsDebuff="False" Offset="71C" HasConditions="False" Icon=""/>
     <Abnormality ID="35" IsDebuff="False" Offset="720" HasConditions="False" Icon=""/>

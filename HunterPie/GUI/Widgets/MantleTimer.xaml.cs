@@ -80,25 +80,23 @@ namespace HunterPie.GUI.Widgets {
                 this.WidgetHasContent = true;
                 ChangeVisibility();
                 MantleName.Content = FormatMantleName;
-                MantleCooldown.Slice = args.Timer / args.staticTimer;
+                MantleTimerArc.EndAngle = ConvertPercentageIntoAngle(args.Timer / args.staticTimer);
             });
         }
 
         private void OnCooldownChange(object source, MantleEventArgs args) {
-            if (args.Cooldown <= 0) {
-                Dispatch(() => {
+            Dispatcher.BeginInvoke(System.Windows.Threading.DispatcherPriority.Background, new Action(() => {
+                if (args.Cooldown <= 0) {
                     this.WidgetHasContent = false;
                     ChangeVisibility();
-                });
-                return;
-            }
-            Dispatch(() => {
+                    return;
+                }
                 this.WidgetHasContent = true;
                 ChangeVisibility();
                 string FormatMantleName = $"({(int)args.Cooldown}) {args.Name.ToUpper()}";
                 MantleName.Content = FormatMantleName;
-                MantleCooldown.Slice = args.Cooldown / args.staticCooldown;
-            });
+                MantleTimerArc.EndAngle = ConvertPercentageIntoAngle(args.Cooldown / args.staticCooldown);
+            }));
         }
 
         private void OnClosing(object sender, System.ComponentModel.CancelEventArgs e) {
@@ -115,7 +113,7 @@ namespace HunterPie.GUI.Widgets {
                 Color WidgetColor = (Color)ColorConverter.ConvertFromString(MantleNumber == 0 ? UserSettings.PlayerConfig.Overlay.PrimaryMantle.Color : UserSettings.PlayerConfig.Overlay.SecondaryMantle.Color);
                 Brush WidgetColorBrush = new SolidColorBrush(WidgetColor);
                 WidgetColorBrush.Freeze();
-                this.MantleCooldown.Fill = DonutBrush(WidgetColor);
+                this.MantleTimerArc.Stroke = WidgetColorBrush;
                 this.MantleBorder.BorderBrush = WidgetColorBrush;
                 double ScaleFactor = MantleNumber == 0 ? UserSettings.PlayerConfig.Overlay.PrimaryMantle.Scale : UserSettings.PlayerConfig.Overlay.SecondaryMantle.Scale;
                 ScaleWidget(ScaleFactor, ScaleFactor);
@@ -161,19 +159,12 @@ namespace HunterPie.GUI.Widgets {
         }
 
         // Helper
-        private RadialGradientBrush DonutBrush(Color customColor) {
-            RadialGradientBrush brush = new RadialGradientBrush {
-                Center = new Point(13, 13),
-                GradientOrigin = new Point(13, 13),
-                MappingMode = BrushMappingMode.Absolute,
-                RadiusX = 13,
-                RadiusY = 13
-            };
-            // Add the colors to make a donut
-            brush.GradientStops.Add(new GradientStop(Colors.Transparent, 0.4));
-            brush.GradientStops.Add(new GradientStop(customColor, 0.4));
-            brush.Freeze();
-            return brush;
+
+        private float ConvertPercentageIntoAngle(float percentage) {
+            float max = -269.999f;
+            float angle = 90 - (360 * percentage);
+            if (angle < max) angle = max;
+            return angle;
         }
     }
 }

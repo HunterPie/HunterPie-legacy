@@ -41,7 +41,7 @@
             get {
                 return _cooldown;
             } set {
-                if (_cooldown != value) {
+                if ((int)_cooldown != (int)value) {
                     _cooldown = value;
                     this._onMantleCooldownUpdate();
                 }
@@ -51,7 +51,7 @@
             get {
                 return _timer;
             } set {
-                if (_timer != value) {
+                if ((int)_timer != (int)value) {
                     _timer = value;
                     this._onMantleTimerUpdate();
                 }

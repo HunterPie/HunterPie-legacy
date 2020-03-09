@@ -7,7 +7,7 @@
         xmlns:local="clr-namespace:HunterPie.GUI.Widgets.Abnormality_Widget"
         xmlns:Parts="clr-namespace:HunterPie.GUI.Widgets.Abnormality_Widget.Parts"
         mc:Ignorable="d"
-        Title="AbnormalityContainer" Top="500" Left="300" SizeToContent="WidthAndHeight" Background="{x:Null}" WindowStyle="None" AllowsTransparency="True" ShowInTaskbar="False" Topmost="True" Closing="OnClosing" MouseEnter="OnMouseEnter" MouseDown="OnMouseDown" MouseWheel="OnMouseWheel" MouseLeave="OnMouseLeave">
+        Title="AbnormalityContainer" Top="500" Left="300" MinHeight="40" MinWidth="40" SizeToContent="WidthAndHeight" Background="{x:Null}" WindowStyle="None" AllowsTransparency="True" ShowInTaskbar="False" Topmost="True" Closing="OnClosing" MouseEnter="OnMouseEnter" MouseDown="OnMouseDown" MouseWheel="OnMouseWheel" MouseLeave="OnMouseLeave" ResizeMode="CanResize" SizeChanged="OnSizeChange">
     <Grid>
         <Rectangle Fill="#B20E0E0E" Stroke="#99000000"/>
         <WrapPanel x:Name="BuffTray" Margin="1"/>

@@ -9,6 +9,7 @@ using HunterPie.Memory;
 using HunterPie.Core;
 using HunterPie.GUI;
 using System.Windows.Markup;
+using System.Windows.Interop;
 
 namespace HunterPie {
     /// <summary>

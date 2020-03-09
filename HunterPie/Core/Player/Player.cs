@@ -8,11 +8,6 @@ using HunterPie.Logger;
 
 namespace HunterPie.Core {
     public class Player {
-        // Consts (TODO: Move this somewhere else)
-        private readonly int MaxHHBuffs = 56;
-        private readonly int MaxPalicoBuffs = 17;
-        private readonly int MaxBlights = 11;
-        private readonly int MaxMiscBuffs = 28;
 
         // Private variables
         private Int64 _playerAddress = 0x0;
@@ -445,11 +440,17 @@ namespace HunterPie.Core {
                 bool IsDebuff = bool.Parse(MiscBuff.Attributes["IsDebuff"].Value);
                 int ID = int.Parse(MiscBuff.Attributes["ID"].Value);
                 bool HasConditions = bool.Parse(MiscBuff.Attributes["HasConditions"].Value);
-                GetAbnormality("MISC", AbnormalityBaseAddress + BuffOffset, ID, $"MISC_{ID}", IsDebuff, HasConditions);
+                bool IsInfinite = false;
+                int ConditionOffset = 0;
+                if (HasConditions) {
+                    IsInfinite = bool.Parse(MiscBuff.Attributes["IsInfinite"].Value);
+                    ConditionOffset = int.Parse(MiscBuff.Attributes["ConditionOffset"].Value);
+                }
+                GetAbnormality("MISC", AbnormalityBaseAddress + BuffOffset, ID, $"MISC_{ID}", IsDebuff, HasConditions, ConditionOffset , IsInfinite);
             }
         }
 
-        private void GetAbnormality(string Type, Int64 AbnormalityAddress, int AbnormNumber, string AbnormInternalID, bool IsDebuff, bool HasConditions = false) {
+        private void GetAbnormality(string Type, Int64 AbnormalityAddress, int AbnormNumber, string AbnormInternalID, bool IsDebuff, bool HasConditions = false, int ConditionOffset = 0, bool IsInfinite = false) {
             float Duration = Scanner.READ_FLOAT(AbnormalityAddress);
             byte Stack;
             // Palico and misc buffs don't stack
@@ -459,7 +460,7 @@ namespace HunterPie.Core {
                     break;
                 case "MISC":
                     if (HasConditions) {
-                        Stack = (byte)(Scanner.READ_BYTE(AbnormalityAddress + 0x8));
+                        Stack = (byte)(Scanner.READ_BYTE(AbnormalityAddress + ConditionOffset));
                         if (Stack == (byte)0) { HasConditions = false; }
                     } else { Stack = 0; }
                     break;
@@ -467,16 +468,22 @@ namespace HunterPie.Core {
                     Stack = 0;
                     break;
             }
-            if ((int)Duration <= 0 && HasConditions != true) {
+            if ((int)Duration <= 0 && !HasConditions) {
                 // Check if there's an abnormality with that ID
                 if (Abnormalities[AbnormInternalID] != null) { Abnormalities.Remove(AbnormInternalID); } 
                 else { return; }
             } else {
+                if ((int)Duration <= 0 && !IsInfinite) {
+                    if (Abnormalities[AbnormInternalID] != null) {
+                        Abnormalities.Remove(AbnormInternalID);
+                    }
+                    return;
+                }
                 // Check for existing abnormalities before making a new one
-                if (Abnormalities[AbnormInternalID] != null) { Abnormalities[AbnormInternalID].UpdateAbnormalityInfo(Type, AbnormInternalID, Duration, Stack, AbnormNumber, IsDebuff, (HasConditions && Duration == 0), Abnormalities.GetAbnormalityIconByID(Type, AbnormNumber)); } 
+                if (Abnormalities[AbnormInternalID] != null) { Abnormalities[AbnormInternalID].UpdateAbnormalityInfo(Type, AbnormInternalID, Duration, Stack, AbnormNumber, IsDebuff, IsInfinite, Abnormalities.GetAbnormalityIconByID(Type, AbnormNumber)); } 
                 else {
                     Abnormality NewAbnorm = new Abnormality();
-                    NewAbnorm.UpdateAbnormalityInfo(Type, AbnormInternalID, Duration, Stack, AbnormNumber, IsDebuff, (HasConditions && Duration == 0), Abnormalities.GetAbnormalityIconByID(Type, AbnormNumber));
+                    NewAbnorm.UpdateAbnormalityInfo(Type, AbnormInternalID, Duration, Stack, AbnormNumber, IsDebuff, IsInfinite, Abnormalities.GetAbnormalityIconByID(Type, AbnormNumber));
                     Abnormalities.Add(AbnormInternalID, NewAbnorm);
                 }
             }
