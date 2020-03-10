@@ -1,0 +1,105 @@
+﻿<widget:WidgetSettings x:Class="HunterPie.GUI.Widgets.Abnormality_Widget.AbnormalityTraySettings"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:widget="clr-namespace:HunterPie.GUI"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:HunterPie.GUI.Widgets.Abnormality_Widget"
+        mc:Ignorable="d"
+        Title="Abnormality Tray Settings" Height="450" Width="800" Background="#CC0C0C0C" Foreground="{x:Null}" WindowStyle="None" BorderThickness="1" AllowsTransparency="True" Topmost="True" ResizeMode="CanResizeWithGrip" MinWidth="600" MinHeight="400">
+    <widget:WidgetSettings.Resources>
+        <ResourceDictionary>
+            <ResourceDictionary.MergedDictionaries>
+                <ResourceDictionary Source="/Resources/ConsoleResources.xaml"/>
+                <ResourceDictionary Source="/Resources/Resources.xaml"/>
+            </ResourceDictionary.MergedDictionaries>
+            <Style TargetType="{x:Type ToolTip}">
+                <Setter Property="Foreground" Value="WhiteSmoke"/>
+                <Setter Property="Background" Value="#CC080808"/>
+                <Setter Property="BorderBrush" Value="Black"/>
+            </Style>
+            <Style TargetType="{x:Type TabItem}">
+                <Setter Property="Background" Value="#171717"/>
+                <Setter Property="Foreground" Value="#FF9C9C9C"/>
+                <Setter Property="FontSize" Value="16"/>
+                <Setter Property="Opacity" Value="0.8"/>
+                <Setter Property="Template">
+                    <Setter.Value>
+                        <ControlTemplate TargetType="{x:Type TabItem}">
+                            <Border x:Name="PART_Border" BorderThickness="1,1,1,1" BorderBrush="{x:Null}" Margin="0,0,-5,0" Background="#FF080808" CornerRadius="2,2,0,0" Height="29">
+                                <ContentPresenter ContentSource="Header" Margin="5" />
+                            </Border>
+
+                            <ControlTemplate.Triggers>
+                                <Trigger Property="IsSelected" Value="True">
+                                    <Setter Property="Opacity" Value="1"/>
+                                    <Setter TargetName="PART_Border" Property="BorderBrush" Value="Black" />
+                                    <Setter Property="Background" Value="#FF060606"/>
+                                    <Setter Property="Foreground" Value="WhiteSmoke"/>
+                                </Trigger>
+                            </ControlTemplate.Triggers>
+                        </ControlTemplate>
+                    </Setter.Value>
+                </Setter>
+            </Style>
+        </ResourceDictionary>
+    </widget:WidgetSettings.Resources>
+    <Grid>
+        <TabControl Margin="0,82,0,10" BorderBrush="#FF0F0F0F" Background="Transparent">
+            <TabItem Padding="6,2">
+                <TabItem.Header>
+                    <Canvas Width="120" Margin="0,4,0,0" Cursor="Arrow">
+                        <Image Source="{StaticResource ICON_HUNTINGHORN}" Width="15" Height="15"/>
+                        <TextBlock Text="Hunting Horn" Margin="16,-4,0,0"/>
+                    </Canvas>
+                </TabItem.Header>
+                <Grid>
+                    <WrapPanel x:Name="HuntingHornBuffs" ScrollViewer.VerticalScrollBarVisibility="Auto">
+
+                    </WrapPanel>
+                </Grid>
+            </TabItem>
+            <TabItem>
+                <TabItem.Header>
+                    <Canvas Width="83" Margin="0,4,0,0">
+                        <Image Source="{StaticResource ICON_ORCHESTRA}" Width="20" Height="20" Canvas.Left="-4" Canvas.Top="-3"/>
+                        <TextBlock Text="Orchestra" Margin="16,-4,0,0"/>
+                    </Canvas>
+                </TabItem.Header>
+                <Grid Background="Transparent">
+                    <WrapPanel x:Name="PalicoBuffs" ScrollViewer.VerticalScrollBarVisibility="Auto">
+
+                    </WrapPanel>
+                </Grid>
+            </TabItem>
+            <TabItem>
+                <TabItem.Header>
+                    <Canvas Width="75" Margin="0,4,0,0">
+                        <Image Source="{StaticResource ELEMENT_FIRE}" Width="15" Height="15"/>
+                        <TextBlock Text="Debuffs" Margin="16,-4,0,0"/>
+                    </Canvas>
+                </TabItem.Header>
+                <Grid Background="Transparent">
+                    <WrapPanel x:Name="Debuffs" ScrollViewer.VerticalScrollBarVisibility="Auto">
+
+                    </WrapPanel>
+                </Grid>
+            </TabItem>
+            <TabItem>
+                <TabItem.Header>
+                    <Canvas Width="115" Margin="0,4,0,0">
+                        <Image Source="{StaticResource ITEM_DEMONDRUG}" Width="15" Height="15"/>
+                        <TextBlock Text="Consumables" Margin="16,-4,0,0"/>
+                    </Canvas>
+                </TabItem.Header>
+                <Grid Background="Transparent">
+                    <WrapPanel x:Name="ConsumableBuffs" ScrollViewer.VerticalScrollBarVisibility="Auto"/>
+                </Grid>
+            </TabItem>
+        </TabControl>
+        <TextBlock Cursor="Hand" Margin="0,0,1,0" Text="X" VerticalAlignment="Top" HorizontalAlignment="Right" Width="31" Height="31" Foreground="#FFB9B9B9" FontWeight="Bold" FontSize="22" FlowDirection="RightToLeft" Padding="8,0,0,0" MouseLeftButtonDown="OnCloseButtonClick"/>
+        <Image Source="{StaticResource ICON_SETTINGS}"  Width="20" Height="20" Margin="6,5,0,0" VerticalAlignment="Top" HorizontalAlignment="Left"/>
+        <TextBlock Foreground="WhiteSmoke" FontSize="20"  HorizontalAlignment="Left" Margin="31,0,0,0" TextWrapping="Wrap" Text="Abnormalities Settings" VerticalAlignment="Top" Height="31" TextOptions.TextHintingMode="Fixed"/>
+        <Rectangle Fill="#7F080808" Height="31" VerticalAlignment="Top" MouseLeftButtonDown="OnDragWindow" Margin="0,0,32,0"/>
+    </Grid>
+</widget:WidgetSettings>

@@ -81,12 +81,16 @@ namespace HunterPie.GUI.Widgets.Abnormality_Widget.Parts {
 
         public bool Equals(AbnormalityControl other) {
             if (other == null) return false;
-            else return this.Context.Duration.Equals(other.Context.Duration);
+            float ThisDurationPercentage = this.Context.Duration / this.Context.MaxDuration;
+            float OtherDurationPercentage = other.Context.Duration / other.Context.MaxDuration;
+            return ThisDurationPercentage.Equals(OtherDurationPercentage);
         }
 
         public int CompareTo(AbnormalityControl other) {
-            if (this.Context.Duration > other.Context.Duration) return -1;
-            else if (this.Context.Duration < other.Context.Duration) return 1;
+            float ThisDurationPercentage = this.Context.MaxDuration > 0 ? this.Context.Duration / this.Context.MaxDuration : 2;
+            float OtherDurationPercentage = other.Context.MaxDuration > 0 ? other.Context.Duration / other.Context.MaxDuration : 2;
+            if (ThisDurationPercentage > OtherDurationPercentage) return -1;
+            else if (ThisDurationPercentage < OtherDurationPercentage) return 1;
             else if (this.Equals(other)) return 0;
             else return 0;
         }

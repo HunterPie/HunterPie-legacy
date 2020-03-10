@@ -4,12 +4,18 @@
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-        xmlns:local="clr-namespace:HunterPie.GUI.Widgets.Abnormality_Widget"
-        xmlns:Parts="clr-namespace:HunterPie.GUI.Widgets.Abnormality_Widget.Parts"
         mc:Ignorable="d"
         Title="AbnormalityContainer" Top="500" Left="300" MinHeight="40" MinWidth="40" SizeToContent="WidthAndHeight" Background="{x:Null}" WindowStyle="None" AllowsTransparency="True" ShowInTaskbar="False" Topmost="True" Closing="OnClosing" MouseEnter="OnMouseEnter" MouseDown="OnMouseDown" MouseWheel="OnMouseWheel" MouseLeave="OnMouseLeave" ResizeMode="CanResize" SizeChanged="OnSizeChange">
+    <widget:Widget.Resources>
+        <ResourceDictionary>
+            <ResourceDictionary.MergedDictionaries>
+                <ResourceDictionary Source="/Resources/ConsoleResources.xaml"/>
+            </ResourceDictionary.MergedDictionaries>
+        </ResourceDictionary>
+    </widget:Widget.Resources>
     <Grid>
         <Rectangle Fill="#B20E0E0E" Stroke="#99000000"/>
+        <Image x:Name="SettingsButton" ToolTip="Abnormality tray settings" Opacity="0.8" Panel.ZIndex="9999" Width="20" Height="20" Source="{StaticResource ICON_SETTINGS}" Margin="0,1,1,0" HorizontalAlignment="Right" VerticalAlignment="Top" Cursor="Hand" Visibility="Collapsed" MouseLeftButtonDown="OnSettingsButtonClick"/>
         <WrapPanel x:Name="BuffTray" Margin="1"/>
     </Grid>
 </widget:Widget>

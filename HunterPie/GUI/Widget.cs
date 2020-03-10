@@ -95,6 +95,7 @@ namespace HunterPie.GUI {
         }
 
         public void ForceAlwaysOnTop() {
+            if (this == null) return;
             uint SWP_SHOWWINDOW = 0x0040;
             uint SWP_NOMOVE = 0x0002;
             uint SWP_NOSIZE = 0x0001;

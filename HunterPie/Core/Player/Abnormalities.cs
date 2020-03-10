@@ -23,33 +23,6 @@ namespace HunterPie.Core {
             AbnormalitiesData.LoadXml(Properties.Resources.AbnormalityData);
         }
 
-        public XmlNodeList GetHuntingHornAbnormalities() {
-            XmlNodeList HuntingHornAbnormalitiesData = AbnormalitiesData.SelectNodes("//Abnormalities/HUNTINGHORN_Abnormalities/Abnormality");
-            return HuntingHornAbnormalitiesData;
-        }
-
-        public XmlNodeList GetPalicoAbnormalities() {
-            XmlNodeList PalicoAbnormalitiesData = AbnormalitiesData.SelectNodes("//Abnormalities/PALICO_Abnormalities/Abnormality");
-            return PalicoAbnormalitiesData;
-        }
-
-        public XmlNodeList GetBlightAbnormalities() {
-            XmlNodeList BlightAbnormalitiesData = AbnormalitiesData.SelectNodes("//Abnormalities/DEBUFF_Abnormalities/Abnormality");
-            return BlightAbnormalitiesData;
-        }
-
-        public XmlNodeList GetMiscAbnormalities() {
-            XmlNodeList BlightAbnormalitiesData = AbnormalitiesData.SelectNodes("//Abnormalities/MISC_Abnormalities/Abnormality");
-            return BlightAbnormalitiesData;
-        }
-
-        public string GetAbnormalityIconByID(string Type, int ID) {
-            XmlNode Abnormality = AbnormalitiesData.SelectSingleNode($"//Abnormalities/{Type}_Abnormalities/Abnormality[@ID='{ID}']");
-            string IconName = Abnormality?.Attributes["Icon"].Value;
-            IconName = string.IsNullOrEmpty(IconName) ? "ICON_MISSING" : IconName;
-            return IconName;
-        }
-
         #endregion
 
         #region Events

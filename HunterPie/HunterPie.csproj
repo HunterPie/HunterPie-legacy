@@ -122,6 +122,7 @@
     <Compile Include="Core\Party\Party.cs" />
     <Compile Include="Core\Player\Abnormalities.cs" />
     <Compile Include="Core\Player\Abnormality.cs" />
+    <Compile Include="Core\Player\AbnormalityData.cs" />
     <Compile Include="Core\Player\Activities.cs" />
     <Compile Include="GUIControls\Changelog.xaml.cs">
       <DependentUpon>Changelog.xaml</DependentUpon>
@@ -166,7 +167,15 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
+    <Page Include="GUI\Widgets\Abnormality Widget\AbnormalityTraySettings.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="GUI\Widgets\Abnormality Widget\Parts\AbnormalityControl.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="GUI\Widgets\Abnormality Widget\Parts\AbnormalitySettingControl.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -211,11 +220,18 @@
       <DependentUpon>Debugger.xaml</DependentUpon>
     </Compile>
     <Compile Include="GUI\Overlay.cs" />
+    <Compile Include="GUI\WidgetSettings.cs" />
     <Compile Include="GUI\Widgets\Abnormality Widget\AbnormalityContainer.xaml.cs">
       <DependentUpon>AbnormalityContainer.xaml</DependentUpon>
     </Compile>
+    <Compile Include="GUI\Widgets\Abnormality Widget\AbnormalityTraySettings.xaml.cs">
+      <DependentUpon>AbnormalityTraySettings.xaml</DependentUpon>
+    </Compile>
     <Compile Include="GUI\Widgets\Abnormality Widget\Parts\AbnormalityControl.xaml.cs">
       <DependentUpon>AbnormalityControl.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="GUI\Widgets\Abnormality Widget\Parts\AbnormalitySettingControl.xaml.cs">
+      <DependentUpon>AbnormalitySettingControl.xaml</DependentUpon>
     </Compile>
     <Compile Include="GUI\Widgets\DPSMeter\Meter.xaml.cs">
       <DependentUpon>Meter.xaml</DependentUpon>
@@ -301,7 +317,7 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="address\MonsterHunterWorld.404549.map">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
   </ItemGroup>
   <ItemGroup>

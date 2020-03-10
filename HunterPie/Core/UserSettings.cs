@@ -31,7 +31,7 @@ namespace HunterPie.Core {
             }
 
             public class Overlay {
-                public bool Enabled { get; set; } = false;
+                public bool Enabled { get; set; } = true;
                 public int[] Position { get; set; } = new int[2] { 0, 0 };
                 public bool EnableHardwareAcceleration { get; set; } = true;
                 public bool HideWhenGameIsUnfocused { get; set; } = false;
@@ -110,6 +110,22 @@ namespace HunterPie.Core {
             public class Options {
                 public bool CloseWhenGameCloses { get; set; } = false;
             }
+
+            public class AbnormalitiesWidget {
+                public int ActiveBars { get; set; } = 1;
+                public AbnormalityBar[] BarPresets { get; set; } = new AbnormalityBar[1] { new AbnormalityBar() };
+            }
+
+            public class AbnormalityBar {
+                public string Name { get; set; } = "Abnormality Tray";
+                public int[] Position { get; set; } = new int[2] { 500, 60 };
+                public string Orientation { get; set; } = "Horizontal";
+                public int MaxSize { get; set; } = 0;
+                public double Scale { get; set; } = 1;
+                public string[] AcceptedAbnormalities { get; set; } = new string[1] { "*" };
+                public bool Enabled { get; set; } = true;
+                public byte OrderBy { get; set; } = 0;
+            }
         }
 
         public static void TriggerSettingsEvent() {
@@ -157,13 +173,19 @@ namespace HunterPie.Core {
 
         public static void MakeNewConfig() {
             string d_Config = GetSerializedDefaultConfig();
-            File.WriteAllText(ConfigFileName, d_Config);
+            try {
+                File.WriteAllText(ConfigFileName, d_Config);
+            } catch(Exception err) {
+                Debugger.Log($"Failed to create new config!{err}");
+            }
+            
         }
 
         private static string LoadPlayerSerializedConfig() {
             string configContent;
             try {
                 configContent = File.ReadAllText(ConfigFileName);
+                if (configContent == "null") throw new Exception("Config.json is null");
             } catch(Exception err) {
                 Debugger.Error($"Failed to parse config.json!\n{err}");
                 Debugger.Warn("Generating new config");
@@ -190,10 +212,12 @@ namespace HunterPie.Core {
         }
 
         public static void SaveNewConfig() {
-            string newPlayerConfig = JsonConvert.SerializeObject(PlayerConfig, Formatting.Indented);
-            File.WriteAllText(ConfigFileName, newPlayerConfig);
+            try {
+                string newPlayerConfig = JsonConvert.SerializeObject(PlayerConfig, Formatting.Indented);
+                File.WriteAllText(ConfigFileName, newPlayerConfig);
+            } catch(Exception err) {
+                Debugger.Error($"Failed to save config.json!\n{err}");
+            }
         }
-
-
     }
 }

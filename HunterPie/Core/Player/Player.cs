@@ -408,7 +408,7 @@ namespace HunterPie.Core {
 
         private void GetPlayerHuntingHornAbnormalities(Int64 AbnormalityBaseAddress) {
             // Gets the player abnormalities caused by HH
-            foreach (XmlNode HHBuff in Abnormalities.GetHuntingHornAbnormalities()) {
+            foreach (XmlNode HHBuff in AbnormalityData.GetHuntingHornAbnormalities()) {
                 int BuffOffset = int.Parse(HHBuff.Attributes["Offset"].Value, System.Globalization.NumberStyles.HexNumber);
                 bool IsDebuff = bool.Parse(HHBuff.Attributes["IsDebuff"].Value);
                 int ID = int.Parse(HHBuff.Attributes["ID"].Value);
@@ -418,7 +418,7 @@ namespace HunterPie.Core {
 
         private void GetPlayerPalicoAbnormalities(Int64 AbnormalityBaseAddress) {
             // Gets the player abnormalities caused by palico's skills
-            foreach (XmlNode PalBuff in Abnormalities.GetPalicoAbnormalities()) {
+            foreach (XmlNode PalBuff in AbnormalityData.GetPalicoAbnormalities()) {
                 int BuffOffset = int.Parse(PalBuff.Attributes["Offset"].Value, System.Globalization.NumberStyles.HexNumber);
                 bool IsDebuff = bool.Parse(PalBuff.Attributes["IsDebuff"].Value);
                 int ID = int.Parse(PalBuff.Attributes["ID"].Value);
@@ -429,13 +429,13 @@ namespace HunterPie.Core {
         private void GetPlayerMiscAbnormalities(Int64 AbnormalityBaseAddress) {
             // Gets the player abnormalities caused by consumables and blights
             // Blights
-            foreach (XmlNode Blight in Abnormalities.GetBlightAbnormalities()) {
+            foreach (XmlNode Blight in AbnormalityData.GetBlightAbnormalities()) {
                 int BuffOffset = int.Parse(Blight.Attributes["Offset"].Value, System.Globalization.NumberStyles.HexNumber);
                 bool IsDebuff = bool.Parse(Blight.Attributes["IsDebuff"].Value);
                 int ID = int.Parse(Blight.Attributes["ID"].Value);
                 GetAbnormality("DEBUFF", AbnormalityBaseAddress + BuffOffset, ID, $"DE_{ID}", IsDebuff);
             }
-            foreach (XmlNode MiscBuff in Abnormalities.GetMiscAbnormalities()) {
+            foreach (XmlNode MiscBuff in AbnormalityData.GetMiscAbnormalities()) {
                 int BuffOffset = int.Parse(MiscBuff.Attributes["Offset"].Value, System.Globalization.NumberStyles.HexNumber);
                 bool IsDebuff = bool.Parse(MiscBuff.Attributes["IsDebuff"].Value);
                 int ID = int.Parse(MiscBuff.Attributes["ID"].Value);
@@ -480,10 +480,10 @@ namespace HunterPie.Core {
                     return;
                 }
                 // Check for existing abnormalities before making a new one
-                if (Abnormalities[AbnormInternalID] != null) { Abnormalities[AbnormInternalID].UpdateAbnormalityInfo(Type, AbnormInternalID, Duration, Stack, AbnormNumber, IsDebuff, IsInfinite, Abnormalities.GetAbnormalityIconByID(Type, AbnormNumber)); } 
+                if (Abnormalities[AbnormInternalID] != null) { Abnormalities[AbnormInternalID].UpdateAbnormalityInfo(Type, AbnormInternalID, Duration, Stack, AbnormNumber, IsDebuff, IsInfinite, AbnormalityData.GetAbnormalityIconByID(Type, AbnormNumber)); } 
                 else {
                     Abnormality NewAbnorm = new Abnormality();
-                    NewAbnorm.UpdateAbnormalityInfo(Type, AbnormInternalID, Duration, Stack, AbnormNumber, IsDebuff, IsInfinite, Abnormalities.GetAbnormalityIconByID(Type, AbnormNumber));
+                    NewAbnorm.UpdateAbnormalityInfo(Type, AbnormInternalID, Duration, Stack, AbnormNumber, IsDebuff, IsInfinite, AbnormalityData.GetAbnormalityIconByID(Type, AbnormNumber));
                     Abnormalities.Add(AbnormInternalID, NewAbnorm);
                 }
             }

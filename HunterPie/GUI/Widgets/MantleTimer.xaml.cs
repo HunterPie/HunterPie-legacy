@@ -85,18 +85,20 @@ namespace HunterPie.GUI.Widgets {
         }
 
         private void OnCooldownChange(object source, MantleEventArgs args) {
-            Dispatcher.BeginInvoke(System.Windows.Threading.DispatcherPriority.Background, new Action(() => {
-                if (args.Cooldown <= 0) {
+            if (args.Cooldown <= 0) {
+                Dispatch(() => {
                     this.WidgetHasContent = false;
                     ChangeVisibility();
-                    return;
-                }
+                });
+                return;
+            }
+            Dispatch(() => {
                 this.WidgetHasContent = true;
                 ChangeVisibility();
                 string FormatMantleName = $"({(int)args.Cooldown}) {args.Name.ToUpper()}";
                 MantleName.Content = FormatMantleName;
                 MantleTimerArc.EndAngle = ConvertPercentageIntoAngle(args.Cooldown / args.staticCooldown);
-            }));
+            });
         }
 
         private void OnClosing(object sender, System.ComponentModel.CancelEventArgs e) {

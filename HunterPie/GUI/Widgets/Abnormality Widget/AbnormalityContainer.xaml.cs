@@ -20,6 +20,7 @@ namespace HunterPie.GUI.Widgets.Abnormality_Widget {
     public partial class AbnormalityContainer : Widget {
 
         Dictionary<string, Parts.AbnormalityControl> ActiveAbnormalities = new Dictionary<string, Parts.AbnormalityControl>();
+        AbnormalityTraySettings AbnormalityWidgetSettings;
         string AcceptableType;
         Player Context;
 
@@ -49,6 +50,7 @@ namespace HunterPie.GUI.Widgets.Abnormality_Widget {
         public override void EnterWidgetDesignMode() {
             base.EnterWidgetDesignMode();
             this.ResizeMode = ResizeMode.CanResizeWithGrip;
+            this.SettingsButton.Visibility = Visibility.Visible;
             RemoveWindowTransparencyFlag();
         }
 
@@ -56,6 +58,7 @@ namespace HunterPie.GUI.Widgets.Abnormality_Widget {
             base.LeaveWidgetDesignMode();
             this.ResizeMode = ResizeMode.CanResize;
             SizeToContent = SizeToContent.WidthAndHeight;
+            this.SettingsButton.Visibility = Visibility.Collapsed;
             ApplyWindowTransparencyFlag();
             //SaveSettings();
         }
@@ -98,7 +101,7 @@ namespace HunterPie.GUI.Widgets.Abnormality_Widget {
                 if (this.ActiveAbnormalities.Count == 0) {
                     this.WidgetHasContent = false;
                 }
-                foreach(Parts.AbnormalityControl Abnorm in this.ActiveAbnormalities.Values) {
+                foreach(Parts.AbnormalityControl Abnorm in ActiveAbnormalities.Values) {
                     this.BuffTray.Children.Add(Abnorm);
                 }
             }));
@@ -138,9 +141,9 @@ namespace HunterPie.GUI.Widgets.Abnormality_Widget {
         private void OnMouseLeave(object sender, MouseEventArgs e) {
             this.MouseOver = false;
         }
-        #endregion
+
         private void OnSizeChange(object sender, SizeChangedEventArgs e) {
-            
+
             // This means the user didn't resize the widget
             if (this.BuffTray.ActualWidth + 4 == e.NewSize.Width && this.BuffTray.ActualHeight + 4 == e.NewSize.Height) return;
             // Only resize if in design mode
@@ -154,5 +157,15 @@ namespace HunterPie.GUI.Widgets.Abnormality_Widget {
                 this.BuffTray.MaxHeight = e.NewSize.Height;
             }
         }
+
+        private void OnSettingsButtonClick(object sender, MouseButtonEventArgs e) {
+            if (this.AbnormalityWidgetSettings == null || this.AbnormalityWidgetSettings.IsClosed) {
+                AbnormalityWidgetSettings = new AbnormalityTraySettings();
+                AbnormalityWidgetSettings.Show();
+            }
+        }
+        #endregion
+
+
     }
 }

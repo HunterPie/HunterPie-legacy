@@ -44,6 +44,7 @@ namespace HunterPie {
             Debugger.Warn("Initializing HunterPie!");
             GStrings.InitStrings(UserSettings.PlayerConfig.HunterPie.Language);
             MonsterData.LoadMonsterData();
+            AbnormalityData.LoadAbnormalityData();
             StartEverything();
         }
 
