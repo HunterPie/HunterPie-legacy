@@ -19,9 +19,18 @@ namespace HunterPie.GUI.Widgets.Abnormality_Widget {
     /// Interaction logic for AbnormalityTraySettings.xaml
     /// </summary>
     public partial class AbnormalityTraySettings : WidgetSettings {
-        public AbnormalityTraySettings() {
+
+        List<Parts.AbnormalitySettingControl> AbnormalitiesList = new List<Parts.AbnormalitySettingControl>();
+        Widget widgetParent;
+        int BuffTrayIndex;
+
+        public AbnormalityTraySettings(Widget parent, int TrayIndex) {
             InitializeComponent();
+            BuffTrayIndex = TrayIndex;
+            widgetParent = parent;
+            this.WindowTitle.Text = $"Settings: {UserSettings.PlayerConfig.Overlay.AbnormalitiesWidget.BarPresets[BuffTrayIndex].Name}";
             PopulateAbnormalities();
+            OrientationSwitcher.IsEnabled = UserSettings.PlayerConfig.Overlay.AbnormalitiesWidget.BarPresets[BuffTrayIndex].Orientation == "Horizontal";
         }
 
         private void PopulateAbnormalities() {
@@ -36,10 +45,13 @@ namespace HunterPie.GUI.Widgets.Abnormality_Widget {
                 string Type = "HUNTINGHORN";
                 int ID = int.Parse(Abnorm.Attributes["ID"].Value);
                 string Name = GStrings.GetAbnormalityByID(Type, ID, 0);
+                string InternalID = $"HH_{ID}";
+                bool IsEnabled = UserSettings.PlayerConfig.Overlay.AbnormalitiesWidget.BarPresets[BuffTrayIndex].AcceptedAbnormalities.Contains(InternalID);
                 ImageSource Icon = TryFindResource(Abnorm.Attributes["Icon"].Value) as ImageSource ?? FindResource("ICON_MISSING") as ImageSource;
                 Icon?.Freeze();
                 Parts.AbnormalitySettingControl AbnormDisplay = new Parts.AbnormalitySettingControl();
-                AbnormDisplay.SetAbnormalityInfo(Icon, Name, false);
+                AbnormDisplay.SetAbnormalityInfo(Icon, Name, InternalID, IsEnabled);
+                AbnormalitiesList.Add(AbnormDisplay);
                 HuntingHornBuffs.Children.Add(AbnormDisplay);
             }
         }
@@ -49,10 +61,13 @@ namespace HunterPie.GUI.Widgets.Abnormality_Widget {
                 string Type = "PALICO";
                 int ID = int.Parse(Abnorm.Attributes["ID"].Value);
                 string Name = GStrings.GetAbnormalityByID(Type, ID, 0);
+                string InternalID = $"PAL_{ID}";
+                bool IsEnabled = UserSettings.PlayerConfig.Overlay.AbnormalitiesWidget.BarPresets[BuffTrayIndex].AcceptedAbnormalities.Contains(InternalID);
                 ImageSource Icon = TryFindResource(Abnorm.Attributes["Icon"].Value) as ImageSource ?? FindResource("ICON_MISSING") as ImageSource;
                 Icon?.Freeze();
                 Parts.AbnormalitySettingControl AbnormDisplay = new Parts.AbnormalitySettingControl();
-                AbnormDisplay.SetAbnormalityInfo(Icon, Name, false);
+                AbnormDisplay.SetAbnormalityInfo(Icon, Name, InternalID, IsEnabled);
+                AbnormalitiesList.Add(AbnormDisplay);
                 PalicoBuffs.Children.Add(AbnormDisplay);
             }
         }
@@ -62,10 +77,13 @@ namespace HunterPie.GUI.Widgets.Abnormality_Widget {
                 string Type = "DEBUFF";
                 int ID = int.Parse(Abnorm.Attributes["ID"].Value);
                 string Name = GStrings.GetAbnormalityByID(Type, ID, 0);
+                string InternalID = $"DE_{ID}";
+                bool IsEnabled = UserSettings.PlayerConfig.Overlay.AbnormalitiesWidget.BarPresets[BuffTrayIndex].AcceptedAbnormalities.Contains(InternalID);
                 ImageSource Icon = TryFindResource(Abnorm.Attributes["Icon"].Value) as ImageSource ?? FindResource("ICON_MISSING") as ImageSource;
                 Icon?.Freeze();
                 Parts.AbnormalitySettingControl AbnormDisplay = new Parts.AbnormalitySettingControl();
-                AbnormDisplay.SetAbnormalityInfo(Icon, Name, false);
+                AbnormDisplay.SetAbnormalityInfo(Icon, Name, InternalID, IsEnabled);
+                AbnormalitiesList.Add(AbnormDisplay);
                 Debuffs.Children.Add(AbnormDisplay);
             }
         }
@@ -75,10 +93,13 @@ namespace HunterPie.GUI.Widgets.Abnormality_Widget {
                 string Type = "MISC";
                 int ID = int.Parse(Abnorm.Attributes["ID"].Value);
                 string Name = GStrings.GetAbnormalityByID(Type, ID, 0);
+                string InternalID = $"MISC_{ID}";
+                bool IsEnabled = UserSettings.PlayerConfig.Overlay.AbnormalitiesWidget.BarPresets[BuffTrayIndex].AcceptedAbnormalities.Contains(InternalID);
                 ImageSource Icon = TryFindResource(Abnorm.Attributes["Icon"].Value) as ImageSource ?? FindResource("ICON_MISSING") as ImageSource;
                 Icon?.Freeze();
                 Parts.AbnormalitySettingControl AbnormDisplay = new Parts.AbnormalitySettingControl();
-                AbnormDisplay.SetAbnormalityInfo(Icon, Name, false);
+                AbnormDisplay.SetAbnormalityInfo(Icon, Name, InternalID, IsEnabled);
+                AbnormalitiesList.Add(AbnormDisplay);
                 ConsumableBuffs.Children.Add(AbnormDisplay);
             }
         }
@@ -89,6 +110,27 @@ namespace HunterPie.GUI.Widgets.Abnormality_Widget {
 
         private void OnDragWindow(object sender, MouseButtonEventArgs e) {
             this.DragMove();
+        }
+
+        private void OnSaveButtonClick(object sender, RoutedEventArgs e) {
+            List<string> EnabledAbnormalities = new List<string>();
+            foreach (Parts.AbnormalitySettingControl AbnormDisplay in AbnormalitiesList) {
+                if (AbnormDisplay.IsEnabled) EnabledAbnormalities.Add(AbnormDisplay.InternalID);
+            }
+            UserSettings.PlayerConfig.Overlay.AbnormalitiesWidget.BarPresets[BuffTrayIndex].AcceptedAbnormalities = EnabledAbnormalities.ToArray();
+            UserSettings.PlayerConfig.Overlay.AbnormalitiesWidget.BarPresets[BuffTrayIndex].Orientation = OrientationSwitcher.IsEnabled ? "Horizontal" : "Vertical";
+            UserSettings.PlayerConfig.Overlay.AbnormalitiesWidget.BarPresets[BuffTrayIndex].Position[0] = (int)widgetParent.Left;
+            UserSettings.PlayerConfig.Overlay.AbnormalitiesWidget.BarPresets[BuffTrayIndex].Position[1] = (int)widgetParent.Top;
+            UserSettings.SaveNewConfig();
+        }
+
+        private void OnClosing(object sender, System.ComponentModel.CancelEventArgs e) {
+            this.widgetParent = null;
+            HuntingHornBuffs.Children.Clear();
+            PalicoBuffs.Children.Clear();
+            Debuffs.Children.Clear();
+            ConsumableBuffs.Children.Clear();
+            this.AbnormalitiesList.Clear();
         }
     }
 }

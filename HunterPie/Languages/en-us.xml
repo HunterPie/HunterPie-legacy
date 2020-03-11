@@ -152,6 +152,7 @@
   <Abnormalities>
     <Abnormality ID="UNKNOWN_ABNORMALITY" Name="Unknown Buff (ID: {AbnormalityID})"/>
     <Abnormality ID="HUNTINGHORN_000_00" Name="Self Improvement"/>
+    <Abnormality ID="HUNTINGHORN_999_00" Name="Attack Up + Deflect. Attack Prevention"/>
     <Abnormality ID="HUNTINGHORN_001_00" Name="Attack Up (S)"/>
     <Abnormality ID="HUNTINGHORN_001_01" Name="Attack Up (L)"/>
     <Abnormality ID="HUNTINGHORN_002_00" Name="Attack Up (L)"/>
@@ -212,6 +213,7 @@
     <Abnormality ID="HUNTINGHORN_054_00" Name="Extended Health Recovery"/>
     <Abnormality ID="HUNTINGHORN_055_00" Name="Speed Boost + Evade Window Up"/>
     <Abnormality ID="HUNTINGHORN_056_00" Name="Elemental Effectiveness"/>
+    <Abnormality ID="HUNTINGHORN_943_00" Name="Elemental Effectiveness"/>
     <Abnormality ID="PALICO_000_00" Name="Resuscitate"/>
     <Abnormality ID="PALICO_001_00" Name="Attack Up (S)"/>
     <Abnormality ID="PALICO_002_00" Name="Attack Up (L)"/>
@@ -257,8 +259,10 @@
     <Abnormality ID="MISC_008_01" Name="Adamant Pill"/>
     <Abnormality ID="MISC_013_00" Name="Demon Powder"/>
     <Abnormality ID="MISC_014_00" Name="Hardshell Powder"/>
+    <Abnormality ID="MISC_015_00" Name="Demondrug"/>
     <Abnormality ID="MISC_015_01" Name="Demondrug"/>
     <Abnormality ID="MISC_015_02" Name="Mega Demondrug"/>
+    <Abnormality ID="MISC_016_00" Name="Armorskin"/>
     <Abnormality ID="MISC_016_01" Name="Armorskin"/>
     <Abnormality ID="MISC_016_02" Name="Mega Armorskin"/>
     <Abnormality ID="MISC_023_00" Name="Cool Drink"/>

@@ -89,6 +89,7 @@ namespace HunterPie.GUIControls {
             settingsUI.SecondPlayerColor.Color = settings.Overlay.DPSMeter.PartyMembers[1].Color;
             settingsUI.ThirdPlayerColor.Color = settings.Overlay.DPSMeter.PartyMembers[2].Color;
             settingsUI.FourthPlayerColor.Color = settings.Overlay.DPSMeter.PartyMembers[3].Color;
+
         }
 
         private void saveSettings_Click(object sender, RoutedEventArgs e) {
@@ -149,6 +150,13 @@ namespace HunterPie.GUIControls {
             settings.Overlay.DPSMeter.PartyMembers[2].Color = settingsUI.ThirdPlayerColor.Color;
             settings.Overlay.DPSMeter.PartyMembers[3].Color = settingsUI.FourthPlayerColor.Color;
 
+            // Abnormality bars
+            int i = 0;
+            foreach (Custom_Controls.BuffBarSettingControl abnormBar in settingsUI.BuffTrays.Children) {
+                settings.Overlay.AbnormalitiesWidget.BarPresets[i].Name = abnormBar.PresetName;
+                settings.Overlay.AbnormalitiesWidget.BarPresets[i].Enabled = abnormBar.Enabled;
+                i++;
+            }
 
             // and then save settings
             UserSettings.SaveNewConfig();

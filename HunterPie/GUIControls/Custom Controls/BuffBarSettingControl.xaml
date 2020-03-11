@@ -1,0 +1,14 @@
+﻿<UserControl x:Class="HunterPie.GUIControls.Custom_Controls.BuffBarSettingControl"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:local="clr-namespace:HunterPie.GUIControls.Custom_Controls"
+             mc:Ignorable="d" 
+             Height="50" Width="500">
+    <Canvas Background="#FF171717">
+        <TextBox x:Name="BarPresetName" Cursor="Arrow" TextWrapping="Wrap" Text="ABNORMALITY BAR" Height="50" Width="320" SelectionBrush="#AF0000" Foreground="WhiteSmoke" Background="Transparent" BorderBrush="Transparent" FontSize="14" VerticalScrollBarVisibility="Disabled" MaxWidth="320" MaxHeight="50" Padding="4,13,0,0" FontWeight="Bold"/>
+        <TextBlock Canvas.Left="343" Foreground="WhiteSmoke" TextWrapping="Wrap" Text="Enable" Height="22" Width="54" Canvas.Top="14" FontSize="16" FontWeight="Light"/>
+        <local:Switcher x:Name="SwitchEnableBar" Height="24" Canvas.Left="402" Canvas.Top="12" Width="50"/>
+    </Canvas>
+</UserControl>

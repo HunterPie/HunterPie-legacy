@@ -23,38 +23,8 @@ namespace HunterPie.GUI.Widgets {
             ApplySettings();
             SetWindowFlags();
             SetContext(Context);
-#if false
-
-            CompositionTarget.Rendering += CompositionTarget_Rendering;
-            System.Threading.Thread x = new System.Threading.Thread(new System.Threading.ThreadStart(cb));
-            x.IsBackground = true;
-            x.Start();
-#endif
-        }
-        
-#if false // A simple and bad FPS counter
-        int x = 0;
-        private void cb() {
-            if (x == 0) {
-                System.Threading.Thread.Sleep(1000);
-                x = 1;
-                cb();
-            }
-            Logger.Debugger.Log($"{this.frames / (elapsed / 10000 / 1000)}");
-            System.Threading.Thread.Sleep(1000);
-            cb();
         }
 
-        DateTime start = DateTime.UtcNow;
-        int frames = 0;
-        long elapsed;
-        private void CompositionTarget_Rendering(object sender, EventArgs e) {
-            RenderingEventArgs x = (RenderingEventArgs)e;
-            elapsed = x.RenderingTime.Ticks;
-            frames++;
-
-        }
-#endif
         public override void EnterWidgetDesignMode() {
             base.EnterWidgetDesignMode();
             RemoveWindowTransparencyFlag();

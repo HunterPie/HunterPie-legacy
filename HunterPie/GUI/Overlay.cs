@@ -64,7 +64,17 @@ namespace HunterPie.GUI {
             Widgets.Add(new Widgets.MantleTimer(1, ctx.Player.SecondaryMantle));
             Widgets.Add(new Widgets.MonsterContainer(ctx));
             Widgets.Add(new Widgets.DPSMeter.Meter(ctx));
-            Widgets.Add(new Widgets.Abnormality_Widget.AbnormalityContainer(ctx.Player, "*"));
+            
+            for (int AbnormTrayIndex = 0; AbnormTrayIndex < UserSettings.PlayerConfig.Overlay.AbnormalitiesWidget.ActiveBars; AbnormTrayIndex++) {
+                Widgets.Add(new Widgets.Abnormality_Widget.AbnormalityContainer(ctx.Player, AbnormTrayIndex));
+            }
+            
+        }
+
+        private void CreateAbnormBarSettingsIfNeeded() {
+            if (UserSettings.PlayerConfig.Overlay.AbnormalitiesWidget.ActiveBars > UserSettings.PlayerConfig.Overlay.AbnormalitiesWidget.BarPresets.Length) {
+                UserSettings.AddNewAbnormalityBar(UserSettings.PlayerConfig.Overlay.AbnormalitiesWidget.ActiveBars - UserSettings.PlayerConfig.Overlay.AbnormalitiesWidget.BarPresets.Length);
+            }
         }
 
         private void DestroyWidgets() {

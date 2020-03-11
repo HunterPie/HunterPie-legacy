@@ -4,15 +4,57 @@
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:Custom="clr-namespace:HunterPie.GUIControls.Custom_Controls"
         xmlns:local="clr-namespace:HunterPie.GUI.Widgets.Abnormality_Widget"
         mc:Ignorable="d"
-        Title="Abnormality Tray Settings" Height="450" Width="800" Background="#CC0C0C0C" Foreground="{x:Null}" WindowStyle="None" BorderThickness="1" AllowsTransparency="True" Topmost="True" ResizeMode="CanResizeWithGrip" MinWidth="600" MinHeight="400">
+        Title="Abnormality Tray Settings" Height="577.65" Width="843" Background="#DD0C0C0C" Foreground="{x:Null}" WindowStyle="None" BorderThickness="1" AllowsTransparency="True" Topmost="True" ResizeMode="CanResizeWithGrip" MinWidth="600" MinHeight="400" Closing="OnClosing">
     <widget:WidgetSettings.Resources>
         <ResourceDictionary>
             <ResourceDictionary.MergedDictionaries>
                 <ResourceDictionary Source="/Resources/ConsoleResources.xaml"/>
                 <ResourceDictionary Source="/Resources/Resources.xaml"/>
             </ResourceDictionary.MergedDictionaries>
+            <Style x:Key="ButtonStyle" TargetType="{x:Type Button}">
+                <Setter Property="Foreground" Value="{DynamicResource {x:Static SystemColors.ControlTextBrushKey}}"/>
+                <Setter Property="BorderThickness" Value="1"/>
+                <Setter Property="HorizontalContentAlignment" Value="Center"/>
+                <Setter Property="VerticalContentAlignment" Value="Center"/>
+                <Setter Property="Padding" Value="1"/>
+                <Setter Property="Template">
+                    <Setter.Value>
+                        <ControlTemplate TargetType="{x:Type Button}">
+                            <Border x:Name="border" BorderBrush="{TemplateBinding BorderBrush}" BorderThickness="{TemplateBinding BorderThickness}" Background="{TemplateBinding Background}" SnapsToDevicePixels="true" CornerRadius="5">
+                                <ContentPresenter x:Name="contentPresenter" Focusable="False" HorizontalAlignment="{TemplateBinding HorizontalContentAlignment}" Margin="{TemplateBinding Padding}" RecognizesAccessKey="True" SnapsToDevicePixels="{TemplateBinding SnapsToDevicePixels}" VerticalAlignment="{TemplateBinding VerticalContentAlignment}"/>
+                            </Border>
+                            <ControlTemplate.Triggers>
+                                <Trigger Property="IsDefaulted" Value="true">
+                                    <Setter Property="BorderBrush" TargetName="border" Value="{DynamicResource {x:Static SystemColors.HighlightBrushKey}}"/>
+                                </Trigger>
+                                <Trigger Property="IsMouseOver" Value="true">
+                                    <Trigger.EnterActions>
+                                        <BeginStoryboard>
+                                            <Storyboard Storyboard.TargetProperty="(Background).(SolidColorBrush.Color)">
+                                                <ColorAnimation To="#FFAA0D0D" Duration="0:0:0.250" />
+                                            </Storyboard>
+                                        </BeginStoryboard>
+                                    </Trigger.EnterActions>
+                                    <Trigger.ExitActions>
+                                        <BeginStoryboard>
+                                            <Storyboard Storyboard.TargetProperty="(Background).(SolidColorBrush.Color)">
+                                                <ColorAnimation To="#FFD62424" Duration="0:0:0.250" />
+                                            </Storyboard>
+                                        </BeginStoryboard>
+                                    </Trigger.ExitActions>
+                                </Trigger>
+                                <Trigger Property="IsPressed" Value="true">
+                                    <Setter Property="Background" TargetName="border" Value="#FF930505"/>
+                                    <Setter Property="BorderBrush" TargetName="border" Value="#FF171717"/>
+                                </Trigger>
+                            </ControlTemplate.Triggers>
+                        </ControlTemplate>
+                    </Setter.Value>
+                </Setter>
+            </Style>
             <Style TargetType="{x:Type ToolTip}">
                 <Setter Property="Foreground" Value="WhiteSmoke"/>
                 <Setter Property="Background" Value="#CC080808"/>
@@ -29,7 +71,6 @@
                             <Border x:Name="PART_Border" BorderThickness="1,1,1,1" BorderBrush="{x:Null}" Margin="0,0,-5,0" Background="#FF080808" CornerRadius="2,2,0,0" Height="29">
                                 <ContentPresenter ContentSource="Header" Margin="5" />
                             </Border>
-
                             <ControlTemplate.Triggers>
                                 <Trigger Property="IsSelected" Value="True">
                                     <Setter Property="Opacity" Value="1"/>
@@ -45,7 +86,7 @@
         </ResourceDictionary>
     </widget:WidgetSettings.Resources>
     <Grid>
-        <TabControl Margin="0,82,0,10" BorderBrush="#FF0F0F0F" Background="Transparent">
+        <TabControl Margin="0,178,0,55" BorderBrush="#FF0F0F0F" Background="Transparent">
             <TabItem Padding="6,2">
                 <TabItem.Header>
                     <Canvas Width="120" Margin="0,4,0,0" Cursor="Arrow">
@@ -54,9 +95,7 @@
                     </Canvas>
                 </TabItem.Header>
                 <Grid>
-                    <WrapPanel x:Name="HuntingHornBuffs" ScrollViewer.VerticalScrollBarVisibility="Auto">
-
-                    </WrapPanel>
+                    <WrapPanel x:Name="HuntingHornBuffs" ScrollViewer.VerticalScrollBarVisibility="Visible"/>
                 </Grid>
             </TabItem>
             <TabItem>
@@ -67,9 +106,7 @@
                     </Canvas>
                 </TabItem.Header>
                 <Grid Background="Transparent">
-                    <WrapPanel x:Name="PalicoBuffs" ScrollViewer.VerticalScrollBarVisibility="Auto">
-
-                    </WrapPanel>
+                    <WrapPanel x:Name="PalicoBuffs" ScrollViewer.VerticalScrollBarVisibility="Auto"/>
                 </Grid>
             </TabItem>
             <TabItem>
@@ -80,9 +117,7 @@
                     </Canvas>
                 </TabItem.Header>
                 <Grid Background="Transparent">
-                    <WrapPanel x:Name="Debuffs" ScrollViewer.VerticalScrollBarVisibility="Auto">
-
-                    </WrapPanel>
+                    <WrapPanel x:Name="Debuffs" ScrollViewer.VerticalScrollBarVisibility="Auto"/>
                 </Grid>
             </TabItem>
             <TabItem>
@@ -97,9 +132,12 @@
                 </Grid>
             </TabItem>
         </TabControl>
+        <Custom:Switcher x:Name="OrientationSwitcher" Margin="18,55,0,0" VerticalAlignment="Top" Height="24" HorizontalAlignment="Left" Width="51" />
+        <TextBlock HorizontalAlignment="Left" Margin="74,55,0,0" TextWrapping="Wrap" FontSize="15" Text="Allign abnormalities horizontally" Foreground="WhiteSmoke" VerticalAlignment="Top" Height="24"/>
         <TextBlock Cursor="Hand" Margin="0,0,1,0" Text="X" VerticalAlignment="Top" HorizontalAlignment="Right" Width="31" Height="31" Foreground="#FFB9B9B9" FontWeight="Bold" FontSize="22" FlowDirection="RightToLeft" Padding="8,0,0,0" MouseLeftButtonDown="OnCloseButtonClick"/>
         <Image Source="{StaticResource ICON_SETTINGS}"  Width="20" Height="20" Margin="6,5,0,0" VerticalAlignment="Top" HorizontalAlignment="Left"/>
-        <TextBlock Foreground="WhiteSmoke" FontSize="20"  HorizontalAlignment="Left" Margin="31,0,0,0" TextWrapping="Wrap" Text="Abnormalities Settings" VerticalAlignment="Top" Height="31" TextOptions.TextHintingMode="Fixed"/>
+        <TextBlock x:Name="WindowTitle" Foreground="WhiteSmoke" FontSize="20"  HorizontalAlignment="Left" Margin="31,0,0,0" TextWrapping="Wrap" Text="Abnormalities Settings" VerticalAlignment="Top" Height="31" TextOptions.TextHintingMode="Fixed"/>
         <Rectangle Fill="#7F080808" Height="31" VerticalAlignment="Top" MouseLeftButtonDown="OnDragWindow" Margin="0,0,32,0"/>
+        <Button Cursor="Hand" Content="Save" Margin="0,0,18,10" Height="34" VerticalAlignment="Bottom" HorizontalAlignment="Right" Width="112" Style="{StaticResource ButtonStyle}" BorderBrush="{x:Null}" Foreground="#FFE6E6E6" Background="#FFD62424" FontSize="14" Click="OnSaveButtonClick"/>
     </Grid>
 </widget:WidgetSettings>

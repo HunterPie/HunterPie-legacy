@@ -2,7 +2,7 @@
 <Abnormalities>
   <HUNTINGHORN_Abnormalities>
     <Abnormality ID="0" IsDebuff="False" Offset="38" Icon="ICON_SELFIMPROVEMENT" Stack="0"/>
-    <Abnormality ID="999" IsDebuff="False" Offset="38" Icon="ICON_ATTACKUP" Stack="0"/>
+    <Abnormality ID="999" IsDebuff="False" Offset="38" Icon="ICON_ATTACKUP" Stack="1"/>
     <Abnormality ID="1" IsDebuff="False" Offset="3C" Icon="ICON_ATTACKUP" Stack="0"/>
     <Abnormality ID="2" IsDebuff="False" Offset="40" Icon="ICON_ATTACKUP" Stack="0"/>
     <Abnormality ID="3" IsDebuff="False" Offset="44" Icon="ICON_HEALTHUP" Stack="0"/>
@@ -49,6 +49,7 @@
     <Abnormality ID="54" IsDebuff="False" Offset="110" Icon="ICON_EXT_HEALTHRECOVERY" Stack="0"/>
     <Abnormality ID="55" IsDebuff="False" Offset="114" Icon="ICON_EVASION" Stack="0"/>
     <Abnormality ID="56" IsDebuff="False" Offset="118" Icon="ICON_ALLRESUP" Stack="0"/>
+    <Abnormality ID="943" IsDebuff="False" Offset="118" Icon="ICON_ELEATTACKUP" Stack="0"/>
   </HUNTINGHORN_Abnormalities>
   <PALICO_Abnormalities>
     <Abnormality ID="0" IsDebuff="False" Offset="11C" Icon="ICON_EVASION"/>
@@ -56,7 +57,7 @@
     <Abnormality ID="2" IsDebuff="False" Offset="124" Icon="ICON_ATTACKUP"/>
     <Abnormality ID="3" IsDebuff="False" Offset="128" Icon="ICON_DEFUP"/>
     <Abnormality ID="4" IsDebuff="False" Offset="12C" Icon="ICON_DEFUP"/>
-    <Abnormality ID="5" IsDebuff="False" Offset="130" Icon="ICON_AFFINITYUP"/>
+    <Abnormality ID="5" IsDebuff="False" Offset="130" Icon="ICON_AFFINITY"/>
     <Abnormality ID="6" IsDebuff="False" Offset="134" Icon="ICON_NATURALHEALING"/>
     <Abnormality ID="7" IsDebuff="False" Offset="138" Icon="ICON_HEALTHUP"/>
     <Abnormality ID="8" IsDebuff="False" Offset="13C" Icon="ICON_STAMINAUP"/>
@@ -88,7 +89,8 @@
     <Abnormality ID="16" IsDebuff="True" Offset="61C" Icon=""/>
     <Abnormality ID="17" IsDebuff="True" Offset="620" Icon="ICON_BLAST"/>
     <Abnormality ID="20" IsDebuff="True" Offset="62C" Icon="ICON_BLASTSCOURGE"/>
-    <Abnormality ID="999" IsDebuff="True" Offset="4E784" Icon="ICON_STUN"/>
+    <!--
+    <Abnormality ID="999" IsDebuff="True" Offset="4E784" Icon="ICON_STUN"/>-->
   </DEBUFF_Abnormalities>
   <MISC_Abnormalities>
     <Abnormality ID="0" IsDebuff="False" Offset="694" HasConditions="False" Icon="ITEM_DASH"/>

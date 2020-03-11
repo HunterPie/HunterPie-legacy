@@ -412,7 +412,8 @@ namespace HunterPie.Core {
                 int BuffOffset = int.Parse(HHBuff.Attributes["Offset"].Value, System.Globalization.NumberStyles.HexNumber);
                 bool IsDebuff = bool.Parse(HHBuff.Attributes["IsDebuff"].Value);
                 int ID = int.Parse(HHBuff.Attributes["ID"].Value);
-                GetAbnormality("HUNTINGHORN", AbnormalityBaseAddress + BuffOffset, ID, $"HH_{ID}", IsDebuff);
+                int Stack = int.Parse(HHBuff.Attributes["Stack"].Value);
+                GetAbnormality("HUNTINGHORN", AbnormalityBaseAddress + BuffOffset, ID, $"HH_{ID}", IsDebuff, DoubleBuffStack: Stack, ParentOffset: BuffOffset);
             }
         }
 
@@ -446,17 +447,17 @@ namespace HunterPie.Core {
                     IsInfinite = bool.Parse(MiscBuff.Attributes["IsInfinite"].Value);
                     ConditionOffset = int.Parse(MiscBuff.Attributes["ConditionOffset"].Value);
                 }
-                GetAbnormality("MISC", AbnormalityBaseAddress + BuffOffset, ID, $"MISC_{ID}", IsDebuff, HasConditions, ConditionOffset , IsInfinite);
+                GetAbnormality("MISC", AbnormalityBaseAddress + BuffOffset, ID, $"MISC_{ID}", IsDebuff, HasConditions, ConditionOffset, IsInfinite);
             }
         }
 
-        private void GetAbnormality(string Type, Int64 AbnormalityAddress, int AbnormNumber, string AbnormInternalID, bool IsDebuff, bool HasConditions = false, int ConditionOffset = 0, bool IsInfinite = false) {
+        private void GetAbnormality(string Type, Int64 AbnormalityAddress, int AbnormNumber, string AbnormInternalID, bool IsDebuff, bool HasConditions = false, int ConditionOffset = 0, bool IsInfinite = false, int DoubleBuffStack = 0, int ParentOffset = 0) {
             float Duration = Scanner.READ_FLOAT(AbnormalityAddress);
             byte Stack;
             // Palico and misc buffs don't stack
             switch (Type) {
                 case "HUNTINGHORN":
-                    Stack = Scanner.READ_BYTE(AbnormalityAddress + (0x12C - (0x3 * AbnormNumber)));
+                    Stack = Scanner.READ_BYTE(AbnormalityAddress + (0x12C - (0x3 * ((ParentOffset - 0x38)/4))));
                     break;
                 case "MISC":
                     if (HasConditions) {
@@ -479,6 +480,7 @@ namespace HunterPie.Core {
                     }
                     return;
                 }
+                
                 // Check for existing abnormalities before making a new one
                 if (Abnormalities[AbnormInternalID] != null) { Abnormalities[AbnormInternalID].UpdateAbnormalityInfo(Type, AbnormInternalID, Duration, Stack, AbnormNumber, IsDebuff, IsInfinite, AbnormalityData.GetAbnormalityIconByID(Type, AbnormNumber)); } 
                 else {

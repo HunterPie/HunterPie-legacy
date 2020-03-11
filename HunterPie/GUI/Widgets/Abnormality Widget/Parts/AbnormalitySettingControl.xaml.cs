@@ -19,14 +19,16 @@ namespace HunterPie.GUI.Widgets.Abnormality_Widget.Parts {
     /// </summary>
     public partial class AbnormalitySettingControl : UserControl {
 
-        public bool IsEnabled;
+        public new bool IsEnabled;
+        public string InternalID;
 
         public AbnormalitySettingControl() {
             InitializeComponent();
         }
 
-        public void SetAbnormalityInfo(ImageSource Icon, string Name, bool IsEnabled) {
+        public void SetAbnormalityInfo(ImageSource Icon, string Name, string InternalID, bool IsEnabled) {
             this.AbnormalityIcon.Source = Icon;
+            this.InternalID = InternalID;
             this.ToolTip = Name;
             this.IsEnabled = IsEnabled;
             this.AbnormCheck.Visibility = IsEnabled ? Visibility.Visible : Visibility.Hidden;

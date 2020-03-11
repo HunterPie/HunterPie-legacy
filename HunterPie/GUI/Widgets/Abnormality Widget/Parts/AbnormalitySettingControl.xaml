@@ -8,7 +8,7 @@
              Height="46" Width="46">
     <Canvas Cursor="Hand" Margin="3" MouseLeftButtonDown="OnMouseClick">
         <Image x:Name="AbnormalityIcon" Width="40" Height="40" />
-        <Image x:Name="AbnormCheck" Source="{DynamicResource ICON_CHECKED}" Width="40"  Height="40" Visibility="Hidden">
+        <Image x:Name="AbnormCheck" Source="{DynamicResource ICON_CHECKED}" Width="10"  Height="10" Visibility="Hidden">
             <Image.Style>
                 <Style TargetType="Image">
                     <Style.Triggers>

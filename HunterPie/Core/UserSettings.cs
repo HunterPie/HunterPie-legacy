@@ -1,6 +1,8 @@
 ﻿using Newtonsoft.Json;
 using System;
 using System.IO;
+using System.Linq;
+using System.Collections.Generic;
 using HunterPie.Logger;
 
 namespace HunterPie.Core {
@@ -41,6 +43,7 @@ namespace HunterPie.Core {
                 public Primarymantle PrimaryMantle { get; set; } = new Primarymantle();
                 public Secondarymantle SecondaryMantle { get; set; } = new Secondarymantle();
                 public DPSMeter DPSMeter { get; set; } = new DPSMeter();
+                public AbnormalitiesWidget AbnormalitiesWidget { get; set; } = new AbnormalitiesWidget();
             }
 
             public class Monsterscomponent {
@@ -218,6 +221,23 @@ namespace HunterPie.Core {
             } catch(Exception err) {
                 Debugger.Error($"Failed to save config.json!\n{err}");
             }
+        }
+
+        public static void AddNewAbnormalityBar(int Amount) {
+            // Kinda hacky. TODO: Change this to something better
+            List<Config.AbnormalityBar> AbnormalityBars = PlayerConfig.Overlay.AbnormalitiesWidget.BarPresets.ToList();
+            for (int i = 0; i < Amount; i++) {
+                AbnormalityBars.Add(new Config.AbnormalityBar());
+            }
+            PlayerConfig.Overlay.AbnormalitiesWidget.BarPresets = AbnormalityBars.ToArray();
+        }
+
+        public static void RemoveAbnormalityBars() {
+            List<Config.AbnormalityBar> AbnormalityBars = PlayerConfig.Overlay.AbnormalitiesWidget.BarPresets.ToList();
+            for (int i = PlayerConfig.Overlay.AbnormalitiesWidget.ActiveBars; i < AbnormalityBars.Count; i++) {
+                AbnormalityBars.RemoveAt(i);
+            }
+            PlayerConfig.Overlay.AbnormalitiesWidget.BarPresets = AbnormalityBars.ToArray();
         }
     }
 }

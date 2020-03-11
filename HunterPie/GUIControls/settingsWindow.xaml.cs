@@ -20,6 +20,7 @@ namespace HunterPie.GUIControls {
             InitializeComponent();
             KeyboardInputHook.InstallHooks();
             KeyboardInputHook.OnKeyboardKeyPress += KeyboardInputHook_OnKeyboardKeyPress;
+            PopulateBuffTrays();
             PopulateBranchBox();
             PopulateLanguageBox();
         }
@@ -118,5 +119,61 @@ namespace HunterPie.GUIControls {
             CanChooseKey = false;
             DesignModeKeyCode.Focusable = true;
         }
+
+        private void PopulateBuffTrays() {
+            for (int i = 0; i < UserSettings.PlayerConfig.Overlay.AbnormalitiesWidget.ActiveBars; i++) {
+                Custom_Controls.BuffBarSettingControl BuffBar = new Custom_Controls.BuffBarSettingControl() {
+                    PresetName = UserSettings.PlayerConfig.Overlay.AbnormalitiesWidget.BarPresets[i].Name,
+                    Enabled = (bool)UserSettings.PlayerConfig.Overlay.AbnormalitiesWidget.BarPresets[i].Enabled
+                };
+                BuffTrays.Children.Add(BuffBar);
+            }
+            if (UserSettings.PlayerConfig.Overlay.AbnormalitiesWidget.ActiveBars >= 5) {
+                AddNewBuffBar.Opacity = 0.5;
+            } else if (UserSettings.PlayerConfig.Overlay.AbnormalitiesWidget.ActiveBars <= 1) {
+                SubBuffBar.Opacity = 0.5;
+            }
+            NumberOfBuffBars.Text = UserSettings.PlayerConfig.Overlay.AbnormalitiesWidget.ActiveBars.ToString();
+        }
+
+        private void AddNewBuffBarClick(object sender, MouseButtonEventArgs e) {
+            if (UserSettings.PlayerConfig.Overlay.AbnormalitiesWidget.ActiveBars > 4) {
+                AddNewBuffBar.Opacity = 0.5;
+                return;
+            }
+            SubBuffBar.Opacity = 1;
+            UserSettings.AddNewAbnormalityBar(1);
+            UserSettings.PlayerConfig.Overlay.AbnormalitiesWidget.ActiveBars += 1;
+            Custom_Controls.BuffBarSettingControl BuffBar = new Custom_Controls.BuffBarSettingControl() {
+                PresetName = UserSettings.PlayerConfig.Overlay.AbnormalitiesWidget.BarPresets.LastOrDefault().Name,
+                Enabled = (bool)UserSettings.PlayerConfig.Overlay.AbnormalitiesWidget.BarPresets.LastOrDefault().Enabled
+            };
+            BuffTrays.Children.Add(BuffBar);
+            NumberOfBuffBars.Text = UserSettings.PlayerConfig.Overlay.AbnormalitiesWidget.ActiveBars.ToString();
+            if (UserSettings.PlayerConfig.Overlay.AbnormalitiesWidget.ActiveBars >= 5) {
+                AddNewBuffBar.Opacity = 0.5;
+                SubBuffBar.Opacity = 1;
+                return;
+            }
+        }
+
+        private void SubBuffBarClick(object sender, MouseButtonEventArgs e) {
+            if (UserSettings.PlayerConfig.Overlay.AbnormalitiesWidget.ActiveBars <= 1) {
+                SubBuffBar.Opacity = 0.5;
+                return;
+            }
+            AddNewBuffBar.Opacity = 1;
+            UserSettings.PlayerConfig.Overlay.AbnormalitiesWidget.ActiveBars -= 1;
+            if (BuffTrays.Children.Count - 1 > 0) {
+                BuffTrays.Children.RemoveAt(BuffTrays.Children.Count - 1);
+            }
+            NumberOfBuffBars.Text = UserSettings.PlayerConfig.Overlay.AbnormalitiesWidget.ActiveBars.ToString();
+            if (UserSettings.PlayerConfig.Overlay.AbnormalitiesWidget.ActiveBars <= 1) {
+                SubBuffBar.Opacity = 0.5;
+                AddNewBuffBar.Opacity = 1;
+                return;
+            }
+        }
+
     }
 }
