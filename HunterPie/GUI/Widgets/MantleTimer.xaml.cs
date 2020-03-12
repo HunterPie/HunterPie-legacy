@@ -14,6 +14,7 @@ namespace HunterPie.GUI.Widgets {
 
         public MantleTimer(int MantleNumber, Mantle context) {
             this.MantleNumber = MantleNumber;
+            WidgetType = 2;
             InitializeComponent();
             this.SetContext(context);
             SetWindowFlags();
@@ -103,6 +104,7 @@ namespace HunterPie.GUI.Widgets {
 
         private void OnClosing(object sender, System.ComponentModel.CancelEventArgs e) {
             this.UnhookEvents();
+            this.IsClosed = true;
         }
 
         public override void ApplySettings() {

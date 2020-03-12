@@ -19,6 +19,7 @@ namespace HunterPie.GUI.Widgets.DPSMeter {
         public Meter(Game ctx) {
             InitializeComponent();
             SetWindowFlags();
+            WidgetType = 4;
             SetContext(ctx);
             ApplySettings();
         }
@@ -143,6 +144,7 @@ namespace HunterPie.GUI.Widgets.DPSMeter {
 
         private void OnClosing(object sender, System.ComponentModel.CancelEventArgs e) {
             this.UnhookEvents();
+            this.IsClosed = true;
         }
 
         public override void ApplySettings() {

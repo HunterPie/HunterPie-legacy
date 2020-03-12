@@ -175,6 +175,13 @@
     </Weaknesses>
     <Crown Mini="90" Silver="115" Gold="123"/>
   </Monster>
+  <Monster ID="em057_01">
+    <Weaknesses>
+      <Weakness ID="ELEMENT_THUNDER" Stars="3"/>
+      <Weakness ID="ELEMENT_FIRE" Stars="2"/>
+    </Weaknesses>
+    <Crown Mini="90" Silver="115" Gold="123"/>
+  </Monster>
   <Monster ID="em063_00">
     <Weaknesses>
       <Weakness ID="ELEMENT_ICE" Stars="3"/>
@@ -239,6 +246,13 @@
     <Crown Mini="90" Silver="115" Gold="123"/>
   </Monster>
   <Monster ID="em103_05">
+    <Weaknesses>
+      <Weakness ID="ELEMENT_DRAGON" Stars="3"/>
+      <Weakness ID="ELEMENT_THUNDER" Stars="2"/>
+    </Weaknesses>
+    <Crown Mini="90" Silver="115" Gold="123"/>
+  </Monster>
+  <Monster ID="em104_00">
     <Weaknesses>
       <Weakness ID="ELEMENT_DRAGON" Stars="3"/>
       <Weakness ID="ELEMENT_THUNDER" Stars="2"/>

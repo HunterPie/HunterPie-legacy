@@ -480,7 +480,7 @@ namespace HunterPie.Core {
                     }
                     return;
                 }
-                
+                if (Stack < DoubleBuffStack) return;
                 // Check for existing abnormalities before making a new one
                 if (Abnormalities[AbnormInternalID] != null) { Abnormalities[AbnormInternalID].UpdateAbnormalityInfo(Type, AbnormInternalID, Duration, Stack, AbnormNumber, IsDebuff, IsInfinite, AbnormalityData.GetAbnormalityIconByID(Type, AbnormNumber)); } 
                 else {

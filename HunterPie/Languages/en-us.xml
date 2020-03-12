@@ -26,6 +26,7 @@
     <Monster ID="em044_00" Name="Barroth"/>
     <Monster ID="em045_00" Name="Uragaan"/>
     <Monster ID="em057_00" Name="Zinogre"/>
+    <Monster ID="em057_01" Name="Stygian Zinogre"/>
     <Monster ID="em063_00" Name="Brachydios"/>
     <Monster ID="em080_00" Name="Glavenus"/>
     <Monster ID="em080_01" Name="Acidic Glavenus"/>
@@ -36,6 +37,7 @@
     <Monster ID="em102_01" Name="Coral Pukei-Pukei"/>
     <Monster ID="em103_00" Name="Nergigante"/>
     <Monster ID="em103_05" Name="Ruiner Nergigante"/>
+    <Monster ID="em104_00" Name="Safi'jiiva"/>
     <Monster ID="em105_00" Name="Xeno'jiiva"/>
     <Monster ID="em106_00" Name="Zorah Magdaros"/>
     <Monster ID="em107_00" Name="Kulu-Ya-Ku"/>
@@ -234,7 +236,7 @@
     <Abnormality ID="PALICO_017_00" Name="Environm. Resistance"/>
     <Abnormality ID="PALICO_018_00" Name="Unknown"/>
     <Abnormality ID="DEBUFF_000_00" Name="Poison"/>
-    <Abnormality ID="DEBUFF_001_00" Name="Unknown"/>
+    <Abnormality ID="DEBUFF_001_00" Name="High Poison"/>
     <Abnormality ID="DEBUFF_002_00" Name="Unknown"/>
     <Abnormality ID="DEBUFF_003_00" Name="Unknown"/>
     <Abnormality ID="DEBUFF_004_00" Name="Fireblight"/>
@@ -252,7 +254,7 @@
     <Abnormality ID="DEBUFF_020_00" Name="Blastcourge"/>
     <Abnormality ID="MISC_000_00" Name="Dash Juice"/>
     <Abnormality ID="MISC_001_00" Name="Wiggly Litchy"/>
-    <Abnormality ID="MISC_002_00" Name="Recovery Up"/>
+    <Abnormality ID="MISC_002_00" Name="Astera Jerky"/>
     <Abnormality ID="MISC_004_00" Name="Might Seed"/>
     <Abnormality ID="MISC_004_01" Name="Might Pill"/>
     <Abnormality ID="MISC_008_00" Name="Adamant Seed"/>

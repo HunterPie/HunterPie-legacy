@@ -167,6 +167,7 @@ namespace HunterPie.GUIControls {
             if (BuffTrays.Children.Count - 1 > 0) {
                 BuffTrays.Children.RemoveAt(BuffTrays.Children.Count - 1);
             }
+            UserSettings.RemoveAbnormalityBars();
             NumberOfBuffBars.Text = UserSettings.PlayerConfig.Overlay.AbnormalitiesWidget.ActiveBars.ToString();
             if (UserSettings.PlayerConfig.Overlay.AbnormalitiesWidget.ActiveBars <= 1) {
                 SubBuffBar.Opacity = 0.5;

@@ -11,11 +11,16 @@ namespace HunterPie.GUI.Widgets.Abnormality_Widget.Parts {
     public partial class AbnormalityControl : UserControl, IEquatable<AbnormalityControl>, IComparable<AbnormalityControl> {
 
         Brush Debuff_Color = new SolidColorBrush(Color.FromArgb(0xFF, 0x97, 0x32, 0x32)) ;
-        Brush Buff_Color = new SolidColorBrush(Color.FromArgb(0xFF, 0x32, 0x97, 0x45)); ///; // #FF329745
+        Brush Buff_Color = new SolidColorBrush(Color.FromArgb(0xFF, 0x32, 0x97, 0x45));
 
         Abnormality Context;
 
+        public double BaseWidth;
+        public double BaseHeight;
+
         public AbnormalityControl(Abnormality Abnorm) {
+            BaseWidth = 40;
+            BaseWidth = 40;
             InitializeComponent();
             SetAbnormalityInfo(Abnorm);
             Context = Abnorm;

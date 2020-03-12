@@ -65,9 +65,10 @@ namespace HunterPie.GUI {
             Widgets.Add(new Widgets.MonsterContainer(ctx));
             Widgets.Add(new Widgets.DPSMeter.Meter(ctx));
             
+            /*
             for (int AbnormTrayIndex = 0; AbnormTrayIndex < UserSettings.PlayerConfig.Overlay.AbnormalitiesWidget.ActiveBars; AbnormTrayIndex++) {
                 Widgets.Add(new Widgets.Abnormality_Widget.AbnormalityContainer(ctx.Player, AbnormTrayIndex));
-            }
+            }*/
             
         }
 
@@ -104,9 +105,29 @@ namespace HunterPie.GUI {
 
         public void GlobalSettingsEventHandler(object source, EventArgs e) {
             ToggleOverlay();
+            DeleteAbnormWidgetsIfNeeded();
             foreach (Widget widget in Widgets) {
                 widget.ApplySettings();
             }
+        }
+
+        private void DeleteAbnormWidgetsIfNeeded() {
+            List<int> IndexesToRemove = new List<int>();
+            int i = 0;
+            foreach (Widget widget in Widgets) {
+                if (widget.WidgetType == 5) {
+                    Widgets.Abnormality_Widget.AbnormalityContainer widgetConverted = (Widgets.Abnormality_Widget.AbnormalityContainer)widget;
+                    if (widgetConverted.AbnormalityTrayIndex >= UserSettings.PlayerConfig.Overlay.AbnormalitiesWidget.ActiveBars) {
+                        widgetConverted.Close();
+                        IndexesToRemove.Add(i);
+                    }
+                }
+                i++;
+            }
+            foreach(int index in IndexesToRemove) {
+                Widgets.RemoveAt(i);
+            }
+
         }
 
         private void OnGameUnfocus(object source, EventArgs args) {

@@ -58,6 +58,7 @@ namespace HunterPie.GUI.Widgets {
             this.MonsterCrown.Source = Context.Crown == null ? null : (ImageSource)FindResource(Context.Crown);
             this.MonsterCrown.Visibility = Visibility.Visible;
             Weaknesses.Children.Clear(); // Removes every weakness icon
+            if (Context.Weaknesses == null) return;
             foreach (string Weakness in Context.Weaknesses.Keys) {
                 Image MonsterWeaknessImg = new Image {
                     Source = this.Resources[Weakness] as ImageSource,

@@ -284,16 +284,17 @@
             <TextBox x:Name="DPSMeterPosX" TextWrapping="Wrap" Text="X" Margin="0,1" Background="{x:Null}" Foreground="#FFE0E0E0" BorderBrush="#FFABADB3" BorderThickness="0,0,0,1" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" HorizontalAlignment="Right" Width="54" TextChanged="TypeNumber"/>
             <TextBox x:Name="DPSMeterPosY" TextWrapping="Wrap" Text="Y" Margin="6,1,0,1" Background="{x:Null}" Foreground="#FFE0E0E0" BorderBrush="#FFABADB3" BorderThickness="0,0,0,1" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" HorizontalAlignment="Right" Width="54" TextChanged="TypeNumber"/>
         </StackPanel>
-        <TextBlock Text="Player Buffs" Height="34" FontFamily="Roboto" FontSize="16" HorizontalAlignment="Center" Width="949" Foreground="#FFE0E0E0" Padding="0,7,0,0" UseLayoutRounding="False" Margin="0,25,0,0" Background="#FF0F0F0F" VerticalAlignment="Center" TextAlignment="Center"/>
-        <Canvas Height="167">
-            <ScrollViewer Width="500" Height="150" Margin="164,10,363,0">
-                <StackPanel x:Name="BuffTrays"/>
-            </ScrollViewer>
-            <TextBlock x:Name="NumberOfBuffBars" Canvas.Left="722" FontSize="20" TextWrapping="Wrap" Text="n" Foreground="WhiteSmoke" Canvas.Top="68"/>
-            <TextBlock ToolTip="Create a new buff bar" x:Name="AddNewBuffBar" Cursor="Hand" Background="#FF0E0E0E" Canvas.Left="749" FontSize="20" TextWrapping="Wrap" Text="+" Foreground="WhiteSmoke" Canvas.Top="68" Width="28" Padding="0" Height="32" TextAlignment="Center" MouseDown="AddNewBuffBarClick"/>
-            <TextBlock ToolTip="Removes your last buff bar" x:Name="SubBuffBar" Cursor="Hand" Background="#FF0E0E0E" Canvas.Left="676" FontSize="20" TextWrapping="Wrap" Text="-" Foreground="WhiteSmoke" Canvas.Top="68" Width="28" Padding="0" Height="32" TextAlignment="Center" MouseDown="SubBuffBarClick"/>
-
-        </Canvas>
+        <StackPanel Visibility="Visible">
+            <TextBlock Text="Player Buffs" Height="34" FontFamily="Roboto" FontSize="16" HorizontalAlignment="Center" Width="949" Foreground="#FFE0E0E0" Padding="0,7,0,0" UseLayoutRounding="False" Margin="0,25,0,0" Background="#FF0F0F0F" VerticalAlignment="Center" TextAlignment="Center"/>
+            <Canvas Height="167">
+                <ScrollViewer Width="500" Height="150" Margin="164,10,363,0">
+                    <StackPanel x:Name="BuffTrays"/>
+                </ScrollViewer>
+                <TextBlock x:Name="NumberOfBuffBars" Canvas.Left="722" FontSize="20" TextWrapping="Wrap" Text="n" Foreground="WhiteSmoke" Canvas.Top="68"/>
+                <TextBlock ToolTip="Create a new buff bar" x:Name="AddNewBuffBar" Cursor="Hand" Background="#FF0E0E0E" Canvas.Left="749" FontSize="20" TextWrapping="Wrap" Text="+" Foreground="WhiteSmoke" Canvas.Top="68" Width="28" Padding="0" Height="32" TextAlignment="Center" MouseDown="AddNewBuffBarClick"/>
+                <TextBlock ToolTip="Removes your last buff bar" x:Name="SubBuffBar" Cursor="Hand" Background="#FF0E0E0E" Canvas.Left="676" FontSize="20" TextWrapping="Wrap" Text="-" Foreground="WhiteSmoke" Canvas.Top="68" Width="28" Padding="0" Height="32" TextAlignment="Center" MouseDown="SubBuffBarClick"/>
+            </Canvas>
+        </StackPanel>
         <Label Content="Specialized Tools" Height="34" FontFamily="Roboto" FontSize="16" HorizontalAlignment="Center" Width="949" HorizontalContentAlignment="Center" Foreground="#FFE0E0E0" Padding="0" UseLayoutRounding="False" VerticalContentAlignment="Center" Margin="0,25,0,0" Background="#FF0F0F0F"/>
         <GroupBox Header="Primary Specialized tool" Height="187" Margin="99,0,0,0" FontFamily="Roboto" Foreground="#FFE0E0E0" BorderBrush="{x:Null}" Width="359" HorizontalAlignment="Left">
             <StackPanel Margin="0,32,-2,12" Orientation="Vertical">

@@ -8,6 +8,8 @@ namespace HunterPie.GUI {
 
     public partial class Widget : Window {
 
+        public byte WidgetType = 0;
+        public bool IsClosed = false;
         private bool _InDesignMode { get; set; }
         public double DefaultScaleX { get; set; } = 1;
         public double DefaultScaleY { get; set; } = 1;
@@ -55,6 +57,7 @@ namespace HunterPie.GUI {
         }
 
         public void RemoveWindowTransparencyFlag() {
+            if (this.IsClosed || this == null) return;
             int WS_EX_TRANSPARENT = 0x20;
             int GWL_EXSTYLE = (-20);
 
@@ -67,6 +70,7 @@ namespace HunterPie.GUI {
         }
 
         public void ApplyWindowTransparencyFlag() {
+            if (this.IsClosed || this == null) return;
             // flags to make overlay click-through
             int WS_EX_TRANSPARENT = 0x20;
             int GWL_EXSTYLE = (-20);
@@ -95,7 +99,7 @@ namespace HunterPie.GUI {
         }
 
         public void ForceAlwaysOnTop() {
-            if (this == null) return;
+            if (this == null || this.IsClosed) return;
             uint SWP_SHOWWINDOW = 0x0040;
             uint SWP_NOMOVE = 0x0002;
             uint SWP_NOSIZE = 0x0001;

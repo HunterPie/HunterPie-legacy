@@ -20,6 +20,7 @@ namespace HunterPie.GUI.Widgets {
             InitializeComponent();
             BaseWidth = Width;
             BaseHeight = Height;
+            WidgetType = 3;
             ApplySettings();
             SetWindowFlags();
             SetContext(Context);
@@ -239,6 +240,7 @@ namespace HunterPie.GUI.Widgets {
         private void OnClosing(object sender, System.ComponentModel.CancelEventArgs e) {
             this.UnhookEvents();
             this.PlayerContext = null;
+            this.IsClosed = true;
         }
 
         private void OnMouseEnter(object sender, System.Windows.Input.MouseEventArgs e) {

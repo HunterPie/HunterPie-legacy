@@ -16,6 +16,7 @@ namespace HunterPie.GUI.Widgets {
 
         public MonsterContainer(Game ctx) {
             InitializeComponent();
+            WidgetType = 1;
             SetWindowFlags();
             SetContext(ctx);
             ApplySettings();
@@ -85,6 +86,7 @@ namespace HunterPie.GUI.Widgets {
 
         private void OnClosing(object sender, System.ComponentModel.CancelEventArgs e) {
             this.UnhookEvents();
+            this.IsClosed = true;
         }
 
         public override void ApplySettings() {

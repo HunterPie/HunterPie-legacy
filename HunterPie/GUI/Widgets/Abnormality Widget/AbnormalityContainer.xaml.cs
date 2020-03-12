@@ -1,16 +1,10 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
-using System.Windows.Data;
-using System.Windows.Documents;
 using System.Windows.Input;
 using System.Windows.Media;
-using System.Windows.Media.Imaging;
-using System.Windows.Shapes;
 using HunterPie.Core;
 
 namespace HunterPie.GUI.Widgets.Abnormality_Widget {
@@ -22,12 +16,14 @@ namespace HunterPie.GUI.Widgets.Abnormality_Widget {
         Dictionary<string, Parts.AbnormalityControl> ActiveAbnormalities = new Dictionary<string, Parts.AbnormalityControl>();
         AbnormalityTraySettings AbnormalityWidgetSettings;
         Player Context;
-        int AbnormalityTrayIndex;
+        public int AbnormalityTrayIndex;
+        private int MaxSize;
 
         public AbnormalityContainer(Player context, int TrayIndex) {
             InitializeComponent();
             BaseWidth = Width;
             BaseHeight = Height;
+            WidgetType = 5;
             AbnormalityTrayIndex = TrayIndex;
             ApplySettings();
             SetWindowFlags();
@@ -35,25 +31,37 @@ namespace HunterPie.GUI.Widgets.Abnormality_Widget {
         }
 
         public override void ApplySettings() {
+            if (AbnormalityTrayIndex >= UserSettings.PlayerConfig.Overlay.AbnormalitiesWidget.ActiveBars) {
+                this.Close();
+                return;
+            }
             Dispatcher.BeginInvoke(System.Windows.Threading.DispatcherPriority.Background, new Action(() => {
                 this.WidgetActive = UserSettings.PlayerConfig.Overlay.AbnormalitiesWidget.BarPresets[AbnormalityTrayIndex].Enabled;
                 this.Top = UserSettings.PlayerConfig.Overlay.AbnormalitiesWidget.BarPresets[AbnormalityTrayIndex].Position[1];
                 this.Left = UserSettings.PlayerConfig.Overlay.AbnormalitiesWidget.BarPresets[AbnormalityTrayIndex].Position[0];
                 this.BuffTray.Orientation = UserSettings.PlayerConfig.Overlay.AbnormalitiesWidget.BarPresets[AbnormalityTrayIndex].Orientation == "Horizontal" ? Orientation.Horizontal : Orientation.Vertical;
                 int BuffTrayMaxSize = Math.Max(UserSettings.PlayerConfig.Overlay.AbnormalitiesWidget.BarPresets[AbnormalityTrayIndex].MaxSize, 0);
+                if (BuffTrayMaxSize > 2000) BuffTrayMaxSize = 0;
                 if (this.BuffTray.Orientation == Orientation.Horizontal) {
-                    this.BuffTray.MaxWidth = BuffTrayMaxSize == 0 ? int.MaxValue : BuffTrayMaxSize;
+                    this.BuffTray.MaxWidth = BuffTrayMaxSize == 0 ? 300 : BuffTrayMaxSize;
+                    this.MaxSize = (int)this.BuffTray.MaxWidth;
                 } else {
-                    this.BuffTray.MaxHeight = BuffTrayMaxSize == 0 ? int.MaxValue : BuffTrayMaxSize;
+                    this.BuffTray.MaxHeight = BuffTrayMaxSize == 0 ? 300 : BuffTrayMaxSize;
+                    this.MaxSize = (int)this.BuffTray.MaxHeight;
                 }
+                ScaleWidget(UserSettings.PlayerConfig.Overlay.AbnormalitiesWidget.BarPresets[AbnormalityTrayIndex].Scale, UserSettings.PlayerConfig.Overlay.AbnormalitiesWidget.BarPresets[AbnormalityTrayIndex].Scale);
                 base.ApplySettings();
             }));
         }
 
         private void SaveSettings() {
+            if (AbnormalityTrayIndex >= UserSettings.PlayerConfig.Overlay.AbnormalitiesWidget.ActiveBars) {
+                this.Close();
+                return;
+            }
             UserSettings.PlayerConfig.Overlay.AbnormalitiesWidget.BarPresets[AbnormalityTrayIndex].Position[0] = (int)Left - UserSettings.PlayerConfig.Overlay.Position[0];
             UserSettings.PlayerConfig.Overlay.AbnormalitiesWidget.BarPresets[AbnormalityTrayIndex].Position[1] = (int)Top - UserSettings.PlayerConfig.Overlay.Position[1];
-            UserSettings.PlayerConfig.Overlay.AbnormalitiesWidget.BarPresets[AbnormalityTrayIndex].MaxSize = BuffTray.Orientation == Orientation.Horizontal ? (int)BuffTray.MaxWidth : (int)BuffTray.MaxHeight;
+            UserSettings.PlayerConfig.Overlay.AbnormalitiesWidget.BarPresets[AbnormalityTrayIndex].MaxSize = this.MaxSize;
             UserSettings.PlayerConfig.Overlay.AbnormalitiesWidget.BarPresets[AbnormalityTrayIndex].Orientation = BuffTray.Orientation == Orientation.Horizontal ? "Horizontal" : "Vertical";
             UserSettings.PlayerConfig.Overlay.AbnormalitiesWidget.BarPresets[AbnormalityTrayIndex].Scale = DefaultScaleX;
         }
@@ -64,6 +72,15 @@ namespace HunterPie.GUI.Widgets.Abnormality_Widget {
         }
 
         public override void EnterWidgetDesignMode() {
+            blocker = 2;
+            SizeToContent = SizeToContent.Manual;
+            if (BuffTray.Orientation == Orientation.Horizontal) {
+                this.Width = MaxSize;
+                this.Height = BuffTray.MinHeight;
+            } else {
+                this.Height = MaxSize;
+                this.Width = BuffTray.MinWidth;
+            }
             base.EnterWidgetDesignMode();
             this.ResizeMode = ResizeMode.CanResizeWithGrip;
             this.SettingsButton.Visibility = Visibility.Visible;
@@ -72,7 +89,7 @@ namespace HunterPie.GUI.Widgets.Abnormality_Widget {
 
         public override void LeaveWidgetDesignMode() {
             base.LeaveWidgetDesignMode();
-            this.ResizeMode = ResizeMode.CanResize;
+            this.ResizeMode = ResizeMode.NoResize;
             SizeToContent = SizeToContent.WidthAndHeight;
             this.SettingsButton.Visibility = Visibility.Collapsed;
             ApplyWindowTransparencyFlag();
@@ -125,6 +142,14 @@ namespace HunterPie.GUI.Widgets.Abnormality_Widget {
             }));
         }
 
+        public void ScaleWidget(double NewScaleX, double NewScaleY) {
+            if (NewScaleX <= 0.2) return;
+            this.BuffTray.LayoutTransform = new ScaleTransform(NewScaleX, NewScaleY);
+            this.MinHeight = MinWidth = 40 * NewScaleX;
+            DefaultScaleX = NewScaleX;
+            DefaultScaleY = NewScaleY;
+        }
+
         #endregion
 
 
@@ -132,6 +157,8 @@ namespace HunterPie.GUI.Widgets.Abnormality_Widget {
 
         private void OnClosing(object sender, System.ComponentModel.CancelEventArgs e) {
             this.UnhookEvents();
+            this.BuffTray.Children.Clear();
+            this.IsClosed = true;
         }
 
         private void OnMouseEnter(object sender, MouseEventArgs e) {
@@ -140,39 +167,42 @@ namespace HunterPie.GUI.Widgets.Abnormality_Widget {
 
         private void OnMouseDown(object sender, MouseButtonEventArgs e) {
             if (e.LeftButton == MouseButtonState.Pressed) {
+                this.ResizeMode = ResizeMode.NoResize;
                 this.MoveWidget();
             } else if (e.RightButton == MouseButtonState.Pressed) {
 
             }
         }
 
+        private void OnMouseLeftUp(object sender, MouseButtonEventArgs e) {
+            this.ResizeMode = ResizeMode.CanResizeWithGrip;
+        }
+
         private void OnMouseWheel(object sender, MouseWheelEventArgs e) {
             if (this.MouseOver) {
                 if (e.Delta > 0) {
-                    //ScaleWidget(DefaultScaleX + 0.05, DefaultScaleY + 0.05);
+                    ScaleWidget(DefaultScaleX + 0.05, DefaultScaleY + 0.05);
                 } else {
-                    //ScaleWidget(DefaultScaleX - 0.05, DefaultScaleY - 0.05);
+                    ScaleWidget(DefaultScaleX - 0.05, DefaultScaleY - 0.05);
                 }
             }
         }
 
         private void OnMouseLeave(object sender, MouseEventArgs e) {
             this.MouseOver = false;
+            this.ResizeMode = ResizeMode.CanResizeWithGrip;
         }
 
+        int blocker = 2;
         private void OnSizeChange(object sender, SizeChangedEventArgs e) {
-
-            // This means the user didn't resize the widget
-            if (this.BuffTray.ActualWidth + 4 == e.NewSize.Width && this.BuffTray.ActualHeight + 4 == e.NewSize.Height) return;
-            // Only resize if in design mode
-            if (!this.InDesignMode) return;
-            // Resize depending on the orientation
+            blocker--;
+            if (!InDesignMode || blocker > 0) return;
             if (this.BuffTray.Orientation == Orientation.Horizontal) {
-                if (e.NewSize.Width < 40) return;
-                this.BuffTray.MaxWidth = e.NewSize.Width;
+                this.MaxSize = (int)e.NewSize.Width;
+                this.BuffTray.MaxWidth = MaxSize;
             } else {
-                if (e.NewSize.Height < 40) return;
-                this.BuffTray.MaxHeight = e.NewSize.Height;
+                this.MaxSize = (int)e.NewSize.Height;
+                this.BuffTray.MaxHeight = MaxSize;
             }
         }
 
@@ -182,8 +212,7 @@ namespace HunterPie.GUI.Widgets.Abnormality_Widget {
                 AbnormalityWidgetSettings.Show();
             }
         }
+
         #endregion
-
-
     }
 }

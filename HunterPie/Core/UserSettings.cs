@@ -226,17 +226,18 @@ namespace HunterPie.Core {
         public static void AddNewAbnormalityBar(int Amount) {
             // Kinda hacky. TODO: Change this to something better
             List<Config.AbnormalityBar> AbnormalityBars = PlayerConfig.Overlay.AbnormalitiesWidget.BarPresets.ToList();
+            int oldCount = AbnormalityBars.Count;
             for (int i = 0; i < Amount; i++) {
                 AbnormalityBars.Add(new Config.AbnormalityBar());
+                AbnormalityBars[oldCount].AcceptedAbnormalities = new string[1] { "*" };
+                oldCount++;
             }
             PlayerConfig.Overlay.AbnormalitiesWidget.BarPresets = AbnormalityBars.ToArray();
         }
 
         public static void RemoveAbnormalityBars() {
             List<Config.AbnormalityBar> AbnormalityBars = PlayerConfig.Overlay.AbnormalitiesWidget.BarPresets.ToList();
-            for (int i = PlayerConfig.Overlay.AbnormalitiesWidget.ActiveBars; i < AbnormalityBars.Count; i++) {
-                AbnormalityBars.RemoveAt(i);
-            }
+            AbnormalityBars.RemoveAt(AbnormalityBars.Count - 1);
             PlayerConfig.Overlay.AbnormalitiesWidget.BarPresets = AbnormalityBars.ToArray();
         }
     }
