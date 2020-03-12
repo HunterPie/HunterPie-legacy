@@ -64,11 +64,11 @@ namespace HunterPie.GUI {
             Widgets.Add(new Widgets.MantleTimer(1, ctx.Player.SecondaryMantle));
             Widgets.Add(new Widgets.MonsterContainer(ctx));
             Widgets.Add(new Widgets.DPSMeter.Meter(ctx));
-            
-            /*
+
+            //if (UserSettings.PlayerConfig.HunterPie.Update.Branch == "master") return;
             for (int AbnormTrayIndex = 0; AbnormTrayIndex < UserSettings.PlayerConfig.Overlay.AbnormalitiesWidget.ActiveBars; AbnormTrayIndex++) {
                 Widgets.Add(new Widgets.Abnormality_Widget.AbnormalityContainer(ctx.Player, AbnormTrayIndex));
-            }*/
+            }
             
         }
 

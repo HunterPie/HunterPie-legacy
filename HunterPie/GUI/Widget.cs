@@ -134,9 +134,9 @@ namespace HunterPie.GUI {
             }));
         }
 
-        public virtual void ChangeVisibility() {
+        public virtual void ChangeVisibility(bool forceOnTop = true) {
             if (InDesignMode || (WidgetHasContent && OverlayActive && WidgetActive && ((!OverlayFocusActive) || (OverlayFocusActive && OverlayIsFocused)))) {
-                this.ForceAlwaysOnTop();
+                if (forceOnTop) this.ForceAlwaysOnTop();
                 this.Show();
             } else {
                 this.Hide();

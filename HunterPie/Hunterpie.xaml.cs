@@ -102,9 +102,7 @@ namespace HunterPie {
         }
 
         private void ExceptionLogger(object sender, UnhandledExceptionEventArgs e) {
-            using (var crashfile = File.AppendText("crashes.txt")) {
-                crashfile.Write(e.ExceptionObject.ToString());
-            }
+            File.WriteAllText("crashes.txt", e.ExceptionObject.ToString());
         }
 
         private bool StartUpdateProcess() {

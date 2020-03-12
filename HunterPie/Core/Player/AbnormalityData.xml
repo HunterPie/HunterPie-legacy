@@ -43,7 +43,7 @@
     <Abnormality ID="45" IsDebuff="False" Offset="EC" Icon="ICON_ALLRESUP" Stack="0"/>
     <Abnormality ID="46" IsDebuff="False" Offset="F0" Icon="ICON_AFFINITY" Stack="0"/>
     <Abnormality ID="47" IsDebuff="False" Offset="F4" Icon="ICON_AILMENTSNEG" Stack="0"/>
-    <Abnormality ID="48" IsDebuff="False" Offset="F8" Icon="" Stack="0"/>
+    <Abnormality ID="48" IsDebuff="False" Offset="F8" Icon="ICON_EARPLUGS" Stack="0"/>
     <Abnormality ID="49" IsDebuff="False" Offset="FC" Icon="ICON_ABNORMATTACKUP" Stack="0"/>
     <Abnormality ID="53" IsDebuff="False" Offset="10C" Icon="ICON_MAXSTAMRECOVERY" Stack="0"/>
     <Abnormality ID="54" IsDebuff="False" Offset="110" Icon="ICON_EXT_HEALTHRECOVERY" Stack="0"/>
@@ -82,10 +82,10 @@
     <Abnormality ID="7" IsDebuff="True" Offset="5F8" Icon="ELEMENT_ICE"/>
     <Abnormality ID="8" IsDebuff="True" Offset="5FC" Icon="ELEMENT_DRAGON"/>
     <Abnormality ID="9" IsDebuff="True" Offset="600" Icon="ICON_BLEED"/>
-    <Abnormality ID="10" IsDebuff="False" Offset="604" Icon=""/>
+    <Abnormality ID="10" IsDebuff="False" Offset="604" Icon="ICON_NATURALHEALING"/>
     <Abnormality ID="11" IsDebuff="True" Offset="608" Icon="ICON_EFFLUVIA"/>
     <Abnormality ID="12" IsDebuff="True" Offset="60C" Icon="ICON_DEFDOWN"/>
-    <Abnormality ID="14" IsDebuff="True" Offset="614" Icon=""/>
+    <Abnormality ID="14" IsDebuff="True" Offset="614" Icon="ICON_ALLRESDOWN"/>
     <Abnormality ID="16" IsDebuff="True" Offset="61C" Icon=""/>
     <Abnormality ID="17" IsDebuff="True" Offset="620" Icon="ICON_BLAST"/>
     <Abnormality ID="20" IsDebuff="True" Offset="62C" Icon="ICON_BLASTSCOURGE"/>
@@ -95,7 +95,7 @@
   <MISC_Abnormalities>
     <Abnormality ID="0" IsDebuff="False" Offset="694" HasConditions="False" Icon="ITEM_DASH"/>
     <Abnormality ID="1" IsDebuff="False" Offset="698" HasConditions="False" Icon="ICON_STAMINAUP"/>
-    <Abnormality ID="2" IsDebuff="False" Offset="69C" HasConditions="False" Icon="ITEM_ASTERAJERKY" />
+    <Abnormality ID="2" IsDebuff="False" Offset="69C" HasConditions="False" Icon="ICON_NATURALHEALING" />
     <Abnormality ID="4" IsDebuff="False" Offset="6A4" HasConditions="True" ConditionOffset="8" IsInfinite="False" Icon="ITEM_MIGHT"/>
     <Abnormality ID="8" IsDebuff="False" Offset="6B4" HasConditions="True" ConditionOffset="12" IsInfinite="False" Icon="ITEM_ADAMANT"/>
     <Abnormality ID="13" IsDebuff="False" Offset="6C8" HasConditions="False" Icon="ITEM_ATKPOWDER"/>
@@ -106,8 +106,8 @@
     <Abnormality ID="24" IsDebuff="False" Offset="6F4" HasConditions="False" Icon="ICON_COLDRES"/>
     <Abnormality ID="26" IsDebuff="False" Offset="6FC" HasConditions="False" Icon="ICON_EXT_HEALTHRECOVERY"/>
     <Abnormality ID="27" IsDebuff="False" Offset="700" HasConditions="False" Icon=""/>
-    <Abnormality ID="34" IsDebuff="False" Offset="71C" HasConditions="False" Icon=""/>
-    <Abnormality ID="35" IsDebuff="False" Offset="720" HasConditions="False" Icon=""/>
+    <Abnormality ID="34" IsDebuff="False" Offset="71C" HasConditions="False" Icon="ICON_ATTACKUP"/>
+    <Abnormality ID="35" IsDebuff="False" Offset="720" HasConditions="False" Icon="ICON_ICERES+"/>
     <Abnormality ID="73" IsDebuff="False" Offset="7B8" HasConditions="False" Icon=""/>
   </MISC_Abnormalities>
 </Abnormalities>

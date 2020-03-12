@@ -135,7 +135,13 @@ namespace HunterPie.Memory {
                         Logger.Debugger.Error("Failed to open game process. Try running HunterPie as administrator.");
                         return;
                     }
-                    GameVersion = int.Parse(MonsterHunter.MainWindowTitle.Split('(')[1].Trim(')'));
+                    try {
+                        GameVersion = int.Parse(MonsterHunter.MainWindowTitle.Split('(')[1].Trim(')'));
+                        
+                    } catch {
+                        Logger.Debugger.Error("Could not get Monster Hunter World build version.");
+                        GameVersion = 0;
+                    }
                     WindowHandle = MonsterHunter.MainWindowHandle;
                     _onGameStart();
                     Logger.Debugger.Log($"MonsterHunterWorld.exe found! (PID: {PID})");

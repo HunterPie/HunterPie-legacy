@@ -135,7 +135,7 @@ namespace HunterPie.GUI.Widgets.Abnormality_Widget {
                 if (this.ActiveAbnormalities.Count == 0) {
                     this.WidgetHasContent = false;
                 }
-                ChangeVisibility();
+                ChangeVisibility(false);
                 foreach (Parts.AbnormalityControl Abnorm in ActiveAbnormalities.Values) {
                     this.BuffTray.Children.Add(Abnorm);
                 }

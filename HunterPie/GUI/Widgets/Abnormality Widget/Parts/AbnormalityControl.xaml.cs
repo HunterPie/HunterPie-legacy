@@ -19,8 +19,6 @@ namespace HunterPie.GUI.Widgets.Abnormality_Widget.Parts {
         public double BaseHeight;
 
         public AbnormalityControl(Abnormality Abnorm) {
-            BaseWidth = 40;
-            BaseWidth = 40;
             InitializeComponent();
             SetAbnormalityInfo(Abnorm);
             Context = Abnorm;

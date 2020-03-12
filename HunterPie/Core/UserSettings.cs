@@ -189,6 +189,9 @@ namespace HunterPie.Core {
             try {
                 configContent = File.ReadAllText(ConfigFileName);
                 if (configContent == "null") throw new Exception("Config.json is null");
+            } catch (IOException err) {
+                Debugger.Error("Config.json could not be loaded. Re-trying again...");
+                configContent = ConfigSerialized;
             } catch(Exception err) {
                 Debugger.Error($"Failed to parse config.json!\n{err}");
                 Debugger.Warn("Generating new config");
