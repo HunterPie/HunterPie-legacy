@@ -135,6 +135,9 @@
     <Compile Include="GUIControls\Custom Controls\BuffBarSettingControl.xaml.cs">
       <DependentUpon>BuffBarSettingControl.xaml</DependentUpon>
     </Compile>
+    <Compile Include="GUIControls\Custom Controls\CNotification.xaml.cs">
+      <DependentUpon>CNotification.xaml</DependentUpon>
+    </Compile>
     <Compile Include="GUIControls\Custom Controls\ColorPicker.xaml.cs">
       <DependentUpon>ColorPicker.xaml</DependentUpon>
     </Compile>
@@ -155,6 +158,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="GUIControls\Custom Controls\BuffBarSettingControl.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="GUIControls\Custom Controls\CNotification.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

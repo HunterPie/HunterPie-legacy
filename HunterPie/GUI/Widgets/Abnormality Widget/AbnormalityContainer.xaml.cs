@@ -144,7 +144,7 @@ namespace HunterPie.GUI.Widgets.Abnormality_Widget {
                     this.WidgetHasContent = false;
                 }
                 ChangeVisibility(false);
-                foreach (Parts.AbnormalityControl Abnorm in ActiveAbnormalities.Values.OrderByDescending(abnormality => abnormality.Context.Duration)) {
+                foreach (Parts.AbnormalityControl Abnorm in ActiveAbnormalities.Values.OrderByDescending(abnormality => abnormality.Context?.Duration)) {
                     this.BuffTray.Children.Add(Abnorm);
                 }
             }));
@@ -177,8 +177,9 @@ namespace HunterPie.GUI.Widgets.Abnormality_Widget {
             if (e.LeftButton == MouseButtonState.Pressed) {
                 this.ResizeMode = ResizeMode.NoResize;
                 this.MoveWidget();
-            } else if (e.RightButton == MouseButtonState.Pressed) {
-
+                UserSettings.PlayerConfig.Overlay.AbnormalitiesWidget.BarPresets[AbnormalityTrayIndex].Position[0] = (int)Left - UserSettings.PlayerConfig.Overlay.Position[0];
+                UserSettings.PlayerConfig.Overlay.AbnormalitiesWidget.BarPresets[AbnormalityTrayIndex].Position[1] = (int)Top - UserSettings.PlayerConfig.Overlay.Position[1];
+                UserSettings.PlayerConfig.Overlay.AbnormalitiesWidget.BarPresets[AbnormalityTrayIndex].Scale = DefaultScaleX;
             }
             if (e.LeftButton == MouseButtonState.Released) {
                 this.ResizeMode = ResizeMode.CanResizeWithGrip;
@@ -197,7 +198,6 @@ namespace HunterPie.GUI.Widgets.Abnormality_Widget {
 
         private void OnMouseLeave(object sender, MouseEventArgs e) {
             this.MouseOver = false;
-            //this.ResizeMode = ResizeMode.CanResizeWithGrip;
         }
 
         int blocker = 2;

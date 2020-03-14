@@ -4,6 +4,7 @@
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:HunterPie"
+        xmlns:Custom="clr-namespace:HunterPie.GUIControls.Custom_Controls"
         xmlns:Properties="clr-namespace:HunterPie.Properties" x:Name="window" x:Class="HunterPie.Hunterpie"
         mc:Ignorable="d"
         Title="HunterPie" Height="592" Width="980" MinWidth="1000" MaxWidth="1000" MaxHeight="600" ResizeMode="CanMinimize" WindowStyle="None" Closing="OnWindowClosing" AllowsTransparency="True" BorderBrush="#7F000000" BorderThickness="1" Background="{x:Null}">
@@ -11,6 +12,7 @@
         <ResourceDictionary>
             <ResourceDictionary.MergedDictionaries>
                 <ResourceDictionary Source="/Resources/ConsoleResources.xaml"/>
+                <ResourceDictionary Source="/Resources/Resources.xaml"/>
             </ResourceDictionary.MergedDictionaries>
 
             <Style x:Key="STYLE_SIDEBARBUTTONS" TargetType="StackPanel">
@@ -33,7 +35,7 @@
                     </Trigger>
                 </Style.Triggers>
             </Style>
-            
+
             <ControlTemplate x:Key="ButtonStyle" TargetType="{x:Type Button}">
                 <Border x:Name="border" BorderBrush="{TemplateBinding BorderBrush}" BorderThickness="{TemplateBinding BorderThickness}" Background="{TemplateBinding Background}" SnapsToDevicePixels="True">
                     <ContentPresenter x:Name="contentPresenter" ContentTemplate="{TemplateBinding ContentTemplate}" Content="{TemplateBinding Content}" ContentStringFormat="{TemplateBinding ContentStringFormat}" Focusable="False" HorizontalAlignment="{TemplateBinding HorizontalContentAlignment}" Margin="{TemplateBinding Padding}" RecognizesAccessKey="True" SnapsToDevicePixels="{TemplateBinding SnapsToDevicePixels}" VerticalAlignment="{TemplateBinding VerticalContentAlignment}"/>
@@ -86,14 +88,16 @@
         </ResourceDictionary>
     </Window.Resources>
     <Grid Background="{StaticResource CONSOLE_BACKGROUND}">
+
+        <!-- Console content -->
         <Grid x:Name="ConsolePanel" Margin="51,157,0,2"/>
         <Rectangle HorizontalAlignment="Left" Height="130" VerticalAlignment="Top" Width="1000" Grid.ColumnSpan="2" Margin="0,22,0,0" Fill="{StaticResource CONSOLE_HEADER_BACKGROUND}"/>
         <Rectangle x:Name="WindowTopBar" Fill="{StaticResource CONSOLE_WINDOWBAR_BACKGROUND}" HorizontalAlignment="Left" Height="22" VerticalAlignment="Top" Width="1000" Grid.ColumnSpan="2" MouseDown="OnWindowDrag"/>
-        
+
         <!-- Top buttons -->
         <Label x:Name="closeWindow" Content="✕" HorizontalAlignment="Center" Margin="973,0,0,568" VerticalAlignment="Center" Height="22" Width="25" Foreground="{StaticResource BUTTON_TOPBUTTON_FOREGROUND}" Padding="0,0,1,0" Cursor="Hand" MouseDown="OnCloseWindowButtonClick" FontSize="14" Template="{DynamicResource LabelButtonType}" OverridesDefaultStyle="True" Style="{Binding Mode=OneWay, Source={StaticResource LabelButtonType}}" VerticalContentAlignment="Center" Background="{StaticResource BUTTON_CLOSEWINDOW_BACKGROUND}" HorizontalContentAlignment="Center" />
         <Label x:Name="minimizeWindow" Content="__" HorizontalAlignment="Left" Margin="945,-7,0,568" Width="28" Foreground="{StaticResource BUTTON_TOPBUTTON_FOREGROUND}" Padding="0" Cursor="Hand" FontSize="18" Background="{StaticResource BUTTON_TOPBUTTON_BACKGROUND}" MouseDown="OnMinimizeButtonClick" Template="{DynamicResource LabelButtonType}" HorizontalContentAlignment="Center" BorderThickness="0" VerticalContentAlignment="Center"/>
-        
+
         <!-- Side bar -->
         <Grid HorizontalAlignment="Left" Width="50" Margin="0,152,0,0" Background="{StaticResource CONSOLE_SIDEBAR_BACKGROUND}" ClipToBounds="True">
             <StackPanel x:Name="BUTTON_CONSOLE" Style="{StaticResource STYLE_SIDEBARBUTTONS}" Background="{StaticResource BUTTON_COMMONBUTTON_BACKGROUND}" Cursor="Hand"  Width="205" Height="40" Margin="0,2,0,396" Orientation="Horizontal" HorizontalAlignment="Left" MouseDown="OnConsoleButtonClick">
@@ -144,6 +148,8 @@
                 </Style>
             </Grid.Style>
         </Grid>
+
+        <!-- Header  -->
         <Label x:Name="version_text" Content="Version: BETA 1.0.0.0" HorizontalAlignment="Left" Width="150" Background="{x:Null}" Foreground="{StaticResource CONSOLE_VERSIONTEXT_FOREGROUND}" FontFamily="Roboto" VerticalAlignment="Bottom" Height="20" VerticalContentAlignment="Center" Padding="0" Margin="838,0,0,438" RenderTransformOrigin="0.5,0.5" HorizontalContentAlignment="Right"/>
         <Button x:Name="launchGameButton" HorizontalAlignment="Left" Margin="746,55,0,0" VerticalAlignment="Top" Width="242" Height="46" BorderBrush="{x:Null}" Foreground="{StaticResource BUTTON_LAUNCHGAME_FOREGROUND}" FontFamily="Roboto" FontSize="18" Cursor="Hand" BorderThickness="1"  Template="{DynamicResource ButtonStyle}" Content="LAUNCH GAME" Padding="0" FontWeight="Bold" HorizontalContentAlignment="Center" Click="OnLaunchGameButtonClick" Background="{StaticResource BUTTON_LAUNCHGAME_BACKGROUND}"/>
         <StackPanel Orientation="Horizontal" Height="59" VerticalAlignment="Top" HorizontalAlignment="Left" Width="185" Margin="20,50,0,0">
@@ -151,5 +157,28 @@
             <TextBlock HorizontalAlignment="Right" TextWrapping="Wrap" Text="Hunter" VerticalAlignment="Bottom" Height="59" FontFamily="Roboto" FontWeight="Bold" FontSize="22" Padding="1,16,0,0" Foreground="{StaticResource CONSOLE_LOGO_FOREGROUND}"/>
             <TextBlock HorizontalAlignment="Right" TextWrapping="Wrap" Text="Pie" VerticalAlignment="Bottom" Height="59" FontFamily="Roboto" FontWeight="Light" Width="56" FontSize="22" Padding="0,16,0,0" Foreground="{StaticResource CONSOLE_LOGO_FOREGROUND}"/>
         </StackPanel>
+
+        <!-- Notifications -->
+        <Custom:CNotification Margin="10,0,0,-45" x:Name="HunterPieNotify" Visibility="Hidden" NIcon="{StaticResource ICON_CHECKED}" HorizontalAlignment="Left" VerticalAlignment="Bottom">
+            <Custom:CNotification.Style>
+                <Style TargetType="Custom:CNotification">
+                    <Style.Triggers>
+                        <Trigger Property="IsVisible" Value="True">
+                            <Trigger.EnterActions>
+                                <BeginStoryboard>
+                                    <Storyboard>
+                                        <ThicknessAnimationUsingKeyFrames Storyboard.TargetProperty="Margin">
+                                            <LinearThicknessKeyFrame Value="10,0,0,10" KeyTime="0:0:0.2"/>
+                                            <LinearThicknessKeyFrame Value="10,0,0,10" KeyTime="0:0:1.6"/>
+                                            <LinearThicknessKeyFrame Value="10,0,0,-45" KeyTime="0:0:1.8"/>
+                                        </ThicknessAnimationUsingKeyFrames>
+                                    </Storyboard>
+                                </BeginStoryboard>
+                            </Trigger.EnterActions>
+                        </Trigger>
+                    </Style.Triggers>
+                </Style>
+            </Custom:CNotification.Style>
+        </Custom:CNotification>
     </Grid>
 </Window>

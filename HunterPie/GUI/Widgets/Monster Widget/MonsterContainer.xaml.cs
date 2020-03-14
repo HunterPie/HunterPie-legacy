@@ -133,6 +133,7 @@ namespace HunterPie.GUI.Widgets {
         private void OnMouseDown(object sender, System.Windows.Input.MouseButtonEventArgs e) {
             if (e.LeftButton == System.Windows.Input.MouseButtonState.Pressed) {
                 this.MoveWidget();
+                SaveSettings();
             }
         }
 

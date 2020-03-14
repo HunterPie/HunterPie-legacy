@@ -68,6 +68,7 @@ namespace HunterPie.GUI.Widgets.Abnormality_Widget.Parts {
             if (args.Abnormality.IsInfinite || args.Abnormality.MaxDuration == 0) angle = 90;
             else { angle = ConvertPercentageIntoAngle(args.Abnormality.Duration / args.Abnormality.MaxDuration); }
             Dispatcher.BeginInvoke(System.Windows.Threading.DispatcherPriority.Render, new Action(() => {
+                this.AbnormalityExpireWarning.Visibility = args.Abnormality.DurationPercentage <= 0.1 ? System.Windows.Visibility.Visible : System.Windows.Visibility.Hidden;
                 this.AbnormalityDurationArc.EndAngle = angle;
             }));
         }

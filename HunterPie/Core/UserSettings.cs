@@ -212,7 +212,6 @@ namespace HunterPie.Core {
                 if (ConfigSerialized == null) return;
                 PlayerConfig = JsonConvert.DeserializeObject<Config.Rootobject>(ConfigSerialized);
                 _onSettingsUpdate();
-                Debugger.Warn("Loaded user config!");
             } catch(Exception err) {
                 Debugger.Error($"Failed to parse config.json!\n{err}");
             }

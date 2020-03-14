@@ -15,6 +15,26 @@
     </UserControl.Resources>
     <Canvas x:Name="Abnormality" Margin="3" RenderTransformOrigin="0.5,0.5">
         <Ellipse Width="30" Height="30" Fill="#66000000"/>
+        <Ellipse x:Name="AbnormalityExpireWarning" Width="30" Height="30" Fill="#FFF54040" Visibility="Hidden" Opacity="0" RenderTransformOrigin="0.5,0.5">
+            <Ellipse.Style>
+                <Style TargetType="Ellipse">
+                    <Style.Triggers>
+                        <Trigger Property="IsVisible" Value="True">
+                            <Trigger.EnterActions>
+                                <BeginStoryboard>
+                                    <Storyboard>
+                                        <DoubleAnimationUsingKeyFrames Duration="0:0:0.8" RepeatBehavior="Forever" Storyboard.TargetProperty="Opacity">
+                                            <EasingDoubleKeyFrame  Value="0.3" KeyTime="0:0:0.3"/>
+                                            <EasingDoubleKeyFrame Value="0.0" KeyTime="0:0:0.5"/>
+                                        </DoubleAnimationUsingKeyFrames>
+                                    </Storyboard>
+                                </BeginStoryboard>
+                            </Trigger.EnterActions>
+                        </Trigger>
+                    </Style.Triggers>
+                </Style>
+            </Ellipse.Style>
+        </Ellipse>
         <Image x:Name="AbnormalityIcon" Visibility="Visible" Width="20" Height="20 " Canvas.Left="5" Canvas.Top="5">
             <Image.LayoutTransform>
                 <TransformGroup>

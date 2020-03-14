@@ -232,6 +232,8 @@ namespace HunterPie {
         public void SendToOverlay(object source, EventArgs e) {
             GameOverlay?.GlobalSettingsEventHandler(source, e);
             Dispatcher.BeginInvoke(System.Windows.Threading.DispatcherPriority.ApplicationIdle, new Action(() => {
+                // Only shows notification if HunterPie is visible
+                if (this.IsVisible) this.HunterPieNotify.ShowNotification();
                 Settings.RefreshSettingsUI();
             }));
         }
@@ -423,6 +425,10 @@ namespace HunterPie {
 
         private void OnDiscordButtonClick(object sender, MouseButtonEventArgs e) {
             System.Diagnostics.Process.Start("https://discord.gg/5pdDq4Q");
+        }
+
+        private void OnNotificationFinished(object sender, EventArgs e) {
+            HunterPieNotify.Visibility = Visibility.Hidden;
         }
     }
 }
