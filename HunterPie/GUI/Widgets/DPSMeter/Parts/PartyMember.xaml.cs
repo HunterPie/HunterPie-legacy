@@ -55,9 +55,9 @@ namespace HunterPie.GUI.Widgets.DPSMeter.Parts {
 
         private void OnPlayerDamageChange(object source, PartyMemberEventArgs args) {
             string DamageText;
-            if (UserSettings.PlayerConfig.Overlay.DPSMeter.ShowDPSWheneverPossible) {
-                float TimeElapsed = (float)PartyContext.Epoch.TotalSeconds;
-                TimeElapsed = TimeElapsed > 0 ? TimeElapsed : 1;
+            float TimeElapsed = (float)PartyContext.Epoch.TotalSeconds;
+            if (UserSettings.PlayerConfig.Overlay.DPSMeter.ShowDPSWheneverPossible && TimeElapsed > 0) {
+                
                 DamageText = $"{args.Damage / TimeElapsed:0.00}/s ({Context.DamagePercentage * 100:0}%)";
             } else {
                 DamageText = $"{args.Damage} ({Context.DamagePercentage * 100:0}%)";
@@ -71,9 +71,8 @@ namespace HunterPie.GUI.Widgets.DPSMeter.Parts {
 
         public void SetPlayerInformation() {
             string DamageText;
-            if (UserSettings.PlayerConfig.Overlay.DPSMeter.ShowDPSWheneverPossible) {
-                float TimeElapsed = (float)PartyContext.Epoch.TotalSeconds;
-                TimeElapsed = TimeElapsed > 0 ? TimeElapsed : 1;
+            float TimeElapsed = (float)PartyContext.Epoch.TotalSeconds;
+            if (UserSettings.PlayerConfig.Overlay.DPSMeter.ShowDPSWheneverPossible && TimeElapsed > 0) {
                 DamageText = $"{Context.Damage / TimeElapsed:0.00}/s ({Context.DamagePercentage * 100:0}%)";
             } else {
                 DamageText = $"{Context.Damage} ({Context.DamagePercentage * 100:0}%)";

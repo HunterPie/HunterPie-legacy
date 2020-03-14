@@ -192,18 +192,13 @@ namespace HunterPie {
             }
         }
 
-        /* Game events */
+        #region Game & Client Events
         private void HookEvents() {
             // Scanner events
             Scanner.OnGameStart += OnGameStart;
             Scanner.OnGameClosed += OnGameClose;
             // Settings
             UserSettings.OnSettingsUpdate += SendToOverlay;
-        }
-
-        private void OnSessionChange(object source, EventArgs args) {
-            Debugger.Log($"SESSION: {MonsterHunter.Player.SessionID}");
-            
         }
 
         private void UnhookEvents() {
@@ -214,6 +209,15 @@ namespace HunterPie {
             Scanner.OnGameClosed -= OnGameClose;
             // Settings
             UserSettings.OnSettingsUpdate -= SendToOverlay;
+        }
+
+        public void SendToOverlay(object source, EventArgs e) {
+            GameOverlay?.GlobalSettingsEventHandler(source, e);
+            Dispatcher.BeginInvoke(System.Windows.Threading.DispatcherPriority.ApplicationIdle, new Action(() => {
+                // Only shows notification if HunterPie is visible
+                if (this.IsVisible) this.HunterPieNotify.ShowNotification();
+                Settings.RefreshSettingsUI();
+            }));
         }
 
         private void HookGameEvents() {
@@ -229,13 +233,9 @@ namespace HunterPie {
             MonsterHunter.Player.OnSessionChange -= OnSessionChange;
         }
 
-        public void SendToOverlay(object source, EventArgs e) {
-            GameOverlay?.GlobalSettingsEventHandler(source, e);
-            Dispatcher.BeginInvoke(System.Windows.Threading.DispatcherPriority.ApplicationIdle, new Action(() => {
-                // Only shows notification if HunterPie is visible
-                if (this.IsVisible) this.HunterPieNotify.ShowNotification();
-                Settings.RefreshSettingsUI();
-            }));
+        private void OnSessionChange(object source, EventArgs args) {
+            Debugger.Log($"SESSION: {MonsterHunter.Player.SessionID}");
+
         }
 
         public void OnZoneChange(object source, EventArgs e) {
@@ -298,8 +298,11 @@ namespace HunterPie {
             MonsterHunter.DestroyInstances();
         }
 
+        #endregion
+
+        #region Sub Windows
         /* Open sub windows */
-        
+
         private void OpenDebugger() {
             this.SwitchButtonOn(BUTTON_CONSOLE);
             this.SwitchButtonOff(BUTTON_CHANGELOG);
@@ -324,6 +327,7 @@ namespace HunterPie {
             ConsolePanel.Children.Clear();
             ConsolePanel.Children.Add(Changelog.Instance);
         }
+        #endregion
 
         /* Animations */
         private void SwitchButtonOn(StackPanel buttonActive) {
@@ -339,8 +343,9 @@ namespace HunterPie {
         /* Events */
 
         private void OnCloseWindowButtonClick(object sender, MouseButtonEventArgs e) {
-            // X button function
+            // X button function;
             bool ExitConfirmation = MessageBox.Show("Are you sure you want to exit HunterPie?", "HunterPie", MessageBoxButton.YesNo, MessageBoxImage.Question) == MessageBoxResult.Yes;
+            
             if (ExitConfirmation) {
                 this.Close();
             }
@@ -425,10 +430,6 @@ namespace HunterPie {
 
         private void OnDiscordButtonClick(object sender, MouseButtonEventArgs e) {
             System.Diagnostics.Process.Start("https://discord.gg/5pdDq4Q");
-        }
-
-        private void OnNotificationFinished(object sender, EventArgs e) {
-            HunterPieNotify.Visibility = Visibility.Hidden;
         }
     }
 }

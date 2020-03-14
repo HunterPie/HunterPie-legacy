@@ -17,7 +17,7 @@ namespace HunterPie.Core {
         private string _sessionId;
 
         // Game info
-        private readonly int[] PeaceZones = new int[10] { 0, 301, 302, 303, 305, 306, 501, 502, 503, 506 };
+        private readonly int[] PeaceZones = new int[11] { 0, 301, 302, 303, 305, 306, 501, 502, 503, 504, 506 };
         private readonly int[] _HBZones = new int[9] { 301, 302, 303, 305, 306, 501, 502, 503, 506 };
         
         // Player info
@@ -336,7 +336,9 @@ namespace HunterPie.Core {
             Int64 EpochAddress = Scanner.READ_MULTILEVEL_PTR(Address.BASE + Address.DAMAGE_OFFSET, Address.Offsets.DamageOffsets);
             Int64 Epoch = Scanner.READ_LONGLONG(EpochAddress + 0x1028);
             PlayerParty.ShowDPS = true;
-            PlayerParty.Epoch = DateTime.UtcNow - DateTimeOffset.FromUnixTimeSeconds(Epoch);
+            if (Epoch > 0)
+                PlayerParty.Epoch = DateTime.UtcNow - DateTimeOffset.FromUnixTimeSeconds(Epoch);
+            else { PlayerParty.Epoch = TimeSpan.Zero; }
         }
 
         private int GetPartyMemberDamage(int playerIndex) {
