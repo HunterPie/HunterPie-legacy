@@ -144,7 +144,7 @@ namespace HunterPie.GUI.Widgets.Abnormality_Widget {
                     this.WidgetHasContent = false;
                 }
                 ChangeVisibility(false);
-                foreach (Parts.AbnormalityControl Abnorm in ActiveAbnormalities.Values.OrderByDescending(abnormality => abnormality.Context.MaxDuration)) {
+                foreach (Parts.AbnormalityControl Abnorm in ActiveAbnormalities.Values.OrderByDescending(abnormality => abnormality.Context.Duration)) {
                     this.BuffTray.Children.Add(Abnorm);
                 }
             }));

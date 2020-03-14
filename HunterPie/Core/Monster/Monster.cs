@@ -53,6 +53,8 @@ namespace HunterPie.Core {
                     _currentHP = value;
                     _onHPUpdate();
                     if (value <= 0) {
+                        // Clears monster ID since it's dead
+                        this.ID = null;
                         _onMonsterDeath();
                     }
                 }

@@ -42,7 +42,6 @@ namespace HunterPie.GUI {
             if (e.Key == UserSettings.PlayerConfig.Overlay.ToggleDesignModeKey && e.KeyMessage == KeyboardHookHelper.KeyboardMessage.WM_KEYUP) {
                 IsHoldingKey = false;
             }
-            Logger.Debugger.Log(e.Key.ToString());
         }
 
         private void ToggleDesignMode() {
