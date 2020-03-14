@@ -26,6 +26,7 @@
     <Monster ID="em044_00" Name="土砂龍"/>
     <Monster ID="em045_00" Name="爆鎚龍"/>
     <Monster ID="em057_00" Name="雷狼龍"/>
+    <Monster ID="em057_01" Name="獄狼龍"/>
     <Monster ID="em063_00" Name="碎龍"/>
     <Monster ID="em080_00" Name="斬龍"/>
     <Monster ID="em080_01" Name="硫斬龍"/>
@@ -36,6 +37,7 @@
     <Monster ID="em102_01" Name="水妖鳥"/>
     <Monster ID="em103_00" Name="滅盡龍"/>
     <Monster ID="em103_05" Name="殲世滅盡龍"/>
+    <Monster ID="em104_00" Name="冥赤龍"/>
     <Monster ID="em105_00" Name="冥燈龍"/>
     <Monster ID="em106_00" Name="熔山龍"/>
     <Monster ID="em107_00" Name="搔鳥"/>
