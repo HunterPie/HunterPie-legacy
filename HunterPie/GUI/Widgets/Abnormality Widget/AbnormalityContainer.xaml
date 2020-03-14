@@ -16,10 +16,10 @@
     <Grid x:Name="ContentHolder">
         <Rectangle Fill="#B20E0E0E" Stroke="#99000000"/>
         <Image x:Name="SettingsButton" ToolTip="Abnormality tray settings" Opacity="0.8" Panel.ZIndex="9999" Width="20" Height="20" Source="{StaticResource ICON_SETTINGS}" Margin="0,1,1,0" HorizontalAlignment="Right" VerticalAlignment="Top" Cursor="Hand" Visibility="Collapsed" MouseLeftButtonDown="OnSettingsButtonClick"/>
-        <WrapPanel x:Name="BuffTray" RenderTransformOrigin="-1,-1">
+        <WrapPanel x:Name="BuffTray" RenderTransformOrigin="0.5,0.5">
             <WrapPanel.LayoutTransform>
                 <TransformGroup>
-                    <ScaleTransform />
+                    <ScaleTransform/>
                     <SkewTransform/>
                     <RotateTransform/>
                     <TranslateTransform/>

@@ -374,7 +374,9 @@
     </None>
   </ItemGroup>
   <ItemGroup>
-    <Resource Include="Languages\ko-kr.xml" />
+    <None Include="Languages\ko-kr.xml">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

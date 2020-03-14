@@ -11,6 +11,16 @@
             <Setter Property="Foreground" Value="WhiteSmoke"/>
             <Setter Property="Background" Value="#CC080808"/>
             <Setter Property="BorderBrush" Value="Black"/>
+            <Setter Property="MaxWidth" Value="300"/>
+            <Style.Resources>
+                <Style TargetType="ContentPresenter">
+                    <Style.Resources>
+                        <Style TargetType="TextBlock">
+                            <Setter Property="TextWrapping" Value="Wrap"/>
+                        </Style>
+                    </Style.Resources>
+                </Style>
+            </Style.Resources>
         </Style>
         <Style x:Key="FocusVisual">
             <Setter Property="Control.Template">

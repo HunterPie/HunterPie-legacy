@@ -155,29 +155,7 @@ namespace HunterPie.Core {
             MonsterInfoScan.Abort();
         }
 
-        // Debugging purposes
-        /*
-        private void SimulateMonster() {
-            this.ID = "em002_00";
-            this.CurrentHP = 19008.5f;
-            this.TotalHP = 19008.5f;
-            this.SizeMultiplier = MonsterNumber == 1 ? 1.23f : MonsterNumber == 2 ? 1.15f : 0.9f;
-            int x = 0;
-            while (true) {
-                this.ID = "em002_00";
-                this.SizeMultiplier = MonsterNumber == 1 ? 1.23f : MonsterNumber == 2 ? 1.15f : 1;
-                _onMonsterSpawn();
-                _onHPUpdate();
-                CurrentHP -= 11;
-                x++;
-                if (x == 2) EnrageTimer = 120;
-                //if (x == 220) EnrageTimer = 0;
-                Thread.Sleep(200);
-            }
-        }*/
-
         private void ScanMonsterInfo() {
-            //SimulateMonster(); // Debugging purposes
             while (Scanner.GameIsRunning) {
                 GetMonsterAddress();
                 GetMonsterIDAndName();

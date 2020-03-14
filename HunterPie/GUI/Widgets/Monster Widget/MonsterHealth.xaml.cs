@@ -62,8 +62,8 @@ namespace HunterPie.GUI.Widgets {
             foreach (string Weakness in Context.Weaknesses.Keys) {
                 Image MonsterWeaknessImg = new Image {
                     Source = this.Resources[Weakness] as ImageSource,
-                    Height = 15,
-                    Width = 15
+                    Height = 18,
+                    Width = 18
                 };
                 Weaknesses.Children.Add(MonsterWeaknessImg);
             }

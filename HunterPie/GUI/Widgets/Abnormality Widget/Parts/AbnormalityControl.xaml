@@ -15,7 +15,13 @@
     </UserControl.Resources>
     <Canvas x:Name="Abnormality" Margin="3" RenderTransformOrigin="0.5,0.5">
         <Ellipse Width="30" Height="30" Fill="#66000000"/>
-        <Image x:Name="AbnormalityIcon" Visibility="Visible" Width="20" Height="20 " Canvas.Left="5" Canvas.Top="5"/>
+        <Image x:Name="AbnormalityIcon" Visibility="Visible" Width="20" Height="20 " Canvas.Left="5" Canvas.Top="5">
+            <Image.LayoutTransform>
+                <TransformGroup>
+                    <ScaleTransform CenterX="0.5" CenterY="0.5"/>
+                </TransformGroup>
+            </Image.LayoutTransform>
+        </Image>
         <helpers:Arc x:Name="AbnormalityDurationArc" Width="30" Height="30" StartAngle="90" StrokeThickness="2"/>
     </Canvas>
 </UserControl>

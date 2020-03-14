@@ -236,7 +236,7 @@
     <Abnormality ID="PALICO_017_00" Name="地形傷害無效"/>
     <Abnormality ID="PALICO_018_00" Name="未知 PALICO_018_00"/>
     <Abnormality ID="DEBUFF_000_00" Name="毒"/>
-    <Abnormality ID="DEBUFF_001_00" Name="未知 DEBUFF_001_00"/>
+    <Abnormality ID="DEBUFF_001_00" Name="猛毒"/>
     <Abnormality ID="DEBUFF_002_00" Name="未知 DEBUFF_002_00"/>
     <Abnormality ID="DEBUFF_003_00" Name="未知 DEBUFF_003_00"/>
     <Abnormality ID="DEBUFF_004_00" Name="火屬性異常狀態"/>
