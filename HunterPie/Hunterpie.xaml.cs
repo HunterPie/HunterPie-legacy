@@ -184,7 +184,12 @@ namespace HunterPie {
         private void StartEverything() {
             HookEvents();
             Scanner.StartScanning(); // Scans game memory
-            this.Show();
+            if (UserSettings.PlayerConfig.HunterPie.StartHunterPieMinimized) {
+                this.WindowState = WindowState.Minimized;
+                this.Hide();
+            } else {
+                this.Show();
+            }
         }
 
         /* Game events */

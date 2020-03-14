@@ -91,7 +91,7 @@ namespace HunterPie.GUI.Widgets.DPSMeter {
                 SortPlayersByDamage();
                 if (UserSettings.PlayerConfig.Overlay.DPSMeter.ShowDPSWheneverPossible) {
                     TypeIcon.Visibility = Visibility.Visible;
-                    Timer.Content = string.Format("{0:hh\\:mm\\:ss}", GameContext.Time);
+                    Timer.Content = string.Format("{0:hh\\:mm\\:ss}", Context.Epoch);
                 } else {
                     TypeIcon.Visibility = Visibility.Hidden;
                     Timer.Content = "Total Damage";

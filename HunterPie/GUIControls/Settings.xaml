@@ -96,7 +96,7 @@
     </UserControl.Resources>
     <Grid>
         <Button Style="{StaticResource buttons_settings}" x:Name="saveSettings" Panel.ZIndex="1" Content="Save" HorizontalAlignment="Left" Margin="832,387,0,0" VerticalAlignment="Top" Width="89" Height="36" Background="#FFD62424" BorderBrush="{x:Null}" Foreground="#FFE8E8E8" Cursor="Hand" FontFamily="Roboto" FontSize="14" FontWeight="Bold" Click="saveSettings_Click"/>
-        <ScrollViewer VerticalScrollBarVisibility="Auto" CanContentScroll="False" Padding="0,0,-16,0" Margin="0,0,10,0">
+        <ScrollViewer VerticalScrollBarVisibility="Auto" CanContentScroll="False" Padding="0,0,-16,0">
             <local:settingsWindow x:Name="SettingsBox" Height="1800"/>
         </ScrollViewer>
     </Grid>

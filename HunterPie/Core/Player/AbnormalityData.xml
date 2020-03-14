@@ -13,8 +13,8 @@
     <Abnormality ID="8" IsDebuff="False" Offset="58" Icon="ICON_WINDRES+" Stack="0"/>
     <Abnormality ID="9" IsDebuff="False" Offset="5C" Icon="ICON_DEFUP" Stack="0"/>
     <Abnormality ID="10" IsDebuff="False" Offset="60" Icon="ICON_DEFUP" Stack="0"/>
-    <Abnormality ID="11" IsDebuff="False" Offset="64" Icon="" Stack="0"/>
-    <Abnormality ID="12" IsDebuff="False" Offset="68" Icon="" Stack="0"/>
+    <Abnormality ID="11" IsDebuff="False" Offset="64" Icon="ICON_MANTLEUP" Stack="0"/>
+    <Abnormality ID="12" IsDebuff="False" Offset="68" Icon="ICON_MANTLEUP" Stack="0"/>
     <Abnormality ID="18" IsDebuff="False" Offset="80" Icon="ICON_NATURALHEALING" Stack="0"/>
     <Abnormality ID="19" IsDebuff="False" Offset="84" Icon="ICON_NATURALHEALING" Stack="0"/>
     <Abnormality ID="20" IsDebuff="False" Offset="88" Icon="ICON_EARPLUGS" Stack="0"/>
@@ -75,7 +75,6 @@
   <DEBUFF_Abnormalities>
     <Abnormality ID="0" IsDebuff="True" Offset="5DC" Icon="ICON_POISON"/>
     <Abnormality ID="1" IsDebuff="True" Offset="5E0" Icon="ICON_VENOM"/>
-    <Abnormality ID="3" IsDebuff="True" Offset="5E8" Icon=""/>
     <Abnormality ID="4" IsDebuff="True" Offset="5EC" Icon="ELEMENT_FIRE"/>
     <Abnormality ID="5" IsDebuff="True" Offset="5F0" Icon="ELEMENT_THUNDER"/>
     <Abnormality ID="6" IsDebuff="True" Offset="5F4" Icon="ELEMENT_WATER"/>
@@ -105,7 +104,7 @@
     <Abnormality ID="23" IsDebuff="False" Offset="6F0" HasConditions="False" Icon="ICON_HOTRES"/>
     <Abnormality ID="24" IsDebuff="False" Offset="6F4" HasConditions="False" Icon="ICON_COLDRES"/>
     <Abnormality ID="26" IsDebuff="False" Offset="6FC" HasConditions="False" Icon="ICON_EXT_HEALTHRECOVERY"/>
-    <Abnormality ID="27" IsDebuff="False" Offset="700" HasConditions="False" Icon=""/>
+    <Abnormality ID="27" IsDebuff="False" Offset="700" HasConditions="False" Icon="ICON_COLDRES"/>
     <Abnormality ID="34" IsDebuff="False" Offset="71C" HasConditions="False" Icon="ICON_ATTACKUP"/>
     <Abnormality ID="35" IsDebuff="False" Offset="720" HasConditions="False" Icon="ICON_ICERES+"/>
     <Abnormality ID="73" IsDebuff="False" Offset="7B8" HasConditions="False" Icon=""/>

@@ -25,6 +25,7 @@
             }
         }
         public float MaxDuration { get; private set; }
+        public float DurationPercentage { get; private set; }
         public bool IsDebuff { get; private set; }
 
         #region Events
@@ -64,6 +65,8 @@
                 this.Stack = (byte)(ab_stack);
                 _OnStackChange();
             }
+            if (MaxDuration > 0) { this.DurationPercentage = ab_duration / MaxDuration; }
+            else { this.DurationPercentage = 1; }
             this.IsDebuff = ab_isDebuff;
             this.IsInfinite = IsInfinite;
             this.Duration = (int)ab_duration;

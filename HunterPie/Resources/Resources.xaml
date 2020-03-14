@@ -76,6 +76,47 @@
     </DrawingImage>
     
     <!-- Abnormalities -->
+    <DrawingImage x:Key="ICON_MANTLEUP">
+        <DrawingImage.Drawing>
+            <DrawingGroup ClipGeometry="M0,0 V64.01 H64.01 V0 H0 Z">
+                <GeometryDrawing Brush="#FFFFCB6F" Geometry="F1 M64.01,64.01z M0,0z M14.1275,23.584L14.1275,5.85921C14.1275,5.85922 14.283,0.728355 20.3467,0.728359 26.4104,0.728359 32.9406,0.728359 32.9406,0.728359 32.9406,0.728359 43.9797,11.301 45.8455,13.0113 47.7113,14.7216 36.9054,24.0893 36.9054,24.0893L59.3723,64.0089 2,64.0089 15.5268,25.9162 14.1275,23.584z">
+                    <GeometryDrawing.Pen>
+                        <Pen Brush="#FF000000" Thickness="1.00014" StartLineCap="Flat" EndLineCap="Flat" LineJoin="Round" />
+                    </GeometryDrawing.Pen>
+                </GeometryDrawing>
+                <GeometryDrawing>
+                    <GeometryDrawing.Pen>
+                        <Pen Brush="#FF000000" Thickness="2.00028" StartLineCap="Flat" EndLineCap="Flat" LineJoin="Round" />
+                    </GeometryDrawing.Pen>
+                    <GeometryDrawing.Geometry>
+                        <LineGeometry StartPoint="14.882,25.9421" EndPoint="37.9549,25.9162" />
+                    </GeometryDrawing.Geometry>
+                </GeometryDrawing>
+                <GeometryDrawing>
+                    <GeometryDrawing.Pen>
+                        <Pen Brush="#FF000000" Thickness="2.00028" StartLineCap="Flat" EndLineCap="Flat" LineJoin="Round" />
+                    </GeometryDrawing.Pen>
+                    <GeometryDrawing.Geometry>
+                        <LineGeometry StartPoint="26.4427,0.6508" EndPoint="26.3611,25.7527" />
+                    </GeometryDrawing.Geometry>
+                </GeometryDrawing>
+                <GeometryDrawing>
+                    <GeometryDrawing.Pen>
+                        <Pen Brush="#FF000000" Thickness="3.00042" StartLineCap="Flat" EndLineCap="Flat" LineJoin="Round" />
+                    </GeometryDrawing.Pen>
+                    <GeometryDrawing.Geometry>
+                        <LineGeometry StartPoint="19.6158,7.5968" EndPoint="19.5846,25.7991" />
+                    </GeometryDrawing.Geometry>
+                </GeometryDrawing>
+                <GeometryDrawing Geometry="F1 M64.01,64.01z M0,0z M7.48593,50.6887L11.0843,40.2456 18.3177,49.9113 24.6406,40.2456 31.7409,49.8595 36.7127,40.2456 42.5209,49.8077 45.2641,40.2456 51.1241,50.8442">
+                    <GeometryDrawing.Pen>
+                        <Pen Brush="#FF000000" Thickness="2.00028" StartLineCap="Flat" EndLineCap="Flat" LineJoin="Round" />
+                    </GeometryDrawing.Pen>
+                </GeometryDrawing>
+                <GeometryDrawing Brush="#FF3EC42D" Geometry="F1 M64.01,64.01z M0,0z M52.7851,40.2456L42.8343,52.6841 49.3645,52.6841 49.3645,62.3737 56.7239,62.3737 56.7239,52.6841 63.0468,52.6841 52.7851,40.2456z" />
+            </DrawingGroup>
+        </DrawingImage.Drawing>
+    </DrawingImage>
     <DrawingImage x:Key="ICON_MAXSTAMRECOVERY">
         <DrawingImage.Drawing>
             <DrawingGroup>

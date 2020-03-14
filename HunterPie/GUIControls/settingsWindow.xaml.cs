@@ -124,7 +124,8 @@ namespace HunterPie.GUIControls {
             for (int i = 0; i < UserSettings.PlayerConfig.Overlay.AbnormalitiesWidget.ActiveBars; i++) {
                 Custom_Controls.BuffBarSettingControl BuffBar = new Custom_Controls.BuffBarSettingControl() {
                     PresetName = UserSettings.PlayerConfig.Overlay.AbnormalitiesWidget.BarPresets[i].Name,
-                    Enabled = (bool)UserSettings.PlayerConfig.Overlay.AbnormalitiesWidget.BarPresets[i].Enabled
+                    Enabled = (bool)UserSettings.PlayerConfig.Overlay.AbnormalitiesWidget.BarPresets[i].Enabled,
+                    TrayIndex = i
                 };
                 BuffTrays.Children.Add(BuffBar);
             }
@@ -146,7 +147,8 @@ namespace HunterPie.GUIControls {
             UserSettings.PlayerConfig.Overlay.AbnormalitiesWidget.ActiveBars += 1;
             Custom_Controls.BuffBarSettingControl BuffBar = new Custom_Controls.BuffBarSettingControl() {
                 PresetName = UserSettings.PlayerConfig.Overlay.AbnormalitiesWidget.BarPresets.LastOrDefault().Name,
-                Enabled = (bool)UserSettings.PlayerConfig.Overlay.AbnormalitiesWidget.BarPresets.LastOrDefault().Enabled
+                Enabled = (bool)UserSettings.PlayerConfig.Overlay.AbnormalitiesWidget.BarPresets.LastOrDefault().Enabled,
+                TrayIndex = UserSettings.PlayerConfig.Overlay.AbnormalitiesWidget.BarPresets.Length - 1
             };
             BuffTrays.Children.Add(BuffBar);
             NumberOfBuffBars.Text = UserSettings.PlayerConfig.Overlay.AbnormalitiesWidget.ActiveBars.ToString();

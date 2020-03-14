@@ -24,7 +24,7 @@ namespace HunterPie.GUI.Widgets.Abnormality_Widget {
         Widget widgetParent;
         int BuffTrayIndex;
 
-        public AbnormalityTraySettings(Widget parent, int TrayIndex) {
+        public AbnormalityTraySettings(Widget parent = null, int TrayIndex = 0) {
             InitializeComponent();
             BuffTrayIndex = TrayIndex;
             widgetParent = parent;
@@ -119,9 +119,28 @@ namespace HunterPie.GUI.Widgets.Abnormality_Widget {
             }
             UserSettings.PlayerConfig.Overlay.AbnormalitiesWidget.BarPresets[BuffTrayIndex].AcceptedAbnormalities = EnabledAbnormalities.ToArray();
             UserSettings.PlayerConfig.Overlay.AbnormalitiesWidget.BarPresets[BuffTrayIndex].Orientation = OrientationSwitcher.IsEnabled ? "Horizontal" : "Vertical";
-            UserSettings.PlayerConfig.Overlay.AbnormalitiesWidget.BarPresets[BuffTrayIndex].Position[0] = (int)widgetParent.Left;
-            UserSettings.PlayerConfig.Overlay.AbnormalitiesWidget.BarPresets[BuffTrayIndex].Position[1] = (int)widgetParent.Top;
+            if (widgetParent != null) {
+                UserSettings.PlayerConfig.Overlay.AbnormalitiesWidget.BarPresets[BuffTrayIndex].Position[0] = (int)widgetParent.Left;
+                UserSettings.PlayerConfig.Overlay.AbnormalitiesWidget.BarPresets[BuffTrayIndex].Position[1] = (int)widgetParent.Top;
+            }
             UserSettings.SaveNewConfig();
+        }
+
+        private void OnSelectAllButtonClick(object sender, RoutedEventArgs e) {
+            ToggleAllAbnormalitiesInTab(true);
+        }
+
+        private void OnUnselectAllButtonClick(object sender, RoutedEventArgs e) {
+            ToggleAllAbnormalitiesInTab(false);
+        }
+
+        private void ToggleAllAbnormalitiesInTab(bool enable) {
+            ScrollViewer SelectedAbnormalityContainer = AbnormalitySelectionContainer.SelectedContent as ScrollViewer;
+            WrapPanel SelectedAbnormalityPanel = SelectedAbnormalityContainer.Content as WrapPanel;
+            foreach (UIElement RawAbnormality in SelectedAbnormalityPanel.Children) {
+                Parts.AbnormalitySettingControl AbnormalityDisplay = (Parts.AbnormalitySettingControl)RawAbnormality;
+                AbnormalityDisplay.IsEnabled = enable;
+            }
         }
 
         private void OnClosing(object sender, System.ComponentModel.CancelEventArgs e) {

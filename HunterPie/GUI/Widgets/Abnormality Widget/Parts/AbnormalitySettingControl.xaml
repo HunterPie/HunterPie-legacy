@@ -6,8 +6,41 @@
              xmlns:local="clr-namespace:HunterPie.GUI.Widgets.Abnormality_Widget.Parts"
              mc:Ignorable="d" 
              Height="46" Width="46">
-    <Canvas Cursor="Hand" Margin="3" MouseLeftButtonDown="OnMouseClick">
-        <Image x:Name="AbnormalityIcon" Width="40" Height="40" />
+    <Canvas x:Name="AbnormDisplay" Cursor="Hand" Margin="3" MouseLeftButtonDown="OnMouseClick">
+        <Image x:Name="AbnormalityIcon" Width="40" Height="40" RenderTransformOrigin="0.5,0.5">
+            <Image.RenderTransform>
+                <TransformGroup>
+                    <ScaleTransform ScaleX="1" ScaleY="1"/>
+                    <SkewTransform/>
+                    <RotateTransform/>
+                    <TranslateTransform/>
+                </TransformGroup>
+            </Image.RenderTransform>
+            <Image.Style>
+                <Style TargetType="Image">
+                    <Style.Triggers>
+                        <DataTrigger Binding="{Binding ElementName=AbnormCheck, Path=IsVisible}" Value="True">
+                            <DataTrigger.EnterActions>
+                                <BeginStoryboard>
+                                    <Storyboard>
+                                        <DoubleAnimation Duration="0:0:0.15" Storyboard.TargetProperty="(Image.RenderTransform).(TransformGroup.Children)[0].(ScaleTransform.ScaleX)" To="0.8"/>
+                                        <DoubleAnimation Duration="0:0:0.15" Storyboard.TargetProperty="(Image.RenderTransform).(TransformGroup.Children)[0].(ScaleTransform.ScaleY)" To="0.8"/>
+                                    </Storyboard>
+                                </BeginStoryboard>
+                            </DataTrigger.EnterActions>
+                            <DataTrigger.ExitActions>
+                                <BeginStoryboard>
+                                    <Storyboard>
+                                        <DoubleAnimation Duration="0:0:0.15" Storyboard.TargetProperty="(Image.RenderTransform).(TransformGroup.Children)[0].(ScaleTransform.ScaleX)" To="1"/>
+                                        <DoubleAnimation Duration="0:0:0.15" Storyboard.TargetProperty="(Image.RenderTransform).(TransformGroup.Children)[0].(ScaleTransform.ScaleY)" To="1"/>
+                                    </Storyboard>
+                                </BeginStoryboard>
+                            </DataTrigger.ExitActions>
+                        </DataTrigger> 
+                    </Style.Triggers>
+                </Style>
+            </Image.Style>
+        </Image>
         <Image x:Name="AbnormCheck" Source="{DynamicResource ICON_CHECKED}" Width="10"  Height="10" Visibility="Hidden">
             <Image.Style>
                 <Style TargetType="Image">
@@ -15,8 +48,8 @@
                         <Trigger Property="IsVisible" Value="True">
                             <Trigger.EnterActions>
                                 <BeginStoryboard>
-                                    <Storyboard Storyboard.TargetProperty="Opacity">
-                                        <DoubleAnimation From="0" To="1" Duration="0:0:0.2"/>
+                                    <Storyboard>
+                                        <DoubleAnimation Storyboard.TargetProperty="Opacity" From="0" To="1" Duration="0:0:0.2"/>
                                     </Storyboard>
                                 </BeginStoryboard>
                             </Trigger.EnterActions>

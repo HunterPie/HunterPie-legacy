@@ -195,6 +195,10 @@
             <custom:Switcher x:Name="switchEnableMinimizeToSystemTray" Height="27" Width="52"/>
             <TextBlock Text="Minimize HunterPie to system tray" Margin="10,0,0,0" FontFamily="Roboto" FontSize="16" Foreground="#FFF9F9F9" HorizontalAlignment="Center" VerticalAlignment="Center" FontWeight="ExtraLight" />
         </StackPanel>
+        <StackPanel Orientation="Horizontal" Margin="338,3,0,0" ToolTip="When enabled, HunterPie will start minimized.">
+            <custom:Switcher x:Name="switchEnableStartMinimized" Height="27" Width="52"/>
+            <TextBlock Text="Start HunterPie minimized" Margin="10,0,0,0" FontFamily="Roboto" FontSize="16" Foreground="#FFF9F9F9" HorizontalAlignment="Center" VerticalAlignment="Center" FontWeight="ExtraLight" />
+        </StackPanel>
         <ComboBox Style="{StaticResource ComboBoxFlatStyle}" x:Name="branchesCombobox" IsReadOnly="True" Cursor="Hand" HorizontalAlignment="Center" Width="148" Margin="106,10,0,0" FontSize="14" Foreground="#FFF9F9F9"/>
         <Label Content="Update branch:" HorizontalAlignment="Center" Height="23" Margin="-150,-21,0,0" Width="103" FontFamily="Roboto" Foreground="#FFE0E0E0" FontSize="15" Padding="0" FontWeight="Light"/>
         <ComboBox Style="{StaticResource ComboBoxFlatStyle}" x:Name="LanguageFilesCombobox" Margin="299,10,211,0" IsReadOnly="True" Cursor="Hand" FontSize="14" Foreground="#FFE0E0E0"/>

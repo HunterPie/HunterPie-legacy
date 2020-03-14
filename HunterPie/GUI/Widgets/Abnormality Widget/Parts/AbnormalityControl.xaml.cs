@@ -13,7 +13,7 @@ namespace HunterPie.GUI.Widgets.Abnormality_Widget.Parts {
         Brush Debuff_Color = new SolidColorBrush(Color.FromArgb(0xFF, 0x97, 0x32, 0x32)) ;
         Brush Buff_Color = new SolidColorBrush(Color.FromArgb(0xFF, 0x32, 0x97, 0x45));
 
-        Abnormality Context;
+        public Abnormality Context { get; private set; }
 
         public double BaseWidth;
         public double BaseHeight;

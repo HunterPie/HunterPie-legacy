@@ -5,7 +5,7 @@
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         mc:Ignorable="d"
-        Title="AbnormalityContainer" Top="500" Left="300" MinHeight="40" MinWidth="40" SizeToContent="WidthAndHeight" Background="{x:Null}" WindowStyle="None" AllowsTransparency="True" ShowInTaskbar="False" Topmost="True" Closing="OnClosing" MouseEnter="OnMouseEnter" MouseDown="OnMouseDown" MouseWheel="OnMouseWheel" MouseLeave="OnMouseLeave" SizeChanged="OnSizeChange" MouseLeftButtonUp="OnMouseLeftUp">
+        Title="AbnormalityContainer" Top="500" Left="300" MinHeight="40" MinWidth="40" SizeToContent="WidthAndHeight" Background="{x:Null}" WindowStyle="None" AllowsTransparency="True" ShowInTaskbar="False" Topmost="True" Closing="OnClosing" MouseEnter="OnMouseEnter" MouseDown="OnMouseDown" MouseWheel="OnMouseWheel" MouseLeave="OnMouseLeave" SizeChanged="OnSizeChange">
     <widget:Widget.Resources>
         <ResourceDictionary>
             <ResourceDictionary.MergedDictionaries>
@@ -16,8 +16,15 @@
     <Grid x:Name="ContentHolder">
         <Rectangle Fill="#B20E0E0E" Stroke="#99000000"/>
         <Image x:Name="SettingsButton" ToolTip="Abnormality tray settings" Opacity="0.8" Panel.ZIndex="9999" Width="20" Height="20" Source="{StaticResource ICON_SETTINGS}" Margin="0,1,1,0" HorizontalAlignment="Right" VerticalAlignment="Top" Cursor="Hand" Visibility="Collapsed" MouseLeftButtonDown="OnSettingsButtonClick"/>
-        <WrapPanel x:Name="BuffTray">
-            
+        <WrapPanel x:Name="BuffTray" RenderTransformOrigin="-1,-1">
+            <WrapPanel.LayoutTransform>
+                <TransformGroup>
+                    <ScaleTransform />
+                    <SkewTransform/>
+                    <RotateTransform/>
+                    <TranslateTransform/>
+                </TransformGroup>
+            </WrapPanel.LayoutTransform>
         </WrapPanel>
     </Grid>
 </widget:Widget>

@@ -95,6 +95,7 @@ namespace HunterPie.Core {
                 public string Language { get; set; } = @"Languages\en-us.xml";
                 public string Theme { get; set; } = null;
                 public bool MinimizeToSystemTray { get; set; } = true;
+                public bool StartHunterPieMinimized { get; set; } = false;
                 public Update Update { get; set; } = new Update();
                 public Launch Launch { get; set; } = new Launch();
                 public Options Options { get; set; } = new Options();
@@ -123,7 +124,7 @@ namespace HunterPie.Core {
                 public string Name { get; set; } = "Abnormality Tray";
                 public int[] Position { get; set; } = new int[2] { 500, 60 };
                 public string Orientation { get; set; } = "Horizontal";
-                public int MaxSize { get; set; } = 0;
+                public int MaxSize { get; set; } = 300;
                 public double Scale { get; set; } = 1;
                 public string[] AcceptedAbnormalities { get; set; } = new string[1] { "*" };
                 public bool Enabled { get; set; } = true;

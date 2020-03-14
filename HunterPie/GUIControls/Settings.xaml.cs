@@ -43,6 +43,7 @@ namespace HunterPie.GUIControls {
             settingsUI.switchEnableCloseWhenExit.IsEnabled = settings.HunterPie.Options.CloseWhenGameCloses;
             settingsUI.LanguageFilesCombobox.SelectedItem = settings.HunterPie.Language;
             settingsUI.switchEnableMinimizeToSystemTray.IsEnabled = settings.HunterPie.MinimizeToSystemTray;
+            settingsUI.switchEnableStartMinimized.IsEnabled = settings.HunterPie.StartHunterPieMinimized;
 
             // Rich Presence
             settingsUI.switchEnableRichPresence.IsEnabled = settings.RichPresence.Enabled;
@@ -103,6 +104,7 @@ namespace HunterPie.GUIControls {
             settings.HunterPie.Options.CloseWhenGameCloses = settingsUI.switchEnableCloseWhenExit.IsEnabled;
             settings.HunterPie.Language = (string)settingsUI.LanguageFilesCombobox.SelectedItem;
             settings.HunterPie.MinimizeToSystemTray = settingsUI.switchEnableMinimizeToSystemTray.IsEnabled;
+            settings.HunterPie.StartHunterPieMinimized = settingsUI.switchEnableStartMinimized.IsEnabled;
 
             // Rich Presence
             settings.RichPresence.Enabled = settingsUI.switchEnableRichPresence.IsEnabled;

@@ -7,7 +7,7 @@
         xmlns:Custom="clr-namespace:HunterPie.GUIControls.Custom_Controls"
         xmlns:local="clr-namespace:HunterPie.GUI.Widgets.Abnormality_Widget"
         mc:Ignorable="d"
-        Title="Abnormality Tray Settings" Height="577.65" Width="843" Background="#DD0C0C0C" Foreground="{x:Null}" WindowStyle="None" BorderThickness="1" AllowsTransparency="True" Topmost="True" ResizeMode="CanResizeWithGrip" MinWidth="600" MinHeight="400" Closing="OnClosing">
+        Title="Abnormality Tray Settings" Height="580" Width="843" Background="#FA0C0C0C" Foreground="{x:Null}" WindowStyle="None" BorderThickness="1" AllowsTransparency="True" Topmost="True" ResizeMode="CanResizeWithGrip" MinWidth="600" MinHeight="400" Closing="OnClosing">
     <widget:WidgetSettings.Resources>
         <ResourceDictionary>
             <ResourceDictionary.MergedDictionaries>
@@ -86,7 +86,7 @@
         </ResourceDictionary>
     </widget:WidgetSettings.Resources>
     <Grid>
-        <TabControl Margin="0,178,0,55" BorderBrush="#FF0F0F0F" Background="Transparent">
+        <TabControl x:Name="AbnormalitySelectionContainer" Margin="0,178,0,55" BorderBrush="#FF0F0F0F" Background="Transparent">
             <TabItem Padding="6,2">
                 <TabItem.Header>
                     <Canvas Width="120" Margin="0,4,0,0" Cursor="Arrow">
@@ -94,9 +94,9 @@
                         <TextBlock Text="Hunting Horn" Margin="16,-4,0,0"/>
                     </Canvas>
                 </TabItem.Header>
-                <Grid>
+                <ScrollViewer>
                     <WrapPanel x:Name="HuntingHornBuffs" ScrollViewer.VerticalScrollBarVisibility="Visible"/>
-                </Grid>
+                </ScrollViewer>
             </TabItem>
             <TabItem>
                 <TabItem.Header>
@@ -105,9 +105,9 @@
                         <TextBlock Text="Orchestra" Margin="16,-4,0,0"/>
                     </Canvas>
                 </TabItem.Header>
-                <Grid Background="Transparent">
+                <ScrollViewer Background="Transparent">
                     <WrapPanel x:Name="PalicoBuffs" ScrollViewer.VerticalScrollBarVisibility="Auto"/>
-                </Grid>
+                </ScrollViewer>
             </TabItem>
             <TabItem>
                 <TabItem.Header>
@@ -116,9 +116,9 @@
                         <TextBlock Text="Debuffs" Margin="16,-4,0,0"/>
                     </Canvas>
                 </TabItem.Header>
-                <Grid Background="Transparent">
+                <ScrollViewer Background="Transparent">
                     <WrapPanel x:Name="Debuffs" ScrollViewer.VerticalScrollBarVisibility="Auto"/>
-                </Grid>
+                </ScrollViewer>
             </TabItem>
             <TabItem>
                 <TabItem.Header>
@@ -127,17 +127,19 @@
                         <TextBlock Text="Consumables" Margin="16,-4,0,0"/>
                     </Canvas>
                 </TabItem.Header>
-                <Grid Background="Transparent">
+                <ScrollViewer Background="Transparent">
                     <WrapPanel x:Name="ConsumableBuffs" ScrollViewer.VerticalScrollBarVisibility="Auto"/>
-                </Grid>
+                </ScrollViewer>
             </TabItem>
         </TabControl>
         <Custom:Switcher x:Name="OrientationSwitcher" Margin="18,55,0,0" VerticalAlignment="Top" Height="24" HorizontalAlignment="Left" Width="51" />
-        <TextBlock HorizontalAlignment="Left" Margin="74,55,0,0" TextWrapping="Wrap" FontSize="15" Text="Allign abnormalities horizontally" Foreground="WhiteSmoke" VerticalAlignment="Top" Height="24"/>
+        <TextBlock HorizontalAlignment="Left" Margin="74,55,0,0" TextWrapping="Wrap" FontSize="15" Text="Allign abnormalities bar horizontally" Foreground="WhiteSmoke" VerticalAlignment="Top" Height="24"/>
         <TextBlock Cursor="Hand" Margin="0,0,1,0" Text="X" VerticalAlignment="Top" HorizontalAlignment="Right" Width="31" Height="31" Foreground="#FFB9B9B9" FontWeight="Bold" FontSize="22" FlowDirection="RightToLeft" Padding="8,0,0,0" MouseLeftButtonDown="OnCloseButtonClick"/>
         <Image Source="{StaticResource ICON_SETTINGS}"  Width="20" Height="20" Margin="6,5,0,0" VerticalAlignment="Top" HorizontalAlignment="Left"/>
         <TextBlock x:Name="WindowTitle" Foreground="WhiteSmoke" FontSize="20"  HorizontalAlignment="Left" Margin="31,0,0,0" TextWrapping="Wrap" Text="Abnormalities Settings" VerticalAlignment="Top" Height="31" TextOptions.TextHintingMode="Fixed"/>
         <Rectangle Fill="#7F080808" Height="31" VerticalAlignment="Top" MouseLeftButtonDown="OnDragWindow" Margin="0,0,32,0"/>
         <Button Cursor="Hand" Content="Save" Margin="0,0,18,10" Height="34" VerticalAlignment="Bottom" HorizontalAlignment="Right" Width="112" Style="{StaticResource ButtonStyle}" BorderBrush="{x:Null}" Foreground="#FFE6E6E6" Background="#FFD62424" FontSize="14" Click="OnSaveButtonClick"/>
+        <Button Cursor="Hand" Content="Select all" Margin="10,0,0,10" Height="34" VerticalAlignment="Bottom" HorizontalAlignment="Left" Width="112" Style="{StaticResource ButtonStyle}" BorderBrush="{x:Null}" Foreground="#FFE6E6E6" Background="#FFD62424" FontSize="14" Click="OnSelectAllButtonClick"/>
+        <Button Cursor="Hand" Content="Unselect all" Margin="127,0,0,10" Height="34" VerticalAlignment="Bottom" HorizontalAlignment="Left" Width="112" Style="{StaticResource ButtonStyle}" BorderBrush="{x:Null}" Foreground="#FFE6E6E6" Background="#FFD62424" FontSize="14" Click="OnUnselectAllButtonClick"/>
     </Grid>
 </widget:WidgetSettings>

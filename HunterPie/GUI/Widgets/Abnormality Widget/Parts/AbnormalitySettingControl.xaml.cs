@@ -18,8 +18,12 @@ namespace HunterPie.GUI.Widgets.Abnormality_Widget.Parts {
     /// Interaction logic for AbnormalitySettingControl.xaml
     /// </summary>
     public partial class AbnormalitySettingControl : UserControl {
+        private bool _IsEnabled { get; set; } = false;
 
-        public new bool IsEnabled;
+        public new bool IsEnabled {
+            get { return _IsEnabled; }
+            set { _IsEnabled = value ; this.AbnormCheck.Visibility = value ? Visibility.Visible : Visibility.Hidden; }
+        }
         public string InternalID;
 
         public AbnormalitySettingControl() {
@@ -36,7 +40,6 @@ namespace HunterPie.GUI.Widgets.Abnormality_Widget.Parts {
 
         private void OnMouseClick(object sender, MouseButtonEventArgs e) {
             IsEnabled = !IsEnabled;
-            this.AbnormCheck.Visibility = IsEnabled ? Visibility.Visible : Visibility.Hidden;
         }
     }
 }
