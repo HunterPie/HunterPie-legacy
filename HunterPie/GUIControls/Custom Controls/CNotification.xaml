@@ -5,7 +5,7 @@
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              xmlns:local="clr-namespace:HunterPie.GUIControls.Custom_Controls"
              mc:Ignorable="d" Height="40" Width="200" BorderThickness="1" BorderBrush="#CC0A0A0A">
-    <Canvas x:Name="cHolder" Background="#CC111111">
+    <Canvas x:Name="cHolder" Background="#B2111111">
         <Image x:Name="NotificationIcon" Width="18" Height="18" Canvas.Left="10" Canvas.Top="10"/>
         <TextBlock x:Name="NotificationText" Text="New settings loaded." Foreground="WhiteSmoke" Width="163" Canvas.Left="33" Canvas.Top="5" Height="30" FontSize="16" Padding="0,3,0,0" FontWeight="Light"/>
     </Canvas>

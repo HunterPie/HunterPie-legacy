@@ -6,10 +6,33 @@
              xmlns:local="clr-namespace:HunterPie.GUIControls.Custom_Controls"
              mc:Ignorable="d" 
              Height="50" Width="500">
-    <Canvas Background="#FF171717">
+    <Canvas Background="#FF1D1D1D">
         <TextBox x:Name="BarPresetName" Cursor="Arrow" TextWrapping="Wrap" Text="ABNORMALITY BAR" Height="50" Width="320" SelectionBrush="#AF0000" Foreground="WhiteSmoke" Background="Transparent" BorderBrush="Transparent" FontSize="14" VerticalScrollBarVisibility="Disabled" MaxWidth="320" MaxHeight="50" Padding="4,13,0,0" FontWeight="Bold"/>
         <TextBlock Canvas.Left="325" Foreground="WhiteSmoke" TextWrapping="Wrap" Text="Enable" Height="22" Width="54" Canvas.Top="14" FontSize="16" FontWeight="Light"/>
         <local:Switcher x:Name="SwitchEnableBar" Height="24" Canvas.Left="384" Canvas.Top="12" Width="50"/>
-        <Image Cursor="Hand" MouseDown="OnBuffTraySettingClick" Source="{DynamicResource ICON_SETTINGS}" Width="20" Height="20" Canvas.Left="450" Canvas.Top="14" />
+        <Image Cursor="Hand" MouseDown="OnBuffTraySettingClick" Source="{DynamicResource ICON_SETTINGS}" Width="20" Height="20" Canvas.Left="450" Canvas.Top="14">
+            <Image.Style>
+                <Style TargetType="Image">
+                    <Style.Triggers>
+                        <Trigger Property="IsMouseOver" Value="True">
+                            <Trigger.EnterActions>
+                                <BeginStoryboard>
+                                    <Storyboard>
+                                        <DoubleAnimation Storyboard.TargetProperty="Opacity" To="0.7" Duration="0:0:0.2"/>
+                                    </Storyboard>
+                                </BeginStoryboard>
+                            </Trigger.EnterActions>
+                            <Trigger.ExitActions>
+                                <BeginStoryboard>
+                                    <Storyboard>
+                                        <DoubleAnimation Storyboard.TargetProperty="Opacity" To="1"  Duration="0:0:0.2"/>
+                                    </Storyboard>
+                                </BeginStoryboard>
+                            </Trigger.ExitActions>
+                        </Trigger>
+                    </Style.Triggers>
+                </Style>
+            </Image.Style>
+        </Image>
     </Canvas>
 </UserControl>

@@ -15,7 +15,7 @@
     </UserControl.Resources>
     <Canvas x:Name="Abnormality" Margin="3" RenderTransformOrigin="0.5,0.5">
         <Ellipse Width="30" Height="30" Fill="#66000000"/>
-        <Ellipse x:Name="AbnormalityExpireWarning" Width="30" Height="30" Fill="#FFF54040" Visibility="Hidden" Opacity="0" RenderTransformOrigin="0.5,0.5">
+        <Ellipse x:Name="AbnormalityExpireWarning" Width="30" Height="30" Fill="#FFC91B1B" Visibility="Hidden" Opacity="0" RenderTransformOrigin="0.5,0.5">
             <Ellipse.Style>
                 <Style TargetType="Ellipse">
                     <Style.Triggers>

@@ -168,9 +168,11 @@
                                 <BeginStoryboard>
                                     <Storyboard>
                                         <ThicknessAnimationUsingKeyFrames Storyboard.TargetProperty="Margin">
-                                            <LinearThicknessKeyFrame Value="10,0,0,10" KeyTime="0:0:0.2"/>
-                                            <LinearThicknessKeyFrame Value="10,0,0,10" KeyTime="0:0:1.6"/>
-                                            <LinearThicknessKeyFrame Value="10,0,0,-45" KeyTime="0:0:1.8"/>
+                                            <LinearThicknessKeyFrame Value="10,0,0,10" KeyTime="0:0:0.15"/>
+                                            <LinearThicknessKeyFrame Value="10,0,0,15" KeyTime="0:0:0.25"/>
+                                            <LinearThicknessKeyFrame Value="10,0,0,10" KeyTime="0:0:0.3"/>
+                                            <LinearThicknessKeyFrame Value="10,0,0,10" KeyTime="0:0:1.7"/>
+                                            <LinearThicknessKeyFrame Value="10,0,0,-45" KeyTime="0:0:1.85"/>
                                         </ThicknessAnimationUsingKeyFrames>
                                     </Storyboard>
                                 </BeginStoryboard>

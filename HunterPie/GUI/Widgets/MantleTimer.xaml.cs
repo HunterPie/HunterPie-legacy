@@ -72,14 +72,14 @@ namespace HunterPie.GUI.Widgets {
             if (args.Timer <= 0) {
                 Dispatch(() => {
                     this.WidgetHasContent = false;
-                    ChangeVisibility();
+                    ChangeVisibility(false);
                 });
                 return;
             }
             string FormatMantleName = $"({(int)args.Timer}) {args.Name.ToUpper()}";
             Dispatch(() => {
                 this.WidgetHasContent = true;
-                ChangeVisibility();
+                ChangeVisibility(false);
                 MantleName.Content = FormatMantleName;
                 MantleTimerArc.EndAngle = ConvertPercentageIntoAngle(args.Timer / args.staticTimer);
             });
@@ -89,13 +89,13 @@ namespace HunterPie.GUI.Widgets {
             if (args.Cooldown <= 0) {
                 Dispatch(() => {
                     this.WidgetHasContent = false;
-                    ChangeVisibility();
+                    ChangeVisibility(false);
                 });
                 return;
             }
             Dispatch(() => {
                 this.WidgetHasContent = true;
-                ChangeVisibility();
+                ChangeVisibility(false);
                 string FormatMantleName = $"({(int)args.Cooldown}) {args.Name.ToUpper()}";
                 MantleName.Content = FormatMantleName;
                 MantleTimerArc.EndAngle = ConvertPercentageIntoAngle(args.Cooldown / args.staticCooldown);
