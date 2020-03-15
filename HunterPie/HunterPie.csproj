@@ -117,7 +117,9 @@
       <SubType>Designer</SubType>
     </ApplicationDefinition>
     <Compile Include="Core\KeyboardHook.cs" />
+    <Compile Include="Core\Monster\Ailment.cs" />
     <Compile Include="Core\Monster\MonsterData.cs" />
+    <Compile Include="Core\Monster\Part.cs" />
     <Compile Include="Core\Party\Member.cs" />
     <Compile Include="Core\Party\Party.cs" />
     <Compile Include="Core\Player\Abnormalities.cs" />

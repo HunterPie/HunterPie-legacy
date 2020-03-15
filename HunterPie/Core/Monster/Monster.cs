@@ -162,6 +162,7 @@ namespace HunterPie.Core {
                 GetMonsterAddress();
                 GetMonsterIDAndName();
                 GetMonsterEnrageTimer();
+                GetTargetMonsterAddress();
                 Thread.Sleep(200);
             }
             Thread.Sleep(1000);
@@ -177,10 +178,10 @@ namespace HunterPie.Core {
                     MonsterAddress = ThirdMonsterAddress;
                     break;
                 case 2:
-                    MonsterAddress = Scanner.READ_LONGLONG(ThirdMonsterAddress + Memory.Address.Offsets.NextMonsterPtr);
+                    MonsterAddress = Scanner.READ_LONGLONG(ThirdMonsterAddress - 0x30) + 0x40;
                     break;
                 case 1:
-                    MonsterAddress = Scanner.READ_LONGLONG(Scanner.READ_LONGLONG(ThirdMonsterAddress + Memory.Address.Offsets.NextMonsterPtr) + Memory.Address.Offsets.NextMonsterPtr);
+                    MonsterAddress = Scanner.READ_LONGLONG(Scanner.READ_LONGLONG(ThirdMonsterAddress - 0x30) + 0x10) + 0x40;
                     break;
                 default:
                     break;
@@ -227,9 +228,9 @@ namespace HunterPie.Core {
         }
 
         private void GetMonsterSizeModifier() {
-            float SizeModifier = Scanner.READ_FLOAT(MonsterAddress + 0x7770);
+            float SizeModifier = Scanner.READ_FLOAT(MonsterAddress + 0x7730);
             if (SizeModifier <= 0 || SizeModifier >= 2) SizeModifier = 1;
-            SizeMultiplier = Scanner.READ_FLOAT(MonsterAddress + 0x1C0) / SizeModifier;
+            SizeMultiplier = Scanner.READ_FLOAT(MonsterAddress + 0x180) / SizeModifier;
         }
 
         private void GetMonsterWeaknesses() {
@@ -237,7 +238,12 @@ namespace HunterPie.Core {
         }
 
         private void GetMonsterEnrageTimer() {
-            EnrageTimer = Scanner.READ_FLOAT(MonsterAddress + 0x1BE2C);
+            EnrageTimer = Scanner.READ_FLOAT(MonsterAddress + 0x1BDEC);
+        }
+
+        private void GetTargetMonsterAddress() {
+            Int64 TargettedMonsterAddress = Scanner.READ_MULTILEVEL_PTR(Address.BASE + Address.MONSTER_SELECTED_OFFSET, Address.Offsets.MonsterSelectedOffsets);
+            this.isTarget = TargettedMonsterAddress == this.MonsterAddress;
         }
 
     }

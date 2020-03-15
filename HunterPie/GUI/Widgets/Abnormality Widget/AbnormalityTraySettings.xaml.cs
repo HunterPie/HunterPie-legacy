@@ -26,7 +26,7 @@ namespace HunterPie.GUI.Widgets.Abnormality_Widget {
             widgetParent = parent;
             this.WindowTitle.Text = $"Settings: {UserSettings.PlayerConfig.Overlay.AbnormalitiesWidget.BarPresets[BuffTrayIndex].Name}";
             PopulateAbnormalities();
-            OrientationSwitcher.IsEnabled = UserSettings.PlayerConfig.Overlay.AbnormalitiesWidget.BarPresets[BuffTrayIndex].Orientation == "Horizontal";
+            ConfigureWindow();
         }
 
         private void PopulateAbnormalities() {
@@ -34,6 +34,12 @@ namespace HunterPie.GUI.Widgets.Abnormality_Widget {
             PopulateOrchestraBuffs();
             PopulateDebuffs();
             PopulateConsumableBuffs();
+        }
+
+        private void ConfigureWindow() {
+            OrientationSwitcher.IsEnabled = UserSettings.PlayerConfig.Overlay.AbnormalitiesWidget.BarPresets[BuffTrayIndex].Orientation == "Horizontal";
+            EnableTimeLeftSwitcher.IsEnabled = UserSettings.PlayerConfig.Overlay.AbnormalitiesWidget.BarPresets[BuffTrayIndex].ShowTimeLeftText;
+            TimerTextFormatBox.SelectedIndex = UserSettings.PlayerConfig.Overlay.AbnormalitiesWidget.BarPresets[BuffTrayIndex].TimeLeftTextFormat;
         }
 
         private void PopulateHuntingHornBuffs() {
@@ -115,10 +121,8 @@ namespace HunterPie.GUI.Widgets.Abnormality_Widget {
             }
             UserSettings.PlayerConfig.Overlay.AbnormalitiesWidget.BarPresets[BuffTrayIndex].AcceptedAbnormalities = EnabledAbnormalities.ToArray();
             UserSettings.PlayerConfig.Overlay.AbnormalitiesWidget.BarPresets[BuffTrayIndex].Orientation = OrientationSwitcher.IsEnabled ? "Horizontal" : "Vertical";
-            if (widgetParent != null) {
-                UserSettings.PlayerConfig.Overlay.AbnormalitiesWidget.BarPresets[BuffTrayIndex].Position[0] = (int)widgetParent.Left;
-                UserSettings.PlayerConfig.Overlay.AbnormalitiesWidget.BarPresets[BuffTrayIndex].Position[1] = (int)widgetParent.Top;
-            }
+            UserSettings.PlayerConfig.Overlay.AbnormalitiesWidget.BarPresets[BuffTrayIndex].ShowTimeLeftText = EnableTimeLeftSwitcher.IsEnabled;
+            UserSettings.PlayerConfig.Overlay.AbnormalitiesWidget.BarPresets[BuffTrayIndex].TimeLeftTextFormat = (byte)TimerTextFormatBox.SelectedIndex;
             UserSettings.SaveNewConfig();
         }
 

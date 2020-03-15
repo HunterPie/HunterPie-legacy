@@ -215,7 +215,7 @@
       <Weakness ID="ELEMENT_ICE" Stars="3"/>
       <Weakness ID="ELEMENT_WATER" Stars="2"/>
     </Weaknesses>
-    <Crown Mini="90" Silver="115" Gold="123"/>
+    <Crown Mini="90" Silver="110" Gold="120"/>
   </Monster>
   <Monster ID="em101_00">
     <Weaknesses>

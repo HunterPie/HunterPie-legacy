@@ -129,6 +129,8 @@ namespace HunterPie.Core {
                 public string[] AcceptedAbnormalities { get; set; } = new string[1] { "*" };
                 public bool Enabled { get; set; } = true;
                 public byte OrderBy { get; set; } = 0;
+                public bool ShowTimeLeftText { get; set; } = true;
+                public byte TimeLeftTextFormat { get; set; } = 0;
             }
         }
 

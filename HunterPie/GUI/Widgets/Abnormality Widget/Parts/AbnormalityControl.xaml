@@ -5,7 +5,7 @@
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              xmlns:local="clr-namespace:HunterPie.GUI.Widgets.Abnormality_Widget.Parts"
              xmlns:helpers="clr-namespace:HunterPie.GUI.Helpers"
-             mc:Ignorable="d" Height="36" Width="36">
+             mc:Ignorable="d" Height="45" Width="36">
     <UserControl.Resources>
         <ResourceDictionary>
             <ResourceDictionary.MergedDictionaries>
@@ -15,7 +15,7 @@
     </UserControl.Resources>
     <Canvas x:Name="Abnormality" Margin="3" RenderTransformOrigin="0.5,0.5">
         <Ellipse Width="30" Height="30" Fill="#66000000"/>
-        <Ellipse x:Name="AbnormalityExpireWarning" Width="30" Height="30" Fill="#FFC91B1B" Visibility="Hidden" Opacity="0" RenderTransformOrigin="0.5,0.5">
+        <Ellipse x:Name="AbnormalityExpireWarning" Width="30" Height="30" Fill="Red" Visibility="Hidden" Opacity="0" RenderTransformOrigin="0.5,0.5">
             <Ellipse.Style>
                 <Style TargetType="Ellipse">
                     <Style.Triggers>
@@ -43,5 +43,20 @@
             </Image.LayoutTransform>
         </Image>
         <helpers:Arc x:Name="AbnormalityDurationArc" Width="30" Height="30" StartAngle="90" StrokeThickness="2"/>
+        <Rectangle Width="34" Height="11" Canvas.Top="30" Fill="#7F080808" RadiusY="5.25" RadiusX="5.25" Canvas.Left="-2">
+            <Rectangle.Style>
+                <Style TargetType="Rectangle">
+                    <Style.Triggers>
+                        <DataTrigger Binding="{Binding ElementName=TimeLeftText, Path=IsVisible}" Value="True">
+                            <Setter Property="Visibility" Value="Visible"/>
+                        </DataTrigger>
+                        <DataTrigger Binding="{Binding ElementName=TimeLeftText, Path=IsVisible}" Value="False">
+                            <Setter Property="Visibility" Value="Collapsed"/>
+                        </DataTrigger>
+                    </Style.Triggers>
+                </Style>
+            </Rectangle.Style>
+        </Rectangle>
+        <TextBlock x:Name="TimeLeftText" Width="34" Height="13" Canvas.Top="28" FontSize="10" TextAlignment="Center" FontWeight="SemiBold" Foreground="#FFECECEC" Canvas.Left="-2" Margin="0" Padding="0"/>
     </Canvas>
 </UserControl>

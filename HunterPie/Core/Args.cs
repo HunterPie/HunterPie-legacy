@@ -84,6 +84,21 @@ namespace HunterPie.Core {
 
     /* Monster Events */
 
+    public class MonsterPartEventArgs : EventArgs {
+        public string Name;
+        public int ID;
+        public float Health;
+        public float TotalHealth;
+
+        public MonsterPartEventArgs(Part mPart) {
+            this.Name = mPart.Name;
+            this.ID = mPart.ID;
+            this.Health = mPart.Health;
+            this.TotalHealth = mPart.TotalHealth;
+        }
+
+    }
+
     public class MonsterSpawnEventArgs : EventArgs {
         public string Name;
         public string ID;

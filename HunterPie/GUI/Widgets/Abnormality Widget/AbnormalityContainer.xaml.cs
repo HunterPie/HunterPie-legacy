@@ -124,10 +124,15 @@ namespace HunterPie.GUI.Widgets.Abnormality_Widget {
         }
 
         private void OnPlayerNewAbnormality(object source, AbnormalityEventArgs args) {
+            // Ignore abnormalities that aren't enabled for this tray
             if (!UserSettings.PlayerConfig.Overlay.AbnormalitiesWidget.BarPresets[AbnormalityTrayIndex].AcceptedAbnormalities.Contains(args.Abnormality.InternalID)) return;
             Dispatcher.BeginInvoke(System.Windows.Threading.DispatcherPriority.Loaded, new Action(() => {
                 this.WidgetHasContent = true;
-                Parts.AbnormalityControl AbnormalityBox = new Parts.AbnormalityControl(args.Abnormality);
+                Parts.AbnormalityControl AbnormalityBox = new Parts.AbnormalityControl() {
+                    ShowAbnormalityTimerText = UserSettings.PlayerConfig.Overlay.AbnormalitiesWidget.BarPresets[AbnormalityTrayIndex].ShowTimeLeftText,
+                    AbnormalityTimerTextFormat = UserSettings.PlayerConfig.Overlay.AbnormalitiesWidget.BarPresets[AbnormalityTrayIndex].TimeLeftTextFormat
+                };
+                AbnormalityBox.Initialize(args.Abnormality);
                 this.ActiveAbnormalities.Add(args.Abnormality.InternalID, AbnormalityBox);
                 this.RedrawComponent();
             }));
@@ -154,6 +159,11 @@ namespace HunterPie.GUI.Widgets.Abnormality_Widget {
             if (NewScaleX <= 0.2) return;
             this.BuffTray.LayoutTransform = new ScaleTransform(NewScaleX, NewScaleY);
             this.MinHeight = MinWidth = 40 * NewScaleX;
+            if (this.BuffTray.Orientation == Orientation.Horizontal) {
+                this.Height = MinHeight;
+            } else {
+                this.Width = MinWidth;
+            }
             DefaultScaleX = NewScaleX;
             DefaultScaleY = NewScaleY;
         }

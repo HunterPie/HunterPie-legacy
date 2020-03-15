@@ -14,12 +14,16 @@ namespace HunterPie.GUI.Widgets.Abnormality_Widget.Parts {
         Brush Buff_Color = new SolidColorBrush(Color.FromArgb(0xFF, 0x32, 0x97, 0x45));
 
         public Abnormality Context { get; private set; }
-
+        public bool ShowAbnormalityTimerText { get; set; }
+        public byte AbnormalityTimerTextFormat { get; set; }
         public double BaseWidth;
         public double BaseHeight;
 
-        public AbnormalityControl(Abnormality Abnorm) {
+        public AbnormalityControl() {
             InitializeComponent();
+        }
+
+        public void Initialize(Abnormality Abnorm) {
             SetAbnormalityInfo(Abnorm);
             Context = Abnorm;
             HookEvents();
@@ -52,6 +56,13 @@ namespace HunterPie.GUI.Widgets.Abnormality_Widget.Parts {
             }
             this.AbnormalityIcon.Source = AbnormIcon;
             this.AbnormalityDurationArc.Stroke = Abnorm.IsDebuff ? Debuff_Color : Buff_Color;
+            if (Abnorm.IsInfinite || !ShowAbnormalityTimerText) {
+                this.TimeLeftText.Visibility = System.Windows.Visibility.Collapsed;
+                this.Height = 36;
+            } else {
+                this.TimeLeftText.Text = FormatToMinutes(Abnorm.Duration);
+            }
+            
         } 
 
         private void OnAbnormalityEnd(object source, AbnormalityEventArgs args) {
@@ -70,6 +81,12 @@ namespace HunterPie.GUI.Widgets.Abnormality_Widget.Parts {
             Dispatcher.BeginInvoke(System.Windows.Threading.DispatcherPriority.Render, new Action(() => {
                 this.AbnormalityExpireWarning.Visibility = args.Abnormality.DurationPercentage <= 0.1 ? System.Windows.Visibility.Visible : System.Windows.Visibility.Hidden;
                 this.AbnormalityDurationArc.EndAngle = angle;
+                if (args.Abnormality.IsInfinite || !ShowAbnormalityTimerText) {
+                    this.TimeLeftText.Visibility = System.Windows.Visibility.Collapsed;
+                    this.Height = 36;
+                } else {
+                    this.TimeLeftText.Text = FormatToMinutes(args.Abnormality.Duration);
+                }
             }));
         }
 
@@ -82,6 +99,17 @@ namespace HunterPie.GUI.Widgets.Abnormality_Widget.Parts {
             return angle;
         }
 
+        private string FormatToMinutes(int seconds) {
+            TimeSpan TotalSeconds = TimeSpan.FromSeconds(seconds);
+            switch(AbnormalityTimerTextFormat) {
+                case 0:
+                    return TotalSeconds.TotalSeconds >= 60 ? TotalSeconds.ToString(@"m\:ss") : TotalSeconds.ToString(@"ss");
+                case 1:
+                    return TotalSeconds.TotalSeconds >= 60 ? TotalSeconds.ToString(@"m\mss\s") : TotalSeconds.ToString(@"ss\s");
+                default:
+                    return TotalSeconds.TotalSeconds >= 60 ? TotalSeconds.ToString(@"m\:ss") : TotalSeconds.ToString(@"ss");
+            }
+        }
 
         public bool Equals(AbnormalityControl other) {
             if (other == null) return false;

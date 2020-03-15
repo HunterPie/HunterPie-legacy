@@ -15,14 +15,21 @@ namespace HunterPie.Memory {
             public static int[] DamageOffsets;
             public static int[] AbnormalityOffsets;
             public static int[] MonsterOffsets;
-            public static int NextMonsterPtr;
-            public static int MonsterHPComponentOffset;
-            public static int MonsterNamePtr;
+            public static int[] MonsterSelectedOffsets;
+
             public static int FertilizersOffset;
             public static int TailRaidersOffset = 0x10344C;
             public static int SteamFuelOffset = 0x102F4C;
             public static int ArgosyOffset = 0x103430;
             public static int HarvestBoxOffset = 0x10;
+
+            // Monster
+            public static int MonsterHPComponentOffset;
+            public static int MonsterNamePtr;
+            public static int MonsterPartsOffset = 0x14528;
+            public static int FirstMonsterPartOffset = 0x20;
+            public static int NextMonsterPartOffset = 0x1F8;
+
         }
         public static int PREICEBORNE_VERSION = 168031;
         public static int GAME_VERSION = 168031;
@@ -38,6 +45,7 @@ namespace HunterPie.Memory {
         public static Int64 PARTY_OFFSET = 0x48E1850;
         public static Int64 DAMAGE_OFFSET = 0x0;
         public static Int64 ABNORMALITY_OFFSET = 0x0;
+        public static Int64 MONSTER_SELECTED_OFFSET = 0x0;
 
         // Consts
         public const Int64 cooldownFixed = 0x9EC;
@@ -133,6 +141,7 @@ namespace HunterPie.Memory {
             LoadAddressFromDict(nameof(PARTY_OFFSET), out PARTY_OFFSET, PARTY_OFFSET);
             LoadAddressFromDict(nameof(DAMAGE_OFFSET), out DAMAGE_OFFSET, DAMAGE_OFFSET);
             LoadAddressFromDict(nameof(ABNORMALITY_OFFSET), out ABNORMALITY_OFFSET, ABNORMALITY_OFFSET);
+            LoadAddressFromDict(nameof(MONSTER_SELECTED_OFFSET), out MONSTER_SELECTED_OFFSET, MONSTER_SELECTED_OFFSET);
             // Load offsets
             LoadOffsetsFromDict("LevelOffsets", out Offsets.LevelOffsets, Offsets.LevelOffsets);
             LoadOffsetsFromDict("ZoneOffsets", out Offsets.ZoneOffsets, Offsets.ZoneOffsets);
@@ -143,6 +152,7 @@ namespace HunterPie.Memory {
             LoadOffsetsFromDict("PartyOffsets", out Offsets.PartyOffsets, Offsets.PartyOffsets);
             LoadOffsetsFromDict("DamageOffsets", out Offsets.DamageOffsets, Offsets.DamageOffsets);
             LoadOffsetsFromDict("AbnormalityOffsets", out Offsets.AbnormalityOffsets, Offsets.AbnormalityOffsets);
+            LoadOffsetsFromDict("MonsterSelectedOffsets", out Offsets.MonsterSelectedOffsets, Offsets.MonsterSelectedOffsets);
             // Clear addresses loaded into memory
             MappedAddresses.Clear();
             MappedOffsets.Clear();
@@ -179,9 +189,9 @@ namespace HunterPie.Memory {
             Offsets.HarvestBoxOffset = 0x20;
 
             // Monster Iceborne offsets
-            Offsets.NextMonsterPtr = 0x10;
-            Offsets.MonsterHPComponentOffset = 0x76B0;
-            Offsets.MonsterNamePtr = 0x2e0;
+            
+            Offsets.MonsterHPComponentOffset = 0x7670;
+            Offsets.MonsterNamePtr = 0x2a0;
             Debugger.Warn("Updated offsets to Iceborne's version");
         }
     }
