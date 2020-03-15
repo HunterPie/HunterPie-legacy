@@ -15,6 +15,7 @@ namespace HunterPie.Core {
 
         public AutoUpdate(string branch) {
             BranchURI = $"{BranchURI}{branch}/";
+            Instance.CachePolicy = new System.Net.Cache.RequestCachePolicy(System.Net.Cache.RequestCacheLevel.NoCacheNoStore);
         }
 
         public bool CheckAutoUpdate() {
