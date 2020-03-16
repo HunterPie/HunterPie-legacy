@@ -1,4 +1,4 @@
-﻿<?xml version="1.0" encoding="utf-8" ?>
+﻿<?xml version="1.0" encoding="utf-8" ?><!--for 1.0.3.7-->
 <Strings lang="Traditional Chinese">
   <Monsters>
     <Monster ID="em001_00" Name="雌火龍"/>
@@ -68,6 +68,15 @@
     <Monster ID="em127_00" Name="鹿首精"/>
     <Monster ID="em127_01" Name="古代鹿首精"/>
   </Monsters>
+  <Parts>
+    <Part ID="MONSTER_PART_HEAD" Name="頭部"/>
+    <Part ID="MONSTER_PART_BODY" Name="身體"/>
+    <Part ID="MONSTER_PART_LWING" Name="左翼"/>
+    <Part ID="MONSTER_PART_RWING" Name="右翼"/>
+    <Part ID="MONSTER_PART_RLEG" Name="右腳"/>
+    <Part ID="MONSTER_PART_LLEG" Name="左腳"/>
+    <Part ID="MONSTER_PART_TAIL" Name="尾巴"/>
+  </Parts>
   <Mantles>
     <Mantle ID="-1" Name="無衣裝"/>
     <Mantle ID="0" Name="隱身衣裝"/>

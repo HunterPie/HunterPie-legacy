@@ -187,7 +187,6 @@
                 <custom:ColorPicker x:Name="SecondaryMantleColor" NameText="Color:"/>
             </StackPanel>
         </GroupBox>
-        <TextBlock TextWrapping="Wrap" Text="(Requires restart)" Foreground="#FFF1F1F1" FontWeight="Light" TextAlignment="Center" Margin="0,0,848,0"/>
 
     </StackPanel>
 </UserControl>

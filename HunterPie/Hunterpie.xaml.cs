@@ -23,10 +23,9 @@ namespace HunterPie {
         Presence Discord;
         Overlay GameOverlay;
         bool OfflineMode = false;
-        
 
         // HunterPie version
-        const string HUNTERPIE_VERSION = "1.0.3.7";
+        const string HUNTERPIE_VERSION = "1.0.3.71";
 
         // Helpers
         IntPtr _windowHandle;
@@ -62,7 +61,7 @@ namespace HunterPie {
         }
 
         private void RemoveHotKeys() {
-            _source.RemoveHook(HwndHook);
+            _source?.RemoveHook(HwndHook);
             KeyboardHookHelper.UnregisterHotKey(_windowHandle, 0);
         }
 

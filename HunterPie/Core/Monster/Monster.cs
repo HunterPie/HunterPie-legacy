@@ -1,8 +1,10 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.Threading;
+using System.Linq;
 using HunterPie.Memory;
 using HunterPie.Logger;
-using System.Collections.Generic;
+
 
 namespace HunterPie.Core {
     public class Monster {
@@ -215,7 +217,7 @@ namespace HunterPie.Core {
                     this.ID = null;
                     return;
                 }
-                MonsterId = MonsterID[4].Trim('\x00');
+                MonsterId = MonsterID.LastOrDefault()?.Trim('\x00');
                 GetMonsterHp(MonsterId);
                 if (MonsterId.StartsWith("em") && !MonsterId.StartsWith("ems")) {
                     if (MonsterId != this.ID && this.CurrentHP > 0) Debugger.Log($"Found new monster ID: {MonsterID[4]} #{MonsterNumber} @ 0x{MonsterAddress:X}");
