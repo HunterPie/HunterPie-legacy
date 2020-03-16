@@ -52,6 +52,7 @@ namespace HunterPie.GUIControls {
             // Overlay
             settingsUI.switchEnableOverlay.IsEnabled = settings.Overlay.Enabled;
             settingsUI.DesignModeKeyCode.Content = KeyboardHookHelper.GetKeyboardKeyByID(settings.Overlay.ToggleDesignModeKey).ToString();
+            settingsUI.ToggleOverlayHotKey.Content = settings.Overlay.ToggleOverlayKeybind;
             settingsUI.switchHardwareAcceleration.IsEnabled = settings.Overlay.EnableHardwareAcceleration;
             settingsUI.switchHideWhenUnfocused.IsEnabled = settings.Overlay.HideWhenGameIsUnfocused;
             settingsUI.positionOverlayX.Text = settings.Overlay.Position[0].ToString();
@@ -113,6 +114,7 @@ namespace HunterPie.GUIControls {
             // Overlay
             settings.Overlay.Enabled = settingsUI.switchEnableOverlay.IsEnabled;
             settings.Overlay.ToggleDesignModeKey = (int)settingsUI.KeyChoosen;
+            settings.Overlay.ToggleOverlayKeybind = (string)settingsUI.ToggleOverlayHotKey.Content;
             settings.Overlay.EnableHardwareAcceleration = settingsUI.switchHardwareAcceleration.IsEnabled;
             settings.Overlay.HideWhenGameIsUnfocused = settingsUI.switchHideWhenUnfocused.IsEnabled;
             settings.Overlay.Position[0] = int.Parse(settingsUI.positionOverlayX.Text);

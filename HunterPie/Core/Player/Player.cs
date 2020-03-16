@@ -1,6 +1,5 @@
 ﻿using System;
 using System.Linq;
-using System.Collections.Generic;
 using System.Xml;
 using System.Threading;
 using HunterPie.Memory;

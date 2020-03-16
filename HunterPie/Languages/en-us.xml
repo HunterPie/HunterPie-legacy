@@ -68,6 +68,15 @@
     <Monster ID="em127_00" Name="Leshen"/>
     <Monster ID="em127_01" Name="Ancient Leshen"/>
   </Monsters>
+  <Parts>
+    <Part ID="MONSTER_PART_HEAD" Name="Head"/>
+    <Part ID="MONSTER_PART_BODY" Name="Body"/>
+    <Part ID="MONSTER_PART_LWING" Name="Left wing"/>
+    <Part ID="MONSTER_PART_RWING" Name="Right wing"/>
+    <Part ID="MONSTER_PART_RLEG" Name="Right leg"/>
+    <Part ID="MONSTER_PART_LLEG" Name="Left leg"/>
+    <Part ID="MONSTER_PART_TAIL" Name="Tail"/>
+  </Parts>
   <Mantles>
     <Mantle ID="-1" Name="No Mantle"/>
     <Mantle ID="0" Name="Ghillie Mantle"/>

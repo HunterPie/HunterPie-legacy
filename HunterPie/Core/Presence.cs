@@ -109,8 +109,9 @@ namespace HunterPie.Core {
                     return "Training";
             }
             if (ctx.Player.inPeaceZone) return "Idle";
-            if (ctx.HuntedMonster == null) return "Exploring";
+            if (ctx.HuntedMonster == null ) return "Exploring";
             else {
+                if (string.IsNullOrEmpty(ctx.HuntedMonster.Name)) return "Exploring";
                 return UserSettings.PlayerConfig.RichPresence.ShowMonsterHealth ? $"Hunting {ctx.HuntedMonster.Name} ({(int)(ctx.HuntedMonster.HPPercentage * 100)}%)" : $"Hunting {ctx.HuntedMonster.Name}";
             }
         }

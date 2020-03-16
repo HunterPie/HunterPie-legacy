@@ -230,7 +230,7 @@ namespace HunterPie.Core {
         private void GetMonsterSizeModifier() {
             float SizeModifier = Scanner.READ_FLOAT(MonsterAddress + 0x7730);
             if (SizeModifier <= 0 || SizeModifier >= 2) SizeModifier = 1;
-            SizeMultiplier = Scanner.READ_FLOAT(MonsterAddress + 0x180) / SizeModifier;
+            SizeMultiplier = Scanner.READ_FLOAT(MonsterAddress + 0x188) / SizeModifier;
         }
 
         private void GetMonsterWeaknesses() {

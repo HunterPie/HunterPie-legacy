@@ -116,7 +116,7 @@ namespace HunterPie.GUI.Widgets.DPSMeter {
 
         public void DestroyPlayerComponents() {
             foreach (Parts.PartyMember player in Players) {
-                player.UnhookEvents();
+                player?.UnhookEvents();
             }
             Players.Clear();
             Dispatcher.BeginInvoke(System.Windows.Threading.DispatcherPriority.Background, new Action(() => {
@@ -126,6 +126,9 @@ namespace HunterPie.GUI.Widgets.DPSMeter {
         }
 
         private void SortPlayersByDamage() {
+            foreach (Parts.PartyMember Player in Players) {
+                Player.UpdateDamage();
+            }
             Players.Sort(delegate (Parts.PartyMember x, Parts.PartyMember y) {
                 return x.CompareTo(y);
             });

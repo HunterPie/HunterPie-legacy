@@ -27,13 +27,11 @@ namespace HunterPie.GUI.Widgets.DPSMeter.Parts {
 
         private void HookEvents() {
             Context.OnSpawn += OnPlayerSpawn;
-            Context.OnDamageChange += OnPlayerDamageChange;
             Context.OnWeaponChange += OnPlayerWeaponChange;
         }
 
         public void UnhookEvents() {
             Context.OnSpawn -= OnPlayerSpawn;
-            Context.OnDamageChange -= OnPlayerDamageChange;
             Context.OnWeaponChange -= OnPlayerWeaponChange;
             Context = null;
             PartyContext = null;
@@ -53,14 +51,14 @@ namespace HunterPie.GUI.Widgets.DPSMeter.Parts {
             });
         }
 
-        private void OnPlayerDamageChange(object source, PartyMemberEventArgs args) {
+        public void UpdateDamage() {
             string DamageText;
             float TimeElapsed = (float)PartyContext.Epoch.TotalSeconds;
             if (UserSettings.PlayerConfig.Overlay.DPSMeter.ShowDPSWheneverPossible && TimeElapsed > 0) {
                 
-                DamageText = $"{args.Damage / TimeElapsed:0.00}/s ({Context.DamagePercentage * 100:0}%)";
+                DamageText = $"{Context.Damage / TimeElapsed:0.00}/s ({Context.DamagePercentage * 100:0}%)";
             } else {
-                DamageText = $"{args.Damage} ({Context.DamagePercentage * 100:0}%)";
+                DamageText = $"{Context.Damage} ({Context.DamagePercentage * 100:0}%)";
             }
             Dispatch(() => {
                 DPSText.Content = DamageText;

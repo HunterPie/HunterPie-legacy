@@ -29,7 +29,7 @@ namespace HunterPie.Memory {
             public static int MonsterPartsOffset = 0x14528;
             public static int FirstMonsterPartOffset = 0x20;
             public static int NextMonsterPartOffset = 0x1F8;
-
+            public static int MonsterPartBrokenCounterOffset = 0x8;
         }
         public static int PREICEBORNE_VERSION = 168031;
         public static int GAME_VERSION = 168031;

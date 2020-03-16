@@ -23,9 +23,14 @@ namespace HunterPie {
         Presence Discord;
         Overlay GameOverlay;
         bool OfflineMode = false;
+        
 
         // HunterPie version
-        const string HUNTERPIE_VERSION = "1.0.3.6";
+        const string HUNTERPIE_VERSION = "1.0.3.7";
+
+        // Helpers
+        IntPtr _windowHandle;
+        HwndSource _source;
 
         public Hunterpie() {
             // Initialize debugger and theme
@@ -45,7 +50,68 @@ namespace HunterPie {
             GStrings.InitStrings(UserSettings.PlayerConfig.HunterPie.Language);
             MonsterData.LoadMonsterData();
             AbnormalityData.LoadAbnormalityData();
+            SetHotKeys();
             StartEverything();
+        }
+
+        private void SetHotKeys() {
+            _windowHandle = new WindowInteropHelper(this).EnsureHandle();
+            _source = HwndSource.FromHwnd(_windowHandle);
+            _source.AddHook(HwndHook);
+            BindHotKey(0); // Toggle overlay
+        }
+
+        private void RemoveHotKeys() {
+            _source.RemoveHook(HwndHook);
+            KeyboardHookHelper.UnregisterHotKey(_windowHandle, 0);
+        }
+
+        private IntPtr HwndHook(IntPtr hwnd, int msg, IntPtr wParam, IntPtr lParam, ref bool handled) {
+            const int WM_HOTKEY = 0x0312;
+            switch(msg) {
+                case WM_HOTKEY:
+                    switch(wParam.ToInt32()) {
+                        case 0: // Toggle overlay
+                            UserSettings.PlayerConfig.Overlay.Enabled = !UserSettings.PlayerConfig.Overlay.Enabled;
+                            UserSettings.SaveNewConfig();
+                            break;
+                    }
+                    break;
+            }
+            return IntPtr.Zero;
+        }
+
+        private int[] ParseHotKey(string hotkey) {
+            string[] Keys = hotkey.Split('+');
+            int Modifier = 0x4000;  // Start with no-repeat
+            int key = 0x0;
+            foreach (string hkey in Keys) {
+                switch (hkey) {
+                    case "Alt":
+                        Modifier |= 0x0001;
+                        break;
+                    case "Ctrl":
+                        Modifier |= 0x0002;
+                        break;
+                    case "Shift":
+                        Modifier |= 0x0004;
+                        break;
+                    default:
+                        key = (int)Enum.Parse(typeof(KeyboardHookHelper.KeyboardKeys), hkey);
+                        break;
+                }
+            }
+            int[] parsed = new int[2] { Modifier, key };
+            return parsed;
+        }
+
+        private void BindHotKey(int ID) {
+            switch (ID) {
+                case 0: // Overlay toggle
+                    int[] ParsedToggleOverlayHotKey = ParseHotKey(UserSettings.PlayerConfig.Overlay.ToggleOverlayKeybind);
+                    KeyboardHookHelper.RegisterHotKey(_windowHandle, 0, ParsedToggleOverlayHotKey[0], ParsedToggleOverlayHotKey[1]);
+                    break;
+            }
         }
 
         private void InitializeTrayIcon() {
@@ -212,6 +278,7 @@ namespace HunterPie {
         }
 
         public void SendToOverlay(object source, EventArgs e) {
+            this.BindHotKey(0);
             GameOverlay?.GlobalSettingsEventHandler(source, e);
             Dispatcher.BeginInvoke(System.Windows.Threading.DispatcherPriority.ApplicationIdle, new Action(() => {
                 // Only shows notification if HunterPie is visible
@@ -385,6 +452,7 @@ namespace HunterPie {
             Settings.Instance.UninstallKeyboardHook();
             // Unhook events
             if (MonsterHunter.Player != null) UnhookGameEvents();
+            this.RemoveHotKeys();
             this.UnhookEvents();
         }
 

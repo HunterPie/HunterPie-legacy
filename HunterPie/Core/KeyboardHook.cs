@@ -137,13 +137,13 @@ namespace HunterPie.Core {
             F23 = 134,
             F24 = 135,
             NumLock = 144,
-            Scroll = 145,
-            LShiftKey = 160,
-            RShiftKey = 161,
-            LControlKey = 162,
-            RControlKey = 163,
-            LMenu = 164,
-            RMenu = 165,
+            ScrollLock = 145,
+            LShift = 160,
+            RShift = 161,
+            LeftCtrl = 162,
+            RightCtrl = 163,
+            LeftAlt = 164,
+            RightAlt = 165,
             BrowserBack = 166,
             BrowserForward = 167,
             BrowserRefresh = 168,
@@ -226,6 +226,13 @@ namespace HunterPie.Core {
 
         [DllImport("user32.dll")]
         public static extern IntPtr CallNextHookEx(IntPtr hhk, int nCode, IntPtr wParam, IntPtr lParam);
+
+        [DllImport("user32.dll")]
+        public static extern bool RegisterHotKey(IntPtr hWnd, int id, int fsModifiers, int vlc);
+
+        [DllImport("user32.dll")]
+        public static extern bool UnregisterHotKey(IntPtr hWnd, int id);
+
     }
     public class KeyboardHook {
         [StructLayout(LayoutKind.Sequential)]

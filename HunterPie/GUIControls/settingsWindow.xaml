@@ -7,44 +7,27 @@
              xmlns:custom="clr-namespace:HunterPie.GUIControls.Custom_Controls"
              mc:Ignorable="d">
     <UserControl.Resources>
-        
-        <SolidColorBrush x:Key="Button.Static.Background" Color="#FFDDDDDD"/>
-        <SolidColorBrush x:Key="Button.Static.Border" Color="#FF707070"/>
-        <SolidColorBrush x:Key="Button.MouseOver.Background" Color="#FFBEE6FD"/>
-        <SolidColorBrush x:Key="Button.MouseOver.Border" Color="#FF3C7FB1"/>
-        <SolidColorBrush x:Key="Button.Pressed.Background" Color="#FFC4E5F6"/>
-        <SolidColorBrush x:Key="Button.Pressed.Border" Color="#FF2C628B"/>
-        <SolidColorBrush x:Key="Button.Disabled.Background" Color="#FFF4F4F4"/>
-        <SolidColorBrush x:Key="Button.Disabled.Border" Color="#FFADB2B5"/>
-        <SolidColorBrush x:Key="Button.Disabled.Foreground" Color="#FF838383"/>
-        <SolidColorBrush x:Key="ToggleButtonBackgroundOn" Color="{DynamicResource TOGGLABLE_BUTTON_BACKGROUND_ON}"/>
-        <SolidColorBrush x:Key="ToggleButtonBackgroundOff" Color="{DynamicResource TOGGLABLE_BUTTON_BACKGROUND_OFF}"/>
-        <Style x:Key="ToggleButtonStyle" TargetType="{x:Type Button}">
+        <SolidColorBrush x:Key="ToggleButtonBackgroundOn" Color="{StaticResource TOGGLABLE_BUTTON_BACKGROUND_ON}"/>
+        <SolidColorBrush x:Key="ToggleButtonBackgroundOff" Color="{StaticResource TOGGLABLE_BUTTON_BACKGROUND_OFF}"/>
+        <Style x:Key="ToggleButtonStyle" TargetType="Button">
             <Style.Triggers>
-                <DataTrigger Binding="{Binding RelativeSource={x:Static RelativeSource.Self}, Path=IsFocused}" Value="True">
-                    <DataTrigger.EnterActions>
+                <Trigger Property="IsFocused" Value="True">
+                    <Trigger.EnterActions>
                         <BeginStoryboard>
                             <Storyboard Storyboard.TargetProperty="(Background).(SolidColorBrush.Color)">
-                                <ColorAnimation To="{StaticResource TOGGLABLE_BUTTON_BACKGROUND_ON}" Duration="0:0:0.2"/>
+                                <ColorAnimation To="#FFAF0000" Duration="0:0:0.2"/>
                             </Storyboard>
                         </BeginStoryboard>
-                    </DataTrigger.EnterActions>
-                    <DataTrigger.ExitActions>
+                    </Trigger.EnterActions>
+                    <Trigger.ExitActions>
                         <BeginStoryboard>
                             <Storyboard Storyboard.TargetProperty="(Background).(SolidColorBrush.Color)">
-                                <ColorAnimation To="{StaticResource TOGGLABLE_BUTTON_BACKGROUND_OFF}" Duration="0:0:0.2"/>
+                                <ColorAnimation To="#FF0F0F0F" Duration="0:0:0.2"/>
                             </Storyboard>
                         </BeginStoryboard>
-                    </DataTrigger.ExitActions>
-                </DataTrigger>
+                    </Trigger.ExitActions>
+                </Trigger>
             </Style.Triggers>
-            <Setter Property="FocusVisualStyle" Value="{StaticResource FocusVisual}"/>
-            <Setter Property="Background" Value="{StaticResource Button.Static.Background}"/>
-            <Setter Property="BorderBrush" Value="{StaticResource Button.Static.Border}"/>
-            <Setter Property="Foreground" Value="{DynamicResource {x:Static SystemColors.ControlTextBrushKey}}"/>
-            <Setter Property="BorderThickness" Value="1"/>
-            <Setter Property="HorizontalContentAlignment" Value="Center"/>
-            <Setter Property="VerticalContentAlignment" Value="Center"/>
             <Setter Property="Padding" Value="1"/>
             <Setter Property="Template">
                 <Setter.Value>
@@ -76,7 +59,7 @@
         <ComboBox Style="{StaticResource ComboBoxFlatStyle}" x:Name="LanguageFilesCombobox" Margin="299,10,211,0" IsReadOnly="True" Cursor="Hand" FontSize="14" Foreground="#FFE0E0E0"/>
         <Label x:Name="LanguageStaticText" Content="Language file:" HorizontalAlignment="Left" Height="23" Margin="196,-22,0,0" Width="103" FontFamily="Roboto" Foreground="#FFE0E0E0" FontSize="15" Padding="0" FontWeight="Light"/>
         <Label x:Name="gamePathLabel" Content="Game path:" HorizontalAlignment="Left" Height="30" Margin="196,7,0,0" Width="108" FontFamily="Roboto" Foreground="#FFE0E0E0" FontSize="15" Padding="0" FontWeight="Light" VerticalContentAlignment="Center"/>
-        <Button x:Name="selectPathBttn" Style="{StaticResource ToggleButtonStyle}" Content="Select path" Cursor="Hand" Margin="278,-30,94,0" Background="{StaticResource ToggleButtonBackgroundOff}" Foreground="#FFE8E8E8" FontFamily="Roboto" BorderBrush="{x:Null}" Height="30" Click="selectPathBttn_Click" Padding="3,1" LostFocus="SelectPathBttn_LostFocus"/>
+        <Button x:Name="selectPathBttn" Style="{StaticResource ToggleButtonStyle}" Content="Select path" Cursor="Hand" Margin="278,-30,94,0" Background="#FF0F0F0F" Foreground="#FFE8E8E8" FontFamily="Roboto" BorderBrush="{x:Null}" Height="30" Click="selectPathBttn_Click" Padding="3,1" LostFocus="SelectPathBttn_LostFocus"/>
         <StackPanel x:Name="launchArgsBox" Height="32" Margin="192,7,94,0" Orientation="Horizontal">
             <Label x:Name="launchArgsLabel" Content="Launch arguments:" HorizontalAlignment="Right" Width="133" FontFamily="Roboto" Foreground="#FFE0E0E0" FontSize="15" Padding="0" FontWeight="Light" VerticalContentAlignment="Center" HorizontalContentAlignment="Right"/>
             <TextBox x:Name="argsTextBox" TextWrapping="Wrap" Margin="0,1" Background="{x:Null}" Foreground="#FFE0E0E0" BorderBrush="#FFABADB3" BorderThickness="0,0,0,1" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" HorizontalAlignment="Right" Width="330" TextChanged="argsTextBox_TextChanged" GotFocus="argsTextBox_GotFocus" LostFocus="argsTextBox_LostFocus"/>
@@ -107,8 +90,11 @@
             <custom:Switcher x:Name="switchHardwareAcceleration"/>
             <TextBlock Text="Enable Hardware acceleration" Margin="10,0,0,0" FontFamily="Roboto" FontSize="16" Foreground="#FFF9F9F9" HorizontalAlignment="Center" VerticalAlignment="Center" FontWeight="ExtraLight" />
         </StackPanel>
+        <Label Content="Toggle overlay:" HorizontalAlignment="Left" Height="30" Margin="278,7,0,0" Width="152" FontFamily="Roboto" Foreground="#FFE0E0E0" FontSize="15" Padding="0" FontWeight="Light" VerticalContentAlignment="Center"/>
+        <Button x:Name="ToggleOverlayHotKey" Cursor="Hand" Margin="420,-30,404,0" Background="#FF0F0F0F" Foreground="#FFE8E8E8" FontFamily="Roboto" BorderBrush="{x:Null}" Height="30" Padding="3,1" Style="{StaticResource ToggleButtonStyle}" PreviewKeyDown="OnToggleOverlayKeyDown"/>
+        <TextBlock TextWrapping="Wrap" Text="(Requires restart)" Foreground="#FFF1F1F1" FontWeight="Light" TextAlignment="Center" HorizontalAlignment="Left" Width="102" Margin="543,-30,0,0" Padding="0,6,0,0"/>
         <Label Content="Toggle design mode:" HorizontalAlignment="Left" Height="30" Margin="278,7,0,0" Width="152" FontFamily="Roboto" Foreground="#FFE0E0E0" FontSize="15" Padding="0" FontWeight="Light" VerticalContentAlignment="Center"/>
-        <Button x:Name="DesignModeKeyCode" Cursor="Hand" Margin="420,-30,404,0" Background="{DynamicResource ToggleButtonBackgroundOff}" Foreground="#FFE8E8E8" FontFamily="Roboto" BorderBrush="{x:Null}" Height="30" Click="SelectDesignModeKeyBind" Padding="3,1" LostFocus="OnKeybindingButtonLoseFocus" Style="{StaticResource ToggleButtonStyle}" />
+        <Button x:Name="DesignModeKeyCode" Cursor="Hand" Margin="420,-30,404,0" Background="#FF0F0F0F" Foreground="#FFE8E8E8" FontFamily="Roboto" BorderBrush="{x:Null}" Height="30" Click="SelectDesignModeKeyBind" Padding="3,1" LostFocus="OnKeybindingButtonLoseFocus" Style="{StaticResource ToggleButtonStyle}" />
         <StackPanel x:Name="Position" Height="32" Margin="288,5,272,0" Orientation="Horizontal">
             <Label x:Name="updateBranchStaticText_Copy" Content="Position:" HorizontalAlignment="Right" Width="66" FontFamily="Roboto" Foreground="#FFE0E0E0" FontSize="15" Padding="0" FontWeight="Light" VerticalContentAlignment="Center" HorizontalContentAlignment="Right"/>
             <TextBox x:Name="positionOverlayX" TextWrapping="Wrap" Text="X" Margin="0,1" Background="{x:Null}" Foreground="#FFE0E0E0" BorderBrush="#FFABADB3" BorderThickness="0,0,0,1" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" HorizontalAlignment="Right" Width="54" TextChanged="TypeNumber"/>
@@ -163,12 +149,13 @@
         <StackPanel Visibility="Visible">
             <TextBlock Text="Player Buffs" Height="34" FontFamily="Roboto" FontSize="16" HorizontalAlignment="Center" Width="949" Foreground="#FFE0E0E0" Padding="0,7,0,0" UseLayoutRounding="False" Margin="0,25,0,0" Background="#FF0F0F0F" VerticalAlignment="Center" TextAlignment="Center"/>
             <Canvas Height="167">
-                <ScrollViewer Width="500" Height="150" Margin="164,10,363,0">
+                <ScrollViewer Width="500" MaxHeight="150" Margin="164,10,363,0" Background="{x:Null}">
                     <StackPanel x:Name="BuffTrays"/>
                 </ScrollViewer>
                 <TextBlock x:Name="NumberOfBuffBars" Canvas.Left="722" FontSize="20" TextWrapping="Wrap" Text="n" Foreground="WhiteSmoke" Canvas.Top="68"/>
                 <TextBlock ToolTip="Create a new buff bar" x:Name="AddNewBuffBar" Cursor="Hand" Background="#FF0E0E0E" Canvas.Left="749" FontSize="20" TextWrapping="Wrap" Text="+" Foreground="WhiteSmoke" Canvas.Top="68" Width="28" Padding="0" Height="32" TextAlignment="Center" MouseDown="AddNewBuffBarClick"/>
                 <TextBlock ToolTip="Removes your last buff bar" x:Name="SubBuffBar" Cursor="Hand" Background="#FF0E0E0E" Canvas.Left="676" FontSize="20" TextWrapping="Wrap" Text="-" Foreground="WhiteSmoke" Canvas.Top="68" Width="28" Padding="0" Height="32" TextAlignment="Center" MouseDown="SubBuffBarClick"/>
+                <TextBlock Canvas.Left="676" TextWrapping="Wrap" Text="(Requires restart)" Canvas.Top="100" Width="101" Foreground="#FFF1F1F1" FontWeight="Light" TextAlignment="Center"/>
             </Canvas>
         </StackPanel>
         <Label Content="Specialized Tools" Height="34" FontFamily="Roboto" FontSize="16" HorizontalAlignment="Center" Width="949" HorizontalContentAlignment="Center" Foreground="#FFE0E0E0" Padding="0" UseLayoutRounding="False" VerticalContentAlignment="Center" Margin="0,25,0,0" Background="#FF0F0F0F"/>
@@ -200,6 +187,7 @@
                 <custom:ColorPicker x:Name="SecondaryMantleColor" NameText="Color:"/>
             </StackPanel>
         </GroupBox>
+        <TextBlock TextWrapping="Wrap" Text="(Requires restart)" Foreground="#FFF1F1F1" FontWeight="Light" TextAlignment="Center" Margin="0,0,848,0"/>
 
     </StackPanel>
 </UserControl>

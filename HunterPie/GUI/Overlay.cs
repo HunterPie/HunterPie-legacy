@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Diagnostics;
 using System.Windows;
 using System.Windows.Media;
 using System.Collections.Generic;
@@ -25,13 +26,14 @@ namespace HunterPie.GUI {
             KeyHook = new KeyboardHook();
             KeyHook.InstallHooks();
             KeyHook.OnKeyboardKeyPress += OnKeyboardKeyPress;
+            
         }
 
         private void RemoveKeyboardHook() {
             KeyHook.UninstallHooks();
             KeyHook.OnKeyboardKeyPress -= OnKeyboardKeyPress;
         }
-
+        
         // Implemented IsHoldingKey to avoid toggle spam
         private bool IsHoldingKey = false;
         private void OnKeyboardKeyPress(object sender, KeyboardInputEventArgs e) {
