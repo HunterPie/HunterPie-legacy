@@ -4,6 +4,7 @@ using System.Windows.Controls;
 using System.Windows.Media;
 using System.Windows.Media.Animation;
 using HunterPie.Core;
+using HunterPie.GUIControls.Custom_Controls;
 
 namespace HunterPie.GUI.Widgets {
     /// <summary>
@@ -15,14 +16,12 @@ namespace HunterPie.GUI.Widgets {
 
         // Animations
         private Storyboard ANIM_ENRAGEDICON;
-        private Storyboard ANIM_ENRAGEDBAR;
 
         public MonsterHealth() {
             InitializeComponent();
         }
 
         ~MonsterHealth() {
-            ANIM_ENRAGEDBAR = null;
             ANIM_ENRAGEDICON = null;
         }
 
@@ -46,26 +45,34 @@ namespace HunterPie.GUI.Widgets {
             Context.OnEnrage += OnEnrage;
             Context.OnUnenrage += OnUnenrage;
             Context.OnHPUpdate += OnMonsterUpdate;
+            Context.OnTargetted += OnMonsterTargetted;
         }
 
         private void UpdateMonsterInfo() {
             // Used when starting HunterPie for the first time, since the events won't be triggered
             this.Visibility = Visibility.Visible;
             this.MonsterName.Text = Context.Name;
-            this.MonsterHPBar.Value = Context.CurrentHP;
-            this.MonsterHPBar.Maximum = Context.TotalHP;
+            this.MonsterHealthBar.MaxHealth = Context.TotalHP;
+            MonsterHealthBar.MaxWidth = MonsterHealthBar.Width;
+            this.MonsterHealthBar.Health = Context.CurrentHP;
+            SetMonsterHealthBarText(Context.CurrentHP, Context.TotalHP);
+
+            SwitchSizeBasedOnTarget();
+
             // Set monster crown
             this.MonsterCrown.Source = Context.Crown == null ? null : (ImageSource)FindResource(Context.Crown);
-            this.MonsterCrown.Visibility = Visibility.Visible;
+            this.MonsterCrown.Visibility = Context.Crown == null ? Visibility.Collapsed : Visibility.Visible;
             Weaknesses.Children.Clear(); // Removes every weakness icon
             if (Context.Weaknesses == null) return;
             foreach (string Weakness in Context.Weaknesses.Keys) {
-                Image MonsterWeaknessImg = new Image {
-                    Source = this.Resources[Weakness] as ImageSource,
-                    Height = 18,
-                    Width = 18
+                ImageSource img = this.Resources[Weakness] as ImageSource;
+                img.Freeze();
+                WeaknessDisplay MonsterWeaknessDisplay = new WeaknessDisplay {
+                    Icon = img,
+                    Width = 20,
+                    Height = 20
                 };
-                Weaknesses.Children.Add(MonsterWeaknessImg);
+                Weaknesses.Children.Add(MonsterWeaknessDisplay);
             }
         }
 
@@ -80,30 +87,33 @@ namespace HunterPie.GUI.Widgets {
         }
 
         private void LoadAnimations() {
-            ANIM_ENRAGEDICON = FindResource("EnragedIcon") as Storyboard;
-            ANIM_ENRAGEDBAR = FindResource("EnragedHealthBar") as Storyboard;
+            ANIM_ENRAGEDICON = FindResource("ANIM_ENRAGED") as Storyboard;
+        }
+
+        private void OnMonsterTargetted(object source, EventArgs args) {
+            Dispatch(() => {
+                SwitchSizeBasedOnTarget();
+            });
         }
 
         private void OnEnrage(object source, EventArgs args) {
             this.Dispatch(() => {
-                MonsterStatus.Source = (ImageSource)FindResource("ICON_ENRAGED");
-                ANIM_ENRAGEDBAR.Begin(this.MonsterHPBar, true);
-                ANIM_ENRAGEDICON.Begin(this.MonsterStatus, true);
+                ANIM_ENRAGEDICON.Begin(this.MonsterHealthBar, true);
+                ANIM_ENRAGEDICON.Begin(this.HealthBossIcon, true);
             });
         }
 
         private void OnUnenrage(object source, EventArgs args) {
             this.Dispatch(() => {
-                MonsterStatus.Source = null;
-                ANIM_ENRAGEDICON.Remove(this.MonsterStatus);
-                ANIM_ENRAGEDBAR.Remove(this.MonsterHPBar);
+                ANIM_ENRAGEDICON.Remove(this.MonsterHealthBar);
+                ANIM_ENRAGEDICON.Remove(this.HealthBossIcon);
             });
         }
 
         private void OnMonsterDespawn(object source, EventArgs args) {
             this.Dispatch(() => {
                 this.MonsterName.Text = null;
-                this.MonsterStatus.Source = null;
+                //this.MonsterStatus.Source = null;
                 this.MonsterCrown.Source = null;
                 this.MonsterCrown.Visibility = Visibility.Collapsed;
                 this.Visibility = Visibility.Collapsed;
@@ -115,28 +125,56 @@ namespace HunterPie.GUI.Widgets {
             this.Dispatch(() => {
                 this.Visibility = Visibility.Visible;
                 this.MonsterName.Text = args.Name;
-                this.MonsterHPBar.Value = args.CurrentHP;
-                this.MonsterHPBar.Maximum = args.TotalHP;
+
+                this.MonsterHealthBar.MaxHealth = args.TotalHP;
+                MonsterHealthBar.MaxWidth = MonsterHealthBar.Width;
+                this.MonsterHealthBar.Health = args.CurrentHP;
+                SetMonsterHealthBarText(args.CurrentHP, args.TotalHP);
+
+                SwitchSizeBasedOnTarget();
+
                 // Set monster crown
                 this.MonsterCrown.Source = args.Crown == null ? null : (ImageSource)FindResource(args.Crown);
-                this.MonsterCrown.Visibility = Visibility.Visible;
+                this.MonsterCrown.Visibility = args.Crown == null ? Visibility.Collapsed : Visibility.Visible;
                 Weaknesses.Children.Clear(); // Removes every weakness icon
-                foreach (string Weakness in args.Weaknesses.Keys) {
-                    Image MonsterWeaknessImg = new Image {
-                        Source = this.Resources[Weakness] as ImageSource,
-                        Height = 15,
-                        Width = 15
+                foreach (string Weakness in Context.Weaknesses.Keys) {
+                    ImageSource img = this.Resources[Weakness] as ImageSource;
+                    img.Freeze();
+                    WeaknessDisplay MonsterWeaknessDisplay = new WeaknessDisplay {
+                        Icon = img,
+                        Width = 20,
+                        Height = 20
                     };
-                    Weaknesses.Children.Add(MonsterWeaknessImg);
+                    Weaknesses.Children.Add(MonsterWeaknessDisplay);
                 }
             });
         }
 
         private void OnMonsterUpdate(object source, MonsterUpdateEventArgs args) {
             this.Dispatch(() => {
-                this.MonsterHPBar.Value = args.CurrentHP;
-                this.MonsterHPBar.Maximum = args.TotalHP;
+                this.MonsterHealthBar.MaxHealth = args.TotalHP;
+                this.MonsterHealthBar.Health = args.CurrentHP;
+                SetMonsterHealthBarText(args.CurrentHP, args.TotalHP);
             });
+        }
+
+        private void SetMonsterHealthBarText(float hp, float max_hp) {
+            this.HealthText.Text = $"{hp:0}/{max_hp:0} ({hp / max_hp * 100:0}%)";
+        }
+
+        private void SwitchSizeBasedOnTarget() {
+            if (!Context.isTarget) {
+                this.Visibility = Visibility.Collapsed;
+                //this.LayoutTransform = new ScaleTransform(1, 1, 0.5, 0.5);
+                //this.Opacity = 0.5;
+            } else {
+                this.Visibility = Visibility.Visible;
+                this.Width = 500;
+                MonsterHealthBar.MaxWidth = this.Width * 0.7833333333333333;
+                MonsterHealthBar.UpdateBar(Context.CurrentHP, Context.TotalHP);
+                //this.LayoutTransform = new ScaleTransform(1.3, 1.3, 0.5, 0.5);
+                //this.Opacity = 1;
+            }
         }
     }
 }

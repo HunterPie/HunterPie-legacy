@@ -69,13 +69,23 @@
     <Monster ID="em127_01" Name="Ancient Leshen"/>
   </Monsters>
   <Parts>
+    <Part ID="MONSTER_PART_UNKNOWN" Name="Unknown part"/>
     <Part ID="MONSTER_PART_HEAD" Name="Head"/>
+    <Part ID="MONSTER_PART_HEAD_SNOW" Name="Head Snow"/>
+    <Part ID="MONSTER_PART_HEAD_ICE" Name="Head Ice"/>
+    <Part ID="MONSTER_PART_HEAD_ROCK" Name="Head Rock"/>
+    <Part ID="MONSTER_PART_HEAD_MUD" Name="Head Mud"/>
+    <Part ID="MONSTER_PART_RHEAD" Name="Head right"/>
+    <Part ID="MONSTER_PART_LHEAD" Name="Head left"/>
+    <Part ID="MONSTER_PART_NECK" Name="Neck"/>
     <Part ID="MONSTER_PART_BODY" Name="Body"/>
     <Part ID="MONSTER_PART_LWING" Name="Left wing"/>
     <Part ID="MONSTER_PART_RWING" Name="Right wing"/>
     <Part ID="MONSTER_PART_RLEG" Name="Right leg"/>
     <Part ID="MONSTER_PART_LLEG" Name="Left leg"/>
     <Part ID="MONSTER_PART_TAIL" Name="Tail"/>
+    <!-- Removable parts -->
+    <Part ID="MONSTER_PART_REMOVABLE_TAIL" Name="Removable tail"/>
   </Parts>
   <Mantles>
     <Mantle ID="-1" Name="No Mantle"/>

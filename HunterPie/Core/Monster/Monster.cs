@@ -32,12 +32,14 @@ namespace HunterPie.Core {
                         GetMonsterWeaknesses();
                         GetMonsterSizeModifier();
                         // Only call this if monster is actually alive
+                        this.IsAlive = true;
                         _onMonsterSpawn();
                     }
                 } else if (value == null && _id != value) {
                     _id = value;
                     this.HPPercentage = 1f;
                     this.isTarget = false;
+                    this.IsAlive = false;
                     _onMonsterDespawn();
                     Weaknesses.Clear();
                 }
@@ -57,6 +59,7 @@ namespace HunterPie.Core {
                     if (value <= 0) {
                         // Clears monster ID since it's dead
                         this.ID = null;
+                        this.IsAlive = false;
                         _onMonsterDeath();
                     }
                 }
@@ -73,6 +76,7 @@ namespace HunterPie.Core {
                 }
             }
         }
+        public bool IsAlive = false;
         public float EnrageTimer {
             get { return _enrageTimer; }
             set {
@@ -89,7 +93,7 @@ namespace HunterPie.Core {
         public bool IsEnraged {
             get { return _enrageTimer > 0; }
         }
-
+        List<Part> Parts = new List<Part>();
         // Threading
         ThreadStart MonsterInfoScanRef;
         Thread MonsterInfoScan;
@@ -163,6 +167,7 @@ namespace HunterPie.Core {
             while (Scanner.GameIsRunning) {
                 GetMonsterAddress();
                 GetMonsterIDAndName();
+                GetMonsterParts();
                 GetMonsterEnrageTimer();
                 GetTargetMonsterAddress();
                 Thread.Sleep(200);
@@ -246,6 +251,31 @@ namespace HunterPie.Core {
         private void GetTargetMonsterAddress() {
             Int64 TargettedMonsterAddress = Scanner.READ_MULTILEVEL_PTR(Address.BASE + Address.MONSTER_SELECTED_OFFSET, Address.Offsets.MonsterSelectedOffsets);
             this.isTarget = TargettedMonsterAddress == this.MonsterAddress;
+        }
+
+        private void CreateMonsterParts(int numberOfParts) {
+            for (int i = 0; i < numberOfParts; i++) {
+                Part mPart = new Part();
+                Parts.Add(mPart);
+            }
+        }
+
+        private void GetMonsterParts() {
+            if (!this.IsAlive) return;
+            Int64 MonsterPartAddress = MonsterAddress + Address.Offsets.MonsterPartsOffset + Address.Offsets.FirstMonsterPartOffset;
+            int nMaxParts = MonsterData.GetMaxPartsByMonsterID(this.ID);
+            if (Parts.Count < nMaxParts) { CreateMonsterParts(nMaxParts); }
+            byte TimesBroken;
+            float Health;
+            float MaxHealth;
+            for (int PartID = 0; PartID < nMaxParts; PartID++) {
+                TimesBroken = Scanner.READ_BYTE(MonsterPartAddress + Address.Offsets.MonsterPartBrokenCounterOffset);
+                MaxHealth = Scanner.READ_FLOAT(MonsterPartAddress + 0x4); 
+                Health = Scanner.READ_FLOAT(MonsterPartAddress); // Current health is 4 bytes ahead
+
+                Parts[PartID].SetPartInfo(this.ID, PartID, TimesBroken, MaxHealth, Health);
+                MonsterPartAddress += Address.Offsets.NextMonsterPartOffset;
+            }
         }
 
     }

@@ -59,5 +59,11 @@ namespace HunterPie.Core {
             return Abnormality?.Attributes["Name"].Value.Replace("{AbnormalityID}", ID.ToString());
         }
 
+        public static string GetMonsterPartByID(string PartStringID) {
+            XmlNode PartName = Translations.SelectSingleNode($"//Strings/Parts/Part[@ID='{PartStringID}']");
+            if (PartName == null) return "Missing translation";
+            return PartName.Attributes["Name"].Value;
+        }
+
     }
 }

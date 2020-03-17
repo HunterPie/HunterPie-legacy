@@ -3,13 +3,14 @@ using System.Windows;
 using System.Windows.Input;
 using System.IO;
 using System.Windows.Controls;
+using System.Windows.Markup;
+using System.Windows.Interop;
 using HunterPie.GUIControls;
 using HunterPie.Logger;
 using HunterPie.Memory;
 using HunterPie.Core;
 using HunterPie.GUI;
-using System.Windows.Markup;
-using System.Windows.Interop;
+
 
 namespace HunterPie {
     /// <summary>
@@ -25,7 +26,7 @@ namespace HunterPie {
         bool OfflineMode = false;
 
         // HunterPie version
-        const string HUNTERPIE_VERSION = "1.0.3.71";
+        const string HUNTERPIE_VERSION = "1.0.3.80";
 
         // Helpers
         IntPtr _windowHandle;

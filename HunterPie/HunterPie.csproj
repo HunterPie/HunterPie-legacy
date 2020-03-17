@@ -143,8 +143,14 @@
     <Compile Include="GUIControls\Custom Controls\ColorPicker.xaml.cs">
       <DependentUpon>ColorPicker.xaml</DependentUpon>
     </Compile>
+    <Compile Include="GUIControls\Custom Controls\MinimalHealthBar.xaml.cs">
+      <DependentUpon>MinimalHealthBar.xaml</DependentUpon>
+    </Compile>
     <Compile Include="GUIControls\Custom Controls\Switcher.xaml.cs">
       <DependentUpon>Switcher.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="GUIControls\Custom Controls\WeaknessDisplay.xaml.cs">
+      <DependentUpon>WeaknessDisplay.xaml</DependentUpon>
     </Compile>
     <Compile Include="GUIControls\Settings.xaml.cs">
       <DependentUpon>Settings.xaml</DependentUpon>
@@ -171,7 +177,15 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
+    <Page Include="GUIControls\Custom Controls\MinimalHealthBar.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="GUIControls\Custom Controls\Switcher.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="GUIControls\Custom Controls\WeaknessDisplay.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

@@ -1,6 +1,12 @@
 ﻿<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
                     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
     <!-- Colors -->
+    <!-- Overlay -->
+    <LinearGradientBrush x:Key="OVERLAY_MONSTER_HEALTH_BAR_COLOR" EndPoint="1,0" StartPoint="0,0">
+        <GradientStop Color="#FFC9C9C9" Offset="1"/>
+        <GradientStop Color="#FFC7C7C7"/>
+    </LinearGradientBrush>
+    <SolidColorBrush x:Key="OVERLAY_MONSTER_HEALTH_TEXT_COLOR"></SolidColorBrush>
     <!-- Console -->
     <SolidColorBrush x:Key="CONSOLE_BACKGROUND">#F41F1F1F</SolidColorBrush>
     <SolidColorBrush x:Key="CONSOLE_HEADER_BACKGROUND">#4C0E0E0E</SolidColorBrush>

@@ -40,5 +40,19 @@ namespace HunterPie.Core {
             if ((int)multiplier <= Mini) return "CROWN_MINI";
             return null;
         }
+
+        static public int GetMaxPartsByMonsterID(string ID) {
+            XmlNode MonsterParts = MonsterDataDocument.SelectSingleNode($"//Monsters/Monster[@ID='{ID}']/Parts");
+            if (MonsterParts == null) return 0;
+            int nParts = int.Parse(MonsterParts.Attributes["Max"].Value);
+            return nParts;
+        }
+
+        static public string GetPartStringIDByPartIndex(string MonsterID, int PartIndex) {
+            XmlNode MonsterParts = MonsterDataDocument.SelectSingleNode($"//Monsters/Monster[@ID='{MonsterID}']/Parts");
+            if (MonsterParts == null) return "MONSTER_PART_UNKNOWN";
+            string PartStringName = MonsterParts.ChildNodes[PartIndex].Attributes["Name"].Value;
+            return PartStringName;
+        }
     }
 }

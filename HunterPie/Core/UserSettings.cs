@@ -52,6 +52,7 @@ namespace HunterPie.Core {
                 public double Scale { get; set; } = 1;
                 public int[] Position { get; set; } = new int[2] { 335, 10 };
                 public bool ShowMonsterWeakness { get; set; } = true;
+                public bool OnlyShowHuntedMonster { get; set; } = false;
             }
 
             public class Harvestboxcomponent {
