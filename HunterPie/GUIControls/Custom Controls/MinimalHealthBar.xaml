@@ -10,7 +10,7 @@
     </UserControl.Resources>
     <Grid>
         <Rectangle x:Name="HealthBarBackground" Fill="#4CCFCFCF"/>
-        <Rectangle x:Name="HealthBar" Width="240" HorizontalAlignment="Left" Margin="0">
+        <Rectangle x:Name="HealthBar" HorizontalAlignment="Left" Margin="0">
             <Rectangle.Fill>
                 <LinearGradientBrush EndPoint="1,1" StartPoint="1,0">
                     <GradientStop Color="#FFA00000"/>

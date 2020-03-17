@@ -52,9 +52,11 @@ namespace HunterPie.GUI.Widgets {
             // Used when starting HunterPie for the first time, since the events won't be triggered
             this.Visibility = Visibility.Visible;
             this.MonsterName.Text = Context.Name;
-            this.MonsterHealthBar.MaxHealth = Context.TotalHP;
-            MonsterHealthBar.MaxWidth = MonsterHealthBar.Width;
-            this.MonsterHealthBar.Health = Context.CurrentHP;
+
+            // Update monster health
+            
+            MonsterHealthBar.MaxSize = this.Width * 0.7833333333333333;
+            MonsterHealthBar.UpdateBar(Context.CurrentHP, Context.TotalHP);
             SetMonsterHealthBarText(Context.CurrentHP, Context.TotalHP);
 
             SwitchSizeBasedOnTarget();
@@ -126,9 +128,9 @@ namespace HunterPie.GUI.Widgets {
                 this.Visibility = Visibility.Visible;
                 this.MonsterName.Text = args.Name;
 
-                this.MonsterHealthBar.MaxHealth = args.TotalHP;
-                MonsterHealthBar.MaxWidth = MonsterHealthBar.Width;
-                this.MonsterHealthBar.Health = args.CurrentHP;
+                // Update monster health
+                MonsterHealthBar.MaxSize = this.Width * 0.7833333333333333;
+                MonsterHealthBar.UpdateBar(Context.CurrentHP, Context.TotalHP);
                 SetMonsterHealthBarText(args.CurrentHP, args.TotalHP);
 
                 SwitchSizeBasedOnTarget();
@@ -163,18 +165,33 @@ namespace HunterPie.GUI.Widgets {
         }
 
         private void SwitchSizeBasedOnTarget() {
-            if (!Context.isTarget) {
-                this.Visibility = Visibility.Collapsed;
-                //this.LayoutTransform = new ScaleTransform(1, 1, 0.5, 0.5);
-                //this.Opacity = 0.5;
-            } else {
+            ShowOnlyTargetMonster();
+        }
+        
+        // Only show one monster
+        private void ShowOnlyTargetMonster() {
+            if (!Context.isTarget) { this.Visibility = Visibility.Collapsed; }
+            else {
                 this.Visibility = Visibility.Visible;
                 this.Width = 500;
-                MonsterHealthBar.MaxWidth = this.Width * 0.7833333333333333;
+                MonsterHealthBar.MaxSize = this.Width * 0.9;
                 MonsterHealthBar.UpdateBar(Context.CurrentHP, Context.TotalHP);
-                //this.LayoutTransform = new ScaleTransform(1.3, 1.3, 0.5, 0.5);
-                //this.Opacity = 1;
             }
         }
+
+        private void ShowAllButFocusTarget() {
+            if (!Context.isTarget) {
+                this.Width = 240;
+                MonsterHealthBar.MaxSize = this.Width * 0.8;
+                MonsterHealthBar.UpdateBar(Context.CurrentHP, Context.TotalHP);
+                this.Opacity = 0.5;
+            } else {
+                this.Width = 320;
+                MonsterHealthBar.MaxSize = this.Width * 0.8;
+                MonsterHealthBar.UpdateBar(Context.CurrentHP, Context.TotalHP);
+                this.Opacity = 1;
+            }
+        }
+
     }
 }

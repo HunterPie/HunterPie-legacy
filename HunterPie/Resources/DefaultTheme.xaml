@@ -6,7 +6,20 @@
         <GradientStop Color="#FFC9C9C9" Offset="1"/>
         <GradientStop Color="#FFC7C7C7"/>
     </LinearGradientBrush>
-    <SolidColorBrush x:Key="OVERLAY_MONSTER_HEALTH_TEXT_COLOR"></SolidColorBrush>
+    <SolidColorBrush x:Key="OVERLAY_MONSTER_HEALTH_TEXT_COLOR">#FF3E3E3E</SolidColorBrush>
+    <Style x:Key="OVERLAY_MONSTER_BAR_TEXT_STYLE" TargetType="TextBlock">
+        <Setter Property="Foreground" Value="{StaticResource OVERLAY_MONSTER_HEALTH_TEXT_COLOR}"/>
+        <Setter Property="FontFamily" Value="Roboto"/>
+        <Setter Property="FontSize" Value="12"/>
+        <Setter Property="FontWeight" Value="ExtraBold"/>
+        <Setter Property="Margin" Value="45,17,38,28"/>
+    </Style>
+    <Style x:Key="OVERLAY_MONSTER_NAME_TEXT_STYLE" TargetType="TextBlock">
+        <Setter Property="Foreground" Value="#FFFDFFCE"/>
+        <Setter Property="FontFamily" Value="Roboto"/>
+        <Setter Property="FontWeight" Value="SemiBold"/>
+        <Setter Property="FontSize" Value="13"/>
+    </Style>
     <!-- Console -->
     <SolidColorBrush x:Key="CONSOLE_BACKGROUND">#F41F1F1F</SolidColorBrush>
     <SolidColorBrush x:Key="CONSOLE_HEADER_BACKGROUND">#4C0E0E0E</SolidColorBrush>

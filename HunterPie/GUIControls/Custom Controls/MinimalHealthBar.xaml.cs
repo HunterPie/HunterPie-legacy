@@ -20,7 +20,7 @@ namespace HunterPie.GUIControls.Custom_Controls {
     public partial class MinimalHealthBar : UserControl {
         private double _MaxHealth { get; set; }
         private double _Health { get; set; }
-        public new double MaxWidth { get; set; }
+        public double MaxSize { get; set; }
 
         public double MaxHealth {
             get { return _MaxHealth; }
@@ -33,7 +33,9 @@ namespace HunterPie.GUIControls.Custom_Controls {
             get { return _Health; }
             set {
                 _Health = value;
-                HealthBar.Width = MaxWidth * (value / MaxHealth);
+                Logger.Debugger.Log($"MAx:{MaxSize} {value} / {MaxHealth}");
+                HealthBar.Width = MaxSize * (value / MaxHealth);
+                Logger.Debugger.Log(HealthBar.Width);
             }
         }
 
@@ -47,8 +49,9 @@ namespace HunterPie.GUIControls.Custom_Controls {
         }
 
         public void UpdateBar(float hp, float max_hp) {
+            HealthBarBackground.Width = MaxSize;
             this.MaxHealth = max_hp;
-            this.Health = Health;
+            this.Health = hp;
         }
     }
 }
