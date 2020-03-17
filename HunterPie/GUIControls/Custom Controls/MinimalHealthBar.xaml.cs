@@ -33,9 +33,7 @@ namespace HunterPie.GUIControls.Custom_Controls {
             get { return _Health; }
             set {
                 _Health = value;
-                Logger.Debugger.Log($"MAx:{MaxSize} {value} / {MaxHealth}");
                 HealthBar.Width = MaxSize * (value / MaxHealth);
-                Logger.Debugger.Log(HealthBar.Width);
             }
         }
 

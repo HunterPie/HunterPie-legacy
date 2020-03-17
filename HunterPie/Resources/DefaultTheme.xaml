@@ -3,16 +3,22 @@
     <!-- Colors -->
     <!-- Overlay -->
     <LinearGradientBrush x:Key="OVERLAY_MONSTER_HEALTH_BAR_COLOR" EndPoint="1,0" StartPoint="0,0">
-        <GradientStop Color="#FFC9C9C9" Offset="1"/>
-        <GradientStop Color="#FFC7C7C7"/>
+        <GradientStop Color="#FFD6D6D6" Offset="1"/>
+        <GradientStop Color="#FFB9B9B9"/>
     </LinearGradientBrush>
-    <SolidColorBrush x:Key="OVERLAY_MONSTER_HEALTH_TEXT_COLOR">#FF3E3E3E</SolidColorBrush>
+    <SolidColorBrush x:Key="OVERLAY_MONSTER_HEALTH_TEXT_COLOR" Color="#FFDEDEDE"/>
     <Style x:Key="OVERLAY_MONSTER_BAR_TEXT_STYLE" TargetType="TextBlock">
         <Setter Property="Foreground" Value="{StaticResource OVERLAY_MONSTER_HEALTH_TEXT_COLOR}"/>
         <Setter Property="FontFamily" Value="Roboto"/>
         <Setter Property="FontSize" Value="12"/>
         <Setter Property="FontWeight" Value="ExtraBold"/>
-        <Setter Property="Margin" Value="45,17,38,28"/>
+        <Setter Property="Margin" Value="45,18,38,30"/>
+        <Setter Property="Padding" Value="0,0.75,0,0"/>
+        <Setter Property="Effect">
+            <Setter.Value>
+                <DropShadowEffect BlurRadius="0" ShadowDepth="1"/>
+            </Setter.Value>
+        </Setter>
     </Style>
     <Style x:Key="OVERLAY_MONSTER_NAME_TEXT_STYLE" TargetType="TextBlock">
         <Setter Property="Foreground" Value="#FFFDFFCE"/>

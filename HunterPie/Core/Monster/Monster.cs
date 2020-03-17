@@ -12,9 +12,8 @@ namespace HunterPie.Core {
         private string _id;
         private float _currentHP;
         private bool _isTarget;
-        private float _enrageTimer;
-        //private float _enrageStaticTimer; Implement this maybe?
-
+        private float _enrageTimer = 0;
+        
         private Int64 MonsterAddress;
         public int MonsterNumber { get; private set; }
 
@@ -80,16 +79,18 @@ namespace HunterPie.Core {
         public float EnrageTimer {
             get { return _enrageTimer; }
             set {
-                if (value != _enrageTimer) {
+                if ((int)value != (int)_enrageTimer) {
                     if (value > 0 && _enrageTimer == 0) {
                         _onEnrage();
                     } else if (value == 0 && _enrageTimer > 0) {
                         _onUnenrage();
                     }
                     _enrageTimer = value;
+                    _OnEnrageUpdateTimerUpdate();
                 }
             }
         }
+        public float EnrageTimerStatic { get; private set; }
         public bool IsEnraged {
             get { return _enrageTimer > 0; }
         }
@@ -99,7 +100,7 @@ namespace HunterPie.Core {
         Thread MonsterInfoScan;
 
         // Game events
-        public delegate void MonsterEnrageEvents(object source, EventArgs args);
+        public delegate void MonsterEnrageEvents(object source, MonsterUpdateEventArgs args);
         public delegate void MonsterEvents(object source, EventArgs args);
         public delegate void MonsterSpawnEvents(object source, MonsterSpawnEventArgs args);
         public delegate void MonsterUpdateEvents(object source, MonsterUpdateEventArgs args);
@@ -110,6 +111,7 @@ namespace HunterPie.Core {
         public event MonsterEvents OnTargetted;
         public event MonsterEnrageEvents OnEnrage;
         public event MonsterEnrageEvents OnUnenrage;
+        public event MonsterEnrageEvents OnEnrageTimerUpdate;
         
 
         protected virtual void _onMonsterSpawn() {
@@ -134,11 +136,15 @@ namespace HunterPie.Core {
         }
 
         protected virtual void _onEnrage() {
-            OnEnrage?.Invoke(this, EventArgs.Empty);
+            OnEnrage?.Invoke(this, new MonsterUpdateEventArgs(this));
         }
 
         protected virtual void _onUnenrage() {
-            OnUnenrage?.Invoke(this, EventArgs.Empty);
+            OnUnenrage?.Invoke(this, new MonsterUpdateEventArgs(this));
+        }
+
+        protected virtual void _OnEnrageUpdateTimerUpdate() {
+            OnEnrageTimerUpdate?.Invoke(this, new MonsterUpdateEventArgs(this));
         }
 
         public Monster(int initMonsterNumber) {
@@ -245,7 +251,8 @@ namespace HunterPie.Core {
         }
 
         private void GetMonsterEnrageTimer() {
-            EnrageTimer = Scanner.READ_FLOAT(MonsterAddress + 0x1BDEC);
+            EnrageTimer = Scanner.READ_FLOAT(MonsterAddress + 0x1BDFC);
+            EnrageTimerStatic = Scanner.READ_FLOAT(MonsterAddress + 0x1BDFC + 0x4);
         }
 
         private void GetTargetMonsterAddress() {

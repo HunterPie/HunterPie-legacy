@@ -42,10 +42,23 @@ namespace HunterPie.GUI.Widgets {
             Context.OnMonsterSpawn += OnMonsterSpawn;
             Context.OnMonsterDespawn += OnMonsterDespawn;
             Context.OnMonsterDeath += OnMonsterDespawn;
+            Context.OnHPUpdate += OnMonsterUpdate;
             Context.OnEnrage += OnEnrage;
             Context.OnUnenrage += OnUnenrage;
-            Context.OnHPUpdate += OnMonsterUpdate;
+            Context.OnEnrageTimerUpdate += OnEnrageTimerUpdate;
             Context.OnTargetted += OnMonsterTargetted;
+        }
+
+        public void UnhookEvents() {
+            Context.OnMonsterSpawn -= OnMonsterSpawn;
+            Context.OnMonsterDespawn -= OnMonsterDespawn;
+            Context.OnMonsterDeath -= OnMonsterDespawn;
+            Context.OnHPUpdate -= OnMonsterUpdate;
+            Context.OnEnrage -= OnEnrage;
+            Context.OnUnenrage -= OnUnenrage;
+            Context.OnEnrageTimerUpdate -= OnEnrageTimerUpdate;
+            Context.OnTargetted -= OnMonsterTargetted;
+            Context = null;
         }
 
         private void UpdateMonsterInfo() {
@@ -54,12 +67,21 @@ namespace HunterPie.GUI.Widgets {
             this.MonsterName.Text = Context.Name;
 
             // Update monster health
-            
+
             MonsterHealthBar.MaxSize = this.Width * 0.7833333333333333;
             MonsterHealthBar.UpdateBar(Context.CurrentHP, Context.TotalHP);
             SetMonsterHealthBarText(Context.CurrentHP, Context.TotalHP);
 
             SwitchSizeBasedOnTarget();
+
+            // Enrage
+
+            if (Context.IsEnraged) {
+                ANIM_ENRAGEDICON.Begin(this.MonsterHealthBar, true);
+                ANIM_ENRAGEDICON.Begin(this.HealthBossIcon, true);
+                EnrageTimerText.Visibility = Visibility.Visible;
+                EnrageTimerText.Text = $"{Context.EnrageTimerStatic - Context.EnrageTimer:0}s";
+            }
 
             // Set monster crown
             this.MonsterCrown.Source = Context.Crown == null ? null : (ImageSource)FindResource(Context.Crown);
@@ -78,16 +100,6 @@ namespace HunterPie.GUI.Widgets {
             }
         }
 
-        public void UnhookEvents() {
-            Context.OnMonsterSpawn -= OnMonsterSpawn;
-            Context.OnMonsterDespawn -= OnMonsterDespawn;
-            Context.OnMonsterDeath -= OnMonsterDespawn;
-            Context.OnEnrage -= OnEnrage;
-            Context.OnUnenrage -= OnUnenrage;
-            Context.OnHPUpdate -= OnMonsterUpdate;
-            Context = null;
-        }
-
         private void LoadAnimations() {
             ANIM_ENRAGEDICON = FindResource("ANIM_ENRAGED") as Storyboard;
         }
@@ -98,14 +110,21 @@ namespace HunterPie.GUI.Widgets {
             });
         }
 
-        private void OnEnrage(object source, EventArgs args) {
+        private void OnEnrage(object source, MonsterUpdateEventArgs args) {
             this.Dispatch(() => {
                 ANIM_ENRAGEDICON.Begin(this.MonsterHealthBar, true);
                 ANIM_ENRAGEDICON.Begin(this.HealthBossIcon, true);
             });
         }
 
-        private void OnUnenrage(object source, EventArgs args) {
+        private void OnEnrageTimerUpdate(object source, MonsterUpdateEventArgs args) {
+            Dispatch(() => {
+                this.EnrageTimerText.Visibility = args.Enrage > 0 ? Visibility.Visible : Visibility.Hidden;
+                this.EnrageTimerText.Text = $"{Context.EnrageTimerStatic - Context.EnrageTimer:0}";
+            });
+        }
+
+        private void OnUnenrage(object source, MonsterUpdateEventArgs args) {
             this.Dispatch(() => {
                 ANIM_ENRAGEDICON.Remove(this.MonsterHealthBar);
                 ANIM_ENRAGEDICON.Remove(this.HealthBossIcon);
@@ -170,7 +189,7 @@ namespace HunterPie.GUI.Widgets {
         
         // Only show one monster
         private void ShowOnlyTargetMonster() {
-            if (!Context.isTarget) { this.Visibility = Visibility.Collapsed; }
+            if (Context == null || !Context.isTarget) { this.Visibility = Visibility.Collapsed; }
             else {
                 this.Visibility = Visibility.Visible;
                 this.Width = 500;
