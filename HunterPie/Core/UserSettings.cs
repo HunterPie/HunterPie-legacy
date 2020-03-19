@@ -50,6 +50,7 @@ namespace HunterPie.Core {
             public class Monsterscomponent {
                 public bool Enabled { get; set; } = true;
                 public double Scale { get; set; } = 1;
+                public byte ShowMonsterBarMode { get; set; } = 0;
                 public int[] Position { get; set; } = new int[2] { 335, 10 };
                 public bool ShowMonsterWeakness { get; set; } = true;
                 public bool OnlyShowHuntedMonster { get; set; } = false;

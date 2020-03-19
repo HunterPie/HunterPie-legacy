@@ -1,15 +1,26 @@
-﻿<UserControl x:Class="HunterPie.GUIControls.settingsWindow"
+﻿<UserControl
              xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              xmlns:local="clr-namespace:HunterPie.GUIControls"
              xmlns:custom="clr-namespace:HunterPie.GUIControls.Custom_Controls"
+             xmlns:System="clr-namespace:System;assembly=mscorlib" x:Class="HunterPie.GUIControls.settingsWindow"
              mc:Ignorable="d">
     <UserControl.Resources>
         <SolidColorBrush x:Key="ToggleButtonBackgroundOn" Color="{StaticResource TOGGLABLE_BUTTON_BACKGROUND_ON}"/>
         <SolidColorBrush x:Key="ToggleButtonBackgroundOff" Color="{StaticResource TOGGLABLE_BUTTON_BACKGROUND_OFF}"/>
-        <Style x:Key="ToggleButtonStyle" TargetType="Button">
+        <Style x:Key="ToggleButtonStyle" TargetType="{x:Type Button}">
+            <Setter Property="Padding" Value="1"/>
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="{x:Type Button}">
+                        <Border x:Name="border" BorderBrush="{TemplateBinding BorderBrush}" BorderThickness="{TemplateBinding BorderThickness}" Background="{TemplateBinding Background}" SnapsToDevicePixels="true">
+                            <ContentPresenter x:Name="contentPresenter" Focusable="False" HorizontalAlignment="{TemplateBinding HorizontalContentAlignment}" Margin="{TemplateBinding Padding}" RecognizesAccessKey="True" SnapsToDevicePixels="{TemplateBinding SnapsToDevicePixels}" VerticalAlignment="{TemplateBinding VerticalContentAlignment}"/>
+                        </Border>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
             <Style.Triggers>
                 <Trigger Property="IsFocused" Value="True">
                     <Trigger.EnterActions>
@@ -28,16 +39,6 @@
                     </Trigger.ExitActions>
                 </Trigger>
             </Style.Triggers>
-            <Setter Property="Padding" Value="1"/>
-            <Setter Property="Template">
-                <Setter.Value>
-                    <ControlTemplate TargetType="{x:Type Button}">
-                        <Border x:Name="border" BorderBrush="{TemplateBinding BorderBrush}" BorderThickness="{TemplateBinding BorderThickness}" Background="{TemplateBinding Background}" SnapsToDevicePixels="true">
-                            <ContentPresenter x:Name="contentPresenter" Focusable="False" HorizontalAlignment="{TemplateBinding HorizontalContentAlignment}" Margin="{TemplateBinding Padding}" RecognizesAccessKey="True" SnapsToDevicePixels="{TemplateBinding SnapsToDevicePixels}" VerticalAlignment="{TemplateBinding VerticalContentAlignment}"/>
-                        </Border>
-                    </ControlTemplate>
-                </Setter.Value>
-            </Setter>
         </Style>
     </UserControl.Resources>
     <StackPanel HorizontalAlignment="Left" Width="949">
@@ -105,6 +106,13 @@
             <custom:Switcher x:Name="switchEnableMonsterComponent"/>
             <TextBlock Text="Enable monster widget" Margin="10,0,0,0" FontFamily="Roboto" FontSize="16" Foreground="#FFF9F9F9" HorizontalAlignment="Center" VerticalAlignment="Center" FontWeight="ExtraLight" />
         </StackPanel>
+        <ComboBox Style="{StaticResource ComboBoxFlatStyle}" x:Name="MonsterShowModeSelection" IsReadOnly="True" Cursor="Hand" HorizontalAlignment="Center" Width="400" Margin="322,10,227,0" FontSize="14" Foreground="#FFF9F9F9" SelectedIndex="0">
+            <System:String>Show all monsters at once</System:String>
+            <System:String>Show all monsters but highlight my target</System:String>
+            <System:String>Show only hunted monster</System:String>
+            <System:String>Show all but hide non-active monsters after X seconds</System:String>
+        </ComboBox>
+        <TextBlock Text="Monster bar mode:" Margin="-456,-26,0,0" FontFamily="Roboto" FontSize="16" Foreground="#FFF9F9F9" HorizontalAlignment="Center" VerticalAlignment="Center" FontWeight="ExtraLight" TextAlignment="Right" />
         <StackPanel Orientation="Horizontal" Margin="338,3,0,0">
             <custom:Switcher x:Name="switchEnableMonsterWeakness"/>
             <TextBlock Text="Show monster weaknesses" Margin="10,0,0,0" FontFamily="Roboto" FontSize="16" Foreground="#FFF9F9F9" HorizontalAlignment="Center" VerticalAlignment="Center" FontWeight="ExtraLight" />

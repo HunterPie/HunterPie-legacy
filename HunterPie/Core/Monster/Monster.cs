@@ -94,7 +94,7 @@ namespace HunterPie.Core {
         public bool IsEnraged {
             get { return _enrageTimer > 0; }
         }
-        List<Part> Parts = new List<Part>();
+        public List<Part> Parts = new List<Part>();
         // Threading
         ThreadStart MonsterInfoScanRef;
         Thread MonsterInfoScan;
@@ -275,13 +275,19 @@ namespace HunterPie.Core {
             byte TimesBroken;
             float Health;
             float MaxHealth;
+            int NumberOfRemovableParts = 0;
             for (int PartID = 0; PartID < nMaxParts; PartID++) {
+                if (MonsterData.IsPartRemovable(ID, PartID)) {
+                    NumberOfRemovableParts++;
+                    continue;
+                }
                 TimesBroken = Scanner.READ_BYTE(MonsterPartAddress + Address.Offsets.MonsterPartBrokenCounterOffset);
                 MaxHealth = Scanner.READ_FLOAT(MonsterPartAddress + 0x4); 
                 Health = Scanner.READ_FLOAT(MonsterPartAddress); // Current health is 4 bytes ahead
 
                 Parts[PartID].SetPartInfo(this.ID, PartID, TimesBroken, MaxHealth, Health);
                 MonsterPartAddress += Address.Offsets.NextMonsterPartOffset;
+                
             }
         }
 

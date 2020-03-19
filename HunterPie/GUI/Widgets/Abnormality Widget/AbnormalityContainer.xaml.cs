@@ -37,8 +37,8 @@ namespace HunterPie.GUI.Widgets.Abnormality_Widget {
             }
             Dispatcher.BeginInvoke(System.Windows.Threading.DispatcherPriority.Background, new Action(() => {
                 this.WidgetActive = UserSettings.PlayerConfig.Overlay.AbnormalitiesWidget.BarPresets[AbnormalityTrayIndex].Enabled;
-                this.Top = UserSettings.PlayerConfig.Overlay.AbnormalitiesWidget.BarPresets[AbnormalityTrayIndex].Position[1];
-                this.Left = UserSettings.PlayerConfig.Overlay.AbnormalitiesWidget.BarPresets[AbnormalityTrayIndex].Position[0];
+                this.Top = UserSettings.PlayerConfig.Overlay.AbnormalitiesWidget.BarPresets[AbnormalityTrayIndex].Position[1] + UserSettings.PlayerConfig.Overlay.Position[1];
+                this.Left = UserSettings.PlayerConfig.Overlay.AbnormalitiesWidget.BarPresets[AbnormalityTrayIndex].Position[0] + UserSettings.PlayerConfig.Overlay.Position[0];
                 this.BuffTray.Orientation = UserSettings.PlayerConfig.Overlay.AbnormalitiesWidget.BarPresets[AbnormalityTrayIndex].Orientation == "Horizontal" ? Orientation.Horizontal : Orientation.Vertical;
                 int BuffTrayMaxSize = Math.Max(UserSettings.PlayerConfig.Overlay.AbnormalitiesWidget.BarPresets[AbnormalityTrayIndex].MaxSize, 0);
                 if (BuffTrayMaxSize > 7000) BuffTrayMaxSize = 0;

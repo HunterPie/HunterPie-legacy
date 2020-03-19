@@ -89,12 +89,14 @@ namespace HunterPie.Core {
         public int ID;
         public float Health;
         public float TotalHealth;
+        public byte BrokenCounter;
 
         public MonsterPartEventArgs(Part mPart) {
             this.Name = mPart.Name;
             this.ID = mPart.ID;
             this.Health = mPart.Health;
             this.TotalHealth = mPart.TotalHealth;
+            this.BrokenCounter = mPart.BrokenCounter;
         }
 
     }

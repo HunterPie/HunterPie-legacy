@@ -61,7 +61,7 @@
             this.Icon = icon;
             this.InternalID = InternalID;
             this.MaxDuration = MaxDuration < ab_duration ? ab_duration : MaxDuration;
-            if (this.Stack == 0 && ab_stack > this.Stack) {
+            if (this.Stack != ab_stack) {
                 this.Stack = (byte)(ab_stack);
                 _OnStackChange();
             }

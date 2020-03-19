@@ -51,7 +51,6 @@ namespace HunterPie.Core {
 
         protected virtual void _OnHealthChange() {
             OnHealthChange?.Invoke(this, new MonsterPartEventArgs(this));
-            Logger.Debugger.Log(this.ToString());
         }
 
         protected virtual void _OnBrokenCounterChange() {

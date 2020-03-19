@@ -48,6 +48,12 @@ namespace HunterPie.Core {
             return nParts;
         }
 
+        static public bool IsPartRemovable(string MonsterID, int PartIndex) {
+            XmlNode MonsterPart = MonsterDataDocument.SelectSingleNode($"//Monsters/Monster[@ID='{MonsterID}']/Parts");
+            if (MonsterPart == null) return false;
+            return bool.Parse(MonsterPart.ChildNodes[PartIndex].Attributes["IsRemovable"].Value);
+        }
+
         static public string GetPartStringIDByPartIndex(string MonsterID, int PartIndex) {
             XmlNode MonsterParts = MonsterDataDocument.SelectSingleNode($"//Monsters/Monster[@ID='{MonsterID}']/Parts");
             if (MonsterParts == null) return "MONSTER_PART_UNKNOWN";

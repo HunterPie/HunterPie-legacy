@@ -108,7 +108,8 @@
       <Weakness ID="ELEMENT_WATER" Stars="2"/>
     </Weaknesses>
     <Crown Mini="90" Silver="115" Gold="123"/>
-    <Parts Max="8">
+    <Parts Max="9">
+      <Part Name="MONSTER_PART_REMOVABLE_HORNS" IsRemovable="True"/>
       <Part Name="MONSTER_PART_REMOVABLE_TAIL" IsRemovable="True"/>
       <Part Name="MONSTER_PART_HEAD" IsRemovable="False"/>
       <Part Name="MONSTER_PART_BODY" IsRemovable="False"/>
@@ -125,7 +126,8 @@
       <Weakness ID="ELEMENT_WATER" Stars="2"/>
     </Weaknesses>
     <Crown Mini="90" Silver="115" Gold="123"/>
-    <Parts Max="8">
+    <Parts Max="9">
+      <Part Name="MONSTER_PART_REMOVABLE_HORNS" IsRemovable="True"/>
       <Part Name="MONSTER_PART_REMOVABLE_TAIL" IsRemovable="True"/>
       <Part Name="MONSTER_PART_HEAD" IsRemovable="False"/>
       <Part Name="MONSTER_PART_BODY" IsRemovable="False"/>
@@ -142,15 +144,10 @@
       <Weakness ID="ELEMENT_WATER" Stars="2"/>
     </Weaknesses>
     <Crown Mini="90" Silver="115" Gold="123"/>
-    <Parts Max="8">
-      <Part Name="MONSTER_PART_REMOVABLE_TAIL" IsRemovable="True"/>
+    <Parts Max="3">
       <Part Name="MONSTER_PART_HEAD" IsRemovable="False"/>
-      <Part Name="MONSTER_PART_BODY" IsRemovable="False"/>
-      <Part Name="MONSTER_PART_LWING" IsRemovable="False"/>
-      <Part Name="MONSTER_PART_RWING" IsRemovable="False"/>
-      <Part Name="MONSTER_PART_LLEG" IsRemovable="False"/>
-      <Part Name="MONSTER_PART_RLEG" IsRemovable="False"/>
-      <Part Name="MONSTER_PART_TAIL" IsRemovable="False"/>
+      <Part Name="MONSTER_PART_ARMS" IsRemovable="False"/>
+      <Part Name="MONSTER_PART_LEGS" IsRemovable="False"/>
     </Parts>
   </Monster>
   <Monster ID="em018_00">
@@ -163,10 +160,10 @@
       <Part Name="MONSTER_PART_REMOVABLE_TAIL" IsRemovable="True"/>
       <Part Name="MONSTER_PART_HEAD" IsRemovable="False"/>
       <Part Name="MONSTER_PART_BODY" IsRemovable="False"/>
-      <Part Name="MONSTER_PART_LWING" IsRemovable="False"/>
-      <Part Name="MONSTER_PART_RWING" IsRemovable="False"/>
       <Part Name="MONSTER_PART_LLEG" IsRemovable="False"/>
       <Part Name="MONSTER_PART_RLEG" IsRemovable="False"/>
+      <Part Name="MONSTER_PART_LWING" IsRemovable="False"/>
+      <Part Name="MONSTER_PART_RWING" IsRemovable="False"/>
       <Part Name="MONSTER_PART_TAIL" IsRemovable="False"/>
     </Parts>
   </Monster>
@@ -180,10 +177,10 @@
       <Part Name="MONSTER_PART_REMOVABLE_TAIL" IsRemovable="True"/>
       <Part Name="MONSTER_PART_HEAD" IsRemovable="False"/>
       <Part Name="MONSTER_PART_BODY" IsRemovable="False"/>
-      <Part Name="MONSTER_PART_LWING" IsRemovable="False"/>
-      <Part Name="MONSTER_PART_RWING" IsRemovable="False"/>
       <Part Name="MONSTER_PART_LLEG" IsRemovable="False"/>
       <Part Name="MONSTER_PART_RLEG" IsRemovable="False"/>
+      <Part Name="MONSTER_PART_LWING" IsRemovable="False"/>
+      <Part Name="MONSTER_PART_RWING" IsRemovable="False"/>
       <Part Name="MONSTER_PART_TAIL" IsRemovable="False"/>
     </Parts>
   </Monster>
@@ -193,12 +190,13 @@
       <Weakness ID="ELEMENT_WATER" Stars="1"/>
     </Weaknesses>
     <Crown Mini="90" Silver="111" Gold="118"/>
-    <Parts Max="8">
+    <Parts Max="9">
+      <Part Name="MONSTER_PART_REMOVABLE_HORNS" IsRemovable="True"/>
       <Part Name="MONSTER_PART_REMOVABLE_TAIL" IsRemovable="True"/>
       <Part Name="MONSTER_PART_HEAD" IsRemovable="False"/>
       <Part Name="MONSTER_PART_BODY" IsRemovable="False"/>
-      <Part Name="MONSTER_PART_LWING" IsRemovable="False"/>
-      <Part Name="MONSTER_PART_RWING" IsRemovable="False"/>
+      <Part Name="MONSTER_PART_ARM_LEFT" IsRemovable="False"/>
+      <Part Name="MONSTER_PART_ARM_RIGHT" IsRemovable="False"/>
       <Part Name="MONSTER_PART_LLEG" IsRemovable="False"/>
       <Part Name="MONSTER_PART_RLEG" IsRemovable="False"/>
       <Part Name="MONSTER_PART_TAIL" IsRemovable="False"/>
@@ -210,15 +208,14 @@
       <Weakness ID="ELEMENT_DRAGON" Stars="2"/>
     </Weaknesses>
     <Crown Mini="90" Silver="115" Gold="123"/>
-    <Parts Max="8">
+    <Parts Max="7">
       <Part Name="MONSTER_PART_REMOVABLE_TAIL" IsRemovable="True"/>
       <Part Name="MONSTER_PART_HEAD" IsRemovable="False"/>
       <Part Name="MONSTER_PART_BODY" IsRemovable="False"/>
-      <Part Name="MONSTER_PART_LWING" IsRemovable="False"/>
-      <Part Name="MONSTER_PART_RWING" IsRemovable="False"/>
-      <Part Name="MONSTER_PART_LLEG" IsRemovable="False"/>
-      <Part Name="MONSTER_PART_RLEG" IsRemovable="False"/>
       <Part Name="MONSTER_PART_TAIL" IsRemovable="False"/>
+      <Part Name="MONSTER_PART_LIMBS_LEFT" IsRemovable="False"/>
+      <Part Name="MONSTER_PART_LIMBS_RIGHT" IsRemovable="False"/>
+      <Part Name="MONSTER_PART_WINGS" IsRemovable="False"/>
     </Parts>
   </Monster>
   <Monster ID="em026_00">
@@ -227,14 +224,13 @@
       <Weakness ID="ELEMENT_DRAGON" Stars="2"/>
     </Weaknesses>
     <Crown Mini="90" Silver="115" Gold="123"/>
-    <Parts Max="8">
+    <Parts Max="7">
       <Part Name="MONSTER_PART_REMOVABLE_TAIL" IsRemovable="True"/>
       <Part Name="MONSTER_PART_HEAD" IsRemovable="False"/>
       <Part Name="MONSTER_PART_BODY" IsRemovable="False"/>
+      <Part Name="MONSTER_PART_LIMBS" IsRemovable="False"/>
       <Part Name="MONSTER_PART_LWING" IsRemovable="False"/>
       <Part Name="MONSTER_PART_RWING" IsRemovable="False"/>
-      <Part Name="MONSTER_PART_LLEG" IsRemovable="False"/>
-      <Part Name="MONSTER_PART_RLEG" IsRemovable="False"/>
       <Part Name="MONSTER_PART_TAIL" IsRemovable="False"/>
     </Parts>
   </Monster>
@@ -244,14 +240,13 @@
       <Weakness ID="ELEMENT_ICE" Stars="3"/>
     </Weaknesses>
     <Crown Mini="90" Silver="115" Gold="123"/>
-    <Parts Max="8">
+    <Parts Max="7">
       <Part Name="MONSTER_PART_REMOVABLE_TAIL" IsRemovable="True"/>
       <Part Name="MONSTER_PART_HEAD" IsRemovable="False"/>
       <Part Name="MONSTER_PART_BODY" IsRemovable="False"/>
-      <Part Name="MONSTER_PART_LWING" IsRemovable="False"/>
-      <Part Name="MONSTER_PART_RWING" IsRemovable="False"/>
-      <Part Name="MONSTER_PART_LLEG" IsRemovable="False"/>
-      <Part Name="MONSTER_PART_RLEG" IsRemovable="False"/>
+      <Part Name="MONSTER_PART_ARMS" IsRemovable="False"/>
+      <Part Name="MONSTER_PART_LEGS" IsRemovable="False"/>
+      <Part Name="MONSTER_PART_WINGS" IsRemovable="False"/>
       <Part Name="MONSTER_PART_TAIL" IsRemovable="False"/>
     </Parts>
   </Monster>
@@ -265,8 +260,8 @@
       <Part Name="MONSTER_PART_REMOVABLE_TAIL" IsRemovable="True"/>
       <Part Name="MONSTER_PART_HEAD" IsRemovable="False"/>
       <Part Name="MONSTER_PART_BODY" IsRemovable="False"/>
-      <Part Name="MONSTER_PART_LWING" IsRemovable="False"/>
-      <Part Name="MONSTER_PART_RWING" IsRemovable="False"/>
+      <Part Name="MONSTER_PART_ARM_LEFT" IsRemovable="False"/>
+      <Part Name="MONSTER_PART_ARM_RIGHT" IsRemovable="False"/>
       <Part Name="MONSTER_PART_LLEG" IsRemovable="False"/>
       <Part Name="MONSTER_PART_RLEG" IsRemovable="False"/>
       <Part Name="MONSTER_PART_TAIL" IsRemovable="False"/>
@@ -282,8 +277,8 @@
       <Part Name="MONSTER_PART_REMOVABLE_TAIL" IsRemovable="True"/>
       <Part Name="MONSTER_PART_HEAD" IsRemovable="False"/>
       <Part Name="MONSTER_PART_BODY" IsRemovable="False"/>
-      <Part Name="MONSTER_PART_LWING" IsRemovable="False"/>
-      <Part Name="MONSTER_PART_RWING" IsRemovable="False"/>
+      <Part Name="MONSTER_PART_ARM_LEFT" IsRemovable="False"/>
+      <Part Name="MONSTER_PART_ARM_RIGHT" IsRemovable="False"/>
       <Part Name="MONSTER_PART_LLEG" IsRemovable="False"/>
       <Part Name="MONSTER_PART_RLEG" IsRemovable="False"/>
       <Part Name="MONSTER_PART_TAIL" IsRemovable="False"/>
@@ -295,12 +290,10 @@
       <Weakness ID="ELEMENT_ICE" Stars="2"/>
     </Weaknesses>
     <Crown Mini="90" Silver="115" Gold="123"/>
-    <Parts Max="8">
-      <Part Name="MONSTER_PART_REMOVABLE_TAIL" IsRemovable="True"/>
+    <Parts Max="6">
       <Part Name="MONSTER_PART_HEAD" IsRemovable="False"/>
       <Part Name="MONSTER_PART_BODY" IsRemovable="False"/>
-      <Part Name="MONSTER_PART_LWING" IsRemovable="False"/>
-      <Part Name="MONSTER_PART_RWING" IsRemovable="False"/>
+      <Part Name="MONSTER_PART_ABDOMEN" IsRemovable="False"/>
       <Part Name="MONSTER_PART_LLEG" IsRemovable="False"/>
       <Part Name="MONSTER_PART_RLEG" IsRemovable="False"/>
       <Part Name="MONSTER_PART_TAIL" IsRemovable="False"/>
@@ -316,8 +309,8 @@
       <Part Name="MONSTER_PART_REMOVABLE_TAIL" IsRemovable="True"/>
       <Part Name="MONSTER_PART_HEAD" IsRemovable="False"/>
       <Part Name="MONSTER_PART_BODY" IsRemovable="False"/>
-      <Part Name="MONSTER_PART_LWING" IsRemovable="False"/>
-      <Part Name="MONSTER_PART_RWING" IsRemovable="False"/>
+      <Part Name="MONSTER_PART_ARM_LEFT" IsRemovable="False"/>
+      <Part Name="MONSTER_PART_ARM_RIGHT" IsRemovable="False"/>
       <Part Name="MONSTER_PART_LLEG" IsRemovable="False"/>
       <Part Name="MONSTER_PART_RLEG" IsRemovable="False"/>
       <Part Name="MONSTER_PART_TAIL" IsRemovable="False"/>
@@ -333,8 +326,8 @@
       <Part Name="MONSTER_PART_REMOVABLE_TAIL" IsRemovable="True"/>
       <Part Name="MONSTER_PART_HEAD" IsRemovable="False"/>
       <Part Name="MONSTER_PART_BODY" IsRemovable="False"/>
-      <Part Name="MONSTER_PART_LWING" IsRemovable="False"/>
-      <Part Name="MONSTER_PART_RWING" IsRemovable="False"/>
+      <Part Name="MONSTER_PART_ARM_LEFT" IsRemovable="False"/>
+      <Part Name="MONSTER_PART_ARM_RIGHT" IsRemovable="False"/>
       <Part Name="MONSTER_PART_LLEG" IsRemovable="False"/>
       <Part Name="MONSTER_PART_RLEG" IsRemovable="False"/>
       <Part Name="MONSTER_PART_TAIL" IsRemovable="False"/>
@@ -346,12 +339,13 @@
       <Weakness ID="ELEMENT_THUNDER" Stars="3"/>
     </Weaknesses>
     <Crown Mini="90" Silver="110" Gold="120"/>
-    <Parts Max="8">
+    <Parts Max="9">
       <Part Name="MONSTER_PART_REMOVABLE_TAIL" IsRemovable="True"/>
       <Part Name="MONSTER_PART_HEAD" IsRemovable="False"/>
       <Part Name="MONSTER_PART_BODY" IsRemovable="False"/>
-      <Part Name="MONSTER_PART_LWING" IsRemovable="False"/>
-      <Part Name="MONSTER_PART_RWING" IsRemovable="False"/>
+      <Part Name="MONSTER_PART_CHEST" IsRemovable="False"/>
+      <Part Name="MONSTER_PART_REAR" IsRemovable="False"/>
+      <Part Name="MONSTER_PART_ARMS" IsRemovable="False"/>
       <Part Name="MONSTER_PART_LLEG" IsRemovable="False"/>
       <Part Name="MONSTER_PART_RLEG" IsRemovable="False"/>
       <Part Name="MONSTER_PART_TAIL" IsRemovable="False"/>
@@ -363,12 +357,13 @@
       <Weakness ID="ELEMENT_THUNDER" Stars="3"/>
     </Weaknesses>
     <Crown Mini="90" Silver="114" Gold="120"/>
-    <Parts Max="8">
+    <Parts Max="9">
       <Part Name="MONSTER_PART_REMOVABLE_TAIL" IsRemovable="True"/>
       <Part Name="MONSTER_PART_HEAD" IsRemovable="False"/>
       <Part Name="MONSTER_PART_BODY" IsRemovable="False"/>
-      <Part Name="MONSTER_PART_LWING" IsRemovable="False"/>
-      <Part Name="MONSTER_PART_RWING" IsRemovable="False"/>
+      <Part Name="MONSTER_PART_CHEST" IsRemovable="False"/>
+      <Part Name="MONSTER_PART_REAR" IsRemovable="False"/>
+      <Part Name="MONSTER_PART_ARMS" IsRemovable="False"/>
       <Part Name="MONSTER_PART_LLEG" IsRemovable="False"/>
       <Part Name="MONSTER_PART_RLEG" IsRemovable="False"/>
       <Part Name="MONSTER_PART_TAIL" IsRemovable="False"/>
@@ -380,15 +375,21 @@
       <Weakness ID="ELEMENT_FIRE" Stars="3"/>
     </Weaknesses>
     <Crown Mini="90" Silver="115" Gold="123"/>
-    <Parts Max="8">
+    <Parts Max="14">
+      <Part Name="MONSTER_PART_REMOVABLE_HEAD" IsRemovable="True"/>
       <Part Name="MONSTER_PART_REMOVABLE_TAIL" IsRemovable="True"/>
       <Part Name="MONSTER_PART_HEAD" IsRemovable="False"/>
+      <Part Name="MONSTER_PART_HEAD_MUD" IsRemovable="False"/>
       <Part Name="MONSTER_PART_BODY" IsRemovable="False"/>
-      <Part Name="MONSTER_PART_LWING" IsRemovable="False"/>
-      <Part Name="MONSTER_PART_RWING" IsRemovable="False"/>
+      <Part Name="MONSTER_PART_BODY_MUD" IsRemovable="False"/>
+      <Part Name="MONSTER_PART_ARMS" IsRemovable="False"/>
+      <Part Name="MONSTER_PART_ARMS_MUD" IsRemovable="False"/>
       <Part Name="MONSTER_PART_LLEG" IsRemovable="False"/>
+      <Part Name="MONSTER_PART_LLEG_MUD" IsRemovable="False"/>
       <Part Name="MONSTER_PART_RLEG" IsRemovable="False"/>
+      <Part Name="MONSTER_PART_RLEG_MUD" IsRemovable="False"/>
       <Part Name="MONSTER_PART_TAIL" IsRemovable="False"/>
+      <Part Name="MONSTER_PART_TAIL_MUD" IsRemovable="False"/>
     </Parts>
   </Monster>
   <Monster ID="em045_00">
@@ -399,10 +400,10 @@
     <Crown Mini="90" Silver="110" Gold="120"/>
     <Parts Max="8">
       <Part Name="MONSTER_PART_REMOVABLE_TAIL" IsRemovable="True"/>
+      <Part Name="MONSTER_PART_JAW" IsRemovable="False"/>
       <Part Name="MONSTER_PART_HEAD" IsRemovable="False"/>
       <Part Name="MONSTER_PART_BODY" IsRemovable="False"/>
-      <Part Name="MONSTER_PART_LWING" IsRemovable="False"/>
-      <Part Name="MONSTER_PART_RWING" IsRemovable="False"/>
+      <Part Name="MONSTER_PART_ARMS" IsRemovable="False"/>
       <Part Name="MONSTER_PART_LLEG" IsRemovable="False"/>
       <Part Name="MONSTER_PART_RLEG" IsRemovable="False"/>
       <Part Name="MONSTER_PART_TAIL" IsRemovable="False"/>
@@ -414,14 +415,13 @@
       <Weakness ID="ELEMENT_WATER" Stars="2"/>
     </Weaknesses>
     <Crown Mini="90" Silver="115" Gold="123"/>
-    <Parts Max="8">
+    <Parts Max="7">
       <Part Name="MONSTER_PART_REMOVABLE_TAIL" IsRemovable="True"/>
       <Part Name="MONSTER_PART_HEAD" IsRemovable="False"/>
       <Part Name="MONSTER_PART_BODY" IsRemovable="False"/>
-      <Part Name="MONSTER_PART_LWING" IsRemovable="False"/>
-      <Part Name="MONSTER_PART_RWING" IsRemovable="False"/>
-      <Part Name="MONSTER_PART_LLEG" IsRemovable="False"/>
-      <Part Name="MONSTER_PART_RLEG" IsRemovable="False"/>
+      <Part Name="MONSTER_PART_BACK" IsRemovable="False"/>
+      <Part Name="MONSTER_PART_ARMS" IsRemovable="False"/>
+      <Part Name="MONSTER_PART_LEGS" IsRemovable="False"/>
       <Part Name="MONSTER_PART_TAIL" IsRemovable="False"/>
     </Parts>
   </Monster>
@@ -431,14 +431,13 @@
       <Weakness ID="ELEMENT_FIRE" Stars="2"/>
     </Weaknesses>
     <Crown Mini="90" Silver="115" Gold="123"/>
-    <Parts Max="8">
+    <Parts Max="7">
       <Part Name="MONSTER_PART_REMOVABLE_TAIL" IsRemovable="True"/>
       <Part Name="MONSTER_PART_HEAD" IsRemovable="False"/>
       <Part Name="MONSTER_PART_BODY" IsRemovable="False"/>
-      <Part Name="MONSTER_PART_LWING" IsRemovable="False"/>
-      <Part Name="MONSTER_PART_RWING" IsRemovable="False"/>
-      <Part Name="MONSTER_PART_LLEG" IsRemovable="False"/>
-      <Part Name="MONSTER_PART_RLEG" IsRemovable="False"/>
+      <Part Name="MONSTER_PART_BACK" IsRemovable="False"/>
+      <Part Name="MONSTER_PART_ARMS" IsRemovable="False"/>
+      <Part Name="MONSTER_PART_LEGS" IsRemovable="False"/>
       <Part Name="MONSTER_PART_TAIL" IsRemovable="False"/>
     </Parts>
   </Monster>
@@ -452,8 +451,8 @@
       <Part Name="MONSTER_PART_REMOVABLE_TAIL" IsRemovable="True"/>
       <Part Name="MONSTER_PART_HEAD" IsRemovable="False"/>
       <Part Name="MONSTER_PART_BODY" IsRemovable="False"/>
-      <Part Name="MONSTER_PART_LWING" IsRemovable="False"/>
-      <Part Name="MONSTER_PART_RWING" IsRemovable="False"/>
+      <Part Name="MONSTER_PART_ARM_LEFT" IsRemovable="False"/>
+      <Part Name="MONSTER_PART_ARM_RIGHT" IsRemovable="False"/>
       <Part Name="MONSTER_PART_LLEG" IsRemovable="False"/>
       <Part Name="MONSTER_PART_RLEG" IsRemovable="False"/>
       <Part Name="MONSTER_PART_TAIL" IsRemovable="False"/>
@@ -468,9 +467,9 @@
     <Parts Max="8">
       <Part Name="MONSTER_PART_REMOVABLE_TAIL" IsRemovable="True"/>
       <Part Name="MONSTER_PART_HEAD" IsRemovable="False"/>
+      <Part Name="MONSTER_PART_FIN" IsRemovable="False"/>
       <Part Name="MONSTER_PART_BODY" IsRemovable="False"/>
-      <Part Name="MONSTER_PART_LWING" IsRemovable="False"/>
-      <Part Name="MONSTER_PART_RWING" IsRemovable="False"/>
+      <Part Name="MONSTER_PART_BACK" IsRemovable="False"/>
       <Part Name="MONSTER_PART_LLEG" IsRemovable="False"/>
       <Part Name="MONSTER_PART_RLEG" IsRemovable="False"/>
       <Part Name="MONSTER_PART_TAIL" IsRemovable="False"/>
@@ -485,9 +484,9 @@
     <Parts Max="8">
       <Part Name="MONSTER_PART_REMOVABLE_TAIL" IsRemovable="True"/>
       <Part Name="MONSTER_PART_HEAD" IsRemovable="False"/>
+      <Part Name="MONSTER_PART_FIN" IsRemovable="False"/>
       <Part Name="MONSTER_PART_BODY" IsRemovable="False"/>
-      <Part Name="MONSTER_PART_LWING" IsRemovable="False"/>
-      <Part Name="MONSTER_PART_RWING" IsRemovable="False"/>
+      <Part Name="MONSTER_PART_BACK" IsRemovable="False"/>
       <Part Name="MONSTER_PART_LLEG" IsRemovable="False"/>
       <Part Name="MONSTER_PART_RLEG" IsRemovable="False"/>
       <Part Name="MONSTER_PART_TAIL" IsRemovable="False"/>
@@ -499,12 +498,10 @@
       <Weakness ID="ELEMENT_ICE" Stars="2"/>
     </Weaknesses>
     <Crown Mini="90" Silver="110" Gold="120"/>
-    <Parts Max="8">
+    <Parts Max="6">
       <Part Name="MONSTER_PART_REMOVABLE_TAIL" IsRemovable="True"/>
       <Part Name="MONSTER_PART_HEAD" IsRemovable="False"/>
       <Part Name="MONSTER_PART_BODY" IsRemovable="False"/>
-      <Part Name="MONSTER_PART_LWING" IsRemovable="False"/>
-      <Part Name="MONSTER_PART_RWING" IsRemovable="False"/>
       <Part Name="MONSTER_PART_LLEG" IsRemovable="False"/>
       <Part Name="MONSTER_PART_RLEG" IsRemovable="False"/>
       <Part Name="MONSTER_PART_TAIL" IsRemovable="False"/>
@@ -516,12 +513,10 @@
       <Weakness ID="ELEMENT_WATER" Stars="2"/>
     </Weaknesses>
     <Crown Mini="90" Silver="110" Gold="120"/>
-    <Parts Max="8">
+    <Parts Max="6">
       <Part Name="MONSTER_PART_REMOVABLE_TAIL" IsRemovable="True"/>
       <Part Name="MONSTER_PART_HEAD" IsRemovable="False"/>
       <Part Name="MONSTER_PART_BODY" IsRemovable="False"/>
-      <Part Name="MONSTER_PART_LWING" IsRemovable="False"/>
-      <Part Name="MONSTER_PART_RWING" IsRemovable="False"/>
       <Part Name="MONSTER_PART_LLEG" IsRemovable="False"/>
       <Part Name="MONSTER_PART_RLEG" IsRemovable="False"/>
       <Part Name="MONSTER_PART_TAIL" IsRemovable="False"/>
@@ -533,15 +528,13 @@
       <Weakness ID="ELEMENT_THUNDER" Stars="2"/>
     </Weaknesses>
     <Crown Mini="90" Silver="115" Gold="123"/>
-    <Parts Max="8">
-      <Part Name="MONSTER_PART_REMOVABLE_TAIL" IsRemovable="True"/>
+    <Parts Max="6">
       <Part Name="MONSTER_PART_HEAD" IsRemovable="False"/>
       <Part Name="MONSTER_PART_BODY" IsRemovable="False"/>
-      <Part Name="MONSTER_PART_LWING" IsRemovable="False"/>
-      <Part Name="MONSTER_PART_RWING" IsRemovable="False"/>
-      <Part Name="MONSTER_PART_LLEG" IsRemovable="False"/>
-      <Part Name="MONSTER_PART_RLEG" IsRemovable="False"/>
+      <Part Name="MONSTER_PART_ARMS" IsRemovable="False"/>
+      <Part Name="MONSTER_PART_LEGS" IsRemovable="False"/>
       <Part Name="MONSTER_PART_TAIL" IsRemovable="False"/>
+      <Part Name="MONSTER_PART_ABDOMEN" IsRemovable="False"/>
     </Parts>
   </Monster>
   <Monster ID="em102_00">
@@ -584,14 +577,18 @@
       <Weakness ID="ELEMENT_DRAGON" Stars="2"/>
     </Weaknesses>
     <Crown Mini="90" Silver="115" Gold="123"/>
-    <Parts Max="8">
+    <Parts Max="12">
+      <Part Name="MONSTER_PART_REMOVABLE_HORNS" IsRemovable="True"/>
       <Part Name="MONSTER_PART_REMOVABLE_TAIL" IsRemovable="True"/>
+      <Part Name="MONSTER_PART_HORNS" IsRemovable="False"/>
       <Part Name="MONSTER_PART_HEAD" IsRemovable="False"/>
       <Part Name="MONSTER_PART_BODY" IsRemovable="False"/>
-      <Part Name="MONSTER_PART_LWING" IsRemovable="False"/>
-      <Part Name="MONSTER_PART_RWING" IsRemovable="False"/>
+      <Part Name="MONSTER_PART_ARM_LEFT" IsRemovable="False"/>
+      <Part Name="MONSTER_PART_ARM_RIGHT" IsRemovable="False"/>
       <Part Name="MONSTER_PART_LLEG" IsRemovable="False"/>
       <Part Name="MONSTER_PART_RLEG" IsRemovable="False"/>
+      <Part Name="MONSTER_PART_LWING" IsRemovable="False"/>
+      <Part Name="MONSTER_PART_RWING" IsRemovable="False"/>
       <Part Name="MONSTER_PART_TAIL" IsRemovable="False"/>
     </Parts>
   </Monster>
@@ -601,14 +598,18 @@
       <Weakness ID="ELEMENT_THUNDER" Stars="2"/>
     </Weaknesses>
     <Crown Mini="90" Silver="115" Gold="123"/>
-    <Parts Max="8">
+    <Parts Max="12">
+      <Part Name="MONSTER_PART_REMOVABLE_HORNS" IsRemovable="True"/>
       <Part Name="MONSTER_PART_REMOVABLE_TAIL" IsRemovable="True"/>
+      <Part Name="MONSTER_PART_HORNS" IsRemovable="False"/>
       <Part Name="MONSTER_PART_HEAD" IsRemovable="False"/>
       <Part Name="MONSTER_PART_BODY" IsRemovable="False"/>
-      <Part Name="MONSTER_PART_LWING" IsRemovable="False"/>
-      <Part Name="MONSTER_PART_RWING" IsRemovable="False"/>
+      <Part Name="MONSTER_PART_ARM_LEFT" IsRemovable="False"/>
+      <Part Name="MONSTER_PART_ARM_RIGHT" IsRemovable="False"/>
       <Part Name="MONSTER_PART_LLEG" IsRemovable="False"/>
       <Part Name="MONSTER_PART_RLEG" IsRemovable="False"/>
+      <Part Name="MONSTER_PART_LWING" IsRemovable="False"/>
+      <Part Name="MONSTER_PART_RWING" IsRemovable="False"/>
       <Part Name="MONSTER_PART_TAIL" IsRemovable="False"/>
     </Parts>
   </Monster>
@@ -618,12 +619,15 @@
       <Weakness ID="ELEMENT_THUNDER" Stars="2"/>
     </Weaknesses>
     <Crown Mini="90" Silver="115" Gold="123"/>
-    <Parts Max="8">
+    <Parts Max="11">
       <Part Name="MONSTER_PART_REMOVABLE_TAIL" IsRemovable="True"/>
       <Part Name="MONSTER_PART_HEAD" IsRemovable="False"/>
       <Part Name="MONSTER_PART_BODY" IsRemovable="False"/>
-      <Part Name="MONSTER_PART_LWING" IsRemovable="False"/>
-      <Part Name="MONSTER_PART_RWING" IsRemovable="False"/>
+      <Part Name="MONSTER_PART_ABDOMEN" IsRemovable="False"/>
+      <Part Name="MONSTER_PART_NECK" IsRemovable="False"/>
+      <Part Name="MONSTER_PART_BACK" IsRemovable="False"/>
+      <Part Name="MONSTER_PART_ARM_LEFT" IsRemovable="False"/>
+      <Part Name="MONSTER_PART_ARM_RIGHT" IsRemovable="False"/>
       <Part Name="MONSTER_PART_LLEG" IsRemovable="False"/>
       <Part Name="MONSTER_PART_RLEG" IsRemovable="False"/>
       <Part Name="MONSTER_PART_TAIL" IsRemovable="False"/>
@@ -635,14 +639,17 @@
       <Weakness ID="ELEMENT_DRAGON" Stars="2"/>
     </Weaknesses>
     <Crown Mini="90" Silver="115" Gold="123"/>
-    <Parts Max="8">
+    <Parts Max="11">
       <Part Name="MONSTER_PART_REMOVABLE_TAIL" IsRemovable="True"/>
       <Part Name="MONSTER_PART_HEAD" IsRemovable="False"/>
-      <Part Name="MONSTER_PART_BODY" IsRemovable="False"/>
-      <Part Name="MONSTER_PART_LWING" IsRemovable="False"/>
-      <Part Name="MONSTER_PART_RWING" IsRemovable="False"/>
-      <Part Name="MONSTER_PART_LLEG" IsRemovable="False"/>
-      <Part Name="MONSTER_PART_RLEG" IsRemovable="False"/>
+      <Part Name="MONSTER_PART_NECK" IsRemovable="False"/>
+      <Part Name="MONSTER_PART_BACK" IsRemovable="False"/>
+      <Part Name="MONSTER_PART_CHEST" IsRemovable="False"/>
+      <Part Name="MONSTER_PART_HAND_LEFT" IsRemovable="False"/>
+      <Part Name="MONSTER_PART_HAND_RIGHT" IsRemovable="False"/>
+      <Part Name="MONSTER_PART_FOOT_LEFT" IsRemovable="False"/>
+      <Part Name="MONSTER_PART_FOOT_RIGHT" IsRemovable="False"/>
+      <Part Name="MONSTER_PART_WINGS" IsRemovable="False"/>
       <Part Name="MONSTER_PART_TAIL" IsRemovable="False"/>
     </Parts>
   </Monster>
@@ -652,15 +659,22 @@
       <Weakness ID="ELEMENT_WATER" Stars="3"/>
     </Weaknesses>
     <Crown Mini="90" Silver="115" Gold="123"/>
-    <Parts Max="8">
-      <Part Name="MONSTER_PART_REMOVABLE_TAIL" IsRemovable="True"/>
+    <Parts Max="15">
       <Part Name="MONSTER_PART_HEAD" IsRemovable="False"/>
       <Part Name="MONSTER_PART_BODY" IsRemovable="False"/>
-      <Part Name="MONSTER_PART_LWING" IsRemovable="False"/>
-      <Part Name="MONSTER_PART_RWING" IsRemovable="False"/>
+      <Part Name="MONSTER_PART_CHEST" IsRemovable="False"/>
+      <Part Name="MONSTER_PART_ARM_LEFT" IsRemovable="False"/>
+      <Part Name="MONSTER_PART_ARM_RIGHT" IsRemovable="False"/>
       <Part Name="MONSTER_PART_LLEG" IsRemovable="False"/>
       <Part Name="MONSTER_PART_RLEG" IsRemovable="False"/>
       <Part Name="MONSTER_PART_TAIL" IsRemovable="False"/>
+      <Part Name="MONSTER_PART_SHELL" IsRemovable="False"/>
+      <Part Name="MONSTER_PART_EXHAUST_ORGAN_CENTRAL" IsRemovable="False"/>
+      <Part Name="MONSTER_PART_EXHAUST_ORGAN_HEAD" IsRemovable="False"/>
+      <Part Name="MONSTER_PART_EXHAUST_ORGAN_CRATER" IsRemovable="False"/>
+      <Part Name="MONSTER_PART_EXHAUST_ORGAN_REAR" IsRemovable="False"/>
+      <Part Name="MONSTER_PART_WEAK_SHELL_LEFT" IsRemovable="False"/>
+      <Part Name="MONSTER_PART_WEAK_SHELL_RIGHT" IsRemovable="False"/>
     </Parts>
   </Monster>
   <Monster ID="em107_00">
@@ -669,15 +683,12 @@
       <Weakness ID="ELEMENT_FIRE" Stars="2"/>
     </Weaknesses>
     <Crown Mini="90" Silver="115" Gold="123"/>
-    <Parts Max="8">
-      <Part Name="MONSTER_PART_REMOVABLE_TAIL" IsRemovable="True"/>
+    <Parts Max="5">
       <Part Name="MONSTER_PART_HEAD" IsRemovable="False"/>
-      <Part Name="MONSTER_PART_BODY" IsRemovable="False"/>
-      <Part Name="MONSTER_PART_LWING" IsRemovable="False"/>
-      <Part Name="MONSTER_PART_RWING" IsRemovable="False"/>
-      <Part Name="MONSTER_PART_LLEG" IsRemovable="False"/>
-      <Part Name="MONSTER_PART_RLEG" IsRemovable="False"/>
+      <Part Name="MONSTER_PART_ARMS" IsRemovable="False"/>
+      <Part Name="MONSTER_PART_LEGS" IsRemovable="False"/>
       <Part Name="MONSTER_PART_TAIL" IsRemovable="False"/>
+      <Part Name="MONSTER_PART_ROCK" IsRemovable="False"/>
     </Parts>
   </Monster>
   <Monster ID="em108_00">
@@ -686,15 +697,17 @@
       <Weakness ID="ELEMENT_WATER" Stars="0"/>
     </Weaknesses>
     <Crown Mini="90" Silver="115" Gold="123"/>
-    <Parts Max="8">
-      <Part Name="MONSTER_PART_REMOVABLE_TAIL" IsRemovable="True"/>
+    <Parts Max="10">
       <Part Name="MONSTER_PART_HEAD" IsRemovable="False"/>
       <Part Name="MONSTER_PART_BODY" IsRemovable="False"/>
-      <Part Name="MONSTER_PART_LWING" IsRemovable="False"/>
-      <Part Name="MONSTER_PART_RWING" IsRemovable="False"/>
       <Part Name="MONSTER_PART_LLEG" IsRemovable="False"/>
       <Part Name="MONSTER_PART_RLEG" IsRemovable="False"/>
       <Part Name="MONSTER_PART_TAIL" IsRemovable="False"/>
+      <Part Name="MONSTER_PART_HEAD_MUD" IsRemovable="False"/>
+      <Part Name="MONSTER_PART_BODY_MUD" IsRemovable="False"/>
+      <Part Name="MONSTER_PART_LLEG_MUD" IsRemovable="False"/>
+      <Part Name="MONSTER_PART_RLEG_MUD" IsRemovable="False"/>
+      <Part Name="MONSTER_PART_TAIL_MUD" IsRemovable="False"/>
     </Parts>
   </Monster>
   <Monster ID="em109_00">
@@ -703,14 +716,12 @@
       <Weakness ID="ELEMENT_FIRE" Stars="2"/>
     </Weaknesses>
     <Crown Mini="90" Silver="110" Gold="120"/>
-    <Parts Max="8">
-      <Part Name="MONSTER_PART_REMOVABLE_TAIL" IsRemovable="True"/>
+    <Parts Max="6">
       <Part Name="MONSTER_PART_HEAD" IsRemovable="False"/>
       <Part Name="MONSTER_PART_BODY" IsRemovable="False"/>
-      <Part Name="MONSTER_PART_LWING" IsRemovable="False"/>
-      <Part Name="MONSTER_PART_RWING" IsRemovable="False"/>
-      <Part Name="MONSTER_PART_LLEG" IsRemovable="False"/>
-      <Part Name="MONSTER_PART_RLEG" IsRemovable="False"/>
+      <Part Name="MONSTER_PART_MANE" IsRemovable="False"/>
+      <Part Name="MONSTER_PART_ABDOMEN" IsRemovable="False"/>
+      <Part Name="MONSTER_PART_LEGS" IsRemovable="False"/>
       <Part Name="MONSTER_PART_TAIL" IsRemovable="False"/>
     </Parts>
   </Monster>
@@ -720,14 +731,12 @@
       <Weakness ID="ELEMENT_ICE" Stars="2"/>
     </Weaknesses>
     <Crown Mini="90" Silver="110" Gold="120"/>
-    <Parts Max="8">
-      <Part Name="MONSTER_PART_REMOVABLE_TAIL" IsRemovable="True"/>
+    <Parts Max="6">
       <Part Name="MONSTER_PART_HEAD" IsRemovable="False"/>
       <Part Name="MONSTER_PART_BODY" IsRemovable="False"/>
-      <Part Name="MONSTER_PART_LWING" IsRemovable="False"/>
-      <Part Name="MONSTER_PART_RWING" IsRemovable="False"/>
-      <Part Name="MONSTER_PART_LLEG" IsRemovable="False"/>
-      <Part Name="MONSTER_PART_RLEG" IsRemovable="False"/>
+      <Part Name="MONSTER_PART_MANE" IsRemovable="False"/>
+      <Part Name="MONSTER_PART_ABDOMEN" IsRemovable="False"/>
+      <Part Name="MONSTER_PART_LEGS" IsRemovable="False"/>
       <Part Name="MONSTER_PART_TAIL" IsRemovable="False"/>
     </Parts>
   </Monster>
@@ -737,14 +746,15 @@
       <Weakness ID="ELEMENT_THUNDER" Stars="2"/>
     </Weaknesses>
     <Crown Mini="90" Silver="115" Gold="123"/>
-    <Parts Max="8">
-      <Part Name="MONSTER_PART_REMOVABLE_TAIL" IsRemovable="True"/>
+    <Parts Max="9">
+      <Part Name="MONSTER_PART_REMOVABLE_BALLOON" IsRemovable="True"/>
       <Part Name="MONSTER_PART_HEAD" IsRemovable="False"/>
+      <Part Name="MONSTER_PART_BALLOON" IsRemovable="False"/>
       <Part Name="MONSTER_PART_BODY" IsRemovable="False"/>
-      <Part Name="MONSTER_PART_LWING" IsRemovable="False"/>
-      <Part Name="MONSTER_PART_RWING" IsRemovable="False"/>
       <Part Name="MONSTER_PART_LLEG" IsRemovable="False"/>
       <Part Name="MONSTER_PART_RLEG" IsRemovable="False"/>
+      <Part Name="MONSTER_PART_LWING" IsRemovable="False"/>
+      <Part Name="MONSTER_PART_RWING" IsRemovable="False"/>
       <Part Name="MONSTER_PART_TAIL" IsRemovable="False"/>
     </Parts>
   </Monster>
@@ -754,14 +764,15 @@
       <Weakness ID="ELEMENT_FIRE" Stars="2"/>
     </Weaknesses>
     <Crown Mini="90" Silver="115" Gold="123"/>
-    <Parts Max="8">
-      <Part Name="MONSTER_PART_REMOVABLE_TAIL" IsRemovable="True"/>
+    <Parts Max="9">
+      <Part Name="MONSTER_PART_REMOVABLE_BALLOON" IsRemovable="True"/>
       <Part Name="MONSTER_PART_HEAD" IsRemovable="False"/>
+      <Part Name="MONSTER_PART_BALLOON" IsRemovable="False"/>
       <Part Name="MONSTER_PART_BODY" IsRemovable="False"/>
-      <Part Name="MONSTER_PART_LWING" IsRemovable="False"/>
-      <Part Name="MONSTER_PART_RWING" IsRemovable="False"/>
       <Part Name="MONSTER_PART_LLEG" IsRemovable="False"/>
       <Part Name="MONSTER_PART_RLEG" IsRemovable="False"/>
+      <Part Name="MONSTER_PART_LWING" IsRemovable="False"/>
+      <Part Name="MONSTER_PART_RWING" IsRemovable="False"/>
       <Part Name="MONSTER_PART_TAIL" IsRemovable="False"/>
     </Parts>
   </Monster>
@@ -771,8 +782,7 @@
       <Weakness ID="ELEMENT_FIRE" Stars="2"/>
     </Weaknesses>
     <Crown Mini="90" Silver="115" Gold="123"/>
-    <Parts Max="8">
-      <Part Name="MONSTER_PART_REMOVABLE_TAIL" IsRemovable="True"/>
+    <Parts Max="7">
       <Part Name="MONSTER_PART_HEAD" IsRemovable="False"/>
       <Part Name="MONSTER_PART_BODY" IsRemovable="False"/>
       <Part Name="MONSTER_PART_LWING" IsRemovable="False"/>
@@ -788,8 +798,7 @@
       <Weakness ID="ELEMENT_THUNDER" Stars="2"/>
     </Weaknesses>
     <Crown Mini="90" Silver="115" Gold="123"/>
-    <Parts Max="8">
-      <Part Name="MONSTER_PART_REMOVABLE_TAIL" IsRemovable="True"/>
+    <Parts Max="7">
       <Part Name="MONSTER_PART_HEAD" IsRemovable="False"/>
       <Part Name="MONSTER_PART_BODY" IsRemovable="False"/>
       <Part Name="MONSTER_PART_LWING" IsRemovable="False"/>
@@ -805,14 +814,12 @@
       <Weakness ID="ELEMENT_ICE" Stars="2"/>
     </Weaknesses>
     <Crown Mini="90" Silver="115" Gold="123"/>
-    <Parts Max="8">
+    <Parts Max="6">
       <Part Name="MONSTER_PART_REMOVABLE_TAIL" IsRemovable="True"/>
       <Part Name="MONSTER_PART_HEAD" IsRemovable="False"/>
       <Part Name="MONSTER_PART_BODY" IsRemovable="False"/>
-      <Part Name="MONSTER_PART_LWING" IsRemovable="False"/>
-      <Part Name="MONSTER_PART_RWING" IsRemovable="False"/>
-      <Part Name="MONSTER_PART_LLEG" IsRemovable="False"/>
-      <Part Name="MONSTER_PART_RLEG" IsRemovable="False"/>
+      <Part Name="MONSTER_PART_ARMS" IsRemovable="False"/>
+      <Part Name="MONSTER_PART_LEGS" IsRemovable="False"/>
       <Part Name="MONSTER_PART_TAIL" IsRemovable="False"/>
     </Parts>
   </Monster>
@@ -822,14 +829,12 @@
       <Weakness ID="ELEMENT_THUNDER" Stars="2"/>
     </Weaknesses>
     <Crown Mini="90" Silver="115" Gold="123"/>
-    <Parts Max="8">
+    <Parts Max="6">
       <Part Name="MONSTER_PART_REMOVABLE_TAIL" IsRemovable="True"/>
       <Part Name="MONSTER_PART_HEAD" IsRemovable="False"/>
       <Part Name="MONSTER_PART_BODY" IsRemovable="False"/>
-      <Part Name="MONSTER_PART_LWING" IsRemovable="False"/>
-      <Part Name="MONSTER_PART_RWING" IsRemovable="False"/>
-      <Part Name="MONSTER_PART_LLEG" IsRemovable="False"/>
-      <Part Name="MONSTER_PART_RLEG" IsRemovable="False"/>
+      <Part Name="MONSTER_PART_ARMS" IsRemovable="False"/>
+      <Part Name="MONSTER_PART_LEGS" IsRemovable="False"/>
       <Part Name="MONSTER_PART_TAIL" IsRemovable="False"/>
     </Parts>
   </Monster>
@@ -839,14 +844,12 @@
       <Weakness ID="ELEMENT_THUNDER" Stars="2"/>
     </Weaknesses>
     <Crown Mini="90" Silver="115" Gold="123"/>
-    <Parts Max="8">
+    <Parts Max="6">
       <Part Name="MONSTER_PART_REMOVABLE_TAIL" IsRemovable="True"/>
       <Part Name="MONSTER_PART_HEAD" IsRemovable="False"/>
       <Part Name="MONSTER_PART_BODY" IsRemovable="False"/>
-      <Part Name="MONSTER_PART_LWING" IsRemovable="False"/>
-      <Part Name="MONSTER_PART_RWING" IsRemovable="False"/>
-      <Part Name="MONSTER_PART_LLEG" IsRemovable="False"/>
-      <Part Name="MONSTER_PART_RLEG" IsRemovable="False"/>
+      <Part Name="MONSTER_PART_ARMS" IsRemovable="False"/>
+      <Part Name="MONSTER_PART_LEGS" IsRemovable="False"/>
       <Part Name="MONSTER_PART_TAIL" IsRemovable="False"/>
     </Parts>
   </Monster>
@@ -856,15 +859,17 @@
       <Weakness ID="ELEMENT_ICE" Stars="2"/>
     </Weaknesses>
     <Crown Mini="90" Silver="110" Gold="120"/>
-    <Parts Max="8">
+    <Parts Max="10">
       <Part Name="MONSTER_PART_REMOVABLE_TAIL" IsRemovable="True"/>
       <Part Name="MONSTER_PART_HEAD" IsRemovable="False"/>
       <Part Name="MONSTER_PART_BODY" IsRemovable="False"/>
-      <Part Name="MONSTER_PART_LWING" IsRemovable="False"/>
-      <Part Name="MONSTER_PART_RWING" IsRemovable="False"/>
       <Part Name="MONSTER_PART_LLEG" IsRemovable="False"/>
       <Part Name="MONSTER_PART_RLEG" IsRemovable="False"/>
       <Part Name="MONSTER_PART_TAIL" IsRemovable="False"/>
+      <Part Name="MONSTER_PART_JAW" IsRemovable="False"/>
+      <Part Name="MONSTER_PART_BACK" IsRemovable="False"/>
+      <Part Name="MONSTER_PART_BONE_LEFT" IsRemovable="False"/>
+      <Part Name="MONSTER_PART_BONE_RIGHT" IsRemovable="False"/>
     </Parts>
   </Monster>
   <Monster ID="em115_00">
@@ -873,15 +878,17 @@
       <Weakness ID="ELEMENT_DRAGON" Stars="3"/>
     </Weaknesses>
     <Crown Mini="90" Silver="115" Gold="123"/>
-    <Parts Max="8">
+    <Parts Max="10">
       <Part Name="MONSTER_PART_REMOVABLE_TAIL" IsRemovable="True"/>
       <Part Name="MONSTER_PART_HEAD" IsRemovable="False"/>
-      <Part Name="MONSTER_PART_BODY" IsRemovable="False"/>
-      <Part Name="MONSTER_PART_LWING" IsRemovable="False"/>
-      <Part Name="MONSTER_PART_RWING" IsRemovable="False"/>
+      <Part Name="MONSTER_PART_BACK" IsRemovable="False"/>
+      <Part Name="MONSTER_PART_CHEST" IsRemovable="False"/>
+      <Part Name="MONSTER_PART_TAIL" IsRemovable="False"/>
+      <Part Name="MONSTER_PART_ARM_LEFT" IsRemovable="False"/>
+      <Part Name="MONSTER_PART_ARM_RIGHT" IsRemovable="False"/>
       <Part Name="MONSTER_PART_LLEG" IsRemovable="False"/>
       <Part Name="MONSTER_PART_RLEG" IsRemovable="False"/>
-      <Part Name="MONSTER_PART_TAIL" IsRemovable="False"/>
+      <Part Name="MONSTER_PART_WINGS" IsRemovable="False"/>
     </Parts>
   </Monster>
   <Monster ID="em115_05">
@@ -890,15 +897,17 @@
       <Weakness ID="ELEMENT_DRAGON" Stars="2"/>
     </Weaknesses>
     <Crown Mini="90" Silver="115" Gold="123"/>
-    <Parts Max="8">
+    <Parts Max="10">
       <Part Name="MONSTER_PART_REMOVABLE_TAIL" IsRemovable="True"/>
       <Part Name="MONSTER_PART_HEAD" IsRemovable="False"/>
-      <Part Name="MONSTER_PART_BODY" IsRemovable="False"/>
-      <Part Name="MONSTER_PART_LWING" IsRemovable="False"/>
-      <Part Name="MONSTER_PART_RWING" IsRemovable="False"/>
+      <Part Name="MONSTER_PART_BACK" IsRemovable="False"/>
+      <Part Name="MONSTER_PART_CHEST" IsRemovable="False"/>
+      <Part Name="MONSTER_PART_TAIL" IsRemovable="False"/>
+      <Part Name="MONSTER_PART_ARM_LEFT" IsRemovable="False"/>
+      <Part Name="MONSTER_PART_ARM_RIGHT" IsRemovable="False"/>
       <Part Name="MONSTER_PART_LLEG" IsRemovable="False"/>
       <Part Name="MONSTER_PART_RLEG" IsRemovable="False"/>
-      <Part Name="MONSTER_PART_TAIL" IsRemovable="False"/>
+      <Part Name="MONSTER_PART_WINGS" IsRemovable="False"/>
     </Parts>
   </Monster>
   <Monster ID="em116_00">
@@ -907,14 +916,12 @@
       <Weakness ID="ELEMENT_ICE" Stars="2"/>
     </Weaknesses>
     <Crown Mini="90" Silver="115" Gold="123"/>
-    <Parts Max="8">
+    <Parts Max="6">
       <Part Name="MONSTER_PART_REMOVABLE_TAIL" IsRemovable="True"/>
       <Part Name="MONSTER_PART_HEAD" IsRemovable="False"/>
       <Part Name="MONSTER_PART_BODY" IsRemovable="False"/>
-      <Part Name="MONSTER_PART_LWING" IsRemovable="False"/>
-      <Part Name="MONSTER_PART_RWING" IsRemovable="False"/>
-      <Part Name="MONSTER_PART_LLEG" IsRemovable="False"/>
-      <Part Name="MONSTER_PART_RLEG" IsRemovable="False"/>
+      <Part Name="MONSTER_PART_ARMS" IsRemovable="False"/>
+      <Part Name="MONSTER_PART_LEGS" IsRemovable="False"/>
       <Part Name="MONSTER_PART_TAIL" IsRemovable="False"/>
     </Parts>
   </Monster>
@@ -924,15 +931,25 @@
       <Weakness ID="ELEMENT_THUNDER" Stars="0"/>
     </Weaknesses>
     <Crown Mini="90" Silver="115" Gold="123"/>
-    <Parts Max="8">
-      <Part Name="MONSTER_PART_REMOVABLE_TAIL" IsRemovable="True"/>
-      <Part Name="MONSTER_PART_HEAD" IsRemovable="False"/>
+    <Parts Max="18">
+      <Part Name="MONSTER_PART_REMOVABLE_HORNS" IsRemovable="True"/>
+      <Part Name="MONSTER_PART_REMOVABLE_HORNS_2" IsRemovable="True"/>
+      <Part Name="MONSTER_PART_HORNS" IsRemovable="False"/>
+      <Part Name="MONSTER_PART_CHEST" IsRemovable="False"/>
       <Part Name="MONSTER_PART_BODY" IsRemovable="False"/>
-      <Part Name="MONSTER_PART_LWING" IsRemovable="False"/>
-      <Part Name="MONSTER_PART_RWING" IsRemovable="False"/>
-      <Part Name="MONSTER_PART_LLEG" IsRemovable="False"/>
-      <Part Name="MONSTER_PART_RLEG" IsRemovable="False"/>
+      <Part Name="MONSTER_PART_LIMBS_LEFT" IsRemovable="False"/>
+      <Part Name="MONSTER_PART_LIMBS_RIGHT" IsRemovable="False"/>
       <Part Name="MONSTER_PART_TAIL" IsRemovable="False"/>
+      <Part Name="MONSTER_PART_HORNS_GOLD" IsRemovable="False"/>
+      <Part Name="MONSTER_PART_MANE_GOLD" IsRemovable="False"/>
+      <Part Name="MONSTER_PART_CHEST_LEFT_GOLD" IsRemovable="False"/>
+      <Part Name="MONSTER_PART_CHEST_RIGHT_GOLD" IsRemovable="False"/>
+      <Part Name="MONSTER_PART_ARM_LEFT_GOLD" IsRemovable="False"/>
+      <Part Name="MONSTER_PART_ARM_RIGHT_GOLD" IsRemovable="False"/>
+      <Part Name="MONSTER_PART_LLEG_GOLD" IsRemovable="False"/>
+      <Part Name="MONSTER_PART_RLEG_GOLD" IsRemovable="False"/>
+      <Part Name="MONSTER_PART_TAIL_LEFT_GOLD" IsRemovable="False"/>
+      <Part Name="MONSTER_PART_TAIL_RIGHT_GOLD" IsRemovable="False"/>
     </Parts>
   </Monster>
   <Monster ID="em118_00">
@@ -941,14 +958,13 @@
       <Weakness ID="ELEMENT_DRAGON" Stars="2"/>
     </Weaknesses>
     <Crown Mini="90" Silver="115" Gold="123"/>
-    <Parts Max="8">
+    <Parts Max="7">
       <Part Name="MONSTER_PART_REMOVABLE_TAIL" IsRemovable="True"/>
       <Part Name="MONSTER_PART_HEAD" IsRemovable="False"/>
       <Part Name="MONSTER_PART_BODY" IsRemovable="False"/>
+      <Part Name="MONSTER_PART_LEGS" IsRemovable="False"/>
       <Part Name="MONSTER_PART_LWING" IsRemovable="False"/>
       <Part Name="MONSTER_PART_RWING" IsRemovable="False"/>
-      <Part Name="MONSTER_PART_LLEG" IsRemovable="False"/>
-      <Part Name="MONSTER_PART_RLEG" IsRemovable="False"/>
       <Part Name="MONSTER_PART_TAIL" IsRemovable="False"/>
     </Parts>
   </Monster>
@@ -958,14 +974,13 @@
       <Weakness ID="ELEMENT_THUNDER" Stars="2"/>
     </Weaknesses>
     <Crown Mini="90" Silver="115" Gold="123"/>
-    <Parts Max="8">
+    <Parts Max="7">
       <Part Name="MONSTER_PART_REMOVABLE_TAIL" IsRemovable="True"/>
       <Part Name="MONSTER_PART_HEAD" IsRemovable="False"/>
       <Part Name="MONSTER_PART_BODY" IsRemovable="False"/>
+      <Part Name="MONSTER_PART_LEGS" IsRemovable="False"/>
       <Part Name="MONSTER_PART_LWING" IsRemovable="False"/>
       <Part Name="MONSTER_PART_RWING" IsRemovable="False"/>
-      <Part Name="MONSTER_PART_LLEG" IsRemovable="False"/>
-      <Part Name="MONSTER_PART_RLEG" IsRemovable="False"/>
       <Part Name="MONSTER_PART_TAIL" IsRemovable="False"/>
     </Parts>
   </Monster>
@@ -975,14 +990,11 @@
       <Weakness ID="ELEMENT_THUNDER" Stars="3"/>
     </Weaknesses>
     <Crown Mini="90" Silver="115" Gold="123"/>
-    <Parts Max="8">
-      <Part Name="MONSTER_PART_REMOVABLE_TAIL" IsRemovable="True"/>
-      <Part Name="MONSTER_PART_HEAD" IsRemovable="False"/>
-      <Part Name="MONSTER_PART_BODY" IsRemovable="False"/>
-      <Part Name="MONSTER_PART_LWING" IsRemovable="False"/>
-      <Part Name="MONSTER_PART_RWING" IsRemovable="False"/>
-      <Part Name="MONSTER_PART_LLEG" IsRemovable="False"/>
-      <Part Name="MONSTER_PART_RLEG" IsRemovable="False"/>
+    <Parts Max="5">
+      <Part Name="MONSTER_PART_HEAD_LEFT" IsRemovable="False"/>
+      <Part Name="MONSTER_PART_HEAD_RIGHT" IsRemovable="False"/>
+      <Part Name="MONSTER_PART_ARMS" IsRemovable="False"/>
+      <Part Name="MONSTER_PART_LEGS" IsRemovable="False"/>
       <Part Name="MONSTER_PART_TAIL" IsRemovable="False"/>
     </Parts>
   </Monster>
@@ -992,12 +1004,13 @@
       <Weakness ID="ELEMENT_WATER" Stars="0"/>
     </Weaknesses>
     <Crown Mini="90" Silver="115" Gold="123"/>
-    <Parts Max="8">
+    <Parts Max="9">
       <Part Name="MONSTER_PART_REMOVABLE_TAIL" IsRemovable="True"/>
+      <Part Name="MONSTER_PART_HORNS" IsRemovable="False"/>
       <Part Name="MONSTER_PART_HEAD" IsRemovable="False"/>
       <Part Name="MONSTER_PART_BODY" IsRemovable="False"/>
-      <Part Name="MONSTER_PART_LWING" IsRemovable="False"/>
-      <Part Name="MONSTER_PART_RWING" IsRemovable="False"/>
+      <Part Name="MONSTER_PART_ARM_LEFT" IsRemovable="False"/>
+      <Part Name="MONSTER_PART_ARM_RIGHT" IsRemovable="False"/>
       <Part Name="MONSTER_PART_LLEG" IsRemovable="False"/>
       <Part Name="MONSTER_PART_RLEG" IsRemovable="False"/>
       <Part Name="MONSTER_PART_TAIL" IsRemovable="False"/>
@@ -1009,15 +1022,14 @@
       <Weakness ID="ELEMENT_THUNDER" Stars="2"/>
     </Weaknesses>
     <Crown Mini="90" Silver="115" Gold="123"/>
-    <Parts Max="8">
-      <Part Name="MONSTER_PART_REMOVABLE_TAIL" IsRemovable="True"/>
+    <Parts Max="7">
       <Part Name="MONSTER_PART_HEAD" IsRemovable="False"/>
+      <Part Name="MONSTER_PART_HEAD_SNOW" IsRemovable="False"/>
       <Part Name="MONSTER_PART_BODY" IsRemovable="False"/>
-      <Part Name="MONSTER_PART_LWING" IsRemovable="False"/>
-      <Part Name="MONSTER_PART_RWING" IsRemovable="False"/>
-      <Part Name="MONSTER_PART_LLEG" IsRemovable="False"/>
-      <Part Name="MONSTER_PART_RLEG" IsRemovable="False"/>
+      <Part Name="MONSTER_PART_BODY_SNOW" IsRemovable="False"/>
+      <Part Name="MONSTER_PART_LEGS" IsRemovable="False"/>
       <Part Name="MONSTER_PART_TAIL" IsRemovable="False"/>
+      <Part Name="MONSTER_PART_TAIL_SNOW" IsRemovable="False"/>
     </Parts>
   </Monster>
   <Monster ID="em123_00">
@@ -1026,12 +1038,11 @@
       <Weakness ID="ELEMENT_FIRE" Stars="2"/>
     </Weaknesses>
     <Crown Mini="90" Silver="115" Gold="123"/>
-    <Parts Max="8">
+    <Parts Max="7">
+      <Part Name="MONSTER_PART_REMOVABLE_HORNS" IsRemovable="True"/>
       <Part Name="MONSTER_PART_REMOVABLE_TAIL" IsRemovable="True"/>
-      <Part Name="MONSTER_PART_HEAD" IsRemovable="False"/>
+      <Part Name="MONSTER_PART_HORNS" IsRemovable="False"/>
       <Part Name="MONSTER_PART_BODY" IsRemovable="False"/>
-      <Part Name="MONSTER_PART_LWING" IsRemovable="False"/>
-      <Part Name="MONSTER_PART_RWING" IsRemovable="False"/>
       <Part Name="MONSTER_PART_LLEG" IsRemovable="False"/>
       <Part Name="MONSTER_PART_RLEG" IsRemovable="False"/>
       <Part Name="MONSTER_PART_TAIL" IsRemovable="False"/>
@@ -1043,15 +1054,20 @@
       <Weakness ID="ELEMENT_DRAGON" Stars="2"/>
     </Weaknesses>
     <Crown Mini="90" Silver="115" Gold="123"/>
-    <Parts Max="8">
+    <Parts Max="13">
       <Part Name="MONSTER_PART_REMOVABLE_TAIL" IsRemovable="True"/>
       <Part Name="MONSTER_PART_HEAD" IsRemovable="False"/>
+      <Part Name="MONSTER_PART_HEAD_ICE" IsRemovable="False"/>
       <Part Name="MONSTER_PART_BODY" IsRemovable="False"/>
-      <Part Name="MONSTER_PART_LWING" IsRemovable="False"/>
-      <Part Name="MONSTER_PART_RWING" IsRemovable="False"/>
-      <Part Name="MONSTER_PART_LLEG" IsRemovable="False"/>
-      <Part Name="MONSTER_PART_RLEG" IsRemovable="False"/>
+      <Part Name="MONSTER_PART_BODY_ICE" IsRemovable="False"/>
+      <Part Name="MONSTER_PART_WINGS" IsRemovable="False"/>
+      <Part Name="MONSTER_PART_WINGS_ICE" IsRemovable="False"/>
+      <Part Name="MONSTER_PART_ARMS" IsRemovable="False"/>
+      <Part Name="MONSTER_PART_ARMS_ICE" IsRemovable="False"/>
+      <Part Name="MONSTER_PART_LEGS" IsRemovable="False"/>
+      <Part Name="MONSTER_PART_LEGS_ICE" IsRemovable="False"/>
       <Part Name="MONSTER_PART_TAIL" IsRemovable="False"/>
+      <Part Name="MONSTER_PART_TAIL_ICE" IsRemovable="False"/>
     </Parts>
   </Monster>
   <Monster ID="em125_00">
@@ -1060,15 +1076,14 @@
       <Weakness ID="ELEMENT_DRAGON" Stars="2"/>
     </Weaknesses>
     <Crown Mini="90" Silver="115" Gold="123"/>
-    <Parts Max="8">
+    <Parts Max="7">
       <Part Name="MONSTER_PART_REMOVABLE_TAIL" IsRemovable="True"/>
       <Part Name="MONSTER_PART_HEAD" IsRemovable="False"/>
-      <Part Name="MONSTER_PART_BODY" IsRemovable="False"/>
-      <Part Name="MONSTER_PART_LWING" IsRemovable="False"/>
-      <Part Name="MONSTER_PART_RWING" IsRemovable="False"/>
-      <Part Name="MONSTER_PART_LLEG" IsRemovable="False"/>
-      <Part Name="MONSTER_PART_RLEG" IsRemovable="False"/>
+      <Part Name="MONSTER_PART_BACK" IsRemovable="False"/>
       <Part Name="MONSTER_PART_TAIL" IsRemovable="False"/>
+      <Part Name="MONSTER_PART_ARMS" IsRemovable="False"/>
+      <Part Name="MONSTER_PART_LEGS" IsRemovable="False"/>
+      <Part Name="MONSTER_PART_WINGS" IsRemovable="False"/>
     </Parts>
   </Monster>
   <Monster ID="em126_00">
@@ -1077,14 +1092,23 @@
       <Weakness ID="ELEMENT_WATER" Stars="2"/>
     </Weaknesses>
     <Crown Mini="90" Silver="115" Gold="123"/>
-    <Parts Max="8">
-      <Part Name="MONSTER_PART_REMOVABLE_TAIL" IsRemovable="True"/>
+    <Parts Max="17">
+      <Part Name="MONSTER_PART_REMOVABLE_HEAD" IsRemovable="True"/>
+      <Part Name="MONSTER_PART_NECK_LEFT_ROCK" IsRemovable="False"/>
+      <Part Name="MONSTER_PART_NECK_RIGHT_ROCK" IsRemovable="False"/>
+      <Part Name="MONSTER_PART_HEAD_ROCK" IsRemovable="False"/>
+      <Part Name="MONSTER_PART_TAIL_ROCK" IsRemovable="False"/>
+      <Part Name="MONSTER_PART_LWING_ROCK" IsRemovable="False"/>
+      <Part Name="MONSTER_PART_RWING_ROCK" IsRemovable="False"/>
+      <Part Name="MONSTER_PART_ARM_LEFT_ROCK" IsRemovable="False"/>
+      <Part Name="MONSTER_PART_ARM_RIGHT_ROCK" IsRemovable="False"/>
+      <Part Name="MONSTER_PART_LEGS_ROCK" IsRemovable="False"/>
       <Part Name="MONSTER_PART_HEAD" IsRemovable="False"/>
       <Part Name="MONSTER_PART_BODY" IsRemovable="False"/>
       <Part Name="MONSTER_PART_LWING" IsRemovable="False"/>
       <Part Name="MONSTER_PART_RWING" IsRemovable="False"/>
-      <Part Name="MONSTER_PART_LLEG" IsRemovable="False"/>
-      <Part Name="MONSTER_PART_RLEG" IsRemovable="False"/>
+      <Part Name="MONSTER_PART_ARM_LEFT" IsRemovable="False"/>
+      <Part Name="MONSTER_PART_ARM_RIGHT" IsRemovable="False"/>
       <Part Name="MONSTER_PART_TAIL" IsRemovable="False"/>
     </Parts>
   </Monster>
@@ -1094,15 +1118,16 @@
       <Weakness ID="ELEMENT_THUNDER" Stars="2"/>
     </Weaknesses>
     <Crown Mini="90" Silver="115" Gold="123"/>
-    <Parts Max="8">
-      <Part Name="MONSTER_PART_REMOVABLE_TAIL" IsRemovable="True"/>
+    <Parts Max="9">
+      <Part Name="MONSTER_PART_REMOVABLE_ANTLER_LEFT" IsRemovable="True"/>
+      <Part Name="MONSTER_PART_REMOVABLE_ANTLER_RIGHT" IsRemovable="True"/>
       <Part Name="MONSTER_PART_HEAD" IsRemovable="False"/>
       <Part Name="MONSTER_PART_BODY" IsRemovable="False"/>
-      <Part Name="MONSTER_PART_LWING" IsRemovable="False"/>
-      <Part Name="MONSTER_PART_RWING" IsRemovable="False"/>
-      <Part Name="MONSTER_PART_LLEG" IsRemovable="False"/>
-      <Part Name="MONSTER_PART_RLEG" IsRemovable="False"/>
-      <Part Name="MONSTER_PART_TAIL" IsRemovable="False"/>
+      <Part Name="MONSTER_PART_LEGS" IsRemovable="False"/>
+      <Part Name="MONSTER_PART_ARMS" IsRemovable="False"/>
+      <Part Name="MONSTER_PART_UNKNOWN" IsRemovable="False"/>
+      <Part Name="MONSTER_PART_UNKNOWN" IsRemovable="False"/>
+      <Part Name="MONSTER_JAGRAS_SUMMONER" IsRemovable="False"/>
     </Parts>
   </Monster>
   <Monster ID="em127_01">
@@ -1111,15 +1136,16 @@
       <Weakness ID="ELEMENT_THUNDER" Stars="2"/>
     </Weaknesses>
     <Crown Mini="90" Silver="115" Gold="123"/>
-    <Parts Max="8">
-      <Part Name="MONSTER_PART_REMOVABLE_TAIL" IsRemovable="True"/>
+    <Parts Max="9">
+      <Part Name="MONSTER_PART_REMOVABLE_ANTLER_LEFT" IsRemovable="True"/>
+      <Part Name="MONSTER_PART_REMOVABLE_ANTLER_RIGHT" IsRemovable="True"/>
       <Part Name="MONSTER_PART_HEAD" IsRemovable="False"/>
       <Part Name="MONSTER_PART_BODY" IsRemovable="False"/>
-      <Part Name="MONSTER_PART_LWING" IsRemovable="False"/>
-      <Part Name="MONSTER_PART_RWING" IsRemovable="False"/>
-      <Part Name="MONSTER_PART_LLEG" IsRemovable="False"/>
-      <Part Name="MONSTER_PART_RLEG" IsRemovable="False"/>
-      <Part Name="MONSTER_PART_TAIL" IsRemovable="False"/>
+      <Part Name="MONSTER_PART_LEGS" IsRemovable="False"/>
+      <Part Name="MONSTER_PART_ARMS" IsRemovable="False"/>
+      <Part Name="MONSTER_PART_UNKNOWN" IsRemovable="False"/>
+      <Part Name="MONSTER_PART_UNKNOWN" IsRemovable="False"/>
+      <Part Name="MONSTER_JAGRAS_SUMMONER" IsRemovable="False"/>
     </Parts>
   </Monster>
 </Monsters>

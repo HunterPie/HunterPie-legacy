@@ -1,31 +1,99 @@
 ﻿<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
-                    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
+                    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+                    xmlns:Monster="clr-namespace:HunterPie.GUI.Widgets.Monster_Widget.Parts">
     <!-- Colors -->
     <!-- Overlay -->
+    <!-- Monster Widget (Main bar) -->
+    
     <LinearGradientBrush x:Key="OVERLAY_MONSTER_HEALTH_BAR_COLOR" EndPoint="1,0" StartPoint="0,0">
         <GradientStop Color="#FFD6D6D6" Offset="1"/>
         <GradientStop Color="#FFB9B9B9"/>
     </LinearGradientBrush>
-    <SolidColorBrush x:Key="OVERLAY_MONSTER_HEALTH_TEXT_COLOR" Color="#FFDEDEDE"/>
+
     <Style x:Key="OVERLAY_MONSTER_BAR_TEXT_STYLE" TargetType="TextBlock">
-        <Setter Property="Foreground" Value="{StaticResource OVERLAY_MONSTER_HEALTH_TEXT_COLOR}"/>
-        <Setter Property="FontFamily" Value="Roboto"/>
+        <Setter Property="Foreground">
+            <Setter.Value>
+                <LinearGradientBrush EndPoint="1,0" StartPoint="0,0">
+                    <GradientStop Color="#FFF3F3F3" Offset="1"/>
+                    <GradientStop Color="#FFEEEEEE"/>
+                </LinearGradientBrush>
+            </Setter.Value>
+        </Setter>
         <Setter Property="FontSize" Value="12"/>
         <Setter Property="FontWeight" Value="ExtraBold"/>
         <Setter Property="Margin" Value="45,18,38,30"/>
         <Setter Property="Padding" Value="0,0.75,0,0"/>
         <Setter Property="Effect">
             <Setter.Value>
-                <DropShadowEffect BlurRadius="0" ShadowDepth="1"/>
+                <DropShadowEffect BlurRadius="0" ShadowDepth="2" Color="#FF232323"/>
             </Setter.Value>
         </Setter>
     </Style>
     <Style x:Key="OVERLAY_MONSTER_NAME_TEXT_STYLE" TargetType="TextBlock">
-        <Setter Property="Foreground" Value="#FFFDFFCE"/>
-        <Setter Property="FontFamily" Value="Roboto"/>
+        <Setter Property="Foreground">
+            <Setter.Value>
+                <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
+                    <GradientStop Color="#FFF7F7F7"/>
+                    <GradientStop Color="Gainsboro" Offset="1"/>
+                </LinearGradientBrush>
+            </Setter.Value>
+        </Setter>
         <Setter Property="FontWeight" Value="SemiBold"/>
         <Setter Property="FontSize" Value="13"/>
+        <Setter Property="Effect">
+            <Setter.Value>
+                <DropShadowEffect BlurRadius="0" ShadowDepth="1" Color="#FF2E2E2E"/>
+            </Setter.Value>
+        </Setter>
     </Style>
+    <!-- Monster Bar (Parts) -->
+    <LinearGradientBrush x:Key="OVERLAY_MONSTER_PART_BAR_COLOR" EndPoint="1,0" StartPoint="0,0">
+        <GradientStop Color="#FFD6D6D6" Offset="1"/>
+        <GradientStop Color="#FFB9B9B9"/>
+    </LinearGradientBrush>
+
+    <Style x:Key="OVERLAY_MONSTER_PART_NAME_TEXT_STYLE" TargetType="TextBlock">
+        <Setter Property="Foreground">
+            <Setter.Value>
+                <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
+                    <GradientStop Color="#FFF7F7F7"/>
+                    <GradientStop Color="Gainsboro" Offset="1"/>
+                </LinearGradientBrush>
+            </Setter.Value>
+        </Setter>
+        <Setter Property="FontWeight" Value="SemiBold"/>
+        <Setter Property="FontSize" Value="14"/>
+        <Setter Property="Effect">
+            <Setter.Value>
+                <DropShadowEffect BlurRadius="0" ShadowDepth="1" Color="#FF2E2E2E"/>
+            </Setter.Value>
+        </Setter>
+    </Style>
+
+    <Style x:Key="OVERLAY_MONSTER_PART_COUNTER_BACKGROUND_STYLE" TargetType="Rectangle">
+        <Setter Property="Fill" Value="#FFB9B9B9"/>
+        <Setter Property="Stroke" Value="#CC0E0E0E"/>
+        <Setter Property="StrokeThickness" Value="0.5"/>
+    </Style>
+    
+    <Style x:Key="OVERLAY_MONSTER_PART_COUNTER_TEXT_STYLE" TargetType="TextBlock">
+        <Setter Property="Foreground">
+            <Setter.Value>
+                <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
+                    <GradientStop Color="#FF0F0F0F"/>
+                    <GradientStop Color="#FF0A0A0A" Offset="1"/>
+                </LinearGradientBrush>
+            </Setter.Value>
+        </Setter>
+        <Setter Property="FontWeight" Value="SemiBold"/>
+        <Setter Property="FontSize" Value="14"/>
+        <Setter Property="Effect">
+            <Setter.Value>
+                <DropShadowEffect BlurRadius="0" ShadowDepth="1" Color="#FF2E2E2E"/>
+            </Setter.Value>
+        </Setter>
+    </Style>
+
     <!-- Console -->
     <SolidColorBrush x:Key="CONSOLE_BACKGROUND">#F41F1F1F</SolidColorBrush>
     <SolidColorBrush x:Key="CONSOLE_HEADER_BACKGROUND">#4C0E0E0E</SolidColorBrush>

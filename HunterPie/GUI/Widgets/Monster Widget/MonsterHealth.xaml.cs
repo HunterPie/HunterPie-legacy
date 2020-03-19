@@ -3,6 +3,7 @@ using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Media;
 using System.Windows.Media.Animation;
+using Timer = System.Threading.Timer;
 using HunterPie.Core;
 using HunterPie.GUIControls.Custom_Controls;
 
@@ -13,6 +14,7 @@ namespace HunterPie.GUI.Widgets {
     public partial class MonsterHealth : UserControl {
 
         private Monster Context;
+        private Timer VisibilityTimer; // TODO: Implement Visibility timer to hide monsters that aren't active
 
         // Animations
         private Storyboard ANIM_ENRAGEDICON;
@@ -74,8 +76,15 @@ namespace HunterPie.GUI.Widgets {
 
             SwitchSizeBasedOnTarget();
 
-            // Enrage
+            // Parts
+            this.MonsterPartsContainer.Children.Clear();
+            foreach (Part mPart in Context.Parts) {
+                Monster_Widget.Parts.MonsterPart PartDisplay = new Monster_Widget.Parts.MonsterPart();
+                PartDisplay.SetContext(mPart, this.MonsterPartsContainer.ItemWidth);
+                this.MonsterPartsContainer.Children.Add(PartDisplay);
+            }
 
+            // Enrage
             if (Context.IsEnraged) {
                 ANIM_ENRAGEDICON.Begin(this.MonsterHealthBar, true);
                 ANIM_ENRAGEDICON.Begin(this.HealthBossIcon, true);
@@ -133,9 +142,6 @@ namespace HunterPie.GUI.Widgets {
 
         private void OnMonsterDespawn(object source, EventArgs args) {
             this.Dispatch(() => {
-                this.MonsterName.Text = null;
-                //this.MonsterStatus.Source = null;
-                this.MonsterCrown.Source = null;
                 this.MonsterCrown.Visibility = Visibility.Collapsed;
                 this.Visibility = Visibility.Collapsed;
                 this.Weaknesses.Children.Clear();
@@ -183,34 +189,86 @@ namespace HunterPie.GUI.Widgets {
             this.HealthText.Text = $"{hp:0}/{max_hp:0} ({hp / max_hp * 100:0}%)";
         }
 
-        private void SwitchSizeBasedOnTarget() {
-            ShowOnlyTargetMonster();
+        public void SwitchSizeBasedOnTarget() {
+            switch(UserSettings.PlayerConfig.Overlay.MonstersComponent.ShowMonsterBarMode) {
+                case 0: // Default
+                    ShowAllMonstersAtOnce();
+                    break;
+                case 1: // Show all but highlight target
+                    ShowAllButFocusTarget();
+                    break;
+                case 2: // Show only target
+                    ShowOnlyTargetMonster();
+                    break;
+            }
         }
-        
+
+        #region Monster bar modes
+
+        // Show all monsters at once
+        private void ShowAllMonstersAtOnce() {
+            if (this.Context != null && this.Context.IsAlive) this.Visibility = Visibility.Visible;
+            else { this.Visibility = Visibility.Collapsed; }
+            this.Width = 300;
+            MonsterAilmentsContainer.ItemWidth = (this.Width - 2) / 2;
+            MonsterPartsContainer.ItemWidth = (this.Width - 2) / 2;
+            UpdatePartHealthBarSizes(MonsterPartsContainer.ItemWidth);
+            MonsterHealthBar.MaxSize = 231;
+            MonsterHealthBar.UpdateBar(Context.CurrentHP, Context.TotalHP);
+            this.Opacity = 1;
+        }
+
         // Only show one monster
         private void ShowOnlyTargetMonster() {
             if (Context == null || !Context.isTarget) { this.Visibility = Visibility.Collapsed; }
-            else {
+            else {      
                 this.Visibility = Visibility.Visible;
                 this.Width = 500;
+                MonsterAilmentsContainer.ItemWidth = (this.Width - 2) / 2;
+                MonsterPartsContainer.ItemWidth = (this.Width - 2) / 2;
+                UpdatePartHealthBarSizes(MonsterPartsContainer.ItemWidth);
+                this.Opacity = 1;
                 MonsterHealthBar.MaxSize = this.Width * 0.9;
                 MonsterHealthBar.UpdateBar(Context.CurrentHP, Context.TotalHP);
             }
         }
 
+        // Show all monsters but highlight only target
         private void ShowAllButFocusTarget() {
+            if (this.Context != null && this.Context.IsAlive) this.Visibility = Visibility.Visible;
+            else { this.Visibility = Visibility.Collapsed; }
             if (!Context.isTarget) {
                 this.Width = 240;
+                // Parts
+                MonsterAilmentsContainer.ItemWidth = (this.Width - 2) / 2;
+                MonsterPartsContainer.ItemWidth = (this.Width - 2) / 2;
+                UpdatePartHealthBarSizes(MonsterPartsContainer.ItemWidth);
+                // Monster Bar
                 MonsterHealthBar.MaxSize = this.Width * 0.8;
                 MonsterHealthBar.UpdateBar(Context.CurrentHP, Context.TotalHP);
                 this.Opacity = 0.5;
             } else {
                 this.Width = 320;
+                // Parts
+                MonsterAilmentsContainer.ItemWidth = (this.Width - 2) / 2;
+                MonsterPartsContainer.ItemWidth = (this.Width - 2) / 2;
+                UpdatePartHealthBarSizes(MonsterPartsContainer.ItemWidth);
+                // Monster Bar
                 MonsterHealthBar.MaxSize = this.Width * 0.8;
                 MonsterHealthBar.UpdateBar(Context.CurrentHP, Context.TotalHP);
                 this.Opacity = 1;
             }
         }
+        #endregion
 
+        #region Parts
+
+        private void UpdatePartHealthBarSizes(double NewSize) {
+            foreach (Monster_Widget.Parts.MonsterPart part in MonsterPartsContainer.Children) {
+                part.UpdateHealthBarSize(NewSize);
+            }
+        }
+
+        #endregion
     }
 }

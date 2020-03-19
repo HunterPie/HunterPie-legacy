@@ -233,6 +233,10 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
+    <Page Include="GUI\Widgets\Monster Widget\Parts\MonsterPart.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="Hunterpie.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
@@ -282,6 +286,9 @@
       <DependentUpon>MonsterHealth.xaml</DependentUpon>
     </Compile>
     <Compile Include="GUI\Widget.cs" />
+    <Compile Include="GUI\Widgets\Monster Widget\Parts\MonsterPart.xaml.cs">
+      <DependentUpon>MonsterPart.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Hunterpie.xaml.cs">
       <DependentUpon>Hunterpie.xaml</DependentUpon>
       <SubType>Code</SubType>

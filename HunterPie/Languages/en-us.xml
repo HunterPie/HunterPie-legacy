@@ -71,21 +71,89 @@
   <Parts>
     <Part ID="MONSTER_PART_UNKNOWN" Name="Unknown part"/>
     <Part ID="MONSTER_PART_HEAD" Name="Head"/>
-    <Part ID="MONSTER_PART_HEAD_SNOW" Name="Head Snow"/>
-    <Part ID="MONSTER_PART_HEAD_ICE" Name="Head Ice"/>
-    <Part ID="MONSTER_PART_HEAD_ROCK" Name="Head Rock"/>
-    <Part ID="MONSTER_PART_HEAD_MUD" Name="Head Mud"/>
-    <Part ID="MONSTER_PART_RHEAD" Name="Head right"/>
-    <Part ID="MONSTER_PART_LHEAD" Name="Head left"/>
-    <Part ID="MONSTER_PART_NECK" Name="Neck"/>
     <Part ID="MONSTER_PART_BODY" Name="Body"/>
-    <Part ID="MONSTER_PART_LWING" Name="Left wing"/>
-    <Part ID="MONSTER_PART_RWING" Name="Right wing"/>
-    <Part ID="MONSTER_PART_RLEG" Name="Right leg"/>
-    <Part ID="MONSTER_PART_LLEG" Name="Left leg"/>
+    <Part ID="MONSTER_PART_LWING" Name="Left Wing"/>
+    <Part ID="MONSTER_PART_RWING" Name="Right Wing"/>
+    <Part ID="MONSTER_PART_LLEG" Name="Left Leg"/>
+    <Part ID="MONSTER_PART_RLEG" Name="Right Leg"/>
     <Part ID="MONSTER_PART_TAIL" Name="Tail"/>
+    <Part ID="MONSTER_PART_ARMS" Name="Arms"/>
+    <Part ID="MONSTER_PART_LEGS" Name="Legs"/>
+    <Part ID="MONSTER_PART_LARM" Name="Left Arm"/>
+    <Part ID="MONSTER_PART_RARM" Name="Right Arm"/>
+    <Part ID="MONSTER_PART_LLIMBS" Name="Left Limbs"/>
+    <Part ID="MONSTER_PART_RLIMBS" Name="Right Limbs"/>
+    <Part ID="MONSTER_PART_WINGS" Name="Wings"/>
+    <Part ID="MONSTER_PART_LIMBS" Name="Limbs"/>
+    <Part ID="MONSTER_PART_ABDOMEN" Name="Abdomen"/>
+    <Part ID="MONSTER_PART_CHEST" Name="Chest"/>
+    <Part ID="MONSTER_PART_REAR" Name="Rear"/>
+    <Part ID="MONSTER_PART_HEAD_MUD" Name="Muddy Head"/>
+    <Part ID="MONSTER_PART_BODY_MUD" Name="Muddy Body"/>
+    <Part ID="MONSTER_PART_ARMS_MUD" Name="Muddy Arms"/>
+    <Part ID="MONSTER_PART_LLEG_MUD" Name="Muddy Left Leg"/>
+    <Part ID="MONSTER_PART_RLEG_MUD" Name="Muddy Right Leg"/>
+    <Part ID="MONSTER_PART_TAIL_MUD" Name="Muddy Tail"/>
+    <Part ID="MONSTER_PART_JAW" Name="Jaw"/>
+    <Part ID="MONSTER_PART_BACK" Name="Back"/>
+    <Part ID="MONSTER_PART_FIN" Name="Fin"/>
+    <Part ID="MONSTER_PART_HORNS" Name="Horns"/>
+    <Part ID="MONSTER_PART_NECK" Name="Neck"/>
+    <Part ID="MONSTER_PART_LHAND" Name="Left Hand"/>
+    <Part ID="MONSTER_PART_RHAND" Name="Right Hand"/>
+    <Part ID="MONSTER_PART_LFOOT" Name="Left Foot"/>
+    <Part ID="MONSTER_PART_RFOOT" Name="Right Foot"/>
+    <Part ID="MONSTER_PART_SHELL" Name="Shell"/>
+    <Part ID="MONSTER_PART_EXHAUST_ORGAN_CENTRAL" Name="Central Exhaust Organ"/>
+    <Part ID="MONSTER_PART_EXHAUST_ORGAN_HEAD" Name="Head Exhaust Organ"/>
+    <Part ID="MONSTER_PART_EXHAUST_ORGAN_CRATER" Name="Crater Exhaust Organ"/>
+    <Part ID="MONSTER_PART_EXHAUST_ORGAN_REAR" Name="Rear Exhaust Organ"/>
+    <Part ID="MONSTER_PART_WEAK_LSHELL" Name="Left Weak Shell"/>
+    <Part ID="MONSTER_PART_WEAK_RSHELL" Name="Right Weak Shell"/>
+    <Part ID="MONSTER_PART_ROCK" Name="Rock"/>
+    <Part ID="MONSTER_PART_MANE" Name="Mane"/>
+    <Part ID="MONSTER_PART_BALLOON" Name="Balloon"/>
+    <Part ID="MONSTER_PART_LBONE" Name="Left Bone"/>
+    <Part ID="MONSTER_PART_RBONE" Name="Right Bone"/>
+    <Part ID="MONSTER_PART_HORNS_GOLD" Name="Golden Horns"/>
+    <Part ID="MONSTER_PART_MANE_GOLD" Name="Golden Mane"/>
+    <Part ID="MONSTER_PART_LCHEST_GOLD" Name="Golden Left Chest"/>
+    <Part ID="MONSTER_PART_RCHEST_GOLD" Name="Golden Right Chest"/>
+    <Part ID="MONSTER_PART_LARM_GOLD" Name="Golden Left Arm"/>
+    <Part ID="MONSTER_PART_RARM_GOLD" Name="Golden Right Arm"/>
+    <Part ID="MONSTER_PART_LLEG_GOLD" Name="Golden Left Leg"/>
+    <Part ID="MONSTER_PART_RLEG_GOLD" Name="Golden Right Leg"/>
+    <Part ID="MONSTER_PART_LTAIL_GOLD" Name="Golden Left Tail"/>
+    <Part ID="MONSTER_PART_RTAIL_GOLD" Name="Golden Right Tail"/>
+    <Part ID="MONSTER_PART_LHEAD" Name="Head Left"/>
+    <Part ID="MONSTER_PART_RHEAD" Name="Head Right"/>
+    <Part ID="MONSTER_PART_HEAD_SNOW" Name="Snowy Head"/>
+    <Part ID="MONSTER_PART_BODY_SNOW" Name="Snowy Body"/>
+    <Part ID="MONSTER_PART_TAIL_SNOW" Name="Snowy Tail"/>
+    <Part ID="MONSTER_PART_HEAD_ICE" Name="Icy Head"/>
+    <Part ID="MONSTER_PART_BODY_ICE" Name="Icy Body"/>
+    <Part ID="MONSTER_PART_WINGS_ICE" Name="Icy Wings"/>
+    <Part ID="MONSTER_PART_ARMS_ICE" Name="Icy Arms"/>
+    <Part ID="MONSTER_PART_LEGS_ICE" Name="Icy Legs"/>
+    <Part ID="MONSTER_PART_TAIL_ICE" Name="Icy Tail"/>
+    <Part ID="MONSTER_PART_LNECK_ROCK" Name="Rocky Neck Left"/>
+    <Part ID="MONSTER_PART_RNECK_ROCK" Name="Rocky Neck Right"/>
+    <Part ID="MONSTER_PART_HEAD_ROCK" Name="Rocky Head"/>
+    <Part ID="MONSTER_PART_TAIL_ROCK" Name="Rocky Tail"/>
+    <Part ID="MONSTER_PART_LWING_ROCK" Name="Rocky Left Wing"/>
+    <Part ID="MONSTER_PART_RWING_ROCK" Name="Rocky Right Wing"/>
+    <Part ID="MONSTER_PART_LARM_ROCK" Name="Rocky Left Arm"/>
+    <Part ID="MONSTER_PART_RARM_ROCK" Name="Rocky Right Arm"/>
+    <Part ID="MONSTER_PART_LEGS_ROCK" Name="Rocky Legs"/>
+    <Part ID="MONSTER_JAGRAS_SUMMONER" Name=""/>
     <!-- Removable parts -->
     <Part ID="MONSTER_PART_REMOVABLE_TAIL" Name="Removable tail"/>
+    <Part ID="MONSTER_PART_REMOVABLE_HORNS" Name="Removable Horns"/>
+    <Part ID="MONSTER_PART_REMOVABLE_HEAD" Name="Removable Head"/>
+    <Part ID="MONSTER_PART_REMOVABLE_BALLOON" Name="Removable Balloon"/>
+    <Part ID="MONSTER_PART_REMOVABLE_HORNS_2" Name="Removable Horns #2"/>
+    <Part ID="MONSTER_PART_REMOVABLE_LANTLER" Name="Removable Left Antler"/>
+    <Part ID="MONSTER_PART_REMOVABLE_RANTLER" Name="Removable Right Antler"/>
   </Parts>
   <Mantles>
     <Mantle ID="-1" Name="No Mantle"/>
