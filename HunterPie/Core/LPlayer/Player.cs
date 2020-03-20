@@ -4,6 +4,7 @@ using System.Xml;
 using System.Threading;
 using HunterPie.Memory;
 using HunterPie.Logger;
+using HunterPie.Core.LPlayer;
 
 namespace HunterPie.Core {
     public class Player {
@@ -83,10 +84,10 @@ namespace HunterPie.Core {
                 }
             }
         }
-        public bool inPeaceZone {
+        public bool InPeaceZone {
             get { return PeaceZones.Contains(this.ZoneID); }
         }
-        public bool inHarvestZone {
+        public bool InHarvestZone {
             get { return _HBZones.Contains(ZoneID); }
         }
         
@@ -107,6 +108,9 @@ namespace HunterPie.Core {
         // Threading
         private ThreadStart ScanPlayerInfoRef;
         private Thread ScanPlayerInfo;
+
+        // Player data that will be used eventually
+        private Data.Gear Gear = new Data.Gear();
 
         ~Player() {
             PlayerParty = null;
@@ -186,6 +190,7 @@ namespace HunterPie.Core {
                     GetPlayerMasterRank();
                     GetPlayerName();
                     GetWeaponId();
+                    GetPlayerGear();
                     GetFertilizers();
                     GetArgosyData();
                     GetTailraidersData();
@@ -266,6 +271,17 @@ namespace HunterPie.Core {
             Address = Scanner.READ_MULTILEVEL_PTR(Address, Memory.Address.Offsets.WeaponOffsets);
             PlayerStructAddress = Address;
             WeaponID = Scanner.READ_BYTE(Address);
+        }
+
+        private void GetPlayerGear() {
+            Int64 PlayerGearAddress = LEVEL_ADDRESS + 0x18;
+            Gear.Weapon = Scanner.READ_INT(PlayerGearAddress);
+            Gear.Helmet = Scanner.READ_INT(PlayerGearAddress + 0x04);
+            Gear.Armor = Scanner.READ_INT(PlayerGearAddress + 0x08);
+            Gear.Gloves = Scanner.READ_INT(PlayerGearAddress + 0x0C);
+            Gear.Greaves = Scanner.READ_INT(PlayerGearAddress + 0x10);
+            Gear.Charm = Scanner.READ_INT(PlayerGearAddress + 0x14);
+            Gear.Mantle = new int[2] { Scanner.READ_INT(PlayerGearAddress + 0x14), Scanner.READ_INT(PlayerGearAddress + 0x18) };
         }
 
         private void GetSessionId() {

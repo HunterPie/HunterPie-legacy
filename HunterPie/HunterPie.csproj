@@ -122,17 +122,18 @@
     <Compile Include="Core\Monster\Part.cs" />
     <Compile Include="Core\Party\Member.cs" />
     <Compile Include="Core\Party\Party.cs" />
-    <Compile Include="Core\Player\Abnormalities.cs" />
-    <Compile Include="Core\Player\Abnormality.cs" />
-    <Compile Include="Core\Player\AbnormalityData.cs" />
-    <Compile Include="Core\Player\Activities.cs" />
+    <Compile Include="Core\LPlayer\Abnormalities.cs" />
+    <Compile Include="Core\LPlayer\Abnormality.cs" />
+    <Compile Include="Core\LPlayer\AbnormalityData.cs" />
+    <Compile Include="Core\LPlayer\Activities.cs" />
+    <Compile Include="Core\LPlayer\Data.cs" />
     <Compile Include="GUIControls\Changelog.xaml.cs">
       <DependentUpon>Changelog.xaml</DependentUpon>
     </Compile>
     <Compile Include="Core\Args.cs" />
     <Compile Include="Core\AutoUpdate.cs" />
-    <Compile Include="Core\Player\HarvestBox.cs" />
-    <Compile Include="Core\Player\Mantle.cs" />
+    <Compile Include="Core\LPlayer\HarvestBox.cs" />
+    <Compile Include="Core\LPlayer\Mantle.cs" />
     <Compile Include="Core\Presence.cs" />
     <Compile Include="GUIControls\Custom Controls\BuffBarSettingControl.xaml.cs">
       <DependentUpon>BuffBarSettingControl.xaml</DependentUpon>
@@ -248,7 +249,7 @@
     <Compile Include="Core\Game.cs" />
     <Compile Include="Core\GStrings.cs" />
     <Compile Include="Core\Monster\Monster.cs" />
-    <Compile Include="Core\Player\Player.cs" />
+    <Compile Include="Core\LPlayer\Player.cs" />
     <Compile Include="Core\UserSettings.cs" />
     <Compile Include="GUIControls\Debugger.xaml.cs">
       <DependentUpon>Debugger.xaml</DependentUpon>
@@ -384,7 +385,7 @@
     <Folder Include="media\" />
   </ItemGroup>
   <ItemGroup>
-    <Resource Include="Core\Player\AbnormalityData.xml" />
+    <Resource Include="Core\LPlayer\AbnormalityData.xml" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Languages\fr-fr.xml">

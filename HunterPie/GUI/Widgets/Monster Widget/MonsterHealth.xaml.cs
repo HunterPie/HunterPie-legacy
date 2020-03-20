@@ -130,7 +130,7 @@ namespace HunterPie.GUI.Widgets {
             if (Context == null) return;
             int EnrageTimer = (int)Context.EnrageTimerStatic - (int)Context.EnrageTimer;
             Dispatch(() => {
-                this.EnrageTimerText.Visibility = EnrageTimer > 0 ? Visibility.Visible : Visibility.Hidden;
+                this.EnrageTimerText.Visibility = Context.EnrageTimer > 0 ? Visibility.Visible : Visibility.Hidden;
                 this.EnrageTimerText.Text = $"{EnrageTimer}";
             });
         }
@@ -148,7 +148,7 @@ namespace HunterPie.GUI.Widgets {
                 this.Visibility = Visibility.Collapsed;
                 this.Weaknesses.Children.Clear();
                 foreach (Monster_Widget.Parts.MonsterPart Part in MonsterPartsContainer.Children) {
-                    //Part.UnhookEvents();
+                    Part.UnhookEvents();
                 }
                 MonsterPartsContainer.Children.Clear();
             });
@@ -234,7 +234,7 @@ namespace HunterPie.GUI.Widgets {
 
         // Only show one monster
         private void ShowOnlyTargetMonster() {
-            if (Context == null || !Context.isTarget) { this.Visibility = Visibility.Collapsed; }
+            if (Context == null || !Context.IsTarget) { this.Visibility = Visibility.Collapsed; }
             else {      
                 this.Visibility = Visibility.Visible;
                 this.Width = 500;
@@ -251,7 +251,7 @@ namespace HunterPie.GUI.Widgets {
         private void ShowAllButFocusTarget() {
             if (this.Context != null && this.Context.IsAlive) this.Visibility = Visibility.Visible;
             else { this.Visibility = Visibility.Collapsed; }
-            if (!Context.isTarget) {
+            if (!Context.IsTarget) {
                 this.Width = 240;
                 // Parts
                 MonsterAilmentsContainer.ItemWidth = (this.Width - 2) / 2;

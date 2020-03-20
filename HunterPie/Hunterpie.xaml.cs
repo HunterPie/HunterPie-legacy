@@ -5,18 +5,20 @@ using System.IO;
 using System.Windows.Controls;
 using System.Windows.Markup;
 using System.Windows.Interop;
-using HunterPie.GUIControls;
-using HunterPie.Logger;
+// HunterPie
 using HunterPie.Memory;
 using HunterPie.Core;
 using HunterPie.GUI;
+using HunterPie.GUIControls;
+using HunterPie.Logger;
 
 
 namespace HunterPie {
     /// <summary>
-    /// Interaction logic for MainWindow.xaml
+    /// HunterPie main window logic;
     /// </summary>
     public partial class Hunterpie : Window {
+        // TODO: Organize code
 
         // Classes
         TrayIcon TrayIcon;
@@ -46,131 +48,19 @@ namespace HunterPie {
             InitializeTrayIcon();
             // Updates version_text
             this.version_text.Content = $"Version: {HUNTERPIE_VERSION} ({UserSettings.PlayerConfig.HunterPie.Update.Branch})";
+            LoadData();
             Debugger.Warn("Initializing HunterPie!");
-            GStrings.InitStrings(UserSettings.PlayerConfig.HunterPie.Language);
-            MonsterData.LoadMonsterData();
-            AbnormalityData.LoadAbnormalityData();
             SetHotKeys();
             StartEverything();
         }
 
-        private void SetHotKeys() {
-            _windowHandle = new WindowInteropHelper(this).EnsureHandle();
-            _source = HwndSource.FromHwnd(_windowHandle);
-            _source.AddHook(HwndHook);
-            BindHotKey(0); // Toggle overlay
+        private void LoadData() {
+            GStrings.InitStrings(UserSettings.PlayerConfig.HunterPie.Language);
+            MonsterData.LoadMonsterData();
+            AbnormalityData.LoadAbnormalityData();
         }
 
-        private void RemoveHotKeys() {
-            _source?.RemoveHook(HwndHook);
-            KeyboardHookHelper.UnregisterHotKey(_windowHandle, 0);
-        }
-
-        private IntPtr HwndHook(IntPtr hwnd, int msg, IntPtr wParam, IntPtr lParam, ref bool handled) {
-            const int WM_HOTKEY = 0x0312;
-            switch(msg) {
-                case WM_HOTKEY:
-                    switch(wParam.ToInt32()) {
-                        case 0: // Toggle overlay
-                            UserSettings.PlayerConfig.Overlay.Enabled = !UserSettings.PlayerConfig.Overlay.Enabled;
-                            UserSettings.SaveNewConfig();
-                            break;
-                    }
-                    break;
-            }
-            return IntPtr.Zero;
-        }
-
-        private int[] ParseHotKey(string hotkey) {
-            string[] Keys = hotkey.Split('+');
-            int Modifier = 0x4000;  // Start with no-repeat
-            int key = 0x0;
-            foreach (string hkey in Keys) {
-                switch (hkey) {
-                    case "Alt":
-                        Modifier |= 0x0001;
-                        break;
-                    case "Ctrl":
-                        Modifier |= 0x0002;
-                        break;
-                    case "Shift":
-                        Modifier |= 0x0004;
-                        break;
-                    default:
-                        key = (int)Enum.Parse(typeof(KeyboardHookHelper.KeyboardKeys), hkey);
-                        break;
-                }
-            }
-            int[] parsed = new int[2] { Modifier, key };
-            return parsed;
-        }
-
-        private void BindHotKey(int ID) {
-            switch (ID) {
-                case 0: // Overlay toggle
-                    int[] ParsedToggleOverlayHotKey = ParseHotKey(UserSettings.PlayerConfig.Overlay.ToggleOverlayKeybind);
-                    KeyboardHookHelper.RegisterHotKey(_windowHandle, 0, ParsedToggleOverlayHotKey[0], ParsedToggleOverlayHotKey[1]);
-                    break;
-            }
-        }
-
-        private void InitializeTrayIcon() {
-            TrayIcon = new TrayIcon();
-            // Tray icon itself
-            TrayIcon.NotifyIcon.BalloonTipTitle = "HunterPie";
-            TrayIcon.NotifyIcon.Text = "HunterPie";
-            TrayIcon.NotifyIcon.Icon = Properties.Resources.LOGO_HunterPie;
-            TrayIcon.NotifyIcon.Visible = true;
-            TrayIcon.NotifyIcon.MouseDoubleClick += OnTrayIconClick;
-
-            // Menu items
-            System.Windows.Forms.MenuItem ExitItem = new System.Windows.Forms.MenuItem() {
-                Text = "Close"
-            };
-            ExitItem.Click += OnTrayIconExitClick;
-            System.Windows.Forms.MenuItem SettingsItem = new System.Windows.Forms.MenuItem() {
-                Text = "Settings"
-            };
-            SettingsItem.Click += OnTrayIconSettingsClick;
-
-            TrayIcon.ContextMenu.MenuItems.AddRange(new System.Windows.Forms.MenuItem[] { SettingsItem, ExitItem });
-        }
-
-        private void OnTrayIconSettingsClick(object sender, EventArgs e) {
-            this.Show();
-            this.WindowState = WindowState.Normal;
-            this.Focus();
-            OpenSettings();
-        }
-
-        private void OnTrayIconExitClick(object sender, EventArgs e) {
-            this.Close();
-        }
-
-        private void OnTrayIconClick(object sender, EventArgs e) {
-            this.Show();
-            this.WindowState = WindowState.Normal;
-            this.Focus();
-        }
-
-        private void LoadCustomTheme() {
-            if (!Directory.Exists(@"Themes")) { Directory.CreateDirectory(@"Themes"); }
-            if (!File.Exists($@"Themes/{UserSettings.PlayerConfig.HunterPie.Theme}")) return;
-            try {
-                using (FileStream stream = new FileStream($@"Themes/{UserSettings.PlayerConfig.HunterPie.Theme}", FileMode.Open)) {
-                    XamlReader reader = new XamlReader();
-                    ResourceDictionary ThemeDictionary = (ResourceDictionary)reader.LoadAsync(stream);
-                    Application.Current.Resources.MergedDictionaries.Add(ThemeDictionary);
-                }
-            } catch {
-                Debugger.Error("Failed to load custom theme");
-            }
-        }
-
-        private void ExceptionLogger(object sender, UnhandledExceptionEventArgs e) {
-            File.WriteAllText("crashes.txt", e.ExceptionObject.ToString());
-        }
-
+        #region AUTO UPDATE
         private bool StartUpdateProcess() {
             if (!File.Exists("Update.exe")) return false;
 
@@ -245,6 +135,131 @@ namespace HunterPie {
             } catch {
                 return "";
             }
+        }
+        #endregion
+
+        #region HOT KEYS
+
+        private void SetHotKeys() {
+            _windowHandle = new WindowInteropHelper(this).EnsureHandle();
+            _source = HwndSource.FromHwnd(_windowHandle);
+            _source.AddHook(HwndHook);
+            BindHotKey(0); // Toggle overlay
+        }
+
+        private void RemoveHotKeys() {
+            _source?.RemoveHook(HwndHook);
+            KeyboardHookHelper.UnregisterHotKey(_windowHandle, 0);
+        }
+
+        private IntPtr HwndHook(IntPtr hwnd, int msg, IntPtr wParam, IntPtr lParam, ref bool handled) {
+            const int WM_HOTKEY = 0x0312;
+            switch(msg) {
+                case WM_HOTKEY:
+                    switch(wParam.ToInt32()) {
+                        case 0: // Toggle overlay
+                            UserSettings.PlayerConfig.Overlay.Enabled = !UserSettings.PlayerConfig.Overlay.Enabled;
+                            UserSettings.SaveNewConfig();
+                            break;
+                    }
+                    break;
+            }
+            return IntPtr.Zero;
+        }
+
+        private int[] ParseHotKey(string hotkey) {
+            string[] Keys = hotkey.Split('+');
+            int Modifier = 0x4000;  // Start with no-repeat
+            int key = 0x0;
+            foreach (string hkey in Keys) {
+                switch (hkey) {
+                    case "Alt":
+                        Modifier |= 0x0001;
+                        break;
+                    case "Ctrl":
+                        Modifier |= 0x0002;
+                        break;
+                    case "Shift":
+                        Modifier |= 0x0004;
+                        break;
+                    default:
+                        key = (int)Enum.Parse(typeof(KeyboardHookHelper.KeyboardKeys), hkey);
+                        break;
+                }
+            }
+            int[] parsed = new int[2] { Modifier, key };
+            return parsed;
+        }
+
+        private void BindHotKey(int ID) {
+            switch (ID) {
+                case 0: // Overlay toggle
+                    int[] ParsedToggleOverlayHotKey = ParseHotKey(UserSettings.PlayerConfig.Overlay.ToggleOverlayKeybind);
+                    KeyboardHookHelper.RegisterHotKey(_windowHandle, 0, ParsedToggleOverlayHotKey[0], ParsedToggleOverlayHotKey[1]);
+                    break;
+            }
+        }
+
+        #endregion
+
+        #region TRAY ICON
+        private void InitializeTrayIcon() {
+            TrayIcon = new TrayIcon();
+            // Tray icon itself
+            TrayIcon.NotifyIcon.BalloonTipTitle = "HunterPie";
+            TrayIcon.NotifyIcon.Text = "HunterPie";
+            TrayIcon.NotifyIcon.Icon = Properties.Resources.LOGO_HunterPie;
+            TrayIcon.NotifyIcon.Visible = true;
+            TrayIcon.NotifyIcon.MouseDoubleClick += OnTrayIconClick;
+
+            // Menu items
+            System.Windows.Forms.MenuItem ExitItem = new System.Windows.Forms.MenuItem() {
+                Text = "Close"
+            };
+            ExitItem.Click += OnTrayIconExitClick;
+            System.Windows.Forms.MenuItem SettingsItem = new System.Windows.Forms.MenuItem() {
+                Text = "Settings"
+            };
+            SettingsItem.Click += OnTrayIconSettingsClick;
+
+            TrayIcon.ContextMenu.MenuItems.AddRange(new System.Windows.Forms.MenuItem[] { SettingsItem, ExitItem });
+        }
+
+        private void OnTrayIconSettingsClick(object sender, EventArgs e) {
+            this.Show();
+            this.WindowState = WindowState.Normal;
+            this.Focus();
+            OpenSettings();
+        }
+
+        private void OnTrayIconExitClick(object sender, EventArgs e) {
+            this.Close();
+        }
+
+        private void OnTrayIconClick(object sender, EventArgs e) {
+            this.Show();
+            this.WindowState = WindowState.Normal;
+            this.Focus();
+        }
+
+        #endregion
+
+        private void LoadCustomTheme() {
+            if (!Directory.Exists(@"Themes")) { Directory.CreateDirectory(@"Themes"); }
+            if (!File.Exists($@"Themes/{UserSettings.PlayerConfig.HunterPie.Theme}")) return;
+            try {
+                using (FileStream stream = new FileStream($@"Themes/{UserSettings.PlayerConfig.HunterPie.Theme}", FileMode.Open)) {
+                    XamlReader reader = new XamlReader();
+                    ResourceDictionary ThemeDictionary = (ResourceDictionary)reader.LoadAsync(stream);
+                    Application.Current.Resources.MergedDictionaries.Add(ThemeDictionary);
+                }
+            } catch {
+                Debugger.Error("Failed to load custom theme");
+            }
+        }
+
+        private void ExceptionLogger(object sender, UnhandledExceptionEventArgs e) {
+            File.WriteAllText("crashes.txt", e.ExceptionObject.ToString());
         }
 
         private void StartEverything() {
@@ -407,7 +422,7 @@ namespace HunterPie {
             ButtonBorder.SetValue(BorderThicknessProperty, new Thickness(0, 0, 0, 0));
         }
 
-        /* Events */
+        #region WINDOW EVENTS
 
         private void OnCloseWindowButtonClick(object sender, MouseButtonEventArgs e) {
             // X button function;
@@ -499,5 +514,7 @@ namespace HunterPie {
         private void OnDiscordButtonClick(object sender, MouseButtonEventArgs e) {
             System.Diagnostics.Process.Start("https://discord.gg/5pdDq4Q");
         }
+        #endregion
+
     }
 }

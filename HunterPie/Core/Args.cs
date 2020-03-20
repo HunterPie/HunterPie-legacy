@@ -107,7 +107,7 @@ namespace HunterPie.Core {
         public string Crown;
         public float CurrentHP;
         public float TotalHP;
-        public bool isTarget;
+        public bool IsTarget;
         public Dictionary<string, int> Weaknesses;
 
         public MonsterSpawnEventArgs(Monster m) {
@@ -116,7 +116,7 @@ namespace HunterPie.Core {
             this.Crown = m.Crown;
             this.CurrentHP = m.CurrentHP;
             this.TotalHP = m.TotalHP;
-            this.isTarget = m.isTarget;
+            this.IsTarget = m.IsTarget;
             this.Weaknesses = m.Weaknesses;
         }
     }

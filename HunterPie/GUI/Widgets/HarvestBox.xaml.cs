@@ -48,7 +48,7 @@ namespace HunterPie.GUI.Widgets {
             if (UserSettings.PlayerConfig.Overlay.HarvestBoxComponent.AlwaysShow) {
                 ShowEverywhere = true;
             } else {
-                if (PlayerContext != null && PlayerContext.inHarvestZone) { ShowEverywhere = true; } else { ShowEverywhere = false; }
+                if (PlayerContext != null && PlayerContext.InHarvestZone) { ShowEverywhere = true; } else { ShowEverywhere = false; }
             }
             Dispatcher.BeginInvoke(System.Windows.Threading.DispatcherPriority.Background, new Action(() => {
                 this.Top = UserSettings.PlayerConfig.Overlay.HarvestBoxComponent.Position[1] + UserSettings.PlayerConfig.Overlay.Position[1];
@@ -160,7 +160,7 @@ namespace HunterPie.GUI.Widgets {
                 if (UserSettings.PlayerConfig.Overlay.HarvestBoxComponent.AlwaysShow) {
                     WidgetHasContent = true;
                 } else {
-                    if (PlayerContext.inHarvestZone) { WidgetHasContent = true; }
+                    if (PlayerContext.InHarvestZone) { WidgetHasContent = true; }
                     else { WidgetHasContent = false; }
                 }
                 ChangeVisibility();

@@ -108,7 +108,7 @@ namespace HunterPie.Core {
                 case 504:
                     return "Training";
             }
-            if (ctx.Player.inPeaceZone) return "Idle";
+            if (ctx.Player.InPeaceZone) return "Idle";
             if (ctx.HuntedMonster == null ) return "Exploring";
             else {
                 if (string.IsNullOrEmpty(ctx.HuntedMonster.Name)) return "Exploring";

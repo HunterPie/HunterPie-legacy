@@ -11,7 +11,6 @@ namespace HunterPie.GUI.Widgets.DPSMeter {
     /// Interaction logic for DPSMeter.xaml
     /// </summary>
     public partial class Meter : Widget {
-        //List<Parts.PartyMember> Players = new List<Parts.PartyMember>();
         List<Parts.PartyMember> Players = new List<Parts.PartyMember>();
         Game GameContext;
         Party Context;

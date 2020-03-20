@@ -12,11 +12,11 @@ namespace HunterPie.Core {
         public Monster ThirdMonster;
         public Monster HuntedMonster {
             get {
-                if (FirstMonster.isTarget) {
+                if (FirstMonster.IsTarget) {
                     return FirstMonster;
-                } else if (SecondMonster.isTarget) {
+                } else if (SecondMonster.IsTarget) {
                     return SecondMonster;
-                } else if (ThirdMonster.isTarget) {
+                } else if (ThirdMonster.IsTarget) {
                     return ThirdMonster;
                 } else {
                     return null;
@@ -95,7 +95,7 @@ namespace HunterPie.Core {
         }
 
         public void OnZoneChange(object source, EventArgs e) {
-            if (Player.inPeaceZone) Time = null;
+            if (Player.InPeaceZone) Time = null;
             else { Time = DateTime.UtcNow; }
             
         }

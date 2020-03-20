@@ -11,7 +11,7 @@ namespace HunterPie.Core {
         // Private vars
         private string _id;
         private float _currentHP;
-        private bool _isTarget;
+        private bool _IsTarget;
         private float _enrageTimer = 0;
         
         private Int64 MonsterAddress;
@@ -33,11 +33,12 @@ namespace HunterPie.Core {
                         // Only call this if monster is actually alive
                         this.IsAlive = true;
                         _onMonsterSpawn();
+                        CreateMonsterParts(MonsterData.GetMaxPartsByMonsterID(this.ID));
                     }
                 } else if (value == null && _id != value) {
                     _id = value;
                     this.HPPercentage = 1f;
-                    this.isTarget = false;
+                    this.IsTarget = false;
                     this.IsAlive = false;
                     _onMonsterDespawn();
                     Weaknesses.Clear();
@@ -66,11 +67,11 @@ namespace HunterPie.Core {
         }
         public Dictionary<string, int> Weaknesses { get; private set; }
         public float HPPercentage { get; private set; } = 1;
-        public bool isTarget {
-            get { return _isTarget; }
+        public bool IsTarget {
+            get { return _IsTarget; }
             set {
-                if (value != _isTarget) {
-                    _isTarget = value;
+                if (value != _IsTarget) {
+                    _IsTarget = value;
                     _onTargetted();
                 }
             }
@@ -257,10 +258,11 @@ namespace HunterPie.Core {
 
         private void GetTargetMonsterAddress() {
             Int64 TargettedMonsterAddress = Scanner.READ_MULTILEVEL_PTR(Address.BASE + Address.MONSTER_SELECTED_OFFSET, Address.Offsets.MonsterSelectedOffsets);
-            this.isTarget = TargettedMonsterAddress == this.MonsterAddress;
+            this.IsTarget = TargettedMonsterAddress == this.MonsterAddress;
         }
 
         private void CreateMonsterParts(int numberOfParts) {
+            Parts.Clear();
             for (int i = 0; i < numberOfParts; i++) {
                 Part mPart = new Part();
                 Parts.Add(mPart);
@@ -272,7 +274,6 @@ namespace HunterPie.Core {
             Int64 MonsterPartAddress = MonsterAddress + Address.Offsets.MonsterPartsOffset + Address.Offsets.FirstMonsterPartOffset;
             int nMaxParts = MonsterData.GetMaxPartsByMonsterID(this.ID);
             int nRemovableParts = MonsterData.GetMaxRemovablePartsByMonsterID(this.ID);
-            if (IsAlive && Parts.Count < nMaxParts) { CreateMonsterParts(nMaxParts); }
             byte TimesBroken;
             float Health;
             float MaxHealth;

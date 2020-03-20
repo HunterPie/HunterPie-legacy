@@ -64,14 +64,11 @@ namespace HunterPie.Properties {
         ///   Looks up a localized string similar to &lt;?xml version=&quot;1.0&quot; encoding=&quot;utf-8&quot; ?&gt;
         ///&lt;Abnormalities&gt;
         ///  &lt;HUNTINGHORN_Abnormalities&gt;
-        ///    &lt;Abnormality ID=&quot;0&quot; IsDebuff=&quot;False&quot; Offset=&quot;0x38&quot;/&gt;
-        ///    &lt;Abnormality ID=&quot;1&quot; IsDebuff=&quot;False&quot; Offset=&quot;0x3C&quot;/&gt;
-        ///    &lt;Abnormality ID=&quot;2&quot; IsDebuff=&quot;False&quot; Offset=&quot;0x40&quot;/&gt;
-        ///    &lt;Abnormality ID=&quot;3&quot; IsDebuff=&quot;False&quot; Offset=&quot;0x44&quot;/&gt;
-        ///    &lt;Abnormality ID=&quot;4&quot; IsDebuff=&quot;False&quot; Offset=&quot;0x48&quot;/&gt;
-        ///    &lt;Abnormality ID=&quot;5&quot; IsDebuff=&quot;False&quot; Offset=&quot;0x4C&quot;/&gt;
-        ///    &lt;Abnormality ID=&quot;6&quot; IsDebuff=&quot;False&quot; Offset=&quot;0x50&quot;/&gt;
-        ///    &lt;Abnormality  [rest of string was truncated]&quot;;.
+        ///    &lt;Abnormality ID=&quot;0&quot; IsDebuff=&quot;False&quot; Offset=&quot;38&quot; Icon=&quot;ICON_SELFIMPROVEMENT&quot; Stack=&quot;0&quot;/&gt;
+        ///    &lt;Abnormality ID=&quot;999&quot; IsDebuff=&quot;False&quot; Offset=&quot;38&quot; Icon=&quot;ICON_ATTACKUP&quot; Stack=&quot;1&quot;/&gt;
+        ///    &lt;Abnormality ID=&quot;1&quot; IsDebuff=&quot;False&quot; Offset=&quot;3C&quot; Icon=&quot;ICON_ATTACKUP&quot; Stack=&quot;0&quot;/&gt;
+        ///    &lt;Abnormality ID=&quot;2&quot; IsDebuff=&quot;False&quot; Offset=&quot;40&quot; Icon=&quot;ICON_ATTACKUP&quot; Stack=&quot;0&quot;/&gt;
+        ///    &lt;Abnormality ID=&quot;3&quot; IsDebuff=&quot;False&quot; Offset=&quot;44&quot; Icon=&quot;ICON_HE [rest of string was truncated]&quot;;.
         /// </summary>
         internal static string AbnormalityData {
             get {
@@ -98,15 +95,11 @@ namespace HunterPie.Properties {
         ///      &lt;Weakness ID=&quot;ELEMENT_THUNDER&quot; Stars=&quot;2&quot;/&gt;
         ///    &lt;/Weaknesses&gt;
         ///    &lt;Crown Mini=&quot;90&quot; Silver=&quot;115&quot; Gold=&quot;123&quot;/&gt;
-        ///  &lt;/Monster&gt;
-        ///  &lt;Monster ID=&quot;em001_01&quot;&gt;
-        ///    &lt;Weaknesses&gt;
-        ///      &lt;Weakness ID=&quot;ELEMENT_DRAGON&quot; Stars=&quot;3&quot;/&gt;
-        ///      &lt;Weakness ID=&quot;ELEMENT_THUNDER&quot; Stars=&quot;2&quot;/&gt;
-        ///    &lt;/Weaknesses&gt;
-        ///    &lt;Crown Mini=&quot;90&quot; Silver=&quot;115&quot; Gold=&quot;123&quot;/&gt;
-        ///  &lt;/Monster&gt;
-        ///  &lt;Monste [rest of string was truncated]&quot;;.
+        ///    &lt;Parts Max=&quot;8&quot;&gt;
+        ///      &lt;Part Name=&quot;MONSTER_PART_REMOVABLE_TAIL&quot; IsRemovable=&quot;True&quot;/&gt;
+        ///      &lt;Part Name=&quot;MONSTER_PART_HEAD&quot; IsRemovable=&quot;False&quot;/&gt;
+        ///      &lt;Part Name=&quot;MONSTER_PART_BODY&quot; IsRemovable=&quot;False&quot;/&gt;
+        ///      &lt;Part Name=&quot;MONSTER_PART_LWING&quot;  [rest of string was truncated]&quot;;.
         /// </summary>
         internal static string MonsterData {
             get {

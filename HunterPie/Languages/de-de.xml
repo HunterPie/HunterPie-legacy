@@ -1,0 +1,288 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<Strings lang="Deutsch">
+  <Monsters>
+    <Monster ID="em001_00" Name="Rathian"/>
+    <Monster ID="em001_01" Name="Rosa Rathian"/>
+    <Monster ID="em001_02" Name="Goldene Rathian"/>
+    <Monster ID="em002_00" Name="Rathalos"/>
+    <Monster ID="em002_01" Name="Azurner Rathalos"/>
+    <Monster ID="em002_02" Name="Silberner Rathalos"/>
+    <Monster ID="em007_00" Name="Diablos"/>
+    <Monster ID="em007_01" Name="Schwarze Diablos"/>
+    <Monster ID="em011_00" Name="Kirin"/>
+    <Monster ID="em018_00" Name="Yian Garuga"/>
+    <Monster ID="em018_05" Name="Wundmal-Yian-Garuga"/>
+    <Monster ID="em023_00" Name="Rajang"/>
+    <Monster ID="em024_00" Name="Kushala Daora"/>
+    <Monster ID="em026_00" Name="Lunastra"/>
+    <Monster ID="em027_00" Name="Teostra"/>
+    <Monster ID="em032_00" Name="Tigrex"/>
+    <Monster ID="em032_01" Name="Brachial-Tigrex"/>
+    <Monster ID="em036_00" Name="Lavasioth"/>
+    <Monster ID="em037_00" Name="Nargacuga"/>
+    <Monster ID="em042_00" Name="Barioth"/>
+    <Monster ID="em043_00" Name="Dämonjho"/>
+    <Monster ID="em043_05" Name="Wilder Dämonjho"/>
+    <Monster ID="em044_00" Name="Barroth"/>
+    <Monster ID="em045_00" Name="Uragaan"/>
+    <Monster ID="em057_00" Name="Zinogre"/>
+    <Monster ID="em057_01" Name="Höllen-Zinogre"/>
+    <Monster ID="em063_00" Name="Brachydios"/>
+    <Monster ID="em080_00" Name="Glavenus"/>
+    <Monster ID="em080_01" Name="Säure-Glavenus"/>
+    <Monster ID="em100_00" Name="Anjanath"/>
+    <Monster ID="em100_01" Name="Fulgur-Anjanath"/>
+    <Monster ID="em101_00" Name="Groß-Jagras"/>
+    <Monster ID="em102_00" Name="Pukei-Pukei"/>
+    <Monster ID="em102_01" Name="Korallen-Pukei-Pukei"/>
+    <Monster ID="em103_00" Name="Nergigante"/>
+    <Monster ID="em103_05" Name="Ruinen-Nergigante"/>
+    <Monster ID="em104_00" Name="Safi'jiiva"/>
+    <Monster ID="em105_00" Name="Xeno'jiiva"/>
+    <Monster ID="em106_00" Name="Zorah Magdaros"/>
+    <Monster ID="em107_00" Name="Kulu-Ya-Ku"/>
+    <Monster ID="em108_00" Name="Jyuratodus"/>
+    <Monster ID="em109_00" Name="Tobi-Kadachi"/>
+    <Monster ID="em109_01" Name="Viper-Tobi-Kadachi"/>
+    <Monster ID="em110_00" Name="Paolumu"/>
+    <Monster ID="em110_01" Name="Nachtschatten-Paolumu"/>
+    <Monster ID="em111_00" Name="Legiana"/>
+    <Monster ID="em111_05" Name="Schneesturm-Legiana"/>
+    <Monster ID="em112_00" Name="Groß-Girros"/>
+    <Monster ID="em113_00" Name="Odogaron"/>
+    <Monster ID="em113_01" Name="Vulkan-Odogaron"/>
+    <Monster ID="em114_00" Name="Radobaan"/>
+    <Monster ID="em115_00" Name="Vaal Hazak"/>
+    <Monster ID="em115_05" Name="Velum-Vaal-Hazak"/>
+    <Monster ID="em116_00" Name="Dodogama"/>
+    <Monster ID="em117_00" Name="Kulve Taroth"/>
+    <Monster ID="em118_00" Name="Bazelgeuse"/>
+    <Monster ID="em118_05" Name="Brodelnder Bazelgeuse"/>
+    <Monster ID="em120_00" Name="Tzitzi-Ya-Ku"/>
+    <Monster ID="em121_00" Name="Behemoth"/>
+    <Monster ID="em122_00" Name="Beotodus"/>
+    <Monster ID="em123_00" Name="Banbaro"/>
+    <Monster ID="em124_00" Name="Velkhana"/>
+    <Monster ID="em125_00" Name="Namielle"/>
+    <Monster ID="em126_00" Name="Shara Ishvalda"/>
+    <Monster ID="em127_00" Name="Waldschrat"/>
+    <Monster ID="em127_01" Name="Uralter Waldschrat"/>
+  </Monsters>
+  <Parts>
+    <Part ID="MONSTER_PART_HEAD" Name="Kopf"/>
+    <Part ID="MONSTER_PART_BODY" Name="Körper"/>
+    <Part ID="MONSTER_PART_LWING" Name="Linker Flügel"/>
+    <Part ID="MONSTER_PART_RWING" Name="Rechter Flügel"/>
+    <Part ID="MONSTER_PART_RLEG" Name="Rechtes Bein"/>
+    <Part ID="MONSTER_PART_LLEG" Name="Linkes Bein"/>
+    <Part ID="MONSTER_PART_TAIL" Name="Schwanz"/>
+  </Parts>
+  <Mantles>
+    <Mantle ID="-1" Name="Kein Mantel"/>
+    <Mantle ID="0" Name="Ghillie-Mantel"/>
+    <Mantle ID="1" Name="Lebensretter-Mantel"/>
+    <Mantle ID="2" Name="Gesundheit-Booster"/>
+    <Mantle ID="3" Name="Trutzmantel"/>
+    <Mantle ID="4" Name="Herausforderer-Mantel"/>
+    <Mantle ID="5" Name="Lebenskraft-Mantel"/>
+    <Mantle ID="6" Name="Feuerschutz-Mantel"/>
+    <Mantle ID="7" Name="Wasserschutz-Mantel"/>
+    <Mantle ID="8" Name="Eisschutz-Mantel"/>
+    <Mantle ID="9" Name="Donnerschutz-Mantel"/>
+    <Mantle ID="10" Name="Drachenschutz-Mantel"/>
+    <Mantle ID="11" Name="Reiniger-Booster"/>
+    <Mantle ID="12" Name="Gleiter-Mantel"/>
+    <Mantle ID="13" Name="Ausweich-Mantel"/>
+    <Mantle ID="14" Name="Aufschlag-Mantel"/>
+    <Mantle ID="15" Name="Apotheker-Mantel"/>
+    <Mantle ID="16" Name="Immunitäts-Mantel"/>
+    <Mantle ID="17" Name="Affinitäts-Booster"/>
+    <Mantle ID="18" Name="Banditen-Mantel"/>
+    <Mantle ID="19" Name="Assassinenkapuze"/>
+  </Mantles>
+  <Fertilizers>
+    <Fertilizer ID="0" Name="Leer"/>
+    <Fertilizer ID="1" Name="Pflanzenernte hoch (S)"/>
+    <Fertilizer ID="2" Name="Pflanzenernte hoch (L)"/>
+    <Fertilizer ID="3" Name="Pilzernte hoch (S)"/>
+    <Fertilizer ID="4" Name="Pilzernte hoch (L)"/>
+    <Fertilizer ID="5" Name="Käfer- /Honigernte hoch (S)"/>
+    <Fertilizer ID="6" Name="Käfer- /Honigernte hoch (L)"/>
+    <Fertilizer ID="7" Name="Wachstum hoch (S)"/>
+    <Fertilizer ID="8" Name="Wachstum hoch (L)"/>
+  </Fertilizers>
+  <Stages>
+    <Stage ID="0" Name="Hauptmenü"/>
+    <Stage ID="101" Name="Uralter Wald"/>
+    <Stage ID="102" Name="Wildturm-Ödnis"/>
+    <Stage ID="103" Name="Korallenhochland"/>
+    <Stage ID="104" Name="Tal der Verwesung"/>
+    <Stage ID="105" Name="Heimat der Ältesten"/>
+    <Stage ID="106" Name="Große Schlucht"/>
+    <Stage ID="107" Name="Große Schlucht"/>
+    <Stage ID="108" Name="Raureif-Weite"/>
+    <Stage ID="109" Name="Die Leitlande"/>
+    <Stage ID="201" Name="Spezialarena"/>
+    <Stage ID="202" Name="Arena"/>
+    <Stage ID="301" Name="Astera"/>
+    <Stage ID="302" Name="Astera Versammlungsstätte"/>
+    <Stage ID="303" Name="Forschungsbasis"/>
+    <Stage ID="305" Name="Seliana"/>
+    <Stage ID="306" Name="Seliana Versammlungsstätte"/>
+    <Stage ID="401" Name="Einführung"/>
+    <Stage ID="403" Name="Ewiger Strom"/>
+    <Stage ID="405" Name="Vereinigung der Schicksale"/>
+    <Stage ID="406" Name="Uralter Wald"/>
+    <Stage ID="409" Name="Die Eldorado-Höhlen"/>
+    <Stage ID="411" Name="Seliana-Vorratskiste"/>
+    <Stage ID="412" Name="Ursprungsinsel"/>
+    <Stage ID="413" Name="Ursprungsinsel"/>
+    <Stage ID="415" Name="Abgelegene Schlucht"/>
+    <Stage ID="501" Name="Standardraum"/>
+    <Stage ID="502" Name="Privatraum"/>
+    <Stage ID="503" Name="Luxusraum"/>
+    <Stage ID="504" Name="Trainingsbereich"/>
+    <Stage ID="505" Name="Die Kammer der Fünf"/>
+    <Stage ID="506" Name="Seliana Raum"/>
+  </Stages>
+  <Weapons>
+    <Weapon ID="0" Name="Großschwert"/>
+    <Weapon ID="1" Name="Schwert &amp; Schild"/>
+    <Weapon ID="2" Name="Doppelklingen"/>
+    <Weapon ID="3" Name="Langschwert"/>
+    <Weapon ID="4" Name="Hammer"/>
+    <Weapon ID="5" Name="Jagdhorn"/>
+    <Weapon ID="6" Name="Lanze"/>
+    <Weapon ID="7" Name="Gewehrlanze"/>
+    <Weapon ID="8" Name="Morph-Axt"/>
+    <Weapon ID="9" Name="Energieklinge"/>
+    <Weapon ID="10" Name="Insektenglefe"/>
+    <Weapon ID="11" Name="Bogen"/>
+    <Weapon ID="12" Name="Schweres Bogengewehr"/>
+    <Weapon ID="13" Name="Leichtes Bogengewehr"/>
+  </Weapons>
+  <Abnormalities>
+    <Abnormality ID="UNKNOWN_ABNORMALITY" Name="Unbekannter Buff (ID: {AbnormalityID})"/>
+    <Abnormality ID="HUNTINGHORN_000_00" Name="Selbstverbesserung"/>
+    <Abnormality ID="HUNTINGHORN_999_00" Name="Angriff hoch + Abprallende Angriffe verhindern (?)"/>
+    <Abnormality ID="HUNTINGHORN_001_00" Name="Angriff hoch (S)"/>
+    <Abnormality ID="HUNTINGHORN_001_01" Name="Angriff hoch (L)"/>
+    <Abnormality ID="HUNTINGHORN_002_00" Name="Angriff hoch (L)"/>
+    <Abnormality ID="HUNTINGHORN_002_01" Name="Angriff hoch (XL)"/>
+    <Abnormality ID="HUNTINGHORN_003_00" Name="Gesundheitsboost (S)"/>
+    <Abnormality ID="HUNTINGHORN_004_00" Name="Gesundheitsboost (L)"/>
+    <Abnormality ID="HUNTINGHORN_005_00" Name="Ausdauernutzung reduziert (S)"/>
+    <Abnormality ID="HUNTINGHORN_006_00" Name="Ausdauernutzung reduziert (L)"/>
+    <Abnormality ID="HUNTINGHORN_007_00" Name="Winddruck negiert"/>
+    <Abnormality ID="HUNTINGHORN_008_00" Name="Jeden Winddruck negiert"/>
+    <Abnormality ID="HUNTINGHORN_009_00" Name="Verteidigung hoch (S)"/>
+    <Abnormality ID="HUNTINGHORN_009_01" Name="Verteidigung hoch (L)"/>
+    <Abnormality ID="HUNTINGHORN_010_00" Name="Verteidigung hoch (L)"/>
+    <Abnormality ID="HUNTINGHORN_010_01" Name="Verteidigung hoch (XL)"/>
+    <Abnormality ID="HUNTINGHORN_011_00" Name="Werkzeugverbrauch reduziert (S)"/>
+    <Abnormality ID="HUNTINGHORN_012_00" Name="Werkzeugverbrauch reduziert (L)"/>
+    <Abnormality ID="HUNTINGHORN_018_00" Name="Erholungsgeschwindigkeit (S)"/>
+    <Abnormality ID="HUNTINGHORN_019_00" Name="Erholungsgeschwindigkeit (L)"/>
+    <Abnormality ID="HUNTINGHORN_020_00" Name="Ohrstöpsel (S)"/>
+    <Abnormality ID="HUNTINGHORN_021_00" Name="Ohrstöpsel (L)"/>
+    <Abnormality ID="HUNTINGHORN_022_00" Name="Göttlicher Schutz"/>
+    <Abnormality ID="HUNTINGHORN_023_00" Name="Spähkäfer-Kraft hoch"/>
+    <Abnormality ID="HUNTINGHORN_024_00" Name="Umgebungsschaden negiert"/>
+    <Abnormality ID="HUNTINGHORN_025_00" Name="Betäuben negiert"/>
+    <Abnormality ID="HUNTINGHORN_026_00" Name="Lähmung negiert"/>
+    <Abnormality ID="HUNTINGHORN_027_00" Name="Erschütterungen negiert"/>
+    <Abnormality ID="HUNTINGHORN_028_00" Name="Schlamm/Wasser/Schnee-Widerstand"/>
+    <Abnormality ID="HUNTINGHORN_029_00" Name="Feuerwiderstand-Boost (S)"/>
+    <Abnormality ID="HUNTINGHORN_029_01" Name="Feuerwiderstand-Boost (L)"/>
+    <Abnormality ID="HUNTINGHORN_030_00" Name="Feuerwiderstand-Boost (L)"/>
+    <Abnormality ID="HUNTINGHORN_030_01" Name="Feuerwiderstand-Boost (XL)"/>
+    <Abnormality ID="HUNTINGHORN_031_00" Name="Wasserwiderstand-Boost (S)"/>
+    <Abnormality ID="HUNTINGHORN_031_01" Name="Wasserwiderstand-Boost (L)"/>
+    <Abnormality ID="HUNTINGHORN_032_00" Name="Wasserwiderstand-Boost (L)"/>
+    <Abnormality ID="HUNTINGHORN_032_01" Name="Wasserwiderstand-Boost (XL)"/>
+    <Abnormality ID="HUNTINGHORN_033_00" Name="Donnerwiderstand-Boost (S)"/>
+    <Abnormality ID="HUNTINGHORN_033_01" Name="Donnerwiderstand-Boost (L)"/>
+    <Abnormality ID="HUNTINGHORN_034_00" Name="Donnerwiderstand-Boost (L)"/>
+    <Abnormality ID="HUNTINGHORN_034_01" Name="Donnerwiderstand-Boost (XL)"/>
+    <Abnormality ID="HUNTINGHORN_035_00" Name="Eiswiderstand-Boost (S)"/>
+    <Abnormality ID="HUNTINGHORN_035_01" Name="Eiswiderstand-Boost (L)"/>
+    <Abnormality ID="HUNTINGHORN_036_00" Name="Eiswiderstand-Boost (L)"/>
+    <Abnormality ID="HUNTINGHORN_036_01" Name="Eiswiderstand-Boost (XL)"/>
+    <Abnormality ID="HUNTINGHORN_037_00" Name="Drachenwiderstand-Boost (S)"/>
+    <Abnormality ID="HUNTINGHORN_037_01" Name="Drachenwiderstand-Boost (L)"/>
+    <Abnormality ID="HUNTINGHORN_038_00" Name="Drachenwiderstand-Boost (L)"/>
+    <Abnormality ID="HUNTINGHORN_038_01" Name="Drachenwiderstand-Boost (XL)"/>
+    <Abnormality ID="HUNTINGHORN_039_00" Name="Elementangriff-Boost"/>
+    <Abnormality ID="HUNTINGHORN_040_00" Name="Pest negiert"/>
+    <Abnormality ID="HUNTINGHORN_041_00" Name="Unbekannter Buff"/>
+    <Abnormality ID="HUNTINGHORN_043_00" Name="Rückschläge negiert"/>
+    <Abnormality ID="HUNTINGHORN_045_00" Name="Pestwiderstand hoch"/>
+    <Abnormality ID="HUNTINGHORN_046_00" Name="Affinität hoch (S)"/>
+    <Abnormality ID="HUNTINGHORN_047_00" Name="Alle anorm. Status negiert"/>
+    <Abnormality ID="HUNTINGHORN_048_00" Name="Ohrstöpsel (S) / Winddruck negiert (?)"/>
+    <Abnormality ID="HUNTINGHORN_049_00" Name="Anormaler Statusangriff verbessert"/>
+    <Abnormality ID="HUNTINGHORN_053_00" Name="Max. Ausdauer hoch + Erholung"/>
+    <Abnormality ID="HUNTINGHORN_054_00" Name="Verbesserte Gesundheitserholung"/>
+    <Abnormality ID="HUNTINGHORN_055_00" Name="Geschw-Boost + Unverwundbarkeit hoch"/>
+    <Abnormality ID="HUNTINGHORN_056_00" Name="Elementeffektivität hoch (?)"/>
+    <Abnormality ID="HUNTINGHORN_943_00" Name="Elementeffektivität hoch (?)"/>
+    <Abnormality ID="PALICO_000_00" Name="Wiederbelebung"/>
+    <Abnormality ID="PALICO_001_00" Name="Angriff hoch (S)"/>
+    <Abnormality ID="PALICO_002_00" Name="Angriff hoch (L)"/>
+    <Abnormality ID="PALICO_003_00" Name="Verteidigung hoch (S)"/>
+    <Abnormality ID="PALICO_004_00" Name="Verteidigung hoch (L)"/>
+    <Abnormality ID="PALICO_005_00" Name="Affinität hoch"/>
+    <Abnormality ID="PALICO_006_00" Name="Erholungsgeschwindigkeit"/>
+    <Abnormality ID="PALICO_007_00" Name="Gesundheitsboost"/>
+    <Abnormality ID="PALICO_008_00" Name="Ausdauernutzung reduziert"/>
+    <Abnormality ID="PALICO_009_00" Name="Unbekannter Buff"/>
+    <Abnormality ID="PALICO_010_00" Name="Göttlicher Schutz"/>
+    <Abnormality ID="PALICO_011_00" Name="Göttlicher Schutz"/>
+    <Abnormality ID="PALICO_012_00" Name="Betäuben negiert"/>
+    <Abnormality ID="PALICO_013_00" Name="Lähmung negiert"/>
+    <Abnormality ID="PALICO_014_00" Name="Erschütterungen negiert"/>
+    <Abnormality ID="PALICO_015_00" Name="Ohrstöpsel"/>
+    <Abnormality ID="PALICO_016_00" Name="Windsicher"/>
+    <Abnormality ID="PALICO_017_00" Name="Umgebungsschaden negiert"/>
+    <Abnormality ID="PALICO_018_00" Name="Unbekannt"/>
+    <Abnormality ID="DEBUFF_000_00" Name="Gift"/>
+    <Abnormality ID="DEBUFF_001_00" Name="Starkes Gift (?)"/>
+    <Abnormality ID="DEBUFF_002_00" Name="Unbekannt"/>
+    <Abnormality ID="DEBUFF_003_00" Name="Unbekannt"/>
+    <Abnormality ID="DEBUFF_004_00" Name="Feuerpest"/>
+    <Abnormality ID="DEBUFF_005_00" Name="Donnerpest"/>
+    <Abnormality ID="DEBUFF_006_00" Name="Wasserpest"/>
+    <Abnormality ID="DEBUFF_007_00" Name="Eispest"/>
+    <Abnormality ID="DEBUFF_008_00" Name="Drachenpest"/>
+    <Abnormality ID="DEBUFF_009_00" Name="Blutung"/>
+    <Abnormality ID="DEBUFF_010_00" Name="Blutung-Wiederherstellung (?)"/>
+    <Abnormality ID="DEBUFF_011_00" Name="Miasma-Ansammmlung"/>
+    <Abnormality ID="DEBUFF_012_00" Name="Verteidigung runter (?)"/>
+    <Abnormality ID="DEBUFF_014_00" Name="Elementarresistenz runter (?)"/>
+    <Abnormality ID="DEBUFF_016_00" Name="Keine Items (?)"/>
+    <Abnormality ID="DEBUFF_017_00" Name="Explosionspest"/>
+    <Abnormality ID="DEBUFF_020_00" Name="Explosionsgeißel"/>
+    <Abnormality ID="MISC_000_00" Name="Sprintsaft"/>
+    <Abnormality ID="MISC_001_00" Name="Ausdauer-Insektenlarven"/>
+    <Abnormality ID="MISC_002_00" Name="Astera-Jerky"/>
+    <Abnormality ID="MISC_004_00" Name="Machtsamen"/>
+    <Abnormality ID="MISC_004_01" Name="Machtpille"/>
+    <Abnormality ID="MISC_008_00" Name="Diamantsamen"/>
+    <Abnormality ID="MISC_008_01" Name="Diamantpille"/>
+    <Abnormality ID="MISC_013_00" Name="Dämonenpulver"/>
+    <Abnormality ID="MISC_014_00" Name="Harthülsenpulver"/>
+    <Abnormality ID="MISC_015_00" Name="Dämonenmittel"/>
+    <Abnormality ID="MISC_015_01" Name="Dämonenmittel"/>
+    <Abnormality ID="MISC_015_02" Name="Mega-Dämonenmittel"/>
+    <Abnormality ID="MISC_016_00" Name="Panzerhaut"/>
+    <Abnormality ID="MISC_016_01" Name="Panzerhaut"/>
+    <Abnormality ID="MISC_016_02" Name="Mega-Panzerhaut"/>
+    <Abnormality ID="MISC_023_00" Name="Kaltgetränk"/>
+    <Abnormality ID="MISC_024_00" Name="Heißgetränk"/>
+    <Abnormality ID="MISC_026_00" Name="HP Regen"/>
+    <Abnormality ID="MISC_027_00" Name="Schmelzbausch"/>
+    <Abnormality ID="MISC_034_00" Name="Kraftzapfen"/>
+    <Abnormality ID="MISC_035_00" Name="Eiswiderstand-Boost (L) (?)"/>
+    <Abnormality ID="MISC_073_00" Name="Angriff und Verteidigung hoch (S) (?)"/>
+  </Abnormalities>
+</Strings>
