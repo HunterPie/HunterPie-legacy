@@ -127,9 +127,11 @@ namespace HunterPie.GUI.Widgets {
         }
 
         private void OnEnrageTimerUpdate(object source, MonsterUpdateEventArgs args) {
+            if (Context == null) return;
+            int EnrageTimer = (int)Context.EnrageTimerStatic - (int)Context.EnrageTimer;
             Dispatch(() => {
-                this.EnrageTimerText.Visibility = args.Enrage > 0 ? Visibility.Visible : Visibility.Hidden;
-                this.EnrageTimerText.Text = $"{Context.EnrageTimerStatic - Context.EnrageTimer:0}";
+                this.EnrageTimerText.Visibility = EnrageTimer > 0 ? Visibility.Visible : Visibility.Hidden;
+                this.EnrageTimerText.Text = $"{EnrageTimer}";
             });
         }
 
@@ -145,6 +147,10 @@ namespace HunterPie.GUI.Widgets {
                 this.MonsterCrown.Visibility = Visibility.Collapsed;
                 this.Visibility = Visibility.Collapsed;
                 this.Weaknesses.Children.Clear();
+                foreach (Monster_Widget.Parts.MonsterPart Part in MonsterPartsContainer.Children) {
+                    //Part.UnhookEvents();
+                }
+                MonsterPartsContainer.Children.Clear();
             });
         }
 
@@ -159,6 +165,14 @@ namespace HunterPie.GUI.Widgets {
                 SetMonsterHealthBarText(args.CurrentHP, args.TotalHP);
 
                 SwitchSizeBasedOnTarget();
+
+                // Parts
+                this.MonsterPartsContainer.Children.Clear();
+                foreach (Part mPart in Context.Parts) {
+                    Monster_Widget.Parts.MonsterPart PartDisplay = new Monster_Widget.Parts.MonsterPart();
+                    PartDisplay.SetContext(mPart, this.MonsterPartsContainer.ItemWidth);
+                    this.MonsterPartsContainer.Children.Add(PartDisplay);
+                }
 
                 // Set monster crown
                 this.MonsterCrown.Source = args.Crown == null ? null : (ImageSource)FindResource(args.Crown);

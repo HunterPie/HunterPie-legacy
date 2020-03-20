@@ -6,26 +6,19 @@
     <!-- Monster Widget (Main bar) -->
     
     <LinearGradientBrush x:Key="OVERLAY_MONSTER_HEALTH_BAR_COLOR" EndPoint="1,0" StartPoint="0,0">
-        <GradientStop Color="#FFD6D6D6" Offset="1"/>
-        <GradientStop Color="#FFB9B9B9"/>
+        <GradientStop Color="#FFEAEAEA" Offset="1"/>
+        <GradientStop Color="#FFD4D4D4"/>
     </LinearGradientBrush>
 
     <Style x:Key="OVERLAY_MONSTER_BAR_TEXT_STYLE" TargetType="TextBlock">
-        <Setter Property="Foreground">
-            <Setter.Value>
-                <LinearGradientBrush EndPoint="1,0" StartPoint="0,0">
-                    <GradientStop Color="#FFF3F3F3" Offset="1"/>
-                    <GradientStop Color="#FFEEEEEE"/>
-                </LinearGradientBrush>
-            </Setter.Value>
-        </Setter>
+        <Setter Property="Foreground" Value="#FFB8B8B8"/>
         <Setter Property="FontSize" Value="12"/>
-        <Setter Property="FontWeight" Value="ExtraBold"/>
+        <Setter Property="FontWeight" Value="Light"/>
         <Setter Property="Margin" Value="45,18,38,30"/>
         <Setter Property="Padding" Value="0,0.75,0,0"/>
         <Setter Property="Effect">
             <Setter.Value>
-                <DropShadowEffect BlurRadius="0" ShadowDepth="2" Color="#FF232323"/>
+                <DropShadowEffect BlurRadius="0" ShadowDepth="1" Color="#FF171717"/>
             </Setter.Value>
         </Setter>
     </Style>

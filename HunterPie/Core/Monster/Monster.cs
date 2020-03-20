@@ -271,25 +271,64 @@ namespace HunterPie.Core {
             if (!this.IsAlive) return;
             Int64 MonsterPartAddress = MonsterAddress + Address.Offsets.MonsterPartsOffset + Address.Offsets.FirstMonsterPartOffset;
             int nMaxParts = MonsterData.GetMaxPartsByMonsterID(this.ID);
-            if (Parts.Count < nMaxParts) { CreateMonsterParts(nMaxParts); }
+            int nRemovableParts = MonsterData.GetMaxRemovablePartsByMonsterID(this.ID);
+            if (IsAlive && Parts.Count < nMaxParts) { CreateMonsterParts(nMaxParts); }
             byte TimesBroken;
             float Health;
             float MaxHealth;
-            int NumberOfRemovableParts = 0;
+            Int64 RemovablePartAddress = MonsterAddress + Address.Offsets.RemovablePartsOffset;
             for (int PartID = 0; PartID < nMaxParts; PartID++) {
                 if (MonsterData.IsPartRemovable(ID, PartID)) {
-                    NumberOfRemovableParts++;
+                    
+                    if (Parts[PartID].PartAddress > 0) {
+
+                        TimesBroken = Scanner.READ_BYTE(Parts[PartID].PartAddress + 0x18);
+                        MaxHealth = Scanner.READ_FLOAT(Parts[PartID].PartAddress + 0x10);
+                        Health = Scanner.READ_FLOAT(Parts[PartID].PartAddress + 0x0C);
+
+                        Parts[PartID].SetPartInfo(this.ID, PartID, TimesBroken, MaxHealth, Health);
+                    } else {
+                        for (int RemovablePartIndex = 0; RemovablePartIndex < 32; RemovablePartIndex++) {
+                            if (Scanner.READ_INT(RemovablePartAddress) <= 10) {
+                                RemovablePartAddress += 8;
+                            }
+
+                            bool IsAValidPart = Scanner.READ_INT(RemovablePartAddress + 0x6C) < nRemovableParts;
+
+                            if (IsAValidPart && Scanner.READ_INT(RemovablePartAddress + 0x0C) > 0) {
+                                TimesBroken = Scanner.READ_BYTE(RemovablePartAddress + 0x18);
+                                MaxHealth = Scanner.READ_FLOAT(RemovablePartAddress + 0x10);
+                                Health = Scanner.READ_FLOAT(RemovablePartAddress + 0x0C);
+
+                                Parts[PartID].SetPartInfo(this.ID, PartID, TimesBroken, MaxHealth, Health);
+                                Parts[PartID].PartAddress = RemovablePartAddress;
+
+                                // Nergigante has the same values twice in a row, so we skip it to get 
+                                // the removable tail values
+                                if (Scanner.READ_FLOAT(RemovablePartAddress + 0x78 + 0x10) == MaxHealth && Scanner.READ_INT(RemovablePartAddress + 0x78 + 0x8) == Scanner.READ_INT(RemovablePartAddress+ 0x8)) {
+                                    RemovablePartAddress += Address.Offsets.NextRemovablePart;
+                                }
+
+                                RemovablePartAddress += Address.Offsets.NextRemovablePart;
+                                break;
+                            }
+
+                            RemovablePartAddress += Address.Offsets.NextRemovablePart;
+                            continue;
+                        }
+                    }
                     continue;
                 }
+
                 TimesBroken = Scanner.READ_BYTE(MonsterPartAddress + Address.Offsets.MonsterPartBrokenCounterOffset);
-                MaxHealth = Scanner.READ_FLOAT(MonsterPartAddress + 0x4); 
-                Health = Scanner.READ_FLOAT(MonsterPartAddress); // Current health is 4 bytes ahead
+                MaxHealth = Scanner.READ_FLOAT(MonsterPartAddress + 0x4); // Total health is 4 bytes ahead
+                Health = Scanner.READ_FLOAT(MonsterPartAddress); 
 
                 Parts[PartID].SetPartInfo(this.ID, PartID, TimesBroken, MaxHealth, Health);
                 MonsterPartAddress += Address.Offsets.NextMonsterPartOffset;
                 
             }
         }
-
+        
     }
 }

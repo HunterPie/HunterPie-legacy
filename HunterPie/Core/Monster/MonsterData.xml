@@ -937,19 +937,19 @@
       <Part Name="MONSTER_PART_HORNS" IsRemovable="False"/>
       <Part Name="MONSTER_PART_CHEST" IsRemovable="False"/>
       <Part Name="MONSTER_PART_BODY" IsRemovable="False"/>
-      <Part Name="MONSTER_PART_LIMBS_LEFT" IsRemovable="False"/>
-      <Part Name="MONSTER_PART_LIMBS_RIGHT" IsRemovable="False"/>
+      <Part Name="MONSTER_PART_LLIMBS" IsRemovable="False"/>
+      <Part Name="MONSTER_PART_RLIMBS" IsRemovable="False"/>
       <Part Name="MONSTER_PART_TAIL" IsRemovable="False"/>
       <Part Name="MONSTER_PART_HORNS_GOLD" IsRemovable="False"/>
       <Part Name="MONSTER_PART_MANE_GOLD" IsRemovable="False"/>
-      <Part Name="MONSTER_PART_CHEST_LEFT_GOLD" IsRemovable="False"/>
-      <Part Name="MONSTER_PART_CHEST_RIGHT_GOLD" IsRemovable="False"/>
-      <Part Name="MONSTER_PART_ARM_LEFT_GOLD" IsRemovable="False"/>
-      <Part Name="MONSTER_PART_ARM_RIGHT_GOLD" IsRemovable="False"/>
+      <Part Name="MONSTER_PART_LCHEST_GOLD" IsRemovable="False"/>
+      <Part Name="MONSTER_PART_RCHEST_GOLD" IsRemovable="False"/>
+      <Part Name="MONSTER_PART_LARM_GOLD" IsRemovable="False"/>
+      <Part Name="MONSTER_PART_RARM_GOLD" IsRemovable="False"/>
       <Part Name="MONSTER_PART_LLEG_GOLD" IsRemovable="False"/>
       <Part Name="MONSTER_PART_RLEG_GOLD" IsRemovable="False"/>
-      <Part Name="MONSTER_PART_TAIL_LEFT_GOLD" IsRemovable="False"/>
-      <Part Name="MONSTER_PART_TAIL_RIGHT_GOLD" IsRemovable="False"/>
+      <Part Name="MONSTER_PART_LTAIL_GOLD" IsRemovable="False"/>
+      <Part Name="MONSTER_PART_RTAIL_GOLD" IsRemovable="False"/>
     </Parts>
   </Monster>
   <Monster ID="em118_00">

@@ -69,7 +69,7 @@
     <Monster ID="em127_01" Name="Ancient Leshen"/>
   </Monsters>
   <Parts>
-    <Part ID="MONSTER_PART_UNKNOWN" Name="Unknown part"/>
+    <Part ID="MONSTER_PART_UNKNOWN" Name="Unknown Part"/>
     <Part ID="MONSTER_PART_HEAD" Name="Head"/>
     <Part ID="MONSTER_PART_BODY" Name="Body"/>
     <Part ID="MONSTER_PART_LWING" Name="Left Wing"/>
@@ -145,9 +145,9 @@
     <Part ID="MONSTER_PART_LARM_ROCK" Name="Rocky Left Arm"/>
     <Part ID="MONSTER_PART_RARM_ROCK" Name="Rocky Right Arm"/>
     <Part ID="MONSTER_PART_LEGS_ROCK" Name="Rocky Legs"/>
-    <Part ID="MONSTER_JAGRAS_SUMMONER" Name=""/>
+    <Part ID="MONSTER_JAGRAS_SUMMONER" Name="Jagras Summoner"/>
     <!-- Removable parts -->
-    <Part ID="MONSTER_PART_REMOVABLE_TAIL" Name="Removable tail"/>
+    <Part ID="MONSTER_PART_REMOVABLE_TAIL" Name="Removable Tail"/>
     <Part ID="MONSTER_PART_REMOVABLE_HORNS" Name="Removable Horns"/>
     <Part ID="MONSTER_PART_REMOVABLE_HEAD" Name="Removable Head"/>
     <Part ID="MONSTER_PART_REMOVABLE_BALLOON" Name="Removable Balloon"/>
@@ -215,6 +215,7 @@
     <Stage ID="411" Name="Seliana Supply Cache"/>
     <Stage ID="412" Name="Origin Isle"/>
     <Stage ID="413" Name="Origin Isle"/>
+    <Stage ID="415" Name="Secluded Valley"/>
     <Stage ID="501" Name="Living Quarters"/>
     <Stage ID="502" Name="Private Quarters"/>
     <Stage ID="503" Name="Private Suite"/>

@@ -10,6 +10,7 @@ namespace HunterPie.Core {
         private float _TotalHealth { get; set; }
         private byte _BrokenCounter { get; set; }
         private string MonsterID { get; set; }
+        public Int64 PartAddress { get; set; } // So we don't need to re-scan the address everytime
         
 
         public int ID { get; set; } // Part index

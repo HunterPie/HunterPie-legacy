@@ -2,6 +2,7 @@
 using HunterPie.Logger;
 using System.Xml;
 using System.Collections.Generic;
+using System.Linq;
 
 namespace HunterPie.Core {
     class MonsterData {
@@ -46,6 +47,13 @@ namespace HunterPie.Core {
             if (MonsterParts == null) return 0;
             int nParts = int.Parse(MonsterParts.Attributes["Max"].Value);
             return nParts;
+        }
+
+        static public int GetMaxRemovablePartsByMonsterID(string ID) {
+            XmlNodeList MonsterRemovableParts = MonsterDataDocument.SelectNodes($"//Monsters/Monster[@ID='{ID}']/Parts/Part[@IsRemovable='True']");
+            if (MonsterRemovableParts == null) return 0;
+            int nRemovableParts = MonsterRemovableParts.Count;
+            return nRemovableParts;
         }
 
         static public bool IsPartRemovable(string MonsterID, int PartIndex) {

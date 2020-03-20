@@ -122,8 +122,6 @@ namespace HunterPie.GUI.Widgets {
 
         public void ScaleWidget(double NewScaleX, double NewScaleY) {
             if (NewScaleX <= 0.2) return;
-            Width = BaseWidth * NewScaleX;
-            Height = BaseHeight * NewScaleY;
             this.Container.LayoutTransform = new ScaleTransform(NewScaleX, NewScaleY);
             this.DefaultScaleX = NewScaleX;
             this.DefaultScaleY = NewScaleY;
