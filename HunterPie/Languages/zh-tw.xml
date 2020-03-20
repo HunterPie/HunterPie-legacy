@@ -1,4 +1,5 @@
-﻿<?xml version="1.0" encoding="utf-8" ?><!--for 1.0.3.7-->
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<!--for 1.0.3.71-->
 <Strings lang="Traditional Chinese">
   <Monsters>
     <Monster ID="em001_00" Name="雌火龍"/>
@@ -69,13 +70,91 @@
     <Monster ID="em127_01" Name="古代鹿首精"/>
   </Monsters>
   <Parts>
+    <Part ID="MONSTER_PART_UNKNOWN" Name="未知部位"/>
     <Part ID="MONSTER_PART_HEAD" Name="頭部"/>
     <Part ID="MONSTER_PART_BODY" Name="身體"/>
-    <Part ID="MONSTER_PART_LWING" Name="左翼"/>
-    <Part ID="MONSTER_PART_RWING" Name="右翼"/>
-    <Part ID="MONSTER_PART_RLEG" Name="右腳"/>
+    <Part ID="MONSTER_PART_LWING" Name="左翅"/>
+    <Part ID="MONSTER_PART_RWING" Name="右翅"/>
     <Part ID="MONSTER_PART_LLEG" Name="左腳"/>
+    <Part ID="MONSTER_PART_RLEG" Name="右腳"/>
     <Part ID="MONSTER_PART_TAIL" Name="尾巴"/>
+    <Part ID="MONSTER_PART_ARMS" Name="前腳"/>
+    <Part ID="MONSTER_PART_LEGS" Name="後腳"/>
+    <Part ID="MONSTER_PART_LARM" Name="左前腳"/>
+    <Part ID="MONSTER_PART_RARM" Name="右前腳"/>
+    <Part ID="MONSTER_PART_LLIMBS" Name="左肢"/>
+    <Part ID="MONSTER_PART_RLIMBS" Name="右肢"/>
+    <Part ID="MONSTER_PART_WINGS" Name="翅膀"/>
+    <Part ID="MONSTER_PART_LIMBS" Name="四肢"/>
+    <Part ID="MONSTER_PART_ABDOMEN" Name="腹部"/>
+    <Part ID="MONSTER_PART_CHEST" Name="胸部"/>
+    <Part ID="MONSTER_PART_REAR" Name="背部"/>
+    <Part ID="MONSTER_PART_HEAD_MUD" Name="泥濘的頭"/>
+    <Part ID="MONSTER_PART_BODY_MUD" Name="泥濘的身體"/>
+    <Part ID="MONSTER_PART_ARMS_MUD" Name="泥濘的前腳"/>
+    <Part ID="MONSTER_PART_LLEG_MUD" Name="泥濘的左後腳"/>
+    <Part ID="MONSTER_PART_RLEG_MUD" Name="泥濘的右後腳"/>
+    <Part ID="MONSTER_PART_TAIL_MUD" Name="泥濘的尾巴"/>
+    <Part ID="MONSTER_PART_JAW" Name="顎"/>
+    <Part ID="MONSTER_PART_BACK" Name="背部"/>
+    <Part ID="MONSTER_PART_FIN" Name="鰭"/>
+    <Part ID="MONSTER_PART_HORNS" Name="角"/>
+    <Part ID="MONSTER_PART_NECK" Name="脖子"/>
+    <Part ID="MONSTER_PART_LHAND" Name="左手"/>
+    <Part ID="MONSTER_PART_RHAND" Name="右手"/>
+    <Part ID="MONSTER_PART_LFOOT" Name="左腳"/>
+    <Part ID="MONSTER_PART_RFOOT" Name="右腳"/>
+    <Part ID="MONSTER_PART_SHELL" Name="外殼"/>
+    <Part ID="MONSTER_PART_EXHAUST_ORGAN_CENTRAL" Name="中央排氣器官"/>
+    <Part ID="MONSTER_PART_EXHAUST_ORGAN_HEAD" Name="頭部排氣器官"/>
+    <Part ID="MONSTER_PART_EXHAUST_ORGAN_CRATER" Name="火山口排氣器官"/>
+    <Part ID="MONSTER_PART_EXHAUST_ORGAN_REAR" Name="背部排氣器官"/>
+    <Part ID="MONSTER_PART_WEAK_LSHELL" Name="左弱殼"/>
+    <Part ID="MONSTER_PART_WEAK_RSHELL" Name="右弱殼"/>
+    <Part ID="MONSTER_PART_ROCK" Name="石塊"/>
+    <Part ID="MONSTER_PART_MANE" Name="鬃毛"/>
+    <Part ID="MONSTER_PART_BALLOON" Name="氣囊"/>
+    <Part ID="MONSTER_PART_LBONE" Name="左骨頭"/>
+    <Part ID="MONSTER_PART_RBONE" Name="右骨頭"/>
+    <Part ID="MONSTER_PART_HORNS_GOLD" Name="黃金角"/>
+    <Part ID="MONSTER_PART_MANE_GOLD" Name="金色鬃毛"/>
+    <Part ID="MONSTER_PART_LCHEST_GOLD" Name="左胸的黃金"/>
+    <Part ID="MONSTER_PART_RCHEST_GOLD" Name="右胸的黃金"/>
+    <Part ID="MONSTER_PART_LARM_GOLD" Name="左前爪的黃金"/>
+    <Part ID="MONSTER_PART_RARM_GOLD" Name="右前爪的黃金"/>
+    <Part ID="MONSTER_PART_LLEG_GOLD" Name="左後腳的黃金"/>
+    <Part ID="MONSTER_PART_RLEG_GOLD" Name="右後腳的黃金"/>
+    <Part ID="MONSTER_PART_LTAIL_GOLD" Name="左尾的黃金"/>
+    <Part ID="MONSTER_PART_RTAIL_GOLD" Name="右尾的黃金"/>
+    <Part ID="MONSTER_PART_LHEAD" Name="頭部左側"/>
+    <Part ID="MONSTER_PART_RHEAD" Name="頭部右側"/>
+    <Part ID="MONSTER_PART_HEAD_SNOW" Name="頭部的雪"/>
+    <Part ID="MONSTER_PART_BODY_SNOW" Name="身體的雪"/>
+    <Part ID="MONSTER_PART_TAIL_SNOW" Name="尾巴的雪"/>
+    <Part ID="MONSTER_PART_HEAD_ICE" Name="頭部的冰"/>
+    <Part ID="MONSTER_PART_BODY_ICE" Name="身體的冰"/>
+    <Part ID="MONSTER_PART_WINGS_ICE" Name="翅膀的冰"/>
+    <Part ID="MONSTER_PART_ARMS_ICE" Name="前爪的冰"/>
+    <Part ID="MONSTER_PART_LEGS_ICE" Name="後腳的冰"/>
+    <Part ID="MONSTER_PART_TAIL_ICE" Name="尾巴的冰"/>
+    <Part ID="MONSTER_PART_LNECK_ROCK" Name="左頸的石塊"/>
+    <Part ID="MONSTER_PART_RNECK_ROCK" Name="右頸的石塊"/>
+    <Part ID="MONSTER_PART_HEAD_ROCK" Name="頭部的石塊"/>
+    <Part ID="MONSTER_PART_TAIL_ROCK" Name="尾巴的石塊"/>
+    <Part ID="MONSTER_PART_LWING_ROCK" Name="左翅的石塊"/>
+    <Part ID="MONSTER_PART_RWING_ROCK" Name="右翅的石塊"/>
+    <Part ID="MONSTER_PART_LARM_ROCK" Name="左前爪的石塊"/>
+    <Part ID="MONSTER_PART_RARM_ROCK" Name="右前爪的石塊"/>
+    <Part ID="MONSTER_PART_LEGS_ROCK" Name="腳部的石塊"/>
+    <Part ID="MONSTER_JAGRAS_SUMMONER" Name="Jagras Summoner"/>
+    <!-- Removable parts -->
+    <Part ID="MONSTER_PART_REMOVABLE_TAIL" Name="可斷的尾巴"/>
+    <Part ID="MONSTER_PART_REMOVABLE_HORNS" Name="可斷的角"/>
+    <Part ID="MONSTER_PART_REMOVABLE_HEAD" Name="可破壞的頭"/>
+    <Part ID="MONSTER_PART_REMOVABLE_BALLOON" Name="可破壞的氣囊"/>
+    <Part ID="MONSTER_PART_REMOVABLE_HORNS_2" Name="可斷的角 #2"/>
+    <Part ID="MONSTER_PART_REMOVABLE_LANTLER" Name="可破壞的左鹿角"/>
+    <Part ID="MONSTER_PART_REMOVABLE_RANTLER" Name="可破壞的右鹿角"/>
   </Parts>
   <Mantles>
     <Mantle ID="-1" Name="無衣裝"/>

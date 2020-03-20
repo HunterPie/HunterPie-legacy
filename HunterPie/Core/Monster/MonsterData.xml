@@ -195,8 +195,8 @@
       <Part Name="MONSTER_PART_REMOVABLE_TAIL" IsRemovable="True"/>
       <Part Name="MONSTER_PART_HEAD" IsRemovable="False"/>
       <Part Name="MONSTER_PART_BODY" IsRemovable="False"/>
-      <Part Name="MONSTER_PART_ARM_LEFT" IsRemovable="False"/>
-      <Part Name="MONSTER_PART_ARM_RIGHT" IsRemovable="False"/>
+      <Part Name="MONSTER_PART_LARM" IsRemovable="False"/>
+      <Part Name="MONSTER_PART_RARM" IsRemovable="False"/>
       <Part Name="MONSTER_PART_LLEG" IsRemovable="False"/>
       <Part Name="MONSTER_PART_RLEG" IsRemovable="False"/>
       <Part Name="MONSTER_PART_TAIL" IsRemovable="False"/>
@@ -213,8 +213,8 @@
       <Part Name="MONSTER_PART_HEAD" IsRemovable="False"/>
       <Part Name="MONSTER_PART_BODY" IsRemovable="False"/>
       <Part Name="MONSTER_PART_TAIL" IsRemovable="False"/>
-      <Part Name="MONSTER_PART_LIMBS_LEFT" IsRemovable="False"/>
-      <Part Name="MONSTER_PART_LIMBS_RIGHT" IsRemovable="False"/>
+      <Part Name="MONSTER_PART_LLIMBS" IsRemovable="False"/>
+      <Part Name="MONSTER_PART_RLIMBS" IsRemovable="False"/>
       <Part Name="MONSTER_PART_WINGS" IsRemovable="False"/>
     </Parts>
   </Monster>
@@ -260,8 +260,8 @@
       <Part Name="MONSTER_PART_REMOVABLE_TAIL" IsRemovable="True"/>
       <Part Name="MONSTER_PART_HEAD" IsRemovable="False"/>
       <Part Name="MONSTER_PART_BODY" IsRemovable="False"/>
-      <Part Name="MONSTER_PART_ARM_LEFT" IsRemovable="False"/>
-      <Part Name="MONSTER_PART_ARM_RIGHT" IsRemovable="False"/>
+      <Part Name="MONSTER_PART_LARM" IsRemovable="False"/>
+      <Part Name="MONSTER_PART_RARM" IsRemovable="False"/>
       <Part Name="MONSTER_PART_LLEG" IsRemovable="False"/>
       <Part Name="MONSTER_PART_RLEG" IsRemovable="False"/>
       <Part Name="MONSTER_PART_TAIL" IsRemovable="False"/>
@@ -277,8 +277,8 @@
       <Part Name="MONSTER_PART_REMOVABLE_TAIL" IsRemovable="True"/>
       <Part Name="MONSTER_PART_HEAD" IsRemovable="False"/>
       <Part Name="MONSTER_PART_BODY" IsRemovable="False"/>
-      <Part Name="MONSTER_PART_ARM_LEFT" IsRemovable="False"/>
-      <Part Name="MONSTER_PART_ARM_RIGHT" IsRemovable="False"/>
+      <Part Name="MONSTER_PART_LARM" IsRemovable="False"/>
+      <Part Name="MONSTER_PART_RARM" IsRemovable="False"/>
       <Part Name="MONSTER_PART_LLEG" IsRemovable="False"/>
       <Part Name="MONSTER_PART_RLEG" IsRemovable="False"/>
       <Part Name="MONSTER_PART_TAIL" IsRemovable="False"/>
@@ -309,8 +309,8 @@
       <Part Name="MONSTER_PART_REMOVABLE_TAIL" IsRemovable="True"/>
       <Part Name="MONSTER_PART_HEAD" IsRemovable="False"/>
       <Part Name="MONSTER_PART_BODY" IsRemovable="False"/>
-      <Part Name="MONSTER_PART_ARM_LEFT" IsRemovable="False"/>
-      <Part Name="MONSTER_PART_ARM_RIGHT" IsRemovable="False"/>
+      <Part Name="MONSTER_PART_LARM" IsRemovable="False"/>
+      <Part Name="MONSTER_PART_RARM" IsRemovable="False"/>
       <Part Name="MONSTER_PART_LLEG" IsRemovable="False"/>
       <Part Name="MONSTER_PART_RLEG" IsRemovable="False"/>
       <Part Name="MONSTER_PART_TAIL" IsRemovable="False"/>
@@ -326,8 +326,8 @@
       <Part Name="MONSTER_PART_REMOVABLE_TAIL" IsRemovable="True"/>
       <Part Name="MONSTER_PART_HEAD" IsRemovable="False"/>
       <Part Name="MONSTER_PART_BODY" IsRemovable="False"/>
-      <Part Name="MONSTER_PART_ARM_LEFT" IsRemovable="False"/>
-      <Part Name="MONSTER_PART_ARM_RIGHT" IsRemovable="False"/>
+      <Part Name="MONSTER_PART_LARM" IsRemovable="False"/>
+      <Part Name="MONSTER_PART_RARM" IsRemovable="False"/>
       <Part Name="MONSTER_PART_LLEG" IsRemovable="False"/>
       <Part Name="MONSTER_PART_RLEG" IsRemovable="False"/>
       <Part Name="MONSTER_PART_TAIL" IsRemovable="False"/>
@@ -451,8 +451,8 @@
       <Part Name="MONSTER_PART_REMOVABLE_TAIL" IsRemovable="True"/>
       <Part Name="MONSTER_PART_HEAD" IsRemovable="False"/>
       <Part Name="MONSTER_PART_BODY" IsRemovable="False"/>
-      <Part Name="MONSTER_PART_ARM_LEFT" IsRemovable="False"/>
-      <Part Name="MONSTER_PART_ARM_RIGHT" IsRemovable="False"/>
+      <Part Name="MONSTER_PART_LARM" IsRemovable="False"/>
+      <Part Name="MONSTER_PART_RARM" IsRemovable="False"/>
       <Part Name="MONSTER_PART_LLEG" IsRemovable="False"/>
       <Part Name="MONSTER_PART_RLEG" IsRemovable="False"/>
       <Part Name="MONSTER_PART_TAIL" IsRemovable="False"/>
@@ -583,8 +583,8 @@
       <Part Name="MONSTER_PART_HORNS" IsRemovable="False"/>
       <Part Name="MONSTER_PART_HEAD" IsRemovable="False"/>
       <Part Name="MONSTER_PART_BODY" IsRemovable="False"/>
-      <Part Name="MONSTER_PART_ARM_LEFT" IsRemovable="False"/>
-      <Part Name="MONSTER_PART_ARM_RIGHT" IsRemovable="False"/>
+      <Part Name="MONSTER_PART_LARM" IsRemovable="False"/>
+      <Part Name="MONSTER_PART_RARM" IsRemovable="False"/>
       <Part Name="MONSTER_PART_LLEG" IsRemovable="False"/>
       <Part Name="MONSTER_PART_RLEG" IsRemovable="False"/>
       <Part Name="MONSTER_PART_LWING" IsRemovable="False"/>
@@ -604,8 +604,8 @@
       <Part Name="MONSTER_PART_HORNS" IsRemovable="False"/>
       <Part Name="MONSTER_PART_HEAD" IsRemovable="False"/>
       <Part Name="MONSTER_PART_BODY" IsRemovable="False"/>
-      <Part Name="MONSTER_PART_ARM_LEFT" IsRemovable="False"/>
-      <Part Name="MONSTER_PART_ARM_RIGHT" IsRemovable="False"/>
+      <Part Name="MONSTER_PART_LARM" IsRemovable="False"/>
+      <Part Name="MONSTER_PART_RARM" IsRemovable="False"/>
       <Part Name="MONSTER_PART_LLEG" IsRemovable="False"/>
       <Part Name="MONSTER_PART_RLEG" IsRemovable="False"/>
       <Part Name="MONSTER_PART_LWING" IsRemovable="False"/>
@@ -626,8 +626,8 @@
       <Part Name="MONSTER_PART_ABDOMEN" IsRemovable="False"/>
       <Part Name="MONSTER_PART_NECK" IsRemovable="False"/>
       <Part Name="MONSTER_PART_BACK" IsRemovable="False"/>
-      <Part Name="MONSTER_PART_ARM_LEFT" IsRemovable="False"/>
-      <Part Name="MONSTER_PART_ARM_RIGHT" IsRemovable="False"/>
+      <Part Name="MONSTER_PART_LARM" IsRemovable="False"/>
+      <Part Name="MONSTER_PART_RARM" IsRemovable="False"/>
       <Part Name="MONSTER_PART_LLEG" IsRemovable="False"/>
       <Part Name="MONSTER_PART_RLEG" IsRemovable="False"/>
       <Part Name="MONSTER_PART_TAIL" IsRemovable="False"/>
@@ -645,10 +645,10 @@
       <Part Name="MONSTER_PART_NECK" IsRemovable="False"/>
       <Part Name="MONSTER_PART_BACK" IsRemovable="False"/>
       <Part Name="MONSTER_PART_CHEST" IsRemovable="False"/>
-      <Part Name="MONSTER_PART_HAND_LEFT" IsRemovable="False"/>
-      <Part Name="MONSTER_PART_HAND_RIGHT" IsRemovable="False"/>
-      <Part Name="MONSTER_PART_FOOT_LEFT" IsRemovable="False"/>
-      <Part Name="MONSTER_PART_FOOT_RIGHT" IsRemovable="False"/>
+      <Part Name="MONSTER_PART_LHAND" IsRemovable="False"/>
+      <Part Name="MONSTER_PART_RHAND" IsRemovable="False"/>
+      <Part Name="MONSTER_PART_LFOOT" IsRemovable="False"/>
+      <Part Name="MONSTER_PART_RFOOT" IsRemovable="False"/>
       <Part Name="MONSTER_PART_WINGS" IsRemovable="False"/>
       <Part Name="MONSTER_PART_TAIL" IsRemovable="False"/>
     </Parts>
@@ -663,8 +663,8 @@
       <Part Name="MONSTER_PART_HEAD" IsRemovable="False"/>
       <Part Name="MONSTER_PART_BODY" IsRemovable="False"/>
       <Part Name="MONSTER_PART_CHEST" IsRemovable="False"/>
-      <Part Name="MONSTER_PART_ARM_LEFT" IsRemovable="False"/>
-      <Part Name="MONSTER_PART_ARM_RIGHT" IsRemovable="False"/>
+      <Part Name="MONSTER_PART_LARM" IsRemovable="False"/>
+      <Part Name="MONSTER_PART_RARM" IsRemovable="False"/>
       <Part Name="MONSTER_PART_LLEG" IsRemovable="False"/>
       <Part Name="MONSTER_PART_RLEG" IsRemovable="False"/>
       <Part Name="MONSTER_PART_TAIL" IsRemovable="False"/>
@@ -673,8 +673,8 @@
       <Part Name="MONSTER_PART_EXHAUST_ORGAN_HEAD" IsRemovable="False"/>
       <Part Name="MONSTER_PART_EXHAUST_ORGAN_CRATER" IsRemovable="False"/>
       <Part Name="MONSTER_PART_EXHAUST_ORGAN_REAR" IsRemovable="False"/>
-      <Part Name="MONSTER_PART_WEAK_SHELL_LEFT" IsRemovable="False"/>
-      <Part Name="MONSTER_PART_WEAK_SHELL_RIGHT" IsRemovable="False"/>
+      <Part Name="MONSTER_PART_WEAK_LSHELL" IsRemovable="False"/>
+      <Part Name="MONSTER_PART_WEAK_RSHELL" IsRemovable="False"/>
     </Parts>
   </Monster>
   <Monster ID="em107_00">
@@ -868,8 +868,8 @@
       <Part Name="MONSTER_PART_TAIL" IsRemovable="False"/>
       <Part Name="MONSTER_PART_JAW" IsRemovable="False"/>
       <Part Name="MONSTER_PART_BACK" IsRemovable="False"/>
-      <Part Name="MONSTER_PART_BONE_LEFT" IsRemovable="False"/>
-      <Part Name="MONSTER_PART_BONE_RIGHT" IsRemovable="False"/>
+      <Part Name="MONSTER_PART_LBONE" IsRemovable="False"/>
+      <Part Name="MONSTER_PART_RBONE" IsRemovable="False"/>
     </Parts>
   </Monster>
   <Monster ID="em115_00">
@@ -884,8 +884,8 @@
       <Part Name="MONSTER_PART_BACK" IsRemovable="False"/>
       <Part Name="MONSTER_PART_CHEST" IsRemovable="False"/>
       <Part Name="MONSTER_PART_TAIL" IsRemovable="False"/>
-      <Part Name="MONSTER_PART_ARM_LEFT" IsRemovable="False"/>
-      <Part Name="MONSTER_PART_ARM_RIGHT" IsRemovable="False"/>
+      <Part Name="MONSTER_PART_LARM" IsRemovable="False"/>
+      <Part Name="MONSTER_PART_RARM" IsRemovable="False"/>
       <Part Name="MONSTER_PART_LLEG" IsRemovable="False"/>
       <Part Name="MONSTER_PART_RLEG" IsRemovable="False"/>
       <Part Name="MONSTER_PART_WINGS" IsRemovable="False"/>
@@ -903,8 +903,8 @@
       <Part Name="MONSTER_PART_BACK" IsRemovable="False"/>
       <Part Name="MONSTER_PART_CHEST" IsRemovable="False"/>
       <Part Name="MONSTER_PART_TAIL" IsRemovable="False"/>
-      <Part Name="MONSTER_PART_ARM_LEFT" IsRemovable="False"/>
-      <Part Name="MONSTER_PART_ARM_RIGHT" IsRemovable="False"/>
+      <Part Name="MONSTER_PART_LARM" IsRemovable="False"/>
+      <Part Name="MONSTER_PART_RARM" IsRemovable="False"/>
       <Part Name="MONSTER_PART_LLEG" IsRemovable="False"/>
       <Part Name="MONSTER_PART_RLEG" IsRemovable="False"/>
       <Part Name="MONSTER_PART_WINGS" IsRemovable="False"/>
@@ -991,8 +991,8 @@
     </Weaknesses>
     <Crown Mini="90" Silver="115" Gold="123"/>
     <Parts Max="5">
-      <Part Name="MONSTER_PART_HEAD_LEFT" IsRemovable="False"/>
-      <Part Name="MONSTER_PART_HEAD_RIGHT" IsRemovable="False"/>
+      <Part Name="MONSTER_PART_LHEAD" IsRemovable="False"/>
+      <Part Name="MONSTER_PART_RHEAD" IsRemovable="False"/>
       <Part Name="MONSTER_PART_ARMS" IsRemovable="False"/>
       <Part Name="MONSTER_PART_LEGS" IsRemovable="False"/>
       <Part Name="MONSTER_PART_TAIL" IsRemovable="False"/>
@@ -1009,8 +1009,8 @@
       <Part Name="MONSTER_PART_HORNS" IsRemovable="False"/>
       <Part Name="MONSTER_PART_HEAD" IsRemovable="False"/>
       <Part Name="MONSTER_PART_BODY" IsRemovable="False"/>
-      <Part Name="MONSTER_PART_ARM_LEFT" IsRemovable="False"/>
-      <Part Name="MONSTER_PART_ARM_RIGHT" IsRemovable="False"/>
+      <Part Name="MONSTER_PART_LARM" IsRemovable="False"/>
+      <Part Name="MONSTER_PART_RARM" IsRemovable="False"/>
       <Part Name="MONSTER_PART_LLEG" IsRemovable="False"/>
       <Part Name="MONSTER_PART_RLEG" IsRemovable="False"/>
       <Part Name="MONSTER_PART_TAIL" IsRemovable="False"/>
@@ -1094,21 +1094,21 @@
     <Crown Mini="90" Silver="115" Gold="123"/>
     <Parts Max="17">
       <Part Name="MONSTER_PART_REMOVABLE_HEAD" IsRemovable="True"/>
-      <Part Name="MONSTER_PART_NECK_LEFT_ROCK" IsRemovable="False"/>
-      <Part Name="MONSTER_PART_NECK_RIGHT_ROCK" IsRemovable="False"/>
+      <Part Name="MONSTER_PART_LNECK_ROCK" IsRemovable="False"/>
+      <Part Name="MONSTER_PART_RNECK_ROCK" IsRemovable="False"/>
       <Part Name="MONSTER_PART_HEAD_ROCK" IsRemovable="False"/>
       <Part Name="MONSTER_PART_TAIL_ROCK" IsRemovable="False"/>
       <Part Name="MONSTER_PART_LWING_ROCK" IsRemovable="False"/>
       <Part Name="MONSTER_PART_RWING_ROCK" IsRemovable="False"/>
-      <Part Name="MONSTER_PART_ARM_LEFT_ROCK" IsRemovable="False"/>
-      <Part Name="MONSTER_PART_ARM_RIGHT_ROCK" IsRemovable="False"/>
+      <Part Name="MONSTER_PART_LARM_ROCK" IsRemovable="False"/>
+      <Part Name="MONSTER_PART_RARM_ROCK" IsRemovable="False"/>
       <Part Name="MONSTER_PART_LEGS_ROCK" IsRemovable="False"/>
       <Part Name="MONSTER_PART_HEAD" IsRemovable="False"/>
       <Part Name="MONSTER_PART_BODY" IsRemovable="False"/>
       <Part Name="MONSTER_PART_LWING" IsRemovable="False"/>
       <Part Name="MONSTER_PART_RWING" IsRemovable="False"/>
-      <Part Name="MONSTER_PART_ARM_LEFT" IsRemovable="False"/>
-      <Part Name="MONSTER_PART_ARM_RIGHT" IsRemovable="False"/>
+      <Part Name="MONSTER_PART_LARM" IsRemovable="False"/>
+      <Part Name="MONSTER_PART_RARM" IsRemovable="False"/>
       <Part Name="MONSTER_PART_TAIL" IsRemovable="False"/>
     </Parts>
   </Monster>
@@ -1119,8 +1119,8 @@
     </Weaknesses>
     <Crown Mini="90" Silver="115" Gold="123"/>
     <Parts Max="9">
-      <Part Name="MONSTER_PART_REMOVABLE_ANTLER_LEFT" IsRemovable="True"/>
-      <Part Name="MONSTER_PART_REMOVABLE_ANTLER_RIGHT" IsRemovable="True"/>
+      <Part Name="MONSTER_PART_REMOVABLE_LANTLER" IsRemovable="True"/>
+      <Part Name="MONSTER_PART_REMOVABLE_RANTLER" IsRemovable="True"/>
       <Part Name="MONSTER_PART_HEAD" IsRemovable="False"/>
       <Part Name="MONSTER_PART_BODY" IsRemovable="False"/>
       <Part Name="MONSTER_PART_LEGS" IsRemovable="False"/>
@@ -1137,8 +1137,8 @@
     </Weaknesses>
     <Crown Mini="90" Silver="115" Gold="123"/>
     <Parts Max="9">
-      <Part Name="MONSTER_PART_REMOVABLE_ANTLER_LEFT" IsRemovable="True"/>
-      <Part Name="MONSTER_PART_REMOVABLE_ANTLER_RIGHT" IsRemovable="True"/>
+      <Part Name="MONSTER_PART_REMOVABLE_LANTLER" IsRemovable="True"/>
+      <Part Name="MONSTER_PART_REMOVABLE_RANTLER" IsRemovable="True"/>
       <Part Name="MONSTER_PART_HEAD" IsRemovable="False"/>
       <Part Name="MONSTER_PART_BODY" IsRemovable="False"/>
       <Part Name="MONSTER_PART_LEGS" IsRemovable="False"/>
