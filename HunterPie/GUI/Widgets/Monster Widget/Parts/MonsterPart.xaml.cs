@@ -1,17 +1,5 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using System.Windows;
 using System.Windows.Controls;
-using System.Windows.Data;
-using System.Windows.Documents;
-using System.Windows.Input;
-using System.Windows.Media;
-using System.Windows.Media.Imaging;
-using System.Windows.Navigation;
-using System.Windows.Shapes;
 using Timer = System.Threading.Timer;
 using HunterPie.Core;
 
@@ -31,6 +19,7 @@ namespace HunterPie.GUI.Widgets.Monster_Widget.Parts {
             this.Context = ctx;
             SetPartInformation(MaxHealthBarSize);
             HookEvents();
+            StartVisibilityTimer();
         }
 
         private void HookEvents() {
@@ -41,6 +30,7 @@ namespace HunterPie.GUI.Widgets.Monster_Widget.Parts {
         public void UnhookEvents() {
             Context.OnHealthChange -= OnHealthChange;
             Context.OnBrokenCounterChange -= OnBrokenCounterChange;
+            VisibilityTimer?.Dispose();
             this.Context = null;
         }
 
@@ -48,6 +38,24 @@ namespace HunterPie.GUI.Widgets.Monster_Widget.Parts {
             Dispatcher.BeginInvoke(System.Windows.Threading.DispatcherPriority.Render, f);
         }
 
+        #region Visibility timer
+        private void StartVisibilityTimer() {
+            if (VisibilityTimer == null) {
+                VisibilityTimer = new Timer(_ => HideUnactiveBar(), null, 10000, 0);
+            } else {
+                VisibilityTimer.Change(10000, 0);
+            }
+        }
+
+        private void HideUnactiveBar() {
+            Dispatch(() => {
+                this.Visibility = System.Windows.Visibility.Collapsed;
+            });
+        }
+
+        #endregion
+
+        #region Events
         private void SetPartInformation(double NewSize) {
             this.PartName.Text = $"{Context.Name}";
             this.PartHealth.MaxHealth = Context.TotalHealth;
@@ -68,6 +76,8 @@ namespace HunterPie.GUI.Widgets.Monster_Widget.Parts {
                 this.PartHealth.MaxHealth = args.TotalHealth;
                 this.PartHealth.Health = args.Health;
                 this.PartHealthText.Text = $"{args.Health:0}/{args.TotalHealth:0}";
+                this.Visibility = System.Windows.Visibility.Visible;
+                StartVisibilityTimer();
             });
         }
 
@@ -78,5 +88,6 @@ namespace HunterPie.GUI.Widgets.Monster_Widget.Parts {
             this.PartHealth.Health = Context.Health;
             this.PartHealthText.Text = $"{Context.Health:0}/{Context.TotalHealth:0}";
         }
+        #endregion
     }
 }

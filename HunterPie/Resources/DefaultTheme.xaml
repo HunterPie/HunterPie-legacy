@@ -11,17 +11,13 @@
     </LinearGradientBrush>
 
     <Style x:Key="OVERLAY_MONSTER_BAR_TEXT_STYLE" TargetType="TextBlock">
-        <Setter Property="Foreground" Value="#FFB8B8B8"/>
+        <Setter Property="Foreground" Value="Gray"/>
         <Setter Property="FontSize" Value="12"/>
-        <Setter Property="FontWeight" Value="Light"/>
+        <Setter Property="FontWeight" Value="Normal"/>
         <Setter Property="Margin" Value="45,18,38,30"/>
         <Setter Property="Padding" Value="0,0.75,0,0"/>
-        <Setter Property="Effect">
-            <Setter.Value>
-                <DropShadowEffect BlurRadius="0" ShadowDepth="1" Color="#FF171717"/>
-            </Setter.Value>
-        </Setter>
     </Style>
+    
     <Style x:Key="OVERLAY_MONSTER_NAME_TEXT_STYLE" TargetType="TextBlock">
         <Setter Property="Foreground">
             <Setter.Value>
@@ -40,6 +36,20 @@
         </Setter>
     </Style>
     <!-- Monster Bar (Parts) -->
+    <Style x:Key="OVERLAY_MONSTER_PART_BAR_STYLE" TargetType="Monster:MonsterPart">
+        <Style.Triggers>
+            <Trigger Property="IsVisible" Value="True">
+                <Trigger.EnterActions>
+                    <BeginStoryboard>
+                        <Storyboard>
+                            <DoubleAnimation Storyboard.TargetProperty="Opacity" From="0" To="1" Duration="0:0:0.150"/>
+                        </Storyboard>
+                    </BeginStoryboard>
+                </Trigger.EnterActions>
+            </Trigger>
+        </Style.Triggers>
+    </Style>
+
     <LinearGradientBrush x:Key="OVERLAY_MONSTER_PART_BAR_COLOR" EndPoint="1,0" StartPoint="0,0">
         <GradientStop Color="#FFD6D6D6" Offset="1"/>
         <GradientStop Color="#FFB9B9B9"/>

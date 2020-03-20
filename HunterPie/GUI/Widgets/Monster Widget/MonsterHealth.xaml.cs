@@ -4,6 +4,7 @@ using System.Windows.Controls;
 using System.Windows.Media;
 using System.Windows.Media.Animation;
 using Timer = System.Threading.Timer;
+using BitmapImage = System.Windows.Media.Imaging.BitmapImage;
 using HunterPie.Core;
 using HunterPie.GUIControls.Custom_Controls;
 
@@ -32,12 +33,16 @@ namespace HunterPie.GUI.Widgets {
             HookEvents();
             LoadAnimations();
             if (Context.Name != null) {
-                UpdateMonsterInfo();
+                UpdateMonsterInfo(Context);
             } else { this.Visibility = Visibility.Collapsed; } 
         }
 
         private void Dispatch(Action function) {
             this.Dispatcher.BeginInvoke(System.Windows.Threading.DispatcherPriority.Render, function);
+        }
+
+        private void LoadAnimations() {
+            ANIM_ENRAGEDICON = FindResource("ANIM_ENRAGED") as Storyboard;
         }
 
         private void HookEvents() {
@@ -63,41 +68,47 @@ namespace HunterPie.GUI.Widgets {
             Context = null;
         }
 
-        private void UpdateMonsterInfo() {
+        #region Monster Events
+        private void UpdateMonsterInfo(Monster Monster) {
             // Used when starting HunterPie for the first time, since the events won't be triggered
             this.Visibility = Visibility.Visible;
-            this.MonsterName.Text = Context.Name;
+            this.MonsterName.Text = Monster.Name;
 
             // Update monster health
 
             MonsterHealthBar.MaxSize = this.Width * 0.7833333333333333;
-            MonsterHealthBar.UpdateBar(Context.CurrentHP, Context.TotalHP);
-            SetMonsterHealthBarText(Context.CurrentHP, Context.TotalHP);
+            MonsterHealthBar.UpdateBar(Monster.CurrentHP, Monster.TotalHP);
+            SetMonsterHealthBarText(Monster.CurrentHP, Monster.TotalHP);
+
+            // Gets monster icon
+            MonsterIcon.Source = GetMonsterIcon(Monster.ID);
 
             SwitchSizeBasedOnTarget();
 
             // Parts
             this.MonsterPartsContainer.Children.Clear();
-            foreach (Part mPart in Context.Parts) {
-                Monster_Widget.Parts.MonsterPart PartDisplay = new Monster_Widget.Parts.MonsterPart();
+            foreach (Part mPart in Monster.Parts) {
+                Monster_Widget.Parts.MonsterPart PartDisplay = new Monster_Widget.Parts.MonsterPart() {
+                    Style = FindResource("OVERLAY_MONSTER_PART_BAR_STYLE") as Style
+                };
                 PartDisplay.SetContext(mPart, this.MonsterPartsContainer.ItemWidth);
                 this.MonsterPartsContainer.Children.Add(PartDisplay);
             }
 
             // Enrage
-            if (Context.IsEnraged) {
+            if (Monster.IsEnraged) {
                 ANIM_ENRAGEDICON.Begin(this.MonsterHealthBar, true);
                 ANIM_ENRAGEDICON.Begin(this.HealthBossIcon, true);
                 EnrageTimerText.Visibility = Visibility.Visible;
-                EnrageTimerText.Text = $"{Context.EnrageTimerStatic - Context.EnrageTimer:0}s";
+                EnrageTimerText.Text = $"{Monster.EnrageTimerStatic - Monster.EnrageTimer:0}s";
             }
 
             // Set monster crown
-            this.MonsterCrown.Source = Context.Crown == null ? null : (ImageSource)FindResource(Context.Crown);
-            this.MonsterCrown.Visibility = Context.Crown == null ? Visibility.Collapsed : Visibility.Visible;
+            this.MonsterCrown.Source = Monster.Crown == null ? null : (ImageSource)FindResource(Monster.Crown);
+            this.MonsterCrown.Visibility = Monster.Crown == null ? Visibility.Collapsed : Visibility.Visible;
             Weaknesses.Children.Clear(); // Removes every weakness icon
-            if (Context.Weaknesses == null) return;
-            foreach (string Weakness in Context.Weaknesses.Keys) {
+            if (Monster.Weaknesses == null) return;
+            foreach (string Weakness in Monster.Weaknesses.Keys) {
                 ImageSource img = this.Resources[Weakness] as ImageSource;
                 img.Freeze();
                 WeaknessDisplay MonsterWeaknessDisplay = new WeaknessDisplay {
@@ -107,10 +118,6 @@ namespace HunterPie.GUI.Widgets {
                 };
                 Weaknesses.Children.Add(MonsterWeaknessDisplay);
             }
-        }
-
-        private void LoadAnimations() {
-            ANIM_ENRAGEDICON = FindResource("ANIM_ENRAGED") as Storyboard;
         }
 
         private void OnMonsterTargetted(object source, EventArgs args) {
@@ -156,38 +163,7 @@ namespace HunterPie.GUI.Widgets {
 
         private void OnMonsterSpawn(object source, MonsterSpawnEventArgs args) {
             this.Dispatch(() => {
-                this.Visibility = Visibility.Visible;
-                this.MonsterName.Text = args.Name;
-
-                // Update monster health
-                MonsterHealthBar.MaxSize = this.Width * 0.7833333333333333;
-                MonsterHealthBar.UpdateBar(Context.CurrentHP, Context.TotalHP);
-                SetMonsterHealthBarText(args.CurrentHP, args.TotalHP);
-
-                SwitchSizeBasedOnTarget();
-
-                // Parts
-                this.MonsterPartsContainer.Children.Clear();
-                foreach (Part mPart in Context.Parts) {
-                    Monster_Widget.Parts.MonsterPart PartDisplay = new Monster_Widget.Parts.MonsterPart();
-                    PartDisplay.SetContext(mPart, this.MonsterPartsContainer.ItemWidth);
-                    this.MonsterPartsContainer.Children.Add(PartDisplay);
-                }
-
-                // Set monster crown
-                this.MonsterCrown.Source = args.Crown == null ? null : (ImageSource)FindResource(args.Crown);
-                this.MonsterCrown.Visibility = args.Crown == null ? Visibility.Collapsed : Visibility.Visible;
-                Weaknesses.Children.Clear(); // Removes every weakness icon
-                foreach (string Weakness in Context.Weaknesses.Keys) {
-                    ImageSource img = this.Resources[Weakness] as ImageSource;
-                    img.Freeze();
-                    WeaknessDisplay MonsterWeaknessDisplay = new WeaknessDisplay {
-                        Icon = img,
-                        Width = 20,
-                        Height = 20
-                    };
-                    Weaknesses.Children.Add(MonsterWeaknessDisplay);
-                }
+                UpdateMonsterInfo(Context);
             });
         }
 
@@ -198,11 +174,9 @@ namespace HunterPie.GUI.Widgets {
                 SetMonsterHealthBarText(args.CurrentHP, args.TotalHP);
             });
         }
+        #endregion
 
-        private void SetMonsterHealthBarText(float hp, float max_hp) {
-            this.HealthText.Text = $"{hp:0}/{max_hp:0} ({hp / max_hp * 100:0}%)";
-        }
-
+        #region Monster bar modes
         public void SwitchSizeBasedOnTarget() {
             switch(UserSettings.PlayerConfig.Overlay.MonstersComponent.ShowMonsterBarMode) {
                 case 0: // Default
@@ -216,8 +190,6 @@ namespace HunterPie.GUI.Widgets {
                     break;
             }
         }
-
-        #region Monster bar modes
 
         // Show all monsters at once
         private void ShowAllMonstersAtOnce() {
@@ -276,13 +248,26 @@ namespace HunterPie.GUI.Widgets {
         #endregion
 
         #region Parts
-
         private void UpdatePartHealthBarSizes(double NewSize) {
             foreach (Monster_Widget.Parts.MonsterPart part in MonsterPartsContainer.Children) {
                 part.UpdateHealthBarSize(NewSize);
             }
         }
 
+        #endregion
+
+        #region Helpers
+        private void SetMonsterHealthBarText(float hp, float max_hp) {
+            this.HealthText.Text = $"{hp:0}/{max_hp:0} ({hp / max_hp * 100:0}%)";
+        }
+
+        private BitmapImage GetMonsterIcon(string MonsterEm) {
+            if (!System.IO.File.Exists($@"HunterPie.Resources\Monsters\Icons\{MonsterEm}.png")) return null;
+            Uri ImageURI = new Uri($@"HunterPie.Resources\Monsters\Icons\{MonsterEm}.png", UriKind.Relative);
+            BitmapImage mIcon = new BitmapImage(ImageURI);
+            mIcon.Freeze();
+            return mIcon;
+        }
         #endregion
     }
 }
