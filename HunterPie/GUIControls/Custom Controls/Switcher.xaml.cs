@@ -20,6 +20,14 @@ namespace HunterPie.GUIControls.Custom_Controls {
     /// </summary>
     public partial class Switcher : UserControl {
 
+        public string Text {
+            get { return Info.Text; }
+            set {
+                Info.Text = value;
+            }
+        }
+
+
         private bool _isEnabled;
         public new bool IsEnabled {
             get { return _isEnabled; }

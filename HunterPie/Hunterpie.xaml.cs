@@ -5,6 +5,7 @@ using System.IO;
 using System.Windows.Controls;
 using System.Windows.Markup;
 using System.Windows.Interop;
+using Process = System.Diagnostics.Process;
 // HunterPie
 using HunterPie.Memory;
 using HunterPie.Core;
@@ -35,6 +36,10 @@ namespace HunterPie {
         HwndSource _source;
 
         public Hunterpie() {
+            if (CheckIfHunterPieOpen()) {
+                this.Close();
+                return;
+            }
             // Initialize debugger and theme
             Debugger.InitializeDebugger();
             UserSettings.InitializePlayerConfig();
@@ -58,6 +63,11 @@ namespace HunterPie {
             GStrings.InitStrings(UserSettings.PlayerConfig.HunterPie.Language);
             MonsterData.LoadMonsterData();
             AbnormalityData.LoadAbnormalityData();
+        }
+
+        private bool CheckIfHunterPieOpen() {
+            // Block new instances of HunterPie if there's one already running
+            return Process.GetProcessesByName("HunterPie").Length > 1;
         }
 
         #region AUTO UPDATE
@@ -472,7 +482,7 @@ namespace HunterPie {
         }
 
         private void OnGithubButtonClick(object sender, MouseButtonEventArgs e) {
-            System.Diagnostics.Process.Start("https://github.com/Haato3o/HunterPie");
+            Process.Start("https://github.com/Haato3o/HunterPie");
         }
 
         private void OnConsoleButtonClick(object sender, MouseButtonEventArgs e) {
@@ -512,7 +522,7 @@ namespace HunterPie {
         }
 
         private void OnDiscordButtonClick(object sender, MouseButtonEventArgs e) {
-            System.Diagnostics.Process.Start("https://discord.gg/5pdDq4Q");
+            Process.Start("https://discord.gg/5pdDq4Q");
         }
         #endregion
 
