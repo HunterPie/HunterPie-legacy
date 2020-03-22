@@ -84,6 +84,7 @@ namespace HunterPie.GUI.Widgets.Monster_Widget.Parts {
                 AilmentBar.MaxHealth = args.MaxDuration;
                 AilmentBar.Health = args.MaxDuration - args.Duration;
                 AilmentText.Text = $"{AilmentBar.Health:0}/{AilmentBar.MaxHealth:0}";
+                this.Visibility = System.Windows.Visibility.Visible;
                 StartVisibilityTimer();
             }));
         }
@@ -93,6 +94,7 @@ namespace HunterPie.GUI.Widgets.Monster_Widget.Parts {
                 AilmentBar.MaxHealth = args.MaxBuildup;
                 AilmentBar.Health = args.MaxBuildup - args.Buildup;
                 AilmentText.Text = $"{AilmentBar.Health:0}/{AilmentBar.MaxHealth:0}";
+                this.Visibility = System.Windows.Visibility.Visible;
                 StartVisibilityTimer();
             }));
         }

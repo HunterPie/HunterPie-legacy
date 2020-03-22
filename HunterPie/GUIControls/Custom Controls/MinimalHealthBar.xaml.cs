@@ -33,7 +33,7 @@ namespace HunterPie.GUIControls.Custom_Controls {
             get { return _Health; }
             set {
                 _Health = value;
-                HealthBar.Width = MaxSize * (value / MaxHealth);
+                HealthBar.Width = MaxSize * (value / MaxHealth) > 0 ? MaxSize * (value / MaxHealth) : 0;
             }
         }
 

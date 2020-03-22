@@ -85,6 +85,7 @@ namespace HunterPie.GUI.Widgets {
             // Monster stamina
             MonsterStaminaBar.MaxSize = this.Width - 72;
             MonsterStaminaBar.UpdateBar(Monster.Stamina, Monster.MaxStamina);
+            SetMonsterStaminaText(Monster.Stamina, Monster.MaxStamina);
 
             // Gets monster icon
             MonsterIcon.Source = GetMonsterIcon(Monster.ID);
@@ -162,6 +163,7 @@ namespace HunterPie.GUI.Widgets {
         private void OnStaminaUpdate(object source, MonsterUpdateEventArgs args) {
             Dispatch(() => {
                 this.MonsterStaminaBar.UpdateBar(args.Stamina, args.MaxStamina);
+                SetMonsterStaminaText(args.Stamina, args.MaxStamina);
             });
         }
 
@@ -185,6 +187,7 @@ namespace HunterPie.GUI.Widgets {
                 }
                 MonsterAilmentsContainer.Children.Clear();
                 MonsterPartsContainer.Children.Clear();
+                Context.ClearParts();
             });
         }
 
@@ -229,12 +232,13 @@ namespace HunterPie.GUI.Widgets {
             MonsterHealthBar.MaxSize = 231;
             MonsterStaminaBar.MaxSize = this.Width - 72;
             MonsterHealthBar.UpdateBar(Context.CurrentHP, Context.TotalHP);
+            MonsterStaminaBar.UpdateBar(Context.Stamina, Context.MaxStamina);
             this.Opacity = 1;
         }
 
         // Only show one monster
         private void ShowOnlyTargetMonster() {
-            if (Context == null || !Context.IsTarget) { this.Visibility = Visibility.Collapsed; }
+            if (Context == null || !Context.IsTarget || !Context.IsAlive) { this.Visibility = Visibility.Collapsed; }
             else {      
                 this.Visibility = Visibility.Visible;
                 this.Width = 500;
@@ -245,6 +249,7 @@ namespace HunterPie.GUI.Widgets {
                 MonsterHealthBar.MaxSize = this.Width * 0.9;
                 MonsterStaminaBar.MaxSize = this.Width - 72;
                 MonsterHealthBar.UpdateBar(Context.CurrentHP, Context.TotalHP);
+                MonsterStaminaBar.UpdateBar(Context.Stamina, Context.MaxStamina);
             }
         }
 
@@ -262,6 +267,7 @@ namespace HunterPie.GUI.Widgets {
                 MonsterHealthBar.MaxSize = this.Width * 0.8;
                 MonsterStaminaBar.MaxSize = this.Width - 72;
                 MonsterHealthBar.UpdateBar(Context.CurrentHP, Context.TotalHP);
+                MonsterStaminaBar.UpdateBar(Context.Stamina, Context.MaxStamina);
                 this.Opacity = 0.5;
             } else {
                 this.Width = 320;
@@ -273,6 +279,7 @@ namespace HunterPie.GUI.Widgets {
                 MonsterHealthBar.MaxSize = this.Width * 0.8;
                 MonsterStaminaBar.MaxSize = this.Width - 72;
                 MonsterHealthBar.UpdateBar(Context.CurrentHP, Context.TotalHP);
+                MonsterStaminaBar.UpdateBar(Context.Stamina, Context.MaxStamina);
                 this.Opacity = 1;
             }
         }
@@ -293,6 +300,10 @@ namespace HunterPie.GUI.Widgets {
         #region Helpers
         private void SetMonsterHealthBarText(float hp, float max_hp) {
             this.HealthText.Text = $"{hp:0}/{max_hp:0} ({hp / max_hp * 100:0}%)";
+        }
+
+        private void SetMonsterStaminaText(float stam, float max_stam) {
+            this.StaminaText.Text = $"{stam:0}/{max_stam:0}";
         }
 
         private BitmapImage GetMonsterIcon(string MonsterEm) {

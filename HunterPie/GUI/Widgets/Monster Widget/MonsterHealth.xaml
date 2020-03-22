@@ -68,6 +68,14 @@
                     </TransformGroup>
                 </Custom:MinimalHealthBar.RenderTransform>
             </Custom:MinimalHealthBar>
+            <TextBlock x:Name="StaminaText" Text="0/0" Margin="0,14,28,17" Grid.Row="1" TextAlignment="Right" HorizontalAlignment="Right" Width="60">
+                <TextBlock.Foreground>
+                    <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
+                        <GradientStop Color="White" Offset="0"/>
+                        <GradientStop Color="#FF919191" Offset="1"/>
+                    </LinearGradientBrush>
+                </TextBlock.Foreground>
+            </TextBlock>
             <Rectangle x:Name="HealthBossIcon" Width="30" Height="30" Margin="10,15,0,0" Grid.RowSpan="2" RenderTransformOrigin="0.5,0.5" HorizontalAlignment="Left" VerticalAlignment="Top">
                 <Rectangle.Effect>
                     <DropShadowEffect Color="Red" ShadowDepth="0" BlurRadius="15" Opacity="0"/>
@@ -88,12 +96,6 @@
                 </Rectangle.RenderTransform>
             </Rectangle>
             <Image x:Name="MonsterIcon" Width="30" Height="30" Margin="10,15,0,0" Grid.RowSpan="2" HorizontalAlignment="Left" VerticalAlignment="Top"/>
-            <!--
-            <Image x:Name="HealthBossIcon" Source="{StaticResource ICON_MONSTERBAR}" Margin="12,10,0,0" Grid.RowSpan="2" HorizontalAlignment="Left" Width="36" Stretch="UniformToFill" Height="38" VerticalAlignment="Top" ClipToBounds="False">
-                <Image.Effect>
-                    <DropShadowEffect Color="Red" ShadowDepth="0" BlurRadius="15" Opacity="0"/>
-                </Image.Effect>
-            </Image>-->
 
             <StackPanel x:Name="Weaknesses" Margin="45,20,38,0" Orientation="Horizontal" Style="{StaticResource StackPanelAnimations}" Grid.Row="1" Height="24" VerticalAlignment="Top"/>
             <TextBlock x:Name="EnrageTimerText" Visibility="Hidden" HorizontalAlignment="Left" Margin="8,29,0,0" Grid.Row="1" TextWrapping="Wrap" Text="120s" VerticalAlignment="Top" TextAlignment="Center" Width="34" Height="16">

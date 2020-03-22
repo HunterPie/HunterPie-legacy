@@ -205,6 +205,11 @@ namespace HunterPie.Core {
             ScanMonsterInfo();
         }
 
+        public void ClearParts() {
+            Parts.Clear();
+            Ailments.Clear();
+        }
+
         private void GetMonsterAddress() {
             Int64 Address = Memory.Address.BASE + Memory.Address.MONSTER_OFFSET;
             // This will give us the third monster's address, so we can find the second and first monster with it
