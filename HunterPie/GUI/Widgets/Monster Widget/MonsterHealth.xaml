@@ -51,7 +51,7 @@
                 </Custom:MinimalHealthBar.RenderTransform>
             </Custom:MinimalHealthBar>
             <TextBlock x:Name="HealthText"  Style="{StaticResource OVERLAY_MONSTER_BAR_TEXT_STYLE}" TextAlignment="Center" Height="20" VerticalAlignment="Top" Margin="48,14,38,0" Grid.RowSpan="2"/>
-            <Custom:MinimalHealthBar x:Name="MonsterStaminaBar" Grid.Row="1" Height="5" VerticalAlignment="Top" RenderTransformOrigin="0.5,1" BorderBrush="#7F1F1F1F" BorderThickness="1" Foreground="{x:Null}" Margin="40,14,30,0" MaxSize="480" MaxHealth="200" Health="200">
+            <Custom:MinimalHealthBar x:Name="MonsterStaminaBar" Grid.Row="1" Height="5" VerticalAlignment="Top" RenderTransformOrigin="0.5,1" BorderBrush="#7F1F1F1F" BorderThickness="1" Foreground="{x:Null}" Margin="40,14,30,0">
                 <Custom:MinimalHealthBar.Color>
                     <LinearGradientBrush EndPoint="1,0" StartPoint="0,0">
                         <GradientStop Color="#E5ECAF2F" Offset="1"/>

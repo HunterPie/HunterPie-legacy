@@ -88,8 +88,6 @@
     <Abnormality ID="16" IsDebuff="True" Offset="61C" Icon=""/>
     <Abnormality ID="17" IsDebuff="True" Offset="620" Icon="ICON_BLAST"/>
     <Abnormality ID="20" IsDebuff="True" Offset="62C" Icon="ICON_BLASTSCOURGE"/>
-    <!--
-    <Abnormality ID="999" IsDebuff="True" Offset="4E784" Icon="ICON_STUN"/>-->
   </DEBUFF_Abnormalities>
   <MISC_Abnormalities>
     <Abnormality ID="0" IsDebuff="False" Offset="694" HasConditions="False" Icon="ITEM_DASH"/>

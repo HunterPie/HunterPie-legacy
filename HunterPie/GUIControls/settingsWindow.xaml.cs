@@ -211,5 +211,9 @@ namespace HunterPie.GUIControls {
             // Update the text box.
             ToggleOverlayHotKey.Content = shortcutText.ToString();
         }
+
+        private void SwitchEnableParts_MouseDown(object sender, MouseButtonEventArgs e) {
+            PartsCustomizer.IsEnabled = switchEnableParts.IsEnabled;
+        }
     }
 }

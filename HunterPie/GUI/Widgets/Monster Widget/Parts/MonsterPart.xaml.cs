@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Linq;
 using System.Windows.Controls;
 using Timer = System.Threading.Timer;
 using HunterPie.Core;
@@ -40,10 +41,16 @@ namespace HunterPie.GUI.Widgets.Monster_Widget.Parts {
 
         #region Visibility timer
         private void StartVisibilityTimer() {
+            if (!UserSettings.PlayerConfig.Overlay.MonstersComponent.HidePartsAfterSeconds) {
+                Dispatch(() => {
+                    this.Visibility = System.Windows.Visibility.Visible;
+                });
+                return;
+            }
             if (VisibilityTimer == null) {
-                VisibilityTimer = new Timer(_ => HideUnactiveBar(), null, 10000, 0);
+                VisibilityTimer = new Timer(_ => HideUnactiveBar(), null, 10, 0);
             } else {
-                VisibilityTimer.Change(10000, 0);
+                VisibilityTimer.Change(UserSettings.PlayerConfig.Overlay.MonstersComponent.SecondsToHideParts * 1000, 0);
             }
         }
 
@@ -72,11 +79,21 @@ namespace HunterPie.GUI.Widgets.Monster_Widget.Parts {
         }
 
         private void OnHealthChange(object source, MonsterPartEventArgs args) {
+            System.Windows.Visibility visibility;
+            if (Context.IsRemovable) {
+                visibility = UserSettings.PlayerConfig.Overlay.MonstersComponent.EnableRemovableParts ? System.Windows.Visibility.Visible : System.Windows.Visibility.Collapsed;
+            } else {
+                if (UserSettings.PlayerConfig.Overlay.MonstersComponent.EnableMonsterParts) {
+                    visibility = UserSettings.PlayerConfig.Overlay.MonstersComponent.EnabledPartGroups.Contains(Context.Group) ? System.Windows.Visibility.Visible : System.Windows.Visibility.Collapsed;
+                } else {
+                    visibility = System.Windows.Visibility.Collapsed;
+                }
+            }
             Dispatch(() => {
                 this.PartHealth.MaxHealth = args.TotalHealth;
                 this.PartHealth.Health = args.Health;
                 this.PartHealthText.Text = $"{args.Health:0}/{args.TotalHealth:0}";
-                this.Visibility = System.Windows.Visibility.Visible;
+                this.Visibility = visibility;
                 StartVisibilityTimer();
             });
         }

@@ -17,6 +17,8 @@ namespace HunterPie.Memory {
             public static int[] MonsterOffsets;
             public static int[] MonsterSelectedOffsets;
 
+            
+
             public static int FertilizersOffset;
             public static int TailRaidersOffset = 0x10344C;
             public static int SteamFuelOffset = 0x102F4C;
@@ -32,6 +34,8 @@ namespace HunterPie.Memory {
             public static int MonsterPartBrokenCounterOffset = 0xC;
             public static int RemovablePartsOffset = 0x164C0;
             public static int NextRemovablePart = 0x78;
+            public static int[] MonsterAilmentsOffsets = new int[2] { 0x4C0, 0x5E60 };
+
         }
         public static int PREICEBORNE_VERSION = 168031;
         public static int GAME_VERSION = 168031;

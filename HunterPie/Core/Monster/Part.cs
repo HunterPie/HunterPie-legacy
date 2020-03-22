@@ -44,6 +44,7 @@ namespace HunterPie.Core {
             }
         }
         public bool IsRemovable { get; private set; }
+        public string Group { get; set; }
 
         #region Events
         public delegate void MonsterPartEvents(object source, MonsterPartEventArgs args);

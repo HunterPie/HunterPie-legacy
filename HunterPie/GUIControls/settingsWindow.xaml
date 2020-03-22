@@ -43,18 +43,10 @@
     </UserControl.Resources>
     <StackPanel HorizontalAlignment="Left" Width="949">
         <Label Content="- General -" Height="34" FontFamily="Roboto" FontSize="20" FontWeight="Bold" HorizontalAlignment="Center" Width="949" HorizontalContentAlignment="Center" Foreground="#FFE0E0E0" Padding="0" UseLayoutRounding="False" VerticalContentAlignment="Center" Background="#FF0F0F0F"/>
-        <StackPanel Orientation="Horizontal" Margin="238,3,271,0" Width="240" ToolTip="Enables auto-update">
-            <custom:Switcher x:Name="switchEnableAutoUpdate" Height="27" Width="52"/>
-            <TextBlock Text="Enable Auto-Update" Margin="10,0,0,0" FontFamily="Roboto" FontSize="16" Foreground="#FFF9F9F9" HorizontalAlignment="Center" VerticalAlignment="Center" FontWeight="ExtraLight" />
-        </StackPanel>
-        <StackPanel Orientation="Horizontal" Margin="338,3,0,0" ToolTip="When enabled, HunterPie will be minimized to the system tray instead of windows bar.">
-            <custom:Switcher x:Name="switchEnableMinimizeToSystemTray" Height="27" Width="52"/>
-            <TextBlock Text="Minimize HunterPie to system tray" Margin="10,0,0,0" FontFamily="Roboto" FontSize="16" Foreground="#FFF9F9F9" HorizontalAlignment="Center" VerticalAlignment="Center" FontWeight="ExtraLight" />
-        </StackPanel>
-        <StackPanel Orientation="Horizontal" Margin="338,3,0,0" ToolTip="When enabled, HunterPie will start minimized.">
-            <custom:Switcher x:Name="switchEnableStartMinimized" Height="27" Width="52"/>
-            <TextBlock Text="Start HunterPie minimized" Margin="10,0,0,0" FontFamily="Roboto" FontSize="16" Foreground="#FFF9F9F9" HorizontalAlignment="Center" VerticalAlignment="Center" FontWeight="ExtraLight" />
-        </StackPanel>
+        <custom:Switcher x:Name="switchEnableAutoUpdate" Text="Enable Auto-Update" Height="27" ToolTip="If enabled, HunterPie will look for new files on startup." HorizontalAlignment="Right" MinWidth="500" Margin="0,0,95,0"/>
+        <custom:Switcher x:Name="switchEnableMinimizeToSystemTray" Text="Minimize HunterPie to system tray" Height="27" ToolTip="When enabled, HunterPie will be minimized to the system tray instead of windows bar." HorizontalAlignment="Right" MinWidth="500" Margin="0,0,95,0"/>
+        <custom:Switcher x:Name="switchEnableStartMinimized" Height="27" Text="Start HunterPie minimized" ToolTip="If enabled, HunterPie will start minimized and stay on your system tray." HorizontalAlignment="Right" MinWidth="500" Margin="0,0,95,0"/>
+
         <ComboBox Style="{StaticResource ComboBoxFlatStyle}" x:Name="branchesCombobox" IsReadOnly="True" Cursor="Hand" HorizontalAlignment="Center" Width="148" Margin="106,10,0,0" FontSize="14" Foreground="#FFF9F9F9"/>
         <Label Content="Update branch:" HorizontalAlignment="Center" Height="23" Margin="-150,-21,0,0" Width="103" FontFamily="Roboto" Foreground="#FFE0E0E0" FontSize="15" Padding="0" FontWeight="Light"/>
         <ComboBox Style="{StaticResource ComboBoxFlatStyle}" x:Name="LanguageFilesCombobox" Margin="299,10,211,0" IsReadOnly="True" Cursor="Hand" FontSize="14" Foreground="#FFE0E0E0"/>
@@ -65,32 +57,14 @@
             <Label x:Name="launchArgsLabel" Content="Launch arguments:" HorizontalAlignment="Right" Width="133" FontFamily="Roboto" Foreground="#FFE0E0E0" FontSize="15" Padding="0" FontWeight="Light" VerticalContentAlignment="Center" HorizontalContentAlignment="Right"/>
             <TextBox x:Name="argsTextBox" TextWrapping="Wrap" Margin="0,1" Background="{x:Null}" Foreground="#FFE0E0E0" BorderBrush="#FFABADB3" BorderThickness="0,0,0,1" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" HorizontalAlignment="Right" Width="330" TextChanged="argsTextBox_TextChanged" GotFocus="argsTextBox_GotFocus" LostFocus="argsTextBox_LostFocus"/>
         </StackPanel>
-        <StackPanel Orientation="Horizontal" Margin="338,3,160,0" ToolTip="If enabled HunterPie will automatically close whenever the game stops running.">
-            <custom:Switcher x:Name="switchEnableCloseWhenExit"/>
-            <TextBlock Text="Close HunterPie when game is closed" Margin="10,0,0,0" FontFamily="Roboto" FontSize="16" Foreground="#FFF9F9F9" HorizontalAlignment="Center" VerticalAlignment="Center" FontWeight="ExtraLight" />
-        </StackPanel>
+        <custom:Switcher x:Name="switchEnableCloseWhenExit" Text="Close HunterPie when game is closed" ToolTip="If enabled HunterPie will automatically close whenever the game stops running." HorizontalAlignment="Right" MinWidth="500" Margin="0,0,95,0"/>
         <Label x:Name="RichPresenceStaticText" Content="- Discord Presence -" Height="34" FontFamily="Roboto" FontSize="20" FontWeight="Bold" HorizontalAlignment="Center" Width="949" HorizontalContentAlignment="Center" Foreground="#FFE0E0E0" Padding="0,2,0,0" UseLayoutRounding="False" VerticalContentAlignment="Center" Margin="0,17,0,0" Background="#FF0F0F0F"/>
-        <StackPanel Orientation="Horizontal" Margin="338,3,0,0">
-            <custom:Switcher x:Name="switchEnableRichPresence"/>
-            <TextBlock Text="Enable Discord Rich Presence" Margin="10,0,0,0" FontFamily="Roboto" FontSize="16" Foreground="#FFF9F9F9" HorizontalAlignment="Center" VerticalAlignment="Center" FontWeight="ExtraLight" />
-        </StackPanel>
-        <StackPanel Orientation="Horizontal" Margin="338,3,0,0" ToolTip="If enabled, the monster health will be shown in rich presence">
-            <custom:Switcher x:Name="switchShowMonsterHealth"/>
-            <TextBlock Text="Show monster health percentage" Margin="10,0,0,0" FontFamily="Roboto" FontSize="16" Foreground="#FFF9F9F9" HorizontalAlignment="Center" VerticalAlignment="Center" FontWeight="ExtraLight" />
-        </StackPanel>
+        <custom:Switcher x:Name="switchEnableRichPresence" Text="Enable Discord Rich Presence" ToolTip="If enabled, HunterPie will show your in-game activity in your Discord" HorizontalAlignment="Right" MinWidth="500" Margin="0,0,95,0"/>
+        <custom:Switcher x:Name="switchShowMonsterHealth" Text="Show monster health percentage" ToolTip="If enabled, HunterPie will show the health percentage of the monster you're hunting." HorizontalAlignment="Right" MinWidth="500" Margin="0,0,95,0"/>
         <Label x:Name="OverlayStaticText" Content="- In-Game Overlay -" Height="34" FontFamily="Roboto" FontSize="20" FontWeight="Bold" HorizontalAlignment="Center" Width="949" HorizontalContentAlignment="Center" Foreground="#FFE0E0E0" Padding="0" UseLayoutRounding="False" VerticalContentAlignment="Center" Margin="0,25,0,0" Background="#FF0F0F0F"/>
-        <StackPanel Orientation="Horizontal" Margin="0,3,0,0">
-            <custom:Switcher x:Name="switchEnableOverlay"/>
-            <TextBlock Text="Enable In-Game Overlay" Margin="10,0,0,0" FontFamily="Roboto" FontSize="16" Foreground="#FFF9F9F9" HorizontalAlignment="Center" VerticalAlignment="Center" FontWeight="ExtraLight" />
-        </StackPanel>
-        <StackPanel Orientation="Horizontal" Margin="0,3,0,0" ToolTip="If enabled, HunterPie's overlay will be automatically hidden when the game loses focus (e.g: When you alt+tab)">
-            <custom:Switcher x:Name="switchHideWhenUnfocused"/>
-            <TextBlock Text="Hide Overlay when game is unfocused" Margin="10,0,0,0" FontFamily="Roboto" FontSize="16" Foreground="#FFF9F9F9" HorizontalAlignment="Center" VerticalAlignment="Center" FontWeight="ExtraLight" />
-        </StackPanel>
-        <StackPanel Orientation="Horizontal" Margin="0,3,0,0" ToolTip="Enabling hardware acceleration will make the overlay be rendered using the GPU. Turning this off will make the overlay be rendered using the CPU. Turn this off if you're having FPS issues. REQUIRES RESTART">
-            <custom:Switcher x:Name="switchHardwareAcceleration"/>
-            <TextBlock Text="Enable Hardware acceleration" Margin="10,0,0,0" FontFamily="Roboto" FontSize="16" Foreground="#FFF9F9F9" HorizontalAlignment="Center" VerticalAlignment="Center" FontWeight="ExtraLight" />
-        </StackPanel>
+        <custom:Switcher x:Name="switchEnableOverlay" Text="Enable In-Game Overlay" ToolTip="If enabled, the overlay will be visible in-game." HorizontalAlignment="Right" MinWidth="500" Margin="0,0,95,0"/>
+        <custom:Switcher x:Name="switchHideWhenUnfocused" Text="Hide Overlay when game is unfocused" ToolTip="If enabled, HunterPie's overlay will be automatically hidden when the game loses focus (e.g: When you alt+tab)" HorizontalAlignment="Right" MinWidth="500" Margin="0,0,95,0"/>
+        <custom:Switcher x:Name="switchHardwareAcceleration" Text="Enable Hardware acceleration (GPU rendering)" ToolTip="Enabling hardware acceleration will make the overlay be rendered using the GPU. Turning this off will make the overlay be rendered using the CPU. Turn this off if you're having FPS issues. REQUIRES RESTART" HorizontalAlignment="Right" MinWidth="500" Margin="0,0,95,0"/>
         <Label Content="Toggle overlay:" HorizontalAlignment="Left" Height="30" Margin="278,7,0,0" Width="152" FontFamily="Roboto" Foreground="#FFE0E0E0" FontSize="15" Padding="0" FontWeight="Light" VerticalContentAlignment="Center"/>
         <Button x:Name="ToggleOverlayHotKey" Cursor="Hand" Margin="420,-30,404,0" Background="#FF0F0F0F" Foreground="#FFE8E8E8" FontFamily="Roboto" BorderBrush="{x:Null}" Height="30" Padding="3,1" Style="{StaticResource ToggleButtonStyle}" PreviewKeyDown="OnToggleOverlayKeyDown"/>
         <TextBlock TextWrapping="Wrap" Text="(Requires restart)" Foreground="#FFF1F1F1" FontWeight="Light" TextAlignment="Center" HorizontalAlignment="Left" Width="102" Margin="543,-30,0,0" Padding="0,6,0,0"/>
@@ -102,49 +76,84 @@
             <TextBox x:Name="positionOverlayY" TextWrapping="Wrap" Text="Y" Margin="6,1,0,1" Background="{x:Null}" Foreground="#FFE0E0E0" BorderBrush="#FFABADB3" BorderThickness="0,0,0,1" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" HorizontalAlignment="Right" Width="54" TextChanged="TypeNumber"/>
         </StackPanel>
         <Label x:Name="MonsterCompStaticText" Content="Monster overlay" Height="34" FontFamily="Roboto" FontSize="16" HorizontalAlignment="Center" Width="949" HorizontalContentAlignment="Center" Foreground="#FFE0E0E0" Padding="0" UseLayoutRounding="False" VerticalContentAlignment="Center" Margin="0,25,0,0" Background="#FF0F0F0F"/>
-        <StackPanel Orientation="Horizontal" Margin="338,3,0,0">
-            <custom:Switcher x:Name="switchEnableMonsterComponent"/>
-            <TextBlock Text="Enable monster widget" Margin="10,0,0,0" FontFamily="Roboto" FontSize="16" Foreground="#FFF9F9F9" HorizontalAlignment="Center" VerticalAlignment="Center" FontWeight="ExtraLight" />
-        </StackPanel>
-        <ComboBox Style="{StaticResource ComboBoxFlatStyle}" x:Name="MonsterShowModeSelection" IsReadOnly="True" Cursor="Hand" HorizontalAlignment="Center" Width="400" Margin="322,10,227,0" FontSize="14" Foreground="#FFF9F9F9" SelectedIndex="0">
+        <custom:Switcher x:Name="switchEnableMonsterComponent" Text="Enable monster widget" ToolTip="If enabled, the monster widget will be visible whenever it has content to show." HorizontalAlignment="Right" MinWidth="500" Margin="0,0,95,0"/>
+        <ComboBox Style="{StaticResource ComboBoxFlatStyle}" x:Name="MonsterShowModeSelection" IsReadOnly="True" Cursor="Hand" HorizontalAlignment="Center" Width="400" Margin="322,2,227,3" FontSize="14" Foreground="#FFF9F9F9" SelectedIndex="0">
             <System:String>Show all monsters at once</System:String>
             <System:String>Show all monsters but highlight my target</System:String>
             <System:String>Show only hunted monster</System:String>
             <System:String>Show all but hide non-active monsters after X seconds</System:String>
         </ComboBox>
         <TextBlock Text="Monster bar mode:" Margin="-456,-26,0,0" FontFamily="Roboto" FontSize="16" Foreground="#FFF9F9F9" HorizontalAlignment="Center" VerticalAlignment="Center" FontWeight="ExtraLight" TextAlignment="Right" />
-        <StackPanel Orientation="Horizontal" Margin="338,3,0,0">
-            <custom:Switcher x:Name="switchEnableMonsterWeakness"/>
-            <TextBlock Text="Show monster weaknesses" Margin="10,0,0,0" FontFamily="Roboto" FontSize="16" Foreground="#FFF9F9F9" HorizontalAlignment="Center" VerticalAlignment="Center" FontWeight="ExtraLight" />
+        <custom:Switcher x:Name="switchEnableHideUnactiveParts" Text="Hide unactive parts after X seconds" ToolTip="If enabled, undamaged parts will be hidden after a few seconds." HorizontalAlignment="Right" MinWidth="500" Margin="0,0,95,0"/>
+        <StackPanel Height="32" Margin="250,7,379,0" Orientation="Horizontal" ToolTip="Delay to hide undamaged parts in seconds.">
+            <Label Content="Delay to hide unactive parts:" HorizontalAlignment="Right" Width="197" FontFamily="Roboto" Foreground="#FFE0E0E0" FontSize="15" Padding="0" FontWeight="Light" VerticalContentAlignment="Center" HorizontalContentAlignment="Right"/>
+            <TextBox x:Name="HideSecondsTextbox"  TextWrapping="Wrap" Margin="0,1" Background="{x:Null}" Foreground="#FFE0E0E0" BorderBrush="#FFABADB3" BorderThickness="0,0,0,1" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" HorizontalAlignment="Right" Width="122" TextChanged="TypeNumber"/>
         </StackPanel>
+        <custom:Switcher x:Name="switchEnableMonsterWeakness" Text="Show monster weaknesses" ToolTip="If enabled, the monster weaknesses will be visible under their health bar." HorizontalAlignment="Right" MinWidth="500" Margin="0,0,95,0"/>
+        <custom:Switcher x:Name="switchEnableRemovableParts" Text="Show monster removable parts" ToolTip="If enabled, monster removable parts will be visible under their health bar." HorizontalAlignment="Right" MinWidth="500" Margin="0,0,95,0"/>
+        <custom:Switcher x:Name="switchEnableParts" Text="Show monster parts" ToolTip="If enabled, monster parts will be visible under their health bar." HorizontalAlignment="Right" MinWidth="500" Margin="0,0,95,0" MouseDown="SwitchEnableParts_MouseDown"/>
+        <ScrollViewer MaxHeight="200" Margin="250,0,131,0">
+            <StackPanel x:Name="PartsCustomizer" Height="0" IsEnabled="False">
+                <custom:Switcher x:Name="EnablePartHead" Text="Enable head health" HorizontalContentAlignment="Left" Margin="150,0,0,0" MaxWidth="500"/>
+                <custom:Switcher x:Name="EnablePartBody" Text="Enable body health" HorizontalContentAlignment="Left" Margin="150,0,0,0" MaxWidth="500"/>
+                <custom:Switcher x:Name="EnablePartArm" Text="Enable arms health" HorizontalContentAlignment="Left" Margin="150,0,0,0" MaxWidth="500"/>
+                <custom:Switcher x:Name="EnablePartWing" Text="Enable wings health" HorizontalContentAlignment="Left" Margin="150,0,0,0" MaxWidth="500"/>
+                <custom:Switcher x:Name="EnablePartLeg" Text="Enable legs health" HorizontalContentAlignment="Left" Margin="150,0,0,0" MaxWidth="500"/>
+                <custom:Switcher x:Name="EnablePartTail" Text="Enable tail health" HorizontalContentAlignment="Left" Margin="150,0,0,0" MaxWidth="500"/>
+                <custom:Switcher x:Name="EnablePartLimb" Text="Enable limbs health" HorizontalContentAlignment="Left" Margin="150,0,0,0" MaxWidth="500"/>
+                <custom:Switcher x:Name="EnablePartAbdomen" Text="Enable abdomen health" HorizontalContentAlignment="Left" Margin="150,0,0,0" MaxWidth="500"/>
+                <custom:Switcher x:Name="EnablePartChest" Text="Enable chest health" HorizontalContentAlignment="Left" Margin="150,0,0,0" MaxWidth="500"/>
+                <custom:Switcher x:Name="EnablePartRear" Text="Enable rear health" HorizontalContentAlignment="Left" Margin="150,0,0,0" MaxWidth="500"/>
+                <custom:Switcher x:Name="EnablePartJaw" Text="Enable jaw health" HorizontalContentAlignment="Left" Margin="150,0,0,0" MaxWidth="500"/>
+                <custom:Switcher x:Name="EnablePartBack" Text="Enable back health" HorizontalContentAlignment="Left" Margin="150,0,0,0" MaxWidth="500"/>
+                <custom:Switcher x:Name="EnablePartFin" Text="Enable fin health" HorizontalContentAlignment="Left" Margin="150,0,0,0" MaxWidth="500"/>
+                <custom:Switcher x:Name="EnablePartHorn" Text="Enable horns health" HorizontalContentAlignment="Left" Margin="150,0,0,0" MaxWidth="500"/>
+                <custom:Switcher x:Name="EnablePartNeck" Text="Enable neck health" HorizontalContentAlignment="Left" Margin="150,0,0,0" MaxWidth="500"/>
+                <custom:Switcher x:Name="EnablePartShell" Text="Enable shells health" HorizontalContentAlignment="Left" Margin="150,0,0,0" MaxWidth="500"/>
+                <custom:Switcher x:Name="EnablePartOrgan" Text="Enable organs health" HorizontalContentAlignment="Left" Margin="150,0,0,0" MaxWidth="500"/>
+                <custom:Switcher x:Name="EnablePartMane" Text="Enable manes health" HorizontalContentAlignment="Left" Margin="150,0,0,0" MaxWidth="500"/>
+                <custom:Switcher x:Name="EnablePartBone" Text="Enable bones health" HorizontalContentAlignment="Left" Margin="150,0,0,0" MaxWidth="500"/>
+                <custom:Switcher x:Name="EnablePartMisc" Text="Enable miscellaneous health" HorizontalContentAlignment="Left" Margin="150,0,0,0" MaxWidth="500"/>
+                <StackPanel.Style>
+                    <Style TargetType="StackPanel">
+                        <Style.Triggers>
+                            <Trigger Property="IsEnabled" Value="True">
+                                <Trigger.EnterActions>
+                                    <BeginStoryboard>
+                                        <Storyboard Storyboard.TargetProperty="Height">
+                                            <DoubleAnimation To="530" Duration="0:0:0.2"/>
+                                        </Storyboard>
+                                    </BeginStoryboard>
+                                </Trigger.EnterActions>
+                                <Trigger.ExitActions>
+                                    <BeginStoryboard>
+                                        <Storyboard Storyboard.TargetProperty="Height">
+                                            <DoubleAnimation To="0" Duration="0:0:0.2"/>
+                                        </Storyboard>
+                                    </BeginStoryboard>
+                                </Trigger.ExitActions>
+                            </Trigger>
+                        </Style.Triggers>
+                    </Style>
+                </StackPanel.Style>
+            </StackPanel>
+        </ScrollViewer>
         <StackPanel Height="32" Margin="288,0,272,0" Orientation="Horizontal">
             <Label x:Name="updateBranchStaticText_Copy1" Content="Position:" HorizontalAlignment="Right" Width="66" FontFamily="Roboto" Foreground="#FFE0E0E0" FontSize="15" Padding="0" FontWeight="Light" VerticalContentAlignment="Center" HorizontalContentAlignment="Right"/>
             <TextBox x:Name="positionMonsterCompX" TextWrapping="Wrap" Text="X" Margin="0,1" Background="{x:Null}" Foreground="#FFE0E0E0" BorderBrush="#FFABADB3" BorderThickness="0,0,0,1" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" HorizontalAlignment="Right" Width="54" TextChanged="TypeNumber"/>
             <TextBox x:Name="positionMonsterCompY" TextWrapping="Wrap" Text="Y" Margin="6,1,0,1" Background="{x:Null}" Foreground="#FFE0E0E0" BorderBrush="#FFABADB3" BorderThickness="0,0,0,1" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" HorizontalAlignment="Right" Width="54" TextChanged="TypeNumber"/>
         </StackPanel>
         <TextBlock Text="Harvest Box" Height="34" FontFamily="Roboto" FontSize="16" HorizontalAlignment="Center" Width="949" Foreground="#FFE0E0E0" Padding="0,7,0,0" UseLayoutRounding="False" Margin="0,25,0,0" Background="#FF0F0F0F" VerticalAlignment="Center" TextAlignment="Center"/>
-        <StackPanel Orientation="Horizontal" Margin="338,3,0,0">
-            <custom:Switcher x:Name="switchEnableHarvestBox"/>
-            <TextBlock Text="Enable Harvest box widget" Margin="10,0,0,0" FontFamily="Roboto" FontSize="16" Foreground="#FFF9F9F9" HorizontalAlignment="Center" VerticalAlignment="Center" FontWeight="ExtraLight" />
-        </StackPanel>
-        <StackPanel Orientation="Horizontal" Margin="338,3,0,0" ToolTip="If enabled, this widget will be shown in every place, including expeditions, guiding lands and any monster zone.">
-            <custom:Switcher x:Name="switchAlwaysShow"/>
-            <TextBlock Text="Show widget everywhere" Margin="10,0,0,0" FontFamily="Roboto" FontSize="16" Foreground="#FFF9F9F9" HorizontalAlignment="Center" VerticalAlignment="Center" FontWeight="ExtraLight" />
-        </StackPanel>
+        <custom:Switcher x:Name="switchEnableHarvestBox" Text="Enable Harvest Box widget" ToolTip="If enabled, the harvest box widget will be visible whenever it has content." HorizontalAlignment="Right" MinWidth="500" Margin="0,0,95,0"/>
+        <custom:Switcher x:Name="switchAlwaysShow" Text="Show widget everywhere" ToolTip="If enabled, this widget will be shown in every place, including expeditions, guiding lands and any monster zone." HorizontalAlignment="Right" MinWidth="500" Margin="0,0,95,0"/>
         <StackPanel Height="32" Margin="288,0,272,0" Orientation="Horizontal">
             <Label x:Name="updateBranchStaticText_Copy2" Content="Position:" HorizontalAlignment="Right" Width="66" FontFamily="Roboto" Foreground="#FFE0E0E0" FontSize="15" Padding="0" FontWeight="Light" VerticalContentAlignment="Center" HorizontalContentAlignment="Right"/>
             <TextBox x:Name="harvestBoxPosX" TextWrapping="Wrap" Text="X" Margin="0,1" Background="{x:Null}" Foreground="#FFE0E0E0" BorderBrush="#FFABADB3" BorderThickness="0,0,0,1" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" HorizontalAlignment="Right" Width="54" TextChanged="TypeNumber"/>
             <TextBox x:Name="harvestBoxPosY" TextWrapping="Wrap" Text="Y" Margin="6,1,0,1" Background="{x:Null}" Foreground="#FFE0E0E0" BorderBrush="#FFABADB3" BorderThickness="0,0,0,1" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" HorizontalAlignment="Right" Width="54" TextChanged="TypeNumber"/>
         </StackPanel>
-        <TextBlock Text="DPS Meter (BETA)" Height="34" FontFamily="Roboto" FontSize="16" HorizontalAlignment="Center" Width="949" Foreground="#FFE0E0E0" Padding="0,7,0,0" UseLayoutRounding="False" Margin="0,25,0,0" Background="#FF0F0F0F" VerticalAlignment="Center" TextAlignment="Center"/>
-        <StackPanel Orientation="Horizontal" Margin="338,3,0,0">
-            <custom:Switcher x:Name="switchEnableDPSMeter"/>
-            <TextBlock Text="Enable DPS Meter" Margin="10,0,0,0" FontFamily="Roboto" FontSize="16" Foreground="#FFF9F9F9" HorizontalAlignment="Center" VerticalAlignment="Center" FontWeight="ExtraLight" />
-        </StackPanel>
-        <StackPanel Orientation="Horizontal" Margin="338,3,0,0" ToolTip="If enabled the damage meter will show damage per second instead of total damage whenever possible.">
-            <custom:Switcher x:Name="switchEnableDPSWheneverPossible"/>
-            <TextBlock Text="Show DPS instead of total damage whenever possible" Margin="10,0,0,0" FontFamily="Roboto" FontSize="16" Foreground="#FFF9F9F9" HorizontalAlignment="Center" VerticalAlignment="Center" FontWeight="ExtraLight" />
-        </StackPanel>
+        <TextBlock Text="DPS Meter" Height="34" FontFamily="Roboto" FontSize="16" HorizontalAlignment="Center" Width="949" Foreground="#FFE0E0E0" Padding="0,7,0,0" UseLayoutRounding="False" Margin="0,25,0,0" Background="#FF0F0F0F" VerticalAlignment="Center" TextAlignment="Center"/>
+        <custom:Switcher x:Name="switchEnableDPSMeter" Text="Enable Damage widget" ToolTip="If enabled, the damage meter widget will be visible whenever it has content." HorizontalAlignment="Right" MinWidth="500" Margin="0,0,95,0"/>
+        <custom:Switcher x:Name="switchEnableDPSWheneverPossible" Text="Show DPS instead of total damage whenever possible" ToolTip="If enabled the damage meter will show damage per second instead of total damage whenever possible." HorizontalAlignment="Right" MinWidth="500" Margin="0,0,95,0"/>
         <custom:ColorPicker NameText="First Player" x:Name="FirstPlayerColor"/>
         <custom:ColorPicker NameText="Second Player" x:Name="SecondPlayerColor"/>
         <custom:ColorPicker NameText="Third Player" x:Name="ThirdPlayerColor"/>
@@ -169,10 +178,7 @@
         <Label Content="Specialized Tools" Height="34" FontFamily="Roboto" FontSize="16" HorizontalAlignment="Center" Width="949" HorizontalContentAlignment="Center" Foreground="#FFE0E0E0" Padding="0" UseLayoutRounding="False" VerticalContentAlignment="Center" Margin="0,25,0,0" Background="#FF0F0F0F"/>
         <GroupBox Header="Primary Specialized tool" Height="187" Margin="99,0,0,0" FontFamily="Roboto" Foreground="#FFE0E0E0" BorderBrush="{x:Null}" Width="359" HorizontalAlignment="Left">
             <StackPanel Margin="0,32,-2,12" Orientation="Vertical">
-                <StackPanel Orientation="Horizontal" HorizontalAlignment="Center" Margin="0,3,0,0">
-                    <custom:Switcher x:Name="switchEnablePrimaryMantle"/>
-                    <TextBlock Text="Enable Primary mantle widget" Margin="10,0,0,0" FontFamily="Roboto" FontSize="16" Foreground="#FFF9F9F9" HorizontalAlignment="Center" VerticalAlignment="Center" FontWeight="ExtraLight" />
-                </StackPanel>
+                <custom:Switcher x:Name="switchEnablePrimaryMantle" Text="Enable Primary specialized tool widget" ToolTip="If enabled, the primary specialized tool widget will be visible whenever it has content."/>
                 <StackPanel Height="32" Margin="13,0,0,0" Orientation="Horizontal" HorizontalAlignment="Center" Width="195">
                     <Label Content="Position:" HorizontalAlignment="Right" Width="66" FontFamily="Roboto" Foreground="#FFE0E0E0" FontSize="15" Padding="0" FontWeight="Light" VerticalContentAlignment="Center" HorizontalContentAlignment="Right"/>
                     <TextBox x:Name="primMantlePosX" TextWrapping="Wrap" Text="X" Margin="0,1" Background="{x:Null}" Foreground="#FFE0E0E0" BorderBrush="#FFABADB3" BorderThickness="0,0,0,1" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" HorizontalAlignment="Right" Width="54" TextChanged="TypeNumber"/>
@@ -183,10 +189,7 @@
         </GroupBox>
         <GroupBox Header="Secondary Specialized Tool" Height="187" Width="359" Margin="473,-187,71,0" FontFamily="Roboto" Foreground="#FFE0E0E0" BorderBrush="{x:Null}">
             <StackPanel Margin="0,32,-2,4" Orientation="Vertical">
-                <StackPanel Orientation="Horizontal" HorizontalAlignment="Center" Margin="0,3,0,0">
-                    <custom:Switcher x:Name="switchEnableSecondaryMantle"/>
-                    <TextBlock Text="Enable Secondary mantle widget" Margin="10,0,0,0" FontFamily="Roboto" FontSize="16" Foreground="#FFF9F9F9" HorizontalAlignment="Center" VerticalAlignment="Center" FontWeight="ExtraLight" />
-                </StackPanel>
+                <custom:Switcher x:Name="switchEnableSecondaryMantle" Text="Enable Secondary specialized tool widget" ToolTip="If enabled, the secondary specialized tool widget will be visible whenever it has content."/>
                 <StackPanel Height="32" Margin="20,0,0,0" Orientation="Horizontal" HorizontalAlignment="Center" Width="203">
                     <Label Content="Position:" HorizontalAlignment="Right" Width="66" FontFamily="Roboto" Foreground="#FFE0E0E0" FontSize="15" Padding="0" FontWeight="Light" VerticalContentAlignment="Center" HorizontalContentAlignment="Right"/>
                     <TextBox x:Name="secMantlePosX" TextWrapping="Wrap" Text="X" Margin="0,1" Background="{x:Null}" Foreground="#FFE0E0E0" BorderBrush="#FFABADB3" BorderThickness="0,0,0,1" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" HorizontalAlignment="Right" Width="54" TextChanged="TypeNumber"/>

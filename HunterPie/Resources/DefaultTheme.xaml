@@ -28,7 +28,7 @@
     
     <LinearGradientBrush x:Key="OVERLAY_MONSTER_HEALTH_BAR_COLOR" EndPoint="1,0" StartPoint="0,0">
         <GradientStop Color="#FFEAEAEA" Offset="1"/>
-        <GradientStop Color="#FFD4D4D4"/>
+        <GradientStop Color="#FFBDBDBD"/>
     </LinearGradientBrush>
 
     <Style x:Key="OVERLAY_MONSTER_BAR_TEXT_STYLE" TargetType="TextBlock">

@@ -124,12 +124,16 @@ namespace HunterPie.Core {
     public class MonsterUpdateEventArgs : EventArgs {
         public float CurrentHP;
         public float TotalHP;
+        public float Stamina;
+        public float MaxStamina;
         public float Enrage;
 
         public MonsterUpdateEventArgs(Monster m) {
             this.CurrentHP = m.CurrentHP;
             this.TotalHP = m.TotalHP;
             this.Enrage = m.EnrageTimer;
+            this.Stamina = m.Stamina;
+            this.MaxStamina = m.MaxStamina;
         }
     }
 

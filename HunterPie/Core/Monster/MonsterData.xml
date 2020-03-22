@@ -619,7 +619,7 @@
       <Weakness ID="ELEMENT_THUNDER" Stars="2"/>
     </Weaknesses>
     <Crown Mini="90" Silver="115" Gold="123"/>
-    <Parts Max="11">
+    <Parts Max="13">
       <Part Name="MONSTER_PART_REMOVABLE_TAIL" IsRemovable="True"/>
       <Part Name="MONSTER_PART_HEAD" Group="HEAD" IsRemovable="False"/>
       <Part Name="MONSTER_PART_BODY" Group="BODY" IsRemovable="False"/>
@@ -630,6 +630,8 @@
       <Part Name="MONSTER_PART_RARM" Group="ARM" IsRemovable="False"/>
       <Part Name="MONSTER_PART_LLEG" Group="LEG" IsRemovable="False"/>
       <Part Name="MONSTER_PART_RLEG" Group="LEG" IsRemovable="False"/>
+      <Part Name="MONSTER_PART_LWING" Group="WING" IsRemovable="False"/>
+      <Part Name="MONSTER_PART_RWING" Group="WING" IsRemovable="False"/>
       <Part Name="MONSTER_PART_TAIL" Group="TAIL" IsRemovable="False"/>
     </Parts>
   </Monster>

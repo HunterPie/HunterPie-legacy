@@ -53,8 +53,11 @@ namespace HunterPie.Core {
                 public byte ShowMonsterBarMode { get; set; } = 0;
                 public int[] Position { get; set; } = new int[2] { 335, 10 };
                 public bool ShowMonsterWeakness { get; set; } = true;
+                public bool HidePartsAfterSeconds { get; set; } = true;
+                public int SecondsToHideParts { get; set; } = 10;
                 public bool EnableRemovableParts { get; set; } = true;
-                public string[] EnabledPartGroups { get; set; } = new string[19] { "HEAD", "BODY", "ARM", "WING", "LEG", "TAIL", "LIMB", "ABDOMEN", "CHEST", "REAR", "JAW", "BACK", "FIN", "HORN", "NECK", "SHELL", "ORGAN", "MISC", "MANE" };
+                public bool EnableMonsterParts { get; set; } = true;
+                public string[] EnabledPartGroups { get; set; } = new string[20] { "HEAD", "BODY", "ARM", "WING", "LEG", "TAIL", "LIMB", "ABDOMEN", "CHEST", "REAR", "JAW", "BACK", "FIN", "HORN", "NECK", "SHELL", "ORGAN", "MISC", "MANE", "BONE" };
             }
 
             public class Harvestboxcomponent {

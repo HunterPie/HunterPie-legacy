@@ -8,8 +8,7 @@
              Height="50" Width="500">
     <Canvas Background="#FF1D1D1D">
         <TextBox x:Name="BarPresetName" Cursor="Arrow" TextWrapping="Wrap" Text="ABNORMALITY BAR" Height="50" Width="320" SelectionBrush="#AF0000" Foreground="WhiteSmoke" Background="Transparent" BorderBrush="Transparent" FontSize="14" VerticalScrollBarVisibility="Disabled" MaxWidth="320" MaxHeight="50" Padding="4,13,0,0" FontWeight="Bold"/>
-        <TextBlock Canvas.Left="325" Foreground="WhiteSmoke" TextWrapping="Wrap" Text="Enable" Height="22" Width="54" Canvas.Top="14" FontSize="16" FontWeight="Light"/>
-        <local:Switcher x:Name="SwitchEnableBar" Height="24" Canvas.Left="384" Canvas.Top="12" Width="50"/>
+        <local:Switcher x:Name="SwitchEnableBar" Text="Enable" Height="24" Canvas.Left="321" Canvas.Top="12" Width="129"/>
         <Image Cursor="Hand" MouseDown="OnBuffTraySettingClick" Source="{DynamicResource ICON_SETTINGS}" Width="20" Height="20" Canvas.Left="450" Canvas.Top="14">
             <Image.Style>
                 <Style TargetType="Image">

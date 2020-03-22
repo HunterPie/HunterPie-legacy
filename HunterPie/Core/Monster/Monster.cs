@@ -11,6 +11,7 @@ namespace HunterPie.Core {
         // Private vars
         private string _id;
         private float _currentHP;
+        private float _Stamina;
         private bool _IsTarget;
         private float _enrageTimer = 0;
         
@@ -80,7 +81,7 @@ namespace HunterPie.Core {
         public float EnrageTimer {
             get { return _enrageTimer; }
             set {
-                if ((int)value != (int)_enrageTimer) {
+                if (value != _enrageTimer) {
                     if (value > 0 && _enrageTimer == 0) {
                         _onEnrage();
                     } else if (value == 0 && _enrageTimer > 0) {
@@ -95,6 +96,17 @@ namespace HunterPie.Core {
         public bool IsEnraged {
             get { return _enrageTimer > 0; }
         }
+        public float Stamina {
+            get { return _Stamina; }
+            set {
+                if ((int)value != (int)_Stamina) {
+                    _Stamina = value;
+                    _OnStaminaUpdate();
+                }
+            }
+        }
+        public float MaxStamina { get; private set; }
+
         public List<Part> Parts = new List<Part>();
         // Threading
         ThreadStart MonsterInfoScanRef;
@@ -109,6 +121,7 @@ namespace HunterPie.Core {
         public event MonsterEvents OnMonsterDespawn;
         public event MonsterEvents OnMonsterDeath;
         public event MonsterUpdateEvents OnHPUpdate;
+        public event MonsterUpdateEvents OnStaminaUpdate;
         public event MonsterEvents OnTargetted;
         public event MonsterEnrageEvents OnEnrage;
         public event MonsterEnrageEvents OnUnenrage;
@@ -148,6 +161,10 @@ namespace HunterPie.Core {
             OnEnrageTimerUpdate?.Invoke(this, new MonsterUpdateEventArgs(this));
         }
 
+        protected virtual void _OnStaminaUpdate() {
+            OnStaminaUpdate?.Invoke(this, new MonsterUpdateEventArgs(this));
+        }
+
         public Monster(int initMonsterNumber) {
             MonsterNumber = initMonsterNumber;
         }
@@ -174,7 +191,9 @@ namespace HunterPie.Core {
             while (Scanner.GameIsRunning) {
                 GetMonsterAddress();
                 GetMonsterIDAndName();
+                GetMonsterStamina();
                 GetMonsterParts();
+                GetMonsterAilments();
                 GetMonsterEnrageTimer();
                 GetTargetMonsterAddress();
                 Thread.Sleep(200);
@@ -326,10 +345,24 @@ namespace HunterPie.Core {
                 Health = Scanner.READ_FLOAT(MonsterPartAddress); 
 
                 Parts[PartID].SetPartInfo(this.ID, PartID, TimesBroken, MaxHealth, Health);
+                if (Parts[PartID].Group == null) Parts[PartID].Group = MonsterData.GetPartGroupByPartIndex(this.ID, PartID);
                 MonsterPartAddress += Address.Offsets.NextMonsterPartOffset;
                 
             }
         }
         
+        private void GetMonsterStamina() {
+            if (!IsAlive) return;
+            Int64 MonsterStaminaAddress = MonsterAddress + 0x1C098;
+            MaxStamina = Scanner.READ_FLOAT(MonsterStaminaAddress + 0x4);
+            Stamina = Scanner.READ_FLOAT(MonsterStaminaAddress);
+        }
+
+        private void GetMonsterAilments() {
+            if (!this.IsAlive) return;
+            Int64 MonsterAilmentsAddress = Scanner.READ_MULTILEVEL_PTR(MonsterAddress + 0x30, Address.Offsets.MonsterAilmentsOffsets);
+            //Debugger.Log($"{MonsterAilmentsAddress:X}");
+        }
+
     }
 }

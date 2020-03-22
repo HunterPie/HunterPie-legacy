@@ -135,10 +135,8 @@
         </TabControl>
 
         <!-- Options -->
-        <Custom:Switcher x:Name="OrientationSwitcher" Margin="18,55,0,0" VerticalAlignment="Top" Height="24" HorizontalAlignment="Left" Width="51" />
-        <TextBlock HorizontalAlignment="Left" Margin="74,55,0,0" TextWrapping="Wrap" FontSize="15" Text="Allign abnormalities bar horizontally" Foreground="WhiteSmoke" VerticalAlignment="Top" Height="24"/>
-        <Custom:Switcher x:Name="EnableTimeLeftSwitcher" Margin="18,84,0,0" VerticalAlignment="Top" Height="24" HorizontalAlignment="Left" Width="51" />
-        <TextBlock HorizontalAlignment="Left" Margin="74,84,0,0" TextWrapping="Wrap" FontSize="15" Text="Show abnormalities time left" Foreground="WhiteSmoke" VerticalAlignment="Top" Height="24" Width="239" TextAlignment="Right"/>
+        <Custom:Switcher x:Name="OrientationSwitcher" Margin="18,55,0,0" VerticalAlignment="Top" Height="24" HorizontalAlignment="Left" Text="Allign abnormalities bar horizontally" />
+        <Custom:Switcher x:Name="EnableTimeLeftSwitcher" Margin="18,84,0,0" VerticalAlignment="Top" Height="24" HorizontalAlignment="Left" Text="Show abnormalities time left" />
         <TextBlock HorizontalAlignment="Left" Margin="18,113,0,0" TextWrapping="Wrap" FontSize="15" Text="Timer text format:" Foreground="WhiteSmoke" VerticalAlignment="Top" Height="24" FontWeight="SemiBold"/>
         <TextBlock HorizontalAlignment="Left" Margin="318,87,0,0" TextWrapping="Wrap" FontSize="12" Text="(Requires restart)" Foreground="WhiteSmoke" VerticalAlignment="Top" Height="24" FontWeight="Light"/>
         <TextBlock HorizontalAlignment="Left" Margin="318,116,0,0" TextWrapping="Wrap" FontSize="12" Text="(Requires restart)" Foreground="WhiteSmoke" VerticalAlignment="Top" Height="24" FontWeight="Light"/>

@@ -1,8 +1,9 @@
 ﻿using System.Linq;
 using System.Windows;
 using System.Windows.Controls;
-using System.Windows.Input;
+using System.Collections.Generic;
 using HunterPie.Core;
+using System;
 
 namespace HunterPie.GUIControls {
     /// <summary>
@@ -63,6 +64,18 @@ namespace HunterPie.GUIControls {
             settingsUI.MonsterShowModeSelection.SelectedIndex = settings.Overlay.MonstersComponent.ShowMonsterBarMode;
             settingsUI.positionMonsterCompX.Text = settings.Overlay.MonstersComponent.Position[0].ToString();
             settingsUI.positionMonsterCompY.Text = settings.Overlay.MonstersComponent.Position[1].ToString();
+            settingsUI.switchEnableParts.IsEnabled = settings.Overlay.MonstersComponent.EnableMonsterParts;
+            settingsUI.PartsCustomizer.IsEnabled = settingsUI.switchEnableParts.IsEnabled;
+            settingsUI.switchEnableRemovableParts.IsEnabled = settings.Overlay.MonstersComponent.EnableRemovableParts;
+            foreach (Custom_Controls.Switcher switcher in settingsUI.PartsCustomizer.Children) {
+                if (settings.Overlay.MonstersComponent.EnabledPartGroups.Contains(switcher.Name.Replace("EnablePart", "").ToUpper())) {
+                    switcher.IsEnabled = true;
+                } else {
+                    switcher.IsEnabled = false;
+                }
+            }
+            settingsUI.HideSecondsTextbox.Text = settings.Overlay.MonstersComponent.SecondsToHideParts.ToString();
+            settingsUI.switchEnableHideUnactiveParts.IsEnabled = settings.Overlay.MonstersComponent.HidePartsAfterSeconds;
             settingsUI.switchEnableMonsterWeakness.IsEnabled = settings.Overlay.MonstersComponent.ShowMonsterWeakness;
 
             // Primary Mantle
@@ -126,6 +139,16 @@ namespace HunterPie.GUIControls {
             settings.Overlay.MonstersComponent.ShowMonsterBarMode = (byte)settingsUI.MonsterShowModeSelection.SelectedIndex;
             settings.Overlay.MonstersComponent.Position[0] = int.Parse(settingsUI.positionMonsterCompX.Text);
             settings.Overlay.MonstersComponent.Position[1] = int.Parse(settingsUI.positionMonsterCompY.Text);
+            settings.Overlay.MonstersComponent.EnableMonsterParts = settingsUI.switchEnableParts.IsEnabled;
+            settings.Overlay.MonstersComponent.EnableRemovableParts = settingsUI.switchEnableRemovableParts.IsEnabled;
+            List<string> EnabledParts = new List<string>();
+            foreach (Custom_Controls.Switcher switcher in settingsUI.PartsCustomizer.Children) {
+                if (switcher.IsEnabled)
+                    EnabledParts.Add(switcher.Name.Replace("EnablePart", "").ToUpper());
+            }
+            settings.Overlay.MonstersComponent.EnabledPartGroups = EnabledParts.ToArray();
+            settings.Overlay.MonstersComponent.HidePartsAfterSeconds = settingsUI.switchEnableHideUnactiveParts.IsEnabled;
+            settings.Overlay.MonstersComponent.SecondsToHideParts = (int)Math.Min(Math.Max(long.Parse(settingsUI.HideSecondsTextbox.Text), 0), 10000);
             settings.Overlay.MonstersComponent.ShowMonsterWeakness = settingsUI.switchEnableMonsterWeakness.IsEnabled;
 
             // Primary Mantle

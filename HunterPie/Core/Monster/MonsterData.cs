@@ -68,5 +68,12 @@ namespace HunterPie.Core {
             string PartStringName = MonsterParts.ChildNodes[PartIndex].Attributes["Name"].Value;
             return PartStringName;
         }
+
+        static public string GetPartGroupByPartIndex(string MonsterID, int PartIndex) {
+            XmlNode MonsterParts = MonsterDataDocument.SelectSingleNode($"//Monsters/Monster[@ID='{MonsterID}']/Parts");
+            if (MonsterParts == null) return "MISC";
+            string PartStringName = MonsterParts.ChildNodes[PartIndex].Attributes["Group"].Value;
+            return PartStringName;
+        }
     }
 }
