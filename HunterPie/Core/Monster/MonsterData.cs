@@ -75,5 +75,18 @@ namespace HunterPie.Core {
             string PartStringName = MonsterParts.ChildNodes[PartIndex].Attributes["Group"].Value;
             return PartStringName;
         }
+
+        static public string GetAilmentIDByIndex(int index) {
+            XmlNodeList Ailments = MonsterDataDocument.SelectNodes($"//Monsters/Ailments/Ailment");
+            if (Ailments.Count < index) return null;
+            return Ailments[index].Attributes["Name"].Value;
+        }
+
+        static public XmlNode GetAilmentByIndex(int index) {
+            XmlNodeList Ailments = MonsterDataDocument.SelectNodes($"//Monsters/Ailments/Ailment");
+            if (Ailments.Count < index) return null;
+            return Ailments[index];
+        }
+
     }
 }

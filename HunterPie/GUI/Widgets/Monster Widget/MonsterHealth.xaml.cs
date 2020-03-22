@@ -91,6 +91,16 @@ namespace HunterPie.GUI.Widgets {
 
             SwitchSizeBasedOnTarget();
 
+            // Ailments
+            this.MonsterAilmentsContainer.Children.Clear();
+            foreach (Ailment ailment in Monster.Ailments) {
+                Monster_Widget.Parts.MonsterAilment AilmentDisplay = new Monster_Widget.Parts.MonsterAilment() {
+                    Style = FindResource("OVERLAY_MONSTER_AILMENT_BAR_STYLE") as Style
+                };
+                AilmentDisplay.SetContext(ailment, this.MonsterAilmentsContainer.ItemWidth);
+                MonsterAilmentsContainer.Children.Add(AilmentDisplay);
+            }
+
             // Parts
             this.MonsterPartsContainer.Children.Clear();
             foreach (Part mPart in Monster.Parts) {
@@ -170,6 +180,10 @@ namespace HunterPie.GUI.Widgets {
                 foreach (Monster_Widget.Parts.MonsterPart Part in MonsterPartsContainer.Children) {
                     Part.UnhookEvents();
                 }
+                foreach (Monster_Widget.Parts.MonsterAilment Ailment in MonsterAilmentsContainer.Children) {
+                    Ailment.UnhookEvents();
+                }
+                MonsterAilmentsContainer.Children.Clear();
                 MonsterPartsContainer.Children.Clear();
             });
         }
@@ -268,6 +282,9 @@ namespace HunterPie.GUI.Widgets {
         private void UpdatePartHealthBarSizes(double NewSize) {
             foreach (Monster_Widget.Parts.MonsterPart part in MonsterPartsContainer.Children) {
                 part.UpdateHealthBarSize(NewSize);
+            }
+            foreach (Monster_Widget.Parts.MonsterAilment ailment in MonsterAilmentsContainer.Children) {
+                ailment.UpdateBarSize(NewSize);
             }
         }
 

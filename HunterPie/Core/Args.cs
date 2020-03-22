@@ -83,6 +83,24 @@ namespace HunterPie.Core {
     }
 
     /* Monster Events */
+    public class MonsterAilmentEventArgs : EventArgs {
+        public string Name;
+        public float Duration;
+        public float MaxDuration;
+        public float Buildup;
+        public float MaxBuildup;
+        public byte Counter;
+
+        public MonsterAilmentEventArgs(Ailment mAilment) {
+            Name = mAilment.Name;
+            Duration = mAilment.Duration;
+            MaxDuration = mAilment.MaxDuration;
+            Buildup = mAilment.Buildup;
+            MaxBuildup = mAilment.MaxBuildup;
+            Counter = mAilment.Counter;
+        }
+    }
+
 
     public class MonsterPartEventArgs : EventArgs {
         public string Name;

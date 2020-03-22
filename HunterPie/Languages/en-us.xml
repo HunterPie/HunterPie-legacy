@@ -155,6 +155,27 @@
     <Part ID="MONSTER_PART_REMOVABLE_LANTLER" Name="Removable Left Antler"/>
     <Part ID="MONSTER_PART_REMOVABLE_RANTLER" Name="Removable Right Antler"/>
   </Parts>
+  <Ailments>
+    <Ailment ID="STATUS_UNKNOWN" Name="Unknown"/>
+    <Ailment ID="STATUS_POISON" Name="Poison"/>
+    <Ailment ID="STATUS_PARALYSIS" Name="Paralysis"/>
+    <Ailment ID="STATUS_SLEEP" Name="Sleep"/>
+    <Ailment ID="STATUS_BLAST" Name="Blast"/>
+    <Ailment ID="STATUS_MOUNT" Name="Mount"/>
+    <Ailment ID="STATUS_EXHAUSTION" Name="Exhaustion"/>
+    <Ailment ID="STATUS_STUN" Name="Stun"/>
+    <Ailment ID="STATUS_TRANQUILIZE" Name="Tranquilize"/>
+    <Ailment ID="STATUS_FLASH" Name="Flash"/>
+    <Ailment ID="STATUS_KNOCKDOWN" Name="Knockdown"/>
+    <Ailment ID="STATUS_DUNGPOD" Name="Dung Pod"/>
+    <Ailment ID="STATUS_SHOCKTRAP" Name="Shock Trap"/>
+    <Ailment ID="STATUS_PITFALLTRAP" Name="Pitfall Trap"/>
+    <Ailment ID="STATUS_ELDERSEAL" Name="Elderseal"/>
+    <Ailment ID="STATUS_SMOKING" Name="Smoking"/>
+    <Ailment ID="STATUS_FELYNETRAP" Name="Felyne Trap"/>
+    <Ailment ID="STATUS_CLAW" Name="Claw"/>
+    <Ailment ID="STATUS_VIOLATED" Name="Violated"/>
+  </Ailments>
   <Mantles>
     <Mantle ID="-1" Name="No Mantle"/>
     <Mantle ID="0" Name="Ghillie Mantle"/>

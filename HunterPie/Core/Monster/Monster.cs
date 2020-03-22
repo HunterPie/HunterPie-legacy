@@ -31,10 +31,12 @@ namespace HunterPie.Core {
                         // Static stuff that can be scanned only once
                         GetMonsterWeaknesses();
                         GetMonsterSizeModifier();
-                        // Only call this if monster is actually alive
                         this.IsAlive = true;
-                        _onMonsterSpawn();
                         CreateMonsterParts(MonsterData.GetMaxPartsByMonsterID(this.ID));
+                        GetMonsterParts();
+                        GetMonsterAilments();
+                        // Only call this if monster is actually alive
+                        _onMonsterSpawn();
                     }
                 } else if (value == null && _id != value) {
                     _id = value;
@@ -108,6 +110,7 @@ namespace HunterPie.Core {
         public float MaxStamina { get; private set; }
 
         public List<Part> Parts = new List<Part>();
+        public List<Ailment> Ailments = new List<Ailment>();
         // Threading
         ThreadStart MonsterInfoScanRef;
         Thread MonsterInfoScan;
@@ -192,8 +195,8 @@ namespace HunterPie.Core {
                 GetMonsterAddress();
                 GetMonsterIDAndName();
                 GetMonsterStamina();
-                GetMonsterParts();
                 GetMonsterAilments();
+                GetMonsterParts();
                 GetMonsterEnrageTimer();
                 GetTargetMonsterAddress();
                 Thread.Sleep(200);
@@ -360,8 +363,56 @@ namespace HunterPie.Core {
 
         private void GetMonsterAilments() {
             if (!this.IsAlive) return;
-            Int64 MonsterAilmentsAddress = Scanner.READ_MULTILEVEL_PTR(MonsterAddress + 0x30, Address.Offsets.MonsterAilmentsOffsets);
-            //Debugger.Log($"{MonsterAilmentsAddress:X}");
+            if (Ailments.Count > 0) {
+                foreach (Ailment status in Ailments) {
+                    if (status.Address == 0) {
+                        continue;
+                    }
+                    float maxBuildup = Scanner.READ_FLOAT(status.Address + 0x1C8);
+                    float currentBuildup = Scanner.READ_FLOAT(status.Address + 0x1B8);
+                    float maxDuration = Scanner.READ_FLOAT(status.Address + 0x19C);
+                    float currentDuration = Scanner.READ_FLOAT(status.Address + 0x1F8);
+                    byte counter = Scanner.READ_BYTE(status.Address + 0x200);
+                    status.SetAilmentInfo(status.ID, currentDuration, maxDuration, currentBuildup, maxBuildup, counter);
+                }
+            } else {
+                Int64 StatusAddress = Scanner.READ_LONGLONG(MonsterAddress + 0x78);
+                StatusAddress = Scanner.READ_LONGLONG(StatusAddress + 0x57A8);
+                Int64 aHolder = StatusAddress;
+                while (aHolder != 0) {
+                    aHolder = Scanner.READ_LONGLONG(aHolder + 0x10);
+                    if (aHolder != 0) {
+                        StatusAddress = aHolder;
+                    }
+                }
+                Int64 StatusPtr = StatusAddress + 0x40;
+                int AilmentID = 0;
+                while (StatusPtr != 0x0) {
+                    Int64 MonsterInStatus = Scanner.READ_LONGLONG(StatusPtr + 0x188);
+                    if (MonsterInStatus == MonsterAddress) {
+                        System.Xml.XmlNode AilmentInfo = MonsterData.GetAilmentByIndex(AilmentID);
+                        bool IsSkippable = AilmentInfo == null ? true : AilmentInfo.Attributes["Skip"].Value == "True";
+                        if (IsSkippable) {
+                            StatusPtr = Scanner.READ_LONGLONG(StatusPtr + 0x18);
+                            AilmentID++;
+                            continue;
+                        } else {
+                            float maxBuildup = Scanner.READ_FLOAT(StatusPtr + 0x1C8);
+                            float currentBuildup = Scanner.READ_FLOAT(StatusPtr + 0x1B8);
+                            float maxDuration = Scanner.READ_FLOAT(StatusPtr + 0x19C);
+                            float currentDuration = Scanner.READ_FLOAT(StatusPtr + 0x1F8);
+                            byte counter = Scanner.READ_BYTE(StatusPtr + 0x200);
+                            Ailment mAilment = new Ailment {
+                                Address = StatusPtr
+                            };
+                            mAilment.SetAilmentInfo(AilmentID, currentDuration, maxDuration, currentBuildup, maxBuildup, counter);
+                            AilmentID++;
+                            Ailments.Add(mAilment);
+                        }
+                    }
+                    StatusPtr = Scanner.READ_LONGLONG(StatusPtr + 0x18);
+                }
+            }
         }
 
     }

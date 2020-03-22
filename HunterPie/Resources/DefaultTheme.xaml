@@ -6,26 +6,6 @@
     <!-- Colors -->
     <!-- Overlay -->
     <!-- Monster Widget (Main bar) -->
-
-    <Style x:Key="OVERLAY_MONSTER_BAR_STYLE" TargetType="mWidget:MonsterHealth">
-        <Setter Property="Template">
-            <Setter.Value>
-                <ControlTemplate>
-                    <Custom:MinimalHealthBar x:Name="MonsterHealthBar">
-                        <Custom:MinimalHealthBar.RenderTransform>
-                            <TransformGroup>
-                                <ScaleTransform/>
-                                <SkewTransform AngleX="45"/>
-                                <RotateTransform/>
-                                <TranslateTransform/>
-                            </TransformGroup>
-                        </Custom:MinimalHealthBar.RenderTransform>
-                    </Custom:MinimalHealthBar>
-                </ControlTemplate>
-            </Setter.Value>
-        </Setter>
-    </Style>
-    
     <LinearGradientBrush x:Key="OVERLAY_MONSTER_HEALTH_BAR_COLOR" EndPoint="1,0" StartPoint="0,0">
         <GradientStop Color="#FFEAEAEA" Offset="1"/>
         <GradientStop Color="#FFBDBDBD"/>
@@ -70,10 +50,34 @@
             </Trigger>
         </Style.Triggers>
     </Style>
-
+    <!-- Monster Bar (Ailments) -->
+    <Style x:Key="OVERLAY_MONSTER_AILMENT_BAR_STYLE" TargetType="Monster:MonsterAilment">
+        <Style.Triggers>
+            <Trigger Property="IsVisible" Value="True">
+                <Trigger.EnterActions>
+                    <BeginStoryboard>
+                        <Storyboard>
+                            <DoubleAnimation Storyboard.TargetProperty="Opacity" From="0" To="1" Duration="0:0:0.150"/>
+                        </Storyboard>
+                    </BeginStoryboard>
+                </Trigger.EnterActions>
+            </Trigger>
+        </Style.Triggers>
+    </Style>
+    <LinearGradientBrush x:Key="OVERLAY_MONSTER_AILMENT_BAR_COLOR" EndPoint="1,0" StartPoint="0,0">
+        <GradientStop Color="#FF4FBACB" Offset="1"/>
+        <GradientStop Color="#FF38849B"/>
+    </LinearGradientBrush>
+    <Style x:Key="OVERLAY_MONSTER_AILMENT_COUNTER_BACKGROUND_STYLE" TargetType="Rectangle">
+        <Setter Property="Fill" Value="#FF38849B"/>
+        <Setter Property="Stroke" Value="#CC0E0E0E"/>
+        <Setter Property="StrokeThickness" Value="0.5"/>
+    </Style>
+    
+    
     <LinearGradientBrush x:Key="OVERLAY_MONSTER_PART_BAR_COLOR" EndPoint="1,0" StartPoint="0,0">
-        <GradientStop Color="#FFD6D6D6" Offset="1"/>
-        <GradientStop Color="#FFB9B9B9"/>
+        <GradientStop Color="#FFE6DCDC" Offset="1"/>
+        <GradientStop Color="#FFBDAFAF"/>
     </LinearGradientBrush>
 
     <Style x:Key="OVERLAY_MONSTER_PART_NAME_TEXT_STYLE" TargetType="TextBlock">
@@ -85,13 +89,8 @@
                 </LinearGradientBrush>
             </Setter.Value>
         </Setter>
-        <Setter Property="FontWeight" Value="SemiBold"/>
-        <Setter Property="FontSize" Value="14"/>
-        <Setter Property="Effect">
-            <Setter.Value>
-                <DropShadowEffect BlurRadius="0" ShadowDepth="1" Color="#FF2E2E2E"/>
-            </Setter.Value>
-        </Setter>
+        <Setter Property="FontWeight" Value="Normal"/>
+        <Setter Property="FontSize" Value="12"/>
     </Style>
 
     <Style x:Key="OVERLAY_MONSTER_PART_COUNTER_BACKGROUND_STYLE" TargetType="Rectangle">

@@ -65,5 +65,11 @@ namespace HunterPie.Core {
             return PartName.Attributes["Name"].Value;
         }
 
+        public static string GetAilmentNameByID(string AilmentID) {
+            XmlNode AilmentName = Translations.SelectSingleNode($"//Strings/Ailments/Ailment[@ID='{AilmentID}']");
+            if (AilmentName == null) return Translations.SelectSingleNode($"//Strings/Ailments/Ailment[@ID='STATUS_UNKNOWN']")?.Attributes["Name"].Value ?? "Unknown";
+            return AilmentName.Attributes["Name"].Value;
+        }
+
     }
 }
