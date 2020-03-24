@@ -51,7 +51,11 @@ namespace HunterPie.Core {
                 public bool Enabled { get; set; } = true;
                 public double Scale { get; set; } = 1;
                 public byte ShowMonsterBarMode { get; set; } = 0;
+                public string SwitchMonsterBarModeHotkey = "Tab";
                 public int[] Position { get; set; } = new int[2] { 335, 10 };
+                public byte MonsterBarDock { get; set; } = 0;
+                public int MaxNumberOfPartsAtOnce { get; set; } = 8;
+                public int MaxPartColumns { get; set; } = 1;
                 public bool ShowMonsterWeakness { get; set; } = true;
                 public bool HidePartsAfterSeconds { get; set; } = true;
                 public int SecondsToHideParts { get; set; } = 10;

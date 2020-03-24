@@ -30,11 +30,12 @@ namespace HunterPie.Core {
                         _id = value;
                         // Static stuff that can be scanned only once
                         GetMonsterWeaknesses();
-                        GetMonsterSizeModifier();
                         this.IsAlive = true;
                         CreateMonsterParts(MonsterData.GetMaxPartsByMonsterID(this.ID));
                         GetMonsterParts();
                         GetMonsterAilments();
+                        GetMonsterSizeModifier();
+                        CaptureThreshold = MonsterData.GetMonsterCaptureThresholdByID(this.ID);
                         // Only call this if monster is actually alive
                         _onMonsterSpawn();
                     }
@@ -94,6 +95,7 @@ namespace HunterPie.Core {
                 }
             }
         }
+        public float CaptureThreshold { get; private set; }
         public float EnrageTimerStatic { get; private set; }
         public bool IsEnraged {
             get { return _enrageTimer > 0; }
@@ -330,6 +332,7 @@ namespace HunterPie.Core {
 
                                 Parts[PartID].SetPartInfo(this.ID, PartID, TimesBroken, MaxHealth, Health);
                                 Parts[PartID].PartAddress = RemovablePartAddress;
+                                Parts[PartID].IsRemovable = true;
 
                                 // Nergigante has the same values twice in a row, so we skip it to get 
                                 // the removable tail values
@@ -373,10 +376,10 @@ namespace HunterPie.Core {
                     if (status.Address == 0) {
                         continue;
                     }
-                    float maxBuildup = Scanner.READ_FLOAT(status.Address + 0x1C8);
-                    float currentBuildup = Scanner.READ_FLOAT(status.Address + 0x1B8);
-                    float maxDuration = Scanner.READ_FLOAT(status.Address + 0x19C);
-                    float currentDuration = Scanner.READ_FLOAT(status.Address + 0x1F8);
+                    float maxBuildup = Math.Max(0, Scanner.READ_FLOAT(status.Address + 0x1C8));
+                    float currentBuildup = Math.Max(0, Scanner.READ_FLOAT(status.Address + 0x1B8));
+                    float maxDuration = Math.Max(0, Scanner.READ_FLOAT(status.Address + 0x19C));
+                    float currentDuration = Math.Max(0, Scanner.READ_FLOAT(status.Address + 0x1F8));
                     byte counter = Scanner.READ_BYTE(status.Address + 0x200);
                     status.SetAilmentInfo(status.ID, currentDuration, maxDuration, currentBuildup, maxBuildup, counter);
                 }
@@ -402,10 +405,10 @@ namespace HunterPie.Core {
                             AilmentID++;
                             continue;
                         } else {
-                            float maxBuildup = Scanner.READ_FLOAT(StatusPtr + 0x1C8);
-                            float currentBuildup = Scanner.READ_FLOAT(StatusPtr + 0x1B8);
-                            float maxDuration = Scanner.READ_FLOAT(StatusPtr + 0x19C);
-                            float currentDuration = Scanner.READ_FLOAT(StatusPtr + 0x1F8);
+                            float maxBuildup = Math.Max(0, Scanner.READ_FLOAT(StatusPtr + 0x1C8));
+                            float currentBuildup = Math.Max(0, Scanner.READ_FLOAT(StatusPtr + 0x1B8));
+                            float maxDuration = Math.Max(0, Scanner.READ_FLOAT(StatusPtr + 0x19C));
+                            float currentDuration = Math.Max(0, Scanner.READ_FLOAT(StatusPtr + 0x1F8));
                             byte counter = Scanner.READ_BYTE(StatusPtr + 0x200);
                             Ailment mAilment = new Ailment {
                                 Address = StatusPtr

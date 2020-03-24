@@ -6,7 +6,7 @@
              xmlns:local="clr-namespace:HunterPie.GUI.Widgets.Monster_Widget.Parts"
              xmlns:Custom="clr-namespace:HunterPie.GUIControls.Custom_Controls"
              mc:Ignorable="d" 
-             d:DesignHeight="33" d:DesignWidth="260" SnapsToDevicePixels="True">
+             d:DesignHeight="30" d:DesignWidth="260" SnapsToDevicePixels="True">
     <Grid>
         <Custom:MinimalHealthBar Color="{StaticResource OVERLAY_MONSTER_PART_BAR_COLOR}" x:Name="PartHealth" Margin="30,13,5,0" RenderTransformOrigin="0.5,0.5" Height="3" VerticalAlignment="Top" >
             <Custom:MinimalHealthBar.RenderTransform>
@@ -31,6 +31,6 @@
         </Rectangle>
         <TextBlock Style="{StaticResource OVERLAY_MONSTER_PART_COUNTER_TEXT_STYLE}" x:Name="PartBrokenCounter" Text="0" Height="23" VerticalAlignment="Top" TextOptions.TextHintingMode="Fixed" FontSize="12" Padding="0,2,0,0" Margin="10,3,0,0" TextAlignment="Center" HorizontalAlignment="Left" Width="23"/>
 
-        <TextBlock Style="{StaticResource OVERLAY_MONSTER_PART_NAME_TEXT_STYLE}" x:Name="PartHealthText" Text="1600/1600" Height="18" VerticalAlignment="Top" Margin="0,15,0,0" TextOptions.TextHintingMode="Fixed" FontSize="11" TextAlignment="Center" SnapsToDevicePixels="True"/>
+        <TextBlock Style="{StaticResource OVERLAY_MONSTER_PART_NAME_TEXT_STYLE}" x:Name="PartHealthText" Text="1600/1600" Height="15" VerticalAlignment="Top" Margin="29,15,0,0" TextOptions.TextHintingMode="Fixed" FontSize="11" TextAlignment="Center" SnapsToDevicePixels="True"/>
     </Grid>
 </UserControl>

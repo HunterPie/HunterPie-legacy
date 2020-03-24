@@ -155,11 +155,13 @@ namespace HunterPie {
             _source = HwndSource.FromHwnd(_windowHandle);
             _source.AddHook(HwndHook);
             BindHotKey(0); // Toggle overlay
+            BindHotKey(1); // Switch monster bar mode
         }
 
         private void RemoveHotKeys() {
             _source?.RemoveHook(HwndHook);
             KeyboardHookHelper.UnregisterHotKey(_windowHandle, 0);
+            KeyboardHookHelper.UnregisterHotKey(_windowHandle, 1);
         }
 
         private IntPtr HwndHook(IntPtr hwnd, int msg, IntPtr wParam, IntPtr lParam, ref bool handled) {
@@ -169,6 +171,10 @@ namespace HunterPie {
                     switch(wParam.ToInt32()) {
                         case 0: // Toggle overlay
                             UserSettings.PlayerConfig.Overlay.Enabled = !UserSettings.PlayerConfig.Overlay.Enabled;
+                            UserSettings.SaveNewConfig();
+                            break;
+                        case 1: // Switch monster bar mode
+                            UserSettings.PlayerConfig.Overlay.MonstersComponent.ShowMonsterBarMode = UserSettings.PlayerConfig.Overlay.MonstersComponent.ShowMonsterBarMode + 1 >= 4 ? (byte)0 : (byte)(UserSettings.PlayerConfig.Overlay.MonstersComponent.ShowMonsterBarMode + 1);
                             UserSettings.SaveNewConfig();
                             break;
                     }
@@ -206,6 +212,10 @@ namespace HunterPie {
                 case 0: // Overlay toggle
                     int[] ParsedToggleOverlayHotKey = ParseHotKey(UserSettings.PlayerConfig.Overlay.ToggleOverlayKeybind);
                     KeyboardHookHelper.RegisterHotKey(_windowHandle, 0, ParsedToggleOverlayHotKey[0], ParsedToggleOverlayHotKey[1]);
+                    break;
+                case 1:
+                    int[] ParsedToggleBarModeHotKey = ParseHotKey(UserSettings.PlayerConfig.Overlay.MonstersComponent.SwitchMonsterBarModeHotkey);
+                    KeyboardHookHelper.RegisterHotKey(_windowHandle, 1, ParsedToggleBarModeHotKey[0], ParsedToggleBarModeHotKey[1]);
                     break;
             }
         }

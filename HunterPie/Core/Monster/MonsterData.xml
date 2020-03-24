@@ -569,7 +569,8 @@
       <Weakness ID="ELEMENT_ICE" Stars="2"/>
     </Weaknesses>
     <Crown Mini="90" Silver="110" Gold="120"/>
-    <Parts Max="8">
+    <Parts Max="9">
+      <Part Name="MONSTER_PART_REMOVABLE_HEAD" IsRemovable="True"/>
       <Part Name="MONSTER_PART_REMOVABLE_TAIL" IsRemovable="True"/>
       <Part Name="MONSTER_PART_HEAD" Group="HEAD" IsRemovable="False"/>
       <Part Name="MONSTER_PART_BODY" Group="BODY" IsRemovable="False"/>

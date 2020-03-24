@@ -428,7 +428,9 @@
     </None>
   </ItemGroup>
   <ItemGroup>
-    <Resource Include="Languages\de-de.xml" />
+    <None Include="Languages\de-de.xml">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
   </ItemGroup>
   <ItemGroup>
     <None Include="HunterPie.Resources\Monsters\Icons\em001_00.png">
@@ -628,6 +630,11 @@
     </None>
     <None Include="HunterPie.Resources\Monsters\Icons\em127_01.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Languages\es-es.xml">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

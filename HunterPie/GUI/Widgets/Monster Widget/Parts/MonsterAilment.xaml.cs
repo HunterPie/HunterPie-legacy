@@ -68,7 +68,7 @@ namespace HunterPie.GUI.Widgets.Monster_Widget.Parts {
                 AilmentBar.Health = Context.Duration;
             } else {
                 AilmentBar.MaxHealth = Context.MaxBuildup;
-                AilmentBar.Health = Context.MaxBuildup - Context.Buildup;
+                AilmentBar.Health = Math.Max(0, Context.MaxBuildup - Context.Buildup);
             }
             AilmentText.Text = $"{AilmentBar.Health:0}/{AilmentBar.MaxHealth:0}";
         }
@@ -80,9 +80,10 @@ namespace HunterPie.GUI.Widgets.Monster_Widget.Parts {
         }
 
         private void OnDurationChange(object source, MonsterAilmentEventArgs args) {
+            if (args.MaxDuration <= 0) { return; }
             Dispatcher.BeginInvoke(System.Windows.Threading.DispatcherPriority.Render, new Action(() => {
                 AilmentBar.MaxHealth = args.MaxDuration;
-                AilmentBar.Health = args.MaxDuration - args.Duration;
+                AilmentBar.Health = Math.Max(0, args.MaxDuration - args.Duration);
                 AilmentText.Text = $"{AilmentBar.Health:0}/{AilmentBar.MaxHealth:0}";
                 this.Visibility = System.Windows.Visibility.Visible;
                 StartVisibilityTimer();
@@ -90,9 +91,10 @@ namespace HunterPie.GUI.Widgets.Monster_Widget.Parts {
         }
 
         private void OnBuildupChange(object source, MonsterAilmentEventArgs args) {
+            if (args.MaxBuildup <= 0) { return; }
             Dispatcher.BeginInvoke(System.Windows.Threading.DispatcherPriority.Render, new Action(() => {
                 AilmentBar.MaxHealth = args.MaxBuildup;
-                AilmentBar.Health = args.MaxBuildup - args.Buildup;
+                AilmentBar.Health = Math.Max(0, args.MaxBuildup - args.Buildup);
                 AilmentText.Text = $"{AilmentBar.Health:0}/{AilmentBar.MaxHealth:0}";
                 this.Visibility = System.Windows.Visibility.Visible;
                 StartVisibilityTimer();
@@ -107,7 +109,7 @@ namespace HunterPie.GUI.Widgets.Monster_Widget.Parts {
                 AilmentBar.Health = Context.Duration;
             } else {
                 AilmentBar.MaxHealth = Context.MaxBuildup;
-                AilmentBar.Health = Context.MaxBuildup - Context.Buildup;
+                AilmentBar.Health = Math.Max(0, Context.MaxBuildup - Context.Buildup);
             }
             AilmentText.Text = $"{AilmentBar.Health:0}/{AilmentBar.MaxHealth:0}";
         }

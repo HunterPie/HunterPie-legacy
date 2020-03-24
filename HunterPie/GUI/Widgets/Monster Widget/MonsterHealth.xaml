@@ -16,7 +16,7 @@
         </ResourceDictionary>
     </UserControl.Resources>
     <DockPanel>
-        <Grid DockPanel.Dock="Top">
+        <Grid x:Name="MonsterHealthContainer" DockPanel.Dock="Bottom" Margin="-3,0,0,0">
             <Grid.ColumnDefinitions>
                 <ColumnDefinition/>
             </Grid.ColumnDefinitions>
@@ -25,11 +25,11 @@
                 <RowDefinition Height="47"/>
                 <RowDefinition/>
             </Grid.RowDefinitions>
-            <StackPanel x:Name="MonsterInfoPanel" Orientation="Horizontal" VerticalAlignment="Top" Height="18" Margin="32,0,1,0">
-                <Image x:Name="MonsterCrown" Source="{StaticResource CROWN_GOLD}" Visibility="Visible" Width="13" Margin="2,0,2,3"/>
-                <TextBlock x:Name="MonsterName" Text="Monster Name" Padding="0,0,5,0" FontSize="14" HorizontalAlignment="Left" Width="232" Margin="0,-1,0,1" Style="{StaticResource OVERLAY_MONSTER_NAME_TEXT_STYLE}" TextOptions.TextHintingMode="Fixed"/>
+            <StackPanel x:Name="MonsterInfoPanel" Orientation="Horizontal" VerticalAlignment="Top" Height="18" Margin="33,2,0,0" Grid.RowSpan="2">
+                <Image x:Name="MonsterCrown" Source="{StaticResource CROWN_GOLD}" Visibility="Visible" Width="16" Margin="0,0,0,4"/>
+                <TextBlock x:Name="MonsterName" Text="Monster Name" FontSize="14" HorizontalAlignment="Left" Width="232" Margin="0,-2,0,1" Style="{StaticResource OVERLAY_MONSTER_NAME_TEXT_STYLE}" TextOptions.TextHintingMode="Fixed"/>
             </StackPanel>
-            <Custom:MinimalHealthBar  x:Name="MonsterHealthBar" Height="14" VerticalAlignment="Top" RenderTransformOrigin="0.5,1" BorderThickness="0" Margin="48,16,19,0" Foreground="{x:Null}" Color="{StaticResource OVERLAY_MONSTER_HEALTH_BAR_COLOR}" Grid.RowSpan="2">
+            <Custom:MinimalHealthBar  x:Name="MonsterHealthBar" Height="14" VerticalAlignment="Top" RenderTransformOrigin="0.5,1" BorderThickness="0" Margin="49,0,18,0" Foreground="{x:Null}" Color="{StaticResource OVERLAY_MONSTER_HEALTH_BAR_COLOR}" Grid.Row="1">
                 <Custom:MinimalHealthBar.Effect>
                     <DropShadowEffect Color="Red" BlurRadius="10" ShadowDepth="0" Opacity="0"/>
                 </Custom:MinimalHealthBar.Effect>
@@ -43,8 +43,8 @@
                 </Custom:MinimalHealthBar.RenderTransform>
 
             </Custom:MinimalHealthBar>
-            <TextBlock x:Name="HealthText"  Style="{StaticResource OVERLAY_MONSTER_BAR_TEXT_STYLE}" TextAlignment="Center" Height="20" VerticalAlignment="Top" Margin="48,14,38,0" Grid.RowSpan="2"/>
-            <Custom:MinimalHealthBar x:Name="MonsterStaminaBar" Grid.Row="1" Height="5" VerticalAlignment="Top" RenderTransformOrigin="0.5,1" BorderBrush="#7F1F1F1F" BorderThickness="1" Foreground="{x:Null}" Margin="42,13,28,0">
+            <TextBlock x:Name="HealthText"  Style="{StaticResource OVERLAY_MONSTER_BAR_TEXT_STYLE}" TextAlignment="Center" Height="20" VerticalAlignment="Top" Margin="47,16,39,0" Grid.RowSpan="2"/>
+            <Custom:MinimalHealthBar x:Name="MonsterStaminaBar" Grid.Row="1" Height="6" VerticalAlignment="Top" RenderTransformOrigin="0.5,1" BorderBrush="#7F1F1F1F" BorderThickness="1" Foreground="{x:Null}" Margin="43,14,27,0">
                 <Custom:MinimalHealthBar.Color>
                     <LinearGradientBrush EndPoint="1,0" StartPoint="0,0">
                         <GradientStop Color="#E5ECAF2F" Offset="1"/>
@@ -68,7 +68,7 @@
                     </TransformGroup>
                 </Custom:MinimalHealthBar.RenderTransform>
             </Custom:MinimalHealthBar>
-            <TextBlock x:Name="StaminaText" Text="0/0" Margin="0,14,28,17" Grid.Row="1" TextAlignment="Right" HorizontalAlignment="Right" Width="60">
+            <TextBlock x:Name="StaminaText" Text="10000/10000" Margin="0,16,27,15" Grid.Row="1" TextAlignment="Right" HorizontalAlignment="Right" Width="95">
                 <TextBlock.Foreground>
                     <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
                         <GradientStop Color="White" Offset="0"/>
@@ -76,7 +76,7 @@
                     </LinearGradientBrush>
                 </TextBlock.Foreground>
             </TextBlock>
-            <Rectangle x:Name="HealthBossIcon" Width="30" Height="30" Margin="10,15,0,0" Grid.RowSpan="2" RenderTransformOrigin="0.5,0.5" HorizontalAlignment="Left" VerticalAlignment="Top">
+            <Rectangle x:Name="HealthBossIcon" Width="30" Height="30" Margin="11,16,0,0" Grid.RowSpan="2" RenderTransformOrigin="0.5,0.5" HorizontalAlignment="Left" VerticalAlignment="Top">
                 <Rectangle.Effect>
                     <DropShadowEffect Color="Red" ShadowDepth="0" BlurRadius="15" Opacity="0"/>
                 </Rectangle.Effect>
@@ -95,9 +95,58 @@
                     </TransformGroup>
                 </Rectangle.RenderTransform>
             </Rectangle>
-            <Image x:Name="MonsterIcon" Width="30" Height="30" Margin="10,15,0,0" Grid.RowSpan="2" HorizontalAlignment="Left" VerticalAlignment="Top"/>
+            <Image x:Name="MonsterIcon" Width="30" Height="30" Margin="11,16,0,0" Grid.RowSpan="2" HorizontalAlignment="Left" VerticalAlignment="Top"/>
+            <Canvas x:Name="CapturableIcon" Visibility="Hidden" Width="30" Height="31" HorizontalAlignment="Right" Margin="0,2,2,0" VerticalAlignment="Top" Grid.RowSpan="2">
+                <Rectangle Grid.Row="1" Height="20" VerticalAlignment="Top" HorizontalAlignment="Left" Width="20" RenderTransformOrigin="0.5,0.5" Canvas.Left="5" Canvas.Top="5">
+                    <Rectangle.Effect>
+                        <DropShadowEffect Color="#FFE9FC2C" ShadowDepth="0" BlurRadius="4"/>
+                    </Rectangle.Effect>
+                    <Rectangle.RenderTransform>
+                        <TransformGroup>
+                            <ScaleTransform/>
+                            <SkewTransform/>
+                            <RotateTransform Angle="-45"/>
+                            <TranslateTransform/>
+                        </TransformGroup>
+                    </Rectangle.RenderTransform>
+                    <Rectangle.Fill>
+                        <RadialGradientBrush>
+                            <GradientStop Color="#CC000000" Offset="0"/>
+                            <GradientStop Color="#CC131313" Offset="1"/>
+                        </RadialGradientBrush>
+                    </Rectangle.Fill>
+                </Rectangle>
+                <Image Source="{StaticResource ICON_TRAP}" Width="20" Height="20" Canvas.Left="5" Canvas.Top="5" RenderTransformOrigin="0.5,0.5">
+                    <Image.RenderTransform>
+                        <TransformGroup>
+                            <ScaleTransform ScaleX="1" ScaleY="1"/>
+                            <SkewTransform/>
+                            <RotateTransform/>
+                            <TranslateTransform/>
+                        </TransformGroup>
+                    </Image.RenderTransform>
+                    <Image.Style>
+                        <Style TargetType="Image">
+                            <Style.Triggers>
+                                <Trigger Property="IsVisible" Value="True">
+                                    <Trigger.EnterActions>
+                                        <BeginStoryboard Name="PulseAnim">
+                                            <Storyboard RepeatBehavior="Forever" AutoReverse="True">
+                                                <DoubleAnimation Storyboard.TargetProperty="Opacity" From="0.3" To="1" Duration="0:0:0.5"/>
+                                            </Storyboard>
+                                        </BeginStoryboard>
+                                    </Trigger.EnterActions>
+                                    <Trigger.ExitActions>
+                                        <StopStoryboard BeginStoryboardName="PulseAnim"/>
+                                    </Trigger.ExitActions>
+                                </Trigger>
+                            </Style.Triggers>
+                        </Style>
+                    </Image.Style>
+                </Image>
+            </Canvas>
 
-            <StackPanel x:Name="Weaknesses" Margin="45,20,38,0" Orientation="Horizontal" Style="{StaticResource StackPanelAnimations}" Grid.Row="1" Height="24" VerticalAlignment="Top"/>
+            <StackPanel x:Name="Weaknesses" Margin="46,22,37,0" Orientation="Horizontal" Style="{StaticResource StackPanelAnimations}" Grid.Row="1" Height="24" VerticalAlignment="Top"/>
             <TextBlock x:Name="EnrageTimerText" Visibility="Hidden" HorizontalAlignment="Left" Margin="8,29,0,0" Grid.Row="1" TextWrapping="Wrap" Text="120s" VerticalAlignment="Top" TextAlignment="Center" Width="34" Height="16">
                 <TextBlock.Foreground>
                     <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
@@ -108,9 +157,9 @@
             </TextBlock>
         </Grid>
         <StackPanel x:Name="MonsterAdittionalInfoContainer" Orientation="Horizontal" DockPanel.Dock="Top">
-            <WrapPanel x:Name="MonsterPartsContainer" Orientation="Vertical" ItemWidth="149">
+            <WrapPanel x:Name="MonsterPartsContainer" Orientation="Vertical">
             </WrapPanel>
-            <WrapPanel x:Name="MonsterAilmentsContainer" Orientation="Vertical" ItemWidth="149">
+            <WrapPanel x:Name="MonsterAilmentsContainer" Orientation="Vertical">
             </WrapPanel>
         </StackPanel>
     </DockPanel>

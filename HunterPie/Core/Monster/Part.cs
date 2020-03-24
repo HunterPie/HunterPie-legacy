@@ -43,7 +43,7 @@ namespace HunterPie.Core {
                 }
             }
         }
-        public bool IsRemovable { get; private set; }
+        public bool IsRemovable { get; set; }
         public string Group { get; set; }
 
         #region Events

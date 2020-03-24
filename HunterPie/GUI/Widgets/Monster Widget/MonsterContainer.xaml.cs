@@ -75,13 +75,28 @@ namespace HunterPie.GUI.Widgets {
             Container.Children.Add(f_MonsterWidget);
             Container.Children.Add(s_MonsterWidget);
             Container.Children.Add(t_MonsterWidget);
-            UpdateMonstersWidgetsSettings(UserSettings.PlayerConfig.Overlay.MonstersComponent.ShowMonsterWeakness);
+            UpdateMonstersWidgetsSettings(UserSettings.PlayerConfig.Overlay.MonstersComponent.ShowMonsterWeakness, UserSettings.PlayerConfig.Overlay.MonstersComponent.MaxNumberOfPartsAtOnce, UserSettings.PlayerConfig.Overlay.MonstersComponent.MonsterBarDock);
         }
 
-        public void UpdateMonstersWidgetsSettings(bool weaknessEnabled) {
-            if (f_MonsterWidget != null) f_MonsterWidget.Weaknesses.Visibility = weaknessEnabled ? Visibility.Visible : Visibility.Collapsed;
-            if (s_MonsterWidget != null) s_MonsterWidget.Weaknesses.Visibility = weaknessEnabled ? Visibility.Visible : Visibility.Collapsed;
-            if (t_MonsterWidget != null) t_MonsterWidget.Weaknesses.Visibility = weaknessEnabled ? Visibility.Visible : Visibility.Collapsed;
+        public void UpdateMonstersWidgetsSettings(bool weaknessEnabled, int MaxParts, byte dock) {
+            if (f_MonsterWidget != null) {
+                f_MonsterWidget.Weaknesses.Visibility = weaknessEnabled ? Visibility.Visible : Visibility.Collapsed;
+                f_MonsterWidget.MonsterAilmentsContainer.MaxHeight = MaxParts * 30;
+                f_MonsterWidget.MonsterPartsContainer.MaxHeight = MaxParts * 30;
+                f_MonsterWidget.ChangeDocking(dock);
+            }
+            if (s_MonsterWidget != null) {
+                s_MonsterWidget.Weaknesses.Visibility = weaknessEnabled ? Visibility.Visible : Visibility.Collapsed;
+                s_MonsterWidget.MonsterAilmentsContainer.MaxHeight = MaxParts * 30;
+                s_MonsterWidget.MonsterPartsContainer.MaxHeight = MaxParts * 30;
+                s_MonsterWidget.ChangeDocking(dock);
+            }
+            if (t_MonsterWidget != null) {
+                t_MonsterWidget.Weaknesses.Visibility = weaknessEnabled ? Visibility.Visible : Visibility.Collapsed;
+                t_MonsterWidget.MonsterAilmentsContainer.MaxHeight = MaxParts * 30;
+                t_MonsterWidget.MonsterPartsContainer.MaxHeight = MaxParts * 30;
+                t_MonsterWidget.ChangeDocking(dock);
+            }
         }
 
         private void OnClosing(object sender, System.ComponentModel.CancelEventArgs e) {
@@ -94,7 +109,7 @@ namespace HunterPie.GUI.Widgets {
                 this.Top = UserSettings.PlayerConfig.Overlay.MonstersComponent.Position[1] + UserSettings.PlayerConfig.Overlay.Position[1];
                 this.Left = UserSettings.PlayerConfig.Overlay.MonstersComponent.Position[0] + UserSettings.PlayerConfig.Overlay.Position[0];
                 this.WidgetActive = UserSettings.PlayerConfig.Overlay.MonstersComponent.Enabled;
-                UpdateMonstersWidgetsSettings(UserSettings.PlayerConfig.Overlay.MonstersComponent.ShowMonsterWeakness);
+                UpdateMonstersWidgetsSettings(UserSettings.PlayerConfig.Overlay.MonstersComponent.ShowMonsterWeakness, UserSettings.PlayerConfig.Overlay.MonstersComponent.MaxNumberOfPartsAtOnce, UserSettings.PlayerConfig.Overlay.MonstersComponent.MonsterBarDock);
                 ScaleWidget(UserSettings.PlayerConfig.Overlay.MonstersComponent.Scale, UserSettings.PlayerConfig.Overlay.MonstersComponent.Scale);
                 foreach (MonsterHealth HealthBar in this.Container.Children) {
                     HealthBar.SwitchSizeBasedOnTarget();

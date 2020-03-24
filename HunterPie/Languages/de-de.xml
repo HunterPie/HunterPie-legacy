@@ -69,14 +69,113 @@
     <Monster ID="em127_01" Name="Uralter Waldschrat"/>
   </Monsters>
   <Parts>
+    <Part ID="MONSTER_PART_UNKNOWN" Name="Unbekannt"/>
     <Part ID="MONSTER_PART_HEAD" Name="Kopf"/>
     <Part ID="MONSTER_PART_BODY" Name="Körper"/>
     <Part ID="MONSTER_PART_LWING" Name="Linker Flügel"/>
     <Part ID="MONSTER_PART_RWING" Name="Rechter Flügel"/>
-    <Part ID="MONSTER_PART_RLEG" Name="Rechtes Bein"/>
     <Part ID="MONSTER_PART_LLEG" Name="Linkes Bein"/>
+    <Part ID="MONSTER_PART_RLEG" Name="Rechtes Bein"/>
     <Part ID="MONSTER_PART_TAIL" Name="Schwanz"/>
+    <Part ID="MONSTER_PART_ARMS" Name="Arme"/>
+    <Part ID="MONSTER_PART_LEGS" Name="Beine"/>
+    <Part ID="MONSTER_PART_LARM" Name="Linker Arm"/>
+    <Part ID="MONSTER_PART_RARM" Name="Rechter Arm"/>
+    <Part ID="MONSTER_PART_LLIMBS" Name="Linke Gliedmaßen"/>
+    <Part ID="MONSTER_PART_RLIMBS" Name="Rechte Gliedmaßen"/>
+    <Part ID="MONSTER_PART_WINGS" Name="Flügel"/>
+    <Part ID="MONSTER_PART_LIMBS" Name="Gliedmaßen"/>
+    <Part ID="MONSTER_PART_ABDOMEN" Name="Bauch"/>
+    <Part ID="MONSTER_PART_CHEST" Name="Brust"/>
+    <Part ID="MONSTER_PART_REAR" Name="Hinterteil"/>
+    <Part ID="MONSTER_PART_HEAD_MUD" Name="Verschlammter Kopf"/>
+    <Part ID="MONSTER_PART_BODY_MUD" Name="Verschlammter Körper"/>
+    <Part ID="MONSTER_PART_ARMS_MUD" Name="Verschlammter Arme"/>
+    <Part ID="MONSTER_PART_LLEG_MUD" Name="Verschlammtes Linkes Bein"/>
+    <Part ID="MONSTER_PART_RLEG_MUD" Name="Verschlammtes Rechtes Bein"/>
+    <Part ID="MONSTER_PART_TAIL_MUD" Name="Verschlammter Schwanz"/>
+    <Part ID="MONSTER_PART_JAW" Name="Kiefer"/>
+    <Part ID="MONSTER_PART_BACK" Name="Rücken"/>
+    <Part ID="MONSTER_PART_FIN" Name="Flosse"/>
+    <Part ID="MONSTER_PART_HORNS" Name="Hörner"/>
+    <Part ID="MONSTER_PART_NECK" Name="Nacken"/>
+    <Part ID="MONSTER_PART_LHAND" Name="Linke Hand"/>
+    <Part ID="MONSTER_PART_RHAND" Name="Rechte Hand"/>
+    <Part ID="MONSTER_PART_LFOOT" Name="Linker Fuß"/>
+    <Part ID="MONSTER_PART_RFOOT" Name="Rechter Fuß"/>
+    <Part ID="MONSTER_PART_SHELL" Name="Schale"/>
+    <Part ID="MONSTER_PART_EXHAUST_ORGAN_CENTRAL" Name="Zentrales Abgas-Organ"/>
+    <Part ID="MONSTER_PART_EXHAUST_ORGAN_HEAD" Name="Kopf Abgas-Organ"/>
+    <Part ID="MONSTER_PART_EXHAUST_ORGAN_CRATER" Name="Krater Abgas-Organ"/>
+    <Part ID="MONSTER_PART_EXHAUST_ORGAN_REAR" Name="Rücken Abgas-Organ"/>
+    <Part ID="MONSTER_PART_WEAK_LSHELL" Name="Linke Schwache Schale"/>
+    <Part ID="MONSTER_PART_WEAK_RSHELL" Name="Rechte Schwache Schale"/>
+    <Part ID="MONSTER_PART_ROCK" Name="Fels"/>
+    <Part ID="MONSTER_PART_MANE" Name="Mähne"/>
+    <Part ID="MONSTER_PART_BALLOON" Name="Ballon"/>
+    <Part ID="MONSTER_PART_LBONE" Name="Linker Knochen"/>
+    <Part ID="MONSTER_PART_RBONE" Name="Rechter Knochen"/>
+    <Part ID="MONSTER_PART_HORNS_GOLD" Name="Goldene Hörner"/>
+    <Part ID="MONSTER_PART_MANE_GOLD" Name="Goldene Mähne"/>
+    <Part ID="MONSTER_PART_LCHEST_GOLD" Name="Goldene Linke Brust"/>
+    <Part ID="MONSTER_PART_RCHEST_GOLD" Name="Goldene Rechte Brust"/>
+    <Part ID="MONSTER_PART_LARM_GOLD" Name="Goldener Linker Arm"/>
+    <Part ID="MONSTER_PART_RARM_GOLD" Name="Goldener Rechter Arm"/>
+    <Part ID="MONSTER_PART_LLEG_GOLD" Name="Goldenes Linkes Bein"/>
+    <Part ID="MONSTER_PART_RLEG_GOLD" Name="Goldenes Rechtes Bein"/>
+    <Part ID="MONSTER_PART_LTAIL_GOLD" Name="Goldener Linker Schwanz"/>
+    <Part ID="MONSTER_PART_RTAIL_GOLD" Name="Goldener Rechter Schwanz"/>
+    <Part ID="MONSTER_PART_LHEAD" Name="Kopf Links"/>
+    <Part ID="MONSTER_PART_RHEAD" Name="Kopf Rechts"/>
+    <Part ID="MONSTER_PART_HEAD_SNOW" Name="Schnee-Kopf"/>
+    <Part ID="MONSTER_PART_BODY_SNOW" Name="Schnee-Körper"/>
+    <Part ID="MONSTER_PART_TAIL_SNOW" Name="Schnee-Schwanz"/>
+    <Part ID="MONSTER_PART_HEAD_ICE" Name="Vereister Kopf"/>
+    <Part ID="MONSTER_PART_BODY_ICE" Name="Vereister Körper"/>
+    <Part ID="MONSTER_PART_WINGS_ICE" Name="Vereiste Flügel"/>
+    <Part ID="MONSTER_PART_ARMS_ICE" Name="Vereiste Arme"/>
+    <Part ID="MONSTER_PART_LEGS_ICE" Name="Vereiste Beine"/>
+    <Part ID="MONSTER_PART_TAIL_ICE" Name="Vereister Schwanz"/>
+    <Part ID="MONSTER_PART_LNECK_ROCK" Name="Felsiger Nacken Links"/>
+    <Part ID="MONSTER_PART_RNECK_ROCK" Name="Felsiger Nacken Rechts"/>
+    <Part ID="MONSTER_PART_HEAD_ROCK" Name="Felsiger Kopf"/>
+    <Part ID="MONSTER_PART_TAIL_ROCK" Name="Felsiger Schwanz"/>
+    <Part ID="MONSTER_PART_LWING_ROCK" Name="Felsiger Linker Flügel"/>
+    <Part ID="MONSTER_PART_RWING_ROCK" Name="Felsiger Rechter Flügel"/>
+    <Part ID="MONSTER_PART_LARM_ROCK" Name="Felsiger Linker Arm"/>
+    <Part ID="MONSTER_PART_RARM_ROCK" Name="Felsiger Rechter Arm"/>
+    <Part ID="MONSTER_PART_LEGS_ROCK" Name="Felsige Beine"/>
+    <Part ID="MONSTER_JAGRAS_SUMMONER" Name="Jagras Beschwörer"/>
+    <!-- Removable parts -->
+    <Part ID="MONSTER_PART_REMOVABLE_TAIL" Name="Abtrennbarer Schwanz"/>
+    <Part ID="MONSTER_PART_REMOVABLE_HORNS" Name="Abtrennbare Hörner"/>
+    <Part ID="MONSTER_PART_REMOVABLE_HEAD" Name="Abtrennbarer Kopf"/>
+    <Part ID="MONSTER_PART_REMOVABLE_BALLOON" Name="Abtrennbarer Ballon"/>
+    <Part ID="MONSTER_PART_REMOVABLE_HORNS_2" Name="Abtrennbare Hörner #2"/>
+    <Part ID="MONSTER_PART_REMOVABLE_LANTLER" Name="Abtrennbares Linkes Geweih"/>
+    <Part ID="MONSTER_PART_REMOVABLE_RANTLER" Name="Abtrennbares Rechtes Geweih"/>
   </Parts>
+  <Ailments>
+    <Ailment ID="STATUS_UNKNOWN" Name="Unbekannt"/>
+    <Ailment ID="STATUS_POISON" Name="Gift"/>
+    <Ailment ID="STATUS_PARALYSIS" Name="Paralyse"/>
+    <Ailment ID="STATUS_SLEEP" Name="Schlaf"/>
+    <Ailment ID="STATUS_BLAST" Name="Explosion"/>
+    <Ailment ID="STATUS_MOUNT" Name="Aufsitzen"/>
+    <Ailment ID="STATUS_EXHAUSTION" Name="Erschöpfung"/>
+    <Ailment ID="STATUS_STUN" Name="Betäubung"/>
+    <Ailment ID="STATUS_TRANQUILIZE" Name="Beruhigen"/>
+    <Ailment ID="STATUS_FLASH" Name="Blenden"/>
+    <Ailment ID="STATUS_KNOCKDOWN" Name="Niederschlag"/>
+    <Ailment ID="STATUS_DUNGPOD" Name="Misthülse"/>
+    <Ailment ID="STATUS_SHOCKTRAP" Name="Schock Falle"/>
+    <Ailment ID="STATUS_PITFALLTRAP" Name="Fallgrube"/>
+    <Ailment ID="STATUS_ELDERSEAL" Name="Ältesten-Siegel"/>
+    <Ailment ID="STATUS_SMOKING" Name="Rauchend"/>
+    <Ailment ID="STATUS_FELYNETRAP" Name="Katzen-Falle"/>
+    <Ailment ID="STATUS_CLAW" Name="Klaue"/>
+    <Ailment ID="STATUS_VIOLATED" Name="Verletzt"/>
+  </Ailments>
   <Mantles>
     <Mantle ID="-1" Name="Kein Mantel"/>
     <Mantle ID="0" Name="Ghillie-Mantel"/>
@@ -191,7 +290,7 @@
     <Abnormality ID="HUNTINGHORN_025_00" Name="Betäuben negiert"/>
     <Abnormality ID="HUNTINGHORN_026_00" Name="Lähmung negiert"/>
     <Abnormality ID="HUNTINGHORN_027_00" Name="Erschütterungen negiert"/>
-    <Abnormality ID="HUNTINGHORN_028_00" Name="Schlamm/Wasser/Schnee-Widerstand"/>
+    <Abnormality ID="HUNTINGHORN_028_00" Name="Schlamm-/Wasser-/Schnee-Widerstand"/>
     <Abnormality ID="HUNTINGHORN_029_00" Name="Feuerwiderstand-Boost (S)"/>
     <Abnormality ID="HUNTINGHORN_029_01" Name="Feuerwiderstand-Boost (L)"/>
     <Abnormality ID="HUNTINGHORN_030_00" Name="Feuerwiderstand-Boost (L)"/>

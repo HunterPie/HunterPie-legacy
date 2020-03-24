@@ -121,6 +121,7 @@ namespace HunterPie.GUI.Widgets.DPSMeter {
             Dispatcher.BeginInvoke(System.Windows.Threading.DispatcherPriority.Background, new Action(() => {
                 WidgetHasContent = false;
                 ChangeVisibility();
+                this.Party.Children.Clear();
             }));
         }
 
@@ -128,11 +129,8 @@ namespace HunterPie.GUI.Widgets.DPSMeter {
             foreach (Parts.PartyMember Player in Players) {
                 Player.UpdateDamage();
             }
-            Players.Sort(delegate (Parts.PartyMember x, Parts.PartyMember y) {
-                return x.CompareTo(y);
-            });
             Party.Children.Clear();
-            foreach (Parts.PartyMember Player in Players) {
+            foreach (Parts.PartyMember Player in Players.OrderByDescending(player => player.Context?.Damage)) {
                 Party.Children.Add(Player);
             }
         }

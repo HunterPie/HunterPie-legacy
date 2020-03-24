@@ -62,6 +62,10 @@ namespace HunterPie.GUIControls {
             // Monsters
             settingsUI.switchEnableMonsterComponent.IsEnabled = settings.Overlay.MonstersComponent.Enabled;
             settingsUI.MonsterShowModeSelection.SelectedIndex = settings.Overlay.MonstersComponent.ShowMonsterBarMode;
+            settingsUI.ToggleMonsterBarModeHotKey.Content = settings.Overlay.MonstersComponent.SwitchMonsterBarModeHotkey;
+            settingsUI.MaxNumberOfPartsAtOnce.Text = settings.Overlay.MonstersComponent.MaxNumberOfPartsAtOnce.ToString();
+            settingsUI.MaxColumnsOfParts.Text = settings.Overlay.MonstersComponent.MaxPartColumns.ToString();
+            settingsUI.MonsterBarDock.SelectedIndex = settings.Overlay.MonstersComponent.MonsterBarDock;
             settingsUI.positionMonsterCompX.Text = settings.Overlay.MonstersComponent.Position[0].ToString();
             settingsUI.positionMonsterCompY.Text = settings.Overlay.MonstersComponent.Position[1].ToString();
             settingsUI.switchEnableParts.IsEnabled = settings.Overlay.MonstersComponent.EnableMonsterParts;
@@ -137,6 +141,10 @@ namespace HunterPie.GUIControls {
             // Monsters
             settings.Overlay.MonstersComponent.Enabled = settingsUI.switchEnableMonsterComponent.IsEnabled;
             settings.Overlay.MonstersComponent.ShowMonsterBarMode = (byte)settingsUI.MonsterShowModeSelection.SelectedIndex;
+            settings.Overlay.MonstersComponent.SwitchMonsterBarModeHotkey = (string)settingsUI.ToggleMonsterBarModeHotKey.Content;
+            settings.Overlay.MonstersComponent.MaxNumberOfPartsAtOnce = int.Parse(settingsUI.MaxNumberOfPartsAtOnce.Text);
+            settings.Overlay.MonstersComponent.MaxPartColumns = int.Parse(settingsUI.MaxColumnsOfParts.Text);
+            settings.Overlay.MonstersComponent.MonsterBarDock = (byte)settingsUI.MonsterBarDock.SelectedIndex;
             settings.Overlay.MonstersComponent.Position[0] = int.Parse(settingsUI.positionMonsterCompX.Text);
             settings.Overlay.MonstersComponent.Position[1] = int.Parse(settingsUI.positionMonsterCompY.Text);
             settings.Overlay.MonstersComponent.EnableMonsterParts = settingsUI.switchEnableParts.IsEnabled;

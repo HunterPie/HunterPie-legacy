@@ -26,7 +26,7 @@
     <Monster ID="em044_00" Name="Barroth"/>
     <Monster ID="em045_00" Name="Uragaan"/>
     <Monster ID="em057_00" Name="Zinogre"/>
-	  <Monster ID="em057_01" Name="Zinogre stygien"/>
+    <Monster ID="em057_01" Name="Zinogre stygien"/>
     <Monster ID="em063_00" Name="Brachydios"/>
     <Monster ID="em080_00" Name="Glavenus"/>
     <Monster ID="em080_01" Name="Glavenus acide"/>
@@ -37,7 +37,7 @@
     <Monster ID="em102_01" Name="Pukei-Pukei corail"/>
     <Monster ID="em103_00" Name="Nergigante"/>
     <Monster ID="em103_05" Name="Nergigante Chaos"/>
-	  <Monster ID="em104_00" Name="Safi'jiiva"/>
+    <Monster ID="em104_00" Name="Safi'jiiva"/>
     <Monster ID="em105_00" Name="Xeno'jiiva"/>
     <Monster ID="em106_00" Name="Zorah Magdaros"/>
     <Monster ID="em107_00" Name="Kulu-Ya-Ku"/>
@@ -68,6 +68,114 @@
     <Monster ID="em127_00" Name="Leshen"/>
     <Monster ID="em127_01" Name="Vieux Leshen"/>
   </Monsters>
+  <Parts>
+    <Part ID="MONSTER_PART_UNKNOWN" Name="Partie Inconnue"/>
+    <Part ID="MONSTER_PART_HEAD" Name="Tête"/>
+    <Part ID="MONSTER_PART_BODY" Name="Corps"/>
+    <Part ID="MONSTER_PART_LWING" Name="Aile Gauche"/>
+    <Part ID="MONSTER_PART_RWING" Name="Aile Droite"/>
+    <Part ID="MONSTER_PART_LLEG" Name="Patte Gauche"/>
+    <Part ID="MONSTER_PART_RLEG" Name="Patte Droite"/>
+    <Part ID="MONSTER_PART_TAIL" Name="Queue"/>
+    <Part ID="MONSTER_PART_ARMS" Name="Bras"/>
+    <Part ID="MONSTER_PART_LEGS" Name="Pattes"/>
+    <Part ID="MONSTER_PART_LARM" Name="Bras Gauche"/>
+    <Part ID="MONSTER_PART_RARM" Name="Bras Droite"/>
+    <Part ID="MONSTER_PART_LLIMBS" Name="Membre Gauche"/>
+    <Part ID="MONSTER_PART_RLIMBS" Name="Membre Droit"/>
+    <Part ID="MONSTER_PART_WINGS" Name="Ailes"/>
+    <Part ID="MONSTER_PART_LIMBS" Name="Membres"/>
+    <Part ID="MONSTER_PART_ABDOMEN" Name="Abdomen"/>
+    <Part ID="MONSTER_PART_CHEST" Name="Torse"/>
+    <Part ID="MONSTER_PART_REAR" Name="Arrière"/>
+    <Part ID="MONSTER_PART_HEAD_MUD" Name="Tête (boue)"/>
+    <Part ID="MONSTER_PART_BODY_MUD" Name="Corps (boue)"/>
+    <Part ID="MONSTER_PART_ARMS_MUD" Name="Bras (boue)"/>
+    <Part ID="MONSTER_PART_LLEG_MUD" Name="Patte Gauche (boue)"/>
+    <Part ID="MONSTER_PART_RLEG_MUD" Name="Patte Droite (boue)"/>
+    <Part ID="MONSTER_PART_TAIL_MUD" Name="Queue (boue)"/>
+    <Part ID="MONSTER_PART_JAW" Name="Mâchoire"/>
+    <Part ID="MONSTER_PART_BACK" Name="Arrière"/>
+    <Part ID="MONSTER_PART_FIN" Name="Ailettes"/>
+    <Part ID="MONSTER_PART_HORNS" Name="Cornes"/>
+    <Part ID="MONSTER_PART_NECK" Name="Cou"/>
+    <Part ID="MONSTER_PART_LHAND" Name="Main Gauche"/>
+    <Part ID="MONSTER_PART_RHAND" Name="Main Droite"/>
+    <Part ID="MONSTER_PART_LFOOT" Name="Pied Gauche"/>
+    <Part ID="MONSTER_PART_RFOOT" Name="Pied Droit"/>
+    <Part ID="MONSTER_PART_SHELL" Name="Carapace"/>
+    <Part ID="MONSTER_PART_EXHAUST_ORGAN_CENTRAL" Name="Crystal (centre)"/>
+    <Part ID="MONSTER_PART_EXHAUST_ORGAN_HEAD" Name="Crystal (tête)"/>
+    <Part ID="MONSTER_PART_EXHAUST_ORGAN_CRATER" Name="Crystal (crâtère)"/>
+    <Part ID="MONSTER_PART_EXHAUST_ORGAN_REAR" Name="Crystal (arrière)"/>
+    <Part ID="MONSTER_PART_WEAK_LSHELL" Name="Carapace Gauche"/>
+    <Part ID="MONSTER_PART_WEAK_RSHELL" Name="Carapace Droite"/>
+    <Part ID="MONSTER_PART_ROCK" Name="Roche"/>
+    <Part ID="MONSTER_PART_MANE" Name="Crinière"/>
+    <Part ID="MONSTER_PART_BALLOON" Name="Ballon"/>
+    <Part ID="MONSTER_PART_LBONE" Name="Os Gauche"/>
+    <Part ID="MONSTER_PART_RBONE" Name="Os Droit"/>
+    <Part ID="MONSTER_PART_HORNS_GOLD" Name="Cornes Dorées"/>
+    <Part ID="MONSTER_PART_MANE_GOLD" Name="Crinière Dorée"/>
+    <Part ID="MONSTER_PART_LCHEST_GOLD" Name="Torse Gauche Doré"/>
+    <Part ID="MONSTER_PART_RCHEST_GOLD" Name="Torse Droit Doré"/>
+    <Part ID="MONSTER_PART_LARM_GOLD" Name="Bras Gauche Doré"/>
+    <Part ID="MONSTER_PART_RARM_GOLD" Name="Bras Droit Doré"/>
+    <Part ID="MONSTER_PART_LLEG_GOLD" Name="Patte Gauche Dorée"/>
+    <Part ID="MONSTER_PART_RLEG_GOLD" Name="Patte Droite Dorée"/>
+    <Part ID="MONSTER_PART_LTAIL_GOLD" Name="Queue Gauche Dorée"/>
+    <Part ID="MONSTER_PART_RTAIL_GOLD" Name="Queue Droite Dorée"/>
+    <Part ID="MONSTER_PART_LHEAD" Name="Tête (gauche)"/>
+    <Part ID="MONSTER_PART_RHEAD" Name="Tête (droite)"/>
+    <Part ID="MONSTER_PART_HEAD_SNOW" Name="Tête (neige)"/>
+    <Part ID="MONSTER_PART_BODY_SNOW" Name="Corps (neige)"/>
+    <Part ID="MONSTER_PART_TAIL_SNOW" Name="Queue (neige)"/>
+    <Part ID="MONSTER_PART_HEAD_ICE" Name="Tête (glace)"/>
+    <Part ID="MONSTER_PART_BODY_ICE" Name="Corps (glace)"/>
+    <Part ID="MONSTER_PART_WINGS_ICE" Name="Ailes (glace)"/>
+    <Part ID="MONSTER_PART_ARMS_ICE" Name="Bras (glace)"/>
+    <Part ID="MONSTER_PART_LEGS_ICE" Name="Pattes (glace)"/>
+    <Part ID="MONSTER_PART_TAIL_ICE" Name="Queue (glace)"/>
+    <Part ID="MONSTER_PART_LNECK_ROCK" Name="Cou Gauche (roche)"/>
+    <Part ID="MONSTER_PART_RNECK_ROCK" Name="Cou Droit (roche)"/>
+    <Part ID="MONSTER_PART_HEAD_ROCK" Name="Tête (roche)"/>
+    <Part ID="MONSTER_PART_TAIL_ROCK" Name="Queue (roche)"/>
+    <Part ID="MONSTER_PART_LWING_ROCK" Name="Aile Gauche (roche)"/>
+    <Part ID="MONSTER_PART_RWING_ROCK" Name="Aile Droite (roche)"/>
+    <Part ID="MONSTER_PART_LARM_ROCK" Name="Bras Gauche (roche)"/>
+    <Part ID="MONSTER_PART_RARM_ROCK" Name="Bras Droit (roche)"/>
+    <Part ID="MONSTER_PART_LEGS_ROCK" Name="Pattes (roche)"/>
+    <Part ID="MONSTER_JAGRAS_SUMMONER" Name="Convocation de Jagras"/>
+    <!-- Removable parts -->
+    <Part ID="MONSTER_PART_REMOVABLE_TAIL" Name="Queue Sectionnable"/>
+    <Part ID="MONSTER_PART_REMOVABLE_HORNS" Name="Cornes Brisable"/>
+    <Part ID="MONSTER_PART_REMOVABLE_HEAD" Name="Tête Brisable"/>
+    <Part ID="MONSTER_PART_REMOVABLE_BALLOON" Name="Ballon Brisable"/>
+    <Part ID="MONSTER_PART_REMOVABLE_HORNS_2" Name="Cornes Brisable #2"/>
+    <Part ID="MONSTER_PART_REMOVABLE_LANTLER" Name="Bois Gauche Brisable"/>
+    <Part ID="MONSTER_PART_REMOVABLE_RANTLER" Name="Bois Droit Brisable"/>
+  </Parts>
+  <Ailments>
+    <Ailment ID="STATUS_UNKNOWN" Name="Inconnu"/>
+    <Ailment ID="STATUS_POISON" Name="Poison"/>
+    <Ailment ID="STATUS_PARALYSIS" Name="Paralysie"/>
+    <Ailment ID="STATUS_SLEEP" Name="Sommeil"/>
+    <Ailment ID="STATUS_BLAST" Name="Explosion"/>
+    <Ailment ID="STATUS_MOUNT" Name="Monté"/>
+    <Ailment ID="STATUS_EXHAUSTION" Name="Fatigue"/>
+    <Ailment ID="STATUS_STUN" Name="Étourdissement"/>
+    <Ailment ID="STATUS_TRANQUILIZE" Name="Tranquillisé"/>
+    <Ailment ID="STATUS_FLASH" Name="Flash"/>
+    <Ailment ID="STATUS_KNOCKDOWN" Name="A terre"/>
+    <Ailment ID="STATUS_DUNGPOD" Name="Capsule de bouse"/>
+    <Ailment ID="STATUS_SHOCKTRAP" Name="Piège électrique"/>
+    <Ailment ID="STATUS_PITFALLTRAP" Name="Piège à fosse"/>
+    <Ailment ID="STATUS_ELDERSEAL" Name="Sceaux des anciens"/>
+    <Ailment ID="STATUS_SMOKING" Name="Smoking"/>
+    <Ailment ID="STATUS_FELYNETRAP" Name="Piège Palico"/>
+    <Ailment ID="STATUS_CLAW" Name="Grappin"/>
+    <Ailment ID="STATUS_VIOLATED" Name="Violenté"/>
+  </Ailments>
   <Mantles>
     <Mantle ID="-1" Name="Pas de cape"/>
     <Mantle ID="0" Name="Cape du Caméléon"/>
@@ -265,6 +373,7 @@
     <Abnormality ID="MISC_015_00" Name="Potion du démon"/>
     <Abnormality ID="MISC_015_01" Name="Potion du démon"/>
     <Abnormality ID="MISC_015_02" Name="Potion du démon +"/>
+    <Abnormality ID="MISC_016_00" Name="Potion de pierre"/>
     <Abnormality ID="MISC_016_01" Name="Potion de pierre"/>
     <Abnormality ID="MISC_016_02" Name="Potion de pierre +"/>
     <Abnormality ID="MISC_023_00" Name="Boisson fraiche"/>

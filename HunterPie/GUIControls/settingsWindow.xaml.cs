@@ -207,9 +207,9 @@ namespace HunterPie.GUIControls {
                 shortcutText.Append("Alt+");
             }
             shortcutText.Append(key.ToString());
-
+            Button btn = (Button)sender;
             // Update the text box.
-            ToggleOverlayHotKey.Content = shortcutText.ToString();
+            btn.Content = shortcutText.ToString();
         }
 
         private void SwitchEnableParts_MouseDown(object sender, MouseButtonEventArgs e) {

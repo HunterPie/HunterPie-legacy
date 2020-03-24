@@ -15,13 +15,16 @@ namespace HunterPie.GUI.Widgets {
     public partial class MonsterHealth : UserControl {
 
         private Monster Context;
-        private Timer VisibilityTimer; // TODO: Implement Visibility timer to hide monsters that aren't active
+        private Timer VisibilityTimer;
 
         // Animations
         private Storyboard ANIM_ENRAGEDICON;
 
         public MonsterHealth() {
             InitializeComponent();
+            if (UserSettings.PlayerConfig.Overlay.MonstersComponent.ShowMonsterBarMode == (byte)3) {
+                StartVisibilityTimer();
+            }
         }
 
         ~MonsterHealth() {
@@ -58,6 +61,17 @@ namespace HunterPie.GUI.Widgets {
         }
         
         public void UnhookEvents() {
+            Dispatcher.Invoke(new Action(() => {
+                foreach (Monster_Widget.Parts.MonsterPart Part in MonsterPartsContainer.Children) {
+                    Part.UnhookEvents();
+                }
+                foreach (Monster_Widget.Parts.MonsterAilment Ailment in MonsterAilmentsContainer.Children) {
+                    Ailment.UnhookEvents();
+                }
+                MonsterAilmentsContainer.Children.Clear();
+                MonsterPartsContainer.Children.Clear();
+                Context.ClearParts();
+            }));
             Context.OnMonsterSpawn -= OnMonsterSpawn;
             Context.OnMonsterDespawn -= OnMonsterDespawn;
             Context.OnMonsterDeath -= OnMonsterDespawn;
@@ -77,10 +91,11 @@ namespace HunterPie.GUI.Widgets {
             this.MonsterName.Text = Monster.Name;
 
             // Update monster health
-
             MonsterHealthBar.MaxSize = this.Width * 0.7833333333333333;
             MonsterHealthBar.UpdateBar(Monster.CurrentHP, Monster.TotalHP);
             SetMonsterHealthBarText(Monster.CurrentHP, Monster.TotalHP);
+
+            if ((Monster.CurrentHP / Monster.TotalHP * 100) < Monster.CaptureThreshold) this.CapturableIcon.Visibility = Visibility.Visible;
 
             // Monster stamina
             MonsterStaminaBar.MaxSize = this.Width - 72;
@@ -137,6 +152,29 @@ namespace HunterPie.GUI.Widgets {
             }
         }
 
+        #region Visibility timer
+        private void StartVisibilityTimer() {
+            if (UserSettings.PlayerConfig.Overlay.MonstersComponent.ShowMonsterBarMode != (byte)3) {
+                Dispatcher.BeginInvoke(System.Windows.Threading.DispatcherPriority.Render, new Action(() => {
+                    this.Visibility = Visibility.Visible;
+                }));
+                return;
+            }
+            if (VisibilityTimer == null) {
+                VisibilityTimer = new Timer(_ => HideUnactiveBar(), null, 10, 0);
+            } else {
+                VisibilityTimer.Change(15000, 0);
+            }
+        }
+
+        private void HideUnactiveBar() {
+            Dispatcher.BeginInvoke(System.Windows.Threading.DispatcherPriority.Render, new Action(() => {
+                this.Visibility = Visibility.Collapsed;
+            }));
+        }
+
+        #endregion
+
         private void OnMonsterTargetted(object source, EventArgs args) {
             Dispatch(() => {
                 SwitchSizeBasedOnTarget();
@@ -154,7 +192,7 @@ namespace HunterPie.GUI.Widgets {
             if (Context == null) return;
             int EnrageTimer = (int)Context.EnrageTimerStatic - (int)Context.EnrageTimer;
             Dispatch(() => {
-                this.EnrageTimerText.Visibility = Context.EnrageTimer > 0 ? Visibility.Visible : Visibility.Hidden;
+                this.EnrageTimerText.Visibility = Context.EnrageTimer > 0 && Context.EnrageTimer <= Context.EnrageTimerStatic ? Visibility.Visible : Visibility.Hidden;
                 this.EnrageTimerText.Text = $"{EnrageTimer}";
             });
         }
@@ -187,7 +225,7 @@ namespace HunterPie.GUI.Widgets {
                 }
                 MonsterAilmentsContainer.Children.Clear();
                 MonsterPartsContainer.Children.Clear();
-                Context.ClearParts();
+                Context?.ClearParts();
             });
         }
 
@@ -202,6 +240,12 @@ namespace HunterPie.GUI.Widgets {
                 this.MonsterHealthBar.MaxHealth = args.TotalHP;
                 this.MonsterHealthBar.Health = args.CurrentHP;
                 SetMonsterHealthBarText(args.CurrentHP, args.TotalHP);
+                if ((args.CurrentHP / args.TotalHP * 100) < Context.CaptureThreshold) this.CapturableIcon.Visibility = Visibility.Visible;
+                else { this.CapturableIcon.Visibility = Visibility.Collapsed; }
+                if (UserSettings.PlayerConfig.Overlay.MonstersComponent.ShowMonsterBarMode == (byte)3) {
+                    this.Visibility = Visibility.Visible;
+                    StartVisibilityTimer();
+                }
             });
         }
         #endregion
@@ -218,7 +262,25 @@ namespace HunterPie.GUI.Widgets {
                 case 2: // Show only target
                     ShowOnlyTargetMonster();
                     break;
+                case 3: // Show all but hide unactive monsters
+                    ShowAllMonsterAndHideUnactive();
+                    break;
             }
+        }
+
+        // Show all monsters but hide unactive
+        private void ShowAllMonsterAndHideUnactive() {
+            if (this.Context == null || !this.Context.IsAlive) this.Visibility = Visibility.Collapsed;
+            StartVisibilityTimer();
+            this.Width = 300;
+            MonsterPartsContainer.MaxWidth = MonsterAilmentsContainer.MaxWidth = (this.Width - 2) / 2;
+            MonsterPartsContainer.ItemWidth = MonsterAilmentsContainer.ItemWidth = MonsterPartsContainer.MaxWidth / Math.Max(1, UserSettings.PlayerConfig.Overlay.MonstersComponent.MaxPartColumns);
+            UpdatePartHealthBarSizes(MonsterPartsContainer.ItemWidth);
+            MonsterHealthBar.MaxSize = 231;
+            MonsterStaminaBar.MaxSize = this.Width - 72;
+            MonsterHealthBar.UpdateBar(Context.CurrentHP, Context.TotalHP);
+            MonsterStaminaBar.UpdateBar(Context.Stamina, Context.MaxStamina);
+            this.Opacity = 1;
         }
 
         // Show all monsters at once
@@ -226,8 +288,8 @@ namespace HunterPie.GUI.Widgets {
             if (this.Context != null && this.Context.IsAlive) this.Visibility = Visibility.Visible;
             else { this.Visibility = Visibility.Collapsed; }
             this.Width = 300;
-            MonsterAilmentsContainer.ItemWidth = (this.Width - 2) / 2;
-            MonsterPartsContainer.ItemWidth = (this.Width - 2) / 2;
+            MonsterPartsContainer.MaxWidth = MonsterAilmentsContainer.MaxWidth = (this.Width - 2) / 2;
+            MonsterPartsContainer.ItemWidth = MonsterAilmentsContainer.ItemWidth = MonsterPartsContainer.MaxWidth / Math.Max(1, UserSettings.PlayerConfig.Overlay.MonstersComponent.MaxPartColumns);
             UpdatePartHealthBarSizes(MonsterPartsContainer.ItemWidth);
             MonsterHealthBar.MaxSize = 231;
             MonsterStaminaBar.MaxSize = this.Width - 72;
@@ -242,8 +304,8 @@ namespace HunterPie.GUI.Widgets {
             else {      
                 this.Visibility = Visibility.Visible;
                 this.Width = 500;
-                MonsterAilmentsContainer.ItemWidth = (this.Width - 2) / 2;
-                MonsterPartsContainer.ItemWidth = (this.Width - 2) / 2;
+                MonsterPartsContainer.MaxWidth = MonsterAilmentsContainer.MaxWidth = (this.Width - 2) / 2;
+                MonsterPartsContainer.ItemWidth = MonsterAilmentsContainer.ItemWidth = MonsterPartsContainer.MaxWidth / Math.Max(1, UserSettings.PlayerConfig.Overlay.MonstersComponent.MaxPartColumns);
                 UpdatePartHealthBarSizes(MonsterPartsContainer.ItemWidth);
                 this.Opacity = 1;
                 MonsterHealthBar.MaxSize = this.Width * 0.9;
@@ -260,8 +322,8 @@ namespace HunterPie.GUI.Widgets {
             if (!Context.IsTarget) {
                 this.Width = 240;
                 // Parts
-                MonsterAilmentsContainer.ItemWidth = (this.Width - 2) / 2;
-                MonsterPartsContainer.ItemWidth = (this.Width - 2) / 2;
+                MonsterPartsContainer.MaxWidth = MonsterAilmentsContainer.MaxWidth = (this.Width - 2) / 2;
+                MonsterPartsContainer.ItemWidth = MonsterAilmentsContainer.ItemWidth = MonsterPartsContainer.MaxWidth / Math.Max(1, UserSettings.PlayerConfig.Overlay.MonstersComponent.MaxPartColumns);
                 UpdatePartHealthBarSizes(MonsterPartsContainer.ItemWidth);
                 // Monster Bar
                 MonsterHealthBar.MaxSize = this.Width * 0.8;
@@ -272,8 +334,8 @@ namespace HunterPie.GUI.Widgets {
             } else {
                 this.Width = 320;
                 // Parts
-                MonsterAilmentsContainer.ItemWidth = (this.Width - 2) / 2;
-                MonsterPartsContainer.ItemWidth = (this.Width - 2) / 2;
+                MonsterPartsContainer.MaxWidth = MonsterAilmentsContainer.MaxWidth = (this.Width - 2) / 2;
+                MonsterPartsContainer.ItemWidth = MonsterAilmentsContainer.ItemWidth = MonsterPartsContainer.MaxWidth / Math.Max(1, UserSettings.PlayerConfig.Overlay.MonstersComponent.MaxPartColumns);
                 UpdatePartHealthBarSizes(MonsterPartsContainer.ItemWidth);
                 // Monster Bar
                 MonsterHealthBar.MaxSize = this.Width * 0.8;
@@ -298,6 +360,17 @@ namespace HunterPie.GUI.Widgets {
         #endregion
 
         #region Helpers
+        public void ChangeDocking(byte newDock) {
+            switch(newDock) {
+                case 0: // Monster HP stays on top
+                    DockPanel.SetDock(MonsterHealthContainer, Dock.Top);
+                    break;
+                case 1:
+                    DockPanel.SetDock(MonsterHealthContainer, Dock.Bottom);
+                    break;
+            }
+        }
+
         private void SetMonsterHealthBarText(float hp, float max_hp) {
             this.HealthText.Text = $"{hp:0}/{max_hp:0} ({hp / max_hp * 100:0}%)";
         }

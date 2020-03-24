@@ -88,5 +88,11 @@ namespace HunterPie.Core {
             return Ailments[index];
         }
 
+        static public int GetMonsterCaptureThresholdByID(string MonsterID) {
+            XmlNode Monster = MonsterDataDocument.SelectSingleNode($"//Monsters/Monster[@ID='{MonsterID}']");
+            if (Monster == null) return 0;
+            return int.Parse(Monster.Attributes["Capture"].Value);
+        }
+
     }
 }

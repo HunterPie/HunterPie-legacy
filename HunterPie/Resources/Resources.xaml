@@ -2327,6 +2327,19 @@
         </DrawingImage.Drawing>
     </DrawingImage>
     <!-- Icons -->
+    <DrawingImage x:Key="ICON_TRAP">
+        <DrawingImage.Drawing>
+            <DrawingGroup>
+                <DrawingGroup.Children>
+                    <GeometryDrawing Brush="#FFE9FC2C" Geometry="F1 M 11.7012,8.37226C 11.7012,8.37226 12.1647,19.5381 14.4221,19.5381C 16.6795,19.5381 17.6469,14.7009 16.8407,13.0885C 16.0345,11.4761 13.5689,10.8043 13.4076,8.86941C 13.2464,6.93453 13.272,5.48826 14.3751,5.12058C 15.3425,4.7981 26.9786,4.9392 26.9786,4.9392L 26.9988,20.5055C 26.9988,20.5055 23.9353,23.8916 24.419,25.9877C 24.9027,28.0838 28.9337,32.1148 31.5135,32.4373C 34.0934,32.7598 29.1151,28.5138 29.1151,28.5138C 29.1151,28.5138 28.1275,22.2792 30.2236,21.6342C 32.3197,20.9893 42.7802,21.6611 42.7802,21.6611L 36.1895,29.6962C 36.1895,29.6962 38.1244,32.2761 39.253,32.2761C 40.3817,32.2761 45.8639,26.9551 45.8639,26.9551C 45.8639,26.9551 47.6375,13.5722 46.8313,12.1211C 46.0251,10.6699 42.6458,8.04976 41.1879,11.4761C 40.3795,13.3762 43.8148,16.2327 45.1047,15.2652C 46.3946,14.2978 44.1776,16.797 44.1776,16.797C 44.1776,16.797 39.4613,17.5226 38.1714,16.0714C 37.2561,15.0418 36.6094,8.87095 39.0179,7.24356C 42.0009,5.22806 46.9926,5.67147 49.2499,8.89628C 51.5073,12.1211 52.8039,29.8507 50.7347,34.3789C 48.6654,38.9071 43.2415,42.3827 38.7693,45.9815C 38.7693,45.9815 37.7919,47.7674 39.0918,47.7551C 40.5161,47.7417 42.7936,48.0037 42.7936,48.0037L 42.8003,49.8512L 33.9859,49.6765L 33.9859,44.5572L 30.8014,44.5572C 30.8014,44.5572 30.2371,49.7572 29.0681,49.7975C 24.3921,49.9587 21.8123,49.7572 21.8123,49.7572L 21.9332,48.0238L 25.8836,47.9835L 26.3403,45.6792C 26.3403,45.6792 23.7807,46.2032 18.1306,43.5629C 11.8783,40.6411 10.8143,35.1112 10.5657,32.7262C 10.3171,30.3412 10.7718,26.729 10.8748,23.7303C 10.8748,23.7303 8.58387,23.1794 8.42263,20.2771C 8.26139,17.3748 8.28827,8.37226 8.28827,8.37226L 11.7012,8.37226 Z "/>
+                    <GeometryDrawing Brush="#FFE9FC2C" Geometry="F1 M 3.26289,22.1381L 6.90423,22.1247L 6.90423,44.6445L 17.5595,54.8698L 43.9222,54.7892L 54.7253,44.1474L 54.7253,22.2994L 59.7238,22.2994L 59.7238,60.1908L 3.20915,60.1908L 3.26289,22.1381 Z "/>
+                    <GeometryDrawing Brush="#FF1B1F00" Geometry="F1 M 4.64687,51.4166L 10.0081,51.4166L 10.0081,56.5763L 8.40913,56.5763L 6.47779,54.8277L 4.64687,53.1701L 4.64687,51.4368"/>
+                    <GeometryDrawing Brush="#FF1B1F00" Geometry="F1 M 56.6669,51.4435L 51.3057,51.4435L 51.3057,56.6032L 52.9046,56.6032L 54.836,54.8546L 56.6669,53.197L 56.6669,51.4636"/>
+                    <GeometryDrawing Brush="#FF1B1F00" Geometry="F1 M 20.4103,15.3851C 20.5738,15.2944 20.9007,15.2967 21.2277,15.2989L 22.9203,15.2922C 23.2385,15.2922 23.5566,15.2922 23.7157,15.4075C 23.8747,15.5229 23.8747,15.7536 23.8747,15.9843L 23.8747,17.7376C 23.8747,18.0959 23.8747,18.4543 23.7258,18.6334C 23.5769,18.8126 23.279,18.8126 22.9811,18.8126L 21.2481,18.8126C 20.9143,18.8126 20.5806,18.8126 20.4137,18.6771C 20.2468,18.5415 20.2468,18.2705 20.2468,17.9994L 20.2468,15.8432C 20.2468,15.6595 20.2468,15.4759 20.4103,15.3851 Z "/>
+                </DrawingGroup.Children>
+            </DrawingGroup>
+        </DrawingImage.Drawing>
+    </DrawingImage>
     <DrawingImage x:Key="ICON_WARN">
         <DrawingImage.Drawing>
             <DrawingGroup>
@@ -2426,55 +2439,369 @@
     <!-- Monster Crowns -->
     <DrawingImage x:Key="CROWN_MINI">
         <DrawingImage.Drawing>
-            <DrawingGroup>
-                <DrawingGroup.Children>
-                    <GeometryDrawing Brush="#FFFFC800" Geometry="F1 M 17.2917,9.15625C 18.5458,9.15625 19.5625,10.1729 19.5625,11.4271C 19.5625,12.6812 18.5458,13.6979 17.2917,13.6979C 16.0375,13.6979 15.0208,12.6812 15.0208,11.4271C 15.0208,10.1729 16.0375,9.15625 17.2917,9.15625 Z "/>
-                    <GeometryDrawing Brush="#FFFFC800" Geometry="F1 M 5.60416,10.0729C 6.89283,10.0729 7.9375,11.1176 7.9375,12.4063C 7.9375,13.6949 6.89283,14.7396 5.60416,14.7396C 4.3155,14.7396 3.27083,13.6949 3.27083,12.4063C 3.27083,11.1176 4.3155,10.0729 5.60416,10.0729 Z "/>
-                    <GeometryDrawing Brush="#FFFFC800" Geometry="F1 M 28.8125,10.1354C 30.1012,10.1354 31.1458,11.1801 31.1458,12.4688C 31.1458,13.7574 30.1012,14.8021 28.8125,14.8021C 27.5238,14.8021 26.4792,13.7574 26.4792,12.4688C 26.4792,11.1801 27.5238,10.1354 28.8125,10.1354 Z "/>
-                    <GeometryDrawing Brush="#FFFFC800" Geometry="F1 M 23.1458,19.5313L 29.5208,13.2396L 29.5208,21.1146L 5.3125,21.0729L 5.3125,12.7396L 11.3125,19.3229L 17.2292,12.7292L 23.1458,19.5313 Z "/>
-                    <GeometryDrawing Brush="#FFFFC800" Geometry="F1 M 5.27083,21.8646L 29.5208,21.8646L 29.5208,26.7813L 5.27083,26.7813L 5.27083,21.8646 Z "/>
-                    <GeometryDrawing Brush="#FF1FD272" Geometry="F1 M 17.375,18.8229C 18.261,18.8229 18.9792,19.9795 18.9792,21.4063C 18.9792,22.833 18.261,23.9896 17.375,23.9896C 16.489,23.9896 15.7708,22.833 15.7708,21.4063C 15.7708,19.9795 16.489,18.8229 17.375,18.8229 Z ">
-                        <GeometryDrawing.Pen>
-                            <Pen LineJoin="Round" Brush="#FFEEBB03"/>
-                        </GeometryDrawing.Pen>
-                    </GeometryDrawing>
-                </DrawingGroup.Children>
+            <DrawingGroup ClipGeometry="M0,0 V64 H64 V0 H0 Z">
+                <DrawingGroup Opacity="1" Transform="0.1875,0,0,0.0625,0,0">
+                    <DrawingGroup Opacity="1" Transform="5.33333,0,0,16,0,0">
+                        <DrawingGroup Opacity="1">
+                            <DrawingGroup Opacity="1">
+                                <GeometryDrawing Brush="#FFEFCF01" Geometry="F0 M64,64z M0,0z M36.963,46L53,46C55,46,55,48,53,48L53,55C55,55,55,58,53,58L32,58 32,54C35.311,54 37,51.967 37,47 37,46.662 36.988,46.329 36.963,46z M36.851,44C36.244,39.994,34.853,38,32,38L32,29 43.5,41 55,29 53,44 36.851,44z" />
+                                <GeometryDrawing Brush="#FFBBA652" Geometry="F0 M64,64z M0,0z M43.5,44L37,44 37,40 32,39 32,32.448 43.5,44z M53,44L43.5,44 54.57,32.223 53,44z" />
+                                <GeometryDrawing Brush="#FFBBA652" Geometry="F0 M64,64z M0,0z M37,48L53,48 53,55 32,55 32,54 36,52 37,48z" />
+                                <GeometryDrawing Brush="#FF746020" Geometry="F0 M64,64z M0,0z M51.5,55L48.5,48 45.5,55 51.5,55z" />
+                                <DrawingGroup Opacity="1" Transform="1,0,0,1,-8,0">
+                                    <GeometryDrawing Brush="#FF746020" Geometry="F0 M64,64z M0,0z M51.5,55L48.5,48 45.5,55 51.5,55z" />
+                                </DrawingGroup>
+                                <DrawingGroup Opacity="1" Transform="-1,0,0,1,106,0">
+                                    <GeometryDrawing Brush="#FFEFCF01">
+                                        <GeometryDrawing.Geometry>
+                                            <EllipseGeometry RadiusX="4" RadiusY="4" Center="53,28" />
+                                        </GeometryDrawing.Geometry>
+                                    </GeometryDrawing>
+                                </DrawingGroup>
+                                <DrawingGroup Opacity="1" Transform="1,0,0,1,-4,-3.55271E-15">
+                                    <GeometryDrawing Brush="#FFEFCF01" Geometry="F0 M64,64z M0,0z M36,30C38.209,30 40,28.209 40,26 40,23.791 38.209,22 36,22L36,30z" />
+                                </DrawingGroup>
+                                <DrawingGroup Opacity="1" Transform="1,0,0,1,0,-1">
+                                    <GeometryDrawing Brush="#FF746020" Geometry="F0 M64,64z M0,0z M32,37C33,37,39,39,39,43L39,45 37,45 35,41 32,41" />
+                                </DrawingGroup>
+                                <GeometryDrawing Brush="#FFEFCF01" Geometry="F0 M64,64z M0,0z M32,37C33,37,38,39,38,43L38,48C38,53 33,55 32,55 32,55 32,53 32,53 33,53 36,51 36,49L36,44C36,42 33,40 32,40 32,40 32,37 32,37z" />
+                                <DrawingGroup Opacity="1" Transform="1,0,0,1,0,0.5">
+                                    <GeometryDrawing Brush="#FF7DC786" Geometry="F0 M64,64z M0,0z M32,41C33,41 35,43 35,44 35,45 35,48 35,49 35,50 33,52 32,52L32,41z" />
+                                </DrawingGroup>
+                            </DrawingGroup>
+                            <DrawingGroup Opacity="1" Transform="-1,0,0,1,64,0">
+                                <GeometryDrawing Brush="#FFEFCF01" Geometry="F0 M64,64z M0,0z M36.963,46L53,46C55,46,55,48,53,48L53,55C55,55,55,58,53,58L32,58 32,54C35.311,54 37,51.967 37,47 37,46.662 36.988,46.329 36.963,46z M36.851,44C36.244,39.994,34.853,38,32,38L32,29 43.5,41 55,29 53,44 36.851,44z" />
+                                <GeometryDrawing Brush="#FFBBA652" Geometry="F0 M64,64z M0,0z M43.5,44L37,44 37,40 32,39 32,32.448 43.5,44z M53,44L43.5,44 54.57,32.223 53,44z" />
+                                <GeometryDrawing Brush="#FFBBA652" Geometry="F0 M64,64z M0,0z M37,48L53,48 53,55 32,55 32,54 36,52 37,48z" />
+                                <GeometryDrawing Brush="#FF746020" Geometry="F0 M64,64z M0,0z M51.5,55L48.5,48 45.5,55 51.5,55z" />
+                                <DrawingGroup Opacity="1" Transform="1,0,0,1,-8,0">
+                                    <GeometryDrawing Brush="#FF746020" Geometry="F0 M64,64z M0,0z M51.5,55L48.5,48 45.5,55 51.5,55z" />
+                                </DrawingGroup>
+                                <DrawingGroup Opacity="1" Transform="-1,0,0,1,106,0">
+                                    <GeometryDrawing Brush="#FFEFCF01">
+                                        <GeometryDrawing.Geometry>
+                                            <EllipseGeometry RadiusX="4" RadiusY="4" Center="53,28" />
+                                        </GeometryDrawing.Geometry>
+                                    </GeometryDrawing>
+                                </DrawingGroup>
+                                <DrawingGroup Opacity="1" Transform="1,0,0,1,-4,-3.55271E-15">
+                                    <GeometryDrawing Brush="#FFEFCF01" Geometry="F0 M64,64z M0,0z M36,30C38.209,30 40,28.209 40,26 40,23.791 38.209,22 36,22L36,30z" />
+                                </DrawingGroup>
+                                <DrawingGroup Opacity="1" Transform="1,0,0,1,0,-1">
+                                    <GeometryDrawing Brush="#FF746020" Geometry="F0 M64,64z M0,0z M32,37C33,37,39,39,39,43L39,45 37,45 35,41 32,41" />
+                                </DrawingGroup>
+                                <GeometryDrawing Brush="#FFEFCF01" Geometry="F0 M64,64z M0,0z M32,37C33,37,38,39,38,43L38,48C38,53 33,55 32,55 32,55 32,53 32,53 33,53 36,51 36,49L36,44C36,42 33,40 32,40 32,40 32,37 32,37z" />
+                                <DrawingGroup Opacity="1" Transform="1,0,0,1,0,0.5">
+                                    <GeometryDrawing Brush="#FF7DC786" Geometry="F0 M64,64z M0,0z M32,41C33,41 35,43 35,44 35,45 35,48 35,49 35,50 33,52 32,52L32,41z" />
+                                </DrawingGroup>
+                            </DrawingGroup>
+                        </DrawingGroup>
+                    </DrawingGroup>
+                </DrawingGroup>
             </DrawingGroup>
         </DrawingImage.Drawing>
     </DrawingImage>
     <DrawingImage x:Key="CROWN_SILVER">
         <DrawingImage.Drawing>
-            <DrawingGroup>
-                <DrawingGroup.Children>
-                    <GeometryDrawing Brush="#FFEAEAEA" Geometry="F1 M 17.2917,3.15625C 18.5458,3.15625 19.5625,4.17294 19.5625,5.42709C 19.5625,6.68123 18.5458,7.69792 17.2917,7.69792C 16.0375,7.69792 15.0208,6.68123 15.0208,5.42709C 15.0208,4.17294 16.0375,3.15625 17.2917,3.15625 Z "/>
-                    <GeometryDrawing Brush="#FFEAEAEA" Geometry="F1 M 5.60416,4.07292C 6.89283,4.07292 7.9375,5.11759 7.9375,6.40625C 7.9375,7.69492 6.89283,8.73959 5.60416,8.73959C 4.3155,8.73959 3.27083,7.69492 3.27083,6.40625C 3.27083,5.11759 4.3155,4.07292 5.60416,4.07292 Z "/>
-                    <GeometryDrawing Brush="#FFEAEAEA" Geometry="F1 M 28.8125,4.13542C 30.1012,4.13542 31.1458,5.18009 31.1458,6.46875C 31.1458,7.75742 30.1012,8.80209 28.8125,8.80209C 27.5238,8.80209 26.4792,7.75742 26.4792,6.46875C 26.4792,5.18009 27.5238,4.13542 28.8125,4.13542 Z "/>
-                    <GeometryDrawing Brush="#FFEAEAEA" Geometry="F1 M 23.1458,18.2774L 29.5208,7.00315L 29.5208,21.1146L 5.3125,21.0399L 5.3125,6.10719L 11.3125,17.904L 17.2292,6.08852L 23.1458,18.2774 Z "/>
-                    <GeometryDrawing Brush="#FFEAEAEA" Geometry="F1 M 5.27083,21.8646L 29.5208,21.8646L 29.5208,26.7813L 5.27083,26.7813L 5.27083,21.8646 Z "/>
-                    <GeometryDrawing Brush="#FFDC473A" Geometry="F1 M 17.375,13.8229C 18.261,13.8229 18.9792,14.9795 18.9792,16.4063C 18.9792,17.833 18.261,18.9896 17.375,18.9896C 16.489,18.9896 15.7708,17.833 15.7708,16.4063C 15.7708,14.9795 16.489,13.8229 17.375,13.8229 Z ">
-                        <GeometryDrawing.Pen>
-                            <Pen Thickness="0.5" LineJoin="Round" Brush="#FFD2D2D2"/>
-                        </GeometryDrawing.Pen>
-                    </GeometryDrawing>
-                </DrawingGroup.Children>
+            <DrawingGroup ClipGeometry="M0,0 V64 H64 V0 H0 Z">
+                <DrawingGroup Opacity="1" Transform="1,0,0,1,-64,0">
+                    <DrawingGroup Opacity="1" Transform="0.1875,0,0,0.0625,0,0">
+                        <DrawingGroup Opacity="1" Transform="5.33333,0,0,16,0,0">
+                            <DrawingGroup Opacity="1">
+                                <DrawingGroup Opacity="1">
+                                    <DrawingGroup Opacity="1" Transform="1,0,0,1,64,0">
+                                        <GeometryDrawing Brush="#FFB7B9BB" Geometry="F0 M64,64z M0,0z M32,46L53,46C55,46,55,48,53,48L53,55C55,55,55,58,53,58L32,58 32,46z M32,44L32,11 46.5,38.5 55,13 53,44 32,44z" />
+                                    </DrawingGroup>
+                                    <DrawingGroup Opacity="1" Transform="-1,0,0,1,192,0">
+                                        <GeometryDrawing Brush="#FF747D96" Geometry="F0 M64,64z M0,0z M96,44L75,44 73.449,19.967 81.5,42 96,15 96,44z" />
+                                    </DrawingGroup>
+                                    <DrawingGroup Opacity="1" Transform="-1,0,0,1.16667,192,-9.16667">
+                                        <GeometryDrawing Brush="#FF747D96">
+                                            <GeometryDrawing.Geometry>
+                                                <RectangleGeometry RadiusX="0" RadiusY="0" Rect="75,49,21,6" />
+                                            </GeometryDrawing.Geometry>
+                                        </GeometryDrawing>
+                                    </DrawingGroup>
+                                    <DrawingGroup Opacity="1" Transform="-1,0,0,1,144.5,0">
+                                        <GeometryDrawing Brush="#FF525A69" Geometry="F0 M64,64z M0,0z M48.5,55L48.5,48 45.5,55 48.5,55z" />
+                                    </DrawingGroup>
+                                    <DrawingGroup Opacity="1" Transform="-1,0,0,1,160.5,0">
+                                        <GeometryDrawing Brush="#FF525A69" Geometry="F0 M64,64z M0,0z M51.5,55L48.5,48 45.5,55 51.5,55z" />
+                                    </DrawingGroup>
+                                    <DrawingGroup Opacity="1" Transform="-1,0,0,1,152.5,0">
+                                        <GeometryDrawing Brush="#FF525A69" Geometry="F0 M64,64z M0,0z M51.5,55L48.5,48 45.5,55 51.5,55z" />
+                                    </DrawingGroup>
+                                    <DrawingGroup Opacity="1" Transform="-1,0,0,1,192,0">
+                                        <DrawingGroup Opacity="1" Transform="0.944444,0,0,2,3.83333,-30.5">
+                                            <GeometryDrawing Brush="#FF636C82" Geometry="F0 M64,64z M0,0z M96,29.5L89.647,29.5 87,30.75 89.647,32 96,32 96,29.5z" />
+                                        </DrawingGroup>
+                                        <DrawingGroup Opacity="1" Transform="0.667823,0.667823,-1.41421,1.41421,73.8761,-79.0123">
+                                            <GeometryDrawing Brush="#FF636C82" Geometry="F0 M64,64z M0,0z M96,30.75L93.353,29.5 89.647,29.5 87,30.75 89.647,32 96,32 96,30.75z" />
+                                        </DrawingGroup>
+                                        <DrawingGroup Opacity="1" Transform="4.30084E-17,0.944444,1,-2.7034E-16,64,-63.6667">
+                                            <GeometryDrawing Brush="#FF636C82" Geometry="F0 M64,64z M0,0z M96,29.5L89.647,29.5 87,32 96,32 96,29.5z" />
+                                        </DrawingGroup>
+                                        <DrawingGroup Opacity="1" Transform="0.667823,-0.667823,-1.41421,-1.41421,73.8761,140.866">
+                                            <GeometryDrawing Brush="#FF636C82" Geometry="F0 M64,64z M0,0z M96,30.75L93.353,29.5 89.647,29.5 87,30.75 89.647,32 96,32 96,30.75z" />
+                                        </DrawingGroup>
+                                        <DrawingGroup Opacity="1" Transform="4.30084E-17,-0.944444,1,2.7034E-16,64,125.52">
+                                            <GeometryDrawing Brush="#FF636C82" Geometry="F0 M64,64z M0,0z M96,29.5L89.647,29.5 87,32 96,32 96,29.5z" />
+                                        </DrawingGroup>
+                                        <DrawingGroup Opacity="1" Transform="0.944444,0,0,1.2,4.83333,-5.9">
+                                            <GeometryDrawing Brush="#FFFCF4C5" Geometry="F0 M64,64z M0,0z M96,29.5L88.588,29.5 87,30.75 88.588,32 96,32 96,29.5z" />
+                                        </DrawingGroup>
+                                        <DrawingGroup Opacity="1" Transform="0.667823,0.667823,-0.848528,0.848528,57.4812,-60.6175">
+                                            <GeometryDrawing Brush="#FFFCF4C5" Geometry="F0 M64,64z M0,0z M96,30.75L94.412,29.5 88.588,29.5 87,30.75 88.588,32 96,32 96,30.75z" />
+                                        </DrawingGroup>
+                                        <DrawingGroup Opacity="1" Transform="2.67284E-18,0.944444,0.6,-2.94833E-16,76.8,-62.6667">
+                                            <GeometryDrawing Brush="#FFFCF4C5" Geometry="F0 M64,64z M0,0z M96,29.5L88.588,29.5 87,32 96,32 96,29.5z" />
+                                        </DrawingGroup>
+                                        <DrawingGroup Opacity="1" Transform="0.667823,-0.667823,-0.848528,-0.848528,57.4812,122.617">
+                                            <GeometryDrawing Brush="#FFFCF4C5" Geometry="F0 M64,64z M0,0z M96,30.75L94.412,29.5 88.588,29.5 87,30.75 88.588,32 96,32 96,30.75z" />
+                                        </DrawingGroup>
+                                        <DrawingGroup Opacity="1" Transform="2.67284E-18,-0.944444,0.6,2.94833E-16,76.8,124.667">
+                                            <GeometryDrawing Brush="#FFFCF4C5" Geometry="F0 M64,64z M0,0z M96,29.5L88.588,29.5 87,32 96,32 96,29.5z" />
+                                        </DrawingGroup>
+                                    </DrawingGroup>
+                                    <DrawingGroup Opacity="1" Transform="1,0,0,1,64,-14.5">
+                                        <GeometryDrawing Brush="#FFBC595A" Geometry="F0 M64,64z M0,0z M32,41.5C33,41.5 35,43.5 35,44.5 35,45.5 35,45.5 35,46.5 35,47.5 33,49.5 32,49.5L32,41.5z" />
+                                    </DrawingGroup>
+                                    <DrawingGroup Opacity="1" Transform="1,0,0,1,64,-15">
+                                        <GeometryDrawing Brush="#FFB7B9BB">
+                                            <GeometryDrawing.Geometry>
+                                                <EllipseGeometry RadiusX="4" RadiusY="4" Center="53,28" />
+                                            </GeometryDrawing.Geometry>
+                                        </GeometryDrawing>
+                                    </DrawingGroup>
+                                    <DrawingGroup Opacity="1" Transform="1,0,0,1,60,-17">
+                                        <GeometryDrawing Brush="#FFB7B9BB" Geometry="F0 M64,64z M0,0z M36,30C38.209,30 40,28.209 40,26 40,23.791 38.209,22 36,22L36,30z" />
+                                    </DrawingGroup>
+                                </DrawingGroup>
+                                <DrawingGroup Opacity="1" Transform="-1,0,0,1,192,0">
+                                    <DrawingGroup Opacity="1" Transform="1,0,0,1,64,0">
+                                        <GeometryDrawing Brush="#FFB7B9BB" Geometry="F0 M64,64z M0,0z M32,46L53,46C55,46,55,48,53,48L53,55C55,55,55,58,53,58L32,58 32,46z M32,44L32,11 46.5,38.5 55,13 53,44 32,44z" />
+                                    </DrawingGroup>
+                                    <DrawingGroup Opacity="1" Transform="-1,0,0,1,192,0">
+                                        <GeometryDrawing Brush="#FF747D96" Geometry="F0 M64,64z M0,0z M96,44L75,44 73.449,19.967 81.5,42 96,15 96,44z" />
+                                    </DrawingGroup>
+                                    <DrawingGroup Opacity="1" Transform="-1,0,0,1.16667,192,-9.16667">
+                                        <GeometryDrawing Brush="#FF747D96">
+                                            <GeometryDrawing.Geometry>
+                                                <RectangleGeometry RadiusX="0" RadiusY="0" Rect="75,49,21,6" />
+                                            </GeometryDrawing.Geometry>
+                                        </GeometryDrawing>
+                                    </DrawingGroup>
+                                    <DrawingGroup Opacity="1" Transform="-1,0,0,1,144.5,0">
+                                        <GeometryDrawing Brush="#FF525A69" Geometry="F0 M64,64z M0,0z M48.5,55L48.5,48 45.5,55 48.5,55z" />
+                                    </DrawingGroup>
+                                    <DrawingGroup Opacity="1" Transform="-1,0,0,1,160.5,0">
+                                        <GeometryDrawing Brush="#FF525A69" Geometry="F0 M64,64z M0,0z M51.5,55L48.5,48 45.5,55 51.5,55z" />
+                                    </DrawingGroup>
+                                    <DrawingGroup Opacity="1" Transform="-1,0,0,1,152.5,0">
+                                        <GeometryDrawing Brush="#FF525A69" Geometry="F0 M64,64z M0,0z M51.5,55L48.5,48 45.5,55 51.5,55z" />
+                                    </DrawingGroup>
+                                    <DrawingGroup Opacity="1" Transform="-1,0,0,1,192,0">
+                                        <DrawingGroup Opacity="1" Transform="0.944444,0,0,2,3.83333,-30.5">
+                                            <GeometryDrawing Brush="#FF636C82" Geometry="F0 M64,64z M0,0z M96,29.5L89.647,29.5 87,30.75 89.647,32 96,32 96,29.5z" />
+                                        </DrawingGroup>
+                                        <DrawingGroup Opacity="1" Transform="0.667823,0.667823,-1.41421,1.41421,73.8761,-79.0123">
+                                            <GeometryDrawing Brush="#FF636C82" Geometry="F0 M64,64z M0,0z M96,30.75L93.353,29.5 89.647,29.5 87,30.75 89.647,32 96,32 96,30.75z" />
+                                        </DrawingGroup>
+                                        <DrawingGroup Opacity="1" Transform="4.30084E-17,0.944444,1,-2.7034E-16,64,-63.6667">
+                                            <GeometryDrawing Brush="#FF636C82" Geometry="F0 M64,64z M0,0z M96,29.5L89.647,29.5 87,32 96,32 96,29.5z" />
+                                        </DrawingGroup>
+                                        <DrawingGroup Opacity="1" Transform="0.667823,-0.667823,-1.41421,-1.41421,73.8761,140.866">
+                                            <GeometryDrawing Brush="#FF636C82" Geometry="F0 M64,64z M0,0z M96,30.75L93.353,29.5 89.647,29.5 87,30.75 89.647,32 96,32 96,30.75z" />
+                                        </DrawingGroup>
+                                        <DrawingGroup Opacity="1" Transform="4.30084E-17,-0.944444,1,2.7034E-16,64,125.52">
+                                            <GeometryDrawing Brush="#FF636C82" Geometry="F0 M64,64z M0,0z M96,29.5L89.647,29.5 87,32 96,32 96,29.5z" />
+                                        </DrawingGroup>
+                                        <DrawingGroup Opacity="1" Transform="0.944444,0,0,1.2,4.83333,-5.9">
+                                            <GeometryDrawing Brush="#FFFCF4C5" Geometry="F0 M64,64z M0,0z M96,29.5L88.588,29.5 87,30.75 88.588,32 96,32 96,29.5z" />
+                                        </DrawingGroup>
+                                        <DrawingGroup Opacity="1" Transform="0.667823,0.667823,-0.848528,0.848528,57.4812,-60.6175">
+                                            <GeometryDrawing Brush="#FFFCF4C5" Geometry="F0 M64,64z M0,0z M96,30.75L94.412,29.5 88.588,29.5 87,30.75 88.588,32 96,32 96,30.75z" />
+                                        </DrawingGroup>
+                                        <DrawingGroup Opacity="1" Transform="2.67284E-18,0.944444,0.6,-2.94833E-16,76.8,-62.6667">
+                                            <GeometryDrawing Brush="#FFFCF4C5" Geometry="F0 M64,64z M0,0z M96,29.5L88.588,29.5 87,32 96,32 96,29.5z" />
+                                        </DrawingGroup>
+                                        <DrawingGroup Opacity="1" Transform="0.667823,-0.667823,-0.848528,-0.848528,57.4812,122.617">
+                                            <GeometryDrawing Brush="#FFFCF4C5" Geometry="F0 M64,64z M0,0z M96,30.75L94.412,29.5 88.588,29.5 87,30.75 88.588,32 96,32 96,30.75z" />
+                                        </DrawingGroup>
+                                        <DrawingGroup Opacity="1" Transform="2.67284E-18,-0.944444,0.6,2.94833E-16,76.8,124.667">
+                                            <GeometryDrawing Brush="#FFFCF4C5" Geometry="F0 M64,64z M0,0z M96,29.5L88.588,29.5 87,32 96,32 96,29.5z" />
+                                        </DrawingGroup>
+                                    </DrawingGroup>
+                                    <DrawingGroup Opacity="1" Transform="1,0,0,1,64,-14.5">
+                                        <GeometryDrawing Brush="#FFBC595A" Geometry="F0 M64,64z M0,0z M32,41.5C33,41.5 35,43.5 35,44.5 35,45.5 35,45.5 35,46.5 35,47.5 33,49.5 32,49.5L32,41.5z" />
+                                    </DrawingGroup>
+                                    <DrawingGroup Opacity="1" Transform="1,0,0,1,64,-15">
+                                        <GeometryDrawing Brush="#FFB7B9BB">
+                                            <GeometryDrawing.Geometry>
+                                                <EllipseGeometry RadiusX="4" RadiusY="4" Center="53,28" />
+                                            </GeometryDrawing.Geometry>
+                                        </GeometryDrawing>
+                                    </DrawingGroup>
+                                    <DrawingGroup Opacity="1" Transform="1,0,0,1,60,-17">
+                                        <GeometryDrawing Brush="#FFB7B9BB" Geometry="F0 M64,64z M0,0z M36,30C38.209,30 40,28.209 40,26 40,23.791 38.209,22 36,22L36,30z" />
+                                    </DrawingGroup>
+                                </DrawingGroup>
+                            </DrawingGroup>
+                        </DrawingGroup>
+                    </DrawingGroup>
+                </DrawingGroup>
             </DrawingGroup>
         </DrawingImage.Drawing>
     </DrawingImage>
     <DrawingImage x:Key="CROWN_GOLD">
         <DrawingImage.Drawing>
-            <DrawingGroup>
-                <DrawingGroup.Children>
-                    <GeometryDrawing Brush="#FFFFC800" Geometry="F1 M 17.2917,3.15625C 18.5458,3.15625 19.5625,4.17294 19.5625,5.42709C 19.5625,6.68123 18.5458,7.69792 17.2917,7.69792C 16.0375,7.69792 15.0208,6.68123 15.0208,5.42709C 15.0208,4.17294 16.0375,3.15625 17.2917,3.15625 Z "/>
-                    <GeometryDrawing Brush="#FFFFC800" Geometry="F1 M 5.60416,4.07292C 6.89283,4.07292 7.9375,5.11759 7.9375,6.40625C 7.9375,7.69492 6.89283,8.73959 5.60416,8.73959C 4.3155,8.73959 3.27083,7.69492 3.27083,6.40625C 3.27083,5.11759 4.3155,4.07292 5.60416,4.07292 Z "/>
-                    <GeometryDrawing Brush="#FFFFC800" Geometry="F1 M 28.8125,4.13542C 30.1012,4.13542 31.1458,5.18009 31.1458,6.46875C 31.1458,7.75742 30.1012,8.80209 28.8125,8.80209C 27.5238,8.80209 26.4792,7.75742 26.4792,6.46875C 26.4792,5.18009 27.5238,4.13542 28.8125,4.13542 Z "/>
-                    <GeometryDrawing Brush="#FFFFC800" Geometry="F1 M 23.1458,18.2774L 29.5208,7.00315L 29.5208,21.1146L 5.3125,21.0399L 5.3125,6.10719L 11.3125,17.904L 17.2292,6.08852L 23.1458,18.2774 Z "/>
-                    <GeometryDrawing Brush="#FFFFC800" Geometry="F1 M 5.27083,21.8646L 29.5208,21.8646L 29.5208,26.7813L 5.27083,26.7813L 5.27083,21.8646 Z "/>
-                    <GeometryDrawing Brush="#FFDC473A" Geometry="F1 M 17.375,13.8229C 18.261,13.8229 18.9792,14.9795 18.9792,16.4063C 18.9792,17.833 18.261,18.9896 17.375,18.9896C 16.489,18.9896 15.7708,17.833 15.7708,16.4063C 15.7708,14.9795 16.489,13.8229 17.375,13.8229 Z ">
-                        <GeometryDrawing.Pen>
-                            <Pen Thickness="0.5" LineJoin="Round" Brush="#FFD5A700"/>
-                        </GeometryDrawing.Pen>
-                    </GeometryDrawing>
-                </DrawingGroup.Children>
+            <DrawingGroup ClipGeometry="M0,0 V64 H64 V0 H0 Z">
+                <DrawingGroup Opacity="1" Transform="1,0,0,1,-128,0">
+                    <DrawingGroup Opacity="1" Transform="0.1875,0,0,0.0625,0,0">
+                        <DrawingGroup Opacity="1" Transform="5.33333,0,0,16,0,0">
+                            <DrawingGroup Opacity="1">
+                                <DrawingGroup Opacity="1">
+                                    <DrawingGroup Opacity="1" Transform="-1,0,0,1,192,3.55271E-15">
+                                        <GeometryDrawing Brush="#FFE7C507" Geometry="F0 M64,64z M0,0z M32,46L53,46C55,46,55,48,53,48L53,55C55,55,55,58,53,58L32,58 32,46z M32,44L32,11 46.5,38.5 55,13 53,44 32,44z" />
+                                    </DrawingGroup>
+                                    <DrawingGroup Opacity="1" Transform="1,0,0,1,64,3.55271E-15">
+                                        <GeometryDrawing Brush="#FFBBA651" Geometry="F0 M64,64z M0,0z M96,44L75,44 73.449,19.967 81.5,42 96,15 96,44z" />
+                                    </DrawingGroup>
+                                    <DrawingGroup Opacity="1" Transform="1,0,0,1.16667,64,-9.16667">
+                                        <GeometryDrawing Brush="#FFBBA651">
+                                            <GeometryDrawing.Geometry>
+                                                <RectangleGeometry RadiusX="0" RadiusY="0" Rect="75,49,21,6" />
+                                            </GeometryDrawing.Geometry>
+                                        </GeometryDrawing>
+                                    </DrawingGroup>
+                                    <DrawingGroup Opacity="1" Transform="1,0,0,1,111.5,3.55271E-15">
+                                        <GeometryDrawing Brush="#FF736320" Geometry="F0 M64,64z M0,0z M48.5,55L48.5,48 45.5,55 48.5,55z" />
+                                    </DrawingGroup>
+                                    <DrawingGroup Opacity="1" Transform="1,0,0,1,95.5,3.55271E-15">
+                                        <GeometryDrawing Brush="#FF736320" Geometry="F0 M64,64z M0,0z M51.5,55L48.5,48 45.5,55 51.5,55z" />
+                                    </DrawingGroup>
+                                    <DrawingGroup Opacity="1" Transform="1,0,0,1,103.5,3.55271E-15">
+                                        <GeometryDrawing Brush="#FF736320" Geometry="F0 M64,64z M0,0z M51.5,55L48.5,48 45.5,55 51.5,55z" />
+                                    </DrawingGroup>
+                                    <DrawingGroup Opacity="1" Transform="1,0,0,1,64,3.55271E-15">
+                                        <DrawingGroup Opacity="1" Transform="0.944444,0,0,2,3.83333,-30.5">
+                                            <GeometryDrawing Brush="#FF887530" Geometry="F0 M64,64z M0,0z M96,29.5L89.647,29.5 87,30.75 89.647,32 96,32 96,29.5z" />
+                                        </DrawingGroup>
+                                        <DrawingGroup Opacity="1" Transform="0.667823,0.667823,-1.41421,1.41421,73.8761,-79.0123">
+                                            <GeometryDrawing Brush="#FF887530" Geometry="F0 M64,64z M0,0z M96,30.75L93.353,29.5 89.647,29.5 87,30.75 89.647,32 96,32 96,30.75z" />
+                                        </DrawingGroup>
+                                        <DrawingGroup Opacity="1" Transform="4.30084E-17,0.944444,1,-2.7034E-16,64,-63.6667">
+                                            <GeometryDrawing Brush="#FF887530" Geometry="F0 M64,64z M0,0z M96,29.5L89.647,29.5 87,32 96,32 96,29.5z" />
+                                        </DrawingGroup>
+                                        <DrawingGroup Opacity="1" Transform="0.667823,-0.667823,-1.41421,-1.41421,73.8761,140.866">
+                                            <GeometryDrawing Brush="#FF887530" Geometry="F0 M64,64z M0,0z M96,30.75L93.353,29.5 89.647,29.5 87,30.75 89.647,32 96,32 96,30.75z" />
+                                        </DrawingGroup>
+                                        <DrawingGroup Opacity="1" Transform="4.30084E-17,-0.944444,1,2.7034E-16,64,125.52">
+                                            <GeometryDrawing Brush="#FF887530" Geometry="F0 M64,64z M0,0z M96,29.5L89.647,29.5 87,32 96,32 96,29.5z" />
+                                        </DrawingGroup>
+                                        <DrawingGroup Opacity="1" Transform="0.944444,0,0,1.2,4.83333,-5.9">
+                                            <GeometryDrawing Brush="#FFFCF4C5" Geometry="F0 M64,64z M0,0z M96,29.5L88.588,29.5 87,30.75 88.588,32 96,32 96,29.5z" />
+                                        </DrawingGroup>
+                                        <DrawingGroup Opacity="1" Transform="0.667823,0.667823,-0.848528,0.848528,57.4812,-60.6175">
+                                            <GeometryDrawing Brush="#FFFCF4C5" Geometry="F0 M64,64z M0,0z M96,30.75L94.412,29.5 88.588,29.5 87,30.75 88.588,32 96,32 96,30.75z" />
+                                        </DrawingGroup>
+                                        <DrawingGroup Opacity="1" Transform="2.67284E-18,0.944444,0.6,-2.94833E-16,76.8,-62.6667">
+                                            <GeometryDrawing Brush="#FFFCF4C5" Geometry="F0 M64,64z M0,0z M96,29.5L88.588,29.5 87,32 96,32 96,29.5z" />
+                                        </DrawingGroup>
+                                        <DrawingGroup Opacity="1" Transform="0.667823,-0.667823,-0.848528,-0.848528,57.4812,122.617">
+                                            <GeometryDrawing Brush="#FFFCF4C5" Geometry="F0 M64,64z M0,0z M96,30.75L94.412,29.5 88.588,29.5 87,30.75 88.588,32 96,32 96,30.75z" />
+                                        </DrawingGroup>
+                                        <DrawingGroup Opacity="1" Transform="2.67284E-18,-0.944444,0.6,2.94833E-16,76.8,124.667">
+                                            <GeometryDrawing Brush="#FFFCF4C5" Geometry="F0 M64,64z M0,0z M96,29.5L88.588,29.5 87,32 96,32 96,29.5z" />
+                                        </DrawingGroup>
+                                    </DrawingGroup>
+                                    <DrawingGroup Opacity="1" Transform="-1,0,0,1,192,-14.5">
+                                        <GeometryDrawing Brush="#FFBC595A" Geometry="F0 M64,64z M0,0z M32,41.5C33,41.5 35,43.5 35,44.5 35,45.5 35,45.5 35,46.5 35,47.5 33,49.5 32,49.5L32,41.5z" />
+                                    </DrawingGroup>
+                                    <DrawingGroup Opacity="1" Transform="-1,0,0,1,192,-15">
+                                        <GeometryDrawing Brush="#FFE7C507">
+                                            <GeometryDrawing.Geometry>
+                                                <EllipseGeometry RadiusX="4" RadiusY="4" Center="53,28" />
+                                            </GeometryDrawing.Geometry>
+                                        </GeometryDrawing>
+                                    </DrawingGroup>
+                                    <DrawingGroup Opacity="1" Transform="-1,0,0,1,196,-17">
+                                        <GeometryDrawing Brush="#FFE7C507" Geometry="F0 M64,64z M0,0z M36,30C38.209,30 40,28.209 40,26 40,23.791 38.209,22 36,22L36,30z" />
+                                    </DrawingGroup>
+                                </DrawingGroup>
+                                <DrawingGroup Opacity="1" Transform="-1,0,0,1,320,0">
+                                    <DrawingGroup Opacity="1" Transform="-1,0,0,1,192,3.55271E-15">
+                                        <GeometryDrawing Brush="#FFE7C507" Geometry="F0 M64,64z M0,0z M32,46L53,46C55,46,55,48,53,48L53,55C55,55,55,58,53,58L32,58 32,46z M32,44L32,11 46.5,38.5 55,13 53,44 32,44z" />
+                                    </DrawingGroup>
+                                    <DrawingGroup Opacity="1" Transform="1,0,0,1,64,3.55271E-15">
+                                        <GeometryDrawing Brush="#FFBBA651" Geometry="F0 M64,64z M0,0z M96,44L75,44 73.449,19.967 81.5,42 96,15 96,44z" />
+                                    </DrawingGroup>
+                                    <DrawingGroup Opacity="1" Transform="1,0,0,1.16667,64,-9.16667">
+                                        <GeometryDrawing Brush="#FFBBA651">
+                                            <GeometryDrawing.Geometry>
+                                                <RectangleGeometry RadiusX="0" RadiusY="0" Rect="75,49,21,6" />
+                                            </GeometryDrawing.Geometry>
+                                        </GeometryDrawing>
+                                    </DrawingGroup>
+                                    <DrawingGroup Opacity="1" Transform="1,0,0,1,111.5,3.55271E-15">
+                                        <GeometryDrawing Brush="#FF736320" Geometry="F0 M64,64z M0,0z M48.5,55L48.5,48 45.5,55 48.5,55z" />
+                                    </DrawingGroup>
+                                    <DrawingGroup Opacity="1" Transform="1,0,0,1,95.5,3.55271E-15">
+                                        <GeometryDrawing Brush="#FF736320" Geometry="F0 M64,64z M0,0z M51.5,55L48.5,48 45.5,55 51.5,55z" />
+                                    </DrawingGroup>
+                                    <DrawingGroup Opacity="1" Transform="1,0,0,1,103.5,3.55271E-15">
+                                        <GeometryDrawing Brush="#FF736320" Geometry="F0 M64,64z M0,0z M51.5,55L48.5,48 45.5,55 51.5,55z" />
+                                    </DrawingGroup>
+                                    <DrawingGroup Opacity="1" Transform="1,0,0,1,64,3.55271E-15">
+                                        <DrawingGroup Opacity="1" Transform="0.944444,0,0,2,3.83333,-30.5">
+                                            <GeometryDrawing Brush="#FF887530" Geometry="F0 M64,64z M0,0z M96,29.5L89.647,29.5 87,30.75 89.647,32 96,32 96,29.5z" />
+                                        </DrawingGroup>
+                                        <DrawingGroup Opacity="1" Transform="0.667823,0.667823,-1.41421,1.41421,73.8761,-79.0123">
+                                            <GeometryDrawing Brush="#FF887530" Geometry="F0 M64,64z M0,0z M96,30.75L93.353,29.5 89.647,29.5 87,30.75 89.647,32 96,32 96,30.75z" />
+                                        </DrawingGroup>
+                                        <DrawingGroup Opacity="1" Transform="4.30084E-17,0.944444,1,-2.7034E-16,64,-63.6667">
+                                            <GeometryDrawing Brush="#FF887530" Geometry="F0 M64,64z M0,0z M96,29.5L89.647,29.5 87,32 96,32 96,29.5z" />
+                                        </DrawingGroup>
+                                        <DrawingGroup Opacity="1" Transform="0.667823,-0.667823,-1.41421,-1.41421,73.8761,140.866">
+                                            <GeometryDrawing Brush="#FF887530" Geometry="F0 M64,64z M0,0z M96,30.75L93.353,29.5 89.647,29.5 87,30.75 89.647,32 96,32 96,30.75z" />
+                                        </DrawingGroup>
+                                        <DrawingGroup Opacity="1" Transform="4.30084E-17,-0.944444,1,2.7034E-16,64,125.52">
+                                            <GeometryDrawing Brush="#FF887530" Geometry="F0 M64,64z M0,0z M96,29.5L89.647,29.5 87,32 96,32 96,29.5z" />
+                                        </DrawingGroup>
+                                        <DrawingGroup Opacity="1" Transform="0.944444,0,0,1.2,4.83333,-5.9">
+                                            <GeometryDrawing Brush="#FFFCF4C5" Geometry="F0 M64,64z M0,0z M96,29.5L88.588,29.5 87,30.75 88.588,32 96,32 96,29.5z" />
+                                        </DrawingGroup>
+                                        <DrawingGroup Opacity="1" Transform="0.667823,0.667823,-0.848528,0.848528,57.4812,-60.6175">
+                                            <GeometryDrawing Brush="#FFFCF4C5" Geometry="F0 M64,64z M0,0z M96,30.75L94.412,29.5 88.588,29.5 87,30.75 88.588,32 96,32 96,30.75z" />
+                                        </DrawingGroup>
+                                        <DrawingGroup Opacity="1" Transform="2.67284E-18,0.944444,0.6,-2.94833E-16,76.8,-62.6667">
+                                            <GeometryDrawing Brush="#FFFCF4C5" Geometry="F0 M64,64z M0,0z M96,29.5L88.588,29.5 87,32 96,32 96,29.5z" />
+                                        </DrawingGroup>
+                                        <DrawingGroup Opacity="1" Transform="0.667823,-0.667823,-0.848528,-0.848528,57.4812,122.617">
+                                            <GeometryDrawing Brush="#FFFCF4C5" Geometry="F0 M64,64z M0,0z M96,30.75L94.412,29.5 88.588,29.5 87,30.75 88.588,32 96,32 96,30.75z" />
+                                        </DrawingGroup>
+                                        <DrawingGroup Opacity="1" Transform="2.67284E-18,-0.944444,0.6,2.94833E-16,76.8,124.667">
+                                            <GeometryDrawing Brush="#FFFCF4C5" Geometry="F0 M64,64z M0,0z M96,29.5L88.588,29.5 87,32 96,32 96,29.5z" />
+                                        </DrawingGroup>
+                                    </DrawingGroup>
+                                    <DrawingGroup Opacity="1" Transform="-1,0,0,1,192,-14.5">
+                                        <GeometryDrawing Brush="#FFBC595A" Geometry="F0 M64,64z M0,0z M32,41.5C33,41.5 35,43.5 35,44.5 35,45.5 35,45.5 35,46.5 35,47.5 33,49.5 32,49.5L32,41.5z" />
+                                    </DrawingGroup>
+                                    <DrawingGroup Opacity="1" Transform="-1,0,0,1,192,-15">
+                                        <GeometryDrawing Brush="#FFE7C507">
+                                            <GeometryDrawing.Geometry>
+                                                <EllipseGeometry RadiusX="4" RadiusY="4" Center="53,28" />
+                                            </GeometryDrawing.Geometry>
+                                        </GeometryDrawing>
+                                    </DrawingGroup>
+                                    <DrawingGroup Opacity="1" Transform="-1,0,0,1,196,-17">
+                                        <GeometryDrawing Brush="#FFE7C507" Geometry="F0 M64,64z M0,0z M36,30C38.209,30 40,28.209 40,26 40,23.791 38.209,22 36,22L36,30z" />
+                                    </DrawingGroup>
+                                </DrawingGroup>
+                            </DrawingGroup>
+                        </DrawingGroup>
+                    </DrawingGroup>
+                </DrawingGroup>
             </DrawingGroup>
         </DrawingImage.Drawing>
     </DrawingImage>
