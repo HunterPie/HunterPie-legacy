@@ -336,7 +336,7 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <None Include="app.manifest" />
-    <None Include="Themes\Dark.xaml">
+    <None Include="Themes\RedMonsterBar.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>

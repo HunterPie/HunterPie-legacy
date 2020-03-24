@@ -2,6 +2,7 @@
 using System.Diagnostics;
 using System.Windows;
 using System.Windows.Media;
+using System.Windows.Media.Animation;
 using System.Collections.Generic;
 using System.Windows.Interop;
 using HunterPie.Core;
@@ -57,6 +58,8 @@ namespace HunterPie.GUI {
             if (!UserSettings.PlayerConfig.Overlay.EnableHardwareAcceleration) {
                 RenderOptions.ProcessRenderMode = RenderMode.SoftwareOnly;
             }
+            Timeline.DesiredFrameRateProperty.OverrideMetadata(typeof(Timeline),
+                new FrameworkPropertyMetadata { DefaultValue = Math.Min(60, Math.Max(1, UserSettings.PlayerConfig.Overlay.DesiredAnimationFrameRate)) });
         }
 
         private void CreateWidgets() {

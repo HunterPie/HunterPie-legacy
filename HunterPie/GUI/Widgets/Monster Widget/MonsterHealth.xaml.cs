@@ -108,24 +108,27 @@ namespace HunterPie.GUI.Widgets {
             SwitchSizeBasedOnTarget();
 
             // Ailments
-            this.MonsterAilmentsContainer.Children.Clear();
-            foreach (Ailment ailment in Monster.Ailments) {
-                Monster_Widget.Parts.MonsterAilment AilmentDisplay = new Monster_Widget.Parts.MonsterAilment() {
-                    Style = FindResource("OVERLAY_MONSTER_AILMENT_BAR_STYLE") as Style
-                };
-                AilmentDisplay.SetContext(ailment, this.MonsterAilmentsContainer.ItemWidth);
-                MonsterAilmentsContainer.Children.Add(AilmentDisplay);
-            }
+            try {
+                this.MonsterAilmentsContainer.Children.Clear();
+                foreach (Ailment ailment in Monster.Ailments) {
+                    Monster_Widget.Parts.MonsterAilment AilmentDisplay = new Monster_Widget.Parts.MonsterAilment() {
+                        Style = FindResource("OVERLAY_MONSTER_AILMENT_BAR_STYLE") as Style
+                    };
+                    AilmentDisplay.SetContext(ailment, this.MonsterAilmentsContainer.ItemWidth);
+                    MonsterAilmentsContainer.Children.Add(AilmentDisplay);
+                }
 
-            // Parts
-            this.MonsterPartsContainer.Children.Clear();
-            foreach (Part mPart in Monster.Parts) {
-                Monster_Widget.Parts.MonsterPart PartDisplay = new Monster_Widget.Parts.MonsterPart() {
-                    Style = FindResource("OVERLAY_MONSTER_PART_BAR_STYLE") as Style
-                };
-                PartDisplay.SetContext(mPart, this.MonsterPartsContainer.ItemWidth);
-                this.MonsterPartsContainer.Children.Add(PartDisplay);
-            }
+                // Parts
+                this.MonsterPartsContainer.Children.Clear();
+                foreach (Part mPart in Monster.Parts) {
+                    Monster_Widget.Parts.MonsterPart PartDisplay = new Monster_Widget.Parts.MonsterPart() {
+                        Style = FindResource("OVERLAY_MONSTER_PART_BAR_STYLE") as Style
+                    };
+                    PartDisplay.SetContext(mPart, this.MonsterPartsContainer.ItemWidth);
+                    this.MonsterPartsContainer.Children.Add(PartDisplay);
+                }
+            } catch { }
+            
 
             // Enrage
             if (Monster.IsEnraged) {

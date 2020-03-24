@@ -64,10 +64,10 @@ namespace HunterPie.GUI.Widgets.Monster_Widget.Parts {
             this.AilmentBar.MaxSize = NewSize - 37;
             this.AilmentCounter.Text = $"{Context.Counter}";
             if (Context.Duration > 0) {
-                AilmentBar.MaxHealth = Context.MaxDuration;
+                AilmentBar.MaxHealth = Math.Max(1, Context.MaxDuration);
                 AilmentBar.Health = Context.Duration;
             } else {
-                AilmentBar.MaxHealth = Context.MaxBuildup;
+                AilmentBar.MaxHealth = Math.Max(1, Context.MaxBuildup);
                 AilmentBar.Health = Math.Max(0, Context.MaxBuildup - Context.Buildup);
             }
             AilmentText.Text = $"{AilmentBar.Health:0}/{AilmentBar.MaxHealth:0}";

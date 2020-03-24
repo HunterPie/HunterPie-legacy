@@ -2,6 +2,7 @@
 using System.Windows;
 using System.Windows.Interop;
 using System.Windows.Media;
+using System.Windows.Media.Animation;
 using HunterPie.Memory;
 
 namespace HunterPie.GUI {
@@ -31,7 +32,7 @@ namespace HunterPie.GUI {
         public double BaseWidth { get; set; }
         public double BaseHeight { get; set; }
 
-        public Widget() {}
+        public Widget() { }
 
         public virtual void EnterWidgetDesignMode() {
             ChangeVisibility();

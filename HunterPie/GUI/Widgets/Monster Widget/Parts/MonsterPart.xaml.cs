@@ -73,8 +73,20 @@ namespace HunterPie.GUI.Widgets.Monster_Widget.Parts {
         }
 
         private void OnBrokenCounterChange(object source, MonsterPartEventArgs args) {
+            System.Windows.Visibility visibility;
+            if (Context.IsRemovable) {
+                visibility = UserSettings.PlayerConfig.Overlay.MonstersComponent.EnableRemovableParts ? System.Windows.Visibility.Visible : System.Windows.Visibility.Collapsed;
+            } else {
+                if (UserSettings.PlayerConfig.Overlay.MonstersComponent.EnableMonsterParts) {
+                    visibility = UserSettings.PlayerConfig.Overlay.MonstersComponent.EnabledPartGroups.Contains(Context.Group) ? System.Windows.Visibility.Visible : System.Windows.Visibility.Collapsed;
+                } else {
+                    visibility = System.Windows.Visibility.Collapsed;
+                }
+            }
             Dispatch(() => {
                 this.PartBrokenCounter.Text = $"{args.BrokenCounter}";
+                this.Visibility = visibility;
+                StartVisibilityTimer();
             });
         }
 

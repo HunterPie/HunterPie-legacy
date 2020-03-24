@@ -272,9 +272,10 @@ namespace HunterPie {
                     XamlReader reader = new XamlReader();
                     ResourceDictionary ThemeDictionary = (ResourceDictionary)reader.LoadAsync(stream);
                     Application.Current.Resources.MergedDictionaries.Add(ThemeDictionary);
+                    Debugger.Warn("Loaded custom theme!");
                 }
-            } catch {
-                Debugger.Error("Failed to load custom theme");
+            } catch(Exception err) {
+                Debugger.Error($"Failed to load custom theme\n{err}");
             }
         }
 

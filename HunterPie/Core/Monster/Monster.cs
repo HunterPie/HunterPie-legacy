@@ -310,7 +310,7 @@ namespace HunterPie.Core {
             for (int PartID = 0; PartID < nMaxParts; PartID++) {
                 if (MonsterData.IsPartRemovable(ID, PartID)) {
                     
-                    if (Parts[PartID].PartAddress > 0) {
+                    if (Parts.Count <= PartID && Parts[PartID].PartAddress > 0) {
 
                         TimesBroken = Scanner.READ_BYTE(Parts[PartID].PartAddress + 0x18);
                         MaxHealth = Scanner.READ_FLOAT(Parts[PartID].PartAddress + 0x10);

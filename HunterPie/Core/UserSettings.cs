@@ -34,6 +34,7 @@ namespace HunterPie.Core {
 
             public class Overlay {
                 public bool Enabled { get; set; } = true;
+                public int DesiredAnimationFrameRate { get; set; } = 30;
                 public int[] Position { get; set; } = new int[2] { 0, 0 };
                 public string ToggleOverlayKeybind { get; set; } = "Ctrl+Alt+Z";
                 public bool EnableHardwareAcceleration { get; set; } = true;

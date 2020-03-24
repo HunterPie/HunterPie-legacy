@@ -2868,7 +2868,7 @@
         </DoubleAnimationUsingKeyFrames>
     </Storyboard>
     <!-- Harvest box fertilizer close to expire -->
-    <Storyboard x:Key="FertilizerExpiring" RepeatBehavior="Forever" AutoReverse="True" Storyboard.TargetProperty="(Foreground).(SolidColorBrush.Color)" Timeline.DesiredFrameRate="100">
+    <Storyboard x:Key="FertilizerExpiring" RepeatBehavior="Forever" AutoReverse="True" Storyboard.TargetProperty="(Foreground).(SolidColorBrush.Color)">
         <ColorAnimation To="White" From="Red" Duration="0:0:1.5"/>
     </Storyboard>
 </ResourceDictionary>
