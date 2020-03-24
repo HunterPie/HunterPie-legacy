@@ -362,14 +362,29 @@ namespace HunterPie.GUI.Widgets {
 
         #endregion
 
+        #region Settings
+        public void ApplySettings() {
+            foreach (Monster_Widget.Parts.MonsterPart part in MonsterPartsContainer.Children) {
+                part.ApplySettings();
+            }
+            foreach (Monster_Widget.Parts.MonsterAilment ailment in MonsterAilmentsContainer.Children) {
+                ailment.ApplySettings();
+            }
+        }
+        #endregion
+
         #region Helpers
         public void ChangeDocking(byte newDock) {
             switch(newDock) {
                 case 0: // Monster HP stays on top
                     DockPanel.SetDock(MonsterHealthContainer, Dock.Top);
+                    MonsterAilmentsContainer.VerticalAlignment = VerticalAlignment.Top;
+                    MonsterPartsContainer.VerticalAlignment = VerticalAlignment.Top;
                     break;
                 case 1:
                     DockPanel.SetDock(MonsterHealthContainer, Dock.Bottom);
+                    MonsterAilmentsContainer.VerticalAlignment = VerticalAlignment.Bottom;
+                    MonsterPartsContainer.VerticalAlignment = VerticalAlignment.Bottom;
                     break;
             }
         }

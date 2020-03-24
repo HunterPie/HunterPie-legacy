@@ -52,7 +52,7 @@ namespace HunterPie.Core {
                 public bool Enabled { get; set; } = true;
                 public double Scale { get; set; } = 1;
                 public byte ShowMonsterBarMode { get; set; } = 0;
-                public string SwitchMonsterBarModeHotkey = "Tab";
+                public string SwitchMonsterBarModeHotkey = "Alt+Up";
                 public int[] Position { get; set; } = new int[2] { 335, 10 };
                 public byte MonsterBarDock { get; set; } = 0;
                 public int MaxNumberOfPartsAtOnce { get; set; } = 8;
@@ -62,6 +62,7 @@ namespace HunterPie.Core {
                 public int SecondsToHideParts { get; set; } = 10;
                 public bool EnableRemovableParts { get; set; } = true;
                 public bool EnableMonsterParts { get; set; } = true;
+                public bool EnableMonsterAilments { get; set; } = true;
                 public string[] EnabledPartGroups { get; set; } = new string[20] { "HEAD", "BODY", "ARM", "WING", "LEG", "TAIL", "LIMB", "ABDOMEN", "CHEST", "REAR", "JAW", "BACK", "FIN", "HORN", "NECK", "SHELL", "ORGAN", "MISC", "MANE", "BONE" };
             }
 

@@ -42,9 +42,7 @@ namespace HunterPie.GUI.Widgets.Monster_Widget.Parts {
         #region Visibility timer
         private void StartVisibilityTimer() {
             if (!UserSettings.PlayerConfig.Overlay.MonstersComponent.HidePartsAfterSeconds) {
-                Dispatch(() => {
-                    this.Visibility = System.Windows.Visibility.Visible;
-                });
+                ApplySettings();
                 return;
             }
             if (VisibilityTimer == null) {
@@ -62,6 +60,24 @@ namespace HunterPie.GUI.Widgets.Monster_Widget.Parts {
 
         #endregion
 
+        #region Settings
+        public void ApplySettings() {
+            System.Windows.Visibility visibility;
+            if (Context.IsRemovable) {
+                visibility = UserSettings.PlayerConfig.Overlay.MonstersComponent.EnableRemovableParts ? System.Windows.Visibility.Visible : System.Windows.Visibility.Collapsed;
+            } else {
+                if (UserSettings.PlayerConfig.Overlay.MonstersComponent.EnableMonsterParts) {
+                    visibility = UserSettings.PlayerConfig.Overlay.MonstersComponent.EnabledPartGroups.Contains(Context.Group) ? System.Windows.Visibility.Visible : System.Windows.Visibility.Collapsed;
+                } else {
+                    visibility = System.Windows.Visibility.Collapsed;
+                }
+            }
+            if (UserSettings.PlayerConfig.Overlay.MonstersComponent.HidePartsAfterSeconds) visibility = System.Windows.Visibility.Collapsed;
+            Dispatch(() => { this.Visibility = visibility; });
+        }
+
+        #endregion
+
         #region Events
         private void SetPartInformation(double NewSize) {
             this.PartName.Text = $"{Context.Name}";
@@ -70,9 +86,11 @@ namespace HunterPie.GUI.Widgets.Monster_Widget.Parts {
             this.PartHealth.Health = Context.Health;
             this.PartBrokenCounter.Text = $"{Context.BrokenCounter}";
             this.PartHealthText.Text = $"{Context.Health:0}/{Context.TotalHealth:0}";
+            ApplySettings();
         }
 
         private void OnBrokenCounterChange(object source, MonsterPartEventArgs args) {
+            
             System.Windows.Visibility visibility;
             if (Context.IsRemovable) {
                 visibility = UserSettings.PlayerConfig.Overlay.MonstersComponent.EnableRemovableParts ? System.Windows.Visibility.Visible : System.Windows.Visibility.Collapsed;
@@ -116,6 +134,7 @@ namespace HunterPie.GUI.Widgets.Monster_Widget.Parts {
             this.PartHealth.MaxHealth = Context.TotalHealth;
             this.PartHealth.Health = Context.Health;
             this.PartHealthText.Text = $"{Context.Health:0}/{Context.TotalHealth:0}";
+            ApplySettings();
         }
         #endregion
     }

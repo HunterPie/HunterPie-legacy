@@ -84,18 +84,21 @@ namespace HunterPie.GUI.Widgets {
                 f_MonsterWidget.MonsterAilmentsContainer.MaxHeight = MaxParts * 30;
                 f_MonsterWidget.MonsterPartsContainer.MaxHeight = MaxParts * 30;
                 f_MonsterWidget.ChangeDocking(dock);
+                f_MonsterWidget.ApplySettings();
             }
             if (s_MonsterWidget != null) {
                 s_MonsterWidget.Weaknesses.Visibility = weaknessEnabled ? Visibility.Visible : Visibility.Collapsed;
                 s_MonsterWidget.MonsterAilmentsContainer.MaxHeight = MaxParts * 30;
                 s_MonsterWidget.MonsterPartsContainer.MaxHeight = MaxParts * 30;
                 s_MonsterWidget.ChangeDocking(dock);
+                s_MonsterWidget.ApplySettings();
             }
             if (t_MonsterWidget != null) {
                 t_MonsterWidget.Weaknesses.Visibility = weaknessEnabled ? Visibility.Visible : Visibility.Collapsed;
                 t_MonsterWidget.MonsterAilmentsContainer.MaxHeight = MaxParts * 30;
                 t_MonsterWidget.MonsterPartsContainer.MaxHeight = MaxParts * 30;
                 t_MonsterWidget.ChangeDocking(dock);
+                t_MonsterWidget.ApplySettings();
             }
         }
 

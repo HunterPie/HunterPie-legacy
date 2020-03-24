@@ -429,7 +429,7 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="Languages\de-de.xml">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
   </ItemGroup>
   <ItemGroup>
@@ -634,6 +634,11 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="Languages\es-es.xml">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Languages\pt-br.xml">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
   </ItemGroup>

@@ -149,7 +149,7 @@
     <!-- Removable parts -->
     <Part ID="MONSTER_PART_REMOVABLE_TAIL" Name="Removable Tail"/>
     <Part ID="MONSTER_PART_REMOVABLE_HORNS" Name="Removable Horns"/>
-    <Part ID="MONSTER_PART_REMOVABLE_HEAD" Name="Removable Head"/>
+    <Part ID="MONSTER_PART_REMOVABLE_HEAD" Name="Breakable Head"/>
     <Part ID="MONSTER_PART_REMOVABLE_BALLOON" Name="Removable Balloon"/>
     <Part ID="MONSTER_PART_REMOVABLE_HORNS_2" Name="Removable Horns #2"/>
     <Part ID="MONSTER_PART_REMOVABLE_LANTLER" Name="Removable Left Antler"/>

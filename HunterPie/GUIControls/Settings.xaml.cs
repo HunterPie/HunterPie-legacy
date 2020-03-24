@@ -71,6 +71,7 @@ namespace HunterPie.GUIControls {
             settingsUI.positionMonsterCompY.Text = settings.Overlay.MonstersComponent.Position[1].ToString();
             settingsUI.switchEnableParts.IsEnabled = settings.Overlay.MonstersComponent.EnableMonsterParts;
             settingsUI.PartsCustomizer.IsEnabled = settingsUI.switchEnableParts.IsEnabled;
+            settingsUI.switchEnableAilments.IsEnabled = settings.Overlay.MonstersComponent.EnableMonsterAilments;
             settingsUI.switchEnableRemovableParts.IsEnabled = settings.Overlay.MonstersComponent.EnableRemovableParts;
             foreach (Custom_Controls.Switcher switcher in settingsUI.PartsCustomizer.Children) {
                 if (settings.Overlay.MonstersComponent.EnabledPartGroups.Contains(switcher.Name.Replace("EnablePart", "").ToUpper())) {
@@ -151,6 +152,7 @@ namespace HunterPie.GUIControls {
             settings.Overlay.MonstersComponent.Position[1] = int.Parse(settingsUI.positionMonsterCompY.Text);
             settings.Overlay.MonstersComponent.EnableMonsterParts = settingsUI.switchEnableParts.IsEnabled;
             settings.Overlay.MonstersComponent.EnableRemovableParts = settingsUI.switchEnableRemovableParts.IsEnabled;
+            settings.Overlay.MonstersComponent.EnableMonsterAilments = settingsUI.switchEnableAilments.IsEnabled;
             List<string> EnabledParts = new List<string>();
             foreach (Custom_Controls.Switcher switcher in settingsUI.PartsCustomizer.Children) {
                 if (switcher.IsEnabled)

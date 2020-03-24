@@ -158,6 +158,7 @@
                 </StackPanel.Style>
             </StackPanel>
         </ScrollViewer>
+        <custom:Switcher x:Name="switchEnableAilments" Text="Show monster ailments" ToolTip="If enabled, monster ailments will be visible under their health bar." HorizontalAlignment="Right" MinWidth="500" Margin="0,0,95,0"/>
         <StackPanel Height="32" Margin="288,0,272,0" Orientation="Horizontal">
             <Label x:Name="updateBranchStaticText_Copy1" Content="Position:" HorizontalAlignment="Right" Width="66"  Foreground="WhiteSmoke" FontSize="15" Padding="0"  VerticalContentAlignment="Center" HorizontalContentAlignment="Right"/>
             <TextBox x:Name="positionMonsterCompX" TextWrapping="Wrap" Text="X" Margin="0,1" Background="{x:Null}" Foreground="WhiteSmoke" BorderBrush="#FFABADB3" BorderThickness="0,0,0,1" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" HorizontalAlignment="Right" Width="54" TextChanged="TypeNumber"/>
