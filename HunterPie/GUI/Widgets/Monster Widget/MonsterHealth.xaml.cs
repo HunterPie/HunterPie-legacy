@@ -35,9 +35,7 @@ namespace HunterPie.GUI.Widgets {
             Context = ctx;
             HookEvents();
             LoadAnimations();
-            if (Context.Name != null) {
-                UpdateMonsterInfo(Context);
-            } else { this.Visibility = Visibility.Collapsed; } 
+            this.Visibility = Visibility.Collapsed;
         }
 
         private void Dispatch(Action function) {
@@ -107,28 +105,25 @@ namespace HunterPie.GUI.Widgets {
 
             SwitchSizeBasedOnTarget();
 
-            // Ailments
-            try {
-                this.MonsterAilmentsContainer.Children.Clear();
-                foreach (Ailment ailment in Monster.Ailments) {
-                    Monster_Widget.Parts.MonsterAilment AilmentDisplay = new Monster_Widget.Parts.MonsterAilment() {
-                        Style = FindResource("OVERLAY_MONSTER_AILMENT_BAR_STYLE") as Style
-                    };
-                    AilmentDisplay.SetContext(ailment, this.MonsterAilmentsContainer.ItemWidth);
-                    MonsterAilmentsContainer.Children.Add(AilmentDisplay);
-                }
+            // Parts
+            this.MonsterPartsContainer.Children.Clear();
+            foreach (Part mPart in Monster.Parts) {
+                Monster_Widget.Parts.MonsterPart PartDisplay = new Monster_Widget.Parts.MonsterPart() {
+                    Style = FindResource("OVERLAY_MONSTER_PART_BAR_STYLE") as Style
+                };
+                PartDisplay.SetContext(mPart, this.MonsterPartsContainer.ItemWidth);
+                this.MonsterPartsContainer.Children.Add(PartDisplay);
+            }
 
-                // Parts
-                this.MonsterPartsContainer.Children.Clear();
-                foreach (Part mPart in Monster.Parts) {
-                    Monster_Widget.Parts.MonsterPart PartDisplay = new Monster_Widget.Parts.MonsterPart() {
-                        Style = FindResource("OVERLAY_MONSTER_PART_BAR_STYLE") as Style
-                    };
-                    PartDisplay.SetContext(mPart, this.MonsterPartsContainer.ItemWidth);
-                    this.MonsterPartsContainer.Children.Add(PartDisplay);
-                }
-            } catch { }
-            
+            // Ailments
+            this.MonsterAilmentsContainer.Children.Clear();
+            foreach (Ailment ailment in Monster.Ailments) {
+                Monster_Widget.Parts.MonsterAilment AilmentDisplay = new Monster_Widget.Parts.MonsterAilment() {
+                    Style = FindResource("OVERLAY_MONSTER_AILMENT_BAR_STYLE") as Style
+                };
+                AilmentDisplay.SetContext(ailment, this.MonsterAilmentsContainer.ItemWidth);
+                MonsterAilmentsContainer.Children.Add(AilmentDisplay);
+            }
 
             // Enrage
             if (Monster.IsEnraged) {
@@ -171,6 +166,9 @@ namespace HunterPie.GUI.Widgets {
         }
 
         private void HideUnactiveBar() {
+            if (UserSettings.PlayerConfig.Overlay.MonstersComponent.ShowMonsterBarMode != (byte)3) {
+                return;
+            }
             Dispatcher.BeginInvoke(System.Windows.Threading.DispatcherPriority.Render, new Action(() => {
                 this.Visibility = Visibility.Collapsed;
             }));

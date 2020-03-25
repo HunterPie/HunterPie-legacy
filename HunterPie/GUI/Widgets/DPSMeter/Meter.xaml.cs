@@ -147,13 +147,15 @@ namespace HunterPie.GUI.Widgets.DPSMeter {
             this.IsClosed = true;
         }
 
-        public override void ApplySettings() {
+        public override void ApplySettings(bool FocusTrigger = false) {
             Dispatcher.BeginInvoke(System.Windows.Threading.DispatcherPriority.Background, new Action(() => {
-                this.Top = UserSettings.PlayerConfig.Overlay.DPSMeter.Position[1] + UserSettings.PlayerConfig.Overlay.Position[1];
-                this.Left = UserSettings.PlayerConfig.Overlay.DPSMeter.Position[0] + UserSettings.PlayerConfig.Overlay.Position[0];
-                this.WidgetActive = UserSettings.PlayerConfig.Overlay.DPSMeter.Enabled;
-                UpdatePlayersColor();
-                ScaleWidget(UserSettings.PlayerConfig.Overlay.DPSMeter.Scale, UserSettings.PlayerConfig.Overlay.DPSMeter.Scale);
+                if (!FocusTrigger) {
+                    this.Top = UserSettings.PlayerConfig.Overlay.DPSMeter.Position[1] + UserSettings.PlayerConfig.Overlay.Position[1];
+                    this.Left = UserSettings.PlayerConfig.Overlay.DPSMeter.Position[0] + UserSettings.PlayerConfig.Overlay.Position[0];
+                    this.WidgetActive = UserSettings.PlayerConfig.Overlay.DPSMeter.Enabled;
+                    UpdatePlayersColor();
+                    ScaleWidget(UserSettings.PlayerConfig.Overlay.DPSMeter.Scale, UserSettings.PlayerConfig.Overlay.DPSMeter.Scale);
+                }
                 base.ApplySettings();
             }));
         }

@@ -109,7 +109,7 @@ namespace HunterPie.GUI {
             Scanner.SetWindowPos(hwnd, -1, 0, 0, 0, 0, Flags);
         }
 
-        public virtual void ApplySettings() {
+        public virtual void ApplySettings(bool FocusTrigger = false) {
             ChangeVisibility();
         } 
 

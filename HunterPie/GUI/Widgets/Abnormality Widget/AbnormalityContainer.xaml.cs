@@ -30,34 +30,36 @@ namespace HunterPie.GUI.Widgets.Abnormality_Widget {
             SetContext(context);
         }
 
-        public override void ApplySettings() {
+        public override void ApplySettings(bool FocusTrigger = false) {
             if (AbnormalityTrayIndex >= UserSettings.PlayerConfig.Overlay.AbnormalitiesWidget.ActiveBars) {
                 this.Close();
                 return;
             }
             Dispatcher.BeginInvoke(System.Windows.Threading.DispatcherPriority.Background, new Action(() => {
-                this.WidgetActive = UserSettings.PlayerConfig.Overlay.AbnormalitiesWidget.BarPresets[AbnormalityTrayIndex].Enabled;
-                this.Top = UserSettings.PlayerConfig.Overlay.AbnormalitiesWidget.BarPresets[AbnormalityTrayIndex].Position[1] + UserSettings.PlayerConfig.Overlay.Position[1];
-                this.Left = UserSettings.PlayerConfig.Overlay.AbnormalitiesWidget.BarPresets[AbnormalityTrayIndex].Position[0] + UserSettings.PlayerConfig.Overlay.Position[0];
-                this.BuffTray.Orientation = UserSettings.PlayerConfig.Overlay.AbnormalitiesWidget.BarPresets[AbnormalityTrayIndex].Orientation == "Horizontal" ? Orientation.Horizontal : Orientation.Vertical;
-                int BuffTrayMaxSize = Math.Max(UserSettings.PlayerConfig.Overlay.AbnormalitiesWidget.BarPresets[AbnormalityTrayIndex].MaxSize, 0);
-                if (BuffTrayMaxSize > 7000) BuffTrayMaxSize = 0;
-                if (this.BuffTray.Orientation == Orientation.Horizontal) {
-                    this.BuffTray.MaxWidth = BuffTrayMaxSize == 0 ? 300 : BuffTrayMaxSize;
-                    this.MaxSize = (int)this.BuffTray.MaxWidth;
-                    if (InDesignMode) {
-                        this.Width = MaxSize;
-                        this.Height = BuffTray.MinHeight;
+                if (!FocusTrigger) {
+                    this.WidgetActive = UserSettings.PlayerConfig.Overlay.AbnormalitiesWidget.BarPresets[AbnormalityTrayIndex].Enabled;
+                    this.Top = UserSettings.PlayerConfig.Overlay.AbnormalitiesWidget.BarPresets[AbnormalityTrayIndex].Position[1] + UserSettings.PlayerConfig.Overlay.Position[1];
+                    this.Left = UserSettings.PlayerConfig.Overlay.AbnormalitiesWidget.BarPresets[AbnormalityTrayIndex].Position[0] + UserSettings.PlayerConfig.Overlay.Position[0];
+                    this.BuffTray.Orientation = UserSettings.PlayerConfig.Overlay.AbnormalitiesWidget.BarPresets[AbnormalityTrayIndex].Orientation == "Horizontal" ? Orientation.Horizontal : Orientation.Vertical;
+                    int BuffTrayMaxSize = Math.Max(UserSettings.PlayerConfig.Overlay.AbnormalitiesWidget.BarPresets[AbnormalityTrayIndex].MaxSize, 0);
+                    if (BuffTrayMaxSize > 7000) BuffTrayMaxSize = 0;
+                    if (this.BuffTray.Orientation == Orientation.Horizontal) {
+                        this.BuffTray.MaxWidth = BuffTrayMaxSize == 0 ? 300 : BuffTrayMaxSize;
+                        this.MaxSize = (int)this.BuffTray.MaxWidth;
+                        if (InDesignMode) {
+                            this.Width = MaxSize;
+                            this.Height = BuffTray.MinHeight;
+                        }
+                    } else {
+                        this.BuffTray.MaxHeight = BuffTrayMaxSize == 0 ? 300 : BuffTrayMaxSize;
+                        this.MaxSize = (int)this.BuffTray.MaxHeight;
+                        if (InDesignMode) {
+                            this.Height = MaxSize;
+                            this.Width = BuffTray.MinWidth;
+                        }
                     }
-                } else {
-                    this.BuffTray.MaxHeight = BuffTrayMaxSize == 0 ? 300 : BuffTrayMaxSize;
-                    this.MaxSize = (int)this.BuffTray.MaxHeight;
-                    if (InDesignMode) {
-                        this.Height = MaxSize;
-                        this.Width = BuffTray.MinWidth;
-                    }
+                    ScaleWidget(UserSettings.PlayerConfig.Overlay.AbnormalitiesWidget.BarPresets[AbnormalityTrayIndex].Scale, UserSettings.PlayerConfig.Overlay.AbnormalitiesWidget.BarPresets[AbnormalityTrayIndex].Scale);
                 }
-                ScaleWidget(UserSettings.PlayerConfig.Overlay.AbnormalitiesWidget.BarPresets[AbnormalityTrayIndex].Scale, UserSettings.PlayerConfig.Overlay.AbnormalitiesWidget.BarPresets[AbnormalityTrayIndex].Scale);
                 base.ApplySettings();
             }));
         }

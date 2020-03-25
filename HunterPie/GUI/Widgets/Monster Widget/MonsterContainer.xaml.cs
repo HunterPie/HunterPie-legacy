@@ -107,15 +107,17 @@ namespace HunterPie.GUI.Widgets {
             this.IsClosed = true;
         }
 
-        public override void ApplySettings() {
+        public override void ApplySettings(bool FocusTrigger = false) {
             Dispatcher.BeginInvoke(System.Windows.Threading.DispatcherPriority.Background, new Action(() => {
-                this.Top = UserSettings.PlayerConfig.Overlay.MonstersComponent.Position[1] + UserSettings.PlayerConfig.Overlay.Position[1];
-                this.Left = UserSettings.PlayerConfig.Overlay.MonstersComponent.Position[0] + UserSettings.PlayerConfig.Overlay.Position[0];
-                this.WidgetActive = UserSettings.PlayerConfig.Overlay.MonstersComponent.Enabled;
-                UpdateMonstersWidgetsSettings(UserSettings.PlayerConfig.Overlay.MonstersComponent.ShowMonsterWeakness, UserSettings.PlayerConfig.Overlay.MonstersComponent.MaxNumberOfPartsAtOnce, UserSettings.PlayerConfig.Overlay.MonstersComponent.MonsterBarDock);
-                ScaleWidget(UserSettings.PlayerConfig.Overlay.MonstersComponent.Scale, UserSettings.PlayerConfig.Overlay.MonstersComponent.Scale);
-                foreach (MonsterHealth HealthBar in this.Container.Children) {
-                    HealthBar.SwitchSizeBasedOnTarget();
+                if (!FocusTrigger) {
+                    this.Top = UserSettings.PlayerConfig.Overlay.MonstersComponent.Position[1] + UserSettings.PlayerConfig.Overlay.Position[1];
+                    this.Left = UserSettings.PlayerConfig.Overlay.MonstersComponent.Position[0] + UserSettings.PlayerConfig.Overlay.Position[0];
+                    this.WidgetActive = UserSettings.PlayerConfig.Overlay.MonstersComponent.Enabled;
+                    UpdateMonstersWidgetsSettings(UserSettings.PlayerConfig.Overlay.MonstersComponent.ShowMonsterWeakness, UserSettings.PlayerConfig.Overlay.MonstersComponent.MaxNumberOfPartsAtOnce, UserSettings.PlayerConfig.Overlay.MonstersComponent.MonsterBarDock);
+                    ScaleWidget(UserSettings.PlayerConfig.Overlay.MonstersComponent.Scale, UserSettings.PlayerConfig.Overlay.MonstersComponent.Scale);
+                    foreach (MonsterHealth HealthBar in this.Container.Children) {
+                        HealthBar.SwitchSizeBasedOnTarget();
+                    }
                 }
                 base.ApplySettings();
             }));

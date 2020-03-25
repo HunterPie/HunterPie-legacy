@@ -107,23 +107,25 @@ namespace HunterPie.GUI.Widgets {
             this.IsClosed = true;
         }
 
-        public override void ApplySettings() {
+        public override void ApplySettings(bool FocusTrigger = false) {
             Dispatcher.BeginInvoke(System.Windows.Threading.DispatcherPriority.Background, new Action(() => {
-                // Changes widget position
-                this.Top = (MantleNumber == 0 ? UserSettings.PlayerConfig.Overlay.PrimaryMantle.Position[1] : UserSettings.PlayerConfig.Overlay.SecondaryMantle.Position[1]) + UserSettings.PlayerConfig.Overlay.Position[1];
-                this.Left = (MantleNumber == 0 ? UserSettings.PlayerConfig.Overlay.PrimaryMantle.Position[0] : UserSettings.PlayerConfig.Overlay.SecondaryMantle.Position[0]) + UserSettings.PlayerConfig.Overlay.Position[0];
+                if (!FocusTrigger) {
+                    // Changes widget position
+                    this.Top = (MantleNumber == 0 ? UserSettings.PlayerConfig.Overlay.PrimaryMantle.Position[1] : UserSettings.PlayerConfig.Overlay.SecondaryMantle.Position[1]) + UserSettings.PlayerConfig.Overlay.Position[1];
+                    this.Left = (MantleNumber == 0 ? UserSettings.PlayerConfig.Overlay.PrimaryMantle.Position[0] : UserSettings.PlayerConfig.Overlay.SecondaryMantle.Position[0]) + UserSettings.PlayerConfig.Overlay.Position[0];
 
-                // Sets widget custom color
-                Color WidgetColor = (Color)ColorConverter.ConvertFromString(MantleNumber == 0 ? UserSettings.PlayerConfig.Overlay.PrimaryMantle.Color : UserSettings.PlayerConfig.Overlay.SecondaryMantle.Color);
-                Brush WidgetColorBrush = new SolidColorBrush(WidgetColor);
-                WidgetColorBrush.Freeze();
-                this.MantleTimerArc.Stroke = WidgetColorBrush;
-                this.MantleBorder.BorderBrush = WidgetColorBrush;
-                double ScaleFactor = MantleNumber == 0 ? UserSettings.PlayerConfig.Overlay.PrimaryMantle.Scale : UserSettings.PlayerConfig.Overlay.SecondaryMantle.Scale;
-                ScaleWidget(ScaleFactor, ScaleFactor);
-                // Sets visibility if enabled/disabled
-                bool IsEnabled = MantleNumber == 0 ? UserSettings.PlayerConfig.Overlay.PrimaryMantle.Enabled : UserSettings.PlayerConfig.Overlay.SecondaryMantle.Enabled;
-                this.WidgetActive = IsEnabled;
+                    // Sets widget custom color
+                    Color WidgetColor = (Color)ColorConverter.ConvertFromString(MantleNumber == 0 ? UserSettings.PlayerConfig.Overlay.PrimaryMantle.Color : UserSettings.PlayerConfig.Overlay.SecondaryMantle.Color);
+                    Brush WidgetColorBrush = new SolidColorBrush(WidgetColor);
+                    WidgetColorBrush.Freeze();
+                    this.MantleTimerArc.Stroke = WidgetColorBrush;
+                    this.MantleBorder.BorderBrush = WidgetColorBrush;
+                    double ScaleFactor = MantleNumber == 0 ? UserSettings.PlayerConfig.Overlay.PrimaryMantle.Scale : UserSettings.PlayerConfig.Overlay.SecondaryMantle.Scale;
+                    ScaleWidget(ScaleFactor, ScaleFactor);
+                    // Sets visibility if enabled/disabled
+                    bool IsEnabled = MantleNumber == 0 ? UserSettings.PlayerConfig.Overlay.PrimaryMantle.Enabled : UserSettings.PlayerConfig.Overlay.SecondaryMantle.Enabled;
+                    this.WidgetActive = IsEnabled;
+                }
                 base.ApplySettings();
             }));
         }

@@ -58,8 +58,6 @@ namespace HunterPie.GUI {
             if (!UserSettings.PlayerConfig.Overlay.EnableHardwareAcceleration) {
                 RenderOptions.ProcessRenderMode = RenderMode.SoftwareOnly;
             }
-            Timeline.DesiredFrameRateProperty.OverrideMetadata(typeof(Timeline),
-                new FrameworkPropertyMetadata { DefaultValue = Math.Min(60, Math.Max(1, UserSettings.PlayerConfig.Overlay.DesiredAnimationFrameRate)) });
         }
 
         private void CreateWidgets() {
@@ -136,7 +134,7 @@ namespace HunterPie.GUI {
             foreach (Widget widget in Widgets) {
                 widget.OverlayIsFocused = false;
                 if (!widget.InDesignMode) {
-                    widget.ApplySettings();
+                    widget.ApplySettings(true);
                 }
             }
             
@@ -146,7 +144,7 @@ namespace HunterPie.GUI {
             foreach (Widget widget in Widgets) {
                 widget.OverlayIsFocused = true;
                 if (!widget.InDesignMode) {
-                    widget.ApplySettings();
+                    widget.ApplySettings(true);
                 }
             }
         }

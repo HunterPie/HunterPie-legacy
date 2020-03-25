@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8" ?>
 <Monsters>
-  <Ailments Max="24">
+  <Ailments Max="19">
     <Ailment Name="STATUS_0" Skip="True"/>
     <Ailment Name="STATUS_POISON" Skip="False"/>
     <Ailment Name="STATUS_PARALYSIS" Skip="False"/>

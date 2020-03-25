@@ -60,13 +60,11 @@
         </Style.Triggers>
     </Style>
     <LinearGradientBrush x:Key="OVERLAY_MONSTER_AILMENT_BAR_COLOR" EndPoint="1,0" StartPoint="0,0">
-        <GradientStop Color="#FF4FBACB" Offset="1"/>
-        <GradientStop Color="#FF38849B"/>
+        <GradientStop Color="#FF2BD8B1" Offset="1"/>
+        <GradientStop Color="#FF45B69C"/>
     </LinearGradientBrush>
     <Style x:Key="OVERLAY_MONSTER_AILMENT_COUNTER_BACKGROUND_STYLE" TargetType="Rectangle">
-        <Setter Property="Fill" Value="#FF38849B"/>
-        <Setter Property="Stroke" Value="#CC0E0E0E"/>
-        <Setter Property="StrokeThickness" Value="0.5"/>
+        <Setter Property="Fill" Value="#FF45B69C"/>
     </Style>
     
     

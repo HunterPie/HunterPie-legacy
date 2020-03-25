@@ -56,6 +56,7 @@
             <Rectangle x:Name="SwitchBackground" Fill="#FF151515" RadiusY="13.333" RadiusX="13.333" StrokeThickness="0" ClipToBounds="True" SnapsToDevicePixels="True" HorizontalAlignment="Left" Width="50" Height="24" VerticalAlignment="Top"/>
             <Ellipse x:Name="SwitchCircle" Margin="2,2,0,0" Fill="#FF252525" StrokeThickness="0" SnapsToDevicePixels="True" HorizontalAlignment="Left" Width="19" Height="19" VerticalAlignment="Top"/>
         </Grid>
-        <TextBlock x:Name="Info" DockPanel.Dock="Right" Text="This is a test" Padding="0,1,3,0" Foreground="White" TextAlignment="Left" HorizontalAlignment="Left" FontSize="16" FontWeight="Light"/>
+        <TextBlock x:Name="Info" Text="This is a test" Padding="0,1,3,0" Foreground="White" TextAlignment="Left" HorizontalAlignment="Left" FontSize="16" FontWeight="Light"/>
+        <TextBlock x:Name="RestartWarning" Text="(Requires restart)" Visibility="Collapsed" Padding="0,9,3,0" Foreground="White" TextAlignment="Left" HorizontalAlignment="Left" FontSize="10" FontWeight="Light"/>
     </DockPanel>
 </UserControl>

@@ -20,6 +20,13 @@ namespace HunterPie.GUIControls.Custom_Controls {
     /// </summary>
     public partial class Switcher : UserControl {
 
+        public bool RequiresRestart {
+            get { return RestartWarning.Visibility == Visibility.Visible; }
+            set {
+                RestartWarning.Visibility = value ? Visibility.Visible : Visibility.Collapsed;
+            }
+        }
+
         public string Text {
             get { return Info.Text; }
             set {

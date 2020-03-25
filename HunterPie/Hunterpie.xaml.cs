@@ -12,7 +12,7 @@ using HunterPie.Core;
 using HunterPie.GUI;
 using HunterPie.GUIControls;
 using HunterPie.Logger;
-
+using System.Windows.Media.Animation;
 
 namespace HunterPie {
     /// <summary>
@@ -74,7 +74,7 @@ namespace HunterPie {
         private bool StartUpdateProcess() {
             if (!File.Exists("Update.exe")) return false;
 
-            System.Diagnostics.Process UpdateProcess = new System.Diagnostics.Process();
+            Process UpdateProcess = new Process();
             UpdateProcess.StartInfo.FileName = "Update.exe";
             UpdateProcess.StartInfo.Arguments = $"version={HUNTERPIE_VERSION} branch={UserSettings.PlayerConfig.HunterPie.Update.Branch}";
             UpdateProcess.Start();
@@ -284,6 +284,7 @@ namespace HunterPie {
         }
 
         private void StartEverything() {
+            SetAnimationsFramerate();
             HookEvents();
             Scanner.StartScanning(); // Scans game memory
             if (UserSettings.PlayerConfig.HunterPie.StartHunterPieMinimized) {
@@ -292,6 +293,11 @@ namespace HunterPie {
             } else {
                 this.Show();
             }
+        }
+
+        private void SetAnimationsFramerate() {
+            Timeline.DesiredFrameRateProperty.OverrideMetadata(typeof(Timeline),
+                new FrameworkPropertyMetadata { DefaultValue = Math.Min(60, Math.Max(1, UserSettings.PlayerConfig.Overlay.DesiredAnimationFrameRate)) });
         }
 
         #region Game & Client Events

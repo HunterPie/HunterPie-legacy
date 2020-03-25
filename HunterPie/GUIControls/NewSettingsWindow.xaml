@@ -5,6 +5,7 @@
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              xmlns:local="clr-namespace:HunterPie.GUIControls"
              xmlns:custom="clr-namespace:HunterPie.GUIControls.Custom_Controls"
+             xmlns:System="clr-namespace:System;assembly=mscorlib" 
              mc:Ignorable="d" 
              d:DesignHeight="450" d:DesignWidth="800" Width="949">
     <UserControl.Resources>
@@ -13,6 +14,38 @@
                 <ResourceDictionary Source="/Resources/Resources.xaml"/>
                 <ResourceDictionary Source="/Resources/ConsoleResources.xaml"/>
             </ResourceDictionary.MergedDictionaries>
+            <SolidColorBrush x:Key="ToggleButtonBackgroundOn" Color="{StaticResource TOGGLABLE_BUTTON_BACKGROUND_ON}"/>
+            <SolidColorBrush x:Key="ToggleButtonBackgroundOff" Color="{StaticResource TOGGLABLE_BUTTON_BACKGROUND_OFF}"/>
+            <Style x:Key="ToggleButtonStyle" TargetType="{x:Type Button}">
+                <Setter Property="Padding" Value="1"/>
+                <Setter Property="Template">
+                    <Setter.Value>
+                        <ControlTemplate TargetType="{x:Type Button}">
+                            <Border x:Name="border" BorderBrush="{TemplateBinding BorderBrush}" BorderThickness="{TemplateBinding BorderThickness}" Background="{TemplateBinding Background}" SnapsToDevicePixels="true">
+                                <ContentPresenter x:Name="contentPresenter" Focusable="False" HorizontalAlignment="{TemplateBinding HorizontalContentAlignment}" Margin="{TemplateBinding Padding}" RecognizesAccessKey="True" SnapsToDevicePixels="{TemplateBinding SnapsToDevicePixels}" VerticalAlignment="{TemplateBinding VerticalContentAlignment}"/>
+                            </Border>
+                        </ControlTemplate>
+                    </Setter.Value>
+                </Setter>
+                <Style.Triggers>
+                    <Trigger Property="IsFocused" Value="True">
+                        <Trigger.EnterActions>
+                            <BeginStoryboard>
+                                <Storyboard Storyboard.TargetProperty="(Background).(SolidColorBrush.Color)">
+                                    <ColorAnimation To="#FFAF0000" Duration="0:0:0.2"/>
+                                </Storyboard>
+                            </BeginStoryboard>
+                        </Trigger.EnterActions>
+                        <Trigger.ExitActions>
+                            <BeginStoryboard>
+                                <Storyboard Storyboard.TargetProperty="(Background).(SolidColorBrush.Color)">
+                                    <ColorAnimation To="#FF0F0F0F" Duration="0:0:0.2"/>
+                                </Storyboard>
+                            </BeginStoryboard>
+                        </Trigger.ExitActions>
+                    </Trigger>
+                </Style.Triggers>
+            </Style>
             <Style TargetType="{x:Type TabItem}">
                 <Setter Property="Background" Value="#171717"/>
                 <Setter Property="Foreground" Value="#FF9C9C9C"/>
@@ -40,7 +73,7 @@
     </UserControl.Resources>
     <Grid>
         <TabControl HorizontalAlignment="Left" Height="450" VerticalAlignment="Top" Width="949" Background="{x:Null}" BorderBrush="{x:Null}">
-            <TabItem Margin="-2,-2,-42,0">
+            <TabItem Margin="-2,0,-42,0">
                 <TabItem.Header>
                     <Canvas Margin="4,0,5,0">
                         <Image Source="{StaticResource LOGO_HunterPie}" Width="15" Canvas.Top="2"/>
@@ -49,16 +82,166 @@
                 </TabItem.Header>
                 <ScrollViewer Margin="0,0,-1,0">
                     <StackPanel Height="409" Width="943" HorizontalAlignment="Left">
-                        <custom:Switcher Text="Enable Auto-Update" ToolTip="If Enabled, HunterPie will look for new files on startup." HorizontalAlignment="Center" MinWidth="400"/>
-                        <custom:Switcher Text="Minimize HunterPie to system tray" ToolTip="If Enabled, HunterPie will be minimized to system tray." HorizontalAlignment="Center" MinWidth="400"/>
-                        <custom:Switcher Text="Start HunterPie minimized" ToolTip="If Enabled, HunterPie will start and hide directly into your system tray." HorizontalAlignment="Center" MinWidth="400"/>
+                        <custom:Switcher Text="Enable Auto-Update" ToolTip="If Enabled, HunterPie will look for new files on startup." HorizontalAlignment="Center" MinWidth="500"/>
+                        <custom:Switcher Text="Minimize HunterPie to system tray" ToolTip="If Enabled, HunterPie will be minimized to system tray." HorizontalAlignment="Center" MinWidth="500"/>
+                        <custom:Switcher Text="Start HunterPie minimized" ToolTip="If Enabled, HunterPie will start and hide directly into your system tray." HorizontalAlignment="Center" MinWidth="500"/>
+                        <custom:Switcher Text="Close HunterPie when game is closed" ToolTip="If Enabled, HunterPie will automatically shutdown when the game is no longer running." HorizontalAlignment="Center" MinWidth="500"/>
+                        <Canvas Height="21" HorizontalAlignment="Center" MinWidth="500">
+                            <TextBlock Text="Update Branch:" Foreground="WhiteSmoke"/>
+                            <ComboBox Style="{StaticResource ComboBoxFlatStyle}" Width="200" Height="20" Canvas.Left="113"/>
+                        </Canvas>
+                        <Canvas Height="62" HorizontalAlignment="Center" MinWidth="500" Margin="222,0,221,0">
+                            <TextBlock Text="Game Path:" Foreground="WhiteSmoke"/>
+                            <Button Style="{StaticResource ToggleButtonStyle}" Foreground="WhiteSmoke" Background="#FF0F0F0F" Width="405" Height="26" Canvas.Left="85" BorderBrush="{x:Null}"/>
+
+                            <TextBlock Text="Launch Arguments:" Foreground="WhiteSmoke" Canvas.Top="31"/>
+                            <TextBox x:Name="argsTextBox" TextWrapping="Wrap" Background="{x:Null}" Foreground="WhiteSmoke" BorderBrush="#FFABADB3" BorderThickness="0,0,0,1" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" HorizontalAlignment="Right" Width="330" Canvas.Left="141" Canvas.Top="31" SelectionBrush="#FFD31D1D"/>
+                        </Canvas>
                     </StackPanel>
                 </ScrollViewer>
             </TabItem>
-            <TabItem Header="TabItem" Margin="46,0,-55,0">
-                <Grid />
+            <TabItem Margin="43,0,-45,1" >
+                <TabItem.Header>
+                    <Canvas Margin="4,0,73,0">
+                        <Image Source="{StaticResource ICON_DISCORD}" Width="15" Canvas.Top="2"/>
+                        <TextBlock Text="Discord" Height="21" Width="56" Canvas.Left="16" Canvas.Top="-4" FontWeight="Medium"/>
+                    </Canvas>
+                </TabItem.Header>
+                <ScrollViewer Margin="0,0,-1,0">
+                    <StackPanel Height="409" Width="943" HorizontalAlignment="Left">
+                        <custom:Switcher Text="Enable Discord Rich Presence" ToolTip="If enabled, HunterPie will show your game activity on your Discord status." HorizontalAlignment="Center" MinWidth="500"/>
+                        <custom:Switcher Text="Minimize HunterPie to system tray" ToolTip="If Enabled, HunterPie will show the health percentage of the monster you're hunting." HorizontalAlignment="Center" MinWidth="500"/>
+                    </StackPanel>
+                </ScrollViewer>
+            </TabItem>
+            <TabItem Margin="43,0,-82,1">
+                <TabItem.Header>
+                    <Canvas Margin="-1,0,4,0">
+                        <TextBlock Text="Overlay" Height="21" Width="62" Canvas.Left="10" Canvas.Top="-4" FontWeight="Medium"/>
+                    </Canvas>
+                </TabItem.Header>
+                <ScrollViewer Margin="0,0,-1,0">
+                    <StackPanel Height="409" Width="943" HorizontalAlignment="Left">
+                        <custom:Switcher Text="Enable In-Game Overlay" ToolTip="If enabled, the overlay will be visible in-game." HorizontalAlignment="Center" MinWidth="500"/>
+                        <custom:Switcher Text="Hide Overlay when game is unfocused" ToolTip="If Enabled, HunterPie overlay will be automatically hidden when the game loses focus (e.g: When you Alt+Tab)" HorizontalAlignment="Center" MinWidth="500"/>
+                        <custom:Switcher Text="Enable Hardware Acceleration" ToolTip="Enabling Hardware acceleration will make the overlay be rendered by the graphics card. Turning this off will change the rendering mode to software rendering, which will use more CPU. Turn this option off if you're having FPS issues. (REQUIRES RESTART)" HorizontalAlignment="Center" MinWidth="500" RequiresRestart="True"/>
+                        <Canvas Height="28" ToolTip="Changes all HunterPie's animation framerates. Set this to a lower value if you're having FPS issues." HorizontalAlignment="Center" MinWidth="500">
+                            <TextBlock Text="Animations framerate:" Foreground="WhiteSmoke"/>
+                            <Slider x:Name="DesiredFrameRateSlider" Foreground="#FF3C3C3C" Maximum="60" Minimum="1" SmallChange="1" Value="60" Width="190" Canvas.Left="164" Canvas.Top="5" AutoToolTipPlacement="TopLeft" IsSnapToTickEnabled="True" />
+                            <TextBlock Text="{Binding Value, ElementName=DesiredFrameRateSlider}" FontSize="16" Foreground="WhiteSmoke" Canvas.Left="366" Canvas.Top="4"/>
+                            <TextBlock TextWrapping="Wrap" Text="(Requires restart)" Foreground="#FFF1F1F1"  TextAlignment="Center" HorizontalAlignment="Left" Width="79" Padding="0,6,0,0" Canvas.Left="383" Canvas.Top="4" FontSize="10"/>
+                        </Canvas>
+                        <Canvas Height="28" ToolTip="Hotkey to hide overlay. Changing the HotKey requires restart for it to take effect." HorizontalAlignment="Center" MinWidth="500">
+                            <TextBlock Text="Toggle Overlay (HotKey):" Foreground="WhiteSmoke" Canvas.Top="3"/>
+                            <Button x:Name="ToggleOverlayHotKey" Cursor="Hand" Background="#FF0F0F0F" Foreground="#FFE8E8E8"  BorderBrush="{x:Null}" Height="28" Padding="3,1" Style="{StaticResource ToggleButtonStyle}" Width="115" Canvas.Left="179"/>
+                            <TextBlock TextWrapping="Wrap" Text="(Requires restart)" Foreground="#FFF1F1F1"  TextAlignment="Center" HorizontalAlignment="Left" Width="79" Padding="0,6,0,0" Canvas.Left="299" Canvas.Top="2" FontSize="10"/>
+                        </Canvas>
+                        <Canvas Height="28" ToolTip="Hotkey to " HorizontalAlignment="Center" MinWidth="500">
+                            <TextBlock Text="Toggle Design Mode (HotKey):" Foreground="WhiteSmoke" Canvas.Top="3"/>
+                            <Button x:Name="ToggleDesignMode" Cursor="Hand" Background="#FF0F0F0F" Foreground="#FFE8E8E8"  BorderBrush="{x:Null}" Height="28" Padding="3,1" Style="{StaticResource ToggleButtonStyle}" Width="115" Canvas.Left="220"/>
+                            <TextBlock TextWrapping="Wrap" Text="(Requires restart)" Foreground="#FFF1F1F1"  TextAlignment="Center" HorizontalAlignment="Left" Width="79" Padding="0,6,0,0" Canvas.Left="340" Canvas.Top="2" FontSize="10"/>
+                        </Canvas>
+                        <custom:PositionControl HorizontalAlignment="Center" MinWidth="500" Height="38" Margin="222,0,221,0" ToolTip="Changes the overlay position."/>
+                    </StackPanel>
+                </ScrollViewer>
+            </TabItem>
+            <TabItem Margin="81,0,-156,1">
+                <TabItem.Header>
+                    <Canvas Margin="-1,0,70,0">
+                        <Image Source="{StaticResource ICON_MONSTERBAR}" Width="19" Height="20" Canvas.Left="-1" Canvas.Top="-2"/>
+                        <TextBlock Text="Monster Widget" Height="21" Width="122" Canvas.Left="17" Canvas.Top="-4" FontWeight="Medium"/>
+                    </Canvas>
+                </TabItem.Header>
+                <ScrollViewer Margin="0,0,-1,0">
+                    <StackPanel Height="409" Width="943" HorizontalAlignment="Left">
+                        <custom:Switcher Text="Enable Monster Widget" ToolTip="If enabled, the monster widget will be visible whenever it has content to show." HorizontalAlignment="Center" MinWidth="500"/>
+                        <Canvas Height="28" ToolTip="Changes the monster bar mode." HorizontalAlignment="Center" MinWidth="500">
+                            <TextBlock Text="Monster Bar Mode:" Foreground="WhiteSmoke" Canvas.Top="3"/>
+                            <ComboBox Style="{StaticResource ComboBoxFlatStyle}" x:Name="MonsterShowModeSelection" IsReadOnly="True" Cursor="Hand" HorizontalAlignment="Center" Width="359" FontSize="14" Foreground="#FFF9F9F9" SelectedIndex="0" Canvas.Left="141" Canvas.Top="2">
+                                <System:String>Show all monsters at once</System:String>
+                                <System:String>Show all monsters but highlight my target</System:String>
+                                <System:String>Show only hunted monster</System:String>
+                                <System:String>Show all but hide non-active monsters after X seconds</System:String>
+                            </ComboBox>
+                        </Canvas>
+                        <Canvas Height="28" ToolTip="Hotkey to change the monster bar mode. Changing the HotKey requires restart for it to take effect." HorizontalAlignment="Center" MinWidth="500">
+                            <TextBlock Text="Change bar mode (HotKey):" Foreground="WhiteSmoke" Canvas.Top="3"/>
+                            <Button x:Name="ToggledOverlayHotKey" Cursor="Hand" Background="#FF0F0F0F" Foreground="#FFE8E8E8"  BorderBrush="{x:Null}" Height="28" Padding="3,1" Style="{StaticResource ToggleButtonStyle}" Width="115" Canvas.Left="200" Canvas.Top="1"/>
+                            <TextBlock TextWrapping="Wrap" Text="(Requires restart)" Foreground="#FFF1F1F1"  TextAlignment="Center" HorizontalAlignment="Left" Width="79" Padding="0,6,0,0" Canvas.Left="320" Canvas.Top="3" FontSize="10"/>
+                        </Canvas>
+                        <Canvas Height="28" ToolTip="Changes the monster bar mode." HorizontalAlignment="Center" MinWidth="500">
+                            <TextBlock Text="Monster Bar dock" Foreground="WhiteSmoke" Canvas.Top="3"/>
+                            <ComboBox Style="{StaticResource ComboBoxFlatStyle}" x:Name="MonsterBarDock" IsReadOnly="True" Cursor="Hand" HorizontalAlignment="Center" Width="359" FontSize="14" Foreground="#FFF9F9F9" SelectedIndex="0" Canvas.Left="141" Canvas.Top="2">
+                                <System:String>Top</System:String>
+                                <System:String>Bottom</System:String>
+                            </ComboBox>
+                        </Canvas>
+                        <custom:Switcher Text="Show monster weaknesses" ToolTip="If Enabled, monster weaknesses will become visible under their health bar" HorizontalAlignment="Center" MinWidth="500"/>
+                        <custom:Switcher Text="Hide unactive parts/ailments after a few seconds" ToolTip="If Enabled, unchanged parts and ailments will be hidden after a few seconds." HorizontalAlignment="Center" MinWidth="500"/>
+                        <custom:Switcher Text="Show monster breakable parts" ToolTip="If Enabled, monster removable/breakable parts will become visible under their health bar." HorizontalAlignment="Center" MinWidth="500"/>
+                        <custom:Switcher Text="Show monster parts" ToolTip="If Enabled, monster removable/breakable parts will become visible under their health bar." HorizontalAlignment="Center" MinWidth="500"/>
+                        <ScrollViewer MaxHeight="200" Margin="250,0,131,0">
+                            <StackPanel x:Name="PartsCustomizer" Height="0" IsEnabled="False">
+                                <custom:Switcher x:Name="EnablePartHead" Text="Enable head health" HorizontalContentAlignment="Left" Margin="150,0,0,0" MaxWidth="500"/>
+                                <custom:Switcher x:Name="EnablePartBody" Text="Enable body health" HorizontalContentAlignment="Left" Margin="150,0,0,0" MaxWidth="500"/>
+                                <custom:Switcher x:Name="EnablePartArm" Text="Enable arms health" HorizontalContentAlignment="Left" Margin="150,0,0,0" MaxWidth="500"/>
+                                <custom:Switcher x:Name="EnablePartWing" Text="Enable wings health" HorizontalContentAlignment="Left" Margin="150,0,0,0" MaxWidth="500"/>
+                                <custom:Switcher x:Name="EnablePartLeg" Text="Enable legs health" HorizontalContentAlignment="Left" Margin="150,0,0,0" MaxWidth="500"/>
+                                <custom:Switcher x:Name="EnablePartTail" Text="Enable tail health" HorizontalContentAlignment="Left" Margin="150,0,0,0" MaxWidth="500"/>
+                                <custom:Switcher x:Name="EnablePartLimb" Text="Enable limbs health" HorizontalContentAlignment="Left" Margin="150,0,0,0" MaxWidth="500"/>
+                                <custom:Switcher x:Name="EnablePartAbdomen" Text="Enable abdomen health" HorizontalContentAlignment="Left" Margin="150,0,0,0" MaxWidth="500"/>
+                                <custom:Switcher x:Name="EnablePartChest" Text="Enable chest health" HorizontalContentAlignment="Left" Margin="150,0,0,0" MaxWidth="500"/>
+                                <custom:Switcher x:Name="EnablePartRear" Text="Enable rear health" HorizontalContentAlignment="Left" Margin="150,0,0,0" MaxWidth="500"/>
+                                <custom:Switcher x:Name="EnablePartJaw" Text="Enable jaw health" HorizontalContentAlignment="Left" Margin="150,0,0,0" MaxWidth="500"/>
+                                <custom:Switcher x:Name="EnablePartBack" Text="Enable back health" HorizontalContentAlignment="Left" Margin="150,0,0,0" MaxWidth="500"/>
+                                <custom:Switcher x:Name="EnablePartFin" Text="Enable fin health" HorizontalContentAlignment="Left" Margin="150,0,0,0" MaxWidth="500"/>
+                                <custom:Switcher x:Name="EnablePartHorn" Text="Enable horns health" HorizontalContentAlignment="Left" Margin="150,0,0,0" MaxWidth="500"/>
+                                <custom:Switcher x:Name="EnablePartNeck" Text="Enable neck health" HorizontalContentAlignment="Left" Margin="150,0,0,0" MaxWidth="500"/>
+                                <custom:Switcher x:Name="EnablePartShell" Text="Enable shells health" HorizontalContentAlignment="Left" Margin="150,0,0,0" MaxWidth="500"/>
+                                <custom:Switcher x:Name="EnablePartOrgan" Text="Enable organs health" HorizontalContentAlignment="Left" Margin="150,0,0,0" MaxWidth="500"/>
+                                <custom:Switcher x:Name="EnablePartMane" Text="Enable manes health" HorizontalContentAlignment="Left" Margin="150,0,0,0" MaxWidth="500"/>
+                                <custom:Switcher x:Name="EnablePartBone" Text="Enable bones health" HorizontalContentAlignment="Left" Margin="150,0,0,0" MaxWidth="500"/>
+                                <custom:Switcher x:Name="EnablePartMisc" Text="Enable miscellaneous health" HorizontalContentAlignment="Left" Margin="150,0,0,0" MaxWidth="500"/>
+                                <StackPanel.Style>
+                                    <Style TargetType="StackPanel">
+                                        <Style.Triggers>
+                                            <Trigger Property="IsEnabled" Value="True">
+                                                <Trigger.EnterActions>
+                                                    <BeginStoryboard>
+                                                        <Storyboard Storyboard.TargetProperty="Height">
+                                                            <DoubleAnimation To="530" Duration="0:0:0.2"/>
+                                                        </Storyboard>
+                                                    </BeginStoryboard>
+                                                </Trigger.EnterActions>
+                                                <Trigger.ExitActions>
+                                                    <BeginStoryboard>
+                                                        <Storyboard Storyboard.TargetProperty="Height">
+                                                            <DoubleAnimation To="0" Duration="0:0:0.2"/>
+                                                        </Storyboard>
+                                                    </BeginStoryboard>
+                                                </Trigger.ExitActions>
+                                            </Trigger>
+                                        </Style.Triggers>
+                                    </Style>
+                                </StackPanel.Style>
+                            </StackPanel>
+                        </ScrollViewer>
+                        <Canvas Height="28" ToolTip="Sets the max number of different parts each column can have at once." HorizontalAlignment="Center" MinWidth="500">
+                            <TextBlock Text="Max number of parts per column:" Foreground="WhiteSmoke" Canvas.Top="3"/>
+                            <TextBox x:Name="MaxNumberOfParts" TextWrapping="Wrap" Background="{x:Null}" Foreground="WhiteSmoke" BorderBrush="#FFABADB3" BorderThickness="0,0,0,1" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" HorizontalAlignment="Right" Width="232" Canvas.Left="238" Canvas.Top="1" SelectionBrush="#FFD31D1D"/>
+                        </Canvas>
+                        <Canvas Height="28" ToolTip="Max number of columns of part/ailments bars." HorizontalAlignment="Center" MinWidth="500">
+                            <TextBlock Text="Max number of columns:" Foreground="WhiteSmoke" Canvas.Top="3"/>
+                            <TextBox x:Name="MaxNumberOfColumns" TextWrapping="Wrap" Background="{x:Null}" Foreground="WhiteSmoke" BorderBrush="#FFABADB3" BorderThickness="0,0,0,1" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" HorizontalAlignment="Right" Width="232" Canvas.Left="238" Canvas.Top="1" SelectionBrush="#FFD31D1D"/>
+                        </Canvas>
+                        <Canvas Height="28" ToolTip="Delay to wait before hiding parts after they get damaged or ailments when they become unactive." HorizontalAlignment="Center" MinWidth="500">
+                            <TextBlock Text="Delay to hide unactive parts:" Foreground="WhiteSmoke" Canvas.Top="3"/>
+                            <TextBox x:Name="HidePartsDelay" TextWrapping="Wrap" Background="{x:Null}" Foreground="WhiteSmoke" BorderBrush="#FFABADB3" BorderThickness="0,0,0,1" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" HorizontalAlignment="Right" Width="232" Canvas.Left="238" Canvas.Top="1" SelectionBrush="#FFD31D1D"/>
+                        </Canvas>
+                        <custom:PositionControl HorizontalAlignment="Center" MinWidth="500" Height="38" Margin="222,0,221,0" ToolTip="Changes the overlay position."/>
+                    </StackPanel>
+                </ScrollViewer>
             </TabItem>
         </TabControl>
-
     </Grid>
 </UserControl>

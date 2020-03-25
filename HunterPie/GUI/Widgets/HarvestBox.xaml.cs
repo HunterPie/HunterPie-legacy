@@ -43,7 +43,7 @@ namespace HunterPie.GUI.Widgets {
             UserSettings.PlayerConfig.Overlay.HarvestBoxComponent.Scale = DefaultScaleX;
         }
 
-        public override void ApplySettings() {
+        public override void ApplySettings(bool FocusTrigger = false) {
             bool ShowEverywhere = false;
             if (UserSettings.PlayerConfig.Overlay.HarvestBoxComponent.AlwaysShow) {
                 ShowEverywhere = true;
@@ -51,11 +51,13 @@ namespace HunterPie.GUI.Widgets {
                 if (PlayerContext != null && PlayerContext.InHarvestZone) { ShowEverywhere = true; } else { ShowEverywhere = false; }
             }
             Dispatcher.BeginInvoke(System.Windows.Threading.DispatcherPriority.Background, new Action(() => {
-                this.Top = UserSettings.PlayerConfig.Overlay.HarvestBoxComponent.Position[1] + UserSettings.PlayerConfig.Overlay.Position[1];
-                this.Left = UserSettings.PlayerConfig.Overlay.HarvestBoxComponent.Position[0] + UserSettings.PlayerConfig.Overlay.Position[0];
-                this.WidgetActive = UserSettings.PlayerConfig.Overlay.HarvestBoxComponent.Enabled;
-                this.WidgetHasContent = ShowEverywhere;
-                this.ScaleWidget(UserSettings.PlayerConfig.Overlay.HarvestBoxComponent.Scale, UserSettings.PlayerConfig.Overlay.HarvestBoxComponent.Scale);
+                if (!FocusTrigger) {
+                    this.Top = UserSettings.PlayerConfig.Overlay.HarvestBoxComponent.Position[1] + UserSettings.PlayerConfig.Overlay.Position[1];
+                    this.Left = UserSettings.PlayerConfig.Overlay.HarvestBoxComponent.Position[0] + UserSettings.PlayerConfig.Overlay.Position[0];
+                    this.WidgetActive = UserSettings.PlayerConfig.Overlay.HarvestBoxComponent.Enabled;
+                    this.WidgetHasContent = ShowEverywhere;
+                    this.ScaleWidget(UserSettings.PlayerConfig.Overlay.HarvestBoxComponent.Scale, UserSettings.PlayerConfig.Overlay.HarvestBoxComponent.Scale);
+                }
                 base.ApplySettings();
             }));
         }

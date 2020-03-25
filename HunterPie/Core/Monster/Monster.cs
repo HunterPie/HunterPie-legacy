@@ -33,6 +33,7 @@ namespace HunterPie.Core {
                         this.IsAlive = true;
                         CreateMonsterParts(MonsterData.GetMaxPartsByMonsterID(this.ID));
                         GetMonsterParts();
+                        Ailments.Clear();
                         GetMonsterAilments();
                         GetMonsterSizeModifier();
                         CaptureThreshold = MonsterData.GetMonsterCaptureThresholdByID(this.ID);
@@ -210,6 +211,7 @@ namespace HunterPie.Core {
         public void ClearParts() {
             Parts.Clear();
             Ailments.Clear();
+            Debugger.Log($"Cleared parts: {Parts.Count} | {Ailments.Count}");
         }
 
         private void GetMonsterAddress() {
@@ -366,7 +368,8 @@ namespace HunterPie.Core {
             if (!IsAlive) return;
             Int64 MonsterStaminaAddress = MonsterAddress + 0x1C098;
             MaxStamina = Scanner.READ_FLOAT(MonsterStaminaAddress + 0x4);
-            Stamina = Scanner.READ_FLOAT(MonsterStaminaAddress);
+            float stam = Scanner.READ_FLOAT(MonsterStaminaAddress);
+            Stamina = stam <= MaxStamina ? stam : MaxStamina;
         }
 
         private void GetMonsterAilments() {
@@ -394,15 +397,14 @@ namespace HunterPie.Core {
                     }
                 }
                 Int64 StatusPtr = StatusAddress + 0x40;
-                int AilmentID = 0;
                 while (StatusPtr != 0x0) {
                     Int64 MonsterInStatus = Scanner.READ_LONGLONG(StatusPtr + 0x188);
                     if (MonsterInStatus == MonsterAddress) {
-                        System.Xml.XmlNode AilmentInfo = MonsterData.GetAilmentByIndex(AilmentID);
+                        int ID = Scanner.READ_INT(StatusPtr + 0x198);
+                        System.Xml.XmlNode AilmentInfo = MonsterData.GetAilmentByIndex(ID);
                         bool IsSkippable = AilmentInfo == null ? true : AilmentInfo.Attributes["Skip"].Value == "True";
                         if (IsSkippable) {
                             StatusPtr = Scanner.READ_LONGLONG(StatusPtr + 0x18);
-                            AilmentID++;
                             continue;
                         } else {
                             float maxBuildup = Math.Max(0, Scanner.READ_FLOAT(StatusPtr + 0x1C8));
@@ -410,11 +412,11 @@ namespace HunterPie.Core {
                             float maxDuration = Math.Max(0, Scanner.READ_FLOAT(StatusPtr + 0x19C));
                             float currentDuration = Math.Max(0, Scanner.READ_FLOAT(StatusPtr + 0x1F8));
                             byte counter = Scanner.READ_BYTE(StatusPtr + 0x200);
+                            
                             Ailment mAilment = new Ailment {
                                 Address = StatusPtr
                             };
-                            mAilment.SetAilmentInfo(AilmentID, currentDuration, maxDuration, currentBuildup, maxBuildup, counter);
-                            AilmentID++;
+                            mAilment.SetAilmentInfo(ID, currentDuration, maxDuration, currentBuildup, maxBuildup, counter);
                             Ailments.Add(mAilment);
                         }
                     }
