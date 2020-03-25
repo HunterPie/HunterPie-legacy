@@ -271,78 +271,45 @@ namespace HunterPie.GUI.Widgets {
 
         // Show all monsters but hide unactive
         private void ShowAllMonsterAndHideUnactive() {
-            if (this.Context == null || !this.Context.IsAlive) this.Visibility = Visibility.Collapsed;
+            if (this.Context == null || !this.Context.IsAlive) { this.Visibility = Visibility.Collapsed; return; }
             StartVisibilityTimer();
             this.Width = 300;
-            MonsterPartsContainer.MaxWidth = MonsterAilmentsContainer.MaxWidth = (this.Width - 2) / 2;
-            MonsterPartsContainer.ItemWidth = MonsterAilmentsContainer.ItemWidth = MonsterPartsContainer.MaxWidth / Math.Max(1, UserSettings.PlayerConfig.Overlay.MonstersComponent.MaxPartColumns);
-            UpdatePartHealthBarSizes(MonsterPartsContainer.ItemWidth);
-            MonsterHealthBar.MaxSize = 231;
-            MonsterStaminaBar.MaxSize = this.Width - 72;
-            MonsterHealthBar.UpdateBar(Context.CurrentHP, Context.TotalHP);
-            MonsterStaminaBar.UpdateBar(Context.Stamina, Context.MaxStamina);
+            ChangeBarsSizes(Width);
             this.Opacity = 1;
         }
 
         // Show all monsters at once
         private void ShowAllMonstersAtOnce() {
             if (this.Context != null && this.Context.IsAlive) this.Visibility = Visibility.Visible;
-            else { this.Visibility = Visibility.Collapsed; }
+            else { this.Visibility = Visibility.Collapsed; return; }
             this.Width = 300;
-            MonsterPartsContainer.MaxWidth = MonsterAilmentsContainer.MaxWidth = (this.Width - 2) / 2;
-            MonsterPartsContainer.ItemWidth = MonsterAilmentsContainer.ItemWidth = MonsterPartsContainer.MaxWidth / Math.Max(1, UserSettings.PlayerConfig.Overlay.MonstersComponent.MaxPartColumns);
-            UpdatePartHealthBarSizes(MonsterPartsContainer.ItemWidth);
-            MonsterHealthBar.MaxSize = 231;
-            MonsterStaminaBar.MaxSize = this.Width - 72;
-            MonsterHealthBar.UpdateBar(Context.CurrentHP, Context.TotalHP);
-            MonsterStaminaBar.UpdateBar(Context.Stamina, Context.MaxStamina);
+            ChangeBarsSizes(Width);
             this.Opacity = 1;
         }
 
         // Only show one monster
         private void ShowOnlyTargetMonster() {
-            if (Context == null || !Context.IsTarget || !Context.IsAlive) { this.Visibility = Visibility.Collapsed; }
+            if (Context == null || !Context.IsTarget || !Context.IsAlive) { this.Visibility = Visibility.Collapsed; return; }
             else {      
                 this.Visibility = Visibility.Visible;
                 this.Width = 500;
-                MonsterPartsContainer.MaxWidth = MonsterAilmentsContainer.MaxWidth = (this.Width - 2) / 2;
-                MonsterPartsContainer.ItemWidth = MonsterAilmentsContainer.ItemWidth = MonsterPartsContainer.MaxWidth / Math.Max(1, UserSettings.PlayerConfig.Overlay.MonstersComponent.MaxPartColumns);
-                UpdatePartHealthBarSizes(MonsterPartsContainer.ItemWidth);
+                ChangeBarsSizes(Width);
                 this.Opacity = 1;
-                MonsterHealthBar.MaxSize = this.Width * 0.9;
-                MonsterStaminaBar.MaxSize = this.Width - 72;
-                MonsterHealthBar.UpdateBar(Context.CurrentHP, Context.TotalHP);
-                MonsterStaminaBar.UpdateBar(Context.Stamina, Context.MaxStamina);
+                
             }
         }
 
         // Show all monsters but highlight only target
         private void ShowAllButFocusTarget() {
             if (this.Context != null && this.Context.IsAlive) this.Visibility = Visibility.Visible;
-            else { this.Visibility = Visibility.Collapsed; }
+            else { this.Visibility = Visibility.Collapsed; return; }
             if (!Context.IsTarget) {
                 this.Width = 240;
-                // Parts
-                MonsterPartsContainer.MaxWidth = MonsterAilmentsContainer.MaxWidth = (this.Width - 2) / 2;
-                MonsterPartsContainer.ItemWidth = MonsterAilmentsContainer.ItemWidth = MonsterPartsContainer.MaxWidth / Math.Max(1, UserSettings.PlayerConfig.Overlay.MonstersComponent.MaxPartColumns);
-                UpdatePartHealthBarSizes(MonsterPartsContainer.ItemWidth);
-                // Monster Bar
-                MonsterHealthBar.MaxSize = this.Width * 0.8;
-                MonsterStaminaBar.MaxSize = this.Width - 72;
-                MonsterHealthBar.UpdateBar(Context.CurrentHP, Context.TotalHP);
-                MonsterStaminaBar.UpdateBar(Context.Stamina, Context.MaxStamina);
+                ChangeBarsSizes(Width);
                 this.Opacity = 0.5;
             } else {
                 this.Width = 320;
-                // Parts
-                MonsterPartsContainer.MaxWidth = MonsterAilmentsContainer.MaxWidth = (this.Width - 2) / 2;
-                MonsterPartsContainer.ItemWidth = MonsterAilmentsContainer.ItemWidth = MonsterPartsContainer.MaxWidth / Math.Max(1, UserSettings.PlayerConfig.Overlay.MonstersComponent.MaxPartColumns);
-                UpdatePartHealthBarSizes(MonsterPartsContainer.ItemWidth);
-                // Monster Bar
-                MonsterHealthBar.MaxSize = this.Width * 0.8;
-                MonsterStaminaBar.MaxSize = this.Width - 72;
-                MonsterHealthBar.UpdateBar(Context.CurrentHP, Context.TotalHP);
-                MonsterStaminaBar.UpdateBar(Context.Stamina, Context.MaxStamina);
+                ChangeBarsSizes(Width);
                 this.Opacity = 1;
             }
         }
@@ -372,6 +339,18 @@ namespace HunterPie.GUI.Widgets {
         #endregion
 
         #region Helpers
+        private void ChangeBarsSizes(double NewSize) {
+            // Parts
+            MonsterPartsContainer.MaxWidth = MonsterAilmentsContainer.MaxWidth = (NewSize - 2) / 2;
+            MonsterPartsContainer.ItemWidth = MonsterAilmentsContainer.ItemWidth = MonsterPartsContainer.MaxWidth / Math.Max(1, UserSettings.PlayerConfig.Overlay.MonstersComponent.MaxPartColumns);
+            UpdatePartHealthBarSizes(MonsterPartsContainer.ItemWidth);
+            // Monster Bar
+            MonsterHealthBar.MaxSize = NewSize - 69;
+            MonsterStaminaBar.MaxSize = NewSize - 72;
+            MonsterHealthBar.UpdateBar(Context.CurrentHP, Context.TotalHP);
+            MonsterStaminaBar.UpdateBar(Context.Stamina, Context.MaxStamina);
+        }
+
         public void ChangeDocking(byte newDock) {
             switch(newDock) {
                 case 0: // Monster HP stays on top

@@ -211,7 +211,9 @@ namespace HunterPie.Core {
         public void ClearParts() {
             Parts.Clear();
             Ailments.Clear();
+#if DEBUG
             Debugger.Log($"Cleared parts: {Parts.Count} | {Ailments.Count}");
+#endif
         }
 
         private void GetMonsterAddress() {
