@@ -86,7 +86,7 @@
             <System:String>Show all monsters at once</System:String>
             <System:String>Show all monsters but highlight my target</System:String>
             <System:String>Show only hunted monster</System:String>
-            <System:String>Show all but hide non-active monsters after X seconds</System:String>
+            <System:String>Show all but hide inactive monsters after X seconds</System:String>
         </ComboBox>
         <TextBlock Text="Monster bar mode:" Margin="-456,-26,0,0"  FontSize="16" Foreground="#FFF9F9F9" HorizontalAlignment="Center" VerticalAlignment="Center" FontWeight="ExtraLight" TextAlignment="Right" />
         <Label Content="Change monster bar mode:" HorizontalAlignment="Left" Height="30" Margin="239,7,0,0" Width="191"  Foreground="WhiteSmoke" FontSize="15" Padding="0"  VerticalContentAlignment="Center"/>
@@ -96,7 +96,7 @@
             <System:String>Bottom</System:String>
         </ComboBox>
         <TextBlock Text="Monster bar docking: " Margin="266,-26,527,0"  FontSize="16" Foreground="#FFF9F9F9" HorizontalAlignment="Center" VerticalAlignment="Center" FontWeight="ExtraLight" TextAlignment="Right" ToolTip="Changes the monster health bar position in relation to the part/ailment bars." Width="156"/>
-        <custom:Switcher x:Name="switchEnableHideUnactiveParts" Text="Hide unactive parts after X seconds" ToolTip="If enabled, undamaged parts will be hidden after a few seconds." HorizontalAlignment="Right" MinWidth="500" Margin="0,0,95,0"/>
+        <custom:Switcher x:Name="switchEnableHideUnactiveParts" Text="Hide inactive parts after X seconds" ToolTip="If enabled, undamaged parts will be hidden after a few seconds." HorizontalAlignment="Right" MinWidth="500" Margin="0,0,95,0"/>
         <StackPanel Height="32" Margin="250,7,379,0" Orientation="Horizontal" ToolTip="Max number of different parts/ailments that can be shown at once.">
             <Label Content="Max number of parts to show:" HorizontalAlignment="Right" Width="202"  Foreground="WhiteSmoke" FontSize="15" Padding="0"  VerticalContentAlignment="Center" HorizontalContentAlignment="Right"/>
             <TextBox x:Name="MaxNumberOfPartsAtOnce"  TextWrapping="Wrap" Margin="0,1" Background="{x:Null}" Foreground="WhiteSmoke" BorderBrush="#FFABADB3" BorderThickness="0,0,0,1" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" HorizontalAlignment="Right" Width="122" TextChanged="TypeNumber"/>
@@ -106,7 +106,7 @@
             <TextBox x:Name="MaxColumnsOfParts"  TextWrapping="Wrap" Margin="0,1" Background="{x:Null}" Foreground="WhiteSmoke" BorderBrush="#FFABADB3" BorderThickness="0,0,0,1" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" HorizontalAlignment="Right" Width="122" TextChanged="TypeNumber"/>
         </StackPanel>
         <StackPanel Height="32" Margin="250,7,379,0" Orientation="Horizontal" ToolTip="Delay to hide undamaged parts in seconds.">
-            <Label Content="Delay to hide unactive parts:" HorizontalAlignment="Right" Width="197"  Foreground="WhiteSmoke" FontSize="15" Padding="0"  VerticalContentAlignment="Center" HorizontalContentAlignment="Right"/>
+            <Label Content="Delay to hide inactive parts:" HorizontalAlignment="Right" Width="197"  Foreground="WhiteSmoke" FontSize="15" Padding="0"  VerticalContentAlignment="Center" HorizontalContentAlignment="Right"/>
             <TextBox x:Name="HideSecondsTextbox"  TextWrapping="Wrap" Margin="0,1" Background="{x:Null}" Foreground="WhiteSmoke" BorderBrush="#FFABADB3" BorderThickness="0,0,0,1" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" HorizontalAlignment="Right" Width="122" TextChanged="TypeNumber"/>
         </StackPanel>
         <custom:Switcher x:Name="switchEnableMonsterWeakness" Text="Show monster weaknesses" ToolTip="If enabled, the monster weaknesses will be visible under their health bar." HorizontalAlignment="Right" MinWidth="500" Margin="0,0,95,0"/>

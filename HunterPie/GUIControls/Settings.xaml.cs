@@ -57,18 +57,18 @@ namespace HunterPie.GUIControls {
             settingsUI.ToggleOverlayHotKey.Content = settings.Overlay.ToggleOverlayKeybind;
             settingsUI.switchHardwareAcceleration.IsEnabled = settings.Overlay.EnableHardwareAcceleration;
             settingsUI.switchHideWhenUnfocused.IsEnabled = settings.Overlay.HideWhenGameIsUnfocused;
-            settingsUI.positionOverlayX.Text = settings.Overlay.Position[0].ToString();
-            settingsUI.positionOverlayY.Text = settings.Overlay.Position[1].ToString();
+            settingsUI.OverlayPosition.X = settings.Overlay.Position[0];
+            settingsUI.OverlayPosition.Y = settings.Overlay.Position[1];
 
             // Monsters
             settingsUI.switchEnableMonsterComponent.IsEnabled = settings.Overlay.MonstersComponent.Enabled;
             settingsUI.MonsterShowModeSelection.SelectedIndex = settings.Overlay.MonstersComponent.ShowMonsterBarMode;
             settingsUI.ToggleMonsterBarModeHotKey.Content = settings.Overlay.MonstersComponent.SwitchMonsterBarModeHotkey;
-            settingsUI.MaxNumberOfPartsAtOnce.Text = settings.Overlay.MonstersComponent.MaxNumberOfPartsAtOnce.ToString();
-            settingsUI.MaxColumnsOfParts.Text = settings.Overlay.MonstersComponent.MaxPartColumns.ToString();
+            settingsUI.MaxNumberOfPartsAtOnce.Value = settings.Overlay.MonstersComponent.MaxNumberOfPartsAtOnce;
+            settingsUI.MaxColumnsOfParts.Value = settings.Overlay.MonstersComponent.MaxPartColumns;
             settingsUI.MonsterBarDock.SelectedIndex = settings.Overlay.MonstersComponent.MonsterBarDock;
-            settingsUI.positionMonsterCompX.Text = settings.Overlay.MonstersComponent.Position[0].ToString();
-            settingsUI.positionMonsterCompY.Text = settings.Overlay.MonstersComponent.Position[1].ToString();
+            settingsUI.MonstersPosition.X = settings.Overlay.MonstersComponent.Position[0];
+            settingsUI.MonstersPosition.Y = settings.Overlay.MonstersComponent.Position[1];
             settingsUI.switchEnableParts.IsEnabled = settings.Overlay.MonstersComponent.EnableMonsterParts;
             settingsUI.PartsCustomizer.IsEnabled = settingsUI.switchEnableParts.IsEnabled;
             settingsUI.switchEnableAilments.IsEnabled = settings.Overlay.MonstersComponent.EnableMonsterAilments;
@@ -80,33 +80,33 @@ namespace HunterPie.GUIControls {
                     switcher.IsEnabled = false;
                 }
             }
-            settingsUI.HideSecondsTextbox.Text = settings.Overlay.MonstersComponent.SecondsToHideParts.ToString();
+            settingsUI.HideSeconds.Value = settings.Overlay.MonstersComponent.SecondsToHideParts;
             settingsUI.switchEnableHideUnactiveParts.IsEnabled = settings.Overlay.MonstersComponent.HidePartsAfterSeconds;
             settingsUI.switchEnableMonsterWeakness.IsEnabled = settings.Overlay.MonstersComponent.ShowMonsterWeakness;
 
             // Primary Mantle
             settingsUI.switchEnablePrimaryMantle.IsEnabled = settings.Overlay.PrimaryMantle.Enabled;
-            settingsUI.primMantlePosX.Text = settings.Overlay.PrimaryMantle.Position[0].ToString();
-            settingsUI.primMantlePosY.Text = settings.Overlay.PrimaryMantle.Position[1].ToString();
+            settingsUI.PrimaryMantlePosition.X = settings.Overlay.PrimaryMantle.Position[0];
+            settingsUI.PrimaryMantlePosition.Y = settings.Overlay.PrimaryMantle.Position[1];
             settingsUI.PrimaryMantleColor.Color = settings.Overlay.PrimaryMantle.Color;
 
             // Secondary Mantle
             settingsUI.switchEnableSecondaryMantle.IsEnabled = settings.Overlay.SecondaryMantle.Enabled;
-            settingsUI.secMantlePosX.Text = settings.Overlay.SecondaryMantle.Position[0].ToString();
-            settingsUI.secMantlePosY.Text = settings.Overlay.SecondaryMantle.Position[1].ToString();
+            settingsUI.SecondaryMantlePosition.X = settings.Overlay.SecondaryMantle.Position[0];
+            settingsUI.SecondaryMantlePosition.Y = settings.Overlay.SecondaryMantle.Position[1];
             settingsUI.SecondaryMantleColor.Color = settings.Overlay.SecondaryMantle.Color;
 
             // Harvest Box
             settingsUI.switchEnableHarvestBox.IsEnabled = settings.Overlay.HarvestBoxComponent.Enabled;
             settingsUI.switchAlwaysShow.IsEnabled = settings.Overlay.HarvestBoxComponent.AlwaysShow;
-            settingsUI.harvestBoxPosX.Text = settings.Overlay.HarvestBoxComponent.Position[0].ToString();
-            settingsUI.harvestBoxPosY.Text = settings.Overlay.HarvestBoxComponent.Position[1].ToString();
+            settingsUI.HarvestBoxPosition.X = settings.Overlay.HarvestBoxComponent.Position[0];
+            settingsUI.HarvestBoxPosition.Y = settings.Overlay.HarvestBoxComponent.Position[1];
 
             // DPS Meter
             settingsUI.switchEnableDPSMeter.IsEnabled = settings.Overlay.DPSMeter.Enabled;
             settingsUI.switchEnableDPSWheneverPossible.IsEnabled = settings.Overlay.DPSMeter.ShowDPSWheneverPossible;
-            settingsUI.DPSMeterPosX.Text = settings.Overlay.DPSMeter.Position[0].ToString();
-            settingsUI.DPSMeterPosY.Text = settings.Overlay.DPSMeter.Position[1].ToString();
+            settingsUI.DamageMeterPosition.X = settings.Overlay.DPSMeter.Position[0];
+            settingsUI.DamageMeterPosition.Y = settings.Overlay.DPSMeter.Position[1];
             settingsUI.FirstPlayerColor.Color = settings.Overlay.DPSMeter.PartyMembers[0].Color;
             settingsUI.SecondPlayerColor.Color = settings.Overlay.DPSMeter.PartyMembers[1].Color;
             settingsUI.ThirdPlayerColor.Color = settings.Overlay.DPSMeter.PartyMembers[2].Color;
@@ -138,18 +138,18 @@ namespace HunterPie.GUIControls {
             settings.Overlay.ToggleOverlayKeybind = (string)settingsUI.ToggleOverlayHotKey.Content;
             settings.Overlay.EnableHardwareAcceleration = settingsUI.switchHardwareAcceleration.IsEnabled;
             settings.Overlay.HideWhenGameIsUnfocused = settingsUI.switchHideWhenUnfocused.IsEnabled;
-            settings.Overlay.Position[0] = int.Parse(settingsUI.positionOverlayX.Text);
-            settings.Overlay.Position[1] = int.Parse(settingsUI.positionOverlayY.Text);
+            settings.Overlay.Position[0] = settingsUI.OverlayPosition.X;
+            settings.Overlay.Position[1] = settingsUI.OverlayPosition.Y;
 
             // Monsters
             settings.Overlay.MonstersComponent.Enabled = settingsUI.switchEnableMonsterComponent.IsEnabled;
             settings.Overlay.MonstersComponent.ShowMonsterBarMode = (byte)settingsUI.MonsterShowModeSelection.SelectedIndex;
             settings.Overlay.MonstersComponent.SwitchMonsterBarModeHotkey = (string)settingsUI.ToggleMonsterBarModeHotKey.Content;
-            settings.Overlay.MonstersComponent.MaxNumberOfPartsAtOnce = int.Parse(settingsUI.MaxNumberOfPartsAtOnce.Text);
-            settings.Overlay.MonstersComponent.MaxPartColumns = int.Parse(settingsUI.MaxColumnsOfParts.Text);
+            settings.Overlay.MonstersComponent.MaxNumberOfPartsAtOnce = (int)settingsUI.MaxNumberOfPartsAtOnce.Value;
+            settings.Overlay.MonstersComponent.MaxPartColumns = (int)settingsUI.MaxColumnsOfParts.Value;
             settings.Overlay.MonstersComponent.MonsterBarDock = (byte)settingsUI.MonsterBarDock.SelectedIndex;
-            settings.Overlay.MonstersComponent.Position[0] = int.Parse(settingsUI.positionMonsterCompX.Text);
-            settings.Overlay.MonstersComponent.Position[1] = int.Parse(settingsUI.positionMonsterCompY.Text);
+            settings.Overlay.MonstersComponent.Position[0] = settingsUI.MonstersPosition.X;
+            settings.Overlay.MonstersComponent.Position[1] = settingsUI.MonstersPosition.Y;
             settings.Overlay.MonstersComponent.EnableMonsterParts = settingsUI.switchEnableParts.IsEnabled;
             settings.Overlay.MonstersComponent.EnableRemovableParts = settingsUI.switchEnableRemovableParts.IsEnabled;
             settings.Overlay.MonstersComponent.EnableMonsterAilments = settingsUI.switchEnableAilments.IsEnabled;
@@ -160,32 +160,32 @@ namespace HunterPie.GUIControls {
             }
             settings.Overlay.MonstersComponent.EnabledPartGroups = EnabledParts.ToArray();
             settings.Overlay.MonstersComponent.HidePartsAfterSeconds = settingsUI.switchEnableHideUnactiveParts.IsEnabled;
-            settings.Overlay.MonstersComponent.SecondsToHideParts = (int)Math.Min(Math.Max(long.Parse(settingsUI.HideSecondsTextbox.Text), 0), 10000);
+            settings.Overlay.MonstersComponent.SecondsToHideParts = (int)Math.Min(Math.Max((int)settingsUI.HideSeconds.Value, 0), 10000);
             settings.Overlay.MonstersComponent.ShowMonsterWeakness = settingsUI.switchEnableMonsterWeakness.IsEnabled;
 
             // Primary Mantle
             settings.Overlay.PrimaryMantle.Enabled = settingsUI.switchEnablePrimaryMantle.IsEnabled;
-            settings.Overlay.PrimaryMantle.Position[0] = int.Parse(settingsUI.primMantlePosX.Text);
-            settings.Overlay.PrimaryMantle.Position[1] = int.Parse(settingsUI.primMantlePosY.Text);
+            settings.Overlay.PrimaryMantle.Position[0] = settingsUI.PrimaryMantlePosition.X;
+            settings.Overlay.PrimaryMantle.Position[1] = settingsUI.PrimaryMantlePosition.Y;
             settings.Overlay.PrimaryMantle.Color = settingsUI.PrimaryMantleColor.Color;
 
             // Secondary Mantle
             settings.Overlay.SecondaryMantle.Enabled = settingsUI.switchEnableSecondaryMantle.IsEnabled;
-            settings.Overlay.SecondaryMantle.Position[0] = int.Parse(settingsUI.secMantlePosX.Text);
-            settings.Overlay.SecondaryMantle.Position[1] = int.Parse(settingsUI.secMantlePosY.Text);
+            settings.Overlay.SecondaryMantle.Position[0] = settingsUI.SecondaryMantlePosition.X;
+            settings.Overlay.SecondaryMantle.Position[1] = settingsUI.SecondaryMantlePosition.Y;
             settings.Overlay.SecondaryMantle.Color = settingsUI.SecondaryMantleColor.Color;
 
             // Harvest Box
             settings.Overlay.HarvestBoxComponent.Enabled = settingsUI.switchEnableHarvestBox.IsEnabled;
             settings.Overlay.HarvestBoxComponent.AlwaysShow = settingsUI.switchAlwaysShow.IsEnabled;
-            settings.Overlay.HarvestBoxComponent.Position[0] = int.Parse(settingsUI.harvestBoxPosX.Text);
-            settings.Overlay.HarvestBoxComponent.Position[1] = int.Parse(settingsUI.harvestBoxPosY.Text);
+            settings.Overlay.HarvestBoxComponent.Position[0] = settingsUI.HarvestBoxPosition.X;
+            settings.Overlay.HarvestBoxComponent.Position[1] = settingsUI.HarvestBoxPosition.Y;
 
             // DPS Meter
             settings.Overlay.DPSMeter.Enabled = settingsUI.switchEnableDPSMeter.IsEnabled;
             settings.Overlay.DPSMeter.ShowDPSWheneverPossible = settingsUI.switchEnableDPSWheneverPossible.IsEnabled;
-            settings.Overlay.DPSMeter.Position[0] = int.Parse(settingsUI.DPSMeterPosX.Text);
-            settings.Overlay.DPSMeter.Position[1] = int.Parse(settingsUI.DPSMeterPosY.Text);
+            settings.Overlay.DPSMeter.Position[0] = settingsUI.DamageMeterPosition.X;
+            settings.Overlay.DPSMeter.Position[1] = settingsUI.DamageMeterPosition.Y;
             settings.Overlay.DPSMeter.PartyMembers[0].Color = settingsUI.FirstPlayerColor.Color;
             settings.Overlay.DPSMeter.PartyMembers[1].Color = settingsUI.SecondPlayerColor.Color;
             settings.Overlay.DPSMeter.PartyMembers[2].Color = settingsUI.ThirdPlayerColor.Color;

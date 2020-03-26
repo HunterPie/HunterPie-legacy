@@ -68,7 +68,11 @@
         }
 
         public void SetPlayerInfo(string name, byte weapon_id, int damage, float damagePercentage) {
-            this.Weapon = weapon_id;
+            if (string.IsNullOrEmpty(name) && weapon_id == 0) {
+                this.Weapon = Weapon;
+            } else {
+                this.Weapon = weapon_id;
+            }
             if (string.IsNullOrEmpty(name) && damage == 0) IsInParty = false;
             else { IsInParty = true; }
             this.DamagePercentage = damagePercentage;

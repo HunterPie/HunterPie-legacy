@@ -265,7 +265,7 @@ namespace HunterPie.Core {
                 MonsterId = MonsterID.LastOrDefault()?.Trim('\x00');
                 GetMonsterHp(MonsterId);
                 if (MonsterId.StartsWith("em") && !MonsterId.StartsWith("ems")) {
-                    if (MonsterId != this.ID && this.CurrentHP > 0) Debugger.Log($"Found new monster ID: {MonsterID[4]} #{MonsterNumber} @ 0x{MonsterAddress:X}");
+                    if (MonsterId != this.ID && this.CurrentHP > 0) Debugger.Log($"Found new monster ID: {Scanner.READ_STRING(NamePtr + 0x0c, 64).Replace("\x00", "")} #{MonsterNumber} @ 0x{MonsterAddress:X}");
                     this.ID = MonsterId;
                     return;
                 }

@@ -50,5 +50,19 @@ namespace HunterPie.GUIControls.Custom_Controls {
             Regex NumberRegex = new Regex("[^0-9.-]+");
             e.Handled = NumberRegex.IsMatch(e.Text);
         }
+
+        private void LostFocus(object sender, RoutedEventArgs e) {
+            TextBox s = sender as TextBox;
+            if (string.IsNullOrEmpty(s.Text)) {
+                s.Text = "0";
+            }
+        }
+
+        private void GotFocus(object sender, RoutedEventArgs e) {
+            TextBox s = sender as TextBox;
+            if (s.Text == "0") {
+                s.Text = null;
+            }
+        }
     }
 }

@@ -40,6 +40,7 @@ namespace HunterPie.GUI.Widgets.Abnormality_Widget {
             OrientationSwitcher.IsEnabled = UserSettings.PlayerConfig.Overlay.AbnormalitiesWidget.BarPresets[BuffTrayIndex].Orientation == "Horizontal";
             EnableTimeLeftSwitcher.IsEnabled = UserSettings.PlayerConfig.Overlay.AbnormalitiesWidget.BarPresets[BuffTrayIndex].ShowTimeLeftText;
             TimerTextFormatBox.SelectedIndex = UserSettings.PlayerConfig.Overlay.AbnormalitiesWidget.BarPresets[BuffTrayIndex].TimeLeftTextFormat;
+            BackgroundOpacitySlider.Value = UserSettings.PlayerConfig.Overlay.AbnormalitiesWidget.BarPresets[BuffTrayIndex].BackgroundOpacity;
         }
 
         private void PopulateHuntingHornBuffs() {
@@ -123,6 +124,8 @@ namespace HunterPie.GUI.Widgets.Abnormality_Widget {
             UserSettings.PlayerConfig.Overlay.AbnormalitiesWidget.BarPresets[BuffTrayIndex].Orientation = OrientationSwitcher.IsEnabled ? "Horizontal" : "Vertical";
             UserSettings.PlayerConfig.Overlay.AbnormalitiesWidget.BarPresets[BuffTrayIndex].ShowTimeLeftText = EnableTimeLeftSwitcher.IsEnabled;
             UserSettings.PlayerConfig.Overlay.AbnormalitiesWidget.BarPresets[BuffTrayIndex].TimeLeftTextFormat = (byte)TimerTextFormatBox.SelectedIndex;
+            UserSettings.PlayerConfig.Overlay.AbnormalitiesWidget.BarPresets[BuffTrayIndex].BackgroundOpacity = (float)BackgroundOpacitySlider.Value;
+            UserSettings.PlayerConfig.Overlay.AbnormalitiesWidget.BarPresets[BuffTrayIndex].BackgroundCircleOpacity = (float)CircleBGOpacitySlider.Value;
             UserSettings.SaveNewConfig();
         }
 

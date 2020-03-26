@@ -165,12 +165,12 @@
     <Compile Include="GUIControls\Settings.xaml.cs">
       <DependentUpon>Settings.xaml</DependentUpon>
     </Compile>
-    <Compile Include="GUIControls\settingsWindow.xaml.cs">
+    <None Include="GUIControls\settingsWindow.xaml.cs">
       <DependentUpon>settingsWindow.xaml</DependentUpon>
-    </Compile>
+    </None>
     <Compile Include="GUIControls\TrayIcon.cs" />
     <Compile Include="GUI\Helpers\Arc.cs" />
-    <Compile Include="GUI\Helpers\PercentageConverter.cs" />
+    <Compile Include="GUI\Helpers\StaticSecondsConverter.cs" />
     <Page Include="GUIControls\Changelog.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -322,10 +322,10 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="GUIControls\settingsWindow.xaml">
+    <None Include="GUIControls\settingsWindow.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
-    </Page>
+    </None>
     <Page Include="Resources\ConsoleResources.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>

@@ -144,6 +144,8 @@ namespace HunterPie.Core {
                 public byte OrderBy { get; set; } = 0;
                 public bool ShowTimeLeftText { get; set; } = true;
                 public byte TimeLeftTextFormat { get; set; } = 0;
+                public float BackgroundOpacity { get; set; } = 0.7f;
+                public float BackgroundCircleOpacity { get; set; } = 0.7f;
             }
         }
 

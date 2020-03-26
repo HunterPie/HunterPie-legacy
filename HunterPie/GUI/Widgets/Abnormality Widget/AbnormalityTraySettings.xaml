@@ -87,7 +87,7 @@
         </ResourceDictionary>
     </widget:WidgetSettings.Resources>
     <Grid>
-        <TabControl x:Name="AbnormalitySelectionContainer" Margin="0,178,0,55" BorderBrush="#FF0F0F0F" Background="Transparent">
+        <TabControl x:Name="AbnormalitySelectionContainer" Margin="398,44,0,55" BorderBrush="#FF0F0F0F" Background="Transparent">
             <TabItem Padding="6,2">
                 <TabItem.Header>
                     <Canvas Width="120" Margin="0,4,0,0" Cursor="Arrow">
@@ -135,12 +135,11 @@
         </TabControl>
 
         <!-- Options -->
-        <Custom:Switcher x:Name="OrientationSwitcher" Margin="18,55,0,0" VerticalAlignment="Top" Height="24" HorizontalAlignment="Left" Text="Allign abnormalities bar horizontally" />
-        <Custom:Switcher x:Name="EnableTimeLeftSwitcher" Margin="18,84,0,0" VerticalAlignment="Top" Height="24" HorizontalAlignment="Left" Text="Show abnormalities time left" />
-        <TextBlock HorizontalAlignment="Left" Margin="18,113,0,0" TextWrapping="Wrap" FontSize="15" Text="Timer text format:" Foreground="WhiteSmoke" VerticalAlignment="Top" Height="24" FontWeight="SemiBold"/>
-        <TextBlock HorizontalAlignment="Left" Margin="318,87,0,0" TextWrapping="Wrap" FontSize="12" Text="(Requires restart)" Foreground="WhiteSmoke" VerticalAlignment="Top" Height="24" FontWeight="Light"/>
-        <TextBlock HorizontalAlignment="Left" Margin="318,116,0,0" TextWrapping="Wrap" FontSize="12" Text="(Requires restart)" Foreground="WhiteSmoke" VerticalAlignment="Top" Height="24" FontWeight="Light"/>
-        <ComboBox  x:Name="TimerTextFormatBox" Cursor="Hand" HorizontalAlignment="Left" Margin="146,111,0,0" VerticalAlignment="Top" Width="167" Style="{StaticResource ComboBoxFlatStyle}" IsReadOnly="True" SelectedIndex="0" Foreground="#FFEEEEEE" FontSize="14">
+        <Custom:Switcher x:Name="OrientationSwitcher" Margin="14,55,0,0" VerticalAlignment="Top" Height="24" HorizontalAlignment="Left" Text="Allign abnormalities bar horizontally" MinWidth="330" />
+        <Custom:Switcher x:Name="EnableTimeLeftSwitcher" Margin="14,84,0,0" RequiresRestart="True" VerticalAlignment="Top" Height="24" HorizontalAlignment="Left" Text="Show abnormalities time left" MinWidth="330" />
+        <TextBlock HorizontalAlignment="Left" Margin="14,113,0,0" TextWrapping="Wrap" FontSize="15" Text="Timer text format:" Foreground="WhiteSmoke" VerticalAlignment="Top" Height="24" FontWeight="SemiBold" FontFamily="Segoe UI Light"/>
+        <TextBlock HorizontalAlignment="Left" Margin="300,116,0,0" TextWrapping="Wrap" FontSize="12" Text="(Requires restart)" Foreground="WhiteSmoke" VerticalAlignment="Top" Height="24" FontWeight="Light"/>
+        <ComboBox  x:Name="TimerTextFormatBox" Cursor="Hand" HorizontalAlignment="Left" Margin="131,113,0,0" VerticalAlignment="Top" Width="167" Style="{StaticResource ComboBoxFlatStyle}" IsReadOnly="True" SelectedIndex="0" Foreground="#FFEEEEEE" FontSize="14">
             <System:String>MM:SS (e.g: 5:30)</System:String>
             <System:String>MMmSSs (e.g: 5m30s)</System:String>
         </ComboBox>
@@ -154,6 +153,13 @@
         <Button Cursor="Hand" Content="Save" Margin="0,0,18,10" Height="34" VerticalAlignment="Bottom" HorizontalAlignment="Right" Width="112" Style="{StaticResource ButtonStyle}" BorderBrush="{x:Null}" Foreground="#FFE6E6E6" Background="#FFD62424" FontSize="14" Click="OnSaveButtonClick"/>
         <Button Cursor="Hand" Content="Select all" Margin="10,0,0,10" Height="34" VerticalAlignment="Bottom" HorizontalAlignment="Left" Width="112" Style="{StaticResource ButtonStyle}" BorderBrush="{x:Null}" Foreground="#FFE6E6E6" Background="#FFD62424" FontSize="14" Click="OnSelectAllButtonClick"/>
         <Button Cursor="Hand" Content="Unselect all" Margin="127,0,0,10" Height="34" VerticalAlignment="Bottom" HorizontalAlignment="Left" Width="112" Style="{StaticResource ButtonStyle}" BorderBrush="{x:Null}" Foreground="#FFE6E6E6" Background="#FFD62424" FontSize="14" Click="OnUnselectAllButtonClick"/>
-        
+        <TextBlock HorizontalAlignment="Left" Margin="14,141,0,0" TextWrapping="Wrap" FontSize="15" Text="Background opacity:" Foreground="WhiteSmoke" VerticalAlignment="Top" Height="24" FontWeight="SemiBold" FontFamily="Segoe UI Light"/>
+        <TextBlock HorizontalAlignment="Left" Margin="333,141,0,0" TextWrapping="Wrap" FontSize="15" Text="{Binding Path=Value, ElementName=BackgroundOpacitySlider}" Foreground="WhiteSmoke" VerticalAlignment="Top" Height="24" FontWeight="SemiBold" FontFamily="Segoe UI Light" TextAlignment="Center" Width="20"/>
+        <Slider x:Name="BackgroundOpacitySlider" Style="{StaticResource Horizontal_Slider}" HorizontalAlignment="Left" Margin="147,141,0,0" VerticalAlignment="Top" Height="24" Width="182" Maximum="1" LargeChange="0.1" TickFrequency="0.1" TickPlacement="TopLeft" Value="0.4"/>
+
+        <TextBlock HorizontalAlignment="Left" Visibility="Hidden" Margin="14,168,0,0" TextWrapping="Wrap" FontSize="15" Text="Circle opacity:" Foreground="WhiteSmoke" VerticalAlignment="Top" Height="24" FontWeight="SemiBold" FontFamily="Segoe UI Light"/>
+        <TextBlock HorizontalAlignment="Left"  Visibility="Hidden" Margin="333,170,0,0" TextWrapping="Wrap" FontSize="15" Text="{Binding Path=Value, ElementName=CircleBGOpacitySlider}" Foreground="WhiteSmoke" VerticalAlignment="Top" Height="24" FontWeight="SemiBold" FontFamily="Segoe UI Light" Width="20" TextAlignment="Center" />
+        <Slider x:Name="CircleBGOpacitySlider"  Visibility="Hidden" Style="{StaticResource Horizontal_Slider}" HorizontalAlignment="Left" Margin="147,168,0,0" VerticalAlignment="Top" Height="24" Width="182"  Maximum="1" LargeChange="0.1" TickFrequency="0.1" TickPlacement="TopLeft" Value="1"/>
+
     </Grid>
 </widget:WidgetSettings>

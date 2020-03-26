@@ -10,6 +10,6 @@
     <Grid>
         <TextBlock x:Name="Text" HorizontalAlignment="Center" TextWrapping="Wrap" Text="{Binding Path=DataContext.NameText}" VerticalAlignment="Top" Height="24" Width="119" Foreground="#FFF4F4F5" FontFamily="Roboto" Margin="0,2,104,0" FontSize="14" FontWeight="Light" TextAlignment="Right" Padding="0,4,4,0"/>
         <Ellipse x:Name="ColorCircle" Fill="White" HorizontalAlignment="Left" Height="24" VerticalAlignment="Top" Width="24" Margin="120,3,0,0"/>
-        <TextBlock x:Name="ColorHex" HorizontalAlignment="Center" Margin="147,9,3,0" TextWrapping="Wrap" Text="#FFFFFF" VerticalAlignment="Top" Height="14" Width="73" Foreground="#FFF4F4F5" FontFamily="Roboto"/>
+        <TextBlock x:Name="ColorHex" HorizontalAlignment="Center" Margin="147,6,3,0" TextWrapping="Wrap" Text="#FFFFFF" VerticalAlignment="Top" Height="17" Width="73" Foreground="#FFF4F4F5" FontFamily="Roboto"/>
     </Grid>
 </UserControl>

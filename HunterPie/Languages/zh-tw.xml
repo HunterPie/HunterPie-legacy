@@ -1,5 +1,5 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
-<!--for 1.0.3.71-->
+<!--1.0.3.80 translate by ThanatosDi-->
 <Strings lang="Traditional Chinese">
   <Monsters>
     <Monster ID="em001_00" Name="雌火龍"/>
@@ -156,6 +156,27 @@
     <Part ID="MONSTER_PART_REMOVABLE_LANTLER" Name="可破壞的左鹿角"/>
     <Part ID="MONSTER_PART_REMOVABLE_RANTLER" Name="可破壞的右鹿角"/>
   </Parts>
+  <Ailments>
+    <Ailment ID="STATUS_UNKNOWN" Name="未知"/>
+    <Ailment ID="STATUS_POISON" Name="毒"/>
+    <Ailment ID="STATUS_PARALYSIS" Name="麻痺"/>
+    <Ailment ID="STATUS_SLEEP" Name="睡眠"/>
+    <Ailment ID="STATUS_BLAST" Name="爆破"/>
+    <Ailment ID="STATUS_MOUNT" Name="騎乘"/>
+    <Ailment ID="STATUS_EXHAUSTION" Name="疲勞"/>
+    <Ailment ID="STATUS_STUN" Name="昏厥"/>
+    <Ailment ID="STATUS_TRANQUILIZE" Name="麻醉"/>
+    <Ailment ID="STATUS_FLASH" Name="暈眩"/>
+    <Ailment ID="STATUS_KNOCKDOWN" Name="擊倒"/>
+    <Ailment ID="STATUS_DUNGPOD" Name="異臭彈"/>
+    <Ailment ID="STATUS_SHOCKTRAP" Name="麻痹陷阱"/>
+    <Ailment ID="STATUS_PITFALLTRAP" Name="地洞陷阱"/>
+    <Ailment ID="STATUS_ELDERSEAL" Name="龍封力"/>
+    <Ailment ID="STATUS_SMOKING" Name="煙霧"/>
+    <Ailment ID="STATUS_FELYNETRAP" Name="貓貓陷阱"/>
+    <Ailment ID="STATUS_CLAW" Name="飛翔爪攻擊"/>
+    <Ailment ID="STATUS_VIOLATED" Name="積攢口水"/>
+  </Ailments>
   <Mantles>
     <Mantle ID="-1" Name="無衣裝"/>
     <Mantle ID="0" Name="隱身衣裝"/>
