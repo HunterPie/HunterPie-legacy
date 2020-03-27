@@ -1,0 +1,59 @@
++ Enhancements
+~ Refactoring/Code changes
+- Bugfixes
+
+UPDATE 1.0.3.82
+
++ Added MonsterHunterWorld.408899.map;
++ Added option to increase/decrease opacity of the abnormalities tray background;
+~ Changed the position of buttons in settings;
+- Fixed a typo in one of the rich presence settings tab;
+
+UPDATE 1.0.3.81
+
++ Changed a bunch of stuff in settings window;
+- Fixed some monster widget related bugs that would make HunterPie crash whenever a monster was killed;
+
+UPDATE 1.0.3.80
+
++ Added monster parts and ailments;
++ Added the following monster bar modes:
+    + Show all monsters;
+    + Show all monsters but highlight target;
+    + Show only target;
+    + Show all monsters but hide unactive monsters;
++ Added option to choose animations FPS, set this to a lower number if you're having FPS issues;
+~ Completely changed monsters health design;
+~ Changed monster crown icons;
+~ You can no longer open multiple instances of HunterPie at once;
+~ Some changes to the settings window;
+- Fixed adamant/might seeds icon showing as pills when a pill is consumed first;
+- Fixed abnormalities tray not moving when overlay position is changed;
+- Fixed DPS meter wrong tooltip;
+
+UPDATE 1.0.3.7
+
++ Added abnormalities time left text (can be disabled in the abnormalities tray settings window);
++ Added option to choose the abnormality time left text format;
++ Added hotkey to hide overlay (you can change the keys in HunterPie's settings);
+~ Changed monster HP to not show decimals;
+~ Discord now shows the targetted monster instead of the monster with lowest HP;
+- Fixed monster health bar not working for Kulve Taroth;
+- Fixed damage meter updating player damage separately, causing damage percentage overflow;
+- Minor fixes to the settings window;
+
+UPDATE 1.0.3.6
+
++ Added player abnormalities (buff/debuff) widget;
+    Read more about the new player buffs widget here: https://github.com/Haato3o/HunterPie/wiki/Abnormalities-Tray
++ Added option to start HunterPie minimized;
++ Added notification when user config is re-loaded;
++ Translation files will be automatically updated;
++ Added MonsterHunterWorld.406510.map;
++ Added Safi'jiiva and Stygian Zinogre;
+- Fixed game and other HunterPie components (like the exit confirmation popup) losing focus when mantle timer widgets are active;
+- Fixed mantle cooldown/timer not working in Arena;
+- Fixed damage meter showing the wrong weapon in Arena;
+- Fixed bug that would make HunterPie crash when changing the game settings and restarting the game;
+- Fixed monster HP despawning when there are two monsters with the same name and one of them is killed first;
+- Fixed widgets resetting position when saving abnormalities in the abnormality window;

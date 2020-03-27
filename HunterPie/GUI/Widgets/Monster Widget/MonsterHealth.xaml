@@ -16,7 +16,7 @@
         </ResourceDictionary>
     </UserControl.Resources>
     <DockPanel>
-        <Grid x:Name="MonsterHealthContainer" DockPanel.Dock="Bottom" Margin="-3,0,0,0">
+        <Grid x:Name="MonsterHealthContainer" DockPanel.Dock="Top" Margin="-3,0,0,0">
             <Grid.ColumnDefinitions>
                 <ColumnDefinition/>
             </Grid.ColumnDefinitions>
@@ -157,9 +157,9 @@
             </TextBlock>
         </Grid>
         <StackPanel x:Name="MonsterAdittionalInfoContainer" Orientation="Horizontal" DockPanel.Dock="Top" VerticalAlignment="Bottom">
-            <WrapPanel x:Name="MonsterPartsContainer" Orientation="Vertical" VerticalAlignment="Bottom">
+            <WrapPanel x:Name="MonsterPartsContainer" Orientation="Vertical">
             </WrapPanel>
-            <WrapPanel x:Name="MonsterAilmentsContainer" Orientation="Vertical" VerticalAlignment="Bottom">
+            <WrapPanel x:Name="MonsterAilmentsContainer" Orientation="Vertical">
             </WrapPanel>
         </StackPanel>
     </DockPanel>

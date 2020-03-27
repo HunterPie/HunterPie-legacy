@@ -14,6 +14,7 @@ namespace HunterPie.Core {
         private float _Stamina;
         private bool _IsTarget;
         private float _enrageTimer = 0;
+        private float _SizeMultiplier;
         
         private Int64 MonsterAddress;
         public int MonsterNumber { get; private set; }
@@ -50,7 +51,17 @@ namespace HunterPie.Core {
                 }
             }
         }
-        public float SizeMultiplier { get; private set; }
+        public float SizeMultiplier {
+            get { return _SizeMultiplier; }
+            set {
+                if (value <= 0) return;
+                if (value != _SizeMultiplier) {
+                    _SizeMultiplier = value;
+                    Debugger.Log($"{Name}: {value}");
+                    _onCrownChange();
+                }
+            }
+        }
         public string Crown {
             get { return MonsterData.GetMonsterCrownByMultiplier(ID, SizeMultiplier); }
         }
@@ -132,6 +143,7 @@ namespace HunterPie.Core {
         public event MonsterEnrageEvents OnEnrage;
         public event MonsterEnrageEvents OnUnenrage;
         public event MonsterEnrageEvents OnEnrageTimerUpdate;
+        public event MonsterEvents OnCrownChange;
         
 
         protected virtual void _onMonsterSpawn() {
@@ -153,6 +165,10 @@ namespace HunterPie.Core {
 
         protected virtual void _onTargetted() {
             OnTargetted?.Invoke(this, EventArgs.Empty);
+        }
+
+        protected virtual void _onCrownChange() {
+            OnCrownChange?.Invoke(this, EventArgs.Empty);
         }
 
         protected virtual void _onEnrage() {
@@ -197,6 +213,7 @@ namespace HunterPie.Core {
             while (Scanner.GameIsRunning) {
                 GetMonsterAddress();
                 GetMonsterIDAndName();
+                GetMonsterSizeModifier();
                 GetMonsterStamina();
                 GetMonsterAilments();
                 GetMonsterParts();
@@ -275,6 +292,7 @@ namespace HunterPie.Core {
         }
 
         private void GetMonsterSizeModifier() {
+            if (!IsAlive) return;
             float SizeModifier = Scanner.READ_FLOAT(MonsterAddress + 0x7730);
             if (SizeModifier <= 0 || SizeModifier >= 2) SizeModifier = 1;
             SizeMultiplier = Scanner.READ_FLOAT(MonsterAddress + 0x188) / SizeModifier;

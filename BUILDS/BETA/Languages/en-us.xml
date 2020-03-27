@@ -1,0 +1,387 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<Strings lang="English">
+  <Monsters>
+    <Monster ID="em001_00" Name="Rathian"/>
+    <Monster ID="em001_01" Name="Pink Rathian"/>
+    <Monster ID="em001_02" Name="Gold Rathian"/>
+    <Monster ID="em002_00" Name="Rathalos"/>
+    <Monster ID="em002_01" Name="Azure Rathalos"/>
+    <Monster ID="em002_02" Name="Silver Rathalos"/>
+    <Monster ID="em007_00" Name="Diablos"/>
+    <Monster ID="em007_01" Name="Black Diablos"/>
+    <Monster ID="em011_00" Name="Kirin"/>
+    <Monster ID="em018_00" Name="Yian Garuga"/>
+    <Monster ID="em018_05" Name="Scarred Yian Garuga"/>
+    <Monster ID="em023_00" Name="Rajang"/>
+    <Monster ID="em024_00" Name="Kushala Daora"/>
+    <Monster ID="em026_00" Name="Lunastra"/>
+    <Monster ID="em027_00" Name="Teostra"/>
+    <Monster ID="em032_00" Name="Tigrex"/>
+    <Monster ID="em032_01" Name="Brute Tigrex"/>
+    <Monster ID="em036_00" Name="Lavasioth"/>
+    <Monster ID="em037_00" Name="Nargacuga"/>
+    <Monster ID="em042_00" Name="Barioth"/>
+    <Monster ID="em043_00" Name="Deviljho"/>
+    <Monster ID="em043_05" Name="Savage Deviljho"/>
+    <Monster ID="em044_00" Name="Barroth"/>
+    <Monster ID="em045_00" Name="Uragaan"/>
+    <Monster ID="em057_00" Name="Zinogre"/>
+    <Monster ID="em057_01" Name="Stygian Zinogre"/>
+    <Monster ID="em063_00" Name="Brachydios"/>
+    <Monster ID="em080_00" Name="Glavenus"/>
+    <Monster ID="em080_01" Name="Acidic Glavenus"/>
+    <Monster ID="em100_00" Name="Anjanath"/>
+    <Monster ID="em100_01" Name="Fulgur Anjanath"/>
+    <Monster ID="em101_00" Name="Great Jagras"/>
+    <Monster ID="em102_00" Name="Pukei-Pukei"/>
+    <Monster ID="em102_01" Name="Coral Pukei-Pukei"/>
+    <Monster ID="em103_00" Name="Nergigante"/>
+    <Monster ID="em103_05" Name="Ruiner Nergigante"/>
+    <Monster ID="em104_00" Name="Safi'jiiva"/>
+    <Monster ID="em105_00" Name="Xeno'jiiva"/>
+    <Monster ID="em106_00" Name="Zorah Magdaros"/>
+    <Monster ID="em107_00" Name="Kulu-Ya-Ku"/>
+    <Monster ID="em108_00" Name="Jyuratodus"/>
+    <Monster ID="em109_00" Name="Tobi-Kadachi"/>
+    <Monster ID="em109_01" Name="Viper Tobi-Kadachi"/>
+    <Monster ID="em110_00" Name="Paolumu"/>
+    <Monster ID="em110_01" Name="Nightshade Paolumu"/>
+    <Monster ID="em111_00" Name="Legiana"/>
+    <Monster ID="em111_05" Name="Shrieking Legiana"/>
+    <Monster ID="em112_00" Name="Great Girros"/>
+    <Monster ID="em113_00" Name="Odogaron"/>
+    <Monster ID="em113_01" Name="Ebony Odogaron"/>
+    <Monster ID="em114_00" Name="Radobaan"/>
+    <Monster ID="em115_00" Name="Vaal Hazak"/>
+    <Monster ID="em115_05" Name="Blackveil Vaal Hazak"/>
+    <Monster ID="em116_00" Name="Dodogama"/>
+    <Monster ID="em117_00" Name="Kulve Taroth"/>
+    <Monster ID="em118_00" Name="Bazelgeuse"/>
+    <Monster ID="em118_05" Name="Seething Bazelgeuse"/>
+    <Monster ID="em120_00" Name="Tzitzi-Ya-Ku"/>
+    <Monster ID="em121_00" Name="Behemoth"/>
+    <Monster ID="em122_00" Name="Beotodus"/>
+    <Monster ID="em123_00" Name="Banbaro"/>
+    <Monster ID="em124_00" Name="Velkhana"/>
+    <Monster ID="em125_00" Name="Namielle"/>
+    <Monster ID="em126_00" Name="Shara Ishvalda"/>
+    <Monster ID="em127_00" Name="Leshen"/>
+    <Monster ID="em127_01" Name="Ancient Leshen"/>
+  </Monsters>
+  <Parts>
+    <Part ID="MONSTER_PART_UNKNOWN" Name="Unknown Part"/>
+    <Part ID="MONSTER_PART_HEAD" Name="Head"/>
+    <Part ID="MONSTER_PART_BODY" Name="Body"/>
+    <Part ID="MONSTER_PART_LWING" Name="Left Wing"/>
+    <Part ID="MONSTER_PART_RWING" Name="Right Wing"/>
+    <Part ID="MONSTER_PART_LLEG" Name="Left Leg"/>
+    <Part ID="MONSTER_PART_RLEG" Name="Right Leg"/>
+    <Part ID="MONSTER_PART_TAIL" Name="Tail"/>
+    <Part ID="MONSTER_PART_ARMS" Name="Arms"/>
+    <Part ID="MONSTER_PART_LEGS" Name="Legs"/>
+    <Part ID="MONSTER_PART_LARM" Name="Left Arm"/>
+    <Part ID="MONSTER_PART_RARM" Name="Right Arm"/>
+    <Part ID="MONSTER_PART_LLIMBS" Name="Left Limbs"/>
+    <Part ID="MONSTER_PART_RLIMBS" Name="Right Limbs"/>
+    <Part ID="MONSTER_PART_WINGS" Name="Wings"/>
+    <Part ID="MONSTER_PART_LIMBS" Name="Limbs"/>
+    <Part ID="MONSTER_PART_ABDOMEN" Name="Abdomen"/>
+    <Part ID="MONSTER_PART_CHEST" Name="Chest"/>
+    <Part ID="MONSTER_PART_REAR" Name="Rear"/>
+    <Part ID="MONSTER_PART_HEAD_MUD" Name="Muddy Head"/>
+    <Part ID="MONSTER_PART_BODY_MUD" Name="Muddy Body"/>
+    <Part ID="MONSTER_PART_ARMS_MUD" Name="Muddy Arms"/>
+    <Part ID="MONSTER_PART_LLEG_MUD" Name="Muddy Left Leg"/>
+    <Part ID="MONSTER_PART_RLEG_MUD" Name="Muddy Right Leg"/>
+    <Part ID="MONSTER_PART_TAIL_MUD" Name="Muddy Tail"/>
+    <Part ID="MONSTER_PART_JAW" Name="Jaw"/>
+    <Part ID="MONSTER_PART_BACK" Name="Back"/>
+    <Part ID="MONSTER_PART_FIN" Name="Fin"/>
+    <Part ID="MONSTER_PART_HORNS" Name="Horns"/>
+    <Part ID="MONSTER_PART_NECK" Name="Neck"/>
+    <Part ID="MONSTER_PART_LHAND" Name="Left Hand"/>
+    <Part ID="MONSTER_PART_RHAND" Name="Right Hand"/>
+    <Part ID="MONSTER_PART_LFOOT" Name="Left Foot"/>
+    <Part ID="MONSTER_PART_RFOOT" Name="Right Foot"/>
+    <Part ID="MONSTER_PART_SHELL" Name="Shell"/>
+    <Part ID="MONSTER_PART_EXHAUST_ORGAN_CENTRAL" Name="Central Exhaust Organ"/>
+    <Part ID="MONSTER_PART_EXHAUST_ORGAN_HEAD" Name="Head Exhaust Organ"/>
+    <Part ID="MONSTER_PART_EXHAUST_ORGAN_CRATER" Name="Crater Exhaust Organ"/>
+    <Part ID="MONSTER_PART_EXHAUST_ORGAN_REAR" Name="Rear Exhaust Organ"/>
+    <Part ID="MONSTER_PART_WEAK_LSHELL" Name="Left Weak Shell"/>
+    <Part ID="MONSTER_PART_WEAK_RSHELL" Name="Right Weak Shell"/>
+    <Part ID="MONSTER_PART_ROCK" Name="Rock"/>
+    <Part ID="MONSTER_PART_MANE" Name="Mane"/>
+    <Part ID="MONSTER_PART_BALLOON" Name="Balloon"/>
+    <Part ID="MONSTER_PART_LBONE" Name="Left Bone"/>
+    <Part ID="MONSTER_PART_RBONE" Name="Right Bone"/>
+    <Part ID="MONSTER_PART_HORNS_GOLD" Name="Golden Horns"/>
+    <Part ID="MONSTER_PART_MANE_GOLD" Name="Golden Mane"/>
+    <Part ID="MONSTER_PART_LCHEST_GOLD" Name="Golden Left Chest"/>
+    <Part ID="MONSTER_PART_RCHEST_GOLD" Name="Golden Right Chest"/>
+    <Part ID="MONSTER_PART_LARM_GOLD" Name="Golden Left Arm"/>
+    <Part ID="MONSTER_PART_RARM_GOLD" Name="Golden Right Arm"/>
+    <Part ID="MONSTER_PART_LLEG_GOLD" Name="Golden Left Leg"/>
+    <Part ID="MONSTER_PART_RLEG_GOLD" Name="Golden Right Leg"/>
+    <Part ID="MONSTER_PART_LTAIL_GOLD" Name="Golden Left Tail"/>
+    <Part ID="MONSTER_PART_RTAIL_GOLD" Name="Golden Right Tail"/>
+    <Part ID="MONSTER_PART_LHEAD" Name="Head Left"/>
+    <Part ID="MONSTER_PART_RHEAD" Name="Head Right"/>
+    <Part ID="MONSTER_PART_HEAD_SNOW" Name="Snowy Head"/>
+    <Part ID="MONSTER_PART_BODY_SNOW" Name="Snowy Body"/>
+    <Part ID="MONSTER_PART_TAIL_SNOW" Name="Snowy Tail"/>
+    <Part ID="MONSTER_PART_HEAD_ICE" Name="Icy Head"/>
+    <Part ID="MONSTER_PART_BODY_ICE" Name="Icy Body"/>
+    <Part ID="MONSTER_PART_WINGS_ICE" Name="Icy Wings"/>
+    <Part ID="MONSTER_PART_ARMS_ICE" Name="Icy Arms"/>
+    <Part ID="MONSTER_PART_LEGS_ICE" Name="Icy Legs"/>
+    <Part ID="MONSTER_PART_TAIL_ICE" Name="Icy Tail"/>
+    <Part ID="MONSTER_PART_LNECK_ROCK" Name="Rocky Neck Left"/>
+    <Part ID="MONSTER_PART_RNECK_ROCK" Name="Rocky Neck Right"/>
+    <Part ID="MONSTER_PART_HEAD_ROCK" Name="Rocky Head"/>
+    <Part ID="MONSTER_PART_TAIL_ROCK" Name="Rocky Tail"/>
+    <Part ID="MONSTER_PART_LWING_ROCK" Name="Rocky Left Wing"/>
+    <Part ID="MONSTER_PART_RWING_ROCK" Name="Rocky Right Wing"/>
+    <Part ID="MONSTER_PART_LARM_ROCK" Name="Rocky Left Arm"/>
+    <Part ID="MONSTER_PART_RARM_ROCK" Name="Rocky Right Arm"/>
+    <Part ID="MONSTER_PART_LEGS_ROCK" Name="Rocky Legs"/>
+    <Part ID="MONSTER_JAGRAS_SUMMONER" Name="Jagras Summoner"/>
+    <!-- Removable parts -->
+    <Part ID="MONSTER_PART_REMOVABLE_TAIL" Name="Removable Tail"/>
+    <Part ID="MONSTER_PART_REMOVABLE_HORNS" Name="Removable Horns"/>
+    <Part ID="MONSTER_PART_REMOVABLE_HEAD" Name="Breakable Head"/>
+    <Part ID="MONSTER_PART_REMOVABLE_BALLOON" Name="Removable Balloon"/>
+    <Part ID="MONSTER_PART_REMOVABLE_HORNS_2" Name="Removable Horns #2"/>
+    <Part ID="MONSTER_PART_REMOVABLE_LANTLER" Name="Removable Left Antler"/>
+    <Part ID="MONSTER_PART_REMOVABLE_RANTLER" Name="Removable Right Antler"/>
+  </Parts>
+  <Ailments>
+    <Ailment ID="STATUS_UNKNOWN" Name="Unknown"/>
+    <Ailment ID="STATUS_POISON" Name="Poison"/>
+    <Ailment ID="STATUS_PARALYSIS" Name="Paralysis"/>
+    <Ailment ID="STATUS_SLEEP" Name="Sleep"/>
+    <Ailment ID="STATUS_BLAST" Name="Blast"/>
+    <Ailment ID="STATUS_MOUNT" Name="Mount"/>
+    <Ailment ID="STATUS_EXHAUSTION" Name="Exhaustion"/>
+    <Ailment ID="STATUS_STUN" Name="Stun"/>
+    <Ailment ID="STATUS_TRANQUILIZE" Name="Tranquilize"/>
+    <Ailment ID="STATUS_FLASH" Name="Flash"/>
+    <Ailment ID="STATUS_KNOCKDOWN" Name="Knockdown"/>
+    <Ailment ID="STATUS_DUNGPOD" Name="Dung Pod"/>
+    <Ailment ID="STATUS_SHOCKTRAP" Name="Shock Trap"/>
+    <Ailment ID="STATUS_PITFALLTRAP" Name="Pitfall Trap"/>
+    <Ailment ID="STATUS_ELDERSEAL" Name="Elderseal"/>
+    <Ailment ID="STATUS_SMOKING" Name="Smoking"/>
+    <Ailment ID="STATUS_FELYNETRAP" Name="Felyne Trap"/>
+    <Ailment ID="STATUS_CLAW" Name="Claw"/>
+    <Ailment ID="STATUS_VIOLATED" Name="Hurt"/>
+  </Ailments>
+  <Mantles>
+    <Mantle ID="-1" Name="No Mantle"/>
+    <Mantle ID="0" Name="Ghillie Mantle"/>
+    <Mantle ID="1" Name="Temporal Mantle"/>
+    <Mantle ID="2" Name="Health Booster"/>
+    <Mantle ID="3" Name="Rocksteady Mantle"/>
+    <Mantle ID="4" Name="Challenger Mantle"/>
+    <Mantle ID="5" Name="Vitality Mantle"/>
+    <Mantle ID="6" Name="Fireproof Mantle"/>
+    <Mantle ID="7" Name="Waterproof Mantle"/>
+    <Mantle ID="8" Name="Iceproof Mantle"/>
+    <Mantle ID="9" Name="Thunderproof Mantle"/>
+    <Mantle ID="10" Name="Dragonproof Mantle"/>
+    <Mantle ID="11" Name="Cleanser Booster"/>
+    <Mantle ID="12" Name="Glider Mantle"/>
+    <Mantle ID="13" Name="Evasion Mantle"/>
+    <Mantle ID="14" Name="Impact Mantle"/>
+    <Mantle ID="15" Name="Apothecary Mantle"/>
+    <Mantle ID="16" Name="Immunity Mantle"/>
+    <Mantle ID="17" Name="Affinity Booster"/>
+    <Mantle ID="18" Name="Bandit Mantle"/>
+    <Mantle ID="19" Name="Assassin's Hood"/>
+  </Mantles>
+  <Fertilizers>
+    <Fertilizer ID="0" Name="Empty"/>
+    <Fertilizer ID="1" Name="Plant Harvest Up (S)"/>
+    <Fertilizer ID="2" Name="Plant Harvest Up (L)"/>
+    <Fertilizer ID="3" Name="Fungi Harvest Up (S)"/>
+    <Fertilizer ID="4" Name="Fungi Harvest Up (L)"/>
+    <Fertilizer ID="5" Name="Bug/Honey Harvest Up (S)"/>
+    <Fertilizer ID="6" Name="Bug/Honey Harvest Up (L)"/>
+    <Fertilizer ID="7" Name="Growth Up (S)"/>
+    <Fertilizer ID="8" Name="Growth Up (L)"/>
+  </Fertilizers>
+  <Stages>
+    <Stage ID="0" Name="Main Menu"/>
+    <Stage ID="101" Name="Ancient Forest"/>
+    <Stage ID="102" Name="Wildspire Waste"/>
+    <Stage ID="103" Name="Coral Highlands"/>
+    <Stage ID="104" Name="Rotten Vale"/>
+    <Stage ID="105" Name="Elder's Recess"/>
+    <Stage ID="106" Name="Great Ravine"/>
+    <Stage ID="107" Name="Great Ravine"/>
+    <Stage ID="108" Name="Hoarfrost Reach"/>
+    <Stage ID="109" Name="The Guiding Lands"/>
+    <Stage ID="201" Name="Special Arena"/>
+    <Stage ID="202" Name="Arena"/>
+    <Stage ID="301" Name="Astera"/>
+    <Stage ID="302" Name="Astera Gathering Hub"/>
+    <Stage ID="303" Name="Research Base"/>
+    <Stage ID="305" Name="Seliana"/>
+    <Stage ID="306" Name="Seliana Gathering Hub"/>
+    <Stage ID="401" Name="Introduction"/>
+    <Stage ID="403" Name="Everstream"/>
+    <Stage ID="405" Name="Confluence of Fates"/>
+    <Stage ID="406" Name="Ancient Forest"/>
+    <Stage ID="409" Name="Caverns of El Dorado"/>
+    <Stage ID="411" Name="Seliana Supply Cache"/>
+    <Stage ID="412" Name="Origin Isle"/>
+    <Stage ID="413" Name="Origin Isle"/>
+    <Stage ID="415" Name="Secluded Valley"/>
+    <Stage ID="501" Name="Living Quarters"/>
+    <Stage ID="502" Name="Private Quarters"/>
+    <Stage ID="503" Name="Private Suite"/>
+    <Stage ID="504" Name="Training Area"/>
+    <Stage ID="505" Name="Chamber of Five"/>
+    <Stage ID="506" Name="Seliana Room"/>
+  </Stages>
+  <Weapons>
+    <Weapon ID="0" Name="Greatsword"/>
+    <Weapon ID="1" Name="Sword and Shield"/>
+    <Weapon ID="2" Name="Dual Blades"/>
+    <Weapon ID="3" Name="Long Sword"/>
+    <Weapon ID="4" Name="Hammer"/>
+    <Weapon ID="5" Name="Hunting Horn"/>
+    <Weapon ID="6" Name="Lance"/>
+    <Weapon ID="7" Name="Gunlance"/>
+    <Weapon ID="8" Name="Switch Axe"/>
+    <Weapon ID="9" Name="Charge Blade"/>
+    <Weapon ID="10" Name="Insect Glaive"/>
+    <Weapon ID="11" Name="Bow"/>
+    <Weapon ID="12" Name="Heavy Bowgun"/>
+    <Weapon ID="13" Name="Light Bowgun"/>
+  </Weapons>
+  <Abnormalities>
+    <Abnormality ID="UNKNOWN_ABNORMALITY" Name="Unknown Buff (ID: {AbnormalityID})"/>
+    <Abnormality ID="HUNTINGHORN_000_00" Name="Self Improvement"/>
+    <Abnormality ID="HUNTINGHORN_999_00" Name="Attack Up + Deflect. Attack Prevention"/>
+    <Abnormality ID="HUNTINGHORN_001_00" Name="Attack Up (S)"/>
+    <Abnormality ID="HUNTINGHORN_001_01" Name="Attack Up (L)"/>
+    <Abnormality ID="HUNTINGHORN_002_00" Name="Attack Up (L)"/>
+    <Abnormality ID="HUNTINGHORN_002_01" Name="Attack Up (XL)"/>
+    <Abnormality ID="HUNTINGHORN_003_00" Name="Health Up (S)"/>
+    <Abnormality ID="HUNTINGHORN_004_00" Name="Health Up (L)"/>
+    <Abnormality ID="HUNTINGHORN_005_00" Name="Stamina Use Reduced (S)"/>
+    <Abnormality ID="HUNTINGHORN_006_00" Name="Stamina Use Reduced (L)"/>
+    <Abnormality ID="HUNTINGHORN_007_00" Name="Wind Pressure Negated"/>
+    <Abnormality ID="HUNTINGHORN_008_00" Name="All Wind Pressure Negated"/>
+    <Abnormality ID="HUNTINGHORN_009_00" Name="Defense Up (S)"/>
+    <Abnormality ID="HUNTINGHORN_009_01" Name="Defense Up (L)"/>
+    <Abnormality ID="HUNTINGHORN_010_00" Name="Defense Up (L)"/>
+    <Abnormality ID="HUNTINGHORN_010_01" Name="Defense Up (XL)"/>
+    <Abnormality ID="HUNTINGHORN_011_00" Name="Tool Use Drain Reduced (S)"/>
+    <Abnormality ID="HUNTINGHORN_012_00" Name="Tool Use Drain Reduced (L)"/>
+    <Abnormality ID="HUNTINGHORN_018_00" Name="Recovery Up (S)"/>
+    <Abnormality ID="HUNTINGHORN_019_00" Name="Recovery Up (L)"/>
+    <Abnormality ID="HUNTINGHORN_020_00" Name="Earplugs (S)"/>
+    <Abnormality ID="HUNTINGHORN_021_00" Name="Earplugs (L)"/>
+    <Abnormality ID="HUNTINGHORN_022_00" Name="Divine Protection"/>
+    <Abnormality ID="HUNTINGHORN_023_00" Name="Scoutfly Power Up"/>
+    <Abnormality ID="HUNTINGHORN_024_00" Name="Environ. Resistance"/>
+    <Abnormality ID="HUNTINGHORN_025_00" Name="Stun Negated"/>
+    <Abnormality ID="HUNTINGHORN_026_00" Name="Paralysis Negated"/>
+    <Abnormality ID="HUNTINGHORN_027_00" Name="Tremors Negated"/>
+    <Abnormality ID="HUNTINGHORN_028_00" Name="Muck/Water/Deep Snow Resistance"/>
+    <Abnormality ID="HUNTINGHORN_029_00" Name="Fire Res Up (S)"/>
+    <Abnormality ID="HUNTINGHORN_029_01" Name="Fire Res Up (L)"/>
+    <Abnormality ID="HUNTINGHORN_030_00" Name="Fire Res Up (L)"/>
+    <Abnormality ID="HUNTINGHORN_030_01" Name="Fire Res Up (XL)"/>
+    <Abnormality ID="HUNTINGHORN_031_00" Name="Water Res Up (S)"/>
+    <Abnormality ID="HUNTINGHORN_031_01" Name="Water Res Up (L)"/>
+    <Abnormality ID="HUNTINGHORN_032_00" Name="Water Res Up (L)"/>
+    <Abnormality ID="HUNTINGHORN_032_01" Name="Water Res Up (XL)"/>
+    <Abnormality ID="HUNTINGHORN_033_00" Name="Thunder Res Up (S)"/>
+    <Abnormality ID="HUNTINGHORN_033_01" Name="Thunder Res Up (L)"/>
+    <Abnormality ID="HUNTINGHORN_034_00" Name="Thunder Res Up (L)"/>
+    <Abnormality ID="HUNTINGHORN_034_01" Name="Thunder Res Up (XL)"/>
+    <Abnormality ID="HUNTINGHORN_035_00" Name="Ice Res Up (S)"/>
+    <Abnormality ID="HUNTINGHORN_035_01" Name="Ice Res Up (L)"/>
+    <Abnormality ID="HUNTINGHORN_036_00" Name="Ice Res Up (L)"/>
+    <Abnormality ID="HUNTINGHORN_036_01" Name="Ice Res Up (XL)"/>
+    <Abnormality ID="HUNTINGHORN_037_00" Name="Dragon Res Up (S)"/>
+    <Abnormality ID="HUNTINGHORN_037_01" Name="Dragon Res Up (L)"/>
+    <Abnormality ID="HUNTINGHORN_038_00" Name="Dragon Res Up (L)"/>
+    <Abnormality ID="HUNTINGHORN_038_01" Name="Dragon Res Up (XL)"/>
+    <Abnormality ID="HUNTINGHORN_039_00" Name="Elemental Attack Boost"/>
+    <Abnormality ID="HUNTINGHORN_040_00" Name="Blights Negated"/>
+    <Abnormality ID="HUNTINGHORN_041_00" Name="Unknown Buff"/>
+    <Abnormality ID="HUNTINGHORN_043_00" Name="Knockbacks Negated"/>
+    <Abnormality ID="HUNTINGHORN_045_00" Name="Blights Resistance Up"/>
+    <Abnormality ID="HUNTINGHORN_046_00" Name="Affinity Up (S)"/>
+    <Abnormality ID="HUNTINGHORN_047_00" Name="All Ailments Negated"/>
+    <Abnormality ID="HUNTINGHORN_048_00" Name="Wind res &amp; Earplugs"/>
+    <Abnormality ID="HUNTINGHORN_049_00" Name="Abnormal Status Attack Increase"/>
+    <Abnormality ID="HUNTINGHORN_053_00" Name="Max Stamina Up + Recovery"/>
+    <Abnormality ID="HUNTINGHORN_054_00" Name="Extended Health Recovery"/>
+    <Abnormality ID="HUNTINGHORN_055_00" Name="Speed Boost + Evade Window Up"/>
+    <Abnormality ID="HUNTINGHORN_056_00" Name="Elemental Effectiveness"/>
+    <Abnormality ID="HUNTINGHORN_943_00" Name="Elemental Effectiveness"/>
+    <Abnormality ID="PALICO_000_00" Name="Resuscitate"/>
+    <Abnormality ID="PALICO_001_00" Name="Attack Up (S)"/>
+    <Abnormality ID="PALICO_002_00" Name="Attack Up (L)"/>
+    <Abnormality ID="PALICO_003_00" Name="Defense Up (S)"/>
+    <Abnormality ID="PALICO_004_00" Name="Defense Up (L)"/>
+    <Abnormality ID="PALICO_005_00" Name="Affinity Up"/>
+    <Abnormality ID="PALICO_006_00" Name="Recovery Up"/>
+    <Abnormality ID="PALICO_007_00" Name="Health Up"/>
+    <Abnormality ID="PALICO_008_00" Name="Stamina Use Reduced"/>
+    <Abnormality ID="PALICO_009_00" Name="Unknown Buff"/>
+    <Abnormality ID="PALICO_010_00" Name="Divine Protection"/>
+    <Abnormality ID="PALICO_011_00" Name="Divine Protection"/>
+    <Abnormality ID="PALICO_012_00" Name="Negate Stun"/>
+    <Abnormality ID="PALICO_013_00" Name="Negate Paralysis"/>
+    <Abnormality ID="PALICO_014_00" Name="Tremor Resistance"/>
+    <Abnormality ID="PALICO_015_00" Name="Earplugs"/>
+    <Abnormality ID="PALICO_016_00" Name="Windproof"/>
+    <Abnormality ID="PALICO_017_00" Name="Environm. Resistance"/>
+    <Abnormality ID="PALICO_018_00" Name="Unknown"/>
+    <Abnormality ID="DEBUFF_000_00" Name="Poison"/>
+    <Abnormality ID="DEBUFF_001_00" Name="High Poison"/>
+    <Abnormality ID="DEBUFF_002_00" Name="Unknown"/>
+    <Abnormality ID="DEBUFF_003_00" Name="Unknown"/>
+    <Abnormality ID="DEBUFF_004_00" Name="Fireblight"/>
+    <Abnormality ID="DEBUFF_005_00" Name="Thunderblight"/>
+    <Abnormality ID="DEBUFF_006_00" Name="Waterblight"/>
+    <Abnormality ID="DEBUFF_007_00" Name="Iceblight"/>
+    <Abnormality ID="DEBUFF_008_00" Name="Dragonblight"/>
+    <Abnormality ID="DEBUFF_009_00" Name="Bleed"/>
+    <Abnormality ID="DEBUFF_010_00" Name="Bleed Recovery"/>
+    <Abnormality ID="DEBUFF_011_00" Name="Effluvia"/>
+    <Abnormality ID="DEBUFF_012_00" Name="Defense Down"/>
+    <Abnormality ID="DEBUFF_014_00" Name="Elemental Res. Down"/>
+    <Abnormality ID="DEBUFF_016_00" Name="No Items"/>
+    <Abnormality ID="DEBUFF_017_00" Name="Blastblight"/>
+    <Abnormality ID="DEBUFF_020_00" Name="Blastcourge"/>
+    <Abnormality ID="MISC_000_00" Name="Dash Juice"/>
+    <Abnormality ID="MISC_001_00" Name="Wiggly Litchy"/>
+    <Abnormality ID="MISC_002_00" Name="Astera Jerky"/>
+    <Abnormality ID="MISC_004_00" Name="Might Seed"/>
+    <Abnormality ID="MISC_004_01" Name="Might Pill"/>
+    <Abnormality ID="MISC_008_00" Name="Adamant Seed"/>
+    <Abnormality ID="MISC_008_01" Name="Adamant Pill"/>
+    <Abnormality ID="MISC_013_00" Name="Demon Powder"/>
+    <Abnormality ID="MISC_014_00" Name="Hardshell Powder"/>
+    <Abnormality ID="MISC_015_00" Name="Demondrug"/>
+    <Abnormality ID="MISC_015_01" Name="Demondrug"/>
+    <Abnormality ID="MISC_015_02" Name="Mega Demondrug"/>
+    <Abnormality ID="MISC_016_00" Name="Armorskin"/>
+    <Abnormality ID="MISC_016_01" Name="Armorskin"/>
+    <Abnormality ID="MISC_016_02" Name="Mega Armorskin"/>
+    <Abnormality ID="MISC_023_00" Name="Cool Drink"/>
+    <Abnormality ID="MISC_024_00" Name="Hot Drink"/>
+    <Abnormality ID="MISC_026_00" Name="HP Regen"/>
+    <Abnormality ID="MISC_027_00" Name="Cold Res"/>
+    <Abnormality ID="MISC_034_00" Name="Powercone"/>
+    <Abnormality ID="MISC_035_00" Name="Ice Res (L)"/>
+    <Abnormality ID="MISC_073_00" Name="Attack Up &amp; Def Up (S)"/>
+  </Abnormalities>
+</Strings>

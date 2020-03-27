@@ -56,8 +56,9 @@ namespace HunterPie.GUI.Widgets {
             Context.OnUnenrage += OnUnenrage;
             Context.OnEnrageTimerUpdate += OnEnrageTimerUpdate;
             Context.OnTargetted += OnMonsterTargetted;
+            Context.OnCrownChange += OnMonsterCrownChange;
         }
-        
+
         public void UnhookEvents() {
             Dispatcher.Invoke(new Action(() => {
                 foreach (Monster_Widget.Parts.MonsterPart Part in MonsterPartsContainer.Children) {
@@ -79,6 +80,7 @@ namespace HunterPie.GUI.Widgets {
             Context.OnUnenrage -= OnUnenrage;
             Context.OnEnrageTimerUpdate -= OnEnrageTimerUpdate;
             Context.OnTargetted -= OnMonsterTargetted;
+            Context.OnCrownChange -= OnMonsterCrownChange;
             Context = null;
         }
 
@@ -150,31 +152,14 @@ namespace HunterPie.GUI.Widgets {
             }
         }
 
-        #region Visibility timer
-        private void StartVisibilityTimer() {
-            if (UserSettings.PlayerConfig.Overlay.MonstersComponent.ShowMonsterBarMode != (byte)3) {
-                Dispatcher.BeginInvoke(System.Windows.Threading.DispatcherPriority.Render, new Action(() => {
-                    this.Visibility = Visibility.Visible;
-                }));
-                return;
-            }
-            if (VisibilityTimer == null) {
-                VisibilityTimer = new Timer(_ => HideUnactiveBar(), null, 10, 0);
-            } else {
-                VisibilityTimer.Change(15000, 0);
-            }
+
+        private void OnMonsterCrownChange(object source, EventArgs args) {
+            Dispatch(() => {
+                this.MonsterCrown.Source = Context.Crown == null ? null : (ImageSource)FindResource(Context.Crown);
+                this.MonsterCrown.Visibility = Context.Crown == null ? Visibility.Collapsed : Visibility.Visible;
+            });
         }
 
-        private void HideUnactiveBar() {
-            if (UserSettings.PlayerConfig.Overlay.MonstersComponent.ShowMonsterBarMode != (byte)3) {
-                return;
-            }
-            Dispatcher.BeginInvoke(System.Windows.Threading.DispatcherPriority.Render, new Action(() => {
-                this.Visibility = Visibility.Collapsed;
-            }));
-        }
-
-        #endregion
 
         private void OnMonsterTargetted(object source, EventArgs args) {
             Dispatch(() => {
@@ -249,6 +234,33 @@ namespace HunterPie.GUI.Widgets {
                 }
             });
         }
+        #endregion
+
+
+        #region Visibility timer
+        private void StartVisibilityTimer() {
+            if (UserSettings.PlayerConfig.Overlay.MonstersComponent.ShowMonsterBarMode != (byte)3) {
+                Dispatcher.BeginInvoke(System.Windows.Threading.DispatcherPriority.Render, new Action(() => {
+                    this.Visibility = Visibility.Visible;
+                }));
+                return;
+            }
+            if (VisibilityTimer == null) {
+                VisibilityTimer = new Timer(_ => HideUnactiveBar(), null, 10, 0);
+            } else {
+                VisibilityTimer.Change(15000, 0);
+            }
+        }
+
+        private void HideUnactiveBar() {
+            if (UserSettings.PlayerConfig.Overlay.MonstersComponent.ShowMonsterBarMode != (byte)3) {
+                return;
+            }
+            Dispatcher.BeginInvoke(System.Windows.Threading.DispatcherPriority.Render, new Action(() => {
+                this.Visibility = Visibility.Collapsed;
+            }));
+        }
+
         #endregion
 
         #region Monster bar modes
