@@ -537,8 +537,8 @@ namespace HunterPie {
                 createGameProcess.StartInfo.FileName = "steam://run/582010";
                 createGameProcess.StartInfo.Arguments = UserSettings.PlayerConfig.HunterPie.Launch.LaunchArgs;
                 createGameProcess.Start();
-            } catch {
-                Debugger.Error("Failed to launch Monster Hunter World. Common reasons for this error are:\n- Wrong file path;");
+            } catch(Exception err) {
+                Debugger.Error($"Failed to launch Monster Hunter World.\n{err.ToString()}");
             }
         }
 
