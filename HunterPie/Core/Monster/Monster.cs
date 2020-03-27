@@ -57,7 +57,6 @@ namespace HunterPie.Core {
                 if (value <= 0) return;
                 if (value != _SizeMultiplier) {
                     _SizeMultiplier = value;
-                    Debugger.Log($"{Name}: {value}");
                     _onCrownChange();
                 }
             }

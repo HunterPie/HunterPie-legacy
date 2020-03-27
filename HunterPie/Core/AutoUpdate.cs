@@ -7,7 +7,7 @@ using HunterPie.Logger;
 
 namespace HunterPie.Core {
     class AutoUpdate {
-        private string BranchURI = "https://bitbucket.org/Haato/hunterpie/raw/";
+        private string BranchURI = "https://raw.githubusercontent.com/Haato3o/HunterPie/master/BUILDS/";
         private string LocalUpdateHash;
         private string OnlineUpdateHash;
         public bool offlineMode;
