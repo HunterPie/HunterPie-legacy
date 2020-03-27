@@ -173,7 +173,7 @@
     <Ailment ID="STATUS_ELDERSEAL" Name="龍封"/>
     <Ailment ID="STATUS_SMOKING" Name="煙"/>
     <Ailment ID="STATUS_FELYNETRAP" Name="あしどめの虫かご"/>
-    <Ailment ID="STATUS_CLAW" Name="クラッチ"/>
+    <Ailment ID="STATUS_CLAW" Name="頭クロー怒り"/>
     <Ailment ID="STATUS_VIOLATED" Name="ダメージ"/>
   </Ailments>
   <Mantles>

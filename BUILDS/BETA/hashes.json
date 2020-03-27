@@ -1,8 +1,8 @@
 {
     "address/MonsterHunterWorld.408899.map": "e85ad8faea367b51b5bac004bf145fc227187da0af54ea11180ccfc3832c0047",
-    "changelog.log": "ddd92f2ac51977efabba47d1590c4e38f8295cdf19d9860a05a8e15589b96305",
+    "changelog.log": "97334e2267c237be3a8b4fdaac4853eb70ca2d30a75e125f610eee355cca6398",
     "DiscordRPC.dll": "19766e1e7b0bb1fffb16f734983fd086d072cd27acce1ef5d60082f91a0a3cc2",
-    "HunterPie.exe": "4c7dcab6dac9dc550a9830840cc5e998f5a8265426d63f8a9bf57b47b980b22d",
+    "HunterPie.exe": "bc77a313a0b788de377e94bb1db13beb7406d5a85fbe04b66b42e6b47eec1c46",
     "HunterPie.Resources\\Monsters\\Icons\\em001_00.png": "8821db22cfee14f2da665bb05c38f4bc601b5c040445f6d753f142811d3fc01f",
     "HunterPie.Resources\\Monsters\\Icons\\em001_01.png": "78a39f915a1a3b901591eba3976737d0c26f02ddefc2f264ccedc10e6b671e03",
     "HunterPie.Resources\\Monsters\\Icons\\em001_02.png": "f3149b20cd3e19c68ece4fb77321ca591f2d2580e440e43464e7d6280f10208c",
@@ -73,12 +73,13 @@
     "Languages/en-us.xml": "1682700e3e0164b84f5c8ddd6c2d5b787024e37762eb82656ef8495a595fa30c",
     "Languages/es-es.xml": "23a51e157ec2062d414189df9cb13ae77c6920ffb8948b3358e380231ce71feb",
     "Languages/fr-fr.xml": "58c64b948af5d3274075ae1782e7ddeebf966ae92e7ceed67c78de1e5decf72d",
-    "Languages/ita-it.xml": "9f2a1992861c605f94ac1a163b9f676c86a1a6837c1103bfccec86744decbc1c",
-    "Languages/jp-jp.xml": "62e44e48fcc9e3a710b5054870b171fd808f450471036d04fb155409c19801d4",
-    "Languages/ko-kr.xml": "6b7fec571d6e4ba6a9e470d86e1bb375c13d53d299fdefbea751a196733a0da9",
+    "Languages/ita-it.xml": "676cfe7002dccae0fd92910047ee2d6f7734a26bd1b5d0a76f7ac4d18b062c39",
+    "Languages/jp-jp.xml": "cfc9891d2988c67294c6580809d99b5a837a9d698177c5772766221808e57bbd",
+    "Languages/ko-kr.xml": "f471abee2256c04a2e81ca93c84b81b98fc499622bb88b1d241792a93dab5c34",
     "Languages/pt-br.xml": "45294ba5aa0c6d4b966efd7b471311fb350faa91702946fe91e65ae62567762f",
     "Languages/zh-cn.xml": "5a66b2929c3b851d5dec281381187c8c744df403fcf144d6e1f6abacfbb581f7",
     "Languages/zh-tw.xml": "8a2fbeabbe04febdb6b59dd3744a7a4322a271579b376a9293920005b0dd0eaf",
     "Newtonsoft.Json.dll": "3598cccad5b535fea6f93662107a4183bfd6167bf1d0f80260436093edc2e3af",
-    "version.txt": "a551ce7c979041137dd94c7d68832fc63e2328ae4ab061fd430ed9caa4c02ccf"
+    "Themes/RedMonsterBar.xaml": "8a1e816ecab602466338fc4cbcb4904492711691d23fde08ec064b1985a0a3aa",
+    "version.txt": "36ce6747d3607e3842a98a4d8e3ddfe54de3843287f44987fb3ed89b1847914b"
 }
