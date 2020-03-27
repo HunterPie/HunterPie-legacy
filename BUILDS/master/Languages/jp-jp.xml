@@ -161,7 +161,7 @@
     <Ailment ID="STATUS_PARALYSIS" Name="麻痺"/>
     <Ailment ID="STATUS_SLEEP" Name="睡眠"/>
     <Ailment ID="STATUS_BLAST" Name="爆破"/>
-    <Ailment ID="STATUS_MOUNT" Name="乗り蓄積"/>
+    <Ailment ID="STATUS_MOUNT" Name="乗り"/>
     <Ailment ID="STATUS_EXHAUSTION" Name="減気"/>
     <Ailment ID="STATUS_STUN" Name="気絶"/>
     <Ailment ID="STATUS_TRANQUILIZE" Name="捕獲用麻酔"/>
@@ -171,10 +171,10 @@
     <Ailment ID="STATUS_SHOCKTRAP" Name="シビレ罠"/>
     <Ailment ID="STATUS_PITFALLTRAP" Name="落とし穴"/>
     <Ailment ID="STATUS_ELDERSEAL" Name="龍封"/>
-    <Ailment ID="STATUS_SMOKING" Name="風の鎧？"/>
+    <Ailment ID="STATUS_SMOKING" Name="煙"/>
     <Ailment ID="STATUS_FELYNETRAP" Name="あしどめの虫かご"/>
-    <Ailment ID="STATUS_CLAW" Name="クラッチクロー"/>
-    <Ailment ID="STATUS_VIOLATED" Name="犯し"/>
+    <Ailment ID="STATUS_CLAW" Name="クラッチ"/>
+    <Ailment ID="STATUS_VIOLATED" Name="ダメージ"/>
   </Ailments>
   <Mantles>
     <Mantle ID="-1" Name="特殊装具なし" />
@@ -236,7 +236,7 @@
     <Stage ID="411" Name="兵器置き場" />
     <Stage ID="412" Name="淵源の孤島" />
     <Stage ID="413" Name="淵源の孤島" />
-    <Stage ID="415" Name="幽境の谷" />
+    <Stage ID="415" Name="幽境の谷"/>
     <Stage ID="501" Name="二等マイハウス" />
     <Stage ID="502" Name="一等マイハウス" />
     <Stage ID="503" Name="特等マイハウス" />
@@ -266,7 +266,7 @@
     <Abnormality ID="HUNTINGHORN_999_00" Name="はじかれ無効　＆攻撃力ＵＰ" />
     <Abnormality ID="HUNTINGHORN_001_00" Name="攻撃力ＵＰ【小】" />
     <Abnormality ID="HUNTINGHORN_001_01" Name="攻撃力ＵＰ【大】" />
-    <Abnormality ID="HUNTINGHORN_002_00" Name="攻撃力ＵＰ【大】"></Abnormality>
+    <Abnormality ID="HUNTINGHORN_002_00" Name="攻撃力ＵＰ【大】"/>
     <Abnormality ID="HUNTINGHORN_002_01" Name="攻撃力ＵＰ【特大】" />
     <Abnormality ID="HUNTINGHORN_003_00" Name="体力ＵＰ【小】" />
     <Abnormality ID="HUNTINGHORN_004_00" Name="体力ＵＰ【大】" />
@@ -292,7 +292,7 @@
     <Abnormality ID="HUNTINGHORN_027_00" Name="振動無効" />
     <Abnormality ID="HUNTINGHORN_028_00" Name="泥軽＆減水場・深雪適応" />
     <Abnormality ID="HUNTINGHORN_029_00" Name="火属性防御強化ＵＰ【小】" />
-    <Abnormality ID="HUNTINGHORN_029_01" Name="火属性防御強化ＵＰ【大】"></Abnormality>
+    <Abnormality ID="HUNTINGHORN_029_01" Name="火属性防御強化ＵＰ【大】"/>
     <Abnormality ID="HUNTINGHORN_030_00" Name="火属性防御強化ＵＰ【大】" />
     <Abnormality ID="HUNTINGHORN_030_01" Name="火属性防御強化ＵＰ【特大】" />
     <Abnormality ID="HUNTINGHORN_031_00" Name="水属性防御強化ＵＰ　【小】" />
@@ -300,7 +300,7 @@
     <Abnormality ID="HUNTINGHORN_032_00" Name="水属性防御強化ＵＰ【大】" />
     <Abnormality ID="HUNTINGHORN_032_01" Name="水属性防御強化ＵＰ【特大】" />
     <Abnormality ID="HUNTINGHORN_033_00" Name="雷属性防御強化ＵＰ【小】" />
-    <Abnormality ID="HUNTINGHORN_033_01" Name="雷属性防御強化ＵＰ【大】"></Abnormality>
+    <Abnormality ID="HUNTINGHORN_033_01" Name="雷属性防御強化ＵＰ【大】"/>
     <Abnormality ID="HUNTINGHORN_034_00" Name="雷属性防御強化ＵＰ【大】" />
     <Abnormality ID="HUNTINGHORN_034_01" Name="雷属性防御強化ＵＰ【特大】" />
     <Abnormality ID="HUNTINGHORN_035_00" Name="氷属性防御強化ＵＰ【小】" />
@@ -324,6 +324,7 @@
     <Abnormality ID="HUNTINGHORN_054_00" Name="体力継続回復" />
     <Abnormality ID="HUNTINGHORN_055_00" Name="自分強化【速】＆回避性能ＵＰ" />
     <Abnormality ID="HUNTINGHORN_056_00" Name="属性系効果ＵＰ" />
+    <Abnormality ID="HUNTINGHORN_943_00" Name="属性系効果ＵＰ"/>
     <Abnormality ID="PALICO_000_00" Name="復活" />
     <Abnormality ID="PALICO_001_00" Name="攻撃力ＵＰ【小】" />
     <Abnormality ID="PALICO_002_00" Name="攻撃力ＵＰ【大】" />
