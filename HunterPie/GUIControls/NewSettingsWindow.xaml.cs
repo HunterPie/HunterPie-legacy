@@ -23,6 +23,7 @@ namespace HunterPie.GUIControls {
             KeyboardInputHook.OnKeyboardKeyPress += KeyboardInputHook_OnKeyboardKeyPress;
             PopulateBuffTrays();
             PopulateLanguageBox();
+            PopulateThemesBox();
         }
 
         public void UnhookEvents() {
@@ -37,6 +38,11 @@ namespace HunterPie.GUIControls {
             }
         }
 
+        private void PopulateThemesBox() {
+            foreach (string filename in Directory.GetFiles("Themes")) {
+                ThemeFilesCombobox.Items.Add(Path.GetFileName(filename));
+            }
+        }
 
         private void selectPathBttn_Click(object sender, System.Windows.RoutedEventArgs e) {
             using (var filePicker = new System.Windows.Forms.OpenFileDialog()) {

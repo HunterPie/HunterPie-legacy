@@ -364,16 +364,13 @@ namespace HunterPie.GUI.Widgets {
         }
 
         public void ChangeDocking(byte newDock) {
-            switch(newDock) {
+            
+            switch (newDock) {
                 case 0: // Monster HP stays on top
                     DockPanel.SetDock(MonsterHealthContainer, Dock.Top);
-                    MonsterAilmentsContainer.VerticalAlignment = VerticalAlignment.Top;
-                    MonsterPartsContainer.VerticalAlignment = VerticalAlignment.Top;
                     break;
                 case 1:
                     DockPanel.SetDock(MonsterHealthContainer, Dock.Bottom);
-                    MonsterAilmentsContainer.VerticalAlignment = VerticalAlignment.Bottom;
-                    MonsterPartsContainer.VerticalAlignment = VerticalAlignment.Bottom;
                     break;
             }
         }

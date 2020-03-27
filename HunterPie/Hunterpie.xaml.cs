@@ -29,7 +29,7 @@ namespace HunterPie {
         bool OfflineMode = false;
 
         // HunterPie version
-        const string HUNTERPIE_VERSION = "1.0.3.82";
+        const string HUNTERPIE_VERSION = "1.0.3.83";
 
         // Helpers
         IntPtr _windowHandle;
@@ -265,8 +265,12 @@ namespace HunterPie {
         #endregion
 
         private void LoadCustomTheme() {
+            if (UserSettings.PlayerConfig.HunterPie.Theme == null || UserSettings.PlayerConfig.HunterPie.Theme == "Default") return;
             if (!Directory.Exists(@"Themes")) { Directory.CreateDirectory(@"Themes"); }
-            if (!File.Exists($@"Themes/{UserSettings.PlayerConfig.HunterPie.Theme}")) return;
+            if (!File.Exists($@"Themes/{UserSettings.PlayerConfig.HunterPie.Theme}")) {
+                Debugger.Error($"Failed to find theme: {UserSettings.PlayerConfig.HunterPie.Theme}");
+                return;
+            }
             try {
                 using (FileStream stream = new FileStream($@"Themes/{UserSettings.PlayerConfig.HunterPie.Theme}", FileMode.Open)) {
                     XamlReader reader = new XamlReader();
@@ -529,8 +533,8 @@ namespace HunterPie {
 
         private void LaunchGame() {
             try {
-                System.Diagnostics.Process createGameProcess = new System.Diagnostics.Process();
-                createGameProcess.StartInfo.FileName = UserSettings.PlayerConfig.HunterPie.Launch.GamePath;
+                Process createGameProcess = new Process();
+                createGameProcess.StartInfo.FileName = "steam://run/582010";
                 createGameProcess.StartInfo.Arguments = UserSettings.PlayerConfig.HunterPie.Launch.LaunchArgs;
                 createGameProcess.Start();
             } catch {

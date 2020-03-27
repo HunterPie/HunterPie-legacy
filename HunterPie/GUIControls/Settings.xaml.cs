@@ -39,6 +39,7 @@ namespace HunterPie.GUIControls {
             // HunterPie
             settingsUI.switchEnableAutoUpdate.IsEnabled = settings.HunterPie.Update.Enabled;
             settingsUI.branchesCombobox.SelectedItem = _Instance.SettingsBox.branchesCombobox.Items.Contains(settings.HunterPie.Update.Branch) ? settings.HunterPie.Update.Branch : "master";
+            settingsUI.ThemeFilesCombobox.SelectedItem = settings.HunterPie.Theme;
             settingsUI.selectPathBttn.Content = settings.HunterPie.Launch.GamePath == "" ? "Select path" : settings.HunterPie.Launch.GamePath.Length > 15 ? "..." + settings.HunterPie.Launch.GamePath.Substring((settings.HunterPie.Launch.GamePath.Length / 2) - 10) : settings.HunterPie.Launch.GamePath;
             settingsUI.argsTextBox.Text = settings.HunterPie.Launch.LaunchArgs == "" ? "No arguments" : settings.HunterPie.Launch.LaunchArgs;
             settingsUI.switchEnableCloseWhenExit.IsEnabled = settings.HunterPie.Options.CloseWhenGameCloses;
@@ -120,6 +121,7 @@ namespace HunterPie.GUIControls {
             // HunterPie
             settings.HunterPie.Update.Enabled = settingsUI.switchEnableAutoUpdate.IsEnabled;
             settings.HunterPie.Update.Branch = (string)settingsUI.branchesCombobox.SelectedItem;
+            settings.HunterPie.Theme = (string)settingsUI.ThemeFilesCombobox.SelectedItem;
             settings.HunterPie.Launch.GamePath = settingsUI.fullGamePath;
             settings.HunterPie.Launch.LaunchArgs = settingsUI.fullLaunchArgs == "No arguments" ? "" : settingsUI.fullLaunchArgs;
             settings.HunterPie.Options.CloseWhenGameCloses = settingsUI.switchEnableCloseWhenExit.IsEnabled;

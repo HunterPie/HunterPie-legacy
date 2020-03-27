@@ -4,8 +4,8 @@
     <!-- Overlay -->
     <!-- Monster Widget (Main bar) -->
     <LinearGradientBrush x:Key="OVERLAY_MONSTER_HEALTH_BAR_COLOR" EndPoint="1,0" StartPoint="0,0">
-        <GradientStop Color="#990c03" Offset="1"/>
-        <GradientStop Color="#801009"/>
+        <GradientStop Color="#FFB40B00" Offset="1"/>
+        <GradientStop Color="#FF9E0900"/>
     </LinearGradientBrush>
 
     <Style x:Key="OVERLAY_MONSTER_BAR_TEXT_STYLE" TargetType="TextBlock">
@@ -30,19 +30,19 @@
     </Style>
     
     <LinearGradientBrush x:Key="OVERLAY_MONSTER_AILMENT_BAR_COLOR" EndPoint="1,0" StartPoint="0,0">
-        <GradientStop Color="#FF4FBACB" Offset="1"/>
-        <GradientStop Color="#FF38849B"/>
+        <GradientStop Color="#FF2BD8B1" Offset="1"/>
+        <GradientStop Color="#FF45B69C"/>
     </LinearGradientBrush>
     <Style x:Key="OVERLAY_MONSTER_AILMENT_COUNTER_BACKGROUND_STYLE" TargetType="Rectangle">
-        <Setter Property="Fill" Value="#FF38849B"/>
+        <Setter Property="Fill" Value="#FF45B69C"/>
         <Setter Property="Stroke" Value="#CC0E0E0E"/>
-        <Setter Property="StrokeThickness" Value="0.5"/>
+        <Setter Property="StrokeThickness" Value="0"/>
     </Style>
 
 
     <LinearGradientBrush x:Key="OVERLAY_MONSTER_PART_BAR_COLOR" EndPoint="1,0" StartPoint="0,0">
-        <GradientStop Color="#990c03" Offset="1"/>
-        <GradientStop Color="#801009"/>
+        <GradientStop Color="#FFB40B00" Offset="1"/>
+        <GradientStop Color="#FF9E0900"/>
     </LinearGradientBrush>
 
     <Style x:Key="OVERLAY_MONSTER_PART_NAME_TEXT_STYLE" TargetType="TextBlock">
@@ -59,9 +59,9 @@
     </Style>
 
     <Style x:Key="OVERLAY_MONSTER_PART_COUNTER_BACKGROUND_STYLE" TargetType="Rectangle">
-        <Setter Property="Fill" Value="#801009"/>
+        <Setter Property="Fill" Value="#FF9E0900"/>
         <Setter Property="Stroke" Value="#CC0E0E0E"/>
-        <Setter Property="StrokeThickness" Value="0.5"/>
+        <Setter Property="StrokeThickness" Value="0"/>
     </Style>
 
     <Style x:Key="OVERLAY_MONSTER_PART_COUNTER_TEXT_STYLE" TargetType="TextBlock">
@@ -78,179 +78,6 @@
         <Setter Property="Effect">
             <Setter.Value>
                 <DropShadowEffect BlurRadius="0" ShadowDepth="1" Color="#FF2E2E2E"/>
-            </Setter.Value>
-        </Setter>
-    </Style>
-
-    <!-- Console -->
-    <SolidColorBrush x:Key="CONSOLE_BACKGROUND">#F41F1F1F</SolidColorBrush>
-    <SolidColorBrush x:Key="CONSOLE_HEADER_BACKGROUND">#4C0E0E0E</SolidColorBrush>
-    <SolidColorBrush x:Key="CONSOLE_SIDEBAR_BACKGROUND">#CC151515</SolidColorBrush>
-    <SolidColorBrush x:Key="CONSOLE_WINDOWBAR_BACKGROUND">#FF131313</SolidColorBrush>
-
-    <SolidColorBrush x:Key="BUTTON_LAUNCHGAME_BACKGROUND">#FFAF0000</SolidColorBrush>
-    <SolidColorBrush x:Key="BUTTON_LAUNCHGAME_FOREGROUND">#FFDEDEDE</SolidColorBrush>
-    <SolidColorBrush x:Key="BUTTON_TOPBUTTON_FOREGROUND">#FFD8D8D8</SolidColorBrush>
-    <SolidColorBrush x:Key="BUTTON_TOPBUTTON_BACKGROUND">#00000000</SolidColorBrush>
-    <SolidColorBrush x:Key="BUTTON_CLOSEWINDOW_BACKGROUND">#FFB02B2B</SolidColorBrush>
-    <SolidColorBrush x:Key="BUTTON_COMMONBUTTON_FOREGROUND">#FFF3F3F3</SolidColorBrush>
-    <SolidColorBrush x:Key="BUTTON_COMMONBUTTON_BACKGROUND">#E51B1B1B</SolidColorBrush>
-    <SolidColorBrush x:Key="BUTTON_COMMONBUTTON_BORDER">#FFAF0000</SolidColorBrush>
-    <SolidColorBrush x:Key="BUTTON_ICON_FOREGROUND">#FFDEDEDE</SolidColorBrush>
-    <SolidColorBrush x:Key="CONSOLE_VERSIONTEXT_FOREGROUND">#FFDEDEDE</SolidColorBrush>
-
-    <LinearGradientBrush x:Key="CONSOLE_LOGO_FOREGROUND" EndPoint="0.5,1" StartPoint="0.5,0">
-        <GradientStop Color="White" Offset="0"/>
-        <GradientStop Color="#FFE0E0E0" Offset="1"/>
-    </LinearGradientBrush>
-
-    <!-- Settings window -->
-    <Color x:Key="TOGGLABLE_BUTTON_BACKGROUND_ON">#FFAF0000</Color>
-    <Color x:Key="TOGGLABLE_BUTTON_BACKGROUND_OFF">#FF0F0F0F</Color>
-
-    <!-- Debugger colors -->
-    <SolidColorBrush x:Key="DEBUGGER_ERROR">#FF6459</SolidColorBrush>
-    <SolidColorBrush x:Key="DEBUGGER_LOG">#FFFFFF</SolidColorBrush>
-    <SolidColorBrush x:Key="DEBUGGER_DISCORD">#52A0FF</SolidColorBrush>
-    <SolidColorBrush x:Key="DEBUGGER_WARN">#FFC13D</SolidColorBrush>
-
-    <!-- Styles -->
-    <Style TargetType="{x:Type ToolTip}">
-        <Setter Property="Foreground" Value="WhiteSmoke"/>
-        <Setter Property="Background" Value="#CC080808"/>
-        <Setter Property="BorderBrush" Value="Black"/>
-        <Setter Property="MaxWidth" Value="300"/>
-        <Style.Resources>
-            <Style TargetType="ContentPresenter">
-                <Style.Resources>
-                    <Style TargetType="TextBlock">
-                        <Setter Property="TextWrapping" Value="Wrap"/>
-                    </Style>
-                </Style.Resources>
-            </Style>
-        </Style.Resources>
-    </Style>
-    <Style x:Key="FocusVisual">
-        <Setter Property="Control.Template">
-            <Setter.Value>
-                <ControlTemplate>
-                    <Rectangle Margin="2" SnapsToDevicePixels="true" Stroke="{DynamicResource {x:Static SystemColors.ControlTextBrushKey}}" StrokeThickness="1" StrokeDashArray="1 2"/>
-                </ControlTemplate>
-            </Setter.Value>
-        </Setter>
-    </Style>
-    <!-- Flat ComboBox -->
-    <!-- Credits to https://gist.github.com/hansmaad/9187633 -->
-    <SolidColorBrush x:Key="ComboBoxNormalBorderBrush" Color="#FF151515" />
-    <SolidColorBrush x:Key="ComboBoxNormalBackgroundBrush" Color="#FF252525" />
-    <SolidColorBrush x:Key="ComboBoxDisabledForegroundBrush" Color="#FFE8E8E8" />
-    <SolidColorBrush x:Key="ComboBoxDisabledBackgroundBrush" Color="#FF252525" />
-    <SolidColorBrush x:Key="ComboBoxDisabledBorderBrush" Color="#FF151515" />
-
-    <ControlTemplate TargetType="ToggleButton" x:Key="ComboBoxToggleButtonTemplate">
-        <Grid>
-            <Grid.ColumnDefinitions>
-                <ColumnDefinition />
-                <ColumnDefinition Width="20" />
-            </Grid.ColumnDefinitions>
-            <Border Grid.ColumnSpan="2" Name="Border"
-              BorderBrush="{StaticResource ComboBoxNormalBorderBrush}" 
-              CornerRadius="0" BorderThickness="1, 1, 1, 1" 
-              Background="{StaticResource ComboBoxNormalBackgroundBrush}" />
-            <Border Grid.Column="1" Margin="1, 1, 1, 1" BorderBrush="#444" Name="ButtonBorder"
-              CornerRadius="0" BorderThickness="0, 0, 0, 0" 
-              Background="{StaticResource ComboBoxNormalBackgroundBrush}" />
-
-            <Path Name="Arrow" Grid.Column="1" 
-            Data="M0,0 L0,2 L4,6 L8,2 L8,0 L4,4 z"
-            HorizontalAlignment="Center" Fill="LightGray"
-            VerticalAlignment="Center" />
-        </Grid>
-        <ControlTemplate.Triggers>
-            <Trigger Property="UIElement.IsMouseOver" Value="True">
-                <Setter Property="Panel.Background" TargetName="ButtonBorder" Value="#FF151515"/>
-            </Trigger>
-            <Trigger Property="ToggleButton.IsChecked" Value="True">
-                <Setter Property="Panel.Background" TargetName="ButtonBorder" Value="#FF151515"/>
-                <Setter Property="Shape.Fill" TargetName="Arrow" Value="#FF8D979E"/>
-            </Trigger>
-            <Trigger Property="UIElement.IsEnabled" Value="False">
-                <Setter Property="Panel.Background" TargetName="Border" Value="{StaticResource ComboBoxDisabledBackgroundBrush}"/>
-                <Setter Property="Panel.Background" TargetName="ButtonBorder" Value="{StaticResource ComboBoxDisabledBackgroundBrush}"/>
-                <Setter Property="Border.BorderBrush" TargetName="ButtonBorder" Value="{StaticResource ComboBoxDisabledBorderBrush}"/>
-                <Setter Property="TextElement.Foreground" Value="{StaticResource ComboBoxDisabledForegroundBrush}"/>
-                <Setter Property="Shape.Fill" TargetName="Arrow" Value="#999"/>
-            </Trigger>
-        </ControlTemplate.Triggers>
-    </ControlTemplate>
-
-    <Style x:Key="ComboBoxFlatStyle"  TargetType="{x:Type ComboBox}">
-        <Setter Property="UIElement.SnapsToDevicePixels" Value="True"/>
-        <Setter Property="FrameworkElement.OverridesDefaultStyle" Value="True"/>
-        <Setter Property="ScrollViewer.HorizontalScrollBarVisibility" Value="Auto"/>
-        <Setter Property="ScrollViewer.VerticalScrollBarVisibility" Value="Auto"/>
-        <Setter Property="ScrollViewer.CanContentScroll" Value="True"/>
-        <Setter Property="TextElement.Foreground" Value="Black"/>
-        <Setter Property="FrameworkElement.FocusVisualStyle" Value="{x:Null}"/>
-        <Setter Property="Control.Template">
-            <Setter.Value>
-                <ControlTemplate TargetType="ComboBox">
-                    <Grid>
-                        <ToggleButton Name="ToggleButton" Grid.Column="2"
-                ClickMode="Press" Focusable="False"
-                IsChecked="{Binding Path=IsDropDownOpen, RelativeSource={RelativeSource TemplatedParent}, Mode=TwoWay}"
-                Template="{StaticResource ComboBoxToggleButtonTemplate}"/>
-
-                        <ContentPresenter Name="ContentSite" Margin="5, 3, 23, 3" IsHitTestVisible="False"
-                              HorizontalAlignment="Left" VerticalAlignment="Center"                              
-                              Content="{TemplateBinding ComboBox.SelectionBoxItem}" 
-                              ContentTemplate="{TemplateBinding ComboBox.SelectionBoxItemTemplate}"
-                              ContentTemplateSelector="{TemplateBinding ItemTemplateSelector}"/>
-                        <TextBox Name="PART_EditableTextBox" Margin="3, 3, 23, 3"                     
-                     IsReadOnly="{TemplateBinding IsReadOnly}"
-                     Visibility="Hidden" Background="Transparent"
-                     HorizontalAlignment="Left" VerticalAlignment="Center"
-                     Focusable="True" >
-                            <TextBox.Template>
-                                <ControlTemplate TargetType="TextBox" >
-                                    <Border Name="PART_ContentHost" Focusable="False" />
-                                </ControlTemplate>
-                            </TextBox.Template>
-                        </TextBox>
-                        <!-- Popup showing items -->
-                        <Popup Name="Popup" Placement="Bottom"
-                   Focusable="False" AllowsTransparency="True"
-                   IsOpen="{TemplateBinding ComboBox.IsDropDownOpen}"
-                   PopupAnimation="Slide">
-                            <Grid Name="DropDown" SnapsToDevicePixels="True"
-                    MinWidth="{TemplateBinding FrameworkElement.ActualWidth}"
-                    MaxHeight="{TemplateBinding ComboBox.MaxDropDownHeight}">
-                                <Border Name="DropDownBorder" Background="#FF2E2E2E" Margin="0, 1, 0, 0"
-                        CornerRadius="0" BorderThickness="1,1,1,1" 
-                        BorderBrush="#FF151515"/>
-                                <ScrollViewer Margin="4" SnapsToDevicePixels="True">
-                                    <ItemsPresenter KeyboardNavigation.DirectionalNavigation="Contained" />
-                                </ScrollViewer>
-                            </Grid>
-                        </Popup>
-                    </Grid>
-                    <ControlTemplate.Triggers>
-                        <Trigger Property="ItemsControl.HasItems" Value="False">
-                            <Setter Property="FrameworkElement.MinHeight" TargetName="DropDownBorder" Value="95"/>
-                        </Trigger>
-                        <Trigger Property="UIElement.IsEnabled" Value="False">
-                            <Setter Property="TextElement.Foreground" Value="{StaticResource ComboBoxDisabledForegroundBrush}"/>
-                        </Trigger>
-                        <Trigger Property="ItemsControl.IsGrouping" Value="True">
-                            <Setter Property="ScrollViewer.CanContentScroll" Value="False"/>
-                        </Trigger>
-                        <Trigger Property="ComboBox.IsEditable" Value="True">
-                            <Setter Property="KeyboardNavigation.IsTabStop" Value="False"/>
-                            <Setter Property="UIElement.Visibility" TargetName="PART_EditableTextBox" Value="Visible"/>
-                            <Setter Property="UIElement.Visibility" TargetName="ContentSite" Value="Hidden"/>
-                        </Trigger>
-                    </ControlTemplate.Triggers>
-                </ControlTemplate>
             </Setter.Value>
         </Setter>
     </Style>

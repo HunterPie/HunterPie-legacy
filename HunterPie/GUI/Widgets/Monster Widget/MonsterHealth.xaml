@@ -156,10 +156,11 @@
                 </TextBlock.Foreground>
             </TextBlock>
         </Grid>
-        <StackPanel x:Name="MonsterAdittionalInfoContainer" Orientation="Horizontal" DockPanel.Dock="Top" VerticalAlignment="Bottom">
+        <StackPanel x:Name="MonsterAdittionalInfoContainer" Orientation="Horizontal">
             <WrapPanel x:Name="MonsterPartsContainer" Orientation="Vertical">
             </WrapPanel>
             <WrapPanel x:Name="MonsterAilmentsContainer" Orientation="Vertical">
+                
             </WrapPanel>
         </StackPanel>
     </DockPanel>

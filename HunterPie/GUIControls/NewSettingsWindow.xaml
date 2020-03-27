@@ -116,12 +116,20 @@
                             <TextBlock Text="Language file:" Foreground="WhiteSmoke" Canvas.Top="2" FontFamily="Segoe UI Light"/>
                             <ComboBox x:Name="LanguageFilesCombobox" Style="{StaticResource ComboBoxFlatStyle}" Width="387" Height="27" Canvas.Left="113" Foreground="WhiteSmoke"/>
                         </Canvas>
+                        <Canvas Height="30" HorizontalAlignment="Center" MinWidth="500">
+                            <TextBlock Text="Theme file:" Foreground="WhiteSmoke" Canvas.Top="2" FontFamily="Segoe UI Light"/>
+                            <ComboBox x:Name="ThemeFilesCombobox" Style="{StaticResource ComboBoxFlatStyle}" Width="387" Height="27" Canvas.Left="113" Foreground="WhiteSmoke">
+                                <ComboBox.Items>
+                                    <System:String>Default</System:String>
+                                </ComboBox.Items>
+                            </ComboBox>
+                        </Canvas>
                         <Canvas Height="62" HorizontalAlignment="Center" MinWidth="500" Margin="222,0,221,0">
                             <TextBlock Text="Game Path:" Foreground="WhiteSmoke" Canvas.Top="4" FontFamily="Segoe UI Light"/>
                             <Button x:Name="selectPathBttn" Content="Select Path" Style="{StaticResource ToggleButtonStyle}" Foreground="WhiteSmoke" Background="#FF0F0F0F" Width="415" Height="30" Canvas.Left="85" BorderBrush="{x:Null}" Click="selectPathBttn_Click" LostFocus="SelectPathBttn_LostFocus" Cursor="Hand"/>
 
                             <TextBlock Text="Launch Arguments:" Foreground="WhiteSmoke" Canvas.Top="35" FontFamily="Segoe UI Light"/>
-                            <TextBox x:Name="argsTextBox" Text="No Arguments" TextWrapping="Wrap" Background="{x:Null}" Foreground="#FF9E9D9D" BorderBrush="#FFABADB3" BorderThickness="0,0,0,1" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" HorizontalAlignment="Right" Width="330" Canvas.Left="141" Canvas.Top="35" SelectionBrush="#FFD31D1D" TextChanged="argsTextBox_TextChanged" GotFocus="argsTextBox_GotFocus" LostFocus="argsTextBox_LostFocus"/>
+                            <TextBox x:Name="argsTextBox" Text="No Arguments" TextWrapping="Wrap" Background="{x:Null}" Foreground="#FF9E9D9D" BorderBrush="#FFABADB3" BorderThickness="0,0,0,1" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" HorizontalAlignment="Right" Width="358" Canvas.Left="141" Canvas.Top="35" SelectionBrush="#FFD31D1D" TextChanged="argsTextBox_TextChanged" GotFocus="argsTextBox_GotFocus" LostFocus="argsTextBox_LostFocus"/>
                         </Canvas>
                     </StackPanel>
                 </ScrollViewer>
