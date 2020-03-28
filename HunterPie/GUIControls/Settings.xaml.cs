@@ -47,6 +47,10 @@ namespace HunterPie.GUIControls {
             settingsUI.switchEnableMinimizeToSystemTray.IsEnabled = settings.HunterPie.MinimizeToSystemTray;
             settingsUI.switchEnableStartMinimized.IsEnabled = settings.HunterPie.StartHunterPieMinimized;
 
+            // Debug
+            settingsUI.switchEnableDebugMessages.IsEnabled = settings.HunterPie.Debug.ShowDebugMessages;
+            settingsUI.switchEnableUnknownStatuses.IsEnabled = settings.HunterPie.Debug.ShowUnknownStatuses;
+
             // Rich Presence
             settingsUI.switchEnableRichPresence.IsEnabled = settings.RichPresence.Enabled;
             settingsUI.switchShowMonsterHealth.IsEnabled = settings.RichPresence.ShowMonsterHealth;
@@ -128,6 +132,10 @@ namespace HunterPie.GUIControls {
             settings.HunterPie.Language = (string)settingsUI.LanguageFilesCombobox.SelectedItem;
             settings.HunterPie.MinimizeToSystemTray = settingsUI.switchEnableMinimizeToSystemTray.IsEnabled;
             settings.HunterPie.StartHunterPieMinimized = settingsUI.switchEnableStartMinimized.IsEnabled;
+
+            // Debug
+            settings.HunterPie.Debug.ShowDebugMessages = settingsUI.switchEnableDebugMessages.IsEnabled;
+            settings.HunterPie.Debug.ShowUnknownStatuses = settingsUI.switchEnableUnknownStatuses.IsEnabled;
 
             // Rich Presence
             settings.RichPresence.Enabled = settingsUI.switchEnableRichPresence.IsEnabled;

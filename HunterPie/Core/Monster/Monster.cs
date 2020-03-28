@@ -39,13 +39,14 @@ namespace HunterPie.Core {
                         GetMonsterSizeModifier();
                         CaptureThreshold = MonsterData.GetMonsterCaptureThresholdByID(this.ID);
                         // Only call this if monster is actually alive
+                        IsActuallyAlive = true;
                         _onMonsterSpawn();
                     }
                 } else if (value == null && _id != value) {
                     _id = value;
                     this.HPPercentage = 1f;
                     this.IsTarget = false;
-                    this.IsAlive = false;
+                    this.IsActuallyAlive = this.IsAlive = false;
                     _onMonsterDespawn();
                     Weaknesses.Clear();
                 }
@@ -57,6 +58,7 @@ namespace HunterPie.Core {
                 if (value <= 0) return;
                 if (value != _SizeMultiplier) {
                     _SizeMultiplier = value;
+                    Debugger.Debug($"{Name} Size multiplier: {_SizeMultiplier}");
                     _onCrownChange();
                 }
             }
@@ -74,7 +76,7 @@ namespace HunterPie.Core {
                     if (value <= 0) {
                         // Clears monster ID since it's dead
                         this.ID = null;
-                        this.IsAlive = false;
+                        this.IsActuallyAlive = this.IsAlive = false;
                         _onMonsterDeath();
                     }
                 }
@@ -92,6 +94,7 @@ namespace HunterPie.Core {
             }
         }
         public bool IsAlive = false;
+        public bool IsActuallyAlive;
         public float EnrageTimer {
             get { return _enrageTimer; }
             set {
@@ -281,7 +284,7 @@ namespace HunterPie.Core {
                 MonsterId = MonsterID.LastOrDefault()?.Trim('\x00');
                 GetMonsterHp(MonsterId);
                 if (MonsterId.StartsWith("em") && !MonsterId.StartsWith("ems")) {
-                    if (MonsterId != this.ID && this.CurrentHP > 0) Debugger.Log($"Found new monster ID: {Scanner.READ_STRING(NamePtr + 0x0c, 64).Replace("\x00", "")} #{MonsterNumber} @ 0x{MonsterAddress:X}");
+                    if (MonsterId != this.ID && this.CurrentHP > 0) Debugger.Debug($"Found new monster ID: {Scanner.READ_STRING(NamePtr + 0x0c, 64).Replace("\x00", "")} #{MonsterNumber} @ 0x{MonsterAddress:X}");
                     this.ID = MonsterId;
                     return;
                 }
@@ -331,7 +334,7 @@ namespace HunterPie.Core {
             for (int PartID = 0; PartID < nMaxParts; PartID++) {
                 if (MonsterData.IsPartRemovable(ID, PartID)) {
                     
-                    if (Parts.Count <= PartID && Parts[PartID].PartAddress > 0) {
+                    if (Parts.Count < PartID && Parts[PartID].PartAddress > 0) {
 
                         TimesBroken = Scanner.READ_BYTE(Parts[PartID].PartAddress + 0x18);
                         MaxHealth = Scanner.READ_FLOAT(Parts[PartID].PartAddress + 0x10);
@@ -398,6 +401,7 @@ namespace HunterPie.Core {
                     if (status.Address == 0) {
                         continue;
                     }
+                    
                     float maxBuildup = Math.Max(0, Scanner.READ_FLOAT(status.Address + 0x1C8));
                     float currentBuildup = Math.Max(0, Scanner.READ_FLOAT(status.Address + 0x1B8));
                     float maxDuration = Math.Max(0, Scanner.READ_FLOAT(status.Address + 0x19C));
@@ -422,7 +426,7 @@ namespace HunterPie.Core {
                         int ID = Scanner.READ_INT(StatusPtr + 0x198);
                         System.Xml.XmlNode AilmentInfo = MonsterData.GetAilmentByIndex(ID);
                         bool IsSkippable = AilmentInfo == null ? true : AilmentInfo.Attributes["Skip"].Value == "True";
-                        if (IsSkippable) {
+                        if (IsSkippable && !UserSettings.PlayerConfig.HunterPie.Debug.ShowUnknownStatuses) {
                             StatusPtr = Scanner.READ_LONGLONG(StatusPtr + 0x18);
                             continue;
                         } else {

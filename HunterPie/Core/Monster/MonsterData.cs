@@ -36,9 +36,9 @@ namespace HunterPie.Core {
             float Mini = float.Parse(Crowns.Attributes["Mini"].Value);
             float Silver = float.Parse(Crowns.Attributes["Silver"].Value);
             float Gold = float.Parse(Crowns.Attributes["Gold"].Value);
-            if ((int)multiplier >= Gold) return "CROWN_GOLD";
-            if ((int)multiplier >= Silver) return "CROWN_SILVER";
-            if ((int)multiplier <= Mini) return "CROWN_MINI";
+            if (multiplier >= Gold) return "CROWN_GOLD";
+            if (multiplier >= Silver) return "CROWN_SILVER";
+            if (multiplier <= Mini) return "CROWN_MINI";
             return null;
         }
 
@@ -79,7 +79,7 @@ namespace HunterPie.Core {
         static public string GetAilmentIDByIndex(int index) {
             XmlNodeList Ailments = MonsterDataDocument.SelectNodes($"//Monsters/Ailments/Ailment");
             if (Ailments.Count < index) return null;
-            return Ailments[index].Attributes["Name"].Value;
+            return Ailments[index]?.Attributes["Name"].Value;
         }
 
         static public XmlNode GetAilmentByIndex(int index) {

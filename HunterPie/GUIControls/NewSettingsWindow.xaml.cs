@@ -33,13 +33,13 @@ namespace HunterPie.GUIControls {
         }
 
         private void PopulateLanguageBox() {
-            foreach (string filename in Directory.GetFiles("Languages")) {
-                LanguageFilesCombobox.Items.Add(filename);
+            foreach (string filename in Directory.GetFiles(Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "Languages"))) {
+                LanguageFilesCombobox.Items.Add(@"Languages\"+Path.GetFileName(filename));
             }
         }
 
         private void PopulateThemesBox() {
-            foreach (string filename in Directory.GetFiles("Themes")) {
+            foreach (string filename in Directory.GetFiles(Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "Themes"))) {
                 ThemeFilesCombobox.Items.Add(Path.GetFileName(filename));
             }
         }

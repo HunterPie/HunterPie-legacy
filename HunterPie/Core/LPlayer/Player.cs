@@ -293,7 +293,7 @@ namespace HunterPie.Core {
         private void GetEquipmentAddress() {
             Int64 Address = Memory.Address.BASE + Memory.Address.EQUIPMENT_OFFSET;
             Address = Scanner.READ_MULTILEVEL_PTR(Address, Memory.Address.Offsets.EquipmentOffsets);
-            if (EQUIPMENT_ADDRESS != Address) Debugger.Log($"New equipment address found -> 0x{Address:X}");
+            if (EQUIPMENT_ADDRESS != Address) Debugger.Debug($"New equipment address found -> 0x{Address:X}");
             EQUIPMENT_ADDRESS = Address;
         }
 

@@ -2,6 +2,7 @@
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Documents;
+using UserSettings = HunterPie.Core.UserSettings;
 
 
 namespace HunterPie.Logger {
@@ -58,6 +59,11 @@ namespace HunterPie.Logger {
 
         public static void Update(object message) {
             PrintOnConsole($"[UPDATE] {message?.ToString()}", NORMAL);
+        }
+
+        public static void Debug(object message) {
+            if (!UserSettings.PlayerConfig.HunterPie.Debug.ShowDebugMessages) return;
+            PrintOnConsole($"[DEBUG] {message?.ToString()}", NORMAL);
         }
 
         private static void ScrollToEnd() {

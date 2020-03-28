@@ -25,11 +25,11 @@ namespace HunterPie.Core {
         }
 
         private void CheckLocalHash() {
-            if (!File.Exists("Update.exe")) {
+            if (!File.Exists(Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "Update.exe"))) {
                 LocalUpdateHash = "";
                 return;
             }
-            using (var _file = File.OpenRead("Update.exe")) {
+            using (var _file = File.OpenRead(Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "Update.exe"))) {
                 using (SHA256 sha256 = SHA256.Create()) {
                     byte[] bytes = sha256.ComputeHash(_file);
 
@@ -75,7 +75,7 @@ namespace HunterPie.Core {
 
         private void DownloadNewUpdater() {
             Uri UpdateUrl = new Uri($"{BranchURI}Update.exe");
-            Instance.DownloadFileAsync(UpdateUrl, "Update.exe");
+            Instance.DownloadFileAsync(UpdateUrl, Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "Update.exe"));
             Instance.Dispose();
         }
     }

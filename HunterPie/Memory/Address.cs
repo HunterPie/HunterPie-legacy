@@ -66,8 +66,8 @@ namespace HunterPie.Memory {
         public static bool LoadMemoryMap(int version) {
             string FILE_NAME = $"MonsterHunterWorld.{version}.map";
             // If dir or file doesn't exist
-            if (!Directory.Exists("address")) return false;
-            if (!File.Exists($"address/{FILE_NAME}")) return false;
+            if (!Directory.Exists(Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "address"))) return false;
+            if (!File.Exists(Path.Combine(AppDomain.CurrentDomain.BaseDirectory, $"address/{FILE_NAME}"))) return false;
             // Load file
             if (!isOlderThanIceborne(version)) {
                 // Update offsets for iceborne
@@ -83,7 +83,7 @@ namespace HunterPie.Memory {
             // Clear all loaded values
             MappedAddresses.Clear();
             MappedOffsets.Clear();
-            string[] fileLines = File.ReadAllLines($"address/{filename}");
+            string[] fileLines = File.ReadAllLines(Path.Combine(AppDomain.CurrentDomain.BaseDirectory, $"address/{filename}"));
             foreach (string line in fileLines) {
                 if (line.StartsWith("#")) continue; // Ignore comments
                 string[] parsed = line.Split(' ');

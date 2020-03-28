@@ -7,6 +7,7 @@ using Timer = System.Threading.Timer;
 using BitmapImage = System.Windows.Media.Imaging.BitmapImage;
 using HunterPie.Core;
 using HunterPie.GUIControls.Custom_Controls;
+using System.IO;
 
 namespace HunterPie.GUI.Widgets {
     /// <summary>
@@ -22,9 +23,7 @@ namespace HunterPie.GUI.Widgets {
 
         public MonsterHealth() {
             InitializeComponent();
-            if (UserSettings.PlayerConfig.Overlay.MonstersComponent.ShowMonsterBarMode == (byte)3) {
-                StartVisibilityTimer();
-            }
+            
         }
 
         ~MonsterHealth() {
@@ -36,6 +35,12 @@ namespace HunterPie.GUI.Widgets {
             HookEvents();
             LoadAnimations();
             this.Visibility = Visibility.Collapsed;
+            if (UserSettings.PlayerConfig.Overlay.MonstersComponent.ShowMonsterBarMode == (byte)3) {
+                StartVisibilityTimer();
+            }
+            if (Context.IsActuallyAlive) {
+                UpdateMonsterInfo(Context);
+            }
         }
 
         private void Dispatch(Action function) {
@@ -89,7 +94,6 @@ namespace HunterPie.GUI.Widgets {
             // Used when starting HunterPie for the first time, since the events won't be triggered
             this.Visibility = Visibility.Visible;
             this.MonsterName.Text = Monster.Name;
-
             // Update monster health
             MonsterHealthBar.MaxSize = this.Width * 0.7833333333333333;
             MonsterHealthBar.UpdateBar(Monster.CurrentHP, Monster.TotalHP);
@@ -155,6 +159,7 @@ namespace HunterPie.GUI.Widgets {
 
         private void OnMonsterCrownChange(object source, EventArgs args) {
             Dispatch(() => {
+                Logger.Debugger.Debug($"[Monster Widget] Updated crown for {Name} -> {Context.Crown}");
                 this.MonsterCrown.Source = Context.Crown == null ? null : (ImageSource)FindResource(Context.Crown);
                 this.MonsterCrown.Visibility = Context.Crown == null ? Visibility.Collapsed : Visibility.Visible;
             });
@@ -178,6 +183,7 @@ namespace HunterPie.GUI.Widgets {
             if (Context == null) return;
             int EnrageTimer = (int)Context.EnrageTimerStatic - (int)Context.EnrageTimer;
             Dispatch(() => {
+                if (Context == null) return;
                 this.EnrageTimerText.Visibility = Context.EnrageTimer > 0 && Context.EnrageTimer <= Context.EnrageTimerStatic ? Visibility.Visible : Visibility.Hidden;
                 this.EnrageTimerText.Text = $"{EnrageTimer}";
             });
@@ -384,8 +390,8 @@ namespace HunterPie.GUI.Widgets {
         }
 
         private BitmapImage GetMonsterIcon(string MonsterEm) {
-            if (!System.IO.File.Exists($@"HunterPie.Resources\Monsters\Icons\{MonsterEm}.png")) return null;
-            Uri ImageURI = new Uri($@"HunterPie.Resources\Monsters\Icons\{MonsterEm}.png", UriKind.Relative);
+            if (!System.IO.File.Exists(Path.Combine(AppDomain.CurrentDomain.BaseDirectory, $@"HunterPie.Resources\Monsters\Icons\{MonsterEm}.png"))) return null;
+            Uri ImageURI = new Uri(Path.Combine(AppDomain.CurrentDomain.BaseDirectory, $@"HunterPie.Resources\Monsters\Icons\{MonsterEm}.png"), UriKind.Absolute);
             BitmapImage mIcon = new BitmapImage(ImageURI);
             mIcon.Freeze();
             return mIcon;

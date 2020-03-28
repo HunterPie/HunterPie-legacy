@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8" ?>
 <Monsters>
   <Ailments Max="19">
-    <Ailment Name="STATUS_0" Skip="True"/>
+    <Ailment Name="0" Skip="True"/>
     <Ailment Name="STATUS_POISON" Skip="False"/>
     <Ailment Name="STATUS_PARALYSIS" Skip="False"/>
     <Ailment Name="STATUS_SLEEP" Skip="False"/>
@@ -14,14 +14,14 @@
     <Ailment Name="STATUS_FLASH" Skip="False"/>
     <Ailment Name="STATUS_KNOCKDOWN" Skip="False"/>
     <Ailment Name="STATUS_DUNGPOD" Skip="False"/>
-    <Ailment Name="STATUS_13" Skip="True"/>
+    <Ailment Name="13" Skip="True"/>
     <Ailment Name="STATUS_SHOCKTRAP" Skip="False"/>
     <Ailment Name="STATUS_PITFALLTRAP" Skip="False"/>
-    <Ailment Name="STATUS_16" Skip="True"/>
-    <Ailment Name="STATUS_17" Skip="True"/>
+    <Ailment Name="STATUS_VINETRAP" Skip="False"/>
+    <Ailment Name="17" Skip="True"/>
     <Ailment Name="STATUS_ELDERSEAL" Skip="False"/>
     <Ailment Name="STATUS_SMOKING" Skip="False"/>
-    <Ailment Name="STATUS_20" Skip="True"/>
+    <Ailment Name="20" Skip="True"/>
     <Ailment Name="STATUS_FELYNETRAP" Skip="False"/>
     <Ailment Name="STATUS_CLAW" Skip="False"/>
     <Ailment Name="STATUS_VIOLATED" Skip="False"/>
@@ -32,7 +32,7 @@
       <Weakness ID="ELEMENT_THUNDER" Stars="2"/>
     </Weaknesses>
     <Crown Mini="90" Silver="115" Gold="123"/>
-    <Parts Max="8">
+    <Parts Max="9">
       <Part Name="MONSTER_PART_REMOVABLE_TAIL" IsRemovable="True"/>
       <Part Name="MONSTER_PART_HEAD" Group="HEAD" IsRemovable="False"/>
       <Part Name="MONSTER_PART_BODY" Group="BODY" IsRemovable="False"/>

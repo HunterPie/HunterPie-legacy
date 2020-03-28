@@ -13,12 +13,13 @@ namespace HunterPie.Core {
         }
 
         private static void LoadTranslationXML(string LangXML) {
+            LangXML = Path.Combine(AppDomain.CurrentDomain.BaseDirectory, LangXML);
             try {
                 Translations.Load(LangXML);
                 Debugger.Warn($"Loaded {Translations.DocumentElement.Attributes["lang"]?.Value ?? "Unknown language"} game strings");
             } catch(Exception err) {
                 Debugger.Error(err);
-                Debugger.Error($"Failed to load {LangXML}");
+                Debugger.Error($"Failed to load {Path.GetFileName(LangXML)}");
                 LoadTranslationXML(@"Languages\en-us.xml");
             }
         }
@@ -67,7 +68,7 @@ namespace HunterPie.Core {
 
         public static string GetAilmentNameByID(string AilmentID) {
             XmlNode AilmentName = Translations.SelectSingleNode($"//Strings/Ailments/Ailment[@ID='{AilmentID}']");
-            if (AilmentName == null) return Translations.SelectSingleNode($"//Strings/Ailments/Ailment[@ID='STATUS_UNKNOWN']")?.Attributes["Name"].Value ?? "Unknown";
+            if (AilmentName == null) return Translations.SelectSingleNode($"//Strings/Ailments/Ailment[@ID='STATUS_UNKNOWN']")?.Attributes["Name"].Value + $" ({AilmentID})" ?? $"Unknown ({AilmentID})";
             return AilmentName.Attributes["Name"].Value;
         }
 

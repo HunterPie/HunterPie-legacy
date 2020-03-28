@@ -90,7 +90,6 @@ namespace HunterPie.GUI.Widgets.Monster_Widget.Parts {
         }
 
         private void OnBrokenCounterChange(object source, MonsterPartEventArgs args) {
-            
             System.Windows.Visibility visibility;
             if (Context.IsRemovable) {
                 visibility = UserSettings.PlayerConfig.Overlay.MonstersComponent.EnableRemovableParts ? System.Windows.Visibility.Visible : System.Windows.Visibility.Collapsed;

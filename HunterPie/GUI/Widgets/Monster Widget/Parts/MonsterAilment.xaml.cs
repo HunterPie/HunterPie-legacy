@@ -91,8 +91,16 @@ namespace HunterPie.GUI.Widgets.Monster_Widget.Parts {
         }
 
         private void OnCounterChange(object source, MonsterAilmentEventArgs args) {
+            System.Windows.Visibility visibility;
+            if (UserSettings.PlayerConfig.Overlay.MonstersComponent.EnableMonsterAilments) {
+                visibility = System.Windows.Visibility.Visible;
+            } else {
+                visibility = System.Windows.Visibility.Collapsed;
+            }
             Dispatcher.BeginInvoke(System.Windows.Threading.DispatcherPriority.Render, new Action(() => {
                 this.AilmentCounter.Text = args.Counter.ToString();
+                this.Visibility = visibility;
+                StartVisibilityTimer();
             }));
         }
 
@@ -115,7 +123,6 @@ namespace HunterPie.GUI.Widgets.Monster_Widget.Parts {
 
         private void OnBuildupChange(object source, MonsterAilmentEventArgs args) {
             if (args.MaxBuildup <= 0) { return; }
-            if (args.MaxDuration <= 0) { return; }
             System.Windows.Visibility visibility;
             if (UserSettings.PlayerConfig.Overlay.MonstersComponent.EnableMonsterAilments) {
                 visibility = System.Windows.Visibility.Visible;
@@ -123,8 +130,9 @@ namespace HunterPie.GUI.Widgets.Monster_Widget.Parts {
                 visibility = System.Windows.Visibility.Collapsed;
             }
             Dispatcher.BeginInvoke(System.Windows.Threading.DispatcherPriority.Render, new Action(() => {
-                AilmentBar.MaxHealth = Math.Max(0, args.MaxBuildup);
-                AilmentBar.Health = Math.Max(0, args.MaxBuildup - args.Buildup);
+                AilmentBar.MaxHealth = Math.Max(1, args.MaxBuildup);
+                // Get the min between them so the buildup doesnt overflow
+                AilmentBar.Health = Math.Min(args.Buildup, args.MaxBuildup);
                 AilmentText.Text = $"{AilmentBar.Health:0}/{AilmentBar.MaxHealth:0}";
                 this.Visibility = visibility;
                 StartVisibilityTimer();

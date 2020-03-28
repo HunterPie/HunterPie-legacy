@@ -11,7 +11,7 @@ namespace HunterPie.Core {
         // Config file watcher
         private static FileSystemWatcher ConfigWatcher;
 
-        static private string ConfigFileName = @"config.json";
+        static private string ConfigFileName = Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "config.json");
         public static Config.Rootobject PlayerConfig;
         private static string ConfigSerialized;
 
@@ -112,6 +112,7 @@ namespace HunterPie.Core {
                 public Update Update { get; set; } = new Update();
                 public Launch Launch { get; set; } = new Launch();
                 public Options Options { get; set; } = new Options();
+                public Debug Debug { get; set; } = new Debug();
             }
 
             public class Update {
@@ -147,6 +148,11 @@ namespace HunterPie.Core {
                 public float BackgroundOpacity { get; set; } = 0.7f;
                 public float BackgroundCircleOpacity { get; set; } = 0.7f;
             }
+
+            public class Debug {
+                public bool ShowUnknownStatuses { get; set; } = false;
+                public bool ShowDebugMessages { get; set; } = false;
+            }
         }
 
         public static void TriggerSettingsEvent() {
@@ -164,8 +170,8 @@ namespace HunterPie.Core {
             // Prevents it from hooking the event multiple times
             if (ConfigWatcher != null) return;
             ConfigWatcher = new FileSystemWatcher {
-                Path = Environment.CurrentDirectory,
-                Filter = ConfigFileName
+                Path = Path.GetDirectoryName(ConfigFileName),
+                Filter = Path.GetFileName(ConfigFileName)
             };
             ConfigWatcher.Changed += OnConfigChanged;
             ConfigWatcher.EnableRaisingEvents = true;
@@ -208,6 +214,7 @@ namespace HunterPie.Core {
                 configContent = File.ReadAllText(ConfigFileName);
                 if (configContent == "null") throw new Exception("Config.json is null");
             } catch (IOException err) {
+                
                 Debugger.Error("Config.json could not be loaded. Re-trying again...");
                 configContent = ConfigSerialized;
             } catch(Exception err) {
@@ -230,6 +237,7 @@ namespace HunterPie.Core {
                 PlayerConfig = JsonConvert.DeserializeObject<Config.Rootobject>(ConfigSerialized);
                 _onSettingsUpdate();
             } catch(Exception err) {
+
                 Debugger.Error($"Failed to parse config.json!\n{err}");
             }
         }

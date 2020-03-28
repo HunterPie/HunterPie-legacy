@@ -40,6 +40,7 @@ namespace HunterPie {
                 this.Close();
                 return;
             }
+            AppDomain.CurrentDomain.UnhandledException += ExceptionLogger;
             // Initialize debugger and theme
             Debugger.InitializeDebugger();
             UserSettings.InitializePlayerConfig();
@@ -47,7 +48,6 @@ namespace HunterPie {
             Debugger.LoadNewColors();
             InitializeComponent();
             OpenDebugger();
-            AppDomain.CurrentDomain.UnhandledException += ExceptionLogger;
             // Initialize everything under this line
             if (!CheckIfUpdateEnableAndStart()) return;
             InitializeTrayIcon();
@@ -72,10 +72,10 @@ namespace HunterPie {
 
         #region AUTO UPDATE
         private bool StartUpdateProcess() {
-            if (!File.Exists("Update.exe")) return false;
+            if (!File.Exists(Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "Update.exe"))) return false;
 
             Process UpdateProcess = new Process();
-            UpdateProcess.StartInfo.FileName = "Update.exe";
+            UpdateProcess.StartInfo.FileName = Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "Update.exe");
             UpdateProcess.StartInfo.Arguments = $"version={HUNTERPIE_VERSION} branch={UserSettings.PlayerConfig.HunterPie.Update.Branch}";
             UpdateProcess.Start();
             return true;
@@ -266,13 +266,13 @@ namespace HunterPie {
 
         private void LoadCustomTheme() {
             if (UserSettings.PlayerConfig.HunterPie.Theme == null || UserSettings.PlayerConfig.HunterPie.Theme == "Default") return;
-            if (!Directory.Exists(@"Themes")) { Directory.CreateDirectory(@"Themes"); }
-            if (!File.Exists($@"Themes/{UserSettings.PlayerConfig.HunterPie.Theme}")) {
+            if (!Directory.Exists(Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "Themes"))) { Directory.CreateDirectory(Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "Themes")); }
+            if (!File.Exists(Path.Combine(AppDomain.CurrentDomain.BaseDirectory, $@"Themes/{UserSettings.PlayerConfig.HunterPie.Theme}"))) {
                 Debugger.Error($"Failed to find theme: {UserSettings.PlayerConfig.HunterPie.Theme}");
                 return;
             }
             try {
-                using (FileStream stream = new FileStream($@"Themes/{UserSettings.PlayerConfig.HunterPie.Theme}", FileMode.Open)) {
+                using (FileStream stream = new FileStream(Path.Combine(AppDomain.CurrentDomain.BaseDirectory, $@"Themes/{UserSettings.PlayerConfig.HunterPie.Theme}"), FileMode.Open)) {
                     XamlReader reader = new XamlReader();
                     ResourceDictionary ThemeDictionary = (ResourceDictionary)reader.LoadAsync(stream);
                     Application.Current.Resources.MergedDictionaries.Add(ThemeDictionary);

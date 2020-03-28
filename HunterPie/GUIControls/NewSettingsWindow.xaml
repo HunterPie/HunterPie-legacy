@@ -97,7 +97,7 @@
                         <TextBlock Text="General" Height="21" Width="129" Canvas.Left="20" FontWeight="Medium" Canvas.Top="2"/>
                     </Canvas>
                 </TabItem.Header>
-                <ScrollViewer Margin="0,0,-1,0">
+                <ScrollViewer>
                     <StackPanel  Height="436" Width="782" HorizontalAlignment="Left">
                         <custom:Switcher x:Name="switchEnableAutoUpdate" Text="Enable Auto-Update" ToolTip="if enabled, HunterPie will look for new files on startup." HorizontalAlignment="Center" MinWidth="500"/>
                         <custom:Switcher x:Name="switchEnableMinimizeToSystemTray" Text="Minimize HunterPie to system tray" ToolTip="if enabled, HunterPie will be minimized to system tray." HorizontalAlignment="Center" MinWidth="500"/>
@@ -317,7 +317,7 @@
             <TabItem>
                 <TabItem.Header>
                     <Canvas>
-                        <Image Source="{StaticResource ICON_SELFIMPROVEMENT}" Width="19" Height="20" Canvas.Top="2"/>
+                        <Image Source="{StaticResource ICON_ATTACKUP}" Width="19" Height="20" Canvas.Top="4"/>
                         <TextBlock Text="Buff Bar" Height="27" Width="135" Canvas.Left="18" FontWeight="Medium" Padding="0,1,0,0"/>
                     </Canvas>
                 </TabItem.Header>
@@ -338,7 +338,7 @@
             <TabItem Width="150">
                 <TabItem.Header>
                     <Canvas>
-                        <Image Source="{StaticResource ICON_STOPWATCH}" Width="15" Height="15" Canvas.Top="5" Canvas.Left="1"/>
+                        <Image Source="{StaticResource ICON_MANTLE}" Width="18" Height="18" Canvas.Top="4" Canvas.Left="-1"/>
                         <TextBlock Text="Specialized Tools" Height="27" Width="133" Canvas.Left="18" FontWeight="Medium" Padding="0,2,0,0"/>
                     </Canvas>
                 </TabItem.Header>
@@ -358,6 +358,20 @@
                                 <custom:PositionControl x:Name="SecondaryMantlePosition"/>
                             </StackPanel>
                         </GroupBox>
+                    </StackPanel>
+                </ScrollViewer>
+            </TabItem>
+            <TabItem Width="150">
+                <TabItem.Header>
+                    <Canvas>
+                        <Image Source="{StaticResource ICON_CONSOLE}" Width="15" Height="15" Canvas.Top="6" Canvas.Left="2"/>
+                        <TextBlock Text="Debug" Height="27" Width="133" Canvas.Left="18" FontWeight="Medium" Padding="0,2,0,0"/>
+                    </Canvas>
+                </TabItem.Header>
+                <ScrollViewer Margin="10,0,-1,0">
+                    <StackPanel Height="436" Width="782" HorizontalAlignment="Left">
+                        <custom:Switcher x:Name="switchEnableDebugMessages" Text="Enable Debug messages" RequiresRestart="True" MinWidth="500" ToolTip="Enables debug messages. Do not turn this option on if you have no idea what you're doing, this is part of the development tools." HorizontalAlignment="Center"/>
+                        <custom:Switcher x:Name="switchEnableUnknownStatuses" Text="Enable unknown monster ailments" RequiresRestart="True" MinWidth="500" ToolTip="Enables unknown monster statuses. Do not turn this option on if you have no idea what you're doing, this is part of the development tools." HorizontalAlignment="Center"/>
                     </StackPanel>
                 </ScrollViewer>
             </TabItem>
