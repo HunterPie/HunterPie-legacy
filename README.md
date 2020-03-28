@@ -23,9 +23,11 @@ HunterPie is a modern and simple to use overlay with support for Discord Rich Pr
 
 ## Widgets
 - **Monster Widget:** Shows all monster information, you can read more about it [here](https://github.com/Haato3o/HunterPie/wiki/Monster-Widget).
+
 ![Monster Widget](https://cdn.discordapp.com/attachments/402557384209203200/692794622077829130/unknown.png)
 
 - **Harvest Box Widget:** Shows fertilizers, amount of items in your harvest box, warns you when they're about to expire, shows Steam fuel, Argosy tracker and Tailraider tracker.
+
 ![HB widget](https://staticdelivery.nexusmods.com/mods/2531/images/2645/2645-1583505042-1044544052.png)
 
 - **Abnormalities Widget:** Shows all Hunting Horn buffs, Palico orchestra, elemental debuffs and consumable buffs. You can read more about it [here](https://github.com/Haato3o/HunterPie/wiki/Abnormalities-Tray)
@@ -34,9 +36,12 @@ HunterPie is a modern and simple to use overlay with support for Discord Rich Pr
 ![Abnormality tray](https://cdn.discordapp.com/attachments/402557384209203200/693155786200711198/unknown.png)
 
 - **Damage Widget:** Shows your party damage.
+
 ![Damage widget](https://staticdelivery.nexusmods.com/mods/2531/images/2645/2645-1582739132-2012080524.png)
 
 - **Specialized Tools Widget:** Shows the cooldown and time left on your equipped specialized tool.
+
+![Specialized tool widget](https://staticdelivery.nexusmods.com/mods/2531/images/2645/2645-1582739155-1802377475.png)
 
 ## Troubleshooting & Bugs
 
