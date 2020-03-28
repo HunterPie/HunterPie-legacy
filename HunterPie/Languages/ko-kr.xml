@@ -64,7 +64,7 @@
     <Monster ID="em123_00" Name="버프바로"/>
     <Monster ID="em124_00" Name="이베르카나"/>
     <Monster ID="em125_00" Name="네로미에르"/>
-    <Monster ID="em126_00" Name="안 - 이슈왈다"/>
+    <Monster ID="em126_00" Name="안-이슈왈다"/>
     <Monster ID="em127_00" Name="레셴"/>
     <Monster ID="em127_01" Name="고대 레셴"/>
   </Monsters>
@@ -72,51 +72,51 @@
     <Part ID="MONSTER_PART_UNKNOWN" Name="알 수 없는 부위"/>
     <Part ID="MONSTER_PART_HEAD" Name="머리"/>
     <Part ID="MONSTER_PART_BODY" Name="몸통"/>
-    <Part ID="MONSTER_PART_LWING" Name="왼쪽 날개"/>
-    <Part ID="MONSTER_PART_RWING" Name="오른쪽 날개"/>
-    <Part ID="MONSTER_PART_LLEG" Name="왼쪽 다리"/>
-    <Part ID="MONSTER_PART_RLEG" Name="오른쪽 다리"/>
+    <Part ID="MONSTER_PART_LWING" Name="왼 날개"/>
+    <Part ID="MONSTER_PART_RWING" Name="오른 날개"/>
+    <Part ID="MONSTER_PART_LLEG" Name="왼 다리"/>
+    <Part ID="MONSTER_PART_RLEG" Name="오른 다리"/>
     <Part ID="MONSTER_PART_TAIL" Name="꼬리"/>
     <Part ID="MONSTER_PART_ARMS" Name="팔"/>
     <Part ID="MONSTER_PART_LEGS" Name="다리"/>
-    <Part ID="MONSTER_PART_LARM" Name="왼쪽 팔"/>
-    <Part ID="MONSTER_PART_RARM" Name="오른쪽 팔"/>
-    <Part ID="MONSTER_PART_LLIMBS" Name="왼쪽 손발"/>
-    <Part ID="MONSTER_PART_RLIMBS" Name="오른쪽 손발"/>
+    <Part ID="MONSTER_PART_LARM" Name="왼팔"/>
+    <Part ID="MONSTER_PART_RARM" Name="오른팔"/>
+    <Part ID="MONSTER_PART_LLIMBS" Name="왼 팔다리"/>
+    <Part ID="MONSTER_PART_RLIMBS" Name="오른 팔다리"/>
     <Part ID="MONSTER_PART_WINGS" Name="날개"/>
-    <Part ID="MONSTER_PART_LIMBS" Name="손과 발"/>
+    <Part ID="MONSTER_PART_LIMBS" Name="팔다리"/>
     <Part ID="MONSTER_PART_ABDOMEN" Name="배"/>
     <Part ID="MONSTER_PART_CHEST" Name="가슴"/>
-    <Part ID="MONSTER_PART_REAR" Name="허리"/>
-    <Part ID="MONSTER_PART_HEAD_MUD" Name="머리 [진흙]"/>
-    <Part ID="MONSTER_PART_BODY_MUD" Name="몸통 [진흙]"/>
-    <Part ID="MONSTER_PART_ARMS_MUD" Name="팔 [진흙]"/>
-    <Part ID="MONSTER_PART_LLEG_MUD" Name="왼다리 [진흙]"/>
-    <Part ID="MONSTER_PART_RLEG_MUD" Name="오른다리 [진흙]"/>
-    <Part ID="MONSTER_PART_TAIL_MUD" Name="꼬리 [진흙]"/>
+    <Part ID="MONSTER_PART_REAR" Name="후방"/>
+    <Part ID="MONSTER_PART_HEAD_MUD" Name="진흙 덮인 머리"/>
+    <Part ID="MONSTER_PART_BODY_MUD" Name="진흙 덮인 몸통"/>
+    <Part ID="MONSTER_PART_ARMS_MUD" Name="진흙 덮인 팔"/>
+    <Part ID="MONSTER_PART_LLEG_MUD" Name="진흙 덮인 왼다리"/>
+    <Part ID="MONSTER_PART_RLEG_MUD" Name="진흙 덮인 오른다리"/>
+    <Part ID="MONSTER_PART_TAIL_MUD" Name="진흙 덮인 꼬리"/>
     <Part ID="MONSTER_PART_JAW" Name="턱"/>
     <Part ID="MONSTER_PART_BACK" Name="등"/>
-    <Part ID="MONSTER_PART_FIN" Name="지느러미"/>
+    <Part ID="MONSTER_PART_FIN" Name="등갑각"/>
     <Part ID="MONSTER_PART_HORNS" Name="뿔"/>
     <Part ID="MONSTER_PART_NECK" Name="목"/>
-    <Part ID="MONSTER_PART_LHAND" Name="왼쪽 손"/>
-    <Part ID="MONSTER_PART_RHAND" Name="오른쪽 손"/>
-    <Part ID="MONSTER_PART_LFOOT" Name="왼쪽 발"/>
-    <Part ID="MONSTER_PART_RFOOT" Name="오른쪽 발"/>
-    <Part ID="MONSTER_PART_SHELL" Name="외갑각"/>
+    <Part ID="MONSTER_PART_LHAND" Name="왼쪽 머리"/>
+    <Part ID="MONSTER_PART_RHAND" Name="오른쪽 머리"/>
+    <Part ID="MONSTER_PART_LFOOT" Name="왼 발"/>
+    <Part ID="MONSTER_PART_RFOOT" Name="오른 발"/>
+    <Part ID="MONSTER_PART_SHELL" Name="껍질"/>
     <Part ID="MONSTER_PART_EXHAUST_ORGAN_CENTRAL" Name="배열기관 [중앙]"/>
     <Part ID="MONSTER_PART_EXHAUST_ORGAN_HEAD" Name="배열기관 [머리]"/>
-    <Part ID="MONSTER_PART_EXHAUST_ORGAN_CRATER" Name="배열기관 [화구]"/>
-<Part ID="MONSTER_PART_EXHAUST_ORGAN_REAR" Name="배열기관 [후부]"/>
-    <Part ID="MONSTER_PART_WEAK_LSHELL" Name="약한 왼쪽 외갑각"/>
-    <Part ID="MONSTER_PART_WEAK_RSHELL" Name="약한 오른쪽 외갑각"/>
+    <Part ID="MONSTER_PART_EXHAUST_ORGAN_CRATER" Name="배열기관 [분화구]"/>
+    <Part ID="MONSTER_PART_EXHAUST_ORGAN_REAR" Name="배열기관 [후방]"/>
+    <Part ID="MONSTER_PART_WEAK_LSHELL" Name="왼쪽 약한 껍질"/>
+    <Part ID="MONSTER_PART_WEAK_RSHELL" Name="오른쪽 약한 껍질"/>
     <Part ID="MONSTER_PART_ROCK" Name="바위"/>
     <Part ID="MONSTER_PART_MANE" Name="갈기"/>
-    <Part ID="MONSTER_PART_BALLOON" Name="공기 주머니"/>
-    <Part ID="MONSTER_PART_LBONE" Name="왼쪽 다리 [뼈]"/>
-    <Part ID="MONSTER_PART_RBONE" Name="오른쪽 다리 [뼈]"/>
-    <Part ID="MONSTER_PART_HORNS_GOLD" Name="뿔 [황금]"/>
-    <Part ID="MONSTER_PART_MANE_GOLD" Name="갈기 [황금]"/>
+    <Part ID="MONSTER_PART_BALLOON" Name="공기주머니"/>
+    <Part ID="MONSTER_PART_LBONE" Name="왼쪽 뼈"/>
+    <Part ID="MONSTER_PART_RBONE" Name="오른쪽 뼈"/>
+    <Part ID="MONSTER_PART_HORNS_GOLD" Name="금빛의 뿔"/>
+    <Part ID="MONSTER_PART_MANE_GOLD" Name="금빛의 갈기"/>
     <Part ID="MONSTER_PART_LCHEST_GOLD" Name="왼쪽 가슴 [황금]"/>
     <Part ID="MONSTER_PART_RCHEST_GOLD" Name="오른쪽 가슴 [황금]"/>
     <Part ID="MONSTER_PART_LARM_GOLD" Name="왼쪽 팔 [황금]"/>
@@ -125,35 +125,35 @@
     <Part ID="MONSTER_PART_RLEG_GOLD" Name="오른쪽 다리 [황금]"/>
     <Part ID="MONSTER_PART_LTAIL_GOLD" Name="왼쪽 꼬리 [황금]"/>
     <Part ID="MONSTER_PART_RTAIL_GOLD" Name="오른쪽 꼬리 [황금]"/>
-    <Part ID="MONSTER_PART_LHEAD" Name="머리 [왼쪽]"/>
-    <Part ID="MONSTER_PART_RHEAD" Name="머리 [오른쪽]"/>
-    <Part ID="MONSTER_PART_HEAD_SNOW" Name="머리 [눈]"/>
-    <Part ID="MONSTER_PART_BODY_SNOW" Name="몸통 [눈]"/>
-    <Part ID="MONSTER_PART_TAIL_SNOW" Name="꼬리 [눈]"/>
-    <Part ID="MONSTER_PART_HEAD_ICE" Name="머리 [얼음]"/>
-    <Part ID="MONSTER_PART_BODY_ICE" Name="몸통 [얼음]"/>
-    <Part ID="MONSTER_PART_WINGS_ICE" Name="날개 [얼음]"/>
-    <Part ID="MONSTER_PART_ARMS_ICE" Name="팔 [얼음]"/>
-    <Part ID="MONSTER_PART_LEGS_ICE" Name="다리 [얼음]"/>
-    <Part ID="MONSTER_PART_TAIL_ICE" Name="꼬리 [얼음]"/>
-    <Part ID="MONSTER_PART_LNECK_ROCK" Name="왼쪽 목 [바위]"/>
-    <Part ID="MONSTER_PART_RNECK_ROCK" Name="오른쪽 목 [바위]"/>
-    <Part ID="MONSTER_PART_HEAD_ROCK" Name="머리 [바위]"/>
-    <Part ID="MONSTER_PART_TAIL_ROCK" Name="꼬리 [바위]"/>
-    <Part ID="MONSTER_PART_LWING_ROCK" Name="왼쪽 날개 [바위]"/>
-    <Part ID="MONSTER_PART_RWING_ROCK" Name="왼쪽 날개 [바위]"/>
-    <Part ID="MONSTER_PART_LARM_ROCK" Name="왼쪽 팔 [바위]"/>
-    <Part ID="MONSTER_PART_RARM_ROCK" Name="오른쪽 팔 [바위]"/>
-    <Part ID="MONSTER_PART_LEGS_ROCK" Name="다리 [바위]"/>
+    <Part ID="MONSTER_PART_LHEAD" Name="왼쪽 머리"/>
+    <Part ID="MONSTER_PART_RHEAD" Name="오른쪽 머리"/>
+    <Part ID="MONSTER_PART_HEAD_SNOW" Name="눈 덮인 머리"/>
+    <Part ID="MONSTER_PART_BODY_SNOW" Name="눈 덮인 몸통"/>
+    <Part ID="MONSTER_PART_TAIL_SNOW" Name="눈 덮인 꼬리"/>
+    <Part ID="MONSTER_PART_HEAD_ICE" Name="얼어붙은 머리"/>
+    <Part ID="MONSTER_PART_BODY_ICE" Name="얼어붙은 몸통"/>
+    <Part ID="MONSTER_PART_WINGS_ICE" Name="얼어붙은 날개"/>
+    <Part ID="MONSTER_PART_ARMS_ICE" Name="얼어붙은 팔"/>
+    <Part ID="MONSTER_PART_LEGS_ICE" Name="얼어붙은 다리"/>
+    <Part ID="MONSTER_PART_TAIL_ICE" Name="얼어붙은 꼬리"/>
+    <Part ID="MONSTER_PART_LNECK_ROCK" Name="암석을 두른 왼쪽 목"/>
+    <Part ID="MONSTER_PART_RNECK_ROCK" Name="암석을 두른 오른쪽 목"/>
+    <Part ID="MONSTER_PART_HEAD_ROCK" Name="암석을 두른 머리"/>
+    <Part ID="MONSTER_PART_TAIL_ROCK" Name="암석을 두른 꼬리"/>
+    <Part ID="MONSTER_PART_LWING_ROCK" Name="암석을 두른 왼 날개"/>
+    <Part ID="MONSTER_PART_RWING_ROCK" Name="암석을 두른 오른 날개"/>
+    <Part ID="MONSTER_PART_LARM_ROCK" Name="암석을 두른 왼팔"/>
+    <Part ID="MONSTER_PART_RARM_ROCK" Name="암석을 두른 오른팔"/>
+    <Part ID="MONSTER_PART_LEGS_ROCK" Name="암석을 두른 다리"/>
     <Part ID="MONSTER_JAGRAS_SUMMONER" Name="쟈그라스 소환"/>
     <!-- Removable parts -->
     <Part ID="MONSTER_PART_REMOVABLE_TAIL" Name="꼬리 (절단 가능)"/>
     <Part ID="MONSTER_PART_REMOVABLE_HORNS" Name="뿔 (파괴 가능)"/>
     <Part ID="MONSTER_PART_REMOVABLE_HEAD" Name="머리 (파괴 가능)"/>
-    <Part ID="MONSTER_PART_REMOVABLE_BALLOON" Name="공기 주머니 (파괴 가능)"/>
-    <Part ID="MONSTER_PART_REMOVABLE_HORNS_2" Name="뿔 2 (파괴 가능)"/>
-    <Part ID="MONSTER_PART_REMOVABLE_LANTLER" Name="왼쪽 가지 뿔 (파괴 가능)"/>
-    <Part ID="MONSTER_PART_REMOVABLE_RANTLER" Name="오른쪽 가지 뿔 (파괴 가능)"/>
+    <Part ID="MONSTER_PART_REMOVABLE_BALLOON" Name="공기주머니 (파괴 가능)"/>
+    <Part ID="MONSTER_PART_REMOVABLE_HORNS_2" Name="두번째 뿔 (파괴 가능)"/>
+    <Part ID="MONSTER_PART_REMOVABLE_LANTLER" Name="가지진 왼쪽 뿔 (파괴 가능)"/>
+    <Part ID="MONSTER_PART_REMOVABLE_RANTLER" Name="가지진 오른쪽 뿔 (파괴 가능)"/>
   </Parts>
   <Ailments>
     <Ailment ID="STATUS_UNKNOWN" Name="알 수 없음"/>
@@ -161,20 +161,20 @@
     <Ailment ID="STATUS_PARALYSIS" Name="마비"/>
     <Ailment ID="STATUS_SLEEP" Name="수면"/>
     <Ailment ID="STATUS_BLAST" Name="폭파"/>
-    <Ailment ID="STATUS_MOUNT" Name="탑승"/>
+    <Ailment ID="STATUS_MOUNT" Name="단차"/>
     <Ailment ID="STATUS_EXHAUSTION" Name="탈진"/>
     <Ailment ID="STATUS_STUN" Name="기절"/>
-    <Ailment ID="STATUS_TRANQUILIZE" Name="마취(탄/옥)"/>
-    <Ailment ID="STATUS_FLASH" Name="실명"/>
-    <Ailment ID="STATUS_KNOCKDOWN" Name="대경직"/>
-    <Ailment ID="STATUS_DUNGPOD" Name="거름탄"/>
-    <Ailment ID="STATUS_SHOCKTRAP" Name="마비덫"/>
-    <Ailment ID="STATUS_PITFALLTRAP" Name="구멍함정"/>
+    <Ailment ID="STATUS_TRANQUILIZE" Name="포획용 마취옥/탄"/>
+    <Ailment ID="STATUS_FLASH" Name="슬링어 섬광탄"/>
+    <Ailment ID="STATUS_KNOCKDOWN" Name="녹다운"/>
+    <Ailment ID="STATUS_DUNGPOD" Name="슬링어 거름탄"/>
+    <Ailment ID="STATUS_SHOCKTRAP" Name="마비 덫"/>
+    <Ailment ID="STATUS_PITFALLTRAP" Name="구멍 함정"/>
     <Ailment ID="STATUS_ELDERSEAL" Name="용봉력"/>
-    <Ailment ID="STATUS_SMOKING" Name="연기"/>
-    <Ailment ID="STATUS_FELYNETRAP" Name="마비 벌레장"/>
-    <Ailment ID="STATUS_CLAW" Name="누적 상처치"/>
-    <Ailment ID="STATUS_VIOLATED" Name="클로공격 분노치"/>
+    <Ailment ID="STATUS_SMOKING" Name="연기옥"/>
+    <Ailment ID="STATUS_FELYNETRAP" Name="벌레장 함정"/>
+    <Ailment ID="STATUS_CLAW" Name="분노치"/>
+    <Ailment ID="STATUS_VIOLATED" Name="클러치 경직"/>
   </Ailments>
   <Mantles>
     <Mantle ID="-1" Name="복장 없음"/>
@@ -261,9 +261,9 @@
     <Weapon ID="13" Name="라이트보우건"/>
   </Weapons>
   <Abnormalities>
-    <Abnormality ID="UNKNOWN_ABNORMALITY" Name="알수없는 버프 (ID: {AbnormalityID})"/>
+    <Abnormality ID="UNKNOWN_ABNORMALITY" Name="알 수 없는 버프 (ID: {AbnormalityID})"/>
     <Abnormality ID="HUNTINGHORN_000_00" Name="자기 강화"/>
-    <Abnormality ID="HUNTINGHORN_999_00" Name="공격력 UP + 튕귐 무효화"/>
+    <Abnormality ID="HUNTINGHORN_999_00" Name="Attack UP + Deflect. Attack Prevention"/>
     <Abnormality ID="HUNTINGHORN_001_00" Name="공격력 UP [소]"/>
     <Abnormality ID="HUNTINGHORN_001_01" Name="공격력 UP [대]"/>
     <Abnormality ID="HUNTINGHORN_002_00" Name="공격력 UP [대]"/>
@@ -354,7 +354,7 @@
     <Abnormality ID="DEBUFF_007_00" Name="얼음속성 피해"/>
     <Abnormality ID="DEBUFF_008_00" Name="용속성 피해"/>
     <Abnormality ID="DEBUFF_009_00" Name="열상 상태"/>
-    <Abnormality ID="DEBUFF_010_00" Name="자연 회복속도 UP (열상 회복)"/>
+    <Abnormality ID="DEBUFF_010_00" Name="자연 회복속도 UP(열상 회복)"/>
     <Abnormality ID="DEBUFF_011_00" Name="독기 침식 상태"/>
     <Abnormality ID="DEBUFF_012_00" Name="방어력 DOWN"/>
     <Abnormality ID="DEBUFF_014_00" Name="속성내성 DOWN"/>
@@ -362,14 +362,14 @@
     <Abnormality ID="DEBUFF_017_00" Name="폭파 피해"/>
     <Abnormality ID="DEBUFF_020_00" Name="강폭파 피해"/>
     <Abnormality ID="MISC_000_00" Name="강주약"/>
-    <Abnormality ID="MISC_001_00" Name="스태미너 유충"/>
-    <Abnormality ID="MISC_002_00" Name="아스테라 저키"/>
+    <Abnormality ID="MISC_001_00" Name="스태미나 유충"/>
+    <Abnormality ID="MISC_002_00" Name="아스테라저키"/>
     <Abnormality ID="MISC_004_00" Name="괴력씨앗"/>
     <Abnormality ID="MISC_004_01" Name="괴력의 환약"/>
     <Abnormality ID="MISC_008_00" Name="인내씨앗"/>
-    <Abnormality ID="MISC_008_01" Name="경화의 환약"/>
+    <Abnormality ID="MISC_008_01" Name="인내의 환약"/>
     <Abnormality ID="MISC_013_00" Name="귀인의 가루"/>
-    <Abnormality ID="MISC_014_00" Name="경화의 가루"/>
+    <Abnormality ID="MISC_014_00" Name="인내의 가루"/>
     <Abnormality ID="MISC_015_00" Name="귀인약"/>
     <Abnormality ID="MISC_015_01" Name="귀인약"/>
     <Abnormality ID="MISC_015_02" Name="그레이트 귀인약"/>

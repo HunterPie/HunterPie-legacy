@@ -138,13 +138,13 @@ namespace HunterPie.Memory {
                     try {
                         GameVersion = int.Parse(MonsterHunter.MainWindowTitle.Split('(')[1].Trim(')'));
                         
-                    } catch {
-                        Logger.Debugger.Error("Could not get Monster Hunter World build version.");
+                    } catch(Exception err) {
+                        Logger.Debugger.Error($"Could not get Monster Hunter World build version.\n{err.ToString()}");
                         GameVersion = 0;
                     }
                     WindowHandle = MonsterHunter.MainWindowHandle;
                     _onGameStart();
-                    Logger.Debugger.Log($"MonsterHunterWorld.exe found! (PID: {PID})");
+                    Logger.Debugger.Log($"{MonsterHunter.MainWindowTitle} found! (PID: {PID})");
                     GameIsRunning = true;
                 }
                 if (GameIsRunning) {

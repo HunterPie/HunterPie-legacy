@@ -8,6 +8,7 @@ UPDATE 1.0.3.83
 + Added theme selection box, you can find it in the settings window in General section;
 + South Korean and Italian translations;
 + Added some theme presets;
+- Fixed monster widget showing the wrong crown sometimes;
 - Fixed problems with HunterPie path when it's launched by another tool;
 - Fixed some bugs in the monster widget that would make HunterPie crash;
 - Fixed some ailments buildup not working properly;

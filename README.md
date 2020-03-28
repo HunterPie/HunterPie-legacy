@@ -1,48 +1,53 @@
 [![Discord](https://img.shields.io/discord/678286768046342147?color=%237289DA&label=Discord&logo=Discord&logoColor=%2399AAB5&style=for-the-badge)](https://discord.gg/5pdDq4Q)
+[![Donate](https://img.shields.io/badge/Donate-PayPal-blue.svg)](https://www.paypal.com/cgi-bin/webscr?cmd=_s-xclick&hosted_button_id=EXPGCRVFVC2ZA&source=url)
 
-# HunterPie
-HunterPie is a software that reads the game memory (only reads, it doesn't write anything to it) to find the necessary data for discord rich presence and to update the overlay with useful stuff.
-HunterPie is a C# version of [HunterPy](https://github.com/Haato3o/HunterPy/), it has a better UI and overlay compared to the Python version and is also faster and lighter.
+![HunterPie](https://cdn.discordapp.com/attachments/402557384209203200/693529286975553667/Nexus_HunterPie_Banner.png)
+## About
+HunterPie is a modern and simple to use overlay with support for Discord Rich Presence for Monster Hunter: World.
 
-# Installation
-You can download the latest version [here](https://github.com/Haato3o/HunterPie/releases/latest), extract the file and then run HunterPie.exe, it will auto-update whenever there's a newer version.
+## How to install
 
-# How to use
-## Rich presence
-The discord integration is enabled by default, you just need to open your game and let HunterPie running in the background, however it can be disabled anytime in HunterPie settings.
+#### Requirements
 
-## Overlay
-**THE OVERLAY ONLY WORKS WHEN THE GAME IS IN BORDERLESS FULLSCREEN OR WINDOWED!**
+- [.NET Framework >= 4.6.1](https://www.microsoft.com/en-us/download/details.aspx?id=49982)
 
-HunterPie has an overlay that can be toggled on/off. You can also disable any of the widgets in the overlay separately in case you don't like one of them as well as change the widgets position.
+#### Installation
 
-### Monster health
-Shows monsters name, current health, total health, monster weaknesses, monster size crown, the enrage icon pops up next to monster's name and the health bar starts blinking whenever monster is enraged.
-![Monsters health widget](https://camo.githubusercontent.com/2b9e5ac20443a947446005d2e6ac132417adb6f3/68747470733a2f2f692e696d6775722e636f6d2f625642364148772e706e67)
+- Download the latest release [here](https://github.com/Haato3o/HunterPie/releases/latest);
+- Extract it anywhere you want;
+- Open the extracted folder and start the **HunterPie.exe**, it will automatically look for new updates.
 
-### DPS Meter
+#### Uninstallation
 
-This widget shows your party DPS. You can customize colors in HunterPie settings tab. This widget will show your damage per second if you joined the quest at the start, and total damage if you joined after the quest was started (e.g: in a S.O.S)
-> **Note:** It does not work in expeditions due to how Monster Hunter World works.
+- Delete HunterPie folder
 
-![DPS Meter solo](https://cdn.discordapp.com/attachments/402557384209203200/681543050337714189/unknown.png) 
-![DPS Meter Party](https://cdn.discordapp.com/attachments/402557384209203200/681546567748157482/unknown.png)
+## Widgets
+- **Monster Widget:** Shows all monster information, you can read more about it [here](https://github.com/Haato3o/HunterPie/wiki/Monster-Widget).
+![Monster Widget](https://cdn.discordapp.com/attachments/402557384209203200/692794622077829130/unknown.png)
 
-### Mantles Cooldown
-Shows the mantles cooldown and timer when wearing one, this widget only appears when the cooldown and timer are actually running. You can also change the widget color in HunterPie settings, it uses HEX color with alpha (#RRGGBBAA)
+- **Harvest Box Widget:** Shows fertilizers, amount of items in your harvest box, warns you when they're about to expire, shows Steam fuel, Argosy tracker and Tailraider tracker.
+![HB widget](https://staticdelivery.nexusmods.com/mods/2531/images/2645/2645-1583505042-1044544052.png)
 
-### Harvest Box
-Shows fertilizer names and amount left and the total items in harvest box. It only appears in Astera and gathering hub.
+- **Abnormalities Widget:** Shows all Hunting Horn buffs, Palico orchestra, elemental debuffs and consumable buffs. You can read more about it [here](https://github.com/Haato3o/HunterPie/wiki/Abnormalities-Tray)
+    > **Note:** Not every abnormality is supported, but more will be added eventually whenever they're found in memory.
 
-### More widgets and info to be added soon...
+![Abnormality tray](https://cdn.discordapp.com/attachments/402557384209203200/693155786200711198/unknown.png)
 
-### Uninstallation
+- **Damage Widget:** Shows your party damage.
+![Damage widget](https://staticdelivery.nexusmods.com/mods/2531/images/2645/2645-1582739132-2012080524.png)
 
-Just delete HunterPie folder.
+- **Specialized Tools Widget:** Shows the cooldown and time left on your equipped specialized tool.
 
-## Bugs and suggestions
-If you find any bug or have any suggestion, please contact me on Discord (Haato#0704) or open an issue ticket [here](https://github.com/Haato3o/HunterPie/issues)
+## Troubleshooting & Bugs
 
-## Credits
-+ [R00telement](https://github.com/r00telement) for his [SmartHunter](https://github.com/r00telement/SmartHunter) application that helped me finding the monsters health
-+ [Ezekial711](https://github.com/Ezekial711) for his [modding guide](https://github.com/Ezekial711/MonsterHunterWorldModding) that helped me find and map all mantles
+Please, read the [FAQ](https://github.com/Haato3o/HunterPie/wiki/FAQ), if your issue isn't listed there, contact me on [Discord](https://discord.gg/5pdDq4Q).
+
+## Suggestions & PR
+
+You can use the #suggestions chat in HunterPie Discord server, open a ticket [here](https://github.com/Haato3o/HunterPie/issues) or make your own pull request. I'll gladly read them all.
+
+## Credits & Thanks
+- R00telement for his work on SmartHunter.
+- Ezekial711 & all the MHW modding community for their modding.
+- All the translators that have been localizing HunterPie to their native languages.
+- Everyone that helped HunterPie development.
