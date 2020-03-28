@@ -173,8 +173,8 @@
     <Ailment ID="STATUS_ELDERSEAL" Name="Sceaux des anciens"/>
     <Ailment ID="STATUS_SMOKING" Name="Smoking"/>
     <Ailment ID="STATUS_FELYNETRAP" Name="Piège Palico"/>
-    <Ailment ID="STATUS_CLAW" Name="Grappin"/>
-    <Ailment ID="STATUS_VIOLATED" Name="Violenté"/>
+    <Ailment ID="STATUS_CLAW" Name="Coup de grappin"/>
+    <Ailment ID="STATUS_VIOLATED" Name="Blessé"/>
   </Ailments>
   <Mantles>
     <Mantle ID="-1" Name="Pas de cape"/>

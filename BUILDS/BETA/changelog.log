@@ -4,9 +4,13 @@
 
 UPDATE 1.0.3.83
 
++ Added debug options;
 + Added theme selection box, you can find it in the settings window in General section;
 + South Korean and Italian translations;
 + Added some theme presets;
+- Fixed problems with HunterPie path when it's launched by another tool;
+- Fixed some bugs in the monster widget that would make HunterPie crash;
+- Fixed some ailments buildup not working properly;
 - Fixed "Launch Game" not actually launching when the user is using Stracker's Loader v1.8.0;
 
 UPDATE 1.0.3.82

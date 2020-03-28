@@ -170,11 +170,12 @@
     <Ailment ID="STATUS_DUNGPOD" Name="Dung Pod"/>
     <Ailment ID="STATUS_SHOCKTRAP" Name="Shock Trap"/>
     <Ailment ID="STATUS_PITFALLTRAP" Name="Pitfall Trap"/>
+    <Ailment ID="STATUS_VINETRAP" Name="Vine Trap"/>
     <Ailment ID="STATUS_ELDERSEAL" Name="Elderseal"/>
     <Ailment ID="STATUS_SMOKING" Name="Smoking"/>
     <Ailment ID="STATUS_FELYNETRAP" Name="Felyne Trap"/>
     <Ailment ID="STATUS_CLAW" Name="Claw"/>
-    <Ailment ID="STATUS_VIOLATED" Name="Hurt"/>
+    <Ailment ID="STATUS_VIOLATED" Name="Claw Flinch"/>
   </Ailments>
   <Mantles>
     <Mantle ID="-1" Name="No Mantle"/>
