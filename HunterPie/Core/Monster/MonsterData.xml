@@ -32,7 +32,7 @@
       <Weakness ID="ELEMENT_THUNDER" Stars="2"/>
     </Weaknesses>
     <Crown Mini="90" Silver="115" Gold="123"/>
-    <Parts Max="9">
+    <Parts Max="8">
       <Part Name="MONSTER_PART_REMOVABLE_TAIL" IsRemovable="True"/>
       <Part Name="MONSTER_PART_HEAD" Group="HEAD" IsRemovable="False"/>
       <Part Name="MONSTER_PART_BODY" Group="BODY" IsRemovable="False"/>

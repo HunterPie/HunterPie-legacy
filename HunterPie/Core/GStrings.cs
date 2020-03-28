@@ -13,6 +13,7 @@ namespace HunterPie.Core {
         }
 
         private static void LoadTranslationXML(string LangXML) {
+            if (LangXML == null) LangXML = @"Languages\en-us.xml";
             LangXML = Path.Combine(AppDomain.CurrentDomain.BaseDirectory, LangXML);
             try {
                 Translations.Load(LangXML);

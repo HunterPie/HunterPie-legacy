@@ -15,8 +15,7 @@
         <Setter Property="Foreground" Value="Gray"/>
         <Setter Property="FontSize" Value="12"/>
         <Setter Property="FontWeight" Value="Bold"/>
-        <Setter Property="Margin" Value="0,0,0,0"/>
-        <Setter Property="Padding" Value="0,50,0,0"/>
+        <Setter Property="Padding" Value="0,0,0,0"/>
         <Setter Property="HorizontalAlignment" Value="Left"/>
         <Setter Property="Width" Value="232"/>
     </Style>
@@ -32,6 +31,7 @@
         </Setter>
         <Setter Property="FontWeight" Value="SemiBold"/>
         <Setter Property="FontSize" Value="14"/>
+        <Setter Property="Padding" Value="0,0,0,0"/>
     </Style>
     <!-- Monster Bar (Parts) -->
     <Style x:Key="OVERLAY_MONSTER_PART_BAR_STYLE" TargetType="Monster:MonsterPart">
