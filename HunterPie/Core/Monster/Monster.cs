@@ -260,7 +260,6 @@ namespace HunterPie.Core {
             Int64 MonsterCurrentHPAddress = MonsterTotalHPAddress + 0x4;
             float f_TotalHP = Scanner.READ_FLOAT(MonsterTotalHPAddress);
             float f_CurrentHP = Scanner.READ_FLOAT(MonsterCurrentHPAddress);
-
             if ((MonsterModel != null) && f_CurrentHP <= f_TotalHP && f_CurrentHP > 0 && !MonsterModel.StartsWith("ems")) {
                 this.TotalHP = f_TotalHP;
                 this.CurrentHP = f_CurrentHP;

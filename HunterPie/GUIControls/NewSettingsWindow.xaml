@@ -49,14 +49,7 @@
                 </Style.Triggers>
             </Style>
             <Style TargetType="{x:Type TabItem}">
-                <Setter Property="Background">
-                    <Setter.Value>
-                        <LinearGradientBrush EndPoint="1,1" StartPoint="0,0">
-                            <GradientStop Color="#FF111111" Offset="0"/>
-                            <GradientStop Color="#FF212121" Offset="1"/>
-                        </LinearGradientBrush>
-                    </Setter.Value>
-                </Setter>
+                <Setter Property="Height" Value="30"/>
                 <Setter Property="Margin" Value="0,1,0,0"/>
                 <Setter Property="Padding" Value="0"/>
                 <Setter Property="Foreground" Value="#FF9C9C9C"/>
@@ -65,21 +58,28 @@
                 <Setter Property="Template">
                     <Setter.Value>
                         <ControlTemplate TargetType="{x:Type TabItem}">
-                            <Border x:Name="PART_Border" BorderThickness="0" BorderBrush="{x:Null}" Margin="0,0,-5,0" Background="#FF080808" CornerRadius="2,2,0,0" Height="29">
+                            <Border x:Name="PART_Border" Margin="0,0,-5,0" BorderBrush="#FFAF0000" Background="#FF080808" CornerRadius="2,2,0,0">
                                 <ContentPresenter ContentSource="Header" Cursor="Hand"/>
+                                
                             </Border>
                             <ControlTemplate.Triggers>
                                 <Trigger Property="IsSelected" Value="True">
-                                    <Setter Property="Opacity" Value="1"/>
-                                    <Setter Property="Background">
-                                        <Setter.Value>
-                                            <LinearGradientBrush EndPoint="1,1" StartPoint="0,0">
-                                                <GradientStop Color="#FF232222" Offset="0"/>
-                                                <GradientStop Color="#FF171717" Offset="1"/>
-                                            </LinearGradientBrush>
-                                        </Setter.Value>
-                                    </Setter>
-                                    <Setter Property="Foreground" Value="WhiteSmoke"/>
+                                    <Trigger.EnterActions>
+                                        <BeginStoryboard>
+                                            <Storyboard>
+                                                <ColorAnimation Storyboard.TargetProperty="(Foreground).(SolidColorBrush.Color)" To="whiteSmoke" Duration="0:0:0.2"/>
+                                                <ThicknessAnimation Storyboard.TargetName="PART_Border" Storyboard.TargetProperty="BorderThickness" To="3,0,0,0" Duration="0:0:0.15"/>
+                                            </Storyboard>
+                                        </BeginStoryboard>
+                                    </Trigger.EnterActions>
+                                    <Trigger.ExitActions>
+                                        <BeginStoryboard>
+                                            <Storyboard>
+                                                <ColorAnimation Storyboard.TargetProperty="(Foreground).(SolidColorBrush.Color)" To="Gray" Duration="0:0:0.2"/>
+                                                <ThicknessAnimation Storyboard.TargetName="PART_Border" Storyboard.TargetProperty="BorderThickness" To="0,0,0,0" Duration="0:0:0.15"/>
+                                            </Storyboard>
+                                        </BeginStoryboard>
+                                    </Trigger.ExitActions>
                                 </Trigger>
                             </ControlTemplate.Triggers>
                         </ControlTemplate>
@@ -90,15 +90,15 @@
     </UserControl.Resources>
     <Grid>
         <TabControl HorizontalAlignment="Left" Height="450" VerticalAlignment="Top" Width="949" Background="{x:Null}" BorderBrush="#FF0C0C0C" TabStripPlacement="Left" BorderThickness="4,0,0,0">
-            <TabItem>
+            <TabItem Background="Black">
                 <TabItem.Header>
                     <Canvas Cursor="Hand">
                         <Image Source="{StaticResource LOGO_HunterPie}" Width="15" Canvas.Top="6" Canvas.Left="3"/>
-                        <TextBlock Text="General" Height="21" Width="129" Canvas.Left="20" FontWeight="Medium" Canvas.Top="2"/>
+                        <TextBlock Text="General" Height="21" Width="181" Canvas.Left="20" FontWeight="Medium" Canvas.Top="2"/>
                     </Canvas>
                 </TabItem.Header>
                 <ScrollViewer>
-                    <StackPanel  Height="436" Width="782" HorizontalAlignment="Left">
+                    <StackPanel  Height="436" Width="739" HorizontalAlignment="Left">
                         <custom:Switcher x:Name="switchEnableAutoUpdate" Text="Enable Auto-Update" ToolTip="if enabled, HunterPie will look for new files on startup." HorizontalAlignment="Center" MinWidth="500"/>
                         <custom:Switcher x:Name="switchEnableMinimizeToSystemTray" Text="Minimize HunterPie to system tray" ToolTip="if enabled, HunterPie will be minimized to system tray." HorizontalAlignment="Center" MinWidth="500"/>
                         <custom:Switcher x:Name="switchEnableStartMinimized" Text="Start HunterPie minimized" ToolTip="if enabled, HunterPie will start and hide directly into your system tray." HorizontalAlignment="Center" MinWidth="500"/>
@@ -138,11 +138,11 @@
                 <TabItem.Header>
                     <Canvas>
                         <Image Source="{StaticResource ICON_DISCORD}" Width="15" Canvas.Top="8" Canvas.Left="3"/>
-                        <TextBlock Text="Discord" Height="27" Width="133" Canvas.Left="20" FontWeight="Medium" Padding="0,2,0,0"/>
+                        <TextBlock Text="Discord" Height="27" Width="179" Canvas.Left="20" FontWeight="Medium" Padding="0,2,0,0"/>
                     </Canvas>
                 </TabItem.Header>
-                <ScrollViewer Margin="0,0,-1,0">
-                    <StackPanel  Height="436" Width="782" HorizontalAlignment="Left">
+                <ScrollViewer>
+                    <StackPanel  Height="436" Width="739" HorizontalAlignment="Left">
                         <custom:Switcher x:Name="switchEnableRichPresence" Text="Enable Discord Rich Presence" ToolTip="if enabled, HunterPie will show your game activity on your Discord status." HorizontalAlignment="Center" MinWidth="500"/>
                         <custom:Switcher x:Name="switchShowMonsterHealth" Text="Show monster health percentage" ToolTip="if enabled, HunterPie will show the health percentage of the monster you're hunting." HorizontalAlignment="Center" MinWidth="500"/>
                     </StackPanel>
@@ -151,11 +151,11 @@
             <TabItem>
                 <TabItem.Header>
                     <Canvas>
-                        <TextBlock Text="Overlay" Height="26" Width="132" Canvas.Left="20" FontWeight="Medium" Canvas.Top="1"/>
+                        <TextBlock Text="Overlay" Height="26" Width="183" Canvas.Left="20" FontWeight="Medium" Canvas.Top="1"/>
                     </Canvas>
                 </TabItem.Header>
-                <ScrollViewer Margin="0,0,-1,0">
-                    <StackPanel  Height="436" Width="782" HorizontalAlignment="Left">
+                <ScrollViewer>
+                    <StackPanel  Height="436" Width="739" HorizontalAlignment="Left">
                         <custom:Switcher x:Name="switchEnableOverlay" Text="Enable In-Game Overlay" ToolTip="if enabled, the overlay will be visible in-game." HorizontalAlignment="Center" MinWidth="500"/>
                         <custom:Switcher x:Name="switchHideWhenUnfocused" Text="Hide Overlay when game is unfocused" ToolTip="if enabled, HunterPie overlay will be automatically hidden when the game loses focus (e.g: When you Alt+Tab)" HorizontalAlignment="Center" MinWidth="500"/>
                         <custom:Switcher x:Name="switchHardwareAcceleration" Text="Enable Hardware Acceleration" ToolTip="Enabling Hardware acceleration will make the overlay be rendered by the graphics card. Turning this off will change the rendering mode to software rendering, which will use more CPU. Turn this option off if you're having FPS issues. (REQUIRES RESTART)" HorizontalAlignment="Center" MinWidth="500" RequiresRestart="True"/>
@@ -183,11 +183,11 @@
                 <TabItem.Header>
                     <Canvas>
                         <Image Source="{StaticResource ICON_MONSTERBAR}" Width="19" Height="20" Canvas.Top="3" Canvas.Left="1"/>
-                        <TextBlock Text="Monsters" Height="27" Width="133" Canvas.Left="20" FontWeight="Medium" Padding="0,1,0,0"/>
+                        <TextBlock Text="Monsters" Height="27" Width="183" Canvas.Left="20" FontWeight="Medium" Padding="0,1,0,0"/>
                     </Canvas>
                 </TabItem.Header>
-                <ScrollViewer Margin="0,0,-1,0" CanContentScroll="True">
-                    <StackPanel  Height="436" Width="782" HorizontalAlignment="Left" CanVerticallyScroll="True">
+                <ScrollViewer CanContentScroll="True">
+                    <StackPanel  Height="443" Width="739" HorizontalAlignment="Left">
                         <custom:Switcher x:Name="switchEnableMonsterComponent" Text="Enable Monster Widget" ToolTip="if enabled, the monster widget will be visible whenever it has content to show." HorizontalAlignment="Center" MinWidth="500"/>
                         <Canvas Height="28" ToolTip="Changes the monster bar mode." HorizontalAlignment="Center" MinWidth="500">
                             <TextBlock Text="Monster Bar Mode:" FontFamily="Segoe UI Light" Foreground="WhiteSmoke" Canvas.Top="3"/>
@@ -214,7 +214,7 @@
                         <custom:Switcher x:Name="switchEnableHideUnactiveParts" Text="Hide inactive parts/ailments after a few seconds" ToolTip="if enabled, unchanged parts and ailments will be hidden after a few seconds." HorizontalAlignment="Center" MinWidth="500"/>
                         <custom:Switcher x:Name="switchEnableRemovableParts" Text="Show monster breakable parts" ToolTip="if enabled, monster removable/breakable parts will become visible under their health bar." HorizontalAlignment="Center" MinWidth="500"/>
                         <custom:Switcher x:Name="switchEnableAilments" Text="Show Monster Ailments" ToolTip="if enabled, monster ailments will be visible under their health bar." HorizontalAlignment="Center" MinWidth="500"/>
-                        <custom:Switcher x:Name="switchEnableParts" Text="Show monster parts" ToolTip="if enabled, monster removable/breakable parts will become visible under their health bar." HorizontalAlignment="Center" MinWidth="500" MouseDown="SwitchEnableParts_MouseDown"/>
+                        <custom:Switcher x:Name="switchEnableParts" Text="Show monster parts" ToolTip="if enabled, monster flinch parts will become visible under their health bar." HorizontalAlignment="Center" MinWidth="500" MouseDown="SwitchEnableParts_MouseDown"/>
                         <ScrollViewer MaxHeight="200" Margin="250,0,131,0">
                             <StackPanel x:Name="PartsCustomizer" Height="0" IsEnabled="False">
                                 <custom:Switcher x:Name="EnablePartHead" Text="Enable Head health"/>
@@ -284,11 +284,11 @@
                 <TabItem.Header>
                     <Canvas>
                         <Image Source="{StaticResource ICON_ARGOSY}" Width="15" Height="15" Canvas.Top="5" Canvas.Left="3"/>
-                        <TextBlock Text="Harvest Box" Height="27" Width="133" Canvas.Left="20" FontWeight="Medium" Padding="0,1,0,0"/>
+                        <TextBlock Text="Harvest Box" Height="27" Width="181" Canvas.Left="20" FontWeight="Medium" Padding="0,1,0,0"/>
                     </Canvas>
                 </TabItem.Header>
-                <ScrollViewer Margin="0,0,-1,0">
-                    <StackPanel  Height="436" Width="782" HorizontalAlignment="Left">
+                <ScrollViewer>
+                    <StackPanel  Height="436" Width="739" HorizontalAlignment="Left">
                         <custom:Switcher x:Name="switchEnableHarvestBox" Text="Enable Harvest Box Widget" MinWidth="500" ToolTip="if enabled, the Harvest box widget will be visible whenever it has content." HorizontalAlignment="Center"/>
                         <custom:Switcher x:Name="switchAlwaysShow" Text="Show Widget everywhere" MinWidth="500" ToolTip="if enabled, this widget will be shown in every place, including expeditions, Guiding Lands and any other monster zones." HorizontalAlignment="Center"/>
                         <custom:PositionControl x:Name="HarvestBoxPosition"/>
@@ -299,11 +299,11 @@
                 <TabItem.Header>
                     <Canvas >
                         <Image Source="{StaticResource ICON_GREATSWORD}" Width="15" Height="15" Canvas.Left="2" Canvas.Top="5"/>
-                        <TextBlock Text="DPS Meter" Height="27" Width="135" Canvas.Left="18" FontWeight="Medium" Padding="0,1,0,0"/>
+                        <TextBlock Text="DPS Meter" Height="27" Width="184" Canvas.Left="18" FontWeight="Medium" Padding="0,1,0,0"/>
                     </Canvas>
                 </TabItem.Header>
-                <ScrollViewer Margin="0,0,-1,0">
-                    <StackPanel  Height="436" Width="782" HorizontalAlignment="Left">
+                <ScrollViewer>
+                    <StackPanel  Height="436" Width="739" HorizontalAlignment="Left">
                         <custom:Switcher x:Name="switchEnableDPSMeter" Text="Enable Damage Widget" MinWidth="500" ToolTip="if enabled, the Damage Meter Widget will be visible whenever it has content." HorizontalAlignment="Center"/>
                         <custom:Switcher x:Name="switchEnableDPSWheneverPossible" Text="Show DPS instead of total damage whenever possible" MinWidth="500" ToolTip="if enabled, the damage meter will show damage per second instead of total damage whenever possible." HorizontalAlignment="Center"/>
                         <custom:ColorPicker NameText="First Player" x:Name="FirstPlayerColor"/>
@@ -318,32 +318,32 @@
                 <TabItem.Header>
                     <Canvas>
                         <Image Source="{StaticResource ICON_ATTACKUP}" Width="19" Height="20" Canvas.Top="4"/>
-                        <TextBlock Text="Buff Bar" Height="27" Width="135" Canvas.Left="18" FontWeight="Medium" Padding="0,1,0,0"/>
+                        <TextBlock Text="Buff Bar" Height="27" Width="182" Canvas.Left="18" FontWeight="Medium" Padding="0,1,0,0"/>
                     </Canvas>
                 </TabItem.Header>
-                <ScrollViewer Margin="10,0,-1,0">
-                    <StackPanel  Height="436" Width="782" HorizontalAlignment="Left">
+                <ScrollViewer>
+                    <StackPanel  Height="446" Width="739" HorizontalAlignment="Left">
                         <Canvas Height="440">
-                            <ScrollViewer Width="500" MaxHeight="300" Background="{x:Null}" Canvas.Left="125" Canvas.Top="10">
+                            <ScrollViewer Width="500" MaxHeight="300" Background="{x:Null}" Canvas.Left="88" Canvas.Top="10">
                                 <StackPanel x:Name="BuffTrays"/>
                             </ScrollViewer>
-                            <TextBlock x:Name="NumberOfBuffBars" FontFamily="Segoe UI Light" Canvas.Left="696" FontSize="20" TextWrapping="Wrap" Text="n" Foreground="WhiteSmoke" Canvas.Top="68"/>
-                            <TextBlock ToolTip="Create a new buff bar" FontFamily="Segoe UI Light" x:Name="AddNewBuffBar" Cursor="Hand" Background="#FF0E0E0E" Canvas.Left="723" FontSize="20" TextWrapping="Wrap" Text="+" Foreground="WhiteSmoke" Canvas.Top="68" Width="28" Padding="0" Height="32" TextAlignment="Center" MouseDown="AddNewBuffBarClick"/>
-                            <TextBlock ToolTip="Removes your last buff bar" FontFamily="Segoe UI Light" x:Name="SubBuffBar" Cursor="Hand" Background="#FF0E0E0E" Canvas.Left="650" FontSize="20" TextWrapping="Wrap" Text="-" Foreground="WhiteSmoke" Canvas.Top="68" Width="28" Padding="0" Height="32" TextAlignment="Center" MouseDown="SubBuffBarClick"/>
-                            <TextBlock Canvas.Left="630" TextWrapping="Wrap" FontFamily="Segoe UI Light" Text="(Requires restart)" Canvas.Top="100" Width="142" Foreground="#FFF1F1F1"  TextAlignment="Center"/>
+                            <TextBlock x:Name="NumberOfBuffBars" FontFamily="Segoe UI Light" Canvas.Left="649" FontSize="20" TextWrapping="Wrap" Text="n" Foreground="WhiteSmoke" Canvas.Top="68"/>
+                            <TextBlock ToolTip="Create a new buff bar" FontFamily="Segoe UI Light" x:Name="AddNewBuffBar" Cursor="Hand" Background="#FF0E0E0E" Canvas.Left="676" FontSize="20" TextWrapping="Wrap" Text="+" Foreground="WhiteSmoke" Canvas.Top="68" Width="28" Padding="0" Height="32" TextAlignment="Center" MouseDown="AddNewBuffBarClick"/>
+                            <TextBlock ToolTip="Removes your last buff bar" FontFamily="Segoe UI Light" x:Name="SubBuffBar" Cursor="Hand" Background="#FF0E0E0E" Canvas.Left="603" FontSize="20" TextWrapping="Wrap" Text="-" Foreground="WhiteSmoke" Canvas.Top="68" Width="28" Padding="0" Height="32" TextAlignment="Center" MouseDown="SubBuffBarClick"/>
+                            <TextBlock Canvas.Left="583" TextWrapping="Wrap" FontFamily="Segoe UI Light" Text="(Requires restart)" Canvas.Top="100" Width="142" Foreground="#FFF1F1F1"  TextAlignment="Center"/>
                         </Canvas>
                     </StackPanel>
                 </ScrollViewer>
             </TabItem>
-            <TabItem Width="150">
+            <TabItem>
                 <TabItem.Header>
                     <Canvas>
                         <Image Source="{StaticResource ICON_MANTLE}" Width="18" Height="18" Canvas.Top="4" Canvas.Left="-1"/>
-                        <TextBlock Text="Specialized Tools" Height="27" Width="133" Canvas.Left="18" FontWeight="Medium" Padding="0,2,0,0"/>
+                        <TextBlock Text="Specialized Tools" Height="27" Width="184" Canvas.Left="18" FontWeight="Medium" Padding="0,2,0,0"/>
                     </Canvas>
                 </TabItem.Header>
-                <ScrollViewer Margin="10,0,-1,0">
-                    <StackPanel Height="436" Width="782" HorizontalAlignment="Left">
+                <ScrollViewer>
+                    <StackPanel Height="436" Width="739" HorizontalAlignment="Left">
                         <GroupBox Header="Primary Specialized tool" Height="187" Foreground="WhiteSmoke" BorderBrush="{x:Null}" Width="359" HorizontalAlignment="Center">
                             <StackPanel Margin="0,32,-2,12" Orientation="Vertical">
                                 <custom:Switcher x:Name="switchEnablePrimaryMantle" Text="Enable Primary specialized tool widget" ToolTip="if enabled, the primary specialized tool widget will be visible whenever it has content."/>
@@ -361,15 +361,71 @@
                     </StackPanel>
                 </ScrollViewer>
             </TabItem>
-            <TabItem Width="150">
+            <TabItem>
+                <TabItem.Header>
+                    <Canvas>
+                        <Image Source="{StaticResource ICON_LINK}" Width="15" Height="15" Canvas.Top="8" Canvas.Left="1"/>
+                        <TextBlock Text="Links" Height="27" Width="186" Canvas.Left="18" FontWeight="Medium" Padding="0,2,0,0"/>
+                    </Canvas>
+                </TabItem.Header>
+                <ScrollViewer>
+                    <WrapPanel Width="739" Orientation="Horizontal">
+                        <Canvas Height="190" Width="367" VerticalAlignment="Top" HorizontalAlignment="Left">
+                            <TextBlock Text="GitHub" FontFamily="Segoe UI Light" Foreground="Gray" Width="53" TextAlignment="Center"/>
+                            <Separator Width="300" Canvas.Left="54" Margin="0" Canvas.Top="12"/>
+                            <custom:MinimalButton Width="274" Icon="{StaticResource ICON_GITHUB}" Text="Wiki" Link="https://github.com/Haato3o/HunterPie/wiki" Canvas.Left="44" Canvas.Top="28" Foreground="#FFC7C5C5" Height="27" ToolTip="HunterPie official documentation.">
+                                <custom:MinimalButton.Color>
+                                    <LinearGradientBrush EndPoint="1,1" StartPoint="0,0">
+                                        <GradientStop Color="#FFAA1009" Offset="0"/>
+                                        <GradientStop Color="#FFB91E17" Offset="1"/>
+                                    </LinearGradientBrush>
+                                </custom:MinimalButton.Color>
+                            </custom:MinimalButton>
+                            <custom:MinimalButton Width="274" Icon="{StaticResource ICON_GITHUB}" BorderThickness="0" Text="Issues" Link="https://github.com/Haato3o/HunterPie/issues" Canvas.Left="44" Canvas.Top="65" Foreground="#FFC7C5C5"  ToolTip="HunterPie github issues page.">
+                                <custom:MinimalButton.Color>
+                                    <LinearGradientBrush EndPoint="1,1" StartPoint="0,0">
+                                        <GradientStop Color="#FFAA1009" Offset="0"/>
+                                        <GradientStop Color="#FFB91E17" Offset="1"/>
+                                    </LinearGradientBrush>
+                                </custom:MinimalButton.Color>
+                            </custom:MinimalButton>
+                        </Canvas>
+                        <Canvas Height="190" Width="368" VerticalAlignment="Top" HorizontalAlignment="Left">
+                            <TextBlock Text="Donations" FontFamily="Segoe UI Light" Foreground="Gray" TextAlignment="Center"/>
+                            <Separator Width="282" Canvas.Left="72" Margin="0" Canvas.Top="12"/>
+                            <custom:MinimalButton Width="274" Icon="{StaticResource ICON_PAYPAL}" Text="PayPal" Link="https://www.paypal.com/cgi-bin/webscr?cmd=_s-xclick&amp;hosted_button_id=EXPGCRVFVC2ZA&amp;source=url" Canvas.Left="44" Canvas.Top="28" Foreground="#FFE4E4E4" FontWeight="Bold" ToolTip="Consider donating if you want to support HunterPie development!">
+                                <custom:MinimalButton.Color>
+                                    <LinearGradientBrush EndPoint="1.5,-7" StartPoint="-0.1,-1">
+                                        <GradientStop Color="#FFF7C125" Offset="0"/>
+                                        <GradientStop Color="#FFF37335" Offset="1"/>
+                                    </LinearGradientBrush>
+                                </custom:MinimalButton.Color>
+                            </custom:MinimalButton>
+                        </Canvas>
+                        <Canvas Height="190" Width="367" VerticalAlignment="Top" HorizontalAlignment="Left">
+                            <TextBlock Text="Discord" FontFamily="Segoe UI Light" Foreground="Gray" Width="53" TextAlignment="Center"/>
+                            <Separator Width="300" Canvas.Left="54" Margin="0" Canvas.Top="12"/>
+                            <custom:MinimalButton Width="274" Icon="{StaticResource ICON_DISCORD}" Text="Discord Server" Link="https://discord.gg/5pdDq4Q" Canvas.Left="44" Canvas.Top="28" Foreground="#FFC7C5C5" Height="27" ToolTip="HunterPie official Discord server.">
+                                <custom:MinimalButton.Color>
+                                    <LinearGradientBrush EndPoint="1,1" StartPoint="0,0">
+                                        <GradientStop Color="#FF667DCB" Offset="0"/>
+                                        <GradientStop Color="#FF93A6E8" Offset="1"/>
+                                    </LinearGradientBrush>
+                                </custom:MinimalButton.Color>
+                            </custom:MinimalButton>
+                        </Canvas>
+                    </WrapPanel>
+                </ScrollViewer>
+            </TabItem>
+            <TabItem Width="200">
                 <TabItem.Header>
                     <Canvas>
                         <Image Source="{StaticResource ICON_CONSOLE}" Width="15" Height="15" Canvas.Top="6" Canvas.Left="2"/>
-                        <TextBlock Text="Debug" Height="27" Width="133" Canvas.Left="18" FontWeight="Medium" Padding="0,2,0,0"/>
+                        <TextBlock Text="Debug" Height="27" Width="185" Canvas.Left="18" FontWeight="Medium" Padding="0,2,0,0"/>
                     </Canvas>
                 </TabItem.Header>
-                <ScrollViewer Margin="10,0,-1,0">
-                    <StackPanel Height="436" Width="782" HorizontalAlignment="Left">
+                <ScrollViewer>
+                    <StackPanel Height="436" Width="739" HorizontalAlignment="Left">
                         <custom:Switcher x:Name="switchEnableDebugMessages" Text="Enable Debug messages" RequiresRestart="True" MinWidth="500" ToolTip="Enables debug messages. Do not turn this option on if you have no idea what you're doing, this is part of the development tools." HorizontalAlignment="Center"/>
                         <custom:Switcher x:Name="switchEnableUnknownStatuses" Text="Enable unknown monster ailments" RequiresRestart="True" MinWidth="500" ToolTip="Enables unknown monster statuses. Do not turn this option on if you have no idea what you're doing, this is part of the development tools." HorizontalAlignment="Center"/>
                     </StackPanel>

@@ -23,6 +23,15 @@ namespace HunterPie.GUI.Widgets.DPSMeter {
             ApplySettings();
         }
 
+        private void OnMeterRender(object sender, EventArgs e) {
+            if (Context == null) return;
+            if (UserSettings.PlayerConfig.Overlay.DPSMeter.ShowDPSWheneverPossible) {
+                Timer.Content = string.Format("{0:mm\\:ss\\.fff}", Context.Epoch);
+            } else {
+                Timer.Content = string.Format("{0:mm\\:ss\\.fff} (Total Damage)", Context.Epoch); ;
+            }
+        }
+
         public void SetContext(Game ctx) {
             Context = ctx.Player.PlayerParty;
             GameContext = ctx;
@@ -54,6 +63,7 @@ namespace HunterPie.GUI.Widgets.DPSMeter {
 
         private void OnPeaceZoneLeave(object source, EventArgs args) {
             Dispatcher.BeginInvoke(System.Windows.Threading.DispatcherPriority.Background, new Action(() => {
+                CompositionTarget.Rendering += OnMeterRender;
                 CreatePlayerComponents();
                 SortPlayersByDamage();
                 ChangeVisibility();
@@ -62,12 +72,15 @@ namespace HunterPie.GUI.Widgets.DPSMeter {
 
         private void OnPeaceZoneEnter(object source, EventArgs args) {
             Dispatcher.BeginInvoke(System.Windows.Threading.DispatcherPriority.Background, new Action(() => {
+                CompositionTarget.Rendering -= OnMeterRender;
+                Timer.Content = "";
                 DestroyPlayerComponents();
                 ChangeVisibility();
             }));
         }
 
         public void UnhookEvents() {
+            CompositionTarget.Rendering -= OnMeterRender;
             GameContext.Player.OnPeaceZoneEnter -= OnPeaceZoneEnter;
             GameContext.Player.OnPeaceZoneLeave -= OnPeaceZoneLeave;
             Context.OnTotalDamageChange -= OnTotalDamageChange;
@@ -88,13 +101,6 @@ namespace HunterPie.GUI.Widgets.DPSMeter {
                     ChangeVisibility();
                 }
                 SortPlayersByDamage();
-                if (UserSettings.PlayerConfig.Overlay.DPSMeter.ShowDPSWheneverPossible) {
-                    TypeIcon.Visibility = Visibility.Visible;
-                    Timer.Content = string.Format("{0:hh\\:mm\\:ss}", Context.Epoch);
-                } else {
-                    TypeIcon.Visibility = Visibility.Hidden;
-                    Timer.Content = "Total Damage";
-                }
             }));
         }
 
@@ -155,6 +161,7 @@ namespace HunterPie.GUI.Widgets.DPSMeter {
                     this.WidgetActive = UserSettings.PlayerConfig.Overlay.DPSMeter.Enabled;
                     UpdatePlayersColor();
                     ScaleWidget(UserSettings.PlayerConfig.Overlay.DPSMeter.Scale, UserSettings.PlayerConfig.Overlay.DPSMeter.Scale);
+                    if (Context != null) SortPlayersByDamage();
                 }
                 base.ApplySettings();
             }));

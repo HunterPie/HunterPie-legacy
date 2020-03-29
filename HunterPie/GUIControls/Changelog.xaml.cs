@@ -1,4 +1,5 @@
 ﻿using System.IO;
+using System;
 using System.Windows.Controls;
 using System.Windows.Documents;
 
@@ -31,11 +32,11 @@ namespace HunterPie.GUIControls {
         }
 
         private void LoadChangelogText() {
-            if (!File.Exists("changelog.log")) {
+            if (!File.Exists(Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "changelog.log"))) {
                 ChangelogBox.AppendText("Changelog not found!");
                 return;
             }
-            string[] _changelog = File.ReadAllLines("changelog.log");
+            string[] _changelog = File.ReadAllLines(Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "changelog.log"));
             foreach (string line in _changelog) {
                 TextRange fLine = new TextRange(ChangelogBox.Document.ContentEnd, ChangelogBox.Document.ContentEnd) {
                     Text = $"{line}\n"

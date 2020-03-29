@@ -26,7 +26,7 @@
                 <RowDefinition/>
             </Grid.RowDefinitions>
             <StackPanel x:Name="MonsterInfoPanel" Orientation="Horizontal" VerticalAlignment="Top" Height="18" Margin="33,0,0,0">
-                <Image x:Name="MonsterCrown" Source="{StaticResource CROWN_GOLD}" Visibility="Visible" Width="16" Margin="0,0,0,4"/>
+                <Image x:Name="MonsterCrown" Source="{StaticResource CROWN_GOLD}" Visibility="Visible" Width="16" Margin="0,2"/>
                 <TextBlock x:Name="MonsterName" Text="Monster Name" Style="{StaticResource OVERLAY_MONSTER_NAME_TEXT_STYLE}"/>
             </StackPanel>
             <Custom:MinimalHealthBar  x:Name="MonsterHealthBar" Height="14" VerticalAlignment="Top" RenderTransformOrigin="0.5,1" BorderThickness="0" Margin="49,0,18,0" Foreground="{x:Null}" Color="{StaticResource OVERLAY_MONSTER_HEALTH_BAR_COLOR}" Grid.Row="1">
@@ -43,7 +43,7 @@
                 </Custom:MinimalHealthBar.RenderTransform>
 
             </Custom:MinimalHealthBar>
-            <TextBlock x:Name="HealthText" Text="100/100" Style="{StaticResource OVERLAY_MONSTER_BAR_TEXT_STYLE}" TextAlignment="Center" Height="20" VerticalAlignment="Top" Margin="47,16,39,0" Grid.RowSpan="2"/>
+            <TextBlock x:Name="HealthText" Text="100/100" Style="{StaticResource OVERLAY_MONSTER_BAR_TEXT_STYLE}" TextAlignment="Center" Height="20" VerticalAlignment="Top" Margin="47,16,22,0" Grid.RowSpan="2" HorizontalAlignment="Stretch" Width="Auto"/>
             <Custom:MinimalHealthBar x:Name="MonsterStaminaBar" Grid.Row="1" Height="6" VerticalAlignment="Top" RenderTransformOrigin="0.5,1" BorderBrush="#7F1F1F1F" BorderThickness="0.2" Foreground="{x:Null}" Margin="43,14,27,0">
                 <Custom:MinimalHealthBar.Color>
                     <LinearGradientBrush EndPoint="1,0" StartPoint="0,0">

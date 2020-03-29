@@ -348,12 +348,12 @@ namespace HunterPie.Core {
         }
 
         private void GetQuestElapsedTime() {
-            Int64 EpochAddress = Scanner.READ_MULTILEVEL_PTR(Address.BASE + Address.DAMAGE_OFFSET, Address.Offsets.DamageOffsets);
-            Int64 Epoch = Scanner.READ_LONGLONG(EpochAddress + 0x1028);
+            Int64 TimerAddress = Scanner.READ_MULTILEVEL_PTR(Address.BASE + Address.ABNORMALITY_OFFSET, Address.Offsets.AbnormalityOffsets);
+            float Timer = Scanner.READ_FLOAT(TimerAddress + 0xB14);
             PlayerParty.ShowDPS = true;
-            if (Epoch > 0)
-                PlayerParty.Epoch = DateTime.UtcNow - DateTimeOffset.FromUnixTimeSeconds(Epoch);
-            else { PlayerParty.Epoch = TimeSpan.Zero; }
+            if (Timer > 0) {
+                PlayerParty.Epoch = TimeSpan.FromSeconds(Timer);
+            } else { PlayerParty.Epoch = TimeSpan.Zero; }
         }
 
         private int GetPartyMemberDamage(int playerIndex) {

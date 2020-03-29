@@ -14,7 +14,7 @@
     </src:Widget.Resources>
     <StackPanel x:Name="DamageContainer" VerticalAlignment="Top">
         <StackPanel Orientation="Horizontal" Background="#7F000000">
-            <Image x:Name="TypeIcon" Source="{StaticResource ICON_STOPWATCH}" Width="20" Height="20" Margin="5,0,0,0" Visibility="Hidden"/>
+            <Image x:Name="TypeIcon" Source="{StaticResource ICON_STOPWATCH}" Width="20" Height="20" Margin="5,0,0,0"/>
             <Label x:Name="Timer" Content="" Width="295" Foreground="#FFEAEAEA" FontFamily="Roboto" FontWeight="Bold" FontSize="16" />
         </StackPanel>
         <StackPanel x:Name="Party" Background="#7F000000" Canvas.Top="29" />

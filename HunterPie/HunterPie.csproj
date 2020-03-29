@@ -147,6 +147,9 @@
     <Compile Include="GUIControls\Custom Controls\ColorPicker.xaml.cs">
       <DependentUpon>ColorPicker.xaml</DependentUpon>
     </Compile>
+    <Compile Include="GUIControls\Custom Controls\MinimalButton.xaml.cs">
+      <DependentUpon>MinimalButton.xaml</DependentUpon>
+    </Compile>
     <Compile Include="GUIControls\Custom Controls\MinimalHealthBar.xaml.cs">
       <DependentUpon>MinimalHealthBar.xaml</DependentUpon>
     </Compile>
@@ -184,6 +187,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="GUIControls\Custom Controls\ColorPicker.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="GUIControls\Custom Controls\MinimalButton.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
