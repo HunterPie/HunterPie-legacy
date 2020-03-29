@@ -2,6 +2,14 @@
 ~ Refactoring/Code changes
 - Bugfixes
 
+UPDATE 1.0.3.84
+
++ Damage meter now shows timer in both modes (DPS and total damage);
++ Added real time quest timer;
++ Added links tab in settings window;
+~ Changed some minor styles in settings window;
+- Fixed problem with monster widget health text caused by update 1.0.3.83;
+
 UPDATE 1.0.3.83
 
 + Added debug options;
@@ -53,19 +61,3 @@ UPDATE 1.0.3.7
 - Fixed monster health bar not working for Kulve Taroth;
 - Fixed damage meter updating player damage separately, causing damage percentage overflow;
 - Minor fixes to the settings window;
-
-UPDATE 1.0.3.6
-
-+ Added player abnormalities (buff/debuff) widget;
-    Read more about the new player buffs widget here: https://github.com/Haato3o/HunterPie/wiki/Abnormalities-Tray
-+ Added option to start HunterPie minimized;
-+ Added notification when user config is re-loaded;
-+ Translation files will be automatically updated;
-+ Added MonsterHunterWorld.406510.map;
-+ Added Safi'jiiva and Stygian Zinogre;
-- Fixed game and other HunterPie components (like the exit confirmation popup) losing focus when mantle timer widgets are active;
-- Fixed mantle cooldown/timer not working in Arena;
-- Fixed damage meter showing the wrong weapon in Arena;
-- Fixed bug that would make HunterPie crash when changing the game settings and restarting the game;
-- Fixed monster HP despawning when there are two monsters with the same name and one of them is killed first;
-- Fixed widgets resetting position when saving abnormalities in the abnormality window;

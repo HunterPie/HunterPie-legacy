@@ -1,5 +1,5 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
-<!--1.0.3.80 translate by ThanatosDi-->
+<!--1.0.3.83 translate by ThanatosDi-->
 <Strings lang="Traditional Chinese">
   <Monsters>
     <Monster ID="em001_00" Name="雌火龍"/>
@@ -264,7 +264,7 @@
   <Abnormalities>
     <Abnormality ID="UNKNOWN_ABNORMALITY" Name="未知 Buff (ID: {AbnormalityID})"/>
     <Abnormality ID="HUNTINGHORN_000_00" Name="自我強化"/>
-    <Abnormality ID="HUNTINGHORN_999_00" Name="攻擊力UP＆彈武無效"/>
+    <Abnormality ID="HUNTINGHORN_999_00" Name="攻擊力UP&amp;彈武無效"/>
     <Abnormality ID="HUNTINGHORN_001_00" Name="攻擊力UP[小]"/>
     <Abnormality ID="HUNTINGHORN_001_01" Name="攻擊力UP[大]"/>
     <Abnormality ID="HUNTINGHORN_002_00" Name="攻擊力UP[大]"/>
@@ -291,7 +291,7 @@
     <Abnormality ID="HUNTINGHORN_025_00" Name="昏厥無效"/>
     <Abnormality ID="HUNTINGHORN_026_00" Name="麻痺無效"/>
     <Abnormality ID="HUNTINGHORN_027_00" Name="耐震"/>
-    <Abnormality ID="HUNTINGHORN_028_00" Name="減輕泥＆適應水場‧深雪"/>
+    <Abnormality ID="HUNTINGHORN_028_00" Name="減輕泥&amp;適應水場‧深雪"/>
     <Abnormality ID="HUNTINGHORN_029_00" Name="火屬性防禦強化[小]"/>
     <Abnormality ID="HUNTINGHORN_029_01" Name="火屬性防禦強化[大]"/>
     <Abnormality ID="HUNTINGHORN_030_00" Name="火屬性防禦強化[大]"/>
@@ -319,11 +319,11 @@
     <Abnormality ID="HUNTINGHORN_045_00" Name="全屬性耐性UP"/>
     <Abnormality ID="HUNTINGHORN_046_00" Name="會心率UP[小]"/>
     <Abnormality ID="HUNTINGHORN_047_00" Name="全狀態異常無效"/>
-    <Abnormality ID="HUNTINGHORN_048_00" Name="聽覺保護[小]＆風壓無效"/>
+    <Abnormality ID="HUNTINGHORN_048_00" Name="聽覺保護[小]&amp;風壓無效"/>
     <Abnormality ID="HUNTINGHORN_049_00" Name="狀態異常攻擊力UP"/>
-    <Abnormality ID="HUNTINGHORN_053_00" Name="最大耐力UP＆回復"/>
+    <Abnormality ID="HUNTINGHORN_053_00" Name="最大耐力UP&amp;回復"/>
     <Abnormality ID="HUNTINGHORN_054_00" Name="體力持續回復"/>
-    <Abnormality ID="HUNTINGHORN_055_00" Name="自我強化[速]＆迴避性能UP"/>
+    <Abnormality ID="HUNTINGHORN_055_00" Name="自我強化[速]&amp;迴避性能UP"/>
     <Abnormality ID="HUNTINGHORN_056_00" Name="屬性系效果UP"/>
     <Abnormality ID="HUNTINGHORN_943_00" Name="屬性系效果UP"/>
     <Abnormality ID="PALICO_000_00" Name="復活"/>
@@ -383,6 +383,6 @@
     <Abnormality ID="MISC_027_00" Name="寒耐性[溫泉]"/>
     <Abnormality ID="MISC_034_00" Name="攻擊力UP[鬼毬果]"/>
     <Abnormality ID="MISC_035_00" Name="冰耐性UP[冰耐草]"/>
-    <Abnormality ID="MISC_073_00" Name="攻擊力UP＆防禦力UP[小]"/>
+    <Abnormality ID="MISC_073_00" Name="攻擊力UP&amp;防禦力UP[小]"/>
   </Abnormalities>
 </Strings>

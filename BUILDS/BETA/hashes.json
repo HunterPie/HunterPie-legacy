@@ -1,8 +1,8 @@
 {
     "address/MonsterHunterWorld.408899.map": "e85ad8faea367b51b5bac004bf145fc227187da0af54ea11180ccfc3832c0047",
-    "changelog.log": "d7008b76937b840389606b3d507b914d1848cb23adb01af8e168b0d35a897caa",
+    "changelog.log": "757cfd32ffc9886182ea5c955c6bac57a2a82b6e2a7e21bf7f77f2e82ee21f3f",
     "DiscordRPC.dll": "19766e1e7b0bb1fffb16f734983fd086d072cd27acce1ef5d60082f91a0a3cc2",
-    "HunterPie.exe": "812cdb2566f3d3b4a9fc13ec5511ffeeba715df6190d2635d0f8cd83edbdc72a",
+    "HunterPie.exe": "8f26d352789f0b76033d656024ddf90ae4c0a1f10db204be910364790f170a08",
     "HunterPie.Resources\\Monsters\\Icons\\em001_00.png": "8821db22cfee14f2da665bb05c38f4bc601b5c040445f6d753f142811d3fc01f",
     "HunterPie.Resources\\Monsters\\Icons\\em001_01.png": "78a39f915a1a3b901591eba3976737d0c26f02ddefc2f264ccedc10e6b671e03",
     "HunterPie.Resources\\Monsters\\Icons\\em001_02.png": "f3149b20cd3e19c68ece4fb77321ca591f2d2580e440e43464e7d6280f10208c",
@@ -78,8 +78,8 @@
     "Languages/ko-kr.xml": "139bba9bb1f28851055730d477903493e2d98346ce8196d2eb4e6a40046aa29f",
     "Languages/pt-br.xml": "45294ba5aa0c6d4b966efd7b471311fb350faa91702946fe91e65ae62567762f",
     "Languages/zh-cn.xml": "5a66b2929c3b851d5dec281381187c8c744df403fcf144d6e1f6abacfbb581f7",
-    "Languages/zh-tw.xml": "8a2fbeabbe04febdb6b59dd3744a7a4322a271579b376a9293920005b0dd0eaf",
+    "Languages/zh-tw.xml": "d27f92168119c0f0d8dcc2b3452fdc5a01ffa5e0bb252da1ea79b8150bef9ab3",
     "Newtonsoft.Json.dll": "3598cccad5b535fea6f93662107a4183bfd6167bf1d0f80260436093edc2e3af",
     "Themes/RedMonsterBar.xaml": "8a1e816ecab602466338fc4cbcb4904492711691d23fde08ec064b1985a0a3aa",
-    "version.txt": "36ce6747d3607e3842a98a4d8e3ddfe54de3843287f44987fb3ed89b1847914b"
+    "version.txt": "c6b3922565d59ee0f2cccb55529bc3c5bbc6ee16bd3c97f4e64c9f8dabe5cf69"
 }
