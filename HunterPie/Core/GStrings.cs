@@ -3,10 +3,11 @@ using System.Xml;
 using System.IO;
 using HunterPie.Logger;
 using System.Text;
+using System.Windows.Data;
 
 namespace HunterPie.Core {
     class GStrings {
-        static private XmlDocument Translations = new XmlDocument();
+        static public XmlDocument Translations { get; private set; } = new XmlDocument();
 
         public static void InitStrings(string LangXml) {
             LoadTranslationXML(LangXml);
@@ -23,6 +24,9 @@ namespace HunterPie.Core {
                 Debugger.Error($"Failed to load {Path.GetFileName(LangXML)}");
                 LoadTranslationXML(@"Languages\en-us.xml");
             }
+            XmlDataProvider LocDataProvider = (XmlDataProvider)App.Current.FindResource("Localization");
+            LocDataProvider.Document = Translations;
+            LocDataProvider.Refresh();
         }
 
         public static string GetMantleNameByID(int ID) {
@@ -71,6 +75,12 @@ namespace HunterPie.Core {
             XmlNode AilmentName = Translations.SelectSingleNode($"//Strings/Ailments/Ailment[@ID='{AilmentID}']");
             if (AilmentName == null) return Translations.SelectSingleNode($"//Strings/Ailments/Ailment[@ID='STATUS_UNKNOWN']")?.Attributes["Name"].Value + $" ({AilmentID})" ?? $"Unknown ({AilmentID})";
             return AilmentName.Attributes["Name"].Value;
+        }
+
+        public static string GetLocalizationByXPath(string XPath) {
+            XmlNode LocString = Translations.SelectSingleNode($"//Strings/Client{XPath}");
+            if (LocString == null) return XPath;
+            return LocString.Attributes["Name"].Value;
         }
 
     }

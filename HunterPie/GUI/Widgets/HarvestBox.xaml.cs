@@ -146,14 +146,14 @@ namespace HunterPie.GUI.Widgets {
 
         private void OnStoredSteamFuelChange(object source, SteamFuelEventArgs args) {
             Dispatch(() => {
-                this.StoredFuelText.Text = args.Available.ToString();
+                this.StoredFuelText.Text = FormatToK(args.Available);
             });
         }
 
         private void OnNaturalSteamFuelChange(object source, SteamFuelEventArgs args) {
             Dispatch(() => {
                 this.SteamFuelWarnIcon.Visibility = args.Available >= args.Max ? Visibility.Visible : Visibility.Hidden;
-                this.NaturalFuelText.Text = args.Available.ToString();
+                this.NaturalFuelText.Text = FormatToK(args.Available);
             });
         }
 
@@ -268,6 +268,13 @@ namespace HunterPie.GUI.Widgets {
 
         private void OnMouseLeave(object sender, System.Windows.Input.MouseEventArgs e) {
             this.MouseOver = false;
+        }
+
+        // Helper
+        private string FormatToK(int value) {
+            if (value >= 1000000) return $"{value / 1000000}M";
+            if (value >= 1000) return $"{value / 1000}K";
+            return value.ToString();
         }
     }
 }

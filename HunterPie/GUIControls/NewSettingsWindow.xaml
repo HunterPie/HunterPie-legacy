@@ -99,7 +99,7 @@
                 </TabItem.Header>
                 <ScrollViewer>
                     <StackPanel  Height="436" Width="739" HorizontalAlignment="Left">
-                        <custom:Switcher x:Name="switchEnableAutoUpdate" Text="Enable Auto-Update" ToolTip="if enabled, HunterPie will look for new files on startup." HorizontalAlignment="Center" MinWidth="500"/>
+                        <custom:Switcher x:Name="switchEnableAutoUpdate" DataContext="{StaticResource Localization}" Text="Enable Auto-Update" ToolTip="if enabled, HunterPie will look for new files on startup." HorizontalAlignment="Center" MinWidth="500"/>
                         <custom:Switcher x:Name="switchEnableMinimizeToSystemTray" Text="Minimize HunterPie to system tray" ToolTip="if enabled, HunterPie will be minimized to system tray." HorizontalAlignment="Center" MinWidth="500"/>
                         <custom:Switcher x:Name="switchEnableStartMinimized" Text="Start HunterPie minimized" ToolTip="if enabled, HunterPie will start and hide directly into your system tray." HorizontalAlignment="Center" MinWidth="500"/>
                         <custom:Switcher x:Name="switchEnableCloseWhenExit" Text="Close HunterPie when game is closed" ToolTip="if enabled, HunterPie will automatically shutdown when the game is no longer running." HorizontalAlignment="Center" MinWidth="500"/>

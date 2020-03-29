@@ -385,4 +385,54 @@
     <Abnormality ID="MISC_035_00" Name="Ice Res (L)"/>
     <Abnormality ID="MISC_073_00" Name="Attack Up &amp; Def Up (S)"/>
   </Abnormalities>
+  <!-- Console -->
+  <Client>
+    <Console>
+      <String ID="CONSOLE_CONSOLE" Name="CONSOLE"/>
+      <String ID="CONSOLE_SETTINGS" Name="SETTINGS"/>
+      <String ID="CONSOLE_CHANGELOG" Name="PATCH NOTES"/>
+      <String ID="CONSOLE_DISCORD" Name="DISCORD"/>
+      <String ID="CONSOLE_GITHUB" Name="GITHUB"/>
+      <String ID="CONSOLE_LAUNCH" Name="LAUNCH GAME"/>
+      <String ID="CONSOLE_VERSION" Name="Version: {HunterPie_Version} ({HunterPie_Branch})"/>
+      <!-- Popups -->
+      <String ID="MESSAGE_QUIT" Name="Are you sure you want to exit HunterPie?"/>
+      <String ID="TITLE_MISSING_PATH" Name="Monster Hunter World Path not found"/>
+      <String ID="MESSAGE_MISSING_PATH" Name="You haven't added the game path yet. Do you want to do it now?"/>
+      <!-- Console Messages -->
+      <String ID="MESSAGE_MAP_LOAD" Name="Loaded {HunterPie_Map}"/>
+      <!-- Warnings -->
+      <String ID="MESSAGE_OFFLINEMODE_WARN" Name="HunterPie is now in offline mode."/>
+      <String ID="MESSAGE_AUTOUPDATE_DISABLED_WARN" Name="Auto-Update is disabled. If your HunterPie has any issues or doesn't support the current game version, try enabling auto-update."/>
+      <String ID="MESSAGE_THEME_LOAD_WARN" Name="Loaded custom theme!"/>
+      <!-- Errors -->
+      <String ID="MESSAGE_GAME_VERSION_UNSUPPORTED" Name="Detected game version ({GAME_VERSION}) not mapped yet!"/>
+      <String ID="MESSAGE_LAUNCH_ERROR" Name="Failed to launch Monster Hunter World."/>
+      <String ID="MESSAGE_UPDATE_ERROR" Name="Failed to update HunterPie. Check if you're connected to the internet."/>
+      <String ID="MESSAGE_THEME_NOT_FOUND_ERROR" Name="Failed to find theme: {THEME_NAME}"/>
+      <String ID="MESSAGE_THEME_NOT_LOAD_ERROR" Name="Failed to load custome theme!"/>
+    </Console>
+    <Settings>
+      <String ID="ENABLE_AUTOUPDATE" Name="Enable Auto-Update"/>
+      <String ID="ENABLE_AUTOUPDATE_DESC" Name="If enabled, HunterPie will look for new updates on startup."/>
+      <String ID="ENABLE_MINTOTRAY" Name="Minimize HunterPie to system tray"/>
+      <String ID="ENABLE_MINTOTRAY_DESC" Name="If enabled, HunterPie will hide in your system tray and run on background when it's minimized."/>
+      <String ID="ENABLE_STARTMIN" Name="Start HunterPie minimized"/>
+      <String ID="ENABLE_STARTMIN_DESC" Name="If enabled, HunterPie will hide in your system tray on startup."/>
+      <String ID="ENABLE_AUTOCLOSE" Name="Close HunterPie when game is closed"/>
+      <String ID="ENABLE_AUTOCLOSE_DESC" Name="If enabled, HunterPie will automatically shutdown when the game is no longer running."/>
+      <String ID="STATIC_UPDATEBRANCH" Name="Update Branch:"/>
+      <String ID="STATIC_UPDATEBRANCH_DESC" Name="Choose the branch you want HunterPie to update from. BETA has the latest features while master is more stable."/>
+      <String ID="STATIC_LANGUAGEFILE" Name="Language File:"/>
+      <String ID="STATIC_LANGUAGEFILE_DESC" Name="Choose the language file you want HunterPie to use."/>
+      <String ID="STATIC_THEMEFILE" Name="Theme File:"/>
+      <String ID="STATIC_THEMEFILE_DESC" Name="Choose the theme file you want HunterPie to use."/>
+      <String ID="STATIC_GAMEPATH" Name="Game Path:"/>
+      <String ID="STATIC_GAMEPATH_UNSELECTED" Name="Select Path"/>
+      <String ID="STATIC_GAMEPATH_DESC" Name="Select your Monster Hunter World executable path."/>
+      <String ID="STATIC_LAUNCHARGS" Name="Launch Arguments"/>
+      <String ID="STATIC_LAUNCHARGS_NOARGS" Name="No Arguments"/>
+      <String ID="STATIC_LAUNCHARGS_DESC" Name="Arguments to be used when launching the game. Leave this empty if you don't know what you are doing."/>
+    </Settings>
+  </Client>
 </Strings>

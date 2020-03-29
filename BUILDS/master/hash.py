@@ -1,62 +1,62 @@
 import hashlib
-import json
 import os
+import json
 
-class Hasher():
+class AutoHasher():
+    READ_BYTE_FILES = [".exe", ".dll", ".png", "cn.xml"]
+    READ_BYTE_REPLACE_FILES = [".xml", ".map", ".xaml"]
+
+    # Ignore files
+    IGNORED_FILES = [
+        "config.json",
+        "hash.py",
+        ".git",
+        "hashes.json",
+        "Update.exe",
+        "map_backup"
+    ]
+
     def __init__(self):
-        self.files = os.listdir()
-        self.hashes = {}
-
-    def removeFiles(self):
-        _files = [
-            "config.json",
-            "hash.py",
-            ".git",
-			"Update.exe",
-            "hashes.json",
-            "map_backup"
-        ]
-        for f in _files:
-            if f in self.files:
-                self.files.remove(f)
-
-    def tryHash(self, file):
-        normalFile = True
-        if (file.endswith("dll") or file.endswith("exe") or file.endswith("png") or file.endswith("cn.xml")):
-            normalFile = False
-        with open(file, "rb",) as f:
-            if normalFile:
-                bytes = f.read().replace(b"\r", b"")
-            else:
-                bytes = f.read()
-            self.hashes[file] = hashlib.sha256(bytes).hexdigest()
-
-    def hashFiles(self):
-        for file in self.files:
-            if os.path.isdir(file):
-                for subfile in os.listdir(file):
-                    if os.path.isdir(f"{file}\\{subfile}"):
-                        for sub_subfile in os.listdir(f"{file}\\{subfile}"):
-                            if os.path.isdir(f"{file}\\{subfile}\\{sub_subfile}"):
-                                for img in os.listdir(f"{file}\\{subfile}\\{sub_subfile}"):
-                                    self.tryHash(f"{file}\\{subfile}\\{sub_subfile}\\{img}")
-                                    continue
-                    else:
-                        self.tryHash(f"{file}/{subfile}")
-                continue
-            else:
-                self.tryHash(file)
+        self.Hashes = {}
     
-    def dumpHashes(self):
-        with open("hashes.json", "w") as output:
-            json.dump(self.hashes, output, indent=4)
-            output.close()
+    def Hash(self):
+        self.GetHash(None)
+        self.SaveJson()
 
-    def run(self):
-        self.removeFiles()
-        self.hashFiles()
-        self.dumpHashes()
+    def GetHashDynamicallyBasedOnFileType(self, path: str):
+        '''
+            For whatever reason, read bytes and read gives a different file content
+            so we need to hash the file based on their type.
+            .exe, .dll, .png => rb
+            .map, .xml => rb and remove \r
+            rest => read
+        '''
+        compareFileEnding = lambda fname, endings : True in [fname.endswith(ending) for ending in endings]
+        if (compareFileEnding(path, AutoHasher.READ_BYTE_FILES)):
+            with open(path, "rb") as fBytes:
+                return hashlib.sha256(fBytes.read()).hexdigest()
+        elif (compareFileEnding(path, AutoHasher.READ_BYTE_REPLACE_FILES)):
+            with open(path, "rb") as fBytes:
+                return hashlib.sha256(fBytes.read().replace(b"\r", b"")).hexdigest()
+        else:
+            with open(path, "r") as fContent:
+                return hashlib.sha256(fContent.read().encode("utf-8")).hexdigest()
+
+    def GetHash(self, path: str):
+        for subpath in os.listdir(path):
+            # Skip files that shouldn't be hashed
+            if (subpath in AutoHasher.IGNORED_FILES):
+                continue;
+
+            if (os.path.isdir(os.path.join(path if path != None else "", subpath))):
+                self.GetHash(os.path.join(path if path != None else "", subpath))
+            else:
+                self.Hashes[os.path.join(path if path != None else "", subpath)] = self.GetHashDynamicallyBasedOnFileType(os.path.join(path if path != None else "", subpath))
+
+    def SaveJson(self):
+        with open("hashes.json", "w") as HashesFile:
+            json.dump(self.Hashes, HashesFile, indent=4)
 
 if __name__ == "__main__":
-    hasher = Hasher()
-    hasher.run()
+    AH = AutoHasher()
+    AH.Hash()

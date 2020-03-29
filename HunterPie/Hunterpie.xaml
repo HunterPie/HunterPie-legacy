@@ -5,6 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:HunterPie"
         xmlns:Custom="clr-namespace:HunterPie.GUIControls.Custom_Controls"
+        xmlns:Core="clr-namespace:HunterPie.Core"
         xmlns:Properties="clr-namespace:HunterPie.Properties" x:Name="window" x:Class="HunterPie.Hunterpie"
         mc:Ignorable="d"
         Title="HunterPie" Height="592" Width="980" MinWidth="1000" MaxWidth="1000" MaxHeight="600" ResizeMode="CanMinimize" WindowStyle="None" Closing="OnWindowClosing" AllowsTransparency="True" BorderBrush="#7F000000" BorderThickness="1" Background="{x:Null}">
@@ -14,6 +15,7 @@
                 <ResourceDictionary Source="/Resources/ConsoleResources.xaml"/>
                 <ResourceDictionary Source="/Resources/Resources.xaml"/>
             </ResourceDictionary.MergedDictionaries>
+            
 
             <Style x:Key="STYLE_SIDEBARBUTTONS" TargetType="StackPanel">
                 <Style.Triggers>
@@ -102,25 +104,45 @@
             <StackPanel x:Name="BUTTON_CONSOLE" Style="{StaticResource STYLE_SIDEBARBUTTONS}" Background="{StaticResource BUTTON_COMMONBUTTON_BACKGROUND}" Cursor="Hand"  Width="205" Height="40" Margin="0,2,0,396" Orientation="Horizontal" HorizontalAlignment="Left" MouseDown="OnConsoleButtonClick">
                 <Border BorderBrush="{StaticResource BUTTON_COMMONBUTTON_BORDER}" Width="4" BorderThickness="0,0,0,0" />
                 <Image Panel.ZIndex="1" Source="{StaticResource ICON_CONSOLE}" HorizontalAlignment="Center" Width="25" VerticalAlignment="Center" Margin="6,0,0,0"/>
-                <TextBlock Text="CONSOLE" Padding="20,0,0,0" VerticalAlignment="Center" FontSize="18" FontFamily="Roboto" FontWeight="Bold" Foreground="{StaticResource BUTTON_COMMONBUTTON_FOREGROUND}"/>
+                <TextBlock DataContext="{StaticResource Localization}" Padding="20,0,0,0" VerticalAlignment="Center" FontSize="18" FontFamily="Roboto" FontWeight="Bold" Foreground="{StaticResource BUTTON_COMMONBUTTON_FOREGROUND}">
+                    <TextBlock.Text>
+                        <Binding XPath="Console/String[@ID='CONSOLE_CONSOLE']/@Name"/>
+                    </TextBlock.Text>
+                </TextBlock>
             </StackPanel>
             <StackPanel x:Name="BUTTON_SETTINGS" Style="{StaticResource STYLE_SIDEBARBUTTONS}"  Background="{StaticResource BUTTON_COMMONBUTTON_BACKGROUND}" Cursor="Hand"  Width="205" Height="40" Margin="0,42,0,356" Orientation="Horizontal" HorizontalAlignment="Left" MouseDown="OnSettingsButtonClick">
                 <Border BorderBrush="{StaticResource BUTTON_COMMONBUTTON_BORDER}" Width="4" BorderThickness="0,0,0,0" />
                 <Image Panel.ZIndex="1" Source="{StaticResource ICON_SETTINGS}" HorizontalAlignment="Center" Width="25" VerticalAlignment="Center" Margin="6,0,0,0"/>
-                <TextBlock Text="SETTINGS" Padding="20,0,0,0" VerticalAlignment="Center" FontSize="18" FontFamily="Roboto" FontWeight="Bold" Foreground="{StaticResource BUTTON_COMMONBUTTON_FOREGROUND}"/>
+                <TextBlock DataContext="{StaticResource Localization}" Padding="20,0,0,0" VerticalAlignment="Center" FontSize="18" FontFamily="Roboto" FontWeight="Bold" Foreground="{StaticResource BUTTON_COMMONBUTTON_FOREGROUND}">
+                    <TextBlock.Text>
+                        <Binding XPath="Console/String[@ID='CONSOLE_SETTINGS']/@Name"/>
+                    </TextBlock.Text>
+                </TextBlock>
             </StackPanel>
             <StackPanel x:Name="BUTTON_CHANGELOG" Style="{StaticResource STYLE_SIDEBARBUTTONS}"  Background="{StaticResource BUTTON_COMMONBUTTON_BACKGROUND}" Cursor="Hand"  Width="205" Height="40" Margin="0,82,0,316" Orientation="Horizontal" HorizontalAlignment="Left" MouseDown="OnChangelogButtonClick">
                 <Border BorderBrush="{StaticResource BUTTON_COMMONBUTTON_BORDER}" Width="4" BorderThickness="0,0,0,0" />
                 <Image Panel.ZIndex="1" Source="{StaticResource ICON_CHANGELOG}" HorizontalAlignment="Center" Width="25" VerticalAlignment="Center" Margin="6,0,0,0"/>
-                <TextBlock Text="PATCH NOTES" Padding="20,0,0,0" VerticalAlignment="Center" FontSize="18" FontFamily="Roboto" FontWeight="Bold" Foreground="{StaticResource BUTTON_COMMONBUTTON_FOREGROUND}"/>
+                <TextBlock DataContext="{StaticResource Localization}" Padding="20,0,0,0" VerticalAlignment="Center" FontSize="18" FontFamily="Roboto" FontWeight="Bold" Foreground="{StaticResource BUTTON_COMMONBUTTON_FOREGROUND}">
+                    <TextBlock.Text>
+                        <Binding XPath="Console/String[@ID='CONSOLE_CHANGELOG']/@Name"/>
+                    </TextBlock.Text>
+                </TextBlock>
             </StackPanel>
             <StackPanel Style="{StaticResource STYLE_SIDEBARBUTTONS}"  Background="{StaticResource BUTTON_COMMONBUTTON_BACKGROUND}" Cursor="Hand"  Width="205" Height="40" Margin="0,122,0,276" Orientation="Horizontal" HorizontalAlignment="Left" MouseDown="OnDiscordButtonClick">
                 <Image Panel.ZIndex="1" Source="{StaticResource ICON_DISCORD}" HorizontalAlignment="Center" Width="25" VerticalAlignment="Center" Margin="10,0,0,0"/>
-                <TextBlock Text="DISCORD" Padding="20,0,0,0" VerticalAlignment="Center" FontSize="18" FontFamily="Roboto" FontWeight="Bold" Foreground="{StaticResource BUTTON_COMMONBUTTON_FOREGROUND}"/>
+                <TextBlock DataContext="{StaticResource Localization}" Padding="20,0,0,0" VerticalAlignment="Center" FontSize="18" FontFamily="Roboto" FontWeight="Bold" Foreground="{StaticResource BUTTON_COMMONBUTTON_FOREGROUND}">
+                    <TextBlock.Text>
+                        <Binding XPath="Console/String[@ID='CONSOLE_DISCORD']/@Name"/>
+                    </TextBlock.Text>
+                </TextBlock>
             </StackPanel>
             <StackPanel Style="{StaticResource STYLE_SIDEBARBUTTONS}"  Background="{StaticResource BUTTON_COMMONBUTTON_BACKGROUND}" Cursor="Hand"  Width="205" Height="40" Margin="0,162,0,236" Orientation="Horizontal" HorizontalAlignment="Left" MouseDown="OnGithubButtonClick">
                 <Image Panel.ZIndex="1" Source="{StaticResource ICON_GITHUB}" HorizontalAlignment="Center" Width="25" VerticalAlignment="Center" Margin="10,0,0,0"/>
-                <TextBlock Text="GITHUB" Padding="20,0,0,0" VerticalAlignment="Center" FontSize="18" FontFamily="Roboto" FontWeight="Bold" Foreground="{StaticResource BUTTON_COMMONBUTTON_FOREGROUND}"/>
+                <TextBlock DataContext="{StaticResource Localization}" Padding="20,0,0,0" VerticalAlignment="Center" FontSize="18" FontFamily="Roboto" FontWeight="Bold" Foreground="{StaticResource BUTTON_COMMONBUTTON_FOREGROUND}">
+                    <TextBlock.Text>
+                        <Binding XPath="Console/String[@ID='CONSOLE_GITHUB']/@Name"/>
+                    </TextBlock.Text>
+                </TextBlock>
             </StackPanel>
             <Grid.Style>
                 <Style TargetType="Grid">
@@ -150,7 +172,11 @@
 
         <!-- Header  -->
         <Label x:Name="version_text" Content="Version: BETA 1.0.0.0" HorizontalAlignment="Left" Width="150" Background="{x:Null}" Foreground="{StaticResource CONSOLE_VERSIONTEXT_FOREGROUND}" FontFamily="Roboto" VerticalAlignment="Bottom" Height="20" VerticalContentAlignment="Center" Padding="0" Margin="838,0,0,438" RenderTransformOrigin="0.5,0.5" HorizontalContentAlignment="Right"/>
-        <Button x:Name="launchGameButton" HorizontalAlignment="Left" Margin="746,55,0,0" VerticalAlignment="Top" Width="242" Height="46" BorderBrush="{x:Null}" Foreground="{StaticResource BUTTON_LAUNCHGAME_FOREGROUND}" FontFamily="Roboto" FontSize="18" Cursor="Hand" BorderThickness="1"  Template="{DynamicResource ButtonStyle}" Content="LAUNCH GAME" Padding="0" FontWeight="Bold" HorizontalContentAlignment="Center" Click="OnLaunchGameButtonClick" Background="{StaticResource BUTTON_LAUNCHGAME_BACKGROUND}"/>
+        <Button x:Name="launchGameButton" HorizontalAlignment="Left" Margin="746,55,0,0" VerticalAlignment="Top" Width="242" Height="46" BorderBrush="{x:Null}" Foreground="{StaticResource BUTTON_LAUNCHGAME_FOREGROUND}" FontFamily="Roboto" FontSize="18" Cursor="Hand" BorderThickness="1"  Template="{DynamicResource ButtonStyle}" DataContext="{StaticResource Localization}" Padding="0" FontWeight="Bold" HorizontalContentAlignment="Center" Click="OnLaunchGameButtonClick" Background="{StaticResource BUTTON_LAUNCHGAME_BACKGROUND}">
+            <Button.Content>
+                <Binding XPath="Console/String[@ID='CONSOLE_LAUNCH']/@Name"/>
+            </Button.Content>
+        </Button>
         <StackPanel Orientation="Horizontal" Height="59" VerticalAlignment="Top" HorizontalAlignment="Left" Width="185" Margin="20,50,0,0">
             <Image HorizontalAlignment="Right" Height="59" VerticalAlignment="Top" Width="59" Source="{StaticResource LOGO_HunterPie}"/>
             <TextBlock HorizontalAlignment="Right" TextWrapping="Wrap" Text="Hunter" VerticalAlignment="Bottom" Height="59" FontFamily="Roboto" FontWeight="Bold" FontSize="22" Padding="1,16,0,0" Foreground="{StaticResource CONSOLE_LOGO_FOREGROUND}"/>

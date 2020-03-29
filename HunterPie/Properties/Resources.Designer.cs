@@ -89,17 +89,16 @@ namespace HunterPie.Properties {
         /// <summary>
         ///   Looks up a localized string similar to &lt;?xml version=&quot;1.0&quot; encoding=&quot;utf-8&quot; ?&gt;
         ///&lt;Monsters&gt;
-        ///  &lt;Monster ID=&quot;em001_00&quot;&gt;
-        ///    &lt;Weaknesses&gt;
-        ///      &lt;Weakness ID=&quot;ELEMENT_DRAGON&quot; Stars=&quot;3&quot;/&gt;
-        ///      &lt;Weakness ID=&quot;ELEMENT_THUNDER&quot; Stars=&quot;2&quot;/&gt;
-        ///    &lt;/Weaknesses&gt;
-        ///    &lt;Crown Mini=&quot;90&quot; Silver=&quot;115&quot; Gold=&quot;123&quot;/&gt;
-        ///    &lt;Parts Max=&quot;8&quot;&gt;
-        ///      &lt;Part Name=&quot;MONSTER_PART_REMOVABLE_TAIL&quot; IsRemovable=&quot;True&quot;/&gt;
-        ///      &lt;Part Name=&quot;MONSTER_PART_HEAD&quot; IsRemovable=&quot;False&quot;/&gt;
-        ///      &lt;Part Name=&quot;MONSTER_PART_BODY&quot; IsRemovable=&quot;False&quot;/&gt;
-        ///      &lt;Part Name=&quot;MONSTER_PART_LWING&quot;  [rest of string was truncated]&quot;;.
+        ///  &lt;Ailments Max=&quot;19&quot;&gt;
+        ///    &lt;Ailment Name=&quot;0&quot; Skip=&quot;True&quot;/&gt;
+        ///    &lt;Ailment Name=&quot;STATUS_POISON&quot; Skip=&quot;False&quot;/&gt;
+        ///    &lt;Ailment Name=&quot;STATUS_PARALYSIS&quot; Skip=&quot;False&quot;/&gt;
+        ///    &lt;Ailment Name=&quot;STATUS_SLEEP&quot; Skip=&quot;False&quot;/&gt;
+        ///    &lt;Ailment Name=&quot;STATUS_BLAST&quot; Skip=&quot;False&quot;/&gt;
+        ///    &lt;Ailment Name=&quot;STATUS_MOUNT&quot; Skip=&quot;False&quot;/&gt;
+        ///    &lt;Ailment Name=&quot;STATUS_EXHAUSTION&quot; Skip=&quot;False&quot;/&gt;
+        ///    &lt;Ailment Name=&quot;STATUS_STUN&quot; Skip=&quot;False&quot;/&gt;
+        ///    &lt;Ailment Name=&quot;STATUS_TRANQUILIZE&quot; Skip=&quot;Fa [rest of string was truncated]&quot;;.
         /// </summary>
         internal static string MonsterData {
             get {

@@ -46,13 +46,16 @@ namespace HunterPie {
             UserSettings.InitializePlayerConfig();
             LoadCustomTheme();
             Debugger.LoadNewColors();
+            // Initialize localization
+            GStrings.InitStrings(UserSettings.PlayerConfig.HunterPie.Language);
+
             InitializeComponent();
             OpenDebugger();
             // Initialize everything under this line
             if (!CheckIfUpdateEnableAndStart()) return;
             InitializeTrayIcon();
             // Updates version_text
-            this.version_text.Content = $"Version: {HUNTERPIE_VERSION} ({UserSettings.PlayerConfig.HunterPie.Update.Branch})";
+            this.version_text.Content = GStrings.GetLocalizationByXPath("/Console/String[@ID='CONSOLE_VERSION']").Replace("{HunterPie_Version}", HUNTERPIE_VERSION).Replace("{HunterPie_Branch}", UserSettings.PlayerConfig.HunterPie.Update.Branch);
             LoadData();
             Debugger.Warn("Initializing HunterPie!");
             SetHotKeys();
@@ -60,7 +63,6 @@ namespace HunterPie {
         }
 
         private void LoadData() {
-            GStrings.InitStrings(UserSettings.PlayerConfig.HunterPie.Language);
             MonsterData.LoadMonsterData();
             AbnormalityData.LoadAbnormalityData();
         }
@@ -115,15 +117,15 @@ namespace HunterPie {
                 this.Hide();
                 return false;
             } else {
-                Debugger.Error("Auto-update is disabled. If your HunterPie has any issues or doesn't support the current game version, try re-enabling auto-update!");
+                Debugger.Warn(GStrings.GetLocalizationByXPath("/Console/String[@ID='MESSAGE_AUTOUPDATE_DISABLED_WARN']"));
                 return true;
             }
         }
 
         private void OnUpdaterDownloadComplete(object sender, System.ComponentModel.AsyncCompletedEventArgs e) {
             if (e.Error != null) {
-                Debugger.Error("Failed to update HunterPie. Check if you're connected to the internet.");
-                Debugger.Warn("HunterPie is now in offline mode.");
+                Debugger.Error(GStrings.GetLocalizationByXPath("/Console/String[@ID='MESSAGE_UPDATE_ERROR']"));
+                Debugger.Warn(GStrings.GetLocalizationByXPath("/Console/String[@ID='MESSAGE_OFFLINEMODE_WARN']"));
                 this.OfflineMode = true;
                 return;
             }
@@ -268,7 +270,7 @@ namespace HunterPie {
             if (UserSettings.PlayerConfig.HunterPie.Theme == null || UserSettings.PlayerConfig.HunterPie.Theme == "Default") return;
             if (!Directory.Exists(Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "Themes"))) { Directory.CreateDirectory(Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "Themes")); }
             if (!File.Exists(Path.Combine(AppDomain.CurrentDomain.BaseDirectory, $@"Themes/{UserSettings.PlayerConfig.HunterPie.Theme}"))) {
-                Debugger.Error($"Failed to find theme: {UserSettings.PlayerConfig.HunterPie.Theme}");
+                Debugger.Error(GStrings.GetLocalizationByXPath("/Console/String[@ID='MESSAGE_THEME_NOT_FOUND_ERROR']".Replace("{THEME_NAME}", UserSettings.PlayerConfig.HunterPie.Theme)));
                 return;
             }
             try {
@@ -276,10 +278,10 @@ namespace HunterPie {
                     XamlReader reader = new XamlReader();
                     ResourceDictionary ThemeDictionary = (ResourceDictionary)reader.LoadAsync(stream);
                     Application.Current.Resources.MergedDictionaries.Add(ThemeDictionary);
-                    Debugger.Warn("Loaded custom theme!");
+                    Debugger.Warn(GStrings.GetLocalizationByXPath("/Console/String[@ID='MESSAGE_THEME_LOAD_WARN']"));
                 }
             } catch(Exception err) {
-                Debugger.Error($"Failed to load custom theme\n{err}");
+                Debugger.Error($"{GStrings.GetLocalizationByXPath("/Console/String[@ID='MESSAGE_THEME_NOT_LOAD_ERROR']")}\n{err}");
             }
         }
 
@@ -377,9 +379,9 @@ namespace HunterPie {
             
             // Loads memory map
             if (Address.LoadMemoryMap(Scanner.GameVersion) || Scanner.GameVersion == Address.GAME_VERSION) {
-                Debugger.Warn($"Loaded 'MonsterHunterWorld.{Scanner.GameVersion}.map'");
+                Debugger.Warn(GStrings.GetLocalizationByXPath("/Console/String[@ID='MESSAGE_MAP_LOAD']").Replace("{HunterPie_Map}", $"'MonsterHunterWorld.{Scanner.GameVersion}.map'"));
             } else {
-                Debugger.Error($"Detected game version ({Scanner.GameVersion}) not mapped yet!");
+                Debugger.Error(GStrings.GetLocalizationByXPath("/Console/String[@ID='MESSAGE_GAME_VERSION_UNSUPPORTED']").Replace("{GAME_VERSION}", $"{Scanner.GameVersion}"));
                 return;
             }
 
@@ -457,7 +459,7 @@ namespace HunterPie {
 
         private void OnCloseWindowButtonClick(object sender, MouseButtonEventArgs e) {
             // X button function;
-            bool ExitConfirmation = MessageBox.Show("Are you sure you want to exit HunterPie?", "HunterPie", MessageBoxButton.YesNo, MessageBoxImage.Question) == MessageBoxResult.Yes;
+            bool ExitConfirmation = MessageBox.Show(GStrings.GetLocalizationByXPath("/Console/String[@ID='MESSAGE_QUIT']"), "HunterPie", MessageBoxButton.YesNo, MessageBoxImage.Question) == MessageBoxResult.Yes;
             
             if (ExitConfirmation) {
                 this.Close();
@@ -523,7 +525,7 @@ namespace HunterPie {
             var launchOptions = UserSettings.PlayerConfig.HunterPie.Launch;
 
             if (launchOptions.GamePath == "") {
-                if (MessageBox.Show("You haven't added the game path yet. Do you want to do it now?", "Monster Hunter World path not found", MessageBoxButton.YesNo, MessageBoxImage.Error) == MessageBoxResult.Yes) {
+                if (MessageBox.Show(GStrings.GetLocalizationByXPath("/Console/String[@ID='MESSAGE_MISSING_PATH']"), GStrings.GetLocalizationByXPath("/Console/String[@ID='TITLE_MISSING_PATH']"), MessageBoxButton.YesNo, MessageBoxImage.Error) == MessageBoxResult.Yes) {
                     OpenSettings();
                 }
             } else {
@@ -538,7 +540,7 @@ namespace HunterPie {
                 createGameProcess.StartInfo.Arguments = UserSettings.PlayerConfig.HunterPie.Launch.LaunchArgs;
                 createGameProcess.Start();
             } catch(Exception err) {
-                Debugger.Error($"Failed to launch Monster Hunter World.\n{err.ToString()}");
+                Debugger.Error($"{GStrings.GetLocalizationByXPath("/Console/String[@ID='MESSAGE_LAUNCH_ERROR']")}\n{err.ToString()}");
             }
         }
 
