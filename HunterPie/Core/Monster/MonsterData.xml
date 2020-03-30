@@ -31,7 +31,7 @@
       <Weakness ID="ELEMENT_DRAGON" Stars="3"/>
       <Weakness ID="ELEMENT_THUNDER" Stars="2"/>
     </Weaknesses>
-    <Crown Mini="90" Silver="115" Gold="123"/>
+    <Crown Mini="0.9" Silver="1.15" Gold="1.23"/>
     <Parts Max="8">
       <Part Name="MONSTER_PART_REMOVABLE_TAIL" IsRemovable="True"/>
       <Part Name="MONSTER_PART_HEAD" Group="HEAD" IsRemovable="False"/>
@@ -48,7 +48,7 @@
       <Weakness ID="ELEMENT_DRAGON" Stars="3"/>
       <Weakness ID="ELEMENT_THUNDER" Stars="2"/>
     </Weaknesses>
-    <Crown Mini="90" Silver="115" Gold="123"/>
+    <Crown Mini="0.9" Silver="1.15" Gold="1.23"/>
     <Parts Max="8">
       <Part Name="MONSTER_PART_REMOVABLE_TAIL" IsRemovable="True"/>
       <Part Name="MONSTER_PART_HEAD" Group="HEAD" IsRemovable="False"/>
@@ -65,7 +65,7 @@
       <Weakness ID="ELEMENT_THUNDER" Stars="3"/>
       <Weakness ID="ELEMENT_WATER" Stars="2"/>
     </Weaknesses>
-    <Crown Mini="90" Silver="115" Gold="123"/>
+    <Crown Mini="0.9" Silver="1.15" Gold="1.23"/>
     <Parts Max="8">
       <Part Name="MONSTER_PART_REMOVABLE_TAIL" IsRemovable="True"/>
       <Part Name="MONSTER_PART_HEAD" Group="HEAD" IsRemovable="False"/>
@@ -82,7 +82,7 @@
       <Weakness ID="ELEMENT_DRAGON" Stars="3"/>
       <Weakness ID="ELEMENT_THUNDER" Stars="2"/>
     </Weaknesses>
-    <Crown Mini="90" Silver="115" Gold="123"/>
+    <Crown Mini="0.9" Silver="1.15" Gold="1.23"/>
     <Parts Max="8">
       <Part Name="MONSTER_PART_REMOVABLE_TAIL" IsRemovable="True"/>
       <Part Name="MONSTER_PART_HEAD" Group="HEAD" IsRemovable="False"/>
@@ -99,7 +99,7 @@
       <Weakness ID="ELEMENT_DRAGON" Stars="3"/>
       <Weakness ID="ELEMENT_ICE" Stars="2"/>
     </Weaknesses>
-    <Crown Mini="90" Silver="115" Gold="123"/>
+    <Crown Mini="0.9" Silver="1.15" Gold="1.23"/>
     <Parts Max="8">
       <Part Name="MONSTER_PART_REMOVABLE_TAIL" IsRemovable="True"/>
       <Part Name="MONSTER_PART_HEAD" Group="HEAD" IsRemovable="False"/>
@@ -116,7 +116,7 @@
       <Weakness ID="ELEMENT_WATER" Stars="3"/>
       <Weakness ID="ELEMENT_THUNDER" Stars="2"/>
     </Weaknesses>
-    <Crown Mini="90" Silver="115" Gold="123"/>
+    <Crown Mini="0.9" Silver="1.15" Gold="1.23"/>
     <Parts Max="8">
       <Part Name="MONSTER_PART_REMOVABLE_TAIL" IsRemovable="True"/>
       <Part Name="MONSTER_PART_HEAD" Group="HEAD" IsRemovable="False"/>
@@ -133,7 +133,7 @@
       <Weakness ID="ELEMENT_ICE" Stars="3"/>
       <Weakness ID="ELEMENT_WATER" Stars="2"/>
     </Weaknesses>
-    <Crown Mini="90" Silver="115" Gold="123"/>
+    <Crown Mini="0.9" Silver="1.15" Gold="1.23"/>
     <Parts Max="9">
       <Part Name="MONSTER_PART_REMOVABLE_HORNS" IsRemovable="True"/>
       <Part Name="MONSTER_PART_REMOVABLE_TAIL" IsRemovable="True"/>
@@ -151,7 +151,7 @@
       <Weakness ID="ELEMENT_ICE" Stars="3"/>
       <Weakness ID="ELEMENT_WATER" Stars="2"/>
     </Weaknesses>
-    <Crown Mini="90" Silver="115" Gold="123"/>
+    <Crown Mini="0.9" Silver="1.15" Gold="1.23"/>
     <Parts Max="9">
       <Part Name="MONSTER_PART_REMOVABLE_HORNS" IsRemovable="True"/>
       <Part Name="MONSTER_PART_REMOVABLE_TAIL" IsRemovable="True"/>
@@ -169,7 +169,7 @@
       <Weakness ID="ELEMENT_FIRE" Stars="3"/>
       <Weakness ID="ELEMENT_WATER" Stars="2"/>
     </Weaknesses>
-    <Crown Mini="90" Silver="115" Gold="123"/>
+    <Crown Mini="0.9" Silver="1.15" Gold="1.23"/>
     <Parts Max="3">
       <Part Name="MONSTER_PART_HEAD" Group="HEAD" IsRemovable="False"/>
       <Part Name="MONSTER_PART_ARMS" Group="ARM" IsRemovable="False"/>
@@ -181,7 +181,7 @@
       <Weakness ID="ELEMENT_WATER" Stars="3"/>
       <Weakness ID="ELEMENT_DRAGON" Stars="2"/>
     </Weaknesses>
-    <Crown Mini="90" Silver="115" Gold="123"/>
+    <Crown Mini="0.9" Silver="1.15" Gold="1.23"/>
     <Parts Max="8">
       <Part Name="MONSTER_PART_REMOVABLE_TAIL" IsRemovable="True"/>
       <Part Name="MONSTER_PART_HEAD" Group="HEAD" IsRemovable="False"/>
@@ -198,7 +198,7 @@
       <Weakness ID="ELEMENT_WATER" Stars="3"/>
       <Weakness ID="ELEMENT_DRAGON" Stars="2"/>
     </Weaknesses>
-    <Crown Mini="90" Silver="115" Gold="123"/>
+    <Crown Mini="0.9" Silver="1.15" Gold="1.23"/>
     <Parts Max="8">
       <Part Name="MONSTER_PART_REMOVABLE_TAIL" IsRemovable="True"/>
       <Part Name="MONSTER_PART_HEAD" Group="HEAD" IsRemovable="False"/>
@@ -215,7 +215,7 @@
       <Weakness ID="ELEMENT_ICE" Stars="3"/>
       <Weakness ID="ELEMENT_WATER" Stars="1"/>
     </Weaknesses>
-    <Crown Mini="90" Silver="111" Gold="118"/>
+    <Crown Mini="0.9" Silver="1.11" Gold="1.18"/>
     <Parts Max="9">
       <Part Name="MONSTER_PART_REMOVABLE_HORNS" IsRemovable="True"/>
       <Part Name="MONSTER_PART_REMOVABLE_TAIL" IsRemovable="True"/>
@@ -233,7 +233,7 @@
       <Weakness ID="ELEMENT_THUNDER" Stars="3"/>
       <Weakness ID="ELEMENT_DRAGON" Stars="2"/>
     </Weaknesses>
-    <Crown Mini="90" Silver="115" Gold="123"/>
+    <Crown Mini="0.9" Silver="1.15" Gold="1.23"/>
     <Parts Max="7">
       <Part Name="MONSTER_PART_REMOVABLE_TAIL" IsRemovable="True"/>
       <Part Name="MONSTER_PART_HEAD" Group="HEAD" IsRemovable="False"/>
@@ -249,7 +249,7 @@
       <Weakness ID="ELEMENT_ICE" Stars="3"/>
       <Weakness ID="ELEMENT_DRAGON" Stars="2"/>
     </Weaknesses>
-    <Crown Mini="90" Silver="115" Gold="123"/>
+    <Crown Mini="0.9" Silver="1.15" Gold="1.23"/>
     <Parts Max="7">
       <Part Name="MONSTER_PART_REMOVABLE_TAIL" IsRemovable="True"/>
       <Part Name="MONSTER_PART_HEAD" Group="HEAD" IsRemovable="False"/>
@@ -265,7 +265,7 @@
       <Weakness ID="ELEMENT_WATER" Stars="3"/>
       <Weakness ID="ELEMENT_ICE" Stars="3"/>
     </Weaknesses>
-    <Crown Mini="90" Silver="115" Gold="123"/>
+    <Crown Mini="0.9" Silver="1.15" Gold="1.23"/>
     <Parts Max="7">
       <Part Name="MONSTER_PART_REMOVABLE_TAIL" IsRemovable="True"/>
       <Part Name="MONSTER_PART_HEAD" Group="HEAD" IsRemovable="False"/>
@@ -281,7 +281,7 @@
       <Weakness ID="ELEMENT_THUNDER" Stars="3"/>
       <Weakness ID="ELEMENT_DRAGON" Stars="2"/>
     </Weaknesses>
-    <Crown Mini="90" Silver="115" Gold="123"/>
+    <Crown Mini="0.9" Silver="1.15" Gold="1.23"/>
     <Parts Max="8">
       <Part Name="MONSTER_PART_REMOVABLE_TAIL" IsRemovable="True"/>
       <Part Name="MONSTER_PART_HEAD" Group="HEAD" IsRemovable="False"/>
@@ -298,7 +298,7 @@
       <Weakness ID="ELEMENT_WATER" Stars="3"/>
       <Weakness ID="ELEMENT_THUNDER" Stars="2"/>
     </Weaknesses>
-    <Crown Mini="90" Silver="115" Gold="123"/>
+    <Crown Mini="0.9" Silver="1.15" Gold="1.23"/>
     <Parts Max="8">
       <Part Name="MONSTER_PART_REMOVABLE_TAIL" IsRemovable="True"/>
       <Part Name="MONSTER_PART_HEAD" Group="HEAD" IsRemovable="False"/>
@@ -315,7 +315,7 @@
       <Weakness ID="ELEMENT_WATER" Stars="3"/>
       <Weakness ID="ELEMENT_ICE" Stars="2"/>
     </Weaknesses>
-    <Crown Mini="90" Silver="115" Gold="123"/>
+    <Crown Mini="0.9" Silver="1.15" Gold="1.23"/>
     <Parts Max="6">
       <Part Name="MONSTER_PART_HEAD" Group="HEAD" IsRemovable="False"/>
       <Part Name="MONSTER_PART_BODY" Group="BODY" IsRemovable="False"/>
@@ -330,7 +330,7 @@
       <Weakness ID="ELEMENT_THUNDER" Stars="3"/>
       <Weakness ID="ELEMENT_FIRE" Stars="2"/>
     </Weaknesses>
-    <Crown Mini="90" Silver="115" Gold="123"/>
+    <Crown Mini="0.9" Silver="1.15" Gold="1.23"/>
     <Parts Max="8">
       <Part Name="MONSTER_PART_REMOVABLE_TAIL" IsRemovable="True"/>
       <Part Name="MONSTER_PART_HEAD" Group="HEAD" IsRemovable="False"/>
@@ -347,7 +347,7 @@
       <Weakness ID="ELEMENT_FIRE" Stars="3"/>
       <Weakness ID="ELEMENT_THUNDER" Stars="2"/>
     </Weaknesses>
-    <Crown Mini="90" Silver="115" Gold="123"/>
+    <Crown Mini="0.9" Silver="1.15" Gold="1.23"/>
     <Parts Max="8">
       <Part Name="MONSTER_PART_REMOVABLE_TAIL" IsRemovable="True"/>
       <Part Name="MONSTER_PART_HEAD" Group="HEAD" IsRemovable="False"/>
@@ -364,7 +364,7 @@
       <Weakness ID="ELEMENT_DRAGON" Stars="3"/>
       <Weakness ID="ELEMENT_THUNDER" Stars="3"/>
     </Weaknesses>
-    <Crown Mini="90" Silver="110" Gold="120"/>
+    <Crown Mini="0.9" Silver="1.10" Gold="1.20"/>
     <Parts Max="9">
       <Part Name="MONSTER_PART_REMOVABLE_TAIL" IsRemovable="True"/>
       <Part Name="MONSTER_PART_HEAD" Group="HEAD" IsRemovable="False"/>
@@ -400,7 +400,7 @@
       <Weakness ID="ELEMENT_WATER" Stars="3"/>
       <Weakness ID="ELEMENT_FIRE" Stars="3"/>
     </Weaknesses>
-    <Crown Mini="90" Silver="115" Gold="123"/>
+    <Crown Mini="0.9" Silver="1.15" Gold="1.23"/>
     <Parts Max="14">
       <Part Name="MONSTER_PART_REMOVABLE_HEAD" IsRemovable="True"/>
       <Part Name="MONSTER_PART_REMOVABLE_TAIL" IsRemovable="True"/>
@@ -423,7 +423,7 @@
       <Weakness ID="ELEMENT_WATER" Stars="3"/>
       <Weakness ID="ELEMENT_DRAGON" Stars="2"/>
     </Weaknesses>
-    <Crown Mini="90" Silver="110" Gold="120"/>
+    <Crown Mini="0.9" Silver="1.10" Gold="1.20"/>
     <Parts Max="8">
       <Part Name="MONSTER_PART_REMOVABLE_TAIL" IsRemovable="True"/>
       <Part Name="MONSTER_PART_JAW" Group="JAW" IsRemovable="False"/>
@@ -440,7 +440,7 @@
       <Weakness ID="ELEMENT_ICE" Stars="3"/>
       <Weakness ID="ELEMENT_WATER" Stars="2"/>
     </Weaknesses>
-    <Crown Mini="90" Silver="115" Gold="123"/>
+    <Crown Mini="0.9" Silver="1.15" Gold="1.23"/>
     <Parts Max="7">
       <Part Name="MONSTER_PART_REMOVABLE_TAIL" IsRemovable="True"/>
       <Part Name="MONSTER_PART_HEAD" Group="HEAD" IsRemovable="False"/>
@@ -456,7 +456,7 @@
       <Weakness ID="ELEMENT_THUNDER" Stars="3"/>
       <Weakness ID="ELEMENT_FIRE" Stars="2"/>
     </Weaknesses>
-    <Crown Mini="90" Silver="115" Gold="123"/>
+    <Crown Mini="0.9" Silver="1.15" Gold="1.23"/>
     <Parts Max="7">
       <Part Name="MONSTER_PART_REMOVABLE_TAIL" IsRemovable="True"/>
       <Part Name="MONSTER_PART_HEAD" Group="HEAD" IsRemovable="False"/>
@@ -472,7 +472,7 @@
       <Weakness ID="ELEMENT_ICE" Stars="3"/>
       <Weakness ID="ELEMENT_WATER" Stars="2"/>
     </Weaknesses>
-    <Crown Mini="90" Silver="115" Gold="123"/>
+    <Crown Mini="0.9" Silver="1.15" Gold="1.23"/>
     <Parts Max="8">
       <Part Name="MONSTER_PART_REMOVABLE_TAIL" IsRemovable="True"/>
       <Part Name="MONSTER_PART_HEAD" Group="HEAD" IsRemovable="False"/>
@@ -489,7 +489,7 @@
       <Weakness ID="ELEMENT_WATER" Stars="3"/>
       <Weakness ID="ELEMENT_ICE" Stars="2"/>
     </Weaknesses>
-    <Crown Mini="90" Silver="110" Gold="120"/>
+    <Crown Mini="0.9" Silver="1.10" Gold="1.20"/>
     <Parts Max="8">
       <Part Name="MONSTER_PART_REMOVABLE_TAIL" IsRemovable="True"/>
       <Part Name="MONSTER_PART_HEAD" Group="HEAD" IsRemovable="False"/>
@@ -506,7 +506,7 @@
       <Weakness ID="ELEMENT_FIRE" Stars="3"/>
       <Weakness ID="ELEMENT_THUNDER" Stars="2"/>
     </Weaknesses>
-    <Crown Mini="90" Silver="110" Gold="120"/>
+    <Crown Mini="0.9" Silver="1.10" Gold="1.20"/>
     <Parts Max="8">
       <Part Name="MONSTER_PART_REMOVABLE_TAIL" IsRemovable="True"/>
       <Part Name="MONSTER_PART_HEAD" Group="HEAD" IsRemovable="False"/>
@@ -523,7 +523,7 @@
       <Weakness ID="ELEMENT_WATER" Stars="3"/>
       <Weakness ID="ELEMENT_ICE" Stars="2"/>
     </Weaknesses>
-    <Crown Mini="90" Silver="110" Gold="120"/>
+    <Crown Mini="0.9" Silver="1.10" Gold="1.20"/>
     <Parts Max="6">
       <Part Name="MONSTER_PART_REMOVABLE_TAIL" IsRemovable="True"/>
       <Part Name="MONSTER_PART_HEAD" Group="HEAD" IsRemovable="False"/>
@@ -538,7 +538,7 @@
       <Weakness ID="ELEMENT_ICE" Stars="3"/>
       <Weakness ID="ELEMENT_WATER" Stars="2"/>
     </Weaknesses>
-    <Crown Mini="90" Silver="110" Gold="120"/>
+    <Crown Mini="0.9" Silver="1.10" Gold="1.20"/>
     <Parts Max="6">
       <Part Name="MONSTER_PART_REMOVABLE_TAIL" IsRemovable="True"/>
       <Part Name="MONSTER_PART_HEAD" Group="HEAD" IsRemovable="False"/>
@@ -553,7 +553,7 @@
       <Weakness ID="ELEMENT_FIRE" Stars="3"/>
       <Weakness ID="ELEMENT_THUNDER" Stars="2"/>
     </Weaknesses>
-    <Crown Mini="90" Silver="115" Gold="123"/>
+    <Crown Mini="0.9" Silver="1.15" Gold="1.23"/>
     <Parts Max="6">
       <Part Name="MONSTER_PART_HEAD" Group="HEAD" IsRemovable="False"/>
       <Part Name="MONSTER_PART_BODY" Group="BODY" IsRemovable="False"/>
@@ -568,7 +568,7 @@
       <Weakness ID="ELEMENT_THUNDER" Stars="3"/>
       <Weakness ID="ELEMENT_ICE" Stars="2"/>
     </Weaknesses>
-    <Crown Mini="90" Silver="110" Gold="120"/>
+    <Crown Mini="0.9" Silver="1.10" Gold="1.20"/>
     <Parts Max="9">
       <Part Name="MONSTER_PART_REMOVABLE_HEAD" IsRemovable="True"/>
       <Part Name="MONSTER_PART_REMOVABLE_TAIL" IsRemovable="True"/>
@@ -586,7 +586,7 @@
       <Weakness ID="ELEMENT_ICE" Stars="3"/>
       <Weakness ID="ELEMENT_THUNDER" Stars="2"/>
     </Weaknesses>
-    <Crown Mini="90" Silver="110" Gold="120"/>
+    <Crown Mini="0.9" Silver="1.10" Gold="1.20"/>
     <Parts Max="8">
       <Part Name="MONSTER_PART_REMOVABLE_TAIL" IsRemovable="True"/>
       <Part Name="MONSTER_PART_HEAD" Group="HEAD" IsRemovable="False"/>
@@ -603,7 +603,7 @@
       <Weakness ID="ELEMENT_THUNDER" Stars="3"/>
       <Weakness ID="ELEMENT_DRAGON" Stars="2"/>
     </Weaknesses>
-    <Crown Mini="90" Silver="115" Gold="123"/>
+    <Crown Mini="0.9" Silver="1.15" Gold="1.23"/>
     <Parts Max="12">
       <Part Name="MONSTER_PART_REMOVABLE_HORNS" IsRemovable="True"/>
       <Part Name="MONSTER_PART_REMOVABLE_TAIL" IsRemovable="True"/>
@@ -624,7 +624,7 @@
       <Weakness ID="ELEMENT_DRAGON" Stars="3"/>
       <Weakness ID="ELEMENT_THUNDER" Stars="2"/>
     </Weaknesses>
-    <Crown Mini="90" Silver="115" Gold="123"/>
+    <Crown Mini="0.9" Silver="1.15" Gold="1.23"/>
     <Parts Max="12">
       <Part Name="MONSTER_PART_REMOVABLE_HORNS" IsRemovable="True"/>
       <Part Name="MONSTER_PART_REMOVABLE_TAIL" IsRemovable="True"/>
@@ -645,7 +645,7 @@
       <Weakness ID="ELEMENT_DRAGON" Stars="3"/>
       <Weakness ID="ELEMENT_THUNDER" Stars="2"/>
     </Weaknesses>
-    <Crown Mini="90" Silver="115" Gold="123"/>
+    <Crown Mini="0.9" Silver="1.15" Gold="1.23"/>
     <Parts Max="13">
       <Part Name="MONSTER_PART_REMOVABLE_TAIL" IsRemovable="True"/>
       <Part Name="MONSTER_PART_HEAD" Group="HEAD" IsRemovable="False"/>
@@ -667,7 +667,7 @@
       <Weakness ID="ELEMENT_FIRE" Stars="2"/>
       <Weakness ID="ELEMENT_DRAGON" Stars="2"/>
     </Weaknesses>
-    <Crown Mini="90" Silver="115" Gold="123"/>
+    <Crown Mini="0.9" Silver="1.15" Gold="1.23"/>
     <Parts Max="11">
       <Part Name="MONSTER_PART_REMOVABLE_TAIL" IsRemovable="True"/>
       <Part Name="MONSTER_PART_HEAD" Group="HEAD" IsRemovable="False"/>
@@ -687,7 +687,7 @@
       <Weakness ID="ELEMENT_DRAGON" Stars="3"/>
       <Weakness ID="ELEMENT_WATER" Stars="3"/>
     </Weaknesses>
-    <Crown Mini="90" Silver="115" Gold="123"/>
+    <Crown Mini="0.9" Silver="1.15" Gold="1.23"/>
     <Parts Max="15">
       <Part Name="MONSTER_PART_HEAD" Group="HEAD" IsRemovable="False"/>
       <Part Name="MONSTER_PART_BODY" Group="BODY" IsRemovable="False"/>
@@ -711,7 +711,7 @@
       <Weakness ID="ELEMENT_WATER" Stars="3"/>
       <Weakness ID="ELEMENT_FIRE" Stars="2"/>
     </Weaknesses>
-    <Crown Mini="90" Silver="115" Gold="123"/>
+    <Crown Mini="0.9" Silver="1.15" Gold="1.23"/>
     <Parts Max="5">
       <Part Name="MONSTER_PART_HEAD" Group="HEAD" IsRemovable="False"/>
       <Part Name="MONSTER_PART_ARMS" Group="ARM" IsRemovable="False"/>
@@ -725,7 +725,7 @@
       <Weakness ID="ELEMENT_THUNDER" Stars="3"/>
       <Weakness ID="ELEMENT_WATER" Stars="0"/>
     </Weaknesses>
-    <Crown Mini="90" Silver="115" Gold="123"/>
+    <Crown Mini="0.9" Silver="1.15" Gold="1.23"/>
     <Parts Max="10">
       <Part Name="MONSTER_PART_HEAD" Group="HEAD" IsRemovable="False"/>
       <Part Name="MONSTER_PART_BODY" Group="BODY" IsRemovable="False"/>
@@ -744,7 +744,7 @@
       <Weakness ID="ELEMENT_WATER" Stars="3"/>
       <Weakness ID="ELEMENT_FIRE" Stars="2"/>
     </Weaknesses>
-    <Crown Mini="90" Silver="110" Gold="120"/>
+    <Crown Mini="0.9" Silver="1.10" Gold="1.20"/>
     <Parts Max="6">
       <Part Name="MONSTER_PART_HEAD" Group="HEAD" IsRemovable="False"/>
       <Part Name="MONSTER_PART_BODY" Group="BODY" IsRemovable="False"/>
@@ -759,7 +759,7 @@
       <Weakness ID="ELEMENT_THUNDER" Stars="3"/>
       <Weakness ID="ELEMENT_ICE" Stars="2"/>
     </Weaknesses>
-    <Crown Mini="90" Silver="110" Gold="120"/>
+    <Crown Mini="0.9" Silver="1.10" Gold="1.20"/>
     <Parts Max="6">
       <Part Name="MONSTER_PART_HEAD" Group="HEAD" IsRemovable="False"/>
       <Part Name="MONSTER_PART_BODY" Group="BODY" IsRemovable="False"/>
@@ -774,7 +774,7 @@
       <Weakness ID="ELEMENT_FIRE" Stars="3"/>
       <Weakness ID="ELEMENT_THUNDER" Stars="2"/>
     </Weaknesses>
-    <Crown Mini="90" Silver="115" Gold="123"/>
+    <Crown Mini="0.9" Silver="1.15" Gold="1.23"/>
     <Parts Max="9">
       <Part Name="MONSTER_PART_REMOVABLE_BALLOON" IsRemovable="True"/>
       <Part Name="MONSTER_PART_HEAD" Group="HEAD" IsRemovable="False"/>
@@ -792,7 +792,7 @@
       <Weakness ID="ELEMENT_WATER" Stars="3"/>
       <Weakness ID="ELEMENT_FIRE" Stars="2"/>
     </Weaknesses>
-    <Crown Mini="90" Silver="115" Gold="123"/>
+    <Crown Mini="0.9" Silver="1.15" Gold="1.23"/>
     <Parts Max="9">
       <Part Name="MONSTER_PART_REMOVABLE_BALLOON" IsRemovable="True"/>
       <Part Name="MONSTER_PART_HEAD" Group="HEAD" IsRemovable="False"/>
@@ -810,7 +810,7 @@
       <Weakness ID="ELEMENT_THUNDER" Stars="3"/>
       <Weakness ID="ELEMENT_FIRE" Stars="2"/>
     </Weaknesses>
-    <Crown Mini="90" Silver="115" Gold="123"/>
+    <Crown Mini="0.9" Silver="1.15" Gold="1.23"/>
     <Parts Max="7">
       <Part Name="MONSTER_PART_HEAD" Group="HEAD" IsRemovable="False"/>
       <Part Name="MONSTER_PART_BODY" Group="BODY" IsRemovable="False"/>
@@ -826,7 +826,7 @@
       <Weakness ID="ELEMENT_FIRE" Stars="3"/>
       <Weakness ID="ELEMENT_THUNDER" Stars="2"/>
     </Weaknesses>
-    <Crown Mini="90" Silver="115" Gold="123"/>
+    <Crown Mini="0.9" Silver="1.15" Gold="1.23"/>
     <Parts Max="7">
       <Part Name="MONSTER_PART_HEAD" Group="HEAD" IsRemovable="False"/>
       <Part Name="MONSTER_PART_BODY" Group="BODY" IsRemovable="False"/>
@@ -842,7 +842,7 @@
       <Weakness ID="ELEMENT_WATER" Stars="3"/>
       <Weakness ID="ELEMENT_ICE" Stars="2"/>
     </Weaknesses>
-    <Crown Mini="90" Silver="115" Gold="123"/>
+    <Crown Mini="0.9" Silver="1.15" Gold="1.23"/>
     <Parts Max="6">
       <Part Name="MONSTER_PART_REMOVABLE_TAIL" IsRemovable="True"/>
       <Part Name="MONSTER_PART_HEAD" Group="HEAD" IsRemovable="False"/>
@@ -857,7 +857,7 @@
       <Weakness ID="ELEMENT_ICE" Stars="3"/>
       <Weakness ID="ELEMENT_THUNDER" Stars="2"/>
     </Weaknesses>
-    <Crown Mini="90" Silver="115" Gold="123"/>
+    <Crown Mini="0.9" Silver="1.15" Gold="1.23"/>
     <Parts Max="6">
       <Part Name="MONSTER_PART_REMOVABLE_TAIL" IsRemovable="True"/>
       <Part Name="MONSTER_PART_HEAD" Group="HEAD" IsRemovable="False"/>
@@ -872,7 +872,7 @@
       <Weakness ID="ELEMENT_WATER" Stars="3"/>
       <Weakness ID="ELEMENT_THUNDER" Stars="2"/>
     </Weaknesses>
-    <Crown Mini="90" Silver="115" Gold="123"/>
+    <Crown Mini="0.9" Silver="1.15" Gold="1.23"/>
     <Parts Max="6">
       <Part Name="MONSTER_PART_REMOVABLE_TAIL" IsRemovable="True"/>
       <Part Name="MONSTER_PART_HEAD" Group="HEAD" IsRemovable="False"/>
@@ -887,7 +887,7 @@
       <Weakness ID="ELEMENT_DRAGON" Stars="3"/>
       <Weakness ID="ELEMENT_ICE" Stars="2"/>
     </Weaknesses>
-    <Crown Mini="90" Silver="110" Gold="120"/>
+    <Crown Mini="0.9" Silver="1.10" Gold="1.20"/>
     <Parts Max="10">
       <Part Name="MONSTER_PART_REMOVABLE_TAIL" IsRemovable="True"/>
       <Part Name="MONSTER_PART_HEAD" Group="HEAD" IsRemovable="False"/>
@@ -906,7 +906,7 @@
       <Weakness ID="ELEMENT_FIRE" Stars="3"/>
       <Weakness ID="ELEMENT_DRAGON" Stars="3"/>
     </Weaknesses>
-    <Crown Mini="90" Silver="115" Gold="123"/>
+    <Crown Mini="0.9" Silver="1.15" Gold="1.23"/>
     <Parts Max="10">
       <Part Name="MONSTER_PART_REMOVABLE_TAIL" IsRemovable="True"/>
       <Part Name="MONSTER_PART_HEAD" Group="HEAD" IsRemovable="False"/>
@@ -925,7 +925,7 @@
       <Weakness ID="ELEMENT_FIRE" Stars="2"/>
       <Weakness ID="ELEMENT_DRAGON" Stars="2"/>
     </Weaknesses>
-    <Crown Mini="90" Silver="115" Gold="123"/>
+    <Crown Mini="0.9" Silver="1.15" Gold="1.23"/>
     <Parts Max="10">
       <Part Name="MONSTER_PART_REMOVABLE_TAIL" IsRemovable="True"/>
       <Part Name="MONSTER_PART_HEAD" Group="HEAD" IsRemovable="False"/>
@@ -944,7 +944,7 @@
       <Weakness ID="ELEMENT_THUNDER" Stars="3"/>
       <Weakness ID="ELEMENT_ICE" Stars="2"/>
     </Weaknesses>
-    <Crown Mini="90" Silver="115" Gold="123"/>
+    <Crown Mini="0.9" Silver="1.15" Gold="1.23"/>
     <Parts Max="6">
       <Part Name="MONSTER_PART_REMOVABLE_TAIL" IsRemovable="True"/>
       <Part Name="MONSTER_PART_HEAD" Group="HEAD" IsRemovable="False"/>
@@ -959,7 +959,7 @@
       <Weakness ID="ELEMENT_ICE" Stars="3"/>
       <Weakness ID="ELEMENT_THUNDER" Stars="0"/>
     </Weaknesses>
-    <Crown Mini="90" Silver="115" Gold="123"/>
+    <Crown Mini="0.9" Silver="1.15" Gold="1.23"/>
     <Parts Max="18">
       <Part Name="MONSTER_PART_REMOVABLE_HORNS" IsRemovable="True"/>
       <Part Name="MONSTER_PART_REMOVABLE_HORNS_2" IsRemovable="True"/>
@@ -986,7 +986,7 @@
       <Weakness ID="ELEMENT_THUNDER" Stars="3"/>
       <Weakness ID="ELEMENT_DRAGON" Stars="2"/>
     </Weaknesses>
-    <Crown Mini="90" Silver="115" Gold="123"/>
+    <Crown Mini="0.9" Silver="1.15" Gold="1.23"/>
     <Parts Max="7">
       <Part Name="MONSTER_PART_REMOVABLE_TAIL" IsRemovable="True"/>
       <Part Name="MONSTER_PART_HEAD" Group="HEAD" IsRemovable="False"/>
@@ -1002,7 +1002,7 @@
       <Weakness ID="ELEMENT_ICE" Stars="3"/>
       <Weakness ID="ELEMENT_THUNDER" Stars="2"/>
     </Weaknesses>
-    <Crown Mini="90" Silver="115" Gold="123"/>
+    <Crown Mini="0.9" Silver="1.15" Gold="1.23"/>
     <Parts Max="7">
       <Part Name="MONSTER_PART_REMOVABLE_TAIL" IsRemovable="True"/>
       <Part Name="MONSTER_PART_HEAD" Group="HEAD" IsRemovable="False"/>
@@ -1018,7 +1018,7 @@
       <Weakness ID="ELEMENT_ICE" Stars="3"/>
       <Weakness ID="ELEMENT_THUNDER" Stars="3"/>
     </Weaknesses>
-    <Crown Mini="90" Silver="115" Gold="123"/>
+    <Crown Mini="0.9" Silver="1.15" Gold="1.23"/>
     <Parts Max="5">
       <Part Name="MONSTER_PART_LHEAD" Group="HEAD" IsRemovable="False"/>
       <Part Name="MONSTER_PART_RHEAD" Group="HEAD" IsRemovable="False"/>
@@ -1032,7 +1032,7 @@
       <Weakness ID="ELEMENT_FIRE" Stars="3"/>
       <Weakness ID="ELEMENT_WATER" Stars="0"/>
     </Weaknesses>
-    <Crown Mini="90" Silver="115" Gold="123"/>
+    <Crown Mini="0.9" Silver="1.15" Gold="1.23"/>
     <Parts Max="9">
       <Part Name="MONSTER_PART_REMOVABLE_TAIL" IsRemovable="True"/>
       <Part Name="MONSTER_PART_HORNS" Group="HORN" IsRemovable="False"/>
@@ -1050,7 +1050,7 @@
       <Weakness ID="ELEMENT_FIRE" Stars="3"/>
       <Weakness ID="ELEMENT_THUNDER" Stars="2"/>
     </Weaknesses>
-    <Crown Mini="90" Silver="115" Gold="123"/>
+    <Crown Mini="0.9" Silver="1.15" Gold="1.23"/>
     <Parts Max="7">
       <Part Name="MONSTER_PART_HEAD" Group="HEAD" IsRemovable="False"/>
       <Part Name="MONSTER_PART_HEAD_SNOW" Group="HEAD" IsRemovable="False"/>
@@ -1066,7 +1066,7 @@
       <Weakness ID="ELEMENT_DRAGON" Stars="3"/>
       <Weakness ID="ELEMENT_FIRE" Stars="2"/>
     </Weaknesses>
-    <Crown Mini="90" Silver="115" Gold="123"/>
+    <Crown Mini="0.9" Silver="1.15" Gold="1.23"/>
     <Parts Max="7">
       <Part Name="MONSTER_PART_REMOVABLE_HORNS" IsRemovable="True"/>
       <Part Name="MONSTER_PART_REMOVABLE_TAIL" IsRemovable="True"/>
@@ -1082,7 +1082,7 @@
       <Weakness ID="ELEMENT_FIRE" Stars="3"/>
       <Weakness ID="ELEMENT_DRAGON" Stars="2"/>
     </Weaknesses>
-    <Crown Mini="90" Silver="115" Gold="123"/>
+    <Crown Mini="0.9" Silver="1.15" Gold="1.23"/>
     <Parts Max="13">
       <Part Name="MONSTER_PART_REMOVABLE_TAIL" IsRemovable="True"/>
       <Part Name="MONSTER_PART_HEAD" Group="HEAD" IsRemovable="False"/>
@@ -1104,7 +1104,7 @@
       <Weakness ID="ELEMENT_FIRE" Stars="3"/>
       <Weakness ID="ELEMENT_DRAGON" Stars="2"/>
     </Weaknesses>
-    <Crown Mini="90" Silver="115" Gold="123"/>
+    <Crown Mini="0.9" Silver="1.15" Gold="1.23"/>
     <Parts Max="7">
       <Part Name="MONSTER_PART_REMOVABLE_TAIL" IsRemovable="True"/>
       <Part Name="MONSTER_PART_HEAD" Group="HEAD" IsRemovable="False"/>
@@ -1120,7 +1120,7 @@
       <Weakness ID="ELEMENT_ICE" Stars="3"/>
       <Weakness ID="ELEMENT_WATER" Stars="2"/>
     </Weaknesses>
-    <Crown Mini="90" Silver="115" Gold="123"/>
+    <Crown Mini="0.9" Silver="1.15" Gold="1.23"/>
     <Parts Max="17">
       <Part Name="MONSTER_PART_REMOVABLE_HEAD" IsRemovable="True"/>
       <Part Name="MONSTER_PART_LNECK_ROCK" Group="NECK" IsRemovable="False"/>
@@ -1146,7 +1146,7 @@
       <Weakness ID="ELEMENT_FIRE" Stars="3"/>
       <Weakness ID="ELEMENT_THUNDER" Stars="2"/>
     </Weaknesses>
-    <Crown Mini="90" Silver="115" Gold="123"/>
+    <Crown Mini="0.9" Silver="1.15" Gold="1.23"/>
     <Parts Max="9">
       <Part Name="MONSTER_PART_REMOVABLE_LANTLER" IsRemovable="True"/>
       <Part Name="MONSTER_PART_REMOVABLE_RANTLER" IsRemovable="True"/>
@@ -1164,7 +1164,7 @@
       <Weakness ID="ELEMENT_FIRE" Stars="3"/>
       <Weakness ID="ELEMENT_THUNDER" Stars="2"/>
     </Weaknesses>
-    <Crown Mini="90" Silver="115" Gold="123"/>
+    <Crown Mini="0.9" Silver="1.15" Gold="1.23"/>
     <Parts Max="9">
       <Part Name="MONSTER_PART_REMOVABLE_LANTLER" IsRemovable="True"/>
       <Part Name="MONSTER_PART_REMOVABLE_RANTLER" IsRemovable="True"/>

@@ -71,6 +71,9 @@ namespace HunterPie.Core {
                 public bool AlwaysShow { get; set; } = false;
                 public double Scale { get; set; } = 1;
                 public int[] Position { get; set; } = new int[2] { 1110, 30 };
+                public bool ShowSteamTracker { get; set; } = true;
+                public bool ShowArgosyTracker { get; set; } = true;
+                public bool ShowTailraidersTracker { get; set; } = true;
             }
 
             public class Primarymantle {

@@ -5,6 +5,7 @@
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              xmlns:local="clr-namespace:HunterPie.GUIControls.Custom_Controls"
              mc:Ignorable="d" Height="30" MouseDown="Switcher_OnClick" Cursor="Hand" Background="#00000000"
+             DataContext="{StaticResource Localization}"
              >
     <UserControl.Resources>
         <Color x:Key="BackgroundColorOff">#FF151515</Color>

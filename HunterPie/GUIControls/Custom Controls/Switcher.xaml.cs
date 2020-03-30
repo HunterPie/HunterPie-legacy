@@ -20,17 +20,23 @@ namespace HunterPie.GUIControls.Custom_Controls {
     /// </summary>
     public partial class Switcher : UserControl {
 
+
+
+        public string Text {
+            get { return GetValue(TextProperty).ToString(); }
+            set { SetValue(TextProperty, value); }
+        }
+
+        // Using a DependencyProperty as the backing store for Text.  This enables animation, styling, binding, etc...
+        public static readonly DependencyProperty TextProperty =
+            DependencyProperty.Register("Text", typeof(string), typeof(Switcher));
+
+
+
         public bool RequiresRestart {
             get { return RestartWarning.Visibility == Visibility.Visible; }
             set {
                 RestartWarning.Visibility = value ? Visibility.Visible : Visibility.Collapsed;
-            }
-        }
-
-        public string Text {
-            get { return Info.Text; }
-            set {
-                Info.Text = value;
             }
         }
 

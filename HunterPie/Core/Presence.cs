@@ -52,6 +52,7 @@ namespace HunterPie.Core {
             Instance = new RichPresence();
             Debugger.Discord("Starting new RPC connection");
             Client = new DiscordRpcClient(APP_ID);
+            
             Client.Initialize();
             if (!UserSettings.PlayerConfig.RichPresence.Enabled && isVisible) {
                 Client?.ClearPresence();
@@ -76,6 +77,12 @@ namespace HunterPie.Core {
             // Do nothing if RPC is disabled
             if (!isVisible) return;
 
+
+            // TODO: Implement join session?
+            Client.RegisterUriScheme("582010");
+            Instance.Secrets = new Secrets() {
+                JoinSecret = "109775241130618416"
+            };
             // Only update RPC if player isn't in loading screen
             switch(ctx.Player.ZoneID) {
                 case 0:
