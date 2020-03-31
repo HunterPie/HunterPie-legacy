@@ -6,7 +6,7 @@ using HunterPie.Logger;
 namespace HunterPie.Core {
     class Presence : IDisposable {
         public bool IsDisposed { get; private set; }
-        private string APP_ID = "567152028070051859";
+        private readonly string APP_ID = "567152028070051859";
         private bool isOffline = false;
         private bool isVisible = true;
         private RichPresence Instance;
@@ -51,13 +51,36 @@ namespace HunterPie.Core {
             // Check if connection exists to avoid creating multiple connections
             Instance = new RichPresence();
             Debugger.Discord("Starting new RPC connection");
-            Client = new DiscordRpcClient(APP_ID);
-            
+            Client = new DiscordRpcClient(APP_ID, autoEvents: true, pipe: -1);
+
+            Client.RegisterUriScheme("582010");
+
+            // Events
+            Client.OnReady += Client_OnReady;
+            Client.OnJoinRequested += Client_OnJoinRequested;
+            Client.OnJoin += Client_OnJoin;
+
+            Client.SetSubscription(EventType.JoinRequest | EventType.Join);
+
             Client.Initialize();
             if (!UserSettings.PlayerConfig.RichPresence.Enabled && isVisible) {
                 Client?.ClearPresence();
                 isVisible = false;
             }
+        }
+
+        private void Client_OnJoin(object sender, DiscordRPC.Message.JoinMessage args) {
+            Debugger.Discord($"Joining session...");
+            System.Diagnostics.Process.Start($"steam://joinlobby/582010/{args.Secret}");
+        }
+
+        private void Client_OnReady(object sender, DiscordRPC.Message.ReadyMessage args) {
+            Debugger.Discord($"Connected to Discord on user: {args.User}");
+        }
+
+        private void Client_OnJoinRequested(object sender, DiscordRPC.Message.JoinRequestMessage args) {
+            Debugger.Discord($"{args.User} requested to join session.");
+            //Debugger.Discord($"{args.User.Avatar}");
         }
 
         public void HandleSettings(object source, EventArgs e) {
@@ -79,12 +102,12 @@ namespace HunterPie.Core {
 
 
             // TODO: Implement join session?
-            Client.RegisterUriScheme("582010");
+
             Instance.Secrets = new Secrets() {
-                JoinSecret = "109775241130618416"
+                JoinSecret = $"{ctx.Player.SteamSession}/{ctx.Player.SteamID}"
             };
             // Only update RPC if player isn't in loading screen
-            switch(ctx.Player.ZoneID) {
+            switch (ctx.Player.ZoneID) {
                 case 0:
                     Instance.Details = ctx.Player.PlayerAddress == 0 ? "In main menu" : "In loading screen";
                     Instance.State = null;
@@ -102,7 +125,11 @@ namespace HunterPie.Core {
                     Instance.Details = GetDescription();
                     Instance.State = GetState();
                     GenerateAssets(ctx.Player.ZoneName == null ? "main-menu" : $"st{ctx.Player.ZoneID}", ctx.Player.ZoneName == "Main Menu" ? null : ctx.Player.ZoneName, ctx.Player.WeaponName == null ? "hunter-rank" : $"weap{ctx.Player.WeaponID}", $"{ctx.Player.Name} | HR: {ctx.Player.Level} | MR: {ctx.Player.MasterRank}");
-                    MakeParty(ctx.Player.PlayerParty.Size, ctx.Player.PlayerParty.MaxSize, ctx.Player.PlayerParty.PartyHash);
+                    if (!ctx.Player.InPeaceZone) {
+                        MakeParty(ctx.Player.PlayerParty.Size, ctx.Player.PlayerParty.MaxSize, ctx.Player.PlayerParty.PartyHash);
+                    } else {
+                        MakeParty(ctx.Player.PlayerParty.LobbySize, ctx.Player.PlayerParty.MaxLobbySize, ctx.Player.SteamSession.ToString());
+                    }
                     Instance.Timestamps = NewTimestamp(ctx.Time);
                     break;
             }
@@ -124,7 +151,11 @@ namespace HunterPie.Core {
         }
 
         private string GetState() {
-            if (ctx.Player.PlayerParty.Size > 1) return "In Party";
+            if (ctx.Player.PlayerParty.Size > 1 || ctx.Player.PlayerParty.LobbySize > 1) {
+                if (ctx.Player.InPeaceZone) {
+                    return "In Lobby";
+                } else { return "In Party"; }
+            }
             else { return "Solo"; }
         }
 

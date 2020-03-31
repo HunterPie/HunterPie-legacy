@@ -33,6 +33,7 @@
         <GradientStop Color="#FF2BD8B1" Offset="1"/>
         <GradientStop Color="#FF45B69C"/>
     </LinearGradientBrush>
+    
     <Style x:Key="OVERLAY_MONSTER_AILMENT_COUNTER_BACKGROUND_STYLE" TargetType="Rectangle">
         <Setter Property="Fill" Value="#FF45B69C"/>
         <Setter Property="Stroke" Value="#CC0E0E0E"/>

@@ -5,10 +5,10 @@
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              xmlns:local="clr-namespace:HunterPie.GUIControls.Custom_Controls"
              mc:Ignorable="d" 
-             Height="50" Width="500">
+             Height="50" Width="500" DataContext="{StaticResource Localization}">
     <Canvas Background="#FF1D1D1D">
         <TextBox x:Name="BarPresetName" Cursor="Arrow" TextWrapping="Wrap" Text="ABNORMALITY BAR" Height="50" Width="320" SelectionBrush="#AF0000" Foreground="WhiteSmoke" Background="Transparent" BorderBrush="Transparent" FontSize="14" VerticalScrollBarVisibility="Disabled" MaxWidth="320" MaxHeight="50" Padding="4,13,0,0" FontWeight="Bold"/>
-        <local:Switcher x:Name="SwitchEnableBar" Text="Enable" Height="24" Canvas.Left="329" Canvas.Top="12" Width="101"/>
+        <local:Switcher x:Name="SwitchEnableBar" Text="{Binding XPath=/Strings/Client/Settings/String[@ID\=\'STATIC_ENABLE_ABNORM_BAR\']/@Name}" Height="24" Canvas.Left="329" Canvas.Top="12" Width="101"/>
         <Image Cursor="Hand" MouseDown="OnBuffTraySettingClick" Source="{DynamicResource ICON_SETTINGS}" Width="20" Height="20" Canvas.Left="451" Canvas.Top="14">
             <Image.Style>
                 <Style TargetType="Image">

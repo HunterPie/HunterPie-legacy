@@ -64,6 +64,29 @@ namespace HunterPie.Memory {
         [DllImport("user32.dll")]
         public static extern bool SetWindowPos(IntPtr hWnd, int hWndInsertAfter, int X, int Y, int cx, int cy, uint uFlags);
 
+        [DllImport("user32.dll")]
+        public static extern bool SetProcessDPIAware();
+
+        /* DPI Awareness */
+        public enum PROCESS_DPI_AWARENESS {
+            PROCESS_DPI_UNAWARE = 0,
+            PROCESS_SYSTEM_DPI_AWARE = 1,
+            PROCESS_PER_MONITOR_DPI_AWARE = 2
+        }
+
+        public enum DPI_AWARENESS_CONTEXT {
+            DPI_AWARENESS_CONTEXT_UNAWARE = 16,
+            DPI_AWARENESS_CONTEXT_SYSTEM_AWARE = 17,
+            DPI_AWARENESS_CONTEXT_PER_MONITOR_AWARE = 18,
+            DPI_AWARENESS_CONTEXT_PER_MONITOR_AWARE_V2 = 34
+        }
+
+        [DllImport("user32.dll", SetLastError = true)]
+        public static extern bool SetProcessDpiAwarenessContext(int dpiFlag);
+
+        [DllImport("SHCore.dll", SetLastError = true)]
+        public static extern bool SetProcessDpiAwareness(PROCESS_DPI_AWARENESS awareness);
+
         /* Events */
         public delegate void ProcessHandler(object source, EventArgs args);
         public static event ProcessHandler OnGameStart;

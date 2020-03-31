@@ -29,17 +29,19 @@ namespace HunterPie {
         bool OfflineMode = false;
 
         // HunterPie version
-        const string HUNTERPIE_VERSION = "1.0.3.84";
+        const string HUNTERPIE_VERSION = "1.0.3.85";
 
         // Helpers
         IntPtr _windowHandle;
         HwndSource _source;
 
         public Hunterpie() {
+#if RELEASE
             if (CheckIfHunterPieOpen()) {
                 this.Close();
                 return;
             }
+#endif
             AppDomain.CurrentDomain.UnhandledException += ExceptionLogger;
             // Initialize debugger and theme
             Debugger.InitializeDebugger();
@@ -72,7 +74,19 @@ namespace HunterPie {
             return Process.GetProcessesByName("HunterPie").Length > 1;
         }
 
-        #region AUTO UPDATE
+        private void SetDPIAwareness() {
+            if (Environment.OSVersion.Version >= new Version(6, 3, 0)) {
+                if (Environment.OSVersion.Version >= new Version(10, 0, 15063)) {
+                    Scanner.SetProcessDpiAwarenessContext((int)Scanner.DPI_AWARENESS_CONTEXT.DPI_AWARENESS_CONTEXT_PER_MONITOR_AWARE_V2);
+                } else {
+                    Scanner.SetProcessDpiAwareness(Scanner.PROCESS_DPI_AWARENESS.PROCESS_PER_MONITOR_DPI_AWARE);
+                }
+            } else {
+                Scanner.SetProcessDPIAware();
+            }
+        }
+
+#region AUTO UPDATE
         private bool StartUpdateProcess() {
             if (!File.Exists(Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "Update.exe"))) return false;
 
@@ -148,9 +162,9 @@ namespace HunterPie {
                 return "";
             }
         }
-        #endregion
+#endregion
 
-        #region HOT KEYS
+#region HOT KEYS
 
         private void SetHotKeys() {
             _windowHandle = new WindowInteropHelper(this).EnsureHandle();
@@ -222,9 +236,9 @@ namespace HunterPie {
             }
         }
 
-        #endregion
+#endregion
 
-        #region TRAY ICON
+#region TRAY ICON
         private void InitializeTrayIcon() {
             TrayIcon = new TrayIcon();
             // Tray icon itself
@@ -264,7 +278,7 @@ namespace HunterPie {
             this.Focus();
         }
 
-        #endregion
+#endregion
 
         private void LoadCustomTheme() {
             if (UserSettings.PlayerConfig.HunterPie.Theme == null || UserSettings.PlayerConfig.HunterPie.Theme == "Default") return;
@@ -306,7 +320,7 @@ namespace HunterPie {
                 new FrameworkPropertyMetadata { DefaultValue = Math.Min(60, Math.Max(1, UserSettings.PlayerConfig.Overlay.DesiredAnimationFrameRate)) });
         }
 
-        #region Game & Client Events
+#region Game & Client Events
         private void HookEvents() {
             // Scanner events
             Scanner.OnGameStart += OnGameStart;
@@ -413,9 +427,9 @@ namespace HunterPie {
             MonsterHunter.DestroyInstances();
         }
 
-        #endregion
+#endregion
 
-        #region Sub Windows
+#region Sub Windows
         /* Open sub windows */
 
         private void OpenDebugger() {
@@ -442,7 +456,7 @@ namespace HunterPie {
             ConsolePanel.Children.Clear();
             ConsolePanel.Children.Add(Changelog.Instance);
         }
-        #endregion
+#endregion
 
         /* Animations */
         private void SwitchButtonOn(StackPanel buttonActive) {
@@ -455,7 +469,7 @@ namespace HunterPie {
             ButtonBorder.SetValue(BorderThicknessProperty, new Thickness(0, 0, 0, 0));
         }
 
-        #region WINDOW EVENTS
+#region WINDOW EVENTS
 
         private void OnCloseWindowButtonClick(object sender, MouseButtonEventArgs e) {
             // X button function;
@@ -547,7 +561,7 @@ namespace HunterPie {
         private void OnDiscordButtonClick(object sender, MouseButtonEventArgs e) {
             Process.Start("https://discord.gg/5pdDq4Q");
         }
-        #endregion
+#endregion
 
     }
 }

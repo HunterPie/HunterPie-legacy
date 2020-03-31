@@ -19,7 +19,7 @@ namespace HunterPie.Core {
         // Game info
         private readonly int[] PeaceZones = new int[11] { 0, 301, 302, 303, 305, 306, 501, 502, 503, 504, 506 };
         private readonly int[] _HBZones = new int[9] { 301, 302, 303, 305, 306, 501, 502, 503, 506 };
-        
+
         // Player info
         private Int64 LEVEL_ADDRESS;
         private Int64 EQUIPMENT_ADDRESS;
@@ -80,6 +80,7 @@ namespace HunterPie.Core {
             set {
                 if (_sessionId != value) {
                     _sessionId = value;
+                    GetSteamSession();
                     _onSessionChange();
                 }
             }
@@ -90,6 +91,8 @@ namespace HunterPie.Core {
         public bool InHarvestZone {
             get { return _HBZones.Contains(ZoneID); }
         }
+        public Int64 SteamSession { get; private set; }
+        public Int64 SteamID { get; private set; }
         
         // Party
         public Party PlayerParty = new Party();
@@ -290,6 +293,12 @@ namespace HunterPie.Core {
             SessionID = Scanner.READ_STRING(Address, 12);
         }
 
+        private void GetSteamSession() {
+            Int64 SteamSessionAddress = Scanner.READ_MULTILEVEL_PTR(Address.BASE + Address.SESSION_OFFSET, Address.Offsets.SessionOffsets);
+            SteamSession = Scanner.READ_LONGLONG(SteamSessionAddress + 10);
+            SteamID = Scanner.READ_LONGLONG(SteamSessionAddress + 0x1184);
+        }
+
         private void GetEquipmentAddress() {
             Int64 Address = Memory.Address.BASE + Memory.Address.EQUIPMENT_OFFSET;
             Address = Scanner.READ_MULTILEVEL_PTR(Address, Memory.Address.Offsets.EquipmentOffsets);
@@ -330,20 +339,25 @@ namespace HunterPie.Core {
         private void GetParty() {
             Int64 address = Address.BASE + Address.PARTY_OFFSET;
             Int64 PartyContainer = Scanner.READ_MULTILEVEL_PTR(address, Address.Offsets.PartyOffsets) - 0x22B7;
-            int totalDamage = 0;
-            for (int i = 0; i < PlayerParty.MaxSize; i++) totalDamage += GetPartyMemberDamage(i);
-            PlayerParty.TotalDamage = totalDamage;
-            GetQuestElapsedTime();
-            for (int i = 0; i < PlayerParty.MaxSize; i++) {
-                string playerName = GetPartyMemberName(PartyContainer + (i * 0x1C0));
-                byte playerWeapon = playerName == this.Name ? this.WeaponID : Scanner.READ_BYTE(PartyContainer + (i * 0x1C0 + 0x33));
-                int playerDamage = GetPartyMemberDamage(i);
-                float playerDamagePercentage = 0;
-                if (totalDamage != 0) {
-                    playerDamagePercentage = playerDamage / (float)totalDamage;
+            if (this.InPeaceZone) {
+                PlayerParty.LobbySize = Scanner.READ_INT(PartyContainer - 0xA961);
+            } else {
+                int totalDamage = 0;
+                for (int i = 0; i < PlayerParty.MaxSize; i++) totalDamage += GetPartyMemberDamage(i);
+                PlayerParty.TotalDamage = totalDamage;
+                GetQuestElapsedTime();
+                for (int i = 0; i < PlayerParty.MaxSize; i++) {
+                    string playerName = GetPartyMemberName(PartyContainer + (i * 0x1C0));
+                    byte playerWeapon = playerName == this.Name ? this.WeaponID : Scanner.READ_BYTE(PartyContainer + (i * 0x1C0 + 0x33));
+                    int playerDamage = GetPartyMemberDamage(i);
+                    float playerDamagePercentage = 0;
+                    if (totalDamage != 0) {
+                        playerDamagePercentage = playerDamage / (float)totalDamage;
+                    }
+                    PlayerParty[i].SetPlayerInfo(playerName, playerWeapon, playerDamage, playerDamagePercentage);
                 }
-                PlayerParty[i].SetPlayerInfo(playerName, playerWeapon, playerDamage, playerDamagePercentage);
             }
+            
 
         }
 

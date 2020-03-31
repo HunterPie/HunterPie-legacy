@@ -357,9 +357,9 @@ namespace HunterPie.Core {
                                 Parts[PartID].PartAddress = RemovablePartAddress;
                                 Parts[PartID].IsRemovable = true;
 
-                                // Nergigante has the same values twice in a row, so we skip it to get 
-                                // the removable tail values
-                                if (Scanner.READ_FLOAT(RemovablePartAddress + 0x78 + 0x10) == MaxHealth && Scanner.READ_INT(RemovablePartAddress + 0x78 + 0x8) == Scanner.READ_INT(RemovablePartAddress+ 0x8)) {
+                                // Some monsters have the same removable part value in the next removable part struct
+                                // so we skip the ones with the same values.
+                                while (Scanner.READ_FLOAT(RemovablePartAddress + 0x78 + 0x0C) == Health && Scanner.READ_FLOAT(RemovablePartAddress + 0x78 + 0x10) == MaxHealth && Scanner.READ_INT(RemovablePartAddress + 0x78 + 0x8) == Scanner.READ_INT(RemovablePartAddress+ 0x8)) {
                                     RemovablePartAddress += Address.Offsets.NextRemovablePart;
                                 }
 

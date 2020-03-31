@@ -8,7 +8,7 @@
         xmlns:local="clr-namespace:HunterPie.GUI.Widgets.Abnormality_Widget"
         xmlns:System="clr-namespace:System;assembly=mscorlib" x:Class="HunterPie.GUI.Widgets.Abnormality_Widget.AbnormalityTraySettings"
         mc:Ignorable="d"
-        Title="Abnormality Tray Settings" Height="580" Width="843" Background="#FA0C0C0C" Foreground="{x:Null}" WindowStyle="None" BorderThickness="1" AllowsTransparency="True" Topmost="True" ResizeMode="CanResizeWithGrip" MinWidth="600" MinHeight="400" Closing="OnClosing">
+        Title="Abnormality Tray Settings" Height="580" Width="843" Background="#FA0C0C0C" Foreground="{x:Null}" WindowStyle="None" BorderThickness="1" AllowsTransparency="True" Topmost="True" ResizeMode="CanResizeWithGrip" MinWidth="600" MinHeight="400" Closing="OnClosing" DataContext="{StaticResource Localization}">
     <widget:WidgetSettings.Resources>
         <ResourceDictionary>
             <ResourceDictionary.MergedDictionaries>
@@ -24,7 +24,7 @@
                 <Setter Property="Template">
                     <Setter.Value>
                         <ControlTemplate TargetType="{x:Type Button}">
-                            <Border x:Name="border" BorderBrush="{TemplateBinding BorderBrush}" BorderThickness="{TemplateBinding BorderThickness}" Background="{TemplateBinding Background}" SnapsToDevicePixels="true" CornerRadius="5">
+                            <Border x:Name="border" BorderBrush="{TemplateBinding BorderBrush}" BorderThickness="{TemplateBinding BorderThickness}" Background="{TemplateBinding Background}" SnapsToDevicePixels="true">
                                 <ContentPresenter x:Name="contentPresenter" Focusable="False" HorizontalAlignment="{TemplateBinding HorizontalContentAlignment}" Margin="{TemplateBinding Padding}" RecognizesAccessKey="True" SnapsToDevicePixels="{TemplateBinding SnapsToDevicePixels}" VerticalAlignment="{TemplateBinding VerticalContentAlignment}"/>
                             </Border>
                             <ControlTemplate.Triggers>
@@ -69,7 +69,7 @@
                 <Setter Property="Template">
                     <Setter.Value>
                         <ControlTemplate TargetType="{x:Type TabItem}">
-                            <Border x:Name="PART_Border" BorderThickness="1,1,1,1" BorderBrush="{x:Null}" Margin="0,0,-5,0" Background="#FF080808" CornerRadius="2,2,0,0" Height="29">
+                            <Border x:Name="PART_Border" BorderThickness="1,1,1,1" BorderBrush="{x:Null}" Background="#FF080808" Height="29">
                                 <ContentPresenter ContentSource="Header" Margin="5" />
                             </Border>
                             <ControlTemplate.Triggers>
@@ -88,11 +88,11 @@
     </widget:WidgetSettings.Resources>
     <Grid>
         <TabControl x:Name="AbnormalitySelectionContainer" Margin="398,44,0,55" BorderBrush="#FF0F0F0F" Background="Transparent">
-            <TabItem Padding="6,2">
+            <TabItem >
                 <TabItem.Header>
-                    <Canvas Width="120" Margin="0,4,0,0" Cursor="Arrow">
+                    <Canvas Width="120" Cursor="Arrow">
                         <Image Source="{StaticResource ICON_HUNTINGHORN}" Width="15" Height="15"/>
-                        <TextBlock Text="Hunting Horn" Margin="16,-4,0,0"/>
+                        <TextBlock Text="{Binding XPath=/Strings/Client/Settings/String[@ID\=\'STATIC_ABNORM_TAB_HH\']/@Name}" Margin="16,-4,0,0"/>
                     </Canvas>
                 </TabItem.Header>
                 <ScrollViewer>
@@ -103,7 +103,7 @@
                 <TabItem.Header>
                     <Canvas Width="83" Margin="0,4,0,0">
                         <Image Source="{StaticResource ICON_ORCHESTRA}" Width="20" Height="20" Canvas.Left="-4" Canvas.Top="-3"/>
-                        <TextBlock Text="Orchestra" Margin="16,-4,0,0"/>
+                        <TextBlock Text="{Binding XPath=/Strings/Client/Settings/String[@ID\=\'STATIC_ABNORM_TAB_ORCHESTRA\']/@Name}" Margin="16,-4,0,0"/>
                     </Canvas>
                 </TabItem.Header>
                 <ScrollViewer Background="Transparent">
@@ -114,7 +114,7 @@
                 <TabItem.Header>
                     <Canvas Width="75" Margin="0,4,0,0">
                         <Image Source="{StaticResource ELEMENT_FIRE}" Width="15" Height="15"/>
-                        <TextBlock Text="Debuffs" Margin="16,-4,0,0"/>
+                        <TextBlock Text="{Binding XPath=/Strings/Client/Settings/String[@ID\=\'STATIC_ABNORM_TAB_DEBUFF\']/@Name}" Margin="16,-4,0,0"/>
                     </Canvas>
                 </TabItem.Header>
                 <ScrollViewer Background="Transparent">
@@ -125,7 +125,7 @@
                 <TabItem.Header>
                     <Canvas Width="115" Margin="0,4,0,0">
                         <Image Source="{StaticResource ITEM_DEMONDRUG}" Width="15" Height="15"/>
-                        <TextBlock Text="Consumables" Margin="16,-4,0,0"/>
+                        <TextBlock Text="{Binding XPath=/Strings/Client/Settings/String[@ID\=\'STATIC_ABNORM_TAB_CONSUMABLE\']/@Name}" Margin="16,-4,0,0"/>
                     </Canvas>
                 </TabItem.Header>
                 <ScrollViewer Background="Transparent">
@@ -135,14 +135,17 @@
         </TabControl>
 
         <!-- Options -->
-        <Custom:Switcher x:Name="OrientationSwitcher" Margin="14,55,0,0" VerticalAlignment="Top" Height="24" HorizontalAlignment="Left" Text="Allign abnormalities bar horizontally" MinWidth="330" />
-        <Custom:Switcher x:Name="EnableTimeLeftSwitcher" Margin="14,84,0,0" RequiresRestart="True" VerticalAlignment="Top" Height="24" HorizontalAlignment="Left" Text="Show abnormalities time left" MinWidth="330" />
-        <TextBlock HorizontalAlignment="Left" Margin="14,113,0,0" TextWrapping="Wrap" FontSize="15" Text="Timer text format:" Foreground="WhiteSmoke" VerticalAlignment="Top" Height="24" FontWeight="SemiBold" FontFamily="Segoe UI Light"/>
-        <TextBlock HorizontalAlignment="Left" Margin="300,116,0,0" TextWrapping="Wrap" FontSize="12" Text="(Requires restart)" Foreground="WhiteSmoke" VerticalAlignment="Top" Height="24" FontWeight="Light"/>
-        <ComboBox  x:Name="TimerTextFormatBox" Cursor="Hand" HorizontalAlignment="Left" Margin="131,113,0,0" VerticalAlignment="Top" Width="167" Style="{StaticResource ComboBoxFlatStyle}" IsReadOnly="True" SelectedIndex="0" Foreground="#FFEEEEEE" FontSize="14">
-            <System:String>MM:SS (e.g: 5:30)</System:String>
-            <System:String>MMmSSs (e.g: 5m30s)</System:String>
-        </ComboBox>
+        <Custom:Switcher x:Name="OrientationSwitcher" Margin="14,55,0,0" VerticalAlignment="Top" Height="24" HorizontalAlignment="Left" Text="{Binding XPath=/Strings/Client/Settings/String[@ID\=\'ENABLE_ALLIGN_ABNORM_BAR_HORIZONTALLY\']/@Name}" MinWidth="330" ToolTip="{Binding XPath=/Strings/Client/Settings/String[@ID\=\'ENABLE_ALLIGN_ABNORM_BAR_HORIZONTALLY_DESC\']/@Name}" />
+        <Custom:Switcher x:Name="EnableTimeLeftSwitcher" Margin="14,84,0,0" RequiresRestart="True" VerticalAlignment="Top" Height="24" HorizontalAlignment="Left" Text="{Binding XPath=/Strings/Client/Settings/String[@ID\=\'ENABLE_ABNORM_BAR_TIME_LEFT\']/@Name}" MinWidth="330" ToolTip="{Binding XPath=/Strings/Client/Settings/String[@ID\=\'ENABLE_ABNORM_BAR_TIME_LEFT_DESC\']/@Name}"/>
+        <StackPanel Margin="14,110,445,444" Height="24" Orientation="Horizontal">
+            <TextBlock HorizontalAlignment="Left" TextWrapping="Wrap" FontSize="15" Text="{Binding XPath=/Strings/Client/Settings/String[@ID\=\'STATIC_TIMER_TEXT_FORMAT\']/@Name}" Foreground="WhiteSmoke" VerticalAlignment="Top" Height="24" FontWeight="SemiBold" FontFamily="Segoe UI Light"/>
+            <ComboBox  x:Name="TimerTextFormatBox" Cursor="Hand" HorizontalAlignment="Left" VerticalAlignment="Top" Width="167" Style="{StaticResource ComboBoxFlatStyle}" IsReadOnly="True" SelectedIndex="0" Foreground="#FFEEEEEE" FontSize="14">
+                <System:String>MM:SS (e.g: 5:30)</System:String>
+                <System:String>MMmSSs (e.g: 5m30s)</System:String>
+            </ComboBox>
+            <TextBlock HorizontalAlignment="Left" TextWrapping="Wrap" FontSize="12" Text="{Binding XPath=/Strings/Client/Settings/String[@ID\=\'STATIC_REQUIRES_RESTART\']/@Name}" Foreground="WhiteSmoke" VerticalAlignment="Top" Height="24" FontWeight="Light"/>
+        </StackPanel>
+        
         <!-- Top bar -->
         <TextBlock Cursor="Hand" Margin="0,0,1,0" Text="X" VerticalAlignment="Top" HorizontalAlignment="Right" Width="31" Height="31" Foreground="#FFB9B9B9" FontWeight="Bold" FontSize="22" FlowDirection="RightToLeft" Padding="8,0,0,0" MouseLeftButtonDown="OnCloseButtonClick"/>
         <Image Source="{StaticResource ICON_SETTINGS}"  Width="20" Height="20" Margin="6,5,0,0" VerticalAlignment="Top" HorizontalAlignment="Left"/>
@@ -153,10 +156,12 @@
         <Button Cursor="Hand" Content="Save" Margin="0,0,18,10" Height="34" VerticalAlignment="Bottom" HorizontalAlignment="Right" Width="112" Style="{StaticResource ButtonStyle}" BorderBrush="{x:Null}" Foreground="#FFE6E6E6" Background="#FFD62424" FontSize="14" Click="OnSaveButtonClick"/>
         <Button Cursor="Hand" Content="Select all" Margin="399,0,0,11" Height="34" VerticalAlignment="Bottom" HorizontalAlignment="Left" Width="112" Style="{StaticResource ButtonStyle}" BorderBrush="{x:Null}" Foreground="#FFE6E6E6" Background="#FFD62424" FontSize="14" Click="OnSelectAllButtonClick"/>
         <Button Cursor="Hand" Content="Unselect all" Margin="516,0,0,11" Height="34" VerticalAlignment="Bottom" HorizontalAlignment="Left" Width="112" Style="{StaticResource ButtonStyle}" BorderBrush="{x:Null}" Foreground="#FFE6E6E6" Background="#FFD62424" FontSize="14" Click="OnUnselectAllButtonClick"/>
-        <TextBlock HorizontalAlignment="Left" Margin="14,141,0,0" TextWrapping="Wrap" FontSize="15" Text="Background opacity:" Foreground="WhiteSmoke" VerticalAlignment="Top" Height="24" FontWeight="SemiBold" FontFamily="Segoe UI Light"/>
-        <TextBlock HorizontalAlignment="Left" Margin="333,141,0,0" TextWrapping="Wrap" FontSize="15" Text="{Binding Path=Value, ElementName=BackgroundOpacitySlider}" Foreground="WhiteSmoke" VerticalAlignment="Top" Height="24" FontWeight="SemiBold" FontFamily="Segoe UI Light" TextAlignment="Center" Width="20"/>
-        <Slider x:Name="BackgroundOpacitySlider" Style="{StaticResource Horizontal_Slider}" HorizontalAlignment="Left" Margin="147,141,0,0" VerticalAlignment="Top" Height="24" Width="182" Maximum="1" LargeChange="0.1" TickFrequency="0.1" TickPlacement="TopLeft" Value="0.4"/>
-
+        <StackPanel Margin="14,139,447,415" Orientation="Horizontal" Height="24" ToolTip="{Binding XPath=/Strings/Client/Settings/String[@ID\=\'STATIC_BACKGROUND_OPACITY_DESC\']/@Name}">
+            <TextBlock HorizontalAlignment="Left" Padding="0,0,5,0" TextWrapping="Wrap" FontSize="15" Text="{Binding XPath=/Strings/Client/Settings/String[@ID\=\'STATIC_BACKGROUND_OPACITY\']/@Name}" Foreground="WhiteSmoke" VerticalAlignment="Top" Height="24" FontWeight="SemiBold" FontFamily="Segoe UI Light"/>
+            <Slider x:Name="BackgroundOpacitySlider" Style="{StaticResource Horizontal_Slider}" HorizontalAlignment="Left" VerticalAlignment="Top" Height="24" Width="182" Maximum="1" LargeChange="0.1" TickFrequency="0.1" TickPlacement="TopLeft" Value="0.4"/>
+            <TextBlock HorizontalAlignment="Left" TextWrapping="Wrap" FontSize="15" Text="{Binding Value, ElementName=BackgroundOpacitySlider, StringFormat=\{0:P\}}" Foreground="WhiteSmoke" VerticalAlignment="Top" Height="24" FontWeight="SemiBold" FontFamily="Segoe UI Light" TextAlignment="Center" Width="66"/>
+        </StackPanel>
+        
         <TextBlock HorizontalAlignment="Left" Visibility="Hidden" Margin="14,168,0,0" TextWrapping="Wrap" FontSize="15" Text="Circle opacity:" Foreground="WhiteSmoke" VerticalAlignment="Top" Height="24" FontWeight="SemiBold" FontFamily="Segoe UI Light"/>
         <TextBlock HorizontalAlignment="Left"  Visibility="Hidden" Margin="333,170,0,0" TextWrapping="Wrap" FontSize="15" Text="{Binding Path=Value, ElementName=CircleBGOpacitySlider}" Foreground="WhiteSmoke" VerticalAlignment="Top" Height="24" FontWeight="SemiBold" FontFamily="Segoe UI Light" Width="20" TextAlignment="Center" />
         <Slider x:Name="CircleBGOpacitySlider"  Visibility="Hidden" Style="{StaticResource Horizontal_Slider}" HorizontalAlignment="Left" Margin="147,168,0,0" VerticalAlignment="Top" Height="24" Width="182"  Maximum="1" LargeChange="0.1" TickFrequency="0.1" TickPlacement="TopLeft" Value="1"/>

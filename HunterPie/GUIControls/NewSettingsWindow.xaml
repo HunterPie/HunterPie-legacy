@@ -136,32 +136,68 @@
                             </custom:Switcher.ToolTip>
                         </custom:Switcher>
                         <Canvas Height="30" HorizontalAlignment="Center" MinWidth="500" Margin="222,0,221,0">
-                            <TextBlock Text="Update Branch:" Foreground="WhiteSmoke" FontFamily="Segoe UI Light"/>
+                            <TextBlock Foreground="WhiteSmoke" FontFamily="Segoe UI Light">
+                                <TextBlock.Text>
+                                    <Binding XPath="Settings/String[@ID='STATIC_UPDATEBRANCH']/@Name"/>
+                                </TextBlock.Text>
+                            </TextBlock>
                             <ComboBox x:Name="branchesCombobox" Foreground="WhiteSmoke" Style="{StaticResource ComboBoxFlatStyle}" SelectedIndex="1" Width="387" Height="27" Canvas.Left="113">
                                 <ComboBox.Items>
                                     <System:String>master</System:String>
                                     <System:String>BETA</System:String>
                                 </ComboBox.Items>
                             </ComboBox>
+                            <Canvas.ToolTip>
+                                <Binding XPath="Settings/String[@ID='STATIC_UPDATEBRANCH_DESC']/@Name"/>
+                            </Canvas.ToolTip>
                         </Canvas>
                         <Canvas Height="30" HorizontalAlignment="Center" MinWidth="500">
-                            <TextBlock Text="Language file:" Foreground="WhiteSmoke" Canvas.Top="2" FontFamily="Segoe UI Light"/>
+                            <TextBlock Foreground="WhiteSmoke" Canvas.Top="2" FontFamily="Segoe UI Light">
+                                <TextBlock.Text>
+                                    <Binding XPath="Settings/String[@ID='STATIC_LANGUAGEFILE']/@Name]"/>
+                                </TextBlock.Text>
+                            </TextBlock>
                             <ComboBox x:Name="LanguageFilesCombobox" Style="{StaticResource ComboBoxFlatStyle}" Width="387" Height="27" Canvas.Left="113" Foreground="WhiteSmoke"/>
+                            <Canvas.ToolTip>
+                                <Binding XPath="Settings/String[@ID='STATIC_LANGUAGEFILE_DESC']/@Name"/>
+                            </Canvas.ToolTip>
                         </Canvas>
                         <Canvas Height="30" HorizontalAlignment="Center" MinWidth="500">
-                            <TextBlock Text="Theme file:" Foreground="WhiteSmoke" Canvas.Top="2" FontFamily="Segoe UI Light"/>
+                            <TextBlock Foreground="WhiteSmoke" Canvas.Top="2" FontFamily="Segoe UI Light">
+                                <TextBlock.Text>
+                                    <Binding XPath="Settings/String[@ID='STATIC_THEMEFILE']/@Name"/>
+                                </TextBlock.Text>
+                            </TextBlock>
                             <ComboBox x:Name="ThemeFilesCombobox" Style="{StaticResource ComboBoxFlatStyle}" Width="387" Height="27" Canvas.Left="113" Foreground="WhiteSmoke">
                                 <ComboBox.Items>
                                     <System:String>Default</System:String>
                                 </ComboBox.Items>
                             </ComboBox>
+                            <Canvas.ToolTip>
+                                <Binding XPath="Settings/String[@ID='STATIC_THEMEFILE_DESC']/@Name"/>
+                            </Canvas.ToolTip>
                         </Canvas>
                         <Canvas Height="62" HorizontalAlignment="Center" MinWidth="500" Margin="222,0,221,0">
-                            <TextBlock Text="Game Path:" Foreground="WhiteSmoke" Canvas.Top="4" FontFamily="Segoe UI Light"/>
-                            <Button x:Name="selectPathBttn" Content="Select Path" Style="{StaticResource ToggleButtonStyle}" Foreground="WhiteSmoke" Background="#FF0F0F0F" Width="415" Height="30" Canvas.Left="85" BorderBrush="{x:Null}" Click="selectPathBttn_Click" LostFocus="SelectPathBttn_LostFocus" Cursor="Hand"/>
+                            <TextBlock Foreground="WhiteSmoke" Canvas.Top="4" FontFamily="Segoe UI Light">
+                                <TextBlock.Text>
+                                    <Binding XPath="Settings/String[@ID='STATIC_GAMEPATH']/@Name"/>
+                                </TextBlock.Text>
+                            </TextBlock>
+                            <Button x:Name="selectPathBttn" Style="{StaticResource ToggleButtonStyle}" Foreground="WhiteSmoke" Background="#FF0F0F0F" Width="415" Height="30" Canvas.Left="85" BorderBrush="{x:Null}" Click="selectPathBttn_Click" LostFocus="SelectPathBttn_LostFocus" Cursor="Hand">
+                                <Button.Content>
+                                    <Binding XPath="Settings/String[@ID='STATIC_GAMEPATH_UNSELECTED']/@Name"/>
+                                </Button.Content>
+                            </Button>
 
                             <TextBlock Text="Launch Arguments:" Foreground="WhiteSmoke" Canvas.Top="35" FontFamily="Segoe UI Light"/>
-                            <TextBox x:Name="argsTextBox" Text="No Arguments" TextWrapping="Wrap" Background="{x:Null}" Foreground="#FF9E9D9D" BorderBrush="#FFABADB3" BorderThickness="0,0,0,1" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" HorizontalAlignment="Right" Width="358" Canvas.Left="141" Canvas.Top="35" SelectionBrush="#FFD31D1D" TextChanged="argsTextBox_TextChanged" GotFocus="argsTextBox_GotFocus" LostFocus="argsTextBox_LostFocus"/>
+                            <TextBox x:Name="argsTextBox" TextWrapping="Wrap" Background="{x:Null}" Foreground="#FF9E9D9D" BorderBrush="#FFABADB3" BorderThickness="0,0,0,1" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" HorizontalAlignment="Right" Width="358" Canvas.Left="141" Canvas.Top="35" SelectionBrush="#FFD31D1D" TextChanged="argsTextBox_TextChanged" GotFocus="argsTextBox_GotFocus" LostFocus="argsTextBox_LostFocus">
+                                <TextBox.Text>
+                                    <Binding XPath="Settings/String[@ID='STATIC_LAUNCHARGS_NOARGS']/@Name"/>
+                                </TextBox.Text>
+                            </TextBox>
+                            <Canvas.ToolTip>
+                                <Binding XPath="Settings/String[@ID='STATIC_GAMEPATH_DESC']/@Name"/>
+                            </Canvas.ToolTip>
                         </Canvas>
                     </StackPanel>
                 </ScrollViewer>
@@ -179,8 +215,22 @@
                 </TabItem.Header>
                 <ScrollViewer>
                     <StackPanel  Height="436" Width="739" HorizontalAlignment="Left">
-                        <custom:Switcher x:Name="switchEnableRichPresence" Text="Enable Discord Rich Presence" ToolTip="if enabled, HunterPie will show your game activity on your Discord status." HorizontalAlignment="Center" MinWidth="500"/>
-                        <custom:Switcher x:Name="switchShowMonsterHealth" Text="Show monster health percentage" ToolTip="if enabled, HunterPie will show the health percentage of the monster you're hunting." HorizontalAlignment="Center" MinWidth="500"/>
+                        <custom:Switcher x:Name="switchEnableRichPresence" HorizontalAlignment="Center" MinWidth="500">
+                            <custom:Switcher.Text>
+                                <Binding XPath="Settings/String[@ID='ENABLE_RPC']/@Name"/>
+                            </custom:Switcher.Text>
+                            <custom:Switcher.ToolTip>
+                                <Binding XPath="Settings/String[@ID='ENABLE_RPC_DESC']/@Name"/>
+                            </custom:Switcher.ToolTip>
+                        </custom:Switcher>
+                        <custom:Switcher x:Name="switchShowMonsterHealth" HorizontalAlignment="Center" MinWidth="500">
+                            <custom:Switcher.Text>
+                                <Binding XPath="Settings/String[@ID='ENABLE_RPC_HEALTH']/@Name"/>
+                            </custom:Switcher.Text>
+                            <custom:Switcher.ToolTip>
+                                <Binding XPath="Settings/String[@ID='ENABLE_RPC_HEALTH_DESC']/@Name"/>
+                            </custom:Switcher.ToolTip>
+                        </custom:Switcher>
                     </StackPanel>
                 </ScrollViewer>
             </TabItem>
@@ -196,26 +246,69 @@
                 </TabItem.Header>
                 <ScrollViewer>
                     <StackPanel  Height="436" Width="739" HorizontalAlignment="Left">
-                        <custom:Switcher x:Name="switchEnableOverlay" Text="Enable In-Game Overlay" ToolTip="if enabled, the overlay will be visible in-game." HorizontalAlignment="Center" MinWidth="500"/>
-                        <custom:Switcher x:Name="switchHideWhenUnfocused" Text="Hide Overlay when game is unfocused" ToolTip="if enabled, HunterPie overlay will be automatically hidden when the game loses focus (e.g: When you Alt+Tab)" HorizontalAlignment="Center" MinWidth="500"/>
-                        <custom:Switcher x:Name="switchHardwareAcceleration" Text="Enable Hardware Acceleration" ToolTip="Enabling Hardware acceleration will make the overlay be rendered by the graphics card. Turning this off will change the rendering mode to software rendering, which will use more CPU. Turn this option off if you're having FPS issues. (REQUIRES RESTART)" HorizontalAlignment="Center" MinWidth="500" RequiresRestart="True"/>
+                        <custom:Switcher x:Name="switchEnableOverlay"  HorizontalAlignment="Center" MinWidth="500">
+                            <custom:Switcher.Text>
+                                <Binding XPath="Settings/String[@ID='ENABLE_OVERLAY']/@Name"/>
+                            </custom:Switcher.Text>
+                            <custom:Switcher.ToolTip>
+                                <Binding XPath="Settings/String[@ID='ENABLE_OVERLAY_DESC']/@Name"/>
+                            </custom:Switcher.ToolTip>
+                        </custom:Switcher>
+                        <custom:Switcher x:Name="switchHideWhenUnfocused" HorizontalAlignment="Center" MinWidth="500">
+                            <custom:Switcher.Text>
+                                <Binding XPath="Settings/String[@ID='ENABLE_HIDE_WHEN_UNFOCUS']/@Name"/>
+                            </custom:Switcher.Text>
+                            <custom:Switcher.ToolTip>
+                                <Binding XPath="Settings/String[@ID='ENABLE_HIDE_WHEN_UNFOCUS']/@Name"/>
+                            </custom:Switcher.ToolTip>
+                        </custom:Switcher>
+                        <custom:Switcher x:Name="switchHardwareAcceleration"  HorizontalAlignment="Center" MinWidth="500" RequiresRestart="True">
+                            <custom:Switcher.Text>
+                                <Binding XPath="Settings/String[@ID='ENABLE_HARDWARE_ACCELERATION']/@Name"/>
+                            </custom:Switcher.Text>
+                            <custom:Switcher.ToolTip>
+                                <Binding XPath="Settings/String[@ID='ENABLE_HARDWARE_ACCELERATION_DESC']/@Name"/>
+                            </custom:Switcher.ToolTip>
+                        </custom:Switcher>
                         <StackPanel Orientation="Horizontal" Height="28" ToolTip="Changes all HunterPie's animation framerates. Set this to a lower value if you're having FPS issues." HorizontalAlignment="Center" MinWidth="500">
-                            <TextBlock Text="Animations framerate:" Foreground="WhiteSmoke" FontFamily="Segoe UI Light"/>
+                            <TextBlock Foreground="WhiteSmoke" FontFamily="Segoe UI Light">
+                                <TextBlock.Text>
+                                    <Binding XPath="Settings/String[@ID='STATIC_ANIMATION_FPS']/@Name"/>
+                                </TextBlock.Text>
+                            </TextBlock>
                             <Slider x:Name="DesiredFrameRateSlider" Style="{StaticResource Horizontal_Slider}" Foreground="#FF3C3C3C" Maximum="60" Minimum="1" SmallChange="1" Value="60" Width="190" Canvas.Left="164" Canvas.Top="5" AutoToolTipPlacement="TopLeft" IsSnapToTickEnabled="True" Margin="8,0" />
                             <TextBlock Text="{Binding Value, ElementName=DesiredFrameRateSlider}" FontFamily="Segoe UI Light" Foreground="WhiteSmoke" Canvas.Left="366" Canvas.Top="4"/>
                             <TextBlock TextWrapping="Wrap" Text="(Requires restart)" Foreground="#FFF1F1F1" FontFamily="Segoe UI Light" TextAlignment="Center" HorizontalAlignment="Left" Width="79" Padding="0,6,0,0" Canvas.Left="383" Canvas.Top="4" FontSize="10"/>
                         </StackPanel>
-                        <StackPanel Orientation="Horizontal" Height="28" ToolTip="Hotkey to hide overlay. Changing the HotKey requires restart for it to take effect." HorizontalAlignment="Center" MinWidth="500">
-                            <TextBlock Text="Toggle Overlay (HotKey):" Foreground="WhiteSmoke" Canvas.Top="3" FontFamily="Segoe UI Light"/>
+                        <StackPanel Orientation="Horizontal" Height="28" HorizontalAlignment="Center" MinWidth="500">
+                            <TextBlock Foreground="WhiteSmoke" Canvas.Top="3" FontFamily="Segoe UI Light">
+                                <TextBlock.Text>
+                                    <Binding XPath="Settings/String[@ID='STATIC_TOGGLE_OVERLAY']/@Name"/>
+                                </TextBlock.Text>
+                            </TextBlock>
                             <Button x:Name="ToggleOverlayHotKey" Cursor="Hand" Background="#FF0F0F0F" Foreground="#FFE8E8E8"  BorderBrush="{x:Null}" Height="28" Padding="3,1" Style="{StaticResource ToggleButtonStyle}" Width="115" Canvas.Left="179" PreviewKeyDown="OnToggleOverlayKeyDown"/>
                             <TextBlock TextWrapping="Wrap" Text="(Requires restart)" Foreground="#FFF1F1F1" FontFamily="Segoe UI Light" TextAlignment="Center" HorizontalAlignment="Left" Width="79" Padding="0,6,0,0" Canvas.Left="299" Canvas.Top="2" FontSize="10"/>
+                            <StackPanel.ToolTip>
+                                <Binding XPath="Settings/String[@ID='STATIC_TOGGLE_OVERLAY_DESC']/@Name"/>
+                            </StackPanel.ToolTip>
                         </StackPanel>
-                        <StackPanel Orientation="Horizontal" Height="28" ToolTip="Hotkey to toggle design mode." HorizontalAlignment="Center" MinWidth="500">
-                            <TextBlock Text="Toggle Design Mode (HotKey):" FontFamily="Segoe UI Light" Foreground="WhiteSmoke" Canvas.Top="3"/>
+                        <StackPanel Orientation="Horizontal" Height="28" HorizontalAlignment="Center" MinWidth="500">
+                            <TextBlock FontFamily="Segoe UI Light" Foreground="WhiteSmoke" Canvas.Top="3">
+                                <TextBlock.Text>
+                                    <Binding XPath="Settings/String[@ID='STATIC_TOGGLE_DESIGN']/@Name"/>
+                                </TextBlock.Text>
+                            </TextBlock>
                             <Button x:Name="DesignModeKeyCode" Cursor="Hand" Background="#FF0F0F0F" Foreground="#FFE8E8E8"  BorderBrush="{x:Null}" Height="28" Padding="3,1" Style="{StaticResource ToggleButtonStyle}" Width="115" Canvas.Left="220" Click="SelectDesignModeKeyBind" LostFocus="OnKeybindingButtonLoseFocus"/>
                             <TextBlock TextWrapping="Wrap" Text="(Requires restart)" FontFamily="Segoe UI Light" Foreground="#FFF1F1F1"  TextAlignment="Center" HorizontalAlignment="Left" Width="79" Padding="0,6,0,0" Canvas.Left="340" Canvas.Top="2" FontSize="10"/>
+                            <StackPanel.ToolTip>
+                                <Binding XPath="Settings/String[@ID='STATIC_TOGGLE_DESIGN_DESC']/@Name"/>
+                            </StackPanel.ToolTip>
                         </StackPanel>
-                        <custom:PositionControl x:Name="OverlayPosition" HorizontalAlignment="Center" MinWidth="500" Height="38" Margin="222,0,221,0" ToolTip="Changes the overlay position."/>
+                        <custom:PositionControl x:Name="OverlayPosition" HorizontalAlignment="Center" MinWidth="500" Height="38" Margin="222,0,221,0">
+                            <custom:PositionControl.ToolTip>
+                                <Binding XPath="Settings/String[@ID='STATIC_OVERLAY_POSITION_DESC']/@Name"/>
+                            </custom:PositionControl.ToolTip>
+                        </custom:PositionControl>
                     </StackPanel>
                 </ScrollViewer>
             </TabItem>
@@ -232,9 +325,20 @@
                 </TabItem.Header>
                 <ScrollViewer CanContentScroll="True">
                     <StackPanel  Height="443" Width="739" HorizontalAlignment="Left">
-                        <custom:Switcher x:Name="switchEnableMonsterComponent" Text="Enable Monster Widget" ToolTip="if enabled, the monster widget will be visible whenever it has content to show." HorizontalAlignment="Center" MinWidth="500"/>
+                        <custom:Switcher x:Name="switchEnableMonsterComponent" HorizontalAlignment="Center" MinWidth="500">
+                            <custom:Switcher.Text>
+                                <Binding XPath="Settings/String[@ID='ENABLE_MONSTER_WIDGET']/@Name"/>
+                            </custom:Switcher.Text>
+                            <custom:Switcher.ToolTip>
+                                <Binding XPath="Settings/String[@ID='ENABLE_MONSTER_WIDGET_DESC']/@Name"/>
+                            </custom:Switcher.ToolTip>
+                        </custom:Switcher>
                         <StackPanel Orientation="Horizontal" Height="28" ToolTip="Changes the monster bar mode." HorizontalAlignment="Center" MinWidth="500">
-                            <TextBlock Text="Monster Bar Mode:" FontFamily="Segoe UI Light" Foreground="WhiteSmoke" Canvas.Top="3"/>
+                            <TextBlock FontFamily="Segoe UI Light" Foreground="WhiteSmoke" Canvas.Top="3">
+                                <TextBlock.Text>
+                                    <Binding XPath="Settings/String[@ID='STATIC_MONSTER_BAR_MODE']/@Name"/>
+                                </TextBlock.Text>
+                            </TextBlock>
                             <ComboBox x:Name="MonsterShowModeSelection" Style="{StaticResource ComboBoxFlatStyle}" IsReadOnly="True" Cursor="Hand" HorizontalAlignment="Center" Width="359" FontSize="14" Foreground="#FFF9F9F9" SelectedIndex="0" Canvas.Left="141" Canvas.Top="2">
                                 <System:String>Show all monsters at once</System:String>
                                 <System:String>Show all monsters but highlight my target</System:String>
@@ -242,45 +346,164 @@
                                 <System:String>Show all but hide inactive monsters after X seconds</System:String>
                             </ComboBox>
                         </StackPanel>
-                        <StackPanel Orientation="Horizontal" Height="28" ToolTip="Hotkey to change the monster bar mode. Changing the HotKey requires restart for it to take effect." HorizontalAlignment="Center" MinWidth="500">
-                            <TextBlock Text="Change bar mode (HotKey):" FontFamily="Segoe UI Light" Foreground="WhiteSmoke" Canvas.Top="3"/>
+                        <StackPanel Orientation="Horizontal" Height="28" ToolTip="{Binding XPath=/Strings/Client/Settings/String[@ID\=\'STATIC_MONSTER_BAR_MODE_HOTKEY_DESC\']/@Name}" HorizontalAlignment="Center" MinWidth="500">
+                            <TextBlock FontFamily="Segoe UI Light" Foreground="WhiteSmoke" Canvas.Top="3">
+                                <TextBlock.Text>
+                                    <Binding XPath="Settings/String[@ID='STATIC_MONSTER_BAR_MODE_HOTKEY']/@Name"/>
+                                </TextBlock.Text>
+                            </TextBlock>
                             <Button x:Name="ToggleMonsterBarModeHotKey" Cursor="Hand" Background="#FF0F0F0F" Foreground="#FFE8E8E8"  BorderBrush="{x:Null}" Height="28" Padding="3,1" Style="{StaticResource ToggleButtonStyle}" Width="115" Canvas.Left="200" Canvas.Top="1" PreviewKeyDown="OnToggleOverlayKeyDown"/>
                             <TextBlock TextWrapping="Wrap" Text="(Requires restart)" FontFamily="Segoe UI Light" Foreground="#FFF1F1F1"  TextAlignment="Center" HorizontalAlignment="Left" Width="79" Padding="0,6,0,0" Canvas.Left="320" Canvas.Top="3" FontSize="10"/>
                         </StackPanel>
-                        <StackPanel Orientation="Horizontal" Height="28" ToolTip="Changes the monster bar dock." HorizontalAlignment="Center" MinWidth="500">
-                            <TextBlock Text="Monster Bar dock" FontFamily="Segoe UI Light" Foreground="WhiteSmoke" Canvas.Top="3"/>
+                        <StackPanel Orientation="Horizontal" Height="28" ToolTip="{Binding XPath=/Strings/Client/Settings/String[@ID\=\'STATIC_MONSTER_BAR_DOCK_DESC\']/@Name}" HorizontalAlignment="Center" MinWidth="500">
+                            <TextBlock Text="{Binding XPath=/Strings/Client/Settings/String[@ID\=\'STATIC_MONSTER_BAR_DOCK\']/@Name}" FontFamily="Segoe UI Light" Foreground="WhiteSmoke" Canvas.Top="3"/>
                             <ComboBox x:Name="MonsterBarDock" Style="{StaticResource ComboBoxFlatStyle}" IsReadOnly="True" Cursor="Hand" HorizontalAlignment="Center" FontSize="14" Foreground="#FFF9F9F9" SelectedIndex="0" Canvas.Left="141" Canvas.Top="2" Width="234">
                                 <System:String>Top</System:String>
                                 <System:String>Bottom</System:String>
                             </ComboBox>
                         </StackPanel>
-                        <custom:Switcher x:Name="switchEnableMonsterWeakness" Text="Show monster weaknesses" ToolTip="if enabled, monster weaknesses will become visible under their health bar" HorizontalAlignment="Center" MinWidth="500"/>
-                        <custom:Switcher x:Name="switchEnableHideUnactiveParts" Text="Hide inactive parts/ailments after a few seconds" ToolTip="if enabled, unchanged parts and ailments will be hidden after a few seconds." HorizontalAlignment="Center" MinWidth="500"/>
-                        <custom:Switcher x:Name="switchEnableRemovableParts" Text="Show monster breakable parts" ToolTip="if enabled, monster removable/breakable parts will become visible under their health bar." HorizontalAlignment="Center" MinWidth="500"/>
-                        <custom:Switcher x:Name="switchEnableAilments" Text="Show Monster Ailments" ToolTip="if enabled, monster ailments will be visible under their health bar." HorizontalAlignment="Center" MinWidth="500"/>
-                        <custom:Switcher x:Name="switchEnableParts" Text="Show monster parts" ToolTip="if enabled, monster flinch parts will become visible under their health bar." HorizontalAlignment="Center" MinWidth="500" MouseDown="SwitchEnableParts_MouseDown"/>
+                        <custom:Switcher x:Name="switchEnableMonsterWeakness" HorizontalAlignment="Center" MinWidth="500">
+                            <custom:Switcher.Text>
+                                <Binding XPath="Settings/String[@ID='ENABLE_MONSTER_WEAKNESS']/@Name"/>
+                            </custom:Switcher.Text>
+                            <custom:Switcher.ToolTip>
+                                <Binding XPath="Settings/String[@ID='ENABLE_MONSTER_WEAKNESS_DESC']/@Name"/>
+                            </custom:Switcher.ToolTip>
+                        </custom:Switcher>
+                        <custom:Switcher x:Name="switchEnableHideUnactiveParts" HorizontalAlignment="Center" MinWidth="500">
+                            <custom:Switcher.Text>
+                                <Binding XPath="Settings/String[@ID='ENABLE_HIDE_INACTIVE_PARTS']/@Name"/>
+                            </custom:Switcher.Text>
+                            <custom:Switcher.ToolTip>
+                                <Binding XPath="Settings/String[@ID='ENABLE_HIDE_INACTIVE_PARTS_DESC']/@Name"/>
+                            </custom:Switcher.ToolTip>
+                        </custom:Switcher>
+                        <custom:Switcher x:Name="switchEnableRemovableParts" HorizontalAlignment="Center" MinWidth="500">
+                            <custom:Switcher.Text>
+                                <Binding XPath="Settings/String[@ID='ENABLE_BREAKABLE_PARTS']/@Name"/>
+                            </custom:Switcher.Text>
+                            <custom:Switcher.ToolTip>
+                                <Binding XPath="Settings/String[@ID='ENABLE_BREAKABLE_PARTS_DESC']/@Name"/>
+                            </custom:Switcher.ToolTip>
+                        </custom:Switcher>
+                        <custom:Switcher x:Name="switchEnableAilments" HorizontalAlignment="Center" MinWidth="500">
+                            <custom:Switcher.Text>
+                                <Binding XPath="Settings/String[@ID='ENABLE_AILMENTS']/@Name"/>
+                            </custom:Switcher.Text>
+                            <custom:Switcher.ToolTip>
+                                <Binding XPath="Settings/String[@ID='ENABLE_AILMENTS_DESC']/@Name"/>
+                            </custom:Switcher.ToolTip>
+                        </custom:Switcher>
+                        <custom:Switcher x:Name="switchEnableParts" HorizontalAlignment="Center" MinWidth="500" MouseDown="SwitchEnableParts_MouseDown">
+                            <custom:Switcher.Text>
+                                <Binding XPath="Settings/String[@ID='ENABLE_MONSTER_PARTS']/@Name"/>
+                            </custom:Switcher.Text>
+                            <custom:Switcher.ToolTip>
+                                <Binding XPath="Settings/String[@ID='ENABLE_MONSTER_PARTS_DESC']/@Name"/>
+                            </custom:Switcher.ToolTip>
+                        </custom:Switcher>
                         <ScrollViewer MaxHeight="200" Margin="250,0,131,0">
                             <StackPanel x:Name="PartsCustomizer" Height="0" IsEnabled="False">
-                                <custom:Switcher x:Name="EnablePartHead" Text="Enable Head health"/>
-                                <custom:Switcher x:Name="EnablePartBody" Text="Enable Body health"/>
-                                <custom:Switcher x:Name="EnablePartArm" Text="Enable Arms health"/>
-                                <custom:Switcher x:Name="EnablePartWing" Text="Enable Wings health"/>
-                                <custom:Switcher x:Name="EnablePartLeg" Text="Enable Legs health"/>
-                                <custom:Switcher x:Name="EnablePartTail" Text="Enable Tail health"/>
-                                <custom:Switcher x:Name="EnablePartLimb" Text="Enable Limbs health"/>
-                                <custom:Switcher x:Name="EnablePartAbdomen" Text="Enable Abdomen health"/>
-                                <custom:Switcher x:Name="EnablePartChest" Text="Enable Chest health"/>
-                                <custom:Switcher x:Name="EnablePartRear" Text="Enable Rear health"/>
-                                <custom:Switcher x:Name="EnablePartJaw" Text="Enable Jaw health"/>
-                                <custom:Switcher x:Name="EnablePartBack" Text="Enable Back health"/>
-                                <custom:Switcher x:Name="EnablePartFin" Text="Enable Fin health"/>
-                                <custom:Switcher x:Name="EnablePartHorn" Text="Enable Horns health"/>
-                                <custom:Switcher x:Name="EnablePartNeck" Text="Enable Neck health"/>
-                                <custom:Switcher x:Name="EnablePartShell" Text="Enable Shells health"/>
-                                <custom:Switcher x:Name="EnablePartOrgan" Text="Enable Organs health"/>
-                                <custom:Switcher x:Name="EnablePartMane" Text="Enable Manes health"/>
-                                <custom:Switcher x:Name="EnablePartBone" Text="Enable Bones health"/>
-                                <custom:Switcher x:Name="EnablePartMisc" Text="Enable Miscellaneous health"/>
+                                <custom:Switcher x:Name="EnablePartHead">
+                                    <custom:Switcher.Text>
+                                        <Binding XPath="Settings/String[@ID='ENABLE_MONSTER_PART_HEAD']/@Name"/>
+                                    </custom:Switcher.Text>
+                                </custom:Switcher>
+                                <custom:Switcher x:Name="EnablePartBody">
+                                    <custom:Switcher.Text>
+                                        <Binding XPath="Settings/String[@ID='ENABLE_MONSTER_PART_BODY']/@Name"/>
+                                    </custom:Switcher.Text>
+                                </custom:Switcher>
+                                <custom:Switcher x:Name="EnablePartArm">
+                                    <custom:Switcher.Text>
+                                        <Binding XPath="Settings/String[@ID='ENABLE_MONSTER_PART_ARM']/@Name"/>
+                                    </custom:Switcher.Text>
+                                </custom:Switcher>
+                                <custom:Switcher x:Name="EnablePartWing">
+                                    <custom:Switcher.Text>
+                                        <Binding XPath="Settings/String[@ID='ENABLE_MONSTER_PART_WING']/@Name"/>
+                                    </custom:Switcher.Text>
+                                </custom:Switcher>
+                                <custom:Switcher x:Name="EnablePartLeg">
+                                    <custom:Switcher.Text>
+                                        <Binding XPath="Settings/String[@ID='ENABLE_MONSTER_PART_LEG']/@Name"/>
+                                    </custom:Switcher.Text>
+                                </custom:Switcher>
+                                <custom:Switcher x:Name="EnablePartTail">
+                                    <custom:Switcher.Text>
+                                        <Binding XPath="Settings/String[@ID='ENABLE_MONSTER_PART_TAIL']/@Name"/>
+                                    </custom:Switcher.Text>
+                                </custom:Switcher>
+                                <custom:Switcher x:Name="EnablePartLimb">
+                                    <custom:Switcher.Text>
+                                        <Binding XPath="Settings/String[@ID='ENABLE_MONSTER_PART_LIMB']/@Name"/>
+                                    </custom:Switcher.Text>
+                                </custom:Switcher>
+                                <custom:Switcher x:Name="EnablePartAbdomen">
+                                    <custom:Switcher.Text>
+                                        <Binding XPath="Settings/String[@ID='ENABLE_MONSTER_PART_ABDOMEN']/@Name"/>
+                                    </custom:Switcher.Text>
+                                </custom:Switcher>
+                                <custom:Switcher x:Name="EnablePartChest">
+                                    <custom:Switcher.Text>
+                                        <Binding XPath="Settings/String[@ID='ENABLE_MONSTER_PART_CHEST']/@Name"/>
+                                    </custom:Switcher.Text>
+                                </custom:Switcher>
+                                <custom:Switcher x:Name="EnablePartRear">
+                                    <custom:Switcher.Text>
+                                        <Binding XPath="Settings/String[@ID='ENABLE_MONSTER_PART_REAR']/@Name"/>
+                                    </custom:Switcher.Text>
+                                </custom:Switcher>
+                                <custom:Switcher x:Name="EnablePartJaw">
+                                    <custom:Switcher.Text>
+                                        <Binding XPath="Settings/String[@ID='ENABLE_MONSTER_PART_JAW']/@Name"/>
+                                    </custom:Switcher.Text>
+                                </custom:Switcher>
+                                <custom:Switcher x:Name="EnablePartBack">
+                                    <custom:Switcher.Text>
+                                        <Binding XPath="Settings/String[@ID='ENABLE_MONSTER_PART_BACK']/@Name"/>
+                                    </custom:Switcher.Text>
+                                </custom:Switcher>
+                                <custom:Switcher x:Name="EnablePartFin">
+                                    <custom:Switcher.Text>
+                                        <Binding XPath="Settings/String[@ID='ENABLE_MONSTER_PART_FIN']/@Name"/>
+                                    </custom:Switcher.Text>
+                                </custom:Switcher>
+                                <custom:Switcher x:Name="EnablePartHorn">
+                                    <custom:Switcher.Text>
+                                        <Binding XPath="Settings/String[@ID='ENABLE_MONSTER_PART_HORN']/@Name"/>
+                                    </custom:Switcher.Text>
+                                </custom:Switcher>
+                                <custom:Switcher x:Name="EnablePartNeck">
+                                    <custom:Switcher.Text>
+                                        <Binding XPath="Settings/String[@ID='ENABLE_MONSTER_PART_NECK']/@Name"/>
+                                    </custom:Switcher.Text>
+                                </custom:Switcher>
+                                <custom:Switcher x:Name="EnablePartShell">
+                                    <custom:Switcher.Text>
+                                        <Binding XPath="Settings/String[@ID='ENABLE_MONSTER_PART_SHELL']/@Name"/>
+                                    </custom:Switcher.Text>
+                                </custom:Switcher>
+                                <custom:Switcher x:Name="EnablePartOrgan">
+                                    <custom:Switcher.Text>
+                                        <Binding XPath="Settings/String[@ID='ENABLE_MONSTER_PART_ORGAN']/@Name"/>
+                                    </custom:Switcher.Text>
+                                </custom:Switcher>
+                                <custom:Switcher x:Name="EnablePartMane">
+                                    <custom:Switcher.Text>
+                                        <Binding XPath="Settings/String[@ID='ENABLE_MONSTER_PART_MANE']/@Name"/>
+                                    </custom:Switcher.Text>
+                                </custom:Switcher>
+                                <custom:Switcher x:Name="EnablePartBone">
+                                    <custom:Switcher.Text>
+                                        <Binding XPath="Settings/String[@ID='ENABLE_MONSTER_PART_BONE']/@Name"/>
+                                    </custom:Switcher.Text>
+                                </custom:Switcher>
+                                <custom:Switcher x:Name="EnablePartMisc">
+                                    <custom:Switcher.Text>
+                                        <Binding XPath="Settings/String[@ID='ENABLE_MONSTER_PART_MISC']/@Name"/>
+                                    </custom:Switcher.Text>
+                                </custom:Switcher>
                                 <StackPanel.Style>
                                     <Style TargetType="StackPanel">
                                         <Style.Triggers>
@@ -305,22 +528,22 @@
                                 </StackPanel.Style>
                             </StackPanel>
                         </ScrollViewer>
-                        <StackPanel Orientation="Horizontal" Height="28" ToolTip="Sets the max number of different parts each column can have at once." HorizontalAlignment="Center" MinWidth="500">
-                            <TextBlock Text="Max number of parts per column:" FontFamily="Segoe UI Light" Foreground="WhiteSmoke" Canvas.Top="3"/>
+                        <StackPanel Orientation="Horizontal" Height="28" ToolTip="{Binding XPath=/Strings/Client/Settings/String[@ID\=\'STATIC_MONSTER_MAX_PARTS_DESC\']/@Name}" HorizontalAlignment="Center" MinWidth="500">
+                            <TextBlock Text="{Binding XPath=/Strings/Client/Settings/String[@ID\=\'STATIC_MONSTER_MAX_PARTS\']/@Name}" FontFamily="Segoe UI Light" Foreground="WhiteSmoke" Canvas.Top="3"/>
                             <Slider x:Name="MaxNumberOfPartsAtOnce" Style="{StaticResource Horizontal_Slider}" Foreground="#FF3C3C3C" Maximum="16" Minimum="1" SmallChange="1" Value="8" Width="190" Canvas.Left="249" Canvas.Top="6" AutoToolTipPlacement="TopLeft" IsSnapToTickEnabled="True" Margin="4,0" />
                             <TextBlock Text="{Binding Value, ElementName=MaxNumberOfPartsAtOnce}" FontFamily="Segoe UI Light" FontSize="16" Foreground="WhiteSmoke" Canvas.Left="446" Canvas.Top="4"/>
                         </StackPanel>
-                        <StackPanel Orientation="Horizontal" Height="28" ToolTip="Max number of columns of part/ailments bars." HorizontalAlignment="Center" MinWidth="500">
-                            <TextBlock Text="Max number of columns:" Foreground="WhiteSmoke" Canvas.Top="3" FontFamily="Segoe UI Light"/>
+                        <StackPanel Orientation="Horizontal" Height="28" ToolTip="{Binding XPath=/Strings/Client/Settings/String[@ID\=\'STATIC_MONSTER_MAX_COLUMNS_DESC\']/@Name}" HorizontalAlignment="Center" MinWidth="500">
+                            <TextBlock Text="{Binding XPath=/Strings/Client/Settings/String[@ID\=\'STATIC_MONSTER_MAX_COLUMNS\']/@Name}" Foreground="WhiteSmoke" Canvas.Top="3" FontFamily="Segoe UI Light"/>
                             <Slider x:Name="MaxColumnsOfParts" Style="{StaticResource Horizontal_Slider}" Foreground="#FF3C3C3C" Maximum="4" Minimum="1" SmallChange="1" Value="1" Width="190" Canvas.Left="249" Canvas.Top="6" AutoToolTipPlacement="TopLeft" IsSnapToTickEnabled="True" Margin="4,0" />
                             <TextBlock Text="{Binding Value, ElementName=MaxColumnsOfParts}" FontFamily="Segoe UI Light" FontSize="16" Foreground="WhiteSmoke" Canvas.Left="446" Canvas.Top="4"/>
                         </StackPanel>
-                        <StackPanel Orientation="Horizontal" Height="28" ToolTip="Delay to wait before hiding parts after they get damaged or ailments when they become unactive." HorizontalAlignment="Center" MinWidth="500">
-                            <TextBlock Text="Delay to hide unactive parts:" Foreground="WhiteSmoke" Canvas.Top="3" FontFamily="Segoe UI Light"/>
+                        <StackPanel Orientation="Horizontal" Height="28" ToolTip="{Binding XPath=/Strings/Client/Settings/String[@ID\=\'STATIC_MONSTER_PART_DELAY_DESC\']/@Name}" HorizontalAlignment="Center" MinWidth="500">
+                            <TextBlock Text="{Binding XPath=/Strings/Client/Settings/String[@ID\=\'STATIC_MONSTER_PART_DELAY\']/@Name}" Foreground="WhiteSmoke" Canvas.Top="3" FontFamily="Segoe UI Light"/>
                             <Slider x:Name="HideSeconds" Style="{StaticResource Horizontal_Slider}" Foreground="#FF3C3C3C" Maximum="300" Minimum="1" SmallChange="1" Value="12" Width="190" Canvas.Left="249" Canvas.Top="6" AutoToolTipPlacement="TopLeft" IsSnapToTickEnabled="True" Margin="4,0" />
                             <TextBlock Text="{Binding Path=Value, ElementName=HideSeconds, Converter={StaticResource StaticSecondsConverter}}" FontFamily="Segoe UI Light" FontSize="16" Foreground="WhiteSmoke" Canvas.Left="446" Canvas.Top="4"/>
                         </StackPanel>
-                        <custom:PositionControl x:Name="MonstersPosition" HorizontalAlignment="Center" MinWidth="500" Height="38" Margin="222,0,221,0" ToolTip="Changes the overlay position."/>
+                        <custom:PositionControl x:Name="MonstersPosition" HorizontalAlignment="Center" MinWidth="500" Height="38" Margin="222,0,221,0" ToolTip="{Binding XPath=/Strings/Client/Settings/String[@ID\=\'STATIC_MONSTER_POSITION_DESC\']/@Name}"/>
                     </StackPanel>
                 </ScrollViewer>
             </TabItem>
@@ -426,8 +649,8 @@
                                 <StackPanel x:Name="BuffTrays"/>
                             </ScrollViewer>
                             <TextBlock x:Name="NumberOfBuffBars" FontFamily="Segoe UI Light" Canvas.Left="649" FontSize="20" TextWrapping="Wrap" Text="n" Foreground="WhiteSmoke" Canvas.Top="68"/>
-                            <TextBlock ToolTip="Create a new buff bar" FontFamily="Segoe UI Light" x:Name="AddNewBuffBar" Cursor="Hand" Background="#FF0E0E0E" Canvas.Left="676" FontSize="20" TextWrapping="Wrap" Text="+" Foreground="WhiteSmoke" Canvas.Top="68" Width="28" Padding="0" Height="32" TextAlignment="Center" MouseDown="AddNewBuffBarClick"/>
-                            <TextBlock ToolTip="Removes your last buff bar" FontFamily="Segoe UI Light" x:Name="SubBuffBar" Cursor="Hand" Background="#FF0E0E0E" Canvas.Left="603" FontSize="20" TextWrapping="Wrap" Text="-" Foreground="WhiteSmoke" Canvas.Top="68" Width="28" Padding="0" Height="32" TextAlignment="Center" MouseDown="SubBuffBarClick"/>
+                            <TextBlock ToolTip="{Binding XPath=/Strings/Client/Settings/String[@ID\=\'STATIC_CREATE_ABNORM_BAR_DESC\']/@Name}" FontFamily="Segoe UI Light" x:Name="AddNewBuffBar" Cursor="Hand" Background="#FF0E0E0E" Canvas.Left="676" FontSize="20" TextWrapping="Wrap" Text="+" Foreground="WhiteSmoke" Canvas.Top="68" Width="28" Padding="0" Height="32" TextAlignment="Center" MouseDown="AddNewBuffBarClick"/>
+                            <TextBlock ToolTip="{Binding XPath=/Strings/Client/Settings/String[@ID\=\'STATIC_REMOVE_ABNORM_BAR_DESC\']/@Name}" FontFamily="Segoe UI Light" x:Name="SubBuffBar" Cursor="Hand" Background="#FF0E0E0E" Canvas.Left="603" FontSize="20" TextWrapping="Wrap" Text="-" Foreground="WhiteSmoke" Canvas.Top="68" Width="28" Padding="0" Height="32" TextAlignment="Center" MouseDown="SubBuffBarClick"/>
                             <TextBlock Canvas.Left="583" TextWrapping="Wrap" FontFamily="Segoe UI Light" Text="(Requires restart)" Canvas.Top="100" Width="142" Foreground="#FFF1F1F1"  TextAlignment="Center"/>
                         </Canvas>
                     </StackPanel>
@@ -446,18 +669,18 @@
                 </TabItem.Header>
                 <ScrollViewer>
                     <StackPanel Height="436" Width="739" HorizontalAlignment="Left">
-                        <GroupBox Header="Primary Specialized tool" Height="187" Foreground="WhiteSmoke" BorderBrush="{x:Null}" Width="359" HorizontalAlignment="Center">
+                        <GroupBox Header="{Binding XPath=/Strings/Client/Settings/String[@ID\=\'STATIC_PRIMARY_SPEC_TOOL\']/@Name}" Height="187" Foreground="WhiteSmoke" BorderBrush="{x:Null}" Width="359" HorizontalAlignment="Center">
                             <StackPanel Margin="0,32,-2,12" Orientation="Vertical">
-                                <custom:Switcher x:Name="switchEnablePrimaryMantle" Text="Enable Primary specialized tool widget" ToolTip="if enabled, the primary specialized tool widget will be visible whenever it has content."/>
-                                <custom:ColorPicker x:Name="PrimaryMantleColor" NameText="Color:" Margin="63,0" Height="34"/>
-                                <custom:PositionControl x:Name="PrimaryMantlePosition"/>
+                                <custom:Switcher x:Name="switchEnablePrimaryMantle" Text="{Binding XPath=/Strings/Client/Settings/String[@ID\=\'ENABLE_PRIMARY_SPEC_TOOL\']/@Name}" ToolTip="{Binding XPath=/Strings/Client/Settings/String[@ID\=\'ENABLE_PRIMARY_SPEC_TOOL_DESC\']/@Name}"/>
+                                <custom:ColorPicker x:Name="PrimaryMantleColor" NameText="{Binding XPath=/Strings/Client/Settings/String[@ID\=\'STATIC_COLOR\']/@Name}" Margin="63,0" Height="34"/>
+                                <custom:PositionControl x:Name="PrimaryMantlePosition" ToolTip="{Binding XPath=/Strings/Client/Settings/String[@ID\=\'STATIC_PRIMARY_SPEC_TOOL_POSITION_DESC\']/@Name}"/>
                             </StackPanel>
                         </GroupBox>
-                        <GroupBox Header="Secondary Specialized Tool" Height="187" Width="359" Foreground="WhiteSmoke" BorderBrush="{x:Null}" Margin="0,10,0,0">
+                        <GroupBox Header="{Binding XPath=/Strings/Client/Settings/String[@ID\=\'STATIC_SECONDARY_SPEC_TOOL\']/@Name}" Height="187" Width="359" Foreground="WhiteSmoke" BorderBrush="{x:Null}" Margin="0,10,0,0">
                             <StackPanel Margin="0,32,-2,4" Orientation="Vertical">
-                                <custom:Switcher x:Name="switchEnableSecondaryMantle" Text="Enable Secondary specialized tool widget" ToolTip="if enabled, the secondary specialized tool widget will be visible whenever it has content."/>
+                                <custom:Switcher x:Name="switchEnableSecondaryMantle" Text="{Binding XPath=/Strings/Client/Settings/String[@ID\=\'ENABLE_SECONDARY_SPEC_TOOL\']/@Name}" ToolTip="{Binding XPath=/Strings/Client/Settings/String[@ID\=\'ENABLE_SECONDARY_SPEC_TOOL_DESC\']/@Name}"/>
                                 <custom:ColorPicker x:Name="SecondaryMantleColor" NameText="Color:" Margin="63,0" Height="36"/>
-                                <custom:PositionControl x:Name="SecondaryMantlePosition"/>
+                                <custom:PositionControl x:Name="SecondaryMantlePosition" ToolTip="{Binding XPath=/Strings/Client/Settings/String[@ID\=\'STATIC_SECONDARY_SPEC_TOOL_POSITION_DESC\']/@Name}"/>
                             </StackPanel>
                         </GroupBox>
                     </StackPanel>
@@ -477,9 +700,11 @@
                 <ScrollViewer>
                     <WrapPanel Width="739" Orientation="Horizontal">
                         <Canvas Height="190" Width="367" VerticalAlignment="Top" HorizontalAlignment="Left">
-                            <TextBlock Text="GitHub" FontFamily="Segoe UI Light" Foreground="Gray" Width="53" TextAlignment="Center"/>
-                            <Separator Width="300" Canvas.Left="54" Margin="0" Canvas.Top="12"/>
-                            <custom:MinimalButton Width="274" Icon="{StaticResource ICON_GITHUB}" Text="Wiki" Link="https://github.com/Haato3o/HunterPie/wiki" Canvas.Left="44" Canvas.Top="28" Foreground="#FFC7C5C5" Height="27" ToolTip="HunterPie official documentation.">
+                            <StackPanel Orientation="Horizontal" Width="357">
+                                <TextBlock Text="GitHub" Padding="0,0,5,0" FontFamily="Segoe UI Light" Foreground="Gray" TextAlignment="Center"/>
+                                <Separator Width="282" Canvas.Left="72" Margin="0" Canvas.Top="12"/>
+                            </StackPanel>
+                            <custom:MinimalButton Width="274" Icon="{StaticResource ICON_GITHUB}" Text="{Binding XPath=/Strings/Client/Settings/String[@ID\=\'STATIC_HUNTERPIE_WIKI\']/@Name}" Link="https://github.com/Haato3o/HunterPie/wiki" Canvas.Left="44" Canvas.Top="28" Foreground="#FFC7C5C5" Height="27" ToolTip="{Binding XPath=/Strings/Client/Settings/String[@ID\=\'STATIC_HUNTERPIE_WIKI_DESC\']/@Name}">
                                 <custom:MinimalButton.Color>
                                     <LinearGradientBrush EndPoint="1,1" StartPoint="0,0">
                                         <GradientStop Color="#FFAA1009" Offset="0"/>
@@ -487,7 +712,7 @@
                                     </LinearGradientBrush>
                                 </custom:MinimalButton.Color>
                             </custom:MinimalButton>
-                            <custom:MinimalButton Width="274" Icon="{StaticResource ICON_GITHUB}" BorderThickness="0" Text="Issues" Link="https://github.com/Haato3o/HunterPie/issues" Canvas.Left="44" Canvas.Top="65" Foreground="#FFC7C5C5"  ToolTip="HunterPie github issues page.">
+                            <custom:MinimalButton Width="274" Icon="{StaticResource ICON_GITHUB}" BorderThickness="0" Text="{Binding XPath=/Strings/Client/Settings/String[@ID\=\'STATIC_HUNTERPIE_ISSUES\']/@Name}" Link="https://github.com/Haato3o/HunterPie/issues" Canvas.Left="44" Canvas.Top="65" Foreground="#FFC7C5C5"  ToolTip="{Binding XPath=/Strings/Client/Settings/String[@ID\=\'STATIC_HUNTERPIE_ISSUES_DESC\']/@Name}">
                                 <custom:MinimalButton.Color>
                                     <LinearGradientBrush EndPoint="1,1" StartPoint="0,0">
                                         <GradientStop Color="#FFAA1009" Offset="0"/>
@@ -497,9 +722,12 @@
                             </custom:MinimalButton>
                         </Canvas>
                         <Canvas Height="190" Width="368" VerticalAlignment="Top" HorizontalAlignment="Left">
-                            <TextBlock Text="Donations" FontFamily="Segoe UI Light" Foreground="Gray" TextAlignment="Center"/>
-                            <Separator Width="282" Canvas.Left="72" Margin="0" Canvas.Top="12"/>
-                            <custom:MinimalButton Width="274" Icon="{StaticResource ICON_PAYPAL}" Text="PayPal" Link="https://www.paypal.com/cgi-bin/webscr?cmd=_s-xclick&amp;hosted_button_id=EXPGCRVFVC2ZA&amp;source=url" Canvas.Left="44" Canvas.Top="28" Foreground="#FFE4E4E4" FontWeight="Bold" ToolTip="Consider donating if you want to support HunterPie development!">
+                            <StackPanel Orientation="Horizontal" Width="357">
+                                <TextBlock Text="{Binding XPath=/Strings/Client/Settings/String[@ID\=\'STATIC_HUNTERPIE_DONATIONS\']/@Name}" Padding="0,0,5,0" FontFamily="Segoe UI Light" Foreground="Gray" TextAlignment="Center"/>
+                                <Separator Width="282" Canvas.Left="72" Margin="0" Canvas.Top="12"/>
+                            </StackPanel>
+               
+                            <custom:MinimalButton Width="274" Icon="{StaticResource ICON_PAYPAL}" Text="{Binding XPath=/Strings/Client/Settings/String[@ID\=\'STATIC_HUNTERPIE_PAYPAL\']/@Name}" Link="https://www.paypal.com/cgi-bin/webscr?cmd=_s-xclick&amp;hosted_button_id=EXPGCRVFVC2ZA&amp;source=url" Canvas.Left="44" Canvas.Top="28" Foreground="#FFE4E4E4" FontWeight="Bold" ToolTip="{Binding XPath=/Strings/Client/Settings/String[@ID\=\'STATIC_HUNTERPIE_PAYPAL_DESC\']/@Name}">
                                 <custom:MinimalButton.Color>
                                     <LinearGradientBrush EndPoint="1.5,-7" StartPoint="-0.1,-1">
                                         <GradientStop Color="#FFF7C125" Offset="0"/>
@@ -509,9 +737,11 @@
                             </custom:MinimalButton>
                         </Canvas>
                         <Canvas Height="190" Width="367" VerticalAlignment="Top" HorizontalAlignment="Left">
-                            <TextBlock Text="Discord" FontFamily="Segoe UI Light" Foreground="Gray" Width="53" TextAlignment="Center"/>
-                            <Separator Width="300" Canvas.Left="54" Margin="0" Canvas.Top="12"/>
-                            <custom:MinimalButton Width="274" Icon="{StaticResource ICON_DISCORD}" Text="Discord Server" Link="https://discord.gg/5pdDq4Q" Canvas.Left="44" Canvas.Top="28" Foreground="#FFC7C5C5" Height="27" ToolTip="HunterPie official Discord server.">
+                            <StackPanel Orientation="Horizontal" Width="357">
+                                <TextBlock Text="Discord" Padding="0,0,5,0" FontFamily="Segoe UI Light" Foreground="Gray" TextAlignment="Center"/>
+                                <Separator Width="282" Canvas.Left="72" Margin="0" Canvas.Top="12"/>
+                            </StackPanel>
+                            <custom:MinimalButton Width="274" Icon="{StaticResource ICON_DISCORD}" Text="{Binding XPath=/Strings/Client/Settings/String[@ID\=\'STATIC_HUNTERPIE_DISCORD\']/@Name}" Link="https://discord.gg/5pdDq4Q" Canvas.Left="44" Canvas.Top="28" Foreground="#FFC7C5C5" Height="27" ToolTip="{Binding XPath=/Strings/Client/Settings/String[@ID\=\'STATIC_HUNTERPIE_DISCORD_DESC\']/@Name}">
                                 <custom:MinimalButton.Color>
                                     <LinearGradientBrush EndPoint="1,1" StartPoint="0,0">
                                         <GradientStop Color="#FF667DCB" Offset="0"/>

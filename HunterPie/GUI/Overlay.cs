@@ -69,7 +69,6 @@ namespace HunterPie.GUI {
             for (int AbnormTrayIndex = 0; AbnormTrayIndex < UserSettings.PlayerConfig.Overlay.AbnormalitiesWidget.ActiveBars; AbnormTrayIndex++) {
                 Widgets.Add(new Widgets.Abnormality_Widget.AbnormalityContainer(ctx.Player, AbnormTrayIndex));
             }
-            
         }
 
         private void CreateAbnormBarSettingsIfNeeded() {

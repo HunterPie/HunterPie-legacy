@@ -2,7 +2,7 @@
 using HunterPie.Logger;
 using System.Xml;
 using System.Collections.Generic;
-using System.Linq;
+using System;
 
 namespace HunterPie.Core {
     class MonsterData {
@@ -24,12 +24,15 @@ namespace HunterPie.Core {
             if (Weaknesses == null) return null;
             Dictionary<string, int> MonsterWeaknesses = new Dictionary<string, int>();
             foreach (XmlNode Weakness in Weaknesses) {
-                MonsterWeaknesses.Add(Weakness.Attributes["ID"].Value, System.Convert.ToInt32(Weakness.Attributes["Stars"].Value));
+                MonsterWeaknesses.Add(Weakness.Attributes["ID"].Value, Convert.ToInt32(Weakness.Attributes["Stars"].Value));
             }
             return MonsterWeaknesses;
         }
 
         static public string GetMonsterCrownByMultiplier(string ID, float multiplier) {
+            // Work around for this dumb crown multiplier
+            multiplier = float.Parse($"{multiplier:0.00000000}");
+
             XmlNode Crowns = MonsterDataDocument.SelectSingleNode($"//Monsters/Monster[@ID='{ID}']/Crown");
             if (Crowns == null) return null;
             float Mini = float.Parse(Crowns.Attributes["Mini"].Value, System.Globalization.CultureInfo.InvariantCulture);

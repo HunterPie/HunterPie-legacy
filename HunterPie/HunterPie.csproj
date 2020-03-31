@@ -266,6 +266,10 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
+    <Page Include="GUI\Widgets\Notification Widget\DiscordNotify.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="Hunterpie.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
@@ -320,6 +324,9 @@
     </Compile>
     <Compile Include="GUI\Widgets\Monster Widget\Parts\MonsterPart.xaml.cs">
       <DependentUpon>MonsterPart.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="GUI\Widgets\Notification Widget\DiscordNotify.xaml.cs">
+      <DependentUpon>DiscordNotify.xaml</DependentUpon>
     </Compile>
     <Compile Include="Hunterpie.xaml.cs">
       <DependentUpon>Hunterpie.xaml</DependentUpon>

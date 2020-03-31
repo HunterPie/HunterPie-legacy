@@ -19,10 +19,11 @@ namespace HunterPie.Core {
                     _TotalDamage = value;
                     _OnTotalDamageChange();
                 }
-                
+
             }
         }
-
+        public int MaxLobbySize = 16;
+        public int LobbySize { get; set; }
         public Member this[int index] {
             get { return Members[index]; }
             set { Members[index] = value; }

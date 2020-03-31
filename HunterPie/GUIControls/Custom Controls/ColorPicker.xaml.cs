@@ -20,12 +20,15 @@ namespace HunterPie.GUIControls.Custom_Controls {
     /// </summary>
     public partial class ColorPicker : UserControl {
 
-        public object NameText {
-            get { return (object)GetValue(NameTextProperty); }
+        public string NameText {
+            get { return (string)GetValue(NameTextProperty); }
             set { SetValue(NameTextProperty, value); }
         }
-        public static readonly DependencyProperty NameTextProperty = DependencyProperty.Register("NameText", typeof(object), typeof(TextBlock), new PropertyMetadata(0));
 
+        // Using a DependencyProperty as the backing store for MyProperty.  This enables animation, styling, binding, etc...
+        public static readonly DependencyProperty NameTextProperty =
+            DependencyProperty.Register("NameText", typeof(string), typeof(ColorPicker));
+        
         private string _Color { get; set; }
         public string Color {
             get { return _Color; }
@@ -34,7 +37,6 @@ namespace HunterPie.GUIControls.Custom_Controls {
 
         public ColorPicker() {
             InitializeComponent();
-            this.DataContext = this;
         }
 
         private void SetColor(string HexColor) {

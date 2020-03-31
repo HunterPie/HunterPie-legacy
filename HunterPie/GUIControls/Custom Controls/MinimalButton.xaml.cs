@@ -19,13 +19,22 @@ namespace HunterPie.GUIControls.Custom_Controls {
     /// </summary>
     public partial class MinimalButton : UserControl {
 
+
+
+        public string Text {
+            get { return (string)GetValue(TextProperty); }
+            set { SetValue(TextProperty, value); }
+        }
+
+        // Using a DependencyProperty as the backing store for Text.  This enables animation, styling, binding, etc...
+        public static readonly DependencyProperty TextProperty =
+            DependencyProperty.Register("Text", typeof(string), typeof(MinimalButton));
+
+
+
         public Brush Color {
             get { return btnBackground.Fill; }
             set { btnBackground.Fill = value; }
-        }
-        public string Text {
-            get { return btnText.Text; }
-            set { btnText.Text = value; }
         }
         public ImageSource Icon {
             get { return btnIcon.Source; }

@@ -439,6 +439,8 @@
       <String ID="ENABLE_RPC_DESC" Name="If enabled, HunterPie will show your game activity on your Discord status."/>
       <String ID="ENABLE_RPC_HEALTH" Name="Show monster health percentage"/>
       <String ID="ENABLE_RPC_HEALTH_DESC" Name="If enabled, HunterPie will show the health percentage of the monster you're hunting."/>
+      <String ID="ENABLE_PEOPLE_JOIN" Name="Let people ask to join my online session"/>
+      <String ID="ENABLE_PEOPLE_JOIN" Name="If enabled, people will be able to ask to join your Monster Hunter session."/>
       <!-- Overlay -->
       <String ID="ENABLE_OVERLAY" Name="Enable In-Game Overlay"/>
       <String ID="ENABLE_OVERLAY_DESC" Name="If enabled, the Overlay will be visible in-game."/>
@@ -549,7 +551,7 @@
       <String ID="ENABLE_PRIMARY_SPEC_TOOL_DESC" Name="If enabled, the primary specialized tool widget will be visible whenever it has content."/>
       <String ID="ENABLE_SECONDARY_SPEC_TOOL" Name="Enable Widget"/>
       <String ID="ENABLE_SECONDARY_SPEC_TOOL_DESC" Name="If enabled, the secondary specialized tool widget will be visible whenever it has content."/>
-      <String ID="STATIC_COLOR" Name="Color"/>
+      <String ID="STATIC_COLOR" Name="Color:"/>
       <String ID="STATIC_PRIMARY_SPEC_TOOL_POSITION_DESC" Name="Changes the primary specialized tool widget position."/>
       <String ID="STATIC_SECONDARY_SPEC_TOOL_POSITION_DESC" Name="Changes the secondary specialized tool widget position."/>
       <!-- Links -->
@@ -559,6 +561,7 @@
       <String ID="STATIC_HUNTERPIE_ISSUES_DESC" Name="HunterPie GitHub issues page."/>
       <String ID="STATIC_HUNTERPIE_DISCORD" Name="Discord Server"/>
       <String ID="STATIC_HUNTERPIE_DISCORD_DESC" Name="HunterPie official Discord server."/>
+      <String ID="STATIC_HUNTERPIE_DONATIONS" Name="Donations"/>
       <String ID="STATIC_HUNTERPIE_PAYPAL" Name="PayPal"/>
       <String ID="STATIC_HUNTERPIE_PAYPAL_DESC" Name="Consider donating if you want to support HunterPie development!"/>
       <!-- Debug -->
@@ -566,10 +569,15 @@
       <String ID="ENABLE_DEBUG_MESSAGES_DESC" Name="Enables debug messages. Do not turn this option on if you have no idea what you're doing. This is part of the development tools."/>
       <String ID="ENABLE_UNKNOWN_AILMENTS" Name="Enable unknown monster ailments"/>
       <String ID="ENABLE_UNKNOWN_AILMENTS_DESC" Name="Enables unknown monster statuses. Do not turn this option on if you have no idea what you're doing. This is part of the development tools."/>
+      <String ID="ENABLE_LOAD_CUSTOM_DATA" Name="Load custom monster data"/>
+      <String ID="ENABLE_LOAD_CUSTOM_DATA_DESC" Name="If enabled, HunterPie will try to load the custom monster data file. Do not turn this option on if you have no idea what you're doing. This is part of the development tools."/>
+      <String ID="STATIC_LOAD_CUSTOM_DATA_DESC" Name="Custom Monster Data File:"/>
+      <String ID="STATIC_LOAD_CUSTOM_DATA_DESC" Name="Select your custom monster data file path."/>
       <!-- Generics -->
       <String ID="STATIC_BUTTON_SELECT_ALL" Name="Select All"/>
       <String ID="STATIC_BUTTON_UNSELECT_ALL" Name="Unselect All"/>
       <String ID="STATIC_BUTTON_SAVE" Name="Save"/>
+      <String ID="STATIC_REQUIRES_RESTART" Name="(Requires restart)"/>
       <!-- Settings Side bar-->
       <String ID="STATIC_GENERAL_SETTINGS" Name="General"/>
       <String ID="STATIC_DISCORD_SETTINGS" Name="Discord"/>

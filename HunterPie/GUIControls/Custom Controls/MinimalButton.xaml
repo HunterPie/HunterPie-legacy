@@ -7,8 +7,10 @@
              mc:Ignorable="d" d:DesignWidth="200" Height="27">
     <Grid Cursor="Hand" MouseLeftButtonDown="OnClick">
         <Rectangle x:Name="btnBackground" RadiusY="15" RadiusX="15" Fill="{Binding Path=Color, ElementName=btn}" Stroke="{Binding Path=BorderBrush, ElementName=btn}"/>
-        <Image x:Name="btnIcon" Source="{Binding Path=Icon, ElementName=btn}" Height="20" Width="20" Margin="19,3,0,2" HorizontalAlignment="Left"/>
-        <TextBlock x:Name="btnText" Text="{Binding Path=Text, ElementName=btn}" Margin="40,-2,0,2" Foreground="{Binding Path=Foreground, ElementName=btn}" FontSize="20" FontFamily="{Binding Path=FontFamily, ElementName=btn}" Padding="3,0,0,0"/>
+        <StackPanel Orientation="Horizontal">
+            <Image x:Name="btnIcon" Source="{Binding Path=Icon, ElementName=btn}" Height="20" Width="20" Margin="19,3,0,2" HorizontalAlignment="Left"/>
+            <TextBlock x:Name="btnText" Text="{Binding Path=Text, ElementName=btn}" Foreground="{Binding Path=Foreground, ElementName=btn}" FontSize="16" FontFamily="{Binding Path=FontFamily, ElementName=btn}" Padding="3,0,0,0"/>
+        </StackPanel>
         <Grid.Style>
             <Style TargetType="Grid">
                 <Style.Triggers>
