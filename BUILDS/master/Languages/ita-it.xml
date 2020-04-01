@@ -73,17 +73,17 @@
     <Part ID="MONSTER_PART_UNKNOWN" Name="Parte Sconosciuta"/>
     <Part ID="MONSTER_PART_HEAD" Name="Testa"/>
     <Part ID="MONSTER_PART_BODY" Name="Corpo"/>
-    <Part ID="MONSTER_PART_LWING" Name="Ala Sinistra"/>
-    <Part ID="MONSTER_PART_RWING" Name="Ala Destra"/>
-    <Part ID="MONSTER_PART_LLEG" Name="Zampa Posteriore Sinistra"/>
-    <Part ID="MONSTER_PART_RLEG" Name="Zampa Posteriore Destra"/>
+    <Part ID="MONSTER_PART_LWING" Name="Ala (L)"/>
+    <Part ID="MONSTER_PART_RWING" Name="Ala (R)"/>
+    <Part ID="MONSTER_PART_LLEG" Name="Zampa Posteriore (L)"/>
+    <Part ID="MONSTER_PART_RLEG" Name="Zampa Posteriore (R)"/>
     <Part ID="MONSTER_PART_TAIL" Name="Coda"/>
     <Part ID="MONSTER_PART_ARMS" Name="Zampe Anteriori"/>
     <Part ID="MONSTER_PART_LEGS" Name="Zampe Posteriori"/>
-    <Part ID="MONSTER_PART_LARM" Name="Zampa Anteriore Sinistra"/>
-    <Part ID="MONSTER_PART_RARM" Name="Zampa Anteriore Destra"/>
-    <Part ID="MONSTER_PART_LLIMBS" Name="Estremità Sinistre"/>
-    <Part ID="MONSTER_PART_RLIMBS" Name="Estremità Destre"/>
+    <Part ID="MONSTER_PART_LARM" Name="Zampa Anteriore (L)"/>
+    <Part ID="MONSTER_PART_RARM" Name="Zampa Anteriore (R)"/>
+    <Part ID="MONSTER_PART_LLIMBS" Name="Estremità (L)"/>
+    <Part ID="MONSTER_PART_RLIMBS" Name="Estremità (R)"/>
     <Part ID="MONSTER_PART_WINGS" Name="Ali"/>
     <Part ID="MONSTER_PART_LIMBS" Name="Estremità"/>
     <Part ID="MONSTER_PART_ABDOMEN" Name="Addome"/>
@@ -92,42 +92,42 @@
     <Part ID="MONSTER_PART_HEAD_MUD" Name="Testa Infangata"/>
     <Part ID="MONSTER_PART_BODY_MUD" Name="Corpo Infangato"/>
     <Part ID="MONSTER_PART_ARMS_MUD" Name="Braccia Infangate"/>
-    <Part ID="MONSTER_PART_LLEG_MUD" Name="Zampa Posteriore Sinistra Infangata"/>
-    <Part ID="MONSTER_PART_RLEG_MUD" Name="Zampa Posteriore Destra Infangata"/>
+    <Part ID="MONSTER_PART_LLEG_MUD" Name="Zampa Posteriore (L) Infangata"/>
+    <Part ID="MONSTER_PART_RLEG_MUD" Name="Zampa Posteriore (R) Infangata"/>
     <Part ID="MONSTER_PART_TAIL_MUD" Name="Coda Infangata"/>
     <Part ID="MONSTER_PART_JAW" Name="Mandibola"/>
     <Part ID="MONSTER_PART_BACK" Name="Schiena"/>
     <Part ID="MONSTER_PART_FIN" Name="Pinne"/>
     <Part ID="MONSTER_PART_HORNS" Name="Corna"/>
     <Part ID="MONSTER_PART_NECK" Name="Collo"/>
-    <Part ID="MONSTER_PART_LHAND" Name="Mano Sinistra"/>
-    <Part ID="MONSTER_PART_RHAND" Name="Mano Destra"/>
-    <Part ID="MONSTER_PART_LFOOT" Name="Piede Sinistro"/>
-    <Part ID="MONSTER_PART_RFOOT" Name="Piede Destro"/>
+    <Part ID="MONSTER_PART_LHAND" Name="Mano (L)"/>
+    <Part ID="MONSTER_PART_RHAND" Name="Mano (R)"/>
+    <Part ID="MONSTER_PART_LFOOT" Name="Piede (L)"/>
+    <Part ID="MONSTER_PART_RFOOT" Name="Piede (R)"/>
     <Part ID="MONSTER_PART_SHELL" Name="Guscio"/>
     <Part ID="MONSTER_PART_EXHAUST_ORGAN_CENTRAL" Name="Organo Centrale Di Scappamento"/>
     <Part ID="MONSTER_PART_EXHAUST_ORGAN_HEAD" Name="Organo Della Testa Di Scappamento"/>
     <Part ID="MONSTER_PART_EXHAUST_ORGAN_CRATER" Name="Organo Cratere Di Scappamento"/>
     <Part ID="MONSTER_PART_EXHAUST_ORGAN_REAR" Name="Organo Posteriore Di Scappamento"/>
-    <Part ID="MONSTER_PART_WEAK_LSHELL" Name="Guscio Debole Sinistro"/>
-    <Part ID="MONSTER_PART_WEAK_RSHELL" Name="Guscio Debole Destro"/>
+    <Part ID="MONSTER_PART_WEAK_LSHELL" Name="Guscio Debole (L)"/>
+    <Part ID="MONSTER_PART_WEAK_RSHELL" Name="Guscio Debole (R)"/>
     <Part ID="MONSTER_PART_ROCK" Name="Roccia"/>
     <Part ID="MONSTER_PART_MANE" Name="Criniera"/>
     <Part ID="MONSTER_PART_BALLOON" Name="Pallone"/>
-    <Part ID="MONSTER_PART_LBONE" Name="Osso Sinistro"/>
-    <Part ID="MONSTER_PART_RBONE" Name="Osso Destro"/>
+    <Part ID="MONSTER_PART_LBONE" Name="Osso (L)"/>
+    <Part ID="MONSTER_PART_RBONE" Name="Osso (R)"/>
     <Part ID="MONSTER_PART_HORNS_GOLD" Name="Corna Dorate"/>
     <Part ID="MONSTER_PART_MANE_GOLD" Name="Criniera Dorata"/>
-    <Part ID="MONSTER_PART_LCHEST_GOLD" Name="Petto Sinistro Dorato"/>
-    <Part ID="MONSTER_PART_RCHEST_GOLD" Name="Petto Destro Dorato"/>
-    <Part ID="MONSTER_PART_LARM_GOLD" Name="Zampa Anteriore Sinistra Dorata"/>
-    <Part ID="MONSTER_PART_RARM_GOLD" Name="Zampa Anteriore Destra Dorata"/>
-    <Part ID="MONSTER_PART_LLEG_GOLD" Name="Zampa Posteriore Sinistra Dorata"/>
-    <Part ID="MONSTER_PART_RLEG_GOLD" Name="Zampa Posteriore Destra Dorata"/>
-    <Part ID="MONSTER_PART_LTAIL_GOLD" Name="Coda Dorata Sinistra"/>
-    <Part ID="MONSTER_PART_RTAIL_GOLD" Name="Coda Dorata Destra"/>
-    <Part ID="MONSTER_PART_LHEAD" Name="Testa Sinistra"/>
-    <Part ID="MONSTER_PART_RHEAD" Name="Testa Destra"/>
+    <Part ID="MONSTER_PART_LCHEST_GOLD" Name="Petto (L) Dorato"/>
+    <Part ID="MONSTER_PART_RCHEST_GOLD" Name="Petto (R) Dorato"/>
+    <Part ID="MONSTER_PART_LARM_GOLD" Name="Zampa Anteriore (L) Dorata"/>
+    <Part ID="MONSTER_PART_RARM_GOLD" Name="Zampa Anteriore (R) Dorata"/>
+    <Part ID="MONSTER_PART_LLEG_GOLD" Name="Zampa Posteriore (L) Dorata"/>
+    <Part ID="MONSTER_PART_RLEG_GOLD" Name="Zampa Posteriore (R) Dorata"/>
+    <Part ID="MONSTER_PART_LTAIL_GOLD" Name="Coda Dorata (L)"/>
+    <Part ID="MONSTER_PART_RTAIL_GOLD" Name="Coda Dorata (R)"/>
+    <Part ID="MONSTER_PART_LHEAD" Name="Testa (L)"/>
+    <Part ID="MONSTER_PART_RHEAD" Name="Testa (R)"/>
     <Part ID="MONSTER_PART_HEAD_SNOW" Name="Testa Nevosa"/>
     <Part ID="MONSTER_PART_BODY_SNOW" Name="Corpo Nevoso"/>
     <Part ID="MONSTER_PART_TAIL_SNOW" Name="Coda Nevosa"/>
@@ -137,14 +137,14 @@
     <Part ID="MONSTER_PART_ARMS_ICE" Name="Zampe Anteriori Ghiacciate"/>
     <Part ID="MONSTER_PART_LEGS_ICE" Name="Zampe Posteriori Ghiacciate"/>
     <Part ID="MONSTER_PART_TAIL_ICE" Name="Coda Ghiacciata"/>
-    <Part ID="MONSTER_PART_LNECK_ROCK" Name="Collo Roccioso Sinistro"/>
-    <Part ID="MONSTER_PART_RNECK_ROCK" Name="Collo Roccioso Destro"/>
+    <Part ID="MONSTER_PART_LNECK_ROCK" Name="Collo Roccioso (L)"/>
+    <Part ID="MONSTER_PART_RNECK_ROCK" Name="Collo Roccioso (R)"/>
     <Part ID="MONSTER_PART_HEAD_ROCK" Name="Testa Roccia"/>
     <Part ID="MONSTER_PART_TAIL_ROCK" Name="Coda Rocciosa"/>
-    <Part ID="MONSTER_PART_LWING_ROCK" Name="Ala Rocciosa Sinistra"/>
-    <Part ID="MONSTER_PART_RWING_ROCK" Name="Ala Rocciosa Destra"/>
-    <Part ID="MONSTER_PART_LARM_ROCK" Name="Zampa Rocciosa Anteriore Sinistra"/>
-    <Part ID="MONSTER_PART_RARM_ROCK" Name="Zampa Rocciosa Anteriore Destra"/>
+    <Part ID="MONSTER_PART_LWING_ROCK" Name="Ala Rocciosa (L)"/>
+    <Part ID="MONSTER_PART_RWING_ROCK" Name="Ala Rocciosa (R)"/>
+    <Part ID="MONSTER_PART_LARM_ROCK" Name="Zampa Rocciosa Anteriore (L)"/>
+    <Part ID="MONSTER_PART_RARM_ROCK" Name="Zampa Rocciosa Anteriore (R)"/>
     <Part ID="MONSTER_PART_LEGS_ROCK" Name="Zampe Rocciose Posteriori"/>
     <Part ID="MONSTER_JAGRAS_SUMMONER" Name="Evocatore Di Jagras"/>
     <!-- Removable parts -->

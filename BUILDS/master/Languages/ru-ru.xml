@@ -57,7 +57,7 @@
     <Monster ID="em116_00" Name="Додогама"/>
     <Monster ID="em117_00" Name="Кулве Тарот"/>
     <Monster ID="em118_00" Name="Базельгейс"/>
-    <Monster ID="em118_05" Name="Вспыльчивые Базельгейс"/>
+    <Monster ID="em118_05" Name="Вспыльчивый Базельгейс"/>
     <Monster ID="em120_00" Name="Цици-Йа-Ку"/>
     <Monster ID="em121_00" Name="Бахамут"/>
     <Monster ID="em122_00" Name="Беотод"/>
@@ -100,9 +100,9 @@
     <Part ID="MONSTER_PART_HORNS" Name="Рога"/>
     <Part ID="MONSTER_PART_NECK" Name="Шея"/>
     <Part ID="MONSTER_PART_LHAND" Name="Левая Лапа"/>
-    <Part ID="MONSTER_PART_RHAND" Name="ПРавая Лапа"/>
+    <Part ID="MONSTER_PART_RHAND" Name="Правая Лапа"/>
     <Part ID="MONSTER_PART_LFOOT" Name="Левая Нога"/>
-    <Part ID="MONSTER_PART_RFOOT" Name="ПРавая Нога"/>
+    <Part ID="MONSTER_PART_RFOOT" Name="Правая Нога"/>
     <Part ID="MONSTER_PART_SHELL" Name="Панцирь"/>
     <Part ID="MONSTER_PART_EXHAUST_ORGAN_CENTRAL" Name="Центральное Ядро Магмы"/>
     <Part ID="MONSTER_PART_EXHAUST_ORGAN_HEAD" Name="Головное Ядро Магмы"/>
@@ -164,7 +164,7 @@
     <Ailment ID="STATUS_MOUNT" Name="Маунт"/>
     <Ailment ID="STATUS_EXHAUSTION" Name="Истощение"/>
     <Ailment ID="STATUS_STUN" Name="Оглушение"/>
-    <Ailment ID="STATUS_TRANQUILIZE" Name="Спокойствие"/>
+    <Ailment ID="STATUS_TRANQUILIZE" Name="Сонливость"/>
     <Ailment ID="STATUS_FLASH" Name="Ослепление"/>
     <Ailment ID="STATUS_KNOCKDOWN" Name="Нокаут"/>
     <Ailment ID="STATUS_DUNGPOD" Name="Навоз"/>
@@ -188,7 +188,7 @@
     <Mantle ID="7" Name="Водостойкий Покров"/>
     <Mantle ID="8" Name="Ледостойкий Покров"/>
     <Mantle ID="9" Name="Грозостойкий Покров"/>
-    <Mantle ID="10" Name="Драконостойкий"/>
+    <Mantle ID="10" Name="Драконостойкий Покров"/>
     <Mantle ID="11" Name="Усилитель Чистоты"/>
     <Mantle ID="12" Name="Покров Ветра"/>
     <Mantle ID="13" Name="Покров Уклонения"/>
@@ -229,14 +229,14 @@
     <Stage ID="305" Name="Селиана"/>
     <Stage ID="306" Name="Зал Собраний Селианы"/>
     <Stage ID="401" Name="Вступление"/>
-    <Stage ID="403" Name="Эверстрим"/>
+    <Stage ID="403" Name="Вечноречье"/>
     <Stage ID="405" Name="Слияние Судеб"/>
     <Stage ID="406" Name="Древний Лес"/>
     <Stage ID="409" Name="Пещеры Эльдорадо"/>
     <Stage ID="411" Name="Ресурсный Центр Селианы"/>
     <Stage ID="412" Name="Остров Истоков"/>
     <Stage ID="413" Name="Остров Истоков"/>
-    <Stage ID="415" Name="Уединенная Долина"/>
+    <Stage ID="415" Name="Уединённая Долина"/>
     <Stage ID="501" Name="Жилые Квартиры"/>
     <Stage ID="502" Name="Частные Квартиры"/>
     <Stage ID="503" Name="Частная Квартира"/>
