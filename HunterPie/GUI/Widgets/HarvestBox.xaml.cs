@@ -57,6 +57,9 @@ namespace HunterPie.GUI.Widgets {
                     this.WidgetActive = UserSettings.PlayerConfig.Overlay.HarvestBoxComponent.Enabled;
                     this.WidgetHasContent = ShowEverywhere;
                     this.ScaleWidget(UserSettings.PlayerConfig.Overlay.HarvestBoxComponent.Scale, UserSettings.PlayerConfig.Overlay.HarvestBoxComponent.Scale);
+                    this.SteamTracker.Visibility = UserSettings.PlayerConfig.Overlay.HarvestBoxComponent.ShowSteamTracker ? Visibility.Visible : Visibility.Collapsed;
+                    this.ArgosyTracker.Visibility = UserSettings.PlayerConfig.Overlay.HarvestBoxComponent.ShowArgosyTracker ? Visibility.Visible : Visibility.Collapsed;
+                    this.TailraidersTracker.Visibility = UserSettings.PlayerConfig.Overlay.HarvestBoxComponent.ShowTailraidersTracker ? Visibility.Visible : Visibility.Collapsed;
                 }
                 base.ApplySettings();
             }));

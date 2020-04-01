@@ -154,7 +154,7 @@
                         <Canvas Height="30" HorizontalAlignment="Center" MinWidth="500">
                             <TextBlock Foreground="WhiteSmoke" Canvas.Top="2" FontFamily="Segoe UI Light">
                                 <TextBlock.Text>
-                                    <Binding XPath="Settings/String[@ID='STATIC_LANGUAGEFILE']/@Name]"/>
+                                    <Binding XPath="Settings/String[@ID='STATIC_LANGUAGEFILE']/@Name"/>
                                 </TextBlock.Text>
                             </TextBlock>
                             <ComboBox x:Name="LanguageFilesCombobox" Style="{StaticResource ComboBoxFlatStyle}" Width="387" Height="27" Canvas.Left="113" Foreground="WhiteSmoke"/>

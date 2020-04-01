@@ -295,7 +295,7 @@ namespace HunterPie.Core {
 
         private void GetSteamSession() {
             Int64 SteamSessionAddress = Scanner.READ_MULTILEVEL_PTR(Address.BASE + Address.SESSION_OFFSET, Address.Offsets.SessionOffsets);
-            SteamSession = Scanner.READ_LONGLONG(SteamSessionAddress + 10);
+            SteamSession = Scanner.READ_LONGLONG(SteamSessionAddress + 0x10);
             SteamID = Scanner.READ_LONGLONG(SteamSessionAddress + 0x1184);
         }
 

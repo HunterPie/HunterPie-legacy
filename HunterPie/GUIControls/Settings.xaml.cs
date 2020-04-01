@@ -104,6 +104,9 @@ namespace HunterPie.GUIControls {
             // Harvest Box
             settingsUI.switchEnableHarvestBox.IsEnabled = settings.Overlay.HarvestBoxComponent.Enabled;
             settingsUI.switchAlwaysShow.IsEnabled = settings.Overlay.HarvestBoxComponent.AlwaysShow;
+            settingsUI.switchShowSteamTracker.IsEnabled = settings.Overlay.HarvestBoxComponent.ShowSteamTracker;
+            settingsUI.switchShowArgosyTracker.IsEnabled = settings.Overlay.HarvestBoxComponent.ShowArgosyTracker;
+            settingsUI.switchShowTailraidersTracker.IsEnabled = settings.Overlay.HarvestBoxComponent.ShowTailraidersTracker;
             settingsUI.HarvestBoxPosition.X = settings.Overlay.HarvestBoxComponent.Position[0];
             settingsUI.HarvestBoxPosition.Y = settings.Overlay.HarvestBoxComponent.Position[1];
 
@@ -188,6 +191,9 @@ namespace HunterPie.GUIControls {
             // Harvest Box
             settings.Overlay.HarvestBoxComponent.Enabled = settingsUI.switchEnableHarvestBox.IsEnabled;
             settings.Overlay.HarvestBoxComponent.AlwaysShow = settingsUI.switchAlwaysShow.IsEnabled;
+            settings.Overlay.HarvestBoxComponent.ShowSteamTracker = settingsUI.switchShowSteamTracker.IsEnabled;
+            settings.Overlay.HarvestBoxComponent.ShowArgosyTracker = settingsUI.switchShowArgosyTracker.IsEnabled;
+            settings.Overlay.HarvestBoxComponent.ShowTailraidersTracker = settingsUI.switchShowTailraidersTracker.IsEnabled;
             settings.Overlay.HarvestBoxComponent.Position[0] = settingsUI.HarvestBoxPosition.X;
             settings.Overlay.HarvestBoxComponent.Position[1] = settingsUI.HarvestBoxPosition.Y;
 

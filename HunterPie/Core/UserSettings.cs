@@ -105,6 +105,7 @@ namespace HunterPie.Core {
             public class Richpresence {
                 public bool Enabled { get; set; } = true;
                 public bool ShowMonsterHealth { get; set; } = true;
+                public bool LetPeopleJoinSession { get; set; } = true;
             }
 
             public class Hunterpie {

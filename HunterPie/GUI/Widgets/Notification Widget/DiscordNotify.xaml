@@ -7,7 +7,7 @@
         xmlns:local="clr-namespace:HunterPie.GUI.Widgets.Notification_Widget"
         xmlns:custom="clr-namespace:HunterPie.GUIControls.Custom_Controls"
         mc:Ignorable="d"
-        Title="Notification - Discord" Height="150" Width="300"  ResizeMode="NoResize" WindowStyle="None" AllowsTransparency="True" ShowInTaskbar="False" Topmost="True" BorderBrush="#CC000000" Foreground="Black" BorderThickness="2" Left="0" Top="-300" Background="{x:Null}">
+        Title="Notification - Discord" Height="150" Width="300"  ResizeMode="NoResize" WindowStyle="None" AllowsTransparency="True" ShowInTaskbar="False" Topmost="True" BorderBrush="#CC000000" Foreground="Black" BorderThickness="2" Left="0" Top="-300" Background="{x:Null}" DataContext="{StaticResource Localization}">
     <src:Widget.Resources>
         <Style TargetType="{x:Type Button}">
             <Setter Property="FocusVisualStyle" Value="{StaticResource FocusVisual}"/>
@@ -41,7 +41,7 @@
         </Style>
     </src:Widget.Resources>
     <Grid Background="#CC0A0A0A">
-        <Image x:Name="Picture" HorizontalAlignment="Left" Width="64" Height="64" VerticalAlignment="Top" Margin="108,0,0,0" Source="pack://siteoforigin:,,,/HunterPie.Resources/Monsters/Icons/em116_00.png">
+        <Image x:Name="Picture" ImageFailed="Picture_ImageFailed" HorizontalAlignment="Left" Width="64" Height="64" VerticalAlignment="Top" Margin="108,0,0,0">
             <Image.OpacityMask>
                 <RadialGradientBrush>
                     <GradientStop Color="Black" Offset="0.913"/>
@@ -51,9 +51,9 @@
             </Image.OpacityMask>
         </Image>
         <WrapPanel Orientation="Horizontal" VerticalAlignment="Top" HorizontalAlignment="Left" Width="297" Margin="-1,64,0,0" Height="82">
-            <TextBlock x:Name="Description" Text="Dodogama would like to join your session&#x0a;Do you want to accept?" TextWrapping="WrapWithOverflow" Foreground="WhiteSmoke" VerticalAlignment="Top" HorizontalAlignment="Left" Width="297" Padding="5,0,5,7" Height="54" FontSize="14" />
-            <Button Content="Yes" Width="148" Margin="0,0,1,0" Height="24"/>
-            <Button Content="No" Width="148"/>
+            <TextBlock x:Name="Description" Text="{Binding XPath=/Strings/Client/Notifications/String[@ID\=\'STATIC_DISCORD_JOIN_REQUEST\']/@Name}" TextWrapping="WrapWithOverflow" Foreground="WhiteSmoke" VerticalAlignment="Top" HorizontalAlignment="Left" Width="297" Padding="5,0,5,7" Height="57" FontSize="14" />
+            <Button Width="148" Margin="0,0,1,0" Height="24" Content="{Binding XPath=/Strings/Client/Notifications/String[@ID\=\'STATIC_ACCEPT\']/@Name}" Click="OnAccept"/>
+            <Button Content="{Binding XPath=/Strings/Client/Notifications/String[@ID\=\'STATIC_REJECT\']/@Name}" Width="148" Click="OnReject"/>
         </WrapPanel>
         <Rectangle Height="22" VerticalAlignment="Top" HorizontalAlignment="Left" Width="296" Margin="0,0,0,0" >
             <Rectangle.Fill>

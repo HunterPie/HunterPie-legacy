@@ -5,7 +5,7 @@
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              mc:Ignorable="d" 
-             Width="230" Height="205.333" Background="{x:Null}" ResizeMode="NoResize" WindowStyle="None" AllowsTransparency="True" ShowInTaskbar="False" Topmost="True" Closing="OnClosing" MouseEnter="OnMouseEnter" MouseDown="OnMouseDown" MouseWheel="OnMouseWheel" MouseLeave="OnMouseLeave">
+             Width="230" Height="205.333" Background="#33000000" ResizeMode="NoResize" WindowStyle="None" AllowsTransparency="True" ShowInTaskbar="False" Topmost="True" Closing="OnClosing" MouseEnter="OnMouseEnter" MouseDown="OnMouseDown" MouseWheel="OnMouseWheel" MouseLeave="OnMouseLeave" BorderBrush="#00000000">
     <src:Widget.Resources>
         <ResourceDictionary>
             <ResourceDictionary.MergedDictionaries>
@@ -47,8 +47,8 @@
         <Label x:Name="fert3Counter" Margin="0,87,0,0" Opacity="0.8" Foreground="White" HorizontalContentAlignment="Center" Padding="0" VerticalContentAlignment="Center" Background="#66000000" FontWeight="ExtraLight" Height="29" VerticalAlignment="Top" HorizontalAlignment="Right" Width="42" FontSize="13" FontFamily="Roboto"/>
         <Label x:Name="fert4Counter" Margin="0,116,0,0" Opacity="0.8" Foreground="White" HorizontalContentAlignment="Center" Padding="0" VerticalContentAlignment="Center" Background="#66000000" FontWeight="ExtraLight" Height="29" VerticalAlignment="Top" HorizontalAlignment="Right" Width="42" FontSize="13" FontFamily="Roboto"/>
         <Label x:Name="HarvestBoxItemsCounter" Margin="0,145,0,0" Opacity="0.8" Foreground="White" HorizontalContentAlignment="Center" Padding="0" VerticalContentAlignment="Center" FontWeight="ExtraLight" Background="#66000000" FontFamily="Roboto" Height="29" VerticalAlignment="Top"/>
-        <StackPanel x:Name="ActivitiesPanel" Background="#99000000" Margin="0,174,0,0" Orientation="Horizontal">
-            <Canvas Width="62">
+        <StackPanel x:Name="ActivitiesPanel" Orientation="Horizontal" Height="31" VerticalAlignment="Bottom" HorizontalAlignment="Center">
+            <Canvas x:Name="SteamTracker" Width="62" Margin="0,0,15,0">
                 <Image Source="{StaticResource ICON_STEAMWORKS}" Width="25" Canvas.Left="4" Canvas.Top="3" Height="25"/>
                 <Image x:Name="SteamFuelWarnIcon" Source="{StaticResource ICON_WARN}" Height="11" Canvas.Left="23" Canvas.Top="2" Visibility="Hidden" RenderTransformOrigin="0.5,0.5">
                     <Image.RenderTransform>
@@ -77,7 +77,7 @@
                 <TextBlock x:Name="NaturalFuelText" Text="0" Foreground="#FFCBCBCB" TextAlignment="Center" MinWidth="30" HorizontalAlignment="Center" Canvas.Left="32" Canvas.Top="0" FontSize="16" FontWeight="Medium"/>
                 <TextBlock x:Name="StoredFuelText" Text="0" Foreground="#FFCBCBCB" MinWidth="30" FontWeight="Light" TextAlignment="Center" Canvas.Left="32" Canvas.Top="15"/>
             </Canvas>
-            <Canvas Width="62" Margin="29,0,0,0">
+            <Canvas x:Name="ArgosyTracker" Width="62" Margin="0,0,15,0">
                 <Image Source="{StaticResource ICON_ARGOSY}" Width="25" Canvas.Left="4" Canvas.Top="3" Height="25"/>
                 <Image x:Name="ArgosyWarnIcon" Source="{StaticResource ICON_WARN}" Height="11" Canvas.Left="21" Canvas.Top="3" Visibility="Hidden" RenderTransformOrigin="0.5,0.5">
                     <Image.RenderTransform>
@@ -105,7 +105,7 @@
                 </Image>
                 <TextBlock x:Name="ArgosyDaysText" Text="0" Foreground="#FFCBCBCB" MinWidth="30" HorizontalAlignment="Center" Canvas.Left="29" Canvas.Top="0" FontSize="16" FontWeight="Medium" Height="31" VerticalAlignment="Center" Padding="4,4,0,0" Width="33"/>
             </Canvas>
-            <Canvas Width="62" Margin="15,0,0,0">
+            <Canvas x:Name="TailraidersTracker" Width="62" Margin="0">
                 <Image Source="{StaticResource ICON_TAILRAIDERS}" Width="25" Canvas.Left="4" Canvas.Top="3" Height="25"/>
                 <Image x:Name="TailraidersWarnIcon" Source="{StaticResource ICON_WARN}" Height="11" Canvas.Left="21" Canvas.Top="3" Visibility="Hidden" RenderTransformOrigin="0.5,0.5">
                     <Image.RenderTransform>

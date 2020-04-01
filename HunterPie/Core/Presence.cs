@@ -4,7 +4,7 @@ using HunterPie.Memory;
 using HunterPie.Logger;
 
 namespace HunterPie.Core {
-    class Presence : IDisposable {
+    public class Presence : IDisposable {
         public bool IsDisposed { get; private set; }
         private readonly string APP_ID = "567152028070051859";
         private bool isOffline = false;
@@ -80,7 +80,10 @@ namespace HunterPie.Core {
 
         private void Client_OnJoinRequested(object sender, DiscordRPC.Message.JoinRequestMessage args) {
             Debugger.Discord($"{args.User} requested to join session.");
-            //Debugger.Discord($"{args.User.Avatar}");
+            App.Current.Dispatcher.BeginInvoke(System.Windows.Threading.DispatcherPriority.Render, new Action(() => {
+                GUI.Widgets.Notification_Widget.DiscordNotify DiscordNotification = new GUI.Widgets.Notification_Widget.DiscordNotify((DiscordRpcClient)sender, args);
+                DiscordNotification.Show();
+            }));
         }
 
         public void HandleSettings(object source, EventArgs e) {
@@ -100,12 +103,12 @@ namespace HunterPie.Core {
             // Do nothing if RPC is disabled
             if (!isVisible) return;
 
-
             // TODO: Implement join session?
-
-            Instance.Secrets = new Secrets() {
-                JoinSecret = $"{ctx.Player.SteamSession}/{ctx.Player.SteamID}"
-            };
+            if (ctx.Player.SteamSession != 0 && ctx.Player.InPeaceZone) {
+                Instance.Secrets = new Secrets() {
+                    JoinSecret = $"{ctx.Player.SteamSession}/{ctx.Player.SteamID}"
+                };
+            }
             // Only update RPC if player isn't in loading screen
             switch (ctx.Player.ZoneID) {
                 case 0:

@@ -592,17 +592,11 @@
     </Settings>
     <Overlay>
       <String ID="STATIC_HARVEST_BOX_TITLE" Name="HARVEST BOX"/>
-      <String ID="" Name=""/>
-      <String ID="" Name=""/>
-      <String ID="" Name=""/>
-      <String ID="" Name=""/>
-      <String ID="" Name=""/>
-      <String ID="" Name=""/>
-      <String ID="" Name=""/>
-      <String ID="" Name=""/>
-      <String ID="" Name=""/>
-      <String ID="" Name=""/>
-      <String ID="" Name=""/>
     </Overlay>
+    <Notifications>
+      <String ID="STATIC_DISCORD_JOIN_REQUEST" Name="{Username} wants to join your session. Do you want to accept?"/>
+      <String ID="STATIC_ACCEPT" Name="Accept"/>
+      <String ID="STATIC_REJECT" Name="Reject"/>
+    </Notifications>
   </Client>
 </Strings>
