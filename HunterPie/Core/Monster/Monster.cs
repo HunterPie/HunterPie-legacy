@@ -203,7 +203,7 @@ namespace HunterPie.Core {
             MonsterInfoScan = new Thread(MonsterInfoScanRef) {
                 Name = $"Scanner_Monster.{MonsterNumber}"
             };
-            Debugger.Warn($"Initializing monster({MonsterNumber}) scanner...");
+            Debugger.Warn(GStrings.GetLocalizationByXPath("/Console/String[@ID='MESSAGE_MONSTER_SCANNER_INITIALIZED']").Replace("{MonsterNumber}", MonsterNumber.ToString()));
             MonsterInfoScan.Start();
         }
 

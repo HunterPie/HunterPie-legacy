@@ -14,7 +14,7 @@ namespace HunterPie.Core {
         static public void LoadAbnormalityData() {
             AbnormalitiesData = new XmlDocument();
             AbnormalitiesData.LoadXml(Resources.AbnormalityData);
-            Debugger.Warn("Loaded Abnormality data");
+            Debugger.Warn(GStrings.GetLocalizationByXPath("/Console/String[@ID='MESSAGE_ABNORMALITIES_DATA_LOAD']"));
         }
 
         static public XmlNodeList GetHuntingHornAbnormalities() {

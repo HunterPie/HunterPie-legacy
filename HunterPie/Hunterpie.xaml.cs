@@ -59,7 +59,7 @@ namespace HunterPie {
             // Updates version_text
             this.version_text.Content = GStrings.GetLocalizationByXPath("/Console/String[@ID='CONSOLE_VERSION']").Replace("{HunterPie_Version}", HUNTERPIE_VERSION).Replace("{HunterPie_Branch}", UserSettings.PlayerConfig.HunterPie.Update.Branch);
             LoadData();
-            Debugger.Warn("Initializing HunterPie!");
+            Debugger.Warn(GStrings.GetLocalizationByXPath("/Console/String[@ID='MESSAGE_HUNTERPIE_INITIALIZED']"));
             SetHotKeys();
             StartEverything();
         }

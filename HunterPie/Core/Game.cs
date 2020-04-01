@@ -71,12 +71,12 @@ namespace HunterPie.Core {
             FirstMonster.StartThreadingScan();
             SecondMonster.StartThreadingScan();
             ThirdMonster.StartThreadingScan();
-            Debugger.Warn("Starting Game scanner");
+            Debugger.Warn(GStrings.GetLocalizationByXPath("/Console/String[@ID='MESSAGE_GAME_SCANNER_INITIALIZED']"));
             IsActive = true;
         }
 
         public void StopScanning() {
-            Debugger.Warn("Stopping Game scanner");
+            Debugger.Warn(GStrings.GetLocalizationByXPath("/Console/String[@ID='MESSAGE_GAME_SCANNER_STOP']"));
             UnhookEvents();
             FirstMonster.StopThread();
             SecondMonster.StopThread();

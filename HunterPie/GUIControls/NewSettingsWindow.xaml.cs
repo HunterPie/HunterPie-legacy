@@ -13,6 +13,7 @@ namespace HunterPie.GUIControls {
     /// </summary>
     public partial class NewSettingsWindow : UserControl {
         public string fullGamePath = "";
+        public string fullMonsterDataPath = "";
         public string fullLaunchArgs = "";
         private string[] AvailableBranches = new string[2] { "master", "BETA" };
         private KeyboardHook KeyboardInputHook = new KeyboardHook();
@@ -24,12 +25,25 @@ namespace HunterPie.GUIControls {
             PopulateBuffTrays();
             PopulateLanguageBox();
             PopulateThemesBox();
+            PopulateMonsterBox();
         }
 
         public void UnhookEvents() {
             KeyboardInputHook.UninstallHooks();
             KeyboardInputHook.OnKeyboardKeyPress -= KeyboardInputHook_OnKeyboardKeyPress;
 
+        }
+
+        private void PopulateMonsterBox() {
+            MonsterShowModeSelection.Items.Add(GStrings.GetLocalizationByXPath("/Settings/String[@ID='STATIC_MONSTER_BAR_MODE_0']"));
+            MonsterShowModeSelection.Items.Add(GStrings.GetLocalizationByXPath("/Settings/String[@ID='STATIC_MONSTER_BAR_MODE_1']"));
+            MonsterShowModeSelection.Items.Add(GStrings.GetLocalizationByXPath("/Settings/String[@ID='STATIC_MONSTER_BAR_MODE_2']"));
+            MonsterShowModeSelection.Items.Add(GStrings.GetLocalizationByXPath("/Settings/String[@ID='STATIC_MONSTER_BAR_MODE_3']"));
+        }
+
+        private void PopulateDockBox() {
+            MonsterBarDock.Items.Add(GStrings.GetLocalizationByXPath("/Settings/String[@ID='STATIC_MONSTER_DOCK_0']"));
+            MonsterBarDock.Items.Add(GStrings.GetLocalizationByXPath("/Settings/String[@ID='STATIC_MONSTER_DOCK_1']"));
         }
 
         private void PopulateLanguageBox() {
@@ -46,20 +60,22 @@ namespace HunterPie.GUIControls {
 
         private void selectPathBttn_Click(object sender, System.Windows.RoutedEventArgs e) {
             using (var filePicker = new System.Windows.Forms.OpenFileDialog()) {
-                filePicker.Filter = "Executable|MonsterHunterWorld.exe";
+                Button source = (Button)sender;
                 System.Windows.Forms.DialogResult result = filePicker.ShowDialog();
-
                 if (result == System.Windows.Forms.DialogResult.OK) {
+                   
                     fullGamePath = filePicker.FileName;
                     if (filePicker.FileName.Length > 15) {
                         int i = (fullGamePath.Length / 2) - 10;
-                        selectPathBttn.Content = "..." + fullGamePath.Substring(i);
-                        selectPathBttn.Focusable = false;
+                        source.Content = "..." + fullGamePath.Substring(i);
+                        source.Focusable = false;
                         return;
                     }
-                    selectPathBttn.Content = fullGamePath;
+                    source.Content = fullGamePath;
+                    
+                    
                 }
-                selectPathBttn.Focusable = false;
+                source.Focusable = false;
             }
 
         }
@@ -69,11 +85,11 @@ namespace HunterPie.GUIControls {
         }
 
         private void argsTextBox_GotFocus(object sender, System.Windows.RoutedEventArgs e) {
-            if (argsTextBox.Text == "No arguments") argsTextBox.Text = "";
+            if (argsTextBox.Text == "No arguments" || argsTextBox.Text == GStrings.GetLocalizationByXPath("/Settings/String[@ID='STATIC_LAUNCHARGS_NOARGS']")) argsTextBox.Text = "";
         }
 
         private void argsTextBox_LostFocus(object sender, System.Windows.RoutedEventArgs e) {
-            if (argsTextBox.Text == "") argsTextBox.Text = "No arguments";
+            if (argsTextBox.Text == "") argsTextBox.Text = GStrings.GetLocalizationByXPath("/Settings/String[@ID='STATIC_LAUNCHARGS_NOARGS']");
         }
 
         private void SelectPathBttn_LostFocus(object sender, System.Windows.RoutedEventArgs e) {

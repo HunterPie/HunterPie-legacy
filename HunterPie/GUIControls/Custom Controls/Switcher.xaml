@@ -59,6 +59,6 @@
             <Ellipse x:Name="SwitchCircle" Margin="2,2,0,0" Fill="#FF252525" StrokeThickness="0" SnapsToDevicePixels="True" HorizontalAlignment="Left" Width="19" Height="19" VerticalAlignment="Top"/>
         </Grid>
 
-        <TextBlock x:Name="RestartWarning" Text="(Requires restart)" Visibility="Collapsed" Padding="0,9,3,0" Foreground="White" TextAlignment="Left" HorizontalAlignment="Left" FontSize="10" FontFamily="Segoe UI Light"/>
+        <TextBlock x:Name="RestartWarning" Text="{Binding XPath=/Strings/Client/Settings/String[@ID\=\'STATIC_REQUIRES_RESTART\']/@Name}" Visibility="Collapsed" Padding="0,9,3,0" Foreground="White" TextAlignment="Left" HorizontalAlignment="Left" FontSize="10" FontFamily="Segoe UI Light"/>
     </DockPanel>
 </UserControl>

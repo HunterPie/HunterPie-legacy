@@ -50,7 +50,7 @@ namespace HunterPie.Core {
             
             // Check if connection exists to avoid creating multiple connections
             Instance = new RichPresence();
-            Debugger.Discord("Starting new RPC connection");
+            Debugger.Discord(GStrings.GetLocalizationByXPath("/Console/String[@ID='MESSAGE_DISCORD_CONNECTED']"));
             Client = new DiscordRpcClient(APP_ID, autoEvents: true);
 
             Client.RegisterUriScheme("582010");
@@ -70,16 +70,17 @@ namespace HunterPie.Core {
         }
 
         private void Client_OnJoin(object sender, DiscordRPC.Message.JoinMessage args) {
-            Debugger.Discord($"Joining session...");
+            Debugger.Discord(GStrings.GetLocalizationByXPath("/Console/String[@ID='MESSAGE_DISCORD_JOINING']"));
             System.Diagnostics.Process.Start($"steam://joinlobby/582010/{args.Secret}");
         }
 
         private void Client_OnReady(object sender, DiscordRPC.Message.ReadyMessage args) {
-            Debugger.Discord($"Connected to Discord on user: {args.User}");
+            Debugger.Discord(GStrings.GetLocalizationByXPath("/Console/String[@ID='MESSAGE_DISCORD_USER_CONNECTED']").Replace("{Username}", args.User.ToString()));
         }
 
         private void Client_OnJoinRequested(object sender, DiscordRPC.Message.JoinRequestMessage args) {
-            Debugger.Discord($"{args.User} requested to join session.");
+            Debugger.Discord(GStrings.GetLocalizationByXPath("/Console/String[@ID='MESSAGE_DISCORD_JOIN_REQUEST']").Replace("{Username}", args.User.ToString()));
+
             App.Current.Dispatcher.BeginInvoke(System.Windows.Threading.DispatcherPriority.Render, new Action(() => {
                 GUI.Widgets.Notification_Widget.DiscordNotify DiscordNotification = new GUI.Widgets.Notification_Widget.DiscordNotify(args);
                 
@@ -89,9 +90,8 @@ namespace HunterPie.Core {
                 DiscordNotification.Show();
             }));
         }
-        // TODO: UNHOOK EVENTS AND SEND Client.Response(true or false)
+
         private void OnDiscordRequestRejected(object source, DiscordRPC.Message.JoinRequestMessage args) {
-            // Unhook events to avoid memory leaks on the DiscordNotify
             GUI.Widgets.Notification_Widget.DiscordNotify src = (GUI.Widgets.Notification_Widget.DiscordNotify)source;
             src.OnRequestAccepted -= OnDiscordRequestAccepted;
             src.OnRequestRejected -= OnDiscordRequestRejected;
@@ -137,14 +137,14 @@ namespace HunterPie.Core {
             // Only update RPC if player isn't in loading screen
             switch (ctx.Player.ZoneID) {
                 case 0:
-                    Instance.Details = ctx.Player.PlayerAddress == 0 ? "In main menu" : "In loading screen";
+                    Instance.Details = ctx.Player.PlayerAddress == 0 ? GStrings.GetLocalizationByXPath("/RichPresence/String[@ID='RPC_DESCRIPTION_IN_MAIN_MENU']") : GStrings.GetLocalizationByXPath("/RichPresence/String[@ID='RPC_DESCRIPTION_IN_LOADING_SCREEN']");
                     Instance.State = null;
                     GenerateAssets("main-menu", null, null, null);
                     Instance.Party = null;
                     break;
                 default:
                     if (ctx.Player.PlayerAddress == 0) {
-                        Instance.Details = "In main menu";
+                        Instance.Details = GStrings.GetLocalizationByXPath("/RichPresence/String[@ID='RPC_DESCRIPTION_IN_MAIN_MENU']");
                         Instance.State = null;
                         GenerateAssets("main-menu", null, null, null);
                         Instance.Party = null;
@@ -152,7 +152,7 @@ namespace HunterPie.Core {
                     }
                     Instance.Details = GetDescription();
                     Instance.State = GetState();
-                    GenerateAssets(ctx.Player.ZoneName == null ? "main-menu" : $"st{ctx.Player.ZoneID}", ctx.Player.ZoneName == "Main Menu" ? null : ctx.Player.ZoneName, ctx.Player.WeaponName == null ? "hunter-rank" : $"weap{ctx.Player.WeaponID}", $"{ctx.Player.Name} | HR: {ctx.Player.Level} | MR: {ctx.Player.MasterRank}");
+                    GenerateAssets(ctx.Player.ZoneName == null ? "main-menu" : $"st{ctx.Player.ZoneID}", ctx.Player.ZoneID == 0 ? null : ctx.Player.ZoneName, ctx.Player.WeaponName == null ? "hunter-rank" : $"weap{ctx.Player.WeaponID}", $"{ctx.Player.Name} | HR: {ctx.Player.Level} | MR: {ctx.Player.MasterRank}");
                     if (!ctx.Player.InPeaceZone) {
                         MakeParty(ctx.Player.PlayerParty.Size, ctx.Player.PlayerParty.MaxSize, ctx.Player.PlayerParty.PartyHash);
                     } else {
@@ -168,23 +168,23 @@ namespace HunterPie.Core {
             // Custom description for special zones
             switch(ctx.Player.ZoneID) {
                 case 504:
-                    return "Training";
+                    return GStrings.GetLocalizationByXPath("/RichPresence/String[@ID='RPC_DESCRIPTION_TRAINING']");
             }
-            if (ctx.Player.InPeaceZone) return "Idle";
-            if (ctx.HuntedMonster == null ) return "Exploring";
+            if (ctx.Player.InPeaceZone) return GStrings.GetLocalizationByXPath("/RichPresence/String[@ID='RPC_DESCRIPTION_IN_TOWN']");
+            if (ctx.HuntedMonster == null ) return GStrings.GetLocalizationByXPath("/RichPresence/String[@ID='RPC_DESCRIPTION_EXPLORING']");
             else {
-                if (string.IsNullOrEmpty(ctx.HuntedMonster.Name)) return "Exploring";
-                return UserSettings.PlayerConfig.RichPresence.ShowMonsterHealth ? $"Hunting {ctx.HuntedMonster.Name} ({(int)(ctx.HuntedMonster.HPPercentage * 100)}%)" : $"Hunting {ctx.HuntedMonster.Name}";
+                if (string.IsNullOrEmpty(ctx.HuntedMonster.Name)) return GStrings.GetLocalizationByXPath("/RichPresence/String[@ID='RPC_DESCRIPTION_EXPLORING']");
+                return UserSettings.PlayerConfig.RichPresence.ShowMonsterHealth ? GStrings.GetLocalizationByXPath("/RichPresence/String[@ID='RPC_DESCRIPTION_HUNTING']").Replace("{Monster}", ctx.HuntedMonster.Name).Replace("{Health}", $"{(int)(ctx.HuntedMonster.HPPercentage * 100)}%") : GStrings.GetLocalizationByXPath("/RichPresence/String[@ID='RPC_DESCRIPTION_HUNTING']").Replace("{Monster}", ctx.HuntedMonster.Name).Replace("({Health})", null);
             }
         }
 
         private string GetState() {
             if (ctx.Player.PlayerParty.Size > 1 || ctx.Player.PlayerParty.LobbySize > 1) {
                 if (ctx.Player.InPeaceZone) {
-                    return "In Lobby";
-                } else { return "In Party"; }
+                    return GStrings.GetLocalizationByXPath("/RichPresence/String[@ID='RPC_STATE_LOBBY']");
+                } else { return GStrings.GetLocalizationByXPath("/RichPresence/String[@ID='RPC_STATE_PARTY']"); }
             }
-            else { return "Solo"; }
+            else { return GStrings.GetLocalizationByXPath("/RichPresence/String[@ID='RPC_STATE_SOLO']"); }
         }
 
         /* Helpers */
@@ -217,7 +217,7 @@ namespace HunterPie.Core {
 
         /* Dispose */
         public void Dispose() {
-            Debugger.Discord("Closed Connection to discord");
+            Debugger.Discord(GStrings.GetLocalizationByXPath("/Console/String[@ID='MESSAGE_DISCORD_DISCONNECTED']"));
             Dispose(true);
             GC.SuppressFinalize(this);
         }

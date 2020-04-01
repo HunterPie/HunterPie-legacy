@@ -178,7 +178,7 @@ namespace HunterPie.Core {
             ScanPlayerInfo = new Thread(ScanPlayerInfoRef) {
                 Name = "Scanner_Player"
             };
-            Debugger.Warn("Initializing Player memory scanner...");
+            Debugger.Warn(GStrings.GetLocalizationByXPath("/Console/String[@ID='MESSAGE_PLAYER_SCANNER_INITIALIZED']"));
             ScanPlayerInfo.Start();
         }
 

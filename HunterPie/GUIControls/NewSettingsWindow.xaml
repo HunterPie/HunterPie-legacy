@@ -189,7 +189,7 @@
                                 </Button.Content>
                             </Button>
 
-                            <TextBlock Text="Launch Arguments:" Foreground="WhiteSmoke" Canvas.Top="35" FontFamily="Segoe UI Light"/>
+                            <TextBlock Text="{Binding XPath=/Strings/Client/Settings/String[@ID\=\'STATIC_LAUNCHARGS\']/@Name}" Foreground="WhiteSmoke" Canvas.Top="35" FontFamily="Segoe UI Light"/>
                             <TextBox x:Name="argsTextBox" TextWrapping="Wrap" Background="{x:Null}" Foreground="#FF9E9D9D" BorderBrush="#FFABADB3" BorderThickness="0,0,0,1" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" HorizontalAlignment="Right" Width="358" Canvas.Left="141" Canvas.Top="35" SelectionBrush="#FFD31D1D" TextChanged="argsTextBox_TextChanged" GotFocus="argsTextBox_GotFocus" LostFocus="argsTextBox_LostFocus">
                                 <TextBox.Text>
                                     <Binding XPath="Settings/String[@ID='STATIC_LAUNCHARGS_NOARGS']/@Name"/>
@@ -342,17 +342,14 @@
                                 <Binding XPath="Settings/String[@ID='ENABLE_MONSTER_WIDGET_DESC']/@Name"/>
                             </custom:Switcher.ToolTip>
                         </custom:Switcher>
-                        <StackPanel Orientation="Horizontal" Height="28" ToolTip="Changes the monster bar mode." HorizontalAlignment="Center" MinWidth="500">
+                        <StackPanel Orientation="Horizontal" Height="28" ToolTip="{Binding XPath=/Strings/Client/Settings/String[@ID\=\'STATIC_MONSTER_BAR_MODE_DESC\']/@Name}" HorizontalAlignment="Center" MinWidth="500">
                             <TextBlock FontFamily="Segoe UI Light" Foreground="WhiteSmoke" Canvas.Top="3">
                                 <TextBlock.Text>
                                     <Binding XPath="Settings/String[@ID='STATIC_MONSTER_BAR_MODE']/@Name"/>
                                 </TextBlock.Text>
                             </TextBlock>
                             <ComboBox x:Name="MonsterShowModeSelection" Style="{StaticResource ComboBoxFlatStyle}" IsReadOnly="True" Cursor="Hand" HorizontalAlignment="Center" Width="359" FontSize="14" Foreground="#FFF9F9F9" SelectedIndex="0" Canvas.Left="141" Canvas.Top="2">
-                                <System:String>Show all monsters at once</System:String>
-                                <System:String>Show all monsters but highlight my target</System:String>
-                                <System:String>Show only hunted monster</System:String>
-                                <System:String>Show all but hide inactive monsters after X seconds</System:String>
+                                
                             </ComboBox>
                         </StackPanel>
                         <StackPanel Orientation="Horizontal" Height="28" ToolTip="{Binding XPath=/Strings/Client/Settings/String[@ID\=\'STATIC_MONSTER_BAR_MODE_HOTKEY_DESC\']/@Name}" HorizontalAlignment="Center" MinWidth="500">
@@ -367,8 +364,6 @@
                         <StackPanel Orientation="Horizontal" Height="28" ToolTip="{Binding XPath=/Strings/Client/Settings/String[@ID\=\'STATIC_MONSTER_BAR_DOCK_DESC\']/@Name}" HorizontalAlignment="Center" MinWidth="500">
                             <TextBlock Text="{Binding XPath=/Strings/Client/Settings/String[@ID\=\'STATIC_MONSTER_BAR_DOCK\']/@Name}" FontFamily="Segoe UI Light" Foreground="WhiteSmoke" Canvas.Top="3"/>
                             <ComboBox x:Name="MonsterBarDock" Style="{StaticResource ComboBoxFlatStyle}" IsReadOnly="True" Cursor="Hand" HorizontalAlignment="Center" FontSize="14" Foreground="#FFF9F9F9" SelectedIndex="0" Canvas.Left="141" Canvas.Top="2" Width="234">
-                                <System:String>Top</System:String>
-                                <System:String>Bottom</System:String>
                             </ComboBox>
                         </StackPanel>
                         <custom:Switcher x:Name="switchEnableMonsterWeakness" HorizontalAlignment="Center" MinWidth="500">
@@ -630,13 +625,13 @@
                 </TabItem.Header>
                 <ScrollViewer>
                     <StackPanel  Height="436" Width="739" HorizontalAlignment="Left">
-                        <custom:Switcher x:Name="switchEnableDPSMeter" Text="Enable Damage Widget" MinWidth="500" ToolTip="if enabled, the Damage Meter Widget will be visible whenever it has content." HorizontalAlignment="Center"/>
-                        <custom:Switcher x:Name="switchEnableDPSWheneverPossible" Text="Show DPS instead of total damage whenever possible" MinWidth="500" ToolTip="if enabled, the damage meter will show damage per second instead of total damage whenever possible." HorizontalAlignment="Center"/>
-                        <custom:ColorPicker NameText="First Player" x:Name="FirstPlayerColor"/>
-                        <custom:ColorPicker NameText="Second Player" x:Name="SecondPlayerColor"/>
-                        <custom:ColorPicker NameText="Third Player" x:Name="ThirdPlayerColor"/>
-                        <custom:ColorPicker NameText="Fourth Player" x:Name="FourthPlayerColor"/>
-                        <custom:PositionControl x:Name="DamageMeterPosition"/>
+                        <custom:Switcher x:Name="switchEnableDPSMeter" Text="{Binding XPath=/Strings/Client/Settings/String[@ID\=\'ENABLE_METER\']/@Name}" MinWidth="500" ToolTip="{Binding XPath=/Strings/Client/Settings/String[@ID\=\'ENABLE_METER_DESC\']/@Name}" HorizontalAlignment="Center"/>
+                        <custom:Switcher x:Name="switchEnableDPSWheneverPossible" Text="{Binding XPath=/Strings/Client/Settings/String[@ID\=\'ENABLE_METER_DPS\']/@Name}" MinWidth="500" ToolTip="{Binding XPath=/Strings/Client/Settings/String[@ID\=\'ENABLE_METER_DPS_DESC\']/@Name}" HorizontalAlignment="Center"/>
+                        <custom:ColorPicker NameText="{Binding XPath=/Strings/Client/Settings/String[@ID\=\'STATIC_METER_PLAYER_1\']/@Name}" x:Name="FirstPlayerColor"/>
+                        <custom:ColorPicker NameText="{Binding XPath=/Strings/Client/Settings/String[@ID\=\'STATIC_METER_PLAYER_2\']/@Name}" x:Name="SecondPlayerColor"/>
+                        <custom:ColorPicker NameText="{Binding XPath=/Strings/Client/Settings/String[@ID\=\'STATIC_METER_PLAYER_3\']/@Name}" x:Name="ThirdPlayerColor"/>
+                        <custom:ColorPicker NameText="{Binding XPath=/Strings/Client/Settings/String[@ID\=\'STATIC_METER_PLAYER_4\']/@Name}" x:Name="FourthPlayerColor"/>
+                        <custom:PositionControl x:Name="DamageMeterPosition" ToolTip="{Binding XPath=/Strings/Client/Settings/String[@ID\=\'STATIC_METER_POSITION_DESC\']/@Name}"/>
                     </StackPanel>
                 </ScrollViewer>
             </TabItem>
@@ -775,8 +770,9 @@
                 </TabItem.Header>
                 <ScrollViewer>
                     <StackPanel Height="436" Width="739" HorizontalAlignment="Left">
-                        <custom:Switcher x:Name="switchEnableDebugMessages" Text="Enable Debug messages" RequiresRestart="True" MinWidth="500" ToolTip="Enables debug messages. Do not turn this option on if you have no idea what you're doing, this is part of the development tools." HorizontalAlignment="Center"/>
-                        <custom:Switcher x:Name="switchEnableUnknownStatuses" Text="Enable unknown monster ailments" RequiresRestart="True" MinWidth="500" ToolTip="Enables unknown monster statuses. Do not turn this option on if you have no idea what you're doing, this is part of the development tools." HorizontalAlignment="Center"/>
+                        <custom:Switcher x:Name="switchEnableDebugMessages" Text="{Binding XPath=/Strings/Client/Settings/String[@ID\=\'ENABLE_DEBUG_MESSAGES\']/@Name}" RequiresRestart="True" MinWidth="500" ToolTip="{Binding XPath=/Strings/Client/Settings/String[@ID\=\'ENABLE_DEBUG_MESSAGES_DESC\']/@Name}" HorizontalAlignment="Center"/>
+                        <custom:Switcher x:Name="switchEnableUnknownStatuses" Text="{Binding XPath=/Strings/Client/Settings/String[@ID\=\'ENABLE_UNKNOWN_AILMENTS\']/@Name}" RequiresRestart="True" MinWidth="500" ToolTip="{Binding XPath=/Strings/Client/Settings/String[@ID\=\'ENABLE_UNKNOWN_AILMENTS_DESC\']/@Name}" HorizontalAlignment="Center"/>
+                        <custom:Switcher x:Name="switchEnableLoadMonsterData" Text="{Binding XPath=/Strings/Client/Settings/String[@ID\=\'ENABLE_LOAD_CUSTOM_DATA\']/@Name}" RequiresRestart="True" MinWidth="500" ToolTip="{Binding XPath=/Strings/Client/Settings/String[@ID\=\'ENABLE_LOAD_CUSTOM_DATA_DESC\']/@Name}" HorizontalAlignment="Center"/>
                     </StackPanel>
                 </ScrollViewer>
             </TabItem>

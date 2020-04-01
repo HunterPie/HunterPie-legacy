@@ -198,7 +198,6 @@ namespace HunterPie.Memory {
             
             Offsets.MonsterHPComponentOffset = 0x7670;
             Offsets.MonsterNamePtr = 0x2a0;
-            Debugger.Warn("Updated offsets to Iceborne's version");
         }
     }
 }

@@ -404,9 +404,13 @@
       <String ID="MESSAGE_DISCORD_CONNECTED" Name="Starting new RPC connection"/>
       <String ID="MESSAGE_DISCORD_USER_CONNECTED" Name="Connected to Discord on user: {Username}"/>
       <String ID="MESSAGE_DISCORD_DISCONNECTED" Name="Closed connection to Discord"/>
+      <String ID="MESSAGE_DISCORD_JOIN_REQUEST" Name="{Username} requested to join session."/>
+      <String ID="MESSAGE_DISCORD_JOINING" Name="Joining session..."/>
+      
       <String ID="MESSAGE_MONSTER_DATA_LOAD" Name="Loaded monster data"/>
       <String ID="MESSAGE_ABNORMALITIES_DATA_LOAD" Name="Loaded abnormalities data"/>
       <String ID="MESSAGE_PLAYER_SCANNER_INITIALIZED" Name="Initialized player memory scanner"/>
+      <String ID="MESSAGE_HUNTERPIE_INITIALIZED" Name="Initializing HunterPie!"/>
       <String ID="MESSAGE_GAME_SCANNER_INITIALIZED" Name="Initialized game memory scanner"/>
       <String ID="MESSAGE_MONSTER_SCANNER_INITIALIZED" Name="Initialized monster({MonsterNumber}) scanner"/>
       <String ID="MESSAGE_GAME_SCANNER_STOP" Name="Stopping game scanner"/>
@@ -584,13 +588,14 @@
       <String ID="ENABLE_UNKNOWN_AILMENTS_DESC" Name="Enables unknown monster statuses. Do not turn this option on if you have no idea what you're doing. This is part of the development tools."/>
       <String ID="ENABLE_LOAD_CUSTOM_DATA" Name="Load custom monster data"/>
       <String ID="ENABLE_LOAD_CUSTOM_DATA_DESC" Name="If enabled, HunterPie will try to load the custom monster data file. Do not turn this option on if you have no idea what you're doing. This is part of the development tools."/>
-      <String ID="STATIC_LOAD_CUSTOM_DATA_DESC" Name="Custom Monster Data File:"/>
-      <String ID="STATIC_LOAD_CUSTOM_DATA_DESC" Name="Select your custom monster data file path."/>
+      <String ID="STATIC_LOAD_CUSTOM_DATA_PATH" Name="Custom Monster Data File:"/>
+      <String ID="STATIC_LOAD_CUSTOM_DATA_PATH_DESC" Name="Select your custom monster data file path."/>
       <!-- Generics -->
       <String ID="STATIC_BUTTON_SELECT_ALL" Name="Select All"/>
       <String ID="STATIC_BUTTON_UNSELECT_ALL" Name="Unselect All"/>
       <String ID="STATIC_BUTTON_SAVE" Name="Save"/>
       <String ID="STATIC_REQUIRES_RESTART" Name="(Requires restart)"/>
+      <String ID="STATIC_POSITION" Name="Position"/>
       <!-- Settings Side bar-->
       <String ID="STATIC_GENERAL_SETTINGS" Name="General"/>
       <String ID="STATIC_DISCORD_SETTINGS" Name="Discord"/>
@@ -610,6 +615,7 @@
       <String ID="STATIC_DISCORD_JOIN_REQUEST" Name="{Username} wants to join your session. Do you want to accept?"/>
       <String ID="STATIC_ACCEPT" Name="Accept"/>
       <String ID="STATIC_REJECT" Name="Reject"/>
+      <String ID="STATIC_SETTINGS_LOAD" Name="Settings loaded"/>
     </Notifications>
     <RichPresence>
       <String ID="RPC_DESCRIPTION_IN_MAIN_MENU" Name="In Main Menu"/>
