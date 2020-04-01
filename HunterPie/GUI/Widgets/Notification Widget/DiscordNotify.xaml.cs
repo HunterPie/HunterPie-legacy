@@ -13,24 +13,34 @@ using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Shapes;
 using BitmapImage = System.Windows.Media.Imaging.BitmapImage;
+using Timer = System.Threading.Timer;
 
 namespace HunterPie.GUI.Widgets.Notification_Widget {
     /// <summary>
     /// Interaction logic for DiscordNotify.xaml
     /// </summary>
     public partial class DiscordNotify : Widget {
-        DiscordRPC.DiscordRpcClient Context;
         DiscordRPC.Message.JoinRequestMessage RequestInfo;
+        Timer Timeout;
 
-        public DiscordNotify(DiscordRPC.DiscordRpcClient Client, DiscordRPC.Message.JoinRequestMessage args) {
+        public delegate void ConfirmationEvents(object source, DiscordRPC.Message.JoinRequestMessage args);
+        public event ConfirmationEvents OnRequestAccepted;
+        public event ConfirmationEvents OnRequestRejected;
+
+
+        public DiscordNotify(DiscordRPC.Message.JoinRequestMessage args) {
             this.WidgetActive = true;
             this.WidgetHasContent = true;
             InitializeComponent();
-            this.Context = Client;
             RequestInfo = args;
             SetInformation();
-            
+            Timeout = new Timer(_ => RejectRequest(), null, 15000, 0);
         }
+
+        ~DiscordNotify() {
+            Logger.Debugger.Debug($"{this} has been collected by GC.");
+        }
+
 
         private void SetInformation() {
             this.Description.Text = Core.GStrings.GetLocalizationByXPath("/Notifications/String[@ID='STATIC_DISCORD_JOIN_REQUEST']").Replace("{Username}", RequestInfo.User.ToString());
@@ -63,18 +73,23 @@ namespace HunterPie.GUI.Widgets.Notification_Widget {
         }
 
         private void OnAccept(object sender, RoutedEventArgs e) {
-            this.Context.Respond(RequestInfo, true);
-            this.Close();
+            OnRequestAccepted?.Invoke(this, RequestInfo);
         }
 
         private void OnReject(object sender, RoutedEventArgs e) {
-            this.Context.Respond(RequestInfo, false);
-            this.Close();
+            RejectRequest();
         }
 
+        private void RejectRequest() {
+            OnRequestRejected?.Invoke(this, RequestInfo);
+        }
 
-        private void Picture_ImageFailed(object sender, ExceptionRoutedEventArgs e) {
-            Logger.Debugger.Log(e.ErrorException);
+        private void OnClosing(object sender, System.ComponentModel.CancelEventArgs e) {
+            this.RequestInfo = null;
+            Timeout.Dispose();
+            Logger.Debugger.Debug("here");
+            Picture.Source = null;
+            Timeout = null;
         }
     }
 }

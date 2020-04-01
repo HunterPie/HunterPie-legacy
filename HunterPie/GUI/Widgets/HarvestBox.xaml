@@ -5,7 +5,7 @@
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              mc:Ignorable="d" 
-             Width="230" Height="205.333" Background="#33000000" ResizeMode="NoResize" WindowStyle="None" AllowsTransparency="True" ShowInTaskbar="False" Topmost="True" Closing="OnClosing" MouseEnter="OnMouseEnter" MouseDown="OnMouseDown" MouseWheel="OnMouseWheel" MouseLeave="OnMouseLeave" BorderBrush="#00000000">
+             Width="230" Height="205.333" Background="#33000000" DataContext="{StaticResource Localization}" ResizeMode="NoResize" WindowStyle="None" AllowsTransparency="True" ShowInTaskbar="False" Topmost="True" Closing="OnClosing" MouseEnter="OnMouseEnter" MouseDown="OnMouseDown" MouseWheel="OnMouseWheel" MouseLeave="OnMouseLeave" BorderBrush="#00000000">
     <src:Widget.Resources>
         <ResourceDictionary>
             <ResourceDictionary.MergedDictionaries>
@@ -37,7 +37,7 @@
     </src:Widget.Style>
     <Grid x:Name="HarvestBoxComponent" HorizontalAlignment="Left" Width="230">
         <Rectangle x:Name="HarvestBoxContainer" Fill="#4C111111" Stroke="#FF171717"/>
-        <TextBlock x:Name="HarvestBoxTitle" Text="HARVEST BOX" Opacity="0.8" Foreground="White" Padding="0,5,0,0" FontWeight="Bold" Background="#66000000" Height="29" VerticalAlignment="Top" FontSize="16" TextAlignment="Center" FontFamily="Roboto"/>
+        <TextBlock x:Name="HarvestBoxTitle" Text="{Binding XPath=/Strings/Client/Overlay/String[@ID\=\'STATIC_HARVEST_BOX_TITLE\']/@Name}" Opacity="0.8" Foreground="White" Padding="0,5,0,0" FontWeight="Bold" Background="#66000000" Height="29" VerticalAlignment="Top" FontSize="16" TextAlignment="Center" FontFamily="Roboto"/>
         <Label x:Name="fert1Name" Margin="0,29,42,0" Opacity="0.8" Foreground="White" Padding="5,0,0,0" VerticalContentAlignment="Center" Background="#66000000" FontWeight="Light" Height="29" VerticalAlignment="Top" FontSize="14" TextOptions.TextHintingMode="Animated" FontFamily="Roboto"/>
         <Label x:Name="fert2Name" Margin="0,58,42,0" Opacity="0.8" Foreground="White" Padding="5,0,0,0" VerticalContentAlignment="Center" Background="#66000000" FontWeight="Light" Height="29" VerticalAlignment="Top" FontSize="14" FontFamily="Roboto"/>
         <Label x:Name="fert3Name" Margin="0,87,42,0" Opacity="0.8" Foreground="White" Padding="5,0,0,0" VerticalContentAlignment="Center" Background="#66000000" FontWeight="Light" Height="29" VerticalAlignment="Top" FontSize="14" FontFamily="Roboto"/>

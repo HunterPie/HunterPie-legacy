@@ -58,6 +58,7 @@ namespace HunterPie.GUIControls {
             // Overlay
             settingsUI.switchEnableOverlay.IsEnabled = settings.Overlay.Enabled;
             settingsUI.DesiredFrameRateSlider.Value = settings.Overlay.DesiredAnimationFrameRate;
+            settingsUI.DesiredScanPerSecond.Value = settings.Overlay.GameScanDelay;
             settingsUI.DesignModeKeyCode.Content = KeyboardHookHelper.GetKeyboardKeyByID(settings.Overlay.ToggleDesignModeKey).ToString();
             settingsUI.ToggleOverlayHotKey.Content = settings.Overlay.ToggleOverlayKeybind;
             settingsUI.switchHardwareAcceleration.IsEnabled = settings.Overlay.EnableHardwareAcceleration;
@@ -147,6 +148,7 @@ namespace HunterPie.GUIControls {
             // Overlay
             settings.Overlay.Enabled = settingsUI.switchEnableOverlay.IsEnabled;
             settings.Overlay.DesiredAnimationFrameRate = (int)settingsUI.DesiredFrameRateSlider.Value;
+            settings.Overlay.GameScanDelay = (int)settingsUI.DesiredScanPerSecond.Value;
             settings.Overlay.ToggleDesignModeKey = (int)settingsUI.KeyChoosen;
             settings.Overlay.ToggleOverlayKeybind = (string)settingsUI.ToggleOverlayHotKey.Content;
             settings.Overlay.EnableHardwareAcceleration = settingsUI.switchHardwareAcceleration.IsEnabled;

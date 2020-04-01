@@ -401,6 +401,15 @@
       <String ID="MESSAGE_MISSING_PATH" Name="You haven't added the game path yet. Do you want to do it now?"/>
       <!-- Console Messages -->
       <String ID="MESSAGE_MAP_LOAD" Name="Loaded {HunterPie_Map}"/>
+      <String ID="MESSAGE_DISCORD_CONNECTED" Name="Starting new RPC connection"/>
+      <String ID="MESSAGE_DISCORD_USER_CONNECTED" Name="Connected to Discord on user: {Username}"/>
+      <String ID="MESSAGE_DISCORD_DISCONNECTED" Name="Closed connection to Discord"/>
+      <String ID="MESSAGE_MONSTER_DATA_LOAD" Name="Loaded monster data"/>
+      <String ID="MESSAGE_ABNORMALITIES_DATA_LOAD" Name="Loaded abnormalities data"/>
+      <String ID="MESSAGE_PLAYER_SCANNER_INITIALIZED" Name="Initialized player memory scanner"/>
+      <String ID="MESSAGE_GAME_SCANNER_INITIALIZED" Name="Initialized game memory scanner"/>
+      <String ID="MESSAGE_MONSTER_SCANNER_INITIALIZED" Name="Initialized monster({MonsterNumber}) scanner"/>
+      <String ID="MESSAGE_GAME_SCANNER_STOP" Name="Stopping game scanner"/>
       <!-- Warnings -->
       <String ID="MESSAGE_OFFLINEMODE_WARN" Name="HunterPie is now in offline mode."/>
       <String ID="MESSAGE_AUTOUPDATE_DISABLED_WARN" Name="Auto-Update is disabled. If your HunterPie has any issues or doesn't support the current game version, try enabling auto-update."/>
@@ -450,6 +459,10 @@
       <String ID="ENABLE_HARDWARE_ACCELERATION_DESC" Name="Enabling Hardware acceleration will make the overlay be rendered by the graphics card. Turning this off will change the rendering mode to software rendering, which will use more CPU. Turn this option off if you're having FPS issues."/>
       <String ID="STATIC_ANIMATION_FPS" Name="Animations framerate"/>
       <String ID="STATIC_ANIMATION_FPS_DESC" Name="Changes all HunterPie animations framerate. Set this to a lower value if you're having FPS issues."/>
+      <String ID="STATIC_GAME_SCAN_DELAY" Name="Game scan delay:"/>
+      <String ID="STATIC_GAME_SCAN_DELAY_DESC" Name="Delay between scans. Setting this to a really low value will make HunterPie scan for the game more often at cost of CPU.&#13;(E.g: Setting this to 200 will make HunterPie scan the game 5 times per second)."/>
+      <String ID="STATIC_IMAGE_QUALITY" Name="Images quality"/>
+      <String ID="STATIC_IMAGE_QUALITY_DESC" Name="Changes the quality of images."/>
       <String ID="STATIC_TOGGLE_OVERLAY" Name="Toggle Overlay (HotKey):"/>
       <String ID="STATIC_TOGGLE_OVERLAY_DESC" Name="HotKey to hide overlay. Changing the HotKey requires restart for it to take effect."/>
       <String ID="STATIC_TOGGLE_DESIGN" Name="Toggle Design Mode (HotKey):"/>
@@ -598,5 +611,16 @@
       <String ID="STATIC_ACCEPT" Name="Accept"/>
       <String ID="STATIC_REJECT" Name="Reject"/>
     </Notifications>
+    <RichPresence>
+      <String ID="RPC_DESCRIPTION_IN_MAIN_MENU" Name="In Main Menu"/>
+      <String ID="RPC_DESCRIPTION_IN_LOADING_SCREEN" Name="In Loading Screen"/>
+      <String ID="RPC_DESCRIPTION_IN_TOWN" Name="Idle"/>
+      <String ID="RPC_DESCRIPTION_EXPLORING" Name="Exploring"/>
+      <String ID="RPC_DESCRIPTION_HUNTING" Name="Hunting {Monster} ({Health})"/>
+      <String ID="RPC_DESCRIPTION_TRAINING" Name="Training"/>
+      <String ID="RPC_STATE_LOBBY" Name="In Lobby"/>
+      <String ID="RPC_STATE_PARTY" Name="In Party"/>
+      <String ID="RPC_STATE_SOLO" Name="Solo"/>
+    </RichPresence>
   </Client>
 </Strings>

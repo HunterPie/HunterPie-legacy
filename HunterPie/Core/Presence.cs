@@ -51,7 +51,7 @@ namespace HunterPie.Core {
             // Check if connection exists to avoid creating multiple connections
             Instance = new RichPresence();
             Debugger.Discord("Starting new RPC connection");
-            Client = new DiscordRpcClient(APP_ID, autoEvents: true, pipe: -1);
+            Client = new DiscordRpcClient(APP_ID, autoEvents: true);
 
             Client.RegisterUriScheme("582010");
 
@@ -81,9 +81,34 @@ namespace HunterPie.Core {
         private void Client_OnJoinRequested(object sender, DiscordRPC.Message.JoinRequestMessage args) {
             Debugger.Discord($"{args.User} requested to join session.");
             App.Current.Dispatcher.BeginInvoke(System.Windows.Threading.DispatcherPriority.Render, new Action(() => {
-                GUI.Widgets.Notification_Widget.DiscordNotify DiscordNotification = new GUI.Widgets.Notification_Widget.DiscordNotify((DiscordRpcClient)sender, args);
+                GUI.Widgets.Notification_Widget.DiscordNotify DiscordNotification = new GUI.Widgets.Notification_Widget.DiscordNotify(args);
+                
+                DiscordNotification.OnRequestAccepted += OnDiscordRequestAccepted;
+                DiscordNotification.OnRequestRejected += OnDiscordRequestRejected;
+
                 DiscordNotification.Show();
             }));
+        }
+        // TODO: UNHOOK EVENTS AND SEND Client.Response(true or false)
+        private void OnDiscordRequestRejected(object source, DiscordRPC.Message.JoinRequestMessage args) {
+            // Unhook events to avoid memory leaks on the DiscordNotify
+            GUI.Widgets.Notification_Widget.DiscordNotify src = (GUI.Widgets.Notification_Widget.DiscordNotify)source;
+            src.OnRequestAccepted -= OnDiscordRequestAccepted;
+            src.OnRequestRejected -= OnDiscordRequestRejected;
+            
+            Client.Respond(args, false);
+
+            src.Close();
+        }
+
+        private void OnDiscordRequestAccepted(object source, DiscordRPC.Message.JoinRequestMessage args) {
+            GUI.Widgets.Notification_Widget.DiscordNotify src = (GUI.Widgets.Notification_Widget.DiscordNotify)source;
+            src.OnRequestAccepted -= OnDiscordRequestAccepted;
+            src.OnRequestRejected -= OnDiscordRequestRejected;
+
+            Client.Respond(args, true);
+
+            src.Close();
         }
 
         public void HandleSettings(object source, EventArgs e) {

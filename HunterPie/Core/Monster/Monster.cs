@@ -221,7 +221,7 @@ namespace HunterPie.Core {
                 GetMonsterParts();
                 GetMonsterEnrageTimer();
                 GetTargetMonsterAddress();
-                Thread.Sleep(200);
+                Thread.Sleep(Math.Max(50, UserSettings.PlayerConfig.Overlay.GameScanDelay));
             }
             Thread.Sleep(1000);
             ScanMonsterInfo();

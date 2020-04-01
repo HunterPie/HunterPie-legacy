@@ -270,7 +270,7 @@
                                 <Binding XPath="Settings/String[@ID='ENABLE_HARDWARE_ACCELERATION_DESC']/@Name"/>
                             </custom:Switcher.ToolTip>
                         </custom:Switcher>
-                        <StackPanel Orientation="Horizontal" Height="28" ToolTip="Changes all HunterPie's animation framerates. Set this to a lower value if you're having FPS issues." HorizontalAlignment="Center" MinWidth="500">
+                        <StackPanel Orientation="Horizontal" Height="28" ToolTip="{Binding XPath=/Strings/Client/Settings/String[@ID\=\'STATIC_ANIMATION_FPS_DESC\']/@Name}" HorizontalAlignment="Center" MinWidth="500">
                             <TextBlock Foreground="WhiteSmoke" FontFamily="Segoe UI Light">
                                 <TextBlock.Text>
                                     <Binding XPath="Settings/String[@ID='STATIC_ANIMATION_FPS']/@Name"/>
@@ -278,7 +278,16 @@
                             </TextBlock>
                             <Slider x:Name="DesiredFrameRateSlider" Style="{StaticResource Horizontal_Slider}" Foreground="#FF3C3C3C" Maximum="60" Minimum="1" SmallChange="1" Value="60" Width="190" Canvas.Left="164" Canvas.Top="5" AutoToolTipPlacement="TopLeft" IsSnapToTickEnabled="True" Margin="8,0" />
                             <TextBlock Text="{Binding Value, ElementName=DesiredFrameRateSlider}" FontFamily="Segoe UI Light" Foreground="WhiteSmoke" Canvas.Left="366" Canvas.Top="4"/>
-                            <TextBlock TextWrapping="Wrap" Text="(Requires restart)" Foreground="#FFF1F1F1" FontFamily="Segoe UI Light" TextAlignment="Center" HorizontalAlignment="Left" Width="79" Padding="0,6,0,0" Canvas.Left="383" Canvas.Top="4" FontSize="10"/>
+                            <TextBlock TextWrapping="Wrap" Text="{Binding XPath=/Strings/Client/Settings/String[@ID\=\'STATIC_REQUIRES_RESTART\']/@Name}" Foreground="#FFF1F1F1" FontFamily="Segoe UI Light" TextAlignment="Center" HorizontalAlignment="Left" Width="79" Padding="0,6,0,0" Canvas.Left="383" Canvas.Top="4" FontSize="10"/>
+                        </StackPanel>
+                        <StackPanel Orientation="Horizontal" Height="28" ToolTip="{Binding XPath=/Strings/Client/Settings/String[@ID\=\'STATIC_GAME_SCAN_DELAY_DESC\']/@Name}" HorizontalAlignment="Center" MinWidth="500">
+                            <TextBlock Foreground="WhiteSmoke" FontFamily="Segoe UI Light">
+                                <TextBlock.Text>
+                                    <Binding XPath="Settings/String[@ID='STATIC_GAME_SCAN_DELAY']/@Name"/>
+                                </TextBlock.Text>
+                            </TextBlock>
+                            <Slider x:Name="DesiredScanPerSecond" Style="{StaticResource Horizontal_Slider}" Foreground="#FF3C3C3C" Maximum="1000" Minimum="50" SmallChange="1" Value="150" Width="190" Canvas.Left="164" Canvas.Top="5" AutoToolTipPlacement="TopLeft" IsSnapToTickEnabled="True" Margin="8,0" />
+                            <TextBlock Text="{Binding Value, ElementName=DesiredScanPerSecond}" FontFamily="Segoe UI Light" Foreground="WhiteSmoke" Canvas.Left="366" Canvas.Top="4"/>
                         </StackPanel>
                         <StackPanel Orientation="Horizontal" Height="28" HorizontalAlignment="Center" MinWidth="500">
                             <TextBlock Foreground="WhiteSmoke" Canvas.Top="3" FontFamily="Segoe UI Light">
@@ -287,7 +296,7 @@
                                 </TextBlock.Text>
                             </TextBlock>
                             <Button x:Name="ToggleOverlayHotKey" Cursor="Hand" Background="#FF0F0F0F" Foreground="#FFE8E8E8"  BorderBrush="{x:Null}" Height="28" Padding="3,1" Style="{StaticResource ToggleButtonStyle}" Width="115" Canvas.Left="179" PreviewKeyDown="OnToggleOverlayKeyDown"/>
-                            <TextBlock TextWrapping="Wrap" Text="(Requires restart)" Foreground="#FFF1F1F1" FontFamily="Segoe UI Light" TextAlignment="Center" HorizontalAlignment="Left" Width="79" Padding="0,6,0,0" Canvas.Left="299" Canvas.Top="2" FontSize="10"/>
+                            <TextBlock TextWrapping="Wrap" Text="{Binding XPath=/Strings/Client/Settings/String[@ID\=\'STATIC_REQUIRES_RESTART\']/@Name}" Foreground="#FFF1F1F1" FontFamily="Segoe UI Light" TextAlignment="Center" HorizontalAlignment="Left" Width="79" Padding="0,6,0,0" Canvas.Left="299" Canvas.Top="2" FontSize="10"/>
                             <StackPanel.ToolTip>
                                 <Binding XPath="Settings/String[@ID='STATIC_TOGGLE_OVERLAY_DESC']/@Name"/>
                             </StackPanel.ToolTip>
@@ -299,7 +308,7 @@
                                 </TextBlock.Text>
                             </TextBlock>
                             <Button x:Name="DesignModeKeyCode" Cursor="Hand" Background="#FF0F0F0F" Foreground="#FFE8E8E8"  BorderBrush="{x:Null}" Height="28" Padding="3,1" Style="{StaticResource ToggleButtonStyle}" Width="115" Canvas.Left="220" Click="SelectDesignModeKeyBind" LostFocus="OnKeybindingButtonLoseFocus"/>
-                            <TextBlock TextWrapping="Wrap" Text="(Requires restart)" FontFamily="Segoe UI Light" Foreground="#FFF1F1F1"  TextAlignment="Center" HorizontalAlignment="Left" Width="79" Padding="0,6,0,0" Canvas.Left="340" Canvas.Top="2" FontSize="10"/>
+                            <TextBlock TextWrapping="Wrap" Text="{Binding XPath=/Strings/Client/Settings/String[@ID\=\'STATIC_REQUIRES_RESTART\']/@Name}" FontFamily="Segoe UI Light" Foreground="#FFF1F1F1"  TextAlignment="Center" HorizontalAlignment="Left" Width="79" Padding="0,6,0,0" Canvas.Left="340" Canvas.Top="2" FontSize="10"/>
                             <StackPanel.ToolTip>
                                 <Binding XPath="Settings/String[@ID='STATIC_TOGGLE_DESIGN_DESC']/@Name"/>
                             </StackPanel.ToolTip>
@@ -353,7 +362,7 @@
                                 </TextBlock.Text>
                             </TextBlock>
                             <Button x:Name="ToggleMonsterBarModeHotKey" Cursor="Hand" Background="#FF0F0F0F" Foreground="#FFE8E8E8"  BorderBrush="{x:Null}" Height="28" Padding="3,1" Style="{StaticResource ToggleButtonStyle}" Width="115" Canvas.Left="200" Canvas.Top="1" PreviewKeyDown="OnToggleOverlayKeyDown"/>
-                            <TextBlock TextWrapping="Wrap" Text="(Requires restart)" FontFamily="Segoe UI Light" Foreground="#FFF1F1F1"  TextAlignment="Center" HorizontalAlignment="Left" Width="79" Padding="0,6,0,0" Canvas.Left="320" Canvas.Top="3" FontSize="10"/>
+                            <TextBlock TextWrapping="Wrap" Text="{Binding XPath=/Strings/Client/Settings/String[@ID\=\'STATIC_REQUIRES_RESTART\']/@Name}" FontFamily="Segoe UI Light" Foreground="#FFF1F1F1"  TextAlignment="Center" HorizontalAlignment="Left" Width="79" Padding="0,6,0,0" Canvas.Left="320" Canvas.Top="3" FontSize="10"/>
                         </StackPanel>
                         <StackPanel Orientation="Horizontal" Height="28" ToolTip="{Binding XPath=/Strings/Client/Settings/String[@ID\=\'STATIC_MONSTER_BAR_DOCK_DESC\']/@Name}" HorizontalAlignment="Center" MinWidth="500">
                             <TextBlock Text="{Binding XPath=/Strings/Client/Settings/String[@ID\=\'STATIC_MONSTER_BAR_DOCK\']/@Name}" FontFamily="Segoe UI Light" Foreground="WhiteSmoke" Canvas.Top="3"/>
@@ -651,7 +660,7 @@
                             <TextBlock x:Name="NumberOfBuffBars" FontFamily="Segoe UI Light" Canvas.Left="649" FontSize="20" TextWrapping="Wrap" Text="n" Foreground="WhiteSmoke" Canvas.Top="68"/>
                             <TextBlock ToolTip="{Binding XPath=/Strings/Client/Settings/String[@ID\=\'STATIC_CREATE_ABNORM_BAR_DESC\']/@Name}" FontFamily="Segoe UI Light" x:Name="AddNewBuffBar" Cursor="Hand" Background="#FF0E0E0E" Canvas.Left="676" FontSize="20" TextWrapping="Wrap" Text="+" Foreground="WhiteSmoke" Canvas.Top="68" Width="28" Padding="0" Height="32" TextAlignment="Center" MouseDown="AddNewBuffBarClick"/>
                             <TextBlock ToolTip="{Binding XPath=/Strings/Client/Settings/String[@ID\=\'STATIC_REMOVE_ABNORM_BAR_DESC\']/@Name}" FontFamily="Segoe UI Light" x:Name="SubBuffBar" Cursor="Hand" Background="#FF0E0E0E" Canvas.Left="603" FontSize="20" TextWrapping="Wrap" Text="-" Foreground="WhiteSmoke" Canvas.Top="68" Width="28" Padding="0" Height="32" TextAlignment="Center" MouseDown="SubBuffBarClick"/>
-                            <TextBlock Canvas.Left="583" TextWrapping="Wrap" FontFamily="Segoe UI Light" Text="(Requires restart)" Canvas.Top="100" Width="142" Foreground="#FFF1F1F1"  TextAlignment="Center"/>
+                            <TextBlock Canvas.Left="583" TextWrapping="Wrap" FontFamily="Segoe UI Light" Text="{Binding XPath=/Strings/Client/Settings/String[@ID\=\'STATIC_REQUIRES_RESTART\']/@Name}" Canvas.Top="100" Width="142" Foreground="#FFF1F1F1"  TextAlignment="Center"/>
                         </Canvas>
                     </StackPanel>
                 </ScrollViewer>
