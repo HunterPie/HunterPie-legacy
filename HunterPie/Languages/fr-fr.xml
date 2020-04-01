@@ -1,0 +1,387 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<Strings lang="French">
+  <Monsters>
+    <Monster ID="em001_00" Name="Rathian"/>
+    <Monster ID="em001_01" Name="Rathian sakura"/>
+    <Monster ID="em001_02" Name="Rathian d&apos;or"/>
+    <Monster ID="em002_00" Name="Rathalos"/>
+    <Monster ID="em002_01" Name="Rathalos azur"/>
+    <Monster ID="em002_02" Name="Rathalos d&apos;argent"/>
+    <Monster ID="em007_00" Name="Diablos"/>
+    <Monster ID="em007_01" Name="Diablos noire"/>
+    <Monster ID="em011_00" Name="Kirin"/>
+    <Monster ID="em018_00" Name="Yian Garuga"/>
+    <Monster ID="em018_05" Name="Yian Garuga balafré"/>
+    <Monster ID="em023_00" Name="Rajang"/>
+    <Monster ID="em024_00" Name="Kushala Daora"/>
+    <Monster ID="em026_00" Name="Lunastra"/>
+    <Monster ID="em027_00" Name="Teostra"/>
+    <Monster ID="em032_00" Name="Tigrex"/>
+    <Monster ID="em032_01" Name="Tigrex berserk"/>
+    <Monster ID="em036_00" Name="Lavasioth"/>
+    <Monster ID="em037_00" Name="Nargacuga"/>
+    <Monster ID="em042_00" Name="Barioth"/>
+    <Monster ID="em043_00" Name="Deviljho"/>
+    <Monster ID="em043_05" Name="Deviljho carnage"/>
+    <Monster ID="em044_00" Name="Barroth"/>
+    <Monster ID="em045_00" Name="Uragaan"/>
+    <Monster ID="em057_00" Name="Zinogre"/>
+    <Monster ID="em057_01" Name="Zinogre stygien"/>
+    <Monster ID="em063_00" Name="Brachydios"/>
+    <Monster ID="em080_00" Name="Glavenus"/>
+    <Monster ID="em080_01" Name="Glavenus acide"/>
+    <Monster ID="em100_00" Name="Anjanath"/>
+    <Monster ID="em100_01" Name="Anjanath tonnerre"/>
+    <Monster ID="em101_00" Name="Grand Jagras"/>
+    <Monster ID="em102_00" Name="Pukei-Pukei"/>
+    <Monster ID="em102_01" Name="Pukei-Pukei corail"/>
+    <Monster ID="em103_00" Name="Nergigante"/>
+    <Monster ID="em103_05" Name="Nergigante Chaos"/>
+    <Monster ID="em104_00" Name="Safi'jiiva"/>
+    <Monster ID="em105_00" Name="Xeno'jiiva"/>
+    <Monster ID="em106_00" Name="Zorah Magdaros"/>
+    <Monster ID="em107_00" Name="Kulu-Ya-Ku"/>
+    <Monster ID="em108_00" Name="Jyuratodus"/>
+    <Monster ID="em109_00" Name="Tobi-Kadachi"/>
+    <Monster ID="em109_01" Name="Tobi-Kadachi vipère"/>
+    <Monster ID="em110_00" Name="Paolumu"/>
+    <Monster ID="em110_01" Name="Paolumu belladone"/>
+    <Monster ID="em111_00" Name="Legiana"/>
+    <Monster ID="em111_05" Name="Legiana blizzard"/>
+    <Monster ID="em112_00" Name="Grand Girros"/>
+    <Monster ID="em113_00" Name="Odogaron"/>
+    <Monster ID="em113_01" Name="Odogaron désastre"/>
+    <Monster ID="em114_00" Name="Radobaan"/>
+    <Monster ID="em115_00" Name="Vaal Hazak"/>
+    <Monster ID="em115_05" Name="Vaal Hazak fléau"/>
+    <Monster ID="em116_00" Name="Dodogama"/>
+    <Monster ID="em117_00" Name="Kulve Taroth"/>
+    <Monster ID="em118_00" Name="Bazelgeuse"/>
+    <Monster ID="em118_05" Name="Bazelgeuse vulcan"/>
+    <Monster ID="em120_00" Name="Tzitzi-Ya-Ku"/>
+    <Monster ID="em121_00" Name="Behemoth"/>
+    <Monster ID="em122_00" Name="Beotodus"/>
+    <Monster ID="em123_00" Name="Banbaro"/>
+    <Monster ID="em124_00" Name="Velkhana"/>
+    <Monster ID="em125_00" Name="Namielle"/>
+    <Monster ID="em126_00" Name="Shara Ishvalda"/>
+    <Monster ID="em127_00" Name="Leshen"/>
+    <Monster ID="em127_01" Name="Vieux Leshen"/>
+  </Monsters>
+  <Parts>
+    <Part ID="MONSTER_PART_UNKNOWN" Name="Partie Inconnue"/>
+    <Part ID="MONSTER_PART_HEAD" Name="Tête"/>
+    <Part ID="MONSTER_PART_BODY" Name="Corps"/>
+    <Part ID="MONSTER_PART_LWING" Name="Aile Gauche"/>
+    <Part ID="MONSTER_PART_RWING" Name="Aile Droite"/>
+    <Part ID="MONSTER_PART_LLEG" Name="Patte Gauche"/>
+    <Part ID="MONSTER_PART_RLEG" Name="Patte Droite"/>
+    <Part ID="MONSTER_PART_TAIL" Name="Queue"/>
+    <Part ID="MONSTER_PART_ARMS" Name="Bras"/>
+    <Part ID="MONSTER_PART_LEGS" Name="Pattes"/>
+    <Part ID="MONSTER_PART_LARM" Name="Bras Gauche"/>
+    <Part ID="MONSTER_PART_RARM" Name="Bras Droite"/>
+    <Part ID="MONSTER_PART_LLIMBS" Name="Membre Gauche"/>
+    <Part ID="MONSTER_PART_RLIMBS" Name="Membre Droit"/>
+    <Part ID="MONSTER_PART_WINGS" Name="Ailes"/>
+    <Part ID="MONSTER_PART_LIMBS" Name="Membres"/>
+    <Part ID="MONSTER_PART_ABDOMEN" Name="Abdomen"/>
+    <Part ID="MONSTER_PART_CHEST" Name="Torse"/>
+    <Part ID="MONSTER_PART_REAR" Name="Arrière"/>
+    <Part ID="MONSTER_PART_HEAD_MUD" Name="Tête (boue)"/>
+    <Part ID="MONSTER_PART_BODY_MUD" Name="Corps (boue)"/>
+    <Part ID="MONSTER_PART_ARMS_MUD" Name="Bras (boue)"/>
+    <Part ID="MONSTER_PART_LLEG_MUD" Name="Patte Gauche (boue)"/>
+    <Part ID="MONSTER_PART_RLEG_MUD" Name="Patte Droite (boue)"/>
+    <Part ID="MONSTER_PART_TAIL_MUD" Name="Queue (boue)"/>
+    <Part ID="MONSTER_PART_JAW" Name="Mâchoire"/>
+    <Part ID="MONSTER_PART_BACK" Name="Arrière"/>
+    <Part ID="MONSTER_PART_FIN" Name="Ailettes"/>
+    <Part ID="MONSTER_PART_HORNS" Name="Cornes"/>
+    <Part ID="MONSTER_PART_NECK" Name="Cou"/>
+    <Part ID="MONSTER_PART_LHAND" Name="Main Gauche"/>
+    <Part ID="MONSTER_PART_RHAND" Name="Main Droite"/>
+    <Part ID="MONSTER_PART_LFOOT" Name="Pied Gauche"/>
+    <Part ID="MONSTER_PART_RFOOT" Name="Pied Droit"/>
+    <Part ID="MONSTER_PART_SHELL" Name="Carapace"/>
+    <Part ID="MONSTER_PART_EXHAUST_ORGAN_CENTRAL" Name="Crystal (centre)"/>
+    <Part ID="MONSTER_PART_EXHAUST_ORGAN_HEAD" Name="Crystal (tête)"/>
+    <Part ID="MONSTER_PART_EXHAUST_ORGAN_CRATER" Name="Crystal (crâtère)"/>
+    <Part ID="MONSTER_PART_EXHAUST_ORGAN_REAR" Name="Crystal (arrière)"/>
+    <Part ID="MONSTER_PART_WEAK_LSHELL" Name="Carapace Gauche"/>
+    <Part ID="MONSTER_PART_WEAK_RSHELL" Name="Carapace Droite"/>
+    <Part ID="MONSTER_PART_ROCK" Name="Roche"/>
+    <Part ID="MONSTER_PART_MANE" Name="Crinière"/>
+    <Part ID="MONSTER_PART_BALLOON" Name="Ballon"/>
+    <Part ID="MONSTER_PART_LBONE" Name="Os Gauche"/>
+    <Part ID="MONSTER_PART_RBONE" Name="Os Droit"/>
+    <Part ID="MONSTER_PART_HORNS_GOLD" Name="Cornes Dorées"/>
+    <Part ID="MONSTER_PART_MANE_GOLD" Name="Crinière Dorée"/>
+    <Part ID="MONSTER_PART_LCHEST_GOLD" Name="Torse Gauche Doré"/>
+    <Part ID="MONSTER_PART_RCHEST_GOLD" Name="Torse Droit Doré"/>
+    <Part ID="MONSTER_PART_LARM_GOLD" Name="Bras Gauche Doré"/>
+    <Part ID="MONSTER_PART_RARM_GOLD" Name="Bras Droit Doré"/>
+    <Part ID="MONSTER_PART_LLEG_GOLD" Name="Patte Gauche Dorée"/>
+    <Part ID="MONSTER_PART_RLEG_GOLD" Name="Patte Droite Dorée"/>
+    <Part ID="MONSTER_PART_LTAIL_GOLD" Name="Queue Gauche Dorée"/>
+    <Part ID="MONSTER_PART_RTAIL_GOLD" Name="Queue Droite Dorée"/>
+    <Part ID="MONSTER_PART_LHEAD" Name="Tête (gauche)"/>
+    <Part ID="MONSTER_PART_RHEAD" Name="Tête (droite)"/>
+    <Part ID="MONSTER_PART_HEAD_SNOW" Name="Tête (neige)"/>
+    <Part ID="MONSTER_PART_BODY_SNOW" Name="Corps (neige)"/>
+    <Part ID="MONSTER_PART_TAIL_SNOW" Name="Queue (neige)"/>
+    <Part ID="MONSTER_PART_HEAD_ICE" Name="Tête (glace)"/>
+    <Part ID="MONSTER_PART_BODY_ICE" Name="Corps (glace)"/>
+    <Part ID="MONSTER_PART_WINGS_ICE" Name="Ailes (glace)"/>
+    <Part ID="MONSTER_PART_ARMS_ICE" Name="Bras (glace)"/>
+    <Part ID="MONSTER_PART_LEGS_ICE" Name="Pattes (glace)"/>
+    <Part ID="MONSTER_PART_TAIL_ICE" Name="Queue (glace)"/>
+    <Part ID="MONSTER_PART_LNECK_ROCK" Name="Cou Gauche (roche)"/>
+    <Part ID="MONSTER_PART_RNECK_ROCK" Name="Cou Droit (roche)"/>
+    <Part ID="MONSTER_PART_HEAD_ROCK" Name="Tête (roche)"/>
+    <Part ID="MONSTER_PART_TAIL_ROCK" Name="Queue (roche)"/>
+    <Part ID="MONSTER_PART_LWING_ROCK" Name="Aile Gauche (roche)"/>
+    <Part ID="MONSTER_PART_RWING_ROCK" Name="Aile Droite (roche)"/>
+    <Part ID="MONSTER_PART_LARM_ROCK" Name="Bras Gauche (roche)"/>
+    <Part ID="MONSTER_PART_RARM_ROCK" Name="Bras Droit (roche)"/>
+    <Part ID="MONSTER_PART_LEGS_ROCK" Name="Pattes (roche)"/>
+    <Part ID="MONSTER_JAGRAS_SUMMONER" Name="Convocation de Jagras"/>
+    <!-- Removable parts -->
+    <Part ID="MONSTER_PART_REMOVABLE_TAIL" Name="Queue Sectionnable"/>
+    <Part ID="MONSTER_PART_REMOVABLE_HORNS" Name="Cornes Brisable"/>
+    <Part ID="MONSTER_PART_REMOVABLE_HEAD" Name="Tête Brisable"/>
+    <Part ID="MONSTER_PART_REMOVABLE_BALLOON" Name="Ballon Brisable"/>
+    <Part ID="MONSTER_PART_REMOVABLE_HORNS_2" Name="Cornes Brisable #2"/>
+    <Part ID="MONSTER_PART_REMOVABLE_LANTLER" Name="Bois Gauche Brisable"/>
+    <Part ID="MONSTER_PART_REMOVABLE_RANTLER" Name="Bois Droit Brisable"/>
+  </Parts>
+  <Ailments>
+    <Ailment ID="STATUS_UNKNOWN" Name="Inconnu"/>
+    <Ailment ID="STATUS_POISON" Name="Poison"/>
+    <Ailment ID="STATUS_PARALYSIS" Name="Paralysie"/>
+    <Ailment ID="STATUS_SLEEP" Name="Sommeil"/>
+    <Ailment ID="STATUS_BLAST" Name="Explosion"/>
+    <Ailment ID="STATUS_MOUNT" Name="Monté"/>
+    <Ailment ID="STATUS_EXHAUSTION" Name="Fatigue"/>
+    <Ailment ID="STATUS_STUN" Name="Étourdissement"/>
+    <Ailment ID="STATUS_TRANQUILIZE" Name="Tranquillisé"/>
+    <Ailment ID="STATUS_FLASH" Name="Flash"/>
+    <Ailment ID="STATUS_KNOCKDOWN" Name="A terre"/>
+    <Ailment ID="STATUS_DUNGPOD" Name="Capsule de bouse"/>
+    <Ailment ID="STATUS_SHOCKTRAP" Name="Piège électrique"/>
+    <Ailment ID="STATUS_PITFALLTRAP" Name="Piège à fosse"/>
+    <Ailment ID="STATUS_ELDERSEAL" Name="Sceaux des anciens"/>
+    <Ailment ID="STATUS_SMOKING" Name="Smoking"/>
+    <Ailment ID="STATUS_FELYNETRAP" Name="Piège Palico"/>
+    <Ailment ID="STATUS_CLAW" Name="Coup de grappin"/>
+    <Ailment ID="STATUS_VIOLATED" Name="Blessé"/>
+  </Ailments>
+  <Mantles>
+    <Mantle ID="-1" Name="Pas de cape"/>
+    <Mantle ID="0" Name="Cape du Caméléon"/>
+    <Mantle ID="1" Name="Cape Temporelle"/>
+    <Mantle ID="2" Name="Amplificateur de vie"/>
+    <Mantle ID="3" Name="Cape Immuable"/>
+    <Mantle ID="4" Name="Cape de Provocation"/>
+    <Mantle ID="5" Name="Cape du Gardien"/>
+    <Mantle ID="6" Name="Cape Ignifuge"/>
+    <Mantle ID="7" Name="Cape Anti-eau"/>
+    <Mantle ID="8" Name="Cape Anti-glace"/>
+    <Mantle ID="9" Name="Cape Paratonnerre"/>
+    <Mantle ID="10" Name="Cape Anti-dragon"/>
+    <Mantle ID="11" Name="Purificateur"/>
+    <Mantle ID="12" Name="Cape Planeur"/>
+    <Mantle ID="13" Name="Cape Évasion"/>
+    <Mantle ID="14" Name="Cape du Champion"/>
+    <Mantle ID="15" Name="Cape du Scélérat"/>
+    <Mantle ID="16" Name="Cape angélique"/>
+    <Mantle ID="17" Name="Amplificateur d&apos;affinité"/>
+    <Mantle ID="18" Name="Cape du Voleur"/>
+    <Mantle ID="19" Name="Capuche d&apos;Assassin"/>
+  </Mantles>
+  <Fertilizers>
+    <Fertilizer ID="0" Name="Vide"/>
+    <Fertilizer ID="1" Name="Plante : Récolte +"/>
+    <Fertilizer ID="2" Name="Plante : Récolte ++"/>
+    <Fertilizer ID="3" Name="Champignon : Récolte +"/>
+    <Fertilizer ID="4" Name="Champignon : Récolte ++"/>
+    <Fertilizer ID="5" Name="Insecte/Miel : Récolte +"/>
+    <Fertilizer ID="6" Name="Insecte/Miel : Récolte ++"/>
+    <Fertilizer ID="7" Name="Croissance +"/>
+    <Fertilizer ID="8" Name="Croissance ++"/>
+  </Fertilizers>
+  <Stages>
+    <Stage ID="0" Name="Menu Principal"/>
+    <Stage ID="101" Name="Forêt ancienne"/>
+    <Stage ID="102" Name="Désert des termites"/>
+    <Stage ID="103" Name="Plateau de corail"/>
+    <Stage ID="104" Name="Val putride"/>
+    <Stage ID="105" Name="Terre des anciens"/>
+    <Stage ID="106" Name="Grand ravin"/>
+    <Stage ID="107" Name="Grand ravin"/>
+    <Stage ID="108" Name="Givre éternel"/>
+    <Stage ID="109" Name="Fief glorieux"/>
+    <Stage ID="201" Name="Arène spéciale"/>
+    <Stage ID="202" Name="Arène"/>
+    <Stage ID="301" Name="Astera"/>
+    <Stage ID="302" Name="Grand-Pont"/>
+    <Stage ID="303" Name="Poste de recherche"/>
+    <Stage ID="305" Name="Seliana"/>
+    <Stage ID="306" Name="Grand-Salle"/>
+    <Stage ID="401" Name="Introduction"/>
+    <Stage ID="403" Name="Rivière éternelle"/>
+    <Stage ID="405" Name="Croisée des destins"/>
+    <Stage ID="406" Name="Forêt ancienne"/>
+    <Stage ID="409" Name="Cavernes d&apos;El Dorado"/>
+    <Stage ID="411" Name="Garde-provisions Seliana"/>
+    <Stage ID="412" Name="Berceau oublié"/>
+    <Stage ID="413" Name="Berceau oublié"/>
+    <Stage ID="415" Name="Vallée secrète"/>
+    <Stage ID="501" Name="Dortoir"/>
+    <Stage ID="502" Name="Quartiers privés"/>
+    <Stage ID="503" Name="Suite royale"/>
+    <Stage ID="504" Name="Aire d&apos;entraînement"/>
+    <Stage ID="505" Name="Sanctuaire des cinq"/>
+    <Stage ID="506" Name="Chambre (Seliana)"/>
+  </Stages>
+  <Weapons>
+    <Weapon ID="0" Name="Grande épée"/>
+    <Weapon ID="1" Name="Épée &amp; bouclier"/>
+    <Weapon ID="2" Name="Lames doubles"/>
+    <Weapon ID="3" Name="Épée longue"/>
+    <Weapon ID="4" Name="Marteau"/>
+    <Weapon ID="5" Name="Corne de chasse"/>
+    <Weapon ID="6" Name="Lance"/>
+    <Weapon ID="7" Name="Lancecanon"/>
+    <Weapon ID="8" Name="Morpho-hache"/>
+    <Weapon ID="9" Name="Volto-hache"/>
+    <Weapon ID="10" Name="Insectoglaive"/>
+    <Weapon ID="11" Name="Arc"/>
+    <Weapon ID="12" Name="Fusarbalète lourd"/>
+    <Weapon ID="13" Name="Fusarbalète léger"/>
+  </Weapons>
+  <Abnormalities>
+    <Abnormality ID="UNKNOWN_ABNORMALITY" Name="Effet Inconnu (ID: {AbnormalityID})"/>
+    <Abnormality ID="HUNTINGHORN_000_00" Name="Auto-amélioration"/>
+    <Abnormality ID="HUNTINGHORN_999_00" Name="Bonus attaque + Prév. attaques détournées"/>
+    <Abnormality ID="HUNTINGHORN_001_00" Name="Bonus attaque (P)"/>
+    <Abnormality ID="HUNTINGHORN_001_01" Name="Bonus attaque (M)"/>
+    <Abnormality ID="HUNTINGHORN_002_00" Name="Bonus attaque (G)"/>
+    <Abnormality ID="HUNTINGHORN_002_01" Name="Bonus attaque (MAX)"/>
+    <Abnormality ID="HUNTINGHORN_003_00" Name="Bonus vie (P)"/>
+    <Abnormality ID="HUNTINGHORN_004_00" Name="Bonus vie (G)"/>
+    <Abnormality ID="HUNTINGHORN_005_00" Name="Bonus endurance (P)"/>
+    <Abnormality ID="HUNTINGHORN_006_00" Name="Bonus endurance (G)"/>
+    <Abnormality ID="HUNTINGHORN_007_00" Name="Anti-bourrasque"/>
+    <Abnormality ID="HUNTINGHORN_008_00" Name="Anti-bourrasque total"/>
+    <Abnormality ID="HUNTINGHORN_009_00" Name="Bonus défense (P)"/>
+    <Abnormality ID="HUNTINGHORN_009_01" Name="Bonus défense (M)"/>
+    <Abnormality ID="HUNTINGHORN_010_00" Name="Bonus défense (G)"/>
+    <Abnormality ID="HUNTINGHORN_010_01" Name="Bonus défense (MAX)"/>
+    <Abnormality ID="HUNTINGHORN_011_00" Name="Durabilité outils (P)"/>
+    <Abnormality ID="HUNTINGHORN_012_00" Name="Durabilité outils (G)"/>
+    <Abnormality ID="HUNTINGHORN_018_00" Name="Récupération vie (P)"/>
+    <Abnormality ID="HUNTINGHORN_019_00" Name="Récupération vie (G)"/>
+    <Abnormality ID="HUNTINGHORN_020_00" Name="Protection ouïe (P)"/>
+    <Abnormality ID="HUNTINGHORN_021_00" Name="Protection ouïe (G)"/>
+    <Abnormality ID="HUNTINGHORN_022_00" Name="Protection divine"/>
+    <Abnormality ID="HUNTINGHORN_023_00" Name="Bonus naviciole"/>
+    <Abnormality ID="HUNTINGHORN_024_00" Name="Dégâts environ. annulés"/>
+    <Abnormality ID="HUNTINGHORN_025_00" Name="Anti-étourdissement"/>
+    <Abnormality ID="HUNTINGHORN_026_00" Name="Anti-paralysie"/>
+    <Abnormality ID="HUNTINGHORN_027_00" Name="Anti-séisme"/>
+    <Abnormality ID="HUNTINGHORN_028_00" Name="Immunité boue/eau/neige"/>
+    <Abnormality ID="HUNTINGHORN_029_00" Name="Bonus rés. feu (P)"/>
+    <Abnormality ID="HUNTINGHORN_029_01" Name="Bonus rés. feu (M)"/>
+    <Abnormality ID="HUNTINGHORN_030_00" Name="Bonus rés. feu (G)"/>
+    <Abnormality ID="HUNTINGHORN_030_01" Name="Bonus rés. feu (MAX)"/>
+    <Abnormality ID="HUNTINGHORN_031_00" Name="Bonus rés. eau (P)"/>
+    <Abnormality ID="HUNTINGHORN_031_01" Name="Bonus rés. eau (M)"/>
+    <Abnormality ID="HUNTINGHORN_032_00" Name="Bonus rés. eau (G)"/>
+    <Abnormality ID="HUNTINGHORN_032_01" Name="Bonus rés. eau (MAX)"/>
+    <Abnormality ID="HUNTINGHORN_033_00" Name="Bonus rés. foudre (P)"/>
+    <Abnormality ID="HUNTINGHORN_033_01" Name="Bonus rés. foudre (M)"/>
+    <Abnormality ID="HUNTINGHORN_034_00" Name="Bonus rés. foudre (G)"/>
+    <Abnormality ID="HUNTINGHORN_034_01" Name="Bonus rés. foudre (MAX)"/>
+    <Abnormality ID="HUNTINGHORN_035_00" Name="Bonus rés. glace (P)"/>
+    <Abnormality ID="HUNTINGHORN_035_01" Name="Bonus rés. glace (M)"/>
+    <Abnormality ID="HUNTINGHORN_036_00" Name="Bonus rés. glace (G)"/>
+    <Abnormality ID="HUNTINGHORN_036_01" Name="Bonus rés. glace (MAX)"/>
+    <Abnormality ID="HUNTINGHORN_037_00" Name="Bonus rés. dragon (P)"/>
+    <Abnormality ID="HUNTINGHORN_037_01" Name="Bonus rés. dragon (M)"/>
+    <Abnormality ID="HUNTINGHORN_038_00" Name="Bonus rés. dragon (G)"/>
+    <Abnormality ID="HUNTINGHORN_038_01" Name="Bonus rés. dragon (MAX)"/>
+    <Abnormality ID="HUNTINGHORN_039_00" Name="Bonus attaque élém."/>
+    <Abnormality ID="HUNTINGHORN_040_00" Name="Anti-fléau"/>
+    <Abnormality ID="HUNTINGHORN_041_00" Name="Effet Inconnu"/>
+    <Abnormality ID="HUNTINGHORN_043_00" Name="Anti-chutes"/>
+    <Abnormality ID="HUNTINGHORN_045_00" Name="Bonus résistance fléaux"/>
+    <Abnormality ID="HUNTINGHORN_046_00" Name="Bonus affinité"/>
+    <Abnormality ID="HUNTINGHORN_047_00" Name="Anti-afflictions"/>
+    <Abnormality ID="HUNTINGHORN_048_00" Name="Protection ouïe (P) / Anti-bourrasque"/>
+    <Abnormality ID="HUNTINGHORN_049_00" Name="Bonus attaque élémentaire (afflictions)"/>
+    <Abnormality ID="HUNTINGHORN_053_00" Name="Bonus : end. max / récup. vie"/>
+    <Abnormality ID="HUNTINGHORN_054_00" Name="Récup. vie : durée étendue"/>
+    <Abnormality ID="HUNTINGHORN_055_00" Name="Bonus : vitesse / invulnérabilité"/>
+    <Abnormality ID="HUNTINGHORN_056_00" Name="Bonus : efficacité élém."/>
+    <Abnormality ID="HUNTINGHORN_943_00" Name="Bonus : attaques élém."/>
+    <Abnormality ID="PALICO_000_00" Name="Réanimation"/>
+    <Abnormality ID="PALICO_001_00" Name="Bonus attaque (P)"/>
+    <Abnormality ID="PALICO_002_00" Name="Bonus attaque (M)"/>
+    <Abnormality ID="PALICO_003_00" Name="Bonus défense (P)"/>
+    <Abnormality ID="PALICO_004_00" Name="Bonus défense (M)"/>
+    <Abnormality ID="PALICO_005_00" Name="Bonus affinité"/>
+    <Abnormality ID="PALICO_006_00" Name="Récupération vie"/>
+    <Abnormality ID="PALICO_007_00" Name="Bonus vie"/>
+    <Abnormality ID="PALICO_008_00" Name="Bonus endurance"/>
+    <Abnormality ID="PALICO_009_00" Name="Effet Inconnu"/>
+    <Abnormality ID="PALICO_010_00" Name="Protection divine"/>
+    <Abnormality ID="PALICO_011_00" Name="Protection divine"/>
+    <Abnormality ID="PALICO_012_00" Name="Anti-étourdissement"/>
+    <Abnormality ID="PALICO_013_00" Name="Anti-paralysie"/>
+    <Abnormality ID="PALICO_014_00" Name="Anti-séisme"/>
+    <Abnormality ID="PALICO_015_00" Name="Protection ouïe"/>
+    <Abnormality ID="PALICO_016_00" Name="Anti-bourrasque"/>
+    <Abnormality ID="PALICO_017_00" Name="Dégâts environ. annulés"/>
+    <Abnormality ID="PALICO_018_00" Name="Effet Inconnu"/>
+    <Abnormality ID="DEBUFF_000_00" Name="Venin"/>
+    <Abnormality ID="DEBUFF_001_00" Name="Inconnu"/>
+    <Abnormality ID="DEBUFF_002_00" Name="Inconnu"/>
+    <Abnormality ID="DEBUFF_003_00" Name="Inconnu"/>
+    <Abnormality ID="DEBUFF_004_00" Name="Fléau-feu"/>
+    <Abnormality ID="DEBUFF_005_00" Name="Fléau-foudre"/>
+    <Abnormality ID="DEBUFF_006_00" Name="Fléau-eau"/>
+    <Abnormality ID="DEBUFF_007_00" Name="Fléau-glace"/>
+    <Abnormality ID="DEBUFF_008_00" Name="Fléau-dragon"/>
+    <Abnormality ID="DEBUFF_009_00" Name="Hémorragie"/>
+    <Abnormality ID="DEBUFF_010_00" Name="Récup. Hémorragie"/>
+    <Abnormality ID="DEBUFF_011_00" Name="Miasme"/>
+    <Abnormality ID="DEBUFF_012_00" Name="Défense diminuée"/>
+    <Abnormality ID="DEBUFF_014_00" Name="Défense élém. diminuée"/>
+    <Abnormality ID="DEBUFF_016_00" Name="Pas d&apos;objet"/>
+    <Abnormality ID="DEBUFF_017_00" Name="Fléau-explosion"/>
+    <Abnormality ID="DEBUFF_020_00" Name="Supplice-explosion"/>
+    <Abnormality ID="MISC_000_00" Name="Potion de vitalité"/>
+    <Abnormality ID="MISC_001_00" Name="Chenille-litchi"/>
+    <Abnormality ID="MISC_002_00" Name="Récupération vie"/>
+    <Abnormality ID="MISC_004_00" Name="Graine de force"/>
+    <Abnormality ID="MISC_004_01" Name="Philtre du diable"/>
+    <Abnormality ID="MISC_008_00" Name="Graine de ténacité"/>
+    <Abnormality ID="MISC_008_01" Name="Philtre de métale"/>
+    <Abnormality ID="MISC_013_00" Name="Poudre du démon"/>
+    <Abnormality ID="MISC_014_00" Name="Poudre de pierre"/>
+    <Abnormality ID="MISC_015_00" Name="Potion du démon"/>
+    <Abnormality ID="MISC_015_01" Name="Potion du démon"/>
+    <Abnormality ID="MISC_015_02" Name="Potion du démon +"/>
+    <Abnormality ID="MISC_016_00" Name="Potion de pierre"/>
+    <Abnormality ID="MISC_016_01" Name="Potion de pierre"/>
+    <Abnormality ID="MISC_016_02" Name="Potion de pierre +"/>
+    <Abnormality ID="MISC_023_00" Name="Boisson fraiche"/>
+    <Abnormality ID="MISC_024_00" Name="Boisson chaude"/>
+    <Abnormality ID="MISC_026_00" Name="Immunisateur"/>
+    <Abnormality ID="MISC_027_00" Name="Résistance glace"/>
+    <Abnormality ID="MISC_034_00" Name="Énergicône"/>
+    <Abnormality ID="MISC_035_00" Name="Résistance glace (G)"/>
+    <Abnormality ID="MISC_073_00" Name="Bonus attaque + défense (S)"/>
+  </Abnormalities>
+</Strings>
