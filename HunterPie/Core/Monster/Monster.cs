@@ -13,6 +13,7 @@ namespace HunterPie.Core {
         private float _currentHP;
         private float _Stamina;
         private bool _IsTarget;
+        private int _IsSelect; //0 = None, 1 = This, 2 = Other
         private float _enrageTimer = 0;
         private float _SizeMultiplier;
         
@@ -89,6 +90,16 @@ namespace HunterPie.Core {
             set {
                 if (value != _IsTarget) {
                     _IsTarget = value;
+                    _onTargetted();
+                }
+            }
+        }
+        public int IsSelect
+        {
+            get { return _IsSelect; }
+            set {
+                if (value != _IsSelect) {
+                    _IsSelect = value;
                     _onTargetted();
                 }
             }
@@ -311,6 +322,17 @@ namespace HunterPie.Core {
         private void GetTargetMonsterAddress() {
             Int64 TargettedMonsterAddress = Scanner.READ_MULTILEVEL_PTR(Address.BASE + Address.MONSTER_SELECTED_OFFSET, Address.Offsets.MonsterSelectedOffsets);
             this.IsTarget = TargettedMonsterAddress == this.MonsterAddress;
+
+            Int64 selectedPtr = Scanner.READ_LONGLONG(Address.BASE + 0x4ECB740);
+            bool isSelect = Scanner.READ_LONGLONG(selectedPtr + 0x128) != 0x0 && Scanner.READ_LONGLONG(selectedPtr + 0x130) != 0x0 && Scanner.READ_LONGLONG(selectedPtr + 0x160) != 0x0;
+            //Int64 SelectedMonsterAddress = Scanner.READ_LONGLONG(selectedPtr + 0x148); // don't actually need this as it will be the same as TargettedMonsterAddress if isSelect is true
+            if (!isSelect) {
+                this.IsSelect = 0; // nothing is selected
+            } else if (TargettedMonsterAddress == this.MonsterAddress) {
+                this.IsSelect = 1; // this monster is selected
+            } else {
+                this.IsSelect = 2; // another monster is selected
+            }
         }
 
         private void CreateMonsterParts(int numberOfParts) {
