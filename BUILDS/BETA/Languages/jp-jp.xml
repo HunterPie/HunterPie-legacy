@@ -415,7 +415,7 @@
       <String ID="MESSAGE_DISCORD_JOINING" Name="セッションに接続中..."/>
       
       <String ID="MESSAGE_MONSTER_DATA_LOAD" Name="モンスターデータの読み込み完了"/>
-      <String ID="MESSAGE_ABNORMALITIES_DATA_LOAD" Name="Loaded abnormalities data"/>
+      <String ID="MESSAGE_ABNORMALITIES_DATA_LOAD" Name="状態異常データの読み込み完了"/>
       <String ID="MESSAGE_PLAYER_SCANNER_INITIALIZED" Name="プレイヤー情報スキャナの初期化完了"/>
       <String ID="MESSAGE_HUNTERPIE_INITIALIZED" Name="HunterPie 初期化完了!"/>
       <String ID="MESSAGE_GAME_SCANNER_INITIALIZED" Name="ゲーム情報スキャナの初期化完了"/>
