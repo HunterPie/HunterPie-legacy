@@ -423,7 +423,7 @@
       <String ID="MESSAGE_LAUNCH_ERROR" Name="Failed to launch Monster Hunter World."/>
       <String ID="MESSAGE_UPDATE_ERROR" Name="Failed to update HunterPie. Check if you're connected to the internet."/>
       <String ID="MESSAGE_THEME_NOT_FOUND_ERROR" Name="Failed to find theme: {THEME_NAME}"/>
-      <String ID="MESSAGE_THEME_NOT_LOAD_ERROR" Name="Failed to load custome theme!"/>
+      <String ID="MESSAGE_THEME_NOT_LOAD_ERROR" Name="Failed to load custom theme!"/>
     </Console>
     <Settings>
       <!-- General -->

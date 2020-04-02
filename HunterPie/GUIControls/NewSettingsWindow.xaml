@@ -141,7 +141,7 @@
                                     <Binding Mode="OneTime" XPath="Settings/String[@ID='STATIC_UPDATEBRANCH']/@Name"/>
                                 </TextBlock.Text>
                             </TextBlock>
-                            <ComboBox x:Name="branchesCombobox" Foreground="WhiteSmoke" Style="{StaticResource ComboBoxFlatStyle}" SelectedIndex="1" Width="387" Height="27" Canvas.Left="113">
+                            <ComboBox x:Name="branchesCombobox" Foreground="WhiteSmoke" Style="{StaticResource ComboBoxFlatStyle}" SelectedIndex="1" Width="352" Height="27" Canvas.Left="148" HorizontalAlignment="Right">
                                 <ComboBox.Items>
                                     <System:String>master</System:String>
                                     <System:String>BETA</System:String>
