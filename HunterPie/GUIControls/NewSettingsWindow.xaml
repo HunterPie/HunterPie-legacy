@@ -199,6 +199,14 @@
                                 <Binding XPath="Settings/String[@ID='STATIC_GAMEPATH_DESC']/@Name"/>
                             </Canvas.ToolTip>
                         </Canvas>
+                        <custom:Switcher x:Name="switchEnableSessionIDFileWrite" HorizontalAlignment="Center" MinWidth="500">
+                            <custom:Switcher.Text>
+                                <Binding XPath="Settings/String[@ID='ENABLE_SESSIONID_FILE_WRITE']/@Name"/>
+                            </custom:Switcher.Text>
+                            <custom:Switcher.ToolTip>
+                                <Binding XPath="Settings/String[@ID='ENABLE_SESSIONID_FILE_WRITE_DESC']/@Name"/>
+                            </custom:Switcher.ToolTip>
+                        </custom:Switcher>
                     </StackPanel>
                 </ScrollViewer>
             </TabItem>

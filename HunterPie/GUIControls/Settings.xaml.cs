@@ -137,6 +137,7 @@ namespace HunterPie.GUIControls {
             settings.HunterPie.Language = (string)settingsUI.LanguageFilesCombobox.SelectedItem;
             settings.HunterPie.MinimizeToSystemTray = settingsUI.switchEnableMinimizeToSystemTray.IsEnabled;
             settings.HunterPie.StartHunterPieMinimized = settingsUI.switchEnableStartMinimized.IsEnabled;
+            settings.HunterPie.Options.WriteSessionIDToFile = settingsUI.switchEnableSessionIDFileWrite.IsEnabled;
 
             // Debug
             settings.HunterPie.Debug.ShowDebugMessages = settingsUI.switchEnableDebugMessages.IsEnabled;
