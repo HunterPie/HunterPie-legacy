@@ -1,0 +1,77 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<doc>
+  <assembly>
+    <name>Microsoft.Activities.Build</name>
+  </assembly>
+  <members>
+    <member name="T:Microsoft.Activities.Build.WorkflowBuildMessageTask">
+      <summary>Specifies information about the workflow build message task.</summary>
+    </member>
+    <member name="M:Microsoft.Activities.Build.WorkflowBuildMessageTask.#ctor">
+      <summary>Initializes a new instance of the <see cref="T:Microsoft.Activities.Build.WorkflowBuildMessageTask" /> class.</summary>
+    </member>
+    <member name="M:Microsoft.Activities.Build.WorkflowBuildMessageTask.Execute">
+      <summary>Indicates whether the workflow build message task executes.</summary>
+      <returns>True if the workflow build message task executes; otherwise, false.</returns>
+    </member>
+    <member name="P:Microsoft.Activities.Build.WorkflowBuildMessageTask.MessageType">
+      <summary>Gets or sets the message type.</summary>
+      <returns>The message type.</returns>
+    </member>
+    <member name="P:Microsoft.Activities.Build.WorkflowBuildMessageTask.ResourceName">
+      <summary>Gets or sets the resource name.</summary>
+      <returns>The resource name.</returns>
+    </member>
+    <member name="T:Microsoft.Activities.Build.Debugger.DebugBuildExtension">
+      <summary> Build Extension for Workflow debugger support. </summary>
+    </member>
+    <member name="M:Microsoft.Activities.Build.Debugger.DebugBuildExtension.#ctor">
+      <summary>Initializes a new instance of the <see cref="T:Microsoft.Activities.Build.Debugger.DebugBuildExtension" /> class.</summary>
+    </member>
+    <member name="M:Microsoft.Activities.Build.Debugger.DebugBuildExtension.Execute(Microsoft.Build.Tasks.Xaml.ClassData,Microsoft.Build.Tasks.Xaml.XamlBuildTypeGenerationExtensionContext)">
+      <summary>Indicates whether the debug symbol with specified checksum updates.</summary>
+      <returns>True if the debug symbol with specified checksum updates; otherwise, false.</returns>
+      <param name="classData">Class data to add the checksum.</param>
+      <param name="buildContext">The build context</param>
+    </member>
+    <member name="T:Microsoft.Activities.Build.Expressions.ExpressionsBuildExtension">
+      <summary>Specifies information about the expressions build extension.</summary>
+    </member>
+    <member name="M:Microsoft.Activities.Build.Expressions.ExpressionsBuildExtension.#ctor">
+      <summary>Initializes a new instance of the <see cref="T:Microsoft.Activities.Build.Expressions.ExpressionsBuildExtension" /> class.</summary>
+    </member>
+    <member name="M:Microsoft.Activities.Build.Expressions.ExpressionsBuildExtension.Execute(Microsoft.Build.Tasks.Xaml.XamlBuildTypeInspectionExtensionContext)">
+      <summary>Indicates whether the expressions build extension with specified context executes.</summary>
+      <returns>True if the expressions build extension with specified context executes; otherwise, false.</returns>
+      <param name="buildContext">The context for the build extensions.</param>
+    </member>
+    <member name="T:Microsoft.Activities.Build.Validation.DeferredValidationTask">
+      <summary>Represents a task for deferring validation.</summary>
+    </member>
+    <member name="M:Microsoft.Activities.Build.Validation.DeferredValidationTask.#ctor">
+      <summary>Initializes a new instance of the <see cref="T:Microsoft.Activities.Build.Validation.DeferredValidationTask" /> class.</summary>
+    </member>
+    <member name="P:Microsoft.Activities.Build.Validation.DeferredValidationTask.DeferredValidationErrorsFilePath">
+      <summary>Gets or sets the location of the validation to be deferred.</summary>
+      <returns>The location of the validation to be deferred.</returns>
+    </member>
+    <member name="M:Microsoft.Activities.Build.Validation.DeferredValidationTask.Execute">
+      <summary>Executes the <see cref="T:Microsoft.Activities.Build.Validation.DeferredValidationTask" />.</summary>
+      <returns>The result of the validation.</returns>
+    </member>
+    <member name="T:Microsoft.Activities.Build.Validation.ReportDeferredValidationErrorsTask">
+      <summary>Represents a task that reports any deferred validation errors.</summary>
+    </member>
+    <member name="M:Microsoft.Activities.Build.Validation.ReportDeferredValidationErrorsTask.#ctor">
+      <summary>Initializes a new instance of the <see cref="T:Microsoft.Activities.Build.Validation.ReportDeferredValidationErrorsTask" /> class.</summary>
+    </member>
+    <member name="P:Microsoft.Activities.Build.Validation.ReportDeferredValidationErrorsTask.DeferredValidationErrorsFilePath">
+      <summary>Gets or sets the location where the deferred validation error were located.</summary>
+      <returns>The location where the deferred validation error were located.</returns>
+    </member>
+    <member name="M:Microsoft.Activities.Build.Validation.ReportDeferredValidationErrorsTask.Execute">
+      <summary>Executes the <see cref="T:Microsoft.Activities.Build.Validation.ReportDeferredValidationErrorsTask" />.</summary>
+      <returns>The result of the execution.</returns>
+    </member>
+  </members>
+</doc>
