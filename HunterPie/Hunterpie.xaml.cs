@@ -364,7 +364,7 @@ namespace HunterPie {
 
         private void OnSessionChange(object source, EventArgs args) {
             Debugger.Log($"SESSION: {MonsterHunter.Player.SessionID}");
-
+            File.WriteAllText("C:\\session_id.txt", $"{MonsterHunter.Player.SessionID}");
         }
 
         public void OnZoneChange(object source, EventArgs e) {

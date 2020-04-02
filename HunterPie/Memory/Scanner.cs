@@ -134,6 +134,7 @@ namespace HunterPie.Memory {
                 if (MonsterHunter == null) {
                     if (!lockSpam) {
                         Logger.Debugger.Log("HunterPie is ready! Waiting for game process to start...");
+                        Logger.Debugger.Log("HunterPie is ready! Waiting for game process to start...");
                         lockSpam = true;
                     }
                     if (GameIsRunning) {
