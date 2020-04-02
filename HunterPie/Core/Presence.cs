@@ -129,7 +129,7 @@ namespace HunterPie.Core {
             if (!isVisible) return;
 
             // TODO: Implement join session?
-            if (ctx.Player.SteamSession != 0 && ctx.Player.InPeaceZone) {
+            if (ctx.Player.SteamSession != 0 && ctx.Player.InPeaceZone && UserSettings.PlayerConfig.RichPresence.LetPeopleJoinSession) {
                 Instance.Secrets = new Secrets() {
                     JoinSecret = $"{ctx.Player.SteamSession}/{ctx.Player.SteamID}"
                 };

@@ -24,6 +24,7 @@ namespace HunterPie.GUIControls {
             PopulateBuffTrays();
             PopulateBranchBox();
             PopulateLanguageBox();
+            
         }
 
         public void UnhookEvents() {

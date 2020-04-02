@@ -95,7 +95,7 @@
         </ResourceDictionary>
     </UserControl.Resources>
     <Grid>
-        <Button Style="{StaticResource buttons_settings}" x:Name="saveSettings" Panel.ZIndex="1" Content="{Binding XPath=/Strings/Client/Settings/String[@ID\=\'STATIC_BUTTON_SAVE\']/@Name}" Margin="0,0,7,5" Foreground="#FFD4D4D4" Cursor="Hand" FontFamily="Segoe UI" FontSize="16" Click="saveSettings_Click" FontWeight="Bold" BorderBrush="{x:Null}" Background="#FFAF0000" HorizontalAlignment="Right" Width="89" Height="36" VerticalAlignment="Bottom"/>
+        <Button Style="{StaticResource buttons_settings}" x:Name="saveSettings" Panel.ZIndex="1" Content="{Binding XPath=/Strings/Client/Settings/String[@ID\=\'STATIC_BUTTON_SAVE\']/@Name}" Margin="0,0,7,5" Foreground="#FFD4D4D4" Cursor="Hand" FontFamily="Segoe UI" FontSize="16" Click="saveSettings_Click" MinWidth="76" FontWeight="Bold" BorderBrush="{x:Null}" Background="#FFAF0000" HorizontalAlignment="Right" Height="36" VerticalAlignment="Bottom" Padding="5,2"/>
         <local:NewSettingsWindow x:Name="SettingsBox"/>
     </Grid>
 </UserControl>

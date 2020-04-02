@@ -7,7 +7,7 @@
              mc:Ignorable="d" 
              d:DesignHeight="32" DataContext="{StaticResource Localization}">
     <Canvas Width="200">
-        <TextBlock Height="32" Text="{Binding XPath=/Strings/Client/Settings/String[@ID\=\'STATIC_POSITION\']/@Name}" FontSize="14" Foreground="WhiteSmoke" Padding="0,5,0,0"/>
+        <TextBlock Height="32" Text="{Binding Mode=OneTime, XPath=/Strings/Client/Settings/String[@ID\=\'STATIC_POSITION\']/@Name}" FontSize="14" Foreground="WhiteSmoke" Padding="0,5,0,0"/>
         <TextBlock Height="13" Text="X" FontSize="10" Foreground="WhiteSmoke" Padding="0,0,0,0" Canvas.Top="20" Canvas.Left="57" Width="62" TextAlignment="Center"/>
         <TextBlock Height="13" Text="Y" FontSize="10" Foreground="WhiteSmoke" Padding="0,0,0,0" Canvas.Top="20" Canvas.Left="124" Width="62" TextAlignment="Center"/>
         <TextBox x:Name="PosX" Text="0" TextWrapping="Wrap" Background="{x:Null}" Foreground="WhiteSmoke" BorderBrush="#FFABADB3" BorderThickness="0,0,0,1" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" HorizontalAlignment="Right" Width="63" Canvas.Left="57" Height="22" SelectionBrush="#FFD31D1D" PreviewTextInput="NumberValidation" AllowDrop="False" LostFocus="LostFocus" GotFocus="GotFocus"/>

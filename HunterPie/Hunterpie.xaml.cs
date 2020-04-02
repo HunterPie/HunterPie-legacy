@@ -36,28 +36,35 @@ namespace HunterPie {
         HwndSource _source;
 
         public Hunterpie() {
-#if RELEASE
+
             if (CheckIfHunterPieOpen()) {
                 this.Close();
                 return;
             }
-#endif
+
             AppDomain.CurrentDomain.UnhandledException += ExceptionLogger;
-            // Initialize debugger and theme
+            // Initialize debugger and player config
             Debugger.InitializeDebugger();
             UserSettings.InitializePlayerConfig();
-            LoadCustomTheme();
-            Debugger.LoadNewColors();
+
             // Initialize localization
             GStrings.InitStrings(UserSettings.PlayerConfig.HunterPie.Language);
 
+            // Load custom theme and console colors
+            LoadCustomTheme();
+            Debugger.LoadNewColors();
+            
             InitializeComponent();
             OpenDebugger();
             // Initialize everything under this line
             if (!CheckIfUpdateEnableAndStart()) return;
+
             InitializeTrayIcon();
+
             // Updates version_text
             this.version_text.Content = GStrings.GetLocalizationByXPath("/Console/String[@ID='CONSOLE_VERSION']").Replace("{HunterPie_Version}", HUNTERPIE_VERSION).Replace("{HunterPie_Branch}", UserSettings.PlayerConfig.HunterPie.Update.Branch);
+            
+            // Initializes the rest of HunterPie
             LoadData();
             Debugger.Warn(GStrings.GetLocalizationByXPath("/Console/String[@ID='MESSAGE_HUNTERPIE_INITIALIZED']"));
             SetHotKeys();
@@ -364,7 +371,9 @@ namespace HunterPie {
 
         private void OnSessionChange(object source, EventArgs args) {
             Debugger.Log($"SESSION: {MonsterHunter.Player.SessionID}");
-
+            if (!string.IsNullOrEmpty(MonsterHunter.Player.SessionID)) {
+                File.WriteAllText(Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "Sessions.txt"), MonsterHunter.Player.SessionID);
+            }
         }
 
         public void OnZoneChange(object source, EventArgs e) {

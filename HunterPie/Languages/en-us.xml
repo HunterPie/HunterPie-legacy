@@ -453,7 +453,7 @@
       <String ID="ENABLE_RPC_HEALTH" Name="Show monster health percentage"/>
       <String ID="ENABLE_RPC_HEALTH_DESC" Name="If enabled, HunterPie will show the health percentage of the monster you're hunting."/>
       <String ID="ENABLE_PEOPLE_JOIN" Name="Let people ask to join my online session"/>
-      <String ID="ENABLE_PEOPLE_JOIN" Name="If enabled, people will be able to ask to join your Monster Hunter session."/>
+      <String ID="ENABLE_PEOPLE_JOIN_DESC" Name="If enabled, people will be able to ask to join your Monster Hunter session."/>
       <!-- Overlay -->
       <String ID="ENABLE_OVERLAY" Name="Enable In-Game Overlay"/>
       <String ID="ENABLE_OVERLAY_DESC" Name="If enabled, the Overlay will be visible in-game."/>
@@ -494,7 +494,7 @@
       <String ID="ENABLE_BREAKABLE_PARTS" Name="Show Monster breakable parts"/>
       <String ID="ENABLE_BREAKABLE_PARTS_DESC" Name="If enabled, severable, breakable and removable parts will be displayed under the monster bar."/>
       <String ID="ENABLE_AILMENTS" Name="Show Monster ailments"/>
-      <String ID="ENABLE_AILMENTS_DESC" Name="If enable, monster ailments will be displayed under the monster bar."/>
+      <String ID="ENABLE_AILMENTS_DESC" Name="If enabled, monster ailments will be displayed under the monster bar."/>
       <String ID="ENABLE_MONSTER_PARTS" Name="Show Monster parts"/>
       <String ID="ENABLE_MONSTER_PARTS_DESC" Name="If enabled, monster flinch parts will be displayed under the monster bar."/>
       <String ID="ENABLE_MONSTER_PART_HEAD" Name="Enable Head Health"/>

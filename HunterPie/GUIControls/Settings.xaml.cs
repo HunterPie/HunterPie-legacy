@@ -40,8 +40,8 @@ namespace HunterPie.GUIControls {
             settingsUI.switchEnableAutoUpdate.IsEnabled = settings.HunterPie.Update.Enabled;
             settingsUI.branchesCombobox.SelectedItem = _Instance.SettingsBox.branchesCombobox.Items.Contains(settings.HunterPie.Update.Branch) ? settings.HunterPie.Update.Branch : "master";
             settingsUI.ThemeFilesCombobox.SelectedItem = settings.HunterPie.Theme;
-            settingsUI.selectPathBttn.Content = settings.HunterPie.Launch.GamePath == "" ? "Select path" : settings.HunterPie.Launch.GamePath.Length > 15 ? "..." + settings.HunterPie.Launch.GamePath.Substring((settings.HunterPie.Launch.GamePath.Length / 2) - 10) : settings.HunterPie.Launch.GamePath;
-            settingsUI.argsTextBox.Text = settings.HunterPie.Launch.LaunchArgs == "" ? "No arguments" : settings.HunterPie.Launch.LaunchArgs;
+            settingsUI.selectPathBttn.Content = settings.HunterPie.Launch.GamePath == "" ? GStrings.GetLocalizationByXPath("/Settings/String[@ID='STATIC_GAMEPATH_UNSELECTED']") : settings.HunterPie.Launch.GamePath.Length > 15 ? "..." + settings.HunterPie.Launch.GamePath.Substring((settings.HunterPie.Launch.GamePath.Length / 2) - 10) : settings.HunterPie.Launch.GamePath;
+            settingsUI.argsTextBox.Text = settings.HunterPie.Launch.LaunchArgs == "" ? GStrings.GetLocalizationByXPath("/Settings/String[@ID='STATIC_LAUNCHARGS_NOARGS']") : settings.HunterPie.Launch.LaunchArgs;
             settingsUI.switchEnableCloseWhenExit.IsEnabled = settings.HunterPie.Options.CloseWhenGameCloses;
             settingsUI.LanguageFilesCombobox.SelectedItem = settings.HunterPie.Language;
             settingsUI.switchEnableMinimizeToSystemTray.IsEnabled = settings.HunterPie.MinimizeToSystemTray;
@@ -55,6 +55,7 @@ namespace HunterPie.GUIControls {
             // Rich Presence
             settingsUI.switchEnableRichPresence.IsEnabled = settings.RichPresence.Enabled;
             settingsUI.switchShowMonsterHealth.IsEnabled = settings.RichPresence.ShowMonsterHealth;
+            settingsUI.switchLetPeopleJoinSession.IsEnabled = settings.RichPresence.LetPeopleJoinSession;
             
             // Overlay
             settingsUI.switchEnableOverlay.IsEnabled = settings.Overlay.Enabled;
@@ -132,7 +133,7 @@ namespace HunterPie.GUIControls {
             settings.HunterPie.Update.Branch = (string)settingsUI.branchesCombobox.SelectedItem;
             settings.HunterPie.Theme = (string)settingsUI.ThemeFilesCombobox.SelectedItem;
             settings.HunterPie.Launch.GamePath = settingsUI.fullGamePath;
-            settings.HunterPie.Launch.LaunchArgs = settingsUI.fullLaunchArgs == "No arguments" ? "" : settingsUI.fullLaunchArgs;
+            settings.HunterPie.Launch.LaunchArgs = settingsUI.fullLaunchArgs == GStrings.GetLocalizationByXPath("/Settings/String[@ID='STATIC_LAUNCHARGS_NOARGS']") ? "" : settingsUI.fullLaunchArgs;
             settings.HunterPie.Options.CloseWhenGameCloses = settingsUI.switchEnableCloseWhenExit.IsEnabled;
             settings.HunterPie.Language = (string)settingsUI.LanguageFilesCombobox.SelectedItem;
             settings.HunterPie.MinimizeToSystemTray = settingsUI.switchEnableMinimizeToSystemTray.IsEnabled;
@@ -146,6 +147,7 @@ namespace HunterPie.GUIControls {
             // Rich Presence
             settings.RichPresence.Enabled = settingsUI.switchEnableRichPresence.IsEnabled;
             settings.RichPresence.ShowMonsterHealth = settingsUI.switchShowMonsterHealth.IsEnabled;
+            settings.RichPresence.LetPeopleJoinSession = settingsUI.switchLetPeopleJoinSession.IsEnabled;
 
             // Overlay
             settings.Overlay.Enabled = settingsUI.switchEnableOverlay.IsEnabled;

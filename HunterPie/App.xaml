@@ -9,7 +9,7 @@
                 <ResourceDictionary Source="/Resources/ScrollbarStyle.xaml"/>
                 <ResourceDictionary Source="/Resources/DefaultTheme.xaml"/>
             </ResourceDictionary.MergedDictionaries>
-            <XmlDataProvider x:Key="Localization" XPath="Strings/Client" />
+            <XmlDataProvider x:Key="Localization" XPath="Strings/Client"/>
         </ResourceDictionary>
     </Application.Resources>
 </Application>

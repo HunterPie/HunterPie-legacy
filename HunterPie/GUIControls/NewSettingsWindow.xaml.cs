@@ -5,7 +5,7 @@ using System.Windows.Controls;
 using System.Windows.Input;
 using System.IO;
 using HunterPie.Core;
-
+using System.Windows.Media.Animation;
 
 namespace HunterPie.GUIControls {
     /// <summary>
@@ -26,6 +26,7 @@ namespace HunterPie.GUIControls {
             PopulateLanguageBox();
             PopulateThemesBox();
             PopulateMonsterBox();
+            PopulateDockBox();
         }
 
         public void UnhookEvents() {
@@ -42,8 +43,8 @@ namespace HunterPie.GUIControls {
         }
 
         private void PopulateDockBox() {
-            MonsterBarDock.Items.Add(GStrings.GetLocalizationByXPath("/Settings/String[@ID='STATIC_MONSTER_DOCK_0']"));
-            MonsterBarDock.Items.Add(GStrings.GetLocalizationByXPath("/Settings/String[@ID='STATIC_MONSTER_DOCK_1']"));
+            MonsterBarDock.Items.Add(GStrings.GetLocalizationByXPath("/Settings/String[@ID='STATIC_MONSTER_BAR_DOCK_0']"));
+            MonsterBarDock.Items.Add(GStrings.GetLocalizationByXPath("/Settings/String[@ID='STATIC_MONSTER_BAR_DOCK_1']"));
         }
 
         private void PopulateLanguageBox() {
@@ -61,7 +62,10 @@ namespace HunterPie.GUIControls {
         private void selectPathBttn_Click(object sender, System.Windows.RoutedEventArgs e) {
             using (var filePicker = new System.Windows.Forms.OpenFileDialog()) {
                 Button source = (Button)sender;
+
+                filePicker.Filter = "Executable|MonsterHunterWorld.exe";
                 System.Windows.Forms.DialogResult result = filePicker.ShowDialog();
+
                 if (result == System.Windows.Forms.DialogResult.OK) {
                    
                     fullGamePath = filePicker.FileName;
@@ -213,6 +217,6 @@ namespace HunterPie.GUIControls {
         private void SwitchEnableParts_MouseDown(object sender, MouseButtonEventArgs e) {
             PartsCustomizer.IsEnabled = switchEnableParts.IsEnabled;
         }
-
+        
     }
 }
