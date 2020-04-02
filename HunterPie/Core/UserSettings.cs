@@ -132,7 +132,7 @@ namespace HunterPie.Core {
 
             public class Options {
                 public bool CloseWhenGameCloses { get; set; } = false;
-                public bool WriteSessionIDToFile { get; set; } = true;
+                public bool WriteSessionIDToFile { get; set; } = false;
                 public string SessionIDFilePath { get; set; } = "./SessionId.txt";
             }
 
