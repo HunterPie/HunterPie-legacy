@@ -1,63 +1,39 @@
-+ Enhancements
-~ Refactoring/Code changes
-- Bugfixes
+**UPDATE 1.0.3.85**
 
-UPDATE 1.0.3.84
+**Localization**
 
-+ Damage meter now shows timer in both modes (DPS and total damage);
-+ Added real time quest timer;
-+ Added links tab in settings window;
-~ Changed some minor styles in settings window;
-- Fixed problem with monster widget health text caused by update 1.0.3.83;
+HunterPie is now fully translatable. Thanks to all translators that have been helping HunterPie become acessible to everyone! If you want to help HunterPie by localizing it to your language, plase read [**this**](https://github.com/Haato3o/HunterPie/wiki/Localization)
 
-UPDATE 1.0.3.83
+**Patch Notes**
 
-+ Added debug options;
-+ Added theme selection box, you can find it in the settings window in General section;
-+ South Korean and Italian translations;
-+ Added some theme presets;
-- Fixed monster widget showing the wrong crown sometimes;
-- Fixed problems with HunterPie path when it's launched by another tool;
-- Fixed some bugs in the monster widget that would make HunterPie crash;
-- Fixed some ailments buildup not working properly;
-- Fixed "Launch Game" not actually launching when the user is using Stracker's Loader v1.8.0;
+The patch notes window now uses Markdown! That means all information about the latest update will be way more organized and have a more complete explanation.
 
-UPDATE 1.0.3.82
+**Harvest Box Update**
 
-+ Added MonsterHunterWorld.408899.map;
-+ Added option to increase/decrease opacity of the abnormalities tray background;
-~ Changed the position of buttons in settings;
-- Fixed a typo in one of the rich presence settings tab;
+- Added option to toggle Steam Tracker;
+- Added option to toggle Argosy Tracker;
+- Added option to toggle Tailraiders Tracker;
+- The Steam Tracker now formats the texts properly:
+    - E.g: If you have 80,000 fuel, it will be displayed as 80k;
 
-UPDATE 1.0.3.81
+**Discord Rich Presence**
 
-+ Changed a bunch of stuff in settings window;
-- Fixed some monster widget related bugs that would make HunterPie crash whenever a monster was killed;
+A new feature for the Rich Presence was added. Now people can ask to join your session directly from Discord! You can also disable this function in your HunterPie settings window.
+> **Note:** The person **MUST** have HunterPie in order to join your session, since HunterPie handles both requests and join Discord functions.
 
-UPDATE 1.0.3.80
+A join request will popup when someone requests to join your session.
 
-+ Added monster parts and ailments;
-+ Added the following monster bar modes:
-    + Show all monsters;
-    + Show all monsters but highlight target;
-    + Show only target;
-    + Show all monsters but hide unactive monsters;
-+ Added option to choose animations FPS, set this to a lower number if you're having FPS issues;
-~ Completely changed monsters health design;
-~ Changed monster crown icons;
-~ You can no longer open multiple instances of HunterPie at once;
-~ Some changes to the settings window;
-- Fixed adamant/might seeds icon showing as pills when a pill is consumed first;
-- Fixed abnormalities tray not moving when overlay position is changed;
-- Fixed DPS meter wrong tooltip;
+![Request_Example](https://cdn.discordapp.com/attachments/402557384209203200/695330850077933638/d8224f0efe.png?size=307)
 
-UPDATE 1.0.3.7
+**Debug**
 
-+ Added abnormalities time left text (can be disabled in the abnormalities tray settings window);
-+ Added option to choose the abnormality time left text format;
-+ Added hotkey to hide overlay (you can change the keys in HunterPie's settings);
-~ Changed monster HP to not show decimals;
-~ Discord now shows the targetted monster instead of the monster with lowest HP;
-- Fixed monster health bar not working for Kulve Taroth;
-- Fixed damage meter updating player damage separately, causing damage percentage overflow;
-- Minor fixes to the settings window;
+- Added option to load a custom monster data for debugging purposes.
+
+**Core**
+
+- Latest Session ID is now saved in a Sessions.txt file.
+
+**Bug Fixes**
+
+- Fixed crown problems due to floating precision;
+- Fixed ailments not showing buildup after timer is over;
