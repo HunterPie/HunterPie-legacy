@@ -15,6 +15,7 @@ namespace HunterPie.GUIControls {
         public string fullGamePath = "";
         public string fullMonsterDataPath = "";
         public string fullLaunchArgs = "";
+        public string fullSessionIDFilePath = "";
         private string[] AvailableBranches = new string[2] { "master", "BETA" };
         private KeyboardHook KeyboardInputHook = new KeyboardHook();
 
@@ -74,6 +75,32 @@ namespace HunterPie.GUIControls {
                     source.Content = fullGamePath;
                     
                     
+                }
+                source.Focusable = false;
+            }
+
+        }
+
+        private void selectSessionIDPathBttn_Click(object sender, System.Windows.RoutedEventArgs e)
+        {
+            using (var filePicker = new System.Windows.Forms.OpenFileDialog())
+            {
+                Button source = (Button)sender;
+                System.Windows.Forms.DialogResult result = filePicker.ShowDialog();
+                if (result == System.Windows.Forms.DialogResult.OK)
+                {
+
+                    fullSessionIDFilePath = filePicker.FileName;
+                    if (filePicker.FileName.Length > 15)
+                    {
+                        int i = (fullSessionIDFilePath.Length / 2) - 10;
+                        source.Content = "..." + fullSessionIDFilePath.Substring(i);
+                        source.Focusable = false;
+                        return;
+                    }
+                    source.Content = fullSessionIDFilePath;
+
+
                 }
                 source.Focusable = false;
             }

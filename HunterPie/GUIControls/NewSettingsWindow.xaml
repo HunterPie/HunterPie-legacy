@@ -60,7 +60,7 @@
                         <ControlTemplate TargetType="{x:Type TabItem}">
                             <Border x:Name="PART_Border" Margin="0,0,-5,0" BorderBrush="#FFAF0000" Background="#FF080808" CornerRadius="2,2,0,0">
                                 <ContentPresenter ContentSource="Header" Cursor="Hand"/>
-                                
+
                             </Border>
                             <ControlTemplate.Triggers>
                                 <Trigger Property="IsSelected" Value="True">
@@ -207,6 +207,21 @@
                                 <Binding XPath="Settings/String[@ID='ENABLE_SESSIONID_FILE_WRITE_DESC']/@Name"/>
                             </custom:Switcher.ToolTip>
                         </custom:Switcher>
+                        <Canvas Height="62" HorizontalAlignment="Center" MinWidth="500" Margin="222,0,221,0">
+                            <TextBlock Foreground="WhiteSmoke" Canvas.Top="4" FontFamily="Segoe UI Light">
+                                <TextBlock.Text>
+                                    <Binding XPath="Settings/String[@ID='STATIC_SESSIONIDPATH']/@Name"/>
+                                </TextBlock.Text>
+                            </TextBlock>
+                            <Button x:Name="selectSessionIDPathBttn" Style="{StaticResource ToggleButtonStyle}" Foreground="WhiteSmoke" Background="#FF0F0F0F" Width="355" Height="30" Canvas.Left="145" BorderBrush="{x:Null}" Click="selectSessionIDPathBttn_Click" LostFocus="SelectPathBttn_LostFocus" Cursor="Hand">
+                                <Button.Content>
+                                    <Binding XPath="Settings/String[@ID='STATIC_SESSIONIDPATH_UNSELECTED']/@Name"/>
+                                </Button.Content>
+                            </Button>
+                            <Canvas.ToolTip>
+                                <Binding XPath="Settings/String[@ID='STATIC_SESSIONIDPATH_DESC']/@Name"/>
+                            </Canvas.ToolTip>
+                        </Canvas>
                     </StackPanel>
                 </ScrollViewer>
             </TabItem>
@@ -357,7 +372,7 @@
                                 </TextBlock.Text>
                             </TextBlock>
                             <ComboBox x:Name="MonsterShowModeSelection" Style="{StaticResource ComboBoxFlatStyle}" IsReadOnly="True" Cursor="Hand" HorizontalAlignment="Center" Width="359" FontSize="14" Foreground="#FFF9F9F9" SelectedIndex="0" Canvas.Left="141" Canvas.Top="2">
-                                
+
                             </ComboBox>
                         </StackPanel>
                         <StackPanel Orientation="Horizontal" Height="28" ToolTip="{Binding XPath=/Strings/Client/Settings/String[@ID\=\'STATIC_MONSTER_BAR_MODE_HOTKEY_DESC\']/@Name}" HorizontalAlignment="Center" MinWidth="500">
@@ -604,7 +619,7 @@
                                 <Binding XPath="Settings/String[@ID='ENABLE_ARGOSY_TRACKER_DESC']/@Name"/>
                             </custom:Switcher.ToolTip>
                         </custom:Switcher>
-                            <custom:Switcher x:Name="switchShowTailraidersTracker" MinWidth="500" HorizontalAlignment="Center">
+                        <custom:Switcher x:Name="switchShowTailraidersTracker" MinWidth="500" HorizontalAlignment="Center">
                             <custom:Switcher.Text>
                                 <Binding XPath="Settings/String[@ID='ENABLE_TAILRAIDERS_TRACKER']/@Name"/>
                             </custom:Switcher.Text>
@@ -738,7 +753,7 @@
                                 <TextBlock Text="{Binding XPath=/Strings/Client/Settings/String[@ID\=\'STATIC_HUNTERPIE_DONATIONS\']/@Name}" Padding="0,0,5,0" FontFamily="Segoe UI Light" Foreground="Gray" TextAlignment="Center"/>
                                 <Separator Width="282" Canvas.Left="72" Margin="0" Canvas.Top="12"/>
                             </StackPanel>
-               
+
                             <custom:MinimalButton Width="274" Icon="{StaticResource ICON_PAYPAL}" Text="{Binding XPath=/Strings/Client/Settings/String[@ID\=\'STATIC_HUNTERPIE_PAYPAL\']/@Name}" Link="https://www.paypal.com/cgi-bin/webscr?cmd=_s-xclick&amp;hosted_button_id=EXPGCRVFVC2ZA&amp;source=url" Canvas.Left="44" Canvas.Top="28" Foreground="#FFE4E4E4" FontWeight="Bold" ToolTip="{Binding XPath=/Strings/Client/Settings/String[@ID\=\'STATIC_HUNTERPIE_PAYPAL_DESC\']/@Name}">
                                 <custom:MinimalButton.Color>
                                     <LinearGradientBrush EndPoint="1.5,-7" StartPoint="-0.1,-1">

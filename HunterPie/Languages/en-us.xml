@@ -449,6 +449,9 @@
       <String ID="STATIC_LAUNCHARGS_DESC" Name="Arguments to be used when launching the game. Leave this empty if you don't know what you are doing."/>
       <String ID="ENABLE_SESSIONID_FILE_WRITE" Name="Enable writing Session ID to a file"/>
       <String ID="ENABLE_SESSIONID_FILE_WRITE_DESC" Name="If enabled, the Session ID will be written to a file when it changes."/>
+      <String ID="STATIC_SESSIONIDPATH" Name="Session ID File Path:"/>
+      <String ID="STATIC_SESSIONIDPATH_UNSELECTED" Name="Select Path"/>
+      <String ID="STATIC_SESSIONIDPATH_DESC" Name="Select the file you would like the Session ID written to."/>
       <!-- Discord RPC -->
       <String ID="ENABLE_RPC" Name="Enable Discord Rich Presence"/>
       <String ID="ENABLE_RPC_DESC" Name="If enabled, HunterPie will show your game activity on your Discord status."/>

@@ -35,6 +35,7 @@ namespace HunterPie.GUIControls {
             var settingsUI = _Instance.SettingsBox;
             settingsUI.fullGamePath = settings.HunterPie.Launch.GamePath;
             settingsUI.fullLaunchArgs = settings.HunterPie.Launch.LaunchArgs;
+            settingsUI.fullSessionIDFilePath = settings.HunterPie.Options.SessionIDFilePath;
 
             // HunterPie
             settingsUI.switchEnableAutoUpdate.IsEnabled = settings.HunterPie.Update.Enabled;
@@ -43,9 +44,13 @@ namespace HunterPie.GUIControls {
             settingsUI.selectPathBttn.Content = settings.HunterPie.Launch.GamePath == "" ? "Select path" : settings.HunterPie.Launch.GamePath.Length > 15 ? "..." + settings.HunterPie.Launch.GamePath.Substring((settings.HunterPie.Launch.GamePath.Length / 2) - 10) : settings.HunterPie.Launch.GamePath;
             settingsUI.argsTextBox.Text = settings.HunterPie.Launch.LaunchArgs == "" ? "No arguments" : settings.HunterPie.Launch.LaunchArgs;
             settingsUI.switchEnableCloseWhenExit.IsEnabled = settings.HunterPie.Options.CloseWhenGameCloses;
+            settingsUI.switchEnableSessionIDFileWrite.IsEnabled = settings.HunterPie.Options.WriteSessionIDToFile;
+            settingsUI.selectSessionIDPathBttn.Content = settings.HunterPie.Options.SessionIDFilePath;
             settingsUI.LanguageFilesCombobox.SelectedItem = settings.HunterPie.Language;
             settingsUI.switchEnableMinimizeToSystemTray.IsEnabled = settings.HunterPie.MinimizeToSystemTray;
             settingsUI.switchEnableStartMinimized.IsEnabled = settings.HunterPie.StartHunterPieMinimized;
+            settingsUI.switchEnableSessionIDFileWrite.IsEnabled = settings.HunterPie.Options.WriteSessionIDToFile;
+            settingsUI.selectSessionIDPathBttn.Content = settings.HunterPie.Options.SessionIDFilePath.Length > 15 ? "..." + settings.HunterPie.Options.SessionIDFilePath.Substring((settings.HunterPie.Options.SessionIDFilePath.Length / 2) - 10) : settings.HunterPie.Options.SessionIDFilePath;
 
             // Debug
             settingsUI.switchEnableDebugMessages.IsEnabled = settings.HunterPie.Debug.ShowDebugMessages;
@@ -138,6 +143,7 @@ namespace HunterPie.GUIControls {
             settings.HunterPie.MinimizeToSystemTray = settingsUI.switchEnableMinimizeToSystemTray.IsEnabled;
             settings.HunterPie.StartHunterPieMinimized = settingsUI.switchEnableStartMinimized.IsEnabled;
             settings.HunterPie.Options.WriteSessionIDToFile = settingsUI.switchEnableSessionIDFileWrite.IsEnabled;
+            settings.HunterPie.Options.SessionIDFilePath = settingsUI.fullSessionIDFilePath;
 
             // Debug
             settings.HunterPie.Debug.ShowDebugMessages = settingsUI.switchEnableDebugMessages.IsEnabled;
