@@ -365,7 +365,7 @@ namespace HunterPie {
         private void OnSessionChange(object source, EventArgs args) {
             Debugger.Log($"SESSION: {MonsterHunter.Player.SessionID}");
             if (UserSettings.PlayerConfig.HunterPie.Options.WriteSessionIDToFile) {
-                File.WriteAllText("./session_id.txt", $"{MonsterHunter.Player.SessionID}");
+                File.WriteAllText(UserSettings.PlayerConfig.HunterPie.Options.SessionIDFilePath, MonsterHunter.Player.SessionID);
             }
         }
 
