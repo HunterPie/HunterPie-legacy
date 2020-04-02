@@ -441,9 +441,9 @@
       <String ID="STATIC_LANGUAGEFILE_DESC" Name="Choisissez la langue que vous voulez utilisé pour HunterPie."/>
       <String ID="STATIC_THEMEFILE" Name="Thème :"/>
       <String ID="STATIC_THEMEFILE_DESC" Name="Choisissez le thème que vous voulez utilisé pour HunterPie."/>
-      <String ID="STATIC_GAMEPATH" Name="Fichier du jeu :"/>
-      <String ID="STATIC_GAMEPATH_UNSELECTED" Name="Sélectionner le fichier"/>
-      <String ID="STATIC_GAMEPATH_DESC" Name="Selectionnez le fichier où se trouve MonsterHunterWorld.exe."/>
+      <String ID="STATIC_GAMEPATH" Name="Emplacement du jeu :"/>
+      <String ID="STATIC_GAMEPATH_UNSELECTED" Name="Sélectionner le fichier du jeu."/>
+      <String ID="STATIC_GAMEPATH_DESC" Name="Selectionnez le fichier où se trouve MonsterHunterWorld.exe"/>
       <String ID="STATIC_LAUNCHARGS" Name="Options de lancement :"/>
       <String ID="STATIC_LAUNCHARGS_NOARGS" Name="Pas d'options."/>
       <String ID="STATIC_LAUNCHARGS_DESC" Name="Options à utiliser lors du lancement du jeu. Laissez ce champ vide si vous ne savez pas ce que vous faites."/>
@@ -453,7 +453,7 @@
       <String ID="ENABLE_RPC_HEALTH" Name="Afficher le pourcentage de PV des monstres."/>
       <String ID="ENABLE_RPC_HEALTH_DESC" Name="Activé, HunterPie montrera le pourcentage de PV du monstre que vous chassez."/>
       <String ID="ENABLE_PEOPLE_JOIN" Name="Autoriser les autres joueurs à demander de rejoindre ma session en ligne."/>
-      <String ID="ENABLE_PEOPLE_JOIN_DESC" Name="Activé, les autres joueurs pourront vous demander de rejoindre votre session en ligne."/>
+      <String ID="ENABLE_PEOPLE_JOIN" Name="Activé, les autres joueurs pourront vous demander de rejoindre votre session en ligne."/>
       <!-- Overlay -->
       <String ID="ENABLE_OVERLAY" Name="Activer l'Overlay en jeu."/>
       <String ID="ENABLE_OVERLAY_DESC" Name="Activé, l'Overlay sera visible en jeu."/>
