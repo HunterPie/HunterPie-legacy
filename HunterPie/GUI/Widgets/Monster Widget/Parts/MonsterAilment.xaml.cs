@@ -112,13 +112,16 @@ namespace HunterPie.GUI.Widgets.Monster_Widget.Parts {
             } else {
                 visibility = System.Windows.Visibility.Collapsed;
             }
-            Dispatcher.BeginInvoke(System.Windows.Threading.DispatcherPriority.Render, new Action(() => {
-                AilmentBar.MaxHealth = args.MaxDuration;
-                AilmentBar.Health = Math.Max(0, args.MaxDuration - args.Duration);
-                AilmentText.Text = $"{AilmentBar.Health:0}/{AilmentBar.MaxHealth:0}";
-                this.Visibility = visibility;
-                StartVisibilityTimer();
-            }));
+            if (args.Duration > 0) {
+                Dispatcher.BeginInvoke(System.Windows.Threading.DispatcherPriority.Render, new Action(() =>
+                {
+                    AilmentBar.MaxHealth = args.MaxDuration;
+                    AilmentBar.Health = Math.Max(0, args.MaxDuration - args.Duration);
+                    AilmentText.Text = $"{AilmentBar.Health:0}/{AilmentBar.MaxHealth:0}";
+                    this.Visibility = visibility;
+                    StartVisibilityTimer();
+                }));
+            } else { OnBuildupChange(source, args); } //ensures we switch back to showing buildup
         }
 
         private void OnBuildupChange(object source, MonsterAilmentEventArgs args) {
