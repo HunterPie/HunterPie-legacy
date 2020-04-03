@@ -1,6 +1,5 @@
 ﻿using DiscordRPC;
 using System;
-using HunterPie.Memory;
 using HunterPie.Logger;
 
 namespace HunterPie.Core {
@@ -51,6 +50,7 @@ namespace HunterPie.Core {
             // Check if connection exists to avoid creating multiple connections
             Instance = new RichPresence();
             Debugger.Discord(GStrings.GetLocalizationByXPath("/Console/String[@ID='MESSAGE_DISCORD_CONNECTED']"));
+            Instance.Secrets = new Secrets();
             Client = new DiscordRpcClient(APP_ID, autoEvents: true);
 
             Client.RegisterUriScheme("582010");
@@ -130,9 +130,9 @@ namespace HunterPie.Core {
 
             // TODO: Implement join session?
             if (ctx.Player.SteamSession != 0 && ctx.Player.InPeaceZone && UserSettings.PlayerConfig.RichPresence.LetPeopleJoinSession) {
-                Instance.Secrets = new Secrets() {
-                    JoinSecret = $"{ctx.Player.SteamSession}/{ctx.Player.SteamID}"
-                };
+                Instance.Secrets.JoinSecret = $"{ctx.Player.SteamSession}/{ctx.Player.SteamID}";
+            } else {
+                Instance.Secrets.JoinSecret = null;
             }
             // Only update RPC if player isn't in loading screen
             switch (ctx.Player.ZoneID) {

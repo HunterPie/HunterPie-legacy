@@ -107,4 +107,9 @@
     <Abnormality ID="35" IsDebuff="False" Offset="720" HasConditions="False" Icon="ICON_ICERES+"/>
     <Abnormality ID="73" IsDebuff="False" Offset="7B8" HasConditions="False" Icon=""/>
   </MISC_Abnormalities>
+  <GEAR_Abnormalities>
+    <Abnormality ID="" IsDebuff="False" Offset="768" Icon=""/> <!-- Fortify -->
+    <Abnormality ID="" IsDebuff="False" Offset="770" Icon=""/> <!-- Protective Polish -->
+    <Abnormality ID="" IsDebuff="False" Offset="774" Icon=""/> <!-- Affinity Sliding -->
+  </GEAR_Abnormalities>
 </Abnormalities>

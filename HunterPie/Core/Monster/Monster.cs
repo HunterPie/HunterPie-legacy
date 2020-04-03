@@ -379,6 +379,7 @@ namespace HunterPie.Core {
                 Health = Scanner.READ_FLOAT(MonsterPartAddress); 
 
                 Parts[PartID].SetPartInfo(this.ID, PartID, TimesBroken, MaxHealth, Health);
+                
                 if (Parts[PartID].Group == null) Parts[PartID].Group = MonsterData.GetPartGroupByPartIndex(this.ID, PartID);
                 MonsterPartAddress += Address.Offsets.NextMonsterPartOffset;
                 
