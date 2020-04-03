@@ -400,12 +400,12 @@
       <String ID="MESSAGE_MISSING_PATH" Name="게임 설치 경로를 설정하지 않으셨습니다, 지금 설정하시겠습니까?"/>
       <!-- Console Messages -->
       <String ID="MESSAGE_MAP_LOAD" Name="{HunterPie_Map} 로드 완료"/>
-      <String ID="MESSAGE_DISCORD_CONNECTED" Name="Starting new RPC connection"/>
+      <String ID="MESSAGE_DISCORD_CONNECTED" Name="새로운 RPC 연결 시작"/>
       <String ID="MESSAGE_DISCORD_USER_CONNECTED" Name="Discord의 {Username}로 연결 완료"/>
       <String ID="MESSAGE_DISCORD_DISCONNECTED" Name="Discord와의 연결 종료"/>
       <String ID="MESSAGE_DISCORD_JOIN_REQUEST" Name="{Username}(이)가 세션 참가를 요청해왔습니다."/>
       <String ID="MESSAGE_DISCORD_JOINING" Name="세션에 참가중..."/>
-      <String ID="MESSAGE_MONSTER_DATA_LOAD" Name="몬스터 데이터 로드"/>
+      <String ID="MESSAGE_MONSTER_DATA_LOAD" Name="몬스터 데이터 로드 완료"/>
       <String ID="MESSAGE_ABNORMALITIES_DATA_LOAD" Name="상태이상 데이터 로드 완료"/>
       <String ID="MESSAGE_PLAYER_SCANNER_INITIALIZED" Name="플레이어 메모리 스캐너 초기화"/>
       <String ID="MESSAGE_HUNTERPIE_INITIALIZED" Name="HunterPie 초기화"/>
@@ -415,7 +415,7 @@
       <!-- Warnings -->
       <String ID="MESSAGE_OFFLINEMODE_WARN" Name="HunterPie가 지금 오프라인 모드입니다."/>
       <String ID="MESSAGE_AUTOUPDATE_DISABLED_WARN" Name="자동 업데이트가 꺼져있습니다. 만약 HunterPie에 문제가 있거나 현 게임 버전을 지원하지 않을경우, 자동 업데이트를 켜보십시오."/>
-      <String ID="MESSAGE_THEME_LOAD_WARN" Name="커스텀 테마 로드완료!"/>
+      <String ID="MESSAGE_THEME_LOAD_WARN" Name="커스텀 테마 로드 완료!"/>
       <!-- Errors -->
       <String ID="MESSAGE_GAME_VERSION_UNSUPPORTED" Name="현 게임 버전 ({GAME_VERSION})은 아직 지원되지 않습니다!"/>
       <String ID="MESSAGE_LAUNCH_ERROR" Name="Monster Hunter World의 실행에 실패하였습니다."/>
@@ -450,12 +450,12 @@
       <String ID="ENABLE_RPC_DESC" Name="옵션이 켜져 있을 경우, HunterPie는 당신의 게임 활동 내역을 Discord 상태에 표시해줍니다."/>
       <String ID="ENABLE_RPC_HEALTH" Name="몬스터의 체력 퍼센트 표시"/>
       <String ID="ENABLE_RPC_HEALTH_DESC" Name="옵션이 켜져 있을 경우, HunterPie는 사냥중인 몬스터의 체력 퍼센트를 표시해줍니다."/>
-      <String ID="ENABLE_PEOPLE_JOIN" Name="사람들이 내 온라인 세션에 참여하도록 요청하도록 허용"/>
+      <String ID="ENABLE_PEOPLE_JOIN" Name="사람들이 내 온라인 세션에 참여요청을 할 수 있게 허용"/>
       <String ID="ENABLE_PEOPLE_JOIN_DESC" Name="옵션이 켜져 있을 경우, 사람들은 당신의 Monster Hunter 세션에 참가요청을 보낼 수 있게됩니다."/>
       <!-- Overlay -->
       <String ID="ENABLE_OVERLAY" Name="인 게임 오버레이 활성화"/>
       <String ID="ENABLE_OVERLAY_DESC" Name="옵션이 켜져 있을 경우, 인게임 내 오버레이가 활성화됩니다."/>
-      <String ID="ENABLE_HIDE_WHEN_UNFOCUS" Name="게임이 비 활성화시 오버레이 숨김."/>
+      <String ID="ENABLE_HIDE_WHEN_UNFOCUS" Name="게임이 비 활성화시 오버레이 숨깁니다."/>
       <String ID="ENABLE_HIDE_WHEN_UNFOCUS_DESC" Name="옵션이 켜져 있을 경우, HunterPie 오버레이는 게임이 비 활성화시 자동으로 숨겨집니다. (예시: Alt+Tab을 할 때)"/>
       <String ID="ENABLE_HARDWARE_ACCELERATION" Name="하드웨어 가속을 활성화"/>
       <String ID="ENABLE_HARDWARE_ACCELERATION_DESC" Name="하드웨어 가속을 활성화해 오버레이가 그래픽카드에 의해 렌더링 되게 합니다. 비활성화시 소프트웨어 렌더링으로 전환되며, CPU 자원을 더 많이 쓰게 됩니다, FPS에 문제가 있으면 이 옵션을 꺼두십시오."/>
@@ -466,9 +466,9 @@
       <String ID="STATIC_IMAGE_QUALITY" Name="이미지 품질"/>
       <String ID="STATIC_IMAGE_QUALITY_DESC" Name="이미지의 품질을 변경합니다."/>
       <String ID="STATIC_TOGGLE_OVERLAY" Name="오버레이 토글 (단축키):"/>
-      <String ID="STATIC_TOGGLE_OVERLAY_DESC" Name="오버레이를 숨기는 단축키. 변경된 단축키는 재시작시 적용됩니다."/>
+      <String ID="STATIC_TOGGLE_OVERLAY_DESC" Name="오버레이를 숨기는 단축키입니다, 변경된 단축키는 재시작시 적용됩니다."/>
       <String ID="STATIC_TOGGLE_DESIGN" Name="디자인 모드 토글 (단축키):"/>
-      <String ID="STATIC_TOGGLE_DESIGN_DESC" Name="디자인 모드 토글 단축키."/>
+      <String ID="STATIC_TOGGLE_DESIGN_DESC" Name="디자인 모드의 토글 단축키입니다, 변경된 단축키는 재시작시 적용됩니다."/>
       <String ID="STATIC_OVERLAY_POSITION_DESC" Name="오버레이의 위치를 변경합니다."/>
       <!-- Monster Widget -->
       <String ID="ENABLE_MONSTER_WIDGET" Name="몬스터 위젯 활성화"/>
@@ -516,9 +516,9 @@
       <String ID="ENABLE_MONSTER_PART_BONE" Name="둘러싼 뼈의 체력"/>
       <String ID="ENABLE_MONSTER_PART_MISC" Name="기타 체력"/>
       <String ID="STATIC_MONSTER_MAX_PARTS" Name="한 줄당 최대 표시 수"/>
-      <String ID="STATIC_MONSTER_MAX_PARTS_DESC" Name="한 줄마다 표시할 수 있는 부위나 상태 이상의 최대 수를 설정합니다.."/>
+      <String ID="STATIC_MONSTER_MAX_PARTS_DESC" Name="한 줄마다 표시할 수 있는 부위나 상태 이상의 최대 수를 설정합니다."/>
       <String ID="STATIC_MONSTER_MAX_COLUMNS" Name="최대 행 수"/>
-      <String ID="STATIC_MONSTER_MAX_COLUMNS_DESC" Name="부위, 상태 이상을 표시하는 행수의 최대수를 설정합니다.."/>
+      <String ID="STATIC_MONSTER_MAX_COLUMNS_DESC" Name="부위, 상태 이상을 표시하는 행수의 최대수를 설정합니다."/>
       <String ID="STATIC_MONSTER_PART_DELAY" Name="비활성화된 부위의 숨김 지연시간"/>
       <String ID="STATIC_MONSTER_PART_DELAY_DESC" Name="비활성 상태의 부위나 상태 이상 수치를 숨기기 까지의 지연 시간."/>
       <String ID="STATIC_MONSTER_POSITION_DESC" Name="몬스터 위젯의 위치를 변경."/>
@@ -535,17 +535,17 @@
       <String ID="ENABLE_HARVEST_BOX_EVERYWHERE_DESC" Name="옵션이 켜져 있을 경우,위젯은 탐색과 인도하는 땅을 포함한 모든곳에서 표시됩니다."/>
       <String ID="STATIC_HARVEST_BOX_POSITION_DESC" Name="수확박스 위젯의 위치 변경."/>
       <!-- Damage Meter -->
-      <String ID="ENABLE_METER" Name="딜 미터기 위젯"/>
-      <String ID="ENABLE_METER_DESC" Name="옵션이 켜져 있을 경우, 딜 미터기 위젯은 보여줄 내용이 있을시 보여지게 됩니다."/>
+      <String ID="ENABLE_METER" Name="데미지 미터기 위젯"/>
+      <String ID="ENABLE_METER_DESC" Name="옵션이 켜져 있을 경우, 데미지 미터기 위젯은 보여줄 내용이 있을시 보여지게 됩니다."/>
       <String ID="ENABLE_METER_DPS" Name="총 데미지 대신 DPS로 표시"/>
-      <String ID="ENABLE_METER_DPS_DESC" Name="옵션이 켜져 있을 경우, 딜 미터기가 총합 데미지를 보여주는 대신 DPS로 표시해줍니다."/>
+      <String ID="ENABLE_METER_DPS_DESC" Name="옵션이 켜져 있을 경우, 데미지 미터기가 총합 데미지를 보여주는 대신 DPS로 표시해줍니다."/>
       <String ID="STATIC_METER_PLAYER_1" Name="첫번째 플레이어"/>
       <String ID="STATIC_METER_PLAYER_2" Name="두번째 플레이어"/>
       <String ID="STATIC_METER_PLAYER_3" Name="세번째 플레이어"/>
       <String ID="STATIC_METER_PLAYER_4" Name="네번째 플레이어"/>
-      <String ID="STATIC_METER_POSITION_DESC" Name="딜 미터기 위젯의 위치를 변경."/>
+      <String ID="STATIC_METER_POSITION_DESC" Name="데미지 미터기 위젯의 위치를 변경."/>
       <!-- Abnormalities Widget -->
-      <String ID="STATIC_CREATE_ABNORM_BAR_DESC" Name="버프&amp;디버프 바 활성화"/>
+      <String ID="STATIC_CREATE_ABNORM_BAR_DESC" Name="새로운 버프&amp;디버프 바를 추가."/>
       <String ID="STATIC_REMOVE_ABNORM_BAR_DESC" Name="마지막으로 생성된 버프&amp;디버프 바를 삭제."/>
       <String ID="STATIC_ENABLE_ABNORM_BAR" Name="활성화"/>
       <String ID="ENABLE_ALLIGN_ABNORM_BAR_HORIZONTALLY" Name="버프&amp;디버프 바를 가로로 정렬."/>
@@ -600,7 +600,7 @@
       <String ID="STATIC_OVERLAY_SETTINGS" Name="오버레이"/>
       <String ID="STATIC_MONSTERS_SETTINGS" Name="몬스터"/>
       <String ID="STATIC_HARVEST_BOX_SETTINGS" Name="수확박스"/>
-      <String ID="STATIC_DAMAGE_METER_SETTINGS" Name="딜 미터기"/>
+      <String ID="STATIC_DAMAGE_METER_SETTINGS" Name="데미지 미터기"/>
       <String ID="STATIC_ABNORM_BAR_SETTINGS" Name="버프&amp;디버프"/>
       <String ID="STATIC_SPECIALIZED_TOOLS_SETTINGS" Name="특수장비"/>
       <String ID="STATIC_LINKS_SETTINGS" Name="외부링크"/>
