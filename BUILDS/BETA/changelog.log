@@ -31,6 +31,7 @@ A join request will popup when someone requests to join your session.
 
 **Core**
 
+- Added option to change the delay between memory scans. Setting it to a low number will make HunterPie more accurate at cost of CPU usage. Making the delay higher will make it use less CPU but take more time to update the overlay/data;
 - Latest Session ID is now saved in a Sessions.txt file.
 
 **Bug Fixes**

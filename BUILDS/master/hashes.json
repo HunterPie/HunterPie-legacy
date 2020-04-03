@@ -1,6 +1,6 @@
 {
     "address\\MonsterHunterWorld.408899.map": "e85ad8faea367b51b5bac004bf145fc227187da0af54ea11180ccfc3832c0047",
-    "changelog.log": "37a43d185aafcb7a6a6b48701b3f4fea24fee140e00a0b58680b470ce59dd9f7",
+    "changelog.log": "19a32de3dcf083030acec3d34c12ae2e8d7167361af71c89d32ea340db1baf4f",
     "DiscordRPC.dll": "19766e1e7b0bb1fffb16f734983fd086d072cd27acce1ef5d60082f91a0a3cc2",
     "HunterPie.exe": "fe1ecffb9e98ee6ea5c4b28f2563aa69c237f80606e70b377396a9c9f0087925",
     "HunterPie.Resources\\Monsters\\Icons\\em001_00.png": "8821db22cfee14f2da665bb05c38f4bc601b5c040445f6d753f142811d3fc01f",
@@ -79,7 +79,7 @@
     "Languages\\pt-br.xml": "17186ee21656d8f1186049e387bbe61ba3e9134e8c692b99e484d38ed8c3af45",
     "Languages\\ru-ru.xml": "a3ce77f69c72c05a2ceb7b16ea71230db9c198e2e2fe3675fb00030b3e919f1a",
     "Languages\\zh-cn.xml": "4559cda0ed0408f397cc02dd177b022bd105938b124d1fb5770bc5122a3149fa",
-    "Languages\\zh-tw.xml": "90a8687c2bdce00d1124d8f33d7d03dd3acad7ee7b23235e40bf8c2ba5feaf9d",
+    "Languages\\zh-tw.xml": "703d07ab512219b66b360fe3252f5f6e330c3bcfc1eac5bda002652ee13ca820",
     "Markdig.dll": "13a5708d710363aca4dc5de941139e0ac56b6776979527154fd62ef36e7c0094",
     "Markdig.Wpf.dll": "55a1fa0bd3b491dbb1ebd9059cd65a460e7d22f261a7a7a48eab8a5421e7b7fd",
     "Newtonsoft.Json.dll": "3598cccad5b535fea6f93662107a4183bfd6167bf1d0f80260436093edc2e3af",
