@@ -284,8 +284,29 @@ namespace HunterPie.GUI.Widgets {
                 case 3: // Show all but hide unactive monsters
                     ShowAllMonsterAndHideUnactive();
                     break;
+                case 4: // Show all or only selected monster
+                    ShowAllOrSelected();
+                    break;
             }
         }
+
+        // Show all monsters or the selected one (if any)
+        private void ShowAllOrSelected()
+        {
+            if (this.Context == null || !this.Context.IsAlive) { this.Visibility = Visibility.Collapsed; return; }
+            else { this.Visibility = Visibility.Visible; }
+            if (this.Context.IsSelect == 1) { // this monster selected
+                this.Width = 500;
+                ChangeBarsSizes(Width);
+                this.Opacity = 1;
+            } else if (this.Context.IsSelect == 0) { // nothing selected, show all
+                this.Width = 300;
+                ChangeBarsSizes(Width);
+                this.Opacity = 1;
+            }
+            else { this.Visibility = Visibility.Collapsed; } // another monster selected, hide this monster
+        }
+
 
         // Show all monsters but hide unactive
         private void ShowAllMonsterAndHideUnactive() {
