@@ -48,6 +48,7 @@ namespace HunterPie.GUI.Widgets.Abnormality_Widget.Parts {
             if (Abnorm.IsInfinite || Abnorm.MaxDuration == 0) angle = 90;
             else { angle = ConvertPercentageIntoAngle(Abnorm.Duration / Abnorm.MaxDuration); }
             this.AbnormalityDurationArc.EndAngle = angle;
+            this.AbnormalityName.Text = Abnorm.Name;
             ImageSource AbnormIcon;
             if (Abnorm.Stack >= 1) {
                 AbnormIcon = TryFindResource($"{Abnorm.Icon}" + string.Concat(Enumerable.Repeat("+", Abnorm.Stack))) as ImageSource ?? FindResource($"{Abnorm.Icon}") as ImageSource;

@@ -2,6 +2,7 @@
 using System.Windows;
 using System.Windows.Media;
 using HunterPie.Core;
+using Debugger = HunterPie.Logger.Debugger;
 
 namespace HunterPie.GUI.Widgets {
     /// <summary>
@@ -110,7 +111,7 @@ namespace HunterPie.GUI.Widgets {
         public override void ApplySettings(bool FocusTrigger = false) {
             Dispatcher.BeginInvoke(System.Windows.Threading.DispatcherPriority.Background, new Action(() => {
                 if (!FocusTrigger) {
-                    this.Top = UserSettings.PlayerConfig.Overlay.MonstersComponent.Position[1] + UserSettings.PlayerConfig.Overlay.Position[1];
+                    if (UserSettings.PlayerConfig.Overlay.MonstersComponent.MonsterBarDock != 1) this.Top = UserSettings.PlayerConfig.Overlay.MonstersComponent.Position[1] + UserSettings.PlayerConfig.Overlay.Position[1];
                     this.Left = UserSettings.PlayerConfig.Overlay.MonstersComponent.Position[0] + UserSettings.PlayerConfig.Overlay.Position[0];
                     this.WidgetActive = UserSettings.PlayerConfig.Overlay.MonstersComponent.Enabled;
                     UpdateMonstersWidgetsSettings(UserSettings.PlayerConfig.Overlay.MonstersComponent.ShowMonsterWeakness, UserSettings.PlayerConfig.Overlay.MonstersComponent.MaxNumberOfPartsAtOnce, UserSettings.PlayerConfig.Overlay.MonstersComponent.MonsterBarDock);
@@ -172,5 +173,13 @@ namespace HunterPie.GUI.Widgets {
             this.MouseOver = false;
         }
 
+        private void OnSizeChange(object sender, SizeChangedEventArgs e) {
+            if (UserSettings.PlayerConfig.Overlay.MonstersComponent.MonsterBarDock != 1) return;
+            // Compensate the widget position when it's resized if the boss bar dock is bottom
+            if (e.HeightChanged && !e.WidthChanged) {
+                e.Handled = true;
+                Top -= (e.NewSize.Height - e.PreviousSize.Height);
+            }
+        }
     }
 }

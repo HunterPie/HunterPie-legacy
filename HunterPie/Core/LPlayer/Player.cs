@@ -21,6 +21,7 @@ namespace HunterPie.Core {
         private readonly int[] _HBZones = new int[9] { 301, 302, 303, 305, 306, 501, 502, 503, 506 };
 
         // Player info
+        private Int64 SESSION_ADDRESS;
         private Int64 LEVEL_ADDRESS;
         private Int64 EQUIPMENT_ADDRESS;
         private Int64 PlayerStructAddress;
@@ -288,15 +289,18 @@ namespace HunterPie.Core {
         }
 
         private void GetSessionId() {
-            Int64 Address = Memory.Address.BASE + Memory.Address.SESSION_OFFSET;
-            Address = Scanner.READ_MULTILEVEL_PTR(Address, Memory.Address.Offsets.SessionOffsets);
-            SessionID = Scanner.READ_STRING(Address, 12);
+            if (SESSION_ADDRESS == 0) {
+                Int64 Address = Memory.Address.BASE + Memory.Address.SESSION_OFFSET;
+                Address = Scanner.READ_MULTILEVEL_PTR(Address, Memory.Address.Offsets.SessionOffsets);
+                SESSION_ADDRESS = Address;
+                Debugger.Debug($"Session Address -> 0x{SESSION_ADDRESS:X}");
+            }
+            SessionID = Scanner.READ_STRING(SESSION_ADDRESS, 12);
         }
 
         private void GetSteamSession() {
-            Int64 SteamSessionAddress = Scanner.READ_MULTILEVEL_PTR(Address.BASE + Address.SESSION_OFFSET, Address.Offsets.SessionOffsets);
-            SteamSession = Scanner.READ_LONGLONG(SteamSessionAddress + 0x10);
-            SteamID = Scanner.READ_LONGLONG(SteamSessionAddress + 0x1184);
+            SteamSession = Scanner.READ_LONGLONG(SESSION_ADDRESS + 0x10);
+            SteamID = Scanner.READ_LONGLONG(SESSION_ADDRESS + 0x1184);
         }
 
         private void GetEquipmentAddress() {
