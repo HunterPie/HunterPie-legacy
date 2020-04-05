@@ -40,7 +40,7 @@ namespace HunterPie.GUIControls {
             MonsterShowModeSelection.Items.Add(GStrings.GetLocalizationByXPath("/Settings/String[@ID='STATIC_MONSTER_BAR_MODE_1']"));
             MonsterShowModeSelection.Items.Add(GStrings.GetLocalizationByXPath("/Settings/String[@ID='STATIC_MONSTER_BAR_MODE_2']"));
             MonsterShowModeSelection.Items.Add(GStrings.GetLocalizationByXPath("/Settings/String[@ID='STATIC_MONSTER_BAR_MODE_3']"));
-            //MonsterShowModeSelection.Items.Add(GStrings.GetLocalizationByXPath("/Settings/String[@ID='STATIC_MONSTER_BAR_MODE_4']"));
+            MonsterShowModeSelection.Items.Add(GStrings.GetLocalizationByXPath("/Settings/String[@ID='STATIC_MONSTER_BAR_MODE_4']"));
         }
 
         private void PopulateDockBox() {

@@ -40,7 +40,7 @@ namespace HunterPie.GUI.Widgets.Abnormality_Widget {
                     this.WidgetActive = UserSettings.PlayerConfig.Overlay.AbnormalitiesWidget.BarPresets[AbnormalityTrayIndex].Enabled;
                     this.Top = UserSettings.PlayerConfig.Overlay.AbnormalitiesWidget.BarPresets[AbnormalityTrayIndex].Position[1] + UserSettings.PlayerConfig.Overlay.Position[1];
                     this.Left = UserSettings.PlayerConfig.Overlay.AbnormalitiesWidget.BarPresets[AbnormalityTrayIndex].Position[0] + UserSettings.PlayerConfig.Overlay.Position[0];
-                    this.BuffTray.Orientation = UserSettings.PlayerConfig.Overlay.AbnormalitiesWidget.BarPresets[AbnormalityTrayIndex].Orientation == "Horizontal" ? Orientation.Horizontal : Orientation.Vertical;
+                    this.BuffTray.Orientation = UserSettings.PlayerConfig.Overlay.AbnormalitiesWidget.BarPresets[AbnormalityTrayIndex].Orientation == "Horizontal" ? UserSettings.PlayerConfig.Overlay.AbnormalitiesWidget.BarPresets[AbnormalityTrayIndex].ShowNames ? Orientation.Vertical : Orientation.Horizontal : Orientation.Vertical;
                     this.BackgroundTray.Opacity = UserSettings.PlayerConfig.Overlay.AbnormalitiesWidget.BarPresets[AbnormalityTrayIndex].BackgroundOpacity;
                     int BuffTrayMaxSize = Math.Max(UserSettings.PlayerConfig.Overlay.AbnormalitiesWidget.BarPresets[AbnormalityTrayIndex].MaxSize, 0);
                     if (BuffTrayMaxSize > 7000) BuffTrayMaxSize = 0;
@@ -133,7 +133,8 @@ namespace HunterPie.GUI.Widgets.Abnormality_Widget {
                 this.WidgetHasContent = true;
                 Parts.AbnormalityControl AbnormalityBox = new Parts.AbnormalityControl() {
                     ShowAbnormalityTimerText = UserSettings.PlayerConfig.Overlay.AbnormalitiesWidget.BarPresets[AbnormalityTrayIndex].ShowTimeLeftText,
-                    AbnormalityTimerTextFormat = UserSettings.PlayerConfig.Overlay.AbnormalitiesWidget.BarPresets[AbnormalityTrayIndex].TimeLeftTextFormat
+                    AbnormalityTimerTextFormat = UserSettings.PlayerConfig.Overlay.AbnormalitiesWidget.BarPresets[AbnormalityTrayIndex].TimeLeftTextFormat,
+                    ShowAbnormalityName = UserSettings.PlayerConfig.Overlay.AbnormalitiesWidget.BarPresets[AbnormalityTrayIndex].ShowNames
                 };
                 AbnormalityBox.Initialize(args.Abnormality);
                 this.ActiveAbnormalities.Add(args.Abnormality.InternalID, AbnormalityBox);

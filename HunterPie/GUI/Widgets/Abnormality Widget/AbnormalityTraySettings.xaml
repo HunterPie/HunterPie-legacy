@@ -135,17 +135,25 @@
         </TabControl>
 
         <!-- Options -->
-        <Custom:Switcher x:Name="OrientationSwitcher" Margin="14,55,0,0" VerticalAlignment="Top" Height="24" HorizontalAlignment="Left" Text="{Binding XPath=/Strings/Client/Settings/String[@ID\=\'ENABLE_ALLIGN_ABNORM_BAR_HORIZONTALLY\']/@Name}" MinWidth="330" ToolTip="{Binding XPath=/Strings/Client/Settings/String[@ID\=\'ENABLE_ALLIGN_ABNORM_BAR_HORIZONTALLY_DESC\']/@Name}" />
-        <Custom:Switcher x:Name="EnableTimeLeftSwitcher" Margin="14,84,0,0" RequiresRestart="True" VerticalAlignment="Top" Height="24" HorizontalAlignment="Left" Text="{Binding XPath=/Strings/Client/Settings/String[@ID\=\'ENABLE_ABNORM_BAR_TIME_LEFT\']/@Name}" MinWidth="330" ToolTip="{Binding XPath=/Strings/Client/Settings/String[@ID\=\'ENABLE_ABNORM_BAR_TIME_LEFT_DESC\']/@Name}"/>
-        <StackPanel Margin="14,110,0,0" Height="37" Orientation="Horizontal" HorizontalAlignment="Left" VerticalAlignment="Top">
-            <TextBlock HorizontalAlignment="Left" TextWrapping="Wrap" FontSize="15" Text="{Binding XPath=/Strings/Client/Settings/String[@ID\=\'STATIC_TIMER_TEXT_FORMAT\']/@Name}" Foreground="WhiteSmoke" VerticalAlignment="Top" Height="24" FontWeight="SemiBold" FontFamily="Segoe UI Light"/>
-            <ComboBox  x:Name="TimerTextFormatBox" Cursor="Hand" HorizontalAlignment="Left" VerticalAlignment="Top" Width="167" Style="{StaticResource ComboBoxFlatStyle}" IsReadOnly="True" SelectedIndex="0" Foreground="#FFEEEEEE" FontSize="14">
-                <System:String>MM:SS (e.g: 5:30)</System:String>
-                <System:String>MMmSSs (e.g: 5m30s)</System:String>
-            </ComboBox>
-            <TextBlock HorizontalAlignment="Left" TextWrapping="Wrap" FontSize="12" Text="{Binding XPath=/Strings/Client/Settings/String[@ID\=\'STATIC_REQUIRES_RESTART\']/@Name}" Foreground="WhiteSmoke" VerticalAlignment="Top" Height="35" FontWeight="Light" Width="83"/>
+        <StackPanel Margin="5,32,0,0" HorizontalAlignment="Left" Width="393">
+            <Custom:Switcher x:Name="EnableName" VerticalAlignment="Top" Height="30" HorizontalAlignment="Left" Text="{Binding XPath=/Strings/Client/Settings/String[@ID\=\'ENABLE_SHOW_ABNORM_NAMES\']/@Name}" MinWidth="330" ToolTip="{Binding XPath=/Strings/Client/Settings/String[@ID\=\'ENABLE_SHOW_ABNORM_NAMES_DESC\']/@Name}" RequiresRestart="True"/>
+            <Custom:Switcher x:Name="OrientationSwitcher" VerticalAlignment="Top" Height="30" HorizontalAlignment="Left" Text="{Binding XPath=/Strings/Client/Settings/String[@ID\=\'ENABLE_ALLIGN_ABNORM_BAR_HORIZONTALLY\']/@Name}" MinWidth="330" ToolTip="{Binding XPath=/Strings/Client/Settings/String[@ID\=\'ENABLE_ALLIGN_ABNORM_BAR_HORIZONTALLY_DESC\']/@Name}" />
+            <Custom:Switcher x:Name="EnableTimeLeftSwitcher" RequiresRestart="True" VerticalAlignment="Top" Height="30" HorizontalAlignment="Left" Text="{Binding XPath=/Strings/Client/Settings/String[@ID\=\'ENABLE_ABNORM_BAR_TIME_LEFT\']/@Name}" MinWidth="330" ToolTip="{Binding XPath=/Strings/Client/Settings/String[@ID\=\'ENABLE_ABNORM_BAR_TIME_LEFT_DESC\']/@Name}"/>
+            <StackPanel Height="37" Orientation="Horizontal" HorizontalAlignment="Left" VerticalAlignment="Top">
+                <TextBlock HorizontalAlignment="Left" TextWrapping="Wrap" FontSize="15" Text="{Binding XPath=/Strings/Client/Settings/String[@ID\=\'STATIC_TIMER_TEXT_FORMAT\']/@Name}" Foreground="WhiteSmoke" VerticalAlignment="Top" Height="24" FontWeight="SemiBold" FontFamily="Segoe UI Light"/>
+                <ComboBox  x:Name="TimerTextFormatBox" Cursor="Hand" HorizontalAlignment="Left" VerticalAlignment="Top" Width="167" Style="{StaticResource ComboBoxFlatStyle}" IsReadOnly="True" SelectedIndex="0" Foreground="#FFEEEEEE" FontSize="14">
+                    <System:String>MM:SS (e.g: 5:30)</System:String>
+                    <System:String>MMmSSs (e.g: 5m30s)</System:String>
+                </ComboBox>
+                <TextBlock HorizontalAlignment="Left" TextWrapping="Wrap" FontSize="12" Text="{Binding XPath=/Strings/Client/Settings/String[@ID\=\'STATIC_REQUIRES_RESTART\']/@Name}" Foreground="WhiteSmoke" VerticalAlignment="Top" Height="35" FontWeight="Light" Width="83"/>
+            </StackPanel>
+            <StackPanel Orientation="Horizontal" Height="24" ToolTip="{Binding XPath=/Strings/Client/Settings/String[@ID\=\'STATIC_BACKGROUND_OPACITY_DESC\']/@Name}" HorizontalAlignment="Left" Width="380" VerticalAlignment="Top">
+                <TextBlock HorizontalAlignment="Left" Padding="0,0,5,0" TextWrapping="Wrap" FontSize="15" Text="{Binding XPath=/Strings/Client/Settings/String[@ID\=\'STATIC_BACKGROUND_OPACITY\']/@Name}" Foreground="WhiteSmoke" VerticalAlignment="Top" Height="24" FontWeight="SemiBold" FontFamily="Segoe UI Light"/>
+                <Slider x:Name="BackgroundOpacitySlider" Style="{StaticResource Horizontal_Slider}" HorizontalAlignment="Left" VerticalAlignment="Top" Height="24" Width="182" Maximum="1" LargeChange="0.1" TickFrequency="0.1" TickPlacement="TopLeft" Value="0.4"/>
+                <TextBlock HorizontalAlignment="Left" TextWrapping="Wrap" FontSize="15" Text="{Binding Value, ElementName=BackgroundOpacitySlider, StringFormat=\{0:P\}}" Foreground="WhiteSmoke" VerticalAlignment="Top" Height="24" FontWeight="SemiBold" FontFamily="Segoe UI Light" TextAlignment="Center" Width="66"/>
+            </StackPanel>
         </StackPanel>
-
+   
         <!-- Top bar -->
         <TextBlock Cursor="Hand" Margin="0,0,1,0" Text="X" VerticalAlignment="Top" HorizontalAlignment="Right" Width="31" Height="31" Foreground="#FFB9B9B9" FontWeight="Bold" FontSize="22" FlowDirection="RightToLeft" Padding="8,0,0,0" MouseLeftButtonDown="OnCloseButtonClick"/>
         <Image Source="{StaticResource ICON_SETTINGS}"  Width="20" Height="20" Margin="6,5,0,0" VerticalAlignment="Top" HorizontalAlignment="Left"/>
@@ -156,11 +164,7 @@
         <Button Cursor="Hand" Content="{Binding XPath=/Strings/Client/Settings/String[@ID\=\'STATIC_BUTTON_SAVE\']/@Name}" Margin="0,0,18,10" Height="34" VerticalAlignment="Bottom" HorizontalAlignment="Right" Width="112" Style="{StaticResource ButtonStyle}" BorderBrush="{x:Null}" Foreground="#FFE6E6E6" Background="#FFD62424" FontSize="14" Click="OnSaveButtonClick"/>
         <Button Cursor="Hand" Content="{Binding XPath=/Strings/Client/Settings/String[@ID\=\'STATIC_BUTTON_SELECT_ALL\']/@Name}" Margin="399,0,0,11" Height="34" VerticalAlignment="Bottom" HorizontalAlignment="Left" Width="112" Style="{StaticResource ButtonStyle}" BorderBrush="{x:Null}" Foreground="#FFE6E6E6" Background="#FFD62424" FontSize="14" Click="OnSelectAllButtonClick"/>
         <Button Cursor="Hand" Content="{Binding XPath=/Strings/Client/Settings/String[@ID\=\'STATIC_BUTTON_UNSELECT_ALL\']/@Name}" Margin="516,0,0,11" Height="34" VerticalAlignment="Bottom" HorizontalAlignment="Left" Width="112" Style="{StaticResource ButtonStyle}" BorderBrush="{x:Null}" Foreground="#FFE6E6E6" Background="#FFD62424" FontSize="14" Click="OnUnselectAllButtonClick"/>
-        <StackPanel Margin="14,143,0,0" Orientation="Horizontal" Height="24" ToolTip="{Binding XPath=/Strings/Client/Settings/String[@ID\=\'STATIC_BACKGROUND_OPACITY_DESC\']/@Name}" HorizontalAlignment="Left" Width="380" VerticalAlignment="Top">
-            <TextBlock HorizontalAlignment="Left" Padding="0,0,5,0" TextWrapping="Wrap" FontSize="15" Text="{Binding XPath=/Strings/Client/Settings/String[@ID\=\'STATIC_BACKGROUND_OPACITY\']/@Name}" Foreground="WhiteSmoke" VerticalAlignment="Top" Height="24" FontWeight="SemiBold" FontFamily="Segoe UI Light"/>
-            <Slider x:Name="BackgroundOpacitySlider" Style="{StaticResource Horizontal_Slider}" HorizontalAlignment="Left" VerticalAlignment="Top" Height="24" Width="182" Maximum="1" LargeChange="0.1" TickFrequency="0.1" TickPlacement="TopLeft" Value="0.4"/>
-            <TextBlock HorizontalAlignment="Left" TextWrapping="Wrap" FontSize="15" Text="{Binding Value, ElementName=BackgroundOpacitySlider, StringFormat=\{0:P\}}" Foreground="WhiteSmoke" VerticalAlignment="Top" Height="24" FontWeight="SemiBold" FontFamily="Segoe UI Light" TextAlignment="Center" Width="66"/>
-        </StackPanel>
+        
 
         <TextBlock HorizontalAlignment="Left" Visibility="Hidden" Margin="14,168,0,0" TextWrapping="Wrap" FontSize="15" Text="Circle opacity:" Foreground="WhiteSmoke" VerticalAlignment="Top" Height="24" FontWeight="SemiBold" FontFamily="Segoe UI Light"/>
         <TextBlock HorizontalAlignment="Left"  Visibility="Hidden" Margin="333,170,0,0" TextWrapping="Wrap" FontSize="15" Text="{Binding Path=Value, ElementName=CircleBGOpacitySlider}" Foreground="WhiteSmoke" VerticalAlignment="Top" Height="24" FontWeight="SemiBold" FontFamily="Segoe UI Light" Width="20" TextAlignment="Center" />

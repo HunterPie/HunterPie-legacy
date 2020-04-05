@@ -151,7 +151,7 @@ namespace HunterPie.Core {
                 public bool ShowTimeLeftText { get; set; } = true;
                 public byte TimeLeftTextFormat { get; set; } = 0;
                 public float BackgroundOpacity { get; set; } = 0.7f;
-                public float BackgroundCircleOpacity { get; set; } = 0.7f;
+                public bool ShowNames { get; set; } = false;
             }
 
             public class Debug {

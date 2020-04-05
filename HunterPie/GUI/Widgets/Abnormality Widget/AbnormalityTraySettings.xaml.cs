@@ -37,10 +37,12 @@ namespace HunterPie.GUI.Widgets.Abnormality_Widget {
         }
 
         private void ConfigureWindow() {
+            EnableName.IsEnabled = UserSettings.PlayerConfig.Overlay.AbnormalitiesWidget.BarPresets[BuffTrayIndex].ShowNames;
             OrientationSwitcher.IsEnabled = UserSettings.PlayerConfig.Overlay.AbnormalitiesWidget.BarPresets[BuffTrayIndex].Orientation == "Horizontal";
             EnableTimeLeftSwitcher.IsEnabled = UserSettings.PlayerConfig.Overlay.AbnormalitiesWidget.BarPresets[BuffTrayIndex].ShowTimeLeftText;
             TimerTextFormatBox.SelectedIndex = UserSettings.PlayerConfig.Overlay.AbnormalitiesWidget.BarPresets[BuffTrayIndex].TimeLeftTextFormat;
             BackgroundOpacitySlider.Value = UserSettings.PlayerConfig.Overlay.AbnormalitiesWidget.BarPresets[BuffTrayIndex].BackgroundOpacity;
+            
         }
 
         private void PopulateHuntingHornBuffs() {
@@ -120,12 +122,12 @@ namespace HunterPie.GUI.Widgets.Abnormality_Widget {
             foreach (Parts.AbnormalitySettingControl AbnormDisplay in AbnormalitiesList) {
                 if (AbnormDisplay.IsEnabled) EnabledAbnormalities.Add(AbnormDisplay.InternalID);
             }
+            UserSettings.PlayerConfig.Overlay.AbnormalitiesWidget.BarPresets[BuffTrayIndex].ShowNames = EnableName.IsEnabled;
             UserSettings.PlayerConfig.Overlay.AbnormalitiesWidget.BarPresets[BuffTrayIndex].AcceptedAbnormalities = EnabledAbnormalities.ToArray();
             UserSettings.PlayerConfig.Overlay.AbnormalitiesWidget.BarPresets[BuffTrayIndex].Orientation = OrientationSwitcher.IsEnabled ? "Horizontal" : "Vertical";
             UserSettings.PlayerConfig.Overlay.AbnormalitiesWidget.BarPresets[BuffTrayIndex].ShowTimeLeftText = EnableTimeLeftSwitcher.IsEnabled;
             UserSettings.PlayerConfig.Overlay.AbnormalitiesWidget.BarPresets[BuffTrayIndex].TimeLeftTextFormat = (byte)TimerTextFormatBox.SelectedIndex;
             UserSettings.PlayerConfig.Overlay.AbnormalitiesWidget.BarPresets[BuffTrayIndex].BackgroundOpacity = (float)BackgroundOpacitySlider.Value;
-            UserSettings.PlayerConfig.Overlay.AbnormalitiesWidget.BarPresets[BuffTrayIndex].BackgroundCircleOpacity = (float)CircleBGOpacitySlider.Value;
             UserSettings.SaveNewConfig();
         }
 

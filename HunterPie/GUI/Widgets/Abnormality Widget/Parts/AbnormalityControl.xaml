@@ -60,7 +60,7 @@
             </Rectangle>
             <TextBlock x:Name="TimeLeftText" Width="34" Height="13" Canvas.Top="29" FontSize="10" TextAlignment="Center" FontWeight="SemiBold" Foreground="#FFECECEC" Margin="0" Padding="0" Canvas.Left="1"/>
         </Canvas>
-        <TextBlock x:Name="AbnormalityName" Text="Abnormality Name" FontSize="14" Padding="2,8,2,0" TextTrimming="CharacterEllipsis">
+        <TextBlock x:Name="AbnormalityName" Text="" Visibility="Collapsed" FontSize="14" Padding="2,8,2,0" TextTrimming="CharacterEllipsis">
             <TextBlock.Foreground>
                 <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
                     <GradientStop Color="White" Offset="0"/>
