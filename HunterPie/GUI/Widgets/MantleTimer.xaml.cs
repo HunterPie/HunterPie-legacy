@@ -60,12 +60,23 @@ namespace HunterPie.GUI.Widgets {
         private void HookEvents() {
             Context.OnMantleCooldownUpdate += OnCooldownChange;
             Context.OnMantleTimerUpdate += OnTimerChange;
+            Context.OnMantleChange += OnMantleChange;
         }
+
+        
 
         public void UnhookEvents() {
             Context.OnMantleCooldownUpdate -= OnCooldownChange;
             Context.OnMantleTimerUpdate -= OnTimerChange;
+            Context.OnMantleChange -= OnMantleChange;
             Context = null;
+        }
+
+        private void OnMantleChange(object source, MantleEventArgs args) {
+            Dispatch(() => {
+                MantleName.Text = args.Name;
+                MantleIcon.Source = GetSpecializedToolIcon(args.ID);
+            });
         }
 
         private void OnTimerChange(object source, MantleEventArgs args) {
@@ -76,12 +87,12 @@ namespace HunterPie.GUI.Widgets {
                 });
                 return;
             }
-            string FormatMantleName = $"({(int)args.Timer}) {args.Name.ToUpper()}";
+            string FormatMantleName = $"({(int)args.Timer}) {args.Name}";
             Dispatch(() => {
                 this.WidgetHasContent = true;
                 ChangeVisibility(false);
-                MantleName.Content = FormatMantleName;
-                MantleTimerArc.EndAngle = ConvertPercentageIntoAngle(args.Timer / args.staticTimer);
+                MantleName.Text = FormatMantleName;
+                DurationBar.Width = 181 * (args.Timer / args.staticTimer);
             });
         }
 
@@ -93,12 +104,12 @@ namespace HunterPie.GUI.Widgets {
                 });
                 return;
             }
+            string FormatMantleName = $"({(int)args.Cooldown}) {args.Name}";
             Dispatch(() => {
                 this.WidgetHasContent = true;
                 ChangeVisibility(false);
-                string FormatMantleName = $"({(int)args.Cooldown}) {args.Name.ToUpper()}";
-                MantleName.Content = FormatMantleName;
-                MantleTimerArc.EndAngle = ConvertPercentageIntoAngle(args.Cooldown / args.staticCooldown);
+                MantleName.Text = FormatMantleName;
+                DurationBar.Width = 181 * (args.Cooldown / args.staticCooldown);
             });
         }
 
@@ -116,10 +127,18 @@ namespace HunterPie.GUI.Widgets {
 
                     // Sets widget custom color
                     Color WidgetColor = (Color)ColorConverter.ConvertFromString(MantleNumber == 0 ? UserSettings.PlayerConfig.Overlay.PrimaryMantle.Color : UserSettings.PlayerConfig.Overlay.SecondaryMantle.Color);
-                    Brush WidgetColorBrush = new SolidColorBrush(WidgetColor);
-                    WidgetColorBrush.Freeze();
-                    this.MantleTimerArc.Stroke = WidgetColorBrush;
-                    this.MantleBorder.BorderBrush = WidgetColorBrush;
+                    LinearGradientBrush ShadowEffectBrush = new LinearGradientBrush() {
+                        StartPoint = new Point(1, 1),
+                        EndPoint = new Point(1, 0)
+                    };
+                    ShadowEffectBrush.GradientStops.Add(new GradientStop(WidgetColor, 0.043));
+                    WidgetColor.A = 0x33;
+                    ShadowEffectBrush.GradientStops.Add(new GradientStop(WidgetColor, 0.052));
+                    ShadowEffectBrush.GradientStops.Add(new GradientStop((Color)ColorConverter.ConvertFromString("#00000000"), 1));
+                    ShadowEffectBrush.Freeze();
+                    
+                    this.DurationBar.Fill = ShadowEffectBrush;
+                    
                     double ScaleFactor = MantleNumber == 0 ? UserSettings.PlayerConfig.Overlay.PrimaryMantle.Scale : UserSettings.PlayerConfig.Overlay.SecondaryMantle.Scale;
                     ScaleWidget(ScaleFactor, ScaleFactor);
                     // Sets visibility if enabled/disabled
@@ -166,6 +185,47 @@ namespace HunterPie.GUI.Widgets {
         }
 
         // Helper
+
+        private DrawingImage GetSpecializedToolIcon(int ID) {
+            switch(ID) {
+                case 0:
+                    return FindResource("ICON_MANTLE_DARKGREEN") as DrawingImage;
+                case 1:
+                case 18:
+                    return FindResource("ICON_MANTLE_YELLOW") as DrawingImage;
+                case 2:
+                    return FindResource("ICON_BOOSTER_GREEN") as DrawingImage;
+                case 3:
+                case 10:
+                    return FindResource("ICON_MANTLE_GREY") as DrawingImage;
+                case 4:
+                case 9:
+                    return FindResource("ICON_MANTLE_LIGHTGREEN") as DrawingImage;
+                case 5:
+                    return FindResource("ICON_MANTLE_GREEN") as DrawingImage;
+                case 6:
+                case 14:
+                    return FindResource("ICON_MANTLE_RED") as DrawingImage;
+                case 7:
+                    return FindResource("ICON_MANTLE_LIGHTBLUE") as DrawingImage;
+                case 8:
+                case 13:
+                case 16:
+                    return FindResource("ICON_MANTLE") as DrawingImage;
+                case 11:
+                    return FindResource("ICON_BOOSTER_BLUE") as DrawingImage;
+                case 12:
+                    return FindResource("ICON_MANTLE_BLUE") as DrawingImage;
+                case 15:
+                    return FindResource("ICON_MANTLE_PURPLE") as DrawingImage;
+                case 17:
+                    return FindResource("ICON_BOOSTER_RED") as DrawingImage;
+                case 19:
+                    return FindResource("ICON_MANTLE_AC") as DrawingImage;
+                default:
+                    return null;
+            }
+        }
 
         private float ConvertPercentageIntoAngle(float percentage) {
             float max = -269.999f;

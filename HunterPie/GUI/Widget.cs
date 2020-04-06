@@ -1,5 +1,7 @@
 ﻿using System;
 using System.Windows;
+using System.Windows.Controls;
+using System.Windows.Input;
 using System.Windows.Interop;
 using System.Windows.Media;
 using System.Windows.Media.Animation;
@@ -36,13 +38,15 @@ namespace HunterPie.GUI {
 
         public virtual void EnterWidgetDesignMode() {
             ChangeVisibility();
-            SolidColorBrush BorderColorBrush = new SolidColorBrush((Color)ColorConverter.ConvertFromString("#2c99f2"));
-            SolidColorBrush BackgroundBrush = new SolidColorBrush((Color)ColorConverter.ConvertFromString("#800d7cd6"));
+            SolidColorBrush BorderColorBrush = new SolidColorBrush((Color)ColorConverter.ConvertFromString("#ededed"));
+            SolidColorBrush BackgroundBrush = new SolidColorBrush((Color)ColorConverter.ConvertFromString("#80e6e6e6"));
             BorderColorBrush.Freeze();
             BackgroundBrush.Freeze();
+            this.Cursor = Cursors.SizeAll;
             this.BorderBrush = BorderColorBrush;
             this.BorderThickness = new Thickness(1, 1, 1, 1);
             this.Background = BackgroundBrush;
+            this.ToolTip = $"{Left}x{Top} ({this.DefaultScaleX * 100:0.0}%)";
         }
 
         public virtual void LeaveWidgetDesignMode() {
@@ -115,6 +119,8 @@ namespace HunterPie.GUI {
 
         public virtual void MoveWidget() {
             this.DragMove();
+
+            this.ToolTip = $"{Left}x{Top} ({this.DefaultScaleX * 100:0.0}%)";
         }
 
         public new void Show() {
