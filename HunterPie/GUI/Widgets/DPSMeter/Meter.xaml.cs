@@ -25,11 +25,7 @@ namespace HunterPie.GUI.Widgets.DPSMeter {
 
         private void OnMeterRender(object sender, EventArgs e) {
             if (Context == null) return;
-            if (UserSettings.PlayerConfig.Overlay.DPSMeter.ShowDPSWheneverPossible) {
-                Timer.Content = string.Format("{0:mm\\:ss\\.fff}", Context.Epoch);
-            } else {
-                Timer.Content = string.Format("{0:mm\\:ss\\.fff} (Total Damage)", Context.Epoch); ;
-            }
+            Timer.Text = Context.Epoch.ToString(@"hh\:mm\:ss\.ff");
         }
 
         public void SetContext(Game ctx) {
@@ -73,7 +69,7 @@ namespace HunterPie.GUI.Widgets.DPSMeter {
         private void OnPeaceZoneEnter(object source, EventArgs args) {
             Dispatcher.BeginInvoke(System.Windows.Threading.DispatcherPriority.Background, new Action(() => {
                 CompositionTarget.Rendering -= OnMeterRender;
-                Timer.Content = "";
+                Timer.Text = "";
                 DestroyPlayerComponents();
                 ChangeVisibility();
             }));

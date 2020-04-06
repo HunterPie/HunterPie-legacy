@@ -40,6 +40,9 @@ namespace HunterPie.GUI.Widgets.DPSMeter.Parts {
         private void OnPlayerSpawn(object source, PartyMemberEventArgs args) {
             Dispatch(() => {
                 PlayerName.Text = args.Name;
+                MasterRank.Text = Context.MR.ToString();
+                HighRank.Text = Context.HR.ToString();
+                if (Context.IsPartyLeader) this.PartyLeader.Visibility = Visibility.Visible;
                 PlayerClassIcon.Source = args.Weapon == null ? null : (ImageSource)TryFindResource(args.Weapon);
                 this.Visibility = args.IsInParty ? Visibility.Visible : Visibility.Collapsed;
             });
@@ -65,6 +68,9 @@ namespace HunterPie.GUI.Widgets.DPSMeter.Parts {
             float TimeElapsed = (float)PartyContext.Epoch.TotalSeconds;
             Dispatch(() => {
                 PlayerName.Text = Context.Name;
+                MasterRank.Text = Context.MR.ToString();
+                HighRank.Text = Context.HR.ToString();
+                if (Context.IsPartyLeader) this.PartyLeader.Visibility = Visibility.Visible;
                 DamagePerSecond.Text = $"{Context.Damage / TimeElapsed:0.00}/s";
                 TotalDamage.Text = Context.Damage.ToString();
                 Percentage.Text = $"{Context.DamagePercentage * 100:0.0}%";
