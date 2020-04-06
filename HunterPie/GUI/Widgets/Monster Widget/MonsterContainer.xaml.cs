@@ -15,6 +15,7 @@ namespace HunterPie.GUI.Widgets {
         MonsterHealth f_MonsterWidget;
         MonsterHealth s_MonsterWidget;
         MonsterHealth t_MonsterWidget;
+        bool Startup = true;
 
         public MonsterContainer(Game ctx) {
             InitializeComponent();
@@ -173,14 +174,23 @@ namespace HunterPie.GUI.Widgets {
         private void OnMouseLeave(object sender, System.Windows.Input.MouseEventArgs e) {
             this.MouseOver = false;
         }
-
+        
         private void OnSizeChange(object sender, SizeChangedEventArgs e) {
             if (UserSettings.PlayerConfig.Overlay.MonstersComponent.MonsterBarDock != 1) return;
+            if (!f_MonsterWidget.IsVisible && !s_MonsterWidget.IsVisible && !t_MonsterWidget.IsVisible) return;
+            
+            if (Startup) {
+                this.Top = UserSettings.PlayerConfig.Overlay.MonstersComponent.Position[1] + UserSettings.PlayerConfig.Overlay.Position[1];
+                Startup = false;
+                return;
+            }
+            
             // Compensate the widget position when it's resized if the boss bar dock is bottom
             if (e.HeightChanged && !e.WidthChanged) {
                 e.Handled = true;
                 Top -= (e.NewSize.Height - e.PreviousSize.Height);
             }
         }
+                
     }
 }

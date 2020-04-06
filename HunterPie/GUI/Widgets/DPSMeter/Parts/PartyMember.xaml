@@ -14,20 +14,24 @@
             </ResourceDictionary.MergedDictionaries>
         </ResourceDictionary>
     </UserControl.Resources>
-    <StackPanel ClipToBounds="True" Width="320" Height="46">
-        <Rectangle x:Name="PlayerDPSBarEffect" Height="46" MaxWidth="322" HorizontalAlignment="Left" Margin="0">
+    <Canvas ClipToBounds="True" Width="320" Height="46">
+        <StackPanel Height="46" Orientation="Horizontal">
+            <Image x:Name="PlayerClassIcon" Width="23" Height="23" HorizontalAlignment="Left" Margin="8,0,0,0" />
+            <TextBlock x:Name="PlayerName" Foreground="WhiteSmoke" Text="Player" MaxWidth="200" Width="153" DockPanel.Dock="Left" FontSize="20" FontWeight="Medium" TextTrimming="CharacterEllipsis" TextOptions.TextHintingMode="Fixed" Padding="2,7,0,0"/>
+            <WrapPanel Orientation="Vertical" Width="136" VerticalAlignment="Center">
+                <TextBlock x:Name="TotalDamage" Text="6000" Height="23" Foreground="WhiteSmoke" Width="89" MaxWidth="90" FontSize="16" FontWeight="Medium"/>
+                <TextBlock x:Name="DamagePerSecond" Text="100/s" Height="23" Foreground="WhiteSmoke" Width="89" MaxWidth="90" FontSize="14" FontWeight="Normal"/>
+                <TextBlock x:Name="Percentage" Text="100,0%" Height="46" Foreground="WhiteSmoke" TextAlignment="Right" Padding="0,11,0,0" FontSize="15" HorizontalAlignment="Right" TextOptions.TextHintingMode="Fixed" FontWeight="Medium"/>
+            </WrapPanel>
+        </StackPanel>
+        <Rectangle x:Name="PlayerDPSBar" ClipToBounds="True" Opacity="0.8" Height="46" MaxWidth="322" HorizontalAlignment="Left">
             <Rectangle.Fill>
-                <LinearGradientBrush EndPoint="1,0" StartPoint="1,1.5" Opacity="0.4">
-                    <GradientStop Color="Aqua" Offset="0"/>
-                    <GradientStop Offset="1" Color="#00000000"/>
+                <LinearGradientBrush EndPoint="1,0" StartPoint="1,1">
+                    <GradientStop Color="#FF00CB8A" Offset="0.055"/>
+                    <GradientStop Color="#00000000" Offset="1"/>
+                    <GradientStop Color="#5500BF82" Offset="0.064"/>
                 </LinearGradientBrush>
             </Rectangle.Fill>
         </Rectangle>
-        <DockPanel Height="43" Margin="0,-48,0,0">
-            <Image x:Name="PlayerClassIcon" Width="23" Height="23" HorizontalAlignment="Left" Margin="8,0,0,0" />
-            <Label x:Name="PlayerName" Foreground="WhiteSmoke"  MaxWidth="200" Width="153" DockPanel.Dock="Left" VerticalContentAlignment="Center" FontSize="18" FontFamily="Roboto" FontWeight="Medium" Padding="11,5,5,5"/>
-            <Label x:Name="DPSText" Content="28,53/s (100%)" ClipToBounds="False" Foreground="WhiteSmoke" DockPanel.Dock="Right" HorizontalAlignment="Right" Width="136" HorizontalContentAlignment="Right" VerticalContentAlignment="Center" FontFamily="Roboto" FontSize="16" FontWeight="Medium" Padding="0,0,13,0"/>
-        </DockPanel>
-        <Rectangle x:Name="PlayerDPSBar" ClipToBounds="True" Fill="Aqua" Opacity="0.8" Height="2.5" MaxWidth="322" HorizontalAlignment="Left" Margin="0,-3,0,0" />
-    </StackPanel>
+    </Canvas>
 </UserControl>

@@ -49,6 +49,8 @@
         public string WeaponIconName;
         public bool IsPartyLeader { get; set; }
         public bool IsInParty { get; set; }
+        public short HR { get; set; }
+        public short MR { get; set; }
 
         public delegate void PartyMemberEvents(object source, PartyMemberEventArgs args);
         public event PartyMemberEvents OnDamageChange;

@@ -353,11 +353,18 @@ namespace HunterPie.Core {
                 for (int i = 0; i < PlayerParty.MaxSize; i++) {
                     string playerName = GetPartyMemberName(PartyContainer + (i * 0x1C0));
                     byte playerWeapon = playerName == this.Name ? this.WeaponID : Scanner.READ_BYTE(PartyContainer + (i * 0x1C0 + 0x33));
+                    short HR = Scanner.READ_SHORT(PartyContainer + (i * 0x1C0 + 0x27));
+                    short MR = Scanner.READ_SHORT(PartyContainer + (i * 0x1C0 + 0x29));
                     int playerDamage = GetPartyMemberDamage(i);
                     float playerDamagePercentage = 0;
                     if (totalDamage != 0) {
                         playerDamagePercentage = playerDamage / (float)totalDamage;
                     }
+                    if (i == 0) {
+                        PlayerParty[i].IsPartyLeader = true;
+                    }
+                    PlayerParty[i].HR = HR;
+                    PlayerParty[i].MR = MR;
                     PlayerParty[i].SetPlayerInfo(playerName, playerWeapon, playerDamage, playerDamagePercentage);
                 }
             }

@@ -7,13 +7,13 @@ using System.Windows.Markup;
 using System.Windows.Interop;
 using System.Windows.Media.Animation;
 using Process = System.Diagnostics.Process;
+using ProcessStartInfo = System.Diagnostics.ProcessStartInfo;
 // HunterPie
 using HunterPie.Memory;
 using HunterPie.Core;
 using HunterPie.GUI;
 using HunterPie.GUIControls;
 using HunterPie.Logger;
-
 
 namespace HunterPie {
     /// <summary>
@@ -559,10 +559,11 @@ namespace HunterPie {
 
         private void LaunchGame() {
             try {
-                Process createGameProcess = new Process();
-                createGameProcess.StartInfo.FileName = "steam://run/582010";
-                createGameProcess.StartInfo.Arguments = UserSettings.PlayerConfig.HunterPie.Launch.LaunchArgs;
-                createGameProcess.Start();
+                ProcessStartInfo GameStartInfo = new ProcessStartInfo();
+                GameStartInfo.FileName = "steam://run/582010";
+                GameStartInfo.Arguments = UserSettings.PlayerConfig.HunterPie.Launch.LaunchArgs;
+                GameStartInfo.UseShellExecute = true;
+                Process.Start(GameStartInfo);
             } catch(Exception err) {
                 Debugger.Error($"{GStrings.GetLocalizationByXPath("/Console/String[@ID='MESSAGE_LAUNCH_ERROR']")}\n{err.ToString()}");
             }

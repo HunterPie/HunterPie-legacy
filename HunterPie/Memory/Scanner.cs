@@ -7,12 +7,6 @@ using System.Linq;
 
 namespace HunterPie.Memory {
     class Scanner {
-        // Byte sizes
-        const int INT = 4;
-        const int CHAR = 1;
-        const int FLOAT = 4;
-        const int LONGLONG = 8;
-        const int LONG = 4;
 
         // Process info
         const int PROCESS_VM_READ = 0x0010;
@@ -188,15 +182,22 @@ namespace HunterPie.Memory {
 
         public static int READ_INT(Int64 Address) {
             int bytesRead = 0;
-            byte[] Buffer = new byte[INT];
-            ReadProcessMemory((int)ProcessHandle, (IntPtr)Address, Buffer, INT, ref bytesRead);
+            byte[] Buffer = new byte[sizeof(int)];
+            ReadProcessMemory((int)ProcessHandle, (IntPtr)Address, Buffer, sizeof(int), ref bytesRead);
             return BitConverter.ToInt32(Buffer, 0);
+        }
+
+        public static short READ_SHORT(Int64 Address) {
+            int bytesRead = 0;
+            byte[] Buffer = new byte[sizeof(short)];
+            ReadProcessMemory((int)ProcessHandle, (IntPtr)Address, Buffer, sizeof(short), ref bytesRead);
+            return BitConverter.ToInt16(Buffer, 0);
         }
 
         public static Int64 READ_LONGLONG(Int64 Address) {
             int bytesRead = 0;
-            byte[] Buffer = new byte[LONGLONG];
-            ReadProcessMemory((int)ProcessHandle, (IntPtr)Address, Buffer, LONGLONG, ref bytesRead);
+            byte[] Buffer = new byte[sizeof(long)];
+            ReadProcessMemory((int)ProcessHandle, (IntPtr)Address, Buffer, sizeof(long), ref bytesRead);
             return BitConverter.ToInt64(Buffer, 0);
         }
 
@@ -222,9 +223,9 @@ namespace HunterPie.Memory {
         }
 
         public static float READ_FLOAT(Int64 Address) {
-            byte[] Buffer = new byte[FLOAT];
+            byte[] Buffer = new byte[sizeof(float)];
             int bytesRead = 0;
-            ReadProcessMemory((int)ProcessHandle, (IntPtr)Address, Buffer, FLOAT, ref bytesRead);
+            ReadProcessMemory((int)ProcessHandle, (IntPtr)Address, Buffer, sizeof(float), ref bytesRead);
             return BitConverter.ToSingle(Buffer, 0);
         }
     }

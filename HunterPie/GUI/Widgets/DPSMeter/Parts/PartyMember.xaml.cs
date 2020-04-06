@@ -39,7 +39,7 @@ namespace HunterPie.GUI.Widgets.DPSMeter.Parts {
 
         private void OnPlayerSpawn(object source, PartyMemberEventArgs args) {
             Dispatch(() => {
-                PlayerName.Content = args.Name;
+                PlayerName.Text = args.Name;
                 PlayerClassIcon.Source = args.Weapon == null ? null : (ImageSource)TryFindResource(args.Weapon);
                 this.Visibility = args.IsInParty ? Visibility.Visible : Visibility.Collapsed;
             });
@@ -52,34 +52,23 @@ namespace HunterPie.GUI.Widgets.DPSMeter.Parts {
         }
 
         public void UpdateDamage() {
-            string DamageText;
             float TimeElapsed = (float)PartyContext.Epoch.TotalSeconds;
-            if (UserSettings.PlayerConfig.Overlay.DPSMeter.ShowDPSWheneverPossible && TimeElapsed > 0) {
-                
-                DamageText = $"{Context.Damage / TimeElapsed:0.00}/s ({Context.DamagePercentage * 100:0}%)";
-            } else {
-                DamageText = $"{Context.Damage} ({Context.DamagePercentage * 100:0}%)";
-            }
             Dispatch(() => {
-                DPSText.Content = DamageText;
+                DamagePerSecond.Text = $"{Context.Damage / TimeElapsed:0.00}/s";
+                TotalDamage.Text = Context.Damage.ToString();
+                Percentage.Text = $"{Context.DamagePercentage * 100:0.0}%";
                 PlayerDPSBar.Width = Context.DamagePercentage * PlayerDPSBar.MaxWidth;
-                PlayerDPSBarEffect.Width = PlayerDPSBar.Width;
             });
         }
 
         public void SetPlayerInformation() {
-            string DamageText;
             float TimeElapsed = (float)PartyContext.Epoch.TotalSeconds;
-            if (UserSettings.PlayerConfig.Overlay.DPSMeter.ShowDPSWheneverPossible && TimeElapsed > 0) {
-                DamageText = $"{Context.Damage / TimeElapsed:0.00}/s ({Context.DamagePercentage * 100:0}%)";
-            } else {
-                DamageText = $"{Context.Damage} ({Context.DamagePercentage * 100:0}%)";
-            }
             Dispatch(() => {
-                PlayerName.Content = Context.Name;
-                DPSText.Content = DamageText;
+                PlayerName.Text = Context.Name;
+                DamagePerSecond.Text = $"{Context.Damage / TimeElapsed:0.00}/s";
+                TotalDamage.Text = Context.Damage.ToString();
+                Percentage.Text = $"{Context.DamagePercentage * 100:0.0}%";
                 PlayerClassIcon.Source = Context.WeaponIconName == null ? null : (ImageSource)TryFindResource(Context.WeaponIconName);
-                PlayerDPSBarEffect.Width = PlayerDPSBar.Width = Context.DamagePercentage * PlayerDPSBar.MaxWidth;
                 this.Visibility = Context.IsInParty ? Visibility.Visible : Visibility.Collapsed;
             });
         }
@@ -87,14 +76,15 @@ namespace HunterPie.GUI.Widgets.DPSMeter.Parts {
         public void ChangeColor(string hexColor) {
             Color PlayerColor = (Color)ColorConverter.ConvertFromString(hexColor);
             LinearGradientBrush ShinyEffect = new LinearGradientBrush() {
-                StartPoint = new Point(1, 1.15),
-                EndPoint = new Point(1, 0),
-                Opacity = 0.4
+                StartPoint = new Point(1, 1),
+                EndPoint = new Point(1, 0)
             };
-            ShinyEffect.GradientStops.Add(new GradientStop(PlayerColor, 0));
+            ShinyEffect.GradientStops.Add(new GradientStop(PlayerColor, 0.055));
+            PlayerColor.A = 0x55;
+            ShinyEffect.GradientStops.Add(new GradientStop(PlayerColor, 0.064));
             ShinyEffect.GradientStops.Add(new GradientStop((Color)ColorConverter.ConvertFromString("#00000000"), 1));
-            this.PlayerDPSBarEffect.Fill = ShinyEffect;
-            this.PlayerDPSBar.Fill = new SolidColorBrush(PlayerColor);
+            ShinyEffect.Freeze();
+            this.PlayerDPSBar.Fill = ShinyEffect;
         }
 
         private void Dispatch(Action f) {
