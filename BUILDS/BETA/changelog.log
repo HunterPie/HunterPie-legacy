@@ -1,40 +1,52 @@
-**UPDATE 1.0.3.85**
+﻿**UPDATE 1.0.3.86**
 
-**Localization**
+**Specialized Tool Widget**
 
-HunterPie is now fully translatable. Thanks to all translators that have been helping HunterPie become acessible to everyone! If you want to help HunterPie by localizing it to your language, plase read [**this**](https://github.com/Haato3o/HunterPie/wiki/Localization)
+The Specialized Tools Widget got redesigned to match the rest of the overlay. The design changes include:
 
-**Patch Notes**
+- **Specialized Tool Icons:** The specialized tool widget now shows the equipped tool icon.
+- **Timer & Cooldown bar:** Instead of using a circle progress bar, the new design uses a bar, the bar has a similar effect to the damage meter bar. When the specialized tool is on cooldown, the bar will grow and when it's being used by the player the bar will shrink.
 
-The patch notes window now uses Markdown! That means all information about the latest update will be way more organized and have a more complete explanation.
+![SpecializedToolDesign](https://cdn.discordapp.com/attachments/402557384209203200/697167080339800095/unknown.png)
 
-**Harvest Box Update**
+**Damage Meter Widget**
 
-- Added option to toggle Steam Tracker;
-- Added option to toggle Argosy Tracker;
-- Added option to toggle Tailraiders Tracker;
-- The Steam Tracker now formats the texts properly:
-    - E.g: If you have 80,000 fuel, it will be displayed as 80k;
+The damage meter now has way more information and also new settings, instead of choosing only one mode, you can choose whether you want to show only total damage, only damage per second, both, or none at all!
 
-**Discord Rich Presence**
+- **Show Total Damage:** If enabled, it will display all party members total damage.
+- **Show Damage Per Second:** If enabled, it will display all party members damage per second.
+> **Note:** If you join a quest in progress (e.g: SOS), the DPS will **not** be accurate, since the timer only starts when you join the quest, and not when the quest started.
+- **Extra informations:** The meter also shows all party members HR, MR, and a crown on top left if that player is party leader.
+- **Weapon Icons:** Some of the weapon icons were changed for better icons. [Special thanks to *Othello RHIN#1097* for his awesome icons](https://github.com/OthelloRhin/MHW_Icons_SVG)
 
-A new feature for the Rich Presence was added. Now people can ask to join your session directly from Discord! You can also disable this function in your HunterPie settings window.
-> **Note:** The person **MUST** have HunterPie in order to join your session, since HunterPie handles both requests and join Discord functions.
+![DamageMeterDesign](https://cdn.discordapp.com/attachments/402557384209203200/697175904417480754/unknown.png)
 
-A join request will popup when someone requests to join your session.
+**Abnormalities Widget**
 
-![Request_Example](https://cdn.discordapp.com/attachments/402557384209203200/695330850077933638/d8224f0efe.png?size=307)
+You can now enable abnormality names for each abnormality bar individually. So if you want to keep a debuff bar without names and a buff bar with names, for example, you can!
 
-**Debug**
+> **Attention:** Enabling the abnormality names option will force your bar to be vertically alligned.
 
-- Added option to load a custom monster data for debugging purposes.
+![AbnormalityNameImage](https://cdn.discordapp.com/attachments/402557384209203200/697178504369799249/unknown.png)
 
-**Core**
+**Monster Health Widget**
 
-- Added option to change the delay between memory scans. Setting it to a low number will make HunterPie more accurate at cost of CPU usage. Making the delay higher will make it use less CPU but take more time to update the overlay/data;
-- Latest Session ID is now saved in a Sessions.txt file.
+The monster widget also got new features:
+
+- **New monster bar mode:** Shows all monsters until one is manually selected on the map. If the monster is unselected, then all monsters will be displayed again.
+- **Health bar text format:** You can now change the text format for the health bar. Here are some useful text format presets for you:
+    - **500/1000 (50%):** {Health:0}/{TotalHealth:0} ({Percentage:0}%)
+    - **500/1000:** {Health:0}/{TotalHealth:0}
+    - **50%:** {Percentage:0}%
+    - **500 (50%):** {Health:0} ({Percentage}%)
+    - **500.0/1000.0 (50.0%):** {Health:0.0}/{TotalHealth:0.0} ({Percentage:0.0})
+> **Note:** Changing the text format does **not** require restarting, so feel free to play with the formats.
+
+**Other Changes**
+
+- Added position tooltip when you hover your mouse over a widget in design mode.
 
 **Bug Fixes**
 
-- Fixed crown problems due to floating precision;
-- Fixed ailments not showing buildup after timer is over;
+- Fixed monster health bar getting pushed down when it's docked at the bottom;
+- Fixed monster data, read [this](https://github.com/Haato3o/HunterPie/pull/35) to see which monsters changed.
