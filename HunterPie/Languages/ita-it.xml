@@ -452,7 +452,7 @@
       <String ID="ENABLE_RPC_HEALTH" Name="Mostra percentuale mostro"/>
       <String ID="ENABLE_RPC_HEALTH_DESC" Name="Se attivo, la percentuale del mostro sarà mostrata nella attivita di gioco di discord."/>
       <String ID="ENABLE_PEOPLE_JOIN" Name="Lascia che la gente possa chiederti di unirti a te"/>
-      <String ID="ENABLE_PEOPLE_JOIN" Name="Se attivo, gli altri giocatori potrano inviarti una richiesta per unirsi nella tua sessione."/>
+      <String ID="ENABLE_PEOPLE_JOIN_DESC" Name="Se attivo, gli altri giocatori potrano inviarti una richiesta per unirsi nella tua sessione."/>
       <!-- Overlay -->
       <String ID="ENABLE_OVERLAY" Name="Attiva overlay in-game"/>
       <String ID="ENABLE_OVERLAY_DESC" Name="Se attivo, la overlay sarà mostrata in gioco."/>
@@ -474,12 +474,15 @@
       <!-- Monster Widget -->
       <String ID="ENABLE_MONSTER_WIDGET" Name="Attiva widget mostri"/>
       <String ID="ENABLE_MONSTER_WIDGET_DESC" Name="Se attivato, il widget dei mostri sarà visible in sieme a i suoi contenuti."/>
+      <String ID="STATIC_MONSTER_HEALTH_STRING_FORMAT" Name="Formato testo vita:"/>
+      <String ID="STATIC_MONSTER_HEALTH_STRING_FORMAT_DESC" Name="Cambia il formato testo della barra di vita."/>
       <String ID="STATIC_MONSTER_BAR_MODE" Name="Modalità barra di vita del mostro"/>
       <String ID="STATIC_MONSTER_BAR_MODE_DESC" Name="Cambia la modalità della barra di vita del mostro."/>
       <String ID="STATIC_MONSTER_BAR_MODE_0" Name="Mostra tutti i mostri a lo stesso tempo"/>
       <String ID="STATIC_MONSTER_BAR_MODE_1" Name="Mostra tutti i mostri ma evidenzia il mio obiettivo (in spedizione pinnalo nella mappa)"/>
       <String ID="STATIC_MONSTER_BAR_MODE_2" Name="Mostra solo il mostro che sto cacciando (in spedizione pinnalo nella mappa)"/>
       <String ID="STATIC_MONSTER_BAR_MODE_3" Name="Mostra tutti ma nascondi inattivi dopo 15 secondi"/>
+	  <String ID="STATIC_MONSTER_BAR_MODE_4" Name="Mostra tutti finche un mostro non è selezionato"/>
       <String ID="STATIC_MONSTER_BAR_MODE_HOTKEY" Name=" la modalità della barra di vita (HotKey):"/>
       <String ID="STATIC_MONSTER_BAR_MODE_HOTKEY_DESC" Name="Hotkey per la modalità della barra di vita. cambiare la Hotkey richiede il riavvio di HunterPie."/>
       <String ID="STATIC_MONSTER_BAR_DOCK" Name="Dock della barra di vita:"/>
@@ -538,8 +541,10 @@
       <!-- Damage Meter -->
       <String ID="ENABLE_METER" Name="Attiva widget danno"/>
       <String ID="ENABLE_METER_DESC" Name="Se attivo, il widget del danno sarà visibile."/>
-      <String ID="ENABLE_METER_DPS" Name="Mostra DPS al posto del danno totale"/>
-      <String ID="ENABLE_METER_DPS_DESC" Name="Se attivo, il widget del danno mostrera i danni per secondo al posto del danno totale."/>
+      <String ID="ENABLE_TOTAL_DAMAGE" Name="Mostra danno totale"/>
+      <String ID="ENABLE_TOTAL_DAMAGE_DESC" Name="Se attivo, il danno totale individuale per giocatore sarà mostrato."/>
+      <String ID="ENABLE_METER_DPS" Name="Mostra DPS "/>
+      <String ID="ENABLE_METER_DPS_DESC" Name="Se attivo, il widget del danno mostrera i danni per secondo."/>
       <String ID="STATIC_METER_PLAYER_1" Name="Primo Giocatore"/>
       <String ID="STATIC_METER_PLAYER_2" Name="Secondo Giocatore"/>
       <String ID="STATIC_METER_PLAYER_3" Name="Terzo Giocatore"/>
@@ -560,6 +565,8 @@
       <String ID="STATIC_ABNORM_TAB_ORCHESTRA" Name="Orchestra"/>
       <String ID="STATIC_ABNORM_TAB_DEBUFF" Name="Debuffs"/>
       <String ID="STATIC_ABNORM_TAB_CONSUMABLE" Name="Consumabili"/>
+      <String ID="ENABLE_SHOW_ABNORM_NAMES" Name="Mostra nome anormalità"/>
+      <String ID="ENABLE_SHOW_ABNORM_NAMES_DESC" Name="Se attivo, il nome del'anormalità sarà mostrato."/>
       <!-- Specialized Tool Widget-->
       <String ID="STATIC_PRIMARY_SPEC_TOOL" Name="Attrezzo Specializato Primario"/>
       <String ID="STATIC_SECONDARY_SPEC_TOOL" Name="Attrezzo Specializato Secondario"/>
