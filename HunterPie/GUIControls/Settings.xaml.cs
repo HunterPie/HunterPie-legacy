@@ -115,6 +115,7 @@ namespace HunterPie.GUIControls {
 
             // DPS Meter
             settingsUI.switchEnableDPSMeter.IsEnabled = settings.Overlay.DPSMeter.Enabled;
+            settingsUI.switchEnableTotalDamage.IsEnabled = settings.Overlay.DPSMeter.ShowTotalDamage;
             settingsUI.switchEnableDPSWheneverPossible.IsEnabled = settings.Overlay.DPSMeter.ShowDPSWheneverPossible;
             settingsUI.DamageMeterPosition.X = settings.Overlay.DPSMeter.Position[0];
             settingsUI.DamageMeterPosition.Y = settings.Overlay.DPSMeter.Position[1];
@@ -205,6 +206,7 @@ namespace HunterPie.GUIControls {
 
             // DPS Meter
             settings.Overlay.DPSMeter.Enabled = settingsUI.switchEnableDPSMeter.IsEnabled;
+            settings.Overlay.DPSMeter.ShowTotalDamage = settingsUI.switchEnableTotalDamage.IsEnabled;
             settings.Overlay.DPSMeter.ShowDPSWheneverPossible = settingsUI.switchEnableDPSWheneverPossible.IsEnabled;
             settings.Overlay.DPSMeter.Position[0] = settingsUI.DamageMeterPosition.X;
             settings.Overlay.DPSMeter.Position[1] = settingsUI.DamageMeterPosition.Y;

@@ -33,8 +33,58 @@
             </Canvas>
             <TextBlock x:Name="PlayerName" Foreground="WhiteSmoke" Text="Player" MaxWidth="200" Width="148" DockPanel.Dock="Left" FontSize="20" FontWeight="Medium" TextTrimming="CharacterEllipsis" TextOptions.TextHintingMode="Fixed" Padding="2,7,0,0"/>
             <WrapPanel Orientation="Vertical" Width="136" VerticalAlignment="Center">
-                <TextBlock x:Name="TotalDamage" Text="6000" Height="23" Foreground="WhiteSmoke" Width="89" MaxWidth="90" FontSize="16" FontWeight="Medium"/>
-                <TextBlock x:Name="DamagePerSecond" Text="100/s" Height="23" Foreground="WhiteSmoke" Width="89" MaxWidth="90" FontSize="14" FontWeight="Normal"/>
+                <TextBlock x:Name="TotalDamage" Text="6000" Foreground="WhiteSmoke" Width="89" MaxWidth="90" FontSize="16" FontWeight="Medium" Height="23">
+                    <TextBlock.Style>
+                        <Style TargetType="TextBlock">
+                            <Style.Triggers>
+                                <DataTrigger Binding="{Binding ElementName=DamagePerSecond, Path=IsVisible}" Value="True">
+                                    <DataTrigger.EnterActions>
+                                        <BeginStoryboard>
+                                            <Storyboard>
+                                                <DoubleAnimation Storyboard.TargetProperty="Height" To="23" Duration="0:0:0.2"/>
+                                                <ThicknessAnimation Storyboard.TargetProperty="Padding" To="0,0,0,0" Duration="0:0:0.2"/>
+                                            </Storyboard>
+                                        </BeginStoryboard>
+                                    </DataTrigger.EnterActions>
+                                    <DataTrigger.ExitActions>
+                                        <BeginStoryboard>
+                                            <Storyboard>
+                                                <DoubleAnimation Storyboard.TargetProperty="Height" To="46" Duration="0:0:0.2"/>
+                                                <ThicknessAnimation Storyboard.TargetProperty="Padding" To="0,10,0,0" Duration="0:0:0.2"/>
+                                            </Storyboard>
+                                        </BeginStoryboard>
+                                    </DataTrigger.ExitActions>
+                                </DataTrigger>
+                            </Style.Triggers>
+                        </Style>
+                    </TextBlock.Style>
+                </TextBlock>
+                <TextBlock x:Name="DamagePerSecond" Text="100/s" Foreground="WhiteSmoke" Width="89" MaxWidth="90" FontSize="14" FontWeight="Normal" Height="23">
+                    <TextBlock.Style>
+                        <Style TargetType="TextBlock">
+                            <Style.Triggers>
+                                <DataTrigger Binding="{Binding ElementName=TotalDamage, Path=IsVisible}" Value="True">
+                                    <DataTrigger.EnterActions>
+                                        <BeginStoryboard>
+                                            <Storyboard>
+                                                <DoubleAnimation Storyboard.TargetProperty="Height" To="23" Duration="0:0:00"/>
+                                                <ThicknessAnimation Storyboard.TargetProperty="Padding" To="0,0,0,0" Duration="0:0:0.2"/>
+                                            </Storyboard>
+                                        </BeginStoryboard>
+                                    </DataTrigger.EnterActions>
+                                    <DataTrigger.ExitActions>
+                                        <BeginStoryboard>
+                                            <Storyboard>
+                                                <DoubleAnimation Storyboard.TargetProperty="Height" To="46" Duration="0:0:0"/>
+                                                <ThicknessAnimation Storyboard.TargetProperty="Padding" From="0,15,0,0" To="0,10,0,0" Duration="0:0:0.2"/>
+                                            </Storyboard>
+                                        </BeginStoryboard>
+                                    </DataTrigger.ExitActions>
+                                </DataTrigger>
+                            </Style.Triggers>
+                        </Style>
+                    </TextBlock.Style>
+                </TextBlock>
                 <TextBlock x:Name="Percentage" Text="100,0%" Height="46" Foreground="WhiteSmoke" TextAlignment="Right" Padding="0,11,0,0" FontSize="15" HorizontalAlignment="Right" TextOptions.TextHintingMode="Fixed" FontWeight="Medium"/>
             </WrapPanel>
         </StackPanel>

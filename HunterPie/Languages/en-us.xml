@@ -540,8 +540,10 @@
       <!-- Damage Meter -->
       <String ID="ENABLE_METER" Name="Enable Damage Widget"/>
       <String ID="ENABLE_METER_DESC" Name="If enabled, the Damage Meter Widget will be visible whenever it has content."/>
-      <String ID="ENABLE_METER_DPS" Name="Show DPS instead of total damage"/>
-      <String ID="ENABLE_METER_DPS_DESC" Name="If enabled, the Damage Meter will show damage per second instead of total damage."/>
+      <String ID="ENABLE_TOTAL_DAMAGE" Name="Show total damage"/>
+      <String ID="ENABLE_TOTAL_DAMAGE_DESC" Name="If enabled, the Damage Widget will show individual total damage."/>
+      <String ID="ENABLE_METER_DPS" Name="Show damage per second"/>
+      <String ID="ENABLE_METER_DPS_DESC" Name="If enabled, the Damage Widget will show individual damage per second."/>
       <String ID="STATIC_METER_PLAYER_1" Name="First Player"/>
       <String ID="STATIC_METER_PLAYER_2" Name="Second Player"/>
       <String ID="STATIC_METER_PLAYER_3" Name="Third Player"/>

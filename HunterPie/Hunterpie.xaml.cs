@@ -30,7 +30,7 @@ namespace HunterPie {
         bool OfflineMode = false;
 
         // HunterPie version
-        const string HUNTERPIE_VERSION = "1.0.3.85";
+        const string HUNTERPIE_VERSION = "1.0.3.86";
 
         // Helpers
         IntPtr _windowHandle;
@@ -63,7 +63,7 @@ namespace HunterPie {
             InitializeTrayIcon();
 
             // Updates version_text
-            this.version_text.Content = GStrings.GetLocalizationByXPath("/Console/String[@ID='CONSOLE_VERSION']").Replace("{HunterPie_Version}", HUNTERPIE_VERSION).Replace("{HunterPie_Branch}", UserSettings.PlayerConfig.HunterPie.Update.Branch);
+            this.version_text.Text = GStrings.GetLocalizationByXPath("/Console/String[@ID='CONSOLE_VERSION']").Replace("{HunterPie_Version}", HUNTERPIE_VERSION).Replace("{HunterPie_Branch}", UserSettings.PlayerConfig.HunterPie.Update.Branch);
             
             // Initializes the rest of HunterPie
             LoadData();
@@ -524,7 +524,7 @@ namespace HunterPie {
             Settings.Instance.UninstallKeyboardHook();
             // Unhook events
             if (MonsterHunter.Player != null) UnhookGameEvents();
-            this.RemoveHotKeys();
+            if (_source != null) this.RemoveHotKeys();
             this.UnhookEvents();
         }
 
