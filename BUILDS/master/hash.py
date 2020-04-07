@@ -4,7 +4,7 @@ import json
 
 class AutoHasher():
     READ_BYTE_FILES = [".exe", ".dll", ".png", "cn.xml"]
-    READ_BYTE_REPLACE_FILES = [".xml", ".map", ".xaml"]
+    READ_BYTE_REPLACE_FILES = [".xml", ".map", ".xaml", ".log"]
 
     # Ignore files
     IGNORED_FILES = [
