@@ -475,6 +475,8 @@
       <!-- Monster Widget -->
       <String ID="ENABLE_MONSTER_WIDGET" Name="Enable Monster Widget"/>
       <String ID="ENABLE_MONSTER_WIDGET_DESC" Name="If enabled, the monster widget will be visible whenever it has content to show."/>
+      <String ID="STATIC_MONSTER_HEALTH_STRING_FORMAT" Name="Health text format:"/>
+      <String ID="STATIC_MONSTER_HEALTH_STRING_FORMAT_DESC" Name="Text format for the monster health bar."/>
       <String ID="STATIC_MONSTER_BAR_MODE" Name="Monster Bar Mode"/>
       <String ID="STATIC_MONSTER_BAR_MODE_DESC" Name="Changes the monster bar mode."/>
       <String ID="STATIC_MONSTER_BAR_MODE_0" Name="Show all monsters at once"/>

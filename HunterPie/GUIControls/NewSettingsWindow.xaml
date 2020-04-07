@@ -340,7 +340,7 @@
                     </Canvas>
                 </TabItem.Header>
                 <ScrollViewer>
-                    <StackPanel  Height="600" Width="739" HorizontalAlignment="Left">
+                    <StackPanel  Height="662" Width="739" HorizontalAlignment="Left">
                         <custom:Switcher x:Name="switchEnableMonsterComponent" HorizontalAlignment="Center" MinWidth="500">
                             <custom:Switcher.Text>
                                 <Binding Mode="OneTime" XPath="Settings/String[@ID='ENABLE_MONSTER_WIDGET']/@Name"/>
@@ -349,13 +349,17 @@
                                 <Binding Mode="OneTime" XPath="Settings/String[@ID='ENABLE_MONSTER_WIDGET_DESC']/@Name"/>
                             </custom:Switcher.ToolTip>
                         </custom:Switcher>
+                        <StackPanel Orientation="Horizontal" MinWidth="500" HorizontalAlignment="Center" ToolTip="{Binding Mode=OneTime, XPath=/Strings/Client/Settings/String[@ID\=\'STATIC_MONSTER_HEALTH_STRING_FORMAT_DESC\']/@Name}">
+                            <TextBlock TextWrapping="Wrap" Text="{Binding Mode=OneTime, XPath=/Strings/Client/Settings/String[@ID\=\'STATIC_MONSTER_HEALTH_STRING_FORMAT\']/@Name}" FontFamily="Segoe UI Light" Foreground="#FFF1F1F1" Canvas.Left="320" Canvas.Top="3" FontSize="16" Padding="0,0,5,0"/>
+                            <TextBox x:Name="HealthTextFormat" TextWrapping="Wrap" Background="{x:Null}" Foreground="#FF9E9D9D" BorderBrush="#FFABADB3" BorderThickness="0,0,0,1" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" HorizontalAlignment="Right" Width="341" Canvas.Left="158" Canvas.Top="35" SelectionBrush="#FFD31D1D"/>
+                        </StackPanel>
                         <StackPanel Orientation="Horizontal" Height="28" ToolTip="{Binding Mode=OneTime, XPath=/Strings/Client/Settings/String[@ID\=\'STATIC_MONSTER_BAR_MODE_DESC\']/@Name}" HorizontalAlignment="Center" MinWidth="500">
-                            <TextBlock FontFamily="Segoe UI Light" Foreground="WhiteSmoke" Canvas.Top="3">
+                            <TextBlock FontFamily="Segoe UI Light" Foreground="WhiteSmoke" Canvas.Top="3" Padding="0,0,5,0">
                                 <TextBlock.Text>
                                     <Binding Mode="OneTime" XPath="Settings/String[@ID='STATIC_MONSTER_BAR_MODE']/@Name"/>
                                 </TextBlock.Text>
                             </TextBlock>
-                            <ComboBox x:Name="MonsterShowModeSelection" Style="{StaticResource ComboBoxFlatStyle}" IsReadOnly="True" Cursor="Hand" HorizontalAlignment="Center" Width="322" FontSize="14" Foreground="#FFF9F9F9" SelectedIndex="0" Canvas.Left="141" Canvas.Top="2">
+                            <ComboBox x:Name="MonsterShowModeSelection" Style="{StaticResource ComboBoxFlatStyle}" IsReadOnly="True" Cursor="Hand" HorizontalAlignment="Center" Width="312" FontSize="14" Foreground="#FFF9F9F9" SelectedIndex="0" Canvas.Left="141" Canvas.Top="2">
 
                             </ComboBox>
                         </StackPanel>

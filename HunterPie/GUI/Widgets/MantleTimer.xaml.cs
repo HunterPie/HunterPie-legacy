@@ -2,7 +2,6 @@
 using System.Windows;
 using HunterPie.Core;
 using System.Windows.Media;
-using Storyboard = System.Windows.Media.Animation.Storyboard;
 
 namespace HunterPie.GUI.Widgets {
     /// <summary>

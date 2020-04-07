@@ -516,10 +516,10 @@
       <String ID="ENABLE_MONSTER_PART_MANE" Name="Attiva vita manto"/>
       <String ID="ENABLE_MONSTER_PART_BONE" Name="Attiva vita ossa"/>
       <String ID="ENABLE_MONSTER_PART_MISC" Name="Attiva vita varie"/>
-      <String ID="STATIC_MONSTER_MAX_PARTS" Name="Massimo nummero di parti per colonna"/>
-      <String ID="STATIC_MONSTER_MAX_PARTS_DESC" Name="Imposta il massimo nummero di parti che una colonna puo avere allo stesso tempo."/>
-      <String ID="STATIC_MONSTER_MAX_COLUMNS" Name="Nummero massimo di colonne"/>
-      <String ID="STATIC_MONSTER_MAX_COLUMNS_DESC" Name="Imposta il massimo nummero di colonne."/>
+      <String ID="STATIC_MONSTER_MAX_PARTS" Name="Massimo numero di parti per colonna"/>
+      <String ID="STATIC_MONSTER_MAX_PARTS_DESC" Name="Imposta il massimo numero di parti che una colonna puo avere allo stesso tempo."/>
+      <String ID="STATIC_MONSTER_MAX_COLUMNS" Name="numero massimo di colonne"/>
+      <String ID="STATIC_MONSTER_MAX_COLUMNS_DESC" Name="Imposta il massimo numero di colonne."/>
       <String ID="STATIC_MONSTER_PART_DELAY" Name="Delay per nascondere le parti inattive"/>
       <String ID="STATIC_MONSTER_PART_DELAY_DESC" Name="Il delay che c'è prima che una parte sia nascosta per inatività."/>
       <String ID="STATIC_MONSTER_POSITION_DESC" Name="Cambia la posizione del widget."/>
