@@ -475,12 +475,15 @@
       <!-- Monster Widget -->
       <String ID="ENABLE_MONSTER_WIDGET" Name="Enable Monster Widget"/>
       <String ID="ENABLE_MONSTER_WIDGET_DESC" Name="If enabled, the monster widget will be visible whenever it has content to show."/>
+      <String ID="STATIC_MONSTER_HEALTH_STRING_FORMAT" Name="Health text format:"/>
+      <String ID="STATIC_MONSTER_HEALTH_STRING_FORMAT_DESC" Name="Text format for the monster health bar."/>
       <String ID="STATIC_MONSTER_BAR_MODE" Name="Monster Bar Mode"/>
       <String ID="STATIC_MONSTER_BAR_MODE_DESC" Name="Changes the monster bar mode."/>
       <String ID="STATIC_MONSTER_BAR_MODE_0" Name="Show all monsters at once"/>
       <String ID="STATIC_MONSTER_BAR_MODE_1" Name="Show all monsters but highlight my target"/>
       <String ID="STATIC_MONSTER_BAR_MODE_2" Name="Show only hunted monster"/>
       <String ID="STATIC_MONSTER_BAR_MODE_3" Name="Show all but hide inactive monsters after 15 seconds"/>
+      <String ID="STATIC_MONSTER_BAR_MODE_4" Name="Show all until a monster is selected"/>
       <String ID="STATIC_MONSTER_BAR_MODE_HOTKEY" Name="Change Bar mode (HotKey):"/>
       <String ID="STATIC_MONSTER_BAR_MODE_HOTKEY_DESC" Name="Hotkey to change the monster bar mode. Changing the HotKey requires restart for it to take effect."/>
       <String ID="STATIC_MONSTER_BAR_DOCK" Name="Monster Bar Dock:"/>
@@ -539,8 +542,10 @@
       <!-- Damage Meter -->
       <String ID="ENABLE_METER" Name="Enable Damage Widget"/>
       <String ID="ENABLE_METER_DESC" Name="If enabled, the Damage Meter Widget will be visible whenever it has content."/>
-      <String ID="ENABLE_METER_DPS" Name="Show DPS instead of total damage"/>
-      <String ID="ENABLE_METER_DPS_DESC" Name="If enabled, the Damage Meter will show damage per second instead of total damage."/>
+      <String ID="ENABLE_TOTAL_DAMAGE" Name="Show total damage"/>
+      <String ID="ENABLE_TOTAL_DAMAGE_DESC" Name="If enabled, the Damage Widget will show individual total damage."/>
+      <String ID="ENABLE_METER_DPS" Name="Show damage per second"/>
+      <String ID="ENABLE_METER_DPS_DESC" Name="If enabled, the Damage Widget will show individual damage per second."/>
       <String ID="STATIC_METER_PLAYER_1" Name="First Player"/>
       <String ID="STATIC_METER_PLAYER_2" Name="Second Player"/>
       <String ID="STATIC_METER_PLAYER_3" Name="Third Player"/>
@@ -561,6 +566,8 @@
       <String ID="STATIC_ABNORM_TAB_ORCHESTRA" Name="Orchestra"/>
       <String ID="STATIC_ABNORM_TAB_DEBUFF" Name="Debuffs"/>
       <String ID="STATIC_ABNORM_TAB_CONSUMABLE" Name="Consumables"/>
+      <String ID="ENABLE_SHOW_ABNORM_NAMES" Name="Show abnormality name"/>
+      <String ID="ENABLE_SHOW_ABNORM_NAMES_DESC" Name="If enabled, abnormality names will be visible."/>
       <!-- Specialized Tool Widget-->
       <String ID="STATIC_PRIMARY_SPEC_TOOL" Name="Primary Specialized Tool"/>
       <String ID="STATIC_SECONDARY_SPEC_TOOL" Name="Secondary Specialized Tool"/>
