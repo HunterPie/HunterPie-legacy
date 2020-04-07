@@ -2,13 +2,14 @@
 using System.Windows;
 using HunterPie.Core;
 using System.Windows.Media;
+using Storyboard = System.Windows.Media.Animation.Storyboard;
 
 namespace HunterPie.GUI.Widgets {
     /// <summary>
     /// Interaction logic for MantleTimer.xaml
     /// </summary>
     public partial class MantleTimer : Widget {
-        
+
         private Mantle Context { get; set; }
         private int MantleNumber { get; set; }
 
@@ -80,7 +81,7 @@ namespace HunterPie.GUI.Widgets {
         }
 
         private void OnTimerChange(object source, MantleEventArgs args) {
-            if (args.Timer <= 0) {
+            if (args.Timer < 0) {
                 Dispatch(() => {
                     this.WidgetHasContent = false;
                     ChangeVisibility(false);
@@ -109,7 +110,7 @@ namespace HunterPie.GUI.Widgets {
                 this.WidgetHasContent = true;
                 ChangeVisibility(false);
                 MantleName.Text = FormatMantleName;
-                DurationBar.Width = 181 * (args.Cooldown / args.staticCooldown);
+                DurationBar.Width = 181 * (1 - args.Cooldown / args.staticCooldown);
             });
         }
 
@@ -131,9 +132,9 @@ namespace HunterPie.GUI.Widgets {
                         StartPoint = new Point(1, 1),
                         EndPoint = new Point(1, 0)
                     };
-                    ShadowEffectBrush.GradientStops.Add(new GradientStop(WidgetColor, 0.043));
-                    WidgetColor.A = 0x33;
-                    ShadowEffectBrush.GradientStops.Add(new GradientStop(WidgetColor, 0.052));
+                    ShadowEffectBrush.GradientStops.Add(new GradientStop(WidgetColor, 0.053));
+                    WidgetColor.A = 0x44;
+                    ShadowEffectBrush.GradientStops.Add(new GradientStop(WidgetColor, 0.082));
                     ShadowEffectBrush.GradientStops.Add(new GradientStop((Color)ColorConverter.ConvertFromString("#00000000"), 1));
                     ShadowEffectBrush.Freeze();
                     
