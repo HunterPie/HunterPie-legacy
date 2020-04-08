@@ -127,6 +127,7 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
+    <Compile Include="Core\Integrations\Honey.cs" />
     <Compile Include="Core\KeyboardHook.cs" />
     <Compile Include="Core\Monster\Ailment.cs" />
     <Compile Include="Core\Monster\MonsterData.cs" />
@@ -142,10 +143,10 @@
       <DependentUpon>Changelog.xaml</DependentUpon>
     </Compile>
     <Compile Include="Core\Args.cs" />
-    <Compile Include="Core\AutoUpdate.cs" />
+    <Compile Include="Core\Client\AutoUpdate.cs" />
     <Compile Include="Core\LPlayer\HarvestBox.cs" />
     <Compile Include="Core\LPlayer\Mantle.cs" />
-    <Compile Include="Core\Presence.cs" />
+    <Compile Include="Core\Integrations\Presence.cs" />
     <Compile Include="GUIControls\Custom Controls\BuffBarSettingControl.xaml.cs">
       <DependentUpon>BuffBarSettingControl.xaml</DependentUpon>
     </Compile>
@@ -290,10 +291,10 @@
       <SubType>Code</SubType>
     </Compile>
     <Compile Include="Core\Game.cs" />
-    <Compile Include="Core\GStrings.cs" />
+    <Compile Include="Core\Client\GStrings.cs" />
     <Compile Include="Core\Monster\Monster.cs" />
     <Compile Include="Core\LPlayer\Player.cs" />
-    <Compile Include="Core\UserSettings.cs" />
+    <Compile Include="Core\Client\UserSettings.cs" />
     <Compile Include="GUIControls\Debugger.xaml.cs">
       <DependentUpon>Debugger.xaml</DependentUpon>
     </Compile>

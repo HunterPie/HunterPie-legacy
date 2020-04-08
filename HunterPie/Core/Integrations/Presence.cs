@@ -72,6 +72,7 @@ namespace HunterPie.Core {
         private void Client_OnJoin(object sender, DiscordRPC.Message.JoinMessage args) {
             Debugger.Discord(GStrings.GetLocalizationByXPath("/Console/String[@ID='MESSAGE_DISCORD_JOINING']"));
             System.Diagnostics.Process.Start($"steam://joinlobby/582010/{args.Secret}");
+            Debugger.Debug($"steam://joinlobby/582010/{args.Secret}");
         }
 
         private void Client_OnReady(object sender, DiscordRPC.Message.ReadyMessage args) {
@@ -128,12 +129,12 @@ namespace HunterPie.Core {
             // Do nothing if RPC is disabled
             if (!isVisible) return;
 
-            // TODO: Implement join session?
             if (ctx.Player.SteamSession != 0 && ctx.Player.InPeaceZone && UserSettings.PlayerConfig.RichPresence.LetPeopleJoinSession) {
                 Instance.Secrets.JoinSecret = $"{ctx.Player.SteamSession}/{ctx.Player.SteamID}";
             } else {
                 Instance.Secrets.JoinSecret = null;
             }
+
             // Only update RPC if player isn't in loading screen
             switch (ctx.Player.ZoneID) {
                 case 0:
@@ -201,7 +202,7 @@ namespace HunterPie.Core {
             if (Instance.Party == null) { Instance.Party = new DiscordRPC.Party(); }
             Instance.Party.Size = partySize;
             Instance.Party.Max = maxParty;
-            Instance.Party.ID = partyHash;
+            Instance.Party.ID = partyHash == "0" ? "USER_IN_OFFLINE_MODE" : partyHash;
         }
 
         public Timestamps NewTimestamp(DateTime? start) {

@@ -40,8 +40,9 @@ namespace HunterPie.GUIControls.Custom_Controls {
         }
 
         private void SetColor(string HexColor) {
-            this.ColorCircle.Fill = new SolidColorBrush((Color)ColorConverter.ConvertFromString(HexColor));
-            this.ColorHex.Text = HexColor;
+            Color clr = (Color)ColorConverter.ConvertFromString(HexColor);
+            this.ColorCircle.Fill = new SolidColorBrush(clr);
+            this.ColorHex.Text = clr.ToString();
         }
 
         private void OnMouseDown(object sender, MouseButtonEventArgs e) {
