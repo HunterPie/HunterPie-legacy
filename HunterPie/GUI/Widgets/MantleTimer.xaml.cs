@@ -80,7 +80,7 @@ namespace HunterPie.GUI.Widgets {
         }
 
         private void OnTimerChange(object source, MantleEventArgs args) {
-            if (args.Timer < 0) {
+            if (args.Timer <= 0) {
                 Dispatch(() => {
                     this.WidgetHasContent = false;
                     ChangeVisibility(false);
