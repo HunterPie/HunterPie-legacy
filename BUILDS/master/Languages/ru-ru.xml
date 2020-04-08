@@ -1,4 +1,4 @@
-﻿<?xml version="1.0" encoding="utf-8" ?>
+<?xml version="1.0" encoding="utf-8" ?>
 <Strings lang="Русский">
   <Monsters>
     <Monster ID="em001_00" Name="Ратиана"/>
@@ -170,8 +170,8 @@
     <Ailment ID="STATUS_DUNGPOD" Name="Навоз"/>
     <Ailment ID="STATUS_SHOCKTRAP" Name="Шоковая Ловушка"/>
     <Ailment ID="STATUS_PITFALLTRAP" Name="Волчья Яма"/>
-    <Ailment ID="STATUS_ELDERSEAL" Name="Печать Древнего"/>
     <Ailment ID="STATUS_VINETRAP" Name="Лоза"/>
+    <Ailment ID="STATUS_ELDERSEAL" Name="Печать Древнего"/>
     <Ailment ID="STATUS_SMOKING" Name="Дымовая завеса"/>
     <Ailment ID="STATUS_FELYNETRAP" Name="Кошачья Ловушка"/>
     <Ailment ID="STATUS_CLAW" Name="Коготь"/>
@@ -442,7 +442,7 @@
       <String ID="STATIC_THEMEFILE" Name="Тема File:"/>
       <String ID="STATIC_THEMEFILE_DESC" Name="Выберите файл темы HunterPie."/>
       <String ID="STATIC_GAMEPATH" Name="Путь к игре:"/>
-      <String ID="STATIC_GAMEPATH_UNSELECTED" Name="Выберьте путь"/>
+      <String ID="STATIC_GAMEPATH_UNSELECTED" Name="Выберите путь"/>
       <String ID="STATIC_GAMEPATH_DESC" Name="Укажите путь к исполняемому файлу Monster Hunter World."/>
       <String ID="STATIC_LAUNCHARGS" Name="Аргументы запуска"/>
       <String ID="STATIC_LAUNCHARGS_NOARGS" Name="Нет аргументов"/>
@@ -475,12 +475,15 @@
       <!-- Monster Widget -->
       <String ID="ENABLE_MONSTER_WIDGET" Name="Включить виджет Монстра"/>
       <String ID="ENABLE_MONSTER_WIDGET_DESC" Name="Если включено, виджет Монстра будет виден всякий раз, когда у него есть что показать."/>
+      <String ID="STATIC_MONSTER_HEALTH_STRING_FORMAT" Name="Формат здоровья:"/>
+      <String ID="STATIC_MONSTER_HEALTH_STRING_FORMAT_DESC" Name="Текстовый формат для панели здоровья монстра."/>
       <String ID="STATIC_MONSTER_BAR_MODE" Name="Режим виджета Монстра"/>
       <String ID="STATIC_MONSTER_BAR_MODE_DESC" Name="Изменяет режим виджета монстров."/>
       <String ID="STATIC_MONSTER_BAR_MODE_0" Name="Показать всех монстров одновременно"/>
       <String ID="STATIC_MONSTER_BAR_MODE_1" Name="Показать всех монстров, но выделить мою цель"/>
       <String ID="STATIC_MONSTER_BAR_MODE_2" Name="Показать только мою цель"/>
       <String ID="STATIC_MONSTER_BAR_MODE_3" Name="Показать всех, но скрывать неактивных монстров через 15 секунд"/>
+      <String ID="STATIC_MONSTER_BAR_MODE_4" Name="Показывать всех пока цель не выбрана"/>
       <String ID="STATIC_MONSTER_BAR_MODE_HOTKEY" Name="Изменить режим виджета монстров (Горячая клавиша):"/>
       <String ID="STATIC_MONSTER_BAR_MODE_HOTKEY_DESC" Name="Горячая клавиша для изменения режима виджета монстров. Изменение горячей клавиши требует перезапуска для вступления в силу."/>
       <String ID="STATIC_MONSTER_BAR_DOCK" Name="Положение панели Монстра:"/>
@@ -539,6 +542,8 @@
       <!-- Damage Meter -->
       <String ID="ENABLE_METER" Name="Показывать Счётчик Урона"/>
       <String ID="ENABLE_METER_DESC" Name="Если включено, виджет Счётчик Урона будет виден, когда у него есть контент."/>
+      <String ID="ENABLE_TOTAL_DAMAGE" Name="Показать общий урон"/>
+      <String ID="ENABLE_TOTAL_DAMAGE_DESC" Name="Если включено, виджет урона будет показывать индивидуальный общий урон."/>
       <String ID="ENABLE_METER_DPS" Name="Показывать ДПС вместо общего урона"/>
       <String ID="ENABLE_METER_DPS_DESC" Name="Если включено, Счётчик Урона будет показывать урон в секунду вместо общего урона."/>
       <String ID="STATIC_METER_PLAYER_1" Name="Первый игрок"/>
@@ -561,6 +566,8 @@
       <String ID="STATIC_ABNORM_TAB_ORCHESTRA" Name="Коралловый оркестр"/>
       <String ID="STATIC_ABNORM_TAB_DEBUFF" Name="Дебаффы"/>
       <String ID="STATIC_ABNORM_TAB_CONSUMABLE" Name="Предметы"/>
+      <String ID="ENABLE_SHOW_ABNORM_NAMES" Name="Показывать название статуса"/>
+      <String ID="ENABLE_SHOW_ABNORM_NAMES_DESC" Name="Если включено, имена статусов будут видны."/>
       <!-- Specialized Tool Widget-->
       <String ID="STATIC_PRIMARY_SPEC_TOOL" Name="Основной специальный инструмент"/>
       <String ID="STATIC_SECONDARY_SPEC_TOOL" Name="Вторичный специальный инструмент"/>
@@ -619,7 +626,7 @@
     </Notifications>
     <RichPresence>
       <String ID="RPC_DESCRIPTION_IN_MAIN_MENU" Name="В Главном меню"/>
-      <String ID="RPC_DESCRIPTION_IN_LOADING_SCREEN" Name="В Экране загрузки"/>
+      <String ID="RPC_DESCRIPTION_IN_LOADING_SCREEN" Name="На Экране загрузки"/>
       <String ID="RPC_DESCRIPTION_IN_TOWN" Name="Бездействует"/>
       <String ID="RPC_DESCRIPTION_EXPLORING" Name="Исследует"/>
       <String ID="RPC_DESCRIPTION_HUNTING" Name="Охотится на {Monster} ({Health})"/>

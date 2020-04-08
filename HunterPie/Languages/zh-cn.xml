@@ -1,1 +1,639 @@
-﻿<?xml version="1.0" encoding="utf-8" ?><Strings lang="Simplified Chinese">  <Monsters>    <Monster ID="em001_00" Name="雌火龙"/>    <Monster ID="em001_01" Name="樱火龙"/>    <Monster ID="em001_02" Name="金火龙"/>    <Monster ID="em002_00" Name="火龙"/>    <Monster ID="em002_01" Name="苍火龙"/>    <Monster ID="em002_02" Name="银火龙"/>    <Monster ID="em007_00" Name="角龙"/>    <Monster ID="em007_01" Name="黑角龙"/>    <Monster ID="em011_00" Name="麒麟"/>    <Monster ID="em018_00" Name="黑狼鸟"/>    <Monster ID="em018_05" Name="战痕黑狼鸟"/>    <Monster ID="em023_00" Name="金狮子"/>    <Monster ID="em024_00" Name="钢龙"/>    <Monster ID="em026_00" Name="炎妃龙"/>    <Monster ID="em027_00" Name="炎王龙"/>    <Monster ID="em032_00" Name="轰龙"/>    <Monster ID="em032_01" Name="黑轰龙"/>    <Monster ID="em036_00" Name="熔岩龙"/>    <Monster ID="em037_00" Name="迅龙"/>    <Monster ID="em042_00" Name="冰牙龙"/>    <Monster ID="em043_00" Name="恐暴龙"/>    <Monster ID="em043_05" Name="惶怒恐暴龙"/>    <Monster ID="em044_00" Name="土砂龙"/>    <Monster ID="em045_00" Name="爆锤龙"/>    <Monster ID="em057_00" Name="雷狼龙"/>    <Monster ID="em057_01" Name="狱狼龙"/>    <Monster ID="em063_00" Name="碎龙"/>    <Monster ID="em080_00" Name="斩龙"/>    <Monster ID="em080_01" Name="硫斩龙"/>    <Monster ID="em100_00" Name="蛮颚龙"/>    <Monster ID="em100_01" Name="雷颚龙"/>    <Monster ID="em101_00" Name="大凶豺龙"/>    <Monster ID="em102_00" Name="毒妖鸟"/>    <Monster ID="em102_01" Name="水妖鸟"/>    <Monster ID="em103_00" Name="灭尽龙"/>    <Monster ID="em103_05" Name="歼世灭尽龙"/>    <Monster ID="em104_00" Name="冥赤龙"/>    <Monster ID="em105_00" Name="冥灯龙"/>    <Monster ID="em106_00" Name="熔山龙"/>    <Monster ID="em107_00" Name="搔鸟"/>    <Monster ID="em108_00" Name="泥鱼龙"/>    <Monster ID="em109_00" Name="飞雷龙"/>    <Monster ID="em109_01" Name="痹毒龙"/>    <Monster ID="em110_00" Name="浮空龙"/>    <Monster ID="em110_01" Name="浮眠龙"/>    <Monster ID="em111_00" Name="风漂龙"/>    <Monster ID="em111_05" Name="霜翼风漂龙"/>    <Monster ID="em112_00" Name="大凶颚龙"/>    <Monster ID="em113_00" Name="惨爪龙"/>    <Monster ID="em113_01" Name="凶爪龙"/>    <Monster ID="em114_00" Name="骨锤龙"/>    <Monster ID="em115_00" Name="尸套龙"/>    <Monster ID="em115_05" Name="雾瘴尸套龙"/>    <Monster ID="em116_00" Name="岩贼龙"/>    <Monster ID="em117_00" Name="绚辉龙"/>    <Monster ID="em118_00" Name="爆鳞龙"/>    <Monster ID="em118_05" Name="红莲爆鳞龙"/>    <Monster ID="em120_00" Name="眩鸟"/>    <Monster ID="em121_00" Name="贝希摩斯"/>    <Monster ID="em122_00" Name="冰鱼龙"/>    <Monster ID="em123_00" Name="猛牛龙"/>    <Monster ID="em124_00" Name="冰咒龙"/>    <Monster ID="em125_00" Name="溟波龙"/>    <Monster ID="em126_00" Name="天地煌啼龙"/>    <Monster ID="em127_00" Name="鹿首精"/>    <Monster ID="em127_01" Name="古代鹿首精"/>  </Monsters>  <Parts>    <Part ID="MONSTER_PART_UNKNOWN" Name="未知部位"/>    <Part ID="MONSTER_PART_HEAD" Name="头部"/>    <Part ID="MONSTER_PART_BODY" Name="身体"/>    <Part ID="MONSTER_PART_LWING" Name="左翼"/>    <Part ID="MONSTER_PART_RWING" Name="右翼"/>    <Part ID="MONSTER_PART_LLEG" Name="左腿"/>    <Part ID="MONSTER_PART_RLEG" Name="右腿"/>    <Part ID="MONSTER_PART_TAIL" Name="尾巴"/>    <Part ID="MONSTER_PART_ARMS" Name="臂"/>    <Part ID="MONSTER_PART_LEGS" Name="腿"/>    <Part ID="MONSTER_PART_LARM" Name="左前臂"/>    <Part ID="MONSTER_PART_RARM" Name="右前臂"/>    <Part ID="MONSTER_PART_LLIMBS" Name="左肢"/>    <Part ID="MONSTER_PART_RLIMBS" Name="右肢"/>    <Part ID="MONSTER_PART_WINGS" Name="翼"/>    <Part ID="MONSTER_PART_LIMBS" Name="四肢"/>    <Part ID="MONSTER_PART_ABDOMEN" Name="腹部"/>    <Part ID="MONSTER_PART_CHEST" Name="胸部"/>    <Part ID="MONSTER_PART_REAR" Name="臀部"/>    <Part ID="MONSTER_PART_HEAD_MUD" Name="头部的泥"/>    <Part ID="MONSTER_PART_BODY_MUD" Name="身体的泥"/>    <Part ID="MONSTER_PART_ARMS_MUD" Name="前臂的泥"/>    <Part ID="MONSTER_PART_LLEG_MUD" Name="左腿的泥"/>    <Part ID="MONSTER_PART_RLEG_MUD" Name="右腿的泥"/>    <Part ID="MONSTER_PART_TAIL_MUD" Name="尾巴的泥"/>    <Part ID="MONSTER_PART_JAW" Name="下颚"/>    <Part ID="MONSTER_PART_BACK" Name="背部"/>    <Part ID="MONSTER_PART_FIN" Name="背鳍"/>    <Part ID="MONSTER_PART_HORNS" Name="大角"/>    <Part ID="MONSTER_PART_NECK" Name="颈部"/>    <Part ID="MONSTER_PART_LHAND" Name="左手"/>    <Part ID="MONSTER_PART_RHAND" Name="右手"/>    <Part ID="MONSTER_PART_LFOOT" Name="左脚"/>    <Part ID="MONSTER_PART_RFOOT" Name="右脚"/>    <Part ID="MONSTER_PART_SHELL" Name="外壳"/>    <Part ID="MONSTER_PART_EXHAUST_ORGAN_CENTRAL" Name="中央散热器官"/>    <Part ID="MONSTER_PART_EXHAUST_ORGAN_HEAD" Name="头部散热器官"/>    <Part ID="MONSTER_PART_EXHAUST_ORGAN_CRATER" Name="背部散热器官"/>    <Part ID="MONSTER_PART_EXHAUST_ORGAN_REAR" Name="尾部散热器官"/>    <Part ID="MONSTER_PART_WEAK_LSHELL" Name="左侧薄壳"/>    <Part ID="MONSTER_PART_WEAK_RSHELL" Name="右侧薄壳"/>    <Part ID="MONSTER_PART_ROCK" Name="石块"/>    <Part ID="MONSTER_PART_MANE" Name="鬃毛"/>    <Part ID="MONSTER_PART_BALLOON" Name="气囊"/>    <Part ID="MONSTER_PART_LBONE" Name="左骨头"/>    <Part ID="MONSTER_PART_RBONE" Name="右骨头"/>    <Part ID="MONSTER_PART_HORNS_GOLD" Name="大角的黄金"/>    <Part ID="MONSTER_PART_MANE_GOLD" Name="背部的黄金"/>    <Part ID="MONSTER_PART_LCHEST_GOLD" Name="左胸的黄金"/>    <Part ID="MONSTER_PART_RCHEST_GOLD" Name="右胸的黄金"/>    <Part ID="MONSTER_PART_LARM_GOLD" Name="左前脚的黄金"/>    <Part ID="MONSTER_PART_RARM_GOLD" Name="右前脚的黄金"/>    <Part ID="MONSTER_PART_LLEG_GOLD" Name="左后脚的黄金"/>    <Part ID="MONSTER_PART_RLEG_GOLD" Name="右后脚的黄金"/>    <Part ID="MONSTER_PART_LTAIL_GOLD" Name="尾巴左侧的黄金"/>    <Part ID="MONSTER_PART_RTAIL_GOLD" Name="尾巴右侧的黄金"/>    <Part ID="MONSTER_PART_LHEAD" Name="头部左侧"/>    <Part ID="MONSTER_PART_RHEAD" Name="头部右侧"/>    <Part ID="MONSTER_PART_HEAD_SNOW" Name="头部积雪"/>    <Part ID="MONSTER_PART_BODY_SNOW" Name="身体积雪"/>    <Part ID="MONSTER_PART_TAIL_SNOW" Name="尾巴积雪"/>    <Part ID="MONSTER_PART_HEAD_ICE" Name="头部冰"/>    <Part ID="MONSTER_PART_BODY_ICE" Name="身体冰"/>    <Part ID="MONSTER_PART_WINGS_ICE" Name="翅膀冰"/>    <Part ID="MONSTER_PART_ARMS_ICE" Name="前腿冰"/>    <Part ID="MONSTER_PART_LEGS_ICE" Name="后腿冰"/>    <Part ID="MONSTER_PART_TAIL_ICE" Name="尾巴冰"/>    <Part ID="MONSTER_PART_LNECK_ROCK" Name="左颈部岩石"/>    <Part ID="MONSTER_PART_RNECK_ROCK" Name="右颈部岩石"/>    <Part ID="MONSTER_PART_HEAD_ROCK" Name="头部岩石"/>    <Part ID="MONSTER_PART_TAIL_ROCK" Name="尾巴的岩石"/>    <Part ID="MONSTER_PART_LWING_ROCK" Name="左翼岩石"/>    <Part ID="MONSTER_PART_RWING_ROCK" Name="右翼岩石"/>    <Part ID="MONSTER_PART_LARM_ROCK" Name="左前腿岩石"/>    <Part ID="MONSTER_PART_RARM_ROCK" Name="右前腿岩石"/>    <Part ID="MONSTER_PART_LEGS_ROCK" Name="后腿岩石"/>    <Part ID="MONSTER_JAGRAS_SUMMONER" Name="召唤凶豺龙"/>    <!-- Removable parts -->    <Part ID="MONSTER_PART_REMOVABLE_TAIL" Name="可断的尾巴"/>    <Part ID="MONSTER_PART_REMOVABLE_HORNS" Name="可断的角"/>    <Part ID="MONSTER_PART_REMOVABLE_HEAD" Name="可破坏的头部"/>    <Part ID="MONSTER_PART_REMOVABLE_BALLOON" Name="可破坏的气囊"/>    <Part ID="MONSTER_PART_REMOVABLE_HORNS_2" Name="可断的角#2"/>    <Part ID="MONSTER_PART_REMOVABLE_LANTLER" Name="可破坏的左鹿角"/>    <Part ID="MONSTER_PART_REMOVABLE_RANTLER" Name="可破坏的右鹿角"/>  </Parts>  <Ailments>    <Ailment ID="STATUS_UNKNOWN" Name="未知效果状态"/>    <Ailment ID="STATUS_POISON" Name="中毒"/>    <Ailment ID="STATUS_PARALYSIS" Name="麻痹"/>    <Ailment ID="STATUS_SLEEP" Name="睡眠"/>    <Ailment ID="STATUS_BLAST" Name="爆破"/>    <Ailment ID="STATUS_MOUNT" Name="骑乘"/>    <Ailment ID="STATUS_EXHAUSTION" Name="疲劳"/>    <Ailment ID="STATUS_STUN" Name="眩晕"/>    <Ailment ID="STATUS_TRANQUILIZE" Name="麻醉"/>    <Ailment ID="STATUS_FLASH" Name="闪光"/>    <Ailment ID="STATUS_KNOCKDOWN" Name="倒地"/>    <Ailment ID="STATUS_DUNGPOD" Name="异臭"/>    <Ailment ID="STATUS_SHOCKTRAP" Name="麻痹陷阱"/>    <Ailment ID="STATUS_PITFALLTRAP" Name="藤蔓陷阱"/>    <Ailment ID="STATUS_ELDERSEAL" Name="龙封力"/>    <Ailment ID="STATUS_SMOKING" Name="烟雾"/>    <Ailment ID="STATUS_FELYNETRAP" Name="全弹发射击倒"/>    <Ailment ID="STATUS_CLAW" Name="飞翔爪激怒"/>    <Ailment ID="STATUS_VIOLATED" Name="垂涎积累"/>  </Ailments>  <Mantles>    <Mantle ID="-1" Name="无衣装"/>    <Mantle ID="0" Name="隐身衣装"/>    <Mantle ID="1" Name="转身衣装"/>    <Mantle ID="2" Name="疗愈烟筒"/>    <Mantle ID="3" Name="不动衣装"/>    <Mantle ID="4" Name="挑衅衣装"/>    <Mantle ID="5" Name="体力衣装"/>    <Mantle ID="6" Name="耐热衣装"/>    <Mantle ID="7" Name="耐水衣装"/>    <Mantle ID="8" Name="耐寒衣装"/>    <Mantle ID="9" Name="耐雷衣装"/>    <Mantle ID="10" Name="耐龙衣装"/>    <Mantle ID="11" Name="解除烟筒"/>    <Mantle ID="12" Name="滑空衣装"/>    <Mantle ID="13" Name="回避衣装"/>    <Mantle ID="14" Name="强打衣装"/>    <Mantle ID="15" Name="化合衣装"/>    <Mantle ID="16" Name="免疫衣装"/>    <Mantle ID="17" Name="达人烟筒"/>    <Mantle ID="18" Name="盗掠衣装"/>    <Mantle ID="19" Name="刺客衣装"/>  </Mantles>  <Fertilizers>    <Fertilizer ID="0" Name="无肥料"/>    <Fertilizer ID="1" Name="成长力UP【小】"/>    <Fertilizer ID="2" Name="成长力UP【大】"/>    <Fertilizer ID="3" Name="香菇收获量UP【小】"/>    <Fertilizer ID="4" Name="香菇收获量UP【大】"/>    <Fertilizer ID="5" Name="虫·蜂蜜收获量UP【小】"/>    <Fertilizer ID="6" Name="虫·蜂蜜收获量UP【大】"/>    <Fertilizer ID="7" Name="草·果实收获量UP【小】"/>    <Fertilizer ID="8" Name="草·果实收获量UP【大】"/>  </Fertilizers>  <Stages>    <Stage ID="0" Name="主菜单"/>    <Stage ID="101" Name="古代树森林"/>    <Stage ID="102" Name="大蚁冢荒地"/>    <Stage ID="103" Name="陆珊瑚台地"/>    <Stage ID="104" Name="瘴气之谷"/>    <Stage ID="105" Name="龙结晶之地"/>    <Stage ID="106" Name="大裂谷"/>    <Stage ID="107" Name="大裂谷(剧情)"/>    <Stage ID="108" Name="永霜冻土"/>    <Stage ID="109" Name="聚魔之地"/>    <Stage ID="201" Name="特殊斗技场"/>    <Stage ID="202" Name="斗技场"/>    <Stage ID="301" Name="星辰据点"/>    <Stage ID="302" Name="集会区域(星辰)"/>    <Stage ID="303" Name="研究基地"/>    <Stage ID="305" Name="月辰据点"/>    <Stage ID="306" Name="集会区域(月辰)"/>    <Stage ID="401" Name="古代树森林(初始剧情)"/>    <Stage ID="403" Name="地脉回廊"/>    <Stage ID="405" Name="收束之地"/>    <Stage ID="406" Name="古代树森林(教程)"/>    <Stage ID="409" Name="地脉黄金乡"/>    <Stage ID="411" Name="兵器置放处"/>    <Stage ID="412" Name="起源的孤岛(歼世灭尽龙)"/>    <Stage ID="413" Name="起源的孤岛(天地煌啼龙)"/>    <Stage ID="415" Name="幽境之谷"/>    <Stage ID="501" Name="二等小屋"/>    <Stage ID="502" Name="一等小屋"/>    <Stage ID="503" Name="特等小屋"/>    <Stage ID="504" Name="锻炼区域"/>    <Stage ID="505" Name="五龙之间"/>    <Stage ID="506" Name="月辰小屋"/>  </Stages>  <Weapons>    <Weapon ID="0" Name="大剑"/>    <Weapon ID="1" Name="单手剑"/>    <Weapon ID="2" Name="双剑"/>    <Weapon ID="3" Name="太刀"/>    <Weapon ID="4" Name="大锤"/>    <Weapon ID="5" Name="狩猎笛"/>    <Weapon ID="6" Name="长枪"/>    <Weapon ID="7" Name="铳枪"/>    <Weapon ID="8" Name="斩击斧"/>    <Weapon ID="9" Name="充能斧"/>    <Weapon ID="10" Name="操虫棍"/>    <Weapon ID="11" Name="弓"/>    <Weapon ID="12" Name="重弩枪"/>    <Weapon ID="13" Name="轻弩枪"/>  </Weapons>  <Abnormalities>    <Abnormality ID="UNKNOWN_ABNORMALITY" Name="未知状态(ID: {AbnormalityID})"/>    <Abnormality ID="HUNTINGHORN_000_00" Name="自我强化"/>    <Abnormality ID="HUNTINGHORN_999_00" Name="攻击力UP&amp;弹武无效"/>    <Abnormality ID="HUNTINGHORN_001_00" Name="攻击力UP·小"/>    <Abnormality ID="HUNTINGHORN_001_01" Name="攻击力UP·大"/>    <Abnormality ID="HUNTINGHORN_002_00" Name="攻击力UP·大"/>    <Abnormality ID="HUNTINGHORN_002_01" Name="攻击力UP·特大"/>    <Abnormality ID="HUNTINGHORN_003_00" Name="体力UP·小"/>    <Abnormality ID="HUNTINGHORN_004_00" Name="体力UP·大"/>    <Abnormality ID="HUNTINGHORN_005_00" Name="耐力消费减轻·小"/>    <Abnormality ID="HUNTINGHORN_006_00" Name="耐力消费减轻·大"/>    <Abnormality ID="HUNTINGHORN_007_00" Name="风压无效·小"/>    <Abnormality ID="HUNTINGHORN_008_00" Name="风压完全无效"/>    <Abnormality ID="HUNTINGHORN_009_00" Name="防御力UP·小"/>    <Abnormality ID="HUNTINGHORN_009_01" Name="防御力UP·大"/>    <Abnormality ID="HUNTINGHORN_010_00" Name="防御力UP·大"/>    <Abnormality ID="HUNTINGHORN_010_01" Name="防御力UP·特大"/>    <Abnormality ID="HUNTINGHORN_011_00" Name="特殊装具消费减轻·小"/>    <Abnormality ID="HUNTINGHORN_012_00" Name="特殊装具消费减轻·大"/>    <Abnormality ID="HUNTINGHORN_018_00" Name="体力恢复速度UP·小"/>    <Abnormality ID="HUNTINGHORN_019_00" Name="体力恢复速度UP·小"/>    <Abnormality ID="HUNTINGHORN_020_00" Name="听觉保护·小"/>    <Abnormality ID="HUNTINGHORN_021_00" Name="听觉保护·大"/>    <Abnormality ID="HUNTINGHORN_022_00" Name="精灵王的加护"/>    <Abnormality ID="HUNTINGHORN_023_00" Name="导虫追踪力强化"/>    <Abnormality ID="HUNTINGHORN_024_00" Name="地形伤害无效"/>    <Abnormality ID="HUNTINGHORN_025_00" Name="晕厥无效"/>    <Abnormality ID="HUNTINGHORN_026_00" Name="麻痹无效"/>    <Abnormality ID="HUNTINGHORN_027_00" Name="震动无效"/>    <Abnormality ID="HUNTINGHORN_028_00" Name="减轻泥&amp;适应水场·深雪"/>    <Abnormality ID="HUNTINGHORN_029_00" Name="火属性防御强化·小"/>    <Abnormality ID="HUNTINGHORN_029_01" Name="火属性防御强化·大"/>    <Abnormality ID="HUNTINGHORN_030_00" Name="火属性防御强化·大"/>    <Abnormality ID="HUNTINGHORN_030_01" Name="火属性防御强化·特大"/>    <Abnormality ID="HUNTINGHORN_031_00" Name="水属性防御强化·小"/>    <Abnormality ID="HUNTINGHORN_031_01" Name="水属性防御强化·大"/>    <Abnormality ID="HUNTINGHORN_032_00" Name="水属性防御强化·大"/>    <Abnormality ID="HUNTINGHORN_032_01" Name="水属性防御强化·特大"/>    <Abnormality ID="HUNTINGHORN_033_00" Name="雷属性防御强化·小"/>    <Abnormality ID="HUNTINGHORN_033_01" Name="雷属性防御强化·大"/>    <Abnormality ID="HUNTINGHORN_034_00" Name="雷属性防御强化·大"/>    <Abnormality ID="HUNTINGHORN_034_01" Name="雷属性防御强化·特大"/>    <Abnormality ID="HUNTINGHORN_035_00" Name="冰属性防御强化·小"/>    <Abnormality ID="HUNTINGHORN_035_01" Name="冰属性防御强化·大"/>    <Abnormality ID="HUNTINGHORN_036_00" Name="冰属性防御强化·大"/>    <Abnormality ID="HUNTINGHORN_036_01" Name="冰属性防御强化·特大"/>    <Abnormality ID="HUNTINGHORN_037_00" Name="龙属性防御强化·小"/>    <Abnormality ID="HUNTINGHORN_037_01" Name="龙属性防御强化·大"/>    <Abnormality ID="HUNTINGHORN_038_00" Name="龙属性防御强化·大"/>    <Abnormality ID="HUNTINGHORN_038_01" Name="龙属性防御强化·特大"/>    <Abnormality ID="HUNTINGHORN_039_00" Name="属性攻击力提升"/>    <Abnormality ID="HUNTINGHORN_040_00" Name="全属性异常无效"/>    <Abnormality ID="HUNTINGHORN_041_00" Name="未知状态"/>    <Abnormality ID="HUNTINGHORN_043_00" Name="后仰无效"/>    <Abnormality ID="HUNTINGHORN_045_00" Name="全属性防御强化"/>    <Abnormality ID="HUNTINGHORN_046_00" Name="会心率UP·小"/>    <Abnormality ID="HUNTINGHORN_047_00" Name="全状态异常无效"/>    <Abnormality ID="HUNTINGHORN_048_00" Name="风压无效&amp;听觉保护"/>    <Abnormality ID="HUNTINGHORN_049_00" Name="异常攻击力提升"/>    <Abnormality ID="HUNTINGHORN_053_00" Name="耐力最大值UP&amp;回复"/>    <Abnormality ID="HUNTINGHORN_054_00" Name="体力最大值UP&amp;回复"/>    <Abnormality ID="HUNTINGHORN_055_00" Name="速度&amp;回避性能UP"/>    <Abnormality ID="HUNTINGHORN_056_00" Name="属性效果提升"/>    <Abnormality ID="HUNTINGHORN_943_00" Name="属性效果提升"/>    <Abnormality ID="PALICO_000_00" Name="猫·复活"/>    <Abnormality ID="PALICO_001_00" Name="猫·攻击力UP·小"/>    <Abnormality ID="PALICO_002_00" Name="猫·攻击力UP·大"/>    <Abnormality ID="PALICO_003_00" Name="猫·防御力UP·小"/>    <Abnormality ID="PALICO_004_00" Name="猫·防御力UP·大"/>    <Abnormality ID="PALICO_005_00" Name="猫·会心率UP"/>    <Abnormality ID="PALICO_006_00" Name="猫·回复速度UP·小"/>    <Abnormality ID="PALICO_007_00" Name="猫·体力UP·小"/>    <Abnormality ID="PALICO_008_00" Name="猫·耐力消费减轻·小"/>    <Abnormality ID="PALICO_009_00" Name="未知状态"/>    <Abnormality ID="PALICO_010_00" Name="猫·精灵王的加护"/>    <Abnormality ID="PALICO_011_00" Name="猫·精灵王的加护"/>    <Abnormality ID="PALICO_012_00" Name="猫·昏厥无效"/>    <Abnormality ID="PALICO_013_00" Name="猫·麻痹无效"/>    <Abnormality ID="PALICO_014_00" Name="猫·震动无效"/>    <Abnormality ID="PALICO_015_00" Name="猫·听觉保护·小"/>    <Abnormality ID="PALICO_016_00" Name="猫·风压无效·小"/>    <Abnormality ID="PALICO_017_00" Name="猫·地形伤害无效"/>    <Abnormality ID="PALICO_018_00" Name="未知"/>    <Abnormality ID="DEBUFF_000_00" Name="中毒"/>    <Abnormality ID="DEBUFF_001_00" Name="未知"/>    <Abnormality ID="DEBUFF_002_00" Name="未知"/>    <Abnormality ID="DEBUFF_003_00" Name="未知"/>    <Abnormality ID="DEBUFF_004_00" Name="火属性异常"/>    <Abnormality ID="DEBUFF_005_00" Name="雷属性异常"/>    <Abnormality ID="DEBUFF_006_00" Name="水属性异常"/>    <Abnormality ID="DEBUFF_007_00" Name="冰属性异常"/>    <Abnormality ID="DEBUFF_008_00" Name="龙属性异常"/>    <Abnormality ID="DEBUFF_009_00" Name="撕裂伤害"/>    <Abnormality ID="DEBUFF_010_00" Name="裂伤恢复"/>    <Abnormality ID="DEBUFF_011_00" Name="瘴气异常"/>    <Abnormality ID="DEBUFF_012_00" Name="防御下降"/>    <Abnormality ID="DEBUFF_014_00" Name="属性耐性下降"/>    <Abnormality ID="DEBUFF_016_00" Name="禁止使用物品"/>    <Abnormality ID="DEBUFF_017_00" Name="爆破属性异常"/>    <Abnormality ID="DEBUFF_020_00" Name="爆破黏菌"/>    <Abnormality ID="MISC_000_00" Name="强走药"/>    <Abnormality ID="MISC_001_00" Name="耐力雷虫"/>    <Abnormality ID="MISC_002_00" Name="恢复力UP"/>    <Abnormality ID="MISC_004_00" Name="怪力种子"/>    <Abnormality ID="MISC_004_01" Name="怪力药丸"/>    <Abnormality ID="MISC_008_00" Name="忍耐种子"/>    <Abnormality ID="MISC_008_01" Name="忍耐药丸"/>    <Abnormality ID="MISC_013_00" Name="鬼人粉尘"/>    <Abnormality ID="MISC_014_00" Name="硬化粉尘"/>    <Abnormality ID="MISC_015_00" Name="鬼人药"/>    <Abnormality ID="MISC_015_01" Name="鬼人药"/>    <Abnormality ID="MISC_015_02" Name="鬼人药·大"/>    <Abnormality ID="MISC_016_00" Name="硬化药"/>    <Abnormality ID="MISC_016_01" Name="硬化药"/>    <Abnormality ID="MISC_016_02" Name="硬化药·大"/>    <Abnormality ID="MISC_023_00" Name="冷饮"/>    <Abnormality ID="MISC_024_00" Name="热饮"/>    <Abnormality ID="MISC_026_00" Name="温泉：HP回复"/>    <Abnormality ID="MISC_027_00" Name="温泉：寒冷耐性"/>    <Abnormality ID="MISC_034_00" Name="鬼毬果：攻击UP"/>    <Abnormality ID="MISC_035_00" Name="冰耐草：冰耐性提升"/>    <Abnormality ID="MISC_073_00" Name="攻击&amp;防御UP"/>  </Abnormalities>  <!-- Client localization strings -->  <Client>    <Console>      <String ID="CONSOLE_CONSOLE" Name="控制台"/>      <String ID="CONSOLE_SETTINGS" Name="设置"/>      <String ID="CONSOLE_CHANGELOG" Name="更新记录"/>      <String ID="CONSOLE_DISCORD" Name="Discord"/>      <String ID="CONSOLE_GITHUB" Name="GitHub"/>      <String ID="CONSOLE_LAUNCH" Name="启动游戏"/>      <String ID="CONSOLE_VERSION" Name="版本: {HunterPie_Version} ({HunterPie_Branch})"/>      <!-- Popups -->      <String ID="MESSAGE_QUIT" Name="确定要退出HunterPie吗?"/>      <String ID="TITLE_MISSING_PATH" Name="未找到《怪物猎人：世界》路径"/>      <String ID="MESSAGE_MISSING_PATH" Name="未添加游戏路径，现在添加？"/>      <!-- Console Messages -->      <String ID="MESSAGE_MAP_LOAD" Name="加载 {HunterPie_Map}"/>      <String ID="MESSAGE_DISCORD_CONNECTED" Name="启动新的RPC连接"/>      <String ID="MESSAGE_DISCORD_USER_CONNECTED" Name="已连接Discord使用者: {Username}"/>      <String ID="MESSAGE_DISCORD_DISCONNECTED" Name="关闭Discord连接"/>      <String ID="MESSAGE_DISCORD_JOIN_REQUEST" Name="{Username} 请求加入集会"/>      <String ID="MESSAGE_DISCORD_JOINING" Name="加入集会中..."/>      <String ID="MESSAGE_MONSTER_DATA_LOAD" Name="加载怪物数据"/>      <String ID="MESSAGE_ABNORMALITIES_DATA_LOAD" Name="加载异常状态数据"/>      <String ID="MESSAGE_PLAYER_SCANNER_INITIALIZED" Name="初始化玩家内存扫描"/>      <String ID="MESSAGE_HUNTERPIE_INITIALIZED" Name="初始化HunterPie!"/>      <String ID="MESSAGE_GAME_SCANNER_INITIALIZED" Name="初始化游戏内存扫描"/>      <String ID="MESSAGE_MONSTER_SCANNER_INITIALIZED" Name="初始化怪物({MonsterNumber})扫描"/>      <String ID="MESSAGE_GAME_SCANNER_STOP" Name="停止游戏扫描"/>      <!-- Warnings -->      <String ID="MESSAGE_OFFLINEMODE_WARN" Name="HunterPie处于离线模式"/>      <String ID="MESSAGE_AUTOUPDATE_DISABLED_WARN" Name="自动更新已关闭，如果您的HunterPie有任何问题或不支持当前游戏版本，请尝试开启自动更新"/>      <String ID="MESSAGE_THEME_LOAD_WARN" Name="已载入自定义主题!"/>      <!-- Errors -->      <String ID="MESSAGE_GAME_VERSION_UNSUPPORTED" Name="检测到游戏版本({GAME_VERSION})尚未映射!"/>      <String ID="MESSAGE_LAUNCH_ERROR" Name="《怪物猎人：世界》启动失败"/>      <String ID="MESSAGE_UPDATE_ERROR" Name="HunterPie更新失败，请检查您的网络连接"/>      <String ID="MESSAGE_THEME_NOT_FOUND_ERROR" Name="未找到主题: {THEME_NAME}"/>      <String ID="MESSAGE_THEME_NOT_LOAD_ERROR" Name="自定义主题载入失败!"/>    </Console>    <Settings>      <!-- General -->      <String ID="ENABLE_AUTOUPDATE" Name="自动更新"/>      <String ID="ENABLE_AUTOUPDATE_DESC" Name="如开启，HunterPie将在启动时自动寻找更新"/>      <String ID="ENABLE_MINTOTRAY" Name="系统托盘"/>      <String ID="ENABLE_MINTOTRAY_DESC" Name="如开启，HunterPie最小化时将隐藏到系统托盘并在后台继续运行"/>      <String ID="ENABLE_STARTMIN" Name="最小化启动HunterPie"/>      <String ID="ENABLE_STARTMIN_DESC" Name="如开启，HunterPie启动时将自动隐藏到系统托盘"/>      <String ID="ENABLE_AUTOCLOSE" Name="关闭游戏时自动关闭HunterPie"/>      <String ID="ENABLE_AUTOCLOSE_DESC" Name="如开启，HunterPie将在游戏关闭时自动关闭"/>      <String ID="STATIC_UPDATEBRANCH" Name="更新分支:"/>      <String ID="STATIC_UPDATEBRANCH_DESC" Name="选择您需要的HunterPie更新分支，BETA具有最新功能，master则更加稳定"/>      <String ID="STATIC_LANGUAGEFILE" Name="语言文件:"/>      <String ID="STATIC_LANGUAGEFILE_DESC" Name="选择您需要的HunterPie语言文件"/>      <String ID="STATIC_THEMEFILE" Name="主题文件:"/>      <String ID="STATIC_THEMEFILE_DESC" Name="选择您需要的HunterPie主题文件"/>      <String ID="STATIC_GAMEPATH" Name="游戏路径:"/>      <String ID="STATIC_GAMEPATH_UNSELECTED" Name="选择路径"/>      <String ID="STATIC_GAMEPATH_DESC" Name="选择您《怪物猎人：世界》可执行文件的路径"/>      <String ID="STATIC_LAUNCHARGS" Name="启动参数"/>      <String ID="STATIC_LAUNCHARGS_NOARGS" Name="无参数"/>      <String ID="STATIC_LAUNCHARGS_DESC" Name="启动游戏时使用参数，如果您不知道如何做，请将其留空"/>      <!-- Discord RPC -->      <String ID="ENABLE_RPC" Name="Discord状态信息共享"/>      <String ID="ENABLE_RPC_DESC" Name="如开启，HunterPie将在Discord状态中实时显示您的游戏动态"/>      <String ID="ENABLE_RPC_HEALTH" Name="显示怪物的血量百分比"/>      <String ID="ENABLE_RPC_HEALTH_DESC" Name="如开启，Discord状态中将实时显示您正在狩猎怪物的血量百分比."/>      <String ID="ENABLE_PEOPLE_JOIN" Name="允许其他玩家请求加入我的集会"/>      <String ID="ENABLE_PEOPLE_JOIN_DESC" Name="如开启，其他玩家可以请求加入您的集会"/>      <!-- Overlay -->      <String ID="ENABLE_OVERLAY" Name="游戏内覆盖"/>      <String ID="ENABLE_OVERLAY_DESC" Name="如开启，将在游戏中启用覆盖层"/>      <String ID="ENABLE_HIDE_WHEN_UNFOCUS" Name="游戏未在顶层时隐藏覆盖层"/>      <String ID="ENABLE_HIDE_WHEN_UNFOCUS_DESC" Name="如开启，当游戏未在顶层时HunterPie覆盖层将自动隐藏(例如：按下Alt+Tab)"/>      <String ID="ENABLE_HARDWARE_ACCELERATION" Name="硬件加速"/>      <String ID="ENABLE_HARDWARE_ACCELERATION_DESC" Name="启用硬件加速将使用显卡渲染覆盖层，关闭此选项会将渲染模式更改为软件渲染，这将占用更多的CPU运算。如果遇到FPS异常问题，请关闭此选项"/>      <String ID="STATIC_ANIMATION_FPS" Name="动画帧数"/>      <String ID="STATIC_ANIMATION_FPS_DESC" Name="更改HunterPie所有动画的帧数，如果遇到FPS异常问题，请将其设置为较低的值"/>      <String ID="STATIC_GAME_SCAN_DELAY" Name="游戏扫描延迟:"/>      <String ID="STATIC_GAME_SCAN_DELAY_DESC" Name="设定扫描延迟，将此值设置越低，会使HunterPie更频繁地扫描游戏内存，更加占用CPU资源&#13;(例如：设置为200将使HunterPie每秒扫描游戏5次)"/>      <String ID="STATIC_IMAGE_QUALITY" Name="图像质量"/>      <String ID="STATIC_IMAGE_QUALITY_DESC" Name="改变图像的质量"/>      <String ID="STATIC_TOGGLE_OVERLAY" Name="开启/关闭覆盖层(热键):"/>      <String ID="STATIC_TOGGLE_OVERLAY_DESC" Name="开启/关闭覆盖层的热键，更改热键需要重新启动才能生效"/>      <String ID="STATIC_TOGGLE_DESIGN" Name="开启/关闭编辑模式(热键)："/>      <String ID="STATIC_TOGGLE_DESIGN_DESC" Name="使用热键开启/关闭编辑模式"/>      <String ID="STATIC_OVERLAY_POSITION_DESC" Name="更改覆盖层的位置"/>      <!-- Monster Widget -->      <String ID="ENABLE_MONSTER_WIDGET" Name="怪物部件"/>      <String ID="ENABLE_MONSTER_WIDGET_DESC" Name="如开启，只要有内容可以显示，怪物部件就将可见"/>      <String ID="STATIC_MONSTER_BAR_MODE" Name="怪物显示栏模式"/>      <String ID="STATIC_MONSTER_BAR_MODE_DESC" Name="改变怪物显示栏模式"/>      <String ID="STATIC_MONSTER_BAR_MODE_0" Name="显示所有怪物"/>      <String ID="STATIC_MONSTER_BAR_MODE_1" Name="显示所有怪物，并高亮显示我的目标"/>      <String ID="STATIC_MONSTER_BAR_MODE_2" Name="只显示狩猎中的怪物"/>      <String ID="STATIC_MONSTER_BAR_MODE_3" Name="显示所有怪物，15秒后隐藏非狩猎中的怪物"/>      <String ID="STATIC_MONSTER_BAR_MODE_HOTKEY" Name="改变怪物栏模式(热键): "/>      <String ID="STATIC_MONSTER_BAR_MODE_HOTKEY_DESC" Name="使用热键切换怪物显示栏模式，改变热键需要重新启动才能生效"/>      <String ID="STATIC_MONSTER_BAR_DOCK" Name="怪物显示栏位置: "/>      <String ID="STATIC_MONSTER_BAR_DOCK_DESC" Name="请依照您放置怪物部件的位置选择"/>      <String ID="STATIC_MONSTER_BAR_DOCK_0" Name="在上方"/>      <String ID="STATIC_MONSTER_BAR_DOCK_1" Name="在下方"/>      <String ID="ENABLE_MONSTER_WEAKNESS" Name="显示怪物的弱点"/>      <String ID="ENABLE_MONSTER_WEAKNESS_DESC" Name="如果启用，怪物的弱点将在其血条下显示"/>      <String ID="ENABLE_HIDE_INACTIVE_PARTS" Name="几秒钟后隐藏无变化的部位/异常状态"/>      <String ID="ENABLE_HIDE_INACTIVE_PARTS_DESC" Name="如果启用，部位和异常状态将在一段时间无变化后自动隐藏"/>      <String ID="ENABLE_BREAKABLE_PARTS" Name="显示怪物可破坏部位"/>      <String ID="ENABLE_BREAKABLE_PARTS_DESC" Name="如果启用可切断、破坏和移除的部位将显示在怪物显示栏下方或上方"/>      <String ID="ENABLE_AILMENTS" Name="显示怪物异常状态"/>      <String ID="ENABLE_AILMENTS_DESC" Name="如果启用，怪物异常状态将显示在怪物栏下方或上方"/>      <String ID="ENABLE_MONSTER_PARTS" Name="显示怪物部位"/>      <String ID="ENABLE_MONSTER_PARTS_DESC" Name="如果启用怪物可破坏部分将显示在怪物栏下方或上方"/>      <String ID="ENABLE_MONSTER_PART_HEAD" Name="头部血量"/>      <String ID="ENABLE_MONSTER_PART_BODY" Name="身体血量"/>      <String ID="ENABLE_MONSTER_PART_ARM" Name="前腿血量"/>      <String ID="ENABLE_MONSTER_PART_WING" Name="翅膀血量"/>      <String ID="ENABLE_MONSTER_PART_LEG" Name="后腿血量"/>      <String ID="ENABLE_MONSTER_PART_TAIL" Name="尾巴血量"/>      <String ID="ENABLE_MONSTER_PART_LIMB" Name="四肢血量"/>      <String ID="ENABLE_MONSTER_PART_ABDOMEN" Name="腹部血量"/>      <String ID="ENABLE_MONSTER_PART_CHEST" Name="胸部血量"/>      <String ID="ENABLE_MONSTER_PART_REAR" Name="背部血量"/>      <String ID="ENABLE_MONSTER_PART_JAW" Name="下颚血量"/>      <String ID="ENABLE_MONSTER_PART_BACK" Name="背部血量"/>      <String ID="ENABLE_MONSTER_PART_FIN" Name="背鳍血量"/>      <String ID="ENABLE_MONSTER_PART_HORN" Name="角血量"/>      <String ID="ENABLE_MONSTER_PART_NECK" Name="颈部血量"/>      <String ID="ENABLE_MONSTER_PART_SHELL" Name="外壳血量"/>      <String ID="ENABLE_MONSTER_PART_ORGAN" Name="器官血量"/>      <String ID="ENABLE_MONSTER_PART_MANE" Name="鬃毛血量"/>      <String ID="ENABLE_MONSTER_PART_BONE" Name="骨头血量"/>      <String ID="ENABLE_MONSTER_PART_MISC" Name="其他部位血量"/>      <String ID="STATIC_MONSTER_MAX_PARTS" Name="每行最大部位数量"/>      <String ID="STATIC_MONSTER_MAX_PARTS_DESC" Name="设置每一行显示部位的最大数量"/>      <String ID="STATIC_MONSTER_MAX_COLUMNS" Name="最大行数量"/>      <String ID="STATIC_MONSTER_MAX_COLUMNS_DESC" Name="设置部位/异常状态的最大行数"/>      <String ID="STATIC_MONSTER_PART_DELAY" Name="延迟隐藏无变化的部位"/>      <String ID="STATIC_MONSTER_PART_DELAY_DESC" Name="当部位无变化或已破坏时，延迟隐藏部位"/>      <String ID="STATIC_MONSTER_POSITION_DESC" Name="更改怪物部件的位置"/>      <!-- Harvest Box Widget -->      <String ID="ENABLE_HARVEST_BOX" Name="收获箱部件"/>      <String ID="ENABLE_HARVEST_BOX_DESC" Name="如启用，只要有内容就会显示&quot;收获箱&quot;部件"/>      <String ID="ENABLE_STEAM_TRACKER" Name="蒸气燃料"/>      <String ID="ENABLE_STEAM_TRACKER_DESC" Name="如启用，自然生成的燃料及储存的燃料将显示在部件的底部"/>      <String ID="ENABLE_ARGOSY_TRACKER" Name="交易船"/>      <String ID="ENABLE_ARGOSY_TRACKER_DESC" Name="如启用，交易船剩余任务回数将会显示在部件的底部"/>      <String ID="ENABLE_TAILRAIDERS_TRACKER" Name="随从探险队"/>      <String ID="ENABLE_TAILRAIDERS_TRACKER_DESC" Name="如启用，随从探险队剩余任务回数将会显示在部件的底部"/>      <String ID="ENABLE_HARVEST_BOX_EVERYWHERE" Name="在任何区域显示收获箱"/>      <String ID="ENABLE_HARVEST_BOX_EVERYWHERE_DESC" Name="如启用，在任何地图或区域都会显示收获箱部件，包含探索、聚魔之地及其他任何地图"/>      <String ID="STATIC_HARVEST_BOX_POSITION_DESC" Name="更改收获箱部件的位置"/>      <!-- Damage Meter -->      <String ID="ENABLE_METER" Name="伤害部件"/>      <String ID="ENABLE_METER_DESC" Name="如启用，只要有内容就会显示伤害部件"/>      <String ID="ENABLE_METER_DPS" Name="显示DPS"/>      <String ID="ENABLE_METER_DPS_DESC" Name="如果启用伤害部件只会显示DPS(每秒的伤害)而不是总伤害量"/>      <String ID="STATIC_METER_PLAYER_1" Name="第一个玩家"/>      <String ID="STATIC_METER_PLAYER_2" Name="第二个玩家"/>      <String ID="STATIC_METER_PLAYER_3" Name="第三个玩家"/>      <String ID="STATIC_METER_PLAYER_4" Name="第四个玩家"/>      <String ID="STATIC_METER_POSITION_DESC" Name="更改伤害部件的位置"/>      <!-- Abnormalities Widget -->      <String ID="STATIC_CREATE_ABNORM_BAR_DESC" Name="建立一个新的状态栏"/>      <String ID="STATIC_REMOVE_ABNORM_BAR_DESC" Name="移除最后一个建立的状态栏"/>      <String ID="STATIC_ENABLE_ABNORM_BAR" Name="启用"/>      <String ID="ENABLE_ALLIGN_ABNORM_BAR_HORIZONTALLY" Name="水平对齐状态栏"/>      <String ID="ENABLE_ALLIGN_ABNORM_BAR_HORIZONTALLY_DESC" Name="如果启用则状态栏将水平对齐。如果您想要垂直状态栏，请禁用此选项"/>      <String ID="ENABLE_ABNORM_BAR_TIME_LEFT" Name="显示状态剩余时间"/>      <String ID="ENABLE_ABNORM_BAR_TIME_LEFT_DESC" Name="如启用，将在状态图标下方显示其剩余时间"/>      <String ID="STATIC_TIMER_TEXT_FORMAT" Name="计时器文字格式"/>      <String ID="STATIC_BACKGROUND_OPACITY" Name="背景不透明度"/>      <String ID="STATIC_BACKGROUND_OPACITY_DESC" Name="更改此部件的背景不透明度"/>      <String ID="STATIC_ABNORM_TAB_HH" Name="狩猎笛效果"/>      <String ID="STATIC_ABNORM_TAB_ORCHESTRA" Name="激励乐器"/>      <String ID="STATIC_ABNORM_TAB_DEBUFF" Name="异常状态"/>      <String ID="STATIC_ABNORM_TAB_CONSUMABLE" Name="消耗品"/>      <!-- Specialized Tool Widget-->      <String ID="STATIC_PRIMARY_SPEC_TOOL" Name="第一件特殊衣装"/>      <String ID="STATIC_SECONDARY_SPEC_TOOL" Name="第二件特殊衣装"/>      <String ID="ENABLE_PRIMARY_SPEC_TOOL" Name="启用部件"/>      <String ID="ENABLE_PRIMARY_SPEC_TOOL_DESC" Name="如果启用则在有内容时将在第一件特殊衣装部件中显示"/>      <String ID="ENABLE_SECONDARY_SPEC_TOOL" Name="启用部件"/>      <String ID="ENABLE_SECONDARY_SPEC_TOOL_DESC" Name="如果启用则只要有内容时将在第二件特殊衣装部件中显示"/>      <String ID="STATIC_COLOR" Name="颜色:"/>      <String ID="STATIC_PRIMARY_SPEC_TOOL_POSITION_DESC" Name="更改第一件特殊衣装部件的位置"/>      <String ID="STATIC_SECONDARY_SPEC_TOOL_POSITION_DESC" Name="更改第二件特殊衣装部件的位置"/>      <!-- Links -->      <String ID="STATIC_HUNTERPIE_WIKI" Name="支持文件(英文)"/>      <String ID="STATIC_HUNTERPIE_WIKI_DESC" Name="HunterPie官方文件"/>      <String ID="STATIC_HUNTERPIE_ISSUES" Name="GitHub问题"/>      <String ID="STATIC_HUNTERPIE_ISSUES_DESC" Name="HunterPie GitHub问题页面"/>      <String ID="STATIC_HUNTERPIE_DISCORD" Name="Discord服务器"/>      <String ID="STATIC_HUNTERPIE_DISCORD_DESC" Name="HunterPie 官方Discord服务器"/>      <String ID="STATIC_HUNTERPIE_DONATIONS" Name="赞助"/>      <String ID="STATIC_HUNTERPIE_PAYPAL" Name="PayPal"/>      <String ID="STATIC_HUNTERPIE_PAYPAL_DESC" Name="如果您想支持HunterPie开发，请考虑赞助！"/>      <!-- Debug -->      <String ID="ENABLE_DEBUG_MESSAGES" Name="Debug信息"/>      <String ID="ENABLE_DEBUG_MESSAGES_DESC" Name="启用Debug，如果您不知道自己在做什么，请不要打开此选项，这是开发者工具的一部分"/>      <String ID="ENABLE_UNKNOWN_AILMENTS" Name="启用未知的怪物异常状态"/>      <String ID="ENABLE_UNKNOWN_AILMENTS_DESC" Name="启用未知的怪物异常状态。如果您不知道自己在做什么，请不要打开此选项，这是开发者工具的一部分。"/>      <String ID="ENABLE_LOAD_CUSTOM_DATA" Name="载入自定义怪物数据"/>      <String ID="ENABLE_LOAD_CUSTOM_DATA_DESC" Name="如启用，HunterPie将尝试载入自定义怪物数据档案。如果您不知道自己在做什么，请不要打开此选项，这是开发者工具的一部分。"/>      <String ID="STATIC_LOAD_CUSTOM_DATA_PATH" Name="自定义怪物数据档案:"/>      <String ID="STATIC_LOAD_CUSTOM_DATA_PATH_DESC" Name="选择您的自定义怪物数据档案路径"/>      <!-- Generics -->      <String ID="STATIC_BUTTON_SELECT_ALL" Name="全选"/>      <String ID="STATIC_BUTTON_UNSELECT_ALL" Name="取消全选"/>      <String ID="STATIC_BUTTON_SAVE" Name="保存"/>      <String ID="STATIC_REQUIRES_RESTART" Name="(重新启动)"/>      <String ID="STATIC_POSITION" Name="位置"/>      <!-- Settings Side bar-->      <String ID="STATIC_GENERAL_SETTINGS" Name="一般设置"/>      <String ID="STATIC_DISCORD_SETTINGS" Name="Discord设置"/>      <String ID="STATIC_OVERLAY_SETTINGS" Name="覆盖层设置"/>      <String ID="STATIC_MONSTERS_SETTINGS" Name="怪物部件"/>      <String ID="STATIC_HARVEST_BOX_SETTINGS" Name="收获箱部件"/>      <String ID="STATIC_DAMAGE_METER_SETTINGS" Name="伤害部件"/>      <String ID="STATIC_ABNORM_BAR_SETTINGS" Name="状态部件"/>      <String ID="STATIC_SPECIALIZED_TOOLS_SETTINGS" Name="衣装部件"/>      <String ID="STATIC_LINKS_SETTINGS" Name="相关链接"/>      <String ID="STATIC_DEBUG_SETTINGS" Name="开发者工具"/>    </Settings>    <Overlay>      <String ID="STATIC_HARVEST_BOX_TITLE" Name="收获箱"/>    </Overlay>    <Notifications>      <String ID="STATIC_DISCORD_JOIN_REQUEST" Name="{Username} 想要加入您的集会，是否同意？"/>      <String ID="STATIC_ACCEPT" Name="同意"/>      <String ID="STATIC_REJECT" Name="拒绝"/>      <String ID="STATIC_SETTINGS_LOAD" Name="设置已载入"/>    </Notifications>    <RichPresence>      <String ID="RPC_DESCRIPTION_IN_MAIN_MENU" Name="在主菜单"/>      <String ID="RPC_DESCRIPTION_IN_LOADING_SCREEN" Name="在载入画面"/>      <String ID="RPC_DESCRIPTION_IN_TOWN" Name="闲置"/>      <String ID="RPC_DESCRIPTION_EXPLORING" Name="探索"/>      <String ID="RPC_DESCRIPTION_HUNTING" Name="狩猎中 {Monster} ({Health})"/>      <String ID="RPC_DESCRIPTION_TRAINING" Name="训练中"/>      <String ID="RPC_STATE_LOBBY" Name="大厅"/>      <String ID="RPC_STATE_PARTY" Name="组队"/>      <String ID="RPC_STATE_SOLO" Name="单人"/>    </RichPresence>  </Client></Strings>
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<Strings lang="Simplified Chinese">
+  <Monsters>
+    <Monster ID="em001_00" Name="雌火龙"/>
+    <Monster ID="em001_01" Name="樱火龙"/>
+    <Monster ID="em001_02" Name="金火龙"/>
+    <Monster ID="em002_00" Name="火龙"/>
+    <Monster ID="em002_01" Name="苍火龙"/>
+    <Monster ID="em002_02" Name="银火龙"/>
+    <Monster ID="em007_00" Name="角龙"/>
+    <Monster ID="em007_01" Name="黑角龙"/>
+    <Monster ID="em011_00" Name="麒麟"/>
+    <Monster ID="em018_00" Name="黑狼鸟"/>
+    <Monster ID="em018_05" Name="战痕黑狼鸟"/>
+    <Monster ID="em023_00" Name="金狮子"/>
+    <Monster ID="em024_00" Name="钢龙"/>
+    <Monster ID="em026_00" Name="炎妃龙"/>
+    <Monster ID="em027_00" Name="炎王龙"/>
+    <Monster ID="em032_00" Name="轰龙"/>
+    <Monster ID="em032_01" Name="黑轰龙"/>
+    <Monster ID="em036_00" Name="熔岩龙"/>
+    <Monster ID="em037_00" Name="迅龙"/>
+    <Monster ID="em042_00" Name="冰牙龙"/>
+    <Monster ID="em043_00" Name="恐暴龙"/>
+    <Monster ID="em043_05" Name="惶怒恐暴龙"/>
+    <Monster ID="em044_00" Name="土砂龙"/>
+    <Monster ID="em045_00" Name="爆锤龙"/>
+    <Monster ID="em057_00" Name="雷狼龙"/>
+    <Monster ID="em057_01" Name="狱狼龙"/>
+    <Monster ID="em063_00" Name="碎龙"/>
+    <Monster ID="em080_00" Name="斩龙"/>
+    <Monster ID="em080_01" Name="硫斩龙"/>
+    <Monster ID="em100_00" Name="蛮颚龙"/>
+    <Monster ID="em100_01" Name="雷颚龙"/>
+    <Monster ID="em101_00" Name="大凶豺龙"/>
+    <Monster ID="em102_00" Name="毒妖鸟"/>
+    <Monster ID="em102_01" Name="水妖鸟"/>
+    <Monster ID="em103_00" Name="灭尽龙"/>
+    <Monster ID="em103_05" Name="歼世灭尽龙"/>
+    <Monster ID="em104_00" Name="冥赤龙"/>
+    <Monster ID="em105_00" Name="冥灯龙"/>
+    <Monster ID="em106_00" Name="熔山龙"/>
+    <Monster ID="em107_00" Name="搔鸟"/>
+    <Monster ID="em108_00" Name="泥鱼龙"/>
+    <Monster ID="em109_00" Name="飞雷龙"/>
+    <Monster ID="em109_01" Name="痹毒龙"/>
+    <Monster ID="em110_00" Name="浮空龙"/>
+    <Monster ID="em110_01" Name="浮眠龙"/>
+    <Monster ID="em111_00" Name="风漂龙"/>
+    <Monster ID="em111_05" Name="霜翼风漂龙"/>
+    <Monster ID="em112_00" Name="大凶颚龙"/>
+    <Monster ID="em113_00" Name="惨爪龙"/>
+    <Monster ID="em113_01" Name="凶爪龙"/>
+    <Monster ID="em114_00" Name="骨锤龙"/>
+    <Monster ID="em115_00" Name="尸套龙"/>
+    <Monster ID="em115_05" Name="雾瘴尸套龙"/>
+    <Monster ID="em116_00" Name="岩贼龙"/>
+    <Monster ID="em117_00" Name="绚辉龙"/>
+    <Monster ID="em118_00" Name="爆鳞龙"/>
+    <Monster ID="em118_05" Name="红莲爆鳞龙"/>
+    <Monster ID="em120_00" Name="眩鸟"/>
+    <Monster ID="em121_00" Name="贝希摩斯"/>
+    <Monster ID="em122_00" Name="冰鱼龙"/>
+    <Monster ID="em123_00" Name="猛牛龙"/>
+    <Monster ID="em124_00" Name="冰咒龙"/>
+    <Monster ID="em125_00" Name="溟波龙"/>
+    <Monster ID="em126_00" Name="天地煌啼龙"/>
+    <Monster ID="em127_00" Name="鹿首精"/>
+    <Monster ID="em127_01" Name="古代鹿首精"/>
+  </Monsters>
+  <Parts>
+    <Part ID="MONSTER_PART_UNKNOWN" Name="未知部位"/>
+    <Part ID="MONSTER_PART_HEAD" Name="头部"/>
+    <Part ID="MONSTER_PART_BODY" Name="身体"/>
+    <Part ID="MONSTER_PART_LWING" Name="左翼"/>
+    <Part ID="MONSTER_PART_RWING" Name="右翼"/>
+    <Part ID="MONSTER_PART_LLEG" Name="左腿"/>
+    <Part ID="MONSTER_PART_RLEG" Name="右腿"/>
+    <Part ID="MONSTER_PART_TAIL" Name="尾巴"/>
+    <Part ID="MONSTER_PART_ARMS" Name="臂"/>
+    <Part ID="MONSTER_PART_LEGS" Name="腿"/>
+    <Part ID="MONSTER_PART_LARM" Name="左前臂"/>
+    <Part ID="MONSTER_PART_RARM" Name="右前臂"/>
+    <Part ID="MONSTER_PART_LLIMBS" Name="左肢"/>
+    <Part ID="MONSTER_PART_RLIMBS" Name="右肢"/>
+    <Part ID="MONSTER_PART_WINGS" Name="翼"/>
+    <Part ID="MONSTER_PART_LIMBS" Name="四肢"/>
+    <Part ID="MONSTER_PART_ABDOMEN" Name="腹部"/>
+    <Part ID="MONSTER_PART_CHEST" Name="胸部"/>
+    <Part ID="MONSTER_PART_REAR" Name="臀部"/>
+    <Part ID="MONSTER_PART_HEAD_MUD" Name="头部的泥"/>
+    <Part ID="MONSTER_PART_BODY_MUD" Name="身体的泥"/>
+    <Part ID="MONSTER_PART_ARMS_MUD" Name="前臂的泥"/>
+    <Part ID="MONSTER_PART_LLEG_MUD" Name="左腿的泥"/>
+    <Part ID="MONSTER_PART_RLEG_MUD" Name="右腿的泥"/>
+    <Part ID="MONSTER_PART_TAIL_MUD" Name="尾巴的泥"/>
+    <Part ID="MONSTER_PART_JAW" Name="下颚"/>
+    <Part ID="MONSTER_PART_BACK" Name="背部"/>
+    <Part ID="MONSTER_PART_FIN" Name="背鳍"/>
+    <Part ID="MONSTER_PART_HORNS" Name="大角"/>
+    <Part ID="MONSTER_PART_NECK" Name="颈部"/>
+    <Part ID="MONSTER_PART_LHAND" Name="左手"/>
+    <Part ID="MONSTER_PART_RHAND" Name="右手"/>
+    <Part ID="MONSTER_PART_LFOOT" Name="左脚"/>
+    <Part ID="MONSTER_PART_RFOOT" Name="右脚"/>
+    <Part ID="MONSTER_PART_SHELL" Name="外壳"/>
+    <Part ID="MONSTER_PART_EXHAUST_ORGAN_CENTRAL" Name="中央散热器官"/>
+    <Part ID="MONSTER_PART_EXHAUST_ORGAN_HEAD" Name="头部散热器官"/>
+    <Part ID="MONSTER_PART_EXHAUST_ORGAN_CRATER" Name="背部散热器官"/>
+    <Part ID="MONSTER_PART_EXHAUST_ORGAN_REAR" Name="尾部散热器官"/>
+    <Part ID="MONSTER_PART_WEAK_LSHELL" Name="左侧薄壳"/>
+    <Part ID="MONSTER_PART_WEAK_RSHELL" Name="右侧薄壳"/>
+    <Part ID="MONSTER_PART_ROCK" Name="石块"/>
+    <Part ID="MONSTER_PART_MANE" Name="鬃毛"/>
+    <Part ID="MONSTER_PART_BALLOON" Name="气囊"/>
+    <Part ID="MONSTER_PART_LBONE" Name="左骨头"/>
+    <Part ID="MONSTER_PART_RBONE" Name="右骨头"/>
+    <Part ID="MONSTER_PART_HORNS_GOLD" Name="大角的黄金"/>
+    <Part ID="MONSTER_PART_MANE_GOLD" Name="背部的黄金"/>
+    <Part ID="MONSTER_PART_LCHEST_GOLD" Name="左胸的黄金"/>
+    <Part ID="MONSTER_PART_RCHEST_GOLD" Name="右胸的黄金"/>
+    <Part ID="MONSTER_PART_LARM_GOLD" Name="左前脚的黄金"/>
+    <Part ID="MONSTER_PART_RARM_GOLD" Name="右前脚的黄金"/>
+    <Part ID="MONSTER_PART_LLEG_GOLD" Name="左后脚的黄金"/>
+    <Part ID="MONSTER_PART_RLEG_GOLD" Name="右后脚的黄金"/>
+    <Part ID="MONSTER_PART_LTAIL_GOLD" Name="尾巴左侧的黄金"/>
+    <Part ID="MONSTER_PART_RTAIL_GOLD" Name="尾巴右侧的黄金"/>
+    <Part ID="MONSTER_PART_LHEAD" Name="头部左侧"/>
+    <Part ID="MONSTER_PART_RHEAD" Name="头部右侧"/>
+    <Part ID="MONSTER_PART_HEAD_SNOW" Name="头部积雪"/>
+    <Part ID="MONSTER_PART_BODY_SNOW" Name="身体积雪"/>
+    <Part ID="MONSTER_PART_TAIL_SNOW" Name="尾巴积雪"/>
+    <Part ID="MONSTER_PART_HEAD_ICE" Name="头部冰"/>
+    <Part ID="MONSTER_PART_BODY_ICE" Name="身体冰"/>
+    <Part ID="MONSTER_PART_WINGS_ICE" Name="翅膀冰"/>
+    <Part ID="MONSTER_PART_ARMS_ICE" Name="前腿冰"/>
+    <Part ID="MONSTER_PART_LEGS_ICE" Name="后腿冰"/>
+    <Part ID="MONSTER_PART_TAIL_ICE" Name="尾巴冰"/>
+    <Part ID="MONSTER_PART_LNECK_ROCK" Name="左颈部岩石"/>
+    <Part ID="MONSTER_PART_RNECK_ROCK" Name="右颈部岩石"/>
+    <Part ID="MONSTER_PART_HEAD_ROCK" Name="头部岩石"/>
+    <Part ID="MONSTER_PART_TAIL_ROCK" Name="尾巴的岩石"/>
+    <Part ID="MONSTER_PART_LWING_ROCK" Name="左翼岩石"/>
+    <Part ID="MONSTER_PART_RWING_ROCK" Name="右翼岩石"/>
+    <Part ID="MONSTER_PART_LARM_ROCK" Name="左前腿岩石"/>
+    <Part ID="MONSTER_PART_RARM_ROCK" Name="右前腿岩石"/>
+    <Part ID="MONSTER_PART_LEGS_ROCK" Name="后腿岩石"/>
+    <Part ID="MONSTER_JAGRAS_SUMMONER" Name="召唤凶豺龙"/>
+    <!-- Removable parts -->
+    <Part ID="MONSTER_PART_REMOVABLE_TAIL" Name="可断的尾巴"/>
+    <Part ID="MONSTER_PART_REMOVABLE_HORNS" Name="可断的角"/>
+    <Part ID="MONSTER_PART_REMOVABLE_HEAD" Name="可破坏的头部"/>
+    <Part ID="MONSTER_PART_REMOVABLE_BALLOON" Name="可破坏的气囊"/>
+    <Part ID="MONSTER_PART_REMOVABLE_HORNS_2" Name="可断的角#2"/>
+    <Part ID="MONSTER_PART_REMOVABLE_LANTLER" Name="可破坏的左鹿角"/>
+    <Part ID="MONSTER_PART_REMOVABLE_RANTLER" Name="可破坏的右鹿角"/>
+  </Parts>
+  <Ailments>
+    <Ailment ID="STATUS_UNKNOWN" Name="未知效果状态"/>
+    <Ailment ID="STATUS_POISON" Name="中毒"/>
+    <Ailment ID="STATUS_PARALYSIS" Name="麻痹"/>
+    <Ailment ID="STATUS_SLEEP" Name="睡眠"/>
+    <Ailment ID="STATUS_BLAST" Name="爆破"/>
+    <Ailment ID="STATUS_MOUNT" Name="骑乘"/>
+    <Ailment ID="STATUS_EXHAUSTION" Name="疲劳"/>
+    <Ailment ID="STATUS_STUN" Name="眩晕"/>
+    <Ailment ID="STATUS_TRANQUILIZE" Name="麻醉"/>
+    <Ailment ID="STATUS_FLASH" Name="闪光"/>
+    <Ailment ID="STATUS_KNOCKDOWN" Name="倒地"/>
+    <Ailment ID="STATUS_DUNGPOD" Name="异臭"/>
+    <Ailment ID="STATUS_SHOCKTRAP" Name="麻痹陷阱"/>
+    <Ailment ID="STATUS_PITFALLTRAP" Name="地洞陷阱"/>
+    <Ailment ID="STATUS_VINETRAP" Name="藤蔓陷阱"/>
+    <Ailment ID="STATUS_ELDERSEAL" Name="龙封力"/>
+    <Ailment ID="STATUS_SMOKING" Name="烟雾"/>
+    <Ailment ID="STATUS_FELYNETRAP" Name="全弹发射击倒"/>
+    <Ailment ID="STATUS_CLAW" Name="飞翔爪激怒"/>
+    <Ailment ID="STATUS_VIOLATED" Name="垂涎积累"/>
+  </Ailments>
+  <Mantles>
+    <Mantle ID="-1" Name="无衣装"/>
+    <Mantle ID="0" Name="隐身衣装"/>
+    <Mantle ID="1" Name="转身衣装"/>
+    <Mantle ID="2" Name="疗愈烟筒"/>
+    <Mantle ID="3" Name="不动衣装"/>
+    <Mantle ID="4" Name="挑衅衣装"/>
+    <Mantle ID="5" Name="体力衣装"/>
+    <Mantle ID="6" Name="耐热衣装"/>
+    <Mantle ID="7" Name="耐水衣装"/>
+    <Mantle ID="8" Name="耐寒衣装"/>
+    <Mantle ID="9" Name="耐雷衣装"/>
+    <Mantle ID="10" Name="耐龙衣装"/>
+    <Mantle ID="11" Name="解除烟筒"/>
+    <Mantle ID="12" Name="滑空衣装"/>
+    <Mantle ID="13" Name="回避衣装"/>
+    <Mantle ID="14" Name="强打衣装"/>
+    <Mantle ID="15" Name="化合衣装"/>
+    <Mantle ID="16" Name="免疫衣装"/>
+    <Mantle ID="17" Name="达人烟筒"/>
+    <Mantle ID="18" Name="盗掠衣装"/>
+    <Mantle ID="19" Name="刺客衣装"/>
+  </Mantles>
+  <Fertilizers>
+    <Fertilizer ID="0" Name="无肥料"/>
+    <Fertilizer ID="1" Name="成长力UP【小】"/>
+    <Fertilizer ID="2" Name="成长力UP【大】"/>
+    <Fertilizer ID="3" Name="香菇收获量UP【小】"/>
+    <Fertilizer ID="4" Name="香菇收获量UP【大】"/>
+    <Fertilizer ID="5" Name="虫·蜂蜜收获量UP【小】"/>
+    <Fertilizer ID="6" Name="虫·蜂蜜收获量UP【大】"/>
+    <Fertilizer ID="7" Name="草·果实收获量UP【小】"/>
+    <Fertilizer ID="8" Name="草·果实收获量UP【大】"/>
+  </Fertilizers>
+  <Stages>
+    <Stage ID="0" Name="主菜单"/>
+    <Stage ID="101" Name="古代树森林"/>
+    <Stage ID="102" Name="大蚁冢荒地"/>
+    <Stage ID="103" Name="陆珊瑚台地"/>
+    <Stage ID="104" Name="瘴气之谷"/>
+    <Stage ID="105" Name="龙结晶之地"/>
+    <Stage ID="106" Name="大裂谷"/>
+    <Stage ID="107" Name="大裂谷(剧情)"/>
+    <Stage ID="108" Name="永霜冻土"/>
+    <Stage ID="109" Name="聚魔之地"/>
+    <Stage ID="201" Name="特殊斗技场"/>
+    <Stage ID="202" Name="斗技场"/>
+    <Stage ID="301" Name="星辰据点"/>
+    <Stage ID="302" Name="集会区域(星辰)"/>
+    <Stage ID="303" Name="研究基地"/>
+    <Stage ID="305" Name="月辰据点"/>
+    <Stage ID="306" Name="集会区域(月辰)"/>
+    <Stage ID="401" Name="古代树森林(初始剧情)"/>
+    <Stage ID="403" Name="地脉回廊"/>
+    <Stage ID="405" Name="收束之地"/>
+    <Stage ID="406" Name="古代树森林(教程)"/>
+    <Stage ID="409" Name="地脉黄金乡"/>
+    <Stage ID="411" Name="兵器置放处"/>
+    <Stage ID="412" Name="起源的孤岛(歼世灭尽龙)"/>
+    <Stage ID="413" Name="起源的孤岛(天地煌啼龙)"/>
+    <Stage ID="415" Name="幽境之谷"/>
+    <Stage ID="501" Name="二等小屋"/>
+    <Stage ID="502" Name="一等小屋"/>
+    <Stage ID="503" Name="特等小屋"/>
+    <Stage ID="504" Name="锻炼区域"/>
+    <Stage ID="505" Name="五龙之间"/>
+    <Stage ID="506" Name="月辰小屋"/>
+  </Stages>
+  <Weapons>
+    <Weapon ID="0" Name="大剑"/>
+    <Weapon ID="1" Name="单手剑"/>
+    <Weapon ID="2" Name="双剑"/>
+    <Weapon ID="3" Name="太刀"/>
+    <Weapon ID="4" Name="大锤"/>
+    <Weapon ID="5" Name="狩猎笛"/>
+    <Weapon ID="6" Name="长枪"/>
+    <Weapon ID="7" Name="铳枪"/>
+    <Weapon ID="8" Name="斩击斧"/>
+    <Weapon ID="9" Name="充能斧"/>
+    <Weapon ID="10" Name="操虫棍"/>
+    <Weapon ID="11" Name="弓"/>
+    <Weapon ID="12" Name="重弩枪"/>
+    <Weapon ID="13" Name="轻弩枪"/>
+  </Weapons>
+  <Abnormalities>
+    <Abnormality ID="UNKNOWN_ABNORMALITY" Name="未知状态(ID: {AbnormalityID})"/>
+    <Abnormality ID="HUNTINGHORN_000_00" Name="自我强化"/>
+    <Abnormality ID="HUNTINGHORN_999_00" Name="攻击力UP&amp;弹武无效"/>
+    <Abnormality ID="HUNTINGHORN_001_00" Name="攻击力UP·小"/>
+    <Abnormality ID="HUNTINGHORN_001_01" Name="攻击力UP·大"/>
+    <Abnormality ID="HUNTINGHORN_002_00" Name="攻击力UP·大"/>
+    <Abnormality ID="HUNTINGHORN_002_01" Name="攻击力UP·特大"/>
+    <Abnormality ID="HUNTINGHORN_003_00" Name="体力UP·小"/>
+    <Abnormality ID="HUNTINGHORN_004_00" Name="体力UP·大"/>
+    <Abnormality ID="HUNTINGHORN_005_00" Name="耐力消费减轻·小"/>
+    <Abnormality ID="HUNTINGHORN_006_00" Name="耐力消费减轻·大"/>
+    <Abnormality ID="HUNTINGHORN_007_00" Name="风压无效·小"/>
+    <Abnormality ID="HUNTINGHORN_008_00" Name="风压完全无效"/>
+    <Abnormality ID="HUNTINGHORN_009_00" Name="防御力UP·小"/>
+    <Abnormality ID="HUNTINGHORN_009_01" Name="防御力UP·大"/>
+    <Abnormality ID="HUNTINGHORN_010_00" Name="防御力UP·大"/>
+    <Abnormality ID="HUNTINGHORN_010_01" Name="防御力UP·特大"/>
+    <Abnormality ID="HUNTINGHORN_011_00" Name="特殊装具消费减轻·小"/>
+    <Abnormality ID="HUNTINGHORN_012_00" Name="特殊装具消费减轻·大"/>
+    <Abnormality ID="HUNTINGHORN_018_00" Name="体力恢复速度UP·小"/>
+    <Abnormality ID="HUNTINGHORN_019_00" Name="体力恢复速度UP·小"/>
+    <Abnormality ID="HUNTINGHORN_020_00" Name="听觉保护·小"/>
+    <Abnormality ID="HUNTINGHORN_021_00" Name="听觉保护·大"/>
+    <Abnormality ID="HUNTINGHORN_022_00" Name="精灵王的加护"/>
+    <Abnormality ID="HUNTINGHORN_023_00" Name="导虫追踪力强化"/>
+    <Abnormality ID="HUNTINGHORN_024_00" Name="地形伤害无效"/>
+    <Abnormality ID="HUNTINGHORN_025_00" Name="晕厥无效"/>
+    <Abnormality ID="HUNTINGHORN_026_00" Name="麻痹无效"/>
+    <Abnormality ID="HUNTINGHORN_027_00" Name="震动无效"/>
+    <Abnormality ID="HUNTINGHORN_028_00" Name="减轻泥&amp;适应水场·深雪"/>
+    <Abnormality ID="HUNTINGHORN_029_00" Name="火属性防御强化·小"/>
+    <Abnormality ID="HUNTINGHORN_029_01" Name="火属性防御强化·大"/>
+    <Abnormality ID="HUNTINGHORN_030_00" Name="火属性防御强化·大"/>
+    <Abnormality ID="HUNTINGHORN_030_01" Name="火属性防御强化·特大"/>
+    <Abnormality ID="HUNTINGHORN_031_00" Name="水属性防御强化·小"/>
+    <Abnormality ID="HUNTINGHORN_031_01" Name="水属性防御强化·大"/>
+    <Abnormality ID="HUNTINGHORN_032_00" Name="水属性防御强化·大"/>
+    <Abnormality ID="HUNTINGHORN_032_01" Name="水属性防御强化·特大"/>
+    <Abnormality ID="HUNTINGHORN_033_00" Name="雷属性防御强化·小"/>
+    <Abnormality ID="HUNTINGHORN_033_01" Name="雷属性防御强化·大"/>
+    <Abnormality ID="HUNTINGHORN_034_00" Name="雷属性防御强化·大"/>
+    <Abnormality ID="HUNTINGHORN_034_01" Name="雷属性防御强化·特大"/>
+    <Abnormality ID="HUNTINGHORN_035_00" Name="冰属性防御强化·小"/>
+    <Abnormality ID="HUNTINGHORN_035_01" Name="冰属性防御强化·大"/>
+    <Abnormality ID="HUNTINGHORN_036_00" Name="冰属性防御强化·大"/>
+    <Abnormality ID="HUNTINGHORN_036_01" Name="冰属性防御强化·特大"/>
+    <Abnormality ID="HUNTINGHORN_037_00" Name="龙属性防御强化·小"/>
+    <Abnormality ID="HUNTINGHORN_037_01" Name="龙属性防御强化·大"/>
+    <Abnormality ID="HUNTINGHORN_038_00" Name="龙属性防御强化·大"/>
+    <Abnormality ID="HUNTINGHORN_038_01" Name="龙属性防御强化·特大"/>
+    <Abnormality ID="HUNTINGHORN_039_00" Name="属性攻击力提升"/>
+    <Abnormality ID="HUNTINGHORN_040_00" Name="全属性异常无效"/>
+    <Abnormality ID="HUNTINGHORN_041_00" Name="未知状态"/>
+    <Abnormality ID="HUNTINGHORN_043_00" Name="后仰无效"/>
+    <Abnormality ID="HUNTINGHORN_045_00" Name="全属性防御强化"/>
+    <Abnormality ID="HUNTINGHORN_046_00" Name="会心率UP·小"/>
+    <Abnormality ID="HUNTINGHORN_047_00" Name="全状态异常无效"/>
+    <Abnormality ID="HUNTINGHORN_048_00" Name="风压无效&amp;听觉保护"/>
+    <Abnormality ID="HUNTINGHORN_049_00" Name="异常攻击力提升"/>
+    <Abnormality ID="HUNTINGHORN_053_00" Name="耐力最大值UP&amp;回复"/>
+    <Abnormality ID="HUNTINGHORN_054_00" Name="体力最大值UP&amp;回复"/>
+    <Abnormality ID="HUNTINGHORN_055_00" Name="速度&amp;回避性能UP"/>
+    <Abnormality ID="HUNTINGHORN_056_00" Name="属性效果提升"/>
+    <Abnormality ID="HUNTINGHORN_943_00" Name="属性效果提升"/>
+    <Abnormality ID="PALICO_000_00" Name="猫·复活"/>
+    <Abnormality ID="PALICO_001_00" Name="猫·攻击力UP·小"/>
+    <Abnormality ID="PALICO_002_00" Name="猫·攻击力UP·大"/>
+    <Abnormality ID="PALICO_003_00" Name="猫·防御力UP·小"/>
+    <Abnormality ID="PALICO_004_00" Name="猫·防御力UP·大"/>
+    <Abnormality ID="PALICO_005_00" Name="猫·会心率UP"/>
+    <Abnormality ID="PALICO_006_00" Name="猫·回复速度UP·小"/>
+    <Abnormality ID="PALICO_007_00" Name="猫·体力UP·小"/>
+    <Abnormality ID="PALICO_008_00" Name="猫·耐力消费减轻·小"/>
+    <Abnormality ID="PALICO_009_00" Name="未知状态"/>
+    <Abnormality ID="PALICO_010_00" Name="猫·精灵王的加护"/>
+    <Abnormality ID="PALICO_011_00" Name="猫·精灵王的加护"/>
+    <Abnormality ID="PALICO_012_00" Name="猫·昏厥无效"/>
+    <Abnormality ID="PALICO_013_00" Name="猫·麻痹无效"/>
+    <Abnormality ID="PALICO_014_00" Name="猫·震动无效"/>
+    <Abnormality ID="PALICO_015_00" Name="猫·听觉保护·小"/>
+    <Abnormality ID="PALICO_016_00" Name="猫·风压无效·小"/>
+    <Abnormality ID="PALICO_017_00" Name="猫·地形伤害无效"/>
+    <Abnormality ID="PALICO_018_00" Name="未知"/>
+    <Abnormality ID="DEBUFF_000_00" Name="中毒"/>
+    <Abnormality ID="DEBUFF_001_00" Name="未知"/>
+    <Abnormality ID="DEBUFF_002_00" Name="未知"/>
+    <Abnormality ID="DEBUFF_003_00" Name="未知"/>
+    <Abnormality ID="DEBUFF_004_00" Name="火属性异常"/>
+    <Abnormality ID="DEBUFF_005_00" Name="雷属性异常"/>
+    <Abnormality ID="DEBUFF_006_00" Name="水属性异常"/>
+    <Abnormality ID="DEBUFF_007_00" Name="冰属性异常"/>
+    <Abnormality ID="DEBUFF_008_00" Name="龙属性异常"/>
+    <Abnormality ID="DEBUFF_009_00" Name="撕裂伤害"/>
+    <Abnormality ID="DEBUFF_010_00" Name="裂伤恢复"/>
+    <Abnormality ID="DEBUFF_011_00" Name="瘴气异常"/>
+    <Abnormality ID="DEBUFF_012_00" Name="防御下降"/>
+    <Abnormality ID="DEBUFF_014_00" Name="属性耐性下降"/>
+    <Abnormality ID="DEBUFF_016_00" Name="禁止使用物品"/>
+    <Abnormality ID="DEBUFF_017_00" Name="爆破属性异常"/>
+    <Abnormality ID="DEBUFF_020_00" Name="爆破黏菌"/>
+    <Abnormality ID="MISC_000_00" Name="强走药"/>
+    <Abnormality ID="MISC_001_00" Name="耐力雷虫"/>
+    <Abnormality ID="MISC_002_00" Name="恢复力UP"/>
+    <Abnormality ID="MISC_004_00" Name="怪力种子"/>
+    <Abnormality ID="MISC_004_01" Name="怪力药丸"/>
+    <Abnormality ID="MISC_008_00" Name="忍耐种子"/>
+    <Abnormality ID="MISC_008_01" Name="忍耐药丸"/>
+    <Abnormality ID="MISC_013_00" Name="鬼人粉尘"/>
+    <Abnormality ID="MISC_014_00" Name="硬化粉尘"/>
+    <Abnormality ID="MISC_015_00" Name="鬼人药"/>
+    <Abnormality ID="MISC_015_01" Name="鬼人药"/>
+    <Abnormality ID="MISC_015_02" Name="鬼人药·大"/>
+    <Abnormality ID="MISC_016_00" Name="硬化药"/>
+    <Abnormality ID="MISC_016_01" Name="硬化药"/>
+    <Abnormality ID="MISC_016_02" Name="硬化药·大"/>
+    <Abnormality ID="MISC_023_00" Name="冷饮"/>
+    <Abnormality ID="MISC_024_00" Name="热饮"/>
+    <Abnormality ID="MISC_026_00" Name="温泉：HP回复"/>
+    <Abnormality ID="MISC_027_00" Name="温泉：寒冷耐性"/>
+    <Abnormality ID="MISC_034_00" Name="鬼毬果：攻击UP"/>
+    <Abnormality ID="MISC_035_00" Name="冰耐草：冰耐性提升"/>
+    <Abnormality ID="MISC_073_00" Name="攻击&amp;防御UP"/>
+  </Abnormalities>
+  <!-- Client localization strings -->
+  <Client>
+    <Console>
+      <String ID="CONSOLE_CONSOLE" Name="控制台"/>
+      <String ID="CONSOLE_SETTINGS" Name="设置"/>
+      <String ID="CONSOLE_CHANGELOG" Name="更新记录"/>
+      <String ID="CONSOLE_DISCORD" Name="Discord"/>
+      <String ID="CONSOLE_GITHUB" Name="GitHub"/>
+      <String ID="CONSOLE_LAUNCH" Name="启动游戏"/>
+      <String ID="CONSOLE_VERSION" Name="版本: {HunterPie_Version} ({HunterPie_Branch})"/>
+      <!-- Popups -->
+      <String ID="MESSAGE_QUIT" Name="确定要退出HunterPie吗?"/>
+      <String ID="TITLE_MISSING_PATH" Name="未找到《怪物猎人：世界》路径"/>
+      <String ID="MESSAGE_MISSING_PATH" Name="未添加游戏路径，现在添加？"/>
+      <!-- Console Messages -->
+      <String ID="MESSAGE_MAP_LOAD" Name="加载 {HunterPie_Map}"/>
+      <String ID="MESSAGE_DISCORD_CONNECTED" Name="启动新的RPC连接"/>
+      <String ID="MESSAGE_DISCORD_USER_CONNECTED" Name="已连接Discord使用者: {Username}"/>
+      <String ID="MESSAGE_DISCORD_DISCONNECTED" Name="关闭Discord连接"/>
+      <String ID="MESSAGE_DISCORD_JOIN_REQUEST" Name="{Username} 请求加入集会"/>
+      <String ID="MESSAGE_DISCORD_JOINING" Name="加入集会中..."/>
+      
+      <String ID="MESSAGE_MONSTER_DATA_LOAD" Name="加载怪物数据"/>
+      <String ID="MESSAGE_ABNORMALITIES_DATA_LOAD" Name="加载异常状态数据"/>
+      <String ID="MESSAGE_PLAYER_SCANNER_INITIALIZED" Name="初始化玩家内存扫描"/>
+      <String ID="MESSAGE_HUNTERPIE_INITIALIZED" Name="初始化HunterPie!"/>
+      <String ID="MESSAGE_GAME_SCANNER_INITIALIZED" Name="初始化游戏内存扫描"/>
+      <String ID="MESSAGE_MONSTER_SCANNER_INITIALIZED" Name="初始化怪物({MonsterNumber})扫描"/>
+      <String ID="MESSAGE_GAME_SCANNER_STOP" Name="停止游戏扫描"/>
+      <!-- Warnings -->
+      <String ID="MESSAGE_OFFLINEMODE_WARN" Name="HunterPie处于离线模式"/>
+      <String ID="MESSAGE_AUTOUPDATE_DISABLED_WARN" Name="自动更新已关闭，如果您的HunterPie有任何问题或不支持当前游戏版本，请尝试开启自动更新"/>
+      <String ID="MESSAGE_THEME_LOAD_WARN" Name="已载入自定义主题!"/>
+      <!-- Errors -->
+      <String ID="MESSAGE_GAME_VERSION_UNSUPPORTED" Name="检测到游戏版本({GAME_VERSION})尚未映射!"/>
+      <String ID="MESSAGE_LAUNCH_ERROR" Name="《怪物猎人：世界》启动失败"/>
+      <String ID="MESSAGE_UPDATE_ERROR" Name="HunterPie更新失败，请检查您的网络连接"/>
+      <String ID="MESSAGE_THEME_NOT_FOUND_ERROR" Name="未找到主题: {THEME_NAME}"/>
+      <String ID="MESSAGE_THEME_NOT_LOAD_ERROR" Name="自定义主题载入失败!"/>
+    </Console>
+    <Settings>
+      <!-- General -->
+      <String ID="ENABLE_AUTOUPDATE" Name="自动更新"/>
+      <String ID="ENABLE_AUTOUPDATE_DESC" Name="如开启，HunterPie将在启动时自动寻找更新"/>
+      <String ID="ENABLE_MINTOTRAY" Name="系统托盘"/>
+      <String ID="ENABLE_MINTOTRAY_DESC" Name="如开启，HunterPie最小化时将隐藏到系统托盘并在后台继续运行"/>
+      <String ID="ENABLE_STARTMIN" Name="最小化启动HunterPie"/>
+      <String ID="ENABLE_STARTMIN_DESC" Name="如开启，HunterPie启动时将自动隐藏到系统托盘"/>
+      <String ID="ENABLE_AUTOCLOSE" Name="关闭游戏时自动关闭HunterPie"/>
+      <String ID="ENABLE_AUTOCLOSE_DESC" Name="如开启，HunterPie将在游戏关闭时自动关闭"/>
+      <String ID="STATIC_UPDATEBRANCH" Name="更新分支:"/>
+      <String ID="STATIC_UPDATEBRANCH_DESC" Name="选择您需要的HunterPie更新分支，BETA具有最新功能，master则更加稳定"/>
+      <String ID="STATIC_LANGUAGEFILE" Name="语言文件:"/>
+      <String ID="STATIC_LANGUAGEFILE_DESC" Name="选择您需要的HunterPie语言文件"/>
+      <String ID="STATIC_THEMEFILE" Name="主题文件:"/>
+      <String ID="STATIC_THEMEFILE_DESC" Name="选择您需要的HunterPie主题文件"/>
+      <String ID="STATIC_GAMEPATH" Name="游戏路径:"/>
+      <String ID="STATIC_GAMEPATH_UNSELECTED" Name="选择路径"/>
+      <String ID="STATIC_GAMEPATH_DESC" Name="选择您《怪物猎人：世界》可执行文件的路径"/>
+      <String ID="STATIC_LAUNCHARGS" Name="启动参数"/>
+      <String ID="STATIC_LAUNCHARGS_NOARGS" Name="无参数"/>
+      <String ID="STATIC_LAUNCHARGS_DESC" Name="启动游戏时使用参数，如果您不知道如何做，请将其留空"/>
+      <!-- Discord RPC -->
+      <String ID="ENABLE_RPC" Name="Discord状态信息共享"/>
+      <String ID="ENABLE_RPC_DESC" Name="如开启，HunterPie将在Discord状态中实时显示您的游戏动态"/>
+      <String ID="ENABLE_RPC_HEALTH" Name="显示怪物的血量百分比"/>
+      <String ID="ENABLE_RPC_HEALTH_DESC" Name="如开启，Discord状态中将实时显示您正在狩猎怪物的血量百分比."/>
+      <String ID="ENABLE_PEOPLE_JOIN" Name="允许其他玩家请求加入我的集会"/>
+      <String ID="ENABLE_PEOPLE_JOIN_DESC" Name="如开启，其他玩家可以请求加入您的集会"/>
+      <!-- Overlay -->
+      <String ID="ENABLE_OVERLAY" Name="游戏内覆盖"/>
+      <String ID="ENABLE_OVERLAY_DESC" Name="如开启，将在游戏中启用覆盖层"/>
+      <String ID="ENABLE_HIDE_WHEN_UNFOCUS" Name="游戏未在顶层时隐藏覆盖层"/>
+      <String ID="ENABLE_HIDE_WHEN_UNFOCUS_DESC" Name="如开启，当游戏未在顶层时HunterPie覆盖层将自动隐藏(例如：按下Alt+Tab)"/>
+      <String ID="ENABLE_HARDWARE_ACCELERATION" Name="硬件加速"/>
+      <String ID="ENABLE_HARDWARE_ACCELERATION_DESC" Name="启用硬件加速将使用显卡渲染覆盖层，关闭此选项会将渲染模式更改为软件渲染，这将占用更多的CPU运算。如果遇到FPS异常问题，请关闭此选项"/>
+      <String ID="STATIC_ANIMATION_FPS" Name="动画帧数"/>
+      <String ID="STATIC_ANIMATION_FPS_DESC" Name="更改HunterPie所有动画的帧数，如果遇到FPS异常问题，请将其设置为较低的值"/>
+      <String ID="STATIC_GAME_SCAN_DELAY" Name="游戏扫描延迟:"/>
+      <String ID="STATIC_GAME_SCAN_DELAY_DESC" Name="设定扫描延迟，将此值设置越低，会使HunterPie更频繁地扫描游戏内存，更加占用CPU资源&#13;(例如：设置为200将使HunterPie每秒扫描游戏5次)"/>
+      <String ID="STATIC_IMAGE_QUALITY" Name="图像质量"/>
+      <String ID="STATIC_IMAGE_QUALITY_DESC" Name="改变图像的质量"/>
+      <String ID="STATIC_TOGGLE_OVERLAY" Name="开启/关闭覆盖层(热键):"/>
+      <String ID="STATIC_TOGGLE_OVERLAY_DESC" Name="开启/关闭覆盖层的热键，更改热键需要重新启动才能生效"/>
+      <String ID="STATIC_TOGGLE_DESIGN" Name="开启/关闭编辑模式(热键)："/>
+      <String ID="STATIC_TOGGLE_DESIGN_DESC" Name="使用热键开启/关闭编辑模式"/>
+      <String ID="STATIC_OVERLAY_POSITION_DESC" Name="更改覆盖层的位置"/>
+      <!-- Monster Widget -->
+      <String ID="ENABLE_MONSTER_WIDGET" Name="怪物部件"/>
+      <String ID="ENABLE_MONSTER_WIDGET_DESC" Name="如开启，只要有内容可以显示，怪物部件就将可见"/>
+      <String ID="STATIC_MONSTER_HEALTH_STRING_FORMAT" Name="血量文字格式:"/>
+      <String ID="STATIC_MONSTER_HEALTH_STRING_FORMAT_DESC" Name="怪物血量条的文字格式"/>
+      <String ID="STATIC_MONSTER_BAR_MODE" Name="怪物显示栏模式"/>
+      <String ID="STATIC_MONSTER_BAR_MODE_DESC" Name="改变怪物显示栏模式"/>
+      <String ID="STATIC_MONSTER_BAR_MODE_0" Name="显示所有怪物"/>
+      <String ID="STATIC_MONSTER_BAR_MODE_1" Name="显示所有怪物，并高亮显示我的目标"/>
+      <String ID="STATIC_MONSTER_BAR_MODE_2" Name="只显示狩猎中的怪物"/>
+      <String ID="STATIC_MONSTER_BAR_MODE_3" Name="显示所有怪物，15秒后隐藏非狩猎中的怪物"/>
+      <String ID="STATIC_MONSTER_BAR_MODE_4" Name="显示所有怪物，选中后单独显示目标怪物"/>
+      <String ID="STATIC_MONSTER_BAR_MODE_HOTKEY" Name="改变怪物栏模式(热键):"/>
+      <String ID="STATIC_MONSTER_BAR_MODE_HOTKEY_DESC" Name="使用热键切换怪物显示栏模式，改变热键需要重新启动才能生效"/>
+      <String ID="STATIC_MONSTER_BAR_DOCK" Name="怪物显示栏位置: "/>
+      <String ID="STATIC_MONSTER_BAR_DOCK_DESC" Name="请依照您放置怪物部件的位置选择"/>
+      <String ID="STATIC_MONSTER_BAR_DOCK_0" Name="在上方"/>
+      <String ID="STATIC_MONSTER_BAR_DOCK_1" Name="在下方"/>
+      <String ID="ENABLE_MONSTER_WEAKNESS" Name="显示怪物的弱点"/>
+      <String ID="ENABLE_MONSTER_WEAKNESS_DESC" Name="如果启用，怪物的弱点将在其血条下显示"/>
+      <String ID="ENABLE_HIDE_INACTIVE_PARTS" Name="几秒钟后隐藏无变化的部位/异常状态"/>
+      <String ID="ENABLE_HIDE_INACTIVE_PARTS_DESC" Name="如果启用，部位和异常状态将在一段时间无变化后自动隐藏"/>
+      <String ID="ENABLE_BREAKABLE_PARTS" Name="显示怪物可破坏部位"/>
+      <String ID="ENABLE_BREAKABLE_PARTS_DESC" Name="如果启用可切断、破坏和移除的部位将显示在怪物显示栏下方或上方"/>
+      <String ID="ENABLE_AILMENTS" Name="显示怪物异常状态"/>
+      <String ID="ENABLE_AILMENTS_DESC" Name="如果启用，怪物异常状态将显示在怪物栏下方或上方"/>
+      <String ID="ENABLE_MONSTER_PARTS" Name="显示怪物部位"/>
+      <String ID="ENABLE_MONSTER_PARTS_DESC" Name="如果启用怪物可破坏部分将显示在怪物栏下方或上方"/>
+      <String ID="ENABLE_MONSTER_PART_HEAD" Name="头部血量"/>
+      <String ID="ENABLE_MONSTER_PART_BODY" Name="身体血量"/>
+      <String ID="ENABLE_MONSTER_PART_ARM" Name="前腿血量"/>
+      <String ID="ENABLE_MONSTER_PART_WING" Name="翅膀血量"/>
+      <String ID="ENABLE_MONSTER_PART_LEG" Name="后腿血量"/>
+      <String ID="ENABLE_MONSTER_PART_TAIL" Name="尾巴血量"/>
+      <String ID="ENABLE_MONSTER_PART_LIMB" Name="四肢血量"/>
+      <String ID="ENABLE_MONSTER_PART_ABDOMEN" Name="腹部血量"/>
+      <String ID="ENABLE_MONSTER_PART_CHEST" Name="胸部血量"/>
+      <String ID="ENABLE_MONSTER_PART_REAR" Name="背部血量"/>
+      <String ID="ENABLE_MONSTER_PART_JAW" Name="下颚血量"/>
+      <String ID="ENABLE_MONSTER_PART_BACK" Name="背部血量"/>
+      <String ID="ENABLE_MONSTER_PART_FIN" Name="背鳍血量"/>
+      <String ID="ENABLE_MONSTER_PART_HORN" Name="角血量"/>
+      <String ID="ENABLE_MONSTER_PART_NECK" Name="颈部血量"/>
+      <String ID="ENABLE_MONSTER_PART_SHELL" Name="外壳血量"/>
+      <String ID="ENABLE_MONSTER_PART_ORGAN" Name="器官血量"/>
+      <String ID="ENABLE_MONSTER_PART_MANE" Name="鬃毛血量"/>
+      <String ID="ENABLE_MONSTER_PART_BONE" Name="骨头血量"/>
+      <String ID="ENABLE_MONSTER_PART_MISC" Name="其他部位血量"/>
+      <String ID="STATIC_MONSTER_MAX_PARTS" Name="每行最大部位数量"/>
+      <String ID="STATIC_MONSTER_MAX_PARTS_DESC" Name="设置每一行显示部位的最大数量"/>
+      <String ID="STATIC_MONSTER_MAX_COLUMNS" Name="最大行数量"/>
+      <String ID="STATIC_MONSTER_MAX_COLUMNS_DESC" Name="设置部位/异常状态的最大行数"/>
+      <String ID="STATIC_MONSTER_PART_DELAY" Name="延迟隐藏无变化的部位"/>
+      <String ID="STATIC_MONSTER_PART_DELAY_DESC" Name="当部位无变化或已破坏时，延迟隐藏部位"/>
+      <String ID="STATIC_MONSTER_POSITION_DESC" Name="更改怪物部件的位置"/>
+      <!-- Harvest Box Widget -->
+      <String ID="ENABLE_HARVEST_BOX" Name="收获箱部件"/>
+      <String ID="ENABLE_HARVEST_BOX_DESC" Name="如启用，只要有内容就会显示&quot;收获箱&quot;部件"/>
+      <String ID="ENABLE_STEAM_TRACKER" Name="蒸气燃料"/>
+      <String ID="ENABLE_STEAM_TRACKER_DESC" Name="如启用，自然生成的燃料及储存的燃料将显示在部件的底部"/>
+      <String ID="ENABLE_ARGOSY_TRACKER" Name="交易船"/>
+      <String ID="ENABLE_ARGOSY_TRACKER_DESC" Name="如启用，交易船剩余任务回数将会显示在部件的底部"/>
+      <String ID="ENABLE_TAILRAIDERS_TRACKER" Name="随从探险队"/>
+      <String ID="ENABLE_TAILRAIDERS_TRACKER_DESC" Name="如启用，随从探险队剩余任务回数将会显示在部件的底部"/>
+      <String ID="ENABLE_HARVEST_BOX_EVERYWHERE" Name="在任何区域显示收获箱"/>
+      <String ID="ENABLE_HARVEST_BOX_EVERYWHERE_DESC" Name="如启用，在任何地图或区域都会显示收获箱部件，包含探索、聚魔之地及其他任何地图"/>
+      <String ID="STATIC_HARVEST_BOX_POSITION_DESC" Name="更改收获箱部件的位置"/>
+      <!-- Damage Meter -->
+      <String ID="ENABLE_METER" Name="伤害部件"/>
+      <String ID="ENABLE_METER_DESC" Name="如启用，只要有内容就会显示伤害部件"/>
+      <String ID="ENABLE_TOTAL_DAMAGE" Name="显示总伤害"/>
+      <String ID="ENABLE_TOTAL_DAMAGE_DESC" Name="如启用，伤害部件会显示每个人的总伤害"/>
+      <String ID="ENABLE_METER_DPS" Name="显示DPS"/>
+      <String ID="ENABLE_METER_DPS_DESC" Name="如启用，伤害部件会显示每个人的DPS(秒伤害)"/>
+      <String ID="STATIC_METER_PLAYER_1" Name="第一个玩家"/>
+      <String ID="STATIC_METER_PLAYER_2" Name="第二个玩家"/>
+      <String ID="STATIC_METER_PLAYER_3" Name="第三个玩家"/>
+      <String ID="STATIC_METER_PLAYER_4" Name="第四个玩家"/>
+      <String ID="STATIC_METER_POSITION_DESC" Name="更改伤害部件的位置"/>
+      <!-- Abnormalities Widget -->
+      <String ID="STATIC_CREATE_ABNORM_BAR_DESC" Name="建立一个新的状态栏"/>
+      <String ID="STATIC_REMOVE_ABNORM_BAR_DESC" Name="移除最后一个建立的状态栏"/>
+      <String ID="STATIC_ENABLE_ABNORM_BAR" Name="启用"/>
+      <String ID="ENABLE_ALLIGN_ABNORM_BAR_HORIZONTALLY" Name="水平对齐状态栏"/>
+      <String ID="ENABLE_ALLIGN_ABNORM_BAR_HORIZONTALLY_DESC" Name="如果启用则状态栏将水平对齐。如果您想要垂直状态栏，请禁用此选项"/>
+      <String ID="ENABLE_ABNORM_BAR_TIME_LEFT" Name="显示状态剩余时间"/>
+      <String ID="ENABLE_ABNORM_BAR_TIME_LEFT_DESC" Name="如启用，将在状态图标下方显示其剩余时间"/>
+      <String ID="STATIC_TIMER_TEXT_FORMAT" Name="计时器文字格式"/>
+      <String ID="STATIC_BACKGROUND_OPACITY" Name="背景不透明度"/>
+      <String ID="STATIC_BACKGROUND_OPACITY_DESC" Name="更改此部件的背景不透明度"/>
+      <String ID="STATIC_ABNORM_TAB_HH" Name="狩猎笛效果"/>
+      <String ID="STATIC_ABNORM_TAB_ORCHESTRA" Name="激励乐器"/>
+      <String ID="STATIC_ABNORM_TAB_DEBUFF" Name="异常状态"/>
+      <String ID="STATIC_ABNORM_TAB_CONSUMABLE" Name="消耗品"/>
+      <String ID="ENABLE_SHOW_ABNORM_NAMES" Name="显示异常状态的名称"/>
+      <String ID="ENABLE_SHOW_ABNORM_NAMES_DESC" Name="如启用，将显示异常状态的名称"/>
+      <!-- Specialized Tool Widget-->
+      <String ID="STATIC_PRIMARY_SPEC_TOOL" Name="第一件特殊衣装"/>
+      <String ID="STATIC_SECONDARY_SPEC_TOOL" Name="第二件特殊衣装"/>
+      <String ID="ENABLE_PRIMARY_SPEC_TOOL" Name="启用部件"/>
+      <String ID="ENABLE_PRIMARY_SPEC_TOOL_DESC" Name="如果启用则在有内容时将在第一件特殊衣装部件中显示"/>
+      <String ID="ENABLE_SECONDARY_SPEC_TOOL" Name="启用部件"/>
+      <String ID="ENABLE_SECONDARY_SPEC_TOOL_DESC" Name="如果启用则只要有内容时将在第二件特殊衣装部件中显示"/>
+      <String ID="STATIC_COLOR" Name="颜色:"/>
+      <String ID="STATIC_PRIMARY_SPEC_TOOL_POSITION_DESC" Name="更改第一件特殊衣装部件的位置"/>
+      <String ID="STATIC_SECONDARY_SPEC_TOOL_POSITION_DESC" Name="更改第二件特殊衣装部件的位置"/>
+      <!-- Links -->
+      <String ID="STATIC_HUNTERPIE_WIKI" Name="支持文件(英文)"/>
+      <String ID="STATIC_HUNTERPIE_WIKI_DESC" Name="HunterPie官方文件"/>
+      <String ID="STATIC_HUNTERPIE_ISSUES" Name="GitHub问题"/>
+      <String ID="STATIC_HUNTERPIE_ISSUES_DESC" Name="HunterPie GitHub问题页面"/>
+      <String ID="STATIC_HUNTERPIE_DISCORD" Name="Discord服务器"/>
+      <String ID="STATIC_HUNTERPIE_DISCORD_DESC" Name="HunterPie 官方Discord服务器"/>
+      <String ID="STATIC_HUNTERPIE_DONATIONS" Name="赞助"/>
+      <String ID="STATIC_HUNTERPIE_PAYPAL" Name="PayPal"/>
+      <String ID="STATIC_HUNTERPIE_PAYPAL_DESC" Name="如果您想支持HunterPie开发，请考虑赞助！"/>
+      <!-- Debug -->
+      <String ID="ENABLE_DEBUG_MESSAGES" Name="Debug信息"/>
+      <String ID="ENABLE_DEBUG_MESSAGES_DESC" Name="启用Debug，如果您不知道自己在做什么，请不要打开此选项，这是开发者工具的一部分"/>
+      <String ID="ENABLE_UNKNOWN_AILMENTS" Name="启用未知的怪物异常状态"/>
+      <String ID="ENABLE_UNKNOWN_AILMENTS_DESC" Name="启用未知的怪物异常状态。如果您不知道自己在做什么，请不要打开此选项，这是开发者工具的一部分。"/>
+      <String ID="ENABLE_LOAD_CUSTOM_DATA" Name="载入自定义怪物数据"/>
+      <String ID="ENABLE_LOAD_CUSTOM_DATA_DESC" Name="如启用，HunterPie将尝试载入自定义怪物数据档案。如果您不知道自己在做什么，请不要打开此选项，这是开发者工具的一部分。"/>
+      <String ID="STATIC_LOAD_CUSTOM_DATA_PATH" Name="自定义怪物数据档案:"/>
+      <String ID="STATIC_LOAD_CUSTOM_DATA_PATH_DESC" Name="选择您的自定义怪物数据档案路径"/>
+      <!-- Generics -->
+      <String ID="STATIC_BUTTON_SELECT_ALL" Name="全选"/>
+      <String ID="STATIC_BUTTON_UNSELECT_ALL" Name="取消全选"/>
+      <String ID="STATIC_BUTTON_SAVE" Name="保存"/>
+      <String ID="STATIC_REQUIRES_RESTART" Name="(重新启动)"/>
+      <String ID="STATIC_POSITION" Name="位置"/>
+      <!-- Settings Side bar-->
+      <String ID="STATIC_GENERAL_SETTINGS" Name="一般设置"/>
+      <String ID="STATIC_DISCORD_SETTINGS" Name="Discord设置"/>
+      <String ID="STATIC_OVERLAY_SETTINGS" Name="覆盖层设置"/>
+      <String ID="STATIC_MONSTERS_SETTINGS" Name="怪物部件"/>
+      <String ID="STATIC_HARVEST_BOX_SETTINGS" Name="收获箱部件"/>
+      <String ID="STATIC_DAMAGE_METER_SETTINGS" Name="伤害部件"/>
+      <String ID="STATIC_ABNORM_BAR_SETTINGS" Name="状态部件"/>
+      <String ID="STATIC_SPECIALIZED_TOOLS_SETTINGS" Name="衣装部件"/>
+      <String ID="STATIC_LINKS_SETTINGS" Name="相关链接"/>
+      <String ID="STATIC_DEBUG_SETTINGS" Name="开发者工具"/>
+    </Settings>
+    <Overlay>
+      <String ID="STATIC_HARVEST_BOX_TITLE" Name="收获箱"/>
+    </Overlay>
+    <Notifications>
+      <String ID="STATIC_DISCORD_JOIN_REQUEST" Name="{Username} 想要加入您的集会，是否同意？"/>
+      <String ID="STATIC_ACCEPT" Name="同意"/>
+      <String ID="STATIC_REJECT" Name="拒绝"/>
+      <String ID="STATIC_SETTINGS_LOAD" Name="设置已载入"/>
+    </Notifications>
+    <RichPresence>
+      <String ID="RPC_DESCRIPTION_IN_MAIN_MENU" Name="在主菜单"/>
+      <String ID="RPC_DESCRIPTION_IN_LOADING_SCREEN" Name="在载入画面"/>
+      <String ID="RPC_DESCRIPTION_IN_TOWN" Name="闲置"/>
+      <String ID="RPC_DESCRIPTION_EXPLORING" Name="探索"/>
+      <String ID="RPC_DESCRIPTION_HUNTING" Name="狩猎中 {Monster} ({Health})"/>
+      <String ID="RPC_DESCRIPTION_TRAINING" Name="训练中"/>
+      <String ID="RPC_STATE_LOBBY" Name="大厅"/>
+      <String ID="RPC_STATE_PARTY" Name="组队"/>
+      <String ID="RPC_STATE_SOLO" Name="单人"/>
+    </RichPresence>
+  </Client>
+</Strings>
