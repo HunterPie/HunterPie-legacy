@@ -13,6 +13,7 @@
     <Monster ID="em018_00" Name="Yian Garuga"/>
     <Monster ID="em018_05" Name="Yian Garuga Escoriado"/>
     <Monster ID="em023_00" Name="Rajang"/>
+    <Monster ID="em023_05" Name="Rajang Furioso"/>
     <Monster ID="em024_00" Name="Kushala Daora"/>
     <Monster ID="em026_00" Name="Lunastra"/>
     <Monster ID="em027_00" Name="Teostra"/>
@@ -28,6 +29,7 @@
     <Monster ID="em057_00" Name="Zinogre"/>
     <Monster ID="em057_01" Name="Zinogre Tenebroso"/>
     <Monster ID="em063_00" Name="Brachydios"/>
+    <Monster ID="em063_05" Name="Brachydios Colérico"/>
     <Monster ID="em080_00" Name="Glavenus"/>
     <Monster ID="em080_01" Name="Glavenus Acído"/>
     <Monster ID="em100_00" Name="Anjanath"/>
@@ -170,6 +172,7 @@
     <Ailment ID="STATUS_DUNGPOD" Name="Capsula De Esterco"/>
     <Ailment ID="STATUS_SHOCKTRAP" Name="Armadilha De Choque"/>
     <Ailment ID="STATUS_PITFALLTRAP" Name="Armadilha De Poço"/>
+    <Ailment ID="STATUS_VINETRAP" Name="Armadilha De Vinhas"/>
     <Ailment ID="STATUS_ELDERSEAL" Name="Selo Ancião"/>
     <Ailment ID="STATUS_SMOKING" Name="Fumaça"/>
     <Ailment ID="STATUS_FELYNETRAP" Name="Armadilha Felyna"/>
@@ -220,7 +223,7 @@
     <Stage ID="106" Name="Grande Desfiladeiro"/>
     <Stage ID="107" Name="Grande Desfiladeiro"/>
     <Stage ID="108" Name="Fronteira Glacial"/>
-    <Stage ID="109" Name="As Terras-guias"/>
+    <Stage ID="109" Name="As Terras-Guias"/>
     <Stage ID="201" Name="Arena Especial"/>
     <Stage ID="202" Name="Arena"/>
     <Stage ID="301" Name="Astera"/>
@@ -236,11 +239,12 @@
     <Stage ID="411" Name="Suprimentos De Seliana"/>
     <Stage ID="412" Name="Ilha Da Origem"/>
     <Stage ID="413" Name="Ilha Da Origem"/>
-    <Stage ID="501" Name="Nos Aposentos"/>
-    <Stage ID="502" Name="Apartamento Privado"/>
-    <Stage ID="503" Name="Suite Privada"/>
-    <Stage ID="504" Name="Area De Treinamento"/>
-    <Stage ID="505" Name="câmara dos cinco"/>
+    <Stage ID="415" Name="Vale Isolado"/>
+    <Stage ID="501" Name="Alojamento"/>
+    <Stage ID="502" Name="Alojamento Privado"/>
+    <Stage ID="503" Name="Suíte Privada"/>
+    <Stage ID="504" Name="Área De Treinamento"/>
+    <Stage ID="505" Name="Câmara dos Cinco"/>
     <Stage ID="506" Name="Quarto De Seliana"/>
   </Stages>
   <Weapons>
@@ -473,12 +477,15 @@
       <!-- Monster Widget -->
       <String ID="ENABLE_MONSTER_WIDGET" Name="Habilitar o widget de monstros"/>
       <String ID="ENABLE_MONSTER_WIDGET_DESC" Name="Se habilitado, o widget de monstros será visível quando tiver conteúdo para ser mostrado."/>
+      <String ID="STATIC_MONSTER_HEALTH_STRING_FORMAT" Name="Formato de texto da vida:"/>
+      <String ID="STATIC_MONSTER_HEALTH_STRING_FORMAT_DESC" Name="Formato de texto para a barra de vida do monstro."/>
       <String ID="STATIC_MONSTER_BAR_MODE" Name="Modo da barra de monstro:"/>
       <String ID="STATIC_MONSTER_BAR_MODE_DESC" Name="Muda o modo da barra do monstro"/>
       <String ID="STATIC_MONSTER_BAR_MODE_0" Name="Mostrar todos ao mesmo tempo"/>
       <String ID="STATIC_MONSTER_BAR_MODE_1" Name="Mostrar todos, porém realçar o meu alvo"/>
       <String ID="STATIC_MONSTER_BAR_MODE_2" Name="Mostrar apenas alvo"/>
       <String ID="STATIC_MONSTER_BAR_MODE_3" Name="Mostrar todos porém esconder monstros inativos depois de 15 segundos"/>
+      <String ID="STATIC_MONSTER_BAR_MODE_4" Name="Mostrar todos até um monstro ser selecionado"/>
       <String ID="STATIC_MONSTER_BAR_MODE_HOTKEY" Name="Mudar modo (HotKey):"/>
       <String ID="STATIC_MONSTER_BAR_MODE_HOTKEY_DESC" Name="HotKey para mudar o modo da barra do monstro. Mudar a tecla requer a reinicialização do HunterPie."/>
       <String ID="STATIC_MONSTER_BAR_DOCK" Name="Posição da barra:"/>
@@ -537,8 +544,10 @@
       <!-- Damage Meter -->
       <String ID="ENABLE_METER" Name="Habilitar widget de dano"/>
       <String ID="ENABLE_METER_DESC" Name="Se habilitado, o widget de dano será sempre mostrado quando tiver conteúdo."/>
-      <String ID="ENABLE_METER_DPS" Name="Mostrar DPS em vez de dano total"/>
-      <String ID="ENABLE_METER_DPS_DESC" Name="Se habilitado, o medidor de dano mostrará dano por segundo em vez de dano total."/>
+      <String ID="ENABLE_TOTAL_DAMAGE" Name="Mostrar dano total"/>
+      <String ID="ENABLE_TOTAL_DAMAGE_DESC" Name="Se habilitado, o widget de dano mostrará o dano total individual."/>
+      <String ID="ENABLE_METER_DPS" Name="Mostrar dano por segundo"/>
+      <String ID="ENABLE_METER_DPS_DESC" Name="Se habilitado, o widget de dano mostrará o dano por segundo individual."/>
       <String ID="STATIC_METER_PLAYER_1" Name="1º jogador"/>
       <String ID="STATIC_METER_PLAYER_2" Name="2º jogador"/>
       <String ID="STATIC_METER_PLAYER_3" Name="3º jogador"/>
@@ -559,6 +568,8 @@
       <String ID="STATIC_ABNORM_TAB_ORCHESTRA" Name="Orquestra"/>
       <String ID="STATIC_ABNORM_TAB_DEBUFF" Name="Debuffs"/>
       <String ID="STATIC_ABNORM_TAB_CONSUMABLE" Name="Consumíveis"/>
+      <String ID="ENABLE_SHOW_ABNORM_NAMES" Name="Mostrar nome da anormalidade"/>
+      <String ID="ENABLE_SHOW_ABNORM_NAMES_DESC" Name="Se habilitado, o nome das anormalidades ficará visivel."/>
       <!-- Specialized Tool Widget-->
       <String ID="STATIC_PRIMARY_SPEC_TOOL" Name="Ferramenta primária"/>
       <String ID="STATIC_SECONDARY_SPEC_TOOL" Name="Ferramenta secundária"/>

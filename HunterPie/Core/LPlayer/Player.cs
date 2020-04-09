@@ -32,7 +32,10 @@ namespace HunterPie.Core {
             set {
                 if (_playerAddress != value) {
                     _playerAddress = value;
-                    if (value != 0x0) _onLogin();
+                    if (value != 0x0) {
+                        Debugger.Debug($"Found player address -> {value:X}");
+                        _onLogin();
+                    }
                 }
             }
         }
@@ -69,6 +72,7 @@ namespace HunterPie.Core {
             set {
                 if (_weaponId != value) {
                     _weaponId = value;
+                    GetPlayerGear();
                     _onWeaponChange();
                 }
             }
@@ -194,7 +198,7 @@ namespace HunterPie.Core {
                     GetPlayerMasterRank();
                     GetPlayerName();
                     GetWeaponId();
-                    GetPlayerGear();
+                    //GetPlayerGear();
                     GetFertilizers();
                     GetArgosyData();
                     GetTailraidersData();
@@ -231,6 +235,7 @@ namespace HunterPie.Core {
                         LEVEL_ADDRESS = pAddress;
                         GetPlayerLevel();
                         GetPlayerName();
+                        GetPlayerGear();
                         PlayerAddress = pAddress;
                         this.PlayerSlot = playerSlot;
                         return true;
@@ -283,24 +288,31 @@ namespace HunterPie.Core {
             Gear.Helmet = Scanner.READ_INT(PlayerGearAddress + 0x04);
             Gear.Armor = Scanner.READ_INT(PlayerGearAddress + 0x08);
             Gear.Gloves = Scanner.READ_INT(PlayerGearAddress + 0x0C);
-            Gear.Greaves = Scanner.READ_INT(PlayerGearAddress + 0x10);
-            Gear.Charm = Scanner.READ_INT(PlayerGearAddress + 0x14);
+            Gear.Coil = Scanner.READ_INT(PlayerGearAddress + 0x10);
+            Gear.Greaves = Scanner.READ_INT(PlayerGearAddress + 0x14);
+            Gear.Charm = Scanner.READ_INT(PlayerGearAddress + 0x18);
             Gear.Mantle = new int[2] { Scanner.READ_INT(PlayerGearAddress + 0x14), Scanner.READ_INT(PlayerGearAddress + 0x18) };
+            /*Debugger.Debug($"" +
+                            $"Weapon: {Gear.Weapon}\n" +
+                            $"Helmet: {Gear.Helmet}\n" +
+                            $"Armor: {Gear.Armor}\n" +
+                            $"Belt: {Gear.Coil}\n" +
+                            $"Legs: {Gear.Greaves}\n" +
+                            $"Gloves: {Gear.Gloves}\n" +
+                            $"Charm: {Gear.Charm}");*/
         }
 
         private void GetSessionId() {
-            if (SESSION_ADDRESS == 0) {
-                Int64 Address = Memory.Address.BASE + Memory.Address.SESSION_OFFSET;
-                Address = Scanner.READ_MULTILEVEL_PTR(Address, Memory.Address.Offsets.SessionOffsets);
-                SESSION_ADDRESS = Address;
-                Debugger.Debug($"Session Address -> 0x{SESSION_ADDRESS:X}");
-            }
+            Int64 Address = Memory.Address.BASE + Memory.Address.SESSION_OFFSET;
+            Address = Scanner.READ_MULTILEVEL_PTR(Address, Memory.Address.Offsets.SessionOffsets);
+            SESSION_ADDRESS = Address;
             SessionID = Scanner.READ_STRING(SESSION_ADDRESS, 12);
         }
 
         private void GetSteamSession() {
             SteamSession = Scanner.READ_LONGLONG(SESSION_ADDRESS + 0x10);
             SteamID = Scanner.READ_LONGLONG(SESSION_ADDRESS + 0x1184);
+            Debugger.Debug($"Steam Session: {SteamSession}/{SteamID}");
         }
 
         private void GetEquipmentAddress() {
@@ -374,7 +386,7 @@ namespace HunterPie.Core {
 
         private void GetQuestElapsedTime() {
             Int64 TimerAddress = Scanner.READ_MULTILEVEL_PTR(Address.BASE + Address.ABNORMALITY_OFFSET, Address.Offsets.AbnormalityOffsets);
-            float Timer = Scanner.READ_FLOAT(TimerAddress + 0xB14);
+            float Timer = Scanner.READ_FLOAT(TimerAddress + 0xB74);
             PlayerParty.ShowDPS = true;
             if (Timer > 0) {
                 PlayerParty.Epoch = TimeSpan.FromSeconds(Timer);

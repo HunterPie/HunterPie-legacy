@@ -141,6 +141,7 @@ namespace HunterPie.GUI.Widgets.DPSMeter {
             if (Players == null || Players?.Count <= 0) return;
             for (int i = 0; i < Context.MaxSize; i++) {
                 Players[i].ChangeColor(UserSettings.PlayerConfig.Overlay.DPSMeter.PartyMembers[i].Color);
+                Players[i].UpdateDamageTextSettings();
             }
         }
 

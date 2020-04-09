@@ -13,6 +13,7 @@
     <Monster ID="em018_00" Name="Yian Garuga"/>
     <Monster ID="em018_05" Name="Scarred Yian Garuga"/>
     <Monster ID="em023_00" Name="Rajang"/>
+    <Monster ID="em023_05" Name="Furious Rajang"/>
     <Monster ID="em024_00" Name="Kushala Daora"/>
     <Monster ID="em026_00" Name="Lunastra"/>
     <Monster ID="em027_00" Name="Teostra"/>
@@ -28,6 +29,7 @@
     <Monster ID="em057_00" Name="Zinogre"/>
     <Monster ID="em057_01" Name="Stygian Zinogre"/>
     <Monster ID="em063_00" Name="Brachydios"/>
+    <Monster ID="em063_05" Name="Raging Brachydios"/>
     <Monster ID="em080_00" Name="Glavenus"/>
     <Monster ID="em080_01" Name="Acidic Glavenus"/>
     <Monster ID="em100_00" Name="Anjanath"/>
@@ -475,6 +477,8 @@
       <!-- Monster Widget -->
       <String ID="ENABLE_MONSTER_WIDGET" Name="Enable Monster Widget"/>
       <String ID="ENABLE_MONSTER_WIDGET_DESC" Name="If enabled, the monster widget will be visible whenever it has content to show."/>
+      <String ID="STATIC_MONSTER_HEALTH_STRING_FORMAT" Name="Health text format:"/>
+      <String ID="STATIC_MONSTER_HEALTH_STRING_FORMAT_DESC" Name="Text format for the monster health bar."/>
       <String ID="STATIC_MONSTER_BAR_MODE" Name="Monster Bar Mode"/>
       <String ID="STATIC_MONSTER_BAR_MODE_DESC" Name="Changes the monster bar mode."/>
       <String ID="STATIC_MONSTER_BAR_MODE_0" Name="Show all monsters at once"/>
@@ -540,8 +544,10 @@
       <!-- Damage Meter -->
       <String ID="ENABLE_METER" Name="Enable Damage Widget"/>
       <String ID="ENABLE_METER_DESC" Name="If enabled, the Damage Meter Widget will be visible whenever it has content."/>
-      <String ID="ENABLE_METER_DPS" Name="Show DPS instead of total damage"/>
-      <String ID="ENABLE_METER_DPS_DESC" Name="If enabled, the Damage Meter will show damage per second instead of total damage."/>
+      <String ID="ENABLE_TOTAL_DAMAGE" Name="Show total damage"/>
+      <String ID="ENABLE_TOTAL_DAMAGE_DESC" Name="If enabled, the Damage Widget will show individual total damage."/>
+      <String ID="ENABLE_METER_DPS" Name="Show damage per second"/>
+      <String ID="ENABLE_METER_DPS_DESC" Name="If enabled, the Damage Widget will show individual damage per second."/>
       <String ID="STATIC_METER_PLAYER_1" Name="First Player"/>
       <String ID="STATIC_METER_PLAYER_2" Name="Second Player"/>
       <String ID="STATIC_METER_PLAYER_3" Name="Third Player"/>

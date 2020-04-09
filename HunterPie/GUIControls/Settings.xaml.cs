@@ -70,6 +70,7 @@ namespace HunterPie.GUIControls {
 
             // Monsters
             settingsUI.switchEnableMonsterComponent.IsEnabled = settings.Overlay.MonstersComponent.Enabled;
+            settingsUI.HealthTextFormat.Text = settings.Overlay.MonstersComponent.HealthTextFormat;
             settingsUI.MonsterShowModeSelection.SelectedIndex = settings.Overlay.MonstersComponent.ShowMonsterBarMode;
             settingsUI.ToggleMonsterBarModeHotKey.Content = settings.Overlay.MonstersComponent.SwitchMonsterBarModeHotkey;
             settingsUI.MaxNumberOfPartsAtOnce.Value = settings.Overlay.MonstersComponent.MaxNumberOfPartsAtOnce;
@@ -115,6 +116,7 @@ namespace HunterPie.GUIControls {
 
             // DPS Meter
             settingsUI.switchEnableDPSMeter.IsEnabled = settings.Overlay.DPSMeter.Enabled;
+            settingsUI.switchEnableTotalDamage.IsEnabled = settings.Overlay.DPSMeter.ShowTotalDamage;
             settingsUI.switchEnableDPSWheneverPossible.IsEnabled = settings.Overlay.DPSMeter.ShowDPSWheneverPossible;
             settingsUI.DamageMeterPosition.X = settings.Overlay.DPSMeter.Position[0];
             settingsUI.DamageMeterPosition.Y = settings.Overlay.DPSMeter.Position[1];
@@ -162,6 +164,7 @@ namespace HunterPie.GUIControls {
 
             // Monsters
             settings.Overlay.MonstersComponent.Enabled = settingsUI.switchEnableMonsterComponent.IsEnabled;
+            settings.Overlay.MonstersComponent.HealthTextFormat = settingsUI.HealthTextFormat.Text;
             settings.Overlay.MonstersComponent.ShowMonsterBarMode = (byte)settingsUI.MonsterShowModeSelection.SelectedIndex;
             settings.Overlay.MonstersComponent.SwitchMonsterBarModeHotkey = (string)settingsUI.ToggleMonsterBarModeHotKey.Content;
             settings.Overlay.MonstersComponent.MaxNumberOfPartsAtOnce = (int)settingsUI.MaxNumberOfPartsAtOnce.Value;
@@ -205,6 +208,7 @@ namespace HunterPie.GUIControls {
 
             // DPS Meter
             settings.Overlay.DPSMeter.Enabled = settingsUI.switchEnableDPSMeter.IsEnabled;
+            settings.Overlay.DPSMeter.ShowTotalDamage = settingsUI.switchEnableTotalDamage.IsEnabled;
             settings.Overlay.DPSMeter.ShowDPSWheneverPossible = settingsUI.switchEnableDPSWheneverPossible.IsEnabled;
             settings.Overlay.DPSMeter.Position[0] = settingsUI.DamageMeterPosition.X;
             settings.Overlay.DPSMeter.Position[1] = settingsUI.DamageMeterPosition.Y;

@@ -127,6 +127,7 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
+    <Compile Include="Core\Integrations\Honey.cs" />
     <Compile Include="Core\KeyboardHook.cs" />
     <Compile Include="Core\Monster\Ailment.cs" />
     <Compile Include="Core\Monster\MonsterData.cs" />
@@ -142,10 +143,10 @@
       <DependentUpon>Changelog.xaml</DependentUpon>
     </Compile>
     <Compile Include="Core\Args.cs" />
-    <Compile Include="Core\AutoUpdate.cs" />
+    <Compile Include="Core\Client\AutoUpdate.cs" />
     <Compile Include="Core\LPlayer\HarvestBox.cs" />
     <Compile Include="Core\LPlayer\Mantle.cs" />
-    <Compile Include="Core\Presence.cs" />
+    <Compile Include="Core\Integrations\Presence.cs" />
     <Compile Include="GUIControls\Custom Controls\BuffBarSettingControl.xaml.cs">
       <DependentUpon>BuffBarSettingControl.xaml</DependentUpon>
     </Compile>
@@ -176,6 +177,12 @@
     <Compile Include="GUIControls\Settings.xaml.cs">
       <DependentUpon>Settings.xaml</DependentUpon>
     </Compile>
+    <None Include="address\MonsterHunterWorld.410013.map">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Include="Changelog\changelog.md">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
     <None Include="GUIControls\settingsWindow.xaml.cs">
       <DependentUpon>settingsWindow.xaml</DependentUpon>
     </None>
@@ -287,10 +294,10 @@
       <SubType>Code</SubType>
     </Compile>
     <Compile Include="Core\Game.cs" />
-    <Compile Include="Core\GStrings.cs" />
+    <Compile Include="Core\Client\GStrings.cs" />
     <Compile Include="Core\Monster\Monster.cs" />
     <Compile Include="Core\LPlayer\Player.cs" />
-    <Compile Include="Core\UserSettings.cs" />
+    <Compile Include="Core\Client\UserSettings.cs" />
     <Compile Include="GUIControls\Debugger.xaml.cs">
       <DependentUpon>Debugger.xaml</DependentUpon>
     </Compile>
@@ -674,6 +681,14 @@
   <ItemGroup>
     <None Include="Languages\ru-ru.xml">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="HunterPie.Resources\Monsters\Icons\em023_05.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="HunterPie.Resources\Monsters\Icons\em063_05.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

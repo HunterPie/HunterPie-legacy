@@ -374,6 +374,9 @@ namespace HunterPie.GUI.Widgets {
             foreach (Monster_Widget.Parts.MonsterAilment ailment in MonsterAilmentsContainer.Children) {
                 ailment.ApplySettings();
             }
+            if (Context != null) {
+                SetMonsterHealthBarText(Context.CurrentHP, Context.TotalHP);
+            }
         }
         #endregion
 
@@ -402,8 +405,15 @@ namespace HunterPie.GUI.Widgets {
             }
         }
 
-        private void SetMonsterHealthBarText(float hp, float max_hp) {
-            this.HealthText.Text = $"{hp:0}/{max_hp:0} ({hp / max_hp * 100:0}%)";
+        private void SetMonsterHealthBarText(float Health, float TotalHealth) {
+            string HealthStringFormat = UserSettings.PlayerConfig.Overlay.MonstersComponent.HealthTextFormat;
+            HealthStringFormat = HealthStringFormat.Replace("{Health:0}", Health.ToString("0"))
+                .Replace("{Health:0.0}", Health.ToString("0.0"))
+                .Replace("{TotalHealth:0}", TotalHealth.ToString("0"))
+                .Replace("{TotalHealth:0.0}", TotalHealth.ToString("0.0"))
+                .Replace("{Percentage:0}", (Health / TotalHealth * 100).ToString("0"))
+                .Replace("{Percentage:0.0}", (Health / TotalHealth * 100).ToString("0.0"));
+            this.HealthText.Text = HealthStringFormat;
         }
 
         private void SetMonsterStaminaText(float stam, float max_stam) {

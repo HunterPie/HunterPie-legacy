@@ -52,6 +52,7 @@ namespace HunterPie.Core {
             public class Monsterscomponent {
                 public bool Enabled { get; set; } = true;
                 public double Scale { get; set; } = 1;
+                public string HealthTextFormat { get; set; } = "{Health:0}/{TotalHealth:0} ({Percentage:0}%)";
                 public byte ShowMonsterBarMode { get; set; } = 0;
                 public string SwitchMonsterBarModeHotkey = "Alt+Up";
                 public int[] Position { get; set; } = new int[2] { 335, 10 };
@@ -93,7 +94,8 @@ namespace HunterPie.Core {
 
             public class DPSMeter {
                 public bool Enabled { get; set; } = true;
-                public bool ShowDPSWheneverPossible { get; set; } = false;
+                public bool ShowTotalDamage { get; set; } = true;
+                public bool ShowDPSWheneverPossible { get; set; } = true;
                 public double Scale { get; set; } = 0.8;
                 public int[] Position { get; set; } = new int[2] { 10, 350 };
                 public Players[] PartyMembers { get; set; } = new Players[4] { new Players(), new Players(), new Players(), new Players() };

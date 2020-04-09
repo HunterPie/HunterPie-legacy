@@ -15,7 +15,7 @@
                 <ResourceDictionary Source="/Resources/ConsoleResources.xaml"/>
                 <ResourceDictionary Source="/Resources/Resources.xaml"/>
             </ResourceDictionary.MergedDictionaries>
-            
+
 
             <Style x:Key="STYLE_SIDEBARBUTTONS" TargetType="StackPanel">
                 <Style.Triggers>
@@ -171,8 +171,8 @@
         </Grid>
 
         <!-- Header  -->
-        <Label x:Name="version_text" Content="Version: BETA 1.0.0.0" HorizontalAlignment="Left" Width="150" Background="{x:Null}" Foreground="{StaticResource CONSOLE_VERSIONTEXT_FOREGROUND}" FontFamily="Roboto" VerticalAlignment="Bottom" Height="20" VerticalContentAlignment="Center" Padding="0" Margin="838,0,0,438" RenderTransformOrigin="0.5,0.5" HorizontalContentAlignment="Right"/>
-        <Button x:Name="launchGameButton" HorizontalAlignment="Left" Margin="746,55,0,0" VerticalAlignment="Top" Width="242" Height="46" BorderBrush="{x:Null}" Foreground="{StaticResource BUTTON_LAUNCHGAME_FOREGROUND}" FontFamily="Roboto" FontSize="18" Cursor="Hand" BorderThickness="1"  Template="{DynamicResource ButtonStyle}" DataContext="{StaticResource Localization}" Padding="0" FontWeight="Bold" HorizontalContentAlignment="Center" Click="OnLaunchGameButtonClick" Background="{StaticResource BUTTON_LAUNCHGAME_BACKGROUND}">
+        <TextBlock x:Name="version_text" Text="Version: BETA 1.0.0.0" Background="{x:Null}" Foreground="{StaticResource CONSOLE_VERSIONTEXT_FOREGROUND}" VerticalAlignment="Bottom" Height="20" Padding="0" Margin="533,0,10,439" RenderTransformOrigin="0.5,0.5" TextAlignment="Right" FontWeight="Medium" FontSize="14"/>
+        <Button x:Name="launchGameButton" Margin="0,55,10,0" VerticalAlignment="Top" Height="46" BorderBrush="{x:Null}" Foreground="{StaticResource BUTTON_LAUNCHGAME_FOREGROUND}" FontFamily="Roboto" FontSize="18" Cursor="Hand" BorderThickness="1"  Template="{DynamicResource ButtonStyle}" DataContext="{StaticResource Localization}" Padding="0" FontWeight="Bold" HorizontalContentAlignment="Center" Click="OnLaunchGameButtonClick" Background="{StaticResource BUTTON_LAUNCHGAME_BACKGROUND}" HorizontalAlignment="Right" Width="242">
             <Button.Content>
                 <Binding Mode="OneTime" XPath="Console/String[@ID='CONSOLE_LAUNCH']/@Name"/>
             </Button.Content>

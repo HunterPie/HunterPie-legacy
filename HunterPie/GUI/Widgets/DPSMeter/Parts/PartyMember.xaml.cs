@@ -16,6 +16,7 @@ namespace HunterPie.GUI.Widgets.DPSMeter.Parts {
         public PartyMember(string Color) {
             InitializeComponent();
             ChangeColor(Color);
+            UpdateDamageTextSettings();
         }
 
         public void SetContext(Member ctx, Party pctx) {
@@ -107,6 +108,43 @@ namespace HunterPie.GUI.Widgets.DPSMeter.Parts {
             else if (this.Context.Damage < other.Context.Damage) return 1;
             else if (this.Equals(other)) return 0;
             else return 0;
+        }
+
+        public void UpdateDamageTextSettings() {
+            bool DPSEnabled = UserSettings.PlayerConfig.Overlay.DPSMeter.ShowDPSWheneverPossible;
+            bool TotalEnabled = UserSettings.PlayerConfig.Overlay.DPSMeter.ShowTotalDamage;
+            // So many if and elses :peepoCry:
+            if (DPSEnabled) {
+                if (TotalEnabled) {
+                    this.TotalDamage.Height = 23;
+                    this.TotalDamage.Padding = new Thickness(0, 0, 0, 0);
+                    this.TotalDamage.Visibility = Visibility.Visible;
+
+                    this.DamagePerSecond.Height = 23;
+                    this.DamagePerSecond.Padding = new Thickness(0, 0, 0, 0);
+                } else {
+
+                    this.DamagePerSecond.Height = 46;
+                    this.DamagePerSecond.Padding = new Thickness(0, 10, 0, 0);
+                }
+                this.DamagePerSecond.Visibility = Visibility.Visible;
+            } else {
+                this.DamagePerSecond.Visibility = Visibility.Collapsed;
+            }
+            if (TotalEnabled) {
+                if (!DPSEnabled) {
+                    this.TotalDamage.Height = 46;
+                    this.TotalDamage.Padding = new Thickness(0, 10, 0, 0);
+                }
+                this.TotalDamage.Visibility = Visibility.Visible;
+            } else {
+                this.TotalDamage.Visibility = Visibility.Collapsed;
+            }
+            if (!DPSEnabled && !TotalEnabled) {
+                this.Percentage.Width = 137;
+            } else {
+                this.Percentage.Width = 47;
+            }
         }
     }
 }

@@ -26,7 +26,7 @@
     <Ailment Name="STATUS_CLAW" Skip="False"/>
     <Ailment Name="STATUS_VIOLATED" Skip="False"/>
   </Ailments>
-  <Monster ID="em001_00" Capture="25">
+  <Monster ID="em001_00" Capture="25"> <!-- Rathian -->
     <Weaknesses>
       <Weakness ID="ELEMENT_DRAGON" Stars="3"/>
       <Weakness ID="ELEMENT_THUNDER" Stars="2"/>
@@ -43,7 +43,7 @@
       <Part Name="MONSTER_PART_TAIL" Group="TAIL" IsRemovable="False"/>
     </Parts>
   </Monster>
-  <Monster ID="em001_01" Capture="25">
+  <Monster ID="em001_01" Capture="25"> <!-- Pink Rathian -->
     <Weaknesses>
       <Weakness ID="ELEMENT_DRAGON" Stars="3"/>
       <Weakness ID="ELEMENT_THUNDER" Stars="2"/>
@@ -60,7 +60,7 @@
       <Part Name="MONSTER_PART_TAIL" Group="TAIL" IsRemovable="False"/>
     </Parts>
   </Monster>
-  <Monster ID="em001_02" Capture="10">
+  <Monster ID="em001_02" Capture="10"> <!-- Gold Rathian -->
     <Weaknesses>
       <Weakness ID="ELEMENT_THUNDER" Stars="3"/>
       <Weakness ID="ELEMENT_WATER" Stars="2"/>
@@ -77,7 +77,7 @@
       <Part Name="MONSTER_PART_TAIL" Group="TAIL" IsRemovable="False"/>
     </Parts>
   </Monster>
-  <Monster ID="em002_00" Capture="20">
+  <Monster ID="em002_00" Capture="20"> <!-- Rathalos -->
     <Weaknesses>
       <Weakness ID="ELEMENT_DRAGON" Stars="3"/>
       <Weakness ID="ELEMENT_THUNDER" Stars="2"/>
@@ -94,7 +94,7 @@
       <Part Name="MONSTER_PART_TAIL" Group="TAIL" IsRemovable="False"/>
     </Parts>
   </Monster>
-  <Monster ID="em002_01" Capture="15">
+  <Monster ID="em002_01" Capture="15"> <!-- Azure Rathalos -->
     <Weaknesses>
       <Weakness ID="ELEMENT_DRAGON" Stars="3"/>
       <Weakness ID="ELEMENT_ICE" Stars="2"/>
@@ -111,7 +111,7 @@
       <Part Name="MONSTER_PART_TAIL" Group="TAIL" IsRemovable="False"/>
     </Parts>
   </Monster>
-  <Monster ID="em002_02" Capture="10">
+  <Monster ID="em002_02" Capture="10"> <!-- Silver Rathalos -->
     <Weaknesses>
       <Weakness ID="ELEMENT_WATER" Stars="3"/>
       <Weakness ID="ELEMENT_THUNDER" Stars="2"/>
@@ -128,7 +128,7 @@
       <Part Name="MONSTER_PART_TAIL" Group="TAIL" IsRemovable="False"/>
     </Parts>
   </Monster>
-  <Monster ID="em007_00" Capture="20">
+  <Monster ID="em007_00" Capture="20"> <!-- Diablos -->
     <Weaknesses>
       <Weakness ID="ELEMENT_ICE" Stars="3"/>
       <Weakness ID="ELEMENT_WATER" Stars="2"/>
@@ -146,7 +146,7 @@
       <Part Name="MONSTER_PART_TAIL" Group="TAIL" IsRemovable="False"/>
     </Parts>
   </Monster>
-  <Monster ID="em007_01" Capture="15">
+  <Monster ID="em007_01" Capture="15"> <!-- Black Diablos -->
     <Weaknesses>
       <Weakness ID="ELEMENT_ICE" Stars="3"/>
       <Weakness ID="ELEMENT_WATER" Stars="2"/>
@@ -164,7 +164,7 @@
       <Part Name="MONSTER_PART_TAIL" Group="TAIL" IsRemovable="False"/>
     </Parts>
   </Monster>
-  <Monster ID="em011_00" Capture="0">
+  <Monster ID="em011_00" Capture="0"> <!-- Kirin -->
     <Weaknesses>
       <Weakness ID="ELEMENT_FIRE" Stars="3"/>
       <Weakness ID="ELEMENT_WATER" Stars="2"/>
@@ -176,7 +176,7 @@
       <Part Name="MONSTER_PART_LEGS" Group="LEG" IsRemovable="False"/>
     </Parts>
   </Monster>
-  <Monster ID="em018_00" Capture="20">
+  <Monster ID="em018_00" Capture="20"> <!-- Yian Garuga -->
     <Weaknesses>
       <Weakness ID="ELEMENT_WATER" Stars="3"/>
       <Weakness ID="ELEMENT_DRAGON" Stars="2"/>
@@ -193,7 +193,7 @@
       <Part Name="MONSTER_PART_TAIL" Group="TAIL" IsRemovable="False"/>
     </Parts>
   </Monster>
-  <Monster ID="em018_05" Capture="15">
+  <Monster ID="em018_05" Capture="15"> <!-- Scarred Yian Garuga -->
     <Weaknesses>
       <Weakness ID="ELEMENT_WATER" Stars="3"/>
       <Weakness ID="ELEMENT_DRAGON" Stars="2"/>
@@ -210,13 +210,13 @@
       <Part Name="MONSTER_PART_TAIL" Group="TAIL" IsRemovable="False"/>
     </Parts>
   </Monster>
-  <Monster ID="em023_00" Capture="15">
+  <Monster ID="em023_00" Capture="15"> <!-- Rajang -->
     <Weaknesses>
       <Weakness ID="ELEMENT_ICE" Stars="3"/>
       <Weakness ID="ELEMENT_WATER" Stars="1"/>
     </Weaknesses>
     <Crown Mini="0.9" Silver="1.11" Gold="1.18"/>
-    <Parts Max="9">
+    <Parts Max="11">
       <Part Name="MONSTER_PART_REMOVABLE_HORNS" IsRemovable="True"/>
       <Part Name="MONSTER_PART_REMOVABLE_TAIL" IsRemovable="True"/>
       <Part Name="MONSTER_PART_HEAD" Group="HEAD" IsRemovable="False"/>
@@ -226,9 +226,51 @@
       <Part Name="MONSTER_PART_LLEG" Group="LEG" IsRemovable="False"/>
       <Part Name="MONSTER_PART_RLEG" Group="LEG" IsRemovable="False"/>
       <Part Name="MONSTER_PART_TAIL" Group="TAIL" IsRemovable="False"/>
+      <Part Name="MONSTER_PART_REMOVABLE_HORNS_2" IsRemovable="True"/>
+      <Part Name="MONSTER_PART_UNKNOWN" IsRemovable="True"/>
     </Parts>
   </Monster>
-  <Monster ID="em024_00" Capture="0">
+  <Monster ID="em023_00" Capture="15"> <!-- Rajang -->
+    <Weaknesses>
+      <Weakness ID="ELEMENT_ICE" Stars="3"/>
+      <Weakness ID="ELEMENT_WATER" Stars="1"/>
+    </Weaknesses>
+    <Crown Mini="0.9" Silver="1.11" Gold="1.18"/>
+    <Parts Max="11">
+      <Part Name="MONSTER_PART_REMOVABLE_HORNS" IsRemovable="True"/>
+      <Part Name="MONSTER_PART_REMOVABLE_TAIL" IsRemovable="True"/>
+      <Part Name="MONSTER_PART_HEAD" Group="HEAD" IsRemovable="False"/>
+      <Part Name="MONSTER_PART_BODY" Group="BODY" IsRemovable="False"/>
+      <Part Name="MONSTER_PART_LARM" Group="ARM" IsRemovable="False"/>
+      <Part Name="MONSTER_PART_RARM" Group="ARM" IsRemovable="False"/>
+      <Part Name="MONSTER_PART_LLEG" Group="LEG" IsRemovable="False"/>
+      <Part Name="MONSTER_PART_RLEG" Group="LEG" IsRemovable="False"/>
+      <Part Name="MONSTER_PART_TAIL" Group="TAIL" IsRemovable="False"/>
+      <Part Name="MONSTER_PART_REMOVABLE_HORNS_2" IsRemovable="True"/>
+      <Part Name="MONSTER_PART_UNKNOWN" IsRemovable="True"/>
+    </Parts>
+  </Monster>
+  <Monster ID="em023_05" Capture="10"> <!-- Furious Rajang -->
+    <Weaknesses>
+      <Weakness ID="ELEMENT_ICE" Stars="3"/>
+      <Weakness ID="ELEMENT_WATER" Stars="1"/>
+    </Weaknesses>
+    <Crown Mini="0.9" Silver="1.11" Gold="1.18"/>
+    <Parts Max="11">
+      <Part Name="MONSTER_PART_REMOVABLE_HORNS" IsRemovable="True"/>
+      <Part Name="MONSTER_PART_REMOVABLE_TAIL" IsRemovable="True"/>
+      <Part Name="MONSTER_PART_HEAD" Group="HEAD" IsRemovable="False"/>
+      <Part Name="MONSTER_PART_BODY" Group="BODY" IsRemovable="False"/>
+      <Part Name="MONSTER_PART_LARM" Group="ARM" IsRemovable="False"/>
+      <Part Name="MONSTER_PART_RARM" Group="ARM" IsRemovable="False"/>
+      <Part Name="MONSTER_PART_LLEG" Group="LEG" IsRemovable="False"/>
+      <Part Name="MONSTER_PART_RLEG" Group="LEG" IsRemovable="False"/>
+      <Part Name="MONSTER_PART_TAIL" Group="TAIL" IsRemovable="False"/>
+      <Part Name="MONSTER_PART_REMOVABLE_HORNS_2" IsRemovable="True"/>
+      <Part Name="MONSTER_PART_UNKNOWN" IsRemovable="True"/>
+    </Parts>
+  </Monster>
+  <Monster ID="em024_00" Capture="0"> <!-- Kushala Daora -->
     <Weaknesses>
       <Weakness ID="ELEMENT_THUNDER" Stars="3"/>
       <Weakness ID="ELEMENT_DRAGON" Stars="2"/>
@@ -244,7 +286,7 @@
       <Part Name="MONSTER_PART_WINGS" Group="WING" IsRemovable="False"/>
     </Parts>
   </Monster>
-  <Monster ID="em026_00" Capture="0">
+  <Monster ID="em026_00" Capture="0"> <!-- Lunastra -->
     <Weaknesses>
       <Weakness ID="ELEMENT_ICE" Stars="3"/>
       <Weakness ID="ELEMENT_DRAGON" Stars="2"/>
@@ -260,7 +302,7 @@
       <Part Name="MONSTER_PART_TAIL" Group="TAIL" IsRemovable="False"/>
     </Parts>
   </Monster>
-  <Monster ID="em027_00" Capture="0">
+  <Monster ID="em027_00" Capture="0"> <!-- Teostra -->
     <Weaknesses>
       <Weakness ID="ELEMENT_WATER" Stars="3"/>
       <Weakness ID="ELEMENT_ICE" Stars="3"/>
@@ -276,7 +318,7 @@
       <Part Name="MONSTER_PART_TAIL" Group="TAIL" IsRemovable="False"/>
     </Parts>
   </Monster>
-  <Monster ID="em032_00" Capture="20">
+  <Monster ID="em032_00" Capture="20"> <!-- Tigrex -->
     <Weaknesses>
       <Weakness ID="ELEMENT_THUNDER" Stars="3"/>
       <Weakness ID="ELEMENT_DRAGON" Stars="2"/>
@@ -293,7 +335,7 @@
       <Part Name="MONSTER_PART_TAIL" Group="TAIL" IsRemovable="False"/>
     </Parts>
   </Monster>
-  <Monster ID="em032_01" Capture="15">
+  <Monster ID="em032_01" Capture="15"> <!-- Brute Tigrex -->
     <Weaknesses>
       <Weakness ID="ELEMENT_WATER" Stars="3"/>
       <Weakness ID="ELEMENT_THUNDER" Stars="2"/>
@@ -310,7 +352,7 @@
       <Part Name="MONSTER_PART_TAIL" Group="TAIL" IsRemovable="False"/>
     </Parts>
   </Monster>
-  <Monster ID="em036_00" Capture="20">
+  <Monster ID="em036_00" Capture="20"> <!-- Lavasioth -->
     <Weaknesses>
       <Weakness ID="ELEMENT_WATER" Stars="3"/>
       <Weakness ID="ELEMENT_ICE" Stars="2"/>
@@ -325,7 +367,7 @@
       <Part Name="MONSTER_PART_TAIL" Group="TAIL" IsRemovable="False"/>
     </Parts>
   </Monster>
-  <Monster ID="em037_00" Capture="20">
+  <Monster ID="em037_00" Capture="20"> <!-- Nargacuga -->
     <Weaknesses>
       <Weakness ID="ELEMENT_THUNDER" Stars="3"/>
       <Weakness ID="ELEMENT_FIRE" Stars="2"/>
@@ -342,7 +384,7 @@
       <Part Name="MONSTER_PART_TAIL" Group="TAIL" IsRemovable="False"/>
     </Parts>
   </Monster>
-  <Monster ID="em042_00" Capture="20">
+  <Monster ID="em042_00" Capture="20"> <!-- Barioth -->
     <Weaknesses>
       <Weakness ID="ELEMENT_FIRE" Stars="3"/>
       <Weakness ID="ELEMENT_THUNDER" Stars="2"/>
@@ -359,7 +401,7 @@
       <Part Name="MONSTER_PART_TAIL" Group="TAIL" IsRemovable="False"/>
     </Parts>
   </Monster>
-  <Monster ID="em043_00" Capture="20">
+  <Monster ID="em043_00" Capture="20"> <!-- Deviljho -->
     <Weaknesses>
       <Weakness ID="ELEMENT_DRAGON" Stars="3"/>
       <Weakness ID="ELEMENT_THUNDER" Stars="3"/>
@@ -377,7 +419,7 @@
       <Part Name="MONSTER_PART_TAIL" Group="TAIL" IsRemovable="False"/>
     </Parts>
   </Monster>
-  <Monster ID="em043_05" Capture="10">
+  <Monster ID="em043_05" Capture="10"> <!-- Savage Deviljho -->
     <Weaknesses>
       <Weakness ID="ELEMENT_DRAGON" Stars="3"/>
       <Weakness ID="ELEMENT_THUNDER" Stars="3"/>
@@ -395,7 +437,7 @@
       <Part Name="MONSTER_PART_TAIL" Group="TAIL" IsRemovable="False"/>
     </Parts>
   </Monster>
-  <Monster ID="em044_00" Capture="25">
+  <Monster ID="em044_00" Capture="25"> <!-- Barroth -->
     <Weaknesses>
       <Weakness ID="ELEMENT_WATER" Stars="3"/>
       <Weakness ID="ELEMENT_FIRE" Stars="3"/>
@@ -418,7 +460,7 @@
       <Part Name="MONSTER_PART_TAIL_MUD" Group="TAIL" IsRemovable="False"/>
     </Parts>
   </Monster>
-  <Monster ID="em045_00" Capture="20">
+  <Monster ID="em045_00" Capture="20"> <!-- Uragaan -->
     <Weaknesses>
       <Weakness ID="ELEMENT_WATER" Stars="3"/>
       <Weakness ID="ELEMENT_DRAGON" Stars="2"/>
@@ -435,7 +477,7 @@
       <Part Name="MONSTER_PART_TAIL" Group="TAIL" IsRemovable="False"/>
     </Parts>
   </Monster>
-  <Monster ID="em057_00" Capture="20">
+  <Monster ID="em057_00" Capture="20"> <!-- Zinogre -->
     <Weaknesses>
       <Weakness ID="ELEMENT_ICE" Stars="3"/>
       <Weakness ID="ELEMENT_WATER" Stars="2"/>
@@ -451,7 +493,7 @@
       <Part Name="MONSTER_PART_TAIL" Group="TAIL" IsRemovable="False"/>
     </Parts>
   </Monster>
-  <Monster ID="em057_01" Capture="20">
+  <Monster ID="em057_01" Capture="20"> <!-- Stygian Zinogre -->
     <Weaknesses>
       <Weakness ID="ELEMENT_THUNDER" Stars="3"/>
       <Weakness ID="ELEMENT_FIRE" Stars="2"/>
@@ -467,7 +509,7 @@
       <Part Name="MONSTER_PART_TAIL" Group="TAIL" IsRemovable="False"/>
     </Parts>
   </Monster>
-  <Monster ID="em063_00" Capture="20">
+  <Monster ID="em063_00" Capture="20"> <!-- Brachydios -->
     <Weaknesses>
       <Weakness ID="ELEMENT_ICE" Stars="3"/>
       <Weakness ID="ELEMENT_WATER" Stars="2"/>
@@ -484,7 +526,24 @@
       <Part Name="MONSTER_PART_TAIL" Group="TAIL" IsRemovable="False"/>
     </Parts>
   </Monster>
-  <Monster ID="em080_00" Capture="20">
+  <Monster ID="em063_05" Capture="0"> <!-- Raging Brachydios -->
+    <Weaknesses>
+      <Weakness ID="ELEMENT_ICE" Stars="3"/>
+      <Weakness ID="ELEMENT_WATER" Stars="2"/>
+    </Weaknesses>
+    <Crown Mini="0.9" Silver="1.15" Gold="1.23"/>
+    <Parts Max="8">
+      <Part Name="MONSTER_PART_REMOVABLE_TAIL" IsRemovable="True"/>
+      <Part Name="MONSTER_PART_HEAD" Group="HEAD" IsRemovable="False"/>
+      <Part Name="MONSTER_PART_BODY" Group="BODY" IsRemovable="False"/>
+      <Part Name="MONSTER_PART_LARM" Group="ARM" IsRemovable="False"/>
+      <Part Name="MONSTER_PART_RARM" Group="ARM" IsRemovable="False"/>
+      <Part Name="MONSTER_PART_LLEG" Group="LEG" IsRemovable="False"/>
+      <Part Name="MONSTER_PART_RLEG" Group="LEG" IsRemovable="False"/>
+      <Part Name="MONSTER_PART_TAIL" Group="TAIL" IsRemovable="False"/>
+    </Parts>
+  </Monster>
+  <Monster ID="em080_00" Capture="20"> <!-- Glavenus -->
     <Weaknesses>
       <Weakness ID="ELEMENT_WATER" Stars="3"/>
       <Weakness ID="ELEMENT_ICE" Stars="2"/>
@@ -495,13 +554,13 @@
       <Part Name="MONSTER_PART_HEAD" Group="HEAD" IsRemovable="False"/>
       <Part Name="MONSTER_PART_FIN" Group="FIN" IsRemovable="False"/>
       <Part Name="MONSTER_PART_BODY" Group="BODY" IsRemovable="False"/>
-      <Part Name="MONSTER_PART_BACK" Group="BACK" IsRemovable="False"/>
+      <Part Name="MONSTER_PART_ARMS" Group="ARM" IsRemovable="False"/>
       <Part Name="MONSTER_PART_LLEG" Group="LEG" IsRemovable="False"/>
       <Part Name="MONSTER_PART_RLEG" Group="LEG" IsRemovable="False"/>
       <Part Name="MONSTER_PART_TAIL" Group="TAIL" IsRemovable="False"/>
     </Parts>
   </Monster>
-  <Monster ID="em080_01" Capture="20">
+  <Monster ID="em080_01" Capture="20"> <!-- Acidic Glavenus -->
     <Weaknesses>
       <Weakness ID="ELEMENT_FIRE" Stars="3"/>
       <Weakness ID="ELEMENT_THUNDER" Stars="2"/>
@@ -512,13 +571,13 @@
       <Part Name="MONSTER_PART_HEAD" Group="HEAD" IsRemovable="False"/>
       <Part Name="MONSTER_PART_FIN" Group="FIN" IsRemovable="False"/>
       <Part Name="MONSTER_PART_BODY" Group="BODY" IsRemovable="False"/>
-      <Part Name="MONSTER_PART_BACK" Group="BACK" IsRemovable="False"/>
+      <Part Name="MONSTER_PART_ARMS" Group="ARM" IsRemovable="False"/>
       <Part Name="MONSTER_PART_LLEG" Group="LEG" IsRemovable="False"/>
       <Part Name="MONSTER_PART_RLEG" Group="LEG" IsRemovable="False"/>
       <Part Name="MONSTER_PART_TAIL" Group="TAIL" IsRemovable="False"/>
     </Parts>
   </Monster>
-  <Monster ID="em100_00" Capture="25">
+  <Monster ID="em100_00" Capture="25"> <!-- Anjanath -->
     <Weaknesses>
       <Weakness ID="ELEMENT_WATER" Stars="3"/>
       <Weakness ID="ELEMENT_ICE" Stars="2"/>
@@ -533,7 +592,7 @@
       <Part Name="MONSTER_PART_TAIL" Group="TAIL" IsRemovable="False"/>
     </Parts>
   </Monster>
-  <Monster ID="em100_01" Capture="15">
+  <Monster ID="em100_01" Capture="15"> <!-- Fulgur Anjanath -->
     <Weaknesses>
       <Weakness ID="ELEMENT_ICE" Stars="3"/>
       <Weakness ID="ELEMENT_WATER" Stars="2"/>
@@ -548,7 +607,7 @@
       <Part Name="MONSTER_PART_TAIL" Group="TAIL" IsRemovable="False"/>
     </Parts>
   </Monster>
-  <Monster ID="em101_00" Capture="30">
+  <Monster ID="em101_00" Capture="30"> <!-- Great Jagras -->
     <Weaknesses>
       <Weakness ID="ELEMENT_FIRE" Stars="3"/>
       <Weakness ID="ELEMENT_THUNDER" Stars="2"/>
@@ -563,7 +622,7 @@
       <Part Name="MONSTER_PART_ABDOMEN" Group="ABDOMEN" IsRemovable="False"/>
     </Parts>
   </Monster>
-  <Monster ID="em102_00" Capture="25">
+  <Monster ID="em102_00" Capture="25"> <!-- Pukei-Pukei -->
     <Weaknesses>
       <Weakness ID="ELEMENT_THUNDER" Stars="3"/>
       <Weakness ID="ELEMENT_ICE" Stars="2"/>
@@ -581,7 +640,7 @@
       <Part Name="MONSTER_PART_TAIL" Group="TAIL" IsRemovable="False"/>
     </Parts>
   </Monster>
-  <Monster ID="em102_01" Capture="25">
+  <Monster ID="em102_01" Capture="25"> <!-- Coral Pukei-Pukei -->
     <Weaknesses>
       <Weakness ID="ELEMENT_ICE" Stars="3"/>
       <Weakness ID="ELEMENT_THUNDER" Stars="2"/>
@@ -598,7 +657,7 @@
       <Part Name="MONSTER_PART_TAIL" Group="TAIL" IsRemovable="False"/>
     </Parts>
   </Monster>
-  <Monster ID="em103_00" Capture="0">
+  <Monster ID="em103_00" Capture="0"> <!-- Nergigante -->
     <Weaknesses>
       <Weakness ID="ELEMENT_THUNDER" Stars="3"/>
       <Weakness ID="ELEMENT_DRAGON" Stars="2"/>
@@ -619,7 +678,7 @@
       <Part Name="MONSTER_PART_TAIL" Group="TAIL" IsRemovable="False"/>
     </Parts>
   </Monster>
-  <Monster ID="em103_05" Capture="0">
+  <Monster ID="em103_05" Capture="0"> <!-- Ruiner Nergigante -->
     <Weaknesses>
       <Weakness ID="ELEMENT_DRAGON" Stars="3"/>
       <Weakness ID="ELEMENT_THUNDER" Stars="2"/>
@@ -640,7 +699,7 @@
       <Part Name="MONSTER_PART_TAIL" Group="TAIL" IsRemovable="False"/>
     </Parts>
   </Monster>
-  <Monster ID="em104_00" Capture="0">
+  <Monster ID="em104_00" Capture="0"> <!-- Safi'jiiva -->
     <Weaknesses>
       <Weakness ID="ELEMENT_DRAGON" Stars="3"/>
       <Weakness ID="ELEMENT_THUNDER" Stars="2"/>
@@ -651,8 +710,8 @@
       <Part Name="MONSTER_PART_HEAD" Group="HEAD" IsRemovable="False"/>
       <Part Name="MONSTER_PART_BODY" Group="BODY" IsRemovable="False"/>
       <Part Name="MONSTER_PART_ABDOMEN" Group="ABDOMEN" IsRemovable="False"/>
-      <Part Name="MONSTER_PART_NECK" Group="NECK" IsRemovable="False"/>
       <Part Name="MONSTER_PART_BACK" Group="BACK" IsRemovable="False"/>
+      <Part Name="MONSTER_PART_NECK" Group="NECK" IsRemovable="False"/>
       <Part Name="MONSTER_PART_LARM" Group="ARM" IsRemovable="False"/>
       <Part Name="MONSTER_PART_RARM" Group="ARM" IsRemovable="False"/>
       <Part Name="MONSTER_PART_LLEG" Group="LEG" IsRemovable="False"/>
@@ -662,7 +721,7 @@
       <Part Name="MONSTER_PART_TAIL" Group="TAIL" IsRemovable="False"/>
     </Parts>
   </Monster>
-  <Monster ID="em105_00" Capture="0">
+  <Monster ID="em105_00" Capture="0"> <!-- Xeno'jiiva -->
     <Weaknesses>
       <Weakness ID="ELEMENT_FIRE" Stars="2"/>
       <Weakness ID="ELEMENT_DRAGON" Stars="2"/>
@@ -682,7 +741,7 @@
       <Part Name="MONSTER_PART_TAIL" Group="TAIL" IsRemovable="False"/>
     </Parts>
   </Monster>
-  <Monster ID="em106_00" Capture="0">
+  <Monster ID="em106_00" Capture="0"> <!-- Zorah Magdaros -->
     <Weaknesses>
       <Weakness ID="ELEMENT_DRAGON" Stars="3"/>
       <Weakness ID="ELEMENT_WATER" Stars="3"/>
@@ -706,7 +765,7 @@
       <Part Name="MONSTER_PART_WEAK_RSHELL" Group="SHELL" IsRemovable="False"/>
     </Parts>
   </Monster>
-  <Monster ID="em107_00" Capture="30">
+  <Monster ID="em107_00" Capture="30"> <!-- Kulu-Ya-Ku -->
     <Weaknesses>
       <Weakness ID="ELEMENT_WATER" Stars="3"/>
       <Weakness ID="ELEMENT_FIRE" Stars="2"/>
@@ -720,7 +779,7 @@
       <Part Name="MONSTER_PART_ROCK" Group="MISC" IsRemovable="False"/>
     </Parts>
   </Monster>
-  <Monster ID="em108_00" Capture="25">
+  <Monster ID="em108_00" Capture="25"> <!-- Jyuratodus -->
     <Weaknesses>
       <Weakness ID="ELEMENT_THUNDER" Stars="3"/>
       <Weakness ID="ELEMENT_WATER" Stars="0"/>
@@ -739,7 +798,7 @@
       <Part Name="MONSTER_PART_TAIL_MUD" Group="TAIL" IsRemovable="False"/>
     </Parts>
   </Monster>
-  <Monster ID="em109_00" Capture="25">
+  <Monster ID="em109_00" Capture="25"> <!-- Tobi-Kadachi -->
     <Weaknesses>
       <Weakness ID="ELEMENT_WATER" Stars="3"/>
       <Weakness ID="ELEMENT_FIRE" Stars="2"/>
@@ -749,12 +808,12 @@
       <Part Name="MONSTER_PART_HEAD" Group="HEAD" IsRemovable="False"/>
       <Part Name="MONSTER_PART_BODY" Group="BODY" IsRemovable="False"/>
       <Part Name="MONSTER_PART_MANE" Group="MANE" IsRemovable="False"/>
-      <Part Name="MONSTER_PART_ABDOMEN" Group="ABDOMEN" IsRemovable="False"/>
+      <Part Name="MONSTER_PART_ARMS" Group="ARM" IsRemovable="False"/>
       <Part Name="MONSTER_PART_LEGS" Group="LEG" IsRemovable="False"/>
       <Part Name="MONSTER_PART_TAIL" Group="TAIL" IsRemovable="False"/>
     </Parts>
   </Monster>
-  <Monster ID="em109_01" Capture="25">
+  <Monster ID="em109_01" Capture="25"> <!-- Viper Tobi-Kadachi -->
     <Weaknesses>
       <Weakness ID="ELEMENT_THUNDER" Stars="3"/>
       <Weakness ID="ELEMENT_ICE" Stars="2"/>
@@ -764,12 +823,12 @@
       <Part Name="MONSTER_PART_HEAD" Group="HEAD" IsRemovable="False"/>
       <Part Name="MONSTER_PART_BODY" Group="BODY" IsRemovable="False"/>
       <Part Name="MONSTER_PART_MANE" Group="MANE" IsRemovable="False"/>
-      <Part Name="MONSTER_PART_ABDOMEN" Group="ABDOMEN" IsRemovable="False"/>
+      <Part Name="MONSTER_PART_ARMS" Group="ARM" IsRemovable="False"/>
       <Part Name="MONSTER_PART_LEGS" Group="LEG" IsRemovable="False"/>
       <Part Name="MONSTER_PART_TAIL" Group="TAIL" IsRemovable="False"/>
     </Parts>
   </Monster>
-  <Monster ID="em110_00" Capture="25">
+  <Monster ID="em110_00" Capture="25"> <!-- Paolumu -->
     <Weaknesses>
       <Weakness ID="ELEMENT_FIRE" Stars="3"/>
       <Weakness ID="ELEMENT_THUNDER" Stars="2"/>
@@ -787,7 +846,7 @@
       <Part Name="MONSTER_PART_TAIL" Group="TAIL" IsRemovable="False"/>
     </Parts>
   </Monster>
-  <Monster ID="em110_01" Capture="25">
+  <Monster ID="em110_01" Capture="25"> <!-- Nightshade Paolumu -->
     <Weaknesses>
       <Weakness ID="ELEMENT_WATER" Stars="3"/>
       <Weakness ID="ELEMENT_FIRE" Stars="2"/>
@@ -805,7 +864,7 @@
       <Part Name="MONSTER_PART_TAIL" Group="TAIL" IsRemovable="False"/>
     </Parts>
   </Monster>
-  <Monster ID="em111_00" Capture="20">
+  <Monster ID="em111_00" Capture="20"> <!-- Legiana -->
     <Weaknesses>
       <Weakness ID="ELEMENT_THUNDER" Stars="3"/>
       <Weakness ID="ELEMENT_FIRE" Stars="2"/>
@@ -821,7 +880,7 @@
       <Part Name="MONSTER_PART_TAIL" Group="TAIL" IsRemovable="False"/>
     </Parts>
   </Monster>
-  <Monster ID="em111_05" Capture="15">
+  <Monster ID="em111_05" Capture="15"> <!-- Shrieking Legiana -->
     <Weaknesses>
       <Weakness ID="ELEMENT_FIRE" Stars="3"/>
       <Weakness ID="ELEMENT_THUNDER" Stars="2"/>
@@ -832,12 +891,12 @@
       <Part Name="MONSTER_PART_BODY" Group="BODY" IsRemovable="False"/>
       <Part Name="MONSTER_PART_LWING" Group="WING" IsRemovable="False"/>
       <Part Name="MONSTER_PART_RWING" Group="WING" IsRemovable="False"/>
-      <Part Name="MONSTER_PART_LLEG" Group="LEG" IsRemovable="False"/>
-      <Part Name="MONSTER_PART_RLEG" Group="LEG" IsRemovable="False"/>
+      <Part Name="MONSTER_PART_LEGS" Group="LEG" IsRemovable="False"/>
       <Part Name="MONSTER_PART_TAIL" Group="TAIL" IsRemovable="False"/>
+	  <Part Name="MONSTER_PART_UNKNOWN" Group="HEAD" IsRemovable="True"/>
     </Parts>
   </Monster>
-  <Monster ID="em112_00" Capture="30">
+  <Monster ID="em112_00" Capture="30"> <!-- Great Girros -->
     <Weaknesses>
       <Weakness ID="ELEMENT_WATER" Stars="3"/>
       <Weakness ID="ELEMENT_ICE" Stars="2"/>
@@ -852,38 +911,40 @@
       <Part Name="MONSTER_PART_TAIL" Group="TAIL" IsRemovable="False"/>
     </Parts>
   </Monster>
-  <Monster ID="em113_00" Capture="20">
+  <Monster ID="em113_00" Capture="20"> <!-- Odogaron -->
     <Weaknesses>
       <Weakness ID="ELEMENT_ICE" Stars="3"/>
       <Weakness ID="ELEMENT_THUNDER" Stars="2"/>
     </Weaknesses>
     <Crown Mini="0.9" Silver="1.15" Gold="1.23"/>
     <Parts Max="7">
-      <Part Name="MONSTER_PART_REMOVABLE_HEAD" IsRemovable="True"/>
       <Part Name="MONSTER_PART_REMOVABLE_TAIL" IsRemovable="True"/>
       <Part Name="MONSTER_PART_HEAD" Group="HEAD" IsRemovable="False"/>
       <Part Name="MONSTER_PART_BODY" Group="BODY" IsRemovable="False"/>
       <Part Name="MONSTER_PART_ARMS" Group="ARM" IsRemovable="False"/>
       <Part Name="MONSTER_PART_LEGS" Group="LEG" IsRemovable="False"/>
       <Part Name="MONSTER_PART_TAIL" Group="TAIL" IsRemovable="False"/>
+	  <Part Name="MONSTER_PART_UNKNOWN" IsRemovable="True"/>
     </Parts>
   </Monster>
-  <Monster ID="em113_01" Capture="15">
+  <Monster ID="em113_01" Capture="15"> <!-- Ebony Odogaron -->
     <Weaknesses>
       <Weakness ID="ELEMENT_WATER" Stars="3"/>
       <Weakness ID="ELEMENT_THUNDER" Stars="2"/>
     </Weaknesses>
     <Crown Mini="0.9" Silver="1.15" Gold="1.23"/>
-    <Parts Max="6">
-      <Part Name="MONSTER_PART_REMOVABLE_TAIL" IsRemovable="True"/>
+    <Parts Max="8">
       <Part Name="MONSTER_PART_HEAD" Group="HEAD" IsRemovable="False"/>
       <Part Name="MONSTER_PART_BODY" Group="BODY" IsRemovable="False"/>
       <Part Name="MONSTER_PART_ARMS" Group="ARM" IsRemovable="False"/>
       <Part Name="MONSTER_PART_LEGS" Group="LEG" IsRemovable="False"/>
       <Part Name="MONSTER_PART_TAIL" Group="TAIL" IsRemovable="False"/>
+	  <Part Name="MONSTER_PART_UNKNOWN" IsRemovable="True"/>
+	  <Part Name="MONSTER_PART_REMOVABLE_HEAD" IsRemovable="True"/>
+	  <Part Name="MONSTER_PART_REMOVABLE_TAIL" IsRemovable="True"/>
     </Parts>
   </Monster>
-  <Monster ID="em114_00" Capture="25">
+  <Monster ID="em114_00" Capture="25"> <!-- Radobaan -->
     <Weaknesses>
       <Weakness ID="ELEMENT_DRAGON" Stars="3"/>
       <Weakness ID="ELEMENT_ICE" Stars="2"/>
@@ -902,14 +963,13 @@
       <Part Name="MONSTER_PART_RBONE" Group="BONE" IsRemovable="False"/>
     </Parts>
   </Monster>
-  <Monster ID="em115_00" Capture="0">
+  <Monster ID="em115_00" Capture="0"> <!-- Vaal Hazak -->
     <Weaknesses>
       <Weakness ID="ELEMENT_FIRE" Stars="3"/>
       <Weakness ID="ELEMENT_DRAGON" Stars="3"/>
     </Weaknesses>
     <Crown Mini="0.9" Silver="1.15" Gold="1.23"/>
-    <Parts Max="10">
-      <Part Name="MONSTER_PART_REMOVABLE_TAIL" IsRemovable="True"/>
+    <Parts Max="11">
       <Part Name="MONSTER_PART_HEAD" Group="HEAD" IsRemovable="False"/>
       <Part Name="MONSTER_PART_BACK" Group="BACK" IsRemovable="False"/>
       <Part Name="MONSTER_PART_CHEST" Group="CHEST" IsRemovable="False"/>
@@ -919,16 +979,17 @@
       <Part Name="MONSTER_PART_LLEG" Group="LEG" IsRemovable="False"/>
       <Part Name="MONSTER_PART_RLEG" Group="LEG" IsRemovable="False"/>
       <Part Name="MONSTER_PART_WINGS" Group="WING" IsRemovable="False"/>
+      <Part Name="MONSTER_PART_UNKNOWN" Group="MISC" IsRemovable="True"/>
+      <Part Name="MONSTER_PART_REMOVABLE_TAIL" IsRemovable="True"/>
     </Parts>
   </Monster>
-  <Monster ID="em115_05" Capture="0">
+  <Monster ID="em115_05" Capture="0"> <!-- Blackveil Vaal Hazak -->
     <Weaknesses>
       <Weakness ID="ELEMENT_FIRE" Stars="2"/>
       <Weakness ID="ELEMENT_DRAGON" Stars="2"/>
     </Weaknesses>
     <Crown Mini="0.9" Silver="1.15" Gold="1.23"/>
-    <Parts Max="10">
-      <Part Name="MONSTER_PART_REMOVABLE_TAIL" IsRemovable="True"/>
+    <Parts Max="11">
       <Part Name="MONSTER_PART_HEAD" Group="HEAD" IsRemovable="False"/>
       <Part Name="MONSTER_PART_BACK" Group="BACK" IsRemovable="False"/>
       <Part Name="MONSTER_PART_CHEST" Group="CHEST" IsRemovable="False"/>
@@ -938,9 +999,11 @@
       <Part Name="MONSTER_PART_LLEG" Group="LEG" IsRemovable="False"/>
       <Part Name="MONSTER_PART_RLEG" Group="LEG" IsRemovable="False"/>
       <Part Name="MONSTER_PART_WINGS" Group="WING" IsRemovable="False"/>
+	  <Part Name="MONSTER_PART_REMOVABLE_TAIL" IsRemovable="True"/>
+	  <Part Name="MONSTER_PART_UNKNOWN" Group="MISC" IsRemovable="True"/>
     </Parts>
   </Monster>
-  <Monster ID="em116_00" Capture="30">
+  <Monster ID="em116_00" Capture="30"> <!-- Dodogama -->
     <Weaknesses>
       <Weakness ID="ELEMENT_THUNDER" Stars="3"/>
       <Weakness ID="ELEMENT_ICE" Stars="2"/>
@@ -955,7 +1018,7 @@
       <Part Name="MONSTER_PART_TAIL" Group="TAIL" IsRemovable="False"/>
     </Parts>
   </Monster>
-  <Monster ID="em117_00" Capture="0">
+  <Monster ID="em117_00" Capture="0"> <!-- Kulve Taroth -->
     <Weaknesses>
       <Weakness ID="ELEMENT_ICE" Stars="3"/>
       <Weakness ID="ELEMENT_THUNDER" Stars="0"/>
@@ -982,7 +1045,7 @@
       <Part Name="MONSTER_PART_RTAIL_GOLD" Group="TAIL" IsRemovable="False"/>
     </Parts>
   </Monster>
-  <Monster ID="em118_00" Capture="30">
+  <Monster ID="em118_00" Capture="30"> <!-- Bazelgeuse -->
     <Weaknesses>
       <Weakness ID="ELEMENT_THUNDER" Stars="3"/>
       <Weakness ID="ELEMENT_DRAGON" Stars="2"/>
@@ -998,7 +1061,7 @@
       <Part Name="MONSTER_PART_TAIL" Group="TAIL" IsRemovable="False"/>
     </Parts>
   </Monster>
-  <Monster ID="em118_05" Capture="10">
+  <Monster ID="em118_05" Capture="10"> <!-- Seething Bazelgeuse -->
     <Weaknesses>
       <Weakness ID="ELEMENT_ICE" Stars="3"/>
       <Weakness ID="ELEMENT_THUNDER" Stars="2"/>
@@ -1014,21 +1077,21 @@
       <Part Name="MONSTER_PART_TAIL" Group="TAIL" IsRemovable="False"/>
     </Parts>
   </Monster>
-  <Monster ID="em120_00" Capture="30">
+  <Monster ID="em120_00" Capture="30"> <!-- TziTzi-Ya-Ku -->
     <Weaknesses>
       <Weakness ID="ELEMENT_ICE" Stars="3"/>
       <Weakness ID="ELEMENT_THUNDER" Stars="3"/>
     </Weaknesses>
     <Crown Mini="0.9" Silver="1.15" Gold="1.23"/>
     <Parts Max="5">
-      <Part Name="MONSTER_PART_LHEAD" Group="HEAD" IsRemovable="False"/>
-      <Part Name="MONSTER_PART_RHEAD" Group="HEAD" IsRemovable="False"/>
+      <Part Name="MONSTER_PART_HEAD" Group="HEAD" IsRemovable="False"/>
+      <Part Name="MONSTER_PART_UNKNOWN" Group="MISC" IsRemovable="False"/>
       <Part Name="MONSTER_PART_ARMS" Group="ARM" IsRemovable="False"/>
       <Part Name="MONSTER_PART_LEGS" Group="LEG" IsRemovable="False"/>
       <Part Name="MONSTER_PART_TAIL" Group="TAIL" IsRemovable="False"/>
     </Parts>
   </Monster>
-  <Monster ID="em121_00" Capture="0">
+  <Monster ID="em121_00" Capture="0"> <!-- Behemoth -->
     <Weaknesses>
       <Weakness ID="ELEMENT_DRAGON" Stars="3"/>
       <Weakness ID="ELEMENT_WATER" Stars="2"/>
@@ -1046,7 +1109,7 @@
       <Part Name="MONSTER_PART_TAIL" Group="TAIL" IsRemovable="False"/>
     </Parts>
   </Monster>
-  <Monster ID="em122_00" Capture="25">
+  <Monster ID="em122_00" Capture="25"> <!-- Beotodus -->
     <Weaknesses>
       <Weakness ID="ELEMENT_FIRE" Stars="3"/>
       <Weakness ID="ELEMENT_THUNDER" Stars="2"/>
@@ -1062,7 +1125,7 @@
       <Part Name="MONSTER_PART_TAIL_SNOW" Group="TAIL" IsRemovable="False"/>
     </Parts>
   </Monster>
-  <Monster ID="em123_00" Capture="25">
+  <Monster ID="em123_00" Capture="25"> <!-- Banbaro -->
     <Weaknesses>
       <Weakness ID="ELEMENT_DRAGON" Stars="3"/>
       <Weakness ID="ELEMENT_FIRE" Stars="2"/>
@@ -1078,7 +1141,7 @@
       <Part Name="MONSTER_PART_TAIL" Group="TAIL" IsRemovable="False"/>
     </Parts>
   </Monster>
-  <Monster ID="em124_00" Capture="0">
+  <Monster ID="em124_00" Capture="0"> <!-- Velkhana -->
     <Weaknesses>
       <Weakness ID="ELEMENT_FIRE" Stars="3"/>
       <Weakness ID="ELEMENT_DRAGON" Stars="2"/>
@@ -1100,7 +1163,7 @@
       <Part Name="MONSTER_PART_TAIL_ICE" Group="TAIL" IsRemovable="False"/>
     </Parts>
   </Monster>
-  <Monster ID="em125_00" Capture="0">
+  <Monster ID="em125_00" Capture="0"> <!-- Namielle -->
     <Weaknesses>
       <Weakness ID="ELEMENT_FIRE" Stars="3"/>
       <Weakness ID="ELEMENT_DRAGON" Stars="2"/>
@@ -1116,7 +1179,7 @@
       <Part Name="MONSTER_PART_WINGS" Group="WING" IsRemovable="False"/>
     </Parts>
   </Monster>
-  <Monster ID="em126_00" Capture="0">
+  <Monster ID="em126_00" Capture="0"> <!-- Shara Ishvalda -->
     <Weaknesses>
       <Weakness ID="ELEMENT_ICE" Stars="3"/>
       <Weakness ID="ELEMENT_WATER" Stars="2"/>
@@ -1142,7 +1205,7 @@
       <Part Name="MONSTER_PART_TAIL" Group="TAIL" IsRemovable="False"/>
     </Parts>
   </Monster>
-  <Monster ID="em127_00" Capture="0">
+  <Monster ID="em127_00" Capture="0"> <!-- Leshen -->
     <Weaknesses>
       <Weakness ID="ELEMENT_FIRE" Stars="3"/>
       <Weakness ID="ELEMENT_THUNDER" Stars="2"/>
@@ -1160,7 +1223,7 @@
       <Part Name="MONSTER_JAGRAS_SUMMONER" Group="MISC" IsRemovable="False"/>
     </Parts>
   </Monster>
-  <Monster ID="em127_01" Capture="0">
+  <Monster ID="em127_01" Capture="0"> <!-- Ancient Leshen -->
     <Weaknesses>
       <Weakness ID="ELEMENT_FIRE" Stars="3"/>
       <Weakness ID="ELEMENT_THUNDER" Stars="2"/>

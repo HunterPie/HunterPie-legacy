@@ -17,8 +17,9 @@ class TranslationMerger():
             if (not loc_file.endswith("xml")): continue
             if (loc_file == "en-us.xml"): continue
 
-            print(f"Parsing {loc_file}")
+            print(f"\n==== {loc_file} ====")
             currentLocFile = XML.parse(loc_file)
+            self.CurrentLocalizationFile = {}
 
             for elem in currentLocFile.iter():
                 if (elem.attrib.get("Name") == None): 
@@ -31,10 +32,10 @@ class TranslationMerger():
                 elem: XML.Element = elem
                 if (elem.attrib.get("Name") == None): 
                     if (self.CurrentLocalizationFile.get(elem.tag) == None):
-                        print(f"MISSING NODE: {elem.tag}")
+                        print(f"- MISSING NODE: {elem.tag}")
                 else:
                     if (self.CurrentLocalizationFile.get(elem.attrib["ID"]) == None):
-                        print(f"MISSING STRING: {elem.attrib['ID']}")
+                        print(f"- MISSING STRING: {elem.attrib['ID']}")
 
 if __name__ == "__main__":
     Merger = TranslationMerger()

@@ -1,5 +1,5 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
-<!--1.0.3.85 translate by ThanatosDi-->
+<!--1.0.3.86 update version 2 translate by ThanatosDi-->
 <Strings lang="Traditional Chinese">
   <Monsters>
     <Monster ID="em001_00" Name="雌火龍"/>
@@ -14,6 +14,7 @@
     <Monster ID="em018_00" Name="黑狼鳥"/>
     <Monster ID="em018_05" Name="戰痕黑狼鳥"/>
     <Monster ID="em023_00" Name="金獅子"/>
+    <Monster ID="em023_05" Name="激昂金獅子"/>
     <Monster ID="em024_00" Name="鋼龍"/>
     <Monster ID="em026_00" Name="炎妃龍"/>
     <Monster ID="em027_00" Name="炎王龍"/>
@@ -29,6 +30,7 @@
     <Monster ID="em057_00" Name="雷狼龍"/>
     <Monster ID="em057_01" Name="獄狼龍"/>
     <Monster ID="em063_00" Name="碎龍"/>
+    <Monster ID="em063_05" Name="猛爆碎龍"/>
     <Monster ID="em080_00" Name="斬龍"/>
     <Monster ID="em080_01" Name="硫斬龍"/>
     <Monster ID="em100_00" Name="蠻顎龍"/>
@@ -171,6 +173,7 @@
     <Ailment ID="STATUS_DUNGPOD" Name="異臭彈"/>
     <Ailment ID="STATUS_SHOCKTRAP" Name="麻痹陷阱"/>
     <Ailment ID="STATUS_PITFALLTRAP" Name="地洞陷阱"/>
+    <Ailment ID="STATUS_VINETRAP" Name="藤蔓陷阱"/>
     <Ailment ID="STATUS_ELDERSEAL" Name="龍封力"/>
     <Ailment ID="STATUS_SMOKING" Name="煙霧"/>
     <Ailment ID="STATUS_FELYNETRAP" Name="貓貓陷阱"/>
@@ -474,12 +477,15 @@
       <!-- Monster Widget -->
       <String ID="ENABLE_MONSTER_WIDGET" Name="魔物小工具"/>
       <String ID="ENABLE_MONSTER_WIDGET_DESC" Name="如果啟用只要有內容可顯示，魔物小工具就將可見"/>
+      <String ID="STATIC_MONSTER_HEALTH_STRING_FORMAT" Name="血量文字格式:"/>
+      <String ID="STATIC_MONSTER_HEALTH_STRING_FORMAT_DESC" Name="設定魔物血條的文字格式"/>
       <String ID="STATIC_MONSTER_BAR_MODE" Name="魔物欄模式"/>
       <String ID="STATIC_MONSTER_BAR_MODE_DESC" Name="改變魔物欄模式"/>
       <String ID="STATIC_MONSTER_BAR_MODE_0" Name="一次顯示所有魔物"/>
       <String ID="STATIC_MONSTER_BAR_MODE_1" Name="顯示所有魔物，但高亮顯示我的目標"/>
       <String ID="STATIC_MONSTER_BAR_MODE_2" Name="只顯示狩獵中的魔物"/>
       <String ID="STATIC_MONSTER_BAR_MODE_3" Name="顯示所有魔物但 15 秒後隱藏非狩獵中的魔物"/>
+      <String ID="STATIC_MONSTER_BAR_MODE_4" Name="顯示所有魔物直到選擇了一個目標魔物"/>
       <String ID="STATIC_MONSTER_BAR_MODE_HOTKEY" Name="改變魔物欄模式(HotKey): "/>
       <String ID="STATIC_MONSTER_BAR_MODE_HOTKEY_DESC" Name="使用熱鍵(HotKey)切換魔物欄模式，改變熱鍵(HotKey)需要重新啟動才能生效"/>
       <String ID="STATIC_MONSTER_BAR_DOCK" Name="魔物欄位置: "/>
@@ -538,8 +544,10 @@
       <!-- Damage Meter -->
       <String ID="ENABLE_METER" Name="傷害小工具"/>
       <String ID="ENABLE_METER_DESC" Name="如果啟用，則只要有內容就會顯示傷害小工具"/>
-      <String ID="ENABLE_METER_DPS" Name="顯示 DPS"/>
-      <String ID="ENABLE_METER_DPS_DESC" Name="如果啟用傷害小工具只會顯示 DPS(每秒的傷害)而不是總傷害量"/>
+      <String ID="ENABLE_TOTAL_DAMAGE" Name="顯示總傷害"/>
+      <String ID="ENABLE_TOTAL_DAMAGE_DESC" Name="如果啟用，傷害小工具將會顯示每個人的總傷害量"/>
+      <String ID="ENABLE_METER_DPS" Name="顯示 DPS(每秒傷害)"/>
+      <String ID="ENABLE_METER_DPS_DESC" Name="如果啟用，傷害小工具將會顯示每個人的 DPS (每秒的傷害)"/>
       <String ID="STATIC_METER_PLAYER_1" Name="第一個玩家"/>
       <String ID="STATIC_METER_PLAYER_2" Name="第二個玩家"/>
       <String ID="STATIC_METER_PLAYER_3" Name="第三個玩家"/>
@@ -560,6 +568,8 @@
       <String ID="STATIC_ABNORM_TAB_ORCHESTRA" Name="激勵樂器"/>
       <String ID="STATIC_ABNORM_TAB_DEBUFF" Name="異常狀態"/>
       <String ID="STATIC_ABNORM_TAB_CONSUMABLE" Name="消耗品"/>
+      <String ID="ENABLE_SHOW_ABNORM_NAMES" Name="顯示異常狀態的名稱"/>
+      <String ID="ENABLE_SHOW_ABNORM_NAMES_DESC" Name="如果啟用將會顯示異常狀態的名稱"/>
       <!-- Specialized Tool Widget-->
       <String ID="STATIC_PRIMARY_SPEC_TOOL" Name="主要特殊衣裝"/>
       <String ID="STATIC_SECONDARY_SPEC_TOOL" Name="第二特殊衣裝"/>

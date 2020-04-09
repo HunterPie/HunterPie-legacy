@@ -18,6 +18,7 @@ Gerade bei den Abnormalitäten / Statusveränderungen des Spielers gibt es mit (
     <Monster ID="em018_00" Name="Yian Garuga"/>
     <Monster ID="em018_05" Name="Wundmal-Yian-Garuga"/>
     <Monster ID="em023_00" Name="Rajang"/>
+	<MONSTER ID="em023_05" Name="Wütender Rajang"/>
     <Monster ID="em024_00" Name="Kushala Daora"/>
     <Monster ID="em026_00" Name="Lunastra"/>
     <Monster ID="em027_00" Name="Teostra"/>
@@ -33,6 +34,7 @@ Gerade bei den Abnormalitäten / Statusveränderungen des Spielers gibt es mit (
     <Monster ID="em057_00" Name="Zinogre"/>
     <Monster ID="em057_01" Name="Höllen-Zinogre"/>
     <Monster ID="em063_00" Name="Brachydios"/>
+	<Monster ID="em063_05" Name="Tobender Brachydios"/>
     <Monster ID="em080_00" Name="Glavenus"/>
     <Monster ID="em080_01" Name="Säure-Glavenus"/>
     <Monster ID="em100_00" Name="Anjanath"/>
@@ -175,6 +177,7 @@ Gerade bei den Abnormalitäten / Statusveränderungen des Spielers gibt es mit (
     <Ailment ID="STATUS_DUNGPOD" Name="Misthülse"/>
     <Ailment ID="STATUS_SHOCKTRAP" Name="Schock Falle"/>
     <Ailment ID="STATUS_PITFALLTRAP" Name="Fallgrube"/>
+	<Ailment ID="STATUS_VINETRAP" Name="Rankenfalle"/>
     <Ailment ID="STATUS_ELDERSEAL" Name="Ältesten-Siegel"/>
     <Ailment ID="STATUS_SMOKING" Name="Rauchend"/>
     <Ailment ID="STATUS_FELYNETRAP" Name="Katzen-Falle"/>
@@ -479,12 +482,15 @@ Gerade bei den Abnormalitäten / Statusveränderungen des Spielers gibt es mit (
       <!-- Monster Widget -->
       <String ID="ENABLE_MONSTER_WIDGET" Name="Aktiviere Monster Widget"/>
       <String ID="ENABLE_MONSTER_WIDGET_DESC" Name="Wenn aktiv, wird das Monster Widget sichtbar sein, sobald es etwas anzuzeigen hat."/>
-      <String ID="STATIC_MONSTER_BAR_MODE" Name="Monsterleisten Modus"/>
+      <String ID="STATIC_MONSTER_HEALTH_STRING_FORMAT" Name="Monsterleisten Text Format:"/>
+      <String ID="STATIC_MONSTER_HEALTH_STRING_FORMAT_DESC" Name="Text Format der Monsterleiste."/>
+	  <String ID="STATIC_MONSTER_BAR_MODE" Name="Monsterleisten Modus"/>
       <String ID="STATIC_MONSTER_BAR_MODE_DESC" Name="Ändert den Modus der Monsterleiste."/>
       <String ID="STATIC_MONSTER_BAR_MODE_0" Name="Zeige alle Monster gleichzeitig"/>
       <String ID="STATIC_MONSTER_BAR_MODE_1" Name="Zeige alle Monster gleichzeitig, aber hebe mein Ziel hervor"/>
       <String ID="STATIC_MONSTER_BAR_MODE_2" Name="Zeige nur das gejagte Monster"/>
       <String ID="STATIC_MONSTER_BAR_MODE_3" Name="Zeige alle Monster, aber verstecke inaktive Monster nach 15 Sekunden"/>
+	  <String ID="STATIC_MONSTER_BAR_MODE_4" Name="Zeige alle Monster bis eines ausgewählt wurde"/>
       <String ID="STATIC_MONSTER_BAR_MODE_HOTKEY" Name="Wechsel zw. den Monsterleisten Modi (HotKey):"/>
       <String ID="STATIC_MONSTER_BAR_MODE_HOTKEY_DESC" Name="Hotkey um zwischen den verschiedenen Monsterleisten Modi zu wechseln. Ändern des HotKeys erfordert einen Neustart von HunterPie um aktiv zu werden."/>
       <String ID="STATIC_MONSTER_BAR_DOCK" Name="Monsterleisten Ausrichtung:"/>
@@ -543,8 +549,10 @@ Gerade bei den Abnormalitäten / Statusveränderungen des Spielers gibt es mit (
       <!-- Damage Meter -->
       <String ID="ENABLE_METER" Name="Aktiviere Schadens-Widget"/>
       <String ID="ENABLE_METER_DESC" Name="Wenn aktiv, wird das Schadens-Widget angezeigt, sobald es etwas anzuzeigen hat."/>
-      <String ID="ENABLE_METER_DPS" Name="Zeige DPS statt dem Gesamtschaden"/>
-      <String ID="ENABLE_METER_DPS_DESC" Name="Wenn aktiv, zeigt das Schadens-Widget den Schaden pro Sekunde statt dem Gesamtschaden an."/>
+	  <String ID="ENABLE_TOTAL_DAMAGE" Name="Zeige Gesamtschaden"/>
+      <String ID="ENABLE_TOTAL_DAMAGE_DESC" Name="Wenn aktiv, zeigt das Schadens-Widget den individuellen Gesamtschaden an."/>
+      <String ID="ENABLE_METER_DPS" Name="Zeige Schaden pro Sekunde"/>
+      <String ID="ENABLE_METER_DPS_DESC" Name="Wenn aktiv, zeigt das Schadens-Widget den individuellen Schaden pro Sekunde an."/>
       <String ID="STATIC_METER_PLAYER_1" Name="Erster Spieler"/>
       <String ID="STATIC_METER_PLAYER_2" Name="Zweiter Spieler"/>
       <String ID="STATIC_METER_PLAYER_3" Name="Dritter Spieler"/>
@@ -565,6 +573,8 @@ Gerade bei den Abnormalitäten / Statusveränderungen des Spielers gibt es mit (
       <String ID="STATIC_ABNORM_TAB_ORCHESTRA" Name="Orchester"/>
       <String ID="STATIC_ABNORM_TAB_DEBUFF" Name="Debuffs"/>
       <String ID="STATIC_ABNORM_TAB_CONSUMABLE" Name="Verbrauchsmaterial"/>
+	  <String ID="ENABLE_SHOW_ABNORM_NAMES" Name="Zeige Abnormalitäten-Namen"/>
+      <String ID="ENABLE_SHOW_ABNORM_NAMES_DESC" Name="Wenn aktiv, werden die Namen von Abnormalitäten angezeigt."/>
       <!-- Specialized Tool Widget-->
       <String ID="STATIC_PRIMARY_SPEC_TOOL" Name="Primäres Spezialgerät"/>
       <String ID="STATIC_SECONDARY_SPEC_TOOL" Name="Sekundäres Spezialgerät"/>

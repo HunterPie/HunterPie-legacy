@@ -13,6 +13,7 @@
     <Monster ID="em018_00" Name="Yian Garuga"/>
     <Monster ID="em018_05" Name="Yian Garuga balafré"/>
     <Monster ID="em023_00" Name="Rajang"/>
+	<Monster ID="em023_05" Name="Rajang Orage"/>
     <Monster ID="em024_00" Name="Kushala Daora"/>
     <Monster ID="em026_00" Name="Lunastra"/>
     <Monster ID="em027_00" Name="Teostra"/>
@@ -28,6 +29,7 @@
     <Monster ID="em057_00" Name="Zinogre"/>
     <Monster ID="em057_01" Name="Zinogre stygien"/>
     <Monster ID="em063_00" Name="Brachydios"/>
+	<Monster ID="em063_05" Name="Brachydios Tempête"/>
     <Monster ID="em080_00" Name="Glavenus"/>
     <Monster ID="em080_01" Name="Glavenus acide"/>
     <Monster ID="em100_00" Name="Anjanath"/>
@@ -453,7 +455,7 @@
       <String ID="ENABLE_RPC_HEALTH" Name="Afficher le pourcentage de PV des monstres."/>
       <String ID="ENABLE_RPC_HEALTH_DESC" Name="Activé, HunterPie montrera le pourcentage de PV du monstre que vous chassez."/>
       <String ID="ENABLE_PEOPLE_JOIN" Name="Autoriser les autres joueurs à demander de rejoindre ma session en ligne."/>
-      <String ID="ENABLE_PEOPLE_JOIN" Name="Activé, les autres joueurs pourront vous demander de rejoindre votre session en ligne."/>
+      <String ID="ENABLE_PEOPLE_JOIN_DESC" Name="Activé, les autres joueurs pourront vous demander de rejoindre votre session en ligne."/>
       <!-- Overlay -->
       <String ID="ENABLE_OVERLAY" Name="Activer l'Overlay en jeu."/>
       <String ID="ENABLE_OVERLAY_DESC" Name="Activé, l'Overlay sera visible en jeu."/>
@@ -475,12 +477,15 @@
       <!-- Monster Widget -->
       <String ID="ENABLE_MONSTER_WIDGET" Name="Activer le widget &quot;Monstre&quot;"/>
       <String ID="ENABLE_MONSTER_WIDGET_DESC" Name="Activé, le widget &quot;Monstre&quot; sera visible tant qu'il y aura un monstre."/>
+	  <String ID="STATIC_MONSTER_HEALTH_STRING_FORMAT" Name="Format texte des PV :"/>
+	  <String ID="STATIC_MONSTER_HEALTH_STRING_FORMAT_DESC" Name="Format du texte des PV du monstre."/>
       <String ID="STATIC_MONSTER_BAR_MODE" Name="Barre de vie des monstres"/>
       <String ID="STATIC_MONSTER_BAR_MODE_DESC" Name="Changez la barre de vie des monstres."/>
       <String ID="STATIC_MONSTER_BAR_MODE_0" Name="Afficher tous les monstres en même temps"/>
       <String ID="STATIC_MONSTER_BAR_MODE_1" Name="Afficher tous les monstres mais mettre en évidence ma cible"/>
       <String ID="STATIC_MONSTER_BAR_MODE_2" Name="Afficher que les monstres chassés"/>
       <String ID="STATIC_MONSTER_BAR_MODE_3" Name="Afficher tous les monstres mais cache les monstres inactif au bout de 15 secondes"/>
+	  <String ID="STATIC_MONSTER_BAR_MODE_4" Name="Afficher tout jusqu&apos;à ce qu'un monstre soit sélectionné"/>
       <String ID="STATIC_MONSTER_BAR_MODE_HOTKEY" Name="Barre de vie des monstres (Raccourcis):"/>
       <String ID="STATIC_MONSTER_BAR_MODE_HOTKEY_DESC" Name="Raccourcis pour modifier la barre de vie des monstres. La modification du raccourcis nécessite un redémarrage pour prendre effet."/>
       <String ID="STATIC_MONSTER_BAR_DOCK" Name="Position de la barre de vie des monstres :"/>
@@ -539,8 +544,10 @@
       <!-- Damage Meter -->
       <String ID="ENABLE_METER" Name="Activer le widget &quot;Compteur de Dégâts&quot;"/>
       <String ID="ENABLE_METER_DESC" Name="Activé, le widget &quot;Compteur de Dégâts&quot; sera visible."/>
-      <String ID="ENABLE_METER_DPS" Name="Afficher le DPS au lieu des dégâts totaux."/>
-      <String ID="ENABLE_METER_DPS_DESC" Name="Activé, le compteur de dégâts affichera les dégâts par seconde au lieu des dégâts totaux."/>
+	  <String ID="ENABLE_TOTAL_DAMAGE" Name="Afficher les dégâts totaux."/>
+	  <String ID="ENABLE_TOTAL_DAMAGE_DESC" Name="Activé, le compteur de dégâts affichera les dégâts totaux."/>
+      <String ID="ENABLE_METER_DPS" Name="Afficher les dégâts par seconde."/>
+      <String ID="ENABLE_METER_DPS_DESC" Name="Activé, le compteur de dégâts affichera les dégâts par seconde."/>
       <String ID="STATIC_METER_PLAYER_1" Name="Premier Joueur"/>
       <String ID="STATIC_METER_PLAYER_2" Name="Deuxième Joueur"/>
       <String ID="STATIC_METER_PLAYER_3" Name="Troisième Joueur"/>
@@ -561,6 +568,8 @@
       <String ID="STATIC_ABNORM_TAB_ORCHESTRA" Name="Orchestre"/>
       <String ID="STATIC_ABNORM_TAB_DEBUFF" Name="Debuffs"/>
       <String ID="STATIC_ABNORM_TAB_CONSUMABLE" Name="Consommable"/>
+	  <String ID="ENABLE_SHOW_ABNORM_NAMES" Name="Afficher le nom des effets"/>
+	  <String ID="ENABLE_SHOW_ABNORM_NAMES_DESC" Name="Activé, le nom des effets seront affichés."/>
       <!-- Specialized Tool Widget-->
       <String ID="STATIC_PRIMARY_SPEC_TOOL" Name="Outil Spécial Primaire"/>
       <String ID="STATIC_SECONDARY_SPEC_TOOL" Name="Outil Spécial Secondaire"/>
