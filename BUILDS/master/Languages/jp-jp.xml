@@ -20,6 +20,7 @@
     <Monster ID="em018_00" Name="イャンガルルガ"/>
     <Monster ID="em018_05" Name="傷ついたイャンガルルガ"/>
     <Monster ID="em023_00" Name="ラージャン"/>
+    <Monster ID="em023_05" Name="激昂したラージャン"/>
     <Monster ID="em024_00" Name="クシャルダオラ"/>
     <Monster ID="em026_00" Name="ナナ・テスカトリ"/>
     <Monster ID="em027_00" Name="テオ・テスカトル"/>
@@ -35,6 +36,7 @@
     <Monster ID="em057_00" Name="ジンオウガ"/>
     <Monster ID="em057_01" Name="ジンオウガ亜種"/>
     <Monster ID="em063_00" Name="ブラキディオス"/>
+    <Monster ID="em063_05" Name="猛り爆ぜるブラキディオス"/>
     <Monster ID="em080_00" Name="ディノバルド"/>
     <Monster ID="em080_01" Name="ディノバルド亜種"/>
     <Monster ID="em100_00" Name="アンジャナフ"/>
@@ -413,7 +415,7 @@
       <String ID="MESSAGE_DISCORD_DISCONNECTED" Name="Discord との接続を解除しました"/>
       <String ID="MESSAGE_DISCORD_JOIN_REQUEST" Name="{Username} からの参加リクエストを確認しました"/>
       <String ID="MESSAGE_DISCORD_JOINING" Name="セッションに接続中..."/>
-
+      
       <String ID="MESSAGE_MONSTER_DATA_LOAD" Name="モンスターデータの読み込み完了"/>
       <String ID="MESSAGE_ABNORMALITIES_DATA_LOAD" Name="状態異常データの読み込み完了"/>
       <String ID="MESSAGE_PLAYER_SCANNER_INITIALIZED" Name="プレイヤー情報スキャナの初期化完了"/>

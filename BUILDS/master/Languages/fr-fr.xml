@@ -13,6 +13,7 @@
     <Monster ID="em018_00" Name="Yian Garuga"/>
     <Monster ID="em018_05" Name="Yian Garuga balafré"/>
     <Monster ID="em023_00" Name="Rajang"/>
+	<Monster ID="em023_05" Name="Rajang Orage"/>
     <Monster ID="em024_00" Name="Kushala Daora"/>
     <Monster ID="em026_00" Name="Lunastra"/>
     <Monster ID="em027_00" Name="Teostra"/>
@@ -28,6 +29,7 @@
     <Monster ID="em057_00" Name="Zinogre"/>
     <Monster ID="em057_01" Name="Zinogre stygien"/>
     <Monster ID="em063_00" Name="Brachydios"/>
+	<Monster ID="em063_05" Name="Brachydios Tempête"/>
     <Monster ID="em080_00" Name="Glavenus"/>
     <Monster ID="em080_01" Name="Glavenus acide"/>
     <Monster ID="em100_00" Name="Anjanath"/>

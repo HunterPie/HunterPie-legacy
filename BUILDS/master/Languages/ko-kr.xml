@@ -13,6 +13,7 @@
     <Monster ID="em018_00" Name="얀가루루가"/>
     <Monster ID="em018_05" Name="상처입은 얀가루루가"/>
     <Monster ID="em023_00" Name="라잔"/>
+	<Monster ID="em023_05" Name="격앙 라잔"/>
     <Monster ID="em024_00" Name="크샬다오라"/>
     <Monster ID="em026_00" Name="나나-테스카토리"/>
     <Monster ID="em027_00" Name="테오-테스카토르"/>
@@ -28,6 +29,7 @@
     <Monster ID="em057_00" Name="진오우거"/>
     <Monster ID="em057_01" Name="진오우거 아종"/>
     <Monster ID="em063_00" Name="브라키디오스"/>
+	<Monster ID="em063_05" Name="사납게 터지는 브라키디오스"/>
     <Monster ID="em080_00" Name="디노발드"/>
     <Monster ID="em080_01" Name="디노발드 아종"/>
     <Monster ID="em100_00" Name="안쟈나프"/>
