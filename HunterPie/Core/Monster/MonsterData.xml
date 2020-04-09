@@ -541,8 +541,8 @@
       <Part Name="MONSTER_PART_RARM" Group="ARM" IsRemovable="False"/>
       <Part Name="MONSTER_PART_LLEG" Group="LEG" IsRemovable="False"/>
       <Part Name="MONSTER_PART_RLEG" Group="LEG" IsRemovable="False"/>
-	  <Part Name="MONSTER_PART_TAIL" Group="TAIL" IsRemovable="False"/>
-	  <Part Name="MONSTER_PART_TAIL" Group="TAIL" IsRemovable="False"/>
+      <Part Name="MONSTER_PART_TAIL" Group="TAIL" IsRemovable="False"/>
+      <Part Name="MONSTER_PART_TAIL" Group="TAIL" IsRemovable="False"/>
     </Parts>
   </Monster>
   <Monster ID="em080_00" Capture="20"> <!-- Glavenus -->
