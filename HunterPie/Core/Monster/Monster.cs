@@ -315,20 +315,22 @@ namespace HunterPie.Core {
         }
 
         private void GetMonsterEnrageTimer() {
-            EnrageTimer = Scanner.READ_FLOAT(MonsterAddress + 0x1BDFC);
-            EnrageTimerStatic = Scanner.READ_FLOAT(MonsterAddress + 0x1BDFC + 0x4);
+            EnrageTimer = Scanner.READ_FLOAT(MonsterAddress + 0x1BE54);
+            EnrageTimerStatic = Scanner.READ_FLOAT(MonsterAddress + 0x1BE54 + 0x4);
         }
 
         private void GetTargetMonsterAddress() {
             Int64 TargettedMonsterAddress = Scanner.READ_MULTILEVEL_PTR(Address.BASE + Address.MONSTER_SELECTED_OFFSET, Address.Offsets.MonsterSelectedOffsets);
-            this.IsTarget = TargettedMonsterAddress == this.MonsterAddress;
 
             Int64 selectedPtr = Scanner.READ_LONGLONG(Address.BASE + Address.MONSTER_TARGETED_OFFSET); //probably want an offset for this
             bool isSelect = Scanner.READ_LONGLONG(selectedPtr + 0x128) != 0x0 && Scanner.READ_LONGLONG(selectedPtr + 0x130) != 0x0 && Scanner.READ_LONGLONG(selectedPtr + 0x160) != 0x0;
-            //Int64 SelectedMonsterAddress = Scanner.READ_LONGLONG(selectedPtr + 0x148); // don't actually need this as it will be the same as TargettedMonsterAddress if isSelect is true
+            Int64 SelectedMonsterAddress = Scanner.READ_LONGLONG(selectedPtr + 0x148); // don't actually need this as it will be the same as TargettedMonsterAddress if isSelect is true
+
+            this.IsTarget = isSelect && (TargettedMonsterAddress == this.MonsterAddress) || (SelectedMonsterAddress == this.MonsterAddress);
             if (!isSelect) {
+                this.IsTarget = false;
                 this.IsSelect = 0; // nothing is selected
-            } else if (TargettedMonsterAddress == this.MonsterAddress) {
+            } else if (IsTarget) {
                 this.IsSelect = 1; // this monster is selected
             } else {
                 this.IsSelect = 2; // another monster is selected
@@ -410,7 +412,7 @@ namespace HunterPie.Core {
         
         private void GetMonsterStamina() {
             if (!IsAlive) return;
-            Int64 MonsterStaminaAddress = MonsterAddress + 0x1C098;
+            Int64 MonsterStaminaAddress = MonsterAddress + 0x1C0F0;
             MaxStamina = Scanner.READ_FLOAT(MonsterStaminaAddress + 0x4);
             float stam = Scanner.READ_FLOAT(MonsterStaminaAddress);
             Stamina = stam <= MaxStamina ? stam : MaxStamina;

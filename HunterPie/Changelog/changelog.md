@@ -1,13 +1,17 @@
 ﻿**UPDATE 1.0.3.86**
 
+**Monster Hunter World 13.0.1**
+
+- Added build version 410013;
+- Added Furious Rajang;
+- Added Raging Brachydios;
+
 **Specialized Tool Widget**
 
 The Specialized Tools Widget got redesigned to match the rest of the overlay. The design changes include:
 
 - **Specialized Tool Icons:** The specialized tool widget now shows the equipped tool icon.
 - **Timer & Cooldown bar:** Instead of using a circle progress bar, the new design uses a bar, the bar has a similar effect to the damage meter bar. When the specialized tool is on cooldown, the bar will grow and when it's being used by the player the bar will shrink.
-
-![SpecializedToolDesign](https://cdn.discordapp.com/attachments/402557384209203200/697167080339800095/unknown.png)
 
 **Damage Meter Widget**
 
@@ -19,15 +23,11 @@ The damage meter now has way more information and also new settings, instead of 
 - **Extra informations:** The meter also shows all party members HR, MR, and a crown on top left if that player is party leader.
 - **Weapon Icons:** Some of the weapon icons were changed for better icons. [Special thanks to *Othello RHIN#1097* for his awesome icons](https://github.com/OthelloRhin/MHW_Icons_SVG)
 
-![DamageMeterDesign](https://cdn.discordapp.com/attachments/402557384209203200/697175904417480754/unknown.png)
-
 **Abnormalities Widget**
 
 You can now enable abnormality names for each abnormality bar individually. So if you want to keep a debuff bar without names and a buff bar with names, for example, you can!
 
 > **Attention:** Enabling the abnormality names option will force your bar to be vertically alligned.
-
-![AbnormalityNameImage](https://cdn.discordapp.com/attachments/402557384209203200/697178504369799249/unknown.png)
 
 **Monster Health Widget**
 
