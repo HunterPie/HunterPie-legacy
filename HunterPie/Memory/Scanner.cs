@@ -154,7 +154,6 @@ namespace HunterPie.Memory {
                     }
                     try {
                         GameVersion = int.Parse(MonsterHunter.MainWindowTitle.Split('(')[1].Trim(')'));
-                        
                     } catch(Exception err) {
                         Logger.Debugger.Error($"Could not get Monster Hunter World build version.\n{err.ToString()}");
                         GameVersion = 0;

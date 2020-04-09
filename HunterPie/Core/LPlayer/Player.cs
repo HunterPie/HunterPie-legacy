@@ -386,7 +386,7 @@ namespace HunterPie.Core {
 
         private void GetQuestElapsedTime() {
             Int64 TimerAddress = Scanner.READ_MULTILEVEL_PTR(Address.BASE + Address.ABNORMALITY_OFFSET, Address.Offsets.AbnormalityOffsets);
-            float Timer = Scanner.READ_FLOAT(TimerAddress + 0xB14);
+            float Timer = Scanner.READ_FLOAT(TimerAddress + 0xB74);
             PlayerParty.ShowDPS = true;
             if (Timer > 0) {
                 PlayerParty.Epoch = TimeSpan.FromSeconds(Timer);
