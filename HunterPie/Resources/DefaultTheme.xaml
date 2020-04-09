@@ -11,6 +11,11 @@
         <GradientStop Color="#FFBDBDBD"/>
     </LinearGradientBrush>
 
+    <LinearGradientBrush x:Key="OVERLAY_MONSTER_STAMINA_BAR_COLOR" EndPoint="1,0" StartPoint="0,0">
+        <GradientStop Color="#E5ECAF2F" Offset="1"/>
+        <GradientStop Color="#E5DE9F15"/>
+    </LinearGradientBrush>
+    
     <Style x:Key="OVERLAY_MONSTER_BAR_TEXT_STYLE" TargetType="TextBlock">
         <Setter Property="Foreground" Value="Gray"/>
         <Setter Property="FontSize" Value="12"/>

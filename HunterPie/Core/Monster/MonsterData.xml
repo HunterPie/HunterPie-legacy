@@ -250,7 +250,7 @@
       <Part Name="MONSTER_PART_UNKNOWN" IsRemovable="True"/>
     </Parts>
   </Monster>
-  <Monster ID="em023_05" Capture="0"> <!-- Furious Rajang -->
+  <Monster ID="em023_05" Capture="10"> <!-- Furious Rajang -->
     <Weaknesses>
       <Weakness ID="ELEMENT_ICE" Stars="3"/>
       <Weakness ID="ELEMENT_WATER" Stars="1"/>
