@@ -1,5 +1,5 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
-<!--1.0.3.86 translate by ThanatosDi-->
+<!--1.0.3.86 update version 2 translate by ThanatosDi-->
 <Strings lang="Traditional Chinese">
   <Monsters>
     <Monster ID="em001_00" Name="雌火龍"/>
@@ -14,6 +14,7 @@
     <Monster ID="em018_00" Name="黑狼鳥"/>
     <Monster ID="em018_05" Name="戰痕黑狼鳥"/>
     <Monster ID="em023_00" Name="金獅子"/>
+    <Monster ID="em023_05" Name="激昂金獅子"/>
     <Monster ID="em024_00" Name="鋼龍"/>
     <Monster ID="em026_00" Name="炎妃龍"/>
     <Monster ID="em027_00" Name="炎王龍"/>
@@ -29,6 +30,7 @@
     <Monster ID="em057_00" Name="雷狼龍"/>
     <Monster ID="em057_01" Name="獄狼龍"/>
     <Monster ID="em063_00" Name="碎龍"/>
+    <Monster ID="em063_05" Name="猛爆碎龍"/>
     <Monster ID="em080_00" Name="斬龍"/>
     <Monster ID="em080_01" Name="硫斬龍"/>
     <Monster ID="em100_00" Name="蠻顎龍"/>

@@ -13,6 +13,7 @@
     <Monster ID="em018_00" Name="Йан-Гаруга"/>
     <Monster ID="em018_05" Name="Матёрый Йан-Гаруга"/>
     <Monster ID="em023_00" Name="Раянг"/>
+    <Monster ID="em023_05" Name="Взбешённый Раянг"/>
     <Monster ID="em024_00" Name="Кушала-Даора"/>
     <Monster ID="em026_00" Name="Лунастра"/>
     <Monster ID="em027_00" Name="Теостра"/>
@@ -28,6 +29,7 @@
     <Monster ID="em057_00" Name="Зиногр"/>
     <Monster ID="em057_01" Name="Стигийский Зиногр"/>
     <Monster ID="em063_00" Name="Брахидиос"/>
+    <Monster ID="em063_05" Name="Неистовый Брахидиос"/>
     <Monster ID="em080_00" Name="Главенус"/>
     <Monster ID="em080_01" Name="Кислотный Главенус"/>
     <Monster ID="em100_00" Name="Аньянат"/>
