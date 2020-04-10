@@ -87,7 +87,7 @@
     <Abnormality ID="14" IsDebuff="True" Offset="614" Icon="ICON_ALLRESDOWN"/>
     <Abnormality ID="16" IsDebuff="True" Offset="61C" Icon=""/>
     <Abnormality ID="17" IsDebuff="True" Offset="620" Icon="ICON_BLAST"/>
-    <Abnormality ID="20" IsDebuff="True" Offset="62C" Icon="ICON_BLASTSCOURGE"/>
+    <Abnormality ID="20" IsDebuff="True" Offset="63C" Icon="ICON_BLASTSCOURGE"/>
   </DEBUFF_Abnormalities>
   <MISC_Abnormalities>
     <Abnormality ID="0" IsDebuff="False" Offset="690" HasConditions="False" Icon="ITEM_DASH"/>
