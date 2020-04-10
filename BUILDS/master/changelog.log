@@ -1,6 +1,6 @@
 ﻿**UPDATE 1.0.3.86**
 
-**Monster Hunter World 13.01.00**
+**Monster Hunter World 13.0.1**
 
 - Added build version 410013;
 - Added Furious Rajang;
@@ -48,5 +48,6 @@ The monster widget also got new features:
 
 **Bug Fixes**
 
+- Fixed Blastcourge abnormality;
 - Fixed monster health bar getting pushed down when it's docked at the bottom;
 - Fixed monster data, read [this](https://github.com/Haato3o/HunterPie/pull/35) to see which monsters changed.

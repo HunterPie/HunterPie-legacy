@@ -1,8 +1,8 @@
 {
     "address\\MonsterHunterWorld.410013.map": "81bfe127601a8a32b0aaa13e48d2bac5718c92e9446586c56c256827652e6f97",
-    "changelog.log": "ccc00fbf82db3fa9cf47bc78338e0360a3c073073c7b052f56d386827d3026da",
+    "changelog.log": "15cc18503b52d9014644fbf16a30b9d70dca501fac5c2a0837078732d2eff9ae",
     "DiscordRPC.dll": "19766e1e7b0bb1fffb16f734983fd086d072cd27acce1ef5d60082f91a0a3cc2",
-    "HunterPie.exe": "a4d73c9cc7de5ecdaa06c928c8b5b6bc8f6c766493e149ab87d9ddbde87d0d31",
+    "HunterPie.exe": "bd54b73238d71e3052fc034c5a57c42bff29eb118f9bd6cab845782029786cef",
     "HunterPie.Resources\\Monsters\\Icons\\em001_00.png": "8821db22cfee14f2da665bb05c38f4bc601b5c040445f6d753f142811d3fc01f",
     "HunterPie.Resources\\Monsters\\Icons\\em001_01.png": "78a39f915a1a3b901591eba3976737d0c26f02ddefc2f264ccedc10e6b671e03",
     "HunterPie.Resources\\Monsters\\Icons\\em001_02.png": "f3149b20cd3e19c68ece4fb77321ca591f2d2580e440e43464e7d6280f10208c",
@@ -75,7 +75,7 @@
     "Languages\\en-us.xml": "7657ee811aca9c9b585a040060ea6bd00e26af24181f83f6227193ae673404d2",
     "Languages\\es-es.xml": "8d2f3525f0a9dcc4f12b1baed9dcea27792277320502816d2858600be9573a4d",
     "Languages\\fr-fr.xml": "7636ba43a0e94d65bdc05ac4842dfd972d6390e3e47714abedf2e45a902e8514",
-    "Languages\\ita-it.xml": "3f9c6c856b54445e337660eabf2544037088aeaa145c204b1b7b29573c254c54",
+    "Languages\\ita-it.xml": "7b3b1cd8de506cc86e261333f092ba6b6308e6b66637795301e0f4643c5ad2cc",
     "Languages\\jp-jp.xml": "cd361c7939c7595325a4d8285129b35678aa4fe8ea627ecb735651acab48f427",
     "Languages\\ko-kr.xml": "f163cc0574bee63afae85475b7e461cd0f71f3696d23def20c47d2e42a3094e2",
     "Languages\\pt-br.xml": "f746b92e0b4a46773a6990290d87b346121e4acc7d01e8a75d87aefd086e7c0a",
@@ -85,6 +85,7 @@
     "Markdig.dll": "13a5708d710363aca4dc5de941139e0ac56b6776979527154fd62ef36e7c0094",
     "Markdig.Wpf.dll": "55a1fa0bd3b491dbb1ebd9059cd65a460e7d22f261a7a7a48eab8a5421e7b7fd",
     "Newtonsoft.Json.dll": "3598cccad5b535fea6f93662107a4183bfd6167bf1d0f80260436093edc2e3af",
-    "Themes\\RedMonsterBar.xaml": "8a1e816ecab602466338fc4cbcb4904492711691d23fde08ec064b1985a0a3aa",
+    "Themes\\CutePie.xaml": "2153ea87592d2d1f095e549c8b00006653e67fef27ab0f86927843a3f7a4ea5d",
+    "Themes\\RedMonsterBar.xaml": "38154ce5a9ac86171671472a94ec455f41a0177a9e1bf96ca5356f5fdac62c09",
     "version.txt": "c2fd2f5765628b016df92bc99254913436a8d6dbce704545484e46f208cfa043"
 }

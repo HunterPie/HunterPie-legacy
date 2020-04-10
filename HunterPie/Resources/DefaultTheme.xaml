@@ -11,6 +11,19 @@
         <GradientStop Color="#FFBDBDBD"/>
     </LinearGradientBrush>
 
+    <Style x:Key="OVERLAY_MONSTER_HEALTH_BAR_STYLE" TargetType="{x:Type Custom:MinimalHealthBar}">
+        <Setter Property="RenderTransform">
+            <Setter.Value>
+                <TransformGroup>
+                    <ScaleTransform/>
+                    <SkewTransform AngleX="45"/>
+                    <RotateTransform/>
+                    <TranslateTransform/>
+                </TransformGroup>
+            </Setter.Value>
+        </Setter>
+    </Style>
+
     <LinearGradientBrush x:Key="OVERLAY_MONSTER_STAMINA_BAR_COLOR" EndPoint="1,0" StartPoint="0,0">
         <GradientStop Color="#E5ECAF2F" Offset="1"/>
         <GradientStop Color="#E5DE9F15"/>
@@ -90,6 +103,7 @@
                 </LinearGradientBrush>
             </Setter.Value>
         </Setter>
+        <Setter Property="Margin" Value="32,-3,4,0"/>
         <Setter Property="FontWeight" Value="Normal"/>
         <Setter Property="FontSize" Value="12"/>
     </Style>
