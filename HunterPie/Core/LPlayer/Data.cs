@@ -2,7 +2,7 @@
     /*
      Player data structs, they'll be used in the future for some stuff I want to implement :)
     */
-    class GameStructs {
+    public class GameStructs {
         public struct Weapon {
             public int Type;
             public int ID;
