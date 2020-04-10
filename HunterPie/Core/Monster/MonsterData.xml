@@ -532,14 +532,16 @@
       <Weakness ID="ELEMENT_WATER" Stars="2"/>
     </Weaknesses>
     <Crown Mini="0.9" Silver="1.15" Gold="1.23"/>
-    <Parts Max="8">
+    <Parts Max="10">
       <Part Name="MONSTER_PART_REMOVABLE_TAIL" IsRemovable="True"/>
       <Part Name="MONSTER_PART_HEAD" Group="HEAD" IsRemovable="False"/>
       <Part Name="MONSTER_PART_BODY" Group="BODY" IsRemovable="False"/>
+      <Part Name="MONSTER_PART_BACK" Group="BACK" IsRemovable="False"/>
       <Part Name="MONSTER_PART_LARM" Group="ARM" IsRemovable="False"/>
       <Part Name="MONSTER_PART_RARM" Group="ARM" IsRemovable="False"/>
       <Part Name="MONSTER_PART_LLEG" Group="LEG" IsRemovable="False"/>
       <Part Name="MONSTER_PART_RLEG" Group="LEG" IsRemovable="False"/>
+      <Part Name="MONSTER_PART_TAIL" Group="TAIL" IsRemovable="False"/>
       <Part Name="MONSTER_PART_TAIL" Group="TAIL" IsRemovable="False"/>
     </Parts>
   </Monster>
