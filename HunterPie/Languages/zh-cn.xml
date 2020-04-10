@@ -1,5 +1,6 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
 <Strings lang="Simplified Chinese">
+<!--Translated for HunterPie Ver 1.0.3.86 by FengYuu-->
   <Monsters>
     <Monster ID="em001_00" Name="雌火龙"/>
     <Monster ID="em001_01" Name="樱火龙"/>
@@ -13,6 +14,7 @@
     <Monster ID="em018_00" Name="黑狼鸟"/>
     <Monster ID="em018_05" Name="战痕黑狼鸟"/>
     <Monster ID="em023_00" Name="金狮子"/>
+    <Monster ID="em023_05" Name="激昂金狮子"/>
     <Monster ID="em024_00" Name="钢龙"/>
     <Monster ID="em026_00" Name="炎妃龙"/>
     <Monster ID="em027_00" Name="炎王龙"/>
@@ -28,6 +30,7 @@
     <Monster ID="em057_00" Name="雷狼龙"/>
     <Monster ID="em057_01" Name="狱狼龙"/>
     <Monster ID="em063_00" Name="碎龙"/>
+    <Monster ID="em063_05" Name="猛爆碎龙"/>
     <Monster ID="em080_00" Name="斩龙"/>
     <Monster ID="em080_01" Name="硫斩龙"/>
     <Monster ID="em100_00" Name="蛮颚龙"/>
