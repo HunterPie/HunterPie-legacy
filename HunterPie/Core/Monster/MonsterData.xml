@@ -238,7 +238,7 @@
     <Crown Mini="0.9" Silver="1.11" Gold="1.18"/>
     <Parts Max="11">
       <Part Name="MONSTER_PART_REMOVABLE_HORNS" IsRemovable="True"/>
-      <Part Name="MONSTER_PART_REMOVABLE_TAIL" IsRemovable="True"/>
+      <Part Name="MONSTER_PART_TAIL" Group="TAIL" IsRemovable="True"/>
       <Part Name="MONSTER_PART_HEAD" Group="HEAD" IsRemovable="False"/>
       <Part Name="MONSTER_PART_BODY" Group="BODY" IsRemovable="False"/>
       <Part Name="MONSTER_PART_LARM" Group="ARM" IsRemovable="False"/>
