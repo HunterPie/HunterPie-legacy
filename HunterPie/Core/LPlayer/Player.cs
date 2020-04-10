@@ -72,7 +72,6 @@ namespace HunterPie.Core {
             set {
                 if (_weaponId != value) {
                     _weaponId = value;
-                    GetPlayerGear();
                     _onWeaponChange();
                 }
             }
@@ -124,8 +123,9 @@ namespace HunterPie.Core {
             SecondaryMantle = null;
         }
 
+        #region Events
         // Event handlers
-        // Level event handler
+
         public delegate void PlayerEvents(object source, EventArgs args);
         public event PlayerEvents OnLevelChange;
         public event PlayerEvents OnZoneChange;
@@ -138,7 +138,6 @@ namespace HunterPie.Core {
         public event PlayerEvents OnVillageLeave;
 
         // Dispatchers
-        
         protected virtual void _onLogin() {
             OnCharacterLogin?.Invoke(this, EventArgs.Empty);
         }
@@ -174,7 +173,10 @@ namespace HunterPie.Core {
         protected virtual void _onVillageLeave() {
             OnVillageLeave?.Invoke(this, EventArgs.Empty);
         }
+        #endregion
 
+
+        #region Scanner
         public void StartScanning() {
             ScanPlayerInfoRef = new ThreadStart(GetPlayerInfo);
             ScanPlayerInfo = new Thread(ScanPlayerInfoRef) {
@@ -187,6 +189,23 @@ namespace HunterPie.Core {
         public void StopScanning() {
             ScanPlayerInfo.Abort();
         }
+        #endregion
+
+        #region Manual Player Data
+        /*
+            Player data that needs to be called by an external function and doesn't need to keep track of this data
+            every second.
+        */
+        public GameStructs.Gear GetPlayerGear() {
+            GameStructs.Gear PlayerGear = new GameStructs.Gear();
+            return PlayerGear;
+        }
+        #endregion
+
+        #region Automatic Player Data
+        /*
+            Player data that is tracked by the Player class, cannot be called by an external function.
+        */
 
         private void GetPlayerInfo() {
             while (Scanner.GameIsRunning) {
@@ -195,7 +214,6 @@ namespace HunterPie.Core {
                     GetPlayerMasterRank();
                     GetPlayerName();
                     GetWeaponId();
-                    //GetPlayerGear();
                     GetFertilizers();
                     GetArgosyData();
                     GetTailraidersData();
@@ -232,7 +250,6 @@ namespace HunterPie.Core {
                         LEVEL_ADDRESS = pAddress;
                         GetPlayerLevel();
                         GetPlayerName();
-                        GetPlayerGear();
                         PlayerAddress = pAddress;
                         this.PlayerSlot = playerSlot;
                         return true;
@@ -277,10 +294,6 @@ namespace HunterPie.Core {
             Address = Scanner.READ_MULTILEVEL_PTR(Address, Memory.Address.Offsets.WeaponOffsets);
             PlayerStructAddress = Address;
             WeaponID = Scanner.READ_BYTE(Address);
-        }
-
-        private void GetPlayerGear() {
-            
         }
 
         private void GetSessionId() {
@@ -525,5 +538,7 @@ namespace HunterPie.Core {
                 }
             }
         }
+        
+        #endregion
     }
 }
