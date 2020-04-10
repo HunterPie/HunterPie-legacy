@@ -16,7 +16,7 @@ namespace HunterPie.Memory {
             public static int[] AbnormalityOffsets;
             public static int[] MonsterOffsets;
             public static int[] MonsterSelectedOffsets;
-
+            public static int[] PlayerGearOffsets;
             
 
             public static int FertilizersOffset;
@@ -161,6 +161,7 @@ namespace HunterPie.Memory {
             LoadOffsetsFromDict("DamageOffsets", out Offsets.DamageOffsets, Offsets.DamageOffsets);
             LoadOffsetsFromDict("AbnormalityOffsets", out Offsets.AbnormalityOffsets, Offsets.AbnormalityOffsets);
             LoadOffsetsFromDict("MonsterSelectedOffsets", out Offsets.MonsterSelectedOffsets, Offsets.MonsterSelectedOffsets);
+            LoadOffsetsFromDict("PlayerGearOffsets", out Offsets.PlayerGearOffsets, Offsets.PlayerGearOffsets);
             // Clear addresses loaded into memory
             MappedAddresses.Clear();
             MappedOffsets.Clear();

@@ -326,9 +326,9 @@ namespace HunterPie.Core {
             bool isSelect = Scanner.READ_LONGLONG(selectedPtr + 0x128) != 0x0 && Scanner.READ_LONGLONG(selectedPtr + 0x130) != 0x0 && Scanner.READ_LONGLONG(selectedPtr + 0x160) != 0x0;
             Int64 SelectedMonsterAddress = Scanner.READ_LONGLONG(selectedPtr + 0x148); // don't actually need this as it will be the same as TargettedMonsterAddress if isSelect is true
 
-            this.IsTarget = isSelect && (TargettedMonsterAddress == this.MonsterAddress) || (SelectedMonsterAddress == this.MonsterAddress);
+            this.IsTarget = TargettedMonsterAddress == 0 ? SelectedMonsterAddress == this.MonsterAddress : TargettedMonsterAddress == this.MonsterAddress;
+
             if (!isSelect) {
-                this.IsTarget = false;
                 this.IsSelect = 0; // nothing is selected
             } else if (IsTarget) {
                 this.IsSelect = 1; // this monster is selected

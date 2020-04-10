@@ -2,16 +2,35 @@
     /*
      Player data structs, they'll be used in the future for some stuff I want to implement :)
     */
-    class Data {
-        public struct Gear {
-            public int Weapon;
-            public int Helmet;
-            public int Armor;
-            public int Gloves;
-            public int Coil;
-            public int Greaves;
-            public int Charm;
-            public int[] Mantle;
+    class GameStructs {
+        public struct Weapon {
+            public int Type;
+            public int ID;
+            public int[] Decorations;
+            public int[] Augments;
         }
+        public struct Armor {
+            public int ID;
+            public int[] Decorations;
+            public int[] Augments;
+        }
+        public struct Charm {
+            public int ID;
+        }
+        public struct Mantle {
+            public int ID;
+            public int[] Decorations;
+        }
+        public struct Gear {
+            public Weapon Weapon;
+            public Armor Helmet;
+            public Armor Chest;
+            public Armor Hands;
+            public Armor Waist;
+            public Armor Legs;
+            public Charm Charm;
+            public Mantle[] Mantles;
+        }
+
     }
 }

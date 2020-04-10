@@ -116,10 +116,7 @@ namespace HunterPie.Core {
         // Threading
         private ThreadStart ScanPlayerInfoRef;
         private Thread ScanPlayerInfo;
-
-        // Player data that will be used eventually
-        private Data.Gear Gear = new Data.Gear();
-
+        
         ~Player() {
             PlayerParty = null;
             Harvest = null;
@@ -283,23 +280,7 @@ namespace HunterPie.Core {
         }
 
         private void GetPlayerGear() {
-            Int64 PlayerGearAddress = LEVEL_ADDRESS + 0x18;
-            Gear.Weapon = Scanner.READ_INT(PlayerGearAddress);
-            Gear.Helmet = Scanner.READ_INT(PlayerGearAddress + 0x04);
-            Gear.Armor = Scanner.READ_INT(PlayerGearAddress + 0x08);
-            Gear.Gloves = Scanner.READ_INT(PlayerGearAddress + 0x0C);
-            Gear.Coil = Scanner.READ_INT(PlayerGearAddress + 0x10);
-            Gear.Greaves = Scanner.READ_INT(PlayerGearAddress + 0x14);
-            Gear.Charm = Scanner.READ_INT(PlayerGearAddress + 0x18);
-            Gear.Mantle = new int[2] { Scanner.READ_INT(PlayerGearAddress + 0x14), Scanner.READ_INT(PlayerGearAddress + 0x18) };
-            /*Debugger.Debug($"" +
-                            $"Weapon: {Gear.Weapon}\n" +
-                            $"Helmet: {Gear.Helmet}\n" +
-                            $"Armor: {Gear.Armor}\n" +
-                            $"Belt: {Gear.Coil}\n" +
-                            $"Legs: {Gear.Greaves}\n" +
-                            $"Gloves: {Gear.Gloves}\n" +
-                            $"Charm: {Gear.Charm}");*/
+            
         }
 
         private void GetSessionId() {
