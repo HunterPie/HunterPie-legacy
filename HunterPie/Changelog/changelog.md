@@ -48,5 +48,6 @@ The monster widget also got new features:
 
 **Bug Fixes**
 
+- Fixed Blastcourge abnormality;
 - Fixed monster health bar getting pushed down when it's docked at the bottom;
 - Fixed monster data, read [this](https://github.com/Haato3o/HunterPie/pull/35) to see which monsters changed.

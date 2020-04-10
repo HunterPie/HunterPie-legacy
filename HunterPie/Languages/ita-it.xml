@@ -14,6 +14,7 @@
     <Monster ID="em018_00" Name="Yian Garuga"/>
     <Monster ID="em018_05" Name="Yian Garuga Deturpato"/>
     <Monster ID="em023_00" Name="Rajang"/>
+	  <Monster ID="em023_05" Name="Rajang Furioso"/>
     <Monster ID="em024_00" Name="Kushala Daora"/>
     <Monster ID="em026_00" Name="Lunastra"/>
     <Monster ID="em027_00" Name="Teostra"/>
@@ -29,6 +30,7 @@
     <Monster ID="em057_00" Name="Zinogre"/>
     <Monster ID="em057_01" Name="Zinogre Stigeo"/>
     <Monster ID="em063_00" Name="Brachydios"/>
+	  <Monster ID="em063_05" Name="Brachydios Infuriato"/>
     <Monster ID="em080_00" Name="Glavenus"/>
     <Monster ID="em080_01" Name="Glavenus Caustico"/>
     <Monster ID="em100_00" Name="Anjanath"/>
@@ -174,6 +176,7 @@
     <Ailment ID="STATUS_ELDERSEAL" Name="Sigillo Anziano"/>
     <Ailment ID="STATUS_SMOKING" Name="Fumante"/>
     <Ailment ID="STATUS_FELYNETRAP" Name="Trappola Felyne"/>
+	  <Ailment ID="STATUS_VINETRAP" Name="Trappola Rampicante"/>
     <Ailment ID="STATUS_CLAW" Name="Artigliato"/>
     <Ailment ID="STATUS_VIOLATED" Name="Infuriamento"/>
   </Ailments>

@@ -186,6 +186,13 @@ namespace HunterPie.Memory {
             return BitConverter.ToInt32(Buffer, 0);
         }
 
+        public static uint READ_UINT(Int64 Address) {
+            int bytesRead = 0;
+            byte[] Buffer = new byte[sizeof(uint)];
+            ReadProcessMemory((int)ProcessHandle, (IntPtr)Address, Buffer, sizeof(uint), ref bytesRead);
+            return BitConverter.ToUInt32(Buffer, 0);
+        }
+
         public static short READ_SHORT(Int64 Address) {
             int bytesRead = 0;
             byte[] Buffer = new byte[sizeof(short)];

@@ -197,8 +197,56 @@ namespace HunterPie.Core {
             every second.
         */
         public GameStructs.Gear GetPlayerGear() {
+            Int64 PlayerGearBase = Scanner.READ_MULTILEVEL_PTR(Address.BASE + Address.EQUIPMENT_OFFSET, Address.Offsets.PlayerGearOffsets);
+
+            // Helm
+            GameStructs.Armor Helm = new GameStructs.Armor() {
+                ID = Scanner.READ_INT(PlayerGearBase),
+                Decorations = GetDecorationsFromGear(PlayerGearBase, 0)
+            };
+
+            // Chest
+            GameStructs.Armor Chest = new GameStructs.Armor() {
+                ID = Scanner.READ_INT(PlayerGearBase + 0x4),
+                Decorations = GetDecorationsFromGear(PlayerGearBase + 0x4, 1)
+            };
+
+            // Arms
+            GameStructs.Armor Arms = new GameStructs.Armor() {
+                ID = Scanner.READ_INT(PlayerGearBase + 0x8),
+                Decorations = GetDecorationsFromGear(PlayerGearBase + 0x8, 2)
+            };
+
+            // Waist
+            GameStructs.Armor Waist = new GameStructs.Armor() {
+                ID = Scanner.READ_INT(PlayerGearBase + 0xC),
+                Decorations = GetDecorationsFromGear(PlayerGearBase + 0xC, 3)
+            };
+
+            // Waist
+            GameStructs.Armor Legs = new GameStructs.Armor() {
+                ID = Scanner.READ_INT(PlayerGearBase + 0x10),
+                Decorations = GetDecorationsFromGear(PlayerGearBase + 0x10, 4)
+            };
+
+            // Gets player weapon info
+            GameStructs.Weapon WeaponInfo = new GameStructs.Weapon() {
+                ID = Scanner.READ_INT(PlayerGearBase)
+            };
+
             GameStructs.Gear PlayerGear = new GameStructs.Gear();
             return PlayerGear;
+        }
+
+        private GameStructs.Decoration[] GetDecorationsFromGear(Int64 BaseAddress, int GearIndex) {
+            GameStructs.Decoration[] Decorations = new GameStructs.Decoration[3];
+            for (int DecorationIndex = 0; DecorationIndex < 3; DecorationIndex++) {
+                GameStructs.Decoration dummy = new GameStructs.Decoration() {
+                    ID = GameStructs.ConvertToZero(Scanner.READ_UINT(BaseAddress + 0x30 + (0x3 * GearIndex * 4) + (0x4 * DecorationIndex)))
+                };
+                Decorations[DecorationIndex] = dummy;
+            }
+            return Decorations;
         }
         #endregion
 
