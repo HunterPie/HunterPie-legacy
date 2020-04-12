@@ -361,12 +361,14 @@ namespace HunterPie {
             // Game events
             MonsterHunter.Player.OnZoneChange += OnZoneChange;
             MonsterHunter.Player.OnCharacterLogin += OnLogin;
+            MonsterHunter.Player.OnCharacterLogout += OnLogout;
             MonsterHunter.Player.OnSessionChange += OnSessionChange;
         }
 
         private void UnhookGameEvents() {
             MonsterHunter.Player.OnZoneChange -= OnZoneChange;
             MonsterHunter.Player.OnCharacterLogin -= OnLogin;
+            MonsterHunter.Player.OnCharacterLogout -= OnLogout;
             MonsterHunter.Player.OnSessionChange -= OnSessionChange;
         }
 
@@ -383,6 +385,15 @@ namespace HunterPie {
 
         public void OnLogin(object source, EventArgs e) {
             Debugger.Log($"Logged on {MonsterHunter.Player.Name}");
+            Dispatcher.BeginInvoke(System.Windows.Threading.DispatcherPriority.Background, new Action(() => {
+                BUTTON_UPLOADBUILD.IsEnabled = true;
+            }));
+        }
+
+        public void OnLogout(object source, EventArgs e) {
+            Dispatcher.BeginInvoke(System.Windows.Threading.DispatcherPriority.Background, new Action(() => {
+                BUTTON_UPLOADBUILD.IsEnabled = false;
+            }));
         }
 
         public void OnGameStart(object source, EventArgs e) {
@@ -542,6 +553,10 @@ namespace HunterPie {
 
         private void OnChangelogButtonClick(object sender, MouseButtonEventArgs e) {
             OpenChangelog();
+        }
+
+        private void OnUploadBuildButtonClick(object sender, MouseButtonEventArgs e) {
+            Honey.LinkStructureBuilder(MonsterHunter.Player.GetPlayerGear());
         }
 
         private void OnLaunchGameButtonClick(object sender, RoutedEventArgs e) {

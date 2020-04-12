@@ -112,23 +112,29 @@ namespace HunterPie.GUI.Widgets {
             SwitchSizeBasedOnTarget();
 
             // Parts
+            int index = 0;
             this.MonsterPartsContainer.Children.Clear();
-            foreach (Part mPart in Monster.Parts) {
+            while (index < Monster.Parts.Count) {
+                Part mPart = Monster.Parts[index];
                 Monster_Widget.Parts.MonsterPart PartDisplay = new Monster_Widget.Parts.MonsterPart() {
                     Style = FindResource("OVERLAY_MONSTER_PART_BAR_STYLE") as Style
                 };
                 PartDisplay.SetContext(mPart, this.MonsterPartsContainer.ItemWidth);
                 this.MonsterPartsContainer.Children.Add(PartDisplay);
+                index++;
             }
 
             // Ailments
+            index = 0;
             this.MonsterAilmentsContainer.Children.Clear();
-            foreach (Ailment ailment in Monster.Ailments) {
+            while (index < Monster.Ailments.Count) {
+                Ailment ailment = Monster.Ailments[index];
                 Monster_Widget.Parts.MonsterAilment AilmentDisplay = new Monster_Widget.Parts.MonsterAilment() {
                     Style = FindResource("OVERLAY_MONSTER_AILMENT_BAR_STYLE") as Style
                 };
                 AilmentDisplay.SetContext(ailment, this.MonsterAilmentsContainer.ItemWidth);
                 MonsterAilmentsContainer.Children.Add(AilmentDisplay);
+                index++;
             }
 
             // Enrage

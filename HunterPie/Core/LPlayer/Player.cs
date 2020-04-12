@@ -60,6 +60,11 @@ namespace HunterPie.Core {
                     _onZoneChange();
                     if (PeaceZones.Contains(value)) _onPeaceZoneEnter();
                     if (_HBZones.Contains(value)) _onVillageEnter();
+                    if (value == 0 && LEVEL_ADDRESS != 0x0) {
+                        LEVEL_ADDRESS = 0x0;
+                        PlayerAddress = 0x0;
+                        _onLogout();
+                    }
                 }
             }
         }
@@ -132,6 +137,7 @@ namespace HunterPie.Core {
         public event PlayerEvents OnWeaponChange;
         public event PlayerEvents OnSessionChange;
         public event PlayerEvents OnCharacterLogin;
+        public event PlayerEvents OnCharacterLogout;
         public event PlayerEvents OnPeaceZoneEnter;
         public event PlayerEvents OnVillageEnter;
         public event PlayerEvents OnPeaceZoneLeave;
@@ -140,6 +146,10 @@ namespace HunterPie.Core {
         // Dispatchers
         protected virtual void _onLogin() {
             OnCharacterLogin?.Invoke(this, EventArgs.Empty);
+        }
+
+        protected virtual void _onLogout() {
+            OnCharacterLogout?.Invoke(this, EventArgs.Empty);
         }
 
         protected virtual void _onLevelUp() {
@@ -229,25 +239,105 @@ namespace HunterPie.Core {
                 Decorations = GetDecorationsFromGear(PlayerGearBase + 0x10, 4)
             };
 
-            // Gets player weapon info
-            GameStructs.Weapon WeaponInfo = new GameStructs.Weapon() {
-                ID = Scanner.READ_INT(PlayerGearBase)
+            // Charm
+            GameStructs.Charm Charm = new GameStructs.Charm() {
+                ID = Scanner.READ_INT(PlayerGearBase + 0x14)
             };
 
-            GameStructs.Gear PlayerGear = new GameStructs.Gear();
+            // Weapon
+            GameStructs.Weapon Weapon = new GameStructs.Weapon() {
+                Type = Scanner.READ_INT(PlayerGearBase + 0x124),
+                ID = Scanner.READ_INT(PlayerGearBase + 0x128),
+                Decorations = GetWeaponDecorations(PlayerGearBase + 0x128)
+            };
+
+            // Primary Tool
+            GameStructs.SpecializedTool PrimaryTool = new GameStructs.SpecializedTool() {
+                ID = Scanner.READ_INT(PlayerGearBase + 0x158),
+                Decorations = GetMantleDecorations(PlayerGearBase + 0x164)
+            };
+
+            // Secondary Tool
+            GameStructs.SpecializedTool SecondaryTool = new GameStructs.SpecializedTool() {
+                ID = Scanner.READ_INT(PlayerGearBase + 0x15C),
+                Decorations = GetMantleDecorations(PlayerGearBase + 0x170)
+            };
+            // Now we put all the data in the player gear struct
+            GameStructs.Gear PlayerGear = new GameStructs.Gear() {
+                Helmet = Helm,
+                Chest = Chest,
+                Hands = Arms,
+                Waist = Waist,
+                Legs = Legs,
+                Charm = Charm,
+                Weapon = Weapon,
+                SpecializedTools = new GameStructs.SpecializedTool[2] {
+                    PrimaryTool, SecondaryTool
+                }
+            };
             return PlayerGear;
+        }
+
+        // TODO: Finish these
+        private GameStructs.NewAugment[] GetWeaponNewAugments(Int64 BaseAddress) {
+            GameStructs.NewAugment[] NewAugments = new GameStructs.NewAugment[7];
+            return NewAugments;
+        }
+
+        private GameStructs.AwakenedSkill[] GetWeaponAwakenedSkills(Int64 BaseAddress) {
+            GameStructs.AwakenedSkill[] AwakenedSkills = new GameStructs.AwakenedSkill[5];
+            return AwakenedSkills;
+        }
+
+        private GameStructs.CustomAugment[] GetCustomAugments(Int64 BaseAddress) {
+            GameStructs.CustomAugment[] CustomAugments = new GameStructs.CustomAugment[7];
+            return CustomAugments;
         }
 
         private GameStructs.Decoration[] GetDecorationsFromGear(Int64 BaseAddress, int GearIndex) {
             GameStructs.Decoration[] Decorations = new GameStructs.Decoration[3];
             for (int DecorationIndex = 0; DecorationIndex < 3; DecorationIndex++) {
                 GameStructs.Decoration dummy = new GameStructs.Decoration() {
-                    ID = GameStructs.ConvertToZero(Scanner.READ_UINT(BaseAddress + 0x30 + (0x3 * GearIndex * 4) + (0x4 * DecorationIndex)))
+                    ID = GameStructs.ConvertToZero(Scanner.READ_UINT(BaseAddress + 0x30 + (0x3 * GearIndex * 0x4) + (0x4 * DecorationIndex)))
                 };
                 Decorations[DecorationIndex] = dummy;
             }
             return Decorations;
         }
+
+        private GameStructs.Decoration[] GetWeaponDecorations(Int64 BaseAddress) {
+            GameStructs.Decoration[] Decorations = new GameStructs.Decoration[3];
+            for (int DecorationIndex = 0; DecorationIndex < 3; DecorationIndex++) {
+                GameStructs.Decoration dummy = new GameStructs.Decoration() {
+                    ID = GameStructs.ConvertToZero(Scanner.READ_UINT(BaseAddress + ((DecorationIndex + 1) * 0x4)))
+                };
+                Decorations[DecorationIndex] = dummy;
+            }
+            return Decorations;
+        }
+
+        private GameStructs.Augment[] GetWeaponAugments(Int64 BaseAddress) {
+            GameStructs.Augment[] Augments = new GameStructs.Augment[3];
+            for (int AugmentIndex = 0; AugmentIndex < 3; AugmentIndex++) {
+                GameStructs.Augment dummy = new GameStructs.Augment() {
+                    ID = Scanner.READ_INT(BaseAddress + 0x24 + (AugmentIndex * 0x4))
+                };
+                Augments[AugmentIndex] = dummy;
+            }
+            return Augments;
+        }
+
+        private GameStructs.Decoration[] GetMantleDecorations(Int64 BaseAddress) {
+            GameStructs.Decoration[] Decorations = new GameStructs.Decoration[2];
+            for (int DecorationIndex = 0; DecorationIndex < 2; DecorationIndex++) {
+                GameStructs.Decoration dummy = new GameStructs.Decoration() {
+                    ID = GameStructs.ConvertToZero(Scanner.READ_UINT(BaseAddress + (DecorationIndex * 0x4)))
+                };
+                Decorations[DecorationIndex] = dummy;
+            }
+            return Decorations;
+        }
+
         #endregion
 
         #region Automatic Player Data

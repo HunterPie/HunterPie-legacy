@@ -16,8 +16,8 @@
     </UserControl.Resources>
     <Canvas ClipToBounds="True" Width="320" Height="46">
         <StackPanel Height="46" Orientation="Horizontal">
-            <Canvas Width="36" >
-                <Image x:Name="PlayerClassIcon" Width="23" HorizontalAlignment="Left" Height="23" Canvas.Top="12" Canvas.Left="1" />
+            <Canvas Width="38" >
+                <Image x:Name="PlayerClassIcon" Width="22" HorizontalAlignment="Left" Height="23" Canvas.Top="11" Canvas.Left="1" />
                 <Image x:Name="PartyLeader" Source="{StaticResource CROWN_MINI}" Visibility="Collapsed" Height="14" Width="14" RenderTransformOrigin="0.5,0.5" Canvas.Left="-1" Canvas.Top="-3">
                     <Image.RenderTransform>
                         <TransformGroup>
@@ -28,10 +28,10 @@
                         </TransformGroup>
                     </Image.RenderTransform>
                 </Image>
-                <TextBlock x:Name="HighRank" Text="999" Foreground="WhiteSmoke" Canvas.Left="17" TextAlignment="Center" Width="19"/>
-                <TextBlock x:Name="MasterRank" Text="999" Foreground="WhiteSmoke" Canvas.Left="17" Canvas.Top="29" TextAlignment="Center" Width="19"/>
+                <TextBlock x:Name="HighRank" Text="999" Foreground="WhiteSmoke" Canvas.Left="16" TextAlignment="Center" Width="21" Canvas.Top="-2"/>
+                <TextBlock x:Name="MasterRank" Text="999" Foreground="WhiteSmoke" Canvas.Left="16" Canvas.Top="31" TextAlignment="Center" Width="21"/>
             </Canvas>
-            <TextBlock x:Name="PlayerName" Foreground="WhiteSmoke" Text="Player" MaxWidth="200" Width="148" DockPanel.Dock="Left" FontSize="20" FontWeight="Medium" TextTrimming="CharacterEllipsis" TextOptions.TextHintingMode="Fixed" Padding="2,7,0,0"/>
+            <TextBlock x:Name="PlayerName" Foreground="WhiteSmoke" Text="Player" MaxWidth="200" Width="146" DockPanel.Dock="Left" FontSize="20" FontWeight="Medium" TextTrimming="CharacterEllipsis" TextOptions.TextHintingMode="Fixed" Padding="2,7,0,0"/>
             <WrapPanel Orientation="Vertical" Width="136" VerticalAlignment="Center">
                 <TextBlock x:Name="TotalDamage" Text="6000" Foreground="WhiteSmoke" Width="89" MaxWidth="90" FontSize="16" FontWeight="Medium" Height="23">
                     <TextBlock.Style>

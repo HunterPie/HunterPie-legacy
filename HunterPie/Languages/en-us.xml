@@ -392,6 +392,7 @@
     <Console>
       <String ID="CONSOLE_CONSOLE" Name="CONSOLE"/>
       <String ID="CONSOLE_SETTINGS" Name="SETTINGS"/>
+      <String ID="CONSOLE_UPLOADBUILD" Name="UPLOAD BUILD"/>
       <String ID="CONSOLE_CHANGELOG" Name="PATCH NOTES"/>
       <String ID="CONSOLE_DISCORD" Name="DISCORD"/>
       <String ID="CONSOLE_GITHUB" Name="GITHUB"/>

@@ -127,7 +127,7 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
-    <Compile Include="Core\Integrations\Honey.cs" />
+    <Compile Include="Core\Integrations\Honey\Honey.cs" />
     <Compile Include="Core\KeyboardHook.cs" />
     <Compile Include="Core\Monster\Ailment.cs" />
     <Compile Include="Core\Monster\MonsterData.cs" />
@@ -435,7 +435,7 @@
     </BootstrapperPackage>
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="Core\Monster\MonsterData.xml" />
+    <None Include="Core\Monster\MonsterData.xml" />
   </ItemGroup>
   <ItemGroup>
     <EmbeddedResource Include="LOGO_HunterPie.ico" />
@@ -444,7 +444,7 @@
     <Folder Include="media\" />
   </ItemGroup>
   <ItemGroup>
-    <Resource Include="Core\LPlayer\AbnormalityData.xml" />
+    <None Include="Core\LPlayer\AbnormalityData.xml" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Languages\fr-fr.xml">
@@ -695,6 +695,9 @@
     <None Include="HunterPie.Resources\Monsters\Icons\em063_05.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Core\Integrations\Honey\HoneyData.xml" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <Import Project="..\packages\jnm2.ReferenceAssemblies.net35.1.0.1\build\jnm2.ReferenceAssemblies.net35.targets" Condition="Exists('..\packages\jnm2.ReferenceAssemblies.net35.1.0.1\build\jnm2.ReferenceAssemblies.net35.targets')" />

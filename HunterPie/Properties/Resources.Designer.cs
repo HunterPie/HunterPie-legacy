@@ -77,6 +77,31 @@ namespace HunterPie.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to &lt;?xml version=&quot;1.0&quot; encoding=&quot;utf-8&quot; ?&gt;
+        ///&lt;Honey&gt;
+        ///  &lt;Gear&gt;
+        ///    &lt;Helms&gt;
+        ///      &lt;Helm HoneyID=&quot;1&quot; ID=&quot;39&quot;/&gt;
+        ///      &lt;Helm HoneyID=&quot;2&quot; ID=&quot;40&quot;/&gt;
+        ///      &lt;Helm HoneyID=&quot;3&quot; ID=&quot;147&quot;/&gt;
+        ///      &lt;Helm HoneyID=&quot;4&quot; ID=&quot;148&quot;/&gt;
+        ///      &lt;Helm HoneyID=&quot;5&quot; ID=&quot;41&quot;/&gt;
+        ///      &lt;Helm HoneyID=&quot;6&quot; ID=&quot;42&quot;/&gt;
+        ///      &lt;Helm HoneyID=&quot;7&quot; ID=&quot;43&quot;/&gt;
+        ///      &lt;Helm HoneyID=&quot;8&quot; ID=&quot;44&quot;/&gt;
+        ///      &lt;Helm HoneyID=&quot;9&quot; ID=&quot;45&quot;/&gt;
+        ///      &lt;Helm HoneyID=&quot;10&quot; ID=&quot;46&quot;/&gt;
+        ///      &lt;Helm HoneyID=&quot;11&quot; ID=&quot;117&quot;/&gt;
+        ///      &lt;Helm HoneyID=&quot;12&quot; ID=&quot;118&quot;/&gt;
+        ///      &lt;Helm  [rest of string was truncated]&quot;;.
+        /// </summary>
+        internal static string HoneyData {
+            get {
+                return ResourceManager.GetString("HoneyData", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Icon similar to (Icon).
         /// </summary>
         internal static System.Drawing.Icon LOGO_HunterPie {
