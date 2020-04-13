@@ -402,6 +402,7 @@
       <String ID="MESSAGE_QUIT" Name="Are you sure you want to exit HunterPie?"/>
       <String ID="TITLE_MISSING_PATH" Name="Monster Hunter World Path not found"/>
       <String ID="MESSAGE_MISSING_PATH" Name="You haven't added the game path yet. Do you want to do it now?"/>
+      <String ID="MESSAGE_UPLOAD_BUILD" Name="Do you want to upload your current character build to Honey Hunter World?"/>
       <!-- Console Messages -->
       <String ID="MESSAGE_MAP_LOAD" Name="Loaded {HunterPie_Map}"/>
       <String ID="MESSAGE_DISCORD_CONNECTED" Name="Starting new RPC connection"/>
@@ -606,6 +607,7 @@
       <String ID="STATIC_BUTTON_SAVE" Name="Save"/>
       <String ID="STATIC_REQUIRES_RESTART" Name="(Requires restart)"/>
       <String ID="STATIC_POSITION" Name="Position"/>
+      <String ID="STATIC_COPYCLIPBOARD" Name="Copy to clipboard"/>
       <!-- Settings Side bar-->
       <String ID="STATIC_GENERAL_SETTINGS" Name="General"/>
       <String ID="STATIC_DISCORD_SETTINGS" Name="Discord"/>

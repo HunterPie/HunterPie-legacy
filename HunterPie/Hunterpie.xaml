@@ -8,7 +8,7 @@
         xmlns:Core="clr-namespace:HunterPie.Core"
         xmlns:Properties="clr-namespace:HunterPie.Properties" x:Name="window" x:Class="HunterPie.Hunterpie"
         mc:Ignorable="d"
-        Title="HunterPie" Height="592" Width="980" MinWidth="1000" MaxWidth="1000" MaxHeight="600" ResizeMode="CanMinimize" WindowStyle="None" Closing="OnWindowClosing" AllowsTransparency="True" BorderBrush="#7F000000" BorderThickness="1" Background="{x:Null}">
+        Title="HunterPie" Height="592" Width="1000" MinWidth="1000" MaxWidth="1000" MaxHeight="600" ResizeMode="CanMinimize" WindowStyle="None" Closing="OnWindowClosing" AllowsTransparency="True" BorderBrush="#7F000000" BorderThickness="1" Background="{x:Null}">
     <Window.Resources>
         <ResourceDictionary>
             <ResourceDictionary.MergedDictionaries>
@@ -97,6 +97,7 @@
         </ResourceDictionary>
     </Window.Resources>
     <Grid Background="{StaticResource CONSOLE_BACKGROUND}">
+        
         <!-- Console content -->
         <Grid x:Name="ConsolePanel" Margin="51,157,0,2"/>
         <Rectangle HorizontalAlignment="Left" Height="130" VerticalAlignment="Top" Width="1000" Grid.ColumnSpan="2" Margin="0,22,0,0" Fill="{StaticResource CONSOLE_HEADER_BACKGROUND}"/>
@@ -166,7 +167,10 @@
                             <EventTrigger.Actions>
                                 <BeginStoryboard>
                                     <Storyboard Storyboard.TargetProperty="Width">
-                                        <DoubleAnimation To="206" Duration="0:0:0.150"/>
+                                        <DoubleAnimationUsingKeyFrames>
+                                            <LinearDoubleKeyFrame Value="50" KeyTime="0:0:0.3"/>
+                                            <LinearDoubleKeyFrame Value="206" KeyTime="0:0:0.45"/>
+                                        </DoubleAnimationUsingKeyFrames>
                                     </Storyboard>
                                 </BeginStoryboard>
                             </EventTrigger.Actions>
@@ -222,5 +226,6 @@
                 </Style>
             </Custom:CNotification.Style>
         </Custom:CNotification>
+        <Custom:WindowNotification x:Name="HunterPiePopup" Visibility="Collapsed" Icon="pack://siteoforigin:,,,/HunterPie.Resources/Monsters/Icons/em116_00.png" Text="{Binding Mode=OneWay, XPath=/Strings/Client/Console/String[@ID\=\'MESSAGE_UPLOAD_BUILD\']/@Name}" Margin="0,24,0,0" OnAccept="HunterPiePopup_OnAccept"/>
     </Grid>
 </Window>

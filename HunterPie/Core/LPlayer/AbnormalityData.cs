@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -13,7 +14,7 @@ namespace HunterPie.Core {
 
         static public void LoadAbnormalityData() {
             AbnormalitiesData = new XmlDocument();
-            AbnormalitiesData.LoadXml(Resources.AbnormalityData);
+            AbnormalitiesData.Load(Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "HunterPie.Resources/Data/AbnormalityData.xml"));
             Debugger.Warn(GStrings.GetLocalizationByXPath("/Console/String[@ID='MESSAGE_ABNORMALITIES_DATA_LOAD']"));
         }
 

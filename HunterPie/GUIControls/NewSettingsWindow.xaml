@@ -688,14 +688,14 @@
                         <GroupBox Header="{Binding Mode=OneTime, XPath=/Strings/Client/Settings/String[@ID\=\'STATIC_PRIMARY_SPEC_TOOL\']/@Name}" Height="187" Foreground="WhiteSmoke" BorderBrush="{x:Null}" Width="359" HorizontalAlignment="Center">
                             <StackPanel Margin="0,32,-2,12" Orientation="Vertical">
                                 <custom:Switcher x:Name="switchEnablePrimaryMantle" Text="{Binding Mode=OneTime, XPath=/Strings/Client/Settings/String[@ID\=\'ENABLE_PRIMARY_SPEC_TOOL\']/@Name}" ToolTip="{Binding Mode=OneTime, XPath=/Strings/Client/Settings/String[@ID\=\'ENABLE_PRIMARY_SPEC_TOOL_DESC\']/@Name}"/>
-                                <custom:ColorPicker x:Name="PrimaryMantleColor" NameText="{Binding Mode=OneTime, XPath=/Strings/Client/Settings/String[@ID\=\'STATIC_COLOR\']/@Name}" Margin="63,0" Height="34"/>
+                                <custom:ColorPicker x:Name="PrimaryMantleColor" NameText="{Binding Mode=OneTime, XPath=/Strings/Client/Settings/String[@ID\=\'STATIC_COLOR\']/@Name}" Margin="63,0,45,0" Height="34"/>
                                 <custom:PositionControl x:Name="PrimaryMantlePosition" ToolTip="{Binding Mode=OneTime, XPath=/Strings/Client/Settings/String[@ID\=\'STATIC_PRIMARY_SPEC_TOOL_POSITION_DESC\']/@Name}"/>
                             </StackPanel>
                         </GroupBox>
                         <GroupBox Header="{Binding Mode=OneTime, XPath=/Strings/Client/Settings/String[@ID\=\'STATIC_SECONDARY_SPEC_TOOL\']/@Name}" Height="187" Width="359" Foreground="WhiteSmoke" BorderBrush="{x:Null}" Margin="0,10,0,0">
                             <StackPanel Margin="0,32,-2,4" Orientation="Vertical">
                                 <custom:Switcher x:Name="switchEnableSecondaryMantle" Text="{Binding Mode=OneTime, XPath=/Strings/Client/Settings/String[@ID\=\'ENABLE_SECONDARY_SPEC_TOOL\']/@Name}" ToolTip="{Binding Mode=OneTime, XPath=/Strings/Client/Settings/String[@ID\=\'ENABLE_SECONDARY_SPEC_TOOL_DESC\']/@Name}"/>
-                                <custom:ColorPicker x:Name="SecondaryMantleColor" NameText="Color:" Margin="63,0" Height="36"/>
+                                <custom:ColorPicker x:Name="SecondaryMantleColor" NameText="{Binding Mode=OneTime, XPath=/Strings/Client/Settings/String[@ID\=\'STATIC_COLOR\']/@Name}" Margin="63,0,45,0"  Height="36"/>
                                 <custom:PositionControl x:Name="SecondaryMantlePosition" ToolTip="{Binding Mode=OneTime, XPath=/Strings/Client/Settings/String[@ID\=\'STATIC_SECONDARY_SPEC_TOOL_POSITION_DESC\']/@Name}"/>
                             </StackPanel>
                         </GroupBox>

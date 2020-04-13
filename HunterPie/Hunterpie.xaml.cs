@@ -30,7 +30,7 @@ namespace HunterPie {
         bool OfflineMode = false;
 
         // HunterPie version
-        const string HUNTERPIE_VERSION = "1.0.3.86";
+        const string HUNTERPIE_VERSION = "1.0.3.87";
 
         // Helpers
         IntPtr _windowHandle;
@@ -556,8 +556,7 @@ namespace HunterPie {
         }
 
         private void OnUploadBuildButtonClick(object sender, MouseButtonEventArgs e) {
-            string HoneyBuild = Honey.LinkStructureBuilder(MonsterHunter.Player.GetPlayerGear());
-            Process.Start(HoneyBuild);
+            this.HunterPiePopup.Visibility = Visibility.Visible;
         }
 
         private void OnLaunchGameButtonClick(object sender, RoutedEventArgs e) {
@@ -588,7 +587,14 @@ namespace HunterPie {
         private void OnDiscordButtonClick(object sender, MouseButtonEventArgs e) {
             Process.Start("https://discord.gg/5pdDq4Q");
         }
-#endregion
+
+
+        private void HunterPiePopup_OnAccept(object source, EventArgs args) {
+            string HoneyBuild = Honey.LinkStructureBuilder(MonsterHunter.Player.GetPlayerGear());
+            this.HunterPiePopup.Link = HoneyBuild;
+        }
+
+        #endregion
 
     }
 }

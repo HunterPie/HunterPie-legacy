@@ -171,6 +171,9 @@
     <Compile Include="GUIControls\Custom Controls\WeaknessDisplay.xaml.cs">
       <DependentUpon>WeaknessDisplay.xaml</DependentUpon>
     </Compile>
+    <Compile Include="GUIControls\Custom Controls\WindowNotification.xaml.cs">
+      <DependentUpon>WindowNotification.xaml</DependentUpon>
+    </Compile>
     <Compile Include="GUIControls\NewSettingsWindow.xaml.cs">
       <DependentUpon>NewSettingsWindow.xaml</DependentUpon>
     </Compile>
@@ -222,6 +225,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="GUIControls\Custom Controls\WeaknessDisplay.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="GUIControls\Custom Controls\WindowNotification.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -435,7 +442,9 @@
     </BootstrapperPackage>
   </ItemGroup>
   <ItemGroup>
-    <None Include="Core\Monster\MonsterData.xml" />
+    <None Include="HunterPie.Resources\Data\MonsterData.xml">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
   </ItemGroup>
   <ItemGroup>
     <EmbeddedResource Include="LOGO_HunterPie.ico" />
@@ -444,7 +453,9 @@
     <Folder Include="media\" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="Core\LPlayer\AbnormalityData.xml" />
+    <None Include="HunterPie.Resources\Data\AbnormalityData.xml">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
   </ItemGroup>
   <ItemGroup>
     <None Include="Languages\fr-fr.xml">
@@ -697,7 +708,9 @@
     </None>
   </ItemGroup>
   <ItemGroup>
-    <None Include="Core\Integrations\Honey\HoneyData.xml" />
+    <None Include="HunterPie.Resources\Data\HoneyData.xml">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <Import Project="..\packages\jnm2.ReferenceAssemblies.net35.1.0.1\build\jnm2.ReferenceAssemblies.net35.targets" Condition="Exists('..\packages\jnm2.ReferenceAssemblies.net35.1.0.1\build\jnm2.ReferenceAssemblies.net35.targets')" />

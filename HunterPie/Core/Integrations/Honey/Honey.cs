@@ -7,6 +7,7 @@ using System.Xml;
 using Debugger = HunterPie.Logger.Debugger;
 using GameStructs = HunterPie.Core.LPlayer.GameStructs;
 using HunterPie.Properties;
+using System.IO;
 
 namespace HunterPie.Core {
     public class Honey {
@@ -17,7 +18,7 @@ namespace HunterPie.Core {
         // since I don't want it to be in allocated in memory 100% of the time
         public static void LoadHoneyGearData() {
             HoneyGearData = new XmlDocument();
-            HoneyGearData.LoadXml(Resources.HoneyData);
+            HoneyGearData.Load(Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "HunterPie.Resources/Data/HoneyData.xml"));
         }
 
         public static void UnloadHoneyGearData() {

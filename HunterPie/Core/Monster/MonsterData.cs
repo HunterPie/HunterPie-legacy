@@ -3,6 +3,7 @@ using HunterPie.Logger;
 using System.Xml;
 using System.Collections.Generic;
 using System;
+using System.IO;
 
 namespace HunterPie.Core {
     class MonsterData {
@@ -19,7 +20,7 @@ namespace HunterPie.Core {
                     Debugger.Error(err);
                 }
             }
-            MonsterDataDocument.LoadXml(Resources.MonsterData);
+            MonsterDataDocument.Load(Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "HunterPie.Resources/Data/MonsterData.xml"));
             Debugger.Warn(GStrings.GetLocalizationByXPath("/Console/String[@ID='MESSAGE_MONSTER_DATA_LOAD']"));
         }
 

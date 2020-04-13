@@ -7,7 +7,6 @@ using System.Xml;
 
 namespace HunterPie.Core {
     public class Abnormalities {
-        XmlDocument AbnormalitiesData;
         Dictionary<string, Abnormality> CurrentAbnormalities = new Dictionary<string, Abnormality>();
 
         public Abnormality this[string AbnormalityID] {
@@ -16,14 +15,6 @@ namespace HunterPie.Core {
                 else { return null; }
             }
         }
-
-        #region Abnormalities Data
-        public Abnormalities() {
-            AbnormalitiesData = new XmlDocument();
-            AbnormalitiesData.LoadXml(Properties.Resources.AbnormalityData);
-        }
-
-        #endregion
 
         #region Events
         public delegate void AbnormalitiesEvents(object source, AbnormalityEventArgs args);
