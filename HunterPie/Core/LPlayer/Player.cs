@@ -248,7 +248,10 @@ namespace HunterPie.Core {
             GameStructs.Weapon Weapon = new GameStructs.Weapon() {
                 Type = Scanner.READ_INT(PlayerGearBase + 0x124),
                 ID = Scanner.READ_INT(PlayerGearBase + 0x128),
-                Decorations = GetWeaponDecorations(PlayerGearBase + 0x128)
+                Decorations = GetWeaponDecorations(PlayerGearBase + 0x128),
+                NewAugments = GetWeaponNewAugments(PlayerGearBase + 0x128),
+                Awakenings = GetWeaponAwakenedSkills(PlayerGearBase + 0x128),
+                CustomAugments = GetCustomAugments(PlayerGearBase + 0x128)
             };
 
             // Primary Tool
@@ -278,19 +281,42 @@ namespace HunterPie.Core {
             return PlayerGear;
         }
 
-        // TODO: Finish these
         private GameStructs.NewAugment[] GetWeaponNewAugments(Int64 BaseAddress) {
             GameStructs.NewAugment[] NewAugments = new GameStructs.NewAugment[7];
+            // New augments can be determined by their index, so we use their index as 
+            // an ID. Their value is a byte that holds the augment level.
+            for (int AugmentIndex = 0; AugmentIndex < 7; AugmentIndex++) {
+                GameStructs.NewAugment dummy = new GameStructs.NewAugment() {
+                    ID = (byte)AugmentIndex,
+                    Level = Scanner.READ_BYTE(BaseAddress + 0x84 + AugmentIndex)
+                };
+                NewAugments[AugmentIndex] = dummy;
+            }
             return NewAugments;
         }
 
         private GameStructs.AwakenedSkill[] GetWeaponAwakenedSkills(Int64 BaseAddress) {
             GameStructs.AwakenedSkill[] AwakenedSkills = new GameStructs.AwakenedSkill[5];
+            // Awakened skills slots are determined by their index, their value is a short that
+            // holds their awakened skill ID
+            for (int AwakIndex = 0; AwakIndex < 5; AwakIndex++) {
+                GameStructs.AwakenedSkill dummy = new GameStructs.AwakenedSkill() {
+                    ID = Scanner.READ_SHORT(BaseAddress + 0x8C + (AwakIndex * sizeof(short)))
+                };
+                AwakenedSkills[AwakIndex] = dummy;
+            }
             return AwakenedSkills;
         }
 
         private GameStructs.CustomAugment[] GetCustomAugments(Int64 BaseAddress) {
             GameStructs.CustomAugment[] CustomAugments = new GameStructs.CustomAugment[7];
+            for (int AugIndex = 0; AugIndex < 7; AugIndex++) {
+                GameStructs.CustomAugment dummy = new GameStructs.CustomAugment() {
+                    ID = Scanner.READ_BYTE(BaseAddress + 0x78 + AugIndex),
+                    Level = (byte)AugIndex
+                };
+                CustomAugments[AugIndex] = dummy;
+            }
             return CustomAugments;
         }
 

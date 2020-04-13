@@ -37,7 +37,7 @@
 
         public struct NewAugment {
             public byte ID;
-            public byte Stack;
+            public byte Level;
         }
 
         public struct CustomAugment {
@@ -58,6 +58,8 @@
             public Armor Legs;
             public Charm Charm;
             public SpecializedTool[] SpecializedTools;
+
+            
         }
 
         public static int ConvertToZero(uint ID) {

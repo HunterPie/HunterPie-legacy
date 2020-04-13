@@ -4155,5 +4155,443 @@
       <Weapon HoneyID="2008" ID="252"/>
       <Weapon HoneyID="2011" ID="253"/>
     </lbg>
+    <Custom>
+			<LSWD>
+				<Part ID="3" Type="0" Level="1"/> <!-- Great Jagras Mod -->
+				<Part ID="2" Type="2" Level="1"/> <!-- Pukei-Pukei Mod -->
+				<Part ID="4" Type="3" Level="1"/> <!-- Barroth Mod -->
+				<Part ID="6" Type="1" Level="1"/> <!-- Great Girros Mod -->
+				<Part ID="14" Type="3" Level="2"/> <!-- Beotodus Mod -->
+				<Part ID="20" Type="0" Level="2"/> <!-- Banbaro Mod -->
+				<Part ID="15" Type="1" Level="2"/> <!-- Nightshade Paolumu Mod -->
+				<Part ID="13" Type="2" Level="2"/> <!-- Coral Pukei-Pukei Mod -->
+				<Part ID="7" Type="0" Level="3"/> <!-- Radobaan Mod -->
+				<Part ID="9" Type="2" Level="3"/> <!-- Lavasioth Mod -->
+				<Part ID="17" Type="1" Level="3"/> <!-- Nargacuga Mod -->
+				<Part ID="18" Type="2" Level="4"/> <!-- Glavenus Mod -->
+				<Part ID="1" Type="1" Level="4"/> <!-- Rathalos Mod -->
+				<Part ID="19" Type="0" Level="4"/> <!-- Acidic Glavenus Mod -->
+				<Part ID="22" Type="2" Level="5"/> <!-- Zinogre Mod -->
+				<Part ID="8" Type="1" Level="5"/> <!-- Vaal Hazak Mod -->
+				<Part ID="5" Type="0" Level="5"/> <!-- Nergigante Mod -->
+				<Part ID="12" Type="0" Level="6"/> <!-- Zorah Magdaros Mod -->
+				<Part ID="?" Type="0" Level="7"/> <!-- Nergigante Mod+ ??-->
+				<Part ID="23" Type="1" Level="7"/> <!-- Stygian Zinogre Mod -->
+				<Part ID="10" Type="4" Level="7"/> <!-- Xeno'jiiva Mod -->
+			</LSWD>
+			<SWD>
+				<Part ID="1" Type="0" Level="1"/> <!-- Great Jagras Mod -->
+				<Part ID="3" Type="2" Level="1"/> <!-- Barroth Mod -->
+				<Part ID="13" Type="1" Level="1"/> <!-- Great Girros Mod -->
+				<Part ID="2" Type="2" Level="2"/> <!-- Pukei-Pukei Mod -->
+				<Part ID="4" Type="0" Level="2"/> <!-- Anjanath Mod -->
+				<Part ID="6" Type="1" Level="2"/> <!-- Paolumu Mod -->
+				<Part ID="8" Type="0" Level="3"/> <!-- Radobaan Mod -->
+				<Part ID="15" Type="1" Level="3"/> <!-- Nightshade Paolumu Mod -->
+				<Part ID="14" Type="2" Level="3"/> <!-- Coral Pukei-Pukei Mod -->
+				<Part ID="7" Type="2" Level="4"/> <!-- Legiana Mod -->
+				<Part ID="9" Type="1" Level="4"/> <!-- Rathalos Mod -->
+				<Part ID="18" Type="0" Level="4"/> <!-- Glavenus Mod -->
+				<Part ID="19" Type="1" Level="5"/> <!-- Acidic Glavenus Mod -->
+				<Part ID="10" Type="2" Level="5"/> <!-- Kirin Mod -->
+				<Part ID="5" Type="0" Level="5"/> <!-- Nergigante Mod -->
+				<Part ID="21" Type="0" Level="6"/> <!-- Namielle Mod -->
+				<Part ID="?" Type="0" Level="7"/> <!-- Nergigante Mod+ ??-->
+				<Part ID="18" Type="1" Level="7"/> <!-- Barioth Mod -->
+				<Part ID="11" Type="4" Level="7"/> <!-- Xeno'jiiva Mod -->
+			</SWD>
+			<WSWD>
+				<Part ID="1" Type="1" Level="1"/> <!-- Kulu-Ya-Ku Mod -->
+				<Part ID="2" Type="2" Level="1"/> <!-- Jyuratodus Mod -->
+				<Part ID="7" Type="0" Level="1"/> <!-- Tzitzi-Ya-Ku Mod -->
+				<Part ID="6" Type="3" Level="1"/> <!-- Hornetaur Mod -->
+				<Part ID="3" Type="1" Level="2"/> <!-- Tobi-Kadachi Mod -->
+				<Part ID="13" Type="3" Level="2"/> <!-- Beotodus Mod -->
+				<Part ID="20" Type="0" Level="2"/> <!-- Banbaro Mod -->
+				<Part ID="4" Type="2" Level="2"/> <!-- Anjanath Mod -->
+				<Part ID="14" Type="2" Level="3"/> <!-- Viper Tobi-Kadachi Mod -->
+				<Part ID="8" Type="1" Level="3"/> <!-- Odogaron Mod -->
+				<Part ID="9" Type="0" Level="3"/> <!-- Diablos Mod -->
+				<Part ID="10" Type="3" Level="3"/> <!-- Lavasioth Mod -->
+				<Part ID="18" Type="1" Level="4"/> <!-- Nargacuga Mod -->
+				<Part ID="17" Type="0" Level="4"/> <!-- Tigrex Mod -->
+				<Part ID="15" Type="2" Level="4"/> <!-- Fulgur Anjanath Mod -->
+				<Part ID="24" Type="3" Level="4"/> <!-- Black Diablos Mod -->
+				<Part ID="22" Type="1" Level="5"/> <!-- Brute Tigrex Mod -->
+				<Part ID="12" Type="2" Level="5"/> <!-- Zorah Magdaros Mod -->
+				<Part ID="5" Type="0" Level="5"/> <!-- Nergigante Mod -->
+				<Part ID="19" Type="0" Level="6"/> <!-- Brachydios Mod -->
+				<Part ID="?" Type="0" Level="7"/> <!-- Nergigante Mod+ ?? -->
+				<Part ID="?" Type="1" Level="7"/> <!-- Stygian Zinogre Mod ??-->
+				<Part ID="11" Type="4" Level="7"/> <!-- Xeno'jiiva Mod -->
+			</WSWD>
+			<TACHI>
+				<Part ID="1" Type="1" Level="1"/> <!-- Kulu-Ya-Ku Mod -->
+				<Part ID="2" Type="2" Level="1"/> <!-- Jyuratodus Mod -->
+				<Part ID="7" Type="0" Level="1"/> <!-- Tzitzi-Ya-Ku Mod -->
+				<Part ID="21" Type="0" Level="2"/> <!-- Banbaro Mod -->
+				<Part ID="3" Type="2" Level="2"/> <!-- Tobi-Kadachi Mod -->
+				<Part ID="6" Type="1" Level="2"/> <!-- Hornetaur Mod -->
+				<Part ID="4" Type="0" Level="3"/> <!-- Anjanath Mod -->
+				<Part ID="13" Type="1" Level="3"/> <!-- Viper Tobi-Kadachi Mod -->
+				<Part ID="8" Type="2" Level="3"/> <!-- Legiana Mod -->
+				<Part ID="19" Type="2" Level="4"/> <!-- Glavenus Mod -->
+				<Part ID="14" Type="1" Level="4"/> <!-- Fulgur Anjanath Mod -->
+				<Part ID="20" Type="0" Level="4"/> <!-- Acidic Glavenus Mod -->
+				<Part ID="12" Type="2" Level="5"/> <!-- Zorah Magdaros Mod -->
+				<Part ID="9" Type="1" Level="5"/> <!-- Vaal Hazak Mod -->
+				<Part ID="5" Type="0" Level="5"/> <!-- Nergigante Mod -->
+				<Part ID="18" Type="0" Level="6"/> <!-- Brachydios Mod -->
+				<Part ID="10" Type="2" Level="6"/> <!-- Uragaan Mod -->
+				<Part ID="15" Type="1" Level="6"/> <!-- Vaal Hazak Mod+-->
+				<Part ID="?" Type="0" Level="7"/> <!-- Nergigante Mod+ ??-->
+				<Part ID="17" Type="1" Level="7"/> <!-- Barioth Mod -->
+				<Part ID="11" Type="4" Level="7"/> <!-- Xeno'jiiva Mod -->
+			</TACHI>
+			<HAMMER>
+				<Part ID="1" Type="1" Level="1"/> <!-- Kulu-Ya-Ku Mod -->
+				<Part ID="2" Type="2" Level="1"/> <!-- Pukei-Pukei Mod -->
+				<Part ID="6" Type="0" Level="1"/> <!-- Great Girros Mod -->
+				<Part ID="3" Type="0" Level="2"/> <!-- Barroth Mod -->
+				<Part ID="19" Type="1" Level="2"/> <!-- Banbaro Mod -->
+				<Part ID="7" Type="2" Level="2"/> <!-- Radobaan Mod -->
+				<Part ID="4" Type="2" Level="3"/> <!-- Anjanath Mod -->
+				<Part ID="15" Type="1" Level="3"/> <!-- Nightshade Paolumu Mod -->
+				<Part ID="9" Type="0" Level="3"/> <!-- Diablos Mod -->
+				<Part ID="?" Type="0" Level="4"/> <!-- Tigrex Mod ??-->
+				<Part ID="14" Type="2" Level="4"/> <!-- Fulgur Anjanath Mod -->
+				<Part ID="23" Type="3" Level="4"/> <!-- Black Diablos Mod -->
+				<Part ID="21" Type="1" Level="4"/> <!-- Yian Garuga Mod -->
+				<Part ID="?" Type="1" Level="5"/> <!-- Brute Tigrex Mod -->
+				<Part ID="8" Type="2" Level="5"/> <!-- Vaal Hazak Mod -->
+				<Part ID="5" Type="0" Level="5"/> <!-- Nergigante Mod -->
+				<Part ID="10" Type="0" Level="6"/> <!-- Uragaan Mod -->
+				<Part ID="?" Type="0" Level="7"/> <!-- Nergigante Mod+ ?? -->
+				<Part ID="17" Type="1" Level="7"/> <!-- Barioth Mod -->
+				<Part ID="11" Type="4" Level="7"/> <!-- Xeno'jiiva Mod -->
+			</HAMMER>
+			<WSL>
+				<Part ID="3" Type="1" Level="1"/> <!-- Kulu-Ya-Ku Mod -->
+				<Part ID="5" Type="2" Level="1"/> <!-- Pukei-Pukei Mod -->
+				<Part ID="6" Type="0" Level="1"/> <!-- Dodogama Mod -->
+				<Part ID="7" Type="1" Level="2"/> <!-- Paolumu Mod -->
+				<Part ID="10" Type="0" Level="2"/> <!-- Radobaan Mod -->
+				<Part ID="9" Type="2" Level="2"/> <!-- Vespoid Mod -->
+				<Part ID="8" Type="0" Level="3"/> <!-- Anjanath Mod -->
+				<Part ID="16" Type="1" Level="3"/> <!-- Nightshade Paolumu Mod -->
+				<Part ID="14" Type="2" Level="3"/> <!-- Coral Pukei-Pukei Mod -->
+				<Part ID="4" Type="2" Level="4"/> <!-- Legiana Mod -->
+				<Part ID="15" Type="1" Level="4"/> <!-- Fulgur Anjanath Mod -->
+				<Part ID="?" Type="0" Level="4"/> <!-- Bazelgeuse Mod ??-->
+				<Part ID="11" Type="2" Level="5"/> <!-- Kirin Mod -->
+				<Part ID="20" Type="1" Level="5"/> <!-- Namielle Mod -->
+				<Part ID="1" Type="0" Level="5"/> <!-- Nergigante Mod -->
+				<Part ID="18" Type="0" Level="6"/> <!-- Brachydios Mod -->
+				<Part ID="?" Type="0" Level="7"/> <!-- Nergigante Mod+ ??-->
+				<Part ID="13" Type="1" Level="7"/> <!-- Barioth Mod -->
+				<Part ID="2" Type="4" Level="7"/> <!-- Xeno'jiiva Mod -->
+			</WSL>
+			<LANCE>
+				<Part ID="1" Type="1" Level="1"/> <!-- Kulu-Ya-Ku Mod -->
+				<Part ID="2" Type="2" Level="1"/> <!-- Pukei-Pukei Mod -->
+				<Part ID="3" Type="0" Level="1"/> <!-- Barroth Mod -->
+				<Part ID="10" Type="0" Level="2"/> <!-- Dodogama Mod -->
+				<Part ID="14" Type="1" Level="2"/> <!-- Nightshade Paolumu Mod -->
+				<Part ID="13" Type="2" Level="2"/> <!-- Coral Pukei-Pukei Mod -->
+				<Part ID="5" Type="3" Level="2"/> <!-- Hornetaur Mod -->
+				<Part ID="6" Type="2" Level="3"/> <!-- Legiana Mod -->
+				<Part ID="7" Type="0" Level="3"/> <!-- Odogaron Mod -->
+				<Part ID="19" Type="1" Level="3"/> <!-- Nargacuga Mod -->
+				<Part ID="9" Type="0" Level="4"/> <!-- Rathalos Mod -->
+				<Part ID="16" Type="1" Level="4"/> <!-- Ebony Odogaron Mod -->
+				<Part ID="23" Type="2" Level="4"/> <!-- Zinogre Mod -->
+				<Part ID="22" Type="1" Level="5"/> <!-- Namielle Mod -->
+				<Part ID="8" Type="2" Level="5"/> <!-- Vaal Hazak Mod -->
+				<Part ID="4" Type="0" Level="5"/> <!-- Nergigante Mod -->
+				<Part ID="20" Type="0" Level="6"/> <!-- Brachydios Mod -->
+				<Part ID="?" Type="0" Level="7"/> <!-- Nergigante Mod+ -->
+				<Part ID="15" Type="3" Level="7"/> <!-- Legiana Mod+ -->
+				<Part ID="?" Type="1" Level="7"/> <!-- Barioth Mod -->
+				<Part ID="24" Type="2" Level="7"/> <!-- Stygian Zinogre Mod -->
+				<Part ID="11" Type="4" Level="7"/> <!-- Xeno'jiiva Mod -->
+			</LANCE>
+			<GLANCE>
+				<Part ID="1" Type="0" Level="1"/> <!-- Great Jagras Mod -->
+				<Part ID="10" Type="2" Level="1"/> <!-- Jyuratodus Mod -->
+				<Part ID="6" Type="1" Level="1"/> <!-- Great Girros Mod -->
+				<Part ID="2" Type="3" Level="1"/> <!-- Barroth Mod -->
+				<Part ID="3" Type="1" Level="2"/> <!-- Tobi-Kadachi Mod -->
+				<Part ID="22" Type="0" Level="2"/> <!-- Banbaro Mod -->
+				<Part ID="4" Type="2" Level="2"/> <!-- Anjanath Mod -->
+				<Part ID="7" Type="2" Level="3"/> <!-- Legiana Mod -->
+				<Part ID="9" Type="0" Level="3"/> <!-- Rathalos Mod -->
+				<Part ID="18" Type="1" Level="3"/> <!-- Nargacuga Mod -->
+				<Part ID="20" Type="3" Level="4"/> <!-- Glavenus Mod -->
+				<Part ID="13" Type="2" Level="4"/> <!-- Fulgur Anjanath Mod -->
+				<Part ID="21" Type="0" Level="4"/> <!-- Acidic Glavenus Mod -->
+				<Part ID="24" Type="1" Level="4"/> <!-- Yian Garuga Mod -->
+				<Part ID="12" Type="2" Level="5"/> <!-- Bazelgeuse Mod -->
+				<Part ID="8" Type="1" Level="5"/> <!-- Vaal Hazak Mod -->
+				<Part ID="5" Type="0" Level="5"/> <!-- Nergigante Mod -->
+				<Part ID="19" Type="0" Level="6"/> <!-- Brachydios Mod -->
+				<Part ID="17" Type="2" Level="6"/> <!-- Bazelgeuse Mod+ -->
+				<Part ID="15" Type="1" Level="6"/> <!-- Vaal Hazak Mod+ -->
+				<Part ID="?" Type="0" Level="7"/> <!-- Nergigante Mod+ ??-->
+				<Part ID="14" Type="1" Level="7"/> <!-- Legiana Mod+ -->
+				<Part ID="11" Type="4" Level="7"/> <!-- Xeno'jiiva Mod -->
+			</GLANCE>
+			<SAXE>
+				<Part ID="1" Type="0" Level="1"/> <!-- Great Jagras Mod -->
+				<Part ID="13" Type="2" Level="1"/> <!-- Pukei-Pukei Mod -->
+				<Part ID="3" Type="3" Level="1"/> <!-- Barroth Mod -->
+				<Part ID="5" Type="1" Level="1"/> <!-- Paolumu Mod -->
+				<Part ID="23" Type="3" Level="2"/> <!-- Banbaro Mod -->
+				<Part ID="15" Type="1" Level="2"/> <!-- Nightshade Paolumu Mod -->
+				<Part ID="14" Type="2" Level="2"/> <!-- Coral Pukei-Pukei Mod -->
+				<Part ID="9" Type="0" Level="2"/> <!-- Diablos Mod -->
+				<Part ID="6" Type="2" Level="3"/> <!-- Legiana Mod -->
+				<Part ID="8" Type="1" Level="3"/> <!-- Rathalos Mod -->
+				<Part ID="21" Type="3" Level="3"/> <!-- Glavenus Mod -->
+				<Part ID="19" Type="0" Level="3"/> <!-- Tigrex Mod -->
+				<Part ID="27" Type="1" Level="4"/> <!-- Yian Garuga Mod -->
+				<Part ID="22" Type="3" Level="4"/> <!-- Acidic Glavenus Mod -->
+				<Part ID="31" Type="0" Level="4"/> <!-- Azure Rathalos Mod -->
+				<Part ID="25" Type="2" Level="4"/> <!-- Zinogre Mod -->
+				<Part ID="29" Type="3" Level="5"/> <!-- Brute Tigrex Mod -->
+				<Part ID="12" Type="2" Level="5"/> <!-- Bazelgeuse Mod -->
+				<Part ID="7" Type="1" Level="5"/> <!-- Vaal Hazak Mod -->
+				<Part ID="4" Type="0" Level="5"/> <!-- Nergigante Mod -->
+				<Part ID="10" Type="3" Level="6"/> <!-- Uragaan Mod -->
+				<Part ID="20" Type="0" Level="6"/> <!-- Brachydios Mod -->
+				<Part ID="18" Type="2" Level="6"/> <!-- Bazelgeuse Mod+ -->
+				<Part ID="16" Type="1" Level="6"/> <!-- Vaal Hazak Mod+ -->
+				<Part ID="?" Type="0" Level="7"/> <!-- Nergigante Mod+ -->
+				<Part ID="26" Type="1" Level="7"/> <!-- Stygian Zinogre Mod -->
+				<Part ID="11" Type="4" Level="7"/> <!-- Xeno'jiiva Mod -->
+			</SAXE>
+			<CAXE>
+				<Part ID="1" Type="0" Level="1"/> <!-- Great Jagras Mod -->
+				<Part ID="2" Type="2" Level="1"/> <!-- Jyuratodus Mod -->
+				<Part ID="5" Type="1" Level="1"/> <!-- Great Girros Mod -->
+				<Part ID="10" Type="3" Level="1"/> <!-- Dodogama Mod -->
+				<Part ID="3" Type="2" Level="2"/> <!-- Tobi-Kadachi Mod -->
+				<Part ID="13" Type="0" Level="2"/> <!-- Beotodus Mod -->
+				<Part ID="14" Type="1" Level="2"/> <!-- Viper Tobi-Kadachi Mod -->
+				<Part ID="6" Type="1" Level="3"/> <!-- Odogaron Mod -->
+				<Part ID="8" Type="2" Level="3"/> <!-- Rathalos Mod -->
+				<Part ID="9" Type="0" Level="3"/> <!-- Diablos Mod -->
+				<Part ID="18" Type="1" Level="4"/> <!-- Nargacuga Mod -->
+				<Part ID="17" Type="0" Level="4"/> <!-- Tigrex Mod -->
+				<Part ID="21" Type="2" Level="4"/> <!-- Black Diablos Mod -->
+				<Part ID="22" Type="3" Level="5"/> <!-- Brute Tigrex Mod -->
+				<Part ID="20" Type="1" Level="5"/> <!-- Namielle Mod -->
+				<Part ID="7" Type="2" Level="5"/> <!-- Vaal Hazak Mod -->
+				<Part ID="4" Type="0" Level="5"/> <!-- Nergigante Mod -->
+				<Part ID="15" Type="0" Level="6"/> <!-- Vaal Hazak Mod+ -->
+				<Part ID="?" Type="0" Level="7"/> <!-- Nergigante Mod+ -->
+				<Part ID="?" Type="1" Level="7"/> <!-- Stygian Zinogre Mod -->
+				<Part ID="11" Type="4" Level="7"/> <!-- Xeno'jiiva Mod -->
+			</CAXE>
+			<ROD>
+				<Part ID="1" Type="1" Level="1"/> <!-- Kulu-Ya-Ku Mod -->
+				<Part ID="2" Type="2" Level="1"/> <!-- Pukei-Pukei Mod -->
+				<Part ID="5" Type="3" Level="1"/> <!-- Tzitzi-Ya-Ku Mod -->
+				<Part ID="10" Type="0" Level="1"/> <!-- Dodogama Mod -->
+				<Part ID="3" Type="1" Level="2"/> <!-- Tobi-Kadachi Mod -->
+				<Part ID="14" Type="3" Level="2"/> <!-- Beotodus Mod -->
+				<Part ID="16" Type="0" Level="2"/> <!-- Nightshade Paolumu Mod -->
+				<Part ID="13" Type="2" Level="2"/> <!-- Coral Pukei-Pukei Mod -->
+				<Part ID="15" Type="3" Level="3"/> <!-- Viper Tobi-Kadachi Mod -->
+				<Part ID="6" Type="1" Level="3"/> <!-- Odogaron Mod -->
+				<Part ID="8" Type="2" Level="3"/> <!-- Rathalos Mod -->
+				<Part ID="9" Type="0" Level="3"/> <!-- Diablos Mod -->
+				<Part ID="20" Type="1" Level="4"/> <!-- Nargacuga Mod -->
+				<Part ID="19" Type="0" Level="4"/> <!-- Tigrex Mod -->
+				<Part ID="23" Type="2" Level="4"/> <!-- Black Diablos Mod -->
+				<Part ID="24" Type="3" Level="5"/> <!-- Brute Tigrex Mod -->
+				<Part ID="22" Type="1" Level="5"/> <!-- Namielle Mod -->
+				<Part ID="7" Type="2" Level="5"/> <!-- Vaal Hazak Mod -->
+				<Part ID="4" Type="0" Level="5"/> <!-- Nergigante Mod -->
+				<Part ID="17" Type="0" Level="6"/> <!-- Vaal Hazak Mod+ -->
+				<Part ID="?" Type="0" Level="7"/> <!-- Nergigante Mod+ -->
+				<Part ID="?" Type="1" Level="7"/> <!-- Stygian Zinogre Mod -->
+				<Part ID="11" Type="4" Level="7"/> <!-- Xeno'jiiva Mod -->
+			</ROD>
+			<BOW>
+				<Part ID="5" Type="1" Level="1"/> <!-- Kulu-Ya-Ku Mod -->
+				<Part ID="8" Type="3" Level="1"/> <!-- Pukei-Pukei Mod -->
+				<Part ID="10" Type="2" Level="1"/> <!-- Tobi-Kadachi Mod -->
+				<Part ID="21" Type="0" Level="1"/> <!-- Banbaro Mod -->
+				<Part ID="11" Type="0" Level="2"/> <!-- Anjanath Mod -->
+				<Part ID="27" Type="2" Level="2"/> <!-- Pink Rathian Mod -->
+				<Part ID="14" Type="1" Level="2"/> <!-- Nightshade Paolumu Mod -->
+				<Part ID="28" Type="3" Level="2"/> <!-- Coral Pukei-Pukei Mod -->
+				<Part ID="6" Type="2" Level="3"/> <!-- Legiana Mod -->
+				<Part ID="4" Type="1" Level="3"/> <!-- Rathalos Mod -->
+				<Part ID="7" Type="3" Level="3"/> <!-- Diablos Mod -->
+				<Part ID="19" Type="0" Level="3"/> <!-- Glavenus Mod -->
+				<Part ID="18" Type="0" Level="4"/> <!-- Tigrex Mod -->
+				<Part ID="13" Type="2" Level="4"/> <!-- Fulgur Anjanath Mod -->
+				<Part ID="26" Type="1" Level="4"/> <!-- Azure Rathalos Mod -->
+				<Part ID="20" Type="3" Level="4"/> <!-- Acidic Glavenus Mod -->
+				<Part ID="25" Type="1" Level="5"/> <!-- Brute Tigrex Mod -->
+				<Part ID="2" Type="2" Level="5"/> <!-- Vaal Hazak Mod -->
+				<Part ID="1" Type="0" Level="5"/> <!-- Nergigante Mod -->
+				<Part ID="2" Type="0" Level="5"/> <!-- Vaal Hazak Mod+ -->
+				<Part ID="?" Type="0" Level="6"/> <!-- Nergigante Mod+ -->
+				<Part ID="17" Type="1" Level="7"/> <!-- Barioth Mod -->
+				<Part ID="3" Type="2" Level="7"/> <!-- Xeno'jiiva Mod -->
+				<Part ID="23" Type="2" Level="6"/> <!-- Gold Rathian Mod -->
+				<Part ID="24" Type="1" Level="6"/> <!-- Silver Rathalos Mod -->
+			</BOW>
+			<HBG>
+				<Part ID="3" Type="0" Level="1"/> <!-- Great Jagras Mod -->
+				<Part ID="7" Type="3" Level="1"/> <!-- Pukei-Pukei Mod -->
+				<Part ID="5" Type="1" Level="1"/> <!-- Tzitzi-Ya-Ku Mod -->
+				<Part ID="9" Type="1" Level="2"/> <!-- Tobi-Kadachi Mod -->
+				<Part ID="4" Type="3" Level="2"/> <!-- Dodogama Mod -->
+				<Part ID="8" Type="0" Level="2"/> <!-- Radobaan Mod -->
+				<Part ID="14" Type="0" Level="3"/> <!-- Nightshade Paolumu Mod -->
+				<Part ID="19" Type="3" Level="3"/> <!-- Coral Pukei-Pukei Mod -->
+				<Part ID="13" Type="1" Level="3"/> <!-- Viper Tobi-Kadachi Mod -->
+				<Part ID="10" Type="1" Level="4"/> <!-- Anjanath Mod -->
+				<Part ID="6" Type="0" Level="4"/> <!-- Diablos Mod -->
+				<Part ID="18" Type="1" Level="5"/> <!-- Namielle Mod -->
+				<Part ID="1" Type="0" Level="5"/> <!-- Nergigante Mod -->
+				<Part ID="11" Type="0" Level="6"/> <!-- Zorah Magdaros Mod -->
+				<Part ID="?" Type="0" Level="7"/> <!-- Nergigante Mod+ -->
+				<Part ID="16" Type="1" Level="7"/> <!-- Barioth Mod -->
+				<Part ID="2" Type="2" Level="7"/> <!-- Xeno'jiiva Mod -->
+			</HBG>
+			<LBG>
+				<Part ID="5" Type="0" Level="1"/> <!-- Great Jagras Mod -->
+				<Part ID="10" Type="3" Level="1"/> <!-- Barroth Mod -->
+				<Part ID="8" Type="2" Level="1"/> <!-- Jyuratodus Mod -->
+				<Part ID="4" Type="1" Level="1"/> <!-- Paolumu Mod -->
+				<Part ID="24" Type="0" Level="2"/> <!-- Banbaro Mod -->
+				<Part ID="11" Type="2" Level="2"/> <!-- Anjanath Mod -->
+				<Part ID="16" Type="1" Level="2"/> <!-- Nightshade Paolumu Mod -->
+				<Part ID="13" Type="3" Level="2"/> <!-- Coral Pukei-Pukei Mod -->
+				<Part ID="6" Type="1" Level="3"/> <!-- Odogaron Mod -->
+				<Part ID="7" Type="2" Level="3"/> <!-- Rathalos Mod -->
+				<Part ID="20" Type="0" Level="3"/> <!-- Nargacuga Mod -->
+				<Part ID="26" Type="3" Level="3"/> <!-- Yian Garuga Mod -->
+				<Part ID="22" Type="0" Level="4"/> <!-- Glavenus Mod -->
+				<Part ID="19" Type="3" Level="4"/> <!-- Tigrex Mod -->
+				<Part ID="15" Type="2" Level="4"/> <!-- Fulgur Anjanath Mod -->
+				<Part ID="30" Type="1" Level="4"/> <!-- Azure Rathalos Mod -->
+				<Part ID="28" Type="3" Level="5"/> <!-- Brute Tigrex Mod -->
+				<Part ID="12" Type="2" Level="5"/> <!-- Bazelgeuse Mod -->
+				<Part ID="2" Type="1" Level="5"/> <!-- Vaal Hazak Mod -->
+				<Part ID="1" Type="0" Level="5"/> <!-- Nergigante Mod -->
+				<Part ID="21" Type="0" Level="6"/> <!-- Brachydios Mod -->
+				<Part ID="18" Type="2" Level="6"/> <!-- Bazelgeuse Mod+ -->
+				<Part ID="?" Type="0" Level="7"/> <!-- Nergigante Mod+ -->
+				<Part ID="?" Type="1" Level="7"/> <!-- Stygian Zinogre Mod -->
+				<Part ID="3" Type="2" Level="7"/> <!-- Xeno'jiiva Mod -->
+				<Part ID="27" Type="1" Level="6"/> <!-- Silver Rathalos Mod -->
+			</LBG>
+		</Custom>
+    <Augments>
+      <New HoneyID="att" ID="1"/>
+      <New HoneyID="aff" ID="2"/>
+      <New HoneyID="def" ID="3"/>
+      <New HoneyID="slot" ID="4"/>
+      <New HoneyID="health" ID="5"/>
+      <New HoneyID="elem" ID="6"/>
+    </Augments>
+    <Awakening>
+      <Skill HoneyID="at4" ID="4"/>
+      <Skill HoneyID="at5" ID="5"/>
+      <Skill HoneyID="at6" ID="6"/>
+      <Skill HoneyID="de4" ID="10"/>
+      <Skill HoneyID="de5" ID="11"/>
+      <Skill HoneyID="de6" ID="12"/>
+      <Skill HoneyID="af4" ID="16"/>
+      <Skill HoneyID="af5" ID="17"/>
+      <Skill HoneyID="af6" ID="18"/>
+      <Skill HoneyID="el4" ID="22"/>
+      <Skill HoneyID="el5" ID="23"/>
+      <Skill HoneyID="el6" ID="24"/>
+      <Skill HoneyID="sl4" ID="40"/>
+      <Skill HoneyID="sh4" ID="44"/>
+      <Skill HoneyID="sh5" ID="45"/>
+      <Skill HoneyID="sh6" ID="46"/>
+      <Skill HoneyID="epg2" ID="47"/>
+      <Skill HoneyID="aby2" ID="48"/>
+      <Skill HoneyID="sm2" ID="49"/>
+      <Skill HoneyID="sm3" ID="50"/>
+      <Skill HoneyID="sm4" ID="51"/>
+      <Skill HoneyID="sm5" ID="52"/>
+      <Skill HoneyID="em2" ID="53"/>
+      <Skill HoneyID="em3" ID="54"/>
+      <Skill HoneyID="em4" ID="55"/>
+      <Skill HoneyID="em5" ID="56"/>
+      <Skill HoneyID="am2" ID="57"/>
+      <Skill HoneyID="am3" ID="58"/>
+      <Skill HoneyID="am4" ID="59"/>
+      <Skill HoneyID="am5" ID="60"/>
+      <Skill HoneyID="sn3" ID="61"/>
+      <Skill HoneyID="sn4" ID="62"/>
+      <Skill HoneyID="ssl3" ID="63"/>
+      <Skill HoneyID="ssl4" ID="64"/>
+      <Skill HoneyID="sw3" ID="66"/>
+      <Skill HoneyID="sw4" ID="67"/>
+      <Skill HoneyID="ksuh2" ID="69"/>
+      <Skill HoneyID="kss2" ID="70"/>
+      <Skill HoneyID="nc4" ID="71"/>
+      <Skill HoneyID="nc5" ID="72"/>
+      <Skill HoneyID="nc6" ID="73"/>
+      <Skill HoneyID="pc4" ID="75"/>
+      <Skill HoneyID="pc5" ID="76"/>
+      <Skill HoneyID="pc6" ID="77"/>
+      <Skill HoneyID="sc4" ID="79"/>
+      <Skill HoneyID="sc5" ID="80"/>
+      <Skill HoneyID="sc6" ID="81"/>
+      <Skill HoneyID="ec4" ID="83"/>
+      <Skill HoneyID="ec5" ID="84"/>
+      <Skill HoneyID="ec6" ID="85"/>
+      <Skill HoneyID="ell3" ID="86"/>
+      <Skill HoneyID="exl4" ID="90"/>
+      <Skill HoneyID="exl5" ID="91"/>
+      <Skill HoneyID="scc4" ID="94"/>
+      <Skill HoneyID="scc5" ID="95"/>
+      <Skill HoneyID="scc6" ID="96"/>
+      <Skill HoneyID="1puww" ID="97"/>
+      <Skill HoneyID="1misss" ID="98"/>
+      <Skill HoneyID="1slugg" ID="99"/>
+      <Skill HoneyID="1boss" ID="100"/>
+      <Skill HoneyID="1prhh" ID="101"/>
+      <Skill HoneyID="1gupp" ID="102"/>
+      <Skill HoneyID="1gusss" ID="103"/>
+      <Skill HoneyID="1stff" ID="104"/>
+      <Skill HoneyID="1suyyy" ID="105"/>
+      <Skill HoneyID="1mah" ID="106"/>
+      <Skill HoneyID="1nue" ID="107"/>
+      <Skill HoneyID="1lars" ID="108"/>
+      <Skill HoneyID="1frll" ID="109"/>
+      <Skill HoneyID="1ratttt" ID="110"/>
+      <Skill HoneyID="1agrr" ID="111"/>
+      <Skill HoneyID="1matt" ID="112"/>
+      <Skill HoneyID="1slyy:1tcrt" ID="113"/>
+      <Skill HoneyID="1digg:1tcrs" ID="114"/>
+      <Skill HoneyID="1gaias:1tgaias" ID="115"/>
+      <Skill HoneyID="1eacc:1teacc" ID="116"/>
+      <Skill HoneyID="1crttt:1frst" ID="117"/>
+      <Skill HoneyID="1scu+" ID="120"/>
+      <Skill HoneyID="1pop+" ID="121"/>
+      <Skill HoneyID="1grkkk" ID="122"/>
+      <Skill HoneyID="1arys" ID="123"/>
+      <Skill HoneyID="1tots" ID="124"/>
+      <Skill HoneyID="1hayyy" ID="125"/>
+      <Skill HoneyID="1missss:1prhhh" ID="126"/>
+      <Skill HoneyID="rs4" ID="127"/>
+      <Skill HoneyID="ra4" ID="128"/>
+      <Skill HoneyID="ds2" ID="129"/>
+      <Skill HoneyID="st4" ID="133"/>
+      <Skill HoneyID="st5" ID="134"/>
+      <Skill HoneyID="st6" ID="135"/>
+    </Awakening>
   </Weapons>
+  
 </Honey>
