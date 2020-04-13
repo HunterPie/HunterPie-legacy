@@ -43,8 +43,19 @@ namespace HunterPie.Core {
             LinkBuilder.Append(GetGearHoneyID("Charms", "Charm", Build.Charm.ID) + ",");
 
             // Augments
+            int AugmentsTotal = 0;
             for (int AugmentIndex = 0; AugmentIndex < Build.Weapon.NewAugments.Length; AugmentIndex++) {
-                LinkBuilder.Append(GetNewAugment(Build.Weapon.NewAugments[AugmentIndex].ID, Build.Weapon.NewAugments[AugmentIndex].Level));
+                string AugId = GetNewAugment(Build.Weapon.NewAugments[AugmentIndex].ID);
+
+                if (Build.Weapon.NewAugments[AugmentIndex].Level == 0) continue;
+                else { AugmentsTotal++; }
+                
+                if (AugmentsTotal > 1) {
+                    LinkBuilder.Append($";{AugId}:{Build.Weapon.NewAugments[AugmentIndex].Level}");
+                } else {
+                    LinkBuilder.Append($"{AugId}:{Build.Weapon.NewAugments[AugmentIndex].Level}");
+                }
+
             }
 
             // Custom Augments
@@ -55,11 +66,35 @@ namespace HunterPie.Core {
             LinkBuilder.Append("-");
             LinkBuilder.Append(BuildAwakeningSkillsStructure(Build.Weapon.Awakenings));
 
+            LinkBuilder.Append(",0,0");
+
+            // Decorations
+            LinkBuilder.Append(BuildDecorationStringStructure(Build.Weapon.Decorations));
+            LinkBuilder.Append(BuildDecorationStringStructure(Build.Helmet.Decorations));
+            LinkBuilder.Append(BuildDecorationStringStructure(Build.Chest.Decorations));
+            LinkBuilder.Append(BuildDecorationStringStructure(Build.Hands.Decorations));
+            LinkBuilder.Append(BuildDecorationStringStructure(Build.Waist.Decorations));
+            LinkBuilder.Append(BuildDecorationStringStructure(Build.Legs.Decorations));
+
+            // The rest
+            LinkBuilder.Append("," + GetCharmLevel(Build.Charm.ID));
+            LinkBuilder.Append(":" + GetMantleHoneyID(Build.SpecializedTools[0].ID));
+            LinkBuilder.Append(":" + GetMantleHoneyID(Build.SpecializedTools[1].ID));
+            LinkBuilder.Append(BuildDecorationStringStructure(Build.SpecializedTools[0].Decorations, 2).Replace(',', ':'));
+            LinkBuilder.Append(BuildDecorationStringStructure(Build.SpecializedTools[1].Decorations, 2).Replace(',', ':'));
+
+            // Bowgun mods
+            if (Build.Weapon.Type == 12 || Build.Weapon.Type == 13) {
+                foreach (GameStructs.BowgunMod bowgunMod in Build.Weapon.BowgunMods) {
+                    LinkBuilder.Append("," + (HoneyGearData.SelectSingleNode($"//Honey/Weapons/BowgunMods/Mod[@ID='{bowgunMod.ID}']/@HoneyID")?.Value ?? "none"));
+                }
+            }
+
             Debugger.Debug(LinkBuilder);
 
             UnloadHoneyGearData();
 
-            return null;
+            return LinkBuilder.ToString();
         }
 
         static string GetWeaponHoneyID(int WeaponType, int WeaponID) {
@@ -79,12 +114,10 @@ namespace HunterPie.Core {
             return node ?? "0";
         }
 
-        static string GetNewAugment(int Index, byte Level) {
-            if (Level == 0) return null;
-
+        static string GetNewAugment(int Index) {
             string node = HoneyGearData.SelectSingleNode($"//Honey/Weapons/Augments/New[@ID='{Index}']/@HoneyID")?.Value;
             if (node == null) return null;
-            return Index == 0 ? $"{node}:{Level}" : $";{node}:{Level}";
+            return node;
         }
 
         static string BuildCustomPartsStructure(int WeaponType, GameStructs.CustomAugment[] CustomAugments) {
@@ -94,7 +127,7 @@ namespace HunterPie.Core {
                 // Skip empty slots
                 if (cAugment.ID == byte.MaxValue) continue;
                 string AugmentType = HoneyGearData.SelectSingleNode($"//Honey/Weapons/Custom").ChildNodes[WeaponType].SelectSingleNode($"Part[@Level='{cAugment.Level + 1}' and @ID='{cAugment.ID}']/@Type")?.Value;
-                
+
                 // If we dont find the augment id, then we try the wildcard ones, since there are some
                 // missing IDs
                 if (AugmentType == null) AugmentType = HoneyGearData.SelectSingleNode($"//Honey/Weapons/Custom").ChildNodes[WeaponType].SelectSingleNode($"Part[@Level='{cAugment.Level + 1}' and @ID='?']/@Type")?.Value;
@@ -127,7 +160,7 @@ namespace HunterPie.Core {
 
                 if (Structure[AwakIndex] == null) Structure[AwakIndex] = new StringBuilder();
 
-                Structure[AwakIndex].Append(HoneyGearData.SelectSingleNode($"//Honey/Weapons/Awakening/Skill[@ID='{awakened.ID}']/@HoneyID")?.Value) ;
+                Structure[AwakIndex].Append(HoneyGearData.SelectSingleNode($"//Honey/Weapons/Awakening/Skill[@ID='{awakened.ID}']/@HoneyID")?.Value);
             }
 
             StringBuilder JoinedResult = new StringBuilder();
@@ -138,5 +171,19 @@ namespace HunterPie.Core {
             return JoinedResult.ToString();
         }
 
+        static string BuildDecorationStringStructure(GameStructs.Decoration[] Decorations, int Amount = 3) {
+            StringBuilder stringStructure = new StringBuilder();
+            for (int DecoIndex = 0; DecoIndex < Amount; DecoIndex++) {
+                GameStructs.Decoration deco = Decorations[DecoIndex];
+                string decorationHoneyID = deco.ID == int.MaxValue ? "0" : HoneyGearData.SelectSingleNode($"//Honey/Gear/Jewels/Jewel[@ID='{deco.ID}']/@HoneyID")?.Value;
+                stringStructure.Append("," + decorationHoneyID);
+            }
+            return stringStructure.ToString();
+        }
+
+        static string GetMantleHoneyID(int ID) {
+            string node = HoneyGearData.SelectSingleNode($"//Honey/Gear/Mantles/Mantle[@ID='{ID}']/@HoneyID")?.Value;
+            return node ?? "0";
+        }
     }
 }

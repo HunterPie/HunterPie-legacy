@@ -1379,27 +1379,27 @@
       <Jewel HoneyID="12" ID="77"/>
       <Jewel HoneyID="13" ID="45"/>
       <Jewel HoneyID="14" ID="37"/>
-      <Jewel HoneyID="15" ID="90"/>
+      <Jewel HoneyID="15" ID="89"/>
       <Jewel HoneyID="16" ID="35"/>
       <Jewel HoneyID="17" ID="6"/>
       <Jewel HoneyID="18" ID="11"/>
       <Jewel HoneyID="19" ID="40"/>
       <Jewel HoneyID="20" ID="24"/>
       <Jewel HoneyID="21" ID="18"/>
-      <Jewel HoneyID="22" ID="91"/>
+      <Jewel HoneyID="22" ID="90"/>
       <Jewel HoneyID="23" ID="42"/>
       <Jewel HoneyID="24" ID="39"/>
       <Jewel HoneyID="25" ID="7"/>
-      <Jewel HoneyID="26" ID="97"/>
+      <Jewel HoneyID="26" ID="96"/>
       <Jewel HoneyID="27" ID="64"/>
-      <Jewel HoneyID="28" ID="89"/>
+      <Jewel HoneyID="28" ID="88"/>
       <Jewel HoneyID="29" ID="59"/>
       <Jewel HoneyID="30" ID="34"/>
       <Jewel HoneyID="31" ID="14"/>
       <Jewel HoneyID="32" ID="46"/>
       <Jewel HoneyID="33" ID="43"/>
       <Jewel HoneyID="34" ID="9"/>
-      <Jewel HoneyID="35" ID="86"/>
+      <Jewel HoneyID="35" ID="85"/>
       <Jewel HoneyID="36" ID="48"/>
       <Jewel HoneyID="37" ID="63"/>
       <Jewel HoneyID="38" ID="22"/>
@@ -1412,24 +1412,24 @@
       <Jewel HoneyID="45" ID="54"/>
       <Jewel HoneyID="46" ID="58"/>
       <Jewel HoneyID="47" ID="16"/>
-      <Jewel HoneyID="48" ID="83"/>
+      <Jewel HoneyID="48" ID="82"/>
       <Jewel HoneyID="49" ID="61"/>
       <Jewel HoneyID="50" ID="60"/>
       <Jewel HoneyID="51" ID="41"/>
       <Jewel HoneyID="52" ID="51"/>
-      <Jewel HoneyID="53" ID="92"/>
-      <Jewel HoneyID="54" ID="85"/>
+      <Jewel HoneyID="53" ID="91"/>
+      <Jewel HoneyID="54" ID="84"/>
       <Jewel HoneyID="55" ID="71"/>
-      <Jewel HoneyID="56" ID="81"/>
+      <Jewel HoneyID="56" ID="97"/>
       <Jewel HoneyID="57" ID="74"/>
-      <Jewel HoneyID="58" ID="93"/>
-      <Jewel HoneyID="59" ID="94"/>
+      <Jewel HoneyID="58" ID="92"/>
+      <Jewel HoneyID="59" ID="93"/>
       <Jewel HoneyID="60" ID="79"/>
       <Jewel HoneyID="61" ID="30"/>
       <Jewel HoneyID="62" ID="26"/>
       <Jewel HoneyID="63" ID="2"/>
       <Jewel HoneyID="64" ID="56"/>
-      <Jewel HoneyID="65" ID="87"/>
+      <Jewel HoneyID="65" ID="86"/>
       <Jewel HoneyID="66" ID="29"/>
       <Jewel HoneyID="67" ID="47"/>
       <Jewel HoneyID="68" ID="70"/>
@@ -1438,16 +1438,16 @@
       <Jewel HoneyID="71" ID="33"/>
       <Jewel HoneyID="72" ID="19"/>
       <Jewel HoneyID="73" ID="65"/>
-      <Jewel HoneyID="74" ID="82"/>
-      <Jewel HoneyID="75" ID="96"/>
+      <Jewel HoneyID="74" ID="81"/>
+      <Jewel HoneyID="75" ID="95"/>
       <Jewel HoneyID="76" ID="62"/>
-      <Jewel HoneyID="77" ID="95"/>
+      <Jewel HoneyID="77" ID="94"/>
       <Jewel HoneyID="78" ID="27"/>
       <Jewel HoneyID="79" ID="31"/>
-      <Jewel HoneyID="80" ID="84"/>
+      <Jewel HoneyID="80" ID="83"/>
       <Jewel HoneyID="81" ID="50"/>
       <Jewel HoneyID="82" ID="80"/>
-      <Jewel HoneyID="83" ID="88"/>
+      <Jewel HoneyID="83" ID="87"/>
       <Jewel HoneyID="84" ID="55"/>
       <Jewel HoneyID="85" ID="3"/>
       <Jewel HoneyID="86" ID="75"/>
@@ -2057,7 +2057,6 @@
       <Charm HoneyID="108" ID="367" Level="0"/>
     </Charms>
     <Mantles>
-      <Mantle ID="-1" HoneyID="0"/>
       <Mantle ID="0" HoneyID="2"/>
       <Mantle ID="1" HoneyID="16"/>
       <Mantle ID="2" HoneyID="0"/> <!-- Missing in Honey Hunter World-->
@@ -4500,6 +4499,21 @@
       <New HoneyID="health" ID="5"/>
       <New HoneyID="elem" ID="6"/>
     </Augments>
+    <BowgunMods>
+      <Mod HoneyID="Recoil" ID="0"/>
+      <Mod HoneyID="Reload" ID="1"/>
+      <Mod HoneyID="Deviation" ID="2"/>
+      <Mod HoneyID="Close" ID="3"/>
+      <Mod HoneyID="Ranged" ID="4"/>
+      <Mod HoneyID="Shield" ID="5"/>
+      <Mod HoneyID="Special" ID="6"/>
+      <Mod HoneyID="Evading" ID="7"/>
+      <Mod HoneyID="Wyvernheart" ID="8"/>
+      <Mod HoneyID="Wyvernsnipe" ID="9"/>
+      <Mod HoneyID="Wyvernblast" ID="10"/>
+      <Mod HoneyID="Power" ID="11"/>
+      <Mod HoneyID="Long" ID="12"/>
+    </BowgunMods>
     <Awakening>
       <Skill HoneyID="at4" ID="4"/>
       <Skill HoneyID="at5" ID="5"/>
@@ -4593,5 +4607,4 @@
       <Skill HoneyID="st6" ID="135"/>
     </Awakening>
   </Weapons>
-  
 </Honey>

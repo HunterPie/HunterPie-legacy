@@ -53,6 +53,7 @@ namespace HunterPie.Core {
                 }
             }
         }
+        public int GameID { get; set; }
         public float SizeMultiplier {
             get { return _SizeMultiplier; }
             set {
@@ -294,6 +295,11 @@ namespace HunterPie.Core {
                 MonsterId = MonsterID.LastOrDefault()?.Trim('\x00');
                 GetMonsterHp(MonsterId);
                 if (MonsterId.StartsWith("em") && !MonsterId.StartsWith("ems")) {
+
+                    GameID = Scanner.READ_INT(MonsterAddress + Address.Offsets.MonsterGameIDOffset);
+
+                    MonsterId = MonsterData.GetMonsterEmByGameID(GameID);
+
                     if (MonsterId != this.ID && this.CurrentHP > 0) Debugger.Debug($"Found new monster ID: {Scanner.READ_STRING(NamePtr + 0x0c, 64).Replace("\x00", "")} #{MonsterNumber} @ 0x{MonsterAddress:X}");
                     this.ID = MonsterId;
                     return;

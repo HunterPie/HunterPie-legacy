@@ -105,5 +105,10 @@ namespace HunterPie.Core {
             return int.Parse(Monster.Attributes["Capture"].Value);
         }
 
+        static public string GetMonsterEmByGameID(int ID) {
+            string Em = MonsterDataDocument.SelectSingleNode($"//Monsters/Monster[@GameID='{ID}']/@ID")?.Value;
+            return Em;
+        }
+
     }
 }

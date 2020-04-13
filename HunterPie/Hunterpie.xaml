@@ -100,7 +100,7 @@
         <!-- Console content -->
         <Grid x:Name="ConsolePanel" Margin="51,157,0,2"/>
         <Rectangle HorizontalAlignment="Left" Height="130" VerticalAlignment="Top" Width="1000" Grid.ColumnSpan="2" Margin="0,22,0,0" Fill="{StaticResource CONSOLE_HEADER_BACKGROUND}"/>
-        <Rectangle x:Name="WindowTopBar" Fill="{StaticResource CONSOLE_WINDOWBAR_BACKGROUND}" HorizontalAlignment="Left" Height="22" VerticalAlignment="Top" Width="1000" Grid.ColumnSpan="2" MouseDown="OnWindowDrag"/>
+        <Rectangle x:Name="WindowTopBar" Fill="{StaticResource CONSOLE_WINDOWBAR_BACKGROUND}" HorizontalAlignment="Left" Height="22" VerticalAlignment="Top" Width="1000" Grid.ColumnSpan="2" MouseLeftButtonDown="OnWindowDrag"/>
 
         <!-- Top buttons -->
         <Label x:Name="closeWindow" Content="✕" HorizontalAlignment="Center" Margin="973,0,0,568" VerticalAlignment="Center" Height="22" Width="25" Foreground="{StaticResource BUTTON_TOPBUTTON_FOREGROUND}" Padding="0,0,1,0" Cursor="Hand" MouseDown="OnCloseWindowButtonClick" FontSize="14" Template="{DynamicResource LabelButtonType}" OverridesDefaultStyle="True" Style="{Binding Mode=OneWay, Source={StaticResource LabelButtonType}}" VerticalContentAlignment="Center" Background="{StaticResource BUTTON_CLOSEWINDOW_BACKGROUND}" HorizontalContentAlignment="Center" />

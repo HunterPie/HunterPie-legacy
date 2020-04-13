@@ -218,25 +218,25 @@ namespace HunterPie.Core {
             // Chest
             GameStructs.Armor Chest = new GameStructs.Armor() {
                 ID = Scanner.READ_INT(PlayerGearBase + 0x4),
-                Decorations = GetDecorationsFromGear(PlayerGearBase + 0x4, 1)
+                Decorations = GetDecorationsFromGear(PlayerGearBase, 1)
             };
 
             // Arms
             GameStructs.Armor Arms = new GameStructs.Armor() {
                 ID = Scanner.READ_INT(PlayerGearBase + 0x8),
-                Decorations = GetDecorationsFromGear(PlayerGearBase + 0x8, 2)
+                Decorations = GetDecorationsFromGear(PlayerGearBase, 2)
             };
 
             // Waist
             GameStructs.Armor Waist = new GameStructs.Armor() {
                 ID = Scanner.READ_INT(PlayerGearBase + 0xC),
-                Decorations = GetDecorationsFromGear(PlayerGearBase + 0xC, 3)
+                Decorations = GetDecorationsFromGear(PlayerGearBase, 3)
             };
 
             // Waist
             GameStructs.Armor Legs = new GameStructs.Armor() {
                 ID = Scanner.READ_INT(PlayerGearBase + 0x10),
-                Decorations = GetDecorationsFromGear(PlayerGearBase + 0x10, 4)
+                Decorations = GetDecorationsFromGear(PlayerGearBase, 4)
             };
 
             // Charm
@@ -251,7 +251,8 @@ namespace HunterPie.Core {
                 Decorations = GetWeaponDecorations(PlayerGearBase + 0x128),
                 NewAugments = GetWeaponNewAugments(PlayerGearBase + 0x128),
                 Awakenings = GetWeaponAwakenedSkills(PlayerGearBase + 0x128),
-                CustomAugments = GetCustomAugments(PlayerGearBase + 0x128)
+                CustomAugments = GetCustomAugments(PlayerGearBase + 0x128),
+                BowgunMods = GetBowgunMods(PlayerGearBase + 0x128)
             };
 
             // Primary Tool
@@ -279,6 +280,17 @@ namespace HunterPie.Core {
                 }
             };
             return PlayerGear;
+        }
+
+        private GameStructs.BowgunMod[] GetBowgunMods(Int64 BaseAddress) {
+            GameStructs.BowgunMod[] bowgunMods = new GameStructs.BowgunMod[5];
+            for (int i = 0; i < 5; i++) {
+                GameStructs.BowgunMod dummy = new GameStructs.BowgunMod() {
+                    ID = GameStructs.ConvertToMax(Scanner.READ_UINT(BaseAddress + 0x10 + (i * 4)))
+                };
+                bowgunMods[i] = dummy;
+            }
+            return bowgunMods;
         }
 
         private GameStructs.NewAugment[] GetWeaponNewAugments(Int64 BaseAddress) {
@@ -324,7 +336,7 @@ namespace HunterPie.Core {
             GameStructs.Decoration[] Decorations = new GameStructs.Decoration[3];
             for (int DecorationIndex = 0; DecorationIndex < 3; DecorationIndex++) {
                 GameStructs.Decoration dummy = new GameStructs.Decoration() {
-                    ID = GameStructs.ConvertToZero(Scanner.READ_UINT(BaseAddress + 0x30 + (0x3 * GearIndex * 0x4) + (0x4 * DecorationIndex)))
+                    ID = GameStructs.ConvertToMax(Scanner.READ_UINT(BaseAddress + 0x30 + (0x3 * GearIndex * 0x4) + (0x4 * DecorationIndex)))
                 };
                 Decorations[DecorationIndex] = dummy;
             }
@@ -335,7 +347,7 @@ namespace HunterPie.Core {
             GameStructs.Decoration[] Decorations = new GameStructs.Decoration[3];
             for (int DecorationIndex = 0; DecorationIndex < 3; DecorationIndex++) {
                 GameStructs.Decoration dummy = new GameStructs.Decoration() {
-                    ID = GameStructs.ConvertToZero(Scanner.READ_UINT(BaseAddress + ((DecorationIndex + 1) * 0x4)))
+                    ID = GameStructs.ConvertToMax(Scanner.READ_UINT(BaseAddress + ((DecorationIndex + 1) * 0x4)))
                 };
                 Decorations[DecorationIndex] = dummy;
             }
@@ -357,7 +369,7 @@ namespace HunterPie.Core {
             GameStructs.Decoration[] Decorations = new GameStructs.Decoration[2];
             for (int DecorationIndex = 0; DecorationIndex < 2; DecorationIndex++) {
                 GameStructs.Decoration dummy = new GameStructs.Decoration() {
-                    ID = GameStructs.ConvertToZero(Scanner.READ_UINT(BaseAddress + (DecorationIndex * 0x4)))
+                    ID = GameStructs.ConvertToMax(Scanner.READ_UINT(BaseAddress + (DecorationIndex * 0x4)))
                 };
                 Decorations[DecorationIndex] = dummy;
             }

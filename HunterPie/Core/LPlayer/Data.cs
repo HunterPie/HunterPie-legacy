@@ -19,6 +19,7 @@
             public NewAugment[] NewAugments;
             public AwakenedSkill[] Awakenings;
             public CustomAugment[] CustomAugments;
+            public BowgunMod[] BowgunMods;
         }
 
         public struct Armor {
@@ -49,6 +50,10 @@
             public short ID;
         }
 
+        public struct BowgunMod {
+            public int ID;
+        }
+
         public struct Gear {
             public Weapon Weapon;
             public Armor Helmet;
@@ -58,12 +63,10 @@
             public Armor Legs;
             public Charm Charm;
             public SpecializedTool[] SpecializedTools;
-
-            
         }
 
-        public static int ConvertToZero(uint ID) {
-            return ID < 0xFFFFFFFF ? (int)ID : 0;
+        public static int ConvertToMax(uint ID) {
+            return ID < 0xFFFFFFFF ? (int)ID : int.MaxValue;
         }
     }
 }

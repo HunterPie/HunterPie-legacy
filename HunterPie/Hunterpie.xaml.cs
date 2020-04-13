@@ -556,7 +556,8 @@ namespace HunterPie {
         }
 
         private void OnUploadBuildButtonClick(object sender, MouseButtonEventArgs e) {
-            Honey.LinkStructureBuilder(MonsterHunter.Player.GetPlayerGear());
+            string HoneyBuild = Honey.LinkStructureBuilder(MonsterHunter.Player.GetPlayerGear());
+            Process.Start(HoneyBuild);
         }
 
         private void OnLaunchGameButtonClick(object sender, RoutedEventArgs e) {
