@@ -18,7 +18,7 @@ Gerade bei den Abnormalitäten / Statusveränderungen des Spielers gibt es mit (
     <Monster ID="em018_00" Name="Yian Garuga"/>
     <Monster ID="em018_05" Name="Wundmal-Yian-Garuga"/>
     <Monster ID="em023_00" Name="Rajang"/>
-	<MONSTER ID="em023_05" Name="Wütender Rajang"/>
+	  <MONSTER ID="em023_05" Name="Wütender Rajang"/>
     <Monster ID="em024_00" Name="Kushala Daora"/>
     <Monster ID="em026_00" Name="Lunastra"/>
     <Monster ID="em027_00" Name="Teostra"/>
@@ -34,7 +34,7 @@ Gerade bei den Abnormalitäten / Statusveränderungen des Spielers gibt es mit (
     <Monster ID="em057_00" Name="Zinogre"/>
     <Monster ID="em057_01" Name="Höllen-Zinogre"/>
     <Monster ID="em063_00" Name="Brachydios"/>
-	<Monster ID="em063_05" Name="Tobender Brachydios"/>
+	  <Monster ID="em063_05" Name="Tobender Brachydios"/>
     <Monster ID="em080_00" Name="Glavenus"/>
     <Monster ID="em080_01" Name="Säure-Glavenus"/>
     <Monster ID="em100_00" Name="Anjanath"/>
@@ -177,7 +177,7 @@ Gerade bei den Abnormalitäten / Statusveränderungen des Spielers gibt es mit (
     <Ailment ID="STATUS_DUNGPOD" Name="Misthülse"/>
     <Ailment ID="STATUS_SHOCKTRAP" Name="Schock Falle"/>
     <Ailment ID="STATUS_PITFALLTRAP" Name="Fallgrube"/>
-	<Ailment ID="STATUS_VINETRAP" Name="Rankenfalle"/>
+	  <Ailment ID="STATUS_VINETRAP" Name="Rankenfalle"/>
     <Ailment ID="STATUS_ELDERSEAL" Name="Ältesten-Siegel"/>
     <Ailment ID="STATUS_SMOKING" Name="Rauchend"/>
     <Ailment ID="STATUS_FELYNETRAP" Name="Katzen-Falle"/>
@@ -397,6 +397,7 @@ Gerade bei den Abnormalitäten / Statusveränderungen des Spielers gibt es mit (
     <Console>
       <String ID="CONSOLE_CONSOLE" Name="KONSOLE"/>
       <String ID="CONSOLE_SETTINGS" Name="EINSTELLUNGEN"/>
+      <String ID="CONSOLE_UPLOADBUILD" Name="UPLOAD BUILD"/>
       <String ID="CONSOLE_CHANGELOG" Name="PATCH NOTES"/>
       <String ID="CONSOLE_DISCORD" Name="DISCORD"/>
       <String ID="CONSOLE_GITHUB" Name="GITHUB"/>
@@ -406,6 +407,7 @@ Gerade bei den Abnormalitäten / Statusveränderungen des Spielers gibt es mit (
       <String ID="MESSAGE_QUIT" Name="Bist du sicher, dass du HunterPie beenden möchtest?"/>
       <String ID="TITLE_MISSING_PATH" Name="Monster Hunter World Pfad nicht gefunden"/>
       <String ID="MESSAGE_MISSING_PATH" Name="Du hast den Pfad zum Spiel noch nicht angegeben. Möchtest du dies nun tun?"/>
+      <String ID="MESSAGE_UPLOAD_BUILD" Name="Do you want to upload your current character build to Honey Hunters World?"/>
       <!-- Console Messages -->
       <String ID="MESSAGE_MAP_LOAD" Name="{HunterPie_Map} geladen"/>
       <String ID="MESSAGE_DISCORD_CONNECTED" Name="Starte neue RPC Verbindung"/>
@@ -484,13 +486,13 @@ Gerade bei den Abnormalitäten / Statusveränderungen des Spielers gibt es mit (
       <String ID="ENABLE_MONSTER_WIDGET_DESC" Name="Wenn aktiv, wird das Monster Widget sichtbar sein, sobald es etwas anzuzeigen hat."/>
       <String ID="STATIC_MONSTER_HEALTH_STRING_FORMAT" Name="Monsterleisten Text Format:"/>
       <String ID="STATIC_MONSTER_HEALTH_STRING_FORMAT_DESC" Name="Text Format der Monsterleiste."/>
-	  <String ID="STATIC_MONSTER_BAR_MODE" Name="Monsterleisten Modus"/>
+	    <String ID="STATIC_MONSTER_BAR_MODE" Name="Monsterleisten Modus"/>
       <String ID="STATIC_MONSTER_BAR_MODE_DESC" Name="Ändert den Modus der Monsterleiste."/>
       <String ID="STATIC_MONSTER_BAR_MODE_0" Name="Zeige alle Monster gleichzeitig"/>
       <String ID="STATIC_MONSTER_BAR_MODE_1" Name="Zeige alle Monster gleichzeitig, aber hebe mein Ziel hervor"/>
       <String ID="STATIC_MONSTER_BAR_MODE_2" Name="Zeige nur das gejagte Monster"/>
       <String ID="STATIC_MONSTER_BAR_MODE_3" Name="Zeige alle Monster, aber verstecke inaktive Monster nach 15 Sekunden"/>
-	  <String ID="STATIC_MONSTER_BAR_MODE_4" Name="Zeige alle Monster bis eines ausgewählt wurde"/>
+	    <String ID="STATIC_MONSTER_BAR_MODE_4" Name="Zeige alle Monster bis eines ausgewählt wurde"/>
       <String ID="STATIC_MONSTER_BAR_MODE_HOTKEY" Name="Wechsel zw. den Monsterleisten Modi (HotKey):"/>
       <String ID="STATIC_MONSTER_BAR_MODE_HOTKEY_DESC" Name="Hotkey um zwischen den verschiedenen Monsterleisten Modi zu wechseln. Ändern des HotKeys erfordert einen Neustart von HunterPie um aktiv zu werden."/>
       <String ID="STATIC_MONSTER_BAR_DOCK" Name="Monsterleisten Ausrichtung:"/>
@@ -610,6 +612,7 @@ Gerade bei den Abnormalitäten / Statusveränderungen des Spielers gibt es mit (
       <String ID="STATIC_BUTTON_SAVE" Name="Speichern"/>
       <String ID="STATIC_REQUIRES_RESTART" Name="(benötigt Neustart)"/>
       <String ID="STATIC_POSITION" Name="Position"/>
+      <String ID="STATIC_COPYCLIPBOARD" Name="Copy to clipboard"/>
       <!-- Settings Side bar-->
       <String ID="STATIC_GENERAL_SETTINGS" Name="Allgemein"/>
       <String ID="STATIC_DISCORD_SETTINGS" Name="Discord"/>
@@ -630,6 +633,7 @@ Gerade bei den Abnormalitäten / Statusveränderungen des Spielers gibt es mit (
       <String ID="STATIC_ACCEPT" Name="Akzeptieren"/>
       <String ID="STATIC_REJECT" Name="Ablehnen"/>
       <String ID="STATIC_SETTINGS_LOAD" Name="Einstellungen geladen"/>
+      <String ID="STATIC_OPENDEFAULTBROWSER" Name="Open in Browser"/>
     </Notifications>
     <RichPresence>
       <String ID="RPC_DESCRIPTION_IN_MAIN_MENU" Name="Im Hauptmenü"/>

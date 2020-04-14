@@ -392,6 +392,7 @@
     <Console>
       <String ID="CONSOLE_CONSOLE" Name="КОНСОЛЬ"/>
       <String ID="CONSOLE_SETTINGS" Name="НАСТРОЙКИ"/>
+      <String ID="CONSOLE_UPLOADBUILD" Name="UPLOAD BUILD"/>
       <String ID="CONSOLE_CHANGELOG" Name="ПАТЧНОУТЫ"/>
       <String ID="CONSOLE_DISCORD" Name="ДИСКОРД"/>
       <String ID="CONSOLE_GITHUB" Name="ГИТХАБ"/>
@@ -401,6 +402,7 @@
       <String ID="MESSAGE_QUIT" Name="Вы уверены что хотите закрыть HunterPie?"/>
       <String ID="TITLE_MISSING_PATH" Name="Путь к Monster Hunter World не найден."/>
       <String ID="MESSAGE_MISSING_PATH" Name="Вы не указали путь к игре. Хотите сделать это сейчас?"/>
+      <String ID="MESSAGE_UPLOAD_BUILD" Name="Do you want to upload your current character build to Honey Hunters World?"/>
       <!-- Console Messages -->
       <String ID="MESSAGE_MAP_LOAD" Name="Загружено {HunterPie_Map}"/>
       <String ID="MESSAGE_DISCORD_CONNECTED" Name="Установление нового соединения RPC"/>
@@ -605,6 +607,7 @@
       <String ID="STATIC_BUTTON_SAVE" Name="Сохранить"/>
       <String ID="STATIC_REQUIRES_RESTART" Name="(Требует перезапуска)"/>
       <String ID="STATIC_POSITION" Name="Позиция"/>
+      <String ID="STATIC_COPYCLIPBOARD" Name="Copy to clipboard"/>
       <!-- Settings Side bar-->
       <String ID="STATIC_GENERAL_SETTINGS" Name="Главное"/>
       <String ID="STATIC_DISCORD_SETTINGS" Name="Дискорд"/>
@@ -625,6 +628,7 @@
       <String ID="STATIC_ACCEPT" Name="Принять"/>
       <String ID="STATIC_REJECT" Name="Отклонить"/>
       <String ID="STATIC_SETTINGS_LOAD" Name="Настройки загружены"/>
+      <String ID="STATIC_OPENDEFAULTBROWSER" Name="Open in Browser"/>
     </Notifications>
     <RichPresence>
       <String ID="RPC_DESCRIPTION_IN_MAIN_MENU" Name="В Главном меню"/>
