@@ -36,12 +36,6 @@
                             </BeginStoryboard>
                         </Trigger.ExitActions>
                     </Trigger>
-                    <DataTrigger Binding="{Binding RelativeSource={x:Static RelativeSource.Self}, Path=IsEnabled}" Value="True">
-                        <Setter Property="Opacity" Value="1"/>
-                    </DataTrigger>
-                    <DataTrigger Binding="{Binding RelativeSource={x:Static RelativeSource.Self}, Path=IsEnabled}" Value="False">
-                        <Setter Property="Opacity" Value="0.5"/>
-                    </DataTrigger>
                 </Style.Triggers>
             </Style>
 
@@ -127,7 +121,7 @@
                     </TextBlock.Text>
                 </TextBlock>
             </StackPanel>
-            <StackPanel x:Name="BUTTON_UPLOADBUILD" IsEnabled="False" Style="{StaticResource STYLE_SIDEBARBUTTONS}"  Background="{StaticResource BUTTON_COMMONBUTTON_BACKGROUND}" Cursor="Hand"  Width="205" Height="40" Margin="0,82,0,316" Orientation="Horizontal" HorizontalAlignment="Left" MouseDown="OnUploadBuildButtonClick">
+            <StackPanel x:Name="BUTTON_UPLOADBUILD" Style="{StaticResource STYLE_SIDEBARBUTTONS}"  Background="{StaticResource BUTTON_COMMONBUTTON_BACKGROUND}" Cursor="Hand"  Width="205" Height="40" Margin="0,82,0,316" Orientation="Horizontal" HorizontalAlignment="Left" MouseDown="OnUploadBuildButtonClick">
                 <Image Panel.ZIndex="1" Source="{StaticResource ICON_BUILD}" HorizontalAlignment="Center" Width="25" VerticalAlignment="Center" Margin="9,8,0,8"/>
                 <TextBlock DataContext="{StaticResource Localization}" Padding="20,0,0,0" VerticalAlignment="Center" FontSize="18" FontFamily="Roboto" FontWeight="Bold" Foreground="{StaticResource BUTTON_COMMONBUTTON_FOREGROUND}">
                     <TextBlock.Text>

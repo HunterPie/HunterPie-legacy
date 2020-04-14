@@ -69,6 +69,9 @@ namespace HunterPie {
             LoadData();
             Debugger.Warn(GStrings.GetLocalizationByXPath("/Console/String[@ID='MESSAGE_HUNTERPIE_INITIALIZED']"));
             SetHotKeys();
+
+            BUTTON_UPLOADBUILD.IsEnabled = false;
+            BUTTON_UPLOADBUILD.Opacity = 0.5;
             StartEverything();
         }
 
@@ -387,11 +390,13 @@ namespace HunterPie {
             Debugger.Log($"Logged on {MonsterHunter.Player.Name}");
             Dispatcher.BeginInvoke(System.Windows.Threading.DispatcherPriority.Background, new Action(() => {
                 BUTTON_UPLOADBUILD.IsEnabled = true;
+                BUTTON_UPLOADBUILD.Opacity = 1;
             }));
         }
 
         public void OnLogout(object source, EventArgs e) {
             Dispatcher.BeginInvoke(System.Windows.Threading.DispatcherPriority.Background, new Action(() => {
+                BUTTON_UPLOADBUILD.Opacity = 0.5;
                 BUTTON_UPLOADBUILD.IsEnabled = false;
             }));
         }
@@ -587,7 +592,6 @@ namespace HunterPie {
         private void OnDiscordButtonClick(object sender, MouseButtonEventArgs e) {
             Process.Start("https://discord.gg/5pdDq4Q");
         }
-
 
         private void HunterPiePopup_OnAccept(object source, EventArgs args) {
             string HoneyBuild = Honey.LinkStructureBuilder(MonsterHunter.Player.GetPlayerGear());
