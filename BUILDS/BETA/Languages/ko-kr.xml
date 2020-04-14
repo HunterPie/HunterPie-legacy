@@ -392,7 +392,7 @@
     <Console>
       <String ID="CONSOLE_CONSOLE" Name="콘솔"/>
       <String ID="CONSOLE_SETTINGS" Name="설정"/>
-      <String ID="CONSOLE_UPLOADBUILD" Name="UPLOAD BUILD"/>
+	  <String ID="CONSOLE_UPLOADBUILD" Name="장비 커스텀 업로드"/>
       <String ID="CONSOLE_CHANGELOG" Name="패치내역"/>
       <String ID="CONSOLE_DISCORD" Name="Discord"/>
       <String ID="CONSOLE_GITHUB" Name="GitHub"/>
@@ -402,7 +402,7 @@
       <String ID="MESSAGE_QUIT" Name="HunterPie를 종료하시겠습니까?"/>
       <String ID="TITLE_MISSING_PATH" Name="게임 설치 경로를 찾을 수 없습니다."/>
       <String ID="MESSAGE_MISSING_PATH" Name="게임 설치 경로를 설정하지 않으셨습니다, 지금 설정하시겠습니까?"/>
-      <String ID="MESSAGE_UPLOAD_BUILD" Name="Do you want to upload your current character build to Honey Hunters World?"/>
+	  <String ID="MESSAGE_UPLOAD_BUILD" Name="현재 캐릭터의 장비 커스텀을 Hunters World에 업로드 하시겠습니까?"/>
       <!-- Console Messages -->
       <String ID="MESSAGE_MAP_LOAD" Name="{HunterPie_Map} 로드 완료"/>
       <String ID="MESSAGE_DISCORD_CONNECTED" Name="새로운 RPC 연결 시작"/>
@@ -606,7 +606,7 @@
       <String ID="STATIC_BUTTON_SAVE" Name="저장"/>
       <String ID="STATIC_REQUIRES_RESTART" Name="(재시작 필요)"/>
       <String ID="STATIC_POSITION" Name="위치"/>
-      <String ID="STATIC_COPYCLIPBOARD" Name="Copy to clipboard"/>
+	  <String ID="STATIC_COPYCLIPBOARD" Name="클립보드로 복사"/>
       <!-- Settings Side bar-->
       <String ID="STATIC_GENERAL_SETTINGS" Name="일반 설정"/>
       <String ID="STATIC_DISCORD_SETTINGS" Name="Discord"/>
@@ -627,7 +627,7 @@
       <String ID="STATIC_ACCEPT" Name="수락"/>
       <String ID="STATIC_REJECT" Name="거절"/>
       <String ID="STATIC_SETTINGS_LOAD" Name="설정 불러옴"/>
-      <String ID="STATIC_OPENDEFAULTBROWSER" Name="Open in Browser"/>
+	  <String ID="STATIC_OPENDEFAULTBROWSER" Name="브라우저에서 열기"/>
     </Notifications>
     <RichPresence>
       <String ID="RPC_DESCRIPTION_IN_MAIN_MENU" Name="메인 메뉴"/>
