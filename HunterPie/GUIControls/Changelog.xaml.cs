@@ -38,6 +38,9 @@ namespace HunterPie.GUIControls {
         }
 
         private void OnLoaded(object sender, RoutedEventArgs e) {
+            
+            if (!File.Exists(Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "changelog.log"))) return;
+
             var markdown = File.ReadAllText(Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "changelog.log"));
             var xaml = Markdig.Wpf.Markdown.ToXaml(markdown, BuildPipeline());
             using (var stream = new MemoryStream(Encoding.UTF8.GetBytes(xaml))) {
