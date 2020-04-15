@@ -3997,6 +3997,7 @@
       <Weapon HoneyID="1793" ID="214"/>
       <Weapon HoneyID="1794" ID="215"/>
       <Weapon HoneyID="1811" ID="216"/>
+      <Weapon HoneyID="2036" ID="217"/>
       <Weapon HoneyID="1795" ID="220"/>
       <Weapon HoneyID="1796" ID="221"/>
       <Weapon HoneyID="1797" ID="222"/>
@@ -4140,6 +4141,7 @@
       <Weapon HoneyID="1885" ID="212"/>
       <Weapon HoneyID="1723" ID="213"/>
       <Weapon HoneyID="1810" ID="214"/>
+      <Weapon HoneyID="2035" ID="215"/>
       <Weapon HoneyID="1724" ID="218"/>
       <Weapon HoneyID="1725" ID="219"/>
       <Weapon HoneyID="1726" ID="220"/>
@@ -4679,6 +4681,8 @@
       <Skill HoneyID="el4" ID="22"/>
       <Skill HoneyID="el5" ID="23"/>
       <Skill HoneyID="el6" ID="24"/>
+      <Skill HoneyID="sl2" ID="38"/>
+      <Skill HoneyID="sl3" ID="39"/>
       <Skill HoneyID="sl4" ID="40"/>
       <Skill HoneyID="sh4" ID="44"/>
       <Skill HoneyID="sh5" ID="45"/>
