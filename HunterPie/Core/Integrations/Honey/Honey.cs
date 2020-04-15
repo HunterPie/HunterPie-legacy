@@ -50,7 +50,7 @@ namespace HunterPie.Core {
 
                 if (Build.Weapon.NewAugments[AugmentIndex].Level == 0) continue;
                 else { AugmentsTotal++; }
-                
+
                 if (AugmentsTotal > 1) {
                     LinkBuilder.Append($";{AugId}:{Build.Weapon.NewAugments[AugmentIndex].Level}");
                 } else {
@@ -70,7 +70,9 @@ namespace HunterPie.Core {
             LinkBuilder.Append(",0,0");
 
             // Decorations
-            LinkBuilder.Append(BuildDecorationStringStructure(Build.Weapon.Decorations));
+            int[] ExtraSlotAwakening = new int[3] { 38, 39, 40 };
+            bool HasExtraSlot = Build.Weapon.Awakenings.Where(deco => ExtraSlotAwakening.Contains(deco.ID)).ToArray().Length > 0;
+            LinkBuilder.Append(BuildDecorationStringStructure(Build.Weapon.Decorations, isWeapon: true, HasDecorationExtraSlot: HasExtraSlot));
             LinkBuilder.Append(BuildDecorationStringStructure(Build.Helmet.Decorations));
             LinkBuilder.Append(BuildDecorationStringStructure(Build.Chest.Decorations));
             LinkBuilder.Append(BuildDecorationStringStructure(Build.Hands.Decorations));
@@ -174,13 +176,22 @@ namespace HunterPie.Core {
             return JoinedResult.ToString();
         }
 
-        static string BuildDecorationStringStructure(GameStructs.Decoration[] Decorations, int Amount = 3) {
+        static string BuildDecorationStringStructure(GameStructs.Decoration[] Decorations, int Amount = 3, bool isWeapon = false, bool HasDecorationExtraSlot = false) {
             StringBuilder stringStructure = new StringBuilder();
+
+            // Shift the jewel to the third slot if it's empty, since Honey uses the
+            // Awakening slot always in the third slot
+            if (isWeapon && HasDecorationExtraSlot && Decorations[2].ID == int.MaxValue) {
+                Decorations[2].ID = Decorations[1].ID;
+                Decorations[1].ID = int.MaxValue;
+            }
+
             for (int DecoIndex = 0; DecoIndex < Amount; DecoIndex++) {
                 GameStructs.Decoration deco = Decorations[DecoIndex];
                 string decorationHoneyID = deco.ID == int.MaxValue ? "0" : HoneyGearData.SelectSingleNode($"//Honey/Gear/Jewels/Jewel[@ID='{deco.ID}']/@HoneyID")?.Value;
                 stringStructure.Append("," + decorationHoneyID);
             }
+            
             return stringStructure.ToString();
         }
 
