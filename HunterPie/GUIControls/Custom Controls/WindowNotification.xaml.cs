@@ -83,7 +83,7 @@ namespace HunterPie.GUIControls.Custom_Controls {
 
         private void TextBox_MouseButtonDown(object sender, MouseButtonEventArgs e) {
             e.Handled = false;
-            Clipboard.SetText(Link);
+            Clipboard.SetDataObject(Link);
             Box.SelectAll();
         }
 

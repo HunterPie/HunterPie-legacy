@@ -102,7 +102,9 @@ namespace HunterPie.Core {
             XmlNodeList nl = HoneyGearData.SelectSingleNode($"//Honey/Weapons").ChildNodes;
             if (WeaponType > nl.Count) return "0";
             XmlNode WeaponNode = nl[WeaponType];
-            return WeaponNode.SelectSingleNode($"Weapon[@ID='{WeaponID}']/@HoneyID")?.Value ?? "0";
+            string wID = WeaponNode.SelectSingleNode($"Weapon[@ID='{WeaponID}']/@HoneyID")?.Value ?? "0";
+            if (wID == "0") Debugger.Error($"Unsupported weapon ID: {WeaponID}");
+            return wID;
         }
 
         static string GetGearHoneyID(string Type, string SubType, int ID) {

@@ -48,22 +48,18 @@
                                 <Trigger Property="IsMouseOver" Value="true">
                                     <Trigger.EnterActions>
                                         <BeginStoryboard>
-                                            <Storyboard Storyboard.TargetProperty="(Background).(SolidColorBrush.Color)">
-                                                <ColorAnimation To="#FF830000" Duration="0:0:0.250" />
+                                            <Storyboard Storyboard.TargetProperty="Opacity">
+                                                <DoubleAnimation To="0.65" Duration="0:0:0.250" />
                                             </Storyboard>
                                         </BeginStoryboard>
                                     </Trigger.EnterActions>
                                     <Trigger.ExitActions>
                                         <BeginStoryboard>
-                                            <Storyboard Storyboard.TargetProperty="(Background).(SolidColorBrush.Color)">
-                                                <ColorAnimation To="#FFAF0000" Duration="0:0:0.250" />
+                                            <Storyboard Storyboard.TargetProperty="Opacity">
+                                                <DoubleAnimation To="1" Duration="0:0:0.250" />
                                             </Storyboard>
                                         </BeginStoryboard>
                                     </Trigger.ExitActions>
-                                </Trigger>
-                                <Trigger Property="IsPressed" Value="true">
-                                    <Setter Property="Background" TargetName="border" Value="#FF930505"/>
-                                    <Setter Property="BorderBrush" TargetName="border" Value="#FF171717"/>
                                 </Trigger>
                                 <Trigger Property="IsEnabled" Value="false">
                                     <Setter Property="Background" TargetName="border" Value="{StaticResource Button.Disabled.Background}"/>
@@ -95,7 +91,7 @@
         </ResourceDictionary>
     </UserControl.Resources>
     <Grid>
-        <Button Style="{StaticResource buttons_settings}" x:Name="saveSettings" Panel.ZIndex="1" Content="{Binding XPath=/Strings/Client/Settings/String[@ID\=\'STATIC_BUTTON_SAVE\']/@Name}" Margin="0,0,7,5" Foreground="#FFD4D4D4" Cursor="Hand" FontFamily="Segoe UI" FontSize="16" Click="saveSettings_Click" MinWidth="76" FontWeight="Bold" BorderBrush="{x:Null}" Background="#FFAF0000" HorizontalAlignment="Right" Height="36" VerticalAlignment="Bottom" Padding="5,2"/>
+        <Button Style="{StaticResource buttons_settings}" x:Name="saveSettings" Panel.ZIndex="1" Content="{Binding XPath=/Strings/Client/Settings/String[@ID\=\'STATIC_BUTTON_SAVE\']/@Name}" Foreground="{StaticResource GENERIC_BUTTON_FOREGROUND}" Margin="0,0,7,5" Cursor="Hand" FontFamily="Segoe UI" FontSize="16" Click="saveSettings_Click" MinWidth="76" FontWeight="Bold" BorderBrush="{x:Null}" Background="{StaticResource GENERIC_BUTTON_BACKGROUND}" HorizontalAlignment="Right" Height="36" VerticalAlignment="Bottom" Padding="5,2"/>
         <local:NewSettingsWindow x:Name="SettingsBox"/>
     </Grid>
 </UserControl>

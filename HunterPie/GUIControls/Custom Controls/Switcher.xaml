@@ -8,10 +8,6 @@
              DataContext="{StaticResource Localization}"
              >
     <UserControl.Resources>
-        <Color x:Key="BackgroundColorOff">#FF151515</Color>
-        <Color x:Key="BackgroundColorOn">#FFB91E17</Color>
-        <Color x:Key="ForegroundColorOff">#FF252525</Color>
-        <Color x:Key="ForegroundColorOn">#FFE6E6</Color>
         <Duration x:Key="AnimationDurations">0:0:0.15</Duration>
         <Storyboard x:Key="SwitchEllipseOn" Storyboard.TargetProperty="Margin">
             <ThicknessAnimation From="2,2,0,0" To="28,2,0,0" Duration="{StaticResource AnimationDurations}" />
@@ -20,16 +16,16 @@
             <ThicknessAnimation From="28,2,0,0" To="2,2,0,0" Duration="{StaticResource AnimationDurations}"/>
         </Storyboard>
         <Storyboard x:Key="BackgroundOn" Storyboard.TargetProperty="Fill.(SolidColorBrush.Color)">
-            <ColorAnimation From="{StaticResource BackgroundColorOff}" To="{StaticResource BackgroundColorOn}" Duration="{StaticResource AnimationDurations}"/>
+            <ColorAnimation From="{StaticResource TOGGLABLE_BUTTON_BACKGROUND_OFF}" To="{StaticResource TOGGLABLE_BUTTON_BACKGROUND_ON}" Duration="{StaticResource AnimationDurations}"/>
         </Storyboard>
         <Storyboard x:Key="BackgroundOff" Storyboard.TargetProperty="Fill.(SolidColorBrush.Color)">
-            <ColorAnimation From="{StaticResource BackgroundColorOn}" To="{StaticResource BackgroundColorOff}" Duration="{StaticResource AnimationDurations}"/>
+            <ColorAnimation From="{StaticResource TOGGLABLE_BUTTON_BACKGROUND_ON}" To="{StaticResource TOGGLABLE_BUTTON_BACKGROUND_OFF}" Duration="{StaticResource AnimationDurations}"/>
         </Storyboard>
         <Storyboard x:Key="ForegroundOn" Storyboard.TargetProperty="Fill.(SolidColorBrush.Color)">
-            <ColorAnimation From="{StaticResource ForegroundColorOff}" To="{StaticResource ForegroundColorOn}" Duration="{StaticResource AnimationDurations}"/>
+            <ColorAnimation From="{StaticResource TOGGLABLE_BUTTON_FOREGROUND_OFF}" To="{StaticResource TOGGLABLE_BUTTON_FOREGROUND_ON}" Duration="{StaticResource AnimationDurations}"/>
         </Storyboard>
         <Storyboard x:Key="ForegroundOff" Storyboard.TargetProperty="Fill.(SolidColorBrush.Color)">
-            <ColorAnimation From="{StaticResource ForegroundColorOn}" To="{StaticResource ForegroundColorOff}" Duration="{StaticResource AnimationDurations}"/>
+            <ColorAnimation From="{StaticResource TOGGLABLE_BUTTON_FOREGROUND_ON}" To="{StaticResource TOGGLABLE_BUTTON_FOREGROUND_OFF}" Duration="{StaticResource AnimationDurations}"/>
         </Storyboard>
     </UserControl.Resources>
     <UserControl.Triggers>

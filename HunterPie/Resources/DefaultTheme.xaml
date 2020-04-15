@@ -133,6 +133,10 @@
     </Style>
 
     <!-- Console -->
+    <SolidColorBrush x:Key="CONSOLE_LOGO_PRIMARY">#FFAF0000</SolidColorBrush>
+    <SolidColorBrush x:Key="CONSOLE_LOGO_SECONDARY">#FF1F1F1F</SolidColorBrush>
+    <SolidColorBrush x:Key="CONSOLE_LOGO_TERTIARY">#FFAF0000</SolidColorBrush>
+    
     <SolidColorBrush x:Key="CONSOLE_BACKGROUND">#F41F1F1F</SolidColorBrush>
     <SolidColorBrush x:Key="CONSOLE_HEADER_BACKGROUND">#4C0E0E0E</SolidColorBrush>
     <SolidColorBrush x:Key="CONSOLE_SIDEBAR_BACKGROUND">#CC151515</SolidColorBrush>
@@ -149,15 +153,22 @@
     <SolidColorBrush x:Key="BUTTON_ICON_FOREGROUND">#FFDEDEDE</SolidColorBrush>
     <SolidColorBrush x:Key="CONSOLE_VERSIONTEXT_FOREGROUND">#FFDEDEDE</SolidColorBrush>
 
+    
+    
     <LinearGradientBrush x:Key="CONSOLE_LOGO_FOREGROUND" EndPoint="0.5,1" StartPoint="0.5,0">
         <GradientStop Color="White" Offset="0"/>
         <GradientStop Color="#FFE0E0E0" Offset="1"/>
     </LinearGradientBrush>
 
     <!-- Settings window -->
-    <Color x:Key="TOGGLABLE_BUTTON_BACKGROUND_ON">#FFAF0000</Color>
-    <Color x:Key="TOGGLABLE_BUTTON_BACKGROUND_OFF">#FF0F0F0F</Color>
+    <Color x:Key="TOGGLABLE_BUTTON_BACKGROUND_ON">#FFB91E17</Color>
+    <Color x:Key="TOGGLABLE_BUTTON_BACKGROUND_OFF">#FF151515</Color>
+    <Color x:Key="TOGGLABLE_BUTTON_FOREGROUND_ON">#FFE6E6</Color>
+    <Color x:Key="TOGGLABLE_BUTTON_FOREGROUND_OFF">#FF252525</Color>
 
+    <SolidColorBrush x:Key="GENERIC_BUTTON_BACKGROUND">#AF0000</SolidColorBrush>
+    <SolidColorBrush x:Key="GENERIC_BUTTON_FOREGROUND">#ededed</SolidColorBrush>
+    
     <!-- Debugger colors -->
     <SolidColorBrush x:Key="DEBUGGER_ERROR">#FF6459</SolidColorBrush>
     <SolidColorBrush x:Key="DEBUGGER_LOG">#FFFFFF</SolidColorBrush>

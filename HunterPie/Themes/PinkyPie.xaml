@@ -99,31 +99,30 @@
 
     <!-- Console -->
     <LinearGradientBrush x:Key="CONSOLE_LOGO_PRIMARY" StartPoint="0,1" EndPoint="1,0">
-        <GradientStop Color="#a63fff" Offset="0"/>
-        <GradientStop Color="#893fff" Offset="0.5"/>
-        <GradientStop Color="#a63fff" Offset="0.85"/>
+        <GradientStop Color="#e72594" Offset="0"/>
+        <GradientStop Color="#ff0d98" Offset="0.5"/>
+        <GradientStop Color="#e72594" Offset="0.85"/>
     </LinearGradientBrush>
     <SolidColorBrush x:Key="CONSOLE_LOGO_SECONDARY">#FF1F1F1F</SolidColorBrush>
-    <SolidColorBrush x:Key="CONSOLE_LOGO_TERTIARY">#893fff</SolidColorBrush>
+    <SolidColorBrush x:Key="CONSOLE_LOGO_TERTIARY">#e72594</SolidColorBrush>
 
     <SolidColorBrush x:Key="CONSOLE_BACKGROUND">#DD141414</SolidColorBrush>
-    <SolidColorBrush x:Key="CONSOLE_HEADER_BACKGROUND">#DD141414</SolidColorBrush>
+    <SolidColorBrush x:Key="CONSOLE_HEADER_BACKGROUND">#FF141414</SolidColorBrush>
     <SolidColorBrush x:Key="CONSOLE_SIDEBAR_BACKGROUND">#DC141414</SolidColorBrush>
     <SolidColorBrush x:Key="CONSOLE_WINDOWBAR_BACKGROUND">#CC141414</SolidColorBrush>
-    <SolidColorBrush x:Key="BUTTON_CLOSEWINDOW_BACKGROUND">#6537cc</SolidColorBrush>
+    <SolidColorBrush x:Key="BUTTON_CLOSEWINDOW_BACKGROUND">#e72594</SolidColorBrush>
     <SolidColorBrush x:Key="BUTTON_COMMONBUTTON_FOREGROUND">#FFF3F3F3</SolidColorBrush>
     <SolidColorBrush x:Key="BUTTON_COMMONBUTTON_BACKGROUND">#DD1B1B1B</SolidColorBrush>
 
     <LinearGradientBrush x:Key="BUTTON_LAUNCHGAME_BACKGROUND" StartPoint="0,1" EndPoint="1,0">
-        <GradientStop Color="#6e08b1" Offset="0"/>
-        <GradientStop Color="#893fff" Offset="0.5"/>
-        <GradientStop Color="#a63fff" Offset="0.85"/>
+        <GradientStop Color="#d122ad" Offset="0"/>
+        <GradientStop Color="#e72594" Offset="1"/>
     </LinearGradientBrush>
 
     <LinearGradientBrush x:Key="BUTTON_COMMONBUTTON_BORDER" StartPoint="0,1" EndPoint="1,0">
-        <GradientStop Color="#6e08b1" Offset="0"/>
-        <GradientStop Color="#893fff" Offset="0.5"/>
-        <GradientStop Color="#a63fff" Offset="0.85"/>
+        <GradientStop Color="#de3fbd" Offset="0"/>
+        <GradientStop Color="#f932d6" Offset="0.5"/>
+        <GradientStop Color="#f449ce" Offset="0.85"/>
     </LinearGradientBrush>
 
     <Color x:Key="TOGGLABLE_BUTTON_BACKGROUND_ON">#6537cc</Color>
