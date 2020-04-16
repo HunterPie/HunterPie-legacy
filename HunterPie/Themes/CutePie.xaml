@@ -8,7 +8,7 @@
     <!-- Colors -->
     <!-- Overlay -->
     <!-- Monster Widget (Main bar) -->
-    <LinearGradientBrush x:Key="OVERLAY_MONSTER_HEALTH_BAR_COLOR" StartPoint="0,0" EndPoint="0.5,1">
+    <LinearGradientBrush x:Key="OVERLAY_MONSTER_HEALTH_BAR_COLOR" StartPoint="0,1" EndPoint="1,0">
         <GradientStop Color="#a95bed" Offset="1"/>
         <GradientStop Color="#631df1"/>
     </LinearGradientBrush>
@@ -17,9 +17,9 @@
         <Setter Property="Foreground" Value="#eee6ff"/>
         <Setter Property="FontFamily" Value="Roboto"/>
         <Setter Property="FontSize" Value="12"/>
-        <Setter Property="FontWeight" Value="Bold"/>
+        <Setter Property="FontWeight" Value="Light"/>
         <Setter Property="Margin" Value="45,18,38,30"/>
-        <Setter Property="Padding" Value="0,0.75,0,0"/>
+        <Setter Property="Padding" Value="0,2,0,0"/>
     </Style>
 
     <LinearGradientBrush x:Key="OVERLAY_MONSTER_STAMINA_BAR_COLOR" EndPoint="1,0" StartPoint="0,0">
@@ -115,15 +115,14 @@
     <SolidColorBrush x:Key="BUTTON_COMMONBUTTON_BACKGROUND">#DD1B1B1B</SolidColorBrush>
 
     <LinearGradientBrush x:Key="BUTTON_LAUNCHGAME_BACKGROUND" StartPoint="0,1" EndPoint="1,0">
-        <GradientStop Color="#6e08b1" Offset="0"/>
-        <GradientStop Color="#893fff" Offset="0.5"/>
-        <GradientStop Color="#a63fff" Offset="0.85"/>
+
+        <GradientStop Color="#893fff" Offset="0"/>
+        <GradientStop Color="#a63fff" Offset="1"/>
     </LinearGradientBrush>
 
     <LinearGradientBrush x:Key="BUTTON_COMMONBUTTON_BORDER" StartPoint="0,1" EndPoint="1,0">
         <GradientStop Color="#6e08b1" Offset="0"/>
         <GradientStop Color="#893fff" Offset="0.5"/>
-        <GradientStop Color="#a63fff" Offset="0.85"/>
     </LinearGradientBrush>
 
     <Color x:Key="TOGGLABLE_BUTTON_BACKGROUND_ON">#6537cc</Color>

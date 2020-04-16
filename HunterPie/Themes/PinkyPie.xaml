@@ -8,9 +8,9 @@
     <!-- Colors -->
     <!-- Overlay -->
     <!-- Monster Widget (Main bar) -->
-    <LinearGradientBrush x:Key="OVERLAY_MONSTER_HEALTH_BAR_COLOR" StartPoint="0,0" EndPoint="0.5,1">
-        <GradientStop Color="#a95bed" Offset="1"/>
-        <GradientStop Color="#631df1"/>
+    <LinearGradientBrush x:Key="OVERLAY_MONSTER_HEALTH_BAR_COLOR" StartPoint="0,1" EndPoint="1,0">
+        <GradientStop Color="#ff3f90" Offset="1"/>
+        <GradientStop Color="#b10896"/>
     </LinearGradientBrush>
 
     <Style x:Key="OVERLAY_MONSTER_BAR_TEXT_STYLE" TargetType="TextBlock">
@@ -22,10 +22,9 @@
         <Setter Property="Padding" Value="0,0.75,0,0"/>
     </Style>
 
-    <LinearGradientBrush x:Key="OVERLAY_MONSTER_STAMINA_BAR_COLOR" EndPoint="1,0" StartPoint="0,0">
-        <GradientStop Color="#9a7fd5"/>
-        <GradientStop Color="#bc86e7" Offset="0.33"/>
-        <GradientStop Color="#e18ce7" Offset="0.63"/>
+    <LinearGradientBrush x:Key="OVERLAY_MONSTER_STAMINA_BAR_COLOR" StartPoint="0,1" EndPoint="1,0">
+        <GradientStop Color="#ff6ee8"/>
+        <GradientStop Color="#ffa5cb" Offset="1"/>
     </LinearGradientBrush>
 
     <Style x:Key="OVERLAY_MONSTER_NAME_TEXT_STYLE" TargetType="TextBlock">
@@ -43,20 +42,20 @@
     </Style>
     
     <LinearGradientBrush x:Key="OVERLAY_MONSTER_AILMENT_BAR_COLOR" EndPoint="1,0" StartPoint="0,0">
-        <GradientStop Color="#B1FF2BD8" Offset="1"/>
-        <GradientStop Color="#9CFF45B6"/>
+        <GradientStop Color="#FFD16EFF"/>
+        <GradientStop Color="#FFD495FF" Offset="1"/>
     </LinearGradientBrush>
 
     <Style x:Key="OVERLAY_MONSTER_AILMENT_COUNTER_BACKGROUND_STYLE" TargetType="Rectangle">
-        <Setter Property="Fill" Value="#B1FF2BD8"/>
+        <Setter Property="Fill" Value="#FFD16EFF"/>
         <Setter Property="Stroke" Value="#CC0E0E0E"/>
         <Setter Property="StrokeThickness" Value="0"/>
     </Style>
 
 
-    <LinearGradientBrush x:Key="OVERLAY_MONSTER_PART_BAR_COLOR" EndPoint="1,0" StartPoint="0.5,1">
-        <GradientStop Color="#bb8ee3" Offset="1"/>
-        <GradientStop Color="#8146f9" Offset="0"/>
+    <LinearGradientBrush x:Key="OVERLAY_MONSTER_PART_BAR_COLOR" EndPoint="1,0" StartPoint="0,1">
+        <GradientStop Color="#FFFF65C0" Offset="0"/>
+        <GradientStop Color="#FFFF93D3" Offset="1"/>
     </LinearGradientBrush>
 
     <Style x:Key="OVERLAY_MONSTER_PART_NAME_TEXT_STYLE" TargetType="TextBlock">
@@ -74,7 +73,7 @@
     </Style>
 
     <Style x:Key="OVERLAY_MONSTER_PART_COUNTER_BACKGROUND_STYLE" TargetType="Rectangle">
-        <Setter Property="Fill" Value="#631df1"/>
+        <Setter Property="Fill" Value="#FFFF65C0"/>
         <Setter Property="Stroke" Value="#CC0E0E0E"/>
         <Setter Property="StrokeThickness" Value="0"/>
     </Style>
@@ -107,7 +106,7 @@
     <SolidColorBrush x:Key="CONSOLE_LOGO_TERTIARY">#e72594</SolidColorBrush>
 
     <SolidColorBrush x:Key="CONSOLE_BACKGROUND">#DD141414</SolidColorBrush>
-    <SolidColorBrush x:Key="CONSOLE_HEADER_BACKGROUND">#FF141414</SolidColorBrush>
+    <SolidColorBrush x:Key="CONSOLE_HEADER_BACKGROUND">#DD141414</SolidColorBrush>
     <SolidColorBrush x:Key="CONSOLE_SIDEBAR_BACKGROUND">#DC141414</SolidColorBrush>
     <SolidColorBrush x:Key="CONSOLE_WINDOWBAR_BACKGROUND">#CC141414</SolidColorBrush>
     <SolidColorBrush x:Key="BUTTON_CLOSEWINDOW_BACKGROUND">#e72594</SolidColorBrush>
@@ -125,9 +124,9 @@
         <GradientStop Color="#f449ce" Offset="0.85"/>
     </LinearGradientBrush>
 
-    <Color x:Key="TOGGLABLE_BUTTON_BACKGROUND_ON">#6537cc</Color>
+    <Color x:Key="TOGGLABLE_BUTTON_BACKGROUND_ON">#e72594</Color>
 
-    <SolidColorBrush x:Key="GENERIC_BUTTON_BACKGROUND">#6537cc</SolidColorBrush>
+    <SolidColorBrush x:Key="GENERIC_BUTTON_BACKGROUND">#e72594</SolidColorBrush>
 
     <Style x:Key="SliderRepeatButton" TargetType="RepeatButton">
         <Setter Property="SnapsToDevicePixels" Value="true" />
@@ -149,7 +148,7 @@
         <Setter Property="Template">
             <Setter.Value>
                 <ControlTemplate TargetType="RepeatButton">
-                    <Border SnapsToDevicePixels="True"  BorderThickness="1" Height="3" BorderBrush="#6537cc" Background="#6537cc">
+                    <Border SnapsToDevicePixels="True"  BorderThickness="1" Height="3" BorderBrush="#FFE72594" Background="#FFE72594">
                     </Border>
                 </ControlTemplate>
             </Setter.Value>
@@ -162,7 +161,7 @@
         <Setter Property="Template">
             <Setter.Value>
                 <ControlTemplate TargetType="Thumb">
-                    <Rectangle Height="15" Width="15" Fill="#6537cc" Cursor="Hand" Stroke="#7FFFFFFF" StrokeThickness="0" RenderTransformOrigin="0.5,0.5">
+                    <Rectangle Height="15" Width="15" Fill="#FFE72594" Cursor="Hand" Stroke="#7FFFFFFF" StrokeThickness="0" RenderTransformOrigin="0.5,0.5">
                         <Rectangle.RenderTransform>
                             <TransformGroup>
                                 <ScaleTransform/>
