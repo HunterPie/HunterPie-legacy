@@ -158,6 +158,16 @@ namespace HunterPie.GUI.Widgets.DPSMeter {
                     this.WidgetActive = UserSettings.PlayerConfig.Overlay.DPSMeter.Enabled;
                     UpdatePlayersColor();
                     ScaleWidget(UserSettings.PlayerConfig.Overlay.DPSMeter.Scale, UserSettings.PlayerConfig.Overlay.DPSMeter.Scale);
+                    this.Opacity = UserSettings.PlayerConfig.Overlay.DPSMeter.Opacity;
+                    Color PartyBgColor = new Color() {
+                        R = 0x00,
+                        G = 0x00,
+                        B = 0x00,
+                        A = (byte)(int)(UserSettings.PlayerConfig.Overlay.DPSMeter.BackgroundOpacity * 0xFF)
+                    };
+                    SolidColorBrush brush = new SolidColorBrush(PartyBgColor);
+                    brush.Freeze();
+                    this.Party.Background = brush; 
                     if (Context != null) SortPlayersByDamage();
                 }
                 base.ApplySettings();

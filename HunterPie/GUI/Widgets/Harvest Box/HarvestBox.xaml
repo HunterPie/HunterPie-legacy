@@ -36,7 +36,7 @@
         </Style>
     </src:Widget.Style>
     <Grid x:Name="HarvestBoxComponent" HorizontalAlignment="Left" Width="230">
-        <Rectangle x:Name="HarvestBoxContainer" Fill="#4C111111" Stroke="#FF171717"/>
+        <Rectangle x:Name="HarvestBoxContainer" Fill="#4C111111" Stroke="#DD171717"/>
         <TextBlock x:Name="HarvestBoxTitle" Text="{Binding XPath=/Strings/Client/Overlay/String[@ID\=\'STATIC_HARVEST_BOX_TITLE\']/@Name}" Opacity="0.8" Foreground="White" Padding="0,5,0,0" FontWeight="Bold" Background="#66000000" Height="29" VerticalAlignment="Top" FontSize="16" TextAlignment="Center" FontFamily="Roboto"/>
         <Label x:Name="fert1Name" Margin="0,29,42,0" Opacity="0.8" Foreground="White" Padding="5,0,0,0" VerticalContentAlignment="Center" Background="#66000000" FontWeight="Light" Height="29" VerticalAlignment="Top" FontSize="14" TextOptions.TextHintingMode="Animated" FontFamily="Roboto"/>
         <Label x:Name="fert2Name" Margin="0,58,42,0" Opacity="0.8" Foreground="White" Padding="5,0,0,0" VerticalContentAlignment="Center" Background="#66000000" FontWeight="Light" Height="29" VerticalAlignment="Top" FontSize="14" FontFamily="Roboto"/>

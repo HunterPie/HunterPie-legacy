@@ -43,8 +43,14 @@ namespace HunterPie.Core {
                 public int ToggleDesignModeKey { get; set; } = 145;
                 public Monsterscomponent MonstersComponent { get; set; } = new Monsterscomponent();
                 public Harvestboxcomponent HarvestBoxComponent { get; set; } = new Harvestboxcomponent();
-                public Primarymantle PrimaryMantle { get; set; } = new Primarymantle();
-                public Secondarymantle SecondaryMantle { get; set; } = new Secondarymantle();
+                public SpecializedTool PrimaryMantle { get; set; } = new SpecializedTool() {
+                    Color = "#FF80FFFF",
+                    Position = new int[2] { 1145, 300 }
+                };
+                public SpecializedTool SecondaryMantle { get; set; } = new SpecializedTool() {
+                    Color = "#FF9854E2",
+                    Position = new int[2] { 1145, 350 }
+                };
                 public DPSMeter DPSMeter { get; set; } = new DPSMeter();
                 public AbnormalitiesWidget AbnormalitiesWidget { get; set; } = new AbnormalitiesWidget();
             }
@@ -66,6 +72,7 @@ namespace HunterPie.Core {
                 public bool EnableMonsterParts { get; set; } = true;
                 public bool EnableMonsterAilments { get; set; } = true;
                 public string[] EnabledPartGroups { get; set; } = new string[20] { "HEAD", "BODY", "ARM", "WING", "LEG", "TAIL", "LIMB", "ABDOMEN", "CHEST", "REAR", "JAW", "BACK", "FIN", "HORN", "NECK", "SHELL", "ORGAN", "MISC", "MANE", "BONE" };
+                public float Opacity { get; set; } = 1;
             }
 
             public class Harvestboxcomponent {
@@ -76,20 +83,16 @@ namespace HunterPie.Core {
                 public bool ShowSteamTracker { get; set; } = true;
                 public bool ShowArgosyTracker { get; set; } = true;
                 public bool ShowTailraidersTracker { get; set; } = true;
+                public float BackgroundOpacity { get; set; } = 1;
+                public float Opacity { get; set; } = 1;
             }
 
-            public class Primarymantle {
+            public class SpecializedTool {
                 public bool Enabled { get; set; } = true;
                 public double Scale { get; set; } = 1;
-                public int[] Position { get; set; } = new int[2] { 1145, 300 };
-                public string Color { get; set; } = "#99C500AA";
-            }
-
-            public class Secondarymantle {
-                public bool Enabled { get; set; } = true;
-                public double Scale { get; set; } = 1;
-                public int[] Position { get; set; } = new int[2] { 1145, 350 };
-                public string Color { get; set; } = "#996900FF";
+                public int[] Position { get; set; }
+                public string Color { get; set; }
+                public float Opacity { get; set; } = 1;
             }
 
             public class DPSMeter {
@@ -99,6 +102,10 @@ namespace HunterPie.Core {
                 public double Scale { get; set; } = 0.8;
                 public int[] Position { get; set; } = new int[2] { 10, 350 };
                 public Players[] PartyMembers { get; set; } = new Players[4] { new Players(), new Players(), new Players(), new Players() };
+                public bool ShowOnlyMyself { get; set; } = false;
+                public bool ShowTimerInExpeditions { get; set; } = true;
+                public float BackgroundOpacity { get; set; } = 0.5f;
+                public float Opacity { get; set; } = 1;
             }
 
             public class Players {

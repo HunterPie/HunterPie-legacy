@@ -162,6 +162,9 @@
     <Compile Include="GUIControls\Custom Controls\MinimalHealthBar.xaml.cs">
       <DependentUpon>MinimalHealthBar.xaml</DependentUpon>
     </Compile>
+    <Compile Include="GUIControls\Custom Controls\MinimalSlider.xaml.cs">
+      <DependentUpon>MinimalSlider.xaml</DependentUpon>
+    </Compile>
     <Compile Include="GUIControls\Custom Controls\PositionControl.xaml.cs">
       <DependentUpon>PositionControl.xaml</DependentUpon>
     </Compile>
@@ -216,6 +219,10 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
+    <Page Include="GUIControls\Custom Controls\MinimalSlider.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="GUIControls\Custom Controls\PositionControl.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -264,7 +271,11 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="GUI\Widgets\HarvestBox.xaml">
+    <Page Include="GUI\Widgets\Harvest Box\HarvestBox.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="GUI\Widgets\Harvest Box\Parts\FertilizerControl.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -328,8 +339,11 @@
     <Compile Include="GUI\Widgets\DPSMeter\Parts\PartyMember.xaml.cs">
       <DependentUpon>PartyMember.xaml</DependentUpon>
     </Compile>
-    <Compile Include="GUI\Widgets\HarvestBox.xaml.cs">
+    <Compile Include="GUI\Widgets\Harvest Box\HarvestBox.xaml.cs">
       <DependentUpon>HarvestBox.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="GUI\Widgets\Harvest Box\Parts\FertilizerControl.xaml.cs">
+      <DependentUpon>FertilizerControl.xaml</DependentUpon>
     </Compile>
     <Compile Include="GUI\Widgets\MantleTimer.xaml.cs">
       <DependentUpon>MantleTimer.xaml</DependentUpon>

@@ -118,6 +118,7 @@ namespace HunterPie.GUI.Widgets {
                     this.WidgetActive = UserSettings.PlayerConfig.Overlay.MonstersComponent.Enabled;
                     UpdateMonstersWidgetsSettings(UserSettings.PlayerConfig.Overlay.MonstersComponent.ShowMonsterWeakness, UserSettings.PlayerConfig.Overlay.MonstersComponent.MaxNumberOfPartsAtOnce, UserSettings.PlayerConfig.Overlay.MonstersComponent.MonsterBarDock);
                     ScaleWidget(UserSettings.PlayerConfig.Overlay.MonstersComponent.Scale, UserSettings.PlayerConfig.Overlay.MonstersComponent.Scale);
+                    this.Opacity = UserSettings.PlayerConfig.Overlay.MonstersComponent.Opacity;
                     foreach (MonsterHealth HealthBar in this.Container.Children) {
                         HealthBar.SwitchSizeBasedOnTarget();
                     }

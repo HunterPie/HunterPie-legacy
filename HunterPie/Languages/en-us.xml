@@ -608,6 +608,7 @@
       <String ID="STATIC_REQUIRES_RESTART" Name="(Requires restart)"/>
       <String ID="STATIC_POSITION" Name="Position"/>
       <String ID="STATIC_COPYCLIPBOARD" Name="Copy to clipboard"/>
+      <String ID="STATIC_OPACITY" Name="Opacity"/>
       <!-- Settings Side bar-->
       <String ID="STATIC_GENERAL_SETTINGS" Name="General"/>
       <String ID="STATIC_DISCORD_SETTINGS" Name="Discord"/>

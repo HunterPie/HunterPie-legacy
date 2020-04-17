@@ -144,6 +144,8 @@ namespace HunterPie.GUI.Widgets {
                     // Sets visibility if enabled/disabled
                     bool IsEnabled = MantleNumber == 0 ? UserSettings.PlayerConfig.Overlay.PrimaryMantle.Enabled : UserSettings.PlayerConfig.Overlay.SecondaryMantle.Enabled;
                     this.WidgetActive = IsEnabled;
+
+                    this.Opacity = (MantleNumber == 0 ? UserSettings.PlayerConfig.Overlay.PrimaryMantle.Opacity : UserSettings.PlayerConfig.Overlay.SecondaryMantle.Opacity);
                 }
                 base.ApplySettings();
             }));

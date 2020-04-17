@@ -92,18 +92,22 @@ namespace HunterPie.GUIControls {
             settingsUI.HideSeconds.Value = settings.Overlay.MonstersComponent.SecondsToHideParts;
             settingsUI.switchEnableHideUnactiveParts.IsEnabled = settings.Overlay.MonstersComponent.HidePartsAfterSeconds;
             settingsUI.switchEnableMonsterWeakness.IsEnabled = settings.Overlay.MonstersComponent.ShowMonsterWeakness;
+            settingsUI.MonsterComponentOpacity.Value = settings.Overlay.MonstersComponent.Opacity;
+
 
             // Primary Mantle
             settingsUI.switchEnablePrimaryMantle.IsEnabled = settings.Overlay.PrimaryMantle.Enabled;
             settingsUI.PrimaryMantlePosition.X = settings.Overlay.PrimaryMantle.Position[0];
             settingsUI.PrimaryMantlePosition.Y = settings.Overlay.PrimaryMantle.Position[1];
             settingsUI.PrimaryMantleColor.Color = settings.Overlay.PrimaryMantle.Color;
+            settingsUI.PrimaryMantleComponentOpacity.Value = settings.Overlay.PrimaryMantle.Opacity;
 
             // Secondary Mantle
             settingsUI.switchEnableSecondaryMantle.IsEnabled = settings.Overlay.SecondaryMantle.Enabled;
             settingsUI.SecondaryMantlePosition.X = settings.Overlay.SecondaryMantle.Position[0];
             settingsUI.SecondaryMantlePosition.Y = settings.Overlay.SecondaryMantle.Position[1];
             settingsUI.SecondaryMantleColor.Color = settings.Overlay.SecondaryMantle.Color;
+            settingsUI.SecondaryMantleComponentOpacity.Value = settings.Overlay.SecondaryMantle.Opacity;
 
             // Harvest Box
             settingsUI.switchEnableHarvestBox.IsEnabled = settings.Overlay.HarvestBoxComponent.Enabled;
@@ -113,6 +117,8 @@ namespace HunterPie.GUIControls {
             settingsUI.switchShowTailraidersTracker.IsEnabled = settings.Overlay.HarvestBoxComponent.ShowTailraidersTracker;
             settingsUI.HarvestBoxPosition.X = settings.Overlay.HarvestBoxComponent.Position[0];
             settingsUI.HarvestBoxPosition.Y = settings.Overlay.HarvestBoxComponent.Position[1];
+            settingsUI.HarvestBoxBackgroundOpacity.Value = settings.Overlay.HarvestBoxComponent.BackgroundOpacity;
+            settingsUI.HarvestBoxComponentOpacity.Value = settings.Overlay.HarvestBoxComponent.Opacity;
 
             // DPS Meter
             settingsUI.switchEnableDPSMeter.IsEnabled = settings.Overlay.DPSMeter.Enabled;
@@ -124,6 +130,8 @@ namespace HunterPie.GUIControls {
             settingsUI.SecondPlayerColor.Color = settings.Overlay.DPSMeter.PartyMembers[1].Color;
             settingsUI.ThirdPlayerColor.Color = settings.Overlay.DPSMeter.PartyMembers[2].Color;
             settingsUI.FourthPlayerColor.Color = settings.Overlay.DPSMeter.PartyMembers[3].Color;
+            settingsUI.DamageBackgroundOpacity.Value = settings.Overlay.DPSMeter.BackgroundOpacity;
+            settingsUI.DamageComponentOpacity.Value = settings.Overlay.DPSMeter.Opacity;
 
         }
 
@@ -184,18 +192,21 @@ namespace HunterPie.GUIControls {
             settings.Overlay.MonstersComponent.HidePartsAfterSeconds = settingsUI.switchEnableHideUnactiveParts.IsEnabled;
             settings.Overlay.MonstersComponent.SecondsToHideParts = (int)Math.Min(Math.Max((int)settingsUI.HideSeconds.Value, 0), 10000);
             settings.Overlay.MonstersComponent.ShowMonsterWeakness = settingsUI.switchEnableMonsterWeakness.IsEnabled;
+            settings.Overlay.MonstersComponent.Opacity = (float)settingsUI.MonsterComponentOpacity.Value;
 
             // Primary Mantle
             settings.Overlay.PrimaryMantle.Enabled = settingsUI.switchEnablePrimaryMantle.IsEnabled;
             settings.Overlay.PrimaryMantle.Position[0] = settingsUI.PrimaryMantlePosition.X;
             settings.Overlay.PrimaryMantle.Position[1] = settingsUI.PrimaryMantlePosition.Y;
             settings.Overlay.PrimaryMantle.Color = settingsUI.PrimaryMantleColor.Color;
+            settings.Overlay.PrimaryMantle.Opacity = (float)settingsUI.PrimaryMantleComponentOpacity.Value;
 
             // Secondary Mantle
             settings.Overlay.SecondaryMantle.Enabled = settingsUI.switchEnableSecondaryMantle.IsEnabled;
             settings.Overlay.SecondaryMantle.Position[0] = settingsUI.SecondaryMantlePosition.X;
             settings.Overlay.SecondaryMantle.Position[1] = settingsUI.SecondaryMantlePosition.Y;
             settings.Overlay.SecondaryMantle.Color = settingsUI.SecondaryMantleColor.Color;
+            settings.Overlay.SecondaryMantle.Opacity = (float)settingsUI.SecondaryMantleComponentOpacity.Value;
 
             // Harvest Box
             settings.Overlay.HarvestBoxComponent.Enabled = settingsUI.switchEnableHarvestBox.IsEnabled;
@@ -205,6 +216,8 @@ namespace HunterPie.GUIControls {
             settings.Overlay.HarvestBoxComponent.ShowTailraidersTracker = settingsUI.switchShowTailraidersTracker.IsEnabled;
             settings.Overlay.HarvestBoxComponent.Position[0] = settingsUI.HarvestBoxPosition.X;
             settings.Overlay.HarvestBoxComponent.Position[1] = settingsUI.HarvestBoxPosition.Y;
+            settings.Overlay.HarvestBoxComponent.BackgroundOpacity = (float)settingsUI.HarvestBoxBackgroundOpacity.Value;
+            settings.Overlay.HarvestBoxComponent.Opacity = (float)settingsUI.HarvestBoxComponentOpacity.Value;
 
             // DPS Meter
             settings.Overlay.DPSMeter.Enabled = settingsUI.switchEnableDPSMeter.IsEnabled;
@@ -216,6 +229,8 @@ namespace HunterPie.GUIControls {
             settings.Overlay.DPSMeter.PartyMembers[1].Color = settingsUI.SecondPlayerColor.Color;
             settings.Overlay.DPSMeter.PartyMembers[2].Color = settingsUI.ThirdPlayerColor.Color;
             settings.Overlay.DPSMeter.PartyMembers[3].Color = settingsUI.FourthPlayerColor.Color;
+            settings.Overlay.DPSMeter.BackgroundOpacity = (float)settingsUI.DamageBackgroundOpacity.Value;
+            settings.Overlay.DPSMeter.Opacity = (float)settingsUI.DamageComponentOpacity.Value;
 
             // Abnormality bars
             int i = 0;

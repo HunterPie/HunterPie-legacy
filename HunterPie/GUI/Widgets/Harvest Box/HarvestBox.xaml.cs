@@ -60,6 +60,8 @@ namespace HunterPie.GUI.Widgets {
                     this.SteamTracker.Visibility = UserSettings.PlayerConfig.Overlay.HarvestBoxComponent.ShowSteamTracker ? Visibility.Visible : Visibility.Collapsed;
                     this.ArgosyTracker.Visibility = UserSettings.PlayerConfig.Overlay.HarvestBoxComponent.ShowArgosyTracker ? Visibility.Visible : Visibility.Collapsed;
                     this.TailraidersTracker.Visibility = UserSettings.PlayerConfig.Overlay.HarvestBoxComponent.ShowTailraidersTracker ? Visibility.Visible : Visibility.Collapsed;
+                    this.Opacity = UserSettings.PlayerConfig.Overlay.HarvestBoxComponent.Opacity;
+                    // TODO: Background opacity
                 }
                 base.ApplySettings();
             }));

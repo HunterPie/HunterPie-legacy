@@ -36,6 +36,7 @@ namespace HunterPie.GUI {
 
         public Widget() { }
 
+        double OldOpacity;
         public virtual void EnterWidgetDesignMode() {
             ChangeVisibility();
             SolidColorBrush BorderColorBrush = new SolidColorBrush((Color)ColorConverter.ConvertFromString("#ededed"));
@@ -46,6 +47,8 @@ namespace HunterPie.GUI {
             this.BorderBrush = BorderColorBrush;
             this.BorderThickness = new Thickness(1, 1, 1, 1);
             this.Background = BackgroundBrush;
+            OldOpacity = Opacity;
+            this.Opacity = 1;
             this.ToolTip = $"{Left}x{Top} ({this.DefaultScaleX * 100:0.0}%)";
         }
 
@@ -54,6 +57,7 @@ namespace HunterPie.GUI {
             this.BorderBrush = null;
             this.BorderThickness = new Thickness(0, 0, 0, 0);
             this.Background = Brushes.Transparent;
+            this.Opacity = OldOpacity;
         }
 
         public void SetWidgetBaseSize(double Width, double Height) {
