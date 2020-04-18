@@ -96,10 +96,10 @@ namespace HunterPie.Core {
             GUI.Widgets.Notification_Widget.DiscordNotify src = (GUI.Widgets.Notification_Widget.DiscordNotify)source;
             src.OnRequestAccepted -= OnDiscordRequestAccepted;
             src.OnRequestRejected -= OnDiscordRequestRejected;
-            
+
             Client.Respond(args, false);
 
-            src.Close();
+            App.Current.Dispatcher.Invoke(new Action(() => { src.Close(); }));
         }
 
         private void OnDiscordRequestAccepted(object source, DiscordRPC.Message.JoinRequestMessage args) {

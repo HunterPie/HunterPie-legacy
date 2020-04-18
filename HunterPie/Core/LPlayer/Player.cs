@@ -399,7 +399,9 @@ namespace HunterPie.Core {
                     GetPrimaryMantleTimers();
                     GetSecondaryMantleTimers();
                     GetParty();
-                    GetPlayerAbnormalities();
+                    // Scanning for abnormalities is pretty expensive, so we ignore it 
+                    // in zones that have no abnormality
+                    if (!InHarvestZone) GetPlayerAbnormalities();
                 }
                 GetZoneId();
                 GetSessionId();
@@ -628,6 +630,7 @@ namespace HunterPie.Core {
             GetPlayerHuntingHornAbnormalities(AbnormalityBaseAddress);
             GetPlayerPalicoAbnormalities(AbnormalityBaseAddress);
             GetPlayerMiscAbnormalities(AbnormalityBaseAddress);
+            GetPlayerGearAbnormalities(AbnormalityBaseAddress);
         }
 
         private void GetPlayerHuntingHornAbnormalities(Int64 AbnormalityBaseAddress) {
@@ -672,6 +675,17 @@ namespace HunterPie.Core {
                     ConditionOffset = int.Parse(MiscBuff.Attributes["ConditionOffset"].Value);
                 }
                 GetAbnormality("MISC", AbnormalityBaseAddress + BuffOffset, ID, $"MISC_{ID}", IsDebuff, HasConditions, ConditionOffset, IsInfinite);
+            }
+        }
+
+        private void GetPlayerGearAbnormalities(Int64 AbnormalityBaseAddress) {
+            Int64 AbnormalityGearBase = Scanner.READ_MULTILEVEL_PTR(Address.BASE + Address.ABNORMALITY_OFFSET, Address.Offsets.AbnormalityGearOffsets);
+            foreach (XmlNode GearBuff in AbnormalityData.GetGearAbnormalities()) {
+                int BuffOffset = int.Parse(GearBuff.Attributes["Offset"].Value, System.Globalization.NumberStyles.HexNumber);
+                bool IsDebuff = bool.Parse(GearBuff.Attributes["IsDebuff"].Value);
+                int ID = int.Parse(GearBuff.Attributes["ID"].Value);
+                bool IsGearBuff = bool.Parse(GearBuff.Attributes["IsGearBuff"].Value);
+                GetAbnormality("GEAR", (IsGearBuff ? AbnormalityGearBase : AbnormalityBaseAddress) + BuffOffset, ID, $"GEAR_{ID}", IsDebuff);
             }
         }
 

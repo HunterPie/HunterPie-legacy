@@ -34,6 +34,7 @@ namespace HunterPie.GUI.Widgets.Abnormality_Widget {
             PopulateOrchestraBuffs();
             PopulateDebuffs();
             PopulateConsumableBuffs();
+            PopulateGearBuffs();
         }
 
         private void ConfigureWindow() {
@@ -106,6 +107,22 @@ namespace HunterPie.GUI.Widgets.Abnormality_Widget {
                 AbnormDisplay.SetAbnormalityInfo(Icon, Name, InternalID, IsEnabled);
                 AbnormalitiesList.Add(AbnormDisplay);
                 ConsumableBuffs.Children.Add(AbnormDisplay);
+            }
+        }
+
+        private void PopulateGearBuffs() {
+            foreach (XmlNode Abnorm in AbnormalityData.GetGearAbnormalities()) {
+                string Type = "GEAR";
+                int ID = int.Parse(Abnorm.Attributes["ID"].Value);
+                string Name = GStrings.GetAbnormalityByID(Type, ID, 0);
+                string InternalID = $"GEAR_{ID}";
+                bool IsEnabled = UserSettings.PlayerConfig.Overlay.AbnormalitiesWidget.BarPresets[BuffTrayIndex].AcceptedAbnormalities.Contains(InternalID);
+                ImageSource Icon = TryFindResource(Abnorm.Attributes["Icon"].Value) as ImageSource ?? FindResource("ICON_MISSING") as ImageSource;
+                Icon?.Freeze();
+                Parts.AbnormalitySettingControl AbnormDisplay = new Parts.AbnormalitySettingControl();
+                AbnormDisplay.SetAbnormalityInfo(Icon, Name, InternalID, IsEnabled);
+                AbnormalitiesList.Add(AbnormDisplay);
+                GearBuffs.Children.Add(AbnormDisplay);
             }
         }
 

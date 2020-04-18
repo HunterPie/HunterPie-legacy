@@ -386,6 +386,13 @@
     <Abnormality ID="MISC_034_00" Name="Powercone"/>
     <Abnormality ID="MISC_035_00" Name="Ice Res (L)"/>
     <Abnormality ID="MISC_073_00" Name="Attack Up &amp; Def Up (S)"/>
+    <Abnormality ID="GEAR_000_00" Name="Demon Ammo"/>
+    <Abnormality ID="GEAR_001_00" Name="Armour Ammo"/>
+    <Abnormality ID="GEAR_002_00" Name="Fortify"/>
+    <Abnormality ID="GEAR_003_00" Name="Protective Polish"/>
+    <Abnormality ID="GEAR_004_00" Name="Affinity Sliding"/>
+    <Abnormality ID="GEAR_099_00" Name="Evasion Mantle (Atk)"/>
+    <Abnormality ID="GEAR_100_00" Name="Affinity Booster"/>
   </Abnormalities>
   <!-- Client localization strings -->
   <Client>
@@ -543,6 +550,8 @@
       <String ID="ENABLE_HARVEST_BOX_EVERYWHERE" Name="Show Harvest Box everywhere"/>
       <String ID="ENABLE_HARVEST_BOX_EVERYWHERE_DESC" Name="If enabled, this widget will be displayed in every place, including expeditions, Guiding Lands and any other monster zones."/>
       <String ID="STATIC_HARVEST_BOX_POSITION_DESC" Name="Changes the Harvest Box widget position."/>
+      <String ID="ENABLE_HARVEST_BOX_COMPACT_MODE" Name="Enable compact mode"/>
+      <String ID="ENABLE_HARVEST_BOX_COMPACT_MODE_DESC" Name="If enabled, the Harvest Box Widget will use it's compact design."/>
       <!-- Damage Meter -->
       <String ID="ENABLE_METER" Name="Enable Damage Widget"/>
       <String ID="ENABLE_METER_DESC" Name="If enabled, the Damage Meter Widget will be visible whenever it has content."/>
@@ -550,6 +559,8 @@
       <String ID="ENABLE_TOTAL_DAMAGE_DESC" Name="If enabled, the Damage Widget will show individual total damage."/>
       <String ID="ENABLE_METER_DPS" Name="Show damage per second"/>
       <String ID="ENABLE_METER_DPS_DESC" Name="If enabled, the Damage Widget will show individual damage per second."/>
+      <String ID="ENABLE_TIMER_IN_GL" Name="Enable timer in Expeditions/Guiding Lands."/>
+      <String ID="ENABLE_TIMER_IN_GL_DESC" Name="If enabled, the timer will be visible in Expeditions/Guiding Lands."/>
       <String ID="STATIC_METER_PLAYER_1" Name="First Player"/>
       <String ID="STATIC_METER_PLAYER_2" Name="Second Player"/>
       <String ID="STATIC_METER_PLAYER_3" Name="Third Player"/>
@@ -569,6 +580,7 @@
       <String ID="STATIC_ABNORM_TAB_HH" Name="Hunting Horn"/>
       <String ID="STATIC_ABNORM_TAB_ORCHESTRA" Name="Orchestra"/>
       <String ID="STATIC_ABNORM_TAB_DEBUFF" Name="Debuffs"/>
+      <String ID="STATIC_ABNORM_TAB_GEAR" Name="Gear"/>
       <String ID="STATIC_ABNORM_TAB_CONSUMABLE" Name="Consumables"/>
       <String ID="ENABLE_SHOW_ABNORM_NAMES" Name="Show abnormality name"/>
       <String ID="ENABLE_SHOW_ABNORM_NAMES_DESC" Name="If enabled, abnormality names will be visible."/>

@@ -19,10 +19,10 @@ namespace HunterPie.GUI.Widgets {
             BaseWidth = Width;
             BaseHeight = Height;
             WidgetType = 3;
-            ApplySettings();
             SetWindowFlags();
             SetContext(Context);
             CreateFertilizerControls();
+            ApplySettings();
         }
 
         public override void EnterWidgetDesignMode() {
@@ -61,9 +61,22 @@ namespace HunterPie.GUI.Widgets {
                     this.TailraidersTracker.Visibility = UserSettings.PlayerConfig.Overlay.HarvestBoxComponent.ShowTailraidersTracker ? Visibility.Visible : Visibility.Collapsed;
                     this.Opacity = UserSettings.PlayerConfig.Overlay.HarvestBoxComponent.Opacity;
                     HarvestBoxContainer.Opacity = UserSettings.PlayerConfig.Overlay.HarvestBoxComponent.BackgroundOpacity;
+                    SetMode(UserSettings.PlayerConfig.Overlay.HarvestBoxComponent.CompactMode);
                 }
                 base.ApplySettings();
             }));
+        }
+
+        private void SetMode(bool IsCompact) {
+            if (IsCompact) {
+                this.BaseHeight = this.Height = 130;
+                
+            } else {
+                this.BaseHeight = this.Height = 205;
+            }
+            foreach (FertilizerControl fC in HarvestBoxFertilizerHolder.Children) {
+                fC.SetMode(IsCompact);
+            }
         }
 
         public void ScaleWidget(double NewScaleX, double NewScaleY) {

@@ -83,8 +83,9 @@ namespace HunterPie.Core {
                 public bool ShowSteamTracker { get; set; } = true;
                 public bool ShowArgosyTracker { get; set; } = true;
                 public bool ShowTailraidersTracker { get; set; } = true;
-                public float BackgroundOpacity { get; set; } = 1;
+                public float BackgroundOpacity { get; set; } = 0.5f;
                 public float Opacity { get; set; } = 1;
+                public bool CompactMode { get; set; } = false;
             }
 
             public class SpecializedTool {

@@ -34,8 +34,13 @@ namespace HunterPie.Core {
         }
 
         static public XmlNodeList GetMiscAbnormalities() {
-            XmlNodeList BlightAbnormalitiesData = AbnormalitiesData.SelectNodes("//Abnormalities/MISC_Abnormalities/Abnormality");
-            return BlightAbnormalitiesData;
+            XmlNodeList MiscAbnormalitiesData = AbnormalitiesData.SelectNodes("//Abnormalities/MISC_Abnormalities/Abnormality");
+            return MiscAbnormalitiesData;
+        }
+
+        static public XmlNodeList GetGearAbnormalities() {
+            XmlNodeList GearAbnormalitiesData = AbnormalitiesData.SelectNodes("//Abnormalities/GEAR_Abnormalities/Abnormality");
+            return GearAbnormalitiesData;
         }
 
         static public string GetAbnormalityIconByID(string Type, int ID) {

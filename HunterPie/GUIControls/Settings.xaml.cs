@@ -115,6 +115,7 @@ namespace HunterPie.GUIControls {
             settingsUI.switchShowSteamTracker.IsEnabled = settings.Overlay.HarvestBoxComponent.ShowSteamTracker;
             settingsUI.switchShowArgosyTracker.IsEnabled = settings.Overlay.HarvestBoxComponent.ShowArgosyTracker;
             settingsUI.switchShowTailraidersTracker.IsEnabled = settings.Overlay.HarvestBoxComponent.ShowTailraidersTracker;
+            settingsUI.switchHarvestCompactMode.IsEnabled = settings.Overlay.HarvestBoxComponent.CompactMode;
             settingsUI.HarvestBoxPosition.X = settings.Overlay.HarvestBoxComponent.Position[0];
             settingsUI.HarvestBoxPosition.Y = settings.Overlay.HarvestBoxComponent.Position[1];
             settingsUI.HarvestBoxBackgroundOpacity.Value = settings.Overlay.HarvestBoxComponent.BackgroundOpacity;
@@ -214,10 +215,12 @@ namespace HunterPie.GUIControls {
             settings.Overlay.HarvestBoxComponent.ShowSteamTracker = settingsUI.switchShowSteamTracker.IsEnabled;
             settings.Overlay.HarvestBoxComponent.ShowArgosyTracker = settingsUI.switchShowArgosyTracker.IsEnabled;
             settings.Overlay.HarvestBoxComponent.ShowTailraidersTracker = settingsUI.switchShowTailraidersTracker.IsEnabled;
+            settings.Overlay.HarvestBoxComponent.CompactMode = settingsUI.switchHarvestCompactMode.IsEnabled;
             settings.Overlay.HarvestBoxComponent.Position[0] = settingsUI.HarvestBoxPosition.X;
             settings.Overlay.HarvestBoxComponent.Position[1] = settingsUI.HarvestBoxPosition.Y;
             settings.Overlay.HarvestBoxComponent.BackgroundOpacity = (float)settingsUI.HarvestBoxBackgroundOpacity.Value;
             settings.Overlay.HarvestBoxComponent.Opacity = (float)settingsUI.HarvestBoxComponentOpacity.Value;
+            
 
             // DPS Meter
             settings.Overlay.DPSMeter.Enabled = settingsUI.switchEnableDPSMeter.IsEnabled;

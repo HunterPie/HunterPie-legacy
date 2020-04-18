@@ -132,6 +132,17 @@
                     <WrapPanel x:Name="ConsumableBuffs" ScrollViewer.VerticalScrollBarVisibility="Auto"/>
                 </ScrollViewer>
             </TabItem>
+            <TabItem>
+                <TabItem.Header>
+                    <Canvas Width="115" Margin="0,4,0,0">
+                        <Image Source="{StaticResource ICON_BUILD}" Width="15" Height="15"/>
+                        <TextBlock Text="{Binding XPath=/Strings/Client/Settings/String[@ID\=\'STATIC_ABNORM_TAB_GEAR\']/@Name}" Margin="16,-4,0,0"/>
+                    </Canvas>
+                </TabItem.Header>
+                <ScrollViewer Background="Transparent">
+                    <WrapPanel x:Name="GearBuffs" ScrollViewer.VerticalScrollBarVisibility="Auto"/>
+                </ScrollViewer>
+            </TabItem>
         </TabControl>
 
         <!-- Options -->

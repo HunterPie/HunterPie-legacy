@@ -616,6 +616,14 @@
                                 <Binding Mode="OneTime" XPath="Settings/String[@ID='ENABLE_TAILRAIDERS_TRACKER_DESC']/@Name"/>
                             </custom:Switcher.ToolTip>
                         </custom:Switcher>
+                        <custom:Switcher x:Name="switchHarvestCompactMode" MinWidth="500" HorizontalAlignment="Center">
+                            <custom:Switcher.Text>
+                                <Binding Mode="OneTime" XPath="Settings/String[@ID='ENABLE_HARVEST_BOX_COMPACT_MODE']/@Name"/>
+                            </custom:Switcher.Text>
+                            <custom:Switcher.ToolTip>
+                                <Binding Mode="OneTime" XPath="Settings/String[@ID='ENABLE_HARVEST_BOX_COMPACT_MODE_DESC']/@Name"/>
+                            </custom:Switcher.ToolTip>
+                        </custom:Switcher>
                         <custom:MinimalSlider x:Name="HarvestBoxBackgroundOpacity" Text="{Binding XPath=/Strings/Client/Settings/String[@ID\=\'STATIC_BACKGROUND_OPACITY\']/@Name}" MinChange="0.1" MinValue="0" MaxValue="1" ValueText="{Binding Value, ElementName=HarvestBoxBackgroundOpacity, StringFormat=\{0:P\}}" Foreground="WhiteSmoke" FontFamily="Segoe UI Light" MinWidth="500" HorizontalAlignment="Center"/>
                         <custom:MinimalSlider x:Name="HarvestBoxComponentOpacity" Text="{Binding XPath=/Strings/Client/Settings/String[@ID\=\'STATIC_OPACITY\']/@Name}" MinChange="0.1" MinValue="0" MaxValue="1" ValueText="{Binding Value, ElementName=HarvestBoxComponentOpacity, StringFormat=\{0:P\}}" Foreground="WhiteSmoke" FontFamily="Segoe UI Light" MinWidth="500" HorizontalAlignment="Center"/>
                         <custom:PositionControl x:Name="HarvestBoxPosition">

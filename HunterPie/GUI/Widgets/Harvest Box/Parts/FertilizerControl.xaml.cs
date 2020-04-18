@@ -65,8 +65,18 @@ namespace HunterPie.GUI.Widgets.Harvest_Box.Parts {
         private void OnFertilizerChange(object source, FertilizerEventArgs args) {
             Dispatcher.BeginInvoke(System.Windows.Threading.DispatcherPriority.Render, new Action(() => {
                 this.FertilizerName.Text = args.Name;
-                //this.FertilizerIcon.Source = FindResource($"ICON_FERTILIZER{args.ID}") as ImageSource;
+                this.FertilizerIcon.Source = FindResource($"ICON_FERTILIZER_{args.ID}") as ImageSource;
             }));
+        }
+
+        public void SetMode(bool IsCompact) {
+            if (IsCompact) {
+                FertilizerName.Visibility = Visibility.Collapsed;
+                FertilizerHolder.Width = 55;
+            } else {
+                FertilizerName.Visibility = Visibility.Visible;
+                FertilizerHolder.Width = 230;
+            }
         }
     }
 }

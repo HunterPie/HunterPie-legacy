@@ -112,6 +112,7 @@ namespace HunterPie.GUI {
             uint SWP_SHOWWINDOW = 0x0040;
             uint SWP_NOMOVE = 0x0002;
             uint SWP_NOSIZE = 0x0001;
+            uint SWP_NOACTIVATE = 0x0010;
             uint Flags = SWP_SHOWWINDOW | SWP_NOSIZE | SWP_NOMOVE;
             IntPtr hwnd = new WindowInteropHelper(this).EnsureHandle();
             Scanner.SetWindowPos(hwnd, -1, 0, 0, 0, 0, Flags);
