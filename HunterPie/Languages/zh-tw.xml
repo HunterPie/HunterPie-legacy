@@ -1,5 +1,5 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
-<!--1.0.3.87 update version 1 translate by ThanatosDi-->
+<!--1.0.3.87 update version 1.1 translate by ThanatosDi-->
 <Strings lang="Traditional Chinese">
   <Monsters>
     <Monster ID="em001_00" Name="雌火龍"/>
@@ -329,7 +329,7 @@
     <Abnormality ID="HUNTINGHORN_055_00" Name="自我強化[速]&amp;迴避性能UP"/>
     <Abnormality ID="HUNTINGHORN_056_00" Name="屬性系效果UP"/>
     <Abnormality ID="HUNTINGHORN_943_00" Name="屬性系效果UP"/>
-    <Abnormality ID="PALICO_000_00" Name="復活"/>
+    <Abnormality ID="PALICO_000_00" Name="迴避性能UP"/>
     <Abnormality ID="PALICO_001_00" Name="攻擊力UP[小]"/>
     <Abnormality ID="PALICO_002_00" Name="攻擊力UP[大]"/>
     <Abnormality ID="PALICO_003_00" Name="防禦力UP[小]"/>

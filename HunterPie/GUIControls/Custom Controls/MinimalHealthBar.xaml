@@ -9,7 +9,7 @@
     <UserControl.Resources>
     </UserControl.Resources>
     <Grid>
-        <Rectangle x:Name="HealthBarBackground" Fill="#7F131313"/>
+        <Rectangle x:Name="HealthBarBackground" Fill="{StaticResource OVERLAY_BARS_BACKGROUND}"/>
         <Rectangle x:Name="HealthBar" HorizontalAlignment="Left" Margin="0">
             <Rectangle.Fill>
                 <LinearGradientBrush EndPoint="1,1" StartPoint="1,0">

@@ -3,6 +3,7 @@ using System.Windows;
 using System.Windows.Media;
 using System.Windows.Media.Animation;
 using HunterPie.Core;
+using FertilizerControl = HunterPie.GUI.Widgets.Harvest_Box.Parts.FertilizerControl;
 
 namespace HunterPie.GUI.Widgets {
 
@@ -13,9 +14,6 @@ namespace HunterPie.GUI.Widgets {
             get { return PlayerContext?.Harvest; }
         }
 
-        // Animations
-        Storyboard ANIM_FERTILIZER_EXPIRE;
-
         public HarvestBox(Player Context) {
             InitializeComponent();
             BaseWidth = Width;
@@ -24,6 +22,7 @@ namespace HunterPie.GUI.Widgets {
             ApplySettings();
             SetWindowFlags();
             SetContext(Context);
+            CreateFertilizerControls();
         }
 
         public override void EnterWidgetDesignMode() {
@@ -61,7 +60,7 @@ namespace HunterPie.GUI.Widgets {
                     this.ArgosyTracker.Visibility = UserSettings.PlayerConfig.Overlay.HarvestBoxComponent.ShowArgosyTracker ? Visibility.Visible : Visibility.Collapsed;
                     this.TailraidersTracker.Visibility = UserSettings.PlayerConfig.Overlay.HarvestBoxComponent.ShowTailraidersTracker ? Visibility.Visible : Visibility.Collapsed;
                     this.Opacity = UserSettings.PlayerConfig.Overlay.HarvestBoxComponent.Opacity;
-                    // TODO: Background opacity
+                    HarvestBoxContainer.Opacity = UserSettings.PlayerConfig.Overlay.HarvestBoxComponent.BackgroundOpacity;
                 }
                 base.ApplySettings();
             }));
@@ -78,7 +77,6 @@ namespace HunterPie.GUI.Widgets {
 
         public void SetContext(Player ctx) {
             PlayerContext = ctx;
-            GetAnimations();
             HookEvents();
         }
 
@@ -86,26 +84,10 @@ namespace HunterPie.GUI.Widgets {
             this.Dispatcher.BeginInvoke(System.Windows.Threading.DispatcherPriority.Render, function);
         }
 
-        private void GetAnimations() {
-            ANIM_FERTILIZER_EXPIRE = FindResource("FertilizerExpiring") as Storyboard;
-        }
-
         private void HookEvents() {
             PlayerContext.OnZoneChange += ChangeHarvestBoxState;
             Context.OnCounterChange += OnCounterChange;
-            // TODO: Make fertilizers a separate usercontrol
-            Context.Box[0].OnAmountUpdate += UpdateFirstFertilizer;
-            Context.Box[0].OnFertilizerChange += UpdateFirstFertilizer;
-
-            Context.Box[1].OnAmountUpdate += UpdateSecondFertilizer;
-            Context.Box[1].OnFertilizerChange += UpdateSecondFertilizer;
-
-            Context.Box[2].OnAmountUpdate += UpdateThirdFertilizer;
-            Context.Box[2].OnFertilizerChange += UpdateThirdFertilizer;
-
-            Context.Box[3].OnAmountUpdate += UpdateFourthFertilizer;
-            Context.Box[3].OnFertilizerChange += UpdateFourthFertilizer;
-
+            
             PlayerContext.Activity.OnNaturalSteamChange += OnNaturalSteamFuelChange;
             PlayerContext.Activity.OnStoredSteamChange += OnStoredSteamFuelChange;
             PlayerContext.Activity.OnTailraidersDaysChange += OnTailraidersQuestChange;
@@ -113,25 +95,30 @@ namespace HunterPie.GUI.Widgets {
         }
 
         public void UnhookEvents() {
+            DestroyFertilizerControls();
             PlayerContext.OnZoneChange -= ChangeHarvestBoxState;
             Context.OnCounterChange -= OnCounterChange;
-            Context.Box[0].OnAmountUpdate -= UpdateFirstFertilizer;
-            Context.Box[0].OnFertilizerChange -= UpdateFirstFertilizer;
-
-            Context.Box[1].OnAmountUpdate -= UpdateSecondFertilizer;
-            Context.Box[1].OnFertilizerChange -= UpdateSecondFertilizer;
-
-            Context.Box[2].OnAmountUpdate -= UpdateThirdFertilizer;
-            Context.Box[2].OnFertilizerChange -= UpdateThirdFertilizer;
-
-            Context.Box[3].OnAmountUpdate -= UpdateFourthFertilizer;
-            Context.Box[3].OnFertilizerChange -= UpdateFourthFertilizer;
 
             PlayerContext.Activity.OnNaturalSteamChange -= OnNaturalSteamFuelChange;
             PlayerContext.Activity.OnStoredSteamChange -= OnStoredSteamFuelChange;
             PlayerContext.Activity.OnArgosyDaysChange -= OnArgosyDaysChange;
             PlayerContext.Activity.OnTailraidersDaysChange -= OnTailraidersQuestChange;
             PlayerContext = null;
+        }
+
+        private void CreateFertilizerControls() {
+            for (int i = 0; i < 4; i++) {
+                FertilizerControl fC = new FertilizerControl();
+                fC.SetContext(Context.Box[i]);
+                HarvestBoxFertilizerHolder.Children.Add(fC);
+            }
+        }
+
+        private void DestroyFertilizerControls() {
+            foreach (FertilizerControl control in HarvestBoxFertilizerHolder.Children) {
+                control.UnhookEvents();
+            }
+            HarvestBoxFertilizerHolder.Children.Clear();
         }
 
         private void OnTailraidersQuestChange(object source, DaysLeftEventArgs args) {
@@ -172,70 +159,6 @@ namespace HunterPie.GUI.Widgets {
                 }
                 ChangeVisibility();
             }));
-        }
-
-        private void UpdateFirstFertilizer(object source, FertilizerEventArgs args) {
-            bool ApplyAnimation = false;
-            if (args.Amount <= 4) ApplyAnimation = true;
-            Dispatch(() => {
-                if (ApplyAnimation) {
-                    ANIM_FERTILIZER_EXPIRE.Begin(fert1Counter, true);
-                    ANIM_FERTILIZER_EXPIRE.Begin(fert1Name, true);
-                } else {
-                    ANIM_FERTILIZER_EXPIRE.Remove(fert1Counter);
-                    ANIM_FERTILIZER_EXPIRE.Remove(fert1Name);
-                }
-                this.fert1Name.Content = args.Name;
-                this.fert1Counter.Content = $"x{args.Amount}";
-            });
-        }
-
-        private void UpdateSecondFertilizer(object source, FertilizerEventArgs args) {
-            bool ApplyAnimation = false;
-            if (args.Amount <= 4) ApplyAnimation = true;
-            Dispatch(() => {
-                if (ApplyAnimation) {
-                    ANIM_FERTILIZER_EXPIRE.Begin(fert2Counter, true);
-                    ANIM_FERTILIZER_EXPIRE.Begin(fert2Name, true);
-                } else {
-                    ANIM_FERTILIZER_EXPIRE.Remove(fert2Counter);
-                    ANIM_FERTILIZER_EXPIRE.Remove(fert2Name);
-                }
-                this.fert2Name.Content = args.Name;
-                this.fert2Counter.Content = $"x{args.Amount}";
-            });
-        }
-
-        private void UpdateThirdFertilizer(object source, FertilizerEventArgs args) {
-            bool ApplyAnimation = false;
-            if (args.Amount <= 4) ApplyAnimation = true;
-            Dispatch(() => {
-                if (ApplyAnimation) {
-                    ANIM_FERTILIZER_EXPIRE.Begin(fert3Counter, true);
-                    ANIM_FERTILIZER_EXPIRE.Begin(fert3Name, true);
-                } else {
-                    ANIM_FERTILIZER_EXPIRE.Remove(fert3Counter);
-                    ANIM_FERTILIZER_EXPIRE.Remove(fert3Name);
-                }
-                this.fert3Name.Content = args.Name;
-                this.fert3Counter.Content = $"x{args.Amount}";
-            });
-        }
-
-        private void UpdateFourthFertilizer(object source, FertilizerEventArgs args) {
-            bool ApplyAnimation = false;
-            if (args.Amount <= 4) ApplyAnimation = true;
-            Dispatch(() => {
-                if (ApplyAnimation) {
-                    ANIM_FERTILIZER_EXPIRE.Begin(fert4Counter, true);
-                    ANIM_FERTILIZER_EXPIRE.Begin(fert4Name, true);
-                } else {
-                    ANIM_FERTILIZER_EXPIRE.Remove(fert4Counter);
-                    ANIM_FERTILIZER_EXPIRE.Remove(fert4Name);
-                }
-                this.fert4Name.Content = args.Name;
-                this.fert4Counter.Content = $"x{args.Amount}";
-            });
         }
 
         private void OnCounterChange(object source, HarvestBoxEventArgs args) {

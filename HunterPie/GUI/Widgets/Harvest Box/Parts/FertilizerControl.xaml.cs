@@ -34,6 +34,8 @@ namespace HunterPie.GUI.Widgets.Harvest_Box.Parts {
 
         public void SetContext(Fertilizer ctx) {
             Context = ctx;
+            ANIM_FERTILIZER_EXPIRE = FindResource("FertilizerExpiring") as Storyboard;
+            HookEvents();
         }
 
         public void HookEvents() {
@@ -56,13 +58,14 @@ namespace HunterPie.GUI.Widgets.Harvest_Box.Parts {
                     ANIM_FERTILIZER_EXPIRE.Remove(FertilizerName);
                     ANIM_FERTILIZER_EXPIRE.Remove(FertilizerAmount);
                 }
+                FertilizerAmount.Text = $"x{args.Amount}";
             }));
         }
 
         private void OnFertilizerChange(object source, FertilizerEventArgs args) {
             Dispatcher.BeginInvoke(System.Windows.Threading.DispatcherPriority.Render, new Action(() => {
                 this.FertilizerName.Text = args.Name;
-                this.FertilizerIcon.Source = FindResource($"ICON_FERTILIZER{args.ID}") as ImageSource;
+                //this.FertilizerIcon.Source = FindResource($"ICON_FERTILIZER{args.ID}") as ImageSource;
             }));
         }
     }

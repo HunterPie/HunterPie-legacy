@@ -5,10 +5,17 @@
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              xmlns:local="clr-namespace:HunterPie.GUI.Widgets.Harvest_Box.Parts"
              mc:Ignorable="d" 
-             d:DesignHeight="29">
+             d:DesignHeight="29" Margin="0,0,0,3">
+    <UserControl.Resources>
+        <ResourceDictionary>
+            <ResourceDictionary.MergedDictionaries>
+                <ResourceDictionary Source="/Resources/Resources.xaml"/>
+            </ResourceDictionary.MergedDictionaries>
+        </ResourceDictionary>
+    </UserControl.Resources>
     <DockPanel Width="230">
         <Image x:Name="FertilizerIcon" DockPanel.Dock="Left" Visibility="Collapsed" Height="29"/>
-        <TextBlock x:Name="FertilizerName" DockPanel.Dock="Left" Text="Fertilizer Name" FontSize="16" Foreground="#FFEEEEEE" FontFamily="Roboto" Margin="0" Padding="0,5,0,0"/>
-        <TextBlock x:Name="FertilizerAmount" DockPanel.Dock="Right" Text="x0" FontSize="16" Width="30" HorizontalAlignment="Right" Foreground="#FFE2E2E2" FontFamily="Roboto" FontWeight="Light" Padding="0,5,0,0"/>
+        <TextBlock x:Name="FertilizerName" DockPanel.Dock="Left" Text="Fertilizer Name" FontSize="14" Foreground="#FFEEEEEE" FontFamily="Roboto" Margin="0" Padding="5,5,2,0" FontWeight="Light"/>
+        <TextBlock x:Name="FertilizerAmount" DockPanel.Dock="Right" Text="x0" FontSize="14" Width="30" HorizontalAlignment="Right" Foreground="#FFE2E2E2" FontFamily="Roboto" Padding="0,5,7,0" TextAlignment="Right" FontWeight="ExtraLight"/>
     </DockPanel>
 </UserControl>
