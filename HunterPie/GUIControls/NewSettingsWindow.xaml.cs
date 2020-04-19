@@ -5,7 +5,6 @@ using System.Windows.Controls;
 using System.Windows.Input;
 using System.IO;
 using HunterPie.Core;
-using System.Windows.Media.Animation;
 
 namespace HunterPie.GUIControls {
     /// <summary>
@@ -32,7 +31,11 @@ namespace HunterPie.GUIControls {
         public void UnhookEvents() {
             KeyboardInputHook.UninstallHooks();
             KeyboardInputHook.OnKeyboardKeyPress -= KeyboardInputHook_OnKeyboardKeyPress;
-
+            switchEnableParts.MouseDown -= SwitchEnableParts_MouseDown;
+            MonsterShowModeSelection.Items.Clear();
+            LanguageFilesCombobox.Items.Clear();
+            ThemeFilesCombobox.Items.Clear();
+            MonsterBarDock.Items.Clear();
         }
 
         private void PopulateMonsterBox() {

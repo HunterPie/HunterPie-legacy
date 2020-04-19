@@ -536,9 +536,9 @@ namespace HunterPie.Core {
                 GetQuestElapsedTime();
                 for (int i = 0; i < PlayerParty.MaxSize; i++) {
                     string playerName = GetPartyMemberName(PartyContainer + (i * 0x1C0));
-                    byte playerWeapon = playerName == this.Name ? this.WeaponID : Scanner.READ_BYTE(PartyContainer + (i * 0x1C0 + 0x33));
                     short HR = Scanner.READ_SHORT(PartyContainer + (i * 0x1C0 + 0x27));
                     short MR = Scanner.READ_SHORT(PartyContainer + (i * 0x1C0 + 0x29));
+                    byte playerWeapon = playerName == this.Name && HR == this.Level ? this.WeaponID : Scanner.READ_BYTE(PartyContainer + (i * 0x1C0 + 0x33));
                     int playerDamage = GetPartyMemberDamage(i);
                     float playerDamagePercentage = 0;
                     if (totalDamage != 0) {
@@ -549,6 +549,7 @@ namespace HunterPie.Core {
                     }
                     PlayerParty[i].HR = HR;
                     PlayerParty[i].MR = MR;
+                    PlayerParty[i].IsMe = playerName == this.Name && HR == this.Level;
                     PlayerParty[i].SetPlayerInfo(playerName, playerWeapon, playerDamage, playerDamagePercentage);
                 }
             }

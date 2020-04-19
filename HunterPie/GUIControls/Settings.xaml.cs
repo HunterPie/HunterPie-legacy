@@ -11,7 +11,7 @@ namespace HunterPie.GUIControls {
     /// </summary>
     public partial class Settings : UserControl {
 
-        public static Settings _Instance;
+        private static Settings _Instance;
         public static Settings Instance {
             get {
                 if (_Instance == null) {
@@ -27,6 +27,13 @@ namespace HunterPie.GUIControls {
 
         public void UninstallKeyboardHook() {
             _Instance?.SettingsBox.UnhookEvents();
+        }
+
+        static public void Destroy() {
+            if (_Instance == null) return;
+            _Instance.UninstallKeyboardHook();
+            _Instance.SettingsBox = null;
+            _Instance = null;
         }
 
         static public void RefreshSettingsUI() {
@@ -125,6 +132,9 @@ namespace HunterPie.GUIControls {
             settingsUI.switchEnableDPSMeter.IsEnabled = settings.Overlay.DPSMeter.Enabled;
             settingsUI.switchEnableTotalDamage.IsEnabled = settings.Overlay.DPSMeter.ShowTotalDamage;
             settingsUI.switchEnableDPSWheneverPossible.IsEnabled = settings.Overlay.DPSMeter.ShowDPSWheneverPossible;
+            settingsUI.switchEnableTimerInExpeditions.IsEnabled = settings.Overlay.DPSMeter.ShowTimerInExpeditions;
+            settingsUI.switchEnableOnlyTimer.IsEnabled = settings.Overlay.DPSMeter.ShowOnlyTimer;
+            settingsUI.switchEnableOnlyMyself.IsEnabled = settings.Overlay.DPSMeter.ShowOnlyMyself;
             settingsUI.DamageMeterPosition.X = settings.Overlay.DPSMeter.Position[0];
             settingsUI.DamageMeterPosition.Y = settings.Overlay.DPSMeter.Position[1];
             settingsUI.FirstPlayerColor.Color = settings.Overlay.DPSMeter.PartyMembers[0].Color;
@@ -226,6 +236,9 @@ namespace HunterPie.GUIControls {
             settings.Overlay.DPSMeter.Enabled = settingsUI.switchEnableDPSMeter.IsEnabled;
             settings.Overlay.DPSMeter.ShowTotalDamage = settingsUI.switchEnableTotalDamage.IsEnabled;
             settings.Overlay.DPSMeter.ShowDPSWheneverPossible = settingsUI.switchEnableDPSWheneverPossible.IsEnabled;
+            settings.Overlay.DPSMeter.ShowTimerInExpeditions = settingsUI.switchEnableTimerInExpeditions.IsEnabled;
+            settings.Overlay.DPSMeter.ShowOnlyTimer = settingsUI.switchEnableOnlyTimer.IsEnabled;
+            settings.Overlay.DPSMeter.ShowOnlyMyself = settingsUI.switchEnableOnlyMyself.IsEnabled;
             settings.Overlay.DPSMeter.Position[0] = settingsUI.DamageMeterPosition.X;
             settings.Overlay.DPSMeter.Position[1] = settingsUI.DamageMeterPosition.Y;
             settings.Overlay.DPSMeter.PartyMembers[0].Color = settingsUI.FirstPlayerColor.Color;

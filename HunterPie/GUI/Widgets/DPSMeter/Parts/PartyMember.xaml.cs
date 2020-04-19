@@ -62,6 +62,11 @@ namespace HunterPie.GUI.Widgets.DPSMeter.Parts {
                 TotalDamage.Text = Context.Damage.ToString();
                 Percentage.Text = $"{Context.DamagePercentage * 100:0.0}%";
                 PlayerDPSBar.Width = Context.DamagePercentage * PlayerDPSBar.MaxWidth;
+                if (UserSettings.PlayerConfig.Overlay.DPSMeter.ShowOnlyMyself) {
+                    this.Visibility = Context.IsMe ? Visibility.Visible : Visibility.Collapsed;
+                } else {
+                    this.Visibility = Context.IsInParty ? Visibility.Visible : Visibility.Collapsed;
+                }
             });
         }
 

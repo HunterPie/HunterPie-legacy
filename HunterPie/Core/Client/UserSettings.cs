@@ -107,6 +107,8 @@ namespace HunterPie.Core {
                 public bool ShowTimerInExpeditions { get; set; } = true;
                 public float BackgroundOpacity { get; set; } = 0.5f;
                 public float Opacity { get; set; } = 1;
+                public bool ShowOnlyTimer { get; set; } = false;
+                
             }
 
             public class Players {

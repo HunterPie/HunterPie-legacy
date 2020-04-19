@@ -550,6 +550,7 @@ namespace HunterPie {
 
         private void OnConsoleButtonClick(object sender, MouseButtonEventArgs e) {
             OpenDebugger();
+            
         }
 
         private void OnSettingsButtonClick(object sender, MouseButtonEventArgs e) {

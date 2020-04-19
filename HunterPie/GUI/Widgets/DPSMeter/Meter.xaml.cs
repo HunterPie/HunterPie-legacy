@@ -62,6 +62,7 @@ namespace HunterPie.GUI.Widgets.DPSMeter {
                 CompositionTarget.Rendering += OnMeterRender;
                 CreatePlayerComponents();
                 SortPlayersByDamage();
+                if (UserSettings.PlayerConfig.Overlay.DPSMeter.ShowTimerInExpeditions) this.WidgetHasContent = true;
                 ChangeVisibility();
             }));
         }
@@ -92,9 +93,14 @@ namespace HunterPie.GUI.Widgets.DPSMeter {
 
         private void OnTotalDamageChange(object source, EventArgs args) {
             Dispatcher.BeginInvoke(System.Windows.Threading.DispatcherPriority.Render, new Action(() => {
-                if (Context.TotalDamage > 0 && !WidgetHasContent) {
+                if (Context.TotalDamage > 0 && !UserSettings.PlayerConfig.Overlay.DPSMeter.ShowOnlyTimer) {
+                    this.Party.Visibility = Visibility.Visible;
                     this.WidgetHasContent = true;
-                    ChangeVisibility();
+                    ChangeVisibility(false);
+                } else {
+                    this.WidgetHasContent = UserSettings.PlayerConfig.Overlay.DPSMeter.ShowTimerInExpeditions;
+                    this.Party.Visibility = Visibility.Collapsed;
+                    ChangeVisibility(false);
                 }
                 SortPlayersByDamage();
             }));
@@ -167,7 +173,9 @@ namespace HunterPie.GUI.Widgets.DPSMeter {
                     };
                     SolidColorBrush brush = new SolidColorBrush(PartyBgColor);
                     brush.Freeze();
-                    this.Party.Background = brush; 
+                    this.DamageContainer.Background = brush;
+                    this.Party.Visibility = UserSettings.PlayerConfig.Overlay.DPSMeter.ShowOnlyTimer ? Visibility.Collapsed : Visibility.Visible;
+                    if (Context != null) this.WidgetHasContent = UserSettings.PlayerConfig.Overlay.DPSMeter.ShowTimerInExpeditions && !GameContext.Player.InPeaceZone;
                     if (Context != null) SortPlayersByDamage();
                 }
                 base.ApplySettings();
