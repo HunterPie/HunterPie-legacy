@@ -1,10 +1,8 @@
 ﻿using System;
 using System.Windows;
-using System.Windows.Controls;
 using System.Windows.Input;
 using System.Windows.Interop;
 using System.Windows.Media;
-using System.Windows.Media.Animation;
 using HunterPie.Memory;
 
 namespace HunterPie.GUI {
@@ -98,13 +96,14 @@ namespace HunterPie.GUI {
             int WS_EX_TRANSPARENT = 0x20;
             int WS_EX_TOPMOST = 0x8;
             int WS_EX_TOOLWINDOW = 0x80; // Flag to hide overlay from ALT+TAB
+            int WS_EX_NOACTIVATE = 0x08000000;
             int GWL_EXSTYLE = (-20);
 
             IntPtr hwnd = new WindowInteropHelper(this).EnsureHandle();
             // Get overlay flags
             int Styles = Scanner.GetWindowLong(hwnd, GWL_EXSTYLE);
             // Apply new flags
-            Scanner.SetWindowLong(hwnd, GWL_EXSTYLE, Styles | WS_EX_TOOLWINDOW | WS_EX_TRANSPARENT | WS_EX_TOPMOST);
+            Scanner.SetWindowLong(hwnd, GWL_EXSTYLE, Styles | WS_EX_TOOLWINDOW | WS_EX_TRANSPARENT | WS_EX_TOPMOST | WS_EX_NOACTIVATE);
         }
 
         public void ForceAlwaysOnTop() {
@@ -113,7 +112,7 @@ namespace HunterPie.GUI {
             uint SWP_NOMOVE = 0x0002;
             uint SWP_NOSIZE = 0x0001;
             uint SWP_NOACTIVATE = 0x0010;
-            uint Flags = SWP_SHOWWINDOW | SWP_NOSIZE | SWP_NOMOVE;
+            uint Flags = SWP_SHOWWINDOW | SWP_NOSIZE | SWP_NOMOVE | SWP_NOACTIVATE;
             IntPtr hwnd = new WindowInteropHelper(this).EnsureHandle();
             Scanner.SetWindowPos(hwnd, -1, 0, 0, 0, 0, Flags);
         }
@@ -131,10 +130,7 @@ namespace HunterPie.GUI {
         public new void Show() {
             Dispatcher.BeginInvoke(System.Windows.Threading.DispatcherPriority.Render, new Action(() => {
                 // Try/Catch to avoid crashes after widget is closed
-                try {
-                    base.Show();
-                } catch {}
-                
+                if (!this.IsClosed) base.Show();
             }));
         }
 

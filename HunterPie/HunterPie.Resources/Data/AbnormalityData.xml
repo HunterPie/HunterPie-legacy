@@ -108,13 +108,15 @@
     <Abnormality ID="73" IsDebuff="False" Offset="7B4" HasConditions="False" Icon=""/>
   </MISC_Abnormalities>
   <GEAR_Abnormalities>
-    <Abnormality ID="0" IsDebuff="False" Offset="6CC" Icon="ICON_ATTACKUP" IsGearBuff="False"/> <!-- Demon Ammo -->
-    <Abnormality ID="1" IsDebuff="False" Offset="6D0" Icon="ICON_DEFUP" IsGearBuff="False"/> <!-- Armour Ammo -->
-    <Abnormality ID="2" IsDebuff="False" Offset="764" Icon="ICON_ATTACKUP" IsGearBuff="False"/> <!-- Fortify -->
-    <Abnormality ID="3" IsDebuff="False" Offset="76C" Icon="" IsGearBuff="False"/> <!-- Protective Polish -->
-    <Abnormality ID="4" IsDebuff="False" Offset="770" Icon="" IsGearBuff="False"/> <!-- Affinity Sliding -->
-    <Abnormality ID="15" IsDebuff="False" Offset="79C" Icon="ICON_ATTACKUP" IsGearBuff="False"/> <!-- Offensive Guard -->
-    <Abnormality ID="99" IsDebuff="False" Offset="FC4" Icon="ICON_MANTLE" IsGearBuff="True"/> <!-- Evasion Mantle -->
-    <Abnormality ID="100" IsDebuff="False" Offset="FC8" Icon="ICON_BOOSTER_RED" IsGearBuff="True"/> <!-- Affinity Booster -->
+    <Abnormality ID="0" IsDebuff="False" Offset="6CC" Icon="ICON_DEMONAMMO" IsGearBuff="False"/>
+    <Abnormality ID="1" IsDebuff="False" Offset="6D0" Icon="ICON_ARMORAMMO" IsGearBuff="False"/>
+    <Abnormality ID="2" IsDebuff="False" Offset="764" Icon="ICON_ATTACKUP" IsGearBuff="False"/>
+    <Abnormality ID="3" IsDebuff="False" Offset="76C" Icon="ICON_ARMORSKILL_DARKRED" IsGearBuff="False"/>
+    <Abnormality ID="4" IsDebuff="False" Offset="770" Icon="ICON_AFFINITY" IsGearBuff="False"/>
+    <Abnormality ID="10" IsDebuff="False" Offset="788" Icon="ICON_ARMORSKILL_WHITE" IsGearBuff="False"/>
+    <Abnormality ID="15" IsDebuff="False" Offset="79C" Icon="ICON_ATTACKUP" IsGearBuff="False"/>
+    <Abnormality ID="16" IsDebuff="False" Offset="7A0" Icon="ICON_ARMORSKILL_PURPLE" IsGearBuff="False"/>
+    <Abnormality ID="99" IsDebuff="False" Offset="FC4" Icon="ICON_MANTLE" IsGearBuff="True"/>
+    <Abnormality ID="100" IsDebuff="False" Offset="FC8" Icon="ICON_BOOSTER_RED" IsGearBuff="True"/>
   </GEAR_Abnormalities>
 </Abnormalities>

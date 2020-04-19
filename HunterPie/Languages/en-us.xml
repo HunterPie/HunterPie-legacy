@@ -391,6 +391,9 @@
     <Abnormality ID="GEAR_002_00" Name="Fortify"/>
     <Abnormality ID="GEAR_003_00" Name="Protective Polish"/>
     <Abnormality ID="GEAR_004_00" Name="Affinity Sliding"/>
+    <Abnormality ID="GEAR_010_00" Name="Frostcraft"/>
+    <Abnormality ID="GEAR_015_00" Name="Offsensive Guard"/>
+    <Abnormality ID="GEAR_016_00" Name="Coalescence"/>
     <Abnormality ID="GEAR_099_00" Name="Evasion Mantle (Atk)"/>
     <Abnormality ID="GEAR_100_00" Name="Affinity Booster"/>
   </Abnormalities>
