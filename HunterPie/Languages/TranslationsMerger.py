@@ -35,7 +35,7 @@ class TranslationMerger():
                         print(f"- MISSING NODE: {elem.tag}")
                 else:
                     if (self.CurrentLocalizationFile.get(elem.attrib["ID"]) == None):
-                        print(f"- MISSING STRING: {elem.attrib['ID']}")
+                        print(f"- {elem.attrib['ID']}")
 
 if __name__ == "__main__":
     Merger = TranslationMerger()

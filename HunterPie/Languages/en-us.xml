@@ -392,7 +392,7 @@
     <Abnormality ID="GEAR_003_00" Name="Protective Polish"/>
     <Abnormality ID="GEAR_004_00" Name="Affinity Sliding"/>
     <Abnormality ID="GEAR_010_00" Name="Frostcraft"/>
-    <Abnormality ID="GEAR_015_00" Name="Offsensive Guard"/>
+    <Abnormality ID="GEAR_015_00" Name="Offensive Guard"/>
     <Abnormality ID="GEAR_016_00" Name="Coalescence"/>
     <Abnormality ID="GEAR_099_00" Name="Evasion Mantle (Atk)"/>
     <Abnormality ID="GEAR_100_00" Name="Affinity Booster"/>
@@ -562,7 +562,7 @@
       <String ID="ENABLE_TOTAL_DAMAGE_DESC" Name="If enabled, the Damage Widget will show individual total damage."/>
       <String ID="ENABLE_METER_DPS" Name="Show damage per second"/>
       <String ID="ENABLE_METER_DPS_DESC" Name="If enabled, the Damage Widget will show individual damage per second."/>
-      <String ID="ENABLE_TIMER_IN_GL" Name="Enable timer in Expeditions/Guiding Lands."/>
+      <String ID="ENABLE_TIMER_IN_GL" Name="Enable timer in Expeditions/Guiding Lands"/>
       <String ID="ENABLE_TIMER_IN_GL_DESC" Name="If enabled, the timer will be visible in Expeditions/Guiding Lands."/>
       <String ID="ENABLE_ONLY_TIMER" Name="Show only timer"/>
       <String ID="ENABLE_ONLY_TIMER_DESC" Name="If enabled, the Damage Widget will only show the timer, hiding the party members damage."/>

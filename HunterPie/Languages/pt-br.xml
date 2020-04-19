@@ -386,6 +386,16 @@
     <Abnormality ID="MISC_034_00" Name="Powercone"/>
     <Abnormality ID="MISC_035_00" Name="Res. Gelo (G)"/>
     <Abnormality ID="MISC_073_00" Name="Mais Ataque &amp; Mais Def. (S)"/>
+    <Abnormality ID="GEAR_000_00" Name="Munição Demoníaca"/>
+    <Abnormality ID="GEAR_001_00" Name="Munição Armadura"/>
+    <Abnormality ID="GEAR_002_00" Name="Fortificar"/>
+    <Abnormality ID="GEAR_003_00" Name="Polimento Protetor"/>
+    <Abnormality ID="GEAR_004_00" Name="Deslizada de Afinidade"/>
+    <Abnormality ID="GEAR_010_00" Name="Frigidez"/>
+    <Abnormality ID="GEAR_015_00" Name="Bloqueio Ofensivo"/>
+    <Abnormality ID="GEAR_016_00" Name="Coalescência"/>
+    <Abnormality ID="GEAR_099_00" Name="Manto Da Evasão (Atq)"/>
+    <Abnormality ID="GEAR_100_00" Name="Reforço De Afinidade"/>
   </Abnormalities>
   <!-- Client localization strings -->
   <Client>
@@ -543,6 +553,8 @@
       <String ID="ENABLE_HARVEST_BOX_EVERYWHERE" Name="Sempre mostrar Caixa de Colheita"/>
       <String ID="ENABLE_HARVEST_BOX_EVERYWHERE_DESC" Name="Se habilitado, este widget será mostrado em todos os lugares, incluindo expedições e outras áreas com monstros."/>
       <String ID="STATIC_HARVEST_BOX_POSITION_DESC" Name="Muda a posição da caixa de colheita."/>
+      <String ID="ENABLE_HARVEST_BOX_COMPACT_MODE" Name="Habilitar modo compacto"/>
+      <String ID="ENABLE_HARVEST_BOX_COMPACT_MODE_DESC" Name="Se habilitado, o Widget da Caixa de Colheita usará o design compacto."/>
       <!-- Damage Meter -->
       <String ID="ENABLE_METER" Name="Habilitar widget de dano"/>
       <String ID="ENABLE_METER_DESC" Name="Se habilitado, o widget de dano será sempre mostrado quando tiver conteúdo."/>
@@ -550,6 +562,12 @@
       <String ID="ENABLE_TOTAL_DAMAGE_DESC" Name="Se habilitado, o widget de dano mostrará o dano total individual."/>
       <String ID="ENABLE_METER_DPS" Name="Mostrar dano por segundo"/>
       <String ID="ENABLE_METER_DPS_DESC" Name="Se habilitado, o widget de dano mostrará o dano por segundo individual."/>
+      <String ID="ENABLE_TIMER_IN_GL" Name="Habilitar temporizador em expedições"/>
+      <String ID="ENABLE_TIMER_IN_GL_DESC" Name="Se habilitado, o temporizador ficará visível em expedições."/>
+      <String ID="ENABLE_ONLY_TIMER" Name="Mostrar somente temporizador"/>
+      <String ID="ENABLE_ONLY_TIMER_DESC" Name="Se habilitado, o Widget de dano mostrará somente o temporizador, escondendo o dano do grupo."/>
+      <String ID="ENABLE_METER_ONLY_MYSELF" Name="Mostrar somente o meu dano"/>
+      <String ID="ENABLE_METER_ONLY_MYSELF_DESC" Name="Se habilitado, somente o seu dano ficará visível."/>
       <String ID="STATIC_METER_PLAYER_1" Name="1º jogador"/>
       <String ID="STATIC_METER_PLAYER_2" Name="2º jogador"/>
       <String ID="STATIC_METER_PLAYER_3" Name="3º jogador"/>
@@ -569,6 +587,7 @@
       <String ID="STATIC_ABNORM_TAB_HH" Name="Berrante de Caça"/>
       <String ID="STATIC_ABNORM_TAB_ORCHESTRA" Name="Orquestra"/>
       <String ID="STATIC_ABNORM_TAB_DEBUFF" Name="Debuffs"/>
+      <String ID="STATIC_ABNORM_TAB_GEAR" Name="Armadura"/>
       <String ID="STATIC_ABNORM_TAB_CONSUMABLE" Name="Consumíveis"/>
       <String ID="ENABLE_SHOW_ABNORM_NAMES" Name="Mostrar nome da anormalidade"/>
       <String ID="ENABLE_SHOW_ABNORM_NAMES_DESC" Name="Se habilitado, o nome das anormalidades ficará visivel."/>
@@ -608,6 +627,7 @@
       <String ID="STATIC_REQUIRES_RESTART" Name="(Requer reinicialização)"/>
       <String ID="STATIC_POSITION" Name="Posição"/>
       <String ID="STATIC_COPYCLIPBOARD" Name="Copiar"/>
+      <String ID="STATIC_OPACITY" Name="Opacidade"/>
       <!-- Settings Side bar-->
       <String ID="STATIC_GENERAL_SETTINGS" Name="Geral"/>
       <String ID="STATIC_DISCORD_SETTINGS" Name="Discord"/>
