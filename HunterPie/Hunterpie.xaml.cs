@@ -580,11 +580,12 @@ namespace HunterPie {
 
         private void LaunchGame() {
             try {
-                ProcessStartInfo GameStartInfo = new ProcessStartInfo();
-                GameStartInfo.FileName = "steam://run/582010";
-                GameStartInfo.Arguments = UserSettings.PlayerConfig.HunterPie.Launch.LaunchArgs;
-                GameStartInfo.UseShellExecute = true;
-                Process.Start(GameStartInfo);
+                ProcessStartInfo GameStartInfo = new ProcessStartInfo {
+                    FileName = "steam://run/582010",
+                    Arguments = UserSettings.PlayerConfig.HunterPie.Launch.LaunchArgs,
+                    UseShellExecute = true
+                };
+                Scanner.CloseHandle(Process.Start(GameStartInfo).Handle);
             } catch(Exception err) {
                 Debugger.Error($"{GStrings.GetLocalizationByXPath("/Console/String[@ID='MESSAGE_LAUNCH_ERROR']")}\n{err.ToString()}");
             }

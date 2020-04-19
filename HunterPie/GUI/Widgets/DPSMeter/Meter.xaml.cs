@@ -62,7 +62,10 @@ namespace HunterPie.GUI.Widgets.DPSMeter {
                 CompositionTarget.Rendering += OnMeterRender;
                 CreatePlayerComponents();
                 SortPlayersByDamage();
-                if (UserSettings.PlayerConfig.Overlay.DPSMeter.ShowTimerInExpeditions) this.WidgetHasContent = true;
+                if (UserSettings.PlayerConfig.Overlay.DPSMeter.ShowTimerInExpeditions) {
+                    if (Context == null || Context.TotalDamage <= 0) this.Party.Visibility = Visibility.Collapsed;
+                    this.WidgetHasContent = true;
+                }
                 ChangeVisibility();
             }));
         }
@@ -175,6 +178,10 @@ namespace HunterPie.GUI.Widgets.DPSMeter {
                     brush.Freeze();
                     this.DamageContainer.Background = brush;
                     this.Party.Visibility = UserSettings.PlayerConfig.Overlay.DPSMeter.ShowOnlyTimer ? Visibility.Collapsed : Visibility.Visible;
+                    if (UserSettings.PlayerConfig.Overlay.DPSMeter.ShowTimerInExpeditions) {
+                        if (Context == null || Context.TotalDamage <= 0) this.Party.Visibility = Visibility.Collapsed;
+                        this.WidgetHasContent = true;
+                    }
                     if (Context != null) this.WidgetHasContent = UserSettings.PlayerConfig.Overlay.DPSMeter.ShowTimerInExpeditions && !GameContext.Player.InPeaceZone;
                     if (Context != null) SortPlayersByDamage();
                 }

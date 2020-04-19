@@ -393,6 +393,16 @@
     <Abnormality ID="MISC_034_00" Name="攻撃力ＵＰ（オニボックリ）"/>
     <Abnormality ID="MISC_035_00" Name="氷耐性ＵＰ（氷耐草）"/>
     <Abnormality ID="MISC_073_00" Name="攻撃力ＵＰ＆防御力ＵＰ【小】"/>
+    <Abnormality ID="GEAR_000_00" Name="鬼人弾"/>
+    <Abnormality ID="GEAR_001_00" Name="硬化弾"/>
+    <Abnormality ID="GEAR_002_00" Name="不屈"/>
+    <Abnormality ID="GEAR_003_00" Name="剛刃研磨"/>
+    <Abnormality ID="GEAR_004_00" Name="滑走強化"/>
+    <Abnormality ID="GEAR_010_00" Name="冰気錬成"/>
+    <Abnormality ID="GEAR_015_00" Name="攻めの守勢"/>
+    <Abnormality ID="GEAR_016_00" Name="災禍転福"/>
+    <Abnormality ID="GEAR_099_00" Name="回避の装衣【攻撃力ＵＰ】"/>
+    <Abnormality ID="GEAR_100_00" Name="達人の煙筒"/>
   </Abnormalities>
   <!-- Client localization strings -->
   <Client>
@@ -550,6 +560,8 @@
       <String ID="ENABLE_HARVEST_BOX_EVERYWHERE" Name="肥料ウィジェットを常に表示"/>
       <String ID="ENABLE_HARVEST_BOX_EVERYWHERE_DESC" Name="無効な場合、このウィジェットはモンスターが登場するあらゆるステージにいる間は表示されません。"/>
       <String ID="STATIC_HARVEST_BOX_POSITION_DESC" Name="肥料ウィジェットの位置座標を変更します。"/>
+      <String ID="ENABLE_HARVEST_BOX_COMPACT_MODE" Name="コンパクトモード"/>
+      <String ID="ENABLE_HARVEST_BOX_COMPACT_MODE_DESC" Name="有効な場合、肥料ウィジェットは小型化されて表示されます。"/>
       <!-- Damage Meter -->
       <String ID="ENABLE_METER" Name="ダメージウィジェットを有効にする"/>
       <String ID="ENABLE_METER_DESC" Name="有効な場合、パーティ内で大型モンスターにダメージを与えたメンバーがいれば、ダメージウィジェットが表示されます。"/>
@@ -557,6 +569,12 @@
       <String ID="ENABLE_TOTAL_DAMAGE_DESC" Name="有効な場合、各プレイヤーが与えたダメージ量を表示します。"/>
       <String ID="ENABLE_METER_DPS" Name="DPSを表示"/>
       <String ID="ENABLE_METER_DPS_DESC" Name="有効な場合、各プレイヤーの一秒毎の平均ダメージを表示します。"/>
+      <String ID="ENABLE_TIMER_IN_GL" Name="探索や導きの地で経過時間を表示する。"/>
+      <String ID="ENABLE_TIMER_IN_GL_DESC" Name="有効な場合、探索・導きの地に入ってからの経過時間が表示されます。"/>
+      <String ID="ENABLE_ONLY_TIMER" Name="経過時間のみ表示"/>
+      <String ID="ENABLE_ONLY_TIMER_DESC" Name="有効な場合、ダメージウィジェットは経過時間のみを表示し、ダメージ系統の情報は表示しません。"/>
+      <String ID="ENABLE_METER_ONLY_MYSELF" Name="ダメージのみ表示"/>
+      <String ID="ENABLE_METER_ONLY_MYSELF_DESC" Name="有効な場合、ダメージウィジェットはダメージ系統の情報のみを表示し、経過時間は表示しません。"/>
       <String ID="STATIC_METER_PLAYER_1" Name="パーティメンバー１"/>
       <String ID="STATIC_METER_PLAYER_2" Name="パーティメンバー２"/>
       <String ID="STATIC_METER_PLAYER_3" Name="パーティメンバー３"/>
@@ -577,6 +595,7 @@
       <String ID="STATIC_ABNORM_TAB_ORCHESTRA" Name="はげましの楽器"/>
       <String ID="STATIC_ABNORM_TAB_DEBUFF" Name="状態異常"/>
       <String ID="STATIC_ABNORM_TAB_CONSUMABLE" Name="消費アイテム"/>
+      <String ID="STATIC_ABNORM_TAB_GEAR" Name="装備スキル"/>
       <String ID="ENABLE_SHOW_ABNORM_NAMES" Name="バフ・デバフ名を表示"/>
       <String ID="ENABLE_SHOW_ABNORM_NAMES_DESC" Name="有効な場合、バフ・デバ名がアイコンの隣に表示されます。"/>
       <!-- Specialized Tool Widget-->
@@ -615,6 +634,7 @@
       <String ID="STATIC_REQUIRES_RESTART" Name="(再起動が必要になります。)"/>
       <String ID="STATIC_POSITION" Name="位置"/>
       <String ID="STATIC_COPYCLIPBOARD" Name="クリップボードにコピー"/>
+      <String ID="STATIC_OPACITY" Name="透明度"/>
       <!-- Settings Side bar-->
       <String ID="STATIC_GENERAL_SETTINGS" Name="一般"/>
       <String ID="STATIC_DISCORD_SETTINGS" Name="Discord"/>

@@ -391,6 +391,16 @@ Gerade bei den Abnormalitäten / Statusveränderungen des Spielers gibt es mit (
     <Abnormality ID="MISC_034_00" Name="Kraftzapfen"/>
     <Abnormality ID="MISC_035_00" Name="Eiswiderstand-Boost (L) (?)"/>
     <Abnormality ID="MISC_073_00" Name="Angriff und Verteidigung hoch (S) (?)"/>
+	  <Abnormality ID="GEAR_000_00" Name="Dämonen Munition"/>
+    <Abnormality ID="GEAR_001_00" Name="Rüstungs-Munition"/>
+    <Abnormality ID="GEAR_002_00" Name="Verstärken (?)"/>
+    <Abnormality ID="GEAR_003_00" Name="Schützender Glanz"/>
+    <Abnormality ID="GEAR_004_00" Name="Affiniäts-Gleiten (?)"/>
+    <Abnormality ID="GEAR_010_00" Name="Frostcraft"/>
+    <Abnormality ID="GEAR_015_00" Name="Offensive Verteidigung"/>
+    <Abnormality ID="GEAR_016_00" Name="Koaleszenz"/>
+    <Abnormality ID="GEAR_099_00" Name="Ausweich-Mantel (Atk)"/>
+    <Abnormality ID="GEAR_100_00" Name="Affinitäts-Booster"/>
   </Abnormalities>
    <!-- Client localization strings -->
   <Client>
@@ -548,13 +558,21 @@ Gerade bei den Abnormalitäten / Statusveränderungen des Spielers gibt es mit (
       <String ID="ENABLE_HARVEST_BOX_EVERYWHERE" Name="Zeige Erntebox Widget konstant"/>
       <String ID="ENABLE_HARVEST_BOX_EVERYWHERE_DESC" Name="Wenn aktiv, wird das Erntebox Widget überall, also auf Expeditionen, den Leitlanden oder jeglicher anderen Monster-Zone, angezeigt."/>
       <String ID="STATIC_HARVEST_BOX_POSITION_DESC" Name="Ändert die Position des Erntebox Widgets."/>
+	    <String ID="ENABLE_HARVEST_BOX_COMPACT_MODE" Name="Kompaktmodus aktivieren"/>
+      <String ID="ENABLE_HARVEST_BOX_COMPACT_MODE_DESC" Name="Wenn aktiv, verwendet das Erntebox Widget ein kompakteres Design."/>
       <!-- Damage Meter -->
       <String ID="ENABLE_METER" Name="Aktiviere Schadens-Widget"/>
       <String ID="ENABLE_METER_DESC" Name="Wenn aktiv, wird das Schadens-Widget angezeigt, sobald es etwas anzuzeigen hat."/>
-	  <String ID="ENABLE_TOTAL_DAMAGE" Name="Zeige Gesamtschaden"/>
+	    <String ID="ENABLE_TOTAL_DAMAGE" Name="Zeige Gesamtschaden"/>
       <String ID="ENABLE_TOTAL_DAMAGE_DESC" Name="Wenn aktiv, zeigt das Schadens-Widget den individuellen Gesamtschaden an."/>
       <String ID="ENABLE_METER_DPS" Name="Zeige Schaden pro Sekunde"/>
       <String ID="ENABLE_METER_DPS_DESC" Name="Wenn aktiv, zeigt das Schadens-Widget den individuellen Schaden pro Sekunde an."/>
+	    <String ID="ENABLE_TIMER_IN_GL" Name="Aktiviere Timer in Expeditionen/den Leitlanden"/>
+      <String ID="ENABLE_TIMER_IN_GL_DESC" Name="Wenn aktiv, ist der Timer in Expeditionen und den Leitlanden sichtbar."/>
+      <String ID="ENABLE_ONLY_TIMER" Name="Zeige nur den Timer"/>
+      <String ID="ENABLE_ONLY_TIMER_DESC" Name="Wenn aktiv, zeigt das Schadens-Widget nur den Timer an und versteckt den Gruppenschaden."/>
+	    <String ID="ENABLE_METER_ONLY_MYSELF" Name="Zeige nur meinen Schaden"/>
+      <String ID="ENABLE_METER_ONLY_MYSELF_DESC" Name="Wenn aktiv, wird nur der eigene Schaden angezeigt."/>
       <String ID="STATIC_METER_PLAYER_1" Name="Erster Spieler"/>
       <String ID="STATIC_METER_PLAYER_2" Name="Zweiter Spieler"/>
       <String ID="STATIC_METER_PLAYER_3" Name="Dritter Spieler"/>
@@ -574,8 +592,9 @@ Gerade bei den Abnormalitäten / Statusveränderungen des Spielers gibt es mit (
       <String ID="STATIC_ABNORM_TAB_HH" Name="Jagdhorn"/>
       <String ID="STATIC_ABNORM_TAB_ORCHESTRA" Name="Orchester"/>
       <String ID="STATIC_ABNORM_TAB_DEBUFF" Name="Debuffs"/>
+	    <String ID="STATIC_ABNORM_TAB_GEAR" Name="Ausrüstung"/>
       <String ID="STATIC_ABNORM_TAB_CONSUMABLE" Name="Verbrauchsmaterial"/>
-	  <String ID="ENABLE_SHOW_ABNORM_NAMES" Name="Zeige Abnormalitäten-Namen"/>
+	    <String ID="ENABLE_SHOW_ABNORM_NAMES" Name="Zeige Abnormalitäten-Namen"/>
       <String ID="ENABLE_SHOW_ABNORM_NAMES_DESC" Name="Wenn aktiv, werden die Namen von Abnormalitäten angezeigt."/>
       <!-- Specialized Tool Widget-->
       <String ID="STATIC_PRIMARY_SPEC_TOOL" Name="Primäres Spezialgerät"/>
@@ -613,6 +632,7 @@ Gerade bei den Abnormalitäten / Statusveränderungen des Spielers gibt es mit (
       <String ID="STATIC_REQUIRES_RESTART" Name="(benötigt Neustart)"/>
       <String ID="STATIC_POSITION" Name="Position"/>
       <String ID="STATIC_COPYCLIPBOARD" Name="In die Zwischenablage kopieren"/>
+	  <String ID="STATIC_OPACITY" Name="Transparenz"/>
       <!-- Settings Side bar-->
       <String ID="STATIC_GENERAL_SETTINGS" Name="Allgemein"/>
       <String ID="STATIC_DISCORD_SETTINGS" Name="Discord"/>

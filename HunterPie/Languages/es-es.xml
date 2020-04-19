@@ -13,7 +13,7 @@
     <Monster ID="em018_00" Name="Yian Garuga"/>
     <Monster ID="em018_05" Name="Yian Garuga Naevus"/>
     <Monster ID="em023_00" Name="Rajang"/>
-	<Monster ID="em023_05" Name="Rajang Rabioso"/>
+	  <Monster ID="em023_05" Name="Rajang Rabioso"/>
     <Monster ID="em024_00" Name="Kushala Daora"/>
     <Monster ID="em026_00" Name="Lunastra"/>
     <Monster ID="em027_00" Name="Teostra"/>
@@ -67,8 +67,8 @@
     <Monster ID="em126_00" Name="Shara Ishvalda"/>
     <Monster ID="em127_00" Name="Leshen"/>
     <Monster ID="em127_01" Name="Leshen Antiguo"/>
-	<Monster ID="em057_01" Name="Zinogre Estigio"/>
-	<Monster ID="em104_00" Name="Safi'jiiva"/>
+	  <Monster ID="em057_01" Name="Zinogre Estigio"/>
+	  <Monster ID="em104_00" Name="Safi'jiiva"/>
   </Monsters>
   <Parts>
     <Part ID="MONSTER_PART_UNKNOWN" Name="Parte desconocida"/>
@@ -543,13 +543,21 @@
       <String ID="ENABLE_HARVEST_BOX_EVERYWHERE" Name="Mostrar siempre la ventana de recursos"/>
       <String ID="ENABLE_HARVEST_BOX_EVERYWHERE_DESC" Name="Si esta opción está activada, la ventana de recursos siempre estará visible, esto incluye las misiones, expediciones y tierras destino."/>
       <String ID="STATIC_HARVEST_BOX_POSITION_DESC" Name="Cambia la posición de la ventana de recursos."/>
+      <String ID="ENABLE_HARVEST_BOX_COMPACT_MODE" Name="Enable compact mode"/>
+      <String ID="ENABLE_HARVEST_BOX_COMPACT_MODE_DESC" Name="If enabled, the Harvest Box Widget will use it's compact design."/>
       <!-- Damage Meter -->
       <String ID="ENABLE_METER" Name="Habilitar el contador de daño"/>
       <String ID="ENABLE_METER_DESC" Name="Si esta opción está activada, el contador de daño será visible siempre y cuando tenga algo que mostrar (no funciona en expediciones y/o tierras destino)."/>
-       <String ID="ENABLE_TOTAL_DAMAGE" Name="Mostrar daño total"/>
+      <String ID="ENABLE_TOTAL_DAMAGE" Name="Mostrar daño total"/>
       <String ID="ENABLE_TOTAL_DAMAGE_DESC" Name="Si esta opción está activada, se mostrará el daño total individual."/>
-	  <String ID="ENABLE_METER_DPS" Name="Mostrar el DPS a cambio del daño total realizado"/>
+	    <String ID="ENABLE_METER_DPS" Name="Mostrar el DPS a cambio del daño total realizado"/>
       <String ID="ENABLE_METER_DPS_DESC" Name="Si esta opción está activada, en vez de mostrar el daño total realizado el contador de daño mostrará el daño por segundo realizado."/>
+      <String ID="ENABLE_TIMER_IN_GL" Name="Enable timer in Expeditions/Guiding Lands"/>
+      <String ID="ENABLE_TIMER_IN_GL_DESC" Name="If enabled, the timer will be visible in Expeditions/Guiding Lands."/>
+      <String ID="ENABLE_ONLY_TIMER" Name="Show only timer"/>
+      <String ID="ENABLE_ONLY_TIMER_DESC" Name="If enabled, the Damage Widget will only show the timer, hiding the party members damage."/>
+      <String ID="ENABLE_METER_ONLY_MYSELF" Name="Show only my damage"/>
+      <String ID="ENABLE_METER_ONLY_MYSELF_DESC" Name="If enabled, only your damage will be visible."/>
       <String ID="STATIC_METER_PLAYER_1" Name="Primer jugador"/>
       <String ID="STATIC_METER_PLAYER_2" Name="Segundo jugador"/>
       <String ID="STATIC_METER_PLAYER_3" Name="Tercer jugador"/>
@@ -569,6 +577,7 @@
       <String ID="STATIC_ABNORM_TAB_HH" Name="Cornamusa"/>
       <String ID="STATIC_ABNORM_TAB_ORCHESTRA" Name="Orquestra Felyne"/>
       <String ID="STATIC_ABNORM_TAB_DEBUFF" Name="Efectos negativos"/>
+      <String ID="STATIC_ABNORM_TAB_GEAR" Name="Gear"/>
       <String ID="STATIC_ABNORM_TAB_CONSUMABLE" Name="Consumibles"/>
       <!-- Specialized Tool Widget-->
       <String ID="STATIC_PRIMARY_SPEC_TOOL" Name="Herramienta especializada primaria"/>
@@ -608,6 +617,7 @@
       <String ID="STATIC_REQUIRES_RESTART" Name="(Requiere el reinicio de la aplicación)"/>
       <String ID="STATIC_POSITION" Name="Posición"/>
       <String ID="STATIC_COPYCLIPBOARD" Name="Copiar en el portapapeles"/>
+      <String ID="STATIC_OPACITY" Name="Opacity"/>
       <!-- Settings Side bar-->
       <String ID="STATIC_GENERAL_SETTINGS" Name="General"/>
       <String ID="STATIC_DISCORD_SETTINGS" Name="Discord"/>

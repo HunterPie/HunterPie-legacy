@@ -386,6 +386,16 @@
     <Abnormality ID="MISC_034_00" Name="Énergicône"/>
     <Abnormality ID="MISC_035_00" Name="Résistance glace (G)"/>
     <Abnormality ID="MISC_073_00" Name="Bonus attaque + défense (S)"/>
+	<Abnormality ID="GEAR_000_00" Name="Munition Démon"/>
+    <Abnormality ID="GEAR_001_00" Name="Munition Peau-de-pierre"/>
+    <Abnormality ID="GEAR_002_00" Name="Jamais vaincu"/>
+    <Abnormality ID="GEAR_003_00" Name="Acier trempé"/>
+    <Abnormality ID="GEAR_004_00" Name="Roi de la glisse"/>
+    <Abnormality ID="GEAR_010_00" Name="Nuée de givre"/>
+    <Abnormality ID="GEAR_015_00" Name="Garde offensive"/>
+    <Abnormality ID="GEAR_016_00" Name="Union"/>
+    <Abnormality ID="GEAR_099_00" Name="Cape Evasion (attaque)"/>
+    <Abnormality ID="GEAR_100_00" Name="Amplificateur affinité"/>
   </Abnormalities>
   <!-- Client localization strings -->
   <Client>
@@ -543,13 +553,21 @@
       <String ID="ENABLE_HARVEST_BOX_EVERYWHERE" Name="Afficher le widget partout."/>
       <String ID="ENABLE_HARVEST_BOX_EVERYWHERE_DESC" Name="Activé, le widget sera affiché partout. Notamment les expéditions, Fief Glorieux, etc.."/>
       <String ID="STATIC_HARVEST_BOX_POSITION_DESC" Name="Modifiez la position du widget."/>
+	  <String ID="ENABLE_HARVEST_BOX_COMPACT_MODE" Name="Activer le Compact Mode"/>
+      <String ID="ENABLE_HARVEST_BOX_COMPACT_MODE_DESC" Name="Activé, le widget &quot;Conservatoire botanique&quot; utilisera un design compact."/>
       <!-- Damage Meter -->
       <String ID="ENABLE_METER" Name="Activer le widget &quot;Compteur de Dégâts&quot;"/>
       <String ID="ENABLE_METER_DESC" Name="Activé, le widget &quot;Compteur de Dégâts&quot; sera visible."/>
-	    <String ID="ENABLE_TOTAL_DAMAGE" Name="Afficher les dégâts totaux."/>
-	    <String ID="ENABLE_TOTAL_DAMAGE_DESC" Name="Activé, le compteur de dégâts affichera les dégâts totaux."/>
+	  <String ID="ENABLE_TOTAL_DAMAGE" Name="Afficher les dégâts totaux."/>
+	  <String ID="ENABLE_TOTAL_DAMAGE_DESC" Name="Activé, le compteur de dégâts affichera les dégâts totaux."/>
       <String ID="ENABLE_METER_DPS" Name="Afficher les dégâts par seconde."/>
       <String ID="ENABLE_METER_DPS_DESC" Name="Activé, le compteur de dégâts affichera les dégâts par seconde."/>
+	  <String ID="ENABLE_TIMER_IN_GL" Name="Activer le timer en Expédition/au Fief Glorieux"/>
+      <String ID="ENABLE_TIMER_IN_GL_DESC" Name="Activé, le timer sera activé en Expéditions/au Fief Glorieux."/>
+	  <String ID="ENABLE_ONLY_TIMER" Name="Afficher que le timer"/>
+      <String ID="ENABLE_ONLY_TIMER_DESC" Name="Activé, le widget &quot;Compteur de Dégâts&quot; affichera que le timer et cachera les autres joueurs."/>
+	  <String ID="ENABLE_METER_ONLY_MYSELF" Name="Afficher que mes dégâts"/>
+      <String ID="ENABLE_METER_ONLY_MYSELF_DESC" Name="Activé, il y aura que vos dégâts d'affichés."/>
       <String ID="STATIC_METER_PLAYER_1" Name="Premier Joueur"/>
       <String ID="STATIC_METER_PLAYER_2" Name="Deuxième Joueur"/>
       <String ID="STATIC_METER_PLAYER_3" Name="Troisième Joueur"/>
@@ -569,6 +587,7 @@
       <String ID="STATIC_ABNORM_TAB_HH" Name="Corne de chasse"/>
       <String ID="STATIC_ABNORM_TAB_ORCHESTRA" Name="Orchestre"/>
       <String ID="STATIC_ABNORM_TAB_DEBUFF" Name="Debuffs"/>
+	  <String ID="STATIC_ABNORM_TAB_GEAR" Name="Equipement"/>
       <String ID="STATIC_ABNORM_TAB_CONSUMABLE" Name="Consommable"/>
 	  <String ID="ENABLE_SHOW_ABNORM_NAMES" Name="Afficher le nom des effets"/>
 	  <String ID="ENABLE_SHOW_ABNORM_NAMES_DESC" Name="Activé, le nom des effets seront affichés."/>
@@ -608,6 +627,7 @@
       <String ID="STATIC_REQUIRES_RESTART" Name="(Nécessite un redémarrage)"/>
       <String ID="STATIC_POSITION" Name="Position"/>
       <String ID="STATIC_COPYCLIPBOARD" Name="Copier dans le presse-papiers"/>
+	  <String ID="STATIC_OPACITY" Name="Opacité"/>
       <!-- Settings Side bar-->
       <String ID="STATIC_GENERAL_SETTINGS" Name="Général"/>
       <String ID="STATIC_DISCORD_SETTINGS" Name="Discord"/>

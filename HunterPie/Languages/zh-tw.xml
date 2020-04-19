@@ -1,5 +1,5 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
-<!--1.0.3.87 update version 1.1 translate by ThanatosDi-->
+<!--1.0.3.88 update version 1 translate by ThanatosDi-->
 <Strings lang="Traditional Chinese">
   <Monsters>
     <Monster ID="em001_00" Name="雌火龍"/>
@@ -387,6 +387,16 @@
     <Abnormality ID="MISC_034_00" Name="攻擊力UP[鬼毬果]"/>
     <Abnormality ID="MISC_035_00" Name="冰耐性UP[冰耐草]"/>
     <Abnormality ID="MISC_073_00" Name="攻擊力UP&amp;防禦力UP[小]"/>
+    <Abnormality ID="GEAR_000_00" Name="鬼人彈"/>
+    <Abnormality ID="GEAR_001_00" Name="硬化彈"/>
+    <Abnormality ID="GEAR_002_00" Name="不屈"/>
+    <Abnormality ID="GEAR_003_00" Name="剛刃研磨"/>
+    <Abnormality ID="GEAR_004_00" Name="滑走強化"/>
+    <Abnormality ID="GEAR_010_00" Name="寒氣鍊成"/>
+    <Abnormality ID="GEAR_015_00" Name="攻擊守勢"/>
+    <Abnormality ID="GEAR_016_00" Name="轉禍為福"/>
+    <Abnormality ID="GEAR_099_00" Name="迴避衣裝 (攻擊+)"/>
+    <Abnormality ID="GEAR_100_00" Name="達人煙筒"/>
   </Abnormalities>
   <Client>
     <Console>
@@ -410,7 +420,6 @@
       <String ID="MESSAGE_DISCORD_DISCONNECTED" Name="關閉 Discord 連線"/>
       <String ID="MESSAGE_DISCORD_JOIN_REQUEST" Name="{Username} 要求參加集會"/>
       <String ID="MESSAGE_DISCORD_JOINING" Name="加入集會..."/>
-      
       <String ID="MESSAGE_MONSTER_DATA_LOAD" Name="載入魔物數據"/>
       <String ID="MESSAGE_ABNORMALITIES_DATA_LOAD" Name="載入異常狀態數據"/>
       <String ID="MESSAGE_PLAYER_SCANNER_INITIALIZED" Name="初始化玩家記憶體掃描器"/>
@@ -543,6 +552,8 @@
       <String ID="ENABLE_HARVEST_BOX_EVERYWHERE" Name="在任何區域顯示收穫箱"/>
       <String ID="ENABLE_HARVEST_BOX_EVERYWHERE_DESC" Name="如果啟用，在任何地圖或區域都會顯示收穫箱小工具，包含探索、聚魔之地及任何地圖"/>
       <String ID="STATIC_HARVEST_BOX_POSITION_DESC" Name="更改收穫箱小工具的位置"/>
+      <String ID="ENABLE_HARVEST_BOX_COMPACT_MODE" Name="啟用緊湊模式"/>
+      <String ID="ENABLE_HARVEST_BOX_COMPACT_MODE_DESC" Name="如果啟用，收穫箱小工具將使用其緊湊的設計"/>
       <!-- Damage Meter -->
       <String ID="ENABLE_METER" Name="傷害小工具"/>
       <String ID="ENABLE_METER_DESC" Name="如果啟用，則只要有內容就會顯示傷害小工具"/>
@@ -550,6 +561,12 @@
       <String ID="ENABLE_TOTAL_DAMAGE_DESC" Name="如果啟用，傷害小工具將會顯示每個人的總傷害量"/>
       <String ID="ENABLE_METER_DPS" Name="顯示 DPS(每秒傷害)"/>
       <String ID="ENABLE_METER_DPS_DESC" Name="如果啟用，傷害小工具將會顯示每個人的 DPS (每秒的傷害)"/>
+      <String ID="ENABLE_TIMER_IN_GL" Name="在探索/聚魔之地中啟用計時器"/>
+      <String ID="ENABLE_TIMER_IN_GL_DESC" Name="如果啟用，計時器將在探索/聚魔之地中可見。"/>
+      <String ID="ENABLE_ONLY_TIMER" Name="僅顯示計時器"/>
+      <String ID="ENABLE_ONLY_TIMER_DESC" Name="如果啟用，傷害小工具將僅顯示計時器，隱藏成員傷害"/>
+      <String ID="ENABLE_METER_ONLY_MYSELF" Name="僅顯示自我的傷害"/>
+      <String ID="ENABLE_METER_ONLY_MYSELF_DESC" Name="啟用後，只有自己的傷害可見"/>
       <String ID="STATIC_METER_PLAYER_1" Name="第一個玩家"/>
       <String ID="STATIC_METER_PLAYER_2" Name="第二個玩家"/>
       <String ID="STATIC_METER_PLAYER_3" Name="第三個玩家"/>
@@ -569,6 +586,7 @@
       <String ID="STATIC_ABNORM_TAB_HH" Name="狩獵笛效果"/>
       <String ID="STATIC_ABNORM_TAB_ORCHESTRA" Name="激勵樂器"/>
       <String ID="STATIC_ABNORM_TAB_DEBUFF" Name="異常狀態"/>
+      <String ID="STATIC_ABNORM_TAB_GEAR" Name="Gear"/>
       <String ID="STATIC_ABNORM_TAB_CONSUMABLE" Name="消耗品"/>
       <String ID="ENABLE_SHOW_ABNORM_NAMES" Name="顯示異常狀態的名稱"/>
       <String ID="ENABLE_SHOW_ABNORM_NAMES_DESC" Name="如果啟用將會顯示異常狀態的名稱"/>
@@ -608,6 +626,7 @@
       <String ID="STATIC_REQUIRES_RESTART" Name="(必須重新啟動)"/>
       <String ID="STATIC_POSITION" Name="位置"/>
       <String ID="STATIC_COPYCLIPBOARD" Name="複製到剪貼簿"/>
+      <String ID="STATIC_OPACITY" Name="Opacity"/>
       <!-- Settings Side bar-->
       <String ID="STATIC_GENERAL_SETTINGS" Name="一般"/>
       <String ID="STATIC_DISCORD_SETTINGS" Name="Discord"/>

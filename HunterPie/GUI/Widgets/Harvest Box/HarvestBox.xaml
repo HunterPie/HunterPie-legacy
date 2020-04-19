@@ -6,7 +6,7 @@
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
              xmlns:Part="clr-namespace:HunterPie.GUI.Widgets.Harvest_Box.Parts"
              mc:Ignorable="d" 
-             Width="230" Height="205" Background="#33000000" DataContext="{StaticResource Localization}" ResizeMode="NoResize" WindowStyle="None" AllowsTransparency="True" ShowInTaskbar="False" Topmost="True" Closing="OnClosing" MouseEnter="OnMouseEnter" MouseDown="OnMouseDown" MouseWheel="OnMouseWheel" MouseLeave="OnMouseLeave" BorderBrush="#00000000">
+             Width="230" Height="205" Background="#33000000" DataContext="{StaticResource Localization}" ResizeMode="NoResize" WindowStyle="None" AllowsTransparency="True" ShowInTaskbar="False" Topmost="True" Closing="OnClosing" MouseEnter="OnMouseEnter" MouseDown="OnMouseDown" MouseWheel="OnMouseWheel" MouseLeave="OnMouseLeave" BorderBrush="#00000000" SizeToContent="Height">
     <src:Widget.Resources>
         <ResourceDictionary>
             <ResourceDictionary.MergedDictionaries>

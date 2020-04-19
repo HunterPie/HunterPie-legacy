@@ -543,6 +543,8 @@
       <String ID="ENABLE_HARVEST_BOX_EVERYWHERE" Name="Показывать Ящик урожая везде"/>
       <String ID="ENABLE_HARVEST_BOX_EVERYWHERE_DESC" Name="Если включено, этот виджет будет отображаться в любом месте, включая экспедиции, Путеводные Земли и любые другие зоны монстров."/>
       <String ID="STATIC_HARVEST_BOX_POSITION_DESC" Name="Изменяет положение виджета «Ящик урожая»."/>
+      <String ID="ENABLE_HARVEST_BOX_COMPACT_MODE" Name="Enable compact mode"/>
+      <String ID="ENABLE_HARVEST_BOX_COMPACT_MODE_DESC" Name="If enabled, the Harvest Box Widget will use it's compact design."/>
       <!-- Damage Meter -->
       <String ID="ENABLE_METER" Name="Показывать Счётчик Урона"/>
       <String ID="ENABLE_METER_DESC" Name="Если включено, виджет Счётчик Урона будет виден, когда у него есть контент."/>
@@ -550,6 +552,12 @@
       <String ID="ENABLE_TOTAL_DAMAGE_DESC" Name="Если включено, виджет урона будет показывать индивидуальный общий урон."/>
       <String ID="ENABLE_METER_DPS" Name="Показывать ДПС вместо общего урона"/>
       <String ID="ENABLE_METER_DPS_DESC" Name="Если включено, Счётчик Урона будет показывать урон в секунду вместо общего урона."/>
+      <String ID="ENABLE_TIMER_IN_GL" Name="Enable timer in Expeditions/Guiding Lands"/>
+      <String ID="ENABLE_TIMER_IN_GL_DESC" Name="If enabled, the timer will be visible in Expeditions/Guiding Lands."/>
+      <String ID="ENABLE_ONLY_TIMER" Name="Show only timer"/>
+      <String ID="ENABLE_ONLY_TIMER_DESC" Name="If enabled, the Damage Widget will only show the timer, hiding the party members damage."/>
+      <String ID="ENABLE_METER_ONLY_MYSELF" Name="Show only my damage"/>
+      <String ID="ENABLE_METER_ONLY_MYSELF_DESC" Name="If enabled, only your damage will be visible."/>
       <String ID="STATIC_METER_PLAYER_1" Name="Первый игрок"/>
       <String ID="STATIC_METER_PLAYER_2" Name="Второй игрок"/>
       <String ID="STATIC_METER_PLAYER_3" Name="Третий игрок"/>
@@ -569,6 +577,7 @@
       <String ID="STATIC_ABNORM_TAB_HH" Name="Охотничий рог"/>
       <String ID="STATIC_ABNORM_TAB_ORCHESTRA" Name="Коралловый оркестр"/>
       <String ID="STATIC_ABNORM_TAB_DEBUFF" Name="Дебаффы"/>
+      <String ID="STATIC_ABNORM_TAB_GEAR" Name="Gear"/>
       <String ID="STATIC_ABNORM_TAB_CONSUMABLE" Name="Предметы"/>
       <String ID="ENABLE_SHOW_ABNORM_NAMES" Name="Показывать название статуса"/>
       <String ID="ENABLE_SHOW_ABNORM_NAMES_DESC" Name="Если включено, имена статусов будут видны."/>
@@ -608,6 +617,7 @@
       <String ID="STATIC_REQUIRES_RESTART" Name="(Требует перезапуска)"/>
       <String ID="STATIC_POSITION" Name="Позиция"/>
       <String ID="STATIC_COPYCLIPBOARD" Name="Copy to clipboard"/>
+      <String ID="STATIC_OPACITY" Name="Opacity"/>
       <!-- Settings Side bar-->
       <String ID="STATIC_GENERAL_SETTINGS" Name="Главное"/>
       <String ID="STATIC_DISCORD_SETTINGS" Name="Дискорд"/>
