@@ -1,25 +1,50 @@
-﻿namespace HunterPie.Core {
-    public class Abnormality {
-        private int _Duration { get; set; }
+﻿using HunterPie.Core.LPlayer;
 
-        public string Name {
-            get { return GStrings.GetAbnormalityByID(Type, ID, Stack); }
+namespace HunterPie.Core {
+    public class Abnormality
+    {
+        private int duration;
+        private byte stack;
+
+        public Abnormality(AbnormalityInfo info)
+        {
+            Type = info.Type;
+            Id = info.Id;
+            InternalID = info.InternalId;
+            IsDebuff = info.IsDebuff;
+            IsInfinite = info.IsInfinite;
+            Icon = info.IconName;
         }
+
+        public string Name => GStrings.GetAbnormalityByID(Type, Id, Stack);
         public string Icon { get; private set; }
         public string Type { get; private set; }
-        public int ID { get; private set; }
-        public byte Stack { get; private set; }
+        public int Id { get; private set; }
+
+        public byte Stack
+        {
+            get => stack;
+            private set
+            {
+                if (stack != value)
+                {
+                    stack = value;
+                    _OnStackChange();
+                }
+            }
+        }
+
         public string InternalID { get; private set; }
         public bool IsInfinite { get; private set; }
         public int Duration {
-            get { return _Duration; }
-            set {
+            get => duration;
+            private set {
                 if (value <= 0 && !IsInfinite) {
                     _OnAbnormalityEnd();
                     return;
                 }
-                if (value != _Duration) {
-                    _Duration = value;
+                if (value != duration) {
+                    duration = value;
                     _OnAbnormalityUpdate();
                 }
             }
@@ -56,26 +81,17 @@
 
         #region Methods
 
-        public void UpdateAbnormalityInfo(string Type, string InternalID,float ab_duration, byte ab_stack, int ab_id, bool ab_isDebuff, bool IsInfinite, string icon) {
-            this.Type = Type;
-            this.Icon = icon;
-            this.InternalID = InternalID;
-            this.MaxDuration = MaxDuration < ab_duration ? ab_duration : MaxDuration;
-            if (this.Stack != ab_stack) {
-                this.Stack = (byte)(ab_stack);
-                _OnStackChange();
-            }
-            if (MaxDuration > 0) { this.DurationPercentage = ab_duration / MaxDuration; }
-            else { this.DurationPercentage = 1; }
-            this.IsDebuff = ab_isDebuff;
-            this.IsInfinite = IsInfinite;
-            this.Duration = (int)ab_duration;
-            this.ID = ab_id;
+        public void UpdateAbnormalityInfo(float newDuration, byte newStack)
+        {
+            Stack = newStack;
+            Duration = (int)newDuration;
+            MaxDuration = MaxDuration < newDuration ? newDuration : MaxDuration;
+            DurationPercentage = MaxDuration > 0 ? newDuration / MaxDuration : 1;
         }
 
         public void ResetDuration() {
-            this.IsInfinite = false;
-            this.Duration = 0;
+            IsInfinite = false;
+            Duration = 0;
         }
 
         #endregion

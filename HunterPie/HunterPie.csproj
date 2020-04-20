@@ -129,6 +129,7 @@
     </ApplicationDefinition>
     <Compile Include="Core\Integrations\Honey\Honey.cs" />
     <Compile Include="Core\KeyboardHook.cs" />
+    <Compile Include="Core\LPlayer\AbnormalityInfo.cs" />
     <Compile Include="Core\Monster\Ailment.cs" />
     <Compile Include="Core\Monster\MonsterData.cs" />
     <Compile Include="Core\Monster\Part.cs" />

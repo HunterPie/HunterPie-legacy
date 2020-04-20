@@ -27,7 +27,7 @@ namespace HunterPie.GUIControls.Custom_Controls {
 
         private void OnBuffTraySettingClick(object sender, System.Windows.Input.MouseButtonEventArgs e) {
             if (TraySettingsWindow == null || TraySettingsWindow.IsClosed) {
-                TraySettingsWindow = new AbnormalityTraySettings(TrayIndex: TrayIndex);
+                TraySettingsWindow = new AbnormalityTraySettings(trayIndex: TrayIndex);
             }
             TraySettingsWindow.Show();
         }
