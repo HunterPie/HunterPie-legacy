@@ -13,7 +13,7 @@
     <Monster ID="em018_00" Name="Yian Garuga"/>
     <Monster ID="em018_05" Name="Yian Garuga Naevus"/>
     <Monster ID="em023_00" Name="Rajang"/>
-	  <Monster ID="em023_05" Name="Rajang Rabioso"/>
+	<Monster ID="em023_05" Name="Rajang Rabioso"/>
     <Monster ID="em024_00" Name="Kushala Daora"/>
     <Monster ID="em026_00" Name="Lunastra"/>
     <Monster ID="em027_00" Name="Teostra"/>
@@ -27,6 +27,7 @@
     <Monster ID="em044_00" Name="Barroth"/>
     <Monster ID="em045_00" Name="Uragaan"/>
     <Monster ID="em057_00" Name="Zinogre"/>
+	<Monster ID="em057_01" Name="Zinogre Estigio"/>
     <Monster ID="em063_00" Name="Brachydios"/>
 	<Monster ID="em063_05" Name="Brachydios Colérico"/>
     <Monster ID="em080_00" Name="Glavenus"/>
@@ -39,6 +40,7 @@
     <Monster ID="em103_00" Name="Nergigante"/>
     <Monster ID="em103_05" Name="Nergigante Regio"/>
     <Monster ID="em105_00" Name="Xeno'jiiva"/>
+	<Monster ID="em104_00" Name="Safi'jiiva"/>
     <Monster ID="em106_00" Name="Zorah Magdaros"/>
     <Monster ID="em107_00" Name="Kulu-Ya-Ku"/>
     <Monster ID="em108_00" Name="Jyuratodus"/>
@@ -67,8 +69,6 @@
     <Monster ID="em126_00" Name="Shara Ishvalda"/>
     <Monster ID="em127_00" Name="Leshen"/>
     <Monster ID="em127_01" Name="Leshen Antiguo"/>
-	  <Monster ID="em057_01" Name="Zinogre Estigio"/>
-	  <Monster ID="em104_00" Name="Safi'jiiva"/>
   </Monsters>
   <Parts>
     <Part ID="MONSTER_PART_UNKNOWN" Name="Parte desconocida"/>
@@ -378,7 +378,7 @@
     <Abnormality ID="MISC_015_02" Name="Mega Droga demoníaca"/>
     <Abnormality ID="MISC_016_00" Name="Piel de armadura"/>
     <Abnormality ID="MISC_016_01" Name="Piel de armadura"/>
-    <Abnormality ID="MISC_016_02" Name="Mega Piel de armadura"/>
+    <Abnormality ID="MISC_016_02" Name="Piel de armadura+"/>
     <Abnormality ID="MISC_023_00" Name="Bebida fría"/>
     <Abnormality ID="MISC_024_00" Name="Bebida caliente"/>
     <Abnormality ID="MISC_026_00" Name="Regeneración de salud"/>
@@ -386,13 +386,23 @@
     <Abnormality ID="MISC_034_00" Name="Cono de poder"/>
     <Abnormality ID="MISC_035_00" Name="Bonus resistencia al hielo (G)"/>
     <Abnormality ID="MISC_073_00" Name="Mejora ataque/defensa (P)"/>
+    <Abnormality ID="GEAR_000_00" Name="D. Demonio"/>
+    <Abnormality ID="GEAR_001_00" Name="D. Armadura"/>
+    <Abnormality ID="GEAR_002_00" Name="Bonus desmayo"/>
+    <Abnormality ID="GEAR_003_00" Name="Acabado protector"/>
+    <Abnormality ID="GEAR_004_00" Name="Afinidad deslizante"/>
+    <Abnormality ID="GEAR_010_00" Name="Destreza helada (Set Velkhana)"/>
+    <Abnormality ID="GEAR_015_00" Name="Bloqueo agresivo"/>
+    <Abnormality ID="GEAR_016_00" Name="Coalescecia"/>
+    <Abnormality ID="GEAR_099_00" Name="Manto evasión (Atk)"/>
+    <Abnormality ID="GEAR_100_00" Name="Potenciador Afinidad"/>
   </Abnormalities>
   <!-- Client localization strings -->
   <Client>
     <Console>
       <String ID="CONSOLE_CONSOLE" Name="CONSOLA"/>
       <String ID="CONSOLE_SETTINGS" Name="AJUSTES"/>
-      <String ID="CONSOLE_UPLOADBUILD" Name="VERSIÓN"/>
+      <String ID="CONSOLE_UPLOADBUILD" Name="SUBIR SET"/>
       <String ID="CONSOLE_CHANGELOG" Name="CAMBIOS"/>
       <String ID="CONSOLE_DISCORD" Name="DISCORD"/>
       <String ID="CONSOLE_GITHUB" Name="GITHUB"/>
@@ -402,7 +412,7 @@
       <String ID="MESSAGE_QUIT" Name="¿Estás seguro de que quieres salir?"/>
       <String ID="TITLE_MISSING_PATH" Name="Ruta del juego no encontrada"/>
       <String ID="MESSAGE_MISSING_PATH" Name="Aún no has añadido la ruta del juego. ¿Quieres hacerlo ahora?"/>
-      <String ID="MESSAGE_UPLOAD_BUILD" Name="¿Deseas subir la armadura equipada a Honey Hunters World?"/>
+      <String ID="MESSAGE_UPLOAD_BUILD" Name="¿Deseas subir tu equipamiento actual a Honey Hunters World?"/>
       <!-- Console Messages -->
       <String ID="MESSAGE_MAP_LOAD" Name="Cargado {HunterPie_Map}"/>
       <String ID="MESSAGE_DISCORD_CONNECTED" Name="Iniciando nueva sesión de RPC"/>
@@ -442,9 +452,9 @@
       <String ID="STATIC_UPDATEBRANCH" Name="Versión:"/>
       <String ID="STATIC_UPDATEBRANCH_DESC" Name="Escoge la versión de HunterPie. BETA es la mas reciente mientras que MASTER es la más estable."/>
       <String ID="STATIC_LANGUAGEFILE" Name="Idioma:"/>
-      <String ID="STATIC_LANGUAGEFILE_DESC" Name="Escoge el idioma para HunterPie."/>
+      <String ID="STATIC_LANGUAGEFILE_DESC" Name="Escoge el idioma para HunterPie (Requiere reinicio)."/>
       <String ID="STATIC_THEMEFILE" Name="Tema:"/>
-      <String ID="STATIC_THEMEFILE_DESC" Name="Escoge el tema para HunterPie."/>
+      <String ID="STATIC_THEMEFILE_DESC" Name="Escoge el tema para HunterPie (requiere reinicio)."/>
       <String ID="STATIC_GAMEPATH" Name="Ruta del juego:"/>
       <String ID="STATIC_GAMEPATH_UNSELECTED" Name="Selecciona ruta de destino"/>
       <String ID="STATIC_GAMEPATH_DESC" Name="Selecciona la ubicación del ejecutable de Monster Hunter World (MonsterHunterWorld.exe)."/>
@@ -457,7 +467,7 @@
       <String ID="ENABLE_RPC_HEALTH" Name="Mostrar porcentaje de salud"/>
       <String ID="ENABLE_RPC_HEALTH_DESC" Name="Si esta opción está activada, HunterPie mostrará el porcentaje de salud restante del monstruo que estes cazando en tu estado de Discord."/>
       <String ID="ENABLE_PEOPLE_JOIN" Name="Permitir solicitudes de conexión"/>
-      <String ID="ENABLE_PEOPLE_JOIN_DESC" Name="Si esta opción está activada, otros usuarios podrán solicitar unirse a tu sesión."/>
+      <String ID="ENABLE_PEOPLE_JOIN_DESC" Name="Si esta opción está activada otros usuarios podrán solicitar unirse a tu sesión (requiere ser amigos en Discord, si no lo sois se enviará una solicitud de amistad)."/>
       <!-- Overlay -->
       <String ID="ENABLE_OVERLAY" Name="Activar el Overlay"/>
       <String ID="ENABLE_OVERLAY_DESC" Name="Si esta opción está activada, el Overlay será visible."/>
@@ -472,17 +482,17 @@
       <String ID="STATIC_IMAGE_QUALITY" Name="Calidad de las imágenes"/>
       <String ID="STATIC_IMAGE_QUALITY_DESC" Name="Cambia la calidad de las imágenes."/>
       <String ID="STATIC_TOGGLE_OVERLAY" Name="Alternar Overlay (HotKey):"/>
-      <String ID="STATIC_TOGGLE_OVERLAY_DESC" Name="Hotkey para ocultar el Overlay. Requiere reiniciar el HunterPie para aplicar los cambios."/>
+      <String ID="STATIC_TOGGLE_OVERLAY_DESC" Name="Hotkey para mostrar/ocultar el Overlay."/>
       <String ID="STATIC_TOGGLE_DESIGN" Name="Activar modo de diseño (HotKey):"/>
-      <String ID="STATIC_TOGGLE_DESIGN_DESC" Name="HotKey para activar el modo de diseño."/>
+      <String ID="STATIC_TOGGLE_DESIGN_DESC" Name="HotKey para activar el modo de diseño, el cual te permite cambiar la posición de las ventanas manualmente."/>
       <String ID="STATIC_OVERLAY_POSITION_DESC" Name="Permite mover las ventanas informativas arrastrandolas manualmente."/>
       <!-- Monster Widget -->
       <String ID="ENABLE_MONSTER_WIDGET" Name="Activar la información del Monstruo"/>
       <String ID="ENABLE_MONSTER_WIDGET_DESC" Name="Si esta activo podrás ver la información del monstruo siempre y cuando haya algo que mostrar."/>
       <String ID="STATIC_MONSTER_HEALTH_STRING_FORMAT" Name="Formato del texto:"/>
-      <String ID="STATIC_MONSTER_HEALTH_STRING_FORMAT_DESC" Name="Escoge el formato de texto para la barra de vida del monstruo."/>
+      <String ID="STATIC_MONSTER_HEALTH_STRING_FORMAT_DESC" Name="Formato para la barra de vida del monstruo."/>
       <String ID="STATIC_MONSTER_BAR_MODE" Name="Modo de la barra de monstruo"/>
-      <String ID="STATIC_MONSTER_BAR_MODE_DESC" Name="Cambia el modo de la barra del monstruo."/>
+      <String ID="STATIC_MONSTER_BAR_MODE_DESC" Name="Cambia el modo de la barra del monstruo (la selección del monstruo objetivo se realiza desde el mapa, abajo a la izquierda)"/>
       <String ID="STATIC_MONSTER_BAR_MODE_0" Name="Mostrar todos los monstruos a la vez"/>
       <String ID="STATIC_MONSTER_BAR_MODE_1" Name="Mostrar todos los monstruos pero resaltar al objetivo"/>
       <String ID="STATIC_MONSTER_BAR_MODE_2" Name="Mostrar sólo al monstruo objetivo"/>
@@ -501,7 +511,7 @@
       <String ID="ENABLE_BREAKABLE_PARTS" Name="Mostrar partes rompibles"/>
       <String ID="ENABLE_BREAKABLE_PARTS_DESC" Name="Si esta opción está activada, todas las partes cortables o rompibles se mostrarán."/>
       <String ID="ENABLE_AILMENTS" Name="Mostrar los estados alterados"/>
-      <String ID="ENABLE_AILMENTS_DESC" Name="Si esta opción está activada,los estados alterados del monstruo se mostrarán debajo de su barra de vida."/>
+      <String ID="ENABLE_AILMENTS_DESC" Name="Si esta opción está activada se mostrarán los estados alterados activos del monstruo."/>
       <String ID="ENABLE_MONSTER_PARTS" Name="Mostrar la salud de las partes del monstruo"/>
       <String ID="ENABLE_MONSTER_PARTS_DESC" Name="Si esta opción está activada, las partes del monstruo que puedan hacerlo retroceder se mostrarán."/>
       <String ID="ENABLE_MONSTER_PART_HEAD" Name="Cabeza"/>
@@ -543,21 +553,21 @@
       <String ID="ENABLE_HARVEST_BOX_EVERYWHERE" Name="Mostrar siempre la ventana de recursos"/>
       <String ID="ENABLE_HARVEST_BOX_EVERYWHERE_DESC" Name="Si esta opción está activada, la ventana de recursos siempre estará visible, esto incluye las misiones, expediciones y tierras destino."/>
       <String ID="STATIC_HARVEST_BOX_POSITION_DESC" Name="Cambia la posición de la ventana de recursos."/>
-      <String ID="ENABLE_HARVEST_BOX_COMPACT_MODE" Name="Enable compact mode"/>
-      <String ID="ENABLE_HARVEST_BOX_COMPACT_MODE_DESC" Name="If enabled, the Harvest Box Widget will use it's compact design."/>
+      <String ID="ENABLE_HARVEST_BOX_COMPACT_MODE" Name="Modo compacto"/>
+      <String ID="ENABLE_HARVEST_BOX_COMPACT_MODE_DESC" Name="Si lo activas la ventana de recursos usará su diseño compacto."/>
       <!-- Damage Meter -->
       <String ID="ENABLE_METER" Name="Habilitar el contador de daño"/>
-      <String ID="ENABLE_METER_DESC" Name="Si esta opción está activada, el contador de daño será visible siempre y cuando tenga algo que mostrar (no funciona en expediciones y/o tierras destino)."/>
+      <String ID="ENABLE_METER_DESC" Name="Si esta opción está activada, el contador de daño será visible siempre y cuando tenga algo que mostrar (no contabiliza el daño en expedición / Tierras Destino)."/>
       <String ID="ENABLE_TOTAL_DAMAGE" Name="Mostrar daño total"/>
       <String ID="ENABLE_TOTAL_DAMAGE_DESC" Name="Si esta opción está activada, se mostrará el daño total individual."/>
-	    <String ID="ENABLE_METER_DPS" Name="Mostrar el DPS a cambio del daño total realizado"/>
+	  <String ID="ENABLE_METER_DPS" Name="Mostrar el DPS a cambio del daño total realizado"/>
       <String ID="ENABLE_METER_DPS_DESC" Name="Si esta opción está activada, en vez de mostrar el daño total realizado el contador de daño mostrará el daño por segundo realizado."/>
-      <String ID="ENABLE_TIMER_IN_GL" Name="Enable timer in Expeditions/Guiding Lands"/>
-      <String ID="ENABLE_TIMER_IN_GL_DESC" Name="If enabled, the timer will be visible in Expeditions/Guiding Lands."/>
-      <String ID="ENABLE_ONLY_TIMER" Name="Show only timer"/>
-      <String ID="ENABLE_ONLY_TIMER_DESC" Name="If enabled, the Damage Widget will only show the timer, hiding the party members damage."/>
-      <String ID="ENABLE_METER_ONLY_MYSELF" Name="Show only my damage"/>
-      <String ID="ENABLE_METER_ONLY_MYSELF_DESC" Name="If enabled, only your damage will be visible."/>
+      <String ID="ENABLE_TIMER_IN_GL" Name="Reloj en Expedición/Tierras Destino"/>
+      <String ID="ENABLE_TIMER_IN_GL_DESC" Name="Muestra el reloj en expediciones y/o Tierras Destino."/>
+      <String ID="ENABLE_ONLY_TIMER" Name="Mostrar solo el tiempo"/>
+      <String ID="ENABLE_ONLY_TIMER_DESC" Name="Si lo activas, el contador de daño únicamente mostrará la duración de la partida (tiempo)."/>
+      <String ID="ENABLE_METER_ONLY_MYSELF" Name="Mostrar solo mi daño"/>
+      <String ID="ENABLE_METER_ONLY_MYSELF_DESC" Name="Si lo activas no se mostrará el daño que realizan tus aliados durante la cacería."/>
       <String ID="STATIC_METER_PLAYER_1" Name="Primer jugador"/>
       <String ID="STATIC_METER_PLAYER_2" Name="Segundo jugador"/>
       <String ID="STATIC_METER_PLAYER_3" Name="Tercer jugador"/>
@@ -569,16 +579,18 @@
       <String ID="STATIC_ENABLE_ABNORM_BAR" Name="Activar"/>
       <String ID="ENABLE_ALLIGN_ABNORM_BAR_HORIZONTALLY" Name="Alineación horizontal."/>
       <String ID="ENABLE_ALLIGN_ABNORM_BAR_HORIZONTALLY_DESC" Name="Si esta opción está activada, esta barra de estado se alineará horizontalmente. Desactívalo si quieres una alineación vertical."/>
-      <String ID="ENABLE_ABNORM_BAR_TIME_LEFT" Name="Muestra el tiempo restante de los estados"/>
+      <String ID="ENABLE_ABNORM_BAR_TIME_LEFT" Name="Mostrar el tiempo restante"/>
       <String ID="ENABLE_ABNORM_BAR_TIME_LEFT_DESC" Name="Si esta opción está activada, se mostrará el tiempo restante de cada estado debajo de su icono."/>
-      <String ID="STATIC_TIMER_TEXT_FORMAT" Name="Formato del tiempo"/>
-      <String ID="STATIC_BACKGROUND_OPACITY" Name="Opacidad de las ventanas"/>
+      <String ID="STATIC_TIMER_TEXT_FORMAT" Name="Formato de tiempo"/>
+      <String ID="STATIC_BACKGROUND_OPACITY" Name="Opacidad (fondo):"/>
       <String ID="STATIC_BACKGROUND_OPACITY_DESC" Name="Cambia la opacidad de las ventanas (transparentes-opacas)."/>
       <String ID="STATIC_ABNORM_TAB_HH" Name="Cornamusa"/>
-      <String ID="STATIC_ABNORM_TAB_ORCHESTRA" Name="Orquestra Felyne"/>
+      <String ID="STATIC_ABNORM_TAB_ORCHESTRA" Name="Orquestra"/>
       <String ID="STATIC_ABNORM_TAB_DEBUFF" Name="Efectos negativos"/>
-      <String ID="STATIC_ABNORM_TAB_GEAR" Name="Gear"/>
+      <String ID="STATIC_ABNORM_TAB_GEAR" Name="Otros"/>
       <String ID="STATIC_ABNORM_TAB_CONSUMABLE" Name="Consumibles"/>
+      <String ID="ENABLE_SHOW_ABNORM_NAMES" Name="Mostrar el nombre del estado"/>
+      <String ID="ENABLE_SHOW_ABNORM_NAMES_DESC" Name="Si esta opción está activada, se mostrará el nombre de cada estado."/>
       <!-- Specialized Tool Widget-->
       <String ID="STATIC_PRIMARY_SPEC_TOOL" Name="Herramienta especializada primaria"/>
       <String ID="STATIC_SECONDARY_SPEC_TOOL" Name="Herramienta especializada secundaria"/>
@@ -589,8 +601,6 @@
       <String ID="STATIC_COLOR" Name="Color:"/>
       <String ID="STATIC_PRIMARY_SPEC_TOOL_POSITION_DESC" Name="Cambia la posición de la herramienta especializada primaria."/>
       <String ID="STATIC_SECONDARY_SPEC_TOOL_POSITION_DESC" Name="Cambia la posición de la herramienta especializada secundaria."/>
-      <String ID="ENABLE_SHOW_ABNORM_NAMES" Name="Mostrar el nombre del estado"/>
-      <String ID="ENABLE_SHOW_ABNORM_NAMES_DESC" Name="Si esta opción está activada, se mostrará el nombre de cada estado."/>
       <!-- Links -->
       <String ID="STATIC_HUNTERPIE_WIKI" Name="Documentación"/>
       <String ID="STATIC_HUNTERPIE_WIKI_DESC" Name="Documentación oficial de HunterPie."/>
@@ -613,11 +623,11 @@
       <!-- Generics -->
       <String ID="STATIC_BUTTON_SELECT_ALL" Name="Seleccionar todo"/>
       <String ID="STATIC_BUTTON_UNSELECT_ALL" Name="Deseleccionar todo"/>
-      <String ID="STATIC_BUTTON_SAVE" Name="Guardar los cambios"/>
-      <String ID="STATIC_REQUIRES_RESTART" Name="(Requiere el reinicio de la aplicación)"/>
+      <String ID="STATIC_BUTTON_SAVE" Name="Aplicar cambios"/>
+      <String ID="STATIC_REQUIRES_RESTART" Name="(Requiere reinicio)"/>
       <String ID="STATIC_POSITION" Name="Posición"/>
       <String ID="STATIC_COPYCLIPBOARD" Name="Copiar en el portapapeles"/>
-      <String ID="STATIC_OPACITY" Name="Opacity"/>
+      <String ID="STATIC_OPACITY" Name="Opacidad (general)"/>
       <!-- Settings Side bar-->
       <String ID="STATIC_GENERAL_SETTINGS" Name="General"/>
       <String ID="STATIC_DISCORD_SETTINGS" Name="Discord"/>
@@ -642,11 +652,11 @@
     </Notifications>
     <RichPresence>
       <String ID="RPC_DESCRIPTION_IN_MAIN_MENU" Name="En el menú principal"/>
-      <String ID="RPC_DESCRIPTION_IN_LOADING_SCREEN" Name="En pantalla de carga"/>
-      <String ID="RPC_DESCRIPTION_IN_TOWN" Name="Esperando"/>
-      <String ID="RPC_DESCRIPTION_EXPLORING" Name="Explorando"/>
+      <String ID="RPC_DESCRIPTION_IN_LOADING_SCREEN" Name="En la pantalla de carga"/>
+      <String ID="RPC_DESCRIPTION_IN_TOWN" Name="En la base"/>
+      <String ID="RPC_DESCRIPTION_EXPLORING" Name="En partida"/>
       <String ID="RPC_DESCRIPTION_HUNTING" Name="Cazando {Monster} ({Health})"/>
-      <String ID="RPC_DESCRIPTION_TRAINING" Name="En sala de entrenamiento"/>
+      <String ID="RPC_DESCRIPTION_TRAINING" Name="En la sala de entrenamiento"/>
       <String ID="RPC_STATE_LOBBY" Name="En espera"/>
       <String ID="RPC_STATE_PARTY" Name="En grupo"/>
       <String ID="RPC_STATE_SOLO" Name="Solo"/>

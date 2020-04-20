@@ -1,6 +1,6 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
 <Strings lang="Simplified Chinese">
-<!--Translated for HunterPie Ver 1.0.3.87 by FengYuu-->
+<!--Translated for HunterPie Ver 1.0.3.88 by FengYuu-->
   <Monsters>
     <Monster ID="em001_00" Name="雌火龙"/>
     <Monster ID="em001_01" Name="樱火龙"/>
@@ -387,6 +387,16 @@
     <Abnormality ID="MISC_034_00" Name="鬼毬果：攻击UP"/>
     <Abnormality ID="MISC_035_00" Name="冰耐草：冰耐性提升"/>
     <Abnormality ID="MISC_073_00" Name="攻击&amp;防御UP"/>
+    <Abnormality ID="GEAR_000_00" Name="鬼人弹"/>
+    <Abnormality ID="GEAR_001_00" Name="硬化弹"/>
+    <Abnormality ID="GEAR_002_00" Name="不屈"/>
+    <Abnormality ID="GEAR_003_00" Name="刚刃研磨"/>
+    <Abnormality ID="GEAR_004_00" Name="滑走强化"/>
+    <Abnormality ID="GEAR_010_00" Name="寒气炼成"/>
+    <Abnormality ID="GEAR_015_00" Name="攻击守势"/>
+    <Abnormality ID="GEAR_016_00" Name="转祸为福"/>
+    <Abnormality ID="GEAR_099_00" Name="回避衣·攻击UP"/>
+    <Abnormality ID="GEAR_100_00" Name="达人烟·会心UP"/>
   </Abnormalities>
   <!-- Client localization strings -->
   <Client>
@@ -544,8 +554,8 @@
       <String ID="ENABLE_HARVEST_BOX_EVERYWHERE" Name="在任何区域显示收获箱"/>
       <String ID="ENABLE_HARVEST_BOX_EVERYWHERE_DESC" Name="如启用，在任何地图或区域都会显示收获箱部件，包含探索、聚魔之地及其他任何地图"/>
       <String ID="STATIC_HARVEST_BOX_POSITION_DESC" Name="更改收获箱部件的位置"/>
-      <String ID="ENABLE_HARVEST_BOX_COMPACT_MODE" Name="Enable compact mode"/>
-      <String ID="ENABLE_HARVEST_BOX_COMPACT_MODE_DESC" Name="If enabled, the Harvest Box Widget will use it's compact design."/>
+      <String ID="ENABLE_HARVEST_BOX_COMPACT_MODE" Name="紧凑模式"/>
+      <String ID="ENABLE_HARVEST_BOX_COMPACT_MODE_DESC" Name="如启用，收获箱部件将使用紧凑布局设计"/>
       <!-- Damage Meter -->
       <String ID="ENABLE_METER" Name="伤害部件"/>
       <String ID="ENABLE_METER_DESC" Name="如启用，只要有内容就会显示伤害部件"/>
@@ -553,12 +563,12 @@
       <String ID="ENABLE_TOTAL_DAMAGE_DESC" Name="如启用，伤害部件会显示每个人的总伤害"/>
       <String ID="ENABLE_METER_DPS" Name="显示DPS"/>
       <String ID="ENABLE_METER_DPS_DESC" Name="如启用，伤害部件会显示每个人的DPS(秒伤害)"/>
-      <String ID="ENABLE_TIMER_IN_GL" Name="Enable timer in Expeditions/Guiding Lands"/>
-      <String ID="ENABLE_TIMER_IN_GL_DESC" Name="If enabled, the timer will be visible in Expeditions/Guiding Lands."/>
-      <String ID="ENABLE_ONLY_TIMER" Name="Show only timer"/>
-      <String ID="ENABLE_ONLY_TIMER_DESC" Name="If enabled, the Damage Widget will only show the timer, hiding the party members damage."/>
-      <String ID="ENABLE_METER_ONLY_MYSELF" Name="Show only my damage"/>
-      <String ID="ENABLE_METER_ONLY_MYSELF_DESC" Name="If enabled, only your damage will be visible."/>
+      <String ID="ENABLE_TIMER_IN_GL" Name="在探索/聚魔之地启用计时器"/>
+      <String ID="ENABLE_TIMER_IN_GL_DESC" Name="如启用，在探索/聚魔之地将会启用计时器."/>
+      <String ID="ENABLE_ONLY_TIMER" Name="仅显示计时器"/>
+      <String ID="ENABLE_ONLY_TIMER_DESC" Name="如启用，伤害部件将会仅显示计时，隐藏成员伤害统计部分"/>
+      <String ID="ENABLE_METER_ONLY_MYSELF" Name="仅显示自己的伤害"/>
+      <String ID="ENABLE_METER_ONLY_MYSELF_DESC" Name="如启用，伤害部件只会显示自己的伤害统计"/>
       <String ID="STATIC_METER_PLAYER_1" Name="第一个玩家"/>
       <String ID="STATIC_METER_PLAYER_2" Name="第二个玩家"/>
       <String ID="STATIC_METER_PLAYER_3" Name="第三个玩家"/>
@@ -578,7 +588,7 @@
       <String ID="STATIC_ABNORM_TAB_HH" Name="狩猎笛效果"/>
       <String ID="STATIC_ABNORM_TAB_ORCHESTRA" Name="激励乐器"/>
       <String ID="STATIC_ABNORM_TAB_DEBUFF" Name="异常状态"/>
-      <String ID="STATIC_ABNORM_TAB_GEAR" Name="Gear"/>
+      <String ID="STATIC_ABNORM_TAB_GEAR" Name="装备技能"/>
       <String ID="STATIC_ABNORM_TAB_CONSUMABLE" Name="消耗品"/>
       <String ID="ENABLE_SHOW_ABNORM_NAMES" Name="显示异常状态的名称"/>
       <String ID="ENABLE_SHOW_ABNORM_NAMES_DESC" Name="如启用，将显示异常状态的名称"/>
@@ -618,7 +628,7 @@
       <String ID="STATIC_REQUIRES_RESTART" Name="(重新启动)"/>
       <String ID="STATIC_POSITION" Name="位置"/>
       <String ID="STATIC_COPYCLIPBOARD" Name="复制到剪贴板"/>
-      <String ID="STATIC_OPACITY" Name="Opacity"/>
+      <String ID="STATIC_OPACITY" Name="不透明度"/>
       <!-- Settings Side bar-->
       <String ID="STATIC_GENERAL_SETTINGS" Name="一般设置"/>
       <String ID="STATIC_DISCORD_SETTINGS" Name="Discord设置"/>
