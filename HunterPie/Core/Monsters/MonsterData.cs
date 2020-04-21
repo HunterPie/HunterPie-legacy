@@ -69,7 +69,7 @@ namespace HunterPie.Core {
 
         static private WeaknessInfo[] GetMonsterWeaknesses(XmlNode node)
         {
-            Stack<WeaknessInfo> weaknesses = new Stack<WeaknessInfo>();
+            List<WeaknessInfo> weaknesses = new List<WeaknessInfo>();
             if (node == null) return null;
 
             XmlNodeList mWeaknesses = node.SelectNodes("Weaknesses/Weakness");
@@ -79,7 +79,7 @@ namespace HunterPie.Core {
                     Id = weaknessData.Attributes["ID"]?.Value,
                     Stars = int.Parse(weaknessData.Attributes["Stars"]?.Value ?? "0")
                 };
-                weaknesses.Push(wInfo);
+                weaknesses.Add(wInfo);
             }
 
             return weaknesses.ToArray();
@@ -87,7 +87,7 @@ namespace HunterPie.Core {
 
         static private PartInfo[] GetMonsterPartsInfo(XmlNode node)
         {
-            Stack<PartInfo> parts = new Stack<PartInfo>();
+            List<PartInfo> parts = new List<PartInfo>();
             if (node == null) return null;
 
             XmlNodeList mParts = node.SelectNodes("Parts/Part");
@@ -99,8 +99,9 @@ namespace HunterPie.Core {
                     IsRemovable = bool.Parse(partData.Attributes["IsRemovable"]?.Value ?? "false"),
                     GroupId = partData.Attributes["Group"]?.Value ?? "MISC"
                 };
-                parts.Push(pInfo);
+                parts.Add(pInfo);
             }
+            
             return parts.ToArray();
         }
 

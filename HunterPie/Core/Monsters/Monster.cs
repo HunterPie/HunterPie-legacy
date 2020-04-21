@@ -451,13 +451,20 @@ namespace HunterPie.Core {
                     }
                 }
                 Int64 StatusPtr = StatusAddress + 0x40;
-                while (StatusPtr != 0x0) {
+                while (StatusPtr != 0x0)
+                {
 
                     Int64 MonsterInStatus = Scanner.READ_LONGLONG(StatusPtr + 0x188);
 
                     if (MonsterInStatus == MonsterAddress) {
 
                         int ID = Scanner.READ_INT(StatusPtr + 0x198);
+
+                        if (ID > MonsterData.AilmentsInfo.Count || ID < 0)
+                        {
+                            StatusPtr = Scanner.READ_LONGLONG(StatusPtr + 0x18);
+                            continue;
+                        }
 
                         var AilmentInfo = MonsterData.AilmentsInfo.ElementAt(ID);
 
