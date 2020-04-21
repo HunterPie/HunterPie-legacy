@@ -4,27 +4,29 @@ using System.Linq;
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Input;
-using System.Windows.Interop;
 using System.Windows.Media;
 using System.Xml;
 using HunterPie.Core;
-using HunterPie.Memory;
+using HunterPie.Core.LPlayer;
+using HunterPie.GUI.Widgets.Abnormality_Widget.Parts;
 
 namespace HunterPie.GUI.Widgets.Abnormality_Widget {
     /// <summary>
     /// Interaction logic for AbnormalityTraySettings.xaml
     /// </summary>
     public partial class AbnormalityTraySettings : WidgetSettings {
-
-        List<Parts.AbnormalitySettingControl> AbnormalitiesList = new List<Parts.AbnormalitySettingControl>();
+        readonly List<Parts.AbnormalitySettingControl> abnormalityControls = new List<Parts.AbnormalitySettingControl>();
         Widget widgetParent;
-        int BuffTrayIndex;
+        int buffTrayIndex;
+        private UserSettings.Config.AbnormalityBar bar;
 
-        public AbnormalityTraySettings(Widget parent = null, int TrayIndex = 0) {
+        public AbnormalityTraySettings(Widget parent = null, int trayIndex = 0) {
             InitializeComponent();
-            BuffTrayIndex = TrayIndex;
+            buffTrayIndex = trayIndex;
             widgetParent = parent;
-            this.WindowTitle.Text = $"Settings: {UserSettings.PlayerConfig.Overlay.AbnormalitiesWidget.BarPresets[BuffTrayIndex].Name}";
+            bar = UserSettings.PlayerConfig.Overlay.AbnormalitiesWidget.BarPresets[buffTrayIndex];
+            WindowTitle.Text = $"Settings: {bar.Name}";
+
             PopulateAbnormalities();
             ConfigureWindow();
         }
@@ -38,140 +40,80 @@ namespace HunterPie.GUI.Widgets.Abnormality_Widget {
         }
 
         private void ConfigureWindow() {
-            EnableName.IsEnabled = UserSettings.PlayerConfig.Overlay.AbnormalitiesWidget.BarPresets[BuffTrayIndex].ShowNames;
-            OrientationSwitcher.IsEnabled = UserSettings.PlayerConfig.Overlay.AbnormalitiesWidget.BarPresets[BuffTrayIndex].Orientation == "Horizontal";
-            EnableTimeLeftSwitcher.IsEnabled = UserSettings.PlayerConfig.Overlay.AbnormalitiesWidget.BarPresets[BuffTrayIndex].ShowTimeLeftText;
-            TimerTextFormatBox.SelectedIndex = UserSettings.PlayerConfig.Overlay.AbnormalitiesWidget.BarPresets[BuffTrayIndex].TimeLeftTextFormat;
-            BackgroundOpacitySlider.Value = UserSettings.PlayerConfig.Overlay.AbnormalitiesWidget.BarPresets[BuffTrayIndex].BackgroundOpacity;
-            
+            EnableName.IsEnabled = bar.ShowNames;
+            OrientationSwitcher.IsEnabled = bar.Orientation == "Horizontal";
+            EnableTimeLeftSwitcher.IsEnabled = bar.ShowTimeLeftText;
+            TimerTextFormatBox.SelectedIndex = bar.TimeLeftTextFormat;
+            BackgroundOpacitySlider.Value = bar.BackgroundOpacity;
         }
 
-        private void PopulateHuntingHornBuffs() {
-            foreach (XmlNode Abnorm in AbnormalityData.GetHuntingHornAbnormalities()) {
-                string Type = "HUNTINGHORN";
-                int ID = int.Parse(Abnorm.Attributes["ID"].Value);
-                string Name = GStrings.GetAbnormalityByID(Type, ID, 0);
-                string InternalID = $"HH_{ID}";
-                bool IsEnabled = UserSettings.PlayerConfig.Overlay.AbnormalitiesWidget.BarPresets[BuffTrayIndex].AcceptedAbnormalities.Contains(InternalID);
-                ImageSource Icon = TryFindResource(Abnorm.Attributes["Icon"].Value) as ImageSource ?? FindResource("ICON_MISSING") as ImageSource;
-                Icon?.Freeze();
-                Parts.AbnormalitySettingControl AbnormDisplay = new Parts.AbnormalitySettingControl();
-                AbnormDisplay.SetAbnormalityInfo(Icon, Name, InternalID, IsEnabled);
-                AbnormalitiesList.Add(AbnormDisplay);
-                HuntingHornBuffs.Children.Add(AbnormDisplay);
+        private void PopulateHuntingHornBuffs() =>
+            PopulateAbnormalities(AbnormalityData.HuntingHornAbnormalities, HuntingHornBuffs);
+
+        private void PopulateOrchestraBuffs() =>
+            PopulateAbnormalities(AbnormalityData.PalicoAbnormalities, PalicoBuffs);
+
+        private void PopulateDebuffs() => PopulateAbnormalities(AbnormalityData.BlightAbnormalities, Debuffs);
+
+        private void PopulateConsumableBuffs() =>
+            PopulateAbnormalities(AbnormalityData.MiscAbnormalities, ConsumableBuffs);
+
+        private void PopulateGearBuffs() => PopulateAbnormalities(AbnormalityData.GearAbnormalities, GearBuffs);
+
+        private void PopulateAbnormalities(IEnumerable<AbnormalityInfo> abnormalities, Panel panel)
+        {
+            foreach (AbnormalityInfo abnormality in abnormalities)
+            {
+                string name = GStrings.GetAbnormalityByID(abnormality.Type, abnormality.Id, 0);
+                bool isEnabled = bar.AcceptedAbnormalities.Contains(abnormality.InternalId);
+                ImageSource icon = (ImageSource)FindResource(abnormality.IconName);
+                icon?.Freeze();
+
+                AbnormalitySettingControl settingsControl = new AbnormalitySettingControl();
+                settingsControl.SetAbnormalityInfo(icon, name, abnormality.InternalId, isEnabled);
+                abnormalityControls.Add(settingsControl);
+                panel.Children.Add(settingsControl);
             }
         }
 
-        private void PopulateOrchestraBuffs() {
-            foreach (XmlNode Abnorm in AbnormalityData.GetPalicoAbnormalities()) {
-                string Type = "PALICO";
-                int ID = int.Parse(Abnorm.Attributes["ID"].Value);
-                string Name = GStrings.GetAbnormalityByID(Type, ID, 0);
-                string InternalID = $"PAL_{ID}";
-                bool IsEnabled = UserSettings.PlayerConfig.Overlay.AbnormalitiesWidget.BarPresets[BuffTrayIndex].AcceptedAbnormalities.Contains(InternalID);
-                ImageSource Icon = TryFindResource(Abnorm.Attributes["Icon"].Value) as ImageSource ?? FindResource("ICON_MISSING") as ImageSource;
-                Icon?.Freeze();
-                Parts.AbnormalitySettingControl AbnormDisplay = new Parts.AbnormalitySettingControl();
-                AbnormDisplay.SetAbnormalityInfo(Icon, Name, InternalID, IsEnabled);
-                AbnormalitiesList.Add(AbnormDisplay);
-                PalicoBuffs.Children.Add(AbnormDisplay);
-            }
-        }
+        private void OnCloseButtonClick(object sender, MouseButtonEventArgs e) => Close();
 
-        private void PopulateDebuffs() {
-            foreach (XmlNode Abnorm in AbnormalityData.GetBlightAbnormalities()) {
-                string Type = "DEBUFF";
-                int ID = int.Parse(Abnorm.Attributes["ID"].Value);
-                string Name = GStrings.GetAbnormalityByID(Type, ID, 0);
-                string InternalID = $"DE_{ID}";
-                bool IsEnabled = UserSettings.PlayerConfig.Overlay.AbnormalitiesWidget.BarPresets[BuffTrayIndex].AcceptedAbnormalities.Contains(InternalID);
-                ImageSource Icon = TryFindResource(Abnorm.Attributes["Icon"].Value) as ImageSource ?? FindResource("ICON_MISSING") as ImageSource;
-                Icon?.Freeze();
-                Parts.AbnormalitySettingControl AbnormDisplay = new Parts.AbnormalitySettingControl();
-                AbnormDisplay.SetAbnormalityInfo(Icon, Name, InternalID, IsEnabled);
-                AbnormalitiesList.Add(AbnormDisplay);
-                Debuffs.Children.Add(AbnormDisplay);
-            }
-        }
-
-        private void PopulateConsumableBuffs() {
-            foreach (XmlNode Abnorm in AbnormalityData.GetMiscAbnormalities()) {
-                string Type = "MISC";
-                int ID = int.Parse(Abnorm.Attributes["ID"].Value);
-                string Name = GStrings.GetAbnormalityByID(Type, ID, 0);
-                string InternalID = $"MISC_{ID}";
-                bool IsEnabled = UserSettings.PlayerConfig.Overlay.AbnormalitiesWidget.BarPresets[BuffTrayIndex].AcceptedAbnormalities.Contains(InternalID);
-                ImageSource Icon = TryFindResource(Abnorm.Attributes["Icon"].Value) as ImageSource ?? FindResource("ICON_MISSING") as ImageSource;
-                Icon?.Freeze();
-                Parts.AbnormalitySettingControl AbnormDisplay = new Parts.AbnormalitySettingControl();
-                AbnormDisplay.SetAbnormalityInfo(Icon, Name, InternalID, IsEnabled);
-                AbnormalitiesList.Add(AbnormDisplay);
-                ConsumableBuffs.Children.Add(AbnormDisplay);
-            }
-        }
-
-        private void PopulateGearBuffs() {
-            foreach (XmlNode Abnorm in AbnormalityData.GetGearAbnormalities()) {
-                string Type = "GEAR";
-                int ID = int.Parse(Abnorm.Attributes["ID"].Value);
-                string Name = GStrings.GetAbnormalityByID(Type, ID, 0);
-                string InternalID = $"GEAR_{ID}";
-                bool IsEnabled = UserSettings.PlayerConfig.Overlay.AbnormalitiesWidget.BarPresets[BuffTrayIndex].AcceptedAbnormalities.Contains(InternalID);
-                ImageSource Icon = TryFindResource(Abnorm.Attributes["Icon"].Value) as ImageSource ?? FindResource("ICON_MISSING") as ImageSource;
-                Icon?.Freeze();
-                Parts.AbnormalitySettingControl AbnormDisplay = new Parts.AbnormalitySettingControl();
-                AbnormDisplay.SetAbnormalityInfo(Icon, Name, InternalID, IsEnabled);
-                AbnormalitiesList.Add(AbnormDisplay);
-                GearBuffs.Children.Add(AbnormDisplay);
-            }
-        }
-
-        private void OnCloseButtonClick(object sender, MouseButtonEventArgs e) {
-            this.Close();
-        }
-
-        private void OnDragWindow(object sender, MouseButtonEventArgs e) {
-            this.DragMove();
-        }
+        private void OnDragWindow(object sender, MouseButtonEventArgs e) => DragMove();
 
         private void OnSaveButtonClick(object sender, RoutedEventArgs e) {
-            List<string> EnabledAbnormalities = new List<string>();
-            foreach (Parts.AbnormalitySettingControl AbnormDisplay in AbnormalitiesList) {
-                if (AbnormDisplay.IsEnabled) EnabledAbnormalities.Add(AbnormDisplay.InternalID);
-            }
-            UserSettings.PlayerConfig.Overlay.AbnormalitiesWidget.BarPresets[BuffTrayIndex].ShowNames = EnableName.IsEnabled;
-            UserSettings.PlayerConfig.Overlay.AbnormalitiesWidget.BarPresets[BuffTrayIndex].AcceptedAbnormalities = EnabledAbnormalities.ToArray();
-            UserSettings.PlayerConfig.Overlay.AbnormalitiesWidget.BarPresets[BuffTrayIndex].Orientation = OrientationSwitcher.IsEnabled ? "Horizontal" : "Vertical";
-            UserSettings.PlayerConfig.Overlay.AbnormalitiesWidget.BarPresets[BuffTrayIndex].ShowTimeLeftText = EnableTimeLeftSwitcher.IsEnabled;
-            UserSettings.PlayerConfig.Overlay.AbnormalitiesWidget.BarPresets[BuffTrayIndex].TimeLeftTextFormat = (byte)TimerTextFormatBox.SelectedIndex;
-            UserSettings.PlayerConfig.Overlay.AbnormalitiesWidget.BarPresets[BuffTrayIndex].BackgroundOpacity = (float)BackgroundOpacitySlider.Value;
+            string[] enabledAbnormalities = abnormalityControls
+                .Where(a => a.IsEnabled)
+                .Select(a => a.InternalID)
+                .ToArray();
+
+            bar.ShowNames = EnableName.IsEnabled;
+            bar.AcceptedAbnormalities = enabledAbnormalities;
+            bar.Orientation = OrientationSwitcher.IsEnabled ? "Horizontal" : "Vertical";
+            bar.ShowTimeLeftText = EnableTimeLeftSwitcher.IsEnabled;
+            bar.TimeLeftTextFormat = (byte)TimerTextFormatBox.SelectedIndex;
+            bar.BackgroundOpacity = (float)BackgroundOpacitySlider.Value;
             UserSettings.SaveNewConfig();
         }
 
-        private void OnSelectAllButtonClick(object sender, RoutedEventArgs e) {
-            ToggleAllAbnormalitiesInTab(true);
-        }
+        private void OnSelectAllButtonClick(object sender, RoutedEventArgs e) => ToggleAllAbnormalitiesInTab(true);
 
-        private void OnUnselectAllButtonClick(object sender, RoutedEventArgs e) {
-            ToggleAllAbnormalitiesInTab(false);
-        }
+        private void OnUnselectAllButtonClick(object sender, RoutedEventArgs e) => ToggleAllAbnormalitiesInTab(false);
 
         private void ToggleAllAbnormalitiesInTab(bool enable) {
-            ScrollViewer SelectedAbnormalityContainer = AbnormalitySelectionContainer.SelectedContent as ScrollViewer;
-            WrapPanel SelectedAbnormalityPanel = SelectedAbnormalityContainer.Content as WrapPanel;
-            foreach (UIElement RawAbnormality in SelectedAbnormalityPanel.Children) {
-                Parts.AbnormalitySettingControl AbnormalityDisplay = (Parts.AbnormalitySettingControl)RawAbnormality;
-                AbnormalityDisplay.IsEnabled = enable;
+            ContentControl selectedAbnormalityContainer = (ContentControl)AbnormalitySelectionContainer.SelectedContent;
+            Panel selectedAbnormalityPanel = (Panel)selectedAbnormalityContainer.Content;
+            foreach (AbnormalitySettingControl abnormalityDisplay in selectedAbnormalityPanel.Children.Cast<AbnormalitySettingControl>()) {
+                abnormalityDisplay.IsEnabled = enable;
             }
         }
 
         private void OnClosing(object sender, System.ComponentModel.CancelEventArgs e) {
-            this.widgetParent = null;
+            widgetParent = null;
             HuntingHornBuffs.Children.Clear();
             PalicoBuffs.Children.Clear();
             Debuffs.Children.Clear();
             ConsumableBuffs.Children.Clear();
-            this.AbnormalitiesList.Clear();
+            abnormalityControls.Clear();
         }
 
     }

@@ -627,109 +627,105 @@ namespace HunterPie.Core {
         }
 
         private void GetPlayerAbnormalities() {
-            Int64 AbnormalityBaseAddress = Scanner.READ_MULTILEVEL_PTR(Address.BASE + Address.ABNORMALITY_OFFSET, Address.Offsets.AbnormalityOffsets);
-            GetPlayerHuntingHornAbnormalities(AbnormalityBaseAddress);
-            GetPlayerPalicoAbnormalities(AbnormalityBaseAddress);
-            GetPlayerMiscAbnormalities(AbnormalityBaseAddress);
-            GetPlayerGearAbnormalities(AbnormalityBaseAddress);
+            long abnormalityBaseAddress = Scanner.READ_MULTILEVEL_PTR(
+                Address.BASE + Address.ABNORMALITY_OFFSET, Address.Offsets.AbnormalityOffsets);
+            GetPlayerHuntingHornAbnormalities(abnormalityBaseAddress);
+            GetPlayerPalicoAbnormalities(abnormalityBaseAddress);
+            GetPlayerMiscAbnormalities(abnormalityBaseAddress);
+            GetPlayerGearAbnormalities(abnormalityBaseAddress);
         }
 
-        private void GetPlayerHuntingHornAbnormalities(Int64 AbnormalityBaseAddress) {
+        private void GetPlayerHuntingHornAbnormalities(long abnormalityBaseAddress) {
             // Gets the player abnormalities caused by HH
-            foreach (XmlNode HHBuff in AbnormalityData.GetHuntingHornAbnormalities()) {
-                int BuffOffset = int.Parse(HHBuff.Attributes["Offset"].Value, System.Globalization.NumberStyles.HexNumber);
-                bool IsDebuff = bool.Parse(HHBuff.Attributes["IsDebuff"].Value);
-                int ID = int.Parse(HHBuff.Attributes["ID"].Value);
-                int Stack = int.Parse(HHBuff.Attributes["Stack"].Value);
-                GetAbnormality("HUNTINGHORN", AbnormalityBaseAddress + BuffOffset, ID, $"HH_{ID}", IsDebuff, DoubleBuffStack: Stack, ParentOffset: BuffOffset);
+            foreach (AbnormalityInfo abnormality in AbnormalityData.HuntingHornAbnormalities)
+            {
+                UpdateAbnormality(abnormality, abnormalityBaseAddress);
             }
         }
 
-        private void GetPlayerPalicoAbnormalities(Int64 AbnormalityBaseAddress) {
+        private void GetPlayerPalicoAbnormalities(long abnormalityBaseAddress)
+        {
             // Gets the player abnormalities caused by palico's skills
-            foreach (XmlNode PalBuff in AbnormalityData.GetPalicoAbnormalities()) {
-                int BuffOffset = int.Parse(PalBuff.Attributes["Offset"].Value, System.Globalization.NumberStyles.HexNumber);
-                bool IsDebuff = bool.Parse(PalBuff.Attributes["IsDebuff"].Value);
-                int ID = int.Parse(PalBuff.Attributes["ID"].Value);
-                GetAbnormality("PALICO", AbnormalityBaseAddress + BuffOffset, ID, $"PAL_{ID}", IsDebuff);
+            foreach (AbnormalityInfo abnormality in AbnormalityData.PalicoAbnormalities)
+            {
+                UpdateAbnormality(abnormality, abnormalityBaseAddress);
             }
         }
 
-        private void GetPlayerMiscAbnormalities(Int64 AbnormalityBaseAddress) {
+        private void GetPlayerMiscAbnormalities(long abnormalityBaseAddress)
+        {
             // Gets the player abnormalities caused by consumables and blights
             // Blights
-            foreach (XmlNode Blight in AbnormalityData.GetBlightAbnormalities()) {
-                int BuffOffset = int.Parse(Blight.Attributes["Offset"].Value, System.Globalization.NumberStyles.HexNumber);
-                bool IsDebuff = bool.Parse(Blight.Attributes["IsDebuff"].Value);
-                int ID = int.Parse(Blight.Attributes["ID"].Value);
-                GetAbnormality("DEBUFF", AbnormalityBaseAddress + BuffOffset, ID, $"DE_{ID}", IsDebuff);
+            foreach (AbnormalityInfo abnormality in AbnormalityData.BlightAbnormalities)
+            {
+                UpdateAbnormality(abnormality, abnormalityBaseAddress);
             }
-            foreach (XmlNode MiscBuff in AbnormalityData.GetMiscAbnormalities()) {
-                int BuffOffset = int.Parse(MiscBuff.Attributes["Offset"].Value, System.Globalization.NumberStyles.HexNumber);
-                bool IsDebuff = bool.Parse(MiscBuff.Attributes["IsDebuff"].Value);
-                int ID = int.Parse(MiscBuff.Attributes["ID"].Value);
-                bool HasConditions = bool.Parse(MiscBuff.Attributes["HasConditions"].Value);
-                bool IsInfinite = false;
-                int ConditionOffset = 0;
-                if (HasConditions) {
-                    IsInfinite = bool.Parse(MiscBuff.Attributes["IsInfinite"].Value);
-                    ConditionOffset = int.Parse(MiscBuff.Attributes["ConditionOffset"].Value);
-                }
-                GetAbnormality("MISC", AbnormalityBaseAddress + BuffOffset, ID, $"MISC_{ID}", IsDebuff, HasConditions, ConditionOffset, IsInfinite);
+
+            foreach (AbnormalityInfo abnormality in AbnormalityData.MiscAbnormalities)
+            {
+                UpdateAbnormality(abnormality, abnormalityBaseAddress);
             }
         }
 
-        private void GetPlayerGearAbnormalities(Int64 AbnormalityBaseAddress) {
-            Int64 AbnormalityGearBase = Scanner.READ_MULTILEVEL_PTR(Address.BASE + Address.ABNORMALITY_OFFSET, Address.Offsets.AbnormalityGearOffsets);
-            foreach (XmlNode GearBuff in AbnormalityData.GetGearAbnormalities()) {
-                int BuffOffset = int.Parse(GearBuff.Attributes["Offset"].Value, System.Globalization.NumberStyles.HexNumber);
-                bool IsDebuff = bool.Parse(GearBuff.Attributes["IsDebuff"].Value);
-                int ID = int.Parse(GearBuff.Attributes["ID"].Value);
-                bool IsGearBuff = bool.Parse(GearBuff.Attributes["IsGearBuff"].Value);
-                GetAbnormality("GEAR", (IsGearBuff ? AbnormalityGearBase : AbnormalityBaseAddress) + BuffOffset, ID, $"GEAR_{ID}", IsDebuff);
+        private void GetPlayerGearAbnormalities(long abnormalityBaseAddress) {
+            long abnormalityGearBase = Scanner.READ_MULTILEVEL_PTR(
+                Address.BASE + Address.ABNORMALITY_OFFSET,
+                Address.Offsets.AbnormalityGearOffsets);
+
+            foreach (AbnormalityInfo abnormality in AbnormalityData.GearAbnormalities)
+            {
+                UpdateAbnormality(abnormality, (abnormality.IsGearBuff ? abnormalityGearBase : abnormalityBaseAddress));
             }
         }
 
-        private void GetAbnormality(string Type, Int64 AbnormalityAddress, int AbnormNumber, string AbnormInternalID, bool IsDebuff, bool HasConditions = false, int ConditionOffset = 0, bool IsInfinite = false, int DoubleBuffStack = 0, int ParentOffset = 0) {
-            float Duration = Scanner.READ_FLOAT(AbnormalityAddress);
-            byte Stack;
+        private void UpdateAbnormality(AbnormalityInfo info, long baseAddress)
+        {
+            const int firstHornBuffOffset = 0x38;
+            long abnormalityAddress = baseAddress + info.Offset;
+            float duration = Scanner.READ_FLOAT(abnormalityAddress);
+
+            bool hasConditions = info.HasConditions;
+            byte stack = 0;
             // Palico and misc buffs don't stack
-            switch (Type) {
+            switch (info.Type)
+            {
                 case "HUNTINGHORN":
-                    Stack = Scanner.READ_BYTE(AbnormalityAddress + (0x12C - (0x3 * ((ParentOffset - 0x38)/4))));
+                    stack = Scanner.READ_BYTE(baseAddress + 0x164 + (info.Offset - firstHornBuffOffset) / 4);
                     break;
                 case "MISC":
-                    if (HasConditions) {
-                        Stack = (byte)(Scanner.READ_BYTE(AbnormalityAddress + ConditionOffset));
-                        if (Stack == (byte)0) { HasConditions = false; }
-                    } else { Stack = 0; }
-                    break;
-                default:
-                    Stack = 0;
+                    if (info.HasConditions)
+                    {
+                        stack = Scanner.READ_BYTE(baseAddress + info.Offset + info.ConditionOffset);
+                        hasConditions = stack > 0;
+                    }
                     break;
             }
-            if ((int)Duration <= 0 && !HasConditions) {
-                // Check if there's an abnormality with that ID
-                if (Abnormalities[AbnormInternalID] != null) { Abnormalities.Remove(AbnormInternalID); } 
-                else { return; }
-            } else {
-                if ((int)Duration <= 0 && !IsInfinite) {
-                    if (Abnormalities[AbnormInternalID] != null) {
-                        Abnormalities.Remove(AbnormInternalID);
-                    }
-                    return;
+
+            if ((int)duration <= 0 && !(hasConditions && info.IsInfinite))
+            {
+                if (Abnormalities[info.InternalId] != null)
+                {
+                    Abnormalities.Remove(info.InternalId);
                 }
-                if (Stack < DoubleBuffStack) return;
-                // Check for existing abnormalities before making a new one
-                if (Abnormalities[AbnormInternalID] != null) { Abnormalities[AbnormInternalID].UpdateAbnormalityInfo(Type, AbnormInternalID, Duration, Stack, AbnormNumber, IsDebuff, IsInfinite, AbnormalityData.GetAbnormalityIconByID(Type, AbnormNumber)); } 
-                else {
-                    Abnormality NewAbnorm = new Abnormality();
-                    NewAbnorm.UpdateAbnormalityInfo(Type, AbnormInternalID, Duration, Stack, AbnormNumber, IsDebuff, IsInfinite, AbnormalityData.GetAbnormalityIconByID(Type, AbnormNumber));
-                    Abnormalities.Add(AbnormInternalID, NewAbnorm);
-                }
+
+                return;
+            }
+
+            if (stack < info.Stack)
+                return;
+
+            if (Abnormalities[info.InternalId] != null)
+            {
+                Abnormalities[info.InternalId].UpdateAbnormalityInfo(duration, stack);
+            }
+            else
+            {
+                var a = new Abnormality(info);
+                a.UpdateAbnormalityInfo(duration, stack);
+                Abnormalities.Add(info.InternalId, a);
             }
         }
-        
+
         #endregion
     }
 }

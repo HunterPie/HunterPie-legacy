@@ -35,7 +35,7 @@ namespace HunterPie.Core {
             CurrentAbnormalities.Add(AbnormId, Abnorm);
             _OnNewAbnormality(CurrentAbnormalities[AbnormId]);
             CurrentAbnormalities[AbnormId].OnAbnormalityEnd += RemoveObsoleteAbnormality;
-            //Logger.Debugger.Log($"NEW ABNORMALITY: {Abnorm.Name} (ID: {Abnorm.ID})");
+            // Logger.Debugger.Debug($"NEW ABNORMALITY: {Abnorm.Name} (ID: {Abnorm.Id})");
         }
 
         public void Remove(string AbnormId) {
