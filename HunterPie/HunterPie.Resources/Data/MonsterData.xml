@@ -25,6 +25,7 @@
     <Ailment Name="STATUS_FELYNETRAP" Skip="False"/>
     <Ailment Name="STATUS_CLAW" Skip="False"/>
     <Ailment Name="STATUS_VIOLATED" Skip="False"/>
+    <Ailment Name="25" Skip="False"/>
   </Ailments>
   <Monster ID="em001_00" Capture="25" GameID="9"> <!-- Rathian -->
     <Weaknesses>

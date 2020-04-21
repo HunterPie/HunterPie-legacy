@@ -107,7 +107,7 @@ namespace HunterPie.GUI.Widgets {
             SetMonsterStaminaText(Monster.Stamina, Monster.MaxStamina);
 
             // Gets monster icon
-            MonsterIcon.Source = GetMonsterIcon(Monster.ID);
+            MonsterIcon.Source = GetMonsterIcon(Monster.Id);
 
             SwitchSizeBasedOnTarget();
 

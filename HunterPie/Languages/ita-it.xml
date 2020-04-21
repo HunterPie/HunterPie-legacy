@@ -387,6 +387,16 @@
     <Abnormality ID="MISC_034_00" Name="Hipercorno"/>
     <Abnormality ID="MISC_035_00" Name="Resistenza Ghiaccio (L)"/>
     <Abnormality ID="MISC_073_00" Name="Aumenta Attacco &amp; Aumenta Difesa (S)"/>
+    <Abnormality ID="GEAR_000_00" Name="Proiettile Demoniaco"/>
+    <Abnormality ID="GEAR_001_00" Name="Proiettile Difesa"/>
+    <Abnormality ID="GEAR_002_00" Name="Rafforzamento"/>
+    <Abnormality ID="GEAR_003_00" Name="Strato Protettivo"/>
+    <Abnormality ID="GEAR_004_00" Name="Affinity Sliding"/>
+    <Abnormality ID="GEAR_010_00" Name="Affinità Scivolata"/>
+    <Abnormality ID="GEAR_015_00" Name="Guardia Offensiva"/>
+    <Abnormality ID="GEAR_016_00" Name="Coalescenza"/>
+    <Abnormality ID="GEAR_099_00" Name="Mantello Evasione (ATK Up)"/>
+    <Abnormality ID="GEAR_100_00" Name="Bengala Affinità"/>
   </Abnormalities>
   <Client>
     <Console>
@@ -543,8 +553,8 @@
       <String ID="ENABLE_HARVEST_BOX_EVERYWHERE" Name="Mostra widget botanico da per tutto"/>
       <String ID="ENABLE_HARVEST_BOX_EVERYWHERE_DESC" Name="Se attivo, il widget botanico sarà visibile in tutte le zone, incluse le eccezioni."/>
       <String ID="STATIC_HARVEST_BOX_POSITION_DESC" Name="Cambia posizione del widget botanico."/>
-      <String ID="ENABLE_HARVEST_BOX_COMPACT_MODE" Name="Enable compact mode"/>
-      <String ID="ENABLE_HARVEST_BOX_COMPACT_MODE_DESC" Name="If enabled, the Harvest Box Widget will use it's compact design."/>
+      <String ID="ENABLE_HARVEST_BOX_COMPACT_MODE" Name="Enable Modalità Compatta"/>
+      <String ID="ENABLE_HARVEST_BOX_COMPACT_MODE_DESC" Name="Se attivo, il widget botanico cambiera in modalita compatta."/>
       <!-- Damage Meter -->
       <String ID="ENABLE_METER" Name="Attiva widget danno"/>
       <String ID="ENABLE_METER_DESC" Name="Se attivo, il widget del danno sarà visibile."/>
@@ -552,12 +562,12 @@
       <String ID="ENABLE_TOTAL_DAMAGE_DESC" Name="Se attivo, il danno totale individuale per giocatore sarà mostrato."/>
       <String ID="ENABLE_METER_DPS" Name="Mostra DPS "/>
       <String ID="ENABLE_METER_DPS_DESC" Name="Se attivo, il widget del danno mostrera i danni per secondo."/>
-      <String ID="ENABLE_TIMER_IN_GL" Name="Enable timer in Expeditions/Guiding Lands"/>
-      <String ID="ENABLE_TIMER_IN_GL_DESC" Name="If enabled, the timer will be visible in Expeditions/Guiding Lands."/>
-      <String ID="ENABLE_ONLY_TIMER" Name="Show only timer"/>
-      <String ID="ENABLE_ONLY_TIMER_DESC" Name="If enabled, the Damage Widget will only show the timer, hiding the party members damage."/>
-      <String ID="ENABLE_METER_ONLY_MYSELF" Name="Show only my damage"/>
-      <String ID="ENABLE_METER_ONLY_MYSELF_DESC" Name="If enabled, only your damage will be visible."/>
+      <String ID="ENABLE_TIMER_IN_GL" Name="Attiva timer in Spedizioni/Terre Guida"/>
+      <String ID="ENABLE_TIMER_IN_GL_DESC" Name="Se attivato, il timer sarà visibile in Spedizioni/Terre Guida."/>
+      <String ID="ENABLE_ONLY_TIMER" Name="Mostra solo timer timer"/>
+      <String ID="ENABLE_ONLY_TIMER_DESC" Name="Se attivo, il widget danno, mostrera solo il timer, senza mostrare i danni della squadra."/>
+      <String ID="ENABLE_METER_ONLY_MYSELF" Name="Mostra solo il mio danno"/>
+      <String ID="ENABLE_METER_ONLY_MYSELF_DESC" Name="Se attivo, il widget danni mostrera solo i danni fatti da te."/>
       <String ID="STATIC_METER_PLAYER_1" Name="Primo Giocatore"/>
       <String ID="STATIC_METER_PLAYER_2" Name="Secondo Giocatore"/>
       <String ID="STATIC_METER_PLAYER_3" Name="Terzo Giocatore"/>
@@ -577,7 +587,7 @@
       <String ID="STATIC_ABNORM_TAB_HH" Name="Corno da caccia"/>
       <String ID="STATIC_ABNORM_TAB_ORCHESTRA" Name="Orchestra"/>
       <String ID="STATIC_ABNORM_TAB_DEBUFF" Name="Debuffs"/>
-      <String ID="STATIC_ABNORM_TAB_GEAR" Name="Gear"/>
+      <String ID="STATIC_ABNORM_TAB_GEAR" Name="Attrezzi"/>
       <String ID="STATIC_ABNORM_TAB_CONSUMABLE" Name="Consumabili"/>
       <String ID="ENABLE_SHOW_ABNORM_NAMES" Name="Mostra nome anormalità"/>
       <String ID="ENABLE_SHOW_ABNORM_NAMES_DESC" Name="Se attivo, il nome del'anormalità sarà mostrato."/>
@@ -617,7 +627,7 @@
       <String ID="STATIC_REQUIRES_RESTART" Name="(Richiede Riavvio)"/>
       <String ID="STATIC_POSITION" Name="Posizione"/>
 	    <String ID="STATIC_COPYCLIPBOARD" Name="Copia"/>
-      <String ID="STATIC_OPACITY" Name="Opacity"/>
+      <String ID="STATIC_OPACITY" Name="Opacità"/>
       <!-- Settings Side bar-->
       <String ID="STATIC_GENERAL_SETTINGS" Name="Generale"/>
       <String ID="STATIC_DISCORD_SETTINGS" Name="Discord"/>

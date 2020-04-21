@@ -84,9 +84,9 @@ namespace HunterPie.Core {
         public void UpdateAbnormalityInfo(float newDuration, byte newStack)
         {
             Stack = newStack;
-            Duration = (int)newDuration;
             MaxDuration = MaxDuration < newDuration ? newDuration : MaxDuration;
             DurationPercentage = MaxDuration > 0 ? newDuration / MaxDuration : 1;
+            Duration = (int)newDuration;
         }
 
         public void ResetDuration() {

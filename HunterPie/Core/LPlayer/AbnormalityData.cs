@@ -31,6 +31,9 @@ namespace HunterPie.Core {
             LoadBlightAbnormalities();
             LoadMiscAbnormalities();
             LoadGearAbnormalities();
+
+            // Unload Abnormalities Data since we don't need it anymore
+            AbnormalitiesData = null;
         }
 
         private static void LoadHuntingHornAbnormalities()

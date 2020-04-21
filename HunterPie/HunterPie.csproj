@@ -130,9 +130,11 @@
     <Compile Include="Core\Integrations\Honey\Honey.cs" />
     <Compile Include="Core\KeyboardHook.cs" />
     <Compile Include="Core\LPlayer\AbnormalityInfo.cs" />
-    <Compile Include="Core\Monster\Ailment.cs" />
-    <Compile Include="Core\Monster\MonsterData.cs" />
-    <Compile Include="Core\Monster\Part.cs" />
+    <Compile Include="Core\Monsters\Ailment.cs" />
+    <Compile Include="Core\Monsters\AilmentInfo.cs" />
+    <Compile Include="Core\Monsters\MonsterData.cs" />
+    <Compile Include="Core\Monsters\MonsterInfo.cs" />
+    <Compile Include="Core\Monsters\Part.cs" />
     <Compile Include="Core\Party\Member.cs" />
     <Compile Include="Core\Party\Party.cs" />
     <Compile Include="Core\LPlayer\Abnormalities.cs" />
@@ -314,7 +316,7 @@
     </Compile>
     <Compile Include="Core\Game.cs" />
     <Compile Include="Core\Client\GStrings.cs" />
-    <Compile Include="Core\Monster\Monster.cs" />
+    <Compile Include="Core\Monsters\Monster.cs" />
     <Compile Include="Core\LPlayer\Player.cs" />
     <Compile Include="Core\Client\UserSettings.cs" />
     <Compile Include="GUIControls\Debugger.xaml.cs">

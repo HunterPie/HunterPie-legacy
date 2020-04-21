@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Linq;
 
 namespace HunterPie.Core {
     public class Ailment {
@@ -8,7 +9,7 @@ namespace HunterPie.Core {
 
         public Int64 Address { get; set; }
         public string Name {
-            get { return GStrings.GetAilmentNameByID(MonsterData.GetAilmentIDByIndex(ID)); }
+            get { return GStrings.GetAilmentNameByID(MonsterData.AilmentsInfo.ElementAt(ID).Id); }
         }
         public int ID { get; set; }
         public float Buildup {

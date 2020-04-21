@@ -111,7 +111,7 @@ namespace HunterPie.Core {
 
         public MonsterPartEventArgs(Part mPart) {
             this.Name = mPart.Name;
-            this.ID = mPart.ID;
+            this.ID = mPart.Id;
             this.Health = mPart.Health;
             this.TotalHealth = mPart.TotalHealth;
             this.BrokenCounter = mPart.BrokenCounter;
@@ -130,7 +130,7 @@ namespace HunterPie.Core {
 
         public MonsterSpawnEventArgs(Monster m) {
             this.Name = m.Name;
-            this.ID = m.ID;
+            this.ID = m.Id;
             this.Crown = m.Crown;
             this.CurrentHP = m.CurrentHP;
             this.TotalHP = m.TotalHP;

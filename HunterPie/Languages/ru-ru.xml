@@ -386,6 +386,16 @@
     <Abnormality ID="MISC_034_00" Name="Конус Силы"/>
     <Abnormality ID="MISC_035_00" Name="Сопр Льду (L)"/>
     <Abnormality ID="MISC_073_00" Name="Усил Атаки &amp; Усил Защиты (S)"/>
+    <Abnormality ID="GEAR_000_00" Name="Demon Ammo"/>
+    <Abnormality ID="GEAR_001_00" Name="Armor Ammo"/>
+    <Abnormality ID="GEAR_002_00" Name="Укрепление"/>
+    <Abnormality ID="GEAR_003_00" Name="Защитная полировка"/>
+    <Abnormality ID="GEAR_004_00" Name="Мастерский подкат"/>
+    <Abnormality ID="GEAR_010_00" Name="Мастерство мороза"/>
+    <Abnormality ID="GEAR_015_00" Name="Агрессивная защита"/>
+    <Abnormality ID="GEAR_016_00" Name="Сращивание"/>
+    <Abnormality ID="GEAR_099_00" Name="Evasion Mantle (Atk)"/>
+    <Abnormality ID="GEAR_100_00" Name="Affinity Booster"/>
   </Abnormalities>
   <!-- Client localization strings -->
   <Client>

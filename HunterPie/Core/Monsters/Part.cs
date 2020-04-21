@@ -1,24 +1,20 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace HunterPie.Core {
     public class Part {
         private float _Health { get; set; }
         private float _TotalHealth { get; set; }
         private byte _BrokenCounter { get; set; }
-        private string MonsterID { get; set; }
+        private int MonsterId { get; set; }
         public Int64 PartAddress { get; set; } // So we don't need to re-scan the address everytime
         
 
-        public int ID { get; set; } // Part index
+        public int Id { get; set; } // Part index
         public string Name {
-            get { return GStrings.GetMonsterPartByID(MonsterData.GetPartStringIDByPartIndex(MonsterID, ID)); } // TODO: GStrings
+            get { return GStrings.GetMonsterPartByID(MonsterData.MonstersInfo[MonsterId].Parts[Id].Id); }
         }
         public byte BrokenCounter {
-            get { return _BrokenCounter; } // TODO: Implement events
+            get { return _BrokenCounter; }
             set {
                 if (value != _BrokenCounter) {
                     this._BrokenCounter = value;
@@ -60,16 +56,16 @@ namespace HunterPie.Core {
         }
         #endregion
 
-        public void SetPartInfo(string MonsterID, int ID, byte Counter, float Health, float TotalHealth) {
-            this.MonsterID = MonsterID;
-            this.ID = ID;
+        public void SetPartInfo(int monsterId, int id, byte Counter, float Health, float TotalHealth) {
+            this.MonsterId = monsterId;
+            this.Id = id;
             this.TotalHealth = TotalHealth;
             this.BrokenCounter = Counter;
             this.Health = Health;
         }
 
         public override string ToString() {
-            return $"Name: {this.Name} | ID: {this.ID} | HP: {this.Health}/{this.TotalHealth} | Counter: {this.BrokenCounter}";
+            return $"Name: {this.Name} | ID: {this.Id} | HP: {this.Health}/{this.TotalHealth} | Counter: {this.BrokenCounter}";
         }
 
     }
