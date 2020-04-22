@@ -306,6 +306,11 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
+    <None Include="HunterPie.Resources\UI\Icons.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
     <Page Include="Hunterpie.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>

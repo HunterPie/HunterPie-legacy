@@ -56,13 +56,17 @@ namespace HunterPie {
             Debugger.LoadNewColors();
             
             InitializeComponent();
+
+            Width = UserSettings.PlayerConfig.HunterPie.Width;
+            Height = UserSettings.PlayerConfig.HunterPie.Height;
+
             OpenDebugger();
             // Initialize everything under this line
             if (!CheckIfUpdateEnableAndStart()) return;
 
             InitializeTrayIcon();
 
-            // Updates version_text
+            // Update version text
             this.version_text.Text = GStrings.GetLocalizationByXPath("/Console/String[@ID='CONSOLE_VERSION']").Replace("{HunterPie_Version}", HUNTERPIE_VERSION).Replace("{HunterPie_Branch}", UserSettings.PlayerConfig.HunterPie.Update.Branch);
             
             // Initializes the rest of HunterPie
@@ -522,6 +526,7 @@ namespace HunterPie {
         }
 
         private void OnWindowClosing(object sender, System.ComponentModel.CancelEventArgs e) {
+            UserSettings.SaveNewConfig();
             this.Hide();
             // Dispose tray icon
             if (TrayIcon != null) {
@@ -561,8 +566,9 @@ namespace HunterPie {
             OpenChangelog();
         }
 
-        private void OnUploadBuildButtonClick(object sender, MouseButtonEventArgs e) {
-            this.HunterPiePopup.Visibility = Visibility.Visible;
+        private void OnUploadBuildButtonClick(object sender, MouseButtonEventArgs e)
+        {
+            BuildUploadNotification.ShowNotification();
         }
 
         private void OnLaunchGameButtonClick(object sender, RoutedEventArgs e) {
@@ -594,13 +600,26 @@ namespace HunterPie {
         private void OnDiscordButtonClick(object sender, MouseButtonEventArgs e) {
             Process.Start("https://discord.gg/5pdDq4Q");
         }
+        
+        private void OnCopyToClipboardClick(object sender, RoutedEventArgs e)
+        {
+            string BuildLink = Honey.LinkStructureBuilder(MonsterHunter.Player.GetPlayerGear());
+            Clipboard.SetData(DataFormats.Text, BuildLink);
+        }
 
-        private void HunterPiePopup_OnAccept(object source, EventArgs args) {
-            string HoneyBuild = Honey.LinkStructureBuilder(MonsterHunter.Player.GetPlayerGear());
-            this.HunterPiePopup.Link = HoneyBuild;
+        private void OnOpenInBrowserClick(object sender, RoutedEventArgs e)
+        {
+            string BuildLink = Honey.LinkStructureBuilder(MonsterHunter.Player.GetPlayerGear());
+            Process.Start(BuildLink);
+        }
+
+        private void OnWindowSizeChange(object sender, SizeChangedEventArgs e)
+        {
+            UserSettings.PlayerConfig.HunterPie.Width = (float)Width;
+            UserSettings.PlayerConfig.HunterPie.Height = (float)Height;
         }
 
         #endregion
-
+        
     }
 }

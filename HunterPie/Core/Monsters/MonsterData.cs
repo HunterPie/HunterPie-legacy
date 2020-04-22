@@ -134,7 +134,7 @@ namespace HunterPie.Core {
             ailmentsInfo = ailmentsData.Cast<XmlNode>()
                 .Select(node => AilmentXmlNodeToInfo(node))
                 .ToList();
-            Debugger.Debug(ailmentsInfo.Count);
+
         }
     }
 }

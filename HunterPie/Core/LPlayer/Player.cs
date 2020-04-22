@@ -385,6 +385,7 @@ namespace HunterPie.Core {
 
         private void GetPlayerInfo() {
             while (Scanner.GameIsRunning) {
+                GetZoneId();
                 if (GetPlayerAddress()) {
                     GetPlayerLevel();
                     GetPlayerMasterRank();
@@ -403,7 +404,6 @@ namespace HunterPie.Core {
                     // in zones that have no abnormality
                     if (!InHarvestZone) GetPlayerAbnormalities();
                 }
-                GetZoneId();
                 GetSessionId();
                 GetEquipmentAddress();
                 Thread.Sleep(Math.Max(50, UserSettings.PlayerConfig.Overlay.GameScanDelay));

@@ -40,7 +40,7 @@
         </Style>
     </UserControl.Resources>
     <Grid Background="#00000000">
-        <Grid x:Name="wnd" ClipToBounds="True" Margin="133,75,141,189" Background="#F90F0F0F" MaxWidth="800" MaxHeight="450" RenderTransformOrigin="0.5,0.5">
+        <Grid x:Name="wnd" ClipToBounds="True" Margin="133,75,141,189" Background="#F90F0F0F" RenderTransformOrigin="0.5,0.5">
             <Grid.RenderTransform>
                 <TransformGroup>
                     <ScaleTransform ScaleX="0.9" ScaleY="0.9"/>
@@ -55,16 +55,17 @@
 
             <Grid Margin="0,0,-726,0">
                 <Grid.ColumnDefinitions>
-                    <ColumnDefinition Width="726*"/>
+                    <ColumnDefinition Width="345*"/>
+                    <ColumnDefinition Width="382*"/>
                     <ColumnDefinition Width="725*"/>
                 </Grid.ColumnDefinitions>
-                <Image Source="{Binding ElementName=WindowNotificationControl, Path=Icon}" Height="128" Margin="66,71,530,0" VerticalAlignment="Top"/>
-                <TextBlock Text="{Binding ElementName=WindowNotificationControl, Path=Text}" Padding="5,0,5,0" TextWrapping="WrapWithOverflow" Foreground="White" Margin="215,101,0,0" FontSize="18" Height="146" VerticalAlignment="Top"/>
-                <Button x:Name="AcceptButton" Content="{Binding Mode=OneWay, XPath=/Strings/Client/Notifications/String[@ID\=\'STATIC_ACCEPT\']/@Name}" Height="36" VerticalAlignment="Bottom" Margin="0,0,377,0" FontWeight="Normal" Click="AcceptButton_Click"/>
-                <Button x:Name="RejectButton" Content="{Binding Mode=OneWay, XPath=/Strings/Client/Notifications/String[@ID\=\'STATIC_REJECT\']/@Name}" Height="36" VerticalAlignment="Bottom" Margin="356,0,1,0" FontWeight="Normal" Click="RejectButton_Click" />
-                <Image Source="{Binding ElementName=WindowNotificationControl, Path=Icon}" Height="128" Margin="306,23,289,0" VerticalAlignment="Top" Grid.Column="1"/>
-                <TextBox x:Name="Box" ToolTip="{Binding Mode=OneWay, XPath=/Strings/Client/Settings/String[@ID\=\'STATIC_COPYCLIPBOARD\']/@Name}" Cursor="Arrow" Height="31" Margin="10,177,11,0" Text="{Binding ElementName=WindowNotificationControl, Path=Link}" VerticalAlignment="Top" Foreground="#FFF3F3F3" CaretBrush="WhiteSmoke" BorderBrush="{x:Null}" Background="#FF060606" FontSize="18" Grid.Column="1" SelectionBrush="#FFEA4949" IsReadOnly="True" PreviewMouseDown="TextBox_MouseButtonDown" TextOptions.TextHintingMode="Fixed"/>
-                <local:MinimalButton Text="{Binding Mode=OneWay, XPath=/Strings/Client/Notifications/String[@ID\=\'STATIC_OPENDEFAULTBROWSER\']/@Name}" Margin="0,0,10,12" VerticalAlignment="Bottom" Link="{Binding ElementName=WindowNotificationControl, Path=Link}" Grid.ColumnSpan="1" Grid.Column="1" HorizontalAlignment="Right" Width="244" FontSize="14" Color="{StaticResource GENERIC_BUTTON_BACKGROUND}" Foreground="{StaticResource GENERIC_BUTTON_FOREGROUND}">
+                <Image Source="{Binding ElementName=WindowNotificationControl, Path=Icon}" Height="128" Margin="66,71,0,0" VerticalAlignment="Top" HorizontalAlignment="Left" Width="131"/>
+                <TextBlock Text="{Binding ElementName=WindowNotificationControl, Path=Text}" Padding="5,0,5,0" TextWrapping="WrapWithOverflow" Foreground="White" Margin="215,101,8,0" FontSize="18" Height="146" VerticalAlignment="Top" Grid.ColumnSpan="2"/>
+                <Button x:Name="AcceptButton" Content="{Binding Mode=OneWay, XPath=/Strings/Client/Notifications/String[@ID\=\'STATIC_ACCEPT\']/@Name}" Height="36" VerticalAlignment="Bottom" FontWeight="Normal" Click="AcceptButton_Click" Margin="0,0,5,0"/>
+                <Button x:Name="RejectButton" Content="{Binding Mode=OneWay, XPath=/Strings/Client/Notifications/String[@ID\=\'STATIC_REJECT\']/@Name}" Height="36" VerticalAlignment="Bottom" Margin="5,0,0,0" FontWeight="Normal" Click="RejectButton_Click" RenderTransformOrigin="0.5,0.5" Grid.Column="1" />
+                <Image Source="{Binding ElementName=WindowNotificationControl, Path=Icon}" Margin="306,23,0,0" Grid.Column="2" HorizontalAlignment="Left" Width="130" Height="128" VerticalAlignment="Top"/>
+                <TextBox x:Name="Box" ToolTip="{Binding Mode=OneWay, XPath=/Strings/Client/Settings/String[@ID\=\'STATIC_COPYCLIPBOARD\']/@Name}" Cursor="Arrow" Height="31" Margin="10,177,11,0" Text="{Binding ElementName=WindowNotificationControl, Path=Link}" VerticalAlignment="Top" Foreground="#FFF3F3F3" CaretBrush="WhiteSmoke" BorderBrush="{x:Null}" Background="#FF060606" FontSize="18" Grid.Column="2" SelectionBrush="#FFEA4949" IsReadOnly="True" PreviewMouseDown="TextBox_MouseButtonDown" TextOptions.TextHintingMode="Fixed"/>
+                <local:MinimalButton Text="{Binding Mode=OneWay, XPath=/Strings/Client/Notifications/String[@ID\=\'STATIC_OPENDEFAULTBROWSER\']/@Name}" Margin="0,0,10,12" VerticalAlignment="Bottom" Link="{Binding ElementName=WindowNotificationControl, Path=Link}" Grid.ColumnSpan="1" Grid.Column="2" HorizontalAlignment="Right" Width="244" FontSize="14" Color="{StaticResource GENERIC_BUTTON_BACKGROUND}" Foreground="{StaticResource GENERIC_BUTTON_FOREGROUND}">
                 </local:MinimalButton>
                 <Grid.Style>
                     <Style TargetType="Grid">
@@ -99,7 +100,7 @@
                                     <Storyboard>
                                         <DoubleAnimation Storyboard.TargetProperty="(Grid.RenderTransform).(TransformGroup.Children)[0].(ScaleTransform.ScaleX)" To="1" Duration="0:0:0.2"/>
                                         <DoubleAnimation Storyboard.TargetProperty="(Grid.RenderTransform).(TransformGroup.Children)[0].(ScaleTransform.ScaleY)" To="1" Duration="0:0:0.2"/>
-                                        <DoubleAnimation Storyboard.TargetProperty="Opacity" From="0" To="1" Duration="0:0:0.2"/>
+                                        <DoubleAnimation Storyboard.TargetProperty="Opacity" From="0" To="1" Duration="0:0:0.3"/>
                                     </Storyboard>
                                 </BeginStoryboard>
                             </Trigger.EnterActions>
