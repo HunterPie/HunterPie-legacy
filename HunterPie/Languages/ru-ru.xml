@@ -649,6 +649,7 @@
       <String ID="STATIC_REJECT" Name="Отклонить"/>
       <String ID="STATIC_SETTINGS_LOAD" Name="Настройки загружены"/>
       <String ID="STATIC_OPENDEFAULTBROWSER" Name="Открыть в браузере"/>
+      <String ID="MESSAGE_BUILD_UPLOADED" Name="Build uploaded to Honey Hunters World!"/>
     </Notifications>
     <RichPresence>
       <String ID="RPC_DESCRIPTION_IN_MAIN_MENU" Name="В Главном меню"/>

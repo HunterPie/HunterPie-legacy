@@ -649,6 +649,7 @@
       <String ID="STATIC_REJECT" Name="Rejeter"/>
       <String ID="STATIC_SETTINGS_LOAD" Name="Paramètres chargés"/>
       <String ID="STATIC_OPENDEFAULTBROWSER" Name="Ouvrir dans le navigateur"/>
+      <String ID="MESSAGE_BUILD_UPLOADED" Name="Build uploaded to Honey Hunters World!"/>
     </Notifications>
     <RichPresence>
       <String ID="RPC_DESCRIPTION_IN_MAIN_MENU" Name="Dans le Menu Principal"/>

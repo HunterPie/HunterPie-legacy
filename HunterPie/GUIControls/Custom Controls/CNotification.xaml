@@ -9,7 +9,21 @@
     <StackPanel Orientation="Horizontal" x:Name="cHolder" Background="#CC111111" DataContext="{StaticResource Localization}" MouseLeftButtonDown="OnNotificationClick">
         <Image x:Name="NotificationIcon" Width="25" Height="25" Margin="6,0,4,0" Source="{Binding ElementName=NotifyControl, Path=NIcon}"/>
         <TextBlock x:Name="NotificationText"  Text="{Binding ElementName=NotifyControl, Path=Text}" Foreground="WhiteSmoke" Padding="0,3,5,5" Height="30" FontSize="16" FontWeight="Light"/>
-        <Button Content="Copy To Clipboard" Style="{StaticResource buttons_settings}" BorderBrush="{x:Null}" Foreground="#FFECECEC" Background="#FF080808" Cursor="Hand" Padding="5,1" Click="OnFirstButtonClick" Visibility="{Binding ElementName=NotifyControl, Path=FirstButtonVisibility}"/>
-        <Button Content="Open in Browser" Style="{StaticResource buttons_settings}" BorderBrush="{x:Null}" Foreground="#FFECECEC" Background="#FF080808" Cursor="Hand" FontSize="14" FontWeight="Bold" Padding="5,1" Click="OnSecondButtonClick" Margin="5,0,0,0" Visibility="{Binding ElementName=NotifyControl, Path=SecondButtonVisibility}"/>
+        <Button Style="{StaticResource buttons_settings}" BorderBrush="{x:Null}" Foreground="#FFECECEC" Background="#FF080808" Cursor="Hand" Padding="5,1" Click="OnFirstButtonClick" Visibility="{Binding ElementName=NotifyControl, Path=FirstButtonVisibility}">
+            <Button.Content>
+                <StackPanel Orientation="Horizontal">
+                    <Image Source="{Binding ElementName=NotifyControl, Path=FirstButtonImage}" Width="20" Height="20" Margin="0,0,3,0"/>
+                    <TextBlock Text="{Binding ElementName=NotifyControl, Path=FirstButtonText}"/>
+                </StackPanel>
+            </Button.Content>
+        </Button>
+        <Button Style="{StaticResource buttons_settings}" BorderBrush="{x:Null}" Foreground="#FFECECEC" Background="#FF080808" Cursor="Hand" FontSize="14" FontWeight="Bold" Padding="5,1" Click="OnSecondButtonClick" Margin="5,0,0,0" Visibility="{Binding ElementName=NotifyControl, Path=SecondButtonVisibility}">
+            <Button.Content>
+                <StackPanel Orientation="Horizontal">
+                    <Image Source="{Binding ElementName=NotifyControl, Path=SecondButtonImage}" Width="20" Height="22" Margin="0,0,3,0"/>
+                    <TextBlock Text="{Binding ElementName=NotifyControl, Path=SecondButtonText}"/>
+                </StackPanel>
+            </Button.Content>
+        </Button>
     </StackPanel>
 </UserControl>

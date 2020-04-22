@@ -650,6 +650,7 @@
       <String ID="STATIC_REJECT" Name="拒绝"/>
       <String ID="STATIC_SETTINGS_LOAD" Name="设置已载入"/>
       <String ID="STATIC_OPENDEFAULTBROWSER" Name="在浏览器中打开"/>
+      <String ID="MESSAGE_BUILD_UPLOADED" Name="Build uploaded to Honey Hunters World!"/>
     </Notifications>
     <RichPresence>
       <String ID="RPC_DESCRIPTION_IN_MAIN_MENU" Name="在主菜单"/>

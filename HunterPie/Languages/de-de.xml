@@ -654,6 +654,7 @@ Gerade bei den Abnormalitäten / Statusveränderungen des Spielers gibt es mit (
       <String ID="STATIC_REJECT" Name="Ablehnen"/>
       <String ID="STATIC_SETTINGS_LOAD" Name="Einstellungen geladen"/>
       <String ID="STATIC_OPENDEFAULTBROWSER" Name="Im Browser öffnen"/>
+      <String ID="MESSAGE_BUILD_UPLOADED" Name="Build uploaded to Honey Hunters World!"/>
     </Notifications>
     <RichPresence>
       <String ID="RPC_DESCRIPTION_IN_MAIN_MENU" Name="Im Hauptmenü"/>

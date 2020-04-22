@@ -1,37 +1,17 @@
-﻿**UPDATE 1.0.3.88**
+﻿**UPDATE 1.0.3.89**
 
-**New Abnormalities supported**
+**Monster Hunter World v13.50.00**
 
-Armor and specialized tool abnormalities are now supported, check your abnormality tray to add the new buffs to your bar. The new supported buffs are:
+- Added support to the latest version of Monster Hunter: World
 
-- Demon Ammo
-- Armor Ammo
-- Fortify
-- Protective Polish
-- Affinity Sliding
-- Frostcraft
-- Offensive Guard
-- Coalescence
-- Evasion Mantle (Attack)
-- Affinity Booster (Affinity)
+**Core**
 
-> **Note:** More buffs will be added throughout time, you can also suggest abnormalities in [HunterPie's Discord](https://discord.gg/5pdDq4Q).
+- Changed core code when loading and requesting monster and abnormalities data. HunterPie will no longer make XML queries every scan, that will stress the CPU way less and use less RAM.
 
-**Harvest Box**
+**Console**
 
-The Harvest Box Widget now has a compact mode and was also redesigned to blend with the game design, new icons were also added for all the fertilizers.
+- HunterPie console can now be resized
 
-**Widgets**
+**Build Uploader**
 
-Widgets now have an opacity and background opacity (when available).
-
-**Damage Meter Widget**
-
-- Added option to show timer in Expedition/Guiding Lands;
-- Added option to only show timer, in case you don't want to see the party damage;
-- Added option to only show your damage;
-
-**Bug Fixes**
-
-- Fixed bug causing HunterPie to crash when Discord Ask To Join feature times out;
-- Fixed bug making HunterPie steal focus sometimes when a widget is shown;
+The build uploader no longer creates a popup, it is now a notification like the "Settings Loaded" notification, a lot more clean and simple to upload builds!

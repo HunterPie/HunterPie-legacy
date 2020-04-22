@@ -1,6 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Media;
@@ -34,6 +32,28 @@ namespace HunterPie.GUIControls.Custom_Controls {
 
 
 
+        public ImageSource FirstButtonImage
+        {
+            get { return (ImageSource)GetValue(FirstButtonImageProperty); }
+            set { SetValue(FirstButtonImageProperty, value); }
+        }
+
+        // Using a DependencyProperty as the backing store for FirstButtonImage.  This enables animation, styling, binding, etc...
+        public static readonly DependencyProperty FirstButtonImageProperty =
+            DependencyProperty.Register("FirstButtonImage", typeof(ImageSource), typeof(CNotification));
+
+
+
+        public ImageSource SecondButtonImage
+        {
+            get { return (ImageSource)GetValue(SecondButtonImageProperty); }
+            set { SetValue(SecondButtonImageProperty, value); }
+        }
+
+        // Using a DependencyProperty as the backing store for SecondButtonImage.  This enables animation, styling, binding, etc...
+        public static readonly DependencyProperty SecondButtonImageProperty =
+            DependencyProperty.Register("SecondButtonImage", typeof(ImageSource), typeof(CNotification));
+
         public Visibility FirstButtonVisibility
         {
             get { return (Visibility)GetValue(FirstButtonVisibilityProperty); }
@@ -43,9 +63,7 @@ namespace HunterPie.GUIControls.Custom_Controls {
         // Using a DependencyProperty as the backing store for FirstButtonVisibility.  This enables animation, styling, binding, etc...
         public static readonly DependencyProperty FirstButtonVisibilityProperty =
             DependencyProperty.Register("FirstButtonVisibility", typeof(Visibility), typeof(CNotification));
-
-
-
+        
         public Visibility SecondButtonVisibility
         {
             get { return (Visibility)GetValue(SecondButtonVisibilityProperty); }
@@ -56,6 +74,27 @@ namespace HunterPie.GUIControls.Custom_Controls {
         public static readonly DependencyProperty SecondButtonVisibilityProperty =
             DependencyProperty.Register("SecondButtonVisibility", typeof(Visibility), typeof(CNotification));
 
+
+
+        public string FirstButtonText
+        {
+            get { return (string)GetValue(FirstButtonTextProperty); }
+            set { SetValue(FirstButtonTextProperty, value); }
+        }
+
+        // Using a DependencyProperty as the backing store for  FirstButtonText.  This enables animation, styling, binding, etc...
+        public static readonly DependencyProperty FirstButtonTextProperty =
+            DependencyProperty.Register("FirstButtonText", typeof(string), typeof(CNotification));
+
+        public string SecondButtonText
+        {
+            get { return (string)GetValue(SecondButtonTextProperty); }
+            set { SetValue(SecondButtonTextProperty, value); }
+        }
+
+        // Using a DependencyProperty as the backing store for SecondButtonText.  This enables animation, styling, binding, etc...
+        public static readonly DependencyProperty SecondButtonTextProperty =
+            DependencyProperty.Register("SecondButtonText", typeof(string), typeof(CNotification));
 
 
         public int ShowTime { get; set; }

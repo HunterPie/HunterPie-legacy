@@ -8,7 +8,7 @@
         xmlns:Core="clr-namespace:HunterPie.Core"
         xmlns:Properties="clr-namespace:HunterPie.Properties" x:Name="window" x:Class="HunterPie.Hunterpie"
         mc:Ignorable="d"
-        Title="HunterPie" d:DesignHeight="592" d:DesignWidth="1000" MinWidth="800" MinHeight="500" WindowStyle="None" Closing="OnWindowClosing" AllowsTransparency="True" BorderBrush="#7F000000" BorderThickness="1" Background="{x:Null}" ResizeMode="CanResize" SizeChanged="OnWindowSizeChange">
+        Title="HunterPie" d:DesignHeight="592" d:DesignWidth="1000" MinWidth="800" MinHeight="500" WindowStyle="None" Closing="OnWindowClosing" AllowsTransparency="True" BorderBrush="#7F000000" BorderThickness="1" Background="{x:Null}" ResizeMode="CanResize" SizeChanged="OnWindowSizeChange" DataContext="{StaticResource Localization}">
     <WindowChrome.WindowChrome>
         <WindowChrome CaptionHeight="0"
                               CornerRadius="0"
@@ -233,7 +233,7 @@
                     </Style>
                 </Custom:CNotification.Style>
             </Custom:CNotification>
-            <Custom:CNotification x:Name="BuildUploadNotification" Visibility="Collapsed" Margin="10,0,0,0" Text="Build uploaded to Honey Hunters World!" NIcon="pack://siteoforigin:,,,/HunterPie.Resources/Monsters/Icons/em116_00.png" HorizontalAlignment="Left" ShowTime="15" OnFirstBttnClick="OnCopyToClipboardClick" OnSecondBttnClick="OnOpenInBrowserClick">
+            <Custom:CNotification x:Name="BuildUploadNotification" Visibility="Collapsed" Margin="10,0,0,0" Text="{Binding XPath=/Strings/Client/Notifications/String[@ID\=\'MESSAGE_BUILD_UPLOADED\']/@Name}" NIcon="pack://siteoforigin:,,,/HunterPie.Resources/Monsters/Icons/em116_00.png" HorizontalAlignment="Left" ShowTime="15" OnFirstBttnClick="OnCopyToClipboardClick" OnSecondBttnClick="OnOpenInBrowserClick" FirstButtonImage="{StaticResource ICON_COPY}" SecondButtonImage="{StaticResource ICON_LINK}" FirstButtonText="{Binding XPath=/Strings/Client/Settings/String[@ID\=\'STATIC_COPYCLIPBOARD\']/@Name}" SecondButtonText="{Binding XPath=/Strings/Client/Notifications/String[@ID\=\'STATIC_OPENDEFAULTBROWSER\']/@Name}" >
                 <Custom:CNotification.Style>
                     <Style TargetType="Custom:CNotification">
                         <Style.Triggers>

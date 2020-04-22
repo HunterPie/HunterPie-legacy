@@ -30,7 +30,7 @@ namespace HunterPie {
         bool OfflineMode = false;
 
         // HunterPie version
-        const string HUNTERPIE_VERSION = "1.0.3.88";
+        const string HUNTERPIE_VERSION = "1.0.3.89";
 
         // Helpers
         IntPtr _windowHandle;
@@ -522,7 +522,6 @@ namespace HunterPie {
             } else {
                 this.WindowState = WindowState.Minimized;
             }
-            
         }
 
         private void OnWindowClosing(object sender, System.ComponentModel.CancelEventArgs e) {
