@@ -177,9 +177,6 @@
     <Compile Include="GUIControls\Custom Controls\WeaknessDisplay.xaml.cs">
       <DependentUpon>WeaknessDisplay.xaml</DependentUpon>
     </Compile>
-    <Compile Include="GUIControls\Custom Controls\WindowNotification.xaml.cs">
-      <DependentUpon>WindowNotification.xaml</DependentUpon>
-    </Compile>
     <Compile Include="GUIControls\NewSettingsWindow.xaml.cs">
       <DependentUpon>NewSettingsWindow.xaml</DependentUpon>
     </Compile>
@@ -235,10 +232,6 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="GUIControls\Custom Controls\WeaknessDisplay.xaml">
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
-    <Page Include="GUIControls\Custom Controls\WindowNotification.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
