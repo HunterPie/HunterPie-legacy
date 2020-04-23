@@ -1,9 +1,5 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using System.Xml;
 
 namespace HunterPie.Core {
     public class Abnormalities {
@@ -45,11 +41,13 @@ namespace HunterPie.Core {
         } 
 
         public void ClearAbnormalities() {
-            foreach (string AbnormId in CurrentAbnormalities.Keys) {
+            if (CurrentAbnormalities.Count == 0) return;
+            
+            string[] activeAbnormalities = CurrentAbnormalities.Keys.ToArray();
+            foreach (string abnormId in activeAbnormalities) {
                 // Will trigger OnAbnormalityEnd event
-                CurrentAbnormalities[AbnormId].ResetDuration();
+                Remove(abnormId);
             }
-            CurrentAbnormalities.Clear();
         }
         #endregion
 

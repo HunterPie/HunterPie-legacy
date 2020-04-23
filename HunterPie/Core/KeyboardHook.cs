@@ -266,8 +266,6 @@ namespace HunterPie.Core {
             }
         }
 
-        public void UninstallHooks() {
-            KeyboardHookHelper.UnhookWindowsHookEx(KeyboardHk);
-        }
+        public void UninstallHooks() => KeyboardHookHelper.UnhookWindowsHookEx(KeyboardHk);
     }
 }

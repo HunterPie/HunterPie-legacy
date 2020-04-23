@@ -385,6 +385,7 @@ namespace HunterPie.Core {
 
         private void GetPlayerInfo() {
             while (Scanner.GameIsRunning) {
+                GetZoneId();
                 if (GetPlayerAddress()) {
                     GetPlayerLevel();
                     GetPlayerMasterRank();
@@ -401,7 +402,6 @@ namespace HunterPie.Core {
                     GetParty();
                     GetPlayerAbnormalities();
                 }
-                GetZoneId();
                 GetSessionId();
                 GetEquipmentAddress();
                 Thread.Sleep(Math.Max(50, UserSettings.PlayerConfig.Overlay.GameScanDelay));
@@ -625,6 +625,11 @@ namespace HunterPie.Core {
         }
 
         private void GetPlayerAbnormalities() {
+            if (InHarvestZone)
+            {
+                //Abnormalities.ClearAbnormalities();
+                return;
+            }
             long abnormalityBaseAddress = Scanner.READ_MULTILEVEL_PTR(
                 Address.BASE + Address.ABNORMALITY_OFFSET, Address.Offsets.AbnormalityOffsets);
             GetPlayerHuntingHornAbnormalities(abnormalityBaseAddress);

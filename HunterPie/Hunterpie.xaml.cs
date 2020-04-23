@@ -486,15 +486,17 @@ namespace HunterPie {
             ConsolePanel.Children.Clear();
             ConsolePanel.Children.Add(Changelog.Instance);
         }
-#endregion
+        #endregion
 
         /* Animations */
-        private void SwitchButtonOn(StackPanel buttonActive) {
+        private void SwitchButtonOn(StackPanel buttonActive)
+        {
             Border ButtonBorder = (Border)buttonActive.Children[0];
             ButtonBorder.SetValue(BorderThicknessProperty, new Thickness(4, 0, 0, 0));
         }
 
-        private void SwitchButtonOff(StackPanel buttonActive) {
+        private void SwitchButtonOff(StackPanel buttonActive) 
+        {
             Border ButtonBorder = (Border)buttonActive.Children[0];
             ButtonBorder.SetValue(BorderThicknessProperty, new Thickness(0, 0, 0, 0));
         }
