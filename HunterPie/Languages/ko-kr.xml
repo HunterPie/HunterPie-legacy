@@ -647,8 +647,8 @@
       <String ID="STATIC_ACCEPT" Name="수락"/>
       <String ID="STATIC_REJECT" Name="거절"/>
       <String ID="STATIC_SETTINGS_LOAD" Name="설정 불러옴"/>
-	    <String ID="STATIC_OPENDEFAULTBROWSER" Name="브라우저에서 열기"/>
-      <String ID="MESSAGE_BUILD_UPLOADED" Name="Build uploaded to Honey Hunters World!"/>
+	  <String ID="STATIC_OPENDEFAULTBROWSER" Name="브라우저에서 열기"/>
+      <String ID="MESSAGE_BUILD_UPLOADED" Name="장비 커스텀이 Honey Hunters World에 업로드 되었습니다!"/>
     </Notifications>
     <RichPresence>
       <String ID="RPC_DESCRIPTION_IN_MAIN_MENU" Name="메인 메뉴"/>

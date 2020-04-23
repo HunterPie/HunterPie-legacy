@@ -420,7 +420,7 @@
       <String ID="MESSAGE_DISCORD_DISCONNECTED" Name="Déconnexion à Discord"/>
       <String ID="MESSAGE_DISCORD_JOIN_REQUEST" Name="{Username} demande de rejoindre votre session."/>
       <String ID="MESSAGE_DISCORD_JOINING" Name="Connexion à la session..."/>
-      
+
       <String ID="MESSAGE_MONSTER_DATA_LOAD" Name="Données des monstres chargés"/>
       <String ID="MESSAGE_ABNORMALITIES_DATA_LOAD" Name="Données des effets chargés"/>
       <String ID="MESSAGE_PLAYER_SCANNER_INITIALIZED" Name="Scanner de mémoire du joueur initialisé"/>
@@ -649,7 +649,7 @@
       <String ID="STATIC_REJECT" Name="Rejeter"/>
       <String ID="STATIC_SETTINGS_LOAD" Name="Paramètres chargés"/>
       <String ID="STATIC_OPENDEFAULTBROWSER" Name="Ouvrir dans le navigateur"/>
-      <String ID="MESSAGE_BUILD_UPLOADED" Name="Build uploaded to Honey Hunters World!"/>
+      <String ID="MESSAGE_BUILD_UPLOADED" Name="Build enregistré sur Honey Hunter World !"/>
     </Notifications>
     <RichPresence>
       <String ID="RPC_DESCRIPTION_IN_MAIN_MENU" Name="Dans le Menu Principal"/>
