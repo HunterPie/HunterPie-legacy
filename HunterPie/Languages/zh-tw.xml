@@ -1,5 +1,5 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
-<!--1.0.3.88 update version 1 translate by ThanatosDi-->
+<!--1.0.3.89 update version 1.1 translate by ThanatosDi-->
 <Strings lang="Traditional Chinese">
   <Monsters>
     <Monster ID="em001_00" Name="雌火龍"/>
@@ -586,7 +586,7 @@
       <String ID="STATIC_ABNORM_TAB_HH" Name="狩獵笛效果"/>
       <String ID="STATIC_ABNORM_TAB_ORCHESTRA" Name="激勵樂器"/>
       <String ID="STATIC_ABNORM_TAB_DEBUFF" Name="異常狀態"/>
-      <String ID="STATIC_ABNORM_TAB_GEAR" Name="Gear"/>
+      <String ID="STATIC_ABNORM_TAB_GEAR" Name="裝備技能"/>
       <String ID="STATIC_ABNORM_TAB_CONSUMABLE" Name="消耗品"/>
       <String ID="ENABLE_SHOW_ABNORM_NAMES" Name="顯示異常狀態的名稱"/>
       <String ID="ENABLE_SHOW_ABNORM_NAMES_DESC" Name="如果啟用將會顯示異常狀態的名稱"/>
@@ -626,7 +626,7 @@
       <String ID="STATIC_REQUIRES_RESTART" Name="(必須重新啟動)"/>
       <String ID="STATIC_POSITION" Name="位置"/>
       <String ID="STATIC_COPYCLIPBOARD" Name="複製到剪貼簿"/>
-      <String ID="STATIC_OPACITY" Name="Opacity"/>
+      <String ID="STATIC_OPACITY" Name="文字不透明度"/>
       <!-- Settings Side bar-->
       <String ID="STATIC_GENERAL_SETTINGS" Name="一般"/>
       <String ID="STATIC_DISCORD_SETTINGS" Name="Discord"/>
@@ -648,7 +648,7 @@
       <String ID="STATIC_REJECT" Name="拒絕"/>
       <String ID="STATIC_SETTINGS_LOAD" Name="設置已載入"/>
       <String ID="STATIC_OPENDEFAULTBROWSER" Name="在瀏覽器中打開"/>
-      <String ID="MESSAGE_BUILD_UPLOADED" Name="Build uploaded to Honey Hunters World!"/>
+      <String ID="MESSAGE_BUILD_UPLOADED" Name="裝備配置上傳到Honey Hunters World！"/>
     </Notifications>
     <RichPresence>
       <String ID="RPC_DESCRIPTION_IN_MAIN_MENU" Name="在主選單"/>

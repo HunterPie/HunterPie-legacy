@@ -4,7 +4,7 @@
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              xmlns:local="clr-namespace:HunterPie.GUIControls.Custom_Controls"
-             mc:Ignorable="d" Height="30" MouseDown="Switcher_OnClick" Cursor="Hand" Background="#00000000"
+             mc:Ignorable="d" Height="30" Cursor="Hand" MouseLeftButtonDown="OnClick" Background="#00000000"
              DataContext="{StaticResource Localization}"
              >
     <UserControl.Resources>
@@ -49,12 +49,44 @@
         </EventTrigger>
     </UserControl.Triggers>
     <DockPanel>
-        <TextBlock x:Name="Info" Text="{Binding Path=Text, ElementName=switch}" Padding="0,1,3,0" Foreground="White" TextAlignment="Left" HorizontalAlignment="Left" FontSize="16" FontFamily="Segoe UI Light"/>
+        <TextBlock Text="{Binding Path=Text, ElementName=switch, Mode=OneWay}" Padding="0,1,3,0" Foreground="White" TextAlignment="Left" HorizontalAlignment="Left" FontSize="16" FontFamily="Segoe UI Light"/>
         <Grid DockPanel.Dock="Right">
-            <Rectangle x:Name="SwitchBackground" Fill="#FF151515" RadiusY="13.333" RadiusX="13.333" StrokeThickness="0" ClipToBounds="True" SnapsToDevicePixels="True" HorizontalAlignment="Left" Width="50" Height="24" VerticalAlignment="Top"/>
-            <Ellipse x:Name="SwitchCircle" Margin="2,2,0,0" Fill="#FF252525" StrokeThickness="0" SnapsToDevicePixels="True" HorizontalAlignment="Left" Width="19" Height="19" VerticalAlignment="Top"/>
+            <Rectangle Fill="#FF151515" RadiusY="13.333" RadiusX="13.333" StrokeThickness="0" ClipToBounds="True" SnapsToDevicePixels="True" HorizontalAlignment="Left" Width="50" Height="24" VerticalAlignment="Top">
+                <Rectangle.Style>
+                    <Style TargetType="Rectangle">
+                        <Style.Triggers>
+                            <DataTrigger Binding="{Binding Path=IsEnabled, ElementName=switch}" Value="True">
+                                <DataTrigger.EnterActions>
+                                    <BeginStoryboard Storyboard="{StaticResource BackgroundOn}"/>
+                                </DataTrigger.EnterActions>
+                                <DataTrigger.ExitActions>
+                                    <BeginStoryboard Storyboard="{StaticResource BackgroundOff}"/>
+                                </DataTrigger.ExitActions>
+                            </DataTrigger>
+                        </Style.Triggers>
+                    </Style>
+                </Rectangle.Style>
+            </Rectangle>
+            <Ellipse Margin="2,2,0,0" Fill="#FF252525" StrokeThickness="0" SnapsToDevicePixels="True" HorizontalAlignment="Left" Width="19" Height="19" VerticalAlignment="Top">
+                <Ellipse.Style>
+                    <Style TargetType="Ellipse">
+                        <Style.Triggers>
+                            <DataTrigger Binding="{Binding Path=IsEnabled, ElementName=switch}" Value="True">
+                                <DataTrigger.EnterActions>
+                                    <BeginStoryboard Storyboard="{StaticResource ForegroundOn}"/>
+                                    <BeginStoryboard Storyboard="{StaticResource SwitchEllipseOn}"/>
+                                </DataTrigger.EnterActions>
+                                <DataTrigger.ExitActions>
+                                    <BeginStoryboard Storyboard="{StaticResource ForegroundOff}"/>
+                                    <BeginStoryboard Storyboard="{StaticResource SwitchEllipseOff}"/>
+                                </DataTrigger.ExitActions>
+                            </DataTrigger>
+                        </Style.Triggers>
+                    </Style>
+                </Ellipse.Style>
+            </Ellipse>
         </Grid>
 
-        <TextBlock x:Name="RestartWarning" Text="{Binding XPath=/Strings/Client/Settings/String[@ID\=\'STATIC_REQUIRES_RESTART\']/@Name}" Visibility="Collapsed" Padding="0,9,3,0" Foreground="White" TextAlignment="Left" HorizontalAlignment="Left" FontSize="10" FontFamily="Segoe UI Light"/>
+        <TextBlock Text="{Binding XPath=/Strings/Client/Settings/String[@ID\=\'STATIC_REQUIRES_RESTART\']/@Name, Mode=OneTime}" Visibility="{Binding ElementName=switch, Path=RestartVisibility}" Padding="0,9,3,0" Foreground="White" TextAlignment="Left" HorizontalAlignment="Left" FontSize="10" FontFamily="Segoe UI Light"/>
     </DockPanel>
 </UserControl>

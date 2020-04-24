@@ -15,52 +15,6 @@
                 <ResourceDictionary Source="/Resources/ConsoleResources.xaml"/>
                 <ResourceDictionary Source="/Resources/Resources.xaml"/>
             </ResourceDictionary.MergedDictionaries>
-            <Style x:Key="ButtonStyle" TargetType="{x:Type Button}">
-                <Setter Property="Foreground" Value="{DynamicResource {x:Static SystemColors.ControlTextBrushKey}}"/>
-                <Setter Property="BorderThickness" Value="1"/>
-                <Setter Property="HorizontalContentAlignment" Value="Center"/>
-                <Setter Property="VerticalContentAlignment" Value="Center"/>
-                <Setter Property="Padding" Value="1"/>
-                <Setter Property="Template">
-                    <Setter.Value>
-                        <ControlTemplate TargetType="{x:Type Button}">
-                            <Border x:Name="border" BorderBrush="{TemplateBinding BorderBrush}" BorderThickness="{TemplateBinding BorderThickness}" Background="{TemplateBinding Background}" SnapsToDevicePixels="true">
-                                <ContentPresenter x:Name="contentPresenter" Focusable="False" HorizontalAlignment="{TemplateBinding HorizontalContentAlignment}" Margin="{TemplateBinding Padding}" RecognizesAccessKey="True" SnapsToDevicePixels="{TemplateBinding SnapsToDevicePixels}" VerticalAlignment="{TemplateBinding VerticalContentAlignment}"/>
-                            </Border>
-                            <ControlTemplate.Triggers>
-                                <Trigger Property="IsDefaulted" Value="true">
-                                    <Setter Property="BorderBrush" TargetName="border" Value="{DynamicResource {x:Static SystemColors.HighlightBrushKey}}"/>
-                                </Trigger>
-                                <Trigger Property="IsMouseOver" Value="true">
-                                    <Trigger.EnterActions>
-                                        <BeginStoryboard>
-                                            <Storyboard Storyboard.TargetProperty="(Background).(SolidColorBrush.Color)">
-                                                <ColorAnimation To="#FFAA0D0D" Duration="0:0:0.250" />
-                                            </Storyboard>
-                                        </BeginStoryboard>
-                                    </Trigger.EnterActions>
-                                    <Trigger.ExitActions>
-                                        <BeginStoryboard>
-                                            <Storyboard Storyboard.TargetProperty="(Background).(SolidColorBrush.Color)">
-                                                <ColorAnimation To="#FFD62424" Duration="0:0:0.250" />
-                                            </Storyboard>
-                                        </BeginStoryboard>
-                                    </Trigger.ExitActions>
-                                </Trigger>
-                                <Trigger Property="IsPressed" Value="true">
-                                    <Setter Property="Background" TargetName="border" Value="#FF930505"/>
-                                    <Setter Property="BorderBrush" TargetName="border" Value="#FF171717"/>
-                                </Trigger>
-                            </ControlTemplate.Triggers>
-                        </ControlTemplate>
-                    </Setter.Value>
-                </Setter>
-            </Style>
-            <Style TargetType="{x:Type ToolTip}">
-                <Setter Property="Foreground" Value="WhiteSmoke"/>
-                <Setter Property="Background" Value="#CC080808"/>
-                <Setter Property="BorderBrush" Value="Black"/>
-            </Style>
             <Style TargetType="{x:Type TabItem}">
                 <Setter Property="Background" Value="#171717"/>
                 <Setter Property="Foreground" Value="#FF9C9C9C"/>
@@ -135,7 +89,7 @@
             <TabItem>
                 <TabItem.Header>
                     <Canvas Width="115" Margin="0,4,0,0">
-                        <Image Source="{StaticResource ICON_BUILD}" Width="15" Height="15"/>
+                       <Image Source="{StaticResource ICON_BUILD}" Width="15" Height="15"/>
                         <TextBlock Text="{Binding XPath=/Strings/Client/Settings/String[@ID\=\'STATIC_ABNORM_TAB_GEAR\']/@Name}" Margin="16,-4,0,0"/>
                     </Canvas>
                 </TabItem.Header>
@@ -147,19 +101,19 @@
 
         <!-- Options -->
         <StackPanel Margin="5,32,0,0" HorizontalAlignment="Left" Width="393">
-            <Custom:Switcher x:Name="EnableName" VerticalAlignment="Top" Height="30" HorizontalAlignment="Left" Text="{Binding XPath=/Strings/Client/Settings/String[@ID\=\'ENABLE_SHOW_ABNORM_NAMES\']/@Name}" MinWidth="330" ToolTip="{Binding XPath=/Strings/Client/Settings/String[@ID\=\'ENABLE_SHOW_ABNORM_NAMES_DESC\']/@Name}" RequiresRestart="True"/>
-            <Custom:Switcher x:Name="OrientationSwitcher" VerticalAlignment="Top" Height="30" HorizontalAlignment="Left" Text="{Binding XPath=/Strings/Client/Settings/String[@ID\=\'ENABLE_ALLIGN_ABNORM_BAR_HORIZONTALLY\']/@Name}" MinWidth="330" ToolTip="{Binding XPath=/Strings/Client/Settings/String[@ID\=\'ENABLE_ALLIGN_ABNORM_BAR_HORIZONTALLY_DESC\']/@Name}" />
-            <Custom:Switcher x:Name="EnableTimeLeftSwitcher" RequiresRestart="True" VerticalAlignment="Top" Height="30" HorizontalAlignment="Left" Text="{Binding XPath=/Strings/Client/Settings/String[@ID\=\'ENABLE_ABNORM_BAR_TIME_LEFT\']/@Name}" MinWidth="330" ToolTip="{Binding XPath=/Strings/Client/Settings/String[@ID\=\'ENABLE_ABNORM_BAR_TIME_LEFT_DESC\']/@Name}"/>
+            <Custom:Switcher x:Name="EnableName" VerticalAlignment="Top" Height="30" HorizontalAlignment="Left" Text="{Binding XPath=/Strings/Client/Settings/String[@ID\=\'ENABLE_SHOW_ABNORM_NAMES\']/@Name}" MinWidth="330" ToolTip="{Binding XPath=/Strings/Client/Settings/String[@ID\=\'ENABLE_SHOW_ABNORM_NAMES_DESC\']/@Name}" RestartVisibility="Visible"/>
+            <Custom:Switcher x:Name="OrientationSwitcher" VerticalAlignment="Top" Height="30" HorizontalAlignment="Left" Text="{Binding XPath=/Strings/Client/Settings/String[@ID\=\'ENABLE_ALLIGN_ABNORM_BAR_HORIZONTALLY\']/@Name}" MinWidth="330" ToolTip="{Binding XPath=/Strings/Client/Settings/String[@ID\=\'ENABLE_ALLIGN_ABNORM_BAR_HORIZONTALLY_DESC\']/@Name}" RestartVisibility="Collapsed"/>
+            <Custom:Switcher x:Name="EnableTimeLeftSwitcher" RestartVisibility="Visible" VerticalAlignment="Top" Height="30" HorizontalAlignment="Left" Text="{Binding XPath=/Strings/Client/Settings/String[@ID\=\'ENABLE_ABNORM_BAR_TIME_LEFT\']/@Name}" MinWidth="330" ToolTip="{Binding XPath=/Strings/Client/Settings/String[@ID\=\'ENABLE_ABNORM_BAR_TIME_LEFT_DESC\']/@Name}"/>
             <StackPanel Height="37" Orientation="Horizontal" HorizontalAlignment="Left" VerticalAlignment="Top">
-                <TextBlock HorizontalAlignment="Left" TextWrapping="Wrap" FontSize="15" Text="{Binding XPath=/Strings/Client/Settings/String[@ID\=\'STATIC_TIMER_TEXT_FORMAT\']/@Name}" Foreground="WhiteSmoke" VerticalAlignment="Top" Height="24" FontWeight="SemiBold" FontFamily="Segoe UI Light"/>
+                <TextBlock HorizontalAlignment="Left" TextWrapping="Wrap" FontSize="15" Text="{Binding XPath=/Strings/Client/Settings/String[@ID\=\'STATIC_TIMER_TEXT_FORMAT\']/@Name, Mode=OneTime}" Foreground="WhiteSmoke" VerticalAlignment="Top" Height="24" FontWeight="SemiBold" FontFamily="Segoe UI Light"/>
                 <ComboBox  x:Name="TimerTextFormatBox" Cursor="Hand" HorizontalAlignment="Left" VerticalAlignment="Top" Width="167" Style="{StaticResource ComboBoxFlatStyle}" IsReadOnly="True" SelectedIndex="0" Foreground="#FFEEEEEE" FontSize="14">
                     <System:String>MM:SS (e.g: 5:30)</System:String>
                     <System:String>MMmSSs (e.g: 5m30s)</System:String>
                 </ComboBox>
-                <TextBlock HorizontalAlignment="Left" TextWrapping="Wrap" FontSize="12" Text="{Binding XPath=/Strings/Client/Settings/String[@ID\=\'STATIC_REQUIRES_RESTART\']/@Name}" Foreground="WhiteSmoke" VerticalAlignment="Top" Height="35" FontWeight="Light" Width="83"/>
+                <TextBlock HorizontalAlignment="Left" TextWrapping="Wrap" FontSize="12" Text="{Binding XPath=/Strings/Client/Settings/String[@ID\=\'STATIC_REQUIRES_RESTART\']/@Name, Mode=OneTime}" Foreground="WhiteSmoke" VerticalAlignment="Top" Height="35" FontWeight="Light" Width="83"/>
             </StackPanel>
             <StackPanel Orientation="Horizontal" Height="24" ToolTip="{Binding XPath=/Strings/Client/Settings/String[@ID\=\'STATIC_BACKGROUND_OPACITY_DESC\']/@Name}" HorizontalAlignment="Left" Width="380" VerticalAlignment="Top">
-                <TextBlock HorizontalAlignment="Left" Padding="0,0,5,0" TextWrapping="Wrap" FontSize="15" Text="{Binding XPath=/Strings/Client/Settings/String[@ID\=\'STATIC_BACKGROUND_OPACITY\']/@Name}" Foreground="WhiteSmoke" VerticalAlignment="Top" Height="24" FontWeight="SemiBold" FontFamily="Segoe UI Light"/>
+                <TextBlock HorizontalAlignment="Left" Padding="0,0,5,0" TextWrapping="Wrap" FontSize="15" Text="{Binding XPath=/Strings/Client/Settings/String[@ID\=\'STATIC_BACKGROUND_OPACITY\']/@Name, Mode=OneTime}" Foreground="WhiteSmoke" VerticalAlignment="Top" Height="24" FontWeight="SemiBold" FontFamily="Segoe UI Light"/>
                 <Slider x:Name="BackgroundOpacitySlider" Style="{StaticResource Horizontal_Slider}" HorizontalAlignment="Left" VerticalAlignment="Top" Height="24" Width="182" Maximum="1" LargeChange="0.1" TickFrequency="0.1" TickPlacement="TopLeft" Value="0.4"/>
                 <TextBlock HorizontalAlignment="Left" TextWrapping="Wrap" FontSize="15" Text="{Binding Value, ElementName=BackgroundOpacitySlider, StringFormat=\{0:P\}}" Foreground="WhiteSmoke" VerticalAlignment="Top" Height="24" FontWeight="SemiBold" FontFamily="Segoe UI Light" TextAlignment="Center" Width="66"/>
             </StackPanel>

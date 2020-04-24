@@ -18,7 +18,6 @@ namespace HunterPie.GUI.Widgets.Abnormality_Widget {
         Player Context;
         public int AbnormalityTrayIndex;
         private int MaxSize;
-        private UserSettings.Config.AbnormalityBar preset;
 
         public AbnormalityContainer(Player context, int TrayIndex) {
             InitializeComponent();
@@ -26,7 +25,6 @@ namespace HunterPie.GUI.Widgets.Abnormality_Widget {
             BaseHeight = Height;
             WidgetType = 5;
             AbnormalityTrayIndex = TrayIndex;
-            preset = UserSettings.PlayerConfig.Overlay.AbnormalitiesWidget.BarPresets[AbnormalityTrayIndex];
             ApplySettings();
             SetWindowFlags();
             SetContext(context);
@@ -38,7 +36,8 @@ namespace HunterPie.GUI.Widgets.Abnormality_Widget {
                 return;
             }
             Dispatcher.BeginInvoke(System.Windows.Threading.DispatcherPriority.Background, new Action(() => {
-                if (!FocusTrigger) {
+                UserSettings.Config.AbnormalityBar preset = UserSettings.PlayerConfig.Overlay.AbnormalitiesWidget.BarPresets[AbnormalityTrayIndex];
+                if (!FocusTrigger) {                    
                     this.WidgetActive = preset.Enabled;
                     this.Top = preset.Position[1] + UserSettings.PlayerConfig.Overlay.Position[1];
                     this.Left = preset.Position[0] + UserSettings.PlayerConfig.Overlay.Position[0];
@@ -72,6 +71,7 @@ namespace HunterPie.GUI.Widgets.Abnormality_Widget {
                 this.Close();
                 return;
             }
+            UserSettings.Config.AbnormalityBar preset = UserSettings.PlayerConfig.Overlay.AbnormalitiesWidget.BarPresets[AbnormalityTrayIndex];
             preset.Position[0] = (int)Left - UserSettings.PlayerConfig.Overlay.Position[0];
             preset.Position[1] = (int)Top - UserSettings.PlayerConfig.Overlay.Position[1];
             preset.MaxSize = this.MaxSize;
@@ -129,6 +129,7 @@ namespace HunterPie.GUI.Widgets.Abnormality_Widget {
         }
 
         private void OnPlayerNewAbnormality(object source, AbnormalityEventArgs args) {
+            UserSettings.Config.AbnormalityBar preset = UserSettings.PlayerConfig.Overlay.AbnormalitiesWidget.BarPresets[AbnormalityTrayIndex];
             // Ignore abnormalities that aren't enabled for this tray
             if (!preset.AcceptedAbnormalities.Contains(args.Abnormality.InternalID)) return;
             Dispatcher.BeginInvoke(System.Windows.Threading.DispatcherPriority.Loaded, new Action(() => {
@@ -191,6 +192,7 @@ namespace HunterPie.GUI.Widgets.Abnormality_Widget {
 
         private void OnMouseDown(object sender, MouseButtonEventArgs e) {
             if (e.LeftButton == MouseButtonState.Pressed) {
+                UserSettings.Config.AbnormalityBar preset = UserSettings.PlayerConfig.Overlay.AbnormalitiesWidget.BarPresets[AbnormalityTrayIndex];
                 this.ResizeMode = ResizeMode.NoResize;
                 this.MoveWidget();
                 preset.Position[0] = (int)Left - UserSettings.PlayerConfig.Overlay.Position[0];
@@ -231,7 +233,7 @@ namespace HunterPie.GUI.Widgets.Abnormality_Widget {
 
         private void OnSettingsButtonClick(object sender, MouseButtonEventArgs e) {
             if (this.AbnormalityWidgetSettings == null || this.AbnormalityWidgetSettings.IsClosed) {
-                AbnormalityWidgetSettings = new AbnormalityTraySettings(this, this.AbnormalityTrayIndex);
+                AbnormalityWidgetSettings = new AbnormalityTraySettings(this.AbnormalityTrayIndex);
                 AbnormalityWidgetSettings.Show();
             }
         }
