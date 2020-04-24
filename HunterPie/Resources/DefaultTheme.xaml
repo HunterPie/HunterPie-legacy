@@ -110,7 +110,7 @@
         <Setter Property="FontSize" Value="12"/>
     </Style>
 
-    <Style x:Key="OVERLAY_MONSTER_PART_COUNTER_BACKGROUND_STYLE" TargetType="Rectangle">
+    <Style x:Key="OVERLAY_MONSTER_PART_COUNTER_BACKGROUND_STYLE" TargetType="{x:Type Shape}">
         <Setter Property="Fill" Value="#FFB9B9B9"/>
         <Setter Property="Stroke" Value="#CC0E0E0E"/>
         <Setter Property="StrokeThickness" Value="0.5"/>
@@ -127,11 +127,6 @@
         </Setter>
         <Setter Property="FontWeight" Value="SemiBold"/>
         <Setter Property="FontSize" Value="14"/>
-        <Setter Property="Effect">
-            <Setter.Value>
-                <DropShadowEffect BlurRadius="0" ShadowDepth="1" Color="#FF2E2E2E"/>
-            </Setter.Value>
-        </Setter>
     </Style>
 
     <!-- Console -->
