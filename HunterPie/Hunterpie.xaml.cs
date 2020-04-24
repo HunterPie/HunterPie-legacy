@@ -513,6 +513,17 @@ namespace HunterPie {
         }
 
         private void OnWindowDrag(object sender, MouseButtonEventArgs e) {
+            if (WindowState == WindowState.Maximized)
+            {
+                var point = PointToScreen(e.MouseDevice.GetPosition(this));
+
+                if (point.X <= RestoreBounds.Width / 2) Left = 0;
+                else if (point.X >= RestoreBounds.Width) Left = point.X - (RestoreBounds.Width - (ActualWidth - point.X));
+                else { Left = point.X - (RestoreBounds.Width / 2); }
+
+                Top = point.Y - (((FrameworkElement)sender).ActualWidth / 2);
+                WindowState = WindowState.Normal;
+            }
             // When top bar is held by LMB
             this.DragMove();
         }
@@ -616,8 +627,8 @@ namespace HunterPie {
 
         private void OnWindowSizeChange(object sender, SizeChangedEventArgs e)
         {
-            UserSettings.PlayerConfig.HunterPie.Width = (float)Width;
-            UserSettings.PlayerConfig.HunterPie.Height = (float)Height;
+            UserSettings.PlayerConfig.HunterPie.Width = (float)e.NewSize.Width;
+            UserSettings.PlayerConfig.HunterPie.Height = (float)e.NewSize.Height;
         }
 
         #endregion
