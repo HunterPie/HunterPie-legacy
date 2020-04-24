@@ -627,7 +627,7 @@ namespace HunterPie.Core {
         private void GetPlayerAbnormalities() {
             if (InHarvestZone)
             {
-                //Abnormalities.ClearAbnormalities();
+                Abnormalities.ClearAbnormalities();
                 return;
             }
             long abnormalityBaseAddress = Scanner.READ_MULTILEVEL_PTR(
