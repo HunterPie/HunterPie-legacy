@@ -99,9 +99,15 @@ namespace HunterPie.Core {
                     IsRemovable = bool.Parse(partData.Attributes["IsRemovable"]?.Value ?? "false"),
                     GroupId = partData.Attributes["Group"]?.Value ?? "MISC"
                 };
+
+                XmlNodeList breaks = partData.SelectNodes("Break");
+                pInfo.BreakThresholds = breaks != null
+                    ? breaks.Cast<XmlNode>().Select(b => int.Parse(b.Attributes["Threshold"].Value)).ToArray()
+                    : Array.Empty<int>();
+
                 parts.Add(pInfo);
             }
-            
+
             return parts.ToArray();
         }
 

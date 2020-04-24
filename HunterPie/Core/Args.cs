@@ -23,9 +23,9 @@ namespace HunterPie.Core {
     public class DaysLeftEventArgs : EventArgs {
         public byte Days;
         // Generic name
-        // Argosy 
+        // Argosy
         // Tailraiders means
-        public bool Modifier; 
+        public bool Modifier;
 
         public DaysLeftEventArgs(byte Days, bool Modifier = false) {
             this.Days = Days;
@@ -36,7 +36,7 @@ namespace HunterPie.Core {
     public class KeyboardInputEventArgs : EventArgs {
         public int Key { get; private set; }
         public KeyboardHookHelper.KeyboardMessage KeyMessage { get; private set; }
-        
+
         public KeyboardInputEventArgs(int KeyCode, KeyboardHookHelper.KeyboardMessage Message) {
             this.Key = KeyCode;
             this.KeyMessage = Message;
@@ -102,21 +102,18 @@ namespace HunterPie.Core {
     }
 
 
-    public class MonsterPartEventArgs : EventArgs {
-        public string Name;
-        public int ID;
-        public float Health;
-        public float TotalHealth;
-        public byte BrokenCounter;
-
-        public MonsterPartEventArgs(Part mPart) {
-            this.Name = mPart.Name;
-            this.ID = mPart.Id;
-            this.Health = mPart.Health;
-            this.TotalHealth = mPart.TotalHealth;
-            this.BrokenCounter = mPart.BrokenCounter;
+    public class MonsterPartEventArgs : EventArgs
+    {
+        public MonsterPartEventArgs(Part part)
+        {
+            Health = part.Health;
+            TotalHealth = part.TotalHealth;
+            BrokenCounter = part.BrokenCounter;
         }
 
+        public float Health { get; }
+        public float TotalHealth { get; }
+        public byte BrokenCounter { get; }
     }
 
     public class MonsterSpawnEventArgs : EventArgs {
@@ -138,7 +135,7 @@ namespace HunterPie.Core {
             this.Weaknesses = m.Weaknesses;
         }
     }
-    
+
     public class MonsterUpdateEventArgs : EventArgs {
         public float CurrentHP;
         public float TotalHP;

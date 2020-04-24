@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Threading;
 using System.Linq;
+using HunterPie.Core.Monsters;
 using HunterPie.Memory;
 using HunterPie.Logger;
 
@@ -16,14 +17,15 @@ namespace HunterPie.Core {
         private int _IsSelect; //0 = None, 1 = This, 2 = Other
         private float _enrageTimer = 0;
         private float _SizeMultiplier;
-        
+
         private Int64 MonsterAddress;
         public int MonsterNumber { get; private set; }
 
         // Monster basic info
-        public string Name {
-            get { return GStrings.GetMonsterNameByID(Id); }
-        }
+        public string Name => GStrings.GetMonsterNameByID(Id);
+
+        private MonsterInfo MonsterInfo => MonsterData.MonstersInfo[GameId];
+
         public string Id {
             get => _id;
             set {
@@ -33,12 +35,12 @@ namespace HunterPie.Core {
                         // Static stuff that can be scanned only once
                         GetMonsterWeaknesses();
                         this.IsAlive = true;
-                        CreateMonsterParts(MonsterData.MonstersInfo[GameId].MaxParts);
+                        CreateMonsterParts(MonsterInfo.MaxParts);
                         GetMonsterParts();
                         Ailments.Clear();
                         GetMonsterAilments();
                         GetMonsterSizeModifier();
-                        CaptureThreshold = MonsterData.MonstersInfo[GameId].Capture;
+                        CaptureThreshold = MonsterInfo.Capture;
                         // Only call this if monster is actually alive
                         IsActuallyAlive = true;
                         _onMonsterSpawn();
@@ -66,7 +68,7 @@ namespace HunterPie.Core {
             }
         }
         public string Crown {
-            get { return  MonsterData.MonstersInfo[GameId].GetCrownByMultiplier(SizeMultiplier); }
+            get { return  MonsterInfo.GetCrownByMultiplier(SizeMultiplier); }
         }
         public float TotalHP { get; private set; }
         public float CurrentHP {
@@ -158,7 +160,7 @@ namespace HunterPie.Core {
         public event MonsterEnrageEvents OnUnenrage;
         public event MonsterEnrageEvents OnEnrageTimerUpdate;
         public event MonsterEvents OnCrownChange;
-        
+
 
         protected virtual void _onMonsterSpawn() {
             MonsterSpawnEventArgs args = new MonsterSpawnEventArgs(this);
@@ -298,7 +300,7 @@ namespace HunterPie.Core {
 
                     GameId = Scanner.READ_INT(MonsterAddress + Address.Offsets.MonsterGameIDOffset);
 
-                    MonsterId = MonsterData.MonstersInfo[GameId].Em;
+                    MonsterId = MonsterInfo.Em;
 
                     if (MonsterId != Id && CurrentHP > 0) Debugger.Debug($"Found new monster ID: {Scanner.READ_STRING(NamePtr + 0x0c, 64).Replace("\x00", "")} #{MonsterNumber} @ 0x{MonsterAddress:X}");
                     Id = MonsterId;
@@ -317,7 +319,7 @@ namespace HunterPie.Core {
         }
 
         private void GetMonsterWeaknesses() {
-            Weaknesses = MonsterData.MonstersInfo[GameId].Weaknesses.ToDictionary(w => w.Id, w => w.Stars);
+            Weaknesses = MonsterInfo.Weaknesses.ToDictionary(w => w.Id, w => w.Stars);
         }
 
         private void GetMonsterEnrageTimer() {
@@ -345,77 +347,89 @@ namespace HunterPie.Core {
         private void CreateMonsterParts(int numberOfParts) {
             Parts.Clear();
             for (int i = 0; i < numberOfParts; i++) {
-                Part mPart = new Part();
-                Parts.Add(mPart);
+                Part part = new Part(MonsterInfo, MonsterInfo.Parts[i], i);
+                Parts.Add(part);
             }
         }
 
-        private void GetMonsterParts() {
+        private void GetMonsterParts()
+        {
             if (!this.IsAlive) return;
-            Int64 MonsterPartAddress = MonsterAddress + Address.Offsets.MonsterPartsOffset + Address.Offsets.FirstMonsterPartOffset;
-            int nMaxParts = MonsterData.MonstersInfo[GameId].MaxParts;
-            int nRemovableParts = MonsterData.MonstersInfo[GameId].MaxRemovableParts;
+            long monsterPartAddress = MonsterAddress + Address.Offsets.MonsterPartsOffset + Address.Offsets.FirstMonsterPartOffset;
+            int partsCount = MonsterInfo.MaxParts;
+            int nRemovableParts = MonsterInfo.MaxRemovableParts;
             byte TimesBroken;
             float Health;
             float MaxHealth;
-            Int64 RemovablePartAddress = MonsterAddress + Address.Offsets.RemovablePartsOffset;
 
-            for (int PartID = 0; PartID < nMaxParts; PartID++) {
-                if (MonsterData.MonstersInfo[GameId].Parts[PartID].IsRemovable) {
-                    
-                    if (Parts.Count > PartID && Parts[PartID].PartAddress > 0) {
+            for (int partId = 0; partId < partsCount; partId++)
+            {
+                Part part = Parts[partId];
+                PartInfo partInfo = MonsterInfo.Parts[partId];
+                if (partInfo.IsRemovable)
+                {
 
-                        TimesBroken = Scanner.READ_BYTE(Parts[PartID].PartAddress + 0x18);
-                        MaxHealth = Scanner.READ_FLOAT(Parts[PartID].PartAddress + 0x10);
-                        Health = Scanner.READ_FLOAT(Parts[PartID].PartAddress + 0x0C);
+                    if (part.PartAddress > 0)
+                    {
+                        TimesBroken = Scanner.READ_BYTE(part.PartAddress + 0x18);
+                        MaxHealth = Scanner.READ_FLOAT(part.PartAddress + 0x10);
+                        Health = Scanner.READ_FLOAT(part.PartAddress + 0x0C);
 
-                        Parts[PartID].SetPartInfo(GameId, PartID, TimesBroken, MaxHealth, Health);
-                    } else {
-                        for (int RemovablePartIndex = 0; RemovablePartIndex < 32; RemovablePartIndex++) {
-                            if (Scanner.READ_INT(RemovablePartAddress) <= 10) {
-                                RemovablePartAddress += 8;
+                        part.SetPartInfo(TimesBroken, MaxHealth, Health);
+                    }
+                    else
+                    {
+                        Int64 removablePartAddress = MonsterAddress + Address.Offsets.RemovablePartsOffset;
+                        for (int removablePartIndex = 0; removablePartIndex < 32; removablePartIndex++)
+                        {
+                            if (Scanner.READ_INT(removablePartAddress) <= 10)
+                            {
+                                removablePartAddress += 8;
                             }
 
-                            bool IsAValidPart = Scanner.READ_INT(RemovablePartAddress + 0x6C) < nRemovableParts;
+                            bool IsAValidPart = Scanner.READ_INT(removablePartAddress + 0x6C) < nRemovableParts;
 
-                            if (IsAValidPart && Scanner.READ_INT(RemovablePartAddress + 0x0C) > 0) {
-                                TimesBroken = Scanner.READ_BYTE(RemovablePartAddress + 0x18);
-                                MaxHealth = Scanner.READ_FLOAT(RemovablePartAddress + 0x10);
-                                Health = Scanner.READ_FLOAT(RemovablePartAddress + 0x0C);
+                            if (IsAValidPart && Scanner.READ_INT(removablePartAddress + 0x0C) > 0)
+                            {
+                                TimesBroken = Scanner.READ_BYTE(removablePartAddress + 0x18);
+                                MaxHealth = Scanner.READ_FLOAT(removablePartAddress + 0x10);
+                                Health = Scanner.READ_FLOAT(removablePartAddress + 0x0C);
 
-                                Parts[PartID].SetPartInfo(GameId, PartID, TimesBroken, MaxHealth, Health);
-                                Parts[PartID].PartAddress = RemovablePartAddress;
-                                Parts[PartID].IsRemovable = true;
+                                part.SetPartInfo(TimesBroken, MaxHealth, Health);
+                                part.PartAddress = removablePartAddress;
+                                part.IsRemovable = true;
 
                                 // Some monsters have the same removable part value in the next removable part struct
                                 // so we skip the ones with the same values.
-                                while (Scanner.READ_FLOAT(RemovablePartAddress + 0x78 + 0x0C) == Health && Scanner.READ_FLOAT(RemovablePartAddress + 0x78 + 0x10) == MaxHealth && Scanner.READ_INT(RemovablePartAddress + 0x78 + 0x8) == Scanner.READ_INT(RemovablePartAddress+ 0x8)) {
-                                    RemovablePartAddress += Address.Offsets.NextRemovablePart;
+                                while (
+                                    Scanner.READ_FLOAT(removablePartAddress + Address.Offsets.NextRemovablePart + 0x0C) == Health &&
+                                    Scanner.READ_FLOAT(removablePartAddress + Address.Offsets.NextRemovablePart + 0x10) == MaxHealth &&
+                                    Scanner.READ_INT(removablePartAddress + Address.Offsets.NextRemovablePart + 0x8) == Scanner.READ_INT(removablePartAddress + 0x8))
+                                {
+                                    removablePartAddress += Address.Offsets.NextRemovablePart;
                                 }
 
-                                RemovablePartAddress += Address.Offsets.NextRemovablePart;
+                                removablePartAddress += Address.Offsets.NextRemovablePart;
                                 break;
                             }
 
-                            RemovablePartAddress += Address.Offsets.NextRemovablePart;
-                            continue;
+                            removablePartAddress += Address.Offsets.NextRemovablePart;
                         }
                     }
                     continue;
                 }
 
-                TimesBroken = Scanner.READ_BYTE(MonsterPartAddress + Address.Offsets.MonsterPartBrokenCounterOffset);
-                MaxHealth = Scanner.READ_FLOAT(MonsterPartAddress + 0x4); // Total health is 4 bytes ahead
-                Health = Scanner.READ_FLOAT(MonsterPartAddress); 
+                TimesBroken = Scanner.READ_BYTE(monsterPartAddress + Address.Offsets.MonsterPartBrokenCounterOffset);
+                MaxHealth = Scanner.READ_FLOAT(monsterPartAddress + 0x4); // Total health is 4 bytes ahead
+                Health = Scanner.READ_FLOAT(monsterPartAddress);
 
-                Parts[PartID].SetPartInfo(GameId, PartID, TimesBroken, MaxHealth, Health);
+                part.SetPartInfo(TimesBroken, MaxHealth, Health);
 
-                if (Parts[PartID].Group == null) Parts[PartID].Group = MonsterData.MonstersInfo[GameId].Parts[PartID].GroupId;
-                MonsterPartAddress += Address.Offsets.NextMonsterPartOffset;
-                
+                if (part.Group == null) part.Group = partInfo.GroupId;
+                monsterPartAddress += Address.Offsets.NextMonsterPartOffset;
             }
         }
-        
+
         private void GetMonsterStamina() {
             if (!IsAlive) return;
             Int64 MonsterStaminaAddress = MonsterAddress + 0x1C0F0;
@@ -430,7 +444,7 @@ namespace HunterPie.Core {
                 foreach (Ailment status in Ailments)
                 {
                     if (status.Address == 0) continue;
-                    
+
                     float maxBuildup = Math.Max(0, Scanner.READ_FLOAT(status.Address + 0x1C8));
                     float currentBuildup = Math.Max(0, Scanner.READ_FLOAT(status.Address + 0x1B8));
                     float maxDuration = Math.Max(0, Scanner.READ_FLOAT(status.Address + 0x19C));
@@ -479,7 +493,7 @@ namespace HunterPie.Core {
                             float maxDuration = Math.Max(0, Scanner.READ_FLOAT(StatusPtr + 0x19C));
                             float currentDuration = Math.Max(0, Scanner.READ_FLOAT(StatusPtr + 0x1F8));
                             byte counter = Scanner.READ_BYTE(StatusPtr + 0x200);
-                            
+
                             Ailment mAilment = new Ailment {
                                 Address = StatusPtr
                             };

@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Linq;
+using System.Windows;
 using System.Windows.Controls;
 using Timer = System.Threading.Timer;
 using HunterPie.Core;
@@ -9,30 +10,33 @@ namespace HunterPie.GUI.Widgets.Monster_Widget.Parts {
     /// Interaction logic for MonsterPart.xaml
     /// </summary>
     public partial class MonsterPart : UserControl {
-        Part Context;
-        Timer VisibilityTimer;
+        private Part context;
+        private Timer visibilityTimer;
 
         public MonsterPart() {
             InitializeComponent();
         }
 
+        private static UserSettings.Config.Monsterscomponent ComponentSettings =>
+            UserSettings.PlayerConfig.Overlay.MonstersComponent;
+
         public void SetContext(Part ctx, double MaxHealthBarSize) {
-            this.Context = ctx;
+            context = ctx;
             SetPartInformation(MaxHealthBarSize);
             HookEvents();
             StartVisibilityTimer();
         }
 
         private void HookEvents() {
-            Context.OnHealthChange += OnHealthChange;
-            Context.OnBrokenCounterChange += OnBrokenCounterChange;
+            context.OnHealthChange += OnHealthChange;
+            context.OnBrokenCounterChange += OnBrokenCounterChange;
         }
 
         public void UnhookEvents() {
-            Context.OnHealthChange -= OnHealthChange;
-            Context.OnBrokenCounterChange -= OnBrokenCounterChange;
-            VisibilityTimer?.Dispose();
-            this.Context = null;
+            context.OnHealthChange -= OnHealthChange;
+            context.OnBrokenCounterChange -= OnBrokenCounterChange;
+            visibilityTimer?.Dispose();
+            context = null;
         }
 
         private void Dispatch(Action f) {
@@ -41,20 +45,20 @@ namespace HunterPie.GUI.Widgets.Monster_Widget.Parts {
 
         #region Visibility timer
         private void StartVisibilityTimer() {
-            if (!UserSettings.PlayerConfig.Overlay.MonstersComponent.HidePartsAfterSeconds) {
+            if (!ComponentSettings.HidePartsAfterSeconds) {
                 ApplySettings();
                 return;
             }
-            if (VisibilityTimer == null) {
-                VisibilityTimer = new Timer(_ => HideUnactiveBar(), null, 10, 0);
+            if (visibilityTimer == null) {
+                visibilityTimer = new Timer(_ => HideInactiveBar(), null, 10, 0);
             } else {
-                VisibilityTimer.Change(UserSettings.PlayerConfig.Overlay.MonstersComponent.SecondsToHideParts * 1000, 0);
+                visibilityTimer.Change(ComponentSettings.SecondsToHideParts * 1000, 0);
             }
         }
 
-        private void HideUnactiveBar() {
+        private void HideInactiveBar() {
             Dispatch(() => {
-                this.Visibility = System.Windows.Visibility.Collapsed;
+                Visibility = Visibility.Collapsed;
             });
         }
 
@@ -62,79 +66,99 @@ namespace HunterPie.GUI.Widgets.Monster_Widget.Parts {
 
         #region Settings
         public void ApplySettings() {
-            System.Windows.Visibility visibility;
-            if (Context.IsRemovable) {
-                visibility = UserSettings.PlayerConfig.Overlay.MonstersComponent.EnableRemovableParts ? System.Windows.Visibility.Visible : System.Windows.Visibility.Collapsed;
-            } else {
-                if (UserSettings.PlayerConfig.Overlay.MonstersComponent.EnableMonsterParts) {
-                    visibility = UserSettings.PlayerConfig.Overlay.MonstersComponent.EnabledPartGroups.Contains(Context.Group) ? System.Windows.Visibility.Visible : System.Windows.Visibility.Collapsed;
-                } else {
-                    visibility = System.Windows.Visibility.Collapsed;
-                }
+            Visibility visibility = GetVisibility();
+            if (ComponentSettings.HidePartsAfterSeconds) visibility = Visibility.Collapsed;
+            Dispatch(() => { Visibility = visibility; });
+        }
+
+        private Visibility GetVisibility()
+        {
+            if (context.IsRemovable)
+            {
+                return ComponentSettings.EnableRemovableParts ? Visibility.Visible : Visibility.Collapsed;
             }
-            if (UserSettings.PlayerConfig.Overlay.MonstersComponent.HidePartsAfterSeconds) visibility = System.Windows.Visibility.Collapsed;
-            Dispatch(() => { this.Visibility = visibility; });
+
+            if (ComponentSettings.EnableMonsterParts && ComponentSettings.EnabledPartGroups.Contains(context.Group))
+            {
+                return Visibility.Visible;
+            }
+
+            return Visibility.Collapsed;
         }
 
         #endregion
 
         #region Events
-        private void SetPartInformation(double NewSize) {
-            this.PartName.Text = $"{Context.Name}";
-            this.PartHealth.MaxHealth = Context.TotalHealth;
-            this.PartHealth.MaxSize = NewSize - 37;
-            this.PartHealth.Health = Context.Health;
-            this.PartBrokenCounter.Text = $"{Context.BrokenCounter}";
-            this.PartHealthText.Text = $"{Context.Health:0}/{Context.TotalHealth:0}";
+
+        private void SetPartInformation(double newSize)
+        {
+            PartName.Text = $"{context.Name}";
+            UpdatePartBrokenCounter();
+            UpdateHealthSize(newSize);
+            UpdateHealthText();
             ApplySettings();
         }
 
-        private void OnBrokenCounterChange(object source, MonsterPartEventArgs args) {
-            System.Windows.Visibility visibility;
-            if (Context.IsRemovable) {
-                visibility = UserSettings.PlayerConfig.Overlay.MonstersComponent.EnableRemovableParts ? System.Windows.Visibility.Visible : System.Windows.Visibility.Collapsed;
-            } else {
-                if (UserSettings.PlayerConfig.Overlay.MonstersComponent.EnableMonsterParts) {
-                    visibility = UserSettings.PlayerConfig.Overlay.MonstersComponent.EnabledPartGroups.Contains(Context.Group) ? System.Windows.Visibility.Visible : System.Windows.Visibility.Collapsed;
-                } else {
-                    visibility = System.Windows.Visibility.Collapsed;
-                }
-            }
-            Dispatch(() => {
-                this.PartBrokenCounter.Text = $"{args.BrokenCounter}";
-                this.Visibility = visibility;
+        private void OnBrokenCounterChange(object source, MonsterPartEventArgs args)
+        {
+            Visibility visibility = GetVisibility();
+            Dispatch(() =>
+            {
+                UpdatePartBrokenCounter();
+                Visibility = visibility;
                 StartVisibilityTimer();
             });
         }
 
-        private void OnHealthChange(object source, MonsterPartEventArgs args) {
-            System.Windows.Visibility visibility;
-            if (Context.IsRemovable) {
-                visibility = UserSettings.PlayerConfig.Overlay.MonstersComponent.EnableRemovableParts ? System.Windows.Visibility.Visible : System.Windows.Visibility.Collapsed;
-            } else {
-                if (UserSettings.PlayerConfig.Overlay.MonstersComponent.EnableMonsterParts) {
-                    visibility = UserSettings.PlayerConfig.Overlay.MonstersComponent.EnabledPartGroups.Contains(Context.Group) ? System.Windows.Visibility.Visible : System.Windows.Visibility.Collapsed;
-                } else {
-                    visibility = System.Windows.Visibility.Collapsed;
-                }
-            }
-            Dispatch(() => {
-                this.PartHealth.MaxHealth = args.TotalHealth;
-                this.PartHealth.Health = args.Health;
-                this.PartHealthText.Text = $"{args.Health:0}/{args.TotalHealth:0}";
-                this.Visibility = visibility;
+        private void OnHealthChange(object source, MonsterPartEventArgs args)
+        {
+            Visibility visibility = GetVisibility();
+            Dispatch(() =>
+            {
+                UpdateHealthText();
+                Visibility = visibility;
                 StartVisibilityTimer();
             });
         }
 
-        public void UpdateHealthBarSize(double NewSize) {
-            if (this.Context == null) return;
-            this.PartHealth.MaxSize = NewSize - 37;
-            this.PartHealth.MaxHealth = Context.TotalHealth;
-            this.PartHealth.Health = Context.Health;
-            this.PartHealthText.Text = $"{Context.Health:0}/{Context.TotalHealth:0}";
+        public void UpdateHealthBarSize(double newSize)
+        {
+            if (context == null) return;
+            UpdateHealthSize(newSize);
+            UpdateHealthText();
             ApplySettings();
         }
+
+        private void UpdatePartBrokenCounter()
+        {
+            string suffix = "";
+            for (int i = context.BreakThresholds.Length - 1; i >= 0; i--)
+            {
+                int threshold = context.BreakThresholds[i];
+                if (context.BrokenCounter < threshold || i == context.BreakThresholds.Length - 1)
+                {
+                    suffix = $"/{threshold}";
+                    if (i < context.BreakThresholds.Length - 1)
+                    {
+                        suffix += "+";
+                    }
+                }
+            }
+            PartBrokenCounter.Text = $"{context.BrokenCounter}{suffix}";
+        }
+
+        private void UpdateHealthSize(double newSize)
+        {
+            PartHealth.MaxSize = newSize - 37;
+        }
+
+        private void UpdateHealthText()
+        {
+            PartHealth.MaxHealth = context.TotalHealth;
+            PartHealth.Health = context.Health;
+            PartHealthText.Text = $"{context.Health:0}/{context.TotalHealth:0}";
+        }
+
         #endregion
     }
 }

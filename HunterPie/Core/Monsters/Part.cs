@@ -1,72 +1,101 @@
-﻿using System;
+﻿using HunterPie.Core.Monsters;
 
-namespace HunterPie.Core {
-    public class Part {
-        private float _Health { get; set; }
-        private float _TotalHealth { get; set; }
-        private byte _BrokenCounter { get; set; }
-        private int MonsterId { get; set; }
-        public Int64 PartAddress { get; set; } // So we don't need to re-scan the address everytime
-        
+namespace HunterPie.Core
+{
+    public class Part
+    {
+        private readonly MonsterInfo monsterInfo;
+        private readonly PartInfo partInfo;
+        private readonly int id; // Part index
 
-        public int Id { get; set; } // Part index
-        public string Name {
-            get { return GStrings.GetMonsterPartByID(MonsterData.MonstersInfo[MonsterId].Parts[Id].Id); }
+        private float health;
+        private float totalHealth;
+        private byte brokenCounter;
+
+        public Part(MonsterInfo monsterInfo, PartInfo partInfo, int index)
+        {
+            this.monsterInfo = monsterInfo;
+            this.partInfo = partInfo;
+            id = index;
         }
-        public byte BrokenCounter {
-            get { return _BrokenCounter; }
-            set {
-                if (value != _BrokenCounter) {
-                    this._BrokenCounter = value;
-                    _OnBrokenCounterChange();
+
+        public long PartAddress { get; set; } // So we don't need to re-scan the address everytime
+
+        public string Name => GStrings.GetMonsterPartByID(partInfo.Id);
+
+        public int[] BreakThresholds => partInfo.BreakThresholds;
+
+        public byte BrokenCounter
+        {
+            get => brokenCounter;
+            set
+            {
+                if (value != brokenCounter)
+                {
+                    brokenCounter = value;
+                    NotifyBrokenCounterChanged();
                 }
             }
         }
-        public float Health {
-            get { return _Health; }
-            set {
-                if (value != _Health) {
-                    this._Health = value;
-                    _OnHealthChange();
+
+        public float Health
+        {
+            get => health;
+            set
+            {
+                if (value != health)
+                {
+                    health = value;
+                    NotifyHealthChanged();
                 }
             }
         }
-        public float TotalHealth {
-            get { return _TotalHealth; }
-            set {
-                if (value != _TotalHealth) {
-                    this._TotalHealth = value;
+
+        public float TotalHealth
+        {
+            get => totalHealth;
+            set
+            {
+                if (value != totalHealth)
+                {
+                    totalHealth = value;
                 }
             }
         }
+
         public bool IsRemovable { get; set; }
         public string Group { get; set; }
 
         #region Events
+
         public delegate void MonsterPartEvents(object source, MonsterPartEventArgs args);
+
         public event MonsterPartEvents OnHealthChange;
         public event MonsterPartEvents OnBrokenCounterChange;
 
-        protected virtual void _OnHealthChange() {
+        protected virtual void NotifyHealthChanged()
+        {
             OnHealthChange?.Invoke(this, new MonsterPartEventArgs(this));
         }
 
-        protected virtual void _OnBrokenCounterChange() {
+        protected virtual void NotifyBrokenCounterChanged()
+        {
             OnBrokenCounterChange?.Invoke(this, new MonsterPartEventArgs(this));
+            Logger.Debugger.Debug($"Broken {GStrings.GetMonsterNameByID(monsterInfo.Em)} ({monsterInfo.Id}) part {Name} ({id}), {TotalHealth} hp for {brokenCounter} time");
         }
+
         #endregion
 
-        public void SetPartInfo(int monsterId, int id, byte Counter, float Health, float TotalHealth) {
-            this.MonsterId = monsterId;
-            this.Id = id;
-            this.TotalHealth = TotalHealth;
-            this.BrokenCounter = Counter;
-            this.Health = Health;
+        public void SetPartInfo(byte breakCounter, float health, float totalHealth)
+        {
+            TotalHealth = totalHealth;
+            BrokenCounter = breakCounter;
+            Health = health;
         }
 
-        public override string ToString() {
-            return $"Name: {this.Name} | ID: {this.Id} | HP: {this.Health}/{this.TotalHealth} | Counter: {this.BrokenCounter}";
+        public override string ToString()
+        {
+            return $"Name: {Name} | ID: {id} | HP: {Health}/{TotalHealth} | Counter: {BrokenCounter}";
         }
-
     }
 }
