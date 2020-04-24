@@ -330,9 +330,8 @@ namespace HunterPie.Core {
 
             Int64 selectedPtr = Scanner.READ_LONGLONG(Address.BASE + Address.MONSTER_TARGETED_OFFSET); //probably want an offset for this
             bool isSelect = Scanner.READ_LONGLONG(selectedPtr + 0x128) != 0x0 && Scanner.READ_LONGLONG(selectedPtr + 0x130) != 0x0 && Scanner.READ_LONGLONG(selectedPtr + 0x160) != 0x0;
-            Int64 SelectedMonsterAddress = Scanner.READ_LONGLONG(selectedPtr + 0x148); // don't actually need this as it will be the same as TargettedMonsterAddress if isSelect is true
-
-            this.IsTarget = TargettedMonsterAddress == 0 ? SelectedMonsterAddress == this.MonsterAddress : TargettedMonsterAddress == this.MonsterAddress;
+            Int64 SelectedMonsterAddress = Scanner.READ_LONGLONG(selectedPtr + 0x148);
+            IsTarget = TargettedMonsterAddress == 0 ? SelectedMonsterAddress == this.MonsterAddress : TargettedMonsterAddress == this.MonsterAddress;
 
             if (!isSelect) {
                 this.IsSelect = 0; // nothing is selected
@@ -364,7 +363,7 @@ namespace HunterPie.Core {
             for (int PartID = 0; PartID < nMaxParts; PartID++) {
                 if (MonsterData.MonstersInfo[GameId].Parts[PartID].IsRemovable) {
                     
-                    if (Parts.Count < PartID && Parts[PartID].PartAddress > 0) {
+                    if (Parts.Count > PartID && Parts[PartID].PartAddress > 0) {
 
                         TimesBroken = Scanner.READ_BYTE(Parts[PartID].PartAddress + 0x18);
                         MaxHealth = Scanner.READ_FLOAT(Parts[PartID].PartAddress + 0x10);

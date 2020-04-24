@@ -336,7 +336,8 @@ namespace HunterPie {
         }
 
 #region Game & Client Events
-        private void HookEvents() {
+        private void HookEvents() 
+        {
             // Scanner events
             Scanner.OnGameStart += OnGameStart;
             Scanner.OnGameClosed += OnGameClose;
@@ -344,7 +345,8 @@ namespace HunterPie {
             UserSettings.OnSettingsUpdate += SendToOverlay;
         }
 
-        private void UnhookEvents() {
+        private void UnhookEvents() 
+        {
             // Debug
             AppDomain.CurrentDomain.UnhandledException -= ExceptionLogger;
             // Scanner events
@@ -354,8 +356,8 @@ namespace HunterPie {
             UserSettings.OnSettingsUpdate -= SendToOverlay;
         }
 
-        public void SendToOverlay(object source, EventArgs e) {
-            this.BindHotKey(0);
+        public void SendToOverlay(object source, EventArgs e) 
+        {
             GameOverlay?.GlobalSettingsEventHandler(source, e);
             Dispatcher.BeginInvoke(System.Windows.Threading.DispatcherPriority.ApplicationIdle, new Action(() => {
                 // Only shows notification if HunterPie is visible
@@ -364,7 +366,8 @@ namespace HunterPie {
             }));
         }
 
-        private void HookGameEvents() {
+        private void HookGameEvents() 
+        {
             // Game events
             MonsterHunter.Player.OnZoneChange += OnZoneChange;
             MonsterHunter.Player.OnCharacterLogin += OnLogin;
@@ -372,7 +375,8 @@ namespace HunterPie {
             MonsterHunter.Player.OnSessionChange += OnSessionChange;
         }
 
-        private void UnhookGameEvents() {
+        private void UnhookGameEvents() 
+        {
             MonsterHunter.Player.OnZoneChange -= OnZoneChange;
             MonsterHunter.Player.OnCharacterLogin -= OnLogin;
             MonsterHunter.Player.OnCharacterLogout -= OnLogout;
@@ -381,7 +385,10 @@ namespace HunterPie {
 
         private void OnSessionChange(object source, EventArgs args) {
             Debugger.Log($"SESSION: {MonsterHunter.Player.SessionID}");
-            if (!string.IsNullOrEmpty(MonsterHunter.Player.SessionID)) {
+
+            // Writes the session ID to a Sessions.txt
+            if (!string.IsNullOrEmpty(MonsterHunter.Player.SessionID))
+            {
                 File.WriteAllText(Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "Sessions.txt"), MonsterHunter.Player.SessionID);
             }
         }
@@ -488,7 +495,7 @@ namespace HunterPie {
         }
         #endregion
 
-        /* Animations */
+#region Animations
         private void SwitchButtonOn(StackPanel buttonActive)
         {
             Border ButtonBorder = (Border)buttonActive.Children[0];
@@ -500,16 +507,15 @@ namespace HunterPie {
             Border ButtonBorder = (Border)buttonActive.Children[0];
             ButtonBorder.SetValue(BorderThicknessProperty, new Thickness(0, 0, 0, 0));
         }
+        #endregion
 
 #region WINDOW EVENTS
 
         private void OnCloseWindowButtonClick(object sender, MouseButtonEventArgs e) {
             // X button function;
             bool ExitConfirmation = MessageBox.Show(GStrings.GetLocalizationByXPath("/Console/String[@ID='MESSAGE_QUIT']"), "HunterPie", MessageBoxButton.YesNo, MessageBoxImage.Question) == MessageBoxResult.Yes;
-            
-            if (ExitConfirmation) {
-                this.Close();
-            }
+
+            if (ExitConfirmation) Close();
         }
 
         private void OnWindowDrag(object sender, MouseButtonEventArgs e) {
@@ -528,20 +534,25 @@ namespace HunterPie {
             this.DragMove();
         }
 
-        private void OnMinimizeButtonClick(object sender, MouseButtonEventArgs e) {
-            if (UserSettings.PlayerConfig.HunterPie.MinimizeToSystemTray) {
+        private void OnMinimizeButtonClick(object sender, MouseButtonEventArgs e) 
+        {
+            if (UserSettings.PlayerConfig.HunterPie.MinimizeToSystemTray) 
+            {
                 this.WindowState = WindowState.Minimized;
                 this.Hide();
-            } else {
+            } else 
+            {
                 this.WindowState = WindowState.Minimized;
             }
         }
 
-        private void OnWindowClosing(object sender, System.ComponentModel.CancelEventArgs e) {
+        private void OnWindowClosing(object sender, System.ComponentModel.CancelEventArgs e) 
+        {
             UserSettings.SaveNewConfig();
             this.Hide();
             // Dispose tray icon
-            if (TrayIcon != null) {
+            if (TrayIcon != null) 
+            {
                 TrayIcon.NotifyIcon.Click -= OnTrayIconClick;
                 TrayIcon.ContextMenu.MenuItems[0].Click -= OnTrayIconSettingsClick;
                 TrayIcon.ContextMenu.MenuItems[1].Click -= OnTrayIconExitClick;
@@ -561,26 +572,28 @@ namespace HunterPie {
             this.UnhookEvents();
         }
 
-        private void OnGithubButtonClick(object sender, MouseButtonEventArgs e) {
-            Process.Start("https://github.com/Haato3o/HunterPie");
-        }
+        private void OnGithubButtonClick(object sender, MouseButtonEventArgs e) => Process.Start("https://github.com/Haato3o/HunterPie");
 
-        private void OnConsoleButtonClick(object sender, MouseButtonEventArgs e) {
-            OpenDebugger();
-            
-        }
+        private void OnConsoleButtonClick(object sender, MouseButtonEventArgs e) => OpenDebugger();
 
-        private void OnSettingsButtonClick(object sender, MouseButtonEventArgs e) {
-            OpenSettings();
-        }
+        private void OnSettingsButtonClick(object sender, MouseButtonEventArgs e) => OpenSettings();
 
-        private void OnChangelogButtonClick(object sender, MouseButtonEventArgs e) {
-            OpenChangelog();
-        }
+        private void OnChangelogButtonClick(object sender, MouseButtonEventArgs e) => OpenChangelog();
 
-        private void OnUploadBuildButtonClick(object sender, MouseButtonEventArgs e)
+        private void OnUploadBuildButtonClick(object sender, MouseButtonEventArgs e) => BuildUploadNotification.ShowNotification();
+
+        private void OnDiscordButtonClick(object sender, MouseButtonEventArgs e) => Process.Start("https://discord.gg/5pdDq4Q");
+
+        private void OnCopyToClipboardClick(object sender, RoutedEventArgs e)
         {
-            BuildUploadNotification.ShowNotification();
+            string BuildLink = Honey.LinkStructureBuilder(MonsterHunter.Player.GetPlayerGear());
+            Clipboard.SetData(DataFormats.Text, BuildLink);
+        }
+
+        private void OnOpenInBrowserClick(object sender, RoutedEventArgs e)
+        {
+            string BuildLink = Honey.LinkStructureBuilder(MonsterHunter.Player.GetPlayerGear());
+            Process.Start(BuildLink);
         }
 
         private void OnLaunchGameButtonClick(object sender, RoutedEventArgs e) {
@@ -609,29 +622,12 @@ namespace HunterPie {
             }
         }
 
-        private void OnDiscordButtonClick(object sender, MouseButtonEventArgs e) {
-            Process.Start("https://discord.gg/5pdDq4Q");
-        }
-        
-        private void OnCopyToClipboardClick(object sender, RoutedEventArgs e)
-        {
-            string BuildLink = Honey.LinkStructureBuilder(MonsterHunter.Player.GetPlayerGear());
-            Clipboard.SetData(DataFormats.Text, BuildLink);
-        }
-
-        private void OnOpenInBrowserClick(object sender, RoutedEventArgs e)
-        {
-            string BuildLink = Honey.LinkStructureBuilder(MonsterHunter.Player.GetPlayerGear());
-            Process.Start(BuildLink);
-        }
-
         private void OnWindowSizeChange(object sender, SizeChangedEventArgs e)
         {
             UserSettings.PlayerConfig.HunterPie.Width = (float)e.NewSize.Width;
             UserSettings.PlayerConfig.HunterPie.Height = (float)e.NewSize.Height;
         }
-
         #endregion
-        
+
     }
 }
