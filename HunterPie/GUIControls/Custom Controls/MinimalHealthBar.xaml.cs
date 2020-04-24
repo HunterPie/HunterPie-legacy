@@ -1,43 +1,45 @@
-﻿using System.Windows.Controls;
+﻿using System;
+using System.Windows.Controls;
 using System.Windows.Media;
 
 namespace HunterPie.GUIControls.Custom_Controls {
     /// <summary>
     /// Interaction logic for MinimalHealthBar.xaml
     /// </summary>
-    public partial class MinimalHealthBar : UserControl {
-        private double _MaxHealth { get; set; }
-        private double _Health { get; set; }
+    public partial class MinimalHealthBar : UserControl
+    {
+        private double health;
+
         public double MaxSize { get; set; }
 
-        public double MaxHealth {
-            get { return _MaxHealth; }
-            set {
-                _MaxHealth = value;
+        public double MaxHealth { get; set; }
+
+        public double Health
+        {
+            get => health;
+            set
+            {
+                health = value;
+                HealthBar.Width = Math.Max(MaxSize * (value / MaxHealth), 0);
             }
         }
 
-        public double Health {
-            get { return _Health; }
-            set {
-                _Health = value;
-                HealthBar.Width = MaxSize * (value / MaxHealth) > 0 ? MaxSize * (value / MaxHealth) : 0;
-            }
+        public Brush Color
+        {
+            get => HealthBar.Fill;
+            set => HealthBar.Fill = value;
         }
 
-        public Brush Color {
-            get { return HealthBar.Fill; }
-            set { HealthBar.Fill = value; }
-        }
-
-        public MinimalHealthBar() {
+        public MinimalHealthBar()
+        {
             InitializeComponent();
         }
 
-        public void UpdateBar(float hp, float max_hp) {
+        public void UpdateBar(float hp, float maxHp)
+        {
             HealthBarBackground.Width = MaxSize;
-            this.MaxHealth = max_hp;
-            this.Health = hp;
+            MaxHealth = maxHp;
+            Health = hp;
         }
     }
 }

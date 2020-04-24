@@ -17,10 +17,11 @@
         public string Id;
         public bool IsRemovable;
         public string GroupId;
+        public int[] BreakThresholds;
     }
     #endregion
 
-    public class MonsterInfo 
+    public class MonsterInfo
     {
         // Basic info
         public string Em { get; set; }
