@@ -16,8 +16,6 @@ namespace HunterPie.GUIControls.Custom_Controls {
         public static readonly DependencyProperty ValueProperty =
             DependencyProperty.Register("Value", typeof(double), typeof(MinimalSlider));
 
-
-
         public double MinChange {
             get { return (double)GetValue(MinChangeProperty); }
             set { SetValue(MinChangeProperty, value); }
@@ -36,8 +34,6 @@ namespace HunterPie.GUIControls.Custom_Controls {
         public static readonly DependencyProperty MinValueProperty =
             DependencyProperty.Register("MinValue", typeof(double ), typeof(MinimalSlider));
 
-        
-
         public double MaxValue {
             get { return (double)GetValue(MaxValueProperty); }
             set { SetValue(MaxValueProperty, value); }
@@ -46,8 +42,6 @@ namespace HunterPie.GUIControls.Custom_Controls {
         // Using a DependencyProperty as the backing store for MaxValue.  This enables animation, styling, binding, etc...
         public static readonly DependencyProperty MaxValueProperty =
             DependencyProperty.Register("MaxValue", typeof(double), typeof(MinimalSlider));
-
-
 
         public string Text {
             get { return (string)GetValue(TextProperty); }

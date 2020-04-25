@@ -42,7 +42,6 @@ namespace HunterPie.GUIControls.Custom_Controls {
             InitializeComponent();
         }
 
-
         private void OnClick(object sender, MouseButtonEventArgs e) => IsEnabled = !IsEnabled;
 
     }

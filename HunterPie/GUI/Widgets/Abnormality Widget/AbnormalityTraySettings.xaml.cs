@@ -77,6 +77,7 @@ namespace HunterPie.GUI.Widgets.Abnormality_Widget {
         private void OnDragWindow(object sender, MouseButtonEventArgs e) => DragMove();
 
         private void OnSaveButtonClick(object sender, RoutedEventArgs e) {
+            
             string[] enabledAbnormalities = abnormalityControls
                 .Where(a => a.IsEnabled)
                 .Select(a => a.InternalID)
@@ -105,12 +106,12 @@ namespace HunterPie.GUI.Widgets.Abnormality_Widget {
             }
         }
 
-        private void OnClosing(object sender, System.ComponentModel.CancelEventArgs e) {
+        private void OnClosing(object sender, System.ComponentModel.CancelEventArgs e)
+        {
             HuntingHornBuffs.Children.Clear();
             PalicoBuffs.Children.Clear();
             Debuffs.Children.Clear();
             ConsumableBuffs.Children.Clear();
-            abnormalityControls.Clear();
             GearBuffs.Children.Clear();
             abnormalityControls.Clear();
         }

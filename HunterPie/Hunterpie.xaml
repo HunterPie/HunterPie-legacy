@@ -191,7 +191,7 @@
 
         <!-- Header  -->
         <TextBlock x:Name="version_text" Text="Version: BETA 1.0.0.0" Background="{x:Null}" Foreground="{StaticResource CONSOLE_VERSIONTEXT_FOREGROUND}" Padding="0" Margin="0,131,10,0" RenderTransformOrigin="0.5,0.5" TextAlignment="Right" FontWeight="Medium" FontSize="14" Height="20" VerticalAlignment="Top" HorizontalAlignment="Right" Width="455"/>
-        <Button x:Name="launchGameButton" Margin="0,55,10,0" VerticalAlignment="Top" Height="46" BorderBrush="{x:Null}" Foreground="{StaticResource BUTTON_LAUNCHGAME_FOREGROUND}" FontFamily="Roboto" FontSize="18" Cursor="Hand" BorderThickness="1"  Template="{DynamicResource ButtonStyle}" DataContext="{StaticResource Localization}" Padding="0" FontWeight="Bold" HorizontalContentAlignment="Center" Click="OnLaunchGameButtonClick" Background="{StaticResource BUTTON_LAUNCHGAME_BACKGROUND}" HorizontalAlignment="Right" Width="242">
+        <Button x:Name="launchGameButton" Margin="0,55,10,0" VerticalAlignment="Top" Height="46" BorderBrush="{x:Null}" Foreground="{StaticResource BUTTON_LAUNCHGAME_FOREGROUND}" FontFamily="Roboto" FontSize="18" Cursor="Hand" BorderThickness="1"  Template="{DynamicResource ButtonStyle}" Padding="0" FontWeight="Bold" HorizontalContentAlignment="Center" Click="OnLaunchGameButtonClick" Background="{StaticResource BUTTON_LAUNCHGAME_BACKGROUND}" HorizontalAlignment="Right" Width="242">
             <Button.Content>
                 <Binding Mode="OneTime" XPath="Console/String[@ID='CONSOLE_LAUNCH']/@Name"/>
             </Button.Content>
