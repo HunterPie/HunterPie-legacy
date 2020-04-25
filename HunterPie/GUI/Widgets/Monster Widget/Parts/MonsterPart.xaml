@@ -19,7 +19,7 @@
             </Custom:MinimalHealthBar.RenderTransform>
         </Custom:MinimalHealthBar>
         <TextBlock Style="{StaticResource OVERLAY_MONSTER_PART_NAME_TEXT_STYLE}" x:Name="PartName" Text="Monster Part" Height="22" VerticalAlignment="Top" TextTrimming="CharacterEllipsis" SnapsToDevicePixels="True"/>
-        <Polygon Points="0, 15 14, 1 21, 1 35, 15 21, 29 14, 29" Style="{StaticResource OVERLAY_MONSTER_PART_COUNTER_BACKGROUND_STYLE}" />
+        <Polygon Style="{StaticResource OVERLAY_MONSTER_PART_COUNTER_BACKGROUND_STYLE}" />
         <TextBlock Style="{StaticResource OVERLAY_MONSTER_PART_COUNTER_TEXT_STYLE}" x:Name="PartBrokenCounter" Text="0/2" Height="24" VerticalAlignment="Top" TextOptions.TextHintingMode="Fixed" FontSize="12" Padding="0,3,0,0" Margin="2,3,0,0" TextAlignment="Center" HorizontalAlignment="Left" Width="31"/>
 
         <TextBlock Style="{StaticResource OVERLAY_MONSTER_PART_NAME_TEXT_STYLE}" x:Name="PartHealthText" Text="1600/1600" Height="15" VerticalAlignment="Top" Margin="29,15,0,0" TextOptions.TextHintingMode="Fixed" FontSize="11" TextAlignment="Center" SnapsToDevicePixels="True"/>

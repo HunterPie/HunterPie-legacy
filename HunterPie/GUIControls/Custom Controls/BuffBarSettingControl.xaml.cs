@@ -2,7 +2,6 @@
 using System.Linq;
 using HunterPie.GUI.Widgets.Abnormality_Widget;
 
-
 namespace HunterPie.GUIControls.Custom_Controls {
     /// <summary>
     /// Interaction logic for BuffBarSettingControl.xaml
