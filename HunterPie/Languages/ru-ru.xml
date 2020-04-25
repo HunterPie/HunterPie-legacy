@@ -394,8 +394,8 @@
     <Abnormality ID="GEAR_010_00" Name="Мастерство мороза"/>
     <Abnormality ID="GEAR_015_00" Name="Агрессивная защита"/>
     <Abnormality ID="GEAR_016_00" Name="Сращивание"/>
-    <Abnormality ID="GEAR_099_00" Name="Evasion Mantle (Atk)"/>
-    <Abnormality ID="GEAR_100_00" Name="Affinity Booster"/>
+    <Abnormality ID="GEAR_099_00" Name="Покров Уклонения (Атк)"/>
+    <Abnormality ID="GEAR_100_00" Name="Усилитель Мастерства"/>
   </Abnormalities>
   <!-- Client localization strings -->
   <Client>
@@ -649,7 +649,7 @@
       <String ID="STATIC_REJECT" Name="Отклонить"/>
       <String ID="STATIC_SETTINGS_LOAD" Name="Настройки загружены"/>
       <String ID="STATIC_OPENDEFAULTBROWSER" Name="Открыть в браузере"/>
-      <String ID="MESSAGE_BUILD_UPLOADED" Name="Build uploaded to Honey Hunters World!"/>
+      <String ID="MESSAGE_BUILD_UPLOADED" Name="Билд загружен на Honey Hunters World!"/>
     </Notifications>
     <RichPresence>
       <String ID="RPC_DESCRIPTION_IN_MAIN_MENU" Name="В Главном меню"/>
