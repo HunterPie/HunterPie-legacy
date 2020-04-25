@@ -595,7 +595,6 @@ namespace HunterPie.Core
                 }
             }
 
-
         }
 
         private void GetQuestElapsedTime()

@@ -142,9 +142,9 @@
             </TextBlock>
         </Grid>
         <StackPanel x:Name="MonsterAdittionalInfoContainer" Orientation="Horizontal">
-            <WrapPanel x:Name="MonsterPartsContainer" Orientation="Vertical">
+            <WrapPanel x:Name="MonsterPartsContainer" Orientation="Vertical" SizeChanged="OnMonsterPartsContainerSizeChange">
             </WrapPanel>
-            <WrapPanel x:Name="MonsterAilmentsContainer" Orientation="Vertical">
+            <WrapPanel x:Name="MonsterAilmentsContainer" Orientation="Vertical" SizeChanged="OnMonsterAilmentsContainerSizeChange">
 
             </WrapPanel>
         </StackPanel>
