@@ -392,6 +392,9 @@ namespace HunterPie.GUI.Widgets
         #region Settings
         public void ApplySettings()
         {
+            UserSettings.Config.Monsterscomponent config = UserSettings.PlayerConfig.Overlay.MonstersComponent;
+            MonsterPartsContainer.Visibility = !config.EnableMonsterParts && !config.EnableRemovableParts ? Visibility.Collapsed : Visibility.Visible;
+            MonsterAilmentsContainer.Visibility = !config.EnableMonsterAilments ? Visibility.Collapsed : Visibility.Visible;
             foreach (Monster_Widget.Parts.MonsterPart part in MonsterPartsContainer.Children)
             {
                 part.ApplySettings();
@@ -410,8 +413,10 @@ namespace HunterPie.GUI.Widgets
         #region Helpers
         private void ChangeBarsSizes(double NewSize)
         {
+            UserSettings.Config.Monsterscomponent config = UserSettings.PlayerConfig.Overlay.MonstersComponent;
             // Parts
-            MonsterPartsContainer.MaxWidth = MonsterAilmentsContainer.MaxWidth = (NewSize - 2) / 2;
+            MonsterPartsContainer.MaxWidth = config.EnableMonsterAilments ? (NewSize - 2) / 2 : (NewSize - 1);
+            MonsterAilmentsContainer.MaxWidth = config.EnableMonsterParts ? (NewSize - 2) / 2 : (NewSize - 1);
             MonsterPartsContainer.ItemWidth = MonsterAilmentsContainer.ItemWidth = MonsterPartsContainer.MaxWidth / Math.Max(1, UserSettings.PlayerConfig.Overlay.MonstersComponent.MaxPartColumns);
             UpdateContainerBarsSizeDynamically();
             // Monster Bar
