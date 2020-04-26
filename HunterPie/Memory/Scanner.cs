@@ -47,7 +47,12 @@ namespace HunterPie.Memory
         public static extern IntPtr OpenProcess(int dwDesiredAccess, bool bInheritHandle, int dwProcessId);
 
         [DllImport("kernel32.dll")]
-        public static extern bool ReadProcessMemory(int hProcess, IntPtr lpBaseAddress, byte[] lpBuffer, int dwSize, ref int lpNumberOfBytesRead);
+        public static extern bool ReadProcessMemory(
+            IntPtr hProcess,
+            IntPtr lpBaseAddress,
+            [Out, MarshalAs(UnmanagedType.AsAny)] object lpBuffer,
+            int dwSize,
+            out int lpNumberOfBytesRead);
 
         [DllImport("kernel32.dll")]
         public static extern bool CloseHandle(IntPtr hObject);
@@ -185,7 +190,7 @@ namespace HunterPie.Memory
                     Debugger.Log($"Monster Hunter: World ({GameVersion}) found! (PID: {PID})");
                     GameIsRunning = true;
                 }
-                
+
                 Thread.Sleep(1000);
             }
         }
@@ -203,46 +208,42 @@ namespace HunterPie.Memory
         }
 
         /* Helpers */
-        public static T Read<T>(Int64 Address) where T: struct
+        public static T Read<T>(long address) where T : struct
         {
-            int bytesRead = 0;
-            byte[] buffer = new byte[Marshal.SizeOf(typeof(T))];
-            ReadProcessMemory((int)ProcessHandle, (IntPtr)Address, buffer, Marshal.SizeOf(typeof(T)), ref bytesRead);
-            return BufferToStructure<T>(buffer);
+            T[] buffer = Buffers.Get<T>();
+            ReadProcessMemory(ProcessHandle, (IntPtr)address, buffer, Marshal.SizeOf<T>(), out _);
+            return buffer[0];
         }
 
-        private static T BufferToStructure<T>(byte[] buffer) where T: struct
+        public static long READ_MULTILEVEL_PTR(long baseAddress, int[] offsets)
         {
-            var handle = GCHandle.Alloc(buffer, GCHandleType.Pinned);
-            try
+            long address = baseAddress;
+            for (int offsetIndex = 0; offsetIndex < offsets.Length; offsetIndex++)
             {
-                return (T)Marshal.PtrToStructure(handle.AddrOfPinnedObject(), typeof(T));
+                address = Read<long>(address) + offsets[offsetIndex];
             }
-            finally { handle.Free(); }
-        }
-        
-        public static Int64 READ_MULTILEVEL_PTR(Int64 Base_Address, int[] offsets)
-        {
-            Int64 Address = Read<long>(Base_Address);
-            for (int offsetIndex = 0; offsetIndex < offsets.Length - 1; offsetIndex++)
-            {
-                Address = Read<long>(Address + offsets[offsetIndex]);
-            }
-            Address = Address + offsets[offsets.Length - 1];
-            return Address;
+
+            return address;
         }
 
-        public static string READ_STRING(Int64 Address, int size)
+        public static string READ_STRING(long address, int size)
         {
-            byte[] Buffer = new byte[size];
-            int bytesRead = 0;
-            ReadProcessMemory((int)ProcessHandle, (IntPtr)Address, Buffer, size, ref bytesRead);
-            string String = Encoding.UTF8.GetString(Buffer, 0, size);
-            int nullCharIndex = String.IndexOf('\x00');
+            byte[] buffer = Buffers.Get<byte>();
+            if (buffer.Length < size)
+            {
+                buffer = new byte[size];
+            }
+
+            if (!ReadProcessMemory(ProcessHandle, (IntPtr)address, buffer, size, out _))
+                return string.Empty;
+
+            string text = Encoding.UTF8.GetString(buffer, 0, size);
+            int nullCharIndex = text.IndexOf('\x00');
             // If there's no null char in the string, just return the string itself
-            if (nullCharIndex < 0) return String;
+            if (nullCharIndex < 0)
+                return text;
             // If there's a null char, return a substring
-            else { return String.Substring(0, String.IndexOf('\x00')); }
+            return text.Substring(0, nullCharIndex);
         }
     }
 }

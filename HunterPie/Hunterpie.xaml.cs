@@ -44,6 +44,10 @@ namespace HunterPie {
             }
 
             AppDomain.CurrentDomain.UnhandledException += ExceptionLogger;
+
+            Buffers.Initialize(1024);
+            Buffers.Add<byte>(64);
+
             // Initialize debugger and player config
             Debugger.InitializeDebugger();
             UserSettings.InitializePlayerConfig();
@@ -54,7 +58,7 @@ namespace HunterPie {
             // Load custom theme and console colors
             LoadCustomTheme();
             Debugger.LoadNewColors();
-            
+
             InitializeComponent();
 
             Width = UserSettings.PlayerConfig.HunterPie.Width;
@@ -68,7 +72,7 @@ namespace HunterPie {
 
             // Update version text
             this.version_text.Text = GStrings.GetLocalizationByXPath("/Console/String[@ID='CONSOLE_VERSION']").Replace("{HunterPie_Version}", HUNTERPIE_VERSION).Replace("{HunterPie_Branch}", UserSettings.PlayerConfig.HunterPie.Update.Branch);
-            
+
             // Initializes the rest of HunterPie
             LoadData();
             Debugger.Warn(GStrings.GetLocalizationByXPath("/Console/String[@ID='MESSAGE_HUNTERPIE_INITIALIZED']"));
@@ -336,7 +340,7 @@ namespace HunterPie {
         }
 
 #region Game & Client Events
-        private void HookEvents() 
+        private void HookEvents()
         {
             // Scanner events
             Scanner.OnGameStart += OnGameStart;
@@ -345,7 +349,7 @@ namespace HunterPie {
             UserSettings.OnSettingsUpdate += SendToOverlay;
         }
 
-        private void UnhookEvents() 
+        private void UnhookEvents()
         {
             // Debug
             AppDomain.CurrentDomain.UnhandledException -= ExceptionLogger;
@@ -356,7 +360,7 @@ namespace HunterPie {
             UserSettings.OnSettingsUpdate -= SendToOverlay;
         }
 
-        public void SendToOverlay(object source, EventArgs e) 
+        public void SendToOverlay(object source, EventArgs e)
         {
             GameOverlay?.GlobalSettingsEventHandler(source, e);
             Dispatcher.BeginInvoke(System.Windows.Threading.DispatcherPriority.ApplicationIdle, new Action(() => {
@@ -366,7 +370,7 @@ namespace HunterPie {
             }));
         }
 
-        private void HookGameEvents() 
+        private void HookGameEvents()
         {
             // Game events
             MonsterHunter.Player.OnZoneChange += OnZoneChange;
@@ -375,7 +379,7 @@ namespace HunterPie {
             MonsterHunter.Player.OnSessionChange += OnSessionChange;
         }
 
-        private void UnhookGameEvents() 
+        private void UnhookGameEvents()
         {
             MonsterHunter.Player.OnZoneChange -= OnZoneChange;
             MonsterHunter.Player.OnCharacterLogin -= OnLogin;
@@ -425,9 +429,9 @@ namespace HunterPie {
                     GameOverlay = new Overlay(MonsterHunter);
                     GameOverlay.HookEvents();
                     UserSettings.TriggerSettingsEvent();
-                } 
+                }
             }));
-            
+
             // Loads memory map
             if (Address.LoadMemoryMap(Scanner.GameVersion) || Scanner.GameVersion == Address.GAME_VERSION) {
                 Debugger.Warn(GStrings.GetLocalizationByXPath("/Console/String[@ID='MESSAGE_MAP_LOAD']").Replace("{HunterPie_Map}", $"'MonsterHunterWorld.{Scanner.GameVersion}.map'"));
@@ -502,7 +506,7 @@ namespace HunterPie {
             ButtonBorder.SetValue(BorderThicknessProperty, new Thickness(4, 0, 0, 0));
         }
 
-        private void SwitchButtonOff(StackPanel buttonActive) 
+        private void SwitchButtonOff(StackPanel buttonActive)
         {
             Border ButtonBorder = (Border)buttonActive.Children[0];
             ButtonBorder.SetValue(BorderThicknessProperty, new Thickness(0, 0, 0, 0));
@@ -534,31 +538,31 @@ namespace HunterPie {
             this.DragMove();
         }
 
-        private void OnMinimizeButtonClick(object sender, MouseButtonEventArgs e) 
+        private void OnMinimizeButtonClick(object sender, MouseButtonEventArgs e)
         {
-            if (UserSettings.PlayerConfig.HunterPie.MinimizeToSystemTray) 
+            if (UserSettings.PlayerConfig.HunterPie.MinimizeToSystemTray)
             {
                 this.WindowState = WindowState.Minimized;
                 this.Hide();
-            } else 
+            } else
             {
                 this.WindowState = WindowState.Minimized;
             }
         }
 
-        private void OnWindowClosing(object sender, System.ComponentModel.CancelEventArgs e) 
+        private void OnWindowClosing(object sender, System.ComponentModel.CancelEventArgs e)
         {
             UserSettings.SaveNewConfig();
             this.Hide();
             // Dispose tray icon
-            if (TrayIcon != null) 
+            if (TrayIcon != null)
             {
                 TrayIcon.NotifyIcon.Click -= OnTrayIconClick;
                 TrayIcon.ContextMenu.MenuItems[0].Click -= OnTrayIconSettingsClick;
                 TrayIcon.ContextMenu.MenuItems[1].Click -= OnTrayIconExitClick;
                 TrayIcon.Dispose();
             }
-            
+
             // Dispose stuff & stop scanning threads
             GameOverlay?.Dispose();
             if (MonsterHunter.IsActive) MonsterHunter.StopScanning();
