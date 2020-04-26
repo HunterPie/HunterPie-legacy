@@ -41,6 +41,7 @@ namespace HunterPie.Core {
                 public bool EnableHardwareAcceleration { get; set; } = true;
                 public bool HideWhenGameIsUnfocused { get; set; } = false;
                 public int ToggleDesignModeKey { get; set; } = 145;
+                public string ToggleDesignKeybind { get; set; } = "ScrollLock";
                 public Monsterscomponent MonstersComponent { get; set; } = new Monsterscomponent();
                 public Harvestboxcomponent HarvestBoxComponent { get; set; } = new Harvestboxcomponent();
                 public SpecializedTool PrimaryMantle { get; set; } = new SpecializedTool() {
@@ -102,7 +103,7 @@ namespace HunterPie.Core {
                 public bool ShowDPSWheneverPossible { get; set; } = true;
                 public double Scale { get; set; } = 0.8;
                 public int[] Position { get; set; } = new int[2] { 10, 350 };
-                public Players[] PartyMembers { get; set; } = new Players[4] { new Players(), new Players(), new Players(), new Players() };
+                public Players[] PartyMembers { get; set; } = new Players[4] { new Players() { Color = "#FFE14136"}, new Players() { Color = "#FF65B2B7"}, new Players() { Color = "#FFECE2A0" }, new Players() { Color = "#FF4AAB3F" } };
                 public bool ShowOnlyMyself { get; set; } = false;
                 public bool ShowTimerInExpeditions { get; set; } = true;
                 public float BackgroundOpacity { get; set; } = 0.5f;
@@ -235,9 +236,14 @@ namespace HunterPie.Core {
                 configContent = File.ReadAllText(ConfigFileName);
                 if (configContent == "null") throw new Exception("Config.json is null");
             } catch (IOException err) {
-                
-                Debugger.Error("Config.json could not be loaded. Re-trying again...");
+                Debugger.Error($"Config.json could not be loaded.\n{err}");
                 configContent = ConfigSerialized;
+                if (configContent == null)
+                {
+                    Debugger.Warn("Generating new config");
+                    MakeNewConfig();
+                    configContent = File.ReadAllText(ConfigFileName);
+                }
             } catch(Exception err) {
                 Debugger.Error($"Failed to parse config.json!\n{err}");
                 Debugger.Warn("Generating new config");
@@ -258,7 +264,6 @@ namespace HunterPie.Core {
                 PlayerConfig = JsonConvert.DeserializeObject<Config.Rootobject>(ConfigSerialized);
                 _onSettingsUpdate();
             } catch(Exception err) {
-
                 Debugger.Error($"Failed to parse config.json!\n{err}");
             }
         }

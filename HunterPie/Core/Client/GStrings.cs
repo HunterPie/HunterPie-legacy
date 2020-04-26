@@ -2,12 +2,11 @@
 using System.Xml;
 using System.IO;
 using HunterPie.Logger;
-using System.Text;
 using System.Windows.Data;
 
 namespace HunterPie.Core {
     class GStrings {
-        static public XmlDocument Translations { get; private set; } = new XmlDocument();
+        public static XmlDocument Translations { get; private set; } = new XmlDocument();
 
         public static void InitStrings(string LangXml) {
             LoadTranslationXML(LangXml);

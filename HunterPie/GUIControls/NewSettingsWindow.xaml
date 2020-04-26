@@ -12,38 +12,6 @@
     <UserControl.Resources>
         <ResourceDictionary>
             <helper:StaticSecondsConverter x:Key="StaticSecondsConverter"/>
-            <SolidColorBrush x:Key="ToggleButtonBackgroundOn" Color="{StaticResource TOGGLABLE_BUTTON_BACKGROUND_ON}"/>
-            <SolidColorBrush x:Key="ToggleButtonBackgroundOff" Color="{StaticResource TOGGLABLE_BUTTON_BACKGROUND_OFF}"/>
-            <Style x:Key="ToggleButtonStyle" TargetType="{x:Type Button}">
-                <Setter Property="Padding" Value="1"/>
-                <Setter Property="Template">
-                    <Setter.Value>
-                        <ControlTemplate TargetType="{x:Type Button}">
-                            <Border x:Name="border" BorderBrush="{TemplateBinding BorderBrush}" BorderThickness="{TemplateBinding BorderThickness}" Background="{TemplateBinding Background}" SnapsToDevicePixels="true">
-                                <ContentPresenter x:Name="contentPresenter" Focusable="False" HorizontalAlignment="{TemplateBinding HorizontalContentAlignment}" Margin="{TemplateBinding Padding}" RecognizesAccessKey="True" SnapsToDevicePixels="{TemplateBinding SnapsToDevicePixels}" VerticalAlignment="{TemplateBinding VerticalContentAlignment}"/>
-                            </Border>
-                        </ControlTemplate>
-                    </Setter.Value>
-                </Setter>
-                <Style.Triggers>
-                    <Trigger Property="IsFocused" Value="True">
-                        <Trigger.EnterActions>
-                            <BeginStoryboard>
-                                <Storyboard Storyboard.TargetProperty="(Background).(SolidColorBrush.Color)">
-                                    <ColorAnimation To="{StaticResource TOGGLABLE_BUTTON_BACKGROUND_ON}" Duration="0:0:0.2"/>
-                                </Storyboard>
-                            </BeginStoryboard>
-                        </Trigger.EnterActions>
-                        <Trigger.ExitActions>
-                            <BeginStoryboard>
-                                <Storyboard Storyboard.TargetProperty="(Background).(SolidColorBrush.Color)">
-                                    <ColorAnimation To="{StaticResource TOGGLABLE_BUTTON_BACKGROUND_OFF}" Duration="0:0:0.2"/>
-                                </Storyboard>
-                            </BeginStoryboard>
-                        </Trigger.ExitActions>
-                    </Trigger>
-                </Style.Triggers>
-            </Style>
             <Style TargetType="{x:Type TabItem}">
                 <Setter Property="Height" Value="30"/>
                 <Setter Property="Margin" Value="0,1,0,0"/>
@@ -292,30 +260,8 @@
                             <Slider x:Name="DesiredScanPerSecond" Style="{StaticResource Horizontal_Slider}" Foreground="#FF3C3C3C" Maximum="1000" Minimum="50" SmallChange="1" Value="150" Width="190" Canvas.Left="164" Canvas.Top="5" AutoToolTipPlacement="TopLeft" IsSnapToTickEnabled="True" Margin="8,0" />
                             <TextBlock Text="{Binding Value, ElementName=DesiredScanPerSecond}" FontFamily="Segoe UI Light" Foreground="WhiteSmoke" Canvas.Left="366" Canvas.Top="4"/>
                         </StackPanel>
-                        <StackPanel Orientation="Horizontal" Height="28" HorizontalAlignment="Center" MinWidth="500">
-                            <TextBlock Foreground="WhiteSmoke" Canvas.Top="3" FontFamily="Segoe UI Light">
-                                <TextBlock.Text>
-                                    <Binding Mode="OneTime" XPath="Settings/String[@ID='STATIC_TOGGLE_OVERLAY']/@Name"/>
-                                </TextBlock.Text>
-                            </TextBlock>
-                            <Button x:Name="ToggleOverlayHotKey" Cursor="Hand" Background="#FF0F0F0F" Foreground="#FFE8E8E8"  BorderBrush="{x:Null}" Height="28" Padding="3,1" Style="{StaticResource ToggleButtonStyle}" Width="115" Canvas.Left="179" PreviewKeyDown="OnToggleOverlayKeyDown"/>
-                            <TextBlock TextWrapping="Wrap" Text="{Binding Mode=OneTime, XPath=/Strings/Client/Settings/String[@ID\=\'STATIC_REQUIRES_RESTART\']/@Name}" Foreground="#FFF1F1F1" FontFamily="Segoe UI Light" TextAlignment="Center" HorizontalAlignment="Left" Padding="0,6,0,0" Canvas.Left="299" Canvas.Top="2" FontSize="10"/>
-                            <StackPanel.ToolTip>
-                                <Binding Mode="OneTime" XPath="Settings/String[@ID='STATIC_TOGGLE_OVERLAY_DESC']/@Name"/>
-                            </StackPanel.ToolTip>
-                        </StackPanel>
-                        <StackPanel Orientation="Horizontal" Height="28" HorizontalAlignment="Center" MinWidth="500">
-                            <TextBlock FontFamily="Segoe UI Light" Foreground="WhiteSmoke" Canvas.Top="3">
-                                <TextBlock.Text>
-                                    <Binding Mode="OneTime" XPath="Settings/String[@ID='STATIC_TOGGLE_DESIGN']/@Name"/>
-                                </TextBlock.Text>
-                            </TextBlock>
-                            <Button x:Name="DesignModeKeyCode" Cursor="Hand" Background="#FF0F0F0F" Foreground="#FFE8E8E8"  BorderBrush="{x:Null}" Height="28" Padding="3,1" Style="{StaticResource ToggleButtonStyle}" Width="115" Canvas.Left="220" Click="SelectDesignModeKeyBind" LostFocus="OnKeybindingButtonLoseFocus"/>
-                            <TextBlock TextWrapping="Wrap" Text="{Binding Mode=OneTime, XPath=/Strings/Client/Settings/String[@ID\=\'STATIC_REQUIRES_RESTART\']/@Name}" FontFamily="Segoe UI Light" Foreground="#FFF1F1F1"  TextAlignment="Center" HorizontalAlignment="Left" Padding="0,6,0,0" Canvas.Left="340" Canvas.Top="2" FontSize="10"/>
-                            <StackPanel.ToolTip>
-                                <Binding Mode="OneTime" XPath="Settings/String[@ID='STATIC_TOGGLE_DESIGN_DESC']/@Name"/>
-                            </StackPanel.ToolTip>
-                        </StackPanel>
+                        <custom:CHotKey x:Name="ToggleOverlayHotkey" Text="{Binding Mode=OneTime, XPath=/Strings/Client/Settings/String[@ID\=\'STATIC_TOGGLE_OVERLAY\']/@Name}" MinWidth="500" HorizontalAlignment="Center" ToolTip="{Binding Mode=OneTime, XPath=/Strings/Client/Settings/String[@ID\=\'STATIC_TOGGLE_OVERLAY_DESC\']/@Name}"/>
+                        <custom:CHotKey x:Name="ToggleDesignHotkey" Text="{Binding Mode=OneTime, XPath=/Strings/Client/Settings/String[@ID\=\'STATIC_TOGGLE_DESIGN\']/@Name}" MinWidth="500" HorizontalAlignment="Center" ToolTip="{Binding Mode=OneTime, XPath=/Strings/Client/Settings/String[@ID\=\'STATIC_TOGGLE_DESIGN_DESC\']/@Name}"/>
                         <custom:PositionControl x:Name="OverlayPosition" HorizontalAlignment="Center" MinWidth="500" Height="38">
                             <custom:PositionControl.ToolTip>
                                 <Binding Mode="OneTime" XPath="Settings/String[@ID='STATIC_OVERLAY_POSITION_DESC']/@Name"/>
@@ -359,15 +305,7 @@
 
                             </ComboBox>
                         </StackPanel>
-                        <StackPanel Orientation="Horizontal" Height="28" ToolTip="{Binding Mode=OneTime, XPath=/Strings/Client/Settings/String[@ID\=\'STATIC_MONSTER_BAR_MODE_HOTKEY_DESC\']/@Name}" HorizontalAlignment="Center" MinWidth="500">
-                            <TextBlock FontFamily="Segoe UI Light" Foreground="WhiteSmoke" Canvas.Top="3">
-                                <TextBlock.Text>
-                                    <Binding Mode="OneTime" XPath="Settings/String[@ID='STATIC_MONSTER_BAR_MODE_HOTKEY']/@Name"/>
-                                </TextBlock.Text>
-                            </TextBlock>
-                            <Button x:Name="ToggleMonsterBarModeHotKey" Cursor="Hand" Background="#FF0F0F0F" Foreground="#FFE8E8E8"  BorderBrush="{x:Null}" Height="28" Padding="3,1" Style="{StaticResource ToggleButtonStyle}" Width="115" Canvas.Left="200" Canvas.Top="1" PreviewKeyDown="OnToggleOverlayKeyDown"/>
-                            <TextBlock TextWrapping="Wrap" Text="{Binding Mode=OneTime, XPath=/Strings/Client/Settings/String[@ID\=\'STATIC_REQUIRES_RESTART\']/@Name}" FontFamily="Segoe UI Light" Foreground="#FFF1F1F1"  TextAlignment="Center" HorizontalAlignment="Left" Padding="0,6,0,0" Canvas.Left="320" Canvas.Top="3" FontSize="10"/>
-                        </StackPanel>
+                        <custom:CHotKey x:Name="ToggleMonsterBarModeHotKey" Text="{Binding Mode=OneTime, XPath=/Strings/Client/Settings/String[@ID\=\'STATIC_MONSTER_BAR_MODE_HOTKEY\']/@Name}" ToolTip="{Binding Mode=OneTime, XPath=/Strings/Client/Settings/String[@ID\=\'STATIC_MONSTER_BAR_MODE_HOTKEY\']/@Name}" MinWidth="500" HorizontalAlignment="Center"/>
                         <StackPanel Orientation="Horizontal" Height="28" ToolTip="{Binding Mode=OneTime, XPath=/Strings/Client/Settings/String[@ID\=\'STATIC_MONSTER_BAR_DOCK_DESC\']/@Name}" HorizontalAlignment="Center" MinWidth="500">
                             <TextBlock Text="{Binding Mode=OneTime, XPath=/Strings/Client/Settings/String[@ID\=\'STATIC_MONSTER_BAR_DOCK\']/@Name}" FontFamily="Segoe UI Light" Foreground="WhiteSmoke" Canvas.Top="3"/>
                             <ComboBox x:Name="MonsterBarDock" Style="{StaticResource ComboBoxFlatStyle}" IsReadOnly="True" Cursor="Hand" HorizontalAlignment="Center" FontSize="14" Foreground="#FFF9F9F9" SelectedIndex="0" Canvas.Left="141" Canvas.Top="2" Width="234">

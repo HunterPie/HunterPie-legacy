@@ -14,13 +14,9 @@ namespace HunterPie.GUIControls {
         public string fullGamePath = "";
         public string fullMonsterDataPath = "";
         public string fullLaunchArgs = "";
-        private string[] AvailableBranches = new string[2] { "master", "BETA" };
-        private KeyboardHook KeyboardInputHook = new KeyboardHook();
 
         public NewSettingsWindow() {
             InitializeComponent();
-            KeyboardInputHook.InstallHooks();
-            KeyboardInputHook.OnKeyboardKeyPress += KeyboardInputHook_OnKeyboardKeyPress;
             PopulateBuffTrays();
             PopulateLanguageBox();
             PopulateThemesBox();
@@ -29,8 +25,6 @@ namespace HunterPie.GUIControls {
         }
 
         public void UnhookEvents() {
-            KeyboardInputHook.UninstallHooks();
-            KeyboardInputHook.OnKeyboardKeyPress -= KeyboardInputHook_OnKeyboardKeyPress;
             switchEnableParts.MouseDown -= SwitchEnableParts_MouseDown;
             MonsterShowModeSelection.Items.Clear();
             LanguageFilesCombobox.Items.Clear();
@@ -104,29 +98,6 @@ namespace HunterPie.GUIControls {
             selectPathBttn.Focusable = true;
         }
 
-        private bool CanChooseKey = false;
-        private bool HasFocus = false;
-        public KeyboardHookHelper.KeyboardKeys KeyChoosen = KeyboardHookHelper.GetKeyboardKeyByID(UserSettings.PlayerConfig.Overlay.ToggleDesignModeKey);
-        private void SelectDesignModeKeyBind(object sender, System.Windows.RoutedEventArgs e) {
-            CanChooseKey = true;
-            HasFocus = true;
-        }
-
-        private void KeyboardInputHook_OnKeyboardKeyPress(object sender, KeyboardInputEventArgs e) {
-            if (CanChooseKey && HasFocus) {
-                KeyChoosen = (KeyboardHookHelper.KeyboardKeys)Enum.Parse(typeof(KeyboardHookHelper.KeyboardKeys), e.Key.ToString());
-                this.DesignModeKeyCode.Content = KeyChoosen.ToString();
-                DesignModeKeyCode.Focusable = false;
-                CanChooseKey = false;
-            }
-        }
-
-        private void OnKeybindingButtonLoseFocus(object sender, System.Windows.RoutedEventArgs e) {
-            HasFocus = false;
-            CanChooseKey = false;
-            DesignModeKeyCode.Focusable = true;
-        }
-
         private void PopulateBuffTrays() {
             for (int i = 0; i < UserSettings.PlayerConfig.Overlay.AbnormalitiesWidget.ActiveBars; i++) {
                 Custom_Controls.BuffBarSettingControl BuffBar = new Custom_Controls.BuffBarSettingControl() {
@@ -183,39 +154,6 @@ namespace HunterPie.GUIControls {
                 AddNewBuffBar.Opacity = 1;
                 return;
             }
-        }
-
-        private void OnToggleOverlayKeyDown(object sender, KeyEventArgs e) {
-            // Credits to this stackoverflow post I found: https://stackoverflow.com/questions/2136431/how-do-i-read-custom-keyboard-shortcut-from-user-in-wpf
-            // The text box grabs all input.
-            e.Handled = true;
-
-            // Fetch the actual shortcut key.
-            Key key = (e.Key == Key.System ? e.SystemKey : e.Key);
-
-            // Ignore modifier keys.
-            if (key == Key.LeftShift || key == Key.RightShift
-                || key == Key.LeftCtrl || key == Key.RightCtrl
-                || key == Key.LeftAlt || key == Key.RightAlt
-                || key == Key.LWin || key == Key.RWin) {
-                return;
-            }
-
-            // Build the shortcut key name.
-            StringBuilder shortcutText = new StringBuilder();
-            if ((Keyboard.Modifiers & ModifierKeys.Control) != 0) {
-                shortcutText.Append("Ctrl+");
-            }
-            if ((Keyboard.Modifiers & ModifierKeys.Shift) != 0) {
-                shortcutText.Append("Shift+");
-            }
-            if ((Keyboard.Modifiers & ModifierKeys.Alt) != 0) {
-                shortcutText.Append("Alt+");
-            }
-            shortcutText.Append(key.ToString());
-            Button btn = (Button)sender;
-            // Update the text box.
-            btn.Content = shortcutText.ToString();
         }
 
         private void SwitchEnableParts_MouseDown(object sender, MouseButtonEventArgs e) {

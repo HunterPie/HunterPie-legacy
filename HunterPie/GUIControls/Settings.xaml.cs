@@ -68,8 +68,9 @@ namespace HunterPie.GUIControls {
             settingsUI.switchEnableOverlay.IsEnabled = settings.Overlay.Enabled;
             settingsUI.DesiredFrameRateSlider.Value = settings.Overlay.DesiredAnimationFrameRate;
             settingsUI.DesiredScanPerSecond.Value = settings.Overlay.GameScanDelay;
-            settingsUI.DesignModeKeyCode.Content = KeyboardHookHelper.GetKeyboardKeyByID(settings.Overlay.ToggleDesignModeKey).ToString();
-            settingsUI.ToggleOverlayHotKey.Content = settings.Overlay.ToggleOverlayKeybind;
+            //settingsUI.DesignModeKeyCode.Content = KeyboardHookHelper.GetKeyboardKeyByID(settings.Overlay.ToggleDesignModeKey).ToString();
+            settingsUI.ToggleDesignHotkey.HotKey = settings.Overlay.ToggleDesignKeybind;
+            settingsUI.ToggleOverlayHotkey.HotKey = settings.Overlay.ToggleOverlayKeybind;
             settingsUI.switchHardwareAcceleration.IsEnabled = settings.Overlay.EnableHardwareAcceleration;
             settingsUI.switchHideWhenUnfocused.IsEnabled = settings.Overlay.HideWhenGameIsUnfocused;
             settingsUI.OverlayPosition.X = settings.Overlay.Position[0];
@@ -79,7 +80,7 @@ namespace HunterPie.GUIControls {
             settingsUI.switchEnableMonsterComponent.IsEnabled = settings.Overlay.MonstersComponent.Enabled;
             settingsUI.HealthTextFormat.Text = settings.Overlay.MonstersComponent.HealthTextFormat;
             settingsUI.MonsterShowModeSelection.SelectedIndex = settings.Overlay.MonstersComponent.ShowMonsterBarMode;
-            settingsUI.ToggleMonsterBarModeHotKey.Content = settings.Overlay.MonstersComponent.SwitchMonsterBarModeHotkey;
+            settingsUI.ToggleMonsterBarModeHotKey.HotKey = settings.Overlay.MonstersComponent.SwitchMonsterBarModeHotkey;
             settingsUI.MaxNumberOfPartsAtOnce.Value = settings.Overlay.MonstersComponent.MaxNumberOfPartsAtOnce;
             settingsUI.MaxColumnsOfParts.Value = settings.Overlay.MonstersComponent.MaxPartColumns;
             settingsUI.MonsterBarDock.SelectedIndex = settings.Overlay.MonstersComponent.MonsterBarDock;
@@ -174,8 +175,9 @@ namespace HunterPie.GUIControls {
             settings.Overlay.Enabled = settingsUI.switchEnableOverlay.IsEnabled;
             settings.Overlay.DesiredAnimationFrameRate = (int)settingsUI.DesiredFrameRateSlider.Value;
             settings.Overlay.GameScanDelay = (int)settingsUI.DesiredScanPerSecond.Value;
-            settings.Overlay.ToggleDesignModeKey = (int)settingsUI.KeyChoosen;
-            settings.Overlay.ToggleOverlayKeybind = (string)settingsUI.ToggleOverlayHotKey.Content;
+            //settings.Overlay.ToggleDesignModeKey = (int)settingsUI.KeyChoosen;
+            settings.Overlay.ToggleDesignKeybind = settingsUI.ToggleDesignHotkey.HotKey;
+            settings.Overlay.ToggleOverlayKeybind = settingsUI.ToggleOverlayHotkey.HotKey;
             settings.Overlay.EnableHardwareAcceleration = settingsUI.switchHardwareAcceleration.IsEnabled;
             settings.Overlay.HideWhenGameIsUnfocused = settingsUI.switchHideWhenUnfocused.IsEnabled;
             settings.Overlay.Position[0] = settingsUI.OverlayPosition.X;
@@ -185,7 +187,7 @@ namespace HunterPie.GUIControls {
             settings.Overlay.MonstersComponent.Enabled = settingsUI.switchEnableMonsterComponent.IsEnabled;
             settings.Overlay.MonstersComponent.HealthTextFormat = settingsUI.HealthTextFormat.Text;
             settings.Overlay.MonstersComponent.ShowMonsterBarMode = (byte)settingsUI.MonsterShowModeSelection.SelectedIndex;
-            settings.Overlay.MonstersComponent.SwitchMonsterBarModeHotkey = (string)settingsUI.ToggleMonsterBarModeHotKey.Content;
+            settings.Overlay.MonstersComponent.SwitchMonsterBarModeHotkey = settingsUI.ToggleMonsterBarModeHotKey.HotKey;
             settings.Overlay.MonstersComponent.MaxNumberOfPartsAtOnce = (int)settingsUI.MaxNumberOfPartsAtOnce.Value;
             settings.Overlay.MonstersComponent.MaxPartColumns = (int)settingsUI.MaxColumnsOfParts.Value;
             settings.Overlay.MonstersComponent.MonsterBarDock = (byte)settingsUI.MonsterBarDock.SelectedIndex;

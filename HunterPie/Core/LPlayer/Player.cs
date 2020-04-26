@@ -440,7 +440,6 @@ namespace HunterPie.Core
         private bool GetPlayerAddress()
         {
             Int64 AddressValue = Scanner.READ_MULTILEVEL_PTR(Address.BASE + Address.WEAPON_OFFSET, Address.Offsets.WeaponOffsets);
-            Int64 pAddress = 0x0;
             Int64 nextPlayer = 0x27E9F0;
             if (AddressValue > 0x0)
             {
@@ -451,7 +450,7 @@ namespace HunterPie.Core
                 if (pName == "") return false;
                 for (int playerSlot = 0; playerSlot < 3; playerSlot++)
                 {
-                    pAddress = Scanner.READ_MULTILEVEL_PTR(Address.BASE + Address.LEVEL_OFFSET, Address.Offsets.LevelOffsets) + (nextPlayer * playerSlot);
+                    long pAddress = Scanner.READ_MULTILEVEL_PTR(Address.BASE + Address.LEVEL_OFFSET, Address.Offsets.LevelOffsets) + (nextPlayer * playerSlot);
                     if (Scanner.Read<int>(pAddress) == pLevel && Scanner.READ_STRING(pAddress - 0x40, 32)?.Trim('\x00') == pName && PlayerAddress != pAddress)
                     {
                         LEVEL_ADDRESS = pAddress;
@@ -789,6 +788,8 @@ namespace HunterPie.Core
             }
             else
             {
+                // Work around for blastscourge weird behavior
+                if (info.InternalId == "DE_020_00" && duration < 2) return;
                 var a = new Abnormality(info);
                 a.UpdateAbnormalityInfo(duration, stack);
                 Abnormalities.Add(info.InternalId, a);
