@@ -1,31 +1,31 @@
 <?xml version="1.0" encoding="utf-8" ?>
 <Monsters>
   <Ailments Max="19">
-    <Ailment Name="0" Skip="True"/>
-    <Ailment Name="STATUS_POISON" Skip="False"/>
-    <Ailment Name="STATUS_PARALYSIS" Skip="False"/>
-    <Ailment Name="STATUS_SLEEP" Skip="False"/>
-    <Ailment Name="STATUS_BLAST" Skip="False"/>
-    <Ailment Name="STATUS_MOUNT" Skip="False"/>
-    <Ailment Name="STATUS_EXHAUSTION" Skip="False"/>
-    <Ailment Name="STATUS_STUN" Skip="False"/>
-    <Ailment Name="STATUS_TRANQUILIZE" Skip="False"/>
-    <Ailment Name="STATUS_FLASH" Skip="False"/>
-    <Ailment Name="STATUS_FLASH" Skip="False"/>
-    <Ailment Name="STATUS_KNOCKDOWN" Skip="False"/>
-    <Ailment Name="STATUS_DUNGPOD" Skip="False"/>
-    <Ailment Name="13" Skip="True"/>
-    <Ailment Name="STATUS_SHOCKTRAP" Skip="False"/>
-    <Ailment Name="STATUS_PITFALLTRAP" Skip="False"/>
-    <Ailment Name="STATUS_VINETRAP" Skip="False"/>
-    <Ailment Name="17" Skip="True"/>
-    <Ailment Name="STATUS_ELDERSEAL" Skip="False"/>
-    <Ailment Name="STATUS_SMOKING" Skip="False"/>
-    <Ailment Name="20" Skip="True"/>
-    <Ailment Name="STATUS_FELYNETRAP" Skip="False"/>
-    <Ailment Name="STATUS_CLAW" Skip="False"/>
-    <Ailment Name="STATUS_VIOLATED" Skip="False"/>
-    <Ailment Name="25" Skip="False"/>
+    <Ailment Name="0" Skip="True" Group="UNKNOWN"/>
+    <Ailment Name="STATUS_POISON" Skip="False" Group="POISON"/>
+    <Ailment Name="STATUS_PARALYSIS" Skip="False" Group="PARALYSIS"/>
+    <Ailment Name="STATUS_SLEEP" Skip="False" Group="SLEEP"/>
+    <Ailment Name="STATUS_BLAST" Skip="False" Group="BLAST"/>
+    <Ailment Name="STATUS_MOUNT" Skip="False" Group="MOUNT"/>
+    <Ailment Name="STATUS_EXHAUSTION" Skip="False" Group="EXHAUSTION"/>
+    <Ailment Name="STATUS_STUN" Skip="False" Group="STUN"/>
+    <Ailment Name="STATUS_TRANQUILIZE" Skip="False" Group="TRANQUILIZE"/>
+    <Ailment Name="STATUS_FLASH" Skip="False" Group="FLASH"/>
+    <Ailment Name="STATUS_FLASH" Skip="False" Group="FLASH"/>
+    <Ailment Name="STATUS_KNOCKDOWN" Skip="False" Group="KNOCKDOWN"/>
+    <Ailment Name="STATUS_DUNGPOD" Skip="False" Group="DUNGPOD"/>
+    <Ailment Name="13" Skip="True" Group="UNKNOWN"/>
+    <Ailment Name="STATUS_SHOCKTRAP" Skip="False" Group="TRAP"/>
+    <Ailment Name="STATUS_PITFALLTRAP" Skip="False" Group="TRAP"/>
+    <Ailment Name="STATUS_VINETRAP" Skip="False" Group="TRAP"/>
+    <Ailment Name="17" Skip="True" Group="UNKNOWN"/>
+    <Ailment Name="STATUS_ELDERSEAL" Skip="False" Group="ELDERSEAL"/>
+    <Ailment Name="STATUS_SMOKING" Skip="False" Group="SMOKING"/>
+    <Ailment Name="20" Skip="True" Group="UNKNOWN"/>
+    <Ailment Name="STATUS_FELYNETRAP" Skip="False" Group="TRAP"/>
+    <Ailment Name="STATUS_CLAW" Skip="False" Group="CLAW"/>
+    <Ailment Name="STATUS_VIOLATED" Skip="False" Group="CLAW"/>
+    <Ailment Name="25" Skip="True" Group="UNKNOWN"/>
   </Ailments>
   <Monster ID="em001_00" Capture="25" GameID="9"> <!-- Rathian -->
     <Weaknesses>

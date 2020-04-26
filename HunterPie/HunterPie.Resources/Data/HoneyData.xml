@@ -2160,72 +2160,40 @@
       <Weapon HoneyID="22" ID="8"/>
       <Weapon HoneyID="23" ID="99"/>
       <Weapon HoneyID="375" ID="100"/>
-      <Weapon HoneyID="375" ID="262"/>
       <Weapon HoneyID="367" ID="101"/>
-      <Weapon HoneyID="367" ID="263"/>
       <Weapon HoneyID="372" ID="102"/>
-      <Weapon HoneyID="372" ID="264"/>
       <Weapon HoneyID="366" ID="103"/>
-      <Weapon HoneyID="366" ID="265"/>
       <Weapon HoneyID="373" ID="104"/>
-      <Weapon HoneyID="373" ID="266"/>
       <Weapon HoneyID="370" ID="105"/>
-      <Weapon HoneyID="370" ID="267"/>
       <Weapon HoneyID="371" ID="106"/>
-      <Weapon HoneyID="371" ID="268"/>
       <Weapon HoneyID="374" ID="107"/>
-      <Weapon HoneyID="374" ID="269"/>
       <Weapon HoneyID="364" ID="108"/>
-      <Weapon HoneyID="364" ID="270"/>
       <Weapon HoneyID="368" ID="109"/>
-      <Weapon HoneyID="368" ID="271"/>
       <Weapon HoneyID="365" ID="110"/>
-      <Weapon HoneyID="365" ID="272"/>
       <Weapon HoneyID="369" ID="111"/>
-      <Weapon HoneyID="369" ID="273"/>
       <Weapon HoneyID="378" ID="112"/>
-      <Weapon HoneyID="378" ID="274"/>
       <Weapon HoneyID="383" ID="113"/>
-      <Weapon HoneyID="383" ID="275"/>
       <Weapon HoneyID="381" ID="114"/>
-      <Weapon HoneyID="381" ID="276"/>
       <Weapon HoneyID="382" ID="115"/>
-      <Weapon HoneyID="382" ID="277"/>
       <Weapon HoneyID="384" ID="116"/>
-      <Weapon HoneyID="384" ID="278"/>
       <Weapon HoneyID="376" ID="117"/>
-      <Weapon HoneyID="376" ID="279"/>
       <Weapon HoneyID="379" ID="118"/>
-      <Weapon HoneyID="379" ID="280"/>
       <Weapon HoneyID="377" ID="119"/>
-      <Weapon HoneyID="377" ID="281"/>
       <Weapon HoneyID="380" ID="120"/>
-      <Weapon HoneyID="380" ID="282"/>
       <Weapon HoneyID="387" ID="121"/>
-      <Weapon HoneyID="387" ID="283"/>
       <Weapon HoneyID="385" ID="122"/>
-      <Weapon HoneyID="385" ID="284"/>
       <Weapon HoneyID="386" ID="123"/>
-      <Weapon HoneyID="386" ID="285"/>
       <Weapon HoneyID="638" ID="125"/>
       <Weapon HoneyID="639" ID="126"/>
       <Weapon HoneyID="640" ID="127"/>
       <Weapon HoneyID="682" ID="128"/>
-      <Weapon HoneyID="682" ID="286"/>
       <Weapon HoneyID="703" ID="129"/>
-      <Weapon HoneyID="703" ID="287"/>
       <Weapon HoneyID="698" ID="130"/>
-      <Weapon HoneyID="698" ID="288"/>
       <Weapon HoneyID="704" ID="131"/>
-      <Weapon HoneyID="704" ID="289"/>
       <Weapon HoneyID="701" ID="132"/>
-      <Weapon HoneyID="701" ID="290"/>
       <Weapon HoneyID="700" ID="133"/>
-      <Weapon HoneyID="700" ID="291"/>
       <Weapon HoneyID="702" ID="134"/>
-      <Weapon HoneyID="702" ID="292"/>
       <Weapon HoneyID="699" ID="135"/>
-      <Weapon HoneyID="699" ID="293"/>
       <Weapon HoneyID="1858" ID="140"/>
       <Weapon HoneyID="796" ID="150"/>
       <Weapon HoneyID="797" ID="151"/>
@@ -2328,6 +2296,38 @@
       <Weapon HoneyID="1915" ID="260"/>
       <Weapon HoneyID="1916" ID="252"/>
       <Weapon HoneyID="1916" ID="261"/>
+      <Weapon HoneyID="2138" ID="262"/>
+      <Weapon HoneyID="2130" ID="263"/>
+      <Weapon HoneyID="2135" ID="264"/>
+      <Weapon HoneyID="2129" ID="265"/>
+      <Weapon HoneyID="2136" ID="266"/>
+      <Weapon HoneyID="2133" ID="267"/>
+      <Weapon HoneyID="2134" ID="268"/>
+      <Weapon HoneyID="2137" ID="269"/>
+      <Weapon HoneyID="2127" ID="270"/>
+      <Weapon HoneyID="2131" ID="271"/>
+      <Weapon HoneyID="2128" ID="272"/>
+      <Weapon HoneyID="2132" ID="273"/>
+      <Weapon HoneyID="2141" ID="274"/>
+      <Weapon HoneyID="2146" ID="275"/>
+      <Weapon HoneyID="2144" ID="276"/>
+      <Weapon HoneyID="2145" ID="277"/>
+      <Weapon HoneyID="2147" ID="278"/>
+      <Weapon HoneyID="2139" ID="279"/>
+      <Weapon HoneyID="2142" ID="280"/>
+      <Weapon HoneyID="2140" ID="281"/>
+      <Weapon HoneyID="2143" ID="282"/>
+      <Weapon HoneyID="2150" ID="283"/>
+      <Weapon HoneyID="2148" ID="284"/>
+      <Weapon HoneyID="2149" ID="285"/>
+      <Weapon HoneyID="2401" ID="286"/>
+      <Weapon HoneyID="2420" ID="287"/>
+      <Weapon HoneyID="2415" ID="288"/>
+      <Weapon HoneyID="2421" ID="289"/>
+      <Weapon HoneyID="2418" ID="290"/>
+      <Weapon HoneyID="2417" ID="291"/>
+      <Weapon HoneyID="2419" ID="292"/>
+      <Weapon HoneyID="2416" ID="293"/>
     </l_sword>
     <sword>
       <Weapon HoneyID="45" ID="17"/>
@@ -2352,76 +2352,42 @@
       <Weapon HoneyID="64" ID="94"/>
       <Weapon HoneyID="65" ID="104"/>
       <Weapon HoneyID="574" ID="105"/>
-      <Weapon HoneyID="574" ID="262"/>
       <Weapon HoneyID="563" ID="106"/>
-      <Weapon HoneyID="563" ID="263"/>
       <Weapon HoneyID="562" ID="107"/>
-      <Weapon HoneyID="562" ID="264"/>
       <Weapon HoneyID="565" ID="108"/>
-      <Weapon HoneyID="565" ID="265"/>
       <Weapon HoneyID="571" ID="109"/>
-      <Weapon HoneyID="571" ID="266"/>
       <Weapon HoneyID="567" ID="110"/>
-      <Weapon HoneyID="567" ID="267"/>
       <Weapon HoneyID="570" ID="111"/>
-      <Weapon HoneyID="570" ID="268"/>
       <Weapon HoneyID="569" ID="112"/>
-      <Weapon HoneyID="569" ID="269"/>
       <Weapon HoneyID="564" ID="113"/>
-      <Weapon HoneyID="564" ID="270"/>
       <Weapon HoneyID="572" ID="114"/>
-      <Weapon HoneyID="572" ID="271"/>
       <Weapon HoneyID="573" ID="115"/>
-      <Weapon HoneyID="573" ID="272"/>
       <Weapon HoneyID="566" ID="116"/>
-      <Weapon HoneyID="566" ID="273"/>
       <Weapon HoneyID="568" ID="117"/>
-      <Weapon HoneyID="568" ID="274"/>
       <Weapon HoneyID="576" ID="118"/>
-      <Weapon HoneyID="576" ID="275"/>
       <Weapon HoneyID="582" ID="119"/>
-      <Weapon HoneyID="582" ID="276"/>
       <Weapon HoneyID="578" ID="120"/>
-      <Weapon HoneyID="578" ID="277"/>
       <Weapon HoneyID="581" ID="121"/>
-      <Weapon HoneyID="581" ID="278"/>
       <Weapon HoneyID="580" ID="122"/>
-      <Weapon HoneyID="580" ID="279"/>
       <Weapon HoneyID="575" ID="123"/>
-      <Weapon HoneyID="575" ID="280"/>
       <Weapon HoneyID="583" ID="124"/>
-      <Weapon HoneyID="583" ID="281"/>
       <Weapon HoneyID="584" ID="125"/>
-      <Weapon HoneyID="584" ID="282"/>
       <Weapon HoneyID="577" ID="126"/>
-      <Weapon HoneyID="577" ID="283"/>
       <Weapon HoneyID="579" ID="127"/>
-      <Weapon HoneyID="579" ID="284"/>
       <Weapon HoneyID="587" ID="128"/>
-      <Weapon HoneyID="587" ID="285"/>
       <Weapon HoneyID="586" ID="129"/>
-      <Weapon HoneyID="586" ID="286"/>
       <Weapon HoneyID="585" ID="130"/>
-      <Weapon HoneyID="585" ID="287"/>
       <Weapon HoneyID="644" ID="132"/>
       <Weapon HoneyID="645" ID="133"/>
       <Weapon HoneyID="646" ID="134"/>
       <Weapon HoneyID="684" ID="135"/>
-      <Weapon HoneyID="684" ID="288"/>
       <Weapon HoneyID="718" ID="136"/>
-      <Weapon HoneyID="718" ID="289"/>
       <Weapon HoneyID="715" ID="137"/>
-      <Weapon HoneyID="715" ID="290"/>
       <Weapon HoneyID="712" ID="138"/>
-      <Weapon HoneyID="712" ID="291"/>
       <Weapon HoneyID="714" ID="139"/>
-      <Weapon HoneyID="714" ID="292"/>
       <Weapon HoneyID="713" ID="140"/>
-      <Weapon HoneyID="713" ID="293"/>
       <Weapon HoneyID="716" ID="141"/>
-      <Weapon HoneyID="716" ID="294"/>
       <Weapon HoneyID="717" ID="142"/>
-      <Weapon HoneyID="717" ID="295"/>
       <Weapon HoneyID="793" ID="144"/>
       <Weapon HoneyID="1860" ID="149"/>
       <Weapon HoneyID="944" ID="150"/>
@@ -2524,6 +2490,40 @@
       <Weapon HoneyID="1934" ID="251"/>
       <Weapon HoneyID="1934" ID="260"/>
       <Weapon HoneyID="1901" ID="261"/>
+      <Weapon HoneyID="2337" ID="262"/>
+      <Weapon HoneyID="2326" ID="263"/>
+      <Weapon HoneyID="2325" ID="264"/>
+      <Weapon HoneyID="2328" ID="265"/>
+      <Weapon HoneyID="2334" ID="266"/>
+      <Weapon HoneyID="2330" ID="267"/>
+      <Weapon HoneyID="2333" ID="268"/>
+      <Weapon HoneyID="2332" ID="269"/>
+      <Weapon HoneyID="2327" ID="270"/>
+      <Weapon HoneyID="2335" ID="271"/>
+      <Weapon HoneyID="2336" ID="272"/>
+      <Weapon HoneyID="2329" ID="273"/>
+      <Weapon HoneyID="2331" ID="274"/>
+      <Weapon HoneyID="2339" ID="275"/>
+      <Weapon HoneyID="2345" ID="276"/>
+      <Weapon HoneyID="2341" ID="277"/>
+      <Weapon HoneyID="2344" ID="278"/>
+      <Weapon HoneyID="2343" ID="279"/>
+      <Weapon HoneyID="2338" ID="280"/>
+      <Weapon HoneyID="2346" ID="281"/>
+      <Weapon HoneyID="2347" ID="282"/>
+      <Weapon HoneyID="2340" ID="283"/>
+      <Weapon HoneyID="2342" ID="284"/>
+      <Weapon HoneyID="2350" ID="285"/>
+      <Weapon HoneyID="2349" ID="286"/>
+      <Weapon HoneyID="2348" ID="287"/>
+      <Weapon HoneyID="2403" ID="288"/>
+      <Weapon HoneyID="2435" ID="289"/>
+      <Weapon HoneyID="2432" ID="290"/>
+      <Weapon HoneyID="2429" ID="291"/>
+      <Weapon HoneyID="2431" ID="292"/>
+      <Weapon HoneyID="2430" ID="293"/>
+      <Weapon HoneyID="2433" ID="294"/>
+      <Weapon HoneyID="2434" ID="295"/>
     </sword>
     <w_sword>
       <Weapon HoneyID="66" ID="17"/>
@@ -2548,77 +2548,43 @@
       <Weapon HoneyID="85" ID="94"/>
       <Weapon HoneyID="86" ID="97"/>
       <Weapon HoneyID="350" ID="98"/>
-      <Weapon HoneyID="350" ID="270"/>
       <Weapon HoneyID="342" ID="99"/>
-      <Weapon HoneyID="342" ID="271"/>
       <Weapon HoneyID="346" ID="100"/>
-      <Weapon HoneyID="346" ID="272"/>
       <Weapon HoneyID="349" ID="101"/>
-      <Weapon HoneyID="349" ID="273"/>
       <Weapon HoneyID="345" ID="102"/>
-      <Weapon HoneyID="345" ID="274"/>
       <Weapon HoneyID="348" ID="103"/>
-      <Weapon HoneyID="348" ID="275"/>
       <Weapon HoneyID="347" ID="104"/>
-      <Weapon HoneyID="347" ID="276"/>
       <Weapon HoneyID="343" ID="105"/>
-      <Weapon HoneyID="343" ID="277"/>
       <Weapon HoneyID="340" ID="106"/>
-      <Weapon HoneyID="340" ID="278"/>
       <Weapon HoneyID="338" ID="107"/>
-      <Weapon HoneyID="338" ID="279"/>
       <Weapon HoneyID="341" ID="108"/>
-      <Weapon HoneyID="341" ID="280"/>
       <Weapon HoneyID="339" ID="109"/>
-      <Weapon HoneyID="339" ID="281"/>
       <Weapon HoneyID="344" ID="110"/>
-      <Weapon HoneyID="344" ID="282"/>
       <Weapon HoneyID="359" ID="111"/>
-      <Weapon HoneyID="359" ID="283"/>
       <Weapon HoneyID="357" ID="112"/>
-      <Weapon HoneyID="357" ID="284"/>
       <Weapon HoneyID="360" ID="113"/>
-      <Weapon HoneyID="360" ID="285"/>
       <Weapon HoneyID="358" ID="114"/>
-      <Weapon HoneyID="358" ID="286"/>
       <Weapon HoneyID="355" ID="115"/>
-      <Weapon HoneyID="355" ID="287"/>
       <Weapon HoneyID="353" ID="116"/>
-      <Weapon HoneyID="353" ID="288"/>
       <Weapon HoneyID="351" ID="117"/>
-      <Weapon HoneyID="351" ID="289"/>
       <Weapon HoneyID="354" ID="118"/>
-      <Weapon HoneyID="354" ID="290"/>
       <Weapon HoneyID="352" ID="119"/>
-      <Weapon HoneyID="352" ID="291"/>
       <Weapon HoneyID="356" ID="120"/>
-      <Weapon HoneyID="356" ID="292"/>
       <Weapon HoneyID="363" ID="121"/>
-      <Weapon HoneyID="363" ID="293"/>
       <Weapon HoneyID="361" ID="122"/>
-      <Weapon HoneyID="361" ID="294"/>
       <Weapon HoneyID="362" ID="123"/>
-      <Weapon HoneyID="362" ID="295"/>
       <Weapon HoneyID="647" ID="125"/>
       <Weapon HoneyID="648" ID="126"/>
       <Weapon HoneyID="649" ID="127"/>
       <Weapon HoneyID="681" ID="129"/>
       <Weapon HoneyID="685" ID="130"/>
-      <Weapon HoneyID="685" ID="296"/>
       <Weapon HoneyID="721" ID="131"/>
-      <Weapon HoneyID="721" ID="297"/>
       <Weapon HoneyID="719" ID="132"/>
-      <Weapon HoneyID="719" ID="298"/>
       <Weapon HoneyID="725" ID="133"/>
-      <Weapon HoneyID="725" ID="299"/>
       <Weapon HoneyID="724" ID="134"/>
-      <Weapon HoneyID="724" ID="300"/>
       <Weapon HoneyID="720" ID="135"/>
-      <Weapon HoneyID="720" ID="301"/>
       <Weapon HoneyID="722" ID="136"/>
-      <Weapon HoneyID="722" ID="302"/>
       <Weapon HoneyID="723" ID="137"/>
-      <Weapon HoneyID="723" ID="303"/>
       <Weapon HoneyID="794" ID="138"/>
       <Weapon HoneyID="1861" ID="143"/>
       <Weapon HoneyID="1017" ID="150"/>
@@ -2726,6 +2692,40 @@
       <Weapon HoneyID="1943" ID="259"/>
       <Weapon HoneyID="1943" ID="268"/>
       <Weapon HoneyID="1902" ID="269"/>
+      <Weapon HoneyID="2113" ID="270"/>
+      <Weapon HoneyID="2105" ID="271"/>
+      <Weapon HoneyID="2109" ID="272"/>
+      <Weapon HoneyID="2112" ID="273"/>
+      <Weapon HoneyID="2108" ID="274"/>
+      <Weapon HoneyID="2111" ID="275"/>
+      <Weapon HoneyID="2110" ID="276"/>
+      <Weapon HoneyID="2106" ID="277"/>
+      <Weapon HoneyID="2103" ID="278"/>
+      <Weapon HoneyID="2101" ID="279"/>
+      <Weapon HoneyID="2104" ID="280"/>
+      <Weapon HoneyID="2102" ID="281"/>
+      <Weapon HoneyID="2107" ID="282"/>
+      <Weapon HoneyID="2122" ID="283"/>
+      <Weapon HoneyID="2120" ID="284"/>
+      <Weapon HoneyID="2123" ID="285"/>
+      <Weapon HoneyID="2121" ID="286"/>
+      <Weapon HoneyID="2118" ID="287"/>
+      <Weapon HoneyID="2116" ID="288"/>
+      <Weapon HoneyID="2114" ID="289"/>
+      <Weapon HoneyID="2117" ID="290"/>
+      <Weapon HoneyID="2115" ID="291"/>
+      <Weapon HoneyID="2119" ID="292"/>
+      <Weapon HoneyID="2126" ID="293"/>
+      <Weapon HoneyID="2124" ID="294"/>
+      <Weapon HoneyID="2125" ID="295"/>
+      <Weapon HoneyID="2404" ID="296"/>
+      <Weapon HoneyID="2438" ID="297"/>
+      <Weapon HoneyID="2436" ID="298"/>
+      <Weapon HoneyID="2442" ID="299"/>
+      <Weapon HoneyID="2441" ID="300"/>
+      <Weapon HoneyID="2437" ID="301"/>
+      <Weapon HoneyID="2439" ID="302"/>
+      <Weapon HoneyID="2440" ID="303"/>
     </w_sword>
     <tachi>
       <Weapon HoneyID="24" ID="17"/>
@@ -2751,76 +2751,42 @@
       <Weapon HoneyID="44" ID="92"/>
       <Weapon HoneyID="288" ID="94"/>
       <Weapon HoneyID="522" ID="95"/>
-      <Weapon HoneyID="522" ID="265"/>
       <Weapon HoneyID="517" ID="96"/>
-      <Weapon HoneyID="517" ID="266"/>
       <Weapon HoneyID="516" ID="97"/>
-      <Weapon HoneyID="516" ID="267"/>
       <Weapon HoneyID="521" ID="98"/>
-      <Weapon HoneyID="521" ID="268"/>
       <Weapon HoneyID="515" ID="99"/>
-      <Weapon HoneyID="515" ID="269"/>
       <Weapon HoneyID="519" ID="100"/>
-      <Weapon HoneyID="519" ID="270"/>
       <Weapon HoneyID="518" ID="101"/>
-      <Weapon HoneyID="518" ID="271"/>
       <Weapon HoneyID="513" ID="102"/>
-      <Weapon HoneyID="513" ID="272"/>
       <Weapon HoneyID="511" ID="103"/>
-      <Weapon HoneyID="511" ID="273"/>
       <Weapon HoneyID="520" ID="104"/>
-      <Weapon HoneyID="520" ID="274"/>
       <Weapon HoneyID="510" ID="105"/>
-      <Weapon HoneyID="510" ID="275"/>
       <Weapon HoneyID="512" ID="106"/>
-      <Weapon HoneyID="512" ID="276"/>
       <Weapon HoneyID="514" ID="107"/>
-      <Weapon HoneyID="514" ID="277"/>
       <Weapon HoneyID="532" ID="108"/>
-      <Weapon HoneyID="532" ID="278"/>
       <Weapon HoneyID="528" ID="109"/>
-      <Weapon HoneyID="528" ID="279"/>
       <Weapon HoneyID="530" ID="110"/>
-      <Weapon HoneyID="530" ID="280"/>
       <Weapon HoneyID="529" ID="111"/>
-      <Weapon HoneyID="529" ID="281"/>
       <Weapon HoneyID="526" ID="112"/>
-      <Weapon HoneyID="526" ID="282"/>
       <Weapon HoneyID="524" ID="113"/>
-      <Weapon HoneyID="524" ID="283"/>
       <Weapon HoneyID="531" ID="114"/>
-      <Weapon HoneyID="531" ID="284"/>
       <Weapon HoneyID="523" ID="115"/>
-      <Weapon HoneyID="523" ID="285"/>
       <Weapon HoneyID="525" ID="116"/>
-      <Weapon HoneyID="525" ID="286"/>
       <Weapon HoneyID="527" ID="117"/>
-      <Weapon HoneyID="527" ID="287"/>
       <Weapon HoneyID="535" ID="118"/>
-      <Weapon HoneyID="535" ID="288"/>
       <Weapon HoneyID="534" ID="119"/>
-      <Weapon HoneyID="534" ID="289"/>
       <Weapon HoneyID="533" ID="120"/>
-      <Weapon HoneyID="533" ID="290"/>
       <Weapon HoneyID="641" ID="122"/>
       <Weapon HoneyID="642" ID="123"/>
       <Weapon HoneyID="643" ID="124"/>
       <Weapon HoneyID="683" ID="125"/>
-      <Weapon HoneyID="683" ID="291"/>
       <Weapon HoneyID="708" ID="126"/>
-      <Weapon HoneyID="708" ID="292"/>
       <Weapon HoneyID="710" ID="127"/>
-      <Weapon HoneyID="710" ID="293"/>
       <Weapon HoneyID="707" ID="128"/>
-      <Weapon HoneyID="707" ID="294"/>
       <Weapon HoneyID="711" ID="129"/>
-      <Weapon HoneyID="711" ID="295"/>
       <Weapon HoneyID="705" ID="130"/>
-      <Weapon HoneyID="705" ID="296"/>
       <Weapon HoneyID="709" ID="131"/>
-      <Weapon HoneyID="709" ID="297"/>
       <Weapon HoneyID="706" ID="132"/>
-      <Weapon HoneyID="706" ID="298"/>
       <Weapon HoneyID="1859" ID="138"/>
       <Weapon HoneyID="870" ID="150"/>
       <Weapon HoneyID="871" ID="151"/>
@@ -2923,6 +2889,40 @@
       <Weapon HoneyID="1924" ID="263"/>
       <Weapon HoneyID="1925" ID="255"/>
       <Weapon HoneyID="1925" ID="264"/>
+      <Weapon HoneyID="2285" ID="265"/>
+      <Weapon HoneyID="2280" ID="266"/>
+      <Weapon HoneyID="2279" ID="267"/>
+      <Weapon HoneyID="2284" ID="268"/>
+      <Weapon HoneyID="2278" ID="269"/>
+      <Weapon HoneyID="2282" ID="270"/>
+      <Weapon HoneyID="2281" ID="271"/>
+      <Weapon HoneyID="2276" ID="272"/>
+      <Weapon HoneyID="2274" ID="273"/>
+      <Weapon HoneyID="2283" ID="274"/>
+      <Weapon HoneyID="2273" ID="275"/>
+      <Weapon HoneyID="2275" ID="276"/>
+      <Weapon HoneyID="2277" ID="277"/>
+      <Weapon HoneyID="2295" ID="278"/>
+      <Weapon HoneyID="2291" ID="279"/>
+      <Weapon HoneyID="2293" ID="280"/>
+      <Weapon HoneyID="2292" ID="281"/>
+      <Weapon HoneyID="2289" ID="282"/>
+      <Weapon HoneyID="2287" ID="283"/>
+      <Weapon HoneyID="2294" ID="284"/>
+      <Weapon HoneyID="2286" ID="285"/>
+      <Weapon HoneyID="2288" ID="286"/>
+      <Weapon HoneyID="2290" ID="287"/>
+      <Weapon HoneyID="2298" ID="288"/>
+      <Weapon HoneyID="2297" ID="289"/>
+      <Weapon HoneyID="2296" ID="290"/>
+      <Weapon HoneyID="2402" ID="291"/>
+      <Weapon HoneyID="2425" ID="292"/>
+      <Weapon HoneyID="2427" ID="293"/>
+      <Weapon HoneyID="2424" ID="294"/>
+      <Weapon HoneyID="2428" ID="295"/>
+      <Weapon HoneyID="2422" ID="296"/>
+      <Weapon HoneyID="2426" ID="297"/>
+      <Weapon HoneyID="2423" ID="298"/>
     </tachi>
     <hammer>
       <Weapon HoneyID="87" ID="17"/>
@@ -2947,73 +2947,41 @@
       <Weapon HoneyID="106" ID="88"/>
       <Weapon HoneyID="107" ID="101"/>
       <Weapon HoneyID="425" ID="102"/>
-      <Weapon HoneyID="425" ID="267"/>
       <Weapon HoneyID="417" ID="103"/>
-      <Weapon HoneyID="417" ID="268"/>
       <Weapon HoneyID="424" ID="104"/>
-      <Weapon HoneyID="424" ID="269"/>
       <Weapon HoneyID="423" ID="105"/>
-      <Weapon HoneyID="423" ID="270"/>
       <Weapon HoneyID="421" ID="106"/>
-      <Weapon HoneyID="421" ID="271"/>
       <Weapon HoneyID="418" ID="107"/>
-      <Weapon HoneyID="418" ID="272"/>
       <Weapon HoneyID="420" ID="108"/>
-      <Weapon HoneyID="420" ID="273"/>
       <Weapon HoneyID="419" ID="109"/>
-      <Weapon HoneyID="419" ID="274"/>
       <Weapon HoneyID="422" ID="110"/>
-      <Weapon HoneyID="422" ID="275"/>
       <Weapon HoneyID="414" ID="111"/>
-      <Weapon HoneyID="414" ID="276"/>
       <Weapon HoneyID="416" ID="112"/>
-      <Weapon HoneyID="416" ID="277"/>
       <Weapon HoneyID="415" ID="113"/>
-      <Weapon HoneyID="415" ID="278"/>
       <Weapon HoneyID="434" ID="114"/>
-      <Weapon HoneyID="434" ID="279"/>
       <Weapon HoneyID="432" ID="115"/>
-      <Weapon HoneyID="432" ID="280"/>
       <Weapon HoneyID="429" ID="116"/>
-      <Weapon HoneyID="429" ID="281"/>
       <Weapon HoneyID="431" ID="117"/>
-      <Weapon HoneyID="431" ID="282"/>
       <Weapon HoneyID="430" ID="118"/>
-      <Weapon HoneyID="430" ID="283"/>
       <Weapon HoneyID="433" ID="119"/>
-      <Weapon HoneyID="433" ID="284"/>
       <Weapon HoneyID="426" ID="120"/>
-      <Weapon HoneyID="426" ID="285"/>
       <Weapon HoneyID="428" ID="121"/>
-      <Weapon HoneyID="428" ID="286"/>
       <Weapon HoneyID="427" ID="122"/>
-      <Weapon HoneyID="427" ID="287"/>
       <Weapon HoneyID="437" ID="123"/>
-      <Weapon HoneyID="437" ID="288"/>
       <Weapon HoneyID="435" ID="124"/>
-      <Weapon HoneyID="435" ID="289"/>
       <Weapon HoneyID="436" ID="125"/>
-      <Weapon HoneyID="436" ID="290"/>
       <Weapon HoneyID="650" ID="127"/>
       <Weapon HoneyID="651" ID="128"/>
       <Weapon HoneyID="652" ID="129"/>
       <Weapon HoneyID="697" ID="131"/>
       <Weapon HoneyID="686" ID="132"/>
-      <Weapon HoneyID="686" ID="291"/>
       <Weapon HoneyID="730" ID="133"/>
-      <Weapon HoneyID="730" ID="292"/>
       <Weapon HoneyID="728" ID="134"/>
-      <Weapon HoneyID="728" ID="293"/>
       <Weapon HoneyID="726" ID="135"/>
-      <Weapon HoneyID="726" ID="294"/>
       <Weapon HoneyID="732" ID="136"/>
-      <Weapon HoneyID="732" ID="295"/>
       <Weapon HoneyID="727" ID="137"/>
-      <Weapon HoneyID="727" ID="296"/>
       <Weapon HoneyID="729" ID="138"/>
-      <Weapon HoneyID="729" ID="297"/>
       <Weapon HoneyID="731" ID="139"/>
-      <Weapon HoneyID="731" ID="298"/>
       <Weapon HoneyID="1862" ID="144"/>
       <Weapon HoneyID="1093" ID="150"/>
       <Weapon HoneyID="1094" ID="151"/>
@@ -3117,6 +3085,38 @@
       <Weapon HoneyID="1951" ID="265"/>
       <Weapon HoneyID="1952" ID="257"/>
       <Weapon HoneyID="1952" ID="266"/>
+      <Weapon HoneyID="2188" ID="267"/>
+      <Weapon HoneyID="2180" ID="268"/>
+      <Weapon HoneyID="2187" ID="269"/>
+      <Weapon HoneyID="2186" ID="270"/>
+      <Weapon HoneyID="2184" ID="271"/>
+      <Weapon HoneyID="2181" ID="272"/>
+      <Weapon HoneyID="2183" ID="273"/>
+      <Weapon HoneyID="2182" ID="274"/>
+      <Weapon HoneyID="2185" ID="275"/>
+      <Weapon HoneyID="2177" ID="276"/>
+      <Weapon HoneyID="2179" ID="277"/>
+      <Weapon HoneyID="2178" ID="278"/>
+      <Weapon HoneyID="2197" ID="279"/>
+      <Weapon HoneyID="2195" ID="280"/>
+      <Weapon HoneyID="2192" ID="281"/>
+      <Weapon HoneyID="2194" ID="282"/>
+      <Weapon HoneyID="2193" ID="283"/>
+      <Weapon HoneyID="2196" ID="284"/>
+      <Weapon HoneyID="2189" ID="285"/>
+      <Weapon HoneyID="2191" ID="286"/>
+      <Weapon HoneyID="2190" ID="287"/>
+      <Weapon HoneyID="2200" ID="288"/>
+      <Weapon HoneyID="2198" ID="289"/>
+      <Weapon HoneyID="2199" ID="290"/>
+      <Weapon HoneyID="2405" ID="291"/>
+      <Weapon HoneyID="2447" ID="292"/>
+      <Weapon HoneyID="2445" ID="293"/>
+      <Weapon HoneyID="2443" ID="294"/>
+      <Weapon HoneyID="2449" ID="295"/>
+      <Weapon HoneyID="2444" ID="296"/>
+      <Weapon HoneyID="2446" ID="297"/>
+      <Weapon HoneyID="2448" ID="298"/>
     </hammer>
     <whistle>
       <Weapon HoneyID="108" ID="17"/>
@@ -3140,72 +3140,40 @@
       <Weapon HoneyID="126" ID="94"/>
       <Weapon HoneyID="127" ID="101"/>
       <Weapon HoneyID="449" ID="102"/>
-      <Weapon HoneyID="449" ID="257"/>
       <Weapon HoneyID="440" ID="103"/>
-      <Weapon HoneyID="440" ID="258"/>
       <Weapon HoneyID="443" ID="104"/>
-      <Weapon HoneyID="443" ID="259"/>
       <Weapon HoneyID="438" ID="105"/>
-      <Weapon HoneyID="438" ID="260"/>
       <Weapon HoneyID="448" ID="106"/>
-      <Weapon HoneyID="448" ID="261"/>
       <Weapon HoneyID="445" ID="107"/>
-      <Weapon HoneyID="445" ID="262"/>
       <Weapon HoneyID="444" ID="108"/>
-      <Weapon HoneyID="444" ID="263"/>
       <Weapon HoneyID="441" ID="109"/>
-      <Weapon HoneyID="441" ID="264"/>
       <Weapon HoneyID="446" ID="110"/>
-      <Weapon HoneyID="446" ID="265"/>
       <Weapon HoneyID="447" ID="111"/>
-      <Weapon HoneyID="447" ID="266"/>
       <Weapon HoneyID="442" ID="112"/>
-      <Weapon HoneyID="442" ID="267"/>
       <Weapon HoneyID="439" ID="113"/>
-      <Weapon HoneyID="439" ID="268"/>
       <Weapon HoneyID="450" ID="115"/>
-      <Weapon HoneyID="450" ID="269"/>
       <Weapon HoneyID="458" ID="116"/>
-      <Weapon HoneyID="458" ID="270"/>
       <Weapon HoneyID="455" ID="117"/>
-      <Weapon HoneyID="455" ID="271"/>
       <Weapon HoneyID="454" ID="118"/>
-      <Weapon HoneyID="454" ID="272"/>
       <Weapon HoneyID="452" ID="119"/>
-      <Weapon HoneyID="452" ID="273"/>
       <Weapon HoneyID="456" ID="120"/>
-      <Weapon HoneyID="456" ID="274"/>
       <Weapon HoneyID="457" ID="121"/>
-      <Weapon HoneyID="457" ID="275"/>
       <Weapon HoneyID="453" ID="122"/>
-      <Weapon HoneyID="453" ID="276"/>
       <Weapon HoneyID="451" ID="123"/>
-      <Weapon HoneyID="451" ID="277"/>
       <Weapon HoneyID="461" ID="125"/>
-      <Weapon HoneyID="461" ID="278"/>
       <Weapon HoneyID="459" ID="126"/>
-      <Weapon HoneyID="459" ID="279"/>
       <Weapon HoneyID="460" ID="127"/>
-      <Weapon HoneyID="460" ID="280"/>
       <Weapon HoneyID="653" ID="129"/>
       <Weapon HoneyID="654" ID="130"/>
       <Weapon HoneyID="655" ID="131"/>
       <Weapon HoneyID="687" ID="132"/>
-      <Weapon HoneyID="687" ID="281"/>
       <Weapon HoneyID="739" ID="133"/>
-      <Weapon HoneyID="739" ID="282"/>
       <Weapon HoneyID="733" ID="134"/>
-      <Weapon HoneyID="733" ID="283"/>
       <Weapon HoneyID="737" ID="135"/>
-      <Weapon HoneyID="737" ID="284"/>
       <Weapon HoneyID="734" ID="136"/>
-      <Weapon HoneyID="734" ID="285"/>
       <Weapon HoneyID="736" ID="137"/>
-      <Weapon HoneyID="736" ID="286"/>
       <Weapon HoneyID="738" ID="138"/>
-      <Weapon HoneyID="738" ID="287"/>
       <Weapon HoneyID="735" ID="139"/>
-      <Weapon HoneyID="735" ID="288"/>
       <Weapon HoneyID="1863" ID="144"/>
       <Weapon HoneyID="1167" ID="150"/>
       <Weapon HoneyID="1168" ID="151"/>
@@ -3304,6 +3272,38 @@
       <Weapon HoneyID="1960" ID="255"/>
       <Weapon HoneyID="1961" ID="247"/>
       <Weapon HoneyID="1961" ID="256"/>
+      <Weapon HoneyID="2212" ID="257"/>
+      <Weapon HoneyID="2203" ID="258"/>
+      <Weapon HoneyID="2206" ID="259"/>
+      <Weapon HoneyID="2201" ID="260"/>
+      <Weapon HoneyID="2211" ID="261"/>
+      <Weapon HoneyID="2208" ID="262"/>
+      <Weapon HoneyID="2207" ID="263"/>
+      <Weapon HoneyID="2204" ID="264"/>
+      <Weapon HoneyID="2209" ID="265"/>
+      <Weapon HoneyID="2210" ID="266"/>
+      <Weapon HoneyID="2205" ID="267"/>
+      <Weapon HoneyID="2202" ID="268"/>
+      <Weapon HoneyID="2213" ID="269"/>
+      <Weapon HoneyID="2221" ID="270"/>
+      <Weapon HoneyID="2218" ID="271"/>
+      <Weapon HoneyID="2217" ID="272"/>
+      <Weapon HoneyID="2215" ID="273"/>
+      <Weapon HoneyID="2219" ID="274"/>
+      <Weapon HoneyID="2220" ID="275"/>
+      <Weapon HoneyID="2216" ID="276"/>
+      <Weapon HoneyID="2214" ID="277"/>
+      <Weapon HoneyID="2224" ID="278"/>
+      <Weapon HoneyID="2222" ID="279"/>
+      <Weapon HoneyID="2223" ID="280"/>
+      <Weapon HoneyID="2406" ID="281"/>
+      <Weapon HoneyID="2456" ID="282"/>
+      <Weapon HoneyID="2450" ID="283"/>
+      <Weapon HoneyID="2454" ID="284"/>
+      <Weapon HoneyID="2451" ID="285"/>
+      <Weapon HoneyID="2453" ID="286"/>
+      <Weapon HoneyID="2455" ID="287"/>
+      <Weapon HoneyID="2452" ID="288"/>
     </whistle>
     <lance>
       <Weapon HoneyID="128" ID="17"/>
@@ -3328,74 +3328,42 @@
       <Weapon HoneyID="147" ID="90"/>
       <Weapon HoneyID="148" ID="101"/>
       <Weapon HoneyID="497" ID="102"/>
-      <Weapon HoneyID="497" ID="258"/>
       <Weapon HoneyID="496" ID="103"/>
-      <Weapon HoneyID="496" ID="259"/>
       <Weapon HoneyID="492" ID="104"/>
-      <Weapon HoneyID="492" ID="260"/>
       <Weapon HoneyID="495" ID="105"/>
-      <Weapon HoneyID="495" ID="261"/>
       <Weapon HoneyID="493" ID="106"/>
-      <Weapon HoneyID="493" ID="262"/>
       <Weapon HoneyID="490" ID="107"/>
-      <Weapon HoneyID="490" ID="263"/>
       <Weapon HoneyID="491" ID="108"/>
-      <Weapon HoneyID="491" ID="264"/>
       <Weapon HoneyID="494" ID="109"/>
-      <Weapon HoneyID="494" ID="265"/>
       <Weapon HoneyID="486" ID="110"/>
-      <Weapon HoneyID="486" ID="266"/>
       <Weapon HoneyID="488" ID="111"/>
-      <Weapon HoneyID="488" ID="267"/>
       <Weapon HoneyID="489" ID="112"/>
-      <Weapon HoneyID="489" ID="268"/>
       <Weapon HoneyID="487" ID="113"/>
-      <Weapon HoneyID="487" ID="269"/>
       <Weapon HoneyID="506" ID="114"/>
-      <Weapon HoneyID="506" ID="270"/>
       <Weapon HoneyID="504" ID="115"/>
-      <Weapon HoneyID="504" ID="271"/>
       <Weapon HoneyID="503" ID="116"/>
-      <Weapon HoneyID="503" ID="272"/>
       <Weapon HoneyID="502" ID="117"/>
-      <Weapon HoneyID="502" ID="273"/>
       <Weapon HoneyID="505" ID="118"/>
-      <Weapon HoneyID="505" ID="274"/>
       <Weapon HoneyID="498" ID="119"/>
-      <Weapon HoneyID="498" ID="275"/>
       <Weapon HoneyID="500" ID="120"/>
-      <Weapon HoneyID="500" ID="276"/>
       <Weapon HoneyID="501" ID="121"/>
-      <Weapon HoneyID="501" ID="277"/>
       <Weapon HoneyID="499" ID="122"/>
-      <Weapon HoneyID="499" ID="278"/>
       <Weapon HoneyID="509" ID="123"/>
-      <Weapon HoneyID="509" ID="279"/>
       <Weapon HoneyID="508" ID="124"/>
-      <Weapon HoneyID="508" ID="280"/>
       <Weapon HoneyID="507" ID="125"/>
-      <Weapon HoneyID="507" ID="281"/>
       <Weapon HoneyID="656" ID="127"/>
       <Weapon HoneyID="657" ID="128"/>
       <Weapon HoneyID="658" ID="129"/>
       <Weapon HoneyID="696" ID="131"/>
       <Weapon HoneyID="795" ID="133"/>
       <Weapon HoneyID="688" ID="134"/>
-      <Weapon HoneyID="688" ID="282"/>
       <Weapon HoneyID="746" ID="135"/>
-      <Weapon HoneyID="746" ID="283"/>
       <Weapon HoneyID="744" ID="136"/>
-      <Weapon HoneyID="744" ID="284"/>
       <Weapon HoneyID="741" ID="137"/>
-      <Weapon HoneyID="741" ID="285"/>
       <Weapon HoneyID="745" ID="138"/>
-      <Weapon HoneyID="745" ID="286"/>
       <Weapon HoneyID="742" ID="139"/>
-      <Weapon HoneyID="742" ID="287"/>
       <Weapon HoneyID="740" ID="140"/>
-      <Weapon HoneyID="740" ID="288"/>
       <Weapon HoneyID="743" ID="141"/>
-      <Weapon HoneyID="743" ID="289"/>
       <Weapon HoneyID="1864" ID="146"/>
       <Weapon HoneyID="1238" ID="150"/>
       <Weapon HoneyID="1239" ID="151"/>
@@ -3495,6 +3463,38 @@
       <Weapon HoneyID="1969" ID="256"/>
       <Weapon HoneyID="1970" ID="248"/>
       <Weapon HoneyID="1970" ID="257"/>
+      <Weapon HoneyID="2260" ID="258"/>
+      <Weapon HoneyID="2259" ID="259"/>
+      <Weapon HoneyID="2255" ID="260"/>
+      <Weapon HoneyID="2258" ID="261"/>
+      <Weapon HoneyID="2256" ID="262"/>
+      <Weapon HoneyID="2253" ID="263"/>
+      <Weapon HoneyID="2254" ID="264"/>
+      <Weapon HoneyID="2257" ID="265"/>
+      <Weapon HoneyID="2249" ID="266"/>
+      <Weapon HoneyID="2251" ID="267"/>
+      <Weapon HoneyID="2252" ID="268"/>
+      <Weapon HoneyID="2250" ID="269"/>
+      <Weapon HoneyID="2269" ID="270"/>
+      <Weapon HoneyID="2267" ID="271"/>
+      <Weapon HoneyID="2266" ID="272"/>
+      <Weapon HoneyID="2265" ID="273"/>
+      <Weapon HoneyID="2268" ID="274"/>
+      <Weapon HoneyID="2261" ID="275"/>
+      <Weapon HoneyID="2263" ID="276"/>
+      <Weapon HoneyID="2264" ID="277"/>
+      <Weapon HoneyID="2262" ID="278"/>
+      <Weapon HoneyID="2272" ID="279"/>
+      <Weapon HoneyID="2271" ID="280"/>
+      <Weapon HoneyID="2270" ID="281"/>
+      <Weapon HoneyID="2407" ID="282"/>
+      <Weapon HoneyID="2463" ID="283"/>
+      <Weapon HoneyID="2461" ID="284"/>
+      <Weapon HoneyID="2458" ID="285"/>
+      <Weapon HoneyID="2462" ID="286"/>
+      <Weapon HoneyID="2459" ID="287"/>
+      <Weapon HoneyID="2457" ID="288"/>
+      <Weapon HoneyID="2460" ID="289"/>
     </lance>
     <g_lance>
       <Weapon HoneyID="149" ID="17"/>
@@ -3517,76 +3517,42 @@
       <Weapon HoneyID="166" ID="86"/>
       <Weapon HoneyID="167" ID="101"/>
       <Weapon HoneyID="400" ID="102"/>
-      <Weapon HoneyID="400" ID="262"/>
       <Weapon HoneyID="395" ID="103"/>
-      <Weapon HoneyID="395" ID="263"/>
       <Weapon HoneyID="397" ID="104"/>
-      <Weapon HoneyID="397" ID="264"/>
       <Weapon HoneyID="390" ID="105"/>
-      <Weapon HoneyID="390" ID="265"/>
       <Weapon HoneyID="392" ID="106"/>
-      <Weapon HoneyID="392" ID="266"/>
       <Weapon HoneyID="393" ID="107"/>
-      <Weapon HoneyID="393" ID="267"/>
       <Weapon HoneyID="398" ID="108"/>
-      <Weapon HoneyID="398" ID="268"/>
       <Weapon HoneyID="396" ID="109"/>
-      <Weapon HoneyID="396" ID="269"/>
       <Weapon HoneyID="394" ID="110"/>
-      <Weapon HoneyID="394" ID="270"/>
       <Weapon HoneyID="399" ID="111"/>
-      <Weapon HoneyID="399" ID="271"/>
       <Weapon HoneyID="389" ID="112"/>
-      <Weapon HoneyID="389" ID="272"/>
       <Weapon HoneyID="391" ID="113"/>
-      <Weapon HoneyID="391" ID="273"/>
       <Weapon HoneyID="388" ID="114"/>
-      <Weapon HoneyID="388" ID="274"/>
       <Weapon HoneyID="403" ID="115"/>
-      <Weapon HoneyID="403" ID="275"/>
       <Weapon HoneyID="405" ID="116"/>
-      <Weapon HoneyID="405" ID="276"/>
       <Weapon HoneyID="406" ID="117"/>
-      <Weapon HoneyID="406" ID="277"/>
       <Weapon HoneyID="409" ID="118"/>
-      <Weapon HoneyID="409" ID="278"/>
       <Weapon HoneyID="408" ID="119"/>
-      <Weapon HoneyID="408" ID="279"/>
       <Weapon HoneyID="407" ID="120"/>
-      <Weapon HoneyID="407" ID="280"/>
       <Weapon HoneyID="410" ID="121"/>
-      <Weapon HoneyID="410" ID="281"/>
       <Weapon HoneyID="402" ID="122"/>
-      <Weapon HoneyID="402" ID="282"/>
       <Weapon HoneyID="404" ID="123"/>
-      <Weapon HoneyID="404" ID="283"/>
       <Weapon HoneyID="401" ID="124"/>
-      <Weapon HoneyID="401" ID="284"/>
       <Weapon HoneyID="413" ID="125"/>
-      <Weapon HoneyID="413" ID="285"/>
       <Weapon HoneyID="411" ID="126"/>
-      <Weapon HoneyID="411" ID="286"/>
       <Weapon HoneyID="412" ID="127"/>
-      <Weapon HoneyID="412" ID="287"/>
       <Weapon HoneyID="659" ID="129"/>
       <Weapon HoneyID="660" ID="130"/>
       <Weapon HoneyID="661" ID="131"/>
       <Weapon HoneyID="689" ID="132"/>
-      <Weapon HoneyID="689" ID="288"/>
       <Weapon HoneyID="750" ID="133"/>
-      <Weapon HoneyID="750" ID="289"/>
       <Weapon HoneyID="752" ID="134"/>
-      <Weapon HoneyID="752" ID="290"/>
       <Weapon HoneyID="749" ID="135"/>
-      <Weapon HoneyID="749" ID="291"/>
       <Weapon HoneyID="751" ID="136"/>
-      <Weapon HoneyID="751" ID="292"/>
       <Weapon HoneyID="747" ID="137"/>
-      <Weapon HoneyID="747" ID="293"/>
       <Weapon HoneyID="748" ID="138"/>
-      <Weapon HoneyID="748" ID="294"/>
       <Weapon HoneyID="753" ID="139"/>
-      <Weapon HoneyID="753" ID="295"/>
       <Weapon HoneyID="1865" ID="144"/>
       <Weapon HoneyID="1310" ID="150"/>
       <Weapon HoneyID="1311" ID="151"/>
@@ -3686,6 +3652,40 @@
       <Weapon HoneyID="1978" ID="260"/>
       <Weapon HoneyID="1979" ID="252"/>
       <Weapon HoneyID="1979" ID="261"/>
+      <Weapon HoneyID="2163" ID="262"/>
+      <Weapon HoneyID="2158" ID="263"/>
+      <Weapon HoneyID="2160" ID="264"/>
+      <Weapon HoneyID="2153" ID="265"/>
+      <Weapon HoneyID="2155" ID="266"/>
+      <Weapon HoneyID="2156" ID="267"/>
+      <Weapon HoneyID="2161" ID="268"/>
+      <Weapon HoneyID="2159" ID="269"/>
+      <Weapon HoneyID="2157" ID="270"/>
+      <Weapon HoneyID="2162" ID="271"/>
+      <Weapon HoneyID="2152" ID="272"/>
+      <Weapon HoneyID="2154" ID="273"/>
+      <Weapon HoneyID="2151" ID="274"/>
+      <Weapon HoneyID="2166" ID="275"/>
+      <Weapon HoneyID="2168" ID="276"/>
+      <Weapon HoneyID="2169" ID="277"/>
+      <Weapon HoneyID="2172" ID="278"/>
+      <Weapon HoneyID="2171" ID="279"/>
+      <Weapon HoneyID="2170" ID="280"/>
+      <Weapon HoneyID="2173" ID="281"/>
+      <Weapon HoneyID="2165" ID="282"/>
+      <Weapon HoneyID="2167" ID="283"/>
+      <Weapon HoneyID="2164" ID="284"/>
+      <Weapon HoneyID="2176" ID="285"/>
+      <Weapon HoneyID="2174" ID="286"/>
+      <Weapon HoneyID="2175" ID="287"/>
+      <Weapon HoneyID="2408" ID="288"/>
+      <Weapon HoneyID="2467" ID="289"/>
+      <Weapon HoneyID="2469" ID="290"/>
+      <Weapon HoneyID="2466" ID="291"/>
+      <Weapon HoneyID="2468" ID="292"/>
+      <Weapon HoneyID="2464" ID="293"/>
+      <Weapon HoneyID="2465" ID="294"/>
+      <Weapon HoneyID="2470" ID="295"/>
     </g_lance>
     <s_axe>
       <Weapon HoneyID="168" ID="17"/>
@@ -3709,76 +3709,42 @@
       <Weapon HoneyID="186" ID="89"/>
       <Weapon HoneyID="187" ID="101"/>
       <Weapon HoneyID="548" ID="102"/>
-      <Weapon HoneyID="548" ID="265"/>
       <Weapon HoneyID="545" ID="103"/>
-      <Weapon HoneyID="545" ID="266"/>
       <Weapon HoneyID="546" ID="104"/>
-      <Weapon HoneyID="546" ID="267"/>
       <Weapon HoneyID="538" ID="105"/>
-      <Weapon HoneyID="538" ID="268"/>
       <Weapon HoneyID="543" ID="106"/>
-      <Weapon HoneyID="543" ID="269"/>
       <Weapon HoneyID="544" ID="107"/>
-      <Weapon HoneyID="544" ID="270"/>
       <Weapon HoneyID="537" ID="108"/>
-      <Weapon HoneyID="537" ID="271"/>
       <Weapon HoneyID="547" ID="109"/>
-      <Weapon HoneyID="547" ID="272"/>
       <Weapon HoneyID="536" ID="110"/>
-      <Weapon HoneyID="536" ID="273"/>
       <Weapon HoneyID="542" ID="111"/>
-      <Weapon HoneyID="542" ID="274"/>
       <Weapon HoneyID="541" ID="112"/>
-      <Weapon HoneyID="541" ID="275"/>
       <Weapon HoneyID="540" ID="113"/>
-      <Weapon HoneyID="540" ID="276"/>
       <Weapon HoneyID="539" ID="114"/>
-      <Weapon HoneyID="539" ID="277"/>
       <Weapon HoneyID="552" ID="115"/>
-      <Weapon HoneyID="552" ID="278"/>
       <Weapon HoneyID="556" ID="116"/>
-      <Weapon HoneyID="556" ID="279"/>
       <Weapon HoneyID="557" ID="117"/>
-      <Weapon HoneyID="557" ID="280"/>
       <Weapon HoneyID="551" ID="118"/>
-      <Weapon HoneyID="551" ID="281"/>
       <Weapon HoneyID="558" ID="119"/>
-      <Weapon HoneyID="558" ID="282"/>
       <Weapon HoneyID="550" ID="120"/>
-      <Weapon HoneyID="550" ID="283"/>
       <Weapon HoneyID="555" ID="121"/>
-      <Weapon HoneyID="555" ID="284"/>
       <Weapon HoneyID="554" ID="122"/>
-      <Weapon HoneyID="554" ID="285"/>
       <Weapon HoneyID="553" ID="123"/>
-      <Weapon HoneyID="553" ID="286"/>
       <Weapon HoneyID="549" ID="124"/>
-      <Weapon HoneyID="549" ID="287"/>
       <Weapon HoneyID="561" ID="125"/>
-      <Weapon HoneyID="561" ID="288"/>
       <Weapon HoneyID="559" ID="126"/>
-      <Weapon HoneyID="559" ID="289"/>
       <Weapon HoneyID="560" ID="127"/>
-      <Weapon HoneyID="560" ID="290"/>
       <Weapon HoneyID="662" ID="129"/>
       <Weapon HoneyID="663" ID="130"/>
       <Weapon HoneyID="664" ID="131"/>
       <Weapon HoneyID="690" ID="132"/>
-      <Weapon HoneyID="690" ID="291"/>
       <Weapon HoneyID="760" ID="133"/>
-      <Weapon HoneyID="760" ID="292"/>
       <Weapon HoneyID="757" ID="134"/>
-      <Weapon HoneyID="757" ID="293"/>
       <Weapon HoneyID="755" ID="135"/>
-      <Weapon HoneyID="755" ID="294"/>
       <Weapon HoneyID="759" ID="136"/>
-      <Weapon HoneyID="759" ID="295"/>
       <Weapon HoneyID="758" ID="137"/>
-      <Weapon HoneyID="758" ID="296"/>
       <Weapon HoneyID="754" ID="138"/>
-      <Weapon HoneyID="754" ID="297"/>
       <Weapon HoneyID="756" ID="139"/>
-      <Weapon HoneyID="756" ID="298"/>
       <Weapon HoneyID="1866" ID="144"/>
       <Weapon HoneyID="1382" ID="150"/>
       <Weapon HoneyID="1383" ID="151"/>
@@ -3881,6 +3847,40 @@
       <Weapon HoneyID="1987" ID="263"/>
       <Weapon HoneyID="1988" ID="255"/>
       <Weapon HoneyID="1988" ID="264"/>
+      <Weapon HoneyID="2311" ID="265"/>
+      <Weapon HoneyID="2308" ID="266"/>
+      <Weapon HoneyID="2309" ID="267"/>
+      <Weapon HoneyID="2301" ID="268"/>
+      <Weapon HoneyID="2306" ID="269"/>
+      <Weapon HoneyID="2307" ID="270"/>
+      <Weapon HoneyID="2300" ID="271"/>
+      <Weapon HoneyID="2310" ID="272"/>
+      <Weapon HoneyID="2299" ID="273"/>
+      <Weapon HoneyID="2305" ID="274"/>
+      <Weapon HoneyID="2304" ID="275"/>
+      <Weapon HoneyID="2303" ID="276"/>
+      <Weapon HoneyID="2302" ID="277"/>
+      <Weapon HoneyID="2315" ID="278"/>
+      <Weapon HoneyID="2319" ID="279"/>
+      <Weapon HoneyID="2320" ID="280"/>
+      <Weapon HoneyID="2314" ID="281"/>
+      <Weapon HoneyID="2321" ID="282"/>
+      <Weapon HoneyID="2313" ID="283"/>
+      <Weapon HoneyID="2318" ID="284"/>
+      <Weapon HoneyID="2317" ID="285"/>
+      <Weapon HoneyID="2316" ID="286"/>
+      <Weapon HoneyID="2312" ID="287"/>
+      <Weapon HoneyID="2324" ID="288"/>
+      <Weapon HoneyID="2322" ID="289"/>
+      <Weapon HoneyID="2323" ID="290"/>
+      <Weapon HoneyID="2409" ID="291"/>
+      <Weapon HoneyID="2477" ID="292"/>
+      <Weapon HoneyID="2474" ID="293"/>
+      <Weapon HoneyID="2472" ID="294"/>
+      <Weapon HoneyID="2476" ID="295"/>
+      <Weapon HoneyID="2475" ID="296"/>
+      <Weapon HoneyID="2471" ID="297"/>
+      <Weapon HoneyID="2473" ID="298"/>
     </s_axe>
     <c_axe>
       <Weapon HoneyID="188" ID="17"/>
@@ -3904,72 +3904,40 @@
       <Weapon HoneyID="206" ID="101"/>
       <Weapon HoneyID="289" ID="102"/>
       <Weapon HoneyID="319" ID="104"/>
-      <Weapon HoneyID="319" ID="257"/>
       <Weapon HoneyID="325" ID="105"/>
-      <Weapon HoneyID="325" ID="258"/>
       <Weapon HoneyID="323" ID="106"/>
-      <Weapon HoneyID="323" ID="259"/>
       <Weapon HoneyID="317" ID="107"/>
-      <Weapon HoneyID="317" ID="260"/>
       <Weapon HoneyID="321" ID="108"/>
-      <Weapon HoneyID="321" ID="261"/>
       <Weapon HoneyID="324" ID="109"/>
-      <Weapon HoneyID="324" ID="262"/>
       <Weapon HoneyID="322" ID="110"/>
-      <Weapon HoneyID="322" ID="263"/>
       <Weapon HoneyID="314" ID="111"/>
-      <Weapon HoneyID="314" ID="264"/>
       <Weapon HoneyID="316" ID="112"/>
-      <Weapon HoneyID="316" ID="265"/>
       <Weapon HoneyID="320" ID="113"/>
-      <Weapon HoneyID="320" ID="266"/>
       <Weapon HoneyID="318" ID="114"/>
-      <Weapon HoneyID="318" ID="267"/>
       <Weapon HoneyID="315" ID="115"/>
-      <Weapon HoneyID="315" ID="268"/>
       <Weapon HoneyID="329" ID="116"/>
-      <Weapon HoneyID="329" ID="269"/>
       <Weapon HoneyID="332" ID="117"/>
-      <Weapon HoneyID="332" ID="270"/>
       <Weapon HoneyID="334" ID="118"/>
-      <Weapon HoneyID="334" ID="271"/>
       <Weapon HoneyID="333" ID="119"/>
-      <Weapon HoneyID="333" ID="272"/>
       <Weapon HoneyID="326" ID="120"/>
-      <Weapon HoneyID="326" ID="273"/>
       <Weapon HoneyID="328" ID="121"/>
-      <Weapon HoneyID="328" ID="274"/>
       <Weapon HoneyID="331" ID="122"/>
-      <Weapon HoneyID="331" ID="275"/>
       <Weapon HoneyID="330" ID="123"/>
-      <Weapon HoneyID="330" ID="276"/>
       <Weapon HoneyID="327" ID="124"/>
-      <Weapon HoneyID="327" ID="277"/>
       <Weapon HoneyID="335" ID="125"/>
-      <Weapon HoneyID="335" ID="278"/>
       <Weapon HoneyID="337" ID="126"/>
-      <Weapon HoneyID="337" ID="279"/>
       <Weapon HoneyID="336" ID="127"/>
-      <Weapon HoneyID="336" ID="280"/>
       <Weapon HoneyID="665" ID="129"/>
       <Weapon HoneyID="666" ID="130"/>
       <Weapon HoneyID="667" ID="131"/>
       <Weapon HoneyID="691" ID="132"/>
-      <Weapon HoneyID="691" ID="281"/>
       <Weapon HoneyID="761" ID="133"/>
-      <Weapon HoneyID="761" ID="282"/>
       <Weapon HoneyID="767" ID="134"/>
-      <Weapon HoneyID="767" ID="283"/>
       <Weapon HoneyID="766" ID="135"/>
-      <Weapon HoneyID="766" ID="284"/>
       <Weapon HoneyID="765" ID="136"/>
-      <Weapon HoneyID="765" ID="285"/>
       <Weapon HoneyID="762" ID="137"/>
-      <Weapon HoneyID="762" ID="286"/>
       <Weapon HoneyID="763" ID="138"/>
-      <Weapon HoneyID="763" ID="287"/>
       <Weapon HoneyID="764" ID="139"/>
-      <Weapon HoneyID="764" ID="288"/>
       <Weapon HoneyID="1867" ID="144"/>
       <Weapon HoneyID="1458" ID="150"/>
       <Weapon HoneyID="1459" ID="151"/>
@@ -4065,6 +4033,38 @@
       <Weapon HoneyID="1997" ID="246"/>
       <Weapon HoneyID="1997" ID="255"/>
       <Weapon HoneyID="1905" ID="256"/>
+      <Weapon HoneyID="2082" ID="257"/>
+      <Weapon HoneyID="2088" ID="258"/>
+      <Weapon HoneyID="2086" ID="259"/>
+      <Weapon HoneyID="2080" ID="260"/>
+      <Weapon HoneyID="2084" ID="261"/>
+      <Weapon HoneyID="2087" ID="262"/>
+      <Weapon HoneyID="2085" ID="263"/>
+      <Weapon HoneyID="2077" ID="264"/>
+      <Weapon HoneyID="2079" ID="265"/>
+      <Weapon HoneyID="2083" ID="266"/>
+      <Weapon HoneyID="2081" ID="267"/>
+      <Weapon HoneyID="2078" ID="268"/>
+      <Weapon HoneyID="2092" ID="269"/>
+      <Weapon HoneyID="2095" ID="270"/>
+      <Weapon HoneyID="2097" ID="271"/>
+      <Weapon HoneyID="2096" ID="272"/>
+      <Weapon HoneyID="2089" ID="273"/>
+      <Weapon HoneyID="2091" ID="274"/>
+      <Weapon HoneyID="2094" ID="275"/>
+      <Weapon HoneyID="2093" ID="276"/>
+      <Weapon HoneyID="2090" ID="277"/>
+      <Weapon HoneyID="2098" ID="278"/>
+      <Weapon HoneyID="2100" ID="279"/>
+      <Weapon HoneyID="2099" ID="280"/>
+      <Weapon HoneyID="2410" ID="281"/>
+      <Weapon HoneyID="2478" ID="282"/>
+      <Weapon HoneyID="2484" ID="283"/>
+      <Weapon HoneyID="2483" ID="284"/>
+      <Weapon HoneyID="2482" ID="285"/>
+      <Weapon HoneyID="2479" ID="286"/>
+      <Weapon HoneyID="2480" ID="287"/>
+      <Weapon HoneyID="2481" ID="288"/>
     </c_axe>
     <rod>
       <Weapon HoneyID="207" ID="17"/>
@@ -4089,72 +4089,40 @@
       <Weapon HoneyID="226" ID="101"/>
       <Weapon HoneyID="680" ID="103"/>
       <Weapon HoneyID="473" ID="104"/>
-      <Weapon HoneyID="473" ID="268"/>
       <Weapon HoneyID="465" ID="105"/>
-      <Weapon HoneyID="465" ID="269"/>
       <Weapon HoneyID="467" ID="106"/>
-      <Weapon HoneyID="467" ID="270"/>
       <Weapon HoneyID="472" ID="107"/>
-      <Weapon HoneyID="472" ID="271"/>
       <Weapon HoneyID="471" ID="108"/>
-      <Weapon HoneyID="471" ID="272"/>
       <Weapon HoneyID="470" ID="109"/>
-      <Weapon HoneyID="470" ID="273"/>
       <Weapon HoneyID="468" ID="110"/>
-      <Weapon HoneyID="468" ID="274"/>
       <Weapon HoneyID="462" ID="111"/>
-      <Weapon HoneyID="462" ID="275"/>
       <Weapon HoneyID="463" ID="112"/>
-      <Weapon HoneyID="463" ID="276"/>
       <Weapon HoneyID="466" ID="113"/>
-      <Weapon HoneyID="466" ID="277"/>
       <Weapon HoneyID="464" ID="114"/>
-      <Weapon HoneyID="464" ID="278"/>
       <Weapon HoneyID="469" ID="115"/>
-      <Weapon HoneyID="469" ID="279"/>
       <Weapon HoneyID="482" ID="116"/>
-      <Weapon HoneyID="482" ID="280"/>
       <Weapon HoneyID="481" ID="117"/>
-      <Weapon HoneyID="481" ID="281"/>
       <Weapon HoneyID="480" ID="118"/>
-      <Weapon HoneyID="480" ID="282"/>
       <Weapon HoneyID="477" ID="119"/>
-      <Weapon HoneyID="477" ID="283"/>
       <Weapon HoneyID="474" ID="120"/>
-      <Weapon HoneyID="474" ID="284"/>
       <Weapon HoneyID="476" ID="121"/>
-      <Weapon HoneyID="476" ID="285"/>
       <Weapon HoneyID="479" ID="122"/>
-      <Weapon HoneyID="479" ID="286"/>
       <Weapon HoneyID="478" ID="123"/>
-      <Weapon HoneyID="478" ID="287"/>
       <Weapon HoneyID="475" ID="124"/>
-      <Weapon HoneyID="475" ID="288"/>
       <Weapon HoneyID="485" ID="125"/>
-      <Weapon HoneyID="485" ID="289"/>
       <Weapon HoneyID="483" ID="126"/>
-      <Weapon HoneyID="483" ID="290"/>
       <Weapon HoneyID="484" ID="127"/>
-      <Weapon HoneyID="484" ID="291"/>
       <Weapon HoneyID="668" ID="129"/>
       <Weapon HoneyID="669" ID="130"/>
       <Weapon HoneyID="670" ID="131"/>
       <Weapon HoneyID="692" ID="132"/>
-      <Weapon HoneyID="692" ID="292"/>
       <Weapon HoneyID="769" ID="133"/>
-      <Weapon HoneyID="769" ID="293"/>
       <Weapon HoneyID="774" ID="134"/>
-      <Weapon HoneyID="774" ID="294"/>
       <Weapon HoneyID="768" ID="135"/>
-      <Weapon HoneyID="768" ID="295"/>
       <Weapon HoneyID="773" ID="136"/>
-      <Weapon HoneyID="773" ID="296"/>
       <Weapon HoneyID="771" ID="137"/>
-      <Weapon HoneyID="771" ID="297"/>
       <Weapon HoneyID="772" ID="138"/>
-      <Weapon HoneyID="772" ID="298"/>
       <Weapon HoneyID="770" ID="139"/>
-      <Weapon HoneyID="770" ID="299"/>
       <Weapon HoneyID="1868" ID="144"/>
       <Weapon HoneyID="1523" ID="150"/>
       <Weapon HoneyID="1524" ID="151"/>
@@ -4255,6 +4223,38 @@
       <Weapon HoneyID="2006" ID="257"/>
       <Weapon HoneyID="2006" ID="266"/>
       <Weapon HoneyID="1906" ID="267"/>
+      <Weapon HoneyID="2236" ID="268"/>
+      <Weapon HoneyID="2228" ID="269"/>
+      <Weapon HoneyID="2230" ID="270"/>
+      <Weapon HoneyID="2235" ID="271"/>
+      <Weapon HoneyID="2234" ID="272"/>
+      <Weapon HoneyID="2233" ID="273"/>
+      <Weapon HoneyID="2231" ID="274"/>
+      <Weapon HoneyID="2225" ID="275"/>
+      <Weapon HoneyID="2226" ID="276"/>
+      <Weapon HoneyID="2229" ID="277"/>
+      <Weapon HoneyID="2227" ID="278"/>
+      <Weapon HoneyID="2232" ID="279"/>
+      <Weapon HoneyID="2245" ID="280"/>
+      <Weapon HoneyID="2244" ID="281"/>
+      <Weapon HoneyID="2243" ID="282"/>
+      <Weapon HoneyID="2240" ID="283"/>
+      <Weapon HoneyID="2237" ID="284"/>
+      <Weapon HoneyID="2239" ID="285"/>
+      <Weapon HoneyID="2242" ID="286"/>
+      <Weapon HoneyID="2241" ID="287"/>
+      <Weapon HoneyID="2238" ID="288"/>
+      <Weapon HoneyID="2248" ID="289"/>
+      <Weapon HoneyID="2246" ID="290"/>
+      <Weapon HoneyID="2247" ID="291"/>
+      <Weapon HoneyID="2411" ID="292"/>
+      <Weapon HoneyID="2486" ID="293"/>
+      <Weapon HoneyID="2491" ID="294"/>
+      <Weapon HoneyID="2485" ID="295"/>
+      <Weapon HoneyID="2490" ID="296"/>
+      <Weapon HoneyID="2488" ID="297"/>
+      <Weapon HoneyID="2489" ID="298"/>
+      <Weapon HoneyID="2487" ID="299"/>
     </rod>
     <bow>
       <Weapon HoneyID="268" ID="27"/>
@@ -4277,70 +4277,39 @@
       <Weapon HoneyID="285" ID="98"/>
       <Weapon HoneyID="286" ID="101"/>
       <Weapon HoneyID="301" ID="104"/>
-      <Weapon HoneyID="301" ID="255"/>
       <Weapon HoneyID="300" ID="105"/>
-      <Weapon HoneyID="300" ID="256"/>
       <Weapon HoneyID="290" ID="106"/>
-      <Weapon HoneyID="290" ID="257"/>
       <Weapon HoneyID="299" ID="107"/>
-      <Weapon HoneyID="299" ID="258"/>
       <Weapon HoneyID="297" ID="108"/>
-      <Weapon HoneyID="297" ID="259"/>
       <Weapon HoneyID="296" ID="109"/>
-      <Weapon HoneyID="296" ID="260"/>
       <Weapon HoneyID="295" ID="110"/>
-      <Weapon HoneyID="295" ID="261"/>
       <Weapon HoneyID="294" ID="111"/>
-      <Weapon HoneyID="294" ID="262"/>
       <Weapon HoneyID="298" ID="112"/>
-      <Weapon HoneyID="298" ID="263"/>
       <Weapon HoneyID="291" ID="113"/>
-      <Weapon HoneyID="291" ID="264"/>
       <Weapon HoneyID="293" ID="114"/>
-      <Weapon HoneyID="293" ID="265"/>
       <Weapon HoneyID="292" ID="115"/>
-      <Weapon HoneyID="292" ID="266"/>
       <Weapon HoneyID="310" ID="116"/>
-      <Weapon HoneyID="310" ID="267"/>
       <Weapon HoneyID="308" ID="117"/>
-      <Weapon HoneyID="308" ID="268"/>
       <Weapon HoneyID="307" ID="118"/>
-      <Weapon HoneyID="307" ID="269"/>
       <Weapon HoneyID="306" ID="119"/>
-      <Weapon HoneyID="306" ID="270"/>
       <Weapon HoneyID="305" ID="120"/>
-      <Weapon HoneyID="305" ID="271"/>
       <Weapon HoneyID="309" ID="121"/>
-      <Weapon HoneyID="309" ID="272"/>
       <Weapon HoneyID="302" ID="122"/>
-      <Weapon HoneyID="302" ID="273"/>
       <Weapon HoneyID="304" ID="123"/>
-      <Weapon HoneyID="304" ID="274"/>
       <Weapon HoneyID="303" ID="124"/>
-      <Weapon HoneyID="303" ID="275"/>
       <Weapon HoneyID="313" ID="125"/>
-      <Weapon HoneyID="313" ID="276"/>
       <Weapon HoneyID="312" ID="126"/>
-      <Weapon HoneyID="312" ID="277"/>
       <Weapon HoneyID="311" ID="127"/>
-      <Weapon HoneyID="311" ID="278"/>
       <Weapon HoneyID="677" ID="129"/>
       <Weapon HoneyID="678" ID="130"/>
       <Weapon HoneyID="679" ID="131"/>
       <Weapon HoneyID="695" ID="132"/>
-      <Weapon HoneyID="695" ID="279"/>
       <Weapon HoneyID="776" ID="133"/>
-      <Weapon HoneyID="776" ID="280"/>
       <Weapon HoneyID="779" ID="134"/>
-      <Weapon HoneyID="779" ID="281"/>
       <Weapon HoneyID="777" ID="135"/>
-      <Weapon HoneyID="777" ID="282"/>
       <Weapon HoneyID="780" ID="136"/>
-      <Weapon HoneyID="780" ID="283"/>
       <Weapon HoneyID="778" ID="137"/>
-      <Weapon HoneyID="778" ID="284"/>
       <Weapon HoneyID="775" ID="138"/>
-      <Weapon HoneyID="775" ID="285"/>
       <Weapon HoneyID="1871" ID="143"/>
       <Weapon HoneyID="1727" ID="150"/>
       <Weapon HoneyID="1728" ID="151"/>
@@ -4433,6 +4402,37 @@
       <Weapon HoneyID="2022" ID="252"/>
       <Weapon HoneyID="2021" ID="247"/>
       <Weapon HoneyID="2021" ID="253"/>
+      <Weapon HoneyID="2064" ID="255"/>
+      <Weapon HoneyID="2063" ID="256"/>
+      <Weapon HoneyID="2053" ID="257"/>
+      <Weapon HoneyID="2062" ID="258"/>
+      <Weapon HoneyID="2060" ID="259"/>
+      <Weapon HoneyID="2059" ID="260"/>
+      <Weapon HoneyID="2058" ID="261"/>
+      <Weapon HoneyID="2057" ID="262"/>
+      <Weapon HoneyID="2061" ID="263"/>
+      <Weapon HoneyID="2054" ID="264"/>
+      <Weapon HoneyID="2056" ID="265"/>
+      <Weapon HoneyID="2055" ID="266"/>
+      <Weapon HoneyID="2073" ID="267"/>
+      <Weapon HoneyID="2071" ID="268"/>
+      <Weapon HoneyID="2070" ID="269"/>
+      <Weapon HoneyID="2069" ID="270"/>
+      <Weapon HoneyID="2068" ID="271"/>
+      <Weapon HoneyID="2072" ID="272"/>
+      <Weapon HoneyID="2065" ID="273"/>
+      <Weapon HoneyID="2067" ID="274"/>
+      <Weapon HoneyID="2066" ID="275"/>
+      <Weapon HoneyID="2076" ID="276"/>
+      <Weapon HoneyID="2075" ID="277"/>
+      <Weapon HoneyID="2074" ID="278"/>
+      <Weapon HoneyID="2414" ID="279"/>
+      <Weapon HoneyID="2493" ID="280"/>
+      <Weapon HoneyID="2496" ID="281"/>
+      <Weapon HoneyID="2494" ID="282"/>
+      <Weapon HoneyID="2497" ID="283"/>
+      <Weapon HoneyID="2495" ID="284"/>
+      <Weapon HoneyID="2492" ID="285"/>
     </bow>
     <hbg>
       <Weapon HoneyID="249" ID="27"/>
@@ -4455,70 +4455,39 @@
       <Weapon HoneyID="266" ID="97"/>
       <Weapon HoneyID="267" ID="101"/>
       <Weapon HoneyID="624" ID="102"/>
-      <Weapon HoneyID="624" ID="241"/>
       <Weapon HoneyID="614" ID="103"/>
-      <Weapon HoneyID="614" ID="242"/>
       <Weapon HoneyID="619" ID="104"/>
-      <Weapon HoneyID="619" ID="243"/>
       <Weapon HoneyID="617" ID="105"/>
-      <Weapon HoneyID="617" ID="244"/>
       <Weapon HoneyID="623" ID="106"/>
-      <Weapon HoneyID="623" ID="245"/>
       <Weapon HoneyID="622" ID="107"/>
-      <Weapon HoneyID="622" ID="246"/>
       <Weapon HoneyID="621" ID="108"/>
-      <Weapon HoneyID="621" ID="247"/>
       <Weapon HoneyID="616" ID="109"/>
-      <Weapon HoneyID="616" ID="248"/>
       <Weapon HoneyID="625" ID="110"/>
-      <Weapon HoneyID="625" ID="249"/>
       <Weapon HoneyID="618" ID="111"/>
-      <Weapon HoneyID="618" ID="250"/>
       <Weapon HoneyID="615" ID="112"/>
-      <Weapon HoneyID="615" ID="251"/>
       <Weapon HoneyID="620" ID="113"/>
-      <Weapon HoneyID="620" ID="252"/>
       <Weapon HoneyID="628" ID="114"/>
-      <Weapon HoneyID="628" ID="253"/>
       <Weapon HoneyID="633" ID="115"/>
-      <Weapon HoneyID="633" ID="254"/>
       <Weapon HoneyID="632" ID="116"/>
-      <Weapon HoneyID="632" ID="255"/>
       <Weapon HoneyID="631" ID="117"/>
-      <Weapon HoneyID="631" ID="256"/>
       <Weapon HoneyID="627" ID="118"/>
-      <Weapon HoneyID="627" ID="257"/>
       <Weapon HoneyID="634" ID="119"/>
-      <Weapon HoneyID="634" ID="258"/>
       <Weapon HoneyID="629" ID="120"/>
-      <Weapon HoneyID="629" ID="259"/>
       <Weapon HoneyID="626" ID="121"/>
-      <Weapon HoneyID="626" ID="260"/>
       <Weapon HoneyID="630" ID="122"/>
-      <Weapon HoneyID="630" ID="261"/>
       <Weapon HoneyID="637" ID="123"/>
-      <Weapon HoneyID="637" ID="262"/>
       <Weapon HoneyID="635" ID="124"/>
-      <Weapon HoneyID="635" ID="263"/>
       <Weapon HoneyID="636" ID="125"/>
-      <Weapon HoneyID="636" ID="264"/>
       <Weapon HoneyID="674" ID="127"/>
       <Weapon HoneyID="675" ID="128"/>
       <Weapon HoneyID="676" ID="129"/>
       <Weapon HoneyID="694" ID="130"/>
-      <Weapon HoneyID="694" ID="265"/>
       <Weapon HoneyID="792" ID="131"/>
-      <Weapon HoneyID="792" ID="266"/>
       <Weapon HoneyID="787" ID="132"/>
-      <Weapon HoneyID="787" ID="267"/>
       <Weapon HoneyID="790" ID="133"/>
-      <Weapon HoneyID="790" ID="268"/>
       <Weapon HoneyID="788" ID="134"/>
-      <Weapon HoneyID="788" ID="269"/>
       <Weapon HoneyID="791" ID="135"/>
-      <Weapon HoneyID="791" ID="270"/>
       <Weapon HoneyID="789" ID="136"/>
-      <Weapon HoneyID="789" ID="271"/>
       <Weapon HoneyID="1870" ID="141"/>
       <Weapon HoneyID="1665" ID="150"/>
       <Weapon HoneyID="1666" ID="151"/>
@@ -4600,6 +4569,37 @@
       <Weapon HoneyID="2013" ID="239"/>
       <Weapon HoneyID="2016" ID="235"/>
       <Weapon HoneyID="2016" ID="240"/>
+      <Weapon HoneyID="2387" ID="241"/>
+      <Weapon HoneyID="2377" ID="242"/>
+      <Weapon HoneyID="2382" ID="243"/>
+      <Weapon HoneyID="2380" ID="244"/>
+      <Weapon HoneyID="2386" ID="245"/>
+      <Weapon HoneyID="2385" ID="246"/>
+      <Weapon HoneyID="2384" ID="247"/>
+      <Weapon HoneyID="2379" ID="248"/>
+      <Weapon HoneyID="2388" ID="249"/>
+      <Weapon HoneyID="2381" ID="250"/>
+      <Weapon HoneyID="2378" ID="251"/>
+      <Weapon HoneyID="2383" ID="252"/>
+      <Weapon HoneyID="2391" ID="253"/>
+      <Weapon HoneyID="2396" ID="254"/>
+      <Weapon HoneyID="2395" ID="255"/>
+      <Weapon HoneyID="2394" ID="256"/>
+      <Weapon HoneyID="2390" ID="257"/>
+      <Weapon HoneyID="2397" ID="258"/>
+      <Weapon HoneyID="2392" ID="259"/>
+      <Weapon HoneyID="2389" ID="260"/>
+      <Weapon HoneyID="2393" ID="261"/>
+      <Weapon HoneyID="2400" ID="262"/>
+      <Weapon HoneyID="2398" ID="263"/>
+      <Weapon HoneyID="2399" ID="264"/>
+      <Weapon HoneyID="2413" ID="265"/>
+      <Weapon HoneyID="2509" ID="266"/>
+      <Weapon HoneyID="2504" ID="267"/>
+      <Weapon HoneyID="2507" ID="268"/>
+      <Weapon HoneyID="2505" ID="269"/>
+      <Weapon HoneyID="2508" ID="270"/>
+      <Weapon HoneyID="2506" ID="271"/>
     </hbg>
     <lbg>
       <Weapon HoneyID="227" ID="17"/>
@@ -4625,74 +4625,41 @@
       <Weapon HoneyID="247" ID="90"/>
       <Weapon HoneyID="248" ID="101"/>
       <Weapon HoneyID="597" ID="102"/>
-      <Weapon HoneyID="597" ID="254"/>
       <Weapon HoneyID="600" ID="103"/>
-      <Weapon HoneyID="600" ID="255"/>
       <Weapon HoneyID="599" ID="104"/>
-      <Weapon HoneyID="599" ID="256"/>
       <Weapon HoneyID="593" ID="105"/>
-      <Weapon HoneyID="593" ID="257"/>
       <Weapon HoneyID="595" ID="106"/>
-      <Weapon HoneyID="595" ID="258"/>
       <Weapon HoneyID="596" ID="107"/>
-      <Weapon HoneyID="596" ID="259"/>
       <Weapon HoneyID="598" ID="108"/>
-      <Weapon HoneyID="598" ID="260"/>
       <Weapon HoneyID="591" ID="109"/>
-      <Weapon HoneyID="591" ID="261"/>
       <Weapon HoneyID="589" ID="110"/>
-      <Weapon HoneyID="589" ID="262"/>
       <Weapon HoneyID="590" ID="111"/>
-      <Weapon HoneyID="590" ID="263"/>
       <Weapon HoneyID="594" ID="112"/>
-      <Weapon HoneyID="594" ID="264"/>
       <Weapon HoneyID="592" ID="113"/>
-      <Weapon HoneyID="592" ID="265"/>
       <Weapon HoneyID="588" ID="114"/>
-      <Weapon HoneyID="588" ID="266"/>
       <Weapon HoneyID="606" ID="115"/>
-      <Weapon HoneyID="606" ID="267"/>
       <Weapon HoneyID="608" ID="116"/>
-      <Weapon HoneyID="608" ID="268"/>
       <Weapon HoneyID="609" ID="117"/>
-      <Weapon HoneyID="609" ID="269"/>
       <Weapon HoneyID="610" ID="118"/>
-      <Weapon HoneyID="610" ID="270"/>
       <Weapon HoneyID="604" ID="119"/>
-      <Weapon HoneyID="604" ID="271"/>
       <Weapon HoneyID="602" ID="120"/>
-      <Weapon HoneyID="602" ID="272"/>
       <Weapon HoneyID="603" ID="121"/>
-      <Weapon HoneyID="603" ID="273"/>
       <Weapon HoneyID="607" ID="122"/>
-      <Weapon HoneyID="607" ID="274"/>
       <Weapon HoneyID="605" ID="123"/>
-      <Weapon HoneyID="605" ID="275"/>
       <Weapon HoneyID="601" ID="124"/>
-      <Weapon HoneyID="601" ID="276"/>
       <Weapon HoneyID="611" ID="125"/>
-      <Weapon HoneyID="611" ID="277"/>
       <Weapon HoneyID="613" ID="126"/>
-      <Weapon HoneyID="613" ID="278"/>
       <Weapon HoneyID="612" ID="127"/>
-      <Weapon HoneyID="612" ID="279"/>
       <Weapon HoneyID="671" ID="129"/>
       <Weapon HoneyID="672" ID="130"/>
       <Weapon HoneyID="673" ID="131"/>
       <Weapon HoneyID="693" ID="132"/>
-      <Weapon HoneyID="693" ID="280"/>
       <Weapon HoneyID="784" ID="133"/>
-      <Weapon HoneyID="784" ID="281"/>
       <Weapon HoneyID="783" ID="134"/>
-      <Weapon HoneyID="783" ID="282"/>
       <Weapon HoneyID="786" ID="135"/>
-      <Weapon HoneyID="786" ID="283"/>
       <Weapon HoneyID="785" ID="136"/>
-      <Weapon HoneyID="785" ID="284"/>
       <Weapon HoneyID="782" ID="137"/>
-      <Weapon HoneyID="782" ID="285"/>
       <Weapon HoneyID="781" ID="138"/>
-      <Weapon HoneyID="781" ID="286"/>
       <Weapon HoneyID="1869" ID="143"/>
       <Weapon HoneyID="1595" ID="150"/>
       <Weapon HoneyID="1596" ID="151"/>
@@ -4782,6 +4749,39 @@
       <Weapon HoneyID="2008" ID="252"/>
       <Weapon HoneyID="2011" ID="248"/>
       <Weapon HoneyID="2011" ID="253"/>
+      <Weapon HoneyID="2360" ID="254"/>
+      <Weapon HoneyID="2363" ID="255"/>
+      <Weapon HoneyID="2362" ID="256"/>
+      <Weapon HoneyID="2356" ID="257"/>
+      <Weapon HoneyID="2358" ID="258"/>
+      <Weapon HoneyID="2359" ID="259"/>
+      <Weapon HoneyID="2361" ID="260"/>
+      <Weapon HoneyID="2354" ID="261"/>
+      <Weapon HoneyID="2352" ID="262"/>
+      <Weapon HoneyID="2353" ID="263"/>
+      <Weapon HoneyID="2357" ID="264"/>
+      <Weapon HoneyID="2355" ID="265"/>
+      <Weapon HoneyID="2351" ID="266"/>
+      <Weapon HoneyID="2369" ID="267"/>
+      <Weapon HoneyID="2371" ID="268"/>
+      <Weapon HoneyID="2372" ID="269"/>
+      <Weapon HoneyID="2373" ID="270"/>
+      <Weapon HoneyID="2367" ID="271"/>
+      <Weapon HoneyID="2365" ID="272"/>
+      <Weapon HoneyID="2366" ID="273"/>
+      <Weapon HoneyID="2370" ID="274"/>
+      <Weapon HoneyID="2368" ID="275"/>
+      <Weapon HoneyID="2364" ID="276"/>
+      <Weapon HoneyID="2374" ID="277"/>
+      <Weapon HoneyID="2376" ID="278"/>
+      <Weapon HoneyID="2375" ID="279"/>
+      <Weapon HoneyID="2412" ID="280"/>
+      <Weapon HoneyID="2501" ID="281"/>
+      <Weapon HoneyID="2500" ID="282"/>
+      <Weapon HoneyID="2503" ID="283"/>
+      <Weapon HoneyID="2502" ID="284"/>
+      <Weapon HoneyID="2499" ID="285"/>
+      <Weapon HoneyID="2498" ID="286"/>
     </lbg>
     <Custom>
 			<LSWD>

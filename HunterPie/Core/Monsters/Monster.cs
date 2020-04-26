@@ -481,6 +481,9 @@ namespace HunterPie.Core {
 
                         var AilmentInfo = MonsterData.AilmentsInfo.ElementAt(ID);
 
+                        // Skip traps for non-capturable monsters
+                        if (MonsterInfo.Capture == 0 && AilmentInfo.Group == "TRAP") continue;
+
                         if (AilmentInfo.CanSkip && !UserSettings.PlayerConfig.HunterPie.Debug.ShowUnknownStatuses)
                         {
                             StatusPtr = Scanner.READ_LONGLONG(StatusPtr + 0x18);
