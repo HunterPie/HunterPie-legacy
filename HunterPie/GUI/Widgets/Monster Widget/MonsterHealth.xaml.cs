@@ -163,8 +163,8 @@ namespace HunterPie.GUI.Widgets
             if (Monster.Weaknesses == null) return;
             foreach (string Weakness in Monster.Weaknesses.Keys)
             {
-                ImageSource img = Resources[Weakness] as ImageSource;
-                img.Freeze();
+                ImageSource img = FindResource(Weakness) as ImageSource;
+                img?.Freeze();
                 WeaknessDisplay MonsterWeaknessDisplay = new WeaknessDisplay
                 {
                     Icon = img,

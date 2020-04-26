@@ -6,13 +6,6 @@
              xmlns:local="clr-namespace:HunterPie.GUI.Widgets.Abnormality_Widget.Parts"
              xmlns:helpers="clr-namespace:HunterPie.GUI.Helpers"
              mc:Ignorable="d" Height="45">
-    <UserControl.Resources>
-        <ResourceDictionary>
-            <ResourceDictionary.MergedDictionaries>
-                <ResourceDictionary Source="/Resources/Resources.xaml"/>
-            </ResourceDictionary.MergedDictionaries>
-        </ResourceDictionary>
-    </UserControl.Resources>
     <DockPanel>
         <Canvas x:Name="Abnormality" RenderTransformOrigin="0.5,0.5" Width="36" DockPanel.Dock="Left">
             <Ellipse Width="30" Height="30" Fill="#66000000" Canvas.Left="3" Canvas.Top="1"/>

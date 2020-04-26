@@ -8,13 +8,6 @@
              xmlns:Custom="clr-namespace:HunterPie.GUIControls.Custom_Controls"
              xmlns:Helpers="clr-namespace:HunterPie.GUI.Helpers"
              mc:Ignorable="d" BorderThickness="1" Margin="3,0,0,0" Width="300" RenderTransformOrigin="0.5,0.5" >
-    <UserControl.Resources>
-        <ResourceDictionary>
-            <ResourceDictionary.MergedDictionaries>
-                <ResourceDictionary Source="/Resources/Resources.xaml"/>
-            </ResourceDictionary.MergedDictionaries>
-        </ResourceDictionary>
-    </UserControl.Resources>
     <DockPanel>
         <Grid x:Name="MonsterHealthContainer" DockPanel.Dock="Top" Margin="-3,0,0,0">
             <Grid.ColumnDefinitions>

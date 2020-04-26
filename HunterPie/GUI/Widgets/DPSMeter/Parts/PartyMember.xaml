@@ -7,13 +7,6 @@
              xmlns:converters="clr-namespace:HunterPie.GUI.Helpers"
              mc:Ignorable="d" 
              x:Name="PlayerContainer" Height="46" Foreground="{x:Null}">
-    <UserControl.Resources>
-        <ResourceDictionary>
-            <ResourceDictionary.MergedDictionaries>
-                <ResourceDictionary Source="/Resources/Resources.xaml"/>
-            </ResourceDictionary.MergedDictionaries>
-        </ResourceDictionary>
-    </UserControl.Resources>
     <Canvas ClipToBounds="True" Width="320" Height="46">
         <StackPanel Height="46" Orientation="Horizontal">
             <Canvas Width="38" >

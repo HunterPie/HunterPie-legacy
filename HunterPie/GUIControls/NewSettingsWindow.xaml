@@ -11,10 +11,6 @@
              d:DesignHeight="450" DataContext="{StaticResource Localization}">
     <UserControl.Resources>
         <ResourceDictionary>
-            <ResourceDictionary.MergedDictionaries>
-                <ResourceDictionary Source="/Resources/Resources.xaml"/>
-                <ResourceDictionary Source="/Resources/ConsoleResources.xaml"/>
-            </ResourceDictionary.MergedDictionaries>
             <helper:StaticSecondsConverter x:Key="StaticSecondsConverter"/>
             <SolidColorBrush x:Key="ToggleButtonBackgroundOn" Color="{StaticResource TOGGLABLE_BUTTON_BACKGROUND_ON}"/>
             <SolidColorBrush x:Key="ToggleButtonBackgroundOff" Color="{StaticResource TOGGLABLE_BUTTON_BACKGROUND_OFF}"/>

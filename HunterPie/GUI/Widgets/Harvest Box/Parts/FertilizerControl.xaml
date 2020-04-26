@@ -6,13 +6,6 @@
              xmlns:local="clr-namespace:HunterPie.GUI.Widgets.Harvest_Box.Parts"
              mc:Ignorable="d" 
              d:DesignHeight="29" Margin="0,3,0,0">
-    <UserControl.Resources>
-        <ResourceDictionary>
-            <ResourceDictionary.MergedDictionaries>
-                <ResourceDictionary Source="/Resources/Resources.xaml"/>
-            </ResourceDictionary.MergedDictionaries>
-        </ResourceDictionary>
-    </UserControl.Resources>
     <DockPanel x:Name="FertilizerHolder" Width="230">
         <Image x:Name="FertilizerIcon" Source="{StaticResource ICON_FERTILIZER_2}" DockPanel.Dock="Left" Visibility="Visible" Height="25" Margin="4,0,0,0"/>
         <TextBlock x:Name="FertilizerName" DockPanel.Dock="Left" Text="Fertilizer Name" FontSize="14" Foreground="#FFEEEEEE" Margin="0" Padding="5,5,2,0" FontWeight="Light" TextTrimming="CharacterEllipsis" MaxWidth="170"/>

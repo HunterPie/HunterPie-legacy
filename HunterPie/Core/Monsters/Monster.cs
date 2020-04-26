@@ -258,10 +258,10 @@ namespace HunterPie.Core {
                     MonsterAddress = ThirdMonsterAddress;
                     break;
                 case 2:
-                    MonsterAddress = Scanner.READ_LONGLONG(ThirdMonsterAddress - 0x30) + 0x40;
+                    MonsterAddress = Scanner.Read<long>(ThirdMonsterAddress - 0x30) + 0x40;
                     break;
                 case 1:
-                    MonsterAddress = Scanner.READ_LONGLONG(Scanner.READ_LONGLONG(ThirdMonsterAddress - 0x30) + 0x10) + 0x40;
+                    MonsterAddress = Scanner.Read<long>(Scanner.Read<long>(ThirdMonsterAddress - 0x30) + 0x10) + 0x40;
                     break;
                 default:
                     break;
@@ -269,11 +269,11 @@ namespace HunterPie.Core {
         }
 
         private void GetMonsterHp(string MonsterModel) {
-            Int64 MonsterHPComponent = Scanner.READ_LONGLONG(this.MonsterAddress + Address.Offsets.MonsterHPComponentOffset);
+            Int64 MonsterHPComponent = Scanner.Read<long>(this.MonsterAddress + Address.Offsets.MonsterHPComponentOffset);
             Int64 MonsterTotalHPAddress = MonsterHPComponent + 0x60;
             Int64 MonsterCurrentHPAddress = MonsterTotalHPAddress + 0x4;
-            float f_TotalHP = Scanner.READ_FLOAT(MonsterTotalHPAddress);
-            float f_CurrentHP = Scanner.READ_FLOAT(MonsterCurrentHPAddress);
+            float f_TotalHP = Scanner.Read<float>(MonsterTotalHPAddress);
+            float f_CurrentHP = Scanner.Read<float>(MonsterCurrentHPAddress);
             if ((MonsterModel != null) && f_CurrentHP <= f_TotalHP && f_CurrentHP > 0 && !MonsterModel.StartsWith("ems")) {
                 this.TotalHP = f_TotalHP;
                 this.CurrentHP = f_CurrentHP;
@@ -286,7 +286,7 @@ namespace HunterPie.Core {
         }
 
         private void GetMonsterIDAndName() {
-            Int64 NamePtr = Scanner.READ_LONGLONG(this.MonsterAddress + Address.Offsets.MonsterNamePtr);
+            Int64 NamePtr = Scanner.Read<long>(this.MonsterAddress + Address.Offsets.MonsterNamePtr);
             string MonsterId = Scanner.READ_STRING(NamePtr + 0x0c, 64).Replace("\x00", "");
             if (MonsterId != "") {
                 string[] MonsterID = MonsterId.Split('\\');
@@ -298,7 +298,7 @@ namespace HunterPie.Core {
                 GetMonsterHp(MonsterId);
                 if (MonsterId.StartsWith("em") && !MonsterId.StartsWith("ems")) {
 
-                    GameId = Scanner.READ_INT(MonsterAddress + Address.Offsets.MonsterGameIDOffset);
+                    GameId = Scanner.Read<int>(MonsterAddress + Address.Offsets.MonsterGameIDOffset);
 
                     MonsterId = MonsterInfo.Em;
 
@@ -313,9 +313,9 @@ namespace HunterPie.Core {
 
         private void GetMonsterSizeModifier() {
             if (!IsAlive) return;
-            float SizeModifier = Scanner.READ_FLOAT(MonsterAddress + 0x7730);
+            float SizeModifier = Scanner.Read<float>(MonsterAddress + 0x7730);
             if (SizeModifier <= 0 || SizeModifier >= 2) SizeModifier = 1;
-            SizeMultiplier = Scanner.READ_FLOAT(MonsterAddress + 0x188) / SizeModifier;
+            SizeMultiplier = Scanner.Read<float>(MonsterAddress + 0x188) / SizeModifier;
         }
 
         private void GetMonsterWeaknesses() {
@@ -323,16 +323,16 @@ namespace HunterPie.Core {
         }
 
         private void GetMonsterEnrageTimer() {
-            EnrageTimer = Scanner.READ_FLOAT(MonsterAddress + 0x1BE54);
-            EnrageTimerStatic = Scanner.READ_FLOAT(MonsterAddress + 0x1BE54 + 0x4);
+            EnrageTimer = Scanner.Read<float>(MonsterAddress + 0x1BE54);
+            EnrageTimerStatic = Scanner.Read<float>(MonsterAddress + 0x1BE54 + 0x4);
         }
 
         private void GetTargetMonsterAddress() {
             Int64 TargettedMonsterAddress = Scanner.READ_MULTILEVEL_PTR(Address.BASE + Address.MONSTER_SELECTED_OFFSET, Address.Offsets.MonsterSelectedOffsets);
 
-            Int64 selectedPtr = Scanner.READ_LONGLONG(Address.BASE + Address.MONSTER_TARGETED_OFFSET); //probably want an offset for this
-            bool isSelect = Scanner.READ_LONGLONG(selectedPtr + 0x128) != 0x0 && Scanner.READ_LONGLONG(selectedPtr + 0x130) != 0x0 && Scanner.READ_LONGLONG(selectedPtr + 0x160) != 0x0;
-            Int64 SelectedMonsterAddress = Scanner.READ_LONGLONG(selectedPtr + 0x148);
+            Int64 selectedPtr = Scanner.Read<long>(Address.BASE + Address.MONSTER_TARGETED_OFFSET); //probably want an offset for this
+            bool isSelect = Scanner.Read<long>(selectedPtr + 0x128) != 0x0 && Scanner.Read<long>(selectedPtr + 0x130) != 0x0 && Scanner.Read<long>(selectedPtr + 0x160) != 0x0;
+            Int64 SelectedMonsterAddress = Scanner.Read<long>(selectedPtr + 0x148);
             IsTarget = TargettedMonsterAddress == 0 ? SelectedMonsterAddress == this.MonsterAddress : TargettedMonsterAddress == this.MonsterAddress;
 
             if (!isSelect) {
@@ -371,9 +371,9 @@ namespace HunterPie.Core {
 
                     if (part.PartAddress > 0)
                     {
-                        TimesBroken = Scanner.READ_BYTE(part.PartAddress + 0x18);
-                        MaxHealth = Scanner.READ_FLOAT(part.PartAddress + 0x10);
-                        Health = Scanner.READ_FLOAT(part.PartAddress + 0x0C);
+                        TimesBroken = Scanner.Read<byte>(part.PartAddress + 0x18);
+                        MaxHealth = Scanner.Read<float>(part.PartAddress + 0x10);
+                        Health = Scanner.Read<float>(part.PartAddress + 0x0C);
 
                         part.SetPartInfo(TimesBroken, MaxHealth, Health);
                     }
@@ -382,18 +382,18 @@ namespace HunterPie.Core {
                         Int64 removablePartAddress = MonsterAddress + Address.Offsets.RemovablePartsOffset;
                         for (int removablePartIndex = 0; removablePartIndex < 32; removablePartIndex++)
                         {
-                            if (Scanner.READ_INT(removablePartAddress) <= 10)
+                            if (Scanner.Read<int>(removablePartAddress) <= 10)
                             {
                                 removablePartAddress += 8;
                             }
 
-                            bool IsAValidPart = Scanner.READ_INT(removablePartAddress + 0x6C) < nRemovableParts;
+                            bool IsAValidPart = Scanner.Read<int>(removablePartAddress + 0x6C) < nRemovableParts;
 
-                            if (IsAValidPart && Scanner.READ_INT(removablePartAddress + 0x0C) > 0)
+                            if (IsAValidPart && Scanner.Read<int>(removablePartAddress + 0x0C) > 0)
                             {
-                                TimesBroken = Scanner.READ_BYTE(removablePartAddress + 0x18);
-                                MaxHealth = Scanner.READ_FLOAT(removablePartAddress + 0x10);
-                                Health = Scanner.READ_FLOAT(removablePartAddress + 0x0C);
+                                TimesBroken = Scanner.Read<byte>(removablePartAddress + 0x18);
+                                MaxHealth = Scanner.Read<float>(removablePartAddress + 0x10);
+                                Health = Scanner.Read<float>(removablePartAddress + 0x0C);
 
                                 part.SetPartInfo(TimesBroken, MaxHealth, Health);
                                 part.PartAddress = removablePartAddress;
@@ -402,9 +402,9 @@ namespace HunterPie.Core {
                                 // Some monsters have the same removable part value in the next removable part struct
                                 // so we skip the ones with the same values.
                                 while (
-                                    Scanner.READ_FLOAT(removablePartAddress + Address.Offsets.NextRemovablePart + 0x0C) == Health &&
-                                    Scanner.READ_FLOAT(removablePartAddress + Address.Offsets.NextRemovablePart + 0x10) == MaxHealth &&
-                                    Scanner.READ_INT(removablePartAddress + Address.Offsets.NextRemovablePart + 0x8) == Scanner.READ_INT(removablePartAddress + 0x8))
+                                    Scanner.Read<float>(removablePartAddress + Address.Offsets.NextRemovablePart + 0x0C) == Health &&
+                                    Scanner.Read<float>(removablePartAddress + Address.Offsets.NextRemovablePart + 0x10) == MaxHealth &&
+                                    Scanner.Read<int>(removablePartAddress + Address.Offsets.NextRemovablePart + 0x8) == Scanner.Read<int>(removablePartAddress + 0x8))
                                 {
                                     removablePartAddress += Address.Offsets.NextRemovablePart;
                                 }
@@ -419,9 +419,9 @@ namespace HunterPie.Core {
                     continue;
                 }
 
-                TimesBroken = Scanner.READ_BYTE(monsterPartAddress + Address.Offsets.MonsterPartBrokenCounterOffset);
-                MaxHealth = Scanner.READ_FLOAT(monsterPartAddress + 0x4); // Total health is 4 bytes ahead
-                Health = Scanner.READ_FLOAT(monsterPartAddress);
+                TimesBroken = Scanner.Read<byte>(monsterPartAddress + Address.Offsets.MonsterPartBrokenCounterOffset);
+                MaxHealth = Scanner.Read<float>(monsterPartAddress + 0x4); // Total health is 4 bytes ahead
+                Health = Scanner.Read<float>(monsterPartAddress);
 
                 part.SetPartInfo(TimesBroken, MaxHealth, Health);
 
@@ -433,8 +433,8 @@ namespace HunterPie.Core {
         private void GetMonsterStamina() {
             if (!IsAlive) return;
             Int64 MonsterStaminaAddress = MonsterAddress + 0x1C0F0;
-            MaxStamina = Scanner.READ_FLOAT(MonsterStaminaAddress + 0x4);
-            float stam = Scanner.READ_FLOAT(MonsterStaminaAddress);
+            MaxStamina = Scanner.Read<float>(MonsterStaminaAddress + 0x4);
+            float stam = Scanner.Read<float>(MonsterStaminaAddress);
             Stamina = stam <= MaxStamina ? stam : MaxStamina;
         }
 
@@ -445,20 +445,20 @@ namespace HunterPie.Core {
                 {
                     if (status.Address == 0) continue;
 
-                    float maxBuildup = Math.Max(0, Scanner.READ_FLOAT(status.Address + 0x1C8));
-                    float currentBuildup = Math.Max(0, Scanner.READ_FLOAT(status.Address + 0x1B8));
-                    float maxDuration = Math.Max(0, Scanner.READ_FLOAT(status.Address + 0x19C));
-                    float currentDuration = Math.Max(0, Scanner.READ_FLOAT(status.Address + 0x1F8));
-                    byte counter = Scanner.READ_BYTE(status.Address + 0x200);
+                    float maxBuildup = Math.Max(0, Scanner.Read<float>(status.Address + 0x1C8));
+                    float currentBuildup = Math.Max(0, Scanner.Read<float>(status.Address + 0x1B8));
+                    float maxDuration = Math.Max(0, Scanner.Read<float>(status.Address + 0x19C));
+                    float currentDuration = Math.Max(0, Scanner.Read<float>(status.Address + 0x1F8));
+                    byte counter = Scanner.Read<byte>(status.Address + 0x200);
 
                     status.SetAilmentInfo(status.ID, currentDuration, maxDuration, currentBuildup, maxBuildup, counter);
                 }
             } else {
-                Int64 StatusAddress = Scanner.READ_LONGLONG(MonsterAddress + 0x78);
-                StatusAddress = Scanner.READ_LONGLONG(StatusAddress + 0x57A8);
+                Int64 StatusAddress = Scanner.Read<long>(MonsterAddress + 0x78);
+                StatusAddress = Scanner.Read<long>(StatusAddress + 0x57A8);
                 Int64 aHolder = StatusAddress;
                 while (aHolder != 0) {
-                    aHolder = Scanner.READ_LONGLONG(aHolder + 0x10);
+                    aHolder = Scanner.Read<long>(aHolder + 0x10);
                     if (aHolder != 0) {
                         StatusAddress = aHolder;
                     }
@@ -467,15 +467,15 @@ namespace HunterPie.Core {
                 while (StatusPtr != 0x0)
                 {
 
-                    Int64 MonsterInStatus = Scanner.READ_LONGLONG(StatusPtr + 0x188);
+                    Int64 MonsterInStatus = Scanner.Read<long>(StatusPtr + 0x188);
 
                     if (MonsterInStatus == MonsterAddress) {
 
-                        int ID = Scanner.READ_INT(StatusPtr + 0x198);
+                        int ID = Scanner.Read<int>(StatusPtr + 0x198);
 
                         if (ID > MonsterData.AilmentsInfo.Count || ID < 0)
                         {
-                            StatusPtr = Scanner.READ_LONGLONG(StatusPtr + 0x18);
+                            StatusPtr = Scanner.Read<long>(StatusPtr + 0x18);
                             continue;
                         }
 
@@ -486,16 +486,16 @@ namespace HunterPie.Core {
 
                         if (AilmentInfo.CanSkip && !UserSettings.PlayerConfig.HunterPie.Debug.ShowUnknownStatuses)
                         {
-                            StatusPtr = Scanner.READ_LONGLONG(StatusPtr + 0x18);
+                            StatusPtr = Scanner.Read<long>(StatusPtr + 0x18);
                             continue;
                         } else
                         {
 
-                            float maxBuildup = Math.Max(0, Scanner.READ_FLOAT(StatusPtr + 0x1C8));
-                            float currentBuildup = Math.Max(0, Scanner.READ_FLOAT(StatusPtr + 0x1B8));
-                            float maxDuration = Math.Max(0, Scanner.READ_FLOAT(StatusPtr + 0x19C));
-                            float currentDuration = Math.Max(0, Scanner.READ_FLOAT(StatusPtr + 0x1F8));
-                            byte counter = Scanner.READ_BYTE(StatusPtr + 0x200);
+                            float maxBuildup = Math.Max(0, Scanner.Read<float>(StatusPtr + 0x1C8));
+                            float currentBuildup = Math.Max(0, Scanner.Read<float>(StatusPtr + 0x1B8));
+                            float maxDuration = Math.Max(0, Scanner.Read<float>(StatusPtr + 0x19C));
+                            float currentDuration = Math.Max(0, Scanner.Read<float>(StatusPtr + 0x1F8));
+                            byte counter = Scanner.Read<byte>(StatusPtr + 0x200);
 
                             Ailment mAilment = new Ailment {
                                 Address = StatusPtr
@@ -504,7 +504,7 @@ namespace HunterPie.Core {
                             Ailments.Add(mAilment);
                         }
                     }
-                    StatusPtr = Scanner.READ_LONGLONG(StatusPtr + 0x18);
+                    StatusPtr = Scanner.Read<long>(StatusPtr + 0x18);
                 }
             }
         }

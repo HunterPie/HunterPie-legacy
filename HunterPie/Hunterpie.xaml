@@ -20,7 +20,6 @@
         <ResourceDictionary>
             <ResourceDictionary.MergedDictionaries>
                 <ResourceDictionary Source="/Resources/ConsoleResources.xaml"/>
-                <ResourceDictionary Source="/Resources/Resources.xaml"/>
             </ResourceDictionary.MergedDictionaries>
 
             <Style x:Key="STYLE_SIDEBARBUTTONS" TargetType="{x:Type StackPanel}">

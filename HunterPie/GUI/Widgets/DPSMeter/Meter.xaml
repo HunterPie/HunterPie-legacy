@@ -5,13 +5,6 @@
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              mc:Ignorable="d" Width="324" ResizeMode="NoResize" WindowStyle="None" AllowsTransparency="True" ShowInTaskbar="False" Topmost="True" Closing="OnClosing" Background="{x:Null}" MouseEnter="OnMouseEnter" MouseDown="OnMouseDown" MouseWheel="OnMouseWheel" MouseLeave="OnMouseLeave" SizeToContent="Height">
-    <src:Widget.Resources>
-        <ResourceDictionary>
-            <ResourceDictionary.MergedDictionaries>
-                <ResourceDictionary Source="/Resources/Resources.xaml"/>
-            </ResourceDictionary.MergedDictionaries>
-        </ResourceDictionary>
-    </src:Widget.Resources>
     <StackPanel x:Name="DamageContainer" VerticalAlignment="Top" Background="#7F000000">
         <StackPanel Orientation="Horizontal">
             <Image Source="{StaticResource ICON_STOPWATCH}" Width="20" Height="20" Margin="5,0,0,0"/>

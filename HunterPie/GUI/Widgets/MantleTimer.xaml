@@ -9,13 +9,6 @@
              xmlns:helpers="clr-namespace:HunterPie.GUI.Helpers"
              mc:Ignorable="d" 
              d:DesignHeight="450" d:DesignWidth="800" Width="230" Height="38" ResizeMode="NoResize" WindowStyle="None" AllowsTransparency="True" ShowInTaskbar="False" Topmost="True" Closing="OnClosing" Background="{x:Null}" MouseEnter="OnMouseEnter" MouseDown="OnMouseDown" MouseWheel="OnMouseWheel" MouseLeave="OnMouseLeave">
-    <src:Widget.Resources>
-        <ResourceDictionary>
-            <ResourceDictionary.MergedDictionaries>
-                <ResourceDictionary Source="/Resources/Resources.xaml"/>
-            </ResourceDictionary.MergedDictionaries>
-        </ResourceDictionary>
-    </src:Widget.Resources>
     <Canvas x:Name="MantleContainer" Height="38">
         <Canvas Height="23" Width="204" Canvas.Top="8" Canvas.Left="16" ClipToBounds="True">
             <Rectangle Height="23" Width="196" Fill="#7F000000" Stroke="#7F000000" RenderTransformOrigin="0.5,0.5">
