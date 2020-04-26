@@ -415,6 +415,8 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Memory\Address.cs" />
+    <Compile Include="Memory\BufferPool.cs" />
+    <Compile Include="Memory\Buffers.cs" />
     <Compile Include="Memory\Scanner.cs" />
     <Compile Include="Properties\AssemblyInfo.cs">
       <SubType>Code</SubType>
