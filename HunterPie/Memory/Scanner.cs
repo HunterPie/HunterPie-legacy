@@ -210,7 +210,7 @@ namespace HunterPie.Memory
         /* Helpers */
         public static T Read<T>(long address) where T : struct
         {
-            T[] buffer = new T[Marshal.SizeOf<T>()];
+            T[] buffer = Buffers.Get<T>();
             ReadProcessMemory(ProcessHandle, (IntPtr)address, buffer, Marshal.SizeOf<T>(), out _);
             return buffer[0];
         }
@@ -228,7 +228,12 @@ namespace HunterPie.Memory
 
         public static string READ_STRING(long address, int size)
         {
-            byte[] buffer = new byte[size];
+            byte[] buffer = Buffers.Get<byte>();
+            if (buffer.Length < size)
+            {
+                buffer = new byte[size];
+            }
+
             ReadProcessMemory(ProcessHandle, (IntPtr)address, buffer, size, out _);
             string text = Encoding.UTF8.GetString(buffer, 0, size);
             int nullCharIndex = text.IndexOf('\x00');
