@@ -147,7 +147,7 @@ namespace HunterPie.GUI.Widgets.Monster_Widget.Parts {
             PartBrokenCounter.Text = $"{context.BrokenCounter}{suffix}";
         }
 
-        private void UpdateHealthSize(double newSize)
+        public void UpdateHealthSize(double newSize)
         {
             PartHealth.MaxSize = newSize - 37;
         }

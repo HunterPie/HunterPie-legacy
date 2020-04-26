@@ -71,12 +71,6 @@ namespace HunterPie.GUI {
             }
         }
 
-        private void CreateAbnormBarSettingsIfNeeded() {
-            if (UserSettings.PlayerConfig.Overlay.AbnormalitiesWidget.ActiveBars > UserSettings.PlayerConfig.Overlay.AbnormalitiesWidget.BarPresets.Length) {
-                UserSettings.AddNewAbnormalityBar(UserSettings.PlayerConfig.Overlay.AbnormalitiesWidget.ActiveBars - UserSettings.PlayerConfig.Overlay.AbnormalitiesWidget.BarPresets.Length);
-            }
-        }
-
         private void DestroyWidgets() {
             if (!Widgets.First().InDesignMode) UserSettings.SaveNewConfig();
             foreach (Widget widget in Widgets) {

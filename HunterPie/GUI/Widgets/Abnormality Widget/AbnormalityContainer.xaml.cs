@@ -132,12 +132,26 @@ namespace HunterPie.GUI.Widgets.Abnormality_Widget
 
         private void HookEvents()
         {
+            CompositionTarget.Rendering += OnAbnormalityTrayRender;
             Context.Abnormalities.OnNewAbnormality += OnPlayerNewAbnormality;
             Context.Abnormalities.OnAbnormalityRemove += OnPlayerAbnormalityEnd;
         }
 
+        int RenderCounter = 0;
+        private void OnAbnormalityTrayRender(object sender, EventArgs e)
+        {
+            RenderCounter++;
+            // Only redraws the component once every 60 render calls
+            if (RenderCounter >= 60) 
+            {
+                RedrawComponent();
+                RenderCounter = 0;
+            }
+        }
+
         private void UnhookEvents()
         {
+            CompositionTarget.Rendering -= OnAbnormalityTrayRender;
             Context.Abnormalities.OnNewAbnormality -= OnPlayerNewAbnormality;
             Context.Abnormalities.OnAbnormalityRemove -= OnPlayerAbnormalityEnd;
         }
@@ -145,7 +159,6 @@ namespace HunterPie.GUI.Widgets.Abnormality_Widget
         private void OnPlayerAbnormalityEnd(object source, AbnormalityEventArgs args) => Dispatcher.BeginInvoke(System.Windows.Threading.DispatcherPriority.Loaded, new Action(() =>
         {
             ActiveAbnormalities.Remove(args.Abnormality.InternalID);
-            RedrawComponent();
         }));
 
         private void OnPlayerNewAbnormality(object source, AbnormalityEventArgs args)
@@ -164,7 +177,6 @@ namespace HunterPie.GUI.Widgets.Abnormality_Widget
                 };
                 AbnormalityBox.Initialize(args.Abnormality);
                 ActiveAbnormalities.Add(args.Abnormality.InternalID, AbnormalityBox);
-                RedrawComponent();
             }));
         }
 
@@ -172,7 +184,7 @@ namespace HunterPie.GUI.Widgets.Abnormality_Widget
 
         #region Rendering
 
-        private void RedrawComponent() => Dispatcher.BeginInvoke(System.Windows.Threading.DispatcherPriority.Render, new Action(() =>
+        private void RedrawComponent()
         {
             BuffTray.Children.Clear();
             if (ActiveAbnormalities.Count == 0)
@@ -180,11 +192,11 @@ namespace HunterPie.GUI.Widgets.Abnormality_Widget
                 WidgetHasContent = false;
             }
             ChangeVisibility(false);
-            foreach (Parts.AbnormalityControl Abnorm in ActiveAbnormalities.Values.OrderByDescending(abnormality => abnormality.Context?.Duration))
+            foreach (Parts.AbnormalityControl Abnorm in ActiveAbnormalities.Values.OrderBy(abnormality => abnormality.Context?.Duration))
             {
                 BuffTray.Children.Add(Abnorm);
             }
-        }));
+        }
 
         public void ScaleWidget(double NewScaleX, double NewScaleY)
         {

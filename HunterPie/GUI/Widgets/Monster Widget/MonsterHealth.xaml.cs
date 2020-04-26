@@ -428,6 +428,7 @@ namespace HunterPie.GUI.Widgets
 
         private void UpdateContainerBarsSizeDynamically()
         {
+            
             UserSettings.Config.Monsterscomponent config = UserSettings.PlayerConfig.Overlay.MonstersComponent;
             int numberOfPartsDisplayed = MonsterPartsContainer.Children.Cast<Monster_Widget.Parts.MonsterPart>()
                 .Where(p => p.IsVisible)
@@ -442,12 +443,12 @@ namespace HunterPie.GUI.Widgets
 
             foreach (Monster_Widget.Parts.MonsterPart part in MonsterPartsContainer.Children)
             {
-                part.UpdateHealthBarSize(MonsterPartsContainer.ItemWidth);
+                part.UpdateHealthSize(MonsterPartsContainer.ItemWidth);
             }
 
             foreach (Monster_Widget.Parts.MonsterAilment ailment in MonsterAilmentsContainer.Children)
             {
-                ailment.UpdateBarSize(MonsterAilmentsContainer.ItemWidth);
+                ailment.UpdateSize(MonsterAilmentsContainer.ItemWidth);
             }
             
 

@@ -561,6 +561,7 @@ namespace HunterPie.Core
 
         private void GetParty()
         {
+            
             Int64 address = Address.BASE + Address.PARTY_OFFSET;
             Int64 PartyContainer = Scanner.READ_MULTILEVEL_PTR(address, Address.Offsets.PartyOffsets) - 0x22B7;
             if (InPeaceZone)
