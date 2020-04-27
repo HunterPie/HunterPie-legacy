@@ -704,6 +704,14 @@
                                     </LinearGradientBrush>
                                 </custom:MinimalButton.Color>
                             </custom:MinimalButton>
+                            <custom:MinimalButton MaxWidth="350" Icon="{StaticResource ICON_PATREON}" Text="Patreon" Link="https://www.patreon.com/HunterPie" Canvas.Left="44" Canvas.Top="28" Foreground="#FFE4E4E4" FontWeight="Bold" ToolTip="{Binding Mode=OneTime, XPath=/Strings/Client/Settings/String[@ID\=\'STATIC_HUNTERPIE_PAYPAL_DESC\']/@Name}" Margin="0,58,0,0" VerticalAlignment="Top">
+                                <custom:MinimalButton.Color>
+                                    <LinearGradientBrush EndPoint="1.5,-7" StartPoint="-0.1,-1">
+                                        <GradientStop Color="#FFF77125" Offset="0.008"/>
+                                        <GradientStop Color="#FFE65A16" Offset="1"/>
+                                    </LinearGradientBrush>
+                                </custom:MinimalButton.Color>
+                            </custom:MinimalButton>
                         </Grid>
                         <Grid Height="190" VerticalAlignment="Top" HorizontalAlignment="Left" Margin="5,0,0,0">
                             <StackPanel Orientation="Horizontal" Width="357">

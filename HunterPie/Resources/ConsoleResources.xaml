@@ -20,6 +20,16 @@
             </DrawingGroup>
         </DrawingImage.Drawing>
     </DrawingImage>
+    <DrawingImage x:Key="ICON_PATREON">
+        <DrawingImage.Drawing>
+            <DrawingGroup ClipGeometry="M0,0 V96 H100 V0 H0 Z">
+                <DrawingGroup Opacity="1">
+                    <GeometryDrawing Brush="WhiteSmoke" Geometry="F0 M100,96z M0,0z M64.1102,0.1004C44.259,0.1004 28.1086,16.2486 28.1086,36.0986 28.1086,55.8884 44.259,71.989 64.1102,71.989 83.9,71.989 100,55.8884 100,36.0986 100,16.2486 83.9,0.1004 64.1102,0.1004" />
+                    <GeometryDrawing Brush="WhiteSmoke" Geometry="F0 M100,96z M0,0z M0.012,95.988L0.012,95.988 17.59,95.988 17.59,0.1 0.012,0.1z" />
+                </DrawingGroup>
+            </DrawingGroup>
+        </DrawingImage.Drawing>
+    </DrawingImage>
     <DrawingImage x:Key="ICON_CONSOLE">
         <DrawingImage.Drawing>
             <DrawingGroup>

@@ -20,8 +20,6 @@ namespace HunterPie {
     /// HunterPie main window logic;
     /// </summary>
     public partial class Hunterpie : Window {
-        // TODO: Organize code
-
         // Classes
         TrayIcon TrayIcon;
         Game MonsterHunter = new Game();

@@ -150,6 +150,8 @@ namespace HunterPie.GUI.Widgets.Monster_Widget.Parts {
         public void UpdateHealthSize(double newSize)
         {
             PartHealth.MaxSize = newSize - 37;
+            PartHealth.MaxHealth = context.TotalHealth;
+            PartHealth.Health = context.Health;
         }
 
         private void UpdateHealthText()
