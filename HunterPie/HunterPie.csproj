@@ -425,6 +425,7 @@
     <Compile Include="Memory\BufferPool.cs" />
     <Compile Include="Memory\Buffers.cs" />
     <Compile Include="Memory\Scanner.cs" />
+    <Compile Include="Memory\WindowsHelper.cs" />
     <Compile Include="Properties\AssemblyInfo.cs">
       <SubType>Code</SubType>
     </Compile>

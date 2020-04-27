@@ -39,13 +39,18 @@ namespace HunterPie.GUI.Widgets.DPSMeter.Parts {
         }
 
         private void OnPlayerSpawn(object source, PartyMemberEventArgs args) {
+            float TimeElapsed = (float)PartyContext.Epoch.TotalSeconds;
             Dispatch(() => {
                 PlayerName.Text = args.Name;
                 MasterRank.Text = Context.MR.ToString();
                 HighRank.Text = Context.HR.ToString();
                 if (Context.IsPartyLeader) this.PartyLeader.Visibility = Visibility.Visible;
                 PlayerClassIcon.Source = args.Weapon == null ? null : (ImageSource)TryFindResource(args.Weapon);
-                this.Visibility = args.IsInParty ? Visibility.Visible : Visibility.Collapsed;
+                Visibility = args.IsInParty ? Visibility.Visible : Visibility.Collapsed;
+                DamagePerSecond.Text = $"{Context.Damage / TimeElapsed:0.00}/s";
+                TotalDamage.Text = Context.Damage.ToString();
+                Percentage.Text = $"{Context.DamagePercentage * 100:0.0}%";
+                PlayerDPSBar.Width = Context.DamagePercentage * PlayerDPSBar.MaxWidth;
             });
         }
 
@@ -146,9 +151,9 @@ namespace HunterPie.GUI.Widgets.DPSMeter.Parts {
                 this.TotalDamage.Visibility = Visibility.Collapsed;
             }
             if (!DPSEnabled && !TotalEnabled) {
-                this.Percentage.Width = 137;
+                this.Percentage.Width = 132;
             } else {
-                this.Percentage.Width = 47;
+                this.Percentage.Width = 54;
             }
         }
     }

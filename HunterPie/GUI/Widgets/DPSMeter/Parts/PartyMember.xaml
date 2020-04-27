@@ -8,6 +8,15 @@
              mc:Ignorable="d" 
              x:Name="PlayerContainer" Height="46" Foreground="{x:Null}">
     <Canvas ClipToBounds="True" Width="320" Height="46">
+        <Rectangle x:Name="PlayerDPSBar" ClipToBounds="True" Opacity="0.8" Height="46" MaxWidth="322" HorizontalAlignment="Left">
+            <Rectangle.Fill>
+                <LinearGradientBrush EndPoint="1,0" StartPoint="1,1">
+                    <GradientStop Color="#FF00CB8A" Offset="0.055"/>
+                    <GradientStop Color="#00000000" Offset="1"/>
+                    <GradientStop Color="#5500BF82" Offset="0.064"/>
+                </LinearGradientBrush>
+            </Rectangle.Fill>
+        </Rectangle>
         <StackPanel Height="46" Orientation="Horizontal">
             <Canvas Width="38" >
                 <Image x:Name="PlayerClassIcon" Width="22" HorizontalAlignment="Left" Height="23" Canvas.Top="11" Canvas.Left="1" />
@@ -26,7 +35,7 @@
             </Canvas>
             <TextBlock x:Name="PlayerName" Foreground="WhiteSmoke" Text="Player" MaxWidth="200" Width="146" DockPanel.Dock="Left" FontSize="20" FontWeight="Medium" TextTrimming="CharacterEllipsis" TextOptions.TextHintingMode="Fixed" Padding="2,7,0,0"/>
             <WrapPanel Orientation="Vertical" Width="136" VerticalAlignment="Center">
-                <TextBlock x:Name="TotalDamage" Text="6000" Foreground="WhiteSmoke" Width="89" MaxWidth="90" FontSize="16" FontWeight="Medium" Height="23">
+                <TextBlock x:Name="TotalDamage" Text="6000" Foreground="WhiteSmoke" Width="79" MaxWidth="90" FontSize="16" FontWeight="Medium" Height="23">
                     <TextBlock.Style>
                         <Style TargetType="TextBlock">
                             <Style.Triggers>
@@ -52,7 +61,7 @@
                         </Style>
                     </TextBlock.Style>
                 </TextBlock>
-                <TextBlock x:Name="DamagePerSecond" Text="100/s" Foreground="WhiteSmoke" Width="89" MaxWidth="90" FontSize="14" FontWeight="Normal" Height="23">
+                <TextBlock x:Name="DamagePerSecond" Text="100/s" Foreground="WhiteSmoke" Width="79" MaxWidth="90" FontSize="14" FontWeight="Normal" Height="23">
                     <TextBlock.Style>
                         <Style TargetType="TextBlock">
                             <Style.Triggers>
@@ -78,17 +87,9 @@
                         </Style>
                     </TextBlock.Style>
                 </TextBlock>
-                <TextBlock x:Name="Percentage" Text="100,0%" Height="46" Foreground="WhiteSmoke" TextAlignment="Right" Padding="0,11,0,0" FontSize="15" HorizontalAlignment="Right" TextOptions.TextHintingMode="Fixed" FontWeight="Medium"/>
+                <TextBlock x:Name="Percentage" Text="100,0%" Height="46" Foreground="WhiteSmoke" TextAlignment="Right" Padding="0,11,0,0" FontSize="15" HorizontalAlignment="Right" TextOptions.TextHintingMode="Fixed" FontWeight="Medium" Width="54"/>
             </WrapPanel>
         </StackPanel>
-        <Rectangle x:Name="PlayerDPSBar" ClipToBounds="True" Opacity="0.8" Height="46" MaxWidth="322" HorizontalAlignment="Left">
-            <Rectangle.Fill>
-                <LinearGradientBrush EndPoint="1,0" StartPoint="1,1">
-                    <GradientStop Color="#FF00CB8A" Offset="0.055"/>
-                    <GradientStop Color="#00000000" Offset="1"/>
-                    <GradientStop Color="#5500BF82" Offset="0.064"/>
-                </LinearGradientBrush>
-            </Rectangle.Fill>
-        </Rectangle>
+        
     </Canvas>
 </UserControl>

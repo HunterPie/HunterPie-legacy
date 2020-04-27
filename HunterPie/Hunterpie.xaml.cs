@@ -102,12 +102,12 @@ namespace HunterPie {
         private void SetDPIAwareness() {
             if (Environment.OSVersion.Version >= new Version(6, 3, 0)) {
                 if (Environment.OSVersion.Version >= new Version(10, 0, 15063)) {
-                    Scanner.SetProcessDpiAwarenessContext((int)Scanner.DPI_AWARENESS_CONTEXT.DPI_AWARENESS_CONTEXT_PER_MONITOR_AWARE_V2);
+                    WindowsHelper.SetProcessDpiAwarenessContext((int)WindowsHelper.DPI_AWARENESS_CONTEXT.DPI_AWARENESS_CONTEXT_PER_MONITOR_AWARE_V2);
                 } else {
-                    Scanner.SetProcessDpiAwareness(Scanner.PROCESS_DPI_AWARENESS.PROCESS_PER_MONITOR_DPI_AWARE);
+                    WindowsHelper.SetProcessDpiAwareness(WindowsHelper.PROCESS_DPI_AWARENESS.PROCESS_PER_MONITOR_DPI_AWARE);
                 }
             } else {
-                Scanner.SetProcessDPIAware();
+                WindowsHelper.SetProcessDPIAware();
             }
         }
 

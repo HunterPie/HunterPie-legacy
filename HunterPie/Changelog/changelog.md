@@ -1,17 +1,21 @@
-﻿**UPDATE 1.0.3.89**
-
-**Monster Hunter World v13.50.00**
-
-- Added support to the latest version of Monster Hunter: World
+﻿**UPDATE 1.0.3.90**
 
 **Core**
 
-- Changed core code when loading and requesting monster and abnormalities data. HunterPie will no longer make XML queries every scan, that will stress the CPU way less and use less RAM.
+- Changed how HunterPie detects the game and when it's no longer running.
+- A bunch of optimizations.
+- Overlay now forces itself on top of the game every few seconds.
 
-**Console**
+**Monster Widget**
 
-- HunterPie console can now be resized
+- Parts and ailments only create a new column when it's actually needed.
+- Monster widget now shows the part break threshold.
+- Monster ailment tracker no longer tracks traps for elder dragons.
 
-**Build Uploader**
+**Abnormalities Widget**
 
-The build uploader no longer creates a popup, it is now a notification like the "Settings Loaded" notification, a lot more clean and simple to upload builds!
+- Abnormalities are now sorted in real time, instead of only when a new abnormality is added to the tray.
+
+**Bug Fixes**
+
+- Fixed blastscourge appearing with 1 second left.

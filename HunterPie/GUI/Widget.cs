@@ -5,9 +5,11 @@ using System.Windows.Interop;
 using System.Windows.Media;
 using HunterPie.Memory;
 
-namespace HunterPie.GUI {
+namespace HunterPie.GUI
+{
 
-    public partial class Widget : Window {
+    public partial class Widget : Window
+    {
 
         public byte WidgetType = 0;
         public bool IsClosed = false;
@@ -20,9 +22,11 @@ namespace HunterPie.GUI {
         public bool OverlayIsFocused { get; set; }
         public bool WidgetActive { get; set; }
         public bool WidgetHasContent { get; set; }
-        public bool InDesignMode {
-            get { return _InDesignMode; }
-            set {
+        public bool InDesignMode
+        {
+            get => _InDesignMode;
+            set
+            {
                 _InDesignMode = value;
                 if (_InDesignMode) { EnterWidgetDesignMode(); }
                 else { LeaveWidgetDesignMode(); }
@@ -32,125 +36,144 @@ namespace HunterPie.GUI {
         public double BaseWidth { get; set; }
         public double BaseHeight { get; set; }
 
-        public Widget() { }
+        public Widget() => CompositionTarget.Rendering += OnWidgetRender;
+
+        private int renderCounter = 0;
+        private void OnWidgetRender(object sender, EventArgs e)
+        {
+            renderCounter++;
+            if (renderCounter >= 120)
+            {
+                ForceAlwaysOnTop();
+                renderCounter = 0;
+            }
+        }
 
         double OldOpacity;
-        public virtual void EnterWidgetDesignMode() {
+        public virtual void EnterWidgetDesignMode()
+        {
             ChangeVisibility();
             SolidColorBrush BorderColorBrush = new SolidColorBrush((Color)ColorConverter.ConvertFromString("#ededed"));
             SolidColorBrush BackgroundBrush = new SolidColorBrush((Color)ColorConverter.ConvertFromString("#80e6e6e6"));
             BorderColorBrush.Freeze();
             BackgroundBrush.Freeze();
-            this.Cursor = Cursors.SizeAll;
-            this.BorderBrush = BorderColorBrush;
-            this.BorderThickness = new Thickness(1, 1, 1, 1);
-            this.Background = BackgroundBrush;
+            Cursor = Cursors.SizeAll;
+            BorderBrush = BorderColorBrush;
+            BorderThickness = new Thickness(1, 1, 1, 1);
+            Background = BackgroundBrush;
             OldOpacity = Opacity;
-            this.Opacity = 1;
-            this.ToolTip = $"{Left}x{Top} ({this.DefaultScaleX * 100:0.0}%)";
+            Opacity = 1;
+            ToolTip = $"{Left}x{Top} ({DefaultScaleX * 100:0.0}%)";
         }
 
-        public virtual void LeaveWidgetDesignMode() {
+        public virtual void LeaveWidgetDesignMode()
+        {
             ChangeVisibility();
-            this.BorderBrush = null;
-            this.BorderThickness = new Thickness(0, 0, 0, 0);
-            this.Background = Brushes.Transparent;
-            this.Opacity = OldOpacity;
+            BorderBrush = null;
+            BorderThickness = new Thickness(0, 0, 0, 0);
+            Background = Brushes.Transparent;
+            Opacity = OldOpacity;
         }
 
-        public void SetWidgetBaseSize(double Width, double Height) {
-            this.BaseWidth = Width;
-            this.BaseHeight = Height;
+        public void SetWidgetBaseSize(double Width, double Height)
+        {
+            BaseWidth = Width;
+            BaseHeight = Height;
         }
 
-        public void RemoveWindowTransparencyFlag() {
-            if (this.IsClosed || this == null) return;
-            int WS_EX_TRANSPARENT = 0x20;
+        public void RemoveWindowTransparencyFlag()
+        {
+            if (IsClosed || this == null) return;
+
+            IntPtr hwnd = new WindowInteropHelper(this).EnsureHandle();
+            // Get overlay flags
+            int Styles = (int)WindowsHelper.GetWindowLong(hwnd, WindowsHelper.GWL_EXSTYLE);
+            Styles &= ~(int)WindowsHelper.EX_WINDOW_STYLES.WS_EX_TRANSPARENT;
+            // Apply new flags
+            WindowsHelper.SetWindowLong(hwnd, WindowsHelper.GWL_EXSTYLE, Styles);
+        }
+
+        public void ApplyWindowTransparencyFlag()
+        {
+            if (IsClosed || this == null) return;
+
+            IntPtr hwnd = new WindowInteropHelper(this).EnsureHandle();
+            // Get overlay flags
+            int Styles = WindowsHelper.GetWindowLong(hwnd, WindowsHelper.GWL_EXSTYLE);
+            // Apply new flags
+            WindowsHelper.SetWindowLong(hwnd, WindowsHelper.GWL_EXSTYLE, Styles | (int)WindowsHelper.EX_WINDOW_STYLES.WS_EX_TRANSPARENT);
+        }
+
+        public void SetWindowFlags()
+        {
+            SetWidgetBaseSize(Width, Height);
+
             int GWL_EXSTYLE = (-20);
 
             IntPtr hwnd = new WindowInteropHelper(this).EnsureHandle();
             // Get overlay flags
-            int Styles = Scanner.GetWindowLong(hwnd, GWL_EXSTYLE);
-            Styles &= ~WS_EX_TRANSPARENT;
+            int Styles = WindowsHelper.GetWindowLong(hwnd, GWL_EXSTYLE);
+            int flags = (int)(WindowsHelper.EX_WINDOW_STYLES.WS_EX_TOOLWINDOW |
+                WindowsHelper.EX_WINDOW_STYLES.WS_EX_TRANSPARENT |
+                WindowsHelper.EX_WINDOW_STYLES.WS_EX_TOPMOST |
+                WindowsHelper.EX_WINDOW_STYLES.WS_EX_NOACTIVATE);
             // Apply new flags
-            Scanner.SetWindowLong(hwnd, GWL_EXSTYLE, Styles);
+            WindowsHelper.SetWindowLong(hwnd, GWL_EXSTYLE, Styles | flags);
         }
 
-        public void ApplyWindowTransparencyFlag() {
-            if (this.IsClosed || this == null) return;
-            // flags to make overlay click-through
-            int WS_EX_TRANSPARENT = 0x20;
-            int GWL_EXSTYLE = (-20);
-
+        public void ForceAlwaysOnTop()
+        {
+            if (this == null || IsClosed) return;
+            uint Flags = (uint)(WindowsHelper.SWP_WINDOWN_FLAGS.SWP_SHOWWINDOW |
+                WindowsHelper.SWP_WINDOWN_FLAGS.SWP_NOSIZE |
+                WindowsHelper.SWP_WINDOWN_FLAGS.SWP_NOMOVE |
+                WindowsHelper.SWP_WINDOWN_FLAGS.SWP_NOACTIVATE);
             IntPtr hwnd = new WindowInteropHelper(this).EnsureHandle();
-            // Get overlay flags
-            int Styles = Scanner.GetWindowLong(hwnd, GWL_EXSTYLE);
-            // Apply new flags
-            Scanner.SetWindowLong(hwnd, GWL_EXSTYLE, Styles | WS_EX_TRANSPARENT);
+            WindowsHelper.SetWindowPos(hwnd, -1, 0, 0, 0, 0, Flags);
         }
 
-        public void SetWindowFlags() {
-            SetWidgetBaseSize(this.Width, this.Height);
-            
-            // flags to make overlay click-through
-            int WS_EX_TRANSPARENT = 0x20;
-            int WS_EX_TOPMOST = 0x8;
-            int WS_EX_TOOLWINDOW = 0x80; // Flag to hide overlay from ALT+TAB
-            int WS_EX_NOACTIVATE = 0x08000000;
-            int GWL_EXSTYLE = (-20);
+        public virtual void ApplySettings(bool FocusTrigger = false) => ChangeVisibility();
 
-            IntPtr hwnd = new WindowInteropHelper(this).EnsureHandle();
-            // Get overlay flags
-            int Styles = Scanner.GetWindowLong(hwnd, GWL_EXSTYLE);
-            // Apply new flags
-            Scanner.SetWindowLong(hwnd, GWL_EXSTYLE, Styles | WS_EX_TOOLWINDOW | WS_EX_TRANSPARENT | WS_EX_TOPMOST | WS_EX_NOACTIVATE);
+        public virtual void MoveWidget()
+        {
+            DragMove();
+
+            ToolTip = $"{Left}x{Top} ({DefaultScaleX * 100:0.0}%)";
         }
 
-        public void ForceAlwaysOnTop() {
-            if (this == null || this.IsClosed) return;
-            uint SWP_SHOWWINDOW = 0x0040;
-            uint SWP_NOMOVE = 0x0002;
-            uint SWP_NOSIZE = 0x0001;
-            uint SWP_NOACTIVATE = 0x0010;
-            uint Flags = SWP_SHOWWINDOW | SWP_NOSIZE | SWP_NOMOVE | SWP_NOACTIVATE;
-            IntPtr hwnd = new WindowInteropHelper(this).EnsureHandle();
-            Scanner.SetWindowPos(hwnd, -1, 0, 0, 0, 0, Flags);
-        }
+        public new void Show() => Dispatcher.BeginInvoke(System.Windows.Threading.DispatcherPriority.Render, new Action(() =>
+        {
+            // Try/Catch to avoid crashes after widget is closed
+            if (!IsClosed) base.Show();
+        }));
 
-        public virtual void ApplySettings(bool FocusTrigger = false) {
-            ChangeVisibility();
-        } 
+        public new void Hide() => Dispatcher.BeginInvoke(System.Windows.Threading.DispatcherPriority.Render, new Action(() =>
+        {
+            try
+            {
+                base.Hide();
+            }
+            catch { }
+        }));
 
-        public virtual void MoveWidget() {
-            this.DragMove();
-
-            this.ToolTip = $"{Left}x{Top} ({this.DefaultScaleX * 100:0.0}%)";
-        }
-
-        public new void Show() {
-            Dispatcher.BeginInvoke(System.Windows.Threading.DispatcherPriority.Render, new Action(() => {
-                // Try/Catch to avoid crashes after widget is closed
-                if (!this.IsClosed) base.Show();
-            }));
-        }
-
-        public new void Hide() {
-            Dispatcher.BeginInvoke(System.Windows.Threading.DispatcherPriority.Render, new Action(() => {
-                try {
-                    base.Hide();
-                } catch {}
-            }));
-        }
-
-        public virtual void ChangeVisibility(bool forceOnTop = true) {
-            if (InDesignMode || (WidgetHasContent && OverlayActive && WidgetActive && ((!OverlayFocusActive) || (OverlayFocusActive && OverlayIsFocused)))) {
-                if (forceOnTop) this.ForceAlwaysOnTop();
-                this.Show();
-            } else {
-                this.Hide();
+        public virtual void ChangeVisibility(bool forceOnTop = true)
+        {
+            if (InDesignMode || (WidgetHasContent && OverlayActive && WidgetActive && ((!OverlayFocusActive) || (OverlayFocusActive && OverlayIsFocused))))
+            {
+                Show();
+            }
+            else
+            {
+                Hide();
             }
             //Logger.Debugger.Log($"OverlayActive: {OverlayActive} | OverlayFocusActive: {OverlayFocusActive} | OverlayIsFocused: {OverlayIsFocused} | WidgetActive: {WidgetActive} | WidgetHasContent: {WidgetHasContent}");
 
+        }
+
+        public new void Close()
+        {
+            CompositionTarget.Rendering -= OnWidgetRender;
+            base.Close();
         }
 
     }
