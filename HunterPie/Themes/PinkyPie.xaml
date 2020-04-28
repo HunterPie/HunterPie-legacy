@@ -72,7 +72,7 @@
         <Setter Property="FontSize" Value="12"/>
     </Style>
 
-    <Style x:Key="OVERLAY_MONSTER_PART_COUNTER_BACKGROUND_STYLE" TargetType="{x:Type Polygon}">
+    <Style x:Key="OVERLAY_MONSTER_PART_COUNTER_BACKGROUND_STYLE" TargetType="{x:Type Polyline}">
         <Setter Property="Fill" Value="#FFFF65C0"/>
         <Setter Property="Stroke" Value="#CC0E0E0E"/>
         <Setter Property="StrokeThickness" Value="0"/>

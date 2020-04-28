@@ -18,7 +18,7 @@
         <Setter Property="FontFamily" Value="Roboto"/>
         <Setter Property="FontSize" Value="12"/>
         <Setter Property="FontWeight" Value="Light"/>
-        <Setter Property="Margin" Value="45,18,38,30"/>
+        <Setter Property="Margin" Value="45,16,38,30"/>
         <Setter Property="Padding" Value="0,2,0,0"/>
     </Style>
 
@@ -73,7 +73,7 @@
         <Setter Property="FontSize" Value="12"/>
     </Style>
 
-    <Style x:Key="OVERLAY_MONSTER_PART_COUNTER_BACKGROUND_STYLE" TargetType="{x:Type Polygon}">
+    <Style x:Key="OVERLAY_MONSTER_PART_COUNTER_BACKGROUND_STYLE" TargetType="{x:Type Polyline}">
         <Setter Property="Fill" Value="#8146f9"/>
         <Setter Property="Stroke" Value="#CC0E0E0E"/>
         <Setter Property="StrokeThickness" Value="0"/>

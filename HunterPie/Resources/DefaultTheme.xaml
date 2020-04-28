@@ -35,6 +35,7 @@
         <Setter Property="Foreground" Value="Gray"/>
         <Setter Property="FontSize" Value="12"/>
         <Setter Property="FontWeight" Value="Bold"/>
+        <Setter Property="Margin" Value="47,16,22,0"/>
         <Setter Property="Padding" Value="0,0,0,0"/>
         <Setter Property="HorizontalAlignment" Value="Left"/>
         <Setter Property="Width" Value="232"/>
@@ -110,7 +111,7 @@
         <Setter Property="FontSize" Value="12"/>
     </Style>
 
-    <Style x:Key="OVERLAY_MONSTER_PART_COUNTER_BACKGROUND_STYLE" TargetType="{x:Type Polygon}">
+    <Style x:Key="OVERLAY_MONSTER_PART_COUNTER_BACKGROUND_STYLE" TargetType="{x:Type Polyline}">
         <Setter Property="Fill" Value="#FFB9B9B9"/>
         <Setter Property="Stroke" Value="#CC0E0E0E"/>
         <Setter Property="StrokeThickness" Value="0.5"/>
