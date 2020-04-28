@@ -353,102 +353,102 @@
                         </custom:Switcher>
                         <ScrollViewer MaxHeight="200" HorizontalAlignment="Center">
                             <StackPanel x:Name="PartsCustomizer" Height="0" IsEnabled="False">
-                                <custom:Switcher x:Name="EnablePartHead">
+                                <custom:Switcher x:Name="EnablePartHead" RestartVisibility="Collapsed">
                                     <custom:Switcher.Text>
                                         <Binding Mode="OneTime" XPath="Settings/String[@ID='ENABLE_MONSTER_PART_HEAD']/@Name"/>
                                     </custom:Switcher.Text>
                                 </custom:Switcher>
-                                <custom:Switcher x:Name="EnablePartBody">
+                                <custom:Switcher x:Name="EnablePartBody" RestartVisibility="Collapsed">
                                     <custom:Switcher.Text>
                                         <Binding Mode="OneTime" XPath="Settings/String[@ID='ENABLE_MONSTER_PART_BODY']/@Name"/>
                                     </custom:Switcher.Text>
                                 </custom:Switcher>
-                                <custom:Switcher x:Name="EnablePartArm">
+                                <custom:Switcher x:Name="EnablePartArm" RestartVisibility="Collapsed">
                                     <custom:Switcher.Text>
                                         <Binding Mode="OneTime" XPath="Settings/String[@ID='ENABLE_MONSTER_PART_ARM']/@Name"/>
                                     </custom:Switcher.Text>
                                 </custom:Switcher>
-                                <custom:Switcher x:Name="EnablePartWing">
+                                <custom:Switcher x:Name="EnablePartWing" RestartVisibility="Collapsed">
                                     <custom:Switcher.Text>
                                         <Binding Mode="OneTime" XPath="Settings/String[@ID='ENABLE_MONSTER_PART_WING']/@Name"/>
                                     </custom:Switcher.Text>
                                 </custom:Switcher>
-                                <custom:Switcher x:Name="EnablePartLeg">
+                                <custom:Switcher x:Name="EnablePartLeg" RestartVisibility="Collapsed">
                                     <custom:Switcher.Text>
                                         <Binding Mode="OneTime" XPath="Settings/String[@ID='ENABLE_MONSTER_PART_LEG']/@Name"/>
                                     </custom:Switcher.Text>
                                 </custom:Switcher>
-                                <custom:Switcher x:Name="EnablePartTail">
+                                <custom:Switcher x:Name="EnablePartTail" RestartVisibility="Collapsed">
                                     <custom:Switcher.Text>
                                         <Binding Mode="OneTime" XPath="Settings/String[@ID='ENABLE_MONSTER_PART_TAIL']/@Name"/>
                                     </custom:Switcher.Text>
                                 </custom:Switcher>
-                                <custom:Switcher x:Name="EnablePartLimb">
+                                <custom:Switcher x:Name="EnablePartLimb" RestartVisibility="Collapsed">
                                     <custom:Switcher.Text>
                                         <Binding Mode="OneTime" XPath="Settings/String[@ID='ENABLE_MONSTER_PART_LIMB']/@Name"/>
                                     </custom:Switcher.Text>
                                 </custom:Switcher>
-                                <custom:Switcher x:Name="EnablePartAbdomen">
+                                <custom:Switcher x:Name="EnablePartAbdomen" RestartVisibility="Collapsed">
                                     <custom:Switcher.Text>
                                         <Binding Mode="OneTime" XPath="Settings/String[@ID='ENABLE_MONSTER_PART_ABDOMEN']/@Name"/>
                                     </custom:Switcher.Text>
                                 </custom:Switcher>
-                                <custom:Switcher x:Name="EnablePartChest">
+                                <custom:Switcher x:Name="EnablePartChest" RestartVisibility="Collapsed">
                                     <custom:Switcher.Text>
                                         <Binding Mode="OneTime" XPath="Settings/String[@ID='ENABLE_MONSTER_PART_CHEST']/@Name"/>
                                     </custom:Switcher.Text>
                                 </custom:Switcher>
-                                <custom:Switcher x:Name="EnablePartRear">
+                                <custom:Switcher x:Name="EnablePartRear" RestartVisibility="Collapsed">
                                     <custom:Switcher.Text>
                                         <Binding Mode="OneTime" XPath="Settings/String[@ID='ENABLE_MONSTER_PART_REAR']/@Name"/>
                                     </custom:Switcher.Text>
                                 </custom:Switcher>
-                                <custom:Switcher x:Name="EnablePartJaw">
+                                <custom:Switcher x:Name="EnablePartJaw" RestartVisibility="Collapsed">
                                     <custom:Switcher.Text>
                                         <Binding Mode="OneTime" XPath="Settings/String[@ID='ENABLE_MONSTER_PART_JAW']/@Name"/>
                                     </custom:Switcher.Text>
                                 </custom:Switcher>
-                                <custom:Switcher x:Name="EnablePartBack">
+                                <custom:Switcher x:Name="EnablePartBack" RestartVisibility="Collapsed">
                                     <custom:Switcher.Text>
                                         <Binding Mode="OneTime" XPath="Settings/String[@ID='ENABLE_MONSTER_PART_BACK']/@Name"/>
                                     </custom:Switcher.Text>
                                 </custom:Switcher>
-                                <custom:Switcher x:Name="EnablePartFin">
+                                <custom:Switcher x:Name="EnablePartFin" RestartVisibility="Collapsed">
                                     <custom:Switcher.Text>
                                         <Binding Mode="OneTime" XPath="Settings/String[@ID='ENABLE_MONSTER_PART_FIN']/@Name"/>
                                     </custom:Switcher.Text>
                                 </custom:Switcher>
-                                <custom:Switcher x:Name="EnablePartHorn">
+                                <custom:Switcher x:Name="EnablePartHorn" RestartVisibility="Collapsed">
                                     <custom:Switcher.Text>
                                         <Binding Mode="OneTime" XPath="Settings/String[@ID='ENABLE_MONSTER_PART_HORN']/@Name"/>
                                     </custom:Switcher.Text>
                                 </custom:Switcher>
-                                <custom:Switcher x:Name="EnablePartNeck">
+                                <custom:Switcher x:Name="EnablePartNeck" RestartVisibility="Collapsed">
                                     <custom:Switcher.Text>
                                         <Binding Mode="OneTime" XPath="Settings/String[@ID='ENABLE_MONSTER_PART_NECK']/@Name"/>
                                     </custom:Switcher.Text>
                                 </custom:Switcher>
-                                <custom:Switcher x:Name="EnablePartShell">
+                                <custom:Switcher x:Name="EnablePartShell" RestartVisibility="Collapsed">
                                     <custom:Switcher.Text>
                                         <Binding Mode="OneTime" XPath="Settings/String[@ID='ENABLE_MONSTER_PART_SHELL']/@Name"/>
                                     </custom:Switcher.Text>
                                 </custom:Switcher>
-                                <custom:Switcher x:Name="EnablePartOrgan">
+                                <custom:Switcher x:Name="EnablePartOrgan" RestartVisibility="Collapsed">
                                     <custom:Switcher.Text>
                                         <Binding Mode="OneTime" XPath="Settings/String[@ID='ENABLE_MONSTER_PART_ORGAN']/@Name"/>
                                     </custom:Switcher.Text>
                                 </custom:Switcher>
-                                <custom:Switcher x:Name="EnablePartMane">
+                                <custom:Switcher x:Name="EnablePartMane" RestartVisibility="Collapsed">
                                     <custom:Switcher.Text>
                                         <Binding Mode="OneTime" XPath="Settings/String[@ID='ENABLE_MONSTER_PART_MANE']/@Name"/>
                                     </custom:Switcher.Text>
                                 </custom:Switcher>
-                                <custom:Switcher x:Name="EnablePartBone">
+                                <custom:Switcher x:Name="EnablePartBone" RestartVisibility="Collapsed">
                                     <custom:Switcher.Text>
                                         <Binding Mode="OneTime" XPath="Settings/String[@ID='ENABLE_MONSTER_PART_BONE']/@Name"/>
                                     </custom:Switcher.Text>
                                 </custom:Switcher>
-                                <custom:Switcher x:Name="EnablePartMisc">
+                                <custom:Switcher x:Name="EnablePartMisc" RestartVisibility="Collapsed">
                                     <custom:Switcher.Text>
                                         <Binding Mode="OneTime" XPath="Settings/String[@ID='ENABLE_MONSTER_PART_MISC']/@Name"/>
                                     </custom:Switcher.Text>

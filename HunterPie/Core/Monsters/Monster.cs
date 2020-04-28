@@ -38,7 +38,14 @@ namespace HunterPie.Core {
                         CreateMonsterParts(MonsterInfo.MaxParts);
                         GetMonsterParts();
                         Ailments.Clear();
-                        GetMonsterAilments();
+                        // For whatever reason, in Guiding Lands some monsters
+                        // take some time to load their ailments in memory
+                        while (Ailments.Count == 0)
+                        {
+                            GetMonsterAilments();
+                            Thread.Sleep(500);
+                        }
+                            
                         GetMonsterSizeModifier();
                         CaptureThreshold = MonsterInfo.Capture;
                         // Only call this if monster is actually alive

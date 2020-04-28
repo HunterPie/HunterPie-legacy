@@ -788,8 +788,10 @@ namespace HunterPie.Core
             }
             else
             {
+                Debugger.Debug(info.InternalId);
                 // Work around for blastscourge weird behavior
-                if (info.InternalId == "DE_020_00" && duration < 2) return;
+                if (info.InternalId == "DE_20" && duration < 2) return;
+
                 var a = new Abnormality(info);
                 a.UpdateAbnormalityInfo(duration, stack);
                 Abnormalities.Add(info.InternalId, a);
