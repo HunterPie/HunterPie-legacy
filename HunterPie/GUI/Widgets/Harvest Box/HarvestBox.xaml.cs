@@ -186,10 +186,6 @@ namespace HunterPie.GUI.Widgets {
             this.IsClosed = true;
         }
 
-        private void OnMouseEnter(object sender, System.Windows.Input.MouseEventArgs e) {
-            this.MouseOver = true;
-        }
-
         private void OnMouseDown(object sender, System.Windows.Input.MouseButtonEventArgs e) {
             if (e.LeftButton == System.Windows.Input.MouseButtonState.Pressed) {
                 this.MoveWidget();
@@ -205,10 +201,6 @@ namespace HunterPie.GUI.Widgets {
                     ScaleWidget(DefaultScaleX - 0.05, DefaultScaleY - 0.05);
                 }
             }
-        }
-
-        private void OnMouseLeave(object sender, System.Windows.Input.MouseEventArgs e) {
-            this.MouseOver = false;
         }
 
         // Helper

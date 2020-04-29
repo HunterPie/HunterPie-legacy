@@ -198,9 +198,6 @@ namespace HunterPie.GUI.Widgets.DPSMeter {
             this.DefaultScaleY = NewScaleY;
         }
 
-        private void OnMouseEnter(object sender, System.Windows.Input.MouseEventArgs e) {
-            this.MouseOver = true;
-        }
 
         private void OnMouseDown(object sender, System.Windows.Input.MouseButtonEventArgs e) {
             if (e.LeftButton == System.Windows.Input.MouseButtonState.Pressed) {
@@ -210,17 +207,11 @@ namespace HunterPie.GUI.Widgets.DPSMeter {
         }
 
         private void OnMouseWheel(object sender, System.Windows.Input.MouseWheelEventArgs e) {
-            if (this.MouseOver) {
-                if (e.Delta > 0) {
-                    ScaleWidget(DefaultScaleX + 0.05, DefaultScaleY + 0.05);
-                } else {
-                    ScaleWidget(DefaultScaleX - 0.05, DefaultScaleY - 0.05);
-                }
+            if (e.Delta > 0) {
+                ScaleWidget(DefaultScaleX + 0.05, DefaultScaleY + 0.05);
+            } else {
+                ScaleWidget(DefaultScaleX - 0.05, DefaultScaleY - 0.05);
             }
-        }
-
-        private void OnMouseLeave(object sender, System.Windows.Input.MouseEventArgs e) {
-            this.MouseOver = false;
         }
     }
 }

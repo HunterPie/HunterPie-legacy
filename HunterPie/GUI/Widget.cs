@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Windows;
+using System.Windows.Controls;
 using System.Windows.Input;
 using System.Windows.Interop;
 using System.Windows.Media;
@@ -37,6 +38,7 @@ namespace HunterPie.GUI
         public double BaseHeight { get; set; }
 
         public Widget() => CompositionTarget.Rendering += OnWidgetRender;
+        
 
         private int renderCounter = 0;
         private void OnWidgetRender(object sender, EventArgs e)
@@ -44,7 +46,15 @@ namespace HunterPie.GUI
             renderCounter++;
             if (renderCounter >= 120)
             {
-                ForceAlwaysOnTop();
+                // Only force widgets on top if they are actually visible
+                if (InDesignMode || (WidgetHasContent &&
+                    OverlayActive &&
+                    WidgetActive &&
+                    ((!OverlayFocusActive) ||
+                    (OverlayFocusActive && OverlayIsFocused))))
+                {
+                    ForceAlwaysOnTop();
+                }
                 renderCounter = 0;
             }
         }

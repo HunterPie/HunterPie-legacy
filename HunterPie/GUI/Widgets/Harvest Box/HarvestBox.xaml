@@ -6,7 +6,7 @@
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
              xmlns:Part="clr-namespace:HunterPie.GUI.Widgets.Harvest_Box.Parts"
              mc:Ignorable="d" 
-             Width="230" Height="205" Background="#33000000" DataContext="{StaticResource Localization}" ResizeMode="NoResize" WindowStyle="None" AllowsTransparency="True" ShowInTaskbar="False" Topmost="True" Closing="OnClosing" MouseEnter="OnMouseEnter" MouseDown="OnMouseDown" MouseWheel="OnMouseWheel" MouseLeave="OnMouseLeave" BorderBrush="#00000000" SizeToContent="Height">
+             Width="230" Height="205" Background="#33000000" DataContext="{StaticResource Localization}" ResizeMode="NoResize" WindowStyle="None" AllowsTransparency="True" ShowInTaskbar="False" Topmost="True" Closing="OnClosing" MouseDown="OnMouseDown" MouseWheel="OnMouseWheel" BorderBrush="#00000000" SizeToContent="Height">
     <Grid x:Name="HarvestBoxComponent" HorizontalAlignment="Left" Width="230">
         <Rectangle x:Name="HarvestBoxContainer" Fill="#FF111111" Stroke="#DD171717" Margin="0,0,0,4"/>
         <Image Width="230" Height="35" VerticalAlignment="Top" Opacity="0.5" Source="pack://siteoforigin:,,,/HunterPie.Resources/UI/HarvestBox/HarvestBoxTopTexture.png" Stretch="Fill"/>

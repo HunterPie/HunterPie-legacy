@@ -227,8 +227,6 @@ namespace HunterPie.GUI.Widgets.Abnormality_Widget
             IsClosed = true;
         }
 
-        private void OnMouseEnter(object sender, MouseEventArgs e) => MouseOver = true;
-
         private void OnMouseDown(object sender, MouseButtonEventArgs e)
         {
             if (e.LeftButton == MouseButtonState.Pressed)
@@ -248,20 +246,15 @@ namespace HunterPie.GUI.Widgets.Abnormality_Widget
 
         private void OnMouseWheel(object sender, MouseWheelEventArgs e)
         {
-            if (MouseOver)
+            if (e.Delta > 0)
             {
-                if (e.Delta > 0)
-                {
-                    ScaleWidget(DefaultScaleX + 0.05, DefaultScaleY + 0.05);
-                }
-                else
-                {
-                    ScaleWidget(DefaultScaleX - 0.05, DefaultScaleY - 0.05);
-                }
+                ScaleWidget(DefaultScaleX + 0.05, DefaultScaleY + 0.05);
+            }
+            else
+            {
+                ScaleWidget(DefaultScaleX - 0.05, DefaultScaleY - 0.05);
             }
         }
-
-        private void OnMouseLeave(object sender, MouseEventArgs e) => MouseOver = false;
 
         int blocker = 2;
         private void OnSizeChange(object sender, SizeChangedEventArgs e)

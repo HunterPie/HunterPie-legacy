@@ -6,7 +6,6 @@
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              xmlns:local="clr-namespace:HunterPie.GUI.Widgets"
              mc:Ignorable="d" 
-             MinWidth="895" MinHeight="70" ResizeMode="NoResize" SizeToContent="WidthAndHeight" WindowStyle="None" AllowsTransparency="True" ShowInTaskbar="False" Topmost="True" Closing="OnClosing" Background="{x:Null}" MouseEnter="OnMouseEnter" MouseDown="OnMouseDown" MouseWheel="OnMouseWheel" MouseLeave="OnMouseLeave" SnapsToDevicePixels="True" SizeChanged="OnSizeChange">
-    <StackPanel x:Name="Container" Orientation="Horizontal" HorizontalAlignment="Center" VerticalAlignment="Center" SnapsToDevicePixels="True" RenderTransformOrigin="0.5,0.5">
-    </StackPanel>
+             MinWidth="895" MinHeight="80" ResizeMode="NoResize" SizeToContent="WidthAndHeight" WindowStyle="None" AllowsTransparency="True" ShowInTaskbar="False" Topmost="True" Closing="OnClosing" Background="{x:Null}" MouseDown="OnMouseDown" MouseWheel="OnMouseWheel" SnapsToDevicePixels="True" SizeChanged="OnSizeChange">
+    <StackPanel x:Name="Container" Orientation="Horizontal" HorizontalAlignment="Center" VerticalAlignment="Center" SnapsToDevicePixels="True" RenderTransformOrigin="0.5,0.5"/>
 </src:Widget>
