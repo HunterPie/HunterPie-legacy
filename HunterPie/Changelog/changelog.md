@@ -19,3 +19,6 @@
 **Bug Fixes**
 
 - Fixed blastscourge appearing with 1 second left.
+
+**Developer Notes**
+I've temporarily removed the monster health bar bottom docking since it's broken and I'm still trying to find a way to fix it.

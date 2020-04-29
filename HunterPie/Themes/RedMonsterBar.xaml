@@ -13,7 +13,7 @@
         <Setter Property="Foreground" Value="WhiteSmoke"/>
         <Setter Property="FontSize" Value="12"/>
         <Setter Property="FontWeight" Value="Normal"/>
-        <Setter Property="Margin" Value="45,18,38,30"/>
+        <Setter Property="Margin" Value="47,16,22,0"/>
         <Setter Property="Padding" Value="0,0.75,0,0"/>
     </Style>
 

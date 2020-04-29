@@ -157,18 +157,9 @@ namespace HunterPie.GUI.Widgets.Monster_Widget.Parts {
 
         public void UpdateSize(double NewSize)
         {
-
             AilmentBar.MaxSize = NewSize - 37;
-            if (Context.Duration > 0)
-            {
-                AilmentBar.MaxHealth = Math.Max(1, Context.MaxDuration);
-                AilmentBar.Health = Math.Max(0, Context.Duration);
-            }
-            else
-            {
-                AilmentBar.MaxHealth = Math.Max(1, Context.MaxBuildup);
-                AilmentBar.Health = Math.Max(0, Context.MaxBuildup - Context.Buildup);
-            }
+            AilmentBar.MaxHealth = AilmentBar.MaxHealth;
+            AilmentBar.Health = AilmentBar.Health;
         }
     }
 }

@@ -25,7 +25,8 @@ namespace HunterPie.GUI.Widgets
         private Storyboard ANIM_ENRAGEDICON;
 
         public MonsterHealth() => InitializeComponent();
-
+        public int NumberOfPartsDisplayed = 0;
+        public int NumberOfAilmentsDisplayed = 0;
         ~MonsterHealth()
         {
             ANIM_ENRAGEDICON = null;
@@ -430,16 +431,16 @@ namespace HunterPie.GUI.Widgets
         {
             
             UserSettings.Config.Monsterscomponent config = UserSettings.PlayerConfig.Overlay.MonstersComponent;
-            int numberOfPartsDisplayed = MonsterPartsContainer.Children.Cast<Monster_Widget.Parts.MonsterPart>()
+            NumberOfPartsDisplayed = MonsterPartsContainer.Children.Cast<Monster_Widget.Parts.MonsterPart>()
                 .Where(p => p.IsVisible)
                 .Count();
 
-            int numberOfAilmentsDisplayed = MonsterAilmentsContainer.Children.Cast<Monster_Widget.Parts.MonsterAilment>()
+            NumberOfAilmentsDisplayed = MonsterAilmentsContainer.Children.Cast<Monster_Widget.Parts.MonsterAilment>()
                 .Where(a => a.IsVisible)
                 .Count();
             
-            MonsterPartsContainer.ItemWidth = MonsterPartsContainer.MaxWidth / Math.Min(config.MaxPartColumns, Math.Max(1, Math.Ceiling(numberOfPartsDisplayed / (double)config.MaxNumberOfPartsAtOnce)));
-            MonsterAilmentsContainer.ItemWidth = MonsterAilmentsContainer.MaxWidth / Math.Min(config.MaxPartColumns, Math.Max(1, Math.Ceiling(numberOfAilmentsDisplayed / (double)config.MaxNumberOfPartsAtOnce)));
+            MonsterPartsContainer.ItemWidth = MonsterPartsContainer.MaxWidth / Math.Min(config.MaxPartColumns, Math.Max(1, Math.Ceiling(NumberOfPartsDisplayed / (double)config.MaxNumberOfPartsAtOnce)));
+            MonsterAilmentsContainer.ItemWidth = MonsterAilmentsContainer.MaxWidth / Math.Min(config.MaxPartColumns, Math.Max(1, Math.Ceiling(NumberOfAilmentsDisplayed / (double)config.MaxNumberOfPartsAtOnce)));
 
             foreach (Monster_Widget.Parts.MonsterPart part in MonsterPartsContainer.Children)
             {
@@ -463,7 +464,8 @@ namespace HunterPie.GUI.Widgets
                     DockPanel.SetDock(MonsterHealthContainer, Dock.Top);
                     break;
                 case 1:
-                    DockPanel.SetDock(MonsterHealthContainer, Dock.Bottom);
+                    // TODO: Fix bottom dock
+                    DockPanel.SetDock(MonsterHealthContainer, Dock.Top);
                     break;
             }
         }

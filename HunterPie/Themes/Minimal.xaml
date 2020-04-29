@@ -9,11 +9,11 @@
     <!-- Overlay -->
     <!-- Monster Widget (Main bar) -->
     <LinearGradientBrush x:Key="OVERLAY_MONSTER_HEALTH_BAR_COLOR" EndPoint="0.5,1" StartPoint="0.5,0">
-        <GradientStop Color="#FF7BCD63" Offset="1"/>
-        <GradientStop Color="#7F7BCD63" Offset="0.526"/>
+        <GradientStop Color="#FF62B44A" Offset="1"/>
+        <GradientStop Color="#7F62B44A" Offset="0.556"/>
         <GradientStop Color="#00E89400"/>
-        <GradientStop Color="#077BCD63" Offset="0.522"/>
-        <GradientStop Color="#FF7BCD63" Offset="0.526"/>
+        <GradientStop Color="#0762B44A" Offset="0.55"/>
+        <GradientStop Color="#FF62B44A" Offset="0.556"/>
     </LinearGradientBrush>
 
     <SolidColorBrush x:Key="OVERLAY_BARS_BACKGROUND">#00000000</SolidColorBrush>
@@ -32,7 +32,7 @@
         <GradientStop Color="#7FE89400" Offset="0.313"/>
         <GradientStop Color="#00E89400" Offset="1"/>
         <GradientStop Color="#26E89400" Offset="0.679"/>
-        <GradientStop Color="#FFE89400" Offset="0.297"/>
+        <GradientStop Color="#FFE89400" Offset="0.31"/>
     </LinearGradientBrush>
 
     <Style x:Key="OVERLAY_MONSTER_NAME_TEXT_STYLE" TargetType="TextBlock">
@@ -64,11 +64,12 @@
     </Style>
 
     <LinearGradientBrush x:Key="OVERLAY_MONSTER_PART_BAR_COLOR" EndPoint="0.5,1" StartPoint="0.5,0">
-        <GradientStop Color="#FF7BCD63" Offset="1"/>
-        <GradientStop Color="#7F7BCD63" Offset="0.502"/>
+        <GradientStop Color="#FF62B44A" Offset="0.9"/>
+        <GradientStop Color="#7F62B44A" Offset="0.502"/>
         <GradientStop Color="#00E89400"/>
-        <GradientStop Color="#267BCD63" Offset="0.321"/>
-        <GradientStop Color="#FF7BCD63" Offset="0.51"/>
+        <GradientStop Color="#2662B44A" Offset="0.321"/>
+        <GradientStop Color="#FF62B44A" Offset="0.51"/>
+        <GradientStop Color="#FF62B44A" Offset="1"/>
     </LinearGradientBrush>
 
     <Style x:Key="OVERLAY_MONSTER_PART_NAME_TEXT_STYLE" TargetType="TextBlock">

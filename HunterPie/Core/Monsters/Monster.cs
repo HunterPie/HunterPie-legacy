@@ -40,6 +40,7 @@ namespace HunterPie.Core {
                         Ailments.Clear();
                         // For whatever reason, in Guiding Lands some monsters
                         // take some time to load their ailments in memory
+                        GetMonsterAilments();
                         while (Ailments.Count == 0)
                         {
                             GetMonsterAilments();

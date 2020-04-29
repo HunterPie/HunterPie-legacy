@@ -2131,7 +2131,7 @@
       <Mantle ID="16" HoneyID="7"/>
       <Mantle ID="17" HoneyID="0"/> <!-- Missing in Honey Hunter World-->
       <Mantle ID="18" HoneyID="5"/>
-      <Mantle ID="19" HoneyID="0"/> <!-- Missing in Honey Hunter World-->
+      <Mantle ID="19" HoneyID="17"/>
     </Mantles>
   </Gear>
   <Weapons>

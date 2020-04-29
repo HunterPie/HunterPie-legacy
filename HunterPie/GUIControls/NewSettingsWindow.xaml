@@ -306,7 +306,7 @@
                             </ComboBox>
                         </StackPanel>
                         <custom:CHotKey x:Name="ToggleMonsterBarModeHotKey" Text="{Binding Mode=OneTime, XPath=/Strings/Client/Settings/String[@ID\=\'STATIC_MONSTER_BAR_MODE_HOTKEY\']/@Name}" ToolTip="{Binding Mode=OneTime, XPath=/Strings/Client/Settings/String[@ID\=\'STATIC_MONSTER_BAR_MODE_HOTKEY\']/@Name}" MinWidth="500" HorizontalAlignment="Center"/>
-                        <StackPanel Orientation="Horizontal" Height="28" ToolTip="{Binding Mode=OneTime, XPath=/Strings/Client/Settings/String[@ID\=\'STATIC_MONSTER_BAR_DOCK_DESC\']/@Name}" HorizontalAlignment="Center" MinWidth="500">
+                        <StackPanel Visibility="Collapsed" Orientation="Horizontal" Height="28" ToolTip="{Binding Mode=OneTime, XPath=/Strings/Client/Settings/String[@ID\=\'STATIC_MONSTER_BAR_DOCK_DESC\']/@Name}" HorizontalAlignment="Center" MinWidth="500">
                             <TextBlock Text="{Binding Mode=OneTime, XPath=/Strings/Client/Settings/String[@ID\=\'STATIC_MONSTER_BAR_DOCK\']/@Name}" FontFamily="Segoe UI Light" Foreground="WhiteSmoke" Canvas.Top="3"/>
                             <ComboBox x:Name="MonsterBarDock" Style="{StaticResource ComboBoxFlatStyle}" IsReadOnly="True" Cursor="Hand" HorizontalAlignment="Center" FontSize="14" Foreground="#FFF9F9F9" SelectedIndex="0" Canvas.Left="141" Canvas.Top="2" Width="234">
                             </ComboBox>
