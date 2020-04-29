@@ -18,19 +18,18 @@
     }
 
     public class Mantle {
-        private int _id;
+        private int _id = -1;
         private float _cooldown;
         private float _timer;
         private float _staticCooldown;
         private float _staticTimer;
 
         public string Name {
-            get { return GStrings.GetMantleNameByID(ID); }
+            get => GStrings.GetMantleNameByID(ID);
         }
         public int ID {
-            get {
-                return _id;
-            } set {
+            get => _id;
+            set {
                 if (_id != value) {
                     _id = value;
                     this._onMantleChange();
