@@ -496,13 +496,15 @@ Gerade bei den Abnormalitäten / Statusveränderungen des Spielers gibt es mit (
       <String ID="ENABLE_MONSTER_WIDGET_DESC" Name="Wenn aktiv, wird das Monster Widget sichtbar sein, sobald es etwas anzuzeigen hat."/>
       <String ID="STATIC_MONSTER_HEALTH_STRING_FORMAT" Name="Monsterleisten Text Format:"/>
       <String ID="STATIC_MONSTER_HEALTH_STRING_FORMAT_DESC" Name="Text Format der Monsterleiste."/>
-	    <String ID="STATIC_MONSTER_BAR_MODE" Name="Monsterleisten Modus"/>
+	  <String ID="ENABLE_MONSTER_USE_LOCKON" Name="Verwende den Lockon statt dem Karten-Pin um ein Monster als Ziel zu setzen"/>
+      <String ID="ENABLE_MONSTER_USE_LOCKON_DESC" Name="Wenn aktiv, wird HunterPie den ingame Monster-Lockon verwenden um ein Ziel zu verfolgen."/>
+	  <String ID="STATIC_MONSTER_BAR_MODE" Name="Monsterleisten Modus"/>
       <String ID="STATIC_MONSTER_BAR_MODE_DESC" Name="Ändert den Modus der Monsterleiste."/>
       <String ID="STATIC_MONSTER_BAR_MODE_0" Name="Zeige alle Monster gleichzeitig"/>
       <String ID="STATIC_MONSTER_BAR_MODE_1" Name="Zeige alle Monster gleichzeitig, aber hebe mein Ziel hervor"/>
       <String ID="STATIC_MONSTER_BAR_MODE_2" Name="Zeige nur das gejagte Monster"/>
       <String ID="STATIC_MONSTER_BAR_MODE_3" Name="Zeige alle Monster, aber verstecke inaktive Monster nach 15 Sekunden"/>
-	    <String ID="STATIC_MONSTER_BAR_MODE_4" Name="Zeige alle Monster bis eines ausgewählt wurde"/>
+	  <String ID="STATIC_MONSTER_BAR_MODE_4" Name="Zeige alle Monster bis eines ausgewählt wurde"/>
       <String ID="STATIC_MONSTER_BAR_MODE_HOTKEY" Name="Wechsel zw. den Monsterleisten Modi (HotKey):"/>
       <String ID="STATIC_MONSTER_BAR_MODE_HOTKEY_DESC" Name="Hotkey um zwischen den verschiedenen Monsterleisten Modi zu wechseln. Ändern des HotKeys erfordert einen Neustart von HunterPie um aktiv zu werden."/>
       <String ID="STATIC_MONSTER_BAR_DOCK" Name="Monsterleisten Ausrichtung:"/>

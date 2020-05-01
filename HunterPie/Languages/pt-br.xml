@@ -491,6 +491,8 @@
       <String ID="ENABLE_MONSTER_WIDGET_DESC" Name="Se habilitado, o widget de monstros será visível quando tiver conteúdo para ser mostrado."/>
       <String ID="STATIC_MONSTER_HEALTH_STRING_FORMAT" Name="Formato de texto da vida:"/>
       <String ID="STATIC_MONSTER_HEALTH_STRING_FORMAT_DESC" Name="Formato de texto para a barra de vida do monstro."/>
+      <String ID="ENABLE_MONSTER_USE_LOCKON" Name="Usar lock-on em vez do mapa para selecionar o monstro alvo"/>
+      <String ID="ENABLE_MONSTER_USE_LOCKON_DESC" Name="Se habilitato, HunterPie usará a mira do jogo para selecionar o seu alvo."/>
       <String ID="STATIC_MONSTER_BAR_MODE" Name="Modo da barra de monstro:"/>
       <String ID="STATIC_MONSTER_BAR_MODE_DESC" Name="Muda o modo da barra do monstro"/>
       <String ID="STATIC_MONSTER_BAR_MODE_0" Name="Mostrar todos ao mesmo tempo"/>
