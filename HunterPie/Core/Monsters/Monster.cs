@@ -326,9 +326,8 @@ namespace HunterPie.Core {
             SizeMultiplier = Scanner.Read<float>(MonsterAddress + 0x188) / SizeModifier;
         }
 
-        private void GetMonsterWeaknesses() {
-            Weaknesses = MonsterInfo.Weaknesses.ToDictionary(w => w.Id, w => w.Stars);
-        }
+        private void GetMonsterWeaknesses() => Weaknesses = MonsterInfo.Weaknesses.ToDictionary(w => w.Id, w => w.Stars);
+        
 
         private void GetMonsterEnrageTimer() {
             EnrageTimer = Scanner.Read<float>(MonsterAddress + 0x1BE54);
@@ -338,9 +337,21 @@ namespace HunterPie.Core {
         private void GetTargetMonsterAddress() {
             if (UserSettings.PlayerConfig.Overlay.MonstersComponent.UseLockonInsteadOfPin)
             {
-                Int64 LockedMonsterIndex = Scanner.READ_MULTILEVEL_PTR(Address.BASE + Address.EQUIPMENT_OFFSET, Address.Offsets.PlayerLockonOffsets);
-                IsTarget = MonsterNumber - 1 == LockedMonsterIndex;
-                
+                Int64 LockonAddress = Scanner.READ_MULTILEVEL_PTR(Address.BASE + Address.EQUIPMENT_OFFSET, Address.Offsets.PlayerLockonOffsets);
+                // This will give us the monster target index
+                int MonsterLockonIndex = Scanner.Read<int>(LockonAddress + 0x19F8);
+                if (MonsterLockonIndex == -1)
+                {
+                    IsTarget = false;
+                    IsSelect = 0;
+                    return;
+                }
+                // And this one will give us the actual monster index in that target slot
+                int MonsterIndexInSlot = Scanner.Read<int>(LockonAddress + (MonsterLockonIndex * 8));
+                // And then we get then we can finally get the monster index
+                int MonsterTargetIndex = Scanner.Read<int>(LockonAddress + 0x6C + (4 * MonsterIndexInSlot));
+                IsTarget = MonsterTargetIndex == (MonsterNumber  - 1);
+                IsSelect = IsTarget ? 1 : 2;
             } else
             {
                 Int64 TargettedMonsterAddress = Scanner.READ_MULTILEVEL_PTR(Address.BASE + Address.MONSTER_SELECTED_OFFSET, Address.Offsets.MonsterSelectedOffsets);

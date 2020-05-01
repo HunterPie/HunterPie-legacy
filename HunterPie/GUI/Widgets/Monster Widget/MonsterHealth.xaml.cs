@@ -98,7 +98,6 @@ namespace HunterPie.GUI.Widgets
         #region Monster Events
         private void UpdateMonsterInfo(Monster Monster)
         {
-            // Used when starting HunterPie for the first time, since the events won't be triggered
             Visibility = Visibility.Visible;
             MonsterName.Text = Monster.Name;
             // Update monster health
@@ -162,8 +161,10 @@ namespace HunterPie.GUI.Widgets
             MonsterCrown.Visibility = Monster.Crown == null ? Visibility.Collapsed : Visibility.Visible;
             Weaknesses.Children.Clear(); // Removes every weakness icon
             if (Monster.Weaknesses == null) return;
-            foreach (string Weakness in Monster.Weaknesses.Keys)
+            index = 0;
+            while (index < Monster.Weaknesses.Keys.Count)
             {
+                string Weakness = Monster.Weaknesses.Keys.ElementAt(index);
                 ImageSource img = FindResource(Weakness) as ImageSource;
                 img?.Freeze();
                 WeaknessDisplay MonsterWeaknessDisplay = new WeaknessDisplay
@@ -173,7 +174,9 @@ namespace HunterPie.GUI.Widgets
                     Height = 20
                 };
                 Weaknesses.Children.Add(MonsterWeaknessDisplay);
+                index++;
             }
+            
         }
 
         private void OnMonsterCrownChange(object source, EventArgs args) => Dispatch(() =>
