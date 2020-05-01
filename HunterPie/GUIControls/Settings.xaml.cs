@@ -79,6 +79,7 @@ namespace HunterPie.GUIControls {
             // Monsters
             settingsUI.switchEnableMonsterComponent.IsEnabled = settings.Overlay.MonstersComponent.Enabled;
             settingsUI.HealthTextFormat.Text = settings.Overlay.MonstersComponent.HealthTextFormat;
+            settingsUI.switchUseLockon.IsEnabled = settings.Overlay.MonstersComponent.UseLockonInsteadOfPin;
             settingsUI.MonsterShowModeSelection.SelectedIndex = settings.Overlay.MonstersComponent.ShowMonsterBarMode;
             settingsUI.ToggleMonsterBarModeHotKey.HotKey = settings.Overlay.MonstersComponent.SwitchMonsterBarModeHotkey;
             settingsUI.MaxNumberOfPartsAtOnce.Value = settings.Overlay.MonstersComponent.MaxNumberOfPartsAtOnce;
@@ -186,6 +187,7 @@ namespace HunterPie.GUIControls {
             // Monsters
             settings.Overlay.MonstersComponent.Enabled = settingsUI.switchEnableMonsterComponent.IsEnabled;
             settings.Overlay.MonstersComponent.HealthTextFormat = settingsUI.HealthTextFormat.Text;
+            settings.Overlay.MonstersComponent.UseLockonInsteadOfPin = settingsUI.switchUseLockon.IsEnabled;
             settings.Overlay.MonstersComponent.ShowMonsterBarMode = (byte)settingsUI.MonsterShowModeSelection.SelectedIndex;
             settings.Overlay.MonstersComponent.SwitchMonsterBarModeHotkey = settingsUI.ToggleMonsterBarModeHotKey.HotKey;
             settings.Overlay.MonstersComponent.MaxNumberOfPartsAtOnce = (int)settingsUI.MaxNumberOfPartsAtOnce.Value;

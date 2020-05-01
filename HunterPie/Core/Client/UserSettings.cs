@@ -74,6 +74,7 @@ namespace HunterPie.Core {
                 public bool EnableMonsterAilments { get; set; } = true;
                 public string[] EnabledPartGroups { get; set; } = new string[20] { "HEAD", "BODY", "ARM", "WING", "LEG", "TAIL", "LIMB", "ABDOMEN", "CHEST", "REAR", "JAW", "BACK", "FIN", "HORN", "NECK", "SHELL", "ORGAN", "MISC", "MANE", "BONE" };
                 public float Opacity { get; set; } = 1;
+                public bool UseLockonInsteadOfPin { get; set; } = false;
             }
 
             public class Harvestboxcomponent {

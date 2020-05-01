@@ -311,6 +311,7 @@
                             <ComboBox x:Name="MonsterBarDock" Style="{StaticResource ComboBoxFlatStyle}" IsReadOnly="True" Cursor="Hand" HorizontalAlignment="Center" FontSize="14" Foreground="#FFF9F9F9" SelectedIndex="0" Canvas.Left="141" Canvas.Top="2" Width="234">
                             </ComboBox>
                         </StackPanel>
+                        <custom:Switcher x:Name="switchUseLockon" Text="{Binding Mode=OneTime, XPath=/Strings/Client/Settings/String[@ID\=\'ENABLE_MONSTER_USE_LOCKON\']/@Name}" MinWidth="500" ToolTip="{Binding Mode=OneTime, XPath=/Strings/Client/Settings/String[@ID\=\'ENABLE_MONSTER_USE_LOCKON_DESC\']/@Name}" HorizontalAlignment="Center" RestartVisibility="Collapsed"/>
                         <custom:Switcher x:Name="switchEnableMonsterWeakness" HorizontalAlignment="Center" MinWidth="500" RestartVisibility="Collapsed">
                             <custom:Switcher.Text>
                                 <Binding Mode="OneTime" XPath="Settings/String[@ID='ENABLE_MONSTER_WEAKNESS']/@Name"/>

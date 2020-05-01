@@ -418,7 +418,6 @@ namespace HunterPie.GUI.Widgets
             // Parts
             MonsterPartsContainer.MaxWidth = config.EnableMonsterAilments ? (NewSize - 2) / 2 : (NewSize - 1);
             MonsterAilmentsContainer.MaxWidth = config.EnableMonsterParts ? (NewSize - 2) / 2 : (NewSize - 1);
-            MonsterPartsContainer.ItemWidth = MonsterAilmentsContainer.ItemWidth = MonsterPartsContainer.MaxWidth / Math.Max(1, UserSettings.PlayerConfig.Overlay.MonstersComponent.MaxPartColumns);
             UpdateContainerBarsSizeDynamically();
             // Monster Bar
             MonsterHealthBar.MaxSize = NewSize - 69;
@@ -438,10 +437,13 @@ namespace HunterPie.GUI.Widgets
             NumberOfAilmentsDisplayed = MonsterAilmentsContainer.Children.Cast<Monster_Widget.Parts.MonsterAilment>()
                 .Where(a => a.IsVisible)
                 .Count();
-            
-            MonsterPartsContainer.ItemWidth = MonsterPartsContainer.MaxWidth / Math.Min(config.MaxPartColumns, Math.Max(1, Math.Ceiling(NumberOfPartsDisplayed / (double)config.MaxNumberOfPartsAtOnce)));
-            MonsterAilmentsContainer.ItemWidth = MonsterAilmentsContainer.MaxWidth / Math.Min(config.MaxPartColumns, Math.Max(1, Math.Ceiling(NumberOfAilmentsDisplayed / (double)config.MaxNumberOfPartsAtOnce)));
 
+            double partsContainerWidth = MonsterPartsContainer.MaxWidth / Math.Max(1, Math.Min(config.MaxPartColumns, Math.Max(1, Math.Ceiling(NumberOfPartsDisplayed / (double)config.MaxNumberOfPartsAtOnce))));
+            double ailmentsContainerWidth = MonsterAilmentsContainer.MaxWidth / Math.Max(1, Math.Min(config.MaxPartColumns, Math.Max(1, Math.Ceiling(NumberOfAilmentsDisplayed / (double)config.MaxNumberOfPartsAtOnce))));
+
+            MonsterPartsContainer.ItemWidth = double.IsInfinity(partsContainerWidth) ? (MonsterPartsContainer.Width - 2) / 2 : partsContainerWidth ;
+            MonsterAilmentsContainer.ItemWidth = double.IsInfinity(ailmentsContainerWidth) ? (MonsterPartsContainer.Width - 2) / 2 : ailmentsContainerWidth;
+            
             foreach (Monster_Widget.Parts.MonsterPart part in MonsterPartsContainer.Children)
             {
                 part.UpdateHealthSize(MonsterPartsContainer.ItemWidth);

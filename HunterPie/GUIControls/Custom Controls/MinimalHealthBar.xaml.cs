@@ -20,8 +20,8 @@ namespace HunterPie.GUIControls.Custom_Controls {
             set
             {
                 health = value;
-                double v = Math.Max(MaxSize * (value / MaxHealth), 0);
-                HealthBar.Width = double.IsInfinity(v) ? MaxSize : double.IsNegativeInfinity(v) ? 0 : v;
+                double v = Math.Max(MaxSize * (value / Math.Max(MaxHealth, 1)), 0);
+                HealthBar.Width = v;
             }
         }
 

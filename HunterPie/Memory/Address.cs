@@ -18,7 +18,9 @@ namespace HunterPie.Memory {
             public static int[] MonsterOffsets;
             public static int[] MonsterSelectedOffsets;
             public static int[] PlayerGearOffsets;
-            
+            public static int[] PlayerLockonOffsets;
+
+
 
             public static int FertilizersOffset;
             public static int TailRaidersOffset = 0x10344C;
@@ -132,7 +134,9 @@ namespace HunterPie.Memory {
         }
 
         private static int ParseHexToInt32(string hexstring) {
-            return Convert.ToInt32(hexstring.Replace("0x", ""), 16);
+            bool isSigned = false;
+            if (hexstring.StartsWith("-")) isSigned = true;
+            return Convert.ToInt32(hexstring.Replace("0x", "").Replace("-", ""), 16) * (isSigned ? -1 : 1);
         }
 
         private static Int64 ParseHex(string hexstring) {
@@ -165,6 +169,7 @@ namespace HunterPie.Memory {
             LoadOffsetsFromDict("AbnormalityGearOffsets", out Offsets.AbnormalityGearOffsets, Offsets.AbnormalityGearOffsets);
             LoadOffsetsFromDict("MonsterSelectedOffsets", out Offsets.MonsterSelectedOffsets, Offsets.MonsterSelectedOffsets);
             LoadOffsetsFromDict("PlayerGearOffsets", out Offsets.PlayerGearOffsets, Offsets.PlayerGearOffsets);
+            LoadOffsetsFromDict("PlayerLockonOffsets", out Offsets.PlayerLockonOffsets, Offsets.PlayerLockonOffsets);
             // Clear addresses loaded into memory
             MappedAddresses.Clear();
             MappedOffsets.Clear();

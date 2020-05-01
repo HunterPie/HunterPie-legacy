@@ -336,20 +336,34 @@ namespace HunterPie.Core {
         }
 
         private void GetTargetMonsterAddress() {
-            Int64 TargettedMonsterAddress = Scanner.READ_MULTILEVEL_PTR(Address.BASE + Address.MONSTER_SELECTED_OFFSET, Address.Offsets.MonsterSelectedOffsets);
+            if (UserSettings.PlayerConfig.Overlay.MonstersComponent.UseLockonInsteadOfPin)
+            {
+                Int64 LockedMonsterIndex = Scanner.READ_MULTILEVEL_PTR(Address.BASE + Address.EQUIPMENT_OFFSET, Address.Offsets.PlayerLockonOffsets);
+                IsTarget = MonsterNumber - 1 == LockedMonsterIndex;
+                
+            } else
+            {
+                Int64 TargettedMonsterAddress = Scanner.READ_MULTILEVEL_PTR(Address.BASE + Address.MONSTER_SELECTED_OFFSET, Address.Offsets.MonsterSelectedOffsets);
 
-            Int64 selectedPtr = Scanner.Read<long>(Address.BASE + Address.MONSTER_TARGETED_OFFSET); //probably want an offset for this
-            bool isSelect = Scanner.Read<long>(selectedPtr + 0x128) != 0x0 && Scanner.Read<long>(selectedPtr + 0x130) != 0x0 && Scanner.Read<long>(selectedPtr + 0x160) != 0x0;
-            Int64 SelectedMonsterAddress = Scanner.Read<long>(selectedPtr + 0x148);
-            IsTarget = TargettedMonsterAddress == 0 ? SelectedMonsterAddress == this.MonsterAddress : TargettedMonsterAddress == this.MonsterAddress;
+                Int64 selectedPtr = Scanner.Read<long>(Address.BASE + Address.MONSTER_TARGETED_OFFSET); //probably want an offset for this
+                bool isSelect = Scanner.Read<long>(selectedPtr + 0x128) != 0x0 && Scanner.Read<long>(selectedPtr + 0x130) != 0x0 && Scanner.Read<long>(selectedPtr + 0x160) != 0x0;
+                Int64 SelectedMonsterAddress = Scanner.Read<long>(selectedPtr + 0x148);
+                IsTarget = TargettedMonsterAddress == 0 ? SelectedMonsterAddress == this.MonsterAddress : TargettedMonsterAddress == this.MonsterAddress;
 
-            if (!isSelect) {
-                this.IsSelect = 0; // nothing is selected
-            } else if (IsTarget) {
-                this.IsSelect = 1; // this monster is selected
-            } else {
-                this.IsSelect = 2; // another monster is selected
+                if (!isSelect)
+                {
+                    this.IsSelect = 0; // nothing is selected
+                }
+                else if (IsTarget)
+                {
+                    this.IsSelect = 1; // this monster is selected
+                }
+                else
+                {
+                    this.IsSelect = 2; // another monster is selected
+                }
             }
+            
         }
 
         private void CreateMonsterParts(int numberOfParts) {
