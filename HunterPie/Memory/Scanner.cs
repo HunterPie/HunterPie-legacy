@@ -64,14 +64,9 @@ namespace HunterPie.Memory
         public static event ProcessHandler OnGameFocus;
         public static event ProcessHandler OnGameUnfocus;
 
-        // On Game start
         protected static void _onGameStart() => OnGameStart?.Invoke(typeof(Scanner), EventArgs.Empty);
-
-        // On game close
         protected static void _onGameClosed() => OnGameClosed?.Invoke(typeof(Scanner), EventArgs.Empty);
-
         protected static void _onGameFocus() => OnGameFocus?.Invoke(typeof(Scanner), EventArgs.Empty);
-
         protected static void _onGameUnfocus() => OnGameUnfocus?.Invoke(typeof(Scanner), EventArgs.Empty);
 
         /* Core code */
@@ -164,7 +159,6 @@ namespace HunterPie.Memory
             MonsterHunter = null;
             Debugger.Log("Game process closed!");
             CloseHandle(ProcessHandle);
-            CloseHandle(WindowHandle);
             ProcessHandle = IntPtr.Zero;
             _onGameClosed();
         }

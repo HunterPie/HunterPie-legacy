@@ -1,5 +1,5 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
-<!--1.0.3.89 update version 1.1 translate by ThanatosDi-->
+<!--1.0.3.90 update version 1 translate by ThanatosDi-->
 <Strings lang="Traditional Chinese">
   <Monsters>
     <Monster ID="em001_00" Name="雌火龍"/>
@@ -224,7 +224,7 @@
     <Stage ID="106" Name="大裂谷"/>
     <Stage ID="107" Name="大裂谷(劇情)"/>
     <Stage ID="108" Name="永霜凍土"/>
-    <Stage ID="109" Name="引導之地"/>
+    <Stage ID="109" Name="聚魔之地"/>
     <Stage ID="201" Name="特殊鬥技場"/>
     <Stage ID="202" Name="鬥技場"/>
     <Stage ID="301" Name="星辰據點"/>
@@ -490,8 +490,8 @@
       <String ID="ENABLE_MONSTER_WIDGET_DESC" Name="如果啟用只要有內容可顯示，魔物小工具就將可見"/>
       <String ID="STATIC_MONSTER_HEALTH_STRING_FORMAT" Name="血量文字格式:"/>
       <String ID="STATIC_MONSTER_HEALTH_STRING_FORMAT_DESC" Name="設定魔物血條的文字格式"/>
-      <String ID="ENABLE_MONSTER_USE_LOCKON" Name="Use lockon instead of map pin to target monster"/>
-      <String ID="ENABLE_MONSTER_USE_LOCKON_DESC" Name="If enabled, HunterPie will use the in-game monster lockon to select your target."/>
+      <String ID="ENABLE_MONSTER_USE_LOCKON" Name="使用鎖定標記魔物"/>
+      <String ID="ENABLE_MONSTER_USE_LOCKON_DESC" Name="如果啟用，HunterPie 將使用遊戲中的魔物鎖定來選擇目標，而不是使用地圖標記魔物"/>
       <String ID="STATIC_MONSTER_BAR_MODE" Name="魔物欄模式"/>
       <String ID="STATIC_MONSTER_BAR_MODE_DESC" Name="改變魔物欄模式"/>
       <String ID="STATIC_MONSTER_BAR_MODE_0" Name="一次顯示所有魔物"/>
