@@ -208,7 +208,7 @@ namespace HunterPie.Memory {
             // Monster Iceborne offsets
             
             Offsets.MonsterHPComponentOffset = 0x7670;
-            Offsets.MonsterNamePtr = 0x2a0;
+            Offsets.MonsterNamePtr = 0x2A0;
         }
     }
 }

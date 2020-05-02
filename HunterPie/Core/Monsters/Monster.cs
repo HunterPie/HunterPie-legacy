@@ -146,6 +146,7 @@ namespace HunterPie.Core {
             }
         }
         public float MaxStamina { get; private set; }
+        public bool[] AliveMonsters = new bool[3] { false, false, false };
 
         public List<Part> Parts = new List<Part>();
         public List<Ailment> Ailments = new List<Ailment>();
@@ -277,12 +278,19 @@ namespace HunterPie.Core {
         }
 
         private void GetMonsterHp(string MonsterModel) {
+            if (string.IsNullOrEmpty(MonsterModel) || MonsterModel.StartsWith("ems"))
+            {
+                TotalHP = CurrentHP = 0.0f;
+                HPPercentage = 1f;
+            }
+
             Int64 MonsterHPComponent = Scanner.Read<long>(this.MonsterAddress + Address.Offsets.MonsterHPComponentOffset);
             Int64 MonsterTotalHPAddress = MonsterHPComponent + 0x60;
             Int64 MonsterCurrentHPAddress = MonsterTotalHPAddress + 0x4;
             float f_TotalHP = Scanner.Read<float>(MonsterTotalHPAddress);
             float f_CurrentHP = Scanner.Read<float>(MonsterCurrentHPAddress);
-            if ((MonsterModel != null) && f_CurrentHP <= f_TotalHP && f_CurrentHP > 0 && !MonsterModel.StartsWith("ems")) {
+            byte monsterIsAlive = Scanner.Read<byte>(MonsterCurrentHPAddress + 0xC8);
+            if (monsterIsAlive == 1 && f_CurrentHP <= f_TotalHP && f_CurrentHP > 0) {
                 this.TotalHP = f_TotalHP;
                 this.CurrentHP = f_CurrentHP;
                 this.HPPercentage = f_CurrentHP / f_TotalHP == 0 ? 1 : f_CurrentHP / f_TotalHP;
@@ -350,8 +358,30 @@ namespace HunterPie.Core {
                 LockonAddress = LockonAddress - 0x7C - 0x19F8;
                 int MonsterIndexInSlot = Scanner.Read<int>(LockonAddress + (MonsterLockonIndex * 8));
                 // And then we get then we can finally get the monster index
-                int MonsterTargetIndex = Scanner.Read<int>(LockonAddress + 0x6C + (4 * MonsterIndexInSlot));
-                IsTarget = MonsterTargetIndex == (MonsterNumber  - 1);
+                List<int> MonsterSlotIndexes = new List<int>();
+                for (int i = 0; i < 3; i++) MonsterSlotIndexes.Add(Scanner.Read<int>(LockonAddress + 0x6C + (4 * i)));
+                int[] MonsterIndexes = MonsterSlotIndexes.ToArray();
+
+                if (MonsterIndexes[2] == -1 && MonsterIndexes[1] == -1)
+                {
+                    IsTarget = IsAlive;
+                } else if (MonsterIndexes[2] == -1 && MonsterIndexes[1] != -1)
+                {
+                    if (!AliveMonsters[0])
+                    {
+                        IsTarget = MonsterIndexes[MonsterIndexInSlot] + 1 == (MonsterNumber - 1);
+                    } else if (!AliveMonsters[1])
+                    {
+                        IsTarget = MonsterIndexes[MonsterIndexInSlot] * 2 == (MonsterNumber - 1);
+                    } else
+                    {
+                        IsTarget = MonsterIndexes[MonsterIndexInSlot] == (MonsterNumber - 1);
+                    }
+                    
+                } else
+                {
+                    IsTarget = MonsterIndexes[MonsterIndexInSlot] == (MonsterNumber - 1);
+                }
                 IsSelect = IsTarget ? 1 : 2;
             } else
             {
