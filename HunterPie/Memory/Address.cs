@@ -20,8 +20,6 @@ namespace HunterPie.Memory {
             public static int[] PlayerGearOffsets;
             public static int[] PlayerLockonOffsets;
 
-
-
             public static int FertilizersOffset;
             public static int TailRaidersOffset = 0x10344C;
             public static int SteamFuelOffset = 0x102F4C;

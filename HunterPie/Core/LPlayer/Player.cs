@@ -753,12 +753,20 @@ namespace HunterPie.Core
             float duration = Scanner.Read<float>(abnormalityAddress);
 
             bool hasConditions = info.HasConditions;
+            bool DebuffCondition = false;
             byte stack = 0;
             // Palico and misc buffs don't stack
             switch (info.Type)
             {
                 case "HUNTINGHORN":
                     stack = Scanner.Read<byte>(baseAddress + 0x164 + (info.Offset - firstHornBuffOffset) / 4);
+                    break;
+                case "DEBUFF":
+                    if (info.HasConditions)
+                    {
+                        stack = Scanner.Read<byte>(baseAddress + info.Offset + info.ConditionOffset);
+                        DebuffCondition = stack == 0;
+                    }
                     break;
                 case "MISC":
                     if (info.HasConditions)
@@ -782,16 +790,14 @@ namespace HunterPie.Core
             if (stack < info.Stack)
                 return;
 
+            if (DebuffCondition) return;
+
             if (Abnormalities[info.InternalId] != null)
             {
                 Abnormalities[info.InternalId].UpdateAbnormalityInfo(duration, stack);
             }
             else
             {
-                Debugger.Debug(info.InternalId);
-                // Work around for blastscourge weird behavior
-                if (info.InternalId == "DE_20" && duration < 2) return;
-
                 var a = new Abnormality(info);
                 a.UpdateAbnormalityInfo(duration, stack);
                 Abnormalities.Add(info.InternalId, a);

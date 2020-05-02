@@ -282,15 +282,16 @@ namespace HunterPie.Core {
             {
                 TotalHP = CurrentHP = 0.0f;
                 HPPercentage = 1f;
+                return;
             }
-
+            
             Int64 MonsterHPComponent = Scanner.Read<long>(this.MonsterAddress + Address.Offsets.MonsterHPComponentOffset);
             Int64 MonsterTotalHPAddress = MonsterHPComponent + 0x60;
             Int64 MonsterCurrentHPAddress = MonsterTotalHPAddress + 0x4;
             float f_TotalHP = Scanner.Read<float>(MonsterTotalHPAddress);
             float f_CurrentHP = Scanner.Read<float>(MonsterCurrentHPAddress);
             byte monsterIsAlive = Scanner.Read<byte>(MonsterCurrentHPAddress + 0xC8);
-            if (monsterIsAlive == 1 && f_CurrentHP <= f_TotalHP && f_CurrentHP > 0) {
+            if (monsterIsAlive != 0 && f_CurrentHP <= f_TotalHP && f_CurrentHP > 0) {
                 this.TotalHP = f_TotalHP;
                 this.CurrentHP = f_CurrentHP;
                 this.HPPercentage = f_CurrentHP / f_TotalHP == 0 ? 1 : f_CurrentHP / f_TotalHP;
