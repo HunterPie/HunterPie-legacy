@@ -339,7 +339,7 @@ namespace HunterPie.Core {
             {
                 Int64 LockonAddress = Scanner.READ_MULTILEVEL_PTR(Address.BASE + Address.EQUIPMENT_OFFSET, Address.Offsets.PlayerLockonOffsets);
                 // This will give us the monster target index
-                int MonsterLockonIndex = Scanner.Read<int>(LockonAddress + 0x19F8);
+                int MonsterLockonIndex = Scanner.Read<int>(LockonAddress - 0x7C);
                 if (MonsterLockonIndex == -1)
                 {
                     IsTarget = false;
@@ -347,6 +347,7 @@ namespace HunterPie.Core {
                     return;
                 }
                 // And this one will give us the actual monster index in that target slot
+                LockonAddress = LockonAddress - 0x7C - 0x19F8;
                 int MonsterIndexInSlot = Scanner.Read<int>(LockonAddress + (MonsterLockonIndex * 8));
                 // And then we get then we can finally get the monster index
                 int MonsterTargetIndex = Scanner.Read<int>(LockonAddress + 0x6C + (4 * MonsterIndexInSlot));

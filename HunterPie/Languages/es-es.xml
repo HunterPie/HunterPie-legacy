@@ -491,6 +491,8 @@
       <String ID="ENABLE_MONSTER_WIDGET_DESC" Name="Si esta activo podrás ver la información del monstruo siempre y cuando haya algo que mostrar."/>
       <String ID="STATIC_MONSTER_HEALTH_STRING_FORMAT" Name="Formato del texto:"/>
       <String ID="STATIC_MONSTER_HEALTH_STRING_FORMAT_DESC" Name="Formato para la barra de vida del monstruo."/>
+      <String ID="ENABLE_MONSTER_USE_LOCKON" Name="Fijar el monstruo para seleccionarlo"/>
+      <String ID="ENABLE_MONSTER_USE_LOCKON_DESC" Name="Si lo activas, HunterPie tomará como objetivo al monstruo que tengas fijado (alterna entre seleccionar el monstruo mediante el mapa o mediante la función de fijado)."/>
       <String ID="STATIC_MONSTER_BAR_MODE" Name="Modo de la barra de monstruo"/>
       <String ID="STATIC_MONSTER_BAR_MODE_DESC" Name="Cambia el modo de la barra del monstruo (la selección del monstruo objetivo se realiza desde el mapa, abajo a la izquierda)"/>
       <String ID="STATIC_MONSTER_BAR_MODE_0" Name="Mostrar todos los monstruos a la vez"/>
@@ -649,7 +651,7 @@
       <String ID="STATIC_REJECT" Name="Rechazar"/>
       <String ID="STATIC_SETTINGS_LOAD" Name="Ajustes cargados"/>
       <String ID="STATIC_OPENDEFAULTBROWSER" Name="Abrir en el navegador"/>
-	    <String ID="MESSAGE_BUILD_UPLOADED" Name="¡Set subido Honey Hunters World!"/>
+	  <String ID="MESSAGE_BUILD_UPLOADED" Name="¡Set subido a Honey Hunters World!"/>
     </Notifications>
     <RichPresence>
       <String ID="RPC_DESCRIPTION_IN_MAIN_MENU" Name="En el menú principal"/>
