@@ -1,6 +1,6 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
 <Strings lang="Simplified Chinese">
-<!--Translated for HunterPie Ver 1.0.3.88 by FengYuu-->
+<!--Translated for HunterPie Ver 1.0.3.90 by FengYuu-->
   <Monsters>
     <Monster ID="em001_00" Name="雌火龙"/>
     <Monster ID="em001_01" Name="樱火龙"/>
@@ -492,8 +492,8 @@
       <String ID="ENABLE_MONSTER_WIDGET_DESC" Name="如开启，只要有内容可以显示，怪物部件就将可见"/>
       <String ID="STATIC_MONSTER_HEALTH_STRING_FORMAT" Name="血量文字格式:"/>
       <String ID="STATIC_MONSTER_HEALTH_STRING_FORMAT_DESC" Name="怪物血量条的文字格式"/>
-      <String ID="ENABLE_MONSTER_USE_LOCKON" Name="Use lockon instead of map pin to target monster"/>
-      <String ID="ENABLE_MONSTER_USE_LOCKON_DESC" Name="If enabled, HunterPie will use the in-game monster lockon to select your target."/>
+      <String ID="ENABLE_MONSTER_USE_LOCKON" Name="使用锁定选择目标怪物"/>
+      <String ID="ENABLE_MONSTER_USE_LOCKON_DESC" Name="如开启，HunterPie将使用游戏中的锁定选择目标怪物，而不使用地图标记"/>
       <String ID="STATIC_MONSTER_BAR_MODE" Name="怪物显示栏模式"/>
       <String ID="STATIC_MONSTER_BAR_MODE_DESC" Name="改变怪物显示栏模式"/>
       <String ID="STATIC_MONSTER_BAR_MODE_0" Name="显示所有怪物"/>
@@ -508,15 +508,15 @@
       <String ID="STATIC_MONSTER_BAR_DOCK_0" Name="在上方"/>
       <String ID="STATIC_MONSTER_BAR_DOCK_1" Name="在下方"/>
       <String ID="ENABLE_MONSTER_WEAKNESS" Name="显示怪物的弱点"/>
-      <String ID="ENABLE_MONSTER_WEAKNESS_DESC" Name="如果启用，怪物的弱点将在其血条下显示"/>
+      <String ID="ENABLE_MONSTER_WEAKNESS_DESC" Name="如开启，怪物的弱点将在其血条下显示"/>
       <String ID="ENABLE_HIDE_INACTIVE_PARTS" Name="几秒钟后隐藏无变化的部位/异常状态"/>
-      <String ID="ENABLE_HIDE_INACTIVE_PARTS_DESC" Name="如果启用，部位和异常状态将在一段时间无变化后自动隐藏"/>
+      <String ID="ENABLE_HIDE_INACTIVE_PARTS_DESC" Name="如开启，部位和异常状态将在一段时间无变化后自动隐藏"/>
       <String ID="ENABLE_BREAKABLE_PARTS" Name="显示怪物可破坏部位"/>
-      <String ID="ENABLE_BREAKABLE_PARTS_DESC" Name="如果启用可切断、破坏和移除的部位将显示在怪物显示栏下方或上方"/>
+      <String ID="ENABLE_BREAKABLE_PARTS_DESC" Name="如开启，可切断、破坏和移除的部位将显示在怪物显示栏下方或上方"/>
       <String ID="ENABLE_AILMENTS" Name="显示怪物异常状态"/>
-      <String ID="ENABLE_AILMENTS_DESC" Name="如果启用，怪物异常状态将显示在怪物栏下方或上方"/>
+      <String ID="ENABLE_AILMENTS_DESC" Name="如开启，怪物异常状态将显示在怪物栏下方或上方"/>
       <String ID="ENABLE_MONSTER_PARTS" Name="显示怪物部位"/>
-      <String ID="ENABLE_MONSTER_PARTS_DESC" Name="如果启用怪物可破坏部分将显示在怪物栏下方或上方"/>
+      <String ID="ENABLE_MONSTER_PARTS_DESC" Name="如开启，怪物可破坏部分将显示在怪物栏下方或上方"/>
       <String ID="ENABLE_MONSTER_PART_HEAD" Name="头部血量"/>
       <String ID="ENABLE_MONSTER_PART_BODY" Name="身体血量"/>
       <String ID="ENABLE_MONSTER_PART_ARM" Name="前腿血量"/>
@@ -581,7 +581,7 @@
       <String ID="STATIC_REMOVE_ABNORM_BAR_DESC" Name="移除最后一个建立的状态栏"/>
       <String ID="STATIC_ENABLE_ABNORM_BAR" Name="启用"/>
       <String ID="ENABLE_ALLIGN_ABNORM_BAR_HORIZONTALLY" Name="水平对齐状态栏"/>
-      <String ID="ENABLE_ALLIGN_ABNORM_BAR_HORIZONTALLY_DESC" Name="如果启用则状态栏将水平对齐。如果您想要垂直状态栏，请禁用此选项"/>
+      <String ID="ENABLE_ALLIGN_ABNORM_BAR_HORIZONTALLY_DESC" Name="如开启，状态栏将水平对齐。如果您想要垂直状态栏，请禁用此选项"/>
       <String ID="ENABLE_ABNORM_BAR_TIME_LEFT" Name="显示状态剩余时间"/>
       <String ID="ENABLE_ABNORM_BAR_TIME_LEFT_DESC" Name="如启用，将在状态图标下方显示其剩余时间"/>
       <String ID="STATIC_TIMER_TEXT_FORMAT" Name="计时器文字格式"/>
@@ -598,9 +598,9 @@
       <String ID="STATIC_PRIMARY_SPEC_TOOL" Name="第一件特殊衣装"/>
       <String ID="STATIC_SECONDARY_SPEC_TOOL" Name="第二件特殊衣装"/>
       <String ID="ENABLE_PRIMARY_SPEC_TOOL" Name="启用部件"/>
-      <String ID="ENABLE_PRIMARY_SPEC_TOOL_DESC" Name="如果启用则在有内容时将在第一件特殊衣装部件中显示"/>
+      <String ID="ENABLE_PRIMARY_SPEC_TOOL_DESC" Name="如开启，在有内容时将在第一件特殊衣装部件中显示"/>
       <String ID="ENABLE_SECONDARY_SPEC_TOOL" Name="启用部件"/>
-      <String ID="ENABLE_SECONDARY_SPEC_TOOL_DESC" Name="如果启用则只要有内容时将在第二件特殊衣装部件中显示"/>
+      <String ID="ENABLE_SECONDARY_SPEC_TOOL_DESC" Name="如开启，只要有内容时将在第二件特殊衣装部件中显示"/>
       <String ID="STATIC_COLOR" Name="颜色:"/>
       <String ID="STATIC_PRIMARY_SPEC_TOOL_POSITION_DESC" Name="更改第一件特殊衣装部件的位置"/>
       <String ID="STATIC_SECONDARY_SPEC_TOOL_POSITION_DESC" Name="更改第二件特殊衣装部件的位置"/>

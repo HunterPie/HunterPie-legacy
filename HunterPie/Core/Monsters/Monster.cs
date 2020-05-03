@@ -146,6 +146,7 @@ namespace HunterPie.Core {
             }
         }
         public float MaxStamina { get; private set; }
+        public bool IsCaptured { get; private set; }
         public bool[] AliveMonsters = new bool[3] { false, false, false };
 
         public List<Part> Parts = new List<Part>();
@@ -290,8 +291,8 @@ namespace HunterPie.Core {
             Int64 MonsterCurrentHPAddress = MonsterTotalHPAddress + 0x4;
             float f_TotalHP = Scanner.Read<float>(MonsterTotalHPAddress);
             float f_CurrentHP = Scanner.Read<float>(MonsterCurrentHPAddress);
-            byte monsterIsAlive = Scanner.Read<byte>(MonsterCurrentHPAddress + 0xC8);
-            if (monsterIsAlive != 0 && f_CurrentHP <= f_TotalHP && f_CurrentHP > 0) {
+        
+            if (f_CurrentHP <= f_TotalHP && f_CurrentHP > 0) {
                 this.TotalHP = f_TotalHP;
                 this.CurrentHP = f_CurrentHP;
                 this.HPPercentage = f_CurrentHP / f_TotalHP == 0 ? 1 : f_CurrentHP / f_TotalHP;
