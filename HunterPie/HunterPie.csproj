@@ -130,6 +130,7 @@
     <Compile Include="Core\Integrations\Honey\Honey.cs" />
     <Compile Include="Core\KeyboardHook.cs" />
     <Compile Include="Core\LPlayer\AbnormalityInfo.cs" />
+    <Compile Include="Core\LPlayer\Weapon.cs" />
     <Compile Include="Core\Monsters\Ailment.cs" />
     <Compile Include="Core\Monsters\AilmentInfo.cs" />
     <Compile Include="Core\Monsters\MonsterData.cs" />

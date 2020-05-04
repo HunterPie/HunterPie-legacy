@@ -148,10 +148,14 @@ namespace HunterPie {
                 // This will update Update.exe
                 AutoUpdate au = new AutoUpdate(UserSettings.PlayerConfig.HunterPie.Update.Branch);
                 au.Instance.DownloadFileCompleted += OnUpdaterDownloadComplete;
-                if (!au.CheckAutoUpdate()) {
+                OfflineMode = au.offlineMode;
+                if (!au.CheckAutoUpdate() && !au.offlineMode) {
                     HandleUpdaterUpdate();
+                } else
+                {
+                    return true;
                 }
-                this.Hide();
+                Hide();
                 return false;
             } else {
                 Debugger.Warn(GStrings.GetLocalizationByXPath("/Console/String[@ID='MESSAGE_AUTOUPDATE_DISABLED_WARN']"));

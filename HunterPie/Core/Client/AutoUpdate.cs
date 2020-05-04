@@ -46,7 +46,8 @@ namespace HunterPie.Core {
             try {
                 Debugger.Update("Checking for new versions of auto-updater");
                 return CheckOnlineHash(Instance.DownloadData($"{BranchURI}Update.exe"));
-            } catch {
+            } catch(Exception err) {
+                Debugger.Error(err);
                 Instance.Dispose();
                 offlineMode = true;
                 return false;

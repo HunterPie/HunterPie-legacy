@@ -359,15 +359,20 @@ namespace HunterPie.Core {
                 // And this one will give us the actual monster index in that target slot
                 LockonAddress = LockonAddress - 0x7C - 0x19F8;
                 int MonsterIndexInSlot = Scanner.Read<int>(LockonAddress + (MonsterLockonIndex * 8));
+                if (MonsterIndexInSlot > 2 || MonsterIndexInSlot < 0)
+                {
+                    IsTarget = false;
+                    IsSelect = 0;
+                    return;
+                }
                 // And then we get then we can finally get the monster index
                 List<int> MonsterSlotIndexes = new List<int>();
                 for (int i = 0; i < 3; i++) MonsterSlotIndexes.Add(Scanner.Read<int>(LockonAddress + 0x6C + (4 * i)));
                 int[] MonsterIndexes = MonsterSlotIndexes.ToArray();
-
-                if (MonsterIndexes[2] == -1 && MonsterIndexes[1] == -1)
+                if (MonsterIndexes[2] == -1 && MonsterIndexes[1] == -1 && AliveMonsters.Where(v => v == true).Count() == 1)
                 {
                     IsTarget = IsAlive;
-                } else if (MonsterIndexes[2] == -1 && MonsterIndexes[1] != -1)
+                } else if (MonsterIndexes[2] == -1 && MonsterIndexes[1] != -1 && AliveMonsters.Where(v => v == true).Count() == 2)
                 {
                     if (!AliveMonsters[0])
                     {
