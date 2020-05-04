@@ -4,6 +4,7 @@ using System.Threading;
 using HunterPie.Core.LPlayer;
 using HunterPie.Logger;
 using HunterPie.Memory;
+using HunterPie.Core.LPlayer.Jobs;
 
 namespace HunterPie.Core
 {
@@ -124,6 +125,19 @@ namespace HunterPie.Core
 
         // Abnormalities
         public Abnormalities Abnormalities = new Abnormalities();
+
+        // Job data
+        public Greatsword Greatsword = new Greatsword();
+        public DualBlades DualBlades = new DualBlades();
+        public Longsword Longsword = new Longsword();
+        public Hammer Hammer = new Hammer();
+        public GunLance GunLance = new GunLance();
+        public SwitchAxe SwitchAxe = new SwitchAxe();
+        public ChargeBlade ChargeBlade = new ChargeBlade();
+        public InsectGlaive InsectGlaive = new InsectGlaive();
+        public Bow Bow = new Bow();
+        public LightBowgun LightBowgun = new LightBowgun();
+        public HeavyBowgun HeavyBowgun = new HeavyBowgun();
 
         // Threading
         private ThreadStart ScanPlayerInfoRef;
@@ -428,6 +442,7 @@ namespace HunterPie.Core
                     GetSecondaryMantleTimers();
                     GetParty();
                     GetPlayerAbnormalities();
+                    
                 }
                 GetSessionId();
                 GetEquipmentAddress();
@@ -802,6 +817,144 @@ namespace HunterPie.Core
                 a.UpdateAbnormalityInfo(duration, stack);
                 Abnormalities.Add(info.InternalId, a);
             }
+        }
+
+        private void GetJobInformation()
+        {
+            long weaponAddress = Scanner.READ_MULTILEVEL_PTR(Address.BASE + Address.WEAPON_MECHANICS_OFFSET, Address.Offsets.WeaponMechanicsOffsets);
+            switch(WeaponID)
+            {
+                case 0:
+                    GetGreatswordInformation(weaponAddress);
+                    break;
+                case 2:
+                    GetDualBladesInformation(weaponAddress);
+                    break;
+                case 3:
+                    GetLongswordInformation(weaponAddress);
+                    break;
+                case 4:
+                    GetHammerInformation(weaponAddress);
+                    break;
+                case 7:
+                    GetGunLanceInformation(weaponAddress);
+                    break;
+                case 8:
+                    GetSwitchAxeInformation(weaponAddress);
+                    break;
+                case 9:
+                    GetChargeBladeInformation(weaponAddress);
+                    break;
+                case 10:
+                    GetInsectGlaiveInformation(weaponAddress);
+                    break;
+                case 11:
+                    GetBowInformation(weaponAddress);
+                    break;
+                case 12:
+                    GetHeavyBowgunInformation(weaponAddress);
+                    break;
+                case 13:
+                    GetLightBowgunInformation(weaponAddress);
+                    break;
+            }
+        }
+
+        private void GetGreatswordInformation(long weaponAddress)
+        {
+            uint chargeLevel = Scanner.Read<uint>(weaponAddress - 0x14);
+            Greatsword.ChargeLevel = chargeLevel;
+        }
+
+        private void GetDualBladesInformation(long weaponAddress)
+        {
+            bool inDemonMode = Scanner.Read<bool>(weaponAddress - 0x4);
+            float demonGauge = Scanner.Read<float>(weaponAddress);
+            DualBlades.InDemonMode = inDemonMode;
+            DualBlades.DemonGauge = demonGauge;
+        }
+
+        private void GetLongswordInformation(long weaponAddress)
+        {
+            float gauge = Scanner.Read<float>(weaponAddress - 0x4);
+            int chargeLevel = Scanner.Read<int>(weaponAddress + 0x4);
+            float chargeGauge = Scanner.Read<float>(weaponAddress + 0x8);
+            Longsword.InnerGauge = gauge;
+            Longsword.ChargeLevel = chargeLevel;
+            Longsword.OuterGauge = chargeGauge;
+        }
+
+        private void GetHammerInformation(long weaponAddress)
+        {
+            bool isPowerCharged = Scanner.Read<bool>(weaponAddress - 0x18);
+            int chargeLevel = Scanner.Read<int>(weaponAddress - 0x10);
+            Hammer.IsPowerCharged = isPowerCharged;
+            Hammer.ChargeLevel = chargeLevel;
+        }
+
+        private void GetGunLanceInformation(long weaponAddress)
+        {
+            long AbnormalitiesAddress = Scanner.READ_MULTILEVEL_PTR(Address.BASE + Address.ABNORMALITY_OFFSET, Address.Offsets.AbnormalityOffsets);
+            int totalAmmo = Scanner.Read<int>(weaponAddress - 0x4);
+            int currentAmmo = Scanner.Read<int>(weaponAddress);
+            int totalBigAmmo = Scanner.Read<int>(weaponAddress + 0xC);
+            int currentBigAmmo = Scanner.Read<int>(weaponAddress + 0x10);
+            float wyvernblast = Scanner.Read<float>(AbnormalitiesAddress + 0xB70);
+            GunLance.TotalAmmo = totalAmmo;
+            GunLance.Ammo = currentAmmo;
+            GunLance.TotalBigAmmo = totalBigAmmo;
+            GunLance.BigAmmo = currentBigAmmo;
+            GunLance.WyvernblastTimer = wyvernblast;
+        }
+
+        private void GetSwitchAxeInformation(long weaponAddress)
+        {
+            float outerGauge = Scanner.Read<float>(weaponAddress - 0xC);
+            float innerGauge = Scanner.Read<float>(weaponAddress - 0x1C);
+            SwitchAxe.OuterGauge = outerGauge;
+            SwitchAxe.InnerGauge = innerGauge;
+        }
+
+        private void GetChargeBladeInformation(long weaponAddress)
+        {
+            float hiddenGauge = Scanner.Read<float>(weaponAddress + 0x4);
+            float shieldBuff = Scanner.Read<float>(weaponAddress + 0xC);
+            float swordBuff = Scanner.Read<float>(weaponAddress + 0x10);
+            int vialsAmount = Scanner.Read<int>(weaponAddress + 0x8);
+            ChargeBlade.VialChargeGauge = hiddenGauge;
+            ChargeBlade.ShieldBuffTimer = shieldBuff;
+            ChargeBlade.SwordBuffTimer = swordBuff;
+            ChargeBlade.Vials = vialsAmount;
+        }
+
+        private void GetInsectGlaiveInformation(long weaponAddress)
+        {
+            float redBuff = Scanner.Read<float>(weaponAddress - 0x4);
+            float whiteBuff = Scanner.Read<float>(weaponAddress);
+            float orangeBuff = Scanner.Read<float>(weaponAddress + 0x4);
+            InsectGlaive.RedBuff = redBuff;
+            InsectGlaive.WhiteBuff = whiteBuff;
+            InsectGlaive.OrangeBuff = orangeBuff;
+        }
+
+        private void GetBowInformation(long weaponAddress)
+        {
+            int chargeLevel = Scanner.Read<int>(weaponAddress + 0x68);
+            Bow.ChargeLevel = chargeLevel;
+        }
+
+        private void GetLightBowgunInformation(long weaponAddress)
+        {
+            float specialAmmoTimer = Scanner.Read<float>(weaponAddress + 0x4E0);
+            LightBowgun.SpecialAmmoRegen = specialAmmoTimer;
+        }
+
+        private void GetHeavyBowgunInformation(long weaponAddress)
+        {
+            float wyvernsnipe = Scanner.Read<float>(weaponAddress - 0xC);
+            float wyvernheart = Scanner.Read<float>(weaponAddress - 0x14);
+            HeavyBowgun.WyvernsnipeTimer = wyvernsnipe;
+            HeavyBowgun.WyvernheartTimer = wyvernheart;
         }
 
         #endregion

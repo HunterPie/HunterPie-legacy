@@ -6,7 +6,6 @@ using HunterPie.Core.Monsters;
 using HunterPie.Memory;
 using HunterPie.Logger;
 
-
 namespace HunterPie.Core {
     public class Monster {
         // Private vars

@@ -19,6 +19,7 @@ namespace HunterPie.Memory {
             public static int[] MonsterSelectedOffsets;
             public static int[] PlayerGearOffsets;
             public static int[] PlayerLockonOffsets;
+            public static int[] WeaponMechanicsOffsets;
 
             public static int FertilizersOffset;
             public static int TailRaidersOffset = 0x10344C;
@@ -44,17 +45,18 @@ namespace HunterPie.Memory {
 
         // Static addresses
         public static Int64 BASE = 0x140000000;
-        public static Int64 LEVEL_OFFSET = 0x3B4C2B8;
-        public static Int64 ZONE_OFFSET = 0x48F2E60;
-        public static Int64 MONSTER_OFFSET = 0x48E06E8;
-        public static Int64 SESSION_OFFSET = 0x48E85C0;
-        public static Int64 EQUIPMENT_OFFSET = 0x3B50668;
-        public static Int64 WEAPON_OFFSET = 0x3BEDE58;
-        public static Int64 PARTY_OFFSET = 0x48E1850;
+        public static Int64 LEVEL_OFFSET = 0x0;
+        public static Int64 ZONE_OFFSET = 0x0;
+        public static Int64 MONSTER_OFFSET = 0x0;
+        public static Int64 SESSION_OFFSET = 0x0;
+        public static Int64 EQUIPMENT_OFFSET = 0x0;
+        public static Int64 WEAPON_OFFSET = 0x0;
+        public static Int64 PARTY_OFFSET = 0x0;
         public static Int64 DAMAGE_OFFSET = 0x0;
         public static Int64 ABNORMALITY_OFFSET = 0x0;
         public static Int64 MONSTER_SELECTED_OFFSET = 0x0;
         public static Int64 MONSTER_TARGETED_OFFSET = 0x0;
+        public static Int64 WEAPON_MECHANICS_OFFSET = 0x0;
 
         // Consts
         public const Int64 cooldownFixed = 0x9EC;
@@ -154,6 +156,7 @@ namespace HunterPie.Memory {
             LoadAddressFromDict(nameof(ABNORMALITY_OFFSET), out ABNORMALITY_OFFSET, ABNORMALITY_OFFSET);
             LoadAddressFromDict(nameof(MONSTER_SELECTED_OFFSET), out MONSTER_SELECTED_OFFSET, MONSTER_SELECTED_OFFSET);
             LoadAddressFromDict(nameof(MONSTER_TARGETED_OFFSET), out MONSTER_TARGETED_OFFSET, MONSTER_TARGETED_OFFSET);
+            LoadAddressFromDict(nameof(WEAPON_MECHANICS_OFFSET), out WEAPON_MECHANICS_OFFSET, WEAPON_MECHANICS_OFFSET);
             // Load offsets
             LoadOffsetsFromDict("LevelOffsets", out Offsets.LevelOffsets, Offsets.LevelOffsets);
             LoadOffsetsFromDict("ZoneOffsets", out Offsets.ZoneOffsets, Offsets.ZoneOffsets);
@@ -168,6 +171,7 @@ namespace HunterPie.Memory {
             LoadOffsetsFromDict("MonsterSelectedOffsets", out Offsets.MonsterSelectedOffsets, Offsets.MonsterSelectedOffsets);
             LoadOffsetsFromDict("PlayerGearOffsets", out Offsets.PlayerGearOffsets, Offsets.PlayerGearOffsets);
             LoadOffsetsFromDict("PlayerLockonOffsets", out Offsets.PlayerLockonOffsets, Offsets.PlayerLockonOffsets);
+            LoadOffsetsFromDict("WeaponMechanicsOffsets", out Offsets.WeaponMechanicsOffsets, Offsets.WeaponMechanicsOffsets);
             // Clear addresses loaded into memory
             MappedAddresses.Clear();
             MappedOffsets.Clear();
