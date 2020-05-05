@@ -89,12 +89,17 @@ namespace HunterPie.GUI.Widgets.ClassWidget
                     control.UnhookEvents();
                 }
                 Container.Children.Clear();
-                switch (Context.Player.WeaponID)
+                switch ((Classes)Context.Player.WeaponID)
                 {
-                    case 9:
-                        var control = new Parts.ChargeBladeControl();
-                        control.SetContext(Context.Player.ChargeBlade);
-                        Container.Children.Add(control);
+                    case Classes.ChargeBlade:
+                        var ChargeBladeControl = new Parts.ChargeBladeControl();
+                        ChargeBladeControl.SetContext(Context.Player.ChargeBlade);
+                        Container.Children.Add(ChargeBladeControl);
+                        break;
+                    case Classes.InsectGlaive:
+                        var InsectGlaiveControl = new Parts.InsectGlaiveControl();
+                        InsectGlaiveControl.SetContext(Context.Player.InsectGlaive);
+                        Container.Children.Add(InsectGlaiveControl);
                         break;
                 }
             }));

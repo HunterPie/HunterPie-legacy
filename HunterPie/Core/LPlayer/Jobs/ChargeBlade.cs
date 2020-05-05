@@ -7,13 +7,15 @@ namespace HunterPie.Core.LPlayer.Jobs
         public float VialChargeGauge;
         public float ShieldBuffTimer;
         public float SwordBuffTimer;
+        public float PoweraxeTimer;
         public int Vials;
-
+        
         public ChargeBladeEventArgs(ChargeBlade weapon)
         {
             VialChargeGauge = weapon.VialChargeGauge;
             ShieldBuffTimer = weapon.ShieldBuffTimer;
             SwordBuffTimer = weapon.SwordBuffTimer;
+            PoweraxeTimer = weapon.PoweraxeTimer;
             Vials = weapon.Vials;
         }
     }
@@ -23,6 +25,7 @@ namespace HunterPie.Core.LPlayer.Jobs
         private float shieldBuffTimer;
         private float swordBuffTimer;
         private int vials;
+        private float poweraxeTimer;
 
         public float VialChargeGauge
         {
@@ -72,12 +75,25 @@ namespace HunterPie.Core.LPlayer.Jobs
                 }
             }
         }
+        public float PoweraxeTimer
+        {
+            get => poweraxeTimer;
+            set
+            {
+                if (value != poweraxeTimer)
+                {
+                    poweraxeTimer = value;
+                    Dispatch(OnPoweraxeBuffChange);
+                }
+            }
+        }
 
         public delegate void ChargeBladeEvents(object source, ChargeBladeEventArgs args);
         public event ChargeBladeEvents OnVialChargeGaugeChange;
         public event ChargeBladeEvents OnShieldBuffChange;
         public event ChargeBladeEvents OnSwordBuffChange;
         public event ChargeBladeEvents OnVialsChange;
+        public event ChargeBladeEvents OnPoweraxeBuffChange;
 
         private void Dispatch(ChargeBladeEvents e) => e?.Invoke(this, new ChargeBladeEventArgs(this));
     }

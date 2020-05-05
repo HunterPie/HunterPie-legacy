@@ -1,8 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace HunterPie.Core.LPlayer.Jobs
 {
@@ -24,6 +20,7 @@ namespace HunterPie.Core.LPlayer.Jobs
         private float redBuff;
         private float whiteBuff;
         private float orangeBuff;
+        private float kinsectStamina;
 
         public float RedBuff
         {
@@ -61,11 +58,24 @@ namespace HunterPie.Core.LPlayer.Jobs
                 }
             }
         }
+        public float KinsectStamina
+        {
+            get => kinsectStamina;
+            set
+            {
+                if (value != kinsectStamina)
+                {
+                    kinsectStamina = value;
+                    Dispatch(OnKinsectStaminaUpdate);
+                }
+            }
+        }
 
         public delegate void InsectGlaiveEvents(object source, InsectGlaiveEventArgs args);
         public event InsectGlaiveEvents OnRedBuffUpdate;
         public event InsectGlaiveEvents OnWhiteBuffUpdate;
         public event InsectGlaiveEvents OnOrangeBuffUpdate;
+        public event InsectGlaiveEvents OnKinsectStaminaUpdate;
 
         private void Dispatch(InsectGlaiveEvents e) => e?.Invoke(this, new InsectGlaiveEventArgs(this));
     }

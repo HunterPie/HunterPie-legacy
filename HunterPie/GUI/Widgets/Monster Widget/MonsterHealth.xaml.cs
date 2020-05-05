@@ -420,7 +420,7 @@ namespace HunterPie.GUI.Widgets
             UserSettings.Config.Monsterscomponent config = UserSettings.PlayerConfig.Overlay.MonstersComponent;
             // Parts
             MonsterPartsContainer.MaxWidth = config.EnableMonsterAilments ? (NewSize - 2) / 2 : (NewSize - 1);
-            MonsterAilmentsContainer.MaxWidth = config.EnableMonsterParts ? (NewSize - 2) / 2 : (NewSize - 1);
+            MonsterAilmentsContainer.MaxWidth = config.EnableMonsterParts || config.EnableRemovableParts ? (NewSize - 2) / 2 : (NewSize - 1);
             UpdateContainerBarsSizeDynamically();
             // Monster Bar
             MonsterHealthBar.MaxSize = NewSize - 69;

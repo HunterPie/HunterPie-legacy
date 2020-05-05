@@ -822,39 +822,39 @@ namespace HunterPie.Core
         private void GetJobInformation()
         {
             long weaponAddress = Scanner.READ_MULTILEVEL_PTR(Address.BASE + Address.WEAPON_MECHANICS_OFFSET, Address.Offsets.WeaponMechanicsOffsets);
-            switch(WeaponID)
+            switch((Classes)WeaponID)
             {
-                case 0:
+                case Classes.Greatsword:
                     GetGreatswordInformation(weaponAddress);
                     break;
-                case 2:
+                case Classes.DualBlades:
                     GetDualBladesInformation(weaponAddress);
                     break;
-                case 3:
+                case Classes.LongSword:
                     GetLongswordInformation(weaponAddress);
                     break;
-                case 4:
+                case Classes.Hammer:
                     GetHammerInformation(weaponAddress);
                     break;
-                case 7:
+                case Classes.GunLance:
                     GetGunLanceInformation(weaponAddress);
                     break;
-                case 8:
+                case Classes.SwitchAxe:
                     GetSwitchAxeInformation(weaponAddress);
                     break;
-                case 9:
+                case Classes.ChargeBlade:
                     GetChargeBladeInformation(weaponAddress);
                     break;
-                case 10:
+                case Classes.InsectGlaive:
                     GetInsectGlaiveInformation(weaponAddress);
                     break;
-                case 11:
+                case Classes.Bow:
                     GetBowInformation(weaponAddress);
                     break;
-                case 12:
+                case Classes.HeavyBowgun:
                     GetHeavyBowgunInformation(weaponAddress);
                     break;
-                case 13:
+                case Classes.LightBowgun:
                     GetLightBowgunInformation(weaponAddress);
                     break;
             }
@@ -921,10 +921,12 @@ namespace HunterPie.Core
             float shieldBuff = Scanner.Read<float>(weaponAddress + 0xC);
             float swordBuff = Scanner.Read<float>(weaponAddress + 0x10);
             int vialsAmount = Scanner.Read<int>(weaponAddress + 0x8);
+            float poweraxeBuff = Scanner.Read<float>(weaponAddress + 0x104);
             ChargeBlade.VialChargeGauge = hiddenGauge;
             ChargeBlade.ShieldBuffTimer = shieldBuff;
             ChargeBlade.SwordBuffTimer = swordBuff;
             ChargeBlade.Vials = vialsAmount;
+            ChargeBlade.PoweraxeTimer = poweraxeBuff;
         }
 
         private void GetInsectGlaiveInformation(long weaponAddress)

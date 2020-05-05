@@ -12,6 +12,7 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
+using HunterPie.Core.LPlayer.Jobs;
 using ChargeBlade = HunterPie.Core.LPlayer.Jobs.ChargeBlade;
 using ChargeBladeEventArgs = HunterPie.Core.LPlayer.Jobs.ChargeBladeEventArgs;
 
@@ -52,8 +53,6 @@ namespace HunterPie.GUI.Widgets.ClassWidget.Parts
         // Using a DependencyProperty as the backing store for HiddenGaugeColor.  This enables animation, styling, binding, etc...
         public static readonly DependencyProperty HiddenGaugeColorProperty =
             DependencyProperty.Register("HiddenGaugeColor", typeof(string), typeof(ChargeBladeControl));
-
-
 
         public string SwordBuff
         {
@@ -97,6 +96,27 @@ namespace HunterPie.GUI.Widgets.ClassWidget.Parts
             DependencyProperty.Register("ShieldBuffOpacity", typeof(double), typeof(ChargeBladeControl));
 
 
+        public string PoweraxeBuff
+        {
+            get { return (string)GetValue(PoweraxeBuffProperty); }
+            set { SetValue(PoweraxeBuffProperty, value); }
+        }
+
+        // Using a DependencyProperty as the backing store for PoweraxeBuff.  This enables animation, styling, binding, etc...
+        public static readonly DependencyProperty PoweraxeBuffProperty =
+            DependencyProperty.Register("PoweraxeBuff", typeof(string), typeof(ChargeBladeControl));
+
+
+        public double PoweraxeOpacity
+        {
+            get { return (double)GetValue(PoweraxeOpacityProperty); }
+            set { SetValue(PoweraxeOpacityProperty, value); }
+        }
+
+        // Using a DependencyProperty as the backing store for PoweraxeOpacity.  This enables animation, styling, binding, etc...
+        public static readonly DependencyProperty PoweraxeOpacityProperty =
+            DependencyProperty.Register("PoweraxeOpacity", typeof(double), typeof(ChargeBladeControl));
+
         ChargeBlade Context;
 
         public ChargeBladeControl()
@@ -107,6 +127,7 @@ namespace HunterPie.GUI.Widgets.ClassWidget.Parts
         public void SetContext(ChargeBlade ctx)
         {
             Context = ctx;
+            UpdateInformation();
             HookEvents();
         }
 
@@ -116,6 +137,7 @@ namespace HunterPie.GUI.Widgets.ClassWidget.Parts
             Context.OnSwordBuffChange += OnSwordBuffUpdate;
             Context.OnVialChargeGaugeChange += OnVialChargeGaugeUpdate;
             Context.OnVialsChange += OnVialsChange;
+            Context.OnPoweraxeBuffChange += OnPowerchargeUpdate;
         }
 
         public override void UnhookEvents()
@@ -124,8 +146,29 @@ namespace HunterPie.GUI.Widgets.ClassWidget.Parts
             Context.OnSwordBuffChange -= OnSwordBuffUpdate;
             Context.OnVialChargeGaugeChange -= OnVialChargeGaugeUpdate;
             Context.OnVialsChange -= OnVialsChange;
+            Context.OnPoweraxeBuffChange -= OnPowerchargeUpdate;
             Context = null;
             base.UnhookEvents();
+        }
+
+        private void UpdateInformation()
+        {
+            // In case HunterPie is started mid-game, update everything without waiting for events
+            ChargeBladeEventArgs dummyArgs = new ChargeBladeEventArgs(Context);
+            OnPowerchargeUpdate(this, dummyArgs);
+            OnVialsChange(this, dummyArgs);
+            OnVialChargeGaugeUpdate(this, dummyArgs);
+            OnSwordBuffUpdate(this, dummyArgs);
+            OnShieldBuffUpdate(this, dummyArgs);
+        }
+
+        private void OnPowerchargeUpdate(object source, ChargeBladeEventArgs args)
+        {
+            Dispatcher.BeginInvoke(System.Windows.Threading.DispatcherPriority.Render, new Action(() =>
+            {
+                PoweraxeBuff = args.PoweraxeTimer > 0 ? $"{TimeSpan.FromSeconds(args.PoweraxeTimer):ss}" : null;
+                PoweraxeOpacity = args.PoweraxeTimer > 0 ? 1 : 0;
+            }));
         }
 
         private void OnVialsChange(object source, ChargeBladeEventArgs args)

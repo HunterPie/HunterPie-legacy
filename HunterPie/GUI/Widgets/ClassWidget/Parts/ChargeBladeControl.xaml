@@ -6,8 +6,8 @@
              xmlns:local="clr-namespace:HunterPie.GUI.Widgets.ClassWidget.Parts"
              mc:Ignorable="d" 
              >
-    <Grid Height="94" Width="139">
-        <Rectangle Opacity="0.8" Height="37" VerticalAlignment="Top" HorizontalAlignment="Left" Width="36" Margin="50,17,0,0" RenderTransformOrigin="0.5,0.5" StrokeThickness="1">
+    <Grid Height="139" Width="139">
+        <Rectangle Opacity="0.8" Height="37" VerticalAlignment="Top" HorizontalAlignment="Left" Width="37" Margin="50,18,0,0" RenderTransformOrigin="0.5,0.5" StrokeThickness="1">
             <Rectangle.Stroke>
                 <LinearGradientBrush EndPoint="0.5,0.5" StartPoint="0,0">
                     <GradientStop Color="#00000000" Offset="0"/>
@@ -29,9 +29,9 @@
                 </TransformGroup>
             </Rectangle.RenderTransform>
         </Rectangle>
-        <Rectangle Opacity="0.8" Height="37" VerticalAlignment="Top" HorizontalAlignment="Left" Width="37" Margin="78,45,0,0" RenderTransformOrigin="0.5,0.5" StrokeThickness="1">
+        <Rectangle Opacity="0.8" Height="37" VerticalAlignment="Top" HorizontalAlignment="Left" Width="37" Margin="77,45,0,0" RenderTransformOrigin="0.5,0.5" StrokeThickness="1">
             <Rectangle.Stroke>
-                <LinearGradientBrush EndPoint="0,1" StartPoint="1,1" Opacity="{Binding ElementName=CBControl, Path=ShieldBuffOpacity}">
+                <LinearGradientBrush EndPoint="0,1" StartPoint="1,0" Opacity="{Binding ElementName=CBControl, Path=ShieldBuffOpacity}">
                     <GradientStop Color="#00000000" Offset="0"/>
                     <GradientStop Color="#FFA41515" Offset="1"/>
                 </LinearGradientBrush>
@@ -51,9 +51,9 @@
                 </TransformGroup>
             </Rectangle.RenderTransform>
         </Rectangle>
-        <Rectangle Opacity="0.8" Height="37" VerticalAlignment="Top" HorizontalAlignment="Left" Width="38" Margin="21,45,0,0" RenderTransformOrigin="0.5,0.5" StrokeThickness="1">
+        <Rectangle Opacity="0.8" Height="37" VerticalAlignment="Top" HorizontalAlignment="Left" Width="37" Margin="23,45,0,0" RenderTransformOrigin="0.5,0.5" StrokeThickness="1">
             <Rectangle.Stroke>
-                <LinearGradientBrush EndPoint="0,0" StartPoint="0,1" Opacity="{Binding ElementName=CBControl, Path=SwordBuffOpacity}">
+                <LinearGradientBrush EndPoint="1,0" StartPoint="0,1" Opacity="{Binding ElementName=CBControl, Path=SwordBuffOpacity}">
                     <GradientStop Color="#00000000" Offset="0"/>
                     <GradientStop Color="#FFA41515 " Offset="1"/>
                 </LinearGradientBrush>
@@ -92,25 +92,53 @@
             </Rectangle.RenderTransform>
         </Rectangle>
 
-        <Image Source="pack://siteoforigin:,,,/HunterPie.Resources/UI/Class/ChargeBladePhial.png" Height="26" VerticalAlignment="Top" HorizontalAlignment="Left" Width="16" Margin="60,18,0,0">
+        <Image Source="pack://siteoforigin:,,,/HunterPie.Resources/UI/Class/ChargeBladePhial.png" Height="26" VerticalAlignment="Top" HorizontalAlignment="Left" Width="16" Margin="60,20,0,0">
             <Image.Effect>
                 <DropShadowEffect Color="{Binding ElementName=CBControl, Path=HiddenGaugeColor}" ShadowDepth="0" Direction="180" BlurRadius="10"/>
             </Image.Effect>
         </Image>
-        <Image Source="pack://siteoforigin:,,,/HunterPie.Resources/UI/Class/ChargeBladeSword.png" Height="26" VerticalAlignment="Top" HorizontalAlignment="Left" Width="16" Margin="31,45,0,0" OpacityMask="#CC000000">
+        <Image Source="pack://siteoforigin:,,,/HunterPie.Resources/UI/Class/ChargeBladeSword.png" Height="26" VerticalAlignment="Top" HorizontalAlignment="Left" Width="16" Margin="34,45,0,0" OpacityMask="#CC000000">
             <Image.Effect>
-                <DropShadowEffect Color="#FFFF00A2" ShadowDepth="0" Direction="180" BlurRadius="4" Opacity="{Binding ElementName=CBControl, Path=SwordBuffOpacity}"/>
+                <DropShadowEffect Color="#FFFF00A2" ShadowDepth="0" Direction="180" BlurRadius="10" Opacity="{Binding ElementName=CBControl, Path=SwordBuffOpacity}"/>
             </Image.Effect>
         </Image>
-        <Image Source="pack://siteoforigin:,,,/HunterPie.Resources/UI/Class/ChargeBladeShield.png" Height="26" VerticalAlignment="Top" HorizontalAlignment="Left" Width="26" Margin="83,45,0,0" OpacityMask="#CC000000">
+        <Image Source="pack://siteoforigin:,,,/HunterPie.Resources/UI/Class/ChargeBladeShield.png" Height="26" VerticalAlignment="Top" HorizontalAlignment="Left" Width="26" Margin="82,45,0,0" OpacityMask="#CC000000">
             <Image.Effect>
-                <DropShadowEffect Color="#FFFF00A2" ShadowDepth="0" Direction="180" BlurRadius="4" Opacity="{Binding ElementName=CBControl, Path=ShieldBuffOpacity}"/>
+                <DropShadowEffect Color="#FFFF00A2" ShadowDepth="0" Direction="180" BlurRadius="10" Opacity="{Binding ElementName=CBControl, Path=ShieldBuffOpacity}"/>
             </Image.Effect>
         </Image>
 
-        <TextBlock Text="{Binding ElementName=CBControl, Path=Vials}" Height="18" VerticalAlignment="Top" HorizontalAlignment="Left" Width="27" Margin="55,37,0,0" Foreground="White" FontSize="17" FontWeight="Medium" TextAlignment="Center"/>
-        <TextBlock Text="{Binding ElementName=CBControl, Path=ShieldBuff}" Height="14" VerticalAlignment="Top" HorizontalAlignment="Left" Width="32" Margin="80,66,0,0" Foreground="White" FontSize="13" TextAlignment="Center" FontWeight="Medium"/>
-        <TextBlock Text="{Binding ElementName=CBControl, Path=SwordBuff}" Height="14" VerticalAlignment="Top" HorizontalAlignment="Left" Width="27" Margin="26,66,0,0" Foreground="White" FontSize="13" TextAlignment="Center" FontWeight="Medium"/>
+        <TextBlock Text="{Binding ElementName=CBControl, Path=Vials}" Height="18" VerticalAlignment="Top" HorizontalAlignment="Left" Width="27" Margin="55,38,0,0" Foreground="White" FontSize="17" FontWeight="Medium" TextAlignment="Center"/>
+        <TextBlock Text="{Binding ElementName=CBControl, Path=ShieldBuff}" Height="14" VerticalAlignment="Top" HorizontalAlignment="Left" Width="32" Margin="79,66,0,0" Foreground="White" FontSize="13" TextAlignment="Center" FontWeight="Light"/>
+        <TextBlock Text="{Binding ElementName=CBControl, Path=SwordBuff}" Height="14" VerticalAlignment="Top" HorizontalAlignment="Left" Width="27" Margin="28,66,0,0" Foreground="White" FontSize="13" TextAlignment="Center" FontWeight="Light"/>
+        <Rectangle Opacity="0.8" Height="37" VerticalAlignment="Top" HorizontalAlignment="Left" Width="37" Margin="50,72,0,0" RenderTransformOrigin="0.5,0.5" StrokeThickness="1">
+            <Rectangle.Stroke>
+                <LinearGradientBrush EndPoint="0,0" StartPoint="1,1" Opacity="{Binding PoweraxeOpacity, ElementName=CBControl}">
+                    <GradientStop Color="#00000000" Offset="0"/>
+                    <GradientStop Color="#FFFF5D00 " Offset="1"/>
+                </LinearGradientBrush>
+            </Rectangle.Stroke>
+            <Rectangle.Fill>
+                <RadialGradientBrush>
+                    <GradientStop Color="#7F191623"/>
+                    <GradientStop Color="#7F1A181D" Offset="1"/>
+                </RadialGradientBrush>
+            </Rectangle.Fill>
+            <Rectangle.RenderTransform>
+                <TransformGroup>
+                    <ScaleTransform/>
+                    <SkewTransform/>
+                    <RotateTransform Angle="45"/>
+                    <TranslateTransform/>
+                </TransformGroup>
+            </Rectangle.RenderTransform>
+        </Rectangle>
+        <Image Source="pack://siteoforigin:,,,/HunterPie.Resources/UI/Class/ChargeBladePoweraxe.png" Height="29" VerticalAlignment="Top" HorizontalAlignment="Left" Width="24" Margin="56,70,0,0" OpacityMask="#CC000000" Stretch="UniformToFill">
+            <Image.Effect>
+                <DropShadowEffect Color="#FFFF5D00" ShadowDepth="0" Direction="180" BlurRadius="10" Opacity="{Binding PoweraxeOpacity, ElementName=CBControl}"/>
+            </Image.Effect>
+        </Image>
+        <TextBlock Text="{Binding PoweraxeBuff, ElementName=CBControl}" Height="14" VerticalAlignment="Top" HorizontalAlignment="Left" Width="27" Margin="55,94,0,0" Foreground="White" FontSize="13" TextAlignment="Center" FontWeight="Light"/>
 
     </Grid>
 </local:ClassControl>
