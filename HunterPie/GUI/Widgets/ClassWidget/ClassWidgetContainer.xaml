@@ -6,8 +6,8 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:HunterPie.GUI.Widgets.ClassWidget"
         mc:Ignorable="d"
-        Title="ClassWidgetContainer" d:DesignHeight="200" d:DesignWidth="250" ResizeMode="NoResize" WindowStyle="None" AllowsTransparency="True" ShowInTaskbar="False" Topmost="True" Closing="OnClosing" Background="{x:Null}" MouseDown="OnMouseDown" MouseWheel="OnMouseWheel">
-    <StackPanel>
+        Title="ClassWidgetContainer" SizeToContent="WidthAndHeight" ResizeMode="NoResize" WindowStyle="None" AllowsTransparency="True" ShowInTaskbar="False" Topmost="True" Closing="OnClosing" Background="{x:Null}" MouseDown="OnMouseDown" MouseWheel="OnMouseWheel">
+    <StackPanel x:Name="Container">
         
     </StackPanel>
 </widget:Widget>

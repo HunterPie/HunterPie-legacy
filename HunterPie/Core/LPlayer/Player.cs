@@ -442,7 +442,7 @@ namespace HunterPie.Core
                     GetSecondaryMantleTimers();
                     GetParty();
                     GetPlayerAbnormalities();
-                    
+                    GetJobInformation();
                 }
                 GetSessionId();
                 GetEquipmentAddress();

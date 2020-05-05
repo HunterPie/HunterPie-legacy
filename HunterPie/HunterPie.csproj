@@ -140,7 +140,6 @@
     <Compile Include="Core\LPlayer\Jobs\LightBowgun.cs" />
     <Compile Include="Core\LPlayer\Jobs\Longsword.cs" />
     <Compile Include="Core\LPlayer\Jobs\SwitchAxe.cs" />
-    <Compile Include="Core\LPlayer\Weapon.cs" />
     <Compile Include="Core\LPlayer\Jobs\Greatsword.cs" />
     <Compile Include="Core\Monsters\Ailment.cs" />
     <Compile Include="Core\Monsters\AilmentInfo.cs" />
@@ -281,6 +280,14 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
+    <Page Include="GUI\Widgets\ClassWidget\ClassWidgetContainer.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="GUI\Widgets\ClassWidget\Parts\ChargeBladeControl.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="GUI\Widgets\DPSMeter\Meter.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -356,6 +363,13 @@
     <Compile Include="GUI\Widgets\Abnormality Widget\Parts\AbnormalitySettingControl.xaml.cs">
       <DependentUpon>AbnormalitySettingControl.xaml</DependentUpon>
     </Compile>
+    <Compile Include="GUI\Widgets\ClassWidget\ClassWidgetContainer.xaml.cs">
+      <DependentUpon>ClassWidgetContainer.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="GUI\Widgets\ClassWidget\Parts\ChargeBladeControl.xaml.cs">
+      <DependentUpon>ChargeBladeControl.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="GUI\Widgets\ClassWidget\Parts\ClassControl.cs" />
     <Compile Include="GUI\Widgets\DPSMeter\Meter.xaml.cs">
       <DependentUpon>Meter.xaml</DependentUpon>
     </Compile>
@@ -766,6 +780,19 @@
   <ItemGroup>
     <None Include="HunterPie.Resources\UI\HarvestBox\HarvestBoxBottomTexture.png">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="HunterPie.Resources\UI\Class\ChargeBladeShield.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="HunterPie.Resources\UI\Class\ChargeBladeSword.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="HunterPie.Resources\UI\Class\ChargeBladePhial.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

@@ -26,6 +26,10 @@ namespace HunterPie.GUI.Widgets.ClassWidget
             WidgetType = 6;
             InitializeComponent();
             SetContext(ctx);
+            SetWindowFlags();
+            // Clear this later
+            WidgetHasContent = true;
+            WidgetActive = true;
         }
 
         public override void EnterWidgetDesignMode()
@@ -73,12 +77,50 @@ namespace HunterPie.GUI.Widgets.ClassWidget
 
         private void OnZoneChange(object source, EventArgs args)
         {
-            throw new NotImplementedException();
+            //throw new NotImplementedException();
         }
 
         private void OnWeaponChange(object source, EventArgs args)
         {
-            throw new NotImplementedException();
+            Dispatcher.BeginInvoke(System.Windows.Threading.DispatcherPriority.Render, new Action(() =>
+            {
+                foreach (Parts.ClassControl control in Container.Children)
+                {
+                    control.UnhookEvents();
+                }
+                Container.Children.Clear();
+                switch (Context.Player.WeaponID)
+                {
+                    case 9:
+                        var control = new Parts.ChargeBladeControl();
+                        control.SetContext(Context.Player.ChargeBlade);
+                        Container.Children.Add(control);
+                        break;
+                }
+            }));
+            
         }
+
+
+        private void OnMouseDown(object sender, MouseButtonEventArgs e)
+        {
+            if (e.LeftButton == MouseButtonState.Pressed)
+            {
+                this.MoveWidget();
+                SaveSettings();
+            }
+        }
+
+        private void OnMouseWheel(object sender, MouseWheelEventArgs e)
+        {
+            
+        }
+
+        private void OnClosing(object sender, System.ComponentModel.CancelEventArgs e)
+        {
+            UnhookEvents();
+            IsClosed = true;
+        }
+
     }
 }

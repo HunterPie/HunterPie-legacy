@@ -217,11 +217,5 @@ namespace HunterPie.GUI.Widgets {
             }
         }
 
-        private float ConvertPercentageIntoAngle(float percentage) {
-            float max = -269.999f;
-            float angle = 90 - (360 * percentage);
-            if (angle < max) angle = max;
-            return angle;
-        }
     }
 }
