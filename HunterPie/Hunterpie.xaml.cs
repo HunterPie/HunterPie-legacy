@@ -28,7 +28,7 @@ namespace HunterPie {
         bool OfflineMode = false;
 
         // HunterPie version
-        const string HUNTERPIE_VERSION = "1.0.3.90";
+        const string HUNTERPIE_VERSION = "1.0.3.91";
 
         // Helpers
         IntPtr _windowHandle;

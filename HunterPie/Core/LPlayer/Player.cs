@@ -919,9 +919,9 @@ namespace HunterPie.Core
         private void GetChargeBladeInformation(long weaponAddress)
         {
             float hiddenGauge = Scanner.Read<float>(weaponAddress + 0x4);
-            float shieldBuff = Scanner.Read<float>(weaponAddress + 0xC);
-            float swordBuff = Scanner.Read<float>(weaponAddress + 0x10);
             int vialsAmount = Scanner.Read<int>(weaponAddress + 0x8);
+            float swordBuff = Scanner.Read<float>(weaponAddress + 0x10);
+            float shieldBuff = Scanner.Read<float>(weaponAddress + 0xC);
             float poweraxeBuff = Scanner.Read<float>(weaponAddress + 0x104);
             ChargeBlade.VialChargeGauge = hiddenGauge;
             ChargeBlade.ShieldBuffTimer = shieldBuff;

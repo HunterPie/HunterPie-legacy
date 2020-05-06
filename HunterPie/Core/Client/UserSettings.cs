@@ -54,6 +54,7 @@ namespace HunterPie.Core {
                 };
                 public DPSMeter DPSMeter { get; set; } = new DPSMeter();
                 public AbnormalitiesWidget AbnormalitiesWidget { get; set; } = new AbnormalitiesWidget();
+                public ClassesWidget ClassesWidget { get; set; } = new ClassesWidget();
             }
 
             public class Monsterscomponent {
@@ -168,6 +169,30 @@ namespace HunterPie.Core {
                 public byte TimeLeftTextFormat { get; set; } = 0;
                 public float BackgroundOpacity { get; set; } = 0.7f;
                 public bool ShowNames { get; set; } = false;
+            }
+
+            public class ClassesWidget
+            {
+                public ChargeBladeHelper ChargeBladeHelper { get; set; } = new ChargeBladeHelper();
+                public InsectGlaiveHelper InsectGlaiveHelper { get; set; } = new InsectGlaiveHelper();
+            }
+
+            public class ChargeBladeHelper : WeaponHelperStructure
+            {
+                
+            }
+
+            public class InsectGlaiveHelper : WeaponHelperStructure
+            {
+                
+            }
+
+            public class WeaponHelperStructure
+            {
+                public bool Enabled { get; set; } = true;
+                public int[] Position { get; set; } = new int[2] { 683, 384 };
+                public float Opacity { get; set; } = 1f;
+                public float Scale { get; set; } = 1f;
             }
 
             public class Debug {
