@@ -386,8 +386,8 @@
     <Abnormality ID="MISC_034_00" Name="Конус Силы"/>
     <Abnormality ID="MISC_035_00" Name="Сопр Льду (L)"/>
     <Abnormality ID="MISC_073_00" Name="Усил Атаки &amp; Усил Защиты (S)"/>
-    <Abnormality ID="GEAR_000_00" Name="Demon Ammo"/>
-    <Abnormality ID="GEAR_001_00" Name="Armor Ammo"/>
+    <Abnormality ID="GEAR_000_00" Name="Демонический снаряд"/>
+    <Abnormality ID="GEAR_001_00" Name="Защитный снаряд"/>
     <Abnormality ID="GEAR_002_00" Name="Укрепление"/>
     <Abnormality ID="GEAR_003_00" Name="Защитная полировка"/>
     <Abnormality ID="GEAR_004_00" Name="Мастерский подкат"/>
@@ -492,7 +492,7 @@
       <String ID="STATIC_MONSTER_HEALTH_STRING_FORMAT" Name="Формат здоровья:"/>
       <String ID="STATIC_MONSTER_HEALTH_STRING_FORMAT_DESC" Name="Текстовый формат для панели здоровья монстра."/>
       <String ID="ENABLE_MONSTER_USE_LOCKON" Name="Используйте блокировку вместо отметки на карте, чтобы назначить монстра"/>
-      <String ID="ENABLE_MONSTER_USE_LOCKON_DESC" Name="Если включено, HunterPie будет использовать выбранного заданием монстра в игре для выбора цели./>
+      <String ID="ENABLE_MONSTER_USE_LOCKON_DESC" Name="Если включено, HunterPie будет использовать выбранного заданием монстра в игре для выбора цели."/>
       <String ID="STATIC_MONSTER_BAR_MODE" Name="Режим виджета Монстра"/>
       <String ID="STATIC_MONSTER_BAR_MODE_DESC" Name="Изменяет режим виджета монстров."/>
       <String ID="STATIC_MONSTER_BAR_MODE_0" Name="Показать всех монстров одновременно"/>
