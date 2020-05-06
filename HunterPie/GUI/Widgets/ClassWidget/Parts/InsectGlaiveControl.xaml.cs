@@ -1,11 +1,5 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows;
-using HunterPie.Core.LPlayer.Jobs;
-using HunterPie.Logger;
 using InsectGlaive = HunterPie.Core.LPlayer.Jobs.InsectGlaive;
 using InsectGlaiveEventArgs = HunterPie.Core.LPlayer.Jobs.InsectGlaiveEventArgs;
 using KinsectChargeBuff = HunterPie.Core.LPlayer.Jobs.KinsectChargeBuff;
@@ -192,9 +186,10 @@ namespace HunterPie.GUI.Widgets.ClassWidget.Parts
 
         private void OnKinsectStaminaUpdate(object source, InsectGlaiveEventArgs args)
         {
+            float maxSize = args.KinsectChargeType == KinsectChargeBuff.Yellow ? 200 : 100;
             Dispatcher.BeginInvoke(System.Windows.Threading.DispatcherPriority.Render, new Action(() =>
             {
-                StaminaBarSize = 80 * (args.KinsectStamina / 100);
+                StaminaBarSize = 73 * (args.KinsectStamina / maxSize);
             }));
         }
 
