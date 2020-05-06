@@ -5,6 +5,8 @@ using HunterPie.Core.LPlayer;
 using HunterPie.Logger;
 using HunterPie.Memory;
 using HunterPie.Core.LPlayer.Jobs;
+using System.Windows.Documents;
+using System.Collections.Generic;
 
 namespace HunterPie.Core
 {
@@ -458,7 +460,6 @@ namespace HunterPie.Core
             Int64 nextPlayer = 0x27E9F0;
             if (AddressValue > 0x0)
             {
-
                 string pName = Scanner.READ_STRING(AddressValue - 0x270, 32);
                 int pLevel = Scanner.Read<int>(AddressValue - 0x230);
                 // If char name starts with a null char then the game haven't launched yet
@@ -934,9 +935,31 @@ namespace HunterPie.Core
             float redBuff = Scanner.Read<float>(weaponAddress - 0x4);
             float whiteBuff = Scanner.Read<float>(weaponAddress);
             float orangeBuff = Scanner.Read<float>(weaponAddress + 0x4);
+            float redChargeTimer = Scanner.Read<float>(weaponAddress + 0x1CEC);
+            float yellowChargeTimer = Scanner.Read<float>(weaponAddress + 0x1CF0);
+            float kinsectStamina = Scanner.Read<float>(weaponAddress + 0xBD0);
+            KinsectChargeBuff chargeFlag = redChargeTimer > 0 ? KinsectChargeBuff.Red :
+                yellowChargeTimer > 0 ? KinsectChargeBuff.Yellow : KinsectChargeBuff.None;
+            int kinsectBuffQueueSize = Scanner.Read<int>(weaponAddress + 0x24);
             InsectGlaive.RedBuff = redBuff;
             InsectGlaive.WhiteBuff = whiteBuff;
             InsectGlaive.OrangeBuff = orangeBuff;
+            InsectGlaive.KinsectChargeType = chargeFlag;
+            InsectGlaive.RedKinsectTimer = redChargeTimer;
+            InsectGlaive.YellowKinsectTimer = yellowChargeTimer;
+            InsectGlaive.BuffQueueSize = kinsectBuffQueueSize;
+            InsectGlaive.KinsectStamina = kinsectStamina;
+            if (kinsectBuffQueueSize > 0)
+            {
+                List<int> BuffQueue = new List<int>();
+                for (int i = 0; i < 3; i++)
+                {
+                    BuffQueue.Add(Scanner.Read<int>(weaponAddress + 0xC + (0x4 * i)));
+                }
+                int BuffQueuePtr = Scanner.Read<int>(weaponAddress + 0x1C);
+                InsectGlaive.FirstBuffQueued = BuffQueue.ElementAtOrDefault(BuffQueuePtr);
+                InsectGlaive.SecondBuffQueued = BuffQueue.ElementAtOrDefault(BuffQueuePtr + 1 > 2 ? 0 : BuffQueuePtr + 1);
+            }
         }
 
         private void GetBowInformation(long weaponAddress)

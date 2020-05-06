@@ -288,6 +288,10 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
+    <Page Include="GUI\Widgets\ClassWidget\Parts\InsectGlaiveControl.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="GUI\Widgets\DPSMeter\Meter.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -370,6 +374,9 @@
       <DependentUpon>ChargeBladeControl.xaml</DependentUpon>
     </Compile>
     <Compile Include="GUI\Widgets\ClassWidget\Parts\ClassControl.cs" />
+    <Compile Include="GUI\Widgets\ClassWidget\Parts\InsectGlaiveControl.xaml.cs">
+      <DependentUpon>InsectGlaiveControl.xaml</DependentUpon>
+    </Compile>
     <Compile Include="GUI\Widgets\DPSMeter\Meter.xaml.cs">
       <DependentUpon>Meter.xaml</DependentUpon>
     </Compile>
@@ -797,6 +804,14 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="HunterPie.Resources\UI\Class\ChargeBladePoweraxe.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="HunterPie.Resources\UI\Class\KinsectRedCharge.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="HunterPie.Resources\UI\Class\KinsectYellowCharge.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
   </ItemGroup>
