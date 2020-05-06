@@ -6,7 +6,7 @@
              xmlns:local="clr-namespace:HunterPie.GUI.Widgets.ClassWidget.Parts"
              mc:Ignorable="d" 
              >
-    <Grid Width="200" Height="80">
+    <Grid Width="210" Height="80">
         <!-- Kinsect Charge Buff -->
         <Rectangle Margin="8,25,0,0" Height="36" VerticalAlignment="Top" HorizontalAlignment="Left" Width="36" RenderTransformOrigin="0.5,0.5" StrokeThickness="2.5" >
             <Rectangle.RenderTransform>
