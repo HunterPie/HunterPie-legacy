@@ -21,6 +21,11 @@ namespace HunterPie.Core {
                 try {
                     MonsterDataDocument.Load(UserSettings.PlayerConfig.HunterPie.Debug.CustomMonsterData);
                     Debugger.Warn(GStrings.GetLocalizationByXPath("/Console/String[@ID='MESSAGE_MONSTER_DATA_LOAD']"));
+
+                    LoadAilments();
+                    LoadMonsters();
+
+                    MonsterDataDocument = null;
                     return;
                 } catch(Exception err) {
                     Debugger.Error(err);

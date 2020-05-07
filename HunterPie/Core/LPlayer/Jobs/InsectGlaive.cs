@@ -6,7 +6,8 @@ namespace HunterPie.Core.LPlayer.Jobs
     {
         None,
         Yellow,
-        Red
+        Red,
+        Both
     }
     public class InsectGlaiveEventArgs : EventArgs
     {

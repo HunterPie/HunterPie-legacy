@@ -8,7 +8,17 @@
              >
     <Grid Width="210" Height="80">
         <!-- Kinsect Charge Buff -->
-        <Rectangle Margin="8,25,0,0" Height="36" VerticalAlignment="Top" HorizontalAlignment="Left" Width="36" RenderTransformOrigin="0.5,0.5" StrokeThickness="2.5" >
+        <Polyline Points="26 0, 0 26, 26 52" Stroke="{Binding FirstBuffQueued,ElementName=IGControl}" StrokeThickness="2" Height="54" Width="54" Margin="2,16,0,0" VerticalAlignment="Top" HorizontalAlignment="Left">
+            <Polyline.Effect>
+                <DropShadowEffect Color="{Binding FirstBuffQueued,ElementName=IGControl}" ShadowDepth="0" BlurRadius="10"/>
+            </Polyline.Effect>
+        </Polyline>
+        <Polyline Points="26 0, 52 26, 26 52" Stroke="{Binding SecondBuffQueued,ElementName=IGControl}" StrokeThickness="2" Height="54" Width="54" Margin="2,16,0,0" VerticalAlignment="Top" HorizontalAlignment="Left">
+            <Polyline.Effect>
+                <DropShadowEffect Color="{Binding SecondBuffQueued,ElementName=IGControl}" ShadowDepth="0" BlurRadius="10"/>
+            </Polyline.Effect>
+        </Polyline>
+        <Rectangle Margin="10,24,0,0" Height="36" VerticalAlignment="Top" HorizontalAlignment="Left" Width="36" RenderTransformOrigin="0.5,0.5">
             <Rectangle.RenderTransform>
                 <TransformGroup>
                     <ScaleTransform/>
@@ -30,8 +40,8 @@
                 </RadialGradientBrush>
             </Rectangle.Fill>
         </Rectangle>
-        <Image Height="24" Width="24" HorizontalAlignment="Left" Margin="14,23,0,0" VerticalAlignment="Top" Source="{Binding KinsectChargeImage, ElementName=IGControl}"/>
-        <TextBlock Text="{Binding ChargeBuffTimer, ElementName=IGControl}" HorizontalAlignment="Left" Width="30" Height="15" VerticalAlignment="Top" Margin="11,44,0,0" TextAlignment="Center" FontFamily="Trebuchet MS">
+        <Image Height="24" Width="24" HorizontalAlignment="Left" Margin="16,22,0,0" VerticalAlignment="Top" Source="{Binding KinsectChargeImage, ElementName=IGControl}"/>
+        <TextBlock Text="{Binding ChargeBuffTimer, ElementName=IGControl}" HorizontalAlignment="Left" Width="30" Height="15" VerticalAlignment="Top" Margin="13,43,0,0" TextAlignment="Center" FontFamily="Trebuchet MS">
             <TextBlock.Foreground>
                 <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
                     <GradientStop Color="#FFB6B6B6" Offset="1"/>
@@ -41,7 +51,10 @@
         </TextBlock>
 
         <!-- Red buff-->
-        <Rectangle Margin="43,17,0,0" Height="21" VerticalAlignment="Top" HorizontalAlignment="Left" Width="21" RenderTransformOrigin="0.5,0.5" Stroke="#CC464646" StrokeThickness="2" Opacity="0.6" >
+        <Rectangle Margin="43,9,0,0" Height="26" VerticalAlignment="Top" HorizontalAlignment="Left" Width="26" RenderTransformOrigin="0.5,0.5" Stroke="#CC464646" StrokeThickness="2" Opacity="0.6" >
+            <Rectangle.Effect>
+                <DropShadowEffect Color="#CCFF3B3B" ShadowDepth="0" BlurRadius="10" Opacity="0"/>
+            </Rectangle.Effect>
             <Rectangle.RenderTransform>
                 <TransformGroup>
                     <ScaleTransform/>
@@ -64,8 +77,8 @@
                                 <BeginStoryboard>
                                     <Storyboard>
                                         <DoubleAnimation Storyboard.TargetProperty="Opacity" From="0.6" To="1"/>
-                                        <ColorAnimation Storyboard.TargetProperty="(Rectangle.Fill).(RadialGradientBrush.GradientStops)[1].(GradientStop.Color)" From="#FF151515" To="#FFFF3333" Duration="0:0:0.2"/>
-                                        <ColorAnimation Storyboard.TargetProperty="(Rectangle.Fill).(RadialGradientBrush.GradientStops)[0].(GradientStop.Color)" From="#FF212121" To="#FF6C0000" Duration="0:0:0.2"/>
+                                        <DoubleAnimation Storyboard.TargetProperty="(Effect).Opacity" From="0" To="1"/>
+                                        <ColorAnimation Storyboard.TargetProperty="(Rectangle.Stroke).(SolidColorBrush.Color)" To="#CCFF3B3B" Duration="0:0:0.2"/>
                                     </Storyboard>
                                 </BeginStoryboard>
                             </DataTrigger.EnterActions>
@@ -73,8 +86,8 @@
                                 <BeginStoryboard>
                                     <Storyboard>
                                         <DoubleAnimation Storyboard.TargetProperty="Opacity" From="1" To="0.6"/>
-                                        <ColorAnimation Storyboard.TargetProperty="(Rectangle.Fill).(RadialGradientBrush.GradientStops)[1].(GradientStop.Color)" To="#FF151515" From="#FFFF3333" Duration="0:0:0.2"/>
-                                        <ColorAnimation Storyboard.TargetProperty="(Rectangle.Fill).(RadialGradientBrush.GradientStops)[0].(GradientStop.Color)" To="#FF212121" From="#FF6C0000" Duration="0:0:0.2"/>
+                                        <DoubleAnimation Storyboard.TargetProperty="(Effect).Opacity" From="1" To="0"/>
+                                        <ColorAnimation Storyboard.TargetProperty="(Rectangle.Stroke).(SolidColorBrush.Color)" To="#CC464646" Duration="0:0:0.2"/>
                                     </Storyboard>
                                 </BeginStoryboard>
                             </DataTrigger.ExitActions>
@@ -83,7 +96,84 @@
                 </Style>
             </Rectangle.Style>
         </Rectangle>
-        <TextBlock Text="{Binding RedBuff, ElementName=IGControl}" Opacity="0.6" HorizontalAlignment="Left" Width="31" Height="14" VerticalAlignment="Top" Margin="38,19,0,0" TextAlignment="Center">
+        <TextBlock Text="{Binding RedBuff, ElementName=IGControl}" Opacity="0.6" HorizontalAlignment="Left" Width="31" Height="14" VerticalAlignment="Top" Margin="41,14,0,0" TextAlignment="Center">
+            <TextBlock.Foreground>
+                <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
+                    <GradientStop Color="#FFAAAAAA" Offset="1"/>
+                    <GradientStop Color="#FFF7F7F7"/>
+                </LinearGradientBrush>
+            </TextBlock.Foreground>
+            <TextBlock.Style>
+                <Style TargetType="TextBlock">
+                    <Style.Triggers>
+                        <DataTrigger Binding="{Binding RedBuffActive, ElementName=IGControl}" Value="True">
+                            <DataTrigger.EnterActions>
+                                <BeginStoryboard>
+                                    <Storyboard>
+                                        <DoubleAnimation Storyboard.TargetProperty="Opacity" To="1"/>
+                                    </Storyboard>
+                                </BeginStoryboard>
+                            </DataTrigger.EnterActions>
+                            <DataTrigger.ExitActions>
+                                <BeginStoryboard>
+                                    <Storyboard>
+                                        <DoubleAnimation Storyboard.TargetProperty="Opacity" To="0.6"/>
+                                    </Storyboard>
+                                </BeginStoryboard>
+                            </DataTrigger.ExitActions>
+                        </DataTrigger>
+                    </Style.Triggers>
+                </Style>
+            </TextBlock.Style>
+        </TextBlock>
+
+        <!-- White buff-->
+        <Rectangle Margin="77,9,0,0" Height="26" VerticalAlignment="Top" HorizontalAlignment="Left" Width="26" RenderTransformOrigin="0.5,0.5" Stroke="#CC464646" StrokeThickness="2" Opacity="0.6" >
+            <Rectangle.Effect>
+                <DropShadowEffect Color="#CCF3F3F3" BlurRadius="10" ShadowDepth="0" Opacity="0"/>
+            </Rectangle.Effect>
+            <Rectangle.RenderTransform>
+                <TransformGroup>
+                    <ScaleTransform/>
+                    <SkewTransform/>
+                    <RotateTransform Angle="45"/>
+                    <TranslateTransform/>
+                </TransformGroup>
+            </Rectangle.RenderTransform>
+            <Rectangle.Fill>
+                <RadialGradientBrush>
+                    <GradientStop Color="#FF212121" Offset="0"/>
+                    <GradientStop Color="#FF151515" Offset="1"/>
+                </RadialGradientBrush>
+            </Rectangle.Fill>
+            <Rectangle.Style>
+                <Style TargetType="Rectangle">
+                    <Style.Triggers>
+                        <DataTrigger Binding="{Binding WhiteBuffActive, ElementName=IGControl}" Value="True">
+                            <DataTrigger.EnterActions>
+                                <BeginStoryboard>
+                                    <Storyboard>
+                                        <DoubleAnimation Storyboard.TargetProperty="Opacity" From="0.6" To="1"/>
+                                        <DoubleAnimation Storyboard.TargetProperty="(Effect).Opacity" From="0" To="1"/>
+                                        <ColorAnimation Storyboard.TargetProperty="(Rectangle.Stroke).(SolidColorBrush.Color)" To="#CCF3F3F3" Duration="0:0:0.2"/>
+                                    </Storyboard>
+                                </BeginStoryboard>
+                            </DataTrigger.EnterActions>
+                            <DataTrigger.ExitActions>
+                                <BeginStoryboard>
+                                    <Storyboard>
+                                        <DoubleAnimation Storyboard.TargetProperty="Opacity" From="1" To="0.6"/>
+                                        <DoubleAnimation Storyboard.TargetProperty="(Effect).Opacity" From="1" To="0"/>
+                                        <ColorAnimation Storyboard.TargetProperty="(Rectangle.Stroke).(SolidColorBrush.Color)" To="#CC464646" Duration="0:0:0.2"/>
+                                    </Storyboard>
+                                </BeginStoryboard>
+                            </DataTrigger.ExitActions>
+                        </DataTrigger>
+                    </Style.Triggers>
+                </Style>
+            </Rectangle.Style>
+        </Rectangle>
+        <TextBlock Text="{Binding WhiteBuff, ElementName=IGControl}" HorizontalAlignment="Left" Width="31" Height="14" VerticalAlignment="Top" Margin="74,14,0,0" TextAlignment="Center" Opacity="0.6">
             <TextBlock.Foreground>
                 <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
                     <GradientStop Color="#FFAAAAAA" Offset="1"/>
@@ -114,81 +204,11 @@
             </TextBlock.Style>
         </TextBlock>
 
-        <!-- White buff-->
-        <Rectangle Margin="70,17,0,0" Height="21" VerticalAlignment="Top" HorizontalAlignment="Left" Width="21" RenderTransformOrigin="0.5,0.5" Stroke="#CC464646" StrokeThickness="2" Opacity="0.6" >
-            <Rectangle.RenderTransform>
-                <TransformGroup>
-                    <ScaleTransform/>
-                    <SkewTransform/>
-                    <RotateTransform Angle="45"/>
-                    <TranslateTransform/>
-                </TransformGroup>
-            </Rectangle.RenderTransform>
-            <Rectangle.Fill>
-                <RadialGradientBrush>
-                    <GradientStop Color="#FF212121" Offset="0"/>
-                    <GradientStop Color="#FF151515" Offset="1"/>
-                </RadialGradientBrush>
-            </Rectangle.Fill>
-            <Rectangle.Style>
-                <Style TargetType="Rectangle">
-                    <Style.Triggers>
-                        <DataTrigger Binding="{Binding WhiteBuffActive, ElementName=IGControl}" Value="True">
-                            <DataTrigger.EnterActions>
-                                <BeginStoryboard>
-                                    <Storyboard>
-                                        <DoubleAnimation Storyboard.TargetProperty="Opacity" From="0.6" To="1"/>
-                                        <ColorAnimation Storyboard.TargetProperty="(Rectangle.Fill).(RadialGradientBrush.GradientStops)[1].(GradientStop.Color)" To="#FFDEDDDD" Duration="0:0:0.2"/>
-                                        <ColorAnimation Storyboard.TargetProperty="(Rectangle.Fill).(RadialGradientBrush.GradientStops)[0].(GradientStop.Color)" To="#FFECE5E5" Duration="0:0:0.2"/>
-                                    </Storyboard>
-                                </BeginStoryboard>
-                            </DataTrigger.EnterActions>
-                            <DataTrigger.ExitActions>
-                                <BeginStoryboard>
-                                    <Storyboard>
-                                        <DoubleAnimation Storyboard.TargetProperty="Opacity" From="1" To="0.6"/>
-                                        <ColorAnimation Storyboard.TargetProperty="(Rectangle.Fill).(RadialGradientBrush.GradientStops)[1].(GradientStop.Color)" To="#FF151515" Duration="0:0:0.2"/>
-                                        <ColorAnimation Storyboard.TargetProperty="(Rectangle.Fill).(RadialGradientBrush.GradientStops)[0].(GradientStop.Color)" To="#FF212121" Duration="0:0:0.2"/>
-                                    </Storyboard>
-                                </BeginStoryboard>
-                            </DataTrigger.ExitActions>
-                        </DataTrigger>
-                    </Style.Triggers>
-                </Style>
-            </Rectangle.Style>
-        </Rectangle>
-        <TextBlock Text="{Binding WhiteBuff, ElementName=IGControl}" HorizontalAlignment="Left" Width="31" Height="14" VerticalAlignment="Top" Margin="65,19,0,0" TextAlignment="Center" Foreground="#FFDEDEDE" Opacity="0.6">
-            <TextBlock.Effect>
-                <DropShadowEffect BlurRadius="3" ShadowDepth="0" Direction="0" RenderingBias="Quality"/>
-            </TextBlock.Effect>
-            <TextBlock.Style>
-                <Style TargetType="TextBlock">
-                    <Style.Triggers>
-                        <DataTrigger Binding="{Binding WhiteBuffActive, ElementName=IGControl}" Value="True">
-                            <DataTrigger.EnterActions>
-                                <BeginStoryboard>
-                                    <Storyboard>
-                                        <DoubleAnimation Storyboard.TargetProperty="Opacity" To="1"/>
-                                        <ColorAnimation Storyboard.TargetProperty="(TextBlock.Foreground).(SolidColorBrush.Color)" To="#FF440003"/>
-                                    </Storyboard>
-                                </BeginStoryboard>
-                            </DataTrigger.EnterActions>
-                            <DataTrigger.ExitActions>
-                                <BeginStoryboard>
-                                    <Storyboard>
-                                        <DoubleAnimation Storyboard.TargetProperty="Opacity" To="0.6"/>
-                                        <ColorAnimation Storyboard.TargetProperty="(TextBlock.Foreground).(SolidColorBrush.Color)" To="#FFDEDEDE"/>
-                                    </Storyboard>
-                                </BeginStoryboard>
-                            </DataTrigger.ExitActions>
-                        </DataTrigger>
-                    </Style.Triggers>
-                </Style>
-            </TextBlock.Style>
-        </TextBlock>
-
         <!-- Orange buff-->
-        <Rectangle Margin="97,17,0,0" Height="21" VerticalAlignment="Top" HorizontalAlignment="Left" Width="21" RenderTransformOrigin="0.5,0.5" Stroke="#CC464646" StrokeThickness="2" Opacity="0.6" >
+        <Rectangle Margin="111,9,0,0" Height="26" VerticalAlignment="Top" HorizontalAlignment="Left" Width="26" RenderTransformOrigin="0.5,0.5" Stroke="#CC464646" StrokeThickness="2" Opacity="0.6" >
+            <Rectangle.Effect>
+                <DropShadowEffect BlurRadius="10" ShadowDepth="0" Color="#CCFB7D25" Opacity="0"/>
+            </Rectangle.Effect>
             <Rectangle.RenderTransform>
                 <TransformGroup>
                     <ScaleTransform/>
@@ -211,8 +231,8 @@
                                 <BeginStoryboard>
                                     <Storyboard>
                                         <DoubleAnimation Storyboard.TargetProperty="Opacity" From="0.6" To="1"/>
-                                        <ColorAnimation Storyboard.TargetProperty="(Rectangle.Fill).(RadialGradientBrush.GradientStops)[1].(GradientStop.Color)" To="#FFFF701E" Duration="0:0:0.2"/>
-                                        <ColorAnimation Storyboard.TargetProperty="(Rectangle.Fill).(RadialGradientBrush.GradientStops)[0].(GradientStop.Color)" To="#FFFF823B" Duration="0:0:0.2"/>
+                                        <DoubleAnimation Storyboard.TargetProperty="(Effect).Opacity" From="0" To="1"/>
+                                        <ColorAnimation Storyboard.TargetProperty="(Rectangle.Stroke).(SolidColorBrush.Color)" To="#CCFB7D25" Duration="0:0:0.2"/>
                                     </Storyboard>
                                 </BeginStoryboard>
                             </DataTrigger.EnterActions>
@@ -220,8 +240,8 @@
                                 <BeginStoryboard>
                                     <Storyboard>
                                         <DoubleAnimation Storyboard.TargetProperty="Opacity" From="1" To="0.6"/>
-                                        <ColorAnimation Storyboard.TargetProperty="(Rectangle.Fill).(RadialGradientBrush.GradientStops)[1].(GradientStop.Color)" To="#FF151515" Duration="0:0:0.2"/>
-                                        <ColorAnimation Storyboard.TargetProperty="(Rectangle.Fill).(RadialGradientBrush.GradientStops)[0].(GradientStop.Color)" To="#FF212121" Duration="0:0:0.2"/>
+                                        <DoubleAnimation Storyboard.TargetProperty="(Effect).Opacity" From="1" To="0"/>
+                                        <ColorAnimation Storyboard.TargetProperty="(Rectangle.Stroke).(SolidColorBrush.Color)" To="#CC464646" Duration="0:0:0.2"/>
                                     </Storyboard>
                                 </BeginStoryboard>
                             </DataTrigger.ExitActions>
@@ -230,7 +250,7 @@
                 </Style>
             </Rectangle.Style>
         </Rectangle>
-        <TextBlock Text="{Binding OrangeBuff, ElementName=IGControl}" HorizontalAlignment="Left" Width="31" Height="14" VerticalAlignment="Top" Margin="92,19,0,0" TextAlignment="Center" Opacity="0.6">
+        <TextBlock Text="{Binding OrangeBuff, ElementName=IGControl}" HorizontalAlignment="Left" Width="31" Height="14" VerticalAlignment="Top" Margin="109,14,0,0" TextAlignment="Center" Opacity="0.6">
             <TextBlock.Foreground>
                 <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
                     <GradientStop Color="#FFAAAAAA" Offset="1"/>
@@ -240,7 +260,7 @@
             <TextBlock.Style>
                 <Style TargetType="TextBlock">
                     <Style.Triggers>
-                        <DataTrigger Binding="{Binding WhiteBuffActive, ElementName=IGControl}" Value="True">
+                        <DataTrigger Binding="{Binding OrangeBuffActive, ElementName=IGControl}" Value="True">
                             <DataTrigger.EnterActions>
                                 <BeginStoryboard>
                                     <Storyboard>
@@ -262,23 +282,23 @@
         </TextBlock>
 
         <!--  Kinsect Stamina bar -->
-        <Rectangle Margin="55,42,0,0" HorizontalAlignment="Left" Width="{Binding StaminaBarSize, ElementName=IGControl}" Height="9" VerticalAlignment="Top" RenderTransformOrigin="0.5,0.5">
+        <Rectangle Margin="58,44,0,0" HorizontalAlignment="Left" Width="{Binding StaminaBarSize, ElementName=IGControl}" Height="9" VerticalAlignment="Top" RenderTransformOrigin="0.5,0.5">
             <Rectangle.Fill>
                 <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
-                    <GradientStop Color="#FFFF6800" Offset="0.49"/>
+                    <GradientStop Color="#FFFFC500" Offset="0.49"/>
                     <GradientStop Color="#00000000" Offset="1"/>
-                    <GradientStop Color="#FFFF9700" Offset="0.566"/>
+                    <GradientStop Color="#FFFFB900" Offset="0.566"/>
                     <GradientStop Color="#7FFF9700" Offset="0.602"/>
-                    <GradientStop Color="#FFFF9700" Offset="0.39"/>
+                    <GradientStop Color="#FFFFB900" Offset="0.39"/>
                     <GradientStop Color="#7FFF9700" Offset="0.349"/>
                     <GradientStop Color="#00FF9700"/>
                 </LinearGradientBrush>
             </Rectangle.Fill>
         </Rectangle>
-        <Image Width="85" Source="pack://siteoforigin:,,,/HunterPie.Resources/UI/Class/InsectGlaiveStaminaGauge.png" HorizontalAlignment="Left" Margin="48,41,0,0" Height="10" VerticalAlignment="Top" >
+        <Image Width="103" Source="pack://siteoforigin:,,,/HunterPie.Resources/UI/Class/InsectGlaiveStaminaGauge.png" HorizontalAlignment="Left" Margin="48,42,0,0" Height="13" VerticalAlignment="Top" >
             <Image.OpacityMask>
                 <RadialGradientBrush>
-                    <GradientStop Color="#00000000" Offset="0"/>
+                    <GradientStop Color="#00000000" Offset="0.209"/>
                     <GradientStop Color="White" Offset="0.996"/>
                 </RadialGradientBrush>
             </Image.OpacityMask>

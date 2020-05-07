@@ -5,7 +5,6 @@ using HunterPie.Core.LPlayer;
 using HunterPie.Logger;
 using HunterPie.Memory;
 using HunterPie.Core.LPlayer.Jobs;
-using System.Windows.Documents;
 using System.Collections.Generic;
 
 namespace HunterPie.Core
@@ -938,7 +937,8 @@ namespace HunterPie.Core
             float redChargeTimer = Scanner.Read<float>(weaponAddress + 0x1CEC);
             float yellowChargeTimer = Scanner.Read<float>(weaponAddress + 0x1CF0);
             float kinsectStamina = Scanner.Read<float>(weaponAddress + 0xBD0);
-            KinsectChargeBuff chargeFlag = redChargeTimer > 0 ? KinsectChargeBuff.Red :
+            KinsectChargeBuff chargeFlag = redChargeTimer > 0 && yellowChargeTimer > 0 ? KinsectChargeBuff.Both :
+                redChargeTimer > 0 ? KinsectChargeBuff.Red :
                 yellowChargeTimer > 0 ? KinsectChargeBuff.Yellow : KinsectChargeBuff.None;
             int kinsectBuffQueueSize = Scanner.Read<int>(weaponAddress + 0x24);
             InsectGlaive.RedBuff = redBuff;

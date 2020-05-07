@@ -11,9 +11,9 @@ namespace HunterPie.GUI.Widgets.ClassWidget.Parts
     /// </summary>
     public partial class InsectGlaiveControl : ClassControl
     {
-        const string RedBuffColor = "#FFE85757";
-        const string WhiteBuffColor = "#FFD8D8D8";
-        const string OrangeBuffColor = "#FFF1A35A";
+        const string RedBuffColor = "#CCFF3B3B";
+        const string WhiteBuffColor = "#CCF3F3F3";
+        const string OrangeBuffColor = "#CCFB7D25";
 
         public string FirstBuffQueued
         {
@@ -186,10 +186,10 @@ namespace HunterPie.GUI.Widgets.ClassWidget.Parts
 
         private void OnKinsectStaminaUpdate(object source, InsectGlaiveEventArgs args)
         {
-            float maxSize = args.KinsectChargeType == KinsectChargeBuff.Yellow ? 200 : 100;
+            float maxSize = args.KinsectChargeType == KinsectChargeBuff.Yellow || args.KinsectChargeType == KinsectChargeBuff.Both ? 200 : 100;
             Dispatcher.BeginInvoke(System.Windows.Threading.DispatcherPriority.Render, new Action(() =>
             {
-                StaminaBarSize = 73 * (args.KinsectStamina / maxSize);
+                StaminaBarSize = 85 * (args.KinsectStamina / maxSize);
             }));
         }
 
@@ -199,6 +199,7 @@ namespace HunterPie.GUI.Widgets.ClassWidget.Parts
             switch(args.KinsectChargeType)
             {
                 case KinsectChargeBuff.Red:
+                case KinsectChargeBuff.Both:
                     buffTimer = args.RedKinsectTimer;
                     break;
                 case KinsectChargeBuff.Yellow:
@@ -225,6 +226,9 @@ namespace HunterPie.GUI.Widgets.ClassWidget.Parts
                         break;
                     case KinsectChargeBuff.Yellow:
                         KinsectChargeImage = "pack://siteoforigin:,,,/HunterPie.Resources/UI/Class/KinsectYellowCharge.png";
+                        break;
+                    case KinsectChargeBuff.Both:
+                        KinsectChargeImage = "pack://siteoforigin:,,,/HunterPie.Resources/UI/Class/KinsectBothCharges.png";
                         break;
                 }
             }));

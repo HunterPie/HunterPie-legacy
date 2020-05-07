@@ -126,7 +126,7 @@ namespace HunterPie.GUI.Widgets.ClassWidget
         {
             Dispatcher.BeginInvoke(System.Windows.Threading.DispatcherPriority.Render, new Action(() =>
             {
-                WidgetHasContent = !Context.Player.InHarvestZone || !(Context.Player.ZoneID == 0);
+                WidgetHasContent = !Context.Player.InHarvestZone && !(Context.Player.ZoneID == 0);
                 ChangeVisibility(false);
             }));
         }
