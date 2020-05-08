@@ -32,6 +32,7 @@ namespace HunterPie.Core.LPlayer.Jobs
             get => vialChargeGauge;
             set
             {
+                if (value > TimeSpan.MaxValue.TotalSeconds) return;
                 if (value != vialChargeGauge)
                 {
                     vialChargeGauge = value;
@@ -44,6 +45,7 @@ namespace HunterPie.Core.LPlayer.Jobs
             get => shieldBuffTimer;
             set
             {
+                if (value > TimeSpan.MaxValue.TotalSeconds) return;
                 if (value != shieldBuffTimer)
                 {
                     shieldBuffTimer = value;
@@ -56,6 +58,7 @@ namespace HunterPie.Core.LPlayer.Jobs
             get => swordBuffTimer;
             set
             {
+                if (value > TimeSpan.MaxValue.TotalSeconds) return;
                 if (value != swordBuffTimer)
                 {
                     swordBuffTimer = value;
@@ -80,6 +83,7 @@ namespace HunterPie.Core.LPlayer.Jobs
             get => poweraxeTimer;
             set
             {
+                if (value > TimeSpan.MaxValue.TotalSeconds) return;
                 if (value != poweraxeTimer)
                 {
                     poweraxeTimer = value;

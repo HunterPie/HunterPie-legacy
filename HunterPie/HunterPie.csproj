@@ -211,6 +211,7 @@
     </None>
     <Compile Include="GUIControls\TrayIcon.cs" />
     <Compile Include="GUI\Helpers\Arc.cs" />
+    <Compile Include="GUI\Helpers\Diamond.cs" />
     <Compile Include="GUI\Helpers\StaticSecondsConverter.cs" />
     <Page Include="GUIControls\Changelog.xaml">
       <SubType>Designer</SubType>
@@ -285,6 +286,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="GUI\Widgets\ClassWidget\Parts\ChargeBladeControl.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="GUI\Widgets\ClassWidget\Parts\GunLanceControl.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -374,6 +379,9 @@
       <DependentUpon>ChargeBladeControl.xaml</DependentUpon>
     </Compile>
     <Compile Include="GUI\Widgets\ClassWidget\Parts\ClassControl.cs" />
+    <Compile Include="GUI\Widgets\ClassWidget\Parts\GunLanceControl.xaml.cs">
+      <DependentUpon>GunLanceControl.xaml</DependentUpon>
+    </Compile>
     <Compile Include="GUI\Widgets\ClassWidget\Parts\InsectGlaiveControl.xaml.cs">
       <DependentUpon>InsectGlaiveControl.xaml</DependentUpon>
     </Compile>

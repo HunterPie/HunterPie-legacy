@@ -4,11 +4,13 @@ namespace HunterPie.Core.LPlayer.Jobs
 {
     public class GunLanceEventArgs : EventArgs
     {
-        public int TotalAmmo;
-        public int Ammo;
-        public int TotalBigAmmo;
-        public int BigAmmo;
-        public float WyvernblastTimer;
+        public int TotalAmmo { get; }
+        public int Ammo { get; }
+        public int TotalBigAmmo { get; }
+        public int BigAmmo { get; }
+        public float WyvernsFireTimer { get; }
+        public float WyvernstakeBlastTimer { get; }
+        public bool HasWyvernstakeLoaded { get; }
 
         public GunLanceEventArgs(GunLance weapon)
         {
@@ -16,7 +18,8 @@ namespace HunterPie.Core.LPlayer.Jobs
             Ammo = weapon.Ammo;
             TotalBigAmmo = weapon.TotalBigAmmo;
             BigAmmo = weapon.BigAmmo;
-            WyvernblastTimer = weapon.WyvernblastTimer;
+            WyvernsFireTimer = weapon.WyvernsFireTimer;
+            WyvernstakeBlastTimer = weapon.WyvernstakeBlastTimer;
         }
     }
     public class GunLance
@@ -25,7 +28,9 @@ namespace HunterPie.Core.LPlayer.Jobs
         private int ammo;
         private int totalBigAmmo;
         private int bigAmmo;
-        private float wyvernblastTimer;
+        private float wyvernsFireTimer;
+        private float wyvernstakeBlastTimer;
+        private bool hasWyvernstakeLoaded;
 
         public int TotalAmmo
         {
@@ -75,15 +80,39 @@ namespace HunterPie.Core.LPlayer.Jobs
                 }
             }
         }
-        public float WyvernblastTimer
+        public float WyvernsFireTimer
         {
-            get => wyvernblastTimer;
+            get => wyvernsFireTimer;
             set
             {
-                if (value != wyvernblastTimer)
+                if (value != wyvernsFireTimer)
                 {
-                    wyvernblastTimer = value;
-                    Dispatch(OnWyvernblastTimerChange);
+                    wyvernsFireTimer = value;
+                    Dispatch(OnWyvernsFireTimerUpdate);
+                }
+            }
+        }
+        public float WyvernstakeBlastTimer
+        {
+            get => wyvernstakeBlastTimer;
+            set
+            {
+                if (value == wyvernstakeBlastTimer)
+                {
+                    wyvernstakeBlastTimer = value;
+                    Dispatch(OnWyvernstakeBlastTimerUpdate);
+                }
+            }
+        }
+        public bool HasWyvernstakeLoaded
+        {
+            get => hasWyvernstakeLoaded;
+            set
+            {
+                if (value != hasWyvernstakeLoaded)
+                {
+                    hasWyvernstakeLoaded = value;
+                    Dispatch(OnWyvernstakeStateChanged);
                 }
             }
         }
@@ -93,7 +122,9 @@ namespace HunterPie.Core.LPlayer.Jobs
         public event GunLanceEvents OnAmmoChange;
         public event GunLanceEvents OnTotalBigAmmoChange;
         public event GunLanceEvents OnBigAmmoChange;
-        public event GunLanceEvents OnWyvernblastTimerChange;
+        public event GunLanceEvents OnWyvernsFireTimerUpdate;
+        public event GunLanceEvents OnWyvernstakeBlastTimerUpdate;
+        public event GunLanceEvents OnWyvernstakeStateChanged;
 
         public void Dispatch(GunLanceEvents e) => e?.Invoke(this, new GunLanceEventArgs(this));
 

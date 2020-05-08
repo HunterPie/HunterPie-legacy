@@ -143,6 +143,9 @@ namespace HunterPie.GUI.Widgets.ClassWidget
                 WidgetHasContent = !Context.Player.InHarvestZone;
                 switch ((Classes)Context.Player.WeaponID)
                 {
+                    case Classes.GunLance:
+                        SetClassToGunLance();
+                        break;
                     case Classes.ChargeBlade:
                         SetClassToChargeBlade();
                         break;
@@ -155,6 +158,15 @@ namespace HunterPie.GUI.Widgets.ClassWidget
                 }
             }));
             
+        }
+
+        private void SetClassToGunLance()
+        {
+            var control = new GunLanceControl();
+            control.SetContext(Context.Player.GunLance);
+            Container.Children.Add(control);
+
+            ApplySettings();
         }
 
         private void SetClassToChargeBlade()

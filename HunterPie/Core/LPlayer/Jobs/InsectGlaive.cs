@@ -54,6 +54,7 @@ namespace HunterPie.Core.LPlayer.Jobs
             get => redBuff;
             set
             {
+                if (value > TimeSpan.MaxValue.TotalSeconds) return;
                 if (value != redBuff)
                 {
                     redBuff = value;
@@ -66,6 +67,7 @@ namespace HunterPie.Core.LPlayer.Jobs
             get => whiteBuff;
             set
             {
+                if (value > TimeSpan.MaxValue.TotalSeconds) return;
                 if (value != whiteBuff)
                 {
                     whiteBuff = value;
@@ -78,6 +80,7 @@ namespace HunterPie.Core.LPlayer.Jobs
             get => orangeBuff;
             set
             {
+                if (value > TimeSpan.MaxValue.TotalSeconds) return;
                 if (value != orangeBuff)
                 {
                     orangeBuff = value;
@@ -90,6 +93,7 @@ namespace HunterPie.Core.LPlayer.Jobs
             get => kinsectStamina;
             set
             {
+                if (value > TimeSpan.MaxValue.TotalSeconds) return;
                 if (value != kinsectStamina)
                 {
                     kinsectStamina = value;
@@ -102,6 +106,7 @@ namespace HunterPie.Core.LPlayer.Jobs
             get => redKinsectTimer;
             set
             {
+                if (value > TimeSpan.MaxValue.TotalSeconds) return;
                 if (value != redKinsectTimer)
                 {
                     redKinsectTimer = value;
@@ -114,6 +119,7 @@ namespace HunterPie.Core.LPlayer.Jobs
             get => yellowKinsectTimer;
             set
             {
+                if (value > TimeSpan.MaxValue.TotalSeconds) return;
                 if (value != yellowKinsectTimer)
                 {
                     yellowKinsectTimer = value;

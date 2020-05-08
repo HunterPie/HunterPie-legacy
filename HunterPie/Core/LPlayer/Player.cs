@@ -899,12 +899,22 @@ namespace HunterPie.Core
             int currentAmmo = Scanner.Read<int>(weaponAddress);
             int totalBigAmmo = Scanner.Read<int>(weaponAddress + 0xC);
             int currentBigAmmo = Scanner.Read<int>(weaponAddress + 0x10);
-            float wyvernblast = Scanner.Read<float>(AbnormalitiesAddress + 0xB70);
+            float wyvernsfire = Scanner.Read<float>(AbnormalitiesAddress + 0xB70);
+            bool hasFirestakeLoaded = Scanner.Read<float>(weaponAddress + 0xBC) == 120.0f;
+            // Check if the Firestake timer ptr is 0
+            long wyvernstakeTimerPtr = Scanner.Read<long>(weaponAddress + 0x204);
+            float wyvernstakeTimer = 0;
+            if (wyvernstakeTimerPtr != 0x00000000)
+            {
+                wyvernstakeTimer = Scanner.Read<float>(wyvernstakeTimerPtr);
+            }
             GunLance.TotalAmmo = totalAmmo;
             GunLance.Ammo = currentAmmo;
             GunLance.TotalBigAmmo = totalBigAmmo;
             GunLance.BigAmmo = currentBigAmmo;
-            GunLance.WyvernblastTimer = wyvernblast;
+            GunLance.WyvernsFireTimer = wyvernsfire;
+            GunLance.HasWyvernstakeLoaded = hasFirestakeLoaded;
+            GunLance.WyvernstakeBlastTimer = wyvernstakeTimer;
         }
 
         private void GetSwitchAxeInformation(long weaponAddress)
