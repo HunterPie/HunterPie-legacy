@@ -906,7 +906,7 @@ namespace HunterPie.Core
             float wyvernstakeTimer = 0;
             if (wyvernstakeTimerPtr != 0x00000000)
             {
-                wyvernstakeTimer = Scanner.Read<float>(wyvernstakeTimerPtr);
+                wyvernstakeTimer = Scanner.Read<float>(wyvernstakeTimerPtr + 0xE20);
             }
             GunLance.TotalAmmo = totalAmmo;
             GunLance.Ammo = currentAmmo;

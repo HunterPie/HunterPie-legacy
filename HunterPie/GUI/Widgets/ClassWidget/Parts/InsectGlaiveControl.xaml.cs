@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Windows;
+using HunterPie.Logger;
 using InsectGlaive = HunterPie.Core.LPlayer.Jobs.InsectGlaive;
 using InsectGlaiveEventArgs = HunterPie.Core.LPlayer.Jobs.InsectGlaiveEventArgs;
 using KinsectChargeBuff = HunterPie.Core.LPlayer.Jobs.KinsectChargeBuff;
@@ -14,6 +15,7 @@ namespace HunterPie.GUI.Widgets.ClassWidget.Parts
         const string RedBuffColor = "#CCFF3B3B";
         const string WhiteBuffColor = "#CCF3F3F3";
         const string OrangeBuffColor = "#CCFB7D25";
+        const string GreenBuffColor = "#CC57FA20";
 
         public string FirstBuffQueued
         {
@@ -269,6 +271,7 @@ namespace HunterPie.GUI.Widgets.ClassWidget.Parts
             if (ID == 0) return RedBuffColor;
             if (ID == 1) return WhiteBuffColor;
             if (ID == 2) return OrangeBuffColor;
+            if (ID == 3) return GreenBuffColor;
             return "#CC464646";
         }
 

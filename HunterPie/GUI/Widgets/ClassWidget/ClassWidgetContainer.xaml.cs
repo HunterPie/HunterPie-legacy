@@ -62,6 +62,7 @@ namespace HunterPie.GUI.Widgets.ClassWidget
                 case Classes.ChargeBlade:
                     config = classesConfig.ChargeBladeHelper;
                     break;
+                //case Classes.GunLance:
                 case Classes.InsectGlaive:
                     config = classesConfig.InsectGlaiveHelper;
                     break;
@@ -143,9 +144,11 @@ namespace HunterPie.GUI.Widgets.ClassWidget
                 WidgetHasContent = !Context.Player.InHarvestZone;
                 switch ((Classes)Context.Player.WeaponID)
                 {
+#if DEBUG
                     case Classes.GunLance:
                         SetClassToGunLance();
                         break;
+#endif
                     case Classes.ChargeBlade:
                         SetClassToChargeBlade();
                         break;

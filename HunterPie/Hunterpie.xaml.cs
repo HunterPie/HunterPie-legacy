@@ -659,9 +659,9 @@ namespace HunterPie {
                     Arguments = UserSettings.PlayerConfig.HunterPie.Launch.LaunchArgs,
                     UseShellExecute = true
                 };
-                Scanner.CloseHandle(Process.Start(GameStartInfo).Handle);
+                Process.Start(GameStartInfo);
             } catch(Exception err) {
-                Debugger.Error($"{GStrings.GetLocalizationByXPath("/Console/String[@ID='MESSAGE_LAUNCH_ERROR']")}\n{err.ToString()}");
+                Debugger.Error($"{GStrings.GetLocalizationByXPath("/Console/String[@ID='MESSAGE_LAUNCH_ERROR']")}\n{err}");
             }
         }
 

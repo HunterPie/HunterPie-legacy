@@ -20,6 +20,7 @@ namespace HunterPie.Core.LPlayer.Jobs
             BigAmmo = weapon.BigAmmo;
             WyvernsFireTimer = weapon.WyvernsFireTimer;
             WyvernstakeBlastTimer = weapon.WyvernstakeBlastTimer;
+            HasWyvernstakeLoaded = weapon.HasWyvernstakeLoaded;
         }
     }
     public class GunLance
@@ -97,7 +98,7 @@ namespace HunterPie.Core.LPlayer.Jobs
             get => wyvernstakeBlastTimer;
             set
             {
-                if (value == wyvernstakeBlastTimer)
+                if (value != wyvernstakeBlastTimer)
                 {
                     wyvernstakeBlastTimer = value;
                     Dispatch(OnWyvernstakeBlastTimerUpdate);

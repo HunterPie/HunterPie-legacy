@@ -1,70 +1,74 @@
-﻿<local:ClassControl x:Class="HunterPie.GUI.Widgets.ClassWidget.Parts.GunLanceControl"
+﻿<local:ClassControl x:Name="GLControl" x:Class="HunterPie.GUI.Widgets.ClassWidget.Parts.GunLanceControl"
              xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              xmlns:local="clr-namespace:HunterPie.GUI.Widgets.ClassWidget.Parts"
-             mc:Ignorable="d">
+             mc:Ignorable="d"
+             xmlns:helper="clr-namespace:HunterPie.GUI.Helpers">
     <Grid Width="150" Height="100">
-        <!-- Wyvern's Fire -->
-        
 
-        <!-- Wyrmstake -->
-        <Rectangle HorizontalAlignment="Left" Width="30" Height="30" VerticalAlignment="Top" RenderTransformOrigin="0.5,0.5" Margin="60,37,0,0">
-            <Rectangle.Fill>
-                <RadialGradientBrush>
-                    <GradientStop Color="#7F212121" Offset="0"/>
-                    <GradientStop Color="#7F0C0C0C" Offset="1"/>
-                </RadialGradientBrush>
-            </Rectangle.Fill>
+        <!-- Ammo -->
+        <!-- Wyvern's Fire -->
+        <helper:Diamond Height="40" Width="40" RenderTransformOrigin="0.5,0.5" StrokeThickness="2" Percentage="{Binding WyvernboomPercentage, ElementName=GLControl}" Stroke="#FF3E89F5">
+            <helper:Diamond.RenderTransform>
+                <TransformGroup>
+                    <ScaleTransform/>
+                    <SkewTransform/>
+                    <RotateTransform Angle="-45"/>
+                    <TranslateTransform/>
+                </TransformGroup>
+            </helper:Diamond.RenderTransform>
+
+
+        </helper:Diamond>
+
+
+        <!-- Wyrmstake Blast-->
+        <Rectangle Height="36" Width="36" RenderTransformOrigin="0.5,0.5">
             <Rectangle.RenderTransform>
                 <TransformGroup>
                     <ScaleTransform/>
                     <SkewTransform/>
-                    <RotateTransform Angle="45"/>
+                    <RotateTransform Angle="-45"/>
                     <TranslateTransform/>
                 </TransformGroup>
             </Rectangle.RenderTransform>
+            <Rectangle.Fill>
+                <RadialGradientBrush GradientOrigin="0.5,0.5">
+                    <GradientStop Color="#7F292929" Offset="0"/>
+                    <GradientStop Color="#7F0F0F0F" Offset="1"/>
+                </RadialGradientBrush>
+            </Rectangle.Fill>
         </Rectangle>
-        <Canvas ClipToBounds="True" HorizontalAlignment="Left" Width="40" Height="40" VerticalAlignment="Top" Margin="55,32,0,0" RenderTransformOrigin="0.5,0.5">
-            <Canvas.LayoutTransform>
+        <helper:Diamond Width="34" Height="34" StrokeThickness="2" Percentage="{Binding Path=WyvernstakeTimerPercentage, ElementName=GLControl}" RenderTransformOrigin="0.5, 0.5" Stroke="#FFFF9700">
+            <helper:Diamond.RenderTransform>
                 <TransformGroup>
                     <ScaleTransform/>
                     <SkewTransform/>
-                    <RotateTransform Angle="180"/>
+                    <RotateTransform Angle="-45"/>
                     <TranslateTransform/>
                 </TransformGroup>
-            </Canvas.LayoutTransform>
-
-            <Rectangle Width="26" Height="26" RenderTransformOrigin="0.5,0.5" Canvas.Left="7" Canvas.Top="7" >
-                <Rectangle.Effect>
-                    <DropShadowEffect Color="Red" ShadowDepth="0" BlurRadius="10"/>
-                </Rectangle.Effect>
-                <Rectangle.Fill>
-                    <LinearGradientBrush EndPoint="0,0.5" MappingMode="RelativeToBoundingBox" StartPoint="0.5,1">
-                        <GradientStop Color="#7F9E0000" Offset="1"/>
-                        <GradientStop Color="#7FD30000"/>
-                    </LinearGradientBrush>
-                </Rectangle.Fill>
-                <Rectangle.RenderTransform>
-                    <TransformGroup>
-                        <ScaleTransform/>
-                        <SkewTransform/>
-                        <RotateTransform Angle="45"/>
-                        <TranslateTransform/>
-                    </TransformGroup>
-                </Rectangle.RenderTransform>
-            </Rectangle>
-        </Canvas>
-        <TextBlock Text="2:00" FontSize="13" Height="17" VerticalAlignment="Top" HorizontalAlignment="Left" Width="34" Margin="58,45,0,0" TextAlignment="Center">
+            </helper:Diamond.RenderTransform>
+        </helper:Diamond>
+        <Image Width="39" Source="pack://siteoforigin:,,,/HunterPie.Resources/UI/Class/GLanceWyvernstake.png" Margin="89,68,0,0" HorizontalAlignment="Left" Height="17" VerticalAlignment="Top">
+            <Image.OpacityMask>
+                <RadialGradientBrush>
+                    <GradientStop Color="#7F000000" Offset="0"/>
+                    <GradientStop Color="White" Offset="1"/>
+                </RadialGradientBrush>
+            </Image.OpacityMask>
+            <Image.Effect>
+                <DropShadowEffect ShadowDepth="0" Color="#FFFF8B00"/>
+            </Image.Effect>
+        </Image>
+        <TextBlock Text="{Binding Path=WyvernstakeTimer, ElementName=GLControl}" Width="44" Height="20" TextAlignment="Center" HorizontalAlignment="Left" Margin="53,40,0,0" VerticalAlignment="Top" FontSize="14">
             <TextBlock.Foreground>
                 <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
-                    <GradientStop Color="#FFA2A2A2" Offset="1"/>
-                    <GradientStop Color="#FFE8E8E8"/>
+                    <GradientStop Color="#FFDEDEDE" Offset="0"/>
+                    <GradientStop Color="#FFB4B4B4" Offset="1"/>
                 </LinearGradientBrush>
             </TextBlock.Foreground>
         </TextBlock>
-
-
     </Grid>
 </local:ClassControl>
