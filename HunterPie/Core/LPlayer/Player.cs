@@ -897,8 +897,8 @@ namespace HunterPie.Core
             long AbnormalitiesAddress = Scanner.READ_MULTILEVEL_PTR(Address.BASE + Address.ABNORMALITY_OFFSET, Address.Offsets.AbnormalityOffsets);
             int totalAmmo = Scanner.Read<int>(weaponAddress - 0x4);
             int currentAmmo = Scanner.Read<int>(weaponAddress);
-            int totalBigAmmo = Scanner.Read<int>(weaponAddress + 0xC);
-            int currentBigAmmo = Scanner.Read<int>(weaponAddress + 0x10);
+            int totalBigAmmo = Scanner.Read<int>(weaponAddress + 0x10);
+            int currentBigAmmo = Scanner.Read<int>(weaponAddress + 0xC);
             float wyvernsfire = Scanner.Read<float>(AbnormalitiesAddress + 0xB70);
             bool hasFirestakeLoaded = Scanner.Read<float>(weaponAddress + 0xBC) == 120.0f;
             // Check if the Firestake timer ptr is 0

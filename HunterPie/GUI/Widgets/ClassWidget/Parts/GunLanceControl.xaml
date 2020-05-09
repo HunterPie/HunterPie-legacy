@@ -9,8 +9,10 @@
     <Grid Width="150" Height="100">
 
         <!-- Ammo -->
+        <StackPanel x:Name="AmmoHolder" Orientation="Horizontal" Height="19" VerticalAlignment="Top" HorizontalAlignment="Left" Width="82" Margin="68,37,0,0"/>
+
         <!-- Wyvern's Fire -->
-        <helper:Diamond Height="40" Width="40" RenderTransformOrigin="0.5,0.5" StrokeThickness="2" Percentage="{Binding WyvernboomPercentage, ElementName=GLControl}" Stroke="#FF3E89F5">
+        <helper:Diamond Height="40" Width="40" Margin="17,29,93,31" RenderTransformOrigin="0.5,0.5" StrokeThickness="2" Percentage="{Binding WyvernboomPercentage, ElementName=GLControl}" Stroke="#FF3E89F5">
             <helper:Diamond.RenderTransform>
                 <TransformGroup>
                     <ScaleTransform/>
@@ -19,13 +21,11 @@
                     <TranslateTransform/>
                 </TransformGroup>
             </helper:Diamond.RenderTransform>
-
-
         </helper:Diamond>
 
 
         <!-- Wyrmstake Blast-->
-        <Rectangle Height="36" Width="36" RenderTransformOrigin="0.5,0.5">
+        <Rectangle Height="36" Width="36" RenderTransformOrigin="0.5,0.5" Margin="19,31,0,0" HorizontalAlignment="Left" VerticalAlignment="Top">
             <Rectangle.RenderTransform>
                 <TransformGroup>
                     <ScaleTransform/>
@@ -41,7 +41,7 @@
                 </RadialGradientBrush>
             </Rectangle.Fill>
         </Rectangle>
-        <helper:Diamond Width="34" Height="34" StrokeThickness="2" Percentage="{Binding Path=WyvernstakeTimerPercentage, ElementName=GLControl}" RenderTransformOrigin="0.5, 0.5" Stroke="#FFFF9700">
+        <helper:Diamond Width="34" Height="34" StrokeThickness="2" Percentage="{Binding Path=WyvernstakeTimerPercentage, ElementName=GLControl}" RenderTransformOrigin="0.5, 0.5" Stroke="#FFFF9700" Margin="20,32,96,34">
             <helper:Diamond.RenderTransform>
                 <TransformGroup>
                     <ScaleTransform/>
@@ -51,7 +51,7 @@
                 </TransformGroup>
             </helper:Diamond.RenderTransform>
         </helper:Diamond>
-        <Image Width="39" Source="pack://siteoforigin:,,,/HunterPie.Resources/UI/Class/GLanceWyvernstake.png" Margin="89,68,0,0" HorizontalAlignment="Left" Height="17" VerticalAlignment="Top">
+        <Image Width="62" Source="{Binding Path=BigAmmoImage, ElementName=GLControl}" Margin="61,57,0,0" HorizontalAlignment="Left" Height="27" VerticalAlignment="Top">
             <Image.OpacityMask>
                 <RadialGradientBrush>
                     <GradientStop Color="#7F000000" Offset="0"/>
@@ -59,10 +59,10 @@
                 </RadialGradientBrush>
             </Image.OpacityMask>
             <Image.Effect>
-                <DropShadowEffect ShadowDepth="0" Color="#FFFF8B00"/>
+                <DropShadowEffect ShadowDepth="0" Color="{Binding Path=BigAmmoShadowColor, ElementName=GLControl}"/>
             </Image.Effect>
         </Image>
-        <TextBlock Text="{Binding Path=WyvernstakeTimer, ElementName=GLControl}" Width="44" Height="20" TextAlignment="Center" HorizontalAlignment="Left" Margin="53,40,0,0" VerticalAlignment="Top" FontSize="14">
+        <TextBlock Text="{Binding Path=WyvernstakeTimer, ElementName=GLControl}" Width="45" Height="20" TextAlignment="Center" HorizontalAlignment="Left" Margin="14,39,0,0" VerticalAlignment="Top" FontSize="14">
             <TextBlock.Foreground>
                 <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
                     <GradientStop Color="#FFDEDEDE" Offset="0"/>
