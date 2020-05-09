@@ -62,7 +62,9 @@ namespace HunterPie.GUI.Widgets.ClassWidget
                 case Classes.ChargeBlade:
                     config = classesConfig.ChargeBladeHelper;
                     break;
+#if DEBUG
                 case Classes.GunLance:
+#endif
                 case Classes.InsectGlaive:
                     config = classesConfig.InsectGlaiveHelper;
                     break;

@@ -424,21 +424,21 @@ namespace HunterPie.Core {
 
         private void GetMonsterParts()
         {
-            if (!this.IsAlive) return;
+            if (!IsAlive) return;
             long monsterPartAddress = MonsterAddress + Address.Offsets.MonsterPartsOffset + Address.Offsets.FirstMonsterPartOffset;
             int partsCount = MonsterInfo.MaxParts;
             int nRemovableParts = MonsterInfo.MaxRemovableParts;
             byte TimesBroken;
             float Health;
             float MaxHealth;
-
+            Int64 removablePartAddress = MonsterAddress + Address.Offsets.RemovablePartsOffset;
             for (int partId = 0; partId < partsCount; partId++)
             {
                 Part part = Parts[partId];
                 PartInfo partInfo = MonsterInfo.Parts[partId];
+                
                 if (partInfo.IsRemovable)
                 {
-
                     if (part.PartAddress > 0)
                     {
                         TimesBroken = Scanner.Read<byte>(part.PartAddress + 0x18);
@@ -449,7 +449,6 @@ namespace HunterPie.Core {
                     }
                     else
                     {
-                        Int64 removablePartAddress = MonsterAddress + Address.Offsets.RemovablePartsOffset;
                         for (int removablePartIndex = 0; removablePartIndex < 32; removablePartIndex++)
                         {
                             if (Scanner.Read<int>(removablePartAddress) <= 10)
@@ -459,7 +458,7 @@ namespace HunterPie.Core {
 
                             bool IsAValidPart = Scanner.Read<int>(removablePartAddress + 0x6C) < nRemovableParts;
 
-                            if (IsAValidPart && Scanner.Read<int>(removablePartAddress + 0x0C) > 0)
+                            if (IsAValidPart && Scanner.Read<int>(removablePartAddress + 0x10) > 0)
                             {
                                 TimesBroken = Scanner.Read<byte>(removablePartAddress + 0x18);
                                 MaxHealth = Scanner.Read<float>(removablePartAddress + 0x10);
@@ -471,18 +470,15 @@ namespace HunterPie.Core {
 
                                 // Some monsters have the same removable part value in the next removable part struct
                                 // so we skip the ones with the same values.
-                                while (
-                                    Scanner.Read<float>(removablePartAddress + Address.Offsets.NextRemovablePart + 0x0C) == Health &&
-                                    Scanner.Read<float>(removablePartAddress + Address.Offsets.NextRemovablePart + 0x10) == MaxHealth &&
-                                    Scanner.Read<int>(removablePartAddress + Address.Offsets.NextRemovablePart + 0x8) == Scanner.Read<int>(removablePartAddress + 0x8))
+                                do
                                 {
                                     removablePartAddress += Address.Offsets.NextRemovablePart;
-                                }
-
-                                removablePartAddress += Address.Offsets.NextRemovablePart;
+                                    
+                                } while (Scanner.Read<float>(removablePartAddress + 0x0C) == Health &&
+                                    Scanner.Read<float>(removablePartAddress + 0x10) == MaxHealth &&
+                                    Scanner.Read<int>(removablePartAddress + 0x8) == Scanner.Read<int>(removablePartAddress + 0x8));
                                 break;
                             }
-
                             removablePartAddress += Address.Offsets.NextRemovablePart;
                         }
                     }

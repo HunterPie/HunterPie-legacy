@@ -90,7 +90,7 @@ namespace HunterPie.GUI {
                 i++;
             }
             foreach(int index in IndexesToRemove) {
-                Widgets.RemoveAt(i);
+                Widgets.RemoveAt(index);
             }
 
         }
