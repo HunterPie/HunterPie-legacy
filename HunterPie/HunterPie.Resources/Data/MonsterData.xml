@@ -678,7 +678,8 @@
       <Weakness ID="ELEMENT_WATER" Stars="2"/>
     </Weaknesses>
     <Crown Mini="0.9" Silver="1.15" Gold="1.23"/>
-    <Parts Max="7">
+    <Parts Max="8">
+	  <Part Name="MONSTER_PART_UNKNOWN" IsRemovable="True"/> <!-- Removable Charge -->
       <Part Name="MONSTER_PART_REMOVABLE_TAIL" IsRemovable="True">
         <Break Threshold="1"/>
       </Part>
@@ -703,7 +704,8 @@
       <Weakness ID="ELEMENT_FIRE" Stars="2"/>
     </Weaknesses>
     <Crown Mini="0.9" Silver="1.15" Gold="1.23"/>
-    <Parts Max="7">
+    <Parts Max="8">
+	  <Part Name="MONSTER_PART_UNKNOWN" IsRemovable="True"/> <!-- Removable Charge -->
       <Part Name="MONSTER_PART_REMOVABLE_TAIL" IsRemovable="True">
         <Break Threshold="1"/>
       </Part>
@@ -780,7 +782,8 @@
       <Weakness ID="ELEMENT_ICE" Stars="2"/>
     </Weaknesses>
     <Crown Mini="0.9" Silver="1.10" Gold="1.20"/>
-    <Parts Max="8">
+    <Parts Max="9">
+	  <Part Name="MONSTER_PART_UNKNOWN" IsRemovable="True"/> <!-- Fire Throat -->
       <Part Name="MONSTER_PART_REMOVABLE_TAIL" IsRemovable="True">
         <Break Threshold="1"/>
       </Part>
@@ -834,7 +837,8 @@
       <Weakness ID="ELEMENT_ICE" Stars="2"/>
     </Weaknesses>
     <Crown Mini="0.9" Silver="1.10" Gold="1.20"/>
-    <Parts Max="6">
+    <Parts Max="7">
+	  <Part Name="MONSTER_PART_UNKNOWN" IsRemovable="True"/> <!-- Fire Throat -->
       <Part Name="MONSTER_PART_REMOVABLE_TAIL" IsRemovable="True">
         <Break Threshold="1"/>
       </Part>
@@ -857,7 +861,8 @@
       <Weakness ID="ELEMENT_WATER" Stars="2"/>
     </Weaknesses>
     <Crown Mini="0.9" Silver="1.10" Gold="1.20"/>
-    <Parts Max="6">
+    <Parts Max="7">
+	  <Part Name="MONSTER_PART_UNKNOWN" IsRemovable="True"/> <!-- Charged Throat -->
       <Part Name="MONSTER_PART_REMOVABLE_TAIL" IsRemovable="True">
         <Break Threshold="1"/>
       </Part>
@@ -902,7 +907,7 @@
     </Weaknesses>
     <Crown Mini="0.9" Silver="1.10" Gold="1.20"/>
     <Parts Max="9">
-      <Part Name="MONSTER_PART_REMOVABLE_HEAD" IsRemovable="True"/>
+      <Part Name="MONSTER_PART_REMOVABLE_HEAD" IsRemovable="True"/> <!-- Full mouth -->
       <Part Name="MONSTER_PART_REMOVABLE_TAIL" IsRemovable="True">
         <Break Threshold="1"/>
       </Part>
@@ -929,10 +934,12 @@
       <Weakness ID="ELEMENT_THUNDER" Stars="2"/>
     </Weaknesses>
     <Crown Mini="0.9" Silver="1.10" Gold="1.20"/>
-    <Parts Max="8">
+    <Parts Max="10">
+	  <Part Name="MONSTER_PART_REMOVABLE_HEAD" IsRemovable="True"/> <!-- Full mouth -->
       <Part Name="MONSTER_PART_REMOVABLE_TAIL" IsRemovable="True">
         <Break Threshold="1"/>
       </Part>
+	  <Part Name="MONSTER_PART_UNKNOWN" IsRemovable="True"/> <!-- Inflated Tail -->
       <Part Name="MONSTER_PART_HEAD" Group="HEAD">
         <Break Threshold="2"/>
       </Part>
@@ -1605,10 +1612,12 @@
       <Weakness ID="ELEMENT_THUNDER" Stars="2"/>
     </Weaknesses>
     <Crown Mini="0.9" Silver="1.15" Gold="1.23"/>
-    <Parts Max="7">
+    <Parts Max="9">
+	  <Part Name="MONSTER_PART_UNKNOWN" IsRemovable="True"/> <!-- Purple Glowing Head -->
       <Part Name="MONSTER_PART_REMOVABLE_TAIL" IsRemovable="True">
         <Break Threshold="1"/>
       </Part>
+	  <Part Name="MONSTER_PART_UNKNOWN" IsRemovable="True"/> <!-- Purple Glowing Tail -->
       <Part Name="MONSTER_PART_HEAD" Group="HEAD">
         <Break Threshold="2"/>
       </Part>
@@ -1635,7 +1644,7 @@
       <Part Name="MONSTER_PART_HEAD" Group="HEAD">
         <Break Threshold="2"/>
       </Part>
-      <Part Name="MONSTER_PART_UNKNOWN" Group="MISC"/>
+      <Part Name="MONSTER_PART_UNKNOWN" Group="HEAD"/> <!-- Unknown, Head -->
       <Part Name="MONSTER_PART_ARMS" Group="ARM"/>
       <Part Name="MONSTER_PART_LEGS" Group="LEG"/>
       <Part Name="MONSTER_PART_TAIL" Group="TAIL"/>
@@ -1674,7 +1683,10 @@
       <Weakness ID="ELEMENT_THUNDER" Stars="2"/>
     </Weaknesses>
     <Crown Mini="0.9" Silver="1.15" Gold="1.23"/>
-    <Parts Max="7">
+    <Parts Max="10">
+	  <Part Name="MONSTER_PART_UNKNOWN" IsRemovable="True"/> <!-- Get out of snow Head -->
+	  <Part Name="MONSTER_PART_UNKNOWN" IsRemovable="True"/> <!-- Get out of snow Body -->
+	  <Part Name="MONSTER_PART_UNKNOWN" IsRemovable="True"/> <!-- Get out of snow Tail -->
       <Part Name="MONSTER_PART_HEAD" Group="HEAD">
         <Break Threshold="2"/>
       </Part>
@@ -1704,7 +1716,7 @@
       <Weakness ID="ELEMENT_FIRE" Stars="2"/>
     </Weaknesses>
     <Crown Mini="0.9" Silver="1.15" Gold="1.23"/>
-    <Parts Max="7">
+    <Parts Max="8">
       <Part Name="MONSTER_PART_REMOVABLE_HORNS" IsRemovable="True">
         <Break Threshold="1"/>
         <Break Threshold="2"/>
@@ -1712,6 +1724,7 @@
       <Part Name="MONSTER_PART_REMOVABLE_TAIL" IsRemovable="True">
         <Break Threshold="1"/>
       </Part>
+	  <Part Name="MONSTER_PART_UNKNOWN" IsRemovable="True"/> <!-- Unknown -->
       <Part Name="MONSTER_PART_HORNS" Group="HORN"/>
       <Part Name="MONSTER_PART_BODY" Group="BODY"/>
       <Part Name="MONSTER_PART_LLEG" Group="LEG">
