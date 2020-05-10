@@ -322,6 +322,10 @@
       <Part Name="MONSTER_PART_REMOVABLE_TAIL" IsRemovable="True">
         <Break Threshold="1"/>
       </Part>
+      <Part Name="MONSTER_PART_REMOVABLE_HORNS_2" IsRemovable="True">
+        <Break Threshold="1"/>
+      </Part>
+      <Part Name="MONSTER_PART_UNKNOWN" IsRemovable="True"/> <!-- Removable Fury -->
       <Part Name="MONSTER_PART_HEAD" Group="HEAD"/>
       <Part Name="MONSTER_PART_BODY" Group="BODY"/>
       <Part Name="MONSTER_PART_LARM" Group="ARM">
@@ -333,10 +337,6 @@
       <Part Name="MONSTER_PART_LLEG" Group="LEG"/>
       <Part Name="MONSTER_PART_RLEG" Group="LEG"/>
       <Part Name="MONSTER_PART_TAIL" Group="TAIL"/>
-      <Part Name="MONSTER_PART_REMOVABLE_HORNS_2" IsRemovable="True">
-        <Break Threshold="1"/>
-      </Part>
-      <Part Name="MONSTER_PART_UNKNOWN" IsRemovable="True"/>
     </Parts>
   </Monster>
   <Monster ID="em023_05" Capture="10"  GameID="92"> <!-- Furious Rajang -->
@@ -350,6 +350,10 @@
         <Break Threshold="1"/>
       </Part>
       <Part Name="MONSTER_PART_TAIL" Group="TAIL" IsRemovable="True"/>
+      <Part Name="MONSTER_PART_REMOVABLE_HORNS_2" IsRemovable="True">
+        <Break Threshold="1"/>
+      </Part>
+      <Part Name="MONSTER_PART_UNKNOWN" IsRemovable="True"/>  <!-- Removable Fury -->
       <Part Name="MONSTER_PART_HEAD" Group="HEAD"/>
       <Part Name="MONSTER_PART_BODY" Group="BODY"/>
       <Part Name="MONSTER_PART_LARM" Group="ARM">
@@ -361,10 +365,6 @@
       <Part Name="MONSTER_PART_LLEG" Group="LEG"/>
       <Part Name="MONSTER_PART_RLEG" Group="LEG"/>
       <Part Name="MONSTER_PART_TAIL" Group="TAIL"/>
-      <Part Name="MONSTER_PART_REMOVABLE_HORNS_2" IsRemovable="True">
-        <Break Threshold="1"/>
-      </Part>
-      <Part Name="MONSTER_PART_UNKNOWN" IsRemovable="True"/>
     </Parts>
   </Monster>
   <Monster ID="em024_00" Capture="0"  GameID="16"> <!-- Kushala Daora -->
@@ -1312,6 +1312,7 @@
     </Weaknesses>
     <Crown Mini="0.9" Silver="1.15" Gold="1.23"/>
     <Parts Max="7">
+      <Part Name="MONSTER_PART_UNKNOWN" IsRemovable="True"/> <!-- Fall from sky -->
       <Part Name="MONSTER_PART_HEAD" Group="HEAD">
         <Break Threshold="2"/>
       </Part>
@@ -1328,7 +1329,6 @@
       <Part Name="MONSTER_PART_TAIL" Group="TAIL">
         <Break Threshold="1"/>
       </Part>
-	    <Part Name="MONSTER_PART_UNKNOWN" Group="HEAD" IsRemovable="True"/>
     </Parts>
   </Monster>
   <Monster ID="em112_00" Capture="30" GameID="33"> <!-- Great Girros -->
@@ -1362,6 +1362,7 @@
       <Part Name="MONSTER_PART_REMOVABLE_TAIL" IsRemovable="True">
         <Break Threshold="1"/>
       </Part>
+	  <Part Name="MONSTER_PART_UNKNOWN" IsRemovable="True"/> <!-- Counterattack -->
       <Part Name="MONSTER_PART_HEAD" Group="HEAD">
         <Break Threshold="1"/>
         <Break Threshold="2"/>
@@ -1376,7 +1377,6 @@
       <Part Name="MONSTER_PART_TAIL" Group="TAIL">
         <Break Threshold="1"/>
       </Part>
-	    <Part Name="MONSTER_PART_UNKNOWN" IsRemovable="True"/>
     </Parts>
   </Monster>
   <Monster ID="em113_01" Capture="15"  GameID="74"> <!-- Ebony Odogaron -->
@@ -1386,6 +1386,13 @@
     </Weaknesses>
     <Crown Mini="0.9" Silver="1.15" Gold="1.23"/>
     <Parts Max="8">
+      <Part Name="MONSTER_PART_UNKNOWN" IsRemovable="True"/> <!-- Counterattack -->
+      <Part Name="MONSTER_PART_REMOVABLE_HEAD" IsRemovable="True">
+        <Break Threshold="1"/>
+      </Part>
+      <Part Name="MONSTER_PART_REMOVABLE_TAIL" IsRemovable="True">
+        <Break Threshold="1"/>
+      </Part>
       <Part Name="MONSTER_PART_HEAD" Group="HEAD"/>
       <Part Name="MONSTER_PART_BODY" Group="BODY"/>
       <Part Name="MONSTER_PART_ARMS" Group="ARM">
@@ -1395,13 +1402,6 @@
         <Break Threshold="1"/>
       </Part>
       <Part Name="MONSTER_PART_TAIL" Group="TAIL">
-        <Break Threshold="1"/>
-      </Part>
-      <Part Name="MONSTER_PART_UNKNOWN" IsRemovable="True"/>
-      <Part Name="MONSTER_PART_REMOVABLE_HEAD" IsRemovable="True">
-        <Break Threshold="1"/>
-      </Part>
-      <Part Name="MONSTER_PART_REMOVABLE_TAIL" IsRemovable="True">
         <Break Threshold="1"/>
       </Part>
     </Parts>
@@ -1446,6 +1446,10 @@
     </Weaknesses>
     <Crown Mini="0.9" Silver="1.15" Gold="1.23"/>
     <Parts Max="11">
+      <Part Name="MONSTER_PART_UNKNOWN" IsRemovable="True"/> <!-- Unknown/Flinch -->
+      <Part Name="MONSTER_PART_REMOVABLE_TAIL" IsRemovable="True">
+        <Break Threshold="1"/>
+      </Part>
       <Part Name="MONSTER_PART_HEAD" Group="HEAD">
         <Break Threshold="2"/>
       </Part>
@@ -1463,10 +1467,6 @@
       <Part Name="MONSTER_PART_LLEG" Group="LEG"/>
       <Part Name="MONSTER_PART_RLEG" Group="LEG"/>
       <Part Name="MONSTER_PART_WINGS" Group="WING"/>
-      <Part Name="MONSTER_PART_UNKNOWN" Group="MISC" IsRemovable="True"/>
-      <Part Name="MONSTER_PART_REMOVABLE_TAIL" IsRemovable="True">
-        <Break Threshold="1"/>
-      </Part>
     </Parts>
   </Monster>
   <Monster ID="em115_05" Capture="0"  GameID="75"> <!-- Blackveil Vaal Hazak -->
@@ -1476,6 +1476,10 @@
     </Weaknesses>
     <Crown Mini="0.9" Silver="1.15" Gold="1.23"/>
     <Parts Max="11">
+	  <Part Name="MONSTER_PART_REMOVABLE_TAIL" IsRemovable="True">
+        <Break Threshold="1"/>
+      </Part>
+	  <Part Name="MONSTER_PART_UNKNOWN" IsRemovable="True"/>  <!-- Unknown/Flinch -->
       <Part Name="MONSTER_PART_HEAD" Group="HEAD">
         <Break Threshold="3"/>
       </Part>
@@ -1493,10 +1497,6 @@
       <Part Name="MONSTER_PART_LLEG" Group="LEG"/>
       <Part Name="MONSTER_PART_RLEG" Group="LEG"/>
       <Part Name="MONSTER_PART_WINGS" Group="WING"/>
-	    <Part Name="MONSTER_PART_REMOVABLE_TAIL" IsRemovable="True">
-        <Break Threshold="1"/>
-      </Part>
-	    <Part Name="MONSTER_PART_UNKNOWN" Group="MISC" IsRemovable="True"/>
     </Parts>
   </Monster>
   <Monster ID="em116_00" Capture="30" GameID="37"> <!-- Dodogama -->
