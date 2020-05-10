@@ -18,6 +18,9 @@ namespace HunterPie.GUI.Widgets.ClassWidget.Parts
         const string BigAmmoLoadedColor = "#FF6EB7EB";
         const string BigAmmoNotLoadedColor = "#FFAE0000";
 
+        const string WyvernsfireOnCooldown = "#FFED2F2F";
+        const string WyvernsfireReady = "#FF2FED55";
+
         public double WyvernstakeTimerPercentage
         {
             get { return (double)GetValue(WyvernstakeTimerPercentageProperty); }
@@ -44,6 +47,15 @@ namespace HunterPie.GUI.Widgets.ClassWidget.Parts
 
         public static readonly DependencyProperty WyvernboomPercentageProperty =
             DependencyProperty.Register("WyvernboomPercentage", typeof(double), typeof(GunLanceControl));
+
+        public string WyvernsfireDiamondColor
+        {
+            get { return (string)GetValue(WyvernsfireDiamondColorProperty); }
+            set { SetValue(WyvernsfireDiamondColorProperty, value); }
+        }
+
+        public static readonly DependencyProperty WyvernsfireDiamondColorProperty =
+            DependencyProperty.Register("WyvernsfireDiamondColor", typeof(string), typeof(GunLanceControl));
 
         public string BigAmmoShadowColor
         {
@@ -124,6 +136,7 @@ namespace HunterPie.GUI.Widgets.ClassWidget.Parts
         {
             Dispatcher.BeginInvoke(System.Windows.Threading.DispatcherPriority.Render, new Action(() =>
             {
+                WyvernsfireDiamondColor = args.WyvernsFireTimer <= 0 ? WyvernsfireReady : WyvernsfireOnCooldown;
                 WyvernboomPercentage = 1 - args.WyvernsFireTimer / 120;
             }));
         }

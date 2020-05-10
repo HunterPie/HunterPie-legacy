@@ -12,7 +12,10 @@
         <StackPanel x:Name="AmmoHolder" Orientation="Horizontal" Height="19" VerticalAlignment="Top" HorizontalAlignment="Left" Width="82" Margin="68,37,0,0"/>
 
         <!-- Wyvern's Fire -->
-        <helper:Diamond Height="40" Width="40" Margin="17,29,93,31" RenderTransformOrigin="0.5,0.5" StrokeThickness="2" Percentage="{Binding WyvernboomPercentage, ElementName=GLControl}" Stroke="#FF3E89F5">
+        <helper:Diamond Height="40" Width="40" Margin="17,29,93,31" RenderTransformOrigin="0.5,0.5" StrokeThickness="2" Percentage="{Binding WyvernboomPercentage, ElementName=GLControl}" Stroke="{Binding WyvernsfireDiamondColor, ElementName=GLControl}">
+            <helper:Diamond.Effect>
+                <DropShadowEffect BlurRadius="20" ShadowDepth="0" Color="{Binding WyvernsfireDiamondColor, ElementName=GLControl}"/>
+            </helper:Diamond.Effect>
             <helper:Diamond.RenderTransform>
                 <TransformGroup>
                     <ScaleTransform/>
@@ -35,9 +38,9 @@
                 </TransformGroup>
             </Rectangle.RenderTransform>
             <Rectangle.Fill>
-                <RadialGradientBrush GradientOrigin="0.5,0.5">
-                    <GradientStop Color="#7F292929" Offset="0"/>
-                    <GradientStop Color="#7F0F0F0F" Offset="1"/>
+                <RadialGradientBrush>
+                    <GradientStop Color="#7F191623"/>
+                    <GradientStop Color="#7F1A181D" Offset="1"/>
                 </RadialGradientBrush>
             </Rectangle.Fill>
         </Rectangle>

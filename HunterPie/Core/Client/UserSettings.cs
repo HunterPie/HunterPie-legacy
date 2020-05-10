@@ -4,6 +4,7 @@ using System.IO;
 using System.Linq;
 using System.Collections.Generic;
 using HunterPie.Logger;
+using HunterPie.Core.LPlayer.Jobs;
 
 namespace HunterPie.Core {
     public class UserSettings {
@@ -175,6 +176,7 @@ namespace HunterPie.Core {
             {
                 public ChargeBladeHelper ChargeBladeHelper { get; set; } = new ChargeBladeHelper();
                 public InsectGlaiveHelper InsectGlaiveHelper { get; set; } = new InsectGlaiveHelper();
+                public GunLanceHelper GunLanceHelper { get; set; } = new GunLanceHelper();
             }
 
             public class ChargeBladeHelper : WeaponHelperStructure
@@ -185,6 +187,11 @@ namespace HunterPie.Core {
             public class InsectGlaiveHelper : WeaponHelperStructure
             {
                 
+            }
+
+            public class GunLanceHelper : WeaponHelperStructure
+            {
+
             }
 
             public class WeaponHelperStructure
