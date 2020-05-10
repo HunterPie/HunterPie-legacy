@@ -1811,7 +1811,7 @@
         <Break Threshold="3"/>
         <Break Threshold="4"/>
       </Part>
-      <Part Name="MONSTER_PART_REMOVABLE_HEAD" IsRemovable="True">  <!-- Rocky Head -->
+      <Part Name="MONSTER_PART_REMOVABLE_HEAD" IsRemovable="True">  <!-- Rocky Chest -->
         <Break Threshold="2"/>
         <Break Threshold="3"/>
         <Break Threshold="4"/>
@@ -1828,8 +1828,12 @@
         <Break Threshold="3"/>
         <Break Threshold="4"/>
       </Part>
-      <Part Name="MONSTER_PART_LNECK_ROCK" Group="NECK"/>
-      <Part Name="MONSTER_PART_RNECK_ROCK" Group="NECK"/>
+      <Part Name="MONSTER_PART_LNECK_ROCK" Group="NECK">
+	    <Break Threshold="1"/>
+	  </Part>
+      <Part Name="MONSTER_PART_RNECK_ROCK" Group="NECK">
+	    <Break Threshold="1"/>
+	  </Part>
       <Part Name="MONSTER_PART_HEAD_ROCK" Group="HEAD"/>
       <Part Name="MONSTER_PART_TAIL_ROCK" Group="TAIL"/>
       <Part Name="MONSTER_PART_LWING_ROCK" Group="WING">
@@ -1844,7 +1848,7 @@
       <Part Name="MONSTER_PART_RARM_ROCK" Group="ARM">
         <Break Threshold="1"/>
       </Part>
-      <Part Name="MONSTER_PART_LEGS_ROCK" Group="LEG"/>
+      <Part Name="MONSTER_PART_LEGS" Group="LEG"/>
       <Part Name="MONSTER_PART_HEAD" Group="HEAD"> <!-- Head first break -->
         <Break Threshold="1"/>
       </Part>
