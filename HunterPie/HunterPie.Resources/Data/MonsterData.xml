@@ -1812,6 +1812,7 @@
         <Break Threshold="4"/>
       </Part>
       <Part Name="MONSTER_PART_REMOVABLE_HEAD" IsRemovable="True">  <!-- Rocky Chest -->
+	    <Break Threshold="1"/>
         <Break Threshold="2"/>
         <Break Threshold="3"/>
         <Break Threshold="4"/>
