@@ -819,7 +819,9 @@
         <Break Threshold="1"/>
         <Break Threshold="2"/>
       </Part>
-      <Part Name="MONSTER_PART_FIN" Group="FIN"/>
+      <Part Name="MONSTER_PART_FIN" Group="FIN">
+	    <Break Threshold="1"/>
+      </Part>
       <Part Name="MONSTER_PART_BODY" Group="BODY"/>
       <Part Name="MONSTER_PART_ARMS" Group="ARM">
         <Break Threshold="1"/>
