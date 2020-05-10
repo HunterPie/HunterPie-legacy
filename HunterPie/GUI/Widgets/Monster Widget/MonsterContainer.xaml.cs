@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Windows;
-using System.Windows.Controls;
 using System.Windows.Media;
+using System.Linq;
 using HunterPie.Core;
 using Debugger = HunterPie.Logger.Debugger;
 
@@ -15,7 +15,6 @@ namespace HunterPie.GUI.Widgets {
         MonsterHealth f_MonsterWidget;
         MonsterHealth s_MonsterWidget;
         MonsterHealth t_MonsterWidget;
-        bool Startup = true;
 
         public MonsterContainer(Game ctx) {
             InitializeComponent();
@@ -113,11 +112,12 @@ namespace HunterPie.GUI.Widgets {
         public override void ApplySettings(bool FocusTrigger = false) {
             Dispatcher.BeginInvoke(System.Windows.Threading.DispatcherPriority.Background, new Action(() => {
                 if (!FocusTrigger) {
-                    if (UserSettings.PlayerConfig.Overlay.MonstersComponent.MonsterBarDock != 1) this.Top = UserSettings.PlayerConfig.Overlay.MonstersComponent.Position[1] + UserSettings.PlayerConfig.Overlay.Position[1];
+                    this.Top = UserSettings.PlayerConfig.Overlay.MonstersComponent.Position[1] + UserSettings.PlayerConfig.Overlay.Position[1];
                     this.Left = UserSettings.PlayerConfig.Overlay.MonstersComponent.Position[0] + UserSettings.PlayerConfig.Overlay.Position[0];
                     this.WidgetActive = UserSettings.PlayerConfig.Overlay.MonstersComponent.Enabled;
                     UpdateMonstersWidgetsSettings(UserSettings.PlayerConfig.Overlay.MonstersComponent.ShowMonsterWeakness, UserSettings.PlayerConfig.Overlay.MonstersComponent.MaxNumberOfPartsAtOnce, UserSettings.PlayerConfig.Overlay.MonstersComponent.MonsterBarDock);
                     ScaleWidget(UserSettings.PlayerConfig.Overlay.MonstersComponent.Scale, UserSettings.PlayerConfig.Overlay.MonstersComponent.Scale);
+                    this.Opacity = UserSettings.PlayerConfig.Overlay.MonstersComponent.Opacity;
                     foreach (MonsterHealth HealthBar in this.Container.Children) {
                         HealthBar.SwitchSizeBasedOnTarget();
                     }
@@ -150,10 +150,6 @@ namespace HunterPie.GUI.Widgets {
             this.DefaultScaleY = NewScaleY;
         }
 
-        private void OnMouseEnter(object sender, System.Windows.Input.MouseEventArgs e) {
-            this.MouseOver = true;
-        }
-
         private void OnMouseDown(object sender, System.Windows.Input.MouseButtonEventArgs e) {
             if (e.LeftButton == System.Windows.Input.MouseButtonState.Pressed) {
                 this.MoveWidget();
@@ -162,35 +158,22 @@ namespace HunterPie.GUI.Widgets {
         }
 
         private void OnMouseWheel(object sender, System.Windows.Input.MouseWheelEventArgs e) {
-            if (this.MouseOver) {
-                if (e.Delta > 0) {
-                    ScaleWidget(DefaultScaleX + 0.05, DefaultScaleY + 0.05);
-                } else {
-                    ScaleWidget(DefaultScaleX - 0.05, DefaultScaleY - 0.05);
-                }
+            if (e.Delta > 0) {
+                ScaleWidget(DefaultScaleX + 0.05, DefaultScaleY + 0.05);
+            } else {
+                ScaleWidget(DefaultScaleX - 0.05, DefaultScaleY - 0.05);
             }
         }
 
-        private void OnMouseLeave(object sender, System.Windows.Input.MouseEventArgs e) {
-            this.MouseOver = false;
-        }
-        
-        private void OnSizeChange(object sender, SizeChangedEventArgs e) {
+        private void OnSizeChange(object sender, SizeChangedEventArgs e)
+        {
             if (UserSettings.PlayerConfig.Overlay.MonstersComponent.MonsterBarDock != 1) return;
-            if (Startup) {
-                this.Top = UserSettings.PlayerConfig.Overlay.MonstersComponent.Position[1] + UserSettings.PlayerConfig.Overlay.Position[1];
-                Startup = false;
-                return;
-            }
+            if (e.WidthChanged || !e.HeightChanged) return;
 
-            if (f_MonsterWidget == null || s_MonsterWidget == null || t_MonsterWidget == null) return;
-            if (!f_MonsterWidget.IsVisible && !s_MonsterWidget.IsVisible && !t_MonsterWidget.IsVisible) return;
-            
-            // Compensate the widget position when it's resized if the boss bar dock is bottom
-            if (e.HeightChanged && !e.WidthChanged) {
-                e.Handled = true;
-                Top -= (e.NewSize.Height - e.PreviousSize.Height);
-            }
+            double HeightDiff = e.PreviousSize.Height - e.NewSize.Height;
+
+            Top = UserSettings.PlayerConfig.Overlay.Position[1] + UserSettings.PlayerConfig.Overlay.MonstersComponent.Position[1] + HeightDiff;
+            UserSettings.PlayerConfig.Overlay.MonstersComponent.Position[1] = (int)Top - UserSettings.PlayerConfig.Overlay.Position[1];
         }
                 
     }

@@ -13,7 +13,7 @@
     <Monster ID="em018_00" Name="얀가루루가"/>
     <Monster ID="em018_05" Name="상처입은 얀가루루가"/>
     <Monster ID="em023_00" Name="라잔"/>
-	<Monster ID="em023_05" Name="격앙 라잔"/>
+	  <Monster ID="em023_05" Name="격앙 라잔"/>
     <Monster ID="em024_00" Name="크샬다오라"/>
     <Monster ID="em026_00" Name="나나-테스카토리"/>
     <Monster ID="em027_00" Name="테오-테스카토르"/>
@@ -29,7 +29,7 @@
     <Monster ID="em057_00" Name="진오우거"/>
     <Monster ID="em057_01" Name="진오우거 아종"/>
     <Monster ID="em063_00" Name="브라키디오스"/>
-	<Monster ID="em063_05" Name="사납게 터지는 브라키디오스"/>
+	  <Monster ID="em063_05" Name="사납게 터지는 브라키디오스"/>
     <Monster ID="em080_00" Name="디노발드"/>
     <Monster ID="em080_01" Name="디노발드 아종"/>
     <Monster ID="em100_00" Name="안쟈나프"/>
@@ -172,9 +172,9 @@
     <Ailment ID="STATUS_DUNGPOD" Name="슬링어 거름탄"/>
     <Ailment ID="STATUS_SHOCKTRAP" Name="마비 덫"/>
     <Ailment ID="STATUS_PITFALLTRAP" Name="구멍 함정"/>
-	<Ailment ID="STATUS_VINETRAP" Name="넝쿨 함정"/>
+	  <Ailment ID="STATUS_VINETRAP" Name="넝쿨 함정"/>
     <Ailment ID="STATUS_ELDERSEAL" Name="용봉력"/>
-    <Ailment ID="STATUS_SMOKING" Name="연기옥"/>
+    <Ailment ID="STATUS_SMOKING" Name="이블죠의 브레스"/>
     <Ailment ID="STATUS_FELYNETRAP" Name="벌레장 함정"/>
     <Ailment ID="STATUS_CLAW" Name="분노치"/>
     <Ailment ID="STATUS_VIOLATED" Name="클러치 경직"/>
@@ -386,12 +386,23 @@
     <Abnormality ID="MISC_034_00" Name="귀신방울"/>
     <Abnormality ID="MISC_035_00" Name="얼음속성 방어 강화 UP [대]"/>
     <Abnormality ID="MISC_073_00" Name="공격력 &amp; 방어력 UP [소]"/>
+	  <Abnormality ID="GEAR_000_00" Name="귀인탄"/>
+    <Abnormality ID="GEAR_001_00" Name="경화탄"/>
+    <Abnormality ID="GEAR_002_00" Name="불굴"/>
+    <Abnormality ID="GEAR_003_00" Name="칼날연마"/>
+    <Abnormality ID="GEAR_004_00" Name="활주강화"/>
+    <Abnormality ID="GEAR_010_00" Name="얼음연성"/>
+    <Abnormality ID="GEAR_015_00" Name="공격적인 방어"/>
+    <Abnormality ID="GEAR_016_00" Name="전화위복"/>
+    <Abnormality ID="GEAR_099_00" Name="회피 복장 (공격력 UP)"/>
+    <Abnormality ID="GEAR_100_00" Name="달인의 연통"/>
   </Abnormalities>
   <!-- Client localization strings -->
   <Client>
     <Console>
       <String ID="CONSOLE_CONSOLE" Name="콘솔"/>
       <String ID="CONSOLE_SETTINGS" Name="설정"/>
+	  <String ID="CONSOLE_UPLOADBUILD" Name="장비 커스텀 업로드"/>
       <String ID="CONSOLE_CHANGELOG" Name="패치내역"/>
       <String ID="CONSOLE_DISCORD" Name="Discord"/>
       <String ID="CONSOLE_GITHUB" Name="GitHub"/>
@@ -401,6 +412,7 @@
       <String ID="MESSAGE_QUIT" Name="HunterPie를 종료하시겠습니까?"/>
       <String ID="TITLE_MISSING_PATH" Name="게임 설치 경로를 찾을 수 없습니다."/>
       <String ID="MESSAGE_MISSING_PATH" Name="게임 설치 경로를 설정하지 않으셨습니다, 지금 설정하시겠습니까?"/>
+	  <String ID="MESSAGE_UPLOAD_BUILD" Name="현재 캐릭터의 장비 커스텀을 Hunters World에 업로드 하시겠습니까?"/>
       <!-- Console Messages -->
       <String ID="MESSAGE_MAP_LOAD" Name="{HunterPie_Map} 로드 완료"/>
       <String ID="MESSAGE_DISCORD_CONNECTED" Name="새로운 RPC 연결 시작"/>
@@ -478,6 +490,8 @@
       <String ID="ENABLE_MONSTER_WIDGET_DESC" Name="옵션이 켜져 있을 경우, 몬스터 위젯은 보여줄 것이 있을시 활성화됩니다."/>
 	  <String ID="STATIC_MONSTER_HEALTH_STRING_FORMAT" Name="체력 텍스트 형식:"/>
       <String ID="STATIC_MONSTER_HEALTH_STRING_FORMAT_DESC" Name="몬스터 체력바에 표시되는 텍스트의 형식입니다."/>
+	  <String ID="ENABLE_MONSTER_USE_LOCKON" Name="맵을 열어 몬스터를 고르는 대신 락온을 사용합니다."/>
+      <String ID="ENABLE_MONSTER_USE_LOCKON_DESC" Name="옵션이 켜져 있을 경우, HunterPie는 인게임 락온을 사용하여 몬스터를 추적합니다."/>
       <String ID="STATIC_MONSTER_BAR_MODE" Name="몬스터 체력바 모드"/>
       <String ID="STATIC_MONSTER_BAR_MODE_DESC" Name="몬스터의 체력바 모드를 변경합니다."/>
       <String ID="STATIC_MONSTER_BAR_MODE_0" Name="모든 몬스터를 한번에 보여주기"/>
@@ -540,13 +554,21 @@
       <String ID="ENABLE_HARVEST_BOX_EVERYWHERE" Name="수확박스 위젯을 어디에서나 활성화"/>
       <String ID="ENABLE_HARVEST_BOX_EVERYWHERE_DESC" Name="옵션이 켜져 있을 경우,위젯은 탐색과 인도하는 땅을 포함한 모든곳에서 표시됩니다."/>
       <String ID="STATIC_HARVEST_BOX_POSITION_DESC" Name="수확박스 위젯의 위치 변경."/>
+	    <String ID="ENABLE_HARVEST_BOX_COMPACT_MODE" Name="소형 모드 활성화"/>
+      <String ID="ENABLE_HARVEST_BOX_COMPACT_MODE_DESC" Name="옵션이 켜져 있을 경우, 수확박스 위젯의 소형 디자인을 사용합니다."/>
       <!-- Damage Meter -->
       <String ID="ENABLE_METER" Name="데미지 미터기 위젯"/>
       <String ID="ENABLE_METER_DESC" Name="옵션이 켜져 있을 경우, 데미지 미터기 위젯은 보여줄 내용이 있을시 보여지게 됩니다."/>
-	  <String ID="ENABLE_TOTAL_DAMAGE" Name="데미지의 총합 표시"/>
-	  <String ID="ENABLE_TOTAL_DAMAGE_DESC" Name="옵션이 켜져 있을 경우, 데미지 미터기 위젯은 개인의 총합 데미지를 보여줍니다."/>
+	    <String ID="ENABLE_TOTAL_DAMAGE" Name="데미지의 총합 표시"/>
+	    <String ID="ENABLE_TOTAL_DAMAGE_DESC" Name="옵션이 켜져 있을 경우, 데미지 미터기 위젯은 개인의 총합 데미지를 보여줍니다."/>
       <String ID="ENABLE_METER_DPS" Name="DPS를 표시"/>
       <String ID="ENABLE_METER_DPS_DESC" Name="옵션이 켜져 있을 경우, 데미지 미터기 위젯은 개인의 DPS를 보여줍니다."/>
+	    <String ID="ENABLE_TIMER_IN_GL" Name="인도하는 땅/탐색에서의 타이머 활성화."/>
+      <String ID="ENABLE_TIMER_IN_GL_DESC" Name="옵션이 켜져 있을 경우, 인도하는 땅/탐색에서 타이머가 보여지게 됩니다."/>
+      <String ID="ENABLE_ONLY_TIMER" Name="타이머만 보여주기"/>
+      <String ID="ENABLE_ONLY_TIMER_DESC" Name="옵션이 켜져 있을 경우, 데미지 미터기 위젯은 파티의 데미지를 숨기고 타이머만 보여줍니다."/>
+      <String ID="ENABLE_METER_ONLY_MYSELF" Name="자신의 데미지만 보여주기"/>
+      <String ID="ENABLE_METER_ONLY_MYSELF_DESC" Name="옵션이 켜져 있을 경우, 오직 자신의 데미지만 보여지게 됩니다."/>
       <String ID="STATIC_METER_PLAYER_1" Name="첫번째 플레이어"/>
       <String ID="STATIC_METER_PLAYER_2" Name="두번째 플레이어"/>
       <String ID="STATIC_METER_PLAYER_3" Name="세번째 플레이어"/>
@@ -566,9 +588,10 @@
       <String ID="STATIC_ABNORM_TAB_HH" Name="수렵피리"/>
       <String ID="STATIC_ABNORM_TAB_ORCHESTRA" Name="격려의 음악"/>
       <String ID="STATIC_ABNORM_TAB_DEBUFF" Name="디버프"/>
+	    <String ID="STATIC_ABNORM_TAB_GEAR" Name="장비"/>
       <String ID="STATIC_ABNORM_TAB_CONSUMABLE" Name="소비 아이템"/>
-	  <String ID="ENABLE_SHOW_ABNORM_NAMES" Name="버프&amp;디버프의 이름 표시"/>
-	  <String ID="ENABLE_SHOW_ABNORM_NAMES_DESC" Name="옵션이 켜져 있을 경우, 버프&amp;디버프의 이름이 표시됩니다."/>
+	    <String ID="ENABLE_SHOW_ABNORM_NAMES" Name="버프&amp;디버프의 이름 표시"/>
+	    <String ID="ENABLE_SHOW_ABNORM_NAMES_DESC" Name="옵션이 켜져 있을 경우, 버프&amp;디버프의 이름이 표시됩니다."/>
       <!-- Specialized Tool Widget-->
       <String ID="STATIC_PRIMARY_SPEC_TOOL" Name="첫번째 특수장비"/>
       <String ID="STATIC_SECONDARY_SPEC_TOOL" Name="두번째 특수장비"/>
@@ -604,6 +627,8 @@
       <String ID="STATIC_BUTTON_SAVE" Name="저장"/>
       <String ID="STATIC_REQUIRES_RESTART" Name="(재시작 필요)"/>
       <String ID="STATIC_POSITION" Name="위치"/>
+	    <String ID="STATIC_COPYCLIPBOARD" Name="클립보드로 복사"/>
+	    <String ID="STATIC_OPACITY" Name="투명도"/>
       <!-- Settings Side bar-->
       <String ID="STATIC_GENERAL_SETTINGS" Name="일반 설정"/>
       <String ID="STATIC_DISCORD_SETTINGS" Name="Discord"/>
@@ -624,6 +649,8 @@
       <String ID="STATIC_ACCEPT" Name="수락"/>
       <String ID="STATIC_REJECT" Name="거절"/>
       <String ID="STATIC_SETTINGS_LOAD" Name="설정 불러옴"/>
+	  <String ID="STATIC_OPENDEFAULTBROWSER" Name="브라우저에서 열기"/>
+      <String ID="MESSAGE_BUILD_UPLOADED" Name="장비 커스텀이 Honey Hunters World에 업로드 되었습니다!"/>
     </Notifications>
     <RichPresence>
       <String ID="RPC_DESCRIPTION_IN_MAIN_MENU" Name="메인 메뉴"/>

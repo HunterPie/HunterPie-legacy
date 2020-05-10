@@ -1,5 +1,5 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
-<!--1.0.3.86 update version 2 translate by ThanatosDi-->
+<!--1.0.3.90 update version 1 translate by ThanatosDi-->
 <Strings lang="Traditional Chinese">
   <Monsters>
     <Monster ID="em001_00" Name="雌火龍"/>
@@ -224,7 +224,7 @@
     <Stage ID="106" Name="大裂谷"/>
     <Stage ID="107" Name="大裂谷(劇情)"/>
     <Stage ID="108" Name="永霜凍土"/>
-    <Stage ID="109" Name="引導之地"/>
+    <Stage ID="109" Name="聚魔之地"/>
     <Stage ID="201" Name="特殊鬥技場"/>
     <Stage ID="202" Name="鬥技場"/>
     <Stage ID="301" Name="星辰據點"/>
@@ -329,7 +329,7 @@
     <Abnormality ID="HUNTINGHORN_055_00" Name="自我強化[速]&amp;迴避性能UP"/>
     <Abnormality ID="HUNTINGHORN_056_00" Name="屬性系效果UP"/>
     <Abnormality ID="HUNTINGHORN_943_00" Name="屬性系效果UP"/>
-    <Abnormality ID="PALICO_000_00" Name="復活"/>
+    <Abnormality ID="PALICO_000_00" Name="迴避性能UP"/>
     <Abnormality ID="PALICO_001_00" Name="攻擊力UP[小]"/>
     <Abnormality ID="PALICO_002_00" Name="攻擊力UP[大]"/>
     <Abnormality ID="PALICO_003_00" Name="防禦力UP[小]"/>
@@ -387,11 +387,22 @@
     <Abnormality ID="MISC_034_00" Name="攻擊力UP[鬼毬果]"/>
     <Abnormality ID="MISC_035_00" Name="冰耐性UP[冰耐草]"/>
     <Abnormality ID="MISC_073_00" Name="攻擊力UP&amp;防禦力UP[小]"/>
+    <Abnormality ID="GEAR_000_00" Name="鬼人彈"/>
+    <Abnormality ID="GEAR_001_00" Name="硬化彈"/>
+    <Abnormality ID="GEAR_002_00" Name="不屈"/>
+    <Abnormality ID="GEAR_003_00" Name="剛刃研磨"/>
+    <Abnormality ID="GEAR_004_00" Name="滑走強化"/>
+    <Abnormality ID="GEAR_010_00" Name="寒氣鍊成"/>
+    <Abnormality ID="GEAR_015_00" Name="攻擊守勢"/>
+    <Abnormality ID="GEAR_016_00" Name="轉禍為福"/>
+    <Abnormality ID="GEAR_099_00" Name="迴避衣裝 (攻擊+)"/>
+    <Abnormality ID="GEAR_100_00" Name="達人煙筒"/>
   </Abnormalities>
   <Client>
     <Console>
       <String ID="CONSOLE_CONSOLE" Name="控制台"/>
       <String ID="CONSOLE_SETTINGS" Name="設定"/>
+      <String ID="CONSOLE_UPLOADBUILD" Name="上傳裝備配置"/>
       <String ID="CONSOLE_CHANGELOG" Name="更新說明"/>
       <String ID="CONSOLE_DISCORD" Name="Discord"/>
       <String ID="CONSOLE_GITHUB" Name="GitHub"/>
@@ -401,6 +412,7 @@
       <String ID="MESSAGE_QUIT" Name="您確定要關閉 HunterPie 嗎?"/>
       <String ID="TITLE_MISSING_PATH" Name="找不到《魔物獵人:世界》遊戲路徑"/>
       <String ID="MESSAGE_MISSING_PATH" Name="您尚未加入遊戲路徑，要現在新增嗎?"/>
+      <String ID="MESSAGE_UPLOAD_BUILD" Name="您想將當前的角色裝備內容上傳到Honey Hunters World嗎?"/>
       <!-- Console Messages -->
       <String ID="MESSAGE_MAP_LOAD" Name="載入 {HunterPie_Map}"/>
       <String ID="MESSAGE_DISCORD_CONNECTED" Name="開始新的 RPC 連接"/>
@@ -408,7 +420,6 @@
       <String ID="MESSAGE_DISCORD_DISCONNECTED" Name="關閉 Discord 連線"/>
       <String ID="MESSAGE_DISCORD_JOIN_REQUEST" Name="{Username} 要求參加集會"/>
       <String ID="MESSAGE_DISCORD_JOINING" Name="加入集會..."/>
-      
       <String ID="MESSAGE_MONSTER_DATA_LOAD" Name="載入魔物數據"/>
       <String ID="MESSAGE_ABNORMALITIES_DATA_LOAD" Name="載入異常狀態數據"/>
       <String ID="MESSAGE_PLAYER_SCANNER_INITIALIZED" Name="初始化玩家記憶體掃描器"/>
@@ -479,6 +490,8 @@
       <String ID="ENABLE_MONSTER_WIDGET_DESC" Name="如果啟用只要有內容可顯示，魔物小工具就將可見"/>
       <String ID="STATIC_MONSTER_HEALTH_STRING_FORMAT" Name="血量文字格式:"/>
       <String ID="STATIC_MONSTER_HEALTH_STRING_FORMAT_DESC" Name="設定魔物血條的文字格式"/>
+      <String ID="ENABLE_MONSTER_USE_LOCKON" Name="使用鎖定標記魔物"/>
+      <String ID="ENABLE_MONSTER_USE_LOCKON_DESC" Name="如果啟用，HunterPie 將使用遊戲中的魔物鎖定來選擇目標，而不是使用地圖標記魔物"/>
       <String ID="STATIC_MONSTER_BAR_MODE" Name="魔物欄模式"/>
       <String ID="STATIC_MONSTER_BAR_MODE_DESC" Name="改變魔物欄模式"/>
       <String ID="STATIC_MONSTER_BAR_MODE_0" Name="一次顯示所有魔物"/>
@@ -541,6 +554,8 @@
       <String ID="ENABLE_HARVEST_BOX_EVERYWHERE" Name="在任何區域顯示收穫箱"/>
       <String ID="ENABLE_HARVEST_BOX_EVERYWHERE_DESC" Name="如果啟用，在任何地圖或區域都會顯示收穫箱小工具，包含探索、聚魔之地及任何地圖"/>
       <String ID="STATIC_HARVEST_BOX_POSITION_DESC" Name="更改收穫箱小工具的位置"/>
+      <String ID="ENABLE_HARVEST_BOX_COMPACT_MODE" Name="啟用緊湊模式"/>
+      <String ID="ENABLE_HARVEST_BOX_COMPACT_MODE_DESC" Name="如果啟用，收穫箱小工具將使用其緊湊的設計"/>
       <!-- Damage Meter -->
       <String ID="ENABLE_METER" Name="傷害小工具"/>
       <String ID="ENABLE_METER_DESC" Name="如果啟用，則只要有內容就會顯示傷害小工具"/>
@@ -548,6 +563,12 @@
       <String ID="ENABLE_TOTAL_DAMAGE_DESC" Name="如果啟用，傷害小工具將會顯示每個人的總傷害量"/>
       <String ID="ENABLE_METER_DPS" Name="顯示 DPS(每秒傷害)"/>
       <String ID="ENABLE_METER_DPS_DESC" Name="如果啟用，傷害小工具將會顯示每個人的 DPS (每秒的傷害)"/>
+      <String ID="ENABLE_TIMER_IN_GL" Name="在探索/聚魔之地中啟用計時器"/>
+      <String ID="ENABLE_TIMER_IN_GL_DESC" Name="如果啟用，計時器將在探索/聚魔之地中可見。"/>
+      <String ID="ENABLE_ONLY_TIMER" Name="僅顯示計時器"/>
+      <String ID="ENABLE_ONLY_TIMER_DESC" Name="如果啟用，傷害小工具將僅顯示計時器，隱藏成員傷害"/>
+      <String ID="ENABLE_METER_ONLY_MYSELF" Name="僅顯示自我的傷害"/>
+      <String ID="ENABLE_METER_ONLY_MYSELF_DESC" Name="啟用後，只有自己的傷害可見"/>
       <String ID="STATIC_METER_PLAYER_1" Name="第一個玩家"/>
       <String ID="STATIC_METER_PLAYER_2" Name="第二個玩家"/>
       <String ID="STATIC_METER_PLAYER_3" Name="第三個玩家"/>
@@ -567,6 +588,7 @@
       <String ID="STATIC_ABNORM_TAB_HH" Name="狩獵笛效果"/>
       <String ID="STATIC_ABNORM_TAB_ORCHESTRA" Name="激勵樂器"/>
       <String ID="STATIC_ABNORM_TAB_DEBUFF" Name="異常狀態"/>
+      <String ID="STATIC_ABNORM_TAB_GEAR" Name="裝備技能"/>
       <String ID="STATIC_ABNORM_TAB_CONSUMABLE" Name="消耗品"/>
       <String ID="ENABLE_SHOW_ABNORM_NAMES" Name="顯示異常狀態的名稱"/>
       <String ID="ENABLE_SHOW_ABNORM_NAMES_DESC" Name="如果啟用將會顯示異常狀態的名稱"/>
@@ -605,6 +627,8 @@
       <String ID="STATIC_BUTTON_SAVE" Name="保存"/>
       <String ID="STATIC_REQUIRES_RESTART" Name="(必須重新啟動)"/>
       <String ID="STATIC_POSITION" Name="位置"/>
+      <String ID="STATIC_COPYCLIPBOARD" Name="複製到剪貼簿"/>
+      <String ID="STATIC_OPACITY" Name="文字不透明度"/>
       <!-- Settings Side bar-->
       <String ID="STATIC_GENERAL_SETTINGS" Name="一般"/>
       <String ID="STATIC_DISCORD_SETTINGS" Name="Discord"/>
@@ -625,6 +649,8 @@
       <String ID="STATIC_ACCEPT" Name="同意"/>
       <String ID="STATIC_REJECT" Name="拒絕"/>
       <String ID="STATIC_SETTINGS_LOAD" Name="設置已載入"/>
+      <String ID="STATIC_OPENDEFAULTBROWSER" Name="在瀏覽器中打開"/>
+      <String ID="MESSAGE_BUILD_UPLOADED" Name="裝備配置上傳到Honey Hunters World！"/>
     </Notifications>
     <RichPresence>
       <String ID="RPC_DESCRIPTION_IN_MAIN_MENU" Name="在主選單"/>

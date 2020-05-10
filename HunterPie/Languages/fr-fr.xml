@@ -13,7 +13,7 @@
     <Monster ID="em018_00" Name="Yian Garuga"/>
     <Monster ID="em018_05" Name="Yian Garuga balafré"/>
     <Monster ID="em023_00" Name="Rajang"/>
-	<Monster ID="em023_05" Name="Rajang Orage"/>
+	  <Monster ID="em023_05" Name="Rajang Orage"/>
     <Monster ID="em024_00" Name="Kushala Daora"/>
     <Monster ID="em026_00" Name="Lunastra"/>
     <Monster ID="em027_00" Name="Teostra"/>
@@ -29,7 +29,7 @@
     <Monster ID="em057_00" Name="Zinogre"/>
     <Monster ID="em057_01" Name="Zinogre stygien"/>
     <Monster ID="em063_00" Name="Brachydios"/>
-	<Monster ID="em063_05" Name="Brachydios Tempête"/>
+	  <Monster ID="em063_05" Name="Brachydios Tempête"/>
     <Monster ID="em080_00" Name="Glavenus"/>
     <Monster ID="em080_01" Name="Glavenus acide"/>
     <Monster ID="em100_00" Name="Anjanath"/>
@@ -386,12 +386,23 @@
     <Abnormality ID="MISC_034_00" Name="Énergicône"/>
     <Abnormality ID="MISC_035_00" Name="Résistance glace (G)"/>
     <Abnormality ID="MISC_073_00" Name="Bonus attaque + défense (S)"/>
+	<Abnormality ID="GEAR_000_00" Name="Munition Démon"/>
+    <Abnormality ID="GEAR_001_00" Name="Munition Peau-de-pierre"/>
+    <Abnormality ID="GEAR_002_00" Name="Jamais vaincu"/>
+    <Abnormality ID="GEAR_003_00" Name="Acier trempé"/>
+    <Abnormality ID="GEAR_004_00" Name="Roi de la glisse"/>
+    <Abnormality ID="GEAR_010_00" Name="Nuée de givre"/>
+    <Abnormality ID="GEAR_015_00" Name="Garde offensive"/>
+    <Abnormality ID="GEAR_016_00" Name="Union"/>
+    <Abnormality ID="GEAR_099_00" Name="Cape Evasion (attaque)"/>
+    <Abnormality ID="GEAR_100_00" Name="Amplificateur affinité"/>
   </Abnormalities>
   <!-- Client localization strings -->
   <Client>
     <Console>
       <String ID="CONSOLE_CONSOLE" Name="CONSOLE"/>
       <String ID="CONSOLE_SETTINGS" Name="PARAMÈTRES"/>
+      <String ID="CONSOLE_UPLOADBUILD" Name="PUBLIER SON BUILD"/>
       <String ID="CONSOLE_CHANGELOG" Name="NOTES DE PATCH"/>
       <String ID="CONSOLE_DISCORD" Name="DISCORD"/>
       <String ID="CONSOLE_GITHUB" Name="GITHUB"/>
@@ -401,6 +412,7 @@
       <String ID="MESSAGE_QUIT" Name="Êtes-vous sûr de vouloir quitter HunterPie ?"/>
       <String ID="TITLE_MISSING_PATH" Name="Le chemin vers MonsterHunterWorld.exe n'a pas été trouver."/>
       <String ID="MESSAGE_MISSING_PATH" Name="Vous n'avez pas configuré le chemin vers MonsterHunterWorld.exe. Êtes-vous sûr ?"/>
+      <String ID="MESSAGE_UPLOAD_BUILD" Name="Voulez-vous publier votre build actuel sur Honey Hunters World ?"/>
       <!-- Console Messages -->
       <String ID="MESSAGE_MAP_LOAD" Name="Chargé {HunterPie_Map}"/>
       <String ID="MESSAGE_DISCORD_CONNECTED" Name="Démarrage d'une nouvelle connexion RPC"/>
@@ -408,7 +420,7 @@
       <String ID="MESSAGE_DISCORD_DISCONNECTED" Name="Déconnexion à Discord"/>
       <String ID="MESSAGE_DISCORD_JOIN_REQUEST" Name="{Username} demande de rejoindre votre session."/>
       <String ID="MESSAGE_DISCORD_JOINING" Name="Connexion à la session..."/>
-      
+
       <String ID="MESSAGE_MONSTER_DATA_LOAD" Name="Données des monstres chargés"/>
       <String ID="MESSAGE_ABNORMALITIES_DATA_LOAD" Name="Données des effets chargés"/>
       <String ID="MESSAGE_PLAYER_SCANNER_INITIALIZED" Name="Scanner de mémoire du joueur initialisé"/>
@@ -477,15 +489,17 @@
       <!-- Monster Widget -->
       <String ID="ENABLE_MONSTER_WIDGET" Name="Activer le widget &quot;Monstre&quot;"/>
       <String ID="ENABLE_MONSTER_WIDGET_DESC" Name="Activé, le widget &quot;Monstre&quot; sera visible tant qu'il y aura un monstre."/>
-	  <String ID="STATIC_MONSTER_HEALTH_STRING_FORMAT" Name="Format texte des PV :"/>
-	  <String ID="STATIC_MONSTER_HEALTH_STRING_FORMAT_DESC" Name="Format du texte des PV du monstre."/>
+	    <String ID="STATIC_MONSTER_HEALTH_STRING_FORMAT" Name="Format texte des PV :"/>
+	    <String ID="STATIC_MONSTER_HEALTH_STRING_FORMAT_DESC" Name="Format du texte des PV du monstre."/>
+      <String ID="ENABLE_MONSTER_USE_LOCKON" Name="Use lockon instead of map pin to target monster"/>
+      <String ID="ENABLE_MONSTER_USE_LOCKON_DESC" Name="If enabled, HunterPie will use the in-game monster lockon to select your target."/>
       <String ID="STATIC_MONSTER_BAR_MODE" Name="Barre de vie des monstres"/>
       <String ID="STATIC_MONSTER_BAR_MODE_DESC" Name="Changez la barre de vie des monstres."/>
       <String ID="STATIC_MONSTER_BAR_MODE_0" Name="Afficher tous les monstres en même temps"/>
       <String ID="STATIC_MONSTER_BAR_MODE_1" Name="Afficher tous les monstres mais mettre en évidence ma cible"/>
       <String ID="STATIC_MONSTER_BAR_MODE_2" Name="Afficher que les monstres chassés"/>
       <String ID="STATIC_MONSTER_BAR_MODE_3" Name="Afficher tous les monstres mais cache les monstres inactif au bout de 15 secondes"/>
-	  <String ID="STATIC_MONSTER_BAR_MODE_4" Name="Afficher tout jusqu&apos;à ce qu'un monstre soit sélectionné"/>
+	    <String ID="STATIC_MONSTER_BAR_MODE_4" Name="Afficher tout jusqu&apos;à ce qu'un monstre soit sélectionné"/>
       <String ID="STATIC_MONSTER_BAR_MODE_HOTKEY" Name="Barre de vie des monstres (Raccourcis):"/>
       <String ID="STATIC_MONSTER_BAR_MODE_HOTKEY_DESC" Name="Raccourcis pour modifier la barre de vie des monstres. La modification du raccourcis nécessite un redémarrage pour prendre effet."/>
       <String ID="STATIC_MONSTER_BAR_DOCK" Name="Position de la barre de vie des monstres :"/>
@@ -541,6 +555,8 @@
       <String ID="ENABLE_HARVEST_BOX_EVERYWHERE" Name="Afficher le widget partout."/>
       <String ID="ENABLE_HARVEST_BOX_EVERYWHERE_DESC" Name="Activé, le widget sera affiché partout. Notamment les expéditions, Fief Glorieux, etc.."/>
       <String ID="STATIC_HARVEST_BOX_POSITION_DESC" Name="Modifiez la position du widget."/>
+	  <String ID="ENABLE_HARVEST_BOX_COMPACT_MODE" Name="Activer le Compact Mode"/>
+      <String ID="ENABLE_HARVEST_BOX_COMPACT_MODE_DESC" Name="Activé, le widget &quot;Conservatoire botanique&quot; utilisera un design compact."/>
       <!-- Damage Meter -->
       <String ID="ENABLE_METER" Name="Activer le widget &quot;Compteur de Dégâts&quot;"/>
       <String ID="ENABLE_METER_DESC" Name="Activé, le widget &quot;Compteur de Dégâts&quot; sera visible."/>
@@ -548,6 +564,12 @@
 	  <String ID="ENABLE_TOTAL_DAMAGE_DESC" Name="Activé, le compteur de dégâts affichera les dégâts totaux."/>
       <String ID="ENABLE_METER_DPS" Name="Afficher les dégâts par seconde."/>
       <String ID="ENABLE_METER_DPS_DESC" Name="Activé, le compteur de dégâts affichera les dégâts par seconde."/>
+	  <String ID="ENABLE_TIMER_IN_GL" Name="Activer le timer en Expédition/au Fief Glorieux"/>
+      <String ID="ENABLE_TIMER_IN_GL_DESC" Name="Activé, le timer sera activé en Expéditions/au Fief Glorieux."/>
+	  <String ID="ENABLE_ONLY_TIMER" Name="Afficher que le timer"/>
+      <String ID="ENABLE_ONLY_TIMER_DESC" Name="Activé, le widget &quot;Compteur de Dégâts&quot; affichera que le timer et cachera les autres joueurs."/>
+	  <String ID="ENABLE_METER_ONLY_MYSELF" Name="Afficher que mes dégâts"/>
+      <String ID="ENABLE_METER_ONLY_MYSELF_DESC" Name="Activé, il y aura que vos dégâts d'affichés."/>
       <String ID="STATIC_METER_PLAYER_1" Name="Premier Joueur"/>
       <String ID="STATIC_METER_PLAYER_2" Name="Deuxième Joueur"/>
       <String ID="STATIC_METER_PLAYER_3" Name="Troisième Joueur"/>
@@ -567,6 +589,7 @@
       <String ID="STATIC_ABNORM_TAB_HH" Name="Corne de chasse"/>
       <String ID="STATIC_ABNORM_TAB_ORCHESTRA" Name="Orchestre"/>
       <String ID="STATIC_ABNORM_TAB_DEBUFF" Name="Debuffs"/>
+	  <String ID="STATIC_ABNORM_TAB_GEAR" Name="Equipement"/>
       <String ID="STATIC_ABNORM_TAB_CONSUMABLE" Name="Consommable"/>
 	  <String ID="ENABLE_SHOW_ABNORM_NAMES" Name="Afficher le nom des effets"/>
 	  <String ID="ENABLE_SHOW_ABNORM_NAMES_DESC" Name="Activé, le nom des effets seront affichés."/>
@@ -605,6 +628,8 @@
       <String ID="STATIC_BUTTON_SAVE" Name="Sauvegarder"/>
       <String ID="STATIC_REQUIRES_RESTART" Name="(Nécessite un redémarrage)"/>
       <String ID="STATIC_POSITION" Name="Position"/>
+      <String ID="STATIC_COPYCLIPBOARD" Name="Copier dans le presse-papiers"/>
+	  <String ID="STATIC_OPACITY" Name="Opacité"/>
       <!-- Settings Side bar-->
       <String ID="STATIC_GENERAL_SETTINGS" Name="Général"/>
       <String ID="STATIC_DISCORD_SETTINGS" Name="Discord"/>
@@ -625,6 +650,8 @@
       <String ID="STATIC_ACCEPT" Name="Accepter"/>
       <String ID="STATIC_REJECT" Name="Rejeter"/>
       <String ID="STATIC_SETTINGS_LOAD" Name="Paramètres chargés"/>
+      <String ID="STATIC_OPENDEFAULTBROWSER" Name="Ouvrir dans le navigateur"/>
+      <String ID="MESSAGE_BUILD_UPLOADED" Name="Build enregistré sur Honey Hunter World !"/>
     </Notifications>
     <RichPresence>
       <String ID="RPC_DESCRIPTION_IN_MAIN_MENU" Name="Dans le Menu Principal"/>

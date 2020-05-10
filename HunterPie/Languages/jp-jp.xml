@@ -393,12 +393,23 @@
     <Abnormality ID="MISC_034_00" Name="攻撃力ＵＰ（オニボックリ）"/>
     <Abnormality ID="MISC_035_00" Name="氷耐性ＵＰ（氷耐草）"/>
     <Abnormality ID="MISC_073_00" Name="攻撃力ＵＰ＆防御力ＵＰ【小】"/>
+    <Abnormality ID="GEAR_000_00" Name="鬼人弾"/>
+    <Abnormality ID="GEAR_001_00" Name="硬化弾"/>
+    <Abnormality ID="GEAR_002_00" Name="不屈"/>
+    <Abnormality ID="GEAR_003_00" Name="剛刃研磨"/>
+    <Abnormality ID="GEAR_004_00" Name="滑走強化"/>
+    <Abnormality ID="GEAR_010_00" Name="冰気錬成"/>
+    <Abnormality ID="GEAR_015_00" Name="攻めの守勢"/>
+    <Abnormality ID="GEAR_016_00" Name="災禍転福"/>
+    <Abnormality ID="GEAR_099_00" Name="回避の装衣【攻撃力ＵＰ】"/>
+    <Abnormality ID="GEAR_100_00" Name="達人の煙筒"/>
   </Abnormalities>
   <!-- Client localization strings -->
   <Client>
     <Console>
       <String ID="CONSOLE_CONSOLE" Name="コンソール"/>
       <String ID="CONSOLE_SETTINGS" Name="設定"/>
+      <String ID="CONSOLE_UPLOADBUILD" Name="装備をアップロード"/>
       <String ID="CONSOLE_CHANGELOG" Name="パッチノート"/>
       <String ID="CONSOLE_DISCORD" Name="Discord"/>
       <String ID="CONSOLE_GITHUB" Name="GitHub"/>
@@ -408,6 +419,7 @@
       <String ID="MESSAGE_QUIT" Name="本当に HunterPie を終了しますか？"/>
       <String ID="TITLE_MISSING_PATH" Name="モンスターハンター：ワールドの実行ファイルパスが見つかりませんでした。"/>
       <String ID="MESSAGE_MISSING_PATH" Name="モンスターハンター：ワールドの実行ファイルパスを指定していません。今指定しますか？"/>
+      <String ID="MESSAGE_UPLOAD_BUILD" Name="現在の装備を Honey Hunters World にアップロードしますか？"/>
       <!-- Console Messages -->
       <String ID="MESSAGE_MAP_LOAD" Name="データマップ「{HunterPie_Map}」の読み込み完了"/>
       <String ID="MESSAGE_DISCORD_CONNECTED" Name="Discord リッチプレゼンスに接続中"/>
@@ -486,6 +498,8 @@
       <String ID="ENABLE_MONSTER_WIDGET_DESC" Name="有効な場合、表示可能な大型モンスターの情報があれば表示します。"/>
       <String ID="STATIC_MONSTER_HEALTH_STRING_FORMAT" Name="ＨＰ表示スタイル：:"/>
       <String ID="STATIC_MONSTER_HEALTH_STRING_FORMAT_DESC" Name="モンスターの体力ゲージに表示される文字のスタイルを変更します。"/>
+      <String ID="ENABLE_MONSTER_USE_LOCKON" Name="ロックオンで注目モンスターを選択"/>
+      <String ID="ENABLE_MONSTER_USE_LOCKON_DESC" Name="無効な場合、マップのピンで注目モンスターを選択できます。"/>
       <String ID="STATIC_MONSTER_BAR_MODE" Name="モンスターウィジェットの表示タイプ"/>
       <String ID="STATIC_MONSTER_BAR_MODE_DESC" Name="モンスターウィジェットの表示の仕方を変更します。"/>
       <String ID="STATIC_MONSTER_BAR_MODE_0" Name="すべてのモンスターを表示"/>
@@ -548,6 +562,8 @@
       <String ID="ENABLE_HARVEST_BOX_EVERYWHERE" Name="肥料ウィジェットを常に表示"/>
       <String ID="ENABLE_HARVEST_BOX_EVERYWHERE_DESC" Name="無効な場合、このウィジェットはモンスターが登場するあらゆるステージにいる間は表示されません。"/>
       <String ID="STATIC_HARVEST_BOX_POSITION_DESC" Name="肥料ウィジェットの位置座標を変更します。"/>
+      <String ID="ENABLE_HARVEST_BOX_COMPACT_MODE" Name="コンパクトモード"/>
+      <String ID="ENABLE_HARVEST_BOX_COMPACT_MODE_DESC" Name="有効な場合、肥料ウィジェットは小型化されて表示されます。"/>
       <!-- Damage Meter -->
       <String ID="ENABLE_METER" Name="ダメージウィジェットを有効にする"/>
       <String ID="ENABLE_METER_DESC" Name="有効な場合、パーティ内で大型モンスターにダメージを与えたメンバーがいれば、ダメージウィジェットが表示されます。"/>
@@ -555,6 +571,12 @@
       <String ID="ENABLE_TOTAL_DAMAGE_DESC" Name="有効な場合、各プレイヤーが与えたダメージ量を表示します。"/>
       <String ID="ENABLE_METER_DPS" Name="DPSを表示"/>
       <String ID="ENABLE_METER_DPS_DESC" Name="有効な場合、各プレイヤーの一秒毎の平均ダメージを表示します。"/>
+      <String ID="ENABLE_TIMER_IN_GL" Name="探索や導きの地で経過時間を表示する。"/>
+      <String ID="ENABLE_TIMER_IN_GL_DESC" Name="有効な場合、探索・導きの地に入ってからの経過時間が表示されます。"/>
+      <String ID="ENABLE_ONLY_TIMER" Name="経過時間のみ表示"/>
+      <String ID="ENABLE_ONLY_TIMER_DESC" Name="有効な場合、ダメージウィジェットは経過時間のみを表示し、ダメージ系統の情報は表示しません。"/>
+      <String ID="ENABLE_METER_ONLY_MYSELF" Name="ダメージのみ表示"/>
+      <String ID="ENABLE_METER_ONLY_MYSELF_DESC" Name="有効な場合、ダメージウィジェットはダメージ系統の情報のみを表示し、経過時間は表示しません。"/>
       <String ID="STATIC_METER_PLAYER_1" Name="パーティメンバー１"/>
       <String ID="STATIC_METER_PLAYER_2" Name="パーティメンバー２"/>
       <String ID="STATIC_METER_PLAYER_3" Name="パーティメンバー３"/>
@@ -575,6 +597,7 @@
       <String ID="STATIC_ABNORM_TAB_ORCHESTRA" Name="はげましの楽器"/>
       <String ID="STATIC_ABNORM_TAB_DEBUFF" Name="状態異常"/>
       <String ID="STATIC_ABNORM_TAB_CONSUMABLE" Name="消費アイテム"/>
+      <String ID="STATIC_ABNORM_TAB_GEAR" Name="装備スキル"/>
       <String ID="ENABLE_SHOW_ABNORM_NAMES" Name="バフ・デバフ名を表示"/>
       <String ID="ENABLE_SHOW_ABNORM_NAMES_DESC" Name="有効な場合、バフ・デバ名がアイコンの隣に表示されます。"/>
       <!-- Specialized Tool Widget-->
@@ -612,6 +635,8 @@
       <String ID="STATIC_BUTTON_SAVE" Name="保存"/>
       <String ID="STATIC_REQUIRES_RESTART" Name="(再起動が必要になります。)"/>
       <String ID="STATIC_POSITION" Name="位置"/>
+      <String ID="STATIC_COPYCLIPBOARD" Name="クリップボードにコピー"/>
+      <String ID="STATIC_OPACITY" Name="透明度"/>
       <!-- Settings Side bar-->
       <String ID="STATIC_GENERAL_SETTINGS" Name="一般"/>
       <String ID="STATIC_DISCORD_SETTINGS" Name="Discord"/>
@@ -632,6 +657,8 @@
       <String ID="STATIC_ACCEPT" Name="承認"/>
       <String ID="STATIC_REJECT" Name="拒否"/>
       <String ID="STATIC_SETTINGS_LOAD" Name="設定適応完了"/>
+      <String ID="STATIC_OPENDEFAULTBROWSER" Name="ブラウザで開く"/>
+      <String ID="MESSAGE_BUILD_UPLOADED" Name="Honey Hunters World に装備をアップロードしました！"/>
     </Notifications>
     <RichPresence>
       <String ID="RPC_DESCRIPTION_IN_MAIN_MENU" Name="タイトル画面"/>

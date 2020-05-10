@@ -386,12 +386,23 @@
     <Abnormality ID="MISC_034_00" Name="Конус Силы"/>
     <Abnormality ID="MISC_035_00" Name="Сопр Льду (L)"/>
     <Abnormality ID="MISC_073_00" Name="Усил Атаки &amp; Усил Защиты (S)"/>
+    <Abnormality ID="GEAR_000_00" Name="Демонический снаряд"/>
+    <Abnormality ID="GEAR_001_00" Name="Защитный снаряд"/>
+    <Abnormality ID="GEAR_002_00" Name="Укрепление"/>
+    <Abnormality ID="GEAR_003_00" Name="Защитная полировка"/>
+    <Abnormality ID="GEAR_004_00" Name="Мастерский подкат"/>
+    <Abnormality ID="GEAR_010_00" Name="Мастерство мороза"/>
+    <Abnormality ID="GEAR_015_00" Name="Агрессивная защита"/>
+    <Abnormality ID="GEAR_016_00" Name="Сращивание"/>
+    <Abnormality ID="GEAR_099_00" Name="Покров Уклонения (Атк)"/>
+    <Abnormality ID="GEAR_100_00" Name="Усилитель Мастерства"/>
   </Abnormalities>
   <!-- Client localization strings -->
   <Client>
     <Console>
       <String ID="CONSOLE_CONSOLE" Name="КОНСОЛЬ"/>
       <String ID="CONSOLE_SETTINGS" Name="НАСТРОЙКИ"/>
+      <String ID="CONSOLE_UPLOADBUILD" Name="ЗАГРУЗИТЬ БИЛД"/>
       <String ID="CONSOLE_CHANGELOG" Name="ПАТЧНОУТЫ"/>
       <String ID="CONSOLE_DISCORD" Name="ДИСКОРД"/>
       <String ID="CONSOLE_GITHUB" Name="ГИТХАБ"/>
@@ -401,6 +412,7 @@
       <String ID="MESSAGE_QUIT" Name="Вы уверены что хотите закрыть HunterPie?"/>
       <String ID="TITLE_MISSING_PATH" Name="Путь к Monster Hunter World не найден."/>
       <String ID="MESSAGE_MISSING_PATH" Name="Вы не указали путь к игре. Хотите сделать это сейчас?"/>
+      <String ID="MESSAGE_UPLOAD_BUILD" Name="Вы хотите загрузить свой текущий набор снаряжения персонажа в Honey Hunters World?"/>
       <!-- Console Messages -->
       <String ID="MESSAGE_MAP_LOAD" Name="Загружено {HunterPie_Map}"/>
       <String ID="MESSAGE_DISCORD_CONNECTED" Name="Установление нового соединения RPC"/>
@@ -454,7 +466,7 @@
       <String ID="ENABLE_RPC_DESC" Name="Если включено, HunterPie будет показывать вашу игровую активность в статусе Дискорда."/>
       <String ID="ENABLE_RPC_HEALTH" Name="Показывать проценты жизни монстров"/>
       <String ID="ENABLE_RPC_HEALTH_DESC" Name="Если включено, HunterPie будет показывать проценты жизни монстров."/>
-      <String ID="ENABLE_PEOPLE_JOIN" Name="Разрешить людям запрашивать присоединение к моей онлайн сессии"/>
+      <String ID="ENABLE_PEOPLE_JOIN" Name="Разрешить запрашивать присоединение к моей онлайн сессии"/>
       <String ID="ENABLE_PEOPLE_JOIN_DESC" Name="Если включено, люди смогут запрашивать присоединение к моей онлайн сессии в Monster Hunter World."/>
       <!-- Overlay -->
       <String ID="ENABLE_OVERLAY" Name="Включить игровой оверлей"/>
@@ -471,14 +483,16 @@
       <String ID="STATIC_IMAGE_QUALITY_DESC" Name="Изменяет качество изображений."/>
       <String ID="STATIC_TOGGLE_OVERLAY" Name="Переключить оверлей (Горячая клавиша):"/>
       <String ID="STATIC_TOGGLE_OVERLAY_DESC" Name="Горячая клавиша для скрытия оверлея. Изменение горячей клавиши требует перезапуска для вступления в силу."/>
-      <String ID="STATIC_TOGGLE_DESIGN" Name="Переключить режим дизайна (Горячая клавиша):"/>
-      <String ID="STATIC_TOGGLE_DESIGN_DESC" Name="Горячая клавиша для переключения режима дизайна."/>
+      <String ID="STATIC_TOGGLE_DESIGN" Name="Включить режим дизайна (Горячая клавиша):"/>
+      <String ID="STATIC_TOGGLE_DESIGN_DESC" Name="Выбор горячей клавиши для включения режима перемещения и настройки размера виджетов. "/>
       <String ID="STATIC_OVERLAY_POSITION_DESC" Name="Изменяет положение оверлея."/>
       <!-- Monster Widget -->
       <String ID="ENABLE_MONSTER_WIDGET" Name="Включить виджет Монстра"/>
       <String ID="ENABLE_MONSTER_WIDGET_DESC" Name="Если включено, виджет Монстра будет виден всякий раз, когда у него есть что показать."/>
       <String ID="STATIC_MONSTER_HEALTH_STRING_FORMAT" Name="Формат здоровья:"/>
       <String ID="STATIC_MONSTER_HEALTH_STRING_FORMAT_DESC" Name="Текстовый формат для панели здоровья монстра."/>
+      <String ID="ENABLE_MONSTER_USE_LOCKON" Name="Используйте блокировку вместо отметки на карте, чтобы назначить монстра"/>
+      <String ID="ENABLE_MONSTER_USE_LOCKON_DESC" Name="Если включено, HunterPie будет использовать выбранного заданием монстра в игре для выбора цели."/>
       <String ID="STATIC_MONSTER_BAR_MODE" Name="Режим виджета Монстра"/>
       <String ID="STATIC_MONSTER_BAR_MODE_DESC" Name="Изменяет режим виджета монстров."/>
       <String ID="STATIC_MONSTER_BAR_MODE_0" Name="Показать всех монстров одновременно"/>
@@ -486,7 +500,7 @@
       <String ID="STATIC_MONSTER_BAR_MODE_2" Name="Показать только мою цель"/>
       <String ID="STATIC_MONSTER_BAR_MODE_3" Name="Показать всех, но скрывать неактивных монстров через 15 секунд"/>
       <String ID="STATIC_MONSTER_BAR_MODE_4" Name="Показывать всех пока цель не выбрана"/>
-      <String ID="STATIC_MONSTER_BAR_MODE_HOTKEY" Name="Изменить режим виджета монстров (Горячая клавиша):"/>
+      <String ID="STATIC_MONSTER_BAR_MODE_HOTKEY" Name="Изменить режим виджета (Горячая клавиша):"/>
       <String ID="STATIC_MONSTER_BAR_MODE_HOTKEY_DESC" Name="Горячая клавиша для изменения режима виджета монстров. Изменение горячей клавиши требует перезапуска для вступления в силу."/>
       <String ID="STATIC_MONSTER_BAR_DOCK" Name="Положение панели Монстра:"/>
       <String ID="STATIC_MONSTER_BAR_DOCK_DESC" Name="Смена положения индикатора здоровья Монстра над или под частями/недомоганиями."/>
@@ -541,6 +555,8 @@
       <String ID="ENABLE_HARVEST_BOX_EVERYWHERE" Name="Показывать Ящик урожая везде"/>
       <String ID="ENABLE_HARVEST_BOX_EVERYWHERE_DESC" Name="Если включено, этот виджет будет отображаться в любом месте, включая экспедиции, Путеводные Земли и любые другие зоны монстров."/>
       <String ID="STATIC_HARVEST_BOX_POSITION_DESC" Name="Изменяет положение виджета «Ящик урожая»."/>
+      <String ID="ENABLE_HARVEST_BOX_COMPACT_MODE" Name="Включить компактный режим"/>
+      <String ID="ENABLE_HARVEST_BOX_COMPACT_MODE_DESC" Name="Если включено, виджет Harvest Box будет отображаться в компактном режиме."/>
       <!-- Damage Meter -->
       <String ID="ENABLE_METER" Name="Показывать Счётчик Урона"/>
       <String ID="ENABLE_METER_DESC" Name="Если включено, виджет Счётчик Урона будет виден, когда у него есть контент."/>
@@ -548,6 +564,12 @@
       <String ID="ENABLE_TOTAL_DAMAGE_DESC" Name="Если включено, виджет урона будет показывать индивидуальный общий урон."/>
       <String ID="ENABLE_METER_DPS" Name="Показывать ДПС вместо общего урона"/>
       <String ID="ENABLE_METER_DPS_DESC" Name="Если включено, Счётчик Урона будет показывать урон в секунду вместо общего урона."/>
+      <String ID="ENABLE_TIMER_IN_GL" Name="Включить таймер в экспедициях/путеводных землях"/>
+      <String ID="ENABLE_TIMER_IN_GL_DESC" Name="Если включено, таймер будет виден в экспедициях/путеводных землях."/>
+      <String ID="ENABLE_ONLY_TIMER" Name="Показать только таймер"/>
+      <String ID="ENABLE_ONLY_TIMER_DESC" Name="Если включено, виджет урона будет показывать только таймер, скрывая урон членов группы."/>
+      <String ID="ENABLE_METER_ONLY_MYSELF" Name="Показать только мой урон"/>
+      <String ID="ENABLE_METER_ONLY_MYSELF_DESC" Name="Если включено, будет виден только ваш урон."/>
       <String ID="STATIC_METER_PLAYER_1" Name="Первый игрок"/>
       <String ID="STATIC_METER_PLAYER_2" Name="Второй игрок"/>
       <String ID="STATIC_METER_PLAYER_3" Name="Третий игрок"/>
@@ -567,6 +589,7 @@
       <String ID="STATIC_ABNORM_TAB_HH" Name="Охотничий рог"/>
       <String ID="STATIC_ABNORM_TAB_ORCHESTRA" Name="Коралловый оркестр"/>
       <String ID="STATIC_ABNORM_TAB_DEBUFF" Name="Дебаффы"/>
+      <String ID="STATIC_ABNORM_TAB_GEAR" Name="Снаряжение"/>
       <String ID="STATIC_ABNORM_TAB_CONSUMABLE" Name="Предметы"/>
       <String ID="ENABLE_SHOW_ABNORM_NAMES" Name="Показывать название статуса"/>
       <String ID="ENABLE_SHOW_ABNORM_NAMES_DESC" Name="Если включено, имена статусов будут видны."/>
@@ -605,6 +628,8 @@
       <String ID="STATIC_BUTTON_SAVE" Name="Сохранить"/>
       <String ID="STATIC_REQUIRES_RESTART" Name="(Требует перезапуска)"/>
       <String ID="STATIC_POSITION" Name="Позиция"/>
+      <String ID="STATIC_COPYCLIPBOARD" Name="Скопировать в буфер обмена"/>
+      <String ID="STATIC_OPACITY" Name="Прозрачность"/>
       <!-- Settings Side bar-->
       <String ID="STATIC_GENERAL_SETTINGS" Name="Главное"/>
       <String ID="STATIC_DISCORD_SETTINGS" Name="Дискорд"/>
@@ -625,6 +650,8 @@
       <String ID="STATIC_ACCEPT" Name="Принять"/>
       <String ID="STATIC_REJECT" Name="Отклонить"/>
       <String ID="STATIC_SETTINGS_LOAD" Name="Настройки загружены"/>
+      <String ID="STATIC_OPENDEFAULTBROWSER" Name="Открыть в браузере"/>
+      <String ID="MESSAGE_BUILD_UPLOADED" Name="Билд загружен на Honey Hunters World!"/>
     </Notifications>
     <RichPresence>
       <String ID="RPC_DESCRIPTION_IN_MAIN_MENU" Name="В Главном меню"/>

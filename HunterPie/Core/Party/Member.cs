@@ -51,6 +51,7 @@
         public bool IsInParty { get; set; }
         public short HR { get; set; }
         public short MR { get; set; }
+        public bool IsMe { get; set; }
 
         public delegate void PartyMemberEvents(object source, PartyMemberEventArgs args);
         public event PartyMemberEvents OnDamageChange;

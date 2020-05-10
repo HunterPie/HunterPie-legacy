@@ -118,13 +118,7 @@
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
   <assembly alias="System.Windows.Forms" name="System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" />
-  <data name="AbnormalityData" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Core\LPlayer\AbnormalityData.xml;System.String, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089;utf-8</value>
-  </data>
   <data name="LOGO_HunterPie" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\LOGO_HunterPie.ico;System.Drawing.Icon, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
-  <data name="MonsterData" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Core\Monster\MonsterData.xml;System.String, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089;Windows-1252</value>
   </data>
 </root>

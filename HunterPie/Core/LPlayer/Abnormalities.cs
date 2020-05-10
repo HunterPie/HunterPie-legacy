@@ -1,13 +1,8 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using System.Xml;
 
 namespace HunterPie.Core {
     public class Abnormalities {
-        XmlDocument AbnormalitiesData;
         Dictionary<string, Abnormality> CurrentAbnormalities = new Dictionary<string, Abnormality>();
 
         public Abnormality this[string AbnormalityID] {
@@ -16,14 +11,6 @@ namespace HunterPie.Core {
                 else { return null; }
             }
         }
-
-        #region Abnormalities Data
-        public Abnormalities() {
-            AbnormalitiesData = new XmlDocument();
-            AbnormalitiesData.LoadXml(Properties.Resources.AbnormalityData);
-        }
-
-        #endregion
 
         #region Events
         public delegate void AbnormalitiesEvents(object source, AbnormalityEventArgs args);
@@ -44,7 +31,7 @@ namespace HunterPie.Core {
             CurrentAbnormalities.Add(AbnormId, Abnorm);
             _OnNewAbnormality(CurrentAbnormalities[AbnormId]);
             CurrentAbnormalities[AbnormId].OnAbnormalityEnd += RemoveObsoleteAbnormality;
-            //Logger.Debugger.Log($"NEW ABNORMALITY: {Abnorm.Name} (ID: {Abnorm.ID})");
+            // Logger.Debugger.Debug($"NEW ABNORMALITY: {Abnorm.Name} (ID: {Abnorm.Id})");
         }
 
         public void Remove(string AbnormId) {
@@ -54,11 +41,13 @@ namespace HunterPie.Core {
         } 
 
         public void ClearAbnormalities() {
-            foreach (string AbnormId in CurrentAbnormalities.Keys) {
+            if (CurrentAbnormalities.Count == 0) return;
+            
+            string[] activeAbnormalities = CurrentAbnormalities.Keys.ToArray();
+            foreach (string abnormId in activeAbnormalities) {
                 // Will trigger OnAbnormalityEnd event
-                CurrentAbnormalities[AbnormId].ResetDuration();
+                Remove(abnormId);
             }
-            CurrentAbnormalities.Clear();
         }
         #endregion
 

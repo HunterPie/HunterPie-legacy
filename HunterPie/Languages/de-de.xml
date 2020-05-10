@@ -18,7 +18,7 @@ Gerade bei den Abnormalitäten / Statusveränderungen des Spielers gibt es mit (
     <Monster ID="em018_00" Name="Yian Garuga"/>
     <Monster ID="em018_05" Name="Wundmal-Yian-Garuga"/>
     <Monster ID="em023_00" Name="Rajang"/>
-	<MONSTER ID="em023_05" Name="Wütender Rajang"/>
+	  <MONSTER ID="em023_05" Name="Wütender Rajang"/>
     <Monster ID="em024_00" Name="Kushala Daora"/>
     <Monster ID="em026_00" Name="Lunastra"/>
     <Monster ID="em027_00" Name="Teostra"/>
@@ -34,7 +34,7 @@ Gerade bei den Abnormalitäten / Statusveränderungen des Spielers gibt es mit (
     <Monster ID="em057_00" Name="Zinogre"/>
     <Monster ID="em057_01" Name="Höllen-Zinogre"/>
     <Monster ID="em063_00" Name="Brachydios"/>
-	<Monster ID="em063_05" Name="Tobender Brachydios"/>
+	  <Monster ID="em063_05" Name="Tobender Brachydios"/>
     <Monster ID="em080_00" Name="Glavenus"/>
     <Monster ID="em080_01" Name="Säure-Glavenus"/>
     <Monster ID="em100_00" Name="Anjanath"/>
@@ -177,7 +177,7 @@ Gerade bei den Abnormalitäten / Statusveränderungen des Spielers gibt es mit (
     <Ailment ID="STATUS_DUNGPOD" Name="Misthülse"/>
     <Ailment ID="STATUS_SHOCKTRAP" Name="Schock Falle"/>
     <Ailment ID="STATUS_PITFALLTRAP" Name="Fallgrube"/>
-	<Ailment ID="STATUS_VINETRAP" Name="Rankenfalle"/>
+	  <Ailment ID="STATUS_VINETRAP" Name="Rankenfalle"/>
     <Ailment ID="STATUS_ELDERSEAL" Name="Ältesten-Siegel"/>
     <Ailment ID="STATUS_SMOKING" Name="Rauchend"/>
     <Ailment ID="STATUS_FELYNETRAP" Name="Katzen-Falle"/>
@@ -391,12 +391,23 @@ Gerade bei den Abnormalitäten / Statusveränderungen des Spielers gibt es mit (
     <Abnormality ID="MISC_034_00" Name="Kraftzapfen"/>
     <Abnormality ID="MISC_035_00" Name="Eiswiderstand-Boost (L) (?)"/>
     <Abnormality ID="MISC_073_00" Name="Angriff und Verteidigung hoch (S) (?)"/>
+	  <Abnormality ID="GEAR_000_00" Name="Dämonen Munition"/>
+    <Abnormality ID="GEAR_001_00" Name="Rüstungs-Munition"/>
+    <Abnormality ID="GEAR_002_00" Name="Verstärken (?)"/>
+    <Abnormality ID="GEAR_003_00" Name="Schützender Glanz"/>
+    <Abnormality ID="GEAR_004_00" Name="Affiniäts-Gleiten (?)"/>
+    <Abnormality ID="GEAR_010_00" Name="Frostcraft"/>
+    <Abnormality ID="GEAR_015_00" Name="Offensive Verteidigung"/>
+    <Abnormality ID="GEAR_016_00" Name="Koaleszenz"/>
+    <Abnormality ID="GEAR_099_00" Name="Ausweich-Mantel (Atk)"/>
+    <Abnormality ID="GEAR_100_00" Name="Affinitäts-Booster"/>
   </Abnormalities>
    <!-- Client localization strings -->
   <Client>
     <Console>
       <String ID="CONSOLE_CONSOLE" Name="KONSOLE"/>
       <String ID="CONSOLE_SETTINGS" Name="EINSTELLUNGEN"/>
+      <String ID="CONSOLE_UPLOADBUILD" Name="BUILD HOCHLADEN"/>
       <String ID="CONSOLE_CHANGELOG" Name="PATCH NOTES"/>
       <String ID="CONSOLE_DISCORD" Name="DISCORD"/>
       <String ID="CONSOLE_GITHUB" Name="GITHUB"/>
@@ -406,6 +417,7 @@ Gerade bei den Abnormalitäten / Statusveränderungen des Spielers gibt es mit (
       <String ID="MESSAGE_QUIT" Name="Bist du sicher, dass du HunterPie beenden möchtest?"/>
       <String ID="TITLE_MISSING_PATH" Name="Monster Hunter World Pfad nicht gefunden"/>
       <String ID="MESSAGE_MISSING_PATH" Name="Du hast den Pfad zum Spiel noch nicht angegeben. Möchtest du dies nun tun?"/>
+      <String ID="MESSAGE_UPLOAD_BUILD" Name="Möchtest du deinen aktuellen Charakter Build zu Honey Hunters World hochladen?"/>
       <!-- Console Messages -->
       <String ID="MESSAGE_MAP_LOAD" Name="{HunterPie_Map} geladen"/>
       <String ID="MESSAGE_DISCORD_CONNECTED" Name="Starte neue RPC Verbindung"/>
@@ -484,6 +496,8 @@ Gerade bei den Abnormalitäten / Statusveränderungen des Spielers gibt es mit (
       <String ID="ENABLE_MONSTER_WIDGET_DESC" Name="Wenn aktiv, wird das Monster Widget sichtbar sein, sobald es etwas anzuzeigen hat."/>
       <String ID="STATIC_MONSTER_HEALTH_STRING_FORMAT" Name="Monsterleisten Text Format:"/>
       <String ID="STATIC_MONSTER_HEALTH_STRING_FORMAT_DESC" Name="Text Format der Monsterleiste."/>
+	  <String ID="ENABLE_MONSTER_USE_LOCKON" Name="Verwende den Lockon statt dem Karten-Pin um ein Monster als Ziel zu setzen"/>
+      <String ID="ENABLE_MONSTER_USE_LOCKON_DESC" Name="Wenn aktiv, wird HunterPie den ingame Monster-Lockon verwenden um ein Ziel zu verfolgen."/>
 	  <String ID="STATIC_MONSTER_BAR_MODE" Name="Monsterleisten Modus"/>
       <String ID="STATIC_MONSTER_BAR_MODE_DESC" Name="Ändert den Modus der Monsterleiste."/>
       <String ID="STATIC_MONSTER_BAR_MODE_0" Name="Zeige alle Monster gleichzeitig"/>
@@ -546,13 +560,21 @@ Gerade bei den Abnormalitäten / Statusveränderungen des Spielers gibt es mit (
       <String ID="ENABLE_HARVEST_BOX_EVERYWHERE" Name="Zeige Erntebox Widget konstant"/>
       <String ID="ENABLE_HARVEST_BOX_EVERYWHERE_DESC" Name="Wenn aktiv, wird das Erntebox Widget überall, also auf Expeditionen, den Leitlanden oder jeglicher anderen Monster-Zone, angezeigt."/>
       <String ID="STATIC_HARVEST_BOX_POSITION_DESC" Name="Ändert die Position des Erntebox Widgets."/>
+	    <String ID="ENABLE_HARVEST_BOX_COMPACT_MODE" Name="Kompaktmodus aktivieren"/>
+      <String ID="ENABLE_HARVEST_BOX_COMPACT_MODE_DESC" Name="Wenn aktiv, verwendet das Erntebox Widget ein kompakteres Design."/>
       <!-- Damage Meter -->
       <String ID="ENABLE_METER" Name="Aktiviere Schadens-Widget"/>
       <String ID="ENABLE_METER_DESC" Name="Wenn aktiv, wird das Schadens-Widget angezeigt, sobald es etwas anzuzeigen hat."/>
-	  <String ID="ENABLE_TOTAL_DAMAGE" Name="Zeige Gesamtschaden"/>
+	    <String ID="ENABLE_TOTAL_DAMAGE" Name="Zeige Gesamtschaden"/>
       <String ID="ENABLE_TOTAL_DAMAGE_DESC" Name="Wenn aktiv, zeigt das Schadens-Widget den individuellen Gesamtschaden an."/>
       <String ID="ENABLE_METER_DPS" Name="Zeige Schaden pro Sekunde"/>
       <String ID="ENABLE_METER_DPS_DESC" Name="Wenn aktiv, zeigt das Schadens-Widget den individuellen Schaden pro Sekunde an."/>
+	    <String ID="ENABLE_TIMER_IN_GL" Name="Aktiviere Timer in Expeditionen/den Leitlanden"/>
+      <String ID="ENABLE_TIMER_IN_GL_DESC" Name="Wenn aktiv, ist der Timer in Expeditionen und den Leitlanden sichtbar."/>
+      <String ID="ENABLE_ONLY_TIMER" Name="Zeige nur den Timer"/>
+      <String ID="ENABLE_ONLY_TIMER_DESC" Name="Wenn aktiv, zeigt das Schadens-Widget nur den Timer an und versteckt den Gruppenschaden."/>
+	    <String ID="ENABLE_METER_ONLY_MYSELF" Name="Zeige nur meinen Schaden"/>
+      <String ID="ENABLE_METER_ONLY_MYSELF_DESC" Name="Wenn aktiv, wird nur der eigene Schaden angezeigt."/>
       <String ID="STATIC_METER_PLAYER_1" Name="Erster Spieler"/>
       <String ID="STATIC_METER_PLAYER_2" Name="Zweiter Spieler"/>
       <String ID="STATIC_METER_PLAYER_3" Name="Dritter Spieler"/>
@@ -572,8 +594,9 @@ Gerade bei den Abnormalitäten / Statusveränderungen des Spielers gibt es mit (
       <String ID="STATIC_ABNORM_TAB_HH" Name="Jagdhorn"/>
       <String ID="STATIC_ABNORM_TAB_ORCHESTRA" Name="Orchester"/>
       <String ID="STATIC_ABNORM_TAB_DEBUFF" Name="Debuffs"/>
+	    <String ID="STATIC_ABNORM_TAB_GEAR" Name="Ausrüstung"/>
       <String ID="STATIC_ABNORM_TAB_CONSUMABLE" Name="Verbrauchsmaterial"/>
-	  <String ID="ENABLE_SHOW_ABNORM_NAMES" Name="Zeige Abnormalitäten-Namen"/>
+	    <String ID="ENABLE_SHOW_ABNORM_NAMES" Name="Zeige Abnormalitäten-Namen"/>
       <String ID="ENABLE_SHOW_ABNORM_NAMES_DESC" Name="Wenn aktiv, werden die Namen von Abnormalitäten angezeigt."/>
       <!-- Specialized Tool Widget-->
       <String ID="STATIC_PRIMARY_SPEC_TOOL" Name="Primäres Spezialgerät"/>
@@ -610,6 +633,8 @@ Gerade bei den Abnormalitäten / Statusveränderungen des Spielers gibt es mit (
       <String ID="STATIC_BUTTON_SAVE" Name="Speichern"/>
       <String ID="STATIC_REQUIRES_RESTART" Name="(benötigt Neustart)"/>
       <String ID="STATIC_POSITION" Name="Position"/>
+      <String ID="STATIC_COPYCLIPBOARD" Name="In die Zwischenablage kopieren"/>
+	  <String ID="STATIC_OPACITY" Name="Transparenz"/>
       <!-- Settings Side bar-->
       <String ID="STATIC_GENERAL_SETTINGS" Name="Allgemein"/>
       <String ID="STATIC_DISCORD_SETTINGS" Name="Discord"/>
@@ -630,6 +655,8 @@ Gerade bei den Abnormalitäten / Statusveränderungen des Spielers gibt es mit (
       <String ID="STATIC_ACCEPT" Name="Akzeptieren"/>
       <String ID="STATIC_REJECT" Name="Ablehnen"/>
       <String ID="STATIC_SETTINGS_LOAD" Name="Einstellungen geladen"/>
+      <String ID="STATIC_OPENDEFAULTBROWSER" Name="Im Browser öffnen"/>
+      <String ID="MESSAGE_BUILD_UPLOADED" Name="Build wurde zu Honey Hunters World hochgeladen!"/>
     </Notifications>
     <RichPresence>
       <String ID="RPC_DESCRIPTION_IN_MAIN_MENU" Name="Im Hauptmenü"/>

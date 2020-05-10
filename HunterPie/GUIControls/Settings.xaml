@@ -5,7 +5,7 @@
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              xmlns:local="clr-namespace:HunterPie.GUIControls"
              mc:Ignorable="d" 
-             d:DesignHeight="450" d:DesignWidth="800" Width="949" Height="433" DataContext="{StaticResource Localization}">
+             d:DesignHeight="450" d:DesignWidth="800" DataContext="{StaticResource Localization}">
     <UserControl.Resources>
         <ResourceDictionary>
             <Style x:Key="FocusVisual">
@@ -17,64 +17,7 @@
                     </Setter.Value>
                 </Setter>
             </Style>
-            <SolidColorBrush x:Key="Button.Static.Background" Color="#FFDDDDDD"/>
-            <SolidColorBrush x:Key="Button.Static.Border" Color="#FF707070"/>
-            <SolidColorBrush x:Key="Button.MouseOver.Background" Color="#FFBEE6FD"/>
-            <SolidColorBrush x:Key="Button.MouseOver.Border" Color="#FF3C7FB1"/>
-            <SolidColorBrush x:Key="Button.Pressed.Background" Color="#FFC4E5F6"/>
-            <SolidColorBrush x:Key="Button.Pressed.Border" Color="#FF2C628B"/>
-            <SolidColorBrush x:Key="Button.Disabled.Background" Color="#FFF4F4F4"/>
-            <SolidColorBrush x:Key="Button.Disabled.Border" Color="#FFADB2B5"/>
-            <SolidColorBrush x:Key="Button.Disabled.Foreground" Color="#FF838383"/>
-            <Style x:Key="buttons_settings" TargetType="{x:Type Button}">
-                <Setter Property="FocusVisualStyle" Value="{StaticResource FocusVisual}"/>
-                <Setter Property="Background" Value="{StaticResource Button.Static.Background}"/>
-                <Setter Property="BorderBrush" Value="{StaticResource Button.Static.Border}"/>
-                <Setter Property="Foreground" Value="{DynamicResource {x:Static SystemColors.ControlTextBrushKey}}"/>
-                <Setter Property="BorderThickness" Value="1"/>
-                <Setter Property="HorizontalContentAlignment" Value="Center"/>
-                <Setter Property="VerticalContentAlignment" Value="Center"/>
-                <Setter Property="Padding" Value="1"/>
-                <Setter Property="Template">
-                    <Setter.Value>
-                        <ControlTemplate TargetType="{x:Type Button}">
-                            <Border x:Name="border" BorderBrush="{TemplateBinding BorderBrush}" BorderThickness="{TemplateBinding BorderThickness}" Background="{TemplateBinding Background}" SnapsToDevicePixels="true">
-                                <ContentPresenter x:Name="contentPresenter" Focusable="False" HorizontalAlignment="{TemplateBinding HorizontalContentAlignment}" Margin="{TemplateBinding Padding}" RecognizesAccessKey="True" SnapsToDevicePixels="{TemplateBinding SnapsToDevicePixels}" VerticalAlignment="{TemplateBinding VerticalContentAlignment}"/>
-                            </Border>
-                            <ControlTemplate.Triggers>
-                                <Trigger Property="IsDefaulted" Value="true">
-                                    <Setter Property="BorderBrush" TargetName="border" Value="{DynamicResource {x:Static SystemColors.HighlightBrushKey}}"/>
-                                </Trigger>
-                                <Trigger Property="IsMouseOver" Value="true">
-                                    <Trigger.EnterActions>
-                                        <BeginStoryboard>
-                                            <Storyboard Storyboard.TargetProperty="(Background).(SolidColorBrush.Color)">
-                                                <ColorAnimation To="#FF830000" Duration="0:0:0.250" />
-                                            </Storyboard>
-                                        </BeginStoryboard>
-                                    </Trigger.EnterActions>
-                                    <Trigger.ExitActions>
-                                        <BeginStoryboard>
-                                            <Storyboard Storyboard.TargetProperty="(Background).(SolidColorBrush.Color)">
-                                                <ColorAnimation To="#FFAF0000" Duration="0:0:0.250" />
-                                            </Storyboard>
-                                        </BeginStoryboard>
-                                    </Trigger.ExitActions>
-                                </Trigger>
-                                <Trigger Property="IsPressed" Value="true">
-                                    <Setter Property="Background" TargetName="border" Value="#FF930505"/>
-                                    <Setter Property="BorderBrush" TargetName="border" Value="#FF171717"/>
-                                </Trigger>
-                                <Trigger Property="IsEnabled" Value="false">
-                                    <Setter Property="Background" TargetName="border" Value="{StaticResource Button.Disabled.Background}"/>
-                                    <Setter Property="BorderBrush" TargetName="border" Value="{StaticResource Button.Disabled.Border}"/>
-                                    <Setter Property="TextElement.Foreground" TargetName="contentPresenter" Value="{StaticResource Button.Disabled.Foreground}"/>
-                                </Trigger>
-                            </ControlTemplate.Triggers>
-                        </ControlTemplate>
-                    </Setter.Value>
-                </Setter>
-            </Style>
+            
             <ControlTemplate x:Key="ScrollViewerControlTemplate1" TargetType="{x:Type ScrollViewer}">
                 <Grid x:Name="Grid" Background="{TemplateBinding Background}">
                     <Grid.ColumnDefinitions>
@@ -95,7 +38,7 @@
         </ResourceDictionary>
     </UserControl.Resources>
     <Grid>
-        <Button Style="{StaticResource buttons_settings}" x:Name="saveSettings" Panel.ZIndex="1" Content="{Binding XPath=/Strings/Client/Settings/String[@ID\=\'STATIC_BUTTON_SAVE\']/@Name}" Margin="0,0,7,5" Foreground="#FFD4D4D4" Cursor="Hand" FontFamily="Segoe UI" FontSize="16" Click="saveSettings_Click" MinWidth="76" FontWeight="Bold" BorderBrush="{x:Null}" Background="#FFAF0000" HorizontalAlignment="Right" Height="36" VerticalAlignment="Bottom" Padding="5,2"/>
+        <Button Style="{StaticResource buttons_settings}" x:Name="saveSettings" Panel.ZIndex="1" Content="{Binding XPath=/Strings/Client/Settings/String[@ID\=\'STATIC_BUTTON_SAVE\']/@Name}" Foreground="{StaticResource GENERIC_BUTTON_FOREGROUND}" Margin="0,0,7,5" Cursor="Hand" FontFamily="Segoe UI" FontSize="16" Click="saveSettings_Click" MinWidth="76" FontWeight="Bold" BorderBrush="{x:Null}" Background="{StaticResource GENERIC_BUTTON_BACKGROUND}" HorizontalAlignment="Right" Height="36" VerticalAlignment="Bottom" Padding="5,2"/>
         <local:NewSettingsWindow x:Name="SettingsBox"/>
     </Grid>
 </UserControl>

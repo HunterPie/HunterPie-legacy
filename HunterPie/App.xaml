@@ -8,6 +8,8 @@
             <ResourceDictionary.MergedDictionaries>
                 <ResourceDictionary Source="/Resources/ScrollbarStyle.xaml"/>
                 <ResourceDictionary Source="/Resources/DefaultTheme.xaml"/>
+                <ResourceDictionary Source="pack://siteoforigin:,,,/HunterPie.Resources/UI/Icons.xaml"/>
+                <ResourceDictionary Source="/Resources/Resources.xaml"/>
             </ResourceDictionary.MergedDictionaries>
             <XmlDataProvider x:Key="Localization" XPath="Strings/Client"/>
         </ResourceDictionary>

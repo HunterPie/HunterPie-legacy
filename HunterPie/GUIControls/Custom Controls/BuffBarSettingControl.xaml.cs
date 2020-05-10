@@ -1,4 +1,5 @@
 ﻿using System.Windows.Controls;
+using System.Linq;
 using HunterPie.GUI.Widgets.Abnormality_Widget;
 
 namespace HunterPie.GUIControls.Custom_Controls {
@@ -6,7 +7,7 @@ namespace HunterPie.GUIControls.Custom_Controls {
     /// Interaction logic for BuffBarSettingControl.xaml
     /// </summary>
     public partial class BuffBarSettingControl : UserControl {
-        AbnormalityTraySettings TraySettingsWindow;
+
         public string PresetName {
             get { return this.BarPresetName.Text; }
             set {
@@ -26,10 +27,16 @@ namespace HunterPie.GUIControls.Custom_Controls {
         }
 
         private void OnBuffTraySettingClick(object sender, System.Windows.Input.MouseButtonEventArgs e) {
-            if (TraySettingsWindow == null || TraySettingsWindow.IsClosed) {
-                TraySettingsWindow = new AbnormalityTraySettings(TrayIndex: TrayIndex);
-            }
-            TraySettingsWindow.Show();
+
+            bool SettingsWindowIsOpen = App.Current.Windows.Cast<System.Windows.Window>()
+                .Where(w => w.Title == "Abnormality Tray Settings")
+                .Count() > 0;
+
+            if (SettingsWindowIsOpen) return;
+
+            AbnormalityTraySettings traySettingsWindow = new AbnormalityTraySettings(TrayIndex);
+            traySettingsWindow.Show();
         }
+
     }
 }

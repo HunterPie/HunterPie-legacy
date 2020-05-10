@@ -32,6 +32,17 @@ namespace HunterPie.GUIControls.Custom_Controls {
 
 
 
+        public string Link {
+            get { return (string)GetValue(LinkProperty); }
+            set { SetValue(LinkProperty, value); }
+        }
+
+        // Using a DependencyProperty as the backing store for Link.  This enables animation, styling, binding, etc...
+        public static readonly DependencyProperty LinkProperty =
+            DependencyProperty.Register("Link", typeof(string), typeof(MinimalButton));
+
+
+
         public Brush Color {
             get { return btnBackground.Fill; }
             set { btnBackground.Fill = value; }
@@ -40,7 +51,6 @@ namespace HunterPie.GUIControls.Custom_Controls {
             get { return btnIcon.Source; }
             set { btnIcon.Source = value; }
         }
-        public string Link { get; set; }
 
         public MinimalButton() {
             InitializeComponent();

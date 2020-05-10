@@ -1,0 +1,122 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<Abnormalities>
+  <HUNTINGHORN_Abnormalities>
+    <Abnormality ID="0" Offset="38" Icon="ICON_SELFIMPROVEMENT"/>
+    <Abnormality ID="999" Offset="38" Icon="ICON_ATTACKUP" Stack="1"/>
+    <Abnormality ID="1" Offset="3C" Icon="ICON_ATTACKUP"/>
+    <Abnormality ID="2" Offset="40" Icon="ICON_ATTACKUP"/>
+    <Abnormality ID="3" Offset="44" Icon="ICON_HEALTHUP"/>
+    <Abnormality ID="4" Offset="48" Icon="ICON_HEALTHUP"/>
+    <Abnormality ID="5" Offset="4C" Icon="ICON_STAMINAUP"/>
+    <Abnormality ID="6" Offset="50" Icon="ICON_STAMINAUP"/>
+    <Abnormality ID="7" Offset="54" Icon="ICON_WINDRES"/>
+    <Abnormality ID="8" Offset="58" Icon="ICON_WINDRES+"/>
+    <Abnormality ID="9" Offset="5C" Icon="ICON_DEFUP"/>
+    <Abnormality ID="10" Offset="60" Icon="ICON_DEFUP"/>
+    <Abnormality ID="11" Offset="64" Icon="ICON_MANTLEUP"/>
+    <Abnormality ID="12" Offset="68" Icon="ICON_MANTLEUP"/>
+    <Abnormality ID="18" Offset="80" Icon="ICON_NATURALHEALING"/>
+    <Abnormality ID="19" Offset="84" Icon="ICON_NATURALHEALING"/>
+    <Abnormality ID="20" Offset="88" Icon="ICON_EARPLUGS"/>
+    <Abnormality ID="21" Offset="8C" Icon="ICON_EARPLUGS+"/>
+    <Abnormality ID="22" Offset="90" Icon="ICON_DIVINEPROTECTION"/>
+    <Abnormality ID="23" Offset="94" Icon="ICON_SCOUTFLYUP"/>
+    <Abnormality ID="24" Offset="98" Icon="ICON_ENVNEG"/>
+    <Abnormality ID="25" Offset="9C" Icon="ICON_STUNNEG"/>
+    <Abnormality ID="26" Offset="A0" Icon="ICON_PARALYSISNEG"/>
+    <Abnormality ID="27" Offset="A4" Icon="ICON_TREMORNEG"/>
+    <Abnormality ID="28" Offset="A8" Icon="ICON_DEEPRES"/>
+    <Abnormality ID="29" Offset="AC" Icon="ICON_FIRERES"/>
+    <Abnormality ID="30" Offset="B0" Icon="ICON_FIRERES+"/>
+    <Abnormality ID="31" Offset="B4" Icon="ICON_WATERRES"/>
+    <Abnormality ID="32" Offset="B8" Icon="ICON_WATERRES+"/>
+    <Abnormality ID="33" Offset="BC" Icon="ICON_THUNDERRES"/>
+    <Abnormality ID="34" Offset="C0" Icon="ICON_THUNDERRES+"/>
+    <Abnormality ID="35" Offset="C4" Icon="ICON_ICERES"/>
+    <Abnormality ID="36" Offset="C8" Icon="ICON_ICERES+"/>
+    <Abnormality ID="37" Offset="CC" Icon="ICON_DRAGONRES"/>
+    <Abnormality ID="38" Offset="D0" Icon="ICON_DRAGONRES+"/>
+    <Abnormality ID="39" Offset="D4" Icon="ICON_ELEATTACKUP"/>
+    <Abnormality ID="40" Offset="D8" Icon="ICON_BLIGHTSNEG"/>
+    <Abnormality ID="41" Offset="DC"/>
+    <Abnormality ID="43" Offset="E4" Icon="ICON_KNOCKBACKNEG"/>
+    <Abnormality ID="45" Offset="EC" Icon="ICON_ALLRESUP"/>
+    <Abnormality ID="46" Offset="F0" Icon="ICON_AFFINITY"/>
+    <Abnormality ID="47" Offset="F4" Icon="ICON_AILMENTSNEG"/>
+    <Abnormality ID="48" Offset="F8" Icon="ICON_EARPLUGS"/>
+    <Abnormality ID="49" Offset="FC" Icon="ICON_ABNORMATTACKUP"/>
+    <Abnormality ID="53" Offset="10C" Icon="ICON_MAXSTAMRECOVERY"/>
+    <Abnormality ID="54" Offset="110" Icon="ICON_EXT_HEALTHRECOVERY"/>
+    <Abnormality ID="55" Offset="114" Icon="ICON_EVASION"/>
+    <Abnormality ID="56" Offset="118" Icon="ICON_ALLRESUP"/>
+    <Abnormality ID="943" Offset="118" Icon="ICON_ELEATTACKUP"/>
+  </HUNTINGHORN_Abnormalities>
+  <PALICO_Abnormalities>
+    <Abnormality ID="0" Offset="11C" Icon="ICON_EVASION"/>
+    <Abnormality ID="1" Offset="120" Icon="ICON_ATTACKUP"/>
+    <Abnormality ID="2" Offset="124" Icon="ICON_ATTACKUP"/>
+    <Abnormality ID="3" Offset="128" Icon="ICON_DEFUP"/>
+    <Abnormality ID="4" Offset="12C" Icon="ICON_DEFUP"/>
+    <Abnormality ID="5" Offset="130" Icon="ICON_AFFINITY"/>
+    <Abnormality ID="6" Offset="134" Icon="ICON_NATURALHEALING"/>
+    <Abnormality ID="7" Offset="138" Icon="ICON_HEALTHUP"/>
+    <Abnormality ID="8" Offset="13C" Icon="ICON_STAMINAUP"/>
+    <Abnormality ID="9" Offset="140"/>
+    <Abnormality ID="10" Offset="144" Icon="ICON_DIVINEPROTECTION"/>
+    <Abnormality ID="11" Offset="148" Icon="ICON_DIVINEPROTECTION"/>
+    <Abnormality ID="12" Offset="14C" Icon="ICON_STUNNEG"/>
+    <Abnormality ID="13" Offset="150" Icon="ICON_PARALYSISNEG"/>
+    <Abnormality ID="14" Offset="154" Icon="ICON_TREMORNEG"/>
+    <Abnormality ID="15" Offset="158" Icon="ICON_EARPLUGS"/>
+    <Abnormality ID="16" Offset="15C" Icon="ICON_WINDRES+"/>
+    <Abnormality ID="17" Offset="160" Icon="ICON_ENVNEG"/>
+    <Abnormality ID="18" Offset="164"/>
+  </PALICO_Abnormalities>
+  <DEBUFF_Abnormalities>
+    <Abnormality ID="0" IsDebuff="True" Offset="5DC" Icon="ICON_POISON"/>
+    <Abnormality ID="1" IsDebuff="True" Offset="5E0" Icon="ICON_VENOM"/>
+    <Abnormality ID="4" IsDebuff="True" Offset="5EC" Icon="ELEMENT_FIRE"/>
+    <Abnormality ID="5" IsDebuff="True" Offset="5F0" Icon="ELEMENT_THUNDER"/>
+    <Abnormality ID="6" IsDebuff="True" Offset="5F4" Icon="ELEMENT_WATER"/>
+    <Abnormality ID="7" IsDebuff="True" Offset="5F8" Icon="ELEMENT_ICE"/>
+    <Abnormality ID="8" IsDebuff="True" Offset="5FC" Icon="ELEMENT_DRAGON"/>
+    <Abnormality ID="9" IsDebuff="True" Offset="600" Icon="ICON_BLEED"/>
+    <Abnormality ID="10" IsDebuff="False" Offset="604" Icon="ICON_NATURALHEALING"/>
+    <Abnormality ID="11" IsDebuff="True" Offset="608" Icon="ICON_EFFLUVIA"/>
+    <Abnormality ID="12" IsDebuff="True" Offset="60C" Icon="ICON_DEFDOWN"/>
+    <Abnormality ID="14" IsDebuff="True" Offset="614" Icon="ICON_ALLRESDOWN"/>
+    <Abnormality ID="16" IsDebuff="True" Offset="61C"/>
+    <Abnormality ID="17" IsDebuff="True" Offset="620" Icon="ICON_BLAST"/>
+    <Abnormality ID="20" IsDebuff="True" Offset="63C" Icon="ICON_BLASTSCOURGE" HasConditions="True" ConditionOffset="-16"/>
+  </DEBUFF_Abnormalities>
+  <MISC_Abnormalities>
+    <Abnormality ID="0" Offset="690" Icon="ITEM_DASH"/>
+    <Abnormality ID="1" Offset="694" Icon="ICON_STAMINAUP"/>
+    <Abnormality ID="2" Offset="698" Icon="ICON_NATURALHEALING"/>
+    <Abnormality ID="4" Offset="6A0" HasConditions="True" ConditionOffset="8" IsInfinite="False" Icon="ITEM_MIGHT"/>
+    <Abnormality ID="8" Offset="6B0" HasConditions="True" ConditionOffset="12" IsInfinite="False" Icon="ITEM_ADAMANT"/>
+    <Abnormality ID="13" Offset="6C4" Icon="ITEM_ATKPOWDER"/>
+    <Abnormality ID="14" Offset="6C8" Icon="ITEM_DEFPOWDER"/>
+    <Abnormality ID="15" Offset="6CC" HasConditions="True" ConditionOffset="8" IsInfinite="True" Icon="ITEM_DEMONDRUG"/>
+    <Abnormality ID="16" Offset="6D0" HasConditions="True" ConditionOffset="8" IsInfinite="True" Icon="ITEM_ARMORSKIN"/>
+    <Abnormality ID="23" Offset="6EC" Icon="ICON_HOTRES"/>
+    <Abnormality ID="24" Offset="6F0" Icon="ICON_COLDRES"/>
+    <Abnormality ID="26" Offset="6F8" Icon="ICON_EXT_HEALTHRECOVERY"/>
+    <Abnormality ID="27" Offset="6FC" Icon="ICON_COLDRES"/>
+    <Abnormality ID="34" Offset="718" Icon="ICON_ATTACKUP"/>
+    <Abnormality ID="35" Offset="71C" Icon="ICON_ICERES+"/>
+    <Abnormality ID="73" Offset="7B4"/>
+  </MISC_Abnormalities>
+  <GEAR_Abnormalities>
+    <Abnormality ID="0" Offset="6CC" Icon="ICON_DEMONAMMO"/>
+    <Abnormality ID="1" Offset="6D0" Icon="ICON_ARMORAMMO"/>
+    <Abnormality ID="2" Offset="764" Icon="ICON_ATTACKUP"/>
+    <Abnormality ID="3" Offset="76C" Icon="ICON_ARMORSKILL_DARKRED"/>
+    <Abnormality ID="4" Offset="770" Icon="ICON_AFFINITY"/>
+    <Abnormality ID="10" Offset="788" Icon="ICON_ARMORSKILL_WHITE"/>
+    <Abnormality ID="15" Offset="79C" Icon="ICON_ATTACKUP"/>
+    <Abnormality ID="16" Offset="7A0" Icon="ICON_ARMORSKILL_PURPLE"/>
+    <Abnormality ID="99" Offset="FC4" Icon="ICON_MANTLE" IsGearBuff="True"/>
+    <Abnormality ID="100" Offset="FC8" Icon="ICON_BOOSTER_RED" IsGearBuff="True"/>
+  </GEAR_Abnormalities>
+</Abnormalities>

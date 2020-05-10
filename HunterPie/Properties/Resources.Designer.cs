@@ -61,48 +61,12 @@ namespace HunterPie.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to &lt;?xml version=&quot;1.0&quot; encoding=&quot;utf-8&quot; ?&gt;
-        ///&lt;Abnormalities&gt;
-        ///  &lt;HUNTINGHORN_Abnormalities&gt;
-        ///    &lt;Abnormality ID=&quot;0&quot; IsDebuff=&quot;False&quot; Offset=&quot;38&quot; Icon=&quot;ICON_SELFIMPROVEMENT&quot; Stack=&quot;0&quot;/&gt;
-        ///    &lt;Abnormality ID=&quot;999&quot; IsDebuff=&quot;False&quot; Offset=&quot;38&quot; Icon=&quot;ICON_ATTACKUP&quot; Stack=&quot;1&quot;/&gt;
-        ///    &lt;Abnormality ID=&quot;1&quot; IsDebuff=&quot;False&quot; Offset=&quot;3C&quot; Icon=&quot;ICON_ATTACKUP&quot; Stack=&quot;0&quot;/&gt;
-        ///    &lt;Abnormality ID=&quot;2&quot; IsDebuff=&quot;False&quot; Offset=&quot;40&quot; Icon=&quot;ICON_ATTACKUP&quot; Stack=&quot;0&quot;/&gt;
-        ///    &lt;Abnormality ID=&quot;3&quot; IsDebuff=&quot;False&quot; Offset=&quot;44&quot; Icon=&quot;ICON_HE [rest of string was truncated]&quot;;.
-        /// </summary>
-        internal static string AbnormalityData {
-            get {
-                return ResourceManager.GetString("AbnormalityData", resourceCulture);
-            }
-        }
-        
-        /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Icon similar to (Icon).
         /// </summary>
         internal static System.Drawing.Icon LOGO_HunterPie {
             get {
                 object obj = ResourceManager.GetObject("LOGO_HunterPie", resourceCulture);
                 return ((System.Drawing.Icon)(obj));
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to &lt;?xml version=&quot;1.0&quot; encoding=&quot;utf-8&quot; ?&gt;
-        ///&lt;Monsters&gt;
-        ///  &lt;Ailments Max=&quot;19&quot;&gt;
-        ///    &lt;Ailment Name=&quot;0&quot; Skip=&quot;True&quot;/&gt;
-        ///    &lt;Ailment Name=&quot;STATUS_POISON&quot; Skip=&quot;False&quot;/&gt;
-        ///    &lt;Ailment Name=&quot;STATUS_PARALYSIS&quot; Skip=&quot;False&quot;/&gt;
-        ///    &lt;Ailment Name=&quot;STATUS_SLEEP&quot; Skip=&quot;False&quot;/&gt;
-        ///    &lt;Ailment Name=&quot;STATUS_BLAST&quot; Skip=&quot;False&quot;/&gt;
-        ///    &lt;Ailment Name=&quot;STATUS_MOUNT&quot; Skip=&quot;False&quot;/&gt;
-        ///    &lt;Ailment Name=&quot;STATUS_EXHAUSTION&quot; Skip=&quot;False&quot;/&gt;
-        ///    &lt;Ailment Name=&quot;STATUS_STUN&quot; Skip=&quot;False&quot;/&gt;
-        ///    &lt;Ailment Name=&quot;STATUS_TRANQUILIZE&quot; Skip=&quot;Fa [rest of string was truncated]&quot;;.
-        /// </summary>
-        internal static string MonsterData {
-            get {
-                return ResourceManager.GetString("MonsterData", resourceCulture);
             }
         }
     }

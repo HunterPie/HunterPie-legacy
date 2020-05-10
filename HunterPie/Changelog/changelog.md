@@ -1,52 +1,24 @@
-﻿**UPDATE 1.0.3.86**
+﻿**UPDATE 1.0.3.90**
 
-**Monster Hunter World 13.0.1**
+**Core**
 
-- Added build version 410013;
-- Added Furious Rajang;
-- Added Raging Brachydios;
+- Changed how HunterPie detects the game and when it's no longer running.
+- A bunch of optimizations.
+- Overlay now forces itself on top of the game every few seconds.
 
-**Specialized Tool Widget**
+**Monster Widget**
 
-The Specialized Tools Widget got redesigned to match the rest of the overlay. The design changes include:
-
-- **Specialized Tool Icons:** The specialized tool widget now shows the equipped tool icon.
-- **Timer & Cooldown bar:** Instead of using a circle progress bar, the new design uses a bar, the bar has a similar effect to the damage meter bar. When the specialized tool is on cooldown, the bar will grow and when it's being used by the player the bar will shrink.
-
-**Damage Meter Widget**
-
-The damage meter now has way more information and also new settings, instead of choosing only one mode, you can choose whether you want to show only total damage, only damage per second, both, or none at all!
-
-- **Show Total Damage:** If enabled, it will display all party members total damage.
-- **Show Damage Per Second:** If enabled, it will display all party members damage per second.
-> **Note:** If you join a quest in progress (e.g: SOS), the DPS will **not** be accurate, since the timer only starts when you join the quest, and not when the quest started.
-- **Extra informations:** The meter also shows all party members HR, MR, and a crown on top left if that player is party leader.
-- **Weapon Icons:** Some of the weapon icons were changed for better icons. [Special thanks to *Othello RHIN#1097* for his awesome icons](https://github.com/OthelloRhin/MHW_Icons_SVG)
+- Parts and ailments only create a new column when it's actually needed.
+- Monster widget now shows the part break threshold.
+- Monster ailment tracker no longer tracks traps for elder dragons.
 
 **Abnormalities Widget**
 
-You can now enable abnormality names for each abnormality bar individually. So if you want to keep a debuff bar without names and a buff bar with names, for example, you can!
-
-> **Attention:** Enabling the abnormality names option will force your bar to be vertically alligned.
-
-**Monster Health Widget**
-
-The monster widget also got new features:
-
-- **New monster bar mode:** Shows all monsters until one is manually selected on the map. If the monster is unselected, then all monsters will be displayed again.
-- **Health bar text format:** You can now change the text format for the health bar. Here are some useful text format presets for you:
-    - **500/1000 (50%):** {Health:0}/{TotalHealth:0} ({Percentage:0}%)
-    - **500/1000:** {Health:0}/{TotalHealth:0}
-    - **50%:** {Percentage:0}%
-    - **500 (50%):** {Health:0} ({Percentage}%)
-    - **500.0/1000.0 (50.0%):** {Health:0.0}/{TotalHealth:0.0} ({Percentage:0.0})
-> **Note:** Changing the text format does **not** require restarting, so feel free to play with the formats.
-
-**Other Changes**
-
-- Added position tooltip when you hover your mouse over a widget in design mode.
+- Abnormalities are now sorted in real time, instead of only when a new abnormality is added to the tray.
 
 **Bug Fixes**
 
-- Fixed monster health bar getting pushed down when it's docked at the bottom;
-- Fixed monster data, read [this](https://github.com/Haato3o/HunterPie/pull/35) to see which monsters changed.
+- Fixed blastscourge appearing with 1 second left.
+
+**Developer Notes**
+I've temporarily removed the monster health bar bottom docking since it's broken and I'm still trying to find a way to fix it.

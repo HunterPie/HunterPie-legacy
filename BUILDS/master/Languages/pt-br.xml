@@ -392,6 +392,7 @@
     <Console>
       <String ID="CONSOLE_CONSOLE" Name="CONSOLE"/>
       <String ID="CONSOLE_SETTINGS" Name="OPÇÕES"/>
+      <String ID="CONSOLE_UPLOADBUILD" Name="PUBLICAR BUILD"/>
       <String ID="CONSOLE_CHANGELOG" Name="ATUALIZAÇÕES"/>
       <String ID="CONSOLE_DISCORD" Name="DISCORD"/>
       <String ID="CONSOLE_GITHUB" Name="GITHUB"/>
@@ -401,6 +402,7 @@
       <String ID="MESSAGE_QUIT" Name="Você tem certeza que quer fechar o HunterPie?"/>
       <String ID="TITLE_MISSING_PATH" Name="Caminho para o Monster Hunter World não encontrado"/>
       <String ID="MESSAGE_MISSING_PATH" Name="Você ainda não adicionou o caminho do jogo. Quer fazer isso agora?"/>
+      <String ID="MESSAGE_UPLOAD_BUILD" Name="Você quer publicar a build do seu personagem atual no Honey Hunters World?"/>
       <!-- Console Messages -->
       <String ID="MESSAGE_MAP_LOAD" Name="{HunterPie_Map} carregado"/>
       <String ID="MESSAGE_DISCORD_CONNECTED" Name="Começando uma nova conexão do RPC"/>
@@ -605,6 +607,7 @@
       <String ID="STATIC_BUTTON_SAVE" Name="Salvar"/>
       <String ID="STATIC_REQUIRES_RESTART" Name="(Requer reinicialização)"/>
       <String ID="STATIC_POSITION" Name="Posição"/>
+      <String ID="STATIC_COPYCLIPBOARD" Name="Copiar"/>
       <!-- Settings Side bar-->
       <String ID="STATIC_GENERAL_SETTINGS" Name="Geral"/>
       <String ID="STATIC_DISCORD_SETTINGS" Name="Discord"/>
@@ -625,6 +628,7 @@
       <String ID="STATIC_ACCEPT" Name="Aceitar"/>
       <String ID="STATIC_REJECT" Name="Rejeitar"/>
       <String ID="STATIC_SETTINGS_LOAD" Name="Configurações carregadas"/>
+      <String ID="STATIC_OPENDEFAULTBROWSER" Name="Abrir no Navegador"/>
     </Notifications>
     <RichPresence>
       <String ID="RPC_DESCRIPTION_IN_MAIN_MENU" Name="No Menu Principal"/>

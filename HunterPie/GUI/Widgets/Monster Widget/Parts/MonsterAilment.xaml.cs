@@ -154,5 +154,12 @@ namespace HunterPie.GUI.Widgets.Monster_Widget.Parts {
             }
             AilmentText.Text = $"{AilmentBar.Health:0}/{AilmentBar.MaxHealth:0}";
         }
+
+        public void UpdateSize(double NewSize)
+        {
+            AilmentBar.MaxSize = NewSize - 37;
+            AilmentBar.MaxHealth = AilmentBar.MaxHealth;
+            AilmentBar.Health = AilmentBar.Health;
+        }
     }
 }

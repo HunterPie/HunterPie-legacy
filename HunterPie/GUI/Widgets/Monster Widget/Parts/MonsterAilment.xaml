@@ -18,7 +18,7 @@
                 </TransformGroup>
             </Custom:MinimalHealthBar.RenderTransform>
         </Custom:MinimalHealthBar>
-        <TextBlock Style="{StaticResource OVERLAY_MONSTER_PART_NAME_TEXT_STYLE}" x:Name="AilmentName" Text="Poison" Height="19" VerticalAlignment="Top" Padding="0" TextTrimming="CharacterEllipsis" TextOptions.TextHintingMode="Fixed" Margin="32,-3,4,0"/>
+        <TextBlock Style="{StaticResource OVERLAY_MONSTER_PART_NAME_TEXT_STYLE}" x:Name="AilmentName" Text="Poison" Height="19" VerticalAlignment="Top" TextTrimming="CharacterEllipsis" TextOptions.TextHintingMode="Fixed"/>
         <Rectangle Height="17" VerticalAlignment="Top" Margin="13,6,0,0" HorizontalAlignment="Left" Width="17" RenderTransformOrigin="0.5,0.5" Style="{StaticResource OVERLAY_MONSTER_AILMENT_COUNTER_BACKGROUND_STYLE}">
             <Rectangle.RenderTransform>
                 <TransformGroup>

@@ -1,13 +1,16 @@
 ﻿using System;
 using System.Linq;
-using System.Xml;
 using System.Threading;
-using HunterPie.Memory;
-using HunterPie.Logger;
 using HunterPie.Core.LPlayer;
+using HunterPie.Logger;
+using HunterPie.Memory;
+using HunterPie.Core.LPlayer.Jobs;
+using System.Collections.Generic;
 
-namespace HunterPie.Core {
-    public class Player {
+namespace HunterPie.Core
+{
+    public class Player
+    {
 
         // Private variables
         private Int64 _playerAddress = 0x0;
@@ -25,24 +28,29 @@ namespace HunterPie.Core {
         private Int64 LEVEL_ADDRESS;
         private Int64 EQUIPMENT_ADDRESS;
         private Int64 PlayerStructAddress;
-        private Int64 PlayerSelectedPointer;
-        private int PlayerSlot;
-        public Int64 PlayerAddress {
-            get { return _playerAddress; }
-            set {
-                if (_playerAddress != value) {
+        public Int64 PlayerAddress
+        {
+            get => _playerAddress;
+            set
+            {
+                if (_playerAddress != value)
+                {
                     _playerAddress = value;
-                    if (value != 0x0) {
+                    if (value != 0x0)
+                    {
                         Debugger.Debug($"Found player address -> {value:X}");
                         _onLogin();
                     }
                 }
             }
         }
-        public int Level { // Hunter Rank
-            get { return _level; }
-            set {
-                if (_level != value) {
+        public int Level
+        { // Hunter Rank
+            get => _level;
+            set
+            {
+                if (_level != value)
+                {
                     _level = value;
                     _onLevelUp();
                 }
@@ -50,54 +58,61 @@ namespace HunterPie.Core {
         }
         public int MasterRank { get; private set; }
         public string Name { get; private set; }
-        public int ZoneID {
-            get { return _zoneId; }
-            set {
-                if (_zoneId != value) {
+        public int ZoneID
+        {
+            get => _zoneId;
+            set
+            {
+                if (_zoneId != value)
+                {
                     if ((_zoneId == -1 || PeaceZones.Contains(_zoneId)) && !PeaceZones.Contains(value)) _onPeaceZoneLeave();
                     if (_HBZones.Contains(_zoneId) && !_HBZones.Contains(value)) _onVillageLeave();
                     _zoneId = value;
                     _onZoneChange();
                     if (PeaceZones.Contains(value)) _onPeaceZoneEnter();
                     if (_HBZones.Contains(value)) _onVillageEnter();
+                    if (value == 0 && LEVEL_ADDRESS != 0x0)
+                    {
+                        LEVEL_ADDRESS = 0x0;
+                        PlayerAddress = 0x0;
+                        _onLogout();
+                    }
                 }
             }
         }
-        public string ZoneName {
-            get { return GStrings.GetStageNameByID(ZoneID); }
-        }
+        public string ZoneName => GStrings.GetStageNameByID(ZoneID);
         public int LastZoneID { get; private set; }
-        public byte WeaponID {
-            get { return _weaponId; }
-            set {
-                if (_weaponId != value) {
+        public byte WeaponID
+        {
+            get => _weaponId;
+            set
+            {
+                if (_weaponId != value)
+                {
                     _weaponId = value;
                     _onWeaponChange();
                 }
             }
         }
-        public string WeaponName {
-            get { return GStrings.GetWeaponNameByID(WeaponID); }
-        }
-        public string SessionID {
-            get { return _sessionId; }
-            set {
-                if (_sessionId != value) {
+        public string WeaponName => GStrings.GetWeaponNameByID(WeaponID);
+        public string SessionID
+        {
+            get => _sessionId;
+            set
+            {
+                if (_sessionId != value)
+                {
                     _sessionId = value;
                     GetSteamSession();
                     _onSessionChange();
                 }
             }
         }
-        public bool InPeaceZone {
-            get { return PeaceZones.Contains(this.ZoneID); }
-        }
-        public bool InHarvestZone {
-            get { return _HBZones.Contains(ZoneID); }
-        }
+        public bool InPeaceZone => PeaceZones.Contains(ZoneID);
+        public bool InHarvestZone => _HBZones.Contains(ZoneID);
         public Int64 SteamSession { get; private set; }
         public Int64 SteamID { get; private set; }
-        
+
         // Party
         public Party PlayerParty = new Party();
 
@@ -112,11 +127,25 @@ namespace HunterPie.Core {
         // Abnormalities
         public Abnormalities Abnormalities = new Abnormalities();
 
+        // Job data
+        public Greatsword Greatsword = new Greatsword();
+        public DualBlades DualBlades = new DualBlades();
+        public Longsword Longsword = new Longsword();
+        public Hammer Hammer = new Hammer();
+        public GunLance GunLance = new GunLance();
+        public SwitchAxe SwitchAxe = new SwitchAxe();
+        public ChargeBlade ChargeBlade = new ChargeBlade();
+        public InsectGlaive InsectGlaive = new InsectGlaive();
+        public Bow Bow = new Bow();
+        public LightBowgun LightBowgun = new LightBowgun();
+        public HeavyBowgun HeavyBowgun = new HeavyBowgun();
+
         // Threading
         private ThreadStart ScanPlayerInfoRef;
         private Thread ScanPlayerInfo;
-        
-        ~Player() {
+
+        ~Player()
+        {
             PlayerParty = null;
             Harvest = null;
             PrimaryMantle = null;
@@ -132,63 +161,48 @@ namespace HunterPie.Core {
         public event PlayerEvents OnWeaponChange;
         public event PlayerEvents OnSessionChange;
         public event PlayerEvents OnCharacterLogin;
+        public event PlayerEvents OnCharacterLogout;
         public event PlayerEvents OnPeaceZoneEnter;
         public event PlayerEvents OnVillageEnter;
         public event PlayerEvents OnPeaceZoneLeave;
         public event PlayerEvents OnVillageLeave;
 
         // Dispatchers
-        protected virtual void _onLogin() {
-            OnCharacterLogin?.Invoke(this, EventArgs.Empty);
-        }
+        protected virtual void _onLogin() => OnCharacterLogin?.Invoke(this, EventArgs.Empty);
 
-        protected virtual void _onLevelUp() {
-            OnLevelChange?.Invoke(this, EventArgs.Empty);
-        }
+        protected virtual void _onLogout() => OnCharacterLogout?.Invoke(this, EventArgs.Empty);
 
-        protected virtual void _onZoneChange() {
-            OnZoneChange?.Invoke(this, EventArgs.Empty);
-        }
+        protected virtual void _onLevelUp() => OnLevelChange?.Invoke(this, EventArgs.Empty);
 
-        protected virtual void _onWeaponChange() {
-            OnWeaponChange?.Invoke(this, EventArgs.Empty);
-        }
+        protected virtual void _onZoneChange() => OnZoneChange?.Invoke(this, EventArgs.Empty);
 
-        protected virtual void _onSessionChange() {
-            OnSessionChange?.Invoke(this, EventArgs.Empty);
-        }
+        protected virtual void _onWeaponChange() => OnWeaponChange?.Invoke(this, EventArgs.Empty);
 
-        protected virtual void _onPeaceZoneEnter() {
-            OnPeaceZoneEnter?.Invoke(this, EventArgs.Empty);
-        }
+        protected virtual void _onSessionChange() => OnSessionChange?.Invoke(this, EventArgs.Empty);
 
-        protected virtual void _onVillageEnter() {
-            OnVillageEnter?.Invoke(this, EventArgs.Empty);
-        }
+        protected virtual void _onPeaceZoneEnter() => OnPeaceZoneEnter?.Invoke(this, EventArgs.Empty);
 
-        protected virtual void _onPeaceZoneLeave() {
-            OnPeaceZoneLeave?.Invoke(this, EventArgs.Empty);
-        }
+        protected virtual void _onVillageEnter() => OnVillageEnter?.Invoke(this, EventArgs.Empty);
 
-        protected virtual void _onVillageLeave() {
-            OnVillageLeave?.Invoke(this, EventArgs.Empty);
-        }
+        protected virtual void _onPeaceZoneLeave() => OnPeaceZoneLeave?.Invoke(this, EventArgs.Empty);
+
+        protected virtual void _onVillageLeave() => OnVillageLeave?.Invoke(this, EventArgs.Empty);
         #endregion
 
 
         #region Scanner
-        public void StartScanning() {
+        public void StartScanning()
+        {
             ScanPlayerInfoRef = new ThreadStart(GetPlayerInfo);
-            ScanPlayerInfo = new Thread(ScanPlayerInfoRef) {
+            ScanPlayerInfo = new Thread(ScanPlayerInfoRef)
+            {
                 Name = "Scanner_Player"
             };
             Debugger.Warn(GStrings.GetLocalizationByXPath("/Console/String[@ID='MESSAGE_PLAYER_SCANNER_INITIALIZED']"));
             ScanPlayerInfo.Start();
         }
 
-        public void StopScanning() {
-            ScanPlayerInfo.Abort();
-        }
+        public void StopScanning() => ScanPlayerInfo.Abort();
         #endregion
 
         #region Manual Player Data
@@ -196,10 +210,211 @@ namespace HunterPie.Core {
             Player data that needs to be called by an external function and doesn't need to keep track of this data
             every second.
         */
-        public GameStructs.Gear GetPlayerGear() {
-            GameStructs.Gear PlayerGear = new GameStructs.Gear();
+        public GameStructs.Gear GetPlayerGear()
+        {
+            Int64 PlayerGearBase = Scanner.READ_MULTILEVEL_PTR(Address.BASE + Address.EQUIPMENT_OFFSET, Address.Offsets.PlayerGearOffsets);
+
+            // Helm
+            GameStructs.Armor Helm = new GameStructs.Armor()
+            {
+                ID = Scanner.Read<int>(PlayerGearBase),
+                Decorations = GetDecorationsFromGear(PlayerGearBase, 0)
+            };
+
+            // Chest
+            GameStructs.Armor Chest = new GameStructs.Armor()
+            {
+                ID = Scanner.Read<int>(PlayerGearBase + 0x4),
+                Decorations = GetDecorationsFromGear(PlayerGearBase, 1)
+            };
+
+            // Arms
+            GameStructs.Armor Arms = new GameStructs.Armor()
+            {
+                ID = Scanner.Read<int>(PlayerGearBase + 0x8),
+                Decorations = GetDecorationsFromGear(PlayerGearBase, 2)
+            };
+
+            // Waist
+            GameStructs.Armor Waist = new GameStructs.Armor()
+            {
+                ID = Scanner.Read<int>(PlayerGearBase + 0xC),
+                Decorations = GetDecorationsFromGear(PlayerGearBase, 3)
+            };
+
+            // Waist
+            GameStructs.Armor Legs = new GameStructs.Armor()
+            {
+                ID = Scanner.Read<int>(PlayerGearBase + 0x10),
+                Decorations = GetDecorationsFromGear(PlayerGearBase, 4)
+            };
+
+            // Charm
+            GameStructs.Charm Charm = new GameStructs.Charm()
+            {
+                ID = Scanner.Read<int>(PlayerGearBase + 0x14)
+            };
+
+            // Weapon
+            GameStructs.Weapon Weapon = new GameStructs.Weapon()
+            {
+                Type = Scanner.Read<int>(PlayerGearBase + 0x124),
+                ID = Scanner.Read<int>(PlayerGearBase + 0x128),
+                Decorations = GetWeaponDecorations(PlayerGearBase + 0x128),
+                NewAugments = GetWeaponNewAugments(PlayerGearBase + 0x128),
+                Awakenings = GetWeaponAwakenedSkills(PlayerGearBase + 0x128),
+                CustomAugments = GetCustomAugments(PlayerGearBase + 0x128),
+                BowgunMods = GetBowgunMods(PlayerGearBase + 0x128)
+            };
+
+            // Primary Tool
+            GameStructs.SpecializedTool PrimaryTool = new GameStructs.SpecializedTool()
+            {
+                ID = Scanner.Read<int>(PlayerGearBase + 0x158),
+                Decorations = GetMantleDecorations(PlayerGearBase + 0x164)
+            };
+
+            // Secondary Tool
+            GameStructs.SpecializedTool SecondaryTool = new GameStructs.SpecializedTool()
+            {
+                ID = Scanner.Read<int>(PlayerGearBase + 0x15C),
+                Decorations = GetMantleDecorations(PlayerGearBase + 0x170)
+            };
+            // Now we put all the data in the player gear struct
+            GameStructs.Gear PlayerGear = new GameStructs.Gear()
+            {
+                Helmet = Helm,
+                Chest = Chest,
+                Hands = Arms,
+                Waist = Waist,
+                Legs = Legs,
+                Charm = Charm,
+                Weapon = Weapon,
+                SpecializedTools = new GameStructs.SpecializedTool[2] {
+                    PrimaryTool, SecondaryTool
+                }
+            };
             return PlayerGear;
         }
+
+        private GameStructs.BowgunMod[] GetBowgunMods(Int64 BaseAddress)
+        {
+            GameStructs.BowgunMod[] bowgunMods = new GameStructs.BowgunMod[5];
+            for (int i = 0; i < 5; i++)
+            {
+                GameStructs.BowgunMod dummy = new GameStructs.BowgunMod()
+                {
+                    ID = GameStructs.ConvertToMax(Scanner.Read<uint>(BaseAddress + 0x10 + (i * 4)))
+                };
+                bowgunMods[i] = dummy;
+            }
+            return bowgunMods;
+        }
+
+        private GameStructs.NewAugment[] GetWeaponNewAugments(Int64 BaseAddress)
+        {
+            GameStructs.NewAugment[] NewAugments = new GameStructs.NewAugment[7];
+            // New augments can be determined by their index, so we use their index as 
+            // an ID. Their value is a byte that holds the augment level.
+            for (int AugmentIndex = 0; AugmentIndex < 7; AugmentIndex++)
+            {
+                GameStructs.NewAugment dummy = new GameStructs.NewAugment()
+                {
+                    ID = (byte)AugmentIndex,
+                    Level = Scanner.Read<byte>(BaseAddress + 0x84 + AugmentIndex)
+                };
+                NewAugments[AugmentIndex] = dummy;
+            }
+            return NewAugments;
+        }
+
+        private GameStructs.AwakenedSkill[] GetWeaponAwakenedSkills(Int64 BaseAddress)
+        {
+            GameStructs.AwakenedSkill[] AwakenedSkills = new GameStructs.AwakenedSkill[5];
+            // Awakened skills slots are determined by their index, their value is a short that
+            // holds their awakened skill ID
+            for (int AwakIndex = 0; AwakIndex < 5; AwakIndex++)
+            {
+                GameStructs.AwakenedSkill dummy = new GameStructs.AwakenedSkill()
+                {
+                    ID = Scanner.Read<short>(BaseAddress + 0x8C + (AwakIndex * sizeof(short)))
+                };
+                AwakenedSkills[AwakIndex] = dummy;
+            }
+            return AwakenedSkills;
+        }
+
+        private GameStructs.CustomAugment[] GetCustomAugments(Int64 BaseAddress)
+        {
+            GameStructs.CustomAugment[] CustomAugments = new GameStructs.CustomAugment[7];
+            for (int AugIndex = 0; AugIndex < 7; AugIndex++)
+            {
+                GameStructs.CustomAugment dummy = new GameStructs.CustomAugment()
+                {
+                    ID = Scanner.Read<byte>(BaseAddress + 0x78 + AugIndex),
+                    Level = (byte)AugIndex
+                };
+                CustomAugments[AugIndex] = dummy;
+            }
+            return CustomAugments;
+        }
+
+        private GameStructs.Decoration[] GetDecorationsFromGear(Int64 BaseAddress, int GearIndex)
+        {
+            GameStructs.Decoration[] Decorations = new GameStructs.Decoration[3];
+            for (int DecorationIndex = 0; DecorationIndex < 3; DecorationIndex++)
+            {
+                GameStructs.Decoration dummy = new GameStructs.Decoration()
+                {
+                    ID = GameStructs.ConvertToMax(Scanner.Read<uint>(BaseAddress + 0x30 + (0x3 * GearIndex * 0x4) + (0x4 * DecorationIndex)))
+                };
+                Decorations[DecorationIndex] = dummy;
+            }
+            return Decorations;
+        }
+
+        private GameStructs.Decoration[] GetWeaponDecorations(Int64 BaseAddress)
+        {
+            GameStructs.Decoration[] Decorations = new GameStructs.Decoration[3];
+            for (int DecorationIndex = 0; DecorationIndex < 3; DecorationIndex++)
+            {
+                GameStructs.Decoration dummy = new GameStructs.Decoration()
+                {
+                    ID = GameStructs.ConvertToMax(Scanner.Read<uint>(BaseAddress + ((DecorationIndex + 1) * 0x4)))
+                };
+                Decorations[DecorationIndex] = dummy;
+            }
+            return Decorations;
+        }
+
+        private GameStructs.Augment[] GetWeaponAugments(Int64 BaseAddress)
+        {
+            GameStructs.Augment[] Augments = new GameStructs.Augment[3];
+            for (int AugmentIndex = 0; AugmentIndex < 3; AugmentIndex++)
+            {
+                GameStructs.Augment dummy = new GameStructs.Augment()
+                {
+                    ID = Scanner.Read<int>(BaseAddress + 0x24 + (AugmentIndex * 0x4))
+                };
+                Augments[AugmentIndex] = dummy;
+            }
+            return Augments;
+        }
+
+        private GameStructs.Decoration[] GetMantleDecorations(Int64 BaseAddress)
+        {
+            GameStructs.Decoration[] Decorations = new GameStructs.Decoration[2];
+            for (int DecorationIndex = 0; DecorationIndex < 2; DecorationIndex++)
+            {
+                GameStructs.Decoration dummy = new GameStructs.Decoration()
+                {
+                    ID = GameStructs.ConvertToMax(Scanner.Read<uint>(BaseAddress + (DecorationIndex * 0x4)))
+                };
+                Decorations[DecorationIndex] = dummy;
+            }
+            return Decorations;
+        }
+
         #endregion
 
         #region Automatic Player Data
@@ -207,9 +422,13 @@ namespace HunterPie.Core {
             Player data that is tracked by the Player class, cannot be called by an external function.
         */
 
-        private void GetPlayerInfo() {
-            while (Scanner.GameIsRunning) {
-                if (GetPlayerAddress()) {
+        private void GetPlayerInfo()
+        {
+            while (Scanner.GameIsRunning)
+            {
+                GetZoneId();
+                if (GetPlayerAddress())
+                {
                     GetPlayerLevel();
                     GetPlayerMasterRank();
                     GetPlayerName();
@@ -224,8 +443,8 @@ namespace HunterPie.Core {
                     GetSecondaryMantleTimers();
                     GetParty();
                     GetPlayerAbnormalities();
+                    GetJobInformation();
                 }
-                GetZoneId();
                 GetSessionId();
                 GetEquipmentAddress();
                 Thread.Sleep(Math.Max(50, UserSettings.PlayerConfig.Overlay.GameScanDelay));
@@ -234,28 +453,31 @@ namespace HunterPie.Core {
             GetPlayerInfo();
         }
 
-        private bool GetPlayerAddress() {
+        private bool GetPlayerAddress()
+        {
             Int64 AddressValue = Scanner.READ_MULTILEVEL_PTR(Address.BASE + Address.WEAPON_OFFSET, Address.Offsets.WeaponOffsets);
-            Int64 pAddress = 0x0;
             Int64 nextPlayer = 0x27E9F0;
-            if (AddressValue > 0x0) {
-                PlayerSelectedPointer = AddressValue;
+            if (AddressValue > 0x0)
+            {
                 string pName = Scanner.READ_STRING(AddressValue - 0x270, 32);
-                int pLevel = Scanner.READ_INT(AddressValue - 0x230);
+                int pLevel = Scanner.Read<int>(AddressValue - 0x230);
                 // If char name starts with a null char then the game haven't launched yet
                 if (pName == "") return false;
-                for (int playerSlot = 0; playerSlot < 3; playerSlot++) {
-                    pAddress = Scanner.READ_MULTILEVEL_PTR(Address.BASE + Address.LEVEL_OFFSET, Address.Offsets.LevelOffsets) + (nextPlayer * playerSlot);
-                    if (Scanner.READ_INT(pAddress) == pLevel && Scanner.READ_STRING(pAddress - 0x40, 32)?.Trim('\x00') == pName && PlayerAddress != pAddress) {
+                for (int playerSlot = 0; playerSlot < 3; playerSlot++)
+                {
+                    long pAddress = Scanner.READ_MULTILEVEL_PTR(Address.BASE + Address.LEVEL_OFFSET, Address.Offsets.LevelOffsets) + (nextPlayer * playerSlot);
+                    if (Scanner.Read<int>(pAddress) == pLevel && Scanner.READ_STRING(pAddress - 0x40, 32)?.Trim('\x00') == pName && PlayerAddress != pAddress)
+                    {
                         LEVEL_ADDRESS = pAddress;
                         GetPlayerLevel();
                         GetPlayerName();
                         PlayerAddress = pAddress;
-                        this.PlayerSlot = playerSlot;
                         return true;
                     }
                 }
-            } else {
+            }
+            else
+            {
                 PlayerAddress = 0x0;
                 LEVEL_ADDRESS = 0x0;
                 return false;
@@ -263,149 +485,175 @@ namespace HunterPie.Core {
             return true;
         }
 
-        private void GetPlayerLevel() {
-            Level = Scanner.READ_INT(LEVEL_ADDRESS);
-        }
+        private void GetPlayerLevel() => Level = Scanner.Read<int>(LEVEL_ADDRESS);
 
-        private void GetPlayerMasterRank() {
-            MasterRank = Scanner.READ_INT(LEVEL_ADDRESS + 0x44);
-        }
+        private void GetPlayerMasterRank() => MasterRank = Scanner.Read<int>(LEVEL_ADDRESS + 0x44);
 
-        private void GetPlayerName() {
+        private void GetPlayerName()
+        {
             Int64 Address = LEVEL_ADDRESS - 0x40;
             Name = Scanner.READ_STRING(Address, 32);
         }
 
-        private void GetZoneId() {
+        private void GetZoneId()
+        {
             Int64 ZoneAddress = Scanner.READ_MULTILEVEL_PTR(Address.BASE + Address.ZONE_OFFSET, Address.Offsets.ZoneOffsets);
-            int zoneId = Scanner.READ_INT(ZoneAddress);
-            if (zoneId != ZoneID) {
-                this.LastZoneID = ZoneID;
-                this.ZoneID = zoneId;
+            int zoneId = Scanner.Read<int>(ZoneAddress);
+            if (zoneId != ZoneID)
+            {
+                LastZoneID = ZoneID;
+                ZoneID = zoneId;
             }
         }
 
-        public void ChangeLastZone() {
-            this.LastZoneID = ZoneID;
-        }
+        public void ChangeLastZone() => LastZoneID = ZoneID;
 
-        private void GetWeaponId() {
+        private void GetWeaponId()
+        {
             Int64 Address = Memory.Address.BASE + Memory.Address.WEAPON_OFFSET;
             Address = Scanner.READ_MULTILEVEL_PTR(Address, Memory.Address.Offsets.WeaponOffsets);
             PlayerStructAddress = Address;
-            WeaponID = Scanner.READ_BYTE(Address);
+            WeaponID = Scanner.Read<byte>(Address);
         }
 
-        private void GetSessionId() {
+        private void GetSessionId()
+        {
             Int64 Address = Memory.Address.BASE + Memory.Address.SESSION_OFFSET;
             Address = Scanner.READ_MULTILEVEL_PTR(Address, Memory.Address.Offsets.SessionOffsets);
             SESSION_ADDRESS = Address;
             SessionID = Scanner.READ_STRING(SESSION_ADDRESS, 12);
         }
 
-        private void GetSteamSession() {
-            SteamSession = Scanner.READ_LONGLONG(SESSION_ADDRESS + 0x10);
-            SteamID = Scanner.READ_LONGLONG(SESSION_ADDRESS + 0x1184);
+        private void GetSteamSession()
+        {
+            SteamSession = Scanner.Read<long>(SESSION_ADDRESS + 0x10);
+            SteamID = Scanner.Read<long>(SESSION_ADDRESS + 0x1184);
             Debugger.Debug($"Steam Session: {SteamSession}/{SteamID}");
         }
 
-        private void GetEquipmentAddress() {
+        private void GetEquipmentAddress()
+        {
             Int64 Address = Memory.Address.BASE + Memory.Address.EQUIPMENT_OFFSET;
             Address = Scanner.READ_MULTILEVEL_PTR(Address, Memory.Address.Offsets.EquipmentOffsets);
             if (EQUIPMENT_ADDRESS != Address) Debugger.Debug($"New equipment address found -> 0x{Address:X}");
             EQUIPMENT_ADDRESS = Address;
         }
 
-        private void GetPrimaryMantle() {
+        private void GetPrimaryMantle()
+        {
             Int64 Address = PlayerStructAddress + 0x34;
-            int mantleId = Scanner.READ_INT(Address);
+            int mantleId = Scanner.Read<int>(Address);
             PrimaryMantle.SetID(mantleId);
         }
 
-        private void GetSecondaryMantle() {
+        private void GetSecondaryMantle()
+        {
             Int64 Address = PlayerStructAddress + 0x34 + 0x4;
-            int mantleId = Scanner.READ_INT(Address);
+            int mantleId = Scanner.Read<int>(Address);
             SecondaryMantle.SetID(mantleId);
         }
 
-        private void GetPrimaryMantleTimers() {
+        private void GetPrimaryMantleTimers()
+        {
             Int64 PrimaryMantleTimerFixed = (PrimaryMantle.ID * 4) + Address.timerFixed;
             Int64 PrimaryMantleTimer = (PrimaryMantle.ID * 4) + Address.timerDynamic;
             Int64 PrimaryMantleCdFixed = (PrimaryMantle.ID * 4) + Address.cooldownFixed;
             Int64 PrimaryMantleCdDynamic = (PrimaryMantle.ID * 4) + Address.cooldownDynamic;
-            PrimaryMantle.SetCooldown(Scanner.READ_FLOAT(EQUIPMENT_ADDRESS + PrimaryMantleCdDynamic), Scanner.READ_FLOAT(EQUIPMENT_ADDRESS + PrimaryMantleCdFixed));
-            PrimaryMantle.SetTimer(Scanner.READ_FLOAT(EQUIPMENT_ADDRESS + PrimaryMantleTimer), Scanner.READ_FLOAT(EQUIPMENT_ADDRESS + PrimaryMantleTimerFixed));
+            PrimaryMantle.SetCooldown(Scanner.Read<float>(EQUIPMENT_ADDRESS + PrimaryMantleCdDynamic), Scanner.Read<float>(EQUIPMENT_ADDRESS + PrimaryMantleCdFixed));
+            PrimaryMantle.SetTimer(Scanner.Read<float>(EQUIPMENT_ADDRESS + PrimaryMantleTimer), Scanner.Read<float>(EQUIPMENT_ADDRESS + PrimaryMantleTimerFixed));
         }
 
-        private void GetSecondaryMantleTimers() {
+        private void GetSecondaryMantleTimers()
+        {
             Int64 SecondaryMantleTimerFixed = (SecondaryMantle.ID * 4) + Address.timerFixed;
             Int64 SecondaryMantleTimer = (SecondaryMantle.ID * 4) + Address.timerDynamic;
             Int64 SecondaryMantleCdFixed = (SecondaryMantle.ID * 4) + Address.cooldownFixed;
             Int64 SecondaryMantleCdDynamic = (SecondaryMantle.ID * 4) + Address.cooldownDynamic;
-            SecondaryMantle.SetCooldown(Scanner.READ_FLOAT(EQUIPMENT_ADDRESS + SecondaryMantleCdDynamic), Scanner.READ_FLOAT(EQUIPMENT_ADDRESS + SecondaryMantleCdFixed));
-            SecondaryMantle.SetTimer(Scanner.READ_FLOAT(EQUIPMENT_ADDRESS + SecondaryMantleTimer), Scanner.READ_FLOAT(EQUIPMENT_ADDRESS + SecondaryMantleTimerFixed));
+            SecondaryMantle.SetCooldown(Scanner.Read<float>(EQUIPMENT_ADDRESS + SecondaryMantleCdDynamic), Scanner.Read<float>(EQUIPMENT_ADDRESS + SecondaryMantleCdFixed));
+            SecondaryMantle.SetTimer(Scanner.Read<float>(EQUIPMENT_ADDRESS + SecondaryMantleTimer), Scanner.Read<float>(EQUIPMENT_ADDRESS + SecondaryMantleTimerFixed));
         }
 
-        private void GetParty() {
+        private void GetParty()
+        {
+            
             Int64 address = Address.BASE + Address.PARTY_OFFSET;
             Int64 PartyContainer = Scanner.READ_MULTILEVEL_PTR(address, Address.Offsets.PartyOffsets) - 0x22B7;
-            if (this.InPeaceZone) {
-                PlayerParty.LobbySize = Scanner.READ_INT(PartyContainer - 0xA961);
-            } else {
+            if (InPeaceZone)
+            {
+                PlayerParty.LobbySize = Scanner.Read<int>(PartyContainer - 0xA961);
+            }
+            else
+            {
                 int totalDamage = 0;
-                for (int i = 0; i < PlayerParty.MaxSize; i++) totalDamage += GetPartyMemberDamage(i);
+                int[] playerDamages = new int[PlayerParty.MaxSize];
+                for (int i = 0; i < PlayerParty.MaxSize; i++)
+                {
+                    int playerDamage = GetPartyMemberDamage(i);
+                    totalDamage += playerDamage;
+                    playerDamages[i] = playerDamage;
+                }
+
                 PlayerParty.TotalDamage = totalDamage;
                 GetQuestElapsedTime();
-                for (int i = 0; i < PlayerParty.MaxSize; i++) {
+                for (int i = 0; i < PlayerParty.MaxSize; i++)
+                {
                     string playerName = GetPartyMemberName(PartyContainer + (i * 0x1C0));
-                    byte playerWeapon = playerName == this.Name ? this.WeaponID : Scanner.READ_BYTE(PartyContainer + (i * 0x1C0 + 0x33));
-                    short HR = Scanner.READ_SHORT(PartyContainer + (i * 0x1C0 + 0x27));
-                    short MR = Scanner.READ_SHORT(PartyContainer + (i * 0x1C0 + 0x29));
-                    int playerDamage = GetPartyMemberDamage(i);
+                    short HR = Scanner.Read<short>(PartyContainer + (i * 0x1C0 + 0x27));
+                    short MR = Scanner.Read<short>(PartyContainer + (i * 0x1C0 + 0x29));
+                    byte playerWeapon = playerName == Name && HR == Level ? WeaponID : Scanner.Read<byte>(PartyContainer + (i * 0x1C0 + 0x33));
+                    int playerDamage = playerDamages[i];
                     float playerDamagePercentage = 0;
-                    if (totalDamage != 0) {
+                    if (totalDamage != 0)
+                    {
                         playerDamagePercentage = playerDamage / (float)totalDamage;
                     }
-                    if (i == 0) {
-                        PlayerParty[i].IsPartyLeader = true;
-                    }
+
+                    if (i == 0) PlayerParty[i].IsPartyLeader = true;
+                    
                     PlayerParty[i].HR = HR;
                     PlayerParty[i].MR = MR;
+                    PlayerParty[i].IsMe = playerName == Name && HR == Level;
                     PlayerParty[i].SetPlayerInfo(playerName, playerWeapon, playerDamage, playerDamagePercentage);
                 }
             }
-            
 
         }
 
-        private void GetQuestElapsedTime() {
+        private void GetQuestElapsedTime()
+        {
             Int64 TimerAddress = Scanner.READ_MULTILEVEL_PTR(Address.BASE + Address.ABNORMALITY_OFFSET, Address.Offsets.AbnormalityOffsets);
-            float Timer = Scanner.READ_FLOAT(TimerAddress + 0xB74);
+            float Timer = Scanner.Read<float>(TimerAddress + 0xB74);
             PlayerParty.ShowDPS = true;
-            if (Timer > 0) {
+            if (Timer > 0)
+            {
                 PlayerParty.Epoch = TimeSpan.FromSeconds(Timer);
-            } else { PlayerParty.Epoch = TimeSpan.Zero; }
+            }
+            else { PlayerParty.Epoch = TimeSpan.Zero; }
         }
 
-        private int GetPartyMemberDamage(int playerIndex) {
+        private int GetPartyMemberDamage(int playerIndex)
+        {
             Int64 DPSAddress = Scanner.READ_MULTILEVEL_PTR(Address.BASE + Address.DAMAGE_OFFSET, Address.Offsets.DamageOffsets);
-            return Scanner.READ_INT(DPSAddress + (0x2A0 * playerIndex));
+            return Scanner.Read<int>(DPSAddress + (0x2A0 * playerIndex));
         }
 
-        private string GetPartyMemberName(Int64 NameAddress) {
+        private string GetPartyMemberName(Int64 NameAddress)
+        {
             string PartyMemberName = Scanner.READ_STRING(NameAddress, 32);
             return PartyMemberName ?? PartyMemberName.Trim('\x00');
         }
 
-        private void GetFertilizers() {
-            Int64 Address = this.LEVEL_ADDRESS;
-            
-            for (int fertCount = 0; fertCount < 4; fertCount++) {
+        private void GetFertilizers()
+        {
+            Int64 Address = LEVEL_ADDRESS;
+
+            for (int fertCount = 0; fertCount < 4; fertCount++)
+            {
                 // Calculates memory address
                 Int64 FertilizerAddress = Address + Memory.Address.Offsets.FertilizersOffset + (0x10 * fertCount);
                 // Read memory
-                int FertilizerId = Scanner.READ_INT(FertilizerAddress - 0x4);
-                int FertilizerCount = Scanner.READ_INT(FertilizerAddress);
+                int FertilizerId = Scanner.Read<int>(FertilizerAddress - 0x4);
+                int FertilizerCount = Scanner.Read<int>(FertilizerAddress);
                 // update fertilizer data
                 Harvest.Box[fertCount].ID = FertilizerId;
                 Harvest.Box[fertCount].Amount = FertilizerCount;
@@ -413,132 +661,337 @@ namespace HunterPie.Core {
             UpdateHarvestBoxCounter(Address + Memory.Address.Offsets.FertilizersOffset + (0x10 * 3));
         }
 
-        private void UpdateHarvestBoxCounter(Int64 LastFertAddress) {
+        private void UpdateHarvestBoxCounter(Int64 LastFertAddress)
+        {
             Int64 Address = LastFertAddress + Memory.Address.Offsets.HarvestBoxOffset;
             int counter = 0;
-            for (long iAddress = Address; iAddress < Address + 0x330; iAddress += 0x10) {
-                int memValue = Scanner.READ_INT(iAddress);
-                if (memValue > 0) {
+            for (long iAddress = Address; iAddress < Address + 0x330; iAddress += 0x10)
+            {
+                int memValue = Scanner.Read<int>(iAddress);
+                if (memValue > 0)
+                {
                     counter++;
                 }
             }
             Harvest.Counter = counter;
         }
 
-        private void GetSteamFuel() {
-            Int64 NaturalFuelAddress = this.LEVEL_ADDRESS + Address.Offsets.SteamFuelOffset;
-            Activity.NaturalFuel = Scanner.READ_INT(NaturalFuelAddress);
-            Activity.StoredFuel = Scanner.READ_INT(NaturalFuelAddress + 0x4);
+        private void GetSteamFuel()
+        {
+            Int64 NaturalFuelAddress = LEVEL_ADDRESS + Address.Offsets.SteamFuelOffset;
+            Activity.NaturalFuel = Scanner.Read<int>(NaturalFuelAddress);
+            Activity.StoredFuel = Scanner.Read<int>(NaturalFuelAddress + 0x4);
         }
 
-        private void GetArgosyData() {
-            Int64 ArgosyDaysAddress = this.LEVEL_ADDRESS + Address.Offsets.ArgosyOffset;
-            byte ArgosyDays = Scanner.READ_BYTE(ArgosyDaysAddress);
+        private void GetArgosyData()
+        {
+            Int64 ArgosyDaysAddress = LEVEL_ADDRESS + Address.Offsets.ArgosyOffset;
+            byte ArgosyDays = Scanner.Read<byte>(ArgosyDaysAddress);
             bool ArgosyInTown = ArgosyDays < 250;
             if (ArgosyDays >= 250) { ArgosyDays = (byte)(byte.MaxValue - ArgosyDays + 1); }
             Activity.SetArgosyInfo(ArgosyDays, ArgosyInTown);
         }
 
-        private void GetTailraidersData() {
-            Int64 TailraidersDaysAddress = this.LEVEL_ADDRESS + Address.Offsets.TailRaidersOffset;
-            byte TailraidersQuestsDone = Scanner.READ_BYTE(TailraidersDaysAddress);
+        private void GetTailraidersData()
+        {
+            Int64 TailraidersDaysAddress = LEVEL_ADDRESS + Address.Offsets.TailRaidersOffset;
+            byte TailraidersQuestsDone = Scanner.Read<byte>(TailraidersDaysAddress);
             bool isDeployed = TailraidersQuestsDone != 255;
             byte QuestsLeft = !isDeployed ? (byte)0 : (byte)(Activity.TailraidersMaxQuest - TailraidersQuestsDone);
             Activity.SetTailraidersInfo(QuestsLeft, isDeployed);
         }
 
-        private void GetPlayerAbnormalities() {
-            Int64 AbnormalityBaseAddress = Scanner.READ_MULTILEVEL_PTR(Address.BASE + Address.ABNORMALITY_OFFSET, Address.Offsets.AbnormalityOffsets);
-            GetPlayerHuntingHornAbnormalities(AbnormalityBaseAddress);
-            GetPlayerPalicoAbnormalities(AbnormalityBaseAddress);
-            GetPlayerMiscAbnormalities(AbnormalityBaseAddress);
+        private void GetPlayerAbnormalities()
+        {
+            if (InHarvestZone)
+            {
+                Abnormalities.ClearAbnormalities();
+                return;
+            }
+            long abnormalityBaseAddress = Scanner.READ_MULTILEVEL_PTR(
+                Address.BASE + Address.ABNORMALITY_OFFSET, Address.Offsets.AbnormalityOffsets);
+            GetPlayerHuntingHornAbnormalities(abnormalityBaseAddress);
+            GetPlayerPalicoAbnormalities(abnormalityBaseAddress);
+            GetPlayerMiscAbnormalities(abnormalityBaseAddress);
+            GetPlayerGearAbnormalities(abnormalityBaseAddress);
         }
 
-        private void GetPlayerHuntingHornAbnormalities(Int64 AbnormalityBaseAddress) {
+        private void GetPlayerHuntingHornAbnormalities(long abnormalityBaseAddress)
+        {
             // Gets the player abnormalities caused by HH
-            foreach (XmlNode HHBuff in AbnormalityData.GetHuntingHornAbnormalities()) {
-                int BuffOffset = int.Parse(HHBuff.Attributes["Offset"].Value, System.Globalization.NumberStyles.HexNumber);
-                bool IsDebuff = bool.Parse(HHBuff.Attributes["IsDebuff"].Value);
-                int ID = int.Parse(HHBuff.Attributes["ID"].Value);
-                int Stack = int.Parse(HHBuff.Attributes["Stack"].Value);
-                GetAbnormality("HUNTINGHORN", AbnormalityBaseAddress + BuffOffset, ID, $"HH_{ID}", IsDebuff, DoubleBuffStack: Stack, ParentOffset: BuffOffset);
+            foreach (AbnormalityInfo abnormality in AbnormalityData.HuntingHornAbnormalities)
+            {
+                UpdateAbnormality(abnormality, abnormalityBaseAddress);
             }
         }
 
-        private void GetPlayerPalicoAbnormalities(Int64 AbnormalityBaseAddress) {
+        private void GetPlayerPalicoAbnormalities(long abnormalityBaseAddress)
+        {
             // Gets the player abnormalities caused by palico's skills
-            foreach (XmlNode PalBuff in AbnormalityData.GetPalicoAbnormalities()) {
-                int BuffOffset = int.Parse(PalBuff.Attributes["Offset"].Value, System.Globalization.NumberStyles.HexNumber);
-                bool IsDebuff = bool.Parse(PalBuff.Attributes["IsDebuff"].Value);
-                int ID = int.Parse(PalBuff.Attributes["ID"].Value);
-                GetAbnormality("PALICO", AbnormalityBaseAddress + BuffOffset, ID, $"PAL_{ID}", IsDebuff);
+            foreach (AbnormalityInfo abnormality in AbnormalityData.PalicoAbnormalities)
+            {
+                UpdateAbnormality(abnormality, abnormalityBaseAddress);
             }
         }
 
-        private void GetPlayerMiscAbnormalities(Int64 AbnormalityBaseAddress) {
+        private void GetPlayerMiscAbnormalities(long abnormalityBaseAddress)
+        {
             // Gets the player abnormalities caused by consumables and blights
             // Blights
-            foreach (XmlNode Blight in AbnormalityData.GetBlightAbnormalities()) {
-                int BuffOffset = int.Parse(Blight.Attributes["Offset"].Value, System.Globalization.NumberStyles.HexNumber);
-                bool IsDebuff = bool.Parse(Blight.Attributes["IsDebuff"].Value);
-                int ID = int.Parse(Blight.Attributes["ID"].Value);
-                GetAbnormality("DEBUFF", AbnormalityBaseAddress + BuffOffset, ID, $"DE_{ID}", IsDebuff);
+            foreach (AbnormalityInfo abnormality in AbnormalityData.BlightAbnormalities)
+            {
+                UpdateAbnormality(abnormality, abnormalityBaseAddress);
             }
-            foreach (XmlNode MiscBuff in AbnormalityData.GetMiscAbnormalities()) {
-                int BuffOffset = int.Parse(MiscBuff.Attributes["Offset"].Value, System.Globalization.NumberStyles.HexNumber);
-                bool IsDebuff = bool.Parse(MiscBuff.Attributes["IsDebuff"].Value);
-                int ID = int.Parse(MiscBuff.Attributes["ID"].Value);
-                bool HasConditions = bool.Parse(MiscBuff.Attributes["HasConditions"].Value);
-                bool IsInfinite = false;
-                int ConditionOffset = 0;
-                if (HasConditions) {
-                    IsInfinite = bool.Parse(MiscBuff.Attributes["IsInfinite"].Value);
-                    ConditionOffset = int.Parse(MiscBuff.Attributes["ConditionOffset"].Value);
-                }
-                GetAbnormality("MISC", AbnormalityBaseAddress + BuffOffset, ID, $"MISC_{ID}", IsDebuff, HasConditions, ConditionOffset, IsInfinite);
+
+            foreach (AbnormalityInfo abnormality in AbnormalityData.MiscAbnormalities)
+            {
+                UpdateAbnormality(abnormality, abnormalityBaseAddress);
             }
         }
 
-        private void GetAbnormality(string Type, Int64 AbnormalityAddress, int AbnormNumber, string AbnormInternalID, bool IsDebuff, bool HasConditions = false, int ConditionOffset = 0, bool IsInfinite = false, int DoubleBuffStack = 0, int ParentOffset = 0) {
-            float Duration = Scanner.READ_FLOAT(AbnormalityAddress);
-            byte Stack;
-            // Palico and misc buffs don't stack
-            switch (Type) {
-                case "HUNTINGHORN":
-                    Stack = Scanner.READ_BYTE(AbnormalityAddress + (0x12C - (0x3 * ((ParentOffset - 0x38)/4))));
-                    break;
-                case "MISC":
-                    if (HasConditions) {
-                        Stack = (byte)(Scanner.READ_BYTE(AbnormalityAddress + ConditionOffset));
-                        if (Stack == (byte)0) { HasConditions = false; }
-                    } else { Stack = 0; }
-                    break;
-                default:
-                    Stack = 0;
-                    break;
-            }
-            if ((int)Duration <= 0 && !HasConditions) {
-                // Check if there's an abnormality with that ID
-                if (Abnormalities[AbnormInternalID] != null) { Abnormalities.Remove(AbnormInternalID); } 
-                else { return; }
-            } else {
-                if ((int)Duration <= 0 && !IsInfinite) {
-                    if (Abnormalities[AbnormInternalID] != null) {
-                        Abnormalities.Remove(AbnormInternalID);
-                    }
-                    return;
-                }
-                if (Stack < DoubleBuffStack) return;
-                // Check for existing abnormalities before making a new one
-                if (Abnormalities[AbnormInternalID] != null) { Abnormalities[AbnormInternalID].UpdateAbnormalityInfo(Type, AbnormInternalID, Duration, Stack, AbnormNumber, IsDebuff, IsInfinite, AbnormalityData.GetAbnormalityIconByID(Type, AbnormNumber)); } 
-                else {
-                    Abnormality NewAbnorm = new Abnormality();
-                    NewAbnorm.UpdateAbnormalityInfo(Type, AbnormInternalID, Duration, Stack, AbnormNumber, IsDebuff, IsInfinite, AbnormalityData.GetAbnormalityIconByID(Type, AbnormNumber));
-                    Abnormalities.Add(AbnormInternalID, NewAbnorm);
-                }
+        private void GetPlayerGearAbnormalities(long abnormalityBaseAddress)
+        {
+            long abnormalityGearBase = Scanner.READ_MULTILEVEL_PTR(
+                Address.BASE + Address.ABNORMALITY_OFFSET,
+                Address.Offsets.AbnormalityGearOffsets);
+
+            foreach (AbnormalityInfo abnormality in AbnormalityData.GearAbnormalities)
+            {
+                UpdateAbnormality(abnormality, (abnormality.IsGearBuff ? abnormalityGearBase : abnormalityBaseAddress));
             }
         }
-        
+
+        private void UpdateAbnormality(AbnormalityInfo info, long baseAddress)
+        {
+            const int firstHornBuffOffset = 0x38;
+            long abnormalityAddress = baseAddress + info.Offset;
+            float duration = Scanner.Read<float>(abnormalityAddress);
+
+            bool hasConditions = info.HasConditions;
+            bool DebuffCondition = false;
+            byte stack = 0;
+            // Palico and misc buffs don't stack
+            switch (info.Type)
+            {
+                case "HUNTINGHORN":
+                    stack = Scanner.Read<byte>(baseAddress + 0x164 + (info.Offset - firstHornBuffOffset) / 4);
+                    break;
+                case "DEBUFF":
+                    if (info.HasConditions)
+                    {
+                        stack = Scanner.Read<byte>(baseAddress + info.Offset + info.ConditionOffset);
+                        DebuffCondition = stack == 0;
+                    }
+                    break;
+                case "MISC":
+                    if (info.HasConditions)
+                    {
+                        stack = Scanner.Read<byte>(baseAddress + info.Offset + info.ConditionOffset);
+                        hasConditions = stack > 0;
+                    }
+                    break;
+            }
+
+            if ((int)duration <= 0 && !(hasConditions && info.IsInfinite))
+            {
+                if (Abnormalities[info.InternalId] != null)
+                {
+                    Abnormalities.Remove(info.InternalId);
+                }
+
+                return;
+            }
+
+            if (stack < info.Stack)
+                return;
+
+            if (DebuffCondition) return;
+
+            if (Abnormalities[info.InternalId] != null)
+            {
+                Abnormalities[info.InternalId].UpdateAbnormalityInfo(duration, stack);
+            }
+            else
+            {
+                var a = new Abnormality(info);
+                a.UpdateAbnormalityInfo(duration, stack);
+                Abnormalities.Add(info.InternalId, a);
+            }
+        }
+
+        private void GetJobInformation()
+        {
+            long weaponAddress = Scanner.READ_MULTILEVEL_PTR(Address.BASE + Address.WEAPON_MECHANICS_OFFSET, Address.Offsets.WeaponMechanicsOffsets);
+            switch((Classes)WeaponID)
+            {
+                case Classes.Greatsword:
+                    GetGreatswordInformation(weaponAddress);
+                    break;
+                case Classes.DualBlades:
+                    GetDualBladesInformation(weaponAddress);
+                    break;
+                case Classes.LongSword:
+                    GetLongswordInformation(weaponAddress);
+                    break;
+                case Classes.Hammer:
+                    GetHammerInformation(weaponAddress);
+                    break;
+                case Classes.GunLance:
+                    GetGunLanceInformation(weaponAddress);
+                    break;
+                case Classes.SwitchAxe:
+                    GetSwitchAxeInformation(weaponAddress);
+                    break;
+                case Classes.ChargeBlade:
+                    GetChargeBladeInformation(weaponAddress);
+                    break;
+                case Classes.InsectGlaive:
+                    GetInsectGlaiveInformation(weaponAddress);
+                    break;
+                case Classes.Bow:
+                    GetBowInformation(weaponAddress);
+                    break;
+                case Classes.HeavyBowgun:
+                    GetHeavyBowgunInformation(weaponAddress);
+                    break;
+                case Classes.LightBowgun:
+                    GetLightBowgunInformation(weaponAddress);
+                    break;
+            }
+        }
+
+        private void GetGreatswordInformation(long weaponAddress)
+        {
+            uint chargeLevel = Scanner.Read<uint>(weaponAddress - 0x14);
+            Greatsword.ChargeLevel = chargeLevel;
+        }
+
+        private void GetDualBladesInformation(long weaponAddress)
+        {
+            bool inDemonMode = Scanner.Read<bool>(weaponAddress - 0x4);
+            float demonGauge = Scanner.Read<float>(weaponAddress);
+            DualBlades.InDemonMode = inDemonMode;
+            DualBlades.DemonGauge = demonGauge;
+        }
+
+        private void GetLongswordInformation(long weaponAddress)
+        {
+            float gauge = Scanner.Read<float>(weaponAddress - 0x4);
+            int chargeLevel = Scanner.Read<int>(weaponAddress + 0x4);
+            float chargeGauge = Scanner.Read<float>(weaponAddress + 0x8);
+            Longsword.InnerGauge = gauge;
+            Longsword.ChargeLevel = chargeLevel;
+            Longsword.OuterGauge = chargeGauge;
+        }
+
+        private void GetHammerInformation(long weaponAddress)
+        {
+            bool isPowerCharged = Scanner.Read<bool>(weaponAddress - 0x18);
+            int chargeLevel = Scanner.Read<int>(weaponAddress - 0x10);
+            Hammer.IsPowerCharged = isPowerCharged;
+            Hammer.ChargeLevel = chargeLevel;
+        }
+
+        private void GetGunLanceInformation(long weaponAddress)
+        {
+            long AbnormalitiesAddress = Scanner.READ_MULTILEVEL_PTR(Address.BASE + Address.ABNORMALITY_OFFSET, Address.Offsets.AbnormalityOffsets);
+            int totalAmmo = Scanner.Read<int>(weaponAddress - 0x4);
+            int currentAmmo = Scanner.Read<int>(weaponAddress);
+            int totalBigAmmo = Scanner.Read<int>(weaponAddress + 0x10);
+            int currentBigAmmo = Scanner.Read<int>(weaponAddress + 0xC);
+            float wyvernsfire = Scanner.Read<float>(AbnormalitiesAddress + 0xB70);
+            bool hasFirestakeLoaded = Scanner.Read<float>(weaponAddress + 0xBC) == 120.0f;
+            // Check if the Firestake timer ptr is 0
+            long wyvernstakeTimerPtr = Scanner.Read<long>(weaponAddress + 0x204);
+            float wyvernstakeTimer = 0;
+            if (wyvernstakeTimerPtr != 0x00000000)
+            {
+                wyvernstakeTimer = Scanner.Read<float>(wyvernstakeTimerPtr + 0xE20);
+            }
+            GunLance.TotalAmmo = totalAmmo;
+            GunLance.Ammo = currentAmmo;
+            GunLance.TotalBigAmmo = totalBigAmmo;
+            GunLance.BigAmmo = currentBigAmmo;
+            GunLance.WyvernsFireTimer = wyvernsfire;
+            GunLance.HasWyvernstakeLoaded = hasFirestakeLoaded;
+            GunLance.WyvernstakeBlastTimer = wyvernstakeTimer;
+        }
+
+        private void GetSwitchAxeInformation(long weaponAddress)
+        {
+            float outerGauge = Scanner.Read<float>(weaponAddress - 0xC);
+            float innerGauge = Scanner.Read<float>(weaponAddress - 0x1C);
+            SwitchAxe.OuterGauge = outerGauge;
+            SwitchAxe.InnerGauge = innerGauge;
+        }
+
+        private void GetChargeBladeInformation(long weaponAddress)
+        {
+            float hiddenGauge = Scanner.Read<float>(weaponAddress + 0x4);
+            int vialsAmount = Scanner.Read<int>(weaponAddress + 0x8);
+            float swordBuff = Scanner.Read<float>(weaponAddress + 0x10);
+            float shieldBuff = Scanner.Read<float>(weaponAddress + 0xC);
+            float poweraxeBuff = Scanner.Read<float>(weaponAddress + 0x104);
+            ChargeBlade.VialChargeGauge = hiddenGauge;
+            ChargeBlade.ShieldBuffTimer = shieldBuff;
+            ChargeBlade.SwordBuffTimer = swordBuff;
+            ChargeBlade.Vials = vialsAmount;
+            ChargeBlade.PoweraxeTimer = poweraxeBuff;
+        }
+
+        private void GetInsectGlaiveInformation(long weaponAddress)
+        {
+            float redBuff = Scanner.Read<float>(weaponAddress - 0x4);
+            float whiteBuff = Scanner.Read<float>(weaponAddress);
+            float orangeBuff = Scanner.Read<float>(weaponAddress + 0x4);
+            float redChargeTimer = Scanner.Read<float>(weaponAddress + 0x1CEC);
+            float yellowChargeTimer = Scanner.Read<float>(weaponAddress + 0x1CF0);
+            float kinsectStamina = Scanner.Read<float>(weaponAddress + 0xBD0);
+            KinsectChargeBuff chargeFlag = redChargeTimer > 0 && yellowChargeTimer > 0 ? KinsectChargeBuff.Both :
+                redChargeTimer > 0 ? KinsectChargeBuff.Red :
+                yellowChargeTimer > 0 ? KinsectChargeBuff.Yellow : KinsectChargeBuff.None;
+            int kinsectBuffQueueSize = Scanner.Read<int>(weaponAddress + 0x24);
+            InsectGlaive.RedBuff = redBuff;
+            InsectGlaive.WhiteBuff = whiteBuff;
+            InsectGlaive.OrangeBuff = orangeBuff;
+            InsectGlaive.KinsectChargeType = chargeFlag;
+            InsectGlaive.RedKinsectTimer = redChargeTimer;
+            InsectGlaive.YellowKinsectTimer = yellowChargeTimer;
+            InsectGlaive.BuffQueueSize = kinsectBuffQueueSize;
+            InsectGlaive.KinsectStamina = kinsectStamina;
+            if (kinsectBuffQueueSize > 0)
+            {
+                List<int> BuffQueue = new List<int>();
+                for (int i = 0; i < 3; i++)
+                {
+                    BuffQueue.Add(Scanner.Read<int>(weaponAddress + 0xC + (0x4 * i)));
+                }
+                int BuffQueuePtr = Scanner.Read<int>(weaponAddress + 0x1C);
+                InsectGlaive.FirstBuffQueued = BuffQueue.ElementAtOrDefault(BuffQueuePtr);
+                InsectGlaive.SecondBuffQueued = BuffQueue.ElementAtOrDefault(BuffQueuePtr + 1 > 2 ? 0 : BuffQueuePtr + 1);
+            }
+        }
+
+        private void GetBowInformation(long weaponAddress)
+        {
+            int chargeLevel = Scanner.Read<int>(weaponAddress + 0x68);
+            Bow.ChargeLevel = chargeLevel;
+        }
+
+        private void GetLightBowgunInformation(long weaponAddress)
+        {
+            float specialAmmoTimer = Scanner.Read<float>(weaponAddress + 0x4E0);
+            LightBowgun.SpecialAmmoRegen = specialAmmoTimer;
+        }
+
+        private void GetHeavyBowgunInformation(long weaponAddress)
+        {
+            float wyvernsnipe = Scanner.Read<float>(weaponAddress - 0xC);
+            float wyvernheart = Scanner.Read<float>(weaponAddress - 0x14);
+            HeavyBowgun.WyvernsnipeTimer = wyvernsnipe;
+            HeavyBowgun.WyvernheartTimer = wyvernheart;
+        }
+
         #endregion
     }
 }

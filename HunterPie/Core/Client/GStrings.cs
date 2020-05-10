@@ -2,12 +2,11 @@
 using System.Xml;
 using System.IO;
 using HunterPie.Logger;
-using System.Text;
 using System.Windows.Data;
 
 namespace HunterPie.Core {
     class GStrings {
-        static public XmlDocument Translations { get; private set; } = new XmlDocument();
+        public static XmlDocument Translations { get; private set; } = new XmlDocument();
 
         public static void InitStrings(string LangXml) {
             LoadTranslationXML(LangXml);
@@ -54,7 +53,7 @@ namespace HunterPie.Core {
             return Stage?.Attributes["Name"].Value;
         }
 
-        public static string GetAbnormalityByID(string Type, int ID, byte Stack) {
+        public static string GetAbnormalityByID(string Type, int ID, int Stack) {
             XmlNode Abnormality = Translations.SelectSingleNode($"//Strings/Abnormalities/Abnormality[@ID='{Type}_{ID:000}_{Stack:00}']");
             if (Abnormality == null) {
                 Abnormality = Translations.SelectSingleNode($"//Strings/Abnormalities/Abnormality[@ID='{Type}_{ID:000}_{0:00}']");

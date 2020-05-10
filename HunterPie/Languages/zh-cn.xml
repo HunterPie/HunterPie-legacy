@@ -1,6 +1,6 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
 <Strings lang="Simplified Chinese">
-<!--Translated for HunterPie Ver 1.0.3.86 by FengYuu-->
+<!--Translated for HunterPie Ver 1.0.3.90 by FengYuu-->
   <Monsters>
     <Monster ID="em001_00" Name="雌火龙"/>
     <Monster ID="em001_01" Name="樱火龙"/>
@@ -329,7 +329,7 @@
     <Abnormality ID="HUNTINGHORN_055_00" Name="速度&amp;回避性能UP"/>
     <Abnormality ID="HUNTINGHORN_056_00" Name="属性效果提升"/>
     <Abnormality ID="HUNTINGHORN_943_00" Name="属性效果提升"/>
-    <Abnormality ID="PALICO_000_00" Name="猫·复活"/>
+    <Abnormality ID="PALICO_000_00" Name="猫·回避性能UP"/>
     <Abnormality ID="PALICO_001_00" Name="猫·攻击力UP·小"/>
     <Abnormality ID="PALICO_002_00" Name="猫·攻击力UP·大"/>
     <Abnormality ID="PALICO_003_00" Name="猫·防御力UP·小"/>
@@ -387,12 +387,23 @@
     <Abnormality ID="MISC_034_00" Name="鬼毬果：攻击UP"/>
     <Abnormality ID="MISC_035_00" Name="冰耐草：冰耐性提升"/>
     <Abnormality ID="MISC_073_00" Name="攻击&amp;防御UP"/>
+    <Abnormality ID="GEAR_000_00" Name="鬼人弹"/>
+    <Abnormality ID="GEAR_001_00" Name="硬化弹"/>
+    <Abnormality ID="GEAR_002_00" Name="不屈"/>
+    <Abnormality ID="GEAR_003_00" Name="刚刃研磨"/>
+    <Abnormality ID="GEAR_004_00" Name="滑走强化"/>
+    <Abnormality ID="GEAR_010_00" Name="寒气炼成"/>
+    <Abnormality ID="GEAR_015_00" Name="攻击守势"/>
+    <Abnormality ID="GEAR_016_00" Name="转祸为福"/>
+    <Abnormality ID="GEAR_099_00" Name="回避衣·攻击UP"/>
+    <Abnormality ID="GEAR_100_00" Name="达人烟·会心UP"/>
   </Abnormalities>
   <!-- Client localization strings -->
   <Client>
     <Console>
       <String ID="CONSOLE_CONSOLE" Name="控制台"/>
       <String ID="CONSOLE_SETTINGS" Name="设置"/>
+      <String ID="CONSOLE_UPLOADBUILD" Name="上传配装"/>
       <String ID="CONSOLE_CHANGELOG" Name="更新记录"/>
       <String ID="CONSOLE_DISCORD" Name="Discord"/>
       <String ID="CONSOLE_GITHUB" Name="GitHub"/>
@@ -402,6 +413,7 @@
       <String ID="MESSAGE_QUIT" Name="确定要退出HunterPie吗?"/>
       <String ID="TITLE_MISSING_PATH" Name="未找到《怪物猎人：世界》路径"/>
       <String ID="MESSAGE_MISSING_PATH" Name="未添加游戏路径，现在添加？"/>
+      <String ID="MESSAGE_UPLOAD_BUILD" Name="您想上传当前角色的配装到HoneyHunterWorld吗?"/>
       <!-- Console Messages -->
       <String ID="MESSAGE_MAP_LOAD" Name="加载 {HunterPie_Map}"/>
       <String ID="MESSAGE_DISCORD_CONNECTED" Name="启动新的RPC连接"/>
@@ -480,6 +492,8 @@
       <String ID="ENABLE_MONSTER_WIDGET_DESC" Name="如开启，只要有内容可以显示，怪物部件就将可见"/>
       <String ID="STATIC_MONSTER_HEALTH_STRING_FORMAT" Name="血量文字格式:"/>
       <String ID="STATIC_MONSTER_HEALTH_STRING_FORMAT_DESC" Name="怪物血量条的文字格式"/>
+      <String ID="ENABLE_MONSTER_USE_LOCKON" Name="使用锁定选择目标怪物"/>
+      <String ID="ENABLE_MONSTER_USE_LOCKON_DESC" Name="如开启，HunterPie将使用游戏中的锁定选择目标怪物，而不使用地图标记"/>
       <String ID="STATIC_MONSTER_BAR_MODE" Name="怪物显示栏模式"/>
       <String ID="STATIC_MONSTER_BAR_MODE_DESC" Name="改变怪物显示栏模式"/>
       <String ID="STATIC_MONSTER_BAR_MODE_0" Name="显示所有怪物"/>
@@ -494,15 +508,15 @@
       <String ID="STATIC_MONSTER_BAR_DOCK_0" Name="在上方"/>
       <String ID="STATIC_MONSTER_BAR_DOCK_1" Name="在下方"/>
       <String ID="ENABLE_MONSTER_WEAKNESS" Name="显示怪物的弱点"/>
-      <String ID="ENABLE_MONSTER_WEAKNESS_DESC" Name="如果启用，怪物的弱点将在其血条下显示"/>
+      <String ID="ENABLE_MONSTER_WEAKNESS_DESC" Name="如开启，怪物的弱点将在其血条下显示"/>
       <String ID="ENABLE_HIDE_INACTIVE_PARTS" Name="几秒钟后隐藏无变化的部位/异常状态"/>
-      <String ID="ENABLE_HIDE_INACTIVE_PARTS_DESC" Name="如果启用，部位和异常状态将在一段时间无变化后自动隐藏"/>
+      <String ID="ENABLE_HIDE_INACTIVE_PARTS_DESC" Name="如开启，部位和异常状态将在一段时间无变化后自动隐藏"/>
       <String ID="ENABLE_BREAKABLE_PARTS" Name="显示怪物可破坏部位"/>
-      <String ID="ENABLE_BREAKABLE_PARTS_DESC" Name="如果启用可切断、破坏和移除的部位将显示在怪物显示栏下方或上方"/>
+      <String ID="ENABLE_BREAKABLE_PARTS_DESC" Name="如开启，可切断、破坏和移除的部位将显示在怪物显示栏下方或上方"/>
       <String ID="ENABLE_AILMENTS" Name="显示怪物异常状态"/>
-      <String ID="ENABLE_AILMENTS_DESC" Name="如果启用，怪物异常状态将显示在怪物栏下方或上方"/>
+      <String ID="ENABLE_AILMENTS_DESC" Name="如开启，怪物异常状态将显示在怪物栏下方或上方"/>
       <String ID="ENABLE_MONSTER_PARTS" Name="显示怪物部位"/>
-      <String ID="ENABLE_MONSTER_PARTS_DESC" Name="如果启用怪物可破坏部分将显示在怪物栏下方或上方"/>
+      <String ID="ENABLE_MONSTER_PARTS_DESC" Name="如开启，怪物可破坏部分将显示在怪物栏下方或上方"/>
       <String ID="ENABLE_MONSTER_PART_HEAD" Name="头部血量"/>
       <String ID="ENABLE_MONSTER_PART_BODY" Name="身体血量"/>
       <String ID="ENABLE_MONSTER_PART_ARM" Name="前腿血量"/>
@@ -542,6 +556,8 @@
       <String ID="ENABLE_HARVEST_BOX_EVERYWHERE" Name="在任何区域显示收获箱"/>
       <String ID="ENABLE_HARVEST_BOX_EVERYWHERE_DESC" Name="如启用，在任何地图或区域都会显示收获箱部件，包含探索、聚魔之地及其他任何地图"/>
       <String ID="STATIC_HARVEST_BOX_POSITION_DESC" Name="更改收获箱部件的位置"/>
+      <String ID="ENABLE_HARVEST_BOX_COMPACT_MODE" Name="紧凑模式"/>
+      <String ID="ENABLE_HARVEST_BOX_COMPACT_MODE_DESC" Name="如启用，收获箱部件将使用紧凑布局设计"/>
       <!-- Damage Meter -->
       <String ID="ENABLE_METER" Name="伤害部件"/>
       <String ID="ENABLE_METER_DESC" Name="如启用，只要有内容就会显示伤害部件"/>
@@ -549,6 +565,12 @@
       <String ID="ENABLE_TOTAL_DAMAGE_DESC" Name="如启用，伤害部件会显示每个人的总伤害"/>
       <String ID="ENABLE_METER_DPS" Name="显示DPS"/>
       <String ID="ENABLE_METER_DPS_DESC" Name="如启用，伤害部件会显示每个人的DPS(秒伤害)"/>
+      <String ID="ENABLE_TIMER_IN_GL" Name="在探索/聚魔之地启用计时器"/>
+      <String ID="ENABLE_TIMER_IN_GL_DESC" Name="如启用，在探索/聚魔之地将会启用计时器."/>
+      <String ID="ENABLE_ONLY_TIMER" Name="仅显示计时器"/>
+      <String ID="ENABLE_ONLY_TIMER_DESC" Name="如启用，伤害部件将会仅显示计时，隐藏成员伤害统计部分"/>
+      <String ID="ENABLE_METER_ONLY_MYSELF" Name="仅显示自己的伤害"/>
+      <String ID="ENABLE_METER_ONLY_MYSELF_DESC" Name="如启用，伤害部件只会显示自己的伤害统计"/>
       <String ID="STATIC_METER_PLAYER_1" Name="第一个玩家"/>
       <String ID="STATIC_METER_PLAYER_2" Name="第二个玩家"/>
       <String ID="STATIC_METER_PLAYER_3" Name="第三个玩家"/>
@@ -559,7 +581,7 @@
       <String ID="STATIC_REMOVE_ABNORM_BAR_DESC" Name="移除最后一个建立的状态栏"/>
       <String ID="STATIC_ENABLE_ABNORM_BAR" Name="启用"/>
       <String ID="ENABLE_ALLIGN_ABNORM_BAR_HORIZONTALLY" Name="水平对齐状态栏"/>
-      <String ID="ENABLE_ALLIGN_ABNORM_BAR_HORIZONTALLY_DESC" Name="如果启用则状态栏将水平对齐。如果您想要垂直状态栏，请禁用此选项"/>
+      <String ID="ENABLE_ALLIGN_ABNORM_BAR_HORIZONTALLY_DESC" Name="如开启，状态栏将水平对齐。如果您想要垂直状态栏，请禁用此选项"/>
       <String ID="ENABLE_ABNORM_BAR_TIME_LEFT" Name="显示状态剩余时间"/>
       <String ID="ENABLE_ABNORM_BAR_TIME_LEFT_DESC" Name="如启用，将在状态图标下方显示其剩余时间"/>
       <String ID="STATIC_TIMER_TEXT_FORMAT" Name="计时器文字格式"/>
@@ -568,6 +590,7 @@
       <String ID="STATIC_ABNORM_TAB_HH" Name="狩猎笛效果"/>
       <String ID="STATIC_ABNORM_TAB_ORCHESTRA" Name="激励乐器"/>
       <String ID="STATIC_ABNORM_TAB_DEBUFF" Name="异常状态"/>
+      <String ID="STATIC_ABNORM_TAB_GEAR" Name="装备技能"/>
       <String ID="STATIC_ABNORM_TAB_CONSUMABLE" Name="消耗品"/>
       <String ID="ENABLE_SHOW_ABNORM_NAMES" Name="显示异常状态的名称"/>
       <String ID="ENABLE_SHOW_ABNORM_NAMES_DESC" Name="如启用，将显示异常状态的名称"/>
@@ -575,9 +598,9 @@
       <String ID="STATIC_PRIMARY_SPEC_TOOL" Name="第一件特殊衣装"/>
       <String ID="STATIC_SECONDARY_SPEC_TOOL" Name="第二件特殊衣装"/>
       <String ID="ENABLE_PRIMARY_SPEC_TOOL" Name="启用部件"/>
-      <String ID="ENABLE_PRIMARY_SPEC_TOOL_DESC" Name="如果启用则在有内容时将在第一件特殊衣装部件中显示"/>
+      <String ID="ENABLE_PRIMARY_SPEC_TOOL_DESC" Name="如开启，在有内容时将在第一件特殊衣装部件中显示"/>
       <String ID="ENABLE_SECONDARY_SPEC_TOOL" Name="启用部件"/>
-      <String ID="ENABLE_SECONDARY_SPEC_TOOL_DESC" Name="如果启用则只要有内容时将在第二件特殊衣装部件中显示"/>
+      <String ID="ENABLE_SECONDARY_SPEC_TOOL_DESC" Name="如开启，只要有内容时将在第二件特殊衣装部件中显示"/>
       <String ID="STATIC_COLOR" Name="颜色:"/>
       <String ID="STATIC_PRIMARY_SPEC_TOOL_POSITION_DESC" Name="更改第一件特殊衣装部件的位置"/>
       <String ID="STATIC_SECONDARY_SPEC_TOOL_POSITION_DESC" Name="更改第二件特殊衣装部件的位置"/>
@@ -606,6 +629,8 @@
       <String ID="STATIC_BUTTON_SAVE" Name="保存"/>
       <String ID="STATIC_REQUIRES_RESTART" Name="(重新启动)"/>
       <String ID="STATIC_POSITION" Name="位置"/>
+      <String ID="STATIC_COPYCLIPBOARD" Name="复制到剪贴板"/>
+      <String ID="STATIC_OPACITY" Name="不透明度"/>
       <!-- Settings Side bar-->
       <String ID="STATIC_GENERAL_SETTINGS" Name="一般设置"/>
       <String ID="STATIC_DISCORD_SETTINGS" Name="Discord设置"/>
@@ -626,6 +651,8 @@
       <String ID="STATIC_ACCEPT" Name="同意"/>
       <String ID="STATIC_REJECT" Name="拒绝"/>
       <String ID="STATIC_SETTINGS_LOAD" Name="设置已载入"/>
+      <String ID="STATIC_OPENDEFAULTBROWSER" Name="在浏览器中打开"/>
+      <String ID="MESSAGE_BUILD_UPLOADED" Name="配装已上传至HoneyHuntersWorld!"/>
     </Notifications>
     <RichPresence>
       <String ID="RPC_DESCRIPTION_IN_MAIN_MENU" Name="在主菜单"/>

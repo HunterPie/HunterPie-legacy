@@ -11,6 +11,21 @@
         <GradientStop Color="#FFBDBDBD"/>
     </LinearGradientBrush>
 
+    <Style x:Key="OVERLAY_MONSTER_HEALTH_BAR_STYLE" TargetType="{x:Type Custom:MinimalHealthBar}">
+        <Setter Property="RenderTransform">
+            <Setter.Value>
+                <TransformGroup>
+                    <ScaleTransform/>
+                    <SkewTransform AngleX="45"/>
+                    <RotateTransform/>
+                    <TranslateTransform/>
+                </TransformGroup>
+            </Setter.Value>
+        </Setter>
+    </Style>
+
+    <SolidColorBrush x:Key="OVERLAY_BARS_BACKGROUND">#7F131313</SolidColorBrush>
+    
     <LinearGradientBrush x:Key="OVERLAY_MONSTER_STAMINA_BAR_COLOR" EndPoint="1,0" StartPoint="0,0">
         <GradientStop Color="#E5ECAF2F" Offset="1"/>
         <GradientStop Color="#E5DE9F15"/>
@@ -20,6 +35,7 @@
         <Setter Property="Foreground" Value="Gray"/>
         <Setter Property="FontSize" Value="12"/>
         <Setter Property="FontWeight" Value="Bold"/>
+        <Setter Property="Margin" Value="47,16,22,0"/>
         <Setter Property="Padding" Value="0,0,0,0"/>
         <Setter Property="HorizontalAlignment" Value="Left"/>
         <Setter Property="Width" Value="232"/>
@@ -66,14 +82,15 @@
             </Trigger>
         </Style.Triggers>
     </Style>
+    
     <LinearGradientBrush x:Key="OVERLAY_MONSTER_AILMENT_BAR_COLOR" EndPoint="1,0" StartPoint="0,0">
         <GradientStop Color="#FF2BD8B1" Offset="1"/>
         <GradientStop Color="#FF45B69C"/>
     </LinearGradientBrush>
+    
     <Style x:Key="OVERLAY_MONSTER_AILMENT_COUNTER_BACKGROUND_STYLE" TargetType="Rectangle">
         <Setter Property="Fill" Value="#FF45B69C"/>
     </Style>
-
 
     <LinearGradientBrush x:Key="OVERLAY_MONSTER_PART_BAR_COLOR" EndPoint="1,0" StartPoint="0,0">
         <GradientStop Color="#FFE6DCDC" Offset="1"/>
@@ -89,14 +106,17 @@
                 </LinearGradientBrush>
             </Setter.Value>
         </Setter>
+        <Setter Property="Margin" Value="32,-3,4,0"/>
         <Setter Property="FontWeight" Value="Normal"/>
         <Setter Property="FontSize" Value="12"/>
     </Style>
 
-    <Style x:Key="OVERLAY_MONSTER_PART_COUNTER_BACKGROUND_STYLE" TargetType="Rectangle">
+    <Style x:Key="OVERLAY_MONSTER_PART_COUNTER_BACKGROUND_STYLE" TargetType="{x:Type Polyline}">
         <Setter Property="Fill" Value="#FFB9B9B9"/>
         <Setter Property="Stroke" Value="#CC0E0E0E"/>
         <Setter Property="StrokeThickness" Value="0.5"/>
+        <Setter Property="Margin" Value="5,0,-5,0"/>
+        <Setter Property="Points" Value="30,15 22.5,28 7.5,28 0,15 7.5,2 22.5,2"/>
     </Style>
 
     <Style x:Key="OVERLAY_MONSTER_PART_COUNTER_TEXT_STYLE" TargetType="TextBlock">
@@ -110,14 +130,13 @@
         </Setter>
         <Setter Property="FontWeight" Value="SemiBold"/>
         <Setter Property="FontSize" Value="14"/>
-        <Setter Property="Effect">
-            <Setter.Value>
-                <DropShadowEffect BlurRadius="0" ShadowDepth="1" Color="#FF2E2E2E"/>
-            </Setter.Value>
-        </Setter>
     </Style>
 
     <!-- Console -->
+    <SolidColorBrush x:Key="CONSOLE_LOGO_PRIMARY">#FFAF0000</SolidColorBrush>
+    <SolidColorBrush x:Key="CONSOLE_LOGO_SECONDARY">#FF1F1F1F</SolidColorBrush>
+    <SolidColorBrush x:Key="CONSOLE_LOGO_TERTIARY">#FFAF0000</SolidColorBrush>
+    
     <SolidColorBrush x:Key="CONSOLE_BACKGROUND">#F41F1F1F</SolidColorBrush>
     <SolidColorBrush x:Key="CONSOLE_HEADER_BACKGROUND">#4C0E0E0E</SolidColorBrush>
     <SolidColorBrush x:Key="CONSOLE_SIDEBAR_BACKGROUND">#CC151515</SolidColorBrush>
@@ -134,15 +153,22 @@
     <SolidColorBrush x:Key="BUTTON_ICON_FOREGROUND">#FFDEDEDE</SolidColorBrush>
     <SolidColorBrush x:Key="CONSOLE_VERSIONTEXT_FOREGROUND">#FFDEDEDE</SolidColorBrush>
 
+    
+    
     <LinearGradientBrush x:Key="CONSOLE_LOGO_FOREGROUND" EndPoint="0.5,1" StartPoint="0.5,0">
         <GradientStop Color="White" Offset="0"/>
         <GradientStop Color="#FFE0E0E0" Offset="1"/>
     </LinearGradientBrush>
 
     <!-- Settings window -->
-    <Color x:Key="TOGGLABLE_BUTTON_BACKGROUND_ON">#FFAF0000</Color>
-    <Color x:Key="TOGGLABLE_BUTTON_BACKGROUND_OFF">#FF0F0F0F</Color>
+    <Color x:Key="TOGGLABLE_BUTTON_BACKGROUND_ON">#FFB91E17</Color>
+    <Color x:Key="TOGGLABLE_BUTTON_BACKGROUND_OFF">#FF151515</Color>
+    <Color x:Key="TOGGLABLE_BUTTON_FOREGROUND_ON">#FFE6E6</Color>
+    <Color x:Key="TOGGLABLE_BUTTON_FOREGROUND_OFF">#FF252525</Color>
 
+    <SolidColorBrush x:Key="GENERIC_BUTTON_BACKGROUND">#AF0000</SolidColorBrush>
+    <SolidColorBrush x:Key="GENERIC_BUTTON_FOREGROUND">#ededed</SolidColorBrush>
+    
     <!-- Debugger colors -->
     <SolidColorBrush x:Key="DEBUGGER_ERROR">#FF6459</SolidColorBrush>
     <SolidColorBrush x:Key="DEBUGGER_LOG">#FFFFFF</SolidColorBrush>
@@ -369,5 +395,90 @@
                 </ControlTemplate>
             </Setter.Value>
         </Setter>
+    </Style>
+
+    <SolidColorBrush x:Key="Button.Static.Background" Color="#FFDDDDDD"/>
+    <SolidColorBrush x:Key="Button.Static.Border" Color="#FF707070"/>
+    <SolidColorBrush x:Key="Button.MouseOver.Background" Color="#FFBEE6FD"/>
+    <SolidColorBrush x:Key="Button.MouseOver.Border" Color="#FF3C7FB1"/>
+    <SolidColorBrush x:Key="Button.Pressed.Background" Color="#FFC4E5F6"/>
+    <SolidColorBrush x:Key="Button.Pressed.Border" Color="#FF2C628B"/>
+    <SolidColorBrush x:Key="Button.Disabled.Background" Color="#FFF4F4F4"/>
+    <SolidColorBrush x:Key="Button.Disabled.Border" Color="#FFADB2B5"/>
+    <SolidColorBrush x:Key="Button.Disabled.Foreground" Color="#FF838383"/>
+    <Style x:Key="buttons_settings" TargetType="{x:Type Button}">
+        <Setter Property="FocusVisualStyle" Value="{StaticResource FocusVisual}"/>
+        <Setter Property="Background" Value="{StaticResource Button.Static.Background}"/>
+        <Setter Property="BorderBrush" Value="{StaticResource Button.Static.Border}"/>
+        <Setter Property="Foreground" Value="{DynamicResource {x:Static SystemColors.ControlTextBrushKey}}"/>
+        <Setter Property="BorderThickness" Value="1"/>
+        <Setter Property="HorizontalContentAlignment" Value="Center"/>
+        <Setter Property="VerticalContentAlignment" Value="Center"/>
+        <Setter Property="Padding" Value="1"/>
+        <Setter Property="Template">
+            <Setter.Value>
+                <ControlTemplate TargetType="{x:Type Button}">
+                    <Border x:Name="border" BorderBrush="{TemplateBinding BorderBrush}" BorderThickness="{TemplateBinding BorderThickness}" Background="{TemplateBinding Background}" SnapsToDevicePixels="true">
+                        <ContentPresenter x:Name="contentPresenter" Focusable="False" HorizontalAlignment="{TemplateBinding HorizontalContentAlignment}" Margin="{TemplateBinding Padding}" RecognizesAccessKey="True" SnapsToDevicePixels="{TemplateBinding SnapsToDevicePixels}" VerticalAlignment="{TemplateBinding VerticalContentAlignment}"/>
+                    </Border>
+                    <ControlTemplate.Triggers>
+                        <Trigger Property="IsDefaulted" Value="true">
+                            <Setter Property="BorderBrush" TargetName="border" Value="{DynamicResource {x:Static SystemColors.HighlightBrushKey}}"/>
+                        </Trigger>
+                        <Trigger Property="IsMouseOver" Value="true">
+                            <Trigger.EnterActions>
+                                <BeginStoryboard>
+                                    <Storyboard Storyboard.TargetProperty="Opacity">
+                                        <DoubleAnimation To="0.65" Duration="0:0:0.250" />
+                                    </Storyboard>
+                                </BeginStoryboard>
+                            </Trigger.EnterActions>
+                            <Trigger.ExitActions>
+                                <BeginStoryboard>
+                                    <Storyboard Storyboard.TargetProperty="Opacity">
+                                        <DoubleAnimation To="1" Duration="0:0:0.250" />
+                                    </Storyboard>
+                                </BeginStoryboard>
+                            </Trigger.ExitActions>
+                        </Trigger>
+                        <Trigger Property="IsEnabled" Value="false">
+                            <Setter Property="Background" TargetName="border" Value="{StaticResource Button.Disabled.Background}"/>
+                            <Setter Property="BorderBrush" TargetName="border" Value="{StaticResource Button.Disabled.Border}"/>
+                            <Setter Property="TextElement.Foreground" TargetName="contentPresenter" Value="{StaticResource Button.Disabled.Foreground}"/>
+                        </Trigger>
+                    </ControlTemplate.Triggers>
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
+    </Style>
+    <Style x:Key="ToggleButtonStyle" TargetType="{x:Type Button}">
+        <Setter Property="Padding" Value="1"/>
+        <Setter Property="Template">
+            <Setter.Value>
+                <ControlTemplate TargetType="{x:Type Button}">
+                    <Border x:Name="border" BorderBrush="{TemplateBinding BorderBrush}" BorderThickness="{TemplateBinding BorderThickness}" Background="{TemplateBinding Background}" SnapsToDevicePixels="true">
+                        <ContentPresenter x:Name="contentPresenter" Focusable="False" HorizontalAlignment="{TemplateBinding HorizontalContentAlignment}" Margin="{TemplateBinding Padding}" RecognizesAccessKey="True" SnapsToDevicePixels="{TemplateBinding SnapsToDevicePixels}" VerticalAlignment="{TemplateBinding VerticalContentAlignment}"/>
+                    </Border>
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
+        <Style.Triggers>
+            <Trigger Property="IsFocused" Value="True">
+                <Trigger.EnterActions>
+                    <BeginStoryboard>
+                        <Storyboard Storyboard.TargetProperty="(Background).(SolidColorBrush.Color)">
+                            <ColorAnimation To="{StaticResource TOGGLABLE_BUTTON_BACKGROUND_ON}" Duration="0:0:0.2"/>
+                        </Storyboard>
+                    </BeginStoryboard>
+                </Trigger.EnterActions>
+                <Trigger.ExitActions>
+                    <BeginStoryboard>
+                        <Storyboard Storyboard.TargetProperty="(Background).(SolidColorBrush.Color)">
+                            <ColorAnimation To="{StaticResource TOGGLABLE_BUTTON_BACKGROUND_OFF}" Duration="0:0:0.2"/>
+                        </Storyboard>
+                    </BeginStoryboard>
+                </Trigger.ExitActions>
+            </Trigger>
+        </Style.Triggers>
     </Style>
 </ResourceDictionary>

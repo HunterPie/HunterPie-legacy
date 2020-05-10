@@ -7,7 +7,7 @@ using HunterPie.Logger;
 
 namespace HunterPie.Core {
     class AutoUpdate {
-        private string BranchURI = "https://raw.githubusercontent.com/Haato3o/HunterPie/master/BUILDS/";
+        private string BranchURI = "https://hunterpie.herokuapp.com/bin/";
         private string LocalUpdateHash;
         private string OnlineUpdateHash;
         public bool offlineMode;
@@ -46,7 +46,8 @@ namespace HunterPie.Core {
             try {
                 Debugger.Update("Checking for new versions of auto-updater");
                 return CheckOnlineHash(Instance.DownloadData($"{BranchURI}Update.exe"));
-            } catch {
+            } catch(Exception err) {
+                Debugger.Error(err);
                 Instance.Dispose();
                 offlineMode = true;
                 return false;

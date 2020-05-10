@@ -1,0 +1,13 @@
+﻿<UserControl x:Name="ControlHotkey" x:Class="HunterPie.GUIControls.Custom_Controls.CHotKey"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:local="clr-namespace:HunterPie.GUIControls.Custom_Controls"
+             mc:Ignorable="d" DataContext="{StaticResource Localization}">
+    <StackPanel Orientation="Horizontal">
+        <TextBlock Text="{Binding ElementName=ControlHotkey, Path=Text}" Foreground="WhiteSmoke" Canvas.Top="3" FontFamily="Segoe UI Light"/>
+        <Button Content="{Binding ElementName=ControlHotkey, Path=HotKey}" Cursor="Hand" Background="#FF0F0F0F" Foreground="#FFE8E8E8"  BorderBrush="{x:Null}" Height="28" Padding="3,1" Style="{StaticResource ToggleButtonStyle}" MinWidth="115" PreviewKeyDown="OnKeyDown"/>
+        <TextBlock TextWrapping="Wrap" Text="{Binding Mode=OneTime, XPath=/Strings/Client/Settings/String[@ID\=\'STATIC_REQUIRES_RESTART\']/@Name}" Foreground="#FFF1F1F1" FontFamily="Segoe UI Light" TextAlignment="Center" HorizontalAlignment="Left" Padding="0,6,0,0" FontSize="10"/>
+    </StackPanel>
+</UserControl>

@@ -1,8 +1,5 @@
 ﻿using System;
-using System.Diagnostics;
-using System.Windows;
 using System.Windows.Media;
-using System.Windows.Media.Animation;
 using System.Collections.Generic;
 using System.Windows.Interop;
 using HunterPie.Core;
@@ -12,7 +9,6 @@ using System.Linq;
 namespace HunterPie.GUI {
     class Overlay : IDisposable {
         public bool IsDisposed { get; private set; }
-        KeyboardHook KeyHook;
         List<Widget> Widgets = new List<Widget>();
         Game ctx;
 
@@ -20,34 +16,9 @@ namespace HunterPie.GUI {
             ctx = Context;
             SetRenderMode();
             CreateWidgets();
-            SetKeyboardHook();
         }
 
-        private void SetKeyboardHook() {
-            KeyHook = new KeyboardHook();
-            KeyHook.InstallHooks();
-            KeyHook.OnKeyboardKeyPress += OnKeyboardKeyPress;
-            
-        }
-
-        private void RemoveKeyboardHook() {
-            KeyHook.UninstallHooks();
-            KeyHook.OnKeyboardKeyPress -= OnKeyboardKeyPress;
-        }
-        
-        // Implemented IsHoldingKey to avoid toggle spam
-        private bool IsHoldingKey = false;
-        private void OnKeyboardKeyPress(object sender, KeyboardInputEventArgs e) {
-            if (e.Key == UserSettings.PlayerConfig.Overlay.ToggleDesignModeKey && e.KeyMessage == KeyboardHookHelper.KeyboardMessage.WM_KEYDOWN && !IsHoldingKey) {
-                ToggleDesignMode();
-                IsHoldingKey = true;
-            }
-            if (e.Key == UserSettings.PlayerConfig.Overlay.ToggleDesignModeKey && e.KeyMessage == KeyboardHookHelper.KeyboardMessage.WM_KEYUP) {
-                IsHoldingKey = false;
-            }
-        }
-
-        private void ToggleDesignMode() {
+        public void ToggleDesignMode() {
             foreach (Widget widget in Widgets) {
                 widget.InDesignMode = !widget.InDesignMode;   
             }
@@ -69,12 +40,7 @@ namespace HunterPie.GUI {
             for (int AbnormTrayIndex = 0; AbnormTrayIndex < UserSettings.PlayerConfig.Overlay.AbnormalitiesWidget.ActiveBars; AbnormTrayIndex++) {
                 Widgets.Add(new Widgets.Abnormality_Widget.AbnormalityContainer(ctx.Player, AbnormTrayIndex));
             }
-        }
-
-        private void CreateAbnormBarSettingsIfNeeded() {
-            if (UserSettings.PlayerConfig.Overlay.AbnormalitiesWidget.ActiveBars > UserSettings.PlayerConfig.Overlay.AbnormalitiesWidget.BarPresets.Length) {
-                UserSettings.AddNewAbnormalityBar(UserSettings.PlayerConfig.Overlay.AbnormalitiesWidget.ActiveBars - UserSettings.PlayerConfig.Overlay.AbnormalitiesWidget.BarPresets.Length);
-            }
+            Widgets.Add(new Widgets.ClassWidget.ClassWidgetContainer(ctx));
         }
 
         private void DestroyWidgets() {
@@ -124,7 +90,7 @@ namespace HunterPie.GUI {
                 i++;
             }
             foreach(int index in IndexesToRemove) {
-                Widgets.RemoveAt(i);
+                Widgets.RemoveAt(index);
             }
 
         }
@@ -160,7 +126,6 @@ namespace HunterPie.GUI {
         protected virtual void Dispose(bool disposing) {
             if (disposing) {
                 this.UnhookEvents();
-                this.RemoveKeyboardHook();
                 this.Destroy();
             }
         }

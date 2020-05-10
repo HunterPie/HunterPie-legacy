@@ -62,6 +62,10 @@ namespace HunterPie.GUI.Widgets.DPSMeter {
                 CompositionTarget.Rendering += OnMeterRender;
                 CreatePlayerComponents();
                 SortPlayersByDamage();
+                if (UserSettings.PlayerConfig.Overlay.DPSMeter.ShowTimerInExpeditions) {
+                    if (Context == null || Context.TotalDamage <= 0) this.Party.Visibility = Visibility.Collapsed;
+                    this.WidgetHasContent = true;
+                }
                 ChangeVisibility();
             }));
         }
@@ -92,9 +96,14 @@ namespace HunterPie.GUI.Widgets.DPSMeter {
 
         private void OnTotalDamageChange(object source, EventArgs args) {
             Dispatcher.BeginInvoke(System.Windows.Threading.DispatcherPriority.Render, new Action(() => {
-                if (Context.TotalDamage > 0 && !WidgetHasContent) {
+                if (Context.TotalDamage > 0 && !UserSettings.PlayerConfig.Overlay.DPSMeter.ShowOnlyTimer) {
+                    this.Party.Visibility = Visibility.Visible;
                     this.WidgetHasContent = true;
-                    ChangeVisibility();
+                    ChangeVisibility(false);
+                } else {
+                    this.WidgetHasContent = UserSettings.PlayerConfig.Overlay.DPSMeter.ShowTimerInExpeditions;
+                    this.Party.Visibility = Visibility.Collapsed;
+                    ChangeVisibility(false);
                 }
                 SortPlayersByDamage();
             }));
@@ -158,6 +167,22 @@ namespace HunterPie.GUI.Widgets.DPSMeter {
                     this.WidgetActive = UserSettings.PlayerConfig.Overlay.DPSMeter.Enabled;
                     UpdatePlayersColor();
                     ScaleWidget(UserSettings.PlayerConfig.Overlay.DPSMeter.Scale, UserSettings.PlayerConfig.Overlay.DPSMeter.Scale);
+                    this.Opacity = UserSettings.PlayerConfig.Overlay.DPSMeter.Opacity;
+                    Color PartyBgColor = new Color() {
+                        R = 0x00,
+                        G = 0x00,
+                        B = 0x00,
+                        A = (byte)(int)(UserSettings.PlayerConfig.Overlay.DPSMeter.BackgroundOpacity * 0xFF)
+                    };
+                    SolidColorBrush brush = new SolidColorBrush(PartyBgColor);
+                    brush.Freeze();
+                    this.DamageContainer.Background = brush;
+                    this.Party.Visibility = UserSettings.PlayerConfig.Overlay.DPSMeter.ShowOnlyTimer ? Visibility.Collapsed : Visibility.Visible;
+                    if (UserSettings.PlayerConfig.Overlay.DPSMeter.ShowTimerInExpeditions) {
+                        if (Context == null || Context.TotalDamage <= 0) this.Party.Visibility = Visibility.Collapsed;
+                        this.WidgetHasContent = true;
+                    }
+                    if (Context != null) this.WidgetHasContent = UserSettings.PlayerConfig.Overlay.DPSMeter.ShowTimerInExpeditions && !GameContext.Player.InPeaceZone;
                     if (Context != null) SortPlayersByDamage();
                 }
                 base.ApplySettings();
@@ -173,9 +198,6 @@ namespace HunterPie.GUI.Widgets.DPSMeter {
             this.DefaultScaleY = NewScaleY;
         }
 
-        private void OnMouseEnter(object sender, System.Windows.Input.MouseEventArgs e) {
-            this.MouseOver = true;
-        }
 
         private void OnMouseDown(object sender, System.Windows.Input.MouseButtonEventArgs e) {
             if (e.LeftButton == System.Windows.Input.MouseButtonState.Pressed) {
@@ -185,17 +207,11 @@ namespace HunterPie.GUI.Widgets.DPSMeter {
         }
 
         private void OnMouseWheel(object sender, System.Windows.Input.MouseWheelEventArgs e) {
-            if (this.MouseOver) {
-                if (e.Delta > 0) {
-                    ScaleWidget(DefaultScaleX + 0.05, DefaultScaleY + 0.05);
-                } else {
-                    ScaleWidget(DefaultScaleX - 0.05, DefaultScaleY - 0.05);
-                }
+            if (e.Delta > 0) {
+                ScaleWidget(DefaultScaleX + 0.05, DefaultScaleY + 0.05);
+            } else {
+                ScaleWidget(DefaultScaleX - 0.05, DefaultScaleY - 0.05);
             }
-        }
-
-        private void OnMouseLeave(object sender, System.Windows.Input.MouseEventArgs e) {
-            this.MouseOver = false;
         }
     }
 }

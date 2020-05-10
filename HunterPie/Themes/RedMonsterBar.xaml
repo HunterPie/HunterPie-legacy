@@ -1,5 +1,6 @@
 ﻿<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
-                    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
+                    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+                    xmlns:Custom="clr-namespace:HunterPie.GUIControls.Custom_Controls">
     <!-- Colors -->
     <!-- Overlay -->
     <!-- Monster Widget (Main bar) -->
@@ -12,7 +13,7 @@
         <Setter Property="Foreground" Value="WhiteSmoke"/>
         <Setter Property="FontSize" Value="12"/>
         <Setter Property="FontWeight" Value="Normal"/>
-        <Setter Property="Margin" Value="45,18,38,30"/>
+        <Setter Property="Margin" Value="47,16,22,0"/>
         <Setter Property="Padding" Value="0,0.75,0,0"/>
     </Style>
 
@@ -55,14 +56,17 @@
                 </LinearGradientBrush>
             </Setter.Value>
         </Setter>
+        <Setter Property="Margin" Value="32,-3,4,0"/>
         <Setter Property="FontWeight" Value="Normal"/>
         <Setter Property="FontSize" Value="12"/>
     </Style>
 
-    <Style x:Key="OVERLAY_MONSTER_PART_COUNTER_BACKGROUND_STYLE" TargetType="Rectangle">
+    <Style x:Key="OVERLAY_MONSTER_PART_COUNTER_BACKGROUND_STYLE" TargetType="{x:Type Polyline}">
         <Setter Property="Fill" Value="#FF9E0900"/>
         <Setter Property="Stroke" Value="#CC0E0E0E"/>
         <Setter Property="StrokeThickness" Value="0"/>
+        <Setter Property="Margin" Value="5,0,-5,0"/>
+        <Setter Property="Points" Value="30,15 22.5,28 7.5,28 0,15 7.5,2 22.5,2"/>
     </Style>
 
     <Style x:Key="OVERLAY_MONSTER_PART_COUNTER_TEXT_STYLE" TargetType="TextBlock">
