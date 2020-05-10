@@ -18,8 +18,6 @@ namespace HunterPie.GUI.Widgets.ClassWidget.Parts
         const string BigAmmoLoadedColor = "#FF6EB7EB";
         const string BigAmmoNotLoadedColor = "#FFAE0000";
 
-        const string WyvernsfireOnCooldown = "#FFED2F2F";
-        const string WyvernsfireReady = "#FF2FED55";
 
         public double WyvernstakeTimerPercentage
         {
@@ -47,6 +45,17 @@ namespace HunterPie.GUI.Widgets.ClassWidget.Parts
 
         public static readonly DependencyProperty WyvernboomPercentageProperty =
             DependencyProperty.Register("WyvernboomPercentage", typeof(double), typeof(GunLanceControl));
+
+
+        public bool WyvernsfireReady
+        {
+            get { return (bool)GetValue(WyvernsfireReadyProperty); }
+            set { SetValue(WyvernsfireReadyProperty, value); }
+        }
+
+        // Using a DependencyProperty as the backing store for WyvernsfireReady.  This enables animation, styling, binding, etc...
+        public static readonly DependencyProperty WyvernsfireReadyProperty =
+            DependencyProperty.Register("WyvernsfireReady", typeof(bool), typeof(GunLanceControl));
 
         public string WyvernsfireDiamondColor
         {
@@ -119,6 +128,7 @@ namespace HunterPie.GUI.Widgets.ClassWidget.Parts
             Context.OnWyvernstakeBlastTimerUpdate -= OnWyvernstakeBlastTimerUpdate;
             Context.OnWyvernstakeStateChanged -= OnBigAmmoChange;
             Context = null;
+            AmmoHolder.Children.Clear();
             base.UnhookEvents();
         }
 
@@ -136,7 +146,8 @@ namespace HunterPie.GUI.Widgets.ClassWidget.Parts
         {
             Dispatcher.BeginInvoke(System.Windows.Threading.DispatcherPriority.Render, new Action(() =>
             {
-                WyvernsfireDiamondColor = args.WyvernsFireTimer <= 0 ? WyvernsfireReady : WyvernsfireOnCooldown;
+                //WyvernsfireDiamondColor = args.WyvernsFireTimer <= 0 ? WyvernsfireReady : WyvernsfireOnCooldown;
+                WyvernsfireReady = args.WyvernsFireTimer <= 0;
                 WyvernboomPercentage = 1 - args.WyvernsFireTimer / 120;
             }));
         }

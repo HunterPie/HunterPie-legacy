@@ -12,9 +12,9 @@
         <StackPanel x:Name="AmmoHolder" Orientation="Horizontal" Height="19" VerticalAlignment="Top" HorizontalAlignment="Left" Width="82" Margin="68,37,0,0"/>
 
         <!-- Wyvern's Fire -->
-        <helper:Diamond Height="40" Width="40" Margin="17,29,93,31" RenderTransformOrigin="0.5,0.5" StrokeThickness="2" Percentage="{Binding WyvernboomPercentage, ElementName=GLControl}" Stroke="{Binding WyvernsfireDiamondColor, ElementName=GLControl}">
+        <helper:Diamond x:Name="WyvernsfireComponent" Height="40" Width="40" Margin="17,28,0,0" RenderTransformOrigin="0.5,0.5" StrokeThickness="4" Percentage="{Binding WyvernboomPercentage, ElementName=GLControl}" Stroke="#FF2FED55" HorizontalAlignment="Left" VerticalAlignment="Top">
             <helper:Diamond.Effect>
-                <DropShadowEffect BlurRadius="20" ShadowDepth="0" Color="{Binding WyvernsfireDiamondColor, ElementName=GLControl}"/>
+                <DropShadowEffect BlurRadius="20" ShadowDepth="0" Color="{Binding Stroke, ElementName=WyvernsfireComponent}"/>
             </helper:Diamond.Effect>
             <helper:Diamond.RenderTransform>
                 <TransformGroup>
@@ -24,6 +24,28 @@
                     <TranslateTransform/>
                 </TransformGroup>
             </helper:Diamond.RenderTransform>
+            <helper:Diamond.Style>
+                <Style TargetType="helper:Diamond">
+                    <Style.Triggers>
+                        <DataTrigger Binding="{Binding WyvernsfireReady, ElementName=GLControl}" Value="True">
+                            <DataTrigger.EnterActions>
+                                <BeginStoryboard>
+                                    <Storyboard>
+                                        <ColorAnimation Storyboard.TargetProperty="(Shape.Stroke).(SolidColorBrush.Color)" To="#FF2FED55" Duration="0:0:0.150"/>
+                                    </Storyboard>
+                                </BeginStoryboard>
+                            </DataTrigger.EnterActions>
+                            <DataTrigger.ExitActions>
+                                <BeginStoryboard>
+                                    <Storyboard>
+                                        <ColorAnimation Storyboard.TargetProperty="(Shape.Stroke).(SolidColorBrush.Color)" To="#FFED2F2F" Duration="0:0:0.150"/>
+                                    </Storyboard>
+                                </BeginStoryboard>
+                            </DataTrigger.ExitActions>
+                        </DataTrigger>
+                    </Style.Triggers>
+                </Style>
+            </helper:Diamond.Style>
         </helper:Diamond>
 
 
@@ -44,7 +66,7 @@
                 </RadialGradientBrush>
             </Rectangle.Fill>
         </Rectangle>
-        <helper:Diamond Width="34" Height="34" StrokeThickness="2" Percentage="{Binding Path=WyvernstakeTimerPercentage, ElementName=GLControl}" RenderTransformOrigin="0.5, 0.5" Stroke="#FFFF9700" Margin="20,32,96,34">
+        <helper:Diamond Width="34" Height="34" StrokeThickness="1.5" Percentage="{Binding Path=WyvernstakeTimerPercentage, ElementName=GLControl}" RenderTransformOrigin="0.5, 0.5" Stroke="#FFFF9700" Margin="20,32,96,34">
             <helper:Diamond.RenderTransform>
                 <TransformGroup>
                     <ScaleTransform/>
@@ -62,8 +84,23 @@
                 </RadialGradientBrush>
             </Image.OpacityMask>
             <Image.Effect>
-                <DropShadowEffect ShadowDepth="0" Color="{Binding Path=BigAmmoShadowColor, ElementName=GLControl}"/>
+                <DropShadowEffect ShadowDepth="0" Color="{Binding Path=BigAmmoShadowColor, ElementName=GLControl}" BlurRadius="10" Opacity="1"/>
             </Image.Effect>
+            <Image.Style>
+                <Style TargetType="Image">
+                    <Style.Triggers>
+                        <Trigger Property="IsVisible" Value="True">
+                            <Trigger.EnterActions>
+                                <BeginStoryboard>
+                                    <Storyboard Duration="0:0:2" RepeatBehavior="Forever">
+                                        <DoubleAnimation Storyboard.TargetProperty="(Effect).Opacity" Duration="0:0:0.5" From="0.2" To="1" AutoReverse="True"/>
+                                    </Storyboard>
+                                </BeginStoryboard>
+                            </Trigger.EnterActions>
+                        </Trigger>
+                    </Style.Triggers>
+                </Style>
+            </Image.Style>
         </Image>
         <TextBlock Text="{Binding Path=WyvernstakeTimer, ElementName=GLControl}" Width="45" Height="20" TextAlignment="Center" HorizontalAlignment="Left" Margin="14,39,0,0" VerticalAlignment="Top" FontSize="14">
             <TextBlock.Foreground>
@@ -73,5 +110,6 @@
                 </LinearGradientBrush>
             </TextBlock.Foreground>
         </TextBlock>
+
     </Grid>
 </local:ClassControl>

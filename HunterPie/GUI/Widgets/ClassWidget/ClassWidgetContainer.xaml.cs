@@ -115,6 +115,11 @@ namespace HunterPie.GUI.Widgets.ClassWidget
 
         private void UnhookEvents()
         {
+            foreach (ClassControl control in Container.Children)
+            {
+                control.UnhookEvents();
+            }
+            Container.Children.Clear();
             Context.Player.OnWeaponChange -= OnWeaponChange;
             Context.Player.OnZoneChange -= OnZoneChange;
             Context = null;
