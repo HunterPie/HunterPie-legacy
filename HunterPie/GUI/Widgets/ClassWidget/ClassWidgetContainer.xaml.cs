@@ -109,7 +109,7 @@ namespace HunterPie.GUI.Widgets.ClassWidget
 
         private void HookEvents()
         {
-            Context.Player.OnWeaponChange += OnWeaponChange;
+            Context.Player.OnClassChange += OnClassChange;
             Context.Player.OnZoneChange += OnZoneChange;
         }
 
@@ -120,7 +120,7 @@ namespace HunterPie.GUI.Widgets.ClassWidget
                 control.UnhookEvents();
             }
             Container.Children.Clear();
-            Context.Player.OnWeaponChange -= OnWeaponChange;
+            Context.Player.OnWeaponChange -= OnClassChange;
             Context.Player.OnZoneChange -= OnZoneChange;
             Context = null;
         }
@@ -142,7 +142,7 @@ namespace HunterPie.GUI.Widgets.ClassWidget
             }));
         }
 
-        private void OnWeaponChange(object source, EventArgs args)
+        private void OnClassChange(object source, EventArgs args)
         {
             Dispatcher.BeginInvoke(System.Windows.Threading.DispatcherPriority.Render, new Action(() =>
             {
