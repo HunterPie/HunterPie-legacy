@@ -562,10 +562,11 @@
       <Weakness ID="ELEMENT_THUNDER" Stars="3"/>
     </Weaknesses>
     <Crown Mini="0.9" Silver="1.10" Gold="1.20"/>
-    <Parts Max="9">
+    <Parts Max="10">
       <Part Name="MONSTER_PART_REMOVABLE_TAIL" IsRemovable="True">
         <Break Threshold="1"/>
       </Part>
+      <Part Name="MONSTER_PART_UNKNOWN" IsRemovable="True"/> <!-- Unknown -->
       <Part Name="MONSTER_PART_HEAD" Group="HEAD">
         <Break Threshold="3"/>
       </Part>
@@ -586,10 +587,12 @@
       <Weakness ID="ELEMENT_THUNDER" Stars="3"/>
     </Weaknesses>
     <Crown Mini="0.99" Silver="1.14" Gold="1.20"/>
-    <Parts Max="9">
+    <Parts Max="11">
       <Part Name="MONSTER_PART_REMOVABLE_TAIL" IsRemovable="True">
         <Break Threshold="1"/>
       </Part>
+      <Part Name="MONSTER_PART_UNKNOWN" IsRemovable="True"/> <!-- Unknown -->
+      <Part Name="MONSTER_PART_UNKNOWN" IsRemovable="True"/> <!-- Flinch/Counterattack -->
       <Part Name="MONSTER_PART_HEAD" Group="HEAD">
         <Break Threshold="2"/>
       </Part>
