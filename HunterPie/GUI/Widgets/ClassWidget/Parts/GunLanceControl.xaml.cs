@@ -18,6 +18,14 @@ namespace HunterPie.GUI.Widgets.ClassWidget.Parts
         const string BigAmmoLoadedColor = "#FF6EB7EB";
         const string BigAmmoNotLoadedColor = "#FFAE0000";
 
+        public string NextWyvernstakeTimer
+        {
+            get { return (string)GetValue(NextWyvernstakeTimerProperty); }
+            set { SetValue(NextWyvernstakeTimerProperty, value); }
+        }
+
+        public static readonly DependencyProperty NextWyvernstakeTimerProperty =
+            DependencyProperty.Register("NextWyvernstakeTimer", typeof(string), typeof(GunLanceControl));
 
         public double WyvernstakeTimerPercentage
         {
@@ -102,9 +110,9 @@ namespace HunterPie.GUI.Widgets.ClassWidget.Parts
         {
             GunLanceEventArgs dummyArgs = new GunLanceEventArgs(Context);
             OnAmmoChange(this, dummyArgs);
-            OnBigAmmoChange(this, dummyArgs);
             OnWyvernsFireTimerUpdate(this, dummyArgs);
             OnWyvernstakeBlastTimerUpdate(this, dummyArgs);
+            OnBigAmmoChange(this, dummyArgs);
         }
 
         private void HookEvents()
@@ -136,9 +144,15 @@ namespace HunterPie.GUI.Widgets.ClassWidget.Parts
         {
             Dispatcher.BeginInvoke(System.Windows.Threading.DispatcherPriority.Render, new Action(() =>
             {
-                WyvernstakeTimerPercentage = args.WyvernstakeBlastTimer / 120;
+                WyvernstakeTimerPercentage = args.WyvernstakeBlastTimer / args.WyvernstakeMax;
                 WyvernstakeTimer = args.WyvernstakeBlastTimer > 60 ? TimeSpan.FromSeconds(args.WyvernstakeBlastTimer).ToString("m\\:ss") :
                 TimeSpan.FromSeconds(args.WyvernstakeBlastTimer).ToString("ss");
+
+                if (args.WyvernstakeBlastTimer <= 0)
+                {
+                    WyvernstakeTimerPercentage = args.HasWyvernstakeLoaded ? 1 : 0;
+                    WyvernstakeTimer = args.HasWyvernstakeLoaded ? TimeSpan.FromSeconds(args.WyvernstakeNextMax).ToString("m\\:ss") : "00";
+                }
             }));
         }
 
@@ -146,8 +160,8 @@ namespace HunterPie.GUI.Widgets.ClassWidget.Parts
         {
             Dispatcher.BeginInvoke(System.Windows.Threading.DispatcherPriority.Render, new Action(() =>
             {
-                //WyvernsfireDiamondColor = args.WyvernsFireTimer <= 0 ? WyvernsfireReady : WyvernsfireOnCooldown;
                 WyvernsfireReady = args.WyvernsFireTimer <= 0;
+                WyvernsfireDiamondColor = WyvernsfireReady ? "#FF2FED55" : "#FFED2F2F";
                 WyvernboomPercentage = 1 - args.WyvernsFireTimer / 120;
             }));
         }
@@ -156,14 +170,12 @@ namespace HunterPie.GUI.Widgets.ClassWidget.Parts
         {
             Dispatcher.BeginInvoke(System.Windows.Threading.DispatcherPriority.Render, new Action(() =>
             {
-                if (args.HasWyvernstakeLoaded)
-                {
-                    WyvernstakeTimerPercentage = 1;
-                }
+                WyvernstakeTimerPercentage = args.HasWyvernstakeLoaded ? 1 : args.WyvernsFireTimer / Math.Max(1, args.WyvernstakeMax);
                 BigAmmoImage = args.HasWyvernstakeLoaded ? "pack://siteoforigin:,,,/HunterPie.Resources/UI/Class/GLanceWyvernstake.png" :
                 args.BigAmmo == 0 ? "pack://siteoforigin:,,,/HunterPie.Resources/UI/Class/GLanceBAmmoEmpty.png" : "pack://siteoforigin:,,,/HunterPie.Resources/UI/Class/GLanceBAmmo.png";
                 BigAmmoShadowColor = args.HasWyvernstakeLoaded ? WyvernLoadedColor : args.BigAmmo == 0 ? BigAmmoNotLoadedColor : BigAmmoLoadedColor;
-
+                WyvernstakeTimer = args.HasWyvernstakeLoaded ? TimeSpan.FromSeconds(args.WyvernstakeNextMax).ToString("m\\:ss") : "00";
+                NextWyvernstakeTimer = args.HasWyvernstakeLoaded ? TimeSpan.FromSeconds(args.WyvernstakeNextMax).ToString("m\\:ss") : null;
             }));
         }
 

@@ -24,14 +24,12 @@ namespace HunterPie.GUI.Helpers
         private static void PercentageChanged(DependencyObject d, DependencyPropertyChangedEventArgs e)
         {
             var diamond = d as Diamond;
-            if (diamond != null)
-                diamond.InvalidateVisual();
+            diamond?.InvalidateVisual();
         }
 
         private Geometry GetGeometry()
         {
-            // Always start from the top middle
-            Point start = new Point(Width , 0);
+            Point start = new Point(Width, 0);
             StreamGeometry geom = new StreamGeometry();
             using (StreamGeometryContext context = geom.Open())
             {
@@ -40,8 +38,9 @@ namespace HunterPie.GUI.Helpers
                 {
                     Point? nextPoint = CalculatePoint(lIndex);
                     if (nextPoint == null) break;
-                    context.LineTo((Point)nextPoint, true, false);
+                    context.LineTo((Point)nextPoint, true, true);
                 }
+                
             }
             return geom;
         }

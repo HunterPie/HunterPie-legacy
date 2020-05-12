@@ -10,6 +10,8 @@ namespace HunterPie.Core.LPlayer.Jobs
         public int BigAmmo { get; }
         public float WyvernsFireTimer { get; }
         public float WyvernstakeBlastTimer { get; }
+        public float WyvernstakeMax { get; }
+        public float WyvernstakeNextMax { get; }
         public bool HasWyvernstakeLoaded { get; }
 
         public GunLanceEventArgs(GunLance weapon)
@@ -21,6 +23,8 @@ namespace HunterPie.Core.LPlayer.Jobs
             WyvernsFireTimer = weapon.WyvernsFireTimer;
             WyvernstakeBlastTimer = weapon.WyvernstakeBlastTimer;
             HasWyvernstakeLoaded = weapon.HasWyvernstakeLoaded;
+            WyvernstakeMax = weapon.WyvernstakeMax;
+            WyvernstakeNextMax = weapon.WyvernstakeNextMax;
         }
     }
     public class GunLance
@@ -105,6 +109,8 @@ namespace HunterPie.Core.LPlayer.Jobs
                 }
             }
         }
+        public float WyvernstakeMax { get; set; }
+        public float WyvernstakeNextMax { get; set; }
         public bool HasWyvernstakeLoaded
         {
             get => hasWyvernstakeLoaded;

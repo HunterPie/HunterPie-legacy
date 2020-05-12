@@ -896,7 +896,8 @@ namespace HunterPie.Core
             int totalBigAmmo = Scanner.Read<int>(weaponAddress + 0x10);
             int currentBigAmmo = Scanner.Read<int>(weaponAddress + 0xC);
             float wyvernsfire = Scanner.Read<float>(AbnormalitiesAddress + 0xB70);
-            bool hasFirestakeLoaded = Scanner.Read<float>(weaponAddress + 0xBC) == 120.0f;
+            bool hasFirestakeLoaded = Scanner.Read<float>(weaponAddress + 0xBC) != 0f;
+            float wyvernstakeMax = Scanner.Read<float>(weaponAddress + 0xC0);
             // Check if the Firestake timer ptr is 0
             long wyvernstakeTimerPtr = Scanner.Read<long>(weaponAddress + 0x204);
             float wyvernstakeTimer = 0;
@@ -908,6 +909,8 @@ namespace HunterPie.Core
             GunLance.Ammo = currentAmmo;
             GunLance.TotalBigAmmo = totalBigAmmo;
             GunLance.BigAmmo = currentBigAmmo;
+            GunLance.WyvernstakeNextMax = hasFirestakeLoaded ? Scanner.Read<float>(weaponAddress + 0xBC) : wyvernstakeMax;
+            GunLance.WyvernstakeMax = wyvernstakeMax;
             GunLance.WyvernsFireTimer = wyvernsfire;
             GunLance.HasWyvernstakeLoaded = hasFirestakeLoaded;
             GunLance.WyvernstakeBlastTimer = wyvernstakeTimer;
