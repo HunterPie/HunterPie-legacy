@@ -417,10 +417,11 @@
       <Weakness ID="ELEMENT_ICE" Stars="3"/>
     </Weaknesses>
     <Crown Mini="0.9" Silver="1.15" Gold="1.23"/>
-    <Parts Max="7">
+    <Parts Max="8">
       <Part Name="MONSTER_PART_REMOVABLE_TAIL" IsRemovable="True">
         <Break Threshold="1"/>
       </Part>
+      <Part Name="MONSTER_PART_UNKNOWN" IsRemovable="True"/> <!-- Unknown/Flinch -->
       <Part Name="MONSTER_PART_HEAD" Group="HEAD"/>
       <Part Name="MONSTER_PART_BODY" Group="BODY"/>
       <Part Name="MONSTER_PART_ARMS" Group="ARM"/>
