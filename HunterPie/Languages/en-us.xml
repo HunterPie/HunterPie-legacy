@@ -148,6 +148,8 @@
     <Part ID="MONSTER_PART_REMOVABLE_TAIL" Name="Removable Tail"/>
     <Part ID="MONSTER_PART_REMOVABLE_HORNS" Name="Removable Horns"/>
     <Part ID="MONSTER_PART_REMOVABLE_HEAD" Name="Breakable Head"/>
+    <Part ID="MONSTER_PART_REMOVABLE_HEAD_ROCK" Name="Breakable Head (Rocks)"/>
+    <Part ID="MONSTER_PART_REMOVABLE_CHEST_ROCK" Name="Breakable Chest (Rocks)"/>
     <Part ID="MONSTER_PART_REMOVABLE_BALLOON" Name="Removable Balloon"/>
     <Part ID="MONSTER_PART_REMOVABLE_HORNS_2" Name="Removable Horns #2"/>
     <Part ID="MONSTER_PART_BODY_LEGS" Name="Body And Legs"/>

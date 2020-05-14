@@ -1818,14 +1818,14 @@
     </Weaknesses>
     <Crown Mini="0.9" Silver="1.15" Gold="1.23"/>
     <Parts Max="21">
-      <Part Name="MONSTER_PART_REMOVABLE_HEAD" IsRemovable="True"> <!-- Rocky Head -->
+      <Part Name="MONSTER_PART_REMOVABLE_HEAD_ROCK" IsRemovable="True">
         <Break Threshold="1"/>
         <Break Threshold="2"/>
         <Break Threshold="3"/>
         <Break Threshold="4"/>
       </Part>
-      <Part Name="MONSTER_PART_REMOVABLE_HEAD" IsRemovable="True">  <!-- Rocky Chest -->
-	    <Break Threshold="1"/>
+      <Part Name="MONSTER_PART_REMOVABLE_CHEST_ROCK" IsRemovable="True">
+        <Break Threshold="1"/>
         <Break Threshold="2"/>
         <Break Threshold="3"/>
         <Break Threshold="4"/>
@@ -1833,21 +1833,21 @@
         <Break Threshold="6"/>
       </Part>
       <Part Name="MONSTER_PART_UNKNOWN" IsRemovable="True"/> <!-- Unknown -->
-      <Part Name="MONSTER_PART_REMOVABLE_HEAD" IsRemovable="True"> <!-- Head completely broken -->
+      <Part Name="MONSTER_PART_REMOVABLE_HEAD" IsRemovable="True">
         <Break Threshold="1"/>
       </Part>
-      <Part Name="MONSTER_PART_REMOVABLE_HEAD" IsRemovable="True">  <!-- Rocky Head -->
+      <Part Name="MONSTER_PART_REMOVABLE_HEAD_ROCK" IsRemovable="True">
         <Break Threshold="1"/>
         <Break Threshold="2"/>
         <Break Threshold="3"/>
         <Break Threshold="4"/>
       </Part>
       <Part Name="MONSTER_PART_LNECK_ROCK" Group="NECK">
-	    <Break Threshold="1"/>
-	  </Part>
+        <Break Threshold="1"/>
+      </Part>
       <Part Name="MONSTER_PART_RNECK_ROCK" Group="NECK">
-	    <Break Threshold="1"/>
-	  </Part>
+        <Break Threshold="1"/>
+      </Part>
       <Part Name="MONSTER_PART_HEAD_ROCK" Group="HEAD"/>
       <Part Name="MONSTER_PART_TAIL_ROCK" Group="TAIL"/>
       <Part Name="MONSTER_PART_LWING_ROCK" Group="WING">
@@ -1863,7 +1863,7 @@
         <Break Threshold="1"/>
       </Part>
       <Part Name="MONSTER_PART_LEGS" Group="LEG"/>
-      <Part Name="MONSTER_PART_HEAD" Group="HEAD"> <!-- Head first break -->
+      <Part Name="MONSTER_PART_HEAD" Group="HEAD">
         <Break Threshold="1"/>
       </Part>
       <Part Name="MONSTER_PART_BODY" Group="BODY"/>
