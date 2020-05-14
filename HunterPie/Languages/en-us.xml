@@ -160,6 +160,7 @@
     <Part ID="MONSTER_PART_CHARGE" Name="Removable Charge"/>
     <Part ID="MONSTER_PART_THROAT" Name="Throat"/>
     <Part ID="MONSTER_PART_INFLATED_TAIL" Name="Inflated Tail"/>
+    <Part ID="MONSTER_PART_SKY_FALL" Name="Sky Fall"/>
   </Parts>
   <Ailments>
     <Ailment ID="STATUS_UNKNOWN" Name="Unknown"/>
