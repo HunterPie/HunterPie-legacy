@@ -153,6 +153,8 @@
     <Part ID="MONSTER_PART_REMOVABLE_BALLOON" Name="Removable Balloon"/>
     <Part ID="MONSTER_PART_REMOVABLE_HORNS_2" Name="Removable Horns #2"/>
     <Part ID="MONSTER_PART_BODY_LEGS" Name="Body And Legs"/>
+    <!-- Special parts -->
+    <Part ID="MONSTER_PART_BIG_FLINCH" Name="Big Flinch"/>
   </Parts>
   <Ailments>
     <Ailment ID="STATUS_UNKNOWN" Name="Unknown"/>

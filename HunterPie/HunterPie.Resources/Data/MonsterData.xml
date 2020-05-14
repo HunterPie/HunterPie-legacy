@@ -88,7 +88,7 @@
     </Weaknesses>
     <Crown Mini="0.9" Silver="1.15" Gold="1.23"/>
     <Parts Max="9">
-	  <Part Name="MONSTER_PART_UNKNOWN" IsRemovable="True"/> <!-- Special Flinch -->
+      <Part Name="MONSTER_PART_BIG_FLINCH" IsRemovable="True"/>
       <Part Name="MONSTER_PART_REMOVABLE_TAIL" IsRemovable="True">
         <Break Threshold="1"/>
       </Part>
@@ -170,7 +170,7 @@
     </Weaknesses>
     <Crown Mini="0.9" Silver="1.15" Gold="1.23"/>
     <Parts Max="9">
-	  <Part Name="MONSTER_PART_UNKNOWN" IsRemovable="True"/> <!-- Special Flinch -->
+      <Part Name="MONSTER_PART_BIG_FLINCH" IsRemovable="True"/>
       <Part Name="MONSTER_PART_REMOVABLE_TAIL" IsRemovable="True">
         <Break Threshold="1"/>
       </Part>
