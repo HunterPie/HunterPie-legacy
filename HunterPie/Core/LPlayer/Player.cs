@@ -18,6 +18,7 @@ namespace HunterPie.Core
         private int _zoneId = -1;
         private byte _weaponId;
         private string _sessionId;
+        private Int64 classAddress;
 
         // Game info
         private readonly int[] PeaceZones = new int[11] { 0, 301, 302, 303, 305, 306, 501, 502, 503, 504, 506 };
@@ -39,7 +40,7 @@ namespace HunterPie.Core
                     if (value != 0x0)
                     {
                         Debugger.Debug($"Found player address -> {value:X}");
-                        _onLogin();
+                        Dispatch(OnCharacterLogin);
                     }
                 }
             }
@@ -52,7 +53,7 @@ namespace HunterPie.Core
                 if (_level != value)
                 {
                     _level = value;
-                    _onLevelUp();
+                    Dispatch(OnLevelChange);
                 }
             }
         }
@@ -65,17 +66,17 @@ namespace HunterPie.Core
             {
                 if (_zoneId != value)
                 {
-                    if ((_zoneId == -1 || PeaceZones.Contains(_zoneId)) && !PeaceZones.Contains(value)) _onPeaceZoneLeave();
-                    if (_HBZones.Contains(_zoneId) && !_HBZones.Contains(value)) _onVillageLeave();
+                    if ((_zoneId == -1 || PeaceZones.Contains(_zoneId)) && !PeaceZones.Contains(value)) Dispatch(OnPeaceZoneLeave);
+                    if (_HBZones.Contains(_zoneId) && !_HBZones.Contains(value)) Dispatch(OnVillageLeave);
                     _zoneId = value;
-                    _onZoneChange();
-                    if (PeaceZones.Contains(value)) _onPeaceZoneEnter();
-                    if (_HBZones.Contains(value)) _onVillageEnter();
+                    Dispatch(OnZoneChange);
+                    if (PeaceZones.Contains(value)) Dispatch(OnPeaceZoneEnter);
+                    if (_HBZones.Contains(value)) Dispatch(OnVillageEnter);
                     if (value == 0 && LEVEL_ADDRESS != 0x0)
                     {
                         LEVEL_ADDRESS = 0x0;
                         PlayerAddress = 0x0;
-                        _onLogout();
+                        Dispatch(OnCharacterLogout);
                     }
                 }
             }
@@ -90,7 +91,7 @@ namespace HunterPie.Core
                 if (_weaponId != value)
                 {
                     _weaponId = value;
-                    _onWeaponChange();
+                    Dispatch(OnWeaponChange);
                 }
             }
         }
@@ -104,7 +105,7 @@ namespace HunterPie.Core
                 {
                     _sessionId = value;
                     GetSteamSession();
-                    _onSessionChange();
+                    Dispatch(OnSessionChange);
                 }
             }
         }
@@ -112,6 +113,18 @@ namespace HunterPie.Core
         public bool InHarvestZone => _HBZones.Contains(ZoneID);
         public Int64 SteamSession { get; private set; }
         public Int64 SteamID { get; private set; }
+        public Int64 ClassAddress
+        {
+            get => classAddress;
+            set
+            {
+                if (value != classAddress)
+                {
+                    classAddress = value;
+                    Dispatch(OnClassChange);
+                }
+            }
+        }
 
         // Party
         public Party PlayerParty = new Party();
@@ -166,27 +179,9 @@ namespace HunterPie.Core
         public event PlayerEvents OnVillageEnter;
         public event PlayerEvents OnPeaceZoneLeave;
         public event PlayerEvents OnVillageLeave;
+        public event PlayerEvents OnClassChange;
 
-        // Dispatchers
-        protected virtual void _onLogin() => OnCharacterLogin?.Invoke(this, EventArgs.Empty);
-
-        protected virtual void _onLogout() => OnCharacterLogout?.Invoke(this, EventArgs.Empty);
-
-        protected virtual void _onLevelUp() => OnLevelChange?.Invoke(this, EventArgs.Empty);
-
-        protected virtual void _onZoneChange() => OnZoneChange?.Invoke(this, EventArgs.Empty);
-
-        protected virtual void _onWeaponChange() => OnWeaponChange?.Invoke(this, EventArgs.Empty);
-
-        protected virtual void _onSessionChange() => OnSessionChange?.Invoke(this, EventArgs.Empty);
-
-        protected virtual void _onPeaceZoneEnter() => OnPeaceZoneEnter?.Invoke(this, EventArgs.Empty);
-
-        protected virtual void _onVillageEnter() => OnVillageEnter?.Invoke(this, EventArgs.Empty);
-
-        protected virtual void _onPeaceZoneLeave() => OnPeaceZoneLeave?.Invoke(this, EventArgs.Empty);
-
-        protected virtual void _onVillageLeave() => OnVillageLeave?.Invoke(this, EventArgs.Empty);
+        private void Dispatch(PlayerEvents e) => e?.Invoke(this, EventArgs.Empty);
         #endregion
 
 
@@ -822,6 +817,7 @@ namespace HunterPie.Core
         private void GetJobInformation()
         {
             long weaponAddress = Scanner.READ_MULTILEVEL_PTR(Address.BASE + Address.WEAPON_MECHANICS_OFFSET, Address.Offsets.WeaponMechanicsOffsets);
+            ClassAddress = weaponAddress;
             switch((Classes)WeaponID)
             {
                 case Classes.Greatsword:
@@ -900,7 +896,8 @@ namespace HunterPie.Core
             int totalBigAmmo = Scanner.Read<int>(weaponAddress + 0x10);
             int currentBigAmmo = Scanner.Read<int>(weaponAddress + 0xC);
             float wyvernsfire = Scanner.Read<float>(AbnormalitiesAddress + 0xB70);
-            bool hasFirestakeLoaded = Scanner.Read<float>(weaponAddress + 0xBC) == 120.0f;
+            bool hasFirestakeLoaded = Scanner.Read<float>(weaponAddress + 0xBC) != 0f;
+            float wyvernstakeMax = Scanner.Read<float>(weaponAddress + 0xC0);
             // Check if the Firestake timer ptr is 0
             long wyvernstakeTimerPtr = Scanner.Read<long>(weaponAddress + 0x204);
             float wyvernstakeTimer = 0;
@@ -912,6 +909,8 @@ namespace HunterPie.Core
             GunLance.Ammo = currentAmmo;
             GunLance.TotalBigAmmo = totalBigAmmo;
             GunLance.BigAmmo = currentBigAmmo;
+            GunLance.WyvernstakeNextMax = hasFirestakeLoaded ? Scanner.Read<float>(weaponAddress + 0xBC) : wyvernstakeMax;
+            GunLance.WyvernstakeMax = wyvernstakeMax;
             GunLance.WyvernsFireTimer = wyvernsfire;
             GunLance.HasWyvernstakeLoaded = hasFirestakeLoaded;
             GunLance.WyvernstakeBlastTimer = wyvernstakeTimer;

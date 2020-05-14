@@ -24,14 +24,12 @@ namespace HunterPie.GUI.Helpers
         private static void PercentageChanged(DependencyObject d, DependencyPropertyChangedEventArgs e)
         {
             var diamond = d as Diamond;
-            if (diamond != null)
-                diamond.InvalidateVisual();
+            diamond?.InvalidateVisual();
         }
 
         private Geometry GetGeometry()
         {
-            // Always start from the top middle
-            Point start = new Point(RenderSize.Width , 0);
+            Point start = new Point(Width, 0);
             StreamGeometry geom = new StreamGeometry();
             using (StreamGeometryContext context = geom.Open())
             {
@@ -40,8 +38,9 @@ namespace HunterPie.GUI.Helpers
                 {
                     Point? nextPoint = CalculatePoint(lIndex);
                     if (nextPoint == null) break;
-                    context.LineTo((Point)nextPoint, true, false);
+                    context.LineTo((Point)nextPoint, true, true);
                 }
+                
             }
             return geom;
         }
@@ -56,13 +55,13 @@ namespace HunterPie.GUI.Helpers
                 switch (line)
                 {
                     case 0:
-                        return new Point(RenderSize.Width, RenderSize.Height * percentageOfLine);
+                        return new Point(Width, Height * percentageOfLine);
                     case 1:
-                        return new Point(RenderSize.Width - (RenderSize.Width * percentageOfLine), RenderSize.Height);
+                        return new Point(Width - (Width * percentageOfLine), Height);
                     case 2:
-                        return new Point(0, RenderSize.Height - (RenderSize.Height * percentageOfLine));
+                        return new Point(0, Height - (Height * percentageOfLine));
                     case 3:
-                        return new Point(RenderSize.Width * percentageOfLine, 0);
+                        return new Point(Width * percentageOfLine, 0);
                     default:
                         return null;
                 }

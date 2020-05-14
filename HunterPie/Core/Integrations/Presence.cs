@@ -6,6 +6,7 @@ namespace HunterPie.Core {
     public class Presence : IDisposable {
         public bool IsDisposed { get; private set; }
         private readonly string APP_ID = "567152028070051859";
+        private bool FailedToRegisterScheme { get; set; }
         private bool isOffline = false;
         private bool isVisible = true;
         private RichPresence Instance;
@@ -53,14 +54,25 @@ namespace HunterPie.Core {
             Instance.Secrets = new Secrets();
             Client = new DiscordRpcClient(APP_ID, autoEvents: true);
 
+            try
+            {
             Client.RegisterUriScheme("582010");
 
-            // Events
-            Client.OnReady += Client_OnReady;
-            Client.OnJoinRequested += Client_OnJoinRequested;
-            Client.OnJoin += Client_OnJoin;
+            } catch (Exception err)
+            {
+                Debugger.Error(err);
+                FailedToRegisterScheme = true;
+            }
 
-            Client.SetSubscription(EventType.JoinRequest | EventType.Join);
+            if (!FailedToRegisterScheme)
+            {
+                // Events
+                Client.OnReady += Client_OnReady;
+                Client.OnJoinRequested += Client_OnJoinRequested;
+                Client.OnJoin += Client_OnJoin;
+
+                Client.SetSubscription(EventType.JoinRequest | EventType.Join);
+            }
 
             Client.Initialize();
             if (!UserSettings.PlayerConfig.RichPresence.Enabled && isVisible) {
@@ -129,12 +141,18 @@ namespace HunterPie.Core {
             // Do nothing if RPC is disabled
             if (!isVisible) return;
 
-            if (ctx.Player.SteamSession != 0 && ctx.Player.InPeaceZone && UserSettings.PlayerConfig.RichPresence.LetPeopleJoinSession) {
-                Instance.Secrets.JoinSecret = $"{ctx.Player.SteamSession}/{ctx.Player.SteamID}";
-            } else {
-                Instance.Secrets.JoinSecret = null;
+            if (!FailedToRegisterScheme)
+            {
+                if (ctx.Player.SteamSession != 0 && ctx.Player.InPeaceZone && UserSettings.PlayerConfig.RichPresence.LetPeopleJoinSession)
+                {
+                    Instance.Secrets.JoinSecret = $"{ctx.Player.SteamSession}/{ctx.Player.SteamID}";
+                }
+                else
+                {
+                    Instance.Secrets.JoinSecret = null;
+                }
             }
-
+            
             // Only update RPC if player isn't in loading screen
             switch (ctx.Player.ZoneID) {
                 case 0:

@@ -43,9 +43,8 @@ namespace HunterPie.Core {
                         while (Ailments.Count == 0)
                         {
                             GetMonsterAilments();
-                            Thread.Sleep(500);
+                            Thread.Sleep(10);
                         }
-                            
                         GetMonsterSizeModifier();
                         CaptureThreshold = MonsterInfo.Capture;
                         // Only call this if monster is actually alive

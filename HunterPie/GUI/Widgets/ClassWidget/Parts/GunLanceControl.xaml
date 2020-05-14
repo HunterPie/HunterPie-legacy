@@ -9,10 +9,10 @@
     <Grid Width="150" Height="100">
 
         <!-- Ammo -->
-        <StackPanel x:Name="AmmoHolder" Orientation="Horizontal" Height="19" VerticalAlignment="Top" HorizontalAlignment="Left" Width="82" Margin="68,37,0,0"/>
+        <WrapPanel x:Name="AmmoHolder" Orientation="Horizontal" Margin="0,0,1,44" HorizontalAlignment="Right" Width="81" VerticalAlignment="Bottom"/>
 
         <!-- Wyvern's Fire -->
-        <helper:Diamond Height="40" Width="40" Margin="17,29,93,31" RenderTransformOrigin="0.5,0.5" StrokeThickness="2" Percentage="{Binding WyvernboomPercentage, ElementName=GLControl}" Stroke="{Binding WyvernsfireDiamondColor, ElementName=GLControl}">
+        <helper:Diamond ClipToBounds="True" x:Name="WyvernsfireComponent" StrokeThickness="4" Height="39" Width="39" Margin="19,31,0,0" RenderTransformOrigin="0.5,0.5" Percentage="{Binding WyvernboomPercentage, ElementName=GLControl}" Stroke="#FF2FED55" HorizontalAlignment="Left" VerticalAlignment="Top">
             <helper:Diamond.Effect>
                 <DropShadowEffect BlurRadius="20" ShadowDepth="0" Color="{Binding WyvernsfireDiamondColor, ElementName=GLControl}"/>
             </helper:Diamond.Effect>
@@ -24,11 +24,38 @@
                     <TranslateTransform/>
                 </TransformGroup>
             </helper:Diamond.RenderTransform>
+            <helper:Diamond.Style>
+                <Style TargetType="helper:Diamond">
+                    <Style.Triggers>
+                        <DataTrigger Binding="{Binding WyvernsfireReady, ElementName=GLControl}" Value="True">
+                            <DataTrigger.EnterActions>
+                                <BeginStoryboard>
+                                    <Storyboard>
+                                        <ColorAnimation Storyboard.TargetProperty="(Shape.Stroke).(SolidColorBrush.Color)" To="#FF2FED55" Duration="0:0:0.150"/>
+                                    </Storyboard>
+                                </BeginStoryboard>
+                            </DataTrigger.EnterActions>
+                            <DataTrigger.ExitActions>
+                                <BeginStoryboard>
+                                    <Storyboard>
+                                        <ColorAnimation Storyboard.TargetProperty="(Shape.Stroke).(SolidColorBrush.Color)" To="#FFED2F2F" Duration="0:0:0.150"/>
+                                    </Storyboard>
+                                </BeginStoryboard>
+                            </DataTrigger.ExitActions>
+                        </DataTrigger>
+                    </Style.Triggers>
+                </Style>
+            </helper:Diamond.Style>
         </helper:Diamond>
 
-
         <!-- Wyrmstake Blast-->
-        <Rectangle Height="36" Width="36" RenderTransformOrigin="0.5,0.5" Margin="19,31,0,0" HorizontalAlignment="Left" VerticalAlignment="Top">
+        <Rectangle Height="35" Width="33" RenderTransformOrigin="0.5,0.5" Margin="22,33,0,0" HorizontalAlignment="Left" VerticalAlignment="Top" StrokeThickness="0">
+            <Rectangle.Fill>
+                <RadialGradientBrush>
+                    <GradientStop Color="#33232323" Offset="0"/>
+                    <GradientStop Color="#33131313" Offset="1"/>
+                </RadialGradientBrush>
+            </Rectangle.Fill>
             <Rectangle.RenderTransform>
                 <TransformGroup>
                     <ScaleTransform/>
@@ -37,14 +64,8 @@
                     <TranslateTransform/>
                 </TransformGroup>
             </Rectangle.RenderTransform>
-            <Rectangle.Fill>
-                <RadialGradientBrush>
-                    <GradientStop Color="#7F191623"/>
-                    <GradientStop Color="#7F1A181D" Offset="1"/>
-                </RadialGradientBrush>
-            </Rectangle.Fill>
         </Rectangle>
-        <helper:Diamond Width="34" Height="34" StrokeThickness="2" Percentage="{Binding Path=WyvernstakeTimerPercentage, ElementName=GLControl}" RenderTransformOrigin="0.5, 0.5" Stroke="#FFFF9700" Margin="20,32,96,34">
+        <helper:Diamond ClipToBounds="True" Width="35" Height="35" StrokeThickness="4" Percentage="{Binding Path=WyvernstakeTimerPercentage, ElementName=GLControl}" RenderTransformOrigin="0.5, 0.5" Stroke="#FFFF9700" Margin="21,33,0,0" HorizontalAlignment="Left" VerticalAlignment="Top">
             <helper:Diamond.RenderTransform>
                 <TransformGroup>
                     <ScaleTransform/>
@@ -62,10 +83,25 @@
                 </RadialGradientBrush>
             </Image.OpacityMask>
             <Image.Effect>
-                <DropShadowEffect ShadowDepth="0" Color="{Binding Path=BigAmmoShadowColor, ElementName=GLControl}"/>
+                <DropShadowEffect ShadowDepth="0" Color="{Binding Path=BigAmmoShadowColor, ElementName=GLControl}" BlurRadius="10" Opacity="1"/>
             </Image.Effect>
+            <Image.Style>
+                <Style TargetType="Image">
+                    <Style.Triggers>
+                        <Trigger Property="IsVisible" Value="True">
+                            <Trigger.EnterActions>
+                                <BeginStoryboard>
+                                    <Storyboard Duration="0:0:2" RepeatBehavior="Forever">
+                                        <DoubleAnimation Storyboard.TargetProperty="(Effect).Opacity" Duration="0:0:0.5" From="0.2" To="1" AutoReverse="True"/>
+                                    </Storyboard>
+                                </BeginStoryboard>
+                            </Trigger.EnterActions>
+                        </Trigger>
+                    </Style.Triggers>
+                </Style>
+            </Image.Style>
         </Image>
-        <TextBlock Text="{Binding Path=WyvernstakeTimer, ElementName=GLControl}" Width="45" Height="20" TextAlignment="Center" HorizontalAlignment="Left" Margin="14,39,0,0" VerticalAlignment="Top" FontSize="14">
+        <TextBlock Text="{Binding Path=WyvernstakeTimer, ElementName=GLControl}" Width="45" Height="20" TextAlignment="Center" HorizontalAlignment="Left" Margin="15,41,0,0" VerticalAlignment="Top" FontSize="14">
             <TextBlock.Foreground>
                 <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
                     <GradientStop Color="#FFDEDEDE" Offset="0"/>
@@ -73,5 +109,17 @@
                 </LinearGradientBrush>
             </TextBlock.Foreground>
         </TextBlock>
+
+        <TextBlock Text="{Binding NextWyvernstakeTimer, ElementName=GLControl}" Width="28" Height="20" TextAlignment="Center" HorizontalAlignment="Left" Margin="122,58,0,0" VerticalAlignment="Top" FontSize="13">
+            <TextBlock.Foreground>
+                <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
+                    <GradientStop Color="#FFDEDEDE" Offset="0"/>
+                    <GradientStop Color="#FFB4B4B4" Offset="1"/>
+                </LinearGradientBrush>
+            </TextBlock.Foreground>
+        </TextBlock>
+
+
+
     </Grid>
 </local:ClassControl>
