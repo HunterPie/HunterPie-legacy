@@ -143,6 +143,7 @@
     <Part ID="MONSTER_PART_RARM_ROCK" Name="Rocky Right Arm"/>
     <Part ID="MONSTER_PART_LEGS_ROCK" Name="Rocky Legs"/>
     <Part ID="MONSTER_PART_ANTLERS" Name="Antlers"/>
+    <Part ID="MONSTER_PART_HORN" Name="Horn"/>
     <!-- Removable parts -->
     <Part ID="MONSTER_PART_REMOVABLE_TAIL" Name="Removable Tail"/>
     <Part ID="MONSTER_PART_REMOVABLE_HORNS" Name="Removable Horns"/>
