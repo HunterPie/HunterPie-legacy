@@ -1885,10 +1885,10 @@
     </Weaknesses>
     <Crown Mini="0.9" Silver="1.15" Gold="1.23"/>
     <Parts Max="6">
-      <Part Name="MONSTER_PART_UNKNOWN" IsRemovable="True"> <!-- Body & Legs -->
+      <Part Name="MONSTER_PART_BODY_LEGS" IsRemovable="True">
         <Break Threshold="1"/>
       </Part>
-      <Part Name="MONSTER_PART_HEAD" Group="HEAD"> <!-- Antlers -->
+      <Part Name="MONSTER_PART_ANTLERS" Group="HEAD">
         <Break Threshold="1"/>
         <Break Threshold="2"/>
       </Part>
@@ -1905,10 +1905,10 @@
     </Weaknesses>
     <Crown Mini="0.9" Silver="1.15" Gold="1.23"/>
     <Parts Max="6">
-      <Part Name="MONSTER_PART_UNKNOWN" IsRemovable="True"> <!-- Body & Legs -->
+      <Part Name="MONSTER_PART_BODY_LEGS" IsRemovable="True">
         <Break Threshold="1"/>
       </Part>
-      <Part Name="MONSTER_PART_HEAD" Group="HEAD"> <!-- Antlers -->
+      <Part Name="MONSTER_PART_ANTLERS" Group="HEAD">
         <Break Threshold="1"/>
         <Break Threshold="2"/>
       </Part>
