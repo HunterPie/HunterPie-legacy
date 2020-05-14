@@ -159,6 +159,7 @@
     <Part ID="MONSTER_PART_COUNTERATTACK" Name="Counterattack"/>
     <Part ID="MONSTER_PART_CHARGE" Name="Removable Charge"/>
     <Part ID="MONSTER_PART_THROAT" Name="Throat"/>
+    <Part ID="MONSTER_PART_INFLATED_TAIL" Name="Inflated Tail"/>
   </Parts>
   <Ailments>
     <Ailment ID="STATUS_UNKNOWN" Name="Unknown"/>
