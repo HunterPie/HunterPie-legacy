@@ -1635,11 +1635,11 @@
     </Weaknesses>
     <Crown Mini="0.9" Silver="1.15" Gold="1.23"/>
     <Parts Max="9">
-      <Part Name="MONSTER_PART_UNKNOWN" IsRemovable="True"/> <!-- Purple Glowing Head -->
+      <Part Name="MONSTER_PART_GLOWING_HEAD" IsRemovable="True"/>
       <Part Name="MONSTER_PART_REMOVABLE_TAIL" IsRemovable="True">
         <Break Threshold="1"/>
       </Part>
-      <Part Name="MONSTER_PART_UNKNOWN" IsRemovable="True"/> <!-- Purple Glowing Tail -->
+      <Part Name="MONSTER_PART_GLOWING_TAIL" IsRemovable="True"/>
       <Part Name="MONSTER_PART_HEAD" Group="HEAD">
         <Break Threshold="2"/>
       </Part>

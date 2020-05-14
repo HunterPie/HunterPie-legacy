@@ -162,6 +162,8 @@
     <Part ID="MONSTER_PART_INFLATED_TAIL" Name="Inflated Tail"/>
     <Part ID="MONSTER_PART_SKY_FALL" Name="Sky Fall"/>
     <Part ID="MONSTER_PART_EMISSIONS" Name="Effluvia Emissions"/>
+    <Part ID="MONSTER_PART_GLOWING_HEAD" Name="Glowing Head"/>
+    <Part ID="MONSTER_PART_GLOWING_TAIL" Name="Glowing Tail"/>
   </Parts>
   <Ailments>
     <Ailment ID="STATUS_UNKNOWN" Name="Unknown"/>
