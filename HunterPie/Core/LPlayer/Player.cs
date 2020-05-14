@@ -749,7 +749,6 @@ namespace HunterPie.Core
             long abnormalityGearBase = Scanner.READ_MULTILEVEL_PTR(
                 Address.BASE + Address.ABNORMALITY_OFFSET,
                 Address.Offsets.AbnormalityGearOffsets);
-
             foreach (AbnormalityInfo abnormality in AbnormalityData.GearAbnormalities)
             {
                 UpdateAbnormality(abnormality, (abnormality.IsGearBuff ? abnormalityGearBase : abnormalityBaseAddress));
@@ -918,10 +917,22 @@ namespace HunterPie.Core
 
         private void GetSwitchAxeInformation(long weaponAddress)
         {
+            Int64 buffAddress = Scanner.READ_MULTILEVEL_PTR(Address.BASE + Address.EQUIPMENT_OFFSET, Address.Offsets.PlayerGearOffsets);
             float outerGauge = Scanner.Read<float>(weaponAddress - 0xC);
+            float swordChargeTimer = Scanner.Read<float>(weaponAddress - 0x8);
             float innerGauge = Scanner.Read<float>(weaponAddress - 0x1C);
+            float switchAxeBuff = 0;
+            bool isAxeBuffActive = Scanner.Read<byte>(buffAddress - 0xCC - 0x858 - 0x3) == 1;
+            if (isAxeBuffActive)
+            {
+                switchAxeBuff = Scanner.Read<float>(buffAddress - 0xCC - 0x858);
+            }
             SwitchAxe.OuterGauge = outerGauge;
+            SwitchAxe.SwordChargeMaxTimer = swordChargeTimer > SwitchAxe.SwordChargeMaxTimer || swordChargeTimer <= 0 ? swordChargeTimer : SwitchAxe.SwordChargeMaxTimer;
+            SwitchAxe.SwordChargeTimer = swordChargeTimer;
             SwitchAxe.InnerGauge = innerGauge;
+            SwitchAxe.IsBuffActive = isAxeBuffActive;
+            SwitchAxe.SwitchAxeBuffTimer = switchAxeBuff;
         }
 
         private void GetChargeBladeInformation(long weaponAddress)

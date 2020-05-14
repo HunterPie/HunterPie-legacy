@@ -249,7 +249,7 @@ namespace HunterPie.Core {
                 Client?.Dispose();
                 Instance = null;
             }
-            this.IsDisposed = true;
+            IsDisposed = true;
         }
     }
 }
