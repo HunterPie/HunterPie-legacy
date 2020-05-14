@@ -156,6 +156,7 @@
     <!-- Special parts -->
     <Part ID="MONSTER_PART_BIG_FLINCH" Name="Big Flinch"/>
     <Part ID="MONSTER_PART_RAGE" Name="Removable Rage"/>
+    <Part ID="MONSTER_PART_COUNTERATTACK" Name="Counterattack"/>
   </Parts>
   <Ailments>
     <Ailment ID="STATUS_UNKNOWN" Name="Unknown"/>
