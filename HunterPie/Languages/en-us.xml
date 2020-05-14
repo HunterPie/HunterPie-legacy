@@ -124,8 +124,6 @@
     <Part ID="MONSTER_PART_RLEG_GOLD" Name="Golden Right Leg"/>
     <Part ID="MONSTER_PART_LTAIL_GOLD" Name="Golden Left Tail"/>
     <Part ID="MONSTER_PART_RTAIL_GOLD" Name="Golden Right Tail"/>
-    <Part ID="MONSTER_PART_LHEAD" Name="Head Left"/>
-    <Part ID="MONSTER_PART_RHEAD" Name="Head Right"/>
     <Part ID="MONSTER_PART_HEAD_SNOW" Name="Snowy Head"/>
     <Part ID="MONSTER_PART_BODY_SNOW" Name="Snowy Body"/>
     <Part ID="MONSTER_PART_TAIL_SNOW" Name="Snowy Tail"/>
@@ -144,15 +142,12 @@
     <Part ID="MONSTER_PART_LARM_ROCK" Name="Rocky Left Arm"/>
     <Part ID="MONSTER_PART_RARM_ROCK" Name="Rocky Right Arm"/>
     <Part ID="MONSTER_PART_LEGS_ROCK" Name="Rocky Legs"/>
-    <Part ID="MONSTER_JAGRAS_SUMMONER" Name="Jagras Summoner"/>
     <!-- Removable parts -->
     <Part ID="MONSTER_PART_REMOVABLE_TAIL" Name="Removable Tail"/>
     <Part ID="MONSTER_PART_REMOVABLE_HORNS" Name="Removable Horns"/>
     <Part ID="MONSTER_PART_REMOVABLE_HEAD" Name="Breakable Head"/>
     <Part ID="MONSTER_PART_REMOVABLE_BALLOON" Name="Removable Balloon"/>
     <Part ID="MONSTER_PART_REMOVABLE_HORNS_2" Name="Removable Horns #2"/>
-    <Part ID="MONSTER_PART_REMOVABLE_LANTLER" Name="Removable Left Antler"/>
-    <Part ID="MONSTER_PART_REMOVABLE_RANTLER" Name="Removable Right Antler"/>
   </Parts>
   <Ailments>
     <Ailment ID="STATUS_UNKNOWN" Name="Unknown"/>
