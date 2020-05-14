@@ -1106,14 +1106,14 @@
       <Part Name="MONSTER_PART_NECK" Group="NECK" />
       <Part Name="MONSTER_PART_BACK" Group="BACK"/>
       <Part Name="MONSTER_PART_CHEST" Group="CHEST"/>
-      <Part Name="MONSTER_PART_LHAND" Group="ARM">
+      <Part Name="MONSTER_PART_LARM" Group="ARM">
         <Break Threshold="2"/>
       </Part>
-      <Part Name="MONSTER_PART_RHAND" Group="ARM">
+      <Part Name="MONSTER_PART_RARM" Group="ARM">
         <Break Threshold="2"/>
       </Part>
-      <Part Name="MONSTER_PART_LFOOT" Group="LEG"/>
-      <Part Name="MONSTER_PART_RFOOT" Group="LEG"/>
+      <Part Name="MONSTER_PART_LLEG" Group="LEG"/>
+      <Part Name="MONSTER_PART_RLEG" Group="LEG"/>
       <Part Name="MONSTER_PART_WINGS" Group="WING">
         <Break Threshold="2"/>
       </Part>
