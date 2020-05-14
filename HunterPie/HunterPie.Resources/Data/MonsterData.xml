@@ -779,7 +779,7 @@
       <Part Name="MONSTER_PART_LLEG" Group="LEG"/>
       <Part Name="MONSTER_PART_RLEG" Group="LEG"/>
       <Part Name="MONSTER_PART_TAIL" Group="TAIL"/>
-      <Part Name="MONSTER_PART_TAIL" Group="TAIL"/>
+      <Part Name="MONSTER_PART_TAIL_TIP" Group="TAIL"/>
     </Parts>
   </Monster>
   <Monster ID="em080_00" Capture="20"  GameID="66"> <!-- Glavenus -->

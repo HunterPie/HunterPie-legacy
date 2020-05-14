@@ -79,6 +79,7 @@
     <Part ID="MONSTER_PART_LLEG" Name="Left Leg"/>
     <Part ID="MONSTER_PART_RLEG" Name="Right Leg"/>
     <Part ID="MONSTER_PART_TAIL" Name="Tail"/>
+    <Part ID="MONSTER_PART_TAIL_TIP" Name="Tail (Tip)"/>
     <Part ID="MONSTER_PART_ARMS" Name="Arms"/>
     <Part ID="MONSTER_PART_LEGS" Name="Legs"/>
     <Part ID="MONSTER_PART_LARM" Name="Left Arm"/>
