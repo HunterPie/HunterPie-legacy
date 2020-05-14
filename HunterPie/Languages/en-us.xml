@@ -155,6 +155,7 @@
     <Part ID="MONSTER_PART_BODY_LEGS" Name="Body And Legs"/>
     <!-- Special parts -->
     <Part ID="MONSTER_PART_BIG_FLINCH" Name="Big Flinch"/>
+    <Part ID="MONSTER_PART_RAGE" Name="Removable Rage"/>
   </Parts>
   <Ailments>
     <Ailment ID="STATUS_UNKNOWN" Name="Unknown"/>

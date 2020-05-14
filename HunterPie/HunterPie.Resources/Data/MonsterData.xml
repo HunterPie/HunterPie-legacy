@@ -327,7 +327,7 @@
       <Part Name="MONSTER_PART_REMOVABLE_HORNS_2" IsRemovable="True">
         <Break Threshold="1"/>
       </Part>
-      <Part Name="MONSTER_PART_UNKNOWN" IsRemovable="True"/> <!-- Removable Fury -->
+      <Part Name="MONSTER_PART_RAGE" IsRemovable="True"/>
       <Part Name="MONSTER_PART_HEAD" Group="HEAD"/>
       <Part Name="MONSTER_PART_BODY" Group="BODY"/>
       <Part Name="MONSTER_PART_LARM" Group="ARM">
@@ -355,7 +355,7 @@
       <Part Name="MONSTER_PART_REMOVABLE_HORNS_2" IsRemovable="True">
         <Break Threshold="1"/>
       </Part>
-      <Part Name="MONSTER_PART_UNKNOWN" IsRemovable="True"/>  <!-- Removable Fury -->
+      <Part Name="MONSTER_PART_RAGE" IsRemovable="True"/>
       <Part Name="MONSTER_PART_HEAD" Group="HEAD"/>
       <Part Name="MONSTER_PART_BODY" Group="BODY"/>
       <Part Name="MONSTER_PART_LARM" Group="ARM">
