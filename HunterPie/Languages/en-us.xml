@@ -103,10 +103,10 @@
     <Part ID="MONSTER_PART_HORNS" Name="Horns"/>
     <Part ID="MONSTER_PART_NECK" Name="Neck"/>
     <Part ID="MONSTER_PART_SHELL" Name="Shell"/>
-    <Part ID="MONSTER_PART_EXHAUST_ORGAN_CENTRAL" Name="Central Exhaust Organ"/>
-    <Part ID="MONSTER_PART_EXHAUST_ORGAN_HEAD" Name="Head Exhaust Organ"/>
-    <Part ID="MONSTER_PART_EXHAUST_ORGAN_CRATER" Name="Crater Exhaust Organ"/>
-    <Part ID="MONSTER_PART_EXHAUST_ORGAN_REAR" Name="Rear Exhaust Organ"/>
+    <Part ID="MONSTER_PART_EXHAUST_ORGAN_CENTRAL" Name="Central Magmacore"/>
+    <Part ID="MONSTER_PART_EXHAUST_ORGAN_HEAD" Name="Head Magmacore"/>
+    <Part ID="MONSTER_PART_EXHAUST_ORGAN_CRATER" Name="Crater Magmacore"/>
+    <Part ID="MONSTER_PART_EXHAUST_ORGAN_REAR" Name="Rear Magmacore"/>
     <Part ID="MONSTER_PART_WEAK_LSHELL" Name="Left Weak Shell"/>
     <Part ID="MONSTER_PART_WEAK_RSHELL" Name="Right Weak Shell"/>
     <Part ID="MONSTER_PART_ROCK" Name="Rock"/>
