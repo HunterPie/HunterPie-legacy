@@ -1,24 +1,24 @@
-﻿**UPDATE 1.0.3.90**
+﻿**UPDATE 1.0.3.91**
 
-**Core**
+**(New) Classes Widget**
 
-- Changed how HunterPie detects the game and when it's no longer running.
-- A bunch of optimizations.
-- Overlay now forces itself on top of the game every few seconds.
+HunterPie v1.0.3.91 is now introducing classes widgets, they will display useful information about your current equipped weapon. The supported weapons for now are:
 
-**Monster Widget**
+- Charge Blade
+- Insect Glaive
+- Gun Lance
+- Switch Axe
 
-- Parts and ailments only create a new column when it's actually needed.
-- Monster widget now shows the part break threshold.
-- Monster ailment tracker no longer tracks traps for elder dragons.
+> More weapons will be added throughout the next few days.
+
+> **Note:** Since this is a **BETA** release, the new widgets are here only for testing, so they have no settings in the settings tab. You can move and rescale them in the design mode though.
 
 **Abnormalities Widget**
 
-- Abnormalities are now sorted in real time, instead of only when a new abnormality is added to the tray.
-
-**Bug Fixes**
-
-- Fixed blastscourge appearing with 1 second left.
-
-**Developer Notes**
-I've temporarily removed the monster health bar bottom docking since it's broken and I'm still trying to find a way to fix it.
+- (New) Abnormalities:
+    - Snowball head
+    - Element Acceleration
+    - Latent Power
+    - Resentment
+    - Adrenaline
+    - Cool Cat
