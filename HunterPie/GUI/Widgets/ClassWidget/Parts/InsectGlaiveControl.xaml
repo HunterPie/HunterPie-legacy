@@ -7,6 +7,49 @@
              mc:Ignorable="d" 
              >
     <Grid Width="210" Height="80">
+        <!-- Safi buff -->
+        <Canvas Opacity="0" HorizontalAlignment="Left" Width="46" Height="46" VerticalAlignment="Top" Margin="146,5,0,0">
+            <Rectangle Height="31" Width="31" VerticalAlignment="Top" HorizontalAlignment="Left" Stroke="#7F272727" StrokeThickness="1.5" Canvas.Left="24" Canvas.Top="1">
+                <Rectangle.Fill>
+                    <RadialGradientBrush>
+                        <GradientStop Color="#7F191623"/>
+                        <GradientStop Color="#7F1A181D" Offset="1"/>
+                    </RadialGradientBrush>
+                </Rectangle.Fill>
+                <Rectangle.RenderTransform>
+                    <TransformGroup>
+                        <ScaleTransform/>
+                        <SkewTransform/>
+                        <RotateTransform Angle="45"/>
+                        <TranslateTransform/>
+                    </TransformGroup>
+                </Rectangle.RenderTransform>
+            </Rectangle>
+            <Image Source="{StaticResource ICON_SAFISKILL}" Width="18" Height="17" HorizontalAlignment="Left" VerticalAlignment="Top" Canvas.Left="15" Canvas.Top="9"/>
+            <TextBlock TextOptions.TextRenderingMode="ClearType" Text="{Binding ElementName=IGControl, Path=SafiCounter}" Height="16" VerticalAlignment="Top" HorizontalAlignment="Left" Width="28" Foreground="White" FontSize="13" TextAlignment="Center" FontWeight="Light" Canvas.Top="23" Canvas.Left="10"/>
+            <Canvas.Style>
+                <Style TargetType="Canvas">
+                    <Style.Triggers>
+                        <DataTrigger Binding="{Binding ElementName=IGControl, Path=HasSafiBuff}" Value="True">
+                            <DataTrigger.EnterActions>
+                                <BeginStoryboard>
+                                    <Storyboard Storyboard.TargetProperty="Opacity">
+                                        <DoubleAnimation To="1" Duration="0:0:0.2"/>
+                                    </Storyboard>
+                                </BeginStoryboard>
+                            </DataTrigger.EnterActions>
+                            <DataTrigger.ExitActions>
+                                <BeginStoryboard>
+                                    <Storyboard Storyboard.TargetProperty="Opacity">
+                                        <DoubleAnimation To="0" Duration="0:0:0.2"/>
+                                    </Storyboard>
+                                </BeginStoryboard>
+                            </DataTrigger.ExitActions>
+                        </DataTrigger>
+                    </Style.Triggers>
+                </Style>
+            </Canvas.Style>
+        </Canvas>
         <!-- Kinsect Charge Buff -->
         <Polyline Points="26 0, 0 26, 26 52" Stroke="{Binding FirstBuffQueued,ElementName=IGControl}" StrokeThickness="2" Height="54" Width="54" Margin="2,16,0,0" VerticalAlignment="Top" HorizontalAlignment="Left">
             <Polyline.Effect>

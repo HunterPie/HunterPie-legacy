@@ -36,7 +36,7 @@ namespace HunterPie.Core.LPlayer.Jobs
         public abstract int SafijiivaMaxHits { get; }
 
         public delegate void JobEvents(object source, JobEventArgs args);
-        protected virtual event JobEvents OnSafijiivaCounterUpdate;
+        public event JobEvents OnSafijiivaCounterUpdate;
 
         public void Dispatch(JobEvents e) => e?.Invoke(this, new JobEventArgs(this));
     }

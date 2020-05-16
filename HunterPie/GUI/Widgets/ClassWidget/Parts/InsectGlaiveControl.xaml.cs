@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Windows;
+using HunterPie.Core.LPlayer.Jobs;
 using HunterPie.Logger;
 using InsectGlaive = HunterPie.Core.LPlayer.Jobs.InsectGlaive;
 using InsectGlaiveEventArgs = HunterPie.Core.LPlayer.Jobs.InsectGlaiveEventArgs;
@@ -139,6 +140,7 @@ namespace HunterPie.GUI.Widgets.ClassWidget.Parts
             Context.OnKinsectChargeBuffUpdate += OnKinsectChargeBuffUpdate;
             Context.OnKinsectStaminaUpdate += OnKinsectStaminaUpdate;
             Context.BuffQueueChanged += OnBuffQueueChanged;
+            Context.OnSafijiivaCounterUpdate += OnSafijiivaCounterUpdate;
         }
 
         public override void UnhookEvents()
@@ -150,6 +152,7 @@ namespace HunterPie.GUI.Widgets.ClassWidget.Parts
             Context.OnKinsectChargeBuffUpdate -= OnKinsectChargeBuffUpdate;
             Context.OnKinsectStaminaUpdate -= OnKinsectStaminaUpdate;
             Context.BuffQueueChanged -= OnBuffQueueChanged;
+            Context.OnSafijiivaCounterUpdate -= OnSafijiivaCounterUpdate;
             Context = null;
             base.UnhookEvents();
         }
@@ -164,6 +167,17 @@ namespace HunterPie.GUI.Widgets.ClassWidget.Parts
             OnKinsectChargeBuffUpdate(this, dummyArgs);
             OnKinsectStaminaUpdate(this, dummyArgs);
             OnBuffQueueChanged(this, dummyArgs);
+            OnSafijiivaCounterUpdate(this, new JobEventArgs(Context));
+        }
+
+
+        private void OnSafijiivaCounterUpdate(object source, JobEventArgs args)
+        {
+            Dispatcher.BeginInvoke(System.Windows.Threading.DispatcherPriority.Render, new Action(() =>
+            {
+                HasSafiBuff = args.SafijiivaRegenCounter != -1;
+                SafiCounter = args.SafijiivaMaxHits - args.SafijiivaRegenCounter;
+            }));
         }
 
         private void OnBuffQueueChanged(object source, InsectGlaiveEventArgs args)

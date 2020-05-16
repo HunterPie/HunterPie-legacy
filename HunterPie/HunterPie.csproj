@@ -136,12 +136,15 @@
     <Compile Include="Core\LPlayer\Jobs\GunLance.cs" />
     <Compile Include="Core\LPlayer\Jobs\Hammer.cs" />
     <Compile Include="Core\LPlayer\Jobs\HeavyBowgun.cs" />
+    <Compile Include="Core\LPlayer\Jobs\HuntingHorn.cs" />
     <Compile Include="Core\LPlayer\Jobs\InsectGlaive.cs" />
     <Compile Include="Core\LPlayer\Jobs\Job.cs" />
+    <Compile Include="Core\LPlayer\Jobs\Lance.cs" />
     <Compile Include="Core\LPlayer\Jobs\LightBowgun.cs" />
     <Compile Include="Core\LPlayer\Jobs\Longsword.cs" />
     <Compile Include="Core\LPlayer\Jobs\SwitchAxe.cs" />
     <Compile Include="Core\LPlayer\Jobs\Greatsword.cs" />
+    <Compile Include="Core\LPlayer\Jobs\SwordAndShield.cs" />
     <Compile Include="Core\Monsters\Ailment.cs" />
     <Compile Include="Core\Monsters\AilmentInfo.cs" />
     <Compile Include="Core\Monsters\MonsterData.cs" />

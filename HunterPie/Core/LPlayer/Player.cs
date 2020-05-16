@@ -815,15 +815,20 @@ namespace HunterPie.Core
 
         private void GetJobInformation()
         {
+            Int64 AbnormAddress = Scanner.READ_MULTILEVEL_PTR(Address.BASE + Address.ABNORMALITY_OFFSET, Address.Offsets.AbnormalityOffsets);
+            bool HasSafiBuff = Scanner.Read<int>(AbnormAddress + 0x954) >= 1;
+            int SafiCounter = HasSafiBuff ? Scanner.Read<int>(AbnormAddress + 0x7A8) : -1;
             long weaponAddress = Scanner.READ_MULTILEVEL_PTR(Address.BASE + Address.WEAPON_MECHANICS_OFFSET, Address.Offsets.WeaponMechanicsOffsets);
             ClassAddress = weaponAddress;
             switch((Classes)WeaponID)
             {
                 case Classes.Greatsword:
                     GetGreatswordInformation(weaponAddress);
+                    Greatsword.SafijiivaRegenCounter = SafiCounter;
                     break;
                 case Classes.DualBlades:
                     GetDualBladesInformation(weaponAddress);
+                    DualBlades.SafijiivaRegenCounter = SafiCounter;
                     break;
                 case Classes.LongSword:
                     GetLongswordInformation(weaponAddress);
@@ -832,16 +837,20 @@ namespace HunterPie.Core
                     GetHammerInformation(weaponAddress);
                     break;
                 case Classes.GunLance:
-                    GetGunLanceInformation(weaponAddress);
+                    GetGunLanceInformation(weaponAddress, AbnormAddress);
+                    GunLance.SafijiivaRegenCounter = SafiCounter;
                     break;
                 case Classes.SwitchAxe:
                     GetSwitchAxeInformation(weaponAddress);
+                    SwitchAxe.SafijiivaRegenCounter = SafiCounter;
                     break;
                 case Classes.ChargeBlade:
                     GetChargeBladeInformation(weaponAddress);
+                    ChargeBlade.SafijiivaRegenCounter = SafiCounter;
                     break;
                 case Classes.InsectGlaive:
                     GetInsectGlaiveInformation(weaponAddress);
+                    InsectGlaive.SafijiivaRegenCounter = SafiCounter;
                     break;
                 case Classes.Bow:
                     GetBowInformation(weaponAddress);
@@ -887,9 +896,9 @@ namespace HunterPie.Core
             Hammer.ChargeLevel = chargeLevel;
         }
 
-        private void GetGunLanceInformation(long weaponAddress)
+        private void GetGunLanceInformation(long weaponAddress, long AbnormAddress)
         {
-            long AbnormalitiesAddress = Scanner.READ_MULTILEVEL_PTR(Address.BASE + Address.ABNORMALITY_OFFSET, Address.Offsets.AbnormalityOffsets);
+            long AbnormalitiesAddress = AbnormAddress;
             int totalAmmo = Scanner.Read<int>(weaponAddress - 0x4);
             int currentAmmo = Scanner.Read<int>(weaponAddress);
             int totalBigAmmo = Scanner.Read<int>(weaponAddress + 0x10);

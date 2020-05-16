@@ -7,6 +7,51 @@
              mc:Ignorable="d" 
              >
     <Grid Height="139" Width="139">
+        <!-- Safi counter -->
+        <Canvas Opacity="0">
+            <Rectangle Height="35" Width="35" Margin="29,78,0,0" VerticalAlignment="Top" HorizontalAlignment="Left" Stroke="#7F272727" StrokeThickness="1.5">
+                <Rectangle.Fill>
+                    <RadialGradientBrush>
+                        <GradientStop Color="#7F191623"/>
+                        <GradientStop Color="#7F1A181D" Offset="1"/>
+                    </RadialGradientBrush>
+                </Rectangle.Fill>
+                <Rectangle.RenderTransform>
+                    <TransformGroup>
+                        <ScaleTransform/>
+                        <SkewTransform/>
+                        <RotateTransform Angle="45"/>
+                        <TranslateTransform/>
+                    </TransformGroup>
+                </Rectangle.RenderTransform>
+            </Rectangle>
+            <Image Source="{StaticResource ICON_SAFISKILL}" Width="20" Height="20" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="19,86,0,0"/>
+            <TextBlock TextOptions.TextRenderingMode="ClearType" Text="{Binding ElementName=CBControl, Path=SafiCounter}" Height="14" VerticalAlignment="Top" HorizontalAlignment="Left" Width="28" Margin="15,104,0,0" Foreground="White" FontSize="13" TextAlignment="Center" FontWeight="Light"/>
+            <Canvas.Style>
+                <Style TargetType="Canvas">
+                    <Style.Triggers>
+                        <DataTrigger Binding="{Binding ElementName=CBControl, Path=HasSafiBuff}" Value="True">
+                            <DataTrigger.EnterActions>
+                                <BeginStoryboard>
+                                    <Storyboard Storyboard.TargetProperty="Opacity">
+                                        <DoubleAnimation To="1" Duration="0:0:0.2"/>
+                                    </Storyboard>
+                                </BeginStoryboard>
+                            </DataTrigger.EnterActions>
+                            <DataTrigger.ExitActions>
+                                <BeginStoryboard>
+                                    <Storyboard Storyboard.TargetProperty="Opacity">
+                                        <DoubleAnimation To="0" Duration="0:0:0.2"/>
+                                    </Storyboard>
+                                </BeginStoryboard>
+                            </DataTrigger.ExitActions>
+                        </DataTrigger>
+                    </Style.Triggers>
+                </Style>
+            </Canvas.Style>
+        </Canvas>
+        
+        <!-- Class thingy -->
         <Rectangle Opacity="0.8" Height="37" VerticalAlignment="Top" HorizontalAlignment="Left" Width="37" Margin="50,18,0,0" RenderTransformOrigin="0.5,0.5" StrokeThickness="1">
             <Rectangle.Stroke>
                 <LinearGradientBrush EndPoint="0.5,0.5" StartPoint="0,0">
