@@ -27,7 +27,7 @@ namespace HunterPie.Core.LPlayer.Jobs
             WyvernstakeNextMax = weapon.WyvernstakeNextMax;
         }
     }
-    public class GunLance
+    public class GunLance : Job
     {
         private int totalAmmo;
         private int ammo;
@@ -123,6 +123,7 @@ namespace HunterPie.Core.LPlayer.Jobs
                 }
             }
         }
+        public override int SafijiivaMaxHits => 8;
 
         public delegate void GunLanceEvents(object source, GunLanceEventArgs args);
         public event GunLanceEvents OnTotalAmmoChange;

@@ -13,7 +13,7 @@ namespace HunterPie.Core.LPlayer.Jobs
             ChargeLevel = weapon.ChargeLevel;
         }
     }
-    public class Hammer
+    public class Hammer : Job
     {
         private bool isPowerCharged;
         private int chargeLevel;
@@ -42,6 +42,7 @@ namespace HunterPie.Core.LPlayer.Jobs
                 }
             }
         }
+        public override int SafijiivaMaxHits => 7;
 
         public delegate void HammerEvents(object source, HammerEventArgs args);
         public event HammerEvents OnPowerChargeStateChange;

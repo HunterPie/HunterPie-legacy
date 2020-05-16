@@ -11,7 +11,7 @@ namespace HunterPie.Core.LPlayer.Jobs
             ChargeLevel = weapon.ChargeLevel;
         }
     }
-    public class Bow
+    public class Bow : Job
     {
         private int chargeLevel;
 
@@ -27,6 +27,7 @@ namespace HunterPie.Core.LPlayer.Jobs
                 }
             }
         }
+        public override int SafijiivaMaxHits => 8;
 
         public delegate void BowEvents(object source, BowEventArgs args);
         public event BowEvents OnChargeLevelChange;

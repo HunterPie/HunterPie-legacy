@@ -21,7 +21,7 @@ namespace HunterPie.Core.LPlayer.Jobs
             IsBuffActive = weapon.IsBuffActive;
         }
     }
-    public class SwitchAxe
+    public class SwitchAxe : Job
     {
         private float outerGauge;
         private float swordChargeTimer;
@@ -90,6 +90,7 @@ namespace HunterPie.Core.LPlayer.Jobs
                 }
             }
         }
+        public override int SafijiivaMaxHits => 6;
 
         public delegate void SwitchAxeEvents(object source, SwitchAxeEventArgs args);
         public event SwitchAxeEvents OnOuterGaugeChange;

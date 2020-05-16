@@ -19,7 +19,7 @@ namespace HunterPie.Core.LPlayer.Jobs
             Vials = weapon.Vials;
         }
     }
-    public class ChargeBlade
+    public class ChargeBlade : Job
     {
         private float vialChargeGauge;
         private float shieldBuffTimer;
@@ -91,6 +91,7 @@ namespace HunterPie.Core.LPlayer.Jobs
                 }
             }
         }
+        public override int SafijiivaMaxHits => 8;
 
         public delegate void ChargeBladeEvents(object source, ChargeBladeEventArgs args);
         public event ChargeBladeEvents OnVialChargeGaugeChange;

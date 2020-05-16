@@ -13,7 +13,7 @@ namespace HunterPie.Core.LPlayer.Jobs
             DemonGauge = weapon.DemonGauge;
         }
     }
-    public class DualBlades
+    public class DualBlades : Job
     {
         private bool inDemonMode;
         private float demonGauge;
@@ -42,6 +42,7 @@ namespace HunterPie.Core.LPlayer.Jobs
                 }
             }
         }
+        public override int SafijiivaMaxHits => 20;
 
         public delegate void DualBladesEvents(object source, DualBladesEventArgs args);
         public event DualBladesEvents OnDemonModeToggle;

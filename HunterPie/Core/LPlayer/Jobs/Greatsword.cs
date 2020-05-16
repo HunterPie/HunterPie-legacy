@@ -11,7 +11,7 @@ namespace HunterPie.Core.LPlayer.Jobs
             ChargeLevel = weapon.ChargeLevel;
         }
     }
-    public class Greatsword
+    public class Greatsword : Job
     {
         private uint chargeLevel;
 
@@ -27,6 +27,7 @@ namespace HunterPie.Core.LPlayer.Jobs
                 }
             }
         }
+        public override int SafijiivaMaxHits => 5;
 
         public delegate void GreatswordEvents(object source, GreatswordEventArgs args);
         public event GreatswordEvents OnChargeLevelChange;

@@ -13,7 +13,7 @@ namespace HunterPie.Core.LPlayer.Jobs
             WyvernheartTimer = weapon.WyvernheartTimer;
         }
     }
-    public class HeavyBowgun
+    public class HeavyBowgun : Job
     {
         private float wyvernsnipeTimer;
         private float wyvernheartTimer;
@@ -42,6 +42,7 @@ namespace HunterPie.Core.LPlayer.Jobs
                 }
             }
         }
+        public override int SafijiivaMaxHits => 7;
 
         public delegate void HeavyBowgunEvents(object source, HeavyBowgunEventArgs args);
         public event HeavyBowgunEvents OnWyvernsnipeUpdate;
