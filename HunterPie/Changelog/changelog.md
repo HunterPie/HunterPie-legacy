@@ -9,9 +9,10 @@ HunterPie v1.0.3.91 is now introducing classes widgets, they will display useful
 - Gun Lance
 - Switch Axe
 
-> More weapons will be added throughout the next few days.
+The classes widget also shows information about Safi'jiiva set skill if you have it equipped.
+Consider reading this to know how they work and which information each class shows: [Documentation](https://github.com/Haato3o/HunterPie/wiki/Classes-Widget)
 
-> **Note:** Since this is a **BETA** release, the new widgets are here only for testing, so they have no settings in the settings tab. You can move and rescale them in the design mode though.
+> More weapons will be added eventually.
 
 **Abnormalities Widget**
 
@@ -22,3 +23,14 @@ HunterPie v1.0.3.91 is now introducing classes widgets, they will display useful
     - Resentment
     - Adrenaline
     - Cool Cat
+
+> **Attention:** Make sure to enable them in your abnormalities bar if you want them to be tracked.
+
+**Other Changes**
+- Monster stamina text is now customizable.
+
+**Bug Fixes**
+- Fixed ailments getting cut off when parts are disabled;
+- Fixed custom monster data loader;
+- Fixed HunterPie showing wrong removable parts data;
+- Fixed bug that would crash HunterPie if Discord DLL fails to register a value to the registry;

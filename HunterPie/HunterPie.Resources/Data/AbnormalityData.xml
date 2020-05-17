@@ -103,7 +103,7 @@
     <Abnormality ID="24" Offset="6F0" Icon="ICON_COLDRES"/>
     <Abnormality ID="26" Offset="6F8" Icon="ICON_EXT_HEALTHRECOVERY"/>
     <Abnormality ID="27" Offset="6FC" Icon="ICON_COLDRES"/>
-    <Abnormality ID="30" Offset="708" Icon="ICON_COLDRES"/> <!-- Snowman Head-->
+    <Abnormality ID="30" Offset="708" Icon="ICON_SNOWMANHEAD"/> <!-- Snowman Head-->
     <Abnormality ID="34" Offset="718" Icon="ICON_ATTACKUP"/>
     <Abnormality ID="35" Offset="71C" Icon="ICON_ICERES+"/>
     <Abnormality ID="73" Offset="7B4"/>

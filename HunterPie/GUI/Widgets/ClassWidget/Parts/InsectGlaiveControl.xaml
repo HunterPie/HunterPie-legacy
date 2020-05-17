@@ -139,7 +139,7 @@
                 </Style>
             </Rectangle.Style>
         </Rectangle>
-        <TextBlock Text="{Binding RedBuff, ElementName=IGControl}" Opacity="0.6" HorizontalAlignment="Left" Width="31" Height="14" VerticalAlignment="Top" Margin="41,14,0,0" TextAlignment="Center">
+        <TextBlock Text="{Binding RedBuff, ElementName=IGControl}" Opacity="0.6" HorizontalAlignment="Left" Width="31" Height="14" VerticalAlignment="Top" Margin="40,14,0,0" TextAlignment="Center">
             <TextBlock.Foreground>
                 <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
                     <GradientStop Color="#FFAAAAAA" Offset="1"/>
@@ -293,7 +293,7 @@
                 </Style>
             </Rectangle.Style>
         </Rectangle>
-        <TextBlock Text="{Binding OrangeBuff, ElementName=IGControl}" HorizontalAlignment="Left" Width="31" Height="14" VerticalAlignment="Top" Margin="109,14,0,0" TextAlignment="Center" Opacity="0.6">
+        <TextBlock Text="{Binding OrangeBuff, ElementName=IGControl}" HorizontalAlignment="Left" Width="31" Height="14" VerticalAlignment="Top" Margin="108,14,0,0" TextAlignment="Center" Opacity="0.6">
             <TextBlock.Foreground>
                 <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
                     <GradientStop Color="#FFAAAAAA" Offset="1"/>

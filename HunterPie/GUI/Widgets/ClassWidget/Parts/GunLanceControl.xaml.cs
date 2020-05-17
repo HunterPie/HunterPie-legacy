@@ -129,15 +129,6 @@ namespace HunterPie.GUI.Widgets.ClassWidget.Parts
             Context.OnSafijiivaCounterUpdate += OnSafijiivaCounterUpdate;
         }
 
-        private void OnSafijiivaCounterUpdate(object source, JobEventArgs args)
-        {
-            Dispatcher.BeginInvoke(System.Windows.Threading.DispatcherPriority.Render, new Action(() =>
-            {
-                HasSafiBuff = args.SafijiivaRegenCounter != -1;
-                SafiCounter = args.SafijiivaMaxHits - args.SafijiivaRegenCounter;
-            }));
-        }
-
         public override void UnhookEvents()
         {
             Context.OnAmmoChange -= OnAmmoChange;
@@ -151,6 +142,16 @@ namespace HunterPie.GUI.Widgets.ClassWidget.Parts
             Context = null;
             AmmoHolder.Children.Clear();
             base.UnhookEvents();
+        }
+
+
+        private void OnSafijiivaCounterUpdate(object source, JobEventArgs args)
+        {
+            Dispatcher.BeginInvoke(System.Windows.Threading.DispatcherPriority.Render, new Action(() =>
+            {
+                HasSafiBuff = args.SafijiivaRegenCounter != -1;
+                SafiCounter = args.SafijiivaMaxHits - args.SafijiivaRegenCounter;
+            }));
         }
 
         private void OnWyvernstakeBlastTimerUpdate(object source, GunLanceEventArgs args)

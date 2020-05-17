@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Windows;
+using HunterPie.Core.LPlayer.Jobs;
 using SwitchAxe = HunterPie.Core.LPlayer.Jobs.SwitchAxe;
 using SwitchAxeEventArgs = HunterPie.Core.LPlayer.Jobs.SwitchAxeEventArgs;
 
@@ -96,6 +97,7 @@ namespace HunterPie.GUI.Widgets.ClassWidget.Parts
             Context.OnOuterGaugeChange += OnOuterGaugeUpdate;
             Context.OnSwitchAxeBuffStateChange += OnSwitchAxeBuffStateChange;
             Context.OnSwitchAxeBuffTimerUpdate += OnSwitchAxeBuffUpdate;
+            Context.OnSafijiivaCounterUpdate += OnSafijiivaCounterUpdate;
         }
 
         public override void UnhookEvents()
@@ -104,6 +106,7 @@ namespace HunterPie.GUI.Widgets.ClassWidget.Parts
             Context.OnOuterGaugeChange -= OnOuterGaugeUpdate;
             Context.OnSwitchAxeBuffStateChange -= OnSwitchAxeBuffStateChange;
             Context.OnSwitchAxeBuffTimerUpdate -= OnSwitchAxeBuffUpdate;
+            Context.OnSafijiivaCounterUpdate -= OnSafijiivaCounterUpdate;
             base.UnhookEvents();
         }
 
@@ -114,6 +117,17 @@ namespace HunterPie.GUI.Widgets.ClassWidget.Parts
             OnOuterGaugeUpdate(this, dummyArgs);
             OnSwitchAxeBuffStateChange(this, dummyArgs);
             OnSwitchAxeBuffUpdate(this, dummyArgs);
+            OnSafijiivaCounterUpdate(this, new JobEventArgs(Context));
+        }
+
+
+        private void OnSafijiivaCounterUpdate(object source, Core.LPlayer.Jobs.JobEventArgs args)
+        {
+            Dispatcher.BeginInvoke(System.Windows.Threading.DispatcherPriority.Render, new Action(() =>
+            {
+                HasSafiBuff = args.SafijiivaRegenCounter != -1;
+                SafiCounter = args.SafijiivaMaxHits - args.SafijiivaRegenCounter;
+            }));
         }
 
         private void OnSwitchAxeBuffUpdate(object source, SwitchAxeEventArgs args)

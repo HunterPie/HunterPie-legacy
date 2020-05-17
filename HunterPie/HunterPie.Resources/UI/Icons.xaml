@@ -303,6 +303,49 @@
         </DrawingImage.Drawing>
     </DrawingImage>
     <!-- Abnormalities -->
+    <DrawingImage x:Key="ICON_SNOWMANHEAD">
+        <DrawingImage.Drawing>
+            <DrawingGroup ClipGeometry="M0,0 V64.01 H64.01 V0 H0 Z">
+                <GeometryDrawing Brush="#FFEAF4FF">
+                    <GeometryDrawing.Geometry>
+                        <EllipseGeometry RadiusX="28.1289" RadiusY="28.1289" Center="32.3795,31.3169" />
+                    </GeometryDrawing.Geometry>
+                </GeometryDrawing>
+                <GeometryDrawing Brush="#FFFF7D00" Geometry="F1 M64.01,64.01z M0,0z M41.0057,31.7895L36.2632,26.6913 10.2514,34.5704 34.395,40.9432 41.0057,31.7895z" />
+                <GeometryDrawing Brush="#FF2D2D2D">
+                    <GeometryDrawing.Geometry>
+                        <EllipseGeometry RadiusX="4.5006" RadiusY="4.5631" Center="18.1275,22.5031" />
+                    </GeometryDrawing.Geometry>
+                </GeometryDrawing>
+                <GeometryDrawing Brush="#FF2D2D2D">
+                    <GeometryDrawing.Geometry>
+                        <EllipseGeometry RadiusX="4.5631" RadiusY="4.6256" Center="46.9441,22.9407" />
+                    </GeometryDrawing.Geometry>
+                </GeometryDrawing>
+                <GeometryDrawing Brush="#FF2D2D2D">
+                    <GeometryDrawing.Geometry>
+                        <EllipseGeometry RadiusX="1.1252" RadiusY="1.2502" Center="21.7526,43.0686" />
+                    </GeometryDrawing.Geometry>
+                </GeometryDrawing>
+                <GeometryDrawing Brush="#FF2D2D2D">
+                    <GeometryDrawing.Geometry>
+                        <EllipseGeometry RadiusX="1.1252" RadiusY="1.0627" Center="25.7532,46.6316" />
+                    </GeometryDrawing.Geometry>
+                </GeometryDrawing>
+                <GeometryDrawing Brush="#FF2D2D2D">
+                    <GeometryDrawing.Geometry>
+                        <EllipseGeometry RadiusX="1.2502" RadiusY="1.1252" Center="30.6289,47.6946" />
+                    </GeometryDrawing.Geometry>
+                </GeometryDrawing>
+                <GeometryDrawing Brush="#FF2D2D2D">
+                    <GeometryDrawing.Geometry>
+                        <EllipseGeometry RadiusX="1.1252" RadiusY="1.0627" Center="36.2546,47.5068" />
+                    </GeometryDrawing.Geometry>
+                </GeometryDrawing>
+                <GeometryDrawing Brush="#FF2D2D2D" Geometry="F1 M64.01,64.01z M0,0z M40.0677,42.5061C40.7236,42.5061 41.2553,43.0658 41.2553,43.7562 41.2553,44.4467 40.7236,45.0064 40.0677,45.0064 39.4118,45.0064 38.88,44.4467 38.88,43.7562 38.88,43.0658 39.4117,42.5061 40.0677,42.5061z" />
+            </DrawingGroup>
+        </DrawingImage.Drawing>
+    </DrawingImage>
     <DrawingImage x:Key="ICON_SAFISKILL">
         <DrawingImage.Drawing>
             <DrawingGroup ClipGeometry="M0,0 V64.01 H64.01 V0 H0 Z">

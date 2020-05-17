@@ -388,6 +388,7 @@ Gerade bei den Abnormalitäten / Statusveränderungen des Spielers gibt es mit (
     <Abnormality ID="MISC_024_00" Name="Heißgetränk"/>
     <Abnormality ID="MISC_026_00" Name="HP Regen"/>
     <Abnormality ID="MISC_027_00" Name="Schmelzbausch"/>
+	<Abnormality ID="MISC_030_00" Name="Schneemann-Kopf"/>
     <Abnormality ID="MISC_034_00" Name="Kraftzapfen"/>
     <Abnormality ID="MISC_035_00" Name="Eiswiderstand-Boost (L) (?)"/>
     <Abnormality ID="MISC_073_00" Name="Angriff und Verteidigung hoch (S) (?)"/>
@@ -396,6 +397,11 @@ Gerade bei den Abnormalitäten / Statusveränderungen des Spielers gibt es mit (
     <Abnormality ID="GEAR_002_00" Name="Verstärken (?)"/>
     <Abnormality ID="GEAR_003_00" Name="Schützender Glanz"/>
     <Abnormality ID="GEAR_004_00" Name="Affiniäts-Gleiten (?)"/>
+	<Abnormality ID="GEAR_005_00" Name="Element Beschleunigung"/>
+    <Abnormality ID="GEAR_006_00" Name="Verborgene Kraft"/>
+    <Abnormality ID="GEAR_007_00" Name="Groll (?)"/>
+    <Abnormality ID="GEAR_008_00" Name="Adrenalin"/>
+    <Abnormality ID="GEAR_009_00" Name="Coole Katze (?)"/>
     <Abnormality ID="GEAR_010_00" Name="Frostcraft"/>
     <Abnormality ID="GEAR_015_00" Name="Offensive Verteidigung"/>
     <Abnormality ID="GEAR_016_00" Name="Koaleszenz"/>
@@ -608,6 +614,16 @@ Gerade bei den Abnormalitäten / Statusveränderungen des Spielers gibt es mit (
       <String ID="STATIC_COLOR" Name="Farbe:"/>
       <String ID="STATIC_PRIMARY_SPEC_TOOL_POSITION_DESC" Name="Ändert die Position des primären Spezialgerät-Widgets."/>
       <String ID="STATIC_SECONDARY_SPEC_TOOL_POSITION_DESC" Name="Ändert die Position des sekundären Spezialgerät-Widgets."/>
+	  <!-- Class Widget -->
+      <String ID="ENABLE_INSECT_GLAIVE_HELPER" Name="Aktiviere Insektenglefen Hilfe"/>
+      <String ID="ENABLE_INSECT_GLAIVE_HELPER_DESC" Name="Wenn aktiv, wird das Insektenglefen Widget angezeigt, sobald du diese Waffe ausrüstest."/>
+      <String ID="ENABLE_CHARGE_BLADE_HELPER" Name="Aktiviere Energieklingen Hilfe"/>
+      <String ID="ENABLE_CHARGE_BLADE_HELPER_DESC" Name="Wenn aktiv, wird das Energieklingen Widget angezeigt, sobald du diese Waffe ausrüstest."/>
+      <String ID="ENABLE_SWITCH_AXE_HELPER" Name="Aktiviere Morph-Axt Hilfe"/>
+      <String ID="ENABLE_SWITCH_AXE_HELPER_DESC" Name="Wenn aktiv, wird das Morph-Axt Widget angezeigt, sobald du diese Waffe ausrüstest."/>
+      <String ID="ENABLE_GUN_LANCE_HELPER" Name="Aktiviere Gewehrlanzen Hilfe"/>
+      <String ID="ENABLE_GUN_LANCE_HELPER_DESC" Name="Wenn aktiv, wird das Gewehrlanzen Widget angezeigt, sobald du diese Waffe ausrüstest."/>
+      <String ID="STATIC_CLASSES_BETA_WARNING" Name="Achtung: Die Klassenhelfer Widgets sind noch in der Entwicklung und weitere Klassen werden folgen. Jeder Klassenhelfer hat eigene Einstellungen, also ist es möglich die Positionen der Widgets für die jeweilge Klasse anzupassen. Verwende den Design Modus um dieses Widget zu skalieren und zu ebwegen."/> 
       <!-- Links -->
       <String ID="STATIC_HUNTERPIE_WIKI" Name="Dokumentation"/>
       <String ID="STATIC_HUNTERPIE_WIKI_DESC" Name="HunterPie Offizielle Dokumentation."/>
@@ -643,7 +659,8 @@ Gerade bei den Abnormalitäten / Statusveränderungen des Spielers gibt es mit (
       <String ID="STATIC_HARVEST_BOX_SETTINGS" Name="Erntebox"/>
       <String ID="STATIC_DAMAGE_METER_SETTINGS" Name="Schadens-Widget"/>
       <String ID="STATIC_ABNORM_BAR_SETTINGS" Name="Buff-Leiste"/>
-      <String ID="STATIC_SPECIALIZED_TOOLS_SETTINGS" Name="Specialgeräte"/>
+      <String ID="STATIC_SPECIALIZED_TOOLS_SETTINGS" Name="Spezialgeräte"/>
+	  <String ID="STATIC_CLASSES_SETTINGS" Name="Klassen"/>
       <String ID="STATIC_LINKS_SETTINGS" Name="Links"/>
       <String ID="STATIC_DEBUG_SETTINGS" Name="Debug"/>
     </Settings>

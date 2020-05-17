@@ -1,6 +1,6 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <!--  日本語訳担当：elappale#4205 です。
-      改善点やリクエストなどは HunterPie の Discord に参加して DM 送って頂ければ、
+      改善点やリクエストなどは HunterPie の Discord に参加して DM で送って頂ければ、
       できる範囲で受け付けていますので、気軽にいらしてください！
       This japanese localization file has been translated by elappale#4205.
       If you spot any errors or have any suggestions, please join the HunterPie Discord.
@@ -390,6 +390,7 @@
     <Abnormality ID="MISC_024_00" Name="ホットドリンク"/>
     <Abnormality ID="MISC_026_00" Name="自動回復（温泉）"/>
     <Abnormality ID="MISC_027_00" Name="寒さ耐性（温泉）"/>
+    <Abnormality ID="MISC_030_00" Name="雪だるま"/>
     <Abnormality ID="MISC_034_00" Name="攻撃力ＵＰ（オニボックリ）"/>
     <Abnormality ID="MISC_035_00" Name="氷耐性ＵＰ（氷耐草）"/>
     <Abnormality ID="MISC_073_00" Name="攻撃力ＵＰ＆防御力ＵＰ【小】"/>
@@ -398,6 +399,11 @@
     <Abnormality ID="GEAR_002_00" Name="不屈"/>
     <Abnormality ID="GEAR_003_00" Name="剛刃研磨"/>
     <Abnormality ID="GEAR_004_00" Name="滑走強化"/>
+    <Abnormality ID="GEAR_005_00" Name="属性加速"/>
+    <Abnormality ID="GEAR_006_00" Name="力の開放"/>
+    <Abnormality ID="GEAR_007_00" Name="逆恨み"/>
+    <Abnormality ID="GEAR_008_00" Name="奮起"/>
+    <Abnormality ID="GEAR_009_00" Name="ネコの休憩術"/>
     <Abnormality ID="GEAR_010_00" Name="冰気錬成"/>
     <Abnormality ID="GEAR_015_00" Name="攻めの守勢"/>
     <Abnormality ID="GEAR_016_00" Name="災禍転福"/>
@@ -610,6 +616,16 @@
       <String ID="STATIC_COLOR" Name="色："/>
       <String ID="STATIC_PRIMARY_SPEC_TOOL_POSITION_DESC" Name="メイン特殊装具ウィジェットの位置座標を変更する。"/>
       <String ID="STATIC_SECONDARY_SPEC_TOOL_POSITION_DESC" Name="サブ特殊装具ウィジェットの位置座標を変更する。"/>
+      <!-- Class Widget -->
+      <String ID="ENABLE_INSECT_GLAIVE_HELPER" Name="【操虫棍】の情報を表示する"/>
+      <String ID="ENABLE_INSECT_GLAIVE_HELPER_DESC" Name="有効な場合、操虫棍を装備中に強化時間やゲージ値などの情報が表示されます。"/>
+      <String ID="ENABLE_CHARGE_BLADE_HELPER" Name="【チャージアックス】の情報を表示する"/>
+      <String ID="ENABLE_CHARGE_BLADE_HELPER_DESC" Name="有効な場合、チャージアックスを装備中に強化時間やゲージ値などの情報が表示されます。"/>
+      <String ID="ENABLE_SWITCH_AXE_HELPER" Name="【スラッシュアックス】の情報を表示する"/>
+      <String ID="ENABLE_SWITCH_AXE_HELPER_DESC" Name="有効な場合、スラッシュアックスを装備中に強化時間やゲージ値などの情報が表示されます。"/>
+      <String ID="ENABLE_GUN_LANCE_HELPER" Name="【ガンランス】の情報を表示する"/>
+      <String ID="ENABLE_GUN_LANCE_HELPER_DESC" Name="有効な場合、ガンランスを装備中に強化時間やゲージ値などの情報が表示されます。"/>
+      <String ID="STATIC_CLASSES_BETA_WARNING" Name="《⚠注意：武器ウィジェットは現在まだ制作過程にあり、今後は他の武器種にも対応する予定です。このウィジェットは武器種別に位置と大きさがデザインモードで設定できます。デザインモードについては設定の一般ページを確かめてください。"/>
       <!-- Links -->
       <String ID="STATIC_HUNTERPIE_WIKI" Name="ドキュメンテーション"/>
       <String ID="STATIC_HUNTERPIE_WIKI_DESC" Name="HunterPie 公式 GitHub のドキュメンテーション"/>
@@ -646,6 +662,7 @@
       <String ID="STATIC_DAMAGE_METER_SETTINGS" Name="ダメージウィジェット"/>
       <String ID="STATIC_ABNORM_BAR_SETTINGS" Name="バフ・デバフウィジェット"/>
       <String ID="STATIC_SPECIALIZED_TOOLS_SETTINGS" Name="特殊装具ウィジェット"/>
+      <String ID="STATIC_CLASSES_SETTINGS" Name="武器ウィジェット"/>
       <String ID="STATIC_LINKS_SETTINGS" Name="リンク一覧"/>
       <String ID="STATIC_DEBUG_SETTINGS" Name="デバッグ"/>
     </Settings>
