@@ -368,9 +368,9 @@
     <Abnormality ID="MISC_001_00" Name="Lichibichos"/>
     <Abnormality ID="MISC_002_00" Name="Recuperación rápida"/>
     <Abnormality ID="MISC_004_00" Name="Semilla de poder"/>
-    <Abnormality ID="MISC_004_01" Name="Droga demoníaca"/>
+    <Abnormality ID="MISC_004_01" Name="Píldora de poder"/>
     <Abnormality ID="MISC_008_00" Name="Semilla armadura"/>
-    <Abnormality ID="MISC_008_01" Name="Piel de armadura+"/>
+    <Abnormality ID="MISC_008_01" Name="Píldora armadura"/>
     <Abnormality ID="MISC_013_00" Name="Polvo de demonio"/>
     <Abnormality ID="MISC_014_00" Name="Polvo de cáscara"/>
     <Abnormality ID="MISC_015_00" Name="Droga demoníaca"/>
@@ -383,7 +383,7 @@
     <Abnormality ID="MISC_024_00" Name="Bebida caliente"/>
     <Abnormality ID="MISC_026_00" Name="Regeneración de salud"/>
     <Abnormality ID="MISC_027_00" Name="Resistencia al frío"/>
-    <Abnormality ID="MISC_030_00" Name="Snowman Head"/>
+    <Abnormality ID="MISC_030_00" Name="Muñeco de nieve"/>
     <Abnormality ID="MISC_034_00" Name="Cono de poder"/>
     <Abnormality ID="MISC_035_00" Name="Bonus resistencia al hielo (G)"/>
     <Abnormality ID="MISC_073_00" Name="Mejora ataque/defensa (P)"/>
@@ -392,11 +392,11 @@
     <Abnormality ID="GEAR_002_00" Name="Bonus desmayo"/>
     <Abnormality ID="GEAR_003_00" Name="Acabado protector"/>
     <Abnormality ID="GEAR_004_00" Name="Afinidad deslizante"/>
-    <Abnormality ID="GEAR_005_00" Name="Element Acceleration"/>
-    <Abnormality ID="GEAR_006_00" Name="Latent Power"/>
-    <Abnormality ID="GEAR_007_00" Name="Resentment"/>
-    <Abnormality ID="GEAR_008_00" Name="Adrenaline"/>
-    <Abnormality ID="GEAR_009_00" Name="Cool Cat"/>
+    <Abnormality ID="GEAR_005_00" Name="Acc. elemento"/>
+    <Abnormality ID="GEAR_006_00" Name="Poder latente"/>
+    <Abnormality ID="GEAR_007_00" Name="Furor"/>
+    <Abnormality ID="GEAR_008_00" Name="Adrenalina"/>
+    <Abnormality ID="GEAR_009_00" Name="Gato sofisticado"/>
     <Abnormality ID="GEAR_010_00" Name="Destreza helada (Set Velkhana)"/>
     <Abnormality ID="GEAR_015_00" Name="Bloqueo agresivo"/>
     <Abnormality ID="GEAR_016_00" Name="Coalescecia"/>
@@ -489,8 +489,8 @@
       <String ID="STATIC_IMAGE_QUALITY_DESC" Name="Cambia la calidad de las imágenes."/>
       <String ID="STATIC_TOGGLE_OVERLAY" Name="Alternar Overlay (HotKey):"/>
       <String ID="STATIC_TOGGLE_OVERLAY_DESC" Name="Hotkey para mostrar/ocultar el Overlay."/>
-      <String ID="STATIC_TOGGLE_DESIGN" Name="Activar modo de diseño (HotKey):"/>
-      <String ID="STATIC_TOGGLE_DESIGN_DESC" Name="HotKey para activar el modo de diseño, el cual te permite cambiar la posición de las ventanas manualmente."/>
+      <String ID="STATIC_TOGGLE_DESIGN" Name="Alternar el modo diseñador (HotKey):"/>
+      <String ID="STATIC_TOGGLE_DESIGN_DESC" Name="HotKey para alternar entre el modo normal y el modo diseñador, el cual te permite cambiar la posición y tamaño de las ventanas manualmente."/>
       <String ID="STATIC_OVERLAY_POSITION_DESC" Name="Permite mover las ventanas informativas arrastrandolas manualmente."/>
       <!-- Monster Widget -->
       <String ID="ENABLE_MONSTER_WIDGET" Name="Activar la información del Monstruo"/>
@@ -610,15 +610,15 @@
       <String ID="STATIC_PRIMARY_SPEC_TOOL_POSITION_DESC" Name="Cambia la posición de la herramienta especializada primaria."/>
       <String ID="STATIC_SECONDARY_SPEC_TOOL_POSITION_DESC" Name="Cambia la posición de la herramienta especializada secundaria."/>
       <!-- Class Widget -->
-      <String ID="ENABLE_INSECT_GLAIVE_HELPER" Name="Enable Insect Glaive Helper"/>
-      <String ID="ENABLE_INSECT_GLAIVE_HELPER_DESC" Name="If enabled, the Insect Glaive helper will be visible whenever you equip an Insect Glaive."/>
-      <String ID="ENABLE_CHARGE_BLADE_HELPER" Name="Enable Charge Blade Helper"/>
-      <String ID="ENABLE_CHARGE_BLADE_HELPER_DESC" Name="If enabled, the Charge Blade helper will be visible whenever you equip an Charge Blade."/>
-      <String ID="ENABLE_SWITCH_AXE_HELPER" Name="Enable Switch Axe Helper"/>
-      <String ID="ENABLE_SWITCH_AXE_HELPER_DESC" Name="If enabled, the Switch Axe helper will be visible whenever you equip an Switch Axe."/>
-      <String ID="ENABLE_GUN_LANCE_HELPER" Name="Enable Gun Lance Helper"/>
-      <String ID="ENABLE_GUN_LANCE_HELPER_DESC" Name="If enabled, the Gun Lance helper will be visible whenever you equip an Gun Lance."/>
-      <String ID="STATIC_CLASSES_BETA_WARNING" Name="Attention: Class helpers are still in development and more classes will be supported in the future. Each class helper has it's own settings, so you can have different positions for this widget depending on the class. Use the Design Mode feature to scale and move this widget."/>
+      <String ID="ENABLE_INSECT_GLAIVE_HELPER" Name="Apoyo para Glaive Insecto"/>
+      <String ID="ENABLE_INSECT_GLAIVE_HELPER_DESC" Name="Si lo activas se habilitará un menú informativo para el Glaive Insecto cuando estés equipado con uno en una cacería/expedición."/>
+      <String ID="ENABLE_CHARGE_BLADE_HELPER" Name="Apoyo para Hacha Cargada"/>
+      <String ID="ENABLE_CHARGE_BLADE_HELPER_DESC" Name="Si lo activas se habilitará un menú informativo para la Hacha Cargada cuando estés equipado con una en una cacería/expedición."/>
+      <String ID="ENABLE_SWITCH_AXE_HELPER" Name="Apoyo para Hacha Espada"/>
+      <String ID="ENABLE_SWITCH_AXE_HELPER_DESC" Name="Si lo activas se habilitará un menú informativo para la Hacha Espada cuando estés equipado con una en una cacería/expedición."/>
+      <String ID="ENABLE_GUN_LANCE_HELPER" Name="Apoyo para Lanza Pistola"/>
+      <String ID="ENABLE_GUN_LANCE_HELPER_DESC" Name="Si lo activas se habilitará un menú informativo para la Lanza Pistola cuando estés equipado con una en una cacería/expedición."/>
+      <String ID="STATIC_CLASSES_BETA_WARNING" Name="Atención: Las ventanas de apoyo todavía estan en desarrollo y se irán añadiendo nuevas armas en el futuro. Cada ventana tiene su propia configuración por lo que puedes definir distintas posiciones en función del arma usada. Usa el modo diseñador para modificar el tamaño y posición de las ventanas. Se puede cambiar la tecla para el modo diseñador desde el menú Overlay."/>
       <!-- Links -->
       <String ID="STATIC_HUNTERPIE_WIKI" Name="Documentación"/>
       <String ID="STATIC_HUNTERPIE_WIKI_DESC" Name="Documentación oficial de HunterPie."/>
@@ -655,7 +655,7 @@
       <String ID="STATIC_DAMAGE_METER_SETTINGS" Name="Contador de daño"/>
       <String ID="STATIC_ABNORM_BAR_SETTINGS" Name="Barra de estados"/>
       <String ID="STATIC_SPECIALIZED_TOOLS_SETTINGS" Name="Mantos/Potenciadores"/>
-      <String ID="STATIC_CLASSES_SETTINGS" Name="Classes"/>
+      <String ID="STATIC_CLASSES_SETTINGS" Name="Apoyo para armas"/>
       <String ID="STATIC_LINKS_SETTINGS" Name="Enlaces"/>
       <String ID="STATIC_DEBUG_SETTINGS" Name="Depuración"/>
     </Settings>

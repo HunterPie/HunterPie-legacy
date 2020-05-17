@@ -1,6 +1,6 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
 <Strings lang="Simplified Chinese">
-<!--Translated for HunterPie Ver 1.0.3.90 by FengYuu-->
+<!--Translated for HunterPie Ver 1.0.3.91 by FengYuu-->
   <Monsters>
     <Monster ID="em001_00" Name="雌火龙"/>
     <Monster ID="em001_01" Name="樱火龙"/>
@@ -384,7 +384,7 @@
     <Abnormality ID="MISC_024_00" Name="热饮"/>
     <Abnormality ID="MISC_026_00" Name="温泉：HP回复"/>
     <Abnormality ID="MISC_027_00" Name="温泉：寒冷耐性"/>
-    <Abnormality ID="MISC_030_00" Name="Snowman Head"/>
+    <Abnormality ID="MISC_030_00" Name="雪人头"/>
     <Abnormality ID="MISC_034_00" Name="鬼毬果：攻击UP"/>
     <Abnormality ID="MISC_035_00" Name="冰耐草：冰耐性提升"/>
     <Abnormality ID="MISC_073_00" Name="攻击&amp;防御UP"/>
@@ -393,11 +393,11 @@
     <Abnormality ID="GEAR_002_00" Name="不屈"/>
     <Abnormality ID="GEAR_003_00" Name="刚刃研磨"/>
     <Abnormality ID="GEAR_004_00" Name="滑走强化"/>
-    <Abnormality ID="GEAR_005_00" Name="Element Acceleration"/>
-    <Abnormality ID="GEAR_006_00" Name="Latent Power"/>
-    <Abnormality ID="GEAR_007_00" Name="Resentment"/>
-    <Abnormality ID="GEAR_008_00" Name="Adrenaline"/>
-    <Abnormality ID="GEAR_009_00" Name="Cool Cat"/>
+    <Abnormality ID="GEAR_005_00" Name="属性加速"/>
+    <Abnormality ID="GEAR_006_00" Name="力量解放"/>
+    <Abnormality ID="GEAR_007_00" Name="怨恨"/>
+    <Abnormality ID="GEAR_008_00" Name="振奋"/>
+    <Abnormality ID="GEAR_009_00" Name="猫的休息术"/>
     <Abnormality ID="GEAR_010_00" Name="寒气炼成"/>
     <Abnormality ID="GEAR_015_00" Name="攻击守势"/>
     <Abnormality ID="GEAR_016_00" Name="转祸为福"/>
@@ -611,15 +611,15 @@
       <String ID="STATIC_PRIMARY_SPEC_TOOL_POSITION_DESC" Name="更改第一件特殊衣装部件的位置"/>
       <String ID="STATIC_SECONDARY_SPEC_TOOL_POSITION_DESC" Name="更改第二件特殊衣装部件的位置"/>
       <!-- Class Widget -->
-      <String ID="ENABLE_INSECT_GLAIVE_HELPER" Name="Enable Insect Glaive Helper"/>
-      <String ID="ENABLE_INSECT_GLAIVE_HELPER_DESC" Name="If enabled, the Insect Glaive helper will be visible whenever you equip an Insect Glaive."/>
-      <String ID="ENABLE_CHARGE_BLADE_HELPER" Name="Enable Charge Blade Helper"/>
-      <String ID="ENABLE_CHARGE_BLADE_HELPER_DESC" Name="If enabled, the Charge Blade helper will be visible whenever you equip an Charge Blade."/>
-      <String ID="ENABLE_SWITCH_AXE_HELPER" Name="Enable Switch Axe Helper"/>
-      <String ID="ENABLE_SWITCH_AXE_HELPER_DESC" Name="If enabled, the Switch Axe helper will be visible whenever you equip an Switch Axe."/>
-      <String ID="ENABLE_GUN_LANCE_HELPER" Name="Enable Gun Lance Helper"/>
-      <String ID="ENABLE_GUN_LANCE_HELPER_DESC" Name="If enabled, the Gun Lance helper will be visible whenever you equip an Gun Lance."/>
-      <String ID="STATIC_CLASSES_BETA_WARNING" Name="Attention: Class helpers are still in development and more classes will be supported in the future. Each class helper has it's own settings, so you can have different positions for this widget depending on the class. Use the Design Mode feature to scale and move this widget."/>
+      <String ID="ENABLE_INSECT_GLAIVE_HELPER" Name="操虫棍组件"/>
+      <String ID="ENABLE_INSECT_GLAIVE_HELPER_DESC" Name="如开启，当您装备操虫棍时，小组件便会显示"/>
+      <String ID="ENABLE_CHARGE_BLADE_HELPER" Name="充能斧组件"/>
+      <String ID="ENABLE_CHARGE_BLADE_HELPER_DESC" Name="如开启，当您装备充能斧时，小组件便会显示"/>
+      <String ID="ENABLE_SWITCH_AXE_HELPER" Name="斩击斧组件"/>
+      <String ID="ENABLE_SWITCH_AXE_HELPER_DESC" Name="如开启，当您装备斩击斧时，小组件便会显示"/>
+      <String ID="ENABLE_GUN_LANCE_HELPER" Name="铳枪组件"/>
+      <String ID="ENABLE_GUN_LANCE_HELPER_DESC" Name="如开启，当您装备铳枪时，小组件便会显示"/>
+      <String ID="STATIC_CLASSES_BETA_WARNING" Name="请注意：武器组件仍在开发中，将来会支持更多武器。每种组件均有自己的位置，请在编辑模式中调整"/>
       <!-- Links -->
       <String ID="STATIC_HUNTERPIE_WIKI" Name="支持文件(英文)"/>
       <String ID="STATIC_HUNTERPIE_WIKI_DESC" Name="HunterPie官方文件"/>
@@ -656,7 +656,7 @@
       <String ID="STATIC_DAMAGE_METER_SETTINGS" Name="伤害部件"/>
       <String ID="STATIC_ABNORM_BAR_SETTINGS" Name="状态部件"/>
       <String ID="STATIC_SPECIALIZED_TOOLS_SETTINGS" Name="衣装部件"/>
-      <String ID="STATIC_CLASSES_SETTINGS" Name="Classes"/>
+      <String ID="STATIC_CLASSES_SETTINGS" Name="武器部件"/>
       <String ID="STATIC_LINKS_SETTINGS" Name="相关链接"/>
       <String ID="STATIC_DEBUG_SETTINGS" Name="开发者工具"/>
     </Settings>
