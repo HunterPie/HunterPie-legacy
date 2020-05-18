@@ -153,6 +153,11 @@
     <Part ID="MONSTER_PART_REMOVABLE_BALLOON" Name="Removable Balloon"/>
     <Part ID="MONSTER_PART_REMOVABLE_HORNS_2" Name="Removable Horns #2"/>
     <Part ID="MONSTER_PART_BODY_LEGS" Name="Body And Legs"/>
+    <Part ID="MONSTER_PART_SILVER_SPIKES_HEAD" Name="Silver Spikes (Head)"/>
+    <Part ID="MONSTER_PART_SILVER_SPIKES_LARM" Name="Silver Spikes (Left Arm)"/>
+    <Part ID="MONSTER_PART_SILVER_SPIKES_RARM" Name="Silver Spikes (Right Arm)"/>
+    <Part ID="MONSTER_PART_SILVER_SPIKES_LWING" Name="Silver Spikes (Left Wing)"/>
+    <Part ID="MONSTER_PART_SILVER_SPIKES_RWING" Name="Silver Spikes (Right Wing)"/>
     <!-- Special parts -->
     <Part ID="MONSTER_PART_BIG_FLINCH" Name="Big Flinch"/>
     <Part ID="MONSTER_PART_RAGE" Name="Removable Rage"/>
