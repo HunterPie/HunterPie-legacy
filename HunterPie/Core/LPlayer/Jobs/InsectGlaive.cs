@@ -36,7 +36,7 @@ namespace HunterPie.Core.LPlayer.Jobs
             SecondBuffQueued = weapon.SecondBuffQueued;
         }
     }
-    public class InsectGlaive
+    public class InsectGlaive : Job
     {
         private float redBuff;
         private float whiteBuff;
@@ -169,6 +169,7 @@ namespace HunterPie.Core.LPlayer.Jobs
                 }
             }
         }
+        public override int SafijiivaMaxHits => 10;
 
         public delegate void InsectGlaiveEvents(object source, InsectGlaiveEventArgs args);
         public event InsectGlaiveEvents OnRedBuffUpdate;

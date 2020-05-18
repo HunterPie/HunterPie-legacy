@@ -146,6 +146,13 @@ namespace HunterPie.GUIControls {
             settingsUI.DamageBackgroundOpacity.Value = settings.Overlay.DPSMeter.BackgroundOpacity;
             settingsUI.DamageComponentOpacity.Value = settings.Overlay.DPSMeter.Opacity;
 
+            // Classes Widget
+            settingsUI.switchGunLanceHelper.IsEnabled = settings.Overlay.ClassesWidget.GunLanceHelper.Enabled;
+            settingsUI.switchSwitchAxeHelper.IsEnabled = settings.Overlay.ClassesWidget.SwitchAxeHelper.Enabled;
+            settingsUI.switchChargeBladeHelper.IsEnabled = settings.Overlay.ClassesWidget.ChargeBladeHelper.Enabled;
+            settingsUI.switchInsectGlaiveHelper.IsEnabled = settings.Overlay.ClassesWidget.InsectGlaiveHelper.Enabled;
+            
+
         }
 
         private void saveSettings_Click(object sender, RoutedEventArgs e) {
@@ -251,6 +258,13 @@ namespace HunterPie.GUIControls {
             settings.Overlay.DPSMeter.PartyMembers[3].Color = settingsUI.FourthPlayerColor.Color;
             settings.Overlay.DPSMeter.BackgroundOpacity = (float)settingsUI.DamageBackgroundOpacity.Value;
             settings.Overlay.DPSMeter.Opacity = (float)settingsUI.DamageComponentOpacity.Value;
+
+            // Classes Widget
+            settings.Overlay.ClassesWidget.GunLanceHelper.Enabled = settingsUI.switchGunLanceHelper.IsEnabled;
+            settings.Overlay.ClassesWidget.SwitchAxeHelper.Enabled = settingsUI.switchSwitchAxeHelper.IsEnabled;
+            settings.Overlay.ClassesWidget.ChargeBladeHelper.Enabled = settingsUI.switchChargeBladeHelper.IsEnabled;
+            settings.Overlay.ClassesWidget.InsectGlaiveHelper.Enabled = settingsUI.switchInsectGlaiveHelper.IsEnabled;
+
 
             // Abnormality bars
             int i = 0;

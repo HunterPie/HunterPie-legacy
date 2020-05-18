@@ -62,6 +62,9 @@ namespace HunterPie.GUI.Widgets.ClassWidget
                 case Classes.GunLance:
                     config = classesConfig.GunLanceHelper;
                     break;
+                case Classes.SwitchAxe:
+                    config = classesConfig.SwitchAxeHelper;
+                    break;
                 case Classes.ChargeBlade:
                     config = classesConfig.ChargeBladeHelper;
                     break;                
@@ -86,6 +89,9 @@ namespace HunterPie.GUI.Widgets.ClassWidget
             {
                 case Classes.GunLance:
                     config = classesConfig.GunLanceHelper;
+                    break;
+                case Classes.SwitchAxe:
+                    config = classesConfig.SwitchAxeHelper;
                     break;
                 case Classes.ChargeBlade:
                     config = classesConfig.ChargeBladeHelper;
@@ -157,6 +163,9 @@ namespace HunterPie.GUI.Widgets.ClassWidget
                     case Classes.GunLance:
                         SetClassToGunLance();
                         break;
+                    case Classes.SwitchAxe:
+                        SetClassToSwitchAxe();
+                        break;
                     case Classes.ChargeBlade:
                         SetClassToChargeBlade();
                         break;
@@ -175,6 +184,15 @@ namespace HunterPie.GUI.Widgets.ClassWidget
         {
             var control = new GunLanceControl();
             control.SetContext(Context.Player.GunLance);
+            Container.Children.Add(control);
+
+            ApplySettings();
+        }
+
+        private void SetClassToSwitchAxe()
+        {
+            var control = new SwitchAxeControl();
+            control.SetContext(Context.Player.SwitchAxe);
             Container.Children.Add(control);
 
             ApplySettings();

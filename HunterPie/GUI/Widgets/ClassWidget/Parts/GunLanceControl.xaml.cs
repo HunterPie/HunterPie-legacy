@@ -2,6 +2,7 @@
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Media.Imaging;
+using JobEventArgs = HunterPie.Core.LPlayer.Jobs.JobEventArgs;
 using HunterPie.Logger;
 using GunLance = HunterPie.Core.LPlayer.Jobs.GunLance;
 using GunLanceEventArgs = HunterPie.Core.LPlayer.Jobs.GunLanceEventArgs;
@@ -113,6 +114,7 @@ namespace HunterPie.GUI.Widgets.ClassWidget.Parts
             OnWyvernsFireTimerUpdate(this, dummyArgs);
             OnWyvernstakeBlastTimerUpdate(this, dummyArgs);
             OnBigAmmoChange(this, dummyArgs);
+            OnSafijiivaCounterUpdate(this, new JobEventArgs(Context));
         }
 
         private void HookEvents()
@@ -124,6 +126,7 @@ namespace HunterPie.GUI.Widgets.ClassWidget.Parts
             Context.OnWyvernsFireTimerUpdate += OnWyvernsFireTimerUpdate;
             Context.OnWyvernstakeBlastTimerUpdate += OnWyvernstakeBlastTimerUpdate;
             Context.OnWyvernstakeStateChanged += OnBigAmmoChange;
+            Context.OnSafijiivaCounterUpdate += OnSafijiivaCounterUpdate;
         }
 
         public override void UnhookEvents()
@@ -135,9 +138,20 @@ namespace HunterPie.GUI.Widgets.ClassWidget.Parts
             Context.OnWyvernsFireTimerUpdate -= OnWyvernsFireTimerUpdate;
             Context.OnWyvernstakeBlastTimerUpdate -= OnWyvernstakeBlastTimerUpdate;
             Context.OnWyvernstakeStateChanged -= OnBigAmmoChange;
+            Context.OnSafijiivaCounterUpdate -= OnSafijiivaCounterUpdate;
             Context = null;
             AmmoHolder.Children.Clear();
             base.UnhookEvents();
+        }
+
+
+        private void OnSafijiivaCounterUpdate(object source, JobEventArgs args)
+        {
+            Dispatcher.BeginInvoke(System.Windows.Threading.DispatcherPriority.Render, new Action(() =>
+            {
+                HasSafiBuff = args.SafijiivaRegenCounter != -1;
+                SafiCounter = args.SafijiivaMaxHits - args.SafijiivaRegenCounter;
+            }));
         }
 
         private void OnWyvernstakeBlastTimerUpdate(object source, GunLanceEventArgs args)

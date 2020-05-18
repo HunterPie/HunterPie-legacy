@@ -15,7 +15,7 @@ namespace HunterPie.Core.LPlayer.Jobs
             OuterGauge = weapon.OuterGauge;
         } 
     }
-    public class Longsword
+    public class Longsword : Job
     {
         private float innerGauge;
         private int chargeLevel;
@@ -57,6 +57,7 @@ namespace HunterPie.Core.LPlayer.Jobs
                 }
             }
         }
+        public override int SafijiivaMaxHits => 6;
 
         public delegate void LongswordEvents(object source, LongswordEventArgs args);
         public event LongswordEvents OnInnerGaugeChange;

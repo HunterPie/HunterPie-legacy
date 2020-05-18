@@ -13,6 +13,7 @@ using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
 using HunterPie.Core.LPlayer.Jobs;
+using HunterPie.Logger;
 using ChargeBlade = HunterPie.Core.LPlayer.Jobs.ChargeBlade;
 using ChargeBladeEventArgs = HunterPie.Core.LPlayer.Jobs.ChargeBladeEventArgs;
 
@@ -95,17 +96,14 @@ namespace HunterPie.GUI.Widgets.ClassWidget.Parts
         public static readonly DependencyProperty ShieldBuffOpacityProperty =
             DependencyProperty.Register("ShieldBuffOpacity", typeof(double), typeof(ChargeBladeControl));
 
-
         public string PoweraxeBuff
         {
             get { return (string)GetValue(PoweraxeBuffProperty); }
             set { SetValue(PoweraxeBuffProperty, value); }
         }
 
-        // Using a DependencyProperty as the backing store for PoweraxeBuff.  This enables animation, styling, binding, etc...
         public static readonly DependencyProperty PoweraxeBuffProperty =
             DependencyProperty.Register("PoweraxeBuff", typeof(string), typeof(ChargeBladeControl));
-
 
         public double PoweraxeOpacity
         {
@@ -113,10 +111,10 @@ namespace HunterPie.GUI.Widgets.ClassWidget.Parts
             set { SetValue(PoweraxeOpacityProperty, value); }
         }
 
-        // Using a DependencyProperty as the backing store for PoweraxeOpacity.  This enables animation, styling, binding, etc...
         public static readonly DependencyProperty PoweraxeOpacityProperty =
             DependencyProperty.Register("PoweraxeOpacity", typeof(double), typeof(ChargeBladeControl));
 
+        
         ChargeBlade Context;
 
         public ChargeBladeControl()
@@ -138,6 +136,7 @@ namespace HunterPie.GUI.Widgets.ClassWidget.Parts
             Context.OnVialChargeGaugeChange += OnVialChargeGaugeUpdate;
             Context.OnVialsChange += OnVialsChange;
             Context.OnPoweraxeBuffChange += OnPowerchargeUpdate;
+            Context.OnSafijiivaCounterUpdate += OnSafijiivaCounterUpdate;
         }
 
         public override void UnhookEvents()
@@ -147,6 +146,7 @@ namespace HunterPie.GUI.Widgets.ClassWidget.Parts
             Context.OnVialChargeGaugeChange -= OnVialChargeGaugeUpdate;
             Context.OnVialsChange -= OnVialsChange;
             Context.OnPoweraxeBuffChange -= OnPowerchargeUpdate;
+            Context.OnSafijiivaCounterUpdate -= OnSafijiivaCounterUpdate;
             Context = null;
             base.UnhookEvents();
         }
@@ -160,6 +160,17 @@ namespace HunterPie.GUI.Widgets.ClassWidget.Parts
             OnVialChargeGaugeUpdate(this, dummyArgs);
             OnSwordBuffUpdate(this, dummyArgs);
             OnShieldBuffUpdate(this, dummyArgs);
+            OnSafijiivaCounterUpdate(this, new JobEventArgs(Context));
+        }
+
+
+        private void OnSafijiivaCounterUpdate(object source, JobEventArgs args)
+        {
+            Dispatcher.BeginInvoke(System.Windows.Threading.DispatcherPriority.Render, new Action(() =>
+            {
+                HasSafiBuff = args.SafijiivaRegenCounter != -1;
+                SafiCounter = args.SafijiivaMaxHits - args.SafijiivaRegenCounter;
+            }));
         }
 
         private void OnPowerchargeUpdate(object source, ChargeBladeEventArgs args)

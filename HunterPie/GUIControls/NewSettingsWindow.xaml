@@ -659,6 +659,27 @@
             <TabItem>
                 <TabItem.Header>
                     <Canvas>
+                        <Image Source="{StaticResource ICON_DUALBLADES}" Width="18" Height="18" Canvas.Top="4" Canvas.Left="1"/>
+                        <TextBlock Height="21" Width="181" Canvas.Left="20" FontWeight="Medium" Canvas.Top="2">
+                            <TextBlock.Text>
+                                <Binding Mode="OneTime" XPath="Settings/String[@ID='STATIC_CLASSES_SETTINGS']/@Name"/>
+                            </TextBlock.Text>
+                        </TextBlock>
+                    </Canvas>
+                </TabItem.Header>
+                <ScrollViewer>
+                    <StackPanel >
+                        <custom:Switcher x:Name="switchGunLanceHelper" Text="{Binding Mode=OneTime, XPath=/Strings/Client/Settings/String[@ID\=\'ENABLE_GUN_LANCE_HELPER\']/@Name}" MinWidth="500" ToolTip="{Binding Mode=OneTime, XPath=/Strings/Client/Settings/String[@ID\=\'ENABLE_GUN_LANCE_HELPER_DESC\']/@Name}" HorizontalAlignment="Center" RestartVisibility="Collapsed"/>
+                        <custom:Switcher x:Name="switchSwitchAxeHelper" Text="{Binding Mode=OneTime, XPath=/Strings/Client/Settings/String[@ID\=\'ENABLE_SWITCH_AXE_HELPER\']/@Name}" MinWidth="500" ToolTip="{Binding Mode=OneTime, XPath=/Strings/Client/Settings/String[@ID\=\'ENABLE_SWITCH_AXE_HELPER_DESC\']/@Name}" HorizontalAlignment="Center" RestartVisibility="Collapsed"/>
+                        <custom:Switcher x:Name="switchChargeBladeHelper" Text="{Binding Mode=OneTime, XPath=/Strings/Client/Settings/String[@ID\=\'ENABLE_CHARGE_BLADE_HELPER\']/@Name}" MinWidth="500" ToolTip="{Binding Mode=OneTime, XPath=/Strings/Client/Settings/String[@ID\=\'ENABLE_CHARGE_BLADE_HELPER_DESC\']/@Name}" HorizontalAlignment="Center" RestartVisibility="Collapsed"/>
+                        <custom:Switcher x:Name="switchInsectGlaiveHelper" Text="{Binding Mode=OneTime, XPath=/Strings/Client/Settings/String[@ID\=\'ENABLE_INSECT_GLAIVE_HELPER\']/@Name}" MinWidth="500" ToolTip="{Binding Mode=OneTime, XPath=/Strings/Client/Settings/String[@ID\=\'ENABLE_INSECT_GLAIVE_HELPER_DESC\']/@Name}" HorizontalAlignment="Center" RestartVisibility="Collapsed"/>
+                        <TextBlock Foreground="WhiteSmoke" FontWeight="Light" TextWrapping="WrapWithOverflow" Text="{Binding Mode=OneTime, XPath=/Strings/Client/Settings/String[@ID\=\'STATIC_CLASSES_BETA_WARNING\']/@Name}"/>
+                    </StackPanel>
+                </ScrollViewer>
+            </TabItem>
+            <TabItem>
+                <TabItem.Header>
+                    <Canvas>
                         <Image Source="{StaticResource ICON_LINK}" Width="15" Height="15" Canvas.Top="8" Canvas.Left="1"/>
                         <TextBlock Height="21" Width="181" Canvas.Left="20" FontWeight="Medium" Canvas.Top="2">
                             <TextBlock.Text>

@@ -136,11 +136,15 @@
     <Compile Include="Core\LPlayer\Jobs\GunLance.cs" />
     <Compile Include="Core\LPlayer\Jobs\Hammer.cs" />
     <Compile Include="Core\LPlayer\Jobs\HeavyBowgun.cs" />
+    <Compile Include="Core\LPlayer\Jobs\HuntingHorn.cs" />
     <Compile Include="Core\LPlayer\Jobs\InsectGlaive.cs" />
+    <Compile Include="Core\LPlayer\Jobs\Job.cs" />
+    <Compile Include="Core\LPlayer\Jobs\Lance.cs" />
     <Compile Include="Core\LPlayer\Jobs\LightBowgun.cs" />
     <Compile Include="Core\LPlayer\Jobs\Longsword.cs" />
     <Compile Include="Core\LPlayer\Jobs\SwitchAxe.cs" />
     <Compile Include="Core\LPlayer\Jobs\Greatsword.cs" />
+    <Compile Include="Core\LPlayer\Jobs\SwordAndShield.cs" />
     <Compile Include="Core\Monsters\Ailment.cs" />
     <Compile Include="Core\Monsters\AilmentInfo.cs" />
     <Compile Include="Core\Monsters\MonsterData.cs" />
@@ -297,6 +301,10 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
+    <Page Include="GUI\Widgets\ClassWidget\Parts\SwitchAxeControl.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="GUI\Widgets\DPSMeter\Meter.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -384,6 +392,9 @@
     </Compile>
     <Compile Include="GUI\Widgets\ClassWidget\Parts\InsectGlaiveControl.xaml.cs">
       <DependentUpon>InsectGlaiveControl.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="GUI\Widgets\ClassWidget\Parts\SwitchAxeControl.xaml.cs">
+      <DependentUpon>SwitchAxeControl.xaml</DependentUpon>
     </Compile>
     <Compile Include="GUI\Widgets\DPSMeter\Meter.xaml.cs">
       <DependentUpon>Meter.xaml</DependentUpon>

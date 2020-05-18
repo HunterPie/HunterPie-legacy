@@ -24,6 +24,20 @@
         </Setter>
     </Style>
 
+    <Style x:Key="OVERLAY_MONSTER_STAMINA_TEXT_STYLE" TargetType="TextBlock">
+        <Setter Property="Foreground">
+            <Setter.Value>
+                <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
+                    <GradientStop Color="White" Offset="0"/>
+                    <GradientStop Color="#FF919191" Offset="1"/>
+                </LinearGradientBrush>
+            </Setter.Value>
+        </Setter>
+        <Setter Property="Margin" Value="0,16,27,15"/>
+        <Setter Property="TextAlignment" Value="Right"/>
+        <Setter Property="Width" Value="95"/>
+    </Style>
+    
     <SolidColorBrush x:Key="OVERLAY_BARS_BACKGROUND">#7F131313</SolidColorBrush>
     
     <LinearGradientBrush x:Key="OVERLAY_MONSTER_STAMINA_BAR_COLOR" EndPoint="1,0" StartPoint="0,0">

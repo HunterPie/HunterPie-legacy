@@ -749,7 +749,6 @@ namespace HunterPie.Core
             long abnormalityGearBase = Scanner.READ_MULTILEVEL_PTR(
                 Address.BASE + Address.ABNORMALITY_OFFSET,
                 Address.Offsets.AbnormalityGearOffsets);
-
             foreach (AbnormalityInfo abnormality in AbnormalityData.GearAbnormalities)
             {
                 UpdateAbnormality(abnormality, (abnormality.IsGearBuff ? abnormalityGearBase : abnormalityBaseAddress));
@@ -816,15 +815,20 @@ namespace HunterPie.Core
 
         private void GetJobInformation()
         {
+            Int64 AbnormAddress = Scanner.READ_MULTILEVEL_PTR(Address.BASE + Address.ABNORMALITY_OFFSET, Address.Offsets.AbnormalityOffsets);
+            bool HasSafiBuff = Scanner.Read<int>(AbnormAddress + 0x954) >= 1;
+            int SafiCounter = HasSafiBuff ? Scanner.Read<int>(AbnormAddress + 0x7A8) : -1;
             long weaponAddress = Scanner.READ_MULTILEVEL_PTR(Address.BASE + Address.WEAPON_MECHANICS_OFFSET, Address.Offsets.WeaponMechanicsOffsets);
             ClassAddress = weaponAddress;
             switch((Classes)WeaponID)
             {
                 case Classes.Greatsword:
                     GetGreatswordInformation(weaponAddress);
+                    Greatsword.SafijiivaRegenCounter = SafiCounter;
                     break;
                 case Classes.DualBlades:
                     GetDualBladesInformation(weaponAddress);
+                    DualBlades.SafijiivaRegenCounter = SafiCounter;
                     break;
                 case Classes.LongSword:
                     GetLongswordInformation(weaponAddress);
@@ -833,16 +837,20 @@ namespace HunterPie.Core
                     GetHammerInformation(weaponAddress);
                     break;
                 case Classes.GunLance:
-                    GetGunLanceInformation(weaponAddress);
+                    GetGunLanceInformation(weaponAddress, AbnormAddress);
+                    GunLance.SafijiivaRegenCounter = SafiCounter;
                     break;
                 case Classes.SwitchAxe:
                     GetSwitchAxeInformation(weaponAddress);
+                    SwitchAxe.SafijiivaRegenCounter = SafiCounter;
                     break;
                 case Classes.ChargeBlade:
                     GetChargeBladeInformation(weaponAddress);
+                    ChargeBlade.SafijiivaRegenCounter = SafiCounter;
                     break;
                 case Classes.InsectGlaive:
                     GetInsectGlaiveInformation(weaponAddress);
+                    InsectGlaive.SafijiivaRegenCounter = SafiCounter;
                     break;
                 case Classes.Bow:
                     GetBowInformation(weaponAddress);
@@ -888,9 +896,9 @@ namespace HunterPie.Core
             Hammer.ChargeLevel = chargeLevel;
         }
 
-        private void GetGunLanceInformation(long weaponAddress)
+        private void GetGunLanceInformation(long weaponAddress, long AbnormAddress)
         {
-            long AbnormalitiesAddress = Scanner.READ_MULTILEVEL_PTR(Address.BASE + Address.ABNORMALITY_OFFSET, Address.Offsets.AbnormalityOffsets);
+            long AbnormalitiesAddress = AbnormAddress;
             int totalAmmo = Scanner.Read<int>(weaponAddress - 0x4);
             int currentAmmo = Scanner.Read<int>(weaponAddress);
             int totalBigAmmo = Scanner.Read<int>(weaponAddress + 0x10);
@@ -918,10 +926,22 @@ namespace HunterPie.Core
 
         private void GetSwitchAxeInformation(long weaponAddress)
         {
+            Int64 buffAddress = Scanner.READ_MULTILEVEL_PTR(Address.BASE + Address.EQUIPMENT_OFFSET, Address.Offsets.PlayerGearOffsets);
             float outerGauge = Scanner.Read<float>(weaponAddress - 0xC);
+            float swordChargeTimer = Scanner.Read<float>(weaponAddress - 0x8);
             float innerGauge = Scanner.Read<float>(weaponAddress - 0x1C);
+            float switchAxeBuff = 0;
+            bool isAxeBuffActive = Scanner.Read<byte>(buffAddress - 0xCC - 0x858 - 0x3) == 1;
+            if (isAxeBuffActive)
+            {
+                switchAxeBuff = Scanner.Read<float>(buffAddress - 0xCC - 0x858);
+            }
             SwitchAxe.OuterGauge = outerGauge;
+            SwitchAxe.SwordChargeMaxTimer = swordChargeTimer > SwitchAxe.SwordChargeMaxTimer || swordChargeTimer <= 0 ? swordChargeTimer : SwitchAxe.SwordChargeMaxTimer;
+            SwitchAxe.SwordChargeTimer = swordChargeTimer;
             SwitchAxe.InnerGauge = innerGauge;
+            SwitchAxe.IsBuffActive = isAxeBuffActive;
+            SwitchAxe.SwitchAxeBuffTimer = switchAxeBuff;
         }
 
         private void GetChargeBladeInformation(long weaponAddress)

@@ -383,6 +383,7 @@
     <Abnormality ID="MISC_024_00" Name="Bebida Quente"/>
     <Abnormality ID="MISC_026_00" Name="Regen. Vida"/>
     <Abnormality ID="MISC_027_00" Name="Res. Frio"/>
+    <Abnormality ID="MISC_030_00" Name="Boneco De Neve"/>
     <Abnormality ID="MISC_034_00" Name="Powercone"/>
     <Abnormality ID="MISC_035_00" Name="Res. Gelo (G)"/>
     <Abnormality ID="MISC_073_00" Name="Mais Ataque &amp; Mais Def. (S)"/>
@@ -391,6 +392,11 @@
     <Abnormality ID="GEAR_002_00" Name="Fortificar"/>
     <Abnormality ID="GEAR_003_00" Name="Polimento Protetor"/>
     <Abnormality ID="GEAR_004_00" Name="Deslizada de Afinidade"/>
+    <Abnormality ID="GEAR_005_00" Name="Elemento Gradual"/>
+    <Abnormality ID="GEAR_006_00" Name="Poder Latente"/>
+    <Abnormality ID="GEAR_007_00" Name="Indignação"/>
+    <Abnormality ID="GEAR_008_00" Name="Adrenalina"/>
+    <Abnormality ID="GEAR_009_00" Name="Cool Cat"/>
     <Abnormality ID="GEAR_010_00" Name="Frigidez"/>
     <Abnormality ID="GEAR_015_00" Name="Bloqueio Ofensivo"/>
     <Abnormality ID="GEAR_016_00" Name="Coalescência"/>
@@ -603,6 +609,16 @@
       <String ID="STATIC_COLOR" Name="Cor:"/>
       <String ID="STATIC_PRIMARY_SPEC_TOOL_POSITION_DESC" Name="Muda a posição do widget de ferramenta primária."/>
       <String ID="STATIC_SECONDARY_SPEC_TOOL_POSITION_DESC" Name="Muda a posição do widget de ferramenta secundária."/>
+      <!-- Class Widget -->
+      <String ID="ENABLE_INSECT_GLAIVE_HELPER" Name="Habilitar widget da Glaive Inseto"/>
+      <String ID="ENABLE_INSECT_GLAIVE_HELPER_DESC" Name="Se habilitado, o widget da Glaive Inseto será mostrado sempre que você equipar a Glaive Inseto."/>
+      <String ID="ENABLE_CHARGE_BLADE_HELPER" Name="Habilitar widget da Lâmina Dínamo"/>
+      <String ID="ENABLE_CHARGE_BLADE_HELPER_DESC" Name="Se habilitado, o widget da Lâmina Dínamo será mostrado sempre que você equipar a Lâmina Dínamo."/>
+      <String ID="ENABLE_SWITCH_AXE_HELPER" Name="Habilitar widget do Transmachado"/>
+      <String ID="ENABLE_SWITCH_AXE_HELPER_DESC" Name="Se habilitado, o widget do Transmachado será mostrado sempre que você equipar o Transmachado."/>
+      <String ID="ENABLE_GUN_LANCE_HELPER" Name="Habilitar widget da Lançarma"/>
+      <String ID="ENABLE_GUN_LANCE_HELPER_DESC" Name="Se habilitado, o widget da Lançarma será mostrado sempre que você equipar a Lançarma."/>
+      <String ID="STATIC_CLASSES_BETA_WARNING" Name="Atenção: O auxiliador de classe ainda está em desenvolvimento e mais classes serão suportadas no futuro. Cada classe tem sua própria configuração, então você pode ter diferentes posições para cada classe. Use o Modo de Design para aumentar, diminuir ou mover este widget."/>
       <!-- Links -->
       <String ID="STATIC_HUNTERPIE_WIKI" Name="Documentação"/>
       <String ID="STATIC_HUNTERPIE_WIKI_DESC" Name="Documentação oficial do HunterPie."/>
@@ -639,6 +655,7 @@
       <String ID="STATIC_DAMAGE_METER_SETTINGS" Name="Medidor de Dano"/>
       <String ID="STATIC_ABNORM_BAR_SETTINGS" Name="Barra de Buffs"/>
       <String ID="STATIC_SPECIALIZED_TOOLS_SETTINGS" Name="Ferramentas"/>
+      <String ID="STATIC_CLASSES_SETTINGS" Name="Classes"/>
       <String ID="STATIC_LINKS_SETTINGS" Name="Links"/>
       <String ID="STATIC_DEBUG_SETTINGS" Name="Debug"/>
     </Settings>

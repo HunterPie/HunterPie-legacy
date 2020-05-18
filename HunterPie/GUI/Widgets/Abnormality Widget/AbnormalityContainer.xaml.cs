@@ -177,6 +177,7 @@ namespace HunterPie.GUI.Widgets.Abnormality_Widget
                 };
                 AbnormalityBox.Initialize(args.Abnormality);
                 ActiveAbnormalities.Add(args.Abnormality.InternalID, AbnormalityBox);
+                RedrawComponent();
             }));
         }
 

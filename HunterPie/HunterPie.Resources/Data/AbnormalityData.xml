@@ -103,6 +103,7 @@
     <Abnormality ID="24" Offset="6F0" Icon="ICON_COLDRES"/>
     <Abnormality ID="26" Offset="6F8" Icon="ICON_EXT_HEALTHRECOVERY"/>
     <Abnormality ID="27" Offset="6FC" Icon="ICON_COLDRES"/>
+    <Abnormality ID="30" Offset="708" Icon="ICON_SNOWMANHEAD"/> <!-- Snowman Head-->
     <Abnormality ID="34" Offset="718" Icon="ICON_ATTACKUP"/>
     <Abnormality ID="35" Offset="71C" Icon="ICON_ICERES+"/>
     <Abnormality ID="73" Offset="7B4"/>
@@ -113,6 +114,11 @@
     <Abnormality ID="2" Offset="764" Icon="ICON_ATTACKUP"/>
     <Abnormality ID="3" Offset="76C" Icon="ICON_ARMORSKILL_DARKRED"/>
     <Abnormality ID="4" Offset="770" Icon="ICON_AFFINITY"/>
+    <Abnormality ID="5" Offset="730" Icon="ICON_ELEATTACKUP"/> <!-- Element Acceleration -->
+    <Abnormality ID="6" Offset="738" Icon="ICON_AFFINITY"/> <!-- Latent Power -->
+    <Abnormality ID="7" Offset="74C"/> <!-- Resentment -->
+    <Abnormality ID="8" Offset="754" Icon="ICON_ARMORSKILL_SALMON"/> <!-- Adrenaline -->
+    <Abnormality ID="9" Offset="7C8"/> <!-- Cool Cat (Food skill) -->
     <Abnormality ID="10" Offset="788" Icon="ICON_ARMORSKILL_WHITE"/>
     <Abnormality ID="15" Offset="79C" Icon="ICON_ATTACKUP"/>
     <Abnormality ID="16" Offset="7A0" Icon="ICON_ARMORSKILL_PURPLE"/>

@@ -11,7 +11,7 @@ namespace HunterPie.Core.LPlayer.Jobs
             SpecialAmmoRegen = weapon.SpecialAmmoRegen;
         }
     }
-    public class LightBowgun
+    public class LightBowgun : Job
     {
         private float specialAmmoRegen;
 
@@ -27,6 +27,7 @@ namespace HunterPie.Core.LPlayer.Jobs
                 }
             }
         }
+        public override int SafijiivaMaxHits => 10;
 
         public delegate void LightBowgunEvents(object source, LightBowgunEventArgs args);
         public event LightBowgunEvents OnSpecialAmmoRegenUpdate;
