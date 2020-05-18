@@ -167,6 +167,12 @@
     <Part ID="MONSTER_PART_EMERGE_SNOW_HEAD" Name="Emerge From Snow (Head)"/>
     <Part ID="MONSTER_PART_EMERGE_SNOW_BODY" Name="Emerge From Snow (Body)"/>
     <Part ID="MONSTER_PART_EMERGE_SNOW_TAIL" Name="Emerge From Snow (Tail)"/>
+    <Part ID="MONSTER_PART_SPIKES_HEAD" Name="Spikes (Head)"/>
+    <Part ID="MONSTER_PART_SPIKES_LARM" Name="Spikes (Left Arm)"/>
+    <Part ID="MONSTER_PART_SPIKES_RARM" Name="Spikes (Right Arm)"/>
+    <Part ID="MONSTER_PART_SPIKES_LWING" Name="Spikes (Left Wing)"/>
+    <Part ID="MONSTER_PART_SPIKES_RWING" Name="Spikes (Right Wing)"/>
+    <Part ID="MONSTER_PART_SPIKES_TAIL" Name="Spikes (Tail)"/>
   </Parts>
   <Ailments>
     <Ailment ID="STATUS_UNKNOWN" Name="Unknown"/>
