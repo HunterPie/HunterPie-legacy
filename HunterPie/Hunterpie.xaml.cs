@@ -26,6 +26,7 @@ namespace HunterPie {
         Presence Discord;
         Overlay GameOverlay;
         bool OfflineMode = false;
+        bool IsUpdating = true;
 
         // HunterPie version
         const string HUNTERPIE_VERSION = "1.0.3.91";
@@ -52,9 +53,6 @@ namespace HunterPie {
             Debugger.InitializeDebugger();
             UserSettings.InitializePlayerConfig();
 
-            // Convert the old HotKey to the new one
-            ConvertOldHotkeyToNew(UserSettings.PlayerConfig.Overlay.ToggleDesignModeKey);
-
             // Initialize localization
             GStrings.InitStrings(UserSettings.PlayerConfig.HunterPie.Language);
 
@@ -64,13 +62,17 @@ namespace HunterPie {
 
             InitializeComponent();
 
-            Width = UserSettings.PlayerConfig.HunterPie.Width;
-            Height = UserSettings.PlayerConfig.HunterPie.Height;
-
             OpenDebugger();
             // Initialize everything under this line
             if (!CheckIfUpdateEnableAndStart()) return;
 
+            Width = UserSettings.PlayerConfig.HunterPie.Width;
+            Height = UserSettings.PlayerConfig.HunterPie.Height;
+
+            // Convert the old HotKey to the new one
+            ConvertOldHotkeyToNew(UserSettings.PlayerConfig.Overlay.ToggleDesignModeKey);
+
+            IsUpdating = false;
             InitializeTrayIcon();
 
             // Update version text
@@ -591,7 +593,7 @@ namespace HunterPie {
 
         private void OnWindowClosing(object sender, System.ComponentModel.CancelEventArgs e)
         {
-            UserSettings.SaveNewConfig();
+            if (!IsUpdating) UserSettings.SaveNewConfig();
             this.Hide();
             // Dispose tray icon
             if (TrayIcon != null)

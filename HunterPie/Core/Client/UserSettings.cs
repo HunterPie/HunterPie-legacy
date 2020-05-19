@@ -5,6 +5,8 @@ using System.Linq;
 using System.Collections.Generic;
 using HunterPie.Logger;
 using HunterPie.Core.LPlayer.Jobs;
+using System.Windows;
+using System.Threading;
 
 namespace HunterPie.Core {
     public class UserSettings {
@@ -248,11 +250,11 @@ namespace HunterPie.Core {
             // Use try/catch because FileSystemWatcher sends the same event twice
             // and one of them is when the file is still open 
             try {
-                using (var fw = File.OpenWrite(e.FullPath)) {
+                using (var fw = File.OpenRead(e.FullPath)) {
                     fw.Close();
                 }
                 LoadPlayerConfig();
-            } catch {}
+            } catch { }
         }
 
         public static string GetSerializedDefaultConfig() {
@@ -269,20 +271,31 @@ namespace HunterPie.Core {
             
         }
 
+        private static string TryGetConfig()
+        {
+            try
+            {
+                string c = File.ReadAllText(ConfigFileName);
+                return c;
+            } catch
+            {
+                return null;
+            }
+        }
+
         private static string LoadPlayerSerializedConfig() {
             string configContent;
+            if (!File.Exists(ConfigFileName))
+            {
+                Debugger.Error($"Config.json was missing. Creating a new one.");
+                MakeNewConfig();
+            }
             try {
                 configContent = File.ReadAllText(ConfigFileName);
-                if (configContent == "null") throw new Exception("Config.json is null");
             } catch (IOException err) {
+                // If there was an IOException, we just use the default config instead
                 Debugger.Error($"Config.json could not be loaded.\n{err}");
-                configContent = ConfigSerialized;
-                if (configContent == null)
-                {
-                    Debugger.Warn("Generating new config");
-                    MakeNewConfig();
-                    configContent = File.ReadAllText(ConfigFileName);
-                }
+                configContent = TryGetConfig() ?? GetSerializedDefaultConfig();
             } catch(Exception err) {
                 Debugger.Error($"Failed to parse config.json!\n{err}");
                 Debugger.Warn("Generating new config");
