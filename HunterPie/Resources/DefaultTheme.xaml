@@ -39,7 +39,15 @@
     </Style>
     
     <SolidColorBrush x:Key="OVERLAY_BARS_BACKGROUND">#7F131313</SolidColorBrush>
-    
+
+    <Style x:Key="OVERLAY_MONSTER_BACKGROUND" TargetType="StackPanel">
+        <Setter Property="Background">
+            <Setter.Value>
+                <SolidColorBrush Color="#FF111111" Opacity="0" />
+            </Setter.Value>
+        </Setter>
+    </Style>
+
     <LinearGradientBrush x:Key="OVERLAY_MONSTER_STAMINA_BAR_COLOR" EndPoint="1,0" StartPoint="0,0">
         <GradientStop Color="#E5ECAF2F" Offset="1"/>
         <GradientStop Color="#E5DE9F15"/>
