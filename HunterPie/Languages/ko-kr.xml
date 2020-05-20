@@ -172,7 +172,7 @@
     <Ailment ID="STATUS_DUNGPOD" Name="슬링어 거름탄"/>
     <Ailment ID="STATUS_SHOCKTRAP" Name="마비 덫"/>
     <Ailment ID="STATUS_PITFALLTRAP" Name="구멍 함정"/>
-	  <Ailment ID="STATUS_VINETRAP" Name="넝쿨 함정"/>
+	<Ailment ID="STATUS_VINETRAP" Name="넝쿨 함정"/>
     <Ailment ID="STATUS_ELDERSEAL" Name="용봉력"/>
     <Ailment ID="STATUS_SMOKING" Name="이블죠의 브레스"/>
     <Ailment ID="STATUS_FELYNETRAP" Name="벌레장 함정"/>
@@ -366,7 +366,7 @@
     <Abnormality ID="DEBUFF_020_00" Name="강폭파 피해"/>
     <Abnormality ID="MISC_000_00" Name="강주약"/>
     <Abnormality ID="MISC_001_00" Name="스태미나 유충"/>
-    <Abnormality ID="MISC_002_00" Name="아스테라저키"/>
+    <Abnormality ID="MISC_002_00" Name="활력제"/>
     <Abnormality ID="MISC_004_00" Name="괴력씨앗"/>
     <Abnormality ID="MISC_004_01" Name="괴력의 환약"/>
     <Abnormality ID="MISC_008_00" Name="인내씨앗"/>
@@ -383,7 +383,7 @@
     <Abnormality ID="MISC_024_00" Name="핫드링크"/>
     <Abnormality ID="MISC_026_00" Name="체력 지속회복"/>
     <Abnormality ID="MISC_027_00" Name="추위 저항"/>
-    <Abnormality ID="MISC_030_00" Name="Snowman Head"/>
+    <Abnormality ID="MISC_030_00" Name="눈사람 머리"/>
     <Abnormality ID="MISC_034_00" Name="귀신방울"/>
     <Abnormality ID="MISC_035_00" Name="얼음속성 방어 강화 UP [대]"/>
     <Abnormality ID="MISC_073_00" Name="공격력 &amp; 방어력 UP [소]"/>
@@ -392,11 +392,11 @@
     <Abnormality ID="GEAR_002_00" Name="불굴"/>
     <Abnormality ID="GEAR_003_00" Name="칼날연마"/>
     <Abnormality ID="GEAR_004_00" Name="활주강화"/>
-    <Abnormality ID="GEAR_005_00" Name="Element Acceleration"/>
-    <Abnormality ID="GEAR_006_00" Name="Latent Power"/>
-    <Abnormality ID="GEAR_007_00" Name="Resentment"/>
-    <Abnormality ID="GEAR_008_00" Name="Adrenaline"/>
-    <Abnormality ID="GEAR_009_00" Name="Cool Cat"/>
+    <Abnormality ID="GEAR_005_00" Name="속성 가속"/>
+    <Abnormality ID="GEAR_006_00" Name="힘의 해방"/>
+    <Abnormality ID="GEAR_007_00" Name="앙심"/>
+    <Abnormality ID="GEAR_008_00" Name="분발"/>
+    <Abnormality ID="GEAR_009_00" Name="야옹 휴식술"/>
     <Abnormality ID="GEAR_010_00" Name="얼음연성"/>
     <Abnormality ID="GEAR_015_00" Name="공격적인 방어"/>
     <Abnormality ID="GEAR_016_00" Name="전화위복"/>
@@ -609,15 +609,15 @@
       <String ID="STATIC_PRIMARY_SPEC_TOOL_POSITION_DESC" Name="첫번째 특수장비 위젯의 위치를 변경."/>
       <String ID="STATIC_SECONDARY_SPEC_TOOL_POSITION_DESC" Name="두번째 특수장비 위젯의 위치를 변경."/>
       <!-- Class Widget -->
-      <String ID="ENABLE_INSECT_GLAIVE_HELPER" Name="Enable Insect Glaive Helper"/>
-      <String ID="ENABLE_INSECT_GLAIVE_HELPER_DESC" Name="If enabled, the Insect Glaive helper will be visible whenever you equip an Insect Glaive."/>
-      <String ID="ENABLE_CHARGE_BLADE_HELPER" Name="Enable Charge Blade Helper"/>
-      <String ID="ENABLE_CHARGE_BLADE_HELPER_DESC" Name="If enabled, the Charge Blade helper will be visible whenever you equip an Charge Blade."/>
-      <String ID="ENABLE_SWITCH_AXE_HELPER" Name="Enable Switch Axe Helper"/>
-      <String ID="ENABLE_SWITCH_AXE_HELPER_DESC" Name="If enabled, the Switch Axe helper will be visible whenever you equip an Switch Axe."/>
-      <String ID="ENABLE_GUN_LANCE_HELPER" Name="Enable Gun Lance Helper"/>
-      <String ID="ENABLE_GUN_LANCE_HELPER_DESC" Name="If enabled, the Gun Lance helper will be visible whenever you equip an Gun Lance."/>
-      <String ID="STATIC_CLASSES_BETA_WARNING" Name="Attention: Class helpers are still in development and more classes will be supported in the future. Each class helper has it's own settings, so you can have different positions for this widget depending on the class. Use the Design Mode feature to scale and move this widget."/>
+      <String ID="ENABLE_INSECT_GLAIVE_HELPER" Name="조충곤 헬퍼 활성화"/>
+      <String ID="ENABLE_INSECT_GLAIVE_HELPER_DESC" Name="옵션이 켜져 있을 경우, 헬퍼는 조충곤을 장착할시에 보여지게 됩니다."/>
+      <String ID="ENABLE_CHARGE_BLADE_HELPER" Name="차지엑스 헬퍼 활성화"/>
+      <String ID="ENABLE_CHARGE_BLADE_HELPER_DESC" Name="옵션이 켜져 있을 경우, 헬퍼는 차지액스를 장착할시에 보여지게 됩니다."/>
+      <String ID="ENABLE_SWITCH_AXE_HELPER" Name="슬래시액스 헬퍼 활성화"/>
+      <String ID="ENABLE_SWITCH_AXE_HELPER_DESC" Name="옵션이 켜져 있을 경우, 헬퍼는 슬래시액스를 장착할시에 보여지게 됩니다."/>
+      <String ID="ENABLE_GUN_LANCE_HELPER" Name="건랜스 헬퍼 활성화"/>
+      <String ID="ENABLE_GUN_LANCE_HELPER_DESC" Name="옵션이 켜져 있을 경우, 헬퍼는 건랜스를 장착할시에 보여지게 됩니다."/>
+      <String ID="STATIC_CLASSES_BETA_WARNING" Name="주의: 무기별 헬퍼는 아직 개발단계에 있으며, 추후 더 많은 무기들이 지원 예정에 있습니다. 무기별 헬퍼 세팅이 가능하기에, 무기에 따라 위젯의 크기나 위치를 다르게 설정가능합니다. 디자인 모드를 활용하여 크기나 위치를 조정하십시오."/>
       <!-- Links -->
       <String ID="STATIC_HUNTERPIE_WIKI" Name="문서"/>
       <String ID="STATIC_HUNTERPIE_WIKI_DESC" Name="HunterPie의 공식 문서."/>
@@ -654,7 +654,7 @@
       <String ID="STATIC_DAMAGE_METER_SETTINGS" Name="데미지 미터기"/>
       <String ID="STATIC_ABNORM_BAR_SETTINGS" Name="버프&amp;디버프"/>
       <String ID="STATIC_SPECIALIZED_TOOLS_SETTINGS" Name="특수장비"/>
-      <String ID="STATIC_CLASSES_SETTINGS" Name="Classes"/>
+      <String ID="STATIC_CLASSES_SETTINGS" Name="무기 위젯"/>
       <String ID="STATIC_LINKS_SETTINGS" Name="외부링크"/>
       <String ID="STATIC_DEBUG_SETTINGS" Name="디버그"/>
     </Settings>

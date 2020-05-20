@@ -160,6 +160,11 @@ namespace HunterPie.GUI.Widgets.ClassWidget
                 WidgetHasContent = !Context.Player.InHarvestZone;
                 switch ((Classes)Context.Player.WeaponID)
                 {
+#if DEBUG
+                    case Classes.LongSword:
+                        SetClassLongSword();
+                        break;
+#endif
                     case Classes.GunLance:
                         SetClassToGunLance();
                         break;
@@ -178,6 +183,13 @@ namespace HunterPie.GUI.Widgets.ClassWidget
                 }
             }));
             
+        }
+
+        private void SetClassLongSword()
+        {
+            var control = new LongswordControl();
+            control.SetContext(Context.Player.Longsword);
+            Container.Children.Add(control);
         }
 
         private void SetClassToGunLance()

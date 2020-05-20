@@ -1,0 +1,57 @@
+﻿<local:ClassControl x:Name="LSControl" x:Class="HunterPie.GUI.Widgets.ClassWidget.Parts.LongswordControl"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:local="clr-namespace:HunterPie.GUI.Widgets.ClassWidget.Parts"
+             xmlns:helper="clr-namespace:HunterPie.GUI.Helpers"
+             mc:Ignorable="d" >
+    <Grid Width="250" Height="200">
+        <!-- Level -->
+        <Rectangle Opacity="0.8" Height="37" VerticalAlignment="Top" HorizontalAlignment="Left" Width="37" Margin="47,75,0,0" RenderTransformOrigin="0.5,0.5" StrokeThickness="2" Stroke="#FF323232">
+            <Rectangle.Fill>
+                <RadialGradientBrush>
+                    <GradientStop Color="#7F191623"/>
+                    <GradientStop Color="#7F1A181D" Offset="1"/>
+                </RadialGradientBrush>
+            </Rectangle.Fill>
+            <Rectangle.RenderTransform>
+                <TransformGroup>
+                    <ScaleTransform/>
+                    <SkewTransform/>
+                    <RotateTransform Angle="45"/>
+                    <TranslateTransform/>
+                </TransformGroup>
+            </Rectangle.RenderTransform>
+        </Rectangle>
+        <helper:Diamond Stroke="Red" Percentage="1" HorizontalAlignment="Left" Height="37" Width="37" VerticalAlignment="Top" Margin="47,75,0,0" RenderTransformOrigin="0.5,0.5">
+            <helper:Diamond.RenderTransform>
+                <TransformGroup>
+                    <ScaleTransform/>
+                    <SkewTransform/>
+                    <RotateTransform Angle="-45"/>
+                    <TranslateTransform/>
+                </TransformGroup>
+            </helper:Diamond.RenderTransform>
+        </helper:Diamond>
+
+        <Rectangle HorizontalAlignment="Left" Width="138" Height="10" VerticalAlignment="Top" Margin="88,83,0,0" RenderTransformOrigin="0.5,0.5">
+            <Rectangle.RenderTransform>
+                <TransformGroup>
+                    <ScaleTransform/>
+                    <SkewTransform AngleX="45"/>
+                    <RotateTransform/>
+                    <TranslateTransform/>
+                </TransformGroup>
+            </Rectangle.RenderTransform>
+            <Rectangle.Fill>
+                <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
+                    <GradientStop Color="#00000000"/>
+                    <GradientStop Color="White" Offset="1"/>
+                    <GradientStop Color="#DDDDDDDD" Offset="0.767"/>
+                    <GradientStop Color="#B2CDCDCD" Offset="0.759"/>
+                </LinearGradientBrush>
+            </Rectangle.Fill>
+        </Rectangle>
+    </Grid>
+</local:ClassControl>
