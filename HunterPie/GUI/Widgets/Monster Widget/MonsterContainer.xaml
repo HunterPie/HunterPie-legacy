@@ -7,5 +7,5 @@
              xmlns:local="clr-namespace:HunterPie.GUI.Widgets"
              mc:Ignorable="d" 
              MinWidth="895" MinHeight="80" ResizeMode="NoResize" SizeToContent="WidthAndHeight" WindowStyle="None" AllowsTransparency="True" ShowInTaskbar="False" Topmost="True" Closing="OnClosing" Background="{x:Null}" MouseDown="OnMouseDown" MouseWheel="OnMouseWheel" SnapsToDevicePixels="True">
-    <StackPanel x:Name="Container" Orientation="Horizontal" SnapsToDevicePixels="True" RenderTransformOrigin="0.5,0.5" Margin="0" VerticalAlignment="Top" HorizontalAlignment="Center"/>
+    <StackPanel x:Name="Container" Orientation="Horizontal" SnapsToDevicePixels="True" RenderTransformOrigin="0.5,0.5" Margin="0" VerticalAlignment="Top" HorizontalAlignment="Center" Style="{DynamicResource OVERLAY_MONSTER_BACKGROUND}"/>
 </src:Widget>
