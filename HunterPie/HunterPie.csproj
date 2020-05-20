@@ -301,6 +301,10 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
+    <Page Include="GUI\Widgets\ClassWidget\Parts\LongswordControl.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="GUI\Widgets\ClassWidget\Parts\SwitchAxeControl.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -392,6 +396,9 @@
     </Compile>
     <Compile Include="GUI\Widgets\ClassWidget\Parts\InsectGlaiveControl.xaml.cs">
       <DependentUpon>InsectGlaiveControl.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="GUI\Widgets\ClassWidget\Parts\LongswordControl.xaml.cs">
+      <DependentUpon>LongswordControl.xaml</DependentUpon>
     </Compile>
     <Compile Include="GUI\Widgets\ClassWidget\Parts\SwitchAxeControl.xaml.cs">
       <DependentUpon>SwitchAxeControl.xaml</DependentUpon>

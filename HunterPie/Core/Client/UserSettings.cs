@@ -292,6 +292,7 @@ namespace HunterPie.Core {
             }
             try {
                 configContent = File.ReadAllText(ConfigFileName);
+                if (configContent == "null") throw new Exception("config.json was null");
             } catch (IOException err) {
                 // If there was an IOException, we just use the default config instead
                 Debugger.Error($"Config.json could not be loaded.\n{err}");
@@ -323,6 +324,7 @@ namespace HunterPie.Core {
         public static void SaveNewConfig() {
             try {
                 string newPlayerConfig = JsonConvert.SerializeObject(PlayerConfig, Formatting.Indented);
+                if (newPlayerConfig == "null") throw new Exception("Whoops! Something went wrong when trying to save your config!");
                 File.WriteAllText(ConfigFileName, newPlayerConfig);
             } catch(Exception err) {
                 Debugger.Error($"Failed to save config.json!\n{err}");
