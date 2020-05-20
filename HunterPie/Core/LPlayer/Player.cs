@@ -832,6 +832,7 @@ namespace HunterPie.Core
                     break;
                 case Classes.LongSword:
                     GetLongswordInformation(weaponAddress);
+                    Longsword.SafijiivaRegenCounter = SafiCounter;
                     break;
                 case Classes.Hammer:
                     GetHammerInformation(weaponAddress);

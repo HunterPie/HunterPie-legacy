@@ -4,14 +4,6 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows;
-using System.Windows.Controls;
-using System.Windows.Data;
-using System.Windows.Documents;
-using System.Windows.Input;
-using System.Windows.Media;
-using System.Windows.Media.Imaging;
-using System.Windows.Navigation;
-using System.Windows.Shapes;
 using JobEventArgs = HunterPie.Core.LPlayer.Jobs.JobEventArgs;
 using Longsword = HunterPie.Core.LPlayer.Jobs.Longsword;
 using LongswordEventArgs = HunterPie.Core.LPlayer.Jobs.LongswordEventArgs;
@@ -23,11 +15,56 @@ namespace HunterPie.GUI.Widgets.ClassWidget.Parts
     /// </summary>
     public partial class LongswordControl : ClassControl
     {
+        string[] OuterGaugeColors = new string[4]
+        {
+            "#FF323232",
+            "#FFF3F3F3",
+            "#FFFCBA03",
+            "#FFB93030"
+        };
+
         Longsword Context;
+
+        public double GaugeWidth
+        {
+            get { return (double)GetValue(GaugeWidthProperty); }
+            set { SetValue(GaugeWidthProperty, value); }
+        }
+
+        public static readonly DependencyProperty GaugeWidthProperty =
+            DependencyProperty.Register("GaugeWidth", typeof(double), typeof(LongswordControl));
+
+        public string OuterGaugeColor
+        {
+            get { return (string)GetValue(OuterGaugeColorProperty); }
+            set { SetValue(OuterGaugeColorProperty, value); }
+        }
+
+        public static readonly DependencyProperty OuterGaugeColorProperty =
+            DependencyProperty.Register("OuterGaugeColor", typeof(string), typeof(LongswordControl));
+
+        public float OuterGaugePercentage
+        {
+            get { return (float)GetValue(OuterGaugePercentageProperty); }
+            set { SetValue(OuterGaugePercentageProperty, value); }
+        }
+
+        public static readonly DependencyProperty OuterGaugePercentageProperty =
+            DependencyProperty.Register("OuterGaugePercentage", typeof(float), typeof(LongswordControl));
 
         public LongswordControl()
         {
+            OuterGaugePercentage = 1;
             InitializeComponent();
+        }
+
+        private void UpdateInformation()
+        {
+            LongswordEventArgs dummyArgs = new LongswordEventArgs(Context);
+            OnChargeLevelChange(this, dummyArgs);
+            OnInnerGaugeChange(this, dummyArgs);
+            OnOuterGaugeChange(this, dummyArgs);
+            OnSafijiivaCounterUpdate(this, new JobEventArgs(Context));
         }
 
         public void SetContext(Longsword ctx)
@@ -57,23 +94,42 @@ namespace HunterPie.GUI.Widgets.ClassWidget.Parts
 
         private void OnSafijiivaCounterUpdate(object source, JobEventArgs args)
         {
-            throw new NotImplementedException();
+            Dispatcher.BeginInvoke(System.Windows.Threading.DispatcherPriority.Render, new Action(() =>
+            {
+                HasSafiBuff = args.SafijiivaRegenCounter != -1;
+                SafiCounter = args.SafijiivaMaxHits - args.SafijiivaRegenCounter;
+            }));
         }
 
         private void OnOuterGaugeChange(object source, LongswordEventArgs args)
         {
-            throw new NotImplementedException();
+            Dispatcher.BeginInvoke(System.Windows.Threading.DispatcherPriority.Render, new Action(() =>
+            {
+                OuterGaugePercentage = args.OuterGauge;
+                OuterGaugeColor = OuterGaugeColors.ElementAtOrDefault(args.ChargeLevel);
+            }));
         }
 
         private void OnInnerGaugeChange(object source, LongswordEventArgs args)
         {
-            throw new NotImplementedException();
+            Dispatcher.BeginInvoke(System.Windows.Threading.DispatcherPriority.Render, new Action(() =>
+            {
+                GaugeWidth = args.InnerGauge * 85;
+            }));
         }
 
         private void OnChargeLevelChange(object source, LongswordEventArgs args)
         {
-            throw new NotImplementedException();
+            Dispatcher.BeginInvoke(System.Windows.Threading.DispatcherPriority.Render, new Action(() =>
+            {
+                OuterGaugePercentage = args.OuterGauge;
+                OuterGaugeColor = OuterGaugeColors.ElementAtOrDefault(args.ChargeLevel);
+            }));
         }
 
+        private void LSControl_Loaded(object sender, RoutedEventArgs e)
+        {
+            UpdateInformation();
+        }
     }
 }

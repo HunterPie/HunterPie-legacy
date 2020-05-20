@@ -176,6 +176,7 @@ namespace HunterPie.Core {
 
             public class ClassesWidget
             {
+                public LongSwordHelper LongSwordHelper { get; set; } = new LongSwordHelper();
                 public ChargeBladeHelper ChargeBladeHelper { get; set; } = new ChargeBladeHelper();
                 public InsectGlaiveHelper InsectGlaiveHelper { get; set; } = new InsectGlaiveHelper();
                 public GunLanceHelper GunLanceHelper { get; set; } = new GunLanceHelper();
@@ -198,6 +199,11 @@ namespace HunterPie.Core {
             }
 
             public class SwitchAxeHelper : WeaponHelperStructure
+            {
+
+            }
+
+            public class LongSwordHelper : WeaponHelperStructure
             {
 
             }
