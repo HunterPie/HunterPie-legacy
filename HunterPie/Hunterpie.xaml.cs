@@ -147,6 +147,7 @@ namespace HunterPie {
                 if (latestVersion) {
                     return true;
                 }
+                Debugger.Log("Updating updater.exe");
                 // This will update Update.exe
                 AutoUpdate au = new AutoUpdate(UserSettings.PlayerConfig.HunterPie.Update.Branch);
                 au.Instance.DownloadFileCompleted += OnUpdaterDownloadComplete;
@@ -171,6 +172,9 @@ namespace HunterPie {
                 Debugger.Warn(GStrings.GetLocalizationByXPath("/Console/String[@ID='MESSAGE_OFFLINEMODE_WARN']"));
                 this.OfflineMode = true;
                 return;
+            } else
+            {
+                Debugger.Error(e.Error);
             }
             HandleUpdaterUpdate();
         }
@@ -594,6 +598,7 @@ namespace HunterPie {
         private void OnWindowClosing(object sender, System.ComponentModel.CancelEventArgs e)
         {
             if (!IsUpdating) UserSettings.SaveNewConfig();
+            Debugger.DumpLog();
             this.Hide();
             // Dispose tray icon
             if (TrayIcon != null)

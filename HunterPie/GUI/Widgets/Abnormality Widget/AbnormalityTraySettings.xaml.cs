@@ -18,16 +18,32 @@ namespace HunterPie.GUI.Widgets.Abnormality_Widget {
         readonly List<AbnormalitySettingControl> abnormalityControls = new List<AbnormalitySettingControl>();
         int buffTrayIndex;
 
+
+
+        public string wTitle
+        {
+            get { return (string)GetValue(wTitleProperty); }
+            set { SetValue(wTitleProperty, value); }
+        }
+
+        // Using a DependencyProperty as the backing store for wTitle.  This enables animation, styling, binding, etc...
+        public static readonly DependencyProperty wTitleProperty =
+            DependencyProperty.Register("wTitle", typeof(string), typeof(AbnormalityTraySettings));
+
+
+
         public AbnormalityTraySettings(int trayIndex = 0) {
             InitializeComponent();
+            
             buffTrayIndex = trayIndex;
-            WindowTitle.Text = $"Settings: {UserSettings.PlayerConfig.Overlay.AbnormalitiesWidget.BarPresets[buffTrayIndex].Name}";
+            wTitle = $"Settings: {UserSettings.PlayerConfig.Overlay.AbnormalitiesWidget.BarPresets[buffTrayIndex].Name}";
 
             PopulateAbnormalities();
             ConfigureWindow();
         }
 
         private void PopulateAbnormalities() {
+            
             PopulateHuntingHornBuffs();
             PopulateOrchestraBuffs();
             PopulateDebuffs();
@@ -42,19 +58,21 @@ namespace HunterPie.GUI.Widgets.Abnormality_Widget {
             TimerTextFormatBox.SelectedIndex = UserSettings.PlayerConfig.Overlay.AbnormalitiesWidget.BarPresets[buffTrayIndex].TimeLeftTextFormat;
             BackgroundOpacitySlider.Value = UserSettings.PlayerConfig.Overlay.AbnormalitiesWidget.BarPresets[buffTrayIndex].BackgroundOpacity;
         }
-
+        
         private void PopulateHuntingHornBuffs() =>
             PopulateAbnormalities(AbnormalityData.HuntingHornAbnormalities, HuntingHornBuffs);
 
         private void PopulateOrchestraBuffs() =>
             PopulateAbnormalities(AbnormalityData.PalicoAbnormalities, PalicoBuffs);
 
-        private void PopulateDebuffs() => PopulateAbnormalities(AbnormalityData.BlightAbnormalities, Debuffs);
+        private void PopulateDebuffs() =>
+            PopulateAbnormalities(AbnormalityData.BlightAbnormalities, Debuffs);
 
         private void PopulateConsumableBuffs() =>
             PopulateAbnormalities(AbnormalityData.MiscAbnormalities, ConsumableBuffs);
 
-        private void PopulateGearBuffs() => PopulateAbnormalities(AbnormalityData.GearAbnormalities, GearBuffs);
+        private void PopulateGearBuffs() =>
+            PopulateAbnormalities(AbnormalityData.GearAbnormalities, GearBuffs);
 
         private void PopulateAbnormalities(IEnumerable<AbnormalityInfo> abnormalities, Panel panel)
         {
@@ -82,7 +100,6 @@ namespace HunterPie.GUI.Widgets.Abnormality_Widget {
                 .Where(a => a.IsEnabled)
                 .Select(a => a.InternalID)
                 .ToArray();
-
             UserSettings.PlayerConfig.Overlay.AbnormalitiesWidget.BarPresets[buffTrayIndex].ShowNames = EnableName.IsEnabled;
             UserSettings.PlayerConfig.Overlay.AbnormalitiesWidget.BarPresets[buffTrayIndex].AcceptedAbnormalities = enabledAbnormalities;
             UserSettings.PlayerConfig.Overlay.AbnormalitiesWidget.BarPresets[buffTrayIndex].Orientation = OrientationSwitcher.IsEnabled ? "Horizontal" : "Vertical";
@@ -91,13 +108,14 @@ namespace HunterPie.GUI.Widgets.Abnormality_Widget {
             UserSettings.PlayerConfig.Overlay.AbnormalitiesWidget.BarPresets[buffTrayIndex].BackgroundOpacity = (float)BackgroundOpacitySlider.Value;
             UserSettings.SaveNewConfig();
         }
-
+        
         private void OnSelectAllButtonClick(object sender, RoutedEventArgs e) => ToggleAllAbnormalitiesInTab(true);
 
         private void OnUnselectAllButtonClick(object sender, RoutedEventArgs e) => ToggleAllAbnormalitiesInTab(false);
 
         private void ToggleAllAbnormalitiesInTab(bool enable)
         {
+            
             ContentControl selectedAbnormalityContainer = (ContentControl)AbnormalitySelectionContainer.SelectedContent;
             Panel selectedAbnormalityPanel = (Panel)selectedAbnormalityContainer.Content;
             

@@ -4,9 +4,6 @@ using System.IO;
 using System.Linq;
 using System.Collections.Generic;
 using HunterPie.Logger;
-using HunterPie.Core.LPlayer.Jobs;
-using System.Windows;
-using System.Threading;
 
 namespace HunterPie.Core {
     public class UserSettings {
