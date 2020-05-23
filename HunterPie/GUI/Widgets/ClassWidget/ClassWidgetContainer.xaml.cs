@@ -59,9 +59,11 @@ namespace HunterPie.GUI.Widgets.ClassWidget
             UserSettings.Config.WeaponHelperStructure config;
             switch((Classes)Context.Player.WeaponID)
             {
+#if DEBUG
                 case Classes.LongSword:
                     config = classesConfig.LongSwordHelper;
                     break;
+#endif
                 case Classes.GunLance:
                     config = classesConfig.GunLanceHelper;
                     break;
@@ -90,9 +92,11 @@ namespace HunterPie.GUI.Widgets.ClassWidget
             UserSettings.Config.WeaponHelperStructure config;
             switch ((Classes)Context.Player.WeaponID)
             {
+#if DEBUG
                 case Classes.LongSword:
                     config = classesConfig.LongSwordHelper;
                     break;
+#endif
                 case Classes.GunLance:
                     config = classesConfig.GunLanceHelper;
                     break;
