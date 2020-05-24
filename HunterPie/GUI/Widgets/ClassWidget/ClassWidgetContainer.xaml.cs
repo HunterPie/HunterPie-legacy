@@ -59,6 +59,11 @@ namespace HunterPie.GUI.Widgets.ClassWidget
             UserSettings.Config.WeaponHelperStructure config;
             switch((Classes)Context.Player.WeaponID)
             {
+#if DEBUG
+                case Classes.LongSword:
+                    config = classesConfig.LongSwordHelper;
+                    break;
+#endif
                 case Classes.GunLance:
                     config = classesConfig.GunLanceHelper;
                     break;
@@ -87,6 +92,11 @@ namespace HunterPie.GUI.Widgets.ClassWidget
             UserSettings.Config.WeaponHelperStructure config;
             switch ((Classes)Context.Player.WeaponID)
             {
+#if DEBUG
+                case Classes.LongSword:
+                    config = classesConfig.LongSwordHelper;
+                    break;
+#endif
                 case Classes.GunLance:
                     config = classesConfig.GunLanceHelper;
                     break;
@@ -190,6 +200,8 @@ namespace HunterPie.GUI.Widgets.ClassWidget
             var control = new LongswordControl();
             control.SetContext(Context.Player.Longsword);
             Container.Children.Add(control);
+
+            ApplySettings();
         }
 
         private void SetClassToGunLance()

@@ -8,7 +8,7 @@
              >
     <Grid Width="210" Height="80">
         <!-- Safi buff -->
-        <Canvas Opacity="0" HorizontalAlignment="Left" Width="46" Height="46" VerticalAlignment="Top" Margin="146,5,0,0">
+        <Canvas Opacity="0" HorizontalAlignment="Left" Width="46" Height="46" VerticalAlignment="Top" Margin="155,0,0,0">
             <Rectangle Height="31" Width="31" VerticalAlignment="Top" HorizontalAlignment="Left" Stroke="#7F272727" StrokeThickness="1.5" Canvas.Left="24" Canvas.Top="1">
                 <Rectangle.Fill>
                     <RadialGradientBrush>
@@ -51,17 +51,17 @@
             </Canvas.Style>
         </Canvas>
         <!-- Kinsect Charge Buff -->
-        <Polyline Points="26 0, 0 26, 26 52" Stroke="{Binding FirstBuffQueued,ElementName=IGControl}" StrokeThickness="2" Height="54" Width="54" Margin="2,16,0,0" VerticalAlignment="Top" HorizontalAlignment="Left">
+        <Polyline Points="26 0, 0 26, 26 52" Stroke="{Binding FirstBuffQueued,ElementName=IGControl}" StrokeThickness="2" Height="54" Width="54" Margin="1,8,0,0" VerticalAlignment="Top" HorizontalAlignment="Left">
             <Polyline.Effect>
                 <DropShadowEffect Color="{Binding FirstBuffQueued,ElementName=IGControl}" ShadowDepth="0" BlurRadius="10"/>
             </Polyline.Effect>
         </Polyline>
-        <Polyline Points="26 0, 52 26, 26 52" Stroke="{Binding SecondBuffQueued,ElementName=IGControl}" StrokeThickness="2" Height="54" Width="54" Margin="2,16,0,0" VerticalAlignment="Top" HorizontalAlignment="Left">
+        <Polyline Points="26 0, 52 26, 26 52" Stroke="{Binding SecondBuffQueued,ElementName=IGControl}" StrokeThickness="2" Height="54" Width="54" Margin="1,8,0,0" VerticalAlignment="Top" HorizontalAlignment="Left">
             <Polyline.Effect>
                 <DropShadowEffect Color="{Binding SecondBuffQueued,ElementName=IGControl}" ShadowDepth="0" BlurRadius="10"/>
             </Polyline.Effect>
         </Polyline>
-        <Rectangle Margin="10,24,0,0" Height="36" VerticalAlignment="Top" HorizontalAlignment="Left" Width="36" RenderTransformOrigin="0.5,0.5">
+        <Rectangle Margin="9,16,0,0" Height="36" VerticalAlignment="Top" HorizontalAlignment="Left" Width="36" RenderTransformOrigin="0.5,0.5">
             <Rectangle.RenderTransform>
                 <TransformGroup>
                     <ScaleTransform/>
@@ -83,8 +83,8 @@
                 </RadialGradientBrush>
             </Rectangle.Fill>
         </Rectangle>
-        <Image Height="24" Width="24" HorizontalAlignment="Left" Margin="16,22,0,0" VerticalAlignment="Top" Source="{Binding KinsectChargeImage, ElementName=IGControl}"/>
-        <TextBlock Text="{Binding ChargeBuffTimer, ElementName=IGControl}" HorizontalAlignment="Left" Width="30" Height="15" VerticalAlignment="Top" Margin="13,43,0,0" TextAlignment="Center" FontFamily="Trebuchet MS">
+        <Image Height="24" Width="24" HorizontalAlignment="Left" Margin="15,14,0,0" VerticalAlignment="Top" Source="{Binding KinsectChargeImage, ElementName=IGControl}"/>
+        <TextBlock Text="{Binding ChargeBuffTimer, ElementName=IGControl}" HorizontalAlignment="Left" Width="35" Height="16" VerticalAlignment="Top" Margin="10,35,0,0" TextAlignment="Center" FontFamily="Trebuchet MS" FontSize="14">
             <TextBlock.Foreground>
                 <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
                     <GradientStop Color="#FFB6B6B6" Offset="1"/>
@@ -94,7 +94,7 @@
         </TextBlock>
 
         <!-- Red buff-->
-        <Rectangle Margin="43,9,0,0" Height="26" VerticalAlignment="Top" HorizontalAlignment="Left" Width="26" RenderTransformOrigin="0.5,0.5" Stroke="#CC464646" StrokeThickness="2" Opacity="0.6" >
+        <Rectangle Margin="59,21,0,0" Height="26" VerticalAlignment="Top" HorizontalAlignment="Left" Width="26" RenderTransformOrigin="0.5,0.5" Stroke="#CC464646" StrokeThickness="2" Opacity="0.6" >
             <Rectangle.Effect>
                 <DropShadowEffect Color="#CCFF3B3B" ShadowDepth="0" BlurRadius="10" Opacity="0"/>
             </Rectangle.Effect>
@@ -139,7 +139,7 @@
                 </Style>
             </Rectangle.Style>
         </Rectangle>
-        <TextBlock Text="{Binding RedBuff, ElementName=IGControl}" Opacity="0.6" HorizontalAlignment="Left" Width="31" Height="14" VerticalAlignment="Top" Margin="40,14,0,0" TextAlignment="Center">
+        <TextBlock Text="{Binding RedBuff, ElementName=IGControl}" Opacity="0.6" HorizontalAlignment="Left" Width="31" Height="14" VerticalAlignment="Top" Margin="56,26,0,0" TextAlignment="Center">
             <TextBlock.Foreground>
                 <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
                     <GradientStop Color="#FFAAAAAA" Offset="1"/>
@@ -171,7 +171,7 @@
         </TextBlock>
 
         <!-- White buff-->
-        <Rectangle Margin="77,9,0,0" Height="26" VerticalAlignment="Top" HorizontalAlignment="Left" Width="26" RenderTransformOrigin="0.5,0.5" Stroke="#CC464646" StrokeThickness="2" Opacity="0.6" >
+        <Rectangle Margin="93,21,0,0" Height="26" VerticalAlignment="Top" HorizontalAlignment="Left" Width="26" RenderTransformOrigin="0.5,0.5" Stroke="#CC464646" StrokeThickness="2" Opacity="0.6" >
             <Rectangle.Effect>
                 <DropShadowEffect Color="#CCF3F3F3" BlurRadius="10" ShadowDepth="0" Opacity="0"/>
             </Rectangle.Effect>
@@ -216,7 +216,7 @@
                 </Style>
             </Rectangle.Style>
         </Rectangle>
-        <TextBlock Text="{Binding WhiteBuff, ElementName=IGControl}" HorizontalAlignment="Left" Width="31" Height="14" VerticalAlignment="Top" Margin="74,14,0,0" TextAlignment="Center" Opacity="0.6">
+        <TextBlock Text="{Binding WhiteBuff, ElementName=IGControl}" HorizontalAlignment="Left" Width="31" Height="14" VerticalAlignment="Top" Margin="90,26,0,0" TextAlignment="Center" Opacity="0.6">
             <TextBlock.Foreground>
                 <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
                     <GradientStop Color="#FFAAAAAA" Offset="1"/>
@@ -248,7 +248,7 @@
         </TextBlock>
 
         <!-- Orange buff-->
-        <Rectangle Margin="111,9,0,0" Height="26" VerticalAlignment="Top" HorizontalAlignment="Left" Width="26" RenderTransformOrigin="0.5,0.5" Stroke="#CC464646" StrokeThickness="2" Opacity="0.6" >
+        <Rectangle Margin="127,21,0,0" Height="26" VerticalAlignment="Top" HorizontalAlignment="Left" Width="26" RenderTransformOrigin="0.5,0.5" Stroke="#CC464646" StrokeThickness="2" Opacity="0.6" >
             <Rectangle.Effect>
                 <DropShadowEffect BlurRadius="10" ShadowDepth="0" Color="#CCFB7D25" Opacity="0"/>
             </Rectangle.Effect>
@@ -293,7 +293,7 @@
                 </Style>
             </Rectangle.Style>
         </Rectangle>
-        <TextBlock Text="{Binding OrangeBuff, ElementName=IGControl}" HorizontalAlignment="Left" Width="31" Height="14" VerticalAlignment="Top" Margin="108,14,0,0" TextAlignment="Center" Opacity="0.6">
+        <TextBlock Text="{Binding OrangeBuff, ElementName=IGControl}" HorizontalAlignment="Left" Width="31" Height="14" VerticalAlignment="Top" Margin="124,26,0,0" TextAlignment="Center" Opacity="0.6">
             <TextBlock.Foreground>
                 <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
                     <GradientStop Color="#FFAAAAAA" Offset="1"/>
@@ -325,7 +325,7 @@
         </TextBlock>
 
         <!--  Kinsect Stamina bar -->
-        <Rectangle Margin="58,44,0,0" HorizontalAlignment="Left" Width="{Binding StaminaBarSize, ElementName=IGControl}" Height="9" VerticalAlignment="Top" RenderTransformOrigin="0.5,0.5">
+        <Rectangle Margin="45,57,0,0" HorizontalAlignment="Left" Width="{Binding ElementName=IGControl, Path=StaminaBarSize}" Height="9" VerticalAlignment="Top" RenderTransformOrigin="0.5,0.5">
             <Rectangle.Fill>
                 <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
                     <GradientStop Color="#FFFFC500" Offset="0.49"/>
@@ -338,7 +338,7 @@
                 </LinearGradientBrush>
             </Rectangle.Fill>
         </Rectangle>
-        <Image Width="103" Source="pack://siteoforigin:,,,/HunterPie.Resources/UI/Class/InsectGlaiveStaminaGauge.png" HorizontalAlignment="Left" Margin="48,42,0,0" Height="13" VerticalAlignment="Top" >
+        <Image Width="142" Source="pack://siteoforigin:,,,/HunterPie.Resources/UI/Class/InsectGlaiveStaminaGauge.png" HorizontalAlignment="Left" Margin="32,55,0,0" Height="13" VerticalAlignment="Top" Stretch="Fill" >
             <Image.OpacityMask>
                 <RadialGradientBrush>
                     <GradientStop Color="#00000000" Offset="0.209"/>

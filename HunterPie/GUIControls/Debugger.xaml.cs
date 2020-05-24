@@ -1,7 +1,11 @@
 ﻿using System;
+using System.Collections.Generic;
+using System.IO;
+using System.Linq;
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Documents;
+using DispatcherOperation = System.Windows.Threading.DispatcherOperation;
 using UserSettings = HunterPie.Core.UserSettings;
 
 
@@ -15,7 +19,7 @@ namespace HunterPie.Logger {
         private static object WARN = "#FFC13D";
         private static object DISCORD = "#52A0FF";
         private static object NORMAL = "#FFFFFF";
-
+        private static DispatcherOperation LastOperation;
         private static Debugger _Instance;
         public static Debugger Instance {
             get {
@@ -78,8 +82,8 @@ namespace HunterPie.Logger {
         private static void PrintOnConsole(string message, object color) {
             DateTime TimeStamp = DateTime.Now;
             message = $"[{TimeStamp.ToLongTimeString()}] {message}\n";
-            _Instance.Dispatcher.BeginInvoke(
-                System.Windows.Threading.DispatcherPriority.ApplicationIdle,
+            LastOperation = _Instance.Dispatcher.BeginInvoke(
+                System.Windows.Threading.DispatcherPriority.Background,
                 new Action(() => {
                     TextRange msg = new TextRange(_Instance.Console.Document.ContentEnd, _Instance.Console.Document.ContentEnd) {
                         Text = message
@@ -88,6 +92,26 @@ namespace HunterPie.Logger {
                     ScrollToEnd();
                 })
             );
+        }
+
+        public static void DumpLog()
+        {
+            LastOperation.Wait();
+            TextRange tr = new TextRange(_Instance.Console.Document.ContentStart, _Instance.Console.Document.ContentEnd);
+            string dir = Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "Logs");
+            if (!Directory.Exists(dir))
+            {
+                Directory.CreateDirectory(dir);
+            }
+            IEnumerable<string> logFiles = Directory.EnumerateFiles(dir);
+            if (logFiles.Count() >= 10)
+            {
+                foreach (string file in logFiles)
+                {
+                    File.Delete(Path.Combine(dir, file));
+                }
+            }
+            File.WriteAllText(Path.Combine(dir, $"{DateTime.Now:dd\\-M\\-yyyy}_{DateTime.Now.GetHashCode()}_DEBUG-HunterPie.log"), tr.Text);
         }
 
     }

@@ -205,7 +205,7 @@ namespace HunterPie.GUI.Widgets.ClassWidget.Parts
             float maxSize = args.KinsectChargeType == KinsectChargeBuff.Yellow || args.KinsectChargeType == KinsectChargeBuff.Both ? 200 : 100;
             Dispatcher.BeginInvoke(System.Windows.Threading.DispatcherPriority.Render, new Action(() =>
             {
-                StaminaBarSize = 85 * (args.KinsectStamina / maxSize);
+                StaminaBarSize = 120 * (args.KinsectStamina / maxSize);
             }));
         }
 

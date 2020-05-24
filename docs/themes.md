@@ -26,6 +26,7 @@ If you look at the file content, you'll see that all styles have a Key, that's t
 | OVERLAY_MONSTER_PART_NAME_TEXT_STYLE          | Style | Changes the monster part name text.                                                    |
 | OVERLAY_MONSTER_PART_COUNTER_BACKGROUND_STYLE | Style | Changes the prism color that is on the left side of the part bar.                      |
 | OVERLAY_MONSTER_PART_COUNTER_TEXT_STYLE       | Style | Changes the text style of the prism that is on the left side of the part/ailments bar. |
+| OVERLAY_MONSTER_BACKGROUND                    | Style | Changes the monster container style.                                                   |
 
 ## Colors, Gradients, etc...
 

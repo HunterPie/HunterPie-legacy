@@ -383,7 +383,7 @@
     <Abnormality ID="MISC_024_00" Name="Горячий Напиток"/>
     <Abnormality ID="MISC_026_00" Name="Регенерация ХП"/>
     <Abnormality ID="MISC_027_00" Name="Сопр Холоду"/>
-    <Abnormality ID="MISC_030_00" Name="Snowman Head"/>
+    <Abnormality ID="MISC_030_00" Name="Голова снеговика"/>
     <Abnormality ID="MISC_034_00" Name="Конус Силы"/>
     <Abnormality ID="MISC_035_00" Name="Сопр Льду (L)"/>
     <Abnormality ID="MISC_073_00" Name="Усил Атаки &amp; Усил Защиты (S)"/>
@@ -392,11 +392,11 @@
     <Abnormality ID="GEAR_002_00" Name="Укрепление"/>
     <Abnormality ID="GEAR_003_00" Name="Защитная полировка"/>
     <Abnormality ID="GEAR_004_00" Name="Мастерский подкат"/>
-    <Abnormality ID="GEAR_005_00" Name="Element Acceleration"/>
-    <Abnormality ID="GEAR_006_00" Name="Latent Power"/>
-    <Abnormality ID="GEAR_007_00" Name="Resentment"/>
-    <Abnormality ID="GEAR_008_00" Name="Adrenaline"/>
-    <Abnormality ID="GEAR_009_00" Name="Cool Cat"/>
+    <Abnormality ID="GEAR_005_00" Name="Ускорение стихии"/>
+    <Abnormality ID="GEAR_006_00" Name="Скрытая сила"/>
+    <Abnormality ID="GEAR_007_00" Name="Провокация"/>
+    <Abnormality ID="GEAR_008_00" Name="Адреналин"/>
+    <Abnormality ID="GEAR_009_00" Name="Классный кот"/>
     <Abnormality ID="GEAR_010_00" Name="Мастерство мороза"/>
     <Abnormality ID="GEAR_015_00" Name="Агрессивная защита"/>
     <Abnormality ID="GEAR_016_00" Name="Сращивание"/>
@@ -457,9 +457,9 @@
       <String ID="ENABLE_AUTOCLOSE_DESC" Name="Если включено, HunterPie будет автоматически закрываться при выходе из игры."/>
       <String ID="STATIC_UPDATEBRANCH" Name="Ветвь обновления:"/>
       <String ID="STATIC_UPDATEBRANCH_DESC" Name="Выберите ветвь для обновления HunterPie. BETA имеет свежайшие нововведения, master наиболее стабильна."/>
-      <String ID="STATIC_LANGUAGEFILE" Name="Язык File:"/>
+      <String ID="STATIC_LANGUAGEFILE" Name="Языковой файл:"/>
       <String ID="STATIC_LANGUAGEFILE_DESC" Name="Выберите языковой файл HunterPie."/>
-      <String ID="STATIC_THEMEFILE" Name="Тема File:"/>
+      <String ID="STATIC_THEMEFILE" Name="Файл темы:"/>
       <String ID="STATIC_THEMEFILE_DESC" Name="Выберите файл темы HunterPie."/>
       <String ID="STATIC_GAMEPATH" Name="Путь к игре:"/>
       <String ID="STATIC_GAMEPATH_UNSELECTED" Name="Выберите путь"/>
@@ -562,7 +562,7 @@
       <String ID="ENABLE_HARVEST_BOX_EVERYWHERE_DESC" Name="Если включено, этот виджет будет отображаться в любом месте, включая экспедиции, Путеводные Земли и любые другие зоны монстров."/>
       <String ID="STATIC_HARVEST_BOX_POSITION_DESC" Name="Изменяет положение виджета «Ящик урожая»."/>
       <String ID="ENABLE_HARVEST_BOX_COMPACT_MODE" Name="Включить компактный режим"/>
-      <String ID="ENABLE_HARVEST_BOX_COMPACT_MODE_DESC" Name="Если включено, виджет Harvest Box будет отображаться в компактном режиме."/>
+      <String ID="ENABLE_HARVEST_BOX_COMPACT_MODE_DESC" Name="Если включено, виджет Ящик урожая будет отображаться в компактном режиме."/>
       <!-- Damage Meter -->
       <String ID="ENABLE_METER" Name="Показывать Счётчик Урона"/>
       <String ID="ENABLE_METER_DESC" Name="Если включено, виджет Счётчик Урона будет виден, когда у него есть контент."/>
@@ -610,15 +610,15 @@
       <String ID="STATIC_PRIMARY_SPEC_TOOL_POSITION_DESC" Name="Изменяет положение виджета основного специального инструмента."/>
       <String ID="STATIC_SECONDARY_SPEC_TOOL_POSITION_DESC" Name="Изменяет положение виджета вторичного специального инструмента."/>
       <!-- Class Widget -->
-      <String ID="ENABLE_INSECT_GLAIVE_HELPER" Name="Enable Insect Glaive Helper"/>
-      <String ID="ENABLE_INSECT_GLAIVE_HELPER_DESC" Name="If enabled, the Insect Glaive helper will be visible whenever you equip an Insect Glaive."/>
-      <String ID="ENABLE_CHARGE_BLADE_HELPER" Name="Enable Charge Blade Helper"/>
-      <String ID="ENABLE_CHARGE_BLADE_HELPER_DESC" Name="If enabled, the Charge Blade helper will be visible whenever you equip an Charge Blade."/>
-      <String ID="ENABLE_SWITCH_AXE_HELPER" Name="Enable Switch Axe Helper"/>
-      <String ID="ENABLE_SWITCH_AXE_HELPER_DESC" Name="If enabled, the Switch Axe helper will be visible whenever you equip an Switch Axe."/>
-      <String ID="ENABLE_GUN_LANCE_HELPER" Name="Enable Gun Lance Helper"/>
-      <String ID="ENABLE_GUN_LANCE_HELPER_DESC" Name="If enabled, the Gun Lance helper will be visible whenever you equip an Gun Lance."/>
-      <String ID="STATIC_CLASSES_BETA_WARNING" Name="Attention: Class helpers are still in development and more classes will be supported in the future. Each class helper has it's own settings, so you can have different positions for this widget depending on the class. Use the Design Mode feature to scale and move this widget."/>
+      <String ID="ENABLE_INSECT_GLAIVE_HELPER" Name="Включить помощника Глефы Насекомых"/>
+      <String ID="ENABLE_INSECT_GLAIVE_HELPER_DESC" Name="Если включено, помощник Глефы Насекомых будет виден при использовании Глефы Насекомых."/>
+      <String ID="ENABLE_CHARGE_BLADE_HELPER" Name="Включить помощника Силового Клинка"/>
+      <String ID="ENABLE_CHARGE_BLADE_HELPER_DESC" Name="Если включено, помощник Силового Клинка будет виден при использовании Силового Клинка."/>
+      <String ID="ENABLE_SWITCH_AXE_HELPER" Name="Включить помощника Выкидного Топора"/>
+      <String ID="ENABLE_SWITCH_AXE_HELPER_DESC" Name="Если включено, помощник Выкидного Топора будет виден при использовании Выкидного Топора."/>
+      <String ID="ENABLE_GUN_LANCE_HELPER" Name="Включить помощника Копьепушки"/>
+      <String ID="ENABLE_GUN_LANCE_HELPER_DESC" Name="Если включено, помощник Копьепушки будет виден при использовании Копьепушки."/>
+      <String ID="STATIC_CLASSES_BETA_WARNING" Name="Внимание: помощники класса все еще находятся в разработке, и в будущем будет поддерживаться больше классов. Каждый помощник класса имеет свои собственные настройки, поэтому вы можете иметь разные позиции для этого виджета в зависимости от класса. Используйте функцию «Режим дизайна» для масштабирования и перемещения этого виджета."/>
       <!-- Links -->
       <String ID="STATIC_HUNTERPIE_WIKI" Name="Документация"/>
       <String ID="STATIC_HUNTERPIE_WIKI_DESC" Name="Официальная документация HunterPie."/>
@@ -636,7 +636,7 @@
       <String ID="ENABLE_UNKNOWN_AILMENTS_DESC" Name="Включает неизвестные статусы монстров. Не включайте эту опцию, если вы не знаете, что делаете. Это часть инструментов разработки."/>
       <String ID="ENABLE_LOAD_CUSTOM_DATA" Name="Загрузить пользовательские данные монстра"/>
       <String ID="ENABLE_LOAD_CUSTOM_DATA_DESC" Name="Если включено, HunterPie будет пытаться загрузить пользовательский файл данных монстра. Не включайте эту опцию, если вы не знаете, что делаете. Это часть инструментов разработки."/>
-      <String ID="STATIC_LOAD_CUSTOM_DATA_PATH" Name="Пользовательские данные монстра File:"/>
+      <String ID="STATIC_LOAD_CUSTOM_DATA_PATH" Name="Пользовательские данные монстра Файл:"/>
       <String ID="STATIC_LOAD_CUSTOM_DATA_PATH_DESC" Name="Выберите путь к собственному файлу данных монстра."/>
       <!-- Generics -->
       <String ID="STATIC_BUTTON_SELECT_ALL" Name="Включить всё"/>
@@ -655,7 +655,7 @@
       <String ID="STATIC_DAMAGE_METER_SETTINGS" Name="Счётчик Урона"/>
       <String ID="STATIC_ABNORM_BAR_SETTINGS" Name="Баффы"/>
       <String ID="STATIC_SPECIALIZED_TOOLS_SETTINGS" Name="Специнструменты"/>
-      <String ID="STATIC_CLASSES_SETTINGS" Name="Classes"/>
+      <String ID="STATIC_CLASSES_SETTINGS" Name="Классы"/>
       <String ID="STATIC_LINKS_SETTINGS" Name="Ссылки"/>
       <String ID="STATIC_DEBUG_SETTINGS" Name="Отладка"/>
     </Settings>

@@ -9,7 +9,7 @@
     <Grid Background="#FF1D1D1D">
         <TextBox x:Name="BarPresetName" Cursor="Arrow" TextWrapping="Wrap" Text="ABNORMALITY BAR" Height="50" Foreground="WhiteSmoke" Background="Transparent" BorderBrush="Transparent" FontSize="14" VerticalScrollBarVisibility="Disabled" MaxHeight="50" Padding="4,13,0,0" FontWeight="Bold" VerticalAlignment="Top" Margin="0,0,246,0" SelectionBrush="{DynamicResource BUTTON_CLOSEWINDOW_BACKGROUND}"/>
         <local:Switcher x:Name="SwitchEnableBar" Text="{Binding XPath=/Strings/Client/Settings/String[@ID\=\'STATIC_ENABLE_ABNORM_BAR\']/@Name}" Height="24" Canvas.Left="259" Canvas.Top="12" Width="180" Margin="0,13,53,13" HorizontalAlignment="Right" RestartVisibility="Collapsed"/>
-        <Image Cursor="Hand" MouseDown="OnBuffTraySettingClick" Source="{DynamicResource ICON_SETTINGS}" Width="20" Height="20" Canvas.Left="451" Canvas.Top="14" Margin="0,14,8,0" HorizontalAlignment="Right" VerticalAlignment="Top">
+        <Image Cursor="Hand" MouseDown="OnBuffTraySettingClick" Source="{StaticResource ICON_SETTINGS}" Width="20" Height="20" Canvas.Left="451" Canvas.Top="14" Margin="0,14,8,0" HorizontalAlignment="Right" VerticalAlignment="Top">
             <Image.Style>
                 <Style TargetType="Image">
                     <Style.Triggers>
