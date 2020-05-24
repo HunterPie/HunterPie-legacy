@@ -379,7 +379,7 @@
       <Part Name="MONSTER_PART_REMOVABLE_TAIL" IsRemovable="True">
         <Break Threshold="1"/>
       </Part>
-      <Part Name="MONSTER_PART_HEAD" Group="HEAD"/>
+      <Part Name="MONSTER_PART_HEAD" Group="HEAD"/> <!-- Heath < 15% && Flinch Counter >= 5 -->
       <Part Name="MONSTER_PART_BODY" Group="BODY"/>
       <Part Name="MONSTER_PART_TAIL" Group="TAIL"/>
       <Part Name="MONSTER_PART_LLIMBS" Group="LIMB"/>
@@ -399,7 +399,7 @@
       <Part Name="MONSTER_PART_REMOVABLE_TAIL" IsRemovable="True">
         <Break Threshold="1"/>
       </Part>
-      <Part Name="MONSTER_PART_HEAD" Group="HEAD"/>
+      <Part Name="MONSTER_PART_HEAD" Group="HEAD"/> <!-- Heath < 15% && Flinch Counter >= 4 -->
       <Part Name="MONSTER_PART_BODY" Group="BODY"/>
       <Part Name="MONSTER_PART_LIMBS" Group="LIMB"/>
       <Part Name="MONSTER_PART_LWING" Group="WING">
@@ -422,7 +422,7 @@
         <Break Threshold="1"/>
       </Part>
       <Part Name="MONSTER_PART_UNKNOWN" IsRemovable="True"/> <!-- Unknown/Flinch -->
-      <Part Name="MONSTER_PART_HEAD" Group="HEAD"/>
+      <Part Name="MONSTER_PART_HEAD" Group="HEAD"/>  <!-- Heath < 20% && Flinch Counter >= 1 -->
       <Part Name="MONSTER_PART_BODY" Group="BODY"/>
       <Part Name="MONSTER_PART_ARMS" Group="ARM"/>
       <Part Name="MONSTER_PART_LEGS" Group="LEG"/>
