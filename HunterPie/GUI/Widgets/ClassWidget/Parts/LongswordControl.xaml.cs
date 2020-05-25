@@ -4,6 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows;
+using HunterPie.Logger;
 using JobEventArgs = HunterPie.Core.LPlayer.Jobs.JobEventArgs;
 using Longsword = HunterPie.Core.LPlayer.Jobs.Longsword;
 using LongswordEventArgs = HunterPie.Core.LPlayer.Jobs.LongswordEventArgs;
@@ -52,8 +53,38 @@ namespace HunterPie.GUI.Widgets.ClassWidget.Parts
         public static readonly DependencyProperty OuterGaugePercentageProperty =
             DependencyProperty.Register("OuterGaugePercentage", typeof(float), typeof(LongswordControl));
 
+        public bool GaugeHasPower
+        {
+            get { return (bool)GetValue(GaugeHasPowerProperty); }
+            set { SetValue(GaugeHasPowerProperty, value); }
+        }
+
+        public static readonly DependencyProperty GaugeHasPowerProperty =
+            DependencyProperty.Register("GaugeHasPower", typeof(bool), typeof(LongswordControl));
+
+        public bool GaugeIsBlinking
+        {
+            get { return (bool)GetValue(GaugeIsBlinkingProperty); }
+            set { SetValue(GaugeIsBlinkingProperty, value); }
+        }
+
+        public static readonly DependencyProperty GaugeIsBlinkingProperty =
+            DependencyProperty.Register("GaugeIsBlinking", typeof(bool), typeof(LongswordControl));
+
+        public string GaugeBlinkDuration
+        {
+            get { return (string)GetValue(GaugeBlinkDurationProperty); }
+            set { SetValue(GaugeBlinkDurationProperty, value); }
+        }
+
+        public static readonly DependencyProperty GaugeBlinkDurationProperty =
+            DependencyProperty.Register("GaugeBlinkDuration", typeof(string), typeof(LongswordControl));
+
+
+
         public LongswordControl()
         {
+            GaugeHasPower = true;
             OuterGaugePercentage = 1;
             InitializeComponent();
         }
@@ -78,14 +109,17 @@ namespace HunterPie.GUI.Widgets.ClassWidget.Parts
             Context.OnChargeLevelChange += OnChargeLevelChange;
             Context.OnInnerGaugeChange += OnInnerGaugeChange;
             Context.OnOuterGaugeChange += OnOuterGaugeChange;
+            Context.OnSpiritGaugeBlinkDurationUpdate += OnSpiritGaugeBlinkDurationUpdate;
             Context.OnSafijiivaCounterUpdate += OnSafijiivaCounterUpdate;
         }
+
 
         public override void UnhookEvents()
         {
             Context.OnChargeLevelChange -= OnChargeLevelChange;
             Context.OnInnerGaugeChange -= OnInnerGaugeChange;
             Context.OnOuterGaugeChange -= OnOuterGaugeChange;
+            Context.OnSpiritGaugeBlinkDurationUpdate -= OnSpiritGaugeBlinkDurationUpdate;
             Context.OnSafijiivaCounterUpdate -= OnSafijiivaCounterUpdate;
             Context = null;
             base.UnhookEvents();
@@ -98,6 +132,16 @@ namespace HunterPie.GUI.Widgets.ClassWidget.Parts
             {
                 HasSafiBuff = args.SafijiivaRegenCounter != -1;
                 SafiCounter = args.SafijiivaMaxHits - args.SafijiivaRegenCounter;
+            }));
+        }
+
+
+        private void OnSpiritGaugeBlinkDurationUpdate(object source, LongswordEventArgs args)
+        {
+            Dispatcher.BeginInvoke(System.Windows.Threading.DispatcherPriority.Render, new Action(() =>
+            {
+                GaugeIsBlinking = args.SpiritGaugeBlinkDuration > 0;
+                GaugeBlinkDuration = TimeSpan.FromSeconds(args.SpiritGaugeBlinkDuration).ToString(args.SpiritGaugeBlinkDuration > 60 ? "m\\:ss" : "ss");
             }));
         }
 
@@ -114,6 +158,7 @@ namespace HunterPie.GUI.Widgets.ClassWidget.Parts
         {
             Dispatcher.BeginInvoke(System.Windows.Threading.DispatcherPriority.Render, new Action(() =>
             {
+                GaugeHasPower = args.InnerGauge > 0;
                 GaugeWidth = args.InnerGauge * 85;
             }));
         }

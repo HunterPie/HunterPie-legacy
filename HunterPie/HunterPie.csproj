@@ -289,6 +289,10 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
+    <Page Include="GUI\Widgets\ClassWidget\Parts\BowControl.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="GUI\Widgets\ClassWidget\Parts\ChargeBladeControl.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -386,6 +390,9 @@
     </Compile>
     <Compile Include="GUI\Widgets\ClassWidget\ClassWidgetContainer.xaml.cs">
       <DependentUpon>ClassWidgetContainer.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="GUI\Widgets\ClassWidget\Parts\BowControl.xaml.cs">
+      <DependentUpon>BowControl.xaml</DependentUpon>
     </Compile>
     <Compile Include="GUI\Widgets\ClassWidget\Parts\ChargeBladeControl.xaml.cs">
       <DependentUpon>ChargeBladeControl.xaml</DependentUpon>

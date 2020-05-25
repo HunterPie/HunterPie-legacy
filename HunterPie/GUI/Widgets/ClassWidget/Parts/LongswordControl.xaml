@@ -92,22 +92,109 @@
         <!-- Gauge -->
         <Image HorizontalAlignment="Left" Width="106" Height="24" VerticalAlignment="Top" Margin="14,14,0,0" Source="pack://siteoforigin:,,,/HunterPie.Resources/UI/Class/LongswordGauge.png" OpacityMask="#B2000000">
             <Image.Effect>
-                <DropShadowEffect Color="#FFB93030" BlurRadius="20" ShadowDepth="0"/>
+                <DropShadowEffect Color="Red" BlurRadius="20" ShadowDepth="0"/>
             </Image.Effect>
+            <Image.Style>
+                <Style TargetType="Image">
+                    <Style.Triggers>
+                        <DataTrigger Binding="{Binding ElementName=LSControl, Path=GaugeHasPower}" Value="True">
+                            <DataTrigger.EnterActions>
+                                <BeginStoryboard>
+                                    <Storyboard>
+                                        <DoubleAnimationUsingKeyFrames Storyboard.TargetProperty="Effect.Opacity" RepeatBehavior="Forever">
+                                            <EasingDoubleKeyFrame KeyTime="0:0:0" Value="0.2"/>
+                                            <EasingDoubleKeyFrame KeyTime="0:0:0.5" Value="1"/>
+                                            <EasingDoubleKeyFrame KeyTime="0:0:1" Value="0.2"/>
+                                            <EasingDoubleKeyFrame KeyTime="0:0:1.5" Value="1"/>
+                                            <EasingDoubleKeyFrame KeyTime="0:0:2" Value="0.2"/>
+                                        </DoubleAnimationUsingKeyFrames>
+                                    </Storyboard>
+                                </BeginStoryboard>
+                            </DataTrigger.EnterActions>
+                            <DataTrigger.ExitActions>
+                                <BeginStoryboard>
+                                    <Storyboard>
+                                        <DoubleAnimation Storyboard.TargetProperty="Effect.Opacity" From="1" To="0"/>
+                                    </Storyboard>
+                                </BeginStoryboard>
+                            </DataTrigger.ExitActions>
+                        </DataTrigger>
+                    </Style.Triggers>
+                </Style>
+            </Image.Style>
         </Image>
-        <Rectangle HorizontalAlignment="Left" Width="{Binding GaugeWidth, ElementName=LSControl}" Height="18" VerticalAlignment="Top" Margin="34,15,0,0" RenderTransformOrigin="0.5,0.5">
+        <Rectangle HorizontalAlignment="Left" Width="{Binding GaugeWidth, ElementName=LSControl}" Height="18" VerticalAlignment="Top" Margin="35,15,0,0" RenderTransformOrigin="0.5,0.5">
             <Rectangle.Fill>
                 <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
-                    <GradientStop Color="#FFDA4242"/>
-                    <GradientStop Color="#FFB93030" Offset="0.578"/>
-                    <GradientStop Color="#FFD33535" Offset="1"/>
+                    <GradientStop Color="Black"/>
+                    <GradientStop Color="#FFC93737" Offset="0.594"/>
+                    <GradientStop Color="Black" Offset="1"/>
                 </LinearGradientBrush>
             </Rectangle.Fill>
             <Rectangle.OpacityMask>
                 <ImageBrush ImageSource="pack://siteoforigin:,,,/HunterPie.Resources/UI/Class/LongswordGaugeMask.png"/>
             </Rectangle.OpacityMask>
+            <Rectangle.Style>
+                <Style TargetType="Rectangle">
+                    <Style.Triggers>
+                        <DataTrigger Binding="{Binding ElementName=LSControl, Path=GaugeIsBlinking}" Value="True">
+                            <DataTrigger.EnterActions>
+                                <BeginStoryboard>
+                                    <Storyboard>
+                                        <ColorAnimation Storyboard.TargetProperty="(Rectangle.Fill).(LinearGradientBrush.GradientStops)[1].(GradientStop.Color)" From="#FFC93737" To="White" Duration="0:0:0.5" AutoReverse="True" RepeatBehavior="Forever"/>
+                                    </Storyboard>
+                                </BeginStoryboard>
+                            </DataTrigger.EnterActions>
+                            <DataTrigger.ExitActions>
+                                <BeginStoryboard>
+                                    <Storyboard>
+                                        <ColorAnimation Storyboard.TargetProperty="(Rectangle.Fill).(LinearGradientBrush.GradientStops)[1].(GradientStop.Color)" To="#FFC93737" Duration="0:0:0.2"/>
+                                    </Storyboard>
+                                </BeginStoryboard>
+                            </DataTrigger.ExitActions>
+                        </DataTrigger>
+                    </Style.Triggers>
+                </Style>
+            </Rectangle.Style>
         </Rectangle>
-        <Image HorizontalAlignment="Left" Width="6" Height="10" VerticalAlignment="Top" Margin="96,18,0,0" Source="pack://siteoforigin:,,,/HunterPie.Resources/UI/Class/pin.png" Opacity="0.7"/>
+        <Image HorizontalAlignment="Left" Width="10" Height="17" VerticalAlignment="Top" Margin="94,16,0,0" Source="pack://siteoforigin:,,,/HunterPie.Resources/UI/Class/pin.png" Opacity="0.7"/>
+        <TextBlock Text="{Binding ElementName=LSControl, Path=GaugeBlinkDuration}" Opacity="0" HorizontalAlignment="Left" Width="31" Height="29" VerticalAlignment="Top" Margin="41,31,0,0" Foreground="#FFEEEEEE" FontSize="14" TextAlignment="Center" Padding="0,4,0,0">
+            <TextBlock.Background>
+                <RadialGradientBrush>
+                    <GradientStop Color="#7F191623"/>
+                    <GradientStop Color="#7F1D1C18" Offset="1"/>
+                </RadialGradientBrush>
+            </TextBlock.Background>
+            <TextBlock.OpacityMask>
+                <RadialGradientBrush>
+                    <GradientStop Color="Black" Offset="0.952"/>
+                    <GradientStop Offset="1"/>
+                    <GradientStop Color="#00101010" Offset="0.968"/>
+                </RadialGradientBrush>
+            </TextBlock.OpacityMask>
+            <TextBlock.Style>
+                <Style TargetType="TextBlock">
+                    <Style.Triggers>
+                        <DataTrigger Binding="{Binding ElementName=LSControl, Path=GaugeIsBlinking}" Value="True">
+                            <DataTrigger.EnterActions>
+                                <BeginStoryboard>
+                                    <Storyboard>
+                                        <DoubleAnimation Storyboard.TargetProperty="Opacity" To="1" Duration="0:0:0.25"/>
+                                    </Storyboard>
+                                </BeginStoryboard>
+                            </DataTrigger.EnterActions>
+                            <DataTrigger.ExitActions>
+                                <BeginStoryboard>
+                                    <Storyboard>
+                                        <DoubleAnimation Storyboard.TargetProperty="Opacity" To="0" Duration="0:0:0.25"/>
+                                    </Storyboard>
+                                </BeginStoryboard>
+                            </DataTrigger.ExitActions>
+                        </DataTrigger>
+                    </Style.Triggers>
+                </Style>
+            </TextBlock.Style>
+        </TextBlock>
 
     </Grid>
 </local:ClassControl>

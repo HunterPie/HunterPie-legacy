@@ -29,7 +29,7 @@ namespace HunterPie {
         bool IsUpdating = true;
 
         // HunterPie version
-        const string HUNTERPIE_VERSION = "1.0.3.91";
+        const string HUNTERPIE_VERSION = "1.0.3.92";
 
         // Helpers
         IntPtr _windowHandle;
@@ -647,16 +647,18 @@ namespace HunterPie {
         }
 
         private void OnLaunchGameButtonClick(object sender, RoutedEventArgs e) {
+            LaunchGame();
+            // Not needed anymore, since we use Steam to launch the game
+            /*
             // Shorten the class name
             var launchOptions = UserSettings.PlayerConfig.HunterPie.Launch;
-
             if (launchOptions.GamePath == "") {
                 if (MessageBox.Show(GStrings.GetLocalizationByXPath("/Console/String[@ID='MESSAGE_MISSING_PATH']"), GStrings.GetLocalizationByXPath("/Console/String[@ID='TITLE_MISSING_PATH']"), MessageBoxButton.YesNo, MessageBoxImage.Error) == MessageBoxResult.Yes) {
                     OpenSettings();
                 }
             } else {
                 LaunchGame();
-            }
+            }*/
         }
 
         private void LaunchGame() {

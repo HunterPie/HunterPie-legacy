@@ -178,32 +178,20 @@ namespace HunterPie.Core {
                 public InsectGlaiveHelper InsectGlaiveHelper { get; set; } = new InsectGlaiveHelper();
                 public GunLanceHelper GunLanceHelper { get; set; } = new GunLanceHelper();
                 public SwitchAxeHelper SwitchAxeHelper { get; set; } = new SwitchAxeHelper();
+                public BowHelper BowHelper { get; set; } = new BowHelper();
             }
 
-            public class ChargeBladeHelper : WeaponHelperStructure
-            {
-                
-            }
+            public class ChargeBladeHelper : WeaponHelperStructure { }
 
-            public class InsectGlaiveHelper : WeaponHelperStructure
-            {
-                
-            }
+            public class InsectGlaiveHelper : WeaponHelperStructure { }
 
-            public class GunLanceHelper : WeaponHelperStructure
-            {
+            public class GunLanceHelper : WeaponHelperStructure { }
 
-            }
+            public class SwitchAxeHelper : WeaponHelperStructure { }
 
-            public class SwitchAxeHelper : WeaponHelperStructure
-            {
+            public class LongSwordHelper : WeaponHelperStructure { }
 
-            }
-
-            public class LongSwordHelper : WeaponHelperStructure
-            {
-
-            }
+            public class BowHelper : WeaponHelperStructure { }
 
             public class WeaponHelperStructure
             {

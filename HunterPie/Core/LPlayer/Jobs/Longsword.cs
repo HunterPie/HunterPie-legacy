@@ -4,15 +4,17 @@ namespace HunterPie.Core.LPlayer.Jobs
 {
     public class LongswordEventArgs : EventArgs
     {
-        public float InnerGauge;
-        public int ChargeLevel;
-        public float OuterGauge;
+        public float InnerGauge { get; }
+        public int ChargeLevel { get; }
+        public float OuterGauge { get; }
+        public float SpiritGaugeBlinkDuration { get; }
 
         public LongswordEventArgs(Longsword weapon)
         {
             InnerGauge = weapon.InnerGauge;
             ChargeLevel = weapon.ChargeLevel;
             OuterGauge = weapon.OuterGauge;
+            SpiritGaugeBlinkDuration = weapon.SpiritGaugeBlinkDuration;
         } 
     }
     public class Longsword : Job
@@ -20,6 +22,7 @@ namespace HunterPie.Core.LPlayer.Jobs
         private float innerGauge;
         private int chargeLevel;
         private float outerGauge;
+        private float spiritGaugeBlinkDuration;
 
         public float InnerGauge
         {
@@ -57,12 +60,25 @@ namespace HunterPie.Core.LPlayer.Jobs
                 }
             }
         }
+        public float SpiritGaugeBlinkDuration
+        {
+            get => spiritGaugeBlinkDuration;
+            set
+            {
+                if (value != spiritGaugeBlinkDuration)
+                {
+                    spiritGaugeBlinkDuration = value;
+                    Dispatch(OnSpiritGaugeBlinkDurationUpdate);
+                }
+            }
+        }
         public override int SafijiivaMaxHits => 6;
 
         public delegate void LongswordEvents(object source, LongswordEventArgs args);
         public event LongswordEvents OnInnerGaugeChange;
         public event LongswordEvents OnChargeLevelChange;
         public event LongswordEvents OnOuterGaugeChange;
+        public event LongswordEvents OnSpiritGaugeBlinkDurationUpdate;
 
         private void Dispatch(LongswordEvents e)
         {

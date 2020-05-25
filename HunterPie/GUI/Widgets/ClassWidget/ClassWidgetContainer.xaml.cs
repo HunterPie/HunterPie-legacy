@@ -59,11 +59,9 @@ namespace HunterPie.GUI.Widgets.ClassWidget
             UserSettings.Config.WeaponHelperStructure config;
             switch((Classes)Context.Player.WeaponID)
             {
-#if DEBUG
                 case Classes.LongSword:
                     config = classesConfig.LongSwordHelper;
                     break;
-#endif
                 case Classes.GunLance:
                     config = classesConfig.GunLanceHelper;
                     break;
@@ -75,6 +73,9 @@ namespace HunterPie.GUI.Widgets.ClassWidget
                     break;                
                 case Classes.InsectGlaive:
                     config = classesConfig.InsectGlaiveHelper;
+                    break;
+                case Classes.Bow:
+                    config = classesConfig.BowHelper;
                     break;
                 default:
                     return;
@@ -92,11 +93,9 @@ namespace HunterPie.GUI.Widgets.ClassWidget
             UserSettings.Config.WeaponHelperStructure config;
             switch ((Classes)Context.Player.WeaponID)
             {
-#if DEBUG
                 case Classes.LongSword:
                     config = classesConfig.LongSwordHelper;
                     break;
-#endif
                 case Classes.GunLance:
                     config = classesConfig.GunLanceHelper;
                     break;
@@ -108,6 +107,9 @@ namespace HunterPie.GUI.Widgets.ClassWidget
                     break;
                 case Classes.InsectGlaive:
                     config = classesConfig.InsectGlaiveHelper;
+                    break;
+                case Classes.Bow:
+                    config = classesConfig.BowHelper;
                     break;
                 default:
                     return;
@@ -170,11 +172,9 @@ namespace HunterPie.GUI.Widgets.ClassWidget
                 WidgetHasContent = !Context.Player.InHarvestZone;
                 switch ((Classes)Context.Player.WeaponID)
                 {
-#if DEBUG
                     case Classes.LongSword:
                         SetClassLongSword();
                         break;
-#endif
                     case Classes.GunLance:
                         SetClassToGunLance();
                         break;
@@ -187,12 +187,24 @@ namespace HunterPie.GUI.Widgets.ClassWidget
                     case Classes.InsectGlaive:
                         SetClassToInsectGlaive();
                         break;
+                    case Classes.Bow:
+                        SetClassToBow();
+                        break;
                     default:
                         WidgetHasContent = false;
                         break;
                 }
             }));
             
+        }
+
+        private void SetClassToBow()
+        {
+            var control = new BowControl();
+            control.SetContext(Context.Player.Bow);
+            Container.Children.Add(control);
+
+            ApplySettings();
         }
 
         private void SetClassLongSword()
