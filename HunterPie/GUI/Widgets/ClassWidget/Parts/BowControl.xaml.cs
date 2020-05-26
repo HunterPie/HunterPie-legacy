@@ -1,18 +1,5 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows;
-using System.Windows.Controls;
-using System.Windows.Data;
-using System.Windows.Documents;
-using System.Windows.Input;
-using System.Windows.Media;
-using System.Windows.Media.Imaging;
-using System.Windows.Navigation;
-using System.Windows.Shapes;
-using HunterPie.Logger;
 using Bow = HunterPie.Core.LPlayer.Jobs.Bow;
 using BowEventArgs = HunterPie.Core.LPlayer.Jobs.BowEventArgs;
 using JobEventArgs = HunterPie.Core.LPlayer.Jobs.JobEventArgs;
@@ -54,8 +41,6 @@ namespace HunterPie.GUI.Widgets.ClassWidget.Parts
         public static readonly DependencyProperty ChargeProgressProperty =
             DependencyProperty.Register("ChargeProgress", typeof(float), typeof(BowControl));
 
-
-
         public BowControl()
         {
             InitializeComponent();
@@ -64,7 +49,11 @@ namespace HunterPie.GUI.Widgets.ClassWidget.Parts
 
         private void UpdateInformation()
         {
-            
+            var dummyArgs = new BowEventArgs(Context);
+            OnChargeProgressUpdate(this, dummyArgs);
+            OnChargeLevelChange(this, dummyArgs);
+            OnChargeLevelMaxUpdate(this, dummyArgs);
+            OnSafijiivaCounterUpdate(this, new JobEventArgs(Context));
         }
 
         public void SetContext(Bow ctx)
@@ -77,6 +66,7 @@ namespace HunterPie.GUI.Widgets.ClassWidget.Parts
         {
             Context.OnChargeProgressUpdate += OnChargeProgressUpdate;
             Context.OnChargeLevelChange += OnChargeLevelChange;
+            Context.OnChargeLevelMaxUpdate += OnChargeLevelMaxUpdate;
             Context.OnSafijiivaCounterUpdate += OnSafijiivaCounterUpdate;
         }
 
@@ -84,6 +74,7 @@ namespace HunterPie.GUI.Widgets.ClassWidget.Parts
         {
             Context.OnChargeProgressUpdate -= OnChargeProgressUpdate;
             Context.OnChargeLevelChange -= OnChargeLevelChange;
+            Context.OnChargeLevelMaxUpdate -= OnChargeLevelMaxUpdate;
             Context.OnSafijiivaCounterUpdate -= OnSafijiivaCounterUpdate;
             Context = null;
             base.UnhookEvents();
@@ -98,12 +89,19 @@ namespace HunterPie.GUI.Widgets.ClassWidget.Parts
             }));
         }
 
+        private void OnChargeLevelMaxUpdate(object source, BowEventArgs args)
+        {
+            Dispatcher.BeginInvoke(System.Windows.Threading.DispatcherPriority.Render, new Action(() =>
+            {
+                MaxChargeLevel = args.MaxChargeLevel + 1;
+            }));
+        }
+
         private void OnChargeLevelChange(object source, BowEventArgs args)
         {
             Dispatcher.BeginInvoke(System.Windows.Threading.DispatcherPriority.Render, new Action(() =>
             {
-                ChargeLevel = args.ChargeLevel;
-                MaxChargeLevel = args.MaxChargeLevel;
+                ChargeLevel = args.ChargeLevel + 1;
             }));
         }
 
@@ -115,5 +113,9 @@ namespace HunterPie.GUI.Widgets.ClassWidget.Parts
             }));
         }
 
+        private void BControl_Loaded(object sender, RoutedEventArgs e)
+        {
+            UpdateInformation();
+        }
     }
 }

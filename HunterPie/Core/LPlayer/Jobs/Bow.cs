@@ -18,6 +18,7 @@ namespace HunterPie.Core.LPlayer.Jobs
     public class Bow : Job
     {
         private float chargeProgress;
+        private int maxChargeLevel;
         private int chargeLevel;
 
         public float ChargeProgress
@@ -44,12 +45,24 @@ namespace HunterPie.Core.LPlayer.Jobs
                 }
             }
         }
-        public int MaxChargeLevel { get; set; }
+        public int MaxChargeLevel
+        {
+            get => maxChargeLevel;
+            set
+            {
+                if (value != maxChargeLevel)
+                {
+                    maxChargeLevel = value;
+                    Dispatch(OnChargeLevelMaxUpdate);
+                }
+            }
+        }
         public override int SafijiivaMaxHits => 8;
 
         public delegate void BowEvents(object source, BowEventArgs args);
         public event BowEvents OnChargeLevelChange;
         public event BowEvents OnChargeProgressUpdate;
+        public event BowEvents OnChargeLevelMaxUpdate;
 
         private void Dispatch(BowEvents e) => e?.Invoke(this, new BowEventArgs(this));
     }

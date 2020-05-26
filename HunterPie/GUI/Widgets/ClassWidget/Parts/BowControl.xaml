@@ -2,14 +2,13 @@
              x:Class="HunterPie.GUI.Widgets.ClassWidget.Parts.BowControl"
              xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
-             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              xmlns:local="clr-namespace:HunterPie.GUI.Widgets.ClassWidget.Parts"
              xmlns:h="clr-namespace:HunterPie.GUI.Helpers"
+             Loaded="BControl_Loaded"
              >
-    <Grid Width="200" Height="150">
+    <Grid Width="150" Height="100">
         <!-- Safi counter-->
-        <Canvas Opacity="0" HorizontalAlignment="Left" Width="46" Height="46" VerticalAlignment="Top" Margin="44,50,0,0">
+        <Canvas Opacity="0" HorizontalAlignment="Left" Width="46" Height="46" VerticalAlignment="Top" Margin="35,38,0,0">
             <Rectangle Height="31" Width="31" VerticalAlignment="Top" HorizontalAlignment="Left" StrokeThickness="1.5" Canvas.Left="24" Canvas.Top="1" Opacity="0.5">
                 <Rectangle.Stroke>
                     <LinearGradientBrush EndPoint="0,0.6" StartPoint="1,0.5">
@@ -58,11 +57,11 @@
             </Canvas.Style>
         </Canvas>
 
-        <Rectangle Height="36" VerticalAlignment="Top" HorizontalAlignment="Left" Width="36" Margin="22,29,0,0" RenderTransformOrigin="0.5,0.5" Stroke="#7F444444" StrokeThickness="1.5">
+        <Rectangle Height="36" VerticalAlignment="Top" HorizontalAlignment="Left" Width="36" Margin="13,17,0,0" RenderTransformOrigin="0.5,0.5" Stroke="#7F444444" StrokeThickness="1.5">
             <Rectangle.Fill>
                 <LinearGradientBrush EndPoint="0.5,0.5" MappingMode="RelativeToBoundingBox" StartPoint="1,1">
-                    <GradientStop Color="#7F001117" Offset="1"/>
-                    <GradientStop Color="#7F007DAC"/>
+                    <GradientStop Color="#7F151515" Offset="1"/>
+                    <GradientStop Color="#7F0F0F0F"/>
                 </LinearGradientBrush>
             </Rectangle.Fill>
             <Rectangle.RenderTransform>
@@ -74,9 +73,9 @@
                 </TransformGroup>
             </Rectangle.RenderTransform>
         </Rectangle>
-        <h:Diamond Percentage="{Binding ElementName=BControl, Path=ChargeProgress}" Height="36" Width="36" HorizontalAlignment="Left" Margin="22,29,0,0" VerticalAlignment="Top" RenderTransformOrigin="0.5,0.5" Stroke="#FF00F3FF" StrokeThickness="1.5">
+        <h:Diamond Percentage="{Binding ElementName=BControl, Path=ChargeProgress}" Height="36" Width="36" HorizontalAlignment="Left" Margin="13,17,0,0" VerticalAlignment="Top" RenderTransformOrigin="0.5,0.5" Stroke="#FF00FF74" StrokeEndLineCap="Round">
             <h:Diamond.Effect>
-                <DropShadowEffect Color="#FF00F3FF" BlurRadius="20" ShadowDepth="0"/>
+                <DropShadowEffect Color="#FF00FF74" BlurRadius="20" ShadowDepth="0"/>
             </h:Diamond.Effect>
             <h:Diamond.RenderTransform>
                 <TransformGroup>
@@ -87,8 +86,8 @@
                 </TransformGroup>
             </h:Diamond.RenderTransform>
         </h:Diamond>
-        <TextBlock TextOptions.TextRenderingMode="ClearType" Text="{Binding ChargeLevel, ElementName=BControl}" Height="23" VerticalAlignment="Top" HorizontalAlignment="Left" Width="54" Foreground="White" FontSize="16" TextAlignment="Center" FontWeight="Light" Margin="13,28,0,0"/>
-        <TextBlock TextOptions.TextRenderingMode="ClearType" Text="{Binding MaxChargeLevel, ElementName=BControl}" Height="22" VerticalAlignment="Top" HorizontalAlignment="Left" Width="54" Foreground="White" FontSize="16" TextAlignment="Center" FontWeight="Light" Margin="13,42,0,0"/>
+        <TextBlock TextOptions.TextRenderingMode="ClearType" Text="{Binding ChargeLevel, ElementName=BControl}" Height="23" VerticalAlignment="Top" HorizontalAlignment="Left" Width="54" Foreground="White" FontSize="16" TextAlignment="Center" FontWeight="Light" Margin="4,16,0,0"/>
+        <TextBlock TextOptions.TextRenderingMode="ClearType" Text="{Binding MaxChargeLevel, ElementName=BControl}" Height="22" VerticalAlignment="Top" HorizontalAlignment="Left" Width="54" Foreground="White" FontSize="16" TextAlignment="Center" FontWeight="Light" Margin="4,30,0,0"/>
 
     </Grid>
 </local:ClassControl>
