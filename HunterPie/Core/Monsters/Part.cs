@@ -10,7 +10,7 @@ namespace HunterPie.Core
 
         private float health;
         private float totalHealth;
-        private byte brokenCounter;
+        private int brokenCounter;
 
         public Part(MonsterInfo monsterInfo, PartInfo partInfo, int index)
         {
@@ -25,7 +25,7 @@ namespace HunterPie.Core
 
         public int[] BreakThresholds => partInfo.BreakThresholds;
 
-        public byte BrokenCounter
+        public int BrokenCounter
         {
             get => brokenCounter;
             set
@@ -86,7 +86,7 @@ namespace HunterPie.Core
 
         #endregion
 
-        public void SetPartInfo(byte breakCounter, float health, float totalHealth)
+        public void SetPartInfo(int breakCounter, float health, float totalHealth)
         {
             TotalHealth = totalHealth;
             BrokenCounter = breakCounter;

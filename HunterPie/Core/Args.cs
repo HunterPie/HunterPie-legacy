@@ -102,7 +102,7 @@ namespace HunterPie.Core {
 
         public float Health { get; }
         public float TotalHealth { get; }
-        public byte BrokenCounter { get; }
+        public int BrokenCounter { get; }
     }
 
     public class MonsterSpawnEventArgs : EventArgs {

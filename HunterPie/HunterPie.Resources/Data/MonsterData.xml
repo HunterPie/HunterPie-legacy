@@ -984,7 +984,7 @@
       <Part Name="MONSTER_PART_LWING" Group="WING"/>
       <Part Name="MONSTER_PART_RWING" Group="WING"/>
       <Part Name="MONSTER_PART_TAIL" Group="TAIL"/>
-	  <Part Name="MONSTER_PART_HEAD" IsRemovable="True"/> <!-- bw spikes -->
+	    <Part Name="MONSTER_PART_HEAD" IsRemovable="True"/> <!-- bw spikes -->
       <Part Name="MONSTER_PART_LARM" IsRemovable="True"/> <!-- bw spikes -->
       <Part Name="MONSTER_PART_RARM" IsRemovable="True"/> <!-- bw spikes -->
       <Part Name="MONSTER_PART_LWING" IsRemovable="True"/> <!-- bw spikes -->

@@ -6,6 +6,7 @@ using HunterPie.Logger;
 using HunterPie.Memory;
 using HunterPie.Core.LPlayer.Jobs;
 using System.Collections.Generic;
+using System.Runtime.InteropServices;
 
 namespace HunterPie.Core
 {
@@ -1002,9 +1003,11 @@ namespace HunterPie.Core
             float chargeProgress = Scanner.Read<float>(weaponAddress + 0x44);
             int chargeLevel = Scanner.Read<int>(weaponAddress + 0x48);
             int mChargeLevel = Scanner.Read<int>(weaponAddress + 0x4C);
+            bool isSheathed = Scanner.Read<byte>(weaponAddress - 0x18CB) == 0;
             Bow.MaxChargeLevel = mChargeLevel;
             Bow.ChargeLevel = chargeLevel;
             Bow.ChargeProgress = chargeProgress;
+            Bow.IsWeaponSheated = isSheathed;
         }
 
         private void GetLightBowgunInformation(long weaponAddress)

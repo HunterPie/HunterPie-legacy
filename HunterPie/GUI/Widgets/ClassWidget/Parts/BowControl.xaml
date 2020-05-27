@@ -88,6 +88,27 @@
         </h:Diamond>
         <TextBlock TextOptions.TextRenderingMode="ClearType" Text="{Binding ChargeLevel, ElementName=BControl}" Height="23" VerticalAlignment="Top" HorizontalAlignment="Left" Width="54" Foreground="White" FontSize="16" TextAlignment="Center" FontWeight="Light" Margin="4,16,0,0"/>
         <TextBlock TextOptions.TextRenderingMode="ClearType" Text="{Binding MaxChargeLevel, ElementName=BControl}" Height="22" VerticalAlignment="Top" HorizontalAlignment="Left" Width="54" Foreground="White" FontSize="16" TextAlignment="Center" FontWeight="Light" Margin="4,30,0,0"/>
-
+        <Grid.Style>
+            <Style TargetType="Grid">
+                <Style.Triggers>
+                    <DataTrigger Binding="{Binding ElementName=BControl, Path=IsWeaponSheathed}" Value="False">
+                        <DataTrigger.EnterActions>
+                            <BeginStoryboard>
+                                <Storyboard Storyboard.TargetProperty="Opacity">
+                                    <DoubleAnimation To="1" Duration="0:0:0.150"/>
+                                </Storyboard>
+                            </BeginStoryboard>
+                        </DataTrigger.EnterActions>
+                        <DataTrigger.ExitActions>
+                            <BeginStoryboard>
+                                <Storyboard Storyboard.TargetProperty="Opacity">
+                                    <DoubleAnimation To="0.2" Duration="0:0:0.150"/>
+                                </Storyboard>
+                            </BeginStoryboard>
+                        </DataTrigger.ExitActions>
+                    </DataTrigger>
+                </Style.Triggers>
+            </Style>
+        </Grid.Style>
     </Grid>
 </local:ClassControl>

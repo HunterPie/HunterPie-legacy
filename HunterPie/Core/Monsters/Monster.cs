@@ -5,6 +5,7 @@ using System.Linq;
 using HunterPie.Core.Monsters;
 using HunterPie.Memory;
 using HunterPie.Logger;
+using HunterPie.Core.Definitions;
 
 namespace HunterPie.Core {
     public class Monster {
@@ -283,13 +284,12 @@ namespace HunterPie.Core {
                 HPPercentage = 1f;
                 return;
             }
-            
             Int64 MonsterHPComponent = Scanner.Read<long>(this.MonsterAddress + Address.Offsets.MonsterHPComponentOffset);
             Int64 MonsterTotalHPAddress = MonsterHPComponent + 0x60;
             Int64 MonsterCurrentHPAddress = MonsterTotalHPAddress + 0x4;
             float f_TotalHP = Scanner.Read<float>(MonsterTotalHPAddress);
             float f_CurrentHP = Scanner.Read<float>(MonsterCurrentHPAddress);
-        
+
             if (f_CurrentHP <= f_TotalHP && f_CurrentHP > 0) {
                 this.TotalHP = f_TotalHP;
                 this.CurrentHP = f_CurrentHP;
@@ -427,7 +427,7 @@ namespace HunterPie.Core {
             long monsterPartAddress = MonsterAddress + Address.Offsets.MonsterPartsOffset + Address.Offsets.FirstMonsterPartOffset;
             int partsCount = MonsterInfo.MaxParts;
             int nRemovableParts = MonsterInfo.MaxRemovableParts;
-            byte TimesBroken;
+            int TimesBroken;
             float Health;
             float MaxHealth;
             Int64 removablePartAddress = MonsterAddress + Address.Offsets.RemovablePartsOffset;
@@ -440,11 +440,14 @@ namespace HunterPie.Core {
                 {
                     if (part.PartAddress > 0)
                     {
-                        TimesBroken = Scanner.Read<byte>(part.PartAddress + 0x18);
-                        MaxHealth = Scanner.Read<float>(part.PartAddress + 0x10);
-                        Health = Scanner.Read<float>(part.PartAddress + 0x0C);
 
-                        part.SetPartInfo(TimesBroken, MaxHealth, Health);
+                        sMonsterPart mPartData = Scanner.Win32.Read<sMonsterPart>(part.PartAddress + 0x0C);
+                        Health = mPartData.Health;
+                        MaxHealth = mPartData.MaxHealth;
+                        TimesBroken = mPartData.Counter;
+
+
+                        part.SetPartInfo(TimesBroken, Health, MaxHealth);
                     }
                     else
                     {
@@ -459,11 +462,12 @@ namespace HunterPie.Core {
 
                             if (IsAValidPart && Scanner.Read<int>(removablePartAddress + 0x10) > 0)
                             {
-                                TimesBroken = Scanner.Read<byte>(removablePartAddress + 0x18);
-                                MaxHealth = Scanner.Read<float>(removablePartAddress + 0x10);
-                                Health = Scanner.Read<float>(removablePartAddress + 0x0C);
+                                sMonsterPart mPartData = Scanner.Win32.Read<sMonsterPart>(part.PartAddress + 0x0C);
+                                Health = mPartData.Health;
+                                MaxHealth = mPartData.MaxHealth;
+                                TimesBroken = mPartData.Counter;
 
-                                part.SetPartInfo(TimesBroken, MaxHealth, Health);
+                                part.SetPartInfo(TimesBroken, Health, MaxHealth);
                                 part.PartAddress = removablePartAddress;
                                 part.IsRemovable = true;
 
@@ -482,16 +486,24 @@ namespace HunterPie.Core {
                         }
                     }
                     continue;
+                } else
+                {
+                    if (part.PartAddress > 0)
+                    {
+                        sMonsterPart mPartData = Scanner.Win32.Read<sMonsterPart>(part.PartAddress);
+                        part.SetPartInfo(mPartData.Counter, mPartData.MaxHealth, mPartData.Health);
+                        
+                    } else
+                    {
+                        sMonsterPart mPartData = Scanner.Win32.Read<sMonsterPart>(monsterPartAddress);
+
+                        part.SetPartInfo(mPartData.Counter, mPartData.MaxHealth, mPartData.Health);
+                        part.PartAddress = monsterPartAddress;
+
+                        if (part.Group == null) part.Group = partInfo.GroupId;
+                        monsterPartAddress += Address.Offsets.NextMonsterPartOffset;
+                    }
                 }
-
-                TimesBroken = Scanner.Read<byte>(monsterPartAddress + Address.Offsets.MonsterPartBrokenCounterOffset);
-                MaxHealth = Scanner.Read<float>(monsterPartAddress + 0x4); // Total health is 4 bytes ahead
-                Health = Scanner.Read<float>(monsterPartAddress);
-
-                part.SetPartInfo(TimesBroken, MaxHealth, Health);
-
-                if (part.Group == null) part.Group = partInfo.GroupId;
-                monsterPartAddress += Address.Offsets.NextMonsterPartOffset;
             }
         }
 
@@ -547,15 +559,14 @@ namespace HunterPie.Core {
                         var AilmentInfo = MonsterData.AilmentsInfo.ElementAt(ID);
 
                         // Skip traps for non-capturable monsters
-                        if (MonsterInfo.Capture == 0 && AilmentInfo.Group == "TRAP") continue;
-
-                        if (AilmentInfo.CanSkip && !UserSettings.PlayerConfig.HunterPie.Debug.ShowUnknownStatuses)
+                        bool SkipTraps = MonsterInfo.Capture == 0 && AilmentInfo.Group == "TRAP";
+                        if (AilmentInfo.CanSkip && !UserSettings.PlayerConfig.HunterPie.Debug.ShowUnknownStatuses || SkipTraps)
                         {
                             StatusPtr = Scanner.Read<long>(StatusPtr + 0x18);
                             continue;
                         } else
                         {
-
+   
                             float maxBuildup = Math.Max(0, Scanner.Read<float>(StatusPtr + 0x1C8));
                             float currentBuildup = Math.Max(0, Scanner.Read<float>(StatusPtr + 0x1B8));
                             float maxDuration = Math.Max(0, Scanner.Read<float>(StatusPtr + 0x19C));

@@ -54,6 +54,7 @@ namespace HunterPie.GUI.Widgets.ClassWidget.Parts
             OnChargeLevelChange(this, dummyArgs);
             OnChargeLevelMaxUpdate(this, dummyArgs);
             OnSafijiivaCounterUpdate(this, new JobEventArgs(Context));
+            OnWeaponSheathStateChange(this, new JobEventArgs(Context));
         }
 
         public void SetContext(Bow ctx)
@@ -68,6 +69,7 @@ namespace HunterPie.GUI.Widgets.ClassWidget.Parts
             Context.OnChargeLevelChange += OnChargeLevelChange;
             Context.OnChargeLevelMaxUpdate += OnChargeLevelMaxUpdate;
             Context.OnSafijiivaCounterUpdate += OnSafijiivaCounterUpdate;
+            Context.OnWeaponSheathStateChange += OnWeaponSheathStateChange;
         }
 
         public override void UnhookEvents()
@@ -76,8 +78,17 @@ namespace HunterPie.GUI.Widgets.ClassWidget.Parts
             Context.OnChargeLevelChange -= OnChargeLevelChange;
             Context.OnChargeLevelMaxUpdate -= OnChargeLevelMaxUpdate;
             Context.OnSafijiivaCounterUpdate -= OnSafijiivaCounterUpdate;
+            Context.OnWeaponSheathStateChange -= OnWeaponSheathStateChange;
             Context = null;
             base.UnhookEvents();
+        }
+
+        private void OnWeaponSheathStateChange(object source, JobEventArgs args)
+        {
+            Dispatcher.BeginInvoke(System.Windows.Threading.DispatcherPriority.Render, new Action(() =>
+            {
+                IsWeaponSheathed = args.IsWeaponSheathed;
+            }));
         }
 
         private void OnSafijiivaCounterUpdate(object source, JobEventArgs args)
