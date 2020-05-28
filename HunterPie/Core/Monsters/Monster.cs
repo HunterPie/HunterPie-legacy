@@ -491,13 +491,13 @@ namespace HunterPie.Core {
                     if (part.PartAddress > 0)
                     {
                         sMonsterPart mPartData = Scanner.Win32.Read<sMonsterPart>(part.PartAddress);
-                        part.SetPartInfo(mPartData.Counter, mPartData.MaxHealth, mPartData.Health);
+                        part.SetPartInfo(mPartData.Counter, mPartData.Health, mPartData.MaxHealth);
                         
                     } else
                     {
                         sMonsterPart mPartData = Scanner.Win32.Read<sMonsterPart>(monsterPartAddress);
 
-                        part.SetPartInfo(mPartData.Counter, mPartData.MaxHealth, mPartData.Health);
+                        part.SetPartInfo(mPartData.Counter, mPartData.Health, mPartData.MaxHealth);
                         part.PartAddress = monsterPartAddress;
 
                         if (part.Group == null) part.Group = partInfo.GroupId;
