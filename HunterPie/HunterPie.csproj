@@ -127,6 +127,7 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
+    <Compile Include="Core\Definitions\Structures.cs" />
     <Compile Include="Core\Integrations\Honey\Honey.cs" />
     <Compile Include="Core\KeyboardHook.cs" />
     <Compile Include="Core\LPlayer\AbnormalityInfo.cs" />
@@ -289,6 +290,10 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
+    <Page Include="GUI\Widgets\ClassWidget\Parts\BowControl.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="GUI\Widgets\ClassWidget\Parts\ChargeBladeControl.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -386,6 +391,9 @@
     </Compile>
     <Compile Include="GUI\Widgets\ClassWidget\ClassWidgetContainer.xaml.cs">
       <DependentUpon>ClassWidgetContainer.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="GUI\Widgets\ClassWidget\Parts\BowControl.xaml.cs">
+      <DependentUpon>BowControl.xaml</DependentUpon>
     </Compile>
     <Compile Include="GUI\Widgets\ClassWidget\Parts\ChargeBladeControl.xaml.cs">
       <DependentUpon>ChargeBladeControl.xaml</DependentUpon>
@@ -485,6 +493,7 @@
     <Compile Include="Memory\BufferPool.cs" />
     <Compile Include="Memory\Buffers.cs" />
     <Compile Include="Memory\Scanner.cs" />
+    <Compile Include="Memory\Win32.cs" />
     <Compile Include="Memory\WindowsHelper.cs" />
     <Compile Include="Properties\AssemblyInfo.cs">
       <SubType>Code</SubType>

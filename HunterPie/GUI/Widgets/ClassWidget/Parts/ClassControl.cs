@@ -24,6 +24,15 @@ namespace HunterPie.GUI.Widgets.ClassWidget.Parts
         public static readonly DependencyProperty HasSafiBuffProperty =
             DependencyProperty.Register("HasSafiBuff", typeof(bool), typeof(ClassControl));
 
+        public bool IsWeaponSheathed
+        {
+            get { return (bool)GetValue(IsWeaponSheathedProperty); }
+            set { SetValue(IsWeaponSheathedProperty, value); }
+        }
+
+        public static readonly DependencyProperty IsWeaponSheathedProperty =
+            DependencyProperty.Register("IsWeaponSheathed", typeof(bool), typeof(ClassControl));
+
         public virtual void UnhookEvents() { }
     }
 }

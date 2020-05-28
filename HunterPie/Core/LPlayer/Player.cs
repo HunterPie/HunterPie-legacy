@@ -6,6 +6,7 @@ using HunterPie.Logger;
 using HunterPie.Memory;
 using HunterPie.Core.LPlayer.Jobs;
 using System.Collections.Generic;
+using System.Runtime.InteropServices;
 
 namespace HunterPie.Core
 {
@@ -826,6 +827,8 @@ namespace HunterPie.Core
                     GetGreatswordInformation(weaponAddress);
                     Greatsword.SafijiivaRegenCounter = SafiCounter;
                     break;
+                case Classes.SwordAndShield:
+                    break;
                 case Classes.DualBlades:
                     GetDualBladesInformation(weaponAddress);
                     DualBlades.SafijiivaRegenCounter = SafiCounter;
@@ -855,6 +858,7 @@ namespace HunterPie.Core
                     break;
                 case Classes.Bow:
                     GetBowInformation(weaponAddress);
+                    Bow.SafijiivaRegenCounter = SafiCounter;
                     break;
                 case Classes.HeavyBowgun:
                     GetHeavyBowgunInformation(weaponAddress);
@@ -884,9 +888,11 @@ namespace HunterPie.Core
             float gauge = Scanner.Read<float>(weaponAddress - 0x4);
             int chargeLevel = Scanner.Read<int>(weaponAddress + 0x4);
             float chargeGauge = Scanner.Read<float>(weaponAddress + 0x8);
+            float spiritGaugeBlink = Math.Max(Scanner.Read<float>(weaponAddress + 0xC), Scanner.Read<float>(weaponAddress + 0x1C));
             Longsword.InnerGauge = gauge;
             Longsword.ChargeLevel = chargeLevel;
             Longsword.OuterGauge = chargeGauge;
+            Longsword.SpiritGaugeBlinkDuration = spiritGaugeBlink;
         }
 
         private void GetHammerInformation(long weaponAddress)
@@ -994,8 +1000,14 @@ namespace HunterPie.Core
 
         private void GetBowInformation(long weaponAddress)
         {
-            int chargeLevel = Scanner.Read<int>(weaponAddress + 0x68);
+            float chargeProgress = Scanner.Read<float>(weaponAddress + 0x44);
+            int chargeLevel = Scanner.Read<int>(weaponAddress + 0x48);
+            int mChargeLevel = Scanner.Read<int>(weaponAddress + 0x4C);
+            bool isSheathed = Scanner.Read<byte>(weaponAddress - 0x18CB) == 0;
+            Bow.MaxChargeLevel = mChargeLevel;
             Bow.ChargeLevel = chargeLevel;
+            Bow.ChargeProgress = chargeProgress;
+            Bow.IsWeaponSheated = isSheathed;
         }
 
         private void GetLightBowgunInformation(long weaponAddress)

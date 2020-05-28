@@ -37,6 +37,7 @@ namespace HunterPie.Memory
                 }
             }
         }
+        public static Win32 Win32;
 
         // Scanner Thread
         static private ThreadStart ScanGameMemoryRef;
@@ -131,7 +132,7 @@ namespace HunterPie.Memory
                         Debugger.Error("Failed to open game process. Run HunterPie as Administrator!");
                         return;
                     }
-
+                    Win32 = new Win32(ProcessHandle);
                     try
                     {
                         GameVersion = int.Parse(MonsterHunter.MainWindowTitle.Split('(')[1].Trim(')'));

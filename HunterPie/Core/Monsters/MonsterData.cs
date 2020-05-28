@@ -132,7 +132,8 @@ namespace HunterPie.Core {
             AilmentInfo ailment = new AilmentInfo
             {
                 Id = node.Attributes["Name"]?.Value,
-                CanSkip = bool.Parse(node.Attributes["Skip"]?.Value ?? "true")
+                CanSkip = bool.Parse(node.Attributes["Skip"]?.Value ?? "true"),
+                Group = node.Attributes["Group"]?.Value ?? "UNKNOWN"
             };
 
             return ailment;
