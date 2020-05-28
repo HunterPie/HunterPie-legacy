@@ -3,9 +3,25 @@
 */
 
 using System.Runtime.InteropServices;
+using Newtonsoft.Json;
 
 namespace HunterPie.Core.Definitions
 {
+    public class Helpers
+    {
+        public static string Serialize(object obj) {
+            return JsonConvert.SerializeObject(obj, Formatting.Indented);
+        }
+    }
+
+    [StructLayout(LayoutKind.Sequential, Size = 0x18)]
+    public struct sHarvestBoxElement
+    {
+        public long unk0;
+        public int ID;
+        public int Amount;
+    }
+
     [StructLayout(LayoutKind.Sequential, Size = 0xA0)]
     public struct sMonsterPart
     {
@@ -46,51 +62,6 @@ namespace HunterPie.Core.Definitions
         int unk29;
         public float ExtraTimer;
         public float ExtraMaxTimer;
-
-        // TODO: Make a decent serializer LOL
-        public override string ToString()
-        {
-            string s = "struct sMonsterPart {\n" +
-                $"\tMaxHealth = {MaxHealth};\n" +
-                $"\tHealth = {Health};\n" +
-                $"\tunk0 = {unk0};\n" +
-                $"\tCounter = {Counter};\n" +
-                $"\tunk1 = {unk1};\n" +
-                $"\tExtraMaxHealth = {ExtraMaxHealth};\n" +
-                $"\tExtraHealth = {ExtraHealth};\n" +
-                $"\tunk2 = {unk2};\n" +
-                $"\tunk3 = {unk3};\n" +
-                $"\tunk4 = {unk4};\n" +
-                $"\tunk5 = {unk5};\n" +
-                $"\tunk6 = {unk6};\n" +
-                $"\tunk7 = {unk7};\n" +
-                $"\tunk8 = {unk8};\n" +
-                $"\tunk9 = {unk9};\n" +
-                $"\tunk10 = {unk10};\n" +
-                $"\tunk11 = {unk11};\n" +
-                $"\tunk12 = {unk12};\n" +
-                $"\tunk13 = {unk13};\n" +
-                $"\tunk14 = {unk14};\n" +
-                $"\tunk15 = {unk15};\n" +
-                $"\tunk16 = {unk16};\n" +
-                $"\tunk17 = {unk17};\n" +
-                $"\tunk18 = {unk18};\n" +
-                $"\tunk19 = {unk19};\n" +
-                $"\tunk20 = {unk20};\n" +
-                $"\tunk21 = {unk21};\n" +
-                $"\tunk22 = {unk22};\n" +
-                $"\tunk23 = {unk23};\n" +
-                $"\tunk24 = {unk24};\n" +
-                $"\tunk25 = {unk25};\n" +
-                $"\tunk26 = {unk26};\n" +
-                $"\tunk27 = {unk27};\n" +
-                $"\tunk28 = {unk28};\n" +
-                $"\tunk29 = {unk29};\n" +
-                $"\tExtraTimer = {ExtraTimer};\n" +
-                $"\tExtraMaxTimer = {ExtraMaxTimer};\n" +
-                "}";
-            return s;
-        }
 
     }
 

@@ -7,6 +7,7 @@ using HunterPie.Memory;
 using HunterPie.Core.LPlayer.Jobs;
 using System.Collections.Generic;
 using System.Runtime.InteropServices;
+using HunterPie.Core.Definitions;
 
 namespace HunterPie.Core
 {
@@ -646,25 +647,26 @@ namespace HunterPie.Core
             for (int fertCount = 0; fertCount < 4; fertCount++)
             {
                 // Calculates memory address
-                Int64 FertilizerAddress = Address + Memory.Address.Offsets.FertilizersOffset + (0x10 * fertCount);
+                Int64 FertilizerAddress = Address + Memory.Address.Offsets.FertilizersOffset + (0x10 * fertCount) - 0xC;
+                sHarvestBoxElement element = Scanner.Win32.Read<sHarvestBoxElement>(FertilizerAddress);
                 // Read memory
-                int FertilizerId = Scanner.Read<int>(FertilizerAddress - 0x4);
-                int FertilizerCount = Scanner.Read<int>(FertilizerAddress);
+                int FertilizerId = element.ID;
+                int FertilizerCount = element.Amount;
                 // update fertilizer data
                 Harvest.Box[fertCount].ID = FertilizerId;
                 Harvest.Box[fertCount].Amount = FertilizerCount;
             }
-            UpdateHarvestBoxCounter(Address + Memory.Address.Offsets.FertilizersOffset + (0x10 * 3));
+            UpdateHarvestBoxCounter(Address + Memory.Address.Offsets.FertilizersOffset + (0x10 * 3) - 0xC);
         }
 
         private void UpdateHarvestBoxCounter(Int64 LastFertAddress)
         {
             Int64 Address = LastFertAddress + Memory.Address.Offsets.HarvestBoxOffset;
             int counter = 0;
-            for (long iAddress = Address; iAddress < Address + 0x330; iAddress += 0x10)
+            for (long iAddress = Address; iAddress < Address + 0x320; iAddress += 0x10)
             {
-                int memValue = Scanner.Read<int>(iAddress);
-                if (memValue > 0)
+                sHarvestBoxElement element = Scanner.Win32.Read<sHarvestBoxElement>(iAddress);
+                if (element.Amount > 0)
                 {
                     counter++;
                 }
