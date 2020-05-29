@@ -107,7 +107,6 @@ namespace HunterPie.GUI.Widgets.ClassWidget.Parts
             Context.OnSwitchAxeBuffStateChange -= OnSwitchAxeBuffStateChange;
             Context.OnSwitchAxeBuffTimerUpdate -= OnSwitchAxeBuffUpdate;
             Context.OnSafijiivaCounterUpdate -= OnSafijiivaCounterUpdate;
-            base.UnhookEvents();
         }
 
         private void UpdateInformation()

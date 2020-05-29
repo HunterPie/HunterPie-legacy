@@ -141,7 +141,6 @@ namespace HunterPie.GUI.Widgets.ClassWidget.Parts
             Context.OnSafijiivaCounterUpdate -= OnSafijiivaCounterUpdate;
             Context = null;
             AmmoHolder.Children.Clear();
-            base.UnhookEvents();
         }
 
 

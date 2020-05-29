@@ -62,6 +62,9 @@ namespace HunterPie.GUI.Widgets.ClassWidget
                 case Classes.LongSword:
                     config = classesConfig.LongSwordHelper;
                     break;
+                case Classes.Hammer:
+                    config = classesConfig.HammerHelper;
+                    break;
                 case Classes.GunLance:
                     config = classesConfig.GunLanceHelper;
                     break;
@@ -95,6 +98,9 @@ namespace HunterPie.GUI.Widgets.ClassWidget
             {
                 case Classes.LongSword:
                     config = classesConfig.LongSwordHelper;
+                    break;
+                case Classes.Hammer:
+                    config = classesConfig.HammerHelper;
                     break;
                 case Classes.GunLance:
                     config = classesConfig.GunLanceHelper;
@@ -175,6 +181,9 @@ namespace HunterPie.GUI.Widgets.ClassWidget
                     case Classes.LongSword:
                         SetClassLongSword();
                         break;
+                    case Classes.Hammer:
+                        SetClassToHammer();
+                        break;
                     case Classes.GunLance:
                         SetClassToGunLance();
                         break;
@@ -196,6 +205,15 @@ namespace HunterPie.GUI.Widgets.ClassWidget
                 }
             }));
             
+        }
+
+        private void SetClassToHammer()
+        {
+            var control = new HammerControl();
+            control.SetContext(Context.Player.Hammer);
+            Container.Children.Add(control);
+
+            ApplySettings();
         }
 
         private void SetClassToBow()

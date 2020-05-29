@@ -502,6 +502,9 @@ namespace HunterPie.Core {
 
                         if (part.Group == null) part.Group = partInfo.GroupId;
                         monsterPartAddress += Address.Offsets.NextMonsterPartOffset;
+
+                        Debugger.Debug(Helpers.Serialize(mPartData));
+
                     }
                 }
             }
@@ -566,7 +569,7 @@ namespace HunterPie.Core {
                             continue;
                         } else
                         {
-   
+                            // TODO: Turn this into a struct def
                             float maxBuildup = Math.Max(0, Scanner.Read<float>(StatusPtr + 0x1C8));
                             float currentBuildup = Math.Max(0, Scanner.Read<float>(StatusPtr + 0x1B8));
                             float maxDuration = Math.Max(0, Scanner.Read<float>(StatusPtr + 0x19C));

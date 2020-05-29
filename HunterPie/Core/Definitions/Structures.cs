@@ -3,7 +3,8 @@
 */
 
 using System.Runtime.InteropServices;
-using Newtonsoft.Json;
+using JsonConvert = Newtonsoft.Json.JsonConvert;
+using Formatting = Newtonsoft.Json.Formatting;
 
 namespace HunterPie.Core.Definitions
 {
@@ -29,40 +30,39 @@ namespace HunterPie.Core.Definitions
         public float Health;
         public int unk0;
         public int Counter;
-        int unk1;
+        public int unk1;
         public float ExtraMaxHealth;
         public float ExtraHealth;
-        int unk2;
-        int unk3;
-        int unk4;
-        int unk5;
-        int unk6;
-        int unk7;
-        int unk8;
-        int unk9;
-        int unk10;
-        int unk11;
-        int unk12;
-        int unk13;
-        int unk14;
-        int unk15;
-        int unk16;
-        int unk17;
-        int unk18;
-        int unk19;
-        int unk20;
-        int unk21;
-        int unk22;
-        int unk23;
-        int unk24;
-        int unk25;
-        int unk26;
-        int unk27;
-        int unk28;
-        int unk29;
+        public int unk2;
+        public int unk3;
+        public int unk4;
+        public int unk5;
+        public int unk6;
+        public int unk7;
+        public int unk8;
+        public int unk9;
+        public int unk10;
+        public int unk11;
+        public int unk12;
+        public int unk13;
+        public int unk14;
+        public int unk15;
+        public int unk16;
+        public int unk17;
+        public int unk18;
+        public int unk19;
+        public int unk20;
+        public int unk21;
+        public int unk22;
+        public int unk23;
+        public int unk24;
+        public int unk25;
+        public int unk26;
+        public int unk27;
+        public int unk28;
+        public int unk29;
         public float ExtraTimer;
         public float ExtraMaxTimer;
-
     }
 
     [StructLayout(LayoutKind.Sequential, Size = 0x34)]
@@ -75,6 +75,7 @@ namespace HunterPie.Core.Definitions
         public float ExtraTimer;
         public float MaxExtraTimer;
         public int unk1;
+        public int unk2;
         public int unk3;
         public int PartId;
         public int TenderizedCounter;

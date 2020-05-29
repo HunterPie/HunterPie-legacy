@@ -841,6 +841,7 @@ namespace HunterPie.Core
                     break;
                 case Classes.Hammer:
                     GetHammerInformation(weaponAddress);
+                    Hammer.SafijiivaRegenCounter = SafiCounter;
                     break;
                 case Classes.GunLance:
                     GetGunLanceInformation(weaponAddress, AbnormAddress);
@@ -901,8 +902,10 @@ namespace HunterPie.Core
         {
             bool isPowerCharged = Scanner.Read<bool>(weaponAddress - 0x18);
             int chargeLevel = Scanner.Read<int>(weaponAddress - 0x10);
+            bool isSheathed = Scanner.Read<byte>(weaponAddress - 0x18CB) == 0;
             Hammer.IsPowerCharged = isPowerCharged;
             Hammer.ChargeLevel = chargeLevel;
+            Hammer.IsWeaponSheated = isSheathed;
         }
 
         private void GetGunLanceInformation(long weaponAddress, long AbnormAddress)

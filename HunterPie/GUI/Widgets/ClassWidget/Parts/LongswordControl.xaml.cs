@@ -122,7 +122,6 @@ namespace HunterPie.GUI.Widgets.ClassWidget.Parts
             Context.OnSpiritGaugeBlinkDurationUpdate -= OnSpiritGaugeBlinkDurationUpdate;
             Context.OnSafijiivaCounterUpdate -= OnSafijiivaCounterUpdate;
             Context = null;
-            base.UnhookEvents();
         }
 
 

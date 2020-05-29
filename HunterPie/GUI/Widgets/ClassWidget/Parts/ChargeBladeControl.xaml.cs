@@ -148,7 +148,6 @@ namespace HunterPie.GUI.Widgets.ClassWidget.Parts
             Context.OnPoweraxeBuffChange -= OnPowerchargeUpdate;
             Context.OnSafijiivaCounterUpdate -= OnSafijiivaCounterUpdate;
             Context = null;
-            base.UnhookEvents();
         }
 
         private void UpdateInformation()

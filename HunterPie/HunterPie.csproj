@@ -302,6 +302,10 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
+    <Page Include="GUI\Widgets\ClassWidget\Parts\HammerControl.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="GUI\Widgets\ClassWidget\Parts\InsectGlaiveControl.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -401,6 +405,9 @@
     <Compile Include="GUI\Widgets\ClassWidget\Parts\ClassControl.cs" />
     <Compile Include="GUI\Widgets\ClassWidget\Parts\GunLanceControl.xaml.cs">
       <DependentUpon>GunLanceControl.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="GUI\Widgets\ClassWidget\Parts\HammerControl.xaml.cs">
+      <DependentUpon>HammerControl.xaml</DependentUpon>
     </Compile>
     <Compile Include="GUI\Widgets\ClassWidget\Parts\InsectGlaiveControl.xaml.cs">
       <DependentUpon>InsectGlaiveControl.xaml</DependentUpon>
