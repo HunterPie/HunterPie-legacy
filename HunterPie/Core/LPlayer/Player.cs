@@ -900,11 +900,13 @@ namespace HunterPie.Core
 
         private void GetHammerInformation(long weaponAddress)
         {
-            bool isPowerCharged = Scanner.Read<bool>(weaponAddress - 0x18);
+            bool isPowerCharged = Scanner.Read<byte>(weaponAddress - 0x18) == 1;
             int chargeLevel = Scanner.Read<int>(weaponAddress - 0x10);
+            float chargeProgress = Scanner.Read<float>(weaponAddress - 0x14);
             bool isSheathed = Scanner.Read<byte>(weaponAddress - 0x18CB) == 0;
             Hammer.IsPowerCharged = isPowerCharged;
             Hammer.ChargeLevel = chargeLevel;
+            Hammer.ChargeProgress = chargeProgress;
             Hammer.IsWeaponSheated = isSheathed;
         }
 
