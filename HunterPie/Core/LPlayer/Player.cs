@@ -642,7 +642,6 @@ namespace HunterPie.Core
         private void GetFertilizers()
         {
             Int64 Address = LEVEL_ADDRESS;
-
             for (int fertCount = 0; fertCount < 4; fertCount++)
             {
                 // Calculates memory address

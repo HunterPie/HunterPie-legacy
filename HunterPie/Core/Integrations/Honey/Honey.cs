@@ -1,12 +1,9 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.Linq;
 using System.Text;
-using System.Threading.Tasks;
 using System.Xml;
 using Debugger = HunterPie.Logger.Debugger;
 using GameStructs = HunterPie.Core.LPlayer.GameStructs;
-using HunterPie.Properties;
 using System.IO;
 
 namespace HunterPie.Core {
@@ -15,7 +12,7 @@ namespace HunterPie.Core {
         public static XmlDocument HoneyGearData;
         private static string HoneyLink = "https://honeyhunterworld.com/mhwbi/?";
         // Only calls this if the person pressed the upload build button
-        // since I don't want it to be in allocated in memory 100% of the time
+        // since I don't want it to be allocated in memory 100% of the time
         public static void LoadHoneyGearData() {
             HoneyGearData = new XmlDocument();
             HoneyGearData.Load(Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "HunterPie.Resources/Data/HoneyData.xml"));
@@ -198,6 +195,12 @@ namespace HunterPie.Core {
         static string GetMantleHoneyID(int ID) {
             string node = HoneyGearData.SelectSingleNode($"//Honey/Gear/Mantles/Mantle[@ID='{ID}']/@HoneyID")?.Value;
             return node ?? "0";
+        }
+
+        static string GetDecorationHoneyID(GameStructs.Decoration decoration)
+        {
+            string decoHoneyID = decoration.ID == int.MaxValue ? "0" : HoneyGearData.SelectSingleNode($"//Honey/Gear/Jewels/Jewel[@ID='{decoration.ID}']/@HoneyID")?.Value;
+            return decoHoneyID;
         }
     }
 }
