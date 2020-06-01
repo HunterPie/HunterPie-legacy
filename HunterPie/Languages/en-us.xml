@@ -80,6 +80,7 @@
     <Part ID="MONSTER_PART_LLEG" Name="Left Leg"/>
     <Part ID="MONSTER_PART_RLEG" Name="Right Leg"/>
     <Part ID="MONSTER_PART_TAIL" Name="Tail"/>
+    <Part ID="MONSTER_PART_TAIL_TIP" Name="Tail (Tip)"/>
     <Part ID="MONSTER_PART_ARMS" Name="Arms"/>
     <Part ID="MONSTER_PART_LEGS" Name="Legs"/>
     <Part ID="MONSTER_PART_LARM" Name="Left Arm"/>
@@ -102,15 +103,11 @@
     <Part ID="MONSTER_PART_FIN" Name="Fin"/>
     <Part ID="MONSTER_PART_HORNS" Name="Horns"/>
     <Part ID="MONSTER_PART_NECK" Name="Neck"/>
-    <Part ID="MONSTER_PART_LHAND" Name="Left Hand"/>
-    <Part ID="MONSTER_PART_RHAND" Name="Right Hand"/>
-    <Part ID="MONSTER_PART_LFOOT" Name="Left Foot"/>
-    <Part ID="MONSTER_PART_RFOOT" Name="Right Foot"/>
     <Part ID="MONSTER_PART_SHELL" Name="Shell"/>
-    <Part ID="MONSTER_PART_EXHAUST_ORGAN_CENTRAL" Name="Central Exhaust Organ"/>
-    <Part ID="MONSTER_PART_EXHAUST_ORGAN_HEAD" Name="Head Exhaust Organ"/>
-    <Part ID="MONSTER_PART_EXHAUST_ORGAN_CRATER" Name="Crater Exhaust Organ"/>
-    <Part ID="MONSTER_PART_EXHAUST_ORGAN_REAR" Name="Rear Exhaust Organ"/>
+    <Part ID="MONSTER_PART_EXHAUST_ORGAN_CENTRAL" Name="Central Magmacore"/>
+    <Part ID="MONSTER_PART_EXHAUST_ORGAN_HEAD" Name="Head Magmacore"/>
+    <Part ID="MONSTER_PART_EXHAUST_ORGAN_CRATER" Name="Crater Magmacore"/>
+    <Part ID="MONSTER_PART_EXHAUST_ORGAN_REAR" Name="Rear Magmacore"/>
     <Part ID="MONSTER_PART_WEAK_LSHELL" Name="Left Weak Shell"/>
     <Part ID="MONSTER_PART_WEAK_RSHELL" Name="Right Weak Shell"/>
     <Part ID="MONSTER_PART_ROCK" Name="Rock"/>
@@ -128,8 +125,6 @@
     <Part ID="MONSTER_PART_RLEG_GOLD" Name="Golden Right Leg"/>
     <Part ID="MONSTER_PART_LTAIL_GOLD" Name="Golden Left Tail"/>
     <Part ID="MONSTER_PART_RTAIL_GOLD" Name="Golden Right Tail"/>
-    <Part ID="MONSTER_PART_LHEAD" Name="Head Left"/>
-    <Part ID="MONSTER_PART_RHEAD" Name="Head Right"/>
     <Part ID="MONSTER_PART_HEAD_SNOW" Name="Snowy Head"/>
     <Part ID="MONSTER_PART_BODY_SNOW" Name="Snowy Body"/>
     <Part ID="MONSTER_PART_TAIL_SNOW" Name="Snowy Tail"/>
@@ -148,15 +143,42 @@
     <Part ID="MONSTER_PART_LARM_ROCK" Name="Rocky Left Arm"/>
     <Part ID="MONSTER_PART_RARM_ROCK" Name="Rocky Right Arm"/>
     <Part ID="MONSTER_PART_LEGS_ROCK" Name="Rocky Legs"/>
-    <Part ID="MONSTER_JAGRAS_SUMMONER" Name="Jagras Summoner"/>
+    <Part ID="MONSTER_PART_ANTLERS" Name="Antlers"/>
+    <Part ID="MONSTER_PART_HORN" Name="Horn"/>
     <!-- Removable parts -->
     <Part ID="MONSTER_PART_REMOVABLE_TAIL" Name="Removable Tail"/>
     <Part ID="MONSTER_PART_REMOVABLE_HORNS" Name="Removable Horns"/>
     <Part ID="MONSTER_PART_REMOVABLE_HEAD" Name="Breakable Head"/>
+    <Part ID="MONSTER_PART_REMOVABLE_HEAD_ROCK" Name="Breakable Head (Rocks)"/>
+    <Part ID="MONSTER_PART_REMOVABLE_CHEST_ROCK" Name="Breakable Chest (Rocks)"/>
     <Part ID="MONSTER_PART_REMOVABLE_BALLOON" Name="Removable Balloon"/>
     <Part ID="MONSTER_PART_REMOVABLE_HORNS_2" Name="Removable Horns #2"/>
-    <Part ID="MONSTER_PART_REMOVABLE_LANTLER" Name="Removable Left Antler"/>
-    <Part ID="MONSTER_PART_REMOVABLE_RANTLER" Name="Removable Right Antler"/>
+    <Part ID="MONSTER_PART_BODY_LEGS" Name="Body And Legs"/>
+    <Part ID="MONSTER_PART_SILVER_SPIKES_HEAD" Name="Silver Spikes (Head)"/>
+    <Part ID="MONSTER_PART_SILVER_SPIKES_LARM" Name="Silver Spikes (Left Arm)"/>
+    <Part ID="MONSTER_PART_SILVER_SPIKES_RARM" Name="Silver Spikes (Right Arm)"/>
+    <Part ID="MONSTER_PART_SILVER_SPIKES_LWING" Name="Silver Spikes (Left Wing)"/>
+    <Part ID="MONSTER_PART_SILVER_SPIKES_RWING" Name="Silver Spikes (Right Wing)"/>
+    <!-- Special parts -->
+    <Part ID="MONSTER_PART_BIG_FLINCH" Name="Big Flinch"/>
+    <Part ID="MONSTER_PART_RAGE" Name="Removable Rage"/>
+    <Part ID="MONSTER_PART_COUNTERATTACK" Name="Counterattack"/>
+    <Part ID="MONSTER_PART_CHARGE" Name="Removable Charge"/>
+    <Part ID="MONSTER_PART_THROAT" Name="Throat"/>
+    <Part ID="MONSTER_PART_INFLATED_TAIL" Name="Inflated Tail"/>
+    <Part ID="MONSTER_PART_SKY_FALL" Name="Sky Fall"/>
+    <Part ID="MONSTER_PART_EMISSIONS" Name="Effluvia Emissions"/>
+    <Part ID="MONSTER_PART_GLOWING_HEAD" Name="Glowing Head"/>
+    <Part ID="MONSTER_PART_GLOWING_TAIL" Name="Glowing Tail"/>
+    <Part ID="MONSTER_PART_EMERGE_SNOW_HEAD" Name="Emerge From Snow (Head)"/>
+    <Part ID="MONSTER_PART_EMERGE_SNOW_BODY" Name="Emerge From Snow (Body)"/>
+    <Part ID="MONSTER_PART_EMERGE_SNOW_TAIL" Name="Emerge From Snow (Tail)"/>
+    <Part ID="MONSTER_PART_SPIKES_HEAD" Name="Spikes (Head)"/>
+    <Part ID="MONSTER_PART_SPIKES_LARM" Name="Spikes (Left Arm)"/>
+    <Part ID="MONSTER_PART_SPIKES_RARM" Name="Spikes (Right Arm)"/>
+    <Part ID="MONSTER_PART_SPIKES_LWING" Name="Spikes (Left Wing)"/>
+    <Part ID="MONSTER_PART_SPIKES_RWING" Name="Spikes (Right Wing)"/>
+    <Part ID="MONSTER_PART_SPIKES_TAIL" Name="Spikes (Tail)"/>
   </Parts>
   <Ailments>
     <Ailment ID="STATUS_UNKNOWN" Name="Unknown"/>
