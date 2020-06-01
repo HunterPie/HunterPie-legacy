@@ -87,7 +87,7 @@
     <Abnormality ID="14" IsDebuff="True" Offset="614" Icon="ICON_ALLRESDOWN"/>
     <Abnormality ID="16" IsDebuff="True" Offset="61C"/>
     <Abnormality ID="17" IsDebuff="True" Offset="620" Icon="ICON_BLAST"/>
-    <Abnormality ID="20" IsDebuff="True" Offset="63C" Icon="ICON_BLASTSCOURGE" HasConditions="True" ConditionOffset="-16"/>
+    <Abnormality ID="20" IsDebuff="True" Offset="63C" Icon="ICON_BLASTSCOURGE" HasConditions="True" ConditionOffset="-16" IsPercentageBuff="True" MaxTimer="120"/>
   </DEBUFF_Abnormalities>
   <MISC_Abnormalities>
     <Abnormality ID="0" Offset="690" Icon="ITEM_DASH"/>
@@ -119,7 +119,7 @@
     <Abnormality ID="7" Offset="74C"/> <!-- Resentment -->
     <Abnormality ID="8" Offset="754" Icon="ICON_ARMORSKILL_SALMON"/> <!-- Adrenaline -->
     <Abnormality ID="9" Offset="7C8"/> <!-- Cool Cat (Food skill) -->
-    <Abnormality ID="10" Offset="788" Icon="ICON_ARMORSKILL_WHITE"/>
+    <Abnormality ID="10" Offset="788" Icon="ICON_ARMORSKILL_WHITE" IsPercentageBuff="True" MaxTimer="100"/>
     <Abnormality ID="15" Offset="79C" Icon="ICON_ATTACKUP"/>
     <Abnormality ID="16" Offset="7A0" Icon="ICON_ARMORSKILL_PURPLE"/>
     <Abnormality ID="99" Offset="FC4" Icon="ICON_MANTLE" IsGearBuff="True"/>

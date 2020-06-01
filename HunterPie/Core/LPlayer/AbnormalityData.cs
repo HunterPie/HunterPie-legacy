@@ -90,6 +90,8 @@ namespace HunterPie.Core {
                 HasConditions = bool.Parse(node.Attributes["HasConditions"]?.Value ?? "False"),
                 ConditionOffset = int.Parse(node.Attributes["ConditionOffset"]?.Value ?? "0"),
                 Stack = int.Parse(node.Attributes["Stack"]?.Value ?? "0"),
+                IsPercentageBuff = bool.Parse(node.Attributes["IsPercentageBuff"]?.Value ?? "False"),
+                MaxTimer = float.Parse(node.Attributes["MaxTimer"]?.Value ?? "0", System.Globalization.CultureInfo.InvariantCulture)
             };
 
             abnormality.InternalId = $"{idPrefix}_{abnormality.Id}";

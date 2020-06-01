@@ -278,7 +278,8 @@ namespace HunterPie.Core {
         }
 
         private void GetMonsterHp(string MonsterModel) {
-            if (string.IsNullOrEmpty(MonsterModel) || MonsterModel.StartsWith("ems"))
+            
+            if (string.IsNullOrEmpty(MonsterModel))
             {
                 TotalHP = CurrentHP = 0.0f;
                 HPPercentage = 1f;
@@ -289,7 +290,7 @@ namespace HunterPie.Core {
             Int64 MonsterCurrentHPAddress = MonsterTotalHPAddress + 0x4;
             float f_TotalHP = Scanner.Read<float>(MonsterTotalHPAddress);
             float f_CurrentHP = Scanner.Read<float>(MonsterCurrentHPAddress);
-
+            
             if (f_CurrentHP <= f_TotalHP && f_CurrentHP > 0) {
                 this.TotalHP = f_TotalHP;
                 this.CurrentHP = f_CurrentHP;
@@ -312,9 +313,16 @@ namespace HunterPie.Core {
                 }
                 MonsterId = MonsterID.LastOrDefault()?.Trim('\x00');
                 GetMonsterHp(MonsterId);
-                if (MonsterId.StartsWith("em") && !MonsterId.StartsWith("ems")) {
+                if (MonsterId.StartsWith("em")) {
 
                     GameId = Scanner.Read<int>(MonsterAddress + Address.Offsets.MonsterGameIDOffset);
+
+                    if (!MonsterData.MonstersInfo.ContainsKey(GameId))
+                    {
+                        Debugger.Debug($"Not mapped monster found: Em = {MonsterId} | ID = {GameId}");
+                        Id = null;
+                        return;
+                    }
 
                     MonsterId = MonsterInfo.Em;
 

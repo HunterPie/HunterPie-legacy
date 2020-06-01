@@ -9,6 +9,8 @@ HunterPie v1.0.3.91+ is now introducing classes widgets, they will display usefu
 - Gun Lance
 - Switch Axe
 - Longsword
+- Bow
+- Hammer
 
 The classes widget also shows information about Safi'jiiva set skill if you have it equipped.
 Consider reading this to know how they work and which information each class shows: [Documentation](https://github.com/Haato3o/HunterPie/wiki/Classes-Widget)

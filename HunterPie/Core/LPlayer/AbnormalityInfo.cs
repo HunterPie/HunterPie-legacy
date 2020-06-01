@@ -9,6 +9,8 @@
         public bool IsDebuff { get; set; }
         public bool IsGearBuff { get; set; }
         public bool IsInfinite { get; set; }
+        public bool IsPercentageBuff { get; set; }
+        public float MaxTimer { get; set; }
 
         public bool HasConditions { get; set; }
         public int ConditionOffset { get; set; }

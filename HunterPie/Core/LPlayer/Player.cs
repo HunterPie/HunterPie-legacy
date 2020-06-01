@@ -6,7 +6,6 @@ using HunterPie.Logger;
 using HunterPie.Memory;
 using HunterPie.Core.LPlayer.Jobs;
 using System.Collections.Generic;
-using System.Runtime.InteropServices;
 using HunterPie.Core.Definitions;
 
 namespace HunterPie.Core
@@ -23,7 +22,7 @@ namespace HunterPie.Core
         private Int64 classAddress;
 
         // Game info
-        private readonly int[] PeaceZones = new int[11] { 0, 301, 302, 303, 305, 306, 501, 502, 503, 504, 506 };
+        private readonly int[] PeaceZones = new int[10] { 0, 301, 302, 303, 305, 306, 501, 502, 503, 506 };
         private readonly int[] _HBZones = new int[9] { 301, 302, 303, 305, 306, 501, 502, 503, 506 };
 
         // Player info

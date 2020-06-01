@@ -10,6 +10,8 @@ namespace HunterPie.GUI.Widgets.Abnormality_Widget.Parts {
     /// </summary>
     public partial class AbnormalityControl : UserControl, IEquatable<AbnormalityControl>, IComparable<AbnormalityControl> {
 
+        // TODO: Refactor this code
+
         Brush Debuff_Color = new SolidColorBrush(Color.FromArgb(0xFF, 0x97, 0x32, 0x32)) ;
         Brush Buff_Color = new SolidColorBrush(Color.FromArgb(0xFF, 0x32, 0x97, 0x45));
 
@@ -65,7 +67,7 @@ namespace HunterPie.GUI.Widgets.Abnormality_Widget.Parts {
                 this.TimeLeftText.Visibility = System.Windows.Visibility.Collapsed;
                 this.Height = 36;
             } else {
-                this.TimeLeftText.Text = FormatToMinutes(Abnorm.Duration);
+                this.TimeLeftText.Text = Abnorm.IsPercentageBuff ? $"{Abnorm.Duration / Abnorm.MaxTimer * 100}%" : FormatToMinutes(Abnorm.Duration);
             }
             
         } 
@@ -90,7 +92,7 @@ namespace HunterPie.GUI.Widgets.Abnormality_Widget.Parts {
                     this.TimeLeftText.Visibility = System.Windows.Visibility.Collapsed;
                     this.Height = 36;
                 } else {
-                    this.TimeLeftText.Text = FormatToMinutes(args.Abnormality.Duration);
+                    this.TimeLeftText.Text = args.Abnormality.IsPercentageBuff ? $"{args.Abnormality.Duration/args.Abnormality.MaxTimer * 100}%" : FormatToMinutes(args.Abnormality.Duration);
                 }
             }));
         }
