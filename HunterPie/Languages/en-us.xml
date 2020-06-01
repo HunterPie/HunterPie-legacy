@@ -589,6 +589,8 @@
       <!-- Damage Meter -->
       <String ID="ENABLE_METER" Name="Enable Damage Widget"/>
       <String ID="ENABLE_METER_DESC" Name="If enabled, the Damage Meter Widget will be visible whenever it has content."/>
+      <String ID="ENABLE_TIMER" Name="Show timer"/>
+      <String ID="ENABLE_TIMER_DESC" Name="If enabled, the Damage Meter timer will be visible."/>
       <String ID="ENABLE_TOTAL_DAMAGE" Name="Show total damage"/>
       <String ID="ENABLE_TOTAL_DAMAGE_DESC" Name="If enabled, the Damage Widget will show individual total damage."/>
       <String ID="ENABLE_METER_DPS" Name="Show damage per second"/>

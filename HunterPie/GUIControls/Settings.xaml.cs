@@ -134,6 +134,7 @@ namespace HunterPie.GUIControls {
             settingsUI.switchEnableDPSMeter.IsEnabled = settings.Overlay.DPSMeter.Enabled;
             settingsUI.switchEnableTotalDamage.IsEnabled = settings.Overlay.DPSMeter.ShowTotalDamage;
             settingsUI.switchEnableDPSWheneverPossible.IsEnabled = settings.Overlay.DPSMeter.ShowDPSWheneverPossible;
+            settingsUI.switchEnableTimer.IsEnabled = settings.Overlay.DPSMeter.ShowTimer;
             settingsUI.switchEnableTimerInExpeditions.IsEnabled = settings.Overlay.DPSMeter.ShowTimerInExpeditions;
             settingsUI.switchEnableOnlyTimer.IsEnabled = settings.Overlay.DPSMeter.ShowOnlyTimer;
             settingsUI.switchEnableOnlyMyself.IsEnabled = settings.Overlay.DPSMeter.ShowOnlyMyself;
@@ -250,6 +251,7 @@ namespace HunterPie.GUIControls {
             settings.Overlay.DPSMeter.Enabled = settingsUI.switchEnableDPSMeter.IsEnabled;
             settings.Overlay.DPSMeter.ShowTotalDamage = settingsUI.switchEnableTotalDamage.IsEnabled;
             settings.Overlay.DPSMeter.ShowDPSWheneverPossible = settingsUI.switchEnableDPSWheneverPossible.IsEnabled;
+            settings.Overlay.DPSMeter.ShowTimer = settingsUI.switchEnableTimer.IsEnabled;
             settings.Overlay.DPSMeter.ShowTimerInExpeditions = settingsUI.switchEnableTimerInExpeditions.IsEnabled;
             settings.Overlay.DPSMeter.ShowOnlyTimer = settingsUI.switchEnableOnlyTimer.IsEnabled;
             settings.Overlay.DPSMeter.ShowOnlyMyself = settingsUI.switchEnableOnlyMyself.IsEnabled;

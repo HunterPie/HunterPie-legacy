@@ -112,7 +112,7 @@ namespace HunterPie.Core {
                 public float BackgroundOpacity { get; set; } = 0.5f;
                 public float Opacity { get; set; } = 1;
                 public bool ShowOnlyTimer { get; set; } = false;
-                
+                public bool ShowTimer { get; set; } = true;
             }
 
             public class Players {
