@@ -482,7 +482,7 @@ namespace HunterPie.Core {
                                 // Some monsters have the same removable part value in the next removable part struct
                                 // so we skip the ones with the same values.
                                 sMonsterPart nPart = Scanner.Win32.Read<sMonsterPart>(removablePartAddress + 0x0C);
-                                Debugger.Log($"struct sMonsterPart [{Name}] ({partId}) <REMOVABLE>" + Helpers.Serialize(mPartData));
+                                Debugger.Debug($"struct sMonsterPart [{Name}] ({partId}) <REMOVABLE>" + Helpers.Serialize(mPartData));
                                 do
                                 {
                                     removablePartAddress += Address.Offsets.NextRemovablePart;
@@ -511,7 +511,7 @@ namespace HunterPie.Core {
                         if (part.Group == null) part.Group = partInfo.GroupId;
                         monsterPartAddress += Address.Offsets.NextMonsterPartOffset;
 
-                        Debugger.Log($"struct sMonsterPart [{Name}] ({partId}) <NON-REMOVABLE>" + Helpers.Serialize(mPartData));
+                        Debugger.Debug($"struct sMonsterPart [{Name}] ({partId}) <NON-REMOVABLE>" + Helpers.Serialize(mPartData));
 
                     }
                 }
