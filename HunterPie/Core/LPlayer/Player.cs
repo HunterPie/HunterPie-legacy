@@ -417,7 +417,7 @@ namespace HunterPie.Core
         /*
             Player data that is tracked by the Player class, cannot be called by an external function.
         */
-
+        
         private void GetPlayerInfo()
         {
             while (Scanner.GameIsRunning)

@@ -319,7 +319,7 @@ namespace HunterPie.Core {
 
                     if (!MonsterData.MonstersInfo.ContainsKey(GameId))
                     {
-                        Debugger.Debug($"Not mapped monster found: Em = {MonsterId} | ID = {GameId}");
+                        //Debugger.Debug($"Not mapped monster found: Em = {MonsterId} | ID = {GameId}");
                         Id = null;
                         return;
                     }
@@ -470,6 +470,7 @@ namespace HunterPie.Core {
 
                             if (IsAValidPart && Scanner.Read<int>(removablePartAddress + 0x10) > 0)
                             {
+                                
                                 sMonsterPart mPartData = Scanner.Win32.Read<sMonsterPart>(removablePartAddress + 0x0C);
                                 Health = mPartData.Health;
                                 MaxHealth = mPartData.MaxHealth;
@@ -483,11 +484,14 @@ namespace HunterPie.Core {
                                 // so we skip the ones with the same values.
                                 sMonsterPart nPart = Scanner.Win32.Read<sMonsterPart>(removablePartAddress + 0x0C);
                                 Debugger.Debug($"struct sMonsterPart [{Name}] ({partId}) <REMOVABLE>" + Helpers.Serialize(mPartData));
+                                bool isSamePart;
                                 do
                                 {
                                     removablePartAddress += Address.Offsets.NextRemovablePart;
                                     nPart = Scanner.Win32.Read<sMonsterPart>(removablePartAddress + 0x0C);
-                                } while (nPart.GetHashCode() == mPartData.GetHashCode());
+                                    isSamePart = (nPart.Health == mPartData.Health && nPart.MaxHealth == mPartData.MaxHealth &&
+                                    nPart.unk0 == mPartData.unk0 && nPart.unk19 == mPartData.unk19);
+                                } while (isSamePart);
                                 break;
                             }
                             removablePartAddress += Address.Offsets.NextRemovablePart;
@@ -510,7 +514,7 @@ namespace HunterPie.Core {
 
                         if (part.Group == null) part.Group = partInfo.GroupId;
                         monsterPartAddress += Address.Offsets.NextMonsterPartOffset;
-
+                        
                         Debugger.Debug($"struct sMonsterPart [{Name}] ({partId}) <NON-REMOVABLE>" + Helpers.Serialize(mPartData));
 
                     }

@@ -1,7 +1,8 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
-<!--1.0.3.91 update version 1 translate by ThanatosDi-->
+<!--1.0.3.92 update version 1 translate by ThanatosDi-->
 <Strings lang="Traditional Chinese">
   <Monsters>
+    <Monster ID="ems062_03" Name="訓練木豬"/>
     <Monster ID="em001_00" Name="雌火龍"/>
     <Monster ID="em001_01" Name="櫻火龍"/>
     <Monster ID="em001_02" Name="金火龍"/>
@@ -80,6 +81,7 @@
     <Part ID="MONSTER_PART_LLEG" Name="左腳"/>
     <Part ID="MONSTER_PART_RLEG" Name="右腳"/>
     <Part ID="MONSTER_PART_TAIL" Name="尾巴"/>
+    <Part ID="MONSTER_PART_TAIL_TIP" Name="尾尖"/>
     <Part ID="MONSTER_PART_ARMS" Name="前腳"/>
     <Part ID="MONSTER_PART_LEGS" Name="後腳"/>
     <Part ID="MONSTER_PART_LARM" Name="左前腳"/>
@@ -102,10 +104,10 @@
     <Part ID="MONSTER_PART_FIN" Name="鰭"/>
     <Part ID="MONSTER_PART_HORNS" Name="角"/>
     <Part ID="MONSTER_PART_NECK" Name="脖子"/>
-    <Part ID="MONSTER_PART_LHAND" Name="左手"/>
+    <!-- <Part ID="MONSTER_PART_LHAND" Name="左手"/>
     <Part ID="MONSTER_PART_RHAND" Name="右手"/>
     <Part ID="MONSTER_PART_LFOOT" Name="左腳"/>
-    <Part ID="MONSTER_PART_RFOOT" Name="右腳"/>
+    <Part ID="MONSTER_PART_RFOOT" Name="右腳"/> -->
     <Part ID="MONSTER_PART_SHELL" Name="外殼"/>
     <Part ID="MONSTER_PART_EXHAUST_ORGAN_CENTRAL" Name="中央排氣器官"/>
     <Part ID="MONSTER_PART_EXHAUST_ORGAN_HEAD" Name="頭部排氣器官"/>
@@ -128,8 +130,8 @@
     <Part ID="MONSTER_PART_RLEG_GOLD" Name="右後腳的黃金"/>
     <Part ID="MONSTER_PART_LTAIL_GOLD" Name="左尾的黃金"/>
     <Part ID="MONSTER_PART_RTAIL_GOLD" Name="右尾的黃金"/>
-    <Part ID="MONSTER_PART_LHEAD" Name="頭部左側"/>
-    <Part ID="MONSTER_PART_RHEAD" Name="頭部右側"/>
+    <!-- <Part ID="MONSTER_PART_LHEAD" Name="頭部左側"/>
+    <Part ID="MONSTER_PART_RHEAD" Name="頭部右側"/> -->
     <Part ID="MONSTER_PART_HEAD_SNOW" Name="頭部的雪"/>
     <Part ID="MONSTER_PART_BODY_SNOW" Name="身體的雪"/>
     <Part ID="MONSTER_PART_TAIL_SNOW" Name="尾巴的雪"/>
@@ -148,15 +150,42 @@
     <Part ID="MONSTER_PART_LARM_ROCK" Name="左前爪的石塊"/>
     <Part ID="MONSTER_PART_RARM_ROCK" Name="右前爪的石塊"/>
     <Part ID="MONSTER_PART_LEGS_ROCK" Name="腳部的石塊"/>
-    <Part ID="MONSTER_JAGRAS_SUMMONER" Name="Jagras Summoner"/>
+    <Part ID="MONSTER_PART_ANTLERS" Name="鹿角"/>
+    <Part ID="MONSTER_PART_HORN" Name="犄角"/>
     <!-- Removable parts -->
     <Part ID="MONSTER_PART_REMOVABLE_TAIL" Name="可斷的尾巴"/>
     <Part ID="MONSTER_PART_REMOVABLE_HORNS" Name="可斷的角"/>
     <Part ID="MONSTER_PART_REMOVABLE_HEAD" Name="可破壞的頭"/>
+    <Part ID="MONSTER_PART_REMOVABLE_HEAD_ROCK" Name="可破壞的頭(岩石)"/>
+    <Part ID="MONSTER_PART_REMOVABLE_CHEST_ROCK" Name="可破壞的胸部(岩石)"/>
     <Part ID="MONSTER_PART_REMOVABLE_BALLOON" Name="可破壞的氣囊"/>
     <Part ID="MONSTER_PART_REMOVABLE_HORNS_2" Name="可斷的角 #2"/>
+    <Part ID="MONSTER_PART_BODY_LEGS" Name="身體和腳"/>
+    <Part ID="MONSTER_PART_SILVER_SPIKES_HEAD" Name="銀刺(頭部)"/>
+    <Part ID="MONSTER_PART_SILVER_SPIKES_LARM" Name="銀刺(左臂)"/>
+    <Part ID="MONSTER_PART_SILVER_SPIKES_RARM" Name="銀刺(右臂)"/>
+    <Part ID="MONSTER_PART_SILVER_SPIKES_LWING" Name="銀刺(左翅)"/>
+    <Part ID="MONSTER_PART_SILVER_SPIKES_RWING" Name="銀刺(右翅)"/>
+    <!-- Special parts -->
+    <Part ID="MONSTER_PART_BIG_FLINCH" Name="大膽怯"/>
+    <Part ID="MONSTER_PART_RAGE" Name="憤怒"/>
+    <Part ID="MONSTER_PART_COUNTERATTACK" Name="反擊"/>
+    <Part ID="MONSTER_PART_CHARGE" Name="Removable Charge"/>
     <Part ID="MONSTER_PART_REMOVABLE_LANTLER" Name="可破壞的左鹿角"/>
+    <Part ID="MONSTER_PART_INFLATED_TAIL" Name="膨脹尾巴"/>
     <Part ID="MONSTER_PART_REMOVABLE_RANTLER" Name="可破壞的右鹿角"/>
+    <Part ID="MONSTER_PART_EMISSIONS" Name="瘴氣排放"/>
+    <Part ID="MONSTER_PART_GLOWING_HEAD" Name="發光的頭"/>
+    <Part ID="MONSTER_PART_GLOWING_TAIL" Name="發光的尾巴"/>
+    <Part ID="MONSTER_PART_EMERGE_SNOW_HEAD" Name="從雪產生(頭部)"/>
+    <Part ID="MONSTER_PART_EMERGE_SNOW_BODY" Name="從雪產生(身體)"/>
+    <Part ID="MONSTER_PART_EMERGE_SNOW_TAIL" Name="從雪產生(尾巴)"/>
+    <Part ID="MONSTER_PART_SPIKES_HEAD" Name="尖刺(頭部)"/>
+    <Part ID="MONSTER_PART_SPIKES_LARM" Name="尖刺(左臂)"/>
+    <Part ID="MONSTER_PART_SPIKES_RARM" Name="尖刺(右臂)"/>
+    <Part ID="MONSTER_PART_SPIKES_LWING" Name="尖刺(左翅)"/>
+    <Part ID="MONSTER_PART_SPIKES_RWING" Name="尖刺(右翅)"/>
+    <Part ID="MONSTER_PART_SPIKES_TAIL" Name="尖刺(尾巴)"/>
   </Parts>
   <Ailments>
     <Ailment ID="STATUS_UNKNOWN" Name="未知"/>
@@ -566,6 +595,8 @@
       <!-- Damage Meter -->
       <String ID="ENABLE_METER" Name="傷害小工具"/>
       <String ID="ENABLE_METER_DESC" Name="如果啟用，則只要有內容就會顯示傷害小工具"/>
+      <String ID="ENABLE_TIMER" Name="Show timer"/>
+      <String ID="ENABLE_TIMER_DESC" Name="If enabled, the Damage Meter timer will be visible."/>
       <String ID="ENABLE_TOTAL_DAMAGE" Name="顯示總傷害"/>
       <String ID="ENABLE_TOTAL_DAMAGE_DESC" Name="如果啟用，傷害小工具將會顯示每個人的總傷害量"/>
       <String ID="ENABLE_METER_DPS" Name="顯示 DPS(每秒傷害)"/>
@@ -600,14 +631,14 @@
       <String ID="ENABLE_SHOW_ABNORM_NAMES" Name="顯示異常狀態的名稱"/>
       <String ID="ENABLE_SHOW_ABNORM_NAMES_DESC" Name="如果啟用將會顯示異常狀態的名稱"/>
       <!-- Specialized Tool Widget-->
-      <String ID="STATIC_PRIMARY_SPEC_TOOL" Name="主要特殊衣裝"/>
+      <String ID="STATIC_PRIMARY_SPEC_TOOL" Name="第一特殊衣裝"/>
       <String ID="STATIC_SECONDARY_SPEC_TOOL" Name="第二特殊衣裝"/>
       <String ID="ENABLE_PRIMARY_SPEC_TOOL" Name="啟用小工具"/>
-      <String ID="ENABLE_PRIMARY_SPEC_TOOL_DESC" Name="如果啟用則在有內容時將在主要特殊衣裝小工具中顯示"/>
+      <String ID="ENABLE_PRIMARY_SPEC_TOOL_DESC" Name="如果啟用則在有內容時將在第一特殊衣裝小工具中顯示"/>
       <String ID="ENABLE_SECONDARY_SPEC_TOOL" Name="啟用小工具"/>
       <String ID="ENABLE_SECONDARY_SPEC_TOOL_DESC" Name="如果啟用則只要有內容時將在第二特殊衣裝小工具中顯示"/>
       <String ID="STATIC_COLOR" Name="顏色:"/>
-      <String ID="STATIC_PRIMARY_SPEC_TOOL_POSITION_DESC" Name="更改主要特殊衣裝小工具的位置"/>
+      <String ID="STATIC_PRIMARY_SPEC_TOOL_POSITION_DESC" Name="更改第一特殊衣裝小工具的位置"/>
       <String ID="STATIC_SECONDARY_SPEC_TOOL_POSITION_DESC" Name="更改第二特殊衣裝小工具的位置"/>
        <!-- Class Widget -->
       <String ID="ENABLE_INSECT_GLAIVE_HELPER" Name="操蟲棍小工具"/>
@@ -618,7 +649,13 @@
       <String ID="ENABLE_SWITCH_AXE_HELPER_DESC" Name="如果啟用，則每當您裝備斬擊斧時，斬擊斧小工具就會顯示"/>
       <String ID="ENABLE_GUN_LANCE_HELPER" Name="銃槍小工具"/>
       <String ID="ENABLE_GUN_LANCE_HELPER_DESC" Name="如果啟用，則每當您裝備銃槍時，銃槍小工具就會顯示"/>
-      <String ID="STATIC_CLASSES_BETA_WARNING" Name="注意：武器小工具仍在開發中，將來將支持更多武器。每個武器小工具都有其自己的設置，因此您可以根據武器不同使用設計模式縮放大小和移動不同的位置。"/>
+      <String ID="ENABLE_LONGSWORD_HELPER" Name="太刀小工具"/>
+      <String ID="ENABLE_LONGSWORD_HELPER_DESC" Name="如果啟用，只要您裝備了太刀便會顯示太刀小工具"/>
+      <String ID="ENABLE_BOW_HELPER" Name="弓箭小工具"/>
+      <String ID="ENABLE_BOW_HELPER_DESC" Name="如果啟用，則只要您裝備了弓箭，便會顯示弓箭小工具"/>
+      <String ID="ENABLE_HAMMER_HELPER" Name="大錘小工具"/>
+      <String ID="ENABLE_HAMMER_HELPER_DESC" Name="如果啟用，每當您裝備大錘時將會顯示大錘小工具"/>
+      <String ID="STATIC_CLASSES_BETA_WARNING" Name="注意：武器小工具仍在開發中，將來將支持更多武器。每個武器小工具都有其自己的設置，因此您可以根據武器在此小工具中使用不同的位置。使用設計模式功能縮放和移動此小部件。"/>
       <!-- Links -->
       <String ID="STATIC_HUNTERPIE_WIKI" Name="文件資料(英文)"/>
       <String ID="STATIC_HUNTERPIE_WIKI_DESC" Name="HunterPie 官方文件"/>
