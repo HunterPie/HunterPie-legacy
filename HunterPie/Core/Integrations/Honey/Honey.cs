@@ -197,10 +197,18 @@ namespace HunterPie.Core {
             return node ?? "0";
         }
 
-        static string GetDecorationHoneyID(GameStructs.Decoration decoration)
+        public static int GetDecorationHoneyIdById(int id)
         {
-            string decoHoneyID = decoration.ID == int.MaxValue ? "0" : HoneyGearData.SelectSingleNode($"//Honey/Gear/Jewels/Jewel[@ID='{decoration.ID}']/@HoneyID")?.Value;
-            return decoHoneyID;
+            string decoHoneyID = id == int.MaxValue ? "0" : HoneyGearData.SelectSingleNode($"//Honey/Gear/Jewels/Jewel[@ID='{id}']/@HoneyID")?.Value;
+            int.TryParse(decoHoneyID, out int parsed);
+            return parsed;
+        }
+
+        public static int GetDecorationHoneyIdByGameId(int id)
+        {
+            string decoHoneyId = HoneyGearData.SelectSingleNode($"//Honey/Gear/Jewels/Jewel[@GameId='{id}']/@HoneyID")?.Value;
+            int.TryParse(decoHoneyId, out int parsed);
+            return parsed;
         }
     }
 }
