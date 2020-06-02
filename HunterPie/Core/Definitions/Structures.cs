@@ -39,7 +39,7 @@ namespace HunterPie.Core.Definitions
         public int unk5;
         public int unk6;
         public int unk7;
-        public int unk8;
+        public long unk8;
         public int unk9;
         public int unk10;
         public int unk11;
@@ -60,7 +60,6 @@ namespace HunterPie.Core.Definitions
         public int unk26;
         public int unk27;
         public int unk28;
-        public int unk29;
         public float ExtraTimer;
         public float ExtraMaxTimer;
     }

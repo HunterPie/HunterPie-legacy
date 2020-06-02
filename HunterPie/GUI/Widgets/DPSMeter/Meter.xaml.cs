@@ -15,8 +15,6 @@ namespace HunterPie.GUI.Widgets.DPSMeter {
         Game GameContext;
         Party Context;
 
-
-
         public Visibility TimerVisibility
         {
             get { return (Visibility)GetValue(TimerVisibilityProperty); }
