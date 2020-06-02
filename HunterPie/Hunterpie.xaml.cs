@@ -438,7 +438,7 @@ namespace HunterPie {
         {
             if (MonsterHunter.Player.ZoneID != 0)
             {
-                string sSession = $"steam://joinlobby/582010/{MonsterHunter.Player.SteamSession}/{MonsterHunter.Player.SteamID}";
+                string sSession = MonsterHunter.Player.SteamID != 0 ? $"steam://joinlobby/582010/{MonsterHunter.Player.SteamSession}/{MonsterHunter.Player.SteamID}" : "";
                 Data playerData = new Data
                 {
                     Name = MonsterHunter.Player.Name,
@@ -454,10 +454,10 @@ namespace HunterPie {
 
         private void OnSessionChange(object source, EventArgs args) {
             Debugger.Log($"SESSION: {MonsterHunter.Player.SessionID}");
-            ExportGameData();
             // Writes the session ID to a Sessions.txt
             if (!string.IsNullOrEmpty(MonsterHunter.Player.SessionID))
             {
+                ExportGameData();
                 File.WriteAllText(Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "Sessions.txt"), MonsterHunter.Player.SessionID);
             }
         }
