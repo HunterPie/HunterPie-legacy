@@ -169,7 +169,7 @@
     <Part ID="MONSTER_PART_SILVER_SPIKES_LWING" Name="Espinhos Prata (Asa Esq.)"/>
     <Part ID="MONSTER_PART_SILVER_SPIKES_RWING" Name="Espinhos Prata (Asa Dir.)"/>
     <!-- Special parts -->
-    <Part ID="MONSTER_PART_BIG_FLINCH" Name="Big Flinch"/>
+    <Part ID="MONSTER_PART_BIG_FLINCH" Name="Recuo Longo"/>
     <Part ID="MONSTER_PART_RAGE" Name="Raiva"/>
     <Part ID="MONSTER_PART_COUNTERATTACK" Name="Contra-Ataque"/>
     <Part ID="MONSTER_PART_CHARGE" Name="Estado de Carga"/>
@@ -179,9 +179,9 @@
     <Part ID="MONSTER_PART_EMISSIONS" Name="Emissões de eflúvio"/>
     <Part ID="MONSTER_PART_GLOWING_HEAD" Name="Cabeça Incandescênte"/>
     <Part ID="MONSTER_PART_GLOWING_TAIL" Name="Cauda Incandescênte"/>
-    <Part ID="MONSTER_PART_EMERGE_SNOW_HEAD" Name="Emerge From Snow (Head)"/>
-    <Part ID="MONSTER_PART_EMERGE_SNOW_BODY" Name="Emerge From Snow (Body)"/>
-    <Part ID="MONSTER_PART_EMERGE_SNOW_TAIL" Name="Emerge From Snow (Tail)"/>
+    <Part ID="MONSTER_PART_EMERGE_SNOW_HEAD" Name="Sair da Neve (Cabeça)"/>
+    <Part ID="MONSTER_PART_EMERGE_SNOW_BODY" Name="Sair da Neve (Corpo)"/>
+    <Part ID="MONSTER_PART_EMERGE_SNOW_TAIL" Name="Sair da Neve (Cauda)"/>
     <Part ID="MONSTER_PART_SPIKES_HEAD" Name="Espinhos (Cabeça)"/>
     <Part ID="MONSTER_PART_SPIKES_LARM" Name="Espinhos (Braço Esq.)"/>
     <Part ID="MONSTER_PART_SPIKES_RARM" Name="Espinhos (Braço Dir.)"/>
