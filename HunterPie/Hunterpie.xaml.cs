@@ -455,7 +455,7 @@ namespace HunterPie {
         private void OnSessionChange(object source, EventArgs args) {
             Debugger.Log($"SESSION: {MonsterHunter.Player.SessionID}");
             // Writes the session ID to a Sessions.txt
-            if (!string.IsNullOrEmpty(MonsterHunter.Player.SessionID))
+            if (!string.IsNullOrEmpty(MonsterHunter.Player.SessionID) && MonsterHunter.Player.IsLoggedOn)
             {
                 ExportGameData();
                 File.WriteAllText(Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "Sessions.txt"), MonsterHunter.Player.SessionID);
@@ -463,8 +463,11 @@ namespace HunterPie {
         }
 
         public void OnZoneChange(object source, EventArgs e) {
-            Debugger.Log($"ZoneID: {MonsterHunter.Player.ZoneID}");
-            ExportGameData();
+            if (MonsterHunter.Player.IsLoggedOn)
+            {
+                Debugger.Log($"ZoneID: {MonsterHunter.Player.ZoneID}");
+                ExportGameData();
+            }
         }
 
         public void OnLogin(object source, EventArgs e) {
@@ -473,6 +476,7 @@ namespace HunterPie {
                 BUTTON_UPLOADBUILD.IsEnabled = true;
                 BUTTON_UPLOADBUILD.Opacity = 1;
             }));
+            ExportGameData();
         }
 
         public void OnLogout(object source, EventArgs e) {

@@ -46,6 +46,7 @@ namespace HunterPie.Core
                 }
             }
         }
+        public bool IsLoggedOn { get => _playerAddress != 0; }
         public int Level
         { // Hunter Rank
             get => _level;
