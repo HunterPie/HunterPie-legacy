@@ -5,7 +5,6 @@ using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Input;
 using System.Windows.Media;
-using System.Xml;
 using HunterPie.Core;
 using HunterPie.Core.LPlayer;
 using HunterPie.GUI.Widgets.Abnormality_Widget.Parts;
@@ -15,10 +14,8 @@ namespace HunterPie.GUI.Widgets.Abnormality_Widget {
     /// Interaction logic for AbnormalityTraySettings.xaml
     /// </summary>
     public partial class AbnormalityTraySettings : WidgetSettings {
-        readonly List<AbnormalitySettingControl> abnormalityControls = new List<AbnormalitySettingControl>();
+        List<AbnormalitySettingControl> abnormalityControls = new List<AbnormalitySettingControl>();
         int buffTrayIndex;
-
-
 
         public string wTitle
         {
@@ -37,13 +34,21 @@ namespace HunterPie.GUI.Widgets.Abnormality_Widget {
             
             buffTrayIndex = trayIndex;
             wTitle = $"Settings: {UserSettings.PlayerConfig.Overlay.AbnormalitiesWidget.BarPresets[buffTrayIndex].Name}";
-
+            PopulateTimerTextBox();
             PopulateAbnormalities();
             ConfigureWindow();
         }
 
+        private void PopulateTimerTextBox()
+        {
+            string[] strings = new string[2] { "MM:SS (e.g: 5:30)", "MMmSSs (e.g: 5m30s)" };
+            foreach (string s in strings)
+            {
+                TimerTextFormatBox.Items.Add(s);
+            }
+        }
+        
         private void PopulateAbnormalities() {
-            
             PopulateHuntingHornBuffs();
             PopulateOrchestraBuffs();
             PopulateDebuffs();
@@ -114,8 +119,7 @@ namespace HunterPie.GUI.Widgets.Abnormality_Widget {
         private void OnUnselectAllButtonClick(object sender, RoutedEventArgs e) => ToggleAllAbnormalitiesInTab(false);
 
         private void ToggleAllAbnormalitiesInTab(bool enable)
-        {
-            
+        {   
             ContentControl selectedAbnormalityContainer = (ContentControl)AbnormalitySelectionContainer.SelectedContent;
             Panel selectedAbnormalityPanel = (Panel)selectedAbnormalityContainer.Content;
             
@@ -126,6 +130,8 @@ namespace HunterPie.GUI.Widgets.Abnormality_Widget {
 
         private void OnClosing(object sender, System.ComponentModel.CancelEventArgs e)
         {
+            SettingsPanel.Children.Clear();
+            TimerTextFormatBox.Items.Clear();
             HuntingHornBuffs.Children.Clear();
             PalicoBuffs.Children.Clear();
             Debuffs.Children.Clear();

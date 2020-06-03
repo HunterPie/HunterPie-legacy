@@ -134,6 +134,7 @@ namespace HunterPie.GUIControls {
             settingsUI.switchEnableDPSMeter.IsEnabled = settings.Overlay.DPSMeter.Enabled;
             settingsUI.switchEnableTotalDamage.IsEnabled = settings.Overlay.DPSMeter.ShowTotalDamage;
             settingsUI.switchEnableDPSWheneverPossible.IsEnabled = settings.Overlay.DPSMeter.ShowDPSWheneverPossible;
+            settingsUI.switchEnableTimer.IsEnabled = settings.Overlay.DPSMeter.ShowTimer;
             settingsUI.switchEnableTimerInExpeditions.IsEnabled = settings.Overlay.DPSMeter.ShowTimerInExpeditions;
             settingsUI.switchEnableOnlyTimer.IsEnabled = settings.Overlay.DPSMeter.ShowOnlyTimer;
             settingsUI.switchEnableOnlyMyself.IsEnabled = settings.Overlay.DPSMeter.ShowOnlyMyself;
@@ -147,10 +148,13 @@ namespace HunterPie.GUIControls {
             settingsUI.DamageComponentOpacity.Value = settings.Overlay.DPSMeter.Opacity;
 
             // Classes Widget
+            settingsUI.switchLongswordHelper.IsEnabled = settings.Overlay.ClassesWidget.LongSwordHelper.Enabled;
+            settingsUI.switchHammerHelper.IsEnabled = settings.Overlay.ClassesWidget.HammerHelper.Enabled;
             settingsUI.switchGunLanceHelper.IsEnabled = settings.Overlay.ClassesWidget.GunLanceHelper.Enabled;
             settingsUI.switchSwitchAxeHelper.IsEnabled = settings.Overlay.ClassesWidget.SwitchAxeHelper.Enabled;
             settingsUI.switchChargeBladeHelper.IsEnabled = settings.Overlay.ClassesWidget.ChargeBladeHelper.Enabled;
             settingsUI.switchInsectGlaiveHelper.IsEnabled = settings.Overlay.ClassesWidget.InsectGlaiveHelper.Enabled;
+            settingsUI.switchBowHelper.IsEnabled = settings.Overlay.ClassesWidget.BowHelper.Enabled;
             
 
         }
@@ -247,6 +251,7 @@ namespace HunterPie.GUIControls {
             settings.Overlay.DPSMeter.Enabled = settingsUI.switchEnableDPSMeter.IsEnabled;
             settings.Overlay.DPSMeter.ShowTotalDamage = settingsUI.switchEnableTotalDamage.IsEnabled;
             settings.Overlay.DPSMeter.ShowDPSWheneverPossible = settingsUI.switchEnableDPSWheneverPossible.IsEnabled;
+            settings.Overlay.DPSMeter.ShowTimer = settingsUI.switchEnableTimer.IsEnabled;
             settings.Overlay.DPSMeter.ShowTimerInExpeditions = settingsUI.switchEnableTimerInExpeditions.IsEnabled;
             settings.Overlay.DPSMeter.ShowOnlyTimer = settingsUI.switchEnableOnlyTimer.IsEnabled;
             settings.Overlay.DPSMeter.ShowOnlyMyself = settingsUI.switchEnableOnlyMyself.IsEnabled;
@@ -260,10 +265,13 @@ namespace HunterPie.GUIControls {
             settings.Overlay.DPSMeter.Opacity = (float)settingsUI.DamageComponentOpacity.Value;
 
             // Classes Widget
+            settings.Overlay.ClassesWidget.LongSwordHelper.Enabled = settingsUI.switchLongswordHelper.IsEnabled;
+            settings.Overlay.ClassesWidget.HammerHelper.Enabled = settingsUI.switchHammerHelper.IsEnabled;
             settings.Overlay.ClassesWidget.GunLanceHelper.Enabled = settingsUI.switchGunLanceHelper.IsEnabled;
             settings.Overlay.ClassesWidget.SwitchAxeHelper.Enabled = settingsUI.switchSwitchAxeHelper.IsEnabled;
             settings.Overlay.ClassesWidget.ChargeBladeHelper.Enabled = settingsUI.switchChargeBladeHelper.IsEnabled;
             settings.Overlay.ClassesWidget.InsectGlaiveHelper.Enabled = settingsUI.switchInsectGlaiveHelper.IsEnabled;
+            settings.Overlay.ClassesWidget.BowHelper.Enabled = settingsUI.switchBowHelper.IsEnabled;
 
 
             // Abnormality bars

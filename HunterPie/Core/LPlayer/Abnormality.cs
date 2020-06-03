@@ -14,6 +14,8 @@ namespace HunterPie.Core {
             IsDebuff = info.IsDebuff;
             IsInfinite = info.IsInfinite;
             Icon = info.IconName;
+            IsPercentageBuff = info.IsPercentageBuff;
+            MaxTimer = info.MaxTimer;
         }
 
         public string Name => GStrings.GetAbnormalityByID(Type, Id, Stack);
@@ -52,6 +54,9 @@ namespace HunterPie.Core {
         public float MaxDuration { get; private set; }
         public float DurationPercentage { get; private set; }
         public bool IsDebuff { get; private set; }
+
+        public bool IsPercentageBuff { get; private set; }
+        public float MaxTimer { get; private set; }
 
         #region Events
 

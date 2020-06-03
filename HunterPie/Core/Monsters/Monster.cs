@@ -278,7 +278,8 @@ namespace HunterPie.Core {
         }
 
         private void GetMonsterHp(string MonsterModel) {
-            if (string.IsNullOrEmpty(MonsterModel) || MonsterModel.StartsWith("ems"))
+            
+            if (string.IsNullOrEmpty(MonsterModel))
             {
                 TotalHP = CurrentHP = 0.0f;
                 HPPercentage = 1f;
@@ -289,7 +290,7 @@ namespace HunterPie.Core {
             Int64 MonsterCurrentHPAddress = MonsterTotalHPAddress + 0x4;
             float f_TotalHP = Scanner.Read<float>(MonsterTotalHPAddress);
             float f_CurrentHP = Scanner.Read<float>(MonsterCurrentHPAddress);
-
+            
             if (f_CurrentHP <= f_TotalHP && f_CurrentHP > 0) {
                 this.TotalHP = f_TotalHP;
                 this.CurrentHP = f_CurrentHP;
@@ -312,9 +313,16 @@ namespace HunterPie.Core {
                 }
                 MonsterId = MonsterID.LastOrDefault()?.Trim('\x00');
                 GetMonsterHp(MonsterId);
-                if (MonsterId.StartsWith("em") && !MonsterId.StartsWith("ems")) {
+                if (MonsterId.StartsWith("em")) {
 
                     GameId = Scanner.Read<int>(MonsterAddress + Address.Offsets.MonsterGameIDOffset);
+
+                    if (!MonsterData.MonstersInfo.ContainsKey(GameId))
+                    {
+                        //Debugger.Debug($"Not mapped monster found: Em = {MonsterId} | ID = {GameId}");
+                        Id = null;
+                        return;
+                    }
 
                     MonsterId = MonsterInfo.Em;
 
@@ -421,6 +429,7 @@ namespace HunterPie.Core {
             }
         }
 
+        int x = 0;
         private void GetMonsterParts()
         {
             if (!IsAlive) return;
@@ -440,13 +449,12 @@ namespace HunterPie.Core {
                 {
                     if (part.PartAddress > 0)
                     {
-
+                        
                         sMonsterPart mPartData = Scanner.Win32.Read<sMonsterPart>(part.PartAddress + 0x0C);
                         Health = mPartData.Health;
                         MaxHealth = mPartData.MaxHealth;
                         TimesBroken = mPartData.Counter;
-
-
+                        
                         part.SetPartInfo(TimesBroken, Health, MaxHealth);
                     }
                     else
@@ -462,7 +470,8 @@ namespace HunterPie.Core {
 
                             if (IsAValidPart && Scanner.Read<int>(removablePartAddress + 0x10) > 0)
                             {
-                                sMonsterPart mPartData = Scanner.Win32.Read<sMonsterPart>(part.PartAddress + 0x0C);
+                                
+                                sMonsterPart mPartData = Scanner.Win32.Read<sMonsterPart>(removablePartAddress + 0x0C);
                                 Health = mPartData.Health;
                                 MaxHealth = mPartData.MaxHealth;
                                 TimesBroken = mPartData.Counter;
@@ -473,13 +482,16 @@ namespace HunterPie.Core {
 
                                 // Some monsters have the same removable part value in the next removable part struct
                                 // so we skip the ones with the same values.
+                                sMonsterPart nPart = Scanner.Win32.Read<sMonsterPart>(removablePartAddress + 0x0C);
+                                Debugger.Debug($"struct sMonsterPart [{Name}] ({partId}) <REMOVABLE>" + Helpers.Serialize(mPartData));
+                                bool isSamePart;
                                 do
                                 {
                                     removablePartAddress += Address.Offsets.NextRemovablePart;
-                                    
-                                } while (Scanner.Read<float>(removablePartAddress + 0x0C) == Health &&
-                                    Scanner.Read<float>(removablePartAddress + 0x10) == MaxHealth &&
-                                    Scanner.Read<int>(removablePartAddress + 0x8) == Scanner.Read<int>(removablePartAddress + 0x8));
+                                    nPart = Scanner.Win32.Read<sMonsterPart>(removablePartAddress + 0x0C);
+                                    isSamePart = (nPart.Health == mPartData.Health && nPart.MaxHealth == mPartData.MaxHealth &&
+                                    nPart.unk0 == mPartData.unk0 && nPart.unk19 == mPartData.unk19);
+                                } while (isSamePart);
                                 break;
                             }
                             removablePartAddress += Address.Offsets.NextRemovablePart;
@@ -491,20 +503,24 @@ namespace HunterPie.Core {
                     if (part.PartAddress > 0)
                     {
                         sMonsterPart mPartData = Scanner.Win32.Read<sMonsterPart>(part.PartAddress);
-                        part.SetPartInfo(mPartData.Counter, mPartData.MaxHealth, mPartData.Health);
+                        part.SetPartInfo(mPartData.Counter, mPartData.Health, mPartData.MaxHealth);
                         
                     } else
                     {
                         sMonsterPart mPartData = Scanner.Win32.Read<sMonsterPart>(monsterPartAddress);
 
-                        part.SetPartInfo(mPartData.Counter, mPartData.MaxHealth, mPartData.Health);
+                        part.SetPartInfo(mPartData.Counter, mPartData.Health, mPartData.MaxHealth);
                         part.PartAddress = monsterPartAddress;
 
                         if (part.Group == null) part.Group = partInfo.GroupId;
                         monsterPartAddress += Address.Offsets.NextMonsterPartOffset;
+                        
+                        Debugger.Debug($"struct sMonsterPart [{Name}] ({partId}) <NON-REMOVABLE>" + Helpers.Serialize(mPartData));
+
                     }
                 }
             }
+            
         }
 
         private void GetMonsterStamina() {
@@ -566,7 +582,7 @@ namespace HunterPie.Core {
                             continue;
                         } else
                         {
-   
+                            // TODO: Turn this into a struct def
                             float maxBuildup = Math.Max(0, Scanner.Read<float>(StatusPtr + 0x1C8));
                             float currentBuildup = Math.Max(0, Scanner.Read<float>(StatusPtr + 0x1B8));
                             float maxDuration = Math.Max(0, Scanner.Read<float>(StatusPtr + 0x19C));

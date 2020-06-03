@@ -4,6 +4,7 @@ using System.IO;
 using System.Linq;
 using System.Collections.Generic;
 using HunterPie.Logger;
+using HunterPie.Core.LPlayer.Jobs;
 
 namespace HunterPie.Core {
     public class UserSettings {
@@ -111,7 +112,7 @@ namespace HunterPie.Core {
                 public float BackgroundOpacity { get; set; } = 0.5f;
                 public float Opacity { get; set; } = 1;
                 public bool ShowOnlyTimer { get; set; } = false;
-                
+                public bool ShowTimer { get; set; } = true;
             }
 
             public class Players {
@@ -174,12 +175,15 @@ namespace HunterPie.Core {
             public class ClassesWidget
             {
                 public LongSwordHelper LongSwordHelper { get; set; } = new LongSwordHelper();
+                public HammerHelper HammerHelper { get; set; } = new HammerHelper();
                 public ChargeBladeHelper ChargeBladeHelper { get; set; } = new ChargeBladeHelper();
                 public InsectGlaiveHelper InsectGlaiveHelper { get; set; } = new InsectGlaiveHelper();
                 public GunLanceHelper GunLanceHelper { get; set; } = new GunLanceHelper();
                 public SwitchAxeHelper SwitchAxeHelper { get; set; } = new SwitchAxeHelper();
                 public BowHelper BowHelper { get; set; } = new BowHelper();
             }
+
+            public class HammerHelper : WeaponHelperStructure { }
 
             public class ChargeBladeHelper : WeaponHelperStructure { }
 

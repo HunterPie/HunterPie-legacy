@@ -6,7 +6,7 @@ using HunterPie.Logger;
 using HunterPie.Memory;
 using HunterPie.Core.LPlayer.Jobs;
 using System.Collections.Generic;
-using System.Runtime.InteropServices;
+using HunterPie.Core.Definitions;
 
 namespace HunterPie.Core
 {
@@ -22,7 +22,7 @@ namespace HunterPie.Core
         private Int64 classAddress;
 
         // Game info
-        private readonly int[] PeaceZones = new int[11] { 0, 301, 302, 303, 305, 306, 501, 502, 503, 504, 506 };
+        private readonly int[] PeaceZones = new int[10] { 0, 301, 302, 303, 305, 306, 501, 502, 503, 506 };
         private readonly int[] _HBZones = new int[9] { 301, 302, 303, 305, 306, 501, 502, 503, 506 };
 
         // Player info
@@ -417,7 +417,7 @@ namespace HunterPie.Core
         /*
             Player data that is tracked by the Player class, cannot be called by an external function.
         */
-
+        
         private void GetPlayerInfo()
         {
             while (Scanner.GameIsRunning)
@@ -642,29 +642,29 @@ namespace HunterPie.Core
         private void GetFertilizers()
         {
             Int64 Address = LEVEL_ADDRESS;
-
             for (int fertCount = 0; fertCount < 4; fertCount++)
             {
                 // Calculates memory address
-                Int64 FertilizerAddress = Address + Memory.Address.Offsets.FertilizersOffset + (0x10 * fertCount);
+                Int64 FertilizerAddress = Address + Memory.Address.Offsets.FertilizersOffset + (0x10 * fertCount) - 0xC;
+                sHarvestBoxElement element = Scanner.Win32.Read<sHarvestBoxElement>(FertilizerAddress);
                 // Read memory
-                int FertilizerId = Scanner.Read<int>(FertilizerAddress - 0x4);
-                int FertilizerCount = Scanner.Read<int>(FertilizerAddress);
+                int FertilizerId = element.ID;
+                int FertilizerCount = element.Amount;
                 // update fertilizer data
                 Harvest.Box[fertCount].ID = FertilizerId;
                 Harvest.Box[fertCount].Amount = FertilizerCount;
             }
-            UpdateHarvestBoxCounter(Address + Memory.Address.Offsets.FertilizersOffset + (0x10 * 3));
+            UpdateHarvestBoxCounter(Address + Memory.Address.Offsets.FertilizersOffset + (0x10 * 3) - 0xC);
         }
 
         private void UpdateHarvestBoxCounter(Int64 LastFertAddress)
         {
             Int64 Address = LastFertAddress + Memory.Address.Offsets.HarvestBoxOffset;
             int counter = 0;
-            for (long iAddress = Address; iAddress < Address + 0x330; iAddress += 0x10)
+            for (long iAddress = Address; iAddress < Address + 0x320; iAddress += 0x10)
             {
-                int memValue = Scanner.Read<int>(iAddress);
-                if (memValue > 0)
+                sHarvestBoxElement element = Scanner.Win32.Read<sHarvestBoxElement>(iAddress);
+                if (element.Amount > 0)
                 {
                     counter++;
                 }
@@ -839,6 +839,7 @@ namespace HunterPie.Core
                     break;
                 case Classes.Hammer:
                     GetHammerInformation(weaponAddress);
+                    Hammer.SafijiivaRegenCounter = SafiCounter;
                     break;
                 case Classes.GunLance:
                     GetGunLanceInformation(weaponAddress, AbnormAddress);
@@ -897,10 +898,14 @@ namespace HunterPie.Core
 
         private void GetHammerInformation(long weaponAddress)
         {
-            bool isPowerCharged = Scanner.Read<bool>(weaponAddress - 0x18);
+            bool isPowerCharged = Scanner.Read<byte>(weaponAddress - 0x18) == 1;
             int chargeLevel = Scanner.Read<int>(weaponAddress - 0x10);
+            float chargeProgress = Scanner.Read<float>(weaponAddress - 0x14);
+            bool isSheathed = Scanner.Read<byte>(weaponAddress - 0x18CB) == 0;
             Hammer.IsPowerCharged = isPowerCharged;
             Hammer.ChargeLevel = chargeLevel;
+            Hammer.ChargeProgress = chargeProgress;
+            Hammer.IsWeaponSheated = isSheathed;
         }
 
         private void GetGunLanceInformation(long weaponAddress, long AbnormAddress)

@@ -1,6 +1,7 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
 <Strings lang="English">
   <Monsters>
+    <Monster ID="ems062_03" Name="Training Dummy"/>
     <Monster ID="em001_00" Name="Rathian"/>
     <Monster ID="em001_01" Name="Pink Rathian"/>
     <Monster ID="em001_02" Name="Gold Rathian"/>
@@ -588,6 +589,8 @@
       <!-- Damage Meter -->
       <String ID="ENABLE_METER" Name="Enable Damage Widget"/>
       <String ID="ENABLE_METER_DESC" Name="If enabled, the Damage Meter Widget will be visible whenever it has content."/>
+      <String ID="ENABLE_TIMER" Name="Show timer"/>
+      <String ID="ENABLE_TIMER_DESC" Name="If enabled, the Damage Meter timer will be visible."/>
       <String ID="ENABLE_TOTAL_DAMAGE" Name="Show total damage"/>
       <String ID="ENABLE_TOTAL_DAMAGE_DESC" Name="If enabled, the Damage Widget will show individual total damage."/>
       <String ID="ENABLE_METER_DPS" Name="Show damage per second"/>
@@ -640,6 +643,12 @@
       <String ID="ENABLE_SWITCH_AXE_HELPER_DESC" Name="If enabled, the Switch Axe helper will be visible whenever you equip an Switch Axe."/>
       <String ID="ENABLE_GUN_LANCE_HELPER" Name="Enable Gun Lance Helper"/>
       <String ID="ENABLE_GUN_LANCE_HELPER_DESC" Name="If enabled, the Gun Lance helper will be visible whenever you equip an Gun Lance."/>
+      <String ID="ENABLE_LONGSWORD_HELPER" Name="Enable Longsword Helper"/>
+      <String ID="ENABLE_LONGSWORD_HELPER_DESC" Name="If enabled, the Longsword helper will be visible whenever you equip an Longsword."/>
+      <String ID="ENABLE_BOW_HELPER" Name="Enable Bow Helper"/>
+      <String ID="ENABLE_BOW_HELPER_DESC" Name="If enabled, the Bow helper will be visible whenever you equip an Bow."/>
+      <String ID="ENABLE_HAMMER_HELPER" Name="Enable Hammer Helper"/>
+      <String ID="ENABLE_HAMMER_HELPER_DESC" Name="If enabled, the Hammer helper will be visible whenever you equip an Hammer."/>
       <String ID="STATIC_CLASSES_BETA_WARNING" Name="Attention: Class helpers are still in development and more classes will be supported in the future. Each class helper has it's own settings, so you can have different positions for this widget depending on the class. Use the Design Mode feature to scale and move this widget."/>
       <!-- Links -->
       <String ID="STATIC_HUNTERPIE_WIKI" Name="Documentation"/>

@@ -6,6 +6,7 @@ Gerade bei den Abnormalitäten / Statusveränderungen des Spielers gibt es mit (
 -->
 <Strings lang="Deutsch">
   <Monsters>
+    <Monster ID="ems062_03" Name="Traings-Dummy"/>
     <Monster ID="em001_00" Name="Rathian"/>
     <Monster ID="em001_01" Name="Rosa Rathian"/>
     <Monster ID="em001_02" Name="Goldene Rathian"/>
@@ -84,6 +85,7 @@ Gerade bei den Abnormalitäten / Statusveränderungen des Spielers gibt es mit (
     <Part ID="MONSTER_PART_LLEG" Name="Linkes Bein"/>
     <Part ID="MONSTER_PART_RLEG" Name="Rechtes Bein"/>
     <Part ID="MONSTER_PART_TAIL" Name="Schwanz"/>
+	<Part ID="MONSTER_PART_TAIL_TIP" Name="Schwanz (Spitze)"/>
     <Part ID="MONSTER_PART_ARMS" Name="Arme"/>
     <Part ID="MONSTER_PART_LEGS" Name="Beine"/>
     <Part ID="MONSTER_PART_LARM" Name="Linker Arm"/>
@@ -152,15 +154,45 @@ Gerade bei den Abnormalitäten / Statusveränderungen des Spielers gibt es mit (
     <Part ID="MONSTER_PART_LARM_ROCK" Name="Felsiger Linker Arm"/>
     <Part ID="MONSTER_PART_RARM_ROCK" Name="Felsiger Rechter Arm"/>
     <Part ID="MONSTER_PART_LEGS_ROCK" Name="Felsige Beine"/>
-    <Part ID="MONSTER_JAGRAS_SUMMONER" Name="Jagras Beschwörer"/>
+	<Part ID="MONSTER_PART_ANTLERS" Name="Geweih"/>
+	<Part ID="MONSTER_PART_HORN" Name="Horn"/>
+    <!--Part ID="MONSTER_JAGRAS_SUMMONER" Name="Jagras Beschwörer"/-->
     <!-- Removable parts -->
     <Part ID="MONSTER_PART_REMOVABLE_TAIL" Name="Abtrennbarer Schwanz"/>
     <Part ID="MONSTER_PART_REMOVABLE_HORNS" Name="Abtrennbare Hörner"/>
     <Part ID="MONSTER_PART_REMOVABLE_HEAD" Name="Abtrennbarer Kopf"/>
+	<Part ID="MONSTER_PART_REMOVABLE_HEAD_ROCK" Name="Abtrennbarer Kopf (Felsen)"/>
+	<Part ID="MONSTER_PART_REMOVABLE_CHEST_ROCK" Name="Abtrennbare Brust (Felsen)"/>
     <Part ID="MONSTER_PART_REMOVABLE_BALLOON" Name="Abtrennbarer Ballon"/>
     <Part ID="MONSTER_PART_REMOVABLE_HORNS_2" Name="Abtrennbare Hörner #2"/>
-    <Part ID="MONSTER_PART_REMOVABLE_LANTLER" Name="Abtrennbares Linkes Geweih"/>
-    <Part ID="MONSTER_PART_REMOVABLE_RANTLER" Name="Abtrennbares Rechtes Geweih"/>
+	<Part ID="MONSTER_PART_BODY_LEGS" Name="Körper und Beine"/>
+	<Part ID="MONSTER_PART_SILVER_SPIKES_HEAD" Name="Silberne Stacheln (Kopf)"/>
+    <Part ID="MONSTER_PART_SILVER_SPIKES_LARM" Name="Silberne Stacheln (Linker Arm)"/>
+    <Part ID="MONSTER_PART_SILVER_SPIKES_RARM" Name="Silberne Stacheln (Rechter Arm)"/>
+    <Part ID="MONSTER_PART_SILVER_SPIKES_LWING" Name="Silberne Stacheln (Linker Flügel)"/>
+    <Part ID="MONSTER_PART_SILVER_SPIKES_RWING" Name="Silberne Stacheln (Rechter Flügel)"/>
+    <!--Part ID="MONSTER_PART_REMOVABLE_LANTLER" Name="Abtrennbares Linkes Geweih"/>
+    <Part ID="MONSTER_PART_REMOVABLE_RANTLER" Name="Abtrennbares Rechtes Geweih"/-->
+	<!-- Special parts -->
+    <Part ID="MONSTER_PART_BIG_FLINCH" Name="Starkes Zucken"/>
+    <Part ID="MONSTER_PART_RAGE" Name="Entfernbare Wut"/>
+    <Part ID="MONSTER_PART_COUNTERATTACK" Name="Gegenstoß"/>
+    <Part ID="MONSTER_PART_CHARGE" Name="Entfernbare Ladung"/>
+    <Part ID="MONSTER_PART_THROAT" Name="Kehle"/>
+    <Part ID="MONSTER_PART_INFLATED_TAIL" Name="Aufgeblasener Schwanz"/>
+    <Part ID="MONSTER_PART_SKY_FALL" Name="Himmelssturz"/>
+    <Part ID="MONSTER_PART_EMISSIONS" Name="Effluvia Ausscheidungen"/>
+    <Part ID="MONSTER_PART_GLOWING_HEAD" Name="Leuchtender Kopf"/>
+    <Part ID="MONSTER_PART_GLOWING_TAIL" Name="Leuchtender Schwanz"/>
+    <Part ID="MONSTER_PART_EMERGE_SNOW_HEAD" Name="Aus dem Schnee erscheinen (Kopf)"/>
+    <Part ID="MONSTER_PART_EMERGE_SNOW_BODY" Name="Aus dem Schnee erscheinen (Körper)"/>
+    <Part ID="MONSTER_PART_EMERGE_SNOW_TAIL" Name="Aus dem Schnee erscheinen (Schwanz)"/>
+    <Part ID="MONSTER_PART_SPIKES_HEAD" Name="Stacheln (Kopf)"/>
+    <Part ID="MONSTER_PART_SPIKES_LARM" Name="Stacheln (Linker Arm)"/>
+    <Part ID="MONSTER_PART_SPIKES_RARM" Name="Stacheln (Rechter Arm)"/>
+    <Part ID="MONSTER_PART_SPIKES_LWING" Name="Stacheln (Linker Flügel)"/>
+    <Part ID="MONSTER_PART_SPIKES_RWING" Name="Stacheln (Rechter Flügel)"/>
+    <Part ID="MONSTER_PART_SPIKES_TAIL" Name="Stacheln (Schwanz)"/>
   </Parts>
   <Ailments>
     <Ailment ID="STATUS_UNKNOWN" Name="Unbekannt"/>
@@ -571,15 +603,17 @@ Gerade bei den Abnormalitäten / Statusveränderungen des Spielers gibt es mit (
       <!-- Damage Meter -->
       <String ID="ENABLE_METER" Name="Aktiviere Schadens-Widget"/>
       <String ID="ENABLE_METER_DESC" Name="Wenn aktiv, wird das Schadens-Widget angezeigt, sobald es etwas anzuzeigen hat."/>
-	    <String ID="ENABLE_TOTAL_DAMAGE" Name="Zeige Gesamtschaden"/>
+	  <String ID="ENABLE_TIMER" Name="Zeige Timer"/>
+      <String ID="ENABLE_TIMER_DESC" Name="Wenn aktiv, wird der Timer des Schadens-Widget angezeigt."/>
+	  <String ID="ENABLE_TOTAL_DAMAGE" Name="Zeige Gesamtschaden"/>
       <String ID="ENABLE_TOTAL_DAMAGE_DESC" Name="Wenn aktiv, zeigt das Schadens-Widget den individuellen Gesamtschaden an."/>
       <String ID="ENABLE_METER_DPS" Name="Zeige Schaden pro Sekunde"/>
       <String ID="ENABLE_METER_DPS_DESC" Name="Wenn aktiv, zeigt das Schadens-Widget den individuellen Schaden pro Sekunde an."/>
-	    <String ID="ENABLE_TIMER_IN_GL" Name="Aktiviere Timer in Expeditionen/den Leitlanden"/>
+	  <String ID="ENABLE_TIMER_IN_GL" Name="Aktiviere Timer in Expeditionen/den Leitlanden"/>
       <String ID="ENABLE_TIMER_IN_GL_DESC" Name="Wenn aktiv, ist der Timer in Expeditionen und den Leitlanden sichtbar."/>
       <String ID="ENABLE_ONLY_TIMER" Name="Zeige nur den Timer"/>
       <String ID="ENABLE_ONLY_TIMER_DESC" Name="Wenn aktiv, zeigt das Schadens-Widget nur den Timer an und versteckt den Gruppenschaden."/>
-	    <String ID="ENABLE_METER_ONLY_MYSELF" Name="Zeige nur meinen Schaden"/>
+	  <String ID="ENABLE_METER_ONLY_MYSELF" Name="Zeige nur meinen Schaden"/>
       <String ID="ENABLE_METER_ONLY_MYSELF_DESC" Name="Wenn aktiv, wird nur der eigene Schaden angezeigt."/>
       <String ID="STATIC_METER_PLAYER_1" Name="Erster Spieler"/>
       <String ID="STATIC_METER_PLAYER_2" Name="Zweiter Spieler"/>
@@ -600,9 +634,9 @@ Gerade bei den Abnormalitäten / Statusveränderungen des Spielers gibt es mit (
       <String ID="STATIC_ABNORM_TAB_HH" Name="Jagdhorn"/>
       <String ID="STATIC_ABNORM_TAB_ORCHESTRA" Name="Orchester"/>
       <String ID="STATIC_ABNORM_TAB_DEBUFF" Name="Debuffs"/>
-	    <String ID="STATIC_ABNORM_TAB_GEAR" Name="Ausrüstung"/>
+	  <String ID="STATIC_ABNORM_TAB_GEAR" Name="Ausrüstung"/>
       <String ID="STATIC_ABNORM_TAB_CONSUMABLE" Name="Verbrauchsmaterial"/>
-	    <String ID="ENABLE_SHOW_ABNORM_NAMES" Name="Zeige Abnormalitäten-Namen"/>
+	  <String ID="ENABLE_SHOW_ABNORM_NAMES" Name="Zeige Abnormalitäten-Namen"/>
       <String ID="ENABLE_SHOW_ABNORM_NAMES_DESC" Name="Wenn aktiv, werden die Namen von Abnormalitäten angezeigt."/>
       <!-- Specialized Tool Widget-->
       <String ID="STATIC_PRIMARY_SPEC_TOOL" Name="Primäres Spezialgerät"/>
@@ -623,6 +657,12 @@ Gerade bei den Abnormalitäten / Statusveränderungen des Spielers gibt es mit (
       <String ID="ENABLE_SWITCH_AXE_HELPER_DESC" Name="Wenn aktiv, wird das Morph-Axt Widget angezeigt, sobald du diese Waffe ausrüstest."/>
       <String ID="ENABLE_GUN_LANCE_HELPER" Name="Aktiviere Gewehrlanzen Hilfe"/>
       <String ID="ENABLE_GUN_LANCE_HELPER_DESC" Name="Wenn aktiv, wird das Gewehrlanzen Widget angezeigt, sobald du diese Waffe ausrüstest."/>
+	  <String ID="ENABLE_LONGSWORD_HELPER" Name="Aktiviere Langschwert Hilfe"/>
+      <String ID="ENABLE_LONGSWORD_HELPER_DESC" Name="Wenn aktiv, wird das Langschwert Widget angezeigt, sobald du diese Waffe ausrüstest."/>
+	  <String ID="ENABLE_BOW_HELPER" Name="Aktiviere Bogen Hilfe"/>
+      <String ID="ENABLE_BOW_HELPER_DESC" Name="Wenn aktiv, wird das Bogen Widget angezeigt, sobald du diese Waffe ausrüstest."/>
+      <String ID="ENABLE_HAMMER_HELPER" Name="Aktiviere Hammer Hilfe"/>
+      <String ID="ENABLE_HAMMER_HELPER_DESC" Name="Wenn aktiv, wird das Hammer Widget angezeigt, sobald du diese Waffe ausrüstest."/>
       <String ID="STATIC_CLASSES_BETA_WARNING" Name="Achtung: Die Klassenhelfer Widgets sind noch in der Entwicklung und weitere Klassen werden folgen. Jeder Klassenhelfer hat eigene Einstellungen, also ist es möglich die Positionen der Widgets für die jeweilge Klasse anzupassen. Verwende den Design Modus um dieses Widget zu skalieren und zu ebwegen."/> 
       <!-- Links -->
       <String ID="STATIC_HUNTERPIE_WIKI" Name="Dokumentation"/>

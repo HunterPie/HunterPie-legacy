@@ -128,6 +128,7 @@
       <SubType>Designer</SubType>
     </ApplicationDefinition>
     <Compile Include="Core\Definitions\Structures.cs" />
+    <Compile Include="Core\Integrations\DataExporter\Exporter.cs" />
     <Compile Include="Core\Integrations\Honey\Honey.cs" />
     <Compile Include="Core\KeyboardHook.cs" />
     <Compile Include="Core\LPlayer\AbnormalityInfo.cs" />
@@ -302,6 +303,10 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
+    <Page Include="GUI\Widgets\ClassWidget\Parts\HammerControl.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="GUI\Widgets\ClassWidget\Parts\InsectGlaiveControl.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -402,6 +407,9 @@
     <Compile Include="GUI\Widgets\ClassWidget\Parts\GunLanceControl.xaml.cs">
       <DependentUpon>GunLanceControl.xaml</DependentUpon>
     </Compile>
+    <Compile Include="GUI\Widgets\ClassWidget\Parts\HammerControl.xaml.cs">
+      <DependentUpon>HammerControl.xaml</DependentUpon>
+    </Compile>
     <Compile Include="GUI\Widgets\ClassWidget\Parts\InsectGlaiveControl.xaml.cs">
       <DependentUpon>InsectGlaiveControl.xaml</DependentUpon>
     </Compile>
@@ -486,6 +494,11 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Include="Themes\IcyyPie.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
   </ItemGroup>
   <ItemGroup>
@@ -891,6 +904,11 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="HunterPie.Resources\UI\Class\pin.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="HunterPie.Resources\Monsters\Icons\ems062_03.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
   </ItemGroup>

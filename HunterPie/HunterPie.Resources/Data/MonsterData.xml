@@ -27,6 +27,18 @@
     <Ailment Name="STATUS_VIOLATED" Skip="False" Group="CLAW"/>
     <Ailment Name="25" Skip="True" Group="UNKNOWN"/>
   </Ailments>
+  <Monster ID="ems062_03" Capture="0" GameID="98">
+    <Weaknesses>
+      <Weakness ID="ELEMENT_DRAGON" Stars="3"/>
+      <Weakness ID="ELEMENT_THUNDER" Stars="3"/>
+    </Weaknesses>
+    <Crown Mini="0.9" Silver="1.15" Gold="1.23"/>
+    <Parts Max="3">
+      <Part Name="MONSTER_PART_UNKNOWN" Group="Misc"/>
+      <Part Name="MONSTER_PART_UNKNOWN" Group="Misc"/>
+      <Part Name="MONSTER_PART_UNKNOWN" Group="Misc"/>
+    </Parts>
+  </Monster>
   <Monster ID="em001_00" Capture="25" GameID="9"> <!-- Rathian -->
     <Weaknesses>
       <Weakness ID="ELEMENT_DRAGON" Stars="3"/>
@@ -971,7 +983,7 @@
       <Weakness ID="ELEMENT_DRAGON" Stars="2"/>
     </Weaknesses>
     <Crown Mini="0.9" Silver="1.15" Gold="1.23"/>
-    <Parts Max="18">
+    <Parts Max="12">
       <Part Name="MONSTER_PART_HORNS" Group="HORN"/>
       <Part Name="MONSTER_PART_HEAD" Group="HEAD"/>
       <Part Name="MONSTER_PART_BODY" Group="BODY"/>
@@ -982,12 +994,6 @@
       <Part Name="MONSTER_PART_LWING" Group="WING"/>
       <Part Name="MONSTER_PART_RWING" Group="WING"/>
       <Part Name="MONSTER_PART_TAIL" Group="TAIL"/>
-      <Part Name="MONSTER_PART_SPIKES_HEAD" IsRemovable="True"/>
-      <Part Name="MONSTER_PART_SPIKES_LARM" IsRemovable="True"/>
-      <Part Name="MONSTER_PART_SPIKES_RARM" IsRemovable="True"/>
-      <Part Name="MONSTER_PART_SPIKES_LWING" IsRemovable="True"/>
-      <Part Name="MONSTER_PART_SPIKES_RWING" IsRemovable="True"/>
-      <Part Name="MONSTER_PART_SPIKES_TAIL" IsRemovable="True"/>
       <Part Name="MONSTER_PART_REMOVABLE_HORNS" IsRemovable="True">
         <Break Threshold="2"/>
         <Break Threshold="3"/>
@@ -1382,10 +1388,10 @@
     </Weaknesses>
     <Crown Mini="0.9" Silver="1.15" Gold="1.23"/>
     <Parts Max="7">
+      <Part Name="MONSTER_PART_COUNTERATTACK" IsRemovable="True"/>
       <Part Name="MONSTER_PART_REMOVABLE_TAIL" IsRemovable="True">
         <Break Threshold="1"/>
       </Part>
-      <Part Name="MONSTER_PART_COUNTERATTACK" IsRemovable="True"/>
       <Part Name="MONSTER_PART_HEAD" Group="HEAD">
         <Break Threshold="1"/>
         <Break Threshold="2"/>

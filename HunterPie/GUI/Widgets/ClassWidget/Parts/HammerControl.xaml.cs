@@ -1,27 +1,18 @@
 ﻿using System;
 using System.Windows;
-using Bow = HunterPie.Core.LPlayer.Jobs.Bow;
-using BowEventArgs = HunterPie.Core.LPlayer.Jobs.BowEventArgs;
+using Hammer = HunterPie.Core.LPlayer.Jobs.Hammer;
+using HammerEventArgs = HunterPie.Core.LPlayer.Jobs.HammerEventArgs;
 using JobEventArgs = HunterPie.Core.LPlayer.Jobs.JobEventArgs;
 
 namespace HunterPie.GUI.Widgets.ClassWidget.Parts
 {
     /// <summary>
-    /// Interaction logic for BowControl.xaml
+    /// Interaction logic for HammerControl.xaml
     /// </summary>
-    public partial class BowControl : ClassControl
+    public partial class HammerControl : ClassControl
     {
 
-        Bow Context;
-
-        public int MaxChargeLevel
-        {
-            get { return (int)GetValue(MaxChargeLevelProperty); }
-            set { SetValue(MaxChargeLevelProperty, value); }
-        }
-
-        public static readonly DependencyProperty MaxChargeLevelProperty =
-            DependencyProperty.Register("MaxChargeLevel", typeof(int), typeof(BowControl));
+        Hammer Context;
 
         public int ChargeLevel
         {
@@ -30,7 +21,7 @@ namespace HunterPie.GUI.Widgets.ClassWidget.Parts
         }
 
         public static readonly DependencyProperty ChargeLevelProperty =
-            DependencyProperty.Register("ChargeLevel", typeof(int), typeof(BowControl));
+            DependencyProperty.Register("ChargeLevel", typeof(int), typeof(HammerControl));
 
         public float ChargeProgress
         {
@@ -39,48 +30,68 @@ namespace HunterPie.GUI.Widgets.ClassWidget.Parts
         }
 
         public static readonly DependencyProperty ChargeProgressProperty =
-            DependencyProperty.Register("ChargeProgress", typeof(float), typeof(BowControl));
+            DependencyProperty.Register("ChargeProgress", typeof(float), typeof(HammerControl));
 
-        public BowControl()
+        public bool IsPowerCharged
         {
+            get { return (bool)GetValue(IsPowerChargedProperty); }
+            set { SetValue(IsPowerChargedProperty, value); }
+        }
+
+        public static readonly DependencyProperty IsPowerChargedProperty =
+            DependencyProperty.Register("IsPowerCharged", typeof(bool), typeof(HammerControl));
+
+        public bool IsChargeMaxedOut
+        {
+            get { return (bool)GetValue(IsChargeMaxedOutProperty); }
+            set { SetValue(IsChargeMaxedOutProperty, value); }
+        }
+
+        public static readonly DependencyProperty IsChargeMaxedOutProperty =
+            DependencyProperty.Register("IsChargeMaxedOut", typeof(bool), typeof(HammerControl));
+
+        public HammerControl()
+        {
+            ChargeProgress = 1;
             InitializeComponent();
         }
 
+        public void SetContext(Hammer context)
+        {
+            Context = context;
+            HookEvents();
+        }
 
         private void UpdateInformation()
         {
-            var dummyArgs = new BowEventArgs(Context);
-            OnChargeProgressUpdate(this, dummyArgs);
+            HammerEventArgs dummyArgs = new HammerEventArgs(Context);
             OnChargeLevelChange(this, dummyArgs);
-            OnChargeLevelMaxUpdate(this, dummyArgs);
+            OnPowerChargeStateChange(this, dummyArgs);
+            OnChargeProgressUpdate(this, dummyArgs);
             OnSafijiivaCounterUpdate(this, new JobEventArgs(Context));
             OnWeaponSheathStateChange(this, new JobEventArgs(Context));
         }
 
-        public void SetContext(Bow ctx)
-        {
-            Context = ctx;
-            HookEvents();
-        }
-
         private void HookEvents()
         {
-            Context.OnChargeProgressUpdate += OnChargeProgressUpdate;
             Context.OnChargeLevelChange += OnChargeLevelChange;
-            Context.OnChargeLevelMaxUpdate += OnChargeLevelMaxUpdate;
+            Context.OnPowerChargeStateChange += OnPowerChargeStateChange;
+            Context.OnChargeProgressUpdate += OnChargeProgressUpdate;
             Context.OnSafijiivaCounterUpdate += OnSafijiivaCounterUpdate;
             Context.OnWeaponSheathStateChange += OnWeaponSheathStateChange;
         }
 
         public override void UnhookEvents()
         {
-            Context.OnChargeProgressUpdate -= OnChargeProgressUpdate;
             Context.OnChargeLevelChange -= OnChargeLevelChange;
-            Context.OnChargeLevelMaxUpdate -= OnChargeLevelMaxUpdate;
+            Context.OnPowerChargeStateChange -= OnPowerChargeStateChange;
+            Context.OnChargeProgressUpdate -= OnChargeProgressUpdate;
             Context.OnSafijiivaCounterUpdate -= OnSafijiivaCounterUpdate;
             Context.OnWeaponSheathStateChange -= OnWeaponSheathStateChange;
             Context = null;
         }
+
+        #region Event callbacks
 
         private void OnWeaponSheathStateChange(object source, JobEventArgs args)
         {
@@ -99,31 +110,33 @@ namespace HunterPie.GUI.Widgets.ClassWidget.Parts
             }));
         }
 
-        private void OnChargeLevelMaxUpdate(object source, BowEventArgs args)
+        private void OnChargeProgressUpdate(object source, HammerEventArgs args)
         {
             Dispatcher.BeginInvoke(System.Windows.Threading.DispatcherPriority.Render, new Action(() =>
             {
-                MaxChargeLevel = args.MaxChargeLevel + 1;
+                ChargeProgress = args.ChargeLevel >= 3 ? 1 : args.ChargeProgress % 1;
             }));
         }
 
-        private void OnChargeLevelChange(object source, BowEventArgs args)
+        private void OnPowerChargeStateChange(object source, HammerEventArgs args)
         {
             Dispatcher.BeginInvoke(System.Windows.Threading.DispatcherPriority.Render, new Action(() =>
             {
-                ChargeLevel = args.ChargeLevel + 1;
+                IsPowerCharged = args.IsPowerCharged;
             }));
         }
 
-        private void OnChargeProgressUpdate(object source, BowEventArgs args)
+        private void OnChargeLevelChange(object source, HammerEventArgs args)
         {
             Dispatcher.BeginInvoke(System.Windows.Threading.DispatcherPriority.Render, new Action(() =>
             {
-                ChargeProgress = Math.Floor(args.ChargeProgress) >= args.MaxChargeLevel ? 1 : args.ChargeProgress % 1;
+                ChargeLevel = args.ChargeLevel;
+                IsChargeMaxedOut = ChargeLevel >= 3;
             }));
         }
+        #endregion
 
-        private void BControl_Loaded(object sender, RoutedEventArgs e)
+        private void HControl_Loaded(object sender, RoutedEventArgs e)
         {
             UpdateInformation();
         }
