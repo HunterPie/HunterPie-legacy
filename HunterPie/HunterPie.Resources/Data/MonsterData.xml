@@ -1020,32 +1020,11 @@
       <Part Name="MONSTER_PART_LWING" Group="WING"/>
       <Part Name="MONSTER_PART_RWING" Group="WING"/>
       <Part Name="MONSTER_PART_TAIL" Group="TAIL"/>
-      <Part Name="MONSTER_PART_SPIKES_HEAD" IsRemovable="True"/>
-      <Part Name="MONSTER_PART_SPIKES_LARM" IsRemovable="True"/>
-      <Part Name="MONSTER_PART_SPIKES_RARM" IsRemovable="True"/>
-      <Part Name="MONSTER_PART_SPIKES_LWING" IsRemovable="True"/>
-      <Part Name="MONSTER_PART_SPIKES_RWING" IsRemovable="True"/>
-      <Part Name="MONSTER_PART_SPIKES_TAIL" IsRemovable="True"/>
       <Part Name="MONSTER_PART_REMOVABLE_HORNS" IsRemovable="True">
         <Break Threshold="2"/>
         <Break Threshold="4"/>
       </Part>
       <Part Name="MONSTER_PART_REMOVABLE_TAIL" IsRemovable="True">
-        <Break Threshold="1"/>
-      </Part>
-      <Part Name="MONSTER_PART_SILVER_SPIKES_HEAD" IsRemovable="True">
-        <Break Threshold="1"/>
-      </Part>
-      <Part Name="MONSTER_PART_SILVER_SPIKES_LARM" IsRemovable="True">
-        <Break Threshold="1"/>
-      </Part>
-      <Part Name="MONSTER_PART_SILVER_SPIKES_RARM" IsRemovable="True">
-        <Break Threshold="1"/>
-      </Part>
-      <Part Name="MONSTER_PART_SILVER_SPIKES_LWING" IsRemovable="True">
-        <Break Threshold="1"/>
-      </Part>
-      <Part Name="MONSTER_PART_SILVER_SPIKES_RWING" IsRemovable="True">
         <Break Threshold="1"/>
       </Part>
     </Parts>
