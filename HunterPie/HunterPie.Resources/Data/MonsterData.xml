@@ -938,10 +938,10 @@
         <Break Threshold="1"/>
       </Part>
       <Part Name="MONSTER_PART_LWING" Group="WING">
-        <Break Threshold="2"/>
+        <Break Threshold="1"/>
       </Part>
       <Part Name="MONSTER_PART_RWING" Group="WING">
-        <Break Threshold="2"/>
+        <Break Threshold="1"/>
       </Part>
       <Part Name="MONSTER_PART_LLEG" Group="LEG"/>
       <Part Name="MONSTER_PART_RLEG" Group="LEG"/>
