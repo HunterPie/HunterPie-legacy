@@ -1,6 +1,7 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
 <Strings lang="Spanish">
   <Monsters>
+  <Monster ID="ems062_03" Name="Muñeco de practica"/>
     <Monster ID="em001_00" Name="Rathian"/>
     <Monster ID="em001_01" Name="Rathian Rosa"/>
     <Monster ID="em001_02" Name="Rathian Dorada"/>
@@ -13,7 +14,7 @@
     <Monster ID="em018_00" Name="Yian Garuga"/>
     <Monster ID="em018_05" Name="Yian Garuga Naevus"/>
     <Monster ID="em023_00" Name="Rajang"/>
-	<Monster ID="em023_05" Name="Rajang Rabioso"/>
+	  <Monster ID="em023_05" Name="Rajang Rabioso"/>
     <Monster ID="em024_00" Name="Kushala Daora"/>
     <Monster ID="em026_00" Name="Lunastra"/>
     <Monster ID="em027_00" Name="Teostra"/>
@@ -40,7 +41,7 @@
     <Monster ID="em103_00" Name="Nergigante"/>
     <Monster ID="em103_05" Name="Nergigante Regio"/>
     <Monster ID="em105_00" Name="Xeno'jiiva"/>
-	<Monster ID="em104_00" Name="Safi'jiiva"/>
+	  <Monster ID="em104_00" Name="Safi'jiiva"/>
     <Monster ID="em106_00" Name="Zorah Magdaros"/>
     <Monster ID="em107_00" Name="Kulu-Ya-Ku"/>
     <Monster ID="em108_00" Name="Jyuratodus"/>
@@ -79,6 +80,7 @@
     <Part ID="MONSTER_PART_LLEG" Name="Pierna izquierda"/>
     <Part ID="MONSTER_PART_RLEG" Name="Pierna derecha"/>
     <Part ID="MONSTER_PART_TAIL" Name="Cola"/>
+	<Part ID="MONSTER_PART_TAIL_TIP" Name="Cola (Punta)"/>
     <Part ID="MONSTER_PART_ARMS" Name="Brazos"/>
     <Part ID="MONSTER_PART_LEGS" Name="Piernas"/>
     <Part ID="MONSTER_PART_LARM" Name="Brazo izquierdo"/>
@@ -152,10 +154,36 @@
     <Part ID="MONSTER_PART_REMOVABLE_TAIL" Name="Cola cercenable"/>
     <Part ID="MONSTER_PART_REMOVABLE_HORNS" Name="Cuernos rompibles"/>
     <Part ID="MONSTER_PART_REMOVABLE_HEAD" Name="Cabeza rompible"/>
+	<Part ID="MONSTER_PART_REMOVABLE_HEAD_ROCK" Name="Cabeza rompible (Rocas)"/>
+    <Part ID="MONSTER_PART_REMOVABLE_CHEST_ROCK" Name="Pecho rompible (Rocas)"/>
     <Part ID="MONSTER_PART_REMOVABLE_BALLOON" Name="Globo rompible"/>
     <Part ID="MONSTER_PART_REMOVABLE_HORNS_2" Name="Cuernos rompibles #2"/>
-    <Part ID="MONSTER_PART_REMOVABLE_LANTLER" Name="Cornamenta izquierda rompible"/>
-    <Part ID="MONSTER_PART_REMOVABLE_RANTLER" Name="Cornamenta derecha rompible"/>
+	<Part ID="MONSTER_PART_BODY_LEGS" Name="Cuerpo y piernas"/>
+    <Part ID="MONSTER_PART_SILVER_SPIKES_HEAD" Name="Espinas de plata (Cabeza)"/>
+    <Part ID="MONSTER_PART_SILVER_SPIKES_LARM" Name="Espinas de plata (Brazo izquierdo)"/>
+    <Part ID="MONSTER_PART_SILVER_SPIKES_RARM" Name="Espinas de plata (Brazo derecho)"/>
+    <Part ID="MONSTER_PART_SILVER_SPIKES_LWING" Name="Espinas de plata (Ala izqquierda)"/>
+    <Part ID="MONSTER_PART_SILVER_SPIKES_RWING" Name="Espinas de plata (Ala derecha)"/>
+	<!-- Special parts -->
+    <Part ID="MONSTER_PART_BIG_FLINCH" Name="Gran Retroceso"/>
+    <Part ID="MONSTER_PART_RAGE" Name="Rabia"/>
+    <Part ID="MONSTER_PART_COUNTERATTACK" Name="Contra ataque"/>
+    <Part ID="MONSTER_PART_CHARGE" Name="Carga"/>
+    <Part ID="MONSTER_PART_THROAT" Name="Garganta"/>
+    <Part ID="MONSTER_PART_INFLATED_TAIL" Name="Cola inflada"/>
+    <Part ID="MONSTER_PART_SKY_FALL" Name="Caida del cielo"/>
+    <Part ID="MONSTER_PART_EMISSIONS" Name="Emisiones"/>
+    <Part ID="MONSTER_PART_GLOWING_HEAD" Name="Cabeza brillante"/>
+    <Part ID="MONSTER_PART_GLOWING_TAIL" Name="Cola brillante"/>
+    <Part ID="MONSTER_PART_EMERGE_SNOW_HEAD" Name="Salio de la nieve (Cabeza)"/>
+    <Part ID="MONSTER_PART_EMERGE_SNOW_BODY" Name="Salio de la nieve (Cuerpo)"/>
+    <Part ID="MONSTER_PART_EMERGE_SNOW_TAIL" Name="Salio de la nieve (Cola)"/>
+    <Part ID="MONSTER_PART_SPIKES_HEAD" Name="Espinas (Cabeza)"/>
+    <Part ID="MONSTER_PART_SPIKES_LARM" Name="Espinas (Brazo izquierdo)"/>
+    <Part ID="MONSTER_PART_SPIKES_RARM" Name="Espinas (Brazo derecho)"/>
+    <Part ID="MONSTER_PART_SPIKES_LWING" Name="Espinas (Left Wing)"/>
+    <Part ID="MONSTER_PART_SPIKES_RWING" Name="Espinas (Ala izquierda)"/>
+    <Part ID="MONSTER_PART_SPIKES_TAIL" Name="Espinas (Cola)"/>
   </Parts>
   <Ailments>
     <Ailment ID="STATUS_UNKNOWN" Name="Desconocido"/>
@@ -165,7 +193,7 @@
     <Ailment ID="STATUS_BLAST" Name="Nitro"/>
     <Ailment ID="STATUS_MOUNT" Name="Monta"/>
     <Ailment ID="STATUS_EXHAUSTION" Name="Agotamiento"/>
-    <Ailment ID="STATUS_STUN" Name="K.O. Aturdimiento"/>
+    <Ailment ID="STATUS_STUN" Name="Aturdimiento"/>
     <Ailment ID="STATUS_TRANQUILIZE" Name="Tranquilizante"/>
     <Ailment ID="STATUS_FLASH" Name="Ceguera"/>
     <Ailment ID="STATUS_KNOCKDOWN" Name="Derribado"/>
@@ -566,7 +594,9 @@
       <!-- Damage Meter -->
       <String ID="ENABLE_METER" Name="Habilitar el contador de daño"/>
       <String ID="ENABLE_METER_DESC" Name="Si esta opción está activada, el contador de daño será visible siempre y cuando tenga algo que mostrar (no contabiliza el daño en expedición / Tierras Destino)."/>
-      <String ID="ENABLE_TOTAL_DAMAGE" Name="Mostrar daño total"/>
+      <String ID="ENABLE_TIMER" Name="Muestra el timer"/>
+      <String ID="ENABLE_TIMER_DESC" Name="Si esta habilitado, se mostrara el timer."/>
+	  <String ID="ENABLE_TOTAL_DAMAGE" Name="Mostrar daño total"/>
       <String ID="ENABLE_TOTAL_DAMAGE_DESC" Name="Si esta opción está activada, se mostrará el daño total individual."/>
 	  <String ID="ENABLE_METER_DPS" Name="Mostrar el DPS a cambio del daño total realizado"/>
       <String ID="ENABLE_METER_DPS_DESC" Name="Si esta opción está activada, en vez de mostrar el daño total realizado el contador de daño mostrará el daño por segundo realizado."/>
@@ -618,6 +648,12 @@
       <String ID="ENABLE_SWITCH_AXE_HELPER_DESC" Name="Si lo activas se habilitará un menú informativo para la Hacha Espada cuando estés equipado con una en una cacería/expedición."/>
       <String ID="ENABLE_GUN_LANCE_HELPER" Name="Apoyo para Lanza Pistola"/>
       <String ID="ENABLE_GUN_LANCE_HELPER_DESC" Name="Si lo activas se habilitará un menú informativo para la Lanza Pistola cuando estés equipado con una en una cacería/expedición."/>
+      <String ID="ENABLE_LONGSWORD_HELPER" Name="Apoyo para Espada Larga"/>
+      <String ID="ENABLE_LONGSWORD_HELPER_DESC" Name="Si lo activas se habilitará un menú informativo para la Espada Larga cuando estés equipado con una en una cacería/expedición."/>
+      <String ID="ENABLE_BOW_HELPER" Name="Apoyo para Arco"/>
+      <String ID="ENABLE_BOW_HELPER_DESC" Name="Si lo activas se habilitará un menú informativo para el Arco cuando estés equipado con uno en una cacería/expedición.."/>
+      <String ID="ENABLE_HAMMER_HELPER" Name="Apoyo para Martillo"/>
+      <String ID="ENABLE_HAMMER_HELPER_DESC" Name="Si lo activas se habilitará un menú informativo para el Martillo cuando estés equipado con uno en una cacería/expedición."/>
       <String ID="STATIC_CLASSES_BETA_WARNING" Name="Atención: Las ventanas de apoyo todavía estan en desarrollo y se irán añadiendo nuevas armas en el futuro. Cada ventana tiene su propia configuración por lo que puedes definir distintas posiciones en función del arma usada. Usa el modo diseñador para modificar el tamaño y posición de las ventanas. Se puede cambiar la tecla para el modo diseñador desde el menú Overlay."/>
       <!-- Links -->
       <String ID="STATIC_HUNTERPIE_WIKI" Name="Documentación"/>

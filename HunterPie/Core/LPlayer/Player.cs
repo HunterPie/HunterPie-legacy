@@ -976,9 +976,12 @@ namespace HunterPie.Core
             float redBuff = Scanner.Read<float>(weaponAddress - 0x4);
             float whiteBuff = Scanner.Read<float>(weaponAddress);
             float orangeBuff = Scanner.Read<float>(weaponAddress + 0x4);
-            float redChargeTimer = Scanner.Read<float>(weaponAddress + 0x1CEC);
-            float yellowChargeTimer = Scanner.Read<float>(weaponAddress + 0x1CF0);
-            float kinsectStamina = Scanner.Read<float>(weaponAddress + 0xBD0);
+            // For whatever reason, some IGs split their data between two IG structures I suppose?
+            // So we can use this pointer that will always point to the right data
+            long dataPtr = Scanner.Read<long>(weaponAddress - 0x236C - 0x28);
+            float redChargeTimer = Scanner.Read<float>(dataPtr + 0x1BE8);
+            float yellowChargeTimer = Scanner.Read<float>(dataPtr + 0x1BEC);
+            float kinsectStamina = Scanner.Read<float>(dataPtr + 0xACC);
             KinsectChargeBuff chargeFlag = redChargeTimer > 0 && yellowChargeTimer > 0 ? KinsectChargeBuff.Both :
                 redChargeTimer > 0 ? KinsectChargeBuff.Red :
                 yellowChargeTimer > 0 ? KinsectChargeBuff.Yellow : KinsectChargeBuff.None;
