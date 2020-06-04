@@ -10,7 +10,7 @@ namespace HunterPie.Memory
 {
     class Scanner
     {
-        const int LATEST_GAME_VERSION = 410014;
+        const int LATEST_GAME_VERSION = 410918;
 
         // Process info
         const int PROCESS_VM_READ = 0x0010;
