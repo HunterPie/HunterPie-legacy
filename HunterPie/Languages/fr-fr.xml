@@ -606,10 +606,10 @@
       <String ID="ENABLE_METER_DPS_DESC" Name="Activé, le compteur de dégâts affichera les dégâts par seconde."/>
       <String ID="ENABLE_TIMER_IN_GL" Name="Activer le timer en Expédition/au Fief Glorieux"/>
       <String ID="ENABLE_TIMER_IN_GL_DESC" Name="Activé, le timer sera activé en Expéditions/au Fief Glorieux."/>
-      <String ID="ENABLE_ONLY_TIMER" Name="Afficher que le timer"/>
-      <String ID="ENABLE_ONLY_TIMER_DESC" Name="Activé, le widget &quot;Compteur de Dégâts&quot; affichera que le timer et cachera les autres joueurs."/>
-      <String ID="ENABLE_METER_ONLY_MYSELF" Name="Afficher que mes dégâts"/>
-      <String ID="ENABLE_METER_ONLY_MYSELF_DESC" Name="Activé, il y aura que vos dégâts d'affichés."/>
+      <String ID="ENABLE_ONLY_TIMER" Name="Afficher uniquement le timer"/>
+      <String ID="ENABLE_ONLY_TIMER_DESC" Name="Activé, le widget &quot;Compteur de Dégâts&quot; affichera uniquement le timer et cachera les autres joueurs."/>
+      <String ID="ENABLE_METER_ONLY_MYSELF" Name="Afficher uniquement mes dégâts"/>
+      <String ID="ENABLE_METER_ONLY_MYSELF_DESC" Name="Activé, il y aura uniquement vos dégâts d'affichés."/>
       <String ID="STATIC_METER_PLAYER_1" Name="Premier Joueur"/>
       <String ID="STATIC_METER_PLAYER_2" Name="Deuxième Joueur"/>
       <String ID="STATIC_METER_PLAYER_3" Name="Troisième Joueur"/>
