@@ -1435,19 +1435,19 @@
       <Part Name="MONSTER_PART_TAIL" Group="TAIL"/>
       <Part Name="MONSTER_PART_JAW" Group="JAW">
         <Break Threshold="1"/>
-        <Break Threshold="2"/>
+        <Break Threshold="2"/> <!-- 3 if it restores its bones before 2nd break -->
       </Part>
       <Part Name="MONSTER_PART_BACK" Group="BACK">
         <Break Threshold="1"/>
-        <Break Threshold="2"/>
+        <Break Threshold="2"/> <!-- 3 if it restores its bones before 2nd break -->
       </Part>
       <Part Name="MONSTER_PART_LBONE" Group="BONE">
         <Break Threshold="1"/>
-        <Break Threshold="2"/>
+        <Break Threshold="2"/> <!-- 3 if it restores its bones before 2nd break -->
       </Part>
       <Part Name="MONSTER_PART_RBONE" Group="BONE">
         <Break Threshold="1"/>
-        <Break Threshold="2"/>
+        <Break Threshold="2"/> <!-- 3 if it restores its bones before 2nd break -->
       </Part>
     </Parts>
   </Monster>
