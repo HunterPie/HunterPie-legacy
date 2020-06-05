@@ -1,6 +1,7 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
 <Strings lang="French">
   <Monsters>
+    <Monster ID="ems062_03" Name="Mannequin d'entraînement"/>
     <Monster ID="em001_00" Name="Rathian"/>
     <Monster ID="em001_01" Name="Rathian sakura"/>
     <Monster ID="em001_02" Name="Rathian d&apos;or"/>
@@ -13,7 +14,7 @@
     <Monster ID="em018_00" Name="Yian Garuga"/>
     <Monster ID="em018_05" Name="Yian Garuga balafré"/>
     <Monster ID="em023_00" Name="Rajang"/>
-	  <Monster ID="em023_05" Name="Rajang Orage"/>
+    <Monster ID="em023_05" Name="Rajang Orage"/>
     <Monster ID="em024_00" Name="Kushala Daora"/>
     <Monster ID="em026_00" Name="Lunastra"/>
     <Monster ID="em027_00" Name="Teostra"/>
@@ -29,7 +30,7 @@
     <Monster ID="em057_00" Name="Zinogre"/>
     <Monster ID="em057_01" Name="Zinogre stygien"/>
     <Monster ID="em063_00" Name="Brachydios"/>
-	  <Monster ID="em063_05" Name="Brachydios Tempête"/>
+    <Monster ID="em063_05" Name="Brachydios Tempête"/>
     <Monster ID="em080_00" Name="Glavenus"/>
     <Monster ID="em080_01" Name="Glavenus acide"/>
     <Monster ID="em100_00" Name="Anjanath"/>
@@ -79,6 +80,7 @@
     <Part ID="MONSTER_PART_LLEG" Name="Patte Gauche"/>
     <Part ID="MONSTER_PART_RLEG" Name="Patte Droite"/>
     <Part ID="MONSTER_PART_TAIL" Name="Queue"/>
+    <Part ID="MONSTER_PART_TAIL_TIP" Name="Queue (bout)"/>
     <Part ID="MONSTER_PART_ARMS" Name="Bras"/>
     <Part ID="MONSTER_PART_LEGS" Name="Pattes"/>
     <Part ID="MONSTER_PART_LARM" Name="Bras Gauche"/>
@@ -101,6 +103,7 @@
     <Part ID="MONSTER_PART_FIN" Name="Ailettes"/>
     <Part ID="MONSTER_PART_HORNS" Name="Cornes"/>
     <Part ID="MONSTER_PART_NECK" Name="Cou"/>
+    <Part ID="MONSTER_PART_SHELL" Name="Carapace"/>
     <Part ID="MONSTER_PART_LHAND" Name="Main Gauche"/>
     <Part ID="MONSTER_PART_RHAND" Name="Main Droite"/>
     <Part ID="MONSTER_PART_LFOOT" Name="Pied Gauche"/>
@@ -148,14 +151,43 @@
     <Part ID="MONSTER_PART_RARM_ROCK" Name="Bras Droit (roche)"/>
     <Part ID="MONSTER_PART_LEGS_ROCK" Name="Pattes (roche)"/>
     <Part ID="MONSTER_JAGRAS_SUMMONER" Name="Convocation de Jagras"/>
+    <Part ID="MONSTER_PART_HORN" Name="Corne"/>
     <!-- Removable parts -->
     <Part ID="MONSTER_PART_REMOVABLE_TAIL" Name="Queue Sectionnable"/>
     <Part ID="MONSTER_PART_REMOVABLE_HORNS" Name="Cornes Cassable"/>
     <Part ID="MONSTER_PART_REMOVABLE_HEAD" Name="Tête Cassable"/>
+    <Part ID="MONSTER_PART_REMOVABLE_HEAD_ROCK" Name="Tête Cassable (roche)"/>
+    <Part ID="MONSTER_PART_REMOVABLE_CHEST_ROCK" Name="Torse Cassable (roche)"/>
     <Part ID="MONSTER_PART_REMOVABLE_BALLOON" Name="Ballon Cassable"/>
     <Part ID="MONSTER_PART_REMOVABLE_HORNS_2" Name="Cornes Cassable #2"/>
+    <Part ID="MONSTER_PART_BODY_LEGS" Name="Corps et jambes"/>
     <Part ID="MONSTER_PART_REMOVABLE_LANTLER" Name="Bois Gauche Cassable"/>
     <Part ID="MONSTER_PART_REMOVABLE_RANTLER" Name="Bois Droit Cassable"/>
+    <Part ID="MONSTER_PART_SILVER_SPIKES_HEAD" Name="Pics d&apos;Argent (Tête)"/>
+    <Part ID="MONSTER_PART_SILVER_SPIKES_LARM" Name="Pics d&apos;Argent (Bras Gauche)"/>
+    <Part ID="MONSTER_PART_SILVER_SPIKES_RARM" Name="Pics d&apos;Argent (Bras Droit)"/>
+    <Part ID="MONSTER_PART_SILVER_SPIKES_LWING" Name="Pics d&apos;Argent (Aile Gauche)"/>
+    <Part ID="MONSTER_PART_SILVER_SPIKES_RWING" Name="Pics d&apos;Argent (Aile Droite)"/>
+    <!-- Special parts -->
+    <Part ID="MONSTER_PART_BIG_FLINCH" Name="Big Flinch"/>
+    <Part ID="MONSTER_PART_RAGE" Name="Rage Suppressible"/>
+    <Part ID="MONSTER_PART_COUNTERATTACK" Name="Contre-attaque"/>
+    <Part ID="MONSTER_PART_CHARGE" Name="Charge Suppressible"/>
+    <Part ID="MONSTER_PART_THROAT" Name="Gorge"/>
+    <Part ID="MONSTER_PART_INFLATED_TAIL" Name="Queue Gonflée"/>
+    <Part ID="MONSTER_PART_SKY_FALL" Name="Chute"/>
+    <Part ID="MONSTER_PART_EMISSIONS" Name="Effluves"/>
+    <Part ID="MONSTER_PART_GLOWING_HEAD" Name="Tête Brillante"/>
+    <Part ID="MONSTER_PART_GLOWING_TAIL" Name="Glowing Tail"/>
+    <Part ID="MONSTER_PART_EMERGE_SNOW_HEAD" Name="Sortie de Neige (Tête)"/>
+    <Part ID="MONSTER_PART_EMERGE_SNOW_BODY" Name="Sortie de Neige (Corps)"/>
+    <Part ID="MONSTER_PART_EMERGE_SNOW_TAIL" Name="Sortie de Neige (Queue)"/>
+    <Part ID="MONSTER_PART_SPIKES_HEAD" Name="Pics (Tête)"/>
+    <Part ID="MONSTER_PART_SPIKES_LARM" Name="Pics (Bras Gauche)"/>
+    <Part ID="MONSTER_PART_SPIKES_RARM" Name="Pics (Bras Droit)"/>
+    <Part ID="MONSTER_PART_SPIKES_LWING" Name="Pics (Aile Gauche)"/>
+    <Part ID="MONSTER_PART_SPIKES_RWING" Name="Pics (Aile Droite)"/>
+    <Part ID="MONSTER_PART_SPIKES_TAIL" Name="Pics (Queue)"/>
   </Parts>
   <Ailments>
     <Ailment ID="STATUS_UNKNOWN" Name="Inconnu"/>
@@ -174,7 +206,7 @@
     <Ailment ID="STATUS_PITFALLTRAP" Name="Piège à fosse"/>
     <Ailment ID="STATUS_VINETRAP" Name="Piège à lianes"/>
     <Ailment ID="STATUS_ELDERSEAL" Name="Sceaux des anciens"/>
-    <Ailment ID="STATUS_SMOKING" Name="Smoking"/>
+    <Ailment ID="STATUS_SMOKING" Name="Enfumé"/>
     <Ailment ID="STATUS_FELYNETRAP" Name="Piège Palico"/>
     <Ailment ID="STATUS_CLAW" Name="Flinch grappin"/>
     <Ailment ID="STATUS_VIOLATED" Name="Blessé"/>
@@ -387,7 +419,7 @@
     <Abnormality ID="MISC_034_00" Name="Énergicône"/>
     <Abnormality ID="MISC_035_00" Name="Résistance glace (G)"/>
     <Abnormality ID="MISC_073_00" Name="Bonus attaque + défense (S)"/>
-	  <Abnormality ID="GEAR_000_00" Name="Munition Démon"/>
+    <Abnormality ID="GEAR_000_00" Name="Munition Démon"/>
     <Abnormality ID="GEAR_001_00" Name="Munition Peau-de-pierre"/>
     <Abnormality ID="GEAR_002_00" Name="Jamais vaincu"/>
     <Abnormality ID="GEAR_003_00" Name="Acier trempé"/>
@@ -495,8 +527,8 @@
       <!-- Monster Widget -->
       <String ID="ENABLE_MONSTER_WIDGET" Name="Activer le widget &quot;Monstre&quot;"/>
       <String ID="ENABLE_MONSTER_WIDGET_DESC" Name="Activé, le widget &quot;Monstre&quot; sera visible tant qu'il y aura un monstre."/>
-	    <String ID="STATIC_MONSTER_HEALTH_STRING_FORMAT" Name="Format texte des PV :"/>
-	    <String ID="STATIC_MONSTER_HEALTH_STRING_FORMAT_DESC" Name="Format du texte des PV du monstre."/>
+      <String ID="STATIC_MONSTER_HEALTH_STRING_FORMAT" Name="Format texte des PV :"/>
+      <String ID="STATIC_MONSTER_HEALTH_STRING_FORMAT_DESC" Name="Format du texte des PV du monstre."/>
       <String ID="ENABLE_MONSTER_USE_LOCKON" Name="Use lockon instead of map pin to target monster"/>
       <String ID="ENABLE_MONSTER_USE_LOCKON_DESC" Name="If enabled, HunterPie will use the in-game monster lockon to select your target."/>
       <String ID="STATIC_MONSTER_BAR_MODE" Name="Barre de vie des monstres"/>
@@ -505,7 +537,7 @@
       <String ID="STATIC_MONSTER_BAR_MODE_1" Name="Afficher tous les monstres mais mettre en évidence ma cible"/>
       <String ID="STATIC_MONSTER_BAR_MODE_2" Name="Afficher que les monstres chassés"/>
       <String ID="STATIC_MONSTER_BAR_MODE_3" Name="Afficher tous les monstres mais cache les monstres inactif au bout de 15 secondes"/>
-	    <String ID="STATIC_MONSTER_BAR_MODE_4" Name="Afficher tout jusqu&apos;à ce qu'un monstre soit sélectionné"/>
+      <String ID="STATIC_MONSTER_BAR_MODE_4" Name="Afficher tout jusqu&apos;à ce qu'un monstre soit sélectionné"/>
       <String ID="STATIC_MONSTER_BAR_MODE_HOTKEY" Name="Barre de vie des monstres (Raccourcis):"/>
       <String ID="STATIC_MONSTER_BAR_MODE_HOTKEY_DESC" Name="Raccourcis pour modifier la barre de vie des monstres. La modification du raccourcis nécessite un redémarrage pour prendre effet."/>
       <String ID="STATIC_MONSTER_BAR_DOCK" Name="Position de la barre de vie des monstres :"/>
@@ -561,20 +593,22 @@
       <String ID="ENABLE_HARVEST_BOX_EVERYWHERE" Name="Afficher le widget partout."/>
       <String ID="ENABLE_HARVEST_BOX_EVERYWHERE_DESC" Name="Activé, le widget sera affiché partout. Notamment les expéditions, Fief Glorieux, etc.."/>
       <String ID="STATIC_HARVEST_BOX_POSITION_DESC" Name="Modifiez la position du widget."/>
-	  <String ID="ENABLE_HARVEST_BOX_COMPACT_MODE" Name="Activer le Compact Mode"/>
+      <String ID="ENABLE_HARVEST_BOX_COMPACT_MODE" Name="Activer le Compact Mode"/>
       <String ID="ENABLE_HARVEST_BOX_COMPACT_MODE_DESC" Name="Activé, le widget &quot;Conservatoire botanique&quot; utilisera un design compact."/>
       <!-- Damage Meter -->
       <String ID="ENABLE_METER" Name="Activer le widget &quot;Compteur de Dégâts&quot;"/>
       <String ID="ENABLE_METER_DESC" Name="Activé, le widget &quot;Compteur de Dégâts&quot; sera visible."/>
-	  <String ID="ENABLE_TOTAL_DAMAGE" Name="Afficher les dégâts totaux."/>
-	  <String ID="ENABLE_TOTAL_DAMAGE_DESC" Name="Activé, le compteur de dégâts affichera les dégâts totaux."/>
+      <String ID="ENABLE_TIMER" Name="Afficher le chronomètre."/>
+      <String ID="ENABLE_TIMER_DESC" Name="Si activé, le chronomètre du compteur de dégâts sera visible."/>
+      <String ID="ENABLE_TOTAL_DAMAGE" Name="Afficher les dégâts totaux."/>
+      <String ID="ENABLE_TOTAL_DAMAGE_DESC" Name="Activé, le compteur de dégâts affichera les dégâts totaux."/>
       <String ID="ENABLE_METER_DPS" Name="Afficher les dégâts par seconde."/>
       <String ID="ENABLE_METER_DPS_DESC" Name="Activé, le compteur de dégâts affichera les dégâts par seconde."/>
-	  <String ID="ENABLE_TIMER_IN_GL" Name="Activer le timer en Expédition/au Fief Glorieux"/>
+      <String ID="ENABLE_TIMER_IN_GL" Name="Activer le timer en Expédition/au Fief Glorieux"/>
       <String ID="ENABLE_TIMER_IN_GL_DESC" Name="Activé, le timer sera activé en Expéditions/au Fief Glorieux."/>
-	  <String ID="ENABLE_ONLY_TIMER" Name="Afficher que le timer"/>
+      <String ID="ENABLE_ONLY_TIMER" Name="Afficher que le timer"/>
       <String ID="ENABLE_ONLY_TIMER_DESC" Name="Activé, le widget &quot;Compteur de Dégâts&quot; affichera que le timer et cachera les autres joueurs."/>
-	  <String ID="ENABLE_METER_ONLY_MYSELF" Name="Afficher que mes dégâts"/>
+      <String ID="ENABLE_METER_ONLY_MYSELF" Name="Afficher que mes dégâts"/>
       <String ID="ENABLE_METER_ONLY_MYSELF_DESC" Name="Activé, il y aura que vos dégâts d'affichés."/>
       <String ID="STATIC_METER_PLAYER_1" Name="Premier Joueur"/>
       <String ID="STATIC_METER_PLAYER_2" Name="Deuxième Joueur"/>
@@ -595,10 +629,10 @@
       <String ID="STATIC_ABNORM_TAB_HH" Name="Corne de chasse"/>
       <String ID="STATIC_ABNORM_TAB_ORCHESTRA" Name="Orchestre"/>
       <String ID="STATIC_ABNORM_TAB_DEBUFF" Name="Debuffs"/>
-	  <String ID="STATIC_ABNORM_TAB_GEAR" Name="Equipement"/>
+      <String ID="STATIC_ABNORM_TAB_GEAR" Name="Equipement"/>
       <String ID="STATIC_ABNORM_TAB_CONSUMABLE" Name="Consommable"/>
-	  <String ID="ENABLE_SHOW_ABNORM_NAMES" Name="Afficher le nom des effets"/>
-	  <String ID="ENABLE_SHOW_ABNORM_NAMES_DESC" Name="Activé, le nom des effets seront affichés."/>
+      <String ID="ENABLE_SHOW_ABNORM_NAMES" Name="Afficher le nom des effets"/>
+      <String ID="ENABLE_SHOW_ABNORM_NAMES_DESC" Name="Activé, le nom des effets seront affichés."/>
       <!-- Specialized Tool Widget-->
       <String ID="STATIC_PRIMARY_SPEC_TOOL" Name="Outil Spécial Primaire"/>
       <String ID="STATIC_SECONDARY_SPEC_TOOL" Name="Outil Spécial Secondaire"/>
@@ -610,15 +644,21 @@
       <String ID="STATIC_PRIMARY_SPEC_TOOL_POSITION_DESC" Name="Modifiez la position du widget &quot;Outil Spécial Primaire&quot;"/>
       <String ID="STATIC_SECONDARY_SPEC_TOOL_POSITION_DESC" Name="Modifiez la position du widget &quot;Outil Spécial Secondaire&quot;"/>
       <!-- Class Widget -->
-      <String ID="ENABLE_INSECT_GLAIVE_HELPER" Name="Enable Insect Glaive Helper"/>
-      <String ID="ENABLE_INSECT_GLAIVE_HELPER_DESC" Name="If enabled, the Insect Glaive helper will be visible whenever you equip an Insect Glaive."/>
-      <String ID="ENABLE_CHARGE_BLADE_HELPER" Name="Enable Charge Blade Helper"/>
-      <String ID="ENABLE_CHARGE_BLADE_HELPER_DESC" Name="If enabled, the Charge Blade helper will be visible whenever you equip an Charge Blade."/>
-      <String ID="ENABLE_SWITCH_AXE_HELPER" Name="Enable Switch Axe Helper"/>
-      <String ID="ENABLE_SWITCH_AXE_HELPER_DESC" Name="If enabled, the Switch Axe helper will be visible whenever you equip an Switch Axe."/>
-      <String ID="ENABLE_GUN_LANCE_HELPER" Name="Enable Gun Lance Helper"/>
-      <String ID="ENABLE_GUN_LANCE_HELPER_DESC" Name="If enabled, the Gun Lance helper will be visible whenever you equip an Gun Lance."/>
-      <String ID="STATIC_CLASSES_BETA_WARNING" Name="Attention: Class helpers are still in development and more classes will be supported in the future. Each class helper has it's own settings, so you can have different positions for this widget depending on the class. Use the Design Mode feature to scale and move this widget."/>
+      <String ID="ENABLE_INSECT_GLAIVE_HELPER" Name="Activer l'aide Insectoglaive"/>
+      <String ID="ENABLE_INSECT_GLAIVE_HELPER_DESC" Name="Si activé, l'aide Insectoglaive sera visible quand un Insectoglaive est équipé."/>
+      <String ID="ENABLE_CHARGE_BLADE_HELPER" Name="Activer l'aide Volto-Hache"/>
+      <String ID="ENABLE_CHARGE_BLADE_HELPER_DESC" Name="Si activé, l'aide Volto-Hache sera visible quand une Volo-Hache est équipée."/>
+      <String ID="ENABLE_SWITCH_AXE_HELPER" Name="Activer l'aide Morpho-Hache"/>
+      <String ID="ENABLE_SWITCH_AXE_HELPER_DESC" Name="Si activé, l'aide Morpho-Hache sera visible quand une Morpho-Hache est équipée."/>
+      <String ID="ENABLE_GUN_LANCE_HELPER" Name="Activer l'aide Lancecanon"/>
+      <String ID="ENABLE_GUN_LANCE_HELPER_DESC" Name="Si activé, l'aide Lancecanon sera visible quand une Lancecanon est équipée."/>
+      <String ID="ENABLE_LONGSWORD_HELPER" Name="Activer l'aide Épée Longue"/>
+      <String ID="ENABLE_LONGSWORD_HELPER_DESC" Name="Si activé, l'aide Épée Longue sera visible quand une Épée Longue est équipée."/>
+      <String ID="ENABLE_BOW_HELPER" Name="Activer l'aide Arc"/>
+      <String ID="ENABLE_BOW_HELPER_DESC" Name="Si activé, l'aide Arc sera visible quand un Arc est équipé."/>
+      <String ID="ENABLE_HAMMER_HELPER" Name="Activer l'aide Marteau"/>
+      <String ID="ENABLE_HAMMER_HELPER_DESC" Name="Si activé, l'aide Marteau sera visible quand un Marteau est équipé."/>
+      <String ID="STATIC_CLASSES_BETA_WARNING" Name="Attention: Les aides de class sont toujours en développement et d'autres seront ajoutées dans le futur. Chaque aide de classe possède ses propres paramètres, permettant d'enregister des positions différentes pour le widget selon la classe utilisée. Utiliser le Design Mode pour changer la taille et la position du widget."/>
       <!-- Links -->
       <String ID="STATIC_HUNTERPIE_WIKI" Name="Wiki"/>
       <String ID="STATIC_HUNTERPIE_WIKI_DESC" Name="Wiki officiel de HunterPie"/>
@@ -645,7 +685,7 @@
       <String ID="STATIC_REQUIRES_RESTART" Name="(Nécessite un redémarrage)"/>
       <String ID="STATIC_POSITION" Name="Position"/>
       <String ID="STATIC_COPYCLIPBOARD" Name="Copier dans le presse-papiers"/>
-	  <String ID="STATIC_OPACITY" Name="Opacité"/>
+      <String ID="STATIC_OPACITY" Name="Opacité"/>
       <!-- Settings Side bar-->
       <String ID="STATIC_GENERAL_SETTINGS" Name="Général"/>
       <String ID="STATIC_DISCORD_SETTINGS" Name="Discord"/>
