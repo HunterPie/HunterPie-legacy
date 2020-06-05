@@ -41,11 +41,7 @@ namespace HunterPie.Core.Integrations.DataExporter
             string filepath = Path.Combine(ExportPath, "PlayerData.json");
             try
             {
-                using (FileStream stream = File.OpenWrite(filepath))
-                {
-                    byte[] buffer = Encoding.UTF8.GetBytes(Helpers.Serialize(playerData));
-                    stream.Write(buffer, 0, buffer.Length);
-                }
+                File.WriteAllText(filepath, Helpers.Serialize(playerData));
                 return true;
             } catch { return false; }
             

@@ -76,7 +76,6 @@ namespace HunterPie {
 
             IsUpdating = false;
             InitializeTrayIcon();
-
             // Update version text
             this.version_text.Text = GStrings.GetLocalizationByXPath("/Console/String[@ID='CONSOLE_VERSION']").Replace("{HunterPie_Version}", HUNTERPIE_VERSION).Replace("{HunterPie_Branch}", UserSettings.PlayerConfig.HunterPie.Update.Branch);
 
@@ -438,7 +437,7 @@ namespace HunterPie {
         {
             if (MonsterHunter.Player.ZoneID != 0)
             {
-                string sSession = $"steam://joinlobby/582010/{MonsterHunter.Player.SteamSession}/{MonsterHunter.Player.SteamID}";
+                string sSession = MonsterHunter.Player.SteamID != 0 ? $"steam://joinlobby/582010/{MonsterHunter.Player.SteamSession}/{MonsterHunter.Player.SteamID}" : "";
                 Data playerData = new Data
                 {
                     Name = MonsterHunter.Player.Name,
@@ -454,17 +453,20 @@ namespace HunterPie {
 
         private void OnSessionChange(object source, EventArgs args) {
             Debugger.Log($"SESSION: {MonsterHunter.Player.SessionID}");
-            ExportGameData();
             // Writes the session ID to a Sessions.txt
-            if (!string.IsNullOrEmpty(MonsterHunter.Player.SessionID))
+            if (!string.IsNullOrEmpty(MonsterHunter.Player.SessionID) && MonsterHunter.Player.IsLoggedOn)
             {
+                ExportGameData();
                 File.WriteAllText(Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "Sessions.txt"), MonsterHunter.Player.SessionID);
             }
         }
 
         public void OnZoneChange(object source, EventArgs e) {
-            Debugger.Log($"ZoneID: {MonsterHunter.Player.ZoneID}");
-            ExportGameData();
+            if (MonsterHunter.Player.IsLoggedOn)
+            {
+                Debugger.Log($"ZoneID: {MonsterHunter.Player.ZoneID}");
+                ExportGameData();
+            }
         }
 
         public void OnLogin(object source, EventArgs e) {
@@ -473,6 +475,7 @@ namespace HunterPie {
                 BUTTON_UPLOADBUILD.IsEnabled = true;
                 BUTTON_UPLOADBUILD.Opacity = 1;
             }));
+            ExportGameData();
         }
 
         public void OnLogout(object source, EventArgs e) {
