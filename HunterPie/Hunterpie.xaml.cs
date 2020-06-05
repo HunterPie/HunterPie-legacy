@@ -76,7 +76,6 @@ namespace HunterPie {
 
             IsUpdating = false;
             InitializeTrayIcon();
-
             // Update version text
             this.version_text.Text = GStrings.GetLocalizationByXPath("/Console/String[@ID='CONSOLE_VERSION']").Replace("{HunterPie_Version}", HUNTERPIE_VERSION).Replace("{HunterPie_Branch}", UserSettings.PlayerConfig.HunterPie.Update.Branch);
 

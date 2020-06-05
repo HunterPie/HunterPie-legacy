@@ -428,7 +428,6 @@ namespace HunterPie.Core {
             }
         }
 
-        int x = 0;
         private void GetMonsterParts()
         {
             if (!IsAlive) return;
