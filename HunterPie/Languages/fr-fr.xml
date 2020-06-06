@@ -178,7 +178,7 @@
     <Part ID="MONSTER_PART_SKY_FALL" Name="Chute"/>
     <Part ID="MONSTER_PART_EMISSIONS" Name="Effluves"/>
     <Part ID="MONSTER_PART_GLOWING_HEAD" Name="Tête Brillante"/>
-    <Part ID="MONSTER_PART_GLOWING_TAIL" Name="Glowing Tail"/>
+    <Part ID="MONSTER_PART_GLOWING_TAIL" Name="Queue Brillante"/>
     <Part ID="MONSTER_PART_EMERGE_SNOW_HEAD" Name="Sortie de Neige (Tête)"/>
     <Part ID="MONSTER_PART_EMERGE_SNOW_BODY" Name="Sortie de Neige (Corps)"/>
     <Part ID="MONSTER_PART_EMERGE_SNOW_TAIL" Name="Sortie de Neige (Queue)"/>
@@ -415,7 +415,7 @@
     <Abnormality ID="MISC_024_00" Name="Boisson chaude"/>
     <Abnormality ID="MISC_026_00" Name="Immunisateur"/>
     <Abnormality ID="MISC_027_00" Name="Résistance glace"/>
-    <Abnormality ID="MISC_030_00" Name="Snowman Head"/>
+    <Abnormality ID="MISC_030_00" Name="Tête de bonhomme de neige"/>
     <Abnormality ID="MISC_034_00" Name="Énergicône"/>
     <Abnormality ID="MISC_035_00" Name="Résistance glace (G)"/>
     <Abnormality ID="MISC_073_00" Name="Bonus attaque + défense (S)"/>
@@ -474,7 +474,7 @@
       <String ID="MESSAGE_GAME_VERSION_UNSUPPORTED" Name="Version du jeu detectée ({GAME_VERSION})!"/>
       <String ID="MESSAGE_LAUNCH_ERROR" Name="Echec du lancement de Monster Hunter World."/>
       <String ID="MESSAGE_UPDATE_ERROR" Name="Echec de la mise à jour de HunterPie. Vérifiez que vous êtes connectés à Internet."/>
-      <String ID="MESSAGE_THEME_NOT_FOUND_ERROR" Name="Impossible de trouvé le thème : {THEME_NAME}"/>
+      <String ID="MESSAGE_THEME_NOT_FOUND_ERROR" Name="Impossible de trouver le thème : {THEME_NAME}"/>
       <String ID="MESSAGE_THEME_NOT_LOAD_ERROR" Name="Echec du chargement du thème custom !"/>
     </Console>
     <Settings>
@@ -529,8 +529,8 @@
       <String ID="ENABLE_MONSTER_WIDGET_DESC" Name="Activé, le widget &quot;Monstre&quot; sera visible tant qu'il y aura un monstre."/>
       <String ID="STATIC_MONSTER_HEALTH_STRING_FORMAT" Name="Format texte des PV :"/>
       <String ID="STATIC_MONSTER_HEALTH_STRING_FORMAT_DESC" Name="Format du texte des PV du monstre."/>
-      <String ID="ENABLE_MONSTER_USE_LOCKON" Name="Use lockon instead of map pin to target monster"/>
-      <String ID="ENABLE_MONSTER_USE_LOCKON_DESC" Name="If enabled, HunterPie will use the in-game monster lockon to select your target."/>
+      <String ID="ENABLE_MONSTER_USE_LOCKON" Name="Utiliser le bloquage à coté de la map"/>
+      <String ID="ENABLE_MONSTER_USE_LOCKON_DESC" Name="Si activé, HunterPie va utiliser le bloquage sélectionné pour afficher la proie."/>
       <String ID="STATIC_MONSTER_BAR_MODE" Name="Barre de vie des monstres"/>
       <String ID="STATIC_MONSTER_BAR_MODE_DESC" Name="Changez la barre de vie des monstres."/>
       <String ID="STATIC_MONSTER_BAR_MODE_0" Name="Afficher tous les monstres en même temps"/>
