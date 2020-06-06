@@ -138,6 +138,7 @@ namespace HunterPie.Core {
             F24 = 135,
             NumLock = 144,
             ScrollLock = 145,
+            Scroll = 145,
             LShift = 160,
             RShift = 161,
             LeftCtrl = 162,
