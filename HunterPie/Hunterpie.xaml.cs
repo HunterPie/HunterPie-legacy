@@ -660,13 +660,13 @@ namespace HunterPie {
 
         private void OnCopyToClipboardClick(object sender, RoutedEventArgs e)
         {
-            string BuildLink = Honey.LinkStructureBuilder(MonsterHunter.Player.GetPlayerGear());
+            string BuildLink = Honey.LinkStructureBuilder(MonsterHunter.Player.GetPlayerGear(), true);
             Clipboard.SetData(DataFormats.Text, BuildLink);
         }
 
         private void OnOpenInBrowserClick(object sender, RoutedEventArgs e)
         {
-            string BuildLink = Honey.LinkStructureBuilder(MonsterHunter.Player.GetPlayerGear());
+            string BuildLink = Honey.LinkStructureBuilder(MonsterHunter.Player.GetPlayerGear(), true);
             Process.Start(BuildLink);
         }
 

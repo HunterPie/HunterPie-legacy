@@ -976,6 +976,13 @@ namespace HunterPie.Core
             float redBuff = Scanner.Read<float>(weaponAddress - 0x4);
             float whiteBuff = Scanner.Read<float>(weaponAddress);
             float orangeBuff = Scanner.Read<float>(weaponAddress + 0x4);
+
+            // Insect Glaive has some dumb bugs sometimes where the buffs duration are either negative
+            // or NaN
+            redBuff = float.IsNaN(redBuff) ? 0 : redBuff;
+            whiteBuff = float.IsNaN(whiteBuff) ? 0 : whiteBuff;
+            orangeBuff = float.IsNaN(orangeBuff) ? 0 : orangeBuff;
+
             // For whatever reason, some IGs split their data between two IG structures I suppose?
             // So we can use this pointer that will always point to the right data
             long dataPtr = Scanner.Read<long>(weaponAddress - 0x236C - 0x28);
