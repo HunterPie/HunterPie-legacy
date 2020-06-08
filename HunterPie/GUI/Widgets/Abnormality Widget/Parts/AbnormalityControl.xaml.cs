@@ -67,7 +67,7 @@ namespace HunterPie.GUI.Widgets.Abnormality_Widget.Parts {
                 this.TimeLeftText.Visibility = System.Windows.Visibility.Collapsed;
                 this.Height = 36;
             } else {
-                this.TimeLeftText.Text = Abnorm.IsPercentageBuff ? $"{Abnorm.Duration / Abnorm.MaxTimer * 100}%" : FormatToMinutes(Abnorm.Duration);
+                this.TimeLeftText.Text = Abnorm.IsPercentageBuff ? $"{Abnorm.Duration / Abnorm.MaxTimer:P0}" : FormatToMinutes(Abnorm.Duration);
             }
             
         } 
