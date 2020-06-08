@@ -1,6 +1,7 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
 <Strings lang="한국어">
   <Monsters>
+    <Monster ID="ems062_03" Name="훈련용 더미"/>
     <Monster ID="em001_00" Name="리오레이아"/>
     <Monster ID="em001_01" Name="리오레이아 아종"/>
     <Monster ID="em001_02" Name="리오레이아 희소종"/>
@@ -13,7 +14,7 @@
     <Monster ID="em018_00" Name="얀가루루가"/>
     <Monster ID="em018_05" Name="상처입은 얀가루루가"/>
     <Monster ID="em023_00" Name="라잔"/>
-	  <Monster ID="em023_05" Name="격앙 라잔"/>
+	<Monster ID="em023_05" Name="격앙 라잔"/>
     <Monster ID="em024_00" Name="크샬다오라"/>
     <Monster ID="em026_00" Name="나나-테스카토리"/>
     <Monster ID="em027_00" Name="테오-테스카토르"/>
@@ -29,7 +30,7 @@
     <Monster ID="em057_00" Name="진오우거"/>
     <Monster ID="em057_01" Name="진오우거 아종"/>
     <Monster ID="em063_00" Name="브라키디오스"/>
-	  <Monster ID="em063_05" Name="사납게 터지는 브라키디오스"/>
+	<Monster ID="em063_05" Name="사납게 터지는 브라키디오스"/>
     <Monster ID="em080_00" Name="디노발드"/>
     <Monster ID="em080_01" Name="디노발드 아종"/>
     <Monster ID="em100_00" Name="안쟈나프"/>
@@ -79,6 +80,7 @@
     <Part ID="MONSTER_PART_LLEG" Name="왼 다리"/>
     <Part ID="MONSTER_PART_RLEG" Name="오른 다리"/>
     <Part ID="MONSTER_PART_TAIL" Name="꼬리"/>
+	<Part ID="MONSTER_PART_TAIL_TIP" Name="꼬리 (끝)"/>
     <Part ID="MONSTER_PART_ARMS" Name="팔"/>
     <Part ID="MONSTER_PART_LEGS" Name="다리"/>
     <Part ID="MONSTER_PART_LARM" Name="왼팔"/>
@@ -147,15 +149,42 @@
     <Part ID="MONSTER_PART_LARM_ROCK" Name="암석을 두른 왼팔"/>
     <Part ID="MONSTER_PART_RARM_ROCK" Name="암석을 두른 오른팔"/>
     <Part ID="MONSTER_PART_LEGS_ROCK" Name="암석을 두른 다리"/>
-    <Part ID="MONSTER_JAGRAS_SUMMONER" Name="쟈그라스 소환"/>
+	<Part ID="MONSTER_PART_ANTLERS" Name="가지진 뿔"/>
+    <Part ID="MONSTER_PART_HORN" Name="뿔"/>
     <!-- Removable parts -->
     <Part ID="MONSTER_PART_REMOVABLE_TAIL" Name="꼬리 (절단 가능)"/>
     <Part ID="MONSTER_PART_REMOVABLE_HORNS" Name="뿔 (파괴 가능)"/>
     <Part ID="MONSTER_PART_REMOVABLE_HEAD" Name="머리 (파괴 가능)"/>
+	<Part ID="MONSTER_PART_REMOVABLE_HEAD_ROCK" Name="암석을 두른 머리 (파괴 가능)"/>
+	<Part ID="MONSTER_PART_REMOVABLE_CHEST_ROCK" Name="암석을 두른 가슴 (파괴 가능)"/>
     <Part ID="MONSTER_PART_REMOVABLE_BALLOON" Name="공기주머니 (파괴 가능)"/>
     <Part ID="MONSTER_PART_REMOVABLE_HORNS_2" Name="두번째 뿔 (파괴 가능)"/>
-    <Part ID="MONSTER_PART_REMOVABLE_LANTLER" Name="가지진 왼쪽 뿔 (파괴 가능)"/>
-    <Part ID="MONSTER_PART_REMOVABLE_RANTLER" Name="가지진 오른쪽 뿔 (파괴 가능)"/>
+	<Part ID="MONSTER_PART_BODY_LEGS" Name="몸과 다리"/>
+	<Part ID="MONSTER_PART_SILVER_SPIKES_HEAD" Name="은빛 가시 (머리)"/>
+    <Part ID="MONSTER_PART_SILVER_SPIKES_LARM" Name="은빛 가시 (왼쪽 팔)"/>
+    <Part ID="MONSTER_PART_SILVER_SPIKES_RARM" Name="은빛 가시 (오른쪽 팔)"/>
+    <Part ID="MONSTER_PART_SILVER_SPIKES_LWING" Name="은빛 가시 (왼쪽 날개)"/>
+    <Part ID="MONSTER_PART_SILVER_SPIKES_RWING" Name="은빛 가시 (오른쪽 날개)"/>
+	 <!-- Special parts -->
+    <Part ID="MONSTER_PART_BIG_FLINCH" Name="대경직"/>
+    <Part ID="MONSTER_PART_RAGE" Name="분노 해제"/>
+    <Part ID="MONSTER_PART_COUNTERATTACK" Name="카운터 공격"/>
+    <Part ID="MONSTER_PART_CHARGE" Name="대전"/>
+    <Part ID="MONSTER_PART_THROAT" Name="목"/>
+    <Part ID="MONSTER_PART_INFLATED_TAIL" Name="팽창된 꼬리"/>
+    <Part ID="MONSTER_PART_SKY_FALL" Name="격추"/>
+    <Part ID="MONSTER_PART_EMISSIONS" Name="발산 기관"/>
+    <Part ID="MONSTER_PART_GLOWING_HEAD" Name="빛나는 머리"/>
+    <Part ID="MONSTER_PART_GLOWING_TAIL" Name="빛나는 꼬리"/>
+    <Part ID="MONSTER_PART_EMERGE_SNOW_HEAD" Name="눈 위로 떠오른 머리"/>
+    <Part ID="MONSTER_PART_EMERGE_SNOW_BODY" Name="눈 위로 떠오른 몸"/>
+    <Part ID="MONSTER_PART_EMERGE_SNOW_TAIL" Name="눈 위로 떠오른 꼬리"/>
+    <Part ID="MONSTER_PART_SPIKES_HEAD" Name="가시 돋친 머리"/>
+    <Part ID="MONSTER_PART_SPIKES_LARM" Name="가시 돋친 왼쪽 팔"/>
+    <Part ID="MONSTER_PART_SPIKES_RARM" Name="가시 돋친 오른쪽 팔"/>
+    <Part ID="MONSTER_PART_SPIKES_LWING" Name="가시 돋친 왼쪽 날개"/>
+    <Part ID="MONSTER_PART_SPIKES_RWING" Name="가시 돋친 오른쪽 날개"/>
+    <Part ID="MONSTER_PART_SPIKES_TAIL" Name="가시 돋친 꼬리"/>
   </Parts>
   <Ailments>
     <Ailment ID="STATUS_UNKNOWN" Name="알 수 없음"/>
@@ -387,7 +416,7 @@
     <Abnormality ID="MISC_034_00" Name="귀신방울"/>
     <Abnormality ID="MISC_035_00" Name="얼음속성 방어 강화 UP [대]"/>
     <Abnormality ID="MISC_073_00" Name="공격력 &amp; 방어력 UP [소]"/>
-	  <Abnormality ID="GEAR_000_00" Name="귀인탄"/>
+	<Abnormality ID="GEAR_000_00" Name="귀인탄"/>
     <Abnormality ID="GEAR_001_00" Name="경화탄"/>
     <Abnormality ID="GEAR_002_00" Name="불굴"/>
     <Abnormality ID="GEAR_003_00" Name="칼날연마"/>
@@ -560,16 +589,18 @@
       <String ID="ENABLE_HARVEST_BOX_EVERYWHERE" Name="수확박스 위젯을 어디에서나 활성화"/>
       <String ID="ENABLE_HARVEST_BOX_EVERYWHERE_DESC" Name="옵션이 켜져 있을 경우,위젯은 탐색과 인도하는 땅을 포함한 모든곳에서 표시됩니다."/>
       <String ID="STATIC_HARVEST_BOX_POSITION_DESC" Name="수확박스 위젯의 위치 변경."/>
-	    <String ID="ENABLE_HARVEST_BOX_COMPACT_MODE" Name="소형 모드 활성화"/>
+	  <String ID="ENABLE_HARVEST_BOX_COMPACT_MODE" Name="소형 모드 활성화"/>
       <String ID="ENABLE_HARVEST_BOX_COMPACT_MODE_DESC" Name="옵션이 켜져 있을 경우, 수확박스 위젯의 소형 디자인을 사용합니다."/>
       <!-- Damage Meter -->
       <String ID="ENABLE_METER" Name="데미지 미터기 위젯"/>
       <String ID="ENABLE_METER_DESC" Name="옵션이 켜져 있을 경우, 데미지 미터기 위젯은 보여줄 내용이 있을시 보여지게 됩니다."/>
-	    <String ID="ENABLE_TOTAL_DAMAGE" Name="데미지의 총합 표시"/>
-	    <String ID="ENABLE_TOTAL_DAMAGE_DESC" Name="옵션이 켜져 있을 경우, 데미지 미터기 위젯은 개인의 총합 데미지를 보여줍니다."/>
+	  <String ID="ENABLE_TIMER" Name="타이머 활성화"/>
+      <String ID="ENABLE_TIMER_DESC" Name="옵션이 켜져 있을 경우, 데미지 미터기의 타이머가 활성화됩니다."/>
+	  <String ID="ENABLE_TOTAL_DAMAGE" Name="데미지의 총합 표시"/>
+	  <String ID="ENABLE_TOTAL_DAMAGE_DESC" Name="옵션이 켜져 있을 경우, 데미지 미터기 위젯은 개인의 총합 데미지를 보여줍니다."/>
       <String ID="ENABLE_METER_DPS" Name="DPS를 표시"/>
       <String ID="ENABLE_METER_DPS_DESC" Name="옵션이 켜져 있을 경우, 데미지 미터기 위젯은 개인의 DPS를 보여줍니다."/>
-	    <String ID="ENABLE_TIMER_IN_GL" Name="인도하는 땅/탐색에서의 타이머 활성화."/>
+	  <String ID="ENABLE_TIMER_IN_GL" Name="인도하는 땅/탐색에서의 타이머 활성화."/>
       <String ID="ENABLE_TIMER_IN_GL_DESC" Name="옵션이 켜져 있을 경우, 인도하는 땅/탐색에서 타이머가 보여지게 됩니다."/>
       <String ID="ENABLE_ONLY_TIMER" Name="타이머만 보여주기"/>
       <String ID="ENABLE_ONLY_TIMER_DESC" Name="옵션이 켜져 있을 경우, 데미지 미터기 위젯은 파티의 데미지를 숨기고 타이머만 보여줍니다."/>
@@ -594,10 +625,10 @@
       <String ID="STATIC_ABNORM_TAB_HH" Name="수렵피리"/>
       <String ID="STATIC_ABNORM_TAB_ORCHESTRA" Name="격려의 음악"/>
       <String ID="STATIC_ABNORM_TAB_DEBUFF" Name="디버프"/>
-	    <String ID="STATIC_ABNORM_TAB_GEAR" Name="장비"/>
+	  <String ID="STATIC_ABNORM_TAB_GEAR" Name="장비"/>
       <String ID="STATIC_ABNORM_TAB_CONSUMABLE" Name="소비 아이템"/>
-	    <String ID="ENABLE_SHOW_ABNORM_NAMES" Name="버프&amp;디버프의 이름 표시"/>
-	    <String ID="ENABLE_SHOW_ABNORM_NAMES_DESC" Name="옵션이 켜져 있을 경우, 버프&amp;디버프의 이름이 표시됩니다."/>
+	  <String ID="ENABLE_SHOW_ABNORM_NAMES" Name="버프&amp;디버프의 이름 표시"/>
+	  <String ID="ENABLE_SHOW_ABNORM_NAMES_DESC" Name="옵션이 켜져 있을 경우, 버프&amp;디버프의 이름이 표시됩니다."/>
       <!-- Specialized Tool Widget-->
       <String ID="STATIC_PRIMARY_SPEC_TOOL" Name="첫번째 특수장비"/>
       <String ID="STATIC_SECONDARY_SPEC_TOOL" Name="두번째 특수장비"/>
@@ -609,15 +640,21 @@
       <String ID="STATIC_PRIMARY_SPEC_TOOL_POSITION_DESC" Name="첫번째 특수장비 위젯의 위치를 변경."/>
       <String ID="STATIC_SECONDARY_SPEC_TOOL_POSITION_DESC" Name="두번째 특수장비 위젯의 위치를 변경."/>
       <!-- Class Widget -->
-      <String ID="ENABLE_INSECT_GLAIVE_HELPER" Name="조충곤 헬퍼 활성화"/>
-      <String ID="ENABLE_INSECT_GLAIVE_HELPER_DESC" Name="옵션이 켜져 있을 경우, 헬퍼는 조충곤을 장착할시에 보여지게 됩니다."/>
-      <String ID="ENABLE_CHARGE_BLADE_HELPER" Name="차지엑스 헬퍼 활성화"/>
-      <String ID="ENABLE_CHARGE_BLADE_HELPER_DESC" Name="옵션이 켜져 있을 경우, 헬퍼는 차지액스를 장착할시에 보여지게 됩니다."/>
-      <String ID="ENABLE_SWITCH_AXE_HELPER" Name="슬래시액스 헬퍼 활성화"/>
-      <String ID="ENABLE_SWITCH_AXE_HELPER_DESC" Name="옵션이 켜져 있을 경우, 헬퍼는 슬래시액스를 장착할시에 보여지게 됩니다."/>
-      <String ID="ENABLE_GUN_LANCE_HELPER" Name="건랜스 헬퍼 활성화"/>
-      <String ID="ENABLE_GUN_LANCE_HELPER_DESC" Name="옵션이 켜져 있을 경우, 헬퍼는 건랜스를 장착할시에 보여지게 됩니다."/>
-      <String ID="STATIC_CLASSES_BETA_WARNING" Name="주의: 무기별 헬퍼는 아직 개발단계에 있으며, 추후 더 많은 무기들이 지원 예정에 있습니다. 무기별 헬퍼 세팅이 가능하기에, 무기에 따라 위젯의 크기나 위치를 다르게 설정가능합니다. 디자인 모드를 활용하여 크기나 위치를 조정하십시오."/>
+      <String ID="ENABLE_INSECT_GLAIVE_HELPER" Name="조충곤 위젯 활성화"/>
+      <String ID="ENABLE_INSECT_GLAIVE_HELPER_DESC" Name="옵션이 켜져 있을 경우, 위젯은 조충곤을 장착할시에 보여지게 됩니다."/>
+      <String ID="ENABLE_CHARGE_BLADE_HELPER" Name="차지엑스 위젯 활성화"/>
+      <String ID="ENABLE_CHARGE_BLADE_HELPER_DESC" Name="옵션이 켜져 있을 경우, 위젯은 차지액스를 장착할시에 보여지게 됩니다."/>
+      <String ID="ENABLE_SWITCH_AXE_HELPER" Name="슬래시액스 위젯 활성화"/>
+      <String ID="ENABLE_SWITCH_AXE_HELPER_DESC" Name="옵션이 켜져 있을 경우, 위젯은 슬래시액스를 장착할시에 보여지게 됩니다."/>
+      <String ID="ENABLE_GUN_LANCE_HELPER" Name="건랜스 위젯 활성화"/>
+      <String ID="ENABLE_GUN_LANCE_HELPER_DESC" Name="옵션이 켜져 있을 경우, 위젯은 건랜스를 장착할시에 보여지게 됩니다."/>
+	  <String ID="ENABLE_LONGSWORD_HELPER" Name="태도 위젯 활성화"/>
+      <String ID="ENABLE_LONGSWORD_HELPER_DESC" Name="옵션이 켜져 있을 경우, 위젯은 태도를 장착할시에 보여지게 됩니다."/>
+      <String ID="ENABLE_BOW_HELPER" Name="활 위젯 활성화"/>
+      <String ID="ENABLE_BOW_HELPER_DESC" Name="옵션이 켜져 있을 경우, 위젯은 활을 장착할시에 보여지게 됩니다."/>
+      <String ID="ENABLE_HAMMER_HELPER" Name="해머 위젯 활성화"/>
+      <String ID="ENABLE_HAMMER_HELPER_DESC" Name="옵션이 켜져 있을 경우, 위젯은 해머를 장착할시에 보여지게 됩니다."/>
+      <String ID="STATIC_CLASSES_BETA_WARNING" Name="주의: 무기별 위젯는 아직 개발단계에 있으며, 추후 더 많은 무기들이 지원 예정에 있습니다. 무기별 위젯 세팅이 가능하기에, 무기에 따라 위젯의 크기나 위치를 다르게 설정가능합니다. 디자인 모드를 활용하여 크기나 위치를 조정하십시오."/>
       <!-- Links -->
       <String ID="STATIC_HUNTERPIE_WIKI" Name="문서"/>
       <String ID="STATIC_HUNTERPIE_WIKI_DESC" Name="HunterPie의 공식 문서."/>
@@ -643,8 +680,8 @@
       <String ID="STATIC_BUTTON_SAVE" Name="저장"/>
       <String ID="STATIC_REQUIRES_RESTART" Name="(재시작 필요)"/>
       <String ID="STATIC_POSITION" Name="위치"/>
-	    <String ID="STATIC_COPYCLIPBOARD" Name="클립보드로 복사"/>
-	    <String ID="STATIC_OPACITY" Name="투명도"/>
+	  <String ID="STATIC_COPYCLIPBOARD" Name="클립보드로 복사"/>
+	  <String ID="STATIC_OPACITY" Name="투명도"/>
       <!-- Settings Side bar-->
       <String ID="STATIC_GENERAL_SETTINGS" Name="일반 설정"/>
       <String ID="STATIC_DISCORD_SETTINGS" Name="Discord"/>
