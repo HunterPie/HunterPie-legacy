@@ -577,7 +577,7 @@
       <Part Name="MONSTER_PART_REMOVABLE_TAIL" IsRemovable="True">
         <Break Threshold="1"/>
       </Part>
-      <!-- <Part Name="MONSTER_PART_UNKNOWN" IsRemovable="True"/> -->
+      <Part Name="MONSTER_PART_BIG_FLINCH" IsRemovable="True"/>
       <Part Name="MONSTER_PART_HEAD" Group="HEAD">
         <Break Threshold="3"/>
       </Part>
@@ -602,7 +602,7 @@
       <Part Name="MONSTER_PART_REMOVABLE_TAIL" IsRemovable="True">
         <Break Threshold="1"/>
       </Part>
-      <Part Name="MONSTER_PART_UNKNOWN" IsRemovable="True"/> <!-- skip -->
+      <Part Name="MONSTER_PART_BIG_FLINCH" IsRemovable="True"/>
       <Part Name="MONSTER_PART_COUNTERATTACK" IsRemovable="True"/>
       <Part Name="MONSTER_PART_HEAD" Group="HEAD">
         <Break Threshold="2"/>
