@@ -59,6 +59,9 @@ namespace HunterPie.GUI.Widgets.ClassWidget
             UserSettings.Config.WeaponHelperStructure config;
             switch((Classes)Context.Player.WeaponID)
             {
+                case Classes.DualBlades:
+                    config = classesConfig.DualBladesHelper;
+                    break;
                 case Classes.LongSword:
                     config = classesConfig.LongSwordHelper;
                     break;
@@ -96,6 +99,9 @@ namespace HunterPie.GUI.Widgets.ClassWidget
             UserSettings.Config.WeaponHelperStructure config;
             switch ((Classes)Context.Player.WeaponID)
             {
+                case Classes.DualBlades:
+                    config = classesConfig.DualBladesHelper;
+                    break;
                 case Classes.LongSword:
                     config = classesConfig.LongSwordHelper;
                     break;
@@ -178,6 +184,9 @@ namespace HunterPie.GUI.Widgets.ClassWidget
                 WidgetHasContent = !Context.Player.InHarvestZone;
                 switch ((Classes)Context.Player.WeaponID)
                 {
+                    case Classes.DualBlades:
+                        SetClassToDualBlades();
+                        break;
                     case Classes.LongSword:
                         SetClassLongSword();
                         break;
@@ -205,6 +214,15 @@ namespace HunterPie.GUI.Widgets.ClassWidget
                 }
             }));
             
+        }
+
+        private void SetClassToDualBlades()
+        {
+            var control = new DualBladeControl();
+            control.SetContext(Context.Player.DualBlades);
+            Container.Children.Add(control);
+
+            ApplySettings();
         }
 
         private void SetClassToHammer()

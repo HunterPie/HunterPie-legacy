@@ -879,7 +879,7 @@ namespace HunterPie.Core
 
         private void GetDualBladesInformation(long weaponAddress)
         {
-            bool inDemonMode = Scanner.Read<bool>(weaponAddress - 0x4);
+            bool inDemonMode = Scanner.Read<byte>(weaponAddress - 0x4) == 1;
             float demonGauge = Scanner.Read<float>(weaponAddress);
             DualBlades.InDemonMode = inDemonMode;
             DualBlades.DemonGauge = demonGauge;

@@ -1,0 +1,108 @@
+﻿<local:ClassControl x:Name="DBControl"  x:Class="HunterPie.GUI.Widgets.ClassWidget.Parts.DualBladeControl"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:local="clr-namespace:HunterPie.GUI.Widgets.ClassWidget.Parts"
+             mc:Ignorable="d" 
+             >
+    <Grid Width="250" Height="100">
+        <Canvas Opacity="0" HorizontalAlignment="Left" Width="46" Height="46" VerticalAlignment="Top" Margin="112,34,0,0">
+            <Rectangle Height="31" Width="31" VerticalAlignment="Top" HorizontalAlignment="Left" StrokeThickness="1.5" Canvas.Left="24" Canvas.Top="1" Opacity="0.5">
+                <Rectangle.Stroke>
+                    <LinearGradientBrush EndPoint="0,0.6" StartPoint="1,0.5">
+                        <GradientStop Color="#00000000" Offset="0"/>
+                        <GradientStop Color="#FF6F3AFF" Offset="1"/>
+                    </LinearGradientBrush>
+                </Rectangle.Stroke>
+                <Rectangle.Fill>
+                    <RadialGradientBrush>
+                        <GradientStop Color="#E5191623"/>
+                        <GradientStop Color="#E51A181D" Offset="1"/>
+                    </RadialGradientBrush>
+                </Rectangle.Fill>
+                <Rectangle.RenderTransform>
+                    <TransformGroup>
+                        <ScaleTransform/>
+                        <SkewTransform/>
+                        <RotateTransform Angle="45"/>
+                        <TranslateTransform/>
+                    </TransformGroup>
+                </Rectangle.RenderTransform>
+            </Rectangle>
+            <Image Source="{StaticResource ICON_SAFISKILL}" Width="18" Height="17" HorizontalAlignment="Left" VerticalAlignment="Top" Canvas.Left="15" Canvas.Top="9"/>
+            <TextBlock TextOptions.TextRenderingMode="ClearType" Text="{Binding ElementName=DBControl, Path=SafiCounter}" Height="16" VerticalAlignment="Top" HorizontalAlignment="Left" Width="28" Foreground="White" FontSize="13" TextAlignment="Center" FontWeight="Light" Canvas.Top="23" Canvas.Left="10"/>
+            <Canvas.Style>
+                <Style TargetType="Canvas">
+                    <Style.Triggers>
+                        <DataTrigger Binding="{Binding ElementName=DBControl, Path=HasSafiBuff}" Value="True">
+                            <DataTrigger.EnterActions>
+                                <BeginStoryboard>
+                                    <Storyboard Storyboard.TargetProperty="Opacity">
+                                        <DoubleAnimation To="1" Duration="0:0:0.2"/>
+                                    </Storyboard>
+                                </BeginStoryboard>
+                            </DataTrigger.EnterActions>
+                            <DataTrigger.ExitActions>
+                                <BeginStoryboard>
+                                    <Storyboard Storyboard.TargetProperty="Opacity">
+                                        <DoubleAnimation To="0" Duration="0:0:0.2"/>
+                                    </Storyboard>
+                                </BeginStoryboard>
+                            </DataTrigger.ExitActions>
+                        </DataTrigger>
+                    </Style.Triggers>
+                </Style>
+            </Canvas.Style>
+        </Canvas>
+
+        <Image Source="{StaticResource ICON_DUALBLADES}" Opacity="0" HorizontalAlignment="Left" Width="22" Height="20" VerticalAlignment="Top" Margin="127,14,0,0">
+            <Image.Effect>
+                <DropShadowEffect Color="White" ShadowDepth="0"/>
+            </Image.Effect>
+            <Image.Style>
+                <Style TargetType="Image">
+                    <Style.Triggers>
+                        <DataTrigger Binding="{Binding ElementName=DBControl, Path=IsDemonModeActive}" Value="True">
+                            <DataTrigger.EnterActions>
+                                <BeginStoryboard>
+                                    <Storyboard>
+                                        <DoubleAnimation Storyboard.TargetProperty="Opacity" To="1" Duration="0:0:0.2"/>
+                                    </Storyboard>
+                                </BeginStoryboard>
+                            </DataTrigger.EnterActions>
+                            <DataTrigger.ExitActions>
+                                <BeginStoryboard>
+                                    <Storyboard>
+                                        <DoubleAnimation Storyboard.TargetProperty="Opacity" To="0" Duration="0:0:0.2"/>
+                                    </Storyboard>
+                                </BeginStoryboard>
+                            </DataTrigger.ExitActions>
+                        </DataTrigger>
+                    </Style.Triggers>
+                </Style>
+            </Image.Style>
+        </Image>
+        <Image HorizontalAlignment="Left" Width="125" Height="34" VerticalAlignment="Top" Source="pack://siteoforigin:,,,/HunterPie.Resources/UI/Class/DualBladesGauge.png" Margin="1,24,0,0" />
+        <Rectangle HorizontalAlignment="Left" Width="{Binding ElementName=DBControl, Path=GaugePercentage}" Height="25" VerticalAlignment="Top" Margin="29,31,0,0">
+            <Rectangle.Fill>
+                <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
+                    <GradientStop Color="#FF781313"/>
+                    <GradientStop Color="#FFC93737" Offset="0.594"/>
+                    <GradientStop Color="#FF830A0A" Offset="1"/>
+                </LinearGradientBrush>
+            </Rectangle.Fill>
+            <Rectangle.OpacityMask>
+                <ImageBrush ImageSource="pack://siteoforigin:,,,/HunterPie.Resources/UI/Class/DualBladesGaugeMask.png"/>
+            </Rectangle.OpacityMask>
+        </Rectangle>
+        <TextBlock Text="{Binding DemonGauge, ElementName=DBControl, StringFormat=\{0:P0\}}" Height="18" VerticalAlignment="Top" HorizontalAlignment="Left" Width="46" Margin="46,34,0,0" TextAlignment="Center">
+            <TextBlock.Foreground>
+                <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
+                    <GradientStop Color="#FFD8D8D8" Offset="0"/>
+                    <GradientStop Color="#FFAAAAAA" Offset="1"/>
+                </LinearGradientBrush>
+            </TextBlock.Foreground>
+        </TextBlock>
+    </Grid>
+</local:ClassControl>
