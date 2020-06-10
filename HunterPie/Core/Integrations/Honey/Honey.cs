@@ -23,7 +23,7 @@ namespace HunterPie.Core {
         }
 
         // Integration with Honey Hunter World peepoHappy
-        public static string LinkStructureBuilder(GameStructs.Gear Build) {
+        public static string LinkStructureBuilder(GameStructs.Gear Build, bool ShowErrors = false) {
 
             if (HoneyGearData == null) LoadHoneyGearData();
 
@@ -32,7 +32,7 @@ namespace HunterPie.Core {
             LinkBuilder.Append(HoneyLink);
 
             // Basic data
-            LinkBuilder.Append(GetWeaponHoneyID(Build.Weapon.Type, Build.Weapon.ID) + ",");
+            LinkBuilder.Append(GetWeaponHoneyID(Build.Weapon.Type, Build.Weapon.ID, ShowErrors) + ",");
             LinkBuilder.Append(GetGearHoneyID("Helms", "Helm", Build.Helmet.ID) + ",");
             LinkBuilder.Append(GetGearHoneyID("Armors", "Armor", Build.Chest.ID) + ",");
             LinkBuilder.Append(GetGearHoneyID("Arms", "Arm", Build.Hands.ID) + ",");
@@ -58,7 +58,7 @@ namespace HunterPie.Core {
 
             // Custom Augments
             LinkBuilder.Append("-");
-            LinkBuilder.Append(BuildCustomPartsStructure(Build.Weapon.Type, Build.Weapon.CustomAugments));
+            LinkBuilder.Append(BuildCustomPartsStructure(Build.Weapon.Type, Build.Weapon.CustomAugments, ShowErrors));
 
             // Awakening Skills
             LinkBuilder.Append("-");
@@ -97,12 +97,12 @@ namespace HunterPie.Core {
             return LinkBuilder.ToString();
         }
 
-        static string GetWeaponHoneyID(int WeaponType, int WeaponID) {
+        static string GetWeaponHoneyID(int WeaponType, int WeaponID, bool ShowErrors) {
             XmlNodeList nl = HoneyGearData.SelectSingleNode($"//Honey/Weapons").ChildNodes;
             if (WeaponType > nl.Count) return "0";
             XmlNode WeaponNode = nl[WeaponType];
             string wID = WeaponNode.SelectSingleNode($"Weapon[@ID='{WeaponID}']/@HoneyID")?.Value ?? "0";
-            if (wID == "0") Debugger.Error($"Unsupported weapon ID: {WeaponID}");
+            if (wID == "0" && ShowErrors) Debugger.Error($"Unsupported weapon ID: {WeaponID}");
             return wID;
         }
 
@@ -122,7 +122,7 @@ namespace HunterPie.Core {
             return node;
         }
 
-        static string BuildCustomPartsStructure(int WeaponType, GameStructs.CustomAugment[] CustomAugments) {
+        static string BuildCustomPartsStructure(int WeaponType, GameStructs.CustomAugment[] CustomAugments, bool ShowError) {
             StringBuilder[] Structure = new StringBuilder[5];
             for (int cAugmentIndex = 0; cAugmentIndex < CustomAugments.Length; cAugmentIndex++) {
                 GameStructs.CustomAugment cAugment = CustomAugments[cAugmentIndex];
@@ -136,7 +136,7 @@ namespace HunterPie.Core {
 
                 // If the augment is still null, then it isn't supported yet. In this case we display an error
                 // with the augment ID, so it's easier to map it.
-                if (AugmentType == null) {
+                if (AugmentType == null && ShowError) {
                     Debugger.Error($"Unsupported custom augment (ID = {cAugment.ID}, Level = {cAugment.Level})");
                     continue;
                 }
