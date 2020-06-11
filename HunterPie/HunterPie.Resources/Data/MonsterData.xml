@@ -1225,10 +1225,10 @@
       <Part Name="MONSTER_PART_ARMS" Group="ARM">
         <Break Threshold="1"/>
       </Part>
-      <Part Name="MONSTER_PART_LEGS" Group="LEG">
-        <Break Threshold="1"/>
-      </Part>
-      <Part Name="MONSTER_PART_TAIL" Group="TAIL"/>
+      <Part Name="MONSTER_PART_LEGS" Group="LEG"/>
+      <Part Name="MONSTER_PART_TAIL" Group="TAIL">
+	    <Break Threshold="1"/>
+	  </Part>
     </Parts>
   </Monster>
   <Monster ID="em110_00" Capture="25" GameID="31"> <!-- Paolumu -->
