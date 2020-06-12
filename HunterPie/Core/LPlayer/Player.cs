@@ -412,6 +412,19 @@ namespace HunterPie.Core
             return Decorations;
         }
 
+        public sItem[] GetDecorationsFromStorage()
+        {
+            // We up to 500 different slots in our decoration storage box
+            sItem[] decorations = new sItem[500];
+
+            for (long sStart = 0; sStart < 0x10 * 500; sStart += 0x10)
+            {
+                decorations[sStart / 0x10] = Scanner.Win32.Read<sItem>(PlayerAddress + 0x3F098 + sStart);
+            }
+
+            return decorations;
+        }
+
         #endregion
 
         #region Automatic Player Data
@@ -880,9 +893,11 @@ namespace HunterPie.Core
         private void GetDualBladesInformation(long weaponAddress)
         {
             bool inDemonMode = Scanner.Read<byte>(weaponAddress - 0x4) == 1;
+            bool isReducing = Scanner.Read<byte>(weaponAddress - 0x3) == 1;
             float demonGauge = Scanner.Read<float>(weaponAddress);
             DualBlades.InDemonMode = inDemonMode;
             DualBlades.DemonGauge = demonGauge;
+            DualBlades.IsReducing = isReducing;
         }
 
         private void GetLongswordInformation(long weaponAddress)

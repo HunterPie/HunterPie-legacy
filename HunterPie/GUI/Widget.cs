@@ -1,6 +1,5 @@
 ﻿using System;
 using System.Windows;
-using System.Windows.Controls;
 using System.Windows.Input;
 using System.Windows.Interop;
 using System.Windows.Media;
@@ -38,7 +37,6 @@ namespace HunterPie.GUI
         public double BaseHeight { get; set; }
 
         public Widget() => CompositionTarget.Rendering += OnWidgetRender;
-        
 
         private int renderCounter = 0;
         private void OnWidgetRender(object sender, EventArgs e)

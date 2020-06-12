@@ -5,6 +5,8 @@ using System.Xml;
 using Debugger = HunterPie.Logger.Debugger;
 using GameStructs = HunterPie.Core.LPlayer.GameStructs;
 using System.IO;
+using HunterPie.Core.Definitions;
+using System.Collections.Generic;
 
 namespace HunterPie.Core {
     public class Honey {
@@ -90,7 +92,7 @@ namespace HunterPie.Core {
                 }
             }
 
-            Debugger.Debug(LinkBuilder);
+            if (ShowErrors) Debugger.Debug(LinkBuilder);
 
             UnloadHoneyGearData();
 
@@ -204,11 +206,42 @@ namespace HunterPie.Core {
             return parsed;
         }
 
-        public static int GetDecorationHoneyIdByGameId(int id)
+        private static int GetDecorationHoneyIdByGameId(int id)
         {
             string decoHoneyId = HoneyGearData.SelectSingleNode($"//Honey/Gear/Jewels/Jewel[@GameId='{id}']/@HoneyID")?.Value;
             int.TryParse(decoHoneyId, out int parsed);
             return parsed;
+        }
+
+        public static string ExportDecorationsToHoney(sItem[] decorations)
+        {
+            if (HoneyGearData == null) LoadHoneyGearData();
+
+            StringBuilder data = new StringBuilder();
+
+            // Parse decorations into a dictionary to make it easier to organize the string structure
+            Dictionary<int, int> sDecorations = new Dictionary<int, int>();
+            foreach (sItem deco in decorations)
+            {
+                int HoneyDecoId = GetDecorationHoneyIdByGameId(deco.ItemId);
+                if (sDecorations.ContainsKey(HoneyDecoId))
+                {
+                    sDecorations[HoneyDecoId] += deco.Amount;
+                } else
+                {
+                    sDecorations[HoneyDecoId] = deco.Amount;
+                }
+            }
+
+            // Now we build the decoration string structure
+            const int MaxDecoId = 401;
+            for (int i = 1; i <= MaxDecoId; i++)
+            {
+                data.Append($"{(i != 1 ? "," : "")}{(sDecorations.ContainsKey(i) ? Math.Min(10, sDecorations[i]) : 0)}");
+            }
+            Debugger.Debug(data);
+            UnloadHoneyGearData();
+            return data.ToString();
         }
     }
 }

@@ -15,12 +15,16 @@ using HunterPie.GUI;
 using HunterPie.GUIControls;
 using HunterPie.Logger;
 using HunterPie.Core.Integrations.DataExporter;
+using HunterPie.Core.Definitions;
 
 namespace HunterPie {
     /// <summary>
     /// HunterPie main window logic;
     /// </summary>
     public partial class Hunterpie : Window {
+        // TODO: Refactor all this messy code
+
+
         // Classes
         TrayIcon TrayIcon;
         Game MonsterHunter = new Game();
@@ -36,6 +40,16 @@ namespace HunterPie {
         // Helpers
         IntPtr _windowHandle;
         HwndSource _source;
+
+
+
+        public bool IsPlayerLoggedOn
+        {
+            get { return (bool)GetValue(IsPlayerLoggedOnProperty); }
+            set { SetValue(IsPlayerLoggedOnProperty, value); }
+        }
+        public static readonly DependencyProperty IsPlayerLoggedOnProperty =
+            DependencyProperty.Register("IsPlayerLoggedOn", typeof(bool), typeof(Hunterpie));
 
         public Hunterpie() {
 
@@ -82,9 +96,6 @@ namespace HunterPie {
             // Initializes the rest of HunterPie
             LoadData();
             Debugger.Warn(GStrings.GetLocalizationByXPath("/Console/String[@ID='MESSAGE_HUNTERPIE_INITIALIZED']"));
-
-            BUTTON_UPLOADBUILD.IsEnabled = false;
-            BUTTON_UPLOADBUILD.Opacity = 0.5;
 
             SetHotKeys();
             StartEverything();
@@ -472,16 +483,14 @@ namespace HunterPie {
         public void OnLogin(object source, EventArgs e) {
             Debugger.Log($"Logged on {MonsterHunter.Player.Name}");
             Dispatcher.BeginInvoke(System.Windows.Threading.DispatcherPriority.Background, new Action(() => {
-                BUTTON_UPLOADBUILD.IsEnabled = true;
-                BUTTON_UPLOADBUILD.Opacity = 1;
+                IsPlayerLoggedOn = true;
             }));
             ExportGameData();
         }
 
         public void OnLogout(object source, EventArgs e) {
             Dispatcher.BeginInvoke(System.Windows.Threading.DispatcherPriority.Background, new Action(() => {
-                BUTTON_UPLOADBUILD.Opacity = 0.5;
-                BUTTON_UPLOADBUILD.IsEnabled = false;
+                IsPlayerLoggedOn = false;
             }));
         }
 
@@ -655,6 +664,13 @@ namespace HunterPie {
         private void OnChangelogButtonClick(object sender, MouseButtonEventArgs e) => OpenChangelog();
 
         private void OnUploadBuildButtonClick(object sender, MouseButtonEventArgs e) => BuildUploadNotification.ShowNotification();
+
+        private void OnExportGearButtonClick(object sender, MouseButtonEventArgs e)
+        {
+            sItem[] decoration = MonsterHunter.Player.GetDecorationsFromStorage();
+            string exported = Honey.ExportDecorationsToHoney(decoration);
+        }
+
 
         private void OnDiscordButtonClick(object sender, MouseButtonEventArgs e) => Process.Start("https://discord.gg/5pdDq4Q");
 
