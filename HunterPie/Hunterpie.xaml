@@ -3,10 +3,8 @@
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-        xmlns:local="clr-namespace:HunterPie"
         xmlns:Custom="clr-namespace:HunterPie.GUIControls.Custom_Controls"
-        xmlns:Core="clr-namespace:HunterPie.Core"
-        xmlns:Properties="clr-namespace:HunterPie.Properties" x:Name="window" x:Class="HunterPie.Hunterpie"
+        x:Name="window" x:Class="HunterPie.Hunterpie"
         mc:Ignorable="d"
         Title="HunterPie" d:DesignHeight="592" d:DesignWidth="1000" MinWidth="800" MinHeight="500" WindowStyle="None" Closing="OnWindowClosing" AllowsTransparency="True" BorderBrush="#7F000000" BorderThickness="1" Background="{x:Null}" ResizeMode="CanResize" SizeChanged="OnWindowSizeChange" DataContext="{StaticResource Localization}">
     <WindowChrome.WindowChrome>
@@ -21,14 +19,26 @@
             <Style x:Key="TogglableButton" TargetType="StackPanel">
                 <Style.Triggers>
                     <DataTrigger Binding="{Binding ElementName=window, Path=IsPlayerLoggedOn}" Value="True">
+                        <DataTrigger.EnterActions>
+                            <BeginStoryboard>
+                                <Storyboard Storyboard.TargetProperty="Opacity">
+                                    <DoubleAnimation To="1" Duration="0:0:0.25"/>
+                                </Storyboard>
+                            </BeginStoryboard>
+                        </DataTrigger.EnterActions>
+                        <DataTrigger.ExitActions>
+                            <BeginStoryboard>
+                                <Storyboard Storyboard.TargetProperty="Opacity">
+                                    <DoubleAnimation To="0.5" Duration="0:0:0.25"/>
+                                </Storyboard>
+                            </BeginStoryboard>
+                        </DataTrigger.ExitActions>
                         <DataTrigger.Setters>
-                            <Setter Property="Opacity" Value="1"/>
                             <Setter Property="IsEnabled" Value="True"/>
                         </DataTrigger.Setters>
                     </DataTrigger>
                     <DataTrigger Binding="{Binding ElementName=window, Path=IsPlayerLoggedOn}" Value="False">
                         <DataTrigger.Setters>
-                            <Setter Property="Opacity" Value="0.5"/>
                             <Setter Property="IsEnabled" Value="False"/>
                         </DataTrigger.Setters>
                     </DataTrigger>
@@ -36,7 +46,7 @@
                         <Trigger.EnterActions>
                             <BeginStoryboard>
                                 <Storyboard Storyboard.TargetProperty="Opacity">
-                                    <DoubleAnimation To="0.6"  Duration="0:0:0.25"/>
+                                    <DoubleAnimation To="0.6" Duration="0:0:0.25"/>
                                 </Storyboard>
                             </BeginStoryboard>
                         </Trigger.EnterActions>

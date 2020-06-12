@@ -68,6 +68,9 @@ namespace HunterPie.GUI.Widgets.ClassWidget
                 case Classes.Hammer:
                     config = classesConfig.HammerHelper;
                     break;
+                case Classes.Lance:
+                    config = classesConfig.LanceHelper;
+                    break;
                 case Classes.GunLance:
                     config = classesConfig.GunLanceHelper;
                     break;
@@ -107,6 +110,9 @@ namespace HunterPie.GUI.Widgets.ClassWidget
                     break;
                 case Classes.Hammer:
                     config = classesConfig.HammerHelper;
+                    break;
+                case Classes.Lance:
+                    config = classesConfig.LanceHelper;
                     break;
                 case Classes.GunLance:
                     config = classesConfig.GunLanceHelper;
@@ -193,6 +199,9 @@ namespace HunterPie.GUI.Widgets.ClassWidget
                     case Classes.Hammer:
                         SetClassToHammer();
                         break;
+                    case Classes.Lance:
+                        SetClassToLance();
+                        break;
                     case Classes.GunLance:
                         SetClassToGunLance();
                         break;
@@ -214,6 +223,15 @@ namespace HunterPie.GUI.Widgets.ClassWidget
                 }
             }));
             
+        }
+
+        private void SetClassToLance()
+        {
+            var control = new LanceControl();
+            control.SetContext(Context.Player.Lance);
+            Container.Children.Add(control);
+
+            ApplySettings();
         }
 
         private void SetClassToDualBlades()

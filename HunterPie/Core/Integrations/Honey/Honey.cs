@@ -213,6 +213,13 @@ namespace HunterPie.Core {
             return parsed;
         }
 
+        private static int GetDecorationAmountLimit(int id, int amount)
+        {
+            string decoMax = HoneyGearData.SelectSingleNode($"//Honey/Gear/Jewels/Jewel[@HoneyID='{id}']/@Max")?.Value;
+            int.TryParse(decoMax, out int parsed);
+            return Math.Min(parsed, amount);
+        }
+
         public static string ExportDecorationsToHoney(sItem[] decorations)
         {
             if (HoneyGearData == null) LoadHoneyGearData();
@@ -237,7 +244,7 @@ namespace HunterPie.Core {
             const int MaxDecoId = 401;
             for (int i = 1; i <= MaxDecoId; i++)
             {
-                data.Append($"{(i != 1 ? "," : "")}{(sDecorations.ContainsKey(i) ? Math.Min(10, sDecorations[i]) : 0)}");
+                data.Append($"{(i != 1 ? "," : "")}{(sDecorations.ContainsKey(i) ? GetDecorationAmountLimit(i, sDecorations[i]) : 0)}");
             }
             Debugger.Debug(data);
             UnloadHoneyGearData();

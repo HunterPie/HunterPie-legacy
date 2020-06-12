@@ -147,6 +147,7 @@ namespace HunterPie.Core
         public DualBlades DualBlades = new DualBlades();
         public Longsword Longsword = new Longsword();
         public Hammer Hammer = new Hammer();
+        public Lance Lance = new Lance();
         public GunLance GunLance = new GunLance();
         public SwitchAxe SwitchAxe = new SwitchAxe();
         public ChargeBlade ChargeBlade = new ChargeBlade();
@@ -414,7 +415,7 @@ namespace HunterPie.Core
 
         public sItem[] GetDecorationsFromStorage()
         {
-            // We up to 500 different slots in our decoration storage box
+            // We have up to 500 different slots in our decoration storage box
             sItem[] decorations = new sItem[500];
 
             for (long sStart = 0; sStart < 0x10 * 500; sStart += 0x10)
@@ -854,6 +855,9 @@ namespace HunterPie.Core
                 case Classes.Hammer:
                     GetHammerInformation(weaponAddress);
                     Hammer.SafijiivaRegenCounter = SafiCounter;
+                    break;
+                case Classes.Lance:
+                    Lance.SafijiivaRegenCounter = SafiCounter;
                     break;
                 case Classes.GunLance:
                     GetGunLanceInformation(weaponAddress, AbnormAddress);
