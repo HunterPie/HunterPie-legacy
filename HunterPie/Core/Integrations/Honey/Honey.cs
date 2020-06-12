@@ -13,7 +13,8 @@ namespace HunterPie.Core {
 
         public static XmlDocument HoneyGearData;
         private static string HoneyLink = "https://honeyhunterworld.com/mhwbi/?";
-        // Only calls this if the person pressed the upload build button
+
+        // Only calls this when needed
         // since I don't want it to be allocated in memory 100% of the time
         public static void LoadHoneyGearData() {
             HoneyGearData = new XmlDocument();
@@ -23,8 +24,13 @@ namespace HunterPie.Core {
         public static void UnloadHoneyGearData() {
             HoneyGearData = null;
         }
-
-        // Integration with Honey Hunter World peepoHappy
+        
+        /// <summary>
+        /// Function to create player build link based on the in-game gear
+        /// </summary>
+        /// <param name="Build">Player build structure</param>
+        /// <param name="ShowErrors">If the function should print errors when they happen (optional)</param>
+        /// <returns>Link to the build in Honey Hunters World</returns>
         public static string LinkStructureBuilder(GameStructs.Gear Build, bool ShowErrors = false) {
 
             if (HoneyGearData == null) LoadHoneyGearData();
@@ -98,6 +104,7 @@ namespace HunterPie.Core {
 
             return LinkBuilder.ToString();
         }
+
 
         static string GetWeaponHoneyID(int WeaponType, int WeaponID, bool ShowErrors) {
             XmlNodeList nl = HoneyGearData.SelectSingleNode($"//Honey/Weapons").ChildNodes;
@@ -220,6 +227,11 @@ namespace HunterPie.Core {
             return Math.Min(parsed, amount);
         }
 
+        /// <summary>
+        /// Turns a sItem list into a decoration list string that can be used in Honey Hunters World
+        /// </summary>
+        /// <param name="decorations">sItem list with the decorations information</param>
+        /// <returns>string structure</returns>
         public static string ExportDecorationsToHoney(sItem[] decorations)
         {
             if (HoneyGearData == null) LoadHoneyGearData();

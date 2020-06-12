@@ -7,6 +7,7 @@ using HunterPie.Memory;
 using HunterPie.Core.LPlayer.Jobs;
 using System.Collections.Generic;
 using HunterPie.Core.Definitions;
+using Classes = HunterPie.Core.Enums.Classes;
 
 namespace HunterPie.Core
 {
@@ -661,9 +662,9 @@ namespace HunterPie.Core
             {
                 // Calculates memory address
                 Int64 FertilizerAddress = Address + Memory.Address.Offsets.FertilizersOffset + (0x10 * fertCount) - 0xC;
-                sHarvestBoxElement element = Scanner.Win32.Read<sHarvestBoxElement>(FertilizerAddress);
+                sItem element = Scanner.Win32.Read<sItem>(FertilizerAddress);
                 // Read memory
-                int FertilizerId = element.ID;
+                int FertilizerId = element.ItemId;
                 int FertilizerCount = element.Amount;
                 // update fertilizer data
                 Harvest.Box[fertCount].ID = FertilizerId;
@@ -678,7 +679,7 @@ namespace HunterPie.Core
             int counter = 0;
             for (long iAddress = Address; iAddress < Address + 0x320; iAddress += 0x10)
             {
-                sHarvestBoxElement element = Scanner.Win32.Read<sHarvestBoxElement>(iAddress);
+                sItem element = Scanner.Win32.Read<sItem>(iAddress);
                 if (element.Amount > 0)
                 {
                     counter++;

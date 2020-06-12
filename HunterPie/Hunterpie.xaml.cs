@@ -669,6 +669,14 @@ namespace HunterPie {
         {
             sItem[] decoration = MonsterHunter.Player.GetDecorationsFromStorage();
             string exported = Honey.ExportDecorationsToHoney(decoration);
+
+            if (dataExporter.ExportCustomData("Decorations-HoneyHuntersWorld.txt", exported))
+            {
+                Debugger.Warn("Exported decorations to ./DataExport/Decorations-HoneyHuntersWorld.txt!");
+            } else
+            {
+                Debugger.Error("Failed to export decorations. Make sure HunterPie has permission to create/write to files.");
+            }
         }
 
 

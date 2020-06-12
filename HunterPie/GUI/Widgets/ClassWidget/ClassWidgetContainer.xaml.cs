@@ -4,6 +4,7 @@ using System.Windows.Media;
 using HunterPie.Core;
 using HunterPie.GUI.Widgets.ClassWidget.Parts;
 using HunterPie.Logger;
+using Classes = HunterPie.Core.Enums.Classes;
 
 namespace HunterPie.GUI.Widgets.ClassWidget
 {
