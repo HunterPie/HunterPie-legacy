@@ -60,6 +60,8 @@ namespace HunterPie {
 
             AppDomain.CurrentDomain.UnhandledException += ExceptionLogger;
 
+            IsPlayerLoggedOn = true;
+
             SetDPIAwareness();
 
             Buffers.Initialize(1024);
@@ -434,6 +436,7 @@ namespace HunterPie {
             MonsterHunter.Player.OnCharacterLogin += OnLogin;
             MonsterHunter.Player.OnCharacterLogout += OnLogout;
             MonsterHunter.Player.OnSessionChange += OnSessionChange;
+            MonsterHunter.Player.OnClassChange += OnClassChange;
         }
 
         private void UnhookGameEvents()
@@ -442,6 +445,7 @@ namespace HunterPie {
             MonsterHunter.Player.OnCharacterLogin -= OnLogin;
             MonsterHunter.Player.OnCharacterLogout -= OnLogout;
             MonsterHunter.Player.OnSessionChange -= OnSessionChange;
+            MonsterHunter.Player.OnClassChange -= OnClassChange;
         }
 
         private void ExportGameData()
@@ -493,6 +497,12 @@ namespace HunterPie {
                 IsPlayerLoggedOn = false;
             }));
         }
+
+        private void OnClassChange(object source, EventArgs args)
+        {
+            ExportGameData();
+        }
+
 
         public void OnGameStart(object source, EventArgs e) {
             // Create game instances
@@ -718,5 +728,9 @@ namespace HunterPie {
         }
         #endregion
 
+        private void window_Loaded(object sender, RoutedEventArgs e)
+        {
+            IsPlayerLoggedOn = false;
+        }
     }
 }

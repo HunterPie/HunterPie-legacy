@@ -129,6 +129,7 @@
     </ApplicationDefinition>
     <Compile Include="Core\Definitions\sItem.cs" />
     <Compile Include="Core\Definitions\sMonsterPart.cs" />
+    <Compile Include="Core\Definitions\sVector3.cs" />
     <Compile Include="Core\Definitions\sTenderizedPart.cs" />
     <Compile Include="Core\Definitions\Structures.cs" />
     <Compile Include="Core\Enums\Classes.cs" />

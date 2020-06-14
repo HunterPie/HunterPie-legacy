@@ -104,11 +104,6 @@
     <Part ID="MONSTER_PART_HORNS" Name="Cornes"/>
     <Part ID="MONSTER_PART_NECK" Name="Cou"/>
     <Part ID="MONSTER_PART_SHELL" Name="Carapace"/>
-    <Part ID="MONSTER_PART_LHAND" Name="Main Gauche"/>
-    <Part ID="MONSTER_PART_RHAND" Name="Main Droite"/>
-    <Part ID="MONSTER_PART_LFOOT" Name="Pied Gauche"/>
-    <Part ID="MONSTER_PART_RFOOT" Name="Pied Droit"/>
-    <Part ID="MONSTER_PART_SHELL" Name="Carapace"/>
     <Part ID="MONSTER_PART_EXHAUST_ORGAN_CENTRAL" Name="Crystal (centre)"/>
     <Part ID="MONSTER_PART_EXHAUST_ORGAN_HEAD" Name="Crystal (tête)"/>
     <Part ID="MONSTER_PART_EXHAUST_ORGAN_CRATER" Name="Crystal (crâtère)"/>
@@ -130,8 +125,6 @@
     <Part ID="MONSTER_PART_RLEG_GOLD" Name="Patte Droite Dorée"/>
     <Part ID="MONSTER_PART_LTAIL_GOLD" Name="Queue Gauche Dorée"/>
     <Part ID="MONSTER_PART_RTAIL_GOLD" Name="Queue Droite Dorée"/>
-    <Part ID="MONSTER_PART_LHEAD" Name="Tête (gauche)"/>
-    <Part ID="MONSTER_PART_RHEAD" Name="Tête (droite)"/>
     <Part ID="MONSTER_PART_HEAD_SNOW" Name="Tête (neige)"/>
     <Part ID="MONSTER_PART_BODY_SNOW" Name="Corps (neige)"/>
     <Part ID="MONSTER_PART_TAIL_SNOW" Name="Queue (neige)"/>
@@ -161,8 +154,6 @@
     <Part ID="MONSTER_PART_REMOVABLE_BALLOON" Name="Ballon Cassable"/>
     <Part ID="MONSTER_PART_REMOVABLE_HORNS_2" Name="Cornes Cassable #2"/>
     <Part ID="MONSTER_PART_BODY_LEGS" Name="Corps et jambes"/>
-    <Part ID="MONSTER_PART_REMOVABLE_LANTLER" Name="Bois Gauche Cassable"/>
-    <Part ID="MONSTER_PART_REMOVABLE_RANTLER" Name="Bois Droit Cassable"/>
     <Part ID="MONSTER_PART_SILVER_SPIKES_HEAD" Name="Pics d&apos;Argent (Tête)"/>
     <Part ID="MONSTER_PART_SILVER_SPIKES_LARM" Name="Pics d&apos;Argent (Bras Gauche)"/>
     <Part ID="MONSTER_PART_SILVER_SPIKES_RARM" Name="Pics d&apos;Argent (Bras Droit)"/>
@@ -379,8 +370,8 @@
     <Abnormality ID="PALICO_016_00" Name="Anti-bourrasque"/>
     <Abnormality ID="PALICO_017_00" Name="Dégâts environ. annulés"/>
     <Abnormality ID="PALICO_018_00" Name="Effet Inconnu"/>
-    <Abnormality ID="DEBUFF_000_00" Name="Venin"/>
-    <Abnormality ID="DEBUFF_001_00" Name="Inconnu"/>
+    <Abnormality ID="DEBUFF_000_00" Name="Poison"/>
+    <Abnormality ID="DEBUFF_001_00" Name="Poison Mortel"/>
     <Abnormality ID="DEBUFF_002_00" Name="Inconnu"/>
     <Abnormality ID="DEBUFF_003_00" Name="Inconnu"/>
     <Abnormality ID="DEBUFF_004_00" Name="Fléau-feu"/>
@@ -442,6 +433,7 @@
       <String ID="CONSOLE_SETTINGS" Name="PARAMÈTRES"/>
       <String ID="CONSOLE_UPLOADBUILD" Name="PUBLIER SON BUILD"/>
       <String ID="CONSOLE_CHANGELOG" Name="NOTES DE PATCH"/>
+      <String ID="CONSOLE_EXPORTGEAR" Name="EXPORTER L'ARMURE"/>
       <String ID="CONSOLE_DISCORD" Name="DISCORD"/>
       <String ID="CONSOLE_GITHUB" Name="GITHUB"/>
       <String ID="CONSOLE_LAUNCH" Name="LANCER LE JEU"/>
