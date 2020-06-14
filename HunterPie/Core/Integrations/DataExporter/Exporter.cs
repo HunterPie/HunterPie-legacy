@@ -16,6 +16,7 @@ namespace HunterPie.Core.Integrations.DataExporter
         public string BuildURL;
         public string Session;
         public string SteamSession;
+        public int Playtime;
     }
 
     public class Exporter

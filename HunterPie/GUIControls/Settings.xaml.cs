@@ -148,8 +148,10 @@ namespace HunterPie.GUIControls {
             settingsUI.DamageComponentOpacity.Value = settings.Overlay.DPSMeter.Opacity;
 
             // Classes Widget
+            settingsUI.switchDualBladesHelper.IsEnabled = settings.Overlay.ClassesWidget.DualBladesHelper.Enabled;
             settingsUI.switchLongswordHelper.IsEnabled = settings.Overlay.ClassesWidget.LongSwordHelper.Enabled;
             settingsUI.switchHammerHelper.IsEnabled = settings.Overlay.ClassesWidget.HammerHelper.Enabled;
+            settingsUI.switchLanceHelper.IsEnabled = settings.Overlay.ClassesWidget.LanceHelper.Enabled;
             settingsUI.switchGunLanceHelper.IsEnabled = settings.Overlay.ClassesWidget.GunLanceHelper.Enabled;
             settingsUI.switchSwitchAxeHelper.IsEnabled = settings.Overlay.ClassesWidget.SwitchAxeHelper.Enabled;
             settingsUI.switchChargeBladeHelper.IsEnabled = settings.Overlay.ClassesWidget.ChargeBladeHelper.Enabled;
@@ -265,14 +267,15 @@ namespace HunterPie.GUIControls {
             settings.Overlay.DPSMeter.Opacity = (float)settingsUI.DamageComponentOpacity.Value;
 
             // Classes Widget
+            settings.Overlay.ClassesWidget.DualBladesHelper.Enabled = settingsUI.switchDualBladesHelper.IsEnabled;
             settings.Overlay.ClassesWidget.LongSwordHelper.Enabled = settingsUI.switchLongswordHelper.IsEnabled;
             settings.Overlay.ClassesWidget.HammerHelper.Enabled = settingsUI.switchHammerHelper.IsEnabled;
+            settings.Overlay.ClassesWidget.LanceHelper.Enabled = settingsUI.switchLanceHelper.IsEnabled;
             settings.Overlay.ClassesWidget.GunLanceHelper.Enabled = settingsUI.switchGunLanceHelper.IsEnabled;
             settings.Overlay.ClassesWidget.SwitchAxeHelper.Enabled = settingsUI.switchSwitchAxeHelper.IsEnabled;
             settings.Overlay.ClassesWidget.ChargeBladeHelper.Enabled = settingsUI.switchChargeBladeHelper.IsEnabled;
             settings.Overlay.ClassesWidget.InsectGlaiveHelper.Enabled = settingsUI.switchInsectGlaiveHelper.IsEnabled;
             settings.Overlay.ClassesWidget.BowHelper.Enabled = settingsUI.switchBowHelper.IsEnabled;
-
 
             // Abnormality bars
             int i = 0;

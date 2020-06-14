@@ -1,6 +1,5 @@
 ﻿using System.Runtime.InteropServices;
 
-
 namespace HunterPie.Core.Definitions
 {
     [StructLayout(LayoutKind.Sequential, Size = 0xA0)]

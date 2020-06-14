@@ -127,6 +127,7 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
+    <Compile Include="Core\Definitions\sGear.cs" />
     <Compile Include="Core\Definitions\sItem.cs" />
     <Compile Include="Core\Definitions\sMonsterPart.cs" />
     <Compile Include="Core\Definitions\sVector3.cs" />
