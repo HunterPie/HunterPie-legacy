@@ -177,6 +177,7 @@ namespace HunterPie.Core {
                 public DualBladesHelper DualBladesHelper { get; set; } = new DualBladesHelper();
                 public LongSwordHelper LongSwordHelper { get; set; } = new LongSwordHelper();
                 public HammerHelper HammerHelper { get; set; } = new HammerHelper();
+                public LanceHelper LanceHelper { get; set; } = new LanceHelper();
                 public ChargeBladeHelper ChargeBladeHelper { get; set; } = new ChargeBladeHelper();
                 public InsectGlaiveHelper InsectGlaiveHelper { get; set; } = new InsectGlaiveHelper();
                 public GunLanceHelper GunLanceHelper { get; set; } = new GunLanceHelper();
@@ -199,6 +200,8 @@ namespace HunterPie.Core {
             public class BowHelper : WeaponHelperStructure { }
 
             public class DualBladesHelper : WeaponHelperStructure { }
+
+            public class LanceHelper : WeaponHelperStructure { };
 
             public class WeaponHelperStructure
             {

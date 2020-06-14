@@ -7,6 +7,7 @@ using HunterPie.Memory;
 using HunterPie.Core.LPlayer.Jobs;
 using System.Collections.Generic;
 using HunterPie.Core.Definitions;
+using Classes = HunterPie.Core.Enums.Classes;
 
 namespace HunterPie.Core
 {
@@ -147,6 +148,7 @@ namespace HunterPie.Core
         public DualBlades DualBlades = new DualBlades();
         public Longsword Longsword = new Longsword();
         public Hammer Hammer = new Hammer();
+        public Lance Lance = new Lance();
         public GunLance GunLance = new GunLance();
         public SwitchAxe SwitchAxe = new SwitchAxe();
         public ChargeBlade ChargeBlade = new ChargeBlade();
@@ -412,6 +414,19 @@ namespace HunterPie.Core
             return Decorations;
         }
 
+        public sItem[] GetDecorationsFromStorage()
+        {
+            // We have up to 500 different slots in our decoration storage box
+            sItem[] decorations = new sItem[500];
+
+            for (long sStart = 0; sStart < 0x10 * 500; sStart += 0x10)
+            {
+                decorations[sStart / 0x10] = Scanner.Win32.Read<sItem>(PlayerAddress + 0x3F098 + sStart);
+            }
+
+            return decorations;
+        }
+
         #endregion
 
         #region Automatic Player Data
@@ -647,9 +662,9 @@ namespace HunterPie.Core
             {
                 // Calculates memory address
                 Int64 FertilizerAddress = Address + Memory.Address.Offsets.FertilizersOffset + (0x10 * fertCount) - 0xC;
-                sHarvestBoxElement element = Scanner.Win32.Read<sHarvestBoxElement>(FertilizerAddress);
+                sItem element = Scanner.Win32.Read<sItem>(FertilizerAddress);
                 // Read memory
-                int FertilizerId = element.ID;
+                int FertilizerId = element.ItemId;
                 int FertilizerCount = element.Amount;
                 // update fertilizer data
                 Harvest.Box[fertCount].ID = FertilizerId;
@@ -664,7 +679,7 @@ namespace HunterPie.Core
             int counter = 0;
             for (long iAddress = Address; iAddress < Address + 0x320; iAddress += 0x10)
             {
-                sHarvestBoxElement element = Scanner.Win32.Read<sHarvestBoxElement>(iAddress);
+                sItem element = Scanner.Win32.Read<sItem>(iAddress);
                 if (element.Amount > 0)
                 {
                     counter++;
@@ -842,6 +857,9 @@ namespace HunterPie.Core
                     GetHammerInformation(weaponAddress);
                     Hammer.SafijiivaRegenCounter = SafiCounter;
                     break;
+                case Classes.Lance:
+                    Lance.SafijiivaRegenCounter = SafiCounter;
+                    break;
                 case Classes.GunLance:
                     GetGunLanceInformation(weaponAddress, AbnormAddress);
                     GunLance.SafijiivaRegenCounter = SafiCounter;
@@ -880,9 +898,11 @@ namespace HunterPie.Core
         private void GetDualBladesInformation(long weaponAddress)
         {
             bool inDemonMode = Scanner.Read<byte>(weaponAddress - 0x4) == 1;
+            bool isReducing = Scanner.Read<byte>(weaponAddress - 0x3) == 1;
             float demonGauge = Scanner.Read<float>(weaponAddress);
             DualBlades.InDemonMode = inDemonMode;
             DualBlades.DemonGauge = demonGauge;
+            DualBlades.IsReducing = isReducing;
         }
 
         private void GetLongswordInformation(long weaponAddress)
