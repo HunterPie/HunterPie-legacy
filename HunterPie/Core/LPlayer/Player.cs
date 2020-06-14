@@ -46,6 +46,7 @@ namespace HunterPie.Core
                 }
             }
         }
+        public bool IsLoggedOn { get => _playerAddress != 0; }
         public int Level
         { // Hunter Rank
             get => _level;
@@ -417,7 +418,7 @@ namespace HunterPie.Core
         /*
             Player data that is tracked by the Player class, cannot be called by an external function.
         */
-
+        
         private void GetPlayerInfo()
         {
             while (Scanner.GameIsRunning)
@@ -878,7 +879,7 @@ namespace HunterPie.Core
 
         private void GetDualBladesInformation(long weaponAddress)
         {
-            bool inDemonMode = Scanner.Read<bool>(weaponAddress - 0x4);
+            bool inDemonMode = Scanner.Read<byte>(weaponAddress - 0x4) == 1;
             float demonGauge = Scanner.Read<float>(weaponAddress);
             DualBlades.InDemonMode = inDemonMode;
             DualBlades.DemonGauge = demonGauge;
@@ -975,9 +976,19 @@ namespace HunterPie.Core
             float redBuff = Scanner.Read<float>(weaponAddress - 0x4);
             float whiteBuff = Scanner.Read<float>(weaponAddress);
             float orangeBuff = Scanner.Read<float>(weaponAddress + 0x4);
-            float redChargeTimer = Scanner.Read<float>(weaponAddress + 0x1CEC);
-            float yellowChargeTimer = Scanner.Read<float>(weaponAddress + 0x1CF0);
-            float kinsectStamina = Scanner.Read<float>(weaponAddress + 0xBD0);
+
+            // Insect Glaive has some dumb bugs sometimes where the buffs duration are either negative
+            // or NaN
+            redBuff = float.IsNaN(redBuff) ? 0 : redBuff;
+            whiteBuff = float.IsNaN(whiteBuff) ? 0 : whiteBuff;
+            orangeBuff = float.IsNaN(orangeBuff) ? 0 : orangeBuff;
+
+            // For whatever reason, some IGs split their data between two IG structures I suppose?
+            // So we can use this pointer that will always point to the right data
+            long dataPtr = Scanner.Read<long>(weaponAddress - 0x236C - 0x28);
+            float redChargeTimer = Scanner.Read<float>(dataPtr + 0x1BE8);
+            float yellowChargeTimer = Scanner.Read<float>(dataPtr + 0x1BEC);
+            float kinsectStamina = Scanner.Read<float>(dataPtr + 0xACC);
             KinsectChargeBuff chargeFlag = redChargeTimer > 0 && yellowChargeTimer > 0 ? KinsectChargeBuff.Both :
                 redChargeTimer > 0 ? KinsectChargeBuff.Red :
                 yellowChargeTimer > 0 ? KinsectChargeBuff.Yellow : KinsectChargeBuff.None;

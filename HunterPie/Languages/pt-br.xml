@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="utf-8" ?>
 <Strings lang="Portuguese">
   <Monsters>
+    <Monster ID="ems062_03" Name="Training Dummy"/>
     <Monster ID="em001_00" Name="Rathian"/>
     <Monster ID="em001_01" Name="Rathian Rosa"/>
     <Monster ID="em001_02" Name="Rathian Dourada"/>
@@ -79,6 +80,7 @@
     <Part ID="MONSTER_PART_LLEG" Name="Perna Esquerda"/>
     <Part ID="MONSTER_PART_RLEG" Name="Perna Direita"/>
     <Part ID="MONSTER_PART_TAIL" Name="Cauda"/>
+    <Part ID="MONSTER_PART_TAIL_TIP" Name="Cauda (Ponta)"/>
     <Part ID="MONSTER_PART_ARMS" Name="Braços"/>
     <Part ID="MONSTER_PART_LEGS" Name="Pernas"/>
     <Part ID="MONSTER_PART_LARM" Name="Braço Esquerda"/>
@@ -148,14 +150,44 @@
     <Part ID="MONSTER_PART_RARM_ROCK" Name="Braço Direito Rochoso"/>
     <Part ID="MONSTER_PART_LEGS_ROCK" Name="Pernas Rochosas"/>
     <Part ID="MONSTER_JAGRAS_SUMMONER" Name="Invocador de Jagras"/>
+    <Part ID="MONSTER_PART_ANTLERS" Name="Galhadas"/>
+    <Part ID="MONSTER_PART_HORN" Name="Chifre"/>
     <!-- Removable parts -->
     <Part ID="MONSTER_PART_REMOVABLE_TAIL" Name="Cauda Cortável"/>
     <Part ID="MONSTER_PART_REMOVABLE_HORNS" Name="Chifres Quebráveis"/>
     <Part ID="MONSTER_PART_REMOVABLE_HEAD" Name="Cabeça Quebrável"/>
+    <Part ID="MONSTER_PART_REMOVABLE_HEAD_ROCK" Name="Cabeça Rochosa Quebrável"/>
+    <Part ID="MONSTER_PART_REMOVABLE_CHEST_ROCK" Name="Peito Rochoso Quebrável"/>
+    <Part ID="MONSTER_PART_BODY_LEGS" Name="Corpo e Pernas"/>
     <Part ID="MONSTER_PART_REMOVABLE_BALLOON" Name="Balão Removível"/>
     <Part ID="MONSTER_PART_REMOVABLE_HORNS_2" Name="Chifres Quebráveis #2"/>
     <Part ID="MONSTER_PART_REMOVABLE_LANTLER" Name="Galhada Esquerda Quebrável"/>
     <Part ID="MONSTER_PART_REMOVABLE_RANTLER" Name="Galhada Direita Quebrável"/>
+    <Part ID="MONSTER_PART_SILVER_SPIKES_HEAD" Name="Espinhos Prata (Cabeça)"/>
+    <Part ID="MONSTER_PART_SILVER_SPIKES_LARM" Name="Espinhos Prata (Braço Esq.)"/>
+    <Part ID="MONSTER_PART_SILVER_SPIKES_RARM" Name="Espinhos Prata (Braço Dir.)"/>
+    <Part ID="MONSTER_PART_SILVER_SPIKES_LWING" Name="Espinhos Prata (Asa Esq.)"/>
+    <Part ID="MONSTER_PART_SILVER_SPIKES_RWING" Name="Espinhos Prata (Asa Dir.)"/>
+    <!-- Special parts -->
+    <Part ID="MONSTER_PART_BIG_FLINCH" Name="Recuo Longo"/>
+    <Part ID="MONSTER_PART_RAGE" Name="Raiva"/>
+    <Part ID="MONSTER_PART_COUNTERATTACK" Name="Contra-Ataque"/>
+    <Part ID="MONSTER_PART_CHARGE" Name="Estado de Carga"/>
+    <Part ID="MONSTER_PART_THROAT" Name="Garganta"/>
+    <Part ID="MONSTER_PART_INFLATED_TAIL" Name="Cauda Inflada"/>
+    <Part ID="MONSTER_PART_SKY_FALL" Name="Queda Livre"/>
+    <Part ID="MONSTER_PART_EMISSIONS" Name="Emissões de eflúvio"/>
+    <Part ID="MONSTER_PART_GLOWING_HEAD" Name="Cabeça Incandescênte"/>
+    <Part ID="MONSTER_PART_GLOWING_TAIL" Name="Cauda Incandescênte"/>
+    <Part ID="MONSTER_PART_EMERGE_SNOW_HEAD" Name="Sair da Neve (Cabeça)"/>
+    <Part ID="MONSTER_PART_EMERGE_SNOW_BODY" Name="Sair da Neve (Corpo)"/>
+    <Part ID="MONSTER_PART_EMERGE_SNOW_TAIL" Name="Sair da Neve (Cauda)"/>
+    <Part ID="MONSTER_PART_SPIKES_HEAD" Name="Espinhos (Cabeça)"/>
+    <Part ID="MONSTER_PART_SPIKES_LARM" Name="Espinhos (Braço Esq.)"/>
+    <Part ID="MONSTER_PART_SPIKES_RARM" Name="Espinhos (Braço Dir.)"/>
+    <Part ID="MONSTER_PART_SPIKES_LWING" Name="Espinhos (Asa Esq.)"/>
+    <Part ID="MONSTER_PART_SPIKES_RWING" Name="Espinhos (Asa Dir.)"/>
+    <Part ID="MONSTER_PART_SPIKES_TAIL" Name="Espinhos (Cauda)"/>
   </Parts>
   <Ailments>
     <Ailment ID="STATUS_UNKNOWN" Name="Desconhecido"/>
@@ -566,6 +598,8 @@
       <!-- Damage Meter -->
       <String ID="ENABLE_METER" Name="Habilitar widget de dano"/>
       <String ID="ENABLE_METER_DESC" Name="Se habilitado, o widget de dano será sempre mostrado quando tiver conteúdo."/>
+      <String ID="ENABLE_TIMER" Name="Exibir temporizador"/>
+      <String ID="ENABLE_TIMER_DESC" Name="Se habilitado, o temporizador ficará visível."/>
       <String ID="ENABLE_TOTAL_DAMAGE" Name="Exibir dano total"/>
       <String ID="ENABLE_TOTAL_DAMAGE_DESC" Name="Se habilitado, o widget de dano mostrará o dano total individual."/>
       <String ID="ENABLE_METER_DPS" Name="Exibir dano por segundo"/>
@@ -618,6 +652,12 @@
       <String ID="ENABLE_SWITCH_AXE_HELPER_DESC" Name="Se habilitado, o widget do Transmachado será mostrado sempre que você equipar o Transmachado."/>
       <String ID="ENABLE_GUN_LANCE_HELPER" Name="Habilitar widget da Lançarma"/>
       <String ID="ENABLE_GUN_LANCE_HELPER_DESC" Name="Se habilitado, o widget da Lançarma será mostrado sempre que você equipar a Lançarma."/>
+      <String ID="ENABLE_LONGSWORD_HELPER" Name="Habilitar widget da Espada Longa"/>
+      <String ID="ENABLE_LONGSWORD_HELPER_DESC" Name="Se habilitado, o widget da Espada Longa será mostrado sempre que você equipar a Espada Longa."/>
+      <String ID="ENABLE_BOW_HELPER" Name="Habilitar widget do Arco"/>
+      <String ID="ENABLE_BOW_HELPER_DESC" Name="Se habilitado, o widget do Arco será mostrado sempre que você equipar o Arco."/>
+      <String ID="ENABLE_HAMMER_HELPER" Name="Habilitar widget do Martelo"/>
+      <String ID="ENABLE_HAMMER_HELPER_DESC" Name="Se habilitado, o widget do Martelo será mostrado sempre que você equipar o Martelo."/>
       <String ID="STATIC_CLASSES_BETA_WARNING" Name="Atenção: O auxiliador de classe ainda está em desenvolvimento e mais classes serão suportadas no futuro. Cada classe tem sua própria configuração, então você pode ter diferentes posições para cada classe. Use o Modo de Design para aumentar, diminuir ou mover este widget."/>
       <!-- Links -->
       <String ID="STATIC_HUNTERPIE_WIKI" Name="Documentação"/>

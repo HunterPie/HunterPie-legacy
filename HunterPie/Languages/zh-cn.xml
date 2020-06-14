@@ -1,7 +1,8 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
 <Strings lang="Simplified Chinese">
-<!--Translated for HunterPie Ver 1.0.3.91 by FengYuu-->
+<!--Translated for HunterPie Ver 1.0.3.92 by FengYuu-->
   <Monsters>
+    <Monster ID="ems062_03" Name="木质桶车"/>
     <Monster ID="em001_00" Name="雌火龙"/>
     <Monster ID="em001_01" Name="樱火龙"/>
     <Monster ID="em001_02" Name="金火龙"/>
@@ -80,6 +81,7 @@
     <Part ID="MONSTER_PART_LLEG" Name="左腿"/>
     <Part ID="MONSTER_PART_RLEG" Name="右腿"/>
     <Part ID="MONSTER_PART_TAIL" Name="尾巴"/>
+    <Part ID="MONSTER_PART_TAIL_TIP" Name="尾尖"/>
     <Part ID="MONSTER_PART_ARMS" Name="臂"/>
     <Part ID="MONSTER_PART_LEGS" Name="腿"/>
     <Part ID="MONSTER_PART_LARM" Name="左前臂"/>
@@ -102,10 +104,6 @@
     <Part ID="MONSTER_PART_FIN" Name="背鳍"/>
     <Part ID="MONSTER_PART_HORNS" Name="大角"/>
     <Part ID="MONSTER_PART_NECK" Name="颈部"/>
-    <Part ID="MONSTER_PART_LHAND" Name="左手"/>
-    <Part ID="MONSTER_PART_RHAND" Name="右手"/>
-    <Part ID="MONSTER_PART_LFOOT" Name="左脚"/>
-    <Part ID="MONSTER_PART_RFOOT" Name="右脚"/>
     <Part ID="MONSTER_PART_SHELL" Name="外壳"/>
     <Part ID="MONSTER_PART_EXHAUST_ORGAN_CENTRAL" Name="中央散热器官"/>
     <Part ID="MONSTER_PART_EXHAUST_ORGAN_HEAD" Name="头部散热器官"/>
@@ -128,8 +126,6 @@
     <Part ID="MONSTER_PART_RLEG_GOLD" Name="右后脚的黄金"/>
     <Part ID="MONSTER_PART_LTAIL_GOLD" Name="尾巴左侧的黄金"/>
     <Part ID="MONSTER_PART_RTAIL_GOLD" Name="尾巴右侧的黄金"/>
-    <Part ID="MONSTER_PART_LHEAD" Name="头部左侧"/>
-    <Part ID="MONSTER_PART_RHEAD" Name="头部右侧"/>
     <Part ID="MONSTER_PART_HEAD_SNOW" Name="头部积雪"/>
     <Part ID="MONSTER_PART_BODY_SNOW" Name="身体积雪"/>
     <Part ID="MONSTER_PART_TAIL_SNOW" Name="尾巴积雪"/>
@@ -148,15 +144,42 @@
     <Part ID="MONSTER_PART_LARM_ROCK" Name="左前腿岩石"/>
     <Part ID="MONSTER_PART_RARM_ROCK" Name="右前腿岩石"/>
     <Part ID="MONSTER_PART_LEGS_ROCK" Name="后腿岩石"/>
-    <Part ID="MONSTER_JAGRAS_SUMMONER" Name="召唤凶豺龙"/>
+    <Part ID="MONSTER_PART_ANTLERS" Name="鹿角"/>
+    <Part ID="MONSTER_PART_HORN" Name="角"/>
     <!-- Removable parts -->
     <Part ID="MONSTER_PART_REMOVABLE_TAIL" Name="可断的尾巴"/>
     <Part ID="MONSTER_PART_REMOVABLE_HORNS" Name="可断的角"/>
     <Part ID="MONSTER_PART_REMOVABLE_HEAD" Name="可破坏的头部"/>
+    <Part ID="MONSTER_PART_REMOVABLE_HEAD_ROCK" Name="可破坏的头部岩石"/>
+    <Part ID="MONSTER_PART_REMOVABLE_CHEST_ROCK" Name="可破坏的胸部岩石"/>
     <Part ID="MONSTER_PART_REMOVABLE_BALLOON" Name="可破坏的气囊"/>
     <Part ID="MONSTER_PART_REMOVABLE_HORNS_2" Name="可断的角#2"/>
-    <Part ID="MONSTER_PART_REMOVABLE_LANTLER" Name="可破坏的左鹿角"/>
-    <Part ID="MONSTER_PART_REMOVABLE_RANTLER" Name="可破坏的右鹿角"/>
+    <Part ID="MONSTER_PART_BODY_LEGS" Name="身体和腿"/>
+    <Part ID="MONSTER_PART_SILVER_SPIKES_HEAD" Name="头部的银刺"/>
+    <Part ID="MONSTER_PART_SILVER_SPIKES_LARM" Name="左臂的银刺"/>
+    <Part ID="MONSTER_PART_SILVER_SPIKES_RARM" Name="右臂的银刺"/>
+    <Part ID="MONSTER_PART_SILVER_SPIKES_LWING" Name="左翼的银刺"/>
+    <Part ID="MONSTER_PART_SILVER_SPIKES_RWING" Name="右翼的银刺"/>
+    <!-- Special parts -->
+    <Part ID="MONSTER_PART_BIG_FLINCH" Name="大退缩"/>
+    <Part ID="MONSTER_PART_RAGE" Name="可消除的愤怒"/>
+    <Part ID="MONSTER_PART_COUNTERATTACK" Name="反击"/>
+    <Part ID="MONSTER_PART_CHARGE" Name="可消除的命令"/>
+    <Part ID="MONSTER_PART_THROAT" Name="咽喉"/>
+    <Part ID="MONSTER_PART_INFLATED_TAIL" Name="充气尾巴"/>
+    <Part ID="MONSTER_PART_SKY_FALL" Name="从天而降"/>
+    <Part ID="MONSTER_PART_EMISSIONS" Name="瘴气排放"/>
+    <Part ID="MONSTER_PART_GLOWING_HEAD" Name="发光的头部"/>
+    <Part ID="MONSTER_PART_GLOWING_TAIL" Name="发光的尾巴"/>
+    <Part ID="MONSTER_PART_EMERGE_SNOW_HEAD" Name="从雪中出现(头部)"/>
+    <Part ID="MONSTER_PART_EMERGE_SNOW_BODY" Name="从雪中出现(身体)"/>
+    <Part ID="MONSTER_PART_EMERGE_SNOW_TAIL" Name="从雪中出现(尾巴)"/>
+    <Part ID="MONSTER_PART_SPIKES_HEAD" Name="头部的刺"/>
+    <Part ID="MONSTER_PART_SPIKES_LARM" Name="左臂的刺"/>
+    <Part ID="MONSTER_PART_SPIKES_RARM" Name="右臂的刺"/>
+    <Part ID="MONSTER_PART_SPIKES_LWING" Name="左翼的刺"/>
+    <Part ID="MONSTER_PART_SPIKES_RWING" Name="右翼的刺"/>
+    <Part ID="MONSTER_PART_SPIKES_TAIL" Name="尾巴的刺"/>
   </Parts>
   <Ailments>
     <Ailment ID="STATUS_UNKNOWN" Name="未知效果状态"/>
@@ -567,6 +590,8 @@
       <!-- Damage Meter -->
       <String ID="ENABLE_METER" Name="伤害部件"/>
       <String ID="ENABLE_METER_DESC" Name="如启用，只要有内容就会显示伤害部件"/>
+      <String ID="ENABLE_TIMER" Name="显示计时器"/>
+      <String ID="ENABLE_TIMER_DESC" Name="如启用，伤害部件将会显示计时"/>
       <String ID="ENABLE_TOTAL_DAMAGE" Name="显示总伤害"/>
       <String ID="ENABLE_TOTAL_DAMAGE_DESC" Name="如启用，伤害部件会显示每个人的总伤害"/>
       <String ID="ENABLE_METER_DPS" Name="显示DPS"/>
@@ -619,6 +644,12 @@
       <String ID="ENABLE_SWITCH_AXE_HELPER_DESC" Name="如开启，当您装备斩击斧时，小组件便会显示"/>
       <String ID="ENABLE_GUN_LANCE_HELPER" Name="铳枪组件"/>
       <String ID="ENABLE_GUN_LANCE_HELPER_DESC" Name="如开启，当您装备铳枪时，小组件便会显示"/>
+      <String ID="ENABLE_LONGSWORD_HELPER" Name="太刀组件"/>
+      <String ID="ENABLE_LONGSWORD_HELPER_DESC" Name="如开启，当您装备太刀时，小组件便会显示"/>
+      <String ID="ENABLE_BOW_HELPER" Name="弓箭组件"/>
+      <String ID="ENABLE_BOW_HELPER_DESC" Name="如开启，当您装备弓箭时，小组件便会显示"/>
+      <String ID="ENABLE_HAMMER_HELPER" Name="大锤组件"/>
+      <String ID="ENABLE_HAMMER_HELPER_DESC" Name="如开启，当您装备大锤时，小组件便会显示"/>
       <String ID="STATIC_CLASSES_BETA_WARNING" Name="请注意：武器组件仍在开发中，将来会支持更多武器。每种组件均有自己的位置，请在编辑模式中调整"/>
       <!-- Links -->
       <String ID="STATIC_HUNTERPIE_WIKI" Name="支持文件(英文)"/>

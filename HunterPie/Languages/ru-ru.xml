@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="utf-8" ?>
 <Strings lang="Русский">
   <Monsters>
+    <Monster ID="ems062_03" Name="Тренировочный манекен"/>
     <Monster ID="em001_00" Name="Ратиана"/>
     <Monster ID="em001_01" Name="Розовая Ратиана"/>
     <Monster ID="em001_02" Name="Золотая Ратиана"/>
@@ -79,6 +80,7 @@
     <Part ID="MONSTER_PART_LLEG" Name="Левая Нога"/>
     <Part ID="MONSTER_PART_RLEG" Name="Правая Нога"/>
     <Part ID="MONSTER_PART_TAIL" Name="Хвост"/>
+    <Part ID="MONSTER_PART_TAIL_TIP" Name="Хвост (Кончик)"/>
     <Part ID="MONSTER_PART_ARMS" Name="Лапы"/>
     <Part ID="MONSTER_PART_LEGS" Name="Ноги"/>
     <Part ID="MONSTER_PART_LARM" Name="Левая Лапа"/>
@@ -101,10 +103,6 @@
     <Part ID="MONSTER_PART_FIN" Name="Плавник"/>
     <Part ID="MONSTER_PART_HORNS" Name="Рога"/>
     <Part ID="MONSTER_PART_NECK" Name="Шея"/>
-    <Part ID="MONSTER_PART_LHAND" Name="Левая Лапа"/>
-    <Part ID="MONSTER_PART_RHAND" Name="Правая Лапа"/>
-    <Part ID="MONSTER_PART_LFOOT" Name="Левая Нога"/>
-    <Part ID="MONSTER_PART_RFOOT" Name="Правая Нога"/>
     <Part ID="MONSTER_PART_SHELL" Name="Панцирь"/>
     <Part ID="MONSTER_PART_EXHAUST_ORGAN_CENTRAL" Name="Центральное Ядро Магмы"/>
     <Part ID="MONSTER_PART_EXHAUST_ORGAN_HEAD" Name="Головное Ядро Магмы"/>
@@ -127,8 +125,6 @@
     <Part ID="MONSTER_PART_RLEG_GOLD" Name="Золотая Правая Нога"/>
     <Part ID="MONSTER_PART_LTAIL_GOLD" Name="Золотой Левый Хвост"/>
     <Part ID="MONSTER_PART_RTAIL_GOLD" Name="Золотой Правый Хвост"/>
-    <Part ID="MONSTER_PART_LHEAD" Name="Голова Слева"/>
-    <Part ID="MONSTER_PART_RHEAD" Name="Голова Справа"/>
     <Part ID="MONSTER_PART_HEAD_SNOW" Name="Снежная Голова"/>
     <Part ID="MONSTER_PART_BODY_SNOW" Name="Снежное Тело"/>
     <Part ID="MONSTER_PART_TAIL_SNOW" Name="Снежный Хвост"/>
@@ -147,15 +143,42 @@
     <Part ID="MONSTER_PART_LARM_ROCK" Name="Каменная Левая Лапа"/>
     <Part ID="MONSTER_PART_RARM_ROCK" Name="Каменная Правая Лапа"/>
     <Part ID="MONSTER_PART_LEGS_ROCK" Name="Каменные Ноги"/>
-    <Part ID="MONSTER_JAGRAS_SUMMONER" Name="Призыватель Яграсов"/>
+    <Part ID="MONSTER_PART_ANTLERS" Name="Рога"/>
+    <Part ID="MONSTER_PART_HORN" Name="Рог"/>
     <!-- Removable parts -->
     <Part ID="MONSTER_PART_REMOVABLE_TAIL" Name="Отделяемый Хвост"/>
     <Part ID="MONSTER_PART_REMOVABLE_HORNS" Name="Непрочные Рога"/>
     <Part ID="MONSTER_PART_REMOVABLE_HEAD" Name="Непрочная Голова"/>
+    <Part ID="MONSTER_PART_REMOVABLE_HEAD_ROCK" Name="Непрочная Голова (Камни)"/>
+    <Part ID="MONSTER_PART_REMOVABLE_CHEST_ROCK" Name="Непрочная Грудь (Камни)"/>
     <Part ID="MONSTER_PART_REMOVABLE_BALLOON" Name="Непрочный Пузырь"/>
     <Part ID="MONSTER_PART_REMOVABLE_HORNS_2" Name="Непрочные Рога #2"/>
-    <Part ID="MONSTER_PART_REMOVABLE_LANTLER" Name="Непрочный Левый Рог"/>
-    <Part ID="MONSTER_PART_REMOVABLE_RANTLER" Name="Непрочный Правый Рог"/>
+    <Part ID="MONSTER_PART_BODY_LEGS" Name="Тело и Лапы"/>
+    <Part ID="MONSTER_PART_SILVER_SPIKES_HEAD" Name="Серебрянные шипы (Голова)"/>
+    <Part ID="MONSTER_PART_SILVER_SPIKES_LARM" Name="Серебрянные шипы (Левая лапа)"/>
+    <Part ID="MONSTER_PART_SILVER_SPIKES_RARM" Name="Серебрянные шипы (Правая лапа)"/>
+    <Part ID="MONSTER_PART_SILVER_SPIKES_LWING" Name="Серебрянные шипы (Левое крыло)"/>
+    <Part ID="MONSTER_PART_SILVER_SPIKES_RWING" Name="Серебрянные шипы (Правое крыло)"/>
+    <!-- Special parts -->
+    <Part ID="MONSTER_PART_BIG_FLINCH" Name="Большой флинч"/>
+    <Part ID="MONSTER_PART_RAGE" Name="Сброс ярости"/>
+    <Part ID="MONSTER_PART_COUNTERATTACK" Name="Контратака"/>
+    <Part ID="MONSTER_PART_CHARGE" Name="Сброс заряда"/>
+    <Part ID="MONSTER_PART_THROAT" Name="Горло"/>
+    <Part ID="MONSTER_PART_INFLATED_TAIL" Name="Раздутый хвост"/>
+    <Part ID="MONSTER_PART_SKY_FALL" Name="Пикирование"/>
+    <Part ID="MONSTER_PART_EMISSIONS" Name="Выбросы миазмов"/>
+    <Part ID="MONSTER_PART_GLOWING_HEAD" Name="Сияющая голова"/>
+    <Part ID="MONSTER_PART_GLOWING_TAIL" Name="Сияющий хвост"/>
+    <Part ID="MONSTER_PART_EMERGE_SNOW_HEAD" Name="Выход из снега (Голова)"/>
+    <Part ID="MONSTER_PART_EMERGE_SNOW_BODY" Name="Выход из снега (Тело)"/>
+    <Part ID="MONSTER_PART_EMERGE_SNOW_TAIL" Name="Выход из снега (Хвост)"/>
+    <Part ID="MONSTER_PART_SPIKES_HEAD" Name="Шипы (Голова)"/>
+    <Part ID="MONSTER_PART_SPIKES_LARM" Name="Шипы (Левая лапа)"/>
+    <Part ID="MONSTER_PART_SPIKES_RARM" Name="Шипы (Правая лапа)"/>
+    <Part ID="MONSTER_PART_SPIKES_LWING" Name="Шипы (Левое крыло)"/>
+    <Part ID="MONSTER_PART_SPIKES_RWING" Name="Шипы (Правое крыло)"/>
+    <Part ID="MONSTER_PART_SPIKES_TAIL" Name="Шипы (Хвост)"/>
   </Parts>
   <Ailments>
     <Ailment ID="STATUS_UNKNOWN" Name="Неизвестно"/>
@@ -566,6 +589,8 @@
       <!-- Damage Meter -->
       <String ID="ENABLE_METER" Name="Показывать Счётчик Урона"/>
       <String ID="ENABLE_METER_DESC" Name="Если включено, виджет Счётчик Урона будет виден, когда у него есть контент."/>
+      <String ID="ENABLE_TIMER" Name="Показать таймер"/>
+      <String ID="ENABLE_TIMER_DESC" Name="Если включено, таймер Счётчика Урона будет виден."/>
       <String ID="ENABLE_TOTAL_DAMAGE" Name="Показать общий урон"/>
       <String ID="ENABLE_TOTAL_DAMAGE_DESC" Name="Если включено, виджет урона будет показывать индивидуальный общий урон."/>
       <String ID="ENABLE_METER_DPS" Name="Показывать ДПС вместо общего урона"/>
@@ -618,6 +643,12 @@
       <String ID="ENABLE_SWITCH_AXE_HELPER_DESC" Name="Если включено, помощник Выкидного Топора будет виден при использовании Выкидного Топора."/>
       <String ID="ENABLE_GUN_LANCE_HELPER" Name="Включить помощника Копьепушки"/>
       <String ID="ENABLE_GUN_LANCE_HELPER_DESC" Name="Если включено, помощник Копьепушки будет виден при использовании Копьепушки."/>
+      <String ID="ENABLE_LONGSWORD_HELPER" Name="Включить помощника Длинного Меча"/>
+      <String ID="ENABLE_LONGSWORD_HELPER_DESC" Name="Если включено, помощник Длинного Меча будет виден при использовании Длинного Меча."/>
+      <String ID="ENABLE_BOW_HELPER" Name="Включить помощника Лука"/>
+      <String ID="ENABLE_BOW_HELPER_DESC" Name="Если включено, помощник Лука будет виден при использовании Лука."/>
+      <String ID="ENABLE_HAMMER_HELPER" Name="Включить помощника Молота"/>
+      <String ID="ENABLE_HAMMER_HELPER_DESC" Name="Если включено, помощник Молота будет виден при использовании Молота."/>
       <String ID="STATIC_CLASSES_BETA_WARNING" Name="Внимание: помощники класса все еще находятся в разработке, и в будущем будет поддерживаться больше классов. Каждый помощник класса имеет свои собственные настройки, поэтому вы можете иметь разные позиции для этого виджета в зависимости от класса. Используйте функцию «Режим дизайна» для масштабирования и перемещения этого виджета."/>
       <!-- Links -->
       <String ID="STATIC_HUNTERPIE_WIKI" Name="Документация"/>

@@ -13,6 +13,10 @@
     <ProjectTypeGuids>{60dc8134-eba5-43b8-bcc9-bb4bc16c2548};{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}</ProjectTypeGuids>
     <WarningLevel>4</WarningLevel>
     <AutoGenerateBindingRedirects>true</AutoGenerateBindingRedirects>
+    <IsWebBootstrapper>false</IsWebBootstrapper>
+    <TargetFrameworkProfile />
+    <NuGetPackageImportStamp>
+    </NuGetPackageImportStamp>
     <PublishUrl>publish\</PublishUrl>
     <Install>true</Install>
     <InstallFrom>Disk</InstallFrom>
@@ -25,12 +29,8 @@
     <MapFileExtensions>true</MapFileExtensions>
     <ApplicationRevision>0</ApplicationRevision>
     <ApplicationVersion>1.0.0.%2a</ApplicationVersion>
-    <IsWebBootstrapper>false</IsWebBootstrapper>
     <UseApplicationTrust>false</UseApplicationTrust>
     <BootstrapperEnabled>true</BootstrapperEnabled>
-    <TargetFrameworkProfile />
-    <NuGetPackageImportStamp>
-    </NuGetPackageImportStamp>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <PlatformTarget>x64</PlatformTarget>
@@ -128,6 +128,7 @@
       <SubType>Designer</SubType>
     </ApplicationDefinition>
     <Compile Include="Core\Definitions\Structures.cs" />
+    <Compile Include="Core\Integrations\DataExporter\Exporter.cs" />
     <Compile Include="Core\Integrations\Honey\Honey.cs" />
     <Compile Include="Core\KeyboardHook.cs" />
     <Compile Include="Core\LPlayer\AbnormalityInfo.cs" />
@@ -202,6 +203,9 @@
     <Compile Include="GUIControls\Settings.xaml.cs">
       <DependentUpon>Settings.xaml</DependentUpon>
     </Compile>
+    <None Include="address\MonsterHunterWorld.410918.map">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
     <None Include="address\MonsterHunterWorld.410014.map">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
@@ -295,6 +299,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="GUI\Widgets\ClassWidget\Parts\ChargeBladeControl.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="GUI\Widgets\ClassWidget\Parts\DualBladeControl.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -403,6 +411,9 @@
       <DependentUpon>ChargeBladeControl.xaml</DependentUpon>
     </Compile>
     <Compile Include="GUI\Widgets\ClassWidget\Parts\ClassControl.cs" />
+    <Compile Include="GUI\Widgets\ClassWidget\Parts\DualBladeControl.xaml.cs">
+      <DependentUpon>DualBladeControl.xaml</DependentUpon>
+    </Compile>
     <Compile Include="GUI\Widgets\ClassWidget\Parts\GunLanceControl.xaml.cs">
       <DependentUpon>GunLanceControl.xaml</DependentUpon>
     </Compile>
@@ -493,6 +504,11 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Include="Themes\IcyyPie.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
   </ItemGroup>
   <ItemGroup>
@@ -903,6 +919,14 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="HunterPie.Resources\Monsters\Icons\ems062_03.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="HunterPie.Resources\UI\Class\DualBladesGauge.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="HunterPie.Resources\UI\Class\DualBladesGaugeMask.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
   </ItemGroup>

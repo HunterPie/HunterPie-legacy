@@ -14,6 +14,7 @@ using HunterPie.Core;
 using HunterPie.GUI;
 using HunterPie.GUIControls;
 using HunterPie.Logger;
+using HunterPie.Core.Integrations.DataExporter;
 
 namespace HunterPie {
     /// <summary>
@@ -25,6 +26,7 @@ namespace HunterPie {
         Game MonsterHunter = new Game();
         Presence Discord;
         Overlay GameOverlay;
+        Exporter dataExporter = new Exporter();
         bool OfflineMode = false;
         bool IsUpdating = true;
 
@@ -74,7 +76,6 @@ namespace HunterPie {
 
             IsUpdating = false;
             InitializeTrayIcon();
-
             // Update version text
             this.version_text.Text = GStrings.GetLocalizationByXPath("/Console/String[@ID='CONSOLE_VERSION']").Replace("{HunterPie_Version}", HUNTERPIE_VERSION).Replace("{HunterPie_Branch}", UserSettings.PlayerConfig.HunterPie.Update.Branch);
 
@@ -432,18 +433,40 @@ namespace HunterPie {
             MonsterHunter.Player.OnSessionChange -= OnSessionChange;
         }
 
+        private void ExportGameData()
+        {
+            if (MonsterHunter.Player.ZoneID != 0)
+            {
+                string sSession = MonsterHunter.Player.SteamID != 0 ? $"steam://joinlobby/582010/{MonsterHunter.Player.SteamSession}/{MonsterHunter.Player.SteamID}" : "";
+                Data playerData = new Data
+                {
+                    Name = MonsterHunter.Player.Name,
+                    HR = MonsterHunter.Player.Level,
+                    MR = MonsterHunter.Player.MasterRank,
+                    BuildURL = Honey.LinkStructureBuilder(MonsterHunter.Player.GetPlayerGear()),
+                    Session = MonsterHunter.Player.SessionID,
+                    SteamSession = sSession
+                };
+                dataExporter.ExportData(playerData);
+            }
+        }
+
         private void OnSessionChange(object source, EventArgs args) {
             Debugger.Log($"SESSION: {MonsterHunter.Player.SessionID}");
-
             // Writes the session ID to a Sessions.txt
-            if (!string.IsNullOrEmpty(MonsterHunter.Player.SessionID))
+            if (!string.IsNullOrEmpty(MonsterHunter.Player.SessionID) && MonsterHunter.Player.IsLoggedOn)
             {
+                ExportGameData();
                 File.WriteAllText(Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "Sessions.txt"), MonsterHunter.Player.SessionID);
             }
         }
 
         public void OnZoneChange(object source, EventArgs e) {
-            Debugger.Log($"ZoneID: {MonsterHunter.Player.ZoneID}");
+            if (MonsterHunter.Player.IsLoggedOn)
+            {
+                Debugger.Log($"ZoneID: {MonsterHunter.Player.ZoneID}");
+                ExportGameData();
+            }
         }
 
         public void OnLogin(object source, EventArgs e) {
@@ -452,6 +475,7 @@ namespace HunterPie {
                 BUTTON_UPLOADBUILD.IsEnabled = true;
                 BUTTON_UPLOADBUILD.Opacity = 1;
             }));
+            ExportGameData();
         }
 
         public void OnLogout(object source, EventArgs e) {
@@ -636,29 +660,18 @@ namespace HunterPie {
 
         private void OnCopyToClipboardClick(object sender, RoutedEventArgs e)
         {
-            string BuildLink = Honey.LinkStructureBuilder(MonsterHunter.Player.GetPlayerGear());
+            string BuildLink = Honey.LinkStructureBuilder(MonsterHunter.Player.GetPlayerGear(), true);
             Clipboard.SetData(DataFormats.Text, BuildLink);
         }
 
         private void OnOpenInBrowserClick(object sender, RoutedEventArgs e)
         {
-            string BuildLink = Honey.LinkStructureBuilder(MonsterHunter.Player.GetPlayerGear());
+            string BuildLink = Honey.LinkStructureBuilder(MonsterHunter.Player.GetPlayerGear(), true);
             Process.Start(BuildLink);
         }
 
         private void OnLaunchGameButtonClick(object sender, RoutedEventArgs e) {
             LaunchGame();
-            // Not needed anymore, since we use Steam to launch the game
-            /*
-            // Shorten the class name
-            var launchOptions = UserSettings.PlayerConfig.HunterPie.Launch;
-            if (launchOptions.GamePath == "") {
-                if (MessageBox.Show(GStrings.GetLocalizationByXPath("/Console/String[@ID='MESSAGE_MISSING_PATH']"), GStrings.GetLocalizationByXPath("/Console/String[@ID='TITLE_MISSING_PATH']"), MessageBoxButton.YesNo, MessageBoxImage.Error) == MessageBoxResult.Yes) {
-                    OpenSettings();
-                }
-            } else {
-                LaunchGame();
-            }*/
         }
 
         private void LaunchGame() {

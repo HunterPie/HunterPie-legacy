@@ -1,13 +1,15 @@
-﻿<?xml version="1.0" encoding="utf-8"?>
-<!--  日本語訳担当：elappale#4205 です。（校正：miz0chi）
-      改善点やリクエストなどは HunterPie の Discord に参加して DM で送って頂ければ、
-      できる範囲で受け付けていますので、気軽にいらしてください！
-      This japanese localization file has been translated by elappale#4205.
-      If you spot any errors or have any suggestions, please join the HunterPie Discord.
-      If you have any inquiries specific to this translation, feel free to DM me!
+<?xml version="1.0" encoding="utf-8"?>
+<!--  
+  日本語訳担当：elappale#4205 です。（校正：miz0chi）
+  改善点やリクエストなどは HunterPie の Discord に参加して DM で送って頂ければ、
+  できる範囲で受け付けていますので、気軽にいらしてください！
+  This japanese localization file has been translated by elappale#4205.
+  If you spot any errors or have any suggestions, please join the HunterPie Discord.
+  If you have any inquiries specific to this translation, feel free to DM me!
  -->
 <Strings lang="Japanese">
   <Monsters>
+    <Monster ID="ems062_03" Name="荷車"/>
     <Monster ID="em001_00" Name="リオレイア"/>
     <Monster ID="em001_01" Name="リオレイア亜種"/>
     <Monster ID="em001_02" Name="リオレイア希少種"/>
@@ -80,12 +82,13 @@
   <Parts>
     <Part ID="MONSTER_PART_UNKNOWN" Name="不明部位"/>
     <Part ID="MONSTER_PART_HEAD" Name="頭"/>
-    <Part ID="MONSTER_PART_BODY" Name="胴体"/>
+    <Part ID="MONSTER_PART_BODY" Name="胴"/>
     <Part ID="MONSTER_PART_LWING" Name="左翼"/>
     <Part ID="MONSTER_PART_RWING" Name="右翼"/>
     <Part ID="MONSTER_PART_LLEG" Name="左脚"/>
     <Part ID="MONSTER_PART_RLEG" Name="右脚"/>
     <Part ID="MONSTER_PART_TAIL" Name="尻尾"/>
+    <Part ID="MONSTER_PART_TAIL_TIP" Name="尻尾（先端）"/>
     <Part ID="MONSTER_PART_ARMS" Name="前脚"/>
     <Part ID="MONSTER_PART_LEGS" Name="脚"/>
     <Part ID="MONSTER_PART_LARM" Name="左前脚"/>
@@ -108,10 +111,6 @@
     <Part ID="MONSTER_PART_FIN" Name="ひれ"/>
     <Part ID="MONSTER_PART_HORNS" Name="角"/>
     <Part ID="MONSTER_PART_NECK" Name="首"/>
-    <Part ID="MONSTER_PART_LHAND" Name="左手"/>
-    <Part ID="MONSTER_PART_RHAND" Name="右手"/>
-    <Part ID="MONSTER_PART_LFOOT" Name="左足"/>
-    <Part ID="MONSTER_PART_RFOOT" Name="右足"/>
     <Part ID="MONSTER_PART_SHELL" Name="外殻"/>
     <Part ID="MONSTER_PART_EXHAUST_ORGAN_CENTRAL" Name="排熱器官【中央】"/>
     <Part ID="MONSTER_PART_EXHAUST_ORGAN_HEAD" Name="排熱器官【頭部】"/>
@@ -134,8 +133,6 @@
     <Part ID="MONSTER_PART_RLEG_GOLD" Name="右後脚【黄金】"/>
     <Part ID="MONSTER_PART_LTAIL_GOLD" Name="尻尾左側【黄金】"/>
     <Part ID="MONSTER_PART_RTAIL_GOLD" Name="尻尾右側【黄金】"/>
-    <Part ID="MONSTER_PART_LHEAD" Name="頭（左）"/>
-    <Part ID="MONSTER_PART_RHEAD" Name="頭（右）"/>
     <Part ID="MONSTER_PART_HEAD_SNOW" Name="頭（雪）"/>
     <Part ID="MONSTER_PART_BODY_SNOW" Name="胴（雪）"/>
     <Part ID="MONSTER_PART_TAIL_SNOW" Name="尻尾（雪）"/>
@@ -154,15 +151,42 @@
     <Part ID="MONSTER_PART_LARM_ROCK" Name="左前脚（岩）"/>
     <Part ID="MONSTER_PART_RARM_ROCK" Name="右前脚（岩）"/>
     <Part ID="MONSTER_PART_LEGS_ROCK" Name="後脚（岩）"/>
-    <Part ID="MONSTER_JAGRAS_SUMMONER" Name="ジャグラス召喚"/>
+    <Part ID="MONSTER_PART_ANTLERS" Name="枝角"/>
+    <Part ID="MONSTER_PART_HORN" Name="角"/>
     <!-- Removable parts -->
     <Part ID="MONSTER_PART_REMOVABLE_TAIL" Name="尻尾（切断可）"/>
     <Part ID="MONSTER_PART_REMOVABLE_HORNS" Name="角（切断可）"/>
-    <Part ID="MONSTER_PART_REMOVABLE_HEAD" Name="頭（切断可）"/>
-    <Part ID="MONSTER_PART_REMOVABLE_BALLOON" Name="喉袋（切断可）"/>
-    <Part ID="MONSTER_PART_REMOVABLE_HORNS_2" Name="角２（切断可）"/>
-    <Part ID="MONSTER_PART_REMOVABLE_LANTLER" Name="左枝角（切断可）"/>
-    <Part ID="MONSTER_PART_REMOVABLE_RANTLER" Name="右枝角（切断可）"/>
+    <Part ID="MONSTER_PART_REMOVABLE_HEAD" Name="頭（破壊可）"/>
+    <Part ID="MONSTER_PART_REMOVABLE_HEAD_ROCK" Name="頭外殻（上）"/>
+    <Part ID="MONSTER_PART_REMOVABLE_CHEST_ROCK" Name="頭外殻（下）"/>
+    <Part ID="MONSTER_PART_REMOVABLE_BALLOON" Name="喉袋（破壊可）"/>
+    <Part ID="MONSTER_PART_REMOVABLE_HORNS_2" Name="角２（破壊可）"/>
+    <Part ID="MONSTER_PART_BODY_LEGS" Name="胴と四肢"/>
+    <Part ID="MONSTER_PART_SILVER_SPIKES_HEAD" Name="金剛棘（頭）"/>
+    <Part ID="MONSTER_PART_SILVER_SPIKES_LARM" Name="金剛棘（左腕）"/>
+    <Part ID="MONSTER_PART_SILVER_SPIKES_RARM" Name="金剛棘（右腕）"/>
+    <Part ID="MONSTER_PART_SILVER_SPIKES_LWING" Name="金剛棘（左翼）"/>
+    <Part ID="MONSTER_PART_SILVER_SPIKES_RWING" Name="金剛棘（右翼）"/>
+    <!-- Special parts -->
+    <Part ID="MONSTER_PART_BIG_FLINCH" Name="怯み【大】"/>
+    <Part ID="MONSTER_PART_RAGE" Name="怒り解除"/>
+    <Part ID="MONSTER_PART_COUNTERATTACK" Name="反撃"/>
+    <Part ID="MONSTER_PART_CHARGE" Name="帯電"/>
+    <Part ID="MONSTER_PART_THROAT" Name="喉"/>
+    <Part ID="MONSTER_PART_INFLATED_TAIL" Name="膨れた尻尾"/>
+    <Part ID="MONSTER_PART_SKY_FALL" Name="打ち落とし"/>
+    <Part ID="MONSTER_PART_EMISSIONS" Name="瘴気噴出"/>
+    <Part ID="MONSTER_PART_GLOWING_HEAD" Name="頭（発光）"/>
+    <Part ID="MONSTER_PART_GLOWING_TAIL" Name="尻尾（発光）"/>
+    <Part ID="MONSTER_PART_EMERGE_SNOW_HEAD" Name="雪潜り解除（頭）"/>
+    <Part ID="MONSTER_PART_EMERGE_SNOW_BODY" Name="雪潜り解除（胴）"/>
+    <Part ID="MONSTER_PART_EMERGE_SNOW_TAIL" Name="雪潜り解除（尻尾）"/>
+    <Part ID="MONSTER_PART_SPIKES_HEAD" Name="棘（頭）"/>
+    <Part ID="MONSTER_PART_SPIKES_LARM" Name="棘（左腕）"/>
+    <Part ID="MONSTER_PART_SPIKES_RARM" Name="棘（右腕）"/>
+    <Part ID="MONSTER_PART_SPIKES_LWING" Name="棘（左翼）"/>
+    <Part ID="MONSTER_PART_SPIKES_RWING" Name="棘（右翼）"/>
+    <Part ID="MONSTER_PART_SPIKES_TAIL" Name="棘（尻尾）"/>
   </Parts>
   <Ailments>
     <Ailment ID="STATUS_UNKNOWN" Name="不明"/>
@@ -419,35 +443,35 @@
       <String ID="CONSOLE_CHANGELOG" Name="パッチノート"/>
       <String ID="CONSOLE_DISCORD" Name="Discord"/>
       <String ID="CONSOLE_GITHUB" Name="GitHub"/>
-      <String ID="CONSOLE_LAUNCH" Name="ゲームスタート"/>
+      <String ID="CONSOLE_LAUNCH" Name="ゲーム起動"/>
       <String ID="CONSOLE_VERSION" Name="バージョン：{HunterPie_Version} ({HunterPie_Branch})"/>
       <!-- Popups -->
-      <String ID="MESSAGE_QUIT" Name="本当に HunterPie を終了しますか？"/>
-      <String ID="TITLE_MISSING_PATH" Name="モンスターハンター：ワールドの実行ファイルパスが見つかりませんでした。"/>
-      <String ID="MESSAGE_MISSING_PATH" Name="モンスターハンター：ワールドの実行ファイルパスを指定していません。今指定しますか？"/>
-      <String ID="MESSAGE_UPLOAD_BUILD" Name="現在の装備を Honey Hunters World にアップロードしますか？"/>
+      <String ID="MESSAGE_QUIT" Name="本当にHunterPieを終了しますか？"/>
+      <String ID="TITLE_MISSING_PATH" Name="MONSTER HUNTER: WORLDの実行ファイルが見つかりませんでした。"/>
+      <String ID="MESSAGE_MISSING_PATH" Name="MONSTER HUNTER: WORLDの実行ファイルパスを指定していません。今指定しますか？"/>
+      <String ID="MESSAGE_UPLOAD_BUILD" Name="現在の装備をHoney Hunters Worldにアップロードしますか？"/>
       <!-- Console Messages -->
       <String ID="MESSAGE_MAP_LOAD" Name="データマップ「{HunterPie_Map}」の読み込み完了"/>
-      <String ID="MESSAGE_DISCORD_CONNECTED" Name="Discord リッチプレゼンスに接続中"/>
-      <String ID="MESSAGE_DISCORD_USER_CONNECTED" Name="Discord のユーザー名：{Username}のアカウントに接続しました"/>
-      <String ID="MESSAGE_DISCORD_DISCONNECTED" Name="Discord との接続を解除しました"/>
+      <String ID="MESSAGE_DISCORD_CONNECTED" Name="Discordリッチプレゼンスに接続中"/>
+      <String ID="MESSAGE_DISCORD_USER_CONNECTED" Name="Discordに接続しました。ユーザー名：{Username}"/>
+      <String ID="MESSAGE_DISCORD_DISCONNECTED" Name="Discordとの接続を解除しました"/>
       <String ID="MESSAGE_DISCORD_JOIN_REQUEST" Name="{Username} からの参加リクエストを確認しました"/>
-      <String ID="MESSAGE_DISCORD_JOINING" Name="セッションに接続中..."/>
-      
+      <String ID="MESSAGE_DISCORD_JOINING" Name="セッションに接続中……"/>
+
       <String ID="MESSAGE_MONSTER_DATA_LOAD" Name="モンスターデータの読み込み完了"/>
       <String ID="MESSAGE_ABNORMALITIES_DATA_LOAD" Name="状態異常データの読み込み完了"/>
       <String ID="MESSAGE_PLAYER_SCANNER_INITIALIZED" Name="プレイヤー情報スキャナの初期化完了"/>
-      <String ID="MESSAGE_HUNTERPIE_INITIALIZED" Name="HunterPie 初期化完了!"/>
+      <String ID="MESSAGE_HUNTERPIE_INITIALIZED" Name="HunterPie 初期化完了！"/>
       <String ID="MESSAGE_GAME_SCANNER_INITIALIZED" Name="ゲーム情報スキャナの初期化完了"/>
       <String ID="MESSAGE_MONSTER_SCANNER_INITIALIZED" Name="モンスター「{MonsterNumber}」の情報スキャナ初期化完了"/>
       <String ID="MESSAGE_GAME_SCANNER_STOP" Name="ゲームスキャナを停止します"/>
       <!-- Warnings -->
-      <String ID="MESSAGE_OFFLINEMODE_WARN" Name="HunterPie は現在オフライン状態です。"/>
-      <String ID="MESSAGE_AUTOUPDATE_DISABLED_WARN" Name="自動アップデートが無効になっています。HunterPie の動作に問題がある場合、もしくは現ゲームバージョンに対応していない場合、自動アップデートを有効にすることで解決する場合があります。"/>
+      <String ID="MESSAGE_OFFLINEMODE_WARN" Name="HunterPieは現在オフライン状態です。"/>
+      <String ID="MESSAGE_AUTOUPDATE_DISABLED_WARN" Name="自動アップデートが無効になっています。HunterPieの動作に問題がある場合、もしくは現ゲームバージョンに対応していない場合、自動アップデートを有効にすることで解決する場合があります。"/>
       <String ID="MESSAGE_THEME_LOAD_WARN" Name="カスタムテーマ読み込み完了！"/>
       <!-- Errors -->
       <String ID="MESSAGE_GAME_VERSION_UNSUPPORTED" Name="検出されたゲームバージョン ({GAME_VERSION}) にはまだ対応していません。"/>
-      <String ID="MESSAGE_LAUNCH_ERROR" Name="モンスターハンター：ワールドの起動に失敗しました。"/>
+      <String ID="MESSAGE_LAUNCH_ERROR" Name="MONSTER HUNTER: WORLDの起動に失敗しました。"/>
       <String ID="MESSAGE_UPDATE_ERROR" Name="HunterPieのアップデートに失敗しました。インターネット接続を確認してください。"/>
       <String ID="MESSAGE_THEME_NOT_FOUND_ERROR" Name="テーマ「{THEME_NAME}」が見つかりませんでした。"/>
       <String ID="MESSAGE_THEME_NOT_LOAD_ERROR" Name="カスタムテーマを読み込めませんでした。"/>
@@ -455,66 +479,66 @@
     <Settings>
       <!-- General -->
       <String ID="ENABLE_AUTOUPDATE" Name="自動アップデートを有効にする"/>
-      <String ID="ENABLE_AUTOUPDATE_DESC" Name="有効な場合、HunterPie 起動時に更新データを読み込みます。"/>
+      <String ID="ENABLE_AUTOUPDATE_DESC" Name="有効な場合、HunterPie起動時に更新データを読み込みます。"/>
       <String ID="ENABLE_MINTOTRAY" Name="HunterPieをタスクトレイへ最小化"/>
-      <String ID="ENABLE_MINTOTRAY_DESC" Name="有効な場合、HunterPie は最小化時にタスクトレイへ収納され、バックグラウンドで実行されます。"/>
+      <String ID="ENABLE_MINTOTRAY_DESC" Name="有効な場合、HunterPieは最小化時にタスクトレイへ収納され、バックグラウンドで実行されます。"/>
       <String ID="ENABLE_STARTMIN" Name="HunterPie 起動時に最小化"/>
-      <String ID="ENABLE_STARTMIN_DESC" Name="有効な場合、HunterPie はタスクトレイに最小化された状態で起動します。"/>
-      <String ID="ENABLE_AUTOCLOSE" Name="ゲーム終了時に HunterPie 終了"/>
-      <String ID="ENABLE_AUTOCLOSE_DESC" Name="有効な場合、ゲームの終了と共に HunterPie を終了します。"/>
+      <String ID="ENABLE_STARTMIN_DESC" Name="有効な場合、HunterPieはタスクトレイに最小化された状態で起動します。"/>
+      <String ID="ENABLE_AUTOCLOSE" Name="ゲーム終了時に HunterPie終了"/>
+      <String ID="ENABLE_AUTOCLOSE_DESC" Name="有効な場合、ゲームの終了と共にHunterPieを終了します。"/>
       <String ID="STATIC_UPDATEBRANCH" Name="アップデート元："/>
-      <String ID="STATIC_UPDATEBRANCH_DESC" Name="HunterPie をアップデートするブランチを選んでください。BETA では最新機能を試すことができますが、master には安定性が確認されている機能のみが実装されています。"/>
+      <String ID="STATIC_UPDATEBRANCH_DESC" Name="HunterPieをアップデートするブランチを選んでください。BETAでは最新機能を試すことができますが、masterには安定性が確認されている機能のみが実装されています。"/>
       <String ID="STATIC_LANGUAGEFILE" Name="言語ファイル："/>
-      <String ID="STATIC_LANGUAGEFILE_DESC" Name="HunterPie の表示言語を選んでください。"/>
+      <String ID="STATIC_LANGUAGEFILE_DESC" Name="HunterPieの表示言語を選んでください。"/>
       <String ID="STATIC_THEMEFILE" Name="テーマファイル："/>
-      <String ID="STATIC_THEMEFILE_DESC" Name="HunterPie で使用するテーマファイルを選んでくさい。"/>
+      <String ID="STATIC_THEMEFILE_DESC" Name="HunterPieで使用するテーマファイルを選んでくさい。"/>
       <String ID="STATIC_GAMEPATH" Name="ファイルパス："/>
       <String ID="STATIC_GAMEPATH_UNSELECTED" Name="ファイルパスを指定"/>
-      <String ID="STATIC_GAMEPATH_DESC" Name="モンスターハンター：ワールドの実行ファイルの場所を指定する"/>
+      <String ID="STATIC_GAMEPATH_DESC" Name="MONSTER HUNTER: WORLDの実行ファイルの場所を指定する"/>
       <String ID="STATIC_LAUNCHARGS" Name="コマンドライン引数"/>
       <String ID="STATIC_LAUNCHARGS_NOARGS" Name="引数なし"/>
       <String ID="STATIC_LAUNCHARGS_DESC" Name="プログラム起動時に渡されるパラメータ。分からない場合は空白のままにしてください。"/>
       <!-- Discord RPC -->
-      <String ID="ENABLE_RPC" Name="Discord リッチプレゼンスを有効にする"/>
-      <String ID="ENABLE_RPC_DESC" Name="有効な場合、HunterPie は Discord のステータスにプレイ中の詳細情報を表示します"/>
+      <String ID="ENABLE_RPC" Name="Discordリッチプレゼンスを有効にする"/>
+      <String ID="ENABLE_RPC_DESC" Name="有効な場合、HunterPieはDiscordのステータスにプレイ中の詳細情報を表示します"/>
       <String ID="ENABLE_RPC_HEALTH" Name="モンスターの体力％を表示する"/>
-      <String ID="ENABLE_RPC_HEALTH_DESC" Name="有効な場合、HunterPie は狩り中のモンスターの体力％を Discord ステータスに表示します。"/>
+      <String ID="ENABLE_RPC_HEALTH_DESC" Name="有効な場合、HunterPieは狩り中のモンスターの体力％をDiscordステータスに表示します。"/>
       <String ID="ENABLE_PEOPLE_JOIN" Name="Discord から参加依頼を受け付ける"/>
-      <String ID="ENABLE_PEOPLE_JOIN_DESC" Name="有効な場合、Discord のステータスに参加ボタンを設け、ロビーへの参加依頼を受け付けることができます。"/>
+      <String ID="ENABLE_PEOPLE_JOIN_DESC" Name="有効な場合、Discordのステータスに参加ボタンを設け、ロビーへの参加依頼を受け付けることができます。"/>
       <!-- Overlay -->
       <String ID="ENABLE_OVERLAY" Name="オーバーレイを有効にする"/>
       <String ID="ENABLE_OVERLAY_DESC" Name="有効な場合、ゲーム画面にオーバーレイを重ねて表示します。"/>
       <String ID="ENABLE_HIDE_WHEN_UNFOCUS" Name="ゲーム画面外でオーバーレイを隠す"/>
-      <String ID="ENABLE_HIDE_WHEN_UNFOCUS_DESC" Name="有効な場合、HunterPie はゲームが最前面でなければオーバーレイを表示しません。（Alt+Tabなどでゲーム画面を離れた場合)"/>
+      <String ID="ENABLE_HIDE_WHEN_UNFOCUS_DESC" Name="有効な場合、HunterPieはゲームが最前面でなければオーバーレイを表示しません。（Alt+Tabなどでゲーム画面を離れた場合)"/>
       <String ID="ENABLE_HARDWARE_ACCELERATION" Name="ハードウェア・アクセラレーションを有効にする"/>
-      <String ID="ENABLE_HARDWARE_ACCELERATION_DESC" Name="有効な場合、オーバーレイをGPUで処理します。無効にすることでCPUが処理を肩代わりします。HunterPie によってコマ落ちが増していると感じたら、無効にしてみてください。"/>
+      <String ID="ENABLE_HARDWARE_ACCELERATION_DESC" Name="有効な場合、オーバーレイをGPUで処理します。無効にすることでCPUが処理を肩代わりします。HunterPieによってコマ落ちが増していると感じたら、無効にしてみてください。"/>
       <String ID="STATIC_ANIMATION_FPS" Name="オーバーレイのフレームレート"/>
-      <String ID="STATIC_ANIMATION_FPS_DESC" Name="オーバーレイの再描画頻度を変えます。HunterPie によってコマ落ちが増していると感じたら、この数値を下げてください。"/>
+      <String ID="STATIC_ANIMATION_FPS_DESC" Name="オーバーレイの再描画頻度を変えます。HunterPieによってコマ落ちが増していると感じたら、この数値を下げてください。"/>
       <String ID="STATIC_GAME_SCAN_DELAY" Name="ゲームデータ更新間隔"/>
-      <String ID="STATIC_GAME_SCAN_DELAY_DESC" Name="ゲームデータを読み込む頻度が変わります。この数値が低いほどスキャンの間の間隔が短くなり、CPU使用率が上がります。￥&#13;（例：200（ミリ秒）に設定した場合、1秒に5回データを更新します。"/>
+      <String ID="STATIC_GAME_SCAN_DELAY_DESC" Name="ゲームデータを読み込む頻度が変わります。この数値が低いほどスキャンの間の間隔が短くなり、CPU使用率が上がります。&#13;（例：200（ミリ秒）に設定した場合、1秒に5回データを更新します。"/>
       <String ID="STATIC_IMAGE_QUALITY" Name="解像度"/>
       <String ID="STATIC_IMAGE_QUALITY_DESC" Name="オーバーレイの解像度を変更します。"/>
       <String ID="STATIC_TOGGLE_OVERLAY" Name="オーバーレイの切り替え（ホットキー）："/>
-      <String ID="STATIC_TOGGLE_OVERLAY_DESC" Name="オーバーレイを表示／非表示にするキーボードショートカット。ホットキーの変更は HunterPie 再起動後にのみ有効となります。"/>
+      <String ID="STATIC_TOGGLE_OVERLAY_DESC" Name="オーバーレイを表示／非表示にするキーボードショートカット。ホットキーの変更はHunterPie再起動後にのみ有効となります。"/>
       <String ID="STATIC_TOGGLE_DESIGN" Name="デザインモードの切り替え（ホットキー）："/>
       <String ID="STATIC_TOGGLE_DESIGN_DESC" Name="オーバーレイをマウス動作で編集できる「デザインモード」を有効化／解除するキーボードショートカット。"/>
-      <String ID="STATIC_OVERLAY_POSITION_DESC" Name="オーバーレイの位置座標を変更します。"/>
+      <String ID="STATIC_OVERLAY_POSITION_DESC" Name="オーバーレイの位置を変更します。"/>
       <!-- Monster Widget -->
       <String ID="ENABLE_MONSTER_WIDGET" Name="モンスターウィジェットを有効にする"/>
       <String ID="ENABLE_MONSTER_WIDGET_DESC" Name="有効な場合、表示可能な大型モンスターの情報があれば表示します。"/>
-      <String ID="STATIC_MONSTER_HEALTH_STRING_FORMAT" Name="ＨＰ表示スタイル：:"/>
+      <String ID="STATIC_MONSTER_HEALTH_STRING_FORMAT" Name="ＨＰ表示スタイル："/>
       <String ID="STATIC_MONSTER_HEALTH_STRING_FORMAT_DESC" Name="モンスターの体力ゲージに表示される文字のスタイルを変更します。"/>
-      <String ID="ENABLE_MONSTER_USE_LOCKON" Name="ロックオンで注目モンスターを選択"/>
+      <String ID="ENABLE_MONSTER_USE_LOCKON" Name="ロックオンでターゲットモンスターを選択"/>
       <String ID="ENABLE_MONSTER_USE_LOCKON_DESC" Name="無効な場合、マップのピンで注目モンスターを選択できます。"/>
       <String ID="STATIC_MONSTER_BAR_MODE" Name="モンスターウィジェットの表示タイプ"/>
-      <String ID="STATIC_MONSTER_BAR_MODE_DESC" Name="モンスターウィジェットの表示の仕方を変更します。"/>
-      <String ID="STATIC_MONSTER_BAR_MODE_0" Name="すべてのモンスターを表示"/>
-      <String ID="STATIC_MONSTER_BAR_MODE_1" Name="すべてのモンスターを表示、注目モンスターを照らす"/>
-      <String ID="STATIC_MONSTER_BAR_MODE_2" Name="注目モンスターのみ表示"/>
-      <String ID="STATIC_MONSTER_BAR_MODE_3" Name="すべてのモンスターを表示、15秒以上触れていないモンスターの情報を隠す"/>
-      <String ID="STATIC_MONSTER_BAR_MODE_4" Name="すべてのモンスターを表示、注目した場合注目モンスターのみ表示"/>
+      <String ID="STATIC_MONSTER_BAR_MODE_DESC" Name="モンスターウィジェットの表示方法を変更します。"/>
+      <String ID="STATIC_MONSTER_BAR_MODE_0" Name="全モンスターを表示"/>
+      <String ID="STATIC_MONSTER_BAR_MODE_1" Name="全モンスターを表示、ターゲットモンスターのみハイライト"/>
+      <String ID="STATIC_MONSTER_BAR_MODE_2" Name="ターゲットモンスターのみ表示"/>
+      <String ID="STATIC_MONSTER_BAR_MODE_3" Name="全モンスターを表示、15秒以上触れていないモンスターの情報を隠す"/>
+      <String ID="STATIC_MONSTER_BAR_MODE_4" Name="全モンスターを表示、ターゲット中はターゲットモンスターのみ表示"/>
       <String ID="STATIC_MONSTER_BAR_MODE_HOTKEY" Name="モンスターウィジェットの表示タイプ変更（ホットキー）："/>
-      <String ID="STATIC_MONSTER_BAR_MODE_HOTKEY_DESC" Name="モンスターウィジェットの表示タイプを変更するキーボードショートカット。ホットキーの変更は HunterPie 再起動後にのみ有効となります。"/>
+      <String ID="STATIC_MONSTER_BAR_MODE_HOTKEY_DESC" Name="モンスターウィジェットの表示タイプを変更するキーボードショートカット。ホットキーの変更はHunterPie再起動後にのみ有効となります。"/>
       <String ID="STATIC_MONSTER_BAR_DOCK" Name="モンスターゲージのドッキングタイプ："/>
       <String ID="STATIC_MONSTER_BAR_DOCK_DESC" Name="ウィジェット内のモンスターの体力ゲージの位置を変更します。"/>
       <String ID="STATIC_MONSTER_BAR_DOCK_0" Name="上"/>
@@ -530,7 +554,7 @@
       <String ID="ENABLE_MONSTER_PARTS" Name="モンスターの部位を表示"/>
       <String ID="ENABLE_MONSTER_PARTS_DESC" Name="有効な場合、各部位の怯み値と怯み回数を表示します。"/>
       <String ID="ENABLE_MONSTER_PART_HEAD" Name="頭部の怯み値表示"/>
-      <String ID="ENABLE_MONSTER_PART_BODY" Name="胴体の怯み値表示"/>
+      <String ID="ENABLE_MONSTER_PART_BODY" Name="胴の怯み値表示"/>
       <String ID="ENABLE_MONSTER_PART_ARM" Name="前脚の怯み値表示"/>
       <String ID="ENABLE_MONSTER_PART_WING" Name="翼の怯み値表示"/>
       <String ID="ENABLE_MONSTER_PART_LEG" Name="後脚の怯み値表示"/>
@@ -550,12 +574,12 @@
       <String ID="ENABLE_MONSTER_PART_BONE" Name="纏った骨の怯み値表示"/>
       <String ID="ENABLE_MONSTER_PART_MISC" Name="その他の怯み値表示"/>
       <String ID="STATIC_MONSTER_MAX_PARTS" Name="一行の最多表示数"/>
-      <String ID="STATIC_MONSTER_MAX_PARTS_DESC" Name="一行毎に表示できる部位や状態異常の最大数を設定します。"/>
+      <String ID="STATIC_MONSTER_MAX_PARTS_DESC" Name="１行毎に表示できる部位や状態異常の最大数を設定します。"/>
       <String ID="STATIC_MONSTER_MAX_COLUMNS" Name="最多行数"/>
       <String ID="STATIC_MONSTER_MAX_COLUMNS_DESC" Name="部位・状態異常を表示する行数の最大数を設定します。"/>
       <String ID="STATIC_MONSTER_PART_DELAY" Name="非更新値の非表示遅延"/>
       <String ID="STATIC_MONSTER_PART_DELAY_DESC" Name="更新が継続していない値が表示されなくなるまでの遅延時間。"/>
-      <String ID="STATIC_MONSTER_POSITION_DESC" Name="モンスターウィジェットの位置座標を変更します。"/>
+      <String ID="STATIC_MONSTER_POSITION_DESC" Name="モンスターウィジェットの位置を変更します。"/>
       <!-- Harvest Box Widget -->
       <String ID="ENABLE_HARVEST_BOX" Name="肥料ウィジェット"/>
       <String ID="ENABLE_HARVEST_BOX_DESC" Name="有効な場合、表示可能な生殖研究所・蒸気機関管理所・交易船・オトモ探検隊の情報が表示されます。"/>
@@ -567,12 +591,14 @@
       <String ID="ENABLE_TAILRAIDERS_TRACKER_DESC" Name="有効な場合、オトモ探検隊が帰還するまでの日数が表示されます。"/>
       <String ID="ENABLE_HARVEST_BOX_EVERYWHERE" Name="肥料ウィジェットを常に表示"/>
       <String ID="ENABLE_HARVEST_BOX_EVERYWHERE_DESC" Name="無効な場合、このウィジェットはモンスターが登場するあらゆるステージにいる間は表示されません。"/>
-      <String ID="STATIC_HARVEST_BOX_POSITION_DESC" Name="肥料ウィジェットの位置座標を変更します。"/>
+      <String ID="STATIC_HARVEST_BOX_POSITION_DESC" Name="肥料ウィジェットの位置を変更します。"/>
       <String ID="ENABLE_HARVEST_BOX_COMPACT_MODE" Name="コンパクトモード"/>
       <String ID="ENABLE_HARVEST_BOX_COMPACT_MODE_DESC" Name="有効な場合、肥料ウィジェットは小型化されて表示されます。"/>
       <!-- Damage Meter -->
       <String ID="ENABLE_METER" Name="ダメージウィジェットを有効にする"/>
       <String ID="ENABLE_METER_DESC" Name="有効な場合、パーティ内で大型モンスターにダメージを与えたメンバーがいれば、ダメージウィジェットが表示されます。"/>
+      <String ID="ENABLE_TIMER" Name="経過時間を表示"/>
+      <String ID="ENABLE_TIMER_DESC" Name="有効な場合、マップのロードからの経過時間が表示されます。"/>
       <String ID="ENABLE_TOTAL_DAMAGE" Name="累計ダメージを表示"/>
       <String ID="ENABLE_TOTAL_DAMAGE_DESC" Name="有効な場合、各プレイヤーが与えたダメージ量を表示します。"/>
       <String ID="ENABLE_METER_DPS" Name="DPSを表示"/>
@@ -581,13 +607,13 @@
       <String ID="ENABLE_TIMER_IN_GL_DESC" Name="有効な場合、探索・導きの地に入ってからの経過時間が表示されます。"/>
       <String ID="ENABLE_ONLY_TIMER" Name="経過時間のみ表示"/>
       <String ID="ENABLE_ONLY_TIMER_DESC" Name="有効な場合、ダメージウィジェットは経過時間のみを表示し、ダメージ系統の情報は表示しません。"/>
-      <String ID="ENABLE_METER_ONLY_MYSELF" Name="ダメージのみ表示"/>
-      <String ID="ENABLE_METER_ONLY_MYSELF_DESC" Name="有効な場合、ダメージウィジェットはダメージ系統の情報のみを表示し、経過時間は表示しません。"/>
+      <String ID="ENABLE_METER_ONLY_MYSELF" Name="自身のダメージのみ表示"/>
+      <String ID="ENABLE_METER_ONLY_MYSELF_DESC" Name="有効な場合、パーティメンバーのダメージを表示しません。"/>
       <String ID="STATIC_METER_PLAYER_1" Name="パーティメンバー１"/>
       <String ID="STATIC_METER_PLAYER_2" Name="パーティメンバー２"/>
       <String ID="STATIC_METER_PLAYER_3" Name="パーティメンバー３"/>
       <String ID="STATIC_METER_PLAYER_4" Name="パーティメンバー４"/>
-      <String ID="STATIC_METER_POSITION_DESC" Name="ダメージウィジェットの位置座標を変更します。"/>
+      <String ID="STATIC_METER_POSITION_DESC" Name="ダメージウィジェットの位置を変更します。"/>
       <!-- Abnormalities Widget -->
       <String ID="STATIC_CREATE_ABNORM_BAR_DESC" Name="バフ・デバフコンテナを追加"/>
       <String ID="STATIC_REMOVE_ABNORM_BAR_DESC" Name="最後に追加したバフ・デバフコンテナを削除"/>
@@ -607,15 +633,15 @@
       <String ID="ENABLE_SHOW_ABNORM_NAMES" Name="バフ・デバフ名を表示"/>
       <String ID="ENABLE_SHOW_ABNORM_NAMES_DESC" Name="有効な場合、バフ・デバ名がアイコンの隣に表示されます。"/>
       <!-- Specialized Tool Widget-->
-      <String ID="STATIC_PRIMARY_SPEC_TOOL" Name="メイン特殊装具"/>
-      <String ID="STATIC_SECONDARY_SPEC_TOOL" Name="サブ特殊装具"/>
+      <String ID="STATIC_PRIMARY_SPEC_TOOL" Name="特殊装具１"/>
+      <String ID="STATIC_SECONDARY_SPEC_TOOL" Name="特殊装具２"/>
       <String ID="ENABLE_PRIMARY_SPEC_TOOL" Name="ウィジェットを有効化"/>
-      <String ID="ENABLE_PRIMARY_SPEC_TOOL_DESC" Name="有効な場合、一枠目に装備中の特殊装具の有効時間・使用可能までの残り時間を表示します。"/>
+      <String ID="ENABLE_PRIMARY_SPEC_TOOL_DESC" Name="有効な場合、１枠目に装備中の特殊装具の有効時間・使用可能までの残り時間を表示します。"/>
       <String ID="ENABLE_SECONDARY_SPEC_TOOL" Name="ウィジェットを有効化"/>
-      <String ID="ENABLE_SECONDARY_SPEC_TOOL_DESC" Name="有効な場合、二枠目に装備中の特殊装具の有効時間・使用可能までの残り時間を表示します。"/>
+      <String ID="ENABLE_SECONDARY_SPEC_TOOL_DESC" Name="有効な場合、２枠目に装備中の特殊装具の有効時間・使用可能までの残り時間を表示します。"/>
       <String ID="STATIC_COLOR" Name="色："/>
-      <String ID="STATIC_PRIMARY_SPEC_TOOL_POSITION_DESC" Name="メイン特殊装具ウィジェットの位置座標を変更する。"/>
-      <String ID="STATIC_SECONDARY_SPEC_TOOL_POSITION_DESC" Name="サブ特殊装具ウィジェットの位置座標を変更する。"/>
+      <String ID="STATIC_PRIMARY_SPEC_TOOL_POSITION_DESC" Name="特殊装具１ウィジェットの位置を変更する。"/>
+      <String ID="STATIC_SECONDARY_SPEC_TOOL_POSITION_DESC" Name="特殊装具２ウィジェットの位置を変更する。"/>
       <!-- Class Widget -->
       <String ID="ENABLE_INSECT_GLAIVE_HELPER" Name="【操虫棍】の情報を表示する"/>
       <String ID="ENABLE_INSECT_GLAIVE_HELPER_DESC" Name="有効な場合、操虫棍を装備中に強化時間やゲージ値などの情報が表示されます。"/>
@@ -625,24 +651,30 @@
       <String ID="ENABLE_SWITCH_AXE_HELPER_DESC" Name="有効な場合、スラッシュアックスを装備中に強化時間やゲージ値などの情報が表示されます。"/>
       <String ID="ENABLE_GUN_LANCE_HELPER" Name="【ガンランス】の情報を表示する"/>
       <String ID="ENABLE_GUN_LANCE_HELPER_DESC" Name="有効な場合、ガンランスを装備中に強化時間やゲージ値などの情報が表示されます。"/>
-      <String ID="STATIC_CLASSES_BETA_WARNING" Name="《⚠注意：武器ウィジェットは現在まだ制作過程にあり、今後は他の武器種にも対応する予定です。このウィジェットは、武器種別に位置と大きさをデザインモードで設定できます。デザインモードは設定＞オーバーレイで指定したホットキーで起動できます。"/>
+      <String ID="ENABLE_LONGSWORD_HELPER" Name="【太刀】の情報を表示する"/>
+      <String ID="ENABLE_LONGSWORD_HELPER_DESC" Name="有効な場合、太刀を装備中に強化時間やゲージ値などの情報が表示されます。"/>
+      <String ID="ENABLE_BOW_HELPER" Name="【弓】の情報を表示する"/>
+      <String ID="ENABLE_BOW_HELPER_DESC" Name="有効な場合、弓を装備中に強化時間やゲージ値などの情報が表示されます。"/>
+      <String ID="ENABLE_HAMMER_HELPER" Name="【ハンマー】の情報を表示する"/>
+      <String ID="ENABLE_HAMMER_HELPER_DESC" Name="有効な場合、ハンマーを装備中に強化時間やゲージ値などの情報が表示されます。"/>
+      <String ID="STATIC_CLASSES_BETA_WARNING" Name="⚠注意：武器ウィジェットは現在まだ制作過程にあり、今後は他の武器種にも対応する予定です。このウィジェットは、武器種別に位置と大きさをデザインモードで設定できます。デザインモードは設定＞オーバーレイで指定したホットキーで起動できます。"/>
       <!-- Links -->
-      <String ID="STATIC_HUNTERPIE_WIKI" Name="ドキュメンテーション"/>
-      <String ID="STATIC_HUNTERPIE_WIKI_DESC" Name="HunterPie 公式 GitHub のドキュメンテーション"/>
-      <String ID="STATIC_HUNTERPIE_ISSUES" Name="課題"/>
-      <String ID="STATIC_HUNTERPIE_ISSUES_DESC" Name="HunterPie 公式 GitHub の課題ページ"/>
+      <String ID="STATIC_HUNTERPIE_WIKI" Name="Wiki"/>
+      <String ID="STATIC_HUNTERPIE_WIKI_DESC" Name="HunterPie公式GitHubのドキュメンテーション"/>
+      <String ID="STATIC_HUNTERPIE_ISSUES" Name="Issues"/>
+      <String ID="STATIC_HUNTERPIE_ISSUES_DESC" Name="HunterPie公式GitHubの課題ページ"/>
       <String ID="STATIC_HUNTERPIE_DISCORD" Name="Discord サーバー"/>
-      <String ID="STATIC_HUNTERPIE_DISCORD_DESC" Name="HunterPie 公式 Discord サーバー"/>
-      <String ID="STATIC_HUNTERPIE_DONATIONS" Name="ドネーション"/>
+      <String ID="STATIC_HUNTERPIE_DISCORD_DESC" Name="HunterPie公式Discordサーバー"/>
+      <String ID="STATIC_HUNTERPIE_DONATIONS" Name="寄付をする"/>
       <String ID="STATIC_HUNTERPIE_PAYPAL" Name="PayPal"/>
-      <String ID="STATIC_HUNTERPIE_PAYPAL_DESC" Name="「HunterPie の開発を支援したい！」という方はドネーションをご検討してみてはいかがでしょうか？"/>
+      <String ID="STATIC_HUNTERPIE_PAYPAL_DESC" Name="HunterPieの開発を支援したい方は寄付をご検討ください！"/>
       <!-- Debug -->
       <String ID="ENABLE_DEBUG_MESSAGES" Name="デバッグ情報を有効化"/>
       <String ID="ENABLE_DEBUG_MESSAGES_DESC" Name="デバッグ情報をコンソールに表示します。開発に関わっていない方は無効にしてください。開発者用のツールです。"/>
       <String ID="ENABLE_UNKNOWN_AILMENTS" Name="不明状態異常を表示"/>
       <String ID="ENABLE_UNKNOWN_AILMENTS_DESC" Name="詳細が確認されていないモンスターの状態異常値を表示します。開発に関わっていない方は無効にしてください。開発者用のツールです。"/>
       <String ID="ENABLE_LOAD_CUSTOM_DATA" Name="カスタムモンスターデータを読み込む"/>
-      <String ID="ENABLE_LOAD_CUSTOM_DATA_DESC" Name="有効な場合、HunterPie はカスタムモンスターのデータファイルを読み込もうとします。開発に関わっていない方は無効にしてください。開発者用のツールです。"/>
+      <String ID="ENABLE_LOAD_CUSTOM_DATA_DESC" Name="有効な場合、HunterPieはカスタムモンスターのデータファイルを読み込もうとします。開発に関わっていない方は無効にしてください。開発者用のツールです。"/>
       <String ID="STATIC_LOAD_CUSTOM_DATA_PATH" Name="カスタムモンスターデータファイル："/>
       <String ID="STATIC_LOAD_CUSTOM_DATA_PATH_DESC" Name="カスタムモンスターデータのファイルパスを指定してください。"/>
       <!-- Generics -->
@@ -675,7 +707,7 @@
       <String ID="STATIC_REJECT" Name="拒否"/>
       <String ID="STATIC_SETTINGS_LOAD" Name="設定適応完了"/>
       <String ID="STATIC_OPENDEFAULTBROWSER" Name="ブラウザで開く"/>
-      <String ID="MESSAGE_BUILD_UPLOADED" Name="Honey Hunters World に装備をアップロードしました！"/>
+      <String ID="MESSAGE_BUILD_UPLOADED" Name="Honey Hunters Worldに装備をアップロードしました！"/>
     </Notifications>
     <RichPresence>
       <String ID="RPC_DESCRIPTION_IN_MAIN_MENU" Name="タイトル画面"/>
