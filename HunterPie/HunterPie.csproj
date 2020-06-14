@@ -133,6 +133,7 @@
     <Compile Include="Core\Definitions\sTenderizedPart.cs" />
     <Compile Include="Core\Definitions\Structures.cs" />
     <Compile Include="Core\Enums\Classes.cs" />
+    <Compile Include="Core\Enums\GearType.cs" />
     <Compile Include="Core\Integrations\DataExporter\Exporter.cs" />
     <Compile Include="Core\Integrations\Honey\Honey.cs" />
     <Compile Include="Core\KeyboardHook.cs" />
@@ -171,7 +172,7 @@
     <Compile Include="Core\Client\AutoUpdate.cs" />
     <Compile Include="Core\LPlayer\HarvestBox.cs" />
     <Compile Include="Core\LPlayer\Mantle.cs" />
-    <Compile Include="Core\Integrations\Presence.cs" />
+    <Compile Include="Core\Integrations\Discord\Presence.cs" />
     <Compile Include="GUIControls\Custom Controls\BuffBarSettingControl.xaml.cs">
       <DependentUpon>BuffBarSettingControl.xaml</DependentUpon>
     </Compile>

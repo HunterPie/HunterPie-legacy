@@ -1,9 +1,4 @@
-﻿/*
-    HunterPie structure definitions
-*/
-
-using System.Runtime.InteropServices;
-using JsonConvert = Newtonsoft.Json.JsonConvert;
+﻿using JsonConvert = Newtonsoft.Json.JsonConvert;
 using Formatting = Newtonsoft.Json.Formatting;
 
 namespace HunterPie.Core.Definitions

@@ -47,10 +47,10 @@ namespace HunterPie.Core
             506
         };
 
-        private long SESSION_ADDRESS;
-        private long LEVEL_ADDRESS;
-        private long EQUIPMENT_ADDRESS;
-        private long PlayerStructAddress;
+        private long SESSION_ADDRESS { get; set; }
+        private long LEVEL_ADDRESS { get; set; }
+        private long EQUIPMENT_ADDRESS { get; set; }
+        private long PlayerStructAddress { get; set; }
 
         public long PlayerAddress
         {

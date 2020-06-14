@@ -16,6 +16,7 @@ using HunterPie.GUIControls;
 using HunterPie.Logger;
 using HunterPie.Core.Integrations.DataExporter;
 using HunterPie.Core.Definitions;
+using Presence = HunterPie.Core.Integrations.Discord.Presence;
 
 namespace HunterPie {
     /// <summary>
@@ -40,8 +41,6 @@ namespace HunterPie {
         // Helpers
         IntPtr _windowHandle;
         HwndSource _source;
-
-
 
         public bool IsPlayerLoggedOn
         {
