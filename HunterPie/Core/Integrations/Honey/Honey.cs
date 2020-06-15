@@ -120,9 +120,11 @@ namespace HunterPie.Core {
             return node ?? "0";
         }
 
-        static string GetCharmLevel(int ID) {
+        static int GetCharmLevel(int ID)
+        {
             string node = HoneyGearData.SelectSingleNode($"//Honey/Gear/Charms/Charm[@ID='{ID}']/@Level")?.Value;
-            return node ?? "0";
+            int.TryParse(node, out int parsed);
+            return parsed;
         }
 
         static string GetNewAugment(int Index) {
