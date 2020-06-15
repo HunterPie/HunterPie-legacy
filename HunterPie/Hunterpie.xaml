@@ -6,7 +6,7 @@
         xmlns:Custom="clr-namespace:HunterPie.GUIControls.Custom_Controls"
         x:Name="window" x:Class="HunterPie.Hunterpie"
         mc:Ignorable="d"
-        Title="HunterPie" d:DesignHeight="592" d:DesignWidth="1000" MinWidth="800" MinHeight="500" WindowStyle="None" Closing="OnWindowClosing" AllowsTransparency="True" BorderBrush="#7F000000" BorderThickness="1" Background="{x:Null}" ResizeMode="CanResize" SizeChanged="OnWindowSizeChange" DataContext="{StaticResource Localization}" Loaded="window_Loaded">
+        Title="HunterPie" d:DesignHeight="592" d:DesignWidth="1000" MinWidth="800" MinHeight="500" WindowStyle="None" Closing="OnWindowClosing" AllowsTransparency="True" BorderBrush="#7F000000" BorderThickness="1" Background="{x:Null}" ResizeMode="CanResize" SizeChanged="OnWindowSizeChange" DataContext="{StaticResource Localization}">
     <WindowChrome.WindowChrome>
         <WindowChrome CaptionHeight="0"
                               CornerRadius="0"
@@ -17,6 +17,8 @@
     <Window.Resources>
         <ResourceDictionary>
             <Style x:Key="TogglableButton" TargetType="StackPanel">
+                <Setter Property="IsEnabled" Value="False"/>
+                <Setter Property="Opacity" Value="0.5"/>
                 <Style.Triggers>
                     <DataTrigger Binding="{Binding ElementName=window, Path=IsPlayerLoggedOn}" Value="True">
                         <DataTrigger.EnterActions>

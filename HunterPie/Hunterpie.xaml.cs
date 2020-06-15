@@ -59,7 +59,7 @@ namespace HunterPie {
 
             AppDomain.CurrentDomain.UnhandledException += ExceptionLogger;
 
-            IsPlayerLoggedOn = true;
+            IsPlayerLoggedOn = false;
 
             SetDPIAwareness();
 
@@ -727,10 +727,5 @@ namespace HunterPie {
             UserSettings.PlayerConfig.HunterPie.Height = (float)e.NewSize.Height;
         }
         #endregion
-
-        private void window_Loaded(object sender, RoutedEventArgs e)
-        {
-            IsPlayerLoggedOn = false;
-        }
     }
 }
