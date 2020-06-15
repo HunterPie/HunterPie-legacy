@@ -678,7 +678,9 @@ namespace HunterPie {
         private void OnExportGearButtonClick(object sender, MouseButtonEventArgs e)
         {
             sItem[] decoration = MonsterHunter.Player.GetDecorationsFromStorage();
-            string exported = Honey.ExportDecorationsToHoney(decoration);
+            sGear[] gears = MonsterHunter.Player.GetGearFromStorage();
+
+            string exported = Honey.ExportDecorationsToHoney(decoration, gears);
 
             if (dataExporter.ExportCustomData("Decorations-HoneyHuntersWorld.txt", exported))
             {
@@ -688,9 +690,7 @@ namespace HunterPie {
                 Debugger.Error("Failed to export decorations. Make sure HunterPie has permission to create/write to files.");
             }
 
-            sGear[] charms = MonsterHunter.Player.GetGearFromStorage();
-            exported = Honey.ExportCharmsToHoney(charms);
-
+            exported = Honey.ExportCharmsToHoney(gears);
             if (dataExporter.ExportCustomData("Charms-HoneyHuntersWorld.txt", exported))
             {
                 Debugger.Warn("Exported charms to ./DataExport/Charms-HoneyHuntersWorld.txt!");

@@ -1,5 +1,14 @@
 ﻿using System.Runtime.InteropServices;
 
+/*
+    Category explanation:
+    - When Category is 3 and Type is uint.MaxValue, then the Id is for a mantle
+    - When Category is 2 and Type is 5, then the Id is for a charm.
+    - When Category is 1, Type can go from 0 to 13 and determines a class weapon (See the Classes enum for the corresponding Type)
+    - When Category is 0 or 2 and Type goes from 0 to 4, then it's an armor.
+    - When category is uint.MaxValue then the player does not have that gear.
+*/
+
 namespace HunterPie.Core.Definitions
 {
     [StructLayout(LayoutKind.Sequential, Size = 0xA0)]
@@ -9,15 +18,15 @@ namespace HunterPie.Core.Definitions
         public int AbsoluteSlot; // Moving the item to another slot doesn't change this
         public int Slot;  // Moving the ithem to another slot DOES change this
         long unk1;
-        public int HasItem; // 1 when you dont have the gear, 2 when you do have the gear
+        public uint Category; // Gear category, read the explanation above
         public int unk3;
-        public int Type;
+        public uint Type; // Type depends on category
         public int Id;
         public int Level;
         public int ExperienceRemaining; // Upgrade points remaining to next level
-        public uint unk8;
-        public uint unk9;
-        public uint unk10;
+        public uint DecorationSlot1;
+        public uint DecorationSlot2;
+        public uint DecorationSlot3;
         public uint unk11;
         public uint unk12;
         public uint unk13;

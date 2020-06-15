@@ -230,6 +230,13 @@ namespace HunterPie.Core {
             return parsed;
         }
 
+        private static int GetDecorationGameIdById(int id)
+        {
+            string decoGameId = HoneyGearData.SelectSingleNode($"//Honey/Gear/Jewels/Jewel[@ID='{id}']/@GameId")?.Value;
+            int.TryParse(decoGameId, out int parsed);
+            return parsed;
+        }
+
         private static int GetDecorationAmountLimit(int id, int amount)
         {
             string decoMax = HoneyGearData.SelectSingleNode($"//Honey/Gear/Jewels/Jewel[@HoneyID='{id}']/@Max")?.Value;
@@ -240,14 +247,41 @@ namespace HunterPie.Core {
         /// <summary>
         /// Turns a sItem list into a decoration list string that can be used in Honey Hunters World
         /// </summary>
-        /// <param name="decorations">sItem list with the decorations information</param>
+        /// <param name="decorations">sItem array with the decorations information</param>
+        /// <param name="gears">sGear array with the gear information</param>
         /// <returns>string structure</returns>
-        public static string ExportDecorationsToHoney(sItem[] decorations)
+        public static string ExportDecorationsToHoney(sItem[] decorations, sGear[] gears)
         {
+            
             if (HoneyGearData == null) LoadHoneyGearData();
-
             StringBuilder data = new StringBuilder();
 
+            // Merge decorations in box and decorations in gear
+            List<sItem> decoMerge = decorations.ToList<sItem>();
+
+            foreach (sGear gear in gears)
+            {
+                // Skip gear the player does not have anymore
+                if (gear.Category == uint.MaxValue) continue;
+
+                // Skip charms
+                if (gear.Category == 2) continue;
+                
+                if (gear.DecorationSlot1 != uint.MaxValue)
+                {
+                    decoMerge.Add(new sItem { Amount = 1, ItemId = GetDecorationGameIdById((int)gear.DecorationSlot1) });
+                }
+                if (gear.DecorationSlot2 != uint.MaxValue)
+                {
+                    decoMerge.Add(new sItem { Amount = 1, ItemId = GetDecorationGameIdById((int)gear.DecorationSlot2) });
+                }
+                if (gear.DecorationSlot3 != uint.MaxValue)
+                {
+                    decoMerge.Add(new sItem { Amount = 1, ItemId = GetDecorationGameIdById((int)gear.DecorationSlot3) });
+                }
+            }
+            decorations = decoMerge.ToArray<sItem>();
+            
             // Parse decorations into a dictionary to make it easier to organize the string structure
             Dictionary<int, int> sDecorations = new Dictionary<int, int>();
             foreach (sItem deco in decorations)
@@ -269,6 +303,7 @@ namespace HunterPie.Core {
                 data.Append($"{(i != 1 ? "," : "")}{(sDecorations.ContainsKey(i) ? GetDecorationAmountLimit(i, sDecorations[i]) : 0)}");
             }
             Debugger.Debug(data);
+            Debugger.Debug($"Total unique decorations found: {sDecorations.Count}");
             UnloadHoneyGearData();
             return data.ToString();
         }
@@ -285,15 +320,14 @@ namespace HunterPie.Core {
             StringBuilder data = new StringBuilder();
 
             // Filter based on only on charms
-            sGear[] charms = gear.Where(x => x.Type == (int)GearType.Charm).ToArray();
-            Debugger.Log(Newtonsoft.Json.JsonConvert.SerializeObject(charms));
-
+            sGear[] charms = gear.Where(x => x.Type == (uint)GearType.Charm).ToArray();
+            
             // Parse charms into a dictionary to make it easier to organize the string structure
             Dictionary<int, int> sCharms = new Dictionary<int, int>();
             foreach (sGear charm in charms)
             {
                 // Check if player doesn't have that gear
-                if (charm.HasItem != 2) continue;
+                if (charm.Category != 2) continue;
 
                 int HoneyCharmId = GetCharmHoneyIdByGameId(charm.Id);
                 int level = GetCharmLevel(charm.Id);
