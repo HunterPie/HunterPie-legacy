@@ -7,6 +7,7 @@ using GameStructs = HunterPie.Core.LPlayer.GameStructs;
 using System.IO;
 using HunterPie.Core.Definitions;
 using System.Collections.Generic;
+using HunterPie.Core.Enums;
 
 namespace HunterPie.Core {
     public class Honey {
@@ -291,8 +292,13 @@ namespace HunterPie.Core {
             Dictionary<int, int> sCharms = new Dictionary<int, int>();
             foreach (sGear charm in charms)
             {
+                // Check if player doesn't have that gear
+                if (charm.HasItem != 2) continue;
+
                 int HoneyCharmId = GetCharmHoneyIdByGameId(charm.Id);
                 int level = GetCharmLevel(charm.Id);
+                // unique charms have level 0, but we need them to become 1 in order to Honey recoginize them
+                level = level == 0 ? level + 1 : level;
 
                 if (sCharms.ContainsKey(HoneyCharmId))
                 {
@@ -307,8 +313,8 @@ namespace HunterPie.Core {
             }
 
             // Now we build the charm string structure
-            const int MaxDecoId = 108;
-            for (int i = 1; i <= MaxDecoId; i++)
+            const int MaxCharmId = 108;
+            for (int i = 1; i <= MaxCharmId; i++)
             {
                 data.Append($"{(i != 1 ? "," : "")}{(sCharms.ContainsKey(i) ? sCharms[i] : 0)}");
             }
