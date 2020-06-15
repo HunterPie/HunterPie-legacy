@@ -2,7 +2,7 @@
 using System;
 using HunterPie.Logger;
 
-namespace HunterPie.Core {
+namespace HunterPie.Core.Integrations.Discord {
     public class Presence : IDisposable {
         public bool IsDisposed { get; private set; }
         private readonly string APP_ID = "567152028070051859";

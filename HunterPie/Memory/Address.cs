@@ -20,6 +20,7 @@ namespace HunterPie.Memory {
             public static int[] PlayerGearOffsets;
             public static int[] PlayerLockonOffsets;
             public static int[] WeaponMechanicsOffsets;
+            public static int[] PlayerPositionOffsets;
 
             public static int FertilizersOffset;
             public static int TailRaidersOffset = 0x10344C;
@@ -172,6 +173,7 @@ namespace HunterPie.Memory {
             LoadOffsetsFromDict("PlayerGearOffsets", out Offsets.PlayerGearOffsets, Offsets.PlayerGearOffsets);
             LoadOffsetsFromDict("PlayerLockonOffsets", out Offsets.PlayerLockonOffsets, Offsets.PlayerLockonOffsets);
             LoadOffsetsFromDict("WeaponMechanicsOffsets", out Offsets.WeaponMechanicsOffsets, Offsets.WeaponMechanicsOffsets);
+            LoadOffsetsFromDict("PlayerPositionOffsets", out Offsets.PlayerPositionOffsets, Offsets.PlayerPositionOffsets);
             // Clear addresses loaded into memory
             MappedAddresses.Clear();
             MappedOffsets.Clear();

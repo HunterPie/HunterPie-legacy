@@ -16,6 +16,7 @@ using HunterPie.GUIControls;
 using HunterPie.Logger;
 using HunterPie.Core.Integrations.DataExporter;
 using HunterPie.Core.Definitions;
+using Presence = HunterPie.Core.Integrations.Discord.Presence;
 
 namespace HunterPie {
     /// <summary>
@@ -35,13 +36,11 @@ namespace HunterPie {
         bool IsUpdating = true;
 
         // HunterPie version
-        const string HUNTERPIE_VERSION = "1.0.3.92";
+        const string HUNTERPIE_VERSION = "1.0.3.93";
 
         // Helpers
         IntPtr _windowHandle;
         HwndSource _source;
-
-
 
         public bool IsPlayerLoggedOn
         {
@@ -59,6 +58,8 @@ namespace HunterPie {
             }
 
             AppDomain.CurrentDomain.UnhandledException += ExceptionLogger;
+
+            IsPlayerLoggedOn = true;
 
             SetDPIAwareness();
 
@@ -434,6 +435,7 @@ namespace HunterPie {
             MonsterHunter.Player.OnCharacterLogin += OnLogin;
             MonsterHunter.Player.OnCharacterLogout += OnLogout;
             MonsterHunter.Player.OnSessionChange += OnSessionChange;
+            MonsterHunter.Player.OnClassChange += OnClassChange;
         }
 
         private void UnhookGameEvents()
@@ -442,6 +444,7 @@ namespace HunterPie {
             MonsterHunter.Player.OnCharacterLogin -= OnLogin;
             MonsterHunter.Player.OnCharacterLogout -= OnLogout;
             MonsterHunter.Player.OnSessionChange -= OnSessionChange;
+            MonsterHunter.Player.OnClassChange -= OnClassChange;
         }
 
         private void ExportGameData()
@@ -456,7 +459,8 @@ namespace HunterPie {
                     MR = MonsterHunter.Player.MasterRank,
                     BuildURL = Honey.LinkStructureBuilder(MonsterHunter.Player.GetPlayerGear()),
                     Session = MonsterHunter.Player.SessionID,
-                    SteamSession = sSession
+                    SteamSession = sSession,
+                    Playtime = MonsterHunter.Player.PlayTime
                 };
                 dataExporter.ExportData(playerData);
             }
@@ -482,17 +486,23 @@ namespace HunterPie {
 
         public void OnLogin(object source, EventArgs e) {
             Debugger.Log($"Logged on {MonsterHunter.Player.Name}");
-            Dispatcher.BeginInvoke(System.Windows.Threading.DispatcherPriority.Background, new Action(() => {
+            Dispatcher.BeginInvoke(System.Windows.Threading.DispatcherPriority.Render, new Action(() => {
                 IsPlayerLoggedOn = true;
             }));
             ExportGameData();
         }
 
         public void OnLogout(object source, EventArgs e) {
-            Dispatcher.BeginInvoke(System.Windows.Threading.DispatcherPriority.Background, new Action(() => {
+            Dispatcher.BeginInvoke(System.Windows.Threading.DispatcherPriority.Render, new Action(() => {
                 IsPlayerLoggedOn = false;
             }));
         }
+
+        private void OnClassChange(object source, EventArgs args)
+        {
+            ExportGameData();
+        }
+
 
         public void OnGameStart(object source, EventArgs e) {
             // Create game instances
@@ -718,5 +728,9 @@ namespace HunterPie {
         }
         #endregion
 
+        private void window_Loaded(object sender, RoutedEventArgs e)
+        {
+            IsPlayerLoggedOn = false;
+        }
     }
 }

@@ -127,11 +127,14 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
+    <Compile Include="Core\Definitions\sGear.cs" />
     <Compile Include="Core\Definitions\sItem.cs" />
     <Compile Include="Core\Definitions\sMonsterPart.cs" />
+    <Compile Include="Core\Definitions\sVector3.cs" />
     <Compile Include="Core\Definitions\sTenderizedPart.cs" />
     <Compile Include="Core\Definitions\Structures.cs" />
     <Compile Include="Core\Enums\Classes.cs" />
+    <Compile Include="Core\Enums\GearType.cs" />
     <Compile Include="Core\Integrations\DataExporter\Exporter.cs" />
     <Compile Include="Core\Integrations\Honey\Honey.cs" />
     <Compile Include="Core\KeyboardHook.cs" />
@@ -170,7 +173,7 @@
     <Compile Include="Core\Client\AutoUpdate.cs" />
     <Compile Include="Core\LPlayer\HarvestBox.cs" />
     <Compile Include="Core\LPlayer\Mantle.cs" />
-    <Compile Include="Core\Integrations\Presence.cs" />
+    <Compile Include="Core\Integrations\Discord\Presence.cs" />
     <Compile Include="GUIControls\Custom Controls\BuffBarSettingControl.xaml.cs">
       <DependentUpon>BuffBarSettingControl.xaml</DependentUpon>
     </Compile>

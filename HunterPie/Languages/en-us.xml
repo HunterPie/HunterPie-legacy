@@ -650,6 +650,12 @@
       <String ID="ENABLE_BOW_HELPER_DESC" Name="If enabled, the Bow helper will be visible whenever you equip an Bow."/>
       <String ID="ENABLE_HAMMER_HELPER" Name="Enable Hammer Helper"/>
       <String ID="ENABLE_HAMMER_HELPER_DESC" Name="If enabled, the Hammer helper will be visible whenever you equip an Hammer."/>
+      <String ID="ENABLE_HAMMER_HELPER" Name="Enable Hammer Helper"/>
+      <String ID="ENABLE_HAMMER_HELPER_DESC" Name="If enabled, the Hammer helper will be visible whenever you equip an Hammer."/>
+      <String ID="ENABLE_DUALBLADES_HELPER" Name="Enable Dual Blades Helper"/>
+      <String ID="ENABLE_DUALBLADES_HELPER_DESC" Name="If enabled, the Dual Blades helper will be visible whenever you equip Dual Blades."/>
+      <String ID="ENABLE_LANCE_HELPER" Name="Enable Lance Helper"/>
+      <String ID="ENABLE_LANCE_HELPER_DESC" Name="If enabled, the Lance helper will be visible whenever you equip Lance."/>
       <String ID="STATIC_CLASSES_BETA_WARNING" Name="Attention: Class helpers are still in development and more classes will be supported in the future. Each class helper has it's own settings, so you can have different positions for this widget depending on the class. Use the Design Mode feature to scale and move this widget."/>
       <!-- Links -->
       <String ID="STATIC_HUNTERPIE_WIKI" Name="Documentation"/>
