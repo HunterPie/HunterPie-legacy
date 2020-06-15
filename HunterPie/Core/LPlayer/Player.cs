@@ -455,6 +455,20 @@ namespace HunterPie.Core
             return decorations;
         }
 
+
+        public sGear[] GetGearFromStorage()
+        {
+            // We have up to 2509 different slots in our storage box
+            sGear[] gear = new sGear[2509];
+
+            for (long sStart = 0; sStart < 0x98 * 2509; sStart += 0x98)
+            {
+                gear[sStart / 0x98] = Scanner.Win32.Read<sGear>(LEVEL_ADDRESS + 0x40FD8 + sStart);
+            }
+
+            return gear;
+        }
+
         #endregion
 
         #region Automatic Player Data

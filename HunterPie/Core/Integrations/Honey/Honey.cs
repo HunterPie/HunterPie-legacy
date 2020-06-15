@@ -120,9 +120,11 @@ namespace HunterPie.Core {
             return node ?? "0";
         }
 
-        static string GetCharmLevel(int ID) {
+        static int GetCharmLevel(int ID)
+        {
             string node = HoneyGearData.SelectSingleNode($"//Honey/Gear/Charms/Charm[@ID='{ID}']/@Level")?.Value;
-            return node ?? "0";
+            int.TryParse(node, out int parsed);
+            return parsed;
         }
 
         static string GetNewAugment(int Index) {
@@ -213,6 +215,13 @@ namespace HunterPie.Core {
             return parsed;
         }
 
+        static int GetCharmHoneyIdByGameId(int id)
+        {
+            string decoHoneyID = id == int.MaxValue ? "0" : HoneyGearData.SelectSingleNode($"//Honey/Gear/Charms/Charm[@ID='{id}']/@HoneyID")?.Value;
+            int.TryParse(decoHoneyID, out int parsed);
+            return parsed;
+        }
+
         private static int GetDecorationHoneyIdByGameId(int id)
         {
             string decoHoneyId = HoneyGearData.SelectSingleNode($"//Honey/Gear/Jewels/Jewel[@GameId='{id}']/@HoneyID")?.Value;
@@ -257,6 +266,51 @@ namespace HunterPie.Core {
             for (int i = 1; i <= MaxDecoId; i++)
             {
                 data.Append($"{(i != 1 ? "," : "")}{(sDecorations.ContainsKey(i) ? GetDecorationAmountLimit(i, sDecorations[i]) : 0)}");
+            }
+            Debugger.Debug(data);
+            UnloadHoneyGearData();
+            return data.ToString();
+        }
+
+        /// <summary>
+        /// Turns a sGear list into a charm list string that can be used in Honey Hunters World
+        /// </summary>
+        /// <param name="gear">sGear list with the charm information</param>
+        /// <returns>string structure</returns>
+        public static string ExportCharmsToHoney(sGear[] gear)
+        {
+            if (HoneyGearData == null) LoadHoneyGearData();
+
+            StringBuilder data = new StringBuilder();
+
+            // Filter based on only on charms
+            sGear[] charms = gear.Where(x => x.Type == (int)GearType.Charm).ToArray();
+            Debugger.Log(Newtonsoft.Json.JsonConvert.SerializeObject(charms));
+
+            // Parse charms into a dictionary to make it easier to organize the string structure
+            Dictionary<int, int> sCharms = new Dictionary<int, int>();
+            foreach (sGear charm in charms)
+            {
+                int HoneyCharmId = GetCharmHoneyIdByGameId(charm.Id);
+                int level = GetCharmLevel(charm.Id);
+
+                if (sCharms.ContainsKey(HoneyCharmId))
+                {
+                    //If the level we find is actually larger, use that instead
+                    if (sCharms[HoneyCharmId] < level)
+                        sCharms[HoneyCharmId] = level;
+                }
+                else
+                {
+                    sCharms[HoneyCharmId] = level;
+                }
+            }
+
+            // Now we build the charm string structure
+            const int MaxDecoId = 108;
+            for (int i = 1; i <= MaxDecoId; i++)
+            {
+                data.Append($"{(i != 1 ? "," : "")}{(sCharms.ContainsKey(i) ? sCharms[i] : 0)}");
             }
             Debugger.Debug(data);
             UnloadHoneyGearData();
