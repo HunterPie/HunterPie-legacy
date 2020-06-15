@@ -17,6 +17,8 @@ using HunterPie.Logger;
 using HunterPie.Core.Integrations.DataExporter;
 using HunterPie.Core.Definitions;
 using Presence = HunterPie.Core.Integrations.Discord.Presence;
+using HunterPie.GUIControls.Custom_Controls;
+using System.Windows.Media;
 
 namespace HunterPie {
     /// <summary>
@@ -423,7 +425,19 @@ namespace HunterPie {
             GameOverlay?.GlobalSettingsEventHandler(source, e);
             Dispatcher.BeginInvoke(System.Windows.Threading.DispatcherPriority.ApplicationIdle, new Action(() => {
                 // Only shows notification if HunterPie is visible
-                if (this.IsVisible) this.HunterPieNotify.ShowNotification();
+                if (IsVisible)
+                {
+                    CNotification notification = new CNotification()
+                    {
+                        Text = GStrings.GetLocalizationByXPath("/Notifications/String[@ID='STATIC_SETTINGS_LOAD']"),
+                        FirstButtonVisibility = Visibility.Collapsed,
+                        SecondButtonVisibility = Visibility.Collapsed,
+                        NIcon = FindResource("ICON_CHECKED") as ImageSource,
+                        ShowTime = 11
+                    };
+                    NotificationsPanel.Children.Add(notification);
+                    notification.ShowNotification();
+                }
                 Settings.RefreshSettingsUI();
             }));
         }
@@ -673,7 +687,33 @@ namespace HunterPie {
 
         private void OnChangelogButtonClick(object sender, MouseButtonEventArgs e) => OpenChangelog();
 
-        private void OnUploadBuildButtonClick(object sender, MouseButtonEventArgs e) => BuildUploadNotification.ShowNotification();
+        private void OnUploadBuildButtonClick(object sender, MouseButtonEventArgs e)
+        {
+            CNotification notification = new CNotification()
+            {
+                Text = GStrings.GetLocalizationByXPath("/Notifications/String[@ID='MESSAGE_BUILD_UPLOADED']"),
+                NIcon = FindResource("ICON_BUILD") as ImageSource,
+                FirstButtonImage = FindResource("ICON_COPY") as ImageSource,
+                FirstButtonText = GStrings.GetLocalizationByXPath("/Settings/String[@ID='STATIC_COPYCLIPBOARD']"),
+                FirstButtonVisibility = Visibility.Visible,
+                SecondButtonImage = FindResource("ICON_LINK") as ImageSource,
+                SecondButtonText = GStrings.GetLocalizationByXPath("/Notifications/String[@ID='STATIC_OPENDEFAULTBROWSER']"),
+                SecondButtonVisibility = Visibility.Visible,
+                Callback1 = new Action(() =>
+                {
+                    string BuildLink = Honey.LinkStructureBuilder(MonsterHunter.Player.GetPlayerGear(), true);
+                    Clipboard.SetData(DataFormats.Text, BuildLink);
+                }),
+                Callback2 = new Action(() =>
+                {
+                    string BuildLink = Honey.LinkStructureBuilder(MonsterHunter.Player.GetPlayerGear(), true);
+                    Process.Start(BuildLink);
+                }),
+                ShowTime = 11
+            };
+            NotificationsPanel.Children.Add(notification);
+            notification.ShowNotification();
+        }
 
         private void OnExportGearButtonClick(object sender, MouseButtonEventArgs e)
         {
@@ -699,22 +739,25 @@ namespace HunterPie {
             {
                 Debugger.Error("Failed to export charms. Make sure HunterPie has permission to create/write to files.");
             }
+            CNotification notification = new CNotification()
+            {
+                NIcon = FindResource("ICON_DECORATION") as ImageSource,
+                Text = GStrings.GetLocalizationByXPath("/Notifications/String[@ID='MESSAGE_GEAR_EXPORTED']"),
+                FirstButtonImage = FindResource("ICON_LINK") as ImageSource,
+                FirstButtonText = GStrings.GetLocalizationByXPath("/Notifications/String[@ID='STATIC_OPENFOLDER']"),
+                FirstButtonVisibility = Visibility.Visible,
+                SecondButtonVisibility = Visibility.Collapsed,
+                ShowTime = 11,
+                Callback1 = new Action(() =>
+                {
+                    Process.Start(dataExporter.ExportPath);
+                })
+            };
+            NotificationsPanel.Children.Add(notification);
+            notification.ShowNotification();
         }
-
 
         private void OnDiscordButtonClick(object sender, MouseButtonEventArgs e) => Process.Start("https://discord.gg/5pdDq4Q");
-
-        private void OnCopyToClipboardClick(object sender, RoutedEventArgs e)
-        {
-            string BuildLink = Honey.LinkStructureBuilder(MonsterHunter.Player.GetPlayerGear(), true);
-            Clipboard.SetData(DataFormats.Text, BuildLink);
-        }
-
-        private void OnOpenInBrowserClick(object sender, RoutedEventArgs e)
-        {
-            string BuildLink = Honey.LinkStructureBuilder(MonsterHunter.Player.GetPlayerGear(), true);
-            Process.Start(BuildLink);
-        }
 
         private void OnLaunchGameButtonClick(object sender, RoutedEventArgs e) {
             LaunchGame();

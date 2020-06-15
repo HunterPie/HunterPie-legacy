@@ -21,7 +21,7 @@ namespace HunterPie.Core.Integrations.DataExporter
 
     public class Exporter
     {
-        private readonly string ExportPath = Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "DataExport");
+        public readonly string ExportPath = Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "DataExport");
 
         public Exporter()
         {

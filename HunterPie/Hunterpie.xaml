@@ -230,65 +230,6 @@
         </StackPanel>
 
         <!-- Notifications -->
-        <StackPanel VerticalAlignment="Bottom">
-            <Custom:CNotification x:Name="HunterPieNotify" Margin="10,0,0,0" Visibility="Collapsed" NIcon="{StaticResource ICON_CHECKED}" Text="{Binding XPath=/Strings/Client/Notifications/String[@ID\=\'STATIC_SETTINGS_LOAD\']/@Name}" DataContext="{StaticResource Localization}" HorizontalAlignment="Left" ShowTime="2" FirstButtonVisibility="Collapsed" SecondButtonVisibility="Collapsed">
-                <Custom:CNotification.Style>
-                    <Style TargetType="Custom:CNotification">
-                        <Style.Triggers>
-                            <Trigger Property="IsVisible" Value="True">
-                                <Trigger.EnterActions>
-                                    <BeginStoryboard>
-                                        <Storyboard>
-                                            <DoubleAnimationUsingKeyFrames Storyboard.TargetProperty="Opacity">
-                                                <EasingDoubleKeyFrame Value="0" KeyTime="0:0:0.0"/>
-                                                <EasingDoubleKeyFrame Value="1" KeyTime="0:0:0.3"/>
-                                                <EasingDoubleKeyFrame Value="1" KeyTime="0:0:1.6"/>
-                                                <EasingDoubleKeyFrame Value="0" KeyTime="0:0:1.85"/>
-                                            </DoubleAnimationUsingKeyFrames>
-                                            <ThicknessAnimationUsingKeyFrames Storyboard.TargetProperty="Margin">
-                                                <LinearThicknessKeyFrame Value="10,0,0,10" KeyTime="0:0:0.15"/>
-                                                <LinearThicknessKeyFrame Value="10,0,0,15" KeyTime="0:0:0.25"/>
-                                                <LinearThicknessKeyFrame Value="10,0,0,10" KeyTime="0:0:0.3"/>
-                                                <LinearThicknessKeyFrame Value="10,0,0,10" KeyTime="0:0:1.7"/>
-                                                <LinearThicknessKeyFrame Value="10,0,0,-45" KeyTime="0:0:1.85"/>
-                                            </ThicknessAnimationUsingKeyFrames>
-                                        </Storyboard>
-                                    </BeginStoryboard>
-                                </Trigger.EnterActions>
-                            </Trigger>
-                        </Style.Triggers>
-                    </Style>
-                </Custom:CNotification.Style>
-            </Custom:CNotification>
-            <Custom:CNotification x:Name="BuildUploadNotification" Visibility="Collapsed" Margin="10,0,0,0" Text="{Binding XPath=/Strings/Client/Notifications/String[@ID\=\'MESSAGE_BUILD_UPLOADED\']/@Name}" NIcon="pack://siteoforigin:,,,/HunterPie.Resources/Monsters/Icons/em116_00.png" HorizontalAlignment="Left" ShowTime="15" OnFirstBttnClick="OnCopyToClipboardClick" OnSecondBttnClick="OnOpenInBrowserClick" FirstButtonImage="{StaticResource ICON_COPY}" SecondButtonImage="{StaticResource ICON_LINK}" FirstButtonText="{Binding XPath=/Strings/Client/Settings/String[@ID\=\'STATIC_COPYCLIPBOARD\']/@Name}" SecondButtonText="{Binding XPath=/Strings/Client/Notifications/String[@ID\=\'STATIC_OPENDEFAULTBROWSER\']/@Name}" >
-                <Custom:CNotification.Style>
-                    <Style TargetType="Custom:CNotification">
-                        <Style.Triggers>
-                            <Trigger Property="IsVisible" Value="True">
-                                <Trigger.EnterActions>
-                                    <BeginStoryboard>
-                                        <Storyboard>
-                                            <DoubleAnimationUsingKeyFrames Storyboard.TargetProperty="Opacity">
-                                                <EasingDoubleKeyFrame Value="0" KeyTime="0:0:0.0"/>
-                                                <EasingDoubleKeyFrame Value="1" KeyTime="0:0:0.3"/>
-                                                <EasingDoubleKeyFrame Value="1" KeyTime="0:0:14.6"/>
-                                                <EasingDoubleKeyFrame Value="0" KeyTime="0:0:14.85"/>
-                                            </DoubleAnimationUsingKeyFrames>
-                                            <ThicknessAnimationUsingKeyFrames Storyboard.TargetProperty="Margin">
-                                                <LinearThicknessKeyFrame Value="10,0,0,10" KeyTime="0:0:0.15"/>
-                                                <LinearThicknessKeyFrame Value="10,0,0,15" KeyTime="0:0:0.25"/>
-                                                <LinearThicknessKeyFrame Value="10,0,0,10" KeyTime="0:0:0.3"/>
-                                                <LinearThicknessKeyFrame Value="10,0,0,10" KeyTime="0:0:14.7"/>
-                                                <LinearThicknessKeyFrame Value="10,0,0,-45" KeyTime="0:0:14.85"/>
-                                            </ThicknessAnimationUsingKeyFrames>
-                                        </Storyboard>
-                                    </BeginStoryboard>
-                                </Trigger.EnterActions>
-                            </Trigger>
-                        </Style.Triggers>
-                    </Style>
-                </Custom:CNotification.Style>
-            </Custom:CNotification>
-        </StackPanel>
+        <StackPanel x:Name="NotificationsPanel" VerticalAlignment="Bottom" HorizontalAlignment="Left"/>
     </Grid>
 </Window>
