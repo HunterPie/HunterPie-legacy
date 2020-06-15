@@ -275,11 +275,46 @@ namespace HunterPie.Core {
         /// <summary>
         /// Turns a sGear list into a charm list string that can be used in Honey Hunters World
         /// </summary>
-        /// <param name="decorations">sItem list with the decorations information</param>
+        /// <param name="gear">sGear list with the charm information</param>
         /// <returns>string structure</returns>
         public static string ExportCharmsToHoney(sGear[] gear)
         {
-            throw new NotImplementedException();
+            if (HoneyGearData == null) LoadHoneyGearData();
+
+            StringBuilder data = new StringBuilder();
+
+            // Filter based on only on charms
+            sGear[] charms = gear.Where(x => x.Type == (int)GearType.Charm).ToArray();
+            Debugger.Log(Newtonsoft.Json.JsonConvert.SerializeObject(charms));
+
+            // Parse charms into a dictionary to make it easier to organize the string structure
+            Dictionary<int, int> sCharms = new Dictionary<int, int>();
+            foreach (sGear charm in charms)
+            {
+                int HoneyCharmId = GetCharmHoneyIdByGameId(charm.Id);
+                int level = GetCharmLevel(charm.Id);
+
+                if (sCharms.ContainsKey(HoneyCharmId))
+                {
+                    //If the level we find is actually larger, use that instead
+                    if (sCharms[HoneyCharmId] < level)
+                        sCharms[HoneyCharmId] = level;
+                }
+                else
+                {
+                    sCharms[HoneyCharmId] = level;
+                }
+            }
+
+            // Now we build the charm string structure
+            const int MaxDecoId = 108;
+            for (int i = 1; i <= MaxDecoId; i++)
+            {
+                data.Append($"{(i != 1 ? "," : "")}{(sCharms.ContainsKey(i) ? sCharms[i] : 0)}");
+            }
+            Debugger.Debug(data);
+            UnloadHoneyGearData();
+            return data.ToString();
         }
     }
 }
