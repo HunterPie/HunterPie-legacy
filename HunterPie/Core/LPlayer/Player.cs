@@ -455,6 +455,11 @@ namespace HunterPie.Core
             return decorations;
         }
 
+        public sGear[] GetGeatFromStorage()
+        {
+            throw new NotImplementedException();
+        }
+
         #endregion
 
         #region Automatic Player Data
