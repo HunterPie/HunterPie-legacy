@@ -215,6 +215,13 @@ namespace HunterPie.Core {
             return parsed;
         }
 
+        static int GetCharmHoneyIdByGameId(int id)
+        {
+            string decoHoneyID = id == int.MaxValue ? "0" : HoneyGearData.SelectSingleNode($"//Honey/Gear/Charms/Charm[@ID='{id}']/@HoneyID")?.Value;
+            int.TryParse(decoHoneyID, out int parsed);
+            return parsed;
+        }
+
         private static int GetDecorationHoneyIdByGameId(int id)
         {
             string decoHoneyId = HoneyGearData.SelectSingleNode($"//Honey/Gear/Jewels/Jewel[@GameId='{id}']/@HoneyID")?.Value;
