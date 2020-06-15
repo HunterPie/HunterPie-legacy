@@ -262,5 +262,15 @@ namespace HunterPie.Core {
             UnloadHoneyGearData();
             return data.ToString();
         }
+
+        /// <summary>
+        /// Turns a sGear list into a charm list string that can be used in Honey Hunters World
+        /// </summary>
+        /// <param name="decorations">sItem list with the decorations information</param>
+        /// <returns>string structure</returns>
+        public static string ExportCharmsToHoney(sGear[] gear)
+        {
+            throw new NotImplementedException();
+        }
     }
 }
