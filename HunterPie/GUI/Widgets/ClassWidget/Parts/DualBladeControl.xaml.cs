@@ -6,6 +6,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
+using HunterPie.Logger;
 using DualBlades = HunterPie.Core.LPlayer.Jobs.DualBlades;
 using DualBladesEventArgs = HunterPie.Core.LPlayer.Jobs.DualBladesEventArgs;
 using JobEventArgs = HunterPie.Core.LPlayer.Jobs.JobEventArgs;
@@ -19,8 +20,6 @@ namespace HunterPie.GUI.Widgets.ClassWidget.Parts
     {
 
         DualBlades Context;
-
-
 
         public bool IsDemonModeActive
         {
@@ -46,10 +45,19 @@ namespace HunterPie.GUI.Widgets.ClassWidget.Parts
         public static readonly DependencyProperty DemonGaugeProperty =
             DependencyProperty.Register("DemonGauge", typeof(float), typeof(DualBladeControl));
 
+        public bool IsReducing
+        {
+            get { return (bool)GetValue(IsReducingProperty); }
+            set { SetValue(IsReducingProperty, value); }
+        }
+        public static readonly DependencyProperty IsReducingProperty =
+            DependencyProperty.Register("IsReducing", typeof(bool), typeof(DualBladeControl));
+
 
 
         public DualBladeControl()
         {
+            IsReducing = false;
             InitializeComponent();
         }
 
@@ -64,7 +72,16 @@ namespace HunterPie.GUI.Widgets.ClassWidget.Parts
         {
             Context.OnDemonGaugeChange += OnDemonGaugeChange;
             Context.OnDemonModeToggle += OnDemonModeToggle;
+            Context.OnDemonGaugeReduce += OnDemonGaugeReduce;
             Context.OnSafijiivaCounterUpdate += OnSafijiivaCounterUpdate;
+        }
+
+        private void OnDemonGaugeReduce(object source, DualBladesEventArgs args)
+        {
+            Dispatcher.BeginInvoke(System.Windows.Threading.DispatcherPriority.Render, new Action(() =>
+            {
+                IsReducing = args.IsReducing;
+            }));
         }
 
         public override void UnhookEvents()
@@ -79,6 +96,7 @@ namespace HunterPie.GUI.Widgets.ClassWidget.Parts
             DualBladesEventArgs dummyArgs = new DualBladesEventArgs(Context);
             OnDemonGaugeChange(this, dummyArgs);
             OnDemonModeToggle(this, dummyArgs);
+            OnDemonGaugeReduce(this, dummyArgs);
             OnSafijiivaCounterUpdate(this, new JobEventArgs(Context));
         }
 
@@ -105,7 +123,7 @@ namespace HunterPie.GUI.Widgets.ClassWidget.Parts
         {
             Dispatcher.BeginInvoke(System.Windows.Threading.DispatcherPriority.Render, new Action(() =>
             {
-                GaugePercentage = 103 * args.DemonGauge;
+                GaugePercentage = 102 * args.DemonGauge;
                 DemonGauge = args.DemonGauge;
             }));
         }

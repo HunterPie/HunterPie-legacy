@@ -4,9 +4,8 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
-             xmlns:local="clr-namespace:HunterPie.GUIControls.Custom_Controls"
-             mc:Ignorable="d" Height="40" BorderThickness="1" BorderBrush="#CC0A0A0A">
-    <StackPanel Orientation="Horizontal" x:Name="cHolder" Background="#CC111111" DataContext="{StaticResource Localization}" MouseLeftButtonDown="OnNotificationClick">
+             Height="40" BorderThickness="1" BorderBrush="#CC0A0A0A" HorizontalAlignment="Left">
+    <StackPanel Orientation="Horizontal" x:Name="cHolder" Background="#E5111111" DataContext="{StaticResource Localization}" MouseLeftButtonDown="OnNotificationClick">
         <Image x:Name="NotificationIcon" Width="25" Height="25" Margin="6,0,4,0" Source="{Binding ElementName=NotifyControl, Path=NIcon}"/>
         <TextBlock x:Name="NotificationText"  Text="{Binding ElementName=NotifyControl, Path=Text}" Foreground="WhiteSmoke" Padding="0,3,5,5" Height="30" FontSize="16" FontWeight="Light"/>
         <Button Style="{StaticResource buttons_settings}" BorderBrush="{x:Null}" Foreground="#FFECECEC" Background="#FF080808" Cursor="Hand" Padding="5,1" Click="OnFirstButtonClick" Visibility="{Binding ElementName=NotifyControl, Path=FirstButtonVisibility}">
@@ -26,4 +25,31 @@
             </Button.Content>
         </Button>
     </StackPanel>
+    <UserControl.Style>
+        <Style TargetType="UserControl">
+            <Style.Triggers>
+                <Trigger Property="IsVisible" Value="True">
+                    <Trigger.EnterActions>
+                        <BeginStoryboard>
+                            <Storyboard>
+                                <DoubleAnimationUsingKeyFrames Storyboard.TargetProperty="Opacity">
+                                    <EasingDoubleKeyFrame Value="0" KeyTime="0:0:0.0"/>
+                                    <EasingDoubleKeyFrame Value="1" KeyTime="0:0:0.3"/>
+                                    <EasingDoubleKeyFrame Value="1" KeyTime="0:0:10"/>
+                                    <EasingDoubleKeyFrame Value="0" KeyTime="0:0:10.3"/>
+                                </DoubleAnimationUsingKeyFrames>
+                                <ThicknessAnimationUsingKeyFrames Storyboard.TargetProperty="Margin">
+                                    <LinearThicknessKeyFrame Value="10,0,0,10" KeyTime="0:0:0.15"/>
+                                    <LinearThicknessKeyFrame Value="10,0,0,15" KeyTime="0:0:0.25"/>
+                                    <LinearThicknessKeyFrame Value="10,0,0,10" KeyTime="0:0:0.3"/>
+                                    <LinearThicknessKeyFrame Value="10,0,0,10" KeyTime="0:0:10"/>
+                                    <LinearThicknessKeyFrame Value="10,0,0,-45" KeyTime="0:0:10.25"/>
+                                </ThicknessAnimationUsingKeyFrames>
+                            </Storyboard>
+                        </BeginStoryboard>
+                    </Trigger.EnterActions>
+                </Trigger>
+            </Style.Triggers>
+        </Style>
+    </UserControl.Style>
 </UserControl>

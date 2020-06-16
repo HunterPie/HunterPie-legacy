@@ -3,6 +3,7 @@ using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Media;
 using System.Windows.Threading;
+using HunterPie.Logger;
 
 namespace HunterPie.GUIControls.Custom_Controls {
     /// <summary>
@@ -30,8 +31,6 @@ namespace HunterPie.GUIControls.Custom_Controls {
         public static readonly DependencyProperty TextProperty =
             DependencyProperty.Register("Text", typeof(string), typeof(CNotification));
 
-
-
         public ImageSource FirstButtonImage
         {
             get { return (ImageSource)GetValue(FirstButtonImageProperty); }
@@ -41,8 +40,6 @@ namespace HunterPie.GUIControls.Custom_Controls {
         // Using a DependencyProperty as the backing store for FirstButtonImage.  This enables animation, styling, binding, etc...
         public static readonly DependencyProperty FirstButtonImageProperty =
             DependencyProperty.Register("FirstButtonImage", typeof(ImageSource), typeof(CNotification));
-
-
 
         public ImageSource SecondButtonImage
         {
@@ -74,8 +71,6 @@ namespace HunterPie.GUIControls.Custom_Controls {
         public static readonly DependencyProperty SecondButtonVisibilityProperty =
             DependencyProperty.Register("SecondButtonVisibility", typeof(Visibility), typeof(CNotification));
 
-
-
         public string FirstButtonText
         {
             get { return (string)GetValue(FirstButtonTextProperty); }
@@ -98,39 +93,38 @@ namespace HunterPie.GUIControls.Custom_Controls {
 
 
         public int ShowTime { get; set; }
+        public Action Callback1 { get; set; }
+        public Action Callback2 { get; set; }
         private DispatcherTimer VisibilityTimer;
-
-        public delegate void ClickEvents(object source, RoutedEventArgs args);
-        public event ClickEvents OnFirstBttnClick;
-        public event ClickEvents OnSecondBttnClick;
 
         public CNotification() {
             InitializeComponent();
         }
 
         public void ShowNotification() {
-            if (Visibility == Visibility.Visible) return;
             Visibility = Visibility.Visible;
             VisibilityTimer = new DispatcherTimer() {
                 Interval = new TimeSpan(0, 0, ShowTime)
             };
-            VisibilityTimer.Tick += ChangeVisibility;
+            VisibilityTimer.Tick += new EventHandler(Close);
             VisibilityTimer.Start();
         }
 
-        private void ChangeVisibility(object source, EventArgs e) {
-            VisibilityTimer.Stop();
+        private void Close(object source, EventArgs e) {
+            VisibilityTimer?.Stop();
+            VisibilityTimer = null;
             Visibility = Visibility.Collapsed;
+            ((Panel)Parent).Children.Remove(this);
+            
         }
-        
-        private void OnFirstButtonClick(object sender, RoutedEventArgs e) => OnFirstBttnClick?.Invoke(this, e);
 
-        private void OnSecondButtonClick(object sender, RoutedEventArgs e) => OnSecondBttnClick?.Invoke(this, e);
+        private void OnFirstButtonClick(object sender, RoutedEventArgs e) => Callback1();
+
+        private void OnSecondButtonClick(object sender, RoutedEventArgs e) => Callback2();
 
         private void OnNotificationClick(object sender, System.Windows.Input.MouseButtonEventArgs e)
         {
-            VisibilityTimer?.Stop();
-            Visibility = Visibility.Collapsed;
+            Close(this, EventArgs.Empty);
         }
     }
 }

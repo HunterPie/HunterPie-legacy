@@ -84,17 +84,38 @@
             </Image.Style>
         </Image>
         <Image HorizontalAlignment="Left" Width="125" Height="34" VerticalAlignment="Top" Source="pack://siteoforigin:,,,/HunterPie.Resources/UI/Class/DualBladesGauge.png" Margin="1,24,0,0" />
-        <Rectangle HorizontalAlignment="Left" Width="{Binding ElementName=DBControl, Path=GaugePercentage}" Height="25" VerticalAlignment="Top" Margin="29,31,0,0">
+        <Rectangle HorizontalAlignment="Left" Width="{Binding ElementName=DBControl, Path=GaugePercentage}" Height="21" VerticalAlignment="Top" Margin="28,33,0,0">
             <Rectangle.Fill>
                 <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
-                    <GradientStop Color="#FF781313"/>
-                    <GradientStop Color="#FFC93737" Offset="0.594"/>
-                    <GradientStop Color="#FF830A0A" Offset="1"/>
+                    <GradientStop Color="#FFC1580E"/>
+                    <GradientStop Color="#FFC93737" Offset="0.687"/>
                 </LinearGradientBrush>
             </Rectangle.Fill>
             <Rectangle.OpacityMask>
                 <ImageBrush ImageSource="pack://siteoforigin:,,,/HunterPie.Resources/UI/Class/DualBladesGaugeMask.png"/>
             </Rectangle.OpacityMask>
+            <Rectangle.Style>
+                <Style TargetType="Rectangle">
+                    <Style.Triggers>
+                        <DataTrigger Binding="{Binding ElementName=DBControl, Path=IsReducing}" Value="True">
+                            <DataTrigger.EnterActions>
+                                <BeginStoryboard>
+                                    <Storyboard Storyboard.TargetProperty="(Rectangle.Fill).(LinearGradientBrush.GradientStops)[1].(GradientStop.Color)" RepeatBehavior="Forever" Duration="0:0:1">
+                                        <ColorAnimation From="#FFC93737" To="WhiteSmoke" Duration="0:0:0.2" AutoReverse="True"/>
+                                    </Storyboard>
+                                </BeginStoryboard>
+                            </DataTrigger.EnterActions>
+                            <DataTrigger.ExitActions>
+                                <BeginStoryboard>
+                                    <Storyboard Storyboard.TargetProperty="(Rectangle.Fill).(LinearGradientBrush.GradientStops)[1].(GradientStop.Color)">
+                                        <ColorAnimation To="#FFC93737" Duration="0:0:0.25"/>
+                                    </Storyboard>
+                                </BeginStoryboard>
+                            </DataTrigger.ExitActions>
+                        </DataTrigger>
+                    </Style.Triggers>
+                </Style>
+            </Rectangle.Style>
         </Rectangle>
         <TextBlock Text="{Binding DemonGauge, ElementName=DBControl, StringFormat=\{0:P0\}}" Height="18" VerticalAlignment="Top" HorizontalAlignment="Left" Width="46" Margin="46,34,0,0" TextAlignment="Center">
             <TextBlock.Foreground>

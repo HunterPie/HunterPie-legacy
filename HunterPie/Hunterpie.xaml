@@ -3,10 +3,8 @@
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-        xmlns:local="clr-namespace:HunterPie"
         xmlns:Custom="clr-namespace:HunterPie.GUIControls.Custom_Controls"
-        xmlns:Core="clr-namespace:HunterPie.Core"
-        xmlns:Properties="clr-namespace:HunterPie.Properties" x:Name="window" x:Class="HunterPie.Hunterpie"
+        x:Name="window" x:Class="HunterPie.Hunterpie"
         mc:Ignorable="d"
         Title="HunterPie" d:DesignHeight="592" d:DesignWidth="1000" MinWidth="800" MinHeight="500" WindowStyle="None" Closing="OnWindowClosing" AllowsTransparency="True" BorderBrush="#7F000000" BorderThickness="1" Background="{x:Null}" ResizeMode="CanResize" SizeChanged="OnWindowSizeChange" DataContext="{StaticResource Localization}">
     <WindowChrome.WindowChrome>
@@ -18,7 +16,36 @@
     </WindowChrome.WindowChrome>
     <Window.Resources>
         <ResourceDictionary>
-
+            <Style x:Key="TogglableButton" TargetType="StackPanel">
+                <Setter Property="IsEnabled" Value="False"/>
+                <Setter Property="Opacity" Value="0.5"/>
+                <Style.Triggers>
+                    <DataTrigger Binding="{Binding ElementName=window, Path=IsPlayerLoggedOn}" Value="True">
+                        <DataTrigger.EnterActions>
+                            <BeginStoryboard>
+                                <Storyboard Storyboard.TargetProperty="Opacity">
+                                    <DoubleAnimation To="1" Duration="0:0:0.25"/>
+                                </Storyboard>
+                            </BeginStoryboard>
+                        </DataTrigger.EnterActions>
+                        <DataTrigger.ExitActions>
+                            <BeginStoryboard>
+                                <Storyboard Storyboard.TargetProperty="Opacity">
+                                    <DoubleAnimation To="0.5" Duration="0:0:0.25"/>
+                                </Storyboard>
+                            </BeginStoryboard>
+                        </DataTrigger.ExitActions>
+                        <DataTrigger.Setters>
+                            <Setter Property="IsEnabled" Value="True"/>
+                        </DataTrigger.Setters>
+                    </DataTrigger>
+                    <DataTrigger Binding="{Binding ElementName=window, Path=IsPlayerLoggedOn}" Value="False">
+                        <DataTrigger.Setters>
+                            <Setter Property="IsEnabled" Value="False"/>
+                        </DataTrigger.Setters>
+                    </DataTrigger>
+                </Style.Triggers>
+            </Style>
             <Style x:Key="STYLE_SIDEBARBUTTONS" TargetType="{x:Type StackPanel}">
                 <Setter Property="OverridesDefaultStyle" Value="True"/>
                 <Style.Triggers>
@@ -123,7 +150,7 @@
                     </TextBlock.Text>
                 </TextBlock>
             </StackPanel>
-            <StackPanel x:Name="BUTTON_UPLOADBUILD" Style="{StaticResource STYLE_SIDEBARBUTTONS}"  Background="{StaticResource BUTTON_COMMONBUTTON_BACKGROUND}" Cursor="Hand"  Width="205" Height="40" Margin="0,82,-155,0" Orientation="Horizontal" HorizontalAlignment="Left" MouseDown="OnUploadBuildButtonClick" VerticalAlignment="Top">
+            <StackPanel x:Name="BUTTON_UPLOADBUILD" Style="{StaticResource TogglableButton}" Background="{StaticResource BUTTON_COMMONBUTTON_BACKGROUND}" Cursor="Hand"  Width="205" Height="40" Margin="0,82,-155,0" Orientation="Horizontal" HorizontalAlignment="Left" MouseDown="OnUploadBuildButtonClick" VerticalAlignment="Top">
                 <Image Panel.ZIndex="1" Source="{StaticResource ICON_BUILD}" HorizontalAlignment="Center" Width="25" VerticalAlignment="Center" Margin="9,8,0,8"/>
                 <TextBlock DataContext="{StaticResource Localization}" TextTrimming="CharacterEllipsis" Padding="20,0,0,0" VerticalAlignment="Center" FontSize="16" Foreground="{StaticResource BUTTON_COMMONBUTTON_FOREGROUND}" FontWeight="Bold" FontFamily="Roboto">
                     <TextBlock.Text>
@@ -131,7 +158,11 @@
                     </TextBlock.Text>
                 </TextBlock>
             </StackPanel>
-            <StackPanel x:Name="BUTTON_CHANGELOG" Style="{StaticResource STYLE_SIDEBARBUTTONS}"  Background="{StaticResource BUTTON_COMMONBUTTON_BACKGROUND}" Cursor="Hand"  Width="205" Height="40" Margin="0,122,-155,0" Orientation="Horizontal" HorizontalAlignment="Left" MouseDown="OnChangelogButtonClick" VerticalAlignment="Top">
+            <StackPanel x:Name="BUTTON_EXPORTGEAR" Style="{StaticResource TogglableButton}"  Background="{StaticResource BUTTON_COMMONBUTTON_BACKGROUND}" Cursor="Hand"  Width="205" Height="40" Margin="0,122,-155,0" Orientation="Horizontal" HorizontalAlignment="Left" MouseDown="OnExportGearButtonClick" VerticalAlignment="Top">
+                <Image Panel.ZIndex="1" Source="{StaticResource ICON_DECORATION}" HorizontalAlignment="Center" Width="25" VerticalAlignment="Center" Margin="9,8,0,8"/>
+                <TextBlock DataContext="{StaticResource Localization}" TextTrimming="CharacterEllipsis" Padding="20,0,0,0" VerticalAlignment="Center" FontSize="16" Foreground="{StaticResource BUTTON_COMMONBUTTON_FOREGROUND}" FontWeight="Bold" FontFamily="Roboto" Text="{Binding Mode=OneTime, XPath=Console/String[@ID\=\'CONSOLE_EXPORTGEAR\']/@Name, FallbackValue='EXPORT GEAR'}"/>
+            </StackPanel>
+            <StackPanel x:Name="BUTTON_CHANGELOG" Style="{StaticResource STYLE_SIDEBARBUTTONS}"  Background="{StaticResource BUTTON_COMMONBUTTON_BACKGROUND}" Cursor="Hand"  Width="205" Height="40" Margin="0,162,-155,0" Orientation="Horizontal" HorizontalAlignment="Left" MouseDown="OnChangelogButtonClick" VerticalAlignment="Top">
                 <Border BorderBrush="{StaticResource BUTTON_COMMONBUTTON_BORDER}" Width="4" BorderThickness="0,0,0,0" />
                 <Image Panel.ZIndex="1" Source="{StaticResource ICON_CHANGELOG}" HorizontalAlignment="Center" Width="25" VerticalAlignment="Center" Margin="6,0,0,0"/>
                 <TextBlock DataContext="{StaticResource Localization}" Padding="20,0,0,0" TextTrimming="CharacterEllipsis" VerticalAlignment="Center" FontSize="16" Foreground="{StaticResource BUTTON_COMMONBUTTON_FOREGROUND}" FontWeight="Bold" FontFamily="Roboto">
@@ -140,7 +171,7 @@
                     </TextBlock.Text>
                 </TextBlock>
             </StackPanel>
-            <StackPanel Style="{StaticResource STYLE_SIDEBARBUTTONS}"  Background="{StaticResource BUTTON_COMMONBUTTON_BACKGROUND}" Cursor="Hand"  Width="205" Height="40" Margin="0,162,-155,0" Orientation="Horizontal" HorizontalAlignment="Left" MouseDown="OnDiscordButtonClick" VerticalAlignment="Top">
+            <StackPanel Style="{StaticResource STYLE_SIDEBARBUTTONS}"  Background="{StaticResource BUTTON_COMMONBUTTON_BACKGROUND}" Cursor="Hand"  Width="205" Height="40" Margin="0,202,-155,0" Orientation="Horizontal" HorizontalAlignment="Left" MouseDown="OnDiscordButtonClick" VerticalAlignment="Top">
                 <Image Panel.ZIndex="1" Source="{StaticResource ICON_DISCORD}" HorizontalAlignment="Center" Width="25" VerticalAlignment="Center" Margin="10,0,0,0"/>
                 <TextBlock DataContext="{StaticResource Localization}" TextTrimming="CharacterEllipsis" Padding="20,0,0,0" VerticalAlignment="Center" FontSize="16" Foreground="{StaticResource BUTTON_COMMONBUTTON_FOREGROUND}" FontWeight="Bold" FontFamily="Roboto">
                     <TextBlock.Text>
@@ -148,7 +179,7 @@
                     </TextBlock.Text>
                 </TextBlock>
             </StackPanel>
-            <StackPanel Style="{StaticResource STYLE_SIDEBARBUTTONS}"  Background="{StaticResource BUTTON_COMMONBUTTON_BACKGROUND}" Cursor="Hand"  Width="205" Height="40" Margin="0,202,-155,0" Orientation="Horizontal" HorizontalAlignment="Left" MouseDown="OnGithubButtonClick" VerticalAlignment="Top">
+            <StackPanel Style="{StaticResource STYLE_SIDEBARBUTTONS}"  Background="{StaticResource BUTTON_COMMONBUTTON_BACKGROUND}" Cursor="Hand"  Width="205" Height="40" Margin="0,242,-155,0" Orientation="Horizontal" HorizontalAlignment="Left" MouseDown="OnGithubButtonClick" VerticalAlignment="Top">
                 <Image Panel.ZIndex="1" Source="{StaticResource ICON_GITHUB}" HorizontalAlignment="Center" Width="25" VerticalAlignment="Center" Margin="10,0,0,0"/>
                 <TextBlock DataContext="{StaticResource Localization}" TextTrimming="CharacterEllipsis" Padding="20,0,0,0" VerticalAlignment="Center" FontSize="16" Foreground="{StaticResource BUTTON_COMMONBUTTON_FOREGROUND}" FontWeight="Bold" FontFamily="Roboto">
                     <TextBlock.Text>
@@ -199,65 +230,6 @@
         </StackPanel>
 
         <!-- Notifications -->
-        <StackPanel VerticalAlignment="Bottom">
-            <Custom:CNotification x:Name="HunterPieNotify" Margin="10,0,0,0" Visibility="Collapsed" NIcon="{StaticResource ICON_CHECKED}" Text="{Binding XPath=/Strings/Client/Notifications/String[@ID\=\'STATIC_SETTINGS_LOAD\']/@Name}" DataContext="{StaticResource Localization}" HorizontalAlignment="Left" ShowTime="2" FirstButtonVisibility="Collapsed" SecondButtonVisibility="Collapsed">
-                <Custom:CNotification.Style>
-                    <Style TargetType="Custom:CNotification">
-                        <Style.Triggers>
-                            <Trigger Property="IsVisible" Value="True">
-                                <Trigger.EnterActions>
-                                    <BeginStoryboard>
-                                        <Storyboard>
-                                            <DoubleAnimationUsingKeyFrames Storyboard.TargetProperty="Opacity">
-                                                <EasingDoubleKeyFrame Value="0" KeyTime="0:0:0.0"/>
-                                                <EasingDoubleKeyFrame Value="1" KeyTime="0:0:0.3"/>
-                                                <EasingDoubleKeyFrame Value="1" KeyTime="0:0:1.6"/>
-                                                <EasingDoubleKeyFrame Value="0" KeyTime="0:0:1.85"/>
-                                            </DoubleAnimationUsingKeyFrames>
-                                            <ThicknessAnimationUsingKeyFrames Storyboard.TargetProperty="Margin">
-                                                <LinearThicknessKeyFrame Value="10,0,0,10" KeyTime="0:0:0.15"/>
-                                                <LinearThicknessKeyFrame Value="10,0,0,15" KeyTime="0:0:0.25"/>
-                                                <LinearThicknessKeyFrame Value="10,0,0,10" KeyTime="0:0:0.3"/>
-                                                <LinearThicknessKeyFrame Value="10,0,0,10" KeyTime="0:0:1.7"/>
-                                                <LinearThicknessKeyFrame Value="10,0,0,-45" KeyTime="0:0:1.85"/>
-                                            </ThicknessAnimationUsingKeyFrames>
-                                        </Storyboard>
-                                    </BeginStoryboard>
-                                </Trigger.EnterActions>
-                            </Trigger>
-                        </Style.Triggers>
-                    </Style>
-                </Custom:CNotification.Style>
-            </Custom:CNotification>
-            <Custom:CNotification x:Name="BuildUploadNotification" Visibility="Collapsed" Margin="10,0,0,0" Text="{Binding XPath=/Strings/Client/Notifications/String[@ID\=\'MESSAGE_BUILD_UPLOADED\']/@Name}" NIcon="pack://siteoforigin:,,,/HunterPie.Resources/Monsters/Icons/em116_00.png" HorizontalAlignment="Left" ShowTime="15" OnFirstBttnClick="OnCopyToClipboardClick" OnSecondBttnClick="OnOpenInBrowserClick" FirstButtonImage="{StaticResource ICON_COPY}" SecondButtonImage="{StaticResource ICON_LINK}" FirstButtonText="{Binding XPath=/Strings/Client/Settings/String[@ID\=\'STATIC_COPYCLIPBOARD\']/@Name}" SecondButtonText="{Binding XPath=/Strings/Client/Notifications/String[@ID\=\'STATIC_OPENDEFAULTBROWSER\']/@Name}" >
-                <Custom:CNotification.Style>
-                    <Style TargetType="Custom:CNotification">
-                        <Style.Triggers>
-                            <Trigger Property="IsVisible" Value="True">
-                                <Trigger.EnterActions>
-                                    <BeginStoryboard>
-                                        <Storyboard>
-                                            <DoubleAnimationUsingKeyFrames Storyboard.TargetProperty="Opacity">
-                                                <EasingDoubleKeyFrame Value="0" KeyTime="0:0:0.0"/>
-                                                <EasingDoubleKeyFrame Value="1" KeyTime="0:0:0.3"/>
-                                                <EasingDoubleKeyFrame Value="1" KeyTime="0:0:14.6"/>
-                                                <EasingDoubleKeyFrame Value="0" KeyTime="0:0:14.85"/>
-                                            </DoubleAnimationUsingKeyFrames>
-                                            <ThicknessAnimationUsingKeyFrames Storyboard.TargetProperty="Margin">
-                                                <LinearThicknessKeyFrame Value="10,0,0,10" KeyTime="0:0:0.15"/>
-                                                <LinearThicknessKeyFrame Value="10,0,0,15" KeyTime="0:0:0.25"/>
-                                                <LinearThicknessKeyFrame Value="10,0,0,10" KeyTime="0:0:0.3"/>
-                                                <LinearThicknessKeyFrame Value="10,0,0,10" KeyTime="0:0:14.7"/>
-                                                <LinearThicknessKeyFrame Value="10,0,0,-45" KeyTime="0:0:14.85"/>
-                                            </ThicknessAnimationUsingKeyFrames>
-                                        </Storyboard>
-                                    </BeginStoryboard>
-                                </Trigger.EnterActions>
-                            </Trigger>
-                        </Style.Triggers>
-                    </Style>
-                </Custom:CNotification.Style>
-            </Custom:CNotification>
-        </StackPanel>
+        <StackPanel x:Name="NotificationsPanel" VerticalAlignment="Bottom" HorizontalAlignment="Left"/>
     </Grid>
 </Window>

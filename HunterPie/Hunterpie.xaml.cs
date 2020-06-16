@@ -15,12 +15,19 @@ using HunterPie.GUI;
 using HunterPie.GUIControls;
 using HunterPie.Logger;
 using HunterPie.Core.Integrations.DataExporter;
+using HunterPie.Core.Definitions;
+using Presence = HunterPie.Core.Integrations.Discord.Presence;
+using HunterPie.GUIControls.Custom_Controls;
+using System.Windows.Media;
 
 namespace HunterPie {
     /// <summary>
     /// HunterPie main window logic;
     /// </summary>
     public partial class Hunterpie : Window {
+        // TODO: Refactor all this messy code
+
+
         // Classes
         TrayIcon TrayIcon;
         Game MonsterHunter = new Game();
@@ -31,11 +38,19 @@ namespace HunterPie {
         bool IsUpdating = true;
 
         // HunterPie version
-        const string HUNTERPIE_VERSION = "1.0.3.92";
+        const string HUNTERPIE_VERSION = "1.0.3.93";
 
         // Helpers
         IntPtr _windowHandle;
         HwndSource _source;
+
+        public bool IsPlayerLoggedOn
+        {
+            get { return (bool)GetValue(IsPlayerLoggedOnProperty); }
+            set { SetValue(IsPlayerLoggedOnProperty, value); }
+        }
+        public static readonly DependencyProperty IsPlayerLoggedOnProperty =
+            DependencyProperty.Register("IsPlayerLoggedOn", typeof(bool), typeof(Hunterpie));
 
         public Hunterpie() {
 
@@ -45,6 +60,8 @@ namespace HunterPie {
             }
 
             AppDomain.CurrentDomain.UnhandledException += ExceptionLogger;
+
+            IsPlayerLoggedOn = false;
 
             SetDPIAwareness();
 
@@ -82,9 +99,6 @@ namespace HunterPie {
             // Initializes the rest of HunterPie
             LoadData();
             Debugger.Warn(GStrings.GetLocalizationByXPath("/Console/String[@ID='MESSAGE_HUNTERPIE_INITIALIZED']"));
-
-            BUTTON_UPLOADBUILD.IsEnabled = false;
-            BUTTON_UPLOADBUILD.Opacity = 0.5;
 
             SetHotKeys();
             StartEverything();
@@ -411,7 +425,19 @@ namespace HunterPie {
             GameOverlay?.GlobalSettingsEventHandler(source, e);
             Dispatcher.BeginInvoke(System.Windows.Threading.DispatcherPriority.ApplicationIdle, new Action(() => {
                 // Only shows notification if HunterPie is visible
-                if (this.IsVisible) this.HunterPieNotify.ShowNotification();
+                if (IsVisible)
+                {
+                    CNotification notification = new CNotification()
+                    {
+                        Text = GStrings.GetLocalizationByXPath("/Notifications/String[@ID='STATIC_SETTINGS_LOAD']"),
+                        FirstButtonVisibility = Visibility.Collapsed,
+                        SecondButtonVisibility = Visibility.Collapsed,
+                        NIcon = FindResource("ICON_CHECKED") as ImageSource,
+                        ShowTime = 11
+                    };
+                    NotificationsPanel.Children.Add(notification);
+                    notification.ShowNotification();
+                }
                 Settings.RefreshSettingsUI();
             }));
         }
@@ -423,6 +449,7 @@ namespace HunterPie {
             MonsterHunter.Player.OnCharacterLogin += OnLogin;
             MonsterHunter.Player.OnCharacterLogout += OnLogout;
             MonsterHunter.Player.OnSessionChange += OnSessionChange;
+            MonsterHunter.Player.OnClassChange += OnClassChange;
         }
 
         private void UnhookGameEvents()
@@ -431,6 +458,7 @@ namespace HunterPie {
             MonsterHunter.Player.OnCharacterLogin -= OnLogin;
             MonsterHunter.Player.OnCharacterLogout -= OnLogout;
             MonsterHunter.Player.OnSessionChange -= OnSessionChange;
+            MonsterHunter.Player.OnClassChange -= OnClassChange;
         }
 
         private void ExportGameData()
@@ -445,7 +473,8 @@ namespace HunterPie {
                     MR = MonsterHunter.Player.MasterRank,
                     BuildURL = Honey.LinkStructureBuilder(MonsterHunter.Player.GetPlayerGear()),
                     Session = MonsterHunter.Player.SessionID,
-                    SteamSession = sSession
+                    SteamSession = sSession,
+                    Playtime = MonsterHunter.Player.PlayTime
                 };
                 dataExporter.ExportData(playerData);
             }
@@ -471,19 +500,23 @@ namespace HunterPie {
 
         public void OnLogin(object source, EventArgs e) {
             Debugger.Log($"Logged on {MonsterHunter.Player.Name}");
-            Dispatcher.BeginInvoke(System.Windows.Threading.DispatcherPriority.Background, new Action(() => {
-                BUTTON_UPLOADBUILD.IsEnabled = true;
-                BUTTON_UPLOADBUILD.Opacity = 1;
+            Dispatcher.BeginInvoke(System.Windows.Threading.DispatcherPriority.Render, new Action(() => {
+                IsPlayerLoggedOn = true;
             }));
             ExportGameData();
         }
 
         public void OnLogout(object source, EventArgs e) {
-            Dispatcher.BeginInvoke(System.Windows.Threading.DispatcherPriority.Background, new Action(() => {
-                BUTTON_UPLOADBUILD.Opacity = 0.5;
-                BUTTON_UPLOADBUILD.IsEnabled = false;
+            Dispatcher.BeginInvoke(System.Windows.Threading.DispatcherPriority.Render, new Action(() => {
+                IsPlayerLoggedOn = false;
             }));
         }
+
+        private void OnClassChange(object source, EventArgs args)
+        {
+            ExportGameData();
+        }
+
 
         public void OnGameStart(object source, EventArgs e) {
             // Create game instances
@@ -654,21 +687,77 @@ namespace HunterPie {
 
         private void OnChangelogButtonClick(object sender, MouseButtonEventArgs e) => OpenChangelog();
 
-        private void OnUploadBuildButtonClick(object sender, MouseButtonEventArgs e) => BuildUploadNotification.ShowNotification();
+        private void OnUploadBuildButtonClick(object sender, MouseButtonEventArgs e)
+        {
+            CNotification notification = new CNotification()
+            {
+                Text = GStrings.GetLocalizationByXPath("/Notifications/String[@ID='MESSAGE_BUILD_UPLOADED']"),
+                NIcon = FindResource("ICON_BUILD") as ImageSource,
+                FirstButtonImage = FindResource("ICON_COPY") as ImageSource,
+                FirstButtonText = GStrings.GetLocalizationByXPath("/Settings/String[@ID='STATIC_COPYCLIPBOARD']"),
+                FirstButtonVisibility = Visibility.Visible,
+                SecondButtonImage = FindResource("ICON_LINK") as ImageSource,
+                SecondButtonText = GStrings.GetLocalizationByXPath("/Notifications/String[@ID='STATIC_OPENDEFAULTBROWSER']"),
+                SecondButtonVisibility = Visibility.Visible,
+                Callback1 = new Action(() =>
+                {
+                    string BuildLink = Honey.LinkStructureBuilder(MonsterHunter.Player.GetPlayerGear(), true);
+                    Clipboard.SetData(DataFormats.Text, BuildLink);
+                }),
+                Callback2 = new Action(() =>
+                {
+                    string BuildLink = Honey.LinkStructureBuilder(MonsterHunter.Player.GetPlayerGear(), true);
+                    Process.Start(BuildLink);
+                }),
+                ShowTime = 11
+            };
+            NotificationsPanel.Children.Add(notification);
+            notification.ShowNotification();
+        }
+
+        private void OnExportGearButtonClick(object sender, MouseButtonEventArgs e)
+        {
+            sItem[] decoration = MonsterHunter.Player.GetDecorationsFromStorage();
+            sGear[] gears = MonsterHunter.Player.GetGearFromStorage();
+
+            string exported = Honey.ExportDecorationsToHoney(decoration, gears);
+
+            if (dataExporter.ExportCustomData("Decorations-HoneyHuntersWorld.txt", exported))
+            {
+                Debugger.Warn("Exported decorations to ./DataExport/Decorations-HoneyHuntersWorld.txt!");
+            } else
+            {
+                Debugger.Error("Failed to export decorations. Make sure HunterPie has permission to create/write to files.");
+            }
+
+            exported = Honey.ExportCharmsToHoney(gears);
+            if (dataExporter.ExportCustomData("Charms-HoneyHuntersWorld.txt", exported))
+            {
+                Debugger.Warn("Exported charms to ./DataExport/Charms-HoneyHuntersWorld.txt!");
+            }
+            else
+            {
+                Debugger.Error("Failed to export charms. Make sure HunterPie has permission to create/write to files.");
+            }
+            CNotification notification = new CNotification()
+            {
+                NIcon = FindResource("ICON_DECORATION") as ImageSource,
+                Text = GStrings.GetLocalizationByXPath("/Notifications/String[@ID='MESSAGE_GEAR_EXPORTED']"),
+                FirstButtonImage = FindResource("ICON_LINK") as ImageSource,
+                FirstButtonText = GStrings.GetLocalizationByXPath("/Notifications/String[@ID='STATIC_OPENFOLDER']"),
+                FirstButtonVisibility = Visibility.Visible,
+                SecondButtonVisibility = Visibility.Collapsed,
+                ShowTime = 11,
+                Callback1 = new Action(() =>
+                {
+                    Process.Start(dataExporter.ExportPath);
+                })
+            };
+            NotificationsPanel.Children.Add(notification);
+            notification.ShowNotification();
+        }
 
         private void OnDiscordButtonClick(object sender, MouseButtonEventArgs e) => Process.Start("https://discord.gg/5pdDq4Q");
-
-        private void OnCopyToClipboardClick(object sender, RoutedEventArgs e)
-        {
-            string BuildLink = Honey.LinkStructureBuilder(MonsterHunter.Player.GetPlayerGear(), true);
-            Clipboard.SetData(DataFormats.Text, BuildLink);
-        }
-
-        private void OnOpenInBrowserClick(object sender, RoutedEventArgs e)
-        {
-            string BuildLink = Honey.LinkStructureBuilder(MonsterHunter.Player.GetPlayerGear(), true);
-            Process.Start(BuildLink);
-        }
 
         private void OnLaunchGameButtonClick(object sender, RoutedEventArgs e) {
             LaunchGame();
@@ -693,6 +782,5 @@ namespace HunterPie {
             UserSettings.PlayerConfig.HunterPie.Height = (float)e.NewSize.Height;
         }
         #endregion
-
     }
 }

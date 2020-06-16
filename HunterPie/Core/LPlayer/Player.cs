@@ -7,37 +7,59 @@ using HunterPie.Memory;
 using HunterPie.Core.LPlayer.Jobs;
 using System.Collections.Generic;
 using HunterPie.Core.Definitions;
+using Classes = HunterPie.Core.Enums.Classes;
 
 namespace HunterPie.Core
 {
     public class Player
     {
+        
+        private long playerAddress = 0x0;
+        private int level;
+        private int zoneId = -1;
+        private byte weaponId;
+        private string sessionId;
+        private long classAddress;
 
-        // Private variables
-        private Int64 _playerAddress = 0x0;
-        private int _level;
-        private int _zoneId = -1;
-        private byte _weaponId;
-        private string _sessionId;
-        private Int64 classAddress;
-
-        // Game info
-        private readonly int[] PeaceZones = new int[10] { 0, 301, 302, 303, 305, 306, 501, 502, 503, 506 };
-        private readonly int[] _HBZones = new int[9] { 301, 302, 303, 305, 306, 501, 502, 503, 506 };
-
-        // Player info
-        private Int64 SESSION_ADDRESS;
-        private Int64 LEVEL_ADDRESS;
-        private Int64 EQUIPMENT_ADDRESS;
-        private Int64 PlayerStructAddress;
-        public Int64 PlayerAddress
+        private readonly int[] HarvestBoxZones = 
         {
-            get => _playerAddress;
+            301,
+            302,
+            303,
+            305,
+            306,
+            501,
+            502,
+            503,
+            506
+        };
+        private readonly int[] PeaceZones = 
+        {
+            0,
+            301,
+            302,
+            303,
+            305,
+            306,
+            501,
+            502,
+            503,
+            506
+        };
+
+        private long SESSION_ADDRESS { get; set; }
+        private long LEVEL_ADDRESS { get; set; }
+        private long EQUIPMENT_ADDRESS { get; set; }
+        private long PlayerStructAddress { get; set; }
+
+        public long PlayerAddress
+        {
+            get => playerAddress;
             set
             {
-                if (_playerAddress != value)
+                if (playerAddress != value)
                 {
-                    _playerAddress = value;
+                    playerAddress = value;
                     if (value != 0x0)
                     {
                         Debugger.Debug($"Found player address -> {value:X}");
@@ -46,76 +68,37 @@ namespace HunterPie.Core
                 }
             }
         }
-        public bool IsLoggedOn { get => _playerAddress != 0; }
+        public string Name { get; private set; }
         public int Level
-        { // Hunter Rank
-            get => _level;
+        {
+            get => level;
             set
             {
-                if (_level != value)
+                if (level != value)
                 {
-                    _level = value;
+                    level = value;
                     Dispatch(OnLevelChange);
                 }
             }
         }
         public int MasterRank { get; private set; }
-        public string Name { get; private set; }
-        public int ZoneID
-        {
-            get => _zoneId;
-            set
-            {
-                if (_zoneId != value)
-                {
-                    if ((_zoneId == -1 || PeaceZones.Contains(_zoneId)) && !PeaceZones.Contains(value)) Dispatch(OnPeaceZoneLeave);
-                    if (_HBZones.Contains(_zoneId) && !_HBZones.Contains(value)) Dispatch(OnVillageLeave);
-                    _zoneId = value;
-                    Dispatch(OnZoneChange);
-                    if (PeaceZones.Contains(value)) Dispatch(OnPeaceZoneEnter);
-                    if (_HBZones.Contains(value)) Dispatch(OnVillageEnter);
-                    if (value == 0 && LEVEL_ADDRESS != 0x0)
-                    {
-                        LEVEL_ADDRESS = 0x0;
-                        PlayerAddress = 0x0;
-                        Dispatch(OnCharacterLogout);
-                    }
-                }
-            }
-        }
-        public string ZoneName => GStrings.GetStageNameByID(ZoneID);
-        public int LastZoneID { get; private set; }
+        public int PlayTime { get; private set; }
+        public bool IsLoggedOn { get => playerAddress != 0; }
+        
         public byte WeaponID
         {
-            get => _weaponId;
+            get => weaponId;
             set
             {
-                if (_weaponId != value)
+                if (weaponId != value)
                 {
-                    _weaponId = value;
+                    weaponId = value;
                     Dispatch(OnWeaponChange);
                 }
             }
         }
         public string WeaponName => GStrings.GetWeaponNameByID(WeaponID);
-        public string SessionID
-        {
-            get => _sessionId;
-            set
-            {
-                if (_sessionId != value)
-                {
-                    _sessionId = value;
-                    GetSteamSession();
-                    Dispatch(OnSessionChange);
-                }
-            }
-        }
-        public bool InPeaceZone => PeaceZones.Contains(ZoneID);
-        public bool InHarvestZone => _HBZones.Contains(ZoneID);
-        public Int64 SteamSession { get; private set; }
-        public Int64 SteamID { get; private set; }
-        public Int64 ClassAddress
+        public long ClassAddress
         {
             get => classAddress;
             set
@@ -127,6 +110,51 @@ namespace HunterPie.Core
                 }
             }
         }
+
+        public int ZoneID
+        {
+            get => zoneId;
+            set
+            {
+                if (zoneId != value)
+                {
+                    if ((zoneId == -1 || PeaceZones.Contains(zoneId)) && !PeaceZones.Contains(value)) Dispatch(OnPeaceZoneLeave);
+                    if (HarvestBoxZones.Contains(zoneId) && !HarvestBoxZones.Contains(value)) Dispatch(OnVillageLeave);
+                    zoneId = value;
+                    Dispatch(OnZoneChange);
+                    if (PeaceZones.Contains(value)) Dispatch(OnPeaceZoneEnter);
+                    if (HarvestBoxZones.Contains(value)) Dispatch(OnVillageEnter);
+                    if (value == 0 && LEVEL_ADDRESS != 0x0)
+                    {
+                        LEVEL_ADDRESS = 0x0;
+                        PlayerAddress = 0x0;
+                        Dispatch(OnCharacterLogout);
+                    }
+                }
+            }
+        }
+        public string ZoneName => GStrings.GetStageNameByID(ZoneID);
+        public int LastZoneID { get; private set; }
+        public bool InPeaceZone => PeaceZones.Contains(ZoneID);
+        public bool InHarvestZone => HarvestBoxZones.Contains(ZoneID);
+
+        public string SessionID
+        {
+            get => sessionId;
+            set
+            {
+                if (sessionId != value)
+                {
+                    sessionId = value;
+                    GetSteamSession();
+                    Dispatch(OnSessionChange);
+                }
+            }
+        }
+        public long SteamSession { get; private set; }
+        public long SteamID { get; private set; }
+
+        Vector3 Position = new Vector3();
 
         // Party
         public Party PlayerParty = new Party();
@@ -142,11 +170,12 @@ namespace HunterPie.Core
         // Abnormalities
         public Abnormalities Abnormalities = new Abnormalities();
 
-        // Job data
+        #region Jobs
         public Greatsword Greatsword = new Greatsword();
         public DualBlades DualBlades = new DualBlades();
         public Longsword Longsword = new Longsword();
         public Hammer Hammer = new Hammer();
+        public Lance Lance = new Lance();
         public GunLance GunLance = new GunLance();
         public SwitchAxe SwitchAxe = new SwitchAxe();
         public ChargeBlade ChargeBlade = new ChargeBlade();
@@ -154,6 +183,7 @@ namespace HunterPie.Core
         public Bow Bow = new Bow();
         public LightBowgun LightBowgun = new LightBowgun();
         public HeavyBowgun HeavyBowgun = new HeavyBowgun();
+        #endregion
 
         // Threading
         private ThreadStart ScanPlayerInfoRef;
@@ -209,7 +239,7 @@ namespace HunterPie.Core
         */
         public GameStructs.Gear GetPlayerGear()
         {
-            Int64 PlayerGearBase = Scanner.READ_MULTILEVEL_PTR(Address.BASE + Address.EQUIPMENT_OFFSET, Address.Offsets.PlayerGearOffsets);
+            long PlayerGearBase = Scanner.READ_MULTILEVEL_PTR(Address.BASE + Address.EQUIPMENT_OFFSET, Address.Offsets.PlayerGearOffsets);
 
             // Helm
             GameStructs.Armor Helm = new GameStructs.Armor()
@@ -294,7 +324,7 @@ namespace HunterPie.Core
             return PlayerGear;
         }
 
-        private GameStructs.BowgunMod[] GetBowgunMods(Int64 BaseAddress)
+        private GameStructs.BowgunMod[] GetBowgunMods(long BaseAddress)
         {
             GameStructs.BowgunMod[] bowgunMods = new GameStructs.BowgunMod[5];
             for (int i = 0; i < 5; i++)
@@ -308,7 +338,7 @@ namespace HunterPie.Core
             return bowgunMods;
         }
 
-        private GameStructs.NewAugment[] GetWeaponNewAugments(Int64 BaseAddress)
+        private GameStructs.NewAugment[] GetWeaponNewAugments(long BaseAddress)
         {
             GameStructs.NewAugment[] NewAugments = new GameStructs.NewAugment[7];
             // New augments can be determined by their index, so we use their index as 
@@ -325,7 +355,7 @@ namespace HunterPie.Core
             return NewAugments;
         }
 
-        private GameStructs.AwakenedSkill[] GetWeaponAwakenedSkills(Int64 BaseAddress)
+        private GameStructs.AwakenedSkill[] GetWeaponAwakenedSkills(long BaseAddress)
         {
             GameStructs.AwakenedSkill[] AwakenedSkills = new GameStructs.AwakenedSkill[5];
             // Awakened skills slots are determined by their index, their value is a short that
@@ -341,7 +371,7 @@ namespace HunterPie.Core
             return AwakenedSkills;
         }
 
-        private GameStructs.CustomAugment[] GetCustomAugments(Int64 BaseAddress)
+        private GameStructs.CustomAugment[] GetCustomAugments(long BaseAddress)
         {
             GameStructs.CustomAugment[] CustomAugments = new GameStructs.CustomAugment[7];
             for (int AugIndex = 0; AugIndex < 7; AugIndex++)
@@ -356,7 +386,7 @@ namespace HunterPie.Core
             return CustomAugments;
         }
 
-        private GameStructs.Decoration[] GetDecorationsFromGear(Int64 BaseAddress, int GearIndex)
+        private GameStructs.Decoration[] GetDecorationsFromGear(long BaseAddress, int GearIndex)
         {
             GameStructs.Decoration[] Decorations = new GameStructs.Decoration[3];
             for (int DecorationIndex = 0; DecorationIndex < 3; DecorationIndex++)
@@ -370,7 +400,7 @@ namespace HunterPie.Core
             return Decorations;
         }
 
-        private GameStructs.Decoration[] GetWeaponDecorations(Int64 BaseAddress)
+        private GameStructs.Decoration[] GetWeaponDecorations(long BaseAddress)
         {
             GameStructs.Decoration[] Decorations = new GameStructs.Decoration[3];
             for (int DecorationIndex = 0; DecorationIndex < 3; DecorationIndex++)
@@ -384,7 +414,7 @@ namespace HunterPie.Core
             return Decorations;
         }
 
-        private GameStructs.Augment[] GetWeaponAugments(Int64 BaseAddress)
+        private GameStructs.Augment[] GetWeaponAugments(long BaseAddress)
         {
             GameStructs.Augment[] Augments = new GameStructs.Augment[3];
             for (int AugmentIndex = 0; AugmentIndex < 3; AugmentIndex++)
@@ -398,7 +428,7 @@ namespace HunterPie.Core
             return Augments;
         }
 
-        private GameStructs.Decoration[] GetMantleDecorations(Int64 BaseAddress)
+        private GameStructs.Decoration[] GetMantleDecorations(long BaseAddress)
         {
             GameStructs.Decoration[] Decorations = new GameStructs.Decoration[2];
             for (int DecorationIndex = 0; DecorationIndex < 2; DecorationIndex++)
@@ -410,6 +440,39 @@ namespace HunterPie.Core
                 Decorations[DecorationIndex] = dummy;
             }
             return Decorations;
+        }
+
+        public sItem[] GetDecorationsFromStorage()
+        {
+            // We have up to 500 different slots in our decoration storage box
+            sItem[] decorations = new sItem[500];
+
+            for (long sStart = 0; sStart < 0x10 * 500; sStart += 0x10)
+            {
+                decorations[sStart / 0x10] = Scanner.Win32.Read<sItem>(PlayerAddress + 0x3F098 + sStart);
+            }
+
+            return decorations;
+        }
+
+
+        public sGear[] GetGearFromStorage()
+        {
+            // We have up to 2509 different slots in our storage box
+            // And 127 in the mantle box?
+            List<sGear> gear = new List<sGear>();
+
+            for (long sStart = 0; sStart < 0x98 * 2509; sStart += 0x98)
+            {
+                gear.Add(Scanner.Win32.Read<sGear>(LEVEL_ADDRESS + 0x40FD8 + sStart));
+            }
+
+            for (long sStart = 0; sStart < 0x98 * 127; sStart += 0x98)
+            {
+                gear.Add(Scanner.Win32.Read<sGear>(LEVEL_ADDRESS + 0xE9258 + sStart));
+            }
+
+            return gear.ToArray();
         }
 
         #endregion
@@ -429,6 +492,7 @@ namespace HunterPie.Core
                     GetPlayerLevel();
                     GetPlayerMasterRank();
                     GetPlayerName();
+                    GetPlayerPlaytime();
                     GetWeaponId();
                     GetFertilizers();
                     GetArgosyData();
@@ -441,6 +505,7 @@ namespace HunterPie.Core
                     GetParty();
                     GetPlayerAbnormalities();
                     GetJobInformation();
+                    GetPlayerPosition();
                 }
                 GetSessionId();
                 GetEquipmentAddress();
@@ -452,8 +517,8 @@ namespace HunterPie.Core
 
         private bool GetPlayerAddress()
         {
-            Int64 AddressValue = Scanner.READ_MULTILEVEL_PTR(Address.BASE + Address.WEAPON_OFFSET, Address.Offsets.WeaponOffsets);
-            Int64 nextPlayer = 0x27E9F0;
+            long AddressValue = Scanner.READ_MULTILEVEL_PTR(Address.BASE + Address.WEAPON_OFFSET, Address.Offsets.WeaponOffsets);
+            long nextPlayer = 0x27E9F0;
             if (AddressValue > 0x0)
             {
                 string pName = Scanner.READ_STRING(AddressValue - 0x270, 32);
@@ -488,13 +553,22 @@ namespace HunterPie.Core
 
         private void GetPlayerName()
         {
-            Int64 Address = LEVEL_ADDRESS - 0x40;
+            long Address = LEVEL_ADDRESS - 0x40;
             Name = Scanner.READ_STRING(Address, 32);
+        }
+
+        private void GetPlayerPlaytime() => PlayTime = Scanner.Read<int>(LEVEL_ADDRESS + 0x10);
+
+        private void GetPlayerPosition()
+        {
+            long address = Scanner.READ_MULTILEVEL_PTR(Address.BASE + Address.EQUIPMENT_OFFSET, Address.Offsets.PlayerPositionOffsets);
+            sVector3 vector3 = Scanner.Win32.Read<sVector3>(address);
+            Position.Update(vector3);
         }
 
         private void GetZoneId()
         {
-            Int64 ZoneAddress = Scanner.READ_MULTILEVEL_PTR(Address.BASE + Address.ZONE_OFFSET, Address.Offsets.ZoneOffsets);
+            long ZoneAddress = Scanner.READ_MULTILEVEL_PTR(Address.BASE + Address.ZONE_OFFSET, Address.Offsets.ZoneOffsets);
             int zoneId = Scanner.Read<int>(ZoneAddress);
             if (zoneId != ZoneID)
             {
@@ -507,7 +581,7 @@ namespace HunterPie.Core
 
         private void GetWeaponId()
         {
-            Int64 Address = Memory.Address.BASE + Memory.Address.WEAPON_OFFSET;
+            long Address = Memory.Address.BASE + Memory.Address.WEAPON_OFFSET;
             Address = Scanner.READ_MULTILEVEL_PTR(Address, Memory.Address.Offsets.WeaponOffsets);
             PlayerStructAddress = Address;
             WeaponID = Scanner.Read<byte>(Address);
@@ -515,7 +589,7 @@ namespace HunterPie.Core
 
         private void GetSessionId()
         {
-            Int64 Address = Memory.Address.BASE + Memory.Address.SESSION_OFFSET;
+            long Address = Memory.Address.BASE + Memory.Address.SESSION_OFFSET;
             Address = Scanner.READ_MULTILEVEL_PTR(Address, Memory.Address.Offsets.SessionOffsets);
             SESSION_ADDRESS = Address;
             SessionID = Scanner.READ_STRING(SESSION_ADDRESS, 12);
@@ -530,7 +604,7 @@ namespace HunterPie.Core
 
         private void GetEquipmentAddress()
         {
-            Int64 Address = Memory.Address.BASE + Memory.Address.EQUIPMENT_OFFSET;
+            long Address = Memory.Address.BASE + Memory.Address.EQUIPMENT_OFFSET;
             Address = Scanner.READ_MULTILEVEL_PTR(Address, Memory.Address.Offsets.EquipmentOffsets);
             if (EQUIPMENT_ADDRESS != Address) Debugger.Debug($"New equipment address found -> 0x{Address:X}");
             EQUIPMENT_ADDRESS = Address;
@@ -538,34 +612,34 @@ namespace HunterPie.Core
 
         private void GetPrimaryMantle()
         {
-            Int64 Address = PlayerStructAddress + 0x34;
+            long Address = PlayerStructAddress + 0x34;
             int mantleId = Scanner.Read<int>(Address);
             PrimaryMantle.SetID(mantleId);
         }
 
         private void GetSecondaryMantle()
         {
-            Int64 Address = PlayerStructAddress + 0x34 + 0x4;
+            long Address = PlayerStructAddress + 0x34 + 0x4;
             int mantleId = Scanner.Read<int>(Address);
             SecondaryMantle.SetID(mantleId);
         }
 
         private void GetPrimaryMantleTimers()
         {
-            Int64 PrimaryMantleTimerFixed = (PrimaryMantle.ID * 4) + Address.timerFixed;
-            Int64 PrimaryMantleTimer = (PrimaryMantle.ID * 4) + Address.timerDynamic;
-            Int64 PrimaryMantleCdFixed = (PrimaryMantle.ID * 4) + Address.cooldownFixed;
-            Int64 PrimaryMantleCdDynamic = (PrimaryMantle.ID * 4) + Address.cooldownDynamic;
+            long PrimaryMantleTimerFixed = (PrimaryMantle.ID * 4) + Address.timerFixed;
+            long PrimaryMantleTimer = (PrimaryMantle.ID * 4) + Address.timerDynamic;
+            long PrimaryMantleCdFixed = (PrimaryMantle.ID * 4) + Address.cooldownFixed;
+            long PrimaryMantleCdDynamic = (PrimaryMantle.ID * 4) + Address.cooldownDynamic;
             PrimaryMantle.SetCooldown(Scanner.Read<float>(EQUIPMENT_ADDRESS + PrimaryMantleCdDynamic), Scanner.Read<float>(EQUIPMENT_ADDRESS + PrimaryMantleCdFixed));
             PrimaryMantle.SetTimer(Scanner.Read<float>(EQUIPMENT_ADDRESS + PrimaryMantleTimer), Scanner.Read<float>(EQUIPMENT_ADDRESS + PrimaryMantleTimerFixed));
         }
 
         private void GetSecondaryMantleTimers()
         {
-            Int64 SecondaryMantleTimerFixed = (SecondaryMantle.ID * 4) + Address.timerFixed;
-            Int64 SecondaryMantleTimer = (SecondaryMantle.ID * 4) + Address.timerDynamic;
-            Int64 SecondaryMantleCdFixed = (SecondaryMantle.ID * 4) + Address.cooldownFixed;
-            Int64 SecondaryMantleCdDynamic = (SecondaryMantle.ID * 4) + Address.cooldownDynamic;
+            long SecondaryMantleTimerFixed = (SecondaryMantle.ID * 4) + Address.timerFixed;
+            long SecondaryMantleTimer = (SecondaryMantle.ID * 4) + Address.timerDynamic;
+            long SecondaryMantleCdFixed = (SecondaryMantle.ID * 4) + Address.cooldownFixed;
+            long SecondaryMantleCdDynamic = (SecondaryMantle.ID * 4) + Address.cooldownDynamic;
             SecondaryMantle.SetCooldown(Scanner.Read<float>(EQUIPMENT_ADDRESS + SecondaryMantleCdDynamic), Scanner.Read<float>(EQUIPMENT_ADDRESS + SecondaryMantleCdFixed));
             SecondaryMantle.SetTimer(Scanner.Read<float>(EQUIPMENT_ADDRESS + SecondaryMantleTimer), Scanner.Read<float>(EQUIPMENT_ADDRESS + SecondaryMantleTimerFixed));
         }
@@ -573,8 +647,8 @@ namespace HunterPie.Core
         private void GetParty()
         {
             
-            Int64 address = Address.BASE + Address.PARTY_OFFSET;
-            Int64 PartyContainer = Scanner.READ_MULTILEVEL_PTR(address, Address.Offsets.PartyOffsets) - 0x22B7;
+            long address = Address.BASE + Address.PARTY_OFFSET;
+            long PartyContainer = Scanner.READ_MULTILEVEL_PTR(address, Address.Offsets.PartyOffsets) - 0x22B7;
             if (InPeaceZone)
             {
                 PlayerParty.LobbySize = Scanner.Read<int>(PartyContainer - 0xA961);
@@ -618,7 +692,7 @@ namespace HunterPie.Core
 
         private void GetQuestElapsedTime()
         {
-            Int64 TimerAddress = Scanner.READ_MULTILEVEL_PTR(Address.BASE + Address.ABNORMALITY_OFFSET, Address.Offsets.AbnormalityOffsets);
+            long TimerAddress = Scanner.READ_MULTILEVEL_PTR(Address.BASE + Address.ABNORMALITY_OFFSET, Address.Offsets.AbnormalityOffsets);
             float Timer = Scanner.Read<float>(TimerAddress + 0xB74);
             PlayerParty.ShowDPS = true;
             if (Timer > 0)
@@ -630,11 +704,11 @@ namespace HunterPie.Core
 
         private int GetPartyMemberDamage(int playerIndex)
         {
-            Int64 DPSAddress = Scanner.READ_MULTILEVEL_PTR(Address.BASE + Address.DAMAGE_OFFSET, Address.Offsets.DamageOffsets);
+            long DPSAddress = Scanner.READ_MULTILEVEL_PTR(Address.BASE + Address.DAMAGE_OFFSET, Address.Offsets.DamageOffsets);
             return Scanner.Read<int>(DPSAddress + (0x2A0 * playerIndex));
         }
 
-        private string GetPartyMemberName(Int64 NameAddress)
+        private string GetPartyMemberName(long NameAddress)
         {
             string PartyMemberName = Scanner.READ_STRING(NameAddress, 32);
             return PartyMemberName ?? PartyMemberName.Trim('\x00');
@@ -642,14 +716,14 @@ namespace HunterPie.Core
 
         private void GetFertilizers()
         {
-            Int64 Address = LEVEL_ADDRESS;
+            long Address = LEVEL_ADDRESS;
             for (int fertCount = 0; fertCount < 4; fertCount++)
             {
                 // Calculates memory address
-                Int64 FertilizerAddress = Address + Memory.Address.Offsets.FertilizersOffset + (0x10 * fertCount) - 0xC;
-                sHarvestBoxElement element = Scanner.Win32.Read<sHarvestBoxElement>(FertilizerAddress);
+                long FertilizerAddress = Address + Memory.Address.Offsets.FertilizersOffset + (0x10 * fertCount) - 0xC;
+                sItem element = Scanner.Win32.Read<sItem>(FertilizerAddress);
                 // Read memory
-                int FertilizerId = element.ID;
+                int FertilizerId = element.ItemId;
                 int FertilizerCount = element.Amount;
                 // update fertilizer data
                 Harvest.Box[fertCount].ID = FertilizerId;
@@ -658,13 +732,13 @@ namespace HunterPie.Core
             UpdateHarvestBoxCounter(Address + Memory.Address.Offsets.FertilizersOffset + (0x10 * 3) - 0xC);
         }
 
-        private void UpdateHarvestBoxCounter(Int64 LastFertAddress)
+        private void UpdateHarvestBoxCounter(long LastFertAddress)
         {
-            Int64 Address = LastFertAddress + Memory.Address.Offsets.HarvestBoxOffset;
+            long Address = LastFertAddress + Memory.Address.Offsets.HarvestBoxOffset;
             int counter = 0;
             for (long iAddress = Address; iAddress < Address + 0x320; iAddress += 0x10)
             {
-                sHarvestBoxElement element = Scanner.Win32.Read<sHarvestBoxElement>(iAddress);
+                sItem element = Scanner.Win32.Read<sItem>(iAddress);
                 if (element.Amount > 0)
                 {
                     counter++;
@@ -675,14 +749,14 @@ namespace HunterPie.Core
 
         private void GetSteamFuel()
         {
-            Int64 NaturalFuelAddress = LEVEL_ADDRESS + Address.Offsets.SteamFuelOffset;
+            long NaturalFuelAddress = LEVEL_ADDRESS + Address.Offsets.SteamFuelOffset;
             Activity.NaturalFuel = Scanner.Read<int>(NaturalFuelAddress);
             Activity.StoredFuel = Scanner.Read<int>(NaturalFuelAddress + 0x4);
         }
 
         private void GetArgosyData()
         {
-            Int64 ArgosyDaysAddress = LEVEL_ADDRESS + Address.Offsets.ArgosyOffset;
+            long ArgosyDaysAddress = LEVEL_ADDRESS + Address.Offsets.ArgosyOffset;
             byte ArgosyDays = Scanner.Read<byte>(ArgosyDaysAddress);
             bool ArgosyInTown = ArgosyDays < 250;
             if (ArgosyDays >= 250) { ArgosyDays = (byte)(byte.MaxValue - ArgosyDays + 1); }
@@ -691,7 +765,7 @@ namespace HunterPie.Core
 
         private void GetTailraidersData()
         {
-            Int64 TailraidersDaysAddress = LEVEL_ADDRESS + Address.Offsets.TailRaidersOffset;
+            long TailraidersDaysAddress = LEVEL_ADDRESS + Address.Offsets.TailRaidersOffset;
             byte TailraidersQuestsDone = Scanner.Read<byte>(TailraidersDaysAddress);
             bool isDeployed = TailraidersQuestsDone != 255;
             byte QuestsLeft = !isDeployed ? (byte)0 : (byte)(Activity.TailraidersMaxQuest - TailraidersQuestsDone);
@@ -817,7 +891,7 @@ namespace HunterPie.Core
 
         private void GetJobInformation()
         {
-            Int64 AbnormAddress = Scanner.READ_MULTILEVEL_PTR(Address.BASE + Address.ABNORMALITY_OFFSET, Address.Offsets.AbnormalityOffsets);
+            long AbnormAddress = Scanner.READ_MULTILEVEL_PTR(Address.BASE + Address.ABNORMALITY_OFFSET, Address.Offsets.AbnormalityOffsets);
             bool HasSafiBuff = Scanner.Read<int>(AbnormAddress + 0x954) >= 1;
             int SafiCounter = HasSafiBuff ? Scanner.Read<int>(AbnormAddress + 0x7A8) : -1;
             long weaponAddress = Scanner.READ_MULTILEVEL_PTR(Address.BASE + Address.WEAPON_MECHANICS_OFFSET, Address.Offsets.WeaponMechanicsOffsets);
@@ -841,6 +915,9 @@ namespace HunterPie.Core
                 case Classes.Hammer:
                     GetHammerInformation(weaponAddress);
                     Hammer.SafijiivaRegenCounter = SafiCounter;
+                    break;
+                case Classes.Lance:
+                    Lance.SafijiivaRegenCounter = SafiCounter;
                     break;
                 case Classes.GunLance:
                     GetGunLanceInformation(weaponAddress, AbnormAddress);
@@ -880,9 +957,11 @@ namespace HunterPie.Core
         private void GetDualBladesInformation(long weaponAddress)
         {
             bool inDemonMode = Scanner.Read<byte>(weaponAddress - 0x4) == 1;
+            bool isReducing = Scanner.Read<byte>(weaponAddress - 0x3) == 1;
             float demonGauge = Scanner.Read<float>(weaponAddress);
             DualBlades.InDemonMode = inDemonMode;
             DualBlades.DemonGauge = demonGauge;
+            DualBlades.IsReducing = isReducing;
         }
 
         private void GetLongswordInformation(long weaponAddress)
@@ -939,7 +1018,7 @@ namespace HunterPie.Core
 
         private void GetSwitchAxeInformation(long weaponAddress)
         {
-            Int64 buffAddress = Scanner.READ_MULTILEVEL_PTR(Address.BASE + Address.EQUIPMENT_OFFSET, Address.Offsets.PlayerGearOffsets);
+            long buffAddress = Scanner.READ_MULTILEVEL_PTR(Address.BASE + Address.EQUIPMENT_OFFSET, Address.Offsets.PlayerGearOffsets);
             float outerGauge = Scanner.Read<float>(weaponAddress - 0xC);
             float swordChargeTimer = Scanner.Read<float>(weaponAddress - 0x8);
             float innerGauge = Scanner.Read<float>(weaponAddress - 0x1C);

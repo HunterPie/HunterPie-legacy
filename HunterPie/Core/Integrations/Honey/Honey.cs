@@ -5,13 +5,17 @@ using System.Xml;
 using Debugger = HunterPie.Logger.Debugger;
 using GameStructs = HunterPie.Core.LPlayer.GameStructs;
 using System.IO;
+using HunterPie.Core.Definitions;
+using System.Collections.Generic;
+using HunterPie.Core.Enums;
 
 namespace HunterPie.Core {
     public class Honey {
 
         public static XmlDocument HoneyGearData;
         private static string HoneyLink = "https://honeyhunterworld.com/mhwbi/?";
-        // Only calls this if the person pressed the upload build button
+
+        // Only calls this when needed
         // since I don't want it to be allocated in memory 100% of the time
         public static void LoadHoneyGearData() {
             HoneyGearData = new XmlDocument();
@@ -21,8 +25,13 @@ namespace HunterPie.Core {
         public static void UnloadHoneyGearData() {
             HoneyGearData = null;
         }
-
-        // Integration with Honey Hunter World peepoHappy
+        
+        /// <summary>
+        /// Function to create player build link based on the in-game gear
+        /// </summary>
+        /// <param name="Build">Player build structure</param>
+        /// <param name="ShowErrors">If the function should print errors when they happen (optional)</param>
+        /// <returns>Link to the build in Honey Hunters World</returns>
         public static string LinkStructureBuilder(GameStructs.Gear Build, bool ShowErrors = false) {
 
             if (HoneyGearData == null) LoadHoneyGearData();
@@ -90,12 +99,13 @@ namespace HunterPie.Core {
                 }
             }
 
-            Debugger.Debug(LinkBuilder);
+            if (ShowErrors) Debugger.Debug(LinkBuilder);
 
             UnloadHoneyGearData();
 
             return LinkBuilder.ToString();
         }
+
 
         static string GetWeaponHoneyID(int WeaponType, int WeaponID, bool ShowErrors) {
             XmlNodeList nl = HoneyGearData.SelectSingleNode($"//Honey/Weapons").ChildNodes;
@@ -111,9 +121,11 @@ namespace HunterPie.Core {
             return node ?? "0";
         }
 
-        static string GetCharmLevel(int ID) {
+        static int GetCharmLevel(int ID)
+        {
             string node = HoneyGearData.SelectSingleNode($"//Honey/Gear/Charms/Charm[@ID='{ID}']/@Level")?.Value;
-            return node ?? "0";
+            int.TryParse(node, out int parsed);
+            return parsed;
         }
 
         static string GetNewAugment(int Index) {
@@ -204,11 +216,145 @@ namespace HunterPie.Core {
             return parsed;
         }
 
-        public static int GetDecorationHoneyIdByGameId(int id)
+        static int GetCharmHoneyIdByGameId(int id)
+        {
+            string decoHoneyID = id == int.MaxValue ? "0" : HoneyGearData.SelectSingleNode($"//Honey/Gear/Charms/Charm[@ID='{id}']/@HoneyID")?.Value;
+            int.TryParse(decoHoneyID, out int parsed);
+            return parsed;
+        }
+
+        private static int GetDecorationHoneyIdByGameId(int id)
         {
             string decoHoneyId = HoneyGearData.SelectSingleNode($"//Honey/Gear/Jewels/Jewel[@GameId='{id}']/@HoneyID")?.Value;
             int.TryParse(decoHoneyId, out int parsed);
             return parsed;
+        }
+
+        private static int GetDecorationGameIdById(int id)
+        {
+            string decoGameId = HoneyGearData.SelectSingleNode($"//Honey/Gear/Jewels/Jewel[@ID='{id}']/@GameId")?.Value;
+            int.TryParse(decoGameId, out int parsed);
+            return parsed;
+        }
+
+        private static int GetDecorationAmountLimit(int id, int amount)
+        {
+            string decoMax = HoneyGearData.SelectSingleNode($"//Honey/Gear/Jewels/Jewel[@HoneyID='{id}']/@Max")?.Value;
+            int.TryParse(decoMax, out int parsed);
+            return Math.Min(parsed, amount);
+        }
+
+        /// <summary>
+        /// Turns a sItem list into a decoration list string that can be used in Honey Hunters World
+        /// </summary>
+        /// <param name="decorations">sItem array with the decorations information</param>
+        /// <param name="gears">sGear array with the gear information</param>
+        /// <returns>string structure</returns>
+        public static string ExportDecorationsToHoney(sItem[] decorations, sGear[] gears)
+        {
+            
+            if (HoneyGearData == null) LoadHoneyGearData();
+            StringBuilder data = new StringBuilder();
+
+            // Merge decorations in box and decorations in gear
+            List<sItem> decoMerge = decorations.ToList<sItem>();
+
+            foreach (sGear gear in gears)
+            {
+                // Skip gear the player does not have anymore
+                if (gear.Category == uint.MaxValue) continue;
+
+                // Skip charms
+                if (gear.Category == 2) continue;
+                
+                if (gear.DecorationSlot1 != uint.MaxValue)
+                {
+                    decoMerge.Add(new sItem { Amount = 1, ItemId = GetDecorationGameIdById((int)gear.DecorationSlot1) });
+                }
+                if (gear.DecorationSlot2 != uint.MaxValue)
+                {
+                    decoMerge.Add(new sItem { Amount = 1, ItemId = GetDecorationGameIdById((int)gear.DecorationSlot2) });
+                }
+                if (gear.DecorationSlot3 != uint.MaxValue)
+                {
+                    decoMerge.Add(new sItem { Amount = 1, ItemId = GetDecorationGameIdById((int)gear.DecorationSlot3) });
+                }
+            }
+            decorations = decoMerge.ToArray<sItem>();
+            
+            // Parse decorations into a dictionary to make it easier to organize the string structure
+            Dictionary<int, int> sDecorations = new Dictionary<int, int>();
+            foreach (sItem deco in decorations)
+            {
+                int HoneyDecoId = GetDecorationHoneyIdByGameId(deco.ItemId);
+                if (sDecorations.ContainsKey(HoneyDecoId))
+                {
+                    sDecorations[HoneyDecoId] += deco.Amount;
+                } else
+                {
+                    sDecorations[HoneyDecoId] = deco.Amount;
+                }
+            }
+
+            // Now we build the decoration string structure
+            const int MaxDecoId = 401;
+            for (int i = 1; i <= MaxDecoId; i++)
+            {
+                data.Append($"{(i != 1 ? "," : "")}{(sDecorations.ContainsKey(i) ? GetDecorationAmountLimit(i, sDecorations[i]) : 0)}");
+            }
+            Debugger.Debug(data);
+            Debugger.Debug($"Total unique decorations found: {sDecorations.Count}");
+            UnloadHoneyGearData();
+            return data.ToString();
+        }
+
+        /// <summary>
+        /// Turns a sGear list into a charm list string that can be used in Honey Hunters World
+        /// </summary>
+        /// <param name="gear">sGear list with the charm information</param>
+        /// <returns>string structure</returns>
+        public static string ExportCharmsToHoney(sGear[] gear)
+        {
+            if (HoneyGearData == null) LoadHoneyGearData();
+
+            StringBuilder data = new StringBuilder();
+
+            // Filter based on only on charms
+            sGear[] charms = gear.Where(x => x.Type == (uint)GearType.Charm).ToArray();
+            
+            // Parse charms into a dictionary to make it easier to organize the string structure
+            Dictionary<int, int> sCharms = new Dictionary<int, int>();
+            foreach (sGear charm in charms)
+            {
+                // Check if player doesn't have that gear
+                if (charm.Category != 2) continue;
+
+                int HoneyCharmId = GetCharmHoneyIdByGameId(charm.Id);
+                int level = GetCharmLevel(charm.Id);
+                // unique charms have level 0, but we need them to become 1 in order to Honey recoginize them
+                level = level == 0 ? level + 1 : level;
+
+                if (sCharms.ContainsKey(HoneyCharmId))
+                {
+                    //If the level we find is actually larger, use that instead
+                    if (sCharms[HoneyCharmId] < level)
+                        sCharms[HoneyCharmId] = level;
+                }
+                else
+                {
+                    sCharms[HoneyCharmId] = level;
+                }
+            }
+
+            // Now we build the charm string structure
+            const int MaxCharmId = 108;
+            for (int i = 1; i <= MaxCharmId; i++)
+            {
+                data.Append($"{(i != 1 ? "," : "")}{(sCharms.ContainsKey(i) ? sCharms[i] : 0)}");
+            }
+            Debugger.Debug(data);
+            UnloadHoneyGearData();
+            return data.ToString();
         }
     }
 }

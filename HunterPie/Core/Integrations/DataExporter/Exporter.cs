@@ -1,11 +1,5 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.IO;
-using System.Linq;
-using System.Runtime.InteropServices;
-using System.Security.Policy;
-using System.Text;
-using System.Threading.Tasks;
 using Helpers = HunterPie.Core.Definitions.Helpers;
 
 namespace HunterPie.Core.Integrations.DataExporter
@@ -22,11 +16,12 @@ namespace HunterPie.Core.Integrations.DataExporter
         public string BuildURL;
         public string Session;
         public string SteamSession;
+        public int Playtime;
     }
 
     public class Exporter
     {
-        private readonly string ExportPath = Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "DataExport");
+        public readonly string ExportPath = Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "DataExport");
 
         public Exporter()
         {
@@ -45,6 +40,24 @@ namespace HunterPie.Core.Integrations.DataExporter
                 return true;
             } catch { return false; }
             
+        }
+
+        /// <summary>
+        /// Function to export custom data to the ExportedData folder
+        /// </summary>
+        /// <param name="path">Relative path to the file</param>
+        /// <param name="data">File content to be exported</param>
+        /// <returns>True if the export was successful, false if not</returns>
+        public bool ExportCustomData(string path, string data)
+        {
+            string filepath = Path.Combine(ExportPath, path);
+
+            try
+            {
+                File.WriteAllText(filepath, data);
+                return true;
+            }
+            catch { return false; };
         }
     }
 }
