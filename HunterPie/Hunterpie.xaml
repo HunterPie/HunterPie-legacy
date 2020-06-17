@@ -1,9 +1,7 @@
-﻿<Window
-        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+﻿<Window xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-        xmlns:Custom="clr-namespace:HunterPie.GUIControls.Custom_Controls"
         x:Name="window" x:Class="HunterPie.Hunterpie"
         mc:Ignorable="d"
         Title="HunterPie" d:DesignHeight="592" d:DesignWidth="1000" MinWidth="800" MinHeight="500" WindowStyle="None" Closing="OnWindowClosing" AllowsTransparency="True" BorderBrush="#7F000000" BorderThickness="1" Background="{x:Null}" ResizeMode="CanResize" SizeChanged="OnWindowSizeChange" DataContext="{StaticResource Localization}">
@@ -12,7 +10,7 @@
                               CornerRadius="0"
                               GlassFrameThickness="5"
                               ResizeBorderThickness="5"
-                              UseAeroCaptionButtons="False" />
+                              UseAeroCaptionButtons="False"/>
     </WindowChrome.WindowChrome>
     <Window.Resources>
         <ResourceDictionary>
@@ -125,10 +123,11 @@
         <Grid x:Name="ConsolePanel" Margin="51,157,0,2"/>
         <Rectangle Height="130" VerticalAlignment="Top" Margin="0,22,-2,0" Fill="{StaticResource CONSOLE_HEADER_BACKGROUND}"/>
         <Rectangle Cursor="SizeAll" x:Name="WindowTopBar" Fill="{StaticResource CONSOLE_WINDOWBAR_BACKGROUND}" Height="22" VerticalAlignment="Top" MouseLeftButtonDown="OnWindowDrag" Margin="0,0,-2,0"/>
+        <Image Height="20" Width="20" Visibility="{Binding ElementName=window, Path=AdministratorIconVisibility}" ToolTip="HunterPie (Administrator)" Source="{StaticResource ICON_ADMINISTRATOR}" VerticalAlignment="Top" HorizontalAlignment="Left" Opacity="0.8" Margin="1,1,0,0"  />
 
         <!-- Top buttons -->
-        <Label x:Name="closeWindow" Content="✕" HorizontalAlignment="Right" VerticalAlignment="Top" Height="22" Width="25" Foreground="{StaticResource BUTTON_TOPBUTTON_FOREGROUND}" Padding="0,0,1,0" Cursor="Hand" MouseDown="OnCloseWindowButtonClick" FontSize="14" Template="{DynamicResource LabelButtonType}" OverridesDefaultStyle="True" Style="{Binding Mode=OneWay, Source={StaticResource LabelButtonType}}" VerticalContentAlignment="Center" Background="{StaticResource BUTTON_CLOSEWINDOW_BACKGROUND}" HorizontalContentAlignment="Center" />
-        <Label x:Name="minimizeWindow" Content="__" Margin="0,-7,25,0" Foreground="{StaticResource BUTTON_TOPBUTTON_FOREGROUND}" Padding="0" Cursor="Hand" FontSize="18" Background="{StaticResource BUTTON_TOPBUTTON_BACKGROUND}" MouseDown="OnMinimizeButtonClick" Template="{DynamicResource LabelButtonType}" HorizontalContentAlignment="Center" BorderThickness="0" VerticalContentAlignment="Center" HorizontalAlignment="Right" Width="28" Height="29" VerticalAlignment="Top"/>
+        <Label Content="✕" HorizontalAlignment="Right" VerticalAlignment="Top" Height="22" Width="25" Foreground="{StaticResource BUTTON_TOPBUTTON_FOREGROUND}" Padding="0,0,1,0" Cursor="Hand" MouseDown="OnCloseWindowButtonClick" FontSize="14" Template="{DynamicResource LabelButtonType}" OverridesDefaultStyle="True" Style="{Binding Mode=OneWay, Source={StaticResource LabelButtonType}}" VerticalContentAlignment="Center" Background="{StaticResource BUTTON_CLOSEWINDOW_BACKGROUND}" HorizontalContentAlignment="Center" />
+        <Label Content="__" Margin="0,-7,25,0" Foreground="{StaticResource BUTTON_TOPBUTTON_FOREGROUND}" Padding="0" Cursor="Hand" FontSize="18" Background="{StaticResource BUTTON_TOPBUTTON_BACKGROUND}" MouseDown="OnMinimizeButtonClick" Template="{DynamicResource LabelButtonType}" HorizontalContentAlignment="Center" BorderThickness="0" VerticalContentAlignment="Center" HorizontalAlignment="Right" Width="28" Height="29" VerticalAlignment="Top"/>
 
         <!-- Side bar -->
         <Grid HorizontalAlignment="Left" Width="50" Margin="0,152,0,0" Background="{StaticResource CONSOLE_SIDEBAR_BACKGROUND}" ClipToBounds="True">
@@ -217,8 +216,8 @@
         </Grid>
 
         <!-- Header  -->
-        <TextBlock x:Name="version_text" Text="Version: BETA 1.0.0.0" Background="{x:Null}" Foreground="{StaticResource CONSOLE_VERSIONTEXT_FOREGROUND}" Padding="0" Margin="0,131,10,0" RenderTransformOrigin="0.5,0.5" TextAlignment="Right" FontWeight="Medium" FontSize="14" Height="20" VerticalAlignment="Top" HorizontalAlignment="Right" Width="455"/>
-        <Button x:Name="launchGameButton" Margin="0,55,10,0" VerticalAlignment="Top" Height="46" BorderBrush="{x:Null}" Foreground="{StaticResource BUTTON_LAUNCHGAME_FOREGROUND}" FontFamily="Roboto" FontSize="18" Cursor="Hand" BorderThickness="1"  Template="{DynamicResource ButtonStyle}" Padding="0" FontWeight="Bold" HorizontalContentAlignment="Center" Click="OnLaunchGameButtonClick" Background="{StaticResource BUTTON_LAUNCHGAME_BACKGROUND}" HorizontalAlignment="Right" Width="242">
+        <TextBlock Text="{Binding ElementName=window, Path=Version}" Background="{x:Null}" Foreground="{StaticResource CONSOLE_VERSIONTEXT_FOREGROUND}" Padding="0" Margin="0,131,10,0" RenderTransformOrigin="0.5,0.5" TextAlignment="Right" FontWeight="Medium" FontSize="14" Height="20" VerticalAlignment="Top" HorizontalAlignment="Right" Width="455"/>
+        <Button Margin="0,55,10,0" VerticalAlignment="Top" Height="46" BorderBrush="{x:Null}" Foreground="{StaticResource BUTTON_LAUNCHGAME_FOREGROUND}" FontFamily="Roboto" FontSize="18" Cursor="Hand" BorderThickness="1"  Template="{DynamicResource ButtonStyle}" Padding="0" FontWeight="Bold" HorizontalContentAlignment="Center" Click="OnLaunchGameButtonClick" Background="{StaticResource BUTTON_LAUNCHGAME_BACKGROUND}" HorizontalAlignment="Right" Width="242">
             <Button.Content>
                 <Binding Mode="OneTime" XPath="Console/String[@ID='CONSOLE_LAUNCH']/@Name"/>
             </Button.Content>
