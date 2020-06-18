@@ -446,6 +446,7 @@ Gerade bei den Abnormalitäten / Statusveränderungen des Spielers gibt es mit (
       <String ID="CONSOLE_CONSOLE" Name="KONSOLE"/>
       <String ID="CONSOLE_SETTINGS" Name="EINSTELLUNGEN"/>
       <String ID="CONSOLE_UPLOADBUILD" Name="BUILD HOCHLADEN"/>
+	  <String ID="CONSOLE_EXPORTGEAR" Name="AUSRÜSTUNG EXPORTIEREN"/>
       <String ID="CONSOLE_CHANGELOG" Name="PATCH NOTES"/>
       <String ID="CONSOLE_DISCORD" Name="DISCORD"/>
       <String ID="CONSOLE_GITHUB" Name="GITHUB"/>
@@ -650,20 +651,25 @@ Gerade bei den Abnormalitäten / Statusveränderungen des Spielers gibt es mit (
       <String ID="STATIC_SECONDARY_SPEC_TOOL_POSITION_DESC" Name="Ändert die Position des sekundären Spezialgerät-Widgets."/>
 	  <!-- Class Widget -->
       <String ID="ENABLE_INSECT_GLAIVE_HELPER" Name="Aktiviere Insektenglefen Hilfe"/>
-      <String ID="ENABLE_INSECT_GLAIVE_HELPER_DESC" Name="Wenn aktiv, wird das Insektenglefen Widget angezeigt, sobald du diese Waffe ausrüstest."/>
+      <String ID="ENABLE_INSECT_GLAIVE_HELPER_DESC" Name="Wenn aktiv, wird das Insektenglefen Widget angezeigt, sobald du diese Waffenart ausrüstest."/>
       <String ID="ENABLE_CHARGE_BLADE_HELPER" Name="Aktiviere Energieklingen Hilfe"/>
-      <String ID="ENABLE_CHARGE_BLADE_HELPER_DESC" Name="Wenn aktiv, wird das Energieklingen Widget angezeigt, sobald du diese Waffe ausrüstest."/>
+      <String ID="ENABLE_CHARGE_BLADE_HELPER_DESC" Name="Wenn aktiv, wird das Energieklingen Widget angezeigt, sobald du diese Waffenart ausrüstest."/>
       <String ID="ENABLE_SWITCH_AXE_HELPER" Name="Aktiviere Morph-Axt Hilfe"/>
-      <String ID="ENABLE_SWITCH_AXE_HELPER_DESC" Name="Wenn aktiv, wird das Morph-Axt Widget angezeigt, sobald du diese Waffe ausrüstest."/>
+      <String ID="ENABLE_SWITCH_AXE_HELPER_DESC" Name="Wenn aktiv, wird das Morph-Axt Widget angezeigt, sobald du diese Waffenart ausrüstest."/>
       <String ID="ENABLE_GUN_LANCE_HELPER" Name="Aktiviere Gewehrlanzen Hilfe"/>
-      <String ID="ENABLE_GUN_LANCE_HELPER_DESC" Name="Wenn aktiv, wird das Gewehrlanzen Widget angezeigt, sobald du diese Waffe ausrüstest."/>
+      <String ID="ENABLE_GUN_LANCE_HELPER_DESC" Name="Wenn aktiv, wird das Gewehrlanzen Widget angezeigt, sobald du diese Waffenart ausrüstest."/>
 	  <String ID="ENABLE_LONGSWORD_HELPER" Name="Aktiviere Langschwert Hilfe"/>
-      <String ID="ENABLE_LONGSWORD_HELPER_DESC" Name="Wenn aktiv, wird das Langschwert Widget angezeigt, sobald du diese Waffe ausrüstest."/>
+      <String ID="ENABLE_LONGSWORD_HELPER_DESC" Name="Wenn aktiv, wird das Langschwert Widget angezeigt, sobald du diese Waffenart ausrüstest."/>
 	  <String ID="ENABLE_BOW_HELPER" Name="Aktiviere Bogen Hilfe"/>
-      <String ID="ENABLE_BOW_HELPER_DESC" Name="Wenn aktiv, wird das Bogen Widget angezeigt, sobald du diese Waffe ausrüstest."/>
+      <String ID="ENABLE_BOW_HELPER_DESC" Name="Wenn aktiv, wird das Bogen Widget angezeigt, sobald du diese Waffenart ausrüstest."/>
       <String ID="ENABLE_HAMMER_HELPER" Name="Aktiviere Hammer Hilfe"/>
-      <String ID="ENABLE_HAMMER_HELPER_DESC" Name="Wenn aktiv, wird das Hammer Widget angezeigt, sobald du diese Waffe ausrüstest."/>
-      <String ID="STATIC_CLASSES_BETA_WARNING" Name="Achtung: Die Klassenhelfer Widgets sind noch in der Entwicklung und weitere Klassen werden folgen. Jeder Klassenhelfer hat eigene Einstellungen, also ist es möglich die Positionen der Widgets für die jeweilge Klasse anzupassen. Verwende den Design Modus um dieses Widget zu skalieren und zu ebwegen."/> 
+      <String ID="ENABLE_HAMMER_HELPER_DESC" Name="Wenn aktiv, wird das Hammer Widget angezeigt, sobald du diese Waffenart ausrüstest."/>
+      <String ID="ENABLE_DUALBLADES_HELPER" Name="Aktiviere Doppelklingen Hilfe"/>
+      <String ID="ENABLE_DUALBLADES_HELPER_DESC" Name="Wenn aktiv, wird das Doppelklingen Widget angezeigt, sobald du diese Waffenart ausrüstest."/>
+      <String ID="ENABLE_LANCE_HELPER" Name="Aktiviere Lanzen Hilfe"/>
+      <String ID="ENABLE_LANCE_HELPER_DESC" Name="Wenn aktiv, wird das Lanzen Widget angezeigt, sobald du diese Waffenart ausrüstest."/>
+      
+	  <String ID="STATIC_CLASSES_BETA_WARNING" Name="Achtung: Die Klassenhelfer Widgets sind noch in der Entwicklung und weitere Klassen werden folgen. Jeder Klassenhelfer hat eigene Einstellungen, also ist es möglich die Positionen der Widgets für die jeweilge Klasse anzupassen. Verwende den Design Modus um dieses Widget zu skalieren und zu ebwegen."/> 
       <!-- Links -->
       <String ID="STATIC_HUNTERPIE_WIKI" Name="Dokumentation"/>
       <String ID="STATIC_HUNTERPIE_WIKI_DESC" Name="HunterPie Offizielle Dokumentation."/>
@@ -713,7 +719,9 @@ Gerade bei den Abnormalitäten / Statusveränderungen des Spielers gibt es mit (
       <String ID="STATIC_REJECT" Name="Ablehnen"/>
       <String ID="STATIC_SETTINGS_LOAD" Name="Einstellungen geladen"/>
       <String ID="STATIC_OPENDEFAULTBROWSER" Name="Im Browser öffnen"/>
+	  <String ID="STATIC_OPENFOLDER" Name="Ordner öffnen"/>
       <String ID="MESSAGE_BUILD_UPLOADED" Name="Build wurde zu Honey Hunters World hochgeladen!"/>
+	  <String ID="MESSAGE_GEAR_EXPORTED" Name="Ausrüstung wurde nach ./DataExport exportiert!"/>
     </Notifications>
     <RichPresence>
       <String ID="RPC_DESCRIPTION_IN_MAIN_MENU" Name="Im Hauptmenü"/>
