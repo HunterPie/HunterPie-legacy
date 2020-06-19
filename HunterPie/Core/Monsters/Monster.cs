@@ -285,20 +285,20 @@ namespace HunterPie.Core {
                 HPPercentage = 1f;
                 return;
             }
-            Int64 MonsterHPComponent = Scanner.Read<long>(this.MonsterAddress + Address.Offsets.MonsterHPComponentOffset);
+            Int64 MonsterHPComponent = Scanner.Read<long>(MonsterAddress + Address.Offsets.MonsterHPComponentOffset);
             Int64 MonsterTotalHPAddress = MonsterHPComponent + 0x60;
             Int64 MonsterCurrentHPAddress = MonsterTotalHPAddress + 0x4;
             float f_TotalHP = Scanner.Read<float>(MonsterTotalHPAddress);
             float f_CurrentHP = Scanner.Read<float>(MonsterCurrentHPAddress);
             
             if (f_CurrentHP <= f_TotalHP && f_CurrentHP > 0) {
-                this.TotalHP = f_TotalHP;
-                this.CurrentHP = f_CurrentHP;
-                this.HPPercentage = f_CurrentHP / f_TotalHP == 0 ? 1 : f_CurrentHP / f_TotalHP;
+                TotalHP = f_TotalHP;
+                CurrentHP = f_CurrentHP;
+                HPPercentage = f_CurrentHP / f_TotalHP == 0 ? 1 : f_CurrentHP / f_TotalHP;
             } else {
-                this.TotalHP = 0.0f;
-                this.CurrentHP = 0.0f;
-                this.HPPercentage = 1f;
+                TotalHP = 0.0f;
+                CurrentHP = 0.0f;
+                HPPercentage = 1f;
             }
         }
 
@@ -312,23 +312,27 @@ namespace HunterPie.Core {
                     return;
                 }
                 MonsterId = MonsterID.LastOrDefault()?.Trim('\x00');
-                GetMonsterHp(MonsterId);
                 if (MonsterId.StartsWith("em")) {
-
+                    
                     GameId = Scanner.Read<int>(MonsterAddress + Address.Offsets.MonsterGameIDOffset);
 
                     if (!MonsterData.MonstersInfo.ContainsKey(GameId))
                     {
                         //Debugger.Debug($"Not mapped monster found: Em = {MonsterId} | ID = {GameId}");
                         Id = null;
+                        GetMonsterHp(null);
                         return;
                     }
 
                     MonsterId = MonsterInfo.Em;
+                    GetMonsterHp(MonsterId);
 
                     if (MonsterId != Id && CurrentHP > 0) Debugger.Debug($"Found new monster ID: {Scanner.READ_STRING(NamePtr + 0x0c, 64).Replace("\x00", "")} #{MonsterNumber} @ 0x{MonsterAddress:X}");
                     Id = MonsterId;
                     return;
+                } else
+                {
+                    GetMonsterHp(null);
                 }
             }
             Id = null;

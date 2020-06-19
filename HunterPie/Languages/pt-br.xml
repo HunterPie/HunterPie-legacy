@@ -441,6 +441,7 @@
       <String ID="CONSOLE_CONSOLE" Name="CONSOLE"/>
       <String ID="CONSOLE_SETTINGS" Name="OPÇÕES"/>
       <String ID="CONSOLE_UPLOADBUILD" Name="PUBLICAR BUILD"/>
+      <String ID="CONSOLE_EXPORTGEAR" Name="EXPORTAR EQUIP."/>
       <String ID="CONSOLE_CHANGELOG" Name="ATUALIZAÇÕES"/>
       <String ID="CONSOLE_DISCORD" Name="DISCORD"/>
       <String ID="CONSOLE_GITHUB" Name="GITHUB"/>
@@ -658,6 +659,10 @@
       <String ID="ENABLE_BOW_HELPER_DESC" Name="Se habilitado, o widget do Arco será mostrado sempre que você equipar o Arco."/>
       <String ID="ENABLE_HAMMER_HELPER" Name="Habilitar widget do Martelo"/>
       <String ID="ENABLE_HAMMER_HELPER_DESC" Name="Se habilitado, o widget do Martelo será mostrado sempre que você equipar o Martelo."/>
+      <String ID="ENABLE_DUALBLADES_HELPER" Name="Habilitar widget das Lâminas Duplas"/>
+      <String ID="ENABLE_DUALBLADES_HELPER_DESC" Name="Se habilitado, o widget das Lâminas Duplas será mostrado sempre que você equipar as Lâminas Duplas."/>
+      <String ID="ENABLE_LANCE_HELPER" Name="Habilitar widget da Lança"/>
+      <String ID="ENABLE_LANCE_HELPER_DESC" Name="Se habilitado, o widget da Lança será mostrado sempre que você equipar a Lança."/>
       <String ID="STATIC_CLASSES_BETA_WARNING" Name="Atenção: O auxiliador de classe ainda está em desenvolvimento e mais classes serão suportadas no futuro. Cada classe tem sua própria configuração, então você pode ter diferentes posições para cada classe. Use o Modo de Design para aumentar, diminuir ou mover este widget."/>
       <!-- Links -->
       <String ID="STATIC_HUNTERPIE_WIKI" Name="Documentação"/>
@@ -708,7 +713,9 @@
       <String ID="STATIC_REJECT" Name="Rejeitar"/>
       <String ID="STATIC_SETTINGS_LOAD" Name="Configurações carregadas"/>
       <String ID="STATIC_OPENDEFAULTBROWSER" Name="Abrir no Navegador"/>
+      <String ID="STATIC_OPENFOLDER" Name="Abrir Pasta"/>
       <String ID="MESSAGE_BUILD_UPLOADED" Name="Build publicada no Honey Hunters World!"/>
+      <String ID="MESSAGE_GEAR_EXPORTED" Name="Equipamento exportado em ./DataExport!"/>
     </Notifications>
     <RichPresence>
       <String ID="RPC_DESCRIPTION_IN_MAIN_MENU" Name="No Menu Principal"/>

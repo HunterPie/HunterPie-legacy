@@ -19,6 +19,7 @@ using HunterPie.Core.Definitions;
 using Presence = HunterPie.Core.Integrations.Discord.Presence;
 using HunterPie.GUIControls.Custom_Controls;
 using System.Windows.Media;
+using System.Security.Principal;
 
 namespace HunterPie {
     /// <summary>
@@ -52,6 +53,23 @@ namespace HunterPie {
         public static readonly DependencyProperty IsPlayerLoggedOnProperty =
             DependencyProperty.Register("IsPlayerLoggedOn", typeof(bool), typeof(Hunterpie));
 
+        public Visibility AdministratorIconVisibility
+        {
+            get { return (Visibility)GetValue(AdministratorIconVisibilityProperty); }
+            set { SetValue(AdministratorIconVisibilityProperty, value); }
+        }
+        public static readonly DependencyProperty AdministratorIconVisibilityProperty =
+            DependencyProperty.Register("AdministratorIconVisibility", typeof(Visibility), typeof(Hunterpie));
+
+        public string Version
+        {
+            get { return (string)GetValue(VersionProperty); }
+            set { SetValue(VersionProperty, value); }
+        }
+        public static readonly DependencyProperty VersionProperty =
+            DependencyProperty.Register("Version", typeof(string), typeof(Hunterpie));
+
+
         public Hunterpie() {
 
             if (CheckIfHunterPieOpen()) {
@@ -79,6 +97,8 @@ namespace HunterPie {
             LoadCustomTheme();
             Debugger.LoadNewColors();
 
+            AdministratorIconVisibility = IsRunningAsAdmin() ? Visibility.Visible : Visibility.Collapsed;
+
             InitializeComponent();
 
             OpenDebugger();
@@ -94,7 +114,7 @@ namespace HunterPie {
             IsUpdating = false;
             InitializeTrayIcon();
             // Update version text
-            this.version_text.Text = GStrings.GetLocalizationByXPath("/Console/String[@ID='CONSOLE_VERSION']").Replace("{HunterPie_Version}", HUNTERPIE_VERSION).Replace("{HunterPie_Branch}", UserSettings.PlayerConfig.HunterPie.Update.Branch);
+            Version = GStrings.GetLocalizationByXPath("/Console/String[@ID='CONSOLE_VERSION']").Replace("{HunterPie_Version}", HUNTERPIE_VERSION).Replace("{HunterPie_Branch}", UserSettings.PlayerConfig.HunterPie.Update.Branch);
 
             // Initializes the rest of HunterPie
             LoadData();
@@ -102,6 +122,13 @@ namespace HunterPie {
 
             SetHotKeys();
             StartEverything();
+        }
+
+        private bool IsRunningAsAdmin()
+        {
+            var winIdentity = WindowsIdentity.GetCurrent();
+            var principal = new WindowsPrincipal(winIdentity);
+            return principal.IsInRole(WindowsBuiltInRole.Administrator);
         }
 
         private void LoadData() {

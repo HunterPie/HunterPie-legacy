@@ -650,8 +650,6 @@
       <String ID="ENABLE_BOW_HELPER_DESC" Name="If enabled, the Bow helper will be visible whenever you equip an Bow."/>
       <String ID="ENABLE_HAMMER_HELPER" Name="Enable Hammer Helper"/>
       <String ID="ENABLE_HAMMER_HELPER_DESC" Name="If enabled, the Hammer helper will be visible whenever you equip an Hammer."/>
-      <String ID="ENABLE_HAMMER_HELPER" Name="Enable Hammer Helper"/>
-      <String ID="ENABLE_HAMMER_HELPER_DESC" Name="If enabled, the Hammer helper will be visible whenever you equip an Hammer."/>
       <String ID="ENABLE_DUALBLADES_HELPER" Name="Enable Dual Blades Helper"/>
       <String ID="ENABLE_DUALBLADES_HELPER_DESC" Name="If enabled, the Dual Blades helper will be visible whenever you equip Dual Blades."/>
       <String ID="ENABLE_LANCE_HELPER" Name="Enable Lance Helper"/>
