@@ -102,10 +102,10 @@ namespace HunterPie.GUI.Widgets
             MonsterName.Text = Monster.Name;
             // Update monster health
             MonsterHealthBar.MaxSize = Width * 0.7833333333333333;
-            MonsterHealthBar.UpdateBar(Monster.CurrentHP, Monster.TotalHP);
-            SetMonsterHealthBarText(Monster.CurrentHP, Monster.TotalHP);
+            MonsterHealthBar.UpdateBar(Monster.Health, Monster.MaxHealth);
+            SetMonsterHealthBarText(Monster.Health, Monster.MaxHealth);
 
-            if ((Monster.CurrentHP / Monster.TotalHP * 100) < Monster.CaptureThreshold) CapturableIcon.Visibility = Visibility.Visible;
+            if ((Monster.Health / Monster.MaxHealth * 100) < Monster.CaptureThreshold) CapturableIcon.Visibility = Visibility.Visible;
 
             // Monster stamina
             MonsterStaminaBar.MaxSize = Width - 72;
@@ -246,10 +246,10 @@ namespace HunterPie.GUI.Widgets
 
         private void OnMonsterUpdate(object source, MonsterUpdateEventArgs args) => Dispatch(() =>
         {
-            MonsterHealthBar.MaxHealth = args.TotalHP;
-            MonsterHealthBar.Health = args.CurrentHP;
-            SetMonsterHealthBarText(args.CurrentHP, args.TotalHP);
-            if ((args.CurrentHP / args.TotalHP * 100) < Context.CaptureThreshold) CapturableIcon.Visibility = Visibility.Visible;
+            MonsterHealthBar.MaxHealth = args.MaxHealth;
+            MonsterHealthBar.Health = args.Health;
+            SetMonsterHealthBarText(args.Health, args.MaxHealth);
+            if ((args.Health / args.MaxHealth * 100) < Context.CaptureThreshold) CapturableIcon.Visibility = Visibility.Visible;
             else { CapturableIcon.Visibility = Visibility.Collapsed; }
             if (UserSettings.PlayerConfig.Overlay.MonstersComponent.ShowMonsterBarMode == (byte)3)
             {
@@ -409,7 +409,7 @@ namespace HunterPie.GUI.Widgets
             }
             if (Context != null)
             {
-                SetMonsterHealthBarText(Context.CurrentHP, Context.TotalHP);
+                SetMonsterHealthBarText(Context.Health, Context.MaxHealth);
             }
         }
         #endregion
@@ -425,7 +425,7 @@ namespace HunterPie.GUI.Widgets
             // Monster Bar
             MonsterHealthBar.MaxSize = NewSize - 69;
             MonsterStaminaBar.MaxSize = NewSize - 72;
-            MonsterHealthBar.UpdateBar(Context.CurrentHP, Context.TotalHP);
+            MonsterHealthBar.UpdateBar(Context.Health, Context.MaxHealth);
             MonsterStaminaBar.UpdateBar(Context.Stamina, Context.MaxStamina);
         }
 

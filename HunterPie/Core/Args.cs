@@ -109,8 +109,8 @@ namespace HunterPie.Core {
         public string Name;
         public string ID;
         public string Crown;
-        public float CurrentHP;
-        public float TotalHP;
+        public float Health;
+        public float MaxHealth;
         public bool IsTarget;
         public Dictionary<string, int> Weaknesses;
 
@@ -118,23 +118,23 @@ namespace HunterPie.Core {
             this.Name = m.Name;
             this.ID = m.Id;
             this.Crown = m.Crown;
-            this.CurrentHP = m.CurrentHP;
-            this.TotalHP = m.TotalHP;
+            this.Health = m.Health;
+            this.MaxHealth = m.MaxHealth;
             this.IsTarget = m.IsTarget;
             this.Weaknesses = m.Weaknesses;
         }
     }
 
     public class MonsterUpdateEventArgs : EventArgs {
-        public float CurrentHP;
-        public float TotalHP;
+        public float Health;
+        public float MaxHealth;
         public float Stamina;
         public float MaxStamina;
         public float Enrage;
 
         public MonsterUpdateEventArgs(Monster m) {
-            this.CurrentHP = m.CurrentHP;
-            this.TotalHP = m.TotalHP;
+            this.Health = m.Health;
+            this.MaxHealth = m.MaxHealth;
             this.Enrage = m.EnrageTimer;
             this.Stamina = m.Stamina;
             this.MaxStamina = m.MaxStamina;
