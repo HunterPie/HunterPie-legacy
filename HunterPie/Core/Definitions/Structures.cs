@@ -1,5 +1,4 @@
 ﻿using JsonConvert = Newtonsoft.Json.JsonConvert;
-using Formatting = Newtonsoft.Json.Formatting;
 
 namespace HunterPie.Core.Definitions
 {

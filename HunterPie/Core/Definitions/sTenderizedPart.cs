@@ -2,7 +2,7 @@
 
 namespace HunterPie.Core.Definitions
 {
-    [StructLayout(LayoutKind.Sequential, Size = 0x34)]
+    [StructLayout(LayoutKind.Sequential)]
     public struct sTenderizedPart
     {
         public float Timer;

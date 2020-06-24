@@ -3,7 +3,7 @@
 namespace HunterPie.Core.Definitions
 {
 
-    [StructLayout(LayoutKind.Sequential, Size = 0x60)]
+    [StructLayout(LayoutKind.Sequential)]
     public struct sUnkMonsterPart
     {
         public long address;

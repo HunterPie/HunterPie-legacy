@@ -2,7 +2,7 @@
 
 namespace HunterPie.Core.Definitions
 {
-    [StructLayout(LayoutKind.Sequential, Size = 0x18)]
+    [StructLayout(LayoutKind.Sequential)]
     public struct sItem
     {
         long unk0;

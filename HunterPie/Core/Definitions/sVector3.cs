@@ -2,7 +2,7 @@
 
 namespace HunterPie.Core.Definitions
 {
-    [StructLayout(LayoutKind.Sequential, Size = 0x14)]
+    [StructLayout(LayoutKind.Sequential)]
     public struct sVector3
     {
         public float X;

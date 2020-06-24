@@ -49,6 +49,11 @@ namespace HunterPie.Core {
             set {
                 if (value != null && id != value)
                 {
+                    if (IsAlive)
+                    {
+                        _onMonsterDespawn();
+                        IsActuallyAlive = IsAlive = false;
+                    }
                     if (Health > 0)
                     {
                         id = value;
