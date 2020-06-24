@@ -6,7 +6,6 @@ using HunterPie.Core.Monsters;
 using HunterPie.Memory;
 using HunterPie.Logger;
 using HunterPie.Core.Definitions;
-using System.Windows.Input;
 
 namespace HunterPie.Core {
     public class Monster {
@@ -29,6 +28,7 @@ namespace HunterPie.Core {
                 {
                     if (monsterAddress != 0)
                     {
+                        Debugger.Warn($"add Despawned {Name}");
                         IsAlive = IsActuallyAlive = false;
                         id = null;
                     }
@@ -67,6 +67,7 @@ namespace HunterPie.Core {
                         CaptureThreshold = MonsterInfo.Capture;
 
                         IsActuallyAlive = true;
+                        Debugger.Warn($"spawned {Name}");
                         _onMonsterSpawn();
                     }
                 } else if (value == null && id != null) {
