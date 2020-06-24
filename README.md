@@ -1,7 +1,7 @@
 [![Discord](https://img.shields.io/discord/678286768046342147?color=%237289DA&label=Discord&logo=Discord&logoColor=%2399AAB5&style=for-the-badge)](https://discord.gg/5pdDq4Q)
 [![Donate](https://img.shields.io/badge/Donate-PayPal-blue.svg)](https://www.paypal.com/cgi-bin/webscr?cmd=_s-xclick&hosted_button_id=EXPGCRVFVC2ZA&source=url)
 
-![HunterPie](https://cdn.discordapp.com/attachments/402557384209203200/693529286975553667/Nexus_HunterPie_Banner.png)
+![HunterPie](https://cdn.discordapp.com/attachments/402557384209203200/724059340088147978/banner_dark.png)
 ## About
 HunterPie is a modern and simple to use overlay with support for Discord Rich Presence for Monster Hunter: World.
 
@@ -21,38 +21,27 @@ HunterPie is a modern and simple to use overlay with support for Discord Rich Pr
 
 - Delete HunterPie folder
 
-## Widgets
-- **Monster Widget:** Shows all monster information, you can read more about it [here](https://github.com/Haato3o/HunterPie/wiki/Monster-Widget).
+## Features
 
-![Monster Widget](https://cdn.discordapp.com/attachments/402557384209203200/692794622077829130/unknown.png)
+### Core
+- [Build exporter to Honey Hunters World](https://github.com/Haato3o/HunterPie/wiki/Honey-Hunters-World-Build-Exporter)
+- Decoration & Charms exporter to Honey Hunters World
+- [Automatic Player Data Exporter](https://github.com/Haato3o/HunterPie/wiki/Player-Data-Exporter)
+- Automatic updates
+- [Discord Rich Presence Support](https://github.com/Haato3o/HunterPie/wiki/Discord-Rich-Presence)
 
-- **Harvest Box Widget:** Shows fertilizers, amount of items in your harvest box, warns you when they're about to expire, shows Steam fuel, Argosy tracker and Tailraider tracker.
-
-![HB widget](https://staticdelivery.nexusmods.com/mods/2531/images/2645/2645-1583505042-1044544052.png)
-
-- **Abnormalities Widget:** Shows all Hunting Horn buffs, Palico orchestra, elemental debuffs and consumable buffs. You can read more about it [here](https://github.com/Haato3o/HunterPie/wiki/Abnormalities-Tray)
-    > **Note:** Not every abnormality is supported, but more will be added eventually whenever they're found in memory.
-
-![Abnormality tray](https://cdn.discordapp.com/attachments/402557384209203200/693155786200711198/unknown.png)
-
-- **Damage Widget:** Shows your party damage.
-
-![Damage widget](https://staticdelivery.nexusmods.com/mods/2531/images/2645/2645-1582739132-2012080524.png)
-
-- **Specialized Tools Widget:** Shows the cooldown and time left on your equipped specialized tool.
-
-![Specialized tool widget](https://staticdelivery.nexusmods.com/mods/2531/images/2645/2645-1582739155-1802377475.png)
+### Overlay
+- [Monster Widget](https://github.com/Haato3o/HunterPie/wiki/Monster-Widget)
+- [Harvest Box Widget](https://github.com/Haato3o/HunterPie/wiki/Harvest-Box-Widget)
+- Specialized Tools Tracker Widget
+- [Abnormalities Tracker Widget](https://github.com/Haato3o/HunterPie/wiki/Abnormalities-Tray)
+- [Class Helper Widget](https://github.com/Haato3o/HunterPie/wiki/Classes-Widget)
+- [Damage Meter Widget](https://github.com/Haato3o/HunterPie/wiki/Damage-Meter-Widget)
 
 ## Troubleshooting & Bugs
 
 Please, read the [FAQ](https://github.com/Haato3o/HunterPie/wiki/FAQ), if your issue isn't listed there, contact me on [Discord](https://discord.gg/5pdDq4Q).
 
-## Suggestions & PR
+## Suggestions & PRs
 
 You can use the #suggestions chat in HunterPie Discord server, open a ticket [here](https://github.com/Haato3o/HunterPie/issues) or make your own pull request. I'll gladly read them all.
-
-## Credits & Thanks
-- R00telement for his work on SmartHunter.
-- Ezekial711 & all the MHW modding community for their modding.
-- All the translators that have been localizing HunterPie to their native languages.
-- Everyone that helped HunterPie development.

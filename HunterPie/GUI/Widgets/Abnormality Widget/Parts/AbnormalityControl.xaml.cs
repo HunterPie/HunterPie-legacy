@@ -49,7 +49,7 @@ namespace HunterPie.GUI.Widgets.Abnormality_Widget.Parts {
         private void SetAbnormalityInfo(Abnormality Abnorm) {
             float angle;
             if (Abnorm.IsInfinite || Abnorm.MaxDuration == 0) angle = 90;
-            else { angle = ConvertPercentageIntoAngle(Abnorm.Duration / Abnorm.MaxDuration); }
+            else { angle = ConvertPercentageIntoAngle(Abnorm.Duration / (Abnorm.IsPercentageBuff ? Abnorm.MaxTimer : Abnorm.MaxDuration)); }
             this.AbnormalityDurationArc.EndAngle = angle;
             if (ShowAbnormalityName) {
                 this.AbnormalityName.Text = Abnorm.Name;
@@ -84,7 +84,7 @@ namespace HunterPie.GUI.Widgets.Abnormality_Widget.Parts {
         private void OnAbnormalityUpdate(object source, AbnormalityEventArgs args) {
             float angle;
             if (args.Abnormality.IsInfinite || args.Abnormality.MaxDuration == 0) angle = 90;
-            else { angle = ConvertPercentageIntoAngle(args.Abnormality.Duration / args.Abnormality.MaxDuration); }
+            else { angle = ConvertPercentageIntoAngle(args.Abnormality.Duration / (args.Abnormality.IsPercentageBuff ? args.Abnormality.MaxTimer : args.Abnormality.MaxDuration)); }
             Dispatcher.BeginInvoke(System.Windows.Threading.DispatcherPriority.Render, new Action(() => {
                 this.AbnormalityExpireWarning.Visibility = args.Abnormality.DurationPercentage <= 0.1 ? System.Windows.Visibility.Visible : System.Windows.Visibility.Hidden;
                 this.AbnormalityDurationArc.EndAngle = angle;
