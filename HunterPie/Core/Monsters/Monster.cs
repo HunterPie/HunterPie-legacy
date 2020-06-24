@@ -6,6 +6,7 @@ using HunterPie.Core.Monsters;
 using HunterPie.Memory;
 using HunterPie.Logger;
 using HunterPie.Core.Definitions;
+using System.Windows.Input;
 
 namespace HunterPie.Core {
     public class Monster {
@@ -32,6 +33,7 @@ namespace HunterPie.Core {
                         id = null;
                     }
                     monsterAddress = value;
+                    Debugger.Warn($"{MonsterNumber} -> {value:X}");
                 }
             }
         }
@@ -67,7 +69,7 @@ namespace HunterPie.Core {
                         IsActuallyAlive = true;
                         _onMonsterSpawn();
                     }
-                } else if (value == null) {
+                } else if (value == null && id != null) {
                     id = value;
                     _onMonsterDespawn();
                 }
@@ -348,48 +350,6 @@ namespace HunterPie.Core {
             Id = null;
         }
 
-        /*
-        private void GetMonsterIDAndName() {
-            Int64 NamePtr = Scanner.Read<long>(this.MonsterAddress + Address.Offsets.MonsterNamePtr);
-            string MonsterId = Scanner.READ_STRING(NamePtr + 0x0c, 64).Replace("\x00", "");
-            if (MonsterId != "") {
-                string[] MonsterID = MonsterId.Split('\\');
-                if (MonsterID.Length < 4) {
-                    Id = null;
-                    return;
-                }
-                MonsterId = MonsterID.LastOrDefault()?.Trim('\x00');
-                if (MonsterId.StartsWith("em")) {
-                    
-                    GameId = Scanner.Read<int>(MonsterAddress + Address.Offsets.MonsterGameIDOffset);
-
-                    if (!MonsterData.MonstersInfo.ContainsKey(GameId))
-                    {
-                        if (!MonsterId.StartsWith("ems"))
-                        {
-                            Debugger.Error($"Unknown Monster Detected: ID:{GameId} | ems: {MonsterId}");
-                        }
-                        //Debugger.Debug($"Not mapped monster found: Em = {MonsterId} | ID = {GameId}");
-                        Id = null;
-                        GetMonsterHp(null);
-                        return;
-                    }
-
-                    MonsterId = MonsterInfo.Em;
-                    GetMonsterHp(MonsterId);
-
-                    if (MonsterId != Id && Health > 0) Debugger.Debug($"Found new monster ID: {Scanner.READ_STRING(NamePtr + 0x0c, 64).Replace("\x00", "")} #{MonsterNumber} @ 0x{MonsterAddress:X}");
-                    Id = MonsterId;
-                    return;
-                } else
-                {
-                    GetMonsterHp(null);
-                }
-            }
-            Id = null;
-            return;
-        }*/
-
         private void GetMonsterSizeModifier() {
             if (!IsAlive) return;
             float SizeModifier = Scanner.Read<float>(MonsterAddress + 0x7730);
@@ -483,9 +443,88 @@ namespace HunterPie.Core {
             }
         }
 
+        private void GetMonsterPartsInfo()
+        {
+            if (!IsAlive) return;
+
+            long MonsterPartPtr = Scanner.Read<long>(MonsterAddress + 0x1D058);
+            long MonsterPartAddress = MonsterPartPtr + 0x40;
+            long MonsterRemovablePartAddress = MonsterPartPtr + 0x1FC8;
+
+            int NormalPartIndex = 0;
+            uint RemovablePartIndex = 0;
+
+            for (int pIndex = 0; pIndex < MonsterInfo.MaxParts; pIndex++)
+            {
+                Part CurrentPart = Parts[pIndex];
+                PartInfo CurrentPartInfo = MonsterInfo.Parts[pIndex];
+
+                if (CurrentPartInfo.IsRemovable)
+                {
+                    if (CurrentPart.Address > 0)
+                    {
+                        sMonsterRemovablePart MonsterRemovablePartData = Scanner.Win32.Read<sMonsterRemovablePart>(CurrentPart.Address);
+                        CurrentPart.SetPartInfo(MonsterRemovablePartData.Data);
+                    } else
+                    {
+                        while (MonsterRemovablePartAddress < MonsterRemovablePartAddress + 0x120 * 32)
+                        {
+                            // Every 15 parts there's a 8 bytes gap between the old removable part block
+                            // and the next part block
+                            if (Scanner.Read<long>(MonsterRemovablePartAddress) <= 0xA0)
+                            {
+                                MonsterRemovablePartAddress += 0x8;
+                            }
+                            sMonsterRemovablePart MonsterRemovablePartData = Scanner.Win32.Read<sMonsterRemovablePart>(MonsterRemovablePartAddress);
+                            Debugger.Debug($"Removable Part Structure <{Name}> [0x{MonsterRemovablePartAddress:X}]" + Helpers.Serialize(MonsterRemovablePartData));
+                            
+                            if (CurrentPartInfo.Skip || (MonsterRemovablePartData.unk3.Index == CurrentPartInfo.Index && MonsterRemovablePartData.Data.MaxHealth > 0))
+                            {
+                                CurrentPart.Address = MonsterRemovablePartAddress;
+                                CurrentPart.IsRemovable = true;
+                                CurrentPart.SetPartInfo(MonsterRemovablePartData.Data);
+                                RemovablePartIndex++;
+                                do
+                                {
+                                    MonsterRemovablePartAddress += 0x78;
+                                } while (MonsterRemovablePartData.Equals(Scanner.Win32.Read<sMonsterRemovablePart>(MonsterRemovablePartAddress)));
+
+                                break;
+                            }
+                            MonsterRemovablePartAddress += 0x78;
+                        }
+
+                    }
+
+                } else
+                {
+                    if (CurrentPart.Address > 0)
+                    {
+                        sMonsterPart MonsterPartData = Scanner.Win32.Read<sMonsterPart>(CurrentPart.Address);
+                        CurrentPart.SetPartInfo(MonsterPartData.Data);
+
+                    } else
+                    {
+                        sMonsterPart MonsterPartData = Scanner.Win32.Read<sMonsterPart>(MonsterPartAddress + (NormalPartIndex * 0x1F8));
+                        CurrentPart.Address = MonsterPartAddress + (NormalPartIndex * 0x1F8);
+                        CurrentPart.Group = CurrentPartInfo.GroupId;
+
+                        CurrentPart.SetPartInfo(MonsterPartData.Data);
+
+                        //Debugger.Debug(Helpers.Serialize(MonsterPartData));
+
+                        NormalPartIndex++;
+                    }
+                }
+            }
+        }
+
         private void GetMonsterParts()
         {
             if (!IsAlive) return;
+            GetMonsterPartsInfo();
+            return;
+            /*
             long monsterPartAddress = MonsterAddress + Address.Offsets.MonsterPartsOffset + Address.Offsets.FirstMonsterPartOffset;
             int partsCount = MonsterInfo.MaxParts;
             int nRemovableParts = MonsterInfo.MaxRemovableParts;
@@ -536,7 +575,7 @@ namespace HunterPie.Core {
                                 // Some monsters have the same removable part value in the next removable part struct
                                 // so we skip the ones with the same values.
                                 sMonsterPart nPart = Scanner.Win32.Read<sMonsterPart>(removablePartAddress + 0x0C);
-                                //Debugger.Debug($"struct sMonsterPart [{Name}] ({partId}) <REMOVABLE>" + Helpers.Serialize(mPartData));
+                                Debugger.Debug($"struct sMonsterPart [{Name}] ({partId}) <REMOVABLE> <{part.PartAddress:X}>" + Helpers.Serialize(mPartData));
                                 bool isSamePart;
                                 do
                                 {
@@ -568,11 +607,11 @@ namespace HunterPie.Core {
                         if (part.Group == null) part.Group = partInfo.GroupId;
                         monsterPartAddress += Address.Offsets.NextMonsterPartOffset;
                         
-                        Debugger.Debug($"struct sMonsterPart [{Name}] ({partId}) <NON-REMOVABLE>" + Helpers.Serialize(mPartData));
+                        Debugger.Debug($"struct sMonsterPart [{Name}] ({partId}) <NON-REMOVABLE> <{part.PartAddress:X}>" + Helpers.Serialize(mPartData));
                     }
                 }
             }
-            
+            */
         }
 
         private void GetMonsterStamina() {
@@ -625,7 +664,7 @@ namespace HunterPie.Core {
                         }
 
                         var AilmentInfo = MonsterData.AilmentsInfo.ElementAt(ID);
-
+                        if (AilmentInfo.Group == "PARALYSIS") Debugger.Debug($"{StatusPtr:X}");
                         // Skip traps for non-capturable monsters
                         bool SkipTraps = MonsterInfo.Capture == 0 && AilmentInfo.Group == "TRAP";
                         if (AilmentInfo.CanSkip && !UserSettings.PlayerConfig.HunterPie.Debug.ShowUnknownStatuses || SkipTraps)

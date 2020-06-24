@@ -130,6 +130,7 @@
     <Compile Include="Core\Definitions\sGear.cs" />
     <Compile Include="Core\Definitions\sItem.cs" />
     <Compile Include="Core\Definitions\sMonsterPart.cs" />
+    <Compile Include="Core\Definitions\sMonsterRemovablePart.cs" />
     <Compile Include="Core\Definitions\sVector3.cs" />
     <Compile Include="Core\Definitions\sTenderizedPart.cs" />
     <Compile Include="Core\Definitions\Structures.cs" />

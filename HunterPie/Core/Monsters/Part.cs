@@ -1,4 +1,5 @@
-﻿using HunterPie.Core.Monsters;
+﻿using HunterPie.Core.Definitions;
+using HunterPie.Core.Monsters;
 
 namespace HunterPie.Core
 {
@@ -19,7 +20,7 @@ namespace HunterPie.Core
             id = index;
         }
 
-        public long PartAddress { get; set; } // So we don't need to re-scan the address everytime
+        public long Address { get; set; } // So we don't need to re-scan the address everytime
 
         public string Name => GStrings.GetMonsterPartByID(partInfo.Id);
 
@@ -86,11 +87,11 @@ namespace HunterPie.Core
 
         #endregion
 
-        public void SetPartInfo(int breakCounter, float health, float totalHealth)
+        public void SetPartInfo(sMonsterPartData data)
         {
-            TotalHealth = totalHealth;
-            BrokenCounter = breakCounter;
-            Health = health;
+            TotalHealth = data.MaxHealth;
+            BrokenCounter = data.Counter;
+            Health = data.Health;
         }
 
         public override string ToString()

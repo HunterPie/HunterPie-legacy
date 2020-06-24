@@ -18,6 +18,8 @@
         public bool IsRemovable;
         public string GroupId;
         public int[] BreakThresholds;
+        public bool Skip;
+        public uint Index;
     }
     #endregion
 

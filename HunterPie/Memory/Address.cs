@@ -35,7 +35,6 @@ namespace HunterPie.Memory {
             public static int MonsterPartsOffset = 0x14528;
             public static int FirstMonsterPartOffset = 0x1C;
             public static int NextMonsterPartOffset = 0x1F8;
-            public static int MonsterPartBrokenCounterOffset = 0xC;
             public static int RemovablePartsOffset = 0x164C0;
             public static int NextRemovablePart = 0x78;
             public static int[] MonsterAilmentsOffsets = new int[2] { 0x4C0, 0x5E60 };
