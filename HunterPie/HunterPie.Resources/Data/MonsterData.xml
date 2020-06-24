@@ -100,8 +100,8 @@
     </Weaknesses>
     <Crown Mini="0.9" Silver="1.15" Gold="1.23"/>
     <Parts Max="9">
-      <Part Name="MONSTER_PART_BIG_FLINCH" IsRemovable="True"/>
-      <Part Name="MONSTER_PART_REMOVABLE_TAIL" IsRemovable="True">
+      <Part Name="MONSTER_PART_BIG_FLINCH" IsRemovable="True" Index="1"/>
+      <Part Name="MONSTER_PART_REMOVABLE_TAIL" IsRemovable="True" Index="0">
         <Break Threshold="1"/>
       </Part>
       <Part Name="MONSTER_PART_HEAD" Group="HEAD">
@@ -182,8 +182,8 @@
     </Weaknesses>
     <Crown Mini="0.9" Silver="1.15" Gold="1.23"/>
     <Parts Max="9">
-      <Part Name="MONSTER_PART_BIG_FLINCH" IsRemovable="True"/>
-      <Part Name="MONSTER_PART_REMOVABLE_TAIL" IsRemovable="True">
+      <Part Name="MONSTER_PART_BIG_FLINCH" IsRemovable="True" Index="1"/>
+      <Part Name="MONSTER_PART_REMOVABLE_TAIL" IsRemovable="True" Index="0">
         <Break Threshold="1"/>
       </Part>
       <Part Name="MONSTER_PART_HEAD" Group="HEAD">
@@ -828,11 +828,11 @@
     </Weaknesses>
     <Crown Mini="0.9" Silver="1.10" Gold="1.20"/>
     <Parts Max="8">
-      <Part Name="MONSTER_PART_THROAT" IsRemovable="True"/>
-      <Part Name="MONSTER_PART_REMOVABLE_TAIL" IsRemovable="True">
+      <Part Name="MONSTER_PART_THROAT" IsRemovable="True" Index="1"/>
+      <Part Name="MONSTER_PART_REMOVABLE_TAIL" IsRemovable="True" Index="0">
         <Break Threshold="1"/>
       </Part>
-      <Part Name="MONSTER_PART_UNKNOWN" IsRemovable="True"/>
+      <Part Name="MONSTER_PART_UNKNOWN" IsRemovable="True" Index="2"/>
       <Part Name="MONSTER_PART_HEAD" Group="HEAD">
         <Break Threshold="1"/>
         <Break Threshold="2"/>
@@ -858,8 +858,8 @@
     </Weaknesses>
     <Crown Mini="0.9" Silver="1.10" Gold="1.20"/>
     <Parts Max="7">
-      <Part Name="MONSTER_PART_THROAT" IsRemovable="True"/>
-      <Part Name="MONSTER_PART_REMOVABLE_TAIL" IsRemovable="True">
+      <Part Name="MONSTER_PART_THROAT" IsRemovable="True" Index="1"/>
+      <Part Name="MONSTER_PART_REMOVABLE_TAIL" IsRemovable="True" Index="0">
         <Break Threshold="1"/>
       </Part>
       <Part Name="MONSTER_PART_HEAD" Group="HEAD">
@@ -983,7 +983,7 @@
       <Weakness ID="ELEMENT_DRAGON" Stars="2"/>
     </Weaknesses>
     <Crown Mini="0.9" Silver="1.15" Gold="1.23"/>
-    <Parts Max="12">
+    <Parts Max="13">
       <Part Name="MONSTER_PART_REMOVABLE_HORNS" IsRemovable="True">
         <Break Threshold="2"/>
         <Break Threshold="3"/>
@@ -991,6 +991,7 @@
       <Part Name="MONSTER_PART_REMOVABLE_TAIL" IsRemovable="True">
         <Break Threshold="1"/>
       </Part>
+      <Part Name="MONSTER_PART_UNKNOWN" IsRemovable="True" Skip="True"/>
       <Part Name="MONSTER_PART_HORNS" Group="HORN"/>
       <Part Name="MONSTER_PART_HEAD" Group="HEAD"/>
       <Part Name="MONSTER_PART_BODY" Group="BODY"/>
@@ -1085,8 +1086,8 @@
     </Weaknesses>
     <Crown Mini="0.9" Silver="1.15" Gold="1.23"/>
     <Parts Max="12">
-      <Part Name="MONSTER_PART_UNKNOWN" IsRemovable="True"/> <!-- unknown / exclusive to AT Xeno? -->
       <Part Name="MONSTER_PART_REMOVABLE_TAIL" IsRemovable="True">
+      <Part Name="MONSTER_PART_UNKNOWN" IsRemovable="True"/>
         <Break Threshold="1"/>
       </Part>
       <Part Name="MONSTER_PART_HEAD" Group="HEAD">
@@ -1115,8 +1116,8 @@
       <Weakness ID="ELEMENT_WATER" Stars="3"/>
     </Weaknesses>
     <Crown Mini="0.9" Silver="1.15" Gold="1.23"/>
-    <Parts Max="15">
-      <!-- <Part Name="MONSTER_PART_UNKNOWN" IsRemovable="True"/> -->
+    <Parts Max="16">
+      <Part Name="MONSTER_PART_UNKNOWN" IsRemovable="True"/>
       <Part Name="MONSTER_PART_HEAD" Group="HEAD"/>
       <Part Name="MONSTER_PART_BODY" Group="BODY"/>
       <Part Name="MONSTER_PART_CHEST" Group="CHEST"/>
@@ -1493,11 +1494,11 @@
       <Weakness ID="ELEMENT_DRAGON" Stars="2"/>
     </Weaknesses>
     <Crown Mini="0.9" Silver="1.15" Gold="1.23"/>
-    <Parts Max="11">
-      <Part Name="MONSTER_PART_REMOVABLE_TAIL" IsRemovable="True">
+    <Parts Max="16">
+      <Part Name="MONSTER_PART_REMOVABLE_TAIL" IsRemovable="True" Index="1">
         <Break Threshold="1"/>
       </Part>
-      <Part Name="MONSTER_PART_EMISSIONS" IsRemovable="True"/>
+      <Part Name="MONSTER_PART_EMISSIONS" IsRemovable="True" Index="0"/>
       <Part Name="MONSTER_PART_HEAD" Group="HEAD">
         <Break Threshold="3"/>
       </Part>
@@ -1515,6 +1516,11 @@
       <Part Name="MONSTER_PART_LLEG" Group="LEG"/>
       <Part Name="MONSTER_PART_RLEG" Group="LEG"/>
       <Part Name="MONSTER_PART_WINGS" Group="WING"/>
+      <Part Name="MONSTER_PART_UNKNOWN" Group="MISC"/>
+      <Part Name="MONSTER_PART_UNKNOWN" Group="MISC"/>
+      <Part Name="MONSTER_PART_UNKNOWN" Group="MISC"/>
+      <Part Name="MONSTER_PART_UNKNOWN" Group="MISC"/>
+      <Part Name="MONSTER_PART_UNKNOWN" Group="MISC"/>
     </Parts>
   </Monster>
   <Monster ID="em116_00" Capture="30" GameID="37"> <!-- Dodogama -->
