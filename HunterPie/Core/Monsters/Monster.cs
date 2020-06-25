@@ -61,11 +61,7 @@ namespace HunterPie.Core {
                         CreateMonsterParts(MonsterInfo.MaxParts);
                         GetMonsterPartsInfo();
                         Ailments.Clear();
-                        do
-                        {
-                            GetMonsterAilments();
-                            Thread.Sleep(10);
-                        } while (Ailments.Count == 0);
+                        GetMonsterAilments();
                         GetMonsterSizeModifier();
                         CaptureThreshold = MonsterInfo.Capture;
 
@@ -549,7 +545,7 @@ namespace HunterPie.Core {
             {
                 long MonsterAilmentListPtrs = MonsterAddress + 0x1BC40;
                 long MonsterAilmentPtr = Scanner.Read<long>(MonsterAilmentListPtrs);
-                while (MonsterAilmentPtr < 0x140000000)
+                while (MonsterAilmentPtr > 1)
                 {
                     
                     // There's a gap of 0x148 bytes between the pointer and the sMonsterAilment structure

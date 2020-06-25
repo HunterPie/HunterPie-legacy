@@ -38,7 +38,7 @@ namespace HunterPie.Core.Definitions
         public int unk6;
         public int unk7;
         public int unk8;
-        public int Buildup;
+        public float Buildup;
         public int unk10;
         public float unk11;
         public float unk12;
