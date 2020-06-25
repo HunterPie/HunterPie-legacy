@@ -129,6 +129,7 @@
     </ApplicationDefinition>
     <Compile Include="Core\Definitions\sGear.cs" />
     <Compile Include="Core\Definitions\sItem.cs" />
+    <Compile Include="Core\Definitions\sMonsterAilment.cs" />
     <Compile Include="Core\Definitions\sMonsterPart.cs" />
     <Compile Include="Core\Definitions\sMonsterPartData.cs" />
     <Compile Include="Core\Definitions\sMonsterRemovablePart.cs" />

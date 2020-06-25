@@ -78,7 +78,7 @@ namespace HunterPie.Core {
         public float MaxDuration;
         public float Buildup;
         public float MaxBuildup;
-        public byte Counter;
+        public uint Counter;
 
         public MonsterAilmentEventArgs(Ailment mAilment) {
             Name = mAilment.Name;

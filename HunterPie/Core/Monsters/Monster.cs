@@ -451,6 +451,7 @@ namespace HunterPie.Core {
             if (!IsAlive) return;
 
             long MonsterPartPtr = Scanner.Read<long>(MonsterAddress + 0x1D058);
+
             // If the Monster Part Ptr is still 0, then the monster hasn't fully spawn yet
             if (MonsterPartPtr == 0x00000000) return;
 
@@ -500,9 +501,7 @@ namespace HunterPie.Core {
                             }
                             MonsterRemovablePartAddress += 0x78;
                         }
-
                     }
-
                 } else
                 {
                     if (CurrentPart.Address > 0)
@@ -528,78 +527,59 @@ namespace HunterPie.Core {
 
         private void GetMonsterStamina() {
             if (!IsAlive) return;
-            Int64 MonsterStaminaAddress = MonsterAddress + 0x1C0F0;
+            long MonsterStaminaAddress = MonsterAddress + 0x1C0F0;
             MaxStamina = Scanner.Read<float>(MonsterStaminaAddress + 0x4);
             float stam = Scanner.Read<float>(MonsterStaminaAddress);
             Stamina = stam <= MaxStamina ? stam : MaxStamina;
         }
 
-        private void GetMonsterAilments() {
-            if (!this.IsAlive) return;
-            if (Ailments.Count > 0) {
-                foreach (Ailment status in Ailments)
+        private void GetMonsterAilments()
+        {
+            if (!IsAlive) return;
+
+            if (Ailments.Count > 0)
+            {
+                foreach (Ailment ailment in Ailments)
                 {
-                    if (status.Address == 0) continue;
-
-                    float maxBuildup = Math.Max(0, Scanner.Read<float>(status.Address + 0x1C8));
-                    float currentBuildup = Math.Max(0, Scanner.Read<float>(status.Address + 0x1B8));
-                    float maxDuration = Math.Max(0, Scanner.Read<float>(status.Address + 0x19C));
-                    float currentDuration = Math.Max(0, Scanner.Read<float>(status.Address + 0x1F8));
-                    byte counter = Scanner.Read<byte>(status.Address + 0x200);
-
-                    status.SetAilmentInfo(status.ID, currentDuration, maxDuration, currentBuildup, maxBuildup, counter);
+                    sMonsterAilment updatedData = Scanner.Win32.Read<sMonsterAilment>(ailment.Address);
+                    ailment.SetAilmentInfo(updatedData);
                 }
-            } else {
-                Int64 StatusAddress = Scanner.Read<long>(MonsterAddress + 0x78);
-                StatusAddress = Scanner.Read<long>(StatusAddress + 0x57A8);
-                Int64 aHolder = StatusAddress;
-                while (aHolder != 0) {
-                    aHolder = Scanner.Read<long>(aHolder + 0x10);
-                    if (aHolder != 0) {
-                        StatusAddress = aHolder;
-                    }
-                }
-                Int64 StatusPtr = StatusAddress + 0x40;
-                while (StatusPtr != 0x0)
+
+            } else
+            {
+                long MonsterAilmentListPtrs = MonsterAddress + 0x1BC40;
+                long MonsterAilmentPtr = Scanner.Read<long>(MonsterAilmentListPtrs);
+                while (MonsterAilmentPtr < 0x140000000)
                 {
+                    
+                    // There's a gap of 0x148 bytes between the pointer and the sMonsterAilment structure
+                    sMonsterAilment AilmentData = Scanner.Win32.Read<sMonsterAilment>(MonsterAilmentPtr + 0x148);
 
-                    Int64 MonsterInStatus = Scanner.Read<long>(StatusPtr + 0x188);
-
-                    if (MonsterInStatus == MonsterAddress) {
-
-                        int ID = Scanner.Read<int>(StatusPtr + 0x198);
-
-                        if (ID > MonsterData.AilmentsInfo.Count || ID < 0)
-                        {
-                            StatusPtr = Scanner.Read<long>(StatusPtr + 0x18);
-                            continue;
-                        }
-
-                        var AilmentInfo = MonsterData.AilmentsInfo.ElementAt(ID);
-                        if (AilmentInfo.Group == "PARALYSIS") Debugger.Debug($"{StatusPtr:X}");
-                        // Skip traps for non-capturable monsters
-                        bool SkipTraps = MonsterInfo.Capture == 0 && AilmentInfo.Group == "TRAP";
-                        if (AilmentInfo.CanSkip && !UserSettings.PlayerConfig.HunterPie.Debug.ShowUnknownStatuses || SkipTraps)
-                        {
-                            StatusPtr = Scanner.Read<long>(StatusPtr + 0x18);
-                            continue;
-                        } else
-                        {
-                            // TODO: Turn this into a struct def
-                            float maxBuildup = Math.Max(0, Scanner.Read<float>(StatusPtr + 0x1C8));
-                            float currentBuildup = Math.Max(0, Scanner.Read<float>(StatusPtr + 0x1B8));
-                            float maxDuration = Math.Max(0, Scanner.Read<float>(StatusPtr + 0x19C));
-                            float currentDuration = Math.Max(0, Scanner.Read<float>(StatusPtr + 0x1F8));
-                            byte counter = Scanner.Read<byte>(StatusPtr + 0x200);
-
-                            Ailment mAilment = new Ailment {
-                                Address = StatusPtr
-                            };
-                            mAilment.SetAilmentInfo(ID, currentDuration, maxDuration, currentBuildup, maxBuildup, counter);
-                            Ailments.Add(mAilment);
-                        }
+                    if (AilmentData.Id > MonsterData.AilmentsInfo.Count)
+                    {
+                        MonsterAilmentListPtrs += sizeof(long);
+                        MonsterAilmentPtr = Scanner.Read<long>(MonsterAilmentListPtrs);
+                        continue;
                     }
-                    StatusPtr = Scanner.Read<long>(StatusPtr + 0x18);
+
+                    var AilmentInfo = MonsterData.AilmentsInfo.ElementAt((int)AilmentData.Id);
+                    // Check if this Ailment can be skipped and therefore not be tracked at all
+                    bool SkipElderDragonTrap = MonsterInfo.Capture == 0 && AilmentInfo.Group == "TRAP";
+                    if (SkipElderDragonTrap || (AilmentInfo.CanSkip && !UserSettings.PlayerConfig.HunterPie.Debug.ShowUnknownStatuses))
+                    {
+                        MonsterAilmentListPtrs += sizeof(long);
+                        MonsterAilmentPtr = Scanner.Read<long>(MonsterAilmentListPtrs);
+                        continue;
+                    }
+
+                    Ailment MonsterAilment = new Ailment(MonsterAilmentPtr + 0x148);
+                    MonsterAilment.SetAilmentInfo(AilmentData);
+
+                    Debugger.Debug($"sMonsterAilment <{Name}> [0x{MonsterAilmentPtr+0x148:X}]" + Helpers.Serialize(AilmentData));
+
+                    Ailments.Add(MonsterAilment);
+                    MonsterAilmentListPtrs += sizeof(long);
+                    MonsterAilmentPtr = Scanner.Read<long>(MonsterAilmentListPtrs);
                 }
             }
         }
