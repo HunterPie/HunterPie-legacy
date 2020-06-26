@@ -432,6 +432,7 @@
       <String ID="CONSOLE_CONSOLE" Name="КОНСОЛЬ"/>
       <String ID="CONSOLE_SETTINGS" Name="НАСТРОЙКИ"/>
       <String ID="CONSOLE_UPLOADBUILD" Name="ЗАГРУЗИТЬ БИЛД"/>
+      <String ID="CONSOLE_EXPORTGEAR" Name="ЭКСПОРТ БИЛДА"/>
       <String ID="CONSOLE_CHANGELOG" Name="ПАТЧНОУТЫ"/>
       <String ID="CONSOLE_DISCORD" Name="ДИСКОРД"/>
       <String ID="CONSOLE_GITHUB" Name="ГИТХАБ"/>
@@ -649,6 +650,10 @@
       <String ID="ENABLE_BOW_HELPER_DESC" Name="Если включено, помощник Лука будет виден при использовании Лука."/>
       <String ID="ENABLE_HAMMER_HELPER" Name="Включить помощника Молота"/>
       <String ID="ENABLE_HAMMER_HELPER_DESC" Name="Если включено, помощник Молота будет виден при использовании Молота."/>
+      <String ID="ENABLE_DUALBLADES_HELPER" Name="Включить помощника Двойных Клинков"/>
+      <String ID="ENABLE_DUALBLADES_HELPER_DESC" Name="Если включено, помощник Двойных Клинков будет виден при использовании Двойных Клинков."/>
+      <String ID="ENABLE_LANCE_HELPER" Name="Включить помощника Копья"/>
+      <String ID="ENABLE_LANCE_HELPER_DESC" Name="Если включено, помощник Копья будет виден при использовании Копья."/>
       <String ID="STATIC_CLASSES_BETA_WARNING" Name="Внимание: помощники класса все еще находятся в разработке, и в будущем будет поддерживаться больше классов. Каждый помощник класса имеет свои собственные настройки, поэтому вы можете иметь разные позиции для этого виджета в зависимости от класса. Используйте функцию «Режим дизайна» для масштабирования и перемещения этого виджета."/>
       <!-- Links -->
       <String ID="STATIC_HUNTERPIE_WIKI" Name="Документация"/>
@@ -699,7 +704,9 @@
       <String ID="STATIC_REJECT" Name="Отклонить"/>
       <String ID="STATIC_SETTINGS_LOAD" Name="Настройки загружены"/>
       <String ID="STATIC_OPENDEFAULTBROWSER" Name="Открыть в браузере"/>
+      <String ID="STATIC_OPENFOLDER" Name="Открыть папку"/>
       <String ID="MESSAGE_BUILD_UPLOADED" Name="Билд загружен на Honey Hunters World!"/>
+      <String ID="MESSAGE_GEAR_EXPORTED" Name="Снаряжение экспортировано в ./DataExport!"/>
     </Notifications>
     <RichPresence>
       <String ID="RPC_DESCRIPTION_IN_MAIN_MENU" Name="В Главном меню"/>
