@@ -48,6 +48,7 @@ namespace HunterPie.Core {
                 {
                     if (Health > 0)
                     {
+                        DateTime s = DateTime.Now;
                         id = value;
 
                         GetMonsterWeaknesses();
@@ -60,6 +61,8 @@ namespace HunterPie.Core {
 
                         IsActuallyAlive = true;
                         _onMonsterSpawn();
+                        DateTime e = DateTime.Now;
+                        Debugger.Log($"Finished scanning {Name} in {(e - s).TotalMilliseconds}ms");
                     }
                 } else if (string.IsNullOrEmpty(value) && id != value) {
                     
@@ -97,7 +100,6 @@ namespace HunterPie.Core {
                         Id = null;
                         IsActuallyAlive = IsAlive = false;
                         _onMonsterDeath();
-                        DestroyParts();
                     }
                 }
             }

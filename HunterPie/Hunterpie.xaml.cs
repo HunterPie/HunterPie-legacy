@@ -520,7 +520,7 @@ namespace HunterPie {
         public void OnZoneChange(object source, EventArgs e) {
             if (MonsterHunter.Player.IsLoggedOn)
             {
-                Debugger.Log($"ZoneID: {MonsterHunter.Player.ZoneID}");
+                //Debugger.Log($"ZoneID: {MonsterHunter.Player.ZoneID}");
                 ExportGameData();
             }
         }
