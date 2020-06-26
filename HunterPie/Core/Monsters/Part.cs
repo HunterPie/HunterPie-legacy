@@ -96,6 +96,7 @@ namespace HunterPie.Core
 
         private void UnhookEvents(MonsterPartEvents eventHandler)
         {
+            if (eventHandler == null) return;
             foreach (MonsterPartEvents d in eventHandler.GetInvocationList()) {
                 eventHandler -= d;
             }

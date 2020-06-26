@@ -74,6 +74,7 @@ namespace HunterPie.Core {
 
         private void UnhookEvents(MonsterAilmentEvents eventHandler)
         {
+            if (eventHandler == null) return;
             foreach (MonsterAilmentEvents d in eventHandler.GetInvocationList())
             {
                 eventHandler -= d;

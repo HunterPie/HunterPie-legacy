@@ -48,7 +48,6 @@ namespace HunterPie.Core {
                 {
                     if (Health > 0)
                     {
-                        DateTime s = DateTime.Now;
                         id = value;
 
                         GetMonsterWeaknesses();
@@ -61,8 +60,6 @@ namespace HunterPie.Core {
 
                         IsActuallyAlive = true;
                         _onMonsterSpawn();
-                        DateTime e = DateTime.Now;
-                        Debugger.Log($"Finished scanning {Name} in {(e - s).TotalMilliseconds}ms");
                     }
                 } else if (string.IsNullOrEmpty(value) && id != value) {
                     
@@ -262,6 +259,9 @@ namespace HunterPie.Core {
             ScanMonsterInfo();
         }
 
+        /// <summary>
+        /// Removes all Parts and Ailments from this monster. This should be called whenever the monster despawns
+        /// </summary>
         private void DestroyParts() {
             foreach (Part monsterPart in Parts)
             {
@@ -273,9 +273,6 @@ namespace HunterPie.Core {
                 monsterAilment.Destroy();
             }
             Ailments.Clear();
-#if DEBUG
-            Debugger.Log($"Cleared parts: {Parts.Count} | {Ailments.Count}");
-#endif
         }
 
         private void GetMonsterAddress() {
@@ -297,6 +294,9 @@ namespace HunterPie.Core {
             }
         }
 
+        /// <summary>
+        /// Gets the current monster health and max health.
+        /// </summary>
         private void GetMonsterHealth()
         {
             long MonsterHealthPtr = Scanner.Read<long>(MonsterAddress + Address.Offsets.MonsterHPComponentOffset);
@@ -316,6 +316,9 @@ namespace HunterPie.Core {
             }
         }
 
+        /// <summary>
+        /// Gets the current monster EM and GameId
+        /// </summary>
         private void GetMonsterId()
         {
             long NamePtr = Scanner.Read<long>(MonsterAddress + Address.Offsets.MonsterNamePtr);
@@ -365,7 +368,6 @@ namespace HunterPie.Core {
 
         private void GetMonsterWeaknesses() => Weaknesses = MonsterInfo.Weaknesses.ToDictionary(w => w.Id, w => w.Stars);
         
-
         private void GetMonsterEnrageTimer() {
             EnrageTimer = Scanner.Read<float>(MonsterAddress + 0x1BE54);
             EnrageTimerStatic = Scanner.Read<float>(MonsterAddress + 0x1BE54 + 0x4);
@@ -441,8 +443,11 @@ namespace HunterPie.Core {
             
         }
 
+        /// <summary>
+        /// Creates monster parts based on how many parts it has in MonsterData.xml
+        /// </summary>
+        /// <param name="numberOfParts">Number of parts</param>
         private void CreateMonsterParts(int numberOfParts) {
-            Parts.Clear();
             for (int i = 0; i < numberOfParts; i++) {
                 Part part = new Part(MonsterInfo, MonsterInfo.Parts[i], i);
                 Parts.Add(part);
@@ -489,7 +494,7 @@ namespace HunterPie.Core {
                             
                             if (CurrentPartInfo.Skip || (MonsterRemovablePartData.unk3.Index == CurrentPartInfo.Index && MonsterRemovablePartData.Data.MaxHealth > 0))
                             {
-                                //Debugger.Debug($"Removable Part Structure <{Name}> [0x{MonsterRemovablePartAddress:X}]" + Helpers.Serialize(MonsterRemovablePartData));
+                                Debugger.Debug($"Removable Part Structure <{Name}> [0x{MonsterRemovablePartAddress:X}]" + Helpers.Serialize(MonsterRemovablePartData));
 
                                 CurrentPart.Address = MonsterRemovablePartAddress;
                                 CurrentPart.IsRemovable = true;
@@ -520,7 +525,7 @@ namespace HunterPie.Core {
 
                         CurrentPart.SetPartInfo(MonsterPartData.Data);
 
-                        //Debugger.Debug($"Part Structure <{Name}> [0x{CurrentPart.Address}]" + Helpers.Serialize(MonsterPartData));
+                        Debugger.Debug($"Part Structure <{Name}> [0x{CurrentPart.Address}]" + Helpers.Serialize(MonsterPartData));
 
                         NormalPartIndex++;
                     }
@@ -578,7 +583,7 @@ namespace HunterPie.Core {
                     Ailment MonsterAilment = new Ailment(MonsterAilmentPtr + 0x148);
                     MonsterAilment.SetAilmentInfo(AilmentData);
 
-                    //Debugger.Debug($"sMonsterAilment <{Name}> [0x{MonsterAilmentPtr+0x148:X}]" + Helpers.Serialize(AilmentData));
+                    Debugger.Debug($"sMonsterAilment <{Name}> [0x{MonsterAilmentPtr+0x148:X}]" + Helpers.Serialize(AilmentData));
 
                     Ailments.Add(MonsterAilment);
                     MonsterAilmentListPtrs += sizeof(long);

@@ -39,7 +39,7 @@ namespace HunterPie {
         bool IsUpdating = true;
 
         // HunterPie version
-        const string HUNTERPIE_VERSION = "1.0.3.93";
+        const string HUNTERPIE_VERSION = "1.0.3.94";
 
         // Helpers
         IntPtr _windowHandle;
@@ -520,7 +520,7 @@ namespace HunterPie {
         public void OnZoneChange(object source, EventArgs e) {
             if (MonsterHunter.Player.IsLoggedOn)
             {
-                //Debugger.Log($"ZoneID: {MonsterHunter.Player.ZoneID}");
+                Debugger.Log($"ZoneID: {MonsterHunter.Player.ZoneID}");
                 ExportGameData();
             }
         }
