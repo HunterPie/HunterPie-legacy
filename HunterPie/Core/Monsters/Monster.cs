@@ -28,8 +28,7 @@ namespace HunterPie.Core {
                 {
                     if (monsterAddress != 0)
                     {
-                        IsAlive = IsActuallyAlive = false;
-                        id = null;
+                        Id = null;
                     }
                     monsterAddress = value;
                 }
@@ -45,13 +44,8 @@ namespace HunterPie.Core {
         public string Id {
             get => id;
             set {
-                if (value != null && id != value)
+                if (!string.IsNullOrEmpty(value) && id != value)
                 {
-                    if (IsAlive)
-                    {
-                        _onMonsterDespawn();
-                        IsActuallyAlive = IsAlive = false;
-                    }
                     if (Health > 0)
                     {
                         id = value;
@@ -68,7 +62,7 @@ namespace HunterPie.Core {
                         IsActuallyAlive = true;
                         _onMonsterSpawn();
                     }
-                } else if (value == null && id != null) {
+                } else if (string.IsNullOrEmpty(value) && id != value) {
                     id = value;
                     _onMonsterDespawn();
                 }
@@ -313,7 +307,6 @@ namespace HunterPie.Core {
         {
             long NamePtr = Scanner.Read<long>(MonsterAddress + Address.Offsets.MonsterNamePtr);
             string MonsterEm = Scanner.READ_STRING(NamePtr + 0x0C, 64);
-
             if (!string.IsNullOrEmpty(MonsterEm))
             {
                 // Validates the em string
@@ -347,6 +340,7 @@ namespace HunterPie.Core {
                 }
             }
             Id = null;
+            
         }
 
         private void GetMonsterSizeModifier() {
@@ -482,7 +476,7 @@ namespace HunterPie.Core {
                             
                             if (CurrentPartInfo.Skip || (MonsterRemovablePartData.unk3.Index == CurrentPartInfo.Index && MonsterRemovablePartData.Data.MaxHealth > 0))
                             {
-                                Debugger.Debug($"Removable Part Structure <{Name}> [0x{MonsterRemovablePartAddress:X}]" + Helpers.Serialize(MonsterRemovablePartData));
+                                //Debugger.Debug($"Removable Part Structure <{Name}> [0x{MonsterRemovablePartAddress:X}]" + Helpers.Serialize(MonsterRemovablePartData));
 
                                 CurrentPart.Address = MonsterRemovablePartAddress;
                                 CurrentPart.IsRemovable = true;
@@ -513,7 +507,7 @@ namespace HunterPie.Core {
 
                         CurrentPart.SetPartInfo(MonsterPartData.Data);
 
-                        Debugger.Debug($"Part Structure <{Name}> [0x{CurrentPart.Address}]" + Helpers.Serialize(MonsterPartData));
+                        //Debugger.Debug($"Part Structure <{Name}> [0x{CurrentPart.Address}]" + Helpers.Serialize(MonsterPartData));
 
                         NormalPartIndex++;
                     }
@@ -551,7 +545,7 @@ namespace HunterPie.Core {
                     // There's a gap of 0x148 bytes between the pointer and the sMonsterAilment structure
                     sMonsterAilment AilmentData = Scanner.Win32.Read<sMonsterAilment>(MonsterAilmentPtr + 0x148);
 
-                    if (AilmentData.Id > MonsterData.AilmentsInfo.Count)
+                    if ((int)AilmentData.Id > MonsterData.AilmentsInfo.Count)
                     {
                         MonsterAilmentListPtrs += sizeof(long);
                         MonsterAilmentPtr = Scanner.Read<long>(MonsterAilmentListPtrs);
@@ -571,7 +565,7 @@ namespace HunterPie.Core {
                     Ailment MonsterAilment = new Ailment(MonsterAilmentPtr + 0x148);
                     MonsterAilment.SetAilmentInfo(AilmentData);
 
-                    Debugger.Debug($"sMonsterAilment <{Name}> [0x{MonsterAilmentPtr+0x148:X}]" + Helpers.Serialize(AilmentData));
+                    //Debugger.Debug($"sMonsterAilment <{Name}> [0x{MonsterAilmentPtr+0x148:X}]" + Helpers.Serialize(AilmentData));
 
                     Ailments.Add(MonsterAilment);
                     MonsterAilmentListPtrs += sizeof(long);

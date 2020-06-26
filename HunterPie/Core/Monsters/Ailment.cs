@@ -10,7 +10,7 @@ namespace HunterPie.Core {
 
         public long Address { get; private set; }
         public string Name {
-            get { return GStrings.GetAilmentNameByID(MonsterData.AilmentsInfo.ElementAt((int)Id).Id); }
+            get { return GStrings.GetAilmentNameByID(MonsterData.AilmentsInfo.ElementAtOrDefault((int)Id)?.Id ?? Id.ToString()); }
         }
         public uint Id { get; set; }
         public float Buildup {
