@@ -80,7 +80,6 @@ namespace HunterPie.GUI.Widgets
                 }
                 MonsterAilmentsContainer.Children.Clear();
                 MonsterPartsContainer.Children.Clear();
-                Context.ClearParts();
             }));
             Context.OnMonsterSpawn -= OnMonsterSpawn;
             Context.OnMonsterDespawn -= OnMonsterDespawn;
@@ -236,7 +235,6 @@ namespace HunterPie.GUI.Widgets
             }
             MonsterAilmentsContainer.Children.Clear();
             MonsterPartsContainer.Children.Clear();
-            Context?.ClearParts();
         });
 
         private void OnMonsterSpawn(object source, MonsterSpawnEventArgs args) => Dispatch(() =>

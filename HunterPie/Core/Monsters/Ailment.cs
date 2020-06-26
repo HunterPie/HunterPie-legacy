@@ -1,5 +1,7 @@
-﻿using System.Linq;
+﻿using System;
+using System.Linq;
 using HunterPie.Core.Definitions;
+using HunterPie.GUI.Widgets.Monster_Widget.Parts;
 
 namespace HunterPie.Core {
     public class Ailment {
@@ -68,6 +70,21 @@ namespace HunterPie.Core {
 
         public override string ToString() {
             return $"Ailment: {Name} ({Id}) | Duration: {Duration}/{MaxDuration} | Buildup: {Buildup}/{MaxBuildup} | {Counter}";
+        }
+
+        private void UnhookEvents(MonsterAilmentEvents eventHandler)
+        {
+            foreach (MonsterAilmentEvents d in eventHandler.GetInvocationList())
+            {
+                eventHandler -= d;
+            }
+        }
+
+        public void Destroy()
+        {
+            UnhookEvents(OnBuildupChange);
+            UnhookEvents(OnCounterChange);
+            UnhookEvents(OnDurationChange);
         }
     }
 }

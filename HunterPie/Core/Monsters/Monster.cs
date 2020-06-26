@@ -54,7 +54,6 @@ namespace HunterPie.Core {
                         IsAlive = true;
                         CreateMonsterParts(MonsterInfo.MaxParts);
                         GetMonsterPartsInfo();
-                        Ailments.Clear();
                         GetMonsterAilments();
                         GetMonsterSizeModifier();
                         CaptureThreshold = MonsterInfo.Capture;
@@ -63,8 +62,11 @@ namespace HunterPie.Core {
                         _onMonsterSpawn();
                     }
                 } else if (string.IsNullOrEmpty(value) && id != value) {
+                    
                     id = value;
                     _onMonsterDespawn();
+                    DestroyParts();
+                    IsAlive = IsActuallyAlive = false;
                 }
             }
         }
@@ -95,6 +97,7 @@ namespace HunterPie.Core {
                         Id = null;
                         IsActuallyAlive = IsAlive = false;
                         _onMonsterDeath();
+                        DestroyParts();
                     }
                 }
             }
@@ -160,7 +163,7 @@ namespace HunterPie.Core {
         ThreadStart MonsterInfoScanRef;
         Thread MonsterInfoScan;
 
-        // Game events
+        #region Events
         public delegate void MonsterEnrageEvents(object source, MonsterUpdateEventArgs args);
         public delegate void MonsterEvents(object source, EventArgs args);
         public delegate void MonsterSpawnEvents(object source, MonsterSpawnEventArgs args);
@@ -217,6 +220,7 @@ namespace HunterPie.Core {
         protected virtual void _OnStaminaUpdate() {
             OnStaminaUpdate?.Invoke(this, new MonsterUpdateEventArgs(this));
         }
+        #endregion
 
         public Monster(int initMonsterNumber) {
             MonsterNumber = initMonsterNumber;
@@ -256,9 +260,16 @@ namespace HunterPie.Core {
             ScanMonsterInfo();
         }
 
-        public void ClearParts() {
-            IsAlive = false;
+        private void DestroyParts() {
+            foreach (Part monsterPart in Parts)
+            {
+                monsterPart.Destroy();
+            }
             Parts.Clear();
+            foreach (Ailment monsterAilment in Ailments)
+            {
+                monsterAilment.Destroy();
+            }
             Ailments.Clear();
 #if DEBUG
             Debugger.Log($"Cleared parts: {Parts.Count} | {Ailments.Count}");
