@@ -1773,7 +1773,7 @@
       <Part Name="MONSTER_PART_REMOVABLE_TAIL" IsRemovable="True">
         <Break Threshold="1"/>
       </Part>
-      <Part Name="MONSTER_PART_UNKNOWN" IsRemovable="True"/>
+      <Part Name="MONSTER_PART_SKY_FALL" IsRemovable="True"/>
       <Part Name="MONSTER_PART_HEAD" Group="HEAD">
         <Break Threshold="2"/>
       </Part>
