@@ -1845,12 +1845,8 @@
       <Part Name="MONSTER_PART_REMOVABLE_HEAD" IsRemovable="True" Index="3">
         <Break Threshold="1"/>
       </Part>
-      <Part Name="MONSTER_PART_LNECK_ROCK" Group="NECK">
-        <Break Threshold="1"/>
-      </Part>
-      <Part Name="MONSTER_PART_RNECK_ROCK" Group="NECK">
-        <Break Threshold="1"/>
-      </Part>
+      <Part Name="MONSTER_PART_LNECK_ROCK" Group="NECK"/>
+      <Part Name="MONSTER_PART_RNECK_ROCK" Group="NECK"/
       <Part Name="MONSTER_PART_HEAD_ROCK" Group="HEAD"/>
       <Part Name="MONSTER_PART_TAIL_ROCK" Group="TAIL"/>
       <Part Name="MONSTER_PART_LWING_ROCK" Group="WING">
@@ -1861,9 +1857,11 @@
       </Part>
       <Part Name="MONSTER_PART_LARM_ROCK" Group="ARM">
         <Break Threshold="1"/>
+        <Break Threshold="2"/>
       </Part>
       <Part Name="MONSTER_PART_RARM_ROCK" Group="ARM">
         <Break Threshold="1"/>
+        <Break Threshold="2"/>
       </Part>
       <Part Name="MONSTER_PART_LEGS" Group="LEG"/>
       <Part Name="MONSTER_PART_HEAD" Group="HEAD">
