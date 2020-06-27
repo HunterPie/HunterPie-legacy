@@ -27,7 +27,6 @@ HunterPie is a modern and simple to use overlay with support for Discord Rich Pr
 ### Integrations
 - [Discord Rich Presence](https://haato3o.github.io/HunterPie/Integrations/discord)
 - [Honey Hunters World](https://haato3o.github.io/HunterPie/Integrations/honeyHuntersWorld)
-</details>
 
 ## Updates
 
