@@ -1127,22 +1127,38 @@
     </Weaknesses>
     <Crown Mini="0.9" Silver="1.15" Gold="1.23"/>
     <Parts Max="16">
-      <Part Name="MONSTER_PART_UNKNOWN" IsRemovable="True"/>
-      <Part Name="MONSTER_PART_HEAD" Group="HEAD"/>
+      <Part Name="MONSTER_PART_REPEL" IsRemovable="True"/>
+      <Part Name="MONSTER_PART_HEAD" Group="HEAD">
+        <Break Threshold="1"/>
+      </Part>
       <Part Name="MONSTER_PART_BODY" Group="BODY"/>
-      <Part Name="MONSTER_PART_CHEST" Group="CHEST"/>
+      <Part Name="MONSTER_PART_CHEST" Group="CHEST">
+        <Break Threshold="1"/>
+      </Part>
       <Part Name="MONSTER_PART_LARM" Group="ARM"/>
       <Part Name="MONSTER_PART_RARM" Group="ARM"/>
       <Part Name="MONSTER_PART_LLEG" Group="LEG"/>
       <Part Name="MONSTER_PART_RLEG" Group="LEG"/>
       <Part Name="MONSTER_PART_TAIL" Group="TAIL"/>
       <Part Name="MONSTER_PART_SHELL" Group="SHELL"/>
-      <Part Name="MONSTER_PART_EXHAUST_ORGAN_CENTRAL" Group="ORGAN"/>
-      <Part Name="MONSTER_PART_EXHAUST_ORGAN_HEAD" Group="ORGAN"/>
-      <Part Name="MONSTER_PART_EXHAUST_ORGAN_CRATER" Group="ORGAN"/>
-      <Part Name="MONSTER_PART_EXHAUST_ORGAN_REAR" Group="ORGAN"/>
-      <Part Name="MONSTER_PART_WEAK_LSHELL" Group="SHELL"/>
-      <Part Name="MONSTER_PART_WEAK_RSHELL" Group="SHELL"/>
+      <Part Name="MONSTER_PART_EXHAUST_ORGAN_CENTRAL" Group="ORGAN">
+        <Break Threshold="1"/>
+      </Part>
+      <Part Name="MONSTER_PART_EXHAUST_ORGAN_HEAD" Group="ORGAN">
+        <Break Threshold="1"/>
+      </Part>
+      <Part Name="MONSTER_PART_EXHAUST_ORGAN_CRATER" Group="ORGAN">
+        <Break Threshold="1"/>
+      </Part>
+      <Part Name="MONSTER_PART_EXHAUST_ORGAN_REAR" Group="ORGAN">
+        <Break Threshold="1"/>
+      </Part>
+      <Part Name="MONSTER_PART_WEAK_LSHELL" Group="SHELL">
+        <Break Threshold="1"/>
+      </Part>
+      <Part Name="MONSTER_PART_WEAK_RSHELL" Group="SHELL">
+        <Break Threshold="1"/>
+      </Part>
     </Parts>
   </Monster>
   <Monster ID="em107_00" Capture="30"  GameID="27"> <!-- Kulu-Ya-Ku -->
