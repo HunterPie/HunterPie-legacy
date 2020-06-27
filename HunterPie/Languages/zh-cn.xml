@@ -1,6 +1,6 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
 <Strings lang="Simplified Chinese">
-<!--Translated for HunterPie Ver 1.0.3.92 by FengYuu-->
+<!--Translated for HunterPie Ver 1.0.3.93 by FengYuu-->
   <Monsters>
     <Monster ID="ems062_03" Name="木质桶车"/>
     <Monster ID="em001_00" Name="雌火龙"/>
@@ -433,6 +433,7 @@
       <String ID="CONSOLE_CONSOLE" Name="控制台"/>
       <String ID="CONSOLE_SETTINGS" Name="设置"/>
       <String ID="CONSOLE_UPLOADBUILD" Name="上传配装"/>
+      <String ID="CONSOLE_EXPORTGEAR" Name="导出装饰珠"/>
       <String ID="CONSOLE_CHANGELOG" Name="更新记录"/>
       <String ID="CONSOLE_DISCORD" Name="Discord"/>
       <String ID="CONSOLE_GITHUB" Name="GitHub"/>
@@ -650,6 +651,10 @@
       <String ID="ENABLE_BOW_HELPER_DESC" Name="如开启，当您装备弓箭时，小组件便会显示"/>
       <String ID="ENABLE_HAMMER_HELPER" Name="大锤组件"/>
       <String ID="ENABLE_HAMMER_HELPER_DESC" Name="如开启，当您装备大锤时，小组件便会显示"/>
+      <String ID="ENABLE_DUALBLADES_HELPER" Name="双刀组件"/>
+      <String ID="ENABLE_DUALBLADES_HELPER_DESC" Name="如开启，当您装备双刀时，小组件便会显示"/>
+      <String ID="ENABLE_LANCE_HELPER" Name="长枪组件"/>
+      <String ID="ENABLE_LANCE_HELPER_DESC" Name="如开启，当您装备长枪时，小组件便会显示"/>
       <String ID="STATIC_CLASSES_BETA_WARNING" Name="请注意：武器组件仍在开发中，将来会支持更多武器。每种组件均有自己的位置，请在编辑模式中调整"/>
       <!-- Links -->
       <String ID="STATIC_HUNTERPIE_WIKI" Name="支持文件(英文)"/>
@@ -700,7 +705,9 @@
       <String ID="STATIC_REJECT" Name="拒绝"/>
       <String ID="STATIC_SETTINGS_LOAD" Name="设置已载入"/>
       <String ID="STATIC_OPENDEFAULTBROWSER" Name="在浏览器中打开"/>
+      <String ID="STATIC_OPENFOLDER" Name="打开文件夹"/>
       <String ID="MESSAGE_BUILD_UPLOADED" Name="配装已上传至HoneyHuntersWorld!"/>
+      <String ID="MESSAGE_GEAR_EXPORTED" Name="已导出到DataExport!"/>
     </Notifications>
     <RichPresence>
       <String ID="RPC_DESCRIPTION_IN_MAIN_MENU" Name="在主菜单"/>

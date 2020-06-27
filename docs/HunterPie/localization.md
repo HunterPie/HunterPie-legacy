@@ -84,7 +84,7 @@ XML has some characters that should be replaced by something else in order for i
 |     '     |  `&apos;`
 
 
-E.g
+**Example:**
 ```xml
 <!-- This might give an error -->
 <Abnormality ID="MISC_073_00" Name="Attack Up & Def Up (S)"/>

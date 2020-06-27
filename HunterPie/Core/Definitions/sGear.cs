@@ -11,7 +11,7 @@
 
 namespace HunterPie.Core.Definitions
 {
-    [StructLayout(LayoutKind.Sequential, Size = 0xA0)]
+    [StructLayout(LayoutKind.Sequential)]
     public struct sGear
     {
         long address;

@@ -1,27 +1,44 @@
 [![Discord](https://img.shields.io/discord/678286768046342147?color=%237289DA&label=Discord&logo=Discord&logoColor=%2399AAB5&style=for-the-badge)](https://discord.gg/5pdDq4Q)
 [![Donate](https://img.shields.io/badge/Donate-PayPal-blue.svg)](https://www.paypal.com/cgi-bin/webscr?cmd=_s-xclick&hosted_button_id=EXPGCRVFVC2ZA&source=url)
 
-![HunterPie](https://cdn.discordapp.com/attachments/402557384209203200/693529286975553667/Nexus_HunterPie_Banner.png)
+<img src="https://cdn.discordapp.com/attachments/402557384209203200/724059340088147978/banner_dark.png" width="400"/>
+
 ## About
 HunterPie is a modern and simple to use overlay with support for Discord Rich Presence for Monster Hunter: World.
 
-## How to install
+## Summary
 
-#### Requirements
+### HunterPie
+- [Requirements](https://haato3o.github.io/HunterPie/HunterPie/installation#requirements)
+- [Installation](https://haato3o.github.io/HunterPie/HunterPie/installation)
+- [Localization](https://haato3o.github.io/HunterPie/HunterPie/localization)
+- [Player Data Exporter](https://haato3o.github.io/HunterPie/HunterPie/playerDataExporter)
+- [Themes](https://haato3o.github.io/HunterPie/HunterPie/themes)
+- [Debug](https://haato3o.github.io/HunterPie/HunterPie/debug)
 
-- [.NET Framework >= 4.6.1](https://www.microsoft.com/en-us/download/details.aspx?id=49982)
+### Overlay
+- [Monsters Widget](https://haato3o.github.io/HunterPie/Overlay/monstersWidget)
+- [Harvest Box Widget](https://haato3o.github.io/HunterPie/Overlay/harvestBoxWidget)
+- [Abnormalities Widget](https://haato3o.github.io/HunterPie/Overlay/abnormalitiesWidget)
+- [Classes Widget](https://haato3o.github.io/HunterPie/Overlay/classesWidget)
+- [Damage Meter Widget](https://haato3o.github.io/HunterPie/Overlay/damageMeterWidget)
+- Specialized Tool Widget
 
-#### Installation
+### Integrations
+- [Discord Rich Presence](https://haato3o.github.io/HunterPie/Integrations/discord)
+- [Honey Hunters World](https://haato3o.github.io/HunterPie/Integrations/honeyHuntersWorld)
 
-- Download the latest release [here](https://github.com/Haato3o/HunterPie/releases/latest);
-- Extract it anywhere you want;
-- Open the extracted folder and start the **HunterPie.exe**, it will automatically look for new updates.
+## Updates
 
-#### Uninstallation
+### v1.0.3.9x
+- [v1.0.3.93](https://haato3o.github.io/HunterPie/versions/v1.0.3.93)
+- [v1.0.3.92](https://haato3o.github.io/HunterPie/versions/v1.0.3.92)
+- [v1.0.3.91](https://haato3o.github.io/HunterPie/versions/1.0.3.91)
+- [v1.0.3.90](https://haato3o.github.io/HunterPie/versions/v1.0.3.90)
 
-- Delete HunterPie folder
-
-
-## Troubleshooting & Bugs
-
-Please, read the [FAQ](https://github.com/Haato3o/HunterPie/wiki/FAQ), if your issue isn't listed there, contact me on [Discord](https://discord.gg/5pdDq4Q).
+### v1.0.3.8x
+- [v1.0.3.89](https://haato3o.github.io/HunterPie/versions/v1.0.3.89)
+- [v1.0.3.88](https://haato3o.github.io/HunterPie/versions/v1.0.3.88)
+- [v1.0.3.87](https://haato3o.github.io/HunterPie/versions/v1.0.3.87)
+- [v1.0.3.86](https://haato3o.github.io/HunterPie/versions/v1.0.3.86)
+- [v1.0.3.85](https://haato3o.github.io/HunterPie/versions/v1.0.3.85)

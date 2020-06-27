@@ -1,80 +1,91 @@
 ﻿using System;
 using System.Linq;
+using HunterPie.Core.Definitions;
+using HunterPie.GUI.Widgets.Monster_Widget.Parts;
 
 namespace HunterPie.Core {
     public class Ailment {
-        float _Buildup { get; set; }
-        float _Duration { get; set; }
-        byte _Counter { get; set; }
 
-        public Int64 Address { get; set; }
+        private float buildup;
+        private float duration;
+        private uint counter;
+
+        public long Address { get; private set; }
         public string Name {
-            get { return GStrings.GetAilmentNameByID(MonsterData.AilmentsInfo.ElementAt(ID).Id); }
+            get { return GStrings.GetAilmentNameByID(MonsterData.AilmentsInfo.ElementAtOrDefault((int)Id)?.Id ?? Id.ToString()); }
         }
-        public int ID { get; set; }
+        public uint Id { get; set; }
         public float Buildup {
-            get { return _Buildup; }
+            get { return buildup; }
             set {
-                if (value != _Buildup) {
-                    _Buildup = value;
-                    _OnBuildupChange();
+                if (value != buildup) {
+                    buildup = value;
+                    Dispatch(OnBuildupChange);
                 }
             }
         }
         public float MaxBuildup { get; private set; }
         public float Duration {
-            get { return _Duration; }
+            get { return duration; }
             set {
-                if (value != _Duration) {
-                    _Duration = value;
-                    _OnDurationChange();
+                if (value != duration) {
+                    duration = value;
+                    Dispatch(OnDurationChange);
                 }
             }
         }
         public float MaxDuration { get; private set; }
-        public byte Counter {
-            get { return _Counter; }
+        public uint Counter {
+            get { return counter; }
             set {
-                if (value != _Counter) {
-                    _Counter = value;
-                    _OnCounterChange();
+                if (value != counter) {
+                    counter = value;
+                    Dispatch(OnCounterChange);
                 }
             }
         }
+
         #region Events
         public delegate void MonsterAilmentEvents(object source, MonsterAilmentEventArgs args);
         public event MonsterAilmentEvents OnBuildupChange;
         public event MonsterAilmentEvents OnDurationChange;
         public event MonsterAilmentEvents OnCounterChange;
 
-        protected virtual void _OnBuildupChange() {
-            OnBuildupChange?.Invoke(this, new MonsterAilmentEventArgs(this));
-        }
-
-        protected virtual void _OnDurationChange() {
-            OnDurationChange?.Invoke(this, new MonsterAilmentEventArgs(this));
-        }
-
-        protected virtual void _OnCounterChange() {
-            OnCounterChange?.Invoke(this, new MonsterAilmentEventArgs(this));
-        }
+        private void Dispatch(MonsterAilmentEvents e) => e?.Invoke(this, new MonsterAilmentEventArgs(this));
         #endregion
-        
-        public void SetAilmentInfo(int ai_ID, float currentDuration, float maxDuration, float currentBuildup, float maxBuildup, byte counter) {
-            ID = ai_ID;
-            // Ailment duration
-            MaxDuration = maxDuration;
-            Duration = currentDuration;
-            // Ailment buildup
-            MaxBuildup = maxBuildup;
-            Buildup = currentBuildup;
-            // Counter
-            Counter = counter;
+
+        public Ailment(long address)
+        {
+            Address = address;
         }
 
+        public void SetAilmentInfo(sMonsterAilment AilmentData) {
+            Id = AilmentData.Id;
+            MaxDuration = AilmentData.MaxDuration;
+            Duration = AilmentData.Duration;
+            MaxBuildup = AilmentData.MaxBuildup;
+            Buildup = AilmentData.Buildup;
+            Counter = AilmentData.Counter;
+        }
 
         public override string ToString() {
-            return $"Ailment: {Name} ({ID}) | Duration: {Duration}/{MaxDuration} | Buildup: {Buildup}/{MaxBuildup} | {Counter}";
+            return $"Ailment: {Name} ({Id}) | Duration: {Duration}/{MaxDuration} | Buildup: {Buildup}/{MaxBuildup} | {Counter}";
+        }
+
+        private void UnhookEvents(MonsterAilmentEvents eventHandler)
+        {
+            if (eventHandler == null) return;
+            foreach (MonsterAilmentEvents d in eventHandler.GetInvocationList())
+            {
+                eventHandler -= d;
+            }
+        }
+
+        public void Destroy()
+        {
+            UnhookEvents(OnBuildupChange);
+            UnhookEvents(OnCounterChange);
+            UnhookEvents(OnDurationChange);
         }
     }
 }

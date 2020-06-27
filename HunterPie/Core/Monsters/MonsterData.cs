@@ -96,14 +96,19 @@ namespace HunterPie.Core {
             if (node == null) return null;
 
             XmlNodeList mParts = node.SelectNodes("Parts/Part");
+            uint RemovablePartIndex = 0;
             foreach (XmlNode partData in mParts)
             {
                 PartInfo pInfo = new PartInfo
                 {
                     Id = partData.Attributes["Name"]?.Value ?? "MONSTER_PART_UNKNOWN",
                     IsRemovable = bool.Parse(partData.Attributes["IsRemovable"]?.Value ?? "false"),
-                    GroupId = partData.Attributes["Group"]?.Value ?? "MISC"
+                    GroupId = partData.Attributes["Group"]?.Value ?? "MISC",
+                    Skip = bool.Parse(partData.Attributes["Skip"]?.Value ?? "false"),
+                    Index = uint.Parse(partData.Attributes["Index"]?.Value ?? RemovablePartIndex.ToString())
                 };
+
+                if (pInfo.IsRemovable) RemovablePartIndex++;
 
                 XmlNodeList breaks = partData.SelectNodes("Break");
                 pInfo.BreakThresholds = breaks != null

@@ -13,7 +13,7 @@
     <Monster ID="em018_00" Name="Yian Garuga"/>
     <Monster ID="em018_05" Name="Yian Garuga Naevus"/>
     <Monster ID="em023_00" Name="Rajang"/>
-	<Monster ID="em023_05" Name="Rajang Rabioso"/>
+	  <Monster ID="em023_05" Name="Rajang Rabioso"/>
     <Monster ID="em024_00" Name="Kushala Daora"/>
     <Monster ID="em026_00" Name="Lunastra"/>
     <Monster ID="em027_00" Name="Teostra"/>
@@ -432,6 +432,7 @@
       <String ID="CONSOLE_CONSOLE" Name="CONSOLA"/>
       <String ID="CONSOLE_SETTINGS" Name="AJUSTES"/>
       <String ID="CONSOLE_UPLOADBUILD" Name="SUBIR SET"/>
+      <String ID="CONSOLE_EXPORTGEAR" Name="EXPORTAR DATOS"/>
       <String ID="CONSOLE_CHANGELOG" Name="CAMBIOS"/>
       <String ID="CONSOLE_DISCORD" Name="DISCORD"/>
       <String ID="CONSOLE_GITHUB" Name="GITHUB"/>
@@ -649,6 +650,10 @@
       <String ID="ENABLE_BOW_HELPER_DESC" Name="Si lo activas se habilitará un menú informativo para el Arco cuando estés equipado con una en una cacería/expedición."/>
       <String ID="ENABLE_HAMMER_HELPER" Name="Ventana de apoyo para Martillo"/>
       <String ID="ENABLE_HAMMER_HELPER_DESC" Name="Si lo activas se habilitará un menú informativo para el Martillo cuando estés equipado con una en una cacería/expedición."/>
+      <String ID="ENABLE_DUALBLADES_HELPER" Name="Ventana de apoyo para Espadas dobles"/>
+      <String ID="ENABLE_DUALBLADES_HELPER_DESC" Name="Si lo activas se habilitará un menú informativo para las Espadas dobles cuando estés equipado con una en una cacería/expedición."/>
+      <String ID="ENABLE_LANCE_HELPER" Name="Ventana de apoyo para Lanza"/>
+      <String ID="ENABLE_LANCE_HELPER_DESC" Name="Si lo activas se habilitará un menú informativo para la Lanza cuando estés equipado con una en una cacería/expedición."/>
       <String ID="STATIC_CLASSES_BETA_WARNING" Name="Atención: Las ventanas de apoyo todavía estan en desarrollo y se irán añadiendo nuevas armas en el futuro. Cada ventana tiene su propia configuración por lo que puedes definir distintas posiciones en función del arma usada. Usa el modo diseñador para modificar el tamaño y posición de las ventanas. Se puede cambiar la tecla para el modo diseñador desde el menú Overlay."/>
       <!-- Links -->
       <String ID="STATIC_HUNTERPIE_WIKI" Name="Documentación"/>
@@ -699,7 +704,9 @@
       <String ID="STATIC_REJECT" Name="Rechazar"/>
       <String ID="STATIC_SETTINGS_LOAD" Name="Ajustes cargados"/>
       <String ID="STATIC_OPENDEFAULTBROWSER" Name="Abrir en el navegador"/>
+      <String ID="STATIC_OPENFOLDER" Name="Abrir carpeta"/>
 	  <String ID="MESSAGE_BUILD_UPLOADED" Name="¡Set subido a Honey Hunters World!"/>
+      <String ID="MESSAGE_GEAR_EXPORTED" Name="Datos exportados al directorio ./DataExport!"/>
     </Notifications>
     <RichPresence>
       <String ID="RPC_DESCRIPTION_IN_MAIN_MENU" Name="En el menú principal"/>
