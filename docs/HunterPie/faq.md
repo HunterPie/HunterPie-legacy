@@ -1,7 +1,7 @@
 
 ## HunterPie
 ### Why is my HunterPie crashing on startup?
-If you use RivaTuner make sure to update it to the latest version, it has a bug that makes HunterPie crash because it uses Direct3D. Also make sure you have all the [**requirements**](https://github.com/Haato3o/HunterPie/wiki#requirements) to run HunterPie.
+If you use RivaTuner make sure to update it to the latest version, it has a bug that makes HunterPie crash because it uses Direct3D. Also make sure you have all the [**requirements**](https://haato3o.github.io/HunterPie/HunterPie/installation#requirements) to run HunterPie.
 
 ### I'm getting an error about MonsterHunterWorld.XXXXXX.map
 
@@ -15,7 +15,7 @@ Yes! Just make sure to read [**this**](https://github.com/Haato3o/HunterPie/wiki
 ### My overlay isn't appearing for me
 
 #### DirectX 11
-If you use DirectX 11 make sure your game is either in ***borderless fullscreen*** OR ***windowed mode***, the overlay will not be visible if you play in fullscreen mode. Make sure you have the overlay enabled and that the widgets do have content to show.
+If you use DirectX 11 make sure your game is either in ***borderless window*** OR ***windowed mode***, the overlay will not be visible if you play in fullscreen mode. Make sure you have the overlay enabled and that the widgets do have content to show.
 
 #### DirectX 12
 DirectX 12 does let you see the overlay even when the game is in fullscreen mode. If you still can't see the overlay, make sure it's enabled and that all widgets you want are enabled. Try pressing your design mode hotkey (default is ScrollLock), if you still don't see the widgets then restart HunterPie with adminstrator privileges.

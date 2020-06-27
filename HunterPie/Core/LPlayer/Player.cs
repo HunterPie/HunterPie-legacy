@@ -509,7 +509,7 @@ namespace HunterPie.Core
                 }
                 GetSessionId();
                 GetEquipmentAddress();
-                Thread.Sleep(Math.Max(50, UserSettings.PlayerConfig.Overlay.GameScanDelay));
+                Thread.Sleep(UserSettings.PlayerConfig.Overlay.GameScanDelay);
             }
             Thread.Sleep(1000);
             GetPlayerInfo();
