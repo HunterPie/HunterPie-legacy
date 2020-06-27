@@ -7,7 +7,6 @@
 HunterPie is a modern and simple to use overlay with support for Discord Rich Presence for Monster Hunter: World.
 
 ## Summary
-<details><summary>Expand</summary>
 
 ### HunterPie
 - [Requirements](https://haato3o.github.io/HunterPie/HunterPie/installation#requirements)
@@ -32,24 +31,15 @@ HunterPie is a modern and simple to use overlay with support for Discord Rich Pr
 
 ## Updates
 
-<details><summary>v1.0.3.9x</summary>
-
-<li>
-    <ul><a href="https://haato3o.github.io/HunterPie/versions/v1.0.3.93">Hello World!</a></ul>
-</li>
-
+### v1.0.3.9x
 - [v1.0.3.93](https://haato3o.github.io/HunterPie/versions/v1.0.3.93)
 - [v1.0.3.92](https://haato3o.github.io/HunterPie/versions/v1.0.3.92)
 - [v1.0.3.91](https://haato3o.github.io/HunterPie/versions/1.0.3.91)
 - [v1.0.3.90](https://haato3o.github.io/HunterPie/versions/v1.0.3.90)
 
-</details>
-<details><summary>v1.0.3.8x</summary>
-
+### v1.0.3.8x
 - [v1.0.3.89](https://haato3o.github.io/HunterPie/versions/v1.0.3.89)
 - [v1.0.3.88](https://haato3o.github.io/HunterPie/versions/v1.0.3.88)
 - [v1.0.3.87](https://haato3o.github.io/HunterPie/versions/v1.0.3.87)
 - [v1.0.3.86](https://haato3o.github.io/HunterPie/versions/v1.0.3.86)
 - [v1.0.3.85](https://haato3o.github.io/HunterPie/versions/v1.0.3.85)
-
-</details>
