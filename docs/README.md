@@ -34,6 +34,10 @@ HunterPie is a modern and simple to use overlay with support for Discord Rich Pr
 
 <details><summary>v1.0.3.9x</summary>
 
+<li>
+    <ul><a href="https://haato3o.github.io/HunterPie/versions/v1.0.3.93">Hello World!</a></ul>
+</li>
+
 - [v1.0.3.93](https://haato3o.github.io/HunterPie/versions/v1.0.3.93)
 - [v1.0.3.92](https://haato3o.github.io/HunterPie/versions/v1.0.3.92)
 - [v1.0.3.91](https://haato3o.github.io/HunterPie/versions/1.0.3.91)
