@@ -179,6 +179,7 @@
     <Part ID="MONSTER_PART_SPIKES_LWING" Name="Spikes (Left Wing)"/>
     <Part ID="MONSTER_PART_SPIKES_RWING" Name="Spikes (Right Wing)"/>
     <Part ID="MONSTER_PART_SPIKES_TAIL" Name="Spikes (Tail)"/>
+    <Part ID="MONSTER_PART_REPEL" Name="Repel"/>
   </Parts>
   <Ailments>
     <Ailment ID="STATUS_UNKNOWN" Name="Unknown"/>
