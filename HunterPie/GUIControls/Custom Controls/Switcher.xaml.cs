@@ -2,15 +2,18 @@
 using System.Windows.Controls;
 using System.Windows.Input;
 
-namespace HunterPie.GUIControls.Custom_Controls {
+namespace HunterPie.GUIControls.Custom_Controls
+{
     /// <summary>
     /// Interaction logic for Switcher.xaml
     /// </summary>
-    public partial class Switcher : UserControl {
+    public partial class Switcher : UserControl
+    {
 
-        public string Text {
-            get { return GetValue(TextProperty).ToString(); }
-            set { SetValue(TextProperty, value); }
+        public string Text
+        {
+            get => GetValue(TextProperty).ToString();
+            set => SetValue(TextProperty, value);
         }
 
         // Using a DependencyProperty as the backing store for Text.  This enables animation, styling, binding, etc...
@@ -19,8 +22,8 @@ namespace HunterPie.GUIControls.Custom_Controls {
 
         public Visibility RestartVisibility
         {
-            get { return (Visibility)GetValue(RestartVisibilityProperty); }
-            set { SetValue(RestartVisibilityProperty, value); }
+            get => (Visibility)GetValue(RestartVisibilityProperty);
+            set => SetValue(RestartVisibilityProperty, value);
         }
 
         // Using a DependencyProperty as the backing store for RestartVisibility.  This enables animation, styling, binding, etc...
@@ -29,8 +32,8 @@ namespace HunterPie.GUIControls.Custom_Controls {
 
         public bool IsEnabled
         {
-            get { return (bool)GetValue(IsEnabledProperty); }
-            set { SetValue(IsEnabledProperty, value); }
+            get => (bool)GetValue(IsEnabledProperty);
+            set => SetValue(IsEnabledProperty, value);
         }
 
         // Using a DependencyProperty as the backing store for IsEnabled.  This enables animation, styling, binding, etc...
@@ -38,9 +41,7 @@ namespace HunterPie.GUIControls.Custom_Controls {
             DependencyProperty.Register("IsEnabled", typeof(bool), typeof(Switcher));
 
 
-        public Switcher() {
-            InitializeComponent();
-        }
+        public Switcher() => InitializeComponent();
 
         private void OnClick(object sender, MouseButtonEventArgs e) => IsEnabled = !IsEnabled;
 

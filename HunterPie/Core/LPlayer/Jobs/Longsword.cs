@@ -15,7 +15,7 @@ namespace HunterPie.Core.LPlayer.Jobs
             ChargeLevel = weapon.ChargeLevel;
             OuterGauge = weapon.OuterGauge;
             SpiritGaugeBlinkDuration = weapon.SpiritGaugeBlinkDuration;
-        } 
+        }
     }
     public class Longsword : Job
     {
@@ -80,10 +80,7 @@ namespace HunterPie.Core.LPlayer.Jobs
         public event LongswordEvents OnOuterGaugeChange;
         public event LongswordEvents OnSpiritGaugeBlinkDurationUpdate;
 
-        private void Dispatch(LongswordEvents e)
-        {
-            e?.Invoke(this, new LongswordEventArgs(this));
-        }
+        private void Dispatch(LongswordEvents e) => e?.Invoke(this, new LongswordEventArgs(this));
 
     }
 }

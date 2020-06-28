@@ -5,7 +5,7 @@ namespace HunterPie.Core.Definitions
     [StructLayout(LayoutKind.Sequential)]
     public struct sItem
     {
-        long unk0;
+        readonly long unk0;
         public int ItemId;
         public int Amount;
     }

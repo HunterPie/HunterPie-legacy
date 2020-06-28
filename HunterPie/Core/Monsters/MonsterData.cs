@@ -1,13 +1,15 @@
-﻿using System.Xml;
+﻿using System;
 using System.Collections.Generic;
-using System;
 using System.IO;
 using System.Linq;
+using System.Xml;
 using HunterPie.Core.Monsters;
 using HunterPie.Logger;
 
-namespace HunterPie.Core {
-    class MonsterData {
+namespace HunterPie.Core
+{
+    class MonsterData
+    {
         private static XmlDocument MonsterDataDocument;
         private static Dictionary<int, MonsterInfo> monstersInfo;
         private static List<AilmentInfo> ailmentsInfo;
@@ -15,10 +17,13 @@ namespace HunterPie.Core {
         public static IReadOnlyDictionary<int, MonsterInfo> MonstersInfo => monstersInfo;
         public static IReadOnlyCollection<AilmentInfo> AilmentsInfo => ailmentsInfo;
 
-        static public void LoadMonsterData() {
+        static public void LoadMonsterData()
+        {
             MonsterDataDocument = new XmlDocument();
-            if (UserSettings.PlayerConfig.HunterPie.Debug.LoadCustomMonsterData) {
-                try {
+            if (UserSettings.PlayerConfig.HunterPie.Debug.LoadCustomMonsterData)
+            {
+                try
+                {
                     MonsterDataDocument.Load(UserSettings.PlayerConfig.HunterPie.Debug.CustomMonsterData);
                     Debugger.Warn(GStrings.GetLocalizationByXPath("/Console/String[@ID='MESSAGE_MONSTER_DATA_LOAD']"));
 
@@ -27,7 +32,9 @@ namespace HunterPie.Core {
 
                     MonsterDataDocument = null;
                     return;
-                } catch(Exception err) {
+                }
+                catch (Exception err)
+                {
                     Debugger.Error(err);
                 }
             }
@@ -35,13 +42,13 @@ namespace HunterPie.Core {
 
             LoadAilments();
             LoadMonsters();
-            
+
             Debugger.Warn(GStrings.GetLocalizationByXPath("/Console/String[@ID='MESSAGE_MONSTER_DATA_LOAD']"));
 
             // Unload XmlDocument since we don't need it anymore
             MonsterDataDocument = null;
         }
-        
+
         static private MonsterInfo MonsterXmlNodeToInfo(XmlNode node)
         {
             if (node?.Attributes == null)
@@ -80,7 +87,8 @@ namespace HunterPie.Core {
             XmlNodeList mWeaknesses = node.SelectNodes("Weaknesses/Weakness");
             foreach (XmlNode weaknessData in mWeaknesses)
             {
-                WeaknessInfo wInfo = new WeaknessInfo {
+                WeaknessInfo wInfo = new WeaknessInfo
+                {
                     Id = weaknessData.Attributes["ID"]?.Value,
                     Stars = int.Parse(weaknessData.Attributes["Stars"]?.Value ?? "0")
                 };
@@ -127,7 +135,7 @@ namespace HunterPie.Core {
             monstersInfo = monstersData.Cast<XmlNode>()
                 .Select(node => MonsterXmlNodeToInfo(node))
                 .ToDictionary(m => m.Id);
-            
+
         }
 
         static private AilmentInfo AilmentXmlNodeToInfo(XmlNode node)

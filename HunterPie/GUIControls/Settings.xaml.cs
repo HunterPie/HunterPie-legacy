@@ -1,42 +1,45 @@
-﻿using System.Linq;
+﻿using System;
+using System.Collections.Generic;
+using System.Linq;
 using System.Windows;
 using System.Windows.Controls;
-using System.Collections.Generic;
 using HunterPie.Core;
-using System;
 
-namespace HunterPie.GUIControls {
+namespace HunterPie.GUIControls
+{
     /// <summary>
     /// Interaction logic for Settings.xaml
     /// </summary>
-    public partial class Settings : UserControl {
+    public partial class Settings : UserControl
+    {
 
         private static Settings _Instance;
-        public static Settings Instance {
-            get {
-                if (_Instance == null) {
+        public static Settings Instance
+        {
+            get
+            {
+                if (_Instance == null)
+                {
                     _Instance = new Settings();
                 }
                 return _Instance;
             }
         }
 
-        public Settings() {
-            InitializeComponent();
-        }
+        public Settings() => InitializeComponent();
 
-        public void UninstallKeyboardHook() {
-            _Instance?.SettingsBox.UnhookEvents();
-        }
+        public void UninstallKeyboardHook() => _Instance?.SettingsBox.UnhookEvents();
 
-        static public void Destroy() {
+        static public void Destroy()
+        {
             if (_Instance == null) return;
             _Instance.UninstallKeyboardHook();
             _Instance.SettingsBox = null;
             _Instance = null;
         }
 
-        static public void RefreshSettingsUI() {
+        static public void RefreshSettingsUI()
+        {
             if (_Instance == null) return;
             var settings = UserSettings.PlayerConfig;
             var settingsUI = _Instance.SettingsBox;
@@ -63,7 +66,7 @@ namespace HunterPie.GUIControls {
             settingsUI.switchEnableRichPresence.IsEnabled = settings.RichPresence.Enabled;
             settingsUI.switchShowMonsterHealth.IsEnabled = settings.RichPresence.ShowMonsterHealth;
             settingsUI.switchLetPeopleJoinSession.IsEnabled = settings.RichPresence.LetPeopleJoinSession;
-            
+
             // Overlay
             settingsUI.switchEnableOverlay.IsEnabled = settings.Overlay.Enabled;
             settingsUI.DesiredFrameRateSlider.Value = settings.Overlay.DesiredAnimationFrameRate;
@@ -91,10 +94,14 @@ namespace HunterPie.GUIControls {
             settingsUI.PartsCustomizer.IsEnabled = settingsUI.switchEnableParts.IsEnabled;
             settingsUI.switchEnableAilments.IsEnabled = settings.Overlay.MonstersComponent.EnableMonsterAilments;
             settingsUI.switchEnableRemovableParts.IsEnabled = settings.Overlay.MonstersComponent.EnableRemovableParts;
-            foreach (Custom_Controls.Switcher switcher in settingsUI.PartsCustomizer.Children) {
-                if (settings.Overlay.MonstersComponent.EnabledPartGroups.Contains(switcher.Name.Replace("EnablePart", "").ToUpper())) {
+            foreach (Custom_Controls.Switcher switcher in settingsUI.PartsCustomizer.Children)
+            {
+                if (settings.Overlay.MonstersComponent.EnabledPartGroups.Contains(switcher.Name.Replace("EnablePart", "").ToUpper()))
+                {
                     switcher.IsEnabled = true;
-                } else {
+                }
+                else
+                {
                     switcher.IsEnabled = false;
                 }
             }
@@ -157,11 +164,12 @@ namespace HunterPie.GUIControls {
             settingsUI.switchChargeBladeHelper.IsEnabled = settings.Overlay.ClassesWidget.ChargeBladeHelper.Enabled;
             settingsUI.switchInsectGlaiveHelper.IsEnabled = settings.Overlay.ClassesWidget.InsectGlaiveHelper.Enabled;
             settingsUI.switchBowHelper.IsEnabled = settings.Overlay.ClassesWidget.BowHelper.Enabled;
-            
+
 
         }
 
-        private void saveSettings_Click(object sender, RoutedEventArgs e) {
+        private void saveSettings_Click(object sender, RoutedEventArgs e)
+        {
             var settings = UserSettings.PlayerConfig;
             var settingsUI = _Instance.SettingsBox;
             // HunterPie
@@ -212,13 +220,14 @@ namespace HunterPie.GUIControls {
             settings.Overlay.MonstersComponent.EnableRemovableParts = settingsUI.switchEnableRemovableParts.IsEnabled;
             settings.Overlay.MonstersComponent.EnableMonsterAilments = settingsUI.switchEnableAilments.IsEnabled;
             List<string> EnabledParts = new List<string>();
-            foreach (Custom_Controls.Switcher switcher in settingsUI.PartsCustomizer.Children) {
+            foreach (Custom_Controls.Switcher switcher in settingsUI.PartsCustomizer.Children)
+            {
                 if (switcher.IsEnabled)
                     EnabledParts.Add(switcher.Name.Replace("EnablePart", "").ToUpper());
             }
             settings.Overlay.MonstersComponent.EnabledPartGroups = EnabledParts.ToArray();
             settings.Overlay.MonstersComponent.HidePartsAfterSeconds = settingsUI.switchEnableHideUnactiveParts.IsEnabled;
-            settings.Overlay.MonstersComponent.SecondsToHideParts = (int)Math.Min(Math.Max((int)settingsUI.HideSeconds.Value, 0), 10000);
+            settings.Overlay.MonstersComponent.SecondsToHideParts = Math.Min(Math.Max((int)settingsUI.HideSeconds.Value, 0), 10000);
             settings.Overlay.MonstersComponent.ShowMonsterWeakness = settingsUI.switchEnableMonsterWeakness.IsEnabled;
             settings.Overlay.MonstersComponent.Opacity = (float)settingsUI.MonsterComponentOpacity.Value;
 
@@ -247,7 +256,7 @@ namespace HunterPie.GUIControls {
             settings.Overlay.HarvestBoxComponent.Position[1] = settingsUI.HarvestBoxPosition.Y;
             settings.Overlay.HarvestBoxComponent.BackgroundOpacity = (float)settingsUI.HarvestBoxBackgroundOpacity.Value;
             settings.Overlay.HarvestBoxComponent.Opacity = (float)settingsUI.HarvestBoxComponentOpacity.Value;
-            
+
 
             // DPS Meter
             settings.Overlay.DPSMeter.Enabled = settingsUI.switchEnableDPSMeter.IsEnabled;
@@ -279,7 +288,8 @@ namespace HunterPie.GUIControls {
 
             // Abnormality bars
             int i = 0;
-            foreach (Custom_Controls.BuffBarSettingControl abnormBar in settingsUI.BuffTrays.Children) {
+            foreach (Custom_Controls.BuffBarSettingControl abnormBar in settingsUI.BuffTrays.Children)
+            {
                 settings.Overlay.AbnormalitiesWidget.BarPresets[i].Name = abnormBar.PresetName;
                 settings.Overlay.AbnormalitiesWidget.BarPresets[i].Enabled = abnormBar.Enabled;
                 i++;

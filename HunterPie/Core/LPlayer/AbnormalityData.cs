@@ -6,8 +6,10 @@ using System.Xml;
 using HunterPie.Core.LPlayer;
 using HunterPie.Logger;
 
-namespace HunterPie.Core {
-    public class AbnormalityData {
+namespace HunterPie.Core
+{
+    public class AbnormalityData
+    {
         private static XmlDocument AbnormalitiesData;
         private static List<AbnormalityInfo> huntingHornAbnormalities;
         private static List<AbnormalityInfo> palicoAbnormalities;
@@ -21,7 +23,8 @@ namespace HunterPie.Core {
         public static IReadOnlyCollection<AbnormalityInfo> MiscAbnormalities => miscAbnormalities;
         public static IReadOnlyCollection<AbnormalityInfo> GearAbnormalities => gearAbnormalities;
 
-        static public void LoadAbnormalityData() {
+        static public void LoadAbnormalityData()
+        {
             AbnormalitiesData = new XmlDocument();
             AbnormalitiesData.Load(Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "HunterPie.Resources/Data/AbnormalityData.xml"));
             Debugger.Warn(GStrings.GetLocalizationByXPath("/Console/String[@ID='MESSAGE_ABNORMALITIES_DATA_LOAD']"));
@@ -36,29 +39,15 @@ namespace HunterPie.Core {
             AbnormalitiesData = null;
         }
 
-        private static void LoadHuntingHornAbnormalities()
-        {
-            huntingHornAbnormalities = LoadAbnormalityType("HUNTINGHORN", "HH", "//Abnormalities/HUNTINGHORN_Abnormalities/Abnormality");
-        }
+        private static void LoadHuntingHornAbnormalities() => huntingHornAbnormalities = LoadAbnormalityType("HUNTINGHORN", "HH", "//Abnormalities/HUNTINGHORN_Abnormalities/Abnormality");
 
-        private static void LoadPalicoAbnormalities()
-        {
-            palicoAbnormalities = LoadAbnormalityType("PALICO", "PAL", "//Abnormalities/PALICO_Abnormalities/Abnormality");
-        }
+        private static void LoadPalicoAbnormalities() => palicoAbnormalities = LoadAbnormalityType("PALICO", "PAL", "//Abnormalities/PALICO_Abnormalities/Abnormality");
 
-        private static void LoadBlightAbnormalities()
-        {
-            blightAbnormalities = LoadAbnormalityType("DEBUFF", "DE", "//Abnormalities/DEBUFF_Abnormalities/Abnormality");
-        }
+        private static void LoadBlightAbnormalities() => blightAbnormalities = LoadAbnormalityType("DEBUFF", "DE", "//Abnormalities/DEBUFF_Abnormalities/Abnormality");
 
-        private static void LoadMiscAbnormalities()
-        {
-            miscAbnormalities = LoadAbnormalityType("MISC", "MISC", "//Abnormalities/MISC_Abnormalities/Abnormality");
-        }
+        private static void LoadMiscAbnormalities() => miscAbnormalities = LoadAbnormalityType("MISC", "MISC", "//Abnormalities/MISC_Abnormalities/Abnormality");
 
-        private static void LoadGearAbnormalities() {
-            gearAbnormalities = LoadAbnormalityType("GEAR", "GEAR", "//Abnormalities/GEAR_Abnormalities/Abnormality");
-        }
+        private static void LoadGearAbnormalities() => gearAbnormalities = LoadAbnormalityType("GEAR", "GEAR", "//Abnormalities/GEAR_Abnormalities/Abnormality");
 
         private static List<AbnormalityInfo> LoadAbnormalityType(string type, string idPrefix, string xmlSelector)
         {

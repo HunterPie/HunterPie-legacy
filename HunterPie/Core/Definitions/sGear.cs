@@ -14,10 +14,10 @@ namespace HunterPie.Core.Definitions
     [StructLayout(LayoutKind.Sequential)]
     public struct sGear
     {
-        long address;
+        readonly long address;
         public int AbsoluteSlot; // Moving the item to another slot doesn't change this
         public int Slot;  // Moving the ithem to another slot DOES change this
-        long unk1;
+        readonly long unk1;
         public uint Category; // Gear category, read the explanation above
         public int unk3;
         public uint Type; // Type depends on category
@@ -33,22 +33,22 @@ namespace HunterPie.Core.Definitions
         public uint unk14;
         public uint unk15;
         public int AugmentId; // First augment
-        int unk17;
-        int unk18;
-        uint unk19;
-        uint unk20;
-        uint unk21;
-        int unk22;
-        int unk23;
-        int unk24;
-        int unk25;
-        uint unk26;
-        uint unk27;
-        uint unk28;
-        uint unk29;
-        uint unk30;
-        int unk31;
-        int unk32;
-        int unk33;
+        readonly int unk17;
+        readonly int unk18;
+        readonly uint unk19;
+        readonly uint unk20;
+        readonly uint unk21;
+        readonly int unk22;
+        readonly int unk23;
+        readonly int unk24;
+        readonly int unk25;
+        readonly uint unk26;
+        readonly uint unk27;
+        readonly uint unk28;
+        readonly uint unk29;
+        readonly uint unk30;
+        readonly int unk31;
+        readonly int unk32;
+        readonly int unk33;
     };
 }

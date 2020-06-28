@@ -1,17 +1,7 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using System.Text;
 using System.Windows;
 using System.Windows.Controls;
-using System.Windows.Data;
-using System.Windows.Documents;
 using System.Windows.Input;
-using System.Windows.Media;
-using System.Windows.Media.Imaging;
-using System.Windows.Navigation;
-using System.Windows.Shapes;
 
 namespace HunterPie.GUIControls.Custom_Controls
 {
@@ -24,8 +14,8 @@ namespace HunterPie.GUIControls.Custom_Controls
 
         public string Text
         {
-            get { return (string)GetValue(TextProperty); }
-            set { SetValue(TextProperty, value); }
+            get => (string)GetValue(TextProperty);
+            set => SetValue(TextProperty, value);
         }
 
         // Using a DependencyProperty as the backing store for Text.  This enables animation, styling, binding, etc...
@@ -36,8 +26,8 @@ namespace HunterPie.GUIControls.Custom_Controls
 
         public string HotKey
         {
-            get { return (string)GetValue(HotKeyProperty); }
-            set { SetValue(HotKeyProperty, value); }
+            get => (string)GetValue(HotKeyProperty);
+            set => SetValue(HotKeyProperty, value);
         }
 
         // Using a DependencyProperty as the backing store for HotKey.  This enables animation, styling, binding, etc...
@@ -46,10 +36,7 @@ namespace HunterPie.GUIControls.Custom_Controls
 
 
 
-        public CHotKey()
-        {
-            InitializeComponent();
-        }
+        public CHotKey() => InitializeComponent();
 
 
         private void OnKeyDown(object sender, KeyEventArgs e)

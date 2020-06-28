@@ -74,10 +74,7 @@ namespace HunterPie.Core
         public event MonsterPartEvents OnHealthChange;
         public event MonsterPartEvents OnBrokenCounterChange;
 
-        protected virtual void NotifyHealthChanged()
-        {
-            OnHealthChange?.Invoke(this, new MonsterPartEventArgs(this));
-        }
+        protected virtual void NotifyHealthChanged() => OnHealthChange?.Invoke(this, new MonsterPartEventArgs(this));
 
         protected virtual void NotifyBrokenCounterChanged()
         {
@@ -97,7 +94,8 @@ namespace HunterPie.Core
         private void UnhookEvents(MonsterPartEvents eventHandler)
         {
             if (eventHandler == null) return;
-            foreach (MonsterPartEvents d in eventHandler.GetInvocationList()) {
+            foreach (MonsterPartEvents d in eventHandler.GetInvocationList())
+            {
                 eventHandler -= d;
             }
         }
@@ -108,9 +106,6 @@ namespace HunterPie.Core
             UnhookEvents(OnBrokenCounterChange);
         }
 
-        public override string ToString()
-        {
-            return $"Name: {Name} | ID: {id} | HP: {Health}/{TotalHealth} | Counter: {BrokenCounter}";
-        }
+        public override string ToString() => $"Name: {Name} | ID: {id} | HP: {Health}/{TotalHealth} | Counter: {BrokenCounter}";
     }
 }

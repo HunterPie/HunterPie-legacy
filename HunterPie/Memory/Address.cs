@@ -3,9 +3,12 @@ using System.Collections.Generic;
 using System.IO;
 using HunterPie.Logger;
 
-namespace HunterPie.Memory {
-    class Address {
-        public class Offsets {
+namespace HunterPie.Memory
+{
+    class Address
+    {
+        public class Offsets
+        {
             public static int[] LevelOffsets;
             public static int[] ZoneOffsets;
             public static int[] WeaponOffsets;
@@ -65,16 +68,18 @@ namespace HunterPie.Memory {
         public const Int64 timerDynamic = 0xA8C;
 
         // Loaded values
-        private static Dictionary<string, Int64> MappedAddresses = new Dictionary<string, Int64>();
-        private static Dictionary<string, int[]> MappedOffsets = new Dictionary<string, int[]>();
-        
-        public static bool LoadMemoryMap(int version) {
+        private static readonly Dictionary<string, Int64> MappedAddresses = new Dictionary<string, Int64>();
+        private static readonly Dictionary<string, int[]> MappedOffsets = new Dictionary<string, int[]>();
+
+        public static bool LoadMemoryMap(int version)
+        {
             string FILE_NAME = $"MonsterHunterWorld.{version}.map";
             // If dir or file doesn't exist
             if (!Directory.Exists(Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "address"))) return false;
             if (!File.Exists(Path.Combine(AppDomain.CurrentDomain.BaseDirectory, $"address/{FILE_NAME}"))) return false;
             // Load file
-            if (!isOlderThanIceborne(version)) {
+            if (!isOlderThanIceborne(version))
+            {
                 // Update offsets for iceborne
                 UpdateToIceborneOffsets();
             }
@@ -84,12 +89,14 @@ namespace HunterPie.Memory {
             return true;
         }
 
-        private static void LoadMemoryAddresses(string filename) {
+        private static void LoadMemoryAddresses(string filename)
+        {
             // Clear all loaded values
             MappedAddresses.Clear();
             MappedOffsets.Clear();
             string[] fileLines = File.ReadAllLines(Path.Combine(AppDomain.CurrentDomain.BaseDirectory, $"address/{filename}"));
-            foreach (string line in fileLines) {
+            foreach (string line in fileLines)
+            {
                 if (line.StartsWith("#")) continue; // Ignore comments
                 string[] parsed = line.Split(' ');
                 // parsed[0]: type
@@ -99,16 +106,21 @@ namespace HunterPie.Memory {
             }
         }
 
-        private static void AddValueToMap(string type, string[] values) {
+        private static void AddValueToMap(string type, string[] values)
+        {
             string name = values[1];
             string value = values[2];
-            switch(type) {
+            switch (type)
+            {
                 case "Address":
                 case "long":
                     Int64 parsedValue;
-                    try {
+                    try
+                    {
                         parsedValue = ParseHex(value);
-                    } catch {
+                    }
+                    catch
+                    {
                         Debugger.Error($"Failed parsing value for \"{name}\"");
                         parsedValue = 0xFFFFFFFF;
                     }
@@ -117,10 +129,14 @@ namespace HunterPie.Memory {
                 case "Offset":
                     string[] strOffsets = value.Split(',');
                     int[] offsets = new int[strOffsets.Length];
-                    for (int i = 0; i < strOffsets.Length; i++) {
-                        try {
+                    for (int i = 0; i < strOffsets.Length; i++)
+                    {
+                        try
+                        {
                             offsets[i] = ParseHexToInt32(strOffsets[i]);
-                        } catch {
+                        }
+                        catch
+                        {
                             Debugger.Error($"Failed to parse value {strOffsets[i]}");
                             offsets[i] = 0xFF;
                         }
@@ -133,17 +149,17 @@ namespace HunterPie.Memory {
             }
         }
 
-        private static int ParseHexToInt32(string hexstring) {
+        private static int ParseHexToInt32(string hexstring)
+        {
             bool isSigned = false;
             if (hexstring.StartsWith("-")) isSigned = true;
             return Convert.ToInt32(hexstring.Replace("0x", "").Replace("-", ""), 16) * (isSigned ? -1 : 1);
         }
 
-        private static Int64 ParseHex(string hexstring) {
-            return Convert.ToInt64(hexstring.Replace("0x", ""), 16);
-        }
+        private static Int64 ParseHex(string hexstring) => Convert.ToInt64(hexstring.Replace("0x", ""), 16);
 
-        private static void LoadValuesToMemory() {
+        private static void LoadValuesToMemory()
+        {
             LoadAddressFromDict(nameof(BASE), out BASE, BASE);
             LoadAddressFromDict(nameof(LEVEL_OFFSET), out LEVEL_OFFSET, LEVEL_OFFSET);
             LoadAddressFromDict(nameof(ZONE_OFFSET), out ZONE_OFFSET, ZONE_OFFSET);
@@ -178,38 +194,49 @@ namespace HunterPie.Memory {
             MappedOffsets.Clear();
         }
 
-        private static void LoadAddressFromDict(string name, out Int64 variable, Int64 oldValue) {
-            try {
+        private static void LoadAddressFromDict(string name, out Int64 variable, Int64 oldValue)
+        {
+            try
+            {
                 variable = MappedAddresses[name] == 0xFFFFFFFF ? oldValue : MappedAddresses[name];
-            } catch {
+            }
+            catch
+            {
                 variable = oldValue;
                 Debugger.Error($"MonsterHunterWorld.{GAME_VERSION}.map missing value for {name}");
             }
         }
 
-        private static void LoadOffsetsFromDict(string name, out int[] offsetsArray, int[] oldOffsetsArray) {
-            try {
+        private static void LoadOffsetsFromDict(string name, out int[] offsetsArray, int[] oldOffsetsArray)
+        {
+            try
+            {
                 offsetsArray = MappedOffsets[name];
-            } catch {
+            }
+            catch
+            {
                 offsetsArray = oldOffsetsArray;
                 Debugger.Error($"MonsterHunterWorld.{GAME_VERSION}.map missing offsets for {name}");
             }
         }
 
         // Support Iceborne and older versions
-        private static bool isOlderThanIceborne(int game_version) {
-            if (game_version <= PREICEBORNE_VERSION) {
+        private static bool isOlderThanIceborne(int game_version)
+        {
+            if (game_version <= PREICEBORNE_VERSION)
+            {
                 Debugger.Error("Pre-Iceborne game not supported anymore.");
             }
             return game_version <= PREICEBORNE_VERSION;
         }
 
-        private static void UpdateToIceborneOffsets() {
+        private static void UpdateToIceborneOffsets()
+        {
             Offsets.FertilizersOffset = 0x102FE4;
             Offsets.HarvestBoxOffset = 0x20;
 
             // Monster Iceborne offsets
-            
+
             Offsets.MonsterHPComponentOffset = 0x7670;
             Offsets.MonsterNamePtr = 0x2A0;
         }

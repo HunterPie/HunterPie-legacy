@@ -38,8 +38,9 @@ namespace HunterPie.Core.Integrations.DataExporter
             {
                 File.WriteAllText(filepath, Helpers.Serialize(playerData));
                 return true;
-            } catch { return false; }
-            
+            }
+            catch { return false; }
+
         }
 
         /// <summary>

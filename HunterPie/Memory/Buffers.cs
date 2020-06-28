@@ -7,7 +7,7 @@ namespace HunterPie.Memory
     {
         private static int capacity;
         private static Dictionary<Type, object> buffers;
-        private static object lockObject = new object();
+        private static readonly object lockObject = new object();
 
         public static void Initialize(int commonCapacity)
         {
@@ -15,10 +15,7 @@ namespace HunterPie.Memory
             buffers = new Dictionary<Type, object>();
         }
 
-        public static void Add<T>(int size = 1) where T : struct
-        {
-            buffers.Add(typeof(T), new BufferPool<T>(capacity, size));
-        }
+        public static void Add<T>(int size = 1) where T : struct => buffers.Add(typeof(T), new BufferPool<T>(capacity, size));
 
         public static T[] Get<T>() where T : struct
         {
@@ -33,7 +30,7 @@ namespace HunterPie.Memory
                 }
             }
 
-            BufferPool<T> pool = (BufferPool<T>) buffers[typeof(T)];
+            BufferPool<T> pool = (BufferPool<T>)buffers[typeof(T)];
             return pool.Get();
         }
     }

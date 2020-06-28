@@ -16,8 +16,8 @@ namespace HunterPie.GUI.Widgets.ClassWidget.Parts
 
         public int ChargeLevel
         {
-            get { return (int)GetValue(ChargeLevelProperty); }
-            set { SetValue(ChargeLevelProperty, value); }
+            get => (int)GetValue(ChargeLevelProperty);
+            set => SetValue(ChargeLevelProperty, value);
         }
 
         public static readonly DependencyProperty ChargeLevelProperty =
@@ -25,8 +25,8 @@ namespace HunterPie.GUI.Widgets.ClassWidget.Parts
 
         public float ChargeProgress
         {
-            get { return (float)GetValue(ChargeProgressProperty); }
-            set { SetValue(ChargeProgressProperty, value); }
+            get => (float)GetValue(ChargeProgressProperty);
+            set => SetValue(ChargeProgressProperty, value);
         }
 
         public static readonly DependencyProperty ChargeProgressProperty =
@@ -34,8 +34,8 @@ namespace HunterPie.GUI.Widgets.ClassWidget.Parts
 
         public bool IsPowerCharged
         {
-            get { return (bool)GetValue(IsPowerChargedProperty); }
-            set { SetValue(IsPowerChargedProperty, value); }
+            get => (bool)GetValue(IsPowerChargedProperty);
+            set => SetValue(IsPowerChargedProperty, value);
         }
 
         public static readonly DependencyProperty IsPowerChargedProperty =
@@ -43,8 +43,8 @@ namespace HunterPie.GUI.Widgets.ClassWidget.Parts
 
         public bool IsChargeMaxedOut
         {
-            get { return (bool)GetValue(IsChargeMaxedOutProperty); }
-            set { SetValue(IsChargeMaxedOutProperty, value); }
+            get => (bool)GetValue(IsChargeMaxedOutProperty);
+            set => SetValue(IsChargeMaxedOutProperty, value);
         }
 
         public static readonly DependencyProperty IsChargeMaxedOutProperty =
@@ -93,52 +93,34 @@ namespace HunterPie.GUI.Widgets.ClassWidget.Parts
 
         #region Event callbacks
 
-        private void OnWeaponSheathStateChange(object source, JobEventArgs args)
-        {
-            Dispatcher.BeginInvoke(System.Windows.Threading.DispatcherPriority.Render, new Action(() =>
-            {
-                IsWeaponSheathed = args.IsWeaponSheathed;
-            }));
-        }
+        private void OnWeaponSheathStateChange(object source, JobEventArgs args) => Dispatcher.BeginInvoke(System.Windows.Threading.DispatcherPriority.Render, new Action(() =>
+                                                                                  {
+                                                                                      IsWeaponSheathed = args.IsWeaponSheathed;
+                                                                                  }));
 
-        private void OnSafijiivaCounterUpdate(object source, JobEventArgs args)
-        {
-            Dispatcher.BeginInvoke(System.Windows.Threading.DispatcherPriority.Render, new Action(() =>
-            {
-                HasSafiBuff = args.SafijiivaRegenCounter != -1;
-                SafiCounter = args.SafijiivaMaxHits - args.SafijiivaRegenCounter;
-            }));
-        }
+        private void OnSafijiivaCounterUpdate(object source, JobEventArgs args) => Dispatcher.BeginInvoke(System.Windows.Threading.DispatcherPriority.Render, new Action(() =>
+                                                                                 {
+                                                                                     HasSafiBuff = args.SafijiivaRegenCounter != -1;
+                                                                                     SafiCounter = args.SafijiivaMaxHits - args.SafijiivaRegenCounter;
+                                                                                 }));
 
-        private void OnChargeProgressUpdate(object source, HammerEventArgs args)
-        {
-            Dispatcher.BeginInvoke(System.Windows.Threading.DispatcherPriority.Render, new Action(() =>
-            {
-                ChargeProgress = args.ChargeLevel >= 3 ? 1 : args.ChargeProgress % 1;
-            }));
-        }
+        private void OnChargeProgressUpdate(object source, HammerEventArgs args) => Dispatcher.BeginInvoke(System.Windows.Threading.DispatcherPriority.Render, new Action(() =>
+                                                                                  {
+                                                                                      ChargeProgress = args.ChargeLevel >= 3 ? 1 : args.ChargeProgress % 1;
+                                                                                  }));
 
-        private void OnPowerChargeStateChange(object source, HammerEventArgs args)
-        {
-            Dispatcher.BeginInvoke(System.Windows.Threading.DispatcherPriority.Render, new Action(() =>
-            {
-                IsPowerCharged = args.IsPowerCharged;
-            }));
-        }
+        private void OnPowerChargeStateChange(object source, HammerEventArgs args) => Dispatcher.BeginInvoke(System.Windows.Threading.DispatcherPriority.Render, new Action(() =>
+                                                                                    {
+                                                                                        IsPowerCharged = args.IsPowerCharged;
+                                                                                    }));
 
-        private void OnChargeLevelChange(object source, HammerEventArgs args)
-        {
-            Dispatcher.BeginInvoke(System.Windows.Threading.DispatcherPriority.Render, new Action(() =>
-            {
-                ChargeLevel = args.ChargeLevel;
-                IsChargeMaxedOut = ChargeLevel >= 3;
-            }));
-        }
+        private void OnChargeLevelChange(object source, HammerEventArgs args) => Dispatcher.BeginInvoke(System.Windows.Threading.DispatcherPriority.Render, new Action(() =>
+                                                                               {
+                                                                                   ChargeLevel = args.ChargeLevel;
+                                                                                   IsChargeMaxedOut = ChargeLevel >= 3;
+                                                                               }));
         #endregion
 
-        private void HControl_Loaded(object sender, RoutedEventArgs e)
-        {
-            UpdateInformation();
-        }
+        private void HControl_Loaded(object sender, RoutedEventArgs e) => UpdateInformation();
     }
 }

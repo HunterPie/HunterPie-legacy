@@ -16,8 +16,8 @@ namespace HunterPie.GUI.Widgets.ClassWidget.Parts
 
         public int MaxChargeLevel
         {
-            get { return (int)GetValue(MaxChargeLevelProperty); }
-            set { SetValue(MaxChargeLevelProperty, value); }
+            get => (int)GetValue(MaxChargeLevelProperty);
+            set => SetValue(MaxChargeLevelProperty, value);
         }
 
         public static readonly DependencyProperty MaxChargeLevelProperty =
@@ -25,8 +25,8 @@ namespace HunterPie.GUI.Widgets.ClassWidget.Parts
 
         public int ChargeLevel
         {
-            get { return (int)GetValue(ChargeLevelProperty); }
-            set { SetValue(ChargeLevelProperty, value); }
+            get => (int)GetValue(ChargeLevelProperty);
+            set => SetValue(ChargeLevelProperty, value);
         }
 
         public static readonly DependencyProperty ChargeLevelProperty =
@@ -34,17 +34,14 @@ namespace HunterPie.GUI.Widgets.ClassWidget.Parts
 
         public float ChargeProgress
         {
-            get { return (float)GetValue(ChargeProgressProperty); }
-            set { SetValue(ChargeProgressProperty, value); }
+            get => (float)GetValue(ChargeProgressProperty);
+            set => SetValue(ChargeProgressProperty, value);
         }
 
         public static readonly DependencyProperty ChargeProgressProperty =
             DependencyProperty.Register("ChargeProgress", typeof(float), typeof(BowControl));
 
-        public BowControl()
-        {
-            InitializeComponent();
-        }
+        public BowControl() => InitializeComponent();
 
 
         private void UpdateInformation()
@@ -82,50 +79,32 @@ namespace HunterPie.GUI.Widgets.ClassWidget.Parts
             Context = null;
         }
 
-        private void OnWeaponSheathStateChange(object source, JobEventArgs args)
-        {
-            Dispatcher.BeginInvoke(System.Windows.Threading.DispatcherPriority.Render, new Action(() =>
-            {
-                IsWeaponSheathed = args.IsWeaponSheathed;
-            }));
-        }
+        private void OnWeaponSheathStateChange(object source, JobEventArgs args) => Dispatcher.BeginInvoke(System.Windows.Threading.DispatcherPriority.Render, new Action(() =>
+                                                                                  {
+                                                                                      IsWeaponSheathed = args.IsWeaponSheathed;
+                                                                                  }));
 
-        private void OnSafijiivaCounterUpdate(object source, JobEventArgs args)
-        {
-            Dispatcher.BeginInvoke(System.Windows.Threading.DispatcherPriority.Render, new Action(() =>
-            {
-                HasSafiBuff = args.SafijiivaRegenCounter != -1;
-                SafiCounter = args.SafijiivaMaxHits - args.SafijiivaRegenCounter;
-            }));
-        }
+        private void OnSafijiivaCounterUpdate(object source, JobEventArgs args) => Dispatcher.BeginInvoke(System.Windows.Threading.DispatcherPriority.Render, new Action(() =>
+                                                                                 {
+                                                                                     HasSafiBuff = args.SafijiivaRegenCounter != -1;
+                                                                                     SafiCounter = args.SafijiivaMaxHits - args.SafijiivaRegenCounter;
+                                                                                 }));
 
-        private void OnChargeLevelMaxUpdate(object source, BowEventArgs args)
-        {
-            Dispatcher.BeginInvoke(System.Windows.Threading.DispatcherPriority.Render, new Action(() =>
-            {
-                MaxChargeLevel = args.MaxChargeLevel + 1;
-            }));
-        }
+        private void OnChargeLevelMaxUpdate(object source, BowEventArgs args) => Dispatcher.BeginInvoke(System.Windows.Threading.DispatcherPriority.Render, new Action(() =>
+                                                                               {
+                                                                                   MaxChargeLevel = args.MaxChargeLevel + 1;
+                                                                               }));
 
-        private void OnChargeLevelChange(object source, BowEventArgs args)
-        {
-            Dispatcher.BeginInvoke(System.Windows.Threading.DispatcherPriority.Render, new Action(() =>
-            {
-                ChargeLevel = args.ChargeLevel + 1;
-            }));
-        }
+        private void OnChargeLevelChange(object source, BowEventArgs args) => Dispatcher.BeginInvoke(System.Windows.Threading.DispatcherPriority.Render, new Action(() =>
+                                                                            {
+                                                                                ChargeLevel = args.ChargeLevel + 1;
+                                                                            }));
 
-        private void OnChargeProgressUpdate(object source, BowEventArgs args)
-        {
-            Dispatcher.BeginInvoke(System.Windows.Threading.DispatcherPriority.Render, new Action(() =>
-            {
-                ChargeProgress = Math.Floor(args.ChargeProgress) >= args.MaxChargeLevel ? 1 : args.ChargeProgress % 1;
-            }));
-        }
+        private void OnChargeProgressUpdate(object source, BowEventArgs args) => Dispatcher.BeginInvoke(System.Windows.Threading.DispatcherPriority.Render, new Action(() =>
+                                                                               {
+                                                                                   ChargeProgress = Math.Floor(args.ChargeProgress) >= args.MaxChargeLevel ? 1 : args.ChargeProgress % 1;
+                                                                               }));
 
-        private void BControl_Loaded(object sender, RoutedEventArgs e)
-        {
-            UpdateInformation();
-        }
+        private void BControl_Loaded(object sender, RoutedEventArgs e) => UpdateInformation();
     }
 }

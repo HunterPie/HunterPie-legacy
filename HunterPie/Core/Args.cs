@@ -1,78 +1,89 @@
 ﻿using System;
 using System.Collections.Generic;
 
-namespace HunterPie.Core {
+namespace HunterPie.Core
+{
     /* Abnormalities */
-    public class AbnormalityEventArgs : EventArgs {
+    public class AbnormalityEventArgs : EventArgs
+    {
         public Abnormality Abnormality;
 
-        public AbnormalityEventArgs(Abnormality abnorm) {
-            this.Abnormality = abnorm;
-        }
+        public AbnormalityEventArgs(Abnormality abnorm) => Abnormality = abnorm;
     }
     /* Activities */
-    public class SteamFuelEventArgs : EventArgs {
+    public class SteamFuelEventArgs : EventArgs
+    {
         public int Available;
         public int Max;
 
-        public SteamFuelEventArgs(int available, int max) {
-            this.Available = available;
-            this.Max = max;
+        public SteamFuelEventArgs(int available, int max)
+        {
+            Available = available;
+            Max = max;
         }
     }
-    public class DaysLeftEventArgs : EventArgs {
+    public class DaysLeftEventArgs : EventArgs
+    {
         public byte Days;
         // Generic name
         // Argosy
         // Tailraiders means
         public bool Modifier;
 
-        public DaysLeftEventArgs(byte Days, bool Modifier = false) {
+        public DaysLeftEventArgs(byte Days, bool Modifier = false)
+        {
             this.Days = Days;
             this.Modifier = Modifier;
         }
     }
     /* Party and Members */
-    public class PartyMemberEventArgs : EventArgs {
+    public class PartyMemberEventArgs : EventArgs
+    {
         public string Name;
         public int Damage;
         public string Weapon;
         public bool IsInParty;
 
-        public PartyMemberEventArgs(Member m) {
-            this.Name = m.Name;
-            this.Damage = m.Damage;
-            this.Weapon = m.WeaponIconName;
-            this.IsInParty = m.IsInParty;
+        public PartyMemberEventArgs(Member m)
+        {
+            Name = m.Name;
+            Damage = m.Damage;
+            Weapon = m.WeaponIconName;
+            IsInParty = m.IsInParty;
         }
     }
 
     /* HB and Fertilizers */
-    public class FertilizerEventArgs : EventArgs {
+    public class FertilizerEventArgs : EventArgs
+    {
         public int ID;
         public string Name;
         public int Amount;
 
-        public FertilizerEventArgs(Fertilizer m) {
-            this.ID = m.ID;
-            this.Name = m.Name;
-            this.Amount = m.Amount;
+        public FertilizerEventArgs(Fertilizer m)
+        {
+            ID = m.ID;
+            Name = m.Name;
+            Amount = m.Amount;
         }
     }
 
-    public class HarvestBoxEventArgs : EventArgs {
+    public class HarvestBoxEventArgs : EventArgs
+    {
         public int Counter;
         public int Max;
 
-        public HarvestBoxEventArgs(HarvestBox m) {
-            this.Counter = m.Counter;
-            this.Max = m.Max;
+        public HarvestBoxEventArgs(HarvestBox m)
+        {
+            Counter = m.Counter;
+            Max = m.Max;
         }
 
     }
 
     /* Monster Events */
-    public class MonsterAilmentEventArgs : EventArgs {
+    public class MonsterAilmentEventArgs : EventArgs
+    {
         public string Name;
         public float Duration;
         public float MaxDuration;
@@ -80,7 +91,8 @@ namespace HunterPie.Core {
         public float MaxBuildup;
         public uint Counter;
 
-        public MonsterAilmentEventArgs(Ailment mAilment) {
+        public MonsterAilmentEventArgs(Ailment mAilment)
+        {
             Name = mAilment.Name;
             Duration = mAilment.Duration;
             MaxDuration = mAilment.MaxDuration;
@@ -105,7 +117,8 @@ namespace HunterPie.Core {
         public int BrokenCounter { get; }
     }
 
-    public class MonsterSpawnEventArgs : EventArgs {
+    public class MonsterSpawnEventArgs : EventArgs
+    {
         public string Name;
         public string ID;
         public string Crown;
@@ -114,30 +127,33 @@ namespace HunterPie.Core {
         public bool IsTarget;
         public Dictionary<string, int> Weaknesses;
 
-        public MonsterSpawnEventArgs(Monster m) {
-            this.Name = m.Name;
-            this.ID = m.Id;
-            this.Crown = m.Crown;
-            this.Health = m.Health;
-            this.MaxHealth = m.MaxHealth;
-            this.IsTarget = m.IsTarget;
-            this.Weaknesses = m.Weaknesses;
+        public MonsterSpawnEventArgs(Monster m)
+        {
+            Name = m.Name;
+            ID = m.Id;
+            Crown = m.Crown;
+            Health = m.Health;
+            MaxHealth = m.MaxHealth;
+            IsTarget = m.IsTarget;
+            Weaknesses = m.Weaknesses;
         }
     }
 
-    public class MonsterUpdateEventArgs : EventArgs {
+    public class MonsterUpdateEventArgs : EventArgs
+    {
         public float Health;
         public float MaxHealth;
         public float Stamina;
         public float MaxStamina;
         public float Enrage;
 
-        public MonsterUpdateEventArgs(Monster m) {
-            this.Health = m.Health;
-            this.MaxHealth = m.MaxHealth;
-            this.Enrage = m.EnrageTimer;
-            this.Stamina = m.Stamina;
-            this.MaxStamina = m.MaxStamina;
+        public MonsterUpdateEventArgs(Monster m)
+        {
+            Health = m.Health;
+            MaxHealth = m.MaxHealth;
+            Enrage = m.EnrageTimer;
+            Stamina = m.Stamina;
+            MaxStamina = m.MaxStamina;
         }
     }
 

@@ -1,39 +1,46 @@
 ﻿using System;
 using System.Windows;
-using HunterPie.Core;
 using System.Windows.Media;
+using HunterPie.Core;
 
-namespace HunterPie.GUI.Widgets {
+namespace HunterPie.GUI.Widgets
+{
     /// <summary>
     /// Interaction logic for MantleTimer.xaml
     /// </summary>
-    public partial class MantleTimer : Widget {
+    public partial class MantleTimer : Widget
+    {
 
         private Mantle Context { get; set; }
         private int MantleNumber { get; set; }
 
-        public MantleTimer(int MantleNumber, Mantle context) {
+        public MantleTimer(int MantleNumber, Mantle context)
+        {
             this.MantleNumber = MantleNumber;
             WidgetType = 2;
             InitializeComponent();
-            this.SetContext(context);
+            SetContext(context);
             SetWindowFlags();
             ApplySettings();
         }
 
-        public override void EnterWidgetDesignMode() {
+        public override void EnterWidgetDesignMode()
+        {
             base.EnterWidgetDesignMode();
             RemoveWindowTransparencyFlag();
         }
 
-        public override void LeaveWidgetDesignMode() {
+        public override void LeaveWidgetDesignMode()
+        {
             base.LeaveWidgetDesignMode();
             ApplyWindowTransparencyFlag();
             SaveSettings();
         }
 
-        private void SaveSettings() {
-            switch (MantleNumber) {
+        private void SaveSettings()
+        {
+            switch (MantleNumber)
+            {
                 case 0:
                     UserSettings.PlayerConfig.Overlay.PrimaryMantle.Position[0] = (int)Left - UserSettings.PlayerConfig.Overlay.Position[0];
                     UserSettings.PlayerConfig.Overlay.PrimaryMantle.Position[1] = (int)Top - UserSettings.PlayerConfig.Overlay.Position[1];
@@ -45,139 +52,158 @@ namespace HunterPie.GUI.Widgets {
                     UserSettings.PlayerConfig.Overlay.SecondaryMantle.Scale = DefaultScaleX;
                     break;
             }
-            
+
         }
 
-        public void SetContext(Mantle ctx) {
-            this.Context = ctx;
+        public void SetContext(Mantle ctx)
+        {
+            Context = ctx;
             HookEvents();
         }
 
-        private void Dispatch(Action function) {
-            this.Dispatcher.BeginInvoke(System.Windows.Threading.DispatcherPriority.Render, function);
-        }
+        private void Dispatch(Action function) => Dispatcher.BeginInvoke(System.Windows.Threading.DispatcherPriority.Render, function);
 
-        private void HookEvents() {
+        private void HookEvents()
+        {
             Context.OnMantleCooldownUpdate += OnCooldownChange;
             Context.OnMantleTimerUpdate += OnTimerChange;
             Context.OnMantleChange += OnMantleChange;
         }
 
-        public void UnhookEvents() {
+        public void UnhookEvents()
+        {
             Context.OnMantleCooldownUpdate -= OnCooldownChange;
             Context.OnMantleTimerUpdate -= OnTimerChange;
             Context.OnMantleChange -= OnMantleChange;
             Context = null;
         }
 
-        private void OnMantleChange(object source, MantleEventArgs args) {
-            Dispatch(() => {
-                MantleName.Text = args.Name;
-                MantleIcon.Source = GetSpecializedToolIcon(args.ID);
-            });
-        }
+        private void OnMantleChange(object source, MantleEventArgs args) => Dispatch(() =>
+        {
+            MantleName.Text = args.Name;
+            MantleIcon.Source = GetSpecializedToolIcon(args.ID);
+        });
 
-        private void OnTimerChange(object source, MantleEventArgs args) {
-            if (args.Timer <= 0) {
-                Dispatch(() => {
-                    this.WidgetHasContent = false;
+        private void OnTimerChange(object source, MantleEventArgs args)
+        {
+            if (args.Timer <= 0)
+            {
+                Dispatch(() =>
+                {
+                    WidgetHasContent = false;
                     ChangeVisibility(false);
                 });
                 return;
             }
             string FormatMantleName = $"({(int)args.Timer}) {args.Name}";
-            Dispatch(() => {
-                this.WidgetHasContent = true;
+            Dispatch(() =>
+            {
+                WidgetHasContent = true;
                 ChangeVisibility(false);
                 MantleName.Text = FormatMantleName;
                 DurationBar.Width = 181 * (args.Timer / args.staticTimer);
             });
         }
 
-        private void OnCooldownChange(object source, MantleEventArgs args) {
-            if (args.Cooldown <= 0) {
-                Dispatch(() => {
-                    this.WidgetHasContent = false;
+        private void OnCooldownChange(object source, MantleEventArgs args)
+        {
+            if (args.Cooldown <= 0)
+            {
+                Dispatch(() =>
+                {
+                    WidgetHasContent = false;
                     ChangeVisibility(false);
                 });
                 return;
             }
             string FormatMantleName = $"({(int)args.Cooldown}) {args.Name}";
-            Dispatch(() => {
-                this.WidgetHasContent = true;
+            Dispatch(() =>
+            {
+                WidgetHasContent = true;
                 ChangeVisibility(false);
                 MantleName.Text = FormatMantleName;
                 DurationBar.Width = 181 * (1 - args.Cooldown / args.staticCooldown);
             });
         }
 
-        private void OnClosing(object sender, System.ComponentModel.CancelEventArgs e) {
-            this.UnhookEvents();
-            this.IsClosed = true;
+        private void OnClosing(object sender, System.ComponentModel.CancelEventArgs e)
+        {
+            UnhookEvents();
+            IsClosed = true;
         }
 
-        public override void ApplySettings(bool FocusTrigger = false) {
-            Dispatcher.BeginInvoke(System.Windows.Threading.DispatcherPriority.Background, new Action(() => {
-                if (!FocusTrigger) {
-                    // Changes widget position
-                    this.Top = (MantleNumber == 0 ? UserSettings.PlayerConfig.Overlay.PrimaryMantle.Position[1] : UserSettings.PlayerConfig.Overlay.SecondaryMantle.Position[1]) + UserSettings.PlayerConfig.Overlay.Position[1];
-                    this.Left = (MantleNumber == 0 ? UserSettings.PlayerConfig.Overlay.PrimaryMantle.Position[0] : UserSettings.PlayerConfig.Overlay.SecondaryMantle.Position[0]) + UserSettings.PlayerConfig.Overlay.Position[0];
+        public override void ApplySettings(bool FocusTrigger = false) => Dispatcher.BeginInvoke(System.Windows.Threading.DispatcherPriority.Background, new Action(() =>
+        {
+            if (!FocusTrigger)
+            {
+                // Changes widget position
+                Top = (MantleNumber == 0 ? UserSettings.PlayerConfig.Overlay.PrimaryMantle.Position[1] : UserSettings.PlayerConfig.Overlay.SecondaryMantle.Position[1]) + UserSettings.PlayerConfig.Overlay.Position[1];
+                Left = (MantleNumber == 0 ? UserSettings.PlayerConfig.Overlay.PrimaryMantle.Position[0] : UserSettings.PlayerConfig.Overlay.SecondaryMantle.Position[0]) + UserSettings.PlayerConfig.Overlay.Position[0];
 
-                    // Sets widget custom color
-                    Color WidgetColor = (Color)ColorConverter.ConvertFromString(MantleNumber == 0 ? UserSettings.PlayerConfig.Overlay.PrimaryMantle.Color : UserSettings.PlayerConfig.Overlay.SecondaryMantle.Color);
-                    LinearGradientBrush ShadowEffectBrush = new LinearGradientBrush() {
-                        StartPoint = new Point(1, 1),
-                        EndPoint = new Point(1, 0)
-                    };
-                    ShadowEffectBrush.GradientStops.Add(new GradientStop(WidgetColor, 0.053));
-                    WidgetColor.A = 0x44;
-                    ShadowEffectBrush.GradientStops.Add(new GradientStop(WidgetColor, 0.082));
-                    ShadowEffectBrush.GradientStops.Add(new GradientStop((Color)ColorConverter.ConvertFromString("#00000000"), 1));
-                    ShadowEffectBrush.Freeze();
-                    
-                    this.DurationBar.Fill = ShadowEffectBrush;
-                    
-                    double ScaleFactor = MantleNumber == 0 ? UserSettings.PlayerConfig.Overlay.PrimaryMantle.Scale : UserSettings.PlayerConfig.Overlay.SecondaryMantle.Scale;
-                    ScaleWidget(ScaleFactor, ScaleFactor);
-                    // Sets visibility if enabled/disabled
-                    bool IsEnabled = MantleNumber == 0 ? UserSettings.PlayerConfig.Overlay.PrimaryMantle.Enabled : UserSettings.PlayerConfig.Overlay.SecondaryMantle.Enabled;
-                    this.WidgetActive = IsEnabled;
+                // Sets widget custom color
+                Color WidgetColor = (Color)ColorConverter.ConvertFromString(MantleNumber == 0 ? UserSettings.PlayerConfig.Overlay.PrimaryMantle.Color : UserSettings.PlayerConfig.Overlay.SecondaryMantle.Color);
+                LinearGradientBrush ShadowEffectBrush = new LinearGradientBrush()
+                {
+                    StartPoint = new Point(1, 1),
+                    EndPoint = new Point(1, 0)
+                };
+                ShadowEffectBrush.GradientStops.Add(new GradientStop(WidgetColor, 0.053));
+                WidgetColor.A = 0x44;
+                ShadowEffectBrush.GradientStops.Add(new GradientStop(WidgetColor, 0.082));
+                ShadowEffectBrush.GradientStops.Add(new GradientStop((Color)ColorConverter.ConvertFromString("#00000000"), 1));
+                ShadowEffectBrush.Freeze();
 
-                    this.Opacity = (MantleNumber == 0 ? UserSettings.PlayerConfig.Overlay.PrimaryMantle.Opacity : UserSettings.PlayerConfig.Overlay.SecondaryMantle.Opacity);
-                }
-                base.ApplySettings();
-            }));
-        }
+                DurationBar.Fill = ShadowEffectBrush;
+
+                double ScaleFactor = MantleNumber == 0 ? UserSettings.PlayerConfig.Overlay.PrimaryMantle.Scale : UserSettings.PlayerConfig.Overlay.SecondaryMantle.Scale;
+                ScaleWidget(ScaleFactor, ScaleFactor);
+                // Sets visibility if enabled/disabled
+                bool IsEnabled = MantleNumber == 0 ? UserSettings.PlayerConfig.Overlay.PrimaryMantle.Enabled : UserSettings.PlayerConfig.Overlay.SecondaryMantle.Enabled;
+                WidgetActive = IsEnabled;
+
+                Opacity = (MantleNumber == 0 ? UserSettings.PlayerConfig.Overlay.PrimaryMantle.Opacity : UserSettings.PlayerConfig.Overlay.SecondaryMantle.Opacity);
+            }
+            base.ApplySettings();
+        }));
 
 
-        public void ScaleWidget(double NewScaleX, double NewScaleY) {
+        public void ScaleWidget(double NewScaleX, double NewScaleY)
+        {
             if (NewScaleX <= 0.2) return;
             Width = BaseWidth * NewScaleX;
             Height = BaseHeight * NewScaleY;
-            this.MantleContainer.LayoutTransform = new ScaleTransform(NewScaleX, NewScaleY);
-            this.DefaultScaleX = NewScaleX;
-            this.DefaultScaleY = NewScaleY;
+            MantleContainer.LayoutTransform = new ScaleTransform(NewScaleX, NewScaleY);
+            DefaultScaleX = NewScaleX;
+            DefaultScaleY = NewScaleY;
         }
 
-        private void OnMouseDown(object sender, System.Windows.Input.MouseButtonEventArgs e) {
-            if (e.LeftButton == System.Windows.Input.MouseButtonState.Pressed) {
-                this.MoveWidget();
+        private void OnMouseDown(object sender, System.Windows.Input.MouseButtonEventArgs e)
+        {
+            if (e.LeftButton == System.Windows.Input.MouseButtonState.Pressed)
+            {
+                MoveWidget();
                 SaveSettings();
             }
         }
 
-        private void OnMouseWheel(object sender, System.Windows.Input.MouseWheelEventArgs e) {
-            if (e.Delta > 0) {
+        private void OnMouseWheel(object sender, System.Windows.Input.MouseWheelEventArgs e)
+        {
+            if (e.Delta > 0)
+            {
                 ScaleWidget(DefaultScaleX + 0.05, DefaultScaleY + 0.05);
-            } else {
+            }
+            else
+            {
                 ScaleWidget(DefaultScaleX - 0.05, DefaultScaleY - 0.05);
             }
         }
 
         // Helper
 
-        private DrawingImage GetSpecializedToolIcon(int ID) {
-            switch(ID) {
+        private DrawingImage GetSpecializedToolIcon(int ID)
+        {
+            switch (ID)
+            {
                 case 0:
                     return FindResource("ICON_MANTLE_DARKGREEN") as DrawingImage;
                 case 1:

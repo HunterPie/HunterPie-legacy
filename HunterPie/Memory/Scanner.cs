@@ -113,7 +113,8 @@ namespace HunterPie.Memory
                     }
                     GameIsRunning = false;
                     PID = 0;
-                } else
+                }
+                else
                 {
                     if (string.IsNullOrEmpty(MonsterHunterProcess.MainWindowTitle))
                     {
@@ -136,7 +137,8 @@ namespace HunterPie.Memory
                     try
                     {
                         GameVersion = int.Parse(MonsterHunter.MainWindowTitle.Split('(')[1].Trim(')'));
-                    } catch(Exception err)
+                    }
+                    catch (Exception err)
                     {
                         Debugger.Error($"{err}\nFailed to get Monster Hunter: World build version. Loading latest map version instead.");
                         GameVersion = LATEST_GAME_VERSION;

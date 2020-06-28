@@ -2,10 +2,9 @@
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Media.Imaging;
-using JobEventArgs = HunterPie.Core.LPlayer.Jobs.JobEventArgs;
-using HunterPie.Logger;
 using GunLance = HunterPie.Core.LPlayer.Jobs.GunLance;
 using GunLanceEventArgs = HunterPie.Core.LPlayer.Jobs.GunLanceEventArgs;
+using JobEventArgs = HunterPie.Core.LPlayer.Jobs.JobEventArgs;
 
 namespace HunterPie.GUI.Widgets.ClassWidget.Parts
 {
@@ -21,8 +20,8 @@ namespace HunterPie.GUI.Widgets.ClassWidget.Parts
 
         public string NextWyvernstakeTimer
         {
-            get { return (string)GetValue(NextWyvernstakeTimerProperty); }
-            set { SetValue(NextWyvernstakeTimerProperty, value); }
+            get => (string)GetValue(NextWyvernstakeTimerProperty);
+            set => SetValue(NextWyvernstakeTimerProperty, value);
         }
 
         public static readonly DependencyProperty NextWyvernstakeTimerProperty =
@@ -30,8 +29,8 @@ namespace HunterPie.GUI.Widgets.ClassWidget.Parts
 
         public double WyvernstakeTimerPercentage
         {
-            get { return (double)GetValue(WyvernstakeTimerPercentageProperty); }
-            set { SetValue(WyvernstakeTimerPercentageProperty, value); }
+            get => (double)GetValue(WyvernstakeTimerPercentageProperty);
+            set => SetValue(WyvernstakeTimerPercentageProperty, value);
         }
 
         public static readonly DependencyProperty WyvernstakeTimerPercentageProperty =
@@ -39,8 +38,8 @@ namespace HunterPie.GUI.Widgets.ClassWidget.Parts
 
         public string WyvernstakeTimer
         {
-            get { return (string)GetValue(WyvernstakeTimerProperty); }
-            set { SetValue(WyvernstakeTimerProperty, value); }
+            get => (string)GetValue(WyvernstakeTimerProperty);
+            set => SetValue(WyvernstakeTimerProperty, value);
         }
 
         public static readonly DependencyProperty WyvernstakeTimerProperty =
@@ -48,8 +47,8 @@ namespace HunterPie.GUI.Widgets.ClassWidget.Parts
 
         public double WyvernboomPercentage
         {
-            get { return (double)GetValue(WyvernboomPercentageProperty); }
-            set { SetValue(WyvernboomPercentageProperty, value); }
+            get => (double)GetValue(WyvernboomPercentageProperty);
+            set => SetValue(WyvernboomPercentageProperty, value);
         }
 
         public static readonly DependencyProperty WyvernboomPercentageProperty =
@@ -58,8 +57,8 @@ namespace HunterPie.GUI.Widgets.ClassWidget.Parts
 
         public bool WyvernsfireReady
         {
-            get { return (bool)GetValue(WyvernsfireReadyProperty); }
-            set { SetValue(WyvernsfireReadyProperty, value); }
+            get => (bool)GetValue(WyvernsfireReadyProperty);
+            set => SetValue(WyvernsfireReadyProperty, value);
         }
 
         // Using a DependencyProperty as the backing store for WyvernsfireReady.  This enables animation, styling, binding, etc...
@@ -68,8 +67,8 @@ namespace HunterPie.GUI.Widgets.ClassWidget.Parts
 
         public string WyvernsfireDiamondColor
         {
-            get { return (string)GetValue(WyvernsfireDiamondColorProperty); }
-            set { SetValue(WyvernsfireDiamondColorProperty, value); }
+            get => (string)GetValue(WyvernsfireDiamondColorProperty);
+            set => SetValue(WyvernsfireDiamondColorProperty, value);
         }
 
         public static readonly DependencyProperty WyvernsfireDiamondColorProperty =
@@ -77,8 +76,8 @@ namespace HunterPie.GUI.Widgets.ClassWidget.Parts
 
         public string BigAmmoShadowColor
         {
-            get { return (string)GetValue(BigAmmoShadowColorProperty); }
-            set { SetValue(BigAmmoShadowColorProperty, value); }
+            get => (string)GetValue(BigAmmoShadowColorProperty);
+            set => SetValue(BigAmmoShadowColorProperty, value);
         }
 
         public static readonly DependencyProperty BigAmmoShadowColorProperty =
@@ -86,8 +85,8 @@ namespace HunterPie.GUI.Widgets.ClassWidget.Parts
 
         public string BigAmmoImage
         {
-            get { return (string)GetValue(BigAmmoImageProperty); }
-            set { SetValue(BigAmmoImageProperty, value); }
+            get => (string)GetValue(BigAmmoImageProperty);
+            set => SetValue(BigAmmoImageProperty, value);
         }
 
         public static readonly DependencyProperty BigAmmoImageProperty =
@@ -95,10 +94,7 @@ namespace HunterPie.GUI.Widgets.ClassWidget.Parts
 
         GunLance Context;
 
-        public GunLanceControl()
-        {
-            InitializeComponent();
-        }
+        public GunLanceControl() => InitializeComponent();
 
         public void SetContext(GunLance ctx)
         {
@@ -144,61 +140,46 @@ namespace HunterPie.GUI.Widgets.ClassWidget.Parts
         }
 
 
-        private void OnSafijiivaCounterUpdate(object source, JobEventArgs args)
-        {
-            Dispatcher.BeginInvoke(System.Windows.Threading.DispatcherPriority.Render, new Action(() =>
-            {
-                HasSafiBuff = args.SafijiivaRegenCounter != -1;
-                SafiCounter = args.SafijiivaMaxHits - args.SafijiivaRegenCounter;
-            }));
-        }
+        private void OnSafijiivaCounterUpdate(object source, JobEventArgs args) => Dispatcher.BeginInvoke(System.Windows.Threading.DispatcherPriority.Render, new Action(() =>
+                                                                                 {
+                                                                                     HasSafiBuff = args.SafijiivaRegenCounter != -1;
+                                                                                     SafiCounter = args.SafijiivaMaxHits - args.SafijiivaRegenCounter;
+                                                                                 }));
 
-        private void OnWyvernstakeBlastTimerUpdate(object source, GunLanceEventArgs args)
-        {
-            Dispatcher.BeginInvoke(System.Windows.Threading.DispatcherPriority.Render, new Action(() =>
-            {
-                WyvernstakeTimerPercentage = args.WyvernstakeBlastTimer / args.WyvernstakeMax;
-                WyvernstakeTimer = args.WyvernstakeBlastTimer > 60 ? TimeSpan.FromSeconds(args.WyvernstakeBlastTimer).ToString("m\\:ss") :
-                TimeSpan.FromSeconds(args.WyvernstakeBlastTimer).ToString("ss");
+        private void OnWyvernstakeBlastTimerUpdate(object source, GunLanceEventArgs args) => Dispatcher.BeginInvoke(System.Windows.Threading.DispatcherPriority.Render, new Action(() =>
+                                                                                           {
+                                                                                               WyvernstakeTimerPercentage = args.WyvernstakeBlastTimer / args.WyvernstakeMax;
+                                                                                               WyvernstakeTimer = args.WyvernstakeBlastTimer > 60 ? TimeSpan.FromSeconds(args.WyvernstakeBlastTimer).ToString("m\\:ss") :
+                                                                                               TimeSpan.FromSeconds(args.WyvernstakeBlastTimer).ToString("ss");
 
-                if (args.WyvernstakeBlastTimer <= 0)
-                {
-                    WyvernstakeTimerPercentage = args.HasWyvernstakeLoaded ? 1 : 0;
-                    WyvernstakeTimer = args.HasWyvernstakeLoaded ? TimeSpan.FromSeconds(args.WyvernstakeNextMax).ToString("m\\:ss") : "00";
-                }
-            }));
-        }
+                                                                                               if (args.WyvernstakeBlastTimer <= 0)
+                                                                                               {
+                                                                                                   WyvernstakeTimerPercentage = args.HasWyvernstakeLoaded ? 1 : 0;
+                                                                                                   WyvernstakeTimer = args.HasWyvernstakeLoaded ? TimeSpan.FromSeconds(args.WyvernstakeNextMax).ToString("m\\:ss") : "00";
+                                                                                               }
+                                                                                           }));
 
-        private void OnWyvernsFireTimerUpdate(object source, GunLanceEventArgs args)
-        {
-            Dispatcher.BeginInvoke(System.Windows.Threading.DispatcherPriority.Render, new Action(() =>
-            {
-                WyvernsfireReady = args.WyvernsFireTimer <= 0;
-                WyvernsfireDiamondColor = WyvernsfireReady ? "#FF2FED55" : "#FFED2F2F";
-                WyvernboomPercentage = 1 - args.WyvernsFireTimer / 120;
-            }));
-        }
+        private void OnWyvernsFireTimerUpdate(object source, GunLanceEventArgs args) => Dispatcher.BeginInvoke(System.Windows.Threading.DispatcherPriority.Render, new Action(() =>
+                                                                                      {
+                                                                                          WyvernsfireReady = args.WyvernsFireTimer <= 0;
+                                                                                          WyvernsfireDiamondColor = WyvernsfireReady ? "#FF2FED55" : "#FFED2F2F";
+                                                                                          WyvernboomPercentage = 1 - args.WyvernsFireTimer / 120;
+                                                                                      }));
 
-        private void OnBigAmmoChange(object source, GunLanceEventArgs args)
-        {
-            Dispatcher.BeginInvoke(System.Windows.Threading.DispatcherPriority.Render, new Action(() =>
-            {
-                WyvernstakeTimerPercentage = args.HasWyvernstakeLoaded ? 1 : args.WyvernsFireTimer / Math.Max(1, args.WyvernstakeMax);
-                BigAmmoImage = args.HasWyvernstakeLoaded ? "pack://siteoforigin:,,,/HunterPie.Resources/UI/Class/GLanceWyvernstake.png" :
-                args.BigAmmo == 0 ? "pack://siteoforigin:,,,/HunterPie.Resources/UI/Class/GLanceBAmmoEmpty.png" : "pack://siteoforigin:,,,/HunterPie.Resources/UI/Class/GLanceBAmmo.png";
-                BigAmmoShadowColor = args.HasWyvernstakeLoaded ? WyvernLoadedColor : args.BigAmmo == 0 ? BigAmmoNotLoadedColor : BigAmmoLoadedColor;
-                WyvernstakeTimer = args.HasWyvernstakeLoaded ? TimeSpan.FromSeconds(args.WyvernstakeNextMax).ToString("m\\:ss") : "00";
-                NextWyvernstakeTimer = args.HasWyvernstakeLoaded ? TimeSpan.FromSeconds(args.WyvernstakeNextMax).ToString("m\\:ss") : null;
-            }));
-        }
+        private void OnBigAmmoChange(object source, GunLanceEventArgs args) => Dispatcher.BeginInvoke(System.Windows.Threading.DispatcherPriority.Render, new Action(() =>
+                                                                             {
+                                                                                 WyvernstakeTimerPercentage = args.HasWyvernstakeLoaded ? 1 : args.WyvernsFireTimer / Math.Max(1, args.WyvernstakeMax);
+                                                                                 BigAmmoImage = args.HasWyvernstakeLoaded ? "pack://siteoforigin:,,,/HunterPie.Resources/UI/Class/GLanceWyvernstake.png" :
+                                                                                 args.BigAmmo == 0 ? "pack://siteoforigin:,,,/HunterPie.Resources/UI/Class/GLanceBAmmoEmpty.png" : "pack://siteoforigin:,,,/HunterPie.Resources/UI/Class/GLanceBAmmo.png";
+                                                                                 BigAmmoShadowColor = args.HasWyvernstakeLoaded ? WyvernLoadedColor : args.BigAmmo == 0 ? BigAmmoNotLoadedColor : BigAmmoLoadedColor;
+                                                                                 WyvernstakeTimer = args.HasWyvernstakeLoaded ? TimeSpan.FromSeconds(args.WyvernstakeNextMax).ToString("m\\:ss") : "00";
+                                                                                 NextWyvernstakeTimer = args.HasWyvernstakeLoaded ? TimeSpan.FromSeconds(args.WyvernstakeNextMax).ToString("m\\:ss") : null;
+                                                                             }));
 
-        private void OnAmmoChange(object source, GunLanceEventArgs args)
-        {
-            Dispatcher.BeginInvoke(System.Windows.Threading.DispatcherPriority.Render, new Action(() =>
-            {
-                DrawAmmo(args.Ammo, args.TotalAmmo - args.Ammo);
-            }));
-        }
+        private void OnAmmoChange(object source, GunLanceEventArgs args) => Dispatcher.BeginInvoke(System.Windows.Threading.DispatcherPriority.Render, new Action(() =>
+                                                                          {
+                                                                              DrawAmmo(args.Ammo, args.TotalAmmo - args.Ammo);
+                                                                          }));
 
         private void DrawAmmo(int full, int empty)
         {

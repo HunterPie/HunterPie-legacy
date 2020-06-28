@@ -4,8 +4,6 @@ namespace HunterPie.Core.Definitions
 {
     public class Helpers
     {
-        public static string Serialize(object obj) {
-            return JsonConvert.SerializeObject(obj);
-        }
+        public static string Serialize(object obj) => JsonConvert.SerializeObject(obj);
     }
 }

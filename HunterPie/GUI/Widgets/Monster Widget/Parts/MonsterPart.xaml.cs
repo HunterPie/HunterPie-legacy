@@ -2,70 +2,76 @@
 using System.Linq;
 using System.Windows;
 using System.Windows.Controls;
-using Timer = System.Threading.Timer;
 using HunterPie.Core;
+using Timer = System.Threading.Timer;
 
-namespace HunterPie.GUI.Widgets.Monster_Widget.Parts {
+namespace HunterPie.GUI.Widgets.Monster_Widget.Parts
+{
     /// <summary>
     /// Interaction logic for MonsterPart.xaml
     /// </summary>
-    public partial class MonsterPart : UserControl {
+    public partial class MonsterPart : UserControl
+    {
         private Part context;
         private Timer visibilityTimer;
 
-        public MonsterPart() {
-            InitializeComponent();
-        }
+        public MonsterPart() => InitializeComponent();
 
         private static UserSettings.Config.Monsterscomponent ComponentSettings =>
             UserSettings.PlayerConfig.Overlay.MonstersComponent;
 
-        public void SetContext(Part ctx, double MaxHealthBarSize) {
+        public void SetContext(Part ctx, double MaxHealthBarSize)
+        {
             context = ctx;
             SetPartInformation(MaxHealthBarSize);
             HookEvents();
             StartVisibilityTimer();
         }
 
-        private void HookEvents() {
+        private void HookEvents()
+        {
             context.OnHealthChange += OnHealthChange;
             context.OnBrokenCounterChange += OnBrokenCounterChange;
         }
 
-        public void UnhookEvents() {
+        public void UnhookEvents()
+        {
             context.OnHealthChange -= OnHealthChange;
             context.OnBrokenCounterChange -= OnBrokenCounterChange;
             visibilityTimer?.Dispose();
             context = null;
         }
 
-        private void Dispatch(Action f) {
-            Dispatcher.BeginInvoke(System.Windows.Threading.DispatcherPriority.Render, f);
-        }
+        private void Dispatch(Action f) => Dispatcher.BeginInvoke(System.Windows.Threading.DispatcherPriority.Render, f);
 
         #region Visibility timer
-        private void StartVisibilityTimer() {
-            if (!ComponentSettings.HidePartsAfterSeconds) {
+        private void StartVisibilityTimer()
+        {
+            if (!ComponentSettings.HidePartsAfterSeconds)
+            {
                 ApplySettings();
                 return;
             }
-            if (visibilityTimer == null) {
+            if (visibilityTimer == null)
+            {
                 visibilityTimer = new Timer(_ => HideInactiveBar(), null, 10, 0);
-            } else {
+            }
+            else
+            {
                 visibilityTimer.Change(ComponentSettings.SecondsToHideParts * 1000, 0);
             }
         }
 
-        private void HideInactiveBar() {
-            Dispatch(() => {
-                Visibility = Visibility.Collapsed;
-            });
-        }
+        private void HideInactiveBar() => Dispatch(() =>
+        {
+            Visibility = Visibility.Collapsed;
+        });
 
         #endregion
 
         #region Settings
-        public void ApplySettings() {
+        public void ApplySettings()
+        {
             Visibility visibility = GetVisibility();
             if (ComponentSettings.HidePartsAfterSeconds) visibility = Visibility.Collapsed;
             Dispatch(() => { Visibility = visibility; });

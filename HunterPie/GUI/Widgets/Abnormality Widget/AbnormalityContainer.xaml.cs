@@ -14,8 +14,7 @@ namespace HunterPie.GUI.Widgets.Abnormality_Widget
     /// </summary>
     public partial class AbnormalityContainer : Widget
     {
-
-        Dictionary<string, Parts.AbnormalityControl> ActiveAbnormalities = new Dictionary<string, Parts.AbnormalityControl>();
+        readonly Dictionary<string, Parts.AbnormalityControl> ActiveAbnormalities = new Dictionary<string, Parts.AbnormalityControl>();
         Player Context { get; set; }
         public int AbnormalityTrayIndex { get; set; }
         private int MaxSize { get; set; }
@@ -142,7 +141,7 @@ namespace HunterPie.GUI.Widgets.Abnormality_Widget
         {
             RenderCounter++;
             // Only redraws the component once every 60 render calls
-            if (RenderCounter >= 60) 
+            if (RenderCounter >= 60)
             {
                 RedrawComponent();
                 RenderCounter = 0;
