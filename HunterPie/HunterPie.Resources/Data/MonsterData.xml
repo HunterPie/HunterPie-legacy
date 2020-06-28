@@ -1862,7 +1862,7 @@
         <Break Threshold="1"/>
       </Part>
       <Part Name="MONSTER_PART_LNECK_ROCK" Group="NECK"/>
-      <Part Name="MONSTER_PART_RNECK_ROCK" Group="NECK"/
+      <Part Name="MONSTER_PART_RNECK_ROCK" Group="NECK"/>
       <Part Name="MONSTER_PART_HEAD_ROCK" Group="HEAD"/>
       <Part Name="MONSTER_PART_TAIL_ROCK" Group="TAIL"/>
       <Part Name="MONSTER_PART_LWING_ROCK" Group="WING">
