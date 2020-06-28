@@ -83,7 +83,7 @@ namespace HunterPie.Logger {
             DateTime TimeStamp = DateTime.Now;
             message = $"[{TimeStamp.ToLongTimeString()}] {message}\n";
             LastOperation = _Instance.Dispatcher.BeginInvoke(
-                System.Windows.Threading.DispatcherPriority.Background,
+                System.Windows.Threading.DispatcherPriority.ApplicationIdle,
                 new Action(() => {
                     TextRange msg = new TextRange(_Instance.Console.Document.ContentEnd, _Instance.Console.Document.ContentEnd) {
                         Text = message
