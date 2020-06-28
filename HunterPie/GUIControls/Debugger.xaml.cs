@@ -5,6 +5,7 @@ using System.Linq;
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Documents;
+using System.Windows.Threading;
 using DispatcherOperation = System.Windows.Threading.DispatcherOperation;
 using UserSettings = HunterPie.Core.UserSettings;
 
@@ -67,7 +68,7 @@ namespace HunterPie.Logger {
 
         public static void Debug(object message) {
             if (!UserSettings.PlayerConfig.HunterPie.Debug.ShowDebugMessages) return;
-            PrintOnConsole($"[DEBUG] {message?.ToString()}", NORMAL);
+            PrintOnConsole($"[DEBUG] {message?.ToString()}", NORMAL, DispatcherPriority.ApplicationIdle);
         }
 
         private static void ScrollToEnd() {
@@ -79,11 +80,11 @@ namespace HunterPie.Logger {
             }
         }
 
-        private static void PrintOnConsole(string message, object color) {
+        private static void PrintOnConsole(string message, object color, DispatcherPriority priority = DispatcherPriority.Background) {
             DateTime TimeStamp = DateTime.Now;
             message = $"[{TimeStamp.ToLongTimeString()}] {message}\n";
             LastOperation = _Instance.Dispatcher.BeginInvoke(
-                System.Windows.Threading.DispatcherPriority.ApplicationIdle,
+                priority,
                 new Action(() => {
                     TextRange msg = new TextRange(_Instance.Console.Document.ContentEnd, _Instance.Console.Document.ContentEnd) {
                         Text = message
