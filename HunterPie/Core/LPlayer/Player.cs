@@ -154,6 +154,11 @@ namespace HunterPie.Core
         public long SteamSession { get; private set; }
         public long SteamID { get; private set; }
 
+        public float Health { get; set; }
+        public float MaxHealth { get; set; }
+        public float Stamina { get; set; }
+        public float MaxStamina { get; set; }
+
         readonly Vector3 Position = new Vector3();
 
         // Party
@@ -494,6 +499,7 @@ namespace HunterPie.Core
                     GetPlayerName();
                     GetPlayerPlaytime();
                     GetWeaponId();
+                    GetPlayerBasicInfo();
                     GetFertilizers();
                     GetArgosyData();
                     GetTailraidersData();
@@ -570,6 +576,20 @@ namespace HunterPie.Core
         }
 
         public void ChangeLastZone() => LastZoneID = ZoneID;
+
+        private void GetPlayerBasicInfo()
+        {
+            long address = Scanner.READ_MULTILEVEL_PTR(Address.BASE + Address.EQUIPMENT_OFFSET, Address.Offsets.PlayerBasicInformationOffsets);
+
+            MaxHealth = Scanner.Read<float>(address + 0x60);
+            Health = Scanner.Read<float>(address + 0x64);
+
+            MaxStamina = Scanner.Read<float>(address + 0x144);
+            Stamina = Scanner.Read<float>(address + 0x13C);
+
+            // Hacky way to update the eat timer
+            UpdateAbnormality(AbnormalityData.MiscAbnormalities.Where(a => a.Id == 999).FirstOrDefault(), address);
+        }
 
         private void GetWeaponId()
         {
@@ -806,7 +826,7 @@ namespace HunterPie.Core
                 UpdateAbnormality(abnormality, abnormalityBaseAddress);
             }
 
-            foreach (AbnormalityInfo abnormality in AbnormalityData.MiscAbnormalities)
+            foreach (AbnormalityInfo abnormality in AbnormalityData.MiscAbnormalities.Where(ab => ab.Id != 999))
             {
                 UpdateAbnormality(abnormality, abnormalityBaseAddress);
             }

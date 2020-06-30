@@ -5,6 +5,7 @@ using HunterPie.Logger;
 
 namespace HunterPie.Memory
 {
+    // TODO: Refactor this code
     class Address
     {
         public class Offsets
@@ -24,6 +25,7 @@ namespace HunterPie.Memory
             public static int[] PlayerLockonOffsets;
             public static int[] WeaponMechanicsOffsets;
             public static int[] PlayerPositionOffsets;
+            public static int[] PlayerBasicInformationOffsets;
 
             public static int FertilizersOffset;
             public static int TailRaidersOffset = 0x10344C;
@@ -189,6 +191,7 @@ namespace HunterPie.Memory
             LoadOffsetsFromDict("PlayerLockonOffsets", out Offsets.PlayerLockonOffsets, Offsets.PlayerLockonOffsets);
             LoadOffsetsFromDict("WeaponMechanicsOffsets", out Offsets.WeaponMechanicsOffsets, Offsets.WeaponMechanicsOffsets);
             LoadOffsetsFromDict("PlayerPositionOffsets", out Offsets.PlayerPositionOffsets, Offsets.PlayerPositionOffsets);
+            LoadOffsetsFromDict("PlayerBasicInformationOffsets", out Offsets.PlayerBasicInformationOffsets, Offsets.PlayerBasicInformationOffsets);
             // Clear addresses loaded into memory
             MappedAddresses.Clear();
             MappedOffsets.Clear();
