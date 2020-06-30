@@ -65,7 +65,7 @@ namespace HunterPie.GUI.Widgets.Harvest_Box.Parts {
         private void OnFertilizerChange(object source, FertilizerEventArgs args) {
             Dispatcher.BeginInvoke(System.Windows.Threading.DispatcherPriority.Render, new Action(() => {
                 this.FertilizerName.Text = args.Name;
-                if (args.ID == 0) this.FertilizerIcon.Source = null;
+                if (args.ID <= 0 || args.ID > 8) this.FertilizerIcon.Source = null;
                 else { this.FertilizerIcon.Source = FindResource($"ICON_FERTILIZER_{args.ID}") as ImageSource; }
             }));
         }

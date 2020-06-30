@@ -154,9 +154,10 @@ namespace HunterPie.Core {
                 }
 
                 // Initializes StringBuilder if it isn't initialized yet
-                if (Structure[int.Parse(AugmentType)] == null) Structure[int.Parse(AugmentType)] = new StringBuilder();
+                int.TryParse(AugmentType, out int parsed);
+                if (Structure[parsed] == null) Structure[parsed] = new StringBuilder();
 
-                Structure[int.Parse(AugmentType)].Append((cAugment.Level + 1).ToString());
+                Structure[parsed].Append((cAugment.Level + 1).ToString());
             }
 
             StringBuilder JoinedResult = new StringBuilder();

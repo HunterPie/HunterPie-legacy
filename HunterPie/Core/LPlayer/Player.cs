@@ -514,35 +514,27 @@ namespace HunterPie.Core
             Thread.Sleep(1000);
             GetPlayerInfo();
         }
-
+        
         private bool GetPlayerAddress()
         {
-            long AddressValue = Scanner.READ_MULTILEVEL_PTR(Address.BASE + Address.WEAPON_OFFSET, Address.Offsets.WeaponOffsets);
-            long nextPlayer = 0x27E9F0;
-            if (AddressValue > 0x0)
+            if (ZoneID == 0)
             {
-                string pName = Scanner.READ_STRING(AddressValue - 0x270, 32);
-                int pLevel = Scanner.Read<int>(AddressValue - 0x230);
-                // If char name starts with a null char then the game haven't launched yet
-                if (pName == "") return false;
-                for (int playerSlot = 0; playerSlot < 3; playerSlot++)
-                {
-                    long pAddress = Scanner.READ_MULTILEVEL_PTR(Address.BASE + Address.LEVEL_OFFSET, Address.Offsets.LevelOffsets) + (nextPlayer * playerSlot);
-                    if (Scanner.Read<int>(pAddress) == pLevel && Scanner.READ_STRING(pAddress - 0x40, 32)?.Trim('\x00') == pName && PlayerAddress != pAddress)
-                    {
-                        LEVEL_ADDRESS = pAddress;
-                        GetPlayerLevel();
-                        GetPlayerName();
-                        PlayerAddress = pAddress;
-                        return true;
-                    }
-                }
-            }
-            else
-            {
-                PlayerAddress = 0x0;
-                LEVEL_ADDRESS = 0x0;
+                PlayerAddress = 0;
+                LEVEL_ADDRESS = 0;
                 return false;
+            }
+            long FirstSaveAddress = Scanner.READ_MULTILEVEL_PTR(Address.BASE + Address.LEVEL_OFFSET, Address.Offsets.LevelOffsets);
+            uint CurrentSaveSlot = Scanner.Read<uint>(FirstSaveAddress + 0x44);
+            long NextPlayerSave = 0x27E9F0;
+            long CurrentPlayerSaveHeader = Scanner.Read<long>(FirstSaveAddress) + NextPlayerSave * CurrentSaveSlot;
+
+            if (CurrentPlayerSaveHeader != PlayerAddress)
+            {
+                LEVEL_ADDRESS = CurrentPlayerSaveHeader + 0x90;
+                GetPlayerLevel();
+                GetPlayerMasterRank();
+                GetPlayerName();
+                PlayerAddress = CurrentPlayerSaveHeader;
             }
             return true;
         }

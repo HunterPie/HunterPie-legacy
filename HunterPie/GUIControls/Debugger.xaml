@@ -3,11 +3,9 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
-             xmlns:local="clr-namespace:HunterPie.Logger"
              mc:Ignorable="d" 
              d:DesignHeight="450" d:DesignWidth="800">
     <Grid>
-        <RichTextBox x:Name="Console" IsReadOnly="True" Background="#00000000" Foreground="#FFEEEEEE" BorderBrush="{x:Null}" VerticalScrollBarVisibility="Visible" UseLayoutRounding="False" AllowDrop="False" Block.LineHeight="1" HorizontalScrollBarVisibility="Disabled" FontSize="13" SelectionBrush="#FFC92C2C" TextOptions.TextHintingMode="Fixed" FontFamily="Roboto" BorderThickness="0" Margin="0">
-        </RichTextBox>
+        <RichTextBox x:Name="Console" IsReadOnly="True" Background="#00000000" Foreground="#FFEEEEEE" BorderBrush="{x:Null}" VerticalScrollBarVisibility="Visible" UseLayoutRounding="False" AllowDrop="False" Block.LineHeight="1" HorizontalScrollBarVisibility="Disabled" FontSize="13" SelectionBrush="#FFC92C2C" TextOptions.TextHintingMode="Fixed" FontFamily="Roboto" BorderThickness="0" Margin="0"/>
     </Grid>
 </UserControl>

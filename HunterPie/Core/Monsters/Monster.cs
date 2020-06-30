@@ -494,11 +494,12 @@ namespace HunterPie.Core {
                             
                             if (CurrentPartInfo.Skip || (MonsterRemovablePartData.unk3.Index == CurrentPartInfo.Index && MonsterRemovablePartData.Data.MaxHealth > 0))
                             {
-                                Debugger.Debug($"Removable Part Structure <{Name}> [0x{MonsterRemovablePartAddress:X}]" + Helpers.Serialize(MonsterRemovablePartData));
-
+                                
                                 CurrentPart.Address = MonsterRemovablePartAddress;
                                 CurrentPart.IsRemovable = true;
                                 CurrentPart.SetPartInfo(MonsterRemovablePartData.Data);
+
+                                Debugger.Debug($"Removable Part Structure <{Name}> ({CurrentPart.Name}) [0x{MonsterRemovablePartAddress:X}]");
                                 RemovablePartIndex++;
                                 do
                                 {
@@ -525,7 +526,7 @@ namespace HunterPie.Core {
 
                         CurrentPart.SetPartInfo(MonsterPartData.Data);
 
-                        Debugger.Debug($"Part Structure <{Name}> [0x{CurrentPart.Address}]" + Helpers.Serialize(MonsterPartData));
+                        Debugger.Debug($"Part Structure <{Name}> ({CurrentPart.Name}) [0x{CurrentPart.Address:X}]");
 
                         NormalPartIndex++;
                     }
@@ -583,7 +584,7 @@ namespace HunterPie.Core {
                     Ailment MonsterAilment = new Ailment(MonsterAilmentPtr + 0x148);
                     MonsterAilment.SetAilmentInfo(AilmentData);
 
-                    Debugger.Debug($"sMonsterAilment <{Name}> [0x{MonsterAilmentPtr+0x148:X}]" + Helpers.Serialize(AilmentData));
+                    Debugger.Debug($"sMonsterAilment <{Name}> ({MonsterAilment.Name}) [0x{MonsterAilmentPtr+0x148:X}]");
 
                     Ailments.Add(MonsterAilment);
                     MonsterAilmentListPtrs += sizeof(long);
