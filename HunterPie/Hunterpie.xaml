@@ -4,7 +4,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         x:Name="window" x:Class="HunterPie.Hunterpie"
         mc:Ignorable="d"
-        Title="HunterPie" d:DesignHeight="592" d:DesignWidth="1000" MinWidth="800" MinHeight="500" WindowStyle="None" Closing="OnWindowClosing" AllowsTransparency="True" BorderBrush="#7F000000" BorderThickness="1" Background="{x:Null}" ResizeMode="CanResize" SizeChanged="OnWindowSizeChange" DataContext="{StaticResource Localization}">
+        Title="HunterPie" d:DesignHeight="592" d:DesignWidth="1000" MinWidth="800" MinHeight="500" WindowStyle="None" Closing="OnWindowClosing" AllowsTransparency="True" BorderBrush="#7F000000" BorderThickness="1" Background="{x:Null}" ResizeMode="CanResize" SizeChanged="OnWindowSizeChange" DataContext="{StaticResource Localization}" Initialized="OnWindowInitialized">
     <WindowChrome.WindowChrome>
         <WindowChrome CaptionHeight="0"
                               CornerRadius="0"

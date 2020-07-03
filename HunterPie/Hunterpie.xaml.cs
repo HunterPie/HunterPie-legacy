@@ -109,9 +109,6 @@ namespace HunterPie
             // Initialize everything under this line
             if (!CheckIfUpdateEnableAndStart()) return;
 
-            Width = UserSettings.PlayerConfig.HunterPie.Width;
-            Height = UserSettings.PlayerConfig.HunterPie.Height;
-
             // Convert the old HotKey to the new one
             ConvertOldHotkeyToNew(UserSettings.PlayerConfig.Overlay.ToggleDesignModeKey);
 
@@ -713,6 +710,12 @@ namespace HunterPie
 
         #region WINDOW EVENTS
 
+        private void OnWindowInitialized(object sender, EventArgs e)
+        {
+            Width = UserSettings.PlayerConfig.HunterPie.Width;
+            Height = UserSettings.PlayerConfig.HunterPie.Height;
+        }
+
         private void OnCloseWindowButtonClick(object sender, MouseButtonEventArgs e)
         {
             // X button function;
@@ -884,6 +887,8 @@ namespace HunterPie
             UserSettings.PlayerConfig.HunterPie.Width = (float)e.NewSize.Width;
             UserSettings.PlayerConfig.HunterPie.Height = (float)e.NewSize.Height;
         }
+
         #endregion
+
     }
 }
