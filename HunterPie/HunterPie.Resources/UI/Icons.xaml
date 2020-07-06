@@ -1,6 +1,30 @@
 ﻿<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
                     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
     <!-- Misc -->
+    <DrawingImage x:Key="ICON_MEAT">
+        <DrawingImage.Drawing>
+            <DrawingGroup ClipGeometry="M0,0 V64.01 H64.01 V0 H0 Z">
+                <GeometryDrawing Brush="#FFFFAC67" Geometry="F1 M64.01,64.01z M0,0z M43.8811,32.8588C43.5894,30.025 47.2149,27.1913 49.1319,27.6497 51.0488,28.1081 52.5907,30.1917 52.424,31.0668 52.2573,31.942 49.7153,33.9006 49.7153,33.9006L52.424,35.6508C52.424,35.6508 52.5907,37.2136 52.3823,39.1096 52.2152,40.6305 48.2151,39.7347 46.3398,38.3595 44.4645,36.9843 43.6727,36.6926 43.8811,32.8588z" />
+                <GeometryDrawing Brush="#FFFFAC67" Geometry="F1 M64.01,64.01z M0,0z M17.0779,32.7395C17.3696,29.9058 13.7441,27.072 11.8271,27.5304 9.91022,27.9888 8.36833,30.0725 8.53503,30.9476 8.70172,31.8227 11.2437,33.7813 11.2437,33.7813L8.53503,35.5316C8.53503,35.5316 8.36835,37.0943 8.5767,38.9904 8.74382,40.5112 12.7439,39.6155 14.6192,38.2403 16.4945,36.8651 17.2863,36.5734 17.0779,32.7395z" />
+                <GeometryDrawing Brush="#FFFFAC67" Geometry="F1 M64.01,64.01z M0,0z M20.1734,23.3691C22.1776,21.378 26.1859,21.378 30.1943,21.378 34.4023,21.378 38.6104,21.378 40.7144,23.4501 42.8184,25.5222 42.8184,29.6664 42.8184,33.8105 42.8184,37.5633 42.8184,41.316 40.8571,43.1924 38.8957,45.0688 34.9729,45.0688 31.0501,45.0688 26.7565,45.0688 22.4628,45.0688 20.316,43.1114 18.1692,41.1541 18.1692,37.2394 18.1692,33.3246 18.1692,29.3424 18.1692,25.3602 20.1734,23.3691z" />
+                <GeometryDrawing Geometry="F1 M64.01,64.01z M0,0z M31.7544,32.9912L34.9491,29.4416 38.3804,32.9912 31.7544,32.9912z">
+                    <GeometryDrawing.Brush>
+                        <SolidColorBrush Color="#FF000000" Opacity="0.576471" />
+                    </GeometryDrawing.Brush>
+                </GeometryDrawing>
+                <GeometryDrawing Geometry="F1 M64.01,64.01z M0,0z M33.6089,39.28L36.8035,35.7304 40.2348,39.28 33.6089,39.28z">
+                    <GeometryDrawing.Brush>
+                        <SolidColorBrush Color="#FF000000" Opacity="0.576471" />
+                    </GeometryDrawing.Brush>
+                </GeometryDrawing>
+                <GeometryDrawing Geometry="F1 M64.01,64.01z M0,0z M23.4408,40.6136L26.6354,37.064 30.0667,40.6136 23.4408,40.6136z">
+                    <GeometryDrawing.Brush>
+                        <SolidColorBrush Color="#FF000000" Opacity="0.576471" />
+                    </GeometryDrawing.Brush>
+                </GeometryDrawing>
+            </DrawingGroup>
+        </DrawingImage.Drawing>
+    </DrawingImage>
     <DrawingImage x:Key="ICON_COPY">
         <DrawingImage.Drawing>
             <DrawingGroup ClipGeometry="M-30,0 V512 H482 V-30 H0 Z">

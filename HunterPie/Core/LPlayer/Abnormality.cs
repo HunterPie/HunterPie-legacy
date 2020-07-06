@@ -1,6 +1,7 @@
 ﻿using HunterPie.Core.LPlayer;
 
-namespace HunterPie.Core {
+namespace HunterPie.Core
+{
     public class Abnormality
     {
         private int duration;
@@ -38,14 +39,18 @@ namespace HunterPie.Core {
 
         public string InternalID { get; private set; }
         public bool IsInfinite { get; private set; }
-        public int Duration {
+        public int Duration
+        {
             get => duration;
-            private set {
-                if (value <= 0 && !IsInfinite) {
+            private set
+            {
+                if (value <= 0 && !IsInfinite)
+                {
                     _OnAbnormalityEnd();
                     return;
                 }
-                if (value != duration) {
+                if (value != duration)
+                {
                     duration = value;
                     _OnAbnormalityUpdate();
                 }
@@ -66,21 +71,13 @@ namespace HunterPie.Core {
         public event AbnormalityEvents OnAbnormalityUpdate;
         public event AbnormalityEvents OnAbnormalityEnd;
 
-        protected virtual void _OnAbnormalityStart() {
-            OnAbnormalityStart?.Invoke(this, new AbnormalityEventArgs(this));
-        }
+        protected virtual void _OnAbnormalityStart() => OnAbnormalityStart?.Invoke(this, new AbnormalityEventArgs(this));
 
-        protected virtual void _OnAbnormalityUpdate() {
-            OnAbnormalityUpdate?.Invoke(this, new AbnormalityEventArgs(this));
-        }
+        protected virtual void _OnAbnormalityUpdate() => OnAbnormalityUpdate?.Invoke(this, new AbnormalityEventArgs(this));
 
-        protected virtual void _OnAbnormalityEnd() {
-            OnAbnormalityEnd?.Invoke(this, new AbnormalityEventArgs(this));
-        }
+        protected virtual void _OnAbnormalityEnd() => OnAbnormalityEnd?.Invoke(this, new AbnormalityEventArgs(this));
 
-        protected virtual void _OnStackChange() {
-            OnStackChange?.Invoke(this, new AbnormalityEventArgs(this));
-        }
+        protected virtual void _OnStackChange() => OnStackChange?.Invoke(this, new AbnormalityEventArgs(this));
 
         #endregion
 
@@ -94,7 +91,8 @@ namespace HunterPie.Core {
             Duration = (int)newDuration;
         }
 
-        public void ResetDuration() {
+        public void ResetDuration()
+        {
             IsInfinite = false;
             Duration = 0;
         }

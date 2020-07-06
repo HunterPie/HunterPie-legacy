@@ -22,9 +22,6 @@ namespace HunterPie.Core.Definitions
         public int unk7;
         public int unk8;
 
-        public bool Equals(sMonsterPartData other)
-        {
-            return (address == other.address && unk0 == other.unk0 && MaxHealth == other.MaxHealth && Health == other.Health && Counter == other.Counter && unk2 == other.unk2);
-        }
+        public bool Equals(sMonsterPartData other) => (address == other.address && unk0 == other.unk0 && MaxHealth == other.MaxHealth && Health == other.Health && Counter == other.Counter && unk2 == other.unk2);
     }
 }

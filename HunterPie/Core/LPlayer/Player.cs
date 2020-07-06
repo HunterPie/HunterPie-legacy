@@ -1,19 +1,19 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.Linq;
 using System.Threading;
+using HunterPie.Core.Definitions;
 using HunterPie.Core.LPlayer;
+using HunterPie.Core.LPlayer.Jobs;
 using HunterPie.Logger;
 using HunterPie.Memory;
-using HunterPie.Core.LPlayer.Jobs;
-using System.Collections.Generic;
-using HunterPie.Core.Definitions;
 using Classes = HunterPie.Core.Enums.Classes;
 
 namespace HunterPie.Core
 {
     public class Player
     {
-        
+
         private long playerAddress = 0x0;
         private int level;
         private int zoneId = -1;
@@ -21,7 +21,7 @@ namespace HunterPie.Core
         private string sessionId;
         private long classAddress;
 
-        private readonly int[] HarvestBoxZones = 
+        private readonly int[] HarvestBoxZones =
         {
             301,
             302,
@@ -33,7 +33,7 @@ namespace HunterPie.Core
             503,
             506
         };
-        private readonly int[] PeaceZones = 
+        private readonly int[] PeaceZones =
         {
             0,
             301,
@@ -83,8 +83,8 @@ namespace HunterPie.Core
         }
         public int MasterRank { get; private set; }
         public int PlayTime { get; private set; }
-        public bool IsLoggedOn { get => playerAddress != 0; }
-        
+        public bool IsLoggedOn => playerAddress != 0;
+
         public byte WeaponID
         {
             get => weaponId;
@@ -154,7 +154,12 @@ namespace HunterPie.Core
         public long SteamSession { get; private set; }
         public long SteamID { get; private set; }
 
-        Vector3 Position = new Vector3();
+        public float Health { get; set; }
+        public float MaxHealth { get; set; }
+        public float Stamina { get; set; }
+        public float MaxStamina { get; set; }
+
+        readonly Vector3 Position = new Vector3();
 
         // Party
         public Party PlayerParty = new Party();
@@ -481,7 +486,7 @@ namespace HunterPie.Core
         /*
             Player data that is tracked by the Player class, cannot be called by an external function.
         */
-        
+
         private void GetPlayerInfo()
         {
             while (Scanner.GameIsRunning)
@@ -494,6 +499,7 @@ namespace HunterPie.Core
                     GetPlayerName();
                     GetPlayerPlaytime();
                     GetWeaponId();
+                    GetPlayerBasicInfo();
                     GetFertilizers();
                     GetArgosyData();
                     GetTailraidersData();
@@ -514,7 +520,7 @@ namespace HunterPie.Core
             Thread.Sleep(1000);
             GetPlayerInfo();
         }
-        
+
         private bool GetPlayerAddress()
         {
             if (ZoneID == 0)
@@ -570,6 +576,20 @@ namespace HunterPie.Core
         }
 
         public void ChangeLastZone() => LastZoneID = ZoneID;
+
+        private void GetPlayerBasicInfo()
+        {
+            long address = Scanner.READ_MULTILEVEL_PTR(Address.BASE + Address.EQUIPMENT_OFFSET, Address.Offsets.PlayerBasicInformationOffsets);
+
+            MaxHealth = Scanner.Read<float>(address + 0x60);
+            Health = Scanner.Read<float>(address + 0x64);
+
+            MaxStamina = Scanner.Read<float>(address + 0x144);
+            Stamina = Scanner.Read<float>(address + 0x13C);
+
+            // Hacky way to update the eat timer
+            UpdateAbnormality(AbnormalityData.MiscAbnormalities.Where(a => a.Id == 999).FirstOrDefault(), address);
+        }
 
         private void GetWeaponId()
         {
@@ -638,7 +658,7 @@ namespace HunterPie.Core
 
         private void GetParty()
         {
-            
+
             long address = Address.BASE + Address.PARTY_OFFSET;
             long PartyContainer = Scanner.READ_MULTILEVEL_PTR(address, Address.Offsets.PartyOffsets) - 0x22B7;
             if (InPeaceZone)
@@ -672,7 +692,7 @@ namespace HunterPie.Core
                     }
 
                     if (i == 0) PlayerParty[i].IsPartyLeader = true;
-                    
+
                     PlayerParty[i].HR = HR;
                     PlayerParty[i].MR = MR;
                     PlayerParty[i].IsMe = playerName == Name && HR == Level;
@@ -806,7 +826,7 @@ namespace HunterPie.Core
                 UpdateAbnormality(abnormality, abnormalityBaseAddress);
             }
 
-            foreach (AbnormalityInfo abnormality in AbnormalityData.MiscAbnormalities)
+            foreach (AbnormalityInfo abnormality in AbnormalityData.MiscAbnormalities.Where(ab => ab.Id != 999))
             {
                 UpdateAbnormality(abnormality, abnormalityBaseAddress);
             }
@@ -888,7 +908,7 @@ namespace HunterPie.Core
             int SafiCounter = HasSafiBuff ? Scanner.Read<int>(AbnormAddress + 0x7A8) : -1;
             long weaponAddress = Scanner.READ_MULTILEVEL_PTR(Address.BASE + Address.WEAPON_MECHANICS_OFFSET, Address.Offsets.WeaponMechanicsOffsets);
             ClassAddress = weaponAddress;
-            switch((Classes)WeaponID)
+            switch ((Classes)WeaponID)
             {
                 case Classes.Greatsword:
                     GetGreatswordInformation(weaponAddress);

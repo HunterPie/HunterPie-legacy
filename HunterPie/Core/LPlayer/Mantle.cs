@@ -1,5 +1,7 @@
-﻿namespace HunterPie.Core {
-    public class MantleEventArgs {
+﻿namespace HunterPie.Core
+{
+    public class MantleEventArgs
+    {
         public string Name;
         public int ID;
         public float Timer;
@@ -7,83 +9,92 @@
         public float Cooldown;
         public float staticCooldown;
 
-        public MantleEventArgs(Mantle m) {
-            this.Name = m.Name;
-            this.ID = m.ID;
-            this.Timer = m.Timer;
-            this.staticTimer = m.staticTimer;
-            this.Cooldown = m.Cooldown;
-            this.staticCooldown = m.staticCooldown;
+        public MantleEventArgs(Mantle m)
+        {
+            Name = m.Name;
+            ID = m.ID;
+            Timer = m.Timer;
+            staticTimer = m.staticTimer;
+            Cooldown = m.Cooldown;
+            staticCooldown = m.staticCooldown;
         }
     }
 
-    public class Mantle {
+    public class Mantle
+    {
         private int _id = -1;
         private float _cooldown;
         private float _timer;
         private float _staticCooldown;
         private float _staticTimer;
 
-        public string Name {
-            get => GStrings.GetMantleNameByID(ID);
-        }
-        public int ID {
+        public string Name => GStrings.GetMantleNameByID(ID);
+        public int ID
+        {
             get => _id;
-            set {
-                if (_id != value) {
+            set
+            {
+                if (_id != value)
+                {
                     _id = value;
-                    this._onMantleChange();
+                    _onMantleChange();
                 }
             }
         }
-        public float Cooldown {
-            get {
-                return _cooldown;
-            } set {
-                if (_cooldown != value) {
+        public float Cooldown
+        {
+            get => _cooldown; set
+            {
+                if (_cooldown != value)
+                {
                     _cooldown = value;
-                    this._onMantleCooldownUpdate();
+                    _onMantleCooldownUpdate();
                 }
             }
         }
-        public float Timer {
-            get {
-                return _timer;
-            } set {
-                if (_timer != value) {
+        public float Timer
+        {
+            get => _timer; set
+            {
+                if (_timer != value)
+                {
                     _timer = value;
-                    this._onMantleTimerUpdate();
+                    _onMantleTimerUpdate();
                 }
             }
         }
-        public float staticCooldown {
-            get {
-                return _staticCooldown;
-            } set {
+        public float staticCooldown
+        {
+            get => _staticCooldown; set
+            {
                 if (_staticCooldown != value) _staticCooldown = value;
             }
         }
-        public float staticTimer {
-            get {
-                return _staticTimer;
-            } set {
+        public float staticTimer
+        {
+            get => _staticTimer; set
+            {
                 if (_staticTimer != value) _staticTimer = value;
             }
         }
 
-        public void SetCooldown(float cd, float staticCd) {
-            if (staticCd < cd) {
-                this.staticCooldown = 0;
-                this.Cooldown = 0;
+        public void SetCooldown(float cd, float staticCd)
+        {
+            if (staticCd < cd)
+            {
+                staticCooldown = 0;
+                Cooldown = 0;
                 return;
             }
             // Set the static cooldown first to trigger the event after everything is ready
-            this.staticCooldown = staticCd;
-            this.Cooldown = cd;
+            staticCooldown = staticCd;
+            Cooldown = cd;
         }
 
-        public void SetTimer(float Timer, float staticTimer) {
-            if (staticTimer < Timer) {
+        public void SetTimer(float Timer, float staticTimer)
+        {
+            if (staticTimer < Timer)
+            {
                 this.staticTimer = 0;
                 this.Timer = 0;
                 return;
@@ -93,9 +104,7 @@
             this.Timer = Timer;
         }
 
-        public void SetID(int newID) {
-            this.ID = newID;
-        }
+        public void SetID(int newID) => ID = newID;
 
         // Events
 
@@ -104,17 +113,20 @@
         public event MantleEvents OnMantleTimerUpdate;
         public event MantleEvents OnMantleChange;
 
-        protected virtual void _onMantleCooldownUpdate() {
+        protected virtual void _onMantleCooldownUpdate()
+        {
             MantleEventArgs args = new MantleEventArgs(this);
             OnMantleCooldownUpdate?.Invoke(this, args);
         }
 
-        protected virtual void _onMantleTimerUpdate() {
+        protected virtual void _onMantleTimerUpdate()
+        {
             MantleEventArgs args = new MantleEventArgs(this);
             OnMantleTimerUpdate?.Invoke(this, args);
         }
 
-        protected virtual void _onMantleChange() {
+        protected virtual void _onMantleChange()
+        {
             MantleEventArgs args = new MantleEventArgs(this);
             OnMantleChange?.Invoke(this, args);
         }

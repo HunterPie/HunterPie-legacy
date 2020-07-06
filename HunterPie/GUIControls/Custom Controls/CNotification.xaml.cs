@@ -3,18 +3,19 @@ using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Media;
 using System.Windows.Threading;
-using HunterPie.Logger;
 
-namespace HunterPie.GUIControls.Custom_Controls {
+namespace HunterPie.GUIControls.Custom_Controls
+{
     /// <summary>
     /// Interaction logic for CNotification.xaml
     /// </summary>
-    public partial class CNotification : UserControl {
-        
+    public partial class CNotification : UserControl
+    {
+
         public ImageSource NIcon
         {
-            get { return (ImageSource)GetValue(NIconProperty); }
-            set { SetValue(NIconProperty, value); }
+            get => (ImageSource)GetValue(NIconProperty);
+            set => SetValue(NIconProperty, value);
         }
 
         // Using a DependencyProperty as the backing store for NIcon.  This enables animation, styling, binding, etc...
@@ -23,8 +24,8 @@ namespace HunterPie.GUIControls.Custom_Controls {
 
         public string Text
         {
-            get { return (string)GetValue(TextProperty); }
-            set { SetValue(TextProperty, value); }
+            get => (string)GetValue(TextProperty);
+            set => SetValue(TextProperty, value);
         }
 
         // Using a DependencyProperty as the backing store for Text.  This enables animation, styling, binding, etc...
@@ -33,8 +34,8 @@ namespace HunterPie.GUIControls.Custom_Controls {
 
         public ImageSource FirstButtonImage
         {
-            get { return (ImageSource)GetValue(FirstButtonImageProperty); }
-            set { SetValue(FirstButtonImageProperty, value); }
+            get => (ImageSource)GetValue(FirstButtonImageProperty);
+            set => SetValue(FirstButtonImageProperty, value);
         }
 
         // Using a DependencyProperty as the backing store for FirstButtonImage.  This enables animation, styling, binding, etc...
@@ -43,8 +44,8 @@ namespace HunterPie.GUIControls.Custom_Controls {
 
         public ImageSource SecondButtonImage
         {
-            get { return (ImageSource)GetValue(SecondButtonImageProperty); }
-            set { SetValue(SecondButtonImageProperty, value); }
+            get => (ImageSource)GetValue(SecondButtonImageProperty);
+            set => SetValue(SecondButtonImageProperty, value);
         }
 
         // Using a DependencyProperty as the backing store for SecondButtonImage.  This enables animation, styling, binding, etc...
@@ -53,18 +54,18 @@ namespace HunterPie.GUIControls.Custom_Controls {
 
         public Visibility FirstButtonVisibility
         {
-            get { return (Visibility)GetValue(FirstButtonVisibilityProperty); }
-            set { SetValue(FirstButtonVisibilityProperty, value); }
+            get => (Visibility)GetValue(FirstButtonVisibilityProperty);
+            set => SetValue(FirstButtonVisibilityProperty, value);
         }
 
         // Using a DependencyProperty as the backing store for FirstButtonVisibility.  This enables animation, styling, binding, etc...
         public static readonly DependencyProperty FirstButtonVisibilityProperty =
             DependencyProperty.Register("FirstButtonVisibility", typeof(Visibility), typeof(CNotification));
-        
+
         public Visibility SecondButtonVisibility
         {
-            get { return (Visibility)GetValue(SecondButtonVisibilityProperty); }
-            set { SetValue(SecondButtonVisibilityProperty, value); }
+            get => (Visibility)GetValue(SecondButtonVisibilityProperty);
+            set => SetValue(SecondButtonVisibilityProperty, value);
         }
 
         // Using a DependencyProperty as the backing store for SecondButtonVisibility.  This enables animation, styling, binding, etc...
@@ -73,8 +74,8 @@ namespace HunterPie.GUIControls.Custom_Controls {
 
         public string FirstButtonText
         {
-            get { return (string)GetValue(FirstButtonTextProperty); }
-            set { SetValue(FirstButtonTextProperty, value); }
+            get => (string)GetValue(FirstButtonTextProperty);
+            set => SetValue(FirstButtonTextProperty, value);
         }
 
         // Using a DependencyProperty as the backing store for  FirstButtonText.  This enables animation, styling, binding, etc...
@@ -83,8 +84,8 @@ namespace HunterPie.GUIControls.Custom_Controls {
 
         public string SecondButtonText
         {
-            get { return (string)GetValue(SecondButtonTextProperty); }
-            set { SetValue(SecondButtonTextProperty, value); }
+            get => (string)GetValue(SecondButtonTextProperty);
+            set => SetValue(SecondButtonTextProperty, value);
         }
 
         // Using a DependencyProperty as the backing store for SecondButtonText.  This enables animation, styling, binding, etc...
@@ -97,34 +98,32 @@ namespace HunterPie.GUIControls.Custom_Controls {
         public Action Callback2 { get; set; }
         private DispatcherTimer VisibilityTimer;
 
-        public CNotification() {
-            InitializeComponent();
-        }
+        public CNotification() => InitializeComponent();
 
-        public void ShowNotification() {
+        public void ShowNotification()
+        {
             Visibility = Visibility.Visible;
-            VisibilityTimer = new DispatcherTimer() {
+            VisibilityTimer = new DispatcherTimer()
+            {
                 Interval = new TimeSpan(0, 0, ShowTime)
             };
             VisibilityTimer.Tick += new EventHandler(Close);
             VisibilityTimer.Start();
         }
 
-        private void Close(object source, EventArgs e) {
+        private void Close(object source, EventArgs e)
+        {
             VisibilityTimer?.Stop();
             VisibilityTimer = null;
             Visibility = Visibility.Collapsed;
             ((Panel)Parent).Children.Remove(this);
-            
+
         }
 
         private void OnFirstButtonClick(object sender, RoutedEventArgs e) => Callback1();
 
         private void OnSecondButtonClick(object sender, RoutedEventArgs e) => Callback2();
 
-        private void OnNotificationClick(object sender, System.Windows.Input.MouseButtonEventArgs e)
-        {
-            Close(this, EventArgs.Empty);
-        }
+        private void OnNotificationClick(object sender, System.Windows.Input.MouseButtonEventArgs e) => Close(this, EventArgs.Empty);
     }
 }

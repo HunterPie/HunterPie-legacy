@@ -9,7 +9,7 @@ namespace HunterPie.Core.LPlayer.Jobs
         public float SwordBuffTimer;
         public float PoweraxeTimer;
         public int Vials;
-        
+
         public ChargeBladeEventArgs(ChargeBlade weapon)
         {
             VialChargeGauge = weapon.VialChargeGauge;

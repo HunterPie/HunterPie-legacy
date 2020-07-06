@@ -15,8 +15,8 @@ namespace HunterPie.GUI.Widgets.ClassWidget.Parts
 
         public double SwitchAxeBuffPercentage
         {
-            get { return (double)GetValue(SwitchAxeBuffPercentageProperty); }
-            set { SetValue(SwitchAxeBuffPercentageProperty, value); }
+            get => (double)GetValue(SwitchAxeBuffPercentageProperty);
+            set => SetValue(SwitchAxeBuffPercentageProperty, value);
         }
 
         public static readonly DependencyProperty SwitchAxeBuffPercentageProperty =
@@ -24,8 +24,8 @@ namespace HunterPie.GUI.Widgets.ClassWidget.Parts
 
         public string SwitchAxeBuffTimer
         {
-            get { return (string)GetValue(SwitchAxeBuffTimerProperty); }
-            set { SetValue(SwitchAxeBuffTimerProperty, value); }
+            get => (string)GetValue(SwitchAxeBuffTimerProperty);
+            set => SetValue(SwitchAxeBuffTimerProperty, value);
         }
 
         public static readonly DependencyProperty SwitchAxeBuffTimerProperty =
@@ -33,8 +33,8 @@ namespace HunterPie.GUI.Widgets.ClassWidget.Parts
 
         public double SwitchAxeInnerGauge
         {
-            get { return (double)GetValue(SwitchAxeInnerGaugeProperty); }
-            set { SetValue(SwitchAxeInnerGaugeProperty, value); }
+            get => (double)GetValue(SwitchAxeInnerGaugeProperty);
+            set => SetValue(SwitchAxeInnerGaugeProperty, value);
         }
 
         public static readonly DependencyProperty SwitchAxeInnerGaugeProperty =
@@ -42,8 +42,8 @@ namespace HunterPie.GUI.Widgets.ClassWidget.Parts
 
         public bool IsUnderThirtyPercent
         {
-            get { return (bool)GetValue(IsUnderThirtyPercentProperty); }
-            set { SetValue(IsUnderThirtyPercentProperty, value); }
+            get => (bool)GetValue(IsUnderThirtyPercentProperty);
+            set => SetValue(IsUnderThirtyPercentProperty, value);
         }
 
         public static readonly DependencyProperty IsUnderThirtyPercentProperty =
@@ -51,8 +51,8 @@ namespace HunterPie.GUI.Widgets.ClassWidget.Parts
 
         public double SwitchAxeOuterGauge
         {
-            get { return (double)GetValue(SwitchAxeOuterGaugeProperty); }
-            set { SetValue(SwitchAxeOuterGaugeProperty, value); }
+            get => (double)GetValue(SwitchAxeOuterGaugeProperty);
+            set => SetValue(SwitchAxeOuterGaugeProperty, value);
         }
 
         public static readonly DependencyProperty SwitchAxeOuterGaugeProperty =
@@ -60,8 +60,8 @@ namespace HunterPie.GUI.Widgets.ClassWidget.Parts
 
         public string SwitchAxeOuterText
         {
-            get { return (string)GetValue(SwitchAxeOuterTextProperty); }
-            set { SetValue(SwitchAxeOuterTextProperty, value); }
+            get => (string)GetValue(SwitchAxeOuterTextProperty);
+            set => SetValue(SwitchAxeOuterTextProperty, value);
         }
 
         public static readonly DependencyProperty SwitchAxeOuterTextProperty =
@@ -69,8 +69,8 @@ namespace HunterPie.GUI.Widgets.ClassWidget.Parts
 
         public bool IsChargeActive
         {
-            get { return (bool)GetValue(IsChargeActiveProperty); }
-            set { SetValue(IsChargeActiveProperty, value); }
+            get => (bool)GetValue(IsChargeActiveProperty);
+            set => SetValue(IsChargeActiveProperty, value);
         }
 
         public static readonly DependencyProperty IsChargeActiveProperty =
@@ -82,7 +82,7 @@ namespace HunterPie.GUI.Widgets.ClassWidget.Parts
             SwitchAxeOuterGauge = 1;
             SwitchAxeInnerGauge = 1;
             InitializeComponent();
-            
+
         }
 
         public void SetContext(SwitchAxe ctx)
@@ -120,68 +120,51 @@ namespace HunterPie.GUI.Widgets.ClassWidget.Parts
         }
 
 
-        private void OnSafijiivaCounterUpdate(object source, Core.LPlayer.Jobs.JobEventArgs args)
-        {
-            Dispatcher.BeginInvoke(System.Windows.Threading.DispatcherPriority.Render, new Action(() =>
-            {
-                HasSafiBuff = args.SafijiivaRegenCounter != -1;
-                SafiCounter = args.SafijiivaMaxHits - args.SafijiivaRegenCounter;
-            }));
-        }
+        private void OnSafijiivaCounterUpdate(object source, Core.LPlayer.Jobs.JobEventArgs args) => Dispatcher.BeginInvoke(System.Windows.Threading.DispatcherPriority.Render, new Action(() =>
+                                                                                                   {
+                                                                                                       HasSafiBuff = args.SafijiivaRegenCounter != -1;
+                                                                                                       SafiCounter = args.SafijiivaMaxHits - args.SafijiivaRegenCounter;
+                                                                                                   }));
 
-        private void OnSwitchAxeBuffUpdate(object source, SwitchAxeEventArgs args)
-        {
-            Dispatcher.BeginInvoke(System.Windows.Threading.DispatcherPriority.Render, new Action(() =>
-            {
-                if (args.IsBuffActive)
-                {
-                    SwitchAxeBuffPercentage = args.SwitchAxeBuffTimer / 45;
-                    SwitchAxeBuffTimer = TimeSpan.FromSeconds(args.SwitchAxeBuffTimer).ToString("m\\:ss");
-                }
-            }));
-        }
+        private void OnSwitchAxeBuffUpdate(object source, SwitchAxeEventArgs args) => Dispatcher.BeginInvoke(System.Windows.Threading.DispatcherPriority.Render, new Action(() =>
+                                                                                    {
+                                                                                        if (args.IsBuffActive)
+                                                                                        {
+                                                                                            SwitchAxeBuffPercentage = args.SwitchAxeBuffTimer / 45;
+                                                                                            SwitchAxeBuffTimer = TimeSpan.FromSeconds(args.SwitchAxeBuffTimer).ToString("m\\:ss");
+                                                                                        }
+                                                                                    }));
 
-        private void OnSwitchAxeBuffStateChange(object source, SwitchAxeEventArgs args)
-        {
-            Dispatcher.BeginInvoke(System.Windows.Threading.DispatcherPriority.Render, new Action(() =>
-            {
-                if (!args.IsBuffActive)
-                {
-                    SwitchAxeBuffPercentage = 0;
-                    SwitchAxeBuffTimer = "0:00";
-                }
-            }));
-        }
+        private void OnSwitchAxeBuffStateChange(object source, SwitchAxeEventArgs args) => Dispatcher.BeginInvoke(System.Windows.Threading.DispatcherPriority.Render, new Action(() =>
+                                                                                         {
+                                                                                             if (!args.IsBuffActive)
+                                                                                             {
+                                                                                                 SwitchAxeBuffPercentage = 0;
+                                                                                                 SwitchAxeBuffTimer = "0:00";
+                                                                                             }
+                                                                                         }));
 
-        private void OnOuterGaugeUpdate(object source, SwitchAxeEventArgs args)
-        {
-            Dispatcher.BeginInvoke(System.Windows.Threading.DispatcherPriority.Render, new Action(() =>
-            {
-                IsChargeActive = args.SwordChargeTimer > 0;
-                if (IsChargeActive)
-                {
-                    SwitchAxeOuterGauge = args.SwordChargeTimer / args.SwordChargeMaxTimer;
-                    SwitchAxeOuterText = TimeSpan.FromSeconds(args.SwordChargeTimer).ToString(args.SwordChargeTimer > 60 ? "m\\:ss" : "ss");
-                } else
-                {
-                    SwitchAxeOuterGauge = args.OuterGauge / 100;
-                    SwitchAxeOuterText = $"{SwitchAxeOuterGauge:P0}";
-                }
-            }));
-        }
+        private void OnOuterGaugeUpdate(object source, SwitchAxeEventArgs args) => Dispatcher.BeginInvoke(System.Windows.Threading.DispatcherPriority.Render, new Action(() =>
+                                                                                 {
+                                                                                     IsChargeActive = args.SwordChargeTimer > 0;
+                                                                                     if (IsChargeActive)
+                                                                                     {
+                                                                                         SwitchAxeOuterGauge = args.SwordChargeTimer / args.SwordChargeMaxTimer;
+                                                                                         SwitchAxeOuterText = TimeSpan.FromSeconds(args.SwordChargeTimer).ToString(args.SwordChargeTimer > 60 ? "m\\:ss" : "ss");
+                                                                                     }
+                                                                                     else
+                                                                                     {
+                                                                                         SwitchAxeOuterGauge = args.OuterGauge / 100;
+                                                                                         SwitchAxeOuterText = $"{SwitchAxeOuterGauge:P0}";
+                                                                                     }
+                                                                                 }));
 
-        private void OnInnerGaugeUpdate(object source, SwitchAxeEventArgs args)
-        {
-            Dispatcher.BeginInvoke(System.Windows.Threading.DispatcherPriority.Render, new Action(() =>
-            {
-                SwitchAxeInnerGauge = args.InnerGauge / 100;
-                IsUnderThirtyPercent = args.InnerGauge / 100 <= 0.3;
-            }));
-        }
+        private void OnInnerGaugeUpdate(object source, SwitchAxeEventArgs args) => Dispatcher.BeginInvoke(System.Windows.Threading.DispatcherPriority.Render, new Action(() =>
+                                                                                 {
+                                                                                     SwitchAxeInnerGauge = args.InnerGauge / 100;
+                                                                                     IsUnderThirtyPercent = args.InnerGauge / 100 <= 0.3;
+                                                                                 }));
 
-        private void SAControl_Loaded(object sender, RoutedEventArgs e)
-        {
-            UpdateInformation();
-        }
+        private void SAControl_Loaded(object sender, RoutedEventArgs e) => UpdateInformation();
     }
 }

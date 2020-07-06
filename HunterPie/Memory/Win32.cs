@@ -1,21 +1,13 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
 using System.Runtime.InteropServices;
-using System.Text;
-using System.Threading.Tasks;
-using System.Windows.Input;
 
 namespace HunterPie.Memory
 {
     class Win32
     {
-        IntPtr processHandle;
+        readonly IntPtr processHandle;
 
-        public Win32(IntPtr pHandle)
-        {
-            processHandle = pHandle;
-        }
+        public Win32(IntPtr pHandle) => processHandle = pHandle;
 
         [DllImport("kernel32.dll")]
         public static extern bool ReadProcessMemory(
@@ -25,10 +17,7 @@ namespace HunterPie.Memory
             int dwSize,
             out int lpNumberOfBytesRead);
 
-        public T Read<T>(long address) where T : struct
-        {
-            return Read<T>(address, 1)[0];
-        }
+        public T Read<T>(long address) where T : struct => Read<T>(address, 1)[0];
 
         public T[] Read<T>(long address, int count) where T : struct
         {

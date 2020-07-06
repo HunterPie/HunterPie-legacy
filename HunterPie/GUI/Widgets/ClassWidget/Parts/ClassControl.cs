@@ -8,8 +8,8 @@ namespace HunterPie.GUI.Widgets.ClassWidget.Parts
 
         public int SafiCounter
         {
-            get { return (int)GetValue(SafiCounterProperty); }
-            set { SetValue(SafiCounterProperty, value); }
+            get => (int)GetValue(SafiCounterProperty);
+            set => SetValue(SafiCounterProperty, value);
         }
 
         public static readonly DependencyProperty SafiCounterProperty =
@@ -17,8 +17,8 @@ namespace HunterPie.GUI.Widgets.ClassWidget.Parts
 
         public bool HasSafiBuff
         {
-            get { return (bool)GetValue(HasSafiBuffProperty); }
-            set { SetValue(HasSafiBuffProperty, value); }
+            get => (bool)GetValue(HasSafiBuffProperty);
+            set => SetValue(HasSafiBuffProperty, value);
         }
 
         public static readonly DependencyProperty HasSafiBuffProperty =
@@ -26,8 +26,8 @@ namespace HunterPie.GUI.Widgets.ClassWidget.Parts
 
         public bool IsWeaponSheathed
         {
-            get { return (bool)GetValue(IsWeaponSheathedProperty); }
-            set { SetValue(IsWeaponSheathedProperty, value); }
+            get => (bool)GetValue(IsWeaponSheathedProperty);
+            set => SetValue(IsWeaponSheathedProperty, value);
         }
 
         public static readonly DependencyProperty IsWeaponSheathedProperty =

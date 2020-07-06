@@ -2,7 +2,6 @@
 using System.Windows;
 using System.Windows.Media;
 using System.Windows.Shapes;
-using HunterPie.Logger;
 
 namespace HunterPie.GUI.Helpers
 {
@@ -11,8 +10,8 @@ namespace HunterPie.GUI.Helpers
 
         public double Percentage
         {
-            get { return (double)GetValue(PercentageProperty); }
-            set { SetValue(PercentageProperty, value); }
+            get => (double)GetValue(PercentageProperty);
+            set => SetValue(PercentageProperty, value);
         }
 
         // Using a DependencyProperty as the backing store for Percentage.  This enables animation, styling, binding, etc...
@@ -40,7 +39,7 @@ namespace HunterPie.GUI.Helpers
                     if (nextPoint == null) break;
                     context.LineTo((Point)nextPoint, true, true);
                 }
-                
+
             }
             return geom;
         }

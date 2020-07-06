@@ -2,7 +2,8 @@
 using System.Windows.Controls;
 using System.Windows.Media;
 
-namespace HunterPie.GUIControls.Custom_Controls {
+namespace HunterPie.GUIControls.Custom_Controls
+{
     /// <summary>
     /// Interaction logic for MinimalHealthBar.xaml
     /// </summary>
@@ -31,10 +32,7 @@ namespace HunterPie.GUIControls.Custom_Controls {
             set => HealthBar.Fill = value;
         }
 
-        public MinimalHealthBar()
-        {
-            InitializeComponent();
-        }
+        public MinimalHealthBar() => InitializeComponent();
 
         public void UpdateBar(float hp, float maxHp)
         {

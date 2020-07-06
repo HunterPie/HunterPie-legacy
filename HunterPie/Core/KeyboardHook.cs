@@ -2,9 +2,12 @@
 
 using System.Runtime.InteropServices;
 
-namespace HunterPie.Core {
-    public class KeyboardHookHelper {
-        public enum KeyboardKeys{
+namespace HunterPie.Core
+{
+    public class KeyboardHookHelper
+    {
+        public enum KeyboardKeys
+        {
             None = 0,
             LButton = 1,
             RButton = 2,
@@ -204,11 +207,9 @@ namespace HunterPie.Core {
         /*
          Deals with the keyboard
         */
-        public static readonly int  WH_KEYBOARD_LL = 0xD;
+        public static readonly int WH_KEYBOARD_LL = 0xD;
 
-        public static KeyboardKeys GetKeyboardKeyByID(int id) {
-            return (KeyboardKeys)Enum.Parse(typeof(KeyboardKeys), id.ToString());
-        }
+        public static KeyboardKeys GetKeyboardKeyByID(int id) => (KeyboardKeys)Enum.Parse(typeof(KeyboardKeys), id.ToString());
 
         [DllImport("user32.dll")]
         public static extern bool RegisterHotKey(IntPtr hWnd, int id, int fsModifiers, int vlc);

@@ -4,7 +4,7 @@ using HunterPie.Logger;
 
 namespace HunterPie.Core
 {
-    
+
     public class Game
     {
         // Game classes

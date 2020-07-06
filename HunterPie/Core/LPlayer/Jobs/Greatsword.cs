@@ -6,10 +6,7 @@ namespace HunterPie.Core.LPlayer.Jobs
     {
         public uint ChargeLevel;
 
-        public GreatswordEventArgs(Greatsword weapon)
-        {
-            ChargeLevel = weapon.ChargeLevel;
-        }
+        public GreatswordEventArgs(Greatsword weapon) => ChargeLevel = weapon.ChargeLevel;
     }
     public class Greatsword : Job
     {

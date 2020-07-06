@@ -1,19 +1,6 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows;
-using System.Windows.Controls;
-using System.Windows.Data;
-using System.Windows.Documents;
-using System.Windows.Input;
-using System.Windows.Media;
-using System.Windows.Media.Imaging;
-using System.Windows.Navigation;
-using System.Windows.Shapes;
 using HunterPie.Core.LPlayer.Jobs;
-using HunterPie.Logger;
 using ChargeBlade = HunterPie.Core.LPlayer.Jobs.ChargeBlade;
 using ChargeBladeEventArgs = HunterPie.Core.LPlayer.Jobs.ChargeBladeEventArgs;
 
@@ -27,8 +14,8 @@ namespace HunterPie.GUI.Widgets.ClassWidget.Parts
 
         public int Vials
         {
-            get { return (int)GetValue(VialsProperty); }
-            set { SetValue(VialsProperty, value); }
+            get => (int)GetValue(VialsProperty);
+            set => SetValue(VialsProperty, value);
         }
 
         // Using a DependencyProperty as the backing store for Vials.  This enables animation, styling, binding, etc...
@@ -37,8 +24,8 @@ namespace HunterPie.GUI.Widgets.ClassWidget.Parts
 
         public double HiddenGaugeSize
         {
-            get { return (double)GetValue(HiddenGaugeSizeProperty); }
-            set { SetValue(HiddenGaugeSizeProperty, value); }
+            get => (double)GetValue(HiddenGaugeSizeProperty);
+            set => SetValue(HiddenGaugeSizeProperty, value);
         }
 
         // Using a DependencyProperty as the backing store for HiddenGaugeSize.  This enables animation, styling, binding, etc...
@@ -47,8 +34,8 @@ namespace HunterPie.GUI.Widgets.ClassWidget.Parts
 
         public string HiddenGaugeColor
         {
-            get { return (string)GetValue(HiddenGaugeColorProperty); }
-            set { SetValue(HiddenGaugeColorProperty, value); }
+            get => (string)GetValue(HiddenGaugeColorProperty);
+            set => SetValue(HiddenGaugeColorProperty, value);
         }
 
         // Using a DependencyProperty as the backing store for HiddenGaugeColor.  This enables animation, styling, binding, etc...
@@ -57,8 +44,8 @@ namespace HunterPie.GUI.Widgets.ClassWidget.Parts
 
         public string SwordBuff
         {
-            get { return (string)GetValue(SwordBuffProperty); }
-            set { SetValue(SwordBuffProperty, value); }
+            get => (string)GetValue(SwordBuffProperty);
+            set => SetValue(SwordBuffProperty, value);
         }
 
         // Using a DependencyProperty as the backing store for SwordBuff.  This enables animation, styling, binding, etc...
@@ -67,8 +54,8 @@ namespace HunterPie.GUI.Widgets.ClassWidget.Parts
 
         public double SwordBuffOpacity
         {
-            get { return (double)GetValue(SwordBuffOpacityProperty); }
-            set { SetValue(SwordBuffOpacityProperty, value); }
+            get => (double)GetValue(SwordBuffOpacityProperty);
+            set => SetValue(SwordBuffOpacityProperty, value);
         }
 
         // Using a DependencyProperty as the backing store for SwordBuffOpacity.  This enables animation, styling, binding, etc...
@@ -78,8 +65,8 @@ namespace HunterPie.GUI.Widgets.ClassWidget.Parts
 
         public string ShieldBuff
         {
-            get { return (string)GetValue(ShieldBuffProperty); }
-            set { SetValue(ShieldBuffProperty, value); }
+            get => (string)GetValue(ShieldBuffProperty);
+            set => SetValue(ShieldBuffProperty, value);
         }
 
         // Using a DependencyProperty as the backing store for ShieldBuff.  This enables animation, styling, binding, etc...
@@ -88,8 +75,8 @@ namespace HunterPie.GUI.Widgets.ClassWidget.Parts
 
         public double ShieldBuffOpacity
         {
-            get { return (double)GetValue(ShieldBuffOpacityProperty); }
-            set { SetValue(ShieldBuffOpacityProperty, value); }
+            get => (double)GetValue(ShieldBuffOpacityProperty);
+            set => SetValue(ShieldBuffOpacityProperty, value);
         }
 
         // Using a DependencyProperty as the backing store for ShieldBuffOpacity.  This enables animation, styling, binding, etc...
@@ -98,8 +85,8 @@ namespace HunterPie.GUI.Widgets.ClassWidget.Parts
 
         public string PoweraxeBuff
         {
-            get { return (string)GetValue(PoweraxeBuffProperty); }
-            set { SetValue(PoweraxeBuffProperty, value); }
+            get => (string)GetValue(PoweraxeBuffProperty);
+            set => SetValue(PoweraxeBuffProperty, value);
         }
 
         public static readonly DependencyProperty PoweraxeBuffProperty =
@@ -107,20 +94,17 @@ namespace HunterPie.GUI.Widgets.ClassWidget.Parts
 
         public double PoweraxeOpacity
         {
-            get { return (double)GetValue(PoweraxeOpacityProperty); }
-            set { SetValue(PoweraxeOpacityProperty, value); }
+            get => (double)GetValue(PoweraxeOpacityProperty);
+            set => SetValue(PoweraxeOpacityProperty, value);
         }
 
         public static readonly DependencyProperty PoweraxeOpacityProperty =
             DependencyProperty.Register("PoweraxeOpacity", typeof(double), typeof(ChargeBladeControl));
 
-        
+
         ChargeBlade Context;
 
-        public ChargeBladeControl()
-        {
-            InitializeComponent();
-        }
+        public ChargeBladeControl() => InitializeComponent();
 
         public void SetContext(ChargeBlade ctx)
         {
@@ -163,60 +147,42 @@ namespace HunterPie.GUI.Widgets.ClassWidget.Parts
         }
 
 
-        private void OnSafijiivaCounterUpdate(object source, JobEventArgs args)
-        {
-            Dispatcher.BeginInvoke(System.Windows.Threading.DispatcherPriority.Render, new Action(() =>
-            {
-                HasSafiBuff = args.SafijiivaRegenCounter != -1;
-                SafiCounter = args.SafijiivaMaxHits - args.SafijiivaRegenCounter;
-            }));
-        }
+        private void OnSafijiivaCounterUpdate(object source, JobEventArgs args) => Dispatcher.BeginInvoke(System.Windows.Threading.DispatcherPriority.Render, new Action(() =>
+                                                                                 {
+                                                                                     HasSafiBuff = args.SafijiivaRegenCounter != -1;
+                                                                                     SafiCounter = args.SafijiivaMaxHits - args.SafijiivaRegenCounter;
+                                                                                 }));
 
-        private void OnPowerchargeUpdate(object source, ChargeBladeEventArgs args)
-        {
-            Dispatcher.BeginInvoke(System.Windows.Threading.DispatcherPriority.Render, new Action(() =>
-            {
-                PoweraxeBuff = args.PoweraxeTimer > 0 ? $"{TimeSpan.FromSeconds(args.PoweraxeTimer):ss}" : null;
-                PoweraxeOpacity = args.PoweraxeTimer > 0 ? 1 : 0;
-            }));
-        }
+        private void OnPowerchargeUpdate(object source, ChargeBladeEventArgs args) => Dispatcher.BeginInvoke(System.Windows.Threading.DispatcherPriority.Render, new Action(() =>
+                                                                                    {
+                                                                                        PoweraxeBuff = args.PoweraxeTimer > 0 ? $"{TimeSpan.FromSeconds(args.PoweraxeTimer):ss}" : null;
+                                                                                        PoweraxeOpacity = args.PoweraxeTimer > 0 ? 1 : 0;
+                                                                                    }));
 
-        private void OnVialsChange(object source, ChargeBladeEventArgs args)
-        {
-            Dispatcher.BeginInvoke(System.Windows.Threading.DispatcherPriority.Render, new Action(() =>
-            {
-                Vials = args.Vials;
-            }));
-        }
+        private void OnVialsChange(object source, ChargeBladeEventArgs args) => Dispatcher.BeginInvoke(System.Windows.Threading.DispatcherPriority.Render, new Action(() =>
+                                                                              {
+                                                                                  Vials = args.Vials;
+                                                                              }));
 
-        private void OnVialChargeGaugeUpdate(object source, ChargeBladeEventArgs args)
-        {
-            Dispatcher.BeginInvoke(System.Windows.Threading.DispatcherPriority.Render, new Action(() =>
-            {
-                HiddenGaugeSize = 77 * args.VialChargeGauge / 100;
-                HiddenGaugeColor = args.VialChargeGauge < 30 ? "#FFD6CBB8" :
-                args.VialChargeGauge > 70 ? "#FFFF0202" :
-                args.VialChargeGauge > 45 ? "#FFA41515" : "#FFD68800";
+        private void OnVialChargeGaugeUpdate(object source, ChargeBladeEventArgs args) => Dispatcher.BeginInvoke(System.Windows.Threading.DispatcherPriority.Render, new Action(() =>
+                                                                                        {
+                                                                                            HiddenGaugeSize = 77 * args.VialChargeGauge / 100;
+                                                                                            HiddenGaugeColor = args.VialChargeGauge < 30 ? "#FFD6CBB8" :
+                                                                                            args.VialChargeGauge > 70 ? "#FFFF0202" :
+                                                                                            args.VialChargeGauge > 45 ? "#FFA41515" : "#FFD68800";
 
-            }));
-        }
+                                                                                        }));
 
-        private void OnSwordBuffUpdate(object source, ChargeBladeEventArgs args)
-        {
-            Dispatcher.BeginInvoke(System.Windows.Threading.DispatcherPriority.Render, new Action(() =>
-            {
-                SwordBuff = args.SwordBuffTimer > 0 ? $"{TimeSpan.FromSeconds(args.SwordBuffTimer):ss}" : null;
-                SwordBuffOpacity = args.SwordBuffTimer > 0 ? 1 : 0;
-            }));
-        }
+        private void OnSwordBuffUpdate(object source, ChargeBladeEventArgs args) => Dispatcher.BeginInvoke(System.Windows.Threading.DispatcherPriority.Render, new Action(() =>
+                                                                                  {
+                                                                                      SwordBuff = args.SwordBuffTimer > 0 ? $"{TimeSpan.FromSeconds(args.SwordBuffTimer):ss}" : null;
+                                                                                      SwordBuffOpacity = args.SwordBuffTimer > 0 ? 1 : 0;
+                                                                                  }));
 
-        private void OnShieldBuffUpdate(object source, ChargeBladeEventArgs args)
-        {
-            Dispatcher.BeginInvoke(System.Windows.Threading.DispatcherPriority.Render, new Action(() =>
-            {
-                ShieldBuff = args.ShieldBuffTimer > 0 ? $"{TimeSpan.FromSeconds(args.ShieldBuffTimer):m\\:ss}" : null;
-                ShieldBuffOpacity = args.ShieldBuffTimer > 0 ? 1 : 0;
-            }));
-        }
+        private void OnShieldBuffUpdate(object source, ChargeBladeEventArgs args) => Dispatcher.BeginInvoke(System.Windows.Threading.DispatcherPriority.Render, new Action(() =>
+                                                                                   {
+                                                                                       ShieldBuff = args.ShieldBuffTimer > 0 ? $"{TimeSpan.FromSeconds(args.ShieldBuffTimer):m\\:ss}" : null;
+                                                                                       ShieldBuffOpacity = args.ShieldBuffTimer > 0 ? 1 : 0;
+                                                                                   }));
     }
 }

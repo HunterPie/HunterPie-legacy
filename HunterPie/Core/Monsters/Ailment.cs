@@ -1,44 +1,51 @@
-﻿using System;
-using System.Linq;
+﻿using System.Linq;
 using HunterPie.Core.Definitions;
-using HunterPie.GUI.Widgets.Monster_Widget.Parts;
 
-namespace HunterPie.Core {
-    public class Ailment {
+namespace HunterPie.Core
+{
+    public class Ailment
+    {
 
         private float buildup;
         private float duration;
         private uint counter;
 
         public long Address { get; private set; }
-        public string Name {
-            get { return GStrings.GetAilmentNameByID(MonsterData.AilmentsInfo.ElementAtOrDefault((int)Id)?.Id ?? Id.ToString()); }
-        }
+        public string Name => GStrings.GetAilmentNameByID(MonsterData.AilmentsInfo.ElementAtOrDefault((int)Id)?.Id ?? Id.ToString());
         public uint Id { get; set; }
-        public float Buildup {
-            get { return buildup; }
-            set {
-                if (value != buildup) {
+        public float Buildup
+        {
+            get => buildup;
+            set
+            {
+                if (value != buildup)
+                {
                     buildup = value;
                     Dispatch(OnBuildupChange);
                 }
             }
         }
         public float MaxBuildup { get; private set; }
-        public float Duration {
-            get { return duration; }
-            set {
-                if (value != duration) {
+        public float Duration
+        {
+            get => duration;
+            set
+            {
+                if (value != duration)
+                {
                     duration = value;
                     Dispatch(OnDurationChange);
                 }
             }
         }
         public float MaxDuration { get; private set; }
-        public uint Counter {
-            get { return counter; }
-            set {
-                if (value != counter) {
+        public uint Counter
+        {
+            get => counter;
+            set
+            {
+                if (value != counter)
+                {
                     counter = value;
                     Dispatch(OnCounterChange);
                 }
@@ -54,12 +61,10 @@ namespace HunterPie.Core {
         private void Dispatch(MonsterAilmentEvents e) => e?.Invoke(this, new MonsterAilmentEventArgs(this));
         #endregion
 
-        public Ailment(long address)
-        {
-            Address = address;
-        }
+        public Ailment(long address) => Address = address;
 
-        public void SetAilmentInfo(sMonsterAilment AilmentData) {
+        public void SetAilmentInfo(sMonsterAilment AilmentData)
+        {
             Id = AilmentData.Id;
             MaxDuration = AilmentData.MaxDuration;
             Duration = AilmentData.Duration;
@@ -68,9 +73,7 @@ namespace HunterPie.Core {
             Counter = AilmentData.Counter;
         }
 
-        public override string ToString() {
-            return $"Ailment: {Name} ({Id}) | Duration: {Duration}/{MaxDuration} | Buildup: {Buildup}/{MaxBuildup} | {Counter}";
-        }
+        public override string ToString() => $"Ailment: {Name} ({Id}) | Duration: {Duration}/{MaxDuration} | Buildup: {Buildup}/{MaxBuildup} | {Counter}";
 
         private void UnhookEvents(MonsterAilmentEvents eventHandler)
         {

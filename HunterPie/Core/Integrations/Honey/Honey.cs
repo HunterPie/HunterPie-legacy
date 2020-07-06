@@ -1,38 +1,40 @@
 ﻿using System;
+using System.Collections.Generic;
+using System.IO;
 using System.Linq;
 using System.Text;
 using System.Xml;
+using HunterPie.Core.Definitions;
+using HunterPie.Core.Enums;
 using Debugger = HunterPie.Logger.Debugger;
 using GameStructs = HunterPie.Core.LPlayer.GameStructs;
-using System.IO;
-using HunterPie.Core.Definitions;
-using System.Collections.Generic;
-using HunterPie.Core.Enums;
 
-namespace HunterPie.Core {
-    public class Honey {
+namespace HunterPie.Core
+{
+    public class Honey
+    {
 
         public static XmlDocument HoneyGearData;
-        private static string HoneyLink = "https://honeyhunterworld.com/mhwbi/?";
+        private static readonly string HoneyLink = "https://honeyhunterworld.com/mhwbi/?";
 
         // Only calls this when needed
         // since I don't want it to be allocated in memory 100% of the time
-        public static void LoadHoneyGearData() {
+        public static void LoadHoneyGearData()
+        {
             HoneyGearData = new XmlDocument();
             HoneyGearData.Load(Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "HunterPie.Resources/Data/HoneyData.xml"));
         }
 
-        public static void UnloadHoneyGearData() {
-            HoneyGearData = null;
-        }
-        
+        public static void UnloadHoneyGearData() => HoneyGearData = null;
+
         /// <summary>
         /// Function to create player build link based on the in-game gear
         /// </summary>
         /// <param name="Build">Player build structure</param>
         /// <param name="ShowErrors">If the function should print errors when they happen (optional)</param>
         /// <returns>Link to the build in Honey Hunters World</returns>
-        public static string LinkStructureBuilder(GameStructs.Gear Build, bool ShowErrors = false) {
+        public static string LinkStructureBuilder(GameStructs.Gear Build, bool ShowErrors = false)
+        {
 
             if (HoneyGearData == null) LoadHoneyGearData();
 
@@ -51,15 +53,19 @@ namespace HunterPie.Core {
 
             // Augments
             int AugmentsTotal = 0;
-            for (int AugmentIndex = 0; AugmentIndex < Build.Weapon.NewAugments.Length; AugmentIndex++) {
+            for (int AugmentIndex = 0; AugmentIndex < Build.Weapon.NewAugments.Length; AugmentIndex++)
+            {
                 string AugId = GetNewAugment(Build.Weapon.NewAugments[AugmentIndex].ID);
 
                 if (Build.Weapon.NewAugments[AugmentIndex].Level == 0) continue;
                 else { AugmentsTotal++; }
 
-                if (AugmentsTotal > 1) {
+                if (AugmentsTotal > 1)
+                {
                     LinkBuilder.Append($";{AugId}:{Build.Weapon.NewAugments[AugmentIndex].Level}");
-                } else {
+                }
+                else
+                {
                     LinkBuilder.Append($"{AugId}:{Build.Weapon.NewAugments[AugmentIndex].Level}");
                 }
 
@@ -93,8 +99,10 @@ namespace HunterPie.Core {
             LinkBuilder.Append(BuildDecorationStringStructure(Build.SpecializedTools[1].Decorations, 2).Replace(',', ':'));
 
             // Bowgun mods
-            if (Build.Weapon.Type == 12 || Build.Weapon.Type == 13) {
-                foreach (GameStructs.BowgunMod bowgunMod in Build.Weapon.BowgunMods) {
+            if (Build.Weapon.Type == 12 || Build.Weapon.Type == 13)
+            {
+                foreach (GameStructs.BowgunMod bowgunMod in Build.Weapon.BowgunMods)
+                {
                     LinkBuilder.Append("," + (HoneyGearData.SelectSingleNode($"//Honey/Weapons/BowgunMods/Mod[@ID='{bowgunMod.ID}']/@HoneyID")?.Value ?? "none"));
                 }
             }
@@ -107,7 +115,8 @@ namespace HunterPie.Core {
         }
 
 
-        static string GetWeaponHoneyID(int WeaponType, int WeaponID, bool ShowErrors) {
+        static string GetWeaponHoneyID(int WeaponType, int WeaponID, bool ShowErrors)
+        {
             XmlNodeList nl = HoneyGearData.SelectSingleNode($"//Honey/Weapons").ChildNodes;
             if (WeaponType > nl.Count) return "0";
             XmlNode WeaponNode = nl[WeaponType];
@@ -116,7 +125,8 @@ namespace HunterPie.Core {
             return wID;
         }
 
-        static string GetGearHoneyID(string Type, string SubType, int ID) {
+        static string GetGearHoneyID(string Type, string SubType, int ID)
+        {
             string node = HoneyGearData.SelectSingleNode($"//Honey/Gear/{Type}/{SubType}[@ID='{ID}']/@HoneyID")?.Value;
             return node ?? "0";
         }
@@ -128,15 +138,18 @@ namespace HunterPie.Core {
             return parsed;
         }
 
-        static string GetNewAugment(int Index) {
+        static string GetNewAugment(int Index)
+        {
             string node = HoneyGearData.SelectSingleNode($"//Honey/Weapons/Augments/New[@ID='{Index}']/@HoneyID")?.Value;
             if (node == null) return null;
             return node;
         }
 
-        static string BuildCustomPartsStructure(int WeaponType, GameStructs.CustomAugment[] CustomAugments, bool ShowError) {
+        static string BuildCustomPartsStructure(int WeaponType, GameStructs.CustomAugment[] CustomAugments, bool ShowError)
+        {
             StringBuilder[] Structure = new StringBuilder[5];
-            for (int cAugmentIndex = 0; cAugmentIndex < CustomAugments.Length; cAugmentIndex++) {
+            for (int cAugmentIndex = 0; cAugmentIndex < CustomAugments.Length; cAugmentIndex++)
+            {
                 GameStructs.CustomAugment cAugment = CustomAugments[cAugmentIndex];
                 // Skip empty slots
                 if (cAugment.ID == byte.MaxValue) continue;
@@ -148,7 +161,8 @@ namespace HunterPie.Core {
 
                 // If the augment is still null, then it isn't supported yet. In this case we display an error
                 // with the augment ID, so it's easier to map it.
-                if (AugmentType == null && ShowError) {
+                if (AugmentType == null && ShowError)
+                {
                     Debugger.Error($"Unsupported custom augment (ID = {cAugment.ID}, Level = {cAugment.Level})");
                     continue;
                 }
@@ -161,16 +175,19 @@ namespace HunterPie.Core {
             }
 
             StringBuilder JoinedResult = new StringBuilder();
-            foreach (StringBuilder SubBuilder in Structure) {
+            foreach (StringBuilder SubBuilder in Structure)
+            {
                 JoinedResult.Append(SubBuilder?.ToString() + ";");
             }
             JoinedResult.Remove(JoinedResult.Length - 1, 1);
             return JoinedResult.ToString();
         }
 
-        static string BuildAwakeningSkillsStructure(GameStructs.AwakenedSkill[] AwakenedSkills) {
+        static string BuildAwakeningSkillsStructure(GameStructs.AwakenedSkill[] AwakenedSkills)
+        {
             StringBuilder[] Structure = new StringBuilder[5];
-            for (int AwakIndex = 0; AwakIndex < 5; AwakIndex++) {
+            for (int AwakIndex = 0; AwakIndex < 5; AwakIndex++)
+            {
                 GameStructs.AwakenedSkill awakened = AwakenedSkills[AwakIndex];
 
                 if (Structure[AwakIndex] == null) Structure[AwakIndex] = new StringBuilder();
@@ -179,33 +196,38 @@ namespace HunterPie.Core {
             }
 
             StringBuilder JoinedResult = new StringBuilder();
-            foreach (StringBuilder SubBuilder in Structure) {
+            foreach (StringBuilder SubBuilder in Structure)
+            {
                 JoinedResult.Append(SubBuilder?.ToString() + ";");
             }
             JoinedResult.Remove(JoinedResult.Length - 1, 1);
             return JoinedResult.ToString();
         }
 
-        static string BuildDecorationStringStructure(GameStructs.Decoration[] Decorations, int Amount = 3, bool isWeapon = false, bool HasDecorationExtraSlot = false) {
+        static string BuildDecorationStringStructure(GameStructs.Decoration[] Decorations, int Amount = 3, bool isWeapon = false, bool HasDecorationExtraSlot = false)
+        {
             StringBuilder stringStructure = new StringBuilder();
 
             // Shift the jewel to the third slot if it's empty, since Honey uses the
             // Awakening slot always in the third slot
-            if (isWeapon && HasDecorationExtraSlot && Decorations[2].ID == int.MaxValue) {
+            if (isWeapon && HasDecorationExtraSlot && Decorations[2].ID == int.MaxValue)
+            {
                 Decorations[2].ID = Decorations[1].ID;
                 Decorations[1].ID = int.MaxValue;
             }
 
-            for (int DecoIndex = 0; DecoIndex < Amount; DecoIndex++) {
+            for (int DecoIndex = 0; DecoIndex < Amount; DecoIndex++)
+            {
                 GameStructs.Decoration deco = Decorations[DecoIndex];
                 string decorationHoneyID = deco.ID == int.MaxValue ? "0" : HoneyGearData.SelectSingleNode($"//Honey/Gear/Jewels/Jewel[@ID='{deco.ID}']/@HoneyID")?.Value;
                 stringStructure.Append("," + decorationHoneyID);
             }
-            
+
             return stringStructure.ToString();
         }
 
-        static string GetMantleHoneyID(int ID) {
+        static string GetMantleHoneyID(int ID)
+        {
             string node = HoneyGearData.SelectSingleNode($"//Honey/Gear/Mantles/Mantle[@ID='{ID}']/@HoneyID")?.Value;
             return node ?? "0";
         }
@@ -253,7 +275,7 @@ namespace HunterPie.Core {
         /// <returns>string structure</returns>
         public static string ExportDecorationsToHoney(sItem[] decorations, sGear[] gears)
         {
-            
+
             if (HoneyGearData == null) LoadHoneyGearData();
             StringBuilder data = new StringBuilder();
 
@@ -267,7 +289,7 @@ namespace HunterPie.Core {
 
                 // Skip charms
                 if (gear.Category == 2) continue;
-                
+
                 if (gear.DecorationSlot1 != uint.MaxValue)
                 {
                     decoMerge.Add(new sItem { Amount = 1, ItemId = GetDecorationGameIdById((int)gear.DecorationSlot1) });
@@ -282,7 +304,7 @@ namespace HunterPie.Core {
                 }
             }
             decorations = decoMerge.ToArray<sItem>();
-            
+
             // Parse decorations into a dictionary to make it easier to organize the string structure
             Dictionary<int, int> sDecorations = new Dictionary<int, int>();
             foreach (sItem deco in decorations)
@@ -291,7 +313,8 @@ namespace HunterPie.Core {
                 if (sDecorations.ContainsKey(HoneyDecoId))
                 {
                     sDecorations[HoneyDecoId] += deco.Amount;
-                } else
+                }
+                else
                 {
                     sDecorations[HoneyDecoId] = deco.Amount;
                 }
@@ -322,7 +345,7 @@ namespace HunterPie.Core {
 
             // Filter based on only on charms
             sGear[] charms = gear.Where(x => x.Type == (uint)GearType.Charm).ToArray();
-            
+
             // Parse charms into a dictionary to make it easier to organize the string structure
             Dictionary<int, int> sCharms = new Dictionary<int, int>();
             foreach (sGear charm in charms)

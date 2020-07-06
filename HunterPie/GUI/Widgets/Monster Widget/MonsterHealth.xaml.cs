@@ -38,7 +38,7 @@ namespace HunterPie.GUI.Widgets
             HookEvents();
             LoadAnimations();
             Visibility = Visibility.Collapsed;
-            if (UserSettings.PlayerConfig.Overlay.MonstersComponent.ShowMonsterBarMode == (byte)3)
+            if (UserSettings.PlayerConfig.Overlay.MonstersComponent.ShowMonsterBarMode == 3)
             {
                 StartVisibilityTimer();
             }
@@ -175,7 +175,7 @@ namespace HunterPie.GUI.Widgets
                 Weaknesses.Children.Add(MonsterWeaknessDisplay);
                 index++;
             }
-            
+
         }
 
         private void OnMonsterCrownChange(object source, EventArgs args) => Dispatch(() =>
@@ -249,7 +249,7 @@ namespace HunterPie.GUI.Widgets
             SetMonsterHealthBarText(args.Health, args.MaxHealth);
             if ((args.Health / args.MaxHealth * 100) < Context.CaptureThreshold) CapturableIcon.Visibility = Visibility.Visible;
             else { CapturableIcon.Visibility = Visibility.Collapsed; }
-            if (UserSettings.PlayerConfig.Overlay.MonstersComponent.ShowMonsterBarMode == (byte)3)
+            if (UserSettings.PlayerConfig.Overlay.MonstersComponent.ShowMonsterBarMode == 3)
             {
                 Visibility = Visibility.Visible;
                 StartVisibilityTimer();
@@ -261,7 +261,7 @@ namespace HunterPie.GUI.Widgets
         #region Visibility timer
         private void StartVisibilityTimer()
         {
-            if (UserSettings.PlayerConfig.Overlay.MonstersComponent.ShowMonsterBarMode != (byte)3)
+            if (UserSettings.PlayerConfig.Overlay.MonstersComponent.ShowMonsterBarMode != 3)
             {
                 Dispatcher.BeginInvoke(System.Windows.Threading.DispatcherPriority.Render, new Action(() =>
                 {
@@ -281,7 +281,7 @@ namespace HunterPie.GUI.Widgets
 
         private void HideUnactiveBar()
         {
-            if (UserSettings.PlayerConfig.Overlay.MonstersComponent.ShowMonsterBarMode != (byte)3)
+            if (UserSettings.PlayerConfig.Overlay.MonstersComponent.ShowMonsterBarMode != 3)
             {
                 return;
             }
@@ -429,7 +429,7 @@ namespace HunterPie.GUI.Widgets
 
         private void UpdateContainerBarsSizeDynamically()
         {
-            
+
             UserSettings.Config.Monsterscomponent config = UserSettings.PlayerConfig.Overlay.MonstersComponent;
             NumberOfPartsDisplayed = MonsterPartsContainer.Children.Cast<Monster_Widget.Parts.MonsterPart>()
                 .Where(p => p.IsVisible)
@@ -442,9 +442,9 @@ namespace HunterPie.GUI.Widgets
             double partsContainerWidth = MonsterPartsContainer.MaxWidth / Math.Max(1, Math.Min(config.MaxPartColumns, Math.Max(1, Math.Ceiling(NumberOfPartsDisplayed / (double)config.MaxNumberOfPartsAtOnce))));
             double ailmentsContainerWidth = MonsterAilmentsContainer.MaxWidth / Math.Max(1, Math.Min(config.MaxPartColumns, Math.Max(1, Math.Ceiling(NumberOfAilmentsDisplayed / (double)config.MaxNumberOfPartsAtOnce))));
 
-            MonsterPartsContainer.ItemWidth = double.IsInfinity(partsContainerWidth) ? (MonsterPartsContainer.Width - 2) / 2 : partsContainerWidth ;
+            MonsterPartsContainer.ItemWidth = double.IsInfinity(partsContainerWidth) ? (MonsterPartsContainer.Width - 2) / 2 : partsContainerWidth;
             MonsterAilmentsContainer.ItemWidth = double.IsInfinity(ailmentsContainerWidth) ? (MonsterPartsContainer.Width - 2) / 2 : ailmentsContainerWidth;
-            
+
             foreach (Monster_Widget.Parts.MonsterPart part in MonsterPartsContainer.Children)
             {
                 part.UpdateHealthSize(MonsterPartsContainer.ItemWidth);
@@ -454,7 +454,7 @@ namespace HunterPie.GUI.Widgets
             {
                 ailment.UpdateSize(MonsterAilmentsContainer.ItemWidth);
             }
-            
+
 
         }
 
@@ -501,6 +501,6 @@ namespace HunterPie.GUI.Widgets
         private void OnMonsterAilmentsContainerSizeChange(object sender, SizeChangedEventArgs e) => UpdateContainerBarsSizeDynamically();
 
 
-        
+
     }
 }

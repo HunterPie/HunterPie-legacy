@@ -1,12 +1,5 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Configuration;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows;
-using System.Windows.Controls;
-using HunterPie.Logger;
 using DualBlades = HunterPie.Core.LPlayer.Jobs.DualBlades;
 using DualBladesEventArgs = HunterPie.Core.LPlayer.Jobs.DualBladesEventArgs;
 using JobEventArgs = HunterPie.Core.LPlayer.Jobs.JobEventArgs;
@@ -23,32 +16,32 @@ namespace HunterPie.GUI.Widgets.ClassWidget.Parts
 
         public bool IsDemonModeActive
         {
-            get { return (bool)GetValue(IsDemonModeActiveProperty); }
-            set { SetValue(IsDemonModeActiveProperty, value); }
+            get => (bool)GetValue(IsDemonModeActiveProperty);
+            set => SetValue(IsDemonModeActiveProperty, value);
         }
         public static readonly DependencyProperty IsDemonModeActiveProperty =
             DependencyProperty.Register("IsDemonModeActive", typeof(bool), typeof(DualBladeControl));
 
         public float GaugePercentage
         {
-            get { return (float)GetValue(GaugePercentageProperty); }
-            set { SetValue(GaugePercentageProperty, value); }
+            get => (float)GetValue(GaugePercentageProperty);
+            set => SetValue(GaugePercentageProperty, value);
         }
         public static readonly DependencyProperty GaugePercentageProperty =
             DependencyProperty.Register("GaugePercentage", typeof(float), typeof(DualBladeControl));
 
         public float DemonGauge
         {
-            get { return (float)GetValue(DemonGaugeProperty); }
-            set { SetValue(DemonGaugeProperty, value); }
+            get => (float)GetValue(DemonGaugeProperty);
+            set => SetValue(DemonGaugeProperty, value);
         }
         public static readonly DependencyProperty DemonGaugeProperty =
             DependencyProperty.Register("DemonGauge", typeof(float), typeof(DualBladeControl));
 
         public bool IsReducing
         {
-            get { return (bool)GetValue(IsReducingProperty); }
-            set { SetValue(IsReducingProperty, value); }
+            get => (bool)GetValue(IsReducingProperty);
+            set => SetValue(IsReducingProperty, value);
         }
         public static readonly DependencyProperty IsReducingProperty =
             DependencyProperty.Register("IsReducing", typeof(bool), typeof(DualBladeControl));
@@ -76,13 +69,10 @@ namespace HunterPie.GUI.Widgets.ClassWidget.Parts
             Context.OnSafijiivaCounterUpdate += OnSafijiivaCounterUpdate;
         }
 
-        private void OnDemonGaugeReduce(object source, DualBladesEventArgs args)
-        {
-            Dispatcher.BeginInvoke(System.Windows.Threading.DispatcherPriority.Render, new Action(() =>
-            {
-                IsReducing = args.IsReducing;
-            }));
-        }
+        private void OnDemonGaugeReduce(object source, DualBladesEventArgs args) => Dispatcher.BeginInvoke(System.Windows.Threading.DispatcherPriority.Render, new Action(() =>
+                                                                                  {
+                                                                                      IsReducing = args.IsReducing;
+                                                                                  }));
 
         public override void UnhookEvents()
         {
@@ -102,31 +92,22 @@ namespace HunterPie.GUI.Widgets.ClassWidget.Parts
 
         #region Game Events
 
-        private void OnSafijiivaCounterUpdate(object source, JobEventArgs args)
-        {
-            Dispatcher.BeginInvoke(System.Windows.Threading.DispatcherPriority.Render, new Action(() =>
-            {
-                HasSafiBuff = args.SafijiivaRegenCounter != -1;
-                SafiCounter = args.SafijiivaMaxHits - args.SafijiivaRegenCounter;
-            }));
-        }
+        private void OnSafijiivaCounterUpdate(object source, JobEventArgs args) => Dispatcher.BeginInvoke(System.Windows.Threading.DispatcherPriority.Render, new Action(() =>
+                                                                                 {
+                                                                                     HasSafiBuff = args.SafijiivaRegenCounter != -1;
+                                                                                     SafiCounter = args.SafijiivaMaxHits - args.SafijiivaRegenCounter;
+                                                                                 }));
 
-        private void OnDemonModeToggle(object source, DualBladesEventArgs args)
-        {
-            Dispatcher.BeginInvoke(System.Windows.Threading.DispatcherPriority.Render, new Action(() =>
-            {
-                IsDemonModeActive = args.InDemonMode;
-            }));
-        }
+        private void OnDemonModeToggle(object source, DualBladesEventArgs args) => Dispatcher.BeginInvoke(System.Windows.Threading.DispatcherPriority.Render, new Action(() =>
+                                                                                 {
+                                                                                     IsDemonModeActive = args.InDemonMode;
+                                                                                 }));
 
-        private void OnDemonGaugeChange(object source, DualBladesEventArgs args)
-        {
-            Dispatcher.BeginInvoke(System.Windows.Threading.DispatcherPriority.Render, new Action(() =>
-            {
-                GaugePercentage = 102 * args.DemonGauge;
-                DemonGauge = args.DemonGauge;
-            }));
-        }
+        private void OnDemonGaugeChange(object source, DualBladesEventArgs args) => Dispatcher.BeginInvoke(System.Windows.Threading.DispatcherPriority.Render, new Action(() =>
+                                                                                  {
+                                                                                      GaugePercentage = 102 * args.DemonGauge;
+                                                                                      DemonGauge = args.DemonGauge;
+                                                                                  }));
 
         #endregion
     }

@@ -1,6 +1,6 @@
 ﻿using System;
-using Lance = HunterPie.Core.LPlayer.Jobs.Lance;
 using JobEventArgs = HunterPie.Core.LPlayer.Jobs.JobEventArgs;
+using Lance = HunterPie.Core.LPlayer.Jobs.Lance;
 
 namespace HunterPie.GUI.Widgets.ClassWidget.Parts
 {
@@ -12,10 +12,7 @@ namespace HunterPie.GUI.Widgets.ClassWidget.Parts
 
         Lance Context;
 
-        public LanceControl()
-        {
-            InitializeComponent();
-        }
+        public LanceControl() => InitializeComponent();
 
         public void SetContext(Lance ctx)
         {
@@ -24,30 +21,18 @@ namespace HunterPie.GUI.Widgets.ClassWidget.Parts
             HookEvents();
         }
 
-        private void UpdateInformation()
-        {
-            OnSafijiivaCounterUpdate(this, new JobEventArgs(Context));
-        }
+        private void UpdateInformation() => OnSafijiivaCounterUpdate(this, new JobEventArgs(Context));
 
-        private void HookEvents()
-        {
-            Context.OnSafijiivaCounterUpdate += OnSafijiivaCounterUpdate;
-        }
+        private void HookEvents() => Context.OnSafijiivaCounterUpdate += OnSafijiivaCounterUpdate;
 
-        public override void UnhookEvents()
-        {
-            Context.OnSafijiivaCounterUpdate -= OnSafijiivaCounterUpdate;
-        }
+        public override void UnhookEvents() => Context.OnSafijiivaCounterUpdate -= OnSafijiivaCounterUpdate;
 
         #region Game Events
-        private void OnSafijiivaCounterUpdate(object source, JobEventArgs args)
-        {
-            Dispatcher.BeginInvoke(System.Windows.Threading.DispatcherPriority.Render, new Action(() =>
-            {
-                HasSafiBuff = args.SafijiivaRegenCounter != -1;
-                SafiCounter = args.SafijiivaMaxHits - args.SafijiivaRegenCounter;
-            }));
-        }
+        private void OnSafijiivaCounterUpdate(object source, JobEventArgs args) => Dispatcher.BeginInvoke(System.Windows.Threading.DispatcherPriority.Render, new Action(() =>
+                                                                                 {
+                                                                                     HasSafiBuff = args.SafijiivaRegenCounter != -1;
+                                                                                     SafiCounter = args.SafijiivaMaxHits - args.SafijiivaRegenCounter;
+                                                                                 }));
         #endregion
 
     }

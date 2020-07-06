@@ -3,7 +3,6 @@ using System.Windows.Input;
 using System.Windows.Media;
 using HunterPie.Core;
 using HunterPie.GUI.Widgets.ClassWidget.Parts;
-using HunterPie.Logger;
 using Classes = HunterPie.Core.Enums.Classes;
 
 namespace HunterPie.GUI.Widgets.ClassWidget
@@ -36,29 +35,23 @@ namespace HunterPie.GUI.Widgets.ClassWidget
             SaveSettings();
         }
 
-        private void SaveSettings()
-        {
-            Dispatcher.BeginInvoke(System.Windows.Threading.DispatcherPriority.Render, new Action(() =>
-            {
-                SaveSettingsBasedOnClass();
-            }));
-        }
+        private void SaveSettings() => Dispatcher.BeginInvoke(System.Windows.Threading.DispatcherPriority.Render, new Action(() =>
+                                     {
+                                         SaveSettingsBasedOnClass();
+                                     }));
 
-        public override void ApplySettings(bool FocusTrigger = false)
-        {
-            Dispatcher.BeginInvoke(System.Windows.Threading.DispatcherPriority.Render, new Action(() =>
-            {
-                if (IsClosed) return;
-                ApplySettingsBasedOnClass();
-                base.ApplySettings(FocusTrigger);
-            }));
-        }
+        public override void ApplySettings(bool FocusTrigger = false) => Dispatcher.BeginInvoke(System.Windows.Threading.DispatcherPriority.Render, new Action(() =>
+                                                                       {
+                                                                           if (IsClosed) return;
+                                                                           ApplySettingsBasedOnClass();
+                                                                           base.ApplySettings(FocusTrigger);
+                                                                       }));
 
         private void ApplySettingsBasedOnClass()
         {
             UserSettings.Config.ClassesWidget classesConfig = UserSettings.PlayerConfig.Overlay.ClassesWidget;
             UserSettings.Config.WeaponHelperStructure config;
-            switch((Classes)Context.Player.WeaponID)
+            switch ((Classes)Context.Player.WeaponID)
             {
                 case Classes.DualBlades:
                     config = classesConfig.DualBladesHelper;
@@ -80,7 +73,7 @@ namespace HunterPie.GUI.Widgets.ClassWidget
                     break;
                 case Classes.ChargeBlade:
                     config = classesConfig.ChargeBladeHelper;
-                    break;                
+                    break;
                 case Classes.InsectGlaive:
                     config = classesConfig.InsectGlaiveHelper;
                     break;
@@ -170,61 +163,54 @@ namespace HunterPie.GUI.Widgets.ClassWidget
             DefaultScaleY = newScaleY;
         }
 
-        private void OnZoneChange(object source, EventArgs args)
-        {
-            Dispatcher.BeginInvoke(System.Windows.Threading.DispatcherPriority.Render, new Action(() =>
-            {
-                WidgetHasContent = !Context.Player.InHarvestZone && !(Context.Player.ZoneID == 0);
-                ChangeVisibility(false);
-            }));
-        }
+        private void OnZoneChange(object source, EventArgs args) => Dispatcher.BeginInvoke(System.Windows.Threading.DispatcherPriority.Render, new Action(() =>
+                                                                  {
+                                                                      WidgetHasContent = !Context.Player.InHarvestZone && !(Context.Player.ZoneID == 0);
+                                                                      ChangeVisibility(false);
+                                                                  }));
 
-        private void OnClassChange(object source, EventArgs args)
-        {
-            Dispatcher.BeginInvoke(System.Windows.Threading.DispatcherPriority.Render, new Action(() =>
-            {
-                foreach (ClassControl control in Container.Children)
-                {
-                    control.UnhookEvents();
-                }
-                Container.Children.Clear();
-                WidgetHasContent = !Context.Player.InHarvestZone;
-                switch ((Classes)Context.Player.WeaponID)
-                {
-                    case Classes.DualBlades:
-                        SetClassToDualBlades();
-                        break;
-                    case Classes.LongSword:
-                        SetClassLongSword();
-                        break;
-                    case Classes.Hammer:
-                        SetClassToHammer();
-                        break;
-                    case Classes.Lance:
-                        SetClassToLance();
-                        break;
-                    case Classes.GunLance:
-                        SetClassToGunLance();
-                        break;
-                    case Classes.SwitchAxe:
-                        SetClassToSwitchAxe();
-                        break;
-                    case Classes.ChargeBlade:
-                        SetClassToChargeBlade();
-                        break;
-                    case Classes.InsectGlaive:
-                        SetClassToInsectGlaive();
-                        break;
-                    case Classes.Bow:
-                        SetClassToBow();
-                        break;
-                    default:
-                        WidgetHasContent = false;
-                        break;
-                }
-            }));
-            
-        }
+        private void OnClassChange(object source, EventArgs args) => Dispatcher.BeginInvoke(System.Windows.Threading.DispatcherPriority.Render, new Action(() =>
+                                                                   {
+                                                                       foreach (ClassControl control in Container.Children)
+                                                                       {
+                                                                           control.UnhookEvents();
+                                                                       }
+                                                                       Container.Children.Clear();
+                                                                       WidgetHasContent = !Context.Player.InHarvestZone;
+                                                                       switch ((Classes)Context.Player.WeaponID)
+                                                                       {
+                                                                           case Classes.DualBlades:
+                                                                               SetClassToDualBlades();
+                                                                               break;
+                                                                           case Classes.LongSword:
+                                                                               SetClassLongSword();
+                                                                               break;
+                                                                           case Classes.Hammer:
+                                                                               SetClassToHammer();
+                                                                               break;
+                                                                           case Classes.Lance:
+                                                                               SetClassToLance();
+                                                                               break;
+                                                                           case Classes.GunLance:
+                                                                               SetClassToGunLance();
+                                                                               break;
+                                                                           case Classes.SwitchAxe:
+                                                                               SetClassToSwitchAxe();
+                                                                               break;
+                                                                           case Classes.ChargeBlade:
+                                                                               SetClassToChargeBlade();
+                                                                               break;
+                                                                           case Classes.InsectGlaive:
+                                                                               SetClassToInsectGlaive();
+                                                                               break;
+                                                                           case Classes.Bow:
+                                                                               SetClassToBow();
+                                                                               break;
+                                                                           default:
+                                                                               WidgetHasContent = false;
+                                                                               break;
+                                                                       }
+                                                                   }));
 
         private void SetClassToLance()
         {
@@ -313,7 +299,7 @@ namespace HunterPie.GUI.Widgets.ClassWidget
         {
             if (e.LeftButton == MouseButtonState.Pressed)
             {
-                this.MoveWidget();
+                MoveWidget();
                 SaveSettings();
             }
         }

@@ -1,4 +1,4 @@
-﻿namespace HunterPie.Core.Monsters 
+﻿namespace HunterPie.Core.Monsters
 {
     #region Data Structures 
     public struct CrownInfo

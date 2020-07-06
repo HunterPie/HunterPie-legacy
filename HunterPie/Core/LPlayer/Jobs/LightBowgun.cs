@@ -6,10 +6,7 @@ namespace HunterPie.Core.LPlayer.Jobs
     {
         public float SpecialAmmoRegen;
 
-        public LightBowgunEventArgs(LightBowgun weapon)
-        {
-            SpecialAmmoRegen = weapon.SpecialAmmoRegen;
-        }
+        public LightBowgunEventArgs(LightBowgun weapon) => SpecialAmmoRegen = weapon.SpecialAmmoRegen;
     }
     public class LightBowgun : Job
     {

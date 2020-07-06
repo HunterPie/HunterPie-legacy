@@ -45,7 +45,7 @@ namespace HunterPie.Memory
 
 
         public const int GWL_EXSTYLE = (-20);
-        
+
         public enum EX_WINDOW_STYLES : int
         {
             WS_EX_TOPMOST = 0x8,
