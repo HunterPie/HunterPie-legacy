@@ -588,7 +588,8 @@ namespace HunterPie.Core
             Stamina = Scanner.Read<float>(address + 0x13C);
 
             // Hacky way to update the eat timer
-            UpdateAbnormality(AbnormalityData.MiscAbnormalities.Where(a => a.Id == 999).FirstOrDefault(), address);
+            if (!InHarvestZone)
+                UpdateAbnormality(AbnormalityData.MiscAbnormalities.Where(a => a.Id == 999).FirstOrDefault(), address);
         }
 
         private void GetWeaponId()

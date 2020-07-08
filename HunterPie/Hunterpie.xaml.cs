@@ -553,7 +553,8 @@ namespace HunterPie
                     BuildURL = Honey.LinkStructureBuilder(MonsterHunter.Player.GetPlayerGear()),
                     Session = MonsterHunter.Player.SessionID,
                     SteamSession = sSession,
-                    Playtime = MonsterHunter.Player.PlayTime
+                    Playtime = MonsterHunter.Player.PlayTime,
+                    WeaponName = MonsterHunter.Player.WeaponName
                 };
                 dataExporter.ExportData(playerData);
             }

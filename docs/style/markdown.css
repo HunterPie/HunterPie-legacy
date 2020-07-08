@@ -1,0 +1,70 @@
+/* Markdown */
+
+#MarkdownBox {
+    position: absolute;
+    background-color: rgb(254, 254, 254);
+    display: block;
+    left: 10%;
+    top: 80px;
+    width: 80%;
+    min-height: 100vh;
+    z-index: 0;
+    padding: 0px 30px 0px 30px;
+    margin-bottom: 20px;
+    border-radius: 5px;
+}
+
+#MarkdownBox h1, h2, h3 {
+    padding-bottom: 2px;
+    border-bottom: solid #cecece 1px;
+}
+
+#MarkdownBox a {
+    text-decoration: none;
+    color: #8e54e9;
+}
+
+#MarkdownBox a:hover {
+    text-decoration: underline;
+}
+
+#MarkdownBox blockquote {
+    border-left: solid #8e54e9;
+    padding: 1px 0px 1px 5px;
+    background: #f2e7ff;
+}
+
+#MarkdownBox pre code {
+    display: flex;
+    overflow: auto;
+    background: #f2e7ff;
+    border: solid #8e54e9 1px; 
+    padding: 2px 2px 2px 2px;
+}
+
+#MarkdownBox table {
+    margin-left: auto;
+    margin-right: auto;
+    background: #f2e7ff;
+    border-collapse: collapse;
+}
+
+#MarkdownBox table th {
+    padding-top: 5px;
+    padding-bottom: 5px;
+    text-align: center;
+    background-color: #8e54e9;
+    color: #f2e7ff;
+    font-weight: normal;
+    border: 1px solid #f2e7ff;
+}
+
+
+#MarkdownBox table tr:nth-child(even) {
+    background-color: #f5eefd;
+}
+
+#MarkdownBox table td, th {
+    padding: 8px;
+    font-size: 13px;
+}

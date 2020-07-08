@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" type="text/css" href="style/main.css"/>
+    <link rel="stylesheet" type="text/css" href="style/markdown.css"/>
+    <link rel="icon" href="assets/favicon.ico" type="image/ico"/>
+    <script src="scripts/main.js"></script>
+    
+    <title>HunterPie - Documentation</title>
+</head>
+<body>
+    <div id="navbarBox" class="opaque">
+        <a style="display: inline-flex;text-decoration: none;" href="./index.html">
+            <img id="headerLogo" src="assets/HunterPie.svg" width="80"/>
+            <h1 style="color:#fefefe;font-weight: 400;position: relative;margin-top:auto;margin-bottom:auto;">Hunter<light style="font-weight: 100;">Pie</light></h1>
+        </a>
+        <ul id="navbarList">
+            <a href="./index.html"><li>Home</li></a>
+            <a href="https://discord.gg/5pdDq4Q"><li>Discord</li></a>
+            <a href="https://github.com/haato3o/HunterPie"><li>Github</li></a>
+            <a href="https://www.nexusmods.com/monsterhunterworld/mods/2645"><li id="downloadButton">Download</li></a>
+        </ul>
+    </div>
+    <div id="MarkdownBox">
+    </div>
+    <script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js" onload="RenderMarkdown(GetParams())"></script>
+</body>
+</html>
