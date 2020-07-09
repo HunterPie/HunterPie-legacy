@@ -905,7 +905,7 @@ namespace HunterPie.Core
         private void GetJobInformation()
         {
             long AbnormAddress = Scanner.READ_MULTILEVEL_PTR(Address.BASE + Address.ABNORMALITY_OFFSET, Address.Offsets.AbnormalityOffsets);
-            bool HasSafiBuff = Scanner.Read<int>(AbnormAddress + 0x954) >= 1;
+            bool HasSafiBuff = Scanner.Read<int>(AbnormAddress + 0x9A8) >= 1;
             int SafiCounter = HasSafiBuff ? Scanner.Read<int>(AbnormAddress + 0x7A8) : -1;
             long weaponAddress = Scanner.READ_MULTILEVEL_PTR(Address.BASE + Address.WEAPON_MECHANICS_OFFSET, Address.Offsets.WeaponMechanicsOffsets);
             ClassAddress = weaponAddress;
