@@ -1008,7 +1008,7 @@ namespace HunterPie.Core
             int currentAmmo = Scanner.Read<int>(weaponAddress);
             int totalBigAmmo = Scanner.Read<int>(weaponAddress + 0x10);
             int currentBigAmmo = Scanner.Read<int>(weaponAddress + 0xC);
-            float wyvernsfire = Scanner.Read<float>(AbnormalitiesAddress + 0xB70);
+            float wyvernsfire = Scanner.Read<float>(AbnormalitiesAddress + 0xBC0);
             bool hasFirestakeLoaded = Scanner.Read<float>(weaponAddress + 0xBC) != 0f;
             float wyvernstakeMax = Scanner.Read<float>(weaponAddress + 0xC0);
             // Check if the Firestake timer ptr is 0
