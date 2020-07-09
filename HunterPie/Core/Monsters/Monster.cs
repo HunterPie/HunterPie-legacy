@@ -39,7 +39,7 @@ namespace HunterPie.Core
         public int MonsterNumber { get; private set; }
 
         // Monster basic info
-        public string Name => GStrings.GetMonsterNameByID(Id);
+        public string Name => GStrings.GetMonsterNameByID(Id) ?? "Missing Translation";
 
         private MonsterInfo MonsterInfo => MonsterData.MonstersInfo[GameId];
 

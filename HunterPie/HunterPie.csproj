@@ -215,6 +215,9 @@
     <Compile Include="GUIControls\Settings.xaml.cs">
       <DependentUpon>Settings.xaml</DependentUpon>
     </Compile>
+    <None Include="address\MonsterHunterWorld.413161.map">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
     <None Include="address\MonsterHunterWorld.410918.map">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
@@ -946,6 +949,14 @@
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
     <None Include="HunterPie.Resources\UI\Class\DualBladesGaugeMask.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="HunterPie.Resources\Monsters\Icons\em042_05.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="HunterPie.Resources\Monsters\Icons\em050_00.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
   </ItemGroup>
