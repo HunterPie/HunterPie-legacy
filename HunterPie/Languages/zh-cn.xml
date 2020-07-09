@@ -1,6 +1,6 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
 <Strings lang="Simplified Chinese">
-<!--Translated for HunterPie Ver 1.0.3.93 by FengYuu-->
+<!--Translated for HunterPie Ver 1.0.3.94 by FengYuu-->
   <Monsters>
     <Monster ID="ems062_03" Name="木质桶车"/>
     <Monster ID="em001_00" Name="雌火龙"/>
@@ -24,10 +24,12 @@
     <Monster ID="em036_00" Name="熔岩龙"/>
     <Monster ID="em037_00" Name="迅龙"/>
     <Monster ID="em042_00" Name="冰牙龙"/>
+    <Monster ID="em042_05" Name="霜刃冰牙龙"/>
     <Monster ID="em043_00" Name="恐暴龙"/>
     <Monster ID="em043_05" Name="惶怒恐暴龙"/>
     <Monster ID="em044_00" Name="土砂龙"/>
     <Monster ID="em045_00" Name="爆锤龙"/>
+    <Monster ID="em050_00" Name="煌黑龙"/>
     <Monster ID="em057_00" Name="雷狼龙"/>
     <Monster ID="em057_01" Name="狱狼龙"/>
     <Monster ID="em063_00" Name="碎龙"/>
@@ -180,6 +182,7 @@
     <Part ID="MONSTER_PART_SPIKES_LWING" Name="左翼的刺"/>
     <Part ID="MONSTER_PART_SPIKES_RWING" Name="右翼的刺"/>
     <Part ID="MONSTER_PART_SPIKES_TAIL" Name="尾巴的刺"/>
+    <Part ID="MONSTER_PART_REPEL" Name="击退"/>
   </Parts>
   <Ailments>
     <Ailment ID="STATUS_UNKNOWN" Name="未知效果状态"/>
@@ -264,6 +267,7 @@
     <Stage ID="412" Name="起源的孤岛(歼世灭尽龙)"/>
     <Stage ID="413" Name="起源的孤岛(天地煌啼龙)"/>
     <Stage ID="415" Name="幽境之谷"/>
+    <Stage ID="416" Name="幽境之谷"/>
     <Stage ID="501" Name="二等小屋"/>
     <Stage ID="502" Name="一等小屋"/>
     <Stage ID="503" Name="特等小屋"/>
@@ -411,6 +415,7 @@
     <Abnormality ID="MISC_034_00" Name="鬼毬果：攻击UP"/>
     <Abnormality ID="MISC_035_00" Name="冰耐草：冰耐性提升"/>
     <Abnormality ID="MISC_073_00" Name="攻击&amp;防御UP"/>
+    <Abnormality ID="MISC_999_00" Name="饥饿计时"/>
     <Abnormality ID="GEAR_000_00" Name="鬼人弹"/>
     <Abnormality ID="GEAR_001_00" Name="硬化弹"/>
     <Abnormality ID="GEAR_002_00" Name="不屈"/>
