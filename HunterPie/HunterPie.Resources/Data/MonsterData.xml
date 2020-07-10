@@ -717,7 +717,7 @@
     <Parts Max="8">
       <Part Name="MONSTER_PART_REMOVABLE_HORNS" IsRemovable="True">
         <Break Threshold="1"/>
-		<Break Threshold="2"/>
+        <Break Threshold="2"/>
       </Part>
       <Part Name="MONSTER_PART_REMOVABLE_TAIL" IsRemovable="True">
         <Break Threshold="1"/>
