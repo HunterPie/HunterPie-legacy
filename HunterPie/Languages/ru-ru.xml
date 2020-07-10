@@ -23,10 +23,12 @@
     <Monster ID="em036_00" Name="Лавасиот"/>
     <Monster ID="em037_00" Name="Наргакуга"/>
     <Monster ID="em042_00" Name="Бариот"/>
+    <Monster ID="em042_05" Name="Ледозубый Бариот"/>
     <Monster ID="em043_00" Name="Девильо"/>
     <Monster ID="em043_05" Name="Лютый Девильо"/>
     <Monster ID="em044_00" Name="Баррот"/>
     <Monster ID="em045_00" Name="Урагаан"/>
+    <Monster ID="em050_00" Name="Алатреон"/>
     <Monster ID="em057_00" Name="Зиногр"/>
     <Monster ID="em057_01" Name="Стигийский Зиногр"/>
     <Monster ID="em063_00" Name="Брахидиос"/>
@@ -179,6 +181,8 @@
     <Part ID="MONSTER_PART_SPIKES_LWING" Name="Шипы (Левое крыло)"/>
     <Part ID="MONSTER_PART_SPIKES_RWING" Name="Шипы (Правое крыло)"/>
     <Part ID="MONSTER_PART_SPIKES_TAIL" Name="Шипы (Хвост)"/>
+    <Part ID="MONSTER_PART_REPEL" Name="Щиток"/>
+
   </Parts>
   <Ailments>
     <Ailment ID="STATUS_UNKNOWN" Name="Неизвестно"/>
@@ -263,6 +267,7 @@
     <Stage ID="412" Name="Остров Истоков"/>
     <Stage ID="413" Name="Остров Истоков"/>
     <Stage ID="415" Name="Уединённая Долина"/>
+    <Stage ID="416" Name="Уединённая Долина"/>
     <Stage ID="501" Name="Жилые Квартиры"/>
     <Stage ID="502" Name="Частные Квартиры"/>
     <Stage ID="503" Name="Частная Квартира"/>
@@ -410,6 +415,7 @@
     <Abnormality ID="MISC_034_00" Name="Конус Силы"/>
     <Abnormality ID="MISC_035_00" Name="Сопр Льду (L)"/>
     <Abnormality ID="MISC_073_00" Name="Усил Атаки &amp; Усил Защиты (S)"/>
+    <Abnormality ID="MISC_999_00" Name="Таймер еды"/>
     <Abnormality ID="GEAR_000_00" Name="Демонический снаряд"/>
     <Abnormality ID="GEAR_001_00" Name="Защитный снаряд"/>
     <Abnormality ID="GEAR_002_00" Name="Укрепление"/>
