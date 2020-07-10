@@ -297,6 +297,11 @@
       <Helm HoneyID="297" ID="494"/>
       <Helm HoneyID="298" ID="495"/>
       <Helm HoneyID="299" ID="524"/>
+      <Helm HoneyID="301" ID="486"/>
+      <Helm HoneyID="302" ID="487"/>
+      <Helm HoneyID="303" ID="528"/>
+      <Helm HoneyID="304" ID="529"/>
+      <Helm HoneyID="305" ID="498"/>
     </Helms>
     <Armors>
       <Armor HoneyID="1" ID="39"/>
@@ -575,6 +580,11 @@
       <Armor HoneyID="278" ID="494"/>
       <Armor HoneyID="279" ID="495"/>
       <Armor HoneyID="280" ID="524"/>
+      <Armor HoneyID="282" ID="486"/>
+      <Armor HoneyID="283" ID="487"/>
+      <Armor HoneyID="284" ID="528"/>
+      <Armor HoneyID="285" ID="529"/>
+      <Armor HoneyID="286" ID="498"/>
     </Armors>
     <Arms>
       <Arm HoneyID="1" ID="39"/>
@@ -851,6 +861,11 @@
       <Arm HoneyID="276" ID="494"/>
       <Arm HoneyID="277" ID="495"/>
       <Arm HoneyID="278" ID="524"/>
+      <Arm HoneyID="280" ID="486"/>
+      <Arm HoneyID="281" ID="487"/>
+      <Arm HoneyID="282" ID="528"/>
+      <Arm HoneyID="283" ID="529"/>
+      <Arm HoneyID="284" ID="498"/>
     </Arms>
     <Waists>
       <Waist HoneyID="1" ID="39"/>
@@ -1123,6 +1138,11 @@
       <Waist HoneyID="272" ID="494"/>
       <Waist HoneyID="273" ID="495"/>
       <Waist HoneyID="274" ID="524"/>
+      <Waist HoneyID="276" ID="486"/>
+      <Waist HoneyID="277" ID="487"/>
+      <Waist HoneyID="278" ID="528"/>
+      <Waist HoneyID="279" ID="529"/>
+      <Waist HoneyID="280" ID="498"/>
     </Waists>
     <Legs>
       <Leg HoneyID="1" ID="39"/>
@@ -1399,6 +1419,11 @@
       <Leg HoneyID="276" ID="494"/>
       <Leg HoneyID="277" ID="495"/>
       <Leg HoneyID="278" ID="524"/>
+      <Leg HoneyID="280" ID="486"/>
+      <Leg HoneyID="281" ID="487"/>
+      <Leg HoneyID="282" ID="528"/>
+      <Leg HoneyID="283" ID="529"/>
+      <Leg HoneyID="284" ID="498"/>
     </Legs>
     <Jewels>
       <Jewel HoneyID="1" ID="4" GameId="731" Max="3"/>
@@ -1991,6 +2016,7 @@
       <Charm HoneyID="55" ID="374" Level="4"/>
       <Charm HoneyID="56" ID="99" Level="1"/>
       <Charm HoneyID="56" ID="100" Level="2"/>
+      <Charm HoneyID="56" ID="327" Level="3"/>
       <Charm HoneyID="57" ID="121" Level="1"/>
       <Charm HoneyID="57" ID="122" Level="2"/>
       <Charm HoneyID="58" ID="128" Level="1"/>
@@ -2000,6 +2026,7 @@
       <Charm HoneyID="59" ID="131" Level="2"/>
       <Charm HoneyID="59" ID="236" Level="3"/>
       <Charm HoneyID="59" ID="329" Level="4"/>
+      <Charm HoneyID="59" ID="330" Level="5"/>
       <Charm HoneyID="60" ID="132" Level="1"/>
       <Charm HoneyID="60" ID="133" Level="2"/>
       <Charm HoneyID="60" ID="331" Level="3"/>
@@ -2328,6 +2355,8 @@
       <Weapon HoneyID="2417" ID="291"/>
       <Weapon HoneyID="2419" ID="292"/>
       <Weapon HoneyID="2416" ID="293"/>
+      <Weapon HoneyID="2510" ID="223"/>
+      <Weapon HoneyID="2524" ID="237"/>
     </l_sword>
     <sword>
       <Weapon HoneyID="45" ID="17"/>
@@ -2524,6 +2553,8 @@
       <Weapon HoneyID="2430" ID="293"/>
       <Weapon HoneyID="2433" ID="294"/>
       <Weapon HoneyID="2434" ID="295"/>
+      <Weapon HoneyID="2512" ID="228"/>
+      <Weapon HoneyID="2526" ID="236"/>
     </sword>
     <w_sword>
       <Weapon HoneyID="66" ID="17"/>
@@ -2726,6 +2757,8 @@
       <Weapon HoneyID="2437" ID="301"/>
       <Weapon HoneyID="2439" ID="302"/>
       <Weapon HoneyID="2440" ID="303"/>
+      <Weapon HoneyID="2513" ID="230"/>
+      <Weapon HoneyID="2527" ID="240"/>
     </w_sword>
     <tachi>
       <Weapon HoneyID="24" ID="17"/>
@@ -2923,6 +2956,8 @@
       <Weapon HoneyID="2422" ID="296"/>
       <Weapon HoneyID="2426" ID="297"/>
       <Weapon HoneyID="2423" ID="298"/>
+      <Weapon HoneyID="2511" ID="229"/>
+      <Weapon HoneyID="2525" ID="239"/>
     </tachi>
     <hammer>
       <Weapon HoneyID="87" ID="17"/>
@@ -3117,6 +3152,8 @@
       <Weapon HoneyID="2444" ID="296"/>
       <Weapon HoneyID="2446" ID="297"/>
       <Weapon HoneyID="2448" ID="298"/>
+      <Weapon HoneyID="2514" ID="227"/>
+      <Weapon HoneyID="2528" ID="241"/>
     </hammer>
     <whistle>
       <Weapon HoneyID="108" ID="17"/>
@@ -3304,6 +3341,8 @@
       <Weapon HoneyID="2453" ID="286"/>
       <Weapon HoneyID="2455" ID="287"/>
       <Weapon HoneyID="2452" ID="288"/>
+      <Weapon HoneyID="2515" ID="224"/>
+      <Weapon HoneyID="2529" ID="232"/>
     </whistle>
     <lance>
       <Weapon HoneyID="128" ID="17"/>
@@ -3495,6 +3534,8 @@
       <Weapon HoneyID="2459" ID="287"/>
       <Weapon HoneyID="2457" ID="288"/>
       <Weapon HoneyID="2460" ID="289"/>
+      <Weapon HoneyID="2516" ID="223"/>
+      <Weapon HoneyID="2530" ID="233"/>
     </lance>
     <g_lance>
       <Weapon HoneyID="149" ID="17"/>
@@ -3686,6 +3727,8 @@
       <Weapon HoneyID="2464" ID="293"/>
       <Weapon HoneyID="2465" ID="294"/>
       <Weapon HoneyID="2470" ID="295"/>
+      <Weapon HoneyID="2517" ID="224"/>
+      <Weapon HoneyID="2531" ID="237"/>
     </g_lance>
     <s_axe>
       <Weapon HoneyID="168" ID="17"/>
@@ -3881,6 +3924,8 @@
       <Weapon HoneyID="2475" ID="296"/>
       <Weapon HoneyID="2471" ID="297"/>
       <Weapon HoneyID="2473" ID="298"/>
+      <Weapon HoneyID="2518" ID="232"/>
+      <Weapon HoneyID="2532" ID="240"/>
     </s_axe>
     <c_axe>
       <Weapon HoneyID="188" ID="17"/>
@@ -4065,6 +4110,8 @@
       <Weapon HoneyID="2479" ID="286"/>
       <Weapon HoneyID="2480" ID="287"/>
       <Weapon HoneyID="2481" ID="288"/>
+      <Weapon HoneyID="2519" ID="219"/>
+      <Weapon HoneyID="2533" ID="229"/>
     </c_axe>
     <rod>
       <Weapon HoneyID="207" ID="17"/>
@@ -4255,6 +4302,8 @@
       <Weapon HoneyID="2488" ID="297"/>
       <Weapon HoneyID="2489" ID="298"/>
       <Weapon HoneyID="2487" ID="299"/>
+      <Weapon HoneyID="2520" ID="225"/>
+      <Weapon HoneyID="2534" ID="242"/>
     </rod>
     <bow>
       <Weapon HoneyID="268" ID="27"/>
@@ -4433,6 +4482,8 @@
       <Weapon HoneyID="2497" ID="283"/>
       <Weapon HoneyID="2495" ID="284"/>
       <Weapon HoneyID="2492" ID="285"/>
+      <Weapon HoneyID="2523" ID="219"/>
+      <Weapon HoneyID="2537" ID="233"/>
     </bow>
     <hbg>
       <Weapon HoneyID="249" ID="27"/>
@@ -4600,6 +4651,8 @@
       <Weapon HoneyID="2505" ID="269"/>
       <Weapon HoneyID="2508" ID="270"/>
       <Weapon HoneyID="2506" ID="271"/>
+      <Weapon HoneyID="2522" ID="217"/>
+      <Weapon HoneyID="2536" ID="224"/>
     </hbg>
     <lbg>
       <Weapon HoneyID="227" ID="17"/>
@@ -4782,6 +4835,8 @@
       <Weapon HoneyID="2502" ID="284"/>
       <Weapon HoneyID="2499" ID="285"/>
       <Weapon HoneyID="2498" ID="286"/>
+      <Weapon HoneyID="2521" ID="226"/>
+      <Weapon HoneyID="2535" ID="235"/>
     </lbg>
     <Custom>
 			<LSWD>
