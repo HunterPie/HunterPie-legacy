@@ -2,10 +2,6 @@
              xmlns:src="clr-namespace:HunterPie.GUI"
              xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
-             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
-             xmlns:local="clr-namespace:HunterPie.GUI.Widgets"
-             mc:Ignorable="d" 
              MinWidth="895" MinHeight="80" ResizeMode="NoResize" SizeToContent="WidthAndHeight" WindowStyle="None" AllowsTransparency="True" ShowInTaskbar="False" Topmost="True" Closing="OnClosing" Background="{x:Null}" MouseDown="OnMouseDown" MouseWheel="OnMouseWheel" SnapsToDevicePixels="True">
     <StackPanel x:Name="Container" Orientation="Horizontal" SnapsToDevicePixels="True" RenderTransformOrigin="0.5,0.5" Margin="0" VerticalAlignment="Top" HorizontalAlignment="Center" Style="{StaticResource OVERLAY_MONSTER_BACKGROUND}"/>
 </src:Widget>

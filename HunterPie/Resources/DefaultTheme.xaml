@@ -2,7 +2,7 @@
                     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
                     xmlns:Custom="clr-namespace:HunterPie.GUIControls.Custom_Controls"
                     xmlns:Monster="clr-namespace:HunterPie.GUI.Widgets.Monster_Widget.Parts"
-                    xmlns:mWidget="clr-namespace:HunterPie.GUI.Widgets">
+                    >
     <!-- Colors -->
     <!-- Overlay -->
     <!-- Monster Widget (Main bar) -->

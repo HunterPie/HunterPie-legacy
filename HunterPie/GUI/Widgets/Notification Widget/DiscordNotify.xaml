@@ -4,8 +4,6 @@
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-        xmlns:local="clr-namespace:HunterPie.GUI.Widgets.Notification_Widget"
-        xmlns:custom="clr-namespace:HunterPie.GUIControls.Custom_Controls"
         mc:Ignorable="d"
         Title="Notification - Discord" Height="150" Width="300"  ResizeMode="NoResize" WindowStyle="None" AllowsTransparency="True" ShowInTaskbar="False" Topmost="True" BorderBrush="#CC000000" Foreground="Black" BorderThickness="2" Left="0" Top="-300" Background="{x:Null}" DataContext="{StaticResource Localization}" Closing="OnClosing">
     <src:Widget.Resources>

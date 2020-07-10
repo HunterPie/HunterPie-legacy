@@ -182,6 +182,7 @@
     <Part ID="MONSTER_PART_SPIKES_RWING" Name="Spikes (Right Wing)"/>
     <Part ID="MONSTER_PART_SPIKES_TAIL" Name="Spikes (Tail)"/>
     <Part ID="MONSTER_PART_REPEL" Name="Repel"/>
+    <Part ID="MONSTER_PART_EXPLOSION_WEAKENING" Name="Explosion Weakening"/>
   </Parts>
   <Ailments>
     <Ailment ID="STATUS_UNKNOWN" Name="Unknown"/>

@@ -722,6 +722,7 @@
       <Part Name="MONSTER_PART_REMOVABLE_TAIL" IsRemovable="True">
         <Break Threshold="1"/>
       </Part>
+      <Part Name="MONSTER_PART_EXPLOSION_WEAKENING" IsRemovable="True" Index="3"/>
       <Part Name="MONSTER_PART_HEAD" Group="HEAD"/>
       <Part Name="MONSTER_PART_CHEST" Group="BODY"/>
       <Part Name="MONSTER_PART_WINGS" Group="WING">
