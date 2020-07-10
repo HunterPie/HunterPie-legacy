@@ -937,7 +937,7 @@ namespace HunterPie.Core
                     GunLance.SafijiivaRegenCounter = SafiCounter;
                     break;
                 case Classes.SwitchAxe:
-                    GetSwitchAxeInformation(weaponAddress);
+                    GetSwitchAxeInformation(weaponAddress, AbnormAddress);
                     SwitchAxe.SafijiivaRegenCounter = SafiCounter;
                     break;
                 case Classes.ChargeBlade:
@@ -1029,17 +1029,16 @@ namespace HunterPie.Core
             GunLance.WyvernstakeBlastTimer = wyvernstakeTimer;
         }
 
-        private void GetSwitchAxeInformation(long weaponAddress)
+        private void GetSwitchAxeInformation(long weaponAddress, long buffAddress)
         {
-            long buffAddress = Scanner.READ_MULTILEVEL_PTR(Address.BASE + Address.EQUIPMENT_OFFSET, Address.Offsets.PlayerGearOffsets);
             float outerGauge = Scanner.Read<float>(weaponAddress - 0xC);
             float swordChargeTimer = Scanner.Read<float>(weaponAddress - 0x8);
             float innerGauge = Scanner.Read<float>(weaponAddress - 0x1C);
             float switchAxeBuff = 0;
-            bool isAxeBuffActive = Scanner.Read<byte>(buffAddress - 0xCC - 0x858 - 0x3) == 1;
+            bool isAxeBuffActive = Scanner.Read<byte>(buffAddress + 0x6E5) == 1;
             if (isAxeBuffActive)
             {
-                switchAxeBuff = Scanner.Read<float>(buffAddress - 0xCC - 0x858);
+                switchAxeBuff = Scanner.Read<float>(buffAddress + 0x6E8);
             }
             SwitchAxe.OuterGauge = outerGauge;
             SwitchAxe.SwordChargeMaxTimer = swordChargeTimer > SwitchAxe.SwordChargeMaxTimer || swordChargeTimer <= 0 ? swordChargeTimer : SwitchAxe.SwordChargeMaxTimer;
