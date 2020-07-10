@@ -31,6 +31,7 @@ HunterPie also has a couple of settings to decrease resources usage:
 - **Decrease animations framerate:** HunterPie is really animation heavy, so decreasing the animation framerate will make it use less resources.
 - **Disable widgets that you don't want:** Disabling widgets that you don't want will make HunterPie have less stuff to render.
 - **Reduce scan delay:** The scan delay is the time the scanner will wait to scan the memory again, making the number low will make the memory scanner read the game's memory more frequently, which means it will use more CPU. Increase the delay to decrease CPU usage at cost of accuracy.
+
 > **Attention:** If you use GSync/FreeSync there's nothing I can do for now, [**that's a known issue for WPF**](https://github.com/dotnet/wpf/issues/2294) (HunterPie's UI framework) and is still in the to-be-fixed list in WPF's official GitHub.
 
 
@@ -42,13 +43,14 @@ Yes! A design mode was introduced on version 1.0.3.3, now you can press ScrollLo
 HunterPie *v1.0.3.6* introduced an abnormality widget. Please, make sure to read the [**documentation**](https://github.com/Haato3o/HunterPie/wiki/Abnormalities-Tray) before using it.
 
 ### Monster parts, ailments, capture notification when?
-That was introduced in version *v1.0.3.80*. Read the new monster widget [**documentation**](https://github.com/Haato3o/HunterPie/wiki/Monster-Widget) to learn about the new features.
+That was introduced in version v1.0.3.80. Read the new monster widget [**documentation**](https://github.com/Haato3o/HunterPie/wiki/Monster-Widget) to learn about the new features.
 
 ### I can't see monster parts
 Due to how the game works, only the quest host can see the monster parts health while the other party members only have access to the flinch/break counter.
 
-# Discord Rich Presence
+## Discord Rich Presence
 
 ### My discord status isn't showing my in-game activity
 Make sure you have it enabled in HunterPie settings. Also make sure you have the ***Display currently running game as a status message.*** option enabled on Discord. If none of these are your problem, run HunterPie with administrator privileges.
+
 ![Discord show game option](https://cdn.discordapp.com/attachments/402557384209203200/693553071581692024/unknown.png)

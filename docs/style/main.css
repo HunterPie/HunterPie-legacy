@@ -1,0 +1,117 @@
+@import url('https://fonts.googleapis.com/css2?family=Roboto:wght@100;300;400&display=swap');
+
+body {
+    background: #222222;
+    font-family: 'Roboto', sans-serif;
+    color: #0f0f0f;
+}
+
+#headerLogo {
+    margin-left: 40px;
+    padding: 5px 0px 5px 0px;
+}
+
+#navbarBox {
+    position: fixed;
+    top: 0px;
+    left: 0px;
+    width: 100%;
+    display: inline-flex;
+    background-color: rgba(0, 0, 0, 0.7);
+    box-shadow: rgba(0, 0, 0, 0.1) 0px 2px 2px;
+    -webkit-backdrop-filter: blur(5px);
+    backdrop-filter: blur(5px);
+    z-index: 1;
+}
+
+ul#navbarList {
+    display: inline-block;
+    list-style: none;
+    margin-left: auto;
+    margin-right: 20px;
+    margin-top: auto;
+    margin-bottom: auto;
+}
+
+#navbarBox ul#navbarList li {
+    font-weight: 100;
+    text-decoration: none;
+    display: inline;
+    position: relative;
+    top: 35%;
+    color: #fefefe;
+    background: transparent;
+    padding: 36px 10px 35px 10px;
+}
+
+#navbarBox ul#navbarList img {
+    display: inline-flex;
+    margin-top: auto;
+    margin-bottom: auto;
+    padding-right: 5px;
+}
+
+#navbarBox.collapse ul#navbarList li  {
+    padding: 15px 10px 13px 10px;
+}
+
+#navbarBox.collapse h1 {
+    font-size: 18px;
+}
+
+#navbarBox ul#navbarList li:hover {
+    background-color: rgba(255, 255, 255, 0.2);
+    
+}
+
+#navbarBox ul#navbarList #downloadButton:hover {
+    background-color: rgb(142, 84, 233, 0.5);
+}
+
+ul#navbarList a {
+    text-decoration: none;
+    color: #fefefe;
+    
+}
+
+.collapse {
+    animation: collapse .5s ease forwards;
+}
+
+.show {
+    animation: show .5s ease forwards;
+}
+
+.opaque {
+    animation: opaque .5s ease forwards;
+}
+
+/* Animations */
+@keyframes opaque {
+    from {
+        background-color: rgba(0, 0, 0, 0.7);
+    }
+    to {
+        background-color: rgba(0, 0, 0, 0.8);
+    }
+}
+
+@keyframes collapse {
+    from {
+        height: 90px;
+    }
+    to {
+        height: 45px;
+        background-color: rgba(0, 0, 0, 0.7);
+    }
+}
+
+@keyframes show {
+    from {
+        height: 45px;
+    }
+    to {
+        height: 90px;
+        background-color: rgba(0, 0, 0, 0.7);
+    }
+}

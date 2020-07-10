@@ -23,10 +23,12 @@
     <Monster ID="em036_00" Name="Lavasioth"/>
     <Monster ID="em037_00" Name="Nargacuga"/>
     <Monster ID="em042_00" Name="Barioth"/>
+    <Monster ID="em042_05" Name="Frostfang Barioth"/>
     <Monster ID="em043_00" Name="Deviljho"/>
     <Monster ID="em043_05" Name="Savage Deviljho"/>
     <Monster ID="em044_00" Name="Barroth"/>
     <Monster ID="em045_00" Name="Uragaan"/>
+    <Monster ID="em050_00" Name="Alatreon"/>
     <Monster ID="em057_00" Name="Zinogre"/>
     <Monster ID="em057_01" Name="Stygian Zinogre"/>
     <Monster ID="em063_00" Name="Brachydios"/>
@@ -264,6 +266,7 @@
     <Stage ID="412" Name="Origin Isle"/>
     <Stage ID="413" Name="Origin Isle"/>
     <Stage ID="415" Name="Secluded Valley"/>
+    <Stage ID="416" Name="Secluded Valley"/>
     <Stage ID="501" Name="Living Quarters"/>
     <Stage ID="502" Name="Private Quarters"/>
     <Stage ID="503" Name="Private Suite"/>
@@ -411,6 +414,7 @@
     <Abnormality ID="MISC_034_00" Name="Powercone"/>
     <Abnormality ID="MISC_035_00" Name="Ice Res (L)"/>
     <Abnormality ID="MISC_073_00" Name="Attack Up &amp; Def Up (S)"/>
+    <Abnormality ID="MISC_999_00" Name="Eat Timer"/>
     <Abnormality ID="GEAR_000_00" Name="Demon Ammo"/>
     <Abnormality ID="GEAR_001_00" Name="Armor Ammo"/>
     <Abnormality ID="GEAR_002_00" Name="Fortify"/>

@@ -9,14 +9,14 @@ Since it's a widget that is still in development, some weapons are not supported
 ## Class Widget Settings
 Each class has it's own separate setting, so if you want to place this widget for Charge Blade in (x, y) and for Insect Glaive in (x2, y2) you can! Use the Design Mode to rescale and move this widget. You can also disable them separately in your `HunterPie > Settings > Classes`.
 
-- [Dual Blades](https://haato3o.github.io/HunterPie/Overlay/classesWidget#dual-blades);
-- [Long Sword](https://haato3o.github.io/HunterPie/Overlay/classesWidget#long-sword);
-- [Gun Lance](https://haato3o.github.io/HunterPie/Overlay/classesWidget#gun-lance);
-- [Hammer](https://haato3o.github.io/HunterPie/Overlay/classesWidget#hammer)
-- [Switch Axe](https://haato3o.github.io/HunterPie/Overlay/classesWidget#switch-axe);
-- [Charge Blade](https://haato3o.github.io/HunterPie/Overlay/classesWidget#charge-blade);
-- [Insect Glaive](https://haato3o.github.io/HunterPie/Overlay/classesWidget#insect-glaive);
-- [Bow](https://haato3o.github.io/HunterPie/Overlay/classesWidget#bow);
+- [Dual Blades](?p=Overlay/classesWidget.md#dual-blades);
+- [Long Sword](?p=Overlay/classesWidget.md#long-sword);
+- [Gun Lance](?p=Overlay/classesWidget.md#gun-lance);
+- [Hammer](?p=Overlay/classesWidget.md#hammer)
+- [Switch Axe](?p=Overlay/classesWidget.md#switch-axe);
+- [Charge Blade](?p=Overlay/classesWidget.md#charge-blade);
+- [Insect Glaive](?p=Overlay/classesWidget.md#insect-glaive);
+- [Bow](?p=Overlay/classesWidget.md#bow);
 
 ## Dual Blades
 - **Features:**
@@ -62,7 +62,8 @@ Each class has it's own separate setting, so if you want to place this widget fo
   - **Sword inner gauge:** It's displayed by the right diamond.
   - **Safi'jiiva health regen. hit counter:** It's represented by the diamond with the Safi'jiiva skill icon, it shows how many hits until you actiave the health regeneration.
   - **Sword Charge:** It's represented by the left diamond, it displays the charge percentage and when the Switch Axe is fully charged a timer will start.
- > **Note:** The timer takes longer to countdown and always start from 45 when using the Power Prolonger set skill. That's just how the game works, but should not be an issue when playing.
+
+> **Note:** The timer takes longer to countdown and always start from 45 when using the Power Prolonger set skill. That's just how the game works, but should not be an issue when playing.
 
 ![switchAxeWidgetExample](https://cdn.discordapp.com/attachments/402557384209203200/711303655470661652/unknown.png)
 
