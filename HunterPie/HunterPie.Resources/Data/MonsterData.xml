@@ -567,14 +567,16 @@
       <Part Name="MONSTER_PART_TAIL" Group="TAIL"/>
     </Parts>
   </Monster>
-  <Monster ID="em042_05" Capture="20" GameID="100"> <!-- Barioth -->
+  <Monster ID="em042_05" Capture="20" GameID="100"> <!-- Frostfang Barioth -->
     <Weaknesses>
       <Weakness ID="ELEMENT_FIRE" Stars="3"/>
       <Weakness ID="ELEMENT_THUNDER" Stars="2"/>
     </Weaknesses>
     <Crown Mini="0.9" Silver="1.15" Gold="1.23"/>
     <Parts Max="8">
-      <Part Name="MONSTER_PART_REMOVABLE_TAIL" IsRemovable="True"/>
+      <Part Name="MONSTER_PART_REMOVABLE_TAIL" IsRemovable="True">
+        <Break Threshold="1"/>
+      </Part>
       <Part Name="MONSTER_PART_HEAD" Group="HEAD"/>
       <Part Name="MONSTER_PART_BODY" Group="BODY"/>
       <Part Name="MONSTER_PART_LARM" Group="ARM"/>
@@ -715,6 +717,7 @@
     <Parts Max="8">
       <Part Name="MONSTER_PART_REMOVABLE_HORNS" IsRemovable="True">
         <Break Threshold="1"/>
+        <Break Threshold="2"/>
       </Part>
       <Part Name="MONSTER_PART_REMOVABLE_TAIL" IsRemovable="True">
         <Break Threshold="1"/>
