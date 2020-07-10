@@ -5,8 +5,7 @@
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              xmlns:local="clr-namespace:HunterPie.GUI.Widgets.Monster_Widget.Parts"
              xmlns:Custom="clr-namespace:HunterPie.GUIControls.Custom_Controls"
-             mc:Ignorable="d" 
-             d:DesignHeight="33" d:DesignWidth="260">
+             mc:Ignorable="d" d:DesignWidth="260" Height="30">
     <Grid>
         <Custom:MinimalHealthBar Color="{StaticResource OVERLAY_MONSTER_AILMENT_BAR_COLOR}" x:Name="AilmentBar" Margin="30,13,5,0" RenderTransformOrigin="0.5,0.5" Height="3" VerticalAlignment="Top" >
             <Custom:MinimalHealthBar.RenderTransform>
@@ -31,7 +30,6 @@
         </Rectangle>
         <TextBlock Style="{StaticResource OVERLAY_MONSTER_PART_COUNTER_TEXT_STYLE}" x:Name="AilmentCounter" Text="99" Height="23" VerticalAlignment="Top" TextOptions.TextHintingMode="Fixed" FontSize="12" Padding="0,2,0,0" Margin="10,3,0,0" TextAlignment="Center" HorizontalAlignment="Left" Width="23"/>
 
-        <TextBlock Style="{StaticResource OVERLAY_MONSTER_PART_NAME_TEXT_STYLE}" x:Name="AilmentText" Text="0/150" Height="16" VerticalAlignment="Top" Margin="29,14,0,0" TextOptions.TextHintingMode="Fixed" FontSize="11" TextAlignment="Center"/>
+        <TextBlock Style="{StaticResource OVERLAY_MONSTER_PART_NAME_TEXT_STYLE}" x:Name="AilmentText" Text="0/150" Height="15" VerticalAlignment="Top" Margin="29,15,0,0" TextOptions.TextHintingMode="Fixed" FontSize="11" TextAlignment="Center"/>
     </Grid>
 </UserControl>
- 

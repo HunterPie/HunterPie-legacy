@@ -2,7 +2,6 @@
                     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
     <!-- 
         Theme made by Haato :)
-
     -->
 
     <!-- Colors -->
@@ -15,9 +14,15 @@
         <GradientStop Color="#0762B44A" Offset="0.55"/>
         <GradientStop Color="#FF62B44A" Offset="0.556"/>
     </LinearGradientBrush>
-
-    <SolidColorBrush x:Key="OVERLAY_BARS_BACKGROUND">#00000000</SolidColorBrush>
-
+    
+    <LinearGradientBrush x:Key="OVERLAY_BARS_BACKGROUND" EndPoint="0.5,1" StartPoint="0.5,0">
+        <GradientStop Color="#4C000000" Offset="1"/>
+        <GradientStop Color="#4C000000" Offset="0.556"/>
+        <GradientStop Color="#00000000"/>
+        <GradientStop Color="#00000000" Offset="0.55"/>
+        <GradientStop Color="#4C000000" Offset="0.556"/>
+    </LinearGradientBrush>
+    
     <Style x:Key="OVERLAY_MONSTER_BAR_TEXT_STYLE" TargetType="TextBlock">
         <Setter Property="Foreground" Value="#eee6ff"/>
         <Setter Property="FontFamily" Value="Roboto"/>
