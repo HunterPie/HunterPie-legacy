@@ -589,7 +589,11 @@ namespace HunterPie.Core
 
             // Hacky way to update the eat timer
             if (!InHarvestZone)
-                UpdateAbnormality(AbnormalityData.MiscAbnormalities.Where(a => a.Id == 999).FirstOrDefault(), address);
+            {
+                long EatTimerAddress = Scanner.READ_MULTILEVEL_PTR(Address.BASE + Address.CANTEEN_OFFSET, Address.Offsets.PlayerCanteenTimer);
+                UpdateAbnormality(AbnormalityData.MiscAbnormalities.Where(a => a.Id == 999).FirstOrDefault(), EatTimerAddress);
+            }
+                
         }
 
         private void GetWeaponId()

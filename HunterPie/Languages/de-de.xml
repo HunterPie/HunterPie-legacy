@@ -156,26 +156,26 @@ Gerade bei den Abnormalitäten / Statusveränderungen des Spielers gibt es mit (
     <Part ID="MONSTER_PART_LARM_ROCK" Name="Felsiger Linker Arm"/>
     <Part ID="MONSTER_PART_RARM_ROCK" Name="Felsiger Rechter Arm"/>
     <Part ID="MONSTER_PART_LEGS_ROCK" Name="Felsige Beine"/>
-	<Part ID="MONSTER_PART_ANTLERS" Name="Geweih"/>
-	<Part ID="MONSTER_PART_HORN" Name="Horn"/>
+	  <Part ID="MONSTER_PART_ANTLERS" Name="Geweih"/>
+	  <Part ID="MONSTER_PART_HORN" Name="Horn"/>
     <!--Part ID="MONSTER_JAGRAS_SUMMONER" Name="Jagras Beschwörer"/-->
     <!-- Removable parts -->
     <Part ID="MONSTER_PART_REMOVABLE_TAIL" Name="Abtrennbarer Schwanz"/>
     <Part ID="MONSTER_PART_REMOVABLE_HORNS" Name="Abtrennbare Hörner"/>
     <Part ID="MONSTER_PART_REMOVABLE_HEAD" Name="Abtrennbarer Kopf"/>
-	<Part ID="MONSTER_PART_REMOVABLE_HEAD_ROCK" Name="Abtrennbarer Kopf (Felsen)"/>
-	<Part ID="MONSTER_PART_REMOVABLE_CHEST_ROCK" Name="Abtrennbare Brust (Felsen)"/>
+	  <Part ID="MONSTER_PART_REMOVABLE_HEAD_ROCK" Name="Abtrennbarer Kopf (Felsen)"/>
+	  <Part ID="MONSTER_PART_REMOVABLE_CHEST_ROCK" Name="Abtrennbare Brust (Felsen)"/>
     <Part ID="MONSTER_PART_REMOVABLE_BALLOON" Name="Abtrennbarer Ballon"/>
     <Part ID="MONSTER_PART_REMOVABLE_HORNS_2" Name="Abtrennbare Hörner #2"/>
-	<Part ID="MONSTER_PART_BODY_LEGS" Name="Körper und Beine"/>
-	<Part ID="MONSTER_PART_SILVER_SPIKES_HEAD" Name="Silberne Stacheln (Kopf)"/>
+	  <Part ID="MONSTER_PART_BODY_LEGS" Name="Körper und Beine"/>
+	  <Part ID="MONSTER_PART_SILVER_SPIKES_HEAD" Name="Silberne Stacheln (Kopf)"/>
     <Part ID="MONSTER_PART_SILVER_SPIKES_LARM" Name="Silberne Stacheln (Linker Arm)"/>
     <Part ID="MONSTER_PART_SILVER_SPIKES_RARM" Name="Silberne Stacheln (Rechter Arm)"/>
     <Part ID="MONSTER_PART_SILVER_SPIKES_LWING" Name="Silberne Stacheln (Linker Flügel)"/>
     <Part ID="MONSTER_PART_SILVER_SPIKES_RWING" Name="Silberne Stacheln (Rechter Flügel)"/>
     <!--Part ID="MONSTER_PART_REMOVABLE_LANTLER" Name="Abtrennbares Linkes Geweih"/>
     <Part ID="MONSTER_PART_REMOVABLE_RANTLER" Name="Abtrennbares Rechtes Geweih"/-->
-	<!-- Special parts -->
+	  <!-- Special parts -->
     <Part ID="MONSTER_PART_BIG_FLINCH" Name="Starkes Zucken"/>
     <Part ID="MONSTER_PART_RAGE" Name="Entfernbare Wut"/>
     <Part ID="MONSTER_PART_COUNTERATTACK" Name="Gegenstoß"/>
@@ -195,7 +195,8 @@ Gerade bei den Abnormalitäten / Statusveränderungen des Spielers gibt es mit (
     <Part ID="MONSTER_PART_SPIKES_LWING" Name="Stacheln (Linker Flügel)"/>
     <Part ID="MONSTER_PART_SPIKES_RWING" Name="Stacheln (Rechter Flügel)"/>
     <Part ID="MONSTER_PART_SPIKES_TAIL" Name="Stacheln (Schwanz)"/>
-	<Part ID="MONSTER_PART_REPEL" Name="Abwehr"/>
+	  <Part ID="MONSTER_PART_REPEL" Name="Abwehr"/>
+	  <Part ID="MONSTER_PART_EXPLOSION_WEAKENING" Name="Explosions-Schwächung"/>
   </Parts>
   <Ailments>
     <Ailment ID="STATUS_UNKNOWN" Name="Unbekannt"/>

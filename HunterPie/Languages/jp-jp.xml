@@ -190,6 +190,7 @@
     <Part ID="MONSTER_PART_SPIKES_RWING" Name="棘（右翼）"/>
     <Part ID="MONSTER_PART_SPIKES_TAIL" Name="棘（尻尾）"/>
     <Part ID="MONSTER_PART_REPEL" Name="撃退"/>
+    <Part ID="MONSTER_PART_EXPLOSION_WEAKENING" Name="エスカトン弱体化"/>
   </Parts>
   <Ailments>
     <Ailment ID="STATUS_UNKNOWN" Name="不明"/>

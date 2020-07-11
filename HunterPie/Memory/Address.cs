@@ -32,7 +32,7 @@ namespace HunterPie.Memory
             public static int SteamFuelOffset = 0x102F4C;
             public static int ArgosyOffset = 0x103430;
             public static int HarvestBoxOffset = 0x10;
-
+            public static int[] PlayerCanteenTimer = new int[1] { 0x0 };
             // Monster
             public static int MonsterHPComponentOffset;
             public static int MonsterNamePtr;
@@ -49,25 +49,26 @@ namespace HunterPie.Memory
         public static int GAME_VERSION = 168031;
 
         // Static addresses
-        public static Int64 BASE = 0x140000000;
-        public static Int64 LEVEL_OFFSET = 0x0;
-        public static Int64 ZONE_OFFSET = 0x0;
-        public static Int64 MONSTER_OFFSET = 0x0;
-        public static Int64 SESSION_OFFSET = 0x0;
-        public static Int64 EQUIPMENT_OFFSET = 0x0;
-        public static Int64 WEAPON_OFFSET = 0x0;
-        public static Int64 PARTY_OFFSET = 0x0;
-        public static Int64 DAMAGE_OFFSET = 0x0;
-        public static Int64 ABNORMALITY_OFFSET = 0x0;
-        public static Int64 MONSTER_SELECTED_OFFSET = 0x0;
-        public static Int64 MONSTER_TARGETED_OFFSET = 0x0;
-        public static Int64 WEAPON_MECHANICS_OFFSET = 0x0;
+        public static long BASE = 0x140000000;
+        public static long LEVEL_OFFSET = 0x0;
+        public static long ZONE_OFFSET = 0x0;
+        public static long MONSTER_OFFSET = 0x0;
+        public static long SESSION_OFFSET = 0x0;
+        public static long EQUIPMENT_OFFSET = 0x0;
+        public static long WEAPON_OFFSET = 0x0;
+        public static long PARTY_OFFSET = 0x0;
+        public static long DAMAGE_OFFSET = 0x0;
+        public static long ABNORMALITY_OFFSET = 0x0;
+        public static long MONSTER_SELECTED_OFFSET = 0x0;
+        public static long MONSTER_TARGETED_OFFSET = 0x0;
+        public static long WEAPON_MECHANICS_OFFSET = 0x0;
+        public static long CANTEEN_OFFSET = 0x0;
 
         // Consts
-        public const Int64 cooldownFixed = 0x9EC;
-        public const Int64 cooldownDynamic = 0x99C;
-        public const Int64 timerFixed = 0xADC;
-        public const Int64 timerDynamic = 0xA8C;
+        public const long cooldownFixed = 0x9EC;
+        public const long cooldownDynamic = 0x99C;
+        public const long timerFixed = 0xADC;
+        public const long timerDynamic = 0xA8C;
 
         // Loaded values
         private static readonly Dictionary<string, Int64> MappedAddresses = new Dictionary<string, Int64>();
@@ -175,6 +176,7 @@ namespace HunterPie.Memory
             LoadAddressFromDict(nameof(MONSTER_SELECTED_OFFSET), out MONSTER_SELECTED_OFFSET, MONSTER_SELECTED_OFFSET);
             LoadAddressFromDict(nameof(MONSTER_TARGETED_OFFSET), out MONSTER_TARGETED_OFFSET, MONSTER_TARGETED_OFFSET);
             LoadAddressFromDict(nameof(WEAPON_MECHANICS_OFFSET), out WEAPON_MECHANICS_OFFSET, WEAPON_MECHANICS_OFFSET);
+            LoadAddressFromDict(nameof(CANTEEN_OFFSET), out CANTEEN_OFFSET, CANTEEN_OFFSET);
             // Load offsets
             LoadOffsetsFromDict("LevelOffsets", out Offsets.LevelOffsets, Offsets.LevelOffsets);
             LoadOffsetsFromDict("ZoneOffsets", out Offsets.ZoneOffsets, Offsets.ZoneOffsets);

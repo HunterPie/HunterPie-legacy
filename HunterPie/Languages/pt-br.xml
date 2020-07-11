@@ -191,6 +191,7 @@
     <Part ID="MONSTER_PART_SPIKES_RWING" Name="Espinhos (Asa Dir.)"/>
     <Part ID="MONSTER_PART_SPIKES_TAIL" Name="Espinhos (Cauda)"/>
     <Part ID="MONSTER_PART_REPEL" Name="Repelir"/>
+    <Part ID="MONSTER_PART_EXPLOSION_WEAKENING" Name="Enfraq. Explosão"/>
   </Parts>
   <Ailments>
     <Ailment ID="STATUS_UNKNOWN" Name="Desconhecido"/>
