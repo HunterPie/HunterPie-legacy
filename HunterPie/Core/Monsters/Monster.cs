@@ -501,6 +501,13 @@ namespace HunterPie.Core
                     if (CurrentPart.Address > 0)
                     {
                         sMonsterRemovablePart MonsterRemovablePartData = Scanner.Win32.Read<sMonsterRemovablePart>(CurrentPart.Address);
+
+                        // Alatreon explosion level
+                        if (GameId == 87 && MonsterRemovablePartData.unk3.Index == 3)
+                        {
+                            MonsterRemovablePartData.Data.Counter = Scanner.Read<int>(MonsterAddress + 0x20920);
+                        }
+
                         CurrentPart.SetPartInfo(MonsterRemovablePartData.Data);
                     }
                     else
