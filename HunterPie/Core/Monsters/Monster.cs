@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading;
 using HunterPie.Core.Definitions;
+using HunterPie.Core.Enums;
 using HunterPie.Core.Monsters;
 using HunterPie.Logger;
 using HunterPie.Memory;
@@ -20,6 +21,7 @@ namespace HunterPie.Core
         private int isSelect; //0 = None, 1 = This, 2 = Other
         private float enrageTimer = 0;
         private float sizeMultiplier;
+        private AlatreonState alatreonElement;
 
         private long MonsterAddress
         {
@@ -178,6 +180,18 @@ namespace HunterPie.Core
         public float MaxStamina { get; private set; }
         public bool IsCaptured { get; private set; }
         public bool[] AliveMonsters = new bool[3] { false, false, false };
+        public AlatreonState AlatreonElement
+        {
+            get => alatreonElement;
+            set
+            {
+                if (value != alatreonElement)
+                {
+                    alatreonElement = value;
+                    _OnAlatreonElementShift();
+                }
+            }
+        }
 
         public List<Part> Parts = new List<Part>();
         public List<Ailment> Ailments = new List<Ailment>();
@@ -200,6 +214,8 @@ namespace HunterPie.Core
         public event MonsterEnrageEvents OnEnrage;
         public event MonsterEnrageEvents OnUnenrage;
         public event MonsterEnrageEvents OnEnrageTimerUpdate;
+        // Used ONLY by Alatreon
+        public event MonsterEvents OnAlatreonElementShift;
 
 
         protected virtual void _onMonsterSpawn()
@@ -225,6 +241,8 @@ namespace HunterPie.Core
         protected virtual void _OnEnrageUpdateTimerUpdate() => OnEnrageTimerUpdate?.Invoke(this, new MonsterUpdateEventArgs(this));
 
         protected virtual void _OnStaminaUpdate() => OnStaminaUpdate?.Invoke(this, new MonsterUpdateEventArgs(this));
+
+        protected virtual void _OnAlatreonElementShift() => OnAlatreonElementShift?.Invoke(this, EventArgs.Empty);
         #endregion
 
         public Monster(int initMonsterNumber) => MonsterNumber = initMonsterNumber;
@@ -260,6 +278,7 @@ namespace HunterPie.Core
                 GetMonsterPartsInfo();
                 GetMonsterEnrageTimer();
                 GetTargetMonsterAddress();
+                GetAlatreonCurrentElement();
                 Thread.Sleep(UserSettings.PlayerConfig.Overlay.GameScanDelay);
             }
             Thread.Sleep(1000);
@@ -371,6 +390,9 @@ namespace HunterPie.Core
 
         }
 
+        /// <summary>
+        /// Gets monster size
+        /// </summary>
         private void GetMonsterSizeModifier()
         {
             if (!IsAlive) return;
@@ -379,6 +401,9 @@ namespace HunterPie.Core
             SizeMultiplier = Scanner.Read<float>(MonsterAddress + 0x188) / SizeModifier;
         }
 
+        /// <summary>
+        /// Builds monster weakness dictionary
+        /// </summary>
         private void GetMonsterWeaknesses() => Weaknesses = MonsterInfo.Weaknesses.ToDictionary(w => w.Id, w => w.Stars);
 
         private void GetMonsterEnrageTimer()
@@ -625,6 +650,20 @@ namespace HunterPie.Core
                     MonsterAilmentPtr = Scanner.Read<long>(MonsterAilmentListPtrs);
                 }
             }
+        }
+
+        private void GetAlatreonCurrentElement()
+        {
+            bool IsAlatreon = GameId == 87;
+            if (!IsAlive || !IsAlatreon) return;
+
+            int alatreonElement = Scanner.Read<int>(MonsterAddress + 0x20910);
+
+            if (alatreonElement <= 3 && alatreonElement > 0)
+            {
+                AlatreonElement = (AlatreonState)alatreonElement;
+            }
+
         }
 
     }

@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 using System.Windows;
@@ -7,6 +8,7 @@ using System.Windows.Media;
 using System.Windows.Media.Animation;
 using HunterPie.Core;
 using HunterPie.GUIControls.Custom_Controls;
+using AlatreonState = HunterPie.Core.Enums.AlatreonState;
 using BitmapImage = System.Windows.Media.Imaging.BitmapImage;
 using Timer = System.Threading.Timer;
 
@@ -64,6 +66,7 @@ namespace HunterPie.GUI.Widgets
             Context.OnEnrageTimerUpdate += OnEnrageTimerUpdate;
             Context.OnTargetted += OnMonsterTargetted;
             Context.OnCrownChange += OnMonsterCrownChange;
+            Context.OnAlatreonElementShift += OnAlatreonElementShift;
         }
 
         public void UnhookEvents()
@@ -91,6 +94,7 @@ namespace HunterPie.GUI.Widgets
             Context.OnEnrageTimerUpdate -= OnEnrageTimerUpdate;
             Context.OnTargetted -= OnMonsterTargetted;
             Context.OnCrownChange -= OnMonsterCrownChange;
+            Context.OnAlatreonElementShift -= OnAlatreonElementShift;
             Context = null;
         }
 
@@ -255,6 +259,39 @@ namespace HunterPie.GUI.Widgets
                 StartVisibilityTimer();
             }
         });
+
+        private void OnAlatreonElementShift(object source, EventArgs args) => Dispatch(() =>
+        {
+            Weaknesses.Children.Clear();
+            string[] newWeaknesses;
+            switch(Context?.AlatreonElement)
+            {
+                case AlatreonState.Fire:
+                    newWeaknesses = new string[2] { "ELEMENT_ICE", "ELEMENT_WATER" };
+                    break;
+                case AlatreonState.Ice:
+                    newWeaknesses = new string[1] { "ELEMENT_FIRE" };
+                    break;
+                case AlatreonState.Dragon:
+                    newWeaknesses = new string[3] { "ELEMENT_DRAGON", "ELEMENT_ICE", "ELEMENT_FIRE" };
+                    break;
+                default:
+                    return;
+            }
+            foreach (string weaknessId in newWeaknesses)
+            {
+                ImageSource img = FindResource(weaknessId) as ImageSource;
+                img?.Freeze();
+                WeaknessDisplay weaknessDisplay = new WeaknessDisplay
+                {
+                    Icon = img,
+                    Width = 20,
+                    Height = 20
+                };
+                Weaknesses.Children.Add(weaknessDisplay);
+            };
+        });
+
         #endregion
 
 

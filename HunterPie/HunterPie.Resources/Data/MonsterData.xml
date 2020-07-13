@@ -711,7 +711,8 @@
   <Monster ID="em050_00" Capture="0" GameID="87"> <!-- Alatreon -->
     <Weaknesses>
       <Weakness ID="ELEMENT_ICE" Stars="3"/>
-      <Weakness ID="ELEMENT_WATER" Stars="2"/>
+      <Weakness ID="ELEMENT_FIRE" Stars="3"/>
+      <Weakness ID="ELEMENT_DRAGON" Stars="2"/>
     </Weaknesses>
     <Crown Mini="0.9" Silver="1.15" Gold="1.23"/>
     <Parts Max="8">
