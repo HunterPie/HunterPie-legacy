@@ -15,11 +15,11 @@
     </LinearGradientBrush>
 
     <LinearGradientBrush x:Key="OVERLAY_BARS_BACKGROUND" EndPoint="0.5,1" StartPoint="0.5,0">
-        <GradientStop Color="#66000000" Offset="1"/>
-        <GradientStop Color="#66000000" Offset="0.4"/>
+        <GradientStop Color="#4C000000" Offset="1"/>
+        <GradientStop Color="#4C000000" Offset="0.4"/>
         <GradientStop Color="#00000000"/>
         <GradientStop Color="#00000000" Offset="0.399"/>
-        <GradientStop Color="#66000000" Offset="0.4"/>
+        <GradientStop Color="#4C000000" Offset="0.4"/>
     </LinearGradientBrush>
 
     <Style x:Key="OVERLAY_MONSTER_HEALTH_BAR_STYLE" TargetType="{x:Type Custom:MinimalHealthBar}">
