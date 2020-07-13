@@ -31,6 +31,7 @@ HunterPie is a modern and simple to use overlay with support for Discord Rich Pr
 ## Updates
 
 ### v1.0.3.9x
+- [v1.0.3.94](?p=versions/v1.0.3.94.md)
 - [v1.0.3.93](?p=versions/v1.0.3.93.md)
 - [v1.0.3.92](?p=versions/v1.0.3.92.md)
 - [v1.0.3.91](?p=versions/v1.0.3.91.md)

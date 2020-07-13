@@ -2,13 +2,24 @@
                     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
                     xmlns:Custom="clr-namespace:HunterPie.GUIControls.Custom_Controls"
                     xmlns:Monster="clr-namespace:HunterPie.GUI.Widgets.Monster_Widget.Parts"
-                    xmlns:mWidget="clr-namespace:HunterPie.GUI.Widgets">
+                    >
     <!-- Colors -->
     <!-- Overlay -->
     <!-- Monster Widget (Main bar) -->
-    <LinearGradientBrush x:Key="OVERLAY_MONSTER_HEALTH_BAR_COLOR" EndPoint="1,0" StartPoint="0,0">
-        <GradientStop Color="#FFEAEAEA" Offset="1"/>
-        <GradientStop Color="#FFBDBDBD"/>
+    <LinearGradientBrush x:Key="OVERLAY_MONSTER_HEALTH_BAR_COLOR" EndPoint="0.5,1" StartPoint="0.5,0">
+        <GradientStop Color="#FF52C18F" Offset="1"/>
+        <GradientStop Color="#7F52C18F" Offset="0.45"/>
+        <GradientStop Color="#00E89400"/>
+        <GradientStop Color="#0752C18F" Offset="0.449"/>
+        <GradientStop Color="#FF52C18F" Offset="0.45"/>
+    </LinearGradientBrush>
+
+    <LinearGradientBrush x:Key="OVERLAY_BARS_BACKGROUND" EndPoint="0.5,1" StartPoint="0.5,0">
+        <GradientStop Color="#66000000" Offset="1"/>
+        <GradientStop Color="#66000000" Offset="0.4"/>
+        <GradientStop Color="#00000000"/>
+        <GradientStop Color="#00000000" Offset="0.399"/>
+        <GradientStop Color="#66000000" Offset="0.4"/>
     </LinearGradientBrush>
 
     <Style x:Key="OVERLAY_MONSTER_HEALTH_BAR_STYLE" TargetType="{x:Type Custom:MinimalHealthBar}">
@@ -25,51 +36,46 @@
     </Style>
 
     <Style x:Key="OVERLAY_MONSTER_STAMINA_TEXT_STYLE" TargetType="TextBlock">
-        <Setter Property="Foreground">
-            <Setter.Value>
-                <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
-                    <GradientStop Color="White" Offset="0"/>
-                    <GradientStop Color="#FF919191" Offset="1"/>
-                </LinearGradientBrush>
-            </Setter.Value>
-        </Setter>
+        <Setter Property="Foreground" Value="#eee6ff"/>
+        <Setter Property="FontWeight" Value="Medium"/>
         <Setter Property="Margin" Value="0,16,27,15"/>
         <Setter Property="TextAlignment" Value="Right"/>
         <Setter Property="Width" Value="95"/>
     </Style>
-    
-    <SolidColorBrush x:Key="OVERLAY_BARS_BACKGROUND">#7F131313</SolidColorBrush>
 
     <Style x:Key="OVERLAY_MONSTER_BACKGROUND" TargetType="StackPanel"/>
 
-    <LinearGradientBrush x:Key="OVERLAY_MONSTER_STAMINA_BAR_COLOR" EndPoint="1,0" StartPoint="0,0">
-        <GradientStop Color="#E5ECAF2F" Offset="1"/>
-        <GradientStop Color="#E5DE9F15"/>
+    <LinearGradientBrush x:Key="OVERLAY_MONSTER_STAMINA_BAR_COLOR" EndPoint="0.5,1" StartPoint="0.5,0">
+        <GradientStop Color="#FFE8B300"/>
+        <GradientStop Color="#7FE8B300" Offset="0.603"/>
+        <GradientStop Color="#00E8B300" Offset="1"/>
+        <GradientStop Color="#26E8B300" Offset="0.75"/>
+        <GradientStop Color="#FFE8B300" Offset="0.60"/>
     </LinearGradientBrush>
-    
+
     <Style x:Key="OVERLAY_MONSTER_BAR_TEXT_STYLE" TargetType="TextBlock">
-        <Setter Property="Foreground" Value="Gray"/>
+        <Setter Property="Foreground" Value="#eee6ff"/>
+        <Setter Property="FontFamily" Value="Roboto"/>
         <Setter Property="FontSize" Value="12"/>
-        <Setter Property="FontWeight" Value="Bold"/>
-        <Setter Property="Margin" Value="47,16,22,0"/>
+        <Setter Property="FontWeight" Value="Medium"/>
+        <Setter Property="Margin" Value="47,13,22,0"/>
         <Setter Property="Padding" Value="0,0,0,0"/>
-        <Setter Property="HorizontalAlignment" Value="Left"/>
-        <Setter Property="Width" Value="232"/>
     </Style>
 
     <Style x:Key="OVERLAY_MONSTER_NAME_TEXT_STYLE" TargetType="TextBlock">
         <Setter Property="Foreground">
             <Setter.Value>
                 <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
-                    <GradientStop Color="#FFF7F7F7"/>
+                    <GradientStop Color="#eee6ff"/>
                     <GradientStop Color="Gainsboro" Offset="1"/>
                 </LinearGradientBrush>
             </Setter.Value>
         </Setter>
-        <Setter Property="FontWeight" Value="SemiBold"/>
+        <Setter Property="FontFamily" Value="Roboto"/>
+        <Setter Property="FontWeight" Value="Medium"/>
         <Setter Property="FontSize" Value="14"/>
-        <Setter Property="Padding" Value="0,0,0,0"/>
     </Style>
+    
     <!-- Monster Bar (Parts) -->
     <Style x:Key="OVERLAY_MONSTER_PART_BAR_STYLE" TargetType="Monster:MonsterPart">
         <Style.Triggers>
@@ -98,22 +104,29 @@
             </Trigger>
         </Style.Triggers>
     </Style>
-    
-    <LinearGradientBrush x:Key="OVERLAY_MONSTER_AILMENT_BAR_COLOR" EndPoint="1,0" StartPoint="0,0">
-        <GradientStop Color="#FF2BD8B1" Offset="1"/>
-        <GradientStop Color="#FF45B69C"/>
+
+    <LinearGradientBrush x:Key="OVERLAY_MONSTER_AILMENT_BAR_COLOR" EndPoint="0.5,1" StartPoint="0.5,0">
+        <GradientStop Color="#FF73ABEE" Offset="1"/>
+        <GradientStop Color="#7F73ABEE" Offset="0.40"/>
+        <GradientStop Color="#0073ABEE"/>
+        <GradientStop Color="#2673ABEE" Offset="0.399"/>
+        <GradientStop Color="#FF73ABEE" Offset="0.40"/>
     </LinearGradientBrush>
-    
+
     <Style x:Key="OVERLAY_MONSTER_AILMENT_COUNTER_BACKGROUND_STYLE" TargetType="Rectangle">
-        <Setter Property="Fill" Value="#FF45B69C"/>
+        <Setter Property="Fill" Value="#FF73ABEE"/>
     </Style>
 
-    <LinearGradientBrush x:Key="OVERLAY_MONSTER_PART_BAR_COLOR" EndPoint="1,0" StartPoint="0,0">
-        <GradientStop Color="#FFE6DCDC" Offset="1"/>
-        <GradientStop Color="#FFBDAFAF"/>
+    <LinearGradientBrush x:Key="OVERLAY_MONSTER_PART_BAR_COLOR" EndPoint="0.5,1" StartPoint="0.5,0">
+        <GradientStop Color="#FF52C18F" Offset="1"/>
+        <GradientStop Color="#7F52C18F" Offset="0.40"/>
+        <GradientStop Color="#00E89400"/>
+        <GradientStop Color="#0752C18F" Offset="0.399"/>
+        <GradientStop Color="#FF52C18F" Offset="0.40"/>
     </LinearGradientBrush>
 
     <Style x:Key="OVERLAY_MONSTER_PART_NAME_TEXT_STYLE" TargetType="TextBlock">
+        <Setter Property="FontFamily" Value="Roboto"/>
         <Setter Property="Foreground">
             <Setter.Value>
                 <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
@@ -124,48 +137,50 @@
         </Setter>
         <Setter Property="Margin" Value="32,-3,4,0"/>
         <Setter Property="FontWeight" Value="Normal"/>
-        <Setter Property="FontSize" Value="12"/>
+        <Setter Property="FontSize" Value="13"/>
     </Style>
 
     <Style x:Key="OVERLAY_MONSTER_PART_COUNTER_BACKGROUND_STYLE" TargetType="{x:Type Polyline}">
-        <Setter Property="Fill" Value="#FFB9B9B9"/>
-        <Setter Property="Stroke" Value="#CC0E0E0E"/>
-        <Setter Property="StrokeThickness" Value="0.5"/>
+        <Setter Property="Stroke" Value="#FF52C18F"/>
+        <Setter Property="StrokeThickness" Value="2"/>
         <Setter Property="Margin" Value="5,0,-5,0"/>
-        <Setter Property="Points" Value="30,15 22.5,28 7.5,28 0,15 7.5,2 22.5,2"/>
+        <Setter Property="Points" Value="27,15 22.5,28 3.5,28 5, 25"/>
     </Style>
 
     <Style x:Key="OVERLAY_MONSTER_PART_COUNTER_TEXT_STYLE" TargetType="TextBlock">
         <Setter Property="Foreground">
             <Setter.Value>
                 <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
-                    <GradientStop Color="#FF0F0F0F"/>
-                    <GradientStop Color="#FF0A0A0A" Offset="1"/>
+                    <GradientStop Color="#FFF1F1F1"/>
+                    <GradientStop Color="#FFF0F0F0" Offset="1"/>
                 </LinearGradientBrush>
             </Setter.Value>
         </Setter>
-        <Setter Property="FontWeight" Value="SemiBold"/>
+        <Setter Property="FontWeight" Value="Medium"/>
         <Setter Property="FontSize" Value="14"/>
     </Style>
 
     <!-- Console -->
-    <SolidColorBrush x:Key="CONSOLE_LOGO_PRIMARY">#FFAF0000</SolidColorBrush>
+    <SolidColorBrush x:Key="CONSOLE_LOGO_PRIMARY">#FFD13232</SolidColorBrush>
     <SolidColorBrush x:Key="CONSOLE_LOGO_SECONDARY">#FF1F1F1F</SolidColorBrush>
-    <SolidColorBrush x:Key="CONSOLE_LOGO_TERTIARY">#FFAF0000</SolidColorBrush>
+    <SolidColorBrush x:Key="CONSOLE_LOGO_TERTIARY">#FFD13232</SolidColorBrush>
     
     <SolidColorBrush x:Key="CONSOLE_BACKGROUND">#F41F1F1F</SolidColorBrush>
     <SolidColorBrush x:Key="CONSOLE_HEADER_BACKGROUND">#4C0E0E0E</SolidColorBrush>
     <SolidColorBrush x:Key="CONSOLE_SIDEBAR_BACKGROUND">#CC151515</SolidColorBrush>
     <SolidColorBrush x:Key="CONSOLE_WINDOWBAR_BACKGROUND">#FF131313</SolidColorBrush>
 
-    <SolidColorBrush x:Key="BUTTON_LAUNCHGAME_BACKGROUND">#FFAF0000</SolidColorBrush>
+    <LinearGradientBrush x:Key="BUTTON_LAUNCHGAME_BACKGROUND" EndPoint="1,0.5" StartPoint="0,0.5">
+        <GradientStop Color="#FFC92626"/>
+        <GradientStop Color="#FFD82323" Offset="1"/> 
+    </LinearGradientBrush>
     <SolidColorBrush x:Key="BUTTON_LAUNCHGAME_FOREGROUND">#FFDEDEDE</SolidColorBrush>
     <SolidColorBrush x:Key="BUTTON_TOPBUTTON_FOREGROUND">#FFD8D8D8</SolidColorBrush>
     <SolidColorBrush x:Key="BUTTON_TOPBUTTON_BACKGROUND">#00000000</SolidColorBrush>
     <SolidColorBrush x:Key="BUTTON_CLOSEWINDOW_BACKGROUND">#FFB02B2B</SolidColorBrush>
     <SolidColorBrush x:Key="BUTTON_COMMONBUTTON_FOREGROUND">#FFF3F3F3</SolidColorBrush>
     <SolidColorBrush x:Key="BUTTON_COMMONBUTTON_BACKGROUND">#E51B1B1B</SolidColorBrush>
-    <SolidColorBrush x:Key="BUTTON_COMMONBUTTON_BORDER">#FFAF0000</SolidColorBrush>
+    <SolidColorBrush x:Key="BUTTON_COMMONBUTTON_BORDER">#FFD13232</SolidColorBrush>
     <SolidColorBrush x:Key="BUTTON_ICON_FOREGROUND">#FFDEDEDE</SolidColorBrush>
     <SolidColorBrush x:Key="CONSOLE_VERSIONTEXT_FOREGROUND">#FFDEDEDE</SolidColorBrush>
 
@@ -177,12 +192,12 @@
     </LinearGradientBrush>
 
     <!-- Settings window -->
-    <Color x:Key="TOGGLABLE_BUTTON_BACKGROUND_ON">#FFB91E17</Color>
+    <Color x:Key="TOGGLABLE_BUTTON_BACKGROUND_ON">#FFD13838</Color>
     <Color x:Key="TOGGLABLE_BUTTON_BACKGROUND_OFF">#FF151515</Color>
-    <Color x:Key="TOGGLABLE_BUTTON_FOREGROUND_ON">#FFE6E6</Color>
+    <Color x:Key="TOGGLABLE_BUTTON_FOREGROUND_ON">WhiteSmoke</Color>
     <Color x:Key="TOGGLABLE_BUTTON_FOREGROUND_OFF">#FF252525</Color>
 
-    <SolidColorBrush x:Key="GENERIC_BUTTON_BACKGROUND">#AF0000</SolidColorBrush>
+    <SolidColorBrush x:Key="GENERIC_BUTTON_BACKGROUND">#FFC92626</SolidColorBrush>
     <SolidColorBrush x:Key="GENERIC_BUTTON_FOREGROUND">#ededed</SolidColorBrush>
     
     <!-- Debugger colors -->

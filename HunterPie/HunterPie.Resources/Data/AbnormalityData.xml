@@ -107,7 +107,7 @@
     <Abnormality ID="34" Offset="718" Icon="ICON_ATTACKUP"/>
     <Abnormality ID="35" Offset="71C" Icon="ICON_ICERES+"/>
     <Abnormality ID="73" Offset="7B4"/>
-    <Abnormality ID="999" Offset="14C" Icon="ICON_MEAT"/> <!-- Eat timer -->
+    <Abnormality ID="999" Offset="E4" Icon="ICON_MEAT"/> <!-- Eat timer -->
   </MISC_Abnormalities>
   <GEAR_Abnormalities>
     <Abnormality ID="0" Offset="6CC" Icon="ICON_DEMONAMMO"/>

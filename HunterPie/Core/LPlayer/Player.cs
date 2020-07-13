@@ -589,7 +589,11 @@ namespace HunterPie.Core
 
             // Hacky way to update the eat timer
             if (!InHarvestZone)
-                UpdateAbnormality(AbnormalityData.MiscAbnormalities.Where(a => a.Id == 999).FirstOrDefault(), address);
+            {
+                long EatTimerAddress = Scanner.READ_MULTILEVEL_PTR(Address.BASE + Address.CANTEEN_OFFSET, Address.Offsets.PlayerCanteenTimer);
+                UpdateAbnormality(AbnormalityData.MiscAbnormalities.Where(a => a.Id == 999).FirstOrDefault(), EatTimerAddress);
+            }
+                
         }
 
         private void GetWeaponId()
@@ -905,7 +909,7 @@ namespace HunterPie.Core
         private void GetJobInformation()
         {
             long AbnormAddress = Scanner.READ_MULTILEVEL_PTR(Address.BASE + Address.ABNORMALITY_OFFSET, Address.Offsets.AbnormalityOffsets);
-            bool HasSafiBuff = Scanner.Read<int>(AbnormAddress + 0x954) >= 1;
+            bool HasSafiBuff = Scanner.Read<int>(AbnormAddress + 0x9A8) >= 1;
             int SafiCounter = HasSafiBuff ? Scanner.Read<int>(AbnormAddress + 0x7A8) : -1;
             long weaponAddress = Scanner.READ_MULTILEVEL_PTR(Address.BASE + Address.WEAPON_MECHANICS_OFFSET, Address.Offsets.WeaponMechanicsOffsets);
             ClassAddress = weaponAddress;
@@ -937,7 +941,7 @@ namespace HunterPie.Core
                     GunLance.SafijiivaRegenCounter = SafiCounter;
                     break;
                 case Classes.SwitchAxe:
-                    GetSwitchAxeInformation(weaponAddress);
+                    GetSwitchAxeInformation(weaponAddress, AbnormAddress);
                     SwitchAxe.SafijiivaRegenCounter = SafiCounter;
                     break;
                 case Classes.ChargeBlade:
@@ -1008,7 +1012,7 @@ namespace HunterPie.Core
             int currentAmmo = Scanner.Read<int>(weaponAddress);
             int totalBigAmmo = Scanner.Read<int>(weaponAddress + 0x10);
             int currentBigAmmo = Scanner.Read<int>(weaponAddress + 0xC);
-            float wyvernsfire = Scanner.Read<float>(AbnormalitiesAddress + 0xB70);
+            float wyvernsfire = Scanner.Read<float>(AbnormalitiesAddress + 0xBC0);
             bool hasFirestakeLoaded = Scanner.Read<float>(weaponAddress + 0xBC) != 0f;
             float wyvernstakeMax = Scanner.Read<float>(weaponAddress + 0xC0);
             // Check if the Firestake timer ptr is 0
@@ -1029,17 +1033,16 @@ namespace HunterPie.Core
             GunLance.WyvernstakeBlastTimer = wyvernstakeTimer;
         }
 
-        private void GetSwitchAxeInformation(long weaponAddress)
+        private void GetSwitchAxeInformation(long weaponAddress, long buffAddress)
         {
-            long buffAddress = Scanner.READ_MULTILEVEL_PTR(Address.BASE + Address.EQUIPMENT_OFFSET, Address.Offsets.PlayerGearOffsets);
             float outerGauge = Scanner.Read<float>(weaponAddress - 0xC);
             float swordChargeTimer = Scanner.Read<float>(weaponAddress - 0x8);
             float innerGauge = Scanner.Read<float>(weaponAddress - 0x1C);
             float switchAxeBuff = 0;
-            bool isAxeBuffActive = Scanner.Read<byte>(buffAddress - 0xCC - 0x858 - 0x3) == 1;
+            bool isAxeBuffActive = Scanner.Read<byte>(buffAddress + 0x6E5) == 1;
             if (isAxeBuffActive)
             {
-                switchAxeBuff = Scanner.Read<float>(buffAddress - 0xCC - 0x858);
+                switchAxeBuff = Scanner.Read<float>(buffAddress + 0x6E8);
             }
             SwitchAxe.OuterGauge = outerGauge;
             SwitchAxe.SwordChargeMaxTimer = swordChargeTimer > SwitchAxe.SwordChargeMaxTimer || swordChargeTimer <= 0 ? swordChargeTimer : SwitchAxe.SwordChargeMaxTimer;

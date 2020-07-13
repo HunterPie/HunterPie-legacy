@@ -23,10 +23,12 @@
     <Monster ID="em036_00" Name="Lavasioth"/>
     <Monster ID="em037_00" Name="Nargacuga"/>
     <Monster ID="em042_00" Name="Barioth"/>
+    <Monster ID="em042_05" Name="Barioth Presagélida"/>
     <Monster ID="em043_00" Name="Deviljho"/>
     <Monster ID="em043_05" Name="Deviljho Selvagem"/>
     <Monster ID="em044_00" Name="Barroth"/>
     <Monster ID="em045_00" Name="Uragaan"/>
+    <Monster ID="em050_00" Name="Alatreon"/>
     <Monster ID="em057_00" Name="Zinogre"/>
     <Monster ID="em057_01" Name="Zinogre Tenebroso"/>
     <Monster ID="em063_00" Name="Brachydios"/>
@@ -188,6 +190,8 @@
     <Part ID="MONSTER_PART_SPIKES_LWING" Name="Espinhos (Asa Esq.)"/>
     <Part ID="MONSTER_PART_SPIKES_RWING" Name="Espinhos (Asa Dir.)"/>
     <Part ID="MONSTER_PART_SPIKES_TAIL" Name="Espinhos (Cauda)"/>
+    <Part ID="MONSTER_PART_REPEL" Name="Repelir"/>
+    <Part ID="MONSTER_PART_EXPLOSION_WEAKENING" Name="Enfraq. Explosão"/>
   </Parts>
   <Ailments>
     <Ailment ID="STATUS_UNKNOWN" Name="Desconhecido"/>
@@ -272,6 +276,7 @@
     <Stage ID="412" Name="Ilha da Origem"/>
     <Stage ID="413" Name="Ilha da Origem"/>
     <Stage ID="415" Name="Vale Isolado"/>
+    <Stage ID="416" Name="Vale Isolado"/>
     <Stage ID="501" Name="Alojamento"/>
     <Stage ID="502" Name="Alojamento Privado"/>
     <Stage ID="503" Name="Suíte Privada"/>
@@ -419,6 +424,7 @@
     <Abnormality ID="MISC_034_00" Name="Powercone"/>
     <Abnormality ID="MISC_035_00" Name="Res. Gelo (G)"/>
     <Abnormality ID="MISC_073_00" Name="Mais Ataque &amp; Mais Def. (P)"/>
+    <Abnormality ID="MISC_999_00" Name="Temp. Refeição"/>
     <Abnormality ID="GEAR_000_00" Name="Munição Demoníaca"/>
     <Abnormality ID="GEAR_001_00" Name="Munição Armadura"/>
     <Abnormality ID="GEAR_002_00" Name="Fortificar"/>

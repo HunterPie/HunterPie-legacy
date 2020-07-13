@@ -1,11 +1,6 @@
 ﻿<UserControl x:Class="HunterPie.GUI.Widgets.DPSMeter.Parts.PartyMember"
              xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
-             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
-             xmlns:local="clr-namespace:HunterPie.GUI.Widgets.DPSMeter.Parts"
-             xmlns:converters="clr-namespace:HunterPie.GUI.Helpers"
-             mc:Ignorable="d" 
              x:Name="PlayerContainer" Height="46" Foreground="{x:Null}">
     <Canvas ClipToBounds="True" Width="320" Height="46">
         <Rectangle x:Name="PlayerDPSBar" ClipToBounds="True" Opacity="0.8" Height="46" MaxWidth="322" HorizontalAlignment="Left">

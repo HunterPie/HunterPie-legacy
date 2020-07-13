@@ -22,15 +22,17 @@
     <Monster ID="em036_00" Name="Lavasioth"/>
     <Monster ID="em037_00" Name="Nargacuga"/>
     <Monster ID="em042_00" Name="Barioth"/>
+    <Monster ID="em042_05" Name="Barioth Cynodon"/>
     <Monster ID="em043_00" Name="Deviljho"/>
     <Monster ID="em043_05" Name="Deviljho Salvaje"/>
     <Monster ID="em044_00" Name="Barroth"/>
     <Monster ID="em045_00" Name="Uragaan"/>
+    <Monster ID="em050_00" Name="Alatreon"/>
     <Monster ID="em057_00" Name="Zinogre"/>
-	<Monster ID="em057_01" Name="Zinogre Estigio"/>
+	  <Monster ID="em057_01" Name="Zinogre Estigio"/>
     <Monster ID="ems062_03" Name="Muñeco de práctica"/>
     <Monster ID="em063_00" Name="Brachydios"/>
-	<Monster ID="em063_05" Name="Brachydios Colérico"/>
+	  <Monster ID="em063_05" Name="Brachydios Colérico"/>
     <Monster ID="em080_00" Name="Glavenus"/>
     <Monster ID="em080_01" Name="Glavenus Acídico"/>
     <Monster ID="em100_00" Name="Anjanath"/>
@@ -41,7 +43,7 @@
     <Monster ID="em103_00" Name="Nergigante"/>
     <Monster ID="em103_05" Name="Nergigante Regio"/>
     <Monster ID="em105_00" Name="Xeno'jiiva"/>
-	<Monster ID="em104_00" Name="Safi'jiiva"/>
+	  <Monster ID="em104_00" Name="Safi'jiiva"/>
     <Monster ID="em106_00" Name="Zorah Magdaros"/>
     <Monster ID="em107_00" Name="Kulu-Ya-Ku"/>
     <Monster ID="em108_00" Name="Jyuratodus"/>
@@ -144,16 +146,16 @@
     <Part ID="MONSTER_PART_RARM_ROCK" Name="Pata del. derecho (roca)"/>
     <Part ID="MONSTER_PART_LEGS_ROCK" Name="Patas traseras (roca)"/>
     <Part ID="MONSTER_PART_ANTLERS" Name="Cornamenta"/>
-    <Part ID="MONSTER_JAGRAS_SUMMONER" Name="Invocación de jagras"/>
+    <Part ID="MONSTER_PART_HORN" Name="Cuerno"/>
     <!-- Removable parts -->
     <Part ID="MONSTER_PART_REMOVABLE_TAIL" Name="Cola cercenable"/>
     <Part ID="MONSTER_PART_REMOVABLE_HORNS" Name="Cuernos rompibles"/>
     <Part ID="MONSTER_PART_REMOVABLE_HEAD" Name="Cabeza rompible"/>
-	<Part ID="MONSTER_PART_REMOVABLE_HEAD_ROCK" Name="Cabeza rompible (roca)"/>
+	  <Part ID="MONSTER_PART_REMOVABLE_HEAD_ROCK" Name="Cabeza rompible (roca)"/>
     <Part ID="MONSTER_PART_REMOVABLE_CHEST_ROCK" Name="Pecho rompible (roca)"/>
     <Part ID="MONSTER_PART_REMOVABLE_BALLOON" Name="Globo rompible"/>
     <Part ID="MONSTER_PART_REMOVABLE_HORNS_2" Name="Cuernos rompibles #2"/>
-	<Part ID="MONSTER_PART_BODY_LEGS" Name="Cuerpo y patas"/>
+	  <Part ID="MONSTER_PART_BODY_LEGS" Name="Cuerpo y patas"/>
     <Part ID="MONSTER_PART_SILVER_SPIKES_HEAD" Name="Espinas de plata (Cabeza)"/>
     <Part ID="MONSTER_PART_SILVER_SPIKES_LARM" Name="Espinas de plata (Brazo izq.)"/>
     <Part ID="MONSTER_PART_SILVER_SPIKES_RARM" Name="Espinas de plata (Brazo der.)"/>
@@ -179,6 +181,7 @@
     <Part ID="MONSTER_PART_SPIKES_LWING" Name="Espinas (Ala izq.)"/>
     <Part ID="MONSTER_PART_SPIKES_RWING" Name="Espinas (Ala der.)"/>
     <Part ID="MONSTER_PART_SPIKES_TAIL" Name="Espinas (Cola)"/>
+    <Part ID="MONSTER_PART_REPEL" Name="Repeler"/>
   </Parts>
   <Ailments>
     <Ailment ID="STATUS_UNKNOWN" Name="Desconocido"/>
@@ -263,6 +266,7 @@
     <Stage ID="412" Name="Isla Génesis"/>
     <Stage ID="413" Name="Isla Génesis"/>
     <Stage ID="415" Name="Valle Remoto"/>
+    <Stage ID="416" Name="Valle Remoto"/>
     <Stage ID="501" Name="Sala común"/>
     <Stage ID="502" Name="Sala privada"/>
     <Stage ID="503" Name="Sala de lujo"/>
@@ -410,6 +414,7 @@
     <Abnormality ID="MISC_034_00" Name="Cono de poder"/>
     <Abnormality ID="MISC_035_00" Name="Bonus resistencia al hielo (G)"/>
     <Abnormality ID="MISC_073_00" Name="Mejora ataque/defensa (P)"/>
+    <Abnormality ID="MISC_999_00" Name="Temporizador de comida"/>
     <Abnormality ID="GEAR_000_00" Name="D. Demonio"/>
     <Abnormality ID="GEAR_001_00" Name="D. Armadura"/>
     <Abnormality ID="GEAR_002_00" Name="Bonus desmayo"/>

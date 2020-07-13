@@ -14,4 +14,4 @@
 
 ## Troubleshooting & Bugs
 
-Please, read the [FAQ](https://haato3o.github.io/HunterPie/HunterPie/faq), if your issue isn't listed there, contact me on [Discord](https://discord.gg/5pdDq4Q).
+Please, read the [FAQ](?p=HunterPie/faq.md), if your issue isn't listed there, contact me on [Discord](https://discord.gg/5pdDq4Q).

@@ -700,7 +700,7 @@
                                 <TextBlock Text="GitHub" Padding="0,0,5,0" FontFamily="Segoe UI Light" Foreground="Gray" TextAlignment="Center"/>
                                 <Separator Width="298" Canvas.Left="72" Margin="0,3,0,0" Canvas.Top="12" Height="17" VerticalAlignment="Top"/>
                             </StackPanel>
-                            <custom:MinimalButton Icon="{StaticResource ICON_GITHUB}" Text="{Binding Mode=OneTime, XPath=/Strings/Client/Settings/String[@ID\=\'STATIC_HUNTERPIE_WIKI\']/@Name}" Link="https://github.com/Haato3o/HunterPie/wiki" Canvas.Left="44" Canvas.Top="28" Foreground="#FFC7C5C5" Height="27" ToolTip="{Binding Mode=OneTime, XPath=/Strings/Client/Settings/String[@ID\=\'STATIC_HUNTERPIE_WIKI_DESC\']/@Name}" Margin="0,26,0,0" VerticalAlignment="Top">
+                            <custom:MinimalButton Icon="{StaticResource ICON_GITHUB}" Text="{Binding Mode=OneTime, XPath=/Strings/Client/Settings/String[@ID\=\'STATIC_HUNTERPIE_WIKI\']/@Name}" Link="https://hunterpie.me/HunterPie/" Canvas.Left="44" Canvas.Top="28" Foreground="#FFC7C5C5" Height="27" ToolTip="{Binding Mode=OneTime, XPath=/Strings/Client/Settings/String[@ID\=\'STATIC_HUNTERPIE_WIKI_DESC\']/@Name}" Margin="0,26,0,0" VerticalAlignment="Top">
                                 <custom:MinimalButton.Color>
                                     <LinearGradientBrush EndPoint="1,1" StartPoint="0,0">
                                         <GradientStop Color="#FFAA1009" Offset="0"/>

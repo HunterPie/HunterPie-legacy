@@ -1,13 +1,8 @@
 ﻿<UserControl x:Name="MonsterComponent" x:Class="HunterPie.GUI.Widgets.MonsterHealth"
              xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
-             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
-             xmlns:local="clr-namespace:HunterPie.GUI.Widgets"
-             xmlns:Parts="clr-namespace:HunterPie.GUI.Widgets.Monster_Widget.Parts"
              xmlns:Custom="clr-namespace:HunterPie.GUIControls.Custom_Controls"
-             xmlns:Helpers="clr-namespace:HunterPie.GUI.Helpers"
-             mc:Ignorable="d" BorderThickness="1" Margin="3,0,0,0" Width="300" RenderTransformOrigin="0.5,0.5" >
+             BorderThickness="1" Margin="3,0,0,0" Width="300" RenderTransformOrigin="0.5,0.5" >
     <DockPanel>
         <Grid x:Name="MonsterHealthContainer" DockPanel.Dock="Top" Margin="-3,0,0,0">
             <Grid.ColumnDefinitions>
@@ -22,7 +17,7 @@
                 <Image x:Name="MonsterCrown" Source="{StaticResource CROWN_GOLD}" Visibility="Visible" Width="16" Margin="0,2"/>
                 <TextBlock x:Name="MonsterName" Text="Monster Name" Style="{StaticResource OVERLAY_MONSTER_NAME_TEXT_STYLE}"/>
             </StackPanel>
-            <Custom:MinimalHealthBar  x:Name="MonsterHealthBar" Style="{StaticResource OVERLAY_MONSTER_HEALTH_BAR_STYLE}" Height="14" VerticalAlignment="Top" RenderTransformOrigin="0.5,1" BorderThickness="0" Margin="49,0,18,0" Foreground="{x:Null}" Color="{StaticResource OVERLAY_MONSTER_HEALTH_BAR_COLOR}" Grid.Row="1">
+            <Custom:MinimalHealthBar x:Name="MonsterHealthBar" Style="{StaticResource OVERLAY_MONSTER_HEALTH_BAR_STYLE}" Height="14" VerticalAlignment="Top" RenderTransformOrigin="0.5,1" BorderThickness="0" Margin="49,0,18,0" Foreground="{x:Null}" Color="{StaticResource OVERLAY_MONSTER_HEALTH_BAR_COLOR}" Grid.Row="1">
                 <Custom:MinimalHealthBar.Effect>
                     <DropShadowEffect Color="Red" BlurRadius="10" ShadowDepth="0" Opacity="0"/>
                 </Custom:MinimalHealthBar.Effect>
@@ -118,14 +113,7 @@
             </Canvas>
 
             <StackPanel x:Name="Weaknesses" Margin="46,22,37,0" Orientation="Horizontal" Style="{StaticResource StackPanelAnimations}" Grid.Row="1" Height="24" VerticalAlignment="Top"/>
-            <TextBlock x:Name="EnrageTimerText" Visibility="Hidden" HorizontalAlignment="Left" Margin="8,29,0,0" Grid.Row="1" TextWrapping="Wrap" Text="120s" VerticalAlignment="Top" TextAlignment="Center" Width="34" Height="16">
-                <TextBlock.Foreground>
-                    <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
-                        <GradientStop Color="White" Offset="0"/>
-                        <GradientStop Color="#FF919191" Offset="1"/>
-                    </LinearGradientBrush>
-                </TextBlock.Foreground>
-            </TextBlock>
+            <TextBlock x:Name="EnrageTimerText" Visibility="Hidden" FontWeight="Normal" HorizontalAlignment="Left" Margin="10,31,0,0" Grid.Row="1" TextWrapping="Wrap" Text="120s" VerticalAlignment="Top" TextAlignment="Center" Width="34" Height="16" Style="{StaticResource OVERLAY_MONSTER_STAMINA_TEXT_STYLE}"/>
         </Grid>
         <StackPanel x:Name="MonsterAdittionalInfoContainer" Orientation="Horizontal">
             <WrapPanel x:Name="MonsterPartsContainer" Orientation="Vertical" SizeChanged="OnMonsterPartsContainerSizeChange">

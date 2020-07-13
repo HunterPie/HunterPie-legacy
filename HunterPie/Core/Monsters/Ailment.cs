@@ -12,6 +12,7 @@ namespace HunterPie.Core
 
         public long Address { get; private set; }
         public string Name => GStrings.GetAilmentNameByID(MonsterData.AilmentsInfo.ElementAtOrDefault((int)Id)?.Id ?? Id.ToString());
+        public string Group => MonsterData.AilmentsInfo.ElementAtOrDefault((int)Id)?.Group ?? "DEFAULT";
         public uint Id { get; set; }
         public float Buildup
         {
