@@ -7,5 +7,6 @@
              d:DesignHeight="450" d:DesignWidth="800">
     <Grid>
         <RichTextBox x:Name="Console" IsReadOnly="True" Background="#00000000" Foreground="#FFEEEEEE" BorderBrush="{x:Null}" VerticalScrollBarVisibility="Visible" UseLayoutRounding="False" AllowDrop="False" Block.LineHeight="1" HorizontalScrollBarVisibility="Disabled" FontSize="13" SelectionBrush="#FFC92C2C" TextOptions.TextHintingMode="Fixed" FontFamily="Roboto" BorderThickness="0" Margin="0"/>
+        <Button Style="{StaticResource buttons_settings}" Cursor="Hand" FontFamily="Segoe UI" FontSize="13" FontWeight="Light" BorderBrush="{x:Null}" Foreground="{StaticResource GENERIC_BUTTON_FOREGROUND}"  Background="{StaticResource CONSOLE_HEADER_BACKGROUND}" Content="Clear" ToolTip="Clear console" HorizontalAlignment="Right" Width="42" Height="22" VerticalAlignment="Top" Click="OnClearConsoleButtonClick"/>
     </Grid>
 </UserControl>

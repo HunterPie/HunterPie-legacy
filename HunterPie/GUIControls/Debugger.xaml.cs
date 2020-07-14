@@ -112,5 +112,9 @@ namespace HunterPie.Logger
             File.WriteAllText(Path.Combine(dir, $"{DateTime.Now:dd\\-M\\-yyyy}_{DateTime.Now.GetHashCode()}_DEBUG-HunterPie.log"), tr.Text);
         }
 
+        private void OnClearConsoleButtonClick(object sender, RoutedEventArgs e)
+        {
+            _Instance.Console.Document.Blocks.Clear();
+        }
     }
 }

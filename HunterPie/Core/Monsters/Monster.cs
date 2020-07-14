@@ -380,7 +380,7 @@ namespace HunterPie.Core
                     else
                     {
                         GetMonsterHealth();
-                        if (Id != MonsterInfo.Em) Debugger.Debug($"Found new monster ID: {GameId} ({MonsterEm}) #{MonsterNumber} @ 0x{MonsterAddress:X}");
+                        if (Id != MonsterInfo.Em && Health > 0) Debugger.Debug($"Found new monster ID: {GameId} ({MonsterEm}) #{MonsterNumber} @ 0x{MonsterAddress:X}");
                         Id = MonsterInfo.Em;
                         return;
                     }
