@@ -179,7 +179,8 @@ namespace HunterPie.GUI.Widgets
                 Weaknesses.Children.Add(MonsterWeaknessDisplay);
                 index++;
             }
-
+            // Sometimes Alatreon's state changes before OnMonsterSpawn is dispatched
+            if (Monster.GameId == 87) OnAlatreonElementShift(this, EventArgs.Empty);
         }
 
         private void OnMonsterCrownChange(object source, EventArgs args) => Dispatch(() =>
@@ -270,7 +271,7 @@ namespace HunterPie.GUI.Widgets
                     newWeaknesses = new string[2] { "ELEMENT_ICE", "ELEMENT_WATER" };
                     break;
                 case AlatreonState.Ice:
-                    newWeaknesses = new string[1] { "ELEMENT_FIRE" };
+                    newWeaknesses = new string[2] { "ELEMENT_FIRE", "ELEMENT_THUNDER" };
                     break;
                 case AlatreonState.Dragon:
                     newWeaknesses = new string[3] { "ELEMENT_DRAGON", "ELEMENT_ICE", "ELEMENT_FIRE" };
