@@ -217,7 +217,7 @@ namespace HunterPie.Core.Integrations.Discord
             if (ctx.HuntedMonster == null) return GStrings.GetLocalizationByXPath("/RichPresence/String[@ID='RPC_DESCRIPTION_EXPLORING']");
             else
             {
-                if (string.IsNullOrEmpty(ctx.HuntedMonster.Name)) return GStrings.GetLocalizationByXPath("/RichPresence/String[@ID='RPC_DESCRIPTION_EXPLORING']");
+                if (string.IsNullOrEmpty(ctx.HuntedMonster.Name) || ctx.HuntedMonster.Name == "Missing Translation") return GStrings.GetLocalizationByXPath("/RichPresence/String[@ID='RPC_DESCRIPTION_EXPLORING']");
                 return UserSettings.PlayerConfig.RichPresence.ShowMonsterHealth ? GStrings.GetLocalizationByXPath("/RichPresence/String[@ID='RPC_DESCRIPTION_HUNTING']").Replace("{Monster}", ctx.HuntedMonster.Name).Replace("{Health}", $"{(int)(ctx.HuntedMonster.HPPercentage * 100)}%") : GStrings.GetLocalizationByXPath("/RichPresence/String[@ID='RPC_DESCRIPTION_HUNTING']").Replace("{Monster}", ctx.HuntedMonster.Name).Replace("({Health})", null);
             }
         }

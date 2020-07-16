@@ -33,6 +33,7 @@ namespace HunterPie.Core
                     if (monsterAddress != 0)
                     {
                         Id = null;
+                        FoundEnrageInMemory = false;
                     }
                     monsterAddress = value;
                 }
@@ -142,6 +143,7 @@ namespace HunterPie.Core
         }
         public bool IsAlive = false;
         public bool IsActuallyAlive;
+
         public float EnrageTimer
         {
             get => enrageTimer;
@@ -162,9 +164,10 @@ namespace HunterPie.Core
                 }
             }
         }
-        public float CaptureThreshold { get; private set; }
         public float EnrageTimerStatic { get; private set; }
         public bool IsEnraged => enrageTimer > 0;
+        private bool FoundEnrageInMemory { get; set; }
+
         public float Stamina
         {
             get => stamina;
@@ -178,8 +181,12 @@ namespace HunterPie.Core
             }
         }
         public float MaxStamina { get; private set; }
+
+        public float CaptureThreshold { get; private set; }
         public bool IsCaptured { get; private set; }
+
         public bool[] AliveMonsters = new bool[3] { false, false, false };
+
         public AlatreonState AlatreonElement
         {
             get => alatreonElement;
@@ -408,8 +415,26 @@ namespace HunterPie.Core
 
         private void GetMonsterEnrageTimer()
         {
-            EnrageTimer = Scanner.Read<float>(MonsterAddress + 0x1BE54);
-            EnrageTimerStatic = Scanner.Read<float>(MonsterAddress + 0x1BE54 + 0x4);
+            if (!IsAlive) return;
+
+            sMonsterStatus enrage = Scanner.Win32.Read<sMonsterStatus>(MonsterAddress + 0x1BE30);
+            EnrageTimer = enrage.Duration;
+            EnrageTimerStatic = enrage.MaxDuration;
+
+            if (!FoundEnrageInMemory && Ailments.Count > 0)
+            {
+                AilmentInfo info = MonsterData.GetAilmentInfoById(999);
+                Ailment enrageTracker = new Ailment(MonsterAddress + 0x1BE30)
+                {
+                    Name = GStrings.GetAilmentNameByID(info.Name),
+                    Group = info.Group,
+                    Type = AilmentType.Status
+                };
+                enrageTracker.SetAilmentInfo(sMonsterStatus.Convert(enrage), 999);
+                Ailments.Add(enrageTracker);
+                FoundEnrageInMemory = true;
+            }
+            
         }
 
         private void GetTargetMonsterAddress()
@@ -608,7 +633,18 @@ namespace HunterPie.Core
             {
                 foreach (Ailment ailment in Ailments)
                 {
-                    sMonsterAilment updatedData = Scanner.Win32.Read<sMonsterAilment>(ailment.Address);
+                    sMonsterAilment updatedData;
+                    switch (ailment.Type)
+                    {
+                        case AilmentType.Status:
+                            sMonsterStatus updatedStatus = Scanner.Win32.Read<sMonsterStatus>(ailment.Address);
+                            updatedData = sMonsterStatus.Convert(updatedStatus);
+                            break;
+                        default:
+                            updatedData = Scanner.Win32.Read<sMonsterAilment>(ailment.Address);
+                            break;
+                    }
+                     
                     ailment.SetAilmentInfo(updatedData);
                 }
 
@@ -630,7 +666,7 @@ namespace HunterPie.Core
                         continue;
                     }
 
-                    var AilmentInfo = MonsterData.AilmentsInfo.ElementAt((int)AilmentData.Id);
+                    var AilmentInfo = MonsterData.GetAilmentInfoById(AilmentData.Id);
                     // Check if this Ailment can be skipped and therefore not be tracked at all
                     bool SkipElderDragonTrap = MonsterInfo.Capture == 0 && AilmentInfo.Group == "TRAP";
                     if (SkipElderDragonTrap || (AilmentInfo.CanSkip && !UserSettings.PlayerConfig.HunterPie.Debug.ShowUnknownStatuses))
@@ -640,7 +676,12 @@ namespace HunterPie.Core
                         continue;
                     }
 
-                    Ailment MonsterAilment = new Ailment(MonsterAilmentPtr + 0x148);
+                    Ailment MonsterAilment = new Ailment(MonsterAilmentPtr + 0x148)
+                    {
+                        Name = GStrings.GetAilmentNameByID(AilmentInfo.Name),
+                        Group = AilmentInfo.Group,
+                        Type = AilmentType.Ailment
+                    };
                     MonsterAilment.SetAilmentInfo(AilmentData);
 
                     Debugger.Debug($"sMonsterAilment <{Name}> ({MonsterAilment.Name}) [0x{MonsterAilmentPtr + 0x148:X}]");

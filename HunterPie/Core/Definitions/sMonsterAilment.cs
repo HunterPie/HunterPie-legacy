@@ -28,7 +28,7 @@ namespace HunterPie.Core.Definitions
     public struct sMonsterAilment
     {
         public long Source; // Monster who has the ailment
-        public int unk0;
+        public int IsActive;
         public int unk1;
         public uint Id;
         public float MaxDuration;
@@ -36,7 +36,7 @@ namespace HunterPie.Core.Definitions
         public int unk4;
         public int unk5;
         public int unk6;
-        public int unk7;
+        public float unk7;
         public int unk8;
         public float Buildup;
         public int unk10;
@@ -53,8 +53,8 @@ namespace HunterPie.Core.Definitions
         public float unk20;
         public float unk21;
         public int unk22;
-        public int unk23;
-        public int Duration;
+        public float unk23;
+        public float Duration;
         public int unk25;
         public uint Counter;
         public int unk27;

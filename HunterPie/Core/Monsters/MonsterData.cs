@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 using System.Xml;
+using HunterPie.Core.Enums;
 using HunterPie.Core.Monsters;
 using HunterPie.Logger;
 
@@ -144,9 +145,11 @@ namespace HunterPie.Core
 
             AilmentInfo ailment = new AilmentInfo
             {
-                Id = node.Attributes["Name"]?.Value,
-                CanSkip = bool.Parse(node.Attributes["Skip"]?.Value ?? "true"),
-                Group = node.Attributes["Group"]?.Value ?? "UNKNOWN"
+                Name = node.Attributes["Name"]?.Value,
+                Id = Convert.ToUInt32(node.Attributes["Id"]?.Value ?? "1000"),
+                CanSkip = Convert.ToBoolean(node.Attributes["Skip"]?.Value ?? "true"),
+                Group = node.Attributes["Group"]?.Value ?? "UNKNOWN",
+                Type = (AilmentType)Convert.ToInt32(node.Attributes["Type"]?.Value ?? "0")
             };
 
             return ailment;
@@ -159,7 +162,17 @@ namespace HunterPie.Core
             ailmentsInfo = ailmentsData.Cast<XmlNode>()
                 .Select(node => AilmentXmlNodeToInfo(node))
                 .ToList();
-
         }
+
+        /// <summary>
+        /// Gets Ailment based on it's Id
+        /// </summary>
+        /// <param name="Id">Ailment Id</param>
+        /// <returns></returns>
+        static public AilmentInfo GetAilmentInfoById(uint Id)
+        {
+            return AilmentsInfo.Where(a => a.Id == Id).FirstOrDefault();
+        }
+
     }
 }
