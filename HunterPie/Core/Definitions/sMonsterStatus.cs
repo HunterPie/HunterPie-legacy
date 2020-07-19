@@ -1,5 +1,4 @@
 ﻿using System.Runtime.InteropServices;
-using System.Windows.Media.Animation;
 
 namespace HunterPie.Core.Definitions
 {

@@ -143,6 +143,7 @@
     <Compile Include="Core\Enums\AlatreonState.cs" />
     <Compile Include="Core\Enums\Classes.cs" />
     <Compile Include="Core\Enums\GearType.cs" />
+    <Compile Include="Core\Enums\MonsterBarMode.cs" />
     <Compile Include="Core\Integrations\DataExporter\Exporter.cs" />
     <Compile Include="Core\Integrations\Honey\Honey.cs" />
     <Compile Include="Core\KeyboardHook.cs" />

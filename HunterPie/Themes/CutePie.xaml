@@ -13,6 +13,8 @@
         <GradientStop Color="#631df1"/>
     </LinearGradientBrush>
 
+    <SolidColorBrush x:Key="OVERLAY_BARS_BACKGROUND" Color="#4C000000"/>
+
     <Style x:Key="OVERLAY_MONSTER_BAR_TEXT_STYLE" TargetType="TextBlock">
         <Setter Property="Foreground" Value="#eee6ff"/>
         <Setter Property="FontFamily" Value="Roboto"/>

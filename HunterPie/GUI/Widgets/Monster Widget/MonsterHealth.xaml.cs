@@ -7,6 +7,7 @@ using System.Windows.Controls;
 using System.Windows.Media;
 using System.Windows.Media.Animation;
 using HunterPie.Core;
+using HunterPie.Core.Enums;
 using HunterPie.GUIControls.Custom_Controls;
 using AlatreonState = HunterPie.Core.Enums.AlatreonState;
 using BitmapImage = System.Windows.Media.Imaging.BitmapImage;
@@ -334,21 +335,21 @@ namespace HunterPie.GUI.Widgets
         #region Monster bar modes
         public void SwitchSizeBasedOnTarget()
         {
-            switch (UserSettings.PlayerConfig.Overlay.MonstersComponent.ShowMonsterBarMode)
+            switch ((MonsterBarMode)UserSettings.PlayerConfig.Overlay.MonstersComponent.ShowMonsterBarMode)
             {
-                case 0: // Default
+                case MonsterBarMode.Default:
                     ShowAllMonstersAtOnce();
                     break;
-                case 1: // Show all but highlight target
+                case MonsterBarMode.ShowAllButFocusTarget:
                     ShowAllButFocusTarget();
                     break;
-                case 2: // Show only target
+                case MonsterBarMode.ShowOnlyTarget:
                     ShowOnlyTargetMonster();
                     break;
-                case 3: // Show all but hide unactive monsters
+                case MonsterBarMode.ShowAllButHideInactive:
                     ShowAllMonsterAndHideUnactive();
                     break;
-                case 4: // Show all or only selected monster
+                case MonsterBarMode.ShowAllOrSelected:
                     ShowAllOrSelected();
                     break;
             }
@@ -451,8 +452,9 @@ namespace HunterPie.GUI.Widgets
         #endregion
 
         #region Helpers
-        private void ChangeBarsSizes(double NewSize)
+        public void ChangeBarsSizes(double NewSize)
         {
+
             UserSettings.Config.Monsterscomponent config = UserSettings.PlayerConfig.Overlay.MonstersComponent;
             // Parts
             MonsterPartsContainer.MaxWidth = config.EnableMonsterAilments ? (NewSize - 2) / 2 : (NewSize - 1);
