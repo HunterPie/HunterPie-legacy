@@ -99,6 +99,20 @@ namespace HunterPie.Core
             return weaknesses.ToArray();
         }
 
+        static private uint[] ParseTenderizedIdsToArray(string TenderizedIds)
+        {
+            if (TenderizedIds == "") return Array.Empty<uint>();
+            string[] ids = TenderizedIds.Split(',');
+            uint[] parsed = new uint[ids.Length];
+            uint i = 0;
+            foreach (string id in ids)
+            {
+                parsed[i] = Convert.ToUInt32(id);
+                i++;
+            }
+            return parsed;
+        }
+
         static private PartInfo[] GetMonsterPartsInfo(XmlNode node)
         {
             List<PartInfo> parts = new List<PartInfo>();
@@ -114,7 +128,8 @@ namespace HunterPie.Core
                     IsRemovable = bool.Parse(partData.Attributes["IsRemovable"]?.Value ?? "false"),
                     GroupId = partData.Attributes["Group"]?.Value ?? "MISC",
                     Skip = bool.Parse(partData.Attributes["Skip"]?.Value ?? "false"),
-                    Index = uint.Parse(partData.Attributes["Index"]?.Value ?? RemovablePartIndex.ToString())
+                    Index = uint.Parse(partData.Attributes["Index"]?.Value ?? RemovablePartIndex.ToString()),
+                    TenderizeIds = ParseTenderizedIdsToArray(partData.Attributes["TenderizeIds"]?.Value ?? "")
                 };
 
                 if (pInfo.IsRemovable) RemovablePartIndex++;

@@ -283,6 +283,7 @@ namespace HunterPie.Core
                 GetMonsterStamina();
                 GetMonsterAilments();
                 GetMonsterPartsInfo();
+                GetPartsTenderizeInfo();
                 GetMonsterEnrageTimer();
                 GetTargetMonsterAddress();
                 GetAlatreonCurrentElement();
@@ -605,6 +606,7 @@ namespace HunterPie.Core
                         sMonsterPart MonsterPartData = Scanner.Win32.Read<sMonsterPart>(MonsterPartAddress + (NormalPartIndex * 0x1F8));
                         CurrentPart.Address = MonsterPartAddress + (NormalPartIndex * 0x1F8);
                         CurrentPart.Group = CurrentPartInfo.GroupId;
+                        CurrentPart.TenderizedIds = CurrentPartInfo.TenderizeIds;
 
                         CurrentPart.SetPartInfo(MonsterPartData.Data);
 
@@ -705,6 +707,25 @@ namespace HunterPie.Core
                 AlatreonElement = (AlatreonState)alatreonElement;
             }
 
+        }
+
+        private void GetPartsTenderizeInfo()
+        {
+            if (!IsAlive || Parts.Count == 0) return;
+
+            for (uint i = 0; i < 10; i++)
+            {
+                sTenderizedPart tenderizedData = Scanner.Win32.Read<sTenderizedPart>(MonsterAddress + 0x1C458 + (i * 0x40));
+
+                if (tenderizedData.PartId != uint.MaxValue)
+                {
+                    //Debugger.Debug(tenderizedData.PartId);
+                    foreach (Part validPart in Parts.Where(p => p.TenderizedIds != null && p.TenderizedIds.Contains(tenderizedData.PartId)))
+                    {
+                        validPart.SetTenderizeInfo(tenderizedData);
+                    }
+                }
+            }
         }
 
     }

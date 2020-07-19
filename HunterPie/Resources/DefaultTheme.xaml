@@ -119,10 +119,18 @@
 
     <LinearGradientBrush x:Key="OVERLAY_MONSTER_PART_BAR_COLOR" EndPoint="0.5,1" StartPoint="0.5,0">
         <GradientStop Color="#FF52C18F" Offset="1"/>
-        <GradientStop Color="#7F52C18F" Offset="0.40"/>
+        <GradientStop Color="#7F52C18F" Offset="0.10"/>
         <GradientStop Color="#00E89400"/>
-        <GradientStop Color="#0752C18F" Offset="0.399"/>
-        <GradientStop Color="#FF52C18F" Offset="0.40"/>
+        <GradientStop Color="#0752C18F" Offset="0.099"/>
+        <GradientStop Color="#FF52C18F" Offset="0.10"/>
+    </LinearGradientBrush>
+
+    <LinearGradientBrush x:Key="OVERLAY_MONSTER_TENDERIZE_BAR_COLOR" EndPoint="0.5,1" StartPoint="0.5,0">
+        <GradientStop Color="#FFBBFFF6"/>
+        <GradientStop Color="#7FBBFFF6" Offset="0.603"/>
+        <GradientStop Color="#00BBFFF6" Offset="1"/>
+        <GradientStop Color="#26BBFFF6" Offset="0.75"/>
+        <GradientStop Color="#FFBBFFF6" Offset="0.60"/>
     </LinearGradientBrush>
 
     <Style x:Key="OVERLAY_MONSTER_PART_NAME_TEXT_STYLE" TargetType="TextBlock">

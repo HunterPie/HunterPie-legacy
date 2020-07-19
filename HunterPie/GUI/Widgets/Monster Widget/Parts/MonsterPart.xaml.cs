@@ -32,12 +32,14 @@ namespace HunterPie.GUI.Widgets.Monster_Widget.Parts
         {
             context.OnHealthChange += OnHealthChange;
             context.OnBrokenCounterChange += OnBrokenCounterChange;
+            context.OnTenderizeStateChange += OnTenderizeStateChange;
         }
 
         public void UnhookEvents()
         {
             context.OnHealthChange -= OnHealthChange;
             context.OnBrokenCounterChange -= OnBrokenCounterChange;
+            context.OnTenderizeStateChange -= OnTenderizeStateChange;
             visibilityTimer?.Dispose();
             context = null;
         }
@@ -116,6 +118,19 @@ namespace HunterPie.GUI.Widgets.Monster_Widget.Parts
             });
         }
 
+        private void OnTenderizeStateChange(object source, MonsterPartEventArgs args)
+        {
+            Visibility visibility = args.Duration > 0 ? Visibility.Visible : Visibility.Collapsed;
+            Dispatch(() =>
+            {
+                TenderizeBar.Health = args.MaxDuration - args.Duration;
+                TenderizeBar.MaxHealth = args.MaxDuration;
+                TenderizeBar.Visibility = visibility;
+                Visibility = GetVisibility();
+                StartVisibilityTimer();
+            });
+        }
+
         private void OnHealthChange(object source, MonsterPartEventArgs args)
         {
             Visibility visibility = GetVisibility();
@@ -156,6 +171,7 @@ namespace HunterPie.GUI.Widgets.Monster_Widget.Parts
         public void UpdateHealthSize(double newSize)
         {
             PartHealth.MaxSize = newSize - 37;
+            TenderizeBar.MaxSize = newSize - 37;
             PartHealth.MaxHealth = context.TotalHealth;
             PartHealth.Health = context.Health;
         }

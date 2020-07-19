@@ -1709,7 +1709,7 @@
         <Break Threshold="1"/>
       </Part>
       <Part Name="MONSTER_PART_GLOWING_TAIL" IsRemovable="True" Index="2"/>
-      <Part Name="MONSTER_PART_HEAD" Group="HEAD" TenderizeIds="0,4">
+      <Part Name="MONSTER_PART_HEAD" Group="HEAD" TenderizeIds="0,5">
         <Break Threshold="2"/>
       </Part>
       <Part Name="MONSTER_PART_BODY" Group="BODY">
