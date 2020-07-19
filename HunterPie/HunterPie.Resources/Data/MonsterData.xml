@@ -77,21 +77,21 @@
       <Part Name="MONSTER_PART_REMOVABLE_TAIL" IsRemovable="True">
         <Break Threshold="1"/>
       </Part>
-      <Part Name="MONSTER_PART_HEAD" Group="HEAD">
+      <Part Name="MONSTER_PART_HEAD" Group="HEAD" TenderizeIds="0,5">
         <Break Threshold="2"/>
       </Part>
       <Part Name="MONSTER_PART_BODY" Group="BODY">
         <Break Threshold="1"/>
       </Part>
-      <Part Name="MONSTER_PART_LWING" Group="WING">
+      <Part Name="MONSTER_PART_LWING" Group="WING" TenderizeIds="1,2">
         <Break Threshold="1"/>
       </Part>
-      <Part Name="MONSTER_PART_RWING" Group="WING">
+      <Part Name="MONSTER_PART_RWING" Group="WING" TenderizeIds="6,7">
         <Break Threshold="1"/>
       </Part>
-      <Part Name="MONSTER_PART_LLEG" Group="LEG"/>
-      <Part Name="MONSTER_PART_RLEG" Group="LEG"/>
-      <Part Name="MONSTER_PART_TAIL" Group="TAIL"/>
+      <Part Name="MONSTER_PART_LLEG" Group="LEG" TenderizeIds="3"/>
+      <Part Name="MONSTER_PART_RLEG" Group="LEG" TenderizeIds="8"/>
+      <Part Name="MONSTER_PART_TAIL" Group="TAIL" TenderizeIds="4,9"/>
     </Parts>
   </Monster>
   <Monster ID="em001_02" Capture="10"  GameID="88"> <!-- Gold Rathian -->
@@ -105,21 +105,21 @@
       <Part Name="MONSTER_PART_REMOVABLE_TAIL" IsRemovable="True" Index="0">
         <Break Threshold="1"/>
       </Part>
-      <Part Name="MONSTER_PART_HEAD" Group="HEAD">
+      <Part Name="MONSTER_PART_HEAD" Group="HEAD" TenderizeIds="0,5">
         <Break Threshold="2"/>
       </Part>
       <Part Name="MONSTER_PART_BODY" Group="BODY">
         <Break Threshold="1"/>
       </Part>
-      <Part Name="MONSTER_PART_LWING" Group="WING">
+      <Part Name="MONSTER_PART_LWING" Group="WING" TenderizeIds="1,2">
         <Break Threshold="1"/>
       </Part>
-      <Part Name="MONSTER_PART_RWING" Group="WING">
+      <Part Name="MONSTER_PART_RWING" Group="WING" TenderizeIds="6,7">
         <Break Threshold="1"/>
       </Part>
-      <Part Name="MONSTER_PART_LLEG" Group="LEG"/>
-      <Part Name="MONSTER_PART_RLEG" Group="LEG"/>
-      <Part Name="MONSTER_PART_TAIL" Group="TAIL"/>
+      <Part Name="MONSTER_PART_LLEG" Group="LEG" TenderizeIds="3"/>
+      <Part Name="MONSTER_PART_RLEG" Group="LEG" TenderizeIds="8"/>
+      <Part Name="MONSTER_PART_TAIL" Group="TAIL" TenderizeIds="4,9"/>
     </Parts>
   </Monster>
   <Monster ID="em002_00" Capture="20"  GameID="1"> <!-- Rathalos -->
@@ -132,21 +132,21 @@
       <Part Name="MONSTER_PART_REMOVABLE_TAIL" IsRemovable="True">
         <Break Threshold="1"/>
       </Part>
-      <Part Name="MONSTER_PART_HEAD" Group="HEAD">
+      <Part Name="MONSTER_PART_HEAD" Group="HEAD" TenderizeIds="0,5">
         <Break Threshold="2"/>
       </Part>
       <Part Name="MONSTER_PART_BODY" Group="BODY">
         <Break Threshold="1"/>
       </Part>
-      <Part Name="MONSTER_PART_LWING" Group="WING">
+      <Part Name="MONSTER_PART_LWING" Group="WING" TenderizeIds="1,2">
         <Break Threshold="1"/>
       </Part>
-      <Part Name="MONSTER_PART_RWING" Group="WING">
+      <Part Name="MONSTER_PART_RWING" Group="WING" TenderizeIds="6,7">
         <Break Threshold="1"/>
       </Part>
-      <Part Name="MONSTER_PART_LLEG" Group="LEG"/>
-      <Part Name="MONSTER_PART_RLEG" Group="LEG"/>
-      <Part Name="MONSTER_PART_TAIL" Group="TAIL"/>
+      <Part Name="MONSTER_PART_LLEG" Group="LEG" TenderizeIds="3"/>
+      <Part Name="MONSTER_PART_RLEG" Group="LEG" TenderizeIds="8"/>
+      <Part Name="MONSTER_PART_TAIL" Group="TAIL" TenderizeIds="4,9"/>
     </Parts>
   </Monster>
   <Monster ID="em002_01" Capture="15"  GameID="11"> <!-- Azure Rathalos -->
@@ -159,21 +159,21 @@
       <Part Name="MONSTER_PART_REMOVABLE_TAIL" IsRemovable="True">
         <Break Threshold="1"/>
       </Part>
-      <Part Name="MONSTER_PART_HEAD" Group="HEAD">
+      <Part Name="MONSTER_PART_HEAD" Group="HEAD" TenderizeIds="0,5">
         <Break Threshold="2"/>
       </Part>
       <Part Name="MONSTER_PART_BODY" Group="BODY">
         <Break Threshold="1"/>
       </Part>
-      <Part Name="MONSTER_PART_LWING" Group="WING">
+      <Part Name="MONSTER_PART_LWING" Group="WING" TenderizeIds="1,2">
         <Break Threshold="1"/>
       </Part>
-      <Part Name="MONSTER_PART_RWING" Group="WING">
+      <Part Name="MONSTER_PART_RWING" Group="WING" TenderizeIds="6,7">
         <Break Threshold="1"/>
       </Part>
-      <Part Name="MONSTER_PART_LLEG" Group="LEG"/>
-      <Part Name="MONSTER_PART_RLEG" Group="LEG"/>
-      <Part Name="MONSTER_PART_TAIL" Group="TAIL"/>
+      <Part Name="MONSTER_PART_LLEG" Group="LEG" TenderizeIds="3"/>
+      <Part Name="MONSTER_PART_RLEG" Group="LEG" TenderizeIds="8"/>
+      <Part Name="MONSTER_PART_TAIL" Group="TAIL" TenderizeIds="4,9"/>
     </Parts>
   </Monster>
   <Monster ID="em002_02" Capture="10"  GameID="89"> <!-- Silver Rathalos -->
@@ -187,21 +187,21 @@
       <Part Name="MONSTER_PART_REMOVABLE_TAIL" IsRemovable="True" Index="0">
         <Break Threshold="1"/>
       </Part>
-      <Part Name="MONSTER_PART_HEAD" Group="HEAD">
+      <Part Name="MONSTER_PART_HEAD" Group="HEAD" TenderizeIds="0,5">
         <Break Threshold="2"/>
       </Part>
       <Part Name="MONSTER_PART_BODY" Group="BODY">
         <Break Threshold="1"/>
       </Part>
-      <Part Name="MONSTER_PART_LWING" Group="WING">
+      <Part Name="MONSTER_PART_LWING" Group="WING" TenderizeIds="1,2">
         <Break Threshold="1"/>
       </Part>
-      <Part Name="MONSTER_PART_RWING" Group="WING">
+      <Part Name="MONSTER_PART_RWING" Group="WING" TenderizeIds="6,7">
         <Break Threshold="1"/>
       </Part>
-      <Part Name="MONSTER_PART_LLEG" Group="LEG"/>
-      <Part Name="MONSTER_PART_RLEG" Group="LEG"/>
-      <Part Name="MONSTER_PART_TAIL" Group="TAIL"/>
+      <Part Name="MONSTER_PART_LLEG" Group="LEG" TenderizeIds="3"/>
+      <Part Name="MONSTER_PART_RLEG" Group="LEG" TenderizeIds="8"/>
+      <Part Name="MONSTER_PART_TAIL" Group="TAIL" TenderizeIds="4,9"/>
     </Parts>
   </Monster>
   <Monster ID="em007_00" Capture="20"  GameID="12"> <!-- Diablos -->
@@ -218,15 +218,15 @@
       <Part Name="MONSTER_PART_REMOVABLE_TAIL" IsRemovable="True">
         <Break Threshold="1"/>
       </Part>
-      <Part Name="MONSTER_PART_HEAD" Group="HEAD"/>
-      <Part Name="MONSTER_PART_BODY" Group="BODY">
+      <Part Name="MONSTER_PART_HEAD" Group="HEAD" TenderizeIds="0,4"/>
+      <Part Name="MONSTER_PART_BODY" Group="BODY" TenderizeIds="1,5">
         <Break Threshold="1"/>
       </Part>
       <Part Name="MONSTER_PART_LWING" Group="WING"/>
       <Part Name="MONSTER_PART_RWING" Group="WING"/>
-      <Part Name="MONSTER_PART_LLEG" Group="LEG"/>
-      <Part Name="MONSTER_PART_RLEG" Group="LEG"/>
-      <Part Name="MONSTER_PART_TAIL" Group="TAIL"/>
+      <Part Name="MONSTER_PART_LLEG" Group="LEG" TenderizeIds="2"/>
+      <Part Name="MONSTER_PART_RLEG" Group="LEG" TenderizeIds="6"/>
+      <Part Name="MONSTER_PART_TAIL" Group="TAIL" TenderizeIds="3,7"/>
     </Parts>
   </Monster>
   <Monster ID="em007_01" Capture="15"  GameID="13"> <!-- Black Diablos -->
@@ -243,15 +243,15 @@
       <Part Name="MONSTER_PART_REMOVABLE_TAIL" IsRemovable="True">
         <Break Threshold="1"/>
       </Part>
-      <Part Name="MONSTER_PART_HEAD" Group="HEAD"/>
-      <Part Name="MONSTER_PART_BODY" Group="BODY">
+      <Part Name="MONSTER_PART_HEAD" Group="HEAD" TenderizeIds="0,4"/>
+      <Part Name="MONSTER_PART_BODY" Group="BODY" TenderizeIds="1,5">
         <Break Threshold="1"/>
       </Part>
       <Part Name="MONSTER_PART_LWING" Group="WING"/>
       <Part Name="MONSTER_PART_RWING" Group="WING"/>
-      <Part Name="MONSTER_PART_LLEG" Group="LEG"/>
-      <Part Name="MONSTER_PART_RLEG" Group="LEG"/>
-      <Part Name="MONSTER_PART_TAIL" Group="TAIL"/>
+      <Part Name="MONSTER_PART_LLEG" Group="LEG" TenderizeIds="2"/>
+      <Part Name="MONSTER_PART_RLEG" Group="LEG" TenderizeIds="6"/>
+      <Part Name="MONSTER_PART_TAIL" Group="TAIL" TenderizeIds="3,7"/>
     </Parts>
   </Monster>
   <Monster ID="em011_00" Capture="0"  GameID="14"> <!-- Kirin -->
@@ -261,9 +261,9 @@
     </Weaknesses>
     <Crown Mini="0.9" Silver="1.15" Gold="1.23"/>
     <Parts Max="3">
-      <Part Name="MONSTER_PART_HORN" Group="HORN"/> <!-- Heath < 15% && Flinch Counter >= 1 -->
-      <Part Name="MONSTER_PART_ARMS" Group="ARM"/>
-      <Part Name="MONSTER_PART_LEGS" Group="LEG"/>
+      <Part Name="MONSTER_PART_HORN" Group="HORN" TenderizeIds="0,2"/> <!-- Heath < 15% && Flinch Counter >= 1 -->
+      <Part Name="MONSTER_PART_ARMS" Group="ARM" TenderizeIds="1,3"/>
+      <Part Name="MONSTER_PART_LEGS" Group="LEG" TenderizeIds="1,3"/>
     </Parts>
   </Monster>
   <Monster ID="em018_00" Capture="20"  GameID="90"> <!-- Yian Garuga -->
@@ -276,22 +276,22 @@
       <Part Name="MONSTER_PART_REMOVABLE_TAIL" IsRemovable="True">
         <Break Threshold="1"/>
       </Part>
-      <Part Name="MONSTER_PART_HEAD" Group="HEAD">
+      <Part Name="MONSTER_PART_HEAD" Group="HEAD" TenderizeIds="0,5">
         <Break Threshold="2"/>
         <Break Threshold="4"/>
       </Part>
       <Part Name="MONSTER_PART_BODY" Group="BODY">
         <Break Threshold="1"/>
       </Part>
-      <Part Name="MONSTER_PART_LLEG" Group="LEG"/>
-      <Part Name="MONSTER_PART_RLEG" Group="LEG"/>
-      <Part Name="MONSTER_PART_LWING" Group="WING">
+      <Part Name="MONSTER_PART_LLEG" Group="LEG" TenderizeIds="3"/>
+      <Part Name="MONSTER_PART_RLEG" Group="LEG" TenderizeIds="8"/>
+      <Part Name="MONSTER_PART_LWING" Group="WING" TenderizeIds="1,2">
         <Break Threshold="1"/>
       </Part>
-      <Part Name="MONSTER_PART_RWING" Group="WING">
+      <Part Name="MONSTER_PART_RWING" Group="WING" TenderizeIds="6,7">
         <Break Threshold="1"/>
       </Part>
-      <Part Name="MONSTER_PART_TAIL" Group="TAIL"/>
+      <Part Name="MONSTER_PART_TAIL" Group="TAIL" TenderizeIds="4,9"/>
     </Parts>
   </Monster>
   <Monster ID="em018_05" Capture="15"  GameID="99"> <!-- Scarred Yian Garuga -->
@@ -304,22 +304,22 @@
       <Part Name="MONSTER_PART_REMOVABLE_TAIL" IsRemovable="True">
         <Break Threshold="1"/>
       </Part>
-      <Part Name="MONSTER_PART_HEAD" Group="HEAD">
+      <Part Name="MONSTER_PART_HEAD" Group="HEAD" TenderizeIds="0,5">
         <Break Threshold="2"/>
         <Break Threshold="4"/>
       </Part>
       <Part Name="MONSTER_PART_BODY" Group="BODY">
         <Break Threshold="1"/>
       </Part>
-      <Part Name="MONSTER_PART_LLEG" Group="LEG"/>
-      <Part Name="MONSTER_PART_RLEG" Group="LEG"/>
-      <Part Name="MONSTER_PART_LWING" Group="WING">
+      <Part Name="MONSTER_PART_LLEG" Group="LEG" TenderizeIds="3"/>
+      <Part Name="MONSTER_PART_RLEG" Group="LEG" TenderizeIds="8"/>
+      <Part Name="MONSTER_PART_LWING" Group="WING" TenderizeIds="1,2">
         <Break Threshold="1"/>
       </Part>
-      <Part Name="MONSTER_PART_RWING" Group="WING">
+      <Part Name="MONSTER_PART_RWING" Group="WING" TenderizeIds="6,7">
         <Break Threshold="1"/>
       </Part>
-      <Part Name="MONSTER_PART_TAIL" Group="TAIL"/>
+      <Part Name="MONSTER_PART_TAIL" Group="TAIL" TenderizeIds="4,9"/>
     </Parts>
   </Monster>
   <Monster ID="em023_00" Capture="15"  GameID="91"> <!-- Rajang -->
@@ -341,14 +341,14 @@
       <Part Name="MONSTER_PART_RAGE" IsRemovable="True" Index="3"/>
       <Part Name="MONSTER_PART_HEAD" Group="HEAD"/>
       <Part Name="MONSTER_PART_BODY" Group="BODY"/>
-      <Part Name="MONSTER_PART_LARM" Group="ARM">
+      <Part Name="MONSTER_PART_LARM" Group="ARM" TenderizeIds="0">
         <Break Threshold="1"/>
       </Part>
-      <Part Name="MONSTER_PART_RARM" Group="ARM">
+      <Part Name="MONSTER_PART_RARM" Group="ARM" TenderizeIds="2">
         <Break Threshold="1"/>
       </Part>
-      <Part Name="MONSTER_PART_LLEG" Group="LEG"/>
-      <Part Name="MONSTER_PART_RLEG" Group="LEG"/>
+      <Part Name="MONSTER_PART_LLEG" Group="LEG" TenderizeIds="1,3"/>
+      <Part Name="MONSTER_PART_RLEG" Group="LEG" TenderizeIds="1,3"/>
       <Part Name="MONSTER_PART_TAIL" Group="TAIL"/>
     </Parts>
   </Monster>
@@ -369,14 +369,14 @@
       <Part Name="MONSTER_PART_RAGE" IsRemovable="True" Index="3"/>
       <Part Name="MONSTER_PART_HEAD" Group="HEAD"/>
       <Part Name="MONSTER_PART_BODY" Group="BODY"/>
-      <Part Name="MONSTER_PART_LARM" Group="ARM">
+      <Part Name="MONSTER_PART_LARM" Group="ARM" TenderizeIds="0">
         <Break Threshold="1"/>
       </Part>
-      <Part Name="MONSTER_PART_RARM" Group="ARM">
+      <Part Name="MONSTER_PART_RARM" Group="ARM" TenderizeIds="2">
         <Break Threshold="1"/>
       </Part>
-      <Part Name="MONSTER_PART_LLEG" Group="LEG"/>
-      <Part Name="MONSTER_PART_RLEG" Group="LEG"/>
+      <Part Name="MONSTER_PART_LLEG" Group="LEG" TenderizeIds="1,3"/>
+      <Part Name="MONSTER_PART_RLEG" Group="LEG" TenderizeIds="1,3"/>
       <Part Name="MONSTER_PART_TAIL" Group="TAIL"/>
     </Parts>
   </Monster>
@@ -390,12 +390,12 @@
       <Part Name="MONSTER_PART_REMOVABLE_TAIL" IsRemovable="True">
         <Break Threshold="1"/>
       </Part>
-      <Part Name="MONSTER_PART_HEAD" Group="HEAD"/> <!-- Heath < 15% && Flinch Counter >= 5 -->
+      <Part Name="MONSTER_PART_HEAD" Group="HEAD" TenderizeIds="0,3"/> <!-- Heath < 15% && Flinch Counter >= 5 -->
       <Part Name="MONSTER_PART_BODY" Group="BODY"/>
-      <Part Name="MONSTER_PART_TAIL" Group="TAIL"/>
+      <Part Name="MONSTER_PART_TAIL" Group="TAIL" TenderizeIds="2,5"/>
       <Part Name="MONSTER_PART_LLIMBS" Group="LIMB"/>
       <Part Name="MONSTER_PART_RLIMBS" Group="LIMB"/>
-      <Part Name="MONSTER_PART_WINGS" Group="WING">
+      <Part Name="MONSTER_PART_WINGS" Group="WING" TenderizeIds="1,4">
         <Break Threshold="2"/>
       </Part>
     </Parts>
@@ -410,16 +410,16 @@
       <Part Name="MONSTER_PART_REMOVABLE_TAIL" IsRemovable="True">
         <Break Threshold="1"/>
       </Part>
-      <Part Name="MONSTER_PART_HEAD" Group="HEAD"/> <!-- Heath < 15% && Flinch Counter >= 4 -->
+      <Part Name="MONSTER_PART_HEAD" Group="HEAD" TenderizeIds="0,3"/> <!-- Heath < 15% && Flinch Counter >= 4 -->
       <Part Name="MONSTER_PART_BODY" Group="BODY"/>
       <Part Name="MONSTER_PART_LIMBS" Group="LIMB"/>
-      <Part Name="MONSTER_PART_LWING" Group="WING">
+      <Part Name="MONSTER_PART_LWING" Group="WING" TenderizeIds="1,4">
         <Break Threshold="2"/>
       </Part>
-      <Part Name="MONSTER_PART_RWING" Group="WING">
+      <Part Name="MONSTER_PART_RWING" Group="WING" TenderizeIds="1,4">
         <Break Threshold="2"/>
       </Part>
-      <Part Name="MONSTER_PART_TAIL" Group="TAIL"/>
+      <Part Name="MONSTER_PART_TAIL" Group="TAIL" TenderizeIds="2,5"/>
     </Parts>
   </Monster>
   <Monster ID="em027_00" Capture="0"  GameID="18"> <!-- Teostra -->
@@ -433,14 +433,14 @@
         <Break Threshold="1"/>
       </Part>
       <Part Name="MONSTER_PART_UNKNOWN" IsRemovable="True"/>
-      <Part Name="MONSTER_PART_HEAD" Group="HEAD"/>  <!-- Heath < 20% && Flinch Counter >= 1 -->
+      <Part Name="MONSTER_PART_HEAD" Group="HEAD" TenderizeIds="0,3"/>  <!-- Heath < 20% && Flinch Counter >= 1 -->
       <Part Name="MONSTER_PART_BODY" Group="BODY"/>
       <Part Name="MONSTER_PART_ARMS" Group="ARM"/>
       <Part Name="MONSTER_PART_LEGS" Group="LEG"/>
-      <Part Name="MONSTER_PART_WINGS" Group="WING">
+      <Part Name="MONSTER_PART_WINGS" Group="WING" TenderizeIds="1,4">
         <Break Threshold="1"/>
       </Part>
-      <Part Name="MONSTER_PART_TAIL" Group="TAIL"/>
+      <Part Name="MONSTER_PART_TAIL" Group="TAIL" TenderizeIds="2,5"/>
     </Parts>
   </Monster>
   <Monster ID="em032_00" Capture="20"  GameID="61"> <!-- Tigrex -->
@@ -453,19 +453,19 @@
       <Part Name="MONSTER_PART_REMOVABLE_TAIL" IsRemovable="True">
         <Break Threshold="1"/>
       </Part>
-      <Part Name="MONSTER_PART_HEAD" Group="HEAD">
+      <Part Name="MONSTER_PART_HEAD" Group="HEAD" TenderizeIds="0,3">
         <Break Threshold="1"/>
       </Part>
       <Part Name="MONSTER_PART_BODY" Group="BODY"/>
-      <Part Name="MONSTER_PART_LARM" Group="ARM">
+      <Part Name="MONSTER_PART_LARM" Group="ARM" TenderizeIds="1,6">
         <Break Threshold="2"/>
       </Part>
-      <Part Name="MONSTER_PART_RARM" Group="ARM">
+      <Part Name="MONSTER_PART_RARM" Group="ARM" TenderizeIds="4,7">
         <Break Threshold="2"/>
       </Part>
       <Part Name="MONSTER_PART_LLEG" Group="LEG"/>
       <Part Name="MONSTER_PART_RLEG" Group="LEG"/>
-      <Part Name="MONSTER_PART_TAIL" Group="TAIL"/>
+      <Part Name="MONSTER_PART_TAIL" Group="TAIL" TenderizeIds="2,5"/>
     </Parts>
   </Monster>
   <Monster ID="em032_01" Capture="15"  GameID="93"> <!-- Brute Tigrex -->
@@ -478,19 +478,19 @@
       <Part Name="MONSTER_PART_REMOVABLE_TAIL" IsRemovable="True">
         <Break Threshold="1"/>
       </Part>
-      <Part Name="MONSTER_PART_HEAD" Group="HEAD">
+      <Part Name="MONSTER_PART_HEAD" Group="HEAD" TenderizeIds="0,3">
         <Break Threshold="1"/>
       </Part>
       <Part Name="MONSTER_PART_BODY" Group="BODY"/>
-      <Part Name="MONSTER_PART_LARM" Group="ARM">
+      <Part Name="MONSTER_PART_LARM" Group="ARM" TenderizeIds="1,6">
         <Break Threshold="2"/>
       </Part>
-      <Part Name="MONSTER_PART_RARM" Group="ARM">
+      <Part Name="MONSTER_PART_RARM" Group="ARM" TenderizeIds="4,7">
         <Break Threshold="2"/>
       </Part>
       <Part Name="MONSTER_PART_LLEG" Group="LEG"/>
       <Part Name="MONSTER_PART_RLEG" Group="LEG"/>
-      <Part Name="MONSTER_PART_TAIL" Group="TAIL"/>
+      <Part Name="MONSTER_PART_TAIL" Group="TAIL" TenderizeIds="2,5"/>
     </Parts>
   </Monster>
   <Monster ID="em036_00" Capture="20"  GameID="19"> <!-- Lavasioth -->
@@ -500,10 +500,10 @@
     </Weaknesses>
     <Crown Mini="0.9" Silver="1.15" Gold="1.23"/>
     <Parts Max="6">
-      <Part Name="MONSTER_PART_HEAD" Group="HEAD">
+      <Part Name="MONSTER_PART_HEAD" Group="HEAD" TenderizeIds="0,3">
         <Break Threshold="6"/>
       </Part>
-      <Part Name="MONSTER_PART_BODY" Group="BODY">
+      <Part Name="MONSTER_PART_BODY" Group="BODY" TenderizeIds="1,4">
         <Break Threshold="2"/>
       </Part>
       <Part Name="MONSTER_PART_ABDOMEN" Group="ABDOMEN"/>
@@ -513,7 +513,7 @@
       <Part Name="MONSTER_PART_RLEG" Group="LEG">
         <Break Threshold="4"/>
       </Part>
-      <Part Name="MONSTER_PART_TAIL" Group="TAIL">
+      <Part Name="MONSTER_PART_TAIL" Group="TAIL" TenderizeIds="2,5">
         <Break Threshold="4"/>
       </Part>
     </Parts>
@@ -528,19 +528,19 @@
       <Part Name="MONSTER_PART_REMOVABLE_TAIL" IsRemovable="True">
         <Break Threshold="1"/>
       </Part>
-      <Part Name="MONSTER_PART_HEAD" Group="HEAD">
+      <Part Name="MONSTER_PART_HEAD" Group="HEAD" TenderizeIds="0,3">
         <Break Threshold="4"/>
       </Part>
       <Part Name="MONSTER_PART_BODY" Group="BODY"/>
-      <Part Name="MONSTER_PART_LARM" Group="ARM">
+      <Part Name="MONSTER_PART_LARM" Group="ARM" TenderizeIds="1,6">
         <Break Threshold="1"/>
       </Part>
-      <Part Name="MONSTER_PART_RARM" Group="ARM">
+      <Part Name="MONSTER_PART_RARM" Group="ARM" TenderizeIds="4,7">
         <Break Threshold="1"/>
       </Part>
       <Part Name="MONSTER_PART_LLEG" Group="LEG"/>
       <Part Name="MONSTER_PART_RLEG" Group="LEG"/>
-      <Part Name="MONSTER_PART_TAIL" Group="TAIL"/>
+      <Part Name="MONSTER_PART_TAIL" Group="TAIL" TenderizeIds="2,5"/>
     </Parts>
   </Monster>
   <Monster ID="em042_00" Capture="20" GameID="63"> <!-- Barioth -->
@@ -553,19 +553,19 @@
       <Part Name="MONSTER_PART_REMOVABLE_TAIL" IsRemovable="True">
         <Break Threshold="1"/>
       </Part>
-      <Part Name="MONSTER_PART_HEAD" Group="HEAD">
+      <Part Name="MONSTER_PART_HEAD" Group="HEAD" TenderizeIds="0,3">
         <Break Threshold="3"/>
       </Part>
       <Part Name="MONSTER_PART_BODY" Group="BODY"/>
-      <Part Name="MONSTER_PART_LARM" Group="ARM">
+      <Part Name="MONSTER_PART_LARM" Group="ARM" TenderizeIds="1,6">
         <Break Threshold="1"/>
       </Part>
-      <Part Name="MONSTER_PART_RARM" Group="ARM">
+      <Part Name="MONSTER_PART_RARM" Group="ARM" TenderizeIds="4,7">
         <Break Threshold="1"/>
       </Part>
       <Part Name="MONSTER_PART_LLEG" Group="LEG"/>
       <Part Name="MONSTER_PART_RLEG" Group="LEG"/>
-      <Part Name="MONSTER_PART_TAIL" Group="TAIL"/>
+      <Part Name="MONSTER_PART_TAIL" Group="TAIL" TenderizeIds="2,5"/>
     </Parts>
   </Monster>
   <Monster ID="em042_05" Capture="20" GameID="100"> <!-- Frostfang Barioth -->
@@ -578,16 +578,15 @@
       <Part Name="MONSTER_PART_REMOVABLE_TAIL" IsRemovable="True">
         <Break Threshold="1"/>
       </Part>
-      <Part Name="MONSTER_PART_HEAD" Group="HEAD"/>
+      <Part Name="MONSTER_PART_HEAD" Group="HEAD" TenderizeIds="0,3"/>
       <Part Name="MONSTER_PART_BODY" Group="BODY"/>
-      <Part Name="MONSTER_PART_LARM" Group="ARM"/>
-      <Part Name="MONSTER_PART_RARM" Group="ARM"/>
+      <Part Name="MONSTER_PART_LARM" Group="ARM" TenderizeIds="1,6"/>
+      <Part Name="MONSTER_PART_RARM" Group="ARM" TenderizeIds="4,7"/>
       <Part Name="MONSTER_PART_LLEG" Group="LEG"/>
       <Part Name="MONSTER_PART_RLEG" Group="LEG"/>
-      <Part Name="MONSTER_PART_TAIL" Group="TAIL"/>
+      <Part Name="MONSTER_PART_TAIL" Group="TAIL" TenderizeIds="2,5"/>
     </Parts>
   </Monster>
-
   <Monster ID="em043_00" Capture="20"  GameID="20"> <!-- Deviljho -->
     <Weaknesses>
       <Weakness ID="ELEMENT_DRAGON" Stars="3"/>
@@ -599,18 +598,18 @@
         <Break Threshold="1"/>
       </Part>
       <Part Name="MONSTER_PART_BIG_FLINCH" IsRemovable="True"/>
-      <Part Name="MONSTER_PART_HEAD" Group="HEAD">
+      <Part Name="MONSTER_PART_HEAD" Group="HEAD" TenderizeIds="0,4">
         <Break Threshold="3"/>
       </Part>
-      <Part Name="MONSTER_PART_BODY" Group="BODY"/>
+      <Part Name="MONSTER_PART_BODY" Group="BODY" TenderizeIds="1,5"/>
       <Part Name="MONSTER_PART_CHEST" Group="CHEST">
         <Break Threshold="5"/>
       </Part>
       <Part Name="MONSTER_PART_REAR" Group="REAR"/>
       <Part Name="MONSTER_PART_ARMS" Group="ARM"/>
-      <Part Name="MONSTER_PART_LLEG" Group="LEG"/>
-      <Part Name="MONSTER_PART_RLEG" Group="LEG"/>
-      <Part Name="MONSTER_PART_TAIL" Group="TAIL"/>
+      <Part Name="MONSTER_PART_LLEG" Group="LEG" TenderizeIds="2"/>
+      <Part Name="MONSTER_PART_RLEG" Group="LEG" TenderizeIds="6"/>
+      <Part Name="MONSTER_PART_TAIL" Group="TAIL" TenderizeIds="3,7"/>
     </Parts>
   </Monster>
   <Monster ID="em043_05" Capture="10"  GameID="64"> <!-- Savage Deviljho -->
@@ -625,18 +624,18 @@
       </Part>
       <Part Name="MONSTER_PART_BIG_FLINCH" IsRemovable="True"/>
       <Part Name="MONSTER_PART_COUNTERATTACK" IsRemovable="True"/>
-      <Part Name="MONSTER_PART_HEAD" Group="HEAD">
+      <Part Name="MONSTER_PART_HEAD" Group="HEAD" TenderizeIds="0,4">
         <Break Threshold="2"/>
       </Part>
-      <Part Name="MONSTER_PART_BODY" Group="BODY"/>
+      <Part Name="MONSTER_PART_BODY" Group="BODY" TenderizeIds="1,5"/>
       <Part Name="MONSTER_PART_CHEST" Group="CHEST">
         <Break Threshold="2"/>
       </Part>
       <Part Name="MONSTER_PART_REAR" Group="REAR"/>
       <Part Name="MONSTER_PART_ARMS" Group="ARM"/>
-      <Part Name="MONSTER_PART_LLEG" Group="LEG"/>
-      <Part Name="MONSTER_PART_RLEG" Group="LEG"/>
-      <Part Name="MONSTER_PART_TAIL" Group="TAIL"/>
+      <Part Name="MONSTER_PART_LLEG" Group="LEG" TenderizeIds="2"/>
+      <Part Name="MONSTER_PART_RLEG" Group="LEG" TenderizeIds="6"/>
+      <Part Name="MONSTER_PART_TAIL" Group="TAIL" TenderizeIds="3,7"/>
     </Parts>
   </Monster>
   <Monster ID="em044_00" Capture="25"  GameID="21"> <!-- Barroth -->
@@ -652,12 +651,12 @@
       <Part Name="MONSTER_PART_REMOVABLE_TAIL" IsRemovable="True">
         <Break Threshold="1"/>
       </Part>
-      <Part Name="MONSTER_PART_HEAD" Group="HEAD"/>
-      <Part Name="MONSTER_PART_HEAD_MUD" Group="HEAD">
+      <Part Name="MONSTER_PART_HEAD" Group="HEAD" TenderizeIds="0,4"/>
+      <Part Name="MONSTER_PART_HEAD_MUD" Group="HEAD" TenderizeIds="0,4">
         <Break Threshold="1"/>
       </Part>
-      <Part Name="MONSTER_PART_BODY" Group="BODY"/>
-      <Part Name="MONSTER_PART_BODY_MUD" Group="BODY">
+      <Part Name="MONSTER_PART_BODY" Group="BODY" TenderizeIds="1,5"/>
+      <Part Name="MONSTER_PART_BODY_MUD" Group="BODY" TenderizeIds="1,5">
         <Break Threshold="1"/>
       </Part>
       <Part Name="MONSTER_PART_ARMS" Group="ARM">
@@ -666,20 +665,20 @@
       <Part Name="MONSTER_PART_ARMS_MUD" Group="ARM">
         <Break Threshold="1"/>
       </Part>
-      <Part Name="MONSTER_PART_LLEG" Group="LEG">
+      <Part Name="MONSTER_PART_LLEG" Group="LEG" TenderizeIds="2">
         <Break Threshold="1"/>
       </Part>
-      <Part Name="MONSTER_PART_LLEG_MUD" Group="LEG">
+      <Part Name="MONSTER_PART_LLEG_MUD" Group="LEG" TenderizeIds="2">
         <Break Threshold="1"/>
       </Part>
-      <Part Name="MONSTER_PART_RLEG" Group="LEG">
+      <Part Name="MONSTER_PART_RLEG" Group="LEG" TenderizeIds="6">
         <Break Threshold="1"/>
       </Part>
-      <Part Name="MONSTER_PART_RLEG_MUD" Group="LEG">
+      <Part Name="MONSTER_PART_RLEG_MUD" Group="LEG" TenderizeIds="6">
         <Break Threshold="1"/>
       </Part>
-      <Part Name="MONSTER_PART_TAIL" Group="TAIL"/>
-      <Part Name="MONSTER_PART_TAIL_MUD" Group="TAIL">
+      <Part Name="MONSTER_PART_TAIL" Group="TAIL" TenderizeIds="3,7"/>
+      <Part Name="MONSTER_PART_TAIL_MUD" Group="TAIL" TenderizeIds="3,7">
         <Break Threshold="1"/>
       </Part>
     </Parts>
@@ -697,14 +696,14 @@
       <Part Name="MONSTER_PART_JAW" Group="JAW">
         <Break Threshold="1"/>
       </Part>
-      <Part Name="MONSTER_PART_HEAD" Group="HEAD"/>
-      <Part Name="MONSTER_PART_BODY" Group="BODY">
+      <Part Name="MONSTER_PART_HEAD" Group="HEAD" TenderizeIds="0,4"/>
+      <Part Name="MONSTER_PART_BODY" Group="BODY" TenderizeIds="1,5">
         <Break Threshold="1"/>
       </Part>
       <Part Name="MONSTER_PART_ARMS" Group="ARM"/>
-      <Part Name="MONSTER_PART_LLEG" Group="LEG"/>
-      <Part Name="MONSTER_PART_RLEG" Group="LEG"/>
-      <Part Name="MONSTER_PART_TAIL" Group="TAIL">
+      <Part Name="MONSTER_PART_LLEG" Group="LEG" TenderizeIds="2"/>
+      <Part Name="MONSTER_PART_RLEG" Group="LEG" TenderizeIds="6"/>
+      <Part Name="MONSTER_PART_TAIL" Group="TAIL" TenderizeIds="3,7">
         <Break Threshold="1"/>
       </Part>
     </Parts>
@@ -727,14 +726,14 @@
       <Part Name="MONSTER_PART_EXPLOSION_WEAKENING" IsRemovable="True" Index="3">
         <Break Threshold="3"/>
       </Part>
-      <Part Name="MONSTER_PART_HEAD" Group="HEAD"/>
+      <Part Name="MONSTER_PART_HEAD" Group="HEAD" TenderizeIds="0,5"/>
       <Part Name="MONSTER_PART_CHEST" Group="BODY"/>
-      <Part Name="MONSTER_PART_WINGS" Group="WING">
+      <Part Name="MONSTER_PART_WINGS" Group="WING" TenderizeIds="2,7">
         <Break Threshold="2"/>
       </Part>
-      <Part Name="MONSTER_PART_ARMS" Group="ARM"/>
-      <Part Name="MONSTER_PART_LEGS" Group="LEG"/>
-      <Part Name="MONSTER_PART_TAIL" Group="TAIL"/>
+      <Part Name="MONSTER_PART_ARMS" Group="ARM" TenderizeIds="1,6"/>
+      <Part Name="MONSTER_PART_LEGS" Group="LEG" TenderizeIds="3,8"/>
+      <Part Name="MONSTER_PART_TAIL" Group="TAIL" TenderizeIds="4,9"/>
     </Parts>
   </Monster>
   <Monster ID="em057_00" Capture="20"  GameID="94"> <!-- Zinogre -->
@@ -748,19 +747,19 @@
       <Part Name="MONSTER_PART_REMOVABLE_TAIL" IsRemovable="True" Index="0">
         <Break Threshold="1"/>
       </Part>
-      <Part Name="MONSTER_PART_HEAD" Group="HEAD">
+      <Part Name="MONSTER_PART_HEAD" Group="HEAD" TenderizeIds="0,4">
         <Break Threshold="2"/>
         <Break Threshold="4"/>
       </Part>
-      <Part Name="MONSTER_PART_BODY" Group="BODY"/>
+      <Part Name="MONSTER_PART_BODY" Group="BODY" TenderizeIds="2,6"/>
       <Part Name="MONSTER_PART_BACK" Group="BACK">
         <Break Threshold="1"/>
       </Part>
-      <Part Name="MONSTER_PART_ARMS" Group="ARM">
+      <Part Name="MONSTER_PART_ARMS" Group="ARM" TenderizeIds="1,5">
         <Break Threshold="2"/>
       </Part>
       <Part Name="MONSTER_PART_LEGS" Group="LEG"/>
-      <Part Name="MONSTER_PART_TAIL" Group="TAIL"/>
+      <Part Name="MONSTER_PART_TAIL" Group="TAIL" TenderizeIds="3,7"/>
     </Parts>
   </Monster>
   <Monster ID="em057_01" Capture="20"  GameID="95"> <!-- Stygian Zinogre -->
@@ -774,19 +773,19 @@
       <Part Name="MONSTER_PART_REMOVABLE_TAIL" IsRemovable="True" Index="0">
         <Break Threshold="1"/>
       </Part>
-      <Part Name="MONSTER_PART_HEAD" Group="HEAD">
+      <Part Name="MONSTER_PART_HEAD" Group="HEAD" TenderizeIds="0,4">
         <Break Threshold="2"/>
         <Break Threshold="4"/>
       </Part>
-      <Part Name="MONSTER_PART_BODY" Group="BODY"/>
+      <Part Name="MONSTER_PART_BODY" Group="BODY" TenderizeIds="2,6"/>
       <Part Name="MONSTER_PART_BACK" Group="BACK">
         <Break Threshold="1"/>
       </Part>
-      <Part Name="MONSTER_PART_ARMS" Group="ARM">
+      <Part Name="MONSTER_PART_ARMS" Group="ARM" TenderizeIds="1,5">
         <Break Threshold="3"/>
       </Part>
       <Part Name="MONSTER_PART_LEGS" Group="LEG"/>
-      <Part Name="MONSTER_PART_TAIL" Group="TAIL"/>
+      <Part Name="MONSTER_PART_TAIL" Group="TAIL" TenderizeIds="3,7"/>
     </Parts>
   </Monster>
   <Monster ID="em063_00" Capture="20"  GameID="65"> <!-- Brachydios -->
@@ -799,19 +798,19 @@
       <Part Name="MONSTER_PART_REMOVABLE_TAIL" IsRemovable="True">
         <Break Threshold="1"/>
       </Part>
-      <Part Name="MONSTER_PART_HEAD" Group="HEAD">
+      <Part Name="MONSTER_PART_HEAD" Group="HEAD" TenderizeIds="0,4">
         <Break Threshold="4"/>
       </Part>
       <Part Name="MONSTER_PART_BODY" Group="BODY"/>
-      <Part Name="MONSTER_PART_LARM" Group="ARM">
+      <Part Name="MONSTER_PART_LARM" Group="ARM" TenderizeIds="1">
         <Break Threshold="2"/>
       </Part>
-      <Part Name="MONSTER_PART_RARM" Group="ARM">
+      <Part Name="MONSTER_PART_RARM" Group="ARM" TenderizeIds="5">
         <Break Threshold="2"/>
       </Part>
-      <Part Name="MONSTER_PART_LLEG" Group="LEG"/>
-      <Part Name="MONSTER_PART_RLEG" Group="LEG"/>
-      <Part Name="MONSTER_PART_TAIL" Group="TAIL"/>
+      <Part Name="MONSTER_PART_LLEG" Group="LEG" TenderizeIds="2"/>
+      <Part Name="MONSTER_PART_RLEG" Group="LEG" TenderizeIds="6"/>
+      <Part Name="MONSTER_PART_TAIL" Group="TAIL" TenderizeIds="3,7"/>
     </Parts>
   </Monster>
   <Monster ID="em063_05" Capture="0"  GameID="96"> <!-- Raging Brachydios -->
@@ -824,20 +823,20 @@
       <Part Name="MONSTER_PART_REMOVABLE_TAIL" IsRemovable="True">
         <Break Threshold="1"/>
       </Part>
-      <Part Name="MONSTER_PART_HEAD" Group="HEAD">
+      <Part Name="MONSTER_PART_HEAD" Group="HEAD" TenderizeIds="0,4">
         <Break Threshold="2"/>
       </Part>
       <Part Name="MONSTER_PART_BODY" Group="BODY"/>
       <Part Name="MONSTER_PART_BACK" Group="BACK"/>
-      <Part Name="MONSTER_PART_LARM" Group="ARM">
+      <Part Name="MONSTER_PART_LARM" Group="ARM" TenderizeIds="1">
         <Break Threshold="2"/>
       </Part>
-      <Part Name="MONSTER_PART_RARM" Group="ARM">
+      <Part Name="MONSTER_PART_RARM" Group="ARM" TenderizeIds="5">
         <Break Threshold="2"/>
       </Part>
-      <Part Name="MONSTER_PART_LLEG" Group="LEG"/>
-      <Part Name="MONSTER_PART_RLEG" Group="LEG"/>
-      <Part Name="MONSTER_PART_TAIL" Group="TAIL"/>
+      <Part Name="MONSTER_PART_LLEG" Group="LEG" TenderizeIds="2"/>
+      <Part Name="MONSTER_PART_RLEG" Group="LEG" TenderizeIds="6"/>
+      <Part Name="MONSTER_PART_TAIL" Group="TAIL" TenderizeIds="3,7"/>
       <Part Name="MONSTER_PART_TAIL_TIP" Group="TAIL"/>
     </Parts>
   </Monster>
@@ -852,20 +851,20 @@
       <Part Name="MONSTER_PART_REMOVABLE_TAIL" IsRemovable="True" Index="0">
         <Break Threshold="1"/>
       </Part>
-      <Part Name="MONSTER_PART_HEAD" Group="HEAD">
+      <Part Name="MONSTER_PART_HEAD" Group="HEAD" TenderizeIds="0,4">
         <Break Threshold="1"/>
         <Break Threshold="2"/>
       </Part>
       <Part Name="MONSTER_PART_FIN" Group="FIN">
         <Break Threshold="1"/>
       </Part>
-      <Part Name="MONSTER_PART_BODY" Group="BODY"/>
+      <Part Name="MONSTER_PART_BODY" Group="BODY" TenderizeIds="1,5"/>
       <Part Name="MONSTER_PART_ARMS" Group="ARM">
         <Break Threshold="1"/>
       </Part>
-      <Part Name="MONSTER_PART_LLEG" Group="LEG"/>
-      <Part Name="MONSTER_PART_RLEG" Group="LEG"/>
-      <Part Name="MONSTER_PART_TAIL" Group="TAIL">
+      <Part Name="MONSTER_PART_LLEG" Group="LEG" TenderizeIds="2"/>
+      <Part Name="MONSTER_PART_RLEG" Group="LEG" TenderizeIds="6"/>
+      <Part Name="MONSTER_PART_TAIL" Group="TAIL" TenderizeIds="3,7">
         <Break Threshold="1"/>
       </Part>
     </Parts>
@@ -882,20 +881,20 @@
         <Break Threshold="1"/>
       </Part>
       <Part Name="MONSTER_PART_UNKNOWN" IsRemovable="True" Index="2"/>
-      <Part Name="MONSTER_PART_HEAD" Group="HEAD">
+      <Part Name="MONSTER_PART_HEAD" Group="HEAD" TenderizeIds="0,4">
         <Break Threshold="1"/>
         <Break Threshold="2"/>
       </Part>
       <Part Name="MONSTER_PART_FIN" Group="FIN">
         <Break Threshold="1"/>
       </Part>
-      <Part Name="MONSTER_PART_BODY" Group="BODY"/>
+      <Part Name="MONSTER_PART_BODY" Group="BODY" TenderizeIds="1,5"/>
       <Part Name="MONSTER_PART_ARMS" Group="ARM">
         <Break Threshold="1"/>
       </Part>
-      <Part Name="MONSTER_PART_LLEG" Group="LEG"/>
-      <Part Name="MONSTER_PART_RLEG" Group="LEG"/>
-      <Part Name="MONSTER_PART_TAIL" Group="TAIL">
+      <Part Name="MONSTER_PART_LLEG" Group="LEG" TenderizeIds="2"/>
+      <Part Name="MONSTER_PART_RLEG" Group="LEG" TenderizeIds="6"/>
+      <Part Name="MONSTER_PART_TAIL" Group="TAIL" TenderizeIds="3,7">
         <Break Threshold="1"/>
       </Part>
     </Parts>
@@ -911,17 +910,17 @@
       <Part Name="MONSTER_PART_REMOVABLE_TAIL" IsRemovable="True" Index="0">
         <Break Threshold="1"/>
       </Part>
-      <Part Name="MONSTER_PART_HEAD" Group="HEAD">
+      <Part Name="MONSTER_PART_HEAD" Group="HEAD" TenderizeIds="0,4">
         <Break Threshold="5"/>
       </Part>
-      <Part Name="MONSTER_PART_BODY" Group="BODY"/>
-      <Part Name="MONSTER_PART_LLEG" Group="LEG">
+      <Part Name="MONSTER_PART_BODY" Group="BODY" TenderizeIds="1,5"/>
+      <Part Name="MONSTER_PART_LLEG" Group="LEG" TenderizeIds="2">
         <Break Threshold="3"/>
       </Part>
-      <Part Name="MONSTER_PART_RLEG" Group="LEG">
+      <Part Name="MONSTER_PART_RLEG" Group="LEG" TenderizeIds="6">
         <Break Threshold="3"/>
       </Part>
-      <Part Name="MONSTER_PART_TAIL" Group="TAIL"/>
+      <Part Name="MONSTER_PART_TAIL" Group="TAIL" TenderizeIds="3,7"/>
     </Parts>
   </Monster>
   <Monster ID="em100_01" Capture="15"  GameID="68"> <!-- Fulgur Anjanath -->
@@ -935,17 +934,17 @@
       <Part Name="MONSTER_PART_REMOVABLE_TAIL" IsRemovable="True" Index="0">
         <Break Threshold="1"/>
       </Part>
-      <Part Name="MONSTER_PART_HEAD" Group="HEAD">
+      <Part Name="MONSTER_PART_HEAD" Group="HEAD" TenderizeIds="0,4">
         <Break Threshold="5"/>
       </Part>
-      <Part Name="MONSTER_PART_BODY" Group="BODY"/>
-      <Part Name="MONSTER_PART_LLEG" Group="LEG">
+      <Part Name="MONSTER_PART_BODY" Group="BODY" TenderizeIds="1,5"/>
+      <Part Name="MONSTER_PART_LLEG" Group="LEG" TenderizeIds="2">
         <Break Threshold="3"/>
       </Part>
-      <Part Name="MONSTER_PART_RLEG" Group="LEG">
+      <Part Name="MONSTER_PART_RLEG" Group="LEG" TenderizeIds="6">
         <Break Threshold="3"/>
       </Part>
-      <Part Name="MONSTER_PART_TAIL" Group="TAIL"/>
+      <Part Name="MONSTER_PART_TAIL" Group="TAIL" TenderizeIds="3,7"/>
     </Parts>
   </Monster>
   <Monster ID="em101_00" Capture="30"  GameID="7"> <!-- Great Jagras -->
@@ -955,11 +954,11 @@
     </Weaknesses>
     <Crown Mini="0.9" Silver="1.15" Gold="1.23"/>
     <Parts Max="6">
-      <Part Name="MONSTER_PART_HEAD" Group="HEAD">
+      <Part Name="MONSTER_PART_HEAD" Group="HEAD" TenderizeIds="0,3">
         <Break Threshold="2"/>
       </Part>
-      <Part Name="MONSTER_PART_BODY" Group="BODY"/>
-      <Part Name="MONSTER_PART_ARMS" Group="ARM">
+      <Part Name="MONSTER_PART_BODY" Group="BODY" TenderizeIds="2,5"/>
+      <Part Name="MONSTER_PART_ARMS" Group="ARM" TenderizeIds="1,4">
         <Break Threshold="1"/>
       </Part>
       <Part Name="MONSTER_PART_LEGS" Group="LEG"/>
@@ -980,21 +979,21 @@
       <Part Name="MONSTER_PART_REMOVABLE_TAIL" IsRemovable="True">
         <Break Threshold="1"/>
       </Part>
-      <Part Name="MONSTER_PART_HEAD" Group="HEAD">
+      <Part Name="MONSTER_PART_HEAD" Group="HEAD" TenderizeIds="0,4">
         <Break Threshold="2"/>
       </Part>
       <Part Name="MONSTER_PART_BODY" Group="BODY">
         <Break Threshold="1"/>
       </Part>
-      <Part Name="MONSTER_PART_LWING" Group="WING">
+      <Part Name="MONSTER_PART_LWING" Group="WING" TenderizeIds="1">
         <Break Threshold="1"/>
       </Part>
-      <Part Name="MONSTER_PART_RWING" Group="WING">
+      <Part Name="MONSTER_PART_RWING" Group="WING" TenderizeIds="5">
         <Break Threshold="1"/>
       </Part>
-      <Part Name="MONSTER_PART_LLEG" Group="LEG"/>
-      <Part Name="MONSTER_PART_RLEG" Group="LEG"/>
-      <Part Name="MONSTER_PART_TAIL" Group="TAIL"/>
+      <Part Name="MONSTER_PART_LLEG" Group="LEG" TenderizeIds="2"/>
+      <Part Name="MONSTER_PART_RLEG" Group="LEG" TenderizeIds="6"/>
+      <Part Name="MONSTER_PART_TAIL" Group="TAIL" TenderizeIds="3,7"/>
     </Parts>
   </Monster>
   <Monster ID="em102_01" Capture="25"  GameID="69"> <!-- Coral Pukei-Pukei -->
@@ -1009,21 +1008,21 @@
         <Break Threshold="1"/>
       </Part>
       <Part Name="MONSTER_PART_INFLATED_TAIL" IsRemovable="True" Index="1"/>
-      <Part Name="MONSTER_PART_HEAD" Group="HEAD">
+      <Part Name="MONSTER_PART_HEAD" Group="HEAD" TenderizeIds="0,4">
         <Break Threshold="2"/>
       </Part>
       <Part Name="MONSTER_PART_BODY" Group="BODY">
         <Break Threshold="1"/>
       </Part>
-      <Part Name="MONSTER_PART_LWING" Group="WING">
+      <Part Name="MONSTER_PART_LWING" Group="WING" TenderizeIds="1">
         <Break Threshold="1"/>
       </Part>
-      <Part Name="MONSTER_PART_RWING" Group="WING">
+      <Part Name="MONSTER_PART_RWING" Group="WING" TenderizeIds="5">
         <Break Threshold="1"/>
       </Part>
-      <Part Name="MONSTER_PART_LLEG" Group="LEG"/>
-      <Part Name="MONSTER_PART_RLEG" Group="LEG"/>
-      <Part Name="MONSTER_PART_TAIL" Group="TAIL"/>
+      <Part Name="MONSTER_PART_LLEG" Group="LEG" TenderizeIds="2"/>
+      <Part Name="MONSTER_PART_RLEG" Group="LEG" TenderizeIds="6"/>
+      <Part Name="MONSTER_PART_TAIL" Group="TAIL" TenderizeIds="3,7"/>
     </Parts>
   </Monster>
   <Monster ID="em103_00" Capture="0"  GameID="25"> <!-- Nergigante -->
@@ -1042,15 +1041,15 @@
       </Part>
       <Part Name="MONSTER_PART_UNKNOWN" IsRemovable="True" Skip="True"/>
       <Part Name="MONSTER_PART_HORNS" Group="HORN"/>
-      <Part Name="MONSTER_PART_HEAD" Group="HEAD"/>
+      <Part Name="MONSTER_PART_HEAD" Group="HEAD" TenderizeIds="0,4"/>
       <Part Name="MONSTER_PART_BODY" Group="BODY"/>
-      <Part Name="MONSTER_PART_LARM" Group="ARM"/>
-      <Part Name="MONSTER_PART_RARM" Group="ARM"/>
+      <Part Name="MONSTER_PART_LARM" Group="ARM" TenderizeIds="1"/>
+      <Part Name="MONSTER_PART_RARM" Group="ARM" TenderizeIds="5"/>
       <Part Name="MONSTER_PART_LLEG" Group="LEG"/>
       <Part Name="MONSTER_PART_RLEG" Group="LEG"/>
-      <Part Name="MONSTER_PART_LWING" Group="WING"/>
-      <Part Name="MONSTER_PART_RWING" Group="WING"/>
-      <Part Name="MONSTER_PART_TAIL" Group="TAIL"/>
+      <Part Name="MONSTER_PART_LWING" Group="WING" TenderizeIds="2,8"/>
+      <Part Name="MONSTER_PART_RWING" Group="WING" TenderizeIds="6,9"/>
+      <Part Name="MONSTER_PART_TAIL" Group="TAIL" TenderizeIds="3,7"/>
     </Parts>
   </Monster>
   <Monster ID="em103_05" Capture="0"  GameID="70"> <!-- Ruiner Nergigante -->
@@ -1084,15 +1083,15 @@
         <Break Threshold="1"/>
       </Part>
       <Part Name="MONSTER_PART_HORNS" Group="HORN"/>
-      <Part Name="MONSTER_PART_HEAD" Group="HEAD"/>
+      <Part Name="MONSTER_PART_HEAD" Group="HEAD" TenderizeIds="0,4"/>
       <Part Name="MONSTER_PART_BODY" Group="BODY"/>
-      <Part Name="MONSTER_PART_LARM" Group="ARM"/>
-      <Part Name="MONSTER_PART_RARM" Group="ARM"/>
+      <Part Name="MONSTER_PART_LARM" Group="ARM" TenderizeIds="1"/>
+      <Part Name="MONSTER_PART_RARM" Group="ARM" TenderizeIds="5"/>
       <Part Name="MONSTER_PART_LLEG" Group="LEG"/>
       <Part Name="MONSTER_PART_RLEG" Group="LEG"/>
-      <Part Name="MONSTER_PART_LWING" Group="WING"/>
-      <Part Name="MONSTER_PART_RWING" Group="WING"/>
-      <Part Name="MONSTER_PART_TAIL" Group="TAIL"/>
+      <Part Name="MONSTER_PART_LWING" Group="WING" TenderizeIds="2,8"/>
+      <Part Name="MONSTER_PART_RWING" Group="WING" TenderizeIds="6,9"/>
+      <Part Name="MONSTER_PART_TAIL" Group="TAIL" TenderizeIds="3,7"/>
     </Parts>
   </Monster>
   <Monster ID="em104_00" Capture="0"  GameID="97"> <!-- Safi'jiiva -->
@@ -1105,7 +1104,7 @@
       <Part Name="MONSTER_PART_REMOVABLE_TAIL" IsRemovable="True">
         <Break Threshold="1"/>
       </Part>
-      <Part Name="MONSTER_PART_HEAD" Group="HEAD">
+      <Part Name="MONSTER_PART_HEAD" Group="HEAD" TenderizeIds="0,4,8,9">
         <Break Threshold="5"/>
         <Break Threshold="10"/>
       </Part>
@@ -1117,16 +1116,16 @@
         <Break Threshold="1"/>
       </Part>
       <Part Name="MONSTER_PART_NECK" Group="NECK"/>
-      <Part Name="MONSTER_PART_LARM" Group="ARM">
+      <Part Name="MONSTER_PART_LARM" Group="ARM" TenderizeIds="1,10">
         <Break Threshold="7"/>
       </Part>
-      <Part Name="MONSTER_PART_RARM" Group="ARM">
+      <Part Name="MONSTER_PART_RARM" Group="ARM" TenderizeIds="5">
         <Break Threshold="7"/>
       </Part>
-      <Part Name="MONSTER_PART_LLEG" Group="LEG">
+      <Part Name="MONSTER_PART_LLEG" Group="LEG" TenderizeIds="2,12">
         <Break Threshold="5"/>
       </Part>
-      <Part Name="MONSTER_PART_RLEG" Group="LEG">
+      <Part Name="MONSTER_PART_RLEG" Group="LEG" TenderizeIds="6">
         <Break Threshold="5"/>
       </Part>
       <Part Name="MONSTER_PART_LWING" Group="WING">
@@ -1135,7 +1134,7 @@
       <Part Name="MONSTER_PART_RWING" Group="WING">
         <Break Threshold="3"/>
       </Part>
-      <Part Name="MONSTER_PART_TAIL" Group="TAIL"/>
+      <Part Name="MONSTER_PART_TAIL" Group="TAIL" TenderizeIds="3,7"/>
     </Parts>
   </Monster>
   <Monster ID="em105_00" Capture="0"  GameID="26"> <!-- Xeno'jiiva -->
@@ -1149,24 +1148,24 @@
         <Break Threshold="1"/>
       </Part>
       <Part Name="MONSTER_PART_UNKNOWN" IsRemovable="True"/>
-      <Part Name="MONSTER_PART_HEAD" Group="HEAD">
+      <Part Name="MONSTER_PART_HEAD" Group="HEAD" TenderizeIds="0,4">
         <Break Threshold="2"/>
       </Part>
       <Part Name="MONSTER_PART_NECK" Group="NECK" />
       <Part Name="MONSTER_PART_BACK" Group="BACK"/>
       <Part Name="MONSTER_PART_CHEST" Group="CHEST"/>
-      <Part Name="MONSTER_PART_LARM" Group="ARM">
+      <Part Name="MONSTER_PART_LARM" Group="ARM" TenderizeIds="1">
         <Break Threshold="2"/>
       </Part>
-      <Part Name="MONSTER_PART_RARM" Group="ARM">
+      <Part Name="MONSTER_PART_RARM" Group="ARM" TenderizeIds="5">
         <Break Threshold="2"/>
       </Part>
       <Part Name="MONSTER_PART_LLEG" Group="LEG"/>
       <Part Name="MONSTER_PART_RLEG" Group="LEG"/>
-      <Part Name="MONSTER_PART_WINGS" Group="WING">
+      <Part Name="MONSTER_PART_WINGS" Group="WING" TenderizeIds="2,6,8,9">
         <Break Threshold="2"/>
       </Part>
-      <Part Name="MONSTER_PART_TAIL" Group="TAIL"/>
+      <Part Name="MONSTER_PART_TAIL" Group="TAIL" TenderizeIds="3,7"/>
     </Parts>
   </Monster>
   <Monster ID="em106_00" Capture="0"  GameID="4"> <!-- Zorah Magdaros -->
@@ -1217,14 +1216,14 @@
     </Weaknesses>
     <Crown Mini="0.9" Silver="1.15" Gold="1.23"/>
     <Parts Max="5">
-      <Part Name="MONSTER_PART_HEAD" Group="HEAD">
+      <Part Name="MONSTER_PART_HEAD" Group="HEAD" TenderizeIds="0,3">
         <Break Threshold="1"/>
       </Part>
-      <Part Name="MONSTER_PART_ARMS" Group="ARM">
+      <Part Name="MONSTER_PART_ARMS" Group="ARM" TenderizeIds="1,4">
         <Break Threshold="1"/>
       </Part>
       <Part Name="MONSTER_PART_LEGS" Group="LEG"/>
-      <Part Name="MONSTER_PART_TAIL" Group="TAIL"/>
+      <Part Name="MONSTER_PART_TAIL" Group="TAIL" TenderizeIds="2,5"/>
       <Part Name="MONSTER_PART_ROCK" Group="MISC"/>
     </Parts>
   </Monster>
@@ -1235,10 +1234,10 @@
     </Weaknesses>
     <Crown Mini="0.9" Silver="1.15" Gold="1.23"/>
     <Parts Max="10">
-      <Part Name="MONSTER_PART_HEAD" Group="HEAD">
+      <Part Name="MONSTER_PART_HEAD" Group="HEAD" TenderizeIds="0,3">
         <Break Threshold="4"/>
       </Part>
-      <Part Name="MONSTER_PART_BODY" Group="BODY">
+      <Part Name="MONSTER_PART_BODY" Group="BODY" TenderizeIds="1,4">
         <Break Threshold="1"/>
       </Part>
       <Part Name="MONSTER_PART_LLEG" Group="LEG">
@@ -1247,13 +1246,13 @@
       <Part Name="MONSTER_PART_RLEG" Group="LEG">
         <Break Threshold="2"/>
       </Part>
-      <Part Name="MONSTER_PART_TAIL" Group="TAIL">
+      <Part Name="MONSTER_PART_TAIL" Group="TAIL" TenderizeIds="2,5">
         <Break Threshold="3"/>
       </Part>
-      <Part Name="MONSTER_PART_HEAD_MUD" Group="HEAD">
+      <Part Name="MONSTER_PART_HEAD_MUD" Group="HEAD" TenderizeIds="0,3">
         <Break Threshold="1"/>
       </Part>
-      <Part Name="MONSTER_PART_BODY_MUD" Group="BODY">
+      <Part Name="MONSTER_PART_BODY_MUD" Group="BODY" TenderizeIds="1,4">
         <Break Threshold="3"/>
       </Part>
       <Part Name="MONSTER_PART_LLEG_MUD" Group="LEG">
@@ -1262,7 +1261,7 @@
       <Part Name="MONSTER_PART_RLEG_MUD" Group="LEG">
         <Break Threshold="2"/>
       </Part>
-      <Part Name="MONSTER_PART_TAIL_MUD" Group="TAIL">
+      <Part Name="MONSTER_PART_TAIL_MUD" Group="TAIL" TenderizeIds="2,5">
         <Break Threshold="1"/>
       </Part>
     </Parts>
@@ -1274,18 +1273,18 @@
     </Weaknesses>
     <Crown Mini="0.9" Silver="1.10" Gold="1.20"/>
     <Parts Max="6">
-      <Part Name="MONSTER_PART_HEAD" Group="HEAD">
+      <Part Name="MONSTER_PART_HEAD" Group="HEAD" TenderizeIds="0,4">
         <Break Threshold="2"/>
       </Part>
-      <Part Name="MONSTER_PART_BODY" Group="BODY"/>
+      <Part Name="MONSTER_PART_BODY" Group="BODY" TenderizeIds="2,6"/>
       <Part Name="MONSTER_PART_MANE" Group="MANE">
         <Break Threshold="1"/>
       </Part>
-      <Part Name="MONSTER_PART_ARMS" Group="ARM">
+      <Part Name="MONSTER_PART_ARMS" Group="ARM" TenderizeIds="1,5">
         <Break Threshold="1"/>
       </Part>
       <Part Name="MONSTER_PART_LEGS" Group="LEG"/>
-      <Part Name="MONSTER_PART_TAIL" Group="TAIL">
+      <Part Name="MONSTER_PART_TAIL" Group="TAIL" TenderizeIds="3,7">
         <Break Threshold="4"/>
       </Part>
     </Parts>
@@ -1297,18 +1296,18 @@
     </Weaknesses>
     <Crown Mini="0.9" Silver="1.10" Gold="1.20"/>
     <Parts Max="6">
-      <Part Name="MONSTER_PART_HEAD" Group="HEAD">
+      <Part Name="MONSTER_PART_HEAD" Group="HEAD" TenderizeIds="0,4">
         <Break Threshold="2"/>
       </Part>
-      <Part Name="MONSTER_PART_BODY" Group="BODY"/>
+      <Part Name="MONSTER_PART_BODY" Group="BODY" TenderizeIds="2,6"/>
       <Part Name="MONSTER_PART_MANE" Group="MANE">
         <Break Threshold="1"/>
       </Part>
-      <Part Name="MONSTER_PART_ARMS" Group="ARM">
+      <Part Name="MONSTER_PART_ARMS" Group="ARM" TenderizeIds="1,5">
         <Break Threshold="1"/>
       </Part>
       <Part Name="MONSTER_PART_LEGS" Group="LEG"/>
-      <Part Name="MONSTER_PART_TAIL" Group="TAIL">
+      <Part Name="MONSTER_PART_TAIL" Group="TAIL" TenderizeIds="3,7">
 	    <Break Threshold="1"/>
 	  </Part>
     </Parts>
@@ -1323,20 +1322,20 @@
       <Part Name="MONSTER_PART_REMOVABLE_BALLOON" IsRemovable="True">
         <Break Threshold="1"/>
       </Part>
-      <Part Name="MONSTER_PART_HEAD" Group="HEAD"/>
+      <Part Name="MONSTER_PART_HEAD" Group="HEAD" TenderizeIds="0,4"/>
       <Part Name="MONSTER_PART_BALLOON" Group="HEAD"/>
       <Part Name="MONSTER_PART_BODY" Group="BODY">
         <Break Threshold="1"/>
       </Part>
       <Part Name="MONSTER_PART_LLEG" Group="LEG"/>
       <Part Name="MONSTER_PART_RLEG" Group="LEG"/>
-      <Part Name="MONSTER_PART_LWING" Group="WING">
+      <Part Name="MONSTER_PART_LWING" Group="WING" TenderizeIds="1,2">
         <Break Threshold="1"/>
       </Part>
-      <Part Name="MONSTER_PART_RWING" Group="WING">
+      <Part Name="MONSTER_PART_RWING" Group="WING" TenderizeIds="5,6">
         <Break Threshold="1"/>
       </Part>
-      <Part Name="MONSTER_PART_TAIL" Group="TAIL">
+      <Part Name="MONSTER_PART_TAIL" Group="TAIL" TenderizeIds="3,7">
         <Break Threshold="1"/>
       </Part>
     </Parts>
@@ -1351,20 +1350,20 @@
       <Part Name="MONSTER_PART_REMOVABLE_BALLOON" IsRemovable="True">
         <Break Threshold="1"/>
       </Part>
-      <Part Name="MONSTER_PART_HEAD" Group="HEAD"/>
+      <Part Name="MONSTER_PART_HEAD" Group="HEAD" TenderizeIds="0,4"/>
       <Part Name="MONSTER_PART_BALLOON" Group="HEAD"/>
       <Part Name="MONSTER_PART_BODY" Group="BODY">
         <Break Threshold="1"/>
       </Part>
       <Part Name="MONSTER_PART_LLEG" Group="LEG"/>
       <Part Name="MONSTER_PART_RLEG" Group="LEG"/>
-      <Part Name="MONSTER_PART_LWING" Group="WING">
+      <Part Name="MONSTER_PART_LWING" Group="WING" TenderizeIds="1,2">
         <Break Threshold="1"/>
       </Part>
-      <Part Name="MONSTER_PART_RWING" Group="WING">
+      <Part Name="MONSTER_PART_RWING" Group="WING" TenderizeIds="5,6">
         <Break Threshold="1"/>
       </Part>
-      <Part Name="MONSTER_PART_TAIL" Group="TAIL">
+      <Part Name="MONSTER_PART_TAIL" Group="TAIL" TenderizeIds="3,7">
         <Break Threshold="1"/>
       </Part>
     </Parts>
@@ -1376,21 +1375,21 @@
     </Weaknesses>
     <Crown Mini="0.9" Silver="1.15" Gold="1.23"/>
     <Parts Max="7">
-      <Part Name="MONSTER_PART_HEAD" Group="HEAD">
+      <Part Name="MONSTER_PART_HEAD" Group="HEAD" TenderizeIds="0,4">
         <Break Threshold="2"/>
       </Part>
       <Part Name="MONSTER_PART_BODY" Group="BODY">
         <Break Threshold="1"/>
       </Part>
-      <Part Name="MONSTER_PART_LWING" Group="WING">
+      <Part Name="MONSTER_PART_LWING" Group="WING" TenderizeIds="1">
         <Break Threshold="1"/>
       </Part>
-      <Part Name="MONSTER_PART_RWING" Group="WING">
+      <Part Name="MONSTER_PART_RWING" Group="WING" TenderizeIds="5">
         <Break Threshold="1"/>
       </Part>
-      <Part Name="MONSTER_PART_LLEG" Group="LEG"/>
-      <Part Name="MONSTER_PART_RLEG" Group="LEG"/>
-      <Part Name="MONSTER_PART_TAIL" Group="TAIL">
+      <Part Name="MONSTER_PART_LLEG" Group="LEG" TenderizeIds="2"/>
+      <Part Name="MONSTER_PART_RLEG" Group="LEG" TenderizeIds="6"/>
+      <Part Name="MONSTER_PART_TAIL" Group="TAIL" TenderizeIds="3,7">
         <Break Threshold="1"/>
       </Part>
     </Parts>
@@ -1403,16 +1402,16 @@
     <Crown Mini="0.9" Silver="1.15" Gold="1.23"/>
     <Parts Max="7">
       <Part Name="MONSTER_PART_SKY_FALL" IsRemovable="True"/>
-      <Part Name="MONSTER_PART_HEAD" Group="HEAD">
+      <Part Name="MONSTER_PART_HEAD" Group="HEAD" TenderizeIds="0,4">
         <Break Threshold="2"/>
       </Part>
       <Part Name="MONSTER_PART_BODY" Group="BODY">
         <Break Threshold="1"/>
       </Part>
-      <Part Name="MONSTER_PART_LWING" Group="WING">
+      <Part Name="MONSTER_PART_LWING" Group="WING" TenderizeIds="1">
         <Break Threshold="1"/>
       </Part>
-      <Part Name="MONSTER_PART_RWING" Group="WING">
+      <Part Name="MONSTER_PART_RWING" Group="WING" TenderizeIds="5">
         <Break Threshold="1"/>
       </Part>
       <Part Name="MONSTER_PART_LEGS" Group="LEG"/>
@@ -1431,15 +1430,15 @@
       <Part Name="MONSTER_PART_REMOVABLE_TAIL" IsRemovable="True">
         <Break Threshold="1"/>
       </Part>
-      <Part Name="MONSTER_PART_HEAD" Group="HEAD">
+      <Part Name="MONSTER_PART_HEAD" Group="HEAD" TenderizeIds="0,3">
         <Break Threshold="2"/>
       </Part>
       <Part Name="MONSTER_PART_BODY" Group="BODY"/>
-      <Part Name="MONSTER_PART_ARMS" Group="ARM">
+      <Part Name="MONSTER_PART_ARMS" Group="ARM" TenderizeIds="1,4">
         <Break Threshold="1"/>
       </Part>
       <Part Name="MONSTER_PART_LEGS" Group="LEG"/>
-      <Part Name="MONSTER_PART_TAIL" Group="TAIL"/>
+      <Part Name="MONSTER_PART_TAIL" Group="TAIL" TenderizeIds="2,5"/>
     </Parts>
   </Monster>
   <Monster ID="em113_00" Capture="20" GameID="34"> <!-- Odogaron -->
@@ -1453,18 +1452,18 @@
       <Part Name="MONSTER_PART_REMOVABLE_TAIL" IsRemovable="True">
         <Break Threshold="1"/>
       </Part>
-      <Part Name="MONSTER_PART_HEAD" Group="HEAD">
+      <Part Name="MONSTER_PART_HEAD" Group="HEAD" TenderizeIds="0,4">
         <Break Threshold="1"/>
         <Break Threshold="2"/>
       </Part>
-      <Part Name="MONSTER_PART_BODY" Group="BODY"/>
-      <Part Name="MONSTER_PART_ARMS" Group="ARM">
+      <Part Name="MONSTER_PART_BODY" Group="BODY" TenderizeIds="2,6"/>
+      <Part Name="MONSTER_PART_ARMS" Group="ARM" TenderizeIds="1,5">
         <Break Threshold="1"/>
       </Part>
       <Part Name="MONSTER_PART_LEGS" Group="LEG">
         <Break Threshold="1"/>
       </Part>
-      <Part Name="MONSTER_PART_TAIL" Group="TAIL">
+      <Part Name="MONSTER_PART_TAIL" Group="TAIL" TenderizeIds="3,7">
         <Break Threshold="1"/>
       </Part>
     </Parts>
@@ -1483,15 +1482,15 @@
       <Part Name="MONSTER_PART_REMOVABLE_TAIL" IsRemovable="True" Index="1">
         <Break Threshold="1"/>
       </Part>
-      <Part Name="MONSTER_PART_HEAD" Group="HEAD"/>
-      <Part Name="MONSTER_PART_BODY" Group="BODY"/>
-      <Part Name="MONSTER_PART_ARMS" Group="ARM">
+      <Part Name="MONSTER_PART_HEAD" Group="HEAD" TenderizeIds="0,4"/>
+      <Part Name="MONSTER_PART_BODY" Group="BODY" TenderizeIds="2,6"/>
+      <Part Name="MONSTER_PART_ARMS" Group="ARM" TenderizeIds="1,5">
         <Break Threshold="1"/>
       </Part>
       <Part Name="MONSTER_PART_LEGS" Group="LEG">
         <Break Threshold="1"/>
       </Part>
-      <Part Name="MONSTER_PART_TAIL" Group="TAIL">
+      <Part Name="MONSTER_PART_TAIL" Group="TAIL" TenderizeIds="3,7">
         <Break Threshold="1"/>
       </Part>
     </Parts>
@@ -1510,11 +1509,11 @@
       <Part Name="MONSTER_PART_UNKNOWN" IsRemovable="True"/> 
       <Part Name="MONSTER_PART_UNKNOWN" IsRemovable="True"/> 
       <Part Name="MONSTER_PART_UNKNOWN" IsRemovable="True"/> 
-      <Part Name="MONSTER_PART_HEAD" Group="HEAD"/>
-      <Part Name="MONSTER_PART_BODY" Group="BODY"/>
-      <Part Name="MONSTER_PART_LLEG" Group="LEG"/>
-      <Part Name="MONSTER_PART_RLEG" Group="LEG"/>
-      <Part Name="MONSTER_PART_TAIL" Group="TAIL"/>
+      <Part Name="MONSTER_PART_HEAD" Group="HEAD" TenderizeIds="0,4"/>
+      <Part Name="MONSTER_PART_BODY" Group="BODY" TenderizeIds="1,5"/>
+      <Part Name="MONSTER_PART_LLEG" Group="LEG" TenderizeIds="2"/>
+      <Part Name="MONSTER_PART_RLEG" Group="LEG" TenderizeIds="6"/>
+      <Part Name="MONSTER_PART_TAIL" Group="TAIL" TenderizeIds="3,7"/>
       <Part Name="MONSTER_PART_JAW" Group="JAW">
         <Break Threshold="1"/>
         <Break Threshold="2"/> <!-- 3 if it restores its bones before 2nd break -->
@@ -1544,18 +1543,18 @@
       <Part Name="MONSTER_PART_REMOVABLE_TAIL" IsRemovable="True">
         <Break Threshold="1"/>
       </Part>
-      <Part Name="MONSTER_PART_HEAD" Group="HEAD">
+      <Part Name="MONSTER_PART_HEAD" Group="HEAD" TenderizeIds="0,4">
         <Break Threshold="2"/>
       </Part>
       <Part Name="MONSTER_PART_BACK" Group="BACK"/>
-      <Part Name="MONSTER_PART_CHEST" Group="CHEST">
+      <Part Name="MONSTER_PART_CHEST" Group="CHEST" TenderizeIds="2,6">
         <Break Threshold="1"/>
       </Part>
-      <Part Name="MONSTER_PART_TAIL" Group="TAIL"/>
-      <Part Name="MONSTER_PART_LARM" Group="ARM">
+      <Part Name="MONSTER_PART_TAIL" Group="TAIL" TenderizeIds="3,7"/>
+      <Part Name="MONSTER_PART_LARM" Group="ARM" TenderizeIds="1">
         <Break Threshold="1"/>
       </Part>
-      <Part Name="MONSTER_PART_RARM" Group="ARM">
+      <Part Name="MONSTER_PART_RARM" Group="ARM" TenderizeIds="5">
         <Break Threshold="1"/>
       </Part>
       <Part Name="MONSTER_PART_LLEG" Group="LEG"/>
@@ -1574,18 +1573,18 @@
         <Break Threshold="1"/>
       </Part>
       <Part Name="MONSTER_PART_EMISSIONS" IsRemovable="True" Index="0"/>
-      <Part Name="MONSTER_PART_HEAD" Group="HEAD">
+      <Part Name="MONSTER_PART_HEAD" Group="HEAD" TenderizeIds="0,4">
         <Break Threshold="3"/>
       </Part>
       <Part Name="MONSTER_PART_BACK" Group="BACK"/>
-      <Part Name="MONSTER_PART_CHEST" Group="CHEST">
+      <Part Name="MONSTER_PART_CHEST" Group="CHEST" TenderizeIds="2,6">
         <Break Threshold="1"/>
       </Part>
-      <Part Name="MONSTER_PART_TAIL" Group="TAIL"/>
-      <Part Name="MONSTER_PART_LARM" Group="ARM">
+      <Part Name="MONSTER_PART_TAIL" Group="TAIL" TenderizeIds="3,7"/>
+      <Part Name="MONSTER_PART_LARM" Group="ARM" TenderizeIds="1">
         <Break Threshold="1"/>
       </Part>
-      <Part Name="MONSTER_PART_RARM" Group="ARM">
+      <Part Name="MONSTER_PART_RARM" Group="ARM" TenderizeIds="5">
         <Break Threshold="1"/>
       </Part>
       <Part Name="MONSTER_PART_LLEG" Group="LEG"/>
@@ -1608,15 +1607,15 @@
       <Part Name="MONSTER_PART_REMOVABLE_TAIL" IsRemovable="True">
         <Break Threshold="1"/>
       </Part>
-      <Part Name="MONSTER_PART_HEAD" Group="HEAD">
+      <Part Name="MONSTER_PART_HEAD" Group="HEAD" TenderizeIds="0,3">
         <Break Threshold="5"/>
       </Part>
       <Part Name="MONSTER_PART_BODY" Group="BODY"/>
-      <Part Name="MONSTER_PART_ARMS" Group="ARM">
+      <Part Name="MONSTER_PART_ARMS" Group="ARM" TenderizeIds="1,4">
         <Break Threshold="1"/>
       </Part>
       <Part Name="MONSTER_PART_LEGS" Group="LEG"/>
-      <Part Name="MONSTER_PART_TAIL" Group="TAIL"/>
+      <Part Name="MONSTER_PART_TAIL" Group="TAIL" TenderizeIds="2,5"/>
     </Parts>
   </Monster>
   <Monster ID="em117_00" Capture="0" GameID="38"> <!-- Kulve Taroth -->
@@ -1632,14 +1631,14 @@
       <Part Name="MONSTER_PART_REMOVABLE_HORNS_2" IsRemovable="True" Index="0">
         <Break Threshold="1"/>
       </Part>
-      <Part Name="MONSTER_PART_HORNS" Group="HORN">
+      <Part Name="MONSTER_PART_HORNS" Group="HORN" TenderizeIds="0,3">
         <Break Threshold="1"/>
       </Part>
-      <Part Name="MONSTER_PART_CHEST" Group="CHEST"/>
+      <Part Name="MONSTER_PART_CHEST" Group="CHEST" TenderizeIds="1,4"/>
       <Part Name="MONSTER_PART_BODY" Group="BODY"/>
       <Part Name="MONSTER_PART_LLIMBS" Group="LIMB"/>
       <Part Name="MONSTER_PART_RLIMBS" Group="LIMB"/>
-      <Part Name="MONSTER_PART_TAIL" Group="TAIL">
+      <Part Name="MONSTER_PART_TAIL" Group="TAIL" TenderizeIds="7,9">
         <Break Threshold="1"/>
       </Part>
       <Part Name="MONSTER_PART_HORNS_GOLD" Group="HORN">
@@ -1652,16 +1651,16 @@
       <Part Name="MONSTER_PART_RCHEST_GOLD" Group="CHEST">
         <Break Threshold="1"/>
       </Part>
-      <Part Name="MONSTER_PART_LARM_GOLD" Group="ARM">
+      <Part Name="MONSTER_PART_LARM_GOLD" Group="ARM" TenderizeIds="2">
         <Break Threshold="1"/>
       </Part>
-      <Part Name="MONSTER_PART_RARM_GOLD" Group="ARM">
+      <Part Name="MONSTER_PART_RARM_GOLD" Group="ARM" TenderizeIds="5">
         <Break Threshold="1"/>
       </Part>
-      <Part Name="MONSTER_PART_LLEG_GOLD" Group="LEG">
+      <Part Name="MONSTER_PART_LLEG_GOLD" Group="LEG" TenderizeIds="6">
         <Break Threshold="1"/>
       </Part>
-      <Part Name="MONSTER_PART_RLEG_GOLD" Group="LEG">
+      <Part Name="MONSTER_PART_RLEG_GOLD" Group="LEG" TenderizeIds="8">
         <Break Threshold="1"/>
       </Part>
       <Part Name="MONSTER_PART_LTAIL_GOLD" Group="TAIL">
@@ -1682,20 +1681,20 @@
       <Part Name="MONSTER_PART_REMOVABLE_TAIL" IsRemovable="True">
         <Break Threshold="1"/>
       </Part>
-      <Part Name="MONSTER_PART_HEAD" Group="HEAD">
+      <Part Name="MONSTER_PART_HEAD" Group="HEAD" TenderizeIds="0,5">
         <Break Threshold="2"/>
       </Part>
       <Part Name="MONSTER_PART_BODY" Group="BODY">
         <Break Threshold="1"/>
       </Part>
-      <Part Name="MONSTER_PART_LEGS" Group="LEG"/>
-      <Part Name="MONSTER_PART_LWING" Group="WING">
+      <Part Name="MONSTER_PART_LEGS" Group="LEG" TenderizeIds="3,8"/>
+      <Part Name="MONSTER_PART_LWING" Group="WING" TenderizeIds="1,2">
         <Break Threshold="1"/>
       </Part>
-      <Part Name="MONSTER_PART_RWING" Group="WING">
+      <Part Name="MONSTER_PART_RWING" Group="WING" TenderizeIds="6,7">
         <Break Threshold="1"/>
       </Part>
-      <Part Name="MONSTER_PART_TAIL" Group="TAIL"/>
+      <Part Name="MONSTER_PART_TAIL" Group="TAIL" TenderizeIds="4,9"/>
     </Parts>
   </Monster>
   <Monster ID="em118_05" Capture="10" GameID="76"> <!-- Seething Bazelgeuse -->
@@ -1710,20 +1709,20 @@
         <Break Threshold="1"/>
       </Part>
       <Part Name="MONSTER_PART_GLOWING_TAIL" IsRemovable="True" Index="2"/>
-      <Part Name="MONSTER_PART_HEAD" Group="HEAD">
+      <Part Name="MONSTER_PART_HEAD" Group="HEAD" TenderizeIds="0,4">
         <Break Threshold="2"/>
       </Part>
       <Part Name="MONSTER_PART_BODY" Group="BODY">
         <Break Threshold="1"/>
       </Part>
-      <Part Name="MONSTER_PART_LEGS" Group="LEG"/>
-      <Part Name="MONSTER_PART_LWING" Group="WING">
+      <Part Name="MONSTER_PART_LEGS" Group="LEG" TenderizeIds="3,8"/>
+      <Part Name="MONSTER_PART_LWING" Group="WING" TenderizeIds="1,2">
         <Break Threshold="1"/>
       </Part>
-      <Part Name="MONSTER_PART_RWING" Group="WING">
+      <Part Name="MONSTER_PART_RWING" Group="WING" TenderizeIds="6,7">
         <Break Threshold="1"/>
       </Part>
-      <Part Name="MONSTER_PART_TAIL" Group="TAIL"/>
+      <Part Name="MONSTER_PART_TAIL" Group="TAIL" TenderizeIds="4,9"/>
     </Parts>
   </Monster>
   <Monster ID="em120_00" Capture="30" GameID="28"> <!-- TziTzi-Ya-Ku -->
@@ -1736,10 +1735,10 @@
       <Part Name="MONSTER_PART_REMOVABLE_HEAD" Group="HEAD">
         <Break Threshold="2"/>
       </Part>
-      <Part Name="MONSTER_PART_HEAD" Group="HEAD"/>
-      <Part Name="MONSTER_PART_ARMS" Group="ARM"/>
+      <Part Name="MONSTER_PART_HEAD" Group="HEAD" TenderizeIds="0,3"/>
+      <Part Name="MONSTER_PART_ARMS" Group="ARM" TenderizeIds="1,4"/>
       <Part Name="MONSTER_PART_LEGS" Group="LEG"/>
-      <Part Name="MONSTER_PART_TAIL" Group="TAIL"/>
+      <Part Name="MONSTER_PART_TAIL" Group="TAIL" TenderizeIds="2,5"/>
     </Parts>
   </Monster>
   <Monster ID="em121_00" Capture="0" GameID="15"> <!-- Behemoth -->
@@ -1756,17 +1755,17 @@
         <Break Threshold="2"/>
         <Break Threshold="3"/>
       </Part>
-      <Part Name="MONSTER_PART_HEAD" Group="HEAD"/>
+      <Part Name="MONSTER_PART_HEAD" Group="HEAD" TenderizeIds="0,3"/>
       <Part Name="MONSTER_PART_BODY" Group="BODY"/>
-      <Part Name="MONSTER_PART_LARM" Group="ARM">
+      <Part Name="MONSTER_PART_LARM" Group="ARM" TenderizeIds="1">
         <Break Threshold="3"/>
       </Part>
-      <Part Name="MONSTER_PART_RARM" Group="ARM">
+      <Part Name="MONSTER_PART_RARM" Group="ARM" TenderizeIds="4">
         <Break Threshold="3"/>
       </Part>
       <Part Name="MONSTER_PART_LLEG" Group="LEG"/>
       <Part Name="MONSTER_PART_RLEG" Group="LEG"/>
-      <Part Name="MONSTER_PART_TAIL" Group="TAIL"/>
+      <Part Name="MONSTER_PART_TAIL" Group="TAIL" TenderizeIds="2,5"/>
     </Parts>
   </Monster>
   <Monster ID="em122_00" Capture="25" GameID="77"> <!-- Beotodus -->
@@ -1779,25 +1778,25 @@
       <Part Name="MONSTER_PART_EMERGE_SNOW_HEAD" IsRemovable="True"/>
       <Part Name="MONSTER_PART_EMERGE_SNOW_BODY" IsRemovable="True"/>
       <Part Name="MONSTER_PART_EMERGE_SNOW_TAIL" IsRemovable="True"/>
-      <Part Name="MONSTER_PART_HEAD" Group="HEAD">
+      <Part Name="MONSTER_PART_HEAD" Group="HEAD" TenderizeIds="0,3">
         <Break Threshold="2"/>
       </Part>
-      <Part Name="MONSTER_PART_HEAD_SNOW" Group="HEAD">
+      <Part Name="MONSTER_PART_HEAD_SNOW" Group="HEAD" TenderizeIds="0,3">
         <Break Threshold="1"/>
       </Part>
-      <Part Name="MONSTER_PART_BODY" Group="BODY">
+      <Part Name="MONSTER_PART_BODY" Group="BODY" TenderizeIds="1,4">
         <Break Threshold="1"/>
       </Part>
-      <Part Name="MONSTER_PART_BODY_SNOW" Group="BODY">
+      <Part Name="MONSTER_PART_BODY_SNOW" Group="BODY" TenderizeIds="1,4">
         <Break Threshold="1"/>
       </Part>
       <Part Name="MONSTER_PART_LEGS" Group="LEG">
         <Break Threshold="1"/>
       </Part>
-      <Part Name="MONSTER_PART_TAIL" Group="TAIL">
+      <Part Name="MONSTER_PART_TAIL" Group="TAIL" TenderizeIds="2,5">
         <Break Threshold="1"/>
       </Part>
-      <Part Name="MONSTER_PART_TAIL_SNOW" Group="TAIL">
+      <Part Name="MONSTER_PART_TAIL_SNOW" Group="TAIL" TenderizeIds="2,5">
         <Break Threshold="1"/>
       </Part>
     </Parts>
@@ -1817,15 +1816,15 @@
         <Break Threshold="1"/>
       </Part>
       <Part Name="MONSTER_PART_UNKNOWN" IsRemovable="True"/>
-      <Part Name="MONSTER_PART_HORNS" Group="HORN"/>
+      <Part Name="MONSTER_PART_HORNS" Group="HORN" TenderizeIds="0,3"/>
       <Part Name="MONSTER_PART_BODY" Group="BODY"/>
-      <Part Name="MONSTER_PART_LLEG" Group="LEG">
+      <Part Name="MONSTER_PART_LLEG" Group="LEG" TenderizeIds="1">
         <Break Threshold="1"/>
       </Part>
-      <Part Name="MONSTER_PART_RLEG" Group="LEG">
+      <Part Name="MONSTER_PART_RLEG" Group="LEG" TenderizeIds="4">
         <Break Threshold="1"/>
       </Part>
-      <Part Name="MONSTER_PART_TAIL" Group="TAIL"/>
+      <Part Name="MONSTER_PART_TAIL" Group="TAIL" TenderizeIds="2,5"/>
     </Parts>
   </Monster>
   <Monster ID="em124_00" Capture="0" GameID="79"> <!-- Velkhana -->
@@ -1842,17 +1841,17 @@
       <Part Name="MONSTER_PART_HEAD" Group="HEAD">
         <Break Threshold="2"/>
       </Part>
-      <Part Name="MONSTER_PART_HEAD_ICE" Group="HEAD"/>
+      <Part Name="MONSTER_PART_HEAD_ICE" Group="HEAD" TenderizeIds="0,3"/>
       <Part Name="MONSTER_PART_BODY" Group="BODY"/>
       <Part Name="MONSTER_PART_BODY_ICE" Group="BODY"/>
-      <Part Name="MONSTER_PART_WINGS" Group="WING">
+      <Part Name="MONSTER_PART_WINGS" Group="WING" TenderizeIds="1,4">
         <Break Threshold="2"/>
       </Part>
-      <Part Name="MONSTER_PART_WINGS_ICE" Group="WING"/>
+      <Part Name="MONSTER_PART_WINGS_ICE" Group="WING" TenderizeIds="1,4"/>
       <Part Name="MONSTER_PART_ARMS" Group="ARM"/>
       <Part Name="MONSTER_PART_ARMS_ICE" Group="ARM"/>
       <Part Name="MONSTER_PART_LEGS" Group="LEG"/>
-      <Part Name="MONSTER_PART_TAIL" Group="TAIL"/>
+      <Part Name="MONSTER_PART_TAIL" Group="TAIL" TenderizeIds="2,5"/>
     </Parts>
   </Monster>
   <Monster ID="em125_00" Capture="0" GameID="80"> <!-- Namielle -->
@@ -1865,16 +1864,16 @@
       <Part Name="MONSTER_PART_REMOVABLE_TAIL" IsRemovable="True">
         <Break Threshold="1"/>
       </Part>
-      <Part Name="MONSTER_PART_HEAD" Group="HEAD">
+      <Part Name="MONSTER_PART_HEAD" Group="HEAD" TenderizeIds="0,4">
         <Break Threshold="5"/>
       </Part>
       <Part Name="MONSTER_PART_BACK" Group="BACK"/>
-      <Part Name="MONSTER_PART_TAIL" Group="TAIL"/>
-      <Part Name="MONSTER_PART_ARMS" Group="ARM">
+      <Part Name="MONSTER_PART_TAIL" Group="TAIL" TenderizeIds="3,7"/>
+      <Part Name="MONSTER_PART_ARMS" Group="ARM" TenderizeIds="1,5">
         <Break Threshold="2"/>
       </Part>
       <Part Name="MONSTER_PART_LEGS" Group="LEG"/>
-      <Part Name="MONSTER_PART_WINGS" Group="WING">
+      <Part Name="MONSTER_PART_WINGS" Group="WING" TenderizeIds="2,6">
         <Break Threshold="2"/>
       </Part>
     </Parts>
@@ -1928,17 +1927,17 @@
         <Break Threshold="1"/>
         <Break Threshold="2"/>
       </Part>
-      <Part Name="MONSTER_PART_LEGS" Group="LEG"/>
-      <Part Name="MONSTER_PART_HEAD" Group="HEAD">
+      <Part Name="MONSTER_PART_LEGS" Group="LEG" TenderizeIds="2,5"/>
+      <Part Name="MONSTER_PART_HEAD" Group="HEAD" TenderizeIds="0,3">
         <Break Threshold="1"/>
       </Part>
       <Part Name="MONSTER_PART_BODY" Group="BODY"/>
       <Part Name="MONSTER_PART_LWING" Group="WING"/>
       <Part Name="MONSTER_PART_RWING" Group="WING"/>
-      <Part Name="MONSTER_PART_LARM" Group="ARM">
+      <Part Name="MONSTER_PART_LARM" Group="ARM" TenderizeIds="1">
         <Break Threshold="1"/>
       </Part>
-      <Part Name="MONSTER_PART_RARM" Group="ARM">
+      <Part Name="MONSTER_PART_RARM" Group="ARM" TenderizeIds="4">
         <Break Threshold="1"/>
       </Part>
       <Part Name="MONSTER_PART_TAIL" Group="TAIL"/>
@@ -1954,11 +1953,11 @@
       <Part Name="MONSTER_PART_BODY_LEGS" IsRemovable="True">
         <Break Threshold="1"/>
       </Part>
-      <Part Name="MONSTER_PART_ANTLERS" Group="HEAD">
+      <Part Name="MONSTER_PART_ANTLERS" Group="HEAD" TenderizeIds="0,1">
         <Break Threshold="1"/>
         <Break Threshold="2"/>
       </Part>
-      <Part Name="MONSTER_PART_BODY" Group="BODY"/>
+      <Part Name="MONSTER_PART_BODY" Group="BODY" TenderizeIds="0,1"/>
       <Part Name="MONSTER_PART_LEGS" Group="LEG"/>
       <Part Name="MONSTER_PART_ARMS" Group="ARM"/>
       <Part Name="MONSTER_PART_UNKNOWN" Group="MISC"/> <!-- Unknown/Flinch -->
@@ -1974,11 +1973,11 @@
       <Part Name="MONSTER_PART_BODY_LEGS" IsRemovable="True">
         <Break Threshold="1"/>
       </Part>
-      <Part Name="MONSTER_PART_ANTLERS" Group="HEAD">
+      <Part Name="MONSTER_PART_ANTLERS" Group="HEAD" TenderizeIds="0,1">
         <Break Threshold="1"/>
         <Break Threshold="2"/>
       </Part>
-      <Part Name="MONSTER_PART_BODY" Group="BODY"/>
+      <Part Name="MONSTER_PART_BODY" Group="BODY" TenderizeIds="0,1"/>
       <Part Name="MONSTER_PART_LEGS" Group="LEG"/>
       <Part Name="MONSTER_PART_ARMS" Group="ARM"/>
       <Part Name="MONSTER_PART_UNKNOWN" Group="MISC"/> <!-- Unknown/Flinch -->
