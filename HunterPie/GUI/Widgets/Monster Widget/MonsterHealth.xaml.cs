@@ -250,8 +250,8 @@ namespace HunterPie.GUI.Widgets
 
         private void OnMonsterUpdate(object source, MonsterUpdateEventArgs args) => Dispatch(() =>
         {
-            MonsterHealthBar.MaxHealth = args.MaxHealth;
-            MonsterHealthBar.Health = args.Health;
+            MonsterHealthBar.MaxValue = args.MaxHealth;
+            MonsterHealthBar.Value = args.Health;
             SetMonsterHealthBarText(args.Health, args.MaxHealth);
             if ((args.Health / args.MaxHealth * 100) < Context.CaptureThreshold) CapturableIcon.Visibility = Visibility.Visible;
             else { CapturableIcon.Visibility = Visibility.Collapsed; }

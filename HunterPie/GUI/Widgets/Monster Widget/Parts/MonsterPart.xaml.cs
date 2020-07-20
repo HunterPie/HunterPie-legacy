@@ -123,8 +123,8 @@ namespace HunterPie.GUI.Widgets.Monster_Widget.Parts
             Visibility visibility = args.Duration > 0 ? Visibility.Visible : Visibility.Collapsed;
             Dispatch(() =>
             {
-                TenderizeBar.Health = args.MaxDuration - args.Duration;
-                TenderizeBar.MaxHealth = args.MaxDuration;
+                TenderizeBar.Value = args.MaxDuration - args.Duration;
+                TenderizeBar.MaxValue = args.MaxDuration;
                 TenderizeBar.Visibility = visibility;
                 Visibility = GetVisibility();
                 StartVisibilityTimer();
@@ -172,14 +172,14 @@ namespace HunterPie.GUI.Widgets.Monster_Widget.Parts
         {
             PartHealth.MaxSize = newSize - 37;
             TenderizeBar.MaxSize = newSize - 37;
-            PartHealth.MaxHealth = context.TotalHealth;
-            PartHealth.Health = context.Health;
+            PartHealth.MaxValue = context.TotalHealth;
+            PartHealth.Value = context.Health;
         }
 
         private void UpdateHealthText()
         {
-            PartHealth.MaxHealth = context.TotalHealth;
-            PartHealth.Health = context.Health;
+            PartHealth.MaxValue = context.TotalHealth;
+            PartHealth.Value = context.Health;
             PartHealthText.Text = $"{context.Health:0}/{context.TotalHealth:0}";
         }
 

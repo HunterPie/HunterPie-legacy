@@ -1,11 +1,9 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Collections.ObjectModel;
 using System.Linq;
 using System.Windows;
 using System.Windows.Media;
 using HunterPie.Core;
-using HunterPie.Logger;
 
 namespace HunterPie.GUI.Widgets
 {
@@ -24,7 +22,6 @@ namespace HunterPie.GUI.Widgets
         {
 
             InitializeComponent();
-            CompositionTarget.Rendering += OnMonsterContainerRender;
             WidgetType = 1;
             SetWindowFlags();
             SetContext(ctx);
@@ -45,7 +42,7 @@ namespace HunterPie.GUI.Widgets
                     newSize = 400;
                     break;
                 default:
-                    newSize = 240;
+                    newSize = 300;
                     break;
             }
             foreach (MonsterHealth m in VisibleMonsters)
@@ -68,12 +65,14 @@ namespace HunterPie.GUI.Widgets
         {
             Context.Player.OnPeaceZoneEnter += OnPeaceZoneEnter;
             Context.Player.OnPeaceZoneLeave += OnPeaceZoneLeave;
+            CompositionTarget.Rendering += OnMonsterContainerRender;
         }
 
         public void UnhookEvents()
         {
             Context.Player.OnPeaceZoneEnter -= OnPeaceZoneEnter;
             Context.Player.OnPeaceZoneLeave -= OnPeaceZoneLeave;
+            CompositionTarget.Rendering -= OnMonsterContainerRender;
             DestroyMonstersWidgets();
             Context = null;
         }
@@ -122,8 +121,8 @@ namespace HunterPie.GUI.Widgets
                 if (mWidget != null)
                 {
                     mWidget.Weaknesses.Visibility = weaknessEnabled ? Visibility.Visible : Visibility.Collapsed;
-                    mWidget.MonsterAilmentsContainer.MaxHeight = MaxParts * 35;
-                    mWidget.MonsterPartsContainer.MaxHeight = MaxParts * 35;
+                    mWidget.MonsterAilmentsContainer.MaxHeight = MaxParts * 32;
+                    mWidget.MonsterPartsContainer.MaxHeight = MaxParts * 32;
                     mWidget.ChangeDocking(dock);
                     mWidget.ApplySettings();
                 }
