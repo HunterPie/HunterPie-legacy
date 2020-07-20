@@ -645,10 +645,6 @@ namespace HunterPie.Core
                             break;
                         default:
                             updatedData = Scanner.Win32.Read<sMonsterAilment>(ailment.Address);
-                            if (ailment.Address == 0xEDCFFF48)
-                            {
-                                
-                            }
                             break;
                     }
                      
@@ -665,8 +661,6 @@ namespace HunterPie.Core
 
                     // There's a gap of 0x148 bytes between the pointer and the sMonsterAilment structure
                     sMonsterAilment AilmentData = Scanner.Win32.Read<sMonsterAilment>(MonsterAilmentPtr + 0x148);
-
-                    //Debugger.Debug(Helpers.Serialize(Scanner.Win32.Read<sMonsterAilment>(0xEDCFFF48)));
 
                     if ((int)AilmentData.Id > MonsterData.AilmentsInfo.Count)
                     {
