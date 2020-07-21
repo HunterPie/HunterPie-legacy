@@ -1,11 +1,7 @@
 ﻿<UserControl x:Class="HunterPie.GUIControls.Custom_Controls.PositionControl"
              xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
-             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
-             xmlns:local="clr-namespace:HunterPie.GUIControls.Custom_Controls"
-             mc:Ignorable="d" 
-             d:DesignHeight="32" DataContext="{StaticResource Localization}">
+             DataContext="{StaticResource Localization}">
     <Canvas Width="200">
         <TextBlock Height="32" Text="{Binding Mode=OneTime, XPath=/Strings/Client/Settings/String[@ID\=\'STATIC_POSITION\']/@Name}" FontSize="14" Foreground="WhiteSmoke" Padding="0,5,0,0"/>
         <TextBlock Height="13" Text="X" FontSize="10" Foreground="WhiteSmoke" Padding="0,0,0,0" Canvas.Top="20" Canvas.Left="57" Width="62" TextAlignment="Center"/>

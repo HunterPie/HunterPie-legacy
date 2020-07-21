@@ -520,4 +520,28 @@
             </Trigger>
         </Style.Triggers>
     </Style>
+
+    <Style x:Key="AbnormalityTabItem" TargetType="{x:Type TabItem}">
+        <Setter Property="Background" Value="#171717"/>
+        <Setter Property="Foreground" Value="#FF9C9C9C"/>
+        <Setter Property="FontSize" Value="16"/>
+        <Setter Property="Opacity" Value="0.8"/>
+        <Setter Property="Template">
+            <Setter.Value>
+                <ControlTemplate TargetType="{x:Type TabItem}">
+                    <Border x:Name="PART_Border" BorderThickness="1,1,1,1" BorderBrush="{x:Null}" Background="#FF080808" Height="29">
+                        <ContentPresenter ContentSource="Header" Margin="5" />
+                    </Border>
+                    <ControlTemplate.Triggers>
+                        <Trigger Property="IsSelected" Value="True">
+                            <Setter Property="Opacity" Value="1"/>
+                            <Setter TargetName="PART_Border" Property="BorderBrush" Value="Black" />
+                            <Setter Property="Background" Value="#FF060606"/>
+                            <Setter Property="Foreground" Value="WhiteSmoke"/>
+                        </Trigger>
+                    </ControlTemplate.Triggers>
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
+    </Style>
 </ResourceDictionary>

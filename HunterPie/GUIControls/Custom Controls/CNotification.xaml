@@ -2,8 +2,6 @@
              x:Class="HunterPie.GUIControls.Custom_Controls.CNotification"
              xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
-             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              Height="40" BorderThickness="1" BorderBrush="#CC0A0A0A" HorizontalAlignment="Left">
     <StackPanel Orientation="Horizontal" x:Name="cHolder" Background="#E5111111" DataContext="{StaticResource Localization}" MouseLeftButtonDown="OnNotificationClick">
         <Image x:Name="NotificationIcon" Width="25" Height="25" Margin="6,0,4,0" Source="{Binding ElementName=NotifyControl, Path=NIcon}"/>

@@ -1414,8 +1414,8 @@
       <Part Name="MONSTER_PART_RWING" Group="WING" TenderizeIds="5">
         <Break Threshold="1"/>
       </Part>
-      <Part Name="MONSTER_PART_LEGS" Group="LEG"/>
-      <Part Name="MONSTER_PART_TAIL" Group="TAIL">
+      <Part Name="MONSTER_PART_LEGS" Group="LEG" TenderizeIds="2,6"/>
+      <Part Name="MONSTER_PART_TAIL" Group="TAIL" TenderizeIds="3,7">
         <Break Threshold="1"/>
       </Part>
     </Parts>

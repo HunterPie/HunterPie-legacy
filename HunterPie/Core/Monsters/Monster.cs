@@ -7,7 +7,6 @@ using HunterPie.Core.Enums;
 using HunterPie.Core.Monsters;
 using HunterPie.Logger;
 using HunterPie.Memory;
-using Newtonsoft.Json;
 
 namespace HunterPie.Core
 {
@@ -213,6 +212,7 @@ namespace HunterPie.Core
         public delegate void MonsterSpawnEvents(object source, MonsterSpawnEventArgs args);
         public delegate void MonsterUpdateEvents(object source, MonsterUpdateEventArgs args);
         public event MonsterSpawnEvents OnMonsterSpawn;
+        public event MonsterEvents OnMonsterAilmentsCreate;
         public event MonsterEvents OnMonsterDespawn;
         public event MonsterEvents OnMonsterDeath;
         public event MonsterEvents OnTargetted;
@@ -251,6 +251,8 @@ namespace HunterPie.Core
         protected virtual void _OnStaminaUpdate() => OnStaminaUpdate?.Invoke(this, new MonsterUpdateEventArgs(this));
 
         protected virtual void _OnAlatreonElementShift() => OnAlatreonElementShift?.Invoke(this, EventArgs.Empty);
+
+        protected virtual void _OnMonsterAilmentsCreate() => OnMonsterAilmentsCreate?.Invoke(this, EventArgs.Empty);
         #endregion
 
         public Monster(int initMonsterNumber) => MonsterNumber = initMonsterNumber;
@@ -693,6 +695,9 @@ namespace HunterPie.Core
                     MonsterAilmentListPtrs += sizeof(long);
                     MonsterAilmentPtr = Scanner.Read<long>(MonsterAilmentListPtrs);
                 }
+                // Depending on the scan delay, the OnMonsterSpawn event can be dispatched before the ailments are created.
+                // To fix that, we dispatch a OnMonsterAilmentsCreate too.
+                if (IsActuallyAlive && Ailments.Count > 0) _OnMonsterAilmentsCreate();
             }
         }
 

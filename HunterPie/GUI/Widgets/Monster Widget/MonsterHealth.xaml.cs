@@ -68,6 +68,7 @@ namespace HunterPie.GUI.Widgets
             Context.OnTargetted += OnMonsterTargetted;
             Context.OnCrownChange += OnMonsterCrownChange;
             Context.OnAlatreonElementShift += OnAlatreonElementShift;
+            Context.OnMonsterAilmentsCreate += OnMonsterAilmentsCreate;
         }
 
         public void UnhookEvents()
@@ -96,6 +97,7 @@ namespace HunterPie.GUI.Widgets
             Context.OnTargetted -= OnMonsterTargetted;
             Context.OnCrownChange -= OnMonsterCrownChange;
             Context.OnAlatreonElementShift -= OnAlatreonElementShift;
+            Context.OnMonsterAilmentsCreate -= OnMonsterAilmentsCreate;
             Context = null;
         }
 
@@ -293,6 +295,27 @@ namespace HunterPie.GUI.Widgets
                 Weaknesses.Children.Add(weaknessDisplay);
             };
         });
+
+        private void OnMonsterAilmentsCreate(object source, EventArgs args)
+        {
+            Dispatcher.BeginInvoke(System.Windows.Threading.DispatcherPriority.Render, new Action(() =>
+            {
+                // Ailments
+                int index = 0;
+                MonsterAilmentsContainer.Children.Clear();
+                while (index < Context.Ailments.Count)
+                {
+                    Ailment ailment = Context.Ailments[index];
+                    Monster_Widget.Parts.MonsterAilment AilmentDisplay = new Monster_Widget.Parts.MonsterAilment()
+                    {
+                        Style = FindResource("OVERLAY_MONSTER_AILMENT_BAR_STYLE") as Style
+                    };
+                    AilmentDisplay.SetContext(ailment, MonsterAilmentsContainer.ItemWidth);
+                    MonsterAilmentsContainer.Children.Add(AilmentDisplay);
+                    index++;
+                }
+            }));
+        }
 
         #endregion
 
