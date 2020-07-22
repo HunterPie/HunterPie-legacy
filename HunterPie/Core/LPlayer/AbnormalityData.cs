@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 using System.Xml;
+using HunterPie.Core.Enums;
 using HunterPie.Core.LPlayer;
 using HunterPie.Logger;
 
@@ -39,17 +40,17 @@ namespace HunterPie.Core
             AbnormalitiesData = null;
         }
 
-        private static void LoadHuntingHornAbnormalities() => huntingHornAbnormalities = LoadAbnormalityType("HUNTINGHORN", "HH", "//Abnormalities/HUNTINGHORN_Abnormalities/Abnormality");
+        private static void LoadHuntingHornAbnormalities() => huntingHornAbnormalities = LoadAbnormalityType(AbnormalityType.HuntingHorn, "HH", "//Abnormalities/HUNTINGHORN_Abnormalities/Abnormality");
 
-        private static void LoadPalicoAbnormalities() => palicoAbnormalities = LoadAbnormalityType("PALICO", "PAL", "//Abnormalities/PALICO_Abnormalities/Abnormality");
+        private static void LoadPalicoAbnormalities() => palicoAbnormalities = LoadAbnormalityType(AbnormalityType.Palico, "PAL", "//Abnormalities/PALICO_Abnormalities/Abnormality");
 
-        private static void LoadBlightAbnormalities() => blightAbnormalities = LoadAbnormalityType("DEBUFF", "DE", "//Abnormalities/DEBUFF_Abnormalities/Abnormality");
+        private static void LoadBlightAbnormalities() => blightAbnormalities = LoadAbnormalityType(AbnormalityType.Debuff, "DE", "//Abnormalities/DEBUFF_Abnormalities/Abnormality");
 
-        private static void LoadMiscAbnormalities() => miscAbnormalities = LoadAbnormalityType("MISC", "MISC", "//Abnormalities/MISC_Abnormalities/Abnormality");
+        private static void LoadMiscAbnormalities() => miscAbnormalities = LoadAbnormalityType(AbnormalityType.Misc, "MISC", "//Abnormalities/MISC_Abnormalities/Abnormality");
 
-        private static void LoadGearAbnormalities() => gearAbnormalities = LoadAbnormalityType("GEAR", "GEAR", "//Abnormalities/GEAR_Abnormalities/Abnormality");
+        private static void LoadGearAbnormalities() => gearAbnormalities = LoadAbnormalityType(AbnormalityType.Gear, "GEAR", "//Abnormalities/GEAR_Abnormalities/Abnormality");
 
-        private static List<AbnormalityInfo> LoadAbnormalityType(string type, string idPrefix, string xmlSelector)
+        private static List<AbnormalityInfo> LoadAbnormalityType(AbnormalityType type, string idPrefix, string xmlSelector)
         {
             XmlNodeList nodes = AbnormalitiesData
                 .SelectNodes(xmlSelector) ?? throw new Exception("Could not get XML Abnormality nodes");
@@ -60,7 +61,7 @@ namespace HunterPie.Core
                 .ToList();
         }
 
-        private static AbnormalityInfo AbnormalityXmlNodeToInfo(XmlNode node, string type, string idPrefix)
+        private static AbnormalityInfo AbnormalityXmlNodeToInfo(XmlNode node, AbnormalityType type, string idPrefix)
         {
             if (node?.Attributes == null)
             {

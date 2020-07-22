@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using Stopwatch = System.Diagnostics.Stopwatch;
 using System.Linq;
 using System.Threading;
 using HunterPie.Core.Definitions;
@@ -8,6 +9,7 @@ using HunterPie.Core.LPlayer.Jobs;
 using HunterPie.Logger;
 using HunterPie.Memory;
 using Classes = HunterPie.Core.Enums.Classes;
+using AbnormalityType = HunterPie.Core.Enums.AbnormalityType;
 
 namespace HunterPie.Core
 {
@@ -733,35 +735,31 @@ namespace HunterPie.Core
 
         private void GetFertilizers()
         {
-            long Address = LEVEL_ADDRESS;
-            for (int fertCount = 0; fertCount < 4; fertCount++)
+            Stopwatch s = Stopwatch.StartNew();
+            long Address = LEVEL_ADDRESS + Memory.Address.Offsets.FertilizersOffset - 0xC;
+            sItem[] fertilizers = Scanner.Win32.Read<sItem>(Address, 4);
+            for (int i = 0; i < fertilizers.Length; i++)
             {
-                // Calculates memory address
-                long FertilizerAddress = Address + Memory.Address.Offsets.FertilizersOffset + (0x10 * fertCount) - 0xC;
-                sItem element = Scanner.Win32.Read<sItem>(FertilizerAddress);
-                // Read memory
-                int FertilizerId = element.ItemId;
-                int FertilizerCount = element.Amount;
-                // update fertilizer data
-                Harvest.Box[fertCount].ID = FertilizerId;
-                Harvest.Box[fertCount].Amount = FertilizerCount;
+                Harvest.Box[i].ID = fertilizers[i].ItemId;
+                Harvest.Box[i].Amount = fertilizers[i].Amount;
             }
             UpdateHarvestBoxCounter(Address + Memory.Address.Offsets.FertilizersOffset + (0x10 * 3) - 0xC);
+            s.Stop();
+            Debugger.Benchmark($"{s.ElapsedTicks / (TimeSpan.TicksPerMillisecond / 1000)}");
         }
 
         private void UpdateHarvestBoxCounter(long LastFertAddress)
         {
             long Address = LastFertAddress + Memory.Address.Offsets.HarvestBoxOffset;
             int counter = 0;
-            for (long iAddress = Address; iAddress < Address + 0x320; iAddress += 0x10)
+            
+            sItem[] elements = Scanner.Win32.Read<sItem>(Address, 50);
+            foreach (sItem element in elements)
             {
-                sItem element = Scanner.Win32.Read<sItem>(iAddress);
-                if (element.Amount > 0)
-                {
-                    counter++;
-                }
+                if (element.Amount > 0) counter++;
             }
             Harvest.Counter = counter;
+            
         }
 
         private void GetSteamFuel()
@@ -791,6 +789,7 @@ namespace HunterPie.Core
 
         private void GetPlayerAbnormalities()
         {
+            //Stopwatch s = Stopwatch.StartNew();
             if (InHarvestZone)
             {
                 Abnormalities.ClearAbnormalities();
@@ -802,6 +801,8 @@ namespace HunterPie.Core
             GetPlayerPalicoAbnormalities(abnormalityBaseAddress);
             GetPlayerMiscAbnormalities(abnormalityBaseAddress);
             GetPlayerGearAbnormalities(abnormalityBaseAddress);
+            //s.Stop();
+            //Debugger.Benchmark($"{s.ElapsedTicks / (TimeSpan.TicksPerMillisecond / 1000)}");
         }
 
         private void GetPlayerHuntingHornAbnormalities(long abnormalityBaseAddress)
@@ -860,17 +861,17 @@ namespace HunterPie.Core
             // Palico and misc buffs don't stack
             switch (info.Type)
             {
-                case "HUNTINGHORN":
+                case AbnormalityType.HuntingHorn:
                     stack = Scanner.Read<byte>(baseAddress + 0x164 + (info.Offset - firstHornBuffOffset) / 4);
                     break;
-                case "DEBUFF":
+                case AbnormalityType.Debuff:
                     if (info.HasConditions)
                     {
                         stack = Scanner.Read<byte>(baseAddress + info.Offset + info.ConditionOffset);
                         DebuffCondition = stack == 0;
                     }
                     break;
-                case "MISC":
+                case AbnormalityType.Misc:
                     if (info.HasConditions)
                     {
                         stack = Scanner.Read<byte>(baseAddress + info.Offset + info.ConditionOffset);
