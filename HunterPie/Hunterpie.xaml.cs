@@ -86,7 +86,7 @@ namespace HunterPie
             IsPlayerLoggedOn = false;
 
             SetDPIAwareness();
-
+            
             Buffers.Initialize(1024);
             Buffers.Add<byte>(64);
 

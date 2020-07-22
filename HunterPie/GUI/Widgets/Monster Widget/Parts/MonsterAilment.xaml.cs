@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Linq;
 using System.Windows.Controls;
 using HunterPie.Core;
 using Timer = System.Threading.Timer;
@@ -12,15 +13,18 @@ namespace HunterPie.GUI.Widgets.Monster_Widget.Parts
     {
         Ailment Context;
         Timer VisibilityTimer;
+        bool IsAilmentGroupEnabled;
 
         public MonsterAilment() => InitializeComponent();
 
         public void SetContext(Ailment ctx, double MaxBarSize)
         {
             Context = ctx;
+            IsAilmentGroupEnabled = UserSettings.PlayerConfig.Overlay.MonstersComponent.EnabledAilmentGroups.Contains(Context.Group);
             SetAilmentInformation(MaxBarSize);
             HookEvents();
             StartVisibilityTimer();
+            
         }
 
         private void HookEvents()
@@ -46,7 +50,8 @@ namespace HunterPie.GUI.Widgets.Monster_Widget.Parts
         {
 
             System.Windows.Visibility visibility;
-            if (UserSettings.PlayerConfig.Overlay.MonstersComponent.EnableMonsterAilments)
+            if (UserSettings.PlayerConfig.Overlay.MonstersComponent.EnableMonsterAilments &&
+                UserSettings.PlayerConfig.Overlay.MonstersComponent.EnabledAilmentGroups.Contains(Context.Group))
             {
                 visibility = System.Windows.Visibility.Visible;
             }
@@ -126,7 +131,7 @@ namespace HunterPie.GUI.Widgets.Monster_Widget.Parts
         {
             if (args.MaxDuration <= 0) { return; }
             System.Windows.Visibility visibility;
-            if (UserSettings.PlayerConfig.Overlay.MonstersComponent.EnableMonsterAilments)
+            if (UserSettings.PlayerConfig.Overlay.MonstersComponent.EnableMonsterAilments && IsAilmentGroupEnabled)
             {
                 visibility = System.Windows.Visibility.Visible;
             }
@@ -152,7 +157,7 @@ namespace HunterPie.GUI.Widgets.Monster_Widget.Parts
         {
             if (args.MaxBuildup <= 0) { return; }
             System.Windows.Visibility visibility;
-            if (UserSettings.PlayerConfig.Overlay.MonstersComponent.EnableMonsterAilments)
+            if (UserSettings.PlayerConfig.Overlay.MonstersComponent.EnableMonsterAilments && IsAilmentGroupEnabled)
             {
                 visibility = System.Windows.Visibility.Visible;
             }
