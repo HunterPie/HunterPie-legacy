@@ -1,7 +1,15 @@
-[![Discord](https://img.shields.io/discord/678286768046342147?color=%237289DA&label=Discord&logo=Discord&logoColor=%2399AAB5&style=for-the-badge)](https://discord.gg/5pdDq4Q)
-[![Donate](https://img.shields.io/badge/Donate-PayPal-blue.svg)](https://www.paypal.com/cgi-bin/webscr?cmd=_s-xclick&hosted_button_id=EXPGCRVFVC2ZA&source=url)
 
-![HunterPie](https://cdn.discordapp.com/attachments/402557384209203200/724059340088147978/banner_dark.png)
+
+<img src="https://cdn.discordapp.com/attachments/402557384209203200/735695965461151894/hunterpie_patreon_banner.png" Width="600">
+
+[![Discord](https://img.shields.io/discord/678286768046342147?color=7289DA&label=Discord&logo=discord&logoColor=white&style=flat-square)](https://discord.gg/5pdDq4Q)
+[![Paypal](https://img.shields.io/badge/donate-Paypal-blue.svg?color=62b2fc&style=flat-square&label=Donate)](https://www.paypal.com/cgi-bin/webscr?cmd=_s-xclick&hosted_button_id=EXPGCRVFVC2ZA&source=url)
+[![Patreon](https://img.shields.io/badge/Support-Patreon-blue.svg?color=fc8362&style=flat-square&logo=patreon&logoColor=white)](https://www.patreon.com/HunterPie)
+
+[![GitHub license](https://img.shields.io/github/license/Haato3o/HunterPie?color=c20067&style=flat-square)](https://github.com/Haato3o/HunterPie/blob/master/LICENSE)
+[![GitHub stars](https://img.shields.io/github/stars/Haato3o/HunterPie?color=b440de&style=flat-square)](https://github.com/Haato3o/HunterPie/stargazers)
+
+
 ## About
 HunterPie is a modern and simple to use overlay with support for Discord Rich Presence for Monster Hunter: World.
 
@@ -24,19 +32,19 @@ HunterPie is a modern and simple to use overlay with support for Discord Rich Pr
 ## Features
 
 ### Core
-- [Build exporter to Honey Hunters World](https://github.com/Haato3o/HunterPie/wiki/Honey-Hunters-World-Build-Exporter)
+- [Build exporter to Honey Hunters World](https://hunterpie.me/HunterPie/?p=Integrations/honeyHuntersWorld.md)
 - Decoration & Charms exporter to Honey Hunters World
-- [Automatic Player Data Exporter](https://github.com/Haato3o/HunterPie/wiki/Player-Data-Exporter)
+- [Automatic Player Data Exporter](https://hunterpie.me/HunterPie/?p=HunterPie/playerDataExporter.md)
 - Automatic updates
-- [Discord Rich Presence Support](https://github.com/Haato3o/HunterPie/wiki/Discord-Rich-Presence)
+- [Discord Rich Presence Support](https://hunterpie.me/HunterPie/?p=Integrations/discord.md)
 
 ### Overlay
-- [Monster Widget](https://github.com/Haato3o/HunterPie/wiki/Monster-Widget)
-- [Harvest Box Widget](https://github.com/Haato3o/HunterPie/wiki/Harvest-Box-Widget)
+- [Monster Widget](https://hunterpie.me/HunterPie/?p=Overlay/monstersWidget.md)
+- [Harvest Box Widget](https://hunterpie.me/HunterPie/?p=Overlay/harvestBoxWidget.md)
 - Specialized Tools Tracker Widget
 - [Abnormalities Tracker Widget](https://github.com/Haato3o/HunterPie/wiki/Abnormalities-Tray)
-- [Class Helper Widget](https://github.com/Haato3o/HunterPie/wiki/Classes-Widget)
-- [Damage Meter Widget](https://github.com/Haato3o/HunterPie/wiki/Damage-Meter-Widget)
+- [Class Helper Widget](https://hunterpie.me/HunterPie/?p=Overlay/classesWidget.md)
+- [Damage Meter Widget](https://hunterpie.me/HunterPie/?p=Overlay/damageMeterWidget.md)
 
 ## Troubleshooting & Bugs
 
