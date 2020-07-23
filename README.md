@@ -1,6 +1,6 @@
 
 
-<img src="https://cdn.discordapp.com/attachments/402557384209203200/735695965461151894/hunterpie_patreon_banner.png" Width="600">
+<img src="https://cdn.discordapp.com/attachments/402557384209203200/735695965461151894/hunterpie_patreon_banner.png" Width="1200">
 
 [![Discord](https://img.shields.io/discord/678286768046342147?color=7289DA&label=Discord&logo=discord&logoColor=white&style=flat-square)](https://discord.gg/5pdDq4Q)
 [![Paypal](https://img.shields.io/badge/donate-Paypal-blue.svg?color=62b2fc&style=flat-square&label=Donate)](https://www.paypal.com/cgi-bin/webscr?cmd=_s-xclick&hosted_button_id=EXPGCRVFVC2ZA&source=url)
