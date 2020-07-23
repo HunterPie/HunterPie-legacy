@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Media;
 
@@ -24,11 +25,25 @@ namespace HunterPie.GUIControls.Custom_Controls
             }
         }
 
+
+
         public Brush Color
         {
-            get => HealthBar.Fill;
-            set => HealthBar.Fill = value;
+            get { return (Brush)GetValue(ColorProperty); }
+            set { SetValue(ColorProperty, value); }
         }
+        public static readonly DependencyProperty ColorProperty =
+            DependencyProperty.Register("Color", typeof(Brush), typeof(MinimalHealthBar));
+
+        public Brush Background
+        {
+            get { return (Brush)GetValue(BackgroundProperty); }
+            set { SetValue(BackgroundProperty, value); }
+        }
+        public static readonly DependencyProperty BackgroundProperty =
+            DependencyProperty.Register("Background", typeof(Brush), typeof(MinimalHealthBar));
+
+
 
         public MinimalHealthBar() => InitializeComponent();
 

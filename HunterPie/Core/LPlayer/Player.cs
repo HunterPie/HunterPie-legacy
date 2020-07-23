@@ -735,7 +735,6 @@ namespace HunterPie.Core
 
         private void GetFertilizers()
         {
-            Stopwatch s = Stopwatch.StartNew();
             long Address = LEVEL_ADDRESS + Memory.Address.Offsets.FertilizersOffset - 0xC;
             sItem[] fertilizers = Scanner.Win32.Read<sItem>(Address, 4);
             for (int i = 0; i < fertilizers.Length; i++)
@@ -744,8 +743,6 @@ namespace HunterPie.Core
                 Harvest.Box[i].Amount = fertilizers[i].Amount;
             }
             UpdateHarvestBoxCounter(Address + Memory.Address.Offsets.FertilizersOffset + (0x10 * 3) - 0xC);
-            s.Stop();
-            Debugger.Benchmark($"{s.ElapsedTicks / (TimeSpan.TicksPerMillisecond / 1000)}");
         }
 
         private void UpdateHarvestBoxCounter(long LastFertAddress)

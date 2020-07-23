@@ -79,8 +79,8 @@ namespace HunterPie.Logger
         private static void PrintOnConsole(string message, object color, DispatcherPriority priority = DispatcherPriority.Background)
         {
             DateTime TimeStamp = DateTime.Now;
-            //message = $"[{TimeStamp.ToLongTimeString()}] {message}\n";
-            message = message + ", ";
+            message = $"[{TimeStamp.ToLongTimeString()}] {message}\n";
+            
             LastOperation = _Instance.Dispatcher.BeginInvoke(
                 priority,
                 new Action(() =>

@@ -17,32 +17,15 @@
                 <Image x:Name="MonsterCrown" Source="{StaticResource CROWN_GOLD}" Visibility="Visible" Width="16" Margin="0,2"/>
                 <TextBlock x:Name="MonsterName" Text="Monster Name" Style="{StaticResource OVERLAY_MONSTER_NAME_TEXT_STYLE}"/>
             </StackPanel>
-            <Custom:MinimalHealthBar x:Name="MonsterHealthBar" Style="{StaticResource OVERLAY_MONSTER_HEALTH_BAR_STYLE}" Height="14" VerticalAlignment="Top" RenderTransformOrigin="0.5,1" BorderThickness="0" Margin="49,0,18,0" Foreground="{x:Null}" Color="{StaticResource OVERLAY_MONSTER_HEALTH_BAR_COLOR}" Grid.Row="1">
+            <Custom:MinimalHealthBar x:Name="MonsterHealthBar" Style="{StaticResource OVERLAY_MONSTER_HEALTH_BAR_STYLE}" VerticalAlignment="Top" RenderTransformOrigin="0.5,1" BorderThickness="0" Foreground="{x:Null}" Grid.Row="1">
                 <Custom:MinimalHealthBar.Effect>
                     <DropShadowEffect Color="Red" BlurRadius="10" ShadowDepth="0" Opacity="0"/>
                 </Custom:MinimalHealthBar.Effect>
             </Custom:MinimalHealthBar>
             <TextBlock x:Name="HealthText" Text="10000/10000 (100%)" Style="{StaticResource OVERLAY_MONSTER_BAR_TEXT_STYLE}" TextAlignment="Center" Height="20" VerticalAlignment="Top" Grid.RowSpan="2" HorizontalAlignment="Stretch" Width="Auto"/>
-            <Custom:MinimalHealthBar x:Name="MonsterStaminaBar" Grid.Row="1" Height="6" VerticalAlignment="Top" RenderTransformOrigin="0.5,1" BorderThickness="0.2" Foreground="{x:Null}" Margin="43,14,27,0" Color="{StaticResource OVERLAY_MONSTER_STAMINA_BAR_COLOR}">
-                <Custom:MinimalHealthBar.LayoutTransform>
-                    <TransformGroup>
-                        <ScaleTransform/>
-                        <SkewTransform/>
-                        <RotateTransform/>
-                        <TranslateTransform/>
-                    </TransformGroup>
-                </Custom:MinimalHealthBar.LayoutTransform>
-                <Custom:MinimalHealthBar.RenderTransform>
-                    <TransformGroup>
-                        <ScaleTransform/>
-                        <SkewTransform AngleX="-45"/>
-                        <RotateTransform/>
-                        <TranslateTransform/>
-                    </TransformGroup>
-                </Custom:MinimalHealthBar.RenderTransform>
-            </Custom:MinimalHealthBar>
+            <Custom:MinimalHealthBar x:Name="MonsterStaminaBar" Grid.Row="1" VerticalAlignment="Top" RenderTransformOrigin="0.5,1" BorderThickness="0.2" Style="{StaticResource OVERLAY_MONSTER_STAMINA_BAR_STYLE}"/>
             <TextBlock x:Name="StaminaText" Text="10000/10000" Grid.Row="1" HorizontalAlignment="Right" Style="{StaticResource OVERLAY_MONSTER_STAMINA_TEXT_STYLE}"/>
-            <Rectangle x:Name="HealthBossIcon" Width="30" Height="30" Margin="12,17,0,0" Grid.RowSpan="2" RenderTransformOrigin="0.5,0.5" HorizontalAlignment="Left" VerticalAlignment="Top">
+            <Rectangle x:Name="HealthBossIcon" Width="30" Height="30" Margin="12,17,0,0" Grid.RowSpan="2" RenderTransformOrigin="0.5,0.5" HorizontalAlignment="Left" VerticalAlignment="Top" Visibility="{StaticResource OVERLAY_SHOW_MONSTER_ICON}">
                 <Rectangle.Effect>
                     <DropShadowEffect Color="Red" ShadowDepth="0" BlurRadius="15" Opacity="0"/>
                 </Rectangle.Effect>
@@ -61,7 +44,7 @@
                     </TransformGroup>
                 </Rectangle.RenderTransform>
             </Rectangle>
-            <Image x:Name="MonsterIcon" Width="30" Height="30" Margin="12,17,0,0" Grid.RowSpan="2" HorizontalAlignment="Left" VerticalAlignment="Top"/>
+            <Image x:Name="MonsterIcon" Width="30" Height="30" Margin="12,17,0,0" Grid.RowSpan="2" HorizontalAlignment="Left" VerticalAlignment="Top" Visibility="{StaticResource OVERLAY_SHOW_MONSTER_ICON}"/>
             <Canvas x:Name="CapturableIcon" Visibility="Hidden" Width="30" Height="31" HorizontalAlignment="Right" Margin="0,2,2,0" VerticalAlignment="Top" Grid.RowSpan="2">
                 <Rectangle Grid.Row="1" Height="20" VerticalAlignment="Top" HorizontalAlignment="Left" Width="20" RenderTransformOrigin="0.5,0.5" Canvas.Left="5" Canvas.Top="5">
                     <Rectangle.Effect>

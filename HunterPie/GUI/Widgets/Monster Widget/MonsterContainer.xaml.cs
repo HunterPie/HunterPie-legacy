@@ -18,14 +18,25 @@ namespace HunterPie.GUI.Widgets
         MonsterHealth s_MonsterWidget;
         MonsterHealth t_MonsterWidget;
 
+        double MONSTER_WIDTH_3;
+        double MONSTER_WIDTH_2;
+        double MONSTER_WIDTH_1;
+
         public MonsterContainer(Game ctx)
         {
-
+            LoadMonsterWidths();
             InitializeComponent();
             WidgetType = 1;
             SetWindowFlags();
             SetContext(ctx);
             ApplySettings();
+        }
+
+        private void LoadMonsterWidths()
+        {
+            MONSTER_WIDTH_1 = Convert.ToDouble(FindResource("OVERLAY_MONSTER_BAR_WIDTH_1"));
+            MONSTER_WIDTH_2 = Convert.ToDouble(FindResource("OVERLAY_MONSTER_BAR_WIDTH_2"));
+            MONSTER_WIDTH_3 = Convert.ToDouble(FindResource("OVERLAY_MONSTER_BAR_WIDTH_3"));
         }
 
         private void OnMonsterContainerRender(object sender, EventArgs e)
@@ -36,13 +47,13 @@ namespace HunterPie.GUI.Widgets
             switch (VisibleMonsters.Count())
             {
                 case 1:
-                    newSize = 500;
+                    newSize = MONSTER_WIDTH_1;
                     break;
                 case 2:
-                    newSize = 400;
+                    newSize = MONSTER_WIDTH_2;
                     break;
                 default:
-                    newSize = 300;
+                    newSize = MONSTER_WIDTH_3;
                     break;
             }
             foreach (MonsterHealth m in VisibleMonsters)
