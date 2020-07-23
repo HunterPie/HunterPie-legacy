@@ -1,8 +1,12 @@
 ﻿using System;
+using System.Collections.Generic;
+using System.ComponentModel;
 using System.IO;
+using System.Linq;
 using System.Security.Principal;
 using System.Windows;
 using System.Windows.Controls;
+using System.Windows.Forms.Integration;
 using System.Windows.Input;
 using System.Windows.Interop;
 using System.Windows.Markup;
@@ -75,11 +79,7 @@ namespace HunterPie
         public Hunterpie()
         {
 
-            if (CheckIfHunterPieOpen())
-            {
-                Close();
-                return;
-            }
+            CheckIfHunterPieOpen();
 
             AppDomain.CurrentDomain.UnhandledException += ExceptionLogger;
 
@@ -120,9 +120,14 @@ namespace HunterPie
             AbnormalityData.LoadAbnormalityData();
         }
 
-        private bool CheckIfHunterPieOpen() =>
+        private void CheckIfHunterPieOpen()
+        {
             // Block new instances of HunterPie if there's one already running
-            Process.GetProcessesByName("HunterPie").Length > 1;
+            Process instance = Process.GetCurrentProcess();
+            IEnumerable<Process> processes = Process.GetProcessesByName("HunterPie").Where(p => p.Id != instance.Id);
+            foreach (Process p in processes) p.Kill();
+        }
+            
 
         private void SetDPIAwareness()
         {
@@ -698,7 +703,8 @@ namespace HunterPie
             Hide();
             Width = UserSettings.PlayerConfig.HunterPie.Width;
             Height = UserSettings.PlayerConfig.HunterPie.Height;
-
+            Top = UserSettings.PlayerConfig.HunterPie.PosY;
+            Left = UserSettings.PlayerConfig.HunterPie.PosX;
 
             OpenDebugger();
             // Initialize everything under this line
@@ -758,8 +764,11 @@ namespace HunterPie
             }
         }
 
-        private void OnWindowClosing(object sender, System.ComponentModel.CancelEventArgs e)
+        private void OnWindowClosing(object sender, CancelEventArgs e)
         {
+            UserSettings.PlayerConfig.HunterPie.PosX = Left;
+            UserSettings.PlayerConfig.HunterPie.PosY = Top;
+
             if (!IsUpdating) UserSettings.SaveNewConfig();
             Debugger.DumpLog();
             Hide();
@@ -771,7 +780,7 @@ namespace HunterPie
                 TrayIcon.ContextMenu.MenuItems[1].Click -= OnTrayIconExitClick;
                 TrayIcon.Dispose();
             }
-
+            
             // Dispose stuff & stop scanning threads
             GameOverlay?.Dispose();
             if (MonsterHunter.IsActive) MonsterHunter.StopScanning();
@@ -892,7 +901,33 @@ namespace HunterPie
             UserSettings.PlayerConfig.HunterPie.Height = (float)e.NewSize.Height;
         }
 
+        private void Reload()
+        {
+            // Welp
+            Process.Start(Application.ResourceAssembly.Location, "latestVersion=True");
+            Application.Current.Shutdown();
+        }
+
+        private void OnKeyDown(object sender, KeyEventArgs e)
+        {
+            e.Handled = true;
+
+            Key key = (e.Key == Key.System ? e.SystemKey : e.Key);
+
+            if (key == Key.LeftShift || key == Key.RightShift
+                || key == Key.LeftCtrl || key == Key.RightCtrl
+                || key == Key.LeftAlt || key == Key.RightAlt
+                || key == Key.LWin || key == Key.RWin)
+            {
+                return;
+            }
+            if ((Keyboard.Modifiers & ModifierKeys.Control) != 0 && e.Key == Key.R)
+            {
+                Reload();   
+            }
+        }
         #endregion
+
 
     }
 }

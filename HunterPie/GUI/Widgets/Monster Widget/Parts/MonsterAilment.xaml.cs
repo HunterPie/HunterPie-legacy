@@ -24,7 +24,6 @@ namespace HunterPie.GUI.Widgets.Monster_Widget.Parts
             SetAilmentInformation(MaxBarSize);
             HookEvents();
             StartVisibilityTimer();
-            
         }
 
         private void HookEvents()

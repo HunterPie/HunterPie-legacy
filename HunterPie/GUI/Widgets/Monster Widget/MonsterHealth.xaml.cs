@@ -130,7 +130,7 @@ namespace HunterPie.GUI.Widgets
                 Part mPart = Monster.Parts[index];
                 Monster_Widget.Parts.MonsterPart PartDisplay = new Monster_Widget.Parts.MonsterPart()
                 {
-                    Style = FindResource("OVERLAY_MONSTER_PART_BAR_STYLE") as Style
+                    Style = FindResource("OVERLAY_MONSTER_SUB_PART_STYLE") as Style
                 };
                 PartDisplay.SetContext(mPart, MonsterPartsContainer.ItemWidth);
                 MonsterPartsContainer.Children.Add(PartDisplay);
@@ -145,7 +145,7 @@ namespace HunterPie.GUI.Widgets
                 Ailment ailment = Monster.Ailments[index];
                 Monster_Widget.Parts.MonsterAilment AilmentDisplay = new Monster_Widget.Parts.MonsterAilment()
                 {
-                    Style = FindResource("OVERLAY_MONSTER_AILMENT_BAR_STYLE") as Style
+                    Style = FindResource("OVERLAY_MONSTER_SUB_AILMENT_STYLE") as Style
                 };
                 AilmentDisplay.SetContext(ailment, MonsterAilmentsContainer.ItemWidth);
                 MonsterAilmentsContainer.Children.Add(AilmentDisplay);
@@ -307,7 +307,7 @@ namespace HunterPie.GUI.Widgets
                     Ailment ailment = Context.Ailments[index];
                     Monster_Widget.Parts.MonsterAilment AilmentDisplay = new Monster_Widget.Parts.MonsterAilment()
                     {
-                        Style = FindResource("OVERLAY_MONSTER_AILMENT_BAR_STYLE") as Style
+                        Style = FindResource("OVERLAY_MONSTER_SUB_AILMENT_STYLE") as Style
                     };
                     AilmentDisplay.SetContext(ailment, MonsterAilmentsContainer.ItemWidth);
                     MonsterAilmentsContainer.Children.Add(AilmentDisplay);

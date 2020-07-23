@@ -29,15 +29,12 @@
     <Ailment Id="999" Name="STATUS_ENRAGE" Skip="False" Group="ENRAGE" Type="1"/>
   </Ailments>
   <Monster ID="ems062_03" Capture="0" GameID="98">
-    <Weaknesses>
-      <Weakness ID="ELEMENT_DRAGON" Stars="3"/>
-      <Weakness ID="ELEMENT_THUNDER" Stars="3"/>
-    </Weaknesses>
+    <Weaknesses/>
     <Crown Mini="0.9" Silver="1.15" Gold="1.23"/>
     <Parts Max="3">
-      <Part Name="MONSTER_PART_UNKNOWN" Group="Misc"/>
-      <Part Name="MONSTER_PART_UNKNOWN" Group="Misc"/>
-      <Part Name="MONSTER_PART_UNKNOWN" Group="Misc"/>
+      <Part Name="MONSTER_PART_UNKNOWN" Group="MISC" TenderizeIds="0,2"/>
+      <Part Name="MONSTER_PART_UNKNOWN" Group="MISC" TenderizeIds="1"/>
+      <Part Name="MONSTER_PART_UNKNOWN" Group="MISC" TenderizeIds="3"/>
     </Parts>
   </Monster>
   <Monster ID="em001_00" Capture="25" GameID="9"> <!-- Rathian -->
@@ -50,21 +47,21 @@
       <Part Name="MONSTER_PART_REMOVABLE_TAIL" IsRemovable="True">
         <Break Threshold="1"/>
       </Part>
-      <Part Name="MONSTER_PART_HEAD" Group="HEAD">
+      <Part Name="MONSTER_PART_HEAD" Group="HEAD" TenderizeIds="0,5">
         <Break Threshold="2"/>
       </Part>
       <Part Name="MONSTER_PART_BODY" Group="BODY">
         <Break Threshold="1"/>
       </Part>
-      <Part Name="MONSTER_PART_LWING" Group="WING">
+      <Part Name="MONSTER_PART_LWING" Group="WING" TenderizeIds="1,2">
         <Break Threshold="1"/>
       </Part>
-      <Part Name="MONSTER_PART_RWING" Group="WING">
+      <Part Name="MONSTER_PART_RWING" Group="WING" TenderizeIds="6,7">
         <Break Threshold="1"/>
       </Part>
-      <Part Name="MONSTER_PART_LLEG" Group="LEG"/>
-      <Part Name="MONSTER_PART_RLEG" Group="LEG"/>
-      <Part Name="MONSTER_PART_TAIL" Group="TAIL"/>
+      <Part Name="MONSTER_PART_LLEG" Group="LEG" TenderizeIds="3"/>
+      <Part Name="MONSTER_PART_RLEG" Group="LEG" TenderizeIds="8"/>
+      <Part Name="MONSTER_PART_TAIL" Group="TAIL" TenderizeIds="4,9"/>
     </Parts>
   </Monster>
   <Monster ID="em001_01" Capture="25"  GameID="10"> <!-- Pink Rathian -->

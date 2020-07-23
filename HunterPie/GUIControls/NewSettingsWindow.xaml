@@ -462,7 +462,7 @@
                                 <Binding Mode="OneTime" XPath="Settings/String[@ID='ENABLE_MONSTER_PARTS_DESC']/@Name"/>
                             </custom:Switcher.ToolTip>
                         </custom:Switcher>
-                        <ScrollViewer MaxHeight="200" HorizontalAlignment="Center">
+                        <ScrollViewer MaxHeight="350" HorizontalAlignment="Center">
                             <StackPanel x:Name="PartsCustomizer" Height="0" IsEnabled="False" MinWidth="300">
                                 <custom:Switcher x:Name="EnablePartHead" RestartVisibility="Collapsed">
                                     <custom:Switcher.Text>
@@ -571,7 +571,7 @@
                                                 <Trigger.EnterActions>
                                                     <BeginStoryboard>
                                                         <Storyboard Storyboard.TargetProperty="Height">
-                                                            <DoubleAnimation To="530" Duration="0:0:0.2"/>
+                                                            <DoubleAnimation To="630" Duration="0:0:0.2"/>
                                                         </Storyboard>
                                                     </BeginStoryboard>
                                                 </Trigger.EnterActions>

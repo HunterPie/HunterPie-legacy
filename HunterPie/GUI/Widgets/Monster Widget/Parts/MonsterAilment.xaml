@@ -2,31 +2,17 @@
              xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
              xmlns:Custom="clr-namespace:HunterPie.GUIControls.Custom_Controls"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             mc:Ignorable="d" 
+             d:DesignHeight="32" d:DesignWidth="300"
              Height="30">
     <Grid>
-        <Custom:MinimalHealthBar Color="{StaticResource OVERLAY_MONSTER_AILMENT_BAR_COLOR}" x:Name="AilmentBar" Margin="30,13,5,0" RenderTransformOrigin="0.5,0.5" Height="3" VerticalAlignment="Top" >
-            <Custom:MinimalHealthBar.RenderTransform>
-                <TransformGroup>
-                    <ScaleTransform/>
-                    <SkewTransform AngleX="-45"/>
-                    <RotateTransform/>
-                    <TranslateTransform/>
-                </TransformGroup>
-            </Custom:MinimalHealthBar.RenderTransform>
-        </Custom:MinimalHealthBar>
-        <TextBlock Style="{StaticResource OVERLAY_MONSTER_PART_NAME_TEXT_STYLE}" x:Name="AilmentName" Text="Poison" Height="19" VerticalAlignment="Top" TextTrimming="CharacterEllipsis" TextOptions.TextHintingMode="Fixed"/>
-        <Rectangle Height="17" VerticalAlignment="Top" Margin="13,6,0,0" HorizontalAlignment="Left" Width="17" RenderTransformOrigin="0.5,0.5" Style="{StaticResource OVERLAY_MONSTER_AILMENT_COUNTER_BACKGROUND_STYLE}">
-            <Rectangle.RenderTransform>
-                <TransformGroup>
-                    <ScaleTransform/>
-                    <SkewTransform/>
-                    <RotateTransform Angle="45"/>
-                    <TranslateTransform/>
-                </TransformGroup>
-            </Rectangle.RenderTransform>
-        </Rectangle>
+        <Custom:MinimalHealthBar Style="{StaticResource OVERLAY_MONSTER_AILMENT_BAR_STYLE}" x:Name="AilmentBar"/>
+        <TextBlock Style="{StaticResource OVERLAY_MONSTER_AILMENT_NAME_TEXT_STYLE}" x:Name="AilmentName" Text="Poison" TextOptions.TextHintingMode="Fixed"/>
+        <Rectangle HorizontalAlignment="Left" RenderTransformOrigin="0.5,0.5" Style="{StaticResource OVERLAY_MONSTER_AILMENT_COUNTER_BACKGROUND_STYLE}"/>
         <TextBlock Style="{StaticResource OVERLAY_MONSTER_PART_COUNTER_TEXT_STYLE}" x:Name="AilmentCounter" Text="99" Height="23" VerticalAlignment="Top" TextOptions.TextHintingMode="Fixed" FontSize="12" Padding="0,2,0,0" Margin="10,3,0,0" TextAlignment="Center" HorizontalAlignment="Left" Width="23"/>
 
-        <TextBlock Style="{StaticResource OVERLAY_MONSTER_PART_NAME_TEXT_STYLE}" x:Name="AilmentText" Text="0/150" Height="15" VerticalAlignment="Top" Margin="29,15,0,0" TextOptions.TextHintingMode="Fixed" FontSize="11" TextAlignment="Center"/>
+        <TextBlock Style="{StaticResource OVERLAY_MONSTER_AILMENT_HEALTH_TEXT_STYLE}" x:Name="AilmentText" Text="0/150" TextOptions.TextHintingMode="Fixed" TextAlignment="Center"/>
     </Grid>
 </UserControl>

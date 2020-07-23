@@ -1,4 +1,5 @@
 ﻿using System.Windows;
+using HunterPie.Logger;
 
 namespace HunterPie
 {
@@ -7,6 +8,10 @@ namespace HunterPie
     /// </summary>
     public partial class App : Application
     {
-        
+        private void OnDispatcherUnhandledException(object sender, System.Windows.Threading.DispatcherUnhandledExceptionEventArgs e)
+        {
+            e.Handled = true;
+            Debugger.Error(e.Exception);
+        }
     }
 }
