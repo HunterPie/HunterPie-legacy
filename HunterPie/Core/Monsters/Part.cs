@@ -13,7 +13,6 @@ namespace HunterPie.Core
         private float totalHealth;
         private int brokenCounter;
         private float tDuration;
-        private float tMaxDuration;
 
         public Part(MonsterInfo monsterInfo, PartInfo partInfo, int index)
         {

@@ -742,7 +742,7 @@ namespace HunterPie.Core
                 Harvest.Box[i].ID = fertilizers[i].ItemId;
                 Harvest.Box[i].Amount = fertilizers[i].Amount;
             }
-            UpdateHarvestBoxCounter(Address + Memory.Address.Offsets.FertilizersOffset + (0x10 * 3) - 0xC);
+            UpdateHarvestBoxCounter(LEVEL_ADDRESS + Memory.Address.Offsets.FertilizersOffset + (0x10 * 3) - 0xC);
         }
 
         private void UpdateHarvestBoxCounter(long LastFertAddress)
@@ -755,6 +755,7 @@ namespace HunterPie.Core
             {
                 if (element.Amount > 0) counter++;
             }
+            
             Harvest.Counter = counter;
             
         }

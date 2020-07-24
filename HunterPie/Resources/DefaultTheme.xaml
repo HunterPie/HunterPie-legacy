@@ -277,43 +277,38 @@
     </Style>
 
     <!-- Console -->
-    <SolidColorBrush x:Key="CONSOLE_LOGO_PRIMARY">#FFD13232</SolidColorBrush>
+    <SolidColorBrush x:Key="CONSOLE_LOGO_PRIMARY">#edf8ff</SolidColorBrush>
     <SolidColorBrush x:Key="CONSOLE_LOGO_SECONDARY">#FF1F1F1F</SolidColorBrush>
-    <SolidColorBrush x:Key="CONSOLE_LOGO_TERTIARY">#FFD13232</SolidColorBrush>
+    <SolidColorBrush x:Key="CONSOLE_LOGO_TERTIARY">#edf8ff</SolidColorBrush>
     
     <SolidColorBrush x:Key="CONSOLE_BACKGROUND">#F41F1F1F</SolidColorBrush>
     <SolidColorBrush x:Key="CONSOLE_HEADER_BACKGROUND">#4C0E0E0E</SolidColorBrush>
     <SolidColorBrush x:Key="CONSOLE_SIDEBAR_BACKGROUND">#CC151515</SolidColorBrush>
     <SolidColorBrush x:Key="CONSOLE_WINDOWBAR_BACKGROUND">#FF131313</SolidColorBrush>
 
-    <LinearGradientBrush x:Key="BUTTON_LAUNCHGAME_BACKGROUND" EndPoint="1,0.5" StartPoint="0,0.5">
-        <GradientStop Color="#FFC92626"/>
-        <GradientStop Color="#FFD82323" Offset="1"/> 
-    </LinearGradientBrush>
-    <SolidColorBrush x:Key="BUTTON_LAUNCHGAME_FOREGROUND">#FFDEDEDE</SolidColorBrush>
+    <SolidColorBrush x:Key="BUTTON_LAUNCHGAME_BACKGROUND">#5cade0</SolidColorBrush>
+    <SolidColorBrush x:Key="BUTTON_LAUNCHGAME_FOREGROUND">#edf8ff</SolidColorBrush>
     <SolidColorBrush x:Key="BUTTON_TOPBUTTON_FOREGROUND">#FFD8D8D8</SolidColorBrush>
     <SolidColorBrush x:Key="BUTTON_TOPBUTTON_BACKGROUND">#00000000</SolidColorBrush>
-    <SolidColorBrush x:Key="BUTTON_CLOSEWINDOW_BACKGROUND">#FFB02B2B</SolidColorBrush>
+    <SolidColorBrush x:Key="BUTTON_CLOSEWINDOW_BACKGROUND">#5cade0</SolidColorBrush>
     <SolidColorBrush x:Key="BUTTON_COMMONBUTTON_FOREGROUND">#FFF3F3F3</SolidColorBrush>
     <SolidColorBrush x:Key="BUTTON_COMMONBUTTON_BACKGROUND">#E51B1B1B</SolidColorBrush>
-    <SolidColorBrush x:Key="BUTTON_COMMONBUTTON_BORDER">#FFD13232</SolidColorBrush>
+    <SolidColorBrush x:Key="BUTTON_COMMONBUTTON_BORDER">#5cade0</SolidColorBrush>
     <SolidColorBrush x:Key="BUTTON_ICON_FOREGROUND">#FFDEDEDE</SolidColorBrush>
     <SolidColorBrush x:Key="CONSOLE_VERSIONTEXT_FOREGROUND">#FFDEDEDE</SolidColorBrush>
 
-    
-    
     <LinearGradientBrush x:Key="CONSOLE_LOGO_FOREGROUND" EndPoint="0.5,1" StartPoint="0.5,0">
         <GradientStop Color="White" Offset="0"/>
         <GradientStop Color="#FFE0E0E0" Offset="1"/>
     </LinearGradientBrush>
 
     <!-- Settings window -->
-    <Color x:Key="TOGGLABLE_BUTTON_BACKGROUND_ON">#FFD13838</Color>
+    <Color x:Key="TOGGLABLE_BUTTON_BACKGROUND_ON">#5cade0</Color>
     <Color x:Key="TOGGLABLE_BUTTON_BACKGROUND_OFF">#FF151515</Color>
     <Color x:Key="TOGGLABLE_BUTTON_FOREGROUND_ON">WhiteSmoke</Color>
     <Color x:Key="TOGGLABLE_BUTTON_FOREGROUND_OFF">#FF252525</Color>
 
-    <SolidColorBrush x:Key="GENERIC_BUTTON_BACKGROUND">#FFC92626</SolidColorBrush>
+    <SolidColorBrush x:Key="GENERIC_BUTTON_BACKGROUND">#5cade0</SolidColorBrush>
     <SolidColorBrush x:Key="GENERIC_BUTTON_FOREGROUND">#ededed</SolidColorBrush>
     
     <!-- Debugger colors -->
@@ -412,11 +407,11 @@
         <Setter Property="Template">
             <Setter.Value>
                 <ControlTemplate TargetType="RepeatButton">
-                    <Border SnapsToDevicePixels="True"  BorderThickness="1" Height="3" BorderBrush="#FFB91E17">
+                    <Border SnapsToDevicePixels="True"  BorderThickness="1" Height="3" BorderBrush="#5cade0">
                         <Border.Background>
                             <LinearGradientBrush EndPoint="1,1" StartPoint="0.5,0" MappingMode="Absolute">
-                                <GradientStop Color="#FF93291E" Offset="0"/>
-                                <GradientStop Color="#FFB91E17" Offset="1"/>
+                                <GradientStop Color="#5cade0" Offset="0"/>
+                                <GradientStop Color="#5cade0" Offset="1"/>
                             </LinearGradientBrush>
                         </Border.Background>
                     </Border>
@@ -431,9 +426,7 @@
         <Setter Property="Template">
             <Setter.Value>
                 <ControlTemplate TargetType="Thumb">
-                    <Ellipse Height="15" Width="15" Fill="#FFB91E17" Cursor="Hand" Stroke="#7FFFFFFF" StrokeThickness="0">
-
-                    </Ellipse>
+                    <Ellipse Height="15" Width="15" Fill="WhiteSmoke" Cursor="Hand" Stroke="#7FFFFFFF" StrokeThickness="1"/>
                 </ControlTemplate>
             </Setter.Value>
         </Setter>
