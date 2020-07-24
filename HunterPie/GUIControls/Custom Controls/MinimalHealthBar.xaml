@@ -1,23 +1,13 @@
 ﻿<UserControl x:Name="MinimalBar" x:Class="HunterPie.GUIControls.Custom_Controls.MinimalHealthBar"
              xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-             xmlns:converter="clr-namespace:HunterPie.GUI.Helpers"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
-             xmlns:local="clr-namespace:HunterPie.GUIControls.Custom_Controls"
-             mc:Ignorable="d" d:DesignHeight="14" d:DesignWidth="200 ">
+             mc:Ignorable="d" d:DesignHeight="14" d:DesignWidth="200">
     <UserControl.Resources>
     </UserControl.Resources>
     <Grid>
-        <Rectangle x:Name="HealthBarBackground" Fill="{StaticResource OVERLAY_BARS_BACKGROUND}"/>
-        <Rectangle x:Name="HealthBar" HorizontalAlignment="Left" Margin="0">
-            <Rectangle.Fill>
-                <LinearGradientBrush EndPoint="1,1" StartPoint="1,0">
-                    <GradientStop Color="#FFA00000"/>
-                    <GradientStop Color="#FF9E1B1B" Offset="0.493"/>
-                    <GradientStop Color="#FFA10101" Offset="1"/>
-                </LinearGradientBrush>
-            </Rectangle.Fill>
-        </Rectangle>
+        <Rectangle x:Name="HealthBarBackground" Fill="{Binding ElementName=MinimalBar, Path=Background}"/>
+        <Rectangle x:Name="HealthBar" HorizontalAlignment="Left" Margin="0" Fill="{Binding ElementName=MinimalBar, Path=Color}"/>
     </Grid>
 </UserControl>

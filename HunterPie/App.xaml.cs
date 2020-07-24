@@ -7,6 +7,6 @@ namespace HunterPie
     /// </summary>
     public partial class App : Application
     {
-
+        
     }
 }

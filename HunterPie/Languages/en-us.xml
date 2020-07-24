@@ -205,6 +205,8 @@
     <Ailment ID="STATUS_FELYNETRAP" Name="Felyne Trap"/>
     <Ailment ID="STATUS_CLAW" Name="Claw"/>
     <Ailment ID="STATUS_VIOLATED" Name="Claw Flinch"/>
+    <Ailment ID="STATUS_BANISHMENT_BALL" Name="Banishment Ball"/>
+    <Ailment ID="STATUS_ENRAGE" Name="Enrage"/>
   </Ailments>
   <Mantles>
     <Mantle ID="-1" Name="No Mantle"/>
@@ -579,6 +581,23 @@
       <String ID="STATIC_MONSTER_PART_DELAY" Name="Delay to hide inactive parts"/>
       <String ID="STATIC_MONSTER_PART_DELAY_DESC" Name="Delay to wait before hiding parts after they get damaged or ailments when they become inactive."/>
       <String ID="STATIC_MONSTER_POSITION_DESC" Name="Changes the monster widget position."/>
+      <String ID="ENABLE_MONSTER_STATUS_POISON" Name="Show Poison"/>
+      <String ID="ENABLE_MONSTER_STATUS_PARALYSIS" Name="Show Paralysis"/>
+      <String ID="ENABLE_MONSTER_STATUS_SLEEP" Name="Show Sleep"/>
+      <String ID="ENABLE_MONSTER_STATUS_BLAST" Name="Show Blast"/>
+      <String ID="ENABLE_MONSTER_STATUS_MOUNT" Name="Show Mount"/>
+      <String ID="ENABLE_MONSTER_STATUS_EXHAUSTION" Name="Show Exhaustion"/>
+      <String ID="ENABLE_MONSTER_STATUS_STUN" Name="Show Stun"/>
+      <String ID="ENABLE_MONSTER_STATUS_TRANQUILIZE" Name="Show Tranquilize"/>
+      <String ID="ENABLE_MONSTER_STATUS_FLASH" Name="Show Flash"/>
+      <String ID="ENABLE_MONSTER_STATUS_KNOCKDOWN" Name="Show Knockdown"/>
+      <String ID="ENABLE_MONSTER_STATUS_DUNGPOD" Name="Show Dung Pod"/>
+      <String ID="ENABLE_MONSTER_STATUS_TRAP" Name="Show Traps"/>
+      <String ID="ENABLE_MONSTER_STATUS_ELDERSEAL" Name="Show Elderseal"/>
+      <String ID="ENABLE_MONSTER_STATUS_SMOKING" Name="Show Smoking"/>
+      <String ID="ENABLE_MONSTER_STATUS_CLAW" Name="Show Claw"/>
+      <String ID="ENABLE_MONSTER_STATUS_MISC" Name="Show Miscellaneous"/>
+      <String ID="ENABLE_MONSTER_STATUS_ENRAGE" Name="Show Enrage"/>
       <!-- Harvest Box Widget -->
       <String ID="ENABLE_HARVEST_BOX" Name="Enable Harvest Box Widget"/>
       <String ID="ENABLE_HARVEST_BOX_DESC" Name="If enabled, the Harvest Box Widget will become visible whenever it has content."/>

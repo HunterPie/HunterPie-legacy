@@ -1,10 +1,7 @@
 ﻿<UserControl x:Name="btn" x:Class="HunterPie.GUIControls.Custom_Controls.MinimalButton"
              xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
-             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
-             xmlns:local="clr-namespace:HunterPie.GUIControls.Custom_Controls"
-             mc:Ignorable="d" d:DesignWidth="200" Height="27">
+             Height="27">
     <Grid Cursor="Hand" MouseLeftButtonDown="OnClick">
         <Rectangle x:Name="btnBackground" RadiusY="15" RadiusX="15" Fill="{Binding Path=Color, ElementName=btn}" Stroke="{Binding Path=BorderBrush, ElementName=btn}"/>
         <StackPanel Orientation="Horizontal">

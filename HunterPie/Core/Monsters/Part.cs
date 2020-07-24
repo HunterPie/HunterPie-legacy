@@ -12,6 +12,8 @@ namespace HunterPie.Core
         private float health;
         private float totalHealth;
         private int brokenCounter;
+        private float tDuration;
+        private float tMaxDuration;
 
         public Part(MonsterInfo monsterInfo, PartInfo partInfo, int index)
         {
@@ -67,21 +69,35 @@ namespace HunterPie.Core
         public bool IsRemovable { get; set; }
         public string Group { get; set; }
 
+        public uint[] TenderizedIds { get; set; }
+        public float TenderizeDuration
+        {
+            get => tDuration;
+            set
+            {
+                if (value != tDuration)
+                {
+                    tDuration = value;
+                    NotifyTenderizeStateChangd();
+                }
+            }
+        }
+        public float TenderizeMaxDuration { get; private set; }
         #region Events
 
         public delegate void MonsterPartEvents(object source, MonsterPartEventArgs args);
 
         public event MonsterPartEvents OnHealthChange;
         public event MonsterPartEvents OnBrokenCounterChange;
+        public event MonsterPartEvents OnTenderizeStateChange;
 
         protected virtual void NotifyHealthChanged() => OnHealthChange?.Invoke(this, new MonsterPartEventArgs(this));
-
         protected virtual void NotifyBrokenCounterChanged()
         {
             OnBrokenCounterChange?.Invoke(this, new MonsterPartEventArgs(this));
             Logger.Debugger.Debug($"Broken {GStrings.GetMonsterNameByID(monsterInfo.Em)} ({monsterInfo.Id}) part {Name} ({id}), {TotalHealth} hp for {brokenCounter} time");
         }
-
+        protected virtual void NotifyTenderizeStateChangd() => OnTenderizeStateChange?.Invoke(this, new MonsterPartEventArgs(this));
         #endregion
 
         public void SetPartInfo(sMonsterPartData data)
@@ -89,6 +105,12 @@ namespace HunterPie.Core
             TotalHealth = data.MaxHealth;
             BrokenCounter = data.Counter;
             Health = data.Health;
+        }
+
+        public void SetTenderizeInfo(sTenderizedPart data)
+        {
+            TenderizeMaxDuration = data.MaxDuration + data.MaxExtraDuration;
+            TenderizeDuration = data.Duration + data.ExtraDuration;
         }
 
         private void UnhookEvents(MonsterPartEvents eventHandler)
@@ -104,6 +126,7 @@ namespace HunterPie.Core
         {
             UnhookEvents(OnHealthChange);
             UnhookEvents(OnBrokenCounterChange);
+            UnhookEvents(OnTenderizeStateChange);
         }
 
         public override string ToString() => $"Name: {Name} | ID: {id} | HP: {Health}/{TotalHealth} | Counter: {BrokenCounter}";

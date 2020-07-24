@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 using System.Xml;
+using HunterPie.Core.Enums;
 using HunterPie.Core.Monsters;
 using HunterPie.Logger;
 
@@ -98,6 +99,20 @@ namespace HunterPie.Core
             return weaknesses.ToArray();
         }
 
+        static private uint[] ParseTenderizedIdsToArray(string TenderizedIds)
+        {
+            if (TenderizedIds == "") return Array.Empty<uint>();
+            string[] ids = TenderizedIds.Split(',');
+            uint[] parsed = new uint[ids.Length];
+            uint i = 0;
+            foreach (string id in ids)
+            {
+                parsed[i] = Convert.ToUInt32(id);
+                i++;
+            }
+            return parsed;
+        }
+
         static private PartInfo[] GetMonsterPartsInfo(XmlNode node)
         {
             List<PartInfo> parts = new List<PartInfo>();
@@ -113,7 +128,8 @@ namespace HunterPie.Core
                     IsRemovable = bool.Parse(partData.Attributes["IsRemovable"]?.Value ?? "false"),
                     GroupId = partData.Attributes["Group"]?.Value ?? "MISC",
                     Skip = bool.Parse(partData.Attributes["Skip"]?.Value ?? "false"),
-                    Index = uint.Parse(partData.Attributes["Index"]?.Value ?? RemovablePartIndex.ToString())
+                    Index = uint.Parse(partData.Attributes["Index"]?.Value ?? RemovablePartIndex.ToString()),
+                    TenderizeIds = ParseTenderizedIdsToArray(partData.Attributes["TenderizeIds"]?.Value ?? "")
                 };
 
                 if (pInfo.IsRemovable) RemovablePartIndex++;
@@ -144,9 +160,11 @@ namespace HunterPie.Core
 
             AilmentInfo ailment = new AilmentInfo
             {
-                Id = node.Attributes["Name"]?.Value,
-                CanSkip = bool.Parse(node.Attributes["Skip"]?.Value ?? "true"),
-                Group = node.Attributes["Group"]?.Value ?? "UNKNOWN"
+                Name = node.Attributes["Name"]?.Value,
+                Id = Convert.ToUInt32(node.Attributes["Id"]?.Value ?? "1000"),
+                CanSkip = Convert.ToBoolean(node.Attributes["Skip"]?.Value ?? "true"),
+                Group = node.Attributes["Group"]?.Value ?? "UNKNOWN",
+                Type = (AilmentType)Convert.ToInt32(node.Attributes["Type"]?.Value ?? "0")
             };
 
             return ailment;
@@ -159,7 +177,17 @@ namespace HunterPie.Core
             ailmentsInfo = ailmentsData.Cast<XmlNode>()
                 .Select(node => AilmentXmlNodeToInfo(node))
                 .ToList();
-
         }
+
+        /// <summary>
+        /// Gets Ailment based on it's Id
+        /// </summary>
+        /// <param name="Id">Ailment Id</param>
+        /// <returns></returns>
+        static public AilmentInfo GetAilmentInfoById(uint Id)
+        {
+            return AilmentsInfo.Where(a => a.Id == Id).FirstOrDefault();
+        }
+
     }
 }

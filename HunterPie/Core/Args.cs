@@ -102,7 +102,6 @@ namespace HunterPie.Core
         }
     }
 
-
     public class MonsterPartEventArgs : EventArgs
     {
         public MonsterPartEventArgs(Part part)
@@ -110,11 +109,15 @@ namespace HunterPie.Core
             Health = part.Health;
             TotalHealth = part.TotalHealth;
             BrokenCounter = part.BrokenCounter;
+            Duration = part.TenderizeDuration;
+            MaxDuration = part.TenderizeMaxDuration;
         }
 
         public float Health { get; }
         public float TotalHealth { get; }
         public int BrokenCounter { get; }
+        public float Duration { get; }
+        public float MaxDuration { get; }
     }
 
     public class MonsterSpawnEventArgs : EventArgs

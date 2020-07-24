@@ -38,10 +38,10 @@ namespace HunterPie
         Overlay GameOverlay;
         readonly Exporter dataExporter = new Exporter();
         bool OfflineMode = false;
-        readonly bool IsUpdating = true;
+        bool IsUpdating = true;
 
         // HunterPie version
-        const string HUNTERPIE_VERSION = "1.0.3.94";
+        const string HUNTERPIE_VERSION = "1.0.3.95";
 
         // Helpers
         IntPtr _windowHandle;
@@ -86,7 +86,7 @@ namespace HunterPie
             IsPlayerLoggedOn = false;
 
             SetDPIAwareness();
-
+            
             Buffers.Initialize(1024);
             Buffers.Add<byte>(64);
 
@@ -105,24 +105,6 @@ namespace HunterPie
 
             InitializeComponent();
 
-            OpenDebugger();
-            // Initialize everything under this line
-            if (!CheckIfUpdateEnableAndStart()) return;
-
-            // Convert the old HotKey to the new one
-            ConvertOldHotkeyToNew(UserSettings.PlayerConfig.Overlay.ToggleDesignModeKey);
-
-            IsUpdating = false;
-            InitializeTrayIcon();
-            // Update version text
-            Version = GStrings.GetLocalizationByXPath("/Console/String[@ID='CONSOLE_VERSION']").Replace("{HunterPie_Version}", HUNTERPIE_VERSION).Replace("{HunterPie_Branch}", UserSettings.PlayerConfig.HunterPie.Update.Branch);
-
-            // Initializes the rest of HunterPie
-            LoadData();
-            Debugger.Warn(GStrings.GetLocalizationByXPath("/Console/String[@ID='MESSAGE_HUNTERPIE_INITIALIZED']"));
-
-            SetHotKeys();
-            StartEverything();
         }
 
         private bool IsRunningAsAdmin()
@@ -713,8 +695,29 @@ namespace HunterPie
 
         private void OnWindowInitialized(object sender, EventArgs e)
         {
+            Hide();
             Width = UserSettings.PlayerConfig.HunterPie.Width;
             Height = UserSettings.PlayerConfig.HunterPie.Height;
+
+
+            OpenDebugger();
+            // Initialize everything under this line
+            if (!CheckIfUpdateEnableAndStart()) return;
+
+            // Convert the old HotKey to the new one
+            ConvertOldHotkeyToNew(UserSettings.PlayerConfig.Overlay.ToggleDesignModeKey);
+
+            IsUpdating = false;
+            InitializeTrayIcon();
+            // Update version text
+            Version = GStrings.GetLocalizationByXPath("/Console/String[@ID='CONSOLE_VERSION']").Replace("{HunterPie_Version}", HUNTERPIE_VERSION).Replace("{HunterPie_Branch}", UserSettings.PlayerConfig.HunterPie.Update.Branch);
+
+            // Initializes the rest of HunterPie
+            LoadData();
+            Debugger.Warn(GStrings.GetLocalizationByXPath("/Console/String[@ID='MESSAGE_HUNTERPIE_INITIALIZED']"));
+
+            SetHotKeys();
+            StartEverything();
         }
 
         private void OnCloseWindowButtonClick(object sender, MouseButtonEventArgs e)

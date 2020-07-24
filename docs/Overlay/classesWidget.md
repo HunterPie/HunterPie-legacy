@@ -11,8 +11,9 @@ Each class has it's own separate setting, so if you want to place this widget fo
 
 - [Dual Blades](?p=Overlay/classesWidget.md#dual-blades);
 - [Long Sword](?p=Overlay/classesWidget.md#long-sword);
-- [Gun Lance](?p=Overlay/classesWidget.md#gun-lance);
 - [Hammer](?p=Overlay/classesWidget.md#hammer)
+- [Lance](?p=Overlay/classesWidget.md#lance);
+- [Gun Lance](?p=Overlay/classesWidget.md#gun-lance);
 - [Switch Axe](?p=Overlay/classesWidget.md#switch-axe);
 - [Charge Blade](?p=Overlay/classesWidget.md#charge-blade);
 - [Insect Glaive](?p=Overlay/classesWidget.md#insect-glaive);
@@ -45,6 +46,10 @@ Each class has it's own separate setting, so if you want to place this widget fo
   - **Safi'jiiva health regen. hit counter:** It's represented by the diamond with the Safi'jiiva skill icon, it shows how many hits until you actiave the health regeneration.
 
 ![hammerWidgetExample](https://cdn.discordapp.com/attachments/678287048200683572/716172353297711185/classes_p6.png)
+
+## Lance
+- **Features:**
+  - **Safi'jiiva health regen. hit counter:** It's represented by the diamond with the Safi'jiiva skill icon, it shows how many hits until you actiave the health regeneration.
 
 ## Gun Lance
 - **Features:**

@@ -6,7 +6,9 @@ using System.Windows.Controls;
 using System.Windows.Media;
 using System.Windows.Media.Animation;
 using HunterPie.Core;
+using HunterPie.Core.Enums;
 using HunterPie.GUIControls.Custom_Controls;
+using AlatreonState = HunterPie.Core.Enums.AlatreonState;
 using BitmapImage = System.Windows.Media.Imaging.BitmapImage;
 using Timer = System.Threading.Timer;
 
@@ -64,6 +66,8 @@ namespace HunterPie.GUI.Widgets
             Context.OnEnrageTimerUpdate += OnEnrageTimerUpdate;
             Context.OnTargetted += OnMonsterTargetted;
             Context.OnCrownChange += OnMonsterCrownChange;
+            Context.OnAlatreonElementShift += OnAlatreonElementShift;
+            Context.OnMonsterAilmentsCreate += OnMonsterAilmentsCreate;
         }
 
         public void UnhookEvents()
@@ -91,6 +95,8 @@ namespace HunterPie.GUI.Widgets
             Context.OnEnrageTimerUpdate -= OnEnrageTimerUpdate;
             Context.OnTargetted -= OnMonsterTargetted;
             Context.OnCrownChange -= OnMonsterCrownChange;
+            Context.OnAlatreonElementShift -= OnAlatreonElementShift;
+            Context.OnMonsterAilmentsCreate -= OnMonsterAilmentsCreate;
             Context = null;
         }
 
@@ -175,7 +181,8 @@ namespace HunterPie.GUI.Widgets
                 Weaknesses.Children.Add(MonsterWeaknessDisplay);
                 index++;
             }
-
+            // Sometimes Alatreon's state changes before OnMonsterSpawn is dispatched
+            if (Monster.GameId == 87) OnAlatreonElementShift(this, EventArgs.Empty);
         }
 
         private void OnMonsterCrownChange(object source, EventArgs args) => Dispatch(() =>
@@ -244,8 +251,8 @@ namespace HunterPie.GUI.Widgets
 
         private void OnMonsterUpdate(object source, MonsterUpdateEventArgs args) => Dispatch(() =>
         {
-            MonsterHealthBar.MaxHealth = args.MaxHealth;
-            MonsterHealthBar.Health = args.Health;
+            MonsterHealthBar.MaxValue = args.MaxHealth;
+            MonsterHealthBar.Value = args.Health;
             SetMonsterHealthBarText(args.Health, args.MaxHealth);
             if ((args.Health / args.MaxHealth * 100) < Context.CaptureThreshold) CapturableIcon.Visibility = Visibility.Visible;
             else { CapturableIcon.Visibility = Visibility.Collapsed; }
@@ -255,6 +262,60 @@ namespace HunterPie.GUI.Widgets
                 StartVisibilityTimer();
             }
         });
+
+        private void OnAlatreonElementShift(object source, EventArgs args) => Dispatch(() =>
+        {
+            Weaknesses.Children.Clear();
+            string[] newWeaknesses;
+            switch(Context?.AlatreonElement)
+            {
+                case AlatreonState.Fire:
+                    newWeaknesses = new string[2] { "ELEMENT_ICE", "ELEMENT_WATER" };
+                    break;
+                case AlatreonState.Ice:
+                    newWeaknesses = new string[2] { "ELEMENT_FIRE", "ELEMENT_THUNDER" };
+                    break;
+                case AlatreonState.Dragon:
+                    newWeaknesses = new string[3] { "ELEMENT_DRAGON", "ELEMENT_ICE", "ELEMENT_FIRE" };
+                    break;
+                default:
+                    return;
+            }
+            foreach (string weaknessId in newWeaknesses)
+            {
+                ImageSource img = FindResource(weaknessId) as ImageSource;
+                img?.Freeze();
+                WeaknessDisplay weaknessDisplay = new WeaknessDisplay
+                {
+                    Icon = img,
+                    Width = 20,
+                    Height = 20
+                };
+                Weaknesses.Children.Add(weaknessDisplay);
+            };
+        });
+
+        private void OnMonsterAilmentsCreate(object source, EventArgs args)
+        {
+            Dispatcher.BeginInvoke(System.Windows.Threading.DispatcherPriority.Render, new Action(() =>
+            {
+                // Ailments
+                int index = 0;
+                MonsterAilmentsContainer.Children.Clear();
+                while (index < Context.Ailments.Count)
+                {
+                    Ailment ailment = Context.Ailments[index];
+                    Monster_Widget.Parts.MonsterAilment AilmentDisplay = new Monster_Widget.Parts.MonsterAilment()
+                    {
+                        Style = FindResource("OVERLAY_MONSTER_AILMENT_BAR_STYLE") as Style
+                    };
+                    AilmentDisplay.SetContext(ailment, MonsterAilmentsContainer.ItemWidth);
+                    MonsterAilmentsContainer.Children.Add(AilmentDisplay);
+                    index++;
+                }
+            }));
+        }
+
         #endregion
 
 
@@ -296,21 +357,21 @@ namespace HunterPie.GUI.Widgets
         #region Monster bar modes
         public void SwitchSizeBasedOnTarget()
         {
-            switch (UserSettings.PlayerConfig.Overlay.MonstersComponent.ShowMonsterBarMode)
+            switch ((MonsterBarMode)UserSettings.PlayerConfig.Overlay.MonstersComponent.ShowMonsterBarMode)
             {
-                case 0: // Default
+                case MonsterBarMode.Default:
                     ShowAllMonstersAtOnce();
                     break;
-                case 1: // Show all but highlight target
+                case MonsterBarMode.ShowAllButFocusTarget:
                     ShowAllButFocusTarget();
                     break;
-                case 2: // Show only target
+                case MonsterBarMode.ShowOnlyTarget:
                     ShowOnlyTargetMonster();
                     break;
-                case 3: // Show all but hide unactive monsters
+                case MonsterBarMode.ShowAllButHideInactive:
                     ShowAllMonsterAndHideUnactive();
                     break;
-                case 4: // Show all or only selected monster
+                case MonsterBarMode.ShowAllOrSelected:
                     ShowAllOrSelected();
                     break;
             }
@@ -413,8 +474,9 @@ namespace HunterPie.GUI.Widgets
         #endregion
 
         #region Helpers
-        private void ChangeBarsSizes(double NewSize)
+        public void ChangeBarsSizes(double NewSize)
         {
+
             UserSettings.Config.Monsterscomponent config = UserSettings.PlayerConfig.Overlay.MonstersComponent;
             // Parts
             MonsterPartsContainer.MaxWidth = config.EnableMonsterAilments ? (NewSize - 2) / 2 : (NewSize - 1);

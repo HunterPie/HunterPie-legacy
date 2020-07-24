@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading;
 using HunterPie.Core.Definitions;
+using HunterPie.Core.Enums;
 using HunterPie.Core.Monsters;
 using HunterPie.Logger;
 using HunterPie.Memory;
@@ -20,6 +21,7 @@ namespace HunterPie.Core
         private int isSelect; //0 = None, 1 = This, 2 = Other
         private float enrageTimer = 0;
         private float sizeMultiplier;
+        private AlatreonState alatreonElement;
 
         private long MonsterAddress
         {
@@ -31,6 +33,7 @@ namespace HunterPie.Core
                     if (monsterAddress != 0)
                     {
                         Id = null;
+                        FoundEnrageInMemory = false;
                     }
                     monsterAddress = value;
                 }
@@ -140,6 +143,7 @@ namespace HunterPie.Core
         }
         public bool IsAlive = false;
         public bool IsActuallyAlive;
+
         public float EnrageTimer
         {
             get => enrageTimer;
@@ -160,9 +164,10 @@ namespace HunterPie.Core
                 }
             }
         }
-        public float CaptureThreshold { get; private set; }
         public float EnrageTimerStatic { get; private set; }
         public bool IsEnraged => enrageTimer > 0;
+        private bool FoundEnrageInMemory { get; set; }
+
         public float Stamina
         {
             get => stamina;
@@ -176,8 +181,24 @@ namespace HunterPie.Core
             }
         }
         public float MaxStamina { get; private set; }
+
+        public float CaptureThreshold { get; private set; }
         public bool IsCaptured { get; private set; }
+
         public bool[] AliveMonsters = new bool[3] { false, false, false };
+
+        public AlatreonState AlatreonElement
+        {
+            get => alatreonElement;
+            set
+            {
+                if (value != alatreonElement)
+                {
+                    alatreonElement = value;
+                    _OnAlatreonElementShift();
+                }
+            }
+        }
 
         public List<Part> Parts = new List<Part>();
         public List<Ailment> Ailments = new List<Ailment>();
@@ -191,6 +212,7 @@ namespace HunterPie.Core
         public delegate void MonsterSpawnEvents(object source, MonsterSpawnEventArgs args);
         public delegate void MonsterUpdateEvents(object source, MonsterUpdateEventArgs args);
         public event MonsterSpawnEvents OnMonsterSpawn;
+        public event MonsterEvents OnMonsterAilmentsCreate;
         public event MonsterEvents OnMonsterDespawn;
         public event MonsterEvents OnMonsterDeath;
         public event MonsterEvents OnTargetted;
@@ -200,6 +222,8 @@ namespace HunterPie.Core
         public event MonsterEnrageEvents OnEnrage;
         public event MonsterEnrageEvents OnUnenrage;
         public event MonsterEnrageEvents OnEnrageTimerUpdate;
+        // Used ONLY by Alatreon
+        public event MonsterEvents OnAlatreonElementShift;
 
 
         protected virtual void _onMonsterSpawn()
@@ -225,6 +249,10 @@ namespace HunterPie.Core
         protected virtual void _OnEnrageUpdateTimerUpdate() => OnEnrageTimerUpdate?.Invoke(this, new MonsterUpdateEventArgs(this));
 
         protected virtual void _OnStaminaUpdate() => OnStaminaUpdate?.Invoke(this, new MonsterUpdateEventArgs(this));
+
+        protected virtual void _OnAlatreonElementShift() => OnAlatreonElementShift?.Invoke(this, EventArgs.Empty);
+
+        protected virtual void _OnMonsterAilmentsCreate() => OnMonsterAilmentsCreate?.Invoke(this, EventArgs.Empty);
         #endregion
 
         public Monster(int initMonsterNumber) => MonsterNumber = initMonsterNumber;
@@ -258,8 +286,10 @@ namespace HunterPie.Core
                 GetMonsterStamina();
                 GetMonsterAilments();
                 GetMonsterPartsInfo();
+                GetPartsTenderizeInfo();
                 GetMonsterEnrageTimer();
                 GetTargetMonsterAddress();
+                GetAlatreonCurrentElement();
                 Thread.Sleep(UserSettings.PlayerConfig.Overlay.GameScanDelay);
             }
             Thread.Sleep(1000);
@@ -285,9 +315,9 @@ namespace HunterPie.Core
 
         private void GetMonsterAddress()
         {
-            Int64 Address = Memory.Address.BASE + Memory.Address.MONSTER_OFFSET;
+            long Address = Memory.Address.BASE + Memory.Address.MONSTER_OFFSET;
             // This will give us the third monster's address, so we can find the second and first monster with it
-            Int64 ThirdMonsterAddress = Scanner.READ_MULTILEVEL_PTR(Address, Memory.Address.Offsets.MonsterOffsets);
+            long ThirdMonsterAddress = Scanner.READ_MULTILEVEL_PTR(Address, Memory.Address.Offsets.MonsterOffsets);
             switch (MonsterNumber)
             {
                 case 3:
@@ -361,7 +391,7 @@ namespace HunterPie.Core
                     else
                     {
                         GetMonsterHealth();
-                        if (Id != MonsterInfo.Em) Debugger.Debug($"Found new monster ID: {GameId} ({MonsterEm}) #{MonsterNumber} @ 0x{MonsterAddress:X}");
+                        if (Id != MonsterInfo.Em && Health > 0) Debugger.Debug($"Found new monster ID: {GameId} ({MonsterEm}) #{MonsterNumber} @ 0x{MonsterAddress:X}");
                         Id = MonsterInfo.Em;
                         return;
                     }
@@ -371,6 +401,9 @@ namespace HunterPie.Core
 
         }
 
+        /// <summary>
+        /// Gets monster size
+        /// </summary>
         private void GetMonsterSizeModifier()
         {
             if (!IsAlive) return;
@@ -379,12 +412,33 @@ namespace HunterPie.Core
             SizeMultiplier = Scanner.Read<float>(MonsterAddress + 0x188) / SizeModifier;
         }
 
+        /// <summary>
+        /// Builds monster weakness dictionary
+        /// </summary>
         private void GetMonsterWeaknesses() => Weaknesses = MonsterInfo.Weaknesses.ToDictionary(w => w.Id, w => w.Stars);
 
         private void GetMonsterEnrageTimer()
         {
-            EnrageTimer = Scanner.Read<float>(MonsterAddress + 0x1BE54);
-            EnrageTimerStatic = Scanner.Read<float>(MonsterAddress + 0x1BE54 + 0x4);
+            if (!IsAlive) return;
+
+            sMonsterStatus enrage = Scanner.Win32.Read<sMonsterStatus>(MonsterAddress + 0x1BE30);
+            EnrageTimer = enrage.Duration;
+            EnrageTimerStatic = enrage.MaxDuration;
+
+            if (!FoundEnrageInMemory && Ailments.Count > 0)
+            {
+                AilmentInfo info = MonsterData.GetAilmentInfoById(999);
+                Ailment enrageTracker = new Ailment(MonsterAddress + 0x1BE30)
+                {
+                    Name = GStrings.GetAilmentNameByID(info.Name),
+                    Group = info.Group,
+                    Type = AilmentType.Status
+                };
+                enrageTracker.SetAilmentInfo(sMonsterStatus.Convert(enrage), 999);
+                Ailments.Add(enrageTracker);
+                FoundEnrageInMemory = true;
+            }
+            
         }
 
         private void GetTargetMonsterAddress()
@@ -501,6 +555,13 @@ namespace HunterPie.Core
                     if (CurrentPart.Address > 0)
                     {
                         sMonsterRemovablePart MonsterRemovablePartData = Scanner.Win32.Read<sMonsterRemovablePart>(CurrentPart.Address);
+
+                        // Alatreon explosion level
+                        if (GameId == 87 && MonsterRemovablePartData.unk3.Index == 3)
+                        {
+                            MonsterRemovablePartData.Data.Counter = Scanner.Read<int>(MonsterAddress + 0x20920);
+                        }
+
                         CurrentPart.SetPartInfo(MonsterRemovablePartData.Data);
                     }
                     else
@@ -548,6 +609,7 @@ namespace HunterPie.Core
                         sMonsterPart MonsterPartData = Scanner.Win32.Read<sMonsterPart>(MonsterPartAddress + (NormalPartIndex * 0x1F8));
                         CurrentPart.Address = MonsterPartAddress + (NormalPartIndex * 0x1F8);
                         CurrentPart.Group = CurrentPartInfo.GroupId;
+                        CurrentPart.TenderizedIds = CurrentPartInfo.TenderizeIds;
 
                         CurrentPart.SetPartInfo(MonsterPartData.Data);
 
@@ -576,7 +638,18 @@ namespace HunterPie.Core
             {
                 foreach (Ailment ailment in Ailments)
                 {
-                    sMonsterAilment updatedData = Scanner.Win32.Read<sMonsterAilment>(ailment.Address);
+                    sMonsterAilment updatedData;
+                    switch (ailment.Type)
+                    {
+                        case AilmentType.Status:
+                            sMonsterStatus updatedStatus = Scanner.Win32.Read<sMonsterStatus>(ailment.Address);
+                            updatedData = sMonsterStatus.Convert(updatedStatus);
+                            break;
+                        default:
+                            updatedData = Scanner.Win32.Read<sMonsterAilment>(ailment.Address);
+                            break;
+                    }
+                     
                     ailment.SetAilmentInfo(updatedData);
                 }
 
@@ -598,7 +671,7 @@ namespace HunterPie.Core
                         continue;
                     }
 
-                    var AilmentInfo = MonsterData.AilmentsInfo.ElementAt((int)AilmentData.Id);
+                    var AilmentInfo = MonsterData.GetAilmentInfoById(AilmentData.Id);
                     // Check if this Ailment can be skipped and therefore not be tracked at all
                     bool SkipElderDragonTrap = MonsterInfo.Capture == 0 && AilmentInfo.Group == "TRAP";
                     if (SkipElderDragonTrap || (AilmentInfo.CanSkip && !UserSettings.PlayerConfig.HunterPie.Debug.ShowUnknownStatuses))
@@ -608,7 +681,12 @@ namespace HunterPie.Core
                         continue;
                     }
 
-                    Ailment MonsterAilment = new Ailment(MonsterAilmentPtr + 0x148);
+                    Ailment MonsterAilment = new Ailment(MonsterAilmentPtr + 0x148)
+                    {
+                        Name = GStrings.GetAilmentNameByID(AilmentInfo.Name),
+                        Group = AilmentInfo.Group,
+                        Type = AilmentType.Ailment
+                    };
                     MonsterAilment.SetAilmentInfo(AilmentData);
 
                     Debugger.Debug($"sMonsterAilment <{Name}> ({MonsterAilment.Name}) [0x{MonsterAilmentPtr + 0x148:X}]");
@@ -616,6 +694,42 @@ namespace HunterPie.Core
                     Ailments.Add(MonsterAilment);
                     MonsterAilmentListPtrs += sizeof(long);
                     MonsterAilmentPtr = Scanner.Read<long>(MonsterAilmentListPtrs);
+                }
+                // Depending on the scan delay, the OnMonsterSpawn event can be dispatched before the ailments are created.
+                // To fix that, we dispatch a OnMonsterAilmentsCreate too.
+                if (IsActuallyAlive && Ailments.Count > 0) _OnMonsterAilmentsCreate();
+            }
+        }
+
+        private void GetAlatreonCurrentElement()
+        {
+            bool IsAlatreon = GameId == 87;
+            if (!IsAlive || !IsAlatreon) return;
+
+            int alatreonElement = Scanner.Read<int>(MonsterAddress + 0x20910);
+
+            if (alatreonElement <= 3 && alatreonElement > 0)
+            {
+                AlatreonElement = (AlatreonState)alatreonElement;
+            }
+
+        }
+
+        private void GetPartsTenderizeInfo()
+        {
+            if (!IsAlive || Parts.Count == 0) return;
+
+            for (uint i = 0; i < 10; i++)
+            {
+                sTenderizedPart tenderizedData = Scanner.Win32.Read<sTenderizedPart>(MonsterAddress + 0x1C458 + (i * 0x40));
+
+                if (tenderizedData.PartId != uint.MaxValue)
+                {
+                    //Debugger.Debug(tenderizedData.PartId);
+                    foreach (Part validPart in Parts.Where(p => p.TenderizedIds != null && p.TenderizedIds.Contains(tenderizedData.PartId)))
+                    {
+                        validPart.SetTenderizeInfo(tenderizedData);
+                    }
                 }
             }
         }

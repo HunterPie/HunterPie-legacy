@@ -20,6 +20,7 @@
         public int[] BreakThresholds;
         public bool Skip;
         public uint Index;
+        public uint[] TenderizeIds;
     }
     #endregion
 

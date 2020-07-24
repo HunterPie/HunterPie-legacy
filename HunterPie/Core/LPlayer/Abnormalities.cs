@@ -11,8 +11,8 @@ namespace HunterPie.Core
         {
             get
             {
-                if (CurrentAbnormalities.ContainsKey(AbnormalityID)) { return CurrentAbnormalities[AbnormalityID]; }
-                else { return null; }
+                CurrentAbnormalities.TryGetValue(AbnormalityID, out Abnormality abnorm);
+                return abnorm;
             }
         }
 

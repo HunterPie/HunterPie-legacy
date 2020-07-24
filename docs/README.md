@@ -4,7 +4,7 @@
 ## About
 HunterPie is a modern and simple to use overlay with support for Discord Rich Presence for Monster Hunter: World.
 
-## Summary
+## Content
 
 ### HunterPie
 
@@ -30,16 +30,24 @@ HunterPie is a modern and simple to use overlay with support for Discord Rich Pr
 
 ## Updates
 
-### v1.0.3.9x
+<details>
+<summary>v1.0.3.9x</summary>
+
 - [v1.0.3.94](?p=versions/v1.0.3.94.md)
 - [v1.0.3.93](?p=versions/v1.0.3.93.md)
 - [v1.0.3.92](?p=versions/v1.0.3.92.md)
 - [v1.0.3.91](?p=versions/v1.0.3.91.md)
 - [v1.0.3.90](?p=versions/v1.0.3.90.md)
 
-### v1.0.3.8x
+</details>
+
+<details>
+<summary>v1.0.3.8x</summary>
+
 - [v1.0.3.89](?p=versions/v1.0.3.89.md)
 - [v1.0.3.88](?p=versions/v1.0.3.88.md)
 - [v1.0.3.87](?p=versions/v1.0.3.87.md)
 - [v1.0.3.86](?p=versions/v1.0.3.86.md)
 - [v1.0.3.85](?p=versions/v1.0.3.85.md)
+
+</details>

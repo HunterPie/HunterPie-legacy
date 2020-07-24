@@ -92,7 +92,21 @@ namespace HunterPie.GUIControls
             settingsUI.MonstersPosition.Y = settings.Overlay.MonstersComponent.Position[1];
             settingsUI.switchEnableParts.IsEnabled = settings.Overlay.MonstersComponent.EnableMonsterParts;
             settingsUI.PartsCustomizer.IsEnabled = settingsUI.switchEnableParts.IsEnabled;
+            
             settingsUI.switchEnableAilments.IsEnabled = settings.Overlay.MonstersComponent.EnableMonsterAilments;
+            settingsUI.AilmentsCustomizer.IsEnabled = settingsUI.switchEnableAilments.IsEnabled;
+            foreach (Custom_Controls.Switcher switcher in settingsUI.AilmentsCustomizer.Children)
+            {
+                if (settings.Overlay.MonstersComponent.EnabledAilmentGroups.Contains(switcher.Name.Replace("EnableAilment_", "")))
+                {
+                    switcher.IsEnabled = true;
+                }
+                else
+                {
+                    switcher.IsEnabled = false;
+                }
+            }
+
             settingsUI.switchEnableRemovableParts.IsEnabled = settings.Overlay.MonstersComponent.EnableRemovableParts;
             foreach (Custom_Controls.Switcher switcher in settingsUI.PartsCustomizer.Children)
             {
@@ -218,7 +232,14 @@ namespace HunterPie.GUIControls
             settings.Overlay.MonstersComponent.Position[1] = settingsUI.MonstersPosition.Y;
             settings.Overlay.MonstersComponent.EnableMonsterParts = settingsUI.switchEnableParts.IsEnabled;
             settings.Overlay.MonstersComponent.EnableRemovableParts = settingsUI.switchEnableRemovableParts.IsEnabled;
+            List<string> EnabledAilments = new List<string>();
+            foreach (Custom_Controls.Switcher switcher in settingsUI.AilmentsCustomizer.Children)
+            {
+                if (switcher.IsEnabled)
+                    EnabledAilments.Add(switcher.Name.Replace("EnableAilment_", ""));
+            }
             settings.Overlay.MonstersComponent.EnableMonsterAilments = settingsUI.switchEnableAilments.IsEnabled;
+            settings.Overlay.MonstersComponent.EnabledAilmentGroups = EnabledAilments.ToArray();
             List<string> EnabledParts = new List<string>();
             foreach (Custom_Controls.Switcher switcher in settingsUI.PartsCustomizer.Children)
             {

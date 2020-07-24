@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Linq;
 using System.Windows.Controls;
 using HunterPie.Core;
 using Timer = System.Threading.Timer;
@@ -12,15 +13,18 @@ namespace HunterPie.GUI.Widgets.Monster_Widget.Parts
     {
         Ailment Context;
         Timer VisibilityTimer;
+        bool IsAilmentGroupEnabled;
 
         public MonsterAilment() => InitializeComponent();
 
         public void SetContext(Ailment ctx, double MaxBarSize)
         {
             Context = ctx;
+            IsAilmentGroupEnabled = UserSettings.PlayerConfig.Overlay.MonstersComponent.EnabledAilmentGroups.Contains(Context.Group);
             SetAilmentInformation(MaxBarSize);
             HookEvents();
             StartVisibilityTimer();
+            
         }
 
         private void HookEvents()
@@ -46,7 +50,8 @@ namespace HunterPie.GUI.Widgets.Monster_Widget.Parts
         {
 
             System.Windows.Visibility visibility;
-            if (UserSettings.PlayerConfig.Overlay.MonstersComponent.EnableMonsterAilments)
+            if (UserSettings.PlayerConfig.Overlay.MonstersComponent.EnableMonsterAilments &&
+                UserSettings.PlayerConfig.Overlay.MonstersComponent.EnabledAilmentGroups.Contains(Context.Group))
             {
                 visibility = System.Windows.Visibility.Visible;
             }
@@ -92,15 +97,15 @@ namespace HunterPie.GUI.Widgets.Monster_Widget.Parts
             AilmentCounter.Text = $"{Context.Counter}";
             if (Context.Duration > 0)
             {
-                AilmentBar.MaxHealth = Math.Max(1, Context.MaxDuration);
-                AilmentBar.Health = Math.Max(0, Context.Duration);
+                AilmentBar.MaxValue = Math.Max(1, Context.MaxDuration);
+                AilmentBar.Value = Math.Max(0, Context.Duration);
             }
             else
             {
-                AilmentBar.MaxHealth = Math.Max(1, Context.MaxBuildup);
-                AilmentBar.Health = Math.Max(0, Context.MaxBuildup - Context.Buildup);
+                AilmentBar.MaxValue = Math.Max(1, Context.MaxBuildup);
+                AilmentBar.Value = Math.Max(0, Context.MaxBuildup - Context.Buildup);
             }
-            AilmentText.Text = $"{AilmentBar.Health:0}/{AilmentBar.MaxHealth:0}";
+            AilmentText.Text = $"{AilmentBar.Value:0}/{AilmentBar.MaxValue:0}";
         }
 
         private void OnCounterChange(object source, MonsterAilmentEventArgs args)
@@ -126,7 +131,7 @@ namespace HunterPie.GUI.Widgets.Monster_Widget.Parts
         {
             if (args.MaxDuration <= 0) { return; }
             System.Windows.Visibility visibility;
-            if (UserSettings.PlayerConfig.Overlay.MonstersComponent.EnableMonsterAilments)
+            if (UserSettings.PlayerConfig.Overlay.MonstersComponent.EnableMonsterAilments && IsAilmentGroupEnabled)
             {
                 visibility = System.Windows.Visibility.Visible;
             }
@@ -138,9 +143,9 @@ namespace HunterPie.GUI.Widgets.Monster_Widget.Parts
             {
                 Dispatcher.BeginInvoke(System.Windows.Threading.DispatcherPriority.Render, new Action(() =>
                 {
-                    AilmentBar.MaxHealth = args.MaxDuration;
-                    AilmentBar.Health = Math.Max(0, args.MaxDuration - args.Duration);
-                    AilmentText.Text = $"{AilmentBar.Health:0}/{AilmentBar.MaxHealth:0}";
+                    AilmentBar.MaxValue = args.MaxDuration;
+                    AilmentBar.Value = Math.Max(0, args.MaxDuration - args.Duration);
+                    AilmentText.Text = $"{AilmentBar.Value:0}/{AilmentBar.MaxValue:0}";
                     Visibility = visibility;
                     StartVisibilityTimer();
                 }));
@@ -152,7 +157,7 @@ namespace HunterPie.GUI.Widgets.Monster_Widget.Parts
         {
             if (args.MaxBuildup <= 0) { return; }
             System.Windows.Visibility visibility;
-            if (UserSettings.PlayerConfig.Overlay.MonstersComponent.EnableMonsterAilments)
+            if (UserSettings.PlayerConfig.Overlay.MonstersComponent.EnableMonsterAilments && IsAilmentGroupEnabled)
             {
                 visibility = System.Windows.Visibility.Visible;
             }
@@ -162,10 +167,10 @@ namespace HunterPie.GUI.Widgets.Monster_Widget.Parts
             }
             Dispatcher.BeginInvoke(System.Windows.Threading.DispatcherPriority.Render, new Action(() =>
             {
-                AilmentBar.MaxHealth = Math.Max(1, args.MaxBuildup);
+                AilmentBar.MaxValue = Math.Max(1, args.MaxBuildup);
                 // Get the min between them so the buildup doesnt overflow
-                AilmentBar.Health = Math.Min(args.Buildup, args.MaxBuildup);
-                AilmentText.Text = $"{AilmentBar.Health:0}/{AilmentBar.MaxHealth:0}";
+                AilmentBar.Value = Math.Min(args.Buildup, args.MaxBuildup);
+                AilmentText.Text = $"{AilmentBar.Value:0}/{AilmentBar.MaxValue:0}";
                 Visibility = visibility;
                 StartVisibilityTimer();
             }));
@@ -177,22 +182,22 @@ namespace HunterPie.GUI.Widgets.Monster_Widget.Parts
             AilmentBar.MaxSize = NewSize - 37;
             if (Context.Duration > 0)
             {
-                AilmentBar.MaxHealth = Math.Max(1, Context.MaxDuration);
-                AilmentBar.Health = Math.Max(0, Context.Duration);
+                AilmentBar.MaxValue = Math.Max(1, Context.MaxDuration);
+                AilmentBar.Value = Math.Max(0, Context.Duration);
             }
             else
             {
-                AilmentBar.MaxHealth = Math.Max(1, Context.MaxBuildup);
-                AilmentBar.Health = Math.Max(0, Context.MaxBuildup - Context.Buildup);
+                AilmentBar.MaxValue = Math.Max(1, Context.MaxBuildup);
+                AilmentBar.Value = Math.Max(0, Context.MaxBuildup - Context.Buildup);
             }
-            AilmentText.Text = $"{AilmentBar.Health:0}/{AilmentBar.MaxHealth:0}";
+            AilmentText.Text = $"{AilmentBar.Value:0}/{AilmentBar.MaxValue:0}";
         }
 
         public void UpdateSize(double NewSize)
         {
             AilmentBar.MaxSize = NewSize - 37;
-            AilmentBar.MaxHealth = AilmentBar.MaxHealth;
-            AilmentBar.Health = AilmentBar.Health;
+            AilmentBar.MaxValue = AilmentBar.MaxValue;
+            AilmentBar.Value = AilmentBar.Value;
         }
     }
 }
