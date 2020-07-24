@@ -13,7 +13,7 @@
         <Setter Property="Background" Value="#4C000000"/>
         <Setter Property="Color">
             <Setter.Value>
-                <LinearGradientBrush StartPoint="0,1" EndPoint="1,0">
+                <LinearGradientBrush StartPoint="0,1" EndPoint="1,0" MappingMode="Absolute">
                     <GradientStop Color="#a95bed" Offset="1"/>
                     <GradientStop Color="#631df1"/>
                 </LinearGradientBrush>

@@ -63,7 +63,8 @@ namespace HunterPie.GUIControls
         {
             foreach (string filename in Directory.GetFiles(Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "Themes")))
             {
-                ThemeFilesCombobox.Items.Add(Path.GetFileName(filename));
+                if (filename.EndsWith(".xaml"))
+                    ThemeFilesCombobox.Items.Add(Path.GetFileName(filename));
             }
         }
 
