@@ -1,6 +1,8 @@
 ﻿using System;
 using System.Linq;
+using System.Windows;
 using System.Windows.Controls;
+using System.Windows.Media;
 using HunterPie.Core;
 using Timer = System.Threading.Timer;
 
@@ -15,12 +17,26 @@ namespace HunterPie.GUI.Widgets.Monster_Widget.Parts
         Timer VisibilityTimer;
         bool IsAilmentGroupEnabled;
 
+
+
+        public Brush AilmentGroupColor
+        {
+            get { return (Brush)GetValue(AilmentGroupColorProperty); }
+            set { SetValue(AilmentGroupColorProperty, value); }
+        }
+
+        public static readonly DependencyProperty AilmentGroupColorProperty =
+            DependencyProperty.Register("AilmentGroupColor", typeof(Brush), typeof(MonsterAilment));
+
+
+
         public MonsterAilment() => InitializeComponent();
 
         public void SetContext(Ailment ctx, double MaxBarSize)
         {
             Context = ctx;
             IsAilmentGroupEnabled = UserSettings.PlayerConfig.Overlay.MonstersComponent.EnabledAilmentGroups.Contains(Context.Group);
+            AilmentGroupColor = FindResource($"MONSTER_AILMENT_COLOR_{Context.Group}") as Brush;
             SetAilmentInformation(MaxBarSize);
             HookEvents();
             StartVisibilityTimer();

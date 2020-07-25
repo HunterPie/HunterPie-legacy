@@ -13,7 +13,7 @@
                 <RowDefinition Height="47"/>
                 <RowDefinition/>
             </Grid.RowDefinitions>
-            <StackPanel x:Name="MonsterInfoPanel" Orientation="Horizontal" VerticalAlignment="Top" Height="18" Margin="33,0,0,0">
+            <StackPanel x:Name="MonsterInfoPanel" Style="{StaticResource OVERLAY_MONSTER_HEADER_DISPLAY}">
                 <Image x:Name="MonsterCrown" Source="{StaticResource CROWN_GOLD}" Visibility="Visible" Width="16" Margin="0,2"/>
                 <TextBlock x:Name="MonsterName" Text="Monster Name" Style="{StaticResource OVERLAY_MONSTER_NAME_TEXT_STYLE}"/>
             </StackPanel>

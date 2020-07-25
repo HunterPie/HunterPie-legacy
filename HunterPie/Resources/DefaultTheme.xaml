@@ -4,7 +4,27 @@
                     xmlns:Custom="clr-namespace:HunterPie.GUIControls.Custom_Controls"
                     xmlns:Monster="clr-namespace:HunterPie.GUI.Widgets.Monster_Widget.Parts"
                     >
-    <!-- Colors -->
+    <!-- Ailment groups -->
+    <SolidColorBrush x:Key="MONSTER_AILMENT_COLOR_UNKNOWN">#FF73ABEE</SolidColorBrush>
+    <SolidColorBrush x:Key="MONSTER_AILMENT_COLOR_POISON">#ab47ed</SolidColorBrush>
+    <SolidColorBrush x:Key="MONSTER_AILMENT_COLOR_PARALYSIS">#e8cf6b</SolidColorBrush>
+    <SolidColorBrush x:Key="MONSTER_AILMENT_COLOR_SLEEP">#6be8a5</SolidColorBrush>
+    <SolidColorBrush x:Key="MONSTER_AILMENT_COLOR_BLAST">#db7e53</SolidColorBrush>
+    <SolidColorBrush x:Key="MONSTER_AILMENT_COLOR_MOUNT">#5380db</SolidColorBrush>
+    <SolidColorBrush x:Key="MONSTER_AILMENT_COLOR_EXHAUSTION">#74d4b1</SolidColorBrush>
+    <SolidColorBrush x:Key="MONSTER_AILMENT_COLOR_STUN">#deb83c</SolidColorBrush>
+    <SolidColorBrush x:Key="MONSTER_AILMENT_COLOR_TRANQUILIZE">#c96ba0</SolidColorBrush>
+    <SolidColorBrush x:Key="MONSTER_AILMENT_COLOR_FLASH">#f7c052</SolidColorBrush>
+    <SolidColorBrush x:Key="MONSTER_AILMENT_COLOR_KNOCKDOWN">#5380db</SolidColorBrush>
+    <SolidColorBrush x:Key="MONSTER_AILMENT_COLOR_DUNGPOD">#472102</SolidColorBrush>
+    <SolidColorBrush x:Key="MONSTER_AILMENT_COLOR_TRAP">#9dc20a</SolidColorBrush>
+    <SolidColorBrush x:Key="MONSTER_AILMENT_COLOR_ELDERSEAL">#71369c</SolidColorBrush>
+    <SolidColorBrush x:Key="MONSTER_AILMENT_COLOR_SMOKING">#9c9c9c</SolidColorBrush>
+    <SolidColorBrush x:Key="MONSTER_AILMENT_COLOR_CLAW">#6ab7d4</SolidColorBrush>
+    <SolidColorBrush x:Key="MONSTER_AILMENT_COLOR_MISC">#97b3bf</SolidColorBrush>
+    <SolidColorBrush x:Key="MONSTER_AILMENT_COLOR_ENRAGE">#c43939</SolidColorBrush>
+
+    
     <!-- Overlay -->
     <!-- Monster Widget (Main bar) -->
     <sys:Double x:Key="OVERLAY_MONSTER_BAR_WIDTH_3">300</sys:Double>
@@ -35,6 +55,13 @@
         </Setter>
     </Style>
 
+    <Style x:Key="OVERLAY_MONSTER_HEADER_DISPLAY" TargetType="StackPanel">
+        <Setter Property="Orientation" Value="Horizontal"/>
+        <Setter Property="VerticalAlignment" Value="Top"/>
+        <Setter Property="Height" Value="18"/>
+        <Setter Property="Margin" Value="33,0,0,0"/>
+    </Style>
+    
     <LinearGradientBrush x:Key="OVERLAY_MONSTER_STAMINA_BAR_COLOR" EndPoint="0.5,1" StartPoint="0.5,0">
         <GradientStop Color="#FFFFC500"/>
     </LinearGradientBrush>
@@ -89,7 +116,7 @@
         <Setter Property="FontSize" Value="14"/>
     </Style>
 
-    <!-- Animation for when bars disappear -->
+    <!-- Animation for when bars appear -->
     <Style x:Key="OVERLAY_MONSTER_SUB_PART_STYLE" TargetType="Monster:MonsterPart">
         <Style.Triggers>
             <Trigger Property="IsVisible" Value="True">
@@ -155,7 +182,7 @@
     </Style>
     <Style x:Key="OVERLAY_MONSTER_AILMENT_BAR_STYLE" TargetType="Custom:MinimalHealthBar">
         <Setter Property="Background" Value="#4C000000"/>
-        <Setter Property="Color" Value="#FF73ABEE"/>
+        <Setter Property="Color" Value="{Binding ElementName=AilmentControl, Path=AilmentGroupColor}"/>
         <Setter Property="Height" Value="2"/>
         <Setter Property="VerticalAlignment" Value="Top"/>
         <Setter Property="Margin" Value="30,13,5,0"/>
@@ -176,7 +203,7 @@
         <Setter Property="Width" Value="17"/>
         <Setter Property="VerticalAlignment" Value="Top"/>
         <Setter Property="Margin" Value="13,6,0,0"/>
-        <Setter Property="Fill" Value="#FF73ABEE"/>
+        <Setter Property="Fill" Value="{Binding ElementName=AilmentControl, Path=AilmentGroupColor}"/>
         <Setter Property="RenderTransform">
             <Setter.Value>
                 <TransformGroup>
@@ -195,6 +222,11 @@
                     <GradientStop Color="#FFF1F1F1"/>
                     <GradientStop Color="#FFF0F0F0" Offset="1"/>
                 </LinearGradientBrush>
+            </Setter.Value>
+        </Setter>
+        <Setter Property="Effect">
+            <Setter.Value>
+                <DropShadowEffect Color="Black" BlurRadius="3" ShadowDepth="0" RenderingBias="Quality"/>
             </Setter.Value>
         </Setter>
         <Setter Property="FontWeight" Value="Medium"/>
