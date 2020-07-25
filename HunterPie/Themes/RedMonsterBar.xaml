@@ -15,7 +15,7 @@
                 </LinearGradientBrush>
             </Setter.Value>
         </Setter>
-        <Setter Property="Margin" Value="49,0,18,0"/>
+        <Setter Property="Margin" Value="49,18,18,0"/>
         <Setter Property="Height" Value="14"/>
         <Setter Property="RenderTransform">
             <Setter.Value>
@@ -45,20 +45,16 @@
     <Style x:Key="OVERLAY_MONSTER_BAR_TEXT_STYLE" TargetType="TextBlock">
         <Setter Property="Foreground" Value="#eee6ff"/>
         <Setter Property="FontFamily" Value="Roboto"/>
+        <Setter Property="TextAlignment" Value="Center"/>
         <Setter Property="FontSize" Value="12"/>
         <Setter Property="FontWeight" Value="Normal"/>
         <Setter Property="Margin" Value="45,16,38,30"/>
         <Setter Property="Padding" Value="0,2,0,0"/>
     </Style>
 
-    <LinearGradientBrush x:Key="OVERLAY_MONSTER_AILMENT_BAR_COLOR" EndPoint="1,0" StartPoint="0,0">
-        <GradientStop Color="#FF2BD8B1" Offset="1"/>
-        <GradientStop Color="#FF45B69C"/>
-    </LinearGradientBrush>
-
     <Style x:Key="OVERLAY_MONSTER_AILMENT_BAR_STYLE" TargetType="Custom:MinimalHealthBar">
         <Setter Property="Background" Value="#4C000000"/>
-        <Setter Property="Color" Value="{StaticResource OVERLAY_MONSTER_AILMENT_BAR_COLOR}"/>
+        <Setter Property="Color" Value="{Binding ElementName=AilmentControl, Path=AilmentGroupColor}"/>
         <Setter Property="Height" Value="2"/>
         <Setter Property="VerticalAlignment" Value="Top"/>
         <Setter Property="Margin" Value="30,13,5,0"/>
@@ -80,9 +76,7 @@
         <Setter Property="Width" Value="17"/>
         <Setter Property="VerticalAlignment" Value="Top"/>
         <Setter Property="Margin" Value="13,6,0,0"/>
-        <Setter Property="Fill" Value="#FF45B69C"/>
-        <Setter Property="Stroke" Value="#CC0E0E0E"/>
-        <Setter Property="StrokeThickness" Value="0"/>
+        <Setter Property="Fill" Value="{Binding ElementName=AilmentControl, Path=AilmentGroupColor}"/>
         <Setter Property="RenderTransform">
             <Setter.Value>
                 <TransformGroup>
@@ -124,12 +118,6 @@
         <Setter Property="StrokeThickness" Value="0"/>
         <Setter Property="Margin" Value="5,0,-5,0"/>
         <Setter Property="Points" Value="30,15 22.5,28 7.5,28 0,15 7.5,2 22.5,2"/>
-    </Style>
-
-    <Style x:Key="OVERLAY_MONSTER_AILMENT_COUNTER_TEXT_STYLE" TargetType="TextBlock">
-        <Setter Property="Foreground" Value="#1b1b1b"/>
-        <Setter Property="FontWeight" Value="Medium"/>
-        <Setter Property="FontSize" Value="12"/>
     </Style>
 
     <LinearGradientBrush x:Key="OVERLAY_MONSTER_PART_BAR_COLOR" EndPoint="1,0" StartPoint="0,0">

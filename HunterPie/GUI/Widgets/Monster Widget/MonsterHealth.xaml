@@ -12,7 +12,7 @@
                 <RowDefinition Height="65"/>
                 <RowDefinition/>
             </Grid.RowDefinitions>
-            <Custom:MinimalHealthBar x:Name="MonsterHealthBar" Style="{StaticResource OVERLAY_MONSTER_HEALTH_BAR_STYLE}" VerticalAlignment="Top" RenderTransformOrigin="0.5,1" BorderThickness="0" Foreground="{x:Null}" Margin="48,22,18,0">
+            <Custom:MinimalHealthBar x:Name="MonsterHealthBar" Style="{StaticResource OVERLAY_MONSTER_HEALTH_BAR_STYLE}" VerticalAlignment="Top" RenderTransformOrigin="0.5,1" Foreground="{x:Null}">
                 <Custom:MinimalHealthBar.Effect>
                     <DropShadowEffect Color="Red" BlurRadius="10" ShadowDepth="0" Opacity="0"/>
                 </Custom:MinimalHealthBar.Effect>

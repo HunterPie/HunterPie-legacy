@@ -12,7 +12,7 @@
     <Style x:Key="OVERLAY_MONSTER_HEALTH_BAR_STYLE" TargetType="{x:Type Custom:MinimalHealthBar}">
         <Setter Property="Background" Value="#4C000000"/>
         <Setter Property="Color" Value="#FF62B44A"/>
-        <Setter Property="Margin" Value="48,4,18,0"/>
+        <Setter Property="Margin" Value="48,22,18,0"/>
         <Setter Property="Height" Value="9"/>
         <Setter Property="RenderTransform">
             <Setter.Value>
@@ -29,6 +29,7 @@
     <Style x:Key="OVERLAY_MONSTER_BAR_TEXT_STYLE" TargetType="TextBlock">
         <Setter Property="Foreground" Value="#eee6ff"/>
         <Setter Property="FontFamily" Value="Roboto"/>
+        <Setter Property="TextAlignment" Value="Center"/>
         <Setter Property="FontSize" Value="12"/>
         <Setter Property="FontWeight" Value="Medium"/>
         <Setter Property="Margin" Value="47,13,22,0"/>

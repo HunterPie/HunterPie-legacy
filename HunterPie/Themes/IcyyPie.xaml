@@ -13,8 +13,8 @@
     <Style x:Key="OVERLAY_MONSTER_HEALTH_BAR_STYLE" TargetType="{x:Type Custom:MinimalHealthBar}">
         <Setter Property="Background" Value="#4C000000"/>
         <Setter Property="Color" Value="#8088ff"/>
-        <Setter Property="Margin" Value="48,4,18,0"/>
-        <Setter Property="Height" Value="8"/>
+        <Setter Property="Margin" Value="48,22,18,0"/>
+        <Setter Property="Height" Value="9"/>
         <Setter Property="RenderTransform">
             <Setter.Value>
                 <TransformGroup>
@@ -30,6 +30,7 @@
     <Style x:Key="OVERLAY_MONSTER_BAR_TEXT_STYLE" TargetType="TextBlock">
         <Setter Property="Foreground" Value="#eee6ff"/>
         <Setter Property="FontFamily" Value="Roboto"/>
+        <Setter Property="TextAlignment" Value="Center"/>
         <Setter Property="FontSize" Value="12"/>
         <Setter Property="FontWeight" Value="Medium"/>
         <Setter Property="Margin" Value="47,12,22,0"/>
@@ -69,7 +70,7 @@
 
     <Style x:Key="OVERLAY_MONSTER_AILMENT_BAR_STYLE" TargetType="Custom:MinimalHealthBar">
         <Setter Property="Background" Value="#4C000000"/>
-        <Setter Property="Color" Value="#FF80aaff"/>
+        <Setter Property="Color" Value="{Binding ElementName=AilmentControl, Path=AilmentGroupColor}"/>
         <Setter Property="Height" Value="2"/>
         <Setter Property="VerticalAlignment" Value="Top"/>
         <Setter Property="Margin" Value="30,13,5,0"/>
@@ -91,7 +92,7 @@
         <Setter Property="Width" Value="17"/>
         <Setter Property="VerticalAlignment" Value="Top"/>
         <Setter Property="Margin" Value="13,6,0,0"/>
-        <Setter Property="Fill" Value="#FF80aaff"/>
+        <Setter Property="Fill" Value="{Binding ElementName=AilmentControl, Path=AilmentGroupColor}"/>
         <Setter Property="RenderTransform">
             <Setter.Value>
                 <TransformGroup>

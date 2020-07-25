@@ -13,13 +13,13 @@
         <Setter Property="Background" Value="#4C000000"/>
         <Setter Property="Color">
             <Setter.Value>
-                <LinearGradientBrush StartPoint="0,1" EndPoint="1,0" MappingMode="Absolute">
+                <LinearGradientBrush StartPoint="0,1" EndPoint="1,0">
                     <GradientStop Color="#a95bed" Offset="1"/>
                     <GradientStop Color="#631df1"/>
                 </LinearGradientBrush>
             </Setter.Value>
         </Setter>
-        <Setter Property="Margin" Value="49,0,18,0"/>
+        <Setter Property="Margin" Value="48,17,18,0"/>
         <Setter Property="Height" Value="14"/>
         <Setter Property="RenderTransform">
             <Setter.Value>
@@ -35,6 +35,7 @@
 
     <Style x:Key="OVERLAY_MONSTER_BAR_TEXT_STYLE" TargetType="TextBlock">
         <Setter Property="Foreground" Value="#eee6ff"/>
+        <Setter Property="TextAlignment" Value="Center"/>
         <Setter Property="FontFamily" Value="Roboto"/>
         <Setter Property="FontSize" Value="12"/>
         <Setter Property="FontWeight" Value="Normal"/>
@@ -79,14 +80,9 @@
         <Setter Property="FontSize" Value="14"/>
     </Style>
 
-    <LinearGradientBrush x:Key="OVERLAY_MONSTER_AILMENT_BAR_COLOR" EndPoint="1,0" StartPoint="0,0">
-        <GradientStop Color="#B1FF2BD8" Offset="1"/>
-        <GradientStop Color="#9CFF45B6"/>
-    </LinearGradientBrush>
-
     <Style x:Key="OVERLAY_MONSTER_AILMENT_BAR_STYLE" TargetType="Custom:MinimalHealthBar">
         <Setter Property="Background" Value="#4C000000"/>
-        <Setter Property="Color" Value="{StaticResource OVERLAY_MONSTER_AILMENT_BAR_COLOR}"/>
+        <Setter Property="Color" Value="{Binding ElementName=AilmentControl, Path=AilmentGroupColor}"/>
         <Setter Property="Height" Value="2"/>
         <Setter Property="VerticalAlignment" Value="Top"/>
         <Setter Property="Margin" Value="30,13,5,0"/>
@@ -108,7 +104,7 @@
         <Setter Property="Width" Value="17"/>
         <Setter Property="VerticalAlignment" Value="Top"/>
         <Setter Property="Margin" Value="13,6,0,0"/>
-        <Setter Property="Fill" Value="#B1FF2BD8"/>
+        <Setter Property="Fill" Value="{Binding ElementName=AilmentControl, Path=AilmentGroupColor}"/>
         <Setter Property="RenderTransform">
             <Setter.Value>
                 <TransformGroup>

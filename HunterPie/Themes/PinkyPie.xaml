@@ -17,7 +17,7 @@
     <Style x:Key="OVERLAY_MONSTER_HEALTH_BAR_STYLE" TargetType="{x:Type Custom:MinimalHealthBar}">
         <Setter Property="Background" Value="#4C000000"/>
         <Setter Property="Color" Value="{StaticResource OVERLAY_MONSTER_HEALTH_BAR_COLOR}"/>
-        <Setter Property="Margin" Value="48,0,18,0"/>
+        <Setter Property="Margin" Value="48,18,18,0"/>
         <Setter Property="Height" Value="12"/>
         <Setter Property="RenderTransform">
             <Setter.Value>
@@ -34,6 +34,7 @@
     <Style x:Key="OVERLAY_MONSTER_BAR_TEXT_STYLE" TargetType="TextBlock">
         <Setter Property="Foreground" Value="#eee6ff"/>
         <Setter Property="FontFamily" Value="Roboto"/>
+        <Setter Property="TextAlignment" Value="Center"/>
         <Setter Property="FontSize" Value="12"/>
         <Setter Property="FontWeight" Value="Bold"/>
         <Setter Property="Margin" Value="47,16,22,0"/>
@@ -76,14 +77,9 @@
         <Setter Property="FontSize" Value="14"/>
     </Style>
 
-    <LinearGradientBrush x:Key="OVERLAY_MONSTER_AILMENT_BAR_COLOR" EndPoint="1,0" StartPoint="0,0">
-        <GradientStop Color="#FFD16EFF"/>
-        <GradientStop Color="#FFD495FF" Offset="1"/>
-    </LinearGradientBrush>
-
     <Style x:Key="OVERLAY_MONSTER_AILMENT_BAR_STYLE" TargetType="Custom:MinimalHealthBar">
         <Setter Property="Background" Value="#4C000000"/>
-        <Setter Property="Color" Value="{StaticResource OVERLAY_MONSTER_AILMENT_BAR_COLOR}"/>
+        <Setter Property="Color" Value="{Binding ElementName=AilmentControl, Path=AilmentGroupColor}"/>
         <Setter Property="Height" Value="2"/>
         <Setter Property="VerticalAlignment" Value="Top"/>
         <Setter Property="Margin" Value="30,13,5,0"/>
@@ -103,7 +99,7 @@
     <Style x:Key="OVERLAY_MONSTER_AILMENT_COUNTER_BACKGROUND_STYLE" TargetType="Rectangle">
         <Setter Property="Height" Value="17"/>
         <Setter Property="Width" Value="17"/>
-        <Setter Property="Fill" Value="#FFD16EFF"/>
+        <Setter Property="Fill" Value="{Binding ElementName=AilmentControl, Path=AilmentGroupColor}"/>
         <Setter Property="VerticalAlignment" Value="Top"/>
         <Setter Property="Margin" Value="13,6,0,0"/>
         <Setter Property="RenderTransform">
@@ -183,12 +179,12 @@
     </Style>
 
     <Style x:Key="OVERLAY_MONSTER_PART_COUNTER_TEXT_STYLE" TargetType="TextBlock">
-        <Setter Property="Foreground" Value="#1b1b1b"/>
+        <Setter Property="Foreground" Value="WhiteSmoke"/>
         <Setter Property="FontWeight" Value="SemiBold"/>
         <Setter Property="FontSize" Value="14"/>
         <Setter Property="Effect">
             <Setter.Value>
-                <DropShadowEffect BlurRadius="0" ShadowDepth="1" Color="#FF2E2E2E"/>
+                <DropShadowEffect Color="Black" BlurRadius="3" ShadowDepth="0" RenderingBias="Quality"/>
             </Setter.Value>
         </Setter>
     </Style>
