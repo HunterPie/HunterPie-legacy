@@ -909,7 +909,6 @@ namespace HunterPie
 
         private void OnKeyDown(object sender, KeyEventArgs e)
         {
-            e.Handled = true;
 
             Key key = (e.Key == Key.System ? e.SystemKey : e.Key);
 

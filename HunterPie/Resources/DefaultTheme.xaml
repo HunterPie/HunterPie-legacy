@@ -26,10 +26,12 @@
 
     
     <!-- Overlay -->
+    
     <!-- Monster Widget (Main bar) -->
     <sys:Double x:Key="OVERLAY_MONSTER_BAR_WIDTH_3">300</sys:Double>
     <sys:Double x:Key="OVERLAY_MONSTER_BAR_WIDTH_2">400</sys:Double>
     <sys:Double x:Key="OVERLAY_MONSTER_BAR_WIDTH_1">500</sys:Double>
+    <sys:Double x:Key="OVERLAY_MONSTER_BAR_HEIGHT">NaN</sys:Double>
     
     <Visibility x:Key="OVERLAY_SHOW_MONSTER_ICON">Visible</Visibility>
 
@@ -61,6 +63,20 @@
         <Setter Property="Height" Value="18"/>
         <Setter Property="Margin" Value="33,0,0,0"/>
     </Style>
+
+    <Style x:Key="OVERLAY_MONSTER_NAME_TEXT_STYLE" TargetType="TextBlock">
+        <Setter Property="Foreground">
+            <Setter.Value>
+                <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
+                    <GradientStop Color="#eee6ff"/>
+                    <GradientStop Color="Gainsboro" Offset="1"/>
+                </LinearGradientBrush>
+            </Setter.Value>
+        </Setter>
+        <Setter Property="FontFamily" Value="Roboto"/>
+        <Setter Property="FontWeight" Value="Medium"/>
+        <Setter Property="FontSize" Value="14"/>
+    </Style>
     
     <LinearGradientBrush x:Key="OVERLAY_MONSTER_STAMINA_BAR_COLOR" EndPoint="0.5,1" StartPoint="0.5,0">
         <GradientStop Color="#FFFFC500"/>
@@ -91,29 +107,18 @@
         <Setter Property="Width" Value="95"/>
     </Style>
 
-    <Style x:Key="OVERLAY_MONSTER_BACKGROUND" TargetType="StackPanel"/>
+    <Style x:Key="OVERLAY_MONSTER_BACKGROUND" TargetType="StackPanel">
+        <Setter Property="Orientation" Value="Horizontal"/>
+    </Style>
 
     <Style x:Key="OVERLAY_MONSTER_BAR_TEXT_STYLE" TargetType="TextBlock">
         <Setter Property="Foreground" Value="#eee6ff"/>
         <Setter Property="FontFamily" Value="Roboto"/>
+        <Setter Property="TextAlignment" Value="Center"/>
         <Setter Property="FontSize" Value="12"/>
         <Setter Property="FontWeight" Value="Medium"/>
         <Setter Property="Margin" Value="47,10,22,0"/>
         <Setter Property="Padding" Value="0,0,0,0"/>
-    </Style>
-
-    <Style x:Key="OVERLAY_MONSTER_NAME_TEXT_STYLE" TargetType="TextBlock">
-        <Setter Property="Foreground">
-            <Setter.Value>
-                <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
-                    <GradientStop Color="#eee6ff"/>
-                    <GradientStop Color="Gainsboro" Offset="1"/>
-                </LinearGradientBrush>
-            </Setter.Value>
-        </Setter>
-        <Setter Property="FontFamily" Value="Roboto"/>
-        <Setter Property="FontWeight" Value="Medium"/>
-        <Setter Property="FontSize" Value="14"/>
     </Style>
 
     <!-- Animation for when bars appear -->
