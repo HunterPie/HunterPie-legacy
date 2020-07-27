@@ -1,7 +1,7 @@
 @import url('https://fonts.googleapis.com/css2?family=Roboto:wght@100;300;400&display=swap');
 
 body {
-    background-image: url("/assets/background_tile.png");
+    background-image: url("https://hunterpie.me/HunterPie/assets/background_tile.png");
     
     font-family: 'Roboto', sans-serif;
     color: #0f0f0f;
