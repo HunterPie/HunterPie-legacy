@@ -1,7 +1,7 @@
 @import url('https://fonts.googleapis.com/css2?family=Roboto:wght@100;300;400&display=swap');
 
 body {
-    background-image: url("https://static8.depositphotos.com/1154062/1071/v/450/depositphotos_10712741-stock-illustration-white-crumpled-abstract-background.jpg");
+    background-image: url("/assets/background_tile.png");
     
     font-family: 'Roboto', sans-serif;
     color: #0f0f0f;
@@ -77,8 +77,8 @@ ul#navbarList a {
 
 /* width */
 ::-webkit-scrollbar {
-    width: 10px;
-    height: 10px;
+    width: 8px;
+    height: 8px;
 }
 
 /* Track */
