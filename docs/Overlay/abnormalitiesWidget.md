@@ -1,36 +1,78 @@
-## Introduction
-On HunterPie update 1.0.3.6, a new widget was added, the abnormalities tray! It shows the buffs and debuffs you get in your hunts. The current supported buffs are:
-- Hunting Horn buffs;
-- Elements debuffs;
-- Palico orchestra buffs;
-- Consumables;
-- Gear & Specialized Tools;
+# Introduction
+HunterPie has a built-in abnormality tracker, you can see the list of supported abnormalities [here](?p=Internal/abnormalities.md).
 
-## Demonstration
-You can see a video demonstration of the new abnormality bar by clicking [here.](https://www.youtube.com/watch?v=jOBz90xFmCk)
+## Table of Content
 
-## Getting started
-First of all, make sure your HunterPie is updated to version 1.0.3.6 or greater, in your settings tab scroll down to the Player Buffs section. By default you'll have only one abnormality tray, you can enable/disable it anytime you want by clicking on the switch in the right side of the abnormality tray settings. If you want more than one bar, click on the [+] icon, you can have up to 5 buff trays at once.
->**Note:** After adding more trays, you **MUST** restart HunterPie, otherwise it won't show your newly created trays.
+<ol id="content_table">
+    <li><a href="#design-structure">Design Structure</a></li>
+    <li><a href="abnormality-bar">Abnormality Bar</a></li>
+    <ol>
+        <li><a href="creating-a-new-bar">Creating a New Bar</a></li>
+        <li><a href="configuring-your-new-bar">Configuring Your New Bar</a></li>
+        <li><a href="abnormality-bar-orientations">Abnormality Bar Orientations</a></li>
+        <li><a href="abnormalities-sorting">Abnormalities Sorting</a></li>
+    </ol>
+</ol>
 
-![Abnormalities settings section](https://i.gyazo.com/b17794470357f0cf1c8cfc3947851c4e.png)
+## Design Structure
 
-## Choosing the abnormalities you want
-After choosing how many abnormality trays you want, it's time to choose which abnormalities you want for each one of those trays! You can either do it by clicking on the cog icon in the right side of the abnormality tray setting, or by pressing your design mode key and clicking on the cog icon on the right top of the abnormality tray itself.
+HunterPie's abnormality bar is designed to be clean, simple and highly customizable.
 
-After clicking on the cog icon, a new window will open. You can choose which abnormalities you want that specific tray to show, after selecting all the abnormalities you want, just click on the save button on the bottom right to apply your changes.
-> **Attention:** The abnormality tray won't show buffs/debuffs that are active. You'll have to either wait until it's effect run out and then apply it again or restart HunterPie so it can get the active abnormality.
+An Abnormality display has three basic informations:
 
-![selecting abnormalities gif](https://i.gyazo.com/d8252443142a8107ea3a903f010a62e9.gif)
+- **Duration Bar:** It's a circular bar around the abnormality icon, it's a visual indicator on how much time left that abnormality has. It also indicates the abnormality type, depending on the color.
+    - <span style="background:#329745">Green</span>: Buff;
+    - <span style="Background:#973232">Red</span>: Debuff;
+- **Icon:** It's the in-game icon for that abnormality.
+- **Time Left:** A text representation of how much time left that abnormality has.
 
-## Timers
-![Default timer text format](https://i.gyazo.com/1b051cdbc974070b4170265ea224b21d.gif)
+![Design](https://cdn.discordapp.com/attachments/402557384209203200/737050073648857148/abnorm_design.png)
 
-## Orientation & Max size
-When you enter design mode you can resize the buff tray like you resize a normal window. Resizing the widget will also set its max width (if your tray is horizontally alligned) or the max height (if it's vertically alligned). When the abnormality tray reaches that max size, it will start a new column or a new row to add the new abnormalities in.
+The abnormality bar consists of a bunch of abnormalities display, representing each active buff or debuff your character has at the moment.
 
-You choose two different orientations for your buff tray: Horizontal or Vertical.
-- Horizontal: Your abnormalities will be added to the tray side by side until it reaches the max width of your tray;
-- Vertical: Your abnormalities will be added on the bottom of the last added abnormality until it reaches the max height of your tray;
+![DesignBar](https://cdn.discordapp.com/attachments/402557384209203200/737046253480837140/unknown.png)
 
-![horizontal and vertical alligned bars](https://gyazo.com/2dd724cfe94137187d8b8d2c4efa68c2.png)
+## Abnormality Bar
+### Creating a New Bar
+
+HunterPie lets you create up to 5 different abnormality bars, each one of them has it's own separate settings, so you can have one that shows their name and other that does not, for example.
+
+To create a new bar, just go to your HunterPie settings, click on the `Buff Bar` tab, and then click on the `+` icon.
+
+<video controls width="600">
+    <source src="https://cdn.discordapp.com/attachments/402557384209203200/737148193053081720/ieqsQFSXOa.webm"/>
+</video>
+
+
+> Note: If you have your game open while doing this, you will need to restart your HunterPie for the bar to appear.
+
+### Configuring Your New Bar
+
+After creating a new bar, you need to select which abnormalities you want that bar to display. To open your abnormality bar settings you have two options:
+
+- Go to `HunterPie settings -> Buff bar` and click on the cog icon.<br>
+OR
+- Press <kbd>ScrollLock</kbd> (or whatever key you set to toggle Design Mode) to toggle Design Mode and then click on the cog icon that will appear on top right of your abnormality bar.
+
+After you've opened the settings window, you can choose which abnormalities you want by clicking on their icon. You can also select them all by clicking on the `Select All` button.
+
+<video controls width=600>
+    <source src="https://cdn.discordapp.com/attachments/402557384209203200/737150212514119680/9wtX4CyM1a.webm">
+</video>
+
+### Abnormality Bar Orientations
+
+HunterPie allows you to change the abnormality bar orientation, you can choose to either keep the bar vertically or horizontally aligned, each orientation has it's own behaviours.
+
+- <highlight>**Horizontal:**</highlight> Keeping the bar horizontally aligned will make all abnormalities appear side-by-side, when the maximum *width* is reached, a new row will be created to fit all abnormalities within the bar bounds.
+- <highlight>**Vertical:**</highlight> Keeping the bar vertically aligned will make all abnormalities appear on top of each other, when the maximum *height* is reached, a new column will be created to fit all abnormalities within the bar bounds.
+
+![barsAlignment](https://i.gyazo.com/2dd724cfe94137187d8b8d2c4efa68c2.png)
+
+### Abnormalities Sorting
+
+Abnormalities are sorted based on their time left, HunterPie keeps the lowest time always at the top. HunterPie also warns the player when their buff is close to expire, a red blinking animation will start playing when that happens.
+
+<video controls width=600>
+    <source src="https://cdn.discordapp.com/attachments/402557384209203200/737147146725359616/lcqqLSfJMs.webm">
+</video>

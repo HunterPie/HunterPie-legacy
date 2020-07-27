@@ -14,6 +14,7 @@ No. It only tracks the basic information of your character, you can see the info
         public string Session;         // This is your Session ID
         public string SteamSession;    // This is the link you can use so people can join your session directly from Steam
         public int Playtime;           // This is your current character playtime in seconds
+        public string WeaponName;      // This is your current weapon name
     }
 ```
 
@@ -28,7 +29,8 @@ Example of an exported data:
   "BuildURL": "https://honeyhunterworld.com/mhwbi/?1962,277,235,264,169,244,65,-;;;;-at6;at5;de4;el4;el4,0,0,209,0,0,209,96,0,96,19,0,224,64,16,96,0,0,224,90,90,3:16:10:0:0:0:0",
   "Session": "j68fMsjZv2@W",
   "SteamSession": "steam://joinlobby/582010/109775241132541949/76561198067758630",
-  "Playtime": 365015
+  "Playtime": 365015,
+  "WeaponName": "Lance"
 }
 ```
 

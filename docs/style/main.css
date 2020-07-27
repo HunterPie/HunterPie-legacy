@@ -1,7 +1,8 @@
 @import url('https://fonts.googleapis.com/css2?family=Roboto:wght@100;300;400&display=swap');
 
 body {
-    background: #222222;
+    background-image: url("https://static8.depositphotos.com/1154062/1071/v/450/depositphotos_10712741-stock-illustration-white-crumpled-abstract-background.jpg");
+    
     font-family: 'Roboto', sans-serif;
     color: #0f0f0f;
 }
@@ -65,13 +66,35 @@ ul#navbarList {
 }
 
 #navbarBox ul#navbarList #downloadButton:hover {
-    background-color: rgb(142, 84, 233, 0.5);
+    background-color: #85c3ed80;
 }
 
 ul#navbarList a {
     text-decoration: none;
     color: #fefefe;
     
+}
+
+/* width */
+::-webkit-scrollbar {
+    width: 10px;
+    height: 10px;
+}
+
+/* Track */
+::-webkit-scrollbar-track {
+    background: #272727;
+}
+
+/* Handle */
+::-webkit-scrollbar-thumb {
+    background: rgb(93, 93, 93); 
+    border-radius: 5px;
+}
+
+/* Handle on hover */
+::-webkit-scrollbar-thumb:hover {
+    background: rgb(66, 66, 66); 
 }
 
 .collapse {
@@ -114,4 +137,40 @@ ul#navbarList a {
         height: 90px;
         background-color: rgba(0, 0, 0, 0.7);
     }
+}
+
+/* Footer */
+
+footer {
+    position: relative;
+    background-color: rgb(29, 29, 29, 0.8);
+    box-shadow: rgba(0, 0, 0, 0.1) 0px 2px 2px;
+    -webkit-backdrop-filter: blur(5px);
+    backdrop-filter: blur(5px);
+    font-family: 'Heebo', sans-serif;
+    display: block;
+    left: 10%;
+    top: 65px;
+    width: 81.5%;
+    z-index: 0;
+    padding: 10px 20px 10px 20px;
+    margin-bottom: 20px;
+    border-radius: 5px;
+    color: #f5eefd;
+    font-size: 14px;
+    border-top-left-radius: 0px;
+    border-top-right-radius: 0px;
+}
+
+footer p {
+    text-align: center;
+}
+
+footer a {
+    text-decoration: none;
+    color: #85c3ed;
+}
+
+footer a:hover {
+    text-decoration: underline;
 }

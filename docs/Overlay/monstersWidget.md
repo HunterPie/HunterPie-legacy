@@ -3,10 +3,28 @@
 Monster widget displays useful information about the current monsters in the map. It also has many options for customization.
 
 ### Table of content
-1. [Design structure](#design-structure)
-2. [Monster bar modes](#monster-bar-modes)
-3. [Targetting a monster](#targetting-a-monster)
-4. [Ailments & Parts](#monster-parts--ailments)
+
+<ol id="content_table">
+    <li><a href="#design-structure">Design Structure</a></li>
+    <li><a href="#monster-bar-modes">Monster Bar Modes</a></li>
+    <ol>
+        <li><a href="#show-all-monsters-at-once">Show all monsters at once</a></li>
+        <li><a href="#show-all-monsters-but-hightlight-my-target">Show all monsters but highlight my target</a></li>
+        <li><a href="#show-only-hunted-monster">Show only hunted monster</a></li>
+        <li><a href="#show-all-but-hide-inactive-monsters-after-x-seconds">Show all but hide inactive monsters after X seconds</a></li>
+        <li><a href="#show-all-until-a-monster-is-selected">Show all until a monster is selected</a></li>
+    </ol>
+    <li><a href="#targeting-a-monster">Targeting a Monster</a></li>
+    <ol>
+        <li><a href="#targeting-a-monster-from-map-default">Targeting a monster from map (Default)</a></li>
+        <li><a href="#targeting-a-monster-using-in-game-lockon">Targeting a monster using in-game lockon</a></li>
+    </ol>
+    <li><a href="#monster-parts--ailments">Monster Parts & Ailments</a></li>
+    <ol>
+        <li><a href="#parts--removable-parts">Parts & Removable Parts</a></li>
+        <li><a href="#ailments">Ailments</a></li>
+    </ol>
+</ol>
 
 ## Design structure
 ![design-structure-image](https://cdn.discordapp.com/attachments/402557384209203200/732313125923192852/monster_widget_structure.png)
@@ -20,7 +38,7 @@ This mode shows all monsters at once, it's the default mode.
 ![Show all monsters at once](https://cdn.discordapp.com/attachments/402557384209203200/732293041594957955/unknown.png)
 
 ### Show all monsters but highlight my target
-This mode shows all monsters but decreases the size and opacity of the monsters that aren't your target.
+This mode shows all monsters but decreases the opacity of the monsters that aren't your target.
 
 ![Show all but highlight target](https://cdn.discordapp.com/attachments/402557384209203200/732293162487251054/unknown.png)
 
@@ -35,22 +53,22 @@ It's similar to the first mode, but it hides the monster that haven't been damag
 ### Show all until a monster is selected
 This mode is similar to the [Show only hunted monster](#show-only-hunted-monster), but when there's no target, all monsters are displayed.
 
-## Targetting a monster
+## Targeting a monster
 There are two ways to target a monster, both of them have it's pros and cons:
 
-### Targetting a monster from map (Default)
+### Targeting a monster from map (Default)
 This is the default way to target a monster, when you get in a quest the game will automatically target your quest objective for you, but when you are in expeditions/Guiding Lands you **must** open your map and target the monster by pressing <kbd>Tab</kbd> on their icon or by clicking their investigation gauge on bottom left of your map.
 
 > **Note:** If there are more than 1 monster as the quest objective, the game will only automatically target the first one, so you'll have to manually target the next one.
 
 > **Note 2:** If you haven't found the monster in map yet, the game will only automatically target it for you after you've discovered them.
 
-### Targetting a monster using in-game lockon
+### Targeting a monster using in-game lockon
 This option must be turned on in your `HunterPie Settings -> Monster` tab. It will make HunterPie set the target based on which monster you have locked-on. This is the most intuitive way to target a monster, however has some limitations:
 - In order for the lockon work properly, you need to set the `Target settings` in your game to **Large Monsters Only**, otherwise small monsters will mess with the lockon system.
 - Captured monsters will mess with the lockon, this is a known issue that is still in progress to fix. However it is fixed after the monster despawn.
 
-> **Note:** For a better experience with the lock-on, I strongly recommend these settings:
+> **Note:** For a better experience with the lock-on, I strongly recommend these settings:<br>
 ![lockonSettings](https://cdn.discordapp.com/attachments/678286885059166228/718120460856066098/unknown.png)
 
 ## Monster Parts & Ailments
