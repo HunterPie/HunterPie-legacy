@@ -64,6 +64,17 @@
         <Setter Property="Margin" Value="33,0,0,0"/>
     </Style>
 
+    <Style x:Key="OVERLAY_MONSTER_PARTS_DISPLAY" TargetType="StackPanel">
+        <Setter Property="Orientation" Value="Horizontal"/>
+    </Style>
+
+    <Style x:Key="OVERLAY_MONSTER_WEAKNESS_DISPLAY" TargetType="StackPanel">
+        <Setter Property="Orientation" Value="Horizontal"/>
+        <Setter Property="Height" Value="24"/>
+        <Setter Property="Margin" Value="46,40,37,0"/>
+        <Setter Property="Orientation" Value="Horizontal"/>
+    </Style>
+    
     <Style x:Key="OVERLAY_MONSTER_NAME_TEXT_STYLE" TargetType="TextBlock">
         <Setter Property="Foreground">
             <Setter.Value>

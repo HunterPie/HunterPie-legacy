@@ -83,6 +83,7 @@ namespace HunterPie.Core
                 public string[] EnabledAilmentGroups { get; set; } = new string[18] { "POISON", "PARALYSIS", "SLEEP", "BLAST", "MOUNT", "EXHAUSTION", "STUN", "TRANQUILIZE", "FLASH", "KNOCKDOWN", "DUNGPOD", "TRAP", "ELDERSEAL", "SMOKING", "CLAW", "MISC", "ENRAGE", "UNKNOWN" };
                 public float Opacity { get; set; } = 1;
                 public bool UseLockonInsteadOfPin { get; set; } = false;
+                public bool EnableAilmentsBarColor { get; set; } = true;
             }
 
             public class Harvestboxcomponent

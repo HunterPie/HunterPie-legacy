@@ -131,7 +131,7 @@ namespace HunterPie.GUI.Widgets
             {
                 if (mWidget != null)
                 {
-                    mWidget.Weaknesses.Visibility = weaknessEnabled ? Visibility.Visible : Visibility.Collapsed;
+                    mWidget.Weaknesses.Visibility = mWidget.Weaknesses.IsEnabled && weaknessEnabled ? Visibility.Visible : Visibility.Collapsed;
                     mWidget.MonsterAilmentsContainer.MaxHeight = MaxParts * 32;
                     mWidget.MonsterPartsContainer.MaxHeight = MaxParts * 32;
                     mWidget.ChangeDocking(dock);

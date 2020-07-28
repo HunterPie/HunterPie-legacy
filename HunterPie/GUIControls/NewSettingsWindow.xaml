@@ -335,6 +335,7 @@
                                 <Binding Mode="OneTime" XPath="Settings/String[@ID='ENABLE_BREAKABLE_PARTS_DESC']/@Name"/>
                             </custom:Switcher.ToolTip>
                         </custom:Switcher>
+                        <custom:Switcher x:Name="switchEnableAilmentsColor" Text="{Binding Mode=OneTime, XPath=/Strings/Client/Settings/String[@ID\=\'ENABLE_AILMENTS_BAR_COLOR\']/@Name, FallbackValue='Enable ailments bar color'}" ToolTip="{Binding Mode=OneTime, XPath=/Strings/Client/Settings/String[@ID\=\'ENABLE_AILMENTS_BAR_COLOR_DESC\']/@Name}" HorizontalAlignment="Center" MinWidth="500" RestartVisibility="Collapsed"/>
                         <custom:Switcher x:Name="switchEnableAilments" HorizontalAlignment="Center" MinWidth="500" RestartVisibility="Collapsed" MouseLeftButtonDown="SwitchEnableAilments_MouseDown">
                             <custom:Switcher.Text>
                                 <Binding Mode="OneTime" XPath="Settings/String[@ID='ENABLE_AILMENTS']/@Name"/>

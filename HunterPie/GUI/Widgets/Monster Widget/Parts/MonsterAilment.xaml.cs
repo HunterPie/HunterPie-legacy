@@ -17,8 +17,6 @@ namespace HunterPie.GUI.Widgets.Monster_Widget.Parts
         Timer VisibilityTimer;
         bool IsAilmentGroupEnabled;
 
-
-
         public Brush AilmentGroupColor
         {
             get { return (Brush)GetValue(AilmentGroupColorProperty); }
@@ -28,15 +26,15 @@ namespace HunterPie.GUI.Widgets.Monster_Widget.Parts
         public static readonly DependencyProperty AilmentGroupColorProperty =
             DependencyProperty.Register("AilmentGroupColor", typeof(Brush), typeof(MonsterAilment));
 
-
-
         public MonsterAilment() => InitializeComponent();
 
         public void SetContext(Ailment ctx, double MaxBarSize)
         {
             Context = ctx;
             IsAilmentGroupEnabled = UserSettings.PlayerConfig.Overlay.MonstersComponent.EnabledAilmentGroups.Contains(Context.Group);
-            AilmentGroupColor = FindResource($"MONSTER_AILMENT_COLOR_{Context.Group}") as Brush;
+            AilmentGroupColor = UserSettings.PlayerConfig.Overlay.MonstersComponent.EnableAilmentsBarColor ?
+                    FindResource($"MONSTER_AILMENT_COLOR_{Context.Group}") as Brush :
+                    FindResource("MONSTER_AILMENT_COLOR_UNKNOWN") as Brush;
             SetAilmentInformation(MaxBarSize);
             HookEvents();
             StartVisibilityTimer();
@@ -64,18 +62,23 @@ namespace HunterPie.GUI.Widgets.Monster_Widget.Parts
         public void ApplySettings()
         {
 
-            System.Windows.Visibility visibility;
+            Visibility visibility;
             if (UserSettings.PlayerConfig.Overlay.MonstersComponent.EnableMonsterAilments &&
                 UserSettings.PlayerConfig.Overlay.MonstersComponent.EnabledAilmentGroups.Contains(Context.Group))
             {
-                visibility = System.Windows.Visibility.Visible;
+                visibility = Visibility.Visible;
             }
             else
             {
-                visibility = System.Windows.Visibility.Collapsed;
+                visibility = Visibility.Collapsed;
             }
             if (UserSettings.PlayerConfig.Overlay.MonstersComponent.HidePartsAfterSeconds) visibility = System.Windows.Visibility.Collapsed;
-            Dispatch(() => { Visibility = visibility; });
+            Dispatch(() => {
+                Visibility = visibility;
+                AilmentGroupColor = UserSettings.PlayerConfig.Overlay.MonstersComponent.EnableAilmentsBarColor ?
+                    FindResource($"MONSTER_AILMENT_COLOR_{Context.Group}") as Brush :
+                    FindResource("MONSTER_AILMENT_COLOR_UNKNOWN") as Brush;
+            });
         }
 
         #endregion

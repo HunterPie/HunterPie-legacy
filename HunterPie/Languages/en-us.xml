@@ -550,6 +550,8 @@
       <String ID="ENABLE_HIDE_INACTIVE_PARTS_DESC" Name="If enabled, parts and ailments will be automatically hidden after some time without taking damage."/>
       <String ID="ENABLE_BREAKABLE_PARTS" Name="Show Monster breakable parts"/>
       <String ID="ENABLE_BREAKABLE_PARTS_DESC" Name="If enabled, severable, breakable and removable parts will be displayed under the monster bar."/>
+      <String ID="ENABLE_AILMENTS_BAR_COLOR" Name="Enable ailments bar color"/>
+      <String ID="ENABLE_AILMENTS_BAR_COLOR_DESC" Name="If enabled, ailments bar will be colored based on their group."/>
       <String ID="ENABLE_AILMENTS" Name="Show Monster ailments"/>
       <String ID="ENABLE_AILMENTS_DESC" Name="If enabled, monster ailments will be displayed under the monster bar."/>
       <String ID="ENABLE_MONSTER_PARTS" Name="Show Monster parts"/>

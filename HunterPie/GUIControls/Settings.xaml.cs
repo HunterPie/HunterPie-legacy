@@ -123,7 +123,7 @@ namespace HunterPie.GUIControls
             settingsUI.switchEnableHideUnactiveParts.IsEnabled = settings.Overlay.MonstersComponent.HidePartsAfterSeconds;
             settingsUI.switchEnableMonsterWeakness.IsEnabled = settings.Overlay.MonstersComponent.ShowMonsterWeakness;
             settingsUI.MonsterComponentOpacity.Value = settings.Overlay.MonstersComponent.Opacity;
-
+            settingsUI.switchEnableAilmentsColor.IsEnabled = settings.Overlay.MonstersComponent.EnableAilmentsBarColor;
 
             // Primary Mantle
             settingsUI.switchEnablePrimaryMantle.IsEnabled = settings.Overlay.PrimaryMantle.Enabled;
@@ -251,6 +251,7 @@ namespace HunterPie.GUIControls
             settings.Overlay.MonstersComponent.SecondsToHideParts = Math.Min(Math.Max((int)settingsUI.HideSeconds.Value, 0), 10000);
             settings.Overlay.MonstersComponent.ShowMonsterWeakness = settingsUI.switchEnableMonsterWeakness.IsEnabled;
             settings.Overlay.MonstersComponent.Opacity = (float)settingsUI.MonsterComponentOpacity.Value;
+            settings.Overlay.MonstersComponent.EnableAilmentsBarColor = settingsUI.switchEnableAilmentsColor.IsEnabled;
 
             // Primary Mantle
             settings.Overlay.PrimaryMantle.Enabled = settingsUI.switchEnablePrimaryMantle.IsEnabled;

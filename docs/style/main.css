@@ -149,9 +149,9 @@ footer {
     backdrop-filter: blur(5px);
     font-family: 'Heebo', sans-serif;
     display: block;
-    left: 10%;
+    left: auto;
+    right: auto;
     top: 65px;
-    width: 81.5%;
     z-index: 0;
     padding: 10px 20px 10px 20px;
     margin-bottom: 20px;

@@ -30,6 +30,10 @@ HunterPie is a modern and simple to use overlay with support for Discord Rich Pr
 - [Discord Rich Presence](?p=Integrations/discord.md)
 - [Honey Hunters World](?p=Integrations/honeyHuntersWorld.md)
 
+### Internals & Research
+
+- [Supported Abnormalities](?p=Internal/abnormalities.md)
+
 ## Updates
 
 <details>

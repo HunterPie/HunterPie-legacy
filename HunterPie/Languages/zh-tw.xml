@@ -1,5 +1,5 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
-<!--1.0.3.92 update version 1 translate by ThanatosDi-->
+<!--1.0.3.94 update version 1 translate by ThanatosDi-->
 <Strings lang="Traditional Chinese">
   <Monsters>
     <Monster ID="ems062_03" Name="訓練木豬"/>
@@ -24,10 +24,12 @@
     <Monster ID="em036_00" Name="熔岩龍"/>
     <Monster ID="em037_00" Name="迅龍"/>
     <Monster ID="em042_00" Name="冰牙龍"/>
+    <Monster ID="em042_05" Name="霜刃冰牙龍"/>
     <Monster ID="em043_00" Name="恐暴龍"/>
     <Monster ID="em043_05" Name="惶怒恐暴龍"/>
     <Monster ID="em044_00" Name="土砂龍"/>
     <Monster ID="em045_00" Name="爆鎚龍"/>
+    <Monster ID="em050_00" Name="煌黑龍"/>
     <Monster ID="em057_00" Name="雷狼龍"/>
     <Monster ID="em057_01" Name="獄狼龍"/>
     <Monster ID="em063_00" Name="碎龍"/>
@@ -171,8 +173,10 @@
     <Part ID="MONSTER_PART_RAGE" Name="憤怒"/>
     <Part ID="MONSTER_PART_COUNTERATTACK" Name="反擊"/>
     <Part ID="MONSTER_PART_CHARGE" Name="Removable Charge"/>
+    <Part ID="MONSTER_PART_THROAT" Name="咽喉"/>
     <Part ID="MONSTER_PART_REMOVABLE_LANTLER" Name="可破壞的左鹿角"/>
     <Part ID="MONSTER_PART_INFLATED_TAIL" Name="膨脹尾巴"/>
+    <Part ID="MONSTER_PART_SKY_FALL" Name="天降"/>
     <Part ID="MONSTER_PART_REMOVABLE_RANTLER" Name="可破壞的右鹿角"/>
     <Part ID="MONSTER_PART_EMISSIONS" Name="瘴氣排放"/>
     <Part ID="MONSTER_PART_GLOWING_HEAD" Name="發光的頭"/>
@@ -186,6 +190,8 @@
     <Part ID="MONSTER_PART_SPIKES_LWING" Name="尖刺(左翅)"/>
     <Part ID="MONSTER_PART_SPIKES_RWING" Name="尖刺(右翅)"/>
     <Part ID="MONSTER_PART_SPIKES_TAIL" Name="尖刺(尾巴)"/>
+    <Part ID="MONSTER_PART_REPEL" Name="擊退"/>
+    <Part ID="MONSTER_PART_EXPLOSION_WEAKENING" Name="炸膛值"/>
   </Parts>
   <Ailments>
     <Ailment ID="STATUS_UNKNOWN" Name="未知"/>
@@ -270,6 +276,7 @@
     <Stage ID="412" Name="起源的孤島(殲世滅盡龍)"/>
     <Stage ID="413" Name="起源的孤島(天地煌啼龍)"/>
     <Stage ID="415" Name="幽境之谷"/>
+    <Stage ID="416" Name="幽境之谷"/>
     <Stage ID="501" Name="二等小屋"/>
     <Stage ID="502" Name="一等小屋"/>
     <Stage ID="503" Name="特等小屋"/>
@@ -417,6 +424,7 @@
     <Abnormality ID="MISC_034_00" Name="攻擊力UP[鬼毬果]"/>
     <Abnormality ID="MISC_035_00" Name="冰耐性UP[冰耐草]"/>
     <Abnormality ID="MISC_073_00" Name="攻擊力UP&amp;防禦力UP[小]"/>
+    <Abnormality ID="MISC_999_00" Name="用餐時間"/>
     <Abnormality ID="GEAR_000_00" Name="鬼人彈"/>
     <Abnormality ID="GEAR_001_00" Name="硬化彈"/>
     <Abnormality ID="GEAR_002_00" Name="不屈"/>
@@ -439,6 +447,7 @@
       <String ID="CONSOLE_CONSOLE" Name="控制台"/>
       <String ID="CONSOLE_SETTINGS" Name="設定"/>
       <String ID="CONSOLE_UPLOADBUILD" Name="上傳裝備配置"/>
+      <String ID="CONSOLE_EXPORTGEAR" Name="匯出裝飾品(珠子)"/>
       <String ID="CONSOLE_CHANGELOG" Name="更新說明"/>
       <String ID="CONSOLE_DISCORD" Name="Discord"/>
       <String ID="CONSOLE_GITHUB" Name="GitHub"/>
@@ -655,6 +664,10 @@
       <String ID="ENABLE_BOW_HELPER_DESC" Name="如果啟用，則只要您裝備了弓箭，便會顯示弓箭小工具"/>
       <String ID="ENABLE_HAMMER_HELPER" Name="大錘小工具"/>
       <String ID="ENABLE_HAMMER_HELPER_DESC" Name="如果啟用，每當您裝備大錘時將會顯示大錘小工具"/>
+      <String ID="ENABLE_DUALBLADES_HELPER" Name="雙刀小工具"/>
+      <String ID="ENABLE_DUALBLADES_HELPER_DESC" Name="如果啟用，每當您裝備雙刀時將會顯示雙刀小工具"/>
+      <String ID="ENABLE_LANCE_HELPER" Name="長槍小工具"/>
+      <String ID="ENABLE_LANCE_HELPER_DESC" Name="如果啟用，每當您裝備長槍時將會顯示長槍小工具"/>
       <String ID="STATIC_CLASSES_BETA_WARNING" Name="注意：武器小工具仍在開發中，將來將支持更多武器。每個武器小工具都有其自己的設置，因此您可以根據武器在此小工具中使用不同的位置。使用設計模式功能縮放和移動此小部件。"/>
       <!-- Links -->
       <String ID="STATIC_HUNTERPIE_WIKI" Name="文件資料(英文)"/>
@@ -705,7 +718,9 @@
       <String ID="STATIC_REJECT" Name="拒絕"/>
       <String ID="STATIC_SETTINGS_LOAD" Name="設置已載入"/>
       <String ID="STATIC_OPENDEFAULTBROWSER" Name="在瀏覽器中打開"/>
+      <String ID="STATIC_OPENFOLDER" Name="開啟資料夾"/>
       <String ID="MESSAGE_BUILD_UPLOADED" Name="裝備配置上傳到Honey Hunters World！"/>
+      <String ID="MESSAGE_GEAR_EXPORTED" Name="已匯出至DataExport!"/>
     </Notifications>
     <RichPresence>
       <String ID="RPC_DESCRIPTION_IN_MAIN_MENU" Name="在主選單"/>
