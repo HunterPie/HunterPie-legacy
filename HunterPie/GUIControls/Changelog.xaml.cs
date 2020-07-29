@@ -46,10 +46,15 @@ namespace HunterPie.GUIControls
         private void OnLoaded(object sender, RoutedEventArgs e)
         {
             string language = UserSettings.PlayerConfig.HunterPie.Language.Split('\\').LastOrDefault().Replace(".xml", "");
+            string changelogPath = Path.Combine(AppDomain.CurrentDomain.BaseDirectory, $"Changelog\\changelog-{language}.md");
+            if (!File.Exists(changelogPath))
+            {
+                changelogPath = Path.Combine(AppDomain.CurrentDomain.BaseDirectory, $"Changelog\\changelog-en-us.md");
+            }
 
-            if (!File.Exists(Path.Combine(AppDomain.CurrentDomain.BaseDirectory, $"Changelog\\changelog-{language}.md"))) return;
+            if (!File.Exists(changelogPath)) return;
 
-            var markdown = File.ReadAllText(Path.Combine(AppDomain.CurrentDomain.BaseDirectory, $"Changelog\\changelog-{language}.md"));
+            var markdown = File.ReadAllText(changelogPath);
             var xaml = Markdig.Wpf.Markdown.ToXaml(markdown, BuildPipeline());
             using (var stream = new MemoryStream(Encoding.UTF8.GetBytes(xaml)))
             {

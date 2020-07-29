@@ -795,19 +795,19 @@
       <Part Name="MONSTER_PART_REMOVABLE_TAIL" IsRemovable="True">
         <Break Threshold="1"/>
       </Part>
-      <Part Name="MONSTER_PART_HEAD" Group="HEAD" TenderizeIds="0,4">
+      <Part Name="MONSTER_PART_HEAD" Group="HEAD" TenderizeIds="0,3">
         <Break Threshold="4"/>
       </Part>
       <Part Name="MONSTER_PART_BODY" Group="BODY"/>
       <Part Name="MONSTER_PART_LARM" Group="ARM" TenderizeIds="1">
         <Break Threshold="2"/>
       </Part>
-      <Part Name="MONSTER_PART_RARM" Group="ARM" TenderizeIds="5">
+      <Part Name="MONSTER_PART_RARM" Group="ARM" TenderizeIds="4">
         <Break Threshold="2"/>
       </Part>
-      <Part Name="MONSTER_PART_LLEG" Group="LEG" TenderizeIds="2"/>
-      <Part Name="MONSTER_PART_RLEG" Group="LEG" TenderizeIds="6"/>
-      <Part Name="MONSTER_PART_TAIL" Group="TAIL" TenderizeIds="3,7"/>
+      <Part Name="MONSTER_PART_LLEG" Group="LEG"/>
+      <Part Name="MONSTER_PART_RLEG" Group="LEG"/>
+      <Part Name="MONSTER_PART_TAIL" Group="TAIL" TenderizeIds="2,5"/>
     </Parts>
   </Monster>
   <Monster ID="em063_05" Capture="0"  GameID="96"> <!-- Raging Brachydios -->
