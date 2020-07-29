@@ -268,8 +268,8 @@
     </Style>
     <Style x:Key="OVERLAY_MONSTER_TENDERIZE_BAR_STYLE" TargetType="Custom:MinimalHealthBar">
         <Setter Property="Background" Value="#4C000000"/>
-        <Setter Property="Color" Value="#FFBBFFF6"/>
-        <Setter Property="Margin" Value="32,16,5,0"/>
+        <Setter Property="Color" Value="#80b5ff"/>
+        <Setter Property="Margin" Value="32,17,5,0"/>
         <Setter Property="Height" Value="2"/>
         <Setter Property="RenderTransform">
             <Setter.Value>

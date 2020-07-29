@@ -50,3 +50,4 @@ Two of the most expensive functions in the player scanner have been rewritten, t
 **Bug Fixes**
 - Fixed bug where Rich Presence would display "Hunting Missing Translation" whenever a hunt started.
 - Fixed incorrect ailment structure size.
+- Fixed bug that would hide damage meter after Alatreon died if "Enable timer in expeditions/Guiding Lands" option was disabled.

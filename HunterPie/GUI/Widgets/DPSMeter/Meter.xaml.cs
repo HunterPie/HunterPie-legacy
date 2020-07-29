@@ -82,8 +82,8 @@ namespace HunterPie.GUI.Widgets.DPSMeter
             if (UserSettings.PlayerConfig.Overlay.DPSMeter.ShowTimerInExpeditions)
             {
                 if (Context == null || Context.TotalDamage <= 0) Party.Visibility = Visibility.Collapsed;
+                WidgetHasContent = true;
             }
-            WidgetHasContent = true;
             ChangeVisibility();
         }));
 
