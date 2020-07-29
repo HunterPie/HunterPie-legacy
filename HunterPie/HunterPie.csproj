@@ -236,6 +236,12 @@
     <None Include="address\MonsterHunterWorld.410013.map">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
+    <None Include="Changelog\changelog-zh-tw.md">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Include="Changelog\changelog-pt-br.md">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
     <None Include="Changelog\changelog-zh-cn.md">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>

@@ -1,5 +1,5 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
-<!--1.0.3.94 update version 1 translate by ThanatosDi-->
+<!--1.0.3.95 update version 1 translate by ThanatosDi-->
 <Strings lang="Traditional Chinese">
   <Monsters>
     <Monster ID="ems062_03" Name="訓練木豬"/>
@@ -214,6 +214,8 @@
     <Ailment ID="STATUS_FELYNETRAP" Name="貓貓陷阱"/>
     <Ailment ID="STATUS_CLAW" Name="飛翔爪攻擊"/>
     <Ailment ID="STATUS_VIOLATED" Name="積攢口水"/>
+    <Ailment ID="STATUS_BANISHMENT_BALL" Name="撤退彈"/>
+    <Ailment ID="STATUS_ENRAGE" Name="激怒"/>
   </Ailments>
   <Mantles>
     <Mantle ID="-1" Name="無衣裝"/>
@@ -556,6 +558,8 @@
       <String ID="ENABLE_HIDE_INACTIVE_PARTS_DESC" Name="如果啟用，部位和異常狀態將在一段時間無變化後自動隱藏"/>
       <String ID="ENABLE_BREAKABLE_PARTS" Name="顯示魔物可破壞部位"/>
       <String ID="ENABLE_BREAKABLE_PARTS_DESC" Name="如果啟用可切斷、破壞和移除的部位將顯示在魔物欄下方或上方"/>
+      <String ID="ENABLE_AILMENTS_BAR_COLOR" Name="啟用多色彩異常狀態條"/>
+      <String ID="ENABLE_AILMENTS_BAR_COLOR_DESC" Name="如啟用，魔物異常狀態條將根據種類進行顏色調整"/>
       <String ID="ENABLE_AILMENTS" Name="顯示魔物異常狀態"/>
       <String ID="ENABLE_AILMENTS_DESC" Name="如果啟用，魔物異常狀態將顯示在魔物欄下方或上方"/>
       <String ID="ENABLE_MONSTER_PARTS" Name="顯示魔物部位"/>
@@ -587,6 +591,23 @@
       <String ID="STATIC_MONSTER_PART_DELAY" Name="延後隱藏無變化的部位"/>
       <String ID="STATIC_MONSTER_PART_DELAY_DESC" Name="當部位無變化或已破壞時，延後隱藏部位"/>
       <String ID="STATIC_MONSTER_POSITION_DESC" Name="更改魔物小工具的位置"/>
+      <String ID="ENABLE_MONSTER_STATUS_POISON" Name="顯示中毒"/>
+      <String ID="ENABLE_MONSTER_STATUS_PARALYSIS" Name="顯示麻痺"/>
+      <String ID="ENABLE_MONSTER_STATUS_SLEEP" Name="顯示睡眠"/>
+      <String ID="ENABLE_MONSTER_STATUS_BLAST" Name="顯示爆破"/>
+      <String ID="ENABLE_MONSTER_STATUS_MOUNT" Name="顯示騎乘"/>
+      <String ID="ENABLE_MONSTER_STATUS_EXHAUSTION" Name="顯示疲勞"/>
+      <String ID="ENABLE_MONSTER_STATUS_STUN" Name="顯示暈眩"/>
+      <String ID="ENABLE_MONSTER_STATUS_TRANQUILIZE" Name="顯示麻醉"/>
+      <String ID="ENABLE_MONSTER_STATUS_FLASH" Name="顯示閃光"/>
+      <String ID="ENABLE_MONSTER_STATUS_KNOCKDOWN" Name="顯示倒地"/>
+      <String ID="ENABLE_MONSTER_STATUS_DUNGPOD" Name="顯示異臭"/>
+      <String ID="ENABLE_MONSTER_STATUS_TRAP" Name="顯示陷阱"/>
+      <String ID="ENABLE_MONSTER_STATUS_ELDERSEAL" Name="顯示龍封力"/>
+      <String ID="ENABLE_MONSTER_STATUS_SMOKING" Name="顯示煙霧"/>
+      <String ID="ENABLE_MONSTER_STATUS_CLAW" Name="顯示飛翔爪激怒"/>
+      <String ID="ENABLE_MONSTER_STATUS_MISC" Name="顯示雜項"/>
+      <String ID="ENABLE_MONSTER_STATUS_ENRAGE" Name="顯示憤怒"/>
       <!-- Harvest Box Widget -->
       <String ID="ENABLE_HARVEST_BOX" Name="收穫箱小工具"/>
       <String ID="ENABLE_HARVEST_BOX_DESC" Name="如果啟用則只要有內容就會顯示&quot;收穫箱&quot;小工具"/>

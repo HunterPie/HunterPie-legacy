@@ -205,7 +205,7 @@
     <Ailment ID="STATUS_FELYNETRAP" Name="Felyne Trap"/>
     <Ailment ID="STATUS_CLAW" Name="Claw"/>
     <Ailment ID="STATUS_VIOLATED" Name="Claw Flinch"/>
-    <Ailment ID="STATUS_BANISHMENT_BALL" Name="Banishment Ball"/>
+    <Ailment ID="STATUS_BANISHMENT_BALL" Name="Banishing Ball"/>
     <Ailment ID="STATUS_ENRAGE" Name="Enrage"/>
   </Ailments>
   <Mantles>
