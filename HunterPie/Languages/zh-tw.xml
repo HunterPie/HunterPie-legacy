@@ -1,5 +1,5 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
-<!--1.0.3.95 update version 1 translate by ThanatosDi-->
+<!--1.0.3.95 update version 2 translate by ThanatosDi-->
 <Strings lang="Traditional Chinese">
   <Monsters>
     <Monster ID="ems062_03" Name="訓練木豬"/>
@@ -426,7 +426,7 @@
     <Abnormality ID="MISC_034_00" Name="攻擊力UP[鬼毬果]"/>
     <Abnormality ID="MISC_035_00" Name="冰耐性UP[冰耐草]"/>
     <Abnormality ID="MISC_073_00" Name="攻擊力UP&amp;防禦力UP[小]"/>
-    <Abnormality ID="MISC_999_00" Name="用餐時間"/>
+    <Abnormality ID="MISC_999_00" Name="飢餓時間"/>
     <Abnormality ID="GEAR_000_00" Name="鬼人彈"/>
     <Abnormality ID="GEAR_001_00" Name="硬化彈"/>
     <Abnormality ID="GEAR_002_00" Name="不屈"/>

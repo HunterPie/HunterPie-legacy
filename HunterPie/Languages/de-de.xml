@@ -28,16 +28,16 @@ Gerade bei den Abnormalitäten / Statusveränderungen des Spielers gibt es mit (
     <Monster ID="em036_00" Name="Lavasioth"/>
     <Monster ID="em037_00" Name="Nargacuga"/>
     <Monster ID="em042_00" Name="Barioth"/>
-	<Monster ID="em042_05" Name="Frosthauer-Barioth"/>
+	  <Monster ID="em042_05" Name="Frosthauer-Barioth"/>
     <Monster ID="em043_00" Name="Dämonjho"/>
     <Monster ID="em043_05" Name="Wilder Dämonjho"/>
     <Monster ID="em044_00" Name="Barroth"/>
     <Monster ID="em045_00" Name="Uragaan"/>
-	<Monster ID="em050_00" Name="Alatreon"/>
+	  <Monster ID="em050_00" Name="Alatreon"/>
     <Monster ID="em057_00" Name="Zinogre"/>
     <Monster ID="em057_01" Name="Höllen-Zinogre"/>
     <Monster ID="em063_00" Name="Brachydios"/>
-	<Monster ID="em063_05" Name="Tobender Brachydios"/>
+	  <Monster ID="em063_05" Name="Tobender Brachydios"/>
     <Monster ID="em080_00" Name="Glavenus"/>
     <Monster ID="em080_01" Name="Säure-Glavenus"/>
     <Monster ID="em100_00" Name="Anjanath"/>
@@ -219,6 +219,8 @@ Gerade bei den Abnormalitäten / Statusveränderungen des Spielers gibt es mit (
     <Ailment ID="STATUS_FELYNETRAP" Name="Katzen-Falle"/>
     <Ailment ID="STATUS_CLAW" Name="Klaue"/>
     <Ailment ID="STATUS_VIOLATED" Name="Verletzt"/>
+	<Ailment ID="STATUS_BANISHMENT_BALL" Name="Bannball"/>
+	<Ailment ID="STATUS_ENRAGE" Name="Enrage"/>
   </Ailments>
   <Mantles>
     <Mantle ID="-1" Name="Kein Mantel"/>
@@ -562,6 +564,8 @@ Gerade bei den Abnormalitäten / Statusveränderungen des Spielers gibt es mit (
       <String ID="ENABLE_HIDE_INACTIVE_PARTS_DESC" Name="Wenn aktiv, werden Teile und Statusveränderungen der Monster automatisch nach einer gewissen Zeit ausgeblendet."/>
       <String ID="ENABLE_BREAKABLE_PARTS" Name="Zeige zerstörbare Monsterteile"/>
       <String ID="ENABLE_BREAKABLE_PARTS_DESC" Name="Wenn aktiv, werden abtrennbare, brechbare und entfernbare Teile unter der Monsterleiste angezeigt."/>
+	  <String ID="ENABLE_AILMENTS_BAR_COLOR" Name="Aktiviere farbige Statusveränderungsbalken"/>
+      <String ID="ENABLE_AILMENTS_BAR_COLOR_DESC" Name="Wenn aktiv, werden Statusveränderungen basierend auf ihrer Gruppe eingefärbt."/>
       <String ID="ENABLE_AILMENTS" Name="Zeige Statusveränderungen des Monsters"/>
       <String ID="ENABLE_AILMENTS_DESC" Name="Wenn aktiv, werden Statusveränderungen des Monsters unter der Monsterleiste angezeigt."/>
       <String ID="ENABLE_MONSTER_PARTS" Name="Zeige Monster-Teile"/>
@@ -593,6 +597,23 @@ Gerade bei den Abnormalitäten / Statusveränderungen des Spielers gibt es mit (
       <String ID="STATIC_MONSTER_PART_DELAY" Name="Verzögerung bis inaktive Teile ausgeblendet werden"/>
       <String ID="STATIC_MONSTER_PART_DELAY_DESC" Name="Zeit, die gewartet wird nachdem Teile beschädigt oder Statusveränderungen zugefügt wurden, bis diese wegen Inaktivität ausgeblendet werden."/>
       <String ID="STATIC_MONSTER_POSITION_DESC" Name="Ändert die Position des Monster Widgets."/>
+	  <String ID="ENABLE_MONSTER_STATUS_POISON" Name="Zeige Gift"/>
+      <String ID="ENABLE_MONSTER_STATUS_PARALYSIS" Name="Zeige Paralyse"/>
+      <String ID="ENABLE_MONSTER_STATUS_SLEEP" Name="Zeige Schlaf"/>
+      <String ID="ENABLE_MONSTER_STATUS_BLAST" Name="Zeige Explosion"/>
+      <String ID="ENABLE_MONSTER_STATUS_MOUNT" Name="Zeige Mount"/>
+      <String ID="ENABLE_MONSTER_STATUS_EXHAUSTION" Name="Zeige Erschöpfung"/>
+      <String ID="ENABLE_MONSTER_STATUS_STUN" Name="Zeige Betäubung"/>
+      <String ID="ENABLE_MONSTER_STATUS_TRANQUILIZE" Name="Zeige Beruhigung"/>
+      <String ID="ENABLE_MONSTER_STATUS_FLASH" Name="Zeige Blendung"/>
+      <String ID="ENABLE_MONSTER_STATUS_KNOCKDOWN" Name="Zeige Knockdown"/>
+      <String ID="ENABLE_MONSTER_STATUS_DUNGPOD" Name="Zeige Dungkapsel"/>
+      <String ID="ENABLE_MONSTER_STATUS_TRAP" Name="Zeige Fallen"/>
+      <String ID="ENABLE_MONSTER_STATUS_ELDERSEAL" Name="Zeige Ältesten-Siegel"/>
+      <String ID="ENABLE_MONSTER_STATUS_SMOKING" Name="Zeige Rauchend"/>
+      <String ID="ENABLE_MONSTER_STATUS_CLAW" Name="Zeige Claw"/>
+      <String ID="ENABLE_MONSTER_STATUS_MISC" Name="Zeige Sonstiges"/>
+      <String ID="ENABLE_MONSTER_STATUS_ENRAGE" Name="Zeige Enrage"/>
       <!-- Harvest Box Widget -->
       <String ID="ENABLE_HARVEST_BOX" Name="Aktiviere Erntebox Widget"/>
       <String ID="ENABLE_HARVEST_BOX_DESC" Name="Wenn aktiv, wird das Erntebox Widget angezeigt sobald es etwas anzuzeigen hat."/>

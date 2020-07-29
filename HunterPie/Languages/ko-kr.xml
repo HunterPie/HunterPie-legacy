@@ -203,8 +203,10 @@
     <Ailment ID="STATUS_ELDERSEAL" Name="용봉력" />
     <Ailment ID="STATUS_SMOKING" Name="이블죠의 브레스" />
     <Ailment ID="STATUS_FELYNETRAP" Name="벌레장 함정" />
-    <Ailment ID="STATUS_CLAW" Name="분노치" />
+    <Ailment ID="STATUS_CLAW" Name="머리클로 분노치" />
     <Ailment ID="STATUS_VIOLATED" Name="클러치 경직" />
+    <Ailment ID="STATUS_BANISHMENT_BALL" Name="退散玉"/>
+    <Ailment ID="STATUS_ENRAGE" Name="분노"/>
   </Ailments>
   <Mantles>
     <Mantle ID="-1" Name="복장 없음" />
@@ -579,6 +581,23 @@
       <String ID="STATIC_MONSTER_PART_DELAY" Name="비활성화된 부위의 숨김 지연시간" />
       <String ID="STATIC_MONSTER_PART_DELAY_DESC" Name="비활성 상태의 부위나 상태 이상 수치를 숨기기 까지의 지연 시간." />
       <String ID="STATIC_MONSTER_POSITION_DESC" Name="몬스터 위젯의 위치를 변경." />
+      <String ID="ENABLE_MONSTER_STATUS_POISON" Name="독"/>
+      <String ID="ENABLE_MONSTER_STATUS_PARALYSIS" Name="마비"/>
+      <String ID="ENABLE_MONSTER_STATUS_SLEEP" Name="수면"/>
+      <String ID="ENABLE_MONSTER_STATUS_BLAST" Name="폭발"/>
+      <String ID="ENABLE_MONSTER_STATUS_MOUNT" Name="단차"/>
+      <String ID="ENABLE_MONSTER_STATUS_EXHAUSTION" Name="탈진"/>
+      <String ID="ENABLE_MONSTER_STATUS_STUN" Name="기절"/>
+      <String ID="ENABLE_MONSTER_STATUS_TRANQUILIZE" Name="포획마취"/>
+      <String ID="ENABLE_MONSTER_STATUS_FLASH" Name="섬광탄"/>
+      <String ID="ENABLE_MONSTER_STATUS_KNOCKDOWN" Name="녹다운"/>
+      <String ID="ENABLE_MONSTER_STATUS_DUNGPOD" Name="거름탄"/>
+      <String ID="ENABLE_MONSTER_STATUS_TRAP" Name="함정"/>
+      <String ID="ENABLE_MONSTER_STATUS_ELDERSEAL" Name="용봉력"/>
+      <String ID="ENABLE_MONSTER_STATUS_SMOKING" Name="이블죠의 브레스"/>
+      <String ID="ENABLE_MONSTER_STATUS_CLAW" Name="머리 클로 분노상태"/>
+      <String ID="ENABLE_MONSTER_STATUS_MISC" Name="기타상태"/>
+      <String ID="ENABLE_MONSTER_STATUS_ENRAGE" Name="분노"/>
       <!-- Harvest Box Widget -->
       <String ID="ENABLE_HARVEST_BOX" Name="수확박스 위젯을 활성화" />
       <String ID="ENABLE_HARVEST_BOX_DESC" Name="옵션이 켜져 있을 경우, 수확박스 위젯은 보여줄 내용이 있을시 보여지게 됩니다." />
