@@ -213,6 +213,8 @@
     <Ailment ID="STATUS_FELYNETRAP" Name="地雷虫かご"/>
     <Ailment ID="STATUS_CLAW" Name="頭クロー怒り"/>
     <Ailment ID="STATUS_VIOLATED" Name="よろけ怯み"/>
+    <Ailment ID="STATUS_BANISHMENT_BALL" Name="退散玉"/>
+    <Ailment ID="STATUS_ENRAGE" Name="怒り"/>
   </Ailments>
   <Mantles>
     <Mantle ID="-1" Name="特殊装具なし"/>
@@ -556,30 +558,32 @@
       <String ID="ENABLE_HIDE_INACTIVE_PARTS_DESC" Name="有効な場合、攻撃していない部位や更新されていない状態異常値が自動的に非表示になります。"/>
       <String ID="ENABLE_BREAKABLE_PARTS" Name="切断可能部位を表示"/>
       <String ID="ENABLE_BREAKABLE_PARTS_DESC" Name="有効な場合、破壊することで剥ぎ取り可能な部位の体力を表示します。"/>
+      <String ID="ENABLE_AILMENTS_BAR_COLOR" Name="状態異常の色分けを有効にする"/>
+      <String ID="ENABLE_AILMENTS_BAR_COLOR_DESC" Name="有効な場合、モンスターの状態異常を色分けして表示します。"/>
       <String ID="ENABLE_AILMENTS" Name="モンスターの状態異常を表示"/>
       <String ID="ENABLE_AILMENTS_DESC" Name="有効な場合、モンスターの状態異常の蓄積値や残り時間を表示します。"/>
       <String ID="ENABLE_MONSTER_PARTS" Name="モンスターの部位を表示"/>
       <String ID="ENABLE_MONSTER_PARTS_DESC" Name="有効な場合、各部位の怯み値と怯み回数を表示します。"/>
-      <String ID="ENABLE_MONSTER_PART_HEAD" Name="頭部の怯み値表示"/>
-      <String ID="ENABLE_MONSTER_PART_BODY" Name="胴の怯み値表示"/>
-      <String ID="ENABLE_MONSTER_PART_ARM" Name="前脚の怯み値表示"/>
-      <String ID="ENABLE_MONSTER_PART_WING" Name="翼の怯み値表示"/>
-      <String ID="ENABLE_MONSTER_PART_LEG" Name="後脚の怯み値表示"/>
-      <String ID="ENABLE_MONSTER_PART_TAIL" Name="尻尾の怯み値表示"/>
-      <String ID="ENABLE_MONSTER_PART_LIMB" Name="手足の怯み値表示"/>
-      <String ID="ENABLE_MONSTER_PART_ABDOMEN" Name="腹部の怯み値表示"/>
-      <String ID="ENABLE_MONSTER_PART_CHEST" Name="胸部の怯み値表示"/>
-      <String ID="ENABLE_MONSTER_PART_REAR" Name="腰の怯み値表示"/>
-      <String ID="ENABLE_MONSTER_PART_JAW" Name="顎の怯み値表示"/>
-      <String ID="ENABLE_MONSTER_PART_BACK" Name="背中の怯み値表示"/>
-      <String ID="ENABLE_MONSTER_PART_FIN" Name="ヒレの怯み値表示"/>
-      <String ID="ENABLE_MONSTER_PART_HORN" Name="角の怯み値表示"/>
-      <String ID="ENABLE_MONSTER_PART_NECK" Name="首の怯み値表示"/>
-      <String ID="ENABLE_MONSTER_PART_SHELL" Name="外殻の怯み値表示"/>
-      <String ID="ENABLE_MONSTER_PART_ORGAN" Name="排熱器官の怯み値表示"/>
-      <String ID="ENABLE_MONSTER_PART_MANE" Name="たてがみの怯み値表示"/>
-      <String ID="ENABLE_MONSTER_PART_BONE" Name="纏った骨の怯み値表示"/>
-      <String ID="ENABLE_MONSTER_PART_MISC" Name="その他の怯み値表示"/>
+      <String ID="ENABLE_MONSTER_PART_HEAD" Name="頭部を表示"/>
+      <String ID="ENABLE_MONSTER_PART_BODY" Name="胴を表示する"/>
+      <String ID="ENABLE_MONSTER_PART_ARM" Name="前脚を表示する"/>
+      <String ID="ENABLE_MONSTER_PART_WING" Name="翼を表示する"/>
+      <String ID="ENABLE_MONSTER_PART_LEG" Name="後脚を表示する"/>
+      <String ID="ENABLE_MONSTER_PART_TAIL" Name="尻尾を表示する"/>
+      <String ID="ENABLE_MONSTER_PART_LIMB" Name="手足を表示する"/>
+      <String ID="ENABLE_MONSTER_PART_ABDOMEN" Name="腹部を表示する"/>
+      <String ID="ENABLE_MONSTER_PART_CHEST" Name="胸部を表示する"/>
+      <String ID="ENABLE_MONSTER_PART_REAR" Name="腰を表示する"/>
+      <String ID="ENABLE_MONSTER_PART_JAW" Name="顎を表示する"/>
+      <String ID="ENABLE_MONSTER_PART_BACK" Name="背中を表示する"/>
+      <String ID="ENABLE_MONSTER_PART_FIN" Name="ヒレを表示する"/>
+      <String ID="ENABLE_MONSTER_PART_HORN" Name="角を表示する"/>
+      <String ID="ENABLE_MONSTER_PART_NECK" Name="首を表示する"/>
+      <String ID="ENABLE_MONSTER_PART_SHELL" Name="外殻を表示する"/>
+      <String ID="ENABLE_MONSTER_PART_ORGAN" Name="排熱器官を表示する"/>
+      <String ID="ENABLE_MONSTER_PART_MANE" Name="たてがみを表示する"/>
+      <String ID="ENABLE_MONSTER_PART_BONE" Name="纏った骨を表示する"/>
+      <String ID="ENABLE_MONSTER_PART_MISC" Name="その他の部位を表示する"/>
       <String ID="STATIC_MONSTER_MAX_PARTS" Name="一行の最多表示数"/>
       <String ID="STATIC_MONSTER_MAX_PARTS_DESC" Name="１行毎に表示できる部位や状態異常の最大数を設定します。"/>
       <String ID="STATIC_MONSTER_MAX_COLUMNS" Name="最多行数"/>
@@ -587,6 +591,23 @@
       <String ID="STATIC_MONSTER_PART_DELAY" Name="非更新値の非表示遅延"/>
       <String ID="STATIC_MONSTER_PART_DELAY_DESC" Name="更新が継続していない値が表示されなくなるまでの遅延時間。"/>
       <String ID="STATIC_MONSTER_POSITION_DESC" Name="モンスターウィジェットの位置を変更します。"/>
+      <String ID="ENABLE_MONSTER_STATUS_POISON" Name="毒を表示する"/>
+      <String ID="ENABLE_MONSTER_STATUS_PARALYSIS" Name="麻痺を表示する"/>
+      <String ID="ENABLE_MONSTER_STATUS_SLEEP" Name="睡眠を表示する"/>
+      <String ID="ENABLE_MONSTER_STATUS_BLAST" Name="爆破を表示する"/>
+      <String ID="ENABLE_MONSTER_STATUS_MOUNT" Name="乗りを表示する"/>
+      <String ID="ENABLE_MONSTER_STATUS_EXHAUSTION" Name="減気を表示する"/>
+      <String ID="ENABLE_MONSTER_STATUS_STUN" Name="気絶を表示する"/>
+      <String ID="ENABLE_MONSTER_STATUS_TRANQUILIZE" Name="捕獲用麻酔を表示する"/>
+      <String ID="ENABLE_MONSTER_STATUS_FLASH" Name="めまいを表示する"/>
+      <String ID="ENABLE_MONSTER_STATUS_KNOCKDOWN" Name="転倒を表示する"/>
+      <String ID="ENABLE_MONSTER_STATUS_DUNGPOD" Name="こやしを表示する"/>
+      <String ID="ENABLE_MONSTER_STATUS_TRAP" Name="罠類を表示する"/>
+      <String ID="ENABLE_MONSTER_STATUS_ELDERSEAL" Name="龍封を表示する"/>
+      <String ID="ENABLE_MONSTER_STATUS_SMOKING" Name="ジョーブレスを表示する"/>
+      <String ID="ENABLE_MONSTER_STATUS_CLAW" Name="頭クロー怒りを表示する"/>
+      <String ID="ENABLE_MONSTER_STATUS_MISC" Name="その他の状態異常を表示する"/>
+      <String ID="ENABLE_MONSTER_STATUS_ENRAGE" Name="怒りを表示する"/>
       <!-- Harvest Box Widget -->
       <String ID="ENABLE_HARVEST_BOX" Name="肥料ウィジェット"/>
       <String ID="ENABLE_HARVEST_BOX_DESC" Name="有効な場合、表示可能な生殖研究所・蒸気機関管理所・交易船・オトモ探検隊の情報が表示されます。"/>

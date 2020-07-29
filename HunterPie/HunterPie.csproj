@@ -236,7 +236,13 @@
     <None Include="address\MonsterHunterWorld.410013.map">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
-    <None Include="Changelog\changelog.md">
+    <None Include="Changelog\changelog-zh-cn.md">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Include="Changelog\changelog-jp-jp.md">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Include="Changelog\changelog-en-us.md">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
     <None Include="GUIControls\settingsWindow.xaml.cs">

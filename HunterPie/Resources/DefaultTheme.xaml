@@ -84,7 +84,7 @@
                 </LinearGradientBrush>
             </Setter.Value>
         </Setter>
-        <Setter Property="FontFamily" Value="Roboto"/>
+        <Setter Property="FontFamily" Value="Roboto, Yu Gothic"/>
         <Setter Property="FontWeight" Value="Medium"/>
         <Setter Property="FontSize" Value="14"/>
     </Style>
@@ -124,7 +124,7 @@
 
     <Style x:Key="OVERLAY_MONSTER_BAR_TEXT_STYLE" TargetType="TextBlock">
         <Setter Property="Foreground" Value="#eee6ff"/>
-        <Setter Property="FontFamily" Value="Roboto"/>
+        <Setter Property="FontFamily" Value="Roboto, Yu Gothic"/>
         <Setter Property="TextAlignment" Value="Center"/>
         <Setter Property="FontSize" Value="12"/>
         <Setter Property="FontWeight" Value="Medium"/>
@@ -162,7 +162,7 @@
     
     <!-- Monster Ailment Styles -->
     <Style x:Key="OVERLAY_MONSTER_AILMENT_NAME_TEXT_STYLE" TargetType="TextBlock">
-        <Setter Property="FontFamily" Value="Roboto"/>
+        <Setter Property="FontFamily" Value="Roboto, Yu Gothic"/>
         <Setter Property="Height" Value="19"/>
         <Setter Property="TextTrimming" Value="CharacterEllipsis"/>
         <Setter Property="VerticalAlignment" Value="Top"/>
@@ -179,7 +179,7 @@
         <Setter Property="FontSize" Value="13"/>
     </Style>
     <Style x:Key="OVERLAY_MONSTER_AILMENT_HEALTH_TEXT_STYLE" TargetType="TextBlock">
-        <Setter Property="FontFamily" Value="Roboto"/>
+        <Setter Property="FontFamily" Value="Roboto, Yu Gothic"/>
         <Setter Property="Height" Value="15"/>
         <Setter Property="FontSize" Value="11"/>
         <Setter Property="TextAlignment" Value="Center"/>
@@ -283,7 +283,7 @@
         </Setter>
     </Style>
     <Style x:Key="OVERLAY_MONSTER_PART_NAME_TEXT_STYLE" TargetType="TextBlock">
-        <Setter Property="FontFamily" Value="Roboto"/>
+        <Setter Property="FontFamily" Value="Roboto, Yu Gothic"/>
         <Setter Property="Height" Value="22"/>
         <Setter Property="TextTrimming" Value="CharacterEllipsis"/>
         <Setter Property="VerticalAlignment" Value="Top"/>
@@ -300,7 +300,7 @@
         <Setter Property="FontSize" Value="13"/>
     </Style>
     <Style x:Key="OVERLAY_MONSTER_PART_HEALTH_TEXT_STYLE" TargetType="TextBlock">
-        <Setter Property="FontFamily" Value="Roboto"/>
+        <Setter Property="FontFamily" Value="Roboto, Yu Gothic"/>
         <Setter Property="Height" Value="12"/>
         <Setter Property="FontSize" Value="11"/>
         <Setter Property="TextAlignment" Value="Center"/>

@@ -1,12 +1,14 @@
 ﻿using System;
 using System.Diagnostics;
 using System.IO;
+using System.Linq;
 using System.Reflection;
 using System.Text;
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Documents;
 using System.Xaml;
+using HunterPie.Core;
 using Markdig;
 using Markdig.Wpf;
 using XamlReader = System.Windows.Markup.XamlReader;
@@ -43,10 +45,11 @@ namespace HunterPie.GUIControls
 
         private void OnLoaded(object sender, RoutedEventArgs e)
         {
+            string language = UserSettings.PlayerConfig.HunterPie.Language.Split('\\').LastOrDefault().Replace(".xml", "");
 
-            if (!File.Exists(Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "changelog.log"))) return;
+            if (!File.Exists(Path.Combine(AppDomain.CurrentDomain.BaseDirectory, $"Changelog\\changelog-{language}.md"))) return;
 
-            var markdown = File.ReadAllText(Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "changelog.log"));
+            var markdown = File.ReadAllText(Path.Combine(AppDomain.CurrentDomain.BaseDirectory, $"Changelog\\changelog-{language}.md"));
             var xaml = Markdig.Wpf.Markdown.ToXaml(markdown, BuildPipeline());
             using (var stream = new MemoryStream(Encoding.UTF8.GetBytes(xaml)))
             {
