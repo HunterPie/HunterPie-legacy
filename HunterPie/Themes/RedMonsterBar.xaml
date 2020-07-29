@@ -38,13 +38,14 @@
                 </LinearGradientBrush>
             </Setter.Value>
         </Setter>
-        <Setter Property="FontWeight" Value="SemiBold"/>
+        <Setter Property="FontFamily" Value="Roboto, Segoe UI,Yu Gothic"/>
+        <Setter Property="FontWeight" Value="Medium"/>
         <Setter Property="FontSize" Value="14"/>
     </Style>
 
     <Style x:Key="OVERLAY_MONSTER_BAR_TEXT_STYLE" TargetType="TextBlock">
         <Setter Property="Foreground" Value="#eee6ff"/>
-        <Setter Property="FontFamily" Value="Roboto, Yu Gothic"/>
+        <Setter Property="FontFamily" Value="Roboto"/>
         <Setter Property="TextAlignment" Value="Center"/>
         <Setter Property="FontSize" Value="12"/>
         <Setter Property="FontWeight" Value="Normal"/>
@@ -178,7 +179,7 @@
     </Style>
 
     <Style x:Key="OVERLAY_MONSTER_PART_NAME_TEXT_STYLE" TargetType="TextBlock">
-        <Setter Property="FontFamily" Value="Roboto, Yu Gothic"/>
+        <Setter Property="FontFamily" Value="Roboto, Segoe UI,Yu Gothic"/>
         <Setter Property="Height" Value="22"/>
         <Setter Property="TextTrimming" Value="CharacterEllipsis"/>
         <Setter Property="VerticalAlignment" Value="Top"/>

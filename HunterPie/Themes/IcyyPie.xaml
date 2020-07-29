@@ -13,8 +13,8 @@
     <Style x:Key="OVERLAY_MONSTER_HEALTH_BAR_STYLE" TargetType="{x:Type Custom:MinimalHealthBar}">
         <Setter Property="Background" Value="#4C000000"/>
         <Setter Property="Color" Value="#8088ff"/>
-        <Setter Property="Margin" Value="48,22,18,0"/>
-        <Setter Property="Height" Value="9"/>
+        <Setter Property="Margin" Value="49,23,18,0"/>
+        <Setter Property="Height" Value="8"/>
         <Setter Property="RenderTransform">
             <Setter.Value>
                 <TransformGroup>
@@ -29,11 +29,11 @@
 
     <Style x:Key="OVERLAY_MONSTER_BAR_TEXT_STYLE" TargetType="TextBlock">
         <Setter Property="Foreground" Value="#eee6ff"/>
-        <Setter Property="FontFamily" Value="Roboto, Yu Gothic"/>
+        <Setter Property="FontFamily" Value="Roboto, Segoe UI,Yu Gothic"/>
         <Setter Property="TextAlignment" Value="Center"/>
         <Setter Property="FontSize" Value="12"/>
         <Setter Property="FontWeight" Value="Medium"/>
-        <Setter Property="Margin" Value="47,12,22,0"/>
+        <Setter Property="Margin" Value="47,10,22,0"/>
         <Setter Property="Padding" Value="0,0,0,0"/>
     </Style>
 
@@ -63,7 +63,7 @@
                 </LinearGradientBrush>
             </Setter.Value>
         </Setter>
-        <Setter Property="FontFamily" Value="Roboto, Yu Gothic"/>
+        <Setter Property="FontFamily" Value="Roboto, Segoe UI,Yu Gothic"/>
         <Setter Property="FontWeight" Value="SemiBold"/>
         <Setter Property="FontSize" Value="14"/>
     </Style>
@@ -138,7 +138,7 @@
         </Setter>
     </Style>
     <Style x:Key="OVERLAY_MONSTER_PART_NAME_TEXT_STYLE" TargetType="TextBlock">
-        <Setter Property="FontFamily" Value="Roboto, Yu Gothic"/>
+        <Setter Property="FontFamily" Value="Roboto, Segoe UI,Yu Gothic"/>
         <Setter Property="Height" Value="22"/>
         <Setter Property="TextTrimming" Value="CharacterEllipsis"/>
         <Setter Property="VerticalAlignment" Value="Top"/>

@@ -33,12 +33,12 @@
 
     <Style x:Key="OVERLAY_MONSTER_BAR_TEXT_STYLE" TargetType="TextBlock">
         <Setter Property="Foreground" Value="#eee6ff"/>
-        <Setter Property="FontFamily" Value="Roboto, Yu Gothic, Yu Gothic"/>
+        <Setter Property="FontFamily" Value="Roboto, Segoe UI, Yu Gothic"/>
         <Setter Property="TextAlignment" Value="Center"/>
         <Setter Property="FontSize" Value="12"/>
-        <Setter Property="FontWeight" Value="Bold"/>
-        <Setter Property="Margin" Value="47,16,22,0"/>
-        <Setter Property="Padding" Value="0,0.75,0,0"/>
+        <Setter Property="FontWeight" Value="Medium"/>
+        <Setter Property="Margin" Value="47,15,22,0"/>
+        <Setter Property="Padding" Value="0,0,0,0"/>
     </Style>
 
     <LinearGradientBrush x:Key="OVERLAY_MONSTER_STAMINA_BAR_COLOR" StartPoint="0,1" EndPoint="1,0">
@@ -72,7 +72,7 @@
                 </LinearGradientBrush>
             </Setter.Value>
         </Setter>
-        <Setter Property="FontFamily" Value="Roboto, Yu Gothic"/>
+        <Setter Property="FontFamily" Value="Roboto, Segoe UI, Yu Gothic"/>
         <Setter Property="FontWeight" Value="SemiBold"/>
         <Setter Property="FontSize" Value="14"/>
     </Style>
@@ -153,7 +153,7 @@
         </Setter>
     </Style>
     <Style x:Key="OVERLAY_MONSTER_PART_NAME_TEXT_STYLE" TargetType="TextBlock">
-        <Setter Property="FontFamily" Value="Roboto, Yu Gothic"/>
+        <Setter Property="FontFamily" Value="Roboto, Segoe UI,Yu Gothic"/>
         <Setter Property="Height" Value="22"/>
         <Setter Property="TextTrimming" Value="CharacterEllipsis"/>
         <Setter Property="VerticalAlignment" Value="Top"/>

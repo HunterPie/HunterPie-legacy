@@ -12,8 +12,8 @@
     <Style x:Key="OVERLAY_MONSTER_HEALTH_BAR_STYLE" TargetType="{x:Type Custom:MinimalHealthBar}">
         <Setter Property="Background" Value="#4C000000"/>
         <Setter Property="Color" Value="#FF62B44A"/>
-        <Setter Property="Margin" Value="48,22,18,0"/>
-        <Setter Property="Height" Value="9"/>
+        <Setter Property="Margin" Value="50,24,18,0"/>
+        <Setter Property="Height" Value="7"/>
         <Setter Property="RenderTransform">
             <Setter.Value>
                 <TransformGroup>
@@ -28,11 +28,11 @@
 
     <Style x:Key="OVERLAY_MONSTER_BAR_TEXT_STYLE" TargetType="TextBlock">
         <Setter Property="Foreground" Value="#eee6ff"/>
-        <Setter Property="FontFamily" Value="Roboto, Yu Gothic"/>
+        <Setter Property="FontFamily" Value="Roboto"/>
         <Setter Property="TextAlignment" Value="Center"/>
         <Setter Property="FontSize" Value="12"/>
         <Setter Property="FontWeight" Value="Medium"/>
-        <Setter Property="Margin" Value="47,13,22,0"/>
+        <Setter Property="Margin" Value="47,12,22,0"/>
         <Setter Property="Padding" Value="0,0,0,0"/>
     </Style>
 
@@ -62,7 +62,8 @@
                 </LinearGradientBrush>
             </Setter.Value>
         </Setter>
-        <Setter Property="FontFamily" Value="Roboto, Yu Gothic"/>
+        <Setter Property="Margin" Value="0,0,0,0"/>
+        <Setter Property="FontFamily" Value="Roboto, Segoe UI,Yu Gothic"/>
         <Setter Property="FontWeight" Value="SemiBold"/>
         <Setter Property="FontSize" Value="14"/>
     </Style>
@@ -116,6 +117,9 @@
         </Setter>
     </Style>
     <Style x:Key="OVERLAY_MONSTER_PART_NAME_TEXT_STYLE" TargetType="TextBlock">
+        <Setter Property="FontFamily" Value="Roboto, Segoe UI,Yu Gothic"/>
+        <Setter Property="Height" Value="22"/>
+        <Setter Property="VerticalAlignment" Value="Top"/>
         <Setter Property="Foreground">
             <Setter.Value>
                 <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
@@ -124,9 +128,10 @@
                 </LinearGradientBrush>
             </Setter.Value>
         </Setter>
+        <Setter Property="TextTrimming" Value="CharacterEllipsis"/>
         <Setter Property="Margin" Value="32,-3,4,0"/>
         <Setter Property="FontWeight" Value="Normal"/>
-        <Setter Property="FontSize" Value="12"/>
+        <Setter Property="FontSize" Value="13"/>
     </Style>
 
     <Style x:Key="OVERLAY_MONSTER_PART_COUNTER_BACKGROUND_STYLE" TargetType="{x:Type Polyline}">

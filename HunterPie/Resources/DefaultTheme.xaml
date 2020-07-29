@@ -4,6 +4,8 @@
                     xmlns:Custom="clr-namespace:HunterPie.GUIControls.Custom_Controls"
                     xmlns:Monster="clr-namespace:HunterPie.GUI.Widgets.Monster_Widget.Parts"
                     >
+    <!-- Fonts -->
+    
     <!-- Ailment groups -->
     <SolidColorBrush x:Key="MONSTER_AILMENT_COLOR_UNKNOWN">#FF73ABEE</SolidColorBrush>
     <SolidColorBrush x:Key="MONSTER_AILMENT_COLOR_POISON">#ab47ed</SolidColorBrush>
@@ -43,8 +45,8 @@
     <Style x:Key="OVERLAY_MONSTER_HEALTH_BAR_STYLE" TargetType="{x:Type Custom:MinimalHealthBar}">
         <Setter Property="Background" Value="#4C000000"/>
         <Setter Property="Color" Value="{StaticResource OVERLAY_MONSTER_HEALTH_BAR_COLOR}"/>
-        <Setter Property="Margin" Value="48,22,18,0"/>
-        <Setter Property="Height" Value="9"/>
+        <Setter Property="Margin" Value="46,24,18,0"/>
+        <Setter Property="Height" Value="7"/>
         <Setter Property="RenderTransform">
             <Setter.Value>
                 <TransformGroup>
@@ -61,7 +63,7 @@
         <Setter Property="Orientation" Value="Horizontal"/>
         <Setter Property="VerticalAlignment" Value="Top"/>
         <Setter Property="Height" Value="18"/>
-        <Setter Property="Margin" Value="33,0,0,0"/>
+        <Setter Property="Margin" Value="33,-3,0,0"/>
     </Style>
 
     <Style x:Key="OVERLAY_MONSTER_PARTS_DISPLAY" TargetType="StackPanel">
@@ -84,7 +86,8 @@
                 </LinearGradientBrush>
             </Setter.Value>
         </Setter>
-        <Setter Property="FontFamily" Value="Roboto, Yu Gothic"/>
+        <Setter Property="Margin" Value="0,-1,0,0"/>
+        <Setter Property="FontFamily" Value="Roboto, Segoe UI, YU Gothic"/>
         <Setter Property="FontWeight" Value="Medium"/>
         <Setter Property="FontSize" Value="14"/>
     </Style>
@@ -124,11 +127,11 @@
 
     <Style x:Key="OVERLAY_MONSTER_BAR_TEXT_STYLE" TargetType="TextBlock">
         <Setter Property="Foreground" Value="#eee6ff"/>
-        <Setter Property="FontFamily" Value="Roboto, Yu Gothic"/>
+        <Setter Property="FontFamily" Value="Roboto"/>
         <Setter Property="TextAlignment" Value="Center"/>
         <Setter Property="FontSize" Value="12"/>
         <Setter Property="FontWeight" Value="Medium"/>
-        <Setter Property="Margin" Value="47,10,22,0"/>
+        <Setter Property="Margin" Value="47,12,22,0"/>
         <Setter Property="Padding" Value="0,0,0,0"/>
     </Style>
 
@@ -162,7 +165,7 @@
     
     <!-- Monster Ailment Styles -->
     <Style x:Key="OVERLAY_MONSTER_AILMENT_NAME_TEXT_STYLE" TargetType="TextBlock">
-        <Setter Property="FontFamily" Value="Roboto, Yu Gothic"/>
+        <Setter Property="FontFamily" Value="Roboto, Segoe UI,Yu Gothic"/>
         <Setter Property="Height" Value="19"/>
         <Setter Property="TextTrimming" Value="CharacterEllipsis"/>
         <Setter Property="VerticalAlignment" Value="Top"/>
@@ -179,7 +182,7 @@
         <Setter Property="FontSize" Value="13"/>
     </Style>
     <Style x:Key="OVERLAY_MONSTER_AILMENT_HEALTH_TEXT_STYLE" TargetType="TextBlock">
-        <Setter Property="FontFamily" Value="Roboto, Yu Gothic"/>
+        <Setter Property="FontFamily" Value="Roboto, Segoe UI,Yu Gothic"/>
         <Setter Property="Height" Value="15"/>
         <Setter Property="FontSize" Value="11"/>
         <Setter Property="TextAlignment" Value="Center"/>
@@ -283,7 +286,7 @@
         </Setter>
     </Style>
     <Style x:Key="OVERLAY_MONSTER_PART_NAME_TEXT_STYLE" TargetType="TextBlock">
-        <Setter Property="FontFamily" Value="Roboto, Yu Gothic"/>
+        <Setter Property="FontFamily" Value="Roboto, Segoe UI,Yu Gothic"/>
         <Setter Property="Height" Value="22"/>
         <Setter Property="TextTrimming" Value="CharacterEllipsis"/>
         <Setter Property="VerticalAlignment" Value="Top"/>
@@ -300,7 +303,7 @@
         <Setter Property="FontSize" Value="13"/>
     </Style>
     <Style x:Key="OVERLAY_MONSTER_PART_HEALTH_TEXT_STYLE" TargetType="TextBlock">
-        <Setter Property="FontFamily" Value="Roboto, Yu Gothic"/>
+        <Setter Property="FontFamily" Value="Roboto, Segoe UI,Yu Gothic"/>
         <Setter Property="Height" Value="12"/>
         <Setter Property="FontSize" Value="11"/>
         <Setter Property="TextAlignment" Value="Center"/>
