@@ -205,7 +205,7 @@
     <Ailment ID="STATUS_FELYNETRAP" Name="벌레장 함정" />
     <Ailment ID="STATUS_CLAW" Name="머리클로 분노치" />
     <Ailment ID="STATUS_VIOLATED" Name="클러치 경직" />
-    <Ailment ID="STATUS_BANISHMENT_BALL" Name="退散玉"/>
+    <Ailment ID="STATUS_BANISHMENT_BALL" Name="탈주옥"/>
     <Ailment ID="STATUS_ENRAGE" Name="분노"/>
   </Ailments>
   <Mantles>
@@ -440,7 +440,7 @@
       <String ID="CONSOLE_CONSOLE" Name="콘솔" />
       <String ID="CONSOLE_SETTINGS" Name="설정" />
       <String ID="CONSOLE_UPLOADBUILD" Name="장비 커스텀 업로드" />
-      <String ID="CONSOLE_EXPORTGEAR" Name="EXPORT GEAR"/>
+      <String ID="CONSOLE_EXPORTGEAR" Name="소지 장식품 목록 추출"/>
       <String ID="CONSOLE_CHANGELOG" Name="패치내역" />
       <String ID="CONSOLE_DISCORD" Name="Discord" />
       <String ID="CONSOLE_GITHUB" Name="GitHub" />
@@ -550,6 +550,8 @@
       <String ID="ENABLE_HIDE_INACTIVE_PARTS_DESC" Name="옵션이 켜져 있을 경우, 변경점이 없는 부위/상태이상을 수치를 자동으로 숨깁니다." />
       <String ID="ENABLE_BREAKABLE_PARTS" Name="몬스터의 파괴 가능부위 표시" />
       <String ID="ENABLE_BREAKABLE_PARTS_DESC" Name="옵션이 켜져 있을 경우, 절단,파괴,제거 가능한 부위들이 몬스터의 체력바 아래에 표시됩니다." />
+	  <String ID="ENABLE_AILMENTS_BAR_COLOR" Name="상태이상 바 색상 활성화"/>
+      <String ID="ENABLE_AILMENTS_BAR_COLOR_DESC" Name="옵션이 켜져 있을 경우, 각 상태 이상 표시는 속성에 기반한 개별적인 색상을 띄게 됩니다."/>
       <String ID="ENABLE_AILMENTS" Name="몬스터의 상태 이상 수치 표시" />
       <String ID="ENABLE_AILMENTS_DESC" Name="옵션이 켜져 있을 경우, 몬스터의 상태이상 수치가 몬스터의 체력바 아래에 표시됩니다." />
       <String ID="ENABLE_MONSTER_PARTS" Name="몬스터의 부위 표시" />
