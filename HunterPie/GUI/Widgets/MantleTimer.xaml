@@ -32,14 +32,7 @@
                     </LinearGradientBrush>
                 </Rectangle.Fill>
             </Rectangle>
-            <TextBlock x:Name="MantleName" Text="(0) Mantle Widget" Height="23" VerticalAlignment="Top" Width="179" Padding="0,2,0,0" FontWeight="Light" TextTrimming="CharacterEllipsis" TextOptions.TextHintingMode="Fixed" Canvas.Left="23" >
-                <TextBlock.Foreground>
-                    <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
-                        <GradientStop Color="White" Offset="0"/>
-                        <GradientStop Color="#FFC1C1C1" Offset="1"/>
-                    </LinearGradientBrush>
-                </TextBlock.Foreground>
-            </TextBlock>
+            <TextBlock x:Name="MantleName" Text="(0) Mantle Widget" Height="23" VerticalAlignment="Top" Width="179" Padding="0,2,0,0" TextTrimming="CharacterEllipsis" TextOptions.TextHintingMode="Fixed" Canvas.Left="23" FontFamily="Roboto, Segoe UI,Yu Gothic" Foreground="WhiteSmoke" Canvas.Top="2"/>
             <Canvas.Style>
                 <Style TargetType="Canvas">
                     <Style.Triggers>

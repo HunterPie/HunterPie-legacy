@@ -13,7 +13,7 @@
     <Monster ID="em018_00" Name="Yian Garuga"/>
     <Monster ID="em018_05" Name="Yian Garuga Naevus"/>
     <Monster ID="em023_00" Name="Rajang"/>
-	  <Monster ID="em023_05" Name="Rajang Rabioso"/>
+	<Monster ID="em023_05" Name="Rajang Rabioso"/>
     <Monster ID="em024_00" Name="Kushala Daora"/>
     <Monster ID="em026_00" Name="Lunastra"/>
     <Monster ID="em027_00" Name="Teostra"/>
@@ -29,10 +29,10 @@
     <Monster ID="em045_00" Name="Uragaan"/>
     <Monster ID="em050_00" Name="Alatreon"/>
     <Monster ID="em057_00" Name="Zinogre"/>
-	  <Monster ID="em057_01" Name="Zinogre Estigio"/>
+	<Monster ID="em057_01" Name="Zinogre Estigio"/>
     <Monster ID="ems062_03" Name="Muñeco de práctica"/>
     <Monster ID="em063_00" Name="Brachydios"/>
-	  <Monster ID="em063_05" Name="Brachydios Colérico"/>
+	<Monster ID="em063_05" Name="Brachydios Colérico"/>
     <Monster ID="em080_00" Name="Glavenus"/>
     <Monster ID="em080_01" Name="Glavenus Acídico"/>
     <Monster ID="em100_00" Name="Anjanath"/>
@@ -43,7 +43,7 @@
     <Monster ID="em103_00" Name="Nergigante"/>
     <Monster ID="em103_05" Name="Nergigante Regio"/>
     <Monster ID="em105_00" Name="Xeno'jiiva"/>
-	  <Monster ID="em104_00" Name="Safi'jiiva"/>
+	<Monster ID="em104_00" Name="Safi'jiiva"/>
     <Monster ID="em106_00" Name="Zorah Magdaros"/>
     <Monster ID="em107_00" Name="Kulu-Ya-Ku"/>
     <Monster ID="em108_00" Name="Jyuratodus"/>
@@ -151,11 +151,11 @@
     <Part ID="MONSTER_PART_REMOVABLE_TAIL" Name="Cola cercenable"/>
     <Part ID="MONSTER_PART_REMOVABLE_HORNS" Name="Cuernos rompibles"/>
     <Part ID="MONSTER_PART_REMOVABLE_HEAD" Name="Cabeza rompible"/>
-	  <Part ID="MONSTER_PART_REMOVABLE_HEAD_ROCK" Name="Cabeza rompible (roca)"/>
+	<Part ID="MONSTER_PART_REMOVABLE_HEAD_ROCK" Name="Cabeza rompible (roca)"/>
     <Part ID="MONSTER_PART_REMOVABLE_CHEST_ROCK" Name="Pecho rompible (roca)"/>
     <Part ID="MONSTER_PART_REMOVABLE_BALLOON" Name="Globo rompible"/>
     <Part ID="MONSTER_PART_REMOVABLE_HORNS_2" Name="Cuernos rompibles #2"/>
-	  <Part ID="MONSTER_PART_BODY_LEGS" Name="Cuerpo y patas"/>
+	<Part ID="MONSTER_PART_BODY_LEGS" Name="Cuerpo y patas"/>
     <Part ID="MONSTER_PART_SILVER_SPIKES_HEAD" Name="Espinas de plata (Cabeza)"/>
     <Part ID="MONSTER_PART_SILVER_SPIKES_LARM" Name="Espinas de plata (Brazo izq.)"/>
     <Part ID="MONSTER_PART_SILVER_SPIKES_RARM" Name="Espinas de plata (Brazo der.)"/>
@@ -181,7 +181,8 @@
     <Part ID="MONSTER_PART_SPIKES_LWING" Name="Espinas (Ala izq.)"/>
     <Part ID="MONSTER_PART_SPIKES_RWING" Name="Espinas (Ala der.)"/>
     <Part ID="MONSTER_PART_SPIKES_TAIL" Name="Espinas (Cola)"/>
-    <Part ID="MONSTER_PART_REPEL" Name="Repeler"/>
+    <Part ID="MONSTER_PART_REPEL" Name="Repeler a Zorah"/>
+    <Part ID="MONSTER_PART_EXPLOSION_WEAKENING" Name="Explosión debilitadora"/>
   </Parts>
   <Ailments>
     <Ailment ID="STATUS_UNKNOWN" Name="Desconocido"/>

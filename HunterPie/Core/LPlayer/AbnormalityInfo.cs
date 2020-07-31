@@ -1,11 +1,13 @@
-﻿namespace HunterPie.Core.LPlayer
+﻿using HunterPie.Core.Enums;
+
+namespace HunterPie.Core.LPlayer
 {
     public class AbnormalityInfo
     {
         public int Id { get; set; }
         public string InternalId { get; set; }
         public int Offset { get; set; }
-        public string Type { get; set; }
+        public AbnormalityType Type { get; set; }
         public bool IsDebuff { get; set; }
         public bool IsGearBuff { get; set; }
         public bool IsInfinite { get; set; }

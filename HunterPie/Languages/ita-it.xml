@@ -2,6 +2,7 @@
 <!--Translation Made By M1S0#5093-->
 <Strings lang="Italian">
   <Monsters>
+	<Monster ID="ems062_03" Name="Manichino Da Allenamento"/>
     <Monster ID="em001_00" Name="Rathian"/>
     <Monster ID="em001_01" Name="Rathian Rosa"/>
     <Monster ID="em001_02" Name="Rathian Dortata"/>
@@ -23,10 +24,12 @@
     <Monster ID="em036_00" Name="Lavasioth"/>
     <Monster ID="em037_00" Name="Nargacuga"/>
     <Monster ID="em042_00" Name="Barioth"/>
+	  <Monster ID="em042_05" Name="Barioth Assiderato"/>
     <Monster ID="em043_00" Name="Deviljho"/>
     <Monster ID="em043_05" Name="Deviljho Selvaggio"/>
     <Monster ID="em044_00" Name="Barroth"/>
     <Monster ID="em045_00" Name="Uragaan"/>
+	  <Monster ID="em050_00" Name="Alatreon"/>
     <Monster ID="em057_00" Name="Zinogre"/>
     <Monster ID="em057_01" Name="Zinogre Stigeo"/>
     <Monster ID="em063_00" Name="Brachydios"/>
@@ -80,6 +83,7 @@
     <Part ID="MONSTER_PART_LLEG" Name="Zampa Posteriore (L)"/>
     <Part ID="MONSTER_PART_RLEG" Name="Zampa Posteriore (R)"/>
     <Part ID="MONSTER_PART_TAIL" Name="Coda"/>
+	 <Part ID="MONSTER_PART_TAIL_TIP" Name="Coda (Punta)"/>
     <Part ID="MONSTER_PART_ARMS" Name="Zampe Anteriori"/>
     <Part ID="MONSTER_PART_LEGS" Name="Zampe Posteriori"/>
     <Part ID="MONSTER_PART_LARM" Name="Zampa Anteriore (L)"/>
@@ -149,14 +153,46 @@
     <Part ID="MONSTER_PART_RARM_ROCK" Name="Zampa Rocciosa Anteriore (R)"/>
     <Part ID="MONSTER_PART_LEGS_ROCK" Name="Zampe Rocciose Posteriori"/>
     <Part ID="MONSTER_JAGRAS_SUMMONER" Name="Evocatore Di Jagras"/>
+	  <Part ID="MONSTER_PART_ANTLERS" Name="Corna"/>
+	  <Part ID="MONSTER_PART_HORN" Name="Corno"/>
     <!-- Removable parts -->
-    <Part ID="MONSTER_PART_REMOVABLE_TAIL" Name="Coda Removibile"/>
+    <Part ID="MONSTER_PART_REMOVABLE_TAIL" Name="Coda rimovibili"/>
     <Part ID="MONSTER_PART_REMOVABLE_HORNS" Name="Corna Removibili"/>
-    <Part ID="MONSTER_PART_REMOVABLE_HEAD" Name="Testa Removibile"/>
+    <Part ID="MONSTER_PART_REMOVABLE_HEAD" Name="Testa Rompibile"/>
+	  <Part ID="MONSTER_PART_REMOVABLE_HEAD_ROCK" Name="Testa Rompibile (Roccia)"/>
+	  <Part ID="MONSTER_PART_REMOVABLE_CHEST_ROCK" Name="Petto Rompibile (Roccia)"/>
     <Part ID="MONSTER_PART_REMOVABLE_BALLOON" Name="Pallone Removable"/>
     <Part ID="MONSTER_PART_REMOVABLE_HORNS_2" Name="Corna Removibili #2"/>
-    <Part ID="MONSTER_PART_REMOVABLE_LANTLER" Name="Ramificazione Sinistra Removibile"/>
-    <Part ID="MONSTER_PART_REMOVABLE_RANTLER" Name="Ramificazione Destra Removibile"/>
+	  <Part ID="MONSTER_PART_BODY_LEGS" Name="Corpo e Gambe"/>
+    <Part ID="MONSTER_PART_SILVER_SPIKES_HEAD" Name="Spine Argentate (Testa)"/>
+    <Part ID="MONSTER_PART_SILVER_SPIKES_LARM" Name="Spine Argentate (Braccio Sinistro)"/>
+    <Part ID="MONSTER_PART_SILVER_SPIKES_RARM" Name="Spine Argentate (Braccio Destro)"/>
+    <Part ID="MONSTER_PART_SILVER_SPIKES_LWING" Name="Spine Argentate (Ala Sisnistra)"/>
+    <Part ID="MONSTER_PART_SILVER_SPIKES_RWING" Name="Spine Argentate (Ala Destra)"/>
+    <Part ID="MONSTER_PART_REMOVABLE_LANTLER" Name="Ramificazione Sinistra rimovibile"/>
+    <Part ID="MONSTER_PART_REMOVABLE_RANTLER" Name="Ramificazione Destra rimovibile"/>
+    <!-- Special parts -->
+    <Part ID="MONSTER_PART_BIG_FLINCH" Name="Flinch Grande"/>
+    <Part ID="MONSTER_PART_RAGE" Name="Rage Rimovibile"/>
+    <Part ID="MONSTER_PART_COUNTERATTACK" Name="Contrattacco"/>
+    <Part ID="MONSTER_PART_CHARGE" Name="Carica Rimovibile"/>
+    <Part ID="MONSTER_PART_THROAT" Name="Gola"/>
+    <Part ID="MONSTER_PART_INFLATED_TAIL" Name="Coda Gonfiata"/>
+    <Part ID="MONSTER_PART_SKY_FALL" Name="Sky Fall"/>
+    <Part ID="MONSTER_PART_EMISSIONS" Name="Emmissioni di Effluvio"/>
+    <Part ID="MONSTER_PART_GLOWING_HEAD" Name="Testa luminosa"/>
+    <Part ID="MONSTER_PART_GLOWING_TAIL" Name="Coda Luminosa"/>
+    <Part ID="MONSTER_PART_EMERGE_SNOW_HEAD" Name="Emergie dalla Neve (Testa)"/>
+    <Part ID="MONSTER_PART_EMERGE_SNOW_BODY" Name="Emergie dalla Neve (Corpo)"/>
+    <Part ID="MONSTER_PART_EMERGE_SNOW_TAIL" Name="Emergie dalla Neve (Coda)"/>
+    <Part ID="MONSTER_PART_SPIKES_HEAD" Name="Spine (Testa)"/>
+    <Part ID="MONSTER_PART_SPIKES_LARM" Name="Spikes (Braccio Sinistro)"/>
+    <Part ID="MONSTER_PART_SPIKES_RARM" Name="Spine (Braccio Destro)"/>
+    <Part ID="MONSTER_PART_SPIKES_LWING" Name="Spine (Ala Sisnistra)"/>
+    <Part ID="MONSTER_PART_SPIKES_RWING" Name="Spine (Ala Destra)"/>
+    <Part ID="MONSTER_PART_SPIKES_TAIL" Name="Spine (Coda)"/>
+    <Part ID="MONSTER_PART_REPEL" Name="Repelle"/>
+    <Part ID="MONSTER_PART_EXPLOSION_WEAKENING" Name="Indebolimento Esplosione"/>
   </Parts>
   <Ailments>
     <Ailment ID="STATUS_UNKNOWN" Name="Status Sconosciuto"/>
@@ -241,6 +277,7 @@
     <Stage ID="412" Name="Isola Delle Origini"/>
     <Stage ID="413" Name="Isola Delle Origini"/>
     <Stage ID="415" Name="Valle remota"/>
+	<Stage ID="416" Name="Valle remota"/>
     <Stage ID="501" Name="Alloggi Comuni"/>
     <Stage ID="502" Name="Allogi Privati"/>
     <Stage ID="503" Name="Suite Privata"/>
@@ -403,12 +440,14 @@
     <Abnormality ID="GEAR_016_00" Name="Coalescenza"/>
     <Abnormality ID="GEAR_099_00" Name="Mantello Evasione (ATK Up)"/>
     <Abnormality ID="GEAR_100_00" Name="Bengala Affinità"/>
+	<Abnormality ID="MISC_999_00" Name="Timer per mangiare"/>
   </Abnormalities>
   <Client>
     <Console>
       <String ID="CONSOLE_CONSOLE" Name="CONSOLE"/>
       <String ID="CONSOLE_SETTINGS" Name="IMPOSTAZIONI"/>
 	  <String ID="CONSOLE_UPLOADBUILD" Name="CARICA BUILD"/>
+	  <String ID="CONSOLE_EXPORTGEAR" Name="ESPOERTA EQUIPAGGIAMENTO"/>
       <String ID="CONSOLE_CHANGELOG" Name="CHANGELOGS"/>
       <String ID="CONSOLE_DISCORD" Name="DISCORD"/>
       <String ID="CONSOLE_GITHUB" Name="GITHUB"/>
@@ -505,7 +544,7 @@
       <String ID="STATIC_MONSTER_BAR_MODE_1" Name="Mostra tutti i mostri ma evidenzia il mio obiettivo (in spedizione pinnalo nella mappa)"/>
       <String ID="STATIC_MONSTER_BAR_MODE_2" Name="Mostra solo il mostro che sto cacciando (in spedizione pinnalo nella mappa)"/>
       <String ID="STATIC_MONSTER_BAR_MODE_3" Name="Mostra tutti ma nascondi inattivi dopo 15 secondi"/>
-	    <String ID="STATIC_MONSTER_BAR_MODE_4" Name="Mostra tutti finche un mostro non è selezionato"/>
+	  <String ID="STATIC_MONSTER_BAR_MODE_4" Name="Mostra tutti finche un mostro non è selezionato"/>
       <String ID="STATIC_MONSTER_BAR_MODE_HOTKEY" Name=" la modalità della barra di vita (HotKey):"/>
       <String ID="STATIC_MONSTER_BAR_MODE_HOTKEY_DESC" Name="Hotkey per la modalità della barra di vita. cambiare la Hotkey richiede il riavvio di HunterPie."/>
       <String ID="STATIC_MONSTER_BAR_DOCK" Name="Dock della barra di vita:"/>
@@ -570,6 +609,8 @@
       <String ID="ENABLE_TOTAL_DAMAGE_DESC" Name="Se attivo, il danno totale individuale per giocatore sarà mostrato."/>
       <String ID="ENABLE_METER_DPS" Name="Mostra DPS "/>
       <String ID="ENABLE_METER_DPS_DESC" Name="Se attivo, il widget del danno mostrera i danni per secondo."/>
+	  <String ID="ENABLE_TIMER" Name="Mostra Timer"/>
+      <String ID="ENABLE_TIMER_DESC" Name="Se attivato, il timer sarà visibile."/>
       <String ID="ENABLE_TIMER_IN_GL" Name="Attiva timer in Spedizioni/Terre Guida"/>
       <String ID="ENABLE_TIMER_IN_GL_DESC" Name="Se attivato, il timer sarà visibile in Spedizioni/Terre Guida."/>
       <String ID="ENABLE_ONLY_TIMER" Name="Mostra solo timer timer"/>
@@ -581,6 +622,26 @@
       <String ID="STATIC_METER_PLAYER_3" Name="Terzo Giocatore"/>
       <String ID="STATIC_METER_PLAYER_4" Name="Quarto Giocatore"/>
       <String ID="STATIC_METER_POSITION_DESC" Name="Cambia posizione del widget danno."/>
+      <!-- Class Widget -->
+      <String ID="ENABLE_INSECT_GLAIVE_HELPER" Name="Attiva Overlay Lancia Insetto"/>
+      <String ID="ENABLE_INSECT_GLAIVE_HELPER_DESC" Name="Se attivato, l'Overlay Lancia Insetto sarà visibile quando hai una lancia insetto equipaggiata."/>
+      <String ID="ENABLE_CHARGE_BLADE_HELPER" Name="Attiva Overlay Lama Caricata"/>
+      <String ID="ENABLE_CHARGE_BLADE_HELPER_DESC" Name="Se attivato, l'Overlay Lama Caricata sarà visibile quando hai una lama caricata equipaggiata."/>
+      <String ID="ENABLE_SWITCH_AXE_HELPER" Name="Attiva Overlay Spadascia "/>
+      <String ID="ENABLE_SWITCH_AXE_HELPER_DESC" Name="Se attivato, l'Overlay Spadascia sarà visibile quando hai una spadascia equipaggiata."/>
+      <String ID="ENABLE_GUN_LANCE_HELPER" Name="Attiva Overlay Lancia Fucile"/>
+      <String ID="ENABLE_GUN_LANCE_HELPER_DESC" Name="Se attivato, l'Overlay Lancia Fucile sarà visibile quando hai una lancia fucile equipaggiata."/>
+      <String ID="ENABLE_LONGSWORD_HELPER" Name="Attiva Overlay Spada Lunga"/>
+      <String ID="ENABLE_LONGSWORD_HELPER_DESC" Name="Se attivato, l'Overlay Spada Lunga sarà visibile quando hai una spada lunga equipaggiata."/>
+      <String ID="ENABLE_BOW_HELPER" Name="Attiva Overlay Arco"/>
+      <String ID="ENABLE_BOW_HELPER_DESC" Name="Se attivato, l'Overlay Arco sarà visibile quando hai un Arco equipaggiata."/>
+      <String ID="ENABLE_HAMMER_HELPER" Name="Attiva Overlay Martello"/>
+      <String ID="ENABLE_HAMMER_HELPER_DESC" Name="Se attivato, l'Overlay Martello sarà visibile quando hai un martello equipaggiata."/>
+      <String ID="ENABLE_DUALBLADES_HELPER" Name="Attiva Overlay Doppie Lame"/>
+      <String ID="ENABLE_DUALBLADES_HELPER_DESC" Name="Se attivato, l'Overlay Doppie Lame sarà visibile quando hai delle doppie lame equipaggiate."/>
+      <String ID="ENABLE_LANCE_HELPER" Name="Attiva Overlay Lancia"/>
+      <String ID="ENABLE_LANCE_HELPER_DESC" Name="Se attivato, l'Overlay Lancia sarà visibile quando hai una lancia equipaggiata."/>
+      <String ID="STATIC_CLASSES_BETA_WARNING" Name="Attenzione: le overlay di classe stanno ancora sotto sviluppo, più classi saranno aggiunte in futuro, ogni overlay ha le sue propie impostazioni, quindi puoi averle in posizione diverse dipendendo dalla classe, usa la modalità desing per muovere o scalare l'overlay."/>
       <!-- Abnormalities Widget -->
       <String ID="STATIC_CREATE_ABNORM_BAR_DESC" Name="Crea nuova barra anormalità."/>
       <String ID="STATIC_REMOVE_ABNORM_BAR_DESC" Name="Rimuovi la barra anormalità."/>
@@ -666,9 +727,11 @@
       <String ID="STATIC_DISCORD_JOIN_REQUEST" Name="{Username} vuole unirsi a la tua sessione, lo accetti?"/>
       <String ID="STATIC_ACCEPT" Name="Accetta richiesta"/>
       <String ID="STATIC_REJECT" Name="Respingi richiesta"/>
+	  <String ID="STATIC_OPENFOLDER" Name="Apri Cartella"/>
       <String ID="STATIC_SETTINGS_LOAD" Name="Configurazioni caricate"/>
       <String ID="STATIC_OPENDEFAULTBROWSER" Name="Apri nel Browser"/>
-      <String ID="MESSAGE_BUILD_UPLOADED" Name="Build uploaded to Honey Hunters World!"/>
+      <String ID="MESSAGE_BUILD_UPLOADED" Name="Build Caricata su Honey Hunters World!"/>
+	  <String ID="MESSAGE_GEAR_EXPORTED" Name="Equipaggiamento Esportato a ./DataExport!"/>
     </Notifications>
     <RichPresence>
       <String ID="RPC_DESCRIPTION_IN_MAIN_MENU" Name="Nel Menu Principale"/>

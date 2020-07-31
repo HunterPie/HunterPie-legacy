@@ -1,46 +1,120 @@
-A new monster widget was introduced in HunterPie version 1.0.3.80, the whole design was remade from scratch, new features were added and now it supports monster ailments/statuses and parts health.
+# Monster Widget
 
-## Modes
-The monster widget has 4 different modes. You can switch modes either by changing them manually in the settings tab, or by pressing your hotkey to change the bar mode (default is Alt+Up)
+Monster widget displays useful information about the current monsters in the map. It also has many options for customization.
+
+### Table of content
+
+<ol id="content_table">
+    <li><a href="#design-structure">Design Structure</a></li>
+    <li><a href="#monster-bar-modes">Monster Bar Modes</a></li>
+    <ol>
+        <li><a href="#show-all-monsters-at-once">Show all monsters at once</a></li>
+        <li><a href="#show-all-monsters-but-hightlight-my-target">Show all monsters but highlight my target</a></li>
+        <li><a href="#show-only-hunted-monster">Show only hunted monster</a></li>
+        <li><a href="#show-all-but-hide-inactive-monsters-after-x-seconds">Show all but hide inactive monsters after X seconds</a></li>
+        <li><a href="#show-all-until-a-monster-is-selected">Show all until a monster is selected</a></li>
+    </ol>
+    <li><a href="#targeting-a-monster">Targeting a Monster</a></li>
+    <ol>
+        <li><a href="#targeting-a-monster-from-map-default">Targeting a monster from map (Default)</a></li>
+        <li><a href="#targeting-a-monster-using-in-game-lockon">Targeting a monster using in-game lockon</a></li>
+    </ol>
+    <li><a href="#monster-parts--ailments">Monster Parts & Ailments</a></li>
+    <ol>
+        <li><a href="#parts--removable-parts">Parts & Removable Parts</a></li>
+        <li><a href="#ailments">Ailments</a></li>
+    </ol>
+</ol>
+
+## Design structure
+![design-structure-image](https://cdn.discordapp.com/attachments/402557384209203200/732313125923192852/monster_widget_structure.png)
+
+## Monster bar modes
+The monster widget has 5 different bar modes, each one has it's own behaviour and characteristics. You can switch between them by either going to HunterPie settings tab and clicking on the `Monster bar mode` box or pressing the <kbd>Alt</kbd>+<kbd>Up</kbd> hotkey.
 
 ### Show all monsters at once
 This mode shows all monsters at once, it's the default mode.
 
-![Show all monsters at once](https://cdn.discordapp.com/attachments/402557384209203200/692795094151200848/unknown.png)
+![Show all monsters at once](https://cdn.discordapp.com/attachments/402557384209203200/732293041594957955/unknown.png)
 
 ### Show all monsters but highlight my target
-This mode shows all monsters but decreases the size and opacity of the monsters that aren't your target.
+This mode shows all monsters but decreases the opacity of the monsters that aren't your target.
 
-![Show all but highlight target](https://cdn.discordapp.com/attachments/402557384209203200/692795152476930108/unknown.png)
+![Show all but highlight target](https://cdn.discordapp.com/attachments/402557384209203200/732293162487251054/unknown.png)
 
 ### Show only hunted monster
-This mode is basically a boss bar, it is always centrelized and it's width is higher than the default bars
+This mode is basically a boss bar, it is always centrelized and it's width is higher than the default bars. Having no targets will hide **ALL** monster bars.
 
-![Boss bar mode](https://cdn.discordapp.com/attachments/402557384209203200/692794622077829130/unknown.png)
+![Boss bar mode](https://cdn.discordapp.com/attachments/402557384209203200/732293343425462282/unknown.png)
 
 ### Show all but hide inactive monsters after X seconds
 It's similar to the first mode, but it hides the monster that haven't been damaged after 15 seconds.
 
-## Targetting a monster
-If you have the ***Only show target*** mode enabled, you need to manually open your in-game map and pin the monster you want. However, quests do that automatically for you, so you only need to manually pin your target when you're in expeditions/Guiding Lands.
+### Show all until a monster is selected
+This mode is similar to the [Show only hunted monster](#show-only-hunted-monster), but when there's no target, all monsters are displayed.
 
-## Features
-- **Enrage:** The Monster Widget now has a better enrage animation, the whole bar and the monster icon will start blinking red and a timer will be shown under the icon, the timer shows when the enrage is going to end.
-- **Parts & Ailments:** They're shown under or above the monster bar depending on which docking you chose in settings (read more about docking [here](#TODO)). By default they will be visible whenever a value change, like counter, timer, buildup or health and will be hidden again after a few seconds (configurable in settings).
-> **WARNING:** You need to be quest host to have access to the part health information. If you play multiplayer and is not the host, then the parts will always show with full health, but the flinch/counter will work normally.
-- **Stamina:** Stamina is shown under the boss bar, the yellow bar and the numbers under it represents that monster stamina.
-- **Capture Indicator:** When the monster HP is under its capture threshold, a shock trap icon will pop up on the top right next to that monster's health bar.
-- **Monster Crown:** Crowns are displayed by the monster name.
+## Targeting a monster
+There are two ways to target a monster, both of them have it's pros and cons:
 
-## Settings & Customization
-Currently the new monster widget supports:
-- Enable/Disable widget;
-- Change Monster bar mode;
-- Change the docking
-  - **Top:** The monster bar will stay on top of the parts/ailments;
-  - **Bottom:** The monster bar will stay under the parts/ailments;
-- Enable monster weaknesses;
-- Hide inactive parts after X seconds;
-- Customize how many seconds until it hides the parts;
-- Enable parts individually, breakable parts and ailments;
-- Choose how many columns and rows HunterPie should use to show parts/ailments;
+### Targeting a monster from map (Default)
+This is the default way to target a monster, when you get in a quest the game will automatically target your quest objective for you, but when you are in expeditions/Guiding Lands you **must** open your map and target the monster by pressing <kbd>Tab</kbd> on their icon or by clicking their investigation gauge on bottom left of your map.
+
+> **Note:** If there are more than 1 monster as the quest objective, the game will only automatically target the first one, so you'll have to manually target the next one.
+
+> **Note 2:** If you haven't found the monster in map yet, the game will only automatically target it for you after you've discovered them.
+
+### Targeting a monster using in-game lockon
+This option must be turned on in your `HunterPie Settings -> Monster` tab. It will make HunterPie set the target based on which monster you have locked-on. This is the most intuitive way to target a monster, however has some limitations:
+- In order for the lockon work properly, you need to set the `Target settings` in your game to **Large Monsters Only**, otherwise small monsters will mess with the lockon system.
+- Captured monsters will mess with the lockon, this is a known issue that is still in progress to fix. However it is fixed after the monster despawn.
+
+> **Note:** For a better experience with the lock-on, I strongly recommend these settings:<br>
+![lockonSettings](https://cdn.discordapp.com/attachments/678286885059166228/718120460856066098/unknown.png)
+
+## Monster Parts & Ailments
+
+<warning>WARNING: THIS FEATURE DOES NOT WORK PROPERLY IF YOU'RE NOT THE PARTY HOST, IT'S A GAME LIMITATION AND I CANNOT FIX IT.</warning>
+
+### Parts & Removable Parts
+
+Monster parts are, well... Parts of the monster that can be damaged! See the design structure below:
+
+![partStructureDesign](https://cdn.discordapp.com/attachments/402557384209203200/732323920685957180/monster-part-structure.png)
+
+Parts that can be broken have a break threshold shown by the side of the flinch counter. See the image below:
+
+![flinchBreakExplanation](https://cdn.discordapp.com/attachments/402557384209203200/732326495732760595/counter-exp.png)
+
+- **n/x+:** This means there are multiple break thresholds, it will break for the first time at `x` flinches.
+- **n/x:** This means there are only one break threshold, it will break when you flinch that part `x` times.
+- **n**: This means you cannot break this part, it is just a flinch counter.
+
+### Ailments
+
+Monster ailments have the same design as the part displays, however some ailments have two states: Buildups and Timers.
+
+- **Buildups:** Some ailments like paralysis, poison, blast, etc, have what's called a "Buildup", whenever you hit the monster, it may increase the buildup value by a bit, whenever the buildup hits the maximum value the monster is affected by that abnormality and a timer might start depending on the ailment.
+- **Timer:** A timer that counts down until the ailment effect is over.
+- **Counter:** Counts how many time you've inflicted that ailment on the monster.
+
+### Settings
+
+Disabling Ailments will cause the parts to use all the available display, same thing happens when you disable parts and removable parts.
+
+### Understanding parts columns and rows
+
+Some monster have a lot of parts and ailments, HunterPie has a limit of how many parts it can show at once, it can be configured in your `HunterPie settings -> Monsters`. 
+
+Columns and rows are dynamic, which means they will resize depending on how many displays it needs to fit in the parts/ailments display.
+
+#### Columns
+Adding more columns will display more parts when there's an overflow in the last column.
+
+### Rows
+Adding more rows will make each column display more parts at each column.
+
+> Example: 2 columns & 8 rows<br>
+![example1](https://cdn.discordapp.com/attachments/402557384209203200/732293562183581818/unknown.png)
+
+> Example 2: 3 columns & 8 rows<br>
+![example2](https://cdn.discordapp.com/attachments/402557384209203200/732293792341819392/unknown.png)

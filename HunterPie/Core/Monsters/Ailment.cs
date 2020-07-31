@@ -1,5 +1,6 @@
-﻿using System.Linq;
+﻿using System;
 using HunterPie.Core.Definitions;
+using HunterPie.Core.Enums;
 
 namespace HunterPie.Core
 {
@@ -11,8 +12,8 @@ namespace HunterPie.Core
         private uint counter;
 
         public long Address { get; private set; }
-        public string Name => GStrings.GetAilmentNameByID(MonsterData.AilmentsInfo.ElementAtOrDefault((int)Id)?.Id ?? Id.ToString());
-        public string Group => MonsterData.AilmentsInfo.ElementAtOrDefault((int)Id)?.Group ?? "DEFAULT";
+        public string Name { get; set; }
+        public string Group { get; set; }
         public uint Id { get; set; }
         public float Buildup
         {
@@ -52,7 +53,7 @@ namespace HunterPie.Core
                 }
             }
         }
-
+        public AilmentType Type { get; set; }
         #region Events
         public delegate void MonsterAilmentEvents(object source, MonsterAilmentEventArgs args);
         public event MonsterAilmentEvents OnBuildupChange;
@@ -64,13 +65,19 @@ namespace HunterPie.Core
 
         public Ailment(long address) => Address = address;
 
-        public void SetAilmentInfo(sMonsterAilment AilmentData)
+        public void SetAilmentInfo(sMonsterAilment AilmentData, uint uId = 0xFFFFFF)
         {
-            Id = AilmentData.Id;
+            if (uId != 0xFFFFFF)
+            {
+                Id = AilmentData.Id;
+            } else
+            {
+                Id = uId;
+            }
             MaxDuration = AilmentData.MaxDuration;
             Duration = AilmentData.Duration;
             MaxBuildup = AilmentData.MaxBuildup;
-            Buildup = AilmentData.Buildup;
+            Buildup = Math.Min(AilmentData.Buildup, AilmentData.MaxBuildup);
             Counter = AilmentData.Counter;
         }
 

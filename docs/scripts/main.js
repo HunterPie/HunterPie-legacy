@@ -66,7 +66,7 @@ function RenderMarkdown(markdown) {
                 }
             )
         } else {
-            document.getElementById("MarkdownBox").innerHTML = marked("## Page not found :(");
+            window.location.href = "https://hunterpie.me/HunterPie/404.html";
         }
     });
 }

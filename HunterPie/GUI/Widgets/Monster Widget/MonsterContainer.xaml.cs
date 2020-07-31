@@ -1,4 +1,6 @@
 ﻿using System;
+using System.Collections.Generic;
+using System.Linq;
 using System.Windows;
 using System.Windows.Media;
 using HunterPie.Core;
@@ -16,13 +18,52 @@ namespace HunterPie.GUI.Widgets
         MonsterHealth s_MonsterWidget;
         MonsterHealth t_MonsterWidget;
 
+        double MONSTER_WIDTH_3;
+        double MONSTER_WIDTH_2;
+        double MONSTER_WIDTH_1;
+
         public MonsterContainer(Game ctx)
         {
+            LoadMonsterWidths();
             InitializeComponent();
             WidgetType = 1;
             SetWindowFlags();
             SetContext(ctx);
             ApplySettings();
+        }
+
+        private void LoadMonsterWidths()
+        {
+            MONSTER_WIDTH_1 = Convert.ToDouble(FindResource("OVERLAY_MONSTER_BAR_WIDTH_1"));
+            MONSTER_WIDTH_2 = Convert.ToDouble(FindResource("OVERLAY_MONSTER_BAR_WIDTH_2"));
+            MONSTER_WIDTH_3 = Convert.ToDouble(FindResource("OVERLAY_MONSTER_BAR_WIDTH_3"));
+        }
+
+        private void OnMonsterContainerRender(object sender, EventArgs e)
+        {
+            List<MonsterHealth> VisibleMonsters = Container.Children.Cast<MonsterHealth>().Where(
+                component => component?.IsVisible == true).ToList();
+            double newSize;
+            switch (VisibleMonsters.Count())
+            {
+                case 1:
+                    newSize = MONSTER_WIDTH_1;
+                    break;
+                case 2:
+                    newSize = MONSTER_WIDTH_2;
+                    break;
+                default:
+                    newSize = MONSTER_WIDTH_3;
+                    break;
+            }
+            foreach (MonsterHealth m in VisibleMonsters)
+            {
+                if (m.Width != newSize)
+                {
+                    m.Width = newSize;
+                    m.ChangeBarsSizes(newSize);
+                }
+            }
         }
 
         public void SetContext(Game Ctx)
@@ -35,12 +76,14 @@ namespace HunterPie.GUI.Widgets
         {
             Context.Player.OnPeaceZoneEnter += OnPeaceZoneEnter;
             Context.Player.OnPeaceZoneLeave += OnPeaceZoneLeave;
+            CompositionTarget.Rendering += OnMonsterContainerRender;
         }
 
         public void UnhookEvents()
         {
             Context.Player.OnPeaceZoneEnter -= OnPeaceZoneEnter;
             Context.Player.OnPeaceZoneLeave -= OnPeaceZoneLeave;
+            CompositionTarget.Rendering -= OnMonsterContainerRender;
             DestroyMonstersWidgets();
             Context = null;
         }
@@ -61,12 +104,10 @@ namespace HunterPie.GUI.Widgets
 
         private void DestroyMonstersWidgets()
         {
-            f_MonsterWidget?.UnhookEvents();
-            s_MonsterWidget?.UnhookEvents();
-            t_MonsterWidget?.UnhookEvents();
-            f_MonsterWidget = null;
-            s_MonsterWidget = null;
-            t_MonsterWidget = null;
+            foreach (MonsterHealth mWidget in Container.Children)
+            {
+                mWidget?.UnhookEvents();
+            }
             Container.Children.Clear();
         }
 
@@ -86,29 +127,16 @@ namespace HunterPie.GUI.Widgets
 
         public void UpdateMonstersWidgetsSettings(bool weaknessEnabled, int MaxParts, byte dock)
         {
-            if (f_MonsterWidget != null)
+            foreach (MonsterHealth mWidget in Container.Children)
             {
-                f_MonsterWidget.Weaknesses.Visibility = weaknessEnabled ? Visibility.Visible : Visibility.Collapsed;
-                f_MonsterWidget.MonsterAilmentsContainer.MaxHeight = MaxParts * 30;
-                f_MonsterWidget.MonsterPartsContainer.MaxHeight = MaxParts * 30;
-                f_MonsterWidget.ChangeDocking(dock);
-                f_MonsterWidget.ApplySettings();
-            }
-            if (s_MonsterWidget != null)
-            {
-                s_MonsterWidget.Weaknesses.Visibility = weaknessEnabled ? Visibility.Visible : Visibility.Collapsed;
-                s_MonsterWidget.MonsterAilmentsContainer.MaxHeight = MaxParts * 30;
-                s_MonsterWidget.MonsterPartsContainer.MaxHeight = MaxParts * 30;
-                s_MonsterWidget.ChangeDocking(dock);
-                s_MonsterWidget.ApplySettings();
-            }
-            if (t_MonsterWidget != null)
-            {
-                t_MonsterWidget.Weaknesses.Visibility = weaknessEnabled ? Visibility.Visible : Visibility.Collapsed;
-                t_MonsterWidget.MonsterAilmentsContainer.MaxHeight = MaxParts * 30;
-                t_MonsterWidget.MonsterPartsContainer.MaxHeight = MaxParts * 30;
-                t_MonsterWidget.ChangeDocking(dock);
-                t_MonsterWidget.ApplySettings();
+                if (mWidget != null)
+                {
+                    mWidget.Weaknesses.Visibility = mWidget.Weaknesses.IsEnabled && weaknessEnabled ? Visibility.Visible : Visibility.Collapsed;
+                    mWidget.MonsterAilmentsContainer.MaxHeight = MaxParts * 32;
+                    mWidget.MonsterPartsContainer.MaxHeight = MaxParts * 32;
+                    mWidget.ChangeDocking(dock);
+                    mWidget.ApplySettings();
+                }
             }
         }
 

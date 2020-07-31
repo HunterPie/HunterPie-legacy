@@ -1,13 +1,13 @@
 ﻿<Application x:Class="HunterPie.App"
              xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-             StartupUri="Hunterpie.xaml">
+             StartupUri="Hunterpie.xaml" DispatcherUnhandledException="OnDispatcherUnhandledException">
     <Application.Resources>
         <ResourceDictionary>
             <ResourceDictionary.MergedDictionaries>
+                <ResourceDictionary Source="pack://siteoforigin:,,,/HunterPie.Resources/UI/Icons.xaml"/>
                 <ResourceDictionary Source="/Resources/ScrollbarStyle.xaml"/>
                 <ResourceDictionary Source="/Resources/DefaultTheme.xaml"/>
-                <ResourceDictionary Source="pack://siteoforigin:,,,/HunterPie.Resources/UI/Icons.xaml"/>
                 <ResourceDictionary Source="/Resources/Resources.xaml"/>
             </ResourceDictionary.MergedDictionaries>
             <XmlDataProvider x:Key="Localization" XPath="Strings/Client"/>

@@ -129,19 +129,18 @@ namespace HunterPie.Core
 
             while (Memory.Scanner.GameIsRunning)
             {
-                if (DateTime.UtcNow - Clock >= new TimeSpan(0, 0, 10)) Clock = DateTime.UtcNow;
+                if ((DateTime.UtcNow - Clock).TotalSeconds >= 10) Clock = DateTime.UtcNow;
 
                 // Since monsters are independent, we still need to sync them with eachother
                 // to use the lockon
-                bool[] aliveMonsters = new bool[3]
-                {
-                    FirstMonster.IsActuallyAlive,
-                    SecondMonster.IsActuallyAlive,
-                    ThirdMonster.IsActuallyAlive
-                };
-                FirstMonster.AliveMonsters = SecondMonster.AliveMonsters = ThirdMonster.AliveMonsters = aliveMonsters;
+                FirstMonster.AliveMonsters[0] = FirstMonster.IsActuallyAlive;
+                FirstMonster.AliveMonsters[1] = SecondMonster.IsActuallyAlive;
+                FirstMonster.AliveMonsters[2] = ThirdMonster.IsActuallyAlive;
 
-                Thread.Sleep(Math.Max(50, UserSettings.PlayerConfig.Overlay.GameScanDelay));
+                SecondMonster.AliveMonsters = FirstMonster.AliveMonsters;
+                ThirdMonster.AliveMonsters = FirstMonster.AliveMonsters;
+
+                Thread.Sleep(UserSettings.PlayerConfig.Overlay.GameScanDelay);
             }
             Thread.Sleep(1000);
             GameScanner();

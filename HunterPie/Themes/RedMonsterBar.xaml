@@ -1,20 +1,32 @@
 ﻿<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
                     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-                    xmlns:Custom="clr-namespace:HunterPie.GUIControls.Custom_Controls">
+                    xmlns:Custom="clr-namespace:HunterPie.GUIControls.Custom_Controls;assembly=Hunterpie">
     <!-- Colors -->
     <!-- Overlay -->
     <!-- Monster Widget (Main bar) -->
-    <LinearGradientBrush x:Key="OVERLAY_MONSTER_HEALTH_BAR_COLOR" EndPoint="1,0" StartPoint="0,0">
-        <GradientStop Color="#FFB40B00" Offset="1"/>
-        <GradientStop Color="#FF9E0900"/>
-    </LinearGradientBrush>
 
-    <Style x:Key="OVERLAY_MONSTER_BAR_TEXT_STYLE" TargetType="TextBlock">
-        <Setter Property="Foreground" Value="WhiteSmoke"/>
-        <Setter Property="FontSize" Value="12"/>
-        <Setter Property="FontWeight" Value="Normal"/>
-        <Setter Property="Margin" Value="47,16,22,0"/>
-        <Setter Property="Padding" Value="0,0.75,0,0"/>
+    <Style x:Key="OVERLAY_MONSTER_HEALTH_BAR_STYLE" TargetType="{x:Type Custom:MinimalHealthBar}">
+        <Setter Property="Background" Value="#4C000000"/>
+        <Setter Property="Color">
+            <Setter.Value>
+                <LinearGradientBrush StartPoint="0,0.5" EndPoint="0.5,1">
+                    <GradientStop Color="#bf3232" Offset="1"/>
+                    <GradientStop Color="#bf2626"/>
+                </LinearGradientBrush>
+            </Setter.Value>
+        </Setter>
+        <Setter Property="Margin" Value="49,18,18,0"/>
+        <Setter Property="Height" Value="14"/>
+        <Setter Property="RenderTransform">
+            <Setter.Value>
+                <TransformGroup>
+                    <ScaleTransform/>
+                    <SkewTransform AngleX="45"/>
+                    <RotateTransform/>
+                    <TranslateTransform/>
+                </TransformGroup>
+            </Setter.Value>
+        </Setter>
     </Style>
 
     <Style x:Key="OVERLAY_MONSTER_NAME_TEXT_STYLE" TargetType="TextBlock">
@@ -26,39 +38,79 @@
                 </LinearGradientBrush>
             </Setter.Value>
         </Setter>
-        <Setter Property="FontWeight" Value="SemiBold"/>
+        <Setter Property="FontFamily" Value="Roboto, Segoe UI,Yu Gothic"/>
+        <Setter Property="FontWeight" Value="Medium"/>
         <Setter Property="FontSize" Value="14"/>
     </Style>
-    
-    <LinearGradientBrush x:Key="OVERLAY_MONSTER_AILMENT_BAR_COLOR" EndPoint="1,0" StartPoint="0,0">
-        <GradientStop Color="#FF2BD8B1" Offset="1"/>
-        <GradientStop Color="#FF45B69C"/>
-    </LinearGradientBrush>
-    
-    <Style x:Key="OVERLAY_MONSTER_AILMENT_COUNTER_BACKGROUND_STYLE" TargetType="Rectangle">
-        <Setter Property="Fill" Value="#FF45B69C"/>
-        <Setter Property="Stroke" Value="#CC0E0E0E"/>
-        <Setter Property="StrokeThickness" Value="0"/>
+
+    <Style x:Key="OVERLAY_MONSTER_BAR_TEXT_STYLE" TargetType="TextBlock">
+        <Setter Property="Foreground" Value="#eee6ff"/>
+        <Setter Property="FontFamily" Value="Roboto"/>
+        <Setter Property="TextAlignment" Value="Center"/>
+        <Setter Property="FontSize" Value="12"/>
+        <Setter Property="FontWeight" Value="Normal"/>
+        <Setter Property="Margin" Value="45,16,38,30"/>
+        <Setter Property="Padding" Value="0,2,0,0"/>
     </Style>
 
-
-    <LinearGradientBrush x:Key="OVERLAY_MONSTER_PART_BAR_COLOR" EndPoint="1,0" StartPoint="0,0">
-        <GradientStop Color="#FFB40B00" Offset="1"/>
-        <GradientStop Color="#FF9E0900"/>
-    </LinearGradientBrush>
-
-    <Style x:Key="OVERLAY_MONSTER_PART_NAME_TEXT_STYLE" TargetType="TextBlock">
-        <Setter Property="Foreground">
+    <Style x:Key="OVERLAY_MONSTER_AILMENT_BAR_STYLE" TargetType="Custom:MinimalHealthBar">
+        <Setter Property="Background" Value="#4C000000"/>
+        <Setter Property="Color" Value="{Binding ElementName=AilmentControl, Path=AilmentGroupColor}"/>
+        <Setter Property="Height" Value="2"/>
+        <Setter Property="VerticalAlignment" Value="Top"/>
+        <Setter Property="Margin" Value="30,13,5,0"/>
+        <Setter Property="RenderTransformOrigin" Value="0.5,0.5"/>
+        <Setter Property="RenderTransform">
             <Setter.Value>
-                <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
-                    <GradientStop Color="#FFF7F7F7"/>
-                    <GradientStop Color="Gainsboro" Offset="1"/>
-                </LinearGradientBrush>
+                <TransformGroup>
+                    <ScaleTransform/>
+                    <SkewTransform AngleX="-45"/>
+                    <RotateTransform/>
+                    <TranslateTransform/>
+                </TransformGroup>
             </Setter.Value>
         </Setter>
-        <Setter Property="Margin" Value="32,-3,4,0"/>
-        <Setter Property="FontWeight" Value="Normal"/>
-        <Setter Property="FontSize" Value="12"/>
+    </Style>
+
+    <Style x:Key="OVERLAY_MONSTER_AILMENT_COUNTER_BACKGROUND_STYLE" TargetType="Rectangle">
+        <Setter Property="Height" Value="17"/>
+        <Setter Property="Width" Value="17"/>
+        <Setter Property="VerticalAlignment" Value="Top"/>
+        <Setter Property="Margin" Value="13,6,0,0"/>
+        <Setter Property="Fill" Value="{Binding ElementName=AilmentControl, Path=AilmentGroupColor}"/>
+        <Setter Property="RenderTransform">
+            <Setter.Value>
+                <TransformGroup>
+                    <ScaleTransform/>
+                    <SkewTransform/>
+                    <RotateTransform Angle="45"/>
+                    <TranslateTransform/>
+                </TransformGroup>
+            </Setter.Value>
+        </Setter>
+    </Style>
+
+    <LinearGradientBrush x:Key="OVERLAY_MONSTER_STAMINA_BAR_COLOR" EndPoint="1,0.5" StartPoint="0,0.5">
+        <GradientStop Color="#f5c507"/>
+        <GradientStop Color="#ffe787" Offset="1"/>
+    </LinearGradientBrush>
+
+
+    <Style x:Key="OVERLAY_MONSTER_STAMINA_BAR_STYLE" TargetType="Custom:MinimalHealthBar">
+        <Setter Property="Background" Value="#4C000000"/>
+        <Setter Property="Color" Value="{StaticResource OVERLAY_MONSTER_STAMINA_BAR_COLOR}"/>
+        <Setter Property="Height" Value="2"/>
+        <Setter Property="Margin" Value="46,13,21,0"/>
+        <Setter Property="RenderTransform">
+            <Setter.Value>
+                <TransformGroup>
+                    <ScaleTransform/>
+                    <SkewTransform AngleX="-50"/>
+                    <RotateTransform/>
+                    <TranslateTransform/>
+                </TransformGroup>
+            </Setter.Value>
+        </Setter>
     </Style>
 
     <Style x:Key="OVERLAY_MONSTER_PART_COUNTER_BACKGROUND_STYLE" TargetType="{x:Type Polyline}">
@@ -67,6 +119,45 @@
         <Setter Property="StrokeThickness" Value="0"/>
         <Setter Property="Margin" Value="5,0,-5,0"/>
         <Setter Property="Points" Value="30,15 22.5,28 7.5,28 0,15 7.5,2 22.5,2"/>
+    </Style>
+
+    <LinearGradientBrush x:Key="OVERLAY_MONSTER_PART_BAR_COLOR" EndPoint="1,0" StartPoint="0,0">
+        <GradientStop Color="#FFB40B00" />
+        <GradientStop Color="#bf3232" Offset="1"/>
+    </LinearGradientBrush>
+
+    <Style x:Key="OVERLAY_MONSTER_PART_BAR_STYLE" TargetType="Custom:MinimalHealthBar">
+        <Setter Property="Background" Value="#4C000000"/>
+        <Setter Property="Color" Value="{StaticResource OVERLAY_MONSTER_PART_BAR_COLOR}"/>
+        <Setter Property="Height" Value="3"/>
+        <Setter Property="Margin" Value="32,14,6,0"/>
+        <Setter Property="RenderTransform">
+            <Setter.Value>
+                <TransformGroup>
+                    <ScaleTransform/>
+                    <SkewTransform AngleX="-45"/>
+                    <RotateTransform/>
+                    <TranslateTransform/>
+                </TransformGroup>
+            </Setter.Value>
+        </Setter>
+    </Style>
+
+    <Style x:Key="OVERLAY_MONSTER_TENDERIZE_BAR_STYLE" TargetType="Custom:MinimalHealthBar">
+        <Setter Property="Background" Value="#4C000000"/>
+        <Setter Property="Color" Value="#ff8f8f"/>
+        <Setter Property="Margin" Value="32,16,5,0"/>
+        <Setter Property="Height" Value="3"/>
+        <Setter Property="RenderTransform">
+            <Setter.Value>
+                <TransformGroup>
+                    <ScaleTransform/>
+                    <SkewTransform AngleX="-45"/>
+                    <RotateTransform/>
+                    <TranslateTransform/>
+                </TransformGroup>
+            </Setter.Value>
+        </Setter>
     </Style>
 
     <Style x:Key="OVERLAY_MONSTER_PART_COUNTER_TEXT_STYLE" TargetType="TextBlock">
@@ -85,5 +176,23 @@
                 <DropShadowEffect BlurRadius="0" ShadowDepth="1" Color="#FF2E2E2E"/>
             </Setter.Value>
         </Setter>
+    </Style>
+
+    <Style x:Key="OVERLAY_MONSTER_PART_NAME_TEXT_STYLE" TargetType="TextBlock">
+        <Setter Property="FontFamily" Value="Roboto, Segoe UI,Yu Gothic"/>
+        <Setter Property="Height" Value="22"/>
+        <Setter Property="TextTrimming" Value="CharacterEllipsis"/>
+        <Setter Property="VerticalAlignment" Value="Top"/>
+        <Setter Property="Foreground">
+            <Setter.Value>
+                <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
+                    <GradientStop Color="#FFF7F7F7"/>
+                    <GradientStop Color="Gainsboro" Offset="1"/>
+                </LinearGradientBrush>
+            </Setter.Value>
+        </Setter>
+        <Setter Property="Margin" Value="32,-3,4,0"/>
+        <Setter Property="FontWeight" Value="Normal"/>
+        <Setter Property="FontSize" Value="13"/>
     </Style>
 </ResourceDictionary>

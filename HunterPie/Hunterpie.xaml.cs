@@ -1,5 +1,8 @@
 ﻿using System;
+using System.Collections.Generic;
+using System.ComponentModel;
 using System.IO;
+using System.Linq;
 using System.Security.Principal;
 using System.Windows;
 using System.Windows.Controls;
@@ -38,10 +41,10 @@ namespace HunterPie
         Overlay GameOverlay;
         readonly Exporter dataExporter = new Exporter();
         bool OfflineMode = false;
-        readonly bool IsUpdating = true;
+        bool IsUpdating = true;
 
         // HunterPie version
-        const string HUNTERPIE_VERSION = "1.0.3.94";
+        const string HUNTERPIE_VERSION = "1.0.3.95";
 
         // Helpers
         IntPtr _windowHandle;
@@ -75,18 +78,14 @@ namespace HunterPie
         public Hunterpie()
         {
 
-            if (CheckIfHunterPieOpen())
-            {
-                Close();
-                return;
-            }
+            CheckIfHunterPieOpen();
 
             AppDomain.CurrentDomain.UnhandledException += ExceptionLogger;
 
             IsPlayerLoggedOn = false;
 
             SetDPIAwareness();
-
+            
             Buffers.Initialize(1024);
             Buffers.Add<byte>(64);
 
@@ -105,24 +104,6 @@ namespace HunterPie
 
             InitializeComponent();
 
-            OpenDebugger();
-            // Initialize everything under this line
-            if (!CheckIfUpdateEnableAndStart()) return;
-
-            // Convert the old HotKey to the new one
-            ConvertOldHotkeyToNew(UserSettings.PlayerConfig.Overlay.ToggleDesignModeKey);
-
-            IsUpdating = false;
-            InitializeTrayIcon();
-            // Update version text
-            Version = GStrings.GetLocalizationByXPath("/Console/String[@ID='CONSOLE_VERSION']").Replace("{HunterPie_Version}", HUNTERPIE_VERSION).Replace("{HunterPie_Branch}", UserSettings.PlayerConfig.HunterPie.Update.Branch);
-
-            // Initializes the rest of HunterPie
-            LoadData();
-            Debugger.Warn(GStrings.GetLocalizationByXPath("/Console/String[@ID='MESSAGE_HUNTERPIE_INITIALIZED']"));
-
-            SetHotKeys();
-            StartEverything();
         }
 
         private bool IsRunningAsAdmin()
@@ -138,9 +119,14 @@ namespace HunterPie
             AbnormalityData.LoadAbnormalityData();
         }
 
-        private bool CheckIfHunterPieOpen() =>
+        private void CheckIfHunterPieOpen()
+        {
             // Block new instances of HunterPie if there's one already running
-            Process.GetProcessesByName("HunterPie").Length > 1;
+            Process instance = Process.GetCurrentProcess();
+            IEnumerable<Process> processes = Process.GetProcessesByName("HunterPie").Where(p => p.Id != instance.Id);
+            foreach (Process p in processes) p.Kill();
+        }
+            
 
         private void SetDPIAwareness()
         {
@@ -713,8 +699,30 @@ namespace HunterPie
 
         private void OnWindowInitialized(object sender, EventArgs e)
         {
+            Hide();
             Width = UserSettings.PlayerConfig.HunterPie.Width;
             Height = UserSettings.PlayerConfig.HunterPie.Height;
+            Top = UserSettings.PlayerConfig.HunterPie.PosY;
+            Left = UserSettings.PlayerConfig.HunterPie.PosX;
+
+            OpenDebugger();
+            // Initialize everything under this line
+            if (!CheckIfUpdateEnableAndStart()) return;
+
+            // Convert the old HotKey to the new one
+            ConvertOldHotkeyToNew(UserSettings.PlayerConfig.Overlay.ToggleDesignModeKey);
+
+            IsUpdating = false;
+            InitializeTrayIcon();
+            // Update version text
+            Version = GStrings.GetLocalizationByXPath("/Console/String[@ID='CONSOLE_VERSION']").Replace("{HunterPie_Version}", HUNTERPIE_VERSION).Replace("{HunterPie_Branch}", UserSettings.PlayerConfig.HunterPie.Update.Branch);
+
+            // Initializes the rest of HunterPie
+            LoadData();
+            Debugger.Warn(GStrings.GetLocalizationByXPath("/Console/String[@ID='MESSAGE_HUNTERPIE_INITIALIZED']"));
+
+            SetHotKeys();
+            StartEverything();
         }
 
         private void OnCloseWindowButtonClick(object sender, MouseButtonEventArgs e)
@@ -755,8 +763,11 @@ namespace HunterPie
             }
         }
 
-        private void OnWindowClosing(object sender, System.ComponentModel.CancelEventArgs e)
+        private void OnWindowClosing(object sender, CancelEventArgs e)
         {
+            UserSettings.PlayerConfig.HunterPie.PosX = Left;
+            UserSettings.PlayerConfig.HunterPie.PosY = Top;
+
             if (!IsUpdating) UserSettings.SaveNewConfig();
             Debugger.DumpLog();
             Hide();
@@ -768,7 +779,7 @@ namespace HunterPie
                 TrayIcon.ContextMenu.MenuItems[1].Click -= OnTrayIconExitClick;
                 TrayIcon.Dispose();
             }
-
+            
             // Dispose stuff & stop scanning threads
             GameOverlay?.Dispose();
             if (MonsterHunter.IsActive) MonsterHunter.StopScanning();
@@ -889,7 +900,32 @@ namespace HunterPie
             UserSettings.PlayerConfig.HunterPie.Height = (float)e.NewSize.Height;
         }
 
+        private void Reload()
+        {
+            // Welp
+            Process.Start(Application.ResourceAssembly.Location, "latestVersion=True");
+            Application.Current.Shutdown();
+        }
+
+        private void OnKeyDown(object sender, KeyEventArgs e)
+        {
+
+            Key key = (e.Key == Key.System ? e.SystemKey : e.Key);
+
+            if (key == Key.LeftShift || key == Key.RightShift
+                || key == Key.LeftCtrl || key == Key.RightCtrl
+                || key == Key.LeftAlt || key == Key.RightAlt
+                || key == Key.LWin || key == Key.RWin)
+            {
+                return;
+            }
+            if ((Keyboard.Modifiers & ModifierKeys.Control) != 0 && e.Key == Key.R)
+            {
+                Reload();   
+            }
+        }
         #endregion
+
 
     }
 }

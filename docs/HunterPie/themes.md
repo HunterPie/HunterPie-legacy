@@ -1,5 +1,5 @@
 ## Introduction
-HunterPie supports partial theming, so you can change the colors, text style of the widgets but not the widget shape itself. If you want to make your own themes, please make sure to read this documentation.
+HunterPie lets you customize some of it's UI, if you want to make your custom themes, please read this documentation carefully. If you have any issues, feel free to ask in `#themes-help` [Discord channel](https://discord.gg/HereZ8D).
 
 ## Getting Started
 
@@ -7,7 +7,7 @@ To make themes you need to edit text files, first make sure you have either [Not
 
 ## Making your own monster bar theme
 
-- Copy [this](https://github.com/Haato3o/HunterPie/blob/master/HunterPie/Themes/RedMonsterBar.xaml) theme file and use it as a base for your theme.
+- Copy [this](https://github.com/Haato3o/HunterPie/blob/master/HunterPie/Resources/DefaultTheme.xaml) theme file and use it as a base for your theme.
 - Save it in your `HunterPie/Themes` folder with whatever name you want (make sure the name doesn't collide with one of HunterPie's [main theme file name](https://github.com/Haato3o/HunterPie/blob/master/HunterPie/Themes/)).
 - Open the file you just saved with a text editor.
 
@@ -15,18 +15,88 @@ To make themes you need to edit text files, first make sure you have either [Not
 
 If you look at the file content, you'll see that all styles have a Key, that's the style ID that HunterPie uses to get the style from your theme file and load it, **DO NOT** change the style Key, if you do that your theme won't show at all.
 
-| x:Key                                         | Type  | Description                                                                            |
-|-----------------------------------------------|-------|----------------------------------------------------------------------------------------|
-| OVERLAY_MONSTER_HEALTH_BAR_COLOR              | Color | Changes the monster health bar color.                                                  |
-| OVERLAY_MONSTER_STAMINA_BAR_COLOR             | Color | Changes the monster stamina bar color.                                                 |
-| OVERLAY_MONSTER_BAR_TEXT_STYLE                | Style | Changes the monster health bar text (the one that says the health/total health).       |
-| OVERLAY_MONSTER_NAME_TEXT_STYLE               | Style | Changes the monster name text.                                                         |
-| OVERLAY_MONSTER_AILMENT_BAR_COLOR             | Color | Changes the monster ailment bar color.                                                 |
-| OVERLAY_MONSTER_PART_BAR_COLOR                | Color | Changes the monster part bar color.                                                    |
-| OVERLAY_MONSTER_PART_NAME_TEXT_STYLE          | Style | Changes the monster part name text.                                                    |
-| OVERLAY_MONSTER_PART_COUNTER_BACKGROUND_STYLE | Style | Changes the prism color that is on the left side of the part bar.                      |
-| OVERLAY_MONSTER_PART_COUNTER_TEXT_STYLE       | Style | Changes the text style of the prism that is on the left side of the part/ailments bar. |
-| OVERLAY_MONSTER_BACKGROUND                    | Style | Changes the monster container style.                                                   |
+### Style key definitions
+
+Here you can find what each key is used for, their `Type` and `TargetType`.
+
+<details>
+    <summary>Monster Bar</summary>
+
+| x:Key                                      | Type      | TargetType            | Description
+|:------------------------------------------:|:---------:|:---------------------:|:--------------------------------------------------------------------------------------------------:
+|OVERLAY_MONSTER_BAR_WIDTH_3                 |sys:Double |          None         | Sets the monster component width when HunterPie is displaying 3 monster bars. 
+|OVERLAY_MONSTER_BAR_WIDTH_2                 |sys:Double |          None         | Sets the monster component width when HunterPie is displaying 2 monster bars.
+|OVERLAY_MONSTER_BAR_WIDTH_1                 |sys:Double |          None         | Sets the monster component width when HunterPie is displaying 1 monster bar.
+|OVERLAY_MONSTER_BAR_HEIGHT                  |sys:Double |          None         | Sets the monster component height.
+|OVERLAY_SHOW_MONSTER_ICON                   |Visibility |          None         | Sets wheter HunterPie the Monster icon visibility.
+|OVERLAY_MONSTER_HEALTH_BAR_STYLE            |Style      |Custom:MinimalHealthBar| Sets the monster health bar style.
+|OVERLAY_MONSTER_HEADER_DISPLAY              |Style      |StackPanel             | Sets the monster name and crown panel style.
+|OVERLAY_MONSTER_NAME_TEXT_STYLE             |Style      |TextBlock              | Sets the monster name style.
+|OVERLAY_MONSTER_BAR_TEXT_STYLE              |Style      |TextBlock              | Sets the monster health text style.
+|OVERLAY_MONSTER_STAMINA_BAR_STYLE           |Style      |Custom:MinimalHealthBar| Sets the monster stamina bar style.
+|OVERLAY_MONSTER_STAMINA_TEXT_STYLE          |Style      |TextBlock              | Sets the monster stamina text style.
+|OVERLAY_MONSTER_WEAKNESS_DISPLAY            |Style      |StackPanel             | Sets the monster weakness panel style.
+|OVERLAY_MONSTER_BACKGROUND                  |Style      |StackPanel             | Sets the whole monster component style.
+
+</details>
+
+<details>
+    <summary>Monster Parts</summary>
+
+| x:Key                                      | Type      | TargetType            | Description
+|:------------------------------------------:|:---------:|:---------------------:|:--------------------------------------------------------------------------------------------------:
+|OVERLAY_MONSTER_SUB_PART_STYLE              |Style      |Monster:MonsterPart    | Sets the monster parts component style.
+|OVERLAY_MONSTER_PART_BAR_STYLE              |Style      |Custom:MinimalHealthBar| Sets the monster parts health bar style.
+|OVERLAY_MONSTER_TENDERIZE_BAR_STYLE         |Style      |Custom:MinimalHealthBar| Sets the monster parts tenderized bar style.
+|OVERLAY_MONSTER_PART_NAME_TEXT_STYLE        |Style      |TextBlock              | Sets the monster parts name text style.
+|OVERLAY_MONSTER_PART_HEALTH_TEXT_STYLE      |Style      |TextBlock              | Sets the monster parts health text style.
+|OVERLAY_MONSTER_PART_COUNTER_BACKGROUND_STYLE|Style     |Polyline               | Sets the monster parts counter background style.
+|OVERLAY_MONSTER_PART_COUNTER_TEXT_STYLE     |Style      |TextBlock              | Sets the monster parts counter text style.
+
+</details>
+
+<details>
+    <summary>Monster Ailments</summary>
+
+| x:Key                                      | Type      | TargetType            | Description
+|:------------------------------------------:|:---------:|:---------------------:|:--------------------------------------------------------------------------------------------------:
+|OVERLAY_MONSTER_SUB_AILMENT_STYLE           |Style      |Monster:MonsterAilment | Sets the monster ailments component style.
+|OVERLAY_MONSTER_AILMENT_BAR_STYLE              |Style      |Custom:MinimalHealthBar| Sets the monster ailments health bar style.
+|OVERLAY_MONSTER_AILMENT_NAME_TEXT_STYLE        |Style      |TextBlock              | Sets the monster ailments name text style.
+|OVERLAY_MONSTER_AILMENT_HEALTH_TEXT_STYLE      |Style      |TextBlock              | Sets the monster ailments health text style.
+|OVERLAY_MONSTER_AILMENT_COUNTER_BACKGROUND_STYLE|Style     |Polyline               | Sets the monster ailments counter background style.
+|OVERLAY_MONSTER_AILMENT_COUNTER_TEXT_STYLE     |Style      |TextBlock              | Sets the monster ailments counter text style.
+
+</details>
+
+--- 
+
+## Custom Target Types
+### sys:Double
+
+To use a `sys:Double` type you must include the `System` namespace in your theme header. Just add the following line inside the `ResourceDictionary` tag on top of your theme file.
+
+```xml
+    xmlns:sys="clr-namespace:System;assembly=mscorlib"
+```
+
+### Custom:MinimalHealthBar
+
+To use a `Custom:MinimalHealthBar` type, you must include the `Custom_Controls` namespace to your theme header. Just add the following line to the `ResourceDictionary` tag on top of your theme file.
+
+```
+    xmlns:Custom="clr-namespace:HunterPie.GUIControls.Custom_Controls;assembly=Hunterpie"
+```
+
+### Custom:MinimalHealthBar
+
+To use a `Monster:MonsterPart` and `Monster:MonsterAilment` types, you must include the `Monster_Widget.Parts` namespace to your theme header. Just add the following line to the `ResourceDictionary` tag on top of your theme file.
+
+```
+    xmlns:Monster="clr-namespace:HunterPie.GUI.Widgets.Monster_Widget.Parts;assembly=Hunterpie"
+```
+
+---
 
 ## Colors, Gradients, etc...
 

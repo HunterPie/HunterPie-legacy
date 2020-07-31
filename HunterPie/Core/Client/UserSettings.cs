@@ -80,8 +80,10 @@ namespace HunterPie.Core
                 public bool EnableMonsterParts { get; set; } = true;
                 public bool EnableMonsterAilments { get; set; } = true;
                 public string[] EnabledPartGroups { get; set; } = new string[20] { "HEAD", "BODY", "ARM", "WING", "LEG", "TAIL", "LIMB", "ABDOMEN", "CHEST", "REAR", "JAW", "BACK", "FIN", "HORN", "NECK", "SHELL", "ORGAN", "MISC", "MANE", "BONE" };
+                public string[] EnabledAilmentGroups { get; set; } = new string[18] { "POISON", "PARALYSIS", "SLEEP", "BLAST", "MOUNT", "EXHAUSTION", "STUN", "TRANQUILIZE", "FLASH", "KNOCKDOWN", "DUNGPOD", "TRAP", "ELDERSEAL", "SMOKING", "CLAW", "MISC", "ENRAGE", "UNKNOWN" };
                 public float Opacity { get; set; } = 1;
                 public bool UseLockonInsteadOfPin { get; set; } = false;
+                public bool EnableAilmentsBarColor { get; set; } = true;
             }
 
             public class Harvestboxcomponent
@@ -143,6 +145,8 @@ namespace HunterPie.Core
                 public bool StartHunterPieMinimized { get; set; } = false;
                 public float Width { get; set; } = 1000;
                 public float Height { get; set; } = 590;
+                public double PosX { get; set; } = 0;
+                public double PosY { get; set; } = 0;
                 public Update Update { get; set; } = new Update();
                 public Launch Launch { get; set; } = new Launch();
                 public Options Options { get; set; } = new Options();

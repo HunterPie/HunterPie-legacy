@@ -28,6 +28,7 @@ namespace HunterPie.GUIControls
 
         public void UnhookEvents()
         {
+            switchEnableAilments.MouseLeftButtonDown -= SwitchEnableAilments_MouseDown;
             switchEnableParts.MouseDown -= SwitchEnableParts_MouseDown;
             MonsterShowModeSelection.Items.Clear();
             LanguageFilesCombobox.Items.Clear();
@@ -62,7 +63,8 @@ namespace HunterPie.GUIControls
         {
             foreach (string filename in Directory.GetFiles(Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "Themes")))
             {
-                ThemeFilesCombobox.Items.Add(Path.GetFileName(filename));
+                if (filename.EndsWith(".xaml"))
+                    ThemeFilesCombobox.Items.Add(Path.GetFileName(filename));
             }
         }
 
@@ -183,5 +185,6 @@ namespace HunterPie.GUIControls
 
         private void SwitchEnableParts_MouseDown(object sender, MouseButtonEventArgs e) => PartsCustomizer.IsEnabled = switchEnableParts.IsEnabled;
 
+        private void SwitchEnableAilments_MouseDown(object sender, MouseButtonEventArgs e) => AilmentsCustomizer.IsEnabled = switchEnableAilments.IsEnabled;
     }
 }

@@ -214,6 +214,8 @@
     <Ailment ID="STATUS_FELYNETRAP" Name="Armadilha Felyna"/>
     <Ailment ID="STATUS_CLAW" Name="Garra"/>
     <Ailment ID="STATUS_VIOLATED" Name="Recuo com a Garra"/>
+    <Ailment ID="STATUS_BANISHMENT_BALL" Name="Bola de Banimento"/>
+    <Ailment ID="STATUS_ENRAGE" Name="Raiva"/>
   </Ailments>
   <Mantles>
     <Mantle ID="-1" Name="Sem Manto"/>
@@ -557,6 +559,8 @@
       <String ID="ENABLE_HIDE_INACTIVE_PARTS_DESC" Name="Se habilitado, partes e status serão automaticamente escondidos depois de algum tempo sem tomar dano."/>
       <String ID="ENABLE_BREAKABLE_PARTS" Name="Exibir partes quebráveis"/>
       <String ID="ENABLE_BREAKABLE_PARTS_DESC" Name="Se habilitado, partes quebráveis, removíveis serão mostradas em baixo da barra de vida."/>
+      <String ID="ENABLE_AILMENTS_BAR_COLOR" Name="Habilitar status coloridos"/>
+      <String ID="ENABLE_AILMENTS_BAR_COLOR_DESC" Name="Se habilitado, as barras de status do monstro serão coloridas de acordo com seu respectivo grupo."/>
       <String ID="ENABLE_AILMENTS" Name="Exibir status"/>
       <String ID="ENABLE_AILMENTS_DESC" Name="Se habilitado, os status dos monstros serão visiveis em baixo da barra de vida."/>
       <String ID="ENABLE_MONSTER_PARTS" Name="Exibir partes do monstro"/>
@@ -588,6 +592,23 @@
       <String ID="STATIC_MONSTER_PART_DELAY" Name="Delay para esconder partes inativas"/>
       <String ID="STATIC_MONSTER_PART_DELAY_DESC" Name="Delay para esperar antes de esconder partes depois que elas tomam dano ou status que se tornam inativos."/>
       <String ID="STATIC_MONSTER_POSITION_DESC" Name="Muda a posição do widget de monstros."/>
+      <String ID="ENABLE_MONSTER_STATUS_POISON" Name="Mostrar Veneno"/>
+      <String ID="ENABLE_MONSTER_STATUS_PARALYSIS" Name="Mostrar Paralisia"/>
+      <String ID="ENABLE_MONSTER_STATUS_SLEEP" Name="Mostrar Sono"/>
+      <String ID="ENABLE_MONSTER_STATUS_BLAST" Name="Mostrar Explosão"/>
+      <String ID="ENABLE_MONSTER_STATUS_MOUNT" Name="Mostrar Monstaria"/>
+      <String ID="ENABLE_MONSTER_STATUS_EXHAUSTION" Name="Mostrar Exaustão"/>
+      <String ID="ENABLE_MONSTER_STATUS_STUN" Name="Mostrar Atordoamento"/>
+      <String ID="ENABLE_MONSTER_STATUS_TRANQUILIZE" Name="Mostrar Tranquilizante"/>
+      <String ID="ENABLE_MONSTER_STATUS_FLASH" Name="Mostrar Cegueira"/>
+      <String ID="ENABLE_MONSTER_STATUS_KNOCKDOWN" Name="Mostrar Caído"/>
+      <String ID="ENABLE_MONSTER_STATUS_DUNGPOD" Name="Mostrar Capsula de Esterco"/>
+      <String ID="ENABLE_MONSTER_STATUS_TRAP" Name="Mostrar Armadilhas"/>
+      <String ID="ENABLE_MONSTER_STATUS_ELDERSEAL" Name="Mostrar Selo Ancião"/>
+      <String ID="ENABLE_MONSTER_STATUS_SMOKING" Name="Mostrar Fumaça"/>
+      <String ID="ENABLE_MONSTER_STATUS_CLAW" Name="Mostrar Garra"/>
+      <String ID="ENABLE_MONSTER_STATUS_MISC" Name="Mostrar Outros"/>
+      <String ID="ENABLE_MONSTER_STATUS_ENRAGE" Name="Mostrar Raiva"/>
       <!-- Harvest Box Widget -->
       <String ID="ENABLE_HARVEST_BOX" Name="Habilitar Caixa de Colheita"/>
       <String ID="ENABLE_HARVEST_BOX_DESC" Name="Se habilitado, a caixa de colheita será visivel quando tiver conteúdo para ser mostrado"/>

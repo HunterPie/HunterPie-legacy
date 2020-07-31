@@ -7,6 +7,7 @@ using System.Windows.Media;
 using HunterPie.Core;
 using HunterPie.Core.LPlayer;
 using HunterPie.GUI.Widgets.Abnormality_Widget.Parts;
+using Helper = HunterPie.Core.Enums.Helper;
 
 namespace HunterPie.GUI.Widgets.Abnormality_Widget
 {
@@ -87,8 +88,13 @@ namespace HunterPie.GUI.Widgets.Abnormality_Widget
         {
             foreach (AbnormalityInfo abnormality in abnormalities)
             {
-                string name = GStrings.GetAbnormalityByID(abnormality.Type, abnormality.Id, 0);
+                string name = GStrings.GetAbnormalityByID(
+                    Helper.ConvertAbnormalityType(abnormality.Type),
+                    abnormality.Id,
+                    0);
+
                 bool isEnabled = UserSettings.PlayerConfig.Overlay.AbnormalitiesWidget.BarPresets[buffTrayIndex].AcceptedAbnormalities.Contains(abnormality.InternalId);
+
                 ImageSource icon = (ImageSource)FindResource(abnormality.IconName);
                 icon?.Freeze();
 

@@ -1,6 +1,6 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
 <Strings lang="Simplified Chinese">
-<!--Translated for HunterPie Ver 1.0.3.94 by FengYuu-->
+<!--Translated for HunterPie Ver 1.0.3.95 by 枫雨 (FengYuu#9220)-->
   <Monsters>
     <Monster ID="ems062_03" Name="木质桶车"/>
     <Monster ID="em001_00" Name="雌火龙"/>
@@ -183,6 +183,7 @@
     <Part ID="MONSTER_PART_SPIKES_RWING" Name="右翼的刺"/>
     <Part ID="MONSTER_PART_SPIKES_TAIL" Name="尾巴的刺"/>
     <Part ID="MONSTER_PART_REPEL" Name="击退"/>
+    <Part ID="MONSTER_PART_EXPLOSION_WEAKENING" Name="炸膛值"/>
   </Parts>
   <Ailments>
     <Ailment ID="STATUS_UNKNOWN" Name="未知效果状态"/>
@@ -205,6 +206,8 @@
     <Ailment ID="STATUS_FELYNETRAP" Name="全弹发射击倒"/>
     <Ailment ID="STATUS_CLAW" Name="飞翔爪激怒"/>
     <Ailment ID="STATUS_VIOLATED" Name="垂涎积累"/>
+    <Ailment ID="STATUS_BANISHMENT_BALL" Name="撤退弹"/>
+    <Ailment ID="STATUS_ENRAGE" Name="愤怒"/>
   </Ailments>
   <Mantles>
     <Mantle ID="-1" Name="无衣装"/>
@@ -548,6 +551,8 @@
       <String ID="ENABLE_HIDE_INACTIVE_PARTS_DESC" Name="如开启，部位和异常状态将在一段时间无变化后自动隐藏"/>
       <String ID="ENABLE_BREAKABLE_PARTS" Name="显示怪物可破坏部位"/>
       <String ID="ENABLE_BREAKABLE_PARTS_DESC" Name="如开启，可切断、破坏和移除的部位将显示在怪物显示栏下方或上方"/>
+      <String ID="ENABLE_AILMENTS_BAR_COLOR" Name="多彩化怪物异常状态条"/>
+      <String ID="ENABLE_AILMENTS_BAR_COLOR_DESC" Name="如开启，怪物异常状态条根据其种类着色"/>
       <String ID="ENABLE_AILMENTS" Name="显示怪物异常状态"/>
       <String ID="ENABLE_AILMENTS_DESC" Name="如开启，怪物异常状态将显示在怪物栏下方或上方"/>
       <String ID="ENABLE_MONSTER_PARTS" Name="显示怪物部位"/>
@@ -579,6 +584,23 @@
       <String ID="STATIC_MONSTER_PART_DELAY" Name="延迟隐藏无变化的部位"/>
       <String ID="STATIC_MONSTER_PART_DELAY_DESC" Name="当部位无变化或已破坏时，延迟隐藏部位"/>
       <String ID="STATIC_MONSTER_POSITION_DESC" Name="更改怪物部件的位置"/>
+      <String ID="ENABLE_MONSTER_STATUS_POISON" Name="显示中毒"/>
+      <String ID="ENABLE_MONSTER_STATUS_PARALYSIS" Name="显示麻痹"/>
+      <String ID="ENABLE_MONSTER_STATUS_SLEEP" Name="显示睡眠"/>
+      <String ID="ENABLE_MONSTER_STATUS_BLAST" Name="显示爆破"/>
+      <String ID="ENABLE_MONSTER_STATUS_MOUNT" Name="显示骑乘"/>
+      <String ID="ENABLE_MONSTER_STATUS_EXHAUSTION" Name="显示疲劳"/>
+      <String ID="ENABLE_MONSTER_STATUS_STUN" Name="显示眩晕"/>
+      <String ID="ENABLE_MONSTER_STATUS_TRANQUILIZE" Name="显示麻醉"/>
+      <String ID="ENABLE_MONSTER_STATUS_FLASH" Name="显示闪光"/>
+      <String ID="ENABLE_MONSTER_STATUS_KNOCKDOWN" Name="显示倒地"/>
+      <String ID="ENABLE_MONSTER_STATUS_DUNGPOD" Name="显示异臭"/>
+      <String ID="ENABLE_MONSTER_STATUS_TRAP" Name="显示陷阱"/>
+      <String ID="ENABLE_MONSTER_STATUS_ELDERSEAL" Name="显示龙封力"/>
+      <String ID="ENABLE_MONSTER_STATUS_SMOKING" Name="显示烟雾"/>
+      <String ID="ENABLE_MONSTER_STATUS_CLAW" Name="显示飞翔爪激怒"/>
+      <String ID="ENABLE_MONSTER_STATUS_MISC" Name="显示杂项"/>
+      <String ID="ENABLE_MONSTER_STATUS_ENRAGE" Name="显示愤怒"/>
       <!-- Harvest Box Widget -->
       <String ID="ENABLE_HARVEST_BOX" Name="收获箱部件"/>
       <String ID="ENABLE_HARVEST_BOX_DESC" Name="如启用，只要有内容就会显示&quot;收获箱&quot;部件"/>
