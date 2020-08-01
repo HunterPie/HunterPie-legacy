@@ -1788,7 +1788,7 @@
         <Break Threshold="1"/>
       </Part>
       <Part Name="MONSTER_PART_LEGS" Group="LEG">
-        <Break Threshold="1"/>
+        <Break Threshold="2"/>
       </Part>
       <Part Name="MONSTER_PART_TAIL" Group="TAIL" TenderizeIds="2,5">
         <Break Threshold="1"/>
