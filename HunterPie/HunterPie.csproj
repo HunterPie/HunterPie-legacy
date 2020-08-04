@@ -136,6 +136,7 @@
     <Compile Include="Core\Definitions\sMonsterPartData.cs" />
     <Compile Include="Core\Definitions\sMonsterRemovablePart.cs" />
     <Compile Include="Core\Definitions\sMonsterStatus.cs" />
+    <Compile Include="Core\Definitions\sPlayerSkill.cs" />
     <Compile Include="Core\Definitions\sVector3.cs" />
     <Compile Include="Core\Definitions\sTenderizedPart.cs" />
     <Compile Include="Core\Definitions\Structures.cs" />

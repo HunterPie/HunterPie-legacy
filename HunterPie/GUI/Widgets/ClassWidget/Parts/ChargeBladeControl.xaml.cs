@@ -147,42 +147,61 @@ namespace HunterPie.GUI.Widgets.ClassWidget.Parts
         }
 
 
-        private void OnSafijiivaCounterUpdate(object source, JobEventArgs args) => Dispatcher.BeginInvoke(System.Windows.Threading.DispatcherPriority.Render, new Action(() =>
-                                                                                 {
-                                                                                     HasSafiBuff = args.SafijiivaRegenCounter != -1;
-                                                                                     SafiCounter = args.SafijiivaMaxHits - args.SafijiivaRegenCounter;
-                                                                                 }));
+        private void OnSafijiivaCounterUpdate(object source, JobEventArgs args)
+        {
+            Dispatcher.BeginInvoke(System.Windows.Threading.DispatcherPriority.Render, new Action(() =>
+            {
+                HasSafiBuff = args.SafijiivaRegenCounter != -1;
+                SafiCounter = args.SafijiivaMaxHits - args.SafijiivaRegenCounter;
+            }));
+        }
 
-        private void OnPowerchargeUpdate(object source, ChargeBladeEventArgs args) => Dispatcher.BeginInvoke(System.Windows.Threading.DispatcherPriority.Render, new Action(() =>
-                                                                                    {
-                                                                                        PoweraxeBuff = args.PoweraxeTimer > 0 ? $"{TimeSpan.FromSeconds(args.PoweraxeTimer):ss}" : null;
-                                                                                        PoweraxeOpacity = args.PoweraxeTimer > 0 ? 1 : 0;
-                                                                                    }));
+        private void OnPowerchargeUpdate(object source, ChargeBladeEventArgs args)
+        {
+            Dispatcher.BeginInvoke(System.Windows.Threading.DispatcherPriority.Render, new Action(() =>
+            {
+                PoweraxeBuff = args.PoweraxeTimer > 0 ? $"{TimeSpan.FromSeconds(args.PoweraxeTimer):ss}" : null;
+                PoweraxeOpacity = args.PoweraxeTimer > 0 ? 1 : 0;
+            }));
+        }
 
-        private void OnVialsChange(object source, ChargeBladeEventArgs args) => Dispatcher.BeginInvoke(System.Windows.Threading.DispatcherPriority.Render, new Action(() =>
-                                                                              {
-                                                                                  Vials = args.Vials;
-                                                                              }));
+        private void OnVialsChange(object source, ChargeBladeEventArgs args)
+        {
+            Dispatcher.BeginInvoke(System.Windows.Threading.DispatcherPriority.Render, new Action(() =>
+            {
+                Vials = args.Vials;
+            }));
+        }
 
-        private void OnVialChargeGaugeUpdate(object source, ChargeBladeEventArgs args) => Dispatcher.BeginInvoke(System.Windows.Threading.DispatcherPriority.Render, new Action(() =>
-                                                                                        {
-                                                                                            HiddenGaugeSize = 77 * args.VialChargeGauge / 100;
-                                                                                            HiddenGaugeColor = args.VialChargeGauge < 30 ? "#FFD6CBB8" :
-                                                                                            args.VialChargeGauge > 70 ? "#FFFF0202" :
-                                                                                            args.VialChargeGauge > 45 ? "#FFA41515" : "#FFD68800";
+        private void OnVialChargeGaugeUpdate(object source, ChargeBladeEventArgs args)
+        {
+            Dispatcher.BeginInvoke(System.Windows.Threading.DispatcherPriority.Render, new Action(() =>
+            {
+                HiddenGaugeSize = 77 * args.VialChargeGauge / 100;
+                HiddenGaugeColor = args.VialChargeGauge < 30 ? "#FFD6CBB8" :
+                args.VialChargeGauge > 70 ? "#FFFF0202" :
+                args.VialChargeGauge > 45 ? "#FFA41515" : "#FFD68800";
 
-                                                                                        }));
+            }));
+        }
 
-        private void OnSwordBuffUpdate(object source, ChargeBladeEventArgs args) => Dispatcher.BeginInvoke(System.Windows.Threading.DispatcherPriority.Render, new Action(() =>
-                                                                                  {
-                                                                                      SwordBuff = args.SwordBuffTimer > 0 ? $"{TimeSpan.FromSeconds(args.SwordBuffTimer):ss}" : null;
-                                                                                      SwordBuffOpacity = args.SwordBuffTimer > 0 ? 1 : 0;
-                                                                                  }));
+        private void OnSwordBuffUpdate(object source, ChargeBladeEventArgs args)
+        {
+            Dispatcher.BeginInvoke(System.Windows.Threading.DispatcherPriority.Render, new Action(() =>
+            {
+                SwordBuff = args.SwordBuffTimer > 0 ? $"{TimeSpan.FromSeconds(args.SwordBuffTimer).ToString(args.SwordBuffTimer > 60 ? "m\\:ss" : "ss")}" : null;
+                SwordBuffOpacity = args.SwordBuffTimer > 0 ? 1 : 0;
+            }));
+        }
 
-        private void OnShieldBuffUpdate(object source, ChargeBladeEventArgs args) => Dispatcher.BeginInvoke(System.Windows.Threading.DispatcherPriority.Render, new Action(() =>
-                                                                                   {
-                                                                                       ShieldBuff = args.ShieldBuffTimer > 0 ? $"{TimeSpan.FromSeconds(args.ShieldBuffTimer):m\\:ss}" : null;
-                                                                                       ShieldBuffOpacity = args.ShieldBuffTimer > 0 ? 1 : 0;
-                                                                                   }));
+        private void OnShieldBuffUpdate(object source, ChargeBladeEventArgs args)
+        {
+            Dispatcher.BeginInvoke(System.Windows.Threading.DispatcherPriority.Render, new Action(() =>
+            {
+                ShieldBuff = args.ShieldBuffTimer > 0 ? $"{TimeSpan.FromSeconds(args.ShieldBuffTimer):m\\:ss}" : null;
+                ShieldBuffOpacity = args.ShieldBuffTimer > 0 ? 1 : 0;
+            }));
+        }
+
     }
 }
