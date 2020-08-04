@@ -325,7 +325,7 @@ namespace HunterPie.Core
             try
             {
                 configContent = File.ReadAllText(ConfigFileName);
-                if (configContent == "null") throw new Exception("config.json was null");
+                if (string.IsNullOrEmpty(configContent) || configContent == "null") throw new Exception("config.json was corrupted.");
             }
             catch (IOException err)
             {
@@ -368,7 +368,7 @@ namespace HunterPie.Core
             try
             {
                 string newPlayerConfig = JsonConvert.SerializeObject(PlayerConfig, Formatting.Indented);
-                if (newPlayerConfig == "null") throw new Exception("Whoops! Something went wrong when trying to save your config!");
+                if (string.IsNullOrEmpty(newPlayerConfig) || newPlayerConfig == "null") throw new Exception("Whoops! Something went wrong when trying to save your config!");
                 File.WriteAllText(ConfigFileName, newPlayerConfig);
             }
             catch (Exception err)
