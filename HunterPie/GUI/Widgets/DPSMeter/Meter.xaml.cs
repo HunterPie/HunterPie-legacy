@@ -15,6 +15,8 @@ namespace HunterPie.GUI.Widgets.DPSMeter
         List<Parts.PartyMember> Players = new List<Parts.PartyMember>();
         Game GameContext;
         Party Context;
+        // This will hold the value of how many seconds it took for the play to damage the monster
+        // So we can calculate the DPS more accurately
 
         public Visibility TimerVisibility
         {
@@ -112,8 +114,10 @@ namespace HunterPie.GUI.Widgets.DPSMeter
             Context = null;
         }
 
-        private void OnTotalDamageChange(object source, EventArgs args) => Dispatcher.BeginInvoke(System.Windows.Threading.DispatcherPriority.Render, new Action(() =>
+        private void OnTotalDamageChange(object source, EventArgs args) =>
+            Dispatcher.BeginInvoke(System.Windows.Threading.DispatcherPriority.Render, new Action(() =>
         {
+            
             if (Context.TotalDamage > 0 && !UserSettings.PlayerConfig.Overlay.DPSMeter.ShowOnlyTimer)
             {
                 Party.Visibility = Visibility.Visible;
@@ -236,7 +240,6 @@ namespace HunterPie.GUI.Widgets.DPSMeter
             DefaultScaleX = NewScaleX;
             DefaultScaleY = NewScaleY;
         }
-
 
         private void OnMouseDown(object sender, System.Windows.Input.MouseButtonEventArgs e)
         {

@@ -1,6 +1,5 @@
 ﻿using System;
 using System.Collections.Generic;
-using Stopwatch = System.Diagnostics.Stopwatch;
 using System.Linq;
 using System.Threading;
 using HunterPie.Core.Definitions;
