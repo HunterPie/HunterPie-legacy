@@ -1,9 +1,13 @@
 ﻿<widget:Widget x:Class="HunterPie.GUI.Widgets.ClassWidget.ClassWidgetContainer"
         xmlns:widget="clr-namespace:HunterPie.GUI"
+        x:Name="ClassWidget"
         xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         Title="ClassWidgetContainer" SizeToContent="WidthAndHeight" ResizeMode="NoResize" WindowStyle="None" AllowsTransparency="True" ShowInTaskbar="False" Topmost="True" Closing="OnClosing" Background="{x:Null}" MouseDown="OnMouseDown" MouseWheel="OnMouseWheel">
-    <StackPanel x:Name="Container">
-        
-    </StackPanel>
+    <Grid>
+        <StackPanel x:Name="Container">
+
+        </StackPanel>
+        <TextBlock Text="{Binding ElementName=ClassWidget, Path=DesignModeDetails}" Visibility="{Binding ElementName=ClassWidget, Path=DesignModeDetailsVisibility}" VerticalAlignment="Top" HorizontalAlignment="Left" Width="200" Height="26" Foreground="#FFEEEEEE" FontSize="13" Background="#CC191919"/>
+    </Grid>
 </widget:Widget>

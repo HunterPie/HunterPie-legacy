@@ -79,31 +79,46 @@ namespace HunterPie.GUI.Widgets.ClassWidget.Parts
             Context = null;
         }
 
-        private void OnWeaponSheathStateChange(object source, JobEventArgs args) => Dispatcher.BeginInvoke(System.Windows.Threading.DispatcherPriority.Render, new Action(() =>
-                                                                                  {
-                                                                                      IsWeaponSheathed = args.IsWeaponSheathed;
-                                                                                  }));
+        private void OnWeaponSheathStateChange(object source, JobEventArgs args)
+        {
+            Dispatcher.BeginInvoke(System.Windows.Threading.DispatcherPriority.Render, new Action(() =>
+            {
+                IsWeaponSheathed = args.IsWeaponSheathed;
+            }));
+        }
 
-        private void OnSafijiivaCounterUpdate(object source, JobEventArgs args) => Dispatcher.BeginInvoke(System.Windows.Threading.DispatcherPriority.Render, new Action(() =>
-                                                                                 {
-                                                                                     HasSafiBuff = args.SafijiivaRegenCounter != -1;
-                                                                                     SafiCounter = args.SafijiivaMaxHits - args.SafijiivaRegenCounter;
-                                                                                 }));
+        private void OnSafijiivaCounterUpdate(object source, JobEventArgs args)
+        {
+            Dispatcher.BeginInvoke(System.Windows.Threading.DispatcherPriority.Render, new Action(() =>
+            {
+                HasSafiBuff = args.SafijiivaRegenCounter != -1;
+                SafiCounter = args.SafijiivaMaxHits - args.SafijiivaRegenCounter;
+            }));
+        }
 
-        private void OnChargeLevelMaxUpdate(object source, BowEventArgs args) => Dispatcher.BeginInvoke(System.Windows.Threading.DispatcherPriority.Render, new Action(() =>
-                                                                               {
-                                                                                   MaxChargeLevel = args.MaxChargeLevel + 1;
-                                                                               }));
+        private void OnChargeLevelMaxUpdate(object source, BowEventArgs args)
+        {
+            Dispatcher.BeginInvoke(System.Windows.Threading.DispatcherPriority.Render, new Action(() =>
+            {
+                MaxChargeLevel = args.MaxChargeLevel + 1;
+            }));
+        }
 
-        private void OnChargeLevelChange(object source, BowEventArgs args) => Dispatcher.BeginInvoke(System.Windows.Threading.DispatcherPriority.Render, new Action(() =>
-                                                                            {
-                                                                                ChargeLevel = args.ChargeLevel + 1;
-                                                                            }));
+        private void OnChargeLevelChange(object source, BowEventArgs args)
+        {
+            Dispatcher.BeginInvoke(System.Windows.Threading.DispatcherPriority.Render, new Action(() =>
+            {
+                ChargeLevel = args.ChargeLevel + 1;
+            }));
+        }
 
-        private void OnChargeProgressUpdate(object source, BowEventArgs args) => Dispatcher.BeginInvoke(System.Windows.Threading.DispatcherPriority.Render, new Action(() =>
-                                                                               {
-                                                                                   ChargeProgress = Math.Floor(args.ChargeProgress) >= args.MaxChargeLevel ? 1 : args.ChargeProgress % 1;
-                                                                               }));
+        private void OnChargeProgressUpdate(object source, BowEventArgs args)
+        {
+            Dispatcher.BeginInvoke(System.Windows.Threading.DispatcherPriority.Render, new Action(() =>
+            {
+                ChargeProgress = Math.Floor(args.ChargeProgress) >= args.MaxChargeLevel ? 1 : args.ChargeProgress % 1;
+            }));
+        }
 
         private void BControl_Loaded(object sender, RoutedEventArgs e) => UpdateInformation();
     }

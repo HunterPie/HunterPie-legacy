@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Diagnostics;
 using System.Windows;
 using System.Windows.Input;
 using System.Windows.Interop;
@@ -36,12 +37,33 @@ namespace HunterPie.GUI
         public double BaseWidth { get; set; }
         public double BaseHeight { get; set; }
 
+
+
+        public string DesignModeDetails
+        {
+            get { return (string)GetValue(DesignModeDetailsProperty); }
+            set { SetValue(DesignModeDetailsProperty, value); }
+        }
+        public static readonly DependencyProperty DesignModeDetailsProperty =
+            DependencyProperty.Register("DesignModeDetails", typeof(string), typeof(Widget));
+
+        public Visibility DesignModeDetailsVisibility
+        {
+            get { return (Visibility)GetValue(DesignModeDetailsVisibilityProperty); }
+            set { SetValue(DesignModeDetailsVisibilityProperty, value); }
+        }
+        public static readonly DependencyProperty DesignModeDetailsVisibilityProperty =
+            DependencyProperty.Register("DesignModeDetailsVisibility", typeof(Visibility), typeof(Widget));
+
+
         public Widget() => CompositionTarget.Rendering += OnWidgetRender;
 
         private int renderCounter = 0;
+        private double LastFrameRender;
         private void OnWidgetRender(object sender, EventArgs e)
         {
             renderCounter++;
+            
             if (renderCounter >= 120)
             {
                 // Only force widgets on top if they are actually visible
@@ -55,6 +77,19 @@ namespace HunterPie.GUI
                 }
                 renderCounter = 0;
             }
+            if (InDesignMode)
+            {
+                RenderingEventArgs args = (RenderingEventArgs)e;
+                
+                DesignModeDetails = $"{Left}x{Top} ({DefaultScaleX * 100:0.0}%) ({args.RenderingTime.TotalMilliseconds - LastFrameRender:0.##}ms)";
+                DesignModeDetailsVisibility = Visibility.Visible;
+                LastFrameRender = args.RenderingTime.TotalMilliseconds;
+            }
+            else
+            {
+                DesignModeDetailsVisibility = Visibility.Collapsed;
+            }
+            
         }
 
         double OldOpacity;
@@ -71,7 +106,6 @@ namespace HunterPie.GUI
             Background = BackgroundBrush;
             OldOpacity = Opacity;
             Opacity = 1;
-            ToolTip = $"{Left}x{Top} ({DefaultScaleX * 100:0.0}%)";
         }
 
         public virtual void LeaveWidgetDesignMode()

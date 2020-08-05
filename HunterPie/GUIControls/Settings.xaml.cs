@@ -127,6 +127,7 @@ namespace HunterPie.GUIControls
 
             // Primary Mantle
             settingsUI.switchEnablePrimaryMantle.IsEnabled = settings.Overlay.PrimaryMantle.Enabled;
+            settingsUI.switchPrimaryMantleCompactMode.IsEnabled = settings.Overlay.PrimaryMantle.CompactMode;
             settingsUI.PrimaryMantlePosition.X = settings.Overlay.PrimaryMantle.Position[0];
             settingsUI.PrimaryMantlePosition.Y = settings.Overlay.PrimaryMantle.Position[1];
             settingsUI.PrimaryMantleColor.Color = settings.Overlay.PrimaryMantle.Color;
@@ -134,6 +135,7 @@ namespace HunterPie.GUIControls
 
             // Secondary Mantle
             settingsUI.switchEnableSecondaryMantle.IsEnabled = settings.Overlay.SecondaryMantle.Enabled;
+            settingsUI.switchSecondaryMantleCompactMode.IsEnabled = settings.Overlay.SecondaryMantle.CompactMode;
             settingsUI.SecondaryMantlePosition.X = settings.Overlay.SecondaryMantle.Position[0];
             settingsUI.SecondaryMantlePosition.Y = settings.Overlay.SecondaryMantle.Position[1];
             settingsUI.SecondaryMantleColor.Color = settings.Overlay.SecondaryMantle.Color;
@@ -255,6 +257,7 @@ namespace HunterPie.GUIControls
 
             // Primary Mantle
             settings.Overlay.PrimaryMantle.Enabled = settingsUI.switchEnablePrimaryMantle.IsEnabled;
+            settings.Overlay.PrimaryMantle.CompactMode = settingsUI.switchPrimaryMantleCompactMode.IsEnabled;
             settings.Overlay.PrimaryMantle.Position[0] = settingsUI.PrimaryMantlePosition.X;
             settings.Overlay.PrimaryMantle.Position[1] = settingsUI.PrimaryMantlePosition.Y;
             settings.Overlay.PrimaryMantle.Color = settingsUI.PrimaryMantleColor.Color;
@@ -262,6 +265,7 @@ namespace HunterPie.GUIControls
 
             // Secondary Mantle
             settings.Overlay.SecondaryMantle.Enabled = settingsUI.switchEnableSecondaryMantle.IsEnabled;
+            settings.Overlay.SecondaryMantle.CompactMode = settingsUI.switchSecondaryMantleCompactMode.IsEnabled;
             settings.Overlay.SecondaryMantle.Position[0] = settingsUI.SecondaryMantlePosition.X;
             settings.Overlay.SecondaryMantle.Position[1] = settingsUI.SecondaryMantlePosition.Y;
             settings.Overlay.SecondaryMantle.Color = settingsUI.SecondaryMantleColor.Color;

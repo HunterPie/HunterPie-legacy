@@ -1,4 +1,4 @@
-﻿<src:Widget x:Class="HunterPie.GUI.Widgets.HarvestBox"
+﻿<src:Widget x:Name="HarvestBoxWidget" x:Class="HunterPie.GUI.Widgets.HarvestBox"
              xmlns:src="clr-namespace:HunterPie.GUI"
              xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
@@ -99,7 +99,7 @@
             </Canvas>
         </StackPanel>
         <Image Width="230" Height="30" VerticalAlignment="Bottom" Source="pack://siteoforigin:,,,/HunterPie.Resources/UI/HarvestBox/HarvestBoxBottomTexture.png" Stretch="Fill" Opacity="0.3"/>
-        
 
+        <TextBlock Text="{Binding ElementName=HarvestBoxWidget, Path=DesignModeDetails}" Visibility="{Binding ElementName=HarvestBoxWidget, Path=DesignModeDetailsVisibility}" VerticalAlignment="Top" HorizontalAlignment="Left" Width="230" Height="26" Foreground="#FFEEEEEE" FontSize="13" Background="#CC191919" FontFamily="Roboto, Segoe UI"/>
     </Grid>
 </src:Widget>

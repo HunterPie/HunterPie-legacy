@@ -659,14 +659,7 @@
                                 <Binding Mode="OneTime" XPath="Settings/String[@ID='ENABLE_TAILRAIDERS_TRACKER_DESC']/@Name"/>
                             </custom:Switcher.ToolTip>
                         </custom:Switcher>
-                        <custom:Switcher x:Name="switchHarvestCompactMode" MinWidth="500" HorizontalAlignment="Center" RestartVisibility="Collapsed">
-                            <custom:Switcher.Text>
-                                <Binding Mode="OneTime" XPath="Settings/String[@ID='ENABLE_HARVEST_BOX_COMPACT_MODE']/@Name"/>
-                            </custom:Switcher.Text>
-                            <custom:Switcher.ToolTip>
-                                <Binding Mode="OneTime" XPath="Settings/String[@ID='ENABLE_HARVEST_BOX_COMPACT_MODE_DESC']/@Name"/>
-                            </custom:Switcher.ToolTip>
-                        </custom:Switcher>
+                        <custom:Switcher x:Name="switchHarvestCompactMode" Text="{Binding XPath=/Strings/Client/Settings/String[@ID\=\'ENABLE_HARVEST_BOX_COMPACT_MODE\']/@Name, Mode=OneTime}" ToolTip="{Binding XPath=/Strings/Client/Settings/String[@ID\=\'ENABLE_HARVEST_BOX_COMPACT_MODE_DESC\']/@Name, Mode=OneTime}" MinWidth="500" HorizontalAlignment="Center" RestartVisibility="Collapsed"/>
                         <custom:MinimalSlider x:Name="HarvestBoxBackgroundOpacity" Text="{Binding XPath=/Strings/Client/Settings/String[@ID\=\'STATIC_BACKGROUND_OPACITY\']/@Name}" MinChange="0.1" MinValue="0" MaxValue="1" ValueText="{Binding Value, ElementName=HarvestBoxBackgroundOpacity, StringFormat=\{0:P\}}" Foreground="WhiteSmoke" FontFamily="Segoe UI Light" MinWidth="500" HorizontalAlignment="Center"/>
                         <custom:MinimalSlider x:Name="HarvestBoxComponentOpacity" Text="{Binding XPath=/Strings/Client/Settings/String[@ID\=\'STATIC_OPACITY\']/@Name}" MinChange="0.1" MinValue="0" MaxValue="1" ValueText="{Binding Value, ElementName=HarvestBoxComponentOpacity, StringFormat=\{0:P\}}" Foreground="WhiteSmoke" FontFamily="Segoe UI Light" MinWidth="500" HorizontalAlignment="Center"/>
                         <custom:PositionControl x:Name="HarvestBoxPosition" Height="38">
@@ -749,6 +742,7 @@
                         <GroupBox Header="{Binding Mode=OneTime, XPath=/Strings/Client/Settings/String[@ID\=\'STATIC_PRIMARY_SPEC_TOOL\']/@Name}" Height="187" Foreground="WhiteSmoke" BorderBrush="{x:Null}" Width="359" HorizontalAlignment="Center">
                             <StackPanel Margin="0,32,-2,12" Orientation="Vertical">
                                 <custom:Switcher x:Name="switchEnablePrimaryMantle" Text="{Binding Mode=OneTime, XPath=/Strings/Client/Settings/String[@ID\=\'ENABLE_PRIMARY_SPEC_TOOL\']/@Name}" ToolTip="{Binding Mode=OneTime, XPath=/Strings/Client/Settings/String[@ID\=\'ENABLE_PRIMARY_SPEC_TOOL_DESC\']/@Name}" RestartVisibility="Collapsed"/>
+                                <custom:Switcher x:Name="switchPrimaryMantleCompactMode" Text="{Binding XPath=/Strings/Client/Settings/String[@ID\=\'ENABLE_HARVEST_BOX_COMPACT_MODE\']/@Name, Mode=OneTime}" ToolTip="{Binding XPath=/Strings/Client/Settings/String[@ID\=\'ENABLE_HARVEST_BOX_COMPACT_MODE_DESC\']/@Name, Mode=OneTime}" RestartVisibility="Collapsed"/>
                                 <custom:ColorPicker x:Name="PrimaryMantleColor" NameText="{Binding Mode=OneTime, XPath=/Strings/Client/Settings/String[@ID\=\'STATIC_COLOR\']/@Name}" Margin="63,0,45,0" Height="34"/>
                                 <custom:MinimalSlider x:Name="PrimaryMantleComponentOpacity" Text="{Binding XPath=/Strings/Client/Settings/String[@ID\=\'STATIC_OPACITY\']/@Name}" MinChange="0.1" MinValue="0" MaxValue="1" ValueText="{Binding Value, ElementName=PrimaryMantleComponentOpacity, StringFormat=\{0:P\}}" Foreground="WhiteSmoke" FontFamily="Segoe UI Light" HorizontalAlignment="Center"/>
                                 <custom:PositionControl x:Name="PrimaryMantlePosition" Height="38" ToolTip="{Binding Mode=OneTime, XPath=/Strings/Client/Settings/String[@ID\=\'STATIC_PRIMARY_SPEC_TOOL_POSITION_DESC\']/@Name}"/>
@@ -757,6 +751,7 @@
                         <GroupBox Header="{Binding Mode=OneTime, XPath=/Strings/Client/Settings/String[@ID\=\'STATIC_SECONDARY_SPEC_TOOL\']/@Name}" Height="187" Width="359" Foreground="WhiteSmoke" BorderBrush="{x:Null}" Margin="0,10,0,0">
                             <StackPanel Margin="0,32,-2,4" Orientation="Vertical">
                                 <custom:Switcher x:Name="switchEnableSecondaryMantle" Text="{Binding Mode=OneTime, XPath=/Strings/Client/Settings/String[@ID\=\'ENABLE_SECONDARY_SPEC_TOOL\']/@Name}" ToolTip="{Binding Mode=OneTime, XPath=/Strings/Client/Settings/String[@ID\=\'ENABLE_SECONDARY_SPEC_TOOL_DESC\']/@Name}" RestartVisibility="Collapsed"/>
+                                <custom:Switcher x:Name="switchSecondaryMantleCompactMode" Text="{Binding XPath=/Strings/Client/Settings/String[@ID\=\'ENABLE_HARVEST_BOX_COMPACT_MODE\']/@Name, Mode=OneTime}" ToolTip="{Binding XPath=/Strings/Client/Settings/String[@ID\=\'ENABLE_HARVEST_BOX_COMPACT_MODE_DESC\']/@Name, Mode=OneTime}" RestartVisibility="Collapsed"/>
                                 <custom:ColorPicker x:Name="SecondaryMantleColor" NameText="{Binding Mode=OneTime, XPath=/Strings/Client/Settings/String[@ID\=\'STATIC_COLOR\']/@Name}" Margin="63,0,45,0"  Height="36"/>
                                 <custom:MinimalSlider x:Name="SecondaryMantleComponentOpacity" Text="{Binding XPath=/Strings/Client/Settings/String[@ID\=\'STATIC_OPACITY\']/@Name}" MinChange="0.1" MinValue="0" MaxValue="1" ValueText="{Binding Value, ElementName=SecondaryMantleComponentOpacity, StringFormat=\{0:P\}}" Foreground="WhiteSmoke" FontFamily="Segoe UI Light" HorizontalAlignment="Center"/>
                                 <custom:PositionControl x:Name="SecondaryMantlePosition" Height="38" ToolTip="{Binding Mode=OneTime, XPath=/Strings/Client/Settings/String[@ID\=\'STATIC_SECONDARY_SPEC_TOOL_POSITION_DESC\']/@Name}"/>

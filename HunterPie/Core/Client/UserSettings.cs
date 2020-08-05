@@ -107,6 +107,7 @@ namespace HunterPie.Core
                 public int[] Position { get; set; }
                 public string Color { get; set; }
                 public float Opacity { get; set; } = 1;
+                public bool CompactMode { get; set; } = false;
             }
 
             public class DPSMeter
