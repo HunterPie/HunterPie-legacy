@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
+using System.Windows.Forms;
 using HunterPie.Logger;
 using Newtonsoft.Json;
 
@@ -124,6 +125,7 @@ namespace HunterPie.Core
                 public float Opacity { get; set; } = 1;
                 public bool ShowOnlyTimer { get; set; } = false;
                 public bool ShowTimer { get; set; } = true;
+                public double Width { get; set; } = 1;
             }
 
             public class Players

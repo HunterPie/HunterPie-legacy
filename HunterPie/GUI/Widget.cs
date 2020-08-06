@@ -37,8 +37,6 @@ namespace HunterPie.GUI
         public double BaseWidth { get; set; }
         public double BaseHeight { get; set; }
 
-
-
         public string DesignModeDetails
         {
             get { return (string)GetValue(DesignModeDetailsProperty); }
@@ -80,10 +78,13 @@ namespace HunterPie.GUI
             if (InDesignMode)
             {
                 RenderingEventArgs args = (RenderingEventArgs)e;
-                
-                DesignModeDetails = $"{Left}x{Top} ({DefaultScaleX * 100:0.0}%) ({args.RenderingTime.TotalMilliseconds - LastFrameRender:0.##}ms)";
-                DesignModeDetailsVisibility = Visibility.Visible;
-                LastFrameRender = args.RenderingTime.TotalMilliseconds;
+                // Dispatcher messes with the Render counter
+                if (args.RenderingTime.TotalMilliseconds - LastFrameRender > 0)
+                {
+                    DesignModeDetails = $"{Left}x{Top} ({DefaultScaleX * 100:0.0}%) ({args.RenderingTime.TotalMilliseconds - LastFrameRender:0.##}ms)";
+                    DesignModeDetailsVisibility = Visibility.Visible;
+                    LastFrameRender = args.RenderingTime.TotalMilliseconds;
+                }
             }
             else
             {

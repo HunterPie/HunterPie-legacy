@@ -72,10 +72,10 @@ namespace HunterPie.GUI.Widgets.DPSMeter.Parts
         public static readonly DependencyProperty ClassIconProperty =
             DependencyProperty.Register("ClassIcon", typeof(ImageSource), typeof(PartyMember));
 
-        public PartyMember(/*string Color*/)
+        public PartyMember(string Color)
         {
             InitializeComponent();
-            //ChangeColor(Color);
+            ChangeColor(Color);
             UpdateDamageTextSettings();
         }
 

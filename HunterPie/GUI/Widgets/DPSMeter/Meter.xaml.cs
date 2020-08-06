@@ -2,11 +2,9 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Windows;
-using System.Windows.Forms;
 using System.Windows.Media;
 using HunterPie.Core;
 using HunterPie.Logger;
-using HunterPie.Memory;
 
 namespace HunterPie.GUI.Widgets.DPSMeter
 {
@@ -43,7 +41,6 @@ namespace HunterPie.GUI.Widgets.DPSMeter
         {
             if (Context == null) return;
             Timer.Text = Context.Epoch.ToString(@"hh\:mm\:ss\.ff");
-            Party.Visibility = Visibility.Visible;
         }
 
         public void SetContext(Game ctx)
@@ -55,7 +52,7 @@ namespace HunterPie.GUI.Widgets.DPSMeter
 
         public override void EnterWidgetDesignMode()
         {
-            ResizeMode = ResizeMode.CanResizeWithGrip;
+            ResizeMode = ResizeMode.CanResize;
             base.EnterWidgetDesignMode();
             RemoveWindowTransparencyFlag();
         }
@@ -80,6 +77,7 @@ namespace HunterPie.GUI.Widgets.DPSMeter
             UserSettings.PlayerConfig.Overlay.DPSMeter.Position[0] = (int)Left - UserSettings.PlayerConfig.Overlay.Position[0];
             UserSettings.PlayerConfig.Overlay.DPSMeter.Position[1] = (int)Top - UserSettings.PlayerConfig.Overlay.Position[1];
             UserSettings.PlayerConfig.Overlay.DPSMeter.Scale = DefaultScaleX;
+            UserSettings.PlayerConfig.Overlay.DPSMeter.Width = Width;
         }
 
         private void OnPeaceZoneLeave(object source, EventArgs args) => Dispatcher.BeginInvoke(System.Windows.Threading.DispatcherPriority.Background, new Action(() =>
@@ -141,10 +139,9 @@ namespace HunterPie.GUI.Widgets.DPSMeter
 
         private void CreatePlayerComponents()
         {
-            return;
             for (int i = 0; i < Context.MaxSize; i++)
             {
-                Parts.PartyMember pMember = new Parts.PartyMember(/*UserSettings.PlayerConfig.Overlay.DPSMeter.PartyMembers[i].Color*/);
+                Parts.PartyMember pMember = new Parts.PartyMember(UserSettings.PlayerConfig.Overlay.DPSMeter.PartyMembers[i].Color);
                 pMember.SetContext(Context[i], Context);
                 Players.Add(pMember);
             }
@@ -161,7 +158,6 @@ namespace HunterPie.GUI.Widgets.DPSMeter
 
         public void DestroyPlayerComponents()
         {
-            return;
             foreach (Parts.PartyMember player in Players)
             {
                 player?.UnhookEvents();
@@ -177,7 +173,6 @@ namespace HunterPie.GUI.Widgets.DPSMeter
 
         private void SortPlayersByDamage()
         {
-            return;
             foreach (Parts.PartyMember Player in Players)
             {
                 Player.UpdateDamage();
@@ -216,7 +211,11 @@ namespace HunterPie.GUI.Widgets.DPSMeter
                 TimerVisibility = UserSettings.PlayerConfig.Overlay.DPSMeter.ShowTimer ? Visibility.Visible : Visibility.Collapsed;
 
                 UpdatePlayersColor();
+
+                
                 ScaleWidget(UserSettings.PlayerConfig.Overlay.DPSMeter.Scale, UserSettings.PlayerConfig.Overlay.DPSMeter.Scale);
+                SnapWidget(UserSettings.PlayerConfig.Overlay.DPSMeter.Width);
+
                 Opacity = UserSettings.PlayerConfig.Overlay.DPSMeter.Opacity;
                 Color PartyBgColor = new Color()
                 {
@@ -231,10 +230,10 @@ namespace HunterPie.GUI.Widgets.DPSMeter
                 Party.Visibility = UserSettings.PlayerConfig.Overlay.DPSMeter.ShowOnlyTimer ? Visibility.Collapsed : Visibility.Visible;
                 if (UserSettings.PlayerConfig.Overlay.DPSMeter.ShowTimerInExpeditions)
                 {
-                    //if (Context == null || Context.TotalDamage <= 0) Party.Visibility = Visibility.Collapsed;
+                    if (Context == null || Context.TotalDamage <= 0) Party.Visibility = Visibility.Collapsed;
                 }
                 WidgetHasContent = true;
-                //if (Context != null) WidgetHasContent = UserSettings.PlayerConfig.Overlay.DPSMeter.ShowTimerInExpeditions && !GameContext.Player.InPeaceZone;
+                if (Context != null) WidgetHasContent = UserSettings.PlayerConfig.Overlay.DPSMeter.ShowTimerInExpeditions && !GameContext.Player.InPeaceZone;
                 if (Context != null) SortPlayersByDamage();
             }
             base.ApplySettings();
@@ -243,11 +242,10 @@ namespace HunterPie.GUI.Widgets.DPSMeter
         public void ScaleWidget(double NewScaleX, double NewScaleY)
         {
             if (NewScaleX <= 0.2) return;
-            Width = BaseWidth * NewScaleX;
-            Height = BaseHeight * NewScaleY;
             DamageContainer.LayoutTransform = new ScaleTransform(NewScaleX, NewScaleY);
             DefaultScaleX = NewScaleX;
             DefaultScaleY = NewScaleY;
+            SnapWidget(UserSettings.PlayerConfig.Overlay.DPSMeter.Width);
         }
 
         private void OnMouseDown(object sender, System.Windows.Input.MouseButtonEventArgs e)
@@ -274,11 +272,25 @@ namespace HunterPie.GUI.Widgets.DPSMeter
         private void DamageMeter_SizeChanged(object sender, SizeChangedEventArgs e)
         {
             e.Handled = true;
-            if (e.NewSize.Width / (322 * DefaultScaleX) % 1 >= 0.5)
+            SnapWidget(e.NewSize.Width);
+        }
+
+        private void SnapWidget(double newWidth)
+        {
+            double temp;
+            if (newWidth / (322 * DefaultScaleX) % 1 >= 0.5)
             {
-                Width = (322 * DefaultScaleX) * (Math.Ceiling(e.NewSize.Width / (322 * DefaultScaleX)));
+                temp = (322 * DefaultScaleX) * Math.Ceiling(newWidth / (322 * DefaultScaleX));
+            } else
+            {
+                temp = (322 * DefaultScaleX) * Math.Floor(newWidth / (322 * DefaultScaleX));
             }
-            if (e.NewSize.Width < (322 * DefaultScaleX)) Width = (322 * DefaultScaleX);
+            if (newWidth < (322 * DefaultScaleX))
+            {
+                temp = (322 * DefaultScaleX);
+            }
+            else if (newWidth > (322 * DefaultScaleX) * 4) temp = (322 * DefaultScaleX) * 4;
+            Width = temp;
             MaxHeight = MinHeight = (TimerContainer.ActualHeight + Party.ActualHeight) * DefaultScaleY;
         }
     }
