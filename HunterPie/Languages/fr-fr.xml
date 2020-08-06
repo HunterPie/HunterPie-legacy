@@ -23,12 +23,12 @@
     <Monster ID="em036_00" Name="Lavasioth"/>
     <Monster ID="em037_00" Name="Nargacuga"/>
     <Monster ID="em042_00" Name="Barioth"/>
-	  <Monster ID="em042_05" Name="Barioth crocgivre"/>
+	<Monster ID="em042_05" Name="Barioth crocgivre"/>
     <Monster ID="em043_00" Name="Deviljho"/>
     <Monster ID="em043_05" Name="Deviljho carnage"/>
     <Monster ID="em044_00" Name="Barroth"/>
     <Monster ID="em045_00" Name="Uragaan"/>
-	  <Monster ID="em050_00" Name="Alatreon"/>
+	<Monster ID="em050_00" Name="Alatreon"/>
     <Monster ID="em057_00" Name="Zinogre"/>
     <Monster ID="em057_01" Name="Zinogre stygien"/>
     <Monster ID="em063_00" Name="Brachydios"/>
@@ -196,7 +196,7 @@
     <Ailment ID="STATUS_STUN" Name="Étourdissement"/>
     <Ailment ID="STATUS_TRANQUILIZE" Name="Tranquillisé"/>
     <Ailment ID="STATUS_FLASH" Name="Flash"/>
-    <Ailment ID="STATUS_KNOCKDOWN" Name="A terre"/>
+    <Ailment ID="STATUS_KNOCKDOWN" Name="À terre"/>
     <Ailment ID="STATUS_DUNGPOD" Name="Capsule de bouse"/>
     <Ailment ID="STATUS_SHOCKTRAP" Name="Piège électrique"/>
     <Ailment ID="STATUS_PITFALLTRAP" Name="Piège à fosse"/>
@@ -270,7 +270,7 @@
     <Stage ID="412" Name="Berceau oublié"/>
     <Stage ID="413" Name="Berceau oublié"/>
     <Stage ID="415" Name="Vallée secrète"/>
-	<Stage ID="415" Name="Vallée secrète"/>
+	<Stage ID="416" Name="Vallée secrète"/>
     <Stage ID="501" Name="Dortoir"/>
     <Stage ID="502" Name="Quartiers privés"/>
     <Stage ID="503" Name="Suite royale"/>
@@ -418,7 +418,7 @@
     <Abnormality ID="MISC_034_00" Name="Énergicône"/>
     <Abnormality ID="MISC_035_00" Name="Résistance glace (G)"/>
     <Abnormality ID="MISC_073_00" Name="Bonus attaque + défense (S)"/>
-    <Abnormality ID="MISC_999_00" Name="Eat Timer"/>
+    <Abnormality ID="MISC_999_00" Name="Temps pour manger"/>
 	<Abnormality ID="GEAR_000_00" Name="Munition Démon"/>
     <Abnormality ID="GEAR_001_00" Name="Munition Peau-de-pierre"/>
     <Abnormality ID="GEAR_002_00" Name="Jamais vaincu"/>
@@ -584,23 +584,23 @@
       <String ID="STATIC_MONSTER_PART_DELAY" Name="Délai pour cacher les parties inactives"/>
       <String ID="STATIC_MONSTER_PART_DELAY_DESC" Name="Délai d'attente avant de cacher les parties du monstre après qu'elles aient été attaquées ou des afflictions lorsqu'elles deviennent inactives."/>
       <String ID="STATIC_MONSTER_POSITION_DESC" Name="Modifiez la position du widget."/>
-	  <String ID="ENABLE_MONSTER_STATUS_POISON" Name="Show Poison"/>
-      <String ID="ENABLE_MONSTER_STATUS_PARALYSIS" Name="Show Paralysis"/>
-      <String ID="ENABLE_MONSTER_STATUS_SLEEP" Name="Show Sleep"/>
-      <String ID="ENABLE_MONSTER_STATUS_BLAST" Name="Show Blast"/>
-      <String ID="ENABLE_MONSTER_STATUS_MOUNT" Name="Show Mount"/>
-      <String ID="ENABLE_MONSTER_STATUS_EXHAUSTION" Name="Show Exhaustion"/>
-      <String ID="ENABLE_MONSTER_STATUS_STUN" Name="Show Stun"/>
-      <String ID="ENABLE_MONSTER_STATUS_TRANQUILIZE" Name="Show Tranquilize"/>
-      <String ID="ENABLE_MONSTER_STATUS_FLASH" Name="Show Flash"/>
-      <String ID="ENABLE_MONSTER_STATUS_KNOCKDOWN" Name="Show Knockdown"/>
-      <String ID="ENABLE_MONSTER_STATUS_DUNGPOD" Name="Show Dung Pod"/>
-      <String ID="ENABLE_MONSTER_STATUS_TRAP" Name="Show Traps"/>
-      <String ID="ENABLE_MONSTER_STATUS_ELDERSEAL" Name="Show Elderseal"/>
-      <String ID="ENABLE_MONSTER_STATUS_SMOKING" Name="Show Smoking"/>
-      <String ID="ENABLE_MONSTER_STATUS_CLAW" Name="Show Claw"/>
-      <String ID="ENABLE_MONSTER_STATUS_MISC" Name="Show Miscellaneous"/>
-      <String ID="ENABLE_MONSTER_STATUS_ENRAGE" Name="Show Enrage"/>
+	  <String ID="ENABLE_MONSTER_STATUS_POISON" Name="Activation de Poison"/>
+      <String ID="ENABLE_MONSTER_STATUS_PARALYSIS" Name="Activation de paralysie"/>
+      <String ID="ENABLE_MONSTER_STATUS_SLEEP" Name="Activation de Sommeil"/>
+      <String ID="ENABLE_MONSTER_STATUS_BLAST" Name="Activation d'Explosion"/>
+      <String ID="ENABLE_MONSTER_STATUS_MOUNT" Name="Activation de Monté"/>
+      <String ID="ENABLE_MONSTER_STATUS_EXHAUSTION" Name="Activation de Fatigue"/>
+      <String ID="ENABLE_MONSTER_STATUS_STUN" Name="Activation d'Étourdissement"/>
+      <String ID="ENABLE_MONSTER_STATUS_TRANQUILIZE" Name="Activation de Tranquillisé"/>
+      <String ID="ENABLE_MONSTER_STATUS_FLASH" Name="Activation de Flash"/>
+      <String ID="ENABLE_MONSTER_STATUS_KNOCKDOWN" Name="Activation de À terre"/>
+      <String ID="ENABLE_MONSTER_STATUS_DUNGPOD" Name="Activation de Capsule de bouse"/>
+      <String ID="ENABLE_MONSTER_STATUS_TRAP" Name="Activation des Pièges"/>
+      <String ID="ENABLE_MONSTER_STATUS_ELDERSEAL" Name="Activation de Sceaux des anciens"/>
+      <String ID="ENABLE_MONSTER_STATUS_SMOKING" Name="Activation d'Enfumé"/>
+      <String ID="ENABLE_MONSTER_STATUS_CLAW" Name="Activation de Flinch grappin"/>
+      <String ID="ENABLE_MONSTER_STATUS_MISC" Name="Activation des Potions"/>
+      <String ID="ENABLE_MONSTER_STATUS_ENRAGE" Name="Activation d'Enragé"/>
       <!-- Harvest Box Widget -->
       <String ID="ENABLE_HARVEST_BOX" Name="Activer le widget &quot;Conservatoire botanique&quot;"/>
       <String ID="ENABLE_HARVEST_BOX_DESC" Name="Activé, le widget &quot;Conservatoire botanique&quot; sera affiché."/>
@@ -678,10 +678,10 @@
       <String ID="ENABLE_BOW_HELPER_DESC" Name="Si activé, l'aide Arc sera visible quand un Arc est équipé."/>
       <String ID="ENABLE_HAMMER_HELPER" Name="Activer l'aide Marteau"/>
       <String ID="ENABLE_HAMMER_HELPER_DESC" Name="Si activé, l'aide Marteau sera visible quand un Marteau est équipé."/>
-	  <String ID="ENABLE_DUALBLADES_HELPER" Name="Enable Dual Blades Helper"/>
-	  <String ID="ENABLE_DUALBLADES_HELPER_DESC" Name="If enabled, the Dual Blades helper will be visible whenever you equip Dual Blades."/>
-      <String ID="ENABLE_LANCE_HELPER" Name="Enable Lance Helper"/>
-      <String ID="ENABLE_LANCE_HELPER_DESC" Name="If enabled, the Lance helper will be visible whenever you equip Lance."/>
+	  <String ID="ENABLE_DUALBLADES_HELPER" Name="Activer l'aide Doubles lames"/>
+	  <String ID="ENABLE_DUALBLADES_HELPER_DESC" Name="Si activé, l'aide Double lames sera visible quand une Doubles lames est équipée"/>
+      <String ID="ENABLE_LANCE_HELPER" Name="Activer l'aide Lance"/>
+      <String ID="ENABLE_LANCE_HELPER_DESC" Name="Si activé, l'aide Lance sera visible quand une Lance est équipée"/>
       <String ID="STATIC_CLASSES_BETA_WARNING" Name="Attention: Les aides de class sont toujours en développement et d'autres seront ajoutées dans le futur. Chaque aide de classe possède ses propres paramètres, permettant d'enregister des positions différentes pour le widget selon la classe utilisée. Utiliser le Design Mode pour changer la taille et la position du widget."/>
       <!-- Links -->
       <String ID="STATIC_HUNTERPIE_WIKI" Name="Wiki"/>
@@ -732,8 +732,9 @@
       <String ID="STATIC_REJECT" Name="Rejeter"/>
       <String ID="STATIC_SETTINGS_LOAD" Name="Paramètres chargés"/>
       <String ID="STATIC_OPENDEFAULTBROWSER" Name="Ouvrir dans le navigateur"/>
-      <String ID="MESSAGE_BUILD_UPLOADED" Name="Build enregistré sur Honey Hunter World !"/>
-	  <String ID="MESSAGE_GEAR_EXPORTED" Name="Exported gear to ./DataExport!"/>
+      <String ID="STATIC_OPENFOLDER" Name="Ouvrir le dossier"/>
+	  <String ID="MESSAGE_BUILD_UPLOADED" Name="Build enregistré sur Honey Hunter World !"/>
+	  <String ID="MESSAGE_GEAR_EXPORTED" Name="Export./DataExport!"/>
     </Notifications>
     <RichPresence>
       <String ID="RPC_DESCRIPTION_IN_MAIN_MENU" Name="Dans le Menu Principal"/>

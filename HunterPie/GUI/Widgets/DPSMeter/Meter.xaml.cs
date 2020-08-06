@@ -2,8 +2,11 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Windows;
+using System.Windows.Forms;
 using System.Windows.Media;
 using HunterPie.Core;
+using HunterPie.Logger;
+using HunterPie.Memory;
 
 namespace HunterPie.GUI.Widgets.DPSMeter
 {
@@ -40,6 +43,7 @@ namespace HunterPie.GUI.Widgets.DPSMeter
         {
             if (Context == null) return;
             Timer.Text = Context.Epoch.ToString(@"hh\:mm\:ss\.ff");
+            Party.Visibility = Visibility.Visible;
         }
 
         public void SetContext(Game ctx)
@@ -51,12 +55,14 @@ namespace HunterPie.GUI.Widgets.DPSMeter
 
         public override void EnterWidgetDesignMode()
         {
+            ResizeMode = ResizeMode.CanResizeWithGrip;
             base.EnterWidgetDesignMode();
             RemoveWindowTransparencyFlag();
         }
 
         public override void LeaveWidgetDesignMode()
         {
+            ResizeMode = ResizeMode.NoResize;
             base.LeaveWidgetDesignMode();
             ApplyWindowTransparencyFlag();
             SaveSettings();
@@ -135,9 +141,10 @@ namespace HunterPie.GUI.Widgets.DPSMeter
 
         private void CreatePlayerComponents()
         {
+            return;
             for (int i = 0; i < Context.MaxSize; i++)
             {
-                Parts.PartyMember pMember = new Parts.PartyMember(UserSettings.PlayerConfig.Overlay.DPSMeter.PartyMembers[i].Color);
+                Parts.PartyMember pMember = new Parts.PartyMember(/*UserSettings.PlayerConfig.Overlay.DPSMeter.PartyMembers[i].Color*/);
                 pMember.SetContext(Context[i], Context);
                 Players.Add(pMember);
             }
@@ -154,6 +161,7 @@ namespace HunterPie.GUI.Widgets.DPSMeter
 
         public void DestroyPlayerComponents()
         {
+            return;
             foreach (Parts.PartyMember player in Players)
             {
                 player?.UnhookEvents();
@@ -169,6 +177,7 @@ namespace HunterPie.GUI.Widgets.DPSMeter
 
         private void SortPlayersByDamage()
         {
+            return;
             foreach (Parts.PartyMember Player in Players)
             {
                 Player.UpdateDamage();
@@ -222,10 +231,10 @@ namespace HunterPie.GUI.Widgets.DPSMeter
                 Party.Visibility = UserSettings.PlayerConfig.Overlay.DPSMeter.ShowOnlyTimer ? Visibility.Collapsed : Visibility.Visible;
                 if (UserSettings.PlayerConfig.Overlay.DPSMeter.ShowTimerInExpeditions)
                 {
-                    if (Context == null || Context.TotalDamage <= 0) Party.Visibility = Visibility.Collapsed;
+                    //if (Context == null || Context.TotalDamage <= 0) Party.Visibility = Visibility.Collapsed;
                 }
                 WidgetHasContent = true;
-                if (Context != null) WidgetHasContent = UserSettings.PlayerConfig.Overlay.DPSMeter.ShowTimerInExpeditions && !GameContext.Player.InPeaceZone;
+                //if (Context != null) WidgetHasContent = UserSettings.PlayerConfig.Overlay.DPSMeter.ShowTimerInExpeditions && !GameContext.Player.InPeaceZone;
                 if (Context != null) SortPlayersByDamage();
             }
             base.ApplySettings();
@@ -260,6 +269,17 @@ namespace HunterPie.GUI.Widgets.DPSMeter
             {
                 ScaleWidget(DefaultScaleX - 0.05, DefaultScaleY - 0.05);
             }
+        }
+
+        private void DamageMeter_SizeChanged(object sender, SizeChangedEventArgs e)
+        {
+            e.Handled = true;
+            if (e.NewSize.Width / (322 * DefaultScaleX) % 1 >= 0.5)
+            {
+                Width = (322 * DefaultScaleX) * (Math.Ceiling(e.NewSize.Width / (322 * DefaultScaleX)));
+            }
+            if (e.NewSize.Width < (322 * DefaultScaleX)) Width = (322 * DefaultScaleX);
+            MaxHeight = MinHeight = (TimerContainer.ActualHeight + Party.ActualHeight) * DefaultScaleY;
         }
     }
 }
