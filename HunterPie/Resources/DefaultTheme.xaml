@@ -3,6 +3,7 @@
                     xmlns:sys="clr-namespace:System;assembly=mscorlib"
                     xmlns:Custom="clr-namespace:HunterPie.GUIControls.Custom_Controls"
                     xmlns:Monster="clr-namespace:HunterPie.GUI.Widgets.Monster_Widget.Parts"
+                    xmlns:Overlay="clr-namespace:HunterPie.GUI"
                     >
     <!-- Fonts -->
     
@@ -707,5 +708,29 @@
                 </ControlTemplate>
             </Setter.Value>
         </Setter>
+    </Style>
+
+    <Style x:Key="OVERLAY_WIDGET_STYLE" TargetType="Overlay:Widget">
+        <Setter Property="BorderThickness" Value="1"/>
+        <Style.Triggers>
+            <DataTrigger Binding="{Binding RelativeSource={RelativeSource Self}, Path=IsDesignModeEnabled}" Value="True">
+                <Setter Property="Background">
+                    <Setter.Value>
+                        <SolidColorBrush Color="#80E6E6E6"/>
+                    </Setter.Value>
+                </Setter>
+                <Setter Property="Cursor" Value="SizeAll"/>
+                <Setter Property="BorderBrush" Value="#EDEDED"/>
+            </DataTrigger>
+            <DataTrigger Binding="{Binding RelativeSource={RelativeSource Self}, Path=IsDesignModeEnabled}" Value="False">
+                <Setter Property="Background">
+                    <Setter.Value>
+                        <SolidColorBrush Color="Transparent"/>
+                    </Setter.Value>
+                </Setter>
+                <Setter Property="Cursor" Value="SizeAll"/>
+                <Setter Property="BorderBrush" Value="Transparent"/>
+            </DataTrigger>
+        </Style.Triggers>
     </Style>
 </ResourceDictionary>

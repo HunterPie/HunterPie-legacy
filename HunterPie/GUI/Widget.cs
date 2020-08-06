@@ -1,7 +1,5 @@
 ﻿using System;
-using System.Diagnostics;
 using System.Windows;
-using System.Windows.Input;
 using System.Windows.Interop;
 using System.Windows.Media;
 using HunterPie.Memory;
@@ -29,6 +27,7 @@ namespace HunterPie.GUI
             set
             {
                 _InDesignMode = value;
+                IsDesignModeEnabled = value;
                 if (_InDesignMode) { EnterWidgetDesignMode(); }
                 else { LeaveWidgetDesignMode(); }
             }
@@ -36,6 +35,14 @@ namespace HunterPie.GUI
 
         public double BaseWidth { get; set; }
         public double BaseHeight { get; set; }
+
+        public bool IsDesignModeEnabled
+        {
+            get { return (bool)GetValue(IsDesignModeEnabledProperty); }
+            set { SetValue(IsDesignModeEnabledProperty, value); }
+        }
+        public static readonly DependencyProperty IsDesignModeEnabledProperty =
+            DependencyProperty.Register("IsDesignModeEnabled", typeof(bool), typeof(Widget));
 
         public string DesignModeDetails
         {
@@ -79,12 +86,16 @@ namespace HunterPie.GUI
             {
                 RenderingEventArgs args = (RenderingEventArgs)e;
                 // Dispatcher messes with the Render counter
+#if !DEBUG // Debug messes with the rendering time
                 if (args.RenderingTime.TotalMilliseconds - LastFrameRender > 0)
                 {
+
                     DesignModeDetails = $"{Left}x{Top} ({DefaultScaleX * 100:0.0}%) ({args.RenderingTime.TotalMilliseconds - LastFrameRender:0.##}ms)";
                     DesignModeDetailsVisibility = Visibility.Visible;
                     LastFrameRender = args.RenderingTime.TotalMilliseconds;
+
                 }
+#endif
             }
             else
             {
@@ -97,14 +108,6 @@ namespace HunterPie.GUI
         public virtual void EnterWidgetDesignMode()
         {
             ChangeVisibility();
-            SolidColorBrush BorderColorBrush = new SolidColorBrush((Color)ColorConverter.ConvertFromString("#ededed"));
-            SolidColorBrush BackgroundBrush = new SolidColorBrush((Color)ColorConverter.ConvertFromString("#80e6e6e6"));
-            BorderColorBrush.Freeze();
-            BackgroundBrush.Freeze();
-            Cursor = Cursors.SizeAll;
-            BorderBrush = BorderColorBrush;
-            BorderThickness = new Thickness(1, 1, 1, 1);
-            Background = BackgroundBrush;
             OldOpacity = Opacity;
             Opacity = 1;
         }
@@ -112,9 +115,6 @@ namespace HunterPie.GUI
         public virtual void LeaveWidgetDesignMode()
         {
             ChangeVisibility();
-            BorderBrush = null;
-            BorderThickness = new Thickness(0, 0, 0, 0);
-            Background = Brushes.Transparent;
             Opacity = OldOpacity;
         }
 
