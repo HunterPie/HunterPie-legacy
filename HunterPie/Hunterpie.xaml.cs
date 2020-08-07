@@ -33,7 +33,6 @@ namespace HunterPie
     {
         // TODO: Refactor all this messy code
 
-
         // Classes
         TrayIcon TrayIcon;
         readonly Game MonsterHunter = new Game();
