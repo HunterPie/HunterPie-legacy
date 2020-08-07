@@ -25,14 +25,11 @@ namespace HunterPie.GUI
 
         public void ToggleDesignMode()
         {
-            Stopwatch s = Stopwatch.StartNew();
             foreach (Widget widget in Widgets)
             {
                 widget.InDesignMode = !widget.InDesignMode;
             }
             if (!Widgets.First().InDesignMode) UserSettings.SaveNewConfig();
-            s.Stop();
-            Logger.Debugger.Log($"{s.ElapsedMilliseconds}");
         }
 
         private void SetRenderMode()

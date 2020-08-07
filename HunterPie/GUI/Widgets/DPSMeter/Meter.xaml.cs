@@ -291,7 +291,7 @@ namespace HunterPie.GUI.Widgets.DPSMeter
             }
             else if (newWidth > (322 * DefaultScaleX) * 4) temp = (322 * DefaultScaleX) * 4;
             Width = temp;
-            MaxHeight = MinHeight = (TimerContainer.ActualHeight + Party.ActualHeight) * DefaultScaleY;
+            MaxHeight = MinHeight = (TimerContainer.ActualHeight + (Party.ActualHeight == 0 ? 46 * 4 : Party.ActualHeight) + 2) * DefaultScaleY;
         }
     }
 }

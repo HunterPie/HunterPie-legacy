@@ -575,10 +575,17 @@
       <Part Name="MONSTER_PART_REMOVABLE_TAIL" IsRemovable="True">
         <Break Threshold="1"/>
       </Part>
-      <Part Name="MONSTER_PART_HEAD" Group="HEAD" TenderizeIds="0,3"/>
+      <Part Name="MONSTER_PART_HEAD" Group="HEAD" TenderizeIds="0,3">
+        <Break Threshold="1"/>
+        <Break Threshold="2"/>
+      </Part>
       <Part Name="MONSTER_PART_BODY" Group="BODY"/>
-      <Part Name="MONSTER_PART_LARM" Group="ARM" TenderizeIds="1,6"/>
-      <Part Name="MONSTER_PART_RARM" Group="ARM" TenderizeIds="4,7"/>
+      <Part Name="MONSTER_PART_LARM" Group="ARM" TenderizeIds="1,6">
+        <Break Threshold="2"/>
+      </Part>
+      <Part Name="MONSTER_PART_RARM" Group="ARM" TenderizeIds="4,7">
+        <Break Threshold="2"/>
+      </Part>
       <Part Name="MONSTER_PART_LLEG" Group="LEG"/>
       <Part Name="MONSTER_PART_RLEG" Group="LEG"/>
       <Part Name="MONSTER_PART_TAIL" Group="TAIL" TenderizeIds="2,5"/>
