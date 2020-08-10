@@ -85,6 +85,9 @@ namespace HunterPie.Core
                 public float Opacity { get; set; } = 1;
                 public bool UseLockonInsteadOfPin { get; set; } = false;
                 public bool EnableAilmentsBarColor { get; set; } = true;
+                public string AilmentBuildupTextFormat { get; set; } = "{Current}/{Max}";
+                public string AilmentTimerTextFormat { get; set; } = "{Current}/{Max}";
+                public string PartTextFormat { get; set; } = "{Current}/{Max}";
             }
 
             public class Harvestboxcomponent

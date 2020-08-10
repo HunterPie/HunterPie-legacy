@@ -529,6 +529,12 @@
       <String ID="ENABLE_MONSTER_WIDGET_DESC" Name="If enabled, the monster widget will be visible whenever it has content to show."/>
       <String ID="STATIC_MONSTER_HEALTH_STRING_FORMAT" Name="Health text format:"/>
       <String ID="STATIC_MONSTER_HEALTH_STRING_FORMAT_DESC" Name="Text format for the monster health bar."/>
+      <String ID="STATIC_MONSTER_AILMENT_BUILDUP_STRING_FORMAT" Name="Ailment buildup text format:"/>
+      <String ID="STATIC_MONSTER_AILMENT_BUILDUP_STRING_FORMAT_DESC" Name="Text format for the monster ailment buildup."/>
+      <String ID="STATIC_MONSTER_AILMENT_TIMER_STRING_FORMAT" Name="Ailment timer text format:"/>
+      <String ID="STATIC_MONSTER_AILMENT_TIMER_STRING_FORMAT_DESC" Name="Text format for the monster ailment timer."/>
+      <String ID="STATIC_MONSTER_PART_HEALTH_STRING_FORMAT" Name="Part health text format:"/>
+      <String ID="STATIC_MONSTER_PART_HEALTH_STRING_FORMAT_DESC" Name="Text format for the monster part health."/>
       <String ID="ENABLE_MONSTER_USE_LOCKON" Name="Use lockon instead of map pin to target monster"/>
       <String ID="ENABLE_MONSTER_USE_LOCKON_DESC" Name="If enabled, HunterPie will use the in-game monster lockon to select your target."/>
       <String ID="STATIC_MONSTER_BAR_MODE" Name="Monster Bar Mode"/>

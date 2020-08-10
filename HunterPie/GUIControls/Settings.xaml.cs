@@ -82,6 +82,9 @@ namespace HunterPie.GUIControls
             // Monsters
             settingsUI.switchEnableMonsterComponent.IsEnabled = settings.Overlay.MonstersComponent.Enabled;
             settingsUI.HealthTextFormat.Text = settings.Overlay.MonstersComponent.HealthTextFormat;
+            settingsUI.PartHealthTextFormat.Text = settings.Overlay.MonstersComponent.PartTextFormat;
+            settingsUI.AilmentBuildUpTextFormat.Text = settings.Overlay.MonstersComponent.AilmentBuildupTextFormat;
+            settingsUI.AilmentTimerTextFormat.Text = settings.Overlay.MonstersComponent.AilmentTimerTextFormat;
             settingsUI.switchUseLockon.IsEnabled = settings.Overlay.MonstersComponent.UseLockonInsteadOfPin;
             settingsUI.MonsterShowModeSelection.SelectedIndex = settings.Overlay.MonstersComponent.ShowMonsterBarMode;
             settingsUI.ToggleMonsterBarModeHotKey.HotKey = settings.Overlay.MonstersComponent.SwitchMonsterBarModeHotkey;
@@ -213,7 +216,6 @@ namespace HunterPie.GUIControls
             settings.Overlay.Enabled = settingsUI.switchEnableOverlay.IsEnabled;
             settings.Overlay.DesiredAnimationFrameRate = (int)settingsUI.DesiredFrameRateSlider.Value;
             settings.Overlay.GameScanDelay = (int)settingsUI.DesiredScanPerSecond.Value;
-            //settings.Overlay.ToggleDesignModeKey = (int)settingsUI.KeyChoosen;
             settings.Overlay.ToggleDesignKeybind = settingsUI.ToggleDesignHotkey.HotKey;
             settings.Overlay.ToggleOverlayKeybind = settingsUI.ToggleOverlayHotkey.HotKey;
             settings.Overlay.EnableHardwareAcceleration = settingsUI.switchHardwareAcceleration.IsEnabled;
@@ -224,6 +226,9 @@ namespace HunterPie.GUIControls
             // Monsters
             settings.Overlay.MonstersComponent.Enabled = settingsUI.switchEnableMonsterComponent.IsEnabled;
             settings.Overlay.MonstersComponent.HealthTextFormat = settingsUI.HealthTextFormat.Text;
+            settings.Overlay.MonstersComponent.PartTextFormat = settingsUI.PartHealthTextFormat.Text;
+            settings.Overlay.MonstersComponent.AilmentBuildupTextFormat = settingsUI.AilmentBuildUpTextFormat.Text;
+            settings.Overlay.MonstersComponent.AilmentTimerTextFormat = settingsUI.AilmentTimerTextFormat.Text;
             settings.Overlay.MonstersComponent.UseLockonInsteadOfPin = settingsUI.switchUseLockon.IsEnabled;
             settings.Overlay.MonstersComponent.ShowMonsterBarMode = (byte)settingsUI.MonsterShowModeSelection.SelectedIndex;
             settings.Overlay.MonstersComponent.SwitchMonsterBarModeHotkey = settingsUI.ToggleMonsterBarModeHotKey.HotKey;

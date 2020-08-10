@@ -23,11 +23,17 @@
     border-bottom-right-radius: 0px;
 }
 
-#MarkdownBox h1, h2, h3 {
+#MarkdownBox h1, h2, h3, h4 {
     padding-bottom: 2px;
     font-weight: 500;
     color: #85c3ed;
     
+}
+
+#MarkdownBox new {
+    color: #e63737;
+    font-size: 12px;
+    vertical-align: super;
 }
 
 #MarkdownBox strong {
@@ -140,4 +146,9 @@
 
 #MarkdownBox details summary {
     outline: 0;
+}
+
+#MarkdownBox hr {
+    border-color: #85c3ed;
+    border-top: 0px;
 }

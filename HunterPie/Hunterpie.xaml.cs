@@ -97,6 +97,7 @@ namespace HunterPie
 
             // Load custom theme and console colors
             LoadCustomTheme();
+            LoadOverwriteTheme();
             Debugger.LoadNewColors();
 
             AdministratorIconVisibility = IsRunningAsAdmin() ? Visibility.Visible : Visibility.Collapsed;
@@ -438,6 +439,22 @@ namespace HunterPie
             catch (Exception err)
             {
                 Debugger.Error($"{GStrings.GetLocalizationByXPath("/Console/String[@ID='MESSAGE_THEME_NOT_LOAD_ERROR']")}\n{err}");
+            }
+        }
+
+        private void LoadOverwriteTheme()
+        {
+            try
+            {
+                using (FileStream stream = new FileStream(Path.Combine(AppDomain.CurrentDomain.BaseDirectory, $@"HunterPie.Resources/UI/Overwrite.xaml"), FileMode.Open))
+                {
+                    XamlReader reader = new XamlReader();
+                    ResourceDictionary res = (ResourceDictionary)reader.LoadAsync(stream);
+                    Application.Current.Resources.MergedDictionaries.Add(res);
+                }
+            } catch (Exception err)
+            {
+                Debugger.Error(err);
             }
         }
 

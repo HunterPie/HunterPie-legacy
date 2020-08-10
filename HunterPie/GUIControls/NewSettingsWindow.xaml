@@ -63,7 +63,7 @@
                 </TabItem.Header>
                 <ScrollViewer>
                     <StackPanel>
-                        <custom:Switcher x:Name="switchEnableAutoUpdate" HorizontalAlignment="Center" MinWidth="500" RestartVisibility="Collapsed">
+                        <custom:Switcher x:Name="switchEnableAutoUpdate" HorizontalAlignment="Center" MinWidth="500" Margin="0,0,0,5" RestartVisibility="Collapsed">
                             <custom:Switcher.Text>
                                 <Binding Mode="OneTime" XPath="Settings/String[@ID='ENABLE_AUTOUPDATE']/@Name"/>
                             </custom:Switcher.Text>
@@ -71,7 +71,7 @@
                                 <Binding Mode="OneTime" XPath="Settings/String[@ID='ENABLE_AUTOUPDATE_DESC']/@Name"/>
                             </custom:Switcher.ToolTip>
                         </custom:Switcher>
-                        <custom:Switcher x:Name="switchEnableMinimizeToSystemTray" HorizontalAlignment="Center" MinWidth="500" RestartVisibility="Collapsed">
+                        <custom:Switcher x:Name="switchEnableMinimizeToSystemTray" HorizontalAlignment="Center" MinWidth="500" Margin="0,0,0,5" RestartVisibility="Collapsed">
                             <custom:Switcher.Text>
                                 <Binding Mode="OneTime" XPath="Settings/String[@ID='ENABLE_MINTOTRAY']/@Name"/>
                             </custom:Switcher.Text>
@@ -79,7 +79,7 @@
                                 <Binding Mode="OneTime" XPath="Settings/String[@ID='ENABLE_MINTOTRAY_DESC']/@Name"/>
                             </custom:Switcher.ToolTip>
                         </custom:Switcher>
-                        <custom:Switcher x:Name="switchEnableStartMinimized" HorizontalAlignment="Center" MinWidth="500" RestartVisibility="Collapsed">
+                        <custom:Switcher x:Name="switchEnableStartMinimized" HorizontalAlignment="Center" MinWidth="500" Margin="0,0,0,5" RestartVisibility="Collapsed">
                             <custom:Switcher.Text>
                                 <Binding Mode="OneTime" XPath="Settings/String[@ID='ENABLE_STARTMIN']/@Name"/>
                             </custom:Switcher.Text>
@@ -87,7 +87,7 @@
                                 <Binding Mode="OneTime" XPath="Settings/String[@ID='ENABLE_STARTMIN_DESC']/@Name"/>
                             </custom:Switcher.ToolTip>
                         </custom:Switcher>
-                        <custom:Switcher x:Name="switchEnableCloseWhenExit"  HorizontalAlignment="Center" MinWidth="500" RestartVisibility="Collapsed">
+                        <custom:Switcher x:Name="switchEnableCloseWhenExit"  HorizontalAlignment="Center" MinWidth="500" Margin="0,0,0,5" RestartVisibility="Collapsed">
                             <custom:Switcher.Text>
                                 <Binding Mode="OneTime" XPath="Settings/String[@ID='ENABLE_AUTOCLOSE']/@Name"/>
                             </custom:Switcher.Text>
@@ -111,7 +111,7 @@
                                 <Binding Mode="OneTime" XPath="Settings/String[@ID='STATIC_UPDATEBRANCH_DESC']/@Name"/>
                             </Canvas.ToolTip>
                         </Canvas>
-                        <Canvas Height="30" HorizontalAlignment="Center" MinWidth="500">
+                        <Canvas Height="30" HorizontalAlignment="Center" MinWidth="500" Margin="0,0,0,5">
                             <TextBlock Foreground="WhiteSmoke" Canvas.Top="2" FontFamily="Segoe UI Light">
                                 <TextBlock.Text>
                                     <Binding Mode="OneTime" XPath="Settings/String[@ID='STATIC_LANGUAGEFILE']/@Name"/>
@@ -122,7 +122,7 @@
                                 <Binding Mode="OneTime" XPath="Settings/String[@ID='STATIC_LANGUAGEFILE_DESC']/@Name"/>
                             </Canvas.ToolTip>
                         </Canvas>
-                        <Canvas Height="30" HorizontalAlignment="Center" MinWidth="500">
+                        <Canvas Height="30" HorizontalAlignment="Center" MinWidth="500" Margin="0,0,0,5">
                             <TextBlock Foreground="WhiteSmoke" Canvas.Top="2" FontFamily="Segoe UI Light">
                                 <TextBlock.Text>
                                     <Binding Mode="OneTime" XPath="Settings/String[@ID='STATIC_THEMEFILE']/@Name"/>
@@ -174,7 +174,7 @@
                 </TabItem.Header>
                 <ScrollViewer>
                     <StackPanel>
-                        <custom:Switcher x:Name="switchEnableRichPresence" HorizontalAlignment="Center" MinWidth="500" RestartVisibility="Collapsed">
+                        <custom:Switcher x:Name="switchEnableRichPresence" HorizontalAlignment="Center" MinWidth="500" Margin="0,0,0,5" RestartVisibility="Collapsed">
                             <custom:Switcher.Text>
                                 <Binding Mode="OneTime" XPath="Settings/String[@ID='ENABLE_RPC']/@Name"/>
                             </custom:Switcher.Text>
@@ -182,7 +182,7 @@
                                 <Binding Mode="OneTime" XPath="Settings/String[@ID='ENABLE_RPC_DESC']/@Name"/>
                             </custom:Switcher.ToolTip>
                         </custom:Switcher>
-                        <custom:Switcher x:Name="switchShowMonsterHealth" HorizontalAlignment="Center" MinWidth="500" RestartVisibility="Collapsed">
+                        <custom:Switcher x:Name="switchShowMonsterHealth" HorizontalAlignment="Center" MinWidth="500" Margin="0,0,0,5" RestartVisibility="Collapsed">
                             <custom:Switcher.Text>
                                 <Binding Mode="OneTime" XPath="Settings/String[@ID='ENABLE_RPC_HEALTH']/@Name"/>
                             </custom:Switcher.Text>
@@ -190,7 +190,7 @@
                                 <Binding Mode="OneTime" XPath="Settings/String[@ID='ENABLE_RPC_HEALTH_DESC']/@Name"/>
                             </custom:Switcher.ToolTip>
                         </custom:Switcher>
-                        <custom:Switcher x:Name="switchLetPeopleJoinSession" HorizontalAlignment="Center" MinWidth="500" RestartVisibility="Collapsed">
+                        <custom:Switcher x:Name="switchLetPeopleJoinSession" HorizontalAlignment="Center" MinWidth="500" Margin="0,0,0,5" RestartVisibility="Collapsed">
                             <custom:Switcher.Text>
                                 <Binding Mode="OneTime" XPath="Settings/String[@ID='ENABLE_PEOPLE_JOIN']/@Name"/>
                             </custom:Switcher.Text>
@@ -213,7 +213,7 @@
                 </TabItem.Header>
                 <ScrollViewer>
                     <StackPanel>
-                        <custom:Switcher x:Name="switchEnableOverlay"  HorizontalAlignment="Center" MinWidth="500" RestartVisibility="Collapsed">
+                        <custom:Switcher x:Name="switchEnableOverlay"  HorizontalAlignment="Center" MinWidth="500" Margin="0,0,0,5" RestartVisibility="Collapsed">
                             <custom:Switcher.Text>
                                 <Binding Mode="OneTime" XPath="Settings/String[@ID='ENABLE_OVERLAY']/@Name"/>
                             </custom:Switcher.Text>
@@ -221,7 +221,7 @@
                                 <Binding Mode="OneTime" XPath="Settings/String[@ID='ENABLE_OVERLAY_DESC']/@Name"/>
                             </custom:Switcher.ToolTip>
                         </custom:Switcher>
-                        <custom:Switcher x:Name="switchHideWhenUnfocused" HorizontalAlignment="Center" MinWidth="500" RestartVisibility="Collapsed">
+                        <custom:Switcher x:Name="switchHideWhenUnfocused" HorizontalAlignment="Center" MinWidth="500" Margin="0,0,0,5" RestartVisibility="Collapsed">
                             <custom:Switcher.Text>
                                 <Binding Mode="OneTime" XPath="Settings/String[@ID='ENABLE_HIDE_WHEN_UNFOCUS']/@Name"/>
                             </custom:Switcher.Text>
@@ -229,7 +229,7 @@
                                 <Binding Mode="OneTime" XPath="Settings/String[@ID='ENABLE_HIDE_WHEN_UNFOCUS']/@Name"/>
                             </custom:Switcher.ToolTip>
                         </custom:Switcher>
-                        <custom:Switcher x:Name="switchHardwareAcceleration" HorizontalAlignment="Center" MinWidth="500" RestartVisibility="Visible">
+                        <custom:Switcher x:Name="switchHardwareAcceleration" HorizontalAlignment="Center" MinWidth="500" Margin="0,0,0,5" RestartVisibility="Visible">
                             <custom:Switcher.Text>
                                 <Binding Mode="OneTime" XPath="Settings/String[@ID='ENABLE_HARDWARE_ACCELERATION']/@Name"/>
                             </custom:Switcher.Text>
@@ -237,7 +237,7 @@
                                 <Binding Mode="OneTime" XPath="Settings/String[@ID='ENABLE_HARDWARE_ACCELERATION_DESC']/@Name"/>
                             </custom:Switcher.ToolTip>
                         </custom:Switcher>
-                        <StackPanel Orientation="Horizontal" Height="28" ToolTip="{Binding Mode=OneTime, XPath=/Strings/Client/Settings/String[@ID\=\'STATIC_ANIMATION_FPS_DESC\']/@Name}" HorizontalAlignment="Center" MinWidth="500">
+                        <StackPanel Orientation="Horizontal" Height="28" ToolTip="{Binding Mode=OneTime, XPath=/Strings/Client/Settings/String[@ID\=\'STATIC_ANIMATION_FPS_DESC\']/@Name}" HorizontalAlignment="Center" MinWidth="500" Margin="0,0,0,5">
                             <TextBlock Foreground="WhiteSmoke" FontFamily="Segoe UI Light">
                                 <TextBlock.Text>
                                     <Binding Mode="OneTime" XPath="Settings/String[@ID='STATIC_ANIMATION_FPS']/@Name"/>
@@ -247,7 +247,7 @@
                             <TextBlock Text="{Binding Value, ElementName=DesiredFrameRateSlider}" FontFamily="Segoe UI Light" Foreground="WhiteSmoke" Canvas.Left="366" Canvas.Top="4"/>
                             <TextBlock TextWrapping="Wrap" Text="{Binding Mode=OneTime, XPath=/Strings/Client/Settings/String[@ID\=\'STATIC_REQUIRES_RESTART\']/@Name}" Foreground="#FFF1F1F1" FontFamily="Segoe UI Light" TextAlignment="Center" HorizontalAlignment="Left" Padding="0,6,0,0" Canvas.Left="383" Canvas.Top="4" FontSize="10"/>
                         </StackPanel>
-                        <StackPanel Orientation="Horizontal" Height="28" ToolTip="{Binding Mode=OneTime, XPath=/Strings/Client/Settings/String[@ID\=\'STATIC_GAME_SCAN_DELAY_DESC\']/@Name}" HorizontalAlignment="Center" MinWidth="500">
+                        <StackPanel Orientation="Horizontal" Height="28" ToolTip="{Binding Mode=OneTime, XPath=/Strings/Client/Settings/String[@ID\=\'STATIC_GAME_SCAN_DELAY_DESC\']/@Name}" HorizontalAlignment="Center" MinWidth="500" Margin="0,0,0,5">
                             <TextBlock Foreground="WhiteSmoke" FontFamily="Segoe UI Light">
                                 <TextBlock.Text>
                                     <Binding Mode="OneTime" XPath="Settings/String[@ID='STATIC_GAME_SCAN_DELAY']/@Name"/>
@@ -256,9 +256,9 @@
                             <Slider x:Name="DesiredScanPerSecond" Style="{StaticResource Horizontal_Slider}" Foreground="#FF3C3C3C" Maximum="1000" Minimum="1" SmallChange="1" Value="150" Width="190" Canvas.Left="164" Canvas.Top="5" AutoToolTipPlacement="TopLeft" IsSnapToTickEnabled="True" Margin="8,0" />
                             <TextBlock Text="{Binding Value, ElementName=DesiredScanPerSecond}" FontFamily="Segoe UI Light" Foreground="WhiteSmoke" Canvas.Left="366" Canvas.Top="4"/>
                         </StackPanel>
-                        <custom:CHotKey x:Name="ToggleOverlayHotkey" Text="{Binding Mode=OneTime, XPath=/Strings/Client/Settings/String[@ID\=\'STATIC_TOGGLE_OVERLAY\']/@Name}" MinWidth="500" HorizontalAlignment="Center" ToolTip="{Binding Mode=OneTime, XPath=/Strings/Client/Settings/String[@ID\=\'STATIC_TOGGLE_OVERLAY_DESC\']/@Name}"/>
-                        <custom:CHotKey x:Name="ToggleDesignHotkey" Text="{Binding Mode=OneTime, XPath=/Strings/Client/Settings/String[@ID\=\'STATIC_TOGGLE_DESIGN\']/@Name}" MinWidth="500" HorizontalAlignment="Center" ToolTip="{Binding Mode=OneTime, XPath=/Strings/Client/Settings/String[@ID\=\'STATIC_TOGGLE_DESIGN_DESC\']/@Name}"/>
-                        <custom:PositionControl x:Name="OverlayPosition" HorizontalAlignment="Center" MinWidth="500" Height="38">
+                        <custom:CHotKey x:Name="ToggleOverlayHotkey" Text="{Binding Mode=OneTime, XPath=/Strings/Client/Settings/String[@ID\=\'STATIC_TOGGLE_OVERLAY\']/@Name}" MinWidth="500" Margin="0,0,0,5" HorizontalAlignment="Center" ToolTip="{Binding Mode=OneTime, XPath=/Strings/Client/Settings/String[@ID\=\'STATIC_TOGGLE_OVERLAY_DESC\']/@Name}"/>
+                        <custom:CHotKey x:Name="ToggleDesignHotkey" Text="{Binding Mode=OneTime, XPath=/Strings/Client/Settings/String[@ID\=\'STATIC_TOGGLE_DESIGN\']/@Name}" MinWidth="500" Margin="0,0,0,5" HorizontalAlignment="Center" ToolTip="{Binding Mode=OneTime, XPath=/Strings/Client/Settings/String[@ID\=\'STATIC_TOGGLE_DESIGN_DESC\']/@Name}"/>
+                        <custom:PositionControl x:Name="OverlayPosition" HorizontalAlignment="Center" MinWidth="500" Margin="0,0,0,5" Height="38">
                             <custom:PositionControl.ToolTip>
                                 <Binding Mode="OneTime" XPath="Settings/String[@ID='STATIC_OVERLAY_POSITION_DESC']/@Name"/>
                             </custom:PositionControl.ToolTip>
@@ -279,7 +279,7 @@
                 </TabItem.Header>
                 <ScrollViewer>
                     <StackPanel>
-                        <custom:Switcher x:Name="switchEnableMonsterComponent" HorizontalAlignment="Center" MinWidth="500" RestartVisibility="Collapsed">
+                        <custom:Switcher x:Name="switchEnableMonsterComponent" HorizontalAlignment="Center" MinWidth="500" Margin="0,0,0,5" RestartVisibility="Collapsed">
                             <custom:Switcher.Text>
                                 <Binding Mode="OneTime" XPath="Settings/String[@ID='ENABLE_MONSTER_WIDGET']/@Name"/>
                             </custom:Switcher.Text>
@@ -287,11 +287,23 @@
                                 <Binding Mode="OneTime" XPath="Settings/String[@ID='ENABLE_MONSTER_WIDGET_DESC']/@Name"/>
                             </custom:Switcher.ToolTip>
                         </custom:Switcher>
-                        <StackPanel Orientation="Horizontal" MinWidth="500" HorizontalAlignment="Center" ToolTip="{Binding Mode=OneTime, XPath=/Strings/Client/Settings/String[@ID\=\'STATIC_MONSTER_HEALTH_STRING_FORMAT_DESC\']/@Name}">
+                        <StackPanel Orientation="Horizontal" MinWidth="500" Margin="0,0,0,5" HorizontalAlignment="Center" ToolTip="{Binding Mode=OneTime, XPath=/Strings/Client/Settings/String[@ID\=\'STATIC_MONSTER_HEALTH_STRING_FORMAT_DESC\']/@Name}">
                             <TextBlock TextWrapping="Wrap" Text="{Binding Mode=OneTime, XPath=/Strings/Client/Settings/String[@ID\=\'STATIC_MONSTER_HEALTH_STRING_FORMAT\']/@Name}" FontFamily="Segoe UI Light" Foreground="#FFF1F1F1" Canvas.Left="320" Canvas.Top="3" FontSize="16" Padding="0,0,5,0"/>
-                            <TextBox x:Name="HealthTextFormat" TextWrapping="Wrap" Background="{x:Null}" Foreground="#FF9E9D9D" BorderBrush="#FFABADB3" BorderThickness="0,0,0,1" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" HorizontalAlignment="Right" Width="341" Canvas.Left="158" Canvas.Top="35" SelectionBrush="#FFD31D1D"/>
+                            <TextBox x:Name="HealthTextFormat" TextWrapping="Wrap" Background="{x:Null}" Foreground="#FF9E9D9D" BorderBrush="#FFABADB3" BorderThickness="0,0,0,1" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" HorizontalAlignment="Right" Width="341" Canvas.Left="158" Canvas.Top="35" SelectionBrush="#FFD31D1D" />
                         </StackPanel>
-                        <StackPanel Orientation="Horizontal" Height="28" ToolTip="{Binding Mode=OneTime, XPath=/Strings/Client/Settings/String[@ID\=\'STATIC_MONSTER_BAR_MODE_DESC\']/@Name}" HorizontalAlignment="Center" MinWidth="500">
+                        <StackPanel Orientation="Horizontal" MinWidth="500" Margin="0,0,0,5" HorizontalAlignment="Center" ToolTip="{Binding Mode=OneTime, XPath=/Strings/Client/Settings/String[@ID\=\'STATIC_MONSTER_PART_HEALTH_STRING_FORMAT_DESC\']/@Name}">
+                            <TextBlock TextWrapping="Wrap" Text="{Binding Mode=OneTime, XPath=/Strings/Client/Settings/String[@ID\=\'STATIC_MONSTER_PART_HEALTH_STRING_FORMAT\']/@Name}" FontFamily="Segoe UI Light" Foreground="#FFF1F1F1" Canvas.Left="320" Canvas.Top="3" FontSize="16" Padding="0,0,5,0"/>
+                            <TextBox x:Name="PartHealthTextFormat" TextWrapping="Wrap" Background="{x:Null}" Foreground="#FF9E9D9D" BorderBrush="#FFABADB3" BorderThickness="0,0,0,1" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" HorizontalAlignment="Right" Width="341" Canvas.Left="158" Canvas.Top="35" SelectionBrush="#FFD31D1D" />
+                        </StackPanel>
+                        <StackPanel Orientation="Horizontal" MinWidth="500" Margin="0,0,0,5" HorizontalAlignment="Center" ToolTip="{Binding Mode=OneTime, XPath=/Strings/Client/Settings/String[@ID\=\'STATIC_MONSTER_AILMENT_BUILDUP_STRING_FORMAT_DESC\']/@Name}">
+                            <TextBlock TextWrapping="Wrap" Text="{Binding Mode=OneTime, XPath=/Strings/Client/Settings/String[@ID\=\'STATIC_MONSTER_AILMENT_BUILDUP_STRING_FORMAT\']/@Name}" FontFamily="Segoe UI Light" Foreground="#FFF1F1F1" Canvas.Left="320" Canvas.Top="3" FontSize="16" Padding="0,0,5,0"/>
+                            <TextBox x:Name="AilmentBuildUpTextFormat" TextWrapping="Wrap" Background="{x:Null}" Foreground="#FF9E9D9D" BorderBrush="#FFABADB3" BorderThickness="0,0,0,1" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" HorizontalAlignment="Right" Width="341" Canvas.Left="158" Canvas.Top="35" SelectionBrush="#FFD31D1D"/>
+                        </StackPanel>
+                        <StackPanel Orientation="Horizontal" MinWidth="500" Margin="0,0,0,5" HorizontalAlignment="Center" ToolTip="{Binding Mode=OneTime, XPath=/Strings/Client/Settings/String[@ID\=\'STATIC_MONSTER_AILMENT_TIMER_STRING_FORMAT_DESC\']/@Name}">
+                            <TextBlock TextWrapping="Wrap" Text="{Binding Mode=OneTime, XPath=/Strings/Client/Settings/String[@ID\=\'STATIC_MONSTER_AILMENT_TIMER_STRING_FORMAT\']/@Name}" FontFamily="Segoe UI Light" Foreground="#FFF1F1F1" Canvas.Left="320" Canvas.Top="3" FontSize="16" Padding="0,0,5,0"/>
+                            <TextBox x:Name="AilmentTimerTextFormat" TextWrapping="Wrap" Background="{x:Null}" Foreground="#FF9E9D9D" BorderBrush="#FFABADB3" BorderThickness="0,0,0,1" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" HorizontalAlignment="Right" Width="341" Canvas.Left="158" Canvas.Top="35" SelectionBrush="#FFD31D1D"/>
+                        </StackPanel>
+                        <StackPanel Orientation="Horizontal" Height="28" ToolTip="{Binding Mode=OneTime, XPath=/Strings/Client/Settings/String[@ID\=\'STATIC_MONSTER_BAR_MODE_DESC\']/@Name}" HorizontalAlignment="Center" MinWidth="500" Margin="0,0,0,5">
                             <TextBlock FontFamily="Segoe UI Light" Foreground="WhiteSmoke" Canvas.Top="3" Padding="0,0,5,0">
                                 <TextBlock.Text>
                                     <Binding Mode="OneTime" XPath="Settings/String[@ID='STATIC_MONSTER_BAR_MODE']/@Name"/>
@@ -301,14 +313,14 @@
 
                             </ComboBox>
                         </StackPanel>
-                        <custom:CHotKey x:Name="ToggleMonsterBarModeHotKey" Text="{Binding Mode=OneTime, XPath=/Strings/Client/Settings/String[@ID\=\'STATIC_MONSTER_BAR_MODE_HOTKEY\']/@Name}" ToolTip="{Binding Mode=OneTime, XPath=/Strings/Client/Settings/String[@ID\=\'STATIC_MONSTER_BAR_MODE_HOTKEY\']/@Name}" MinWidth="500" HorizontalAlignment="Center"/>
-                        <StackPanel Visibility="Collapsed" Orientation="Horizontal" Height="28" ToolTip="{Binding Mode=OneTime, XPath=/Strings/Client/Settings/String[@ID\=\'STATIC_MONSTER_BAR_DOCK_DESC\']/@Name}" HorizontalAlignment="Center" MinWidth="500">
+                        <custom:CHotKey x:Name="ToggleMonsterBarModeHotKey" Text="{Binding Mode=OneTime, XPath=/Strings/Client/Settings/String[@ID\=\'STATIC_MONSTER_BAR_MODE_HOTKEY\']/@Name}" ToolTip="{Binding Mode=OneTime, XPath=/Strings/Client/Settings/String[@ID\=\'STATIC_MONSTER_BAR_MODE_HOTKEY\']/@Name}" MinWidth="500" Margin="0,0,0,5" HorizontalAlignment="Center"/>
+                        <StackPanel Visibility="Collapsed" Orientation="Horizontal" Height="28" ToolTip="{Binding Mode=OneTime, XPath=/Strings/Client/Settings/String[@ID\=\'STATIC_MONSTER_BAR_DOCK_DESC\']/@Name}" HorizontalAlignment="Center" MinWidth="500" Margin="0,0,0,5">
                             <TextBlock Text="{Binding Mode=OneTime, XPath=/Strings/Client/Settings/String[@ID\=\'STATIC_MONSTER_BAR_DOCK\']/@Name}" FontFamily="Segoe UI Light" Foreground="WhiteSmoke" Canvas.Top="3"/>
                             <ComboBox x:Name="MonsterBarDock" Style="{StaticResource ComboBoxFlatStyle}" IsReadOnly="True" Cursor="Hand" HorizontalAlignment="Center" FontSize="14" Foreground="#FFF9F9F9" SelectedIndex="0" Canvas.Left="141" Canvas.Top="2" Width="234">
                             </ComboBox>
                         </StackPanel>
-                        <custom:Switcher x:Name="switchUseLockon" Text="{Binding Mode=OneTime, XPath=/Strings/Client/Settings/String[@ID\=\'ENABLE_MONSTER_USE_LOCKON\']/@Name}" MinWidth="500" ToolTip="{Binding Mode=OneTime, XPath=/Strings/Client/Settings/String[@ID\=\'ENABLE_MONSTER_USE_LOCKON_DESC\']/@Name}" HorizontalAlignment="Center" RestartVisibility="Collapsed"/>
-                        <custom:Switcher x:Name="switchEnableMonsterWeakness" HorizontalAlignment="Center" MinWidth="500" RestartVisibility="Collapsed">
+                        <custom:Switcher x:Name="switchUseLockon" Text="{Binding Mode=OneTime, XPath=/Strings/Client/Settings/String[@ID\=\'ENABLE_MONSTER_USE_LOCKON\']/@Name}" MinWidth="500" Margin="0,0,0,5" ToolTip="{Binding Mode=OneTime, XPath=/Strings/Client/Settings/String[@ID\=\'ENABLE_MONSTER_USE_LOCKON_DESC\']/@Name}" HorizontalAlignment="Center" RestartVisibility="Collapsed"/>
+                        <custom:Switcher x:Name="switchEnableMonsterWeakness" HorizontalAlignment="Center" MinWidth="500" Margin="0,0,0,5" RestartVisibility="Collapsed">
                             <custom:Switcher.Text>
                                 <Binding Mode="OneTime" XPath="Settings/String[@ID='ENABLE_MONSTER_WEAKNESS']/@Name"/>
                             </custom:Switcher.Text>
@@ -316,7 +328,7 @@
                                 <Binding Mode="OneTime" XPath="Settings/String[@ID='ENABLE_MONSTER_WEAKNESS_DESC']/@Name"/>
                             </custom:Switcher.ToolTip>
                         </custom:Switcher>
-                        <custom:Switcher x:Name="switchEnableHideUnactiveParts" HorizontalAlignment="Center" MinWidth="500" RestartVisibility="Collapsed">
+                        <custom:Switcher x:Name="switchEnableHideUnactiveParts" HorizontalAlignment="Center" MinWidth="500" Margin="0,0,0,5" RestartVisibility="Collapsed">
                             <custom:Switcher.Text>
                                 <Binding Mode="OneTime" XPath="Settings/String[@ID='ENABLE_HIDE_INACTIVE_PARTS']/@Name"/>
                             </custom:Switcher.Text>
@@ -324,7 +336,7 @@
                                 <Binding Mode="OneTime" XPath="Settings/String[@ID='ENABLE_HIDE_INACTIVE_PARTS_DESC']/@Name"/>
                             </custom:Switcher.ToolTip>
                         </custom:Switcher>
-                        <custom:Switcher x:Name="switchEnableRemovableParts" HorizontalAlignment="Center" MinWidth="500" RestartVisibility="Collapsed">
+                        <custom:Switcher x:Name="switchEnableRemovableParts" HorizontalAlignment="Center" MinWidth="500" Margin="0,0,0,5" RestartVisibility="Collapsed">
                             <custom:Switcher.Text>
                                 <Binding Mode="OneTime" XPath="Settings/String[@ID='ENABLE_BREAKABLE_PARTS']/@Name"/>
                             </custom:Switcher.Text>
@@ -332,8 +344,8 @@
                                 <Binding Mode="OneTime" XPath="Settings/String[@ID='ENABLE_BREAKABLE_PARTS_DESC']/@Name"/>
                             </custom:Switcher.ToolTip>
                         </custom:Switcher>
-                        <custom:Switcher x:Name="switchEnableAilmentsColor" Text="{Binding Mode=OneTime, XPath=/Strings/Client/Settings/String[@ID\=\'ENABLE_AILMENTS_BAR_COLOR\']/@Name, FallbackValue='Enable ailments bar color'}" ToolTip="{Binding Mode=OneTime, XPath=/Strings/Client/Settings/String[@ID\=\'ENABLE_AILMENTS_BAR_COLOR_DESC\']/@Name}" HorizontalAlignment="Center" MinWidth="500" RestartVisibility="Collapsed"/>
-                        <custom:Switcher x:Name="switchEnableAilments" HorizontalAlignment="Center" MinWidth="500" RestartVisibility="Collapsed" MouseLeftButtonDown="SwitchEnableAilments_MouseDown">
+                        <custom:Switcher x:Name="switchEnableAilmentsColor" Text="{Binding Mode=OneTime, XPath=/Strings/Client/Settings/String[@ID\=\'ENABLE_AILMENTS_BAR_COLOR\']/@Name, FallbackValue='Enable ailments bar color'}" ToolTip="{Binding Mode=OneTime, XPath=/Strings/Client/Settings/String[@ID\=\'ENABLE_AILMENTS_BAR_COLOR_DESC\']/@Name}" HorizontalAlignment="Center" MinWidth="500" Margin="0,0,0,5" RestartVisibility="Collapsed"/>
+                        <custom:Switcher x:Name="switchEnableAilments" HorizontalAlignment="Center" MinWidth="500" Margin="0,0,0,5" RestartVisibility="Collapsed" MouseLeftButtonDown="SwitchEnableAilments_MouseDown">
                             <custom:Switcher.Text>
                                 <Binding Mode="OneTime" XPath="Settings/String[@ID='ENABLE_AILMENTS']/@Name"/>
                             </custom:Switcher.Text>
@@ -452,7 +464,7 @@
                                 </StackPanel.Style>
                             </StackPanel>
                         </ScrollViewer>
-                        <custom:Switcher x:Name="switchEnableParts" HorizontalAlignment="Center" MinWidth="500" MouseDown="SwitchEnableParts_MouseDown" RestartVisibility="Collapsed">
+                        <custom:Switcher x:Name="switchEnableParts" HorizontalAlignment="Center" MinWidth="500" Margin="0,0,0,5" MouseDown="SwitchEnableParts_MouseDown" RestartVisibility="Collapsed">
                             <custom:Switcher.Text>
                                 <Binding Mode="OneTime" XPath="Settings/String[@ID='ENABLE_MONSTER_PARTS']/@Name"/>
                             </custom:Switcher.Text>
@@ -586,23 +598,23 @@
                                 </StackPanel.Style>
                             </StackPanel>
                         </ScrollViewer>
-                        <StackPanel Orientation="Horizontal" Height="28" ToolTip="{Binding Mode=OneTime, XPath=/Strings/Client/Settings/String[@ID\=\'STATIC_MONSTER_MAX_PARTS_DESC\']/@Name}" HorizontalAlignment="Center" MinWidth="500">
+                        <StackPanel Orientation="Horizontal" Height="28" ToolTip="{Binding Mode=OneTime, XPath=/Strings/Client/Settings/String[@ID\=\'STATIC_MONSTER_MAX_PARTS_DESC\']/@Name}" HorizontalAlignment="Center" MinWidth="500" Margin="0,0,0,5">
                             <TextBlock Text="{Binding Mode=OneTime, XPath=/Strings/Client/Settings/String[@ID\=\'STATIC_MONSTER_MAX_PARTS\']/@Name}" FontFamily="Segoe UI Light" Foreground="WhiteSmoke" Canvas.Top="3"/>
                             <Slider x:Name="MaxNumberOfPartsAtOnce" Style="{StaticResource Horizontal_Slider}" Foreground="#FF3C3C3C" Maximum="16" Minimum="1" SmallChange="1" Value="8" Width="190" Canvas.Left="249" Canvas.Top="6" AutoToolTipPlacement="TopLeft" IsSnapToTickEnabled="True" Margin="4,0" />
                             <TextBlock Text="{Binding Value, ElementName=MaxNumberOfPartsAtOnce}" FontFamily="Segoe UI Light" FontSize="16" Foreground="WhiteSmoke" Canvas.Left="446" Canvas.Top="4"/>
                         </StackPanel>
-                        <StackPanel Orientation="Horizontal" Height="28" ToolTip="{Binding Mode=OneTime, XPath=/Strings/Client/Settings/String[@ID\=\'STATIC_MONSTER_MAX_COLUMNS_DESC\']/@Name}" HorizontalAlignment="Center" MinWidth="500">
+                        <StackPanel Orientation="Horizontal" Height="28" ToolTip="{Binding Mode=OneTime, XPath=/Strings/Client/Settings/String[@ID\=\'STATIC_MONSTER_MAX_COLUMNS_DESC\']/@Name}" HorizontalAlignment="Center" MinWidth="500" Margin="0,0,0,5">
                             <TextBlock Text="{Binding Mode=OneTime, XPath=/Strings/Client/Settings/String[@ID\=\'STATIC_MONSTER_MAX_COLUMNS\']/@Name}" Foreground="WhiteSmoke" Canvas.Top="3" FontFamily="Segoe UI Light"/>
                             <Slider x:Name="MaxColumnsOfParts" Style="{StaticResource Horizontal_Slider}" Foreground="#FF3C3C3C" Maximum="4" Minimum="1" SmallChange="1" Value="1" Width="190" Canvas.Left="249" Canvas.Top="6" AutoToolTipPlacement="TopLeft" IsSnapToTickEnabled="True" Margin="4,0" />
                             <TextBlock Text="{Binding Value, ElementName=MaxColumnsOfParts}" FontFamily="Segoe UI Light" FontSize="16" Foreground="WhiteSmoke" Canvas.Left="446" Canvas.Top="4"/>
                         </StackPanel>
-                        <StackPanel Orientation="Horizontal" Height="28" ToolTip="{Binding Mode=OneTime, XPath=/Strings/Client/Settings/String[@ID\=\'STATIC_MONSTER_PART_DELAY_DESC\']/@Name}" HorizontalAlignment="Center" MinWidth="500">
+                        <StackPanel Orientation="Horizontal" Height="28" ToolTip="{Binding Mode=OneTime, XPath=/Strings/Client/Settings/String[@ID\=\'STATIC_MONSTER_PART_DELAY_DESC\']/@Name}" HorizontalAlignment="Center" MinWidth="500" Margin="0,0,0,5">
                             <TextBlock Text="{Binding Mode=OneTime, XPath=/Strings/Client/Settings/String[@ID\=\'STATIC_MONSTER_PART_DELAY\']/@Name}" Foreground="WhiteSmoke" Canvas.Top="3" FontFamily="Segoe UI Light"/>
                             <Slider x:Name="HideSeconds" Style="{StaticResource Horizontal_Slider}" Foreground="#FF3C3C3C" Maximum="300" Minimum="1" SmallChange="1" Value="12" Width="190" Canvas.Left="249" Canvas.Top="6" AutoToolTipPlacement="TopLeft" IsSnapToTickEnabled="True" Margin="4,0" />
                             <TextBlock Text="{Binding Path=Value, ElementName=HideSeconds, Converter={StaticResource StaticSecondsConverter}}" FontFamily="Segoe UI Light" FontSize="16" Foreground="WhiteSmoke" Canvas.Left="446" Canvas.Top="4"/>
                         </StackPanel>
-                        <custom:MinimalSlider x:Name="MonsterComponentOpacity" Text="{Binding XPath=/Strings/Client/Settings/String[@ID\=\'STATIC_OPACITY\']/@Name}" MinChange="0.1" MinValue="0" MaxValue="1" ValueText="{Binding Value, ElementName=MonsterComponentOpacity, StringFormat=\{0:P\}}" Foreground="WhiteSmoke" FontFamily="Segoe UI Light" MinWidth="500" HorizontalAlignment="Center"/>
-                        <custom:PositionControl x:Name="MonstersPosition" HorizontalAlignment="Center" MinWidth="500" Height="38" ToolTip="{Binding Mode=OneTime, XPath=/Strings/Client/Settings/String[@ID\=\'STATIC_MONSTER_POSITION_DESC\']/@Name}"/>
+                        <custom:MinimalSlider x:Name="MonsterComponentOpacity" Text="{Binding XPath=/Strings/Client/Settings/String[@ID\=\'STATIC_OPACITY\']/@Name}" MinChange="0.1" MinValue="0" MaxValue="1" ValueText="{Binding Value, ElementName=MonsterComponentOpacity, StringFormat=\{0:P\}}" Foreground="WhiteSmoke" FontFamily="Segoe UI Light" MinWidth="500" Margin="0,0,0,5" HorizontalAlignment="Center"/>
+                        <custom:PositionControl x:Name="MonstersPosition" HorizontalAlignment="Center" MinWidth="500" Margin="0,0,0,5" Height="38" ToolTip="{Binding Mode=OneTime, XPath=/Strings/Client/Settings/String[@ID\=\'STATIC_MONSTER_POSITION_DESC\']/@Name}"/>
                     </StackPanel>
                 </ScrollViewer>
             </TabItem>
@@ -619,7 +631,7 @@
                 </TabItem.Header>
                 <ScrollViewer>
                     <StackPanel>
-                        <custom:Switcher x:Name="switchEnableHarvestBox" MinWidth="500" HorizontalAlignment="Center" RestartVisibility="Collapsed">
+                        <custom:Switcher x:Name="switchEnableHarvestBox" MinWidth="500" Margin="0,0,0,5" HorizontalAlignment="Center" RestartVisibility="Collapsed">
                             <custom:Switcher.Text>
                                 <Binding Mode="OneTime" XPath="Settings/String[@ID='ENABLE_HARVEST_BOX']/@Name"/>
                             </custom:Switcher.Text>
@@ -627,7 +639,7 @@
                                 <Binding Mode="OneTime" XPath="Settings/String[@ID='ENABLE_HARVEST_BOX_DESC']/@Name"/>
                             </custom:Switcher.ToolTip>
                         </custom:Switcher>
-                        <custom:Switcher x:Name="switchAlwaysShow" MinWidth="500" HorizontalAlignment="Center" RestartVisibility="Collapsed">
+                        <custom:Switcher x:Name="switchAlwaysShow" MinWidth="500" Margin="0,0,0,5" HorizontalAlignment="Center" RestartVisibility="Collapsed">
                             <custom:Switcher.Text>
                                 <Binding Mode="OneTime" XPath="Settings/String[@ID='ENABLE_HARVEST_BOX_EVERYWHERE']/@Name"/>
                             </custom:Switcher.Text>
@@ -635,7 +647,7 @@
                                 <Binding Mode="OneTime" XPath="Settings/String[@ID='ENABLE_HARVEST_BOX_EVERYWHERE_DESC']/@Name"/>
                             </custom:Switcher.ToolTip>
                         </custom:Switcher>
-                        <custom:Switcher x:Name="switchShowSteamTracker" MinWidth="500" HorizontalAlignment="Center" RestartVisibility="Collapsed">
+                        <custom:Switcher x:Name="switchShowSteamTracker" MinWidth="500" Margin="0,0,0,5" HorizontalAlignment="Center" RestartVisibility="Collapsed">
                             <custom:Switcher.Text>
                                 <Binding Mode="OneTime" XPath="Settings/String[@ID='ENABLE_STEAM_TRACKER']/@Name"/>
                             </custom:Switcher.Text>
@@ -643,7 +655,7 @@
                                 <Binding Mode="OneTime" XPath="Settings/String[@ID='ENABLE_STEAM_TRACKER_DESC']/@Name"/>
                             </custom:Switcher.ToolTip>
                         </custom:Switcher>
-                        <custom:Switcher x:Name="switchShowArgosyTracker" MinWidth="500" HorizontalAlignment="Center" RestartVisibility="Collapsed">
+                        <custom:Switcher x:Name="switchShowArgosyTracker" MinWidth="500" Margin="0,0,0,5" HorizontalAlignment="Center" RestartVisibility="Collapsed">
                             <custom:Switcher.Text>
                                 <Binding Mode="OneTime" XPath="Settings/String[@ID='ENABLE_ARGOSY_TRACKER']/@Name"/>
                             </custom:Switcher.Text>
@@ -651,7 +663,7 @@
                                 <Binding Mode="OneTime" XPath="Settings/String[@ID='ENABLE_ARGOSY_TRACKER_DESC']/@Name"/>
                             </custom:Switcher.ToolTip>
                         </custom:Switcher>
-                        <custom:Switcher x:Name="switchShowTailraidersTracker" MinWidth="500" HorizontalAlignment="Center" RestartVisibility="Collapsed">
+                        <custom:Switcher x:Name="switchShowTailraidersTracker" MinWidth="500" Margin="0,0,0,5" HorizontalAlignment="Center" RestartVisibility="Collapsed">
                             <custom:Switcher.Text>
                                 <Binding Mode="OneTime" XPath="Settings/String[@ID='ENABLE_TAILRAIDERS_TRACKER']/@Name"/>
                             </custom:Switcher.Text>
@@ -659,9 +671,9 @@
                                 <Binding Mode="OneTime" XPath="Settings/String[@ID='ENABLE_TAILRAIDERS_TRACKER_DESC']/@Name"/>
                             </custom:Switcher.ToolTip>
                         </custom:Switcher>
-                        <custom:Switcher x:Name="switchHarvestCompactMode" Text="{Binding XPath=/Strings/Client/Settings/String[@ID\=\'ENABLE_HARVEST_BOX_COMPACT_MODE\']/@Name, Mode=OneTime}" ToolTip="{Binding XPath=/Strings/Client/Settings/String[@ID\=\'ENABLE_HARVEST_BOX_COMPACT_MODE_DESC\']/@Name, Mode=OneTime}" MinWidth="500" HorizontalAlignment="Center" RestartVisibility="Collapsed"/>
-                        <custom:MinimalSlider x:Name="HarvestBoxBackgroundOpacity" Text="{Binding XPath=/Strings/Client/Settings/String[@ID\=\'STATIC_BACKGROUND_OPACITY\']/@Name}" MinChange="0.1" MinValue="0" MaxValue="1" ValueText="{Binding Value, ElementName=HarvestBoxBackgroundOpacity, StringFormat=\{0:P\}}" Foreground="WhiteSmoke" FontFamily="Segoe UI Light" MinWidth="500" HorizontalAlignment="Center"/>
-                        <custom:MinimalSlider x:Name="HarvestBoxComponentOpacity" Text="{Binding XPath=/Strings/Client/Settings/String[@ID\=\'STATIC_OPACITY\']/@Name}" MinChange="0.1" MinValue="0" MaxValue="1" ValueText="{Binding Value, ElementName=HarvestBoxComponentOpacity, StringFormat=\{0:P\}}" Foreground="WhiteSmoke" FontFamily="Segoe UI Light" MinWidth="500" HorizontalAlignment="Center"/>
+                        <custom:Switcher x:Name="switchHarvestCompactMode" Text="{Binding XPath=/Strings/Client/Settings/String[@ID\=\'ENABLE_HARVEST_BOX_COMPACT_MODE\']/@Name, Mode=OneTime}" ToolTip="{Binding XPath=/Strings/Client/Settings/String[@ID\=\'ENABLE_HARVEST_BOX_COMPACT_MODE_DESC\']/@Name, Mode=OneTime}" MinWidth="500" Margin="0,0,0,5" HorizontalAlignment="Center" RestartVisibility="Collapsed"/>
+                        <custom:MinimalSlider x:Name="HarvestBoxBackgroundOpacity" Text="{Binding XPath=/Strings/Client/Settings/String[@ID\=\'STATIC_BACKGROUND_OPACITY\']/@Name}" MinChange="0.1" MinValue="0" MaxValue="1" ValueText="{Binding Value, ElementName=HarvestBoxBackgroundOpacity, StringFormat=\{0:P\}}" Foreground="WhiteSmoke" FontFamily="Segoe UI Light" MinWidth="500" Margin="0,0,0,5" HorizontalAlignment="Center"/>
+                        <custom:MinimalSlider x:Name="HarvestBoxComponentOpacity" Text="{Binding XPath=/Strings/Client/Settings/String[@ID\=\'STATIC_OPACITY\']/@Name}" MinChange="0.1" MinValue="0" MaxValue="1" ValueText="{Binding Value, ElementName=HarvestBoxComponentOpacity, StringFormat=\{0:P\}}" Foreground="WhiteSmoke" FontFamily="Segoe UI Light" MinWidth="500" Margin="0,0,0,5" HorizontalAlignment="Center"/>
                         <custom:PositionControl x:Name="HarvestBoxPosition" Height="38">
                             <custom:PositionControl.ToolTip>
                                 <Binding Mode="OneTime" XPath="Settings/String[@ID='STATIC_HARVEST_BOX_POSITION_DESC']/@Name"/>
@@ -683,15 +695,15 @@
                 </TabItem.Header>
                 <ScrollViewer>
                     <StackPanel>
-                        <custom:Switcher x:Name="switchEnableDPSMeter" Text="{Binding Mode=OneTime, XPath=/Strings/Client/Settings/String[@ID\=\'ENABLE_METER\']/@Name}" MinWidth="500" ToolTip="{Binding Mode=OneTime, XPath=/Strings/Client/Settings/String[@ID\=\'ENABLE_METER_DESC\']/@Name}" HorizontalAlignment="Center" RestartVisibility="Collapsed"/>
-                        <custom:Switcher x:Name="switchEnableTotalDamage" Text="{Binding Mode=OneTime, XPath=/Strings/Client/Settings/String[@ID\=\'ENABLE_TOTAL_DAMAGE\']/@Name}" MinWidth="500" ToolTip="{Binding Mode=OneTime, XPath=/Strings/Client/Settings/String[@ID\=\'ENABLE_TOTAL_DAMAGE_DESC\']/@Name}" HorizontalAlignment="Center" RestartVisibility="Collapsed"/>
-                        <custom:Switcher x:Name="switchEnableDPSWheneverPossible" Text="{Binding Mode=OneTime, XPath=/Strings/Client/Settings/String[@ID\=\'ENABLE_METER_DPS\']/@Name}" MinWidth="500" ToolTip="{Binding Mode=OneTime, XPath=/Strings/Client/Settings/String[@ID\=\'ENABLE_METER_DPS_DESC\']/@Name}" HorizontalAlignment="Center" RestartVisibility="Collapsed"/>
-                        <custom:Switcher x:Name="switchEnableOnlyMyself" Text="{Binding Mode=OneTime, XPath=/Strings/Client/Settings/String[@ID\=\'ENABLE_METER_ONLY_MYSELF\']/@Name}" MinWidth="500" ToolTip="{Binding Mode=OneTime, XPath=/Strings/Client/Settings/String[@ID\=\'ENABLE_METER_ONLY_MYSELF_DESC\']/@Name}" HorizontalAlignment="Center" RestartVisibility="Collapsed"/>
-                        <custom:Switcher x:Name="switchEnableTimer" Text="{Binding Mode=OneTime, XPath=/Strings/Client/Settings/String[@ID\=\'ENABLE_TIMER\']/@Name}" MinWidth="500" ToolTip="{Binding Mode=OneTime, XPath=/Strings/Client/Settings/String[@ID\=\'ENABLE_TIMER_DESC\']/@Name}" HorizontalAlignment="Center" RestartVisibility="Collapsed"/>
-                        <custom:Switcher x:Name="switchEnableTimerInExpeditions" Text="{Binding Mode=OneTime, XPath=/Strings/Client/Settings/String[@ID\=\'ENABLE_TIMER_IN_GL\']/@Name}" MinWidth="500" ToolTip="{Binding Mode=OneTime, XPath=/Strings/Client/Settings/String[@ID\=\'ENABLE_TIMER_IN_GL_DESC\']/@Name}" HorizontalAlignment="Center" RestartVisibility="Collapsed"/>
-                        <custom:Switcher x:Name="switchEnableOnlyTimer" Text="{Binding Mode=OneTime, XPath=/Strings/Client/Settings/String[@ID\=\'ENABLE_ONLY_TIMER\']/@Name}" MinWidth="500" ToolTip="{Binding Mode=OneTime, XPath=/Strings/Client/Settings/String[@ID\=\'ENABLE_ONLY_TIMER_DESC\']/@Name}" HorizontalAlignment="Center" RestartVisibility="Collapsed"/>
-                        <custom:MinimalSlider x:Name="DamageBackgroundOpacity" Text="{Binding XPath=/Strings/Client/Settings/String[@ID\=\'STATIC_BACKGROUND_OPACITY\']/@Name}" MinChange="0.1" MinValue="0" MaxValue="1" ValueText="{Binding Value, ElementName=DamageBackgroundOpacity, StringFormat=\{0:P\}}" Foreground="WhiteSmoke" FontFamily="Segoe UI Light" MinWidth="500" HorizontalAlignment="Center"/>
-                        <custom:MinimalSlider x:Name="DamageComponentOpacity" Text="{Binding XPath=/Strings/Client/Settings/String[@ID\=\'STATIC_OPACITY\']/@Name}" MinChange="0.1" MinValue="0" MaxValue="1" ValueText="{Binding Value, ElementName=DamageComponentOpacity, StringFormat=\{0:P\}}" Foreground="WhiteSmoke" FontFamily="Segoe UI Light" MinWidth="500" HorizontalAlignment="Center"/>
+                        <custom:Switcher x:Name="switchEnableDPSMeter" Text="{Binding Mode=OneTime, XPath=/Strings/Client/Settings/String[@ID\=\'ENABLE_METER\']/@Name}" MinWidth="500" Margin="0,0,0,5" ToolTip="{Binding Mode=OneTime, XPath=/Strings/Client/Settings/String[@ID\=\'ENABLE_METER_DESC\']/@Name}" HorizontalAlignment="Center" RestartVisibility="Collapsed"/>
+                        <custom:Switcher x:Name="switchEnableTotalDamage" Text="{Binding Mode=OneTime, XPath=/Strings/Client/Settings/String[@ID\=\'ENABLE_TOTAL_DAMAGE\']/@Name}" MinWidth="500" Margin="0,0,0,5" ToolTip="{Binding Mode=OneTime, XPath=/Strings/Client/Settings/String[@ID\=\'ENABLE_TOTAL_DAMAGE_DESC\']/@Name}" HorizontalAlignment="Center" RestartVisibility="Collapsed"/>
+                        <custom:Switcher x:Name="switchEnableDPSWheneverPossible" Text="{Binding Mode=OneTime, XPath=/Strings/Client/Settings/String[@ID\=\'ENABLE_METER_DPS\']/@Name}" MinWidth="500" Margin="0,0,0,5" ToolTip="{Binding Mode=OneTime, XPath=/Strings/Client/Settings/String[@ID\=\'ENABLE_METER_DPS_DESC\']/@Name}" HorizontalAlignment="Center" RestartVisibility="Collapsed"/>
+                        <custom:Switcher x:Name="switchEnableOnlyMyself" Text="{Binding Mode=OneTime, XPath=/Strings/Client/Settings/String[@ID\=\'ENABLE_METER_ONLY_MYSELF\']/@Name}" MinWidth="500" Margin="0,0,0,5" ToolTip="{Binding Mode=OneTime, XPath=/Strings/Client/Settings/String[@ID\=\'ENABLE_METER_ONLY_MYSELF_DESC\']/@Name}" HorizontalAlignment="Center" RestartVisibility="Collapsed"/>
+                        <custom:Switcher x:Name="switchEnableTimer" Text="{Binding Mode=OneTime, XPath=/Strings/Client/Settings/String[@ID\=\'ENABLE_TIMER\']/@Name}" MinWidth="500" Margin="0,0,0,5" ToolTip="{Binding Mode=OneTime, XPath=/Strings/Client/Settings/String[@ID\=\'ENABLE_TIMER_DESC\']/@Name}" HorizontalAlignment="Center" RestartVisibility="Collapsed"/>
+                        <custom:Switcher x:Name="switchEnableTimerInExpeditions" Text="{Binding Mode=OneTime, XPath=/Strings/Client/Settings/String[@ID\=\'ENABLE_TIMER_IN_GL\']/@Name}" MinWidth="500" Margin="0,0,0,5" ToolTip="{Binding Mode=OneTime, XPath=/Strings/Client/Settings/String[@ID\=\'ENABLE_TIMER_IN_GL_DESC\']/@Name}" HorizontalAlignment="Center" RestartVisibility="Collapsed"/>
+                        <custom:Switcher x:Name="switchEnableOnlyTimer" Text="{Binding Mode=OneTime, XPath=/Strings/Client/Settings/String[@ID\=\'ENABLE_ONLY_TIMER\']/@Name}" MinWidth="500" Margin="0,0,0,5" ToolTip="{Binding Mode=OneTime, XPath=/Strings/Client/Settings/String[@ID\=\'ENABLE_ONLY_TIMER_DESC\']/@Name}" HorizontalAlignment="Center" RestartVisibility="Collapsed"/>
+                        <custom:MinimalSlider x:Name="DamageBackgroundOpacity" Text="{Binding XPath=/Strings/Client/Settings/String[@ID\=\'STATIC_BACKGROUND_OPACITY\']/@Name}" MinChange="0.1" MinValue="0" MaxValue="1" ValueText="{Binding Value, ElementName=DamageBackgroundOpacity, StringFormat=\{0:P\}}" Foreground="WhiteSmoke" FontFamily="Segoe UI Light" MinWidth="500" Margin="0,0,0,5" HorizontalAlignment="Center"/>
+                        <custom:MinimalSlider x:Name="DamageComponentOpacity" Text="{Binding XPath=/Strings/Client/Settings/String[@ID\=\'STATIC_OPACITY\']/@Name}" MinChange="0.1" MinValue="0" MaxValue="1" ValueText="{Binding Value, ElementName=DamageComponentOpacity, StringFormat=\{0:P\}}" Foreground="WhiteSmoke" FontFamily="Segoe UI Light" MinWidth="500" Margin="0,0,0,5" HorizontalAlignment="Center"/>
                         <custom:ColorPicker NameText="{Binding Mode=OneTime, XPath=/Strings/Client/Settings/String[@ID\=\'STATIC_METER_PLAYER_1\']/@Name}" x:Name="FirstPlayerColor"/>
                         <custom:ColorPicker NameText="{Binding Mode=OneTime, XPath=/Strings/Client/Settings/String[@ID\=\'STATIC_METER_PLAYER_2\']/@Name}" x:Name="SecondPlayerColor"/>
                         <custom:ColorPicker NameText="{Binding Mode=OneTime, XPath=/Strings/Client/Settings/String[@ID\=\'STATIC_METER_PLAYER_3\']/@Name}" x:Name="ThirdPlayerColor"/>
@@ -773,15 +785,15 @@
                 </TabItem.Header>
                 <ScrollViewer>
                     <StackPanel >
-                        <custom:Switcher x:Name="switchDualBladesHelper" Text="{Binding Mode=OneTime, XPath=/Strings/Client/Settings/String[@ID\=\'ENABLE_DUALBLADES_HELPER\']/@Name, FallbackValue='Enable Dual Blades Helper'}" MinWidth="500" ToolTip="{Binding Mode=OneTime, XPath=/Strings/Client/Settings/String[@ID\=\'ENABLE_DUALBLADES_HELPER_DESC\']/@Name}" HorizontalAlignment="Center" RestartVisibility="Collapsed"/>
-                        <custom:Switcher x:Name="switchLongswordHelper" Text="{Binding Mode=OneTime, XPath=/Strings/Client/Settings/String[@ID\=\'ENABLE_LONGSWORD_HELPER\']/@Name, FallbackValue='Enable Longsword Helper'}" MinWidth="500" ToolTip="{Binding Mode=OneTime, XPath=/Strings/Client/Settings/String[@ID\=\'ENABLE_LONGSWORD_HELPER_DESC\']/@Name}" HorizontalAlignment="Center" RestartVisibility="Collapsed"/>
-                        <custom:Switcher x:Name="switchHammerHelper" Text="{Binding Mode=OneTime, XPath=/Strings/Client/Settings/String[@ID\=\'ENABLE_HAMMER_HELPER\']/@Name, FallbackValue='Enable Hammer Helper'}" MinWidth="500" ToolTip="{Binding Mode=OneTime, XPath=/Strings/Client/Settings/String[@ID\=\'ENABLE_HAMMER_HELPER_DESC\']/@Name}" HorizontalAlignment="Center" RestartVisibility="Collapsed"/>
-                        <custom:Switcher x:Name="switchLanceHelper" Text="{Binding Mode=OneTime, XPath=/Strings/Client/Settings/String[@ID\=\'ENABLE_LANCE_HELPER\']/@Name, FallbackValue='Enable Lance Helper'}" MinWidth="500" ToolTip="{Binding Mode=OneTime, XPath=/Strings/Client/Settings/String[@ID\=\'ENABLE_LANCE_HELPER_DESC\']/@Name}" HorizontalAlignment="Center" RestartVisibility="Collapsed"/>
-                        <custom:Switcher x:Name="switchGunLanceHelper" Text="{Binding Mode=OneTime, XPath=/Strings/Client/Settings/String[@ID\=\'ENABLE_GUN_LANCE_HELPER\']/@Name, FallbackValue='Enable Gun Lance Helper'}" MinWidth="500" ToolTip="{Binding Mode=OneTime, XPath=/Strings/Client/Settings/String[@ID\=\'ENABLE_GUN_LANCE_HELPER_DESC\']/@Name}" HorizontalAlignment="Center" RestartVisibility="Collapsed"/>
-                        <custom:Switcher x:Name="switchSwitchAxeHelper" Text="{Binding Mode=OneTime, XPath=/Strings/Client/Settings/String[@ID\=\'ENABLE_SWITCH_AXE_HELPER\']/@Name, FallbackValue='Enable Switch Axe Helper'}" MinWidth="500" ToolTip="{Binding Mode=OneTime, XPath=/Strings/Client/Settings/String[@ID\=\'ENABLE_SWITCH_AXE_HELPER_DESC\']/@Name}" HorizontalAlignment="Center" RestartVisibility="Collapsed"/>
-                        <custom:Switcher x:Name="switchChargeBladeHelper" Text="{Binding Mode=OneTime, XPath=/Strings/Client/Settings/String[@ID\=\'ENABLE_CHARGE_BLADE_HELPER\']/@Name, FallbackValue='Enable Charge Blade Helper'}" MinWidth="500" ToolTip="{Binding Mode=OneTime, XPath=/Strings/Client/Settings/String[@ID\=\'ENABLE_CHARGE_BLADE_HELPER_DESC\']/@Name}" HorizontalAlignment="Center" RestartVisibility="Collapsed"/>
-                        <custom:Switcher x:Name="switchInsectGlaiveHelper" Text="{Binding Mode=OneTime, XPath=/Strings/Client/Settings/String[@ID\=\'ENABLE_INSECT_GLAIVE_HELPER\']/@Name, FallbackValue='Enable Insect Glaive Helper'}" MinWidth="500" ToolTip="{Binding Mode=OneTime, XPath=/Strings/Client/Settings/String[@ID\=\'ENABLE_INSECT_GLAIVE_HELPER_DESC\']/@Name}" HorizontalAlignment="Center" RestartVisibility="Collapsed"/>
-                        <custom:Switcher x:Name="switchBowHelper" Text="{Binding Mode=OneTime, XPath=/Strings/Client/Settings/String[@ID\=\'ENABLE_BOW_HELPER\']/@Name, FallbackValue='Enable Bow Helper'}" MinWidth="500" ToolTip="{Binding Mode=OneTime, XPath=/Strings/Client/Settings/String[@ID\=\'ENABLE_BOW_HELPER_DESC\']/@Name}" HorizontalAlignment="Center" RestartVisibility="Collapsed"/>
+                        <custom:Switcher x:Name="switchDualBladesHelper" Text="{Binding Mode=OneTime, XPath=/Strings/Client/Settings/String[@ID\=\'ENABLE_DUALBLADES_HELPER\']/@Name, FallbackValue='Enable Dual Blades Helper'}" MinWidth="500" Margin="0,0,0,5" ToolTip="{Binding Mode=OneTime, XPath=/Strings/Client/Settings/String[@ID\=\'ENABLE_DUALBLADES_HELPER_DESC\']/@Name}" HorizontalAlignment="Center" RestartVisibility="Collapsed"/>
+                        <custom:Switcher x:Name="switchLongswordHelper" Text="{Binding Mode=OneTime, XPath=/Strings/Client/Settings/String[@ID\=\'ENABLE_LONGSWORD_HELPER\']/@Name, FallbackValue='Enable Longsword Helper'}" MinWidth="500" Margin="0,0,0,5" ToolTip="{Binding Mode=OneTime, XPath=/Strings/Client/Settings/String[@ID\=\'ENABLE_LONGSWORD_HELPER_DESC\']/@Name}" HorizontalAlignment="Center" RestartVisibility="Collapsed"/>
+                        <custom:Switcher x:Name="switchHammerHelper" Text="{Binding Mode=OneTime, XPath=/Strings/Client/Settings/String[@ID\=\'ENABLE_HAMMER_HELPER\']/@Name, FallbackValue='Enable Hammer Helper'}" MinWidth="500" Margin="0,0,0,5" ToolTip="{Binding Mode=OneTime, XPath=/Strings/Client/Settings/String[@ID\=\'ENABLE_HAMMER_HELPER_DESC\']/@Name}" HorizontalAlignment="Center" RestartVisibility="Collapsed"/>
+                        <custom:Switcher x:Name="switchLanceHelper" Text="{Binding Mode=OneTime, XPath=/Strings/Client/Settings/String[@ID\=\'ENABLE_LANCE_HELPER\']/@Name, FallbackValue='Enable Lance Helper'}" MinWidth="500" Margin="0,0,0,5" ToolTip="{Binding Mode=OneTime, XPath=/Strings/Client/Settings/String[@ID\=\'ENABLE_LANCE_HELPER_DESC\']/@Name}" HorizontalAlignment="Center" RestartVisibility="Collapsed"/>
+                        <custom:Switcher x:Name="switchGunLanceHelper" Text="{Binding Mode=OneTime, XPath=/Strings/Client/Settings/String[@ID\=\'ENABLE_GUN_LANCE_HELPER\']/@Name, FallbackValue='Enable Gun Lance Helper'}" MinWidth="500" Margin="0,0,0,5" ToolTip="{Binding Mode=OneTime, XPath=/Strings/Client/Settings/String[@ID\=\'ENABLE_GUN_LANCE_HELPER_DESC\']/@Name}" HorizontalAlignment="Center" RestartVisibility="Collapsed"/>
+                        <custom:Switcher x:Name="switchSwitchAxeHelper" Text="{Binding Mode=OneTime, XPath=/Strings/Client/Settings/String[@ID\=\'ENABLE_SWITCH_AXE_HELPER\']/@Name, FallbackValue='Enable Switch Axe Helper'}" MinWidth="500" Margin="0,0,0,5" ToolTip="{Binding Mode=OneTime, XPath=/Strings/Client/Settings/String[@ID\=\'ENABLE_SWITCH_AXE_HELPER_DESC\']/@Name}" HorizontalAlignment="Center" RestartVisibility="Collapsed"/>
+                        <custom:Switcher x:Name="switchChargeBladeHelper" Text="{Binding Mode=OneTime, XPath=/Strings/Client/Settings/String[@ID\=\'ENABLE_CHARGE_BLADE_HELPER\']/@Name, FallbackValue='Enable Charge Blade Helper'}" MinWidth="500" Margin="0,0,0,5" ToolTip="{Binding Mode=OneTime, XPath=/Strings/Client/Settings/String[@ID\=\'ENABLE_CHARGE_BLADE_HELPER_DESC\']/@Name}" HorizontalAlignment="Center" RestartVisibility="Collapsed"/>
+                        <custom:Switcher x:Name="switchInsectGlaiveHelper" Text="{Binding Mode=OneTime, XPath=/Strings/Client/Settings/String[@ID\=\'ENABLE_INSECT_GLAIVE_HELPER\']/@Name, FallbackValue='Enable Insect Glaive Helper'}" MinWidth="500" Margin="0,0,0,5" ToolTip="{Binding Mode=OneTime, XPath=/Strings/Client/Settings/String[@ID\=\'ENABLE_INSECT_GLAIVE_HELPER_DESC\']/@Name}" HorizontalAlignment="Center" RestartVisibility="Collapsed"/>
+                        <custom:Switcher x:Name="switchBowHelper" Text="{Binding Mode=OneTime, XPath=/Strings/Client/Settings/String[@ID\=\'ENABLE_BOW_HELPER\']/@Name, FallbackValue='Enable Bow Helper'}" MinWidth="500" Margin="0,0,0,5" ToolTip="{Binding Mode=OneTime, XPath=/Strings/Client/Settings/String[@ID\=\'ENABLE_BOW_HELPER_DESC\']/@Name}" HorizontalAlignment="Center" RestartVisibility="Collapsed"/>
                         <TextBlock Foreground="WhiteSmoke" FontWeight="Light" TextWrapping="WrapWithOverflow" Text="{Binding Mode=OneTime, XPath=/Strings/Client/Settings/String[@ID\=\'STATIC_CLASSES_BETA_WARNING\']/@Name}"/>
                     </StackPanel>
                 </ScrollViewer>
@@ -874,9 +886,9 @@
                 </TabItem.Header>
                 <ScrollViewer>
                     <StackPanel >
-                        <custom:Switcher x:Name="switchEnableDebugMessages" Text="{Binding Mode=OneTime, XPath=/Strings/Client/Settings/String[@ID\=\'ENABLE_DEBUG_MESSAGES\']/@Name}" RestartVisibility="Visible" MinWidth="500" ToolTip="{Binding Mode=OneTime, XPath=/Strings/Client/Settings/String[@ID\=\'ENABLE_DEBUG_MESSAGES_DESC\']/@Name}" HorizontalAlignment="Center"/>
-                        <custom:Switcher x:Name="switchEnableUnknownStatuses" Text="{Binding Mode=OneTime, XPath=/Strings/Client/Settings/String[@ID\=\'ENABLE_UNKNOWN_AILMENTS\']/@Name}" RestartVisibility="Visible" MinWidth="500" ToolTip="{Binding Mode=OneTime, XPath=/Strings/Client/Settings/String[@ID\=\'ENABLE_UNKNOWN_AILMENTS_DESC\']/@Name}" HorizontalAlignment="Center"/>
-                        <custom:Switcher x:Name="switchEnableLoadMonsterData" Text="{Binding Mode=OneTime, XPath=/Strings/Client/Settings/String[@ID\=\'ENABLE_LOAD_CUSTOM_DATA\']/@Name}" RestartVisibility="Visible" MinWidth="500" ToolTip="{Binding Mode=OneTime, XPath=/Strings/Client/Settings/String[@ID\=\'ENABLE_LOAD_CUSTOM_DATA_DESC\']/@Name}" HorizontalAlignment="Center"/>
+                        <custom:Switcher x:Name="switchEnableDebugMessages" Text="{Binding Mode=OneTime, XPath=/Strings/Client/Settings/String[@ID\=\'ENABLE_DEBUG_MESSAGES\']/@Name}" RestartVisibility="Visible" MinWidth="500" Margin="0,0,0,5" ToolTip="{Binding Mode=OneTime, XPath=/Strings/Client/Settings/String[@ID\=\'ENABLE_DEBUG_MESSAGES_DESC\']/@Name}" HorizontalAlignment="Center"/>
+                        <custom:Switcher x:Name="switchEnableUnknownStatuses" Text="{Binding Mode=OneTime, XPath=/Strings/Client/Settings/String[@ID\=\'ENABLE_UNKNOWN_AILMENTS\']/@Name}" RestartVisibility="Visible" MinWidth="500" Margin="0,0,0,5" ToolTip="{Binding Mode=OneTime, XPath=/Strings/Client/Settings/String[@ID\=\'ENABLE_UNKNOWN_AILMENTS_DESC\']/@Name}" HorizontalAlignment="Center"/>
+                        <custom:Switcher x:Name="switchEnableLoadMonsterData" Text="{Binding Mode=OneTime, XPath=/Strings/Client/Settings/String[@ID\=\'ENABLE_LOAD_CUSTOM_DATA\']/@Name}" RestartVisibility="Visible" MinWidth="500" Margin="0,0,0,5" ToolTip="{Binding Mode=OneTime, XPath=/Strings/Client/Settings/String[@ID\=\'ENABLE_LOAD_CUSTOM_DATA_DESC\']/@Name}" HorizontalAlignment="Center"/>
                     </StackPanel>
                 </ScrollViewer>
             </TabItem>

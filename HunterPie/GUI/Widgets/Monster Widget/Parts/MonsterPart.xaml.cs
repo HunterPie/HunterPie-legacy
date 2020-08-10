@@ -76,7 +76,7 @@ namespace HunterPie.GUI.Widgets.Monster_Widget.Parts
         {
             Visibility visibility = GetVisibility();
             if (ComponentSettings.HidePartsAfterSeconds) visibility = Visibility.Collapsed;
-            Dispatch(() => { Visibility = visibility; });
+            Dispatch(() => { Visibility = visibility; UpdateHealthText(); });
         }
 
         private Visibility GetVisibility()
@@ -180,7 +180,11 @@ namespace HunterPie.GUI.Widgets.Monster_Widget.Parts
         {
             PartHealth.MaxValue = context.TotalHealth;
             PartHealth.Value = context.Health;
-            PartHealthText.Text = $"{context.Health:0}/{context.TotalHealth:0}";
+            double percentage = PartHealth.Value / Math.Max(1, PartHealth.MaxValue);
+            string format = UserSettings.PlayerConfig.Overlay.MonstersComponent.PartTextFormat;
+            PartHealthText.Text = format.Replace("{Current}", $"{PartHealth.Value:0}")
+                .Replace("{Max}", $"{PartHealth.MaxValue:0}")
+                .Replace("{Percentage}", $"{percentage * 100:0}");
         }
 
         #endregion

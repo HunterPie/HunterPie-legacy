@@ -1,0 +1,19 @@
+﻿<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+                    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+                    xmlns:sys="clr-namespace:System;assembly=mscorlib"
+                    xmlns:Custom="clr-namespace:HunterPie.GUIControls.Custom_Controls;assembly=Hunterpie"
+                    xmlns:Monster="clr-namespace:HunterPie.GUI.Widgets.Monster_Widget.Parts;assembly=Hunterpie"
+                    xmlns:Overlay="clr-namespace:HunterPie.GUI;assembly=Hunterpie">
+
+    <!--
+
+        README:
+            This file is loaded by default by HunterPie, it should be used to overwrite your current style
+            without having to make a completely new theme.
+            For theme help read this: https://hunterpie.me/HunterPie/?p=HunterPie/themes.md
+            Feel free to join HunterPie's Discord if you need help with styling your theme.
+    -->
+
+    
+    
+</ResourceDictionary>
