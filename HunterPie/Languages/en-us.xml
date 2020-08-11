@@ -524,6 +524,8 @@
       <String ID="STATIC_TOGGLE_DESIGN" Name="Toggle Design Mode (HotKey):"/>
       <String ID="STATIC_TOGGLE_DESIGN_DESC" Name="HotKey to toggle design mode."/>
       <String ID="STATIC_OVERLAY_POSITION_DESC" Name="Changes the overlay position."/>
+      <String ID="ENABLE_OVERLAY_FORCE_DIRECTX11_FULLSCREEN" Name="Forces DirectX 11 Fullscreen to be behind overlay"/>
+      <String ID="ENABLE_OVERLAY_FORCE_DIRECTX11_FULLSCREEN_DESC" Name="This option will force the game to always be behind HunterPie's overlay, as a result the overlay will appear even in DirectX 11 Fullscreen. REQUIRES FULLSCREEN OPTIMIZATIONS TO BE ENABLED."/>
       <!-- Monster Widget -->
       <String ID="ENABLE_MONSTER_WIDGET" Name="Enable Monster Widget"/>
       <String ID="ENABLE_MONSTER_WIDGET_DESC" Name="If enabled, the monster widget will be visible whenever it has content to show."/>

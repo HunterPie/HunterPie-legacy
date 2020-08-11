@@ -46,6 +46,7 @@ namespace HunterPie.Core
                 public bool HideWhenGameIsUnfocused { get; set; } = false;
                 public int ToggleDesignModeKey { get; set; } = 145;
                 public string ToggleDesignKeybind { get; set; } = "ScrollLock";
+                public bool EnableForceDirectX11Fullscreen { get; set; } = false;
                 public Monsterscomponent MonstersComponent { get; set; } = new Monsterscomponent();
                 public Harvestboxcomponent HarvestBoxComponent { get; set; } = new Harvestboxcomponent();
                 public SpecializedTool PrimaryMantle { get; set; } = new SpecializedTool()

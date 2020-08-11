@@ -237,6 +237,14 @@
                                 <Binding Mode="OneTime" XPath="Settings/String[@ID='ENABLE_HARDWARE_ACCELERATION_DESC']/@Name"/>
                             </custom:Switcher.ToolTip>
                         </custom:Switcher>
+                        <custom:Switcher x:Name="switchForceDirectX11Fullscreen" HorizontalAlignment="Center" MinWidth="500" Margin="0,0,0,5" RestartVisibility="Collapsed">
+                            <custom:Switcher.Text>
+                                <Binding Mode="OneTime" XPath="Settings/String[@ID='ENABLE_OVERLAY_FORCE_DIRECTX11_FULLSCREEN']/@Name"/>
+                            </custom:Switcher.Text>
+                            <custom:Switcher.ToolTip>
+                                <Binding Mode="OneTime" XPath="Settings/String[@ID='ENABLE_OVERLAY_FORCE_DIRECTX11_FULLSCREEN_DESC']/@Name"/>
+                            </custom:Switcher.ToolTip>
+                        </custom:Switcher>
                         <StackPanel Orientation="Horizontal" Height="28" ToolTip="{Binding Mode=OneTime, XPath=/Strings/Client/Settings/String[@ID\=\'STATIC_ANIMATION_FPS_DESC\']/@Name}" HorizontalAlignment="Center" MinWidth="500" Margin="0,0,0,5">
                             <TextBlock Foreground="WhiteSmoke" FontFamily="Segoe UI Light">
                                 <TextBlock.Text>

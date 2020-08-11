@@ -2,6 +2,7 @@
 using System.Windows;
 using System.Windows.Interop;
 using System.Windows.Media;
+using HunterPie.Core;
 using HunterPie.Memory;
 
 namespace HunterPie.GUI
@@ -86,7 +87,7 @@ namespace HunterPie.GUI
             {
                 RenderingEventArgs args = (RenderingEventArgs)e;
                 // Dispatcher messes with the Render counter
-#if !DEBUG // Debug messes with the rendering time
+#if !DEBUG  // Debug messes with the rendering time
                 if (args.RenderingTime.TotalMilliseconds - LastFrameRender > 0)
                 {
 
@@ -167,11 +168,24 @@ namespace HunterPie.GUI
         public void ForceAlwaysOnTop()
         {
             if (this == null || IsClosed) return;
+            
+
             uint Flags = (uint)(WindowsHelper.SWP_WINDOWN_FLAGS.SWP_SHOWWINDOW |
                 WindowsHelper.SWP_WINDOWN_FLAGS.SWP_NOSIZE |
                 WindowsHelper.SWP_WINDOWN_FLAGS.SWP_NOMOVE |
                 WindowsHelper.SWP_WINDOWN_FLAGS.SWP_NOACTIVATE);
+
             IntPtr hwnd = new WindowInteropHelper(this).EnsureHandle();
+
+            // Kinda hacky way to make it work with DirectX 11 fullscreen + Fullscreen optimizations
+            if (Scanner.IsForegroundWindow && UserSettings.PlayerConfig.Overlay.EnableForceDirectX11Fullscreen)
+            {
+                uint GameWindowFlags = (uint)(WindowsHelper.SWP_WINDOWN_FLAGS.SWP_SHOWWINDOW |
+                WindowsHelper.SWP_WINDOWN_FLAGS.SWP_NOSIZE |
+                WindowsHelper.SWP_WINDOWN_FLAGS.SWP_NOMOVE);
+                
+                WindowsHelper.SetWindowPos(Scanner.WindowHandle, -2, 0, 0, 0, 0, GameWindowFlags);
+            }
             WindowsHelper.SetWindowPos(hwnd, -1, 0, 0, 0, 0, Flags);
         }
 
