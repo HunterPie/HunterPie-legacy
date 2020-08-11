@@ -81,6 +81,9 @@ namespace HunterPie.GUI.Widgets.Monster_Widget.Parts
 
         private Visibility GetVisibility()
         {
+            // Hide invalid parts, like the Vaal Hazaak unknown ones
+            if (float.IsNaN(context.TotalHealth)) return Visibility.Collapsed;
+
             if (context.IsRemovable)
             {
                 return ComponentSettings.EnableRemovableParts ? Visibility.Visible : Visibility.Collapsed;
@@ -90,7 +93,7 @@ namespace HunterPie.GUI.Widgets.Monster_Widget.Parts
             {
                 return Visibility.Visible;
             }
-
+            
             return Visibility.Collapsed;
         }
 
