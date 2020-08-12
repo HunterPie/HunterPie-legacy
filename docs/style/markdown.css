@@ -122,6 +122,7 @@
     border-left: solid #85c3ed 2px;
     background: rgb(29, 29, 29, 0.8);
     padding: 20px 0px 10px 40px;
+    width: 350px;
 }
 
 #MarkdownBox highlight {
