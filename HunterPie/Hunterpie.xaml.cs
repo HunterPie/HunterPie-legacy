@@ -17,6 +17,7 @@ using HunterPie.Core.Integrations.DataExporter;
 using HunterPie.GUI;
 using HunterPie.GUIControls;
 using HunterPie.GUIControls.Custom_Controls;
+using HunterPie.Plugins;
 using HunterPie.Logger;
 // HunterPie
 using HunterPie.Memory;
@@ -39,6 +40,7 @@ namespace HunterPie
         Presence Discord;
         Overlay GameOverlay;
         readonly Exporter dataExporter = new Exporter();
+        PluginLoader pLoader;
         bool OfflineMode = false;
         bool IsUpdating = true;
 
@@ -103,7 +105,6 @@ namespace HunterPie
             AdministratorIconVisibility = IsRunningAsAdmin() ? Visibility.Visible : Visibility.Collapsed;
 
             InitializeComponent();
-
         }
 
         private bool IsRunningAsAdmin()
@@ -608,6 +609,8 @@ namespace HunterPie
             // Hook game events
             HookGameEvents();
 
+            pLoader = new PluginLoader(MonsterHunter);
+            pLoader.LoadPlugins();
             // Creates new overlay
             Dispatcher.Invoke(System.Windows.Threading.DispatcherPriority.Background, new Action(() =>
             {
@@ -645,6 +648,7 @@ namespace HunterPie
         public void OnGameClose(object source, EventArgs e)
         {
             UnhookGameEvents();
+            pLoader.UnloadPlugins();
             Discord.Dispose();
             Discord = null;
             if (UserSettings.PlayerConfig.HunterPie.Options.CloseWhenGameCloses)

@@ -511,6 +511,9 @@
     <Compile Include="GUI\Widgets\Notification Widget\DiscordNotify.xaml.cs">
       <DependentUpon>DiscordNotify.xaml</DependentUpon>
     </Compile>
+    <Compile Include="HunterPie.Plugins\IPlugin.cs" />
+    <Compile Include="HunterPie.Plugins\PluginLoader.cs" />
+    <Compile Include="HunterPie.Plugins\PluginManifest.cs" />
     <Compile Include="Hunterpie.xaml.cs">
       <DependentUpon>Hunterpie.xaml</DependentUpon>
       <SubType>Code</SubType>

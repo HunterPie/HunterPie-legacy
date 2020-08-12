@@ -21,6 +21,7 @@ namespace HunterPie.Logger
         private static object ERROR = "#FF6459";
         private static object WARN = "#FFC13D";
         private static object DISCORD = "#52A0FF";
+        private static object MODULE = "#81f542";
         private static object NORMAL = "#FFFFFF";
         private static DispatcherOperation LastOperation;
         private static Debugger _Instance;
@@ -56,6 +57,8 @@ namespace HunterPie.Logger
         public static void Discord(object message) => PrintOnConsole($"[DISCORD] {message?.ToString()}", DISCORD);
 
         public static void Update(object message) => PrintOnConsole($"[UPDATE] {message?.ToString()}", NORMAL);
+
+        public static void Module(object message, string modName = null) => PrintOnConsole($"[{modName ?? "MODULE"}] {message?.ToString()}", MODULE);
 
         public static void Benchmark(object message) => PrintOnConsole(message?.ToString(), WARN);
 
