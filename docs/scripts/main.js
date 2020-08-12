@@ -53,11 +53,11 @@ function GetParams() {
 }
 
 function RenderMarkdown(markdown) {
-    if (markdown == null || markdown == undefined || !markdown.endsWith(".md")) {
+    if (markdown == null || markdown == undefined || !markdown.endsWith(".md") || markdown == "SIDEBAR.md") {
         markdown = "README.md";
     }
 
-    fetch("./SIDEBAR").then((res) => {
+    fetch("./SIDEBAR.md").then((res) => {
         if (res.ok) {
             res.blob().then(
                 (blob) => {
