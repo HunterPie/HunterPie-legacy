@@ -57,7 +57,7 @@ function RenderMarkdown(markdown) {
         markdown = "README.md";
     }
 
-    fetch("./_SIDEBAR").then((res) => {
+    fetch("./SIDEBAR").then((res) => {
         if (res.ok) {
             res.blob().then(
                 (blob) => {
