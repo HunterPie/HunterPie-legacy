@@ -163,6 +163,7 @@ namespace HunterPie.Memory
         private static int GetLatestMap()
         {
             int[] mapFiles = Directory.GetFiles(Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "address"))
+                .Where(filename => filename.EndsWith(".map"))
                 .Select(filename => Convert.ToInt32(filename.Split('.')[1])).ToArray();
             return mapFiles.OrderBy(version => version).Last();
         }
