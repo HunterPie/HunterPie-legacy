@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Windows;
+using System.Windows.Forms;
 using System.Windows.Interop;
 using System.Windows.Media;
 using HunterPie.Core;
@@ -181,10 +182,8 @@ namespace HunterPie.GUI
             if (Scanner.IsForegroundWindow && UserSettings.PlayerConfig.Overlay.EnableForceDirectX11Fullscreen)
             {
                 uint GameWindowFlags = (uint)(WindowsHelper.SWP_WINDOWN_FLAGS.SWP_SHOWWINDOW |
-                WindowsHelper.SWP_WINDOWN_FLAGS.SWP_NOSIZE |
                 WindowsHelper.SWP_WINDOWN_FLAGS.SWP_NOMOVE);
-                
-                WindowsHelper.SetWindowPos(Scanner.WindowHandle, -2, 0, 0, 0, 0, GameWindowFlags);
+                WindowsHelper.SetWindowPos(Scanner.WindowHandle, -2, 0, 0, Screen.PrimaryScreen.Bounds.Width, Screen.PrimaryScreen.Bounds.Height, GameWindowFlags);
             }
             WindowsHelper.SetWindowPos(hwnd, -1, 0, 0, 0, 0, Flags);
         }

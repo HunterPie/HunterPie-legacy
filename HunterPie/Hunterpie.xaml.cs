@@ -40,7 +40,7 @@ namespace HunterPie
         Presence Discord;
         Overlay GameOverlay;
         readonly Exporter dataExporter = new Exporter();
-        PluginLoader pLoader;
+        PluginLoader pLoader = new PluginLoader();
         bool OfflineMode = false;
         bool IsUpdating = true;
 
@@ -609,8 +609,7 @@ namespace HunterPie
             // Hook game events
             HookGameEvents();
 
-            pLoader = new PluginLoader(MonsterHunter);
-            pLoader.LoadPlugins();
+            pLoader.LoadPlugins(MonsterHunter);
             // Creates new overlay
             Dispatcher.Invoke(System.Windows.Threading.DispatcherPriority.Background, new Action(() =>
             {

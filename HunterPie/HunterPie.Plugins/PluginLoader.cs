@@ -18,43 +18,49 @@ namespace HunterPie.Plugins
     class PluginLoader
     {
         List<IPlugin> plugins = new List<IPlugin>();
-        Game context;
 
-        public PluginLoader(Game ctx)
-        {
-            context = ctx;
-        }
-
-        public void LoadPlugins()
+        public void LoadPlugins(Game ctx)
         {
             Stopwatch benchmark = Stopwatch.StartNew();
-            string[] modules = Directory.GetDirectories(Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "Modules"));
-            foreach (string module in modules)
+            if (plugins.Count > 0)
             {
-                string serializedModule = File.ReadAllText(Path.Combine(module, "module.json"));
-                PluginInformation modInformation = JsonConvert.DeserializeObject<PluginInformation>(serializedModule);
-
-                if (File.Exists(Path.Combine(module, modInformation.EntryPoint))) {
-                    Debugger.Module($"Compiling plugin: {modInformation.Name}");
-                    if (CompilePlugin(module, modInformation))
-                    {
-                        Debugger.Module($"{modInformation.Name} compiled successfully.");
-                    } else
-                    {
-                        continue;
-                    }
-                }
-                
-                var plugin = Assembly.LoadFile(Path.Combine(module, $"{modInformation.Name}.dll"));
-                foreach (Type exported in plugin.ExportedTypes.Where(exp => exp.GetMethod("Initialize") != null))
+                // Quick load
+                foreach (IPlugin plugin in plugins)
                 {
-                    dynamic entry = plugin.CreateInstance(exported.ToString());
-                    entry.Initialize(context);
-                    plugins.Add(entry);
+                    plugin.Initialize(ctx);
+                }
+            } else
+            {
+                string[] modules = Directory.GetDirectories(Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "Modules"));
+                foreach (string module in modules)
+                {
+                    string serializedModule = File.ReadAllText(Path.Combine(module, "module.json"));
+                    PluginInformation modInformation = JsonConvert.DeserializeObject<PluginInformation>(serializedModule);
+
+                    if (File.Exists(Path.Combine(module, modInformation.EntryPoint)))
+                    {
+                        Debugger.Module($"Compiling plugin: {modInformation.Name}");
+                        if (CompilePlugin(module, modInformation))
+                        {
+                            Debugger.Module($"{modInformation.Name} compiled successfully.");
+                        }
+                        else
+                        {
+                            continue;
+                        }
+                    }
+
+                    var plugin = Assembly.LoadFile(Path.Combine(module, $"{modInformation.Name}.dll"));
+                    foreach (Type exported in plugin.ExportedTypes.Where(exp => exp.GetMethod("Initialize") != null))
+                    {
+                        dynamic entry = plugin.CreateInstance(exported.ToString());
+                        entry.Initialize(ctx);
+                        plugins.Add(entry);
+                    }
                 }
             }
             benchmark.Stop();
-            Debugger.Module($"Loaded {modules.Length} module(s) in {benchmark.ElapsedMilliseconds}ms");
+            Debugger.Module($"Loaded {plugins.Count} module(s) in {benchmark.ElapsedMilliseconds}ms");
         }
 
         public void UnloadPlugins()
@@ -63,7 +69,6 @@ namespace HunterPie.Plugins
             {
                 plugin.Unload();
             }
-            plugins.Clear();
             Debugger.Module("Unloaded all modules.");
         }
 
@@ -72,7 +77,7 @@ namespace HunterPie.Plugins
             var compiler = new CSharpCodeProvider();
             var param = new CompilerParameters();
 
-            var references = new[]
+            string[] references = new[]
             {
                 "System.dll",                                       // System.dll
                 typeof(Control).Assembly.Location,                  // PresentationFramework.dll
