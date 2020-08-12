@@ -1,14 +1,13 @@
 ﻿using System;
 using System.CodeDom.Compiler;
 using System.Collections.Generic;
+using Stopwatch = System.Diagnostics.Stopwatch;
 using System.IO;
 using System.Linq;
 using System.Reflection;
-using System.Runtime.InteropServices;
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Markup;
-using System.Windows.Media.Animation;
 using HunterPie.Core;
 using HunterPie.Logger;
 using Microsoft.CSharp;
@@ -28,8 +27,9 @@ namespace HunterPie.Plugins
 
         public void LoadPlugins()
         {
-
-            foreach (string module in Directory.GetDirectories(Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "Modules")))
+            Stopwatch benchmark = Stopwatch.StartNew();
+            string[] modules = Directory.GetDirectories(Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "Modules"));
+            foreach (string module in modules)
             {
                 string serializedModule = File.ReadAllText(Path.Combine(module, "module.json"));
                 PluginInformation modInformation = JsonConvert.DeserializeObject<PluginInformation>(serializedModule);
@@ -44,7 +44,7 @@ namespace HunterPie.Plugins
                         continue;
                     }
                 }
-
+                
                 var plugin = Assembly.LoadFile(Path.Combine(module, $"{modInformation.Name}.dll"));
                 foreach (Type exported in plugin.ExportedTypes.Where(exp => exp.GetMethod("Initialize") != null))
                 {
@@ -52,8 +52,9 @@ namespace HunterPie.Plugins
                     entry.Initialize(context);
                     plugins.Add(entry);
                 }
-                
             }
+            benchmark.Stop();
+            Debugger.Module($"Loaded {modules.Length} module(s) in {benchmark.ElapsedMilliseconds}ms");
         }
 
         public void UnloadPlugins()
@@ -63,6 +64,7 @@ namespace HunterPie.Plugins
                 plugin.Unload();
             }
             plugins.Clear();
+            Debugger.Module("Unloaded all modules.");
         }
 
         public bool CompilePlugin(string pluginPath, PluginInformation information)
@@ -72,7 +74,7 @@ namespace HunterPie.Plugins
 
             var references = new[]
             {
-                "System.dll",
+                "System.dll",                                       // System.dll
                 typeof(Control).Assembly.Location,                  // PresentationFramework.dll
                 typeof(UIElement).Assembly.Location,                // PresentationCore.dll
                 typeof(DependencyObject).Assembly.Location,         // WindowsBase.dll
