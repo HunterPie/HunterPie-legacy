@@ -1,8 +1,5 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+
 
 namespace HunterPie.Plugins
 {
@@ -13,5 +10,6 @@ namespace HunterPie.Plugins
         public string Description;
         public string Author;
         public string Version;
+        public string[] Dependencies { get; set; } = Array.Empty<string>();
     }
 }

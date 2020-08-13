@@ -1,4 +1,5 @@
-﻿using System.Windows;
+﻿using System;
+using System.Windows;
 using HunterPie.Logger;
 
 namespace HunterPie
@@ -12,6 +13,7 @@ namespace HunterPie
         {
             e.Handled = true;
             Debugger.Error(e.Exception);
+            
         }
     }
 }

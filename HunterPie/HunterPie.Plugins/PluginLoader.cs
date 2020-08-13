@@ -1,17 +1,26 @@
 ﻿using System;
-using System.CodeDom.Compiler;
 using System.Collections.Generic;
 using Stopwatch = System.Diagnostics.Stopwatch;
 using System.IO;
 using System.Linq;
 using System.Reflection;
 using System.Windows;
-using System.Windows.Controls;
-using System.Windows.Markup;
 using HunterPie.Core;
-using HunterPie.Logger;
-using Microsoft.CSharp;
+using Debugger = HunterPie.Logger.Debugger;
 using Newtonsoft.Json;
+using Newtonsoft.Json.Linq;
+using System.Data;
+using System.Drawing;
+using System.Net.Http;
+using System.Numerics;
+using System.Windows.Forms;
+using System.Xaml;
+using System.Xml;
+using System.Xml.Linq;
+using System.Text;
+using Microsoft.CodeAnalysis;
+using Microsoft.CodeAnalysis.CSharp;
+using Microsoft.CodeAnalysis.Text;
 
 namespace HunterPie.Plugins
 {
@@ -49,7 +58,7 @@ namespace HunterPie.Plugins
                             continue;
                         }
                     }
-
+                    
                     var plugin = Assembly.LoadFile(Path.Combine(module, $"{modInformation.Name}.dll"));
                     foreach (Type exported in plugin.ExportedTypes.Where(exp => exp.GetMethod("Initialize") != null))
                     {
@@ -61,6 +70,7 @@ namespace HunterPie.Plugins
             }
             benchmark.Stop();
             Debugger.Module($"Loaded {plugins.Count} module(s) in {benchmark.ElapsedMilliseconds}ms");
+            GC.Collect();
         }
 
         public void UnloadPlugins()
@@ -74,31 +84,58 @@ namespace HunterPie.Plugins
 
         public bool CompilePlugin(string pluginPath, PluginInformation information)
         {
-            var compiler = new CSharpCodeProvider();
-            var param = new CompilerParameters();
+            var compiler = CSharpCompilation.Create($"{nameof(HunterPie)}{information.Name}", options: new CSharpCompilationOptions(OutputKind.DynamicallyLinkedLibrary)
+                .WithOptimizationLevel(OptimizationLevel.Release));
 
-            string[] references = new[]
+            var types = new[]
             {
-                "System.dll",                                       // System.dll
-                typeof(Control).Assembly.Location,                  // PresentationFramework.dll
-                typeof(UIElement).Assembly.Location,                // PresentationCore.dll
-                typeof(DependencyObject).Assembly.Location,         // WindowsBase.dll
-                typeof(Hunterpie).Assembly.Location,                // HunterPie
-                typeof(IComponentConnector).Assembly.Location,      // System.Xaml.dll
+                typeof(Hunterpie),                  // HunterPie
+                typeof(JObject),                 // Newtonsoft.Json.dll
+                typeof(Object),                  // mscorlib.dll
+                typeof(UIElement),               // PresentationCore.dll
+                typeof(Window),                  // PresentationFramework.dll
+                typeof(Uri),                     // System.dll
+                typeof(Enumerable),              // System.Core.dll
+                typeof(DataSet),                 // System.Data.dll
+                typeof(DataTableExtensions),     // System.Data.DataSetExtensions.dll
+                typeof(Bitmap),                  // System.Drawing.dll
+                typeof(HttpClient),              // System.Net.Http.dll
+                typeof(BigInteger),              // System.Numerics.dll
+                typeof(Form),                    // System.Windows.Forms.dll
+                typeof(XamlType),                // System.Xaml.dll
+                typeof(XmlNode),                 // System.Xml.dll
+                typeof(XNode),                   // System.Xml.Linq.dll
+                typeof(Rect),                    // WindowsBase.dll
             };
-            param.ReferencedAssemblies.AddRange(references);
-            param.OutputAssembly = Path.Combine(pluginPath, $"{information.Name}.dll");
 
+            // Load all basic dependencies
+            List<MetadataReference> references = types.Select(type => MetadataReference.CreateFromFile(type.Assembly.Location)).ToList<MetadataReference>();
+            
+            if (information.Dependencies != null)
+            {
+                foreach (string extDependency in information.Dependencies)
+                {
+                    references.Add(MetadataReference.CreateFromFile(Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "libs", extDependency)));
+                }
+                
+            }
+            compiler = compiler.AddReferences(references);
             var code = File.ReadAllText(Path.Combine(pluginPath, information.EntryPoint));
-            CompilerResults result = compiler.CompileAssemblyFromSource(param, code);
+            var options = CSharpParseOptions.Default.WithLanguageVersion(
+                LanguageVersion.CSharp7_3);
+            var syntaxTree = SyntaxFactory.ParseSyntaxTree(SourceText.From(code, Encoding.UTF8), options, Path.Combine(pluginPath, information.EntryPoint));
 
-            if (result.Errors.Count > 0)
+            compiler = compiler.AddSyntaxTrees(syntaxTree);
+            var result = compiler.Emit(Path.Combine(pluginPath, information.Name) + ".dll");
+            if (result.Success)
+            {
+                return true;
+            } else
             {
                 Debugger.Error($"Failed to compile plugin: {information.Name}");
-                foreach (var exception in result.Errors) Debugger.Error(exception);
+                foreach (var exception in result.Diagnostics) Debugger.Error(exception);
                 return false;
             }
-            return true;
         }
     }
 }
