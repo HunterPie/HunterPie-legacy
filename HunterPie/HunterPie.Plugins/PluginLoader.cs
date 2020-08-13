@@ -38,39 +38,52 @@ namespace HunterPie.Plugins
                 {
                     plugin.Initialize(ctx);
                 }
-            } else
+            }
+            else
             {
                 string[] modules = Directory.GetDirectories(Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "Modules"));
                 foreach (string module in modules)
                 {
-                    string serializedModule = File.ReadAllText(Path.Combine(module, "module.json"));
-                    PluginInformation modInformation = JsonConvert.DeserializeObject<PluginInformation>(serializedModule);
+                    try
+                    {
+                        string serializedModule = File.ReadAllText(Path.Combine(module, "module.json"));
+                        PluginInformation modInformation = JsonConvert.DeserializeObject<PluginInformation>(serializedModule);
 
-                    if (File.Exists(Path.Combine(module, modInformation.EntryPoint)))
-                    {
-                        Debugger.Module($"Compiling plugin: {modInformation.Name}");
-                        if (CompilePlugin(module, modInformation))
+                        if (File.Exists(Path.Combine(module, modInformation.EntryPoint)))
                         {
-                            Debugger.Module($"{modInformation.Name} compiled successfully.");
+                            Debugger.Module($"Compiling plugin: {modInformation.Name}");
+                            if (CompilePlugin(module, modInformation))
+                            {
+                                Debugger.Module($"{modInformation.Name} compiled successfully.");
+                            }
+                            else
+                            {
+                                continue;
+                            }
                         }
-                        else
+                        
+                        foreach (string required in modInformation.Dependencies)
                         {
-                            continue;
+                            AppDomain.CurrentDomain.Load(AssemblyName.GetAssemblyName(Path.Combine(module, required)));
                         }
-                    }
-                    
-                    var plugin = Assembly.LoadFile(Path.Combine(module, $"{modInformation.Name}.dll"));
-                    foreach (Type exported in plugin.ExportedTypes.Where(exp => exp.GetMethod("Initialize") != null))
+                        var plugin = AppDomain.CurrentDomain.Load(AssemblyName.GetAssemblyName(Path.Combine(module, $"{modInformation.Name}.dll")));
+                        IEnumerable<Type> entries = plugin.ExportedTypes.Where(exp => exp.GetMethod("Initialize") != null);
+                        if (entries.Count() > 0)
+                        {
+                            dynamic mod = plugin.CreateInstance(entries.First().ToString());
+                            mod.Initialize(ctx);
+                            plugins.Add(mod);
+                        }
+                    } catch (Exception err)
                     {
-                        dynamic entry = plugin.CreateInstance(exported.ToString());
-                        entry.Initialize(ctx);
-                        plugins.Add(entry);
+                        Debugger.Error(err);
+                        continue;
                     }
                 }
             }
             benchmark.Stop();
             Debugger.Module($"Loaded {plugins.Count} module(s) in {benchmark.ElapsedMilliseconds}ms");
-            GC.Collect();
+           
         }
 
         public void UnloadPlugins()
