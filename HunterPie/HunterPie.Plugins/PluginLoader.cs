@@ -128,7 +128,7 @@ namespace HunterPie.Plugins
             {
                 foreach (string extDependency in information.Dependencies)
                 {
-                    references.Add(MetadataReference.CreateFromFile(Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "libs", extDependency)));
+                    references.Add(MetadataReference.CreateFromFile(Path.Combine(pluginPath, extDependency)));
                 }
                 
             }
