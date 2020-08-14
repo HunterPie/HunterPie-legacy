@@ -145,7 +145,6 @@
     <Part ID="MONSTER_PART_LARM_ROCK" Name="Bras Gauche (roche)"/>
     <Part ID="MONSTER_PART_RARM_ROCK" Name="Bras Droit (roche)"/>
     <Part ID="MONSTER_PART_LEGS_ROCK" Name="Pattes (roche)"/>
-    <Part ID="MONSTER_JAGRAS_SUMMONER" Name="Convocation de Jagras"/>
     <Part ID="MONSTER_PART_ANTLERS" Name="Bois"/>
 	<Part ID="MONSTER_PART_HORN" Name="Corne"/>
     <!-- Removable parts -->
@@ -525,11 +524,19 @@
       <String ID="STATIC_TOGGLE_DESIGN" Name="Basculer en Design Mode (Raccourcis):"/>
       <String ID="STATIC_TOGGLE_DESIGN_DESC" Name="Basculez en Design Mode."/>
       <String ID="STATIC_OVERLAY_POSITION_DESC" Name="Modifiez la position de l'Overlay."/>
+	  <String ID="ENABLE_OVERLAY_FORCE_DIRECTX11_FULLSCREEN" Name="Forcer le plein écran DirectX 11 derrière la superposition"/>
+      <String ID="ENABLE_OVERLAY_FORCE_DIRECTX11_FULLSCREEN_DESC" Name="Cette option forcera le jeu à toujours être derrière la superposition de HunterPie, en conséquence la superposition apparaîtra même en plein écran DirectX 11. EXIGE DES OPTIMISATIONS PLEIN ÉCRAN POUR ÊTRE ACTIVÉES."/>
       <!-- Monster Widget -->
       <String ID="ENABLE_MONSTER_WIDGET" Name="Activer le widget &quot;Monstre&quot;"/>
       <String ID="ENABLE_MONSTER_WIDGET_DESC" Name="Activé, le widget &quot;Monstre&quot; sera visible tant qu'il y aura un monstre."/>
       <String ID="STATIC_MONSTER_HEALTH_STRING_FORMAT" Name="Format texte des PV :"/>
       <String ID="STATIC_MONSTER_HEALTH_STRING_FORMAT_DESC" Name="Format du texte des PV du monstre."/>
+      <String ID="STATIC_MONSTER_AILMENT_BUILDUP_STRING_FORMAT" Name="Format de texte d'accumulation de maladie:"/>
+      <String ID="STATIC_MONSTER_AILMENT_BUILDUP_STRING_FORMAT_DESC" Name="Format de texte pour l'accumulation de la maladie du monstre."/>
+      <String ID="STATIC_MONSTER_AILMENT_TIMER_STRING_FORMAT" Name="Format de texte de la minuterie de maladie:"/>
+      <String ID="STATIC_MONSTER_AILMENT_TIMER_STRING_FORMAT_DESC" Name="Format de texte pour la minuterie des maux de monstre."/>
+      <String ID="STATIC_MONSTER_PART_HEALTH_STRING_FORMAT" Name="Format du texte de santé de la partie"/>
+      <String ID="STATIC_MONSTER_PART_HEALTH_STRING_FORMAT_DESC" Name="Format de texte pour la santé de la partie du monstre."/>	  
       <String ID="ENABLE_MONSTER_USE_LOCKON" Name="Utiliser le bloquage à coté de la map"/>
       <String ID="ENABLE_MONSTER_USE_LOCKON_DESC" Name="Si activé, HunterPie va utiliser le bloquage sélectionné pour afficher la proie."/>
       <String ID="STATIC_MONSTER_BAR_MODE" Name="Barre de vie des monstres"/>
@@ -734,7 +741,7 @@
       <String ID="STATIC_OPENDEFAULTBROWSER" Name="Ouvrir dans le navigateur"/>
       <String ID="STATIC_OPENFOLDER" Name="Ouvrir le dossier"/>
 	  <String ID="MESSAGE_BUILD_UPLOADED" Name="Build enregistré sur Honey Hunter World !"/>
-	  <String ID="MESSAGE_GEAR_EXPORTED" Name="Export./DataExport!"/>
+	  <String ID="MESSAGE_GEAR_EXPORTED" Name="Exporter l'équipement vers./DataExport!"/>
     </Notifications>
     <RichPresence>
       <String ID="RPC_DESCRIPTION_IN_MAIN_MENU" Name="Dans le Menu Principal"/>

@@ -532,11 +532,19 @@
       <String ID="STATIC_TOGGLE_DESIGN" Name="デザインモードの切り替え（ホットキー）："/>
       <String ID="STATIC_TOGGLE_DESIGN_DESC" Name="オーバーレイをマウス動作で編集できる「デザインモード」を有効化／解除するキーボードショートカット。"/>
       <String ID="STATIC_OVERLAY_POSITION_DESC" Name="オーバーレイの位置を変更します。"/>
+      <String ID="ENABLE_OVERLAY_FORCE_DIRECTX11_FULLSCREEN" Name="DirectX 11 フルスクリーンでオーバーレイを強制表示"/>
+      <String ID="ENABLE_OVERLAY_FORCE_DIRECTX11_FULLSCREEN_DESC" Name="有効な場合、MHWの設定でDirectX 12 APIが「OFF」でも、全画面表示のMHWを強制的にオーバーレイの後ろに表示させます。（ 注意：全画面最適化の有効化が必要です。）"/>
       <!-- Monster Widget -->
       <String ID="ENABLE_MONSTER_WIDGET" Name="モンスターウィジェットを有効にする"/>
       <String ID="ENABLE_MONSTER_WIDGET_DESC" Name="有効な場合、表示可能な大型モンスターの情報があれば表示します。"/>
-      <String ID="STATIC_MONSTER_HEALTH_STRING_FORMAT" Name="ＨＰ表示スタイル："/>
-      <String ID="STATIC_MONSTER_HEALTH_STRING_FORMAT_DESC" Name="モンスターの体力ゲージに表示される文字のスタイルを変更します。"/>
+      <String ID="STATIC_MONSTER_HEALTH_STRING_FORMAT" Name="ＨＰフォーマット："/>
+      <String ID="STATIC_MONSTER_HEALTH_STRING_FORMAT_DESC" Name="モンスターの体力値の表示形式を変更できます。"/>
+      <String ID="STATIC_MONSTER_AILMENT_BUILDUP_STRING_FORMAT" Name="状態異常（蓄積値）フォーマット："/>
+      <String ID="STATIC_MONSTER_AILMENT_BUILDUP_STRING_FORMAT_DESC" Name="モンスターの状態異常の蓄積値の表示形式を変更できます。"/>
+      <String ID="STATIC_MONSTER_AILMENT_TIMER_STRING_FORMAT" Name="状態異常（残り時間）フォーマット："/>
+      <String ID="STATIC_MONSTER_AILMENT_TIMER_STRING_FORMAT_DESC" Name="モンスターの状態異常の残り時間の表示形式を変更できます。"/>
+      <String ID="STATIC_MONSTER_PART_HEALTH_STRING_FORMAT" Name="部位（怯み値）フォーマット："/>
+      <String ID="STATIC_MONSTER_PART_HEALTH_STRING_FORMAT_DESC" Name="モンスターの部位の怯み値の表示形式を変更できます。"/>
       <String ID="ENABLE_MONSTER_USE_LOCKON" Name="ロックオンでターゲットモンスターを選択"/>
       <String ID="ENABLE_MONSTER_USE_LOCKON_DESC" Name="無効な場合、マップのピンで注目モンスターを選択できます。"/>
       <String ID="STATIC_MONSTER_BAR_MODE" Name="モンスターウィジェットの表示タイプ"/>

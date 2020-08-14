@@ -524,11 +524,19 @@
       <String ID="STATIC_TOGGLE_DESIGN" Name="디자인 모드 토글 (단축키):" />
       <String ID="STATIC_TOGGLE_DESIGN_DESC" Name="디자인 모드의 토글 단축키입니다, 변경된 단축키는 재시작시 적용됩니다." />
       <String ID="STATIC_OVERLAY_POSITION_DESC" Name="오버레이의 위치를 변경합니다." />
+      <String ID="ENABLE_OVERLAY_FORCE_DIRECTX11_FULLSCREEN" Name="DirectX 11 전체화면 오버레이 활성화"/>
+      <String ID="ENABLE_OVERLAY_FORCE_DIRECTX11_FULLSCREEN_DESC" Name="옵션이 켜져 있을 경우, HunterPie 오버레이가 Direct 11 전체화면 에서도 오버레이가 나타납니다."/>
       <!-- Monster Widget -->
       <String ID="ENABLE_MONSTER_WIDGET" Name="몬스터 위젯 활성화" />
       <String ID="ENABLE_MONSTER_WIDGET_DESC" Name="옵션이 켜져 있을 경우, 몬스터 위젯은 보여줄 것이 있을시 활성화됩니다." />
       <String ID="STATIC_MONSTER_HEALTH_STRING_FORMAT" Name="체력 텍스트 형식:" />
       <String ID="STATIC_MONSTER_HEALTH_STRING_FORMAT_DESC" Name="몬스터 체력바에 표시되는 텍스트의 형식입니다." />
+      <String ID="STATIC_MONSTER_AILMENT_BUILDUP_STRING_FORMAT" Name="몬스터 상태 이상 텍스트 형식:"/>
+      <String ID="STATIC_MONSTER_AILMENT_BUILDUP_STRING_FORMAT_DESC" Name="몬스터 상태 이상 수치 값의 텍스트 형식입니다."/>
+      <String ID="STATIC_MONSTER_AILMENT_TIMER_STRING_FORMAT" Name="몬스터 상태 이상 지속시간 텍스트 형식:"/>
+      <String ID="STATIC_MONSTER_AILMENT_TIMER_STRING_FORMAT_DESC" Name="몬스터 상태 이상 수치 중 지속시간 값의 텍스트 형식입니다."/>
+      <String ID="STATIC_MONSTER_PART_HEALTH_STRING_FORMAT" Name="몬스터의 파괴 가능 부위 텍스트 형식"/>
+      <String ID="STATIC_MONSTER_PART_HEALTH_STRING_FORMAT_DESC" Name="몬스터 파괴 가능 부위 수치 값의 텍스트 형식입니다."/>
       <String ID="ENABLE_MONSTER_USE_LOCKON" Name="맵을 열어 몬스터를 고르는 대신 락온을 사용합니다." />
       <String ID="ENABLE_MONSTER_USE_LOCKON_DESC" Name="옵션이 켜져 있을 경우, HunterPie는 인게임 락온을 사용하여 몬스터를 추적합니다." />
       <String ID="STATIC_MONSTER_BAR_MODE" Name="몬스터 체력바 모드" />
