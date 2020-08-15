@@ -7,6 +7,7 @@
 - [Player Data Exporter](?p=HunterPie/playerDataExporter.md)
 - [Themes](?p=HunterPie/themes.md)
 - [Debug](?p=HunterPie/debug.md)
+- [Plugins](?p=Plugins/plugins.md)
 
 ### Overlay
 - [Monsters Widget](?p=Overlay/monstersWidget.md)
