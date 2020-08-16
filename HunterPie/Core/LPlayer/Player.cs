@@ -1055,7 +1055,7 @@ namespace HunterPie.Core
         {
             float powerProlongerMultiplier = CalculatePowerProlongerMultiplier();
 
-            float outerGauge = Scanner.Read<float>(weaponAddress - 0xC) * powerProlongerMultiplier;
+            float outerGauge = Scanner.Read<float>(weaponAddress - 0xC);
             float swordChargeTimer = Scanner.Read<float>(weaponAddress - 0x8) * powerProlongerMultiplier;
             float innerGauge = Scanner.Read<float>(weaponAddress - 0x1C);
             float switchAxeBuff = 0;

@@ -212,6 +212,9 @@
     <Compile Include="GUIControls\Custom Controls\MinimalSlider.xaml.cs">
       <DependentUpon>MinimalSlider.xaml</DependentUpon>
     </Compile>
+    <Compile Include="GUIControls\Custom Controls\PluginContainer.xaml.cs">
+      <DependentUpon>PluginContainer.xaml</DependentUpon>
+    </Compile>
     <Compile Include="GUIControls\Custom Controls\PositionControl.xaml.cs">
       <DependentUpon>PositionControl.xaml</DependentUpon>
     </Compile>
@@ -296,6 +299,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="GUIControls\Custom Controls\MinimalSlider.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="GUIControls\Custom Controls\PluginContainer.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -540,9 +547,7 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <None Include="app.manifest" />
-    <None Include="Modules\Example\module.json">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </None>
+    <None Include="Modules\Example\module.json" />
     <None Include="Themes\RedMonsterBar.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -581,9 +586,7 @@
     <Compile Include="Memory\Scanner.cs" />
     <Compile Include="Memory\Win32.cs" />
     <Compile Include="Memory\WindowsHelper.cs" />
-    <None Include="Modules\Example\main.cs">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </None>
+    <None Include="Modules\Example\main.cs" />
     <Compile Include="Properties\AssemblyInfo.cs">
       <SubType>Code</SubType>
     </Compile>

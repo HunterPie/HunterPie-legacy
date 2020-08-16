@@ -1,0 +1,17 @@
+﻿<UserControl x:Class="HunterPie.GUIControls.Custom_Controls.PluginContainer"
+             x:Name="PluginComponent"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:local="clr-namespace:HunterPie.GUIControls.Custom_Controls"
+             mc:Ignorable="d" 
+             d:DesignHeight="50" d:DesignWidth="450">
+    <Grid Background="#FF252525">
+        <DockPanel Height="26" VerticalAlignment="Top" Background="#FF1D1D1D">
+            <TextBlock Text="My plugin" FontSize="14" FontFamily="Roboto, Segoe UI" FontWeight="Medium" Foreground="WhiteSmoke" DockPanel.Dock="Left" Padding="0,0,2,0" VerticalAlignment="Center" HorizontalAlignment="Left"/>
+            <TextBlock Text="v1.0.0" FontSize="10" FontFamily="Roboto, Segoe UI" DockPanel.Dock="Left" HorizontalAlignment="Left" Foreground="#FFA0A0A0" VerticalAlignment="Bottom"/>
+            <local:Switcher Text="" Width="53" HorizontalAlignment="Right" DockPanel.Dock="Right"/>
+        </DockPanel>
+    </Grid>
+</UserControl>

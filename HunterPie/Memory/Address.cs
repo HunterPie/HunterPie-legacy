@@ -179,23 +179,23 @@ namespace HunterPie.Memory
             LoadAddressFromDict(nameof(WEAPON_MECHANICS_OFFSET), out WEAPON_MECHANICS_OFFSET, WEAPON_MECHANICS_OFFSET);
             LoadAddressFromDict(nameof(CANTEEN_OFFSET), out CANTEEN_OFFSET, CANTEEN_OFFSET);
             // Load offsets
-            LoadOffsetsFromDict("LevelOffsets", out Offsets.LevelOffsets, Offsets.LevelOffsets);
-            LoadOffsetsFromDict("ZoneOffsets", out Offsets.ZoneOffsets, Offsets.ZoneOffsets);
-            LoadOffsetsFromDict("SessionOffsets", out Offsets.SessionOffsets, Offsets.SessionOffsets);
-            LoadOffsetsFromDict("WeaponOffsets", out Offsets.WeaponOffsets, Offsets.WeaponOffsets);
-            LoadOffsetsFromDict("MonsterOffsets", out Offsets.MonsterOffsets, Offsets.MonsterOffsets);
-            LoadOffsetsFromDict("EquipmentOffsets", out Offsets.EquipmentOffsets, Offsets.EquipmentOffsets);
-            LoadOffsetsFromDict("PartyOffsets", out Offsets.PartyOffsets, Offsets.PartyOffsets);
-            LoadOffsetsFromDict("DamageOffsets", out Offsets.DamageOffsets, Offsets.DamageOffsets);
-            LoadOffsetsFromDict("AbnormalityOffsets", out Offsets.AbnormalityOffsets, Offsets.AbnormalityOffsets);
-            LoadOffsetsFromDict("SkillOffsets", out Offsets.SkillOffsets, Offsets.SkillOffsets);
-            LoadOffsetsFromDict("AbnormalityGearOffsets", out Offsets.AbnormalityGearOffsets, Offsets.AbnormalityGearOffsets);
-            LoadOffsetsFromDict("MonsterSelectedOffsets", out Offsets.MonsterSelectedOffsets, Offsets.MonsterSelectedOffsets);
-            LoadOffsetsFromDict("PlayerGearOffsets", out Offsets.PlayerGearOffsets, Offsets.PlayerGearOffsets);
-            LoadOffsetsFromDict("PlayerLockonOffsets", out Offsets.PlayerLockonOffsets, Offsets.PlayerLockonOffsets);
-            LoadOffsetsFromDict("WeaponMechanicsOffsets", out Offsets.WeaponMechanicsOffsets, Offsets.WeaponMechanicsOffsets);
-            LoadOffsetsFromDict("PlayerPositionOffsets", out Offsets.PlayerPositionOffsets, Offsets.PlayerPositionOffsets);
-            LoadOffsetsFromDict("PlayerBasicInformationOffsets", out Offsets.PlayerBasicInformationOffsets, Offsets.PlayerBasicInformationOffsets);
+            LoadOffsetsFromDict("LevelOffsets", out Offsets.LevelOffsets);
+            LoadOffsetsFromDict("ZoneOffsets", out Offsets.ZoneOffsets);
+            LoadOffsetsFromDict("SessionOffsets", out Offsets.SessionOffsets);
+            LoadOffsetsFromDict("WeaponOffsets", out Offsets.WeaponOffsets);
+            LoadOffsetsFromDict("MonsterOffsets", out Offsets.MonsterOffsets);
+            LoadOffsetsFromDict("EquipmentOffsets", out Offsets.EquipmentOffsets);
+            LoadOffsetsFromDict("PartyOffsets", out Offsets.PartyOffsets);
+            LoadOffsetsFromDict("DamageOffsets", out Offsets.DamageOffsets);
+            LoadOffsetsFromDict("AbnormalityOffsets", out Offsets.AbnormalityOffsets);
+            LoadOffsetsFromDict("SkillOffsets", out Offsets.SkillOffsets);
+            LoadOffsetsFromDict("AbnormalityGearOffsets", out Offsets.AbnormalityGearOffsets);
+            LoadOffsetsFromDict("MonsterSelectedOffsets", out Offsets.MonsterSelectedOffsets);
+            LoadOffsetsFromDict("PlayerGearOffsets", out Offsets.PlayerGearOffsets);
+            LoadOffsetsFromDict("PlayerLockonOffsets", out Offsets.PlayerLockonOffsets);
+            LoadOffsetsFromDict("WeaponMechanicsOffsets", out Offsets.WeaponMechanicsOffsets);
+            LoadOffsetsFromDict("PlayerPositionOffsets", out Offsets.PlayerPositionOffsets);
+            LoadOffsetsFromDict("PlayerBasicInformationOffsets", out Offsets.PlayerBasicInformationOffsets);
             // Clear addresses loaded into memory
             MappedAddresses.Clear();
             MappedOffsets.Clear();
@@ -214,7 +214,7 @@ namespace HunterPie.Memory
             }
         }
 
-        private static void LoadOffsetsFromDict(string name, out int[] offsetsArray, int[] oldOffsetsArray)
+        private static void LoadOffsetsFromDict(string name, out int[] offsetsArray)
         {
             try
             {
@@ -222,7 +222,7 @@ namespace HunterPie.Memory
             }
             catch
             {
-                offsetsArray = oldOffsetsArray;
+                offsetsArray = Array.Empty<int>();
                 Debugger.Error($"MonsterHunterWorld.{GAME_VERSION}.map missing offsets for {name}");
             }
         }
