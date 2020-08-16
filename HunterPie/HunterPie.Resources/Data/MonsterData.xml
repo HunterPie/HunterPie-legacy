@@ -1482,6 +1482,7 @@
       <Part Name="MONSTER_PART_COUNTERATTACK" IsRemovable="True" Index="0"/>
       <Part Name="MONSTER_PART_REMOVABLE_HEAD" IsRemovable="True" Index="2">
         <Break Threshold="1"/>
+        <Break Threshold="2"/>
       </Part>
       <Part Name="MONSTER_PART_REMOVABLE_TAIL" IsRemovable="True" Index="1">
         <Break Threshold="1"/>
