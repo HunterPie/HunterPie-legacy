@@ -89,6 +89,16 @@ Parts that can be broken have a break threshold shown by the side of the flinch 
 - **n/x:** This means there are only one break threshold, it will break when you flinch that part `x` times.
 - **n**: This means you cannot break this part, it is just a flinch counter.
 
+---
+
+### Tenderize Timer
+
+HunterPie can track and display each part tenderize timer, however, since they're in the same part display component on the Overlay UI, you need that part to be enabled in order to see it.
+
+A Tenderize bar will appear under the affected part health bar, keeping that part always visible until the effect is over.
+
+![tenderizeBar](https://media.discordapp.net/attachments/402557384209203200/741015551383437412/unknown.png?width=250&height=53)
+
 ### Ailments
 
 Monster ailments have the same design as the part displays, however some ailments have two states: Buildups and Timers.

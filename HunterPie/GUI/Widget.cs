@@ -1,8 +1,9 @@
 ﻿using System;
 using System.Windows;
-using System.Windows.Input;
+using System.Windows.Forms;
 using System.Windows.Interop;
 using System.Windows.Media;
+using HunterPie.Core;
 using HunterPie.Memory;
 
 namespace HunterPie.GUI
@@ -28,6 +29,7 @@ namespace HunterPie.GUI
             set
             {
                 _InDesignMode = value;
+                IsDesignModeEnabled = value;
                 if (_InDesignMode) { EnterWidgetDesignMode(); }
                 else { LeaveWidgetDesignMode(); }
             }
@@ -36,12 +38,39 @@ namespace HunterPie.GUI
         public double BaseWidth { get; set; }
         public double BaseHeight { get; set; }
 
+        public bool IsDesignModeEnabled
+        {
+            get { return (bool)GetValue(IsDesignModeEnabledProperty); }
+            set { SetValue(IsDesignModeEnabledProperty, value); }
+        }
+        public static readonly DependencyProperty IsDesignModeEnabledProperty =
+            DependencyProperty.Register("IsDesignModeEnabled", typeof(bool), typeof(Widget));
+
+        public string DesignModeDetails
+        {
+            get { return (string)GetValue(DesignModeDetailsProperty); }
+            set { SetValue(DesignModeDetailsProperty, value); }
+        }
+        public static readonly DependencyProperty DesignModeDetailsProperty =
+            DependencyProperty.Register("DesignModeDetails", typeof(string), typeof(Widget));
+
+        public Visibility DesignModeDetailsVisibility
+        {
+            get { return (Visibility)GetValue(DesignModeDetailsVisibilityProperty); }
+            set { SetValue(DesignModeDetailsVisibilityProperty, value); }
+        }
+        public static readonly DependencyProperty DesignModeDetailsVisibilityProperty =
+            DependencyProperty.Register("DesignModeDetailsVisibility", typeof(Visibility), typeof(Widget));
+
+
         public Widget() => CompositionTarget.Rendering += OnWidgetRender;
 
         private int renderCounter = 0;
+        private double LastFrameRender;
         private void OnWidgetRender(object sender, EventArgs e)
         {
             renderCounter++;
+            
             if (renderCounter >= 120)
             {
                 // Only force widgets on top if they are actually visible
@@ -55,31 +84,39 @@ namespace HunterPie.GUI
                 }
                 renderCounter = 0;
             }
+            if (InDesignMode)
+            {
+                RenderingEventArgs args = (RenderingEventArgs)e;
+                // Dispatcher messes with the Render counter
+#if !DEBUG  // Debug messes with the rendering time
+                if (args.RenderingTime.TotalMilliseconds - LastFrameRender > 0)
+                {
+
+                    DesignModeDetails = $"{Left}x{Top} ({DefaultScaleX * 100:0.0}%) ({args.RenderingTime.TotalMilliseconds - LastFrameRender:0.##}ms)";
+                    DesignModeDetailsVisibility = Visibility.Visible;
+                    LastFrameRender = args.RenderingTime.TotalMilliseconds;
+
+                }
+#endif
+            }
+            else
+            {
+                DesignModeDetailsVisibility = Visibility.Collapsed;
+            }
+            
         }
 
         double OldOpacity;
         public virtual void EnterWidgetDesignMode()
         {
             ChangeVisibility();
-            SolidColorBrush BorderColorBrush = new SolidColorBrush((Color)ColorConverter.ConvertFromString("#ededed"));
-            SolidColorBrush BackgroundBrush = new SolidColorBrush((Color)ColorConverter.ConvertFromString("#80e6e6e6"));
-            BorderColorBrush.Freeze();
-            BackgroundBrush.Freeze();
-            Cursor = Cursors.SizeAll;
-            BorderBrush = BorderColorBrush;
-            BorderThickness = new Thickness(1, 1, 1, 1);
-            Background = BackgroundBrush;
             OldOpacity = Opacity;
             Opacity = 1;
-            ToolTip = $"{Left}x{Top} ({DefaultScaleX * 100:0.0}%)";
         }
 
         public virtual void LeaveWidgetDesignMode()
         {
             ChangeVisibility();
-            BorderBrush = null;
-            BorderThickness = new Thickness(0, 0, 0, 0);
-            Background = Brushes.Transparent;
             Opacity = OldOpacity;
         }
 
@@ -132,11 +169,22 @@ namespace HunterPie.GUI
         public void ForceAlwaysOnTop()
         {
             if (this == null || IsClosed) return;
+            
+
             uint Flags = (uint)(WindowsHelper.SWP_WINDOWN_FLAGS.SWP_SHOWWINDOW |
                 WindowsHelper.SWP_WINDOWN_FLAGS.SWP_NOSIZE |
                 WindowsHelper.SWP_WINDOWN_FLAGS.SWP_NOMOVE |
                 WindowsHelper.SWP_WINDOWN_FLAGS.SWP_NOACTIVATE);
+
             IntPtr hwnd = new WindowInteropHelper(this).EnsureHandle();
+
+            // Kinda hacky way to make it work with DirectX 11 fullscreen + Fullscreen optimizations
+            if (Scanner.IsForegroundWindow && UserSettings.PlayerConfig.Overlay.EnableForceDirectX11Fullscreen)
+            {
+                uint GameWindowFlags = (uint)(WindowsHelper.SWP_WINDOWN_FLAGS.SWP_SHOWWINDOW |
+                WindowsHelper.SWP_WINDOWN_FLAGS.SWP_NOMOVE);
+                WindowsHelper.SetWindowPos(Scanner.WindowHandle, -2, 0, 0, Screen.PrimaryScreen.Bounds.Width, Screen.PrimaryScreen.Bounds.Height, GameWindowFlags);
+            }
             WindowsHelper.SetWindowPos(hwnd, -1, 0, 0, 0, 0, Flags);
         }
 

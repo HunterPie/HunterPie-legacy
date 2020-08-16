@@ -17,6 +17,7 @@ using HunterPie.Core.Integrations.DataExporter;
 using HunterPie.GUI;
 using HunterPie.GUIControls;
 using HunterPie.GUIControls.Custom_Controls;
+using HunterPie.Plugins;
 using HunterPie.Logger;
 // HunterPie
 using HunterPie.Memory;
@@ -33,18 +34,18 @@ namespace HunterPie
     {
         // TODO: Refactor all this messy code
 
-
         // Classes
         TrayIcon TrayIcon;
         readonly Game MonsterHunter = new Game();
         Presence Discord;
         Overlay GameOverlay;
         readonly Exporter dataExporter = new Exporter();
+        PluginLoader pLoader = new PluginLoader();
         bool OfflineMode = false;
         bool IsUpdating = true;
 
         // HunterPie version
-        const string HUNTERPIE_VERSION = "1.0.3.95";
+        const string HUNTERPIE_VERSION = "1.0.3.96";
 
         // Helpers
         IntPtr _windowHandle;
@@ -98,12 +99,12 @@ namespace HunterPie
 
             // Load custom theme and console colors
             LoadCustomTheme();
+            LoadOverwriteTheme();
             Debugger.LoadNewColors();
 
             AdministratorIconVisibility = IsRunningAsAdmin() ? Visibility.Visible : Visibility.Collapsed;
 
             InitializeComponent();
-
         }
 
         private bool IsRunningAsAdmin()
@@ -442,6 +443,22 @@ namespace HunterPie
             }
         }
 
+        private void LoadOverwriteTheme()
+        {
+            try
+            {
+                using (FileStream stream = new FileStream(Path.Combine(AppDomain.CurrentDomain.BaseDirectory, $@"HunterPie.Resources/UI/Overwrite.xaml"), FileMode.Open))
+                {
+                    XamlReader reader = new XamlReader();
+                    ResourceDictionary res = (ResourceDictionary)reader.LoadAsync(stream);
+                    Application.Current.Resources.MergedDictionaries.Add(res);
+                }
+            } catch (Exception err)
+            {
+                Debugger.Error(err);
+            }
+        }
+
         private void ExceptionLogger(object sender, UnhandledExceptionEventArgs e) => File.WriteAllText("crashes.txt", e.ExceptionObject.ToString());
 
         private void StartEverything()
@@ -561,7 +578,7 @@ namespace HunterPie
         {
             if (MonsterHunter.Player.IsLoggedOn)
             {
-                Debugger.Log($"ZoneID: {MonsterHunter.Player.ZoneID}");
+                Debugger.Debug($"ZoneID: {MonsterHunter.Player.ZoneID}");
                 ExportGameData();
             }
         }
@@ -592,6 +609,7 @@ namespace HunterPie
             // Hook game events
             HookGameEvents();
 
+            pLoader.LoadPlugins(MonsterHunter);
             // Creates new overlay
             Dispatcher.Invoke(System.Windows.Threading.DispatcherPriority.Background, new Action(() =>
             {
@@ -629,6 +647,7 @@ namespace HunterPie
         public void OnGameClose(object source, EventArgs e)
         {
             UnhookGameEvents();
+            pLoader.UnloadPlugins();
             Discord.Dispose();
             Discord = null;
             if (UserSettings.PlayerConfig.HunterPie.Options.CloseWhenGameCloses)

@@ -4,6 +4,7 @@ using System.Linq;
 using System.Windows;
 using System.Windows.Media;
 using HunterPie.Core;
+using HunterPie.Logger;
 
 namespace HunterPie.GUI.Widgets.DPSMeter
 {
@@ -15,6 +16,8 @@ namespace HunterPie.GUI.Widgets.DPSMeter
         List<Parts.PartyMember> Players = new List<Parts.PartyMember>();
         Game GameContext;
         Party Context;
+        // This will hold the value of how many seconds it took for the play to damage the monster
+        // So we can calculate the DPS more accurately
 
         public Visibility TimerVisibility
         {
@@ -49,12 +52,14 @@ namespace HunterPie.GUI.Widgets.DPSMeter
 
         public override void EnterWidgetDesignMode()
         {
+            ResizeMode = ResizeMode.CanResize;
             base.EnterWidgetDesignMode();
             RemoveWindowTransparencyFlag();
         }
 
         public override void LeaveWidgetDesignMode()
         {
+            ResizeMode = ResizeMode.NoResize;
             base.LeaveWidgetDesignMode();
             ApplyWindowTransparencyFlag();
             SaveSettings();
@@ -72,6 +77,7 @@ namespace HunterPie.GUI.Widgets.DPSMeter
             UserSettings.PlayerConfig.Overlay.DPSMeter.Position[0] = (int)Left - UserSettings.PlayerConfig.Overlay.Position[0];
             UserSettings.PlayerConfig.Overlay.DPSMeter.Position[1] = (int)Top - UserSettings.PlayerConfig.Overlay.Position[1];
             UserSettings.PlayerConfig.Overlay.DPSMeter.Scale = DefaultScaleX;
+            UserSettings.PlayerConfig.Overlay.DPSMeter.Width = Width;
         }
 
         private void OnPeaceZoneLeave(object source, EventArgs args) => Dispatcher.BeginInvoke(System.Windows.Threading.DispatcherPriority.Background, new Action(() =>
@@ -112,8 +118,10 @@ namespace HunterPie.GUI.Widgets.DPSMeter
             Context = null;
         }
 
-        private void OnTotalDamageChange(object source, EventArgs args) => Dispatcher.BeginInvoke(System.Windows.Threading.DispatcherPriority.Render, new Action(() =>
+        private void OnTotalDamageChange(object source, EventArgs args) =>
+            Dispatcher.BeginInvoke(System.Windows.Threading.DispatcherPriority.Render, new Action(() =>
         {
+            
             if (Context.TotalDamage > 0 && !UserSettings.PlayerConfig.Overlay.DPSMeter.ShowOnlyTimer)
             {
                 Party.Visibility = Visibility.Visible;
@@ -203,7 +211,11 @@ namespace HunterPie.GUI.Widgets.DPSMeter
                 TimerVisibility = UserSettings.PlayerConfig.Overlay.DPSMeter.ShowTimer ? Visibility.Visible : Visibility.Collapsed;
 
                 UpdatePlayersColor();
+
+                
                 ScaleWidget(UserSettings.PlayerConfig.Overlay.DPSMeter.Scale, UserSettings.PlayerConfig.Overlay.DPSMeter.Scale);
+                SnapWidget(UserSettings.PlayerConfig.Overlay.DPSMeter.Width);
+
                 Opacity = UserSettings.PlayerConfig.Overlay.DPSMeter.Opacity;
                 Color PartyBgColor = new Color()
                 {
@@ -230,13 +242,11 @@ namespace HunterPie.GUI.Widgets.DPSMeter
         public void ScaleWidget(double NewScaleX, double NewScaleY)
         {
             if (NewScaleX <= 0.2) return;
-            Width = BaseWidth * NewScaleX;
-            Height = BaseHeight * NewScaleY;
             DamageContainer.LayoutTransform = new ScaleTransform(NewScaleX, NewScaleY);
             DefaultScaleX = NewScaleX;
             DefaultScaleY = NewScaleY;
+            SnapWidget(UserSettings.PlayerConfig.Overlay.DPSMeter.Width);
         }
-
 
         private void OnMouseDown(object sender, System.Windows.Input.MouseButtonEventArgs e)
         {
@@ -257,6 +267,31 @@ namespace HunterPie.GUI.Widgets.DPSMeter
             {
                 ScaleWidget(DefaultScaleX - 0.05, DefaultScaleY - 0.05);
             }
+        }
+
+        private void DamageMeter_SizeChanged(object sender, SizeChangedEventArgs e)
+        {
+            e.Handled = true;
+            SnapWidget(e.NewSize.Width);
+        }
+
+        private void SnapWidget(double newWidth)
+        {
+            double temp;
+            if (newWidth / (322 * DefaultScaleX) % 1 >= 0.5)
+            {
+                temp = (322 * DefaultScaleX) * Math.Ceiling(newWidth / (322 * DefaultScaleX));
+            } else
+            {
+                temp = (322 * DefaultScaleX) * Math.Floor(newWidth / (322 * DefaultScaleX));
+            }
+            if (newWidth < (322 * DefaultScaleX))
+            {
+                temp = (322 * DefaultScaleX);
+            }
+            else if (newWidth > (322 * DefaultScaleX) * 4) temp = (322 * DefaultScaleX) * 4;
+            Width = temp;
+            MaxHeight = MinHeight = (TimerContainer.ActualHeight + (Party.ActualHeight == 0 ? 46 * 4 : Party.ActualHeight) + 2) * DefaultScaleY;
         }
     }
 }

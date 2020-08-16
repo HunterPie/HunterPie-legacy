@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
+using System.Windows.Forms;
 using HunterPie.Logger;
 using Newtonsoft.Json;
 
@@ -45,6 +46,7 @@ namespace HunterPie.Core
                 public bool HideWhenGameIsUnfocused { get; set; } = false;
                 public int ToggleDesignModeKey { get; set; } = 145;
                 public string ToggleDesignKeybind { get; set; } = "ScrollLock";
+                public bool EnableForceDirectX11Fullscreen { get; set; } = false;
                 public Monsterscomponent MonstersComponent { get; set; } = new Monsterscomponent();
                 public Harvestboxcomponent HarvestBoxComponent { get; set; } = new Harvestboxcomponent();
                 public SpecializedTool PrimaryMantle { get; set; } = new SpecializedTool()
@@ -84,6 +86,9 @@ namespace HunterPie.Core
                 public float Opacity { get; set; } = 1;
                 public bool UseLockonInsteadOfPin { get; set; } = false;
                 public bool EnableAilmentsBarColor { get; set; } = true;
+                public string AilmentBuildupTextFormat { get; set; } = "{Current}/{Max}";
+                public string AilmentTimerTextFormat { get; set; } = "{Current}/{Max}";
+                public string PartTextFormat { get; set; } = "{Current}/{Max}";
             }
 
             public class Harvestboxcomponent
@@ -107,6 +112,7 @@ namespace HunterPie.Core
                 public int[] Position { get; set; }
                 public string Color { get; set; }
                 public float Opacity { get; set; } = 1;
+                public bool CompactMode { get; set; } = false;
             }
 
             public class DPSMeter
@@ -123,6 +129,7 @@ namespace HunterPie.Core
                 public float Opacity { get; set; } = 1;
                 public bool ShowOnlyTimer { get; set; } = false;
                 public bool ShowTimer { get; set; } = true;
+                public double Width { get; set; } = 1;
             }
 
             public class Players
@@ -325,7 +332,7 @@ namespace HunterPie.Core
             try
             {
                 configContent = File.ReadAllText(ConfigFileName);
-                if (configContent == "null") throw new Exception("config.json was null");
+                if (string.IsNullOrEmpty(configContent) || configContent == "null") throw new Exception("config.json was corrupted.");
             }
             catch (IOException err)
             {
@@ -368,7 +375,7 @@ namespace HunterPie.Core
             try
             {
                 string newPlayerConfig = JsonConvert.SerializeObject(PlayerConfig, Formatting.Indented);
-                if (newPlayerConfig == "null") throw new Exception("Whoops! Something went wrong when trying to save your config!");
+                if (string.IsNullOrEmpty(newPlayerConfig) || newPlayerConfig == "null") throw new Exception("Whoops! Something went wrong when trying to save your config!");
                 File.WriteAllText(ConfigFileName, newPlayerConfig);
             }
             catch (Exception err)

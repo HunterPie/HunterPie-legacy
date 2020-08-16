@@ -9,6 +9,7 @@ namespace HunterPie.Core.LPlayer.Jobs
         public float SwordChargeMaxTimer { get; }
         public float InnerGauge { get; }
         public float SwitchAxeBuffTimer { get; }
+        public float SwitchAxeBuffMaxTimer { get; }
         public bool IsBuffActive { get; }
 
         public SwitchAxeEventArgs(SwitchAxe weapon)
@@ -18,6 +19,7 @@ namespace HunterPie.Core.LPlayer.Jobs
             SwordChargeMaxTimer = weapon.SwordChargeMaxTimer;
             InnerGauge = weapon.InnerGauge;
             SwitchAxeBuffTimer = weapon.SwitchAxeBuffTimer;
+            SwitchAxeBuffMaxTimer = weapon.SwitchAxeBuffMaxTimer;
             IsBuffActive = weapon.IsBuffActive;
         }
     }
@@ -78,6 +80,7 @@ namespace HunterPie.Core.LPlayer.Jobs
                 }
             }
         }
+        public float SwitchAxeBuffMaxTimer { get; set; }
         public bool IsBuffActive
         {
             get => isBuffActive;

@@ -538,11 +538,19 @@ Gerade bei den Abnormalitäten / Statusveränderungen des Spielers gibt es mit (
       <String ID="STATIC_TOGGLE_DESIGN" Name="Design Modus umschalten (HotKey):"/>
       <String ID="STATIC_TOGGLE_DESIGN_DESC" Name="HotKey um den Design-Modus ein- / oder auszuschalten."/>
       <String ID="STATIC_OVERLAY_POSITION_DESC" Name="Verändert die Position des Overlays."/>
+	  <String ID="ENABLE_OVERLAY_FORCE_DIRECTX11_FULLSCREEN" Name="Zwinge die DirectX 11 Vollbild Anwendung hinter das Overlay"/>
+      <String ID="ENABLE_OVERLAY_FORCE_DIRECTX11_FULLSCREEN_DESC" Name="Diese Option zwingt das Spiel jederzeit hinter dem Overlay angezeigt zu werden. Dies funktioniert ebenfalls für DirectX 11 Vollbild. BENÖTIGT DIE AKTIVIERUNG DER VOLLBILD OPTIMIERUNGEN."/>
       <!-- Monster Widget -->
       <String ID="ENABLE_MONSTER_WIDGET" Name="Aktiviere Monster Widget"/>
       <String ID="ENABLE_MONSTER_WIDGET_DESC" Name="Wenn aktiv, wird das Monster Widget sichtbar sein, sobald es etwas anzuzeigen hat."/>
       <String ID="STATIC_MONSTER_HEALTH_STRING_FORMAT" Name="Monsterleisten Text Format:"/>
       <String ID="STATIC_MONSTER_HEALTH_STRING_FORMAT_DESC" Name="Text Format der Monsterleiste."/>
+	  <String ID="STATIC_MONSTER_AILMENT_BUILDUP_STRING_FORMAT" Name="Text Format des Statusveränderungen-Aufbaus:"/>
+      <String ID="STATIC_MONSTER_AILMENT_BUILDUP_STRING_FORMAT_DESC" Name="Text Format des Statusveränderungen-Aufbaus eines Monsters."/>
+      <String ID="STATIC_MONSTER_AILMENT_TIMER_STRING_FORMAT" Name="Text Format des Statusveränderungen-Timers:"/>
+      <String ID="STATIC_MONSTER_AILMENT_TIMER_STRING_FORMAT_DESC" Name="Text Format des Statusveränderungen-Timers eines Monsters."/>
+      <String ID="STATIC_MONSTER_PART_HEALTH_STRING_FORMAT" Name="Text Format der Monster-Teile:"/>
+      <String ID="STATIC_MONSTER_PART_HEALTH_STRING_FORMAT_DESC" Name="Text Format der Monster-Tiele Lebensbalken."/>
 	  <String ID="ENABLE_MONSTER_USE_LOCKON" Name="Verwende den Lockon statt dem Karten-Pin um ein Monster als Ziel zu setzen"/>
       <String ID="ENABLE_MONSTER_USE_LOCKON_DESC" Name="Wenn aktiv, wird HunterPie den ingame Monster-Lockon verwenden um ein Ziel zu verfolgen."/>
 	  <String ID="STATIC_MONSTER_BAR_MODE" Name="Monsterleisten Modus"/>

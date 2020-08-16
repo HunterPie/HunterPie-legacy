@@ -524,11 +524,19 @@
       <String ID="STATIC_TOGGLE_DESIGN" Name="Toggle Design Mode (HotKey):"/>
       <String ID="STATIC_TOGGLE_DESIGN_DESC" Name="HotKey to toggle design mode."/>
       <String ID="STATIC_OVERLAY_POSITION_DESC" Name="Changes the overlay position."/>
+      <String ID="ENABLE_OVERLAY_FORCE_DIRECTX11_FULLSCREEN" Name="Force DirectX 11 Fullscreen to be behind overlay"/>
+      <String ID="ENABLE_OVERLAY_FORCE_DIRECTX11_FULLSCREEN_DESC" Name="This option will force the game to always be behind HunterPie's overlay, as a result the overlay will appear even in DirectX 11 Fullscreen. REQUIRES FULLSCREEN OPTIMIZATIONS TO BE ENABLED."/>
       <!-- Monster Widget -->
       <String ID="ENABLE_MONSTER_WIDGET" Name="Enable Monster Widget"/>
       <String ID="ENABLE_MONSTER_WIDGET_DESC" Name="If enabled, the monster widget will be visible whenever it has content to show."/>
       <String ID="STATIC_MONSTER_HEALTH_STRING_FORMAT" Name="Health text format:"/>
       <String ID="STATIC_MONSTER_HEALTH_STRING_FORMAT_DESC" Name="Text format for the monster health bar."/>
+      <String ID="STATIC_MONSTER_AILMENT_BUILDUP_STRING_FORMAT" Name="Ailment buildup text format:"/>
+      <String ID="STATIC_MONSTER_AILMENT_BUILDUP_STRING_FORMAT_DESC" Name="Text format for the monster ailment buildup."/>
+      <String ID="STATIC_MONSTER_AILMENT_TIMER_STRING_FORMAT" Name="Ailment timer text format:"/>
+      <String ID="STATIC_MONSTER_AILMENT_TIMER_STRING_FORMAT_DESC" Name="Text format for the monster ailment timer."/>
+      <String ID="STATIC_MONSTER_PART_HEALTH_STRING_FORMAT" Name="Part health text format:"/>
+      <String ID="STATIC_MONSTER_PART_HEALTH_STRING_FORMAT_DESC" Name="Text format for the monster part health."/>
       <String ID="ENABLE_MONSTER_USE_LOCKON" Name="Use lockon instead of map pin to target monster"/>
       <String ID="ENABLE_MONSTER_USE_LOCKON_DESC" Name="If enabled, HunterPie will use the in-game monster lockon to select your target."/>
       <String ID="STATIC_MONSTER_BAR_MODE" Name="Monster Bar Mode"/>
@@ -713,12 +721,12 @@
       <String ID="STATIC_GENERAL_SETTINGS" Name="General"/>
       <String ID="STATIC_DISCORD_SETTINGS" Name="Discord"/>
       <String ID="STATIC_OVERLAY_SETTINGS" Name="Overlay"/>
-      <String ID="STATIC_MONSTERS_SETTINGS" Name="Monsters"/>
-      <String ID="STATIC_HARVEST_BOX_SETTINGS" Name="Harvest Box"/>
-      <String ID="STATIC_DAMAGE_METER_SETTINGS" Name="DPS Meter"/>
-      <String ID="STATIC_ABNORM_BAR_SETTINGS" Name="Buff Bar"/>
+      <String ID="STATIC_MONSTERS_SETTINGS" Name="Monsters Widget"/>
+      <String ID="STATIC_HARVEST_BOX_SETTINGS" Name="Harvest Box Widget"/>
+      <String ID="STATIC_DAMAGE_METER_SETTINGS" Name="Damage Meter Widget"/>
+      <String ID="STATIC_ABNORM_BAR_SETTINGS" Name="Abnormalities Tray"/>
       <String ID="STATIC_SPECIALIZED_TOOLS_SETTINGS" Name="Specialized Tools"/>
-      <String ID="STATIC_CLASSES_SETTINGS" Name="Classes"/>
+      <String ID="STATIC_CLASSES_SETTINGS" Name="Class Helpers"/>
       <String ID="STATIC_LINKS_SETTINGS" Name="Links"/>
       <String ID="STATIC_DEBUG_SETTINGS" Name="Debug"/>
     </Settings>

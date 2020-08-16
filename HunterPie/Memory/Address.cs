@@ -18,6 +18,7 @@ namespace HunterPie.Memory
             public static int[] PartyOffsets;
             public static int[] DamageOffsets;
             public static int[] AbnormalityOffsets;
+            public static int[] SkillOffsets;
             public static int[] AbnormalityGearOffsets;
             public static int[] MonsterOffsets;
             public static int[] MonsterSelectedOffsets;
@@ -117,7 +118,7 @@ namespace HunterPie.Memory
             {
                 case "Address":
                 case "long":
-                    Int64 parsedValue;
+                    long parsedValue;
                     try
                     {
                         parsedValue = ParseHex(value);
@@ -187,6 +188,7 @@ namespace HunterPie.Memory
             LoadOffsetsFromDict("PartyOffsets", out Offsets.PartyOffsets, Offsets.PartyOffsets);
             LoadOffsetsFromDict("DamageOffsets", out Offsets.DamageOffsets, Offsets.DamageOffsets);
             LoadOffsetsFromDict("AbnormalityOffsets", out Offsets.AbnormalityOffsets, Offsets.AbnormalityOffsets);
+            LoadOffsetsFromDict("SkillOffsets", out Offsets.SkillOffsets, Offsets.SkillOffsets);
             LoadOffsetsFromDict("AbnormalityGearOffsets", out Offsets.AbnormalityGearOffsets, Offsets.AbnormalityGearOffsets);
             LoadOffsetsFromDict("MonsterSelectedOffsets", out Offsets.MonsterSelectedOffsets, Offsets.MonsterSelectedOffsets);
             LoadOffsetsFromDict("PlayerGearOffsets", out Offsets.PlayerGearOffsets, Offsets.PlayerGearOffsets);

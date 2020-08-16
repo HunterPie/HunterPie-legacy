@@ -1,52 +1,68 @@
-﻿![banner](https://cdn.discordapp.com/attachments/402557384209203200/736457593181962240/banner.png)
+﻿![banner](https://cdn.discordapp.com/attachments/402557384209203200/743894519329587251/update-10396.png)
 
-**モンスターウィジェットの新機能**
+**Plugins System**
 
-**部位の傷付け状態**
+HunterPie now supports plugins. Plugins have access to **everything** HunterPie handles, including player data, monster data, game events. If you're interested in developing your own extensions, you can find an example [here](https://github.com/Haato3o/HunterPie.Plugins/blob/master/TwitchIntegration/main.cs).
 
-HunterPieは部位毎に傷の有無と残り時間を表示できるようになりました。各部位の怯み値のゲージの下に、傷の残り時間を示すゲージを設けました。
+**Monster Widget**
 
-**怒り状態の蓄積値**
 
-モンスターが怒り状態に移行するまでの蓄積値と、怒り状態の残り時間をモンスターの状態異常として追加しました。
+- **String formats:** Added ailments build, timers and parth health text format option. See the special strings below:
+    - **{}{Current}** - Current bar value.
+    - **{}{Max}** - Maxium bar value.
+    - **{}{Percentage}** - Current value / Maximum value * 100 (Without the % at the end).
 
-**モンスターウィジェットのダイナミック表示**
+Special strings are strings that will be replaced when HunterPie renders the text. They are case-sensitive and need to be written exactly as shown in the table above.
 
-マップ上のモンスターの数に応じてモンスターウィジェットの幅が自動調整します。一体しかいないのに体力ゲージが縮んで表示されることはもうありません！
-
-**モンスターの状態異常の個別設定**
-
-状態異常をそれぞれ個別に表示の有無を選べるようになりました！HunterPieの［設定 -> モンスターウィジェット］から選択可能です。
-
-**モンスターの状態異常の色分け**
-
-モンスターの状態異常を色分けして表示する選択肢を増やしました。
-
-![DemonstrationImage](https://cdn.discordapp.com/attachments/678286768046342183/736371453372399726/unknown.png)
+**Examples:**
+- **{}{Current}/{Max} ({Percentage}%)**: 500/1000 (50%)
+- **{}{Percentage}%**: 50%
 
 ---
 
-**テーマ**
+**Specialized Tools Widget**
 
-HunterPieのテーマシステムが一新され、カスタマイズの自由度が大幅に上がりました！今まで通り、テーマを自作する場合は[HunterPieのDiscord](https://discord.gg/5pdDq4Q)で助力しますので、是非いらしてください。
+- **Compact mode:** A compact mode for the Specialized Tools Widget has been added, it will only show the cooldown and current timer, the tool icon and a diamond bar around the icon.
 
----
-
-**最適化**
-
-プレイヤースキャナで最もリソースを要していた機能二つを再構築したことで、スキャン時間が大幅に短縮され、特に収穫ＢＯＸのスキャンに要するＣＰＵのリソースと時間が激減しました。旧スキャナと新スキャナのベンチマークの比較が以下となります：
-
-![BenchmarkResults](https://cdn.discordapp.com/attachments/402557384209203200/736455956145373235/Untitled-1.png)
+![img](https://cdn.discordapp.com/attachments/402557384209203200/742950877828087808/design_mantle_compact.png)
 
 ---
 
-**その他の変更点**
+**Timers**
 
-- HunterPieウィンドウが最前にある時に［Ctrl+R］でHunterPieを再起動できるようにしました。
-- HunterPieアイコンとデフォルトカラーを変更しました。
+- Quest timer is now automatically adjusted depending on your *Focus Skill* level.
+- Buff timers affected by *Power Prolonger* are now automatically adjusted depending on your Skill level.
 
 ---
 
-**バグの修正**
-- Discordリッチプレゼンスに「Missing Translationを狩猟中」と表示されるバグを修正しました。
-- 状態異常のストラクチャサイズを見直し、残り時間が正しく表示されるように修正しました。
+**Damage Meter Widget**
+
+- **DPS Counter:** Damage meter now calculates the *Damage Per Second* **AFTER** a party member hits the monster for the first time.
+- **Resize option:** You can now resize the damage meter widget, making it horizontally or vertically aligned.
+
+![wee](https://cdn.discordapp.com/attachments/402557384209203200/743905320107245649/unknown.png)
+
+---
+
+**Design Mode**
+
+- Minor optimizations to the Design Mode toggle, it should take less time for Widgets to be rendered when toggling the Design Mode.
+- Added Position, Scale and Render time text to the Widgets when Design Mode is enabled.
+
+---
+
+**Other Changes**
+
+- Added Frostfang Barioth break thresholds.
+- Added style file to overwrite styles globally for all themes without having to make a new theme from scratch. You can find that file in HunterPie.Resources/UI/Overwrite.xaml.
+- Upgraded to .NET Framework 4.8.
+- Added option to force DirectX 11 optimized fullscreen to be behind the overlay.
+- Settings window components now matches the window width instead of staying at a fixed witdth.
+
+---
+
+**Bug Fixes**
+
+- Fixed abnormalities tray adding an empty space to the abnormalities icons when in Design Mode;
+- Fixed bug that would corrupt user's *config.json* if their computer was shutdown unexpectedly;
+- Fixed HunterPie hooking to Stracker's console window to get the game version instead of getting the game window;

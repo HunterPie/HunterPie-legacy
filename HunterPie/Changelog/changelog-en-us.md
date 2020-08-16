@@ -1,53 +1,68 @@
-﻿![banner](https://cdn.discordapp.com/attachments/402557384209203200/736457593181962240/banner.png)
+﻿![banner](https://cdn.discordapp.com/attachments/402557384209203200/743894519329587251/update-10396.png)
 
-**Monster Widget New Features**
+**Plugins System**
 
-**Tenderize tracker**
+HunterPie now supports plugins. Plugins have access to **everything** HunterPie handles, including player data, monster data, game events. If you're interested in developing your own extensions, you can find an example [here](https://github.com/Haato3o/HunterPie.Plugins/blob/master/TwitchIntegration/main.cs).
 
-HunterPie can now track a monster tenderized part, a bar will appear under the tenderized part health bar showing how much time left you have until the effect is over.
+**Monster Widget**
 
-**Enrage status**
 
-Enrage buildup and timer now appears in the ailments display.
+- **String formats:** Added ailments build, timers and parth health text format option. See the special strings below:
+    - **{}{Current}** - Current bar value.
+    - **{}{Max}** - Maxium bar value.
+    - **{}{Percentage}** - Current value / Maximum value * 100 (Without the % at the end).
 
-**Dynamic resize**
+Special strings are strings that will be replaced when HunterPie renders the text. They are case-sensitive and need to be written exactly as shown in the table above.
 
-Monster health bars are now dynamically resized depending on how many monsters are in the map. No more small health bar even when there's only one monster to be hunted!
-
-**Ailments options**
-
-You can now turn off specific ailment groups! Just go to your HunterPie "settings -> Monster" tab and disable whatever ailment you don't want HunterPie to display!
-
-**Ailment colors**
-
-Ailments bar is now colored based on it's group.
-
-![DemonstrationImage](https://cdn.discordapp.com/attachments/678286768046342183/736371453372399726/unknown.png)
+**Examples:**
+- **{}{Current}/{Max} ({Percentage}%)**: 500/1000 (50%)
+- **{}{Percentage}%**: 50%
 
 ---
 
-**Themes**
+**Specialized Tools Widget**
 
-HunterPie's theme system has been completely reworked, it has a LOT of new options for customization. As always, if you want to develop your own themes, feel free to join [HunterPie Discord](https://discord.gg/5pdDq4Q).
+- **Compact mode:** A compact mode for the Specialized Tools Widget has been added, it will only show the cooldown and current timer, the tool icon and a diamond bar around the icon.
+
+![img](https://cdn.discordapp.com/attachments/402557384209203200/742950877828087808/design_mantle_compact.png)
 
 ---
 
-**Optimizations**
+**Timers**
 
-Two of the most expensive functions in the player scanner have been rewritten, they are a lot faster now and it takes less time and CPU to scan your whole Harvest Box. Here are the benchmark results comparing both Old and New functions:
+- Quest timer is now automatically adjusted depending on your *Focus Skill* level.
+- Buff timers affected by *Power Prolonger* are now automatically adjusted depending on your Skill level.
 
-![BenchmarkResults](https://cdn.discordapp.com/attachments/402557384209203200/736455956145373235/Untitled-1.png)
+---
+
+**Damage Meter Widget**
+
+- **DPS Counter:** Damage meter now calculates the *Damage Per Second* **AFTER** a party member hits the monster for the first time.
+- **Resize option:** You can now resize the damage meter widget, making it horizontally or vertically aligned.
+
+![wee](https://cdn.discordapp.com/attachments/402557384209203200/743905320107245649/unknown.png)
+
+---
+
+**Design Mode**
+
+- Minor optimizations to the Design Mode toggle, it should take less time for Widgets to be rendered when toggling the Design Mode.
+- Added Position, Scale and Render time text to the Widgets when Design Mode is enabled.
 
 ---
 
 **Other Changes**
 
-- You can now quickly restart HunterPie by pressing Ctrl+R while HunterPie window is focused.
-- Changed HunterPie icon and default colors.
+- Added Frostfang Barioth break thresholds.
+- Added style file to overwrite styles globally for all themes without having to make a new theme from scratch. You can find that file in HunterPie.Resources/UI/Overwrite.xaml.
+- Upgraded to .NET Framework 4.8.
+- Added option to force DirectX 11 optimized fullscreen to be behind the overlay.
+- Settings window components now matches the window width instead of staying at a fixed witdth.
 
 ---
 
 **Bug Fixes**
-- Fixed bug where Rich Presence would display "Hunting Missing Translation" whenever a hunt started.
-- Fixed incorrect ailment structure size.
-- Fixed bug that would hide damage meter after Alatreon died if "Enable timer in expeditions/Guiding Lands" option was disabled.
+
+- Fixed abnormalities tray adding an empty space to the abnormalities icons when in Design Mode;
+- Fixed bug that would corrupt user's *config.json* if their computer was shutdown unexpectedly;
+- Fixed HunterPie hooking to Stracker's console window to get the game version instead of getting the game window;

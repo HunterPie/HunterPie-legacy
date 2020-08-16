@@ -3,6 +3,7 @@ using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Media;
 using HunterPie.Core;
+using HunterPie.Logger;
 
 namespace HunterPie.GUI.Widgets.DPSMeter.Parts
 {
@@ -14,6 +15,62 @@ namespace HunterPie.GUI.Widgets.DPSMeter.Parts
 
         public Member Context { get; private set; }
         Party PartyContext;
+
+        public string PlayerName
+        {
+            get { return (string)GetValue(PlayerNameProperty); }
+            set { SetValue(PlayerNameProperty, value); }
+        }
+        public static readonly DependencyProperty PlayerNameProperty =
+            DependencyProperty.Register("PlayerName", typeof(string), typeof(PartyMember));
+
+        public short HighRank
+        {
+            get { return (short)GetValue(HighRankProperty); }
+            set { SetValue(HighRankProperty, value); }
+        }
+        public static readonly DependencyProperty HighRankProperty =
+            DependencyProperty.Register("HighRank", typeof(short), typeof(PartyMember));
+
+        public short MasterRank
+        {
+            get { return (short)GetValue(MasterRankProperty); }
+            set { SetValue(MasterRankProperty, value); }
+        }
+        public static readonly DependencyProperty MasterRankProperty =
+            DependencyProperty.Register("MasterRank", typeof(short), typeof(PartyMember));
+
+        public float DamagePercentage
+        {
+            get { return (float)GetValue(DamagePercentageProperty); }
+            set { SetValue(DamagePercentageProperty, value); }
+        }
+        public static readonly DependencyProperty DamagePercentageProperty =
+            DependencyProperty.Register("DamagePercentage", typeof(float), typeof(PartyMember));
+
+        public int Damage
+        {
+            get { return (int)GetValue(DamageProperty); }
+            set { SetValue(DamageProperty, value); }
+        }
+        public static readonly DependencyProperty DamageProperty =
+            DependencyProperty.Register("Damage", typeof(int), typeof(PartyMember));
+
+        public string DPS
+        {
+            get { return (string)GetValue(DPSProperty); }
+            set { SetValue(DPSProperty, value); }
+        }
+        public static readonly DependencyProperty DPSProperty =
+            DependencyProperty.Register("DPS", typeof(string), typeof(PartyMember));
+
+        public ImageSource ClassIcon
+        {
+            get { return (ImageSource)GetValue(ClassIconProperty); }
+            set { SetValue(ClassIconProperty, value); }
+        }
+        public static readonly DependencyProperty ClassIconProperty =
+            DependencyProperty.Register("ClassIcon", typeof(ImageSource), typeof(PartyMember));
 
         public PartyMember(string Color)
         {
@@ -49,32 +106,32 @@ namespace HunterPie.GUI.Widgets.DPSMeter.Parts
             float TimeElapsed = (float)PartyContext.Epoch.TotalSeconds;
             Dispatch(() =>
             {
-                PlayerName.Text = args.Name;
-                MasterRank.Text = Context.MR.ToString();
-                HighRank.Text = Context.HR.ToString();
+                PlayerName = args.Name;
+                MasterRank = Context.MR;
+                HighRank = Context.HR;
                 if (Context.IsPartyLeader) PartyLeader.Visibility = Visibility.Visible;
-                PlayerClassIcon.Source = args.Weapon == null ? null : (ImageSource)TryFindResource(args.Weapon);
+                ClassIcon = args.Weapon == null ? null : (ImageSource)TryFindResource(args.Weapon);
                 Visibility = args.IsInParty ? Visibility.Visible : Visibility.Collapsed;
-                DamagePerSecond.Text = $"{Context.Damage / TimeElapsed:0.00}/s";
-                TotalDamage.Text = Context.Damage.ToString();
-                Percentage.Text = $"{Context.DamagePercentage * 100:0.0}%";
+                DPS = $"{Context.Damage / TimeElapsed:0.00}/s";
+                Damage = Context.Damage;
+                DamagePercentage = Context.DamagePercentage;
                 PlayerDPSBar.Width = Context.DamagePercentage * PlayerDPSBar.MaxWidth;
             });
         }
 
         private void OnPlayerWeaponChange(object source, PartyMemberEventArgs args) => Dispatch(() =>
         {
-            PlayerClassIcon.Source = args.Weapon == null ? null : (ImageSource)TryFindResource(args.Weapon);
+            ClassIcon = args.Weapon == null ? null : (ImageSource)TryFindResource(args.Weapon);
         });
 
         public void UpdateDamage()
         {
-            float TimeElapsed = (float)PartyContext.Epoch.TotalSeconds;
+            float TimeElapsed = (float)PartyContext.Epoch.TotalSeconds - (float)PartyContext.TimeDifference.TotalSeconds;
             Dispatch(() =>
             {
-                DamagePerSecond.Text = $"{Context.Damage / TimeElapsed:0.00}/s";
-                TotalDamage.Text = Context.Damage.ToString();
-                Percentage.Text = $"{Context.DamagePercentage * 100:0.0}%";
+                DPS = $"{Context.Damage / TimeElapsed:0.00}/s";
+                Damage = Context.Damage;
+                DamagePercentage = Context.DamagePercentage;
                 PlayerDPSBar.Width = Context.DamagePercentage * PlayerDPSBar.MaxWidth;
                 if (UserSettings.PlayerConfig.Overlay.DPSMeter.ShowOnlyMyself)
                 {
@@ -92,14 +149,14 @@ namespace HunterPie.GUI.Widgets.DPSMeter.Parts
             float TimeElapsed = (float)PartyContext.Epoch.TotalSeconds;
             Dispatch(() =>
             {
-                PlayerName.Text = Context.Name;
-                MasterRank.Text = Context.MR.ToString();
-                HighRank.Text = Context.HR.ToString();
+                PlayerName = Context.Name;
+                MasterRank = Context.MR;
+                HighRank = Context.HR;
                 if (Context.IsPartyLeader) PartyLeader.Visibility = Visibility.Visible;
-                DamagePerSecond.Text = $"{Context.Damage / TimeElapsed:0.00}/s";
-                TotalDamage.Text = Context.Damage.ToString();
-                Percentage.Text = $"{Context.DamagePercentage * 100:0.0}%";
-                PlayerClassIcon.Source = Context.WeaponIconName == null ? null : (ImageSource)TryFindResource(Context.WeaponIconName);
+                DPS = $"{Context.Damage / TimeElapsed:0.00}/s";
+                Damage = Context.Damage;
+                DamagePercentage = Context.DamagePercentage;
+                ClassIcon = Context.WeaponIconName == null ? null : (ImageSource)TryFindResource(Context.WeaponIconName);
                 Visibility = Context.IsInParty ? Visibility.Visible : Visibility.Collapsed;
             });
         }

@@ -14,6 +14,51 @@ namespace HunterPie.GUI.Widgets
         private Mantle Context { get; set; }
         private int MantleNumber { get; set; }
 
+
+
+
+
+        public float Percentage
+        {
+            get { return (float)GetValue(PercentageProperty); }
+            set { SetValue(PercentageProperty, value); }
+        }
+        public static readonly DependencyProperty PercentageProperty =
+            DependencyProperty.Register("Percentage", typeof(float), typeof(MantleTimer));
+
+        public TimeSpan Timer
+        {
+            get { return (TimeSpan)GetValue(TimerProperty); }
+            set { SetValue(TimerProperty, value); }
+        }
+        public static readonly DependencyProperty TimerProperty =
+            DependencyProperty.Register("Timer", typeof(TimeSpan), typeof(MantleTimer));
+
+        public Color MantleColor
+        {
+            get { return (Color)GetValue(MantleColorProperty); }
+            set { SetValue(MantleColorProperty, value); }
+        }
+        public static readonly DependencyProperty MantleColorProperty =
+            DependencyProperty.Register("MantleColor", typeof(Color), typeof(MantleTimer));
+
+        public Color MantleSecondaryColor
+        {
+            get { return (Color)GetValue(MantleSecondaryColorProperty); }
+            set { SetValue(MantleSecondaryColorProperty, value); }
+        }
+        public static readonly DependencyProperty MantleSecondaryColorProperty =
+            DependencyProperty.Register("MantleSecondaryColor", typeof(Color), typeof(MantleTimer));
+
+        public bool IsCompactMode
+        {
+            get { return (bool)GetValue(IsCompactModeProperty); }
+            set { SetValue(IsCompactModeProperty, value); }
+        }
+        public static readonly DependencyProperty IsCompactModeProperty =
+            DependencyProperty.Register("IsCompactMode", typeof(bool), typeof(MantleTimer));
+
+
         public MantleTimer(int MantleNumber, Mantle context)
         {
             this.MantleNumber = MantleNumber;
@@ -102,6 +147,8 @@ namespace HunterPie.GUI.Widgets
                 ChangeVisibility(false);
                 MantleName.Text = FormatMantleName;
                 DurationBar.Width = 181 * (args.Timer / args.staticTimer);
+                Timer = TimeSpan.FromSeconds(args.Timer);
+                Percentage = args.Timer / args.staticTimer;
             });
         }
 
@@ -123,6 +170,8 @@ namespace HunterPie.GUI.Widgets
                 ChangeVisibility(false);
                 MantleName.Text = FormatMantleName;
                 DurationBar.Width = 181 * (1 - args.Cooldown / args.staticCooldown);
+                Timer = TimeSpan.FromSeconds(args.Cooldown);
+                Percentage = 1 - args.Cooldown / args.staticCooldown;
             });
         }
 
@@ -142,18 +191,10 @@ namespace HunterPie.GUI.Widgets
 
                 // Sets widget custom color
                 Color WidgetColor = (Color)ColorConverter.ConvertFromString(MantleNumber == 0 ? UserSettings.PlayerConfig.Overlay.PrimaryMantle.Color : UserSettings.PlayerConfig.Overlay.SecondaryMantle.Color);
-                LinearGradientBrush ShadowEffectBrush = new LinearGradientBrush()
-                {
-                    StartPoint = new Point(1, 1),
-                    EndPoint = new Point(1, 0)
-                };
-                ShadowEffectBrush.GradientStops.Add(new GradientStop(WidgetColor, 0.053));
-                WidgetColor.A = 0x44;
-                ShadowEffectBrush.GradientStops.Add(new GradientStop(WidgetColor, 0.082));
-                ShadowEffectBrush.GradientStops.Add(new GradientStop((Color)ColorConverter.ConvertFromString("#00000000"), 1));
-                ShadowEffectBrush.Freeze();
 
-                DurationBar.Fill = ShadowEffectBrush;
+                MantleColor = WidgetColor;
+                WidgetColor.A = 0x33;
+                MantleSecondaryColor = WidgetColor;
 
                 double ScaleFactor = MantleNumber == 0 ? UserSettings.PlayerConfig.Overlay.PrimaryMantle.Scale : UserSettings.PlayerConfig.Overlay.SecondaryMantle.Scale;
                 ScaleWidget(ScaleFactor, ScaleFactor);
@@ -162,6 +203,7 @@ namespace HunterPie.GUI.Widgets
                 WidgetActive = IsEnabled;
 
                 Opacity = (MantleNumber == 0 ? UserSettings.PlayerConfig.Overlay.PrimaryMantle.Opacity : UserSettings.PlayerConfig.Overlay.SecondaryMantle.Opacity);
+                IsCompactMode = (MantleNumber == 0 ? UserSettings.PlayerConfig.Overlay.PrimaryMantle.CompactMode : UserSettings.PlayerConfig.Overlay.SecondaryMantle.CompactMode);
             }
             base.ApplySettings();
         }));

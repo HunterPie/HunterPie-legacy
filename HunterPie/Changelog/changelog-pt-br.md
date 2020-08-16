@@ -1,54 +1,68 @@
-﻿![banner](https://cdn.discordapp.com/attachments/402557384209203200/736457593181962240/banner.png)
+﻿![banner](https://cdn.discordapp.com/attachments/402557384209203200/743894519329587251/update-10396.png)
 
-**Novas funcionalidades do Widget de Monstro**
+**Plugins System**
+
+HunterPie now supports plugins. Plugins have access to **everything** HunterPie handles, including player data, monster data, game events. If you're interested in developing your own extensions, you can find an example [here](https://github.com/Haato3o/HunterPie.Plugins/blob/master/TwitchIntegration/main.cs).
+
+**Monster Widget**
 
 
-**Partes Feridas**
+- **String formats:** Added ailments build, timers and parth health text format option. See the special strings below:
+    - **{}{Current}** - Current bar value.
+    - **{}{Max}** - Maxium bar value.
+    - **{}{Percentage}** - Current value / Maximum value * 100 (Without the % at the end).
 
-HunterPie agora pode mostrar o tempo de uma parte ferida, uma barra aparecerá de baixo da barra de vida da parte ferida, mantendo a parte ativa até o efeito acabar.
+Special strings are strings that will be replaced when HunterPie renders the text. They are case-sensitive and need to be written exactly as shown in the table above.
 
-**Status de Raiva**
-
-O status de raiva agora aparecerá junto com os outros status do monstro.
-
-**Redimensionamento Dinâmico**
-
-A barra de vida dos monstros agora tem um redimensionamento dinâmico dependendo de quantos monstros estão ativos no mapa. Sem mais barras pequenas mesmo quando só tem 1 monstro no mapa!
-
-**Opções de Status**
-
-Você agora pode desligar grupos de status específicos. Vá em "Configurações -> Monstro" e desabilite quaisquer status que você não quer que o HunterPie mostre!
-
-**Cores de Status**
-
-As barras de status agora tem uma cor dependendo de seu grupo.
-
-![DemonstrationImage](https://cdn.discordapp.com/attachments/678286768046342183/736371453372399726/unknown.png)
+**Examples:**
+- **{}{Current}/{Max} ({Percentage}%)**: 500/1000 (50%)
+- **{}{Percentage}%**: 50%
 
 ---
 
-**Temas**
+**Specialized Tools Widget**
 
-O sistema de temas do HunterPie foi completamente refeito, agora você tem muito mais opções de customizações. Como sempre, se você quiser desenvolver seus próprios temas, sinta-se livre de entrar no servidor do [Discord do HunterPie](https://discord.gg/5pdDq4Q)
+- **Compact mode:** A compact mode for the Specialized Tools Widget has been added, it will only show the cooldown and current timer, the tool icon and a diamond bar around the icon.
 
----
-
-**Otimizações**
-
-Duas das funcões mais extensivas foram reescritas, elas estão muito mais rápidas agora e levam menos tempo e CPU para escanear sua Caixa de Colheita inteira. Aqui estão os resultados comparando a função antiga e nova:
-
-![BenchmarkResults](https://cdn.discordapp.com/attachments/402557384209203200/736455956145373235/Untitled-1.png)
+![img](https://cdn.discordapp.com/attachments/402557384209203200/742950877828087808/design_mantle_compact.png)
 
 ---
 
-**Outras Mudanças**
+**Timers**
 
-- Você agora pode reiniciar o HunterPie rapidamente apertando Ctrl+R enquanto HunterPie estiver focado.
-- Mudançãs de ícone e cores padrão.
+- Quest timer is now automatically adjusted depending on your *Focus Skill* level.
+- Buff timers affected by *Power Prolonger* are now automatically adjusted depending on your Skill level.
 
 ---
 
-**Correção de Erros**
-- Consertado erro onde a Presença do Discord mostraria "Caçando Missing Translation" quando uma caçada começava.
-- Consertado tamanho errado da estrutura do status.
-- Consertado erro que faria o medido de dano desaparecer quando Alatreon morre se a opção "Mostrar temporizador em expedições" estivesse desabilitada.
+**Damage Meter Widget**
+
+- **DPS Counter:** Damage meter now calculates the *Damage Per Second* **AFTER** a party member hits the monster for the first time.
+- **Resize option:** You can now resize the damage meter widget, making it horizontally or vertically aligned.
+
+![wee](https://cdn.discordapp.com/attachments/402557384209203200/743905320107245649/unknown.png)
+
+---
+
+**Design Mode**
+
+- Minor optimizations to the Design Mode toggle, it should take less time for Widgets to be rendered when toggling the Design Mode.
+- Added Position, Scale and Render time text to the Widgets when Design Mode is enabled.
+
+---
+
+**Other Changes**
+
+- Added Frostfang Barioth break thresholds.
+- Added style file to overwrite styles globally for all themes without having to make a new theme from scratch. You can find that file in HunterPie.Resources/UI/Overwrite.xaml.
+- Upgraded to .NET Framework 4.8.
+- Added option to force DirectX 11 optimized fullscreen to be behind the overlay.
+- Settings window components now matches the window width instead of staying at a fixed witdth.
+
+---
+
+**Bug Fixes**
+
+- Fixed abnormalities tray adding an empty space to the abnormalities icons when in Design Mode;
+- Fixed bug that would corrupt user's *config.json* if their computer was shutdown unexpectedly;
+- Fixed HunterPie hooking to Stracker's console window to get the game version instead of getting the game window;

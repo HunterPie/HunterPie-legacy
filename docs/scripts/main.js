@@ -53,9 +53,22 @@ function GetParams() {
 }
 
 function RenderMarkdown(markdown) {
-    if (markdown == null || markdown == undefined || !markdown.endsWith(".md")) {
+    if (markdown == null || markdown == undefined || !markdown.endsWith(".md") || markdown == "SIDEBAR.md") {
         markdown = "README.md";
     }
+
+    fetch("./SIDEBAR.md").then((res) => {
+        if (res.ok) {
+            res.blob().then(
+                (blob) => {
+                    blob.text().then(
+                        content => document.getElementById("sidebar").innerHTML = marked(content)
+                    );
+                }
+            )
+        }
+    })
+
     fetch(`./${markdown}`).then((res) => {
         if (res.ok) {
             res.blob().then(

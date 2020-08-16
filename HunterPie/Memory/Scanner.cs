@@ -1,16 +1,17 @@
 ﻿using System;
 using System.Diagnostics;
+using System.IO;
 using System.Linq;
 using System.Runtime.InteropServices;
 using System.Text;
 using System.Threading;
+using System.Windows.Forms.VisualStyles;
 using Debugger = HunterPie.Logger.Debugger;
 
 namespace HunterPie.Memory
 {
     class Scanner
     {
-        const int LATEST_GAME_VERSION = 414136;
 
         // Process info
         const int PROCESS_VM_READ = 0x0010;
@@ -91,6 +92,7 @@ namespace HunterPie.Memory
         public static void GetMonsterHunterProcess()
         {
             bool lockSpam = false;
+            bool lockSpam2 = false;
             while (true)
             {
                 if (GameIsRunning)
@@ -116,8 +118,15 @@ namespace HunterPie.Memory
                 }
                 else
                 {
-                    if (string.IsNullOrEmpty(MonsterHunterProcess.MainWindowTitle))
+                    if (string.IsNullOrEmpty(MonsterHunterProcess.MainWindowTitle) ||
+                        !MonsterHunterProcess.MainWindowTitle.ToUpper().StartsWith("MONSTER HUNTER: WORLD"))
                     {
+                        if (!lockSpam2)
+                        {
+                            Debugger.Error($"Found Monster Hunter: World process, but the window title returned \"{MonsterHunterProcess.MainWindowTitle}\"." +
+                                $"Common causes for this:\n- Window is still loading\n- Stracker's console is the main process window. Click on the game window to fix this issue.");
+                            lockSpam2 = true;
+                        }
                         Thread.Sleep(500);
                         continue;
                     }
@@ -133,15 +142,18 @@ namespace HunterPie.Memory
                         Debugger.Error("Failed to open game process. Run HunterPie as Administrator!");
                         return;
                     }
+
                     Win32 = new Win32(ProcessHandle);
                     try
                     {
                         GameVersion = int.Parse(MonsterHunter.MainWindowTitle.Split('(')[1].Trim(')'));
                     }
-                    catch (Exception err)
+                    catch
                     {
-                        Debugger.Error($"{err}\nFailed to get Monster Hunter: World build version. Loading latest map version instead.");
-                        GameVersion = LATEST_GAME_VERSION;
+                        Debugger.Error($"Failed to get Monster Hunter: World build version. Loading latest map version instead. Common reasons for this are:" +
+                            $"\r- Stracker's Loader is the game process main window.\n" +
+                            $"Click on the Monster Hunter: World window and then open HunterPie.");
+                        GameVersion = GetLatestMap();
                     }
                     MonsterHunter.EnableRaisingEvents = true;
                     MonsterHunter.Exited += OnGameProcessExit;
@@ -151,8 +163,16 @@ namespace HunterPie.Memory
                     GameIsRunning = true;
                 }
 
-                Thread.Sleep(1000);
+                Thread.Sleep(2000);
             }
+        }
+
+        private static int GetLatestMap()
+        {
+            int[] mapFiles = Directory.GetFiles(Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "address"))
+                .Where(filename => filename.EndsWith(".map"))
+                .Select(filename => Convert.ToInt32(filename.Split('.')[1])).ToArray();
+            return mapFiles.OrderBy(version => version).Last();
         }
 
         private static void OnGameProcessExit(object sender, EventArgs e)

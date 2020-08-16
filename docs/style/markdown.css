@@ -1,8 +1,7 @@
 @import url('https://fonts.googleapis.com/css2?family=Heebo:wght@400;500&display=swap');
 /* Markdown */
 
-#MarkdownBox {
-    position: relative;
+.Markdown {
     background-color: rgb(29, 29, 29, 0.8);
     box-shadow: rgba(0, 0, 0, 0.1) 0px 2px 2px;
     -webkit-backdrop-filter: blur(5px);
@@ -11,65 +10,66 @@
     display: block;
     left: auto;
     right: auto;
-    top: 80px;
     min-height: 100vh;
     z-index: 0;
-    padding: 10px 30px 10px 30px;
-    margin-bottom: 20px;
-    border-radius: 5px;
     color: #f5eefd;
     font-size: 14px;
-    border-bottom-left-radius: 0px;
-    border-bottom-right-radius: 0px;
 }
 
-#MarkdownBox h1, h2, h3 {
+.Markdown h1, h2, h3, h4 {
     padding-bottom: 2px;
     font-weight: 500;
     color: #85c3ed;
     
 }
 
-#MarkdownBox strong {
+.Markdown new {
+    color: #e63737;
+    font-size: 12px;
+    vertical-align: super;
+}
+
+.Markdown strong {
     font-weight: 500;
 }
 
-#MarkdownBox a {
+.Markdown a {
     text-decoration: none;
     color: #85c3ed;
 }
 
-#MarkdownBox a:hover {
+.Markdown a:hover {
     text-decoration: underline;
 }
 
-#MarkdownBox blockquote {
+.Markdown blockquote {
     border-left: solid #85c3ed;
     padding: 1px 0px 1px 5px;
     background: rgb(29, 29, 29, 0.8);
 }
 
-#MarkdownBox blockquote img {
+.Markdown blockquote img {
     padding-left: 10px;
     padding-top: 10px;
 }
 
-#MarkdownBox pre code {
+.Markdown pre code {
     display: flex;
     overflow: auto;
     background: rgb(29, 29, 29, 0.8);
     border: solid #85c3ed 1px; 
     padding: 5px 5px 5px 5px;
     color: #f5eefd;
+    max-width: 1000px;
 }
 
-#MarkdownBox code {
+.Markdown code {
     background: rgb(29, 29, 29, 0.8);
     padding: 5px 5px 5px 5px;
     color: #f5eefd;
 }
 
-#MarkdownBox table {
+.Markdown table {
     margin-left: auto;
     margin-right: auto;
     background: rgb(29, 29, 29, 0.8);
@@ -78,7 +78,7 @@
     margin-bottom: 10px;
 }
 
-#MarkdownBox table th {
+.Markdown table th {
     padding-top: 5px;
     padding-bottom: 5px;
     text-align: center;
@@ -89,40 +89,41 @@
 }
 
 
-#MarkdownBox table tr:nth-child(even) {
+.Markdown table tr:nth-child(even) {
     background-color: #292929;
 }
 
-#MarkdownBox table td, th {
+.Markdown table td, th {
     padding: 8px;
     font-size: 13px;
 }
 
-#MarkdownBox kbd {
+.Markdown kbd {
     background-color: rgba(32, 32, 32, 0.424);
     padding: 3px 5px 3px 5px;
     border-radius: 5px;
     color: #eeeeee;
 }
 
-#MarkdownBox warning {
+.Markdown warning {
     border-left: solid #d02c2c;
     padding: 5px 10px 5px 5px;
     background: rgb(29, 29, 29, 0.8);
     color: #ececec;
 }
 
-#MarkdownBox #content_table {
+.Markdown #content_table {
     border-left: solid #85c3ed 2px;
     background: rgb(29, 29, 29, 0.8);
     padding: 20px 0px 10px 40px;
+    width: 350px;
 }
 
-#MarkdownBox highlight {
+.Markdown highlight {
     color: #85c3ed;
 }
 
-#MarkdownBox details {
+.Markdown details {
     display: block;
     background: rgb(29, 29, 29, 0.8);
     padding: 5px;
@@ -132,12 +133,17 @@
     transition: 200ms ease-in;
 }
 
-#MarkdownBox details summary {
+.Markdown details summary {
     color: #85c3ed;
     font-weight: 500;
     font-size: 15px;
 }
 
-#MarkdownBox details summary {
+.Markdown details summary {
     outline: 0;
+}
+
+.Markdown hr {
+    border-color: #85c3ed;
+    border-top: 0px;
 }

@@ -18,7 +18,7 @@ HunterPie is a modern and simple to use overlay with support for Discord Rich Pr
 
 #### Requirements
 
-- [.NET Framework >= 4.6.1](https://www.microsoft.com/en-us/download/details.aspx?id=49982)
+- [.NET Framework >= 4.8](https://dotnet.microsoft.com/download/dotnet-framework/net48)
 
 #### Installation
 

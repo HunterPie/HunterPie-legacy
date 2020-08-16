@@ -151,7 +151,7 @@ footer {
     display: block;
     left: auto;
     right: auto;
-    top: 65px;
+    top: 5px;
     z-index: 0;
     padding: 10px 20px 10px 20px;
     margin-bottom: 20px;
@@ -173,4 +173,23 @@ footer a {
 
 footer a:hover {
     text-decoration: underline;
+}
+
+#content {
+    position: relative;
+    margin-top: 80px;
+    display: inline-flex;
+    width: 100%;
+}
+
+#sidebar {
+    padding: 10px 10px 5px 10px;
+    border-right: #272727 1px solid;
+    overflow-y: auto;
+    min-width: 15%;
+}
+
+#MarkdownBox {
+    padding: 0px 10px 10px 10px;
+    width: 100%;
 }

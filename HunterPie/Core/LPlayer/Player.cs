@@ -1,6 +1,5 @@
 ﻿using System;
 using System.Collections.Generic;
-using Stopwatch = System.Diagnostics.Stopwatch;
 using System.Linq;
 using System.Threading;
 using HunterPie.Core.Definitions;
@@ -112,6 +111,7 @@ namespace HunterPie.Core
                 }
             }
         }
+        public sPlayerSkill[] Skills;
 
         public int ZoneID
         {
@@ -510,6 +510,7 @@ namespace HunterPie.Core
                     GetSecondaryMantle();
                     GetPrimaryMantleTimers();
                     GetSecondaryMantleTimers();
+                    GetPlayerSkills();
                     GetParty();
                     GetPlayerAbnormalities();
                     GetJobInformation();
@@ -663,6 +664,12 @@ namespace HunterPie.Core
             SecondaryMantle.SetTimer(Scanner.Read<float>(EQUIPMENT_ADDRESS + SecondaryMantleTimer), Scanner.Read<float>(EQUIPMENT_ADDRESS + SecondaryMantleTimerFixed));
         }
 
+        private void GetPlayerSkills()
+        {
+            long address = Scanner.READ_MULTILEVEL_PTR(Address.BASE + Address.ABNORMALITY_OFFSET, Address.Offsets.SkillOffsets);
+            Skills = Scanner.Win32.Read<sPlayerSkill>(address, 226);
+        }
+
         private void GetParty()
         {
 
@@ -716,7 +723,22 @@ namespace HunterPie.Core
             PlayerParty.ShowDPS = true;
             if (Timer > 0)
             {
-                PlayerParty.Epoch = TimeSpan.FromSeconds(Timer);
+                float multiplier = 1.0f;
+
+                // Adjust timer based on Focus level, because fOR SOME REASON FOCUS AFFECTS IT?????
+                switch (Skills[52].Level)
+                {
+                    case 1:
+                        multiplier = 0.95f;
+                        break;
+                    case 2:
+                        multiplier = 0.9f;
+                        break;
+                    case 3:
+                        multiplier = 0.8333f;
+                        break;
+                }
+                PlayerParty.Epoch = TimeSpan.FromSeconds(Timer * multiplier);
             }
             else { PlayerParty.Epoch = TimeSpan.Zero; }
         }
@@ -787,7 +809,6 @@ namespace HunterPie.Core
 
         private void GetPlayerAbnormalities()
         {
-            //Stopwatch s = Stopwatch.StartNew();
             if (InHarvestZone)
             {
                 Abnormalities.ClearAbnormalities();
@@ -799,8 +820,6 @@ namespace HunterPie.Core
             GetPlayerPalicoAbnormalities(abnormalityBaseAddress);
             GetPlayerMiscAbnormalities(abnormalityBaseAddress);
             GetPlayerGearAbnormalities(abnormalityBaseAddress);
-            //s.Stop();
-            //Debugger.Benchmark($"{s.ElapsedTicks / (TimeSpan.TicksPerMillisecond / 1000)}");
         }
 
         private void GetPlayerHuntingHornAbnormalities(long abnormalityBaseAddress)
@@ -1034,30 +1053,34 @@ namespace HunterPie.Core
 
         private void GetSwitchAxeInformation(long weaponAddress, long buffAddress)
         {
-            float outerGauge = Scanner.Read<float>(weaponAddress - 0xC);
-            float swordChargeTimer = Scanner.Read<float>(weaponAddress - 0x8);
+            float powerProlongerMultiplier = CalculatePowerProlongerMultiplier();
+
+            float outerGauge = Scanner.Read<float>(weaponAddress - 0xC) * powerProlongerMultiplier;
+            float swordChargeTimer = Scanner.Read<float>(weaponAddress - 0x8) * powerProlongerMultiplier;
             float innerGauge = Scanner.Read<float>(weaponAddress - 0x1C);
             float switchAxeBuff = 0;
             bool isAxeBuffActive = Scanner.Read<byte>(buffAddress + 0x6E5) == 1;
             if (isAxeBuffActive)
             {
-                switchAxeBuff = Scanner.Read<float>(buffAddress + 0x6E8);
+                switchAxeBuff = Scanner.Read<float>(buffAddress + 0x6E8) * powerProlongerMultiplier;
             }
             SwitchAxe.OuterGauge = outerGauge;
             SwitchAxe.SwordChargeMaxTimer = swordChargeTimer > SwitchAxe.SwordChargeMaxTimer || swordChargeTimer <= 0 ? swordChargeTimer : SwitchAxe.SwordChargeMaxTimer;
             SwitchAxe.SwordChargeTimer = swordChargeTimer;
             SwitchAxe.InnerGauge = innerGauge;
             SwitchAxe.IsBuffActive = isAxeBuffActive;
+            SwitchAxe.SwitchAxeBuffMaxTimer = 45 * powerProlongerMultiplier;
             SwitchAxe.SwitchAxeBuffTimer = switchAxeBuff;
         }
 
         private void GetChargeBladeInformation(long weaponAddress)
         {
+            float powerProlongerMultiplier = CalculatePowerProlongerMultiplier();
             float hiddenGauge = Scanner.Read<float>(weaponAddress + 0x4);
             int vialsAmount = Scanner.Read<int>(weaponAddress + 0x8);
-            float swordBuff = Scanner.Read<float>(weaponAddress + 0x10);
-            float shieldBuff = Scanner.Read<float>(weaponAddress + 0xC);
-            float poweraxeBuff = Scanner.Read<float>(weaponAddress + 0x104);
+            float swordBuff = Scanner.Read<float>(weaponAddress + 0x10) * powerProlongerMultiplier;
+            float shieldBuff = Scanner.Read<float>(weaponAddress + 0xC) * powerProlongerMultiplier;
+            float poweraxeBuff = Scanner.Read<float>(weaponAddress + 0x104) * powerProlongerMultiplier;
             ChargeBlade.VialChargeGauge = hiddenGauge;
             ChargeBlade.ShieldBuffTimer = shieldBuff;
             ChargeBlade.SwordBuffTimer = swordBuff;
@@ -1067,15 +1090,17 @@ namespace HunterPie.Core
 
         private void GetInsectGlaiveInformation(long weaponAddress)
         {
+            float powerProlongerMultiplier = CalculatePowerProlongerMultiplier();
+
             float redBuff = Scanner.Read<float>(weaponAddress - 0x4);
             float whiteBuff = Scanner.Read<float>(weaponAddress);
             float orangeBuff = Scanner.Read<float>(weaponAddress + 0x4);
 
             // Insect Glaive has some dumb bugs sometimes where the buffs duration are either negative
             // or NaN
-            redBuff = float.IsNaN(redBuff) ? 0 : redBuff;
-            whiteBuff = float.IsNaN(whiteBuff) ? 0 : whiteBuff;
-            orangeBuff = float.IsNaN(orangeBuff) ? 0 : orangeBuff;
+            redBuff = float.IsNaN(redBuff) ? 0 : redBuff * powerProlongerMultiplier;
+            whiteBuff = float.IsNaN(whiteBuff) ? 0 : whiteBuff * powerProlongerMultiplier;
+            orangeBuff = float.IsNaN(orangeBuff) ? 0 : orangeBuff * powerProlongerMultiplier;
 
             // For whatever reason, some IGs split their data between two IG structures I suppose?
             // So we can use this pointer that will always point to the right data
@@ -1133,7 +1158,20 @@ namespace HunterPie.Core
             HeavyBowgun.WyvernsnipeTimer = wyvernsnipe;
             HeavyBowgun.WyvernheartTimer = wyvernheart;
         }
-
         #endregion
+
+        private float CalculatePowerProlongerMultiplier()
+        {
+            short level = Skills[53].Level;
+            if (level == 0) return 1.0f;
+
+            if ((Classes)WeaponID == Classes.SwitchAxe || (Classes)WeaponID == Classes.DualBlades)
+            {
+                return 1.0f + ((float)Math.Pow(2, level - 1) / 10.0f) + (2 * (float)level / 10);
+            } else
+            {
+                return 1.0f + (float)Math.Pow(2, level - 1) / 10.0f;
+            }
+        }
     }
 }

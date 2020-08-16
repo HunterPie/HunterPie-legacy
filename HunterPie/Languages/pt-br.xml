@@ -533,11 +533,20 @@
       <String ID="STATIC_TOGGLE_DESIGN" Name="Hab/Desab. Modo Design (HotKey):"/>
       <String ID="STATIC_TOGGLE_DESIGN_DESC" Name="HotKey para habilitar/desabilitar o modo design."/>
       <String ID="STATIC_OVERLAY_POSITION_DESC" Name="Muda a posição da sobreposição."/>
+      <String ID="ENABLE_OVERLAY_FORCE_DIRECTX11_FULLSCREEN" Name="Forçar tela cheia do DirectX 11 pra ficar atrás da sobreposição"/>
+      <String ID="ENABLE_OVERLAY_FORCE_DIRECTX11_FULLSCREEN_DESC" Name="Esta opção vai forçar o jogo a ficar sempre atrás da sobreposição do HunterPie, como resultado, a sobreposição aparecerá mesmo em tela cheia com DirectX 11. REQUER OTIMIZAÇÃO DE TELA CHEIA DO WINDOWS 10."/>
+
       <!-- Monster Widget -->
       <String ID="ENABLE_MONSTER_WIDGET" Name="Habilitar o widget de monstros"/>
       <String ID="ENABLE_MONSTER_WIDGET_DESC" Name="Se habilitado, o widget de monstros será visível quando tiver conteúdo para ser mostrado."/>
       <String ID="STATIC_MONSTER_HEALTH_STRING_FORMAT" Name="Formato de texto da vida:"/>
       <String ID="STATIC_MONSTER_HEALTH_STRING_FORMAT_DESC" Name="Formato de texto para a barra de vida do monstro."/>
+      <String ID="STATIC_MONSTER_AILMENT_BUILDUP_STRING_FORMAT" Name="Formato de texto dos status (Buildup):"/>
+      <String ID="STATIC_MONSTER_AILMENT_BUILDUP_STRING_FORMAT_DESC" Name="Formato de texto das buildups do monstro."/>
+      <String ID="STATIC_MONSTER_AILMENT_TIMER_STRING_FORMAT" Name="Formtat de texto do temporizador dos status:"/>
+      <String ID="STATIC_MONSTER_AILMENT_TIMER_STRING_FORMAT_DESC" Name="Formato de texto quando o status do monstro mostrar seu tempo restante."/>
+      <String ID="STATIC_MONSTER_PART_HEALTH_STRING_FORMAT" Name="Formato de texto da vida dos membros:"/>
+      <String ID="STATIC_MONSTER_PART_HEALTH_STRING_FORMAT_DESC" Name="Formato de texto dos membros do monstro."/>
       <String ID="ENABLE_MONSTER_USE_LOCKON" Name="Usar lock-on em vez do mapa para selecionar o monstro alvo"/>
       <String ID="ENABLE_MONSTER_USE_LOCKON_DESC" Name="Se habilitato, HunterPie usará a mira do jogo para selecionar o seu alvo."/>
       <String ID="STATIC_MONSTER_BAR_MODE" Name="Modo da barra de monstro:"/>
