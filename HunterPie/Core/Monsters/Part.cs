@@ -1,5 +1,6 @@
 ﻿using HunterPie.Core.Definitions;
 using HunterPie.Core.Monsters;
+using HunterPie.Core.Events;
 
 namespace HunterPie.Core
 {

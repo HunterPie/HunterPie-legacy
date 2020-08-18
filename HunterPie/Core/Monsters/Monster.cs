@@ -7,6 +7,7 @@ using HunterPie.Core.Enums;
 using HunterPie.Core.Monsters;
 using HunterPie.Logger;
 using HunterPie.Memory;
+using HunterPie.Core.Events;
 
 namespace HunterPie.Core
 {

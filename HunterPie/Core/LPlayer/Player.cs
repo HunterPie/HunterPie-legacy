@@ -7,6 +7,7 @@ using HunterPie.Core.LPlayer;
 using HunterPie.Core.LPlayer.Jobs;
 using HunterPie.Logger;
 using HunterPie.Memory;
+using HunterPie.Core.Events;
 using Classes = HunterPie.Core.Enums.Classes;
 using AbnormalityType = HunterPie.Core.Enums.AbnormalityType;
 
@@ -22,7 +23,7 @@ namespace HunterPie.Core
         private string sessionId;
         private long classAddress;
 
-        private readonly int[] HarvestBoxZones =
+        private readonly int[] harvestBoxZones =
         {
             301,
             302,
@@ -34,7 +35,7 @@ namespace HunterPie.Core
             503,
             506
         };
-        private readonly int[] PeaceZones =
+        private readonly int[] peaceZones =
         {
             0,
             301,
@@ -64,7 +65,7 @@ namespace HunterPie.Core
                     if (value != 0x0)
                     {
                         Debugger.Debug($"Found player address -> {value:X}");
-                        Dispatch(OnCharacterLogin);
+                        Dispatch(OnCharacterLogin, EventArgs.Empty);
                     }
                 }
             }
@@ -78,7 +79,7 @@ namespace HunterPie.Core
                 if (level != value)
                 {
                     level = value;
-                    Dispatch(OnLevelChange);
+                    Dispatch(OnLevelChange, new PlayerEventArgs(this));
                 }
             }
         }
@@ -94,7 +95,7 @@ namespace HunterPie.Core
                 if (weaponId != value)
                 {
                     weaponId = value;
-                    Dispatch(OnWeaponChange);
+                    Dispatch(OnWeaponChange, new PlayerEventArgs(this));
                 }
             }
         }
@@ -107,7 +108,7 @@ namespace HunterPie.Core
                 if (value != classAddress)
                 {
                     classAddress = value;
-                    Dispatch(OnClassChange);
+                    Dispatch(OnClassChange, new PlayerEventArgs(this));
                 }
             }
         }
@@ -120,25 +121,25 @@ namespace HunterPie.Core
             {
                 if (zoneId != value)
                 {
-                    if ((zoneId == -1 || PeaceZones.Contains(zoneId)) && !PeaceZones.Contains(value)) Dispatch(OnPeaceZoneLeave);
-                    if (HarvestBoxZones.Contains(zoneId) && !HarvestBoxZones.Contains(value)) Dispatch(OnVillageLeave);
+                    if ((zoneId == -1 || peaceZones.Contains(zoneId)) && !peaceZones.Contains(value)) Dispatch(OnPeaceZoneLeave, new PlayerLocationEventArgs(this));
+                    if (harvestBoxZones.Contains(zoneId) && !harvestBoxZones.Contains(value)) Dispatch(OnVillageLeave, new PlayerLocationEventArgs(this));
                     zoneId = value;
-                    Dispatch(OnZoneChange);
-                    if (PeaceZones.Contains(value)) Dispatch(OnPeaceZoneEnter);
-                    if (HarvestBoxZones.Contains(value)) Dispatch(OnVillageEnter);
+                    Dispatch(OnZoneChange, new PlayerLocationEventArgs(this));
+                    if (peaceZones.Contains(value)) Dispatch(OnPeaceZoneEnter, new PlayerLocationEventArgs(this));
+                    if (harvestBoxZones.Contains(value)) Dispatch(OnVillageEnter, new PlayerLocationEventArgs(this));
                     if (value == 0 && LEVEL_ADDRESS != 0x0)
                     {
                         LEVEL_ADDRESS = 0x0;
                         PlayerAddress = 0x0;
-                        Dispatch(OnCharacterLogout);
+                        Dispatch(OnCharacterLogout, EventArgs.Empty);
                     }
                 }
             }
         }
         public string ZoneName => GStrings.GetStageNameByID(ZoneID);
         public int LastZoneID { get; private set; }
-        public bool InPeaceZone => PeaceZones.Contains(ZoneID);
-        public bool InHarvestZone => HarvestBoxZones.Contains(ZoneID);
+        public bool InPeaceZone => peaceZones.Contains(ZoneID);
+        public bool InHarvestZone => harvestBoxZones.Contains(ZoneID);
 
         public string SessionID
         {
@@ -149,7 +150,7 @@ namespace HunterPie.Core
                 {
                     sessionId = value;
                     GetSteamSession();
-                    Dispatch(OnSessionChange);
+                    Dispatch(OnSessionChange, new PlayerEventArgs(this));
                 }
             }
         }
@@ -208,19 +209,22 @@ namespace HunterPie.Core
         // Event handlers
 
         public delegate void PlayerEvents(object source, EventArgs args);
+
         public event PlayerEvents OnLevelChange;
-        public event PlayerEvents OnZoneChange;
         public event PlayerEvents OnWeaponChange;
         public event PlayerEvents OnSessionChange;
+        public event PlayerEvents OnClassChange;
+
         public event PlayerEvents OnCharacterLogin;
         public event PlayerEvents OnCharacterLogout;
+
+        public event PlayerEvents OnZoneChange;
         public event PlayerEvents OnPeaceZoneEnter;
         public event PlayerEvents OnVillageEnter;
         public event PlayerEvents OnPeaceZoneLeave;
         public event PlayerEvents OnVillageLeave;
-        public event PlayerEvents OnClassChange;
 
-        private void Dispatch(PlayerEvents e) => e?.Invoke(this, EventArgs.Empty);
+        private void Dispatch(PlayerEvents e, EventArgs args) => e?.Invoke(this, args);
         #endregion
 
 
@@ -1098,9 +1102,9 @@ namespace HunterPie.Core
 
             // Insect Glaive has some dumb bugs sometimes where the buffs duration are either negative
             // or NaN
-            redBuff = float.IsNaN(redBuff) ? 0 : redBuff * powerProlongerMultiplier;
-            whiteBuff = float.IsNaN(whiteBuff) ? 0 : whiteBuff * powerProlongerMultiplier;
-            orangeBuff = float.IsNaN(orangeBuff) ? 0 : orangeBuff * powerProlongerMultiplier;
+            redBuff = float.IsNaN(redBuff * powerProlongerMultiplier) ? 0 : redBuff * powerProlongerMultiplier;
+            whiteBuff = float.IsNaN(whiteBuff * powerProlongerMultiplier) ? 0 : whiteBuff * powerProlongerMultiplier;
+            orangeBuff = float.IsNaN(orangeBuff * powerProlongerMultiplier) ? 0 : orangeBuff * powerProlongerMultiplier;
 
             // For whatever reason, some IGs split their data between two IG structures I suppose?
             // So we can use this pointer that will always point to the right data

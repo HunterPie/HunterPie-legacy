@@ -5,6 +5,7 @@ using System.Windows.Controls;
 using System.Windows.Media;
 using HunterPie.Core;
 using Timer = System.Threading.Timer;
+using HunterPie.Core.Events;
 
 namespace HunterPie.GUI.Widgets.Monster_Widget.Parts
 {

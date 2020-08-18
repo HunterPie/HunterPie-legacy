@@ -1,6 +1,7 @@
 ﻿using System;
 using HunterPie.Core.Definitions;
 using HunterPie.Core.Enums;
+using HunterPie.Core.Events;
 
 namespace HunterPie.Core
 {

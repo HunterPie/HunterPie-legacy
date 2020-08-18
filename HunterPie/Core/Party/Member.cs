@@ -1,4 +1,6 @@
-﻿namespace HunterPie.Core
+﻿using HunterPie.Core.Events;
+
+namespace HunterPie.Core
 {
     public class Member
     {

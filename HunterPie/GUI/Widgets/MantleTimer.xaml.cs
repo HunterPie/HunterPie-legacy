@@ -2,6 +2,7 @@
 using System.Windows;
 using System.Windows.Media;
 using HunterPie.Core;
+using HunterPie.Core.Events;
 
 namespace HunterPie.GUI.Widgets
 {
@@ -13,10 +14,6 @@ namespace HunterPie.GUI.Widgets
 
         private Mantle Context { get; set; }
         private int MantleNumber { get; set; }
-
-
-
-
 
         public float Percentage
         {
@@ -126,7 +123,7 @@ namespace HunterPie.GUI.Widgets
         private void OnMantleChange(object source, MantleEventArgs args) => Dispatch(() =>
         {
             MantleName.Text = args.Name;
-            MantleIcon.Source = GetSpecializedToolIcon(args.ID);
+            MantleIcon.Source = GetSpecializedToolIcon(args.Id);
         });
 
         private void OnTimerChange(object source, MantleEventArgs args)
@@ -146,9 +143,9 @@ namespace HunterPie.GUI.Widgets
                 WidgetHasContent = true;
                 ChangeVisibility(false);
                 MantleName.Text = FormatMantleName;
-                DurationBar.Width = 181 * (args.Timer / args.staticTimer);
+                DurationBar.Width = 181 * (args.Timer / args.MaxTimer);
                 Timer = TimeSpan.FromSeconds(args.Timer);
-                Percentage = args.Timer / args.staticTimer;
+                Percentage = args.Timer / args.MaxTimer;
             });
         }
 
@@ -169,9 +166,9 @@ namespace HunterPie.GUI.Widgets
                 WidgetHasContent = true;
                 ChangeVisibility(false);
                 MantleName.Text = FormatMantleName;
-                DurationBar.Width = 181 * (1 - args.Cooldown / args.staticCooldown);
+                DurationBar.Width = 181 * (1 - args.Cooldown / args.MaxCooldown);
                 Timer = TimeSpan.FromSeconds(args.Cooldown);
-                Percentage = 1 - args.Cooldown / args.staticCooldown;
+                Percentage = 1 - args.Cooldown / args.MaxCooldown;
             });
         }
 

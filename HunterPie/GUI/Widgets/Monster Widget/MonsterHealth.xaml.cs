@@ -7,6 +7,7 @@ using System.Windows.Media;
 using System.Windows.Media.Animation;
 using HunterPie.Core;
 using HunterPie.Core.Enums;
+using HunterPie.Core.Events;
 using HunterPie.GUIControls.Custom_Controls;
 using AlatreonState = HunterPie.Core.Enums.AlatreonState;
 using BitmapImage = System.Windows.Media.Imaging.BitmapImage;

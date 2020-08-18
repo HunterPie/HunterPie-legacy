@@ -3,6 +3,7 @@ using System.Linq;
 using System.Windows;
 using System.Windows.Controls;
 using HunterPie.Core;
+using HunterPie.Core.Events;
 using Timer = System.Threading.Timer;
 
 namespace HunterPie.GUI.Widgets.Monster_Widget.Parts

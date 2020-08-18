@@ -18,7 +18,7 @@ namespace HunterPie.Core
             {
                 if (totalDamage != value)
                 {
-                    if (value > 0 && totalDamage == 0)
+                    if (value > 0 && (totalDamage == 0 || TimeDifference > Epoch))
                     {
                         TimeDifference = Epoch;
                     } else if (value == 0 && totalDamage > 0)

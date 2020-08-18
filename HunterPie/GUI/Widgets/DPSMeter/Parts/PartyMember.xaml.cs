@@ -4,6 +4,7 @@ using System.Windows.Controls;
 using System.Windows.Media;
 using HunterPie.Core;
 using HunterPie.Logger;
+using HunterPie.Core.Events;
 
 namespace HunterPie.GUI.Widgets.DPSMeter.Parts
 {

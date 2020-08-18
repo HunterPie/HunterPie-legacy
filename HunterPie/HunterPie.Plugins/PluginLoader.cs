@@ -44,6 +44,9 @@ namespace HunterPie.Plugins
                 string[] modules = Directory.GetDirectories(Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "Modules"));
                 foreach (string module in modules)
                 {
+                    // Skip modules without Module.json
+                    if (!File.Exists(Path.Combine(module, "module.json"))) continue;
+
                     try
                     {
                         string serializedModule = File.ReadAllText(Path.Combine(module, "module.json"));

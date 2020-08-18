@@ -1,25 +1,7 @@
-﻿namespace HunterPie.Core
+﻿using HunterPie.Core.Events;
+
+namespace HunterPie.Core
 {
-    public class MantleEventArgs
-    {
-        public string Name;
-        public int ID;
-        public float Timer;
-        public float staticTimer;
-        public float Cooldown;
-        public float staticCooldown;
-
-        public MantleEventArgs(Mantle m)
-        {
-            Name = m.Name;
-            ID = m.ID;
-            Timer = m.Timer;
-            staticTimer = m.staticTimer;
-            Cooldown = m.Cooldown;
-            staticCooldown = m.staticCooldown;
-        }
-    }
-
     public class Mantle
     {
         private int _id = -1;
@@ -37,7 +19,7 @@
                 if (_id != value)
                 {
                     _id = value;
-                    _onMantleChange();
+                    Dispatch(OnMantleChange);
                 }
             }
         }
@@ -48,7 +30,7 @@
                 if (_cooldown != value)
                 {
                     _cooldown = value;
-                    _onMantleCooldownUpdate();
+                    Dispatch(OnMantleCooldownUpdate);
                 }
             }
         }
@@ -59,7 +41,7 @@
                 if (_timer != value)
                 {
                     _timer = value;
-                    _onMantleTimerUpdate();
+                    Dispatch(OnMantleTimerUpdate);
                 }
             }
         }
@@ -113,23 +95,7 @@
         public event MantleEvents OnMantleTimerUpdate;
         public event MantleEvents OnMantleChange;
 
-        protected virtual void _onMantleCooldownUpdate()
-        {
-            MantleEventArgs args = new MantleEventArgs(this);
-            OnMantleCooldownUpdate?.Invoke(this, args);
-        }
-
-        protected virtual void _onMantleTimerUpdate()
-        {
-            MantleEventArgs args = new MantleEventArgs(this);
-            OnMantleTimerUpdate?.Invoke(this, args);
-        }
-
-        protected virtual void _onMantleChange()
-        {
-            MantleEventArgs args = new MantleEventArgs(this);
-            OnMantleChange?.Invoke(this, args);
-        }
+        protected virtual void Dispatch(MantleEvents e) => e?.Invoke(this, new MantleEventArgs(this));
 
     }
 }

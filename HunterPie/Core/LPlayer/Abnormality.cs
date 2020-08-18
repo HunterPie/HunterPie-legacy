@@ -1,6 +1,7 @@
 ﻿using HunterPie.Core.LPlayer;
 using AbnormalityType = HunterPie.Core.Enums.AbnormalityType;
 using Helper = HunterPie.Core.Enums.Helper;
+using HunterPie.Core.Events;
 
 namespace HunterPie.Core
 {
