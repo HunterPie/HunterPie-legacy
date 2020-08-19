@@ -193,8 +193,6 @@ namespace HunterPie.GUI
         public virtual void MoveWidget()
         {
             DragMove();
-
-            ToolTip = $"{Left}x{Top} ({DefaultScaleX * 100:0.0}%)";
         }
 
         public new void Show() => Dispatcher.BeginInvoke(System.Windows.Threading.DispatcherPriority.Render, new Action(() =>

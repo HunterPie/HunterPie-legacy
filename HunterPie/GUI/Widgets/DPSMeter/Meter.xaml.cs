@@ -80,7 +80,8 @@ namespace HunterPie.GUI.Widgets.DPSMeter
             UserSettings.PlayerConfig.Overlay.DPSMeter.Width = Width;
         }
 
-        private void OnPeaceZoneLeave(object source, EventArgs args) => Dispatcher.BeginInvoke(System.Windows.Threading.DispatcherPriority.Background, new Action(() =>
+        private void OnPeaceZoneLeave(object source, EventArgs args) =>
+            Dispatcher.BeginInvoke(System.Windows.Threading.DispatcherPriority.Background, new Action(() =>
         {
             CompositionTarget.Rendering += OnMeterRender;
             CreatePlayerComponents();
@@ -91,6 +92,8 @@ namespace HunterPie.GUI.Widgets.DPSMeter
                 WidgetHasContent = true;
             }
             ChangeVisibility();
+
+            SnapWidget(Width);
         }));
 
         private void OnPeaceZoneEnter(object source, EventArgs args) => Dispatcher.BeginInvoke(System.Windows.Threading.DispatcherPriority.Background, new Action(() =>
@@ -211,7 +214,6 @@ namespace HunterPie.GUI.Widgets.DPSMeter
                 TimerVisibility = UserSettings.PlayerConfig.Overlay.DPSMeter.ShowTimer ? Visibility.Visible : Visibility.Collapsed;
 
                 UpdatePlayersColor();
-
                 
                 ScaleWidget(UserSettings.PlayerConfig.Overlay.DPSMeter.Scale, UserSettings.PlayerConfig.Overlay.DPSMeter.Scale);
                 SnapWidget(UserSettings.PlayerConfig.Overlay.DPSMeter.Width);
