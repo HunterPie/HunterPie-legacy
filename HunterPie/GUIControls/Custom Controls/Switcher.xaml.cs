@@ -30,20 +30,24 @@ namespace HunterPie.GUIControls.Custom_Controls
         public static readonly DependencyProperty RestartVisibilityProperty =
             DependencyProperty.Register("RestartVisibility", typeof(Visibility), typeof(Switcher));
 
-        public bool IsEnabled
+        public new bool IsEnabled
         {
             get => (bool)GetValue(IsEnabledProperty);
             set => SetValue(IsEnabledProperty, value);
         }
 
         // Using a DependencyProperty as the backing store for IsEnabled.  This enables animation, styling, binding, etc...
-        public static readonly DependencyProperty IsEnabledProperty =
+        public static readonly new DependencyProperty IsEnabledProperty =
             DependencyProperty.Register("IsEnabled", typeof(bool), typeof(Switcher));
 
 
         public Switcher() => InitializeComponent();
 
-        private void OnClick(object sender, MouseButtonEventArgs e) => IsEnabled = !IsEnabled;
+        private void OnClick(object sender, MouseButtonEventArgs e)
+        {
+            //e.Handled = true;
+            IsEnabled = !IsEnabled;
+        }
 
     }
 }

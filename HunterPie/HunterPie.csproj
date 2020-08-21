@@ -239,6 +239,9 @@
     <Compile Include="GUIControls\NewSettingsWindow.xaml.cs">
       <DependentUpon>NewSettingsWindow.xaml</DependentUpon>
     </Compile>
+    <Compile Include="GUIControls\Plugins.xaml.cs">
+      <DependentUpon>Plugins.xaml</DependentUpon>
+    </Compile>
     <Compile Include="GUIControls\Settings.xaml.cs">
       <DependentUpon>Settings.xaml</DependentUpon>
     </Compile>
@@ -335,6 +338,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="GUIControls\NewSettingsWindow.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="GUIControls\Plugins.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -531,8 +538,10 @@
     <Compile Include="GUI\Widgets\Notification Widget\DiscordNotify.xaml.cs">
       <DependentUpon>DiscordNotify.xaml</DependentUpon>
     </Compile>
+    <Compile Include="HunterPie.Plugins\PluginPackage.cs" />
     <Compile Include="HunterPie.Plugins\IPlugin.cs" />
-    <Compile Include="HunterPie.Plugins\PluginLoader.cs" />
+    <Compile Include="HunterPie.Plugins\PluginSettings.cs" />
+    <Compile Include="HunterPie.Plugins\PluginManager.cs" />
     <Compile Include="HunterPie.Plugins\PluginInformation.cs" />
     <Compile Include="Hunterpie.xaml.cs">
       <DependentUpon>Hunterpie.xaml</DependentUpon>

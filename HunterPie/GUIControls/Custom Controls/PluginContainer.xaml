@@ -6,12 +6,37 @@
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              xmlns:local="clr-namespace:HunterPie.GUIControls.Custom_Controls"
              mc:Ignorable="d" 
-             d:DesignHeight="50" d:DesignWidth="450">
-    <Grid Background="#FF252525">
-        <DockPanel Height="26" VerticalAlignment="Top" Background="#FF1D1D1D">
-            <TextBlock Text="My plugin" FontSize="14" FontFamily="Roboto, Segoe UI" FontWeight="Medium" Foreground="WhiteSmoke" DockPanel.Dock="Left" Padding="0,0,2,0" VerticalAlignment="Center" HorizontalAlignment="Left"/>
-            <TextBlock Text="v1.0.0" FontSize="10" FontFamily="Roboto, Segoe UI" DockPanel.Dock="Left" HorizontalAlignment="Left" Foreground="#FFA0A0A0" VerticalAlignment="Bottom"/>
-            <local:Switcher Text="" Width="53" HorizontalAlignment="Right" DockPanel.Dock="Right"/>
+             d:DesignWidth="450">
+    <StackPanel Orientation="Vertical">
+        <DockPanel Cursor="Hand" Height="30" VerticalAlignment="Top" Background="#FF1D1D1D" MouseLeftButtonDown="OpenDescription">
+            <TextBlock Text="{Binding ElementName=PluginComponent, Path=PluginName}" FontSize="16" FontFamily="Roboto, Segoe UI" FontWeight="Medium" Foreground="WhiteSmoke" DockPanel.Dock="Left" Padding="0,0,2,0" VerticalAlignment="Center" HorizontalAlignment="Left" Margin="3,0,0,0"/>
+            <TextBlock Text="{Binding ElementName=PluginComponent, Path=PluginVersion}" FontSize="12" FontFamily="Roboto, Segoe UI" DockPanel.Dock="Left" HorizontalAlignment="Left" Foreground="#FFA0A0A0" VerticalAlignment="Bottom"/>
+            <local:Switcher IsEnabled="{Binding ElementName=PluginComponent, Path=IsPluginEnabled}" Text="" Width="53" HorizontalAlignment="Right" DockPanel.Dock="Right" Margin="0,3,0,-3" MouseLeftButtonDown="OnTogglePluginButtonClick"/>
         </DockPanel>
-    </Grid>
+        <StackPanel x:Name="DescriptionBox" Background="#FF252525" Height="0">
+            <TextBlock Text="{Binding ElementName=PluginComponent, Path=PluginDescription}" FontSize="14" FontFamily="Roboto, Segoe UI" Foreground="WhiteSmoke" Padding="5"/>
+            <StackPanel.Style>
+                <Style TargetType="StackPanel">
+                    <Style.Triggers>
+                        <DataTrigger Binding="{Binding IsDescriptionOpen, ElementName=PluginComponent}" Value="True">
+                            <DataTrigger.EnterActions>
+                                <BeginStoryboard>
+                                    <Storyboard Storyboard.TargetProperty="Height">
+                                        <DoubleAnimation To="50" Duration="0:0:0.2"/>
+                                    </Storyboard>
+                                </BeginStoryboard>
+                            </DataTrigger.EnterActions>
+                            <DataTrigger.ExitActions>
+                                <BeginStoryboard>
+                                    <Storyboard Storyboard.TargetProperty="Height">
+                                        <DoubleAnimation To="0" Duration="0:0:0.2"/>
+                                    </Storyboard>
+                                </BeginStoryboard>
+                            </DataTrigger.ExitActions>
+                        </DataTrigger>
+                    </Style.Triggers>
+                </Style>
+            </StackPanel.Style>
+        </StackPanel>
+    </StackPanel>
 </UserControl>

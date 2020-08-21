@@ -1,0 +1,19 @@
+﻿<UserControl x:Class="HunterPie.GUIControls.Plugins"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:local="clr-namespace:HunterPie.GUIControls"
+             xmlns:custom="clr-namespace:HunterPie.GUIControls.Custom_Controls"
+             mc:Ignorable="d" 
+             d:DesignHeight="450" d:DesignWidth="800">
+    <StackPanel>
+        <StackPanel Orientation="Horizontal" Height="36" VerticalAlignment="Top">
+            <Button Content="Open plugins folder" Style="{StaticResource buttons_settings}" Foreground="{StaticResource GENERIC_BUTTON_FOREGROUND}" Background="{StaticResource GENERIC_BUTTON_BACKGROUND}" Padding="5,1" FontFamily="Roboto" FontWeight="Bold" FontSize="16" Margin="0,0,10,0" Click="OpenPluginsFolder"/>
+            <Button Content="Get more plugins" Style="{StaticResource buttons_settings}" Foreground="{StaticResource GENERIC_BUTTON_FOREGROUND}" Background="{StaticResource GENERIC_BUTTON_BACKGROUND}" Padding="5,1" FontFamily="Roboto" FontWeight="Bold" FontSize="16" Click="OpenPluginsRepo"/>
+        </StackPanel>
+        <StackPanel x:Name="PluginDisplay" Orientation="Vertical" Margin="10,5">
+
+        </StackPanel>
+    </StackPanel>
+</UserControl>

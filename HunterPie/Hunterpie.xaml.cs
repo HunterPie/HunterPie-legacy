@@ -19,6 +19,7 @@ using HunterPie.GUIControls;
 using HunterPie.GUIControls.Custom_Controls;
 using HunterPie.Plugins;
 using HunterPie.Logger;
+using PluginDisplay = HunterPie.GUIControls.Plugins;
 // HunterPie
 using HunterPie.Memory;
 using Presence = HunterPie.Core.Integrations.Discord.Presence;
@@ -40,7 +41,7 @@ namespace HunterPie
         Presence Discord;
         Overlay GameOverlay;
         readonly Exporter dataExporter = new Exporter();
-        PluginLoader pLoader = new PluginLoader();
+        PluginManager pluginManager = new PluginManager();
         bool OfflineMode = false;
         bool IsUpdating = true;
 
@@ -609,7 +610,10 @@ namespace HunterPie
             // Hook game events
             HookGameEvents();
 
-            pLoader.LoadPlugins(MonsterHunter);
+            // Set game context and load the modules
+            PluginManager.ctx = MonsterHunter;
+            pluginManager.LoadPlugins();
+
             // Creates new overlay
             Dispatcher.Invoke(System.Windows.Threading.DispatcherPriority.Background, new Action(() =>
             {
@@ -647,7 +651,7 @@ namespace HunterPie
         public void OnGameClose(object source, EventArgs e)
         {
             UnhookGameEvents();
-            pLoader.UnloadPlugins();
+            pluginManager.UnloadPlugins();
             Discord.Dispose();
             Discord = null;
             if (UserSettings.PlayerConfig.HunterPie.Options.CloseWhenGameCloses)
@@ -676,6 +680,7 @@ namespace HunterPie
             SwitchButtonOn(BUTTON_CONSOLE);
             SwitchButtonOff(BUTTON_CHANGELOG);
             SwitchButtonOff(BUTTON_SETTINGS);
+            SwitchButtonOff(BUTTON_PLUGINS);
             ConsolePanel.Children.Clear();
             ConsolePanel.Children.Add(Debugger.Instance);
         }
@@ -685,9 +690,20 @@ namespace HunterPie
             SwitchButtonOff(BUTTON_CONSOLE);
             SwitchButtonOff(BUTTON_CHANGELOG);
             SwitchButtonOn(BUTTON_SETTINGS);
+            SwitchButtonOff(BUTTON_PLUGINS);
             ConsolePanel.Children.Clear();
             ConsolePanel.Children.Add(Settings.Instance);
             Settings.RefreshSettingsUI();
+        }
+
+        private void OpenPlugins()
+        {
+            SwitchButtonOff(BUTTON_CONSOLE);
+            SwitchButtonOff(BUTTON_CHANGELOG);
+            SwitchButtonOff(BUTTON_SETTINGS);
+            SwitchButtonOn(BUTTON_PLUGINS);
+            ConsolePanel.Children.Clear();
+            ConsolePanel.Children.Add(PluginDisplay.Instance);
         }
 
         private void OpenChangelog()
@@ -695,6 +711,7 @@ namespace HunterPie
             SwitchButtonOff(BUTTON_CONSOLE);
             SwitchButtonOn(BUTTON_CHANGELOG);
             SwitchButtonOff(BUTTON_SETTINGS);
+            SwitchButtonOff(BUTTON_PLUGINS);
             ConsolePanel.Children.Clear();
             ConsolePanel.Children.Add(Changelog.Instance);
         }
@@ -742,6 +759,9 @@ namespace HunterPie
 
             SetHotKeys();
             StartEverything();
+
+            pluginManager.PreloadPlugins();
+            PluginDisplay.Instance.InitializePluginDisplayer(PluginManager.packages);
         }
 
         private void OnCloseWindowButtonClick(object sender, MouseButtonEventArgs e)
@@ -817,6 +837,8 @@ namespace HunterPie
         private void OnConsoleButtonClick(object sender, MouseButtonEventArgs e) => OpenDebugger();
 
         private void OnSettingsButtonClick(object sender, MouseButtonEventArgs e) => OpenSettings();
+
+        private void OnPluginsButtonClick(object sender, MouseButtonEventArgs e) => OpenPlugins();
 
         private void OnChangelogButtonClick(object sender, MouseButtonEventArgs e) => OpenChangelog();
 

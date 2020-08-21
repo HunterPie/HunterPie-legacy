@@ -1,6 +1,5 @@
 ﻿using System;
 
-
 namespace HunterPie.Plugins
 {
     public class PluginInformation
@@ -11,5 +10,7 @@ namespace HunterPie.Plugins
         public string Author;
         public string Version;
         public string[] Dependencies { get; set; } = Array.Empty<string>();
+
+        public PluginSettings InternalSettings { get; set; } = new PluginSettings();
     }
 }
