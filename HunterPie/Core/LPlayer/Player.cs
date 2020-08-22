@@ -57,7 +57,7 @@ namespace HunterPie.Core
         public long PlayerAddress
         {
             get => playerAddress;
-            set
+            private set
             {
                 if (playerAddress != value)
                 {
@@ -70,11 +70,19 @@ namespace HunterPie.Core
                 }
             }
         }
+
+        /// <summary>
+        /// Player Name
+        /// </summary>
         public string Name { get; private set; }
+
+        /// <summary>
+        /// Player High rank
+        /// </summary>
         public int Level
         {
             get => level;
-            set
+            private set
             {
                 if (level != value)
                 {
@@ -83,14 +91,29 @@ namespace HunterPie.Core
                 }
             }
         }
+
+        /// <summary>
+        /// Player master rank
+        /// </summary>
         public int MasterRank { get; private set; }
+
+        /// <summary>
+        /// Player playtime in seconds
+        /// </summary>
         public int PlayTime { get; private set; }
+
+        /// <summary>
+        /// Whether this player is logged on or not
+        /// </summary>
         public bool IsLoggedOn => playerAddress != 0;
 
+        /// <summary>
+        /// Player Weapon Id
+        /// </summary>
         public byte WeaponID
         {
             get => weaponId;
-            set
+            private set
             {
                 if (weaponId != value)
                 {
@@ -99,11 +122,15 @@ namespace HunterPie.Core
                 }
             }
         }
+
+        /// <summary>
+        /// Player weapon name, in HunterPie's current localization
+        /// </summary>
         public string WeaponName => GStrings.GetWeaponNameByID(WeaponID);
         public long ClassAddress
         {
             get => classAddress;
-            set
+            private set
             {
                 if (value != classAddress)
                 {
@@ -112,12 +139,20 @@ namespace HunterPie.Core
                 }
             }
         }
+
+        /// <summary>
+        /// Player gear skill list
+        /// </summary>
         public sPlayerSkill[] Skills;
 
+
+        /// <summary>
+        /// Current Zone Id
+        /// </summary>
         public int ZoneID
         {
             get => zoneId;
-            set
+            private set
             {
                 if (zoneId != value)
                 {
@@ -136,15 +171,34 @@ namespace HunterPie.Core
                 }
             }
         }
+
+        /// <summary>
+        /// Current zone name, it uses HunterPie's localization
+        /// </summary>
         public string ZoneName => GStrings.GetStageNameByID(ZoneID);
+
+        /// <summary>
+        /// Last Zone Id
+        /// </summary>
         public int LastZoneID { get; private set; }
+
+        /// <summary>
+        /// Whether the player is in a peace zone or not. A zone is considered a peace zone when the player cannot use weapons in there.
+        /// </summary>
         public bool InPeaceZone => peaceZones.Contains(ZoneID);
+
+        /// <summary>
+        /// Whether the player is in a zone where the Harvest Box can be accessed
+        /// </summary>
         public bool InHarvestZone => harvestBoxZones.Contains(ZoneID);
 
+        /// <summary>
+        /// Current Session Id
+        /// </summary>
         public string SessionID
         {
             get => sessionId;
-            set
+            private set
             {
                 if (sessionId != value)
                 {
@@ -154,28 +208,70 @@ namespace HunterPie.Core
                 }
             }
         }
+
+        /// <summary>
+        /// Current Steam Session Id
+        /// </summary>
         public long SteamSession { get; private set; }
+
+        /// <summary>
+        /// Client's account steam Id
+        /// </summary>
         public long SteamID { get; private set; }
 
-        public float Health { get; set; }
-        public float MaxHealth { get; set; }
-        public float Stamina { get; set; }
-        public float MaxStamina { get; set; }
+        /// <summary>
+        /// Player health
+        /// </summary>
+        public float Health { get; private set; }
 
+        /// <summary>
+        /// Player maximum health
+        /// </summary>
+        public float MaxHealth { get; private set; }
+
+        /// <summary>
+        /// Player stamina
+        /// </summary>
+        public float Stamina { get; private set; }
+
+        /// <summary>
+        /// Player maximum stamina
+        /// </summary>
+        public float MaxStamina { get; private set; }
+
+        /// <summary>
+        /// Player position
+        /// </summary>
         readonly Vector3 Position = new Vector3();
 
-        // Party
+        /// <summary>
+        /// Player current party
+        /// </summary>
         public Party PlayerParty = new Party();
 
-        // Harvesting & Activities
+        /// <summary>
+        /// Player harvest box
+        /// </summary>
         public HarvestBox Harvest = new HarvestBox();
+
+        /// <summary>
+        /// Argosy, Tailraiders and Steam Fuel
+        /// </summary>
         public Activities Activity = new Activities();
 
-        // Mantles
+        /// <summary>
+        /// Current primary mantle
+        /// </summary>
         public Mantle PrimaryMantle = new Mantle();
+
+        /// <summary>
+        /// Current secondary mantle
+        /// </summary>
         public Mantle SecondaryMantle = new Mantle();
 
-        // Abnormalities
+        /// <summary>
+        /// Player abnormalities
+        /// </summary>
         public Abnormalities Abnormalities = new Abnormalities();
 
         #region Jobs

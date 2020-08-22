@@ -50,7 +50,7 @@ namespace HunterPie.Core
         public string Id
         {
             get => id;
-            set
+            private set
             {
                 if (!string.IsNullOrEmpty(value) && id != value)
                 {
@@ -84,7 +84,7 @@ namespace HunterPie.Core
         public float SizeMultiplier
         {
             get => sizeMultiplier;
-            set
+            private set
             {
                 if (value <= 0) return;
                 if (value != sizeMultiplier)
@@ -100,7 +100,7 @@ namespace HunterPie.Core
         public float Health
         {
             get => health;
-            set
+            private set
             {
                 if (value != health)
                 {
@@ -121,7 +121,7 @@ namespace HunterPie.Core
         public bool IsTarget
         {
             get => isTarget;
-            set
+            private set
             {
                 if (value != isTarget)
                 {
@@ -148,7 +148,7 @@ namespace HunterPie.Core
         public float EnrageTimer
         {
             get => enrageTimer;
-            set
+            private set
             {
                 if (value != enrageTimer)
                 {
@@ -172,7 +172,7 @@ namespace HunterPie.Core
         public float Stamina
         {
             get => stamina;
-            set
+            private set
             {
                 if ((int)value != (int)stamina)
                 {
@@ -191,7 +191,7 @@ namespace HunterPie.Core
         public AlatreonState AlatreonElement
         {
             get => alatreonElement;
-            set
+            private set
             {
                 if (value != alatreonElement)
                 {
@@ -212,17 +212,22 @@ namespace HunterPie.Core
         public delegate void MonsterEvents(object source, EventArgs args);
         public delegate void MonsterSpawnEvents(object source, MonsterSpawnEventArgs args);
         public delegate void MonsterUpdateEvents(object source, MonsterUpdateEventArgs args);
+
         public event MonsterSpawnEvents OnMonsterSpawn;
+
         public event MonsterEvents OnMonsterAilmentsCreate;
         public event MonsterEvents OnMonsterDespawn;
         public event MonsterEvents OnMonsterDeath;
         public event MonsterEvents OnTargetted;
         public event MonsterEvents OnCrownChange;
+
         public event MonsterUpdateEvents OnHPUpdate;
         public event MonsterUpdateEvents OnStaminaUpdate;
+
         public event MonsterEnrageEvents OnEnrage;
         public event MonsterEnrageEvents OnUnenrage;
         public event MonsterEnrageEvents OnEnrageTimerUpdate;
+
         // Used ONLY by Alatreon
         public event MonsterEvents OnAlatreonElementShift;
 

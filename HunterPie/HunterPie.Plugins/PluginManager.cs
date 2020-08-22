@@ -189,9 +189,10 @@ namespace HunterPie.Plugins
         /// <returns>True if the plugin was unloaded successfully, false otherwise</returns>
         public static bool UnloadPlugin(IPlugin plugin)
         {
+            if (ctx == null) return true;
             try
             {
-                plugin?.Unload();
+                plugin.Unload();
                 return true;
             } catch(Exception err)
             {

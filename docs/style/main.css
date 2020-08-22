@@ -143,7 +143,7 @@ ul#navbarList a {
 
 footer {
     position: relative;
-    background-color: rgb(29, 29, 29, 0.8);
+    background-color: rgba(29, 29, 29, 0.931);
     box-shadow: rgba(0, 0, 0, 0.1) 0px 2px 2px;
     -webkit-backdrop-filter: blur(5px);
     backdrop-filter: blur(5px);

@@ -61,9 +61,9 @@ function RenderMarkdown(markdown) {
         if (res.ok) {
             res.blob().then(
                 (blob) => {
-                    blob.text().then(
-                        content => document.getElementById("sidebar").innerHTML = marked(content)
-                    );
+                    blob.text().then(content => {
+                        document.getElementById("sidebar").innerHTML = marked(content)
+                    });
                 }
             )
         }
@@ -73,9 +73,9 @@ function RenderMarkdown(markdown) {
         if (res.ok) {
             res.blob().then(
                 (blob) => {
-                    blob.text().then(
-                        content => document.getElementById("MarkdownBox").innerHTML = marked(content)
-                    );
+                    blob.text().then(content => {
+                        document.getElementById("MarkdownBox").innerHTML = marked(content)
+                    });
                 }
             )
         } else {

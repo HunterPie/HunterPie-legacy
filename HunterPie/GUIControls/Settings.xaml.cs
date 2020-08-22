@@ -30,7 +30,7 @@ namespace HunterPie.GUIControls
 
         public void UninstallKeyboardHook() => _Instance?.SettingsBox.UnhookEvents();
 
-        static public void Destroy()
+        internal static void Destroy()
         {
             if (_Instance == null) return;
             _Instance.UninstallKeyboardHook();

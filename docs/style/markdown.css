@@ -2,7 +2,7 @@
 /* Markdown */
 
 .Markdown {
-    background-color: rgb(29, 29, 29, 0.8);
+    background-color: rgba(29, 29, 29, 0.959);
     box-shadow: rgba(0, 0, 0, 0.1) 0px 2px 2px;
     -webkit-backdrop-filter: blur(5px);
     backdrop-filter: blur(5px);
@@ -20,7 +20,12 @@
     padding-bottom: 2px;
     font-weight: 500;
     color: #85c3ed;
-    
+    margin-bottom: 0px;
+}
+
+.Markdown p {
+    margin-top: 3px;
+    margin-bottom: 3px;
 }
 
 .Markdown new {
@@ -146,4 +151,35 @@
 .Markdown hr {
     border-color: #85c3ed;
     border-top: 0px;
+    margin-bottom: 20px;
+    margin-top: 20px;
+}
+
+.Markdown ns {
+    font-family: consolas;
+    color: #458cca;
+    background: #1f1f1f;
+    padding: 5px 10px 5px 10px;
+}
+
+.Markdown properties {
+    font-size: 15px;
+}
+
+.Markdown Type {
+    color: #37e7a3;
+    font-family: consolas;
+    font-weight: 500;
+}
+
+.Markdown Interface {
+    color: #bde475;
+    font-family: consolas;
+    font-weight: 500;
+}
+
+.Markdown params {
+    color: #e2e2e2;
+    background: #1f1f1f;
+    padding: 5px 10px 5px 10px;
 }

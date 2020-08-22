@@ -1,6 +1,4 @@
-﻿using HunterPie.Plugins;
-
-namespace HunterPie.Plugins
+﻿namespace HunterPie.Plugins
 {
     /// <summary>
     /// A package structure with all the plugin information

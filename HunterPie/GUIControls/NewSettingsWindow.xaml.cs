@@ -30,19 +30,24 @@ namespace HunterPie.GUIControls
         {
             switchEnableAilments.MouseLeftButtonDown -= SwitchEnableAilments_MouseDown;
             switchEnableParts.MouseDown -= SwitchEnableParts_MouseDown;
+            argsTextBox.LostFocus -= argsTextBox_LostFocus;
+            argsTextBox.GotFocus -= argsTextBox_GotFocus;
+            selectPathBttn.LostFocus -= SelectPathBttn_LostFocus;
+            selectPathBttn.Click -= selectPathBttn_Click;
             MonsterShowModeSelection.Items.Clear();
             LanguageFilesCombobox.Items.Clear();
             ThemeFilesCombobox.Items.Clear();
             MonsterBarDock.Items.Clear();
+
         }
 
         private void PopulateMonsterBox()
         {
-            MonsterShowModeSelection.Items.Add(GStrings.GetLocalizationByXPath("/Settings/String[@ID='STATIC_MONSTER_BAR_MODE_0']"));
-            MonsterShowModeSelection.Items.Add(GStrings.GetLocalizationByXPath("/Settings/String[@ID='STATIC_MONSTER_BAR_MODE_1']"));
-            MonsterShowModeSelection.Items.Add(GStrings.GetLocalizationByXPath("/Settings/String[@ID='STATIC_MONSTER_BAR_MODE_2']"));
-            MonsterShowModeSelection.Items.Add(GStrings.GetLocalizationByXPath("/Settings/String[@ID='STATIC_MONSTER_BAR_MODE_3']"));
-            MonsterShowModeSelection.Items.Add(GStrings.GetLocalizationByXPath("/Settings/String[@ID='STATIC_MONSTER_BAR_MODE_4']"));
+            for (int i = 0; i < 5; i++)
+            {
+                MonsterShowModeSelection.Items.Add(
+                    GStrings.GetLocalizationByXPath($"/Settings/String[@ID='STATIC_MONSTER_BAR_MODE_{i}']"));
+            }
         }
 
         private void PopulateDockBox()
