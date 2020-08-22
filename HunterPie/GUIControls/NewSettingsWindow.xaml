@@ -821,7 +821,7 @@
                                 <Separator Width="298" Margin="0" Height="25" VerticalAlignment="Top"/>
                             </StackPanel>
 
-                            <custom:MinimalButton MaxWidth="350" Icon="{StaticResource ICON_PAYPAL}" Text="{Binding Mode=OneTime, XPath=/Strings/Client/Settings/String[@ID\=\'STATIC_HUNTERPIE_PAYPAL\']/@Name}" Link="https://www.paypal.com/cgi-bin/webscr?cmd=_s-xclick&amp;hosted_button_id=EXPGCRVFVC2ZA&amp;source=url" Canvas.Left="44" Canvas.Top="28" Foreground="#FFE4E4E4" FontWeight="Bold" ToolTip="{Binding Mode=OneTime, XPath=/Strings/Client/Settings/String[@ID\=\'STATIC_HUNTERPIE_PAYPAL_DESC\']/@Name}" Margin="0,26,0,0" VerticalAlignment="Top">
+                            <custom:MinimalButton MaxWidth="350" Icon="{StaticResource ICON_PAYPAL}" Text="{Binding Mode=OneTime, XPath=/Strings/Client/Settings/String[@ID\=\'STATIC_HUNTERPIE_PAYPAL\']/@Name}" Link="https://www.paypal.com/cgi-bin/webscr?cmd=_s-xclick&amp;hosted_button_id=F2QA6HEQZ366A&amp;source=url" Canvas.Left="44" Canvas.Top="28" Foreground="#FFE4E4E4" FontWeight="Bold" ToolTip="{Binding Mode=OneTime, XPath=/Strings/Client/Settings/String[@ID\=\'STATIC_HUNTERPIE_PAYPAL_DESC\']/@Name}" Margin="0,26,0,0" VerticalAlignment="Top">
                                 <custom:MinimalButton.Color>
                                     <LinearGradientBrush EndPoint="1.5,-7" StartPoint="-0.1,-1">
                                         <GradientStop Color="#FFF7C125" Offset="0"/>
