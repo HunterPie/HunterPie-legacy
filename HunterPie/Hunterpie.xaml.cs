@@ -25,6 +25,7 @@ using HunterPie.Memory;
 using Presence = HunterPie.Core.Integrations.Discord.Presence;
 using Process = System.Diagnostics.Process;
 using ProcessStartInfo = System.Diagnostics.ProcessStartInfo;
+using System.Threading.Tasks;
 
 namespace HunterPie
 {
@@ -612,7 +613,13 @@ namespace HunterPie
 
             // Set game context and load the modules
             PluginManager.ctx = MonsterHunter;
-            pluginManager.LoadPlugins();
+            if (pluginManager.IsReady)
+            {
+                pluginManager.LoadPlugins();   
+            } else
+            {
+                pluginManager.QueueLoad = true;
+            }
 
             // Creates new overlay
             Dispatcher.Invoke(System.Windows.Threading.DispatcherPriority.Background, new Action(() =>
@@ -760,8 +767,14 @@ namespace HunterPie
             SetHotKeys();
             StartEverything();
 
-            pluginManager.PreloadPlugins();
-            PluginDisplay.Instance.InitializePluginDisplayer(PluginManager.packages);
+            Task.Factory.StartNew(() =>
+            {
+                pluginManager.PreloadPlugins();
+                Dispatcher.Invoke(() =>
+                {
+                    PluginDisplay.Instance.InitializePluginDisplayer(PluginManager.packages);
+                });
+            });
         }
 
         private void OnCloseWindowButtonClick(object sender, MouseButtonEventArgs e)

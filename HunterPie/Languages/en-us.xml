@@ -441,11 +441,15 @@
       <String ID="CONSOLE_SETTINGS" Name="SETTINGS"/>
       <String ID="CONSOLE_UPLOADBUILD" Name="UPLOAD BUILD"/>
       <String ID="CONSOLE_EXPORTGEAR" Name="EXPORT GEAR"/>
+      <String ID="CONSOLE_PLUGINS" Name="PLUGINS"/>
       <String ID="CONSOLE_CHANGELOG" Name="PATCH NOTES"/>
       <String ID="CONSOLE_DISCORD" Name="DISCORD"/>
       <String ID="CONSOLE_GITHUB" Name="GITHUB"/>
       <String ID="CONSOLE_LAUNCH" Name="LAUNCH GAME"/>
       <String ID="CONSOLE_VERSION" Name="Version: {HunterPie_Version} ({HunterPie_Branch})"/>
+      <!-- Plugins -->
+      <String ID="MESSAGE_GET_MORE_PLUGINS" Name="Get more plugins!"/>
+      <String ID="MESSAGE_OPEN_PLUGINS_FOLDER" Name="Open plugins folder"/>
       <!-- Popups -->
       <String ID="MESSAGE_QUIT" Name="Are you sure you want to exit HunterPie?"/>
       <String ID="TITLE_MISSING_PATH" Name="Monster Hunter World Path not found"/>

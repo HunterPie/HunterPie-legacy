@@ -6,11 +6,11 @@
              xmlns:local="clr-namespace:HunterPie.GUIControls"
              xmlns:custom="clr-namespace:HunterPie.GUIControls.Custom_Controls"
              mc:Ignorable="d" 
-             d:DesignHeight="450" d:DesignWidth="800">
+             d:DesignHeight="450" d:DesignWidth="800" DataContext="{StaticResource Localization}">
     <StackPanel>
         <StackPanel Orientation="Horizontal" Height="36" VerticalAlignment="Top">
-            <Button Content="Open plugins folder" Style="{StaticResource buttons_settings}" Foreground="{StaticResource GENERIC_BUTTON_FOREGROUND}" Background="{StaticResource GENERIC_BUTTON_BACKGROUND}" Padding="5,1" FontFamily="Roboto" FontWeight="Bold" FontSize="16" Margin="0,0,10,0" Click="OpenPluginsFolder"/>
-            <Button Content="Get more plugins" Style="{StaticResource buttons_settings}" Foreground="{StaticResource GENERIC_BUTTON_FOREGROUND}" Background="{StaticResource GENERIC_BUTTON_BACKGROUND}" Padding="5,1" FontFamily="Roboto" FontWeight="Bold" FontSize="16" Click="OpenPluginsRepo"/>
+            <Button Content="{Binding Mode=OneTime, XPath=/Strings/Client/Console/String[@ID\=\'MESSAGE_OPEN_PLUGINS_FOLDER\']/@Name, FallbackValue='Open plugins folder'}" Style="{StaticResource buttons_settings}" Foreground="{StaticResource GENERIC_BUTTON_FOREGROUND}" Background="{StaticResource GENERIC_BUTTON_BACKGROUND}" Padding="5,1" FontFamily="Roboto" FontWeight="Bold" FontSize="16" Margin="0,0,10,0" Click="OpenPluginsFolder"/>
+            <Button Content="{Binding Mode=OneTime, XPath=/Strings/Client/Console/String[@ID\=\'MESSAGE_GET_MORE_PLUGINS\']/@Name, FallbackValue='Get more plugins'}" Style="{StaticResource buttons_settings}" Foreground="{StaticResource GENERIC_BUTTON_FOREGROUND}" Background="{StaticResource GENERIC_BUTTON_BACKGROUND}" Padding="5,1" FontFamily="Roboto" FontWeight="Bold" FontSize="16" Click="OpenPluginsRepo"/>
         </StackPanel>
         <StackPanel x:Name="PluginDisplay" Orientation="Vertical" Margin="10,5">
 

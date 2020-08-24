@@ -149,7 +149,7 @@
             <StackPanel x:Name="BUTTON_PLUGINS" Style="{StaticResource STYLE_SIDEBARBUTTONS}"  Background="{StaticResource BUTTON_COMMONBUTTON_BACKGROUND}" Cursor="Hand"  Width="300" Height="40" Orientation="Horizontal" HorizontalAlignment="Left" MouseDown="OnPluginsButtonClick" VerticalAlignment="Top">
                 <Border BorderBrush="{StaticResource BUTTON_COMMONBUTTON_BORDER}" Width="4" BorderThickness="0,0,0,0" />
                 <Image Panel.ZIndex="1" Source="{StaticResource ICON_PLUGIN}" HorizontalAlignment="Center" Width="24" VerticalAlignment="Center" Margin="9,8,0,8"/>
-                <TextBlock DataContext="{StaticResource Localization}" Text="PLUGINS" TextTrimming="CharacterEllipsis" Padding="20,0,0,0" VerticalAlignment="Center" FontSize="16" Foreground="{StaticResource BUTTON_COMMONBUTTON_FOREGROUND}" FontWeight="Bold" FontFamily="Roboto"/>
+                <TextBlock DataContext="{StaticResource Localization}" Text="{Binding Mode=OneTime, XPath=/Strings/Client/Console/String[@ID\=\'CONSOLE_PLUGINS\']/@Name, FallbackValue='PLUGINS'}" TextTrimming="CharacterEllipsis" Padding="20,0,0,0" VerticalAlignment="Center" FontSize="16" Foreground="{StaticResource BUTTON_COMMONBUTTON_FOREGROUND}" FontWeight="Bold" FontFamily="Roboto"/>
             </StackPanel>
             <StackPanel x:Name="BUTTON_UPLOADBUILD" Style="{StaticResource TogglableButton}" Background="{StaticResource BUTTON_COMMONBUTTON_BACKGROUND}" Cursor="Hand"  Width="300" Height="40" Orientation="Horizontal" HorizontalAlignment="Left" MouseDown="OnUploadBuildButtonClick" VerticalAlignment="Top">
                 <Image Panel.ZIndex="1" Source="{StaticResource ICON_BUILD}" HorizontalAlignment="Center" Width="25" VerticalAlignment="Center" Margin="9,8,0,8"/>

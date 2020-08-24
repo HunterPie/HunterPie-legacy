@@ -27,6 +27,8 @@ namespace HunterPie.Plugins
     class PluginManager
     {
         public static List<PluginPackage> packages = new List<PluginPackage>();
+        public bool IsReady { get; private set; }
+        internal bool QueueLoad { get; set; }
         internal static Game ctx;
 
         public void LoadPlugins()
@@ -48,6 +50,7 @@ namespace HunterPie.Plugins
 
         public void PreloadPlugins()
         {
+            Stopwatch benchmark = Stopwatch.StartNew();
             Debugger.Module("Pre loading modules");
             string[] modules = Directory.GetDirectories(Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "Modules"));
             foreach (string module in modules)
@@ -73,7 +76,7 @@ namespace HunterPie.Plugins
                             continue;
                         }
                     }
-                        
+                    Stopwatch s = Stopwatch.StartNew();
                     foreach (string required in modInformation.Dependencies)
                     {
                         AppDomain.CurrentDomain.Load(AssemblyName.GetAssemblyName(Path.Combine(module, required)));
@@ -91,8 +94,12 @@ namespace HunterPie.Plugins
                     continue;
                 }
             }
-            Debugger.Module($"Pre loaded {packages.Count} module(s)");
-
+            benchmark.Stop();
+            Debugger.Module($"Pre loaded {packages.Count} module(s) in {benchmark.ElapsedMilliseconds}ms");
+            if (QueueLoad)
+            {
+                LoadPlugins();
+            }
         }
 
         public void UnloadPlugins()
