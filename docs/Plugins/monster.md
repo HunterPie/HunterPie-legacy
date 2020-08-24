@@ -1,6 +1,6 @@
 # Monster
 
-<ns>namespace HunterPie.Core</ns>
+<a href="?p=Plugins/HunterPie.Core.md"><ns>namespace HunterPie.Core</ns></a>
 
 ## Events
 ### OnMonsterSpawn

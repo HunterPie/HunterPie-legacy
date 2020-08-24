@@ -1,6 +1,6 @@
 # Game
 
-<ns>namespace HunterPie.Core</ns>
+<a href="?p=Plugins/HunterPie.Core.md"><ns>namespace HunterPie.Core</ns></a>
 
 This is the Game context, it has the Player and Monsters information.
 
@@ -13,26 +13,26 @@ This is dispatched every 10 seconds, it's mainly used by the Rich Presence to be
 
 ## Properties
 ### Player
-<params>Type: <Type>Player</Type></params>
+<params>Type: <a href="?p=Plugins/player.md"><Type>Player</Type></a></params>
 
-This is the <Type>Player</Type> context, it handles everything related to the local player. You can read more [here](?p=Plugins/player.md).
+This is the <a href="?p=Plugins/player.md"><Type>Player</Type></a> context, it handles everything related to the local player.
 
 ### FirstMonster
-<params>Type: <Type>Monster</Type></params>
+<params>Type: <a href="?p=Plugins/monster.md"><Type>Monster</Type></a></params>
 
-This is the first monster context, it handles everything related to the first monster. You can read more [here](?p=Plugins/monster.md)
+This is the first monster context, it handles everything related to the first monster.
 
 ### SecondMonster
-<params>Type: <Type>Monster</Type></params>
+<params>Type: <a href="?p=Plugins/monster.md"><Type>Monster</Type></a></params>
 
-This is the second monster context, it handles everything related to the first monster. You can read more [here](?p=Plugins/monster.md)
+This is the second monster context, it handles everything related to the first monster.
 
 ### ThirdMonster
-<params>Type: <Type>Monster</Type></params>
+<params>Type: <a href="?p=Plugins/monster.md"><Type>Monster</Type></a></params>
 
-This is the third monster context, it handles everything related to the first monster. You can read more [here](?p=Plugins/monster.md)
+This is the third monster context, it handles everything related to the first monster.
 
 ### HuntedMonster
-<params>Type: <Type>Monster</Type></params>
+<params>Type: <a href="?p=Plugins/monster.md"><Type>Monster</Type></a></params>
 
 This references the monster that is targeted by the player. A monster can be considered a target when it's either locked on (if the lock-on option is enabled) or if it's pinned by the player in the map.

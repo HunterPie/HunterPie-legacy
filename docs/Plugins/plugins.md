@@ -53,7 +53,7 @@ namespace HunterPie.Plugins
 
 ### Initialize
 
-Note that the `Initialize` method has a context parameter, that's passed to your plugin whenever the game starts. A <Type>Game</Type> is the game context, it englobes the <Type>Player</Type>, <Type>Monster</Type> and everything else that's happening inside the game.
+Note that the `Initialize` method has a context parameter, that's passed to your plugin whenever the game starts. A <a href="?p=Plugins/game.md"><Type>Game</Type></a> is the game context, it englobes the <a href="?p=Plugins/player.md"><Type>Player</Type></a>, <a href="?p=Plugins/monster.md"><Type>Monster</Type></a> and everything else that's happening inside the game.
 
 This method is what HunterPie will look for and call when loading all plugins, so the first thing you must do is assign the plugin Name, Description and the Context accordingly inside the Initialize method.
 
@@ -63,4 +63,4 @@ The unload method is what HunterPie will call when unloading your plugin, you **
 
 ### Game Context
 
-The <Type>Game</Type> is the core of HunterPie and the core of your plugin. You can read more about it [here](?p=Plugins/game.md).
+The <a href="?p=Plugins/game.md"><Type>Game</Type></a> is the core of HunterPie and the core of your plugin.

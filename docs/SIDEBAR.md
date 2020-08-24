@@ -21,8 +21,15 @@
 - [Discord Rich Presence](?p=Integrations/discord.md)
 - [Honey Hunters World](?p=Integrations/honeyHuntersWorld.md)
 
-### Internals & Research
+### Development
 
+- <a href="?p=Plugins/HunterPie.Core.md"><ns>HunterPie.Core</ns></a>
+    - <a href="?p=Plugins/game.md"><Type>Game</Type></a>
+    - <a href="?p=Plugins/player.md"><Type>Player</Type></a>
+    - <a href="?p=Plugins/monster.md"><Type>Monster</Type></a>
+
+
+### Internals & Research
 - [Supported Abnormalities](?p=Internal/abnormalities.md)
 
 

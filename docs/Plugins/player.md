@@ -1,6 +1,6 @@
 # Player
 
-<ns>namespace HunterPie.Core</ns>
+<a href="?p=Plugins/HunterPie.Core.md"><ns>namespace HunterPie.Core</ns></a>
 
 This class has all the local player information.
 
