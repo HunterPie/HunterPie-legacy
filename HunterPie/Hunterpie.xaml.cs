@@ -19,6 +19,7 @@ using HunterPie.GUIControls;
 using HunterPie.GUIControls.Custom_Controls;
 using HunterPie.Plugins;
 using HunterPie.Logger;
+using HunterPie.Integrations;
 using PluginDisplay = HunterPie.GUIControls.Plugins;
 // HunterPie
 using HunterPie.Memory;
@@ -885,45 +886,53 @@ namespace HunterPie
 
         private void OnExportGearButtonClick(object sender, MouseButtonEventArgs e)
         {
-            sItem[] decoration = MonsterHunter.Player.GetDecorationsFromStorage();
-            sGear[] gears = MonsterHunter.Player.GetGearFromStorage();
+            // Task, so it doesnt freeze the UI
+            Task.Factory.StartNew(() =>
+            {
 
-            string exported = Honey.ExportDecorationsToHoney(decoration, gears);
+                sItem[] decoration = MonsterHunter.Player.GetDecorationsFromStorage();
+                sGear[] gears = MonsterHunter.Player.GetGearFromStorage();
 
-            if (dataExporter.ExportCustomData("Decorations-HoneyHuntersWorld.txt", exported))
-            {
-                Debugger.Warn("Exported decorations to ./DataExport/Decorations-HoneyHuntersWorld.txt!");
-            }
-            else
-            {
-                Debugger.Error("Failed to export decorations. Make sure HunterPie has permission to create/write to files.");
-            }
+                string exported = Honey.ExportDecorationsToHoney(decoration, gears);
 
-            exported = Honey.ExportCharmsToHoney(gears);
-            if (dataExporter.ExportCustomData("Charms-HoneyHuntersWorld.txt", exported))
-            {
-                Debugger.Warn("Exported charms to ./DataExport/Charms-HoneyHuntersWorld.txt!");
-            }
-            else
-            {
-                Debugger.Error("Failed to export charms. Make sure HunterPie has permission to create/write to files.");
-            }
-            CNotification notification = new CNotification()
-            {
-                NIcon = FindResource("ICON_DECORATION") as ImageSource,
-                Text = GStrings.GetLocalizationByXPath("/Notifications/String[@ID='MESSAGE_GEAR_EXPORTED']"),
-                FirstButtonImage = FindResource("ICON_LINK") as ImageSource,
-                FirstButtonText = GStrings.GetLocalizationByXPath("/Notifications/String[@ID='STATIC_OPENFOLDER']"),
-                FirstButtonVisibility = Visibility.Visible,
-                SecondButtonVisibility = Visibility.Collapsed,
-                ShowTime = 11,
-                Callback1 = new Action(() =>
+                if (dataExporter.ExportCustomData("Decorations-HoneyHuntersWorld.txt", exported))
                 {
-                    Process.Start(dataExporter.ExportPath);
-                })
-            };
-            NotificationsPanel.Children.Add(notification);
-            notification.ShowNotification();
+                    Debugger.Warn("Exported decorations to ./DataExport/Decorations-HoneyHuntersWorld.txt!");
+                }
+                else
+                {
+                    Debugger.Error("Failed to export decorations. Make sure HunterPie has permission to create/write to files.");
+                }
+
+                exported = Honey.ExportCharmsToHoney(gears);
+                if (dataExporter.ExportCustomData("Charms-HoneyHuntersWorld.txt", exported))
+                {
+                    Debugger.Warn("Exported charms to ./DataExport/Charms-HoneyHuntersWorld.txt!");
+                }
+                else
+                {
+                    Debugger.Error("Failed to export charms. Make sure HunterPie has permission to create/write to files.");
+                }
+                Dispatcher.Invoke(() =>
+                {
+                    CNotification notification = new CNotification()
+                    {
+                        NIcon = FindResource("ICON_DECORATION") as ImageSource,
+                        Text = GStrings.GetLocalizationByXPath("/Notifications/String[@ID='MESSAGE_GEAR_EXPORTED']"),
+                        FirstButtonImage = FindResource("ICON_LINK") as ImageSource,
+                        FirstButtonText = GStrings.GetLocalizationByXPath("/Notifications/String[@ID='STATIC_OPENFOLDER']"),
+                        FirstButtonVisibility = Visibility.Visible,
+                        SecondButtonVisibility = Visibility.Collapsed,
+                        ShowTime = 11,
+                        Callback1 = new Action(() =>
+                        {
+                            Process.Start(dataExporter.ExportPath);
+                        })
+                    };
+                    NotificationsPanel.Children.Add(notification);
+                    notification.ShowNotification();
+                });
+            });
         }
 
         private void OnDiscordButtonClick(object sender, MouseButtonEventArgs e) => Process.Start("https://discord.gg/5pdDq4Q");

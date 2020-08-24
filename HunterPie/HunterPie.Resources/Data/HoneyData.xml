@@ -1513,7 +1513,7 @@
       <Jewel HoneyID="85" ID="3" GameId="730" Max="3"/>
       <Jewel HoneyID="86" ID="75" GameId="813" Max="5"/>
       <Jewel HoneyID="87" ID="21" GameId="750" Max="6"/>
-      <Jewel HoneyID="88" ID="78" GameId="2270" Max="3"/>
+      <Jewel HoneyID="88" ID="78" GameId="2270" StacksWith="819" Max="3"/>
       <Jewel HoneyID="89" ID="5" GameId="732" Max="3"/>
       <Jewel HoneyID="90" ID="36" GameId="766" Max="3"/>
       <Jewel HoneyID="91" ID="44" GameId="775" Max="7"/>

@@ -6,10 +6,11 @@ using System.Text;
 using System.Xml;
 using HunterPie.Core.Definitions;
 using HunterPie.Core.Enums;
+using Newtonsoft.Json;
 using Debugger = HunterPie.Logger.Debugger;
 using GameStructs = HunterPie.Core.LPlayer.GameStructs;
 
-namespace HunterPie.Core
+namespace HunterPie.Integrations
 {
     public class Honey
     {
@@ -239,32 +240,44 @@ namespace HunterPie.Core
             return parsed;
         }
 
-        static int GetCharmHoneyIdByGameId(int id)
+        public static int GetCharmHoneyIdByGameId(int id)
         {
             string decoHoneyID = id == int.MaxValue ? "0" : HoneyGearData.SelectSingleNode($"//Honey/Gear/Charms/Charm[@ID='{id}']/@HoneyID")?.Value;
             int.TryParse(decoHoneyID, out int parsed);
             return parsed;
         }
 
-        private static int GetDecorationHoneyIdByGameId(int id)
+        public static int GetDecorationHoneyIdByGameId(int id)
         {
             string decoHoneyId = HoneyGearData.SelectSingleNode($"//Honey/Gear/Jewels/Jewel[@GameId='{id}']/@HoneyID")?.Value;
             int.TryParse(decoHoneyId, out int parsed);
             return parsed;
         }
 
-        private static int GetDecorationGameIdById(int id)
+        public static int GetDecorationGameIdById(int id)
         {
             string decoGameId = HoneyGearData.SelectSingleNode($"//Honey/Gear/Jewels/Jewel[@ID='{id}']/@GameId")?.Value;
             int.TryParse(decoGameId, out int parsed);
             return parsed;
         }
 
-        private static int GetDecorationAmountLimit(int id, int amount)
+        public static int GetDecorationAmountLimit(int id, int amount)
         {
             string decoMax = HoneyGearData.SelectSingleNode($"//Honey/Gear/Jewels/Jewel[@HoneyID='{id}']/@Max")?.Value;
             int.TryParse(decoMax, out int parsed);
             return Math.Min(parsed, amount);
+        }
+
+        /// <summary>
+        /// Some jewels stacks with others, this function will return the GameId of the jewel that 'id' stacks with.
+        /// </summary>
+        /// <param name="id">Jewel GameId</param>
+        /// <returns>GameId</returns>
+        public static int GetStacksWithDecorationId(int id)
+        {
+            string decoStack = HoneyGearData.SelectSingleNode($"//Honey/Gear/Jewels/Jewel[@GameId='{id}']/@StacksWith")?.Value;
+            int.TryParse(decoStack, out int parsed);
+            return decoStack == null ? int.MaxValue : parsed;
         }
 
         /// <summary>
@@ -310,6 +323,7 @@ namespace HunterPie.Core
             foreach (sItem deco in decorations)
             {
                 int HoneyDecoId = GetDecorationHoneyIdByGameId(deco.ItemId);
+                int StacksWith = GetStacksWithDecorationId(deco.ItemId);
                 if (sDecorations.ContainsKey(HoneyDecoId))
                 {
                     sDecorations[HoneyDecoId] += deco.Amount;
@@ -318,6 +332,16 @@ namespace HunterPie.Core
                 {
                     sDecorations[HoneyDecoId] = deco.Amount;
                 }
+                if (StacksWith != int.MaxValue)
+                {
+                    StacksWith = GetDecorationHoneyIdByGameId(StacksWith);
+                    if (sDecorations.ContainsKey(StacksWith))
+                    {
+                        sDecorations[HoneyDecoId] += sDecorations[StacksWith];
+                        sDecorations[StacksWith] += deco.Amount;
+                    }
+                }
+                
             }
 
             // Now we build the decoration string structure
