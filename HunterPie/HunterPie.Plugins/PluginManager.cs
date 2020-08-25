@@ -106,6 +106,7 @@ namespace HunterPie.Plugins
         {
             foreach (PluginPackage package in packages)
             {
+                if (!package.settings.IsEnabled) continue;
                 package.plugin.Unload();
             }
             Debugger.Module("Unloaded all modules.");
