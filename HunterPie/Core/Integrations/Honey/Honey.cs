@@ -10,7 +10,7 @@ using Newtonsoft.Json;
 using Debugger = HunterPie.Logger.Debugger;
 using GameStructs = HunterPie.Core.LPlayer.GameStructs;
 
-namespace HunterPie.Integrations
+namespace HunterPie.Core
 {
     public class Honey
     {

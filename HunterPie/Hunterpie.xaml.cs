@@ -19,7 +19,6 @@ using HunterPie.GUIControls;
 using HunterPie.GUIControls.Custom_Controls;
 using HunterPie.Plugins;
 using HunterPie.Logger;
-using HunterPie.Integrations;
 using PluginDisplay = HunterPie.GUIControls.Plugins;
 // HunterPie
 using HunterPie.Memory;
