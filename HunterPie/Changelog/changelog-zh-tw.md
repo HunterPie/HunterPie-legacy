@@ -1,68 +1,75 @@
 ﻿![banner](https://cdn.discordapp.com/attachments/402557384209203200/743894519329587251/update-10396.png)
 
-**Plugins System**
+**插件系統**
 
-HunterPie now supports plugins. Plugins have access to **everything** HunterPie handles, including player data, monster data, game events. If you're interested in developing your own extensions, you can find an example [here](https://github.com/Haato3o/HunterPie.Plugins/blob/master/TwitchIntegration/main.cs).
+HunterPie 現已支持插件. 插件可以訪問 **所有** HunterPie 處理後的所有內容，包含玩家資料、魔物資料、遊戲事件等...如果您有興趣開發自己的外掛插件，您可以在 [這裡](https://github.com/Haato3o/HunterPie.Plugins/blob/master/TwitchIntegration/main.cs) 找到範例
 
-**Monster Widget**
+**魔物小工具**
 
 
-- **String formats:** Added ailments build, timers and parth health text format option. See the special strings below:
-    - **{}{Current}** - Current bar value.
-    - **{}{Max}** - Maxium bar value.
-    - **{}{Percentage}** - Current value / Maximum value * 100 (Without the % at the end).
+- **文字格式:** 增加了異常狀態欄，狀態計時器和部位血量文字格式選項。請參閱下面的特殊格式:
+    - **{}{Current}** - 目前欄位的內容值.
+    - **{}{Max}** - 目前欄位的最大內容值.
+    - **{}{Percentage}** - 目前值 / 最大值 * 100 (沒有結尾的'%'字串).
 
-Special strings are strings that will be replaced when HunterPie renders the text. They are case-sensitive and need to be written exactly as shown in the table above.
+特殊格式是在 HunterPie 呈現字串時將被替換的文字。它們需要按照上表中所示的方式編寫，區分大小寫。
 
-**Examples:**
+**範例:**
 - **{}{Current}/{Max} ({Percentage}%)**: 500/1000 (50%)
 - **{}{Percentage}%**: 50%
 
 ---
 
-**Specialized Tools Widget**
+**衣裝小工具**
 
-- **Compact mode:** A compact mode for the Specialized Tools Widget has been added, it will only show the cooldown and current timer, the tool icon and a diamond bar around the icon.
+- **緊湊模式:** 添加了衣裝部件的緊湊模式，圖標變得更小，只顯示冷卻時間和當前計時器。
 
 ![img](https://cdn.discordapp.com/attachments/402557384209203200/742950877828087808/design_mantle_compact.png)
 
 ---
 
-**Timers**
+**計時器**
 
-- Quest timer is now automatically adjusted depending on your *Focus Skill* level.
-- Buff timers affected by *Power Prolonger* are now automatically adjusted depending on your Skill level.
+- 受技能 *“集中”* 影響的任務計時器現在會根據您的技能等級自動調整。
+- 受技能 *“強化持續”* 影響的增益狀態計時器現在會根據您的技能等級自動調整。
 
 ---
 
-**Damage Meter Widget**
+**傷害小工具**
 
-- **DPS Counter:** Damage meter now calculates the *Damage Per Second* **AFTER** a party member hits the monster for the first time.
-- **Resize option:** You can now resize the damage meter widget, making it horizontally or vertically aligned.
+- **DPS 計算:** 傷害小工具現在在玩家第一次擊中怪物後才會計算每秒的傷害。
+- **尺寸調整:** 您現在可以調整傷害部件的大小，使其水平或垂直對齊。
 
 ![wee](https://cdn.discordapp.com/attachments/402557384209203200/743905320107245649/unknown.png)
 
 ---
 
-**Design Mode**
+**編輯模式**
 
-- Minor optimizations to the Design Mode toggle, it should take less time for Widgets to be rendered when toggling the Design Mode.
-- Added Position, Scale and Render time text to the Widgets when Design Mode is enabled.
+- 對編輯模式切換進行了優化，切換編輯模式時，花費較少的時間來渲染小工具。
 
----
-
-**Other Changes**
-
-- Added Frostfang Barioth break thresholds.
-- Added style file to overwrite styles globally for all themes without having to make a new theme from scratch. You can find that file in HunterPie.Resources/UI/Overwrite.xaml.
-- Upgraded to .NET Framework 4.8.
-- Added option to force DirectX 11 optimized fullscreen to be behind the overlay.
-- Settings window components now matches the window width instead of staying at a fixed witdth.
+- 啟用編輯模式時，將位置、比例和渲染時間字串添加到小工具。
 
 ---
 
-**Bug Fixes**
+**其他變化**
 
-- Fixed abnormalities tray adding an empty space to the abnormalities icons when in Design Mode;
-- Fixed bug that would corrupt user's *config.json* if their computer was shutdown unexpectedly;
-- Fixed HunterPie hooking to Stracker's console window to get the game version instead of getting the game window;
+- 增加霜刃冰牙龍破壞臨界值。
+- 添加樣式文件，可以覆蓋所有主題，不必從零創建新的主題。該文件在HunterPie.Resources/UI/Overwrite.xaml
+- 升級到 .NET 4.8 框架。
+- 增加強制 DirectX 11 全螢幕顯示覆蓋層選項。
+- 設置選項頁面寬度與整體窗口寬度相匹配，不再保持固定寬度。
+
+---
+
+**Bug 修復**
+
+- 修復了異常狀態欄在編輯模式中調整位置有多餘空白的問題。
+- 修復瞭如果用戶的電腦意外關閉，將損毀用戶的 *“config.json”* 的錯誤。
+- 修復了 HunterPie 掛鉤到 Stracker 的控制台視窗以獲取遊戲版本而不是獲取遊戲視窗的問題。
+
+**繁體中文翻译 Ver.1.0.3.96 By ThanatosDi**
+
+ThanatosDi
+- Discord (丁丁#9332)
+- [Github](https://github.com/ThanatosDi)
