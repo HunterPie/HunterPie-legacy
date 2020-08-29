@@ -826,7 +826,7 @@ namespace HunterPie.Core
                 float multiplier = 1.0f;
 
                 // Adjust timer based on Focus level, because fOR SOME REASON FOCUS AFFECTS IT?????
-                switch (Skills[52].Level)
+                switch (Math.Min(3, Skills[52].Level % 256))
                 {
                     case 1:
                         multiplier = 0.95f;
@@ -1262,7 +1262,8 @@ namespace HunterPie.Core
 
         private float CalculatePowerProlongerMultiplier()
         {
-            short level = Skills[53].Level;
+            short level = (short)Math.Min(3, (Skills[53].Level % 512));
+            //Debugger.Log(level);
             if (level == 0) return 1.0f;
 
             if ((Classes)WeaponID == Classes.SwitchAxe || (Classes)WeaponID == Classes.DualBlades)

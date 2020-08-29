@@ -121,7 +121,7 @@ namespace HunterPie.Memory
                     if (string.IsNullOrEmpty(MonsterHunterProcess.MainWindowTitle) ||
                         !MonsterHunterProcess.MainWindowTitle.ToUpper().StartsWith("MONSTER HUNTER: WORLD"))
                     {
-                        if (!lockSpam2)
+                        if (!lockSpam2 && string.IsNullOrEmpty(MonsterHunterProcess.MainWindowTitle))
                         {
                             Debugger.Error($"Found Monster Hunter: World process, but the window title returned \"{MonsterHunterProcess.MainWindowTitle}\"." +
                                 $"Common causes for this:\n- Window is still loading\n- Stracker's console is the main process window. Click on the game window to fix this issue.");
