@@ -29,6 +29,16 @@
 
     
     <!-- Overlay -->
+
+    <!-- Design mode debug text -->
+    <Style x:Key="OVERLAY_DESIGN_MODE_DEBUG" TargetType="TextBlock">
+        <Setter Property="Width" Value="200"/>
+        <Setter Property="Height" Value="26"/>
+        <Setter Property="Foreground" Value="#FFEEEEEE"/>
+        <Setter Property="Background" Value="#CC191919"/>
+        <Setter Property="FontSize" Value="13"/>
+        <Setter Property="FontFamily" Value="Roboto, Segoe UI"/>
+    </Style>
     
     <!-- Monster Widget (Main bar) -->
     <sys:Double x:Key="OVERLAY_MONSTER_BAR_WIDTH_3">300</sys:Double>

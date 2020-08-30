@@ -150,7 +150,7 @@
         </Helpers:Diamond>
         <Image x:Name="MantleIcon" Source="{StaticResource ICON_MANTLE}" Height="20" Canvas.Top="7" Width="19" Canvas.Left="10"/>
         
-        <TextBlock Text="{Binding ElementName=MantleWidget, Path=DesignModeDetails}" Visibility="{Binding ElementName=MantleWidget, Path=DesignModeDetailsVisibility}" VerticalAlignment="Top" HorizontalAlignment="Left" Width="200" Height="26" Foreground="#FFEEEEEE" FontSize="13" Background="#CC191919"/>
+        <TextBlock Text="{Binding ElementName=MantleWidget, Path=DesignModeDetails}" Visibility="{Binding ElementName=MantleWidget, Path=DesignModeDetailsVisibility}" VerticalAlignment="Top" HorizontalAlignment="Left" Style="{StaticResource OVERLAY_DESIGN_MODE_DEBUG}"/>
         <Canvas.Style>
             <Style TargetType="Canvas">
                 <Style.Triggers>

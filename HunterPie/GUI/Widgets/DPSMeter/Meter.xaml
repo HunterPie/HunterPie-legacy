@@ -21,6 +21,6 @@
             <WrapPanel x:Name="Party" Visibility="Visible" Orientation="Horizontal" Canvas.Top="29">
             </WrapPanel>
         </StackPanel>
-        <TextBlock Text="{Binding ElementName=DamageMeter, Path=DesignModeDetails}" Visibility="{Binding ElementName=DamageMeter, Path=DesignModeDetailsVisibility}" VerticalAlignment="Top" HorizontalAlignment="Left" Width="324" Height="26" Foreground="#FFEEEEEE" FontSize="13" Background="#CC191919"/>
+        <TextBlock Text="{Binding ElementName=DamageMeter, Path=DesignModeDetails}" Visibility="{Binding ElementName=DamageMeter, Path=DesignModeDetailsVisibility}" VerticalAlignment="Top" HorizontalAlignment="Left" Width="324" Style="{StaticResource OVERLAY_DESIGN_MODE_DEBUG}"/>
     </Grid>
 </src:Widget>

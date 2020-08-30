@@ -10,6 +10,6 @@
         <StackPanel x:Name="Container">
 
         </StackPanel>
-        <TextBlock Text="{Binding ElementName=ClassWidget, Path=DesignModeDetails}" Visibility="{Binding ElementName=ClassWidget, Path=DesignModeDetailsVisibility}" VerticalAlignment="Top" HorizontalAlignment="Left" Width="200" Height="26" Foreground="#FFEEEEEE" FontSize="13" Background="#CC191919"/>
+        <TextBlock Text="{Binding ElementName=ClassWidget, Path=DesignModeDetails}" Visibility="{Binding ElementName=ClassWidget, Path=DesignModeDetailsVisibility}" VerticalAlignment="Top" HorizontalAlignment="Left" Style="{StaticResource OVERLAY_DESIGN_MODE_DEBUG}"/>
     </Grid>
 </widget:Widget>

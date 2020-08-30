@@ -8,6 +8,6 @@
     <Grid>
         <StackPanel x:Name="Container" SnapsToDevicePixels="True" RenderTransformOrigin="0.5,0.5" Margin="0" VerticalAlignment="Top" HorizontalAlignment="Center" Style="{StaticResource OVERLAY_MONSTER_BACKGROUND}"/>
 
-        <TextBlock Text="{Binding ElementName=MonsterWidget, Path=DesignModeDetails}" Visibility="{Binding ElementName=MonsterWidget, Path=DesignModeDetailsVisibility}" VerticalAlignment="Top" HorizontalAlignment="Left" Width="329" Height="26" Foreground="#FFEEEEEE" FontSize="13" Background="#CC191919"/>
+        <TextBlock Text="{Binding ElementName=MonsterWidget, Path=DesignModeDetails}" Visibility="{Binding ElementName=MonsterWidget, Path=DesignModeDetailsVisibility}" VerticalAlignment="Top" HorizontalAlignment="Left" Width="329" Style="{StaticResource OVERLAY_DESIGN_MODE_DEBUG}"/>
     </Grid>
 </src:Widget>
