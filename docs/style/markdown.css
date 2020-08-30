@@ -172,6 +172,12 @@
     font-weight: 500;
 }
 
+.Markdown Enum {
+    color: #B8D7A3;
+    font-family: consolas;
+    font-weight: 500;
+}
+
 .Markdown Interface {
     color: #bde475;
     font-family: consolas;

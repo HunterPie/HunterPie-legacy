@@ -6,7 +6,7 @@ This class has all the local player information.
 
 ## Events
 
-All <Type>PlayerEvents</Type> events have two parameters, <Type>Object</Type> source and <Type>EventArgs</Type> args. Some of the events below have `EventArgs` that can be converted to either <Type>PlayerEventArgs</Type> or <Type>PlayerLocationEventArgs</Type>
+All <Type>PlayerEvents</Type> events have two parameters, <Type>Object</Type> source and <Type>EventArgs</Type> args. Some of the events below have `EventArgs` that can be converted to either <a href="?p=EventArgs/PlayerEventArgs.md"><Type>PlayerEventArgs</Type></a> or <a href="?p=EventArgs/PlayerLocationEventArgs.md"><Type>PlayerLocationEventArgs</Type></a>
 
 ### OnCharacterLogin
 <params><Type>Object</Type> source, <Type>EventArgs</Type> args</params>
@@ -20,7 +20,7 @@ Occurs when the player logs out from a character and goes back to the main scree
 
 ---
 
-> The following event arguments can be converted from <Type>EventArgs</Type> to <Type>PlayerEventArgs</Type>
+> The following event arguments can be converted from <Type>EventArgs</Type> to <a href="?p=EventArgs/PlayerEventArgs.md"><Type>PlayerEventArgs</Type></a>
 
 ### OnLevelChange
 <params><Type>Object</Type> source, <Type>EventArgs</Type> args</params>
@@ -44,7 +44,7 @@ Occurs when the player changes weapon. This is triggered even if the player chan
 
 ---
 
-> The following event arguments can be converted from <Type>EventArgs</Type> to <Type>PlayerLocationEventArgs</Type>
+> The following event arguments can be converted from <Type>EventArgs</Type> to <a href="?p=EventArgs/PlayerLocationEventArgs.md"><Type>PlayerLocationEventArgs</Type></a>
 
 ### OnZoneChange
 <params><Type>Object</Type> source, <Type>EventArgs</Type> args</params>
@@ -73,38 +73,113 @@ Occurs when the player leaves zones where Harvest Box widget can be visible.
 
 ## Properties
 
-<properties>
+### <Type>String</Type> Name
 
-**Type** | **Property name** | **Description**
-:---|:-------------|:------------
-<Type>String</Type> | Name | Player name.
-<Type>Int32</Type> | Level | Player high rank.
-<Type>Int32</Type> | MasterRank | Player master rank.
-<Type>Int32</Type> | PlayTime | Player play time in second.
-<Type>Bool</Type> | IsLoggedOn | Whether the player is logged on or not.
-<Type>Byte</Type> | WeaponID | The current weapon class id.
-<Type>String</Type> | WeaponName | The current class name.
-<Type>Int64</Type> | ClassAddress | The current class information address in the game memory.
-<Type>sPlayerSkill[]</Type> | Skills | Array with all player set skills. See the [sPlayerSkill](https://github.com/Haato3o/HunterPie/blob/master/HunterPie/Core/Definitions/sPlayerSkill.cs) structure for more details. 
-<Type>Int32</Type> | ZoneID | The current stage id.
-<Type>String</Type> | ZoneName | The current stage name in HunterPie's selected localization.
-<Type>Int32</Type> | LastZoneID | The last stage id.
-<Type>Bool</Type> | InPeaceZone | Whether the player is in a peaceful zone, this includes the main menu.
-<Type>Bool</Type> | InHarvestZone | Whether the player is in a Harvest Box zone.
-<Type>String</Type> | SessionID | The current session id.
-<Type>Int64</Type> | SteamSession | The current steam session id. It's used by Steam for people to join your session.
-<Type>Int64</Type> | SteamID | The local player steam account id.
-<Type>Float</Type> | Health | The player current health.
-<Type>Float</Type> | MaxHealth | The player maximum health.
-<Type>Float</Type> | Stamina | The player current stamina.
-<Type>Float</Type> | MaxStamina | The player maximum stamina.
-<Type>Vector3</Type> | Position | The player current position in the map. See [Vector3](https://github.com/Haato3o/HunterPie/blob/master/HunterPie/Core/Definitions/sVector3.cs) for more details.
-<Type>Party</Type> | PlayerParty | The current player party, see [Party](https://github.com/Haato3o/HunterPie/blob/master/HunterPie/Core/Party/Party.cs) for details.
-<Type>HarvestBox</Type> | Harvest | The current player Harvest Box information. See [HarvestBox](https://github.com/Haato3o/HunterPie/blob/master/HunterPie/Core/LPlayer/HarvestBox.cs) for more details.
-<Type>Activities</Type> | Activity | Argosy, Tailraiders and Steam fuel information. See [Activities](https://github.com/Haato3o/HunterPie/blob/master/HunterPie/Core/LPlayer/Activities.cs) for more details.
-<Type>Mantle</Type> | PrimaryMantle | Player current equipped Specialized Tool in the primary slot. See [Mantle](https://github.com/Haato3o/HunterPie/blob/master/HunterPie/Core/LPlayer/Mantle.cs) for more details.
-<Type>Mantle</Type> | SecondaryMantle | Player current equipped Specialized Tool in the secondary slot. See [Mantle](https://github.com/Haato3o/HunterPie/blob/master/HunterPie/Core/LPlayer/Mantle.cs) for more details.
-</properties>
+Player name.
+
+### <Type>Int32</Type> Level
+
+Player high rank.
+
+### <Type>Int32</Type> MasterRank
+
+Player master rank.
+
+### <Type>Int32</Type> PlayTime
+
+Current character playtime in seconds.
+
+### <Type>Bool</Type> IsLoggedOn
+
+Whether the player is logged on or not.
+
+### <Type>Byte</Type> WeaponID
+
+The current weapon class id. Can be converted to <Enum>Classes</Enum>.
+
+### <Type>String</Type> WeaponName
+
+The current class name in the current localization HunterPie is using.
+
+### <Type>Int64</Type> ClassAddress
+
+The current weapon information address in game memory.
+
+### <Type>sPlayerSkill[]</Type> Skills
+
+Array with all player set skills, see the <Type>sPlayerSkill</Type> structure for more details.
+
+### <Type>Int32</Type> ZoneID
+
+The current stage id.
+
+### <Type>ZoneName</Type> ZoneName
+
+The current stage name in the current localization HunterPie is using.
+
+### <Type>Int32</Type> LastZoneID
+
+The last stage id. Can be used if you want to check if the player moved from zone X to Y zone.
+
+### <Type>Bool</Type> InPeaceZone
+
+Whether the player is in a peaceful zone, this includes the main menu.
+
+### <Type>Bool</Type> InHarvestZone
+
+Whether the player is in a peaceful zone, this does not include the main menu.
+
+### <Type>String</Type> SessionID
+
+The current session Id used by Monster Hunter: World.
+
+### <Type>Int64</Type> SteamSession
+
+The current steam session Id. It's used by Steam when someone clicks on the "Join" button in your Steam profile.
+
+### <Type>Int64</Type> SteamID
+
+The local player Steam account Id. It's also used by Steam when someones clicks on the "Join" button in your Steam Profile.
+
+### <Type>Float</Type> Health
+
+The player current health.
+
+### <Type>Float</Type> MaxHealth
+
+The player maximum health.
+
+### <Type>Float</Type> Stamina
+
+The player current stamina.
+
+### <Type>Float</Type> MaxStamina
+
+The player maximum stamina.
+
+### <Type>Vector3</Type> Position
+
+The player current position in the map (X, Y, Z coordinates).
+
+### <Type>Party</Type> Party
+
+The current party. Contains information of each member.
+
+### <Type>HarvestBox</Type> Harvest
+
+The current character Harvest Box and Fertilizers information.
+
+### <Type>Activities</Type> Activity
+
+Arsoy, Tailraiders and Steam fuel information.
+
+### <Type>Mantle</Type> PrimaryMantle
+
+Player Specialized Tool equipped in the primary slot.
+
+### <Type>Mantle</Type> SecondaryMantle
+
+Player Specialized Tool equipped in the secondary slot.
 
 ### Jobs
 
