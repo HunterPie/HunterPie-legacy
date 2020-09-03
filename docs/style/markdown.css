@@ -7,13 +7,10 @@
     -webkit-backdrop-filter: blur(5px);
     backdrop-filter: blur(5px);
     font-family: 'Heebo', sans-serif;
-    display: block;
-    left: auto;
-    right: auto;
-    min-height: 100vh;
     z-index: 0;
     color: #f5eefd;
     font-size: 14px;
+    display: block;
 }
 
 .Markdown h1, h2, h3, h4 {
@@ -26,6 +23,10 @@
 .Markdown p {
     margin-top: 3px;
     margin-bottom: 3px;
+}
+
+.Markdown img {
+    width: 50%;
 }
 
 .Markdown new {

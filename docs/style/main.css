@@ -77,7 +77,7 @@ ul#navbarList a {
 
 /* width */
 ::-webkit-scrollbar {
-    width: 8px;
+    width: 2px;
     height: 8px;
 }
 
@@ -176,15 +176,17 @@ footer a:hover {
 }
 
 #content {
-    position: relative;
+    position: fixed;
     display: inline-flex;
     width: 100%;
+    top: 0px;
+    left: 0px;
 }
 
 #sidebar {
     z-index: 2;
     padding: 5px 10px 10px 10px;
-    background-color: rgba(15, 15, 15, 0.801);
+    background-color: rgb(15, 15, 15);
     box-shadow: rgba(0, 0, 0, 0.1) 0px 2px 2px;
     -webkit-backdrop-filter: blur(5px);
     backdrop-filter: blur(5px);
@@ -192,14 +194,21 @@ footer a:hover {
     overflow-y: auto;
     top: 0px;
     left: 0px;
-    min-width: 30%;
-    position: fixed;
+    min-width: 25%;
+    position: relative;
     height: 100vh;
-    display: inline-flex;
     overscroll-behavior: contain;
 }
 
 #MarkdownBox {
-    width: 100%;
+    background-color: rgb(29, 29, 29);
+    position: relative;
+    display: block;
+    overflow-y: auto;
+    top: 0px;
+    left: 0px;
     padding: 0px 10px 10px 10px;
+    height: 100vh;
+    overscroll-behavior: contain;
+    width: 100%;
 }
