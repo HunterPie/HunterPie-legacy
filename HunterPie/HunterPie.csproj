@@ -135,6 +135,7 @@
       <SubType>Designer</SubType>
     </ApplicationDefinition>
     <Compile Include="Core\Definitions\sGear.cs" />
+    <Compile Include="Core\Definitions\sHuntingHornMechanics.cs" />
     <Compile Include="Core\Definitions\sItem.cs" />
     <Compile Include="Core\Definitions\sMonsterAilment.cs" />
     <Compile Include="Core\Definitions\sMonsterPart.cs" />
@@ -152,6 +153,7 @@
     <Compile Include="Core\Enums\GearType.cs" />
     <Compile Include="Core\Enums\Helper.cs" />
     <Compile Include="Core\Enums\MonsterBarMode.cs" />
+    <Compile Include="Core\Enums\NoteColorId.cs" />
     <Compile Include="Core\Events\AbnormalityEventArgs.cs" />
     <Compile Include="Core\Events\DaysLeftEventArgs.cs" />
     <Compile Include="Core\Events\FertilizerEventArgs.cs" />

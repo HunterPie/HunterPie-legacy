@@ -10,6 +10,8 @@ using HunterPie.Memory;
 using HunterPie.Core.Events;
 using Classes = HunterPie.Core.Enums.Classes;
 using AbnormalityType = HunterPie.Core.Enums.AbnormalityType;
+using System.Windows.Documents;
+using Newtonsoft.Json;
 
 namespace HunterPie.Core
 {
@@ -279,6 +281,7 @@ namespace HunterPie.Core
         public DualBlades DualBlades = new DualBlades();
         public Longsword Longsword = new Longsword();
         public Hammer Hammer = new Hammer();
+        public HuntingHorn HuntingHorn = new HuntingHorn();
         public Lance Lance = new Lance();
         public GunLance GunLance = new GunLance();
         public SwitchAxe SwitchAxe = new SwitchAxe();
@@ -1051,6 +1054,10 @@ namespace HunterPie.Core
                     GetHammerInformation(weaponAddress);
                     Hammer.SafijiivaRegenCounter = SafiCounter;
                     break;
+                case Classes.HuntingHorn:
+                    GetHuntingHornInfomration(weaponAddress);
+                    HuntingHorn.SafijiivaRegenCounter = SafiCounter;
+                    break;
                 case Classes.Lance:
                     Lance.SafijiivaRegenCounter = SafiCounter;
                     break;
@@ -1081,6 +1088,11 @@ namespace HunterPie.Core
                     GetLightBowgunInformation(weaponAddress);
                     break;
             }
+        }
+
+        private void GetHuntingHornInfomration(long weaponAddress)
+        {
+            sHuntingHornMechanics hhCore = Scanner.Win32.Read<sHuntingHornMechanics>(weaponAddress + 0xD4);
         }
 
         private void GetGreatswordInformation(long weaponAddress)

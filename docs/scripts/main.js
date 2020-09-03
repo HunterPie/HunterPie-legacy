@@ -17,7 +17,7 @@ const scrollDetection = (homeCallback, downCallback, upCallback) => {
     return;
 }
 
-window.addEventListener("scroll", () => scrollDetection(navbar_opaque, navbar_collapse, navbar_show))
+//window.addEventListener("scroll", () => scrollDetection(navbar_opaque, navbar_collapse, navbar_show))
 
 // Navbar
 function navbar_collapse() {
@@ -62,7 +62,7 @@ function RenderMarkdown(markdown) {
             res.blob().then(
                 (blob) => {
                     blob.text().then(content => {
-                        document.getElementById("sidebar").innerHTML = marked(content)
+                        document.getElementById("sidebar_display").innerHTML = marked(content)
                     });
                 }
             )

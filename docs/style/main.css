@@ -22,7 +22,7 @@ body {
     box-shadow: rgba(0, 0, 0, 0.1) 0px 2px 2px;
     -webkit-backdrop-filter: blur(5px);
     backdrop-filter: blur(5px);
-    z-index: 1;
+    z-index: 9999;
 }
 
 ul#navbarList {
@@ -177,19 +177,29 @@ footer a:hover {
 
 #content {
     position: relative;
-    margin-top: 80px;
     display: inline-flex;
     width: 100%;
 }
 
 #sidebar {
-    padding: 10px 10px 5px 10px;
+    z-index: 2;
+    padding: 5px 10px 10px 10px;
+    background-color: rgba(15, 15, 15, 0.801);
+    box-shadow: rgba(0, 0, 0, 0.1) 0px 2px 2px;
+    -webkit-backdrop-filter: blur(5px);
+    backdrop-filter: blur(5px);
     border-right: #272727 1px solid;
     overflow-y: auto;
-    min-width: 15%;
+    top: 0px;
+    left: 0px;
+    min-width: 30%;
+    position: fixed;
+    height: 100vh;
+    display: inline-flex;
+    overscroll-behavior: contain;
 }
 
 #MarkdownBox {
-    padding: 0px 10px 10px 10px;
     width: 100%;
+    padding: 0px 10px 10px 10px;
 }

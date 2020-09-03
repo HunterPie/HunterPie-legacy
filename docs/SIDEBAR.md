@@ -1,3 +1,8 @@
+<a style="display: inline-flex;text-decoration: none;" href="./index.html">
+    <img src="assets/HunterPie.svg" width="45"/>
+    <h1 style="color:#fefefe;font-weight: 400;position: relative;margin-top:auto;margin-bottom:auto;font-family:Roboto;">Hunter<light style="font-weight: 100;">Pie</light> Documentation</h1>
+</a>
+
 ### HunterPie
 
 - [Requirements](?p=HunterPie/installation.md#requirements)
@@ -55,3 +60,5 @@
 - [v1.0.3.85](?p=versions/v1.0.3.85.md)
 
 </details>
+
+<br>
