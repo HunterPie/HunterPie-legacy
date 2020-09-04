@@ -292,7 +292,7 @@
     <Weapon ID="13" Name="Лёгкое Лукорудие"/>
   </Weapons>
   <Abnormalities>
-    <Abnormality ID="UNKNOWN_ABNORMALITY" Name="Неизвестный Бафф (ID: {AbnormalityID})"/>
+    <Abnormality ID="UNKNOWN_ABNORMALITY" Name="Неизв. Бафф (ID: {AbnormalityID})"/>
     <Abnormality ID="HUNTINGHORN_000_00" Name="Самосовершенствование"/>
     <Abnormality ID="HUNTINGHORN_999_00" Name="Усил Атаки + Запрет Отраж Атаки"/>
     <Abnormality ID="HUNTINGHORN_001_00" Name="Усил Атаки (S)"/>
