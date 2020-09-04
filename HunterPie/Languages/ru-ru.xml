@@ -7,7 +7,7 @@
     <Monster ID="em001_02" Name="Золотая Ратиана"/>
     <Monster ID="em002_00" Name="Раталос"/>
     <Monster ID="em002_01" Name="Лазурный Раталос"/>
-    <Monster ID="em002_02" Name="Серебрянный Раталос"/>
+    <Monster ID="em002_02" Name="Серебристый Раталос"/>
     <Monster ID="em007_00" Name="Диаблос"/>
     <Monster ID="em007_01" Name="Чёрная Диаблос"/>
     <Monster ID="em011_00" Name="Кирин"/>
@@ -37,7 +37,7 @@
     <Monster ID="em080_01" Name="Кислотный Главенус"/>
     <Monster ID="em100_00" Name="Аньянат"/>
     <Monster ID="em100_01" Name="Громовой Аньянат"/>
-    <Monster ID="em101_00" Name="Великий Яграс"/>
+    <Monster ID="em101_00" Name="Большой Яграс"/>
     <Monster ID="em102_00" Name="Поки-Поки"/>
     <Monster ID="em102_01" Name="Коралловый Поки-Поки"/>
     <Monster ID="em103_00" Name="Нергигант"/>
@@ -53,7 +53,7 @@
     <Monster ID="em110_01" Name="Ночной Паолуму"/>
     <Monster ID="em111_00" Name="Легиана"/>
     <Monster ID="em111_05" Name="Визжащая Легиана"/>
-    <Monster ID="em112_00" Name="Великий Гиррос"/>
+    <Monster ID="em112_00" Name="Большой Гиррос"/>
     <Monster ID="em113_00" Name="Одогарон"/>
     <Monster ID="em113_01" Name="Эбеновый Ододгарон"/>
     <Monster ID="em114_00" Name="Радобаан"/>
@@ -292,7 +292,7 @@
     <Weapon ID="13" Name="Лёгкое Лукорудие"/>
   </Weapons>
   <Abnormalities>
-    <Abnormality ID="UNKNOWN_ABNORMALITY" Name="Неизвестный Бафф (ID: {AbnormalityID})"/>
+    <Abnormality ID="UNKNOWN_ABNORMALITY" Name="Неизв. Бафф (ID: {AbnormalityID})"/>
     <Abnormality ID="HUNTINGHORN_000_00" Name="Самосовершенствование"/>
     <Abnormality ID="HUNTINGHORN_999_00" Name="Усил Атаки + Запрет Отраж Атаки"/>
     <Abnormality ID="HUNTINGHORN_001_00" Name="Усил Атаки (S)"/>
@@ -522,6 +522,8 @@
       <String ID="STATIC_TOGGLE_DESIGN" Name="Включить режим дизайна (Горячая клавиша):"/>
       <String ID="STATIC_TOGGLE_DESIGN_DESC" Name="Выбор горячей клавиши для включения режима перемещения и настройки размера виджетов. "/>
       <String ID="STATIC_OVERLAY_POSITION_DESC" Name="Изменяет положение оверлея."/>
+      <String ID="ENABLE_OVERLAY_FORCE_DIRECTX11_FULLSCREEN" Name="Принудительное включение оверлея в полноэкранном режиме DirectX 11"/>
+      <String ID="ENABLE_OVERLAY_FORCE_DIRECTX11_FULLSCREEN_DESC" Name="Эта опция заставит игру всегда находиться за оверлеем HunterPie, в результате оверлей будет отображаться даже в полноэкранном режиме DirectX 11. ТРЕБУЕТСЯ ВКЛЮЧЕНИЕ ПОЛНОЭКРАННОЙ ОПТИМИЗАЦИИ."/>
       <!-- Monster Widget -->
       <String ID="ENABLE_MONSTER_WIDGET" Name="Включить виджет Монстра"/>
       <String ID="ENABLE_MONSTER_WIDGET_DESC" Name="Если включено, виджет Монстра будет виден всякий раз, когда у него есть что показать."/>
@@ -579,6 +581,23 @@
       <String ID="STATIC_MONSTER_PART_DELAY" Name="Задержка скрытия неактивных частей"/>
       <String ID="STATIC_MONSTER_PART_DELAY_DESC" Name="Задержка до скрытия частей после их повреждения и неактивных недомоганий."/>
       <String ID="STATIC_MONSTER_POSITION_DESC" Name="Изменяет положение виджета монстра."/>
+      <String ID="ENABLE_MONSTER_STATUS_POISON" Name="Показать Яд"/>
+      <String ID="ENABLE_MONSTER_STATUS_PARALYSIS" Name="Показать Паралич"/>
+      <String ID="ENABLE_MONSTER_STATUS_SLEEP" Name="Показать Сон"/>
+      <String ID="ENABLE_MONSTER_STATUS_BLAST" Name="Показать Взрыв"/>
+      <String ID="ENABLE_MONSTER_STATUS_MOUNT" Name="Показать Маунт"/>
+      <String ID="ENABLE_MONSTER_STATUS_EXHAUSTION" Name="Показать Истощение"/>
+      <String ID="ENABLE_MONSTER_STATUS_STUN" Name="Показать Оглушение"/>
+      <String ID="ENABLE_MONSTER_STATUS_TRANQUILIZE" Name="Показать Сонливость"/>
+      <String ID="ENABLE_MONSTER_STATUS_FLASH" Name="Показать Ослепление"/>
+      <String ID="ENABLE_MONSTER_STATUS_KNOCKDOWN" Name="Показать Нокаут"/>
+      <String ID="ENABLE_MONSTER_STATUS_DUNGPOD" Name="Показать Навоз"/>
+      <String ID="ENABLE_MONSTER_STATUS_TRAP" Name="Показать Ловушки"/>
+      <String ID="ENABLE_MONSTER_STATUS_ELDERSEAL" Name="Показать Печать Древнего"/>
+      <String ID="ENABLE_MONSTER_STATUS_SMOKING" Name="Показать Дымовую завесу"/>
+      <String ID="ENABLE_MONSTER_STATUS_CLAW" Name="Показать Коготь"/>
+      <String ID="ENABLE_MONSTER_STATUS_MISC" Name="Показать Прочие Эффекты"/>
+      <String ID="ENABLE_MONSTER_STATUS_ENRAGE" Name="Показать Бешенство"/>
       <!-- Harvest Box Widget -->
       <String ID="ENABLE_HARVEST_BOX" Name="Включить виджет Ящика Урожая"/>
       <String ID="ENABLE_HARVEST_BOX_DESC" Name="Если включено, виджет Ящика Урожая станет видимым."/>
