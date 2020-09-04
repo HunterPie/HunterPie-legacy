@@ -136,6 +136,7 @@
     </ApplicationDefinition>
     <Compile Include="Core\Definitions\sGear.cs" />
     <Compile Include="Core\Definitions\sHuntingHornMechanics.cs" />
+    <Compile Include="Core\Definitions\sHuntingHornSong.cs" />
     <Compile Include="Core\Definitions\sItem.cs" />
     <Compile Include="Core\Definitions\sMonsterAilment.cs" />
     <Compile Include="Core\Definitions\sMonsterPart.cs" />
