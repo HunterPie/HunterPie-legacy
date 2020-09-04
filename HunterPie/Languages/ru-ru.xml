@@ -7,7 +7,7 @@
     <Monster ID="em001_02" Name="Золотая Ратиана"/>
     <Monster ID="em002_00" Name="Раталос"/>
     <Monster ID="em002_01" Name="Лазурный Раталос"/>
-    <Monster ID="em002_02" Name="Серебрянный Раталос"/>
+    <Monster ID="em002_02" Name="Серебристый Раталос"/>
     <Monster ID="em007_00" Name="Диаблос"/>
     <Monster ID="em007_01" Name="Чёрная Диаблос"/>
     <Monster ID="em011_00" Name="Кирин"/>
@@ -37,7 +37,7 @@
     <Monster ID="em080_01" Name="Кислотный Главенус"/>
     <Monster ID="em100_00" Name="Аньянат"/>
     <Monster ID="em100_01" Name="Громовой Аньянат"/>
-    <Monster ID="em101_00" Name="Великий Яграс"/>
+    <Monster ID="em101_00" Name="Большой Яграс"/>
     <Monster ID="em102_00" Name="Поки-Поки"/>
     <Monster ID="em102_01" Name="Коралловый Поки-Поки"/>
     <Monster ID="em103_00" Name="Нергигант"/>
@@ -53,7 +53,7 @@
     <Monster ID="em110_01" Name="Ночной Паолуму"/>
     <Monster ID="em111_00" Name="Легиана"/>
     <Monster ID="em111_05" Name="Визжащая Легиана"/>
-    <Monster ID="em112_00" Name="Великий Гиррос"/>
+    <Monster ID="em112_00" Name="Большой Гиррос"/>
     <Monster ID="em113_00" Name="Одогарон"/>
     <Monster ID="em113_01" Name="Эбеновый Ододгарон"/>
     <Monster ID="em114_00" Name="Радобаан"/>
