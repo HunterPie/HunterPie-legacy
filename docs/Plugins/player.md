@@ -4,6 +4,11 @@
 
 This class has all the local player information.
 
+<ol id="content_table">
+    <li><a href="#events">Events</a></li>
+    <li><a href="#properties">Properties</a></li>
+</ol>
+
 ## Events
 
 All <Type>PlayerEvents</Type> events have two parameters, <Type>Object</Type> source and <Type>EventArgs</Type> args. Some of the events below have `EventArgs` that can be converted to either <a href="?p=EventArgs/PlayerEventArgs.md"><Type>PlayerEventArgs</Type></a> or <a href="?p=EventArgs/PlayerLocationEventArgs.md"><Type>PlayerLocationEventArgs</Type></a>
@@ -70,6 +75,8 @@ Occurs when the player leaves peaceful zones.
 <params><Type>Object</Type> source, <Type>EventArgs</Type> args</params>
 
 Occurs when the player leaves zones where Harvest Box widget can be visible.
+
+---
 
 ## Properties
 

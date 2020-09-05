@@ -159,6 +159,8 @@
     <Compile Include="Core\Events\DaysLeftEventArgs.cs" />
     <Compile Include="Core\Events\FertilizerEventArgs.cs" />
     <Compile Include="Core\Events\HarvestBoxEventArgs.cs" />
+    <Compile Include="Core\Events\HuntingHornNoteEventArgs.cs" />
+    <Compile Include="Core\Events\HuntingHornSongEventArgs.cs" />
     <Compile Include="Core\Events\MantleEventArgs.cs" />
     <Compile Include="Core\Events\MonsterAilmentEventArgs.cs" />
     <Compile Include="Core\Events\MonsterPartEventArgs.cs" />

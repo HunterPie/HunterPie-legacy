@@ -25,7 +25,7 @@ Each class has it's own separate setting, so if you want to place this widget fo
   - **Demon Mode Indicator** The dual blades icon indicates whether your Demon Mode is on.
   - **Safi'jiiva health regen. hit counter:** It's represented by the diamond with the Safi'jiiva skill icon, it shows how many hits until you actiave the health regeneration.
 
-![dualBladesWidgetExample](https://cdn.discordapp.com/attachments/402557384209203200/721088634459258991/unknown.png)
+<img src="https://cdn.discordapp.com/attachments/402557384209203200/721088634459258991/unknown.png" style="width:20%"/>
 
 ## Long Sword
 - **Features:**
@@ -34,7 +34,7 @@ Each class has it's own separate setting, so if you want to place this widget fo
   - **Charge level and percentage**: It's represented by the diamond and it's number by the right side of the gauge.
   - **Safi'jiiva health regen. hit counter:** It's represented by the diamond with the Safi'jiiva skill icon, it shows how many hits until you actiave the health regeneration.
 
-![longswordWidgetExample](https://cdn.discordapp.com/attachments/678287048200683572/714161955807690782/class_p4.png)
+<img src="https://cdn.discordapp.com/attachments/678287048200683572/714161955807690782/class_p4.png" style="width:20%"/>
 
 ## Hammer
 - **Features:**
@@ -45,7 +45,7 @@ Each class has it's own separate setting, so if you want to place this widget fo
   - **Auto hide:** This class helper automatically hides when the weapon is sheathed.
   - **Safi'jiiva health regen. hit counter:** It's represented by the diamond with the Safi'jiiva skill icon, it shows how many hits until you actiave the health regeneration.
 
-![hammerWidgetExample](https://cdn.discordapp.com/attachments/678287048200683572/716172353297711185/classes_p6.png)
+<img src="https://cdn.discordapp.com/attachments/678287048200683572/716172353297711185/classes_p6.png" style="width:20%"/>
 
 ## Lance
 - **Features:**
@@ -59,7 +59,7 @@ Each class has it's own separate setting, so if you want to place this widget fo
   - **Special Ammo:** It's represented by the special ammo under the normal ammo. It works just like in-game;
   - **Safi'jiiva health regen. hit counter:** It's represented by the diamond with the Safi'jiiva skill icon, it shows how many hits until you actiave the health regeneration.
 
-![gunlanceWidgetExample](https://cdn.discordapp.com/attachments/402557384209203200/711302826424401970/unknown.png) 
+<img src="https://cdn.discordapp.com/attachments/402557384209203200/711302826424401970/unknown.png" style="width:20%"/>
 
 ## Switch Axe
 - **Features:**
@@ -70,7 +70,7 @@ Each class has it's own separate setting, so if you want to place this widget fo
 
 > **Note:** The timer takes longer to countdown and always start from 45 when using the Power Prolonger set skill. That's just how the game works, but should not be an issue when playing.
 
-![switchAxeWidgetExample](https://cdn.discordapp.com/attachments/402557384209203200/711303655470661652/unknown.png)
+<img src="https://cdn.discordapp.com/attachments/402557384209203200/711303655470661652/unknown.png" style="width:20%"/>
 
 ## Charge Blade
 - **Features:**
@@ -81,7 +81,7 @@ Each class has it's own separate setting, so if you want to place this widget fo
   - **Poweraxe buff timer:** It's represented by the bottom diamond.
   - **Safi'jiiva health regen. hit counter:** It's represented by the diamond with the Safi'jiiva skill icon, it shows how many hits until you actiave the health regeneration.
 
-![chargeBladeWidgetExample](https://cdn.discordapp.com/attachments/402557384209203200/711302522710655036/unknown.png)
+<img src="https://cdn.discordapp.com/attachments/402557384209203200/711302522710655036/unknown.png" style="width:20%"/>
 
 ## Insect Glaive
 - **Features:**
@@ -90,7 +90,7 @@ Each class has it's own separate setting, so if you want to place this widget fo
   - **Kinsect Stamina:** It's the bar under the smallest diamonds.
   - **Safi'jiiva health regen. hit counter:** It's represented by the diamond with the Safi'jiiva skill icon, it shows how many hits until you actiave the health regeneration.
 
-![insectGlaiveWidgetExample](https://cdn.discordapp.com/attachments/402557384209203200/711302251993628744/unknown.png)
+<img src="https://cdn.discordapp.com/attachments/402557384209203200/711302251993628744/unknown.png" style="width:20%"/>
 
 ## Bow
 - **Features:**
@@ -100,4 +100,4 @@ Each class has it's own separate setting, so if you want to place this widget fo
   - **Auto hide:** This class helper automatically hides when the weapon is sheathed.
   - **Safi'jiiva health regen. hit counter:** It's represented by the diamond with the Safi'jiiva skill icon, it shows how many hits until you actiave the health regeneration.
 
-![bowWidgetExample](https://cdn.discordapp.com/attachments/678287048200683572/714929411249668176/class_p5.png)
+<img src="https://cdn.discordapp.com/attachments/678287048200683572/714929411249668176/class_p5.png" style="width:20%"/>

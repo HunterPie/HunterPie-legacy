@@ -861,7 +861,9 @@ namespace HunterPie.Core
         private void GetFertilizers()
         {
             long Address = LEVEL_ADDRESS + Memory.Address.Offsets.FertilizersOffset - 0xC;
+                       
             sItem[] fertilizers = Scanner.Win32.Read<sItem>(Address, 4);
+
             for (int i = 0; i < fertilizers.Length; i++)
             {
                 Harvest.Box[i].ID = fertilizers[i].ItemId;
@@ -874,7 +876,6 @@ namespace HunterPie.Core
         {
             long Address = LastFertAddress + Memory.Address.Offsets.HarvestBoxOffset;
             int counter = 0;
-            
             sItem[] elements = Scanner.Win32.Read<sItem>(Address, 50);
             foreach (sItem element in elements)
             {
@@ -1090,9 +1091,18 @@ namespace HunterPie.Core
             }
         }
 
+        bool x = false;
         private void GetHuntingHornInfomration(long weaponAddress)
         {
             sHuntingHornMechanics hhCore = Scanner.Win32.Read<sHuntingHornMechanics>(weaponAddress + 0xD4);
+            sHuntingHornSong[] availableSongs = Scanner.Win32.Read<sHuntingHornSong>(weaponAddress - 0x1C, 10);
+
+            if (!x)
+            {
+                Debugger.Log(JsonConvert.SerializeObject(hhCore, Formatting.Indented));
+                x = !x;
+            }
+
         }
 
         private void GetGreatswordInformation(long weaponAddress)
