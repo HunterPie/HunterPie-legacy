@@ -2,7 +2,7 @@
 
 namespace HunterPie.Core.Definitions
 {
-    [StructLayout(LayoutKind.Sequential)]
+    [StructLayout(LayoutKind.Sequential, Size = 0x18)]
     public struct sHuntingHornSong
     {
         public int Id;

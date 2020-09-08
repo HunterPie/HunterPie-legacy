@@ -21,12 +21,12 @@ namespace HunterPie.Core.Events
         /// <summary>
         /// The index of the first note, this is required if you're using the <b>RawNotes</b>.
         /// </summary>
-        public int FirstNoteIndex { get; }
+        public long FirstNoteIndex { get; }
 
         /// <summary>
         /// The amount of valid notes currently in <b>RawNotes</b> array.
         /// </summary>
-        public int NotesQueued { get; }
+        public long NotesQueued { get; }
 
         public HuntingHornNoteEventArgs(HuntingHorn huntinghorn)
         {
