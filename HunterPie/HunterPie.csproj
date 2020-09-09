@@ -58,7 +58,7 @@
     <WarningLevel>4</WarningLevel>
     <CodeAnalysisRuleSet>
     </CodeAnalysisRuleSet>
-    <AllowUnsafeBlocks>false</AllowUnsafeBlocks>
+    <AllowUnsafeBlocks>true</AllowUnsafeBlocks>
   </PropertyGroup>
   <PropertyGroup>
     <ApplicationIcon>LOGO_HunterPie.ico</ApplicationIcon>
@@ -82,7 +82,7 @@
     <ErrorReport>prompt</ErrorReport>
     <CodeAnalysisRuleSet>
     </CodeAnalysisRuleSet>
-    <AllowUnsafeBlocks>false</AllowUnsafeBlocks>
+    <AllowUnsafeBlocks>true</AllowUnsafeBlocks>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Release|x64'">
     <OutputPath>bin\x64\Release\</OutputPath>
@@ -95,7 +95,7 @@
     <CodeAnalysisRuleSet>
     </CodeAnalysisRuleSet>
     <Prefer32Bit>true</Prefer32Bit>
-    <AllowUnsafeBlocks>false</AllowUnsafeBlocks>
+    <AllowUnsafeBlocks>true</AllowUnsafeBlocks>
   </PropertyGroup>
   <PropertyGroup>
     <Win32Resource>
@@ -163,6 +163,7 @@
     <Compile Include="Core\Events\DaysLeftEventArgs.cs" />
     <Compile Include="Core\Events\FertilizerEventArgs.cs" />
     <Compile Include="Core\Events\HarvestBoxEventArgs.cs" />
+    <Compile Include="Core\Events\HuntingHornEventArgs.cs" />
     <Compile Include="Core\Events\HuntingHornNoteEventArgs.cs" />
     <Compile Include="Core\Events\HuntingHornSongEventArgs.cs" />
     <Compile Include="Core\Events\MantleEventArgs.cs" />

@@ -1,9 +1,7 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Runtime.InteropServices;
-using HunterPie.Core.Definitions;
+﻿using HunterPie.Core.Definitions;
 using HunterPie.Core.Enums;
 using HunterPie.Core.Events;
+using HunterPie.Logger;
 
 namespace HunterPie.Core.LPlayer.Jobs
 {
@@ -11,13 +9,9 @@ namespace HunterPie.Core.LPlayer.Jobs
     {
         #region Private properties
         private sHuntingHornSong[] songs;
-
-        private byte[] notes = new byte[4];
+        private long notesQueued;
         private long firstNoteIndex = 0;
-        private int[] songQueue = new int[3];
         private long lastSongIndex = 0;
-        private int[] songIndexesQueue = new int[3];
-        private int[] songIdsQueue = new int[3];
         private long songIdFirstIndex = 0;
         private long playCurrentAt = 0;
         private long playStartAt = 0;
@@ -37,14 +31,25 @@ namespace HunterPie.Core.LPlayer.Jobs
                 if (!IsSongArrayEqual(value))
                 {
                     songs = value;
-                    // TODO: Event
+                    DispatchEvents(OnSongsListUpdate);
                 }
             }
         }
 
-        public byte[] Notes => OrganizeQueue<byte>(notes, firstNoteIndex);
-        public byte[] RawNotes => notes;
-        public long NotesQueued { get; private set; }
+        public byte[] Notes => OrganizeQueue<byte>(RawNotes, FirstNoteIndex, NotesQueued);
+        public byte[] RawNotes { get; private set; } = new byte[4];
+        public long NotesQueued
+        {
+            get => notesQueued;
+            set
+            {
+                if (value != notesQueued)
+                {
+                    notesQueued = value;
+                    DispatchNoteEvents(OnNoteQueueUpdate);
+                }
+            }
+        }
         public long FirstNoteIndex
         {
             get => firstNoteIndex;
@@ -53,14 +58,13 @@ namespace HunterPie.Core.LPlayer.Jobs
                 if (value != firstNoteIndex)
                 {
                     firstNoteIndex = value;
-                    // TODO: Event
+                    DispatchNoteEvents(OnNoteQueueUpdate);
                 }
             }
         }
         
-
-        public int[] SongQueue => OrganizeQueue<int>(songQueue, lastSongIndex);
-        public int[] RawSongQueue => songQueue;
+        public int[] SongQueue => OrganizeQueue<int>(RawSongQueue, LastSongIndex, SongsQueued);
+        public int[] RawSongQueue { get; private set; } = new int[3];
         public long SongsQueued { get; private set; }
         public long LastSongIndex
         {
@@ -70,18 +74,18 @@ namespace HunterPie.Core.LPlayer.Jobs
                 if (value != lastSongIndex)
                 {
                     lastSongIndex = value;
-                    // TODO: Event
+                    DispatchSongEvents(OnSongQueueUpdate);
                 }
             }
         }
 
-        public int[] SongIndexesQueue => OrganizeQueue<int>(songIndexesQueue, SongIndexesFirstIndex);
-        public int[] RawSongIndexesQueue => songIndexesQueue;
+        public int[] SongIndexesQueue => OrganizeQueue<int>(RawSongIndexesQueue, SongIndexesFirstIndex, SongIndexesQueued);
+        public int[] RawSongIndexesQueue { get; private set; } = new int[3];
         public long SongIndexesQueued { get; private set; }
         public long SongIndexesFirstIndex { get; private set; }
 
-        public int[] SongIdsQueue => OrganizeQueue(songIdsQueue, songIdFirstIndex);
-        public int[] RawSongIdsQueue => songIdsQueue;
+        public int[] SongIdsQueue => OrganizeQueue(RawSongIdsQueue, SongIdFirstIndex, 3);
+        public int[] RawSongIdsQueue { get; private set; } = new int[3];
         public long SongIdFirstIndex
         {
             get => songIdFirstIndex;
@@ -90,8 +94,30 @@ namespace HunterPie.Core.LPlayer.Jobs
                 if (value != songIdFirstIndex)
                 {
                     songIdFirstIndex = value;
-                    // TODO: Event
-                    
+                    // TODO: OnHuntingHornPlay event                    
+                }
+            }
+        }
+        public long PlayStartAt
+        {
+            get => playStartAt;
+            set
+            {
+                if (value != playStartAt)
+                {
+                    playStartAt = value;
+                }
+            }
+        }
+        public long PlayCurrentAt
+        {
+            get => playCurrentAt;
+            set
+            {
+                if (value != playCurrentAt)
+                {
+                    playCurrentAt = value;
+                    // TODO: Probably event
                 }
             }
         }
@@ -104,7 +130,7 @@ namespace HunterPie.Core.LPlayer.Jobs
                 if (value != firstNote)
                 {
                     firstNote = value;
-                    // TODO: Event
+                    DispatchEvents(OnNoteColorUpdate);
                 }
             }
         }
@@ -116,7 +142,7 @@ namespace HunterPie.Core.LPlayer.Jobs
                 if (value != secondNote)
                 {
                     secondNote = value;
-                    // TODO: Event
+                    DispatchEvents(OnNoteColorUpdate);
                 }
             }
         }
@@ -128,7 +154,7 @@ namespace HunterPie.Core.LPlayer.Jobs
                 if (value != thirdNote)
                 {
                     thirdNote = value;
-                    // TODO: Event
+                    DispatchEvents(OnNoteColorUpdate);
                 }
             }
         }
@@ -137,7 +163,7 @@ namespace HunterPie.Core.LPlayer.Jobs
         public override int SafijiivaMaxHits => 5;
 
         #region Events
-        public delegate void HuntingHornEvents(object source, EventArgs args);
+        public delegate void HuntingHornEvents(object source, HuntingHornEventArgs args);
         public delegate void HuntingHornNoteEvents(object source, HuntingHornNoteEventArgs args);
         public delegate void HuntingHornSongEvents(object source, HuntingHornSongEventArgs args);
 
@@ -146,30 +172,49 @@ namespace HunterPie.Core.LPlayer.Jobs
 
         public event HuntingHornNoteEvents OnNoteQueueUpdate;
         public event HuntingHornSongEvents OnSongQueueUpdate;
+
+        protected virtual void DispatchEvents(HuntingHornEvents e) => e?.Invoke(this, new HuntingHornEventArgs(this));
+        protected virtual void DispatchNoteEvents(HuntingHornNoteEvents e) => e?.Invoke(this, new HuntingHornNoteEventArgs(this));
+        protected virtual void DispatchSongEvents(HuntingHornSongEvents e) => e?.Invoke(this, new HuntingHornSongEventArgs(this));
         #endregion
+#if DEBUG // For testing purposes
+        public HuntingHorn()
+        {
+            OnNoteQueueUpdate += HuntingHorn_OnNoteQueueUpdate;
+            OnSongQueueUpdate += HuntingHorn_OnSongQueueUpdate;
+        }
+                
+        private void HuntingHorn_OnSongQueueUpdate(object source, HuntingHornSongEventArgs args)
+        {
+            Debugger.Warn($"Songs queue: {args.SongQueue[0]} {args.SongQueue[1]} {args.SongQueue[2]}");
+        }
 
-
+        private void HuntingHorn_OnNoteQueueUpdate(object source, HuntingHornNoteEventArgs args)
+        {
+            Debugger.Log($"Notes: {args.Notes[0]} {args.Notes[1]} {args.Notes[2]} {args.Notes[3]}");
+        }
+#endif
         public void UpdateInformation(sHuntingHornMechanics mechanics, sHuntingHornSong[] availableSongs)
         {
             
             Songs = availableSongs;
 
-            notes = mechanics.Notes;
+            RawNotes = mechanics.Notes;
             NotesQueued = mechanics.Notes_Length;
-            firstNoteIndex = mechanics.FirstNoteIndex;
+            FirstNoteIndex = mechanics.FirstNoteIndex;
             
-            songIndexesQueue = mechanics.SongIndexes;
+            RawSongIndexesQueue = mechanics.SongIndexes;
             SongIndexesQueued = mechanics.SongIndexes_Length;
             SongIndexesFirstIndex = mechanics.SongIndexFirstIndex;
 
-            songIdsQueue = mechanics.SongIds;
-            playStartAt = mechanics.PlayStartAt;
-            playCurrentAt = mechanics.PlayCurrentAt;
+            RawSongIdsQueue = mechanics.SongIds;
+            PlayStartAt = mechanics.PlayStartAt;
+            PlayCurrentAt = mechanics.PlayCurrentAt;
             SongIdFirstIndex = mechanics.SongIdFirstIndex;
 
-            songQueue = mechanics.Songs;
+            RawSongQueue = mechanics.Songs;
             SongsQueued = mechanics.Songs_Length;
-            lastSongIndex = mechanics.LastSongIndex;
+            LastSongIndex = mechanics.LastSongIndex;
 
             FirstNoteColor = mechanics.FirstNote;
             SecondNoteColor = mechanics.SecondNote;
@@ -184,21 +229,15 @@ namespace HunterPie.Core.LPlayer.Jobs
         /// <returns>True if they're equal, false otherwise.</returns>
         private bool IsSongArrayEqual(sHuntingHornSong[] newSongsList)
         {
+            
             if (Songs == null)
             {
                 return false;
             }
 
-            // 0x18 is the sizeof(sHuntingHornSong)
-            byte[] newSongsBuffer = new byte[0x18 * 10];
-            byte[] oldSongsBuffer = new byte[0x18 * 10];
-
-            Buffer.BlockCopy(newSongsList, 0, newSongsBuffer, 0, newSongsBuffer.Length);
-            Buffer.BlockCopy(songs, 0, oldSongsBuffer, 0, oldSongsBuffer.Length);
-
-            for (int i = 0; i < newSongsBuffer.Length; i++)
+            for (int i = 0; i < Songs.Length; i++)
             {
-                if (oldSongsBuffer[i] != newSongsBuffer[i])
+                if (Songs[i].Equals(newSongsList[i]))
                 {
                     return false;
                 }
@@ -207,13 +246,19 @@ namespace HunterPie.Core.LPlayer.Jobs
             return true;
         }
 
-        private T[] OrganizeQueue<T>(T[] unorganizedArray, long startAt)
+        private T[] OrganizeQueue<T>(T[] unorganizedArray, long startAt, long length)
         {
             T[] organizedNotes = new T[4];
 
             for (int i = 0; i < 4; i++)
             {
-                organizedNotes[i] = unorganizedArray[(i + startAt) % unorganizedArray.Length];
+                if (i >= length)
+                {
+                    break;
+                } else
+                {
+                    organizedNotes[i] = unorganizedArray[(i + startAt) % unorganizedArray.Length];
+                }
             }
 
             return organizedNotes;

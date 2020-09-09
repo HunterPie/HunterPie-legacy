@@ -1091,18 +1091,12 @@ namespace HunterPie.Core
             }
         }
 
-        bool x = false;
         private void GetHuntingHornInfomration(long weaponAddress)
-        {
+        {            
             sHuntingHornMechanics hhCore = Scanner.Win32.Read<sHuntingHornMechanics>(weaponAddress + 0xD4);
             sHuntingHornSong[] availableSongs = Scanner.Win32.Read<sHuntingHornSong>(weaponAddress - 0x1C, 10);
 
-            if (!x)
-            {
-                Debugger.Log(JsonConvert.SerializeObject(hhCore, Formatting.Indented));
-                x = !x;
-            }
-
+            HuntingHorn.UpdateInformation(hhCore, availableSongs);
         }
 
         private void GetGreatswordInformation(long weaponAddress)
