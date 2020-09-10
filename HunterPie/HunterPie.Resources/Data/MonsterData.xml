@@ -1113,13 +1113,13 @@
         <Break Threshold="10"/>
       </Part>
       <Part Name="MONSTER_PART_BODY" Group="BODY"/>
-      <Part Name="MONSTER_PART_ABDOMEN" Group="ABDOMEN">
-        <Break Threshold="1"/>
-      </Part>
+      <Part Name="MONSTER_PART_ABDOMEN" Group="ABDOMEN"/>
       <Part Name="MONSTER_PART_BACK" Group="BACK">
         <Break Threshold="1"/>
       </Part>
-      <Part Name="MONSTER_PART_NECK" Group="NECK"/>
+      <Part Name="MONSTER_PART_CHEST" Group="CHEST">
+        <Break Threshold="1"/>
+      </Part>
       <Part Name="MONSTER_PART_LARM" Group="ARM" TenderizeIds="1,10">
         <Break Threshold="7"/>
       </Part>
