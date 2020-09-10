@@ -5,8 +5,14 @@
                     xmlns:Monster="clr-namespace:HunterPie.GUI.Widgets.Monster_Widget.Parts"
                     xmlns:Overlay="clr-namespace:HunterPie.GUI"
                     >
-    <!-- Fonts -->
-    
+    <SolidColorBrush x:Key="NoteColor0" Color="#FF724CC5"/>
+    <SolidColorBrush x:Key="NoteColor1" Color="#FFDC2F35"/>
+    <SolidColorBrush x:Key="NoteColor2" Color="#FFFF8000"/>
+    <SolidColorBrush x:Key="NoteColor3" Color="#FFFFC500"/>
+    <SolidColorBrush x:Key="NoteColor4" Color="#FF2ACD25"/>
+    <SolidColorBrush x:Key="NoteColor5" Color="#FF156CD8"/>
+    <SolidColorBrush x:Key="NoteColor6" Color="#FF2588FF"/>
+    <SolidColorBrush x:Key="NoteColor7" Color="#FFF1F1F1"/>   
     <!-- Ailment groups -->
     <SolidColorBrush x:Key="MONSTER_AILMENT_COLOR_UNKNOWN">#FF73ABEE</SolidColorBrush>
     <SolidColorBrush x:Key="MONSTER_AILMENT_COLOR_POISON">#ab47ed</SolidColorBrush>

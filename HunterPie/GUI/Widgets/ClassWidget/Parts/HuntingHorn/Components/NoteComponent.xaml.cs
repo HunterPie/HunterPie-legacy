@@ -6,8 +6,9 @@ using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Media;
+using HunterPie.Logger;
 
-namespace HunterPie.GUI.Widgets.ClassWidget.Parts.HuntingHorn.Components
+namespace HunterPie.GUI.Widgets.ClassWidget.Parts.Components
 {
     /// <summary>
     /// Interaction logic for NoteComponent.xaml
@@ -23,42 +24,61 @@ namespace HunterPie.GUI.Widgets.ClassWidget.Parts.HuntingHorn.Components
             {
                 if (value != noteId)
                 {
-                    string mask = null;
+                    
+                    DrawingImage icon = null;
                     switch (value)
                     {
                         case 1:
                         case 2:
                         case 3:
                         case 4:
-                            mask = $"pack://siteoforigin:,,,/HunterPie.Resources/UI/Class/HuntingHornNote_{value}.png";
+                            icon = FindResource($"ICON_NOTE_{value}") as DrawingImage;
                             break;
                     }
-                    NoteMask = mask;
+                    NoteIcon = icon;
                 }
             }
         }
 
-        private string NoteMask
+        public DrawingImage NoteIcon
         {
-            get { return (string)GetValue(NoteMaskProperty); }
-            set { SetValue(NoteMaskProperty, value); }
+            get { return (DrawingImage)GetValue(NoteIconProperty); }
+            set { SetValue(NoteIconProperty, value); }
         }
-        private static readonly DependencyProperty NoteMaskProperty =
-            DependencyProperty.Register("NoteMask", typeof(string), typeof(NoteComponent));
+        public static readonly DependencyProperty NoteIconProperty =
+            DependencyProperty.Register("NoteIcon", typeof(DrawingImage), typeof(NoteComponent));
 
-        public string Color
+        public Brush Color
         {
-            get { return (string)GetValue(ColorProperty); }
-            set { SetValue(ColorProperty, value); }
+            get { return (Brush)GetValue(ColorProperty); }
+            set {
+                SetValue(ColorProperty, value);
+                if (NoteId != 4)
+                {
+                    UpdateColorFromDrawingCopy();
+                }               
+            }
         }
         public static readonly DependencyProperty ColorProperty =
-            DependencyProperty.Register("Color", typeof(string), typeof(NoteComponent));
-
+            DependencyProperty.Register("Color", typeof(Brush), typeof(NoteComponent));
 
 
         public NoteComponent()
         {
             InitializeComponent();
+        }
+
+        private void UpdateColorFromDrawingCopy()
+        {
+            // I'm sorry for this hacky way, bUT APPARENTLY DYNAMICRESOURCE IS DUMB and didn't work properly
+            var newDrawingImg = NoteIcon.Clone();
+            var newDrawingGroup = (DrawingGroup)newDrawingImg.Drawing;
+            ((GeometryDrawing)newDrawingGroup.Children[0]).Brush = Color;
+            if (newDrawingImg.CanFreeze)
+            {
+                newDrawingImg.Freeze();
+            }
+            NoteIcon = newDrawingImg;
         }
     }
 }

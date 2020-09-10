@@ -1,4 +1,6 @@
-﻿using HunterPie.Core.Definitions;
+﻿using System.Windows.Media;
+using System.Windows;
+using HunterPie.Core.Definitions;
 using HunterPie.Core.Enums;
 using HunterPie.Core.Events;
 using HunterPie.Logger;
@@ -9,8 +11,8 @@ namespace HunterPie.Core.LPlayer.Jobs
     {
         #region Private properties
         private sHuntingHornSong[] songs;
-        private long notesQueued;
-        private long firstNoteIndex = 0;
+        private long notesQueued = -1;
+        private long firstNoteIndex = -1;
         private long lastSongIndex = 0;
         private long songIdFirstIndex = 0;
         private long playCurrentAt = 0;
@@ -46,7 +48,10 @@ namespace HunterPie.Core.LPlayer.Jobs
                 if (value != notesQueued)
                 {
                     notesQueued = value;
-                    DispatchNoteEvents(OnNoteQueueUpdate);
+                    if (firstNoteIndex != -1)
+                    {
+                        DispatchNoteEvents(OnNoteQueueUpdate);
+                    }
                 }
             }
         }
@@ -58,7 +63,10 @@ namespace HunterPie.Core.LPlayer.Jobs
                 if (value != firstNoteIndex)
                 {
                     firstNoteIndex = value;
-                    DispatchNoteEvents(OnNoteQueueUpdate);
+                    if (notesQueued != -1)
+                    {
+                        DispatchNoteEvents(OnNoteQueueUpdate);
+                    }
                 }
             }
         }
@@ -196,13 +204,17 @@ namespace HunterPie.Core.LPlayer.Jobs
 #endif
         public void UpdateInformation(sHuntingHornMechanics mechanics, sHuntingHornSong[] availableSongs)
         {
-            
+
+            FirstNoteColor = mechanics.FirstNote;
+            SecondNoteColor = mechanics.SecondNote;
+            ThirdNoteColor = mechanics.ThirdNote;
+
             Songs = availableSongs;
 
             RawNotes = mechanics.Notes;
             NotesQueued = mechanics.Notes_Length;
             FirstNoteIndex = mechanics.FirstNoteIndex;
-            
+                                    
             RawSongIndexesQueue = mechanics.SongIndexes;
             SongIndexesQueued = mechanics.SongIndexes_Length;
             SongIndexesFirstIndex = mechanics.SongIndexFirstIndex;
@@ -216,9 +228,6 @@ namespace HunterPie.Core.LPlayer.Jobs
             SongsQueued = mechanics.Songs_Length;
             LastSongIndex = mechanics.LastSongIndex;
 
-            FirstNoteColor = mechanics.FirstNote;
-            SecondNoteColor = mechanics.SecondNote;
-            ThirdNoteColor = mechanics.ThirdNote;
         }
 
         /// <summary>
@@ -248,9 +257,9 @@ namespace HunterPie.Core.LPlayer.Jobs
 
         private T[] OrganizeQueue<T>(T[] unorganizedArray, long startAt, long length)
         {
-            T[] organizedNotes = new T[4];
+            T[] organizedNotes = new T[unorganizedArray.Length];
 
-            for (int i = 0; i < 4; i++)
+            for (int i = 0; i < unorganizedArray.Length; i++)
             {
                 if (i >= length)
                 {
@@ -264,29 +273,9 @@ namespace HunterPie.Core.LPlayer.Jobs
             return organizedNotes;
         }
 
-        public static string GetColorBasedOnColorId(NoteColorId colorId)
+        public static Brush GetColorBasedOnColorId(NoteColorId colorId)
         {
-            switch (colorId)
-            {
-                case NoteColorId.Purple:
-                    return "#FF724CC5";
-                case NoteColorId.Red:
-                    return "#FFC14347";
-                case NoteColorId.Orange:
-                    return "#FFC87B2D";
-                case NoteColorId.Yellow:
-                    return "#FFB3AD3B";
-                case NoteColorId.Green:
-                    return "#FF44A341";
-                case NoteColorId.Blue:
-                    return "#FF2275DB";
-                case NoteColorId.LightBlue:
-                    return "#FF5090DD";
-                case NoteColorId.White:
-                    return "#FFD0D5D3";
-                default:
-                    return null;
-            }
+            return Application.Current.FindResource($"NoteColor{(int)colorId}") as Brush;
         }
     }
 }

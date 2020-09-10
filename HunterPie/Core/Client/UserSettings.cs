@@ -205,6 +205,7 @@ namespace HunterPie.Core
                 public LongSwordHelper LongSwordHelper { get; set; } = new LongSwordHelper();
                 public HammerHelper HammerHelper { get; set; } = new HammerHelper();
                 public LanceHelper LanceHelper { get; set; } = new LanceHelper();
+                public HuntingHornHelper HuntingHornHelper { get; set; } = new HuntingHornHelper();
                 public ChargeBladeHelper ChargeBladeHelper { get; set; } = new ChargeBladeHelper();
                 public InsectGlaiveHelper InsectGlaiveHelper { get; set; } = new InsectGlaiveHelper();
                 public GunLanceHelper GunLanceHelper { get; set; } = new GunLanceHelper();
@@ -229,6 +230,9 @@ namespace HunterPie.Core
             public class DualBladesHelper : WeaponHelperStructure { }
 
             public class LanceHelper : WeaponHelperStructure { };
+
+            // TODO: Add custom settings for the song list
+            public class HuntingHornHelper : WeaponHelperStructure { }; 
 
             public class WeaponHelperStructure
             {
