@@ -263,5 +263,30 @@ namespace HunterPie.Core.LPlayer.Jobs
 
             return organizedNotes;
         }
+
+        public static string GetColorBasedOnColorId(NoteColorId colorId)
+        {
+            switch (colorId)
+            {
+                case NoteColorId.Purple:
+                    return "#FF724CC5";
+                case NoteColorId.Red:
+                    return "#FFC14347";
+                case NoteColorId.Orange:
+                    return "#FFC87B2D";
+                case NoteColorId.Yellow:
+                    return "#FFB3AD3B";
+                case NoteColorId.Green:
+                    return "#FF44A341";
+                case NoteColorId.Blue:
+                    return "#FF2275DB";
+                case NoteColorId.LightBlue:
+                    return "#FF5090DD";
+                case NoteColorId.White:
+                    return "#FFD0D5D3";
+                default:
+                    return null;
+            }
+        }
     }
 }

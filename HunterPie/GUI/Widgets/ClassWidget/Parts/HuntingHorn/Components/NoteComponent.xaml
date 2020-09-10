@@ -1,0 +1,13 @@
+﻿<UserControl x:Name="NoteComponentControl"
+             x:Class="HunterPie.GUI.Widgets.ClassWidget.Parts.HuntingHorn.Components.NoteComponent"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             Height="45" Width="30">
+    <Grid>
+        <Rectangle Fill="#FF1C144D">
+            <Rectangle.OpacityMask>
+                <ImageBrush ImageSource="{Binding ElementName=NoteComponentControl, Path=NoteMask}" Stretch="Uniform"/>
+            </Rectangle.OpacityMask>
+        </Rectangle>
+    </Grid>
+</UserControl>
