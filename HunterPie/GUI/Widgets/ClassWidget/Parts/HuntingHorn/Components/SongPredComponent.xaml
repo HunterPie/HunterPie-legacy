@@ -1,0 +1,33 @@
+﻿<UserControl x:Name="SongPredictionDisplay"
+             x:Class="HunterPie.GUI.Widgets.ClassWidget.Parts.Components.SongPredComponent"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:local="clr-namespace:HunterPie.GUI.Widgets.ClassWidget.Parts.Components"
+             Height="25">
+    <Grid>
+        <Grid.Background>
+            <LinearGradientBrush EndPoint="0.5,-2.6" StartPoint="1,0.5">
+                <GradientStop Color="#00000000"/>
+                <GradientStop Color="#7F0F0F0F" Offset="1"/>
+            </LinearGradientBrush>
+        </Grid.Background>
+        <local:NoteComponent x:Name="Note" HorizontalAlignment="Left" Width="19" Margin="2,0,0,0"/>
+        <TextBlock Text="{Binding ElementName=SongPredictionDisplay, Path=SongName}" Foreground="#FFEAEAEA" FontFamily="Roboto" FontSize="13" Padding="0,5,0,0" TextTrimming="CharacterEllipsis" Margin="24,0,0,0"/>
+    </Grid>
+    <UserControl.Style>
+        <Style TargetType="UserControl">
+            <Style.Triggers>
+                <Trigger Property="IsVisible" Value="True">
+                    <Trigger.EnterActions>
+                        <BeginStoryboard>
+                            <Storyboard>
+                                <ThicknessAnimation Storyboard.TargetProperty="Margin" From="20,0,0,0" To="0,0,0,0" Duration="0:0:0.2"/>
+                                <DoubleAnimation Storyboard.TargetProperty="Opacity" From="0" To="0.8" Duration="0:0:0.2"/>
+                            </Storyboard>
+                        </BeginStoryboard>
+                    </Trigger.EnterActions>
+                </Trigger>
+            </Style.Triggers>
+        </Style>
+    </UserControl.Style>
+</UserControl>

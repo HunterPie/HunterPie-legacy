@@ -1056,7 +1056,7 @@ namespace HunterPie.Core
                     Hammer.SafijiivaRegenCounter = SafiCounter;
                     break;
                 case Classes.HuntingHorn:
-                    GetHuntingHornInfomration(weaponAddress);
+                    GetHuntingHornInformation(weaponAddress);
                     HuntingHorn.SafijiivaRegenCounter = SafiCounter;
                     break;
                 case Classes.Lance:
@@ -1091,8 +1091,8 @@ namespace HunterPie.Core
             }
         }
 
-        private void GetHuntingHornInfomration(long weaponAddress)
-        {            
+        private void GetHuntingHornInformation(long weaponAddress)
+        {
             sHuntingHornMechanics hhCore = Scanner.Win32.Read<sHuntingHornMechanics>(weaponAddress + 0xD4);
             sHuntingHornSong[] availableSongs = Scanner.Win32.Read<sHuntingHornSong>(weaponAddress - 0x1C, 10);
 

@@ -1,17 +1,13 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.Windows.Media;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Threading;
 using HunterPie.Core.Events;
 using HunterPie.Core.LPlayer.Jobs;
 using HunterPie.GUI.Widgets.ClassWidget.Parts.Components;
+using HunterPie.Core.Definitions;
+using HunterPie.Core;
 using HunterPie.Logger;
-using System.Windows.Media.Animation;
-using Newtonsoft.Json;
 
 namespace HunterPie.GUI.Widgets.ClassWidget.Parts
 {
@@ -32,8 +28,8 @@ namespace HunterPie.GUI.Widgets.ClassWidget.Parts
         public void SetContext(HuntingHorn context)
         {
             Context = context;
-            SetupComponents();
             HookEvents();
+            SetupComponents();
         }
 
         private void SetupComponents()
@@ -44,8 +40,8 @@ namespace HunterPie.GUI.Widgets.ClassWidget.Parts
 
         private void HookEvents()
         {
-            Context.OnNoteQueueUpdate += OnNoteQueueUpdate;
             Context.OnNoteColorUpdate += OnNoteColorUpdate;
+            Context.OnNoteQueueUpdate += OnNoteQueueUpdate;
         }
 
         private void OnNoteColorUpdate(object source, HuntingHornEventArgs args)
@@ -60,7 +56,8 @@ namespace HunterPie.GUI.Widgets.ClassWidget.Parts
 
         public override void UnhookEvents()
         {
-
+            Context.OnNoteColorUpdate -= OnNoteColorUpdate;
+            Context.OnNoteQueueUpdate -= OnNoteQueueUpdate;
         }
 
         private void OnNoteQueueUpdate(object source, HuntingHornNoteEventArgs args)
@@ -75,9 +72,10 @@ namespace HunterPie.GUI.Widgets.ClassWidget.Parts
                 if (args.NotesQueued == 0 && Sheet.Children.Count >= 0)
                 {
                     Sheet.Children.Clear();
+                    PredictionSheet.Children.Clear();
                     return;
-                } 
-
+                }
+                Debugger.Warn($"Notes: {args.Notes[0]} {args.Notes[1]} {args.Notes[2]} {args.Notes[3]}");
                 // If the number of notes in the visual sheet is lower than the in-game sheet,
                 // we have to add all the notes.
                 if (Sheet.Children.Count < args.NotesQueued)
@@ -95,10 +93,12 @@ namespace HunterPie.GUI.Widgets.ClassWidget.Parts
                         NoteComponent note = new NoteComponent()
                         {
                             NoteId = noteId,
-                            Color = noteId == 4 ? null : cachedBrushes[noteId - 1]
+                            Height = noteId == 4 ? 25 : 33,
+                            Width = 23
                         };
-                        Sheet.Children.Add(note);
+                        note.Color = noteId == 4 ? null : cachedBrushes[noteId - 1];
 
+                        Sheet.Children.Add(note);
                     }
                 }
                 else
@@ -108,13 +108,29 @@ namespace HunterPie.GUI.Widgets.ClassWidget.Parts
                     NoteComponent note = new NoteComponent()
                     {
                         NoteId = lastNoteId,
-                        Color = lastNoteId == 4 ? null : cachedBrushes[lastNoteId - 1]
+                        Height = lastNoteId == 4 ? 25 : 33,
+                        Width = 23
                     };
+                    note.Color = lastNoteId == 4 ? null : cachedBrushes[lastNoteId - 1];
                     Sheet.Children.Add(note);
                     ((NoteComponent)Sheet.Children[0]).Destroy = true;
                 }
-            }));
-            
+                UpdatePredictedSong(args.Candidates);
+            }));   
+        }
+
+        private void UpdatePredictedSong(sHuntingHornSong[] predictions)
+        {
+            PredictionSheet.Children.Clear();
+            foreach (sHuntingHornSong song in predictions)
+            {
+                SongPredComponent predDisplay = new SongPredComponent()
+                {
+                    SongName = GStrings.GetAbnormalityByID("HUNTINGHORN", song.BuffId, 0)
+                };
+                predDisplay.UpdateNote(song.Notes[song.NotesLength - 1], cachedBrushes[song.Notes[song.NotesLength - 1] - 1]);
+                PredictionSheet.Children.Add(predDisplay);
+            }
         }
     }
 }

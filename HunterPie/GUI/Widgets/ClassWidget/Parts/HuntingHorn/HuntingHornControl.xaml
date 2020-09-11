@@ -6,7 +6,7 @@
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              xmlns:local="clr-namespace:HunterPie.GUI.Widgets.ClassWidget.Parts"
              mc:Ignorable="d" 
-             d:DesignHeight="200" d:DesignWidth="300">
+             d:DesignHeight="200" d:DesignWidth="400">
     <Grid>
         <Image Width="131" Height="40" Source="pack://siteoforigin:,,,/HunterPie.Resources/UI/Class/HuntingHornSheet.png" Margin="8,6,0,0" VerticalAlignment="Top" HorizontalAlignment="Left">
             <Image.OpacityMask>
@@ -16,8 +16,9 @@
                 </LinearGradientBrush>
             </Image.OpacityMask>
         </Image>
-        <StackPanel x:Name="Sheet" ClipToBounds="True" Orientation="Horizontal" Height="35" VerticalAlignment="Top" HorizontalAlignment="Left" Width="108" Margin="45,12,0,0">
-            
-        </StackPanel>
+        <StackPanel x:Name="Sheet" ClipToBounds="True" Orientation="Horizontal" Height="35" VerticalAlignment="Top" HorizontalAlignment="Left" Width="108" Margin="45,12,0,0"/>
+        <StackPanel x:Name="PredictionSheet" Orientation="Vertical" Height="54" VerticalAlignment="Top" HorizontalAlignment="Left" Width="225" Margin="144,0,0,0"/>
+
+        <StackPanel x:Name="SongQueue" Height="82" VerticalAlignment="Top" HorizontalAlignment="Left" Width="192" Margin="0,52,0,0"/>
     </Grid>
 </local:ClassControl>

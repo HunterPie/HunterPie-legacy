@@ -399,6 +399,10 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
+    <Page Include="GUI\Widgets\ClassWidget\Parts\HuntingHorn\Components\SongPredComponent.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="GUI\Widgets\ClassWidget\Parts\HuntingHorn\HuntingHornControl.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -515,6 +519,9 @@
     </Compile>
     <Compile Include="GUI\Widgets\ClassWidget\Parts\HuntingHorn\Components\NoteComponent.xaml.cs">
       <DependentUpon>NoteComponent.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="GUI\Widgets\ClassWidget\Parts\HuntingHorn\Components\SongPredComponent.xaml.cs">
+      <DependentUpon>SongPredComponent.xaml</DependentUpon>
     </Compile>
     <Compile Include="GUI\Widgets\ClassWidget\Parts\HuntingHorn\HuntingHornControl.xaml.cs">
       <DependentUpon>HuntingHornControl.xaml</DependentUpon>

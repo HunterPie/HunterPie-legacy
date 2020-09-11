@@ -49,7 +49,7 @@ namespace HunterPie.Plugins
         }
 
         public void PreloadPlugins()
-        {
+        {            
             Stopwatch benchmark = Stopwatch.StartNew();
             Debugger.Module("Pre loading modules");
             string[] modules = Directory.GetDirectories(Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "Modules"));
@@ -94,6 +94,7 @@ namespace HunterPie.Plugins
                     continue;
                 }
             }
+
             IsReady = true;
             benchmark.Stop();
             Debugger.Module($"Pre loaded {packages.Count} module(s) in {benchmark.ElapsedMilliseconds}ms");
@@ -115,6 +116,7 @@ namespace HunterPie.Plugins
 
         public bool CompilePlugin(string pluginPath, PluginInformation information)
         {
+            
             var compiler = CSharpCompilation.Create($"{nameof(HunterPie)}{information.Name}", options: new CSharpCompilationOptions(OutputKind.DynamicallyLinkedLibrary)
                 .WithOptimizationLevel(OptimizationLevel.Release));
 
@@ -152,22 +154,34 @@ namespace HunterPie.Plugins
             }
             compiler = compiler.AddReferences(references);
             string code = File.ReadAllText(Path.Combine(pluginPath, information.EntryPoint));
+
             CSharpParseOptions options = CSharpParseOptions.Default.WithLanguageVersion(
                 LanguageVersion.CSharp7_3);
+
             SyntaxTree syntaxTree = SyntaxFactory.ParseSyntaxTree(SourceText.From(code, Encoding.UTF8), options, Path.Combine(pluginPath, information.EntryPoint));
 
             compiler = compiler.AddSyntaxTrees(syntaxTree);
+
             Microsoft.CodeAnalysis.Emit.EmitResult result = compiler.Emit(Path.Combine(pluginPath, information.Name) + ".dll");
+
+            code = null;
+            syntaxTree = null;
+            compiler = null;
+            references.Clear();
+            references = null;
 
             if (result.Success)
             {
+                result = null;
                 return true;
             } else
             {
                 Debugger.Error($"Failed to compile plugin: {information.Name}");
                 foreach (var exception in result.Diagnostics) Debugger.Error(exception);
+                result = null;
                 return false;
             }
+            
         }
 
         internal static PluginSettings GetPluginSettings(string path)
@@ -201,6 +215,12 @@ namespace HunterPie.Plugins
             if (ctx == null) return true;
             try
             {
+                // This means this plugin is not loaded, so we skip it
+                if (plugin.Context == null)
+                {
+                    return true;
+                }
+
                 plugin.Unload();
                 return true;
             } catch(Exception err)

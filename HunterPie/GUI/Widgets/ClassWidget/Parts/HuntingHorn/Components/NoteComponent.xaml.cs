@@ -24,7 +24,7 @@ namespace HunterPie.GUI.Widgets.ClassWidget.Parts.Components
             {
                 if (value != noteId)
                 {
-                    
+                    noteId = value;
                     DrawingImage icon = null;
                     switch (value)
                     {
@@ -53,7 +53,7 @@ namespace HunterPie.GUI.Widgets.ClassWidget.Parts.Components
             get { return (Brush)GetValue(ColorProperty); }
             set {
                 SetValue(ColorProperty, value);
-                if (NoteId != 4)
+                if (NoteId < 4)
                 {
                     UpdateColorFromDrawingCopy();
                 }               

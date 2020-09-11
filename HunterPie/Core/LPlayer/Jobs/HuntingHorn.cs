@@ -5,8 +5,6 @@ using HunterPie.Core.Definitions;
 using HunterPie.Core.Enums;
 using HunterPie.Core.Events;
 using HunterPie.Logger;
-using System;
-using System.Linq;
 
 namespace HunterPie.Core.LPlayer.Jobs
 {
@@ -194,8 +192,14 @@ namespace HunterPie.Core.LPlayer.Jobs
         {
             OnNoteQueueUpdate += HuntingHorn_OnNoteQueueUpdate;
             OnSongQueueUpdate += HuntingHorn_OnSongQueueUpdate;
+            OnNoteColorUpdate += HuntingHorn_OnNoteColorUpdate;
         }
-                
+
+        private void HuntingHorn_OnNoteColorUpdate(object source, HuntingHornEventArgs args)
+        {
+            Debugger.Log($"Color update {args.FirstNoteColor} {args.SecondNoteColor} {args.ThirdNoteColor}");
+        }
+
         private void HuntingHorn_OnSongQueueUpdate(object source, HuntingHornSongEventArgs args)
         {
             Debugger.Warn($"Songs queue: {args.SongQueue[0]} {args.SongQueue[1]} {args.SongQueue[2]}");
