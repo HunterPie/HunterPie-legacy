@@ -1,4 +1,5 @@
 ﻿using System;
+using HunterPie.Core.Definitions;
 using HunterPie.Core.LPlayer.Jobs;
 
 namespace HunterPie.Core.Events
@@ -28,12 +29,18 @@ namespace HunterPie.Core.Events
         /// </summary>
         public long NotesQueued { get; }
 
+        /// <summary>
+        /// Possible songs that can be played with the current Notes
+        /// </summary>
+        public sHuntingHornSong[] Candidates { get; }
+
         public HuntingHornNoteEventArgs(HuntingHorn huntinghorn)
         {
             RawNotes = huntinghorn.RawNotes;
             Notes = huntinghorn.Notes;
             FirstNoteIndex = huntinghorn.FirstNoteIndex;
             NotesQueued = huntinghorn.NotesQueued;
+            Candidates = huntinghorn.SongCandidates;
         }
 
     }

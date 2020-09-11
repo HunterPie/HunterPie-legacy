@@ -1,9 +1,12 @@
 ﻿using System.Windows.Media;
 using System.Windows;
+using System.Collections.Generic;
 using HunterPie.Core.Definitions;
 using HunterPie.Core.Enums;
 using HunterPie.Core.Events;
 using HunterPie.Logger;
+using System;
+using System.Linq;
 
 namespace HunterPie.Core.LPlayer.Jobs
 {
@@ -37,7 +40,8 @@ namespace HunterPie.Core.LPlayer.Jobs
                 }
             }
         }
-
+        public sHuntingHornSong[] SongCandidates => FindSongCandidates();
+        
         public byte[] Notes => OrganizeQueue<byte>(RawNotes, FirstNoteIndex, NotesQueued);
         public byte[] RawNotes { get; private set; } = new byte[4];
         public long NotesQueued
@@ -276,6 +280,44 @@ namespace HunterPie.Core.LPlayer.Jobs
             }
 
             return organizedNotes;
+        }
+
+        private sHuntingHornSong[] FindSongCandidates()
+        {
+            List<sHuntingHornSong> candidates = new List<sHuntingHornSong>();
+            if (NotesQueued == 0 || NotesQueued == -1 || FirstNoteIndex == -1)
+            {
+                return candidates.ToArray();
+            }
+
+            foreach (sHuntingHornSong song in Songs)
+            {
+                bool matches = false;
+                // Now we look for notes that have the same starting notes
+                for (long i = song.NotesLength - 1; i > 0; i--)
+                {
+                    if (song.Id < 0 || NotesQueued < song.NotesLength - 1)
+                    {
+                        continue;
+                    }
+
+                    if (song.Notes[i - 1] == Notes[(NotesQueued - song.NotesLength) + i])
+                    {
+                        matches = true;
+                    } else
+                    {
+                        matches = false;
+                        break;
+                    }
+                }
+
+                if (matches)
+                {
+                    candidates.Add(song);
+                }
+                
+            }
+            return candidates.ToArray();
         }
 
         public static Brush GetColorBasedOnColorId(NoteColorId colorId)

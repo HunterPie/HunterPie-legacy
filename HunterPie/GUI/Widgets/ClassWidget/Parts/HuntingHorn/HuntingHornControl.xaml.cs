@@ -11,6 +11,7 @@ using HunterPie.Core.LPlayer.Jobs;
 using HunterPie.GUI.Widgets.ClassWidget.Parts.Components;
 using HunterPie.Logger;
 using System.Windows.Media.Animation;
+using Newtonsoft.Json;
 
 namespace HunterPie.GUI.Widgets.ClassWidget.Parts
 {
@@ -68,7 +69,7 @@ namespace HunterPie.GUI.Widgets.ClassWidget.Parts
             {
                 return;
             }
-
+            
             Dispatcher.BeginInvoke(DispatcherPriority.Render, new Action(() =>
             {
                 if (args.NotesQueued == 0 && Sheet.Children.Count >= 0)
