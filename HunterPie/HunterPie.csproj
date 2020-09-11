@@ -1071,18 +1071,6 @@
     </None>
   </ItemGroup>
   <ItemGroup>
-    <None Include="HunterPie.Resources\UI\Class\HuntingHornNote_1.png">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </None>
-    <None Include="HunterPie.Resources\UI\Class\HuntingHornNote_2.png">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </None>
-    <None Include="HunterPie.Resources\UI\Class\HuntingHornNote_3.png">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </None>
-    <None Include="HunterPie.Resources\UI\Class\HuntingHornNote_4.png">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </None>
     <None Include="HunterPie.Resources\UI\Class\HuntingHornSheet.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>

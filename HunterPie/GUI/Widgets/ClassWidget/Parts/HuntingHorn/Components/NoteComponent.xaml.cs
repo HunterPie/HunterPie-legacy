@@ -13,7 +13,7 @@ namespace HunterPie.GUI.Widgets.ClassWidget.Parts.Components
     /// <summary>
     /// Interaction logic for NoteComponent.xaml
     /// </summary>
-    public partial class NoteComponent : UserControl
+    public partial class NoteComponent : UserControl, IDisposable
     {
 
         private byte noteId { get; set; }
@@ -62,6 +62,13 @@ namespace HunterPie.GUI.Widgets.ClassWidget.Parts.Components
         public static readonly DependencyProperty ColorProperty =
             DependencyProperty.Register("Color", typeof(Brush), typeof(NoteComponent));
 
+        public bool Destroy
+        {
+            get { return (bool)GetValue(DestroyProperty); }
+            set { SetValue(DestroyProperty, value); }
+        }
+        public static readonly DependencyProperty DestroyProperty =
+            DependencyProperty.Register("Destroy", typeof(bool), typeof(NoteComponent));
 
         public NoteComponent()
         {
@@ -79,6 +86,35 @@ namespace HunterPie.GUI.Widgets.ClassWidget.Parts.Components
                 newDrawingImg.Freeze();
             }
             NoteIcon = newDrawingImg;
+        }
+
+        #region IDisposable Support
+        private bool disposedValue = false; // To detect redundant calls
+
+        protected virtual void Dispose(bool disposing)
+        {
+            if (!disposedValue)
+            {
+                if (disposing)
+                {
+                    Destroy = true;
+
+                }
+
+                disposedValue = true;
+            }
+        }
+
+        public void Dispose()
+        {
+            Dispose(true);
+            GC.SuppressFinalize(this);
+        }
+        #endregion
+
+        private void OnDestroyAnimationComplete(object sender, EventArgs e)
+        {
+            ((Panel)Parent).Children.Remove(this);
         }
     }
 }

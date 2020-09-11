@@ -8,7 +8,7 @@
              mc:Ignorable="d" 
              d:DesignHeight="200" d:DesignWidth="300">
     <Grid>
-        <Image Width="150" Height="46" Source="pack://siteoforigin:,,,/HunterPie.Resources/UI/Class/HuntingHornSheet.png" Margin="8,6,0,0" VerticalAlignment="Top" HorizontalAlignment="Left">
+        <Image Width="131" Height="40" Source="pack://siteoforigin:,,,/HunterPie.Resources/UI/Class/HuntingHornSheet.png" Margin="8,6,0,0" VerticalAlignment="Top" HorizontalAlignment="Left">
             <Image.OpacityMask>
                 <LinearGradientBrush EndPoint="0.8,1.8" StartPoint="0.7,0.3">
                     <GradientStop Color="Black" Offset="0"/>
@@ -16,7 +16,7 @@
                 </LinearGradientBrush>
             </Image.OpacityMask>
         </Image>
-        <StackPanel x:Name="Sheet" Orientation="Horizontal" Height="35" VerticalAlignment="Top" HorizontalAlignment="Left" Width="108" Margin="48,16,0,0">
+        <StackPanel x:Name="Sheet" ClipToBounds="True" Orientation="Horizontal" Height="35" VerticalAlignment="Top" HorizontalAlignment="Left" Width="108" Margin="45,12,0,0">
             
         </StackPanel>
     </Grid>

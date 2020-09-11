@@ -10,6 +10,7 @@ using HunterPie.Core.Events;
 using HunterPie.Core.LPlayer.Jobs;
 using HunterPie.GUI.Widgets.ClassWidget.Parts.Components;
 using HunterPie.Logger;
+using System.Windows.Media.Animation;
 
 namespace HunterPie.GUI.Widgets.ClassWidget.Parts
 {
@@ -63,8 +64,19 @@ namespace HunterPie.GUI.Widgets.ClassWidget.Parts
 
         private void OnNoteQueueUpdate(object source, HuntingHornNoteEventArgs args)
         {
+            if (args.FirstNoteIndex < 0 || args.NotesQueued < 0)
+            {
+                return;
+            }
+
             Dispatcher.BeginInvoke(DispatcherPriority.Render, new Action(() =>
             {
+                if (args.NotesQueued == 0 && Sheet.Children.Count >= 0)
+                {
+                    Sheet.Children.Clear();
+                    return;
+                } 
+
                 // If the number of notes in the visual sheet is lower than the in-game sheet,
                 // we have to add all the notes.
                 if (Sheet.Children.Count < args.NotesQueued)
@@ -72,6 +84,12 @@ namespace HunterPie.GUI.Widgets.ClassWidget.Parts
                     for (int i = Sheet.Children.Count; i < args.NotesQueued; i++)
                     {
                         byte noteId = args.Notes[i];
+
+                        // Skip empty notes
+                        if (noteId == 0)
+                        {
+                            continue;
+                        }
 
                         NoteComponent note = new NoteComponent()
                         {
@@ -92,7 +110,7 @@ namespace HunterPie.GUI.Widgets.ClassWidget.Parts
                         Color = lastNoteId == 4 ? null : cachedBrushes[lastNoteId - 1]
                     };
                     Sheet.Children.Add(note);
-                    Sheet.Children.RemoveAt(0);
+                    ((NoteComponent)Sheet.Children[0]).Destroy = true;
                 }
             }));
             

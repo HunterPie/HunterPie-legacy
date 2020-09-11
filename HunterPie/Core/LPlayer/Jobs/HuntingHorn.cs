@@ -48,7 +48,7 @@ namespace HunterPie.Core.LPlayer.Jobs
                 if (value != notesQueued)
                 {
                     notesQueued = value;
-                    if (firstNoteIndex != -1)
+                    if (FirstNoteIndex >= 0)
                     {
                         DispatchNoteEvents(OnNoteQueueUpdate);
                     }
@@ -63,7 +63,7 @@ namespace HunterPie.Core.LPlayer.Jobs
                 if (value != firstNoteIndex)
                 {
                     firstNoteIndex = value;
-                    if (notesQueued != -1)
+                    if (NotesQueued >= 0)
                     {
                         DispatchNoteEvents(OnNoteQueueUpdate);
                     }
@@ -258,6 +258,11 @@ namespace HunterPie.Core.LPlayer.Jobs
         private T[] OrganizeQueue<T>(T[] unorganizedArray, long startAt, long length)
         {
             T[] organizedNotes = new T[unorganizedArray.Length];
+
+            if (startAt < 0 || length < 0)
+            {
+                return organizedNotes;
+            }
 
             for (int i = 0; i < unorganizedArray.Length; i++)
             {
