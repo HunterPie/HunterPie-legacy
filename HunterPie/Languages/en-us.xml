@@ -475,7 +475,7 @@
       <String ID="MESSAGE_AUTOUPDATE_DISABLED_WARN" Name="Auto-Update is disabled. If your HunterPie has any issues or doesn't support the current game version, try enabling auto-update."/>
       <String ID="MESSAGE_THEME_LOAD_WARN" Name="Loaded custom theme!"/>
       <!-- Errors -->
-      <String ID="MESSAGE_GAME_VERSION_UNSUPPORTED" Name="Detected game version ({GAME_VERSION}) not mapped yet!"/>
+      <String ID="MESSAGE_GAME_VERSION_UNSUPPORTED" Name="Detected game version ({GAME_VERSION}) not mapped. Either your game is outdated or the current version is not supported yet."/>
       <String ID="MESSAGE_LAUNCH_ERROR" Name="Failed to launch Monster Hunter World."/>
       <String ID="MESSAGE_UPDATE_ERROR" Name="Failed to update HunterPie. Check if you're connected to the internet."/>
       <String ID="MESSAGE_THEME_NOT_FOUND_ERROR" Name="Failed to find theme: {THEME_NAME}"/>

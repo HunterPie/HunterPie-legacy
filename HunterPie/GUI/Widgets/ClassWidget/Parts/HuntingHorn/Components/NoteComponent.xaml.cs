@@ -98,7 +98,6 @@ namespace HunterPie.GUI.Widgets.ClassWidget.Parts.Components
                 if (disposing)
                 {
                     Destroy = true;
-
                 }
 
                 disposedValue = true;
