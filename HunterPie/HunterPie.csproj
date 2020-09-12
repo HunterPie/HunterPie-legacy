@@ -606,7 +606,7 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <None Include="app.manifest" />
-    <None Include="Modules\Example\module.json" />
+    <None Include="Modules\HotKeyExample\module.json" />
     <None Include="Themes\RedMonsterBar.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -645,7 +645,7 @@
     <Compile Include="Memory\Scanner.cs" />
     <Compile Include="Memory\Win32.cs" />
     <Compile Include="Memory\WindowsHelper.cs" />
-    <None Include="Modules\Example\main.cs">
+    <None Include="Modules\HotKeyExample\main.cs">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
     <Compile Include="Properties\AssemblyInfo.cs">

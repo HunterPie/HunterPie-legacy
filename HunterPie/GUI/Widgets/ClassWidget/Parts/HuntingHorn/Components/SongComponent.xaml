@@ -6,11 +6,33 @@
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              xmlns:local="clr-namespace:HunterPie.GUI.Widgets.ClassWidget.Parts.Components"
              mc:Ignorable="d" 
-             Height="25" Width="200">
+             Height="25">
+    <UserControl.Background>
+        <LinearGradientBrush EndPoint="0,0" StartPoint="0,1">
+            <GradientStop Color="#991F1F1F" Offset="0"/>
+            <GradientStop Offset="1" Color="#00000000"/>
+        </LinearGradientBrush>
+    </UserControl.Background>
     <Grid>
         <StackPanel x:Name="NotesPanel" Orientation="Horizontal" HorizontalAlignment="Left" Width="71">
 
         </StackPanel>
         <TextBlock Text="{Binding ElementName=SongComponentDisplay, Path=SongName}" Foreground="#FFEAEAEA" FontFamily="Roboto" FontSize="13" Padding="0,5,0,0" TextTrimming="CharacterEllipsis" Margin="73,0,0,0"/>
     </Grid>
+    <UserControl.Style>
+        <Style TargetType="UserControl">
+            <Style.Triggers>
+                <Trigger Property="IsVisible" Value="True">
+                    <Trigger.EnterActions>
+                        <BeginStoryboard>
+                            <Storyboard>
+                                <ThicknessAnimation Storyboard.TargetProperty="Margin" From="0,-20,0,0" To="0,0,0,0" Duration="0:0:0.2"/>
+                                <DoubleAnimation Storyboard.TargetProperty="Opacity" From="0" To="0.8" Duration="0:0:0.2"/>
+                            </Storyboard>
+                        </BeginStoryboard>
+                    </Trigger.EnterActions>
+                </Trigger>
+            </Style.Triggers>
+        </Style>
+    </UserControl.Style>
 </UserControl>

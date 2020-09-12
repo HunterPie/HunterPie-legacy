@@ -8,6 +8,7 @@ using HunterPie.GUI.Widgets.ClassWidget.Parts.Components;
 using HunterPie.Core.Definitions;
 using HunterPie.Core;
 using HunterPie.Logger;
+using Newtonsoft.Json;
 
 namespace HunterPie.GUI.Widgets.ClassWidget.Parts
 {
@@ -56,19 +57,37 @@ namespace HunterPie.GUI.Widgets.ClassWidget.Parts
                     return;
                 }
 
-                // Add remaning songs to the queue based on the SongQueue length
-                for (int i = SongQueue.Children.Count; i < args.SongsQueued; i++)
+                if (SongQueue.Children.Count == args.SongsQueued)
                 {
-                    int index = args.SongIndexesQueue[i];
-
+                    int index = args.RawSongIndexesQueue[args.LastSongIndex];
                     sHuntingHornSong song = args.Songs[index];
+
                     SongComponent songComponent = new SongComponent()
                     {
                         SongName = GStrings.GetAbnormalityByID("HUNTINGHORN", song.BuffId, 0)
                     };
                     songComponent.SetSong(song.Notes, cachedBrushes);
-                    SongQueue.Children.Add(songComponent);
+                    SongQueue.Children.Insert(0, songComponent);
+
+                    SongQueue.Children.RemoveAt(SongQueue.Children.Count - 1);
+
+                } else
+                {
+                    // Add remaning songs to the queue based on the SongQueue length
+                    for (int i = 0; SongQueue.Children.Count < args.SongsQueued; i++)
+                    {
+                        int index = args.SongIndexesQueue[i];
+                        sHuntingHornSong song = args.Songs[index];
+
+                        SongComponent songComponent = new SongComponent()
+                        {
+                            SongName = GStrings.GetAbnormalityByID("HUNTINGHORN", song.BuffId, 0)
+                        };
+                        songComponent.SetSong(song.Notes, cachedBrushes);
+                        SongQueue.Children.Add(songComponent);
+                    }
                 }
+                
             }));
         }
 

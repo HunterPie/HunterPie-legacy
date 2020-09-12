@@ -37,8 +37,8 @@ namespace HunterPie.GUI.Widgets.ClassWidget.Parts.Components
                 NoteComponent noteDisplay = new NoteComponent()
                 {
                     NoteId = note,
-                    Width = 20,
-                    Height = 23,
+                    Width = 15,
+                    Height = 20,
                     HorizontalAlignment = HorizontalAlignment.Left
                 };
                 if (note != 4)
