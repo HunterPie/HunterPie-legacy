@@ -263,6 +263,7 @@
     <Stage ID="109" Name="導きの地"/>
     <Stage ID="201" Name="特殊闘技場"/>
     <Stage ID="202" Name="闘技場"/>
+    <Stage ID="203" Name="兵器置き場"/>
     <Stage ID="301" Name="調査拠点アステラ"/>
     <Stage ID="302" Name="集会エリア（アステラ）"/>
     <Stage ID="303" Name="研究基地"/>

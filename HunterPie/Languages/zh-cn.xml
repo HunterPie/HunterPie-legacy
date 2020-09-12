@@ -256,6 +256,7 @@
     <Stage ID="109" Name="聚魔之地"/>
     <Stage ID="201" Name="特殊斗技场"/>
     <Stage ID="202" Name="斗技场"/>
+    <Stage ID="203" Name="兵器置放处"/>
     <Stage ID="301" Name="星辰据点"/>
     <Stage ID="302" Name="集会区域(星辰)"/>
     <Stage ID="303" Name="研究基地"/>

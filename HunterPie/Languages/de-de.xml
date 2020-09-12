@@ -269,6 +269,7 @@ Gerade bei den Abnormalitäten / Statusveränderungen des Spielers gibt es mit (
     <Stage ID="109" Name="Die Leitlande"/>
     <Stage ID="201" Name="Spezialarena"/>
     <Stage ID="202" Name="Arena"/>
+    <Stage ID="203" Name="Seliana-Vorratskiste"/>
     <Stage ID="301" Name="Astera"/>
     <Stage ID="302" Name="Astera Versammlungsstätte"/>
     <Stage ID="303" Name="Forschungsbasis"/>
