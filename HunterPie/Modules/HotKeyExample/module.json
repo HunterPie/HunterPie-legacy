@@ -1,5 +1,5 @@
 ﻿{
-    "Name": "ExamplePlugin",
+    "Name": "HotkeyExamplePlugin",
     "EntryPoint": "main.cs",
     "Description": "Example plugin for HunterPie",
     "Author": "Haato",

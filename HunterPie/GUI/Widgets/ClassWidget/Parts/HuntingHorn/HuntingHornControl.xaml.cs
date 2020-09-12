@@ -42,6 +42,34 @@ namespace HunterPie.GUI.Widgets.ClassWidget.Parts
         {
             Context.OnNoteColorUpdate += OnNoteColorUpdate;
             Context.OnNoteQueueUpdate += OnNoteQueueUpdate;
+            Context.OnSongQueueUpdate += OnSongQueueUpdate;
+        }
+
+        private void OnSongQueueUpdate(object source, HuntingHornSongEventArgs args)
+        {
+            Dispatcher.BeginInvoke(DispatcherPriority.Render, new Action(() =>
+            {
+                // Clears the song queue when there's no queued song anymore
+                if (args.SongsQueued == 0)
+                {
+                    SongQueue.Children.Clear();
+                    return;
+                }
+
+                // Add remaning songs to the queue based on the SongQueue length
+                for (int i = SongQueue.Children.Count; i < args.SongsQueued; i++)
+                {
+                    int index = args.SongIndexesQueue[i];
+
+                    sHuntingHornSong song = args.Songs[index];
+                    SongComponent songComponent = new SongComponent()
+                    {
+                        SongName = GStrings.GetAbnormalityByID("HUNTINGHORN", song.BuffId, 0)
+                    };
+                    songComponent.SetSong(song.Notes, cachedBrushes);
+                    SongQueue.Children.Add(songComponent);
+                }
+            }));
         }
 
         private void OnNoteColorUpdate(object source, HuntingHornEventArgs args)

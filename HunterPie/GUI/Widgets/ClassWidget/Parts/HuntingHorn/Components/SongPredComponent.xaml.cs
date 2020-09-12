@@ -21,8 +21,6 @@ namespace HunterPie.GUI.Widgets.ClassWidget.Parts.Components
     public partial class SongPredComponent : UserControl
     {
 
-
-
         public string SongName
         {
             get { return (string)GetValue(SongNameProperty); }

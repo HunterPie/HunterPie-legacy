@@ -264,6 +264,9 @@ namespace HunterPie
 
         private void SetHotKeys()
         {
+
+            
+
             _windowHandle = new WindowInteropHelper(this).EnsureHandle();
             _source = HwndSource.FromHwnd(_windowHandle);
             _source.AddHook(HwndHook);

@@ -399,6 +399,10 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
+    <Page Include="GUI\Widgets\ClassWidget\Parts\HuntingHorn\Components\SongComponent.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="GUI\Widgets\ClassWidget\Parts\HuntingHorn\Components\SongPredComponent.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -520,6 +524,9 @@
     <Compile Include="GUI\Widgets\ClassWidget\Parts\HuntingHorn\Components\NoteComponent.xaml.cs">
       <DependentUpon>NoteComponent.xaml</DependentUpon>
     </Compile>
+    <Compile Include="GUI\Widgets\ClassWidget\Parts\HuntingHorn\Components\SongComponent.xaml.cs">
+      <DependentUpon>SongComponent.xaml</DependentUpon>
+    </Compile>
     <Compile Include="GUI\Widgets\ClassWidget\Parts\HuntingHorn\Components\SongPredComponent.xaml.cs">
       <DependentUpon>SongPredComponent.xaml</DependentUpon>
     </Compile>
@@ -638,7 +645,9 @@
     <Compile Include="Memory\Scanner.cs" />
     <Compile Include="Memory\Win32.cs" />
     <Compile Include="Memory\WindowsHelper.cs" />
-    <None Include="Modules\Example\main.cs" />
+    <None Include="Modules\Example\main.cs">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
     <Compile Include="Properties\AssemblyInfo.cs">
       <SubType>Code</SubType>
     </Compile>

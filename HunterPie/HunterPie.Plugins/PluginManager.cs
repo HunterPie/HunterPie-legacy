@@ -21,6 +21,8 @@ using System.Text;
 using Microsoft.CodeAnalysis;
 using Microsoft.CodeAnalysis.CSharp;
 using Microsoft.CodeAnalysis.Text;
+using System.Windows.Threading;
+using Application = System.Windows.Application;
 
 namespace HunterPie.Plugins
 {
@@ -41,7 +43,14 @@ namespace HunterPie.Plugins
                 {
                     if (!package.settings.IsEnabled) continue;
 
-                    package.plugin.Initialize(ctx);
+                    try
+                    {
+                        package.plugin.Initialize(ctx);
+                    } catch (Exception err)
+                    {
+                        Debugger.Error(err);
+                    }
+
                 }
             }
             benchmark.Stop();

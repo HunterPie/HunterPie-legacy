@@ -19,6 +19,6 @@
         <StackPanel x:Name="Sheet" ClipToBounds="True" Orientation="Horizontal" Height="35" VerticalAlignment="Top" HorizontalAlignment="Left" Width="108" Margin="45,12,0,0"/>
         <StackPanel x:Name="PredictionSheet" Orientation="Vertical" Height="54" VerticalAlignment="Top" HorizontalAlignment="Left" Width="225" Margin="144,0,0,0"/>
 
-        <StackPanel x:Name="SongQueue" Height="82" VerticalAlignment="Top" HorizontalAlignment="Left" Width="192" Margin="0,52,0,0"/>
+        <StackPanel x:Name="SongQueue" Height="82" VerticalAlignment="Top" HorizontalAlignment="Left" Width="200" Margin="0,52,0,0"/>
     </Grid>
 </local:ClassControl>

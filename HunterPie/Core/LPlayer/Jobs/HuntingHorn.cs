@@ -212,7 +212,7 @@ namespace HunterPie.Core.LPlayer.Jobs
 #endif
         public void UpdateInformation(sHuntingHornMechanics mechanics, sHuntingHornSong[] availableSongs)
         {
-
+            // When the player login, the Hunting Horn is 
             FirstNoteColor = mechanics.FirstNote;
             SecondNoteColor = mechanics.SecondNote;
             ThirdNoteColor = mechanics.ThirdNote;
