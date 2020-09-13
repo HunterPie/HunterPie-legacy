@@ -36,6 +36,13 @@ namespace HunterPie.GUI.Widgets.ClassWidget.Parts.Components
         public static readonly DependencyProperty IsCastedProperty =
             DependencyProperty.Register("IsCasted", typeof(bool), typeof(SongComponent));
 
+        public bool IsDoubleCasted
+        {
+            get { return (bool)GetValue(IsDoubleCastedProperty); }
+            set { SetValue(IsDoubleCastedProperty, value); }
+        }
+        public static readonly DependencyProperty IsDoubleCastedProperty =
+            DependencyProperty.Register("IsDoubleCasted", typeof(bool), typeof(SongComponent));
 
         public SongComponent()
         {

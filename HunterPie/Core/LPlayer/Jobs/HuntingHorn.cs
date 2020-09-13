@@ -4,8 +4,7 @@ using System.Collections.Generic;
 using HunterPie.Core.Definitions;
 using HunterPie.Core.Enums;
 using HunterPie.Core.Events;
-using HunterPie.Logger;
-using Newtonsoft.Json;
+using System.Linq;
 
 namespace HunterPie.Core.LPlayer.Jobs
 {
@@ -13,7 +12,8 @@ namespace HunterPie.Core.LPlayer.Jobs
     {
 
         // Action Ids for when the player cast buffs from the queue
-        public static readonly int[] SongCastActionIds = new int[] { 77, 81, 82, 83, 84, 85, 86, 87, 88, 91, 94, 95, 96, 97, 102 };
+        public static readonly int[] SongCastActionIds = new int[] { 77, 81, 82, 83, 84, 85, 86, 87, 88, 91, 92, 94, 95, 96, 97, 102 };
+        public static readonly int[] DoubleSongCastActionIds = new int[] { 91, 92, 94, 95, 96, 97, 102 };
 
         #region Private properties
         private sHuntingHornSong[] songs;
@@ -23,6 +23,7 @@ namespace HunterPie.Core.LPlayer.Jobs
         private long songIdFirstIndex = 0;
         private long playCurrentAt = 0;
         private bool isCastingBuffs;
+        private bool isDoubleCastingBuffs;
         
         // Colors
         private NoteColorId firstNote;
@@ -112,7 +113,7 @@ namespace HunterPie.Core.LPlayer.Jobs
                 }
             }
         }
-        public int PlayStartAt { get; private set; }
+        public byte PlayStartAt { get; private set; }
         public long PlayCurrentAt
         {
             get => playCurrentAt;
@@ -137,7 +138,18 @@ namespace HunterPie.Core.LPlayer.Jobs
                 }
             }
         }
-
+        public bool IsDoubleCastingBuffs
+        {
+            get => isDoubleCastingBuffs;
+            set
+            {
+                if (value != isDoubleCastingBuffs)
+                {
+                    isDoubleCastingBuffs = value;
+                    DispatchSongCastEvents(OnSongsCast);
+                }
+            }
+        }
         public NoteColorId FirstNoteColor
         {
             get => firstNote;
@@ -219,7 +231,7 @@ namespace HunterPie.Core.LPlayer.Jobs
             Debugger.Log($"Notes: {args.Notes[0]} {args.Notes[1]} {args.Notes[2]} {args.Notes[3]}");
         }
 #endif
-        public void UpdateInformation(sHuntingHornMechanics mechanics, sHuntingHornSong[] availableSongs, bool isCastingSongs)
+        public void UpdateInformation(sHuntingHornMechanics mechanics, sHuntingHornSong[] availableSongs, int playerActionId)
         {
             // Depending on HunterPie's polling rate, we read invalid values on login
             if (mechanics.Notes_Length > 4 || mechanics.FirstNoteIndex > 4)
@@ -243,14 +255,15 @@ namespace HunterPie.Core.LPlayer.Jobs
 
             RawSongIdsQueue = mechanics.SongIds;
             PlayStartAt = mechanics.PlayStartAt;
-            PlayCurrentAt = mechanics.PlayCurrentAt;
             SongIdFirstIndex = mechanics.SongIdFirstIndex;
+            PlayCurrentAt = mechanics.PlayCurrentAt;
 
             RawSongQueue = mechanics.Songs;
             SongsQueued = mechanics.Songs_Length;
             LastSongIndex = mechanics.LastSongIndex;
 
-            IsCastingBuffs = isCastingSongs;
+            IsCastingBuffs = SongCastActionIds.Contains(playerActionId);
+            IsDoubleCastingBuffs = DoubleSongCastActionIds.Contains(playerActionId);
         }
 
         /// <summary>

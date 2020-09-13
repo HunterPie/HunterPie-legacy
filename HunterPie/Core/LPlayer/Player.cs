@@ -135,6 +135,7 @@ namespace HunterPie.Core
             {
                 if (value != classAddress)
                 {
+                    Debugger.Log($"{value:X}");
                     classAddress = value;
                     Dispatch(OnClassChange, new PlayerEventArgs(this));
                 }
@@ -248,7 +249,7 @@ namespace HunterPie.Core
                 if (value != actionId)
                 {
                     actionId = value;
-                    Debugger.Log($"Current Action ID: {value}");
+                    //Debugger.Log($"Current Action ID: {value}");
                 }
             }
         }
@@ -256,7 +257,7 @@ namespace HunterPie.Core
         /// <summary>
         /// Player position
         /// </summary>
-        readonly Vector3 Position = new Vector3();
+        public readonly Vector3 Position = new Vector3();
 
         /// <summary>
         /// Player current party
@@ -1110,7 +1111,7 @@ namespace HunterPie.Core
             sHuntingHornMechanics hhCore = Scanner.Win32.Read<sHuntingHornMechanics>(weaponAddress + 0xD4);
             sHuntingHornSong[] availableSongs = Scanner.Win32.Read<sHuntingHornSong>(weaponAddress - 0x1C, 10);
 
-            HuntingHorn.UpdateInformation(hhCore, availableSongs, HuntingHorn.SongCastActionIds.Contains(ActionId));
+            HuntingHorn.UpdateInformation(hhCore, availableSongs, ActionId);
         }
 
         private void GetGreatswordInformation(long weaponAddress)

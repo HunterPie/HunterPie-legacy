@@ -24,7 +24,7 @@ namespace HunterPie.Core.Events
         /// Indicates where to start playing the queued songs, since in the game you can choose whether
         /// you want to start from the first, second or third song
         /// </summary>
-        public int PlayStartAt { get; }
+        public byte PlayStartAt { get; }
 
         /// <summary>
         /// Last song index played
@@ -36,6 +36,11 @@ namespace HunterPie.Core.Events
         /// </summary>
         public bool IsCastingBuffs { get; }
 
+        /// <summary>
+        /// Whether the player is double casting songs.
+        /// </summary>
+        public bool IsDoubleCasting { get; }
+
         public HuntingHornSongCastEventArgs(HuntingHorn huntingHorn)
         {
             SongsIdsQueue = huntingHorn.SongIdsQueue;
@@ -44,6 +49,7 @@ namespace HunterPie.Core.Events
             PlayStartAt = huntingHorn.PlayStartAt;
             PlayCurrentAt = huntingHorn.PlayCurrentAt;
             IsCastingBuffs = huntingHorn.IsCastingBuffs;
+            IsDoubleCasting = huntingHorn.IsDoubleCastingBuffs;
         }
     }
 }

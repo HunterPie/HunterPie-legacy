@@ -13,16 +13,66 @@
         </LinearGradientBrush>
     </UserControl.Background>
     <UserControl.Resources>
+
+        <Storyboard x:Key="SongDoubleCastText" Storyboard.TargetProperty="(Foreground).(SolidColorBrush.Color)">
+            <ColorAnimation From="#FF29C58C" To="#FFB972FF" Duration="0:0:0.2"/>
+        </Storyboard>
+
+        <Storyboard x:Key="SongCastText" Storyboard.TargetProperty="(Foreground).(SolidColorBrush.Color)">
+            <ColorAnimation To="#FF29C58C" Duration="0:0:0.2" />
+        </Storyboard>
+
         <Storyboard x:Key="SongRemove" Completed="OnSongRemoveAnimationComplete">
-            <ThicknessAnimation Storyboard.TargetProperty="Margin" From="0,0,0,0" To="0,0,-20,0" Duration="0:0:0.2"/>
-            <DoubleAnimation Storyboard.TargetProperty="Opacity" From="0.8" To="0" Duration="0:0:0.2"/>
+            <ThicknessAnimation Storyboard.TargetProperty="Margin" From="0,0,0,0" To="-20,0,0,0" Duration="0:0:0.2"/>
+            <DoubleAnimation Storyboard.TargetProperty="Opacity" To="0" Duration="0:0:0.2"/>
         </Storyboard>
     </UserControl.Resources>
+    <UserControl.OpacityMask>
+        <LinearGradientBrush EndPoint="1,1" StartPoint="0,1">
+            <GradientStop Color="#FF0C0C0C" Offset="0.5"/>
+            <GradientStop Offset="1"/>
+            <GradientStop Color="#00000000"/>
+            <GradientStop Color="#FF0C0C0C" Offset="0.05"/>
+            <GradientStop Color="#FF0C0C0C" Offset="0.95"/>
+        </LinearGradientBrush>
+    </UserControl.OpacityMask>
     <Grid>
         <StackPanel x:Name="NotesPanel" Orientation="Horizontal" HorizontalAlignment="Left" Width="71">
 
         </StackPanel>
-        <TextBlock Text="{Binding ElementName=SongComponentDisplay, Path=SongName}" Foreground="#FFEAEAEA" FontFamily="Roboto" FontSize="13" Padding="0,5,0,0" TextTrimming="CharacterEllipsis" Margin="73,0,0,0"/>
+        <TextBlock Text="{Binding ElementName=SongComponentDisplay, Path=SongName}" Foreground="#FFEAEAEA" FontFamily="Roboto" FontSize="13" Padding="0,5,0,0" TextTrimming="CharacterEllipsis" Margin="73,0,0,0">
+            <TextBlock.Style>
+                <Style TargetType="TextBlock">
+                    <Style.Triggers>
+                        <DataTrigger Binding="{Binding ElementName=SongComponentDisplay, Path=IsDoubleCasted}" Value="True">
+                            <DataTrigger.EnterActions>
+                                <RemoveStoryboard BeginStoryboardName="animSongCastText"/>
+                                <BeginStoryboard Storyboard="{StaticResource SongDoubleCastText}"/>
+                            </DataTrigger.EnterActions>
+                        </DataTrigger>
+                        <DataTrigger Binding="{Binding ElementName=SongComponentDisplay, Path=IsCasted}" Value="True">
+                            <DataTrigger.EnterActions>
+                                <BeginStoryboard Name="animSongCastText" Storyboard="{StaticResource SongCastText}"/>
+                            </DataTrigger.EnterActions>
+                            <DataTrigger.ExitActions>
+                                <RemoveStoryboard BeginStoryboardName="animSongCastText"/>
+                            </DataTrigger.ExitActions>
+                        </DataTrigger>
+                    </Style.Triggers>
+                </Style>
+            </TextBlock.Style>
+        </TextBlock>
+        <Grid.Style>
+            <Style TargetType="Grid">
+                <Style.Triggers>
+                    <DataTrigger Binding="{Binding ElementName=SongComponentDisplay, Path=Destroy}" Value="True">
+                        <DataTrigger.EnterActions>
+                            <BeginStoryboard Storyboard="{StaticResource SongRemove}"/>
+                        </DataTrigger.EnterActions>
+                    </DataTrigger>
+                </Style.Triggers>
+            </Style>
+        </Grid.Style>
     </Grid>
     <UserControl.Style>
         <Style TargetType="UserControl">
@@ -37,11 +87,15 @@
                             </Storyboard>
                         </BeginStoryboard>
                     </DataTrigger.EnterActions>
-                </DataTrigger>
-                <DataTrigger Binding="{Binding ElementName=SongComponentDisplay, Path=Destroy}" Value="True">
-                    <DataTrigger.EnterActions>
-                        <BeginStoryboard Storyboard="{StaticResource SongRemove}"/>
-                    </DataTrigger.EnterActions>
+                    <DataTrigger.ExitActions>
+                        <BeginStoryboard>
+                            <Storyboard>
+                                <Storyboard Storyboard.TargetProperty="Opacity">
+                                    <DoubleAnimation To="0.8" Duration="0:0:0.2"/>
+                                </Storyboard>
+                            </Storyboard>
+                        </BeginStoryboard>
+                    </DataTrigger.ExitActions>
                 </DataTrigger>
                 <Trigger Property="IsVisible" Value="True">
                     <Trigger.EnterActions>

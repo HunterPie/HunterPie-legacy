@@ -9,6 +9,9 @@ using HunterPie.Core.Definitions;
 using HunterPie.Core;
 using HunterPie.Logger;
 using Newtonsoft.Json;
+using System.Windows.Documents;
+using System.Collections.Generic;
+using System.Linq;
 
 namespace HunterPie.GUI.Widgets.ClassWidget.Parts
 {
@@ -55,13 +58,15 @@ namespace HunterPie.GUI.Widgets.ClassWidget.Parts
             Context.OnSongsCast -= OnSongsCast;
         }
 
+        List<int> castOrder = new List<int>();
         private void OnSongsCast(object source, HuntingHornSongCastEventArgs args)
         {
+            Debugger.Log($"IsCastingBuff: {args.IsCastingBuffs} | IsDoubleCasting: {args.IsDoubleCasting} | CurrentAt: {args.PlayCurrentAt} | StartAt: {args.PlayStartAt}");
             Dispatcher.BeginInvoke(DispatcherPriority.Render, new Action(() =>
             {
-                if (args.IsCastingBuffs)
+
+                if (args.IsCastingBuffs && !args.IsDoubleCasting)
                 {
-                    Debugger.Log(args.PlayStartAt);
                     if (SongQueue.Children.Count < args.PlayStartAt + 1)
                     {
                         return;
@@ -71,11 +76,27 @@ namespace HunterPie.GUI.Widgets.ClassWidget.Parts
                         SongComponent song = (SongComponent)SongQueue.Children[i];
                         if (!song.IsCasted)
                         {
+                            castOrder.Add(i);
                             song.IsCasted = true;
                             break;
                         }
                     }
-                } else
+                } else if (args.IsCastingBuffs && args.IsDoubleCasting)
+                {
+                    int castedSongs = SongQueue.Children.Cast<SongComponent>().Where(e => e.IsCasted).Count();
+                    if (castedSongs > args.PlayCurrentAt && args.PlayCurrentAt > 0)
+                    {
+                        ((SongComponent)SongQueue.Children[castOrder.Last()]).IsCasted = false;
+                    }
+                    foreach (SongComponent castedSong in SongQueue.Children)
+                    {
+                        if (castedSong.IsCasted)
+                        {
+                            castedSong.IsDoubleCasted = true;
+                        }
+                    }
+                }
+                else 
                 {
                     foreach (SongComponent song in SongQueue.Children)
                     {

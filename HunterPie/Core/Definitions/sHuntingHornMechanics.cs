@@ -31,7 +31,12 @@ namespace HunterPie.Core.Definitions
         public int unkn3;
         public long SongIdFirstIndex; // Index of the first song in the SongIds
         public long PlayCurrentAt; // Index of the song in the Songs array that's being currently played
-        public int PlayStartAt; // Indicates which index the game will start at when playing the songs in the song queue
+        public byte PlayStartAt; // Indicates which index the game will start at when playing the songs in the song queue
+
+        // Not sure why this is for, but it changes the value to 1 sometimes
+        public byte unk0;
+        public byte unk1;
+        public byte unk2;
 
         public int unkn4;
         public int unkn5;
