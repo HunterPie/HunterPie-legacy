@@ -1,44 +1,32 @@
 # PlayerEventArgs
-
-<ns>namespace HunterPie.Core.Events</ns>
-
-Event arguments for Player events
+<a href="?p=EventArgs/HunterPie.Core.Events.md"><ns>namespace HunterPie.Core.Events</ns></a>
 
 ## Properties
 
 ### <Type>String</Type> Name
 
-The current character name.
-
+Player name
 ### <Type>Int32</Type> Level
 
-The current character high rank.
-
+Player high rank
 ### <Type>Int32</Type> MasterRank
 
-The current character master rank.
+Player master rank
+### <Type>Classes</Type> Weapon
 
-### <Enum>Classes</Enum> Weapon
-
-The current character class Id using the <Enum>Classes</Enum> enum.
-
+Player current equipped weapon
 ### <Type>String</Type> WeaponName
 
-The current weapon name.
-
+Player weapon name
 ### <Type>Job</Type> Class
 
-The current class information.
-
+Player class information
 ### <Type>String</Type> SessionId
 
-The current character session id, if the player is in one.
-
+The current Session Id.
 ### <Type>Int64</Type> SteamSessionId
 
-The current character steam session id, if the player is in one.
+The current Session Steam Id, this is the Id you use to use Steam to join a session
+### <Type>Int64</Type> SteamId
 
-### <Type>String</Type> SteamId
-
-The local player steam account id.
-
+Local player Steam Id

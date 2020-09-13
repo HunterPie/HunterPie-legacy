@@ -1,19 +1,11 @@
 # DaysLeftEventArgs
+<a href="?p=EventArgs/HunterPie.Core.Events.md"><ns>namespace HunterPie.Core.Events</ns></a>
 
-<ns>namespace HunterPie.Core.Events</ns>
+## Properties
 
-## Properties 
+### <Type>Byte</Type> Days
 
-### <Type>[Byte]</Type> Days
+If it's false, it indicates how many days until Argosy comes back.<br/>
+### <Type>Bool</Type> Modifier
 
-This depends on the [Modifier](#bool-modifier) property and on what's firing the event. See below:
-
-- OnArgosyDaysChange - If [Modifier](#bool-modifier) is true, this indicates the days left until Argosy leaves town. If this is false, it indicates how long until Argosy comes back.
-- OnTailraidersDaysChange - Indicates how many days until the Tailraiders are back from their adventure.
-
-### <Type>[Bool]</Type> Modifier
-
-Depends on what event triggered it. See below:
-
-- OnArgosyDaysChange - Whether Argosy is in town or not.
-- OnTailraidersDaysChange - Whether Tailraiders are deployed or not.
+<b>OnTailraidersDaysChange -</b> If Tailraiders are deployed or not.

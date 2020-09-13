@@ -5,6 +5,7 @@ using HunterPie.Core.Definitions;
 using HunterPie.Core.Enums;
 using HunterPie.Core.Events;
 using System.Linq;
+using HunterPie.Logger;
 
 namespace HunterPie.Core.LPlayer.Jobs
 {

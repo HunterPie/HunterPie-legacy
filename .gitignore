@@ -8,3 +8,7 @@ obj
 docs/server.js
 docs/package-lock.json
 docs/node_modules
+
+# Scripts to turn .cs into markdown
+dump
+dump.py

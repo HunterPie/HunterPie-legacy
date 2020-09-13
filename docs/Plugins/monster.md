@@ -72,6 +72,14 @@ This is dispatched whenever Alatreon shifts its elements. This event is used onl
 
 ## Properties
 
+### <Type>Int32</Type> MonsterNumber
+
+Monster index in memory.
+
+### <Type>String</Type> Name
+
+Monster name in HunterPie's current localization.
+
 ### <Type>String</Type> Id
 
 Monster EM id.
