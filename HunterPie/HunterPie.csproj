@@ -165,6 +165,7 @@
     <Compile Include="Core\Events\HarvestBoxEventArgs.cs" />
     <Compile Include="Core\Events\HuntingHornEventArgs.cs" />
     <Compile Include="Core\Events\HuntingHornNoteEventArgs.cs" />
+    <Compile Include="Core\Events\HuntingHornSongCastEventArgs.cs" />
     <Compile Include="Core\Events\HuntingHornSongEventArgs.cs" />
     <Compile Include="Core\Events\MantleEventArgs.cs" />
     <Compile Include="Core\Events\MonsterAilmentEventArgs.cs" />

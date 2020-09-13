@@ -44,19 +44,59 @@ namespace HunterPie.GUI.Widgets.ClassWidget.Parts
             Context.OnNoteColorUpdate += OnNoteColorUpdate;
             Context.OnNoteQueueUpdate += OnNoteQueueUpdate;
             Context.OnSongQueueUpdate += OnSongQueueUpdate;
+            Context.OnSongsCast += OnSongsCast;
+        }
+
+        public override void UnhookEvents()
+        {
+            Context.OnNoteColorUpdate -= OnNoteColorUpdate;
+            Context.OnNoteQueueUpdate -= OnNoteQueueUpdate;
+            Context.OnSongQueueUpdate -= OnSongQueueUpdate;
+            Context.OnSongsCast -= OnSongsCast;
+        }
+
+        private void OnSongsCast(object source, HuntingHornSongCastEventArgs args)
+        {
+            Dispatcher.BeginInvoke(DispatcherPriority.Render, new Action(() =>
+            {
+                if (args.IsCastingBuffs)
+                {
+                    Debugger.Log(args.PlayStartAt);
+                    if (SongQueue.Children.Count < args.PlayStartAt + 1)
+                    {
+                        return;
+                    }
+                    for (int i = args.PlayStartAt; i < SongQueue.Children.Count; i++)
+                    {
+                        SongComponent song = (SongComponent)SongQueue.Children[i];
+                        if (!song.IsCasted)
+                        {
+                            song.IsCasted = true;
+                            break;
+                        }
+                    }
+                } else
+                {
+                    foreach (SongComponent song in SongQueue.Children)
+                    {
+                        if (song.IsCasted)
+                        {
+                            song.Dispose();
+                        }
+                    }
+                }
+                
+            }));
         }
 
         private void OnSongQueueUpdate(object source, HuntingHornSongEventArgs args)
         {
+            if (args.IsCastingSongs)
+            {
+                return;
+            }
             Dispatcher.BeginInvoke(DispatcherPriority.Render, new Action(() =>
             {
-                // Clears the song queue when there's no queued song anymore
-                if (args.SongsQueued == 0)
-                {
-                    SongQueue.Children.Clear();
-                    return;
-                }
-
                 if (SongQueue.Children.Count == args.SongsQueued)
                 {
                     int index = args.RawSongIndexesQueue[args.LastSongIndex];
@@ -84,7 +124,7 @@ namespace HunterPie.GUI.Widgets.ClassWidget.Parts
                             SongName = GStrings.GetAbnormalityByID("HUNTINGHORN", song.BuffId, 0)
                         };
                         songComponent.SetSong(song.Notes, cachedBrushes);
-                        SongQueue.Children.Add(songComponent);
+                        SongQueue.Children.Insert(0, songComponent);
                     }
                 }
                 
@@ -99,12 +139,6 @@ namespace HunterPie.GUI.Widgets.ClassWidget.Parts
                 cachedBrushes[1] = HuntingHorn.GetColorBasedOnColorId(args.SecondNoteColor);
                 cachedBrushes[2] = HuntingHorn.GetColorBasedOnColorId(args.ThirdNoteColor);
             }));
-        }
-
-        public override void UnhookEvents()
-        {
-            Context.OnNoteColorUpdate -= OnNoteColorUpdate;
-            Context.OnNoteQueueUpdate -= OnNoteQueueUpdate;
         }
 
         private void OnNoteQueueUpdate(object source, HuntingHornNoteEventArgs args)
@@ -122,7 +156,9 @@ namespace HunterPie.GUI.Widgets.ClassWidget.Parts
                     PredictionSheet.Children.Clear();
                     return;
                 }
-                Debugger.Warn($"Notes: {args.Notes[0]} {args.Notes[1]} {args.Notes[2]} {args.Notes[3]}");
+
+                //Debugger.Warn($"Notes: {args.Notes[0]} {args.Notes[1]} {args.Notes[2]} {args.Notes[3]}");
+
                 // If the number of notes in the visual sheet is lower than the in-game sheet,
                 // we have to add all the notes.
                 if (Sheet.Children.Count < args.NotesQueued)

@@ -5,11 +5,16 @@ using HunterPie.Core.Definitions;
 using HunterPie.Core.Enums;
 using HunterPie.Core.Events;
 using HunterPie.Logger;
+using Newtonsoft.Json;
 
 namespace HunterPie.Core.LPlayer.Jobs
 {
     public class HuntingHorn : Job
     {
+
+        // Action Ids for when the player cast buffs from the queue
+        public static readonly int[] SongCastActionIds = new int[] { 77, 81, 82, 83, 84, 85, 86, 87, 88, 91, 94, 95, 96, 97, 102 };
+
         #region Private properties
         private sHuntingHornSong[] songs;
         private long notesQueued = -1;
@@ -17,7 +22,7 @@ namespace HunterPie.Core.LPlayer.Jobs
         private long lastSongIndex = 0;
         private long songIdFirstIndex = 0;
         private long playCurrentAt = 0;
-        private long playStartAt = 0;
+        private bool isCastingBuffs;
         
         // Colors
         private NoteColorId firstNote;
@@ -104,21 +109,10 @@ namespace HunterPie.Core.LPlayer.Jobs
                 if (value != songIdFirstIndex)
                 {
                     songIdFirstIndex = value;
-                    // TODO: OnHuntingHornPlay event                    
                 }
             }
         }
-        public long PlayStartAt
-        {
-            get => playStartAt;
-            set
-            {
-                if (value != playStartAt)
-                {
-                    playStartAt = value;
-                }
-            }
-        }
+        public int PlayStartAt { get; private set; }
         public long PlayCurrentAt
         {
             get => playCurrentAt;
@@ -127,7 +121,19 @@ namespace HunterPie.Core.LPlayer.Jobs
                 if (value != playCurrentAt)
                 {
                     playCurrentAt = value;
-                    // TODO: Probably event
+                    DispatchSongCastEvents(OnSongsCast);
+                }
+            }
+        }
+        public bool IsCastingBuffs
+        {
+            get => isCastingBuffs;
+            set
+            {
+                if (value != isCastingBuffs)
+                {
+                    isCastingBuffs = value;
+                    DispatchSongCastEvents(OnSongsCast);
                 }
             }
         }
@@ -176,16 +182,19 @@ namespace HunterPie.Core.LPlayer.Jobs
         public delegate void HuntingHornEvents(object source, HuntingHornEventArgs args);
         public delegate void HuntingHornNoteEvents(object source, HuntingHornNoteEventArgs args);
         public delegate void HuntingHornSongEvents(object source, HuntingHornSongEventArgs args);
+        public delegate void HuntingHornSongCastEvents(object source, HuntingHornSongCastEventArgs args);
 
         public event HuntingHornEvents OnSongsListUpdate;
         public event HuntingHornEvents OnNoteColorUpdate;
 
         public event HuntingHornNoteEvents OnNoteQueueUpdate;
         public event HuntingHornSongEvents OnSongQueueUpdate;
+        public event HuntingHornSongCastEvents OnSongsCast;
 
         protected virtual void DispatchEvents(HuntingHornEvents e) => e?.Invoke(this, new HuntingHornEventArgs(this));
         protected virtual void DispatchNoteEvents(HuntingHornNoteEvents e) => e?.Invoke(this, new HuntingHornNoteEventArgs(this));
         protected virtual void DispatchSongEvents(HuntingHornSongEvents e) => e?.Invoke(this, new HuntingHornSongEventArgs(this));
+        protected virtual void DispatchSongCastEvents(HuntingHornSongCastEvents e) => e?.Invoke(this, new HuntingHornSongCastEventArgs(this));
         #endregion
 #if DEBUG // For testing purposes
         public HuntingHorn()
@@ -210,9 +219,14 @@ namespace HunterPie.Core.LPlayer.Jobs
             Debugger.Log($"Notes: {args.Notes[0]} {args.Notes[1]} {args.Notes[2]} {args.Notes[3]}");
         }
 #endif
-        public void UpdateInformation(sHuntingHornMechanics mechanics, sHuntingHornSong[] availableSongs)
+        public void UpdateInformation(sHuntingHornMechanics mechanics, sHuntingHornSong[] availableSongs, bool isCastingSongs)
         {
-            // When the player login, the Hunting Horn is 
+            // Depending on HunterPie's polling rate, we read invalid values on login
+            if (mechanics.Notes_Length > 4 || mechanics.FirstNoteIndex > 4)
+            {
+                return;
+            }
+            
             FirstNoteColor = mechanics.FirstNote;
             SecondNoteColor = mechanics.SecondNote;
             ThirdNoteColor = mechanics.ThirdNote;
@@ -236,6 +250,7 @@ namespace HunterPie.Core.LPlayer.Jobs
             SongsQueued = mechanics.Songs_Length;
             LastSongIndex = mechanics.LastSongIndex;
 
+            IsCastingBuffs = isCastingSongs;
         }
 
         /// <summary>
@@ -286,6 +301,11 @@ namespace HunterPie.Core.LPlayer.Jobs
             return organizedNotes;
         }
 
+        /// <summary>
+        /// Searches the Songs array for possible songs that start with the same note combination
+        /// the user currently has in Notes
+        /// </summary>
+        /// <returns>Array with sHuntingHornSong</returns>
         private sHuntingHornSong[] FindSongCandidates()
         {
             List<sHuntingHornSong> candidates = new List<sHuntingHornSong>();

@@ -55,6 +55,11 @@ namespace HunterPie.Core.Events
         /// </summary>
         public long SongIndexesFirstIndex { get; }
 
+        /// <summary>
+        /// Whether the player is casting buffs based on their player Action Id
+        /// </summary>
+        public bool IsCastingSongs { get; }
+
         public HuntingHornSongEventArgs(HuntingHorn huntingHorn)
         {
             Songs = huntingHorn.Songs;
@@ -66,6 +71,7 @@ namespace HunterPie.Core.Events
             RawSongIndexesQueue = huntingHorn.RawSongIndexesQueue;
             SongIndexesQueued = huntingHorn.SongIndexesQueued;
             SongIndexesFirstIndex = huntingHorn.SongIndexesFirstIndex;
+            IsCastingSongs = huntingHorn.IsCastingBuffs;
         }
 
     }

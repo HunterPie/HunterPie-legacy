@@ -10,8 +10,6 @@ using HunterPie.Memory;
 using HunterPie.Core.Events;
 using Classes = HunterPie.Core.Enums.Classes;
 using AbnormalityType = HunterPie.Core.Enums.AbnormalityType;
-using System.Windows.Documents;
-using Newtonsoft.Json;
 
 namespace HunterPie.Core
 {
@@ -24,6 +22,7 @@ namespace HunterPie.Core
         private byte weaponId;
         private string sessionId;
         private long classAddress;
+        private int actionId;
 
         private readonly int[] harvestBoxZones =
         {
@@ -240,6 +239,19 @@ namespace HunterPie.Core
         /// Player maximum stamina
         /// </summary>
         public float MaxStamina { get; private set; }
+
+        public int ActionId
+        {
+            get => actionId;
+            set
+            {
+                if (value != actionId)
+                {
+                    actionId = value;
+                    Debugger.Log($"Current Action ID: {value}");
+                }
+            }
+        }
 
         /// <summary>
         /// Player position
@@ -693,6 +705,8 @@ namespace HunterPie.Core
             MaxStamina = Scanner.Read<float>(address + 0x144);
             Stamina = Scanner.Read<float>(address + 0x13C);
 
+            ActionId = Scanner.Read<int>(address - 0x4B28);
+
             // Hacky way to update the eat timer
             if (!InHarvestZone)
             {
@@ -1096,7 +1110,7 @@ namespace HunterPie.Core
             sHuntingHornMechanics hhCore = Scanner.Win32.Read<sHuntingHornMechanics>(weaponAddress + 0xD4);
             sHuntingHornSong[] availableSongs = Scanner.Win32.Read<sHuntingHornSong>(weaponAddress - 0x1C, 10);
 
-            HuntingHorn.UpdateInformation(hhCore, availableSongs);
+            HuntingHorn.UpdateInformation(hhCore, availableSongs, HuntingHorn.SongCastActionIds.Contains(ActionId));
         }
 
         private void GetGreatswordInformation(long weaponAddress)
