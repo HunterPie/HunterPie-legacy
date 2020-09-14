@@ -69,10 +69,13 @@ namespace HunterPie.GUI.Widgets.ClassWidget.Parts
             Context.OnSafijiivaCounterUpdate += OnSafijiivaCounterUpdate;
         }
 
-        private void OnDemonGaugeReduce(object source, DualBladesEventArgs args) => Dispatcher.BeginInvoke(System.Windows.Threading.DispatcherPriority.Render, new Action(() =>
-                                                                                  {
-                                                                                      IsReducing = args.IsReducing;
-                                                                                  }));
+        private void OnDemonGaugeReduce(object source, DualBladesEventArgs args)
+        {
+            Dispatcher.BeginInvoke(System.Windows.Threading.DispatcherPriority.Render, new Action(() =>
+            {
+                IsReducing = args.IsReducing;
+            }));
+        }
 
         public override void UnhookEvents()
         {
@@ -92,22 +95,31 @@ namespace HunterPie.GUI.Widgets.ClassWidget.Parts
 
         #region Game Events
 
-        private void OnSafijiivaCounterUpdate(object source, JobEventArgs args) => Dispatcher.BeginInvoke(System.Windows.Threading.DispatcherPriority.Render, new Action(() =>
-                                                                                 {
-                                                                                     HasSafiBuff = args.SafijiivaRegenCounter != -1;
-                                                                                     SafiCounter = args.SafijiivaMaxHits - args.SafijiivaRegenCounter;
-                                                                                 }));
+        private void OnSafijiivaCounterUpdate(object source, JobEventArgs args)
+        {
+            Dispatcher.BeginInvoke(System.Windows.Threading.DispatcherPriority.Render, new Action(() =>
+            {
+                HasSafiBuff = args.SafijiivaRegenCounter != -1;
+                SafiCounter = args.SafijiivaMaxHits - args.SafijiivaRegenCounter;
+            }));
+        }
 
-        private void OnDemonModeToggle(object source, DualBladesEventArgs args) => Dispatcher.BeginInvoke(System.Windows.Threading.DispatcherPriority.Render, new Action(() =>
-                                                                                 {
-                                                                                     IsDemonModeActive = args.InDemonMode;
-                                                                                 }));
+        private void OnDemonModeToggle(object source, DualBladesEventArgs args)
+        {
+            Dispatcher.BeginInvoke(System.Windows.Threading.DispatcherPriority.Render, new Action(() =>
+            {
+                IsDemonModeActive = args.InDemonMode;
+            }));
+        }
 
-        private void OnDemonGaugeChange(object source, DualBladesEventArgs args) => Dispatcher.BeginInvoke(System.Windows.Threading.DispatcherPriority.Render, new Action(() =>
-                                                                                  {
-                                                                                      GaugePercentage = 102 * args.DemonGauge;
-                                                                                      DemonGauge = args.DemonGauge;
-                                                                                  }));
+        private void OnDemonGaugeChange(object source, DualBladesEventArgs args)
+        {
+            Dispatcher.BeginInvoke(System.Windows.Threading.DispatcherPriority.Render, new Action(() =>
+            {
+                GaugePercentage = 102 * args.DemonGauge;
+                DemonGauge = args.DemonGauge;
+            }));
+        }
 
         #endregion
     }

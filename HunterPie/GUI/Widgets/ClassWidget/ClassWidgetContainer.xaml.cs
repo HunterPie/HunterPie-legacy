@@ -4,6 +4,7 @@ using System.Windows.Input;
 using System.Windows.Media;
 using HunterPie.Core;
 using HunterPie.GUI.Widgets.ClassWidget.Parts;
+using HunterPie.Logger;
 using Classes = HunterPie.Core.Enums.Classes;
 
 namespace HunterPie.GUI.Widgets.ClassWidget
@@ -57,7 +58,7 @@ namespace HunterPie.GUI.Widgets.ClassWidget
         private void ApplySettingsBasedOnClass()
         {
             UserSettings.Config.ClassesWidget classesConfig = UserSettings.PlayerConfig.Overlay.ClassesWidget;
-            UserSettings.Config.WeaponHelperStructure config;
+            UserSettings.Config.IWeaponHelperStructure config;
             switch ((Classes)Context.Player.WeaponID)
             {
                 case Classes.DualBlades:
@@ -93,6 +94,7 @@ namespace HunterPie.GUI.Widgets.ClassWidget
                 default:
                     return;
             }
+
             WidgetActive = config.Enabled;
             Left = config.Position[0];
             Top = config.Position[1];
@@ -103,7 +105,7 @@ namespace HunterPie.GUI.Widgets.ClassWidget
         {
             if (Context == null) return;
             UserSettings.Config.ClassesWidget classesConfig = UserSettings.PlayerConfig.Overlay.ClassesWidget;
-            UserSettings.Config.WeaponHelperStructure config;
+            UserSettings.Config.IWeaponHelperStructure config;
             switch ((Classes)Context.Player.WeaponID)
             {
                 case Classes.DualBlades:

@@ -296,10 +296,6 @@ namespace HunterPie
                     switch (wParam.ToInt32())
                     {
                         case 0: // Toggle overlay
-                            SendKeys.SendWait("Hello World!");
-                            SendKeys.SendWait("{ENTER}");
-                            SendKeys.Flush();
-                            break;
                             if (GameOverlay == null) break;
                             
                             UserSettings.PlayerConfig.Overlay.Enabled = !UserSettings.PlayerConfig.Overlay.Enabled;

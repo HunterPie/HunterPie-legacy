@@ -177,6 +177,7 @@ namespace HunterPie.GUIControls
             settingsUI.switchDualBladesHelper.IsEnabled = settings.Overlay.ClassesWidget.DualBladesHelper.Enabled;
             settingsUI.switchLongswordHelper.IsEnabled = settings.Overlay.ClassesWidget.LongSwordHelper.Enabled;
             settingsUI.switchHammerHelper.IsEnabled = settings.Overlay.ClassesWidget.HammerHelper.Enabled;
+            settingsUI.switchHuntingHornHelper.IsEnabled = settings.Overlay.ClassesWidget.HuntingHornHelper.Enabled;
             settingsUI.switchLanceHelper.IsEnabled = settings.Overlay.ClassesWidget.LanceHelper.Enabled;
             settingsUI.switchGunLanceHelper.IsEnabled = settings.Overlay.ClassesWidget.GunLanceHelper.Enabled;
             settingsUI.switchSwitchAxeHelper.IsEnabled = settings.Overlay.ClassesWidget.SwitchAxeHelper.Enabled;
@@ -311,6 +312,7 @@ namespace HunterPie.GUIControls
             settings.Overlay.ClassesWidget.DualBladesHelper.Enabled = settingsUI.switchDualBladesHelper.IsEnabled;
             settings.Overlay.ClassesWidget.LongSwordHelper.Enabled = settingsUI.switchLongswordHelper.IsEnabled;
             settings.Overlay.ClassesWidget.HammerHelper.Enabled = settingsUI.switchHammerHelper.IsEnabled;
+            settings.Overlay.ClassesWidget.HuntingHornHelper.Enabled = settingsUI.switchHuntingHornHelper.IsEnabled;
             settings.Overlay.ClassesWidget.LanceHelper.Enabled = settingsUI.switchLanceHelper.IsEnabled;
             settings.Overlay.ClassesWidget.GunLanceHelper.Enabled = settingsUI.switchGunLanceHelper.IsEnabled;
             settings.Overlay.ClassesWidget.SwitchAxeHelper.Enabled = settingsUI.switchSwitchAxeHelper.IsEnabled;

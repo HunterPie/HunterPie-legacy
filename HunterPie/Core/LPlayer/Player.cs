@@ -135,7 +135,7 @@ namespace HunterPie.Core
             {
                 if (value != classAddress)
                 {
-                    Debugger.Log($"{value:X}");
+                    Debugger.Debug($"{value:X}");
                     classAddress = value;
                     Dispatch(OnClassChange, new PlayerEventArgs(this));
                 }
@@ -248,7 +248,7 @@ namespace HunterPie.Core
                 if (value != actionId)
                 {
                     actionId = value;
-                    //Debugger.Log($"Current Action ID: {value}");
+                    Debugger.Debug($"Current Action ID: {value}");
                 }
             }
         }

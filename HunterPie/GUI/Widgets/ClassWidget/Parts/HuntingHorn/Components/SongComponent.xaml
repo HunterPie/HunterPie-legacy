@@ -35,9 +35,15 @@
         </Storyboard>
 
         <Storyboard x:Key="SongCastAnim">
-            <DoubleAnimation Storyboard.TargetProperty="Opacity" From="0.8" To="0.5" Duration="0:0:0.2"/>
+            <DoubleAnimation Storyboard.TargetProperty="Opacity" From="0.8" To="1" Duration="0:0:0.2"/>
+            <ColorAnimation Storyboard.TargetProperty="(Background).(LinearGradientBrush.GradientStops)[3].(GradientStop.Color)" To="#7F004700" Duration="0:0:0.2"/>
             <ColorAnimation Storyboard.TargetProperty="(Background).(LinearGradientBrush.GradientStops)[4].(GradientStop.Color)" To="#7F004700" Duration="0:0:0.2"/>
-            <ColorAnimation Storyboard.TargetProperty="(Background).(LinearGradientBrush.GradientStops)[5].(GradientStop.Color)" To="#7F004700" Duration="0:0:0.2"/>
+        </Storyboard>
+
+        <Storyboard x:Key="SongDoubleCastAnim">
+            <DoubleAnimation Storyboard.TargetProperty="Opacity" To="1" Duration="0:0:0.2"/>
+            <ColorAnimation Storyboard.TargetProperty="(Background).(LinearGradientBrush.GradientStops)[3].(GradientStop.Color)" To="#7F380949" Duration="0:0:0.2"/>
+            <ColorAnimation Storyboard.TargetProperty="(Background).(LinearGradientBrush.GradientStops)[4].(GradientStop.Color)" To="#7F380949" Duration="0:0:0.2"/>
         </Storyboard>
         
     </UserControl.Resources>
@@ -91,6 +97,12 @@
     <UserControl.Style>
         <Style TargetType="UserControl">
             <Style.Triggers>
+                <DataTrigger Binding="{Binding ElementName=SongComponentDisplay, Path=IsDoubleCasted}" Value="True">
+                    <DataTrigger.EnterActions>
+                        <RemoveStoryboard BeginStoryboardName="CastAnimBackground"/>
+                        <BeginStoryboard Storyboard="{StaticResource SongDoubleCastAnim}"/>
+                    </DataTrigger.EnterActions>
+                </DataTrigger>
                 <DataTrigger Binding="{Binding ElementName=SongComponentDisplay, Path=IsCasted}" Value="True">
                     <DataTrigger.EnterActions>
                         <BeginStoryboard Name="CastAnimBackground" Storyboard="{StaticResource SongCastAnim}"/>

@@ -127,7 +127,7 @@ namespace HunterPie.GUI.Widgets.ClassWidget.Parts
                 {
                     int index = args.RawSongIndexesQueue[args.LastSongIndex];
 
-                    if (args.Songs.Length < index)
+                    if (args.Songs.Length < index + 1)
                     {
                         return;
                     }
