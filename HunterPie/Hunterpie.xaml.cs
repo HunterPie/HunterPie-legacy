@@ -48,7 +48,7 @@ namespace HunterPie
         bool IsUpdating = true;
 
         // HunterPie version
-        const string HUNTERPIE_VERSION = "1.0.3.96";
+        const string HUNTERPIE_VERSION = "1.0.3.97";
 
         // Helpers
         IntPtr _windowHandle;

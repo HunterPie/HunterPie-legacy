@@ -42,6 +42,7 @@ namespace HunterPie.GUI.Widgets.ClassWidget.Parts
             OnNoteColorUpdate(this, new HuntingHornEventArgs(Context));
             OnNoteQueueUpdate(this, new HuntingHornNoteEventArgs(Context));
             OnSongQueueUpdate(this, new HuntingHornSongEventArgs(Context));
+            OnSafijiivaCounterUpdate(this, new JobEventArgs(Context));
         }
 
         private void HookEvents()
@@ -49,6 +50,7 @@ namespace HunterPie.GUI.Widgets.ClassWidget.Parts
             Context.OnNoteColorUpdate += OnNoteColorUpdate;
             Context.OnNoteQueueUpdate += OnNoteQueueUpdate;
             Context.OnSongQueueUpdate += OnSongQueueUpdate;
+            Context.OnSafijiivaCounterUpdate += OnSafijiivaCounterUpdate;
             Context.OnSongsCast += OnSongsCast;
         }
 
@@ -60,10 +62,19 @@ namespace HunterPie.GUI.Widgets.ClassWidget.Parts
             Context.OnNoteColorUpdate -= OnNoteColorUpdate;
             Context.OnNoteQueueUpdate -= OnNoteQueueUpdate;
             Context.OnSongQueueUpdate -= OnSongQueueUpdate;
+            Context.OnSafijiivaCounterUpdate -= OnSafijiivaCounterUpdate;
             Context.OnSongsCast -= OnSongsCast;
         }
 
-        
+        private void OnSafijiivaCounterUpdate(object source, JobEventArgs args)
+        {
+            Dispatcher.BeginInvoke(System.Windows.Threading.DispatcherPriority.Render, new Action(() =>
+            {
+                HasSafiBuff = args.SafijiivaRegenCounter != -1;
+                SafiCounter = args.SafijiivaMaxHits - args.SafijiivaRegenCounter;
+            }));
+        }
+
         private void OnSongsCast(object source, HuntingHornSongCastEventArgs args)
         {
             Dispatcher.BeginInvoke(DispatcherPriority.Render, new Action(() =>
