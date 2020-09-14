@@ -1,5 +1,8 @@
-﻿using System.Windows;
+﻿using System;
+using System.Globalization;
+using System.Windows;
 using System.Windows.Controls;
+using HunterPie.Logger;
 
 namespace HunterPie.GUIControls.Custom_Controls
 {
@@ -70,5 +73,26 @@ namespace HunterPie.GUIControls.Custom_Controls
             DependencyProperty.Register("ValueText", typeof(string), typeof(MinimalSlider));
 
         public MinimalSlider() => InitializeComponent();
+
+        private void TextBox_PreviewTextInput(object sender, System.Windows.Input.TextCompositionEventArgs e)
+        {
+            int caretIndex = ((TextBox)sender).CaretIndex;
+            string text;
+            if (((TextBox)sender).SelectionLength == ((TextBox)sender).Text.Length)
+            {
+                text = e.Text;
+            } else
+            {
+                text = ((TextBox)sender).Text.Insert(caretIndex, e.Text);
+            }
+            
+            if (!double.TryParse(text, NumberStyles.Float, CultureInfo.InvariantCulture, out double parsed))
+            {
+                e.Handled = true;
+            } else
+            {
+                e.Handled = !(parsed <= MaxValue && parsed >= MinValue);
+            }
+        }
     }
 }
