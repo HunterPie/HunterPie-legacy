@@ -147,7 +147,6 @@ namespace HunterPie.Core
         /// </summary>
         public sPlayerSkill[] Skills;
 
-
         /// <summary>
         /// Current Zone Id
         /// </summary>

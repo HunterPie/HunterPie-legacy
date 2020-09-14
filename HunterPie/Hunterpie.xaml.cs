@@ -26,6 +26,7 @@ using Presence = HunterPie.Core.Integrations.Discord.Presence;
 using Process = System.Diagnostics.Process;
 using ProcessStartInfo = System.Diagnostics.ProcessStartInfo;
 using System.Threading.Tasks;
+using SendKeys = System.Windows.Forms.SendKeys;
 
 namespace HunterPie
 {
@@ -106,6 +107,8 @@ namespace HunterPie
 
             AdministratorIconVisibility = IsRunningAsAdmin() ? Visibility.Visible : Visibility.Collapsed;
 
+            Environment.CurrentDirectory = AppDomain.CurrentDomain.BaseDirectory;
+
             InitializeComponent();
         }
 
@@ -133,6 +136,7 @@ namespace HunterPie
 
         private void SetDPIAwareness()
         {
+            
             if (Environment.OSVersion.Version >= new Version(6, 3, 0))
             {
                 if (Environment.OSVersion.Version >= new Version(10, 0, 15063))
@@ -292,7 +296,12 @@ namespace HunterPie
                     switch (wParam.ToInt32())
                     {
                         case 0: // Toggle overlay
+                            SendKeys.SendWait("Hello World!");
+                            SendKeys.SendWait("{ENTER}");
+                            SendKeys.Flush();
+                            break;
                             if (GameOverlay == null) break;
+                            
                             UserSettings.PlayerConfig.Overlay.Enabled = !UserSettings.PlayerConfig.Overlay.Enabled;
                             UserSettings.SaveNewConfig();
                             break;

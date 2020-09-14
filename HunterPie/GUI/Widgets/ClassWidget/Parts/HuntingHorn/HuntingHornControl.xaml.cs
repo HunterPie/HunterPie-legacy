@@ -1,17 +1,15 @@
 ﻿using System;
 using System.Windows.Media;
-using System.Windows;
 using System.Windows.Threading;
 using HunterPie.Core.Events;
 using HunterPie.Core.LPlayer.Jobs;
 using HunterPie.GUI.Widgets.ClassWidget.Parts.Components;
 using HunterPie.Core.Definitions;
 using HunterPie.Core;
-using HunterPie.Logger;
-using Newtonsoft.Json;
-using System.Windows.Documents;
 using System.Collections.Generic;
 using System.Linq;
+using HunterPie.Logger;
+using Newtonsoft.Json;
 
 namespace HunterPie.GUI.Widgets.ClassWidget.Parts
 {
@@ -22,7 +20,8 @@ namespace HunterPie.GUI.Widgets.ClassWidget.Parts
     {
 
         HuntingHorn Context { get; set; }
-        Brush[] cachedBrushes = new Brush[3];
+        readonly Brush[] cachedBrushes = new Brush[3];
+        readonly List<int> castOrder = new List<int>();
 
         public HuntingHornControl()
         {
@@ -38,8 +37,11 @@ namespace HunterPie.GUI.Widgets.ClassWidget.Parts
 
         private void SetupComponents()
         {
+            // In case someone opens HunterPie after the game we need to trigger the
+            // events again for this.
             OnNoteColorUpdate(this, new HuntingHornEventArgs(Context));
             OnNoteQueueUpdate(this, new HuntingHornNoteEventArgs(Context));
+            OnSongQueueUpdate(this, new HuntingHornSongEventArgs(Context));
         }
 
         private void HookEvents()
@@ -52,16 +54,18 @@ namespace HunterPie.GUI.Widgets.ClassWidget.Parts
 
         public override void UnhookEvents()
         {
+            SongQueue.Children.Clear();
+            Sheet.Children.Clear();
+            PredictionSheet.Children.Clear();
             Context.OnNoteColorUpdate -= OnNoteColorUpdate;
             Context.OnNoteQueueUpdate -= OnNoteQueueUpdate;
             Context.OnSongQueueUpdate -= OnSongQueueUpdate;
             Context.OnSongsCast -= OnSongsCast;
         }
 
-        List<int> castOrder = new List<int>();
+        
         private void OnSongsCast(object source, HuntingHornSongCastEventArgs args)
         {
-            Debugger.Log($"IsCastingBuff: {args.IsCastingBuffs} | IsDoubleCasting: {args.IsDoubleCasting} | CurrentAt: {args.PlayCurrentAt} | StartAt: {args.PlayStartAt}");
             Dispatcher.BeginInvoke(DispatcherPriority.Render, new Action(() =>
             {
 
@@ -95,6 +99,7 @@ namespace HunterPie.GUI.Widgets.ClassWidget.Parts
                             castedSong.IsDoubleCasted = true;
                         }
                     }
+                    castOrder.Clear();
                 }
                 else 
                 {
@@ -121,6 +126,12 @@ namespace HunterPie.GUI.Widgets.ClassWidget.Parts
                 if (SongQueue.Children.Count == args.SongsQueued)
                 {
                     int index = args.RawSongIndexesQueue[args.LastSongIndex];
+
+                    if (args.Songs.Length < index)
+                    {
+                        return;
+                    }
+
                     sHuntingHornSong song = args.Songs[index];
 
                     SongComponent songComponent = new SongComponent()
@@ -148,7 +159,6 @@ namespace HunterPie.GUI.Widgets.ClassWidget.Parts
                         SongQueue.Children.Insert(0, songComponent);
                     }
                 }
-                
             }));
         }
 

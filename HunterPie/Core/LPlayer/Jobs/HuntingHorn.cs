@@ -5,7 +5,7 @@ using HunterPie.Core.Definitions;
 using HunterPie.Core.Enums;
 using HunterPie.Core.Events;
 using System.Linq;
-using HunterPie.Logger;
+using System;
 
 namespace HunterPie.Core.LPlayer.Jobs
 {
@@ -17,7 +17,7 @@ namespace HunterPie.Core.LPlayer.Jobs
         public static readonly int[] DoubleSongCastActionIds = new int[] { 91, 92, 94, 95, 96, 97, 102 };
 
         #region Private properties
-        private sHuntingHornSong[] songs;
+        private sHuntingHornSong[] songs = new sHuntingHornSong[0];
         private long notesQueued = -1;
         private long firstNoteIndex = -1;
         private long lastSongIndex = 0;
@@ -209,29 +209,7 @@ namespace HunterPie.Core.LPlayer.Jobs
         protected virtual void DispatchSongEvents(HuntingHornSongEvents e) => e?.Invoke(this, new HuntingHornSongEventArgs(this));
         protected virtual void DispatchSongCastEvents(HuntingHornSongCastEvents e) => e?.Invoke(this, new HuntingHornSongCastEventArgs(this));
         #endregion
-#if DEBUG // For testing purposes
-        public HuntingHorn()
-        {
-            OnNoteQueueUpdate += HuntingHorn_OnNoteQueueUpdate;
-            OnSongQueueUpdate += HuntingHorn_OnSongQueueUpdate;
-            OnNoteColorUpdate += HuntingHorn_OnNoteColorUpdate;
-        }
 
-        private void HuntingHorn_OnNoteColorUpdate(object source, HuntingHornEventArgs args)
-        {
-            Debugger.Log($"Color update {args.FirstNoteColor} {args.SecondNoteColor} {args.ThirdNoteColor}");
-        }
-
-        private void HuntingHorn_OnSongQueueUpdate(object source, HuntingHornSongEventArgs args)
-        {
-            Debugger.Warn($"Songs queue: {args.SongQueue[0]} {args.SongQueue[1]} {args.SongQueue[2]}");
-        }
-
-        private void HuntingHorn_OnNoteQueueUpdate(object source, HuntingHornNoteEventArgs args)
-        {
-            Debugger.Log($"Notes: {args.Notes[0]} {args.Notes[1]} {args.Notes[2]} {args.Notes[3]}");
-        }
-#endif
         public void UpdateInformation(sHuntingHornMechanics mechanics, sHuntingHornSong[] availableSongs, int playerActionId)
         {
             // Depending on HunterPie's polling rate, we read invalid values on login
@@ -249,7 +227,10 @@ namespace HunterPie.Core.LPlayer.Jobs
             RawNotes = mechanics.Notes;
             NotesQueued = mechanics.Notes_Length;
             FirstNoteIndex = mechanics.FirstNoteIndex;
-                                    
+
+            RawSongQueue = mechanics.Songs;
+            SongsQueued = mechanics.Songs_Length;
+
             RawSongIndexesQueue = mechanics.SongIndexes;
             SongIndexesQueued = mechanics.SongIndexes_Length;
             SongIndexesFirstIndex = mechanics.SongIndexFirstIndex;
@@ -258,9 +239,7 @@ namespace HunterPie.Core.LPlayer.Jobs
             PlayStartAt = mechanics.PlayStartAt;
             SongIdFirstIndex = mechanics.SongIdFirstIndex;
             PlayCurrentAt = mechanics.PlayCurrentAt;
-
-            RawSongQueue = mechanics.Songs;
-            SongsQueued = mechanics.Songs_Length;
+                        
             LastSongIndex = mechanics.LastSongIndex;
 
             IsCastingBuffs = SongCastActionIds.Contains(playerActionId);
@@ -276,7 +255,7 @@ namespace HunterPie.Core.LPlayer.Jobs
         private bool IsSongArrayEqual(sHuntingHornSong[] newSongsList)
         {
             
-            if (Songs == null)
+            if (Songs.Length == 0)
             {
                 return false;
             }
