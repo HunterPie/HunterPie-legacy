@@ -33,19 +33,20 @@ HunterPie is a modern and simple to use overlay with support for Discord Rich Pr
 ## Features
 
 ### Core
-- [Build exporter to Honey Hunters World](https://hunterpie.me/HunterPie/?p=Integrations/honeyHuntersWorld.md)
-- Decoration & Charms exporter to Honey Hunters World
-- [Automatic Player Data Exporter](https://hunterpie.me/HunterPie/?p=HunterPie/playerDataExporter.md)
 - Automatic updates
-- [Discord Rich Presence Support](https://hunterpie.me/HunterPie/?p=Integrations/discord.md)
+- [Build exporter to Honey Hunters World](https://docs.hunterpie.me/?p=Integrations/honeyHuntersWorld.md)
+- [Decoration & Charms exporter to Honey Hunters World](https://docs.hunterpie.me/?p=Integrations/honeyHuntersWorld.md)
+- [Automatic Player Data Exporter](https://docs.hunterpie.me/?p=HunterPie/playerDataExporter.md)
+- [Discord Rich Presence Support](https://docs.hunterpie.me/?p=Integrations/discord.md)
+- [Plugin Support](https://github.com/Haato3o/HunterPie.Plugins)
 
 ### Overlay
-- [Monster Widget](https://hunterpie.me/HunterPie/?p=Overlay/monstersWidget.md)
-- [Harvest Box Widget](https://hunterpie.me/HunterPie/?p=Overlay/harvestBoxWidget.md)
-- Specialized Tools Tracker Widget
+- [Monster Widget](https://docs.hunterpie.me/?p=Overlay/monstersWidget.md)
+- [Harvest Box Widget](https://docs.hunterpie.me/?p=Overlay/harvestBoxWidget.md)
+- [Specialized Tools Widget](https://docs.hunterpie.me/?p=Overlay/specializedToolWidget.md)
 - [Abnormalities Tracker Widget](https://github.com/Haato3o/HunterPie/wiki/Abnormalities-Tray)
-- [Class Helper Widget](https://hunterpie.me/HunterPie/?p=Overlay/classesWidget.md)
-- [Damage Meter Widget](https://hunterpie.me/HunterPie/?p=Overlay/damageMeterWidget.md)
+- [Class Helper Widget](https://docs.hunterpie.me/?p=Overlay/classesWidget.md)
+- [Damage Meter Widget](https://docs.hunterpie.me/?p=Overlay/damageMeterWidget.md)
 
 ## Troubleshooting & Bugs
 
