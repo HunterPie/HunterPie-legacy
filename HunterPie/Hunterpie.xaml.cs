@@ -7,7 +7,6 @@ using System.Security.Principal;
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Input;
-using System.Windows.Interop;
 using System.Windows.Markup;
 using System.Windows.Media;
 using System.Windows.Media.Animation;
@@ -20,6 +19,7 @@ using HunterPie.GUIControls.Custom_Controls;
 using HunterPie.Plugins;
 using HunterPie.Logger;
 using PluginDisplay = HunterPie.GUIControls.Plugins;
+using HunterPie.Core.Input;
 // HunterPie
 using HunterPie.Memory;
 using Presence = HunterPie.Core.Integrations.Discord.Presence;
@@ -50,9 +50,11 @@ namespace HunterPie
         // HunterPie version
         const string HUNTERPIE_VERSION = "1.0.3.97";
 
+        private List<int> registeredHotkeys = new List<int>();
+
         // Helpers
-        IntPtr _windowHandle;
-        HwndSource _source;
+        //IntPtr _windowHandle;
+        //HwndSource _source;
 
         public bool IsPlayerLoggedOn
         {
@@ -268,110 +270,56 @@ namespace HunterPie
 
         private void SetHotKeys()
         {
+            Dictionary<string, Action> toBeRegistered = new Dictionary<string, Action>();
+            toBeRegistered.Add(UserSettings.PlayerConfig.Overlay.ToggleOverlayKeybind, ToggleOverlayCallback);
+            toBeRegistered.Add(UserSettings.PlayerConfig.Overlay.MonstersComponent.SwitchMonsterBarModeHotkey, SwitchMonsterBarModeCallback);
+            toBeRegistered.Add(UserSettings.PlayerConfig.Overlay.ToggleDesignKeybind, ToggleDesignModeCallback);
 
-            
-
-            _windowHandle = new WindowInteropHelper(this).EnsureHandle();
-            _source = HwndSource.FromHwnd(_windowHandle);
-            _source.AddHook(HwndHook);
-            BindHotKey(0); // Toggle overlay
-            BindHotKey(1); // Switch monster bar mode
-            BindHotKey(2); // Toggle design mode
+            foreach (string hotkey in toBeRegistered.Keys)
+            {
+                int id = Hotkey.Register(hotkey, toBeRegistered[hotkey]);
+                if (id > 0)
+                {
+                    registeredHotkeys.Add(id);
+                }
+            }
+            toBeRegistered.Clear();
         }
 
         private void RemoveHotKeys()
         {
-            KeyboardHookHelper.UnregisterHotKey(_windowHandle, 0);
-            KeyboardHookHelper.UnregisterHotKey(_windowHandle, 1);
-            KeyboardHookHelper.UnregisterHotKey(_windowHandle, 2);
-            _source?.RemoveHook(HwndHook);
+            foreach (int id in registeredHotkeys)
+            {
+                Hotkey.Unregister(id);
+            }
+            registeredHotkeys.Clear();
         }
 
-        private IntPtr HwndHook(IntPtr hwnd, int msg, IntPtr wParam, IntPtr lParam, ref bool handled)
+        private void ToggleOverlayCallback()
         {
-            const int WM_HOTKEY = 0x0312;
-            switch (msg)
+            if (GameOverlay == null)
             {
-                case WM_HOTKEY:
-                    switch (wParam.ToInt32())
-                    {
-                        case 0: // Toggle overlay
-                            if (GameOverlay == null) break;
-                            
-                            UserSettings.PlayerConfig.Overlay.Enabled = !UserSettings.PlayerConfig.Overlay.Enabled;
-                            UserSettings.SaveNewConfig();
-                            break;
-                        case 1: // Switch monster bar mode
-                            if (GameOverlay == null) break;
-                            UserSettings.PlayerConfig.Overlay.MonstersComponent.ShowMonsterBarMode = UserSettings.PlayerConfig.Overlay.MonstersComponent.ShowMonsterBarMode + 1 >= 5 ? (byte)0 : (byte)(UserSettings.PlayerConfig.Overlay.MonstersComponent.ShowMonsterBarMode + 1);
-                            UserSettings.SaveNewConfig();
-                            break;
-                        case 2:
-                            GameOverlay?.ToggleDesignMode();
-                            break;
-                    }
-                    break;
+                return;
             }
-            return IntPtr.Zero;
+
+            UserSettings.PlayerConfig.Overlay.Enabled = !UserSettings.PlayerConfig.Overlay.Enabled;
+            UserSettings.SaveNewConfig();
         }
 
-        private int[] ParseHotKey(string hotkey)
+        private void SwitchMonsterBarModeCallback()
         {
-            if (hotkey == "None") return null;
-            string[] Keys = hotkey.Split('+');
-            int Modifier = 0x4000;  // Start with no-repeat
-            int key = 0x0;
-            foreach (string hkey in Keys)
+            if (GameOverlay == null)
             {
-                switch (hkey)
-                {
-                    case "Alt":
-                        Modifier |= 0x0001;
-                        break;
-                    case "Ctrl":
-                        Modifier |= 0x0002;
-                        break;
-                    case "Shift":
-                        Modifier |= 0x0004;
-                        break;
-                    default:
-                        key = (int)Enum.Parse(typeof(KeyboardHookHelper.KeyboardKeys), hkey);
-                        break;
-                }
+                return;
             }
-            int[] parsed = new int[2] { Modifier, key };
-            return parsed;
+
+            UserSettings.PlayerConfig.Overlay.MonstersComponent.ShowMonsterBarMode = UserSettings.PlayerConfig.Overlay.MonstersComponent.ShowMonsterBarMode + 1 >= 5 ? (byte)0 : (byte)(UserSettings.PlayerConfig.Overlay.MonstersComponent.ShowMonsterBarMode + 1);
+            UserSettings.SaveNewConfig();
         }
 
-        private void BindHotKey(int ID)
+        private void ToggleDesignModeCallback()
         {
-            switch (ID)
-            {
-                case 0: // Overlay toggle
-                    int[] ParsedToggleOverlayHotKey = ParseHotKey(UserSettings.PlayerConfig.Overlay.ToggleOverlayKeybind);
-                    if (ParsedToggleOverlayHotKey == null) break;
-                    if (!KeyboardHookHelper.RegisterHotKey(_windowHandle, 0, ParsedToggleOverlayHotKey[0], ParsedToggleOverlayHotKey[1]))
-                    {
-                        Debugger.Error("Failed to register hotkey for Overlay toggle");
-                    }
-                    break;
-                case 1: // Monster bar mode switch
-                    int[] ParsedToggleBarModeHotKey = ParseHotKey(UserSettings.PlayerConfig.Overlay.MonstersComponent.SwitchMonsterBarModeHotkey);
-                    if (ParsedToggleBarModeHotKey == null) break;
-                    if (!KeyboardHookHelper.RegisterHotKey(_windowHandle, 1, ParsedToggleBarModeHotKey[0], ParsedToggleBarModeHotKey[1]))
-                    {
-                        Debugger.Error("Failed to register hotkey for monster bar mode switch");
-                    }
-                    break;
-                case 2: // Design mode toggle
-                    int[] Parsed = ParseHotKey(UserSettings.PlayerConfig.Overlay.ToggleDesignKeybind);
-                    if (Parsed == null) break;
-                    if (!KeyboardHookHelper.RegisterHotKey(_windowHandle, 2, Parsed[0], Parsed[1]))
-                    {
-                        Debugger.Error("Failed to register hotkey for Design mode toggle");
-                    }
-                    break;
-            }
+            GameOverlay?.ToggleDesignMode();
         }
 
         private void ConvertOldHotkeyToNew(int Key)
@@ -768,6 +716,9 @@ namespace HunterPie
             // Update version text
             Version = GStrings.GetLocalizationByXPath("/Console/String[@ID='CONSOLE_VERSION']").Replace("{HunterPie_Version}", HUNTERPIE_VERSION).Replace("{HunterPie_Branch}", UserSettings.PlayerConfig.HunterPie.Update.Branch);
 
+            // Initializes the Hotkey API
+            Hotkey.Load();
+
             // Initializes the rest of HunterPie
             LoadData();
             Debugger.Warn(GStrings.GetLocalizationByXPath("/Console/String[@ID='MESSAGE_HUNTERPIE_INITIALIZED']"));
@@ -825,6 +776,7 @@ namespace HunterPie
 
         private void OnWindowClosing(object sender, CancelEventArgs e)
         {
+            pluginManager.UnloadPlugins();
             UserSettings.PlayerConfig.HunterPie.PosX = Left;
             UserSettings.PlayerConfig.HunterPie.PosY = Top;
 
@@ -849,8 +801,8 @@ namespace HunterPie
             Settings.Instance.UninstallKeyboardHook();
             // Unhook events
             if (MonsterHunter.Player != null) UnhookGameEvents();
-            if (_source != null) RemoveHotKeys();
             UnhookEvents();
+            Hotkey.Unload();
         }
 
         private void OnGithubButtonClick(object sender, MouseButtonEventArgs e) => Process.Start("https://github.com/Haato3o/HunterPie");

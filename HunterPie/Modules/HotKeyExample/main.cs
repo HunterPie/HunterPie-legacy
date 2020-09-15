@@ -1,102 +1,53 @@
-﻿using System;
-using HunterPie;
+﻿using Debugger = HunterPie.Logger.Debugger;
 using HunterPie.Core;
-using Debugger = HunterPie.Logger.Debugger;
-using System.Windows;
-using System.Windows.Interop;
+using HunterPie.Core.Input;
 
 namespace HunterPie.Plugins
 {
-    public class Example : IPlugin
+    public class ExamplePlugin : IPlugin
     {
         public string Name { get; set; }
         public string Description { get; set; }
         public Game Context { get; set; }
 
-        IntPtr hWnd;
-        HwndSource source;
+        // This variable will hold our hotkey id that we use to unregister it on unload,
+        // for multiple hotkeys, you can use a List<int> instead, always adding the valid hotkey ids.
+        private int myHotkeyId;
 
         public void Initialize(Game context)
         {
-            Name = "HotkeyExampleModule";
-            Description = "A plugin example for HunterPie";
-
+            Name = "Hotkey Example";
+            Description = "A HunterPie plugin to demonstrate the Hotkey API.";
+            // You MUST set the Context variable in order to access the game information.
             Context = context;
 
-            SetHotkey();
+            SetHotkeys();
         }
 
         public void Unload()
         {
-            Application.Current.Dispatcher.Invoke(new Action(() =>
-            {
-                bool success = KeyboardHookHelper.UnregisterHotKey(hWnd, 999);
-
-                // Make sure to remove the hook, so the next time you register a hotkey it won't
-                // call the callback function multiple times
-                source.RemoveHook(HwndHook);
-                if (success)
-                {
-                    Debugger.Log("Successfully unregistered hotkey");
-                } else
-                {
-                    Debugger.Error("failed to unregister");
-                }
-            }));
+            // Now we can unregister the hotkey we registered
+            // WE MUST UNREGISTER IT ON UNLOAD, if we don't then:
+            // 1 - We'll create a memory leak that will only be resolved when HunterPie is closed
+            // 2 - We will not be able to register this hotkey again next time the mod loads, unless HunterPie is restarted
+            Hotkey.Unregister(myHotkeyId);
         }
 
-        private void SetHotkey()
+        private void SetHotkeys()
         {
-            // We need the current window handle to register a global hotkey
-            // HunterPie is multithreaded, so we should invoke to get the main window handle
-            Application.Current.Dispatcher.Invoke(new Action(() =>
+            // Hotkey.Register will try to add the hotkey, if it fails it will return -1
+            // if it succeeds then it will return a valid hotkey id that you can use it unregister it.
+            int hkId = Hotkey.Register("Ctrl+8", MyHotkeyCallback);
+            if (hkId > 0)
             {
-                hWnd = new WindowInteropHelper(Application.Current.MainWindow).EnsureHandle();
-                source = HwndSource.FromHwnd(hWnd);
-
-                // This is our "callback"
-                source.AddHook(HwndHook);
-
-                // Key modifiers
-                // 0x1 = Alt; 0x2 = Ctrl; 0x4 = Shift
-                int Modifiers = 0x2 | 0x4;
-
-                // Setting the key to P, you can find the keys here: https://github.com/Haato3o/HunterPie/blob/master/HunterPie/Core/KeyboardHook.cs
-                KeyboardHookHelper.KeyboardKeys key = KeyboardHookHelper.KeyboardKeys.P;
-
-                // Hotkeys also need an id, you can choose whatever you want, just make sure it's unique
-                int hotkeyId = 999;
-
-                // Now we register the hotkey
-                bool success = KeyboardHookHelper.RegisterHotKey(hWnd, hotkeyId, Modifiers, (int)key);
-
-                if (success)
-                {
-                    Debugger.Log("Registered hotkey!");
-                } else
-                {
-                    Debugger.Error("Failed to register hotkey");
-                }
-            }));
-
-        }
-
-        private IntPtr HwndHook(IntPtr hwnd, int msg, IntPtr wParam, IntPtr lParam, ref bool handled)
-        {
-            const int WM_HOTKEY = 0x0312;
-            switch (msg)
-            {
-                case WM_HOTKEY:
-                    switch (wParam.ToInt32())
-                    {
-                        // Check if it's our hotkey id
-                        case 999: 
-                            Debugger.Log("Hotkey pressed!");
-                            break;
-                    }
-                    break;
+                myHotkeyId = hkId;
             }
-            return IntPtr.Zero;
         }
+
+        private void MyHotkeyCallback()
+        {
+            Debugger.Module("Hotkey was pressed!", Name);
+        }
+
     }
 }

@@ -210,10 +210,10 @@ namespace HunterPie.Core
 
         public static KeyboardKeys GetKeyboardKeyByID(int id) => (KeyboardKeys)Enum.Parse(typeof(KeyboardKeys), id.ToString());
 
-        [DllImport("user32.dll")]
+        [DllImport("user32.dll", SetLastError = true)]
         public static extern bool RegisterHotKey(IntPtr hWnd, int id, int fsModifiers, int vlc);
 
-        [DllImport("user32.dll")]
+        [DllImport("user32.dll", SetLastError = true)]
         public static extern bool UnregisterHotKey(IntPtr hWnd, int id);
 
     }

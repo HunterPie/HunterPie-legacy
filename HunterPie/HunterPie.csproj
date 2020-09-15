@@ -176,6 +176,7 @@
     <Compile Include="Core\Events\PlayerEventArgs.cs" />
     <Compile Include="Core\Events\PlayerLocationEventArgs.cs" />
     <Compile Include="Core\Events\SteamFuelEventArgs.cs" />
+    <Compile Include="Core\Input\Hotkey.cs" />
     <Compile Include="Core\Integrations\DataExporter\Exporter.cs" />
     <Compile Include="Core\Integrations\Honey\Honey.cs" />
     <Compile Include="Core\KeyboardHook.cs" />
@@ -607,7 +608,9 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <None Include="app.manifest" />
-    <None Include="Modules\HotKeyExample\module.json" />
+    <None Include="Modules\HotKeyExample\module.json">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
     <None Include="Themes\RedMonsterBar.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -647,7 +650,7 @@
     <Compile Include="Memory\Win32.cs" />
     <Compile Include="Memory\WindowsHelper.cs" />
     <None Include="Modules\HotKeyExample\main.cs">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
     <Compile Include="Properties\AssemblyInfo.cs">
       <SubType>Code</SubType>
