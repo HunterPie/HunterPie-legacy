@@ -48,7 +48,6 @@ namespace HunterPie.Core.Input
                 int hotkeyId = wParam.ToInt32();
                 if (Hotkeys.ContainsKey(hotkeyId))
                 {
-                    Debugger.Log(hotkeyId);
                     Action callback = Hotkeys[hotkeyId];
                     callback.Invoke();
                 }
