@@ -60,6 +60,11 @@ namespace HunterPie.Core.Events
         /// </summary>
         public bool IsCastingSongs { get; }
 
+        /// <summary>
+        /// Whether the song cast was interrupted by either a monster hitting the player
+        /// </summary>
+        public bool IsCastingInterrupted { get; }
+
         public HuntingHornSongEventArgs(HuntingHorn huntingHorn)
         {
             Songs = huntingHorn.Songs;
@@ -72,6 +77,7 @@ namespace HunterPie.Core.Events
             SongIndexesQueued = huntingHorn.SongIndexesQueued;
             SongIndexesFirstIndex = huntingHorn.SongIndexesFirstIndex;
             IsCastingSongs = huntingHorn.IsCastingBuffs;
+            IsCastingInterrupted = huntingHorn.IsCastingInterrupted;
         }
 
     }

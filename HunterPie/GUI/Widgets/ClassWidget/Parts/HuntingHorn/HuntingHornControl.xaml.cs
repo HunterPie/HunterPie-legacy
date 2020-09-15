@@ -8,8 +8,6 @@ using HunterPie.Core.Definitions;
 using HunterPie.Core;
 using System.Collections.Generic;
 using System.Linq;
-using HunterPie.Logger;
-using Newtonsoft.Json;
 
 namespace HunterPie.GUI.Widgets.ClassWidget.Parts
 {
@@ -20,6 +18,7 @@ namespace HunterPie.GUI.Widgets.ClassWidget.Parts
     {
 
         HuntingHorn Context { get; set; }
+
         readonly Brush[] cachedBrushes = new Brush[3];
         readonly List<int> castOrder = new List<int>();
 
@@ -31,8 +30,9 @@ namespace HunterPie.GUI.Widgets.ClassWidget.Parts
         public void SetContext(HuntingHorn context)
         {
             Context = context;
-            HookEvents();
             SetupComponents();
+            HookEvents();
+            
         }
 
         private void SetupComponents()
@@ -56,19 +56,20 @@ namespace HunterPie.GUI.Widgets.ClassWidget.Parts
 
         public override void UnhookEvents()
         {
-            SongQueue.Children.Clear();
-            Sheet.Children.Clear();
-            PredictionSheet.Children.Clear();
             Context.OnNoteColorUpdate -= OnNoteColorUpdate;
             Context.OnNoteQueueUpdate -= OnNoteQueueUpdate;
             Context.OnSongQueueUpdate -= OnSongQueueUpdate;
             Context.OnSafijiivaCounterUpdate -= OnSafijiivaCounterUpdate;
             Context.OnSongsCast -= OnSongsCast;
+            SongQueue.Children.Clear();
+            Sheet.Children.Clear();
+            PredictionSheet.Children.Clear();
+            castOrder.Clear();
         }
 
         private void OnSafijiivaCounterUpdate(object source, JobEventArgs args)
         {
-            Dispatcher.BeginInvoke(System.Windows.Threading.DispatcherPriority.Render, new Action(() =>
+            Dispatcher.BeginInvoke(DispatcherPriority.Render, new Action(() =>
             {
                 HasSafiBuff = args.SafijiivaRegenCounter != -1;
                 SafiCounter = args.SafijiivaMaxHits - args.SafijiivaRegenCounter;
@@ -77,13 +78,31 @@ namespace HunterPie.GUI.Widgets.ClassWidget.Parts
 
         private void OnSongsCast(object source, HuntingHornSongCastEventArgs args)
         {
+            
             Dispatcher.BeginInvoke(DispatcherPriority.Render, new Action(() =>
             {
-
                 if (args.IsCastingBuffs && !args.IsDoubleCasting)
                 {
+                    
                     if (SongQueue.Children.Count < args.PlayStartAt + 1)
                     {
+                        return;
+                    }
+
+                    // When the player is interrupted by monsters/taking damage
+                    // This was hell to fix, please save me
+                    if (args.IsCastingInterrupted)
+                    {
+                        foreach (SongComponent castedSong in SongQueue.Children)
+                        {
+                            if (castedSong.IsCasted)
+                            {
+                                castedSong.IsCasted = false;
+                            }
+                        }
+                        SongQueue.Children.Clear();
+                        castOrder.Clear();
+                        ReconstructQueue();
                         return;
                     }
                     for (int i = args.PlayStartAt; i < SongQueue.Children.Count; i++)
@@ -121,6 +140,7 @@ namespace HunterPie.GUI.Widgets.ClassWidget.Parts
                             song.Dispose();
                         }
                     }
+                    
                 }
                 
             }));
@@ -138,7 +158,7 @@ namespace HunterPie.GUI.Widgets.ClassWidget.Parts
                 {
                     int index = args.RawSongIndexesQueue[args.LastSongIndex];
 
-                    if (args.Songs.Length < index + 1)
+                    if (args.Songs.Length < index + 1 || index < 0)
                     {
                         return;
                     }
@@ -156,6 +176,7 @@ namespace HunterPie.GUI.Widgets.ClassWidget.Parts
 
                 } else
                 {
+                    bool insert = SongQueue.Children.Count > 0;
                     // Add remaning songs to the queue based on the SongQueue length
                     for (int i = 0; SongQueue.Children.Count < args.SongsQueued; i++)
                     {
@@ -167,14 +188,44 @@ namespace HunterPie.GUI.Widgets.ClassWidget.Parts
                             SongName = GStrings.GetAbnormalityByID("HUNTINGHORN", song.BuffId, 0)
                         };
                         songComponent.SetSong(song.Notes, cachedBrushes);
-                        SongQueue.Children.Insert(0, songComponent);
+
+                        if (insert)
+                        {
+                            SongQueue.Children.Insert(0, songComponent);
+                        } else
+                        {
+                            SongQueue.Children.Add(songComponent);
+                        }
                     }
                 }
             }));
         }
 
+        private void ReconstructQueue()
+        {
+            for (int i = 0; SongQueue.Children.Count < Context.SongsQueued; i++)
+            {
+                int index = Context.SongIndexesQueue[i];
+                sHuntingHornSong song = Context.Songs[index];
+
+                SongComponent songComponent = new SongComponent()
+                {
+                    SongName = GStrings.GetAbnormalityByID("HUNTINGHORN", song.BuffId, 0)
+                };
+                songComponent.SetSong(song.Notes, cachedBrushes);
+
+                SongQueue.Children.Add(songComponent);
+            }
+        }
+
         private void OnNoteColorUpdate(object source, HuntingHornEventArgs args)
         {
+            if (args.FirstNoteColor == Core.Enums.NoteColorId.None ||
+                args.SecondNoteColor == Core.Enums.NoteColorId.None ||
+                args.ThirdNoteColor == Core.Enums.NoteColorId.None)
+            {
+                return;
+            }
             Dispatcher.BeginInvoke(DispatcherPriority.Render, new Action(() =>
             {
                 cachedBrushes[0] = HuntingHorn.GetColorBasedOnColorId(args.FirstNoteColor);
@@ -198,8 +249,6 @@ namespace HunterPie.GUI.Widgets.ClassWidget.Parts
                     PredictionSheet.Children.Clear();
                     return;
                 }
-
-                //Debugger.Warn($"Notes: {args.Notes[0]} {args.Notes[1]} {args.Notes[2]} {args.Notes[3]}");
 
                 // If the number of notes in the visual sheet is lower than the in-game sheet,
                 // we have to add all the notes.

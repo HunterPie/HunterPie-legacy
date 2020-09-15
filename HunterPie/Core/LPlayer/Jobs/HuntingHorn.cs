@@ -13,9 +13,8 @@ namespace HunterPie.Core.LPlayer.Jobs
     {
 
         // Action Ids for when the player cast buffs from the queue
-        public static readonly int[] SongCastActionIds = new int[] { 77, 81, 82, 83, 84, 85, 86, 87, 88, 91, 92, 94, 95, 96, 97, 102 };
-        public static readonly int[] DoubleSongCastActionIds = new int[] { 91, 92, 94, 95, 96, 97, 102 };
-
+        public static readonly int[] SongCastActionIds = { 77, 81, 82, 83, 84, 85, 86, 87, 88, 91, 92, 94, 95, 96, 97, 102 };
+        public static readonly int[] DoubleSongCastActionIds = { 91, 92, 94, 95, 96, 97, 102 };
         #region Private properties
         private sHuntingHornSong[] songs = new sHuntingHornSong[0];
         private long notesQueued = -1;
@@ -25,11 +24,12 @@ namespace HunterPie.Core.LPlayer.Jobs
         private long playCurrentAt = 0;
         private bool isCastingBuffs;
         private bool isDoubleCastingBuffs;
-        
+        private bool isCastingInterrupted;
+
         // Colors
-        private NoteColorId firstNote;
-        private NoteColorId secondNote;
-        private NoteColorId thirdNote;
+        private NoteColorId firstNote = NoteColorId.None;
+        private NoteColorId secondNote = NoteColorId.None;
+        private NoteColorId thirdNote = NoteColorId.None;
         #endregion
 
         #region Public properties
@@ -115,6 +115,7 @@ namespace HunterPie.Core.LPlayer.Jobs
             }
         }
         public byte PlayStartAt { get; private set; }
+        public long PlayLastAt { get; private set; }
         public long PlayCurrentAt
         {
             get => playCurrentAt;
@@ -122,6 +123,7 @@ namespace HunterPie.Core.LPlayer.Jobs
             {
                 if (value != playCurrentAt)
                 {
+                    PlayLastAt = playCurrentAt;
                     playCurrentAt = value;
                     DispatchSongCastEvents(OnSongsCast);
                 }
@@ -130,7 +132,7 @@ namespace HunterPie.Core.LPlayer.Jobs
         public bool IsCastingBuffs
         {
             get => isCastingBuffs;
-            set
+            private set
             {
                 if (value != isCastingBuffs)
                 {
@@ -142,11 +144,23 @@ namespace HunterPie.Core.LPlayer.Jobs
         public bool IsDoubleCastingBuffs
         {
             get => isDoubleCastingBuffs;
-            set
+            private set
             {
                 if (value != isDoubleCastingBuffs)
                 {
                     isDoubleCastingBuffs = value;
+                    DispatchSongCastEvents(OnSongsCast);
+                }
+            }
+        }
+        public bool IsCastingInterrupted
+        {
+            get => isCastingInterrupted;
+            set
+            {
+                if (value != isCastingInterrupted)
+                {
+                    isCastingInterrupted = value;
                     DispatchSongCastEvents(OnSongsCast);
                 }
             }
@@ -159,7 +173,10 @@ namespace HunterPie.Core.LPlayer.Jobs
                 if (value != firstNote)
                 {
                     firstNote = value;
-                    DispatchEvents(OnNoteColorUpdate);
+                    if (secondNote != NoteColorId.None)
+                    {
+                        DispatchEvents(OnNoteColorUpdate);
+                    }
                 }
             }
         }
@@ -171,7 +188,10 @@ namespace HunterPie.Core.LPlayer.Jobs
                 if (value != secondNote)
                 {
                     secondNote = value;
-                    DispatchEvents(OnNoteColorUpdate);
+                    if (thirdNote != NoteColorId.None)
+                    {
+                        DispatchEvents(OnNoteColorUpdate);
+                    }
                 }
             }
         }
@@ -217,7 +237,7 @@ namespace HunterPie.Core.LPlayer.Jobs
             {
                 return;
             }
-            
+
             FirstNoteColor = mechanics.FirstNote;
             SecondNoteColor = mechanics.SecondNote;
             ThirdNoteColor = mechanics.ThirdNote;
@@ -242,6 +262,7 @@ namespace HunterPie.Core.LPlayer.Jobs
                         
             LastSongIndex = mechanics.LastSongIndex;
 
+            IsCastingInterrupted = IsCastingBuffs && !SongCastActionIds.Contains(playerActionId) && !DoubleSongCastActionIds.Contains(playerActionId) && playerActionId != 90;
             IsCastingBuffs = SongCastActionIds.Contains(playerActionId);
             IsDoubleCastingBuffs = DoubleSongCastActionIds.Contains(playerActionId);
         }

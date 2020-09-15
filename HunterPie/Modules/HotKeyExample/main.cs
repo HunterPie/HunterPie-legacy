@@ -1,4 +1,4 @@
-﻿using Debugger = HunterPie.Logger.Debugger;
+﻿using HunterPie.Logger;
 using HunterPie.Core;
 using HunterPie.Core.Input;
 
@@ -46,7 +46,7 @@ namespace HunterPie.Plugins
 
         private void MyHotkeyCallback()
         {
-            Debugger.Module("Hotkey was pressed!", Name);
+            this.Log("Hotkey was pressed!");
         }
 
     }

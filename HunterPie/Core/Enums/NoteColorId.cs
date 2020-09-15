@@ -5,6 +5,7 @@
     /// </summary>
     public enum NoteColorId : int
     {
+        None = -1,
         /// <summary>
         /// #724CC5
         /// </summary>

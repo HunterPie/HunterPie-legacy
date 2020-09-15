@@ -32,6 +32,11 @@ namespace HunterPie.Core.Events
         public long PlayCurrentAt { get; }
 
         /// <summary>
+        /// Last state of <see cref="PlayCurrentAt"/>
+        /// </summary>
+        public long PlayLastAt { get; }
+
+        /// <summary>
         /// Whether the player is casting the buffs based on their player Action id.
         /// </summary>
         public bool IsCastingBuffs { get; }
@@ -41,6 +46,11 @@ namespace HunterPie.Core.Events
         /// </summary>
         public bool IsDoubleCasting { get; }
 
+        /// <summary>
+        /// Whether the song cast was interrupted by either a monster hitting the player
+        /// </summary>
+        public bool IsCastingInterrupted { get; }
+
         public HuntingHornSongCastEventArgs(HuntingHorn huntingHorn)
         {
             SongsIdsQueue = huntingHorn.SongIdsQueue;
@@ -48,8 +58,10 @@ namespace HunterPie.Core.Events
             SongIdsFirstIndex = huntingHorn.SongIdFirstIndex;
             PlayStartAt = huntingHorn.PlayStartAt;
             PlayCurrentAt = huntingHorn.PlayCurrentAt;
+            PlayLastAt = huntingHorn.PlayLastAt;
             IsCastingBuffs = huntingHorn.IsCastingBuffs;
             IsDoubleCasting = huntingHorn.IsDoubleCastingBuffs;
+            IsCastingInterrupted = huntingHorn.IsCastingInterrupted;
         }
     }
 }
