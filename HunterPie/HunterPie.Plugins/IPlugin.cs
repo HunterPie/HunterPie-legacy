@@ -1,4 +1,5 @@
 ﻿using HunterPie.Core;
+using HunterPie.Logger;
 
 namespace HunterPie.Plugins
 {
@@ -10,5 +11,14 @@ namespace HunterPie.Plugins
 
         void Initialize(Game context);
         void Unload();
+
+    }
+
+    public static class PluginExtension
+    {
+        public static void Log(this IPlugin plugin, object message)
+        {
+            Debugger.Module(message, plugin.Name);
+        }
     }
 }
