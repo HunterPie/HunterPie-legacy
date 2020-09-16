@@ -33,18 +33,7 @@ namespace HunterPie.Core.LPlayer.Jobs
         #endregion
 
         #region Public properties
-        public sHuntingHornSong[] Songs
-        {
-            get => songs;
-            private set
-            {
-                if (!IsSongArrayEqual(value))
-                {
-                    songs = value;
-                    DispatchEvents(OnSongsListUpdate);
-                }
-            }
-        }
+        public sHuntingHornSong[] Songs => songs;
         public sHuntingHornSong[] SongCandidates => FindSongCandidates();
         
         public byte[] Notes => OrganizeQueue<byte>(RawNotes, FirstNoteIndex, NotesQueued);
@@ -238,11 +227,11 @@ namespace HunterPie.Core.LPlayer.Jobs
                 return;
             }
 
+            songs = availableSongs;
+
             FirstNoteColor = mechanics.FirstNote;
             SecondNoteColor = mechanics.SecondNote;
             ThirdNoteColor = mechanics.ThirdNote;
-
-            Songs = availableSongs;
 
             RawNotes = mechanics.Notes;
             NotesQueued = mechanics.Notes_Length;
