@@ -26,7 +26,6 @@ using Presence = HunterPie.Core.Integrations.Discord.Presence;
 using Process = System.Diagnostics.Process;
 using ProcessStartInfo = System.Diagnostics.ProcessStartInfo;
 using System.Threading.Tasks;
-using SendKeys = System.Windows.Forms.SendKeys;
 
 namespace HunterPie
 {
@@ -50,11 +49,9 @@ namespace HunterPie
         // HunterPie version
         const string HUNTERPIE_VERSION = "1.0.3.97";
 
-        private List<int> registeredHotkeys = new List<int>();
+        private readonly List<int> registeredHotkeys = new List<int>();
 
         // Helpers
-        //IntPtr _windowHandle;
-        //HwndSource _source;
 
         public bool IsPlayerLoggedOn
         {
@@ -423,7 +420,7 @@ namespace HunterPie
         {
             SetAnimationsFramerate();
             HookEvents();
-            Scanner.StartScanning(); // Scans game memory
+            Kernel.StartScanning(); // Scans game memory
             if (UserSettings.PlayerConfig.HunterPie.StartHunterPieMinimized)
             {
                 WindowState = WindowState.Minimized;
@@ -441,9 +438,9 @@ namespace HunterPie
         #region Game & Client Events
         private void HookEvents()
         {
-            // Scanner events
-            Scanner.OnGameStart += OnGameStart;
-            Scanner.OnGameClosed += OnGameClose;
+            // Kernel events
+            Kernel.OnGameStart += OnGameStart;
+            Kernel.OnGameClosed += OnGameClose;
             // Settings
             UserSettings.OnSettingsUpdate += SendToOverlay;
         }
@@ -452,9 +449,9 @@ namespace HunterPie
         {
             // Debug
             AppDomain.CurrentDomain.UnhandledException -= ExceptionLogger;
-            // Scanner events
-            Scanner.OnGameStart -= OnGameStart;
-            Scanner.OnGameClosed -= OnGameClose;
+            // Kernel events
+            Kernel.OnGameStart -= OnGameStart;
+            Kernel.OnGameClosed -= OnGameClose;
             // Settings
             UserSettings.OnSettingsUpdate -= SendToOverlay;
         }
@@ -561,6 +558,9 @@ namespace HunterPie
 
         public void OnGameStart(object source, EventArgs e)
         {
+            // Set HunterPie hotkeys
+            SetHotKeys();
+
             // Create game instances
             MonsterHunter.CreateInstances();
 
@@ -589,13 +589,13 @@ namespace HunterPie
             }));
 
             // Loads memory map
-            if (Address.LoadMemoryMap(Scanner.GameVersion) || Scanner.GameVersion == Address.GAME_VERSION)
+            if (Address.LoadMemoryMap(Kernel.GameVersion) || Kernel.GameVersion == Address.GAME_VERSION)
             {
-                Debugger.Warn(GStrings.GetLocalizationByXPath("/Console/String[@ID='MESSAGE_MAP_LOAD']").Replace("{HunterPie_Map}", $"'MonsterHunterWorld.{Scanner.GameVersion}.map'"));
+                Debugger.Warn(GStrings.GetLocalizationByXPath("/Console/String[@ID='MESSAGE_MAP_LOAD']").Replace("{HunterPie_Map}", $"'MonsterHunterWorld.{Kernel.GameVersion}.map'"));
             }
             else
             {
-                Debugger.Error(GStrings.GetLocalizationByXPath("/Console/String[@ID='MESSAGE_GAME_VERSION_UNSUPPORTED']").Replace("{GAME_VERSION}", $"{Scanner.GameVersion}"));
+                Debugger.Error(GStrings.GetLocalizationByXPath("/Console/String[@ID='MESSAGE_GAME_VERSION_UNSUPPORTED']").Replace("{GAME_VERSION}", $"{Kernel.GameVersion}"));
                 return;
             }
 
@@ -613,10 +613,14 @@ namespace HunterPie
 
         public void OnGameClose(object source, EventArgs e)
         {
+            // Remove global hotkeys
+            RemoveHotKeys();
+
             UnhookGameEvents();
             pluginManager.UnloadPlugins();
             Discord.Dispose();
             Discord = null;
+
             if (UserSettings.PlayerConfig.HunterPie.Options.CloseWhenGameCloses)
             {
                 Dispatcher.Invoke(System.Windows.Threading.DispatcherPriority.Normal, new Action(() =>
@@ -723,7 +727,6 @@ namespace HunterPie
             LoadData();
             Debugger.Warn(GStrings.GetLocalizationByXPath("/Console/String[@ID='MESSAGE_HUNTERPIE_INITIALIZED']"));
 
-            SetHotKeys();
             StartEverything();
 
             Task.Factory.StartNew(() =>
@@ -796,7 +799,7 @@ namespace HunterPie
             GameOverlay?.Dispose();
             if (MonsterHunter.IsActive) MonsterHunter.StopScanning();
             Discord?.Dispose();
-            Scanner.StopScanning();
+            Kernel.StopScanning();
             UserSettings.RemoveFileWatcher();
             Settings.Instance.UninstallKeyboardHook();
             // Unhook events

@@ -67,14 +67,14 @@ namespace HunterPie.GUI
 
         public void HookEvents()
         {
-            Scanner.OnGameFocus += OnGameFocus;
-            Scanner.OnGameUnfocus += OnGameUnfocus;
+            Kernel.OnGameFocus += OnGameFocus;
+            Kernel.OnGameUnfocus += OnGameUnfocus;
         }
 
         private void UnhookEvents()
         {
-            Scanner.OnGameFocus -= OnGameFocus;
-            Scanner.OnGameUnfocus -= OnGameUnfocus;
+            Kernel.OnGameFocus -= OnGameFocus;
+            Kernel.OnGameUnfocus -= OnGameUnfocus;
         }
 
         public void Destroy()

@@ -70,7 +70,7 @@ namespace HunterPie.GUIControls.Custom_Controls
         }
         public static readonly DependencyProperty IsDescriptionOpenProperty =
             DependencyProperty.Register("IsDescriptionOpen", typeof(bool), typeof(PluginContainer));
-
+                
         /// <summary>
         /// The current plugin
         /// </summary>
@@ -84,7 +84,7 @@ namespace HunterPie.GUIControls.Custom_Controls
         public void InitializePluginContainer(PluginPackage package)
         {
             PluginName = package.information.Name;
-            PluginDescription = package.information.Description;
+            PluginDescription = $"{package.information.Description}\nAuthor: {package.information.Author}";
             PluginVersion = package.information.Version;
             pluginPackage = package;
 
@@ -107,7 +107,10 @@ namespace HunterPie.GUIControls.Custom_Controls
                 PluginManager.LoadPlugin(pluginPackage.plugin);
             } else
             {
-                if (PluginManager.UnloadPlugin(pluginPackage.plugin)) Debugger.Module($"Unloaded {pluginPackage.information.Name}");
+                if (PluginManager.UnloadPlugin(pluginPackage.plugin))
+                {
+                    Debugger.Module($"Unloaded {pluginPackage.information.Name}");
+                }
             }
         }
     }

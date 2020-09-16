@@ -9,7 +9,7 @@ using Debugger = HunterPie.Logger.Debugger;
 
 namespace HunterPie.Memory
 {
-    class Scanner
+    class Kernel
     {
 
         // Process info
@@ -32,16 +32,15 @@ namespace HunterPie.Memory
                     // Wait until there's a subscriber to dispatch the event
                     if (OnGameFocus == null || OnGameUnfocus == null) return;
                     _isForegroundWindow = value;
-                    if (_isForegroundWindow) { _onGameFocus(); }
-                    else { _onGameUnfocus(); }
+                    if (_isForegroundWindow) { Dispatch(OnGameFocus); }
+                    else { Dispatch(OnGameUnfocus); }
                 }
             }
         }
-        public static Win32 Win32;
 
         // Scanner Thread
-        static private ThreadStart ScanGameMemoryRef;
-        static private Thread ScanGameMemory;
+        private static ThreadStart scanGameMemoryRef;
+        private static Thread scanGameMemory;
 
         // Kernel32 DLL
         [DllImport("kernel32.dll")]
@@ -56,6 +55,14 @@ namespace HunterPie.Memory
             out int lpNumberOfBytesRead);
 
         [DllImport("kernel32.dll")]
+        public static extern bool ReadProcessMemory(
+            IntPtr hProcess,
+            IntPtr lpBaseAddress,
+            IntPtr lpBuffer,
+            int dwSize,
+            out int lpNumberOfBytesRead);
+
+        [DllImport("kernel32.dll")]
         public static extern bool CloseHandle(IntPtr hObject);
 
         /* Events */
@@ -65,27 +72,24 @@ namespace HunterPie.Memory
         public static event ProcessHandler OnGameFocus;
         public static event ProcessHandler OnGameUnfocus;
 
-        protected static void _onGameStart() => OnGameStart?.Invoke(typeof(Scanner), EventArgs.Empty);
-        protected static void _onGameClosed() => OnGameClosed?.Invoke(typeof(Scanner), EventArgs.Empty);
-        protected static void _onGameFocus() => OnGameFocus?.Invoke(typeof(Scanner), EventArgs.Empty);
-        protected static void _onGameUnfocus() => OnGameUnfocus?.Invoke(typeof(Scanner), EventArgs.Empty);
+        protected static void Dispatch(ProcessHandler e) => e?.Invoke(typeof(Kernel), EventArgs.Empty);
 
         /* Core code */
         public static void StartScanning()
         {
             // Start scanner thread
-            ScanGameMemoryRef = new ThreadStart(GetMonsterHunterProcess);
-            ScanGameMemory = new Thread(ScanGameMemoryRef)
+            scanGameMemoryRef = new ThreadStart(GetMonsterHunterProcess);
+            scanGameMemory = new Thread(scanGameMemoryRef)
             {
                 Name = "Scanner_Memory"
             };
-            ScanGameMemory.Start();
+            scanGameMemory.Start();
         }
 
         public static void StopScanning()
         {
             if (ProcessHandle != (IntPtr)0) CloseHandle(ProcessHandle);
-            ScanGameMemory?.Abort();
+            scanGameMemory?.Abort();
         }
 
         public static void GetMonsterHunterProcess()
@@ -103,7 +107,9 @@ namespace HunterPie.Memory
                     Thread.Sleep(1000);
                     continue;
                 }
-                Process MonsterHunterProcess = Process.GetProcessesByName(PROCESS_NAME).FirstOrDefault();
+                
+                Process MonsterHunterProcess = Process.GetProcessesByName(PROCESS_NAME).Where(p => !string.IsNullOrEmpty(p.MainWindowTitle)).FirstOrDefault();
+
                 // If there's no MHW instance of Monster Hunter: World running
                 if (MonsterHunterProcess == null)
                 {
@@ -142,7 +148,6 @@ namespace HunterPie.Memory
                         return;
                     }
 
-                    Win32 = new Win32(ProcessHandle);
                     try
                     {
                         GameVersion = int.Parse(MonsterHunter.MainWindowTitle.Split('(')[1].Trim(')'));
@@ -157,7 +162,7 @@ namespace HunterPie.Memory
                     MonsterHunter.EnableRaisingEvents = true;
                     MonsterHunter.Exited += OnGameProcessExit;
                     WindowHandle = MonsterHunter.MainWindowHandle;
-                    _onGameStart();
+                    Dispatch(OnGameStart);
                     Debugger.Log($"Monster Hunter: World ({GameVersion}) found! (PID: {PID})");
                     GameIsRunning = true;
                 }
@@ -182,10 +187,15 @@ namespace HunterPie.Memory
             Debugger.Log("Game process closed!");
             CloseHandle(ProcessHandle);
             ProcessHandle = IntPtr.Zero;
-            _onGameClosed();
+            Dispatch(OnGameClosed);
         }
 
-        /* Helpers */
+        /// <summary>
+        /// Reads primitive type from Monster Hunter's memory.
+        /// </summary>
+        /// <typeparam name="T">Primitive type</typeparam>
+        /// <param name="address">Memory address</param>
+        /// <returns>Value the given address is storing</returns>
         public static T Read<T>(long address) where T : struct
         {
             T[] buffer = Buffers.Get<T>();
@@ -193,7 +203,13 @@ namespace HunterPie.Memory
             return buffer[0];
         }
 
-        public static long READ_MULTILEVEL_PTR(long baseAddress, int[] offsets)
+        /// <summary>
+        /// Reads a multilevel pointer and returns the last address the sequence points to
+        /// </summary>
+        /// <param name="baseAddress">A static address</param>
+        /// <param name="offsets">An array of offsets</param>
+        /// <returns>The last address the multilevel pointer points to</returns>
+        public static long ReadMultilevelPtr(long baseAddress, int[] offsets)
         {
             long address = baseAddress;
             for (int offsetIndex = 0; offsetIndex < offsets.Length; offsetIndex++)
@@ -204,7 +220,13 @@ namespace HunterPie.Memory
             return address;
         }
 
-        public static string READ_STRING(long address, int size)
+        /// <summary>
+        /// Reads a string from address
+        /// </summary>
+        /// <param name="address">Address where the string is located</param>
+        /// <param name="size">Size of the string in bytes</param>
+        /// <returns>The string without null characters</returns>
+        public static string ReadString(long address, int size)
         {
             byte[] buffer = Buffers.Get<byte>();
             if (buffer.Length < size)
@@ -214,7 +236,7 @@ namespace HunterPie.Memory
 
             if (!ReadProcessMemory(ProcessHandle, (IntPtr)address, buffer, size, out _))
                 return string.Empty;
-
+            
             string text = Encoding.UTF8.GetString(buffer, 0, size);
             int nullCharIndex = text.IndexOf('\x00');
             // If there's no null char in the string, just return the string itself
@@ -222,6 +244,52 @@ namespace HunterPie.Memory
                 return text;
             // If there's a null char, return a substring
             return text.Substring(0, nullCharIndex);
+        }
+
+        /// <summary>
+        /// Reads a structure from the game's memory
+        /// </summary>
+        /// <typeparam name="T">Type of the structure</typeparam>
+        /// <param name="address">Address where the structure starts</param>
+        /// <returns>The managed structure</returns>
+        public static T ReadStructure<T>(long address) where T : struct
+        {
+            return ReadStructure<T>(address, 1)[0];
+        }
+
+        /// <summary>
+        /// Reads an array of T values
+        /// </summary>
+        /// <typeparam name="T">Type</typeparam>
+        /// <param name="address">Address where the array starts</param>
+        /// <param name="count">Length of the array</param>
+        /// <returns>Array of T</returns>
+        public static T[] ReadStructure<T>(long address, int count) where T : struct
+        {
+            IntPtr buffer = Marshal.AllocHGlobal(Marshal.SizeOf<T>() * count);
+            ReadProcessMemory(ProcessHandle, (IntPtr)address, buffer, Marshal.SizeOf<T>() * count, out _);
+            var structures = BufferToStructures<T>(buffer, count);
+            Marshal.FreeHGlobal(buffer);
+            return structures;
+        }
+
+        /// <summary>
+        /// Converts an unmanaged buffer to a managed structure
+        /// </summary>
+        /// <typeparam name="T">Structure type</typeparam>
+        /// <param name="handle">Pointer to the first structure</param>
+        /// <param name="count">Length</param>
+        /// <returns>Array of structures</returns>
+        private static T[] BufferToStructures<T>(IntPtr handle, int count)
+        {
+            var results = new T[count];
+
+            for (int i = 0; i < results.Length; i++)
+            {
+                results[i] = Marshal.PtrToStructure<T>(IntPtr.Add(handle, i * Marshal.SizeOf<T>()));
+            }
+
+            return results;
         }
     }
 }

@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Threading;
 using HunterPie.Logger;
+using HunterPie.Memory;
 
 namespace HunterPie.Core
 {
@@ -50,6 +51,17 @@ namespace HunterPie.Core
         }
         public DateTime? Time { get; private set; }
         public bool IsActive { get; private set; }
+
+        // Game window information
+        /// <summary>
+        /// Whether the game window is focused or not
+        /// </summary>
+        public static bool IsWindowFocused => Kernel.IsForegroundWindow;
+
+        /// <summary>
+        /// The current game build version
+        /// </summary>
+        public static int Version => Kernel.GameVersion;
 
         // Threading
         ThreadStart scanGameThreadingRef;
@@ -127,7 +139,7 @@ namespace HunterPie.Core
         private void GameScanner()
         {
 
-            while (Memory.Scanner.GameIsRunning)
+            while (Kernel.GameIsRunning)
             {
                 if ((DateTime.UtcNow - Clock).TotalSeconds >= 10) Clock = DateTime.UtcNow;
 

@@ -644,8 +644,7 @@
     <Compile Include="Memory\Address.cs" />
     <Compile Include="Memory\BufferPool.cs" />
     <Compile Include="Memory\Buffers.cs" />
-    <Compile Include="Memory\Scanner.cs" />
-    <Compile Include="Memory\Win32.cs" />
+    <Compile Include="Memory\Kernel.cs" />
     <Compile Include="Memory\WindowsHelper.cs" />
     <None Include="Modules\HotKeyExample\main.cs" />
     <Compile Include="Properties\AssemblyInfo.cs">

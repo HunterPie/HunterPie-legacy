@@ -179,11 +179,11 @@ namespace HunterPie.GUI
             IntPtr hwnd = new WindowInteropHelper(this).EnsureHandle();
 
             // Kinda hacky way to make it work with DirectX 11 fullscreen + Fullscreen optimizations
-            if (Scanner.IsForegroundWindow && UserSettings.PlayerConfig.Overlay.EnableForceDirectX11Fullscreen)
+            if (Kernel.IsForegroundWindow && UserSettings.PlayerConfig.Overlay.EnableForceDirectX11Fullscreen)
             {
                 uint GameWindowFlags = (uint)(WindowsHelper.SWP_WINDOWN_FLAGS.SWP_SHOWWINDOW |
                 WindowsHelper.SWP_WINDOWN_FLAGS.SWP_NOMOVE);
-                WindowsHelper.SetWindowPos(Scanner.WindowHandle, -2, 0, 0, Screen.PrimaryScreen.Bounds.Width, Screen.PrimaryScreen.Bounds.Height, GameWindowFlags);
+                WindowsHelper.SetWindowPos(Kernel.WindowHandle, -2, 0, 0, Screen.PrimaryScreen.Bounds.Width, Screen.PrimaryScreen.Bounds.Height, GameWindowFlags);
             }
             WindowsHelper.SetWindowPos(hwnd, -1, 0, 0, 0, 0, Flags);
         }

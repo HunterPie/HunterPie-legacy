@@ -274,7 +274,7 @@ namespace HunterPie.Core
             MonsterInfoScanRef = new ThreadStart(ScanMonsterInfo);
             MonsterInfoScan = new Thread(MonsterInfoScanRef)
             {
-                Name = $"Scanner_Monster.{MonsterNumber}"
+                Name = $"Kernel_Monster.{MonsterNumber}"
             };
             Debugger.Warn(GStrings.GetLocalizationByXPath("/Console/String[@ID='MESSAGE_MONSTER_SCANNER_INITIALIZED']").Replace("{MonsterNumber}", MonsterNumber.ToString()));
             MonsterInfoScan.Start();
@@ -284,7 +284,7 @@ namespace HunterPie.Core
 
         private void ScanMonsterInfo()
         {
-            while (Scanner.GameIsRunning)
+            while (Kernel.GameIsRunning)
             {
                 GetMonsterAddress();
                 GetMonsterId();
@@ -323,17 +323,17 @@ namespace HunterPie.Core
         {
             long Address = Memory.Address.BASE + Memory.Address.MONSTER_OFFSET;
             // This will give us the third monster's address, so we can find the second and first monster with it
-            long ThirdMonsterAddress = Scanner.READ_MULTILEVEL_PTR(Address, Memory.Address.Offsets.MonsterOffsets);
+            long ThirdMonsterAddress = Kernel.ReadMultilevelPtr(Address, Memory.Address.Offsets.MonsterOffsets);
             switch (MonsterNumber)
             {
                 case 3:
                     MonsterAddress = ThirdMonsterAddress;
                     break;
                 case 2:
-                    MonsterAddress = Scanner.Read<long>(ThirdMonsterAddress - 0x30) + 0x40;
+                    MonsterAddress = Kernel.Read<long>(ThirdMonsterAddress - 0x30) + 0x40;
                     break;
                 case 1:
-                    MonsterAddress = Scanner.Read<long>(Scanner.Read<long>(ThirdMonsterAddress - 0x30) + 0x10) + 0x40;
+                    MonsterAddress = Kernel.Read<long>(Kernel.Read<long>(ThirdMonsterAddress - 0x30) + 0x10) + 0x40;
                     break;
                 default:
                     break;
@@ -345,9 +345,9 @@ namespace HunterPie.Core
         /// </summary>
         private void GetMonsterHealth()
         {
-            long MonsterHealthPtr = Scanner.Read<long>(MonsterAddress + Address.Offsets.MonsterHPComponentOffset);
-            float MonsterTotalHealth = Scanner.Read<float>(MonsterHealthPtr + 0x60);
-            float MonsterCurrentHealth = Scanner.Read<float>(MonsterHealthPtr + 0x64);
+            long MonsterHealthPtr = Kernel.Read<long>(MonsterAddress + Address.Offsets.MonsterHPComponentOffset);
+            float MonsterTotalHealth = Kernel.Read<float>(MonsterHealthPtr + 0x60);
+            float MonsterCurrentHealth = Kernel.Read<float>(MonsterHealthPtr + 0x64);
 
             if (MonsterCurrentHealth <= MonsterTotalHealth && MonsterTotalHealth > 0)
             {
@@ -368,8 +368,8 @@ namespace HunterPie.Core
         /// </summary>
         private void GetMonsterId()
         {
-            long NamePtr = Scanner.Read<long>(MonsterAddress + Address.Offsets.MonsterNamePtr);
-            string MonsterEm = Scanner.READ_STRING(NamePtr + 0x0C, 64);
+            long NamePtr = Kernel.Read<long>(MonsterAddress + Address.Offsets.MonsterNamePtr);
+            string MonsterEm = Kernel.ReadString(NamePtr + 0x0C, 64);
             if (!string.IsNullOrEmpty(MonsterEm))
             {
                 // Validates the em string
@@ -383,7 +383,7 @@ namespace HunterPie.Core
                 MonsterEm = MonsterEmParsed.LastOrDefault();
                 if (MonsterEm.StartsWith("em"))
                 {
-                    GameId = Scanner.Read<int>(MonsterAddress + Address.Offsets.MonsterGameIDOffset);
+                    GameId = Kernel.Read<int>(MonsterAddress + Address.Offsets.MonsterGameIDOffset);
 
                     if (!MonsterData.MonstersInfo.ContainsKey(GameId))
                     {
@@ -413,9 +413,9 @@ namespace HunterPie.Core
         private void GetMonsterSizeModifier()
         {
             if (!IsAlive) return;
-            float SizeModifier = Scanner.Read<float>(MonsterAddress + 0x7730);
+            float SizeModifier = Kernel.Read<float>(MonsterAddress + 0x7730);
             if (SizeModifier <= 0 || SizeModifier >= 2) SizeModifier = 1;
-            SizeMultiplier = Scanner.Read<float>(MonsterAddress + 0x188) / SizeModifier;
+            SizeMultiplier = Kernel.Read<float>(MonsterAddress + 0x188) / SizeModifier;
         }
 
         /// <summary>
@@ -427,7 +427,7 @@ namespace HunterPie.Core
         {
             if (!IsAlive) return;
 
-            sMonsterStatus enrage = Scanner.Win32.Read<sMonsterStatus>(MonsterAddress + 0x1BE30);
+            sMonsterStatus enrage = Kernel.ReadStructure<sMonsterStatus>(MonsterAddress + 0x1BE30);
             EnrageTimer = enrage.Duration;
             EnrageTimerStatic = enrage.MaxDuration;
 
@@ -451,9 +451,9 @@ namespace HunterPie.Core
         {
             if (UserSettings.PlayerConfig.Overlay.MonstersComponent.UseLockonInsteadOfPin)
             {
-                Int64 LockonAddress = Scanner.READ_MULTILEVEL_PTR(Address.BASE + Address.EQUIPMENT_OFFSET, Address.Offsets.PlayerLockonOffsets);
+                Int64 LockonAddress = Kernel.ReadMultilevelPtr(Address.BASE + Address.EQUIPMENT_OFFSET, Address.Offsets.PlayerLockonOffsets);
                 // This will give us the monster target index
-                int MonsterLockonIndex = Scanner.Read<int>(LockonAddress - 0x7C);
+                int MonsterLockonIndex = Kernel.Read<int>(LockonAddress - 0x7C);
                 if (MonsterLockonIndex == -1)
                 {
                     IsTarget = false;
@@ -462,7 +462,7 @@ namespace HunterPie.Core
                 }
                 // And this one will give us the actual monster index in that target slot
                 LockonAddress = LockonAddress - 0x7C - 0x19F8;
-                int MonsterIndexInSlot = Scanner.Read<int>(LockonAddress + (MonsterLockonIndex * 8));
+                int MonsterIndexInSlot = Kernel.Read<int>(LockonAddress + (MonsterLockonIndex * 8));
                 if (MonsterIndexInSlot > 2 || MonsterIndexInSlot < 0)
                 {
                     IsTarget = false;
@@ -471,7 +471,7 @@ namespace HunterPie.Core
                 }
                 // And then we get then we can finally get the monster index
                 List<int> MonsterSlotIndexes = new List<int>();
-                for (int i = 0; i < 3; i++) MonsterSlotIndexes.Add(Scanner.Read<int>(LockonAddress + 0x6C + (4 * i)));
+                for (int i = 0; i < 3; i++) MonsterSlotIndexes.Add(Kernel.Read<int>(LockonAddress + 0x6C + (4 * i)));
                 int[] MonsterIndexes = MonsterSlotIndexes.ToArray();
                 if (MonsterIndexes[2] == -1 && MonsterIndexes[1] == -1 && AliveMonsters.Where(v => v == true).Count() == 1)
                 {
@@ -501,10 +501,10 @@ namespace HunterPie.Core
             }
             else
             {
-                Int64 TargettedMonsterAddress = Scanner.READ_MULTILEVEL_PTR(Address.BASE + Address.MONSTER_SELECTED_OFFSET, Address.Offsets.MonsterSelectedOffsets);
-                Int64 selectedPtr = Scanner.Read<long>(Address.BASE + Address.MONSTER_TARGETED_OFFSET); //probably want an offset for this
-                bool isSelect = Scanner.Read<long>(selectedPtr + 0x128) != 0x0 && Scanner.Read<long>(selectedPtr + 0x130) != 0x0 && Scanner.Read<long>(selectedPtr + 0x160) != 0x0;
-                Int64 SelectedMonsterAddress = Scanner.Read<long>(selectedPtr + 0x148);
+                Int64 TargettedMonsterAddress = Kernel.ReadMultilevelPtr(Address.BASE + Address.MONSTER_SELECTED_OFFSET, Address.Offsets.MonsterSelectedOffsets);
+                Int64 selectedPtr = Kernel.Read<long>(Address.BASE + Address.MONSTER_TARGETED_OFFSET); //probably want an offset for this
+                bool isSelect = Kernel.Read<long>(selectedPtr + 0x128) != 0x0 && Kernel.Read<long>(selectedPtr + 0x130) != 0x0 && Kernel.Read<long>(selectedPtr + 0x160) != 0x0;
+                Int64 SelectedMonsterAddress = Kernel.Read<long>(selectedPtr + 0x148);
                 IsTarget = TargettedMonsterAddress == 0 ? SelectedMonsterAddress == MonsterAddress : TargettedMonsterAddress == MonsterAddress;
 
                 if (!isSelect)
@@ -540,7 +540,7 @@ namespace HunterPie.Core
         {
             if (!IsAlive) return;
 
-            long MonsterPartPtr = Scanner.Read<long>(MonsterAddress + 0x1D058);
+            long MonsterPartPtr = Kernel.Read<long>(MonsterAddress + 0x1D058);
 
             // If the Monster Part Ptr is still 0, then the monster hasn't fully spawn yet
             if (MonsterPartPtr == 0x00000000) return;
@@ -560,12 +560,12 @@ namespace HunterPie.Core
                 {
                     if (CurrentPart.Address > 0)
                     {
-                        sMonsterRemovablePart MonsterRemovablePartData = Scanner.Win32.Read<sMonsterRemovablePart>(CurrentPart.Address);
+                        sMonsterRemovablePart MonsterRemovablePartData = Kernel.ReadStructure<sMonsterRemovablePart>(CurrentPart.Address);
 
                         // Alatreon explosion level
                         if (GameId == 87 && MonsterRemovablePartData.unk3.Index == 3)
                         {
-                            MonsterRemovablePartData.Data.Counter = Scanner.Read<int>(MonsterAddress + 0x20920);
+                            MonsterRemovablePartData.Data.Counter = Kernel.Read<int>(MonsterAddress + 0x20920);
                         }
 
                         CurrentPart.SetPartInfo(MonsterRemovablePartData.Data);
@@ -576,11 +576,11 @@ namespace HunterPie.Core
                         {
                             // Every 15 parts there's a 8 bytes gap between the old removable part block
                             // and the next part block
-                            if (Scanner.Read<long>(MonsterRemovablePartAddress) <= 0xA0)
+                            if (Kernel.Read<long>(MonsterRemovablePartAddress) <= 0xA0)
                             {
                                 MonsterRemovablePartAddress += 0x8;
                             }
-                            sMonsterRemovablePart MonsterRemovablePartData = Scanner.Win32.Read<sMonsterRemovablePart>(MonsterRemovablePartAddress);
+                            sMonsterRemovablePart MonsterRemovablePartData = Kernel.ReadStructure<sMonsterRemovablePart>(MonsterRemovablePartAddress);
 
                             if (CurrentPartInfo.Skip || (MonsterRemovablePartData.unk3.Index == CurrentPartInfo.Index && MonsterRemovablePartData.Data.MaxHealth > 0))
                             {
@@ -594,7 +594,7 @@ namespace HunterPie.Core
                                 do
                                 {
                                     MonsterRemovablePartAddress += 0x78;
-                                } while (MonsterRemovablePartData.Equals(Scanner.Win32.Read<sMonsterRemovablePart>(MonsterRemovablePartAddress)));
+                                } while (MonsterRemovablePartData.Equals(Kernel.ReadStructure<sMonsterRemovablePart>(MonsterRemovablePartAddress)));
 
                                 break;
                             }
@@ -606,13 +606,13 @@ namespace HunterPie.Core
                 {
                     if (CurrentPart.Address > 0)
                     {
-                        sMonsterPart MonsterPartData = Scanner.Win32.Read<sMonsterPart>(CurrentPart.Address);
+                        sMonsterPart MonsterPartData = Kernel.ReadStructure<sMonsterPart>(CurrentPart.Address);
                         CurrentPart.SetPartInfo(MonsterPartData.Data);
 
                     }
                     else
                     {
-                        sMonsterPart MonsterPartData = Scanner.Win32.Read<sMonsterPart>(MonsterPartAddress + (NormalPartIndex * 0x1F8));
+                        sMonsterPart MonsterPartData = Kernel.ReadStructure<sMonsterPart>(MonsterPartAddress + (NormalPartIndex * 0x1F8));
                         CurrentPart.Address = MonsterPartAddress + (NormalPartIndex * 0x1F8);
                         CurrentPart.Group = CurrentPartInfo.GroupId;
                         CurrentPart.TenderizedIds = CurrentPartInfo.TenderizeIds;
@@ -631,8 +631,8 @@ namespace HunterPie.Core
         {
             if (!IsAlive) return;
             long MonsterStaminaAddress = MonsterAddress + 0x1C0F0;
-            MaxStamina = Scanner.Read<float>(MonsterStaminaAddress + 0x4);
-            float stam = Scanner.Read<float>(MonsterStaminaAddress);
+            MaxStamina = Kernel.Read<float>(MonsterStaminaAddress + 0x4);
+            float stam = Kernel.Read<float>(MonsterStaminaAddress);
             Stamina = stam <= MaxStamina ? stam : MaxStamina;
         }
 
@@ -648,11 +648,11 @@ namespace HunterPie.Core
                     switch (ailment.Type)
                     {
                         case AilmentType.Status:
-                            sMonsterStatus updatedStatus = Scanner.Win32.Read<sMonsterStatus>(ailment.Address);
+                            sMonsterStatus updatedStatus = Kernel.ReadStructure<sMonsterStatus>(ailment.Address);
                             updatedData = sMonsterStatus.Convert(updatedStatus);
                             break;
                         default:
-                            updatedData = Scanner.Win32.Read<sMonsterAilment>(ailment.Address);
+                            updatedData = Kernel.ReadStructure<sMonsterAilment>(ailment.Address);
                             break;
                     }
                      
@@ -663,17 +663,17 @@ namespace HunterPie.Core
             else
             {
                 long MonsterAilmentListPtrs = MonsterAddress + 0x1BC40;
-                long MonsterAilmentPtr = Scanner.Read<long>(MonsterAilmentListPtrs);
+                long MonsterAilmentPtr = Kernel.Read<long>(MonsterAilmentListPtrs);
                 while (MonsterAilmentPtr > 1)
                 {
 
                     // There's a gap of 0x148 bytes between the pointer and the sMonsterAilment structure
-                    sMonsterAilment AilmentData = Scanner.Win32.Read<sMonsterAilment>(MonsterAilmentPtr + 0x148);
+                    sMonsterAilment AilmentData = Kernel.ReadStructure<sMonsterAilment>(MonsterAilmentPtr + 0x148);
 
                     if ((int)AilmentData.Id > MonsterData.AilmentsInfo.Count)
                     {
                         MonsterAilmentListPtrs += sizeof(long);
-                        MonsterAilmentPtr = Scanner.Read<long>(MonsterAilmentListPtrs);
+                        MonsterAilmentPtr = Kernel.Read<long>(MonsterAilmentListPtrs);
                         continue;
                     }
 
@@ -683,7 +683,7 @@ namespace HunterPie.Core
                     if (SkipElderDragonTrap || (AilmentInfo.CanSkip && !UserSettings.PlayerConfig.HunterPie.Debug.ShowUnknownStatuses))
                     {
                         MonsterAilmentListPtrs += sizeof(long);
-                        MonsterAilmentPtr = Scanner.Read<long>(MonsterAilmentListPtrs);
+                        MonsterAilmentPtr = Kernel.Read<long>(MonsterAilmentListPtrs);
                         continue;
                     }
 
@@ -699,7 +699,7 @@ namespace HunterPie.Core
 
                     Ailments.Add(MonsterAilment);
                     MonsterAilmentListPtrs += sizeof(long);
-                    MonsterAilmentPtr = Scanner.Read<long>(MonsterAilmentListPtrs);
+                    MonsterAilmentPtr = Kernel.Read<long>(MonsterAilmentListPtrs);
                 }
                 // Depending on the scan delay, the OnMonsterSpawn event can be dispatched before the ailments are created.
                 // To fix that, we dispatch a OnMonsterAilmentsCreate too.
@@ -712,7 +712,7 @@ namespace HunterPie.Core
             bool IsAlatreon = GameId == 87;
             if (!IsAlive || !IsAlatreon) return;
 
-            int alatreonElement = Scanner.Read<int>(MonsterAddress + 0x20910);
+            int alatreonElement = Kernel.Read<int>(MonsterAddress + 0x20910);
 
             if (alatreonElement <= 3 && alatreonElement > 0)
             {
@@ -727,7 +727,7 @@ namespace HunterPie.Core
 
             for (uint i = 0; i < 10; i++)
             {
-                sTenderizedPart tenderizedData = Scanner.Win32.Read<sTenderizedPart>(MonsterAddress + 0x1C458 + (i * 0x40));
+                sTenderizedPart tenderizedData = Kernel.ReadStructure<sTenderizedPart>(MonsterAddress + 0x1C458 + (i * 0x40));
 
                 if (tenderizedData.PartId != uint.MaxValue)
                 {
