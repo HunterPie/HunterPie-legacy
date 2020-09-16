@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace HunterPie.Core.LPlayer.Jobs
+namespace HunterPie.Core.Local.Jobs
 {
     public class GreatswordEventArgs : EventArgs
     {

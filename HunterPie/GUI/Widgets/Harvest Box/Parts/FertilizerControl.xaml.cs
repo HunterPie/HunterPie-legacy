@@ -3,7 +3,7 @@ using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Media;
 using System.Windows.Media.Animation;
-using Fertilizer = HunterPie.Core.Fertilizer;
+using Fertilizer = HunterPie.Core.Local.Fertilizer;
 using FertilizerEventArgs = HunterPie.Core.Events.FertilizerEventArgs;
 
 namespace HunterPie.GUI.Widgets.Harvest_Box.Parts

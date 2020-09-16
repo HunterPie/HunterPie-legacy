@@ -1,8 +1,8 @@
 ﻿using System;
 using System.Windows;
-using HunterPie.Core.LPlayer.Jobs;
-using SwitchAxe = HunterPie.Core.LPlayer.Jobs.SwitchAxe;
-using SwitchAxeEventArgs = HunterPie.Core.LPlayer.Jobs.SwitchAxeEventArgs;
+using HunterPie.Core.Local.Jobs;
+using SwitchAxe = HunterPie.Core.Local.Jobs.SwitchAxe;
+using SwitchAxeEventArgs = HunterPie.Core.Local.Jobs.SwitchAxeEventArgs;
 
 namespace HunterPie.GUI.Widgets.ClassWidget.Parts
 {

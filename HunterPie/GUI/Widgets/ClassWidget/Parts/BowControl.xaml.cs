@@ -1,8 +1,6 @@
 ﻿using System;
 using System.Windows;
-using Bow = HunterPie.Core.LPlayer.Jobs.Bow;
-using BowEventArgs = HunterPie.Core.LPlayer.Jobs.BowEventArgs;
-using JobEventArgs = HunterPie.Core.LPlayer.Jobs.JobEventArgs;
+using HunterPie.Core.Local.Jobs;
 
 namespace HunterPie.GUI.Widgets.ClassWidget.Parts
 {

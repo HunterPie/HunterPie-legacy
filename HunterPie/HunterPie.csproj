@@ -180,22 +180,23 @@
     <Compile Include="Core\Integrations\DataExporter\Exporter.cs" />
     <Compile Include="Core\Integrations\Honey\Honey.cs" />
     <Compile Include="Core\KeyboardHook.cs" />
-    <Compile Include="Core\LPlayer\AbnormalityInfo.cs" />
-    <Compile Include="Core\LPlayer\Jobs\Bow.cs" />
-    <Compile Include="Core\LPlayer\Jobs\ChargeBlade.cs" />
-    <Compile Include="Core\LPlayer\Jobs\DualBlades.cs" />
-    <Compile Include="Core\LPlayer\Jobs\GunLance.cs" />
-    <Compile Include="Core\LPlayer\Jobs\Hammer.cs" />
-    <Compile Include="Core\LPlayer\Jobs\HeavyBowgun.cs" />
-    <Compile Include="Core\LPlayer\Jobs\HuntingHorn.cs" />
-    <Compile Include="Core\LPlayer\Jobs\InsectGlaive.cs" />
-    <Compile Include="Core\LPlayer\Jobs\Job.cs" />
-    <Compile Include="Core\LPlayer\Jobs\Lance.cs" />
-    <Compile Include="Core\LPlayer\Jobs\LightBowgun.cs" />
-    <Compile Include="Core\LPlayer\Jobs\Longsword.cs" />
-    <Compile Include="Core\LPlayer\Jobs\SwitchAxe.cs" />
-    <Compile Include="Core\LPlayer\Jobs\Greatsword.cs" />
-    <Compile Include="Core\LPlayer\Jobs\SwordAndShield.cs" />
+    <Compile Include="Core\Local\AbnormalityInfo.cs" />
+    <Compile Include="Core\Local\Inventory.cs" />
+    <Compile Include="Core\Local\Jobs\Bow.cs" />
+    <Compile Include="Core\Local\Jobs\ChargeBlade.cs" />
+    <Compile Include="Core\Local\Jobs\DualBlades.cs" />
+    <Compile Include="Core\Local\Jobs\GunLance.cs" />
+    <Compile Include="Core\Local\Jobs\Hammer.cs" />
+    <Compile Include="Core\Local\Jobs\HeavyBowgun.cs" />
+    <Compile Include="Core\Local\Jobs\HuntingHorn.cs" />
+    <Compile Include="Core\Local\Jobs\InsectGlaive.cs" />
+    <Compile Include="Core\Local\Jobs\Job.cs" />
+    <Compile Include="Core\Local\Jobs\Lance.cs" />
+    <Compile Include="Core\Local\Jobs\LightBowgun.cs" />
+    <Compile Include="Core\Local\Jobs\Longsword.cs" />
+    <Compile Include="Core\Local\Jobs\SwitchAxe.cs" />
+    <Compile Include="Core\Local\Jobs\Greatsword.cs" />
+    <Compile Include="Core\Local\Jobs\SwordAndShield.cs" />
     <Compile Include="Core\Monsters\Ailment.cs" />
     <Compile Include="Core\Monsters\AilmentInfo.cs" />
     <Compile Include="Core\Monsters\MonsterData.cs" />
@@ -203,17 +204,17 @@
     <Compile Include="Core\Monsters\Part.cs" />
     <Compile Include="Core\Party\Member.cs" />
     <Compile Include="Core\Party\Party.cs" />
-    <Compile Include="Core\LPlayer\Abnormalities.cs" />
-    <Compile Include="Core\LPlayer\Abnormality.cs" />
-    <Compile Include="Core\LPlayer\AbnormalityData.cs" />
-    <Compile Include="Core\LPlayer\Activities.cs" />
-    <Compile Include="Core\LPlayer\Data.cs" />
+    <Compile Include="Core\Local\Abnormalities.cs" />
+    <Compile Include="Core\Local\Abnormality.cs" />
+    <Compile Include="Core\Local\AbnormalityData.cs" />
+    <Compile Include="Core\Local\Activities.cs" />
+    <Compile Include="Core\Local\Data.cs" />
     <Compile Include="GUIControls\Changelog.xaml.cs">
       <DependentUpon>Changelog.xaml</DependentUpon>
     </Compile>
     <Compile Include="Core\Client\AutoUpdate.cs" />
-    <Compile Include="Core\LPlayer\HarvestBox.cs" />
-    <Compile Include="Core\LPlayer\Mantle.cs" />
+    <Compile Include="Core\Local\HarvestBox.cs" />
+    <Compile Include="Core\Local\Mantle.cs" />
     <Compile Include="Core\Integrations\Discord\Presence.cs" />
     <Compile Include="GUIControls\Custom Controls\BuffBarSettingControl.xaml.cs">
       <DependentUpon>BuffBarSettingControl.xaml</DependentUpon>
@@ -485,7 +486,7 @@
     <Compile Include="Core\Game.cs" />
     <Compile Include="Core\Client\GStrings.cs" />
     <Compile Include="Core\Monsters\Monster.cs" />
-    <Compile Include="Core\LPlayer\Player.cs" />
+    <Compile Include="Core\Local\Player.cs" />
     <Compile Include="Core\Client\UserSettings.cs" />
     <Compile Include="GUIControls\Debugger.xaml.cs">
       <DependentUpon>Debugger.xaml</DependentUpon>

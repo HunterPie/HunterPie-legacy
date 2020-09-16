@@ -12,7 +12,7 @@ namespace HunterPie.GUI.Widgets
     {
 
         Player PlayerContext;
-        Core.HarvestBox Context => PlayerContext?.Harvest;
+        Core.Local.HarvestBox Context => PlayerContext?.Harvest;
 
         public HarvestBox(Player Context)
         {

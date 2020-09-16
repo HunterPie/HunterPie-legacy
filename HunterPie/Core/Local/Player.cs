@@ -3,13 +3,14 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading;
 using HunterPie.Core.Definitions;
-using HunterPie.Core.LPlayer;
-using HunterPie.Core.LPlayer.Jobs;
+using HunterPie.Core.Local;
+using HunterPie.Core.Local.Jobs;
 using HunterPie.Logger;
 using HunterPie.Memory;
 using HunterPie.Core.Events;
 using Classes = HunterPie.Core.Enums.Classes;
 using AbnormalityType = HunterPie.Core.Enums.AbnormalityType;
+using Stopwatch = System.Diagnostics.Stopwatch;
 
 namespace HunterPie.Core
 {
@@ -240,6 +241,9 @@ namespace HunterPie.Core
         /// </summary>
         public float MaxStamina { get; private set; }
 
+        /// <summary>
+        /// Player action id
+        /// </summary>
         public int ActionId
         {
             get => actionId;
@@ -257,6 +261,11 @@ namespace HunterPie.Core
         /// Player position
         /// </summary>
         public readonly Vector3 Position = new Vector3();
+
+        /// <summary>
+        /// Player item pouch
+        /// </summary>
+        public readonly Inventory Inventory = new Inventory();
 
         /// <summary>
         /// Player current party
@@ -338,14 +347,13 @@ namespace HunterPie.Core
         private void Dispatch(PlayerEvents e, EventArgs args) => e?.Invoke(this, args);
         #endregion
 
-
-        #region Kernel
+        #region Scanner
         public void StartScanning()
         {
             ScanPlayerInfoRef = new ThreadStart(GetPlayerInfo);
             ScanPlayerInfo = new Thread(ScanPlayerInfoRef)
             {
-                Name = "Kernel_Player"
+                Name = "Scanner_Player"
             };
             Debugger.Warn(GStrings.GetLocalizationByXPath("/Console/String[@ID='MESSAGE_PLAYER_SCANNER_INITIALIZED']"));
             ScanPlayerInfo.Start();
@@ -617,6 +625,7 @@ namespace HunterPie.Core
                     GetPlayerPlaytime();
                     GetWeaponId();
                     GetPlayerBasicInfo();
+                    GetPlayerInventory();
                     GetFertilizers();
                     GetArgosyData();
                     GetTailraidersData();
@@ -674,6 +683,12 @@ namespace HunterPie.Core
         }
 
         private void GetPlayerPlaytime() => PlayTime = Kernel.Read<int>(LEVEL_ADDRESS + 0x10);
+
+        private void GetPlayerInventory()
+        {            
+            sItem[] inventoryItems = Kernel.ReadStructure<sItem>(PlayerAddress + 0x38080, 40);
+            Inventory.RefreshPouch(inventoryItems);
+        }
 
         private void GetPlayerPosition()
         {

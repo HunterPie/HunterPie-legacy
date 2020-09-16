@@ -1,6 +1,6 @@
 ﻿using System;
-using JobEventArgs = HunterPie.Core.LPlayer.Jobs.JobEventArgs;
-using Lance = HunterPie.Core.LPlayer.Jobs.Lance;
+using JobEventArgs = HunterPie.Core.Local.Jobs.JobEventArgs;
+using Lance = HunterPie.Core.Local.Jobs.Lance;
 
 namespace HunterPie.GUI.Widgets.ClassWidget.Parts
 {

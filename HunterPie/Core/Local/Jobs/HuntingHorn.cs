@@ -7,7 +7,7 @@ using HunterPie.Core.Events;
 using System.Linq;
 using System;
 
-namespace HunterPie.Core.LPlayer.Jobs
+namespace HunterPie.Core.Local.Jobs
 {
     public class HuntingHorn : Job
     {

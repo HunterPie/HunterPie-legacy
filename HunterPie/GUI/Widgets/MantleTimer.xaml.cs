@@ -2,6 +2,7 @@
 using System.Windows;
 using System.Windows.Media;
 using HunterPie.Core;
+using HunterPie.Core.Local;
 using HunterPie.Core.Events;
 
 namespace HunterPie.GUI.Widgets

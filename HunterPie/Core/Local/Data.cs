@@ -1,4 +1,4 @@
-﻿namespace HunterPie.Core.LPlayer
+﻿namespace HunterPie.Core.Local
 {
     /*
      Player data structs, they'll be used in the future for some stuff I want to implement :)

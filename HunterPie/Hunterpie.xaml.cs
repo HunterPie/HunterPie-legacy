@@ -20,6 +20,7 @@ using HunterPie.Plugins;
 using HunterPie.Logger;
 using PluginDisplay = HunterPie.GUIControls.Plugins;
 using HunterPie.Core.Input;
+using HunterPie.Core.Local;
 // HunterPie
 using HunterPie.Memory;
 using Presence = HunterPie.Core.Integrations.Discord.Presence;

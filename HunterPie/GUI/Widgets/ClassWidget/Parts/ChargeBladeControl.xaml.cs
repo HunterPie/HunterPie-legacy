@@ -1,8 +1,8 @@
 ﻿using System;
 using System.Windows;
-using HunterPie.Core.LPlayer.Jobs;
-using ChargeBlade = HunterPie.Core.LPlayer.Jobs.ChargeBlade;
-using ChargeBladeEventArgs = HunterPie.Core.LPlayer.Jobs.ChargeBladeEventArgs;
+using HunterPie.Core.Local.Jobs;
+using ChargeBlade = HunterPie.Core.Local.Jobs.ChargeBlade;
+using ChargeBladeEventArgs = HunterPie.Core.Local.Jobs.ChargeBladeEventArgs;
 
 namespace HunterPie.GUI.Widgets.ClassWidget.Parts
 {

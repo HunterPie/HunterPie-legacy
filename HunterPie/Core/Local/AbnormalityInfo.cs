@@ -1,6 +1,6 @@
 ﻿using HunterPie.Core.Enums;
 
-namespace HunterPie.Core.LPlayer
+namespace HunterPie.Core.Local
 {
     public class AbnormalityInfo
     {

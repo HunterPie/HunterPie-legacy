@@ -1,7 +1,7 @@
 ﻿using System;
 using HunterPie.Core.Definitions;
 using HunterPie.Core.Enums;
-using HunterPie.Core.LPlayer.Jobs;
+using HunterPie.Core.Local.Jobs;
 
 namespace HunterPie.Core.Events
 {

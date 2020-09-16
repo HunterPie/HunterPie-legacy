@@ -1,9 +1,9 @@
-﻿using HunterPie.Core.LPlayer;
+﻿using HunterPie.Core.Local;
 using AbnormalityType = HunterPie.Core.Enums.AbnormalityType;
 using Helper = HunterPie.Core.Enums.Helper;
 using HunterPie.Core.Events;
 
-namespace HunterPie.Core
+namespace HunterPie.Core.Local
 {
     public class Abnormality
     {
