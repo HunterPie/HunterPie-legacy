@@ -142,8 +142,8 @@ namespace HunterPie.Core
                 }
             }
         }
-        public bool IsAlive = false;
-        public bool IsActuallyAlive;
+        public bool IsAlive { get; private set; }
+        public bool IsActuallyAlive { get; private set; }
 
         public float EnrageTimer
         {
@@ -186,7 +186,7 @@ namespace HunterPie.Core
         public float CaptureThreshold { get; private set; }
         public bool IsCaptured { get; private set; }
 
-        public bool[] AliveMonsters = { false, false, false };
+        public readonly bool[] AliveMonsters = { false, false, false };
 
         public AlatreonState AlatreonElement
         {
@@ -204,8 +204,8 @@ namespace HunterPie.Core
         public List<Part> Parts = new List<Part>();
         public List<Ailment> Ailments = new List<Ailment>();
         // Threading
-        ThreadStart MonsterInfoScanRef;
-        Thread MonsterInfoScan;
+        ThreadStart monsterInfoScanRef;
+        Thread monsterInfoScan;
 
         #region Events
         public delegate void MonsterEnrageEvents(object source, MonsterUpdateEventArgs args);
@@ -271,16 +271,16 @@ namespace HunterPie.Core
 
         public void StartThreadingScan()
         {
-            MonsterInfoScanRef = new ThreadStart(ScanMonsterInfo);
-            MonsterInfoScan = new Thread(MonsterInfoScanRef)
+            monsterInfoScanRef = new ThreadStart(ScanMonsterInfo);
+            monsterInfoScan = new Thread(monsterInfoScanRef)
             {
                 Name = $"Kernel_Monster.{MonsterNumber}"
             };
             Debugger.Warn(GStrings.GetLocalizationByXPath("/Console/String[@ID='MESSAGE_MONSTER_SCANNER_INITIALIZED']").Replace("{MonsterNumber}", MonsterNumber.ToString()));
-            MonsterInfoScan.Start();
+            monsterInfoScan.Start();
         }
 
-        public void StopThread() => MonsterInfoScan.Abort();
+        public void StopThread() => monsterInfoScan.Abort();
 
         private void ScanMonsterInfo()
         {
