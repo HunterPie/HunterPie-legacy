@@ -29,6 +29,26 @@ namespace HunterPie.Core.Local
         }
 
         /// <summary>
+        /// Find multiple items in the items pouch
+        /// </summary>
+        /// <param name="ids">Hashset with all the item ids to be searched for</param>
+        /// <returns>An array with all the items found</returns>
+        public sItem[] FindItems(HashSet<int> ids)
+        {
+            return Items.Where(slot => ids.Contains(slot.Key)).Select(slot => slot.Value).ToArray();
+        }
+
+        /// <summary>
+        /// Find multiple ammos in the ammo pouch
+        /// </summary>
+        /// <param name="ids">Hashset with all the ammo ids to be searched for</param>
+        /// <returns>Array with the ammos found</returns>
+        public sItem[] FindAmmos(HashSet<int> ids)
+        {
+            return Ammo.Where(slot => ids.Contains(slot.Key)).Select(slot => slot.Value).ToArray();
+        }
+
+        /// <summary>
         /// Finds an ammo with the specified id in the player's ammo pouch
         /// </summary>
         /// <param name="id">Ammo item Id</param>
