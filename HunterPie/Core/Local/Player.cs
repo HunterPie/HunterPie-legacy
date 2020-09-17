@@ -3,14 +3,13 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading;
 using HunterPie.Core.Definitions;
-using HunterPie.Core.Local;
-using HunterPie.Core.Local.Jobs;
+using HunterPie.Core.Jobs;
 using HunterPie.Logger;
 using HunterPie.Memory;
+using HunterPie.Core.Local;
 using HunterPie.Core.Events;
 using Classes = HunterPie.Core.Enums.Classes;
 using AbnormalityType = HunterPie.Core.Enums.AbnormalityType;
-using Stopwatch = System.Diagnostics.Stopwatch;
 
 namespace HunterPie.Core
 {

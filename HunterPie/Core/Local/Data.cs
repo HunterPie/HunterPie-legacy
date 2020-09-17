@@ -1,4 +1,4 @@
-﻿namespace HunterPie.Core.Local
+﻿namespace HunterPie.Core
 {
     public class GameStructs
     {

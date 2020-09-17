@@ -1,9 +1,9 @@
 ﻿using System;
 using System.Linq;
 using System.Windows;
-using JobEventArgs = HunterPie.Core.Local.Jobs.JobEventArgs;
-using Longsword = HunterPie.Core.Local.Jobs.Longsword;
-using LongswordEventArgs = HunterPie.Core.Local.Jobs.LongswordEventArgs;
+using JobEventArgs = HunterPie.Core.Jobs.JobEventArgs;
+using Longsword = HunterPie.Core.Jobs.Longsword;
+using LongswordEventArgs = HunterPie.Core.Jobs.LongswordEventArgs;
 
 namespace HunterPie.GUI.Widgets.ClassWidget.Parts
 {

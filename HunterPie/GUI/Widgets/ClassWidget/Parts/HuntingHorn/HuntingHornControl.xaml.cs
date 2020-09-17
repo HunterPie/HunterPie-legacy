@@ -2,7 +2,7 @@
 using System.Windows.Media;
 using System.Windows.Threading;
 using HunterPie.Core.Events;
-using HunterPie.Core.Local.Jobs;
+using HunterPie.Core.Jobs;
 using HunterPie.GUI.Widgets.ClassWidget.Parts.Components;
 using HunterPie.Core.Definitions;
 using HunterPie.Core;

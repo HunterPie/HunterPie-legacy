@@ -9,7 +9,7 @@ namespace HunterPie.Core
     public class Game
     {
         // Game classes
-        public Player Player;
+        public Player Player { get; private set; }
 
         public Monster FirstMonster { get; private set; }
         public Monster SecondMonster { get; private set; }

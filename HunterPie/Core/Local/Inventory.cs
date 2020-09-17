@@ -2,7 +2,7 @@
 using System.Linq;
 using HunterPie.Core.Definitions;
 
-namespace HunterPie.Core.Local
+namespace HunterPie.Core
 {
     public class Inventory
     {

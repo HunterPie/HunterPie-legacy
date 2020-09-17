@@ -1,8 +1,8 @@
 ﻿using System;
 using System.Windows;
-using DualBlades = HunterPie.Core.Local.Jobs.DualBlades;
-using DualBladesEventArgs = HunterPie.Core.Local.Jobs.DualBladesEventArgs;
-using JobEventArgs = HunterPie.Core.Local.Jobs.JobEventArgs;
+using DualBlades = HunterPie.Core.Jobs.DualBlades;
+using DualBladesEventArgs = HunterPie.Core.Jobs.DualBladesEventArgs;
+using JobEventArgs = HunterPie.Core.Jobs.JobEventArgs;
 
 namespace HunterPie.GUI.Widgets.ClassWidget.Parts
 {

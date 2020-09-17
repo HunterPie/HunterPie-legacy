@@ -1,5 +1,5 @@
 ﻿using System;
-using HunterPie.Core.Local.Jobs;
+using HunterPie.Core.Jobs;
 using Classes = HunterPie.Core.Enums.Classes;
 
 namespace HunterPie.Core.Events

@@ -5,7 +5,7 @@ using System.Windows.Controls;
 using System.Windows.Input;
 using System.Windows.Media;
 using HunterPie.Core;
-using HunterPie.Core.Local;
+using HunterPie.Core;
 using HunterPie.GUI.Widgets.Abnormality_Widget.Parts;
 using Helper = HunterPie.Core.Enums.Helper;
 

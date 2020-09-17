@@ -133,7 +133,7 @@ namespace HunterPie.Core
         public int IsSelect
         {
             get => isSelect;
-            private set
+            set
             {
                 if (value != isSelect)
                 {
@@ -142,8 +142,8 @@ namespace HunterPie.Core
                 }
             }
         }
-        public bool IsAlive { get; private set; }
-        public bool IsActuallyAlive { get; private set; }
+        public bool IsAlive = false;
+        public bool IsActuallyAlive;
 
         public float EnrageTimer
         {
@@ -186,7 +186,7 @@ namespace HunterPie.Core
         public float CaptureThreshold { get; private set; }
         public bool IsCaptured { get; private set; }
 
-        public readonly bool[] AliveMonsters = { false, false, false };
+        public bool[] AliveMonsters = { false, false, false };
 
         public AlatreonState AlatreonElement
         {

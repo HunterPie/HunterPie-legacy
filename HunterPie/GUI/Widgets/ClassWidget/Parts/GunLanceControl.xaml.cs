@@ -2,9 +2,9 @@
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Media.Imaging;
-using GunLance = HunterPie.Core.Local.Jobs.GunLance;
-using GunLanceEventArgs = HunterPie.Core.Local.Jobs.GunLanceEventArgs;
-using JobEventArgs = HunterPie.Core.Local.Jobs.JobEventArgs;
+using GunLance = HunterPie.Core.Jobs.GunLance;
+using GunLanceEventArgs = HunterPie.Core.Jobs.GunLanceEventArgs;
+using JobEventArgs = HunterPie.Core.Jobs.JobEventArgs;
 
 namespace HunterPie.GUI.Widgets.ClassWidget.Parts
 {

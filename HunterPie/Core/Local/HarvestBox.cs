@@ -1,6 +1,6 @@
 ﻿using HunterPie.Core.Events;
 
-namespace HunterPie.Core.Local
+namespace HunterPie.Core
 {
     public class Fertilizer
     {

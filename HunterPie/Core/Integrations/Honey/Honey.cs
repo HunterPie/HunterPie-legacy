@@ -6,9 +6,7 @@ using System.Text;
 using System.Xml;
 using HunterPie.Core.Definitions;
 using HunterPie.Core.Enums;
-using Newtonsoft.Json;
 using Debugger = HunterPie.Logger.Debugger;
-using GameStructs = HunterPie.Core.Local.GameStructs;
 
 namespace HunterPie.Core
 {

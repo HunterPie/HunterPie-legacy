@@ -1,9 +1,9 @@
 ﻿using System;
 using System.Windows;
-using HunterPie.Core.Local.Jobs;
-using InsectGlaive = HunterPie.Core.Local.Jobs.InsectGlaive;
-using InsectGlaiveEventArgs = HunterPie.Core.Local.Jobs.InsectGlaiveEventArgs;
-using KinsectChargeBuff = HunterPie.Core.Local.Jobs.KinsectChargeBuff;
+using HunterPie.Core.Jobs;
+using InsectGlaive = HunterPie.Core.Jobs.InsectGlaive;
+using InsectGlaiveEventArgs = HunterPie.Core.Jobs.InsectGlaiveEventArgs;
+using KinsectChargeBuff = HunterPie.Core.Jobs.KinsectChargeBuff;
 
 namespace HunterPie.GUI.Widgets.ClassWidget.Parts
 {

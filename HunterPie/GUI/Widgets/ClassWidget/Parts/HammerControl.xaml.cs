@@ -1,8 +1,8 @@
 ﻿using System;
 using System.Windows;
-using Hammer = HunterPie.Core.Local.Jobs.Hammer;
-using HammerEventArgs = HunterPie.Core.Local.Jobs.HammerEventArgs;
-using JobEventArgs = HunterPie.Core.Local.Jobs.JobEventArgs;
+using Hammer = HunterPie.Core.Jobs.Hammer;
+using HammerEventArgs = HunterPie.Core.Jobs.HammerEventArgs;
+using JobEventArgs = HunterPie.Core.Jobs.JobEventArgs;
 
 namespace HunterPie.GUI.Widgets.ClassWidget.Parts
 {

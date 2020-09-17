@@ -1,5 +1,5 @@
 ﻿using System;
-using HunterPie.Core.Local.Jobs;
+using HunterPie.Core.Jobs;
 
 namespace HunterPie.Core.Events
 {

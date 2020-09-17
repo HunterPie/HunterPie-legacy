@@ -1,4 +1,4 @@
-﻿namespace HunterPie.Core.Local.Jobs
+﻿namespace HunterPie.Core.Jobs
 {
     class SwordAndShield : Job
     {

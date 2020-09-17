@@ -1,6 +1,6 @@
 ﻿using System;
 using HunterPie.Core.Definitions;
-using HunterPie.Core.Local.Jobs;
+using HunterPie.Core.Jobs;
 
 namespace HunterPie.Core.Events
 {

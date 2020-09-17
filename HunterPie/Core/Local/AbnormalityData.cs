@@ -4,10 +4,10 @@ using System.IO;
 using System.Linq;
 using System.Xml;
 using HunterPie.Core.Enums;
-using HunterPie.Core.Local;
+using HunterPie.Core;
 using HunterPie.Logger;
 
-namespace HunterPie.Core.Local
+namespace HunterPie.Core
 {
     public class AbnormalityData
     {

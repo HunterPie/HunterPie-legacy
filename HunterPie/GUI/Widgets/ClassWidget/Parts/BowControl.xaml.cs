@@ -1,6 +1,6 @@
 ﻿using System;
 using System.Windows;
-using HunterPie.Core.Local.Jobs;
+using HunterPie.Core.Jobs;
 
 namespace HunterPie.GUI.Widgets.ClassWidget.Parts
 {

@@ -20,7 +20,7 @@ using HunterPie.Plugins;
 using HunterPie.Logger;
 using PluginDisplay = HunterPie.GUIControls.Plugins;
 using HunterPie.Core.Input;
-using HunterPie.Core.Local;
+using HunterPie.Core;
 // HunterPie
 using HunterPie.Memory;
 using Presence = HunterPie.Core.Integrations.Discord.Presence;
@@ -574,8 +574,9 @@ namespace HunterPie
             PluginManager.ctx = MonsterHunter;
             if (pluginManager.IsReady)
             {
-                pluginManager.LoadPlugins();   
-            } else
+                pluginManager.LoadPlugins();
+            }
+            else
             {
                 pluginManager.QueueLoad = true;
             }
@@ -612,6 +613,7 @@ namespace HunterPie
                 if (OfflineMode) Discord.SetOfflineMode();
                 Discord.StartRPC();
             }
+
         }
 
         public void OnGameClose(object source, EventArgs e)
