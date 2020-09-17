@@ -4,11 +4,11 @@ namespace HunterPie.Core.Local.Jobs
 {
     public class ChargeBladeEventArgs : EventArgs
     {
-        public float VialChargeGauge;
-        public float ShieldBuffTimer;
-        public float SwordBuffTimer;
-        public float PoweraxeTimer;
-        public int Vials;
+        public float VialChargeGauge { get; }
+        public float ShieldBuffTimer { get; }
+        public float SwordBuffTimer { get; }
+        public float PoweraxeTimer { get; }
+        public int Vials { get; }
 
         public ChargeBladeEventArgs(ChargeBlade weapon)
         {

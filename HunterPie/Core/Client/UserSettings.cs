@@ -40,7 +40,7 @@ namespace HunterPie.Core
                 public bool Enabled { get; set; } = true;
                 public int DesiredAnimationFrameRate { get; set; } = 30;
                 public int GameScanDelay { get; set; } = 150;
-                public int[] Position { get; set; } = new int[2] { 0, 0 };
+                public int[] Position { get; set; } = new int[] { 0, 0 };
                 public string ToggleOverlayKeybind { get; set; } = "Ctrl+Alt+Z";
                 public bool EnableHardwareAcceleration { get; set; } = true;
                 public bool HideWhenGameIsUnfocused { get; set; } = false;
@@ -52,12 +52,12 @@ namespace HunterPie.Core
                 public SpecializedTool PrimaryMantle { get; set; } = new SpecializedTool()
                 {
                     Color = "#FF80FFFF",
-                    Position = new int[2] { 1145, 300 }
+                    Position = new int[] { 1145, 300 }
                 };
                 public SpecializedTool SecondaryMantle { get; set; } = new SpecializedTool()
                 {
                     Color = "#FF9854E2",
-                    Position = new int[2] { 1145, 350 }
+                    Position = new int[] { 1145, 350 }
                 };
                 public DPSMeter DPSMeter { get; set; } = new DPSMeter();
                 public AbnormalitiesWidget AbnormalitiesWidget { get; set; } = new AbnormalitiesWidget();
@@ -71,7 +71,7 @@ namespace HunterPie.Core
                 public string HealthTextFormat { get; set; } = "{Health:0}/{TotalHealth:0} ({Percentage:0}%)";
                 public byte ShowMonsterBarMode { get; set; } = 0;
                 public string SwitchMonsterBarModeHotkey = "Alt+Up";
-                public int[] Position { get; set; } = new int[2] { 335, 10 };
+                public int[] Position { get; set; } = new int[] { 335, 10 };
                 public byte MonsterBarDock { get; set; } = 0;
                 public int MaxNumberOfPartsAtOnce { get; set; } = 8;
                 public int MaxPartColumns { get; set; } = 1;
@@ -81,8 +81,8 @@ namespace HunterPie.Core
                 public bool EnableRemovableParts { get; set; } = true;
                 public bool EnableMonsterParts { get; set; } = true;
                 public bool EnableMonsterAilments { get; set; } = true;
-                public string[] EnabledPartGroups { get; set; } = new string[20] { "HEAD", "BODY", "ARM", "WING", "LEG", "TAIL", "LIMB", "ABDOMEN", "CHEST", "REAR", "JAW", "BACK", "FIN", "HORN", "NECK", "SHELL", "ORGAN", "MISC", "MANE", "BONE" };
-                public string[] EnabledAilmentGroups { get; set; } = new string[18] { "POISON", "PARALYSIS", "SLEEP", "BLAST", "MOUNT", "EXHAUSTION", "STUN", "TRANQUILIZE", "FLASH", "KNOCKDOWN", "DUNGPOD", "TRAP", "ELDERSEAL", "SMOKING", "CLAW", "MISC", "ENRAGE", "UNKNOWN" };
+                public string[] EnabledPartGroups { get; set; } = new string[] { "HEAD", "BODY", "ARM", "WING", "LEG", "TAIL", "LIMB", "ABDOMEN", "CHEST", "REAR", "JAW", "BACK", "FIN", "HORN", "NECK", "SHELL", "ORGAN", "MISC", "MANE", "BONE" };
+                public string[] EnabledAilmentGroups { get; set; } = new string[] { "POISON", "PARALYSIS", "SLEEP", "BLAST", "MOUNT", "EXHAUSTION", "STUN", "TRANQUILIZE", "FLASH", "KNOCKDOWN", "DUNGPOD", "TRAP", "ELDERSEAL", "SMOKING", "CLAW", "MISC", "ENRAGE", "UNKNOWN" };
                 public float Opacity { get; set; } = 1;
                 public bool UseLockonInsteadOfPin { get; set; } = false;
                 public bool EnableAilmentsBarColor { get; set; } = true;
@@ -96,7 +96,7 @@ namespace HunterPie.Core
                 public bool Enabled { get; set; } = true;
                 public bool AlwaysShow { get; set; } = false;
                 public double Scale { get; set; } = 1;
-                public int[] Position { get; set; } = new int[2] { 1110, 30 };
+                public int[] Position { get; set; } = new int[] { 1110, 30 };
                 public bool ShowSteamTracker { get; set; } = true;
                 public bool ShowArgosyTracker { get; set; } = true;
                 public bool ShowTailraidersTracker { get; set; } = true;
@@ -121,8 +121,8 @@ namespace HunterPie.Core
                 public bool ShowTotalDamage { get; set; } = true;
                 public bool ShowDPSWheneverPossible { get; set; } = true;
                 public double Scale { get; set; } = 0.8;
-                public int[] Position { get; set; } = new int[2] { 10, 350 };
-                public Players[] PartyMembers { get; set; } = new Players[4] { new Players() { Color = "#FFE14136" }, new Players() { Color = "#FF65B2B7" }, new Players() { Color = "#FFECE2A0" }, new Players() { Color = "#FF4AAB3F" } };
+                public int[] Position { get; set; } = new int[] { 10, 350 };
+                public Players[] PartyMembers { get; set; } = new Players[] { new Players() { Color = "#FFE14136" }, new Players() { Color = "#FF65B2B7" }, new Players() { Color = "#FFECE2A0" }, new Players() { Color = "#FF4AAB3F" } };
                 public bool ShowOnlyMyself { get; set; } = false;
                 public bool ShowTimerInExpeditions { get; set; } = true;
                 public float BackgroundOpacity { get; set; } = 0.5f;
@@ -180,13 +180,13 @@ namespace HunterPie.Core
             public class AbnormalitiesWidget
             {
                 public int ActiveBars { get; set; } = 1;
-                public AbnormalityBar[] BarPresets { get; set; } = new AbnormalityBar[1] { new AbnormalityBar() };
+                public AbnormalityBar[] BarPresets { get; set; } = new AbnormalityBar[] { new AbnormalityBar() };
             }
 
             public class AbnormalityBar
             {
                 public string Name { get; set; } = "Abnormality Tray";
-                public int[] Position { get; set; } = new int[2] { 500, 60 };
+                public int[] Position { get; set; } = new int[] { 500, 60 };
                 public string Orientation { get; set; } = "Horizontal";
                 public int MaxSize { get; set; } = 300;
                 public double Scale { get; set; } = 1;

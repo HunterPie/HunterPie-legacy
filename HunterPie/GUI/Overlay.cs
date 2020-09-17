@@ -166,7 +166,6 @@ namespace HunterPie.GUI
         public void Dispose()
         {
             Dispose(true);
-            GC.SuppressFinalize(this);
         }
     }
 }

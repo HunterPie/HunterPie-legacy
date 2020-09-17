@@ -166,28 +166,34 @@ namespace HunterPie.GUI.Widgets.ClassWidget.Parts
         }
 
 
-        private void OnSafijiivaCounterUpdate(object source, JobEventArgs args) => Dispatcher.BeginInvoke(System.Windows.Threading.DispatcherPriority.Render, new Action(() =>
-                                                                                 {
-                                                                                     HasSafiBuff = args.SafijiivaRegenCounter != -1;
-                                                                                     SafiCounter = args.SafijiivaMaxHits - args.SafijiivaRegenCounter;
-                                                                                 }));
+        private void OnSafijiivaCounterUpdate(object source, JobEventArgs args)
+        {
+            Dispatcher.BeginInvoke(System.Windows.Threading.DispatcherPriority.Render, new Action(() =>
+            {
+                HasSafiBuff = args.SafijiivaRegenCounter != -1;
+                SafiCounter = args.SafijiivaMaxHits - args.SafijiivaRegenCounter;
+            }));
+        }
 
-        private void OnBuffQueueChanged(object source, InsectGlaiveEventArgs args) => Dispatcher.BeginInvoke(System.Windows.Threading.DispatcherPriority.Render, new Action(() =>
-                                                                                    {
-                                                                                        switch (args.BuffQueueSize)
-                                                                                        {
-                                                                                            case 0:
-                                                                                                SecondBuffQueued = FirstBuffQueued = "#CC464646";
-                                                                                                break;
-                                                                                            case 1:
-                                                                                                SecondBuffQueued = FirstBuffQueued = GetKinsectBuffColorByID(args.FirstBuffQueued);
-                                                                                                break;
-                                                                                            case 2:
-                                                                                                FirstBuffQueued = GetKinsectBuffColorByID(args.FirstBuffQueued);
-                                                                                                SecondBuffQueued = GetKinsectBuffColorByID(args.SecondBuffQueued);
-                                                                                                break;
-                                                                                        }
-                                                                                    }));
+        private void OnBuffQueueChanged(object source, InsectGlaiveEventArgs args)
+        {
+            Dispatcher.BeginInvoke(System.Windows.Threading.DispatcherPriority.Render, new Action(() =>
+            {
+                switch (args.BuffQueueSize)
+                {
+                    case 0:
+                        SecondBuffQueued = FirstBuffQueued = "#CC464646";
+                        break;
+                    case 1:
+                        SecondBuffQueued = FirstBuffQueued = GetKinsectBuffColorByID(args.FirstBuffQueued);
+                        break;
+                    case 2:
+                        FirstBuffQueued = GetKinsectBuffColorByID(args.FirstBuffQueued);
+                        SecondBuffQueued = GetKinsectBuffColorByID(args.SecondBuffQueued);
+                        break;
+                }
+            }));
+        }
 
         private void OnKinsectStaminaUpdate(object source, InsectGlaiveEventArgs args)
         {
@@ -217,53 +223,73 @@ namespace HunterPie.GUI.Widgets.ClassWidget.Parts
             }));
         }
 
-        private void OnKinsectChargeBuffChange(object source, InsectGlaiveEventArgs args) => Dispatcher.BeginInvoke(System.Windows.Threading.DispatcherPriority.Render, new Action(() =>
-                                                                                           {
-                                                                                               switch (args.KinsectChargeType)
-                                                                                               {
-                                                                                                   case KinsectChargeBuff.None:
-                                                                                                       KinsectChargeImage = null;
-                                                                                                       break;
-                                                                                                   case KinsectChargeBuff.Red:
-                                                                                                       KinsectChargeImage = "pack://siteoforigin:,,,/HunterPie.Resources/UI/Class/KinsectRedCharge.png";
-                                                                                                       break;
-                                                                                                   case KinsectChargeBuff.Yellow:
-                                                                                                       KinsectChargeImage = "pack://siteoforigin:,,,/HunterPie.Resources/UI/Class/KinsectYellowCharge.png";
-                                                                                                       break;
-                                                                                                   case KinsectChargeBuff.Both:
-                                                                                                       KinsectChargeImage = "pack://siteoforigin:,,,/HunterPie.Resources/UI/Class/KinsectBothCharges.png";
-                                                                                                       break;
-                                                                                               }
-                                                                                           }));
-
-        private void OnOrangeBuffUpdate(object source, InsectGlaiveEventArgs args) => Dispatcher.BeginInvoke(System.Windows.Threading.DispatcherPriority.Render, new Action(() =>
-                                                                                    {
-                                                                                        OrangeBuff = args.OrangeBuff > 60 ? TimeSpan.FromSeconds(args.OrangeBuff).ToString("m\\:ss") :
-                                                                                        TimeSpan.FromSeconds(args.OrangeBuff).ToString("ss");
-                                                                                        OrangeBuffActive = args.OrangeBuff > 0;
-                                                                                    }));
-
-        private void OnWhiteBuffUpdate(object source, InsectGlaiveEventArgs args) => Dispatcher.BeginInvoke(System.Windows.Threading.DispatcherPriority.Render, new Action(() =>
-                                                                                   {
-                                                                                       WhiteBuff = args.WhiteBuff > 60 ? TimeSpan.FromSeconds(args.WhiteBuff).ToString("m\\:ss") :
-                                                                                       TimeSpan.FromSeconds(args.WhiteBuff).ToString("ss");
-                                                                                       WhiteBuffActive = args.WhiteBuff > 0;
-                                                                                   }));
-
-        private void OnRedBuffUpdate(object source, InsectGlaiveEventArgs args) => Dispatcher.BeginInvoke(System.Windows.Threading.DispatcherPriority.Render, new Action(() =>
-                                                                                 {
-                                                                                     RedBuff = args.RedBuff > 60 ? TimeSpan.FromSeconds(args.RedBuff).ToString("m\\:ss") :
-                                                                                     TimeSpan.FromSeconds(args.RedBuff).ToString("ss");
-                                                                                     RedBuffActive = args.RedBuff > 0;
-                                                                                 }));
-
-        private string GetKinsectBuffColorByID(int ID)
+        private void OnKinsectChargeBuffChange(object source, InsectGlaiveEventArgs args)
         {
-            if (ID == 0) return RedBuffColor;
-            if (ID == 1) return WhiteBuffColor;
-            if (ID == 2) return OrangeBuffColor;
-            if (ID == 3) return GreenBuffColor;
-            return "#CC464646";
+            Dispatcher.BeginInvoke(System.Windows.Threading.DispatcherPriority.Render, new Action(() =>
+            {
+                switch (args.KinsectChargeType)
+                {
+                    case KinsectChargeBuff.None:
+                        KinsectChargeImage = null;
+                        break;
+                    case KinsectChargeBuff.Red:
+                        KinsectChargeImage = "pack://siteoforigin:,,,/HunterPie.Resources/UI/Class/KinsectRedCharge.png";
+                        break;
+                    case KinsectChargeBuff.Yellow:
+                        KinsectChargeImage = "pack://siteoforigin:,,,/HunterPie.Resources/UI/Class/KinsectYellowCharge.png";
+                        break;
+                    case KinsectChargeBuff.Both:
+                        KinsectChargeImage = "pack://siteoforigin:,,,/HunterPie.Resources/UI/Class/KinsectBothCharges.png";
+                        break;
+                }
+            }));
+        }
+
+        private void OnOrangeBuffUpdate(object source, InsectGlaiveEventArgs args)
+        {
+            Dispatcher.BeginInvoke(System.Windows.Threading.DispatcherPriority.Render, new Action(() =>
+            {
+                OrangeBuff = args.OrangeBuff > 60 ? TimeSpan.FromSeconds(args.OrangeBuff).ToString("m\\:ss") :
+                TimeSpan.FromSeconds(args.OrangeBuff).ToString("ss");
+                OrangeBuffActive = args.OrangeBuff > 0;
+            }));
+        }
+
+        private void OnWhiteBuffUpdate(object source, InsectGlaiveEventArgs args)
+        {
+            Dispatcher.BeginInvoke(System.Windows.Threading.DispatcherPriority.Render, new Action(() =>
+            {
+                WhiteBuff = args.WhiteBuff > 60 ? TimeSpan.FromSeconds(args.WhiteBuff).ToString("m\\:ss") :
+                TimeSpan.FromSeconds(args.WhiteBuff).ToString("ss");
+                WhiteBuffActive = args.WhiteBuff > 0;
+            }));
+        }
+
+        private void OnRedBuffUpdate(object source, InsectGlaiveEventArgs args)
+        {
+            Dispatcher.BeginInvoke(System.Windows.Threading.DispatcherPriority.Render, new Action(() =>
+            {
+                RedBuff = args.RedBuff > 60 ? TimeSpan.FromSeconds(args.RedBuff).ToString("m\\:ss") :
+                TimeSpan.FromSeconds(args.RedBuff).ToString("ss");
+                RedBuffActive = args.RedBuff > 0;
+            }));
+        }
+
+        private string GetKinsectBuffColorByID(int id)
+        {
+            switch (id)
+            {
+                case 0:
+                    return RedBuffColor;
+                case 1:
+                    return WhiteBuffColor;
+                case 2:
+                    return OrangeBuffColor;
+                case 3:
+                    return GreenBuffColor;
+                default:
+                    return "#CC464646";
+            }
         }
 
     }

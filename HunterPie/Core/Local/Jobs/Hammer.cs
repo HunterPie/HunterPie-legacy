@@ -4,9 +4,9 @@ namespace HunterPie.Core.Local.Jobs
 {
     public class HammerEventArgs : EventArgs
     {
-        public bool IsPowerCharged;
-        public int ChargeLevel;
-        public float ChargeProgress;
+        public bool IsPowerCharged { get; }
+        public int ChargeLevel { get; }
+        public float ChargeProgress { get; }
 
         public HammerEventArgs(Hammer weapon)
         {

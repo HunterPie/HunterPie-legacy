@@ -10,10 +10,11 @@ namespace HunterPie.Core
     {
         // Game classes
         public Player Player;
-        // TODO: Turn this into a list
-        public Monster FirstMonster;
-        public Monster SecondMonster;
-        public Monster ThirdMonster;
+
+        public Monster FirstMonster { get; private set; }
+        public Monster SecondMonster { get; private set; }
+        public Monster ThirdMonster { get; private set; }
+
         public Monster HuntedMonster
         {
             get
@@ -64,12 +65,13 @@ namespace HunterPie.Core
         public static int Version => Kernel.GameVersion;
 
         // Threading
-        ThreadStart scanGameThreadingRef;
-        Thread scanGameThreading;
+        private ThreadStart scanGameThreadingRef;
+        private Thread scanGameThreading;
 
         // Clock event
 
         public delegate void ClockEvent(object source, EventArgs args);
+
         /* This Event is dispatched every 10 seconds to update the rich presence */
         public event ClockEvent OnClockChange;
 
@@ -145,12 +147,21 @@ namespace HunterPie.Core
 
                 // Since monsters are independent, we still need to sync them with eachother
                 // to use the lockon
-                FirstMonster.AliveMonsters[0] = FirstMonster.IsActuallyAlive;
-                FirstMonster.AliveMonsters[1] = SecondMonster.IsActuallyAlive;
-                FirstMonster.AliveMonsters[2] = ThirdMonster.IsActuallyAlive;
 
-                SecondMonster.AliveMonsters = FirstMonster.AliveMonsters;
-                ThirdMonster.AliveMonsters = FirstMonster.AliveMonsters;
+                // Stack alloc is much faster than creating a new array on the heap
+                // so we use it then move the values to the AliveMonsters array
+                Span<bool> aliveMonsters = stackalloc bool[3];
+
+                aliveMonsters[0] = FirstMonster.IsActuallyAlive;
+                aliveMonsters[1] = SecondMonster.IsActuallyAlive;
+                aliveMonsters[2] = ThirdMonster.IsActuallyAlive;
+
+                for (int i = 0; i < aliveMonsters.Length; i++)
+                {
+                    FirstMonster.AliveMonsters[i] = aliveMonsters[i];
+                    SecondMonster.AliveMonsters[i] = aliveMonsters[i];
+                    ThirdMonster.AliveMonsters[i] = aliveMonsters[i];
+                }
 
                 Thread.Sleep(UserSettings.PlayerConfig.Overlay.GameScanDelay);
             }

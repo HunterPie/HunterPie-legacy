@@ -13,7 +13,7 @@ namespace HunterPie.GUI
     {
 
         public byte WidgetType = 0;
-        public bool IsClosed = false;
+        public bool IsClosed { get; set; }
         private bool _InDesignMode { get; set; }
         public double DefaultScaleX { get; set; } = 1;
         public double DefaultScaleY { get; set; } = 1;
@@ -62,11 +62,13 @@ namespace HunterPie.GUI
         public static readonly DependencyProperty DesignModeDetailsVisibilityProperty =
             DependencyProperty.Register("DesignModeDetailsVisibility", typeof(Visibility), typeof(Widget));
 
-
-        public Widget() => CompositionTarget.Rendering += OnWidgetRender;
+        public Widget()
+        {
+            CompositionTarget.Rendering += OnWidgetRender;
+        }
 
         private int renderCounter = 0;
-        private double LastFrameRender;
+        private double lastFrameRender;
         private void OnWidgetRender(object sender, EventArgs e)
         {
             renderCounter++;
@@ -88,13 +90,13 @@ namespace HunterPie.GUI
             {
                 RenderingEventArgs args = (RenderingEventArgs)e;
                 // Dispatcher messes with the Render counter
-#if !DEBUG  // Debug messes with the rendering time
-                if (args.RenderingTime.TotalMilliseconds - LastFrameRender > 0)
+#if !DEBUG      // Debug messes with the rendering time
+                if (args.RenderingTime.TotalMilliseconds - lastFrameRender > 0)
                 {
 
-                    DesignModeDetails = $"{Left}x{Top} ({DefaultScaleX * 100:0.0}%) ({args.RenderingTime.TotalMilliseconds - LastFrameRender:0.##}ms)";
+                    DesignModeDetails = $"{Left}x{Top} ({DefaultScaleX * 100:0.0}%) ({args.RenderingTime.TotalMilliseconds - lastFrameRender:0.##}ms)";
                     DesignModeDetailsVisibility = Visibility.Visible;
-                    LastFrameRender = args.RenderingTime.TotalMilliseconds;
+                    lastFrameRender = args.RenderingTime.TotalMilliseconds;
 
                 }
 #endif
@@ -106,18 +108,18 @@ namespace HunterPie.GUI
             
         }
 
-        double OldOpacity;
+        double oldOpacity;
         public virtual void EnterWidgetDesignMode()
         {
             ChangeVisibility();
-            OldOpacity = Opacity;
+            oldOpacity = Opacity;
             Opacity = 1;
         }
 
         public virtual void LeaveWidgetDesignMode()
         {
             ChangeVisibility();
-            Opacity = OldOpacity;
+            Opacity = oldOpacity;
         }
 
         public void SetWidgetBaseSize(double Width, double Height)

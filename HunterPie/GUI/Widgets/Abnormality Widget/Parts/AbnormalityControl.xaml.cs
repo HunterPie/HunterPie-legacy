@@ -15,15 +15,15 @@ namespace HunterPie.GUI.Widgets.Abnormality_Widget.Parts
 
         // TODO: Refactor this code
 
-        readonly Brush Debuff_Color = new SolidColorBrush(Color.FromArgb(0xFF, 0x97, 0x32, 0x32));
-        readonly Brush Buff_Color = new SolidColorBrush(Color.FromArgb(0xFF, 0x32, 0x97, 0x45));
+        readonly Brush debuffColor = new SolidColorBrush(Color.FromArgb(0xFF, 0x97, 0x32, 0x32));
+        readonly Brush buffColor = new SolidColorBrush(Color.FromArgb(0xFF, 0x32, 0x97, 0x45));
 
         public Abnormality Context { get; private set; }
         public bool ShowAbnormalityTimerText { get; set; }
         public byte AbnormalityTimerTextFormat { get; set; }
         public bool ShowAbnormalityName { get; set; }
-        public double BaseWidth;
-        public double BaseHeight;
+        public double BaseWidth { get; private set; }
+        public double BaseHeight { get; private set; }
 
         public AbnormalityControl() => InitializeComponent();
 
@@ -43,8 +43,10 @@ namespace HunterPie.GUI.Widgets.Abnormality_Widget.Parts
 
         private void OnAbnormalityStackChange(object source, AbnormalityEventArgs args) => Dispatcher.BeginInvoke(System.Windows.Threading.DispatcherPriority.Background, new Action(() =>
         {
-            ImageSource NewIcon = TryFindResource($"{args.Abnormality.Icon}" + string.Concat(Enumerable.Repeat("+", args.Abnormality.Stack))) as ImageSource;
-            if (NewIcon == null) NewIcon = FindResource($"{args.Abnormality.Icon}") as ImageSource;
+            if (!(TryFindResource($"{args.Abnormality.Icon}" + string.Concat(Enumerable.Repeat("+", args.Abnormality.Stack))) is ImageSource NewIcon))
+            {
+                NewIcon = FindResource($"{args.Abnormality.Icon}") as ImageSource;
+            }
             AbnormalityIcon.Source = NewIcon;
         }));
 
@@ -69,7 +71,7 @@ namespace HunterPie.GUI.Widgets.Abnormality_Widget.Parts
                 AbnormIcon = FindResource(Abnorm.Icon) as ImageSource;
             }
             AbnormalityIcon.Source = AbnormIcon;
-            AbnormalityDurationArc.Stroke = Abnorm.IsDebuff ? Debuff_Color : Buff_Color;
+            AbnormalityDurationArc.Stroke = Abnorm.IsDebuff ? debuffColor : buffColor;
             if (Abnorm.IsInfinite || !ShowAbnormalityTimerText)
             {
                 TimeLeftText.Visibility = System.Windows.Visibility.Collapsed;

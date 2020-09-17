@@ -4,7 +4,7 @@ namespace HunterPie.Core.Local.Jobs
 {
     public class LightBowgunEventArgs : EventArgs
     {
-        public float SpecialAmmoRegen;
+        public float SpecialAmmoRegen { get; }
 
         public LightBowgunEventArgs(LightBowgun weapon) => SpecialAmmoRegen = weapon.SpecialAmmoRegen;
     }

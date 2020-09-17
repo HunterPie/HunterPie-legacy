@@ -4,8 +4,8 @@ namespace HunterPie.Core.Local.Jobs
 {
     public class HeavyBowgunEventArgs : EventArgs
     {
-        public float WyvernsnipeTimer;
-        public float WyvernheartTimer;
+        public float WyvernsnipeTimer { get; }
+        public float WyvernheartTimer { get; }
 
         public HeavyBowgunEventArgs(HeavyBowgun weapon)
         {
@@ -17,6 +17,8 @@ namespace HunterPie.Core.Local.Jobs
     {
         private float wyvernsnipeTimer;
         private float wyvernheartTimer;
+
+
 
         public float WyvernsnipeTimer
         {

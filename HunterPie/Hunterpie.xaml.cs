@@ -27,6 +27,8 @@ using Presence = HunterPie.Core.Integrations.Discord.Presence;
 using Process = System.Diagnostics.Process;
 using ProcessStartInfo = System.Diagnostics.ProcessStartInfo;
 using System.Threading.Tasks;
+using Newtonsoft.Json;
+using Markdig.Parsers;
 
 namespace HunterPie
 {

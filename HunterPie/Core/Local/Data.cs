@@ -1,8 +1,5 @@
 ﻿namespace HunterPie.Core.Local
 {
-    /*
-     Player data structs, they'll be used in the future for some stuff I want to implement :)
-    */
     public class GameStructs
     {
         public struct Decoration

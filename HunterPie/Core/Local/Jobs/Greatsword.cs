@@ -4,7 +4,7 @@ namespace HunterPie.Core.Local.Jobs
 {
     public class GreatswordEventArgs : EventArgs
     {
-        public uint ChargeLevel;
+        public uint ChargeLevel { get; }
 
         public GreatswordEventArgs(Greatsword weapon) => ChargeLevel = weapon.ChargeLevel;
     }

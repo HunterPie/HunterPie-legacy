@@ -270,60 +270,52 @@ namespace HunterPie.Core
         /// <summary>
         /// Player current party
         /// </summary>
-        public Party PlayerParty = new Party();
+        public readonly Party PlayerParty = new Party();
 
         /// <summary>
         /// Player harvest box
         /// </summary>
-        public HarvestBox Harvest = new HarvestBox();
+        public readonly HarvestBox Harvest = new HarvestBox();
 
         /// <summary>
         /// Argosy, Tailraiders and Steam Fuel
         /// </summary>
-        public Activities Activity = new Activities();
+        public readonly Activities Activity = new Activities();
 
         /// <summary>
         /// Current primary mantle
         /// </summary>
-        public Mantle PrimaryMantle = new Mantle();
+        public readonly Mantle PrimaryMantle = new Mantle();
 
         /// <summary>
         /// Current secondary mantle
         /// </summary>
-        public Mantle SecondaryMantle = new Mantle();
+        public readonly Mantle SecondaryMantle = new Mantle();
 
         /// <summary>
         /// Player abnormalities
         /// </summary>
-        public Abnormalities Abnormalities = new Abnormalities();
+        public readonly Abnormalities Abnormalities = new Abnormalities();
 
         #region Jobs
-        public Greatsword Greatsword = new Greatsword();
-        public DualBlades DualBlades = new DualBlades();
-        public Longsword Longsword = new Longsword();
-        public Hammer Hammer = new Hammer();
-        public HuntingHorn HuntingHorn = new HuntingHorn();
-        public Lance Lance = new Lance();
-        public GunLance GunLance = new GunLance();
-        public SwitchAxe SwitchAxe = new SwitchAxe();
-        public ChargeBlade ChargeBlade = new ChargeBlade();
-        public InsectGlaive InsectGlaive = new InsectGlaive();
-        public Bow Bow = new Bow();
-        public LightBowgun LightBowgun = new LightBowgun();
-        public HeavyBowgun HeavyBowgun = new HeavyBowgun();
+        public readonly Greatsword Greatsword = new Greatsword();
+        public readonly DualBlades DualBlades = new DualBlades();
+        public readonly Longsword Longsword = new Longsword();
+        public readonly Hammer Hammer = new Hammer();
+        public readonly HuntingHorn HuntingHorn = new HuntingHorn();
+        public readonly Lance Lance = new Lance();
+        public readonly GunLance GunLance = new GunLance();
+        public readonly SwitchAxe SwitchAxe = new SwitchAxe();
+        public readonly ChargeBlade ChargeBlade = new ChargeBlade();
+        public readonly InsectGlaive InsectGlaive = new InsectGlaive();
+        public readonly Bow Bow = new Bow();
+        public readonly LightBowgun LightBowgun = new LightBowgun();
+        public readonly HeavyBowgun HeavyBowgun = new HeavyBowgun();
         #endregion
 
         // Threading
-        private ThreadStart ScanPlayerInfoRef;
-        private Thread ScanPlayerInfo;
-
-        ~Player()
-        {
-            PlayerParty = null;
-            Harvest = null;
-            PrimaryMantle = null;
-            SecondaryMantle = null;
-        }
+        private ThreadStart scanPlayerInfoRef;
+        private Thread scanPlayerInfo;
 
         #region Events
         // Event handlers
@@ -350,16 +342,16 @@ namespace HunterPie.Core
         #region Scanner
         public void StartScanning()
         {
-            ScanPlayerInfoRef = new ThreadStart(GetPlayerInfo);
-            ScanPlayerInfo = new Thread(ScanPlayerInfoRef)
+            scanPlayerInfoRef = new ThreadStart(GetPlayerInfo);
+            scanPlayerInfo = new Thread(scanPlayerInfoRef)
             {
                 Name = "Scanner_Player"
             };
             Debugger.Warn(GStrings.GetLocalizationByXPath("/Console/String[@ID='MESSAGE_PLAYER_SCANNER_INITIALIZED']"));
-            ScanPlayerInfo.Start();
+            scanPlayerInfo.Start();
         }
 
-        public void StopScanning() => ScanPlayerInfo.Abort();
+        public void StopScanning() => scanPlayerInfo.Abort();
         #endregion
 
         #region Manual Player Data
@@ -778,20 +770,20 @@ namespace HunterPie.Core
 
         private void GetPrimaryMantleTimers()
         {
-            long PrimaryMantleTimerFixed = (PrimaryMantle.ID * 4) + Address.timerFixed;
-            long PrimaryMantleTimer = (PrimaryMantle.ID * 4) + Address.timerDynamic;
-            long PrimaryMantleCdFixed = (PrimaryMantle.ID * 4) + Address.cooldownFixed;
-            long PrimaryMantleCdDynamic = (PrimaryMantle.ID * 4) + Address.cooldownDynamic;
+            long PrimaryMantleTimerFixed = (PrimaryMantle.ID * 4) + Address.TimerFixed;
+            long PrimaryMantleTimer = (PrimaryMantle.ID * 4) + Address.TimerDynamic;
+            long PrimaryMantleCdFixed = (PrimaryMantle.ID * 4) + Address.CooldownFixed;
+            long PrimaryMantleCdDynamic = (PrimaryMantle.ID * 4) + Address.CooldownDynamic;
             PrimaryMantle.SetCooldown(Kernel.Read<float>(EQUIPMENT_ADDRESS + PrimaryMantleCdDynamic), Kernel.Read<float>(EQUIPMENT_ADDRESS + PrimaryMantleCdFixed));
             PrimaryMantle.SetTimer(Kernel.Read<float>(EQUIPMENT_ADDRESS + PrimaryMantleTimer), Kernel.Read<float>(EQUIPMENT_ADDRESS + PrimaryMantleTimerFixed));
         }
 
         private void GetSecondaryMantleTimers()
         {
-            long SecondaryMantleTimerFixed = (SecondaryMantle.ID * 4) + Address.timerFixed;
-            long SecondaryMantleTimer = (SecondaryMantle.ID * 4) + Address.timerDynamic;
-            long SecondaryMantleCdFixed = (SecondaryMantle.ID * 4) + Address.cooldownFixed;
-            long SecondaryMantleCdDynamic = (SecondaryMantle.ID * 4) + Address.cooldownDynamic;
+            long SecondaryMantleTimerFixed = (SecondaryMantle.ID * 4) + Address.TimerFixed;
+            long SecondaryMantleTimer = (SecondaryMantle.ID * 4) + Address.TimerDynamic;
+            long SecondaryMantleCdFixed = (SecondaryMantle.ID * 4) + Address.CooldownFixed;
+            long SecondaryMantleCdDynamic = (SecondaryMantle.ID * 4) + Address.CooldownDynamic;
             SecondaryMantle.SetCooldown(Kernel.Read<float>(EQUIPMENT_ADDRESS + SecondaryMantleCdDynamic), Kernel.Read<float>(EQUIPMENT_ADDRESS + SecondaryMantleCdFixed));
             SecondaryMantle.SetTimer(Kernel.Read<float>(EQUIPMENT_ADDRESS + SecondaryMantleTimer), Kernel.Read<float>(EQUIPMENT_ADDRESS + SecondaryMantleTimerFixed));
         }

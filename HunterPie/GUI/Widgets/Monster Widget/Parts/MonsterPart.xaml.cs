@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Linq;
+using System.Text;
 using System.Windows;
 using System.Windows.Controls;
 using HunterPie.Core;
@@ -20,6 +21,32 @@ namespace HunterPie.GUI.Widgets.Monster_Widget.Parts
 
         private static UserSettings.Config.Monsterscomponent ComponentSettings =>
             UserSettings.PlayerConfig.Overlay.MonstersComponent;
+
+        public string PartName
+        {
+            get { return (string)GetValue(PartNameProperty); }
+            set { SetValue(PartNameProperty, value); }
+        }
+        public static readonly DependencyProperty PartNameProperty =
+            DependencyProperty.Register("PartName", typeof(string), typeof(MonsterPart));
+
+        public string PartBrokenCounter
+        {
+            get { return (string)GetValue(PartBrokenCounterProperty); }
+            set { SetValue(PartBrokenCounterProperty, value); }
+        }
+        public static readonly DependencyProperty PartBrokenCounterProperty =
+            DependencyProperty.Register("PartBrokenCounter", typeof(string), typeof(MonsterPart));
+
+        public string PartHealthText
+        {
+            get { return (string)GetValue(PartHealthTextProperty); }
+            set { SetValue(PartHealthTextProperty, value); }
+        }
+        public static readonly DependencyProperty PartHealthTextProperty =
+            DependencyProperty.Register("PartHealthText", typeof(string), typeof(MonsterPart));
+
+
 
         public void SetContext(Part ctx, double MaxHealthBarSize)
         {
@@ -104,7 +131,7 @@ namespace HunterPie.GUI.Widgets.Monster_Widget.Parts
 
         private void SetPartInformation(double newSize)
         {
-            PartName.Text = $"{context.Name}";
+            PartName = $"{context.Name}";
             UpdatePartBrokenCounter();
             UpdateHealthSize(newSize);
             UpdateHealthText();
@@ -156,20 +183,20 @@ namespace HunterPie.GUI.Widgets.Monster_Widget.Parts
 
         private void UpdatePartBrokenCounter()
         {
-            string suffix = "";
+            StringBuilder suffix = new StringBuilder($"{context.BrokenCounter}");
             for (int i = context.BreakThresholds.Length - 1; i >= 0; i--)
             {
                 int threshold = context.BreakThresholds[i];
                 if (context.BrokenCounter < threshold || i == context.BreakThresholds.Length - 1)
                 {
-                    suffix = $"/{threshold}";
+                    suffix.Append($"/{threshold}");
                     if (i < context.BreakThresholds.Length - 1)
                     {
-                        suffix += "+";
+                        suffix.Append("+");
                     }
                 }
             }
-            PartBrokenCounter.Text = $"{context.BrokenCounter}{suffix}";
+            PartBrokenCounter = suffix.ToString();
         }
 
         public void UpdateHealthSize(double newSize)
@@ -186,7 +213,7 @@ namespace HunterPie.GUI.Widgets.Monster_Widget.Parts
             PartHealth.Value = context.Health;
             double percentage = PartHealth.Value / Math.Max(1, PartHealth.MaxValue);
             string format = UserSettings.PlayerConfig.Overlay.MonstersComponent.PartTextFormat;
-            PartHealthText.Text = format.Replace("{Current}", $"{PartHealth.Value:0}")
+            PartHealthText = format.Replace("{Current}", $"{PartHealth.Value:0}")
                 .Replace("{Max}", $"{PartHealth.MaxValue:0}")
                 .Replace("{Percentage}", $"{percentage * 100:0}");
         }
