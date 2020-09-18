@@ -934,7 +934,6 @@ namespace HunterPie
 
         private void LaunchGame()
         {
-            throw new Exception("test");
             try
             {
                 ProcessStartInfo GameStartInfo = new ProcessStartInfo
