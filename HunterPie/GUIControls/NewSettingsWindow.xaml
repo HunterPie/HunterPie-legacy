@@ -872,6 +872,7 @@
                         <custom:Switcher x:Name="switchEnableDebugMessages" Text="{Binding Mode=OneTime, XPath=/Strings/Client/Settings/String[@ID\=\'ENABLE_DEBUG_MESSAGES\']/@Name}" RestartVisibility="Visible"  Margin="10,0,10,5" ToolTip="{Binding Mode=OneTime, XPath=/Strings/Client/Settings/String[@ID\=\'ENABLE_DEBUG_MESSAGES_DESC\']/@Name}"/>
                         <custom:Switcher x:Name="switchEnableUnknownStatuses" Text="{Binding Mode=OneTime, XPath=/Strings/Client/Settings/String[@ID\=\'ENABLE_UNKNOWN_AILMENTS\']/@Name}" RestartVisibility="Visible"  Margin="10,0,10,5" ToolTip="{Binding Mode=OneTime, XPath=/Strings/Client/Settings/String[@ID\=\'ENABLE_UNKNOWN_AILMENTS_DESC\']/@Name}"/>
                         <custom:Switcher x:Name="switchEnableLoadMonsterData" Text="{Binding Mode=OneTime, XPath=/Strings/Client/Settings/String[@ID\=\'ENABLE_LOAD_CUSTOM_DATA\']/@Name}" RestartVisibility="Visible"  Margin="10,0,10,5" ToolTip="{Binding Mode=OneTime, XPath=/Strings/Client/Settings/String[@ID\=\'ENABLE_LOAD_CUSTOM_DATA_DESC\']/@Name}"/>
+                        <custom:Switcher x:Name="switchEnableSendLogsToDev" Text="{Binding Mode=OneTime, XPath=/Strings/Client/Settings/String[@ID\=\'ENABLE_SEND_CRASH_TO_DEV\']/@Name}" RestartVisibility="Hidden"  Margin="10,0,10,5" ToolTip="{Binding Mode=OneTime, XPath=/Strings/Client/Settings/String[@ID\=\'ENABLE_SEND_CRASH_TO_DEV_DESC\']/@Name}"/>
                     </StackPanel>
                 </ScrollViewer>
             </TabItem>

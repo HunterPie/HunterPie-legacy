@@ -298,6 +298,7 @@ namespace HunterPie.Core
                 public bool ShowDebugMessages { get; set; } = false;
                 public string CustomMonsterData { get; set; } = null;
                 public bool LoadCustomMonsterData { get; set; } = false;
+                public bool SendCrashFileToDev { get; set; } = true;
             }
         }
 

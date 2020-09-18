@@ -719,6 +719,8 @@
       <String ID="ENABLE_UNKNOWN_AILMENTS_DESC" Name="Enables unknown monster statuses. Do not turn this option on if you have no idea what you're doing. This is part of the development tools."/>
       <String ID="ENABLE_LOAD_CUSTOM_DATA" Name="Load custom monster data"/>
       <String ID="ENABLE_LOAD_CUSTOM_DATA_DESC" Name="If enabled, HunterPie will try to load the custom monster data file. Do not turn this option on if you have no idea what you're doing. This is part of the development tools."/>
+      <String ID="ENABLE_SEND_CRASH_TO_DEV" Name="Send crash log to dev"/>
+      <String ID="ENABLE_SEND_CRASH_TO_DEV_DESC" Name="If enabled, HunterPie will automatically send the crashes log to me. You can disable this option, however, keeping this enabled will help me spot and fix bugs faster."/>
       <String ID="STATIC_LOAD_CUSTOM_DATA_PATH" Name="Custom Monster Data File:"/>
       <String ID="STATIC_LOAD_CUSTOM_DATA_PATH_DESC" Name="Select your custom monster data file path."/>
       <!-- Generics -->

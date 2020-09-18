@@ -13,7 +13,6 @@ namespace HunterPie
         {
             e.Handled = true;
             Debugger.Error(e.Exception);
-            
         }
     }
 }

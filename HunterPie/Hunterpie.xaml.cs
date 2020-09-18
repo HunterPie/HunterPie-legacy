@@ -20,7 +20,6 @@ using HunterPie.Plugins;
 using HunterPie.Logger;
 using PluginDisplay = HunterPie.GUIControls.Plugins;
 using HunterPie.Core.Input;
-using HunterPie.Core;
 // HunterPie
 using HunterPie.Memory;
 using Presence = HunterPie.Core.Integrations.Discord.Presence;
@@ -29,6 +28,8 @@ using ProcessStartInfo = System.Diagnostics.ProcessStartInfo;
 using System.Threading.Tasks;
 using Newtonsoft.Json;
 using Markdig.Parsers;
+using System.Net.Http;
+using System.Text;
 
 namespace HunterPie
 {
@@ -87,7 +88,7 @@ namespace HunterPie
             CheckIfHunterPieOpen();
 
             AppDomain.CurrentDomain.UnhandledException += ExceptionLogger;
-
+            
             IsPlayerLoggedOn = false;
 
             SetDPIAwareness();
@@ -417,7 +418,32 @@ namespace HunterPie
             }
         }
 
-        private void ExceptionLogger(object sender, UnhandledExceptionEventArgs e) => File.WriteAllText("crashes.txt", e.ExceptionObject.ToString());
+        private void ExceptionLogger(object sender, UnhandledExceptionEventArgs e)
+        {
+            File.WriteAllText("crashes.txt", e.ExceptionObject.ToString());
+
+            if (UserSettings.PlayerConfig.HunterPie.Debug.SendCrashFileToDev)
+            {
+                const string HunterPieCrashesWebhook = "https://discordapp.com/api/webhooks/756301992930050129/sTbp4PmjYZMlGGT0IYIhYtTiVw9hpaqwjo-n1Aawl2omWfnV-SD3NpH691xm4TleJ2p-";
+                // Also try to send the crash error to my webhook so I can fix it
+                using (var httpClient = new HttpClient())
+                {
+                    using (var req = new HttpRequestMessage(new HttpMethod("POST"), HunterPieCrashesWebhook))
+                    {
+                        using (var content = new MultipartFormDataContent())
+                        {
+                            content.Add(new StringContent(""), "username");
+                            content.Add(new StringContent($"```Exception type: {e.ExceptionObject.GetType()}\n-----------------------------------\nBranch: {UserSettings.PlayerConfig.HunterPie.Update.Branch}\nVersion: {HUNTERPIE_VERSION}\nGAME BUILD VERSION: {Game.Version}```"), "content");
+                            content.Add(new StringContent(e.ExceptionObject.ToString()), "file", "crashes.txt");
+                            req.Content = content;
+
+                            httpClient.SendAsync(req).Wait();
+                        }
+
+                    }
+                }
+            }
+        }
 
         private void StartEverything()
         {
@@ -908,6 +934,7 @@ namespace HunterPie
 
         private void LaunchGame()
         {
+            throw new Exception("test");
             try
             {
                 ProcessStartInfo GameStartInfo = new ProcessStartInfo

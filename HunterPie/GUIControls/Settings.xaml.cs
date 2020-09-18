@@ -61,6 +61,7 @@ namespace HunterPie.GUIControls
             settingsUI.switchEnableDebugMessages.IsEnabled = settings.HunterPie.Debug.ShowDebugMessages;
             settingsUI.switchEnableUnknownStatuses.IsEnabled = settings.HunterPie.Debug.ShowUnknownStatuses;
             settingsUI.switchEnableLoadMonsterData.IsEnabled = settings.HunterPie.Debug.LoadCustomMonsterData;
+            settingsUI.switchEnableSendLogsToDev.IsEnabled = settings.HunterPie.Debug.SendCrashFileToDev;
 
             // Rich Presence
             settingsUI.switchEnableRichPresence.IsEnabled = settings.RichPresence.Enabled;
@@ -207,6 +208,7 @@ namespace HunterPie.GUIControls
             settings.HunterPie.Debug.ShowDebugMessages = settingsUI.switchEnableDebugMessages.IsEnabled;
             settings.HunterPie.Debug.ShowUnknownStatuses = settingsUI.switchEnableUnknownStatuses.IsEnabled;
             settings.HunterPie.Debug.LoadCustomMonsterData = settingsUI.switchEnableLoadMonsterData.IsEnabled;
+            settings.HunterPie.Debug.SendCrashFileToDev = settingsUI.switchEnableSendLogsToDev.IsEnabled;
 
             // Rich Presence
             settings.RichPresence.Enabled = settingsUI.switchEnableRichPresence.IsEnabled;
