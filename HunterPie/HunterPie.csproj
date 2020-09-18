@@ -101,9 +101,7 @@
     <Win32Resource>
     </Win32Resource>
   </PropertyGroup>
-  <PropertyGroup>
-    <ApplicationManifest>app.manifest</ApplicationManifest>
-  </PropertyGroup>
+  <PropertyGroup />
   <PropertyGroup>
     <DelaySign>false</DelaySign>
   </PropertyGroup>
@@ -138,6 +136,8 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
+    <Compile Include="Core\Definitions\sAmmo.cs" />
+    <Compile Include="Core\Definitions\sEquippedAmmo.cs" />
     <Compile Include="Core\Definitions\sGear.cs" />
     <Compile Include="Core\Definitions\sHuntingHornMechanics.cs" />
     <Compile Include="Core\Definitions\sHuntingHornSong.cs" />
@@ -398,6 +398,10 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
+    <Page Include="GUI\Widgets\ClassWidget\Parts\HeavyBowgunControl.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="GUI\Widgets\ClassWidget\Parts\HuntingHorn\Components\NoteComponent.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -523,6 +527,9 @@
     </Compile>
     <Compile Include="GUI\Widgets\ClassWidget\Parts\HammerControl.xaml.cs">
       <DependentUpon>HammerControl.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="GUI\Widgets\ClassWidget\Parts\HeavyBowgunControl.xaml.cs">
+      <DependentUpon>HeavyBowgunControl.xaml</DependentUpon>
     </Compile>
     <Compile Include="GUI\Widgets\ClassWidget\Parts\HuntingHorn\Components\NoteComponent.xaml.cs">
       <DependentUpon>NoteComponent.xaml</DependentUpon>

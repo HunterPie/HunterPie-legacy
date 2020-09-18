@@ -95,13 +95,16 @@ namespace HunterPie.Logger
                     msg.ApplyPropertyValue(TextElement.ForegroundProperty, color);
                     ScrollToEnd();
                 })
+                
             );
         }
 
         public static void DumpLog()
         {
             LastOperation.Wait();
+            
             TextRange tr = new TextRange(_Instance.Console.Document.ContentStart, _Instance.Console.Document.ContentEnd);
+            
             string dir = Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "Logs");
             if (!Directory.Exists(dir))
             {
@@ -115,7 +118,7 @@ namespace HunterPie.Logger
                     File.Delete(Path.Combine(dir, file));
                 }
             }
-            File.WriteAllText(Path.Combine(dir, $"{DateTime.Now:dd\\-M\\-yyyy}_{DateTime.Now.GetHashCode()}_DEBUG-HunterPie.log"), tr.Text);
+            File.WriteAllText(Path.Combine(dir, $"{DateTime.Now:dd\\-M\\-yyyy}_{DateTime.Now.GetHashCode()}_DEBUG-HunterPie.log"), tr.Text/*_Instance.Console.Text*/);
         }
 
         private void OnClearConsoleButtonClick(object sender, RoutedEventArgs e)

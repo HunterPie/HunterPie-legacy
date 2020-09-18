@@ -1289,10 +1289,17 @@ namespace HunterPie.Core
 
         private void GetHeavyBowgunInformation(long weaponAddress)
         {
-            float wyvernsnipe = Kernel.Read<float>(weaponAddress - 0xC);
-            float wyvernheart = Kernel.Read<float>(weaponAddress - 0x14);
-            HeavyBowgun.WyvernsnipeTimer = wyvernsnipe;
-            HeavyBowgun.WyvernheartTimer = wyvernheart;
+            HeavyBowgunInformation data = new HeavyBowgunInformation
+            {
+                WyvernsnipeTimer = Kernel.Read<float>(weaponAddress - 0xC),
+                WyvernheartTimer = Kernel.Read<float>(weaponAddress - 0x14),
+                HasScopeEquipped = Kernel.Read<byte>(weaponAddress + 0x4B8) == 1,
+                ScopeZoomMultiplier = Kernel.Read<float>(weaponAddress + 0x4D0),
+                EquippedAmmo = Kernel.ReadStructure<sEquippedAmmo>(weaponAddress + 0x454)
+            };
+            sAmmo[] ammos = Kernel.ReadStructure<sAmmo>(weaponAddress + 0x34, 40);
+
+            HeavyBowgun.UpdateInformation(data, ammos);
         }
         #endregion
 
