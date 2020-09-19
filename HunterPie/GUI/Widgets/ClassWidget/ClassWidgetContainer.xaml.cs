@@ -91,6 +91,9 @@ namespace HunterPie.GUI.Widgets.ClassWidget
                 case Classes.Bow:
                     config = classesConfig.BowHelper;
                     break;
+                case Classes.HeavyBowgun:
+                    config = classesConfig.HeavyBowgunHelper;
+                    break;
                 default:
                     return;
             }
@@ -137,6 +140,9 @@ namespace HunterPie.GUI.Widgets.ClassWidget
                     break;
                 case Classes.Bow:
                     config = classesConfig.BowHelper;
+                    break;
+                case Classes.HeavyBowgun:
+                    config = classesConfig.HeavyBowgunHelper;
                     break;
                 default:
                     return;
@@ -229,11 +235,23 @@ namespace HunterPie.GUI.Widgets.ClassWidget
                     case Classes.Bow:
                         SetClassToBow();
                         break;
+                    case Classes.HeavyBowgun:
+                        SetClassToHeavyBowgun();
+                        break;
                     default:
                         WidgetHasContent = false;
                         break;
                 }
             }));
+        }
+
+        private void SetClassToHeavyBowgun()
+        {
+            var control = new HeavyBowgunControl();
+            control.SetContext(Context.Player.HeavyBowgun);
+            Container.Children.Add(control);
+
+            ApplySettings();
         }
 
         private void SetClassToHuntingHorn()

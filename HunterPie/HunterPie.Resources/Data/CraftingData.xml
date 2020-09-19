@@ -1,0 +1,72 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<Crafting>
+  <!-- Tranq Ammo -->
+  <Item Output="169" OutMultiplier="1">
+    <Material Id="59" Amount="1"/>
+  </Item>
+  <!-- Normal Ammo 2 -->
+  <Item Output="138" OutMultiplier="4">
+    <Material Id="102" Amount="1"/>
+  </Item>
+  <!-- Normal Ammo 3 -->
+  <Item Output="139" OutMultiplier="4">
+    <Material Id="103" Amount="1"/>
+  </Item>
+  <!-- Pierce Ammo 1 -->
+  <Item Output="140" OutMultiplier="1">
+    <Material Id="98" Amount="1"/>
+  </Item>
+  <!-- Pierce Ammo 2 -->
+  <Item Output="141" OutMultiplier="4">
+    <Material Id="140" Amount="1"/>
+    <Material Id="102" Amount="1"/>
+  </Item>
+  <!-- Pierce Ammo 3 -->
+  <Item Output="142" OutMultiplier="4">
+    <Material Id="140" Amount="1"/>
+    <Material Id="103" Amount="1"/>
+  </Item>
+  <!-- Spread Ammo 1 -->
+  <Item Output="143" OutMultiplier="1">
+    <Material Id="94" Amount="1"/>
+  </Item>
+  <!-- Spread Ammo 2 -->
+  <Item Output="144" OutMultiplier="4">
+    <Material Id="143" Amount="1"/>
+    <Material Id="102" Amount="1"/>
+  </Item>
+  <!-- Spread Ammo 3 -->
+  <Item Output="145" OutMultiplier="4">
+    <Material Id="143" Amount="1"/>
+    <Material Id="103" Amount="1"/>
+  </Item>
+  <!-- Sticky Ammo 1 -->
+  <Item Output="146" OutMultiplier="1">
+    <Material Id="95" Amount="1"/>
+  </Item>
+  <!-- Sticky Ammo 2 -->
+  <Item Output="147" OutMultiplier="2">
+    <Material Id="146" Amount="1"/>
+    <Material Id="102" Amount="1"/>
+  </Item>
+  <!-- Sticky Ammo 3 -->
+  <Item Output="148" OutMultiplier="2">
+    <Material Id="146" Amount="1"/>
+    <Material Id="103" Amount="1"/>
+  </Item>
+  <!-- Cluster Bomb 1 -->
+  <Item Output="149" OutMultiplier="1">
+    <Material Id="99" Amount="1"/>
+  </Item>
+  <!-- Cluster Bomb 2 -->
+  <Item Output="150" OutMultiplier="1">
+    <Material Id="149" Amount="1"/>
+    <Material Id="102" Amount="1"/>
+  </Item>
+  <!-- Cluster Bomb 3 -->
+  <Item Output="151" OutMultiplier="1">
+    <Material Id="149" Amount="1"/>
+    <Material Id="103" Amount="1"/>
+  </Item>
+  <!-- TODO: Add Slicing Ammo & the rest-->
+</Crafting>

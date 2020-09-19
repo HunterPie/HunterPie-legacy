@@ -30,6 +30,7 @@ using Newtonsoft.Json;
 using Markdig.Parsers;
 using System.Net.Http;
 using System.Text;
+using HunterPie.Core.Craft;
 
 namespace HunterPie
 {
@@ -99,7 +100,7 @@ namespace HunterPie
             // Initialize debugger and player config
             Debugger.InitializeDebugger();
             UserSettings.InitializePlayerConfig();
-
+            
             // Initialize localization
             GStrings.InitStrings(UserSettings.PlayerConfig.HunterPie.Language);
 
@@ -126,6 +127,7 @@ namespace HunterPie
         {
             MonsterData.LoadMonsterData();
             AbnormalityData.LoadAbnormalityData();
+            Recipes.LoadRecipes();
         }
 
         private void CheckIfHunterPieOpen()
@@ -633,7 +635,7 @@ namespace HunterPie
             MonsterHunter.StartScanning();
 
             // Initializes rich presence
-            if (Discord == null)
+            if (Discord is null)
             {
                 Discord = new Presence(MonsterHunter);
                 if (OfflineMode) Discord.SetOfflineMode();
@@ -652,13 +654,6 @@ namespace HunterPie
             Discord.Dispose();
             Discord = null;
 
-            if (UserSettings.PlayerConfig.HunterPie.Options.CloseWhenGameCloses)
-            {
-                Dispatcher.Invoke(System.Windows.Threading.DispatcherPriority.Normal, new Action(() =>
-                {
-                    Close();
-                }));
-            }
             MonsterHunter.StopScanning();
             Dispatcher.Invoke(System.Windows.Threading.DispatcherPriority.Background, new Action(() =>
             {
@@ -666,6 +661,13 @@ namespace HunterPie
                 GameOverlay = null;
             }));
             MonsterHunter.DestroyInstances();
+            if (UserSettings.PlayerConfig.HunterPie.Options.CloseWhenGameCloses)
+            {
+                Dispatcher.Invoke(System.Windows.Threading.DispatcherPriority.Normal, new Action(() =>
+                {
+                    Close();
+                }));
+            }
         }
 
         #endregion

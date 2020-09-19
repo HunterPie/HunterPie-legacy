@@ -7,7 +7,7 @@ namespace HunterPie.Core.Integrations.Discord
     public class Presence : IDisposable
     {
         public bool IsDisposed { get; private set; }
-        private readonly string APP_ID = "567152028070051859";
+        private readonly string AppId = "567152028070051859";
         private bool FailedToRegisterScheme { get; set; }
         private bool isOffline = false;
         private bool isVisible = true;
@@ -57,7 +57,7 @@ namespace HunterPie.Core.Integrations.Discord
             Instance = new RichPresence();
             Debugger.Discord(GStrings.GetLocalizationByXPath("/Console/String[@ID='MESSAGE_DISCORD_CONNECTED']"));
             Instance.Secrets = new Secrets();
-            Client = new DiscordRpcClient(APP_ID, autoEvents: true);
+            Client = new DiscordRpcClient(AppId, autoEvents: true);
 
             try
             {
@@ -153,14 +153,15 @@ namespace HunterPie.Core.Integrations.Discord
 
         public void HandlePresence(object source, EventArgs e)
         {
-            if (Instance == null) return;
+            if (Instance is null) return;
+            if (ctx is null) return;
 
             // Do nothing if RPC is disabled
             if (!isVisible) return;
 
             if (!FailedToRegisterScheme)
             {
-                if (ctx.Player.SteamSession != 0 && ctx.Player.InPeaceZone && UserSettings.PlayerConfig.RichPresence.LetPeopleJoinSession)
+                if (ctx.Player.SteamSession != 0 && UserSettings.PlayerConfig.RichPresence.LetPeopleJoinSession)
                 {
                     Instance.Secrets.JoinSecret = $"{ctx.Player.SteamSession}/{ctx.Player.SteamID}";
                 }

@@ -9,7 +9,7 @@ using Debugger = HunterPie.Logger.Debugger;
 
 namespace HunterPie.Memory
 {
-    class Kernel
+    public class Kernel
     {
 
         // Process info

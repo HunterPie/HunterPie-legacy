@@ -13,4 +13,10 @@ namespace HunterPie.Plugins
 
         public PluginSettings InternalSettings { get; set; } = new PluginSettings();
     }
+
+    public class PluginUpdateInformation
+    {
+        public string UpdateUrl;
+        public string MinimumVersion;
+    }
 }

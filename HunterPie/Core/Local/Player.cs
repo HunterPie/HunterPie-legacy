@@ -1301,7 +1301,7 @@ namespace HunterPie.Core
 
             HeavyBowgun.UpdateInformation(data, ammos);
         }
-        #endregion
+#endregion
 
         private float CalculatePowerProlongerMultiplier()
         {

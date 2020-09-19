@@ -183,20 +183,20 @@ namespace HunterPie.GUI.Widgets.Monster_Widget.Parts
 
         private void UpdatePartBrokenCounter()
         {
-            StringBuilder suffix = new StringBuilder($"{context.BrokenCounter}");
+            string suffix = "";
             for (int i = context.BreakThresholds.Length - 1; i >= 0; i--)
             {
                 int threshold = context.BreakThresholds[i];
                 if (context.BrokenCounter < threshold || i == context.BreakThresholds.Length - 1)
                 {
-                    suffix.Append($"/{threshold}");
+                    suffix = $"/{threshold}";
                     if (i < context.BreakThresholds.Length - 1)
                     {
-                        suffix.Append("+");
+                        suffix += "+";
                     }
                 }
             }
-            PartBrokenCounter = suffix.ToString();
+            PartBrokenCounter = $"{context.BrokenCounter}{suffix}";
         }
 
         public void UpdateHealthSize(double newSize)

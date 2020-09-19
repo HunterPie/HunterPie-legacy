@@ -13,6 +13,7 @@ using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
 using HunterPie.Core.Jobs;
+using HunterPie.Logger;
 
 namespace HunterPie.GUI.Widgets.ClassWidget.Parts
 {
@@ -32,6 +33,7 @@ namespace HunterPie.GUI.Widgets.ClassWidget.Parts
         public void SetContext(HeavyBowgun ctx)
         {
             Context = ctx;
+            HookEvents();
         }
 
         private void HookEvents()
@@ -57,32 +59,27 @@ namespace HunterPie.GUI.Widgets.ClassWidget.Parts
 
         private void OnWyvernsnipeUpdate(object source, HeavyBowgunEventArgs args)
         {
-            throw new NotImplementedException();
         }
 
         private void OnWyvernheartUpdate(object source, HeavyBowgunEventArgs args)
         {
-            throw new NotImplementedException();
+            Debugger.Log(args.WyvernheartTimer);
         }
 
         private void OnScopeStateChange(object source, HeavyBowgunEventArgs args)
         {
-            throw new NotImplementedException();
         }
 
         private void OnScopeMultiplierChange(object source, HeavyBowgunEventArgs args)
         {
-            throw new NotImplementedException();
         }
 
         private void OnEquippedAmmoChange(object source, HeavyBowgunEventArgs args)
         {
-            throw new NotImplementedException();
         }
 
         private void OnAmmoCountChange(object source, HeavyBowgunEventArgs args)
         {
-            throw new NotImplementedException();
         }
     }
 }

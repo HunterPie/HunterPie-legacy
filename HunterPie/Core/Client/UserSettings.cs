@@ -211,6 +211,7 @@ namespace HunterPie.Core
                 public GunLanceHelper GunLanceHelper { get; set; } = new GunLanceHelper();
                 public SwitchAxeHelper SwitchAxeHelper { get; set; } = new SwitchAxeHelper();
                 public BowHelper BowHelper { get; set; } = new BowHelper();
+                public HeavyBowgunHelper HeavyBowgunHelper { get; set; } = new HeavyBowgunHelper();
             }
 
             public class HammerHelper : IWeaponHelperStructure {
@@ -279,6 +280,14 @@ namespace HunterPie.Core
             // TODO: Add custom settings for the song list
             public class HuntingHornHelper : IWeaponHelperStructure {
                 public bool Enabled { get; set; } = false;
+                public int[] Position { get; set; } = new int[] { 683, 384 };
+                public float Opacity { get; set; } = 1;
+                public float Scale { get; set; } = 1;
+            }
+
+            public class HeavyBowgunHelper : IWeaponHelperStructure
+            {
+                public bool Enabled { get; set; } = true;
                 public int[] Position { get; set; } = new int[] { 683, 384 };
                 public float Opacity { get; set; } = 1;
                 public float Scale { get; set; } = 1;

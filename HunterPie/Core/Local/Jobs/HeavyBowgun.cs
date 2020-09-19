@@ -152,7 +152,7 @@ namespace HunterPie.Core.Jobs
 
         private void UpdateAmmoCount()
         {
-            if (equippedAmmo.index < ammos.Length)
+            if (equippedAmmo.index < ammos.Length && equippedAmmo.index >= 0)
             {
                 Ammo = ammos[equippedAmmo.index].Ammo;
             } else

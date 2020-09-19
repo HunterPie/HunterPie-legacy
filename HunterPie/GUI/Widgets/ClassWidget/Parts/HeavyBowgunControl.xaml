@@ -1,12 +1,122 @@
 ﻿<local:ClassControl x:Class="HunterPie.GUI.Widgets.ClassWidget.Parts.HeavyBowgunControl"
              xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
-             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              xmlns:local="clr-namespace:HunterPie.GUI.Widgets.ClassWidget.Parts"
-             mc:Ignorable="d" 
-             d:DesignHeight="100" d:DesignWidth="150">
+             xmlns:custom="clr-namespace:HunterPie.GUI.Helpers"
+             Height="100" Width="150">
     <Grid>
-            
+        <!-- Wyvern stuff -->
+        <Rectangle Height="36" Width="36" VerticalAlignment="Top" HorizontalAlignment="Left" RenderTransformOrigin="0.5,0.5" Margin="80,20,0,0" Stroke="#B2191919" >
+            <Rectangle.Fill>
+                <RadialGradientBrush>
+                    <GradientStop Color="#B20E0E0E" Offset="0"/>
+                    <GradientStop Color="#B2060606" Offset="1"/>
+                </RadialGradientBrush>
+            </Rectangle.Fill>
+            <Rectangle.RenderTransform>
+                <TransformGroup>
+                    <ScaleTransform/>
+                    <SkewTransform/>
+                    <RotateTransform Angle="45"/>
+                    <TranslateTransform/>
+                </TransformGroup>
+            </Rectangle.RenderTransform>
+        </Rectangle>
+        <custom:Diamond Percentage="1" Height="36" Width="36" VerticalAlignment="Top" HorizontalAlignment="Left" RenderTransformOrigin="0.5,0.5" Margin="80,20,0,0" Stroke="#FF12EEBC" StrokeThickness="2">
+            <custom:Diamond.Effect>
+                <DropShadowEffect ShadowDepth="0" Color="#FF12EEBC" BlurRadius="20"/>
+            </custom:Diamond.Effect>
+            <custom:Diamond.RenderTransform>
+                <TransformGroup>
+                    <ScaleTransform/>
+                    <SkewTransform/>
+                    <RotateTransform Angle="45"/>
+                    <TranslateTransform/>
+                </TransformGroup>
+            </custom:Diamond.RenderTransform>
+        </custom:Diamond>
+
+        <!-- AMMO -->
+        <Rectangle Height="36" Width="36" VerticalAlignment="Top" HorizontalAlignment="Left" RenderTransformOrigin="0.5,0.5" Margin="28,20,0,0" Stroke="#B2191919" >
+            <Rectangle.Fill>
+                <RadialGradientBrush>
+                    <GradientStop Color="#B20E0E0E" Offset="0"/>
+                    <GradientStop Color="#B2060606" Offset="1"/>
+                </RadialGradientBrush>
+            </Rectangle.Fill>
+            <Rectangle.RenderTransform>
+                <TransformGroup>
+                    <ScaleTransform/>
+                    <SkewTransform/>
+                    <RotateTransform Angle="45"/>
+                    <TranslateTransform/>
+                </TransformGroup>
+            </Rectangle.RenderTransform>
+        </Rectangle>
+        <custom:Diamond Percentage="1" Height="36" Width="36" VerticalAlignment="Top" HorizontalAlignment="Left" RenderTransformOrigin="0.5,0.5" Margin="28,20,0,0" Stroke="#FF12EE58" StrokeThickness="2">
+            <custom:Diamond.Effect>
+                <DropShadowEffect ShadowDepth="0" Color="#FF12EE58" BlurRadius="20"/>
+            </custom:Diamond.Effect>
+            <custom:Diamond.RenderTransform>
+                <TransformGroup>
+                    <ScaleTransform/>
+                    <SkewTransform/>
+                    <RotateTransform Angle="45"/>
+                    <TranslateTransform/>
+                </TransformGroup>
+            </custom:Diamond.RenderTransform>
+        </custom:Diamond>
+        <TextBlock Text="10 | 10" Height="22" VerticalAlignment="Top" HorizontalAlignment="Left" Width="48" Margin="22,28,0,0" FontFamily="Roboto" TextAlignment="Center" Foreground="#FFBDBDBD" Padding="0,2,0,0" FontSize="13" FontWeight="SemiBold"/>
+        <TextBlock Text="∞" Height="22" VerticalAlignment="Top" HorizontalAlignment="Left" Width="48" Margin="22,40,0,0" FontFamily="Roboto" TextAlignment="Center" Foreground="#FFBDBDBD" Padding="0,2,0,0" FontWeight="Light"/>
+
+        <!-- Crafting -->
+        <Rectangle Height="36" Width="36" VerticalAlignment="Top" HorizontalAlignment="Left" RenderTransformOrigin="0.5,0.5" Margin="54,48,0,0" Stroke="#B2191919" >
+            <Rectangle.Fill>
+                <RadialGradientBrush>
+                    <GradientStop Color="#B20E0E0E" Offset="0"/>
+                    <GradientStop Color="#B2060606" Offset="1"/>
+                </RadialGradientBrush>
+            </Rectangle.Fill>
+            <Rectangle.RenderTransform>
+                <TransformGroup>
+                    <ScaleTransform/>
+                    <SkewTransform/>
+                    <RotateTransform Angle="45"/>
+                    <TranslateTransform/>
+                </TransformGroup>
+            </Rectangle.RenderTransform>
+        </Rectangle>
+        <custom:Diamond Percentage="1" Height="36" Width="36" VerticalAlignment="Top" HorizontalAlignment="Left" RenderTransformOrigin="0.5,0.5" Margin="54,48,0,0" Stroke="#FFA8EE12" StrokeThickness="2">
+            <custom:Diamond.Effect>
+                <DropShadowEffect ShadowDepth="0" Color="#FFA8EE12" BlurRadius="20"/>
+            </custom:Diamond.Effect>
+            <custom:Diamond.RenderTransform>
+                <TransformGroup>
+                    <ScaleTransform/>
+                    <SkewTransform/>
+                    <RotateTransform Angle="45"/>
+                    <TranslateTransform/>
+                </TransformGroup>
+            </custom:Diamond.RenderTransform>
+        </custom:Diamond>
+        <TextBlock Text="50" Height="20" VerticalAlignment="Top" HorizontalAlignment="Left" Width="48" Margin="48,56,0,0" FontFamily="Roboto" TextAlignment="Center" Foreground="#FFBDBDBD" Padding="0,2,0,0" FontSize="13" FontWeight="SemiBold"/>
+        
+        <Rectangle HorizontalAlignment="Right" Width="2" Height="74" VerticalAlignment="Bottom" RenderTransformOrigin="0.5,0.5" Margin="0,0,49,-4">
+            <Rectangle.Fill>
+                <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
+                    <GradientStop Color="#FF00E2E2" Offset="0"/>
+                    <GradientStop Color="#FF0AC568" Offset="1"/>
+                </LinearGradientBrush>
+            </Rectangle.Fill>
+            <Rectangle.RenderTransform>
+                <TransformGroup>
+                    <ScaleTransform/>
+                    <SkewTransform/>
+                    <RotateTransform Angle="45"/>
+                    <TranslateTransform/>
+                </TransformGroup>
+            </Rectangle.RenderTransform>
+        </Rectangle>
+        <TextBlock Text="100%" Height="22" VerticalAlignment="Top" HorizontalAlignment="Left" Width="48" Margin="74,28,0,0" FontFamily="Roboto" TextAlignment="Center" Foreground="#FFBDBDBD" Padding="0,2,0,0" FontSize="13" FontWeight="SemiBold"/>
     </Grid>
 </local:ClassControl>
