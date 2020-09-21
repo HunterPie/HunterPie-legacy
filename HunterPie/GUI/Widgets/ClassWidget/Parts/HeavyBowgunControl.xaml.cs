@@ -8,7 +8,6 @@ using HunterPie.Core.Craft;
 using HunterPie.Core.Definitions;
 using HunterPie.Core.Enums;
 using HunterPie.Core.Jobs;
-using HunterPie.Logger;
 
 namespace HunterPie.GUI.Widgets.ClassWidget.Parts
 {
@@ -28,6 +27,14 @@ namespace HunterPie.GUI.Widgets.ClassWidget.Parts
         }
         public static readonly DependencyProperty AmmoTextProperty =
             DependencyProperty.Register("AmmoText", typeof(string), typeof(HeavyBowgunControl));
+
+        public double AmmoPercentage
+        {
+            get { return (double)GetValue(AmmoPercentageProperty); }
+            set { SetValue(AmmoPercentageProperty, value); }
+        }
+        public static readonly DependencyProperty AmmoPercentageProperty =
+            DependencyProperty.Register("AmmoPercentage", typeof(double), typeof(HeavyBowgunControl));
 
         public double TotalAmmoCounter
         {
@@ -96,6 +103,7 @@ namespace HunterPie.GUI.Widgets.ClassWidget.Parts
         public HeavyBowgunControl()
         {
             SpecialAmmoPercentage = 1;
+            AmmoPercentage = 1;
             InitializeComponent();
         }
 
@@ -114,6 +122,7 @@ namespace HunterPie.GUI.Widgets.ClassWidget.Parts
             Context.OnScopeStateChange += OnScopeStateChange;
             Context.OnWyvernheartUpdate += OnWyvernheartUpdate;
             Context.OnWyvernsnipeUpdate += OnWyvernsnipeUpdate;
+            Context.OnSafijiivaCounterUpdate += OnSafijiivaCounterUpdate;
             PlayerContext.Inventory.OnInventoryUpdate += OnInventoryUpdate;
         }
 
@@ -125,8 +134,18 @@ namespace HunterPie.GUI.Widgets.ClassWidget.Parts
             Context.OnScopeStateChange -= OnScopeStateChange;
             Context.OnWyvernheartUpdate -= OnWyvernheartUpdate;
             Context.OnWyvernsnipeUpdate -= OnWyvernsnipeUpdate;
+            Context.OnSafijiivaCounterUpdate -= OnSafijiivaCounterUpdate;
             PlayerContext.Inventory.OnInventoryUpdate -= OnInventoryUpdate;
             base.UnhookEvents();
+        }
+
+        private void OnSafijiivaCounterUpdate(object source, JobEventArgs args)
+        {
+            Dispatcher.BeginInvoke(DispatcherPriority.Render, new Action(() =>
+            {
+                HasSafiBuff = args.SafijiivaRegenCounter != -1;
+                SafiCounter = args.SafijiivaMaxHits - args.SafijiivaRegenCounter;
+            }));
         }
 
         private void OnWyvernsnipeUpdate(object source, HeavyBowgunEventArgs args)
@@ -179,6 +198,7 @@ namespace HunterPie.GUI.Widgets.ClassWidget.Parts
                 sEquippedAmmo ammo = args.EquippedAmmo;
                 sAmmo ammoInfo = args.Ammos.ElementAtOrDefault(ammo.index);
                 AmmoText = $"{ammoInfo.Ammo}/{ammoInfo.Maximum}";
+                AmmoPercentage = (double)ammoInfo.Ammo / (double)ammoInfo.Maximum;
                 TotalAmmoCounter = ammo.ItemId == 137 ? double.PositiveInfinity : ammoInfo.Total;
                 CalculateCrafting(ammo.ItemId);
             }));
@@ -191,6 +211,7 @@ namespace HunterPie.GUI.Widgets.ClassWidget.Parts
                 sEquippedAmmo ammo = args.EquippedAmmo;
                 sAmmo ammoInfo = args.Ammos.ElementAtOrDefault(ammo.index);
                 AmmoText = $"{ammoInfo.Ammo}/{ammoInfo.Maximum}";
+                AmmoPercentage = (double)ammoInfo.Ammo / (double)ammoInfo.Maximum;
                 TotalAmmoCounter = ammo.ItemId == 137 ? double.PositiveInfinity : ammoInfo.Total;
                 CalculateCrafting(ammo.ItemId);
             }));
@@ -210,9 +231,13 @@ namespace HunterPie.GUI.Widgets.ClassWidget.Parts
 
         private void HBGControl_Loaded(object sender, RoutedEventArgs e)
         {
-            OnEquippedAmmoChange(this, new HeavyBowgunEventArgs(Context));
-            OnWyvernheartUpdate(this, new HeavyBowgunEventArgs(Context));
-            OnWyvernsnipeUpdate(this, new HeavyBowgunEventArgs(Context));
+            var args = new HeavyBowgunEventArgs(Context);
+            OnEquippedAmmoChange(this, args);
+            OnWyvernheartUpdate(this, args);
+            OnWyvernsnipeUpdate(this, args);
+            OnScopeStateChange(this, args);
+            OnScopeMultiplierChange(this, args);
+            OnSafijiivaCounterUpdate(this, new JobEventArgs(Context));
         }
 
         private void CalculateCrafting(int itemId)
@@ -222,6 +247,7 @@ namespace HunterPie.GUI.Widgets.ClassWidget.Parts
             if (ammoRecipe is null)
             {
                 CraftCount = 0;
+                CraftCountChildren = 0;
                 return;
             }
             HashSet<int> itemIds = ammoRecipe.MaterialsNeeded.Select(m => m.ItemId).ToHashSet();
@@ -237,18 +263,20 @@ namespace HunterPie.GUI.Widgets.ClassWidget.Parts
                 Recipe ammoReqRecipe = Recipes.FindRecipe(ammoReq.ItemId);
                 if (ammoReqRecipe is null)
                 {
+                    CraftCountChildren = 0;
                     continue;
                 }
+                HashSet<int> inv = ammoReqRecipe.MaterialsNeeded.Select(m => m.ItemId).ToHashSet();
                 for (int i = 0; i < playerInventory.Length; i++)
                 {
                     if (playerInventory[i].ItemId == ammoReq.ItemId)
                     {
-                        playerInventory[i].Amount += Crafting.CalculateTotal(ammosRequired, ammoReqRecipe);
+                        playerInventory[i].Amount += Crafting.CalculateTotal(PlayerContext.Inventory.FindItemsAndAmmos(inv), ammoReqRecipe);
                         break;
                     }
                 }
             }
-
+            CraftCountChildren = Crafting.CalculateTotal(playerInventory, ammoRecipe) - CraftCount;
         }
     }
 }

@@ -185,6 +185,7 @@ namespace HunterPie.GUIControls
             settingsUI.switchChargeBladeHelper.IsEnabled = settings.Overlay.ClassesWidget.ChargeBladeHelper.Enabled;
             settingsUI.switchInsectGlaiveHelper.IsEnabled = settings.Overlay.ClassesWidget.InsectGlaiveHelper.Enabled;
             settingsUI.switchBowHelper.IsEnabled = settings.Overlay.ClassesWidget.BowHelper.Enabled;
+            settingsUI.switchHBGHelper.IsEnabled = settings.Overlay.ClassesWidget.HeavyBowgunHelper.Enabled;
 
 
         }
@@ -321,6 +322,7 @@ namespace HunterPie.GUIControls
             settings.Overlay.ClassesWidget.ChargeBladeHelper.Enabled = settingsUI.switchChargeBladeHelper.IsEnabled;
             settings.Overlay.ClassesWidget.InsectGlaiveHelper.Enabled = settingsUI.switchInsectGlaiveHelper.IsEnabled;
             settings.Overlay.ClassesWidget.BowHelper.Enabled = settingsUI.switchBowHelper.IsEnabled;
+            settings.Overlay.ClassesWidget.HeavyBowgunHelper.Enabled = settingsUI.switchHBGHelper.IsEnabled;
 
             // Abnormality bars
             int i = 0;

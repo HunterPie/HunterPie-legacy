@@ -1105,6 +1105,7 @@ namespace HunterPie.Core
                     break;
                 case Classes.HeavyBowgun:
                     GetHeavyBowgunInformation(weaponAddress);
+                    HeavyBowgun.SafijiivaRegenCounter = SafiCounter;
                     break;
                 case Classes.LightBowgun:
                     GetLightBowgunInformation(weaponAddress);

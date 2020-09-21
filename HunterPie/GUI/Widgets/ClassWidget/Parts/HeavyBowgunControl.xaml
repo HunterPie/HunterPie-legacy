@@ -54,7 +54,7 @@
                 </TransformGroup>
             </Rectangle.RenderTransform>
         </Rectangle>
-        <custom:Diamond Percentage="1" Height="36" Width="36" VerticalAlignment="Top" HorizontalAlignment="Left" RenderTransformOrigin="0.5,0.5" Margin="28,20,0,0" Stroke="#FF12EE58" StrokeThickness="2">
+        <custom:Diamond Percentage="{Binding ElementName=HBGControl, Path=AmmoPercentage}" Height="36" Width="36" VerticalAlignment="Top" HorizontalAlignment="Left" RenderTransformOrigin="0.5,0.5" Margin="28,20,0,0" Stroke="#FF12EE58" StrokeThickness="2">
             <custom:Diamond.Effect>
                 <DropShadowEffect ShadowDepth="0" Color="#FF12EE58" BlurRadius="20"/>
             </custom:Diamond.Effect>
@@ -62,7 +62,7 @@
                 <TransformGroup>
                     <ScaleTransform/>
                     <SkewTransform/>
-                    <RotateTransform Angle="45"/>
+                    <RotateTransform Angle="-45"/>
                     <TranslateTransform/>
                 </TransformGroup>
             </custom:Diamond.RenderTransform>
@@ -101,9 +101,9 @@
             </custom:Diamond.RenderTransform>
         </custom:Diamond>
         <TextBlock Text="{Binding ElementName=HBGControl, Path=CraftCount}" Height="20" VerticalAlignment="Top" HorizontalAlignment="Left" Width="48" Margin="48,49,0,0" FontFamily="Roboto" TextAlignment="Center" Foreground="#FFBDBDBD" Padding="0,2,0,0" FontSize="13" FontWeight="SemiBold"/>
-        <TextBlock Text="{Binding ElementName=HBGControl, Path=CraftCountChildren}" Height="20" VerticalAlignment="Top" HorizontalAlignment="Left" Width="48" Margin="48,65,0,0" FontFamily="Roboto" TextAlignment="Center" Foreground="#FFBDBDBD" Padding="0,2,0,0" FontSize="13" FontWeight="SemiBold"/>
+        <TextBlock Text="{Binding ElementName=HBGControl, Path=CraftCountChildren}" Height="20" VerticalAlignment="Top" HorizontalAlignment="Left" Width="48" Margin="48,65,0,0" FontFamily="Roboto" TextAlignment="Center" Foreground="#FFBDBDBD" Padding="0,2,0,0" FontSize="13" FontWeight="Medium"/>
 
-        <Rectangle RenderTransformOrigin="0,1" Margin="70,0,0,6" Height="{Binding ElementName=HBGControl, Path=ZoomBarHeight}" MaxHeight="75" HorizontalAlignment="Left" Width="2" VerticalAlignment="Bottom">
+        <Rectangle RenderTransformOrigin="0,1" Opacity="0" Margin="70,0,0,6" Height="{Binding ElementName=HBGControl, Path=ZoomBarHeight}" MaxHeight="75" HorizontalAlignment="Left" Width="2" VerticalAlignment="Bottom">
             <Rectangle.Effect>
                 <DropShadowEffect Color="#FF0AC568" BlurRadius="20" ShadowDepth="0"/>
             </Rectangle.Effect>
@@ -144,7 +144,7 @@
                 </Style>
             </Rectangle.Style>
         </Rectangle>
-        <Rectangle Height="30" VerticalAlignment="Bottom" HorizontalAlignment="Left" Width="30" Margin="13,0,0,7" RadiusY="2.954" RadiusX="2.954" RenderTransformOrigin="0.5,0.5" Stroke="#B2191919">
+        <Rectangle Height="30" VerticalAlignment="Bottom" Opacity="0" HorizontalAlignment="Left" Width="30" Margin="13,0,0,7" RadiusY="2.954" RadiusX="2.954" RenderTransformOrigin="0.5,0.5" Stroke="#B2191919">
             <Rectangle.RenderTransform>
                 <TransformGroup>
                     <ScaleTransform/>
@@ -182,7 +182,7 @@
                 </Style>
             </Rectangle.Style>
         </Rectangle>
-        <TextBlock Text="{Binding ElementName=HBGControl, Path=ZoomValue}" Height="20" VerticalAlignment="Top" HorizontalAlignment="Left" Width="48" Margin="4,68,0,0" FontFamily="Roboto" TextAlignment="Center" Foreground="#FFBDBDBD" Padding="0,2,0,0" FontSize="13" FontWeight="Light">
+        <TextBlock Text="{Binding ElementName=HBGControl, Path=ZoomValue}" Opacity="0" Height="20" VerticalAlignment="Top" HorizontalAlignment="Left" Width="48" Margin="4,68,0,0" FontFamily="Roboto" TextAlignment="Center" Foreground="#FFBDBDBD" Padding="0,2,0,0" FontSize="13" FontWeight="Light">
             <TextBlock.Style>
                 <Style TargetType="FrameworkElement">
                     <Style.Triggers>
@@ -206,5 +206,54 @@
                 </Style>
             </TextBlock.Style>
         </TextBlock>
+
+        <Canvas Opacity="0" HorizontalAlignment="Left" Width="46" Height="46" VerticalAlignment="Top" Margin="95,52,0,0">
+            <Rectangle Height="31" Width="31" VerticalAlignment="Top" HorizontalAlignment="Left" StrokeThickness="1.5" Canvas.Left="24" Canvas.Top="1" Opacity="0.5">
+                <Rectangle.Stroke>
+                    <LinearGradientBrush EndPoint="0,0.6" StartPoint="1,0.5">
+                        <GradientStop Color="#00000000" Offset="0"/>
+                        <GradientStop Color="#FF6F3AFF" Offset="1"/>
+                    </LinearGradientBrush>
+                </Rectangle.Stroke>
+                <Rectangle.Fill>
+                    <RadialGradientBrush>
+                        <GradientStop Color="#E5191623"/>
+                        <GradientStop Color="#E51A181D" Offset="1"/>
+                    </RadialGradientBrush>
+                </Rectangle.Fill>
+                <Rectangle.RenderTransform>
+                    <TransformGroup>
+                        <ScaleTransform/>
+                        <SkewTransform/>
+                        <RotateTransform Angle="45"/>
+                        <TranslateTransform/>
+                    </TransformGroup>
+                </Rectangle.RenderTransform>
+            </Rectangle>
+            <Image Source="{StaticResource ICON_SAFISKILL}" Width="18" Height="17" HorizontalAlignment="Left" VerticalAlignment="Top" Canvas.Left="15" Canvas.Top="9"/>
+            <TextBlock TextOptions.TextRenderingMode="ClearType" Text="{Binding ElementName=HBGControl, Path=SafiCounter}" Height="16" VerticalAlignment="Top" HorizontalAlignment="Left" Width="28" Foreground="White" FontSize="13" TextAlignment="Center" FontWeight="Light" Canvas.Top="23" Canvas.Left="10"/>
+            <Canvas.Style>
+                <Style TargetType="Canvas">
+                    <Style.Triggers>
+                        <DataTrigger Binding="{Binding ElementName=HBGControl, Path=HasSafiBuff}" Value="True">
+                            <DataTrigger.EnterActions>
+                                <BeginStoryboard>
+                                    <Storyboard Storyboard.TargetProperty="Opacity">
+                                        <DoubleAnimation To="1" Duration="0:0:0.2"/>
+                                    </Storyboard>
+                                </BeginStoryboard>
+                            </DataTrigger.EnterActions>
+                            <DataTrigger.ExitActions>
+                                <BeginStoryboard>
+                                    <Storyboard Storyboard.TargetProperty="Opacity">
+                                        <DoubleAnimation To="0" Duration="0:0:0.2"/>
+                                    </Storyboard>
+                                </BeginStoryboard>
+                            </DataTrigger.ExitActions>
+                        </DataTrigger>
+                    </Style.Triggers>
+                </Style>
+            </Canvas.Style>
+        </Canvas>
     </Grid>
 </local:ClassControl>

@@ -111,6 +111,7 @@ namespace HunterPie.Core
                         // Clears monster ID since it's dead
                         Id = null;
                         IsActuallyAlive = IsAlive = false;
+                        DestroyParts();
                         _onMonsterDeath();
                     }
                 }

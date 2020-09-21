@@ -58,6 +58,7 @@ namespace HunterPie.GUI.Widgets
 
         public MantleTimer(int MantleNumber, Mantle context)
         {
+            Percentage = 1;
             this.MantleNumber = MantleNumber;
             WidgetType = 2;
             InitializeComponent();

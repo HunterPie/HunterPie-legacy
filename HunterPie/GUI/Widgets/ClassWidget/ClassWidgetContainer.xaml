@@ -7,7 +7,7 @@
             Title="ClassWidgetContainer" SizeToContent="WidthAndHeight" ResizeMode="NoResize" WindowStyle="None" AllowsTransparency="True" ShowInTaskbar="False" Topmost="True" Closing="OnClosing" MouseDown="OnMouseDown" MouseWheel="OnMouseWheel"
             Style="{StaticResource OVERLAY_WIDGET_STYLE}">
     <Grid>
-        <StackPanel x:Name="Container">
+        <StackPanel x:Name="Container" HorizontalAlignment="Left" VerticalAlignment="Top">
 
         </StackPanel>
         <TextBlock Text="{Binding ElementName=ClassWidget, Path=DesignModeDetails}" Visibility="{Binding ElementName=ClassWidget, Path=DesignModeDetailsVisibility}" VerticalAlignment="Top" HorizontalAlignment="Left" Style="{StaticResource OVERLAY_DESIGN_MODE_DEBUG}"/>
