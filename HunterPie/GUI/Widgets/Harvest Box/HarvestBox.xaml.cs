@@ -228,8 +228,8 @@ namespace HunterPie.GUI.Widgets
         // Helper
         private string FormatToK(int value)
         {
-            if (value >= 1000000) return $"{value / 1000000}M";
-            if (value >= 1000) return $"{value / 1000}K";
+            if (value >= 1000000) return $"{(float)value / 1000000:0.0}M";
+            if (value >= 1000) return $"{(float)value / 1000:0.0}K";
             return value.ToString();
         }
     }

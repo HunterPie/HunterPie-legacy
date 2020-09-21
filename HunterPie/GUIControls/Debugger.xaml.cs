@@ -70,6 +70,7 @@ namespace HunterPie.Logger
 
         private static void ScrollToEnd()
         {
+
             double ScrollableSize = _Instance.Console.ViewportHeight;
             double ScrollPosition = _Instance.Console.VerticalOffset;
             double ExtentHeight = _Instance.Console.ExtentHeight;

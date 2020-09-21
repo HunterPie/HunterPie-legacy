@@ -10,6 +10,7 @@ using HunterPie.Core.Local;
 using HunterPie.Core.Events;
 using Classes = HunterPie.Core.Enums.Classes;
 using AbnormalityType = HunterPie.Core.Enums.AbnormalityType;
+using HunterPie.Core.Enums;
 
 namespace HunterPie.Core
 {
@@ -1295,10 +1296,11 @@ namespace HunterPie.Core
                 WyvernheartTimer = Kernel.Read<float>(weaponAddress - 0x14),
                 HasScopeEquipped = Kernel.Read<byte>(weaponAddress + 0x4B8) == 1,
                 ScopeZoomMultiplier = Kernel.Read<float>(weaponAddress + 0x4D0),
-                EquippedAmmo = Kernel.ReadStructure<sEquippedAmmo>(weaponAddress + 0x454)
+                EquippedAmmo = Kernel.ReadStructure<sEquippedAmmo>(weaponAddress + 0x454),
+                SpecialAmmoType = (HBGSpecialType)Kernel.Read<int>(weaponAddress - 0x18),
+                FocusLevel = Math.Min(3, Skills[52].Level % 256)
             };
             sAmmo[] ammos = Kernel.ReadStructure<sAmmo>(weaponAddress + 0x34, 40);
-
             HeavyBowgun.UpdateInformation(data, ammos);
         }
 #endregion

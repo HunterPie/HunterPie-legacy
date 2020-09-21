@@ -112,7 +112,6 @@ namespace HunterPie
             AdministratorIconVisibility = IsRunningAsAdmin() ? Visibility.Visible : Visibility.Collapsed;
 
             Environment.CurrentDirectory = AppDomain.CurrentDomain.BaseDirectory;
-
             InitializeComponent();
         }
 
@@ -435,7 +434,7 @@ namespace HunterPie
                         using (var content = new MultipartFormDataContent())
                         {
                             content.Add(new StringContent(""), "username");
-                            content.Add(new StringContent($"```Exception type: {e.ExceptionObject.GetType()}\n-----------------------------------\nBranch: {UserSettings.PlayerConfig.HunterPie.Update.Branch}\nVersion: {HUNTERPIE_VERSION}\nGAME BUILD VERSION: {Game.Version}```"), "content");
+                            content.Add(new StringContent($"```Exception type: {e.ExceptionObject.GetType()}\n-----------------------------------\nBranch: {UserSettings.PlayerConfig.HunterPie.Update.Branch}\nVersion: {HUNTERPIE_VERSION}\nGAME BUILD VERSION: {Game.Version}\nHunterPie elapsed time: {DateTime.UtcNow - Process.GetCurrentProcess().StartTime.ToUniversalTime()}```"), "content");
                             content.Add(new StringContent(e.ExceptionObject.ToString()), "file", "crashes.txt");
                             req.Content = content;
 
@@ -830,13 +829,16 @@ namespace HunterPie
             
             // Dispose stuff & stop scanning threads
             GameOverlay?.Dispose();
-            if (MonsterHunter.IsActive) MonsterHunter.StopScanning();
+            if (MonsterHunter.IsActive) MonsterHunter?.StopScanning();
             Discord?.Dispose();
             Kernel.StopScanning();
             UserSettings.RemoveFileWatcher();
-            Settings.Instance.UninstallKeyboardHook();
+
+            Settings.Instance?.UninstallKeyboardHook();
+
             // Unhook events
             if (MonsterHunter.Player != null) UnhookGameEvents();
+
             UnhookEvents();
             Hotkey.Unload();
         }

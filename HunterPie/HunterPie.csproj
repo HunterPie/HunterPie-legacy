@@ -158,6 +158,7 @@
     <Compile Include="Core\Enums\AlatreonState.cs" />
     <Compile Include="Core\Enums\Classes.cs" />
     <Compile Include="Core\Enums\GearType.cs" />
+    <Compile Include="Core\Enums\HBGSpecialType.cs" />
     <Compile Include="Core\Enums\Helper.cs" />
     <Compile Include="Core\Enums\MonsterBarMode.cs" />
     <Compile Include="Core\Enums\NoteColorId.cs" />
@@ -169,6 +170,7 @@
     <Compile Include="Core\Events\HuntingHornNoteEventArgs.cs" />
     <Compile Include="Core\Events\HuntingHornSongCastEventArgs.cs" />
     <Compile Include="Core\Events\HuntingHornSongEventArgs.cs" />
+    <Compile Include="Core\Events\InventoryUpdatedEventArgs.cs" />
     <Compile Include="Core\Events\MantleEventArgs.cs" />
     <Compile Include="Core\Events\MonsterAilmentEventArgs.cs" />
     <Compile Include="Core\Events\MonsterPartEventArgs.cs" />

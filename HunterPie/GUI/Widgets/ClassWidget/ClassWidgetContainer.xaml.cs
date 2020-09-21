@@ -248,7 +248,7 @@ namespace HunterPie.GUI.Widgets.ClassWidget
         private void SetClassToHeavyBowgun()
         {
             var control = new HeavyBowgunControl();
-            control.SetContext(Context.Player.HeavyBowgun);
+            control.SetContext(Context.Player.HeavyBowgun, Context.Player);
             Container.Children.Add(control);
 
             ApplySettings();

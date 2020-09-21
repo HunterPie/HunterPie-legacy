@@ -68,5 +68,83 @@
     <Material Id="149" Amount="1"/>
     <Material Id="103" Amount="1"/>
   </Item>
-  <!-- TODO: Add Slicing Ammo & the rest-->
+  <!-- Slicing Ammo -->
+  <Item Output="168" OutMultiplier="1">
+    <Material Id="97" Amount="1"/>
+  </Item>
+  <!-- Flaming Ammo -->
+  <Item Output="152" OutMultiplier="6">
+    <Material Id="35" Amount="1"/>
+  </Item>
+  <!-- Water Ammo -->
+  <Item Output="153" OutMultiplier="6">
+    <Material Id="36" Amount="1"/>
+  </Item>
+  <!-- Thunder Ammo -->
+  <Item Output="154" OutMultiplier="12">
+    <Material Id="52" Amount="1"/>
+  </Item>
+  <!-- Freeze Ammo -->
+  <Item Output="155" OutMultiplier="6">
+    <Material Id="37" Amount="1"/>
+  </Item>
+  <!-- Dragon Ammo -->
+  <Item Output="156" OutMultiplier="1">
+    <Material Id="41" Amount="1"/>
+  </Item>
+  <!-- Poison Ammo 1 -->
+  <Item Output="157" OutMultiplier="2">
+    <Material Id="47" Amount="1"/>
+  </Item>
+  <!-- Poison Ammo 2 -->
+  <Item Output="158" OutMultiplier="1">
+    <Material Id="157" Amount="1"/>
+    <Material Id="58" Amount="1"/>
+  </Item>
+  <!-- Paralysis Ammo 1 -->
+  <Item Output="159" OutMultiplier="2">
+    <Material Id="46" Amount="1"/>
+  </Item>
+  <!-- Paralysis Ammo 2 -->
+  <Item Output="160" OutMultiplier="1">
+    <Material Id="159" Amount="1"/>
+    <Material Id="58" Amount="1"/>
+  </Item>
+  <!-- Sleep Ammo 1 -->
+  <Item Output="161" OutMultiplier="1">
+    <Material Id="38" Amount="1"/>
+  </Item>
+  <!-- Sleep Ammo 2 -->
+  <Item Output="162" OutMultiplier="1">
+    <Material Id="58" Amount="1"/>
+  </Item>
+  <!-- Exhaust Ammo 1 -->
+  <Item Output="163" OutMultiplier="2">
+    <Material Id="48" Amount="1"/>
+  </Item>
+  <!-- Exhaust Ammo 2 -->
+  <Item Output="164" OutMultiplier="1">
+    <Material Id="163" Amount="1"/>
+    <Material Id="58" Amount="1"/>
+  </Item>
+  <!-- Recover Ammo 1 -->
+  <Item Output="165" OutMultiplier="2">
+    <Material Id="1" Amount="1"/>
+  </Item>
+  <!-- Recover Ammo 2 -->
+  <Item Output="166" OutMultiplier="2">
+    <Material Id="58" Amount="1"/>
+  </Item>
+  <!-- Demon Ammo -->
+  <Item Output="170" OutMultiplier="3">
+    <Material Id="21" Amount="1"/>
+  </Item>
+  <!-- Armor Ammo -->
+  <Item Output="171" OutMultiplier="3">
+    <Material Id="25" Amount="1"/>
+  </Item>
+  <!-- Wyvern Ammo -->
+  <Item Output="167" OutMultiplier="1">
+    <Material Id="96" Amount="1"/>
+  </Item>
 </Crafting>

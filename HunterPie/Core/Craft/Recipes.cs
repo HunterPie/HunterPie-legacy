@@ -64,5 +64,21 @@ namespace HunterPie.Core.Craft
 
             return recipe;
         }
+
+        /// <summary>
+        /// Finds the crafting recipe for the given id
+        /// </summary>
+        /// <param name="id">Item Id to craft</param>
+        /// <returns>Recipe</returns>
+        public static Recipe FindRecipe(int id)
+        {
+            if (List.ContainsKey(id))
+            {
+                return List[id];
+            } else
+            {
+                return null;
+            }
+        }
     }
 }

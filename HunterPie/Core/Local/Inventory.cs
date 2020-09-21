@@ -1,6 +1,8 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.Linq;
 using HunterPie.Core.Definitions;
+using HunterPie.Core.Events;
 
 namespace HunterPie.Core
 {
@@ -11,6 +13,8 @@ namespace HunterPie.Core
 
         public IReadOnlyDictionary<int, sItem> Items => items;
         public IReadOnlyDictionary<int, sItem> Ammo => ammo;
+
+        public event EventHandler<InventoryUpdatedEventArgs> OnInventoryUpdate;
 
         /// <summary>
         /// Finds consumable/items in the player's item pouch
@@ -49,6 +53,22 @@ namespace HunterPie.Core
         }
 
         /// <summary>
+        /// Find multiple items in both the ammo and items pouch
+        /// </summary>
+        /// <param name="ids">Item ids to be searched for</param>
+        /// <returns>Array with all the items found</returns>
+        public sItem[] FindItemsAndAmmos(HashSet<int> ids)
+        {
+            sItem[] items = FindItems(ids);
+            sItem[] ammos = FindAmmos(ids);
+
+            int oldSize = items.Length;
+            Array.Resize(ref items, oldSize + ammos.Length);
+            Array.Copy(ammos, 0, items, oldSize, ammos.Length);
+            return items;
+        }
+
+        /// <summary>
         /// Finds an ammo with the specified id in the player's ammo pouch
         /// </summary>
         /// <param name="id">Ammo item Id</param>
@@ -70,13 +90,19 @@ namespace HunterPie.Core
         /// <param name="itemArray">Array with the items</param>
         internal void RefreshPouch(sItem[] itemArray)
         {
+            bool updateInventory = false;
             HashSet<int> set = itemArray.Select(i => i.ItemId).ToHashSet();
             // Our Item pouch has 24 slots
             for (int i = 0; i < 24; i++)
             {
                 sItem item = itemArray[i];
 
-                items[item.ItemId] = item;
+                if (!items.ContainsKey(item.ItemId) || !items[item.ItemId].Equals(item))
+                {
+                    items[item.ItemId] = item;
+                    updateInventory = true;
+                }
+                
                 set.Remove(item.ItemId);
             }
 
@@ -85,8 +111,18 @@ namespace HunterPie.Core
             {
                 sItem item = itemArray[i];
 
-                ammo[item.ItemId] = item;
+                if (!ammo.ContainsKey(item.ItemId) || !ammo[item.ItemId].Equals(item))
+                {
+                    ammo[item.ItemId] = item;
+                    updateInventory = true;
+                }
+
                 set.Remove(item.ItemId);
+            }
+
+            if (set.Count > 0)
+            {
+                updateInventory = true;
             }
 
             // Now we clear the dictionary to remove items that are not in our inventory anymore
@@ -100,6 +136,11 @@ namespace HunterPie.Core
                 {
                     ammo.Remove(id);
                 }
+            }
+
+            if (updateInventory)
+            {
+                OnInventoryUpdate?.Invoke(this, new InventoryUpdatedEventArgs(this));
             }
         }
     }

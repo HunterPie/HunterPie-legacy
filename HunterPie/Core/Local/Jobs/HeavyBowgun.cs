@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using HunterPie.Core.Definitions;
+using HunterPie.Core.Enums;
 using HunterPie.Logger;
 using Newtonsoft.Json;
 
@@ -13,11 +14,19 @@ namespace HunterPie.Core.Jobs
         public float ScopeZoomMultiplier;
         public bool HasScopeEquipped;
         public sEquippedAmmo EquippedAmmo;
+        public HBGSpecialType SpecialAmmoType;
+        public int FocusLevel;
     }
     public class HeavyBowgunEventArgs : EventArgs
     {
+        public HBGSpecialType SpecialAmmoType { get; }
         public float WyvernsnipeTimer { get; }
         public float WyvernheartTimer { get; }
+
+        public float WyvernsnipeMaxTimer { get; }
+        public float WyvernheartMaxAmmo { get; }
+
+        public bool IsTimer { get; }
 
         public bool HasScopeEquipped { get; }
         public float ScopeZoomMultiplier { get; }
@@ -28,8 +37,15 @@ namespace HunterPie.Core.Jobs
 
         public HeavyBowgunEventArgs(HeavyBowgun weapon)
         {
-            WyvernsnipeTimer = weapon.WyvernsnipeTimer;
+            SpecialAmmoType = weapon.SpecialAmmoType;
+            
             WyvernheartTimer = weapon.WyvernheartTimer;
+            WyvernheartMaxAmmo = HeavyBowgun.WyvernheartMaxAmmo;
+
+            WyvernsnipeTimer = weapon.WyvernsnipeTimer / weapon.FocusMultiplier;
+            WyvernsnipeMaxTimer = HeavyBowgun.WyvernsniperMaxTimer / weapon.FocusMultiplier;
+
+            IsTimer = weapon.IsTimer;
 
             HasScopeEquipped = weapon.HasScopeEquipped;
             ScopeZoomMultiplier = weapon.ScopeZoomMultiplier;
@@ -80,6 +96,7 @@ namespace HunterPie.Core.Jobs
             {
                 if (value != wyvernsnipeTimer)
                 {
+                    IsTimer = value > wyvernsnipeTimer;
                     wyvernsnipeTimer = value;
                     Dispatch(OnWyvernsnipeUpdate);
                 }
@@ -92,11 +109,13 @@ namespace HunterPie.Core.Jobs
             {
                 if (value != wyvernheartTimer)
                 {
+                    IsTimer = value > wyvernheartTimer;
                     wyvernheartTimer = value;
                     Dispatch(OnWyvernheartUpdate);
                 }
             }
         }
+        public bool IsTimer { get; private set; }
         public sEquippedAmmo EquippedAmmo
         {
             get => equippedAmmo;
@@ -121,7 +140,12 @@ namespace HunterPie.Core.Jobs
                 }
             }
         }
+        public float FocusMultiplier { get; private set; } = 1;
+        public HBGSpecialType SpecialAmmoType { get; private set; }
         public override int SafijiivaMaxHits => 7;
+
+        public const float WyvernheartMaxAmmo = 50;
+        public const float WyvernsniperMaxTimer = 80;
 
         public delegate void HeavyBowgunEvents(object source, HeavyBowgunEventArgs args);
         public event HeavyBowgunEvents OnWyvernsnipeUpdate;
@@ -142,11 +166,13 @@ namespace HunterPie.Core.Jobs
             HasScopeEquipped = rawData.HasScopeEquipped;
             ScopeZoomMultiplier = rawData.ScopeZoomMultiplier;
 
+            SpecialAmmoType = rawData.SpecialAmmoType;
             WyvernheartTimer = rawData.WyvernheartTimer;
             WyvernsnipeTimer = rawData.WyvernsnipeTimer;
 
-            equippedAmmo = rawData.EquippedAmmo;
+            EquippedAmmo = rawData.EquippedAmmo;
 
+            CalculateFocus(rawData.FocusLevel);
             UpdateAmmoCount();
         }
 
@@ -158,6 +184,25 @@ namespace HunterPie.Core.Jobs
             } else
             {
                 Ammo = 0;
+            }
+        }
+
+        private void CalculateFocus(int level)
+        {
+            switch (level)
+            {
+                case 1:
+                    FocusMultiplier = 1.05f;
+                    break;
+                case 2:
+                    FocusMultiplier = 1.1f;
+                    break;
+                case 3:
+                    FocusMultiplier = 1.15f;
+                    break;
+                default:
+                    FocusMultiplier = 1;
+                    break;
             }
         }
     }
