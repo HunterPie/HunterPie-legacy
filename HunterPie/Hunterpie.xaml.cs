@@ -31,6 +31,7 @@ using Markdig.Parsers;
 using System.Net.Http;
 using System.Text;
 using HunterPie.Core.Craft;
+using Newtonsoft.Json.Converters;
 
 namespace HunterPie
 {
@@ -52,7 +53,7 @@ namespace HunterPie
         bool IsUpdating = true;
 
         // HunterPie version
-        const string HUNTERPIE_VERSION = "1.0.3.97";
+        public const string HUNTERPIE_VERSION = "1.0.3.97";
 
         private readonly List<int> registeredHotkeys = new List<int>();
 
@@ -761,9 +762,9 @@ namespace HunterPie
 
             StartEverything();
 
-            Task.Factory.StartNew(() =>
+            Task.Factory.StartNew(async () =>
             {
-                pluginManager.PreloadPlugins();
+                await pluginManager.PreloadPlugins();
                 Dispatcher.Invoke(() =>
                 {
                     PluginDisplay.Instance.InitializePluginDisplayer(PluginManager.packages);
@@ -986,6 +987,13 @@ namespace HunterPie
         }
         #endregion
 
+        #region Helpers
 
+        public static Version ParseVersion(string version)
+        {
+            return new Version(version);
+        }
+
+        #endregion
     }
 }

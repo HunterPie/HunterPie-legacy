@@ -69,26 +69,28 @@ namespace HunterPie.Core
 
         private bool CheckOnlineHash(byte[] FileData)
         {
-            MemoryStream FileBytes = new MemoryStream(FileData);
-            using (SHA256 hash = SHA256.Create())
+            using (MemoryStream FileBytes = new MemoryStream(FileData))
             {
-                byte[] computedHash = hash.ComputeHash(FileBytes);
-                StringBuilder builder = new StringBuilder();
-                for (int c = 0; c < computedHash.Length; c++)
+                using (SHA256 hash = SHA256.Create())
                 {
-                    builder.Append(computedHash[c].ToString("x2"));
+                    byte[] computedHash = hash.ComputeHash(FileBytes);
+                    StringBuilder builder = new StringBuilder();
+                    for (int c = 0; c < computedHash.Length; c++)
+                    {
+                        builder.Append(computedHash[c].ToString("x2"));
+                    }
+                    OnlineUpdateHash = builder.ToString();
                 }
-                OnlineUpdateHash = builder.ToString();
+                offlineMode = false;
+                if (LocalUpdateHash == OnlineUpdateHash || offlineMode)
+                {
+                    Debugger.Update("No newer version found!");
+                    Instance.Dispose();
+                    return false;
+                }
+                DownloadNewUpdater();
+                return true;
             }
-            offlineMode = false;
-            if (LocalUpdateHash == OnlineUpdateHash || offlineMode)
-            {
-                Debugger.Update("No newer version found!");
-                Instance.Dispose();
-                return false;
-            }
-            DownloadNewUpdater();
-            return true;
         }
 
         private void DownloadNewUpdater()

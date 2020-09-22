@@ -21,8 +21,7 @@ using System.Text;
 using Microsoft.CodeAnalysis;
 using Microsoft.CodeAnalysis.CSharp;
 using Microsoft.CodeAnalysis.Text;
-using System.Windows.Threading;
-using Application = System.Windows.Application;
+using System.Threading.Tasks;
 
 namespace HunterPie.Plugins
 {
@@ -57,7 +56,7 @@ namespace HunterPie.Plugins
             Debugger.Module($"Loaded {packages.Count} module(s) in {benchmark.ElapsedMilliseconds}ms");
         }
 
-        public void PreloadPlugins()
+        public async Task<bool> PreloadPlugins()
         {            
             Stopwatch benchmark = Stopwatch.StartNew();
             Debugger.Module("Pre loading modules");
@@ -71,9 +70,30 @@ namespace HunterPie.Plugins
                 {
                     string serializedModule = File.ReadAllText(Path.Combine(module, "module.json"));
                     PluginInformation modInformation = JsonConvert.DeserializeObject<PluginInformation>(serializedModule);
+
+                    if (modInformation.Update.MinimumVersion is null)
+                    {
+                        Debugger.Warn($"{modInformation.Name.ToUpper()} MIGHT BE OUTDATED! CONSIDER UPDATING IT.");
+                    }
+
+                    if (PluginUpdate.PluginSupportsUpdate(modInformation))
+                    {
+                        if (await PluginUpdate.UpdateAllFiles(modInformation, module))
+                        {
+                            serializedModule = File.ReadAllText(Path.Combine(module, "module.json"));
+                            modInformation = JsonConvert.DeserializeObject<PluginInformation>(serializedModule);
+
+                            Debugger.Module($"Updated plugin: {modInformation.Name}");
+                        } else
+                        {
+                            Debugger.Error($"Failed to update plugin: {modInformation.Name}");
+                            continue;
+                        }
+                    }
+
                     PluginSettings modSettings = GetPluginSettings(module);
 
-                    if (File.Exists(Path.Combine(module, modInformation.EntryPoint)))
+                    if (!string.IsNullOrEmpty(modInformation.EntryPoint) && File.Exists(Path.Combine(module, modInformation.EntryPoint)))
                     {
                         Debugger.Module($"Compiling plugin: {modInformation.Name}");
                         if (CompilePlugin(module, modInformation))
@@ -111,7 +131,7 @@ namespace HunterPie.Plugins
             {
                 LoadPlugins();
             }
-            
+            return true;
         }
 
         public void UnloadPlugins()

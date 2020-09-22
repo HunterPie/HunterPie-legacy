@@ -847,7 +847,7 @@ namespace HunterPie.Core
             PlayerParty.ShowDPS = true;
             if (Timer > 0)
             {
-                float multiplier = 1.0f;
+                float multiplier;
 
                 // Adjust timer based on Focus level, because fOR SOME REASON FOCUS AFFECTS IT?????
                 switch (Math.Min(3, Skills[52].Level % 256))
@@ -861,8 +861,11 @@ namespace HunterPie.Core
                     case 3:
                         multiplier = 0.8333f;
                         break;
+                    default:
+                        multiplier = 1f;
+                        break;
                 }
-                PlayerParty.Epoch = TimeSpan.FromSeconds(Timer * multiplier);
+                PlayerParty.Epoch = TimeSpan.FromSeconds(Math.Min(Timer, TimeSpan.MaxValue.TotalSeconds) * multiplier);
             }
             else { PlayerParty.Epoch = TimeSpan.Zero; }
         }

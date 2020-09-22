@@ -1,6 +1,5 @@
 ﻿using HunterPie.Core;
 using AbnormalityType = HunterPie.Core.Enums.AbnormalityType;
-using Helper = HunterPie.Core.Enums.Helper;
 using HunterPie.Core.Events;
 
 namespace HunterPie.Core
@@ -22,7 +21,7 @@ namespace HunterPie.Core
             MaxTimer = info.MaxTimer;
         }
 
-        public string Name => GStrings.GetAbnormalityByID(Helper.ConvertAbnormalityType(Type), Id, Stack);
+        public string Name => GStrings.GetAbnormalityByID(Enums.Helper.ConvertAbnormalityType(Type), Id, Stack);
         public string Icon { get; private set; }
         public AbnormalityType Type { get; private set; }
         public int Id { get; private set; }

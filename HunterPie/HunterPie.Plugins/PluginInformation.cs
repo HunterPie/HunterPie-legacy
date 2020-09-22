@@ -1,4 +1,8 @@
 ﻿using System;
+using System.Collections.Generic;
+using System.IO;
+using Newtonsoft.Json;
+using Newtonsoft.Json.Linq;
 
 namespace HunterPie.Plugins
 {
@@ -11,12 +15,23 @@ namespace HunterPie.Plugins
         public string Version;
         public string[] Dependencies { get; set; } = Array.Empty<string>();
 
+        public PluginUpdateInformation Update { get; set; } = new PluginUpdateInformation();
+
         public PluginSettings InternalSettings { get; set; } = new PluginSettings();
+
+        public class PluginUpdateInformation
+        {
+            public string UpdateUrl { get; set; }
+            public string MinimumVersion { get; set; }
+            public IDictionary<string, string> FileHashes { get; set; }
+        }
+
+        public class FileHash
+        {
+            public string FileName { get; set; }
+            public string Sha256 { get; set; }
+        }
     }
 
-    public class PluginUpdateInformation
-    {
-        public string UpdateUrl;
-        public string MinimumVersion;
-    }
+
 }
