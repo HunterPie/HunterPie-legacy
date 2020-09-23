@@ -18,6 +18,7 @@ using HunterPie.GUIControls;
 using HunterPie.GUIControls.Custom_Controls;
 using HunterPie.Plugins;
 using HunterPie.Logger;
+using Debugger = HunterPie.Logger.Debugger;
 using PluginDisplay = HunterPie.GUIControls.Plugins;
 using HunterPie.Core.Input;
 // HunterPie
@@ -26,12 +27,9 @@ using Presence = HunterPie.Core.Integrations.Discord.Presence;
 using Process = System.Diagnostics.Process;
 using ProcessStartInfo = System.Diagnostics.ProcessStartInfo;
 using System.Threading.Tasks;
-using Newtonsoft.Json;
-using Markdig.Parsers;
 using System.Net.Http;
-using System.Text;
 using HunterPie.Core.Craft;
-using Newtonsoft.Json.Converters;
+using System.Diagnostics;
 
 namespace HunterPie
 {
@@ -101,7 +99,9 @@ namespace HunterPie
             // Initialize debugger and player config
             Debugger.InitializeDebugger();
             UserSettings.InitializePlayerConfig();
-            
+
+            Debugger.Warn($"Took {s.ElapsedMilliseconds}ms");
+
             // Initialize localization
             GStrings.InitStrings(UserSettings.PlayerConfig.HunterPie.Language);
 

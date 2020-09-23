@@ -1,5 +1,8 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
+using System.Diagnostics;
+using System.Diagnostics.Eventing.Reader;
 using System.IO;
 using System.Linq;
 using System.Windows;
@@ -23,6 +26,9 @@ namespace HunterPie.Logger
         private static object DISCORD = "#52A0FF";
         private static object MODULE = "#FFB0DB60";
         private static object NORMAL = "#FFFFFF";
+
+        private static ObservableCollection<LogString> logs = new ObservableCollection<LogString>();
+
         private static DispatcherOperation LastOperation;
         private static Debugger _Instance;
         public static Debugger Instance
@@ -36,9 +42,15 @@ namespace HunterPie.Logger
                 return _Instance;
             }
         }
-        public Debugger() => InitializeComponent();
+        public Debugger()
+        {
+            InitializeComponent();
+            
+        }
 
-        public static Debugger InitializeDebugger() => Instance;
+        public static Debugger InitializeDebugger() {
+            return Instance;
+       }
 
         public static void LoadNewColors()
         {
@@ -70,41 +82,35 @@ namespace HunterPie.Logger
 
         private static void ScrollToEnd()
         {
-
-            double ScrollableSize = _Instance.Console.ViewportHeight;
-            double ScrollPosition = _Instance.Console.VerticalOffset;
-            double ExtentHeight = _Instance.Console.ExtentHeight;
+            double ScrollableSize = Instance.scroll.ViewportHeight;
+            double ScrollPosition = Instance.scroll.VerticalOffset;
+            double ExtentHeight = Instance.scroll.ExtentHeight;
             if (ScrollableSize + ScrollPosition == ExtentHeight || ExtentHeight < ScrollableSize)
             {
-                _Instance.Console.ScrollToEnd();
+                Instance.scroll.ScrollToEnd();
             }
         }
 
         private static void PrintOnConsole(string message, object color, DispatcherPriority priority = DispatcherPriority.Background)
         {
             DateTime TimeStamp = DateTime.Now;
-            message = $"[{TimeStamp.ToLongTimeString()}] {message}\n";
-            
-            LastOperation = _Instance.Dispatcher.BeginInvoke(
-                priority,
-                new Action(() =>
-                {
-                    TextRange msg = new TextRange(_Instance.Console.Document.ContentEnd, _Instance.Console.Document.ContentEnd)
-                    {
-                        Text = message
-                    };
-                    msg.ApplyPropertyValue(TextElement.ForegroundProperty, color);
-                    ScrollToEnd();
-                })
-                
-            );
+            message = $"[{TimeStamp.ToLongTimeString()}] {message}";
+            LogString msg = new LogString()
+            {
+                Text = message,
+                Color = color
+            };
+            LastOperation = Instance.Dispatcher.BeginInvoke(priority, new Action(() =>
+            {
+                logs.Add(msg);
+                ScrollToEnd();
+            }));
         }
 
         public static void DumpLog()
         {
-            LastOperation.Wait();
             
-            TextRange tr = new TextRange(_Instance.Console.Document.ContentStart, _Instance.Console.Document.ContentEnd);
+            LastOperation.Wait();
             
             string dir = Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "Logs");
             if (!Directory.Exists(dir))
@@ -119,12 +125,23 @@ namespace HunterPie.Logger
                     File.Delete(Path.Combine(dir, file));
                 }
             }
-            File.WriteAllText(Path.Combine(dir, $"{DateTime.Now:dd\\-M\\-yyyy}_{DateTime.Now.GetHashCode()}_DEBUG-HunterPie.log"), tr.Text/*_Instance.Console.Text*/);
+            File.WriteAllLines(Path.Combine(dir, $"{DateTime.Now:dd\\-M\\-yyyy}_{DateTime.Now.GetHashCode()}_DEBUG-HunterPie.log"), logs.Select(l => l.Text).ToArray());
+            
         }
 
         private void OnClearConsoleButtonClick(object sender, RoutedEventArgs e)
         {
-            _Instance.Console.Document.Blocks.Clear();
+            logs.Clear();
         }
+
+        private void OnLoaded(object sender, RoutedEventArgs e)
+        {
+            _Instance.console.ItemsSource = logs;
+        }
+    }
+    class LogString
+    {
+        public string Text { get; set; }
+        public object Color { get; set; }
     }
 }
