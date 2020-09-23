@@ -140,50 +140,69 @@ namespace HunterPie.GUI.Widgets.ClassWidget.Parts
         }
 
 
-        private void OnSafijiivaCounterUpdate(object source, JobEventArgs args) => Dispatcher.BeginInvoke(System.Windows.Threading.DispatcherPriority.Render, new Action(() =>
-                                                                                 {
-                                                                                     HasSafiBuff = args.SafijiivaRegenCounter != -1;
-                                                                                     SafiCounter = args.SafijiivaMaxHits - args.SafijiivaRegenCounter;
-                                                                                 }));
+        private void OnSafijiivaCounterUpdate(object source, JobEventArgs args)
+        {
+            Dispatcher.BeginInvoke(System.Windows.Threading.DispatcherPriority.Render, new Action(() =>
+            {
+                HasSafiBuff = args.SafijiivaRegenCounter != -1;
+                SafiCounter = args.SafijiivaMaxHits - args.SafijiivaRegenCounter;
+            }));
+        }
 
-        private void OnWyvernstakeBlastTimerUpdate(object source, GunLanceEventArgs args) => Dispatcher.BeginInvoke(System.Windows.Threading.DispatcherPriority.Render, new Action(() =>
-                                                                                           {
-                                                                                               WyvernstakeTimerPercentage = args.WyvernstakeBlastTimer / args.WyvernstakeMax;
-                                                                                               WyvernstakeTimer = args.WyvernstakeBlastTimer > 60 ? TimeSpan.FromSeconds(args.WyvernstakeBlastTimer).ToString("m\\:ss") :
-                                                                                               TimeSpan.FromSeconds(args.WyvernstakeBlastTimer).ToString("ss");
+        private void OnWyvernstakeBlastTimerUpdate(object source, GunLanceEventArgs args)
+        {
+            Dispatcher.BeginInvoke(System.Windows.Threading.DispatcherPriority.Render, new Action(() =>
+            {
+                WyvernstakeTimerPercentage = args.WyvernstakeBlastTimer / args.WyvernstakeMax;
+                WyvernstakeTimer = args.WyvernstakeBlastTimer > 60 ? TimeSpan.FromSeconds(args.WyvernstakeBlastTimer).ToString("m\\:ss") :
+                TimeSpan.FromSeconds(args.WyvernstakeBlastTimer).ToString("ss");
 
-                                                                                               if (args.WyvernstakeBlastTimer <= 0)
-                                                                                               {
-                                                                                                   WyvernstakeTimerPercentage = args.HasWyvernstakeLoaded ? 1 : 0;
-                                                                                                   WyvernstakeTimer = args.HasWyvernstakeLoaded ? TimeSpan.FromSeconds(args.WyvernstakeNextMax).ToString("m\\:ss") : "00";
-                                                                                               }
-                                                                                           }));
+                if (args.WyvernstakeBlastTimer <= 0)
+                {
+                    WyvernstakeTimerPercentage = args.HasWyvernstakeLoaded ? 1 : 0;
+                    WyvernstakeTimer = args.HasWyvernstakeLoaded ? TimeSpan.FromSeconds(args.WyvernstakeNextMax).ToString("m\\:ss") : "00";
+                }
+            }));
+        }
 
-        private void OnWyvernsFireTimerUpdate(object source, GunLanceEventArgs args) => Dispatcher.BeginInvoke(System.Windows.Threading.DispatcherPriority.Render, new Action(() =>
-                                                                                      {
-                                                                                          WyvernsfireReady = args.WyvernsFireTimer <= 0;
-                                                                                          WyvernsfireDiamondColor = WyvernsfireReady ? "#FF2FED55" : "#FFED2F2F";
-                                                                                          WyvernboomPercentage = 1 - args.WyvernsFireTimer / 120;
-                                                                                      }));
+        private void OnWyvernsFireTimerUpdate(object source, GunLanceEventArgs args)
+        {
+            Dispatcher.BeginInvoke(System.Windows.Threading.DispatcherPriority.Render, new Action(() =>
+            {
+                WyvernsfireReady = args.WyvernsFireTimer <= 0;
+                WyvernsfireDiamondColor = WyvernsfireReady ? "#FF2FED55" : "#FFED2F2F";
+                WyvernboomPercentage = 1 - args.WyvernsFireTimer / 120;
+            }));
+        }
 
-        private void OnBigAmmoChange(object source, GunLanceEventArgs args) => Dispatcher.BeginInvoke(System.Windows.Threading.DispatcherPriority.Render, new Action(() =>
-                                                                             {
-                                                                                 WyvernstakeTimerPercentage = args.HasWyvernstakeLoaded ? 1 : args.WyvernsFireTimer / Math.Max(1, args.WyvernstakeMax);
-                                                                                 BigAmmoImage = args.HasWyvernstakeLoaded ? "pack://siteoforigin:,,,/HunterPie.Resources/UI/Class/GLanceWyvernstake.png" :
-                                                                                 args.BigAmmo == 0 ? "pack://siteoforigin:,,,/HunterPie.Resources/UI/Class/GLanceBAmmoEmpty.png" : "pack://siteoforigin:,,,/HunterPie.Resources/UI/Class/GLanceBAmmo.png";
-                                                                                 BigAmmoShadowColor = args.HasWyvernstakeLoaded ? WyvernLoadedColor : args.BigAmmo == 0 ? BigAmmoNotLoadedColor : BigAmmoLoadedColor;
-                                                                                 WyvernstakeTimer = args.HasWyvernstakeLoaded ? TimeSpan.FromSeconds(args.WyvernstakeNextMax).ToString("m\\:ss") : "00";
-                                                                                 NextWyvernstakeTimer = args.HasWyvernstakeLoaded ? TimeSpan.FromSeconds(args.WyvernstakeNextMax).ToString("m\\:ss") : null;
-                                                                             }));
+        private void OnBigAmmoChange(object source, GunLanceEventArgs args)
+        {
+            Dispatcher.BeginInvoke(System.Windows.Threading.DispatcherPriority.Render, new Action(() =>
+            {
+                WyvernstakeTimerPercentage = args.HasWyvernstakeLoaded ? 1 : args.WyvernsFireTimer / Math.Max(1, args.WyvernstakeMax);
+                BigAmmoImage = args.HasWyvernstakeLoaded ? "pack://siteoforigin:,,,/HunterPie.Resources/UI/Class/GLanceWyvernstake.png" :
+                args.BigAmmo == 0 ? "pack://siteoforigin:,,,/HunterPie.Resources/UI/Class/GLanceBAmmoEmpty.png" : "pack://siteoforigin:,,,/HunterPie.Resources/UI/Class/GLanceBAmmo.png";
+                BigAmmoShadowColor = args.HasWyvernstakeLoaded ? WyvernLoadedColor : args.BigAmmo == 0 ? BigAmmoNotLoadedColor : BigAmmoLoadedColor;
+                WyvernstakeTimer = args.HasWyvernstakeLoaded ? TimeSpan.FromSeconds(args.WyvernstakeNextMax).ToString("m\\:ss") : "00";
+                NextWyvernstakeTimer = args.HasWyvernstakeLoaded ? TimeSpan.FromSeconds(args.WyvernstakeNextMax).ToString("m\\:ss") : null;
+            }));
+        }
 
-        private void OnAmmoChange(object source, GunLanceEventArgs args) => Dispatcher.BeginInvoke(System.Windows.Threading.DispatcherPriority.Render, new Action(() =>
-                                                                          {
-                                                                              DrawAmmo(args.Ammo, args.TotalAmmo - args.Ammo);
-                                                                          }));
+        private void OnAmmoChange(object source, GunLanceEventArgs args)
+        {
+            Dispatcher.BeginInvoke(System.Windows.Threading.DispatcherPriority.Render, new Action(() =>
+            {
+                DrawAmmo(args.Ammo, args.TotalAmmo - args.Ammo);
+            }));
+        }
 
         private void DrawAmmo(int full, int empty)
         {
             AmmoHolder.Children.Clear();
+            if (full > 10 || empty > 10)
+            {
+                return;
+            }
             for (int i = 0; i < full; i++)
             {
                 Image img = new Image

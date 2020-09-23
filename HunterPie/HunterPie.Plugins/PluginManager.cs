@@ -73,7 +73,7 @@ namespace HunterPie.Plugins
 
                     if (modInformation.Update.MinimumVersion is null)
                     {
-                        Debugger.Warn($"{modInformation.Name.ToUpper()} MIGHT BE OUTDATED! CONSIDER UPDATING IT.");
+                        Debugger.Error($"{modInformation.Name.ToUpper()} MIGHT BE OUTDATED! CONSIDER UPDATING IT.");
                     }
 
                     if (PluginUpdate.PluginSupportsUpdate(modInformation))

@@ -7,14 +7,16 @@ namespace HunterPie.Core.Jobs
         public float InnerGauge { get; }
         public int ChargeLevel { get; }
         public float OuterGauge { get; }
-        public float SpiritGaugeBlinkDuration { get; }
+        public float HelmBreakerBlink { get; }
+        public float IaiSlashBlink { get; }
 
         public LongswordEventArgs(Longsword weapon)
         {
             InnerGauge = weapon.InnerGauge;
             ChargeLevel = weapon.ChargeLevel;
             OuterGauge = weapon.OuterGauge;
-            SpiritGaugeBlinkDuration = weapon.SpiritGaugeBlinkDuration;
+            HelmBreakerBlink = weapon.HelmBreakerBlink;
+            IaiSlashBlink = weapon.IaiSlashBlink;
         }
     }
     public class Longsword : Job
@@ -22,7 +24,8 @@ namespace HunterPie.Core.Jobs
         private float innerGauge;
         private int chargeLevel;
         private float outerGauge;
-        private float spiritGaugeBlinkDuration;
+        private float helmBreakerBlink;
+        private float iaiSlashBlink;
 
         public float InnerGauge
         {
@@ -60,14 +63,26 @@ namespace HunterPie.Core.Jobs
                 }
             }
         }
-        public float SpiritGaugeBlinkDuration
+        public float HelmBreakerBlink
         {
-            get => spiritGaugeBlinkDuration;
+            get => helmBreakerBlink;
             set
             {
-                if (value != spiritGaugeBlinkDuration)
+                if (value != helmBreakerBlink)
                 {
-                    spiritGaugeBlinkDuration = value;
+                    helmBreakerBlink = value;
+                    Dispatch(OnSpiritGaugeBlinkDurationUpdate);
+                }
+            }
+        }
+        public float IaiSlashBlink
+        {
+            get => iaiSlashBlink;
+            set
+            {
+                if (value != iaiSlashBlink)
+                {
+                    iaiSlashBlink = value;
                     Dispatch(OnSpiritGaugeBlinkDurationUpdate);
                 }
             }

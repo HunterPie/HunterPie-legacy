@@ -22,6 +22,16 @@ namespace HunterPie.GUI.Widgets.ClassWidget.Parts
 
         Longsword Context;
 
+
+
+        public string AltBlinkDuration
+        {
+            get { return (string)GetValue(AltBlinkDurationProperty); }
+            set { SetValue(AltBlinkDurationProperty, value); }
+        }
+        public static readonly DependencyProperty AltBlinkDurationProperty =
+            DependencyProperty.Register("AltBlinkDuration", typeof(string), typeof(LongswordControl));
+
         public double GaugeWidth
         {
             get => (double)GetValue(GaugeWidthProperty);
@@ -121,36 +131,52 @@ namespace HunterPie.GUI.Widgets.ClassWidget.Parts
         }
 
 
-        private void OnSafijiivaCounterUpdate(object source, JobEventArgs args) => Dispatcher.BeginInvoke(System.Windows.Threading.DispatcherPriority.Render, new Action(() =>
-                                                                                 {
-                                                                                     HasSafiBuff = args.SafijiivaRegenCounter != -1;
-                                                                                     SafiCounter = args.SafijiivaMaxHits - args.SafijiivaRegenCounter;
-                                                                                 }));
+        private void OnSafijiivaCounterUpdate(object source, JobEventArgs args)
+        {
+            Dispatcher.BeginInvoke(System.Windows.Threading.DispatcherPriority.Render, new Action(() =>
+            {
+                HasSafiBuff = args.SafijiivaRegenCounter != -1;
+                SafiCounter = args.SafijiivaMaxHits - args.SafijiivaRegenCounter;
+            }));
+        }
 
 
-        private void OnSpiritGaugeBlinkDurationUpdate(object source, LongswordEventArgs args) => Dispatcher.BeginInvoke(System.Windows.Threading.DispatcherPriority.Render, new Action(() =>
-                                                                                               {
-                                                                                                   GaugeIsBlinking = args.SpiritGaugeBlinkDuration > 0;
-                                                                                                   GaugeBlinkDuration = TimeSpan.FromSeconds(args.SpiritGaugeBlinkDuration).ToString(args.SpiritGaugeBlinkDuration > 60 ? "m\\:ss" : "ss");
-                                                                                               }));
+        private void OnSpiritGaugeBlinkDurationUpdate(object source, LongswordEventArgs args)
+        {
+            Dispatcher.BeginInvoke(System.Windows.Threading.DispatcherPriority.Render, new Action(() =>
+            {
+                GaugeIsBlinking = Math.Max(args.HelmBreakerBlink, args.IaiSlashBlink) > 0;
+                GaugeBlinkDuration = TimeSpan.FromSeconds(args.HelmBreakerBlink).ToString(args.HelmBreakerBlink> 60 ? "m\\:ss" : "ss");
+                AltBlinkDuration = TimeSpan.FromSeconds(args.IaiSlashBlink).ToString(args.IaiSlashBlink > 60 ? "m\\:ss" : "ss");
+            }));
+        }
 
-        private void OnOuterGaugeChange(object source, LongswordEventArgs args) => Dispatcher.BeginInvoke(System.Windows.Threading.DispatcherPriority.Render, new Action(() =>
-                                                                                 {
-                                                                                     OuterGaugePercentage = args.OuterGauge;
-                                                                                     OuterGaugeColor = OuterGaugeColors.ElementAtOrDefault(args.ChargeLevel);
-                                                                                 }));
+        private void OnOuterGaugeChange(object source, LongswordEventArgs args)
+        {
+            Dispatcher.BeginInvoke(System.Windows.Threading.DispatcherPriority.Render, new Action(() =>
+            {
+                OuterGaugePercentage = args.OuterGauge;
+                OuterGaugeColor = OuterGaugeColors.ElementAtOrDefault(args.ChargeLevel);
+            }));
+        }
 
-        private void OnInnerGaugeChange(object source, LongswordEventArgs args) => Dispatcher.BeginInvoke(System.Windows.Threading.DispatcherPriority.Render, new Action(() =>
-                                                                                 {
-                                                                                     GaugeHasPower = args.InnerGauge > 0;
-                                                                                     GaugeWidth = args.InnerGauge * 85;
-                                                                                 }));
+        private void OnInnerGaugeChange(object source, LongswordEventArgs args)
+        {
+            Dispatcher.BeginInvoke(System.Windows.Threading.DispatcherPriority.Render, new Action(() =>
+            {
+                GaugeHasPower = args.InnerGauge > 0;
+                GaugeWidth = args.InnerGauge * 85;
+            }));
+        }
 
-        private void OnChargeLevelChange(object source, LongswordEventArgs args) => Dispatcher.BeginInvoke(System.Windows.Threading.DispatcherPriority.Render, new Action(() =>
-                                                                                  {
-                                                                                      OuterGaugePercentage = args.OuterGauge;
-                                                                                      OuterGaugeColor = OuterGaugeColors.ElementAtOrDefault(args.ChargeLevel);
-                                                                                  }));
+        private void OnChargeLevelChange(object source, LongswordEventArgs args)
+        {
+            Dispatcher.BeginInvoke(System.Windows.Threading.DispatcherPriority.Render, new Action(() =>
+            {
+                OuterGaugePercentage = args.OuterGauge;
+                OuterGaugeColor = OuterGaugeColors.ElementAtOrDefault(args.ChargeLevel);
+            }));
+        }
 
         private void LSControl_Loaded(object sender, RoutedEventArgs e) => UpdateInformation();
     }

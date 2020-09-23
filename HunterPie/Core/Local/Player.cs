@@ -1054,6 +1054,11 @@ namespace HunterPie.Core
 
         private void GetJobInformation()
         {
+            // Fix for arena dumb memory leak when choosing the class
+            if (ActionId == 75)
+            {
+                return;
+            }
             long AbnormAddress = Kernel.ReadMultilevelPtr(Address.BASE + Address.ABNORMALITY_OFFSET, Address.Offsets.AbnormalityOffsets);
             bool HasSafiBuff = Kernel.Read<int>(AbnormAddress + 0x9A8) >= 1;
             int SafiCounter = HasSafiBuff ? Kernel.Read<int>(AbnormAddress + 0x7A8) : -1;
@@ -1145,11 +1150,13 @@ namespace HunterPie.Core
             float gauge = Kernel.Read<float>(weaponAddress - 0x4);
             int chargeLevel = Kernel.Read<int>(weaponAddress + 0x4);
             float chargeGauge = Kernel.Read<float>(weaponAddress + 0x8);
-            float spiritGaugeBlink = Math.Max(Kernel.Read<float>(weaponAddress + 0xC), Kernel.Read<float>(weaponAddress + 0x1C));
+            float IaiSlash = Kernel.Read<float>(weaponAddress + 0xC);
+            float HelmBreaker = Kernel.Read<float>(weaponAddress + 0x1C);
             Longsword.InnerGauge = gauge;
             Longsword.ChargeLevel = chargeLevel;
             Longsword.OuterGauge = chargeGauge;
-            Longsword.SpiritGaugeBlinkDuration = spiritGaugeBlink;
+            Longsword.HelmBreakerBlink = HelmBreaker;
+            Longsword.IaiSlashBlink = IaiSlash;
         }
 
         private void GetHammerInformation(long weaponAddress)
