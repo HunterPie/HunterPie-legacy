@@ -17,7 +17,7 @@ namespace HunterPie.Plugins
 
         public PluginUpdateInformation Update { get; set; } = new PluginUpdateInformation();
 
-        public PluginSettings InternalSettings { get; set; } = new PluginSettings();
+        internal PluginSettings InternalSettings { get; set; } = new PluginSettings();
 
         public class PluginUpdateInformation
         {

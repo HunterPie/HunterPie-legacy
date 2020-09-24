@@ -1,7 +1,9 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Diagnostics;
+using Debugger = HunterPie.Logger.Debugger;
 using System.IO;
+using System.Linq;
 using System.Windows;
 using System.Windows.Controls;
 using HunterPie.GUIControls.Custom_Controls;

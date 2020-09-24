@@ -1,7 +1,7 @@
 ﻿<Window xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         x:Name="window" x:Class="HunterPie.Hunterpie"
-        Title="HunterPie" MinWidth="800" MinHeight="500" WindowStyle="None" Closing="OnWindowClosing" AllowsTransparency="True" BorderBrush="{StaticResource BUTTON_CLOSEWINDOW_BACKGROUND}" BorderThickness="1" Background="{x:Null}" ResizeMode="CanResize" SizeChanged="OnWindowSizeChange" DataContext="{StaticResource Localization}" Initialized="OnWindowInitialized" PreviewKeyDown="OnKeyDown">
+        Title="HunterPie" MinWidth="800" MinHeight="500" WindowStyle="None" Closing="OnWindowClosing" AllowsTransparency="True" BorderBrush="{StaticResource BUTTON_CLOSEWINDOW_BACKGROUND}" BorderThickness="1" Background="{x:Null}" ResizeMode="CanResize" SizeChanged="OnWindowSizeChange" DataContext="{StaticResource Localization}" Initialized="OnWindowInitialized" PreviewKeyDown="OnKeyDown" AllowDrop="True" DragDrop.Drop="window_Drop" DragEnter="window_DragEnter" DragLeave="window_DragLeave">
     <WindowChrome.WindowChrome>
         <WindowChrome CaptionHeight="0"
                               CornerRadius="0"
@@ -114,122 +114,194 @@
             </ControlTemplate>
         </ResourceDictionary>
     </Window.Resources>
-    <Grid Background="{StaticResource CONSOLE_BACKGROUND}">
+    <Grid Background="{StaticResource CONSOLE_BACKGROUND}" >
+        <Grid>
+            <Grid.Effect>
+                <BlurEffect Radius="0"/>
+            </Grid.Effect>
+            <!-- Console content -->
+            <Grid x:Name="ConsolePanel" Margin="51,157,0,2"/>
+            <Rectangle Height="130" VerticalAlignment="Top" Margin="0,22,0,0" Fill="{StaticResource CONSOLE_HEADER_BACKGROUND}"/>
+            <Rectangle Cursor="SizeAll" x:Name="WindowTopBar" Fill="{StaticResource CONSOLE_WINDOWBAR_BACKGROUND}" Height="22" VerticalAlignment="Top" MouseLeftButtonDown="OnWindowDrag"/>
+            <Image Height="20" Width="20" Visibility="{Binding ElementName=window, Path=AdministratorIconVisibility}" ToolTip="HunterPie (Administrator)" Source="{StaticResource ICON_ADMINISTRATOR}" VerticalAlignment="Top" HorizontalAlignment="Left" Opacity="0.8" Margin="1,1,0,0"  />
 
-        <!-- Console content -->
-        <Grid x:Name="ConsolePanel" Margin="51,157,0,2"/>
-        <Rectangle Height="130" VerticalAlignment="Top" Margin="0,22,0,0" Fill="{StaticResource CONSOLE_HEADER_BACKGROUND}"/>
-        <Rectangle Cursor="SizeAll" x:Name="WindowTopBar" Fill="{StaticResource CONSOLE_WINDOWBAR_BACKGROUND}" Height="22" VerticalAlignment="Top" MouseLeftButtonDown="OnWindowDrag"/>
-        <Image Height="20" Width="20" Visibility="{Binding ElementName=window, Path=AdministratorIconVisibility}" ToolTip="HunterPie (Administrator)" Source="{StaticResource ICON_ADMINISTRATOR}" VerticalAlignment="Top" HorizontalAlignment="Left" Opacity="0.8" Margin="1,1,0,0"  />
+            <!-- Top buttons -->
+            <Label Content="✕" HorizontalAlignment="Right" VerticalAlignment="Top" Height="22" Width="25" Foreground="{StaticResource BUTTON_TOPBUTTON_FOREGROUND}" Padding="0,0,1,0" Cursor="Hand" MouseDown="OnCloseWindowButtonClick" FontSize="14" Template="{DynamicResource LabelButtonType}" OverridesDefaultStyle="True" Style="{Binding Mode=OneWay, Source={StaticResource LabelButtonType}}" VerticalContentAlignment="Center" Background="{StaticResource BUTTON_CLOSEWINDOW_BACKGROUND}" HorizontalContentAlignment="Center" />
+            <Label Content="__" Margin="0,-7,25,0" Foreground="{StaticResource BUTTON_TOPBUTTON_FOREGROUND}" Padding="0" Cursor="Hand" FontSize="18" Background="{StaticResource BUTTON_TOPBUTTON_BACKGROUND}" MouseDown="OnMinimizeButtonClick" Template="{DynamicResource LabelButtonType}" HorizontalContentAlignment="Center" BorderThickness="0" VerticalContentAlignment="Center" HorizontalAlignment="Right" Width="28" Height="29" VerticalAlignment="Top"/>
 
-        <!-- Top buttons -->
-        <Label Content="✕" HorizontalAlignment="Right" VerticalAlignment="Top" Height="22" Width="25" Foreground="{StaticResource BUTTON_TOPBUTTON_FOREGROUND}" Padding="0,0,1,0" Cursor="Hand" MouseDown="OnCloseWindowButtonClick" FontSize="14" Template="{DynamicResource LabelButtonType}" OverridesDefaultStyle="True" Style="{Binding Mode=OneWay, Source={StaticResource LabelButtonType}}" VerticalContentAlignment="Center" Background="{StaticResource BUTTON_CLOSEWINDOW_BACKGROUND}" HorizontalContentAlignment="Center" />
-        <Label Content="__" Margin="0,-7,25,0" Foreground="{StaticResource BUTTON_TOPBUTTON_FOREGROUND}" Padding="0" Cursor="Hand" FontSize="18" Background="{StaticResource BUTTON_TOPBUTTON_BACKGROUND}" MouseDown="OnMinimizeButtonClick" Template="{DynamicResource LabelButtonType}" HorizontalContentAlignment="Center" BorderThickness="0" VerticalContentAlignment="Center" HorizontalAlignment="Right" Width="28" Height="29" VerticalAlignment="Top"/>
+            <!-- Side bar -->
+            <StackPanel Orientation="Vertical" HorizontalAlignment="Left" Width="50" Margin="0,152,0,0" Background="{StaticResource CONSOLE_SIDEBAR_BACKGROUND}" ClipToBounds="True">
+                <StackPanel x:Name="BUTTON_CONSOLE" Style="{StaticResource STYLE_SIDEBARBUTTONS}" Background="{StaticResource BUTTON_COMMONBUTTON_BACKGROUND}" Cursor="Hand"  Width="300" Height="40" Orientation="Horizontal" HorizontalAlignment="Left" MouseDown="OnConsoleButtonClick" VerticalAlignment="Top">
+                    <Border BorderBrush="{StaticResource BUTTON_COMMONBUTTON_BORDER}" Width="4" BorderThickness="0,0,0,0" />
+                    <Image Panel.ZIndex="1" Source="{StaticResource ICON_CONSOLE}" HorizontalAlignment="Center" Width="25" VerticalAlignment="Center" Margin="6,0,0,0"/>
+                    <TextBlock DataContext="{StaticResource Localization}" TextTrimming="CharacterEllipsis" Padding="20,0,0,0" VerticalAlignment="Center" FontSize="16" Foreground="{StaticResource BUTTON_COMMONBUTTON_FOREGROUND}" FontWeight="Bold" FontFamily="Roboto">
+                        <TextBlock.Text>
+                            <Binding Mode="OneTime" XPath="Console/String[@ID='CONSOLE_CONSOLE']/@Name"/>
+                        </TextBlock.Text>
+                    </TextBlock>
+                </StackPanel>
+                <StackPanel x:Name="BUTTON_SETTINGS" Style="{StaticResource STYLE_SIDEBARBUTTONS}"  Background="{StaticResource BUTTON_COMMONBUTTON_BACKGROUND}" Cursor="Hand"  Width="300" Height="40" Orientation="Horizontal" HorizontalAlignment="Left" MouseDown="OnSettingsButtonClick" VerticalAlignment="Top">
+                    <Border BorderBrush="{StaticResource BUTTON_COMMONBUTTON_BORDER}" Width="4" BorderThickness="0,0,0,0" />
+                    <Image Panel.ZIndex="1" Source="{StaticResource ICON_SETTINGS}" HorizontalAlignment="Center" Width="25" VerticalAlignment="Center" Margin="6,0,0,0"/>
+                    <TextBlock DataContext="{StaticResource Localization}" TextTrimming="CharacterEllipsis" Padding="20,0,0,0" VerticalAlignment="Center" FontSize="16" Foreground="{StaticResource BUTTON_COMMONBUTTON_FOREGROUND}" FontWeight="Bold" FontFamily="Roboto">
+                        <TextBlock.Text>
+                            <Binding Mode="OneTime" XPath="Console/String[@ID='CONSOLE_SETTINGS']/@Name"/>
+                        </TextBlock.Text>
+                    </TextBlock>
+                </StackPanel>
+                <StackPanel x:Name="BUTTON_PLUGINS" Style="{StaticResource STYLE_SIDEBARBUTTONS}"  Background="{StaticResource BUTTON_COMMONBUTTON_BACKGROUND}" Cursor="Hand"  Width="300" Height="40" Orientation="Horizontal" HorizontalAlignment="Left" MouseDown="OnPluginsButtonClick" VerticalAlignment="Top">
+                    <Border BorderBrush="{StaticResource BUTTON_COMMONBUTTON_BORDER}" Width="4" BorderThickness="0,0,0,0" />
+                    <Image Panel.ZIndex="1" Source="{StaticResource ICON_PLUGIN}" HorizontalAlignment="Center" Width="24" VerticalAlignment="Center" Margin="9,8,0,8"/>
+                    <TextBlock DataContext="{StaticResource Localization}" Text="{Binding Mode=OneTime, XPath=/Strings/Client/Console/String[@ID\=\'CONSOLE_PLUGINS\']/@Name, FallbackValue='PLUGINS'}" TextTrimming="CharacterEllipsis" Padding="20,0,0,0" VerticalAlignment="Center" FontSize="16" Foreground="{StaticResource BUTTON_COMMONBUTTON_FOREGROUND}" FontWeight="Bold" FontFamily="Roboto"/>
+                </StackPanel>
+                <StackPanel x:Name="BUTTON_UPLOADBUILD" Style="{StaticResource TogglableButton}" Background="{StaticResource BUTTON_COMMONBUTTON_BACKGROUND}" Cursor="Hand"  Width="300" Height="40" Orientation="Horizontal" HorizontalAlignment="Left" MouseDown="OnUploadBuildButtonClick" VerticalAlignment="Top">
+                    <Image Panel.ZIndex="1" Source="{StaticResource ICON_BUILD}" HorizontalAlignment="Center" Width="25" VerticalAlignment="Center" Margin="9,8,0,8"/>
+                    <TextBlock DataContext="{StaticResource Localization}" TextTrimming="CharacterEllipsis" Padding="20,0,0,0" VerticalAlignment="Center" FontSize="16" Foreground="{StaticResource BUTTON_COMMONBUTTON_FOREGROUND}" FontWeight="Bold" FontFamily="Roboto">
+                        <TextBlock.Text>
+                            <Binding Mode="OneTime" XPath="Console/String[@ID='CONSOLE_UPLOADBUILD']/@Name"/>
+                        </TextBlock.Text>
+                    </TextBlock>
+                </StackPanel>
+                <StackPanel x:Name="BUTTON_EXPORTGEAR" Style="{StaticResource TogglableButton}"  Background="{StaticResource BUTTON_COMMONBUTTON_BACKGROUND}" Cursor="Hand"  Width="300" Height="40" Orientation="Horizontal" HorizontalAlignment="Left" MouseDown="OnExportGearButtonClick" VerticalAlignment="Top">
+                    <Image Panel.ZIndex="1" Source="{StaticResource ICON_DECORATION}" HorizontalAlignment="Center" Width="25" VerticalAlignment="Center" Margin="9,8,0,8"/>
+                    <TextBlock DataContext="{StaticResource Localization}" TextTrimming="CharacterEllipsis" Padding="20,0,0,0" VerticalAlignment="Center" FontSize="16" Foreground="{StaticResource BUTTON_COMMONBUTTON_FOREGROUND}" FontWeight="Bold" FontFamily="Roboto" Text="{Binding Mode=OneTime, XPath=Console/String[@ID\=\'CONSOLE_EXPORTGEAR\']/@Name, FallbackValue='EXPORT GEAR'}"/>
+                </StackPanel>
+                <StackPanel x:Name="BUTTON_CHANGELOG" Style="{StaticResource STYLE_SIDEBARBUTTONS}"  Background="{StaticResource BUTTON_COMMONBUTTON_BACKGROUND}" Cursor="Hand"  Width="300" Height="40" Orientation="Horizontal" HorizontalAlignment="Left" MouseDown="OnChangelogButtonClick" VerticalAlignment="Top">
+                    <Border BorderBrush="{StaticResource BUTTON_COMMONBUTTON_BORDER}" Width="4" BorderThickness="0,0,0,0" />
+                    <Image Panel.ZIndex="1" Source="{StaticResource ICON_CHANGELOG}" HorizontalAlignment="Center" Width="25" VerticalAlignment="Center" Margin="6,0,0,0"/>
+                    <TextBlock DataContext="{StaticResource Localization}" Padding="20,0,0,0" TextTrimming="CharacterEllipsis" VerticalAlignment="Center" FontSize="16" Foreground="{StaticResource BUTTON_COMMONBUTTON_FOREGROUND}" FontWeight="Bold" FontFamily="Roboto">
+                        <TextBlock.Text>
+                            <Binding Mode="OneTime" XPath="Console/String[@ID='CONSOLE_CHANGELOG']/@Name"/>
+                        </TextBlock.Text>
+                    </TextBlock>
+                </StackPanel>
+                <StackPanel Style="{StaticResource STYLE_SIDEBARBUTTONS}"  Background="{StaticResource BUTTON_COMMONBUTTON_BACKGROUND}" Cursor="Hand"  Width="300" Height="40" Orientation="Horizontal" HorizontalAlignment="Left" MouseDown="OnDiscordButtonClick" VerticalAlignment="Top">
+                    <Image Panel.ZIndex="1" Source="{StaticResource ICON_DISCORD}" HorizontalAlignment="Center" Width="25" VerticalAlignment="Center" Margin="10,0,0,0"/>
+                    <TextBlock DataContext="{StaticResource Localization}" TextTrimming="CharacterEllipsis" Padding="20,0,0,0" VerticalAlignment="Center" FontSize="16" Foreground="{StaticResource BUTTON_COMMONBUTTON_FOREGROUND}" FontWeight="Bold" FontFamily="Roboto">
+                        <TextBlock.Text>
+                            <Binding Mode="OneTime" XPath="Console/String[@ID='CONSOLE_DISCORD']/@Name"/>
+                        </TextBlock.Text>
+                    </TextBlock>
+                </StackPanel>
+                <StackPanel Style="{StaticResource STYLE_SIDEBARBUTTONS}"  Background="{StaticResource BUTTON_COMMONBUTTON_BACKGROUND}" Cursor="Hand"  Width="300" Height="40" Orientation="Horizontal" HorizontalAlignment="Left" MouseDown="OnGithubButtonClick" VerticalAlignment="Top">
+                    <Image Panel.ZIndex="1" Source="{StaticResource ICON_GITHUB}" HorizontalAlignment="Center" Width="25" VerticalAlignment="Center" Margin="10,0,0,0"/>
+                    <TextBlock DataContext="{StaticResource Localization}" TextTrimming="CharacterEllipsis" Padding="20,0,0,0" VerticalAlignment="Center" FontSize="16" Foreground="{StaticResource BUTTON_COMMONBUTTON_FOREGROUND}" FontWeight="Bold" FontFamily="Roboto">
+                        <TextBlock.Text>
+                            <Binding Mode="OneTime" XPath="Console/String[@ID='CONSOLE_GITHUB']/@Name"/>
+                        </TextBlock.Text>
+                    </TextBlock>
+                </StackPanel>
+                <StackPanel.Style>
+                    <Style TargetType="StackPanel">
+                        <Style.Triggers>
+                            <EventTrigger RoutedEvent="Mouse.MouseEnter">
+                                <EventTrigger.Actions>
+                                    <BeginStoryboard>
+                                        <Storyboard Storyboard.TargetProperty="Width">
+                                            <DoubleAnimationUsingKeyFrames>
+                                                <LinearDoubleKeyFrame Value="50" KeyTime="0:0:0.3"/>
+                                                <LinearDoubleKeyFrame Value="300" KeyTime="0:0:0.45"/>
+                                            </DoubleAnimationUsingKeyFrames>
+                                        </Storyboard>
+                                    </BeginStoryboard>
+                                </EventTrigger.Actions>
+                            </EventTrigger>
+                            <EventTrigger RoutedEvent="Mouse.MouseLeave">
+                                <EventTrigger.Actions>
+                                    <BeginStoryboard>
+                                        <Storyboard Storyboard.TargetProperty="Width">
+                                            <DoubleAnimation To="50" Duration="0:0:0.150"/>
+                                        </Storyboard>
+                                    </BeginStoryboard>
+                                </EventTrigger.Actions>
+                            </EventTrigger>
+                        </Style.Triggers>
+                    </Style>
+                </StackPanel.Style>
+            </StackPanel>
 
-        <!-- Side bar -->
-        <StackPanel Orientation="Vertical" HorizontalAlignment="Left" Width="50" Margin="0,152,0,0" Background="{StaticResource CONSOLE_SIDEBAR_BACKGROUND}" ClipToBounds="True">
-            <StackPanel x:Name="BUTTON_CONSOLE" Style="{StaticResource STYLE_SIDEBARBUTTONS}" Background="{StaticResource BUTTON_COMMONBUTTON_BACKGROUND}" Cursor="Hand"  Width="300" Height="40" Orientation="Horizontal" HorizontalAlignment="Left" MouseDown="OnConsoleButtonClick" VerticalAlignment="Top">
-                <Border BorderBrush="{StaticResource BUTTON_COMMONBUTTON_BORDER}" Width="4" BorderThickness="0,0,0,0" />
-                <Image Panel.ZIndex="1" Source="{StaticResource ICON_CONSOLE}" HorizontalAlignment="Center" Width="25" VerticalAlignment="Center" Margin="6,0,0,0"/>
-                <TextBlock DataContext="{StaticResource Localization}" TextTrimming="CharacterEllipsis" Padding="20,0,0,0" VerticalAlignment="Center" FontSize="16" Foreground="{StaticResource BUTTON_COMMONBUTTON_FOREGROUND}" FontWeight="Bold" FontFamily="Roboto">
-                    <TextBlock.Text>
-                        <Binding Mode="OneTime" XPath="Console/String[@ID='CONSOLE_CONSOLE']/@Name"/>
-                    </TextBlock.Text>
-                </TextBlock>
+            <!-- Header  -->
+            <TextBlock Text="{Binding ElementName=window, Path=Version}" Background="{x:Null}" Foreground="{StaticResource CONSOLE_VERSIONTEXT_FOREGROUND}" Padding="0" Margin="0,131,10,0" RenderTransformOrigin="0.5,0.5" TextAlignment="Right" FontWeight="Medium" FontSize="14" Height="20" VerticalAlignment="Top" HorizontalAlignment="Right" Width="455"/>
+            <Button Margin="0,55,10,0" VerticalAlignment="Top" Height="46" BorderBrush="{x:Null}" Foreground="{StaticResource BUTTON_LAUNCHGAME_FOREGROUND}" FontFamily="Roboto" FontSize="18" Cursor="Hand" BorderThickness="1"  Template="{DynamicResource ButtonStyle}" Padding="0" FontWeight="Bold" HorizontalContentAlignment="Center" Click="OnLaunchGameButtonClick" Background="{StaticResource BUTTON_LAUNCHGAME_BACKGROUND}" HorizontalAlignment="Right" Width="242">
+                <Button.Content>
+                    <Binding Mode="OneTime" XPath="Console/String[@ID='CONSOLE_LAUNCH']/@Name"/>
+                </Button.Content>
+            </Button>
+            <StackPanel Orientation="Horizontal" Height="59" VerticalAlignment="Top" HorizontalAlignment="Left" Margin="20,50,0,0">
+                <Image HorizontalAlignment="Right" Height="59" VerticalAlignment="Top" Width="59" Source="{StaticResource LOGO_HunterPie}"/>
+                <TextBlock HorizontalAlignment="Right" TextWrapping="Wrap" Text="Hunter" VerticalAlignment="Bottom" Height="59" FontFamily="Roboto" FontWeight="Bold" FontSize="22" Padding="1,16,0,0" Foreground="{StaticResource CONSOLE_LOGO_FOREGROUND}"/>
+                <TextBlock HorizontalAlignment="Right" TextWrapping="Wrap" Text="Pie" VerticalAlignment="Bottom" Height="59" FontFamily="Roboto" FontWeight="Light" FontSize="22" Padding="0,16,0,0" Foreground="{StaticResource CONSOLE_LOGO_FOREGROUND}"/>
             </StackPanel>
-            <StackPanel x:Name="BUTTON_SETTINGS" Style="{StaticResource STYLE_SIDEBARBUTTONS}"  Background="{StaticResource BUTTON_COMMONBUTTON_BACKGROUND}" Cursor="Hand"  Width="300" Height="40" Orientation="Horizontal" HorizontalAlignment="Left" MouseDown="OnSettingsButtonClick" VerticalAlignment="Top">
-                <Border BorderBrush="{StaticResource BUTTON_COMMONBUTTON_BORDER}" Width="4" BorderThickness="0,0,0,0" />
-                <Image Panel.ZIndex="1" Source="{StaticResource ICON_SETTINGS}" HorizontalAlignment="Center" Width="25" VerticalAlignment="Center" Margin="6,0,0,0"/>
-                <TextBlock DataContext="{StaticResource Localization}" TextTrimming="CharacterEllipsis" Padding="20,0,0,0" VerticalAlignment="Center" FontSize="16" Foreground="{StaticResource BUTTON_COMMONBUTTON_FOREGROUND}" FontWeight="Bold" FontFamily="Roboto">
-                    <TextBlock.Text>
-                        <Binding Mode="OneTime" XPath="Console/String[@ID='CONSOLE_SETTINGS']/@Name"/>
-                    </TextBlock.Text>
-                </TextBlock>
-            </StackPanel>
-            <StackPanel x:Name="BUTTON_PLUGINS" Style="{StaticResource STYLE_SIDEBARBUTTONS}"  Background="{StaticResource BUTTON_COMMONBUTTON_BACKGROUND}" Cursor="Hand"  Width="300" Height="40" Orientation="Horizontal" HorizontalAlignment="Left" MouseDown="OnPluginsButtonClick" VerticalAlignment="Top">
-                <Border BorderBrush="{StaticResource BUTTON_COMMONBUTTON_BORDER}" Width="4" BorderThickness="0,0,0,0" />
-                <Image Panel.ZIndex="1" Source="{StaticResource ICON_PLUGIN}" HorizontalAlignment="Center" Width="24" VerticalAlignment="Center" Margin="9,8,0,8"/>
-                <TextBlock DataContext="{StaticResource Localization}" Text="{Binding Mode=OneTime, XPath=/Strings/Client/Console/String[@ID\=\'CONSOLE_PLUGINS\']/@Name, FallbackValue='PLUGINS'}" TextTrimming="CharacterEllipsis" Padding="20,0,0,0" VerticalAlignment="Center" FontSize="16" Foreground="{StaticResource BUTTON_COMMONBUTTON_FOREGROUND}" FontWeight="Bold" FontFamily="Roboto"/>
-            </StackPanel>
-            <StackPanel x:Name="BUTTON_UPLOADBUILD" Style="{StaticResource TogglableButton}" Background="{StaticResource BUTTON_COMMONBUTTON_BACKGROUND}" Cursor="Hand"  Width="300" Height="40" Orientation="Horizontal" HorizontalAlignment="Left" MouseDown="OnUploadBuildButtonClick" VerticalAlignment="Top">
-                <Image Panel.ZIndex="1" Source="{StaticResource ICON_BUILD}" HorizontalAlignment="Center" Width="25" VerticalAlignment="Center" Margin="9,8,0,8"/>
-                <TextBlock DataContext="{StaticResource Localization}" TextTrimming="CharacterEllipsis" Padding="20,0,0,0" VerticalAlignment="Center" FontSize="16" Foreground="{StaticResource BUTTON_COMMONBUTTON_FOREGROUND}" FontWeight="Bold" FontFamily="Roboto">
-                    <TextBlock.Text>
-                        <Binding Mode="OneTime" XPath="Console/String[@ID='CONSOLE_UPLOADBUILD']/@Name"/>
-                    </TextBlock.Text>
-                </TextBlock>
-            </StackPanel>
-            <StackPanel x:Name="BUTTON_EXPORTGEAR" Style="{StaticResource TogglableButton}"  Background="{StaticResource BUTTON_COMMONBUTTON_BACKGROUND}" Cursor="Hand"  Width="300" Height="40" Orientation="Horizontal" HorizontalAlignment="Left" MouseDown="OnExportGearButtonClick" VerticalAlignment="Top">
-                <Image Panel.ZIndex="1" Source="{StaticResource ICON_DECORATION}" HorizontalAlignment="Center" Width="25" VerticalAlignment="Center" Margin="9,8,0,8"/>
-                <TextBlock DataContext="{StaticResource Localization}" TextTrimming="CharacterEllipsis" Padding="20,0,0,0" VerticalAlignment="Center" FontSize="16" Foreground="{StaticResource BUTTON_COMMONBUTTON_FOREGROUND}" FontWeight="Bold" FontFamily="Roboto" Text="{Binding Mode=OneTime, XPath=Console/String[@ID\=\'CONSOLE_EXPORTGEAR\']/@Name, FallbackValue='EXPORT GEAR'}"/>
-            </StackPanel>
-            <StackPanel x:Name="BUTTON_CHANGELOG" Style="{StaticResource STYLE_SIDEBARBUTTONS}"  Background="{StaticResource BUTTON_COMMONBUTTON_BACKGROUND}" Cursor="Hand"  Width="300" Height="40" Orientation="Horizontal" HorizontalAlignment="Left" MouseDown="OnChangelogButtonClick" VerticalAlignment="Top">
-                <Border BorderBrush="{StaticResource BUTTON_COMMONBUTTON_BORDER}" Width="4" BorderThickness="0,0,0,0" />
-                <Image Panel.ZIndex="1" Source="{StaticResource ICON_CHANGELOG}" HorizontalAlignment="Center" Width="25" VerticalAlignment="Center" Margin="6,0,0,0"/>
-                <TextBlock DataContext="{StaticResource Localization}" Padding="20,0,0,0" TextTrimming="CharacterEllipsis" VerticalAlignment="Center" FontSize="16" Foreground="{StaticResource BUTTON_COMMONBUTTON_FOREGROUND}" FontWeight="Bold" FontFamily="Roboto">
-                    <TextBlock.Text>
-                        <Binding Mode="OneTime" XPath="Console/String[@ID='CONSOLE_CHANGELOG']/@Name"/>
-                    </TextBlock.Text>
-                </TextBlock>
-            </StackPanel>
-            <StackPanel Style="{StaticResource STYLE_SIDEBARBUTTONS}"  Background="{StaticResource BUTTON_COMMONBUTTON_BACKGROUND}" Cursor="Hand"  Width="300" Height="40" Orientation="Horizontal" HorizontalAlignment="Left" MouseDown="OnDiscordButtonClick" VerticalAlignment="Top">
-                <Image Panel.ZIndex="1" Source="{StaticResource ICON_DISCORD}" HorizontalAlignment="Center" Width="25" VerticalAlignment="Center" Margin="10,0,0,0"/>
-                <TextBlock DataContext="{StaticResource Localization}" TextTrimming="CharacterEllipsis" Padding="20,0,0,0" VerticalAlignment="Center" FontSize="16" Foreground="{StaticResource BUTTON_COMMONBUTTON_FOREGROUND}" FontWeight="Bold" FontFamily="Roboto">
-                    <TextBlock.Text>
-                        <Binding Mode="OneTime" XPath="Console/String[@ID='CONSOLE_DISCORD']/@Name"/>
-                    </TextBlock.Text>
-                </TextBlock>
-            </StackPanel>
-            <StackPanel Style="{StaticResource STYLE_SIDEBARBUTTONS}"  Background="{StaticResource BUTTON_COMMONBUTTON_BACKGROUND}" Cursor="Hand"  Width="300" Height="40" Orientation="Horizontal" HorizontalAlignment="Left" MouseDown="OnGithubButtonClick" VerticalAlignment="Top">
-                <Image Panel.ZIndex="1" Source="{StaticResource ICON_GITHUB}" HorizontalAlignment="Center" Width="25" VerticalAlignment="Center" Margin="10,0,0,0"/>
-                <TextBlock DataContext="{StaticResource Localization}" TextTrimming="CharacterEllipsis" Padding="20,0,0,0" VerticalAlignment="Center" FontSize="16" Foreground="{StaticResource BUTTON_COMMONBUTTON_FOREGROUND}" FontWeight="Bold" FontFamily="Roboto">
-                    <TextBlock.Text>
-                        <Binding Mode="OneTime" XPath="Console/String[@ID='CONSOLE_GITHUB']/@Name"/>
-                    </TextBlock.Text>
-                </TextBlock>
-            </StackPanel>
-            <StackPanel.Style>
-                <Style TargetType="StackPanel">
+            <Grid.Style>
+                <Style TargetType="Grid">
                     <Style.Triggers>
-                        <EventTrigger RoutedEvent="Mouse.MouseEnter">
-                            <EventTrigger.Actions>
+                        <DataTrigger Binding="{Binding ElementName=window, Path=IsDragging}" Value="True">
+                            <DataTrigger.EnterActions>
                                 <BeginStoryboard>
-                                    <Storyboard Storyboard.TargetProperty="Width">
-                                        <DoubleAnimationUsingKeyFrames>
-                                            <LinearDoubleKeyFrame Value="50" KeyTime="0:0:0.3"/>
-                                            <LinearDoubleKeyFrame Value="300" KeyTime="0:0:0.45"/>
-                                        </DoubleAnimationUsingKeyFrames>
+                                    <Storyboard Storyboard.TargetProperty="(Effect).Radius">
+                                        <DoubleAnimation To="10" Duration="0:0:0.2"/>
                                     </Storyboard>
                                 </BeginStoryboard>
-                            </EventTrigger.Actions>
-                        </EventTrigger>
-                        <EventTrigger RoutedEvent="Mouse.MouseLeave">
-                            <EventTrigger.Actions>
+                            </DataTrigger.EnterActions>
+                            <DataTrigger.ExitActions>
                                 <BeginStoryboard>
-                                    <Storyboard Storyboard.TargetProperty="Width">
-                                        <DoubleAnimation To="50" Duration="0:0:0.150"/>
+                                    <Storyboard Storyboard.TargetProperty="(Effect).Radius">
+                                        <DoubleAnimation To="0" Duration="0:0:0.2"/>
                                     </Storyboard>
                                 </BeginStoryboard>
-                            </EventTrigger.Actions>
-                        </EventTrigger>
+                            </DataTrigger.ExitActions>
+                        </DataTrigger>
                     </Style.Triggers>
                 </Style>
-            </StackPanel.Style>
-        </StackPanel>
-
-        <!-- Header  -->
-        <TextBlock Text="{Binding ElementName=window, Path=Version}" Background="{x:Null}" Foreground="{StaticResource CONSOLE_VERSIONTEXT_FOREGROUND}" Padding="0" Margin="0,131,10,0" RenderTransformOrigin="0.5,0.5" TextAlignment="Right" FontWeight="Medium" FontSize="14" Height="20" VerticalAlignment="Top" HorizontalAlignment="Right" Width="455"/>
-        <Button Margin="0,55,10,0" VerticalAlignment="Top" Height="46" BorderBrush="{x:Null}" Foreground="{StaticResource BUTTON_LAUNCHGAME_FOREGROUND}" FontFamily="Roboto" FontSize="18" Cursor="Hand" BorderThickness="1"  Template="{DynamicResource ButtonStyle}" Padding="0" FontWeight="Bold" HorizontalContentAlignment="Center" Click="OnLaunchGameButtonClick" Background="{StaticResource BUTTON_LAUNCHGAME_BACKGROUND}" HorizontalAlignment="Right" Width="242">
-            <Button.Content>
-                <Binding Mode="OneTime" XPath="Console/String[@ID='CONSOLE_LAUNCH']/@Name"/>
-            </Button.Content>
-        </Button>
-        <StackPanel Orientation="Horizontal" Height="59" VerticalAlignment="Top" HorizontalAlignment="Left" Margin="20,50,0,0">
-            <Image HorizontalAlignment="Right" Height="59" VerticalAlignment="Top" Width="59" Source="{StaticResource LOGO_HunterPie}"/>
-            <TextBlock HorizontalAlignment="Right" TextWrapping="Wrap" Text="Hunter" VerticalAlignment="Bottom" Height="59" FontFamily="Roboto" FontWeight="Bold" FontSize="22" Padding="1,16,0,0" Foreground="{StaticResource CONSOLE_LOGO_FOREGROUND}"/>
-            <TextBlock HorizontalAlignment="Right" TextWrapping="Wrap" Text="Pie" VerticalAlignment="Bottom" Height="59" FontFamily="Roboto" FontWeight="Light" FontSize="22" Padding="0,16,0,0" Foreground="{StaticResource CONSOLE_LOGO_FOREGROUND}"/>
-        </StackPanel>
-
+            </Grid.Style>
+        </Grid>
+        
+        <Grid Background="#7F0C0C0C" Opacity="0" Visibility="Collapsed">
+            <Border BorderThickness="3" Margin="100,150" CornerRadius="5">
+                <Border.BorderBrush>
+                    <VisualBrush>
+                        <VisualBrush.Visual>
+                            <Rectangle StrokeDashArray="4 2" Stroke="Gray" StrokeThickness="3"
+                            Width="{Binding RelativeSource={RelativeSource AncestorType={x:Type Border}}, Path=ActualWidth}"
+                            Height="{Binding RelativeSource={RelativeSource AncestorType={x:Type Border}}, Path=ActualHeight}"/>
+                        </VisualBrush.Visual>
+                    </VisualBrush>
+                </Border.BorderBrush>
+                <Grid>
+                    <TextBlock Text="INSTALL PLUGIN" Foreground="Gray" FontFamily="Roboto" FontSize="36" HorizontalAlignment="Center" VerticalAlignment="Center" Margin="0,0,0,60" FontWeight="Medium"/>
+                    <TextBlock Text="Drop your module.json here to install a new plugin." Foreground="Gray" FontFamily="Roboto" FontSize="14" HorizontalAlignment="Center" VerticalAlignment="Center" Margin="0"/>
+                </Grid>
+            </Border>
+            <Grid.Style>
+                <Style TargetType="Grid">
+                    <Style.Triggers>
+                        <DataTrigger Binding="{Binding ElementName=window, Path=IsDragging}" Value="True">
+                            <DataTrigger.EnterActions>
+                                <BeginStoryboard>
+                                    <Storyboard >
+                                        <DoubleAnimation Storyboard.TargetProperty="Opacity" To="1" Duration="0:0:0.2"/>
+                                        <ObjectAnimationUsingKeyFrames Storyboard.TargetProperty="(UIElement.Visibility)">
+                                            <DiscreteObjectKeyFrame KeyTime="0:0:0" Value="{x:Static Visibility.Visible}"/>
+                                        </ObjectAnimationUsingKeyFrames>
+                                    </Storyboard>
+                                </BeginStoryboard>
+                            </DataTrigger.EnterActions>
+                            <DataTrigger.ExitActions>
+                                <BeginStoryboard>
+                                    <Storyboard >
+                                        <DoubleAnimation Storyboard.TargetProperty="Opacity" To="0" Duration="0:0:0.2"/>
+                                        <ObjectAnimationUsingKeyFrames Storyboard.TargetProperty="(UIElement.Visibility)">
+                                            <DiscreteObjectKeyFrame KeyTime="0:0:0.2" Value="{x:Static Visibility.Collapsed}"/>
+                                        </ObjectAnimationUsingKeyFrames>
+                                    </Storyboard>
+                                </BeginStoryboard>
+                            </DataTrigger.ExitActions>
+                        </DataTrigger>
+                    </Style.Triggers>
+                </Style>
+            </Grid.Style>
+        </Grid>
+        
         <!-- Notifications -->
         <StackPanel x:Name="NotificationsPanel" VerticalAlignment="Bottom" HorizontalAlignment="Left"/>
     </Grid>

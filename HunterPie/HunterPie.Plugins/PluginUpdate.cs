@@ -1,15 +1,8 @@
 ﻿using System;
-using System.Collections.Generic;
 using Debugger = HunterPie.Logger.Debugger;
 using System.IO;
-using System.Linq;
-using System.Net;
 using System.Net.Http;
-using System.Security.Cryptography;
-using System.Text;
 using System.Threading.Tasks;
-using System.Web;
-using HunterPie.Logger;
 using Newtonsoft.Json;
 
 namespace HunterPie.Plugins

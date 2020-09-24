@@ -3,14 +3,11 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
-             mc:Ignorable="d" 
+             mc:Ignorable="d"
              d:DesignHeight="450" d:DesignWidth="800" Loaded="OnLoaded">
     <Grid>
-        <!--
-        <RichTextBox x:Name="Console" FontFamily="Roboto, Segoe UI,Yu Gothic" IsReadOnly="True" Background="#00000000" Foreground="#FFEEEEEE" BorderBrush="{x:Null}" VerticalScrollBarVisibility="Visible" UseLayoutRounding="False" AllowDrop="False" Block.LineHeight="1" HorizontalScrollBarVisibility="Disabled" FontSize="13" TextOptions.TextHintingMode="Fixed" BorderThickness="0" Margin="0" IsTabStop="False" SelectionBrush="{DynamicResource BUTTON_CLOSEWINDOW_BACKGROUND}"/>
-        -->
         <ScrollViewer Name="scroll" VirtualizingPanel.IsVirtualizing="True">
-            <ItemsControl Name="console" VirtualizingPanel.IsVirtualizing="True">
+            <ItemsControl Name="console" VirtualizingPanel.IsVirtualizing="True" VirtualizingPanel.VirtualizationMode="Recycling">
                 <ItemsControl.ItemTemplate>
                     <DataTemplate>
                         <TextBlock Text="{Binding Text, Mode=OneWay}" Foreground="{Binding Color, Mode=OneWay}" FontSize="13" FontFamily="Roboto, Segoe UI, Yu Gothic" TextOptions.TextHintingMode="Fixed" TextOptions.TextFormattingMode="Ideal" TextWrapping="WrapWithOverflow"/>

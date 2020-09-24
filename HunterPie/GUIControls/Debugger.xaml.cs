@@ -1,13 +1,10 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
-using System.Diagnostics;
-using System.Diagnostics.Eventing.Reader;
 using System.IO;
 using System.Linq;
 using System.Windows;
 using System.Windows.Controls;
-using System.Windows.Documents;
 using System.Windows.Threading;
 using DispatcherOperation = System.Windows.Threading.DispatcherOperation;
 using UserSettings = HunterPie.Core.UserSettings;
@@ -27,7 +24,7 @@ namespace HunterPie.Logger
         private static object MODULE = "#FFB0DB60";
         private static object NORMAL = "#FFFFFF";
 
-        private static ObservableCollection<LogString> logs = new ObservableCollection<LogString>();
+        private static readonly ObservableCollection<LogString> logs = new ObservableCollection<LogString>();
 
         private static DispatcherOperation LastOperation;
         private static Debugger _Instance;

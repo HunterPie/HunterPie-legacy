@@ -30,6 +30,8 @@ using System.Threading.Tasks;
 using System.Net.Http;
 using HunterPie.Core.Craft;
 using System.Diagnostics;
+using System.Reflection;
+using Newtonsoft.Json;
 
 namespace HunterPie
 {
@@ -81,6 +83,13 @@ namespace HunterPie
         public static readonly DependencyProperty VersionProperty =
             DependencyProperty.Register("Version", typeof(string), typeof(Hunterpie));
 
+        public bool IsDragging
+        {
+            get { return (bool)GetValue(IsDraggingProperty); }
+            set { SetValue(IsDraggingProperty, value); }
+        }
+        public static readonly DependencyProperty IsDraggingProperty =
+            DependencyProperty.Register("IsDragging", typeof(bool), typeof(Hunterpie));
 
         public Hunterpie()
         {
@@ -99,8 +108,6 @@ namespace HunterPie
             // Initialize debugger and player config
             Debugger.InitializeDebugger();
             UserSettings.InitializePlayerConfig();
-
-            Debugger.Warn($"Took {s.ElapsedMilliseconds}ms");
 
             // Initialize localization
             GStrings.InitStrings(UserSettings.PlayerConfig.HunterPie.Language);
@@ -995,5 +1002,69 @@ namespace HunterPie
         }
 
         #endregion
+
+        private async void window_Drop(object sender, DragEventArgs e)
+        {
+            IsDragging = false;
+            string modulejson = ((string[])e.Data.GetData("FileName")).FirstOrDefault();
+            if (!modulejson.ToLower().EndsWith("module.json"))
+            {
+                return;
+            }
+
+            PluginInformation moduleInformation = JsonConvert.DeserializeObject<PluginInformation>(File.ReadAllText(modulejson));
+
+
+            if (moduleInformation is null || string.IsNullOrEmpty(moduleInformation?.Name))
+            {
+                Debugger.Log("Invalid module.json!");
+                return;
+            }
+
+            string modPath = Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "modules", moduleInformation.Name);
+
+            if (!Directory.Exists(modPath))
+            {
+                Directory.CreateDirectory(modPath);
+            }
+
+            File.WriteAllText(Path.Combine(modPath, "module.json"), JsonConvert.SerializeObject(moduleInformation, Formatting.Indented));
+
+
+            if (PluginUpdate.PluginSupportsUpdate(moduleInformation))
+            {
+                if (await PluginUpdate.UpdateAllFiles(moduleInformation, modPath))
+                {
+                    Debugger.Module($"Installed {moduleInformation.Name}!");
+                } else
+                {
+                    Debugger.Error($"Failed to install {moduleInformation.Name}.");
+                }
+            } else
+            {
+                Debugger.Error("This plugin does not support auto-update. You will need to manually download it's files.");
+            }
+
+            CNotification notification = new CNotification()
+            {
+                Text = $"Plugin: {moduleInformation.Name} installed! Restart your HunterPie to load the plugin!",
+                NIcon = FindResource("ICON_PLUGIN") as ImageSource,
+                FirstButtonVisibility = Visibility.Collapsed,
+                SecondButtonVisibility = Visibility.Collapsed,
+                ShowTime = 5
+            };
+            NotificationsPanel.Children.Add(notification);
+            notification.ShowNotification();
+        }
+
+        private void window_DragEnter(object sender, DragEventArgs e)
+        {
+            IsDragging = true;
+        }
+
+        private void window_DragLeave(object sender, DragEventArgs e)
+        {
+            IsDragging = false;
+        }
     }
 }
