@@ -1006,13 +1006,33 @@ namespace HunterPie
         private async void window_Drop(object sender, DragEventArgs e)
         {
             IsDragging = false;
-            string modulejson = ((string[])e.Data.GetData("FileName")).FirstOrDefault();
+            string modulejson = ((string[])e.Data.GetData("FileName"))?.FirstOrDefault();
+            string moduleContent;
+            bool isOnline = false;
+            if (modulejson is null)
+            {
+                isOnline = true;
+                modulejson = e.Data.GetData("UnicodeText") as string;
+            }
+
             if (!modulejson.ToLower().EndsWith("module.json"))
             {
                 return;
             }
 
-            PluginInformation moduleInformation = JsonConvert.DeserializeObject<PluginInformation>(File.ReadAllText(modulejson));
+            if (isOnline)
+            {
+                if (!modulejson.StartsWith("http"))
+                {
+                    modulejson = $"https://{modulejson}";
+                }
+                moduleContent = await PluginUpdate.ReadOnlineModuleJson(modulejson);
+            } else
+            {
+                moduleContent = File.ReadAllText(modulejson);
+            }
+
+            PluginInformation moduleInformation = JsonConvert.DeserializeObject<PluginInformation>(moduleContent);
 
 
             if (moduleInformation is null || string.IsNullOrEmpty(moduleInformation?.Name))

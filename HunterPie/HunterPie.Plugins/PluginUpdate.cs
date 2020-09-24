@@ -95,9 +95,13 @@ namespace HunterPie.Plugins
             }
         }
 
-        private static async Task<string> ReadOnlineModuleJson(string URL)
+        internal static async Task<string> ReadOnlineModuleJson(string URL)
         {
-            string url = $"{URL}/module.json";
+            string url = URL;
+            if (!URL.EndsWith("module.json"))
+            {
+                url = $"{URL}/module.json";
+            }
             try
             {
                 using (HttpClient client = new HttpClient())
