@@ -13,6 +13,7 @@
 - [Themes](?p=HunterPie/themes.md)
 - [Debug](?p=HunterPie/debug.md)
 - [Plugins](?p=Plugins/plugins.md)
+    - [Installing Plugins](?p=Plugins/install.md)
 
 ### Overlay
 - [Monsters Widget](?p=Overlay/monstersWidget.md)
