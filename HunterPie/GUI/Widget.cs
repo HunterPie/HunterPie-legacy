@@ -147,6 +147,7 @@ namespace HunterPie.GUI
             IntPtr hwnd = new WindowInteropHelper(this).EnsureHandle();
             // Get overlay flags
             int Styles = WindowsHelper.GetWindowLong(hwnd, WindowsHelper.GWL_EXSTYLE);
+
             // Apply new flags
             WindowsHelper.SetWindowLong(hwnd, WindowsHelper.GWL_EXSTYLE, Styles | (int)WindowsHelper.EX_WINDOW_STYLES.WS_EX_TRANSPARENT);
         }

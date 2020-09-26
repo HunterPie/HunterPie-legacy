@@ -117,7 +117,7 @@
     <Grid Background="{StaticResource CONSOLE_BACKGROUND}" >
         <Grid>
             <Grid.Effect>
-                <BlurEffect Radius="0"/>
+                <BlurEffect Radius="0" RenderingBias="Quality"/>
             </Grid.Effect>
             <!-- Console content -->
             <Grid x:Name="ConsolePanel" Margin="51,157,0,2"/>
@@ -239,14 +239,14 @@
                             <DataTrigger.EnterActions>
                                 <BeginStoryboard>
                                     <Storyboard Storyboard.TargetProperty="(Effect).Radius">
-                                        <DoubleAnimation To="10" Duration="0:0:0.2"/>
+                                        <DoubleAnimation To="8" Duration="0:0:0.1"/>
                                     </Storyboard>
                                 </BeginStoryboard>
                             </DataTrigger.EnterActions>
                             <DataTrigger.ExitActions>
                                 <BeginStoryboard>
                                     <Storyboard Storyboard.TargetProperty="(Effect).Radius">
-                                        <DoubleAnimation To="0" Duration="0:0:0.2"/>
+                                        <DoubleAnimation To="0" Duration="0:0:0.1"/>
                                     </Storyboard>
                                 </BeginStoryboard>
                             </DataTrigger.ExitActions>
@@ -261,15 +261,15 @@
                 <Border.BorderBrush>
                     <VisualBrush>
                         <VisualBrush.Visual>
-                            <Rectangle StrokeDashArray="4 2" Stroke="Gray" StrokeThickness="3"
+                            <Rectangle StrokeDashArray="4 2" Stroke="Gainsboro" StrokeThickness="3"
                             Width="{Binding RelativeSource={RelativeSource AncestorType={x:Type Border}}, Path=ActualWidth}"
                             Height="{Binding RelativeSource={RelativeSource AncestorType={x:Type Border}}, Path=ActualHeight}"/>
                         </VisualBrush.Visual>
                     </VisualBrush>
                 </Border.BorderBrush>
                 <Grid>
-                    <TextBlock Text="INSTALL PLUGIN" Foreground="Gray" FontFamily="Roboto" FontSize="36" HorizontalAlignment="Center" VerticalAlignment="Center" Margin="0,0,0,60" FontWeight="Medium"/>
-                    <TextBlock Text="Drop your module.json here to install a new plugin." Foreground="Gray" FontFamily="Roboto" FontSize="14" HorizontalAlignment="Center" VerticalAlignment="Center" Margin="0"/>
+                    <TextBlock Text="{Binding Mode=OneTime, XPath=/Strings/Client/Console/String[@ID\=\'MESSAGE_PLUGIN_INSTALL\']/@Name}" Foreground="Gray" FontFamily="Roboto" FontSize="36" HorizontalAlignment="Center" VerticalAlignment="Center" Margin="0,0,0,60" FontWeight="Medium"/>
+                    <TextBlock Text="{Binding Mode=OneTime, XPath=/Strings/Client/Console/String[@ID\=\'MESSAGE_PLUGIN_INSTALL_DESC\']/@Name}" Foreground="Gray" FontFamily="Roboto" FontSize="14" HorizontalAlignment="Center" VerticalAlignment="Center" Margin="0"/>
                 </Grid>
             </Border>
             <Grid.Style>
@@ -303,6 +303,6 @@
         </Grid>
         
         <!-- Notifications -->
-        <StackPanel x:Name="NotificationsPanel" VerticalAlignment="Bottom" HorizontalAlignment="Left"/>
+        <StackPanel x:Name="NotificationsPanel" VerticalAlignment="Bottom" HorizontalAlignment="Left" Margin="10,0,0,5"/>
     </Grid>
 </Window>

@@ -458,6 +458,8 @@
       <!-- Plugins -->
       <String ID="MESSAGE_GET_MORE_PLUGINS" Name="Get more plugins!"/>
       <String ID="MESSAGE_OPEN_PLUGINS_FOLDER" Name="Open plugins folder"/>
+      <String ID="MESSAGE_PLUGIN_INSTALL" Name="INSTALL PLUGIN"/>
+      <String ID="MESSAGE_PLUGIN_INSTALL_DESC" Name="Drop your module.json here to install a new plugin."/>
       <!-- Popups -->
       <String ID="MESSAGE_QUIT" Name="Are you sure you want to exit HunterPie?"/>
       <String ID="TITLE_MISSING_PATH" Name="Monster Hunter World Path not found"/>

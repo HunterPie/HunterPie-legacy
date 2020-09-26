@@ -168,6 +168,10 @@ namespace HunterPie.Memory
 
         private void DetachCore()
         {
+            if (_window is null)
+            {
+                return;
+            }
             _window.SourceInitialized += OnSourceInitialized;
         }
 

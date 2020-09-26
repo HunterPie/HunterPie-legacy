@@ -3,6 +3,16 @@
              xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
              Height="40" BorderThickness="1" BorderBrush="#CC0A0A0A" HorizontalAlignment="Left">
+    <UserControl.Resources>
+        <Storyboard x:Key="ShowNotificationAnim">
+            <ThicknessAnimation Storyboard.TargetProperty="Margin" From="0,0,0,-10" To="0,0,0,0" Duration="0:0:0.2"/>
+            <DoubleAnimation Storyboard.TargetProperty="Opacity" From="0" To="1" Duration="0:0:0.2"/>
+        </Storyboard>
+        <Storyboard x:Key="HideNotificationAnim" Completed="Close">
+            <ThicknessAnimation Storyboard.TargetProperty="Margin" From="0,0,0,0" To="0,0,0,-10" Duration="0:0:0.2"/>
+            <DoubleAnimation Storyboard.TargetProperty="Opacity" From="1" To="0" Duration="0:0:0.2"/>
+        </Storyboard>
+    </UserControl.Resources>
     <StackPanel Orientation="Horizontal" x:Name="cHolder" Background="#E5111111" DataContext="{StaticResource Localization}" MouseLeftButtonDown="OnNotificationClick">
         <Image x:Name="NotificationIcon" Width="25" Height="25" Margin="6,0,4,0" Source="{Binding ElementName=NotifyControl, Path=NIcon}"/>
         <TextBlock x:Name="NotificationText"  Text="{Binding ElementName=NotifyControl, Path=Text}" Foreground="WhiteSmoke" Padding="0,3,5,5" Height="30" FontSize="16" FontWeight="Light"/>
@@ -26,27 +36,15 @@
     <UserControl.Style>
         <Style TargetType="UserControl">
             <Style.Triggers>
-                <Trigger Property="IsVisible" Value="True">
-                    <Trigger.EnterActions>
-                        <BeginStoryboard>
-                            <Storyboard>
-                                <DoubleAnimationUsingKeyFrames Storyboard.TargetProperty="Opacity">
-                                    <EasingDoubleKeyFrame Value="0" KeyTime="0:0:0.0"/>
-                                    <EasingDoubleKeyFrame Value="1" KeyTime="0:0:0.3"/>
-                                    <EasingDoubleKeyFrame Value="1" KeyTime="0:0:10"/>
-                                    <EasingDoubleKeyFrame Value="0" KeyTime="0:0:10.3"/>
-                                </DoubleAnimationUsingKeyFrames>
-                                <ThicknessAnimationUsingKeyFrames Storyboard.TargetProperty="Margin">
-                                    <LinearThicknessKeyFrame Value="10,0,0,10" KeyTime="0:0:0.15"/>
-                                    <LinearThicknessKeyFrame Value="10,0,0,15" KeyTime="0:0:0.25"/>
-                                    <LinearThicknessKeyFrame Value="10,0,0,10" KeyTime="0:0:0.3"/>
-                                    <LinearThicknessKeyFrame Value="10,0,0,10" KeyTime="0:0:10"/>
-                                    <LinearThicknessKeyFrame Value="10,0,0,-45" KeyTime="0:0:10.25"/>
-                                </ThicknessAnimationUsingKeyFrames>
-                            </Storyboard>
-                        </BeginStoryboard>
-                    </Trigger.EnterActions>
-                </Trigger>
+                <DataTrigger Binding="{Binding ElementName=NotifyControl, Path=IsShown}" Value="True">
+                    <DataTrigger.EnterActions>
+                        <BeginStoryboard Name="ShowAnim" Storyboard="{StaticResource ShowNotificationAnim}"/>
+                    </DataTrigger.EnterActions>
+                    <DataTrigger.ExitActions>
+                        <RemoveStoryboard BeginStoryboardName="ShowAnim"/>
+                        <BeginStoryboard Storyboard="{StaticResource HideNotificationAnim}"/>
+                    </DataTrigger.ExitActions>
+                </DataTrigger>
             </Style.Triggers>
         </Style>
     </UserControl.Style>

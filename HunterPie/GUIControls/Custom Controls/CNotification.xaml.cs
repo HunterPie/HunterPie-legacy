@@ -9,7 +9,7 @@ namespace HunterPie.GUIControls.Custom_Controls
     /// <summary>
     /// Interaction logic for CNotification.xaml
     /// </summary>
-    public partial class CNotification : UserControl
+    public partial class CNotification : UserControl, IDisposable
     {
 
         public ImageSource NIcon
@@ -92,6 +92,13 @@ namespace HunterPie.GUIControls.Custom_Controls
         public static readonly DependencyProperty SecondButtonTextProperty =
             DependencyProperty.Register("SecondButtonText", typeof(string), typeof(CNotification));
 
+        public bool IsShown
+        {
+            get { return (bool)GetValue(IsShownProperty); }
+            set { SetValue(IsShownProperty, value); }
+        }
+        public static readonly DependencyProperty IsShownProperty =
+            DependencyProperty.Register("IsShown", typeof(bool), typeof(CNotification));
 
         public int ShowTime { get; set; }
         public Action Callback1 { get; set; }
@@ -102,28 +109,56 @@ namespace HunterPie.GUIControls.Custom_Controls
 
         public void ShowNotification()
         {
-            Visibility = Visibility.Visible;
+            IsShown = true;
             VisibilityTimer = new DispatcherTimer()
             {
-                Interval = new TimeSpan(0, 0, ShowTime)
+                Interval = TimeSpan.FromSeconds(ShowTime)
             };
-            VisibilityTimer.Tick += new EventHandler(Close);
+            VisibilityTimer.Tick += (_, __) =>
+            {
+                IsShown = false;
+            };
             VisibilityTimer.Start();
         }
 
         private void Close(object source, EventArgs e)
         {
-            VisibilityTimer?.Stop();
-            VisibilityTimer = null;
-            Visibility = Visibility.Collapsed;
-            ((Panel)Parent).Children.Remove(this);
-
+            Dispose();
         }
 
         private void OnFirstButtonClick(object sender, RoutedEventArgs e) => Callback1();
 
         private void OnSecondButtonClick(object sender, RoutedEventArgs e) => Callback2();
 
-        private void OnNotificationClick(object sender, System.Windows.Input.MouseButtonEventArgs e) => Close(this, EventArgs.Empty);
+        private void OnNotificationClick(object sender, System.Windows.Input.MouseButtonEventArgs e)
+        {
+            IsShown = false;
+        }
+
+        #region IDisposable Support
+        private bool disposedValue = false; // To detect redundant calls
+
+        protected virtual void Dispose(bool disposing)
+        {
+            if (!disposedValue)
+            {
+                if (disposing)
+                {
+                    VisibilityTimer?.Stop();
+                    VisibilityTimer = null;
+                    Visibility = Visibility.Collapsed;
+                    ((Panel)Parent).Children.Remove(this);
+                }
+
+                disposedValue = true;
+            }
+        }
+
+        // This code added to correctly implement the disposable pattern.
+        public void Dispose()
+        {
+            Dispose(true);
+        }
+        #endregion
     }
 }

@@ -4,6 +4,7 @@ using System.Linq;
 using System.Windows;
 using System.Windows.Media;
 using HunterPie.Core;
+using HunterPie.Memory;
 
 namespace HunterPie.GUI.Widgets
 {
@@ -168,6 +169,7 @@ namespace HunterPie.GUI.Widgets
         {
             base.EnterWidgetDesignMode();
             RemoveWindowTransparencyFlag();
+            
         }
 
         public override void LeaveWidgetDesignMode()
