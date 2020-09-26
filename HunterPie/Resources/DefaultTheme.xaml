@@ -361,9 +361,9 @@
     <SolidColorBrush x:Key="CONSOLE_LOGO_SECONDARY">#FF1F1F1F</SolidColorBrush>
     <SolidColorBrush x:Key="CONSOLE_LOGO_TERTIARY">#edf8ff</SolidColorBrush>
     
-    <SolidColorBrush x:Key="CONSOLE_BACKGROUND">#F41F1F1F</SolidColorBrush>
-    <SolidColorBrush x:Key="CONSOLE_HEADER_BACKGROUND">#4C0E0E0E</SolidColorBrush>
-    <SolidColorBrush x:Key="CONSOLE_SIDEBAR_BACKGROUND">#CC151515</SolidColorBrush>
+    <SolidColorBrush x:Key="CONSOLE_BACKGROUND">#D41F1F1F</SolidColorBrush>
+    <SolidColorBrush x:Key="CONSOLE_HEADER_BACKGROUND">#BB0E0E0E</SolidColorBrush>
+    <SolidColorBrush x:Key="CONSOLE_SIDEBAR_BACKGROUND">#BB151515</SolidColorBrush>
     <SolidColorBrush x:Key="CONSOLE_WINDOWBAR_BACKGROUND">#FF131313</SolidColorBrush>
 
     <SolidColorBrush x:Key="BUTTON_LAUNCHGAME_BACKGROUND">#5cade0</SolidColorBrush>

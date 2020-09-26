@@ -29,8 +29,6 @@ using ProcessStartInfo = System.Diagnostics.ProcessStartInfo;
 using System.Threading.Tasks;
 using System.Net.Http;
 using HunterPie.Core.Craft;
-using System.Diagnostics;
-using System.Reflection;
 using Newtonsoft.Json;
 
 namespace HunterPie
@@ -121,6 +119,7 @@ namespace HunterPie
 
             Environment.CurrentDirectory = AppDomain.CurrentDomain.BaseDirectory;
             InitializeComponent();
+            WindowBlur.SetIsEnabled(this, true);
         }
 
         private bool IsRunningAsAdmin()
