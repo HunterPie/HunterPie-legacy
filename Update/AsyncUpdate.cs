@@ -6,6 +6,7 @@ using System.Threading.Tasks;
 using System.Net.Http;
 using Newtonsoft.Json;
 using System.Net;
+using System.Text;
 
 namespace Update
 {
@@ -35,8 +36,30 @@ namespace Update
 
         public AsyncUpdate(string branch)
         {
+            InitializeLogger();
             updateBranch = branch;
             BuildValidBranchLink();
+        }
+
+        public void InitializeLogger()
+        {
+            using (FileStream logFile = File.OpenWrite(Path.Combine(BaseDirectory, "UpdateLog.log")))
+            {
+                // Clear file
+                logFile.SetLength(0);
+
+                string msg = "Initializing auto-update...";
+                logFile.Write(Encoding.UTF8.GetBytes(msg), 0, msg.Length);
+            }
+        }
+
+        public void WriteToFile(string message)
+        {
+            using (FileStream logFile = File.Open(Path.Combine(BaseDirectory, "UpdateLog.log"), FileMode.Append))
+            {
+                message = $"\n{message}";
+                logFile.Write(Encoding.UTF8.GetBytes(message), 0, message.Length);
+            }
         }
 
         public async Task<bool> Start()
@@ -48,6 +71,7 @@ namespace Update
                 if (await UpdateFiles(files))
                 {
                     OnUpdateSuccess?.Invoke(this, new UpdateFinished { JustUpdated = files.Length > 0, IsLatestVersion = files.Length == 0 });
+                    WriteToFile("Update successful!");
                 }
             }
             return false;
@@ -67,6 +91,7 @@ namespace Update
         private async Task<bool> GetOnlineFileHashes()
         {
             Message("Looking for online files...");
+            WriteToFile("Looking for online files...");
             try
             {
                 using (HttpClient client = new HttpClient())
@@ -79,7 +104,7 @@ namespace Update
             } catch(Exception err)
             {
                 Message("Failed to get online files.");
-                // Write to log
+                WriteToFile($"GetOnlineFileHashes Exception -> {err}");
                 OnUpdateFail?.Invoke(this, new UpdateFinished { IsLatestVersion=true, JustUpdated=false });
                 return false;
             }
@@ -133,6 +158,7 @@ namespace Update
                 {
                     if (online != local)
                     {
+                        WriteToFile($"Added {fileName} to update queue.");
                         files.Add(fileName);
                         DifferentFilesCounter++;
                     }
@@ -148,6 +174,7 @@ namespace Update
                 foreach (string file in files)
                 {
                     Message($"Downloading {file.Replace("_", "__")}");
+                    WriteToFile($"Downloading {file}");
                     Uri link = new Uri($"{validBranchUrl}{file}");
                     using (WebClient client = new WebClient() {
                         Timeout = 10000
@@ -158,13 +185,9 @@ namespace Update
                         client.CachePolicy = new System.Net.Cache.RequestCachePolicy(System.Net.Cache.RequestCacheLevel.NoCacheNoStore);
                         client.DownloadProgressChanged += OnDownloadProgressChange;
 
-                        byte[] data = await client.DownloadDataTaskAsync(link); 
-
                         string localFilePath = Path.Combine(BaseDirectory, file);
-                        using (FileStream ws = File.OpenWrite(localFilePath))
-                        {
-                            await ws.WriteAsync(data, 0, data.Length);
-                        }
+                        await client.DownloadFileTaskAsync(link, localFilePath); 
+
                         FilesUpdatedCounter++;
                         client.DownloadProgressChanged -= OnDownloadProgressChange;
                     }

@@ -6,7 +6,7 @@ using HunterPie.Logger;
 
 namespace HunterPie.Core
 {
-    class GStrings
+    public class GStrings
     {
         public static XmlDocument Translations { get; private set; } = new XmlDocument();
 

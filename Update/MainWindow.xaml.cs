@@ -62,7 +62,10 @@ namespace Update
                 Close();
                 return;
             }
-            
+            if (arguments.ContainsKey("version"))
+            {
+                Version = $"v{(arguments["version"])}";
+            }
             InitializeComponent();
         }
 

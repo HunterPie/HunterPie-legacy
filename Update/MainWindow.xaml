@@ -80,20 +80,42 @@
             </Setter>
         </Style>
     </Window.Resources>
-    <Grid Background="#CC080808">
+    <Grid>
         <Image Stretch="UniformToFill">
             <Image.Source>
                 <BitmapImage UriSource="{Binding ElementName=wnd, Path=BackgroundUrl}" CacheOption="OnLoad" DownloadCompleted="OnImageLoaded" DownloadFailed="OnImageFail"/>
             </Image.Source>
-            <Image.OpacityMask>
-                <LinearGradientBrush EndPoint="0.8,1" StartPoint="0,0.5">
-                    <GradientStop Color="#27000000" Offset="0.349"/>
-                    <GradientStop Offset="1" Color="#E5000000"/>
-                </LinearGradientBrush>
-            </Image.OpacityMask>
         </Image>
 
-        <Image VerticalAlignment="Top" Source="{StaticResource Emblem}" Stretch="UniformToFill" Height="138" MaxHeight="138" MaxWidth="138" Margin="24,71,0,0" HorizontalAlignment="Left" Width="139"/>
+        <Rectangle>
+            <Rectangle.Fill>
+                <LinearGradientBrush EndPoint="1.6,1.3" StartPoint="0.2,0.8">
+                    <GradientStop Color="#F2000000" Offset="0"/>
+                    <GradientStop Color="#00000000" Offset="1"/>
+                </LinearGradientBrush>
+            </Rectangle.Fill>
+        </Rectangle>
+
+        <Image VerticalAlignment="Top" Source="{StaticResource Emblem}" Stretch="UniformToFill" Height="138" MaxHeight="138" MaxWidth="138" Margin="24,71,0,0" HorizontalAlignment="Left" Width="139">
+            <Image.Effect>
+                <DropShadowEffect ShadowDepth="0" BlurRadius="20" Color="#FFB2B2B2"/>
+            </Image.Effect>
+            <Image.Style>
+                <Style TargetType="Image">
+                    <Style.Triggers>
+                        <Trigger Property="IsVisible" Value="True">
+                            <Trigger.EnterActions>
+                                <BeginStoryboard>
+                                    <Storyboard RepeatBehavior="Forever" Duration="0:0:2">
+                                        <DoubleAnimation Storyboard.TargetProperty="(Effect).BlurRadius" From="10" To="20" AutoReverse="True" Duration="0:0:0.5"/>
+                                    </Storyboard>
+                                </BeginStoryboard>
+                            </Trigger.EnterActions>
+                        </Trigger>
+                    </Style.Triggers>
+                </Style>
+            </Image.Style>
+        </Image>
 
         <ProgressBar x:Name="UpdateProgressBar" HorizontalAlignment="Left" Height="23" Margin="0,277,0,0" VerticalAlignment="Top" Width="500" BorderBrush="{x:Null}" BorderThickness="0" Background="{x:Null}" Style="{StaticResource ProgressBarStyle}" TextOptions.TextFormattingMode="Display" TextOptions.TextHintingMode="Animated" Value="0">
             <ProgressBar.Foreground>
@@ -146,7 +168,7 @@
                 </TextBlock.Foreground>
             </TextBlock>
         </StackPanel>
-        <TextBlock Text="{Binding ElementName=wnd, Path=Version}" Height="16" VerticalAlignment="Bottom" HorizontalAlignment="Right" Width="158" Margin="0,0,185,97" Foreground="#FFFFD2C8" FontFamily="Roboto" TextAlignment="Right" Padding="0,0,2,0" TextDecorations="{x:Null}" FontWeight="Medium"/>
+        <TextBlock Text="{Binding ElementName=wnd, Path=Version}" Height="16" VerticalAlignment="Bottom" HorizontalAlignment="Right" Width="158" Margin="0,0,185,97" Foreground="#FF00D1FF" FontFamily="Roboto" TextAlignment="Right" Padding="0,0,2,0" TextDecorations="{x:Null}" FontWeight="Medium"/>
     </Grid>
     <Window.Style>
         <Style TargetType="Window">
@@ -155,7 +177,7 @@
                     <Trigger.EnterActions>
                         <BeginStoryboard>
                             <Storyboard>
-                                <DoubleAnimation Storyboard.TargetProperty="Opacity" From="0" To="1" Duration="0:0:0.2"/>
+                                <DoubleAnimation Storyboard.TargetProperty="Opacity" From="0" To="1" Duration="0:0:0.5"/>
                             </Storyboard>
                         </BeginStoryboard>
                     </Trigger.EnterActions>
