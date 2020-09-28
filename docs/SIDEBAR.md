@@ -41,6 +41,7 @@
 <details>
 <summary>v1.0.3.9x</summary>
 
+- [v1.0.3.97](?p=versions/v1.0.3.97.md)
 - [v1.0.3.96](?p=versions/v1.0.3.96.md)
 - [v1.0.3.95](?p=versions/v1.0.3.95.md)
 - [v1.0.3.94](?p=versions/v1.0.3.94.md)
