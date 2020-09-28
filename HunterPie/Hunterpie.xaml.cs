@@ -1061,12 +1061,12 @@ namespace HunterPie
                 }
             } else
             {
-                Debugger.Error("This plugin does not support auto-update. You will need to manually download it's files.");
+                Debugger.Error(GStrings.GetLocalizationByXPath("/Console/String[@ID='ERROR_PLUGIN_AUTO_UPDATE']"));
             }
 
             CNotification notification = new CNotification()
             {
-                Text = $"Plugin: {moduleInformation.Name} installed! Restart your HunterPie to load the plugin!",
+                Text = GStrings.GetLocalizationByXPath("/Console/String[@ID='MESSAGE_PLUGIN_INSTALLED']").Replace("{name}", moduleInformation.Name),
                 NIcon = FindResource("ICON_PLUGIN") as ImageSource,
                 FirstButtonVisibility = Visibility.Collapsed,
                 SecondButtonVisibility = Visibility.Collapsed,

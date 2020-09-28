@@ -460,6 +460,8 @@
       <String ID="MESSAGE_OPEN_PLUGINS_FOLDER" Name="Open plugins folder"/>
       <String ID="MESSAGE_PLUGIN_INSTALL" Name="INSTALL PLUGIN"/>
       <String ID="MESSAGE_PLUGIN_INSTALL_DESC" Name="Drop your module.json here to install a new plugin."/>
+      <String ID="MESSAGE_PLUGIN_INSTALLED" Name="Plugin: {name} installed! Restart your HunterPie to load the plugin!"/>
+      <String ID="ERROR_PLUGIN_AUTO_UPDATE" Name="This plugin does not support auto-update. You will need to manually download its files."/>
       <!-- Popups -->
       <String ID="MESSAGE_QUIT" Name="Are you sure you want to exit HunterPie?"/>
       <String ID="TITLE_MISSING_PATH" Name="Monster Hunter World Path not found"/>

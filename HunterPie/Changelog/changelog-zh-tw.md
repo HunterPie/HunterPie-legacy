@@ -1,75 +1,39 @@
-﻿![banner](https://cdn.discordapp.com/attachments/402557384209203200/743894519329587251/update-10396.png)
+﻿![banner](https://cdn.discordapp.com/attachments/402557384209203200/760175794407604265/v10397_banner.png)
 
-**插件系統**
+**Class Helpers**
 
-HunterPie 現已支持插件. 插件可以訪問 **所有** HunterPie 處理後的所有內容，包含玩家資料、魔物資料、遊戲事件等...如果您有興趣開發自己的外掛插件，您可以在 [這裡](https://github.com/Haato3o/HunterPie.Plugins/blob/master/TwitchIntegration/main.cs) 找到範例
+- Separated Iai Slash and Helm Breaker regen. buff timers since they stack.
+- Added Hunting Horn song queue, this has been added so the user can disable the in-game health bar in the future.
 
-**魔物小工具**
+![huntingHorn](https://cdn.discordapp.com/attachments/678287048200683572/755152760881676410/unknown.png)
+
+- Added Heavy Bowgun helper, it shows the current ammo, maximum ammo, total ammo, how much ammo you can craft with the current items in your inventory, wyvernheart and wyvernsniper timers, zoom percentage and Safi'jiiva regen. counter.
+
+![heavyBowgun](https://cdn.discordapp.com/attachments/678287048200683572/757639168506593400/unknown.png)
 
 
-- **文字格式:** 增加了異常狀態欄，狀態計時器和部位血量文字格式選項。請參閱下面的特殊格式:
-    - **{}{Current}** - 目前欄位的內容值.
-    - **{}{Max}** - 目前欄位的最大內容值.
-    - **{}{Percentage}** - 目前值 / 最大值 * 100 (沒有結尾的'%'字串).
+**Plugins**
 
-特殊格式是在 HunterPie 呈現字串時將被替換的文字。它們需要按照上表中所示的方式編寫，區分大小寫。
+- Added drag 'n drop way to install plugins, you can just drag the plugin "module.json" inside HunterPie and HunterPie will handle everything for you.
+- Added Plugin auto-update.
+- Plugins now have access to player inventory, player action id, hotkey API, etc.
 
-**範例:**
-- **{}{Current}/{Max} ({Percentage}%)**: 500/1000 (50%)
-- **{}{Percentage}%**: 50%
+**GUI**
 
----
+- Added slider textbox to make it easier to set exact values.
+- Added blur-behind effect to console.
+- Refactored console for more performance.
 
-**衣裝小工具**
+**Other Changes**
 
-- **緊湊模式:** 添加了衣裝部件的緊湊模式，圖標變得更小，只顯示冷卻時間和當前計時器。
+- Added option to send crash logs to the dev whenever HunterPie crashes.
+- Refactored updater for more performance.
+- Changed **GAME_VERSION_NOT_SUPPORTED** message to be more clear.
 
-![img](https://cdn.discordapp.com/attachments/402557384209203200/742950877828087808/design_mantle_compact.png)
+**Bug Fixes**
 
----
-
-**計時器**
-
-- 受技能 *“集中”* 影響的任務計時器現在會根據您的技能等級自動調整。
-- 受技能 *“強化持續”* 影響的增益狀態計時器現在會根據您的技能等級自動調整。
-
----
-
-**傷害小工具**
-
-- **DPS 計算:** 傷害小工具現在在玩家第一次擊中怪物後才會計算每秒的傷害。
-- **尺寸調整:** 您現在可以調整傷害部件的大小，使其水平或垂直對齊。
-
-![wee](https://cdn.discordapp.com/attachments/402557384209203200/743905320107245649/unknown.png)
-
----
-
-**編輯模式**
-
-- 對編輯模式切換進行了優化，切換編輯模式時，花費較少的時間來渲染小工具。
-
-- 啟用編輯模式時，將位置、比例和渲染時間字串添加到小工具。
-
----
-
-**其他變化**
-
-- 增加霜刃冰牙龍破壞臨界值。
-- 添加樣式文件，可以覆蓋所有主題，不必從零創建新的主題。該文件在HunterPie.Resources/UI/Overwrite.xaml
-- 升級到 .NET 4.8 框架。
-- 增加強制 DirectX 11 全螢幕顯示覆蓋層選項。
-- 設置選項頁面寬度與整體窗口寬度相匹配，不再保持固定寬度。
-
----
-
-**Bug 修復**
-
-- 修復了異常狀態欄在編輯模式中調整位置有多餘空白的問題。
-- 修復瞭如果用戶的電腦意外關閉，將損毀用戶的 *“config.json”* 的錯誤。
-- 修復了 HunterPie 掛鉤到 Stracker 的控制台視窗以獲取遊戲版本而不是獲取遊戲視窗的問題。
-
-**繁體中文翻译 Ver.1.0.3.96 By ThanatosDi**
-
-ThanatosDi
-- Discord (丁丁#9332)
-- [Github](https://github.com/ThanatosDi)
+- Fixed error when unloading disabled modules.
+- Fixed Windows detecting zombie MHW processes and making HunterPie wait for the process infinitely.
+- Fixed Presence crashing HunterPie on startup.
+- Fixed memory leak when choosing class in the arena weapon selection.
+- Fixed HunterPie crashing when quest timer value is invalid.
