@@ -13,11 +13,13 @@ Each class has it's own separate setting, so if you want to place this widget fo
 - [Long Sword](?p=Overlay/classesWidget.md#long-sword);
 - [Hammer](?p=Overlay/classesWidget.md#hammer)
 - [Lance](?p=Overlay/classesWidget.md#lance);
+- [Hunting Horn](?p=Overlay/classesWidget.md#lance);
 - [Gun Lance](?p=Overlay/classesWidget.md#gun-lance);
 - [Switch Axe](?p=Overlay/classesWidget.md#switch-axe);
 - [Charge Blade](?p=Overlay/classesWidget.md#charge-blade);
 - [Insect Glaive](?p=Overlay/classesWidget.md#insect-glaive);
 - [Bow](?p=Overlay/classesWidget.md#bow);
+- [Heavy Bowgun](?p=Overlay/classesWidget.md#heavy-bowgun);
 
 ## Dual Blades
 - **Features:**
@@ -50,6 +52,13 @@ Each class has it's own separate setting, so if you want to place this widget fo
 ## Lance
 - **Features:**
   - **Safi'jiiva health regen. hit counter:** It's represented by the diamond with the Safi'jiiva skill icon, it shows how many hits until you actiave the health regeneration.
+
+## Hunting Horn
+- **Features:**
+  - **Song queue:** Similar to the in-game queue, it shows the queued songs, notes and possible songs based on the notes in the queue.
+  - **Safi'jiiva health regen. hit counter:** It's represented by the diamond with the Safi'jiiva skill icon, it shows how many hits until you actiave the health regeneration.
+
+<img src="https://cdn.discordapp.com/attachments/678287048200683572/755152760881676410/unknown.png" style="width:20%">
 
 ## Gun Lance
 - **Features:**
@@ -101,3 +110,14 @@ Each class has it's own separate setting, so if you want to place this widget fo
   - **Safi'jiiva health regen. hit counter:** It's represented by the diamond with the Safi'jiiva skill icon, it shows how many hits until you actiave the health regeneration.
 
 <img src="https://cdn.discordapp.com/attachments/678287048200683572/714929411249668176/class_p5.png" style="width:20%"/>
+
+## Heavy Bowgun
+
+- **Features:**
+  - **Ammo information:** Represented by the left-most diamond, it shows the current ammo/maximum ammo and total ammo.
+  - **Crafting information:** Represented by the bottom diamond, the number on top is how much ammo you can craft with the current materials in your inventory. The number on bottom is how much extra ammo you can craft by crafting the required materials.
+  - **Wyvern information:** The right-most diamond shows the Wyvernheart ammo and ammo regen, and Wyvernsniper cooldown.
+  - **Zoom information:** It's represented by the diamond on bottom-left and by the colored bar.
+  - **Safi'jiiva health regen. hit counter:** It's represented by the diamond with the Safi'jiiva skill icon, it shows how many hits until you actiave the health regeneration.
+
+<img src="https://cdn.discordapp.com/attachments/678287048200683572/757639168506593400/unknown.png" style="width:20%">
