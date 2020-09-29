@@ -279,20 +279,36 @@ namespace HunterPie
 
         private void SetHotKeys()
         {
-            Dictionary<string, Action> toBeRegistered = new Dictionary<string, Action>();
-            toBeRegistered.Add(UserSettings.PlayerConfig.Overlay.ToggleOverlayKeybind, ToggleOverlayCallback);
-            toBeRegistered.Add(UserSettings.PlayerConfig.Overlay.MonstersComponent.SwitchMonsterBarModeHotkey, SwitchMonsterBarModeCallback);
-            toBeRegistered.Add(UserSettings.PlayerConfig.Overlay.ToggleDesignKeybind, ToggleDesignModeCallback);
-
-            foreach (string hotkey in toBeRegistered.Keys)
+            string[] hotkeys =
             {
-                int id = Hotkey.Register(hotkey, toBeRegistered[hotkey]);
+                UserSettings.PlayerConfig.Overlay.ToggleOverlayKeybind,
+                UserSettings.PlayerConfig.Overlay.MonstersComponent.SwitchMonsterBarModeHotkey,
+                UserSettings.PlayerConfig.Overlay.ToggleDesignKeybind
+            };
+            Action[] callbacks =
+            {
+                ToggleOverlayCallback,
+                SwitchMonsterBarModeCallback,
+                ToggleDesignModeCallback
+            };
+
+            for (int i = 0; i < hotkeys.Length; i++)
+            {
+                string hotkey = hotkeys[i];
+                Action callback = callbacks[i];
+                if (hotkey == "None")
+                {
+                    continue;
+                }
+                int id = Hotkey.Register(hotkey, callback);
                 if (id > 0)
                 {
                     registeredHotkeys.Add(id);
+                } else
+                {
+                    Debugger.Error("Failed to register hotkey");
                 }
             }
-            toBeRegistered.Clear();
         }
 
         private void RemoveHotKeys()

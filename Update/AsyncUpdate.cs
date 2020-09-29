@@ -186,14 +186,16 @@ namespace Update
                         client.DownloadProgressChanged += OnDownloadProgressChange;
 
                         string localFilePath = Path.Combine(BaseDirectory, file);
-                        await client.DownloadFileTaskAsync(link, localFilePath); 
+                        await client.DownloadFileTaskAsync(link, localFilePath);
 
                         FilesUpdatedCounter++;
                         client.DownloadProgressChanged -= OnDownloadProgressChange;
                     }
                 }
-            } catch
+            } catch(Exception err)
             {
+                WriteToFile(err.ToString());
+                OnUpdateFail?.Invoke(this, new UpdateFinished { IsLatestVersion = true, JustUpdated = false });
                 return false;
             }
             
