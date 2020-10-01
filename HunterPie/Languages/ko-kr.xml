@@ -11,6 +11,7 @@
     <Monster ID="em007_00" Name="디아블로스" />
     <Monster ID="em007_01" Name="디아블로스 아종" />
     <Monster ID="em011_00" Name="키린" />
+    <Monster ID="em013_00" Name="밀라보레아스"/>
     <Monster ID="em018_00" Name="얀가루루가" />
     <Monster ID="em018_05" Name="상처입은 얀가루루가" />
     <Monster ID="em023_00" Name="라잔" />
@@ -162,6 +163,7 @@
     <Part ID="MONSTER_PART_SILVER_SPIKES_LWING" Name="은빛 가시 (왼쪽 날개)" />
     <Part ID="MONSTER_PART_SILVER_SPIKES_RWING" Name="은빛 가시 (오른쪽 날개)" />
     <!-- Special parts -->
+    <Part ID="MONSTER_PART_KNOCKDOWN" Name="넉다운"/>
     <Part ID="MONSTER_PART_BIG_FLINCH" Name="대경직" />
     <Part ID="MONSTER_PART_RAGE" Name="분노 해제" />
     <Part ID="MONSTER_PART_COUNTERATTACK" Name="카운터 공격" />
@@ -271,6 +273,7 @@
     <Stage ID="413" Name="기원의 외딴 섬" />
     <Stage ID="415" Name="깊숙한 골짜기" />
     <Stage ID="416" Name="깊숙한 골짜기" />
+    <Stage ID="417" Name="슈레이드 성"/>
     <Stage ID="501" Name="2등급 마이하우스" />
     <Stage ID="502" Name="1등급 마이하우스" />
     <Stage ID="503" Name="특등급 마이하우스" />
@@ -314,6 +317,10 @@
     <Abnormality ID="HUNTINGHORN_010_01" Name="방어력 UP [특대]" />
     <Abnormality ID="HUNTINGHORN_011_00" Name="특수장비 소비 경감 [소]" />
     <Abnormality ID="HUNTINGHORN_012_00" Name="특수장비 소비 경감 [대]" />
+    <Abnormality ID="HUNTINGHORN_013_00" Name="체력 회복[소]"/>
+    <Abnormality ID="HUNTINGHORN_014_00" Name="체력 회복[대]"/>
+    <Abnormality ID="HUNTINGHORN_015_00" Name="체력 회복[소]&amp;해독"/>
+    <Abnormality ID="HUNTINGHORN_016_00" Name="체력 회복[중]&amp;해독"/>
     <Abnormality ID="HUNTINGHORN_018_00" Name="체력 회복속도 UP [소]" />
     <Abnormality ID="HUNTINGHORN_019_00" Name="체력 회복속도 UP [대]" />
     <Abnormality ID="HUNTINGHORN_020_00" Name="청각 보호 [소]" />
@@ -348,12 +355,15 @@
     <Abnormality ID="HUNTINGHORN_039_00" Name="속성 공격력 UP" />
     <Abnormality ID="HUNTINGHORN_040_00" Name="속성 피해 무효" />
     <Abnormality ID="HUNTINGHORN_041_00" Name="알수없는 버프" />
+    <Abnormality ID="HUNTINGHORN_042_00" Name="모든 선율 효과 연장"/>
     <Abnormality ID="HUNTINGHORN_043_00" Name="움츠리기 무효" />
     <Abnormality ID="HUNTINGHORN_045_00" Name="모든 속성 내성 UP" />
     <Abnormality ID="HUNTINGHORN_046_00" Name="회심률 UP [소]" />
     <Abnormality ID="HUNTINGHORN_047_00" Name="모든 상태 이상 무효" />
     <Abnormality ID="HUNTINGHORN_048_00" Name="청각 보호 [소]&amp;풍압 무효" />
     <Abnormality ID="HUNTINGHORN_049_00" Name="상태 이상 공격 UP" />
+    <Abnormality ID="HUNTINGHORN_051_00" Name="향주파 [타]"/>
+    <Abnormality ID="HUNTINGHORN_052_00" Name="향주파 [용]"/>
     <Abnormality ID="HUNTINGHORN_053_00" Name="스태미나 최대 UP&amp;회복" />
     <Abnormality ID="HUNTINGHORN_054_00" Name="체력 지속 회복" />
     <Abnormality ID="HUNTINGHORN_055_00" Name="자기 강화 [속]&amp;회피 성능 UP" />
@@ -442,11 +452,19 @@
       <String ID="CONSOLE_SETTINGS" Name="설정" />
       <String ID="CONSOLE_UPLOADBUILD" Name="장비 커스텀 업로드" />
       <String ID="CONSOLE_EXPORTGEAR" Name="소지 장식품 목록 추출"/>
+      <String ID="CONSOLE_PLUGINS" Name="플러그인"/>
       <String ID="CONSOLE_CHANGELOG" Name="패치내역" />
       <String ID="CONSOLE_DISCORD" Name="Discord" />
       <String ID="CONSOLE_GITHUB" Name="GitHub" />
       <String ID="CONSOLE_LAUNCH" Name="게임시작" />
       <String ID="CONSOLE_VERSION" Name="버전: {HunterPie_Version} ({HunterPie_Branch})" />
+      <!-- Plugins -->
+      <String ID="MESSAGE_GET_MORE_PLUGINS" Name="플러그인 받기"/>
+      <String ID="MESSAGE_OPEN_PLUGINS_FOLDER" Name="플러그인 폴더 열기"/>
+      <String ID="MESSAGE_PLUGIN_INSTALL" Name="플러그인 설치"/>
+      <String ID="MESSAGE_PLUGIN_INSTALL_DESC" Name="module.json 파일을 여기에 드래그 앤 드롭 하여 플러그인을 설치 하세요."/>
+      <String ID="MESSAGE_PLUGIN_INSTALLED" Name="플러그인: {name} 이(가) 설치되었습니다! 헌터 파이를 재시작 하여 플러그인을 리로드 해주세요."/>
+      <String ID="ERROR_PLUGIN_AUTO_UPDATE" Name="이 플러그인은 자동 업데이트를 지원하지 않습니다. 수동으로 업데이트 파일을 받아주세요."/>
       <!-- Popups -->
       <String ID="MESSAGE_QUIT" Name="HunterPie를 종료하시겠습니까?" />
       <String ID="TITLE_MISSING_PATH" Name="게임 설치 경로를 찾을 수 없습니다." />
@@ -673,23 +691,25 @@
       <String ID="STATIC_SECONDARY_SPEC_TOOL_POSITION_DESC" Name="두번째 특수장비 위젯의 위치를 변경." />
       <!-- Class Widget -->
       <String ID="ENABLE_INSECT_GLAIVE_HELPER" Name="조충곤 위젯 활성화" />
-      <String ID="ENABLE_INSECT_GLAIVE_HELPER_DESC" Name="옵션이 켜져 있을 경우, 위젯은 조충곤을 장착할시에 보여지게 됩니다." />
-      <String ID="ENABLE_CHARGE_BLADE_HELPER" Name="차지엑스 위젯 활성화" />
-      <String ID="ENABLE_CHARGE_BLADE_HELPER_DESC" Name="옵션이 켜져 있을 경우, 위젯은 차지액스를 장착할시에 보여지게 됩니다." />
+      <String ID="ENABLE_INSECT_GLAIVE_HELPER_DESC" Name="옵션이 켜져 있을 경우, 조충곤을 장착할시에 조충곤 위젯이 보여지게 됩니다." />
+      <String ID="ENABLE_CHARGE_BLADE_HELPER" Name="차지액스 위젯 활성화" />
+      <String ID="ENABLE_CHARGE_BLADE_HELPER_DESC" Name="옵션이 켜져 있을 경우, 차지액스를 장착할시에 차지액스 위젯이 보여지게 됩니다." />
       <String ID="ENABLE_SWITCH_AXE_HELPER" Name="슬래시액스 위젯 활성화" />
-      <String ID="ENABLE_SWITCH_AXE_HELPER_DESC" Name="옵션이 켜져 있을 경우, 위젯은 슬래시액스를 장착할시에 보여지게 됩니다." />
+      <String ID="ENABLE_SWITCH_AXE_HELPER_DESC" Name="옵션이 켜져 있을 경우, 슬래시액스를 장착할시에 슬래시액스 위젯이 보여지게 됩니다." />
       <String ID="ENABLE_GUN_LANCE_HELPER" Name="건랜스 위젯 활성화" />
-      <String ID="ENABLE_GUN_LANCE_HELPER_DESC" Name="옵션이 켜져 있을 경우, 위젯은 건랜스를 장착할시에 보여지게 됩니다." />
+      <String ID="ENABLE_GUN_LANCE_HELPER_DESC" Name="옵션이 켜져 있을 경우, 건랜스를 장착할시에 건랜스 위젯이 보여지게 됩니다." />
       <String ID="ENABLE_LONGSWORD_HELPER" Name="태도 위젯 활성화" />
-      <String ID="ENABLE_LONGSWORD_HELPER_DESC" Name="옵션이 켜져 있을 경우, 위젯은 태도를 장착할시에 보여지게 됩니다." />
+      <String ID="ENABLE_LONGSWORD_HELPER_DESC" Name="옵션이 켜져 있을 경우, 태도를 장착할시에 태도 위젯이 보여지게 됩니다." />
       <String ID="ENABLE_BOW_HELPER" Name="활 위젯 활성화" />
-      <String ID="ENABLE_BOW_HELPER_DESC" Name="옵션이 켜져 있을 경우, 위젯은 활을 장착할시에 보여지게 됩니다." />
+      <String ID="ENABLE_BOW_HELPER_DESC" Name="옵션이 켜져 있을 경우, 활을 장착할시에 활 위젯이 보여지게 됩니다." />
       <String ID="ENABLE_HAMMER_HELPER" Name="해머 위젯 활성화" />
-      <String ID="ENABLE_HAMMER_HELPER_DESC" Name="옵션이 켜져 있을 경우, 위젯은 해머를 장착할시에 보여지게 됩니다." />      
+      <String ID="ENABLE_HAMMER_HELPER_DESC" Name="옵션이 켜져 있을 경우, 해머를 장착할시에 해머 위젯이 보여지게 됩니다." />      
       <String ID="ENABLE_DUALBLADES_HELPER" Name="쌍검 위젯 활성화"/>
-      <String ID="ENABLE_DUALBLADES_HELPER_DESC" Name="옵션이 켜져 있을 경우, 위젯은 쌍검을 장착할시에 보여지게 됩니다."/>
+      <String ID="ENABLE_DUALBLADES_HELPER_DESC" Name="옵션이 켜져 있을 경우, 쌍검을 장착할시에 쌍검 위젯이 보여지게 됩니다."/>
       <String ID="ENABLE_LANCE_HELPER" Name="랜스 위젯 활성화"/>
-      <String ID="ENABLE_LANCE_HELPER_DESC" Name="옵션이 켜져 있을 경우, 위젯은 랜스를 장착할시에 보여지게 됩니다."/>
+      <String ID="ENABLE_LANCE_HELPER_DESC" Name="옵션이 켜져 있을 경우, 랜스를 장착할시에 랜스 위젯이 보여지게 됩니다."/>
+      <String ID="ENABLE_HEAVYBOWGUN_HELPER" Name="헤비보우건 위젯 활성화"/>
+      <String ID="ENABLE_HEAVYBOWGUN_HELPER_DESC" Name="옵션이 켜져 있을 경우, 헤비보우건을 장착할시에 헤비보우건 위젯이 보여지게 됩니다."/>
       <String ID="STATIC_CLASSES_BETA_WARNING" Name="주의: 무기별 위젯는 아직 개발단계에 있으며, 추후 더 많은 무기들이 지원 예정에 있습니다. 무기별 위젯 세팅이 가능하기에, 무기에 따라 위젯의 크기나 위치를 다르게 설정가능합니다. 디자인 모드를 활용하여 크기나 위치를 조정하십시오." />
       <!-- Links -->
       <String ID="STATIC_HUNTERPIE_WIKI" Name="문서" />
@@ -708,6 +728,8 @@
       <String ID="ENABLE_UNKNOWN_AILMENTS_DESC" Name="알려지지 않은 몬스터의 수치 표시를 활성화합니다. 개발 도구의 일부분이니, 자신이 무엇을 하는지 모르겠다면 이 옵션을 켜지 마십시오." />
       <String ID="ENABLE_LOAD_CUSTOM_DATA" Name="커스텀 몬스터 데이터 로드" />
       <String ID="ENABLE_LOAD_CUSTOM_DATA_DESC" Name="옵션이 켜져 있을 경우, HunterPie는 커스텀 몬스터 데이터 불러오기를 시도합니다. 개발 도구의 일부분이니, 자신이 무엇을 하는지 모르겠다면 이 옵션을 켜지 마십시오." />
+      <String ID="ENABLE_SEND_CRASH_TO_DEV" Name="개발자에게 충돌 오류 보내기"/>
+      <String ID="ENABLE_SEND_CRASH_TO_DEV_DESC" Name="옵션이 켜져 있을 경우, 개발자에게 충돌 오류 로그파일을 보냅니다."/>
       <String ID="STATIC_LOAD_CUSTOM_DATA_PATH" Name="커스텀 몬스터 데이터 파일:" />
       <String ID="STATIC_LOAD_CUSTOM_DATA_PATH_DESC" Name="커스텀 몬스터 데이터 파일의 경로를 선택하십시오." />
       <!-- Generics -->
