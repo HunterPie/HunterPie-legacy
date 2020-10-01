@@ -30,6 +30,7 @@ using System.Threading.Tasks;
 using System.Net.Http;
 using HunterPie.Core.Craft;
 using Newtonsoft.Json;
+using System.Diagnostics;
 
 namespace HunterPie
 {
@@ -97,7 +98,7 @@ namespace HunterPie
             AppDomain.CurrentDomain.UnhandledException += ExceptionLogger;
             
             IsPlayerLoggedOn = false;
-
+            
             SetDPIAwareness();
             
             Buffers.Initialize(1024);
@@ -114,7 +115,6 @@ namespace HunterPie
             LoadCustomTheme();
             LoadOverwriteTheme();
             Debugger.LoadNewColors();
-
             AdministratorIconVisibility = IsRunningAsAdmin() ? Visibility.Visible : Visibility.Collapsed;
 
             Environment.CurrentDirectory = AppDomain.CurrentDomain.BaseDirectory;
@@ -457,7 +457,7 @@ namespace HunterPie
                         using (var content = new MultipartFormDataContent())
                         {
                             content.Add(new StringContent(""), "username");
-                            content.Add(new StringContent($"```Exception type: {e.ExceptionObject.GetType()}\n-----------------------------------\nBranch: {UserSettings.PlayerConfig.HunterPie.Update.Branch}\nVersion: {HUNTERPIE_VERSION}\nGAME BUILD VERSION: {Game.Version}\nHunterPie elapsed time: {DateTime.UtcNow - Process.GetCurrentProcess().StartTime.ToUniversalTime()}```"), "content");
+                            content.Add(new StringContent($"```Exception type: {e.ExceptionObject.GetType()}\n-----------------------------------\nBranch: {UserSettings.PlayerConfig.HunterPie.Update.Branch}\nVersion: {FileVersionInfo.GetVersionInfo(Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "HunterPie.exe")).FileVersion}\nGAME BUILD VERSION: {Game.Version}\nHunterPie elapsed time: {DateTime.UtcNow - Process.GetCurrentProcess().StartTime.ToUniversalTime()}```"), "content");
                             content.Add(new StringContent(e.ExceptionObject.ToString()), "file", "crashes.txt");
                             req.Content = content;
 
