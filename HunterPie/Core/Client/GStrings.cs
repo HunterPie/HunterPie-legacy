@@ -36,7 +36,7 @@ namespace HunterPie.Core
                     {
                         continue;
                     }
-                    Translations.DocumentElement.SelectSingleNode($"//*[@ID='{id}']").Attributes["Name"].Value = node.Attributes["Name"].Value;
+                    Translations.DocumentElement.SelectSingleNode($"//{node.ParentNode.Name}/*[@ID='{id}']").Attributes["Name"].Value = node.Attributes["Name"].Value;
                 }
                 Debugger.Warn($"Loaded {other.DocumentElement.Attributes["lang"]?.Value ?? "Unknown language"} game strings");
                 other = null;
