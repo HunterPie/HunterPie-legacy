@@ -266,10 +266,12 @@
   <Monster ID="em013_00" Capture="0"  GameID="101">
     <!-- Fatalis -->
     <Weaknesses>
+      <Weakness ID="ELEMENT_DRAGON" Stars="3"/>
+      <Weakness ID="ELEMENT_FIRE" Stars="2"/>
     </Weaknesses>
     <Crown Mini="0.9" Silver="1.15" Gold="1.23"/>
     <Parts Max="12">
-      <Part Name="MONSTER_PART_UNKNOWN" Group="HORN" IsRemovable="True"/>
+      <Part Name="MONSTER_PART_KNOCKDOWN" IsRemovable="True"/>
       <Part Name="MONSTER_PART_HEAD" Group="HEAD" TenderizeIds="0,3">
         <Break Threshold="3"/>
       </Part>

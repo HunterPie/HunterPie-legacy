@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Diagnostics;
 using System.Linq;
+using System.Windows;
 using System.Windows.Interop;
 using System.Windows.Media;
 using HunterPie.Core;
@@ -120,27 +121,33 @@ namespace HunterPie.GUI
 
         private void OnGameUnfocus(object source, EventArgs args)
         {
-            foreach (Widget widget in Widgets)
+            Application.Current.Dispatcher.BeginInvoke(System.Windows.Threading.DispatcherPriority.Normal, new Action(() =>
             {
-                widget.OverlayIsFocused = false;
-                if (!widget.InDesignMode)
+                foreach (Widget widget in Widgets)
                 {
-                    widget.ApplySettings(true);
+                    widget.OverlayIsFocused = false;
+                    if (!widget.InDesignMode)
+                    {
+                        widget.ApplySettings(true);
+                    }
                 }
-            }
-
+            }));
+            
         }
 
         private void OnGameFocus(object source, EventArgs args)
         {
-            foreach (Widget widget in Widgets)
+            Application.Current.Dispatcher.BeginInvoke(System.Windows.Threading.DispatcherPriority.Normal, new Action(() =>
             {
-                widget.OverlayIsFocused = true;
-                if (!widget.InDesignMode)
+                foreach (Widget widget in Widgets)
                 {
-                    widget.ApplySettings(true);
+                    widget.OverlayIsFocused = true;
+                    if (!widget.InDesignMode)
+                    {
+                        widget.ApplySettings(true);
+                    }
                 }
-            }
+            }));
         }
 
         /* Positions and enable/disable components */

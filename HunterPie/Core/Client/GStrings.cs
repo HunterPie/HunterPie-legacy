@@ -1,5 +1,7 @@
 ﻿using System;
 using System.IO;
+using System.Linq;
+using System.Windows;
 using System.Windows.Data;
 using System.Xml;
 using HunterPie.Logger;
@@ -14,18 +16,35 @@ namespace HunterPie.Core
 
         private static void LoadTranslationXML(string LangXML)
         {
-            if (LangXML == null) LangXML = @"Languages\en-us.xml";
-            LangXML = Path.Combine(AppDomain.CurrentDomain.BaseDirectory, LangXML);
+            if (LangXML is null)
+            {
+                LangXML = @"Languages\en-us.xml";
+            }
             try
             {
-                Translations.Load(LangXML);
-                Debugger.Warn($"Loaded {Translations.DocumentElement.Attributes["lang"]?.Value ?? "Unknown language"} game strings");
-            }
-            catch (Exception err)
+                XmlDocument other = new XmlDocument();
+                other.Load(Path.Combine(AppDomain.CurrentDomain.BaseDirectory, LangXML));
+
+                Translations.Load(Path.Combine(AppDomain.CurrentDomain.BaseDirectory, @"Languages\en-us.xml"));
+
+                // Merge other languages with the english localization
+                XmlNodeList englishNodes = Translations.DocumentElement.SelectNodes("//*");
+                foreach (XmlNode node in other.DocumentElement.SelectNodes("//*"))
+                {
+                    string id = node.Attributes["ID"]?.Value;
+                    if (id is null)
+                    {
+                        continue;
+                    }
+                    Translations.DocumentElement.SelectSingleNode($"//*[@ID='{id}']").Attributes["Name"].Value = node.Attributes["Name"].Value;
+                }
+                Debugger.Warn($"Loaded {other.DocumentElement.Attributes["lang"]?.Value ?? "Unknown language"} game strings");
+                other = null;
+            } catch (Exception err)
             {
                 Debugger.Error(err);
                 Debugger.Error($"Failed to load {Path.GetFileName(LangXML)}");
-                LoadTranslationXML(@"Languages\en-us.xml");
+                Translations.Load(Path.Combine(AppDomain.CurrentDomain.BaseDirectory, @"Languages\en-us.xml"));
             }
             XmlDataProvider LocDataProvider = (XmlDataProvider)App.Current.FindResource("Localization");
             LocDataProvider.Document = Translations;

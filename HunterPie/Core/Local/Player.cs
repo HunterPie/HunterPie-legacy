@@ -1060,7 +1060,7 @@ namespace HunterPie.Core
                 return;
             }
             long AbnormAddress = Kernel.ReadMultilevelPtr(Address.BASE + Address.ABNORMALITY_OFFSET, Address.Offsets.AbnormalityOffsets);
-            bool HasSafiBuff = Kernel.Read<int>(AbnormAddress + 0x9A8) >= 1;
+            bool HasSafiBuff = Kernel.Read<int>(AbnormAddress + 0xA04) >= 1;
             int SafiCounter = HasSafiBuff ? Kernel.Read<int>(AbnormAddress + 0x7A8) : -1;
             long weaponAddress = Kernel.ReadMultilevelPtr(Address.BASE + Address.WEAPON_MECHANICS_OFFSET, Address.Offsets.WeaponMechanicsOffsets);
             ClassAddress = weaponAddress;

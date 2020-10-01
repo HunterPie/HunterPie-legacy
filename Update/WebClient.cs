@@ -11,6 +11,7 @@ namespace Update
         {
             WebRequest lWebRequest = base.GetWebRequest(address);
             lWebRequest.Timeout = Timeout;
+            ((HttpWebRequest)lWebRequest).CachePolicy = new System.Net.Cache.RequestCachePolicy(System.Net.Cache.RequestCacheLevel.BypassCache);
             ((HttpWebRequest)lWebRequest).ReadWriteTimeout = Timeout;
             return lWebRequest;
         }

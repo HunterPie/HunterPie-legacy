@@ -96,7 +96,7 @@ namespace Update
             {
                 using (HttpClient client = new HttpClient())
                 {
-                    string hashes = await client.GetStringAsync(new Uri($"{validBranchUrl}hashes.json"));
+                    string hashes = await client.GetStringAsync(new Uri($"{validBranchUrl}hashes.json?r={DateTime.UtcNow.GetHashCode()}"));
                     
                     onlineFileHashes = JsonConvert.DeserializeObject<Dictionary<string, string>>(hashes);
                 }
@@ -175,7 +175,7 @@ namespace Update
                 {
                     Message($"Downloading {file.Replace("_", "__")}");
                     WriteToFile($"Downloading {file}");
-                    Uri link = new Uri($"{validBranchUrl}{file}");
+                    Uri link = new Uri($"{validBranchUrl}{file}?r={DateTime.UtcNow.GetHashCode()}");
                     using (WebClient client = new WebClient() {
                         Timeout = 10000
                     })

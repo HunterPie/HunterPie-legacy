@@ -163,6 +163,7 @@
     <Part ID="MONSTER_PART_SILVER_SPIKES_LWING" Name="Silver Spikes (Left Wing)"/>
     <Part ID="MONSTER_PART_SILVER_SPIKES_RWING" Name="Silver Spikes (Right Wing)"/>
     <!-- Special parts -->
+    <Part ID="MONSTER_PART_KNOCKDOWN" Name="Knockdown"/>
     <Part ID="MONSTER_PART_BIG_FLINCH" Name="Big Flinch"/>
     <Part ID="MONSTER_PART_RAGE" Name="Removable Rage"/>
     <Part ID="MONSTER_PART_COUNTERATTACK" Name="Counterattack"/>
