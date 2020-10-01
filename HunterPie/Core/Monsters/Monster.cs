@@ -388,7 +388,10 @@ namespace HunterPie.Core
 
                     if (!MonsterData.MonstersInfo.ContainsKey(GameId))
                     {
-                        if (!MonsterEm.StartsWith("ems")) Debugger.Error($"Unknown Monster Detected: ID:{GameId} | ems: {MonsterEm}");
+                        if (!MonsterEm.StartsWith("ems"))
+                        {
+                            Debugger.Error($"Unknown Monster Detected: ID:{GameId} | ems: {MonsterEm}");
+                        }
                         Id = null;
                         Health = 0;
                         MaxHealth = 0;

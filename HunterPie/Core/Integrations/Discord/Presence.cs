@@ -155,6 +155,7 @@ namespace HunterPie.Core.Integrations.Discord
         {
             if (Instance is null) return;
             if (ctx is null) return;
+            if (IsDisposed) return;
 
             // Do nothing if RPC is disabled
             if (!isVisible) return;
@@ -189,8 +190,16 @@ namespace HunterPie.Core.Integrations.Discord
                         Instance.Party = null;
                         break;
                     }
-                    Instance.Details = GetDescription();
-                    Instance.State = GetState();
+
+                    try
+                    {
+                        Instance.Details = GetDescription();
+                        Instance.State = GetState();
+                    } catch
+                    {
+                        return;
+                    }
+                    
                     GenerateAssets(ctx.Player.ZoneName == null ? "main-menu" : $"st{ctx.Player.ZoneID}", ctx.Player.ZoneID == 0 ? null : ctx.Player.ZoneName, ctx.Player.WeaponName == null ? "hunter-rank" : $"weap{ctx.Player.WeaponID}", $"{ctx.Player.Name} | HR: {ctx.Player.Level} | MR: {ctx.Player.MasterRank}");
                     if (!ctx.Player.InPeaceZone)
                     {
@@ -208,7 +217,7 @@ namespace HunterPie.Core.Integrations.Discord
 
         private string GetDescription()
         {
-            if (ctx is null || ctx?.Player is null)
+            if (ctx is null || ctx?.Player is null || IsDisposed)
             {
                 return "";
             }

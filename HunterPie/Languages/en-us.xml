@@ -11,6 +11,7 @@
     <Monster ID="em007_00" Name="Diablos"/>
     <Monster ID="em007_01" Name="Black Diablos"/>
     <Monster ID="em011_00" Name="Kirin"/>
+    <Monster ID="em013_00" Name="Fatalis"/>
     <Monster ID="em018_00" Name="Yian Garuga"/>
     <Monster ID="em018_05" Name="Scarred Yian Garuga"/>
     <Monster ID="em023_00" Name="Rajang"/>
@@ -271,6 +272,7 @@
     <Stage ID="413" Name="Origin Isle"/>
     <Stage ID="415" Name="Secluded Valley"/>
     <Stage ID="416" Name="Secluded Valley"/>
+    <Stage ID="417" Name="Castle Schrade"/>
     <Stage ID="501" Name="Living Quarters"/>
     <Stage ID="502" Name="Private Quarters"/>
     <Stage ID="503" Name="Private Suite"/>

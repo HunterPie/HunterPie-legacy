@@ -672,17 +672,17 @@ namespace HunterPie
             RemoveHotKeys();
 
             UnhookGameEvents();
-            pluginManager.UnloadPlugins();
-            Discord.Dispose();
+            pluginManager?.UnloadPlugins();
+            Discord?.Dispose();
             Discord = null;
 
-            MonsterHunter.StopScanning();
+            MonsterHunter?.StopScanning();
             Dispatcher.Invoke(System.Windows.Threading.DispatcherPriority.Background, new Action(() =>
             {
-                GameOverlay.Dispose();
+                GameOverlay?.Dispose();
                 GameOverlay = null;
             }));
-            MonsterHunter.DestroyInstances();
+            MonsterHunter?.DestroyInstances();
             if (UserSettings.PlayerConfig.HunterPie.Options.CloseWhenGameCloses)
             {
                 Dispatcher.Invoke(System.Windows.Threading.DispatcherPriority.Normal, new Action(() =>
@@ -834,7 +834,7 @@ namespace HunterPie
 
         private void OnWindowClosing(object sender, CancelEventArgs e)
         {
-            pluginManager.UnloadPlugins();
+            pluginManager?.UnloadPlugins();
             UserSettings.PlayerConfig.HunterPie.PosX = Left;
             UserSettings.PlayerConfig.HunterPie.PosY = Top;
 

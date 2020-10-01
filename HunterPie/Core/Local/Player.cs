@@ -843,7 +843,7 @@ namespace HunterPie.Core
         private void GetQuestElapsedTime()
         {
             long TimerAddress = Kernel.ReadMultilevelPtr(Address.BASE + Address.ABNORMALITY_OFFSET, Address.Offsets.AbnormalityOffsets);
-            float Timer = Kernel.Read<float>(TimerAddress + 0xBC8);
+            float Timer = Kernel.Read<float>(TimerAddress + 0xC24);
             PlayerParty.ShowDPS = true;
             if (Timer > 0)
             {
@@ -1155,8 +1155,8 @@ namespace HunterPie.Core
             Longsword.InnerGauge = gauge;
             Longsword.ChargeLevel = chargeLevel;
             Longsword.OuterGauge = chargeGauge;
-            Longsword.HelmBreakerBlink = HelmBreaker;
-            Longsword.IaiSlashBlink = IaiSlash;
+            Longsword.HelmBreakerBlink = float.IsNaN(HelmBreaker) ? 0 : HelmBreaker;
+            Longsword.IaiSlashBlink = float.IsNaN(IaiSlash) ? 0 : IaiSlash;
         }
 
         private void GetHammerInformation(long weaponAddress)

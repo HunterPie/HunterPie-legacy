@@ -22,8 +22,6 @@ namespace HunterPie.GUI.Widgets.ClassWidget.Parts
 
         Longsword Context;
 
-
-
         public string AltBlinkDuration
         {
             get { return (string)GetValue(AltBlinkDurationProperty); }
