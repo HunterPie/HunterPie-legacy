@@ -92,7 +92,12 @@ namespace HunterPie
 
         public Hunterpie()
         {
-
+            if (CheckIfItsRunningFromWinrar())
+            {
+                MessageBox.Show("You must extract HunterPie files before running it, otherwise it will most likely crash due to missing files or not save your settings.", "Error", MessageBoxButton.OK, MessageBoxImage.Error);
+                Close();
+                return;
+            }
             CheckIfHunterPieOpen();
 
             AppDomain.CurrentDomain.UnhandledException += ExceptionLogger;
@@ -400,6 +405,13 @@ namespace HunterPie
         }
 
         #endregion
+
+        // Why are people running HunterPie before extracting the files??????????????????????
+        private bool CheckIfItsRunningFromWinrar()
+        {
+            string path = AppDomain.CurrentDomain.BaseDirectory;
+            return path.Contains("Temp\\Rar");
+        }
 
         private void LoadCustomTheme()
         {
