@@ -17,7 +17,6 @@ using HunterPie.GUI;
 using HunterPie.GUIControls;
 using HunterPie.GUIControls.Custom_Controls;
 using HunterPie.Plugins;
-using HunterPie.Logger;
 using Debugger = HunterPie.Logger.Debugger;
 using PluginDisplay = HunterPie.GUIControls.Plugins;
 using HunterPie.Core.Input;
@@ -105,7 +104,6 @@ namespace HunterPie
             IsPlayerLoggedOn = false;
             
             SetDPIAwareness();
-            
             Buffers.Initialize(1024);
             Buffers.Add<byte>(64);
 

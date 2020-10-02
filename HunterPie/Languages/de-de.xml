@@ -16,6 +16,7 @@ Gerade bei den Abnormalitäten / Statusveränderungen des Spielers gibt es mit (
     <Monster ID="em007_00" Name="Diablos"/>
     <Monster ID="em007_01" Name="Schwarze Diablos"/>
     <Monster ID="em011_00" Name="Kirin"/>
+	  <Monster ID="em013_00" Name="Fatalis"/>
     <Monster ID="em018_00" Name="Yian Garuga"/>
     <Monster ID="em018_05" Name="Wundmal-Yian-Garuga"/>
     <Monster ID="em023_00" Name="Rajang"/>
@@ -175,7 +176,8 @@ Gerade bei den Abnormalitäten / Statusveränderungen des Spielers gibt es mit (
     <Part ID="MONSTER_PART_SILVER_SPIKES_RWING" Name="Silberne Stacheln (Rechter Flügel)"/>
     <!--Part ID="MONSTER_PART_REMOVABLE_LANTLER" Name="Abtrennbares Linkes Geweih"/>
     <Part ID="MONSTER_PART_REMOVABLE_RANTLER" Name="Abtrennbares Rechtes Geweih"/-->
-	  <!-- Special parts -->
+	<!-- Special parts -->
+	<Part ID="MONSTER_PART_KNOCKDOWN" Name="Knockdown"/>
     <Part ID="MONSTER_PART_BIG_FLINCH" Name="Starkes Zucken"/>
     <Part ID="MONSTER_PART_RAGE" Name="Entfernbare Wut"/>
     <Part ID="MONSTER_PART_COUNTERATTACK" Name="Gegenstoß"/>
@@ -285,6 +287,7 @@ Gerade bei den Abnormalitäten / Statusveränderungen des Spielers gibt es mit (
     <Stage ID="413" Name="Ursprungsinsel"/>
     <Stage ID="415" Name="Abgelegene Schlucht"/>
 	<Stage ID="416" Name="Abgelegene Schlucht"/>
+	<Stage ID="417" Name="Schloss Schrade"/>
     <Stage ID="501" Name="Standardraum"/>
     <Stage ID="502" Name="Privatraum"/>
     <Stage ID="503" Name="Luxusraum"/>
@@ -328,6 +331,10 @@ Gerade bei den Abnormalitäten / Statusveränderungen des Spielers gibt es mit (
     <Abnormality ID="HUNTINGHORN_010_01" Name="Verteidigung hoch (XL)"/>
     <Abnormality ID="HUNTINGHORN_011_00" Name="Werkzeugverbrauch reduziert (S)"/>
     <Abnormality ID="HUNTINGHORN_012_00" Name="Werkzeugverbrauch reduziert (L)"/>
+	<Abnormality ID="HUNTINGHORN_013_00" Name="Lebenswiederherstellung (S)"/>
+    <Abnormality ID="HUNTINGHORN_014_00" Name="Lebenswiederherstellung (L)"/>
+    <Abnormality ID="HUNTINGHORN_015_00" Name="Lebenswiederherstellung (S) + Gegengift"/>
+    <Abnormality ID="HUNTINGHORN_016_00" Name="Lebenswiederherstellung (M) + Gegengift"/>
     <Abnormality ID="HUNTINGHORN_018_00" Name="Erholungsgeschwindigkeit (S)"/>
     <Abnormality ID="HUNTINGHORN_019_00" Name="Erholungsgeschwindigkeit (L)"/>
     <Abnormality ID="HUNTINGHORN_020_00" Name="Ohrstöpsel (S)"/>
@@ -362,12 +369,15 @@ Gerade bei den Abnormalitäten / Statusveränderungen des Spielers gibt es mit (
     <Abnormality ID="HUNTINGHORN_039_00" Name="Elementangriff-Boost"/>
     <Abnormality ID="HUNTINGHORN_040_00" Name="Pest negiert"/>
     <Abnormality ID="HUNTINGHORN_041_00" Name="Unbekannter Buff"/>
+	<Abnormality ID="HUNTINGHORN_042_00" Name="Alle Melodie-Effekte verlängern"/>
     <Abnormality ID="HUNTINGHORN_043_00" Name="Rückschläge negiert"/>
     <Abnormality ID="HUNTINGHORN_045_00" Name="Pestwiderstand hoch"/>
     <Abnormality ID="HUNTINGHORN_046_00" Name="Affinität hoch (S)"/>
     <Abnormality ID="HUNTINGHORN_047_00" Name="Alle anorm. Status negiert"/>
     <Abnormality ID="HUNTINGHORN_048_00" Name="Ohrstöpsel (S) / Winddruck negiert (?)"/>
     <Abnormality ID="HUNTINGHORN_049_00" Name="Anormaler Statusangriff verbessert"/>
+	 <Abnormality ID="HUNTINGHORN_051_00" Name="Impact Echo Wave"/>
+     <Abnormality ID="HUNTINGHORN_052_00" Name="Echo Wave &quot;Dragon&quot;"/>
     <Abnormality ID="HUNTINGHORN_053_00" Name="Max. Ausdauer hoch + Erholung"/>
     <Abnormality ID="HUNTINGHORN_054_00" Name="Verbesserte Gesundheitserholung"/>
     <Abnormality ID="HUNTINGHORN_055_00" Name="Geschw-Boost + Unverwundbarkeit hoch"/>
@@ -456,11 +466,19 @@ Gerade bei den Abnormalitäten / Statusveränderungen des Spielers gibt es mit (
       <String ID="CONSOLE_SETTINGS" Name="EINSTELLUNGEN"/>
       <String ID="CONSOLE_UPLOADBUILD" Name="BUILD HOCHLADEN"/>
 	  <String ID="CONSOLE_EXPORTGEAR" Name="AUSRÜSTUNG EXPORTIEREN"/>
+	  <String ID="CONSOLE_PLUGINS" Name="PLUGINS"/>
       <String ID="CONSOLE_CHANGELOG" Name="PATCH NOTES"/>
       <String ID="CONSOLE_DISCORD" Name="DISCORD"/>
       <String ID="CONSOLE_GITHUB" Name="GITHUB"/>
       <String ID="CONSOLE_LAUNCH" Name="SPIEL STARTEN"/>
       <String ID="CONSOLE_VERSION" Name="Version: {HunterPie_Version} ({HunterPie_Branch})"/>
+	  <!-- Plugins -->
+      <String ID="MESSAGE_GET_MORE_PLUGINS" Name="Hol dir mehr Plugins"/>
+      <String ID="MESSAGE_OPEN_PLUGINS_FOLDER" Name="Plugins Ordner öffnen"/>
+      <String ID="MESSAGE_PLUGIN_INSTALL" Name="PLUGIN INSTALLIEREN"/>
+      <String ID="MESSAGE_PLUGIN_INSTALL_DESC" Name="Ziehe die module.json hierhin um ein neues Plugin zu installieren."/>
+      <String ID="MESSAGE_PLUGIN_INSTALLED" Name="Plugin: {name} installiert! Starte HunterPie neu um das Plugin zu laden!"/>
+      <String ID="ERROR_PLUGIN_AUTO_UPDATE" Name="Dieses Plugin unterstützt auto-update nicht. Du musst die neuen Dateien manuell herunterladen."/>
       <!-- Popups -->
       <String ID="MESSAGE_QUIT" Name="Bist du sicher, dass du HunterPie beenden möchtest?"/>
       <String ID="TITLE_MISSING_PATH" Name="Monster Hunter World Pfad nicht gefunden"/>
@@ -704,6 +722,8 @@ Gerade bei den Abnormalitäten / Statusveränderungen des Spielers gibt es mit (
       <String ID="ENABLE_DUALBLADES_HELPER_DESC" Name="Wenn aktiv, wird das Doppelklingen Widget angezeigt, sobald du diese Waffenart ausrüstest."/>
       <String ID="ENABLE_LANCE_HELPER" Name="Aktiviere Lanzen Hilfe"/>
       <String ID="ENABLE_LANCE_HELPER_DESC" Name="Wenn aktiv, wird das Lanzen Widget angezeigt, sobald du diese Waffenart ausrüstest."/>
+	  <String ID="ENABLE_HEAVYBOWGUN_HELPER" Name="Aktiviere Schweres Bogengewehr Hilfe"/>
+      <String ID="ENABLE_HEAVYBOWGUN_HELPER_DESC" Name="Wenn aktiv, wird das Schwere Bogengewehr Widget angezeigt, sobald du diese Waffenart ausrüstest."/>
       
 	  <String ID="STATIC_CLASSES_BETA_WARNING" Name="Achtung: Die Klassenhelfer Widgets sind noch in der Entwicklung und weitere Klassen werden folgen. Jeder Klassenhelfer hat eigene Einstellungen, also ist es möglich die Positionen der Widgets für die jeweilge Klasse anzupassen. Verwende den Design Modus um dieses Widget zu skalieren und zu ebwegen."/> 
       <!-- Links -->
@@ -723,6 +743,8 @@ Gerade bei den Abnormalitäten / Statusveränderungen des Spielers gibt es mit (
       <String ID="ENABLE_UNKNOWN_AILMENTS_DESC" Name="Aktiviert unbekannte Monster Status. Aktiviere diese Option nicht, wenn du nicht weißt was du tust. Sie ist Teil der Entwickler-Werkzeuge"/>
       <String ID="ENABLE_LOAD_CUSTOM_DATA" Name="Lade selbsterstellte Monster Daten"/>
       <String ID="ENABLE_LOAD_CUSTOM_DATA_DESC" Name="Wenn aktiv, versucht HunterPie selbsterstellte Monster Daten zu laden. Aktiviere diese Option nicht, wenn du nicht weißt was du tust. Sie ist Teil der Entwickler-Werkzeuge"/>
+	  <String ID="ENABLE_SEND_CRASH_TO_DEV" Name="Crash-Log an den Dev senden"/>
+      <String ID="ENABLE_SEND_CRASH_TO_DEV_DESC" Name="Wenn aktiv, sendet HunterPie neue Crash-Logs automatisch an den Entwickler. Du kannst diese Option jederzeit deaktivieren, allerdings hilft es dem Entwickler Bugs und Fehler/Bugs schneller zu finden und zu beheben."/>
       <String ID="STATIC_LOAD_CUSTOM_DATA_PATH" Name="Selbsterstellte Monster Daten Datei:"/>
       <String ID="STATIC_LOAD_CUSTOM_DATA_PATH_DESC" Name="Wähle den Pfad zu deiner selbsterstellten Monster Daten Datei."/>
       <!-- Generics -->
