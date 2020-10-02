@@ -135,6 +135,16 @@ namespace HunterPie.Logger
         {
             _Instance.console.ItemsSource = logs;
         }
+        public static void WriteStacktrace()
+        {
+            string dir = Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "Logs");
+            if (!Directory.Exists(dir))
+            {
+                Directory.CreateDirectory(dir);
+            }
+
+            File.WriteAllText(Path.Combine(dir, "stacktrace.log"), $"Application exit code: {Environment.ExitCode}\n{Environment.StackTrace}");
+        }
     }
     class LogString
     {

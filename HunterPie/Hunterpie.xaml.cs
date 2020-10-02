@@ -477,6 +477,7 @@ namespace HunterPie
                     }
                 }
             }
+            Debugger.WriteStacktrace();
         }
 
         private void StartEverything()
@@ -844,6 +845,7 @@ namespace HunterPie
 
         private void OnWindowClosing(object sender, CancelEventArgs e)
         {
+            Debugger.WriteStacktrace();
             pluginManager?.UnloadPlugins();
             UserSettings.PlayerConfig.HunterPie.PosX = Left;
             UserSettings.PlayerConfig.HunterPie.PosY = Top;
