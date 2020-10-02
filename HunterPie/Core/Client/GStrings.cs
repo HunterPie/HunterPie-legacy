@@ -36,7 +36,14 @@ namespace HunterPie.Core
                     {
                         continue;
                     }
-                    Translations.DocumentElement.SelectSingleNode($"//{node.ParentNode.Name}/*[@ID='{id}']").Attributes["Name"].Value = node.Attributes["Name"].Value;
+                    XmlNode match = Translations.DocumentElement.SelectSingleNode($"//{node.ParentNode.Name}/*[@ID='{id}']");
+
+                    if (match is null)
+                    {
+                        continue;
+                    }
+
+                    match.Attributes["Name"].Value = node.Attributes["Name"].Value;
                 }
                 Debugger.Warn($"Loaded {other.DocumentElement.Attributes["lang"]?.Value ?? "Unknown language"} game strings");
                 other = null;

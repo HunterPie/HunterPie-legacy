@@ -1,7 +1,9 @@
 ﻿using System;
+using System.Net;
 using System.Threading;
 using HunterPie.Logger;
 using HunterPie.Memory;
+using Microsoft.CodeAnalysis.CSharp.Syntax;
 
 namespace HunterPie.Core
 {
@@ -150,19 +152,23 @@ namespace HunterPie.Core
 
                 // Stack alloc is much faster than creating a new array on the heap
                 // so we use it then move the values to the AliveMonsters array
-                Span<bool> aliveMonsters = stackalloc bool[3];
-
-                aliveMonsters[0] = FirstMonster.IsActuallyAlive;
-                aliveMonsters[1] = SecondMonster.IsActuallyAlive;
-                aliveMonsters[2] = ThirdMonster.IsActuallyAlive;
-
-                for (int i = 0; i < aliveMonsters.Length; i++)
+                unsafe
                 {
-                    FirstMonster.AliveMonsters[i] = aliveMonsters[i];
-                    SecondMonster.AliveMonsters[i] = aliveMonsters[i];
-                    ThirdMonster.AliveMonsters[i] = aliveMonsters[i];
-                }
+                    fixed (bool* aliveMonsters = stackalloc bool[3])
+                    {
+                        aliveMonsters[0] = FirstMonster.IsActuallyAlive;
+                        aliveMonsters[1] = SecondMonster.IsActuallyAlive;
+                        aliveMonsters[2] = ThirdMonster.IsActuallyAlive;
 
+                        for (int i = 0; i < 3; i++)
+                        {
+                            FirstMonster.AliveMonsters[i] = aliveMonsters[i];
+                            SecondMonster.AliveMonsters[i] = aliveMonsters[i];
+                            ThirdMonster.AliveMonsters[i] = aliveMonsters[i];
+                        }
+                    }
+                }
+                
                 Thread.Sleep(UserSettings.PlayerConfig.Overlay.GameScanDelay);
             }
             Thread.Sleep(1000);

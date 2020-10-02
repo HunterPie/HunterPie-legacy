@@ -1,5 +1,5 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
-<!--1.0.3.96 update translate by ThanatosDi-->
+<!--1.0.3.97 update translate by ThanatosDi-->
 <Strings lang="Traditional Chinese">
   <Monsters>
     <Monster ID="ems062_03" Name="訓練木豬"/>
@@ -12,6 +12,7 @@
     <Monster ID="em007_00" Name="角龍"/>
     <Monster ID="em007_01" Name="黑角龍"/>
     <Monster ID="em011_00" Name="麒麟"/>
+    <Monster ID="em013_00" Name="黑龍"/>
     <Monster ID="em018_00" Name="黑狼鳥"/>
     <Monster ID="em018_05" Name="戰痕黑狼鳥"/>
     <Monster ID="em023_00" Name="金獅子"/>
@@ -169,6 +170,7 @@
     <Part ID="MONSTER_PART_SILVER_SPIKES_LWING" Name="銀刺(左翅)"/>
     <Part ID="MONSTER_PART_SILVER_SPIKES_RWING" Name="銀刺(右翅)"/>
     <!-- Special parts -->
+    <Part ID="MONSTER_PART_KNOCKDOWN" Name="擊倒"/>
     <Part ID="MONSTER_PART_BIG_FLINCH" Name="大膽怯"/>
     <Part ID="MONSTER_PART_RAGE" Name="憤怒"/>
     <Part ID="MONSTER_PART_COUNTERATTACK" Name="反擊"/>
@@ -280,6 +282,7 @@
     <Stage ID="413" Name="起源的孤島(天地煌啼龍)"/>
     <Stage ID="415" Name="幽境之谷"/>
     <Stage ID="416" Name="幽境之谷"/>
+    <Stage ID="417" Name="虛黑城"/>
     <Stage ID="501" Name="二等小屋"/>
     <Stage ID="502" Name="一等小屋"/>
     <Stage ID="503" Name="特等小屋"/>
@@ -323,6 +326,10 @@
     <Abnormality ID="HUNTINGHORN_010_01" Name="防禦力UP[特大]"/>
     <Abnormality ID="HUNTINGHORN_011_00" Name="特殊衣裝消耗減輕[短]"/>
     <Abnormality ID="HUNTINGHORN_012_00" Name="特殊衣裝消耗減輕[長]"/>
+    <Abnormality ID="HUNTINGHORN_013_00" Name="生命回復[小]"/>
+    <Abnormality ID="HUNTINGHORN_014_00" Name="生命回復[大]"/>
+    <Abnormality ID="HUNTINGHORN_015_00" Name="生命回復[小] + 解毒"/>
+    <Abnormality ID="HUNTINGHORN_016_00" Name="生命回復[中] + 解毒"/>
     <Abnormality ID="HUNTINGHORN_018_00" Name="體力回復速度[小]"/>
     <Abnormality ID="HUNTINGHORN_019_00" Name="體力回復速度[大]"/>
     <Abnormality ID="HUNTINGHORN_020_00" Name="聽覺保護[小]"/>
@@ -357,12 +364,15 @@
     <Abnormality ID="HUNTINGHORN_039_00" Name="屬性攻擊力UP"/>
     <Abnormality ID="HUNTINGHORN_040_00" Name="全屬性異常狀態無效"/>
     <Abnormality ID="HUNTINGHORN_041_00" Name="不明 Buff[笛]"/>
+    <Abnormality ID="HUNTINGHORN_042_00" Name="延長全旋律效果"/>
     <Abnormality ID="HUNTINGHORN_043_00" Name="後仰無效"/>
     <Abnormality ID="HUNTINGHORN_045_00" Name="全屬性耐性UP"/>
     <Abnormality ID="HUNTINGHORN_046_00" Name="會心率UP[小]"/>
     <Abnormality ID="HUNTINGHORN_047_00" Name="全狀態異常無效"/>
     <Abnormality ID="HUNTINGHORN_048_00" Name="聽覺保護[小]&amp;風壓無效"/>
     <Abnormality ID="HUNTINGHORN_049_00" Name="狀態異常攻擊力UP"/>
+    <Abnormality ID="HUNTINGHORN_051_00" Name="週響波"/>
+    <Abnormality ID="HUNTINGHORN_052_00" Name="週響波 &quot;龍&quot;"/>
     <Abnormality ID="HUNTINGHORN_053_00" Name="最大耐力UP&amp;回復"/>
     <Abnormality ID="HUNTINGHORN_054_00" Name="體力持續回復"/>
     <Abnormality ID="HUNTINGHORN_055_00" Name="自我強化[速]&amp;迴避性能UP"/>
@@ -451,11 +461,19 @@
       <String ID="CONSOLE_SETTINGS" Name="設定"/>
       <String ID="CONSOLE_UPLOADBUILD" Name="上傳裝備配置"/>
       <String ID="CONSOLE_EXPORTGEAR" Name="匯出裝飾品(珠子)"/>
+      <String ID="CONSOLE_PLUGINS" Name="插件"/>
       <String ID="CONSOLE_CHANGELOG" Name="更新說明"/>
       <String ID="CONSOLE_DISCORD" Name="Discord"/>
       <String ID="CONSOLE_GITHUB" Name="GitHub"/>
       <String ID="CONSOLE_LAUNCH" Name="啟動遊戲"/>
       <String ID="CONSOLE_VERSION" Name="版本: {HunterPie_Version} ({HunterPie_Branch})"/>
+      <!-- Plugins -->
+      <String ID="MESSAGE_GET_MORE_PLUGINS" Name="取得更多插件!"/>
+      <String ID="MESSAGE_OPEN_PLUGINS_FOLDER" Name="開啟插件資料夾"/>
+      <String ID="MESSAGE_PLUGIN_INSTALL" Name="安裝插件"/>
+      <String ID="MESSAGE_PLUGIN_INSTALL_DESC" Name="拖曳 module.json 至此以安裝新的插件"/>
+      <String ID="MESSAGE_PLUGIN_INSTALLED" Name="插件: {name} 安裝完成! 重新啟動 HunterPie 以載入插件!"/>
+      <String ID="ERROR_PLUGIN_AUTO_UPDATE" Name="該插件不支持自動更新 將需要手動下載其檔案更新"/>
       <!-- Popups -->
       <String ID="MESSAGE_QUIT" Name="您確定要關閉 HunterPie 嗎?"/>
       <String ID="TITLE_MISSING_PATH" Name="找不到《魔物獵人:世界》遊戲路徑"/>
@@ -698,6 +716,8 @@
       <String ID="ENABLE_DUALBLADES_HELPER_DESC" Name="如果啟用，每當您裝備雙刀時將會顯示雙刀小工具"/>
       <String ID="ENABLE_LANCE_HELPER" Name="長槍小工具"/>
       <String ID="ENABLE_LANCE_HELPER_DESC" Name="如果啟用，每當您裝備長槍時將會顯示長槍小工具"/>
+      <String ID="ENABLE_HEAVYBOWGUN_HELPER" Name="重弩小工具"/>
+      <String ID="ENABLE_HEAVYBOWGUN_HELPER_DESC" Name="如果啟用，每當您裝備重弩時將會顯示重弩小工具"/>
       <String ID="STATIC_CLASSES_BETA_WARNING" Name="注意：武器小工具仍在開發中，將來將支持更多武器。每個武器小工具都有其自己的設置，因此您可以根據武器在此小工具中使用不同的位置。使用設計模式功能縮放和移動此小部件。"/>
       <!-- Links -->
       <String ID="STATIC_HUNTERPIE_WIKI" Name="文件資料(英文)"/>
@@ -716,6 +736,8 @@
       <String ID="ENABLE_UNKNOWN_AILMENTS_DESC" Name="啟用未知的魔物異常狀態。如果您不知道自己在做什麼，請不要打開此選項，這是開發工具的一部分。"/>
       <String ID="ENABLE_LOAD_CUSTOM_DATA" Name="載入自定義魔物數據"/>
       <String ID="ENABLE_LOAD_CUSTOM_DATA_DESC" Name="如果啟用，HunterPie 將嘗試載入自定義魔物數據檔案。如果您不知道自己在做什麼，請不要打開此選項，這是開發工具的一部分。"/>
+      <String ID="ENABLE_SEND_CRASH_TO_DEV" Name="將崩潰日誌發送給開發人員"/>
+      <String ID="ENABLE_SEND_CRASH_TO_DEV_DESC" Name="如果啟用，HunterPie 將自動將崩潰日誌發送給我(作者：Haato)。您可以禁用此選項，但是保持啟用狀態將有助於我更快地發現並修復錯誤。"/>
       <String ID="STATIC_LOAD_CUSTOM_DATA_PATH" Name="自定義魔物數據檔案:"/>
       <String ID="STATIC_LOAD_CUSTOM_DATA_PATH_DESC" Name="選擇您的自定義魔物數據檔案路徑"/>
       <!-- Generics -->
