@@ -1,6 +1,6 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
 <Strings lang="Simplified Chinese">
-<!--Translated for HunterPie Ver 1.0.3.96 by 枫雨 (FengYuu#9220)-->
+<!--1.0.3.97 update translate by 利维亚的白学家-->
   <Monsters>
     <Monster ID="ems062_03" Name="木质桶车"/>
     <Monster ID="em001_00" Name="雌火龙"/>
@@ -12,6 +12,7 @@
     <Monster ID="em007_00" Name="角龙"/>
     <Monster ID="em007_01" Name="黑角龙"/>
     <Monster ID="em011_00" Name="麒麟"/>
+    <Monster ID="em013_00" Name="黑龙"/>
     <Monster ID="em018_00" Name="黑狼鸟"/>
     <Monster ID="em018_05" Name="战痕黑狼鸟"/>
     <Monster ID="em023_00" Name="金狮子"/>
@@ -163,7 +164,8 @@
     <Part ID="MONSTER_PART_SILVER_SPIKES_LWING" Name="左翼的银刺"/>
     <Part ID="MONSTER_PART_SILVER_SPIKES_RWING" Name="右翼的银刺"/>
     <!-- Special parts -->
-    <Part ID="MONSTER_PART_BIG_FLINCH" Name="大退缩"/>
+    <Part ID="MONSTER_PART_KNOCKDOWN" Name="击倒"/>
+    <Part ID="MONSTER_PART_BIG_FLINCH" Name="大胆怯"/>
     <Part ID="MONSTER_PART_RAGE" Name="可消除的愤怒"/>
     <Part ID="MONSTER_PART_COUNTERATTACK" Name="反击"/>
     <Part ID="MONSTER_PART_CHARGE" Name="可消除的命令"/>
@@ -234,14 +236,14 @@
   </Mantles>
   <Fertilizers>
     <Fertilizer ID="0" Name="无肥料"/>
-    <Fertilizer ID="1" Name="成长力UP【小】"/>
-    <Fertilizer ID="2" Name="成长力UP【大】"/>
-    <Fertilizer ID="3" Name="香菇收获量UP【小】"/>
-    <Fertilizer ID="4" Name="香菇收获量UP【大】"/>
-    <Fertilizer ID="5" Name="虫·蜂蜜收获量UP【小】"/>
-    <Fertilizer ID="6" Name="虫·蜂蜜收获量UP【大】"/>
-    <Fertilizer ID="7" Name="草·果实收获量UP【小】"/>
-    <Fertilizer ID="8" Name="草·果实收获量UP【大】"/>
+    <Fertilizer ID="1" Name="成长力提升【小】"/>
+    <Fertilizer ID="2" Name="成长力提升【大】"/>
+    <Fertilizer ID="3" Name="香菇收获量提升【小】"/>
+    <Fertilizer ID="4" Name="香菇收获量提升【大】"/>
+    <Fertilizer ID="5" Name="虫·蜂蜜收获量提升【小】"/>
+    <Fertilizer ID="6" Name="虫·蜂蜜收获量提升【大】"/>
+    <Fertilizer ID="7" Name="草·果实收获量提升【小】"/>
+    <Fertilizer ID="8" Name="草·果实收获量提升【大】"/>
   </Fertilizers>
   <Stages>
     <Stage ID="0" Name="主菜单"/>
@@ -272,6 +274,7 @@
     <Stage ID="413" Name="起源的孤岛(天地煌啼龙)"/>
     <Stage ID="415" Name="幽境之谷"/>
     <Stage ID="416" Name="幽境之谷"/>
+    <Stage ID="417" Name="虚黑城"/>
     <Stage ID="501" Name="二等小屋"/>
     <Stage ID="502" Name="一等小屋"/>
     <Stage ID="503" Name="特等小屋"/>
@@ -298,25 +301,29 @@
   <Abnormalities>
     <Abnormality ID="UNKNOWN_ABNORMALITY" Name="未知状态(ID: {AbnormalityID})"/>
     <Abnormality ID="HUNTINGHORN_000_00" Name="自我强化"/>
-    <Abnormality ID="HUNTINGHORN_999_00" Name="攻击力UP&amp;弹武无效"/>
-    <Abnormality ID="HUNTINGHORN_001_00" Name="攻击力UP·小"/>
-    <Abnormality ID="HUNTINGHORN_001_01" Name="攻击力UP·大"/>
-    <Abnormality ID="HUNTINGHORN_002_00" Name="攻击力UP·大"/>
-    <Abnormality ID="HUNTINGHORN_002_01" Name="攻击力UP·特大"/>
-    <Abnormality ID="HUNTINGHORN_003_00" Name="体力UP·小"/>
-    <Abnormality ID="HUNTINGHORN_004_00" Name="体力UP·大"/>
+    <Abnormality ID="HUNTINGHORN_999_00" Name="攻击力提升&amp;弹武无效"/>
+    <Abnormality ID="HUNTINGHORN_001_00" Name="攻击力提升·小"/>
+    <Abnormality ID="HUNTINGHORN_001_01" Name="攻击力提升·大"/>
+    <Abnormality ID="HUNTINGHORN_002_00" Name="攻击力提升·大"/>
+    <Abnormality ID="HUNTINGHORN_002_01" Name="攻击力提升·特大"/>
+    <Abnormality ID="HUNTINGHORN_003_00" Name="体力提升·小"/>
+    <Abnormality ID="HUNTINGHORN_004_00" Name="体力提升·大"/>
     <Abnormality ID="HUNTINGHORN_005_00" Name="耐力消费减轻·小"/>
     <Abnormality ID="HUNTINGHORN_006_00" Name="耐力消费减轻·大"/>
     <Abnormality ID="HUNTINGHORN_007_00" Name="风压无效·小"/>
     <Abnormality ID="HUNTINGHORN_008_00" Name="风压完全无效"/>
-    <Abnormality ID="HUNTINGHORN_009_00" Name="防御力UP·小"/>
-    <Abnormality ID="HUNTINGHORN_009_01" Name="防御力UP·大"/>
-    <Abnormality ID="HUNTINGHORN_010_00" Name="防御力UP·大"/>
-    <Abnormality ID="HUNTINGHORN_010_01" Name="防御力UP·特大"/>
+    <Abnormality ID="HUNTINGHORN_009_00" Name="防御力提升·小"/>
+    <Abnormality ID="HUNTINGHORN_009_01" Name="防御力提升·大"/>
+    <Abnormality ID="HUNTINGHORN_010_00" Name="防御力提升·大"/>
+    <Abnormality ID="HUNTINGHORN_010_01" Name="防御力提升·特大"/>
     <Abnormality ID="HUNTINGHORN_011_00" Name="特殊装具消费减轻·小"/>
     <Abnormality ID="HUNTINGHORN_012_00" Name="特殊装具消费减轻·大"/>
-    <Abnormality ID="HUNTINGHORN_018_00" Name="体力恢复速度UP·小"/>
-    <Abnormality ID="HUNTINGHORN_019_00" Name="体力恢复速度UP·小"/>
+    <Abnormality ID="HUNTINGHORN_013_00" Name="体力回复·小"/>
+    <Abnormality ID="HUNTINGHORN_014_00" Name="体力回复·大"/>
+    <Abnormality ID="HUNTINGHORN_015_00" Name="体力回复·小&amp;解毒"/>
+    <Abnormality ID="HUNTINGHORN_016_00" Name="体力回复·中&amp;解毒"/>
+    <Abnormality ID="HUNTINGHORN_018_00" Name="体力回复速度提升·小"/>
+    <Abnormality ID="HUNTINGHORN_019_00" Name="体力回复速度提升·大"/>
     <Abnormality ID="HUNTINGHORN_020_00" Name="听觉保护·小"/>
     <Abnormality ID="HUNTINGHORN_021_00" Name="听觉保护·大"/>
     <Abnormality ID="HUNTINGHORN_022_00" Name="精灵王的加护"/>
@@ -348,26 +355,29 @@
     <Abnormality ID="HUNTINGHORN_038_01" Name="龙属性防御强化·特大"/>
     <Abnormality ID="HUNTINGHORN_039_00" Name="属性攻击力提升"/>
     <Abnormality ID="HUNTINGHORN_040_00" Name="全属性异常无效"/>
-    <Abnormality ID="HUNTINGHORN_041_00" Name="未知状态"/>
+    <Abnormality ID="HUNTINGHORN_041_00" Name="高周波"/>
+    <Abnormality ID="HUNTINGHORN_042_00" Name="全旋律延长"/>
     <Abnormality ID="HUNTINGHORN_043_00" Name="后仰无效"/>
     <Abnormality ID="HUNTINGHORN_045_00" Name="全属性防御强化"/>
-    <Abnormality ID="HUNTINGHORN_046_00" Name="会心率UP·小"/>
+    <Abnormality ID="HUNTINGHORN_046_00" Name="会心率提升·小"/>
     <Abnormality ID="HUNTINGHORN_047_00" Name="全状态异常无效"/>
     <Abnormality ID="HUNTINGHORN_048_00" Name="风压无效&amp;听觉保护"/>
     <Abnormality ID="HUNTINGHORN_049_00" Name="异常攻击力提升"/>
-    <Abnormality ID="HUNTINGHORN_053_00" Name="耐力最大值UP&amp;回复"/>
-    <Abnormality ID="HUNTINGHORN_054_00" Name="体力最大值UP&amp;回复"/>
-    <Abnormality ID="HUNTINGHORN_055_00" Name="速度&amp;回避性能UP"/>
+    <Abnormality ID="HUNTINGHORN_051_00" Name="响周波"/>
+    <Abnormality ID="HUNTINGHORN_052_00" Name="响周波 &quot;龙&quot;"/>
+    <Abnormality ID="HUNTINGHORN_053_00" Name="耐力最大值提升&amp;回复"/>
+    <Abnormality ID="HUNTINGHORN_054_00" Name="体力最大值提升&amp;回复"/>
+    <Abnormality ID="HUNTINGHORN_055_00" Name="速度&amp;回避性能提升"/>
     <Abnormality ID="HUNTINGHORN_056_00" Name="属性效果提升"/>
     <Abnormality ID="HUNTINGHORN_943_00" Name="属性效果提升"/>
-    <Abnormality ID="PALICO_000_00" Name="猫·回避性能UP"/>
-    <Abnormality ID="PALICO_001_00" Name="猫·攻击力UP·小"/>
-    <Abnormality ID="PALICO_002_00" Name="猫·攻击力UP·大"/>
-    <Abnormality ID="PALICO_003_00" Name="猫·防御力UP·小"/>
-    <Abnormality ID="PALICO_004_00" Name="猫·防御力UP·大"/>
-    <Abnormality ID="PALICO_005_00" Name="猫·会心率UP"/>
-    <Abnormality ID="PALICO_006_00" Name="猫·回复速度UP·小"/>
-    <Abnormality ID="PALICO_007_00" Name="猫·体力UP·小"/>
+    <Abnormality ID="PALICO_000_00" Name="猫·回避性能提升"/>
+    <Abnormality ID="PALICO_001_00" Name="猫·攻击力提升·小"/>
+    <Abnormality ID="PALICO_002_00" Name="猫·攻击力提升·大"/>
+    <Abnormality ID="PALICO_003_00" Name="猫·防御力提升·小"/>
+    <Abnormality ID="PALICO_004_00" Name="猫·防御力提升·大"/>
+    <Abnormality ID="PALICO_005_00" Name="猫·会心率提升"/>
+    <Abnormality ID="PALICO_006_00" Name="猫·回复速度提升·小"/>
+    <Abnormality ID="PALICO_007_00" Name="猫·体力提升·小"/>
     <Abnormality ID="PALICO_008_00" Name="猫·耐力消费减轻·小"/>
     <Abnormality ID="PALICO_009_00" Name="未知状态"/>
     <Abnormality ID="PALICO_010_00" Name="猫·精灵王的加护"/>
@@ -380,7 +390,7 @@
     <Abnormality ID="PALICO_017_00" Name="猫·地形伤害无效"/>
     <Abnormality ID="PALICO_018_00" Name="未知"/>
     <Abnormality ID="DEBUFF_000_00" Name="中毒"/>
-    <Abnormality ID="DEBUFF_001_00" Name="未知"/>
+    <Abnormality ID="DEBUFF_001_00" Name="剧毒"/>
     <Abnormality ID="DEBUFF_002_00" Name="未知"/>
     <Abnormality ID="DEBUFF_003_00" Name="未知"/>
     <Abnormality ID="DEBUFF_004_00" Name="火属性异常"/>
@@ -389,7 +399,7 @@
     <Abnormality ID="DEBUFF_007_00" Name="冰属性异常"/>
     <Abnormality ID="DEBUFF_008_00" Name="龙属性异常"/>
     <Abnormality ID="DEBUFF_009_00" Name="撕裂伤害"/>
-    <Abnormality ID="DEBUFF_010_00" Name="裂伤恢复"/>
+    <Abnormality ID="DEBUFF_010_00" Name="裂伤解除"/>
     <Abnormality ID="DEBUFF_011_00" Name="瘴气异常"/>
     <Abnormality ID="DEBUFF_012_00" Name="防御下降"/>
     <Abnormality ID="DEBUFF_014_00" Name="属性耐性下降"/>
@@ -398,7 +408,7 @@
     <Abnormality ID="DEBUFF_020_00" Name="爆破黏菌"/>
     <Abnormality ID="MISC_000_00" Name="强走药"/>
     <Abnormality ID="MISC_001_00" Name="耐力雷虫"/>
-    <Abnormality ID="MISC_002_00" Name="恢复力UP"/>
+    <Abnormality ID="MISC_002_00" Name="星辰肉脯"/>
     <Abnormality ID="MISC_004_00" Name="怪力种子"/>
     <Abnormality ID="MISC_004_01" Name="怪力药丸"/>
     <Abnormality ID="MISC_008_00" Name="忍耐种子"/>
@@ -413,13 +423,13 @@
     <Abnormality ID="MISC_016_02" Name="硬化药·大"/>
     <Abnormality ID="MISC_023_00" Name="冷饮"/>
     <Abnormality ID="MISC_024_00" Name="热饮"/>
-    <Abnormality ID="MISC_026_00" Name="温泉：HP回复"/>
+    <Abnormality ID="MISC_026_00" Name="温泉：体力回复"/>
     <Abnormality ID="MISC_027_00" Name="温泉：寒冷耐性"/>
     <Abnormality ID="MISC_030_00" Name="雪人头"/>
-    <Abnormality ID="MISC_034_00" Name="鬼毬果：攻击UP"/>
+    <Abnormality ID="MISC_034_00" Name="鬼毬果：攻击提升"/>
     <Abnormality ID="MISC_035_00" Name="冰耐草：冰耐性提升"/>
-    <Abnormality ID="MISC_073_00" Name="攻击&amp;防御UP"/>
-    <Abnormality ID="MISC_999_00" Name="饥饿计时"/>
+    <Abnormality ID="MISC_073_00" Name="攻击&amp;防御提升"/>
+    <Abnormality ID="MISC_999_00" Name="用餐计时"/>
     <Abnormality ID="GEAR_000_00" Name="鬼人弹"/>
     <Abnormality ID="GEAR_001_00" Name="硬化弹"/>
     <Abnormality ID="GEAR_002_00" Name="不屈"/>
@@ -433,8 +443,8 @@
     <Abnormality ID="GEAR_010_00" Name="寒气炼成"/>
     <Abnormality ID="GEAR_015_00" Name="攻击守势"/>
     <Abnormality ID="GEAR_016_00" Name="转祸为福"/>
-    <Abnormality ID="GEAR_099_00" Name="回避衣·攻击UP"/>
-    <Abnormality ID="GEAR_100_00" Name="达人烟·会心UP"/>
+    <Abnormality ID="GEAR_099_00" Name="回避衣·攻击力提升"/>
+    <Abnormality ID="GEAR_100_00" Name="达人烟·会心提升"/>
   </Abnormalities>
   <!-- Client localization strings -->
   <Client>
@@ -443,11 +453,19 @@
       <String ID="CONSOLE_SETTINGS" Name="设置"/>
       <String ID="CONSOLE_UPLOADBUILD" Name="上传配装"/>
       <String ID="CONSOLE_EXPORTGEAR" Name="导出装饰珠"/>
+      <String ID="CONSOLE_PLUGINS" Name="插件"/>
       <String ID="CONSOLE_CHANGELOG" Name="更新记录"/>
       <String ID="CONSOLE_DISCORD" Name="Discord"/>
       <String ID="CONSOLE_GITHUB" Name="GitHub"/>
       <String ID="CONSOLE_LAUNCH" Name="启动游戏"/>
       <String ID="CONSOLE_VERSION" Name="版本: {HunterPie_Version} ({HunterPie_Branch})"/>
+      <!-- Plugins -->
+      <String ID="MESSAGE_GET_MORE_PLUGINS" Name="获得更多插件!"/>
+      <String ID="MESSAGE_OPEN_PLUGINS_FOLDER" Name="打开插件文件夹"/>
+      <String ID="MESSAGE_PLUGIN_INSTALL" Name="安装插件"/>
+      <String ID="MESSAGE_PLUGIN_INSTALL_DESC" Name="把你的module.json放在这里来安装插件."/>
+      <String ID="MESSAGE_PLUGIN_INSTALLED" Name="插件: {name} 已安装! 重启Hunterpie以加载插件!"/>
+      <String ID="ERROR_PLUGIN_AUTO_UPDATE" Name="这个插件不支持自动更新. 您需要手动下载它的文件."/>
       <!-- Popups -->
       <String ID="MESSAGE_QUIT" Name="确定要退出HunterPie吗?"/>
       <String ID="TITLE_MISSING_PATH" Name="未找到《怪物猎人：世界》路径"/>
@@ -634,9 +652,9 @@
       <String ID="ENABLE_METER_DPS" Name="显示DPS"/>
       <String ID="ENABLE_METER_DPS_DESC" Name="如启用，伤害部件会显示每个人的DPS(秒伤害)"/>
       <String ID="ENABLE_TIMER_IN_GL" Name="在探索/聚魔之地启用计时器"/>
-      <String ID="ENABLE_TIMER_IN_GL_DESC" Name="如启用，在探索/聚魔之地将会启用计时器."/>
+      <String ID="ENABLE_TIMER_IN_GL_DESC" Name="如启用，在探索/聚魔之地将会显示计时器."/>
       <String ID="ENABLE_ONLY_TIMER" Name="仅显示计时器"/>
-      <String ID="ENABLE_ONLY_TIMER_DESC" Name="如启用，伤害部件将会仅显示计时，隐藏成员伤害统计部分"/>
+      <String ID="ENABLE_ONLY_TIMER_DESC" Name="如启用，伤害部件将会仅显示计时，隐藏成员伤害统计"/>
       <String ID="ENABLE_METER_ONLY_MYSELF" Name="仅显示自己的伤害"/>
       <String ID="ENABLE_METER_ONLY_MYSELF_DESC" Name="如启用，伤害部件只会显示自己的伤害统计"/>
       <String ID="STATIC_METER_PLAYER_1" Name="第一个玩家"/>
@@ -691,6 +709,10 @@
       <String ID="ENABLE_DUALBLADES_HELPER_DESC" Name="如开启，当您装备双刀时，小组件便会显示"/>
       <String ID="ENABLE_LANCE_HELPER" Name="长枪组件"/>
       <String ID="ENABLE_LANCE_HELPER_DESC" Name="如开启，当您装备长枪时，小组件便会显示"/>
+      <String ID="ENABLE_HEAVYBOWGUN_HELPER" Name="重弩组件"/>
+      <String ID="ENABLE_HEAVYBOWGUN_HELPER_DESC" Name="如开启，当您装备重弩时，小组件便会显示"/>
+      <String ID="ENABLE_HUNTINGHORN_HELPER" Name="狩猎笛组件"/>
+      <String ID="ENABLE_HUNTINGHORN_HELPER_DESC" Name="如开启，当您装备狩猎笛时，小组件便会显示"/>
       <String ID="STATIC_CLASSES_BETA_WARNING" Name="请注意：武器组件仍在开发中，将来会支持更多武器。每种组件均有自己的位置，请在编辑模式中调整"/>
       <!-- Links -->
       <String ID="STATIC_HUNTERPIE_WIKI" Name="支持文件(英文)"/>
@@ -703,14 +725,16 @@
       <String ID="STATIC_HUNTERPIE_PAYPAL" Name="PayPal"/>
       <String ID="STATIC_HUNTERPIE_PAYPAL_DESC" Name="如果您想支持HunterPie开发，请考虑赞助！"/>
       <!-- Debug -->
-      <String ID="ENABLE_DEBUG_MESSAGES" Name="Debug信息"/>
-      <String ID="ENABLE_DEBUG_MESSAGES_DESC" Name="启用Debug，如果您不知道自己在做什么，请不要打开此选项，这是开发者工具的一部分"/>
+      <String ID="ENABLE_DEBUG_MESSAGES" Name="纠错信息"/>
+      <String ID="ENABLE_DEBUG_MESSAGES_DESC" Name="启用纠错，如果您不知道自己在做什么，请不要打开此选项，这是开发者工具的一部分。"/>
       <String ID="ENABLE_UNKNOWN_AILMENTS" Name="启用未知的怪物异常状态"/>
       <String ID="ENABLE_UNKNOWN_AILMENTS_DESC" Name="启用未知的怪物异常状态。如果您不知道自己在做什么，请不要打开此选项，这是开发者工具的一部分。"/>
       <String ID="ENABLE_LOAD_CUSTOM_DATA" Name="载入自定义怪物数据"/>
       <String ID="ENABLE_LOAD_CUSTOM_DATA_DESC" Name="如启用，HunterPie将尝试载入自定义怪物数据档案。如果您不知道自己在做什么，请不要打开此选项，这是开发者工具的一部分。"/>
-      <String ID="STATIC_LOAD_CUSTOM_DATA_PATH" Name="自定义怪物数据档案:"/>
-      <String ID="STATIC_LOAD_CUSTOM_DATA_PATH_DESC" Name="选择您的自定义怪物数据档案路径"/>
+      <String ID="ENABLE_SEND_CRASH_TO_DEV" Name="将崩溃日志发给开发者"/>
+      <String ID="ENABLE_SEND_CRASH_TO_DEV_DESC" Name="如启用，HunterPie会自动将崩溃日志发给开发者。您可以禁用这个选项，但是开启会有利于错误修复。"/>
+      <String ID="STATIC_LOAD_CUSTOM_DATA_PATH" Name="自定义怪物数据档案："/>
+      <String ID="STATIC_LOAD_CUSTOM_DATA_PATH_DESC" Name="选择您的自定义怪物数据档案路径。"/>
       <!-- Generics -->
       <String ID="STATIC_BUTTON_SELECT_ALL" Name="全选"/>
       <String ID="STATIC_BUTTON_UNSELECT_ALL" Name="取消全选"/>
@@ -730,7 +754,7 @@
       <String ID="STATIC_SPECIALIZED_TOOLS_SETTINGS" Name="衣装部件"/>
       <String ID="STATIC_CLASSES_SETTINGS" Name="武器部件"/>
       <String ID="STATIC_LINKS_SETTINGS" Name="相关链接"/>
-      <String ID="STATIC_DEBUG_SETTINGS" Name="开发者工具"/>
+      <String ID="STATIC_DEBUG_SETTINGS" Name="纠错工具"/>
     </Settings>
     <Overlay>
       <String ID="STATIC_HARVEST_BOX_TITLE" Name="收获箱"/>
@@ -743,7 +767,7 @@
       <String ID="STATIC_OPENDEFAULTBROWSER" Name="在浏览器中打开"/>
       <String ID="STATIC_OPENFOLDER" Name="打开文件夹"/>
       <String ID="MESSAGE_BUILD_UPLOADED" Name="配装已上传至HoneyHuntersWorld!"/>
-      <String ID="MESSAGE_GEAR_EXPORTED" Name="已导出到DataExport!"/>
+      <String ID="MESSAGE_GEAR_EXPORTED" Name="已导出到./DataExport!"/>
     </Notifications>
     <RichPresence>
       <String ID="RPC_DESCRIPTION_IN_MAIN_MENU" Name="在主菜单"/>

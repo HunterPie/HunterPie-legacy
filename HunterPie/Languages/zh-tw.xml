@@ -704,6 +704,8 @@
       <String ID="ENABLE_CHARGE_BLADE_HELPER_DESC" Name="如果啟用，則每當您裝備充能斧時，充能斧小工具就會顯示"/>
       <String ID="ENABLE_SWITCH_AXE_HELPER" Name="斬擊斧小工具"/>
       <String ID="ENABLE_SWITCH_AXE_HELPER_DESC" Name="如果啟用，則每當您裝備斬擊斧時，斬擊斧小工具就會顯示"/>
+      <String ID="ENABLE_HUNTINGHORN_HELPER" Name="狩獵笛小工具"/>
+      <String ID="ENABLE_HUNTINGHORN_HELPER_DESC" Name="如果啟用，則每當您裝備狩獵笛時，狩獵笛小工具就會顯示"/>
       <String ID="ENABLE_GUN_LANCE_HELPER" Name="銃槍小工具"/>
       <String ID="ENABLE_GUN_LANCE_HELPER_DESC" Name="如果啟用，則每當您裝備銃槍時，銃槍小工具就會顯示"/>
       <String ID="ENABLE_LONGSWORD_HELPER" Name="太刀小工具"/>

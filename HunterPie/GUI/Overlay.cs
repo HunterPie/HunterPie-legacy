@@ -119,28 +119,34 @@ namespace HunterPie.GUI
 
         }
 
-        private void OnGameUnfocus(object source, EventArgs args)
+        private async void OnGameUnfocus(object source, EventArgs args)
         {
-            foreach (Widget widget in Widgets)
+            await Application.Current.Dispatcher.InvokeAsync(new Action(() =>
             {
-                widget.OverlayIsFocused = false;
-                if (!widget.InDesignMode)
+                foreach (Widget widget in Widgets)
                 {
-                    widget.ApplySettings(true);
+                    widget.OverlayIsFocused = false;
+                    if (!widget.InDesignMode)
+                    {
+                        widget.ApplySettings(true);
+                    }
                 }
-            }
+            }));
         }
 
-        private void OnGameFocus(object source, EventArgs args)
+        private async void OnGameFocus(object source, EventArgs args)
         {
-            foreach (Widget widget in Widgets)
+            await Application.Current.Dispatcher.InvokeAsync(new Action(() =>
             {
-                widget.OverlayIsFocused = true;
-                if (!widget.InDesignMode)
+                foreach (Widget widget in Widgets)
                 {
-                    widget.ApplySettings(true);
+                    widget.OverlayIsFocused = true;
+                    if (!widget.InDesignMode)
+                    {
+                        widget.ApplySettings(true);
+                    }
                 }
-            }
+            }));
         }
 
         /* Positions and enable/disable components */

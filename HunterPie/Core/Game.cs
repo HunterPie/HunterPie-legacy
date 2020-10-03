@@ -112,17 +112,31 @@ namespace HunterPie.Core
         {
             Debugger.Warn(GStrings.GetLocalizationByXPath("/Console/String[@ID='MESSAGE_GAME_SCANNER_STOP']"));
             UnhookEvents();
-            FirstMonster.StopThread();
-            SecondMonster.StopThread();
-            ThirdMonster.StopThread();
-            Player.StopScanning();
-            scanGameThreading.Abort();
+            FirstMonster?.StopThread();
+            SecondMonster?.StopThread();
+            ThirdMonster?.StopThread();
+            Player?.StopScanning();
+            scanGameThreading?.Abort();
             IsActive = false;
         }
 
-        private void HookEvents() => Player.OnZoneChange += OnZoneChange;
+        private void HookEvents()
+        {
+            if (Player is null)
+            {
+                return;
+            }
+            Player.OnZoneChange += OnZoneChange;
+        }
 
-        public void UnhookEvents() => Player.OnZoneChange -= OnZoneChange;
+        public void UnhookEvents()
+        {
+            if (Player is null)
+            {
+                return;
+            }
+            Player.OnZoneChange -= OnZoneChange;
+        }
 
         public void OnZoneChange(object source, EventArgs e)
         {

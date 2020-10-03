@@ -589,7 +589,14 @@ namespace HunterPie
             if (!string.IsNullOrEmpty(MonsterHunter.Player.SessionID) && MonsterHunter.Player.IsLoggedOn)
             {
                 ExportGameData();
-                File.WriteAllText(Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "Sessions.txt"), MonsterHunter.Player.SessionID);
+                // Because some people don't give permissions to write to files zzzzz
+                try
+                {
+                    File.WriteAllText(Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "Sessions.txt"), MonsterHunter.Player.SessionID);
+                } catch
+                {
+                    Debugger.Error("Missing permissions to write to files.");
+                }
             }
         }
 

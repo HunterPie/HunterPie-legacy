@@ -696,6 +696,8 @@
       <String ID="ENABLE_CHARGE_BLADE_HELPER_DESC" Name="If enabled, the Charge Blade helper will be visible whenever you equip an Charge Blade."/>
       <String ID="ENABLE_SWITCH_AXE_HELPER" Name="Enable Switch Axe Helper"/>
       <String ID="ENABLE_SWITCH_AXE_HELPER_DESC" Name="If enabled, the Switch Axe helper will be visible whenever you equip an Switch Axe."/>
+      <String ID="ENABLE_HUNTINGHORN_HELPER" Name="Enable Hunting Horn Helper"/>
+      <String ID="ENABLE_HUNTINGHORN_HELPER_DESC" Name="If enabled, the Hunting Horn helper will be visible whenever you equip a Hunting Horn."/>
       <String ID="ENABLE_GUN_LANCE_HELPER" Name="Enable Gun Lance Helper"/>
       <String ID="ENABLE_GUN_LANCE_HELPER_DESC" Name="If enabled, the Gun Lance helper will be visible whenever you equip an Gun Lance."/>
       <String ID="ENABLE_LONGSWORD_HELPER" Name="Enable Longsword Helper"/>
