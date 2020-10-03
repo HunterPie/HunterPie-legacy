@@ -297,8 +297,11 @@ namespace HunterPie.Core.Integrations.Discord
             if (disposing)
             {
                 UnhookEvents();
-                Client?.ClearPresence();
-                Client?.Dispose();
+                if (!(Client is null) && Client.IsInitialized)
+                {
+                    Client.ClearPresence();
+                    Client.Dispose();
+                }
                 Instance = null;
             }
             IsDisposed = true;
