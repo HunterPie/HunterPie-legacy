@@ -274,6 +274,7 @@
       <Part Name="MONSTER_PART_KNOCKDOWN" IsRemovable="True"/>
       <Part Name="MONSTER_PART_HEAD" Group="HEAD" TenderizeIds="0,3">
         <Break Threshold="3"/>
+        <Break Threshold="6"/>
       </Part>
       <Part Name="MONSTER_PART_NECK" Group="NECK"/>
       <Part Name="MONSTER_PART_CHEST" Group="CHEST">
