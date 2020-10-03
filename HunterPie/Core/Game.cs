@@ -151,8 +151,6 @@ namespace HunterPie.Core
                 // Since monsters are independent, we still need to sync them with eachother
                 // to use the lockon
 
-                // Stack alloc is much faster than creating a new array on the heap
-                // so we use it then move the values to the AliveMonsters array
                 aliveMonsters[0] = FirstMonster.IsActuallyAlive;
                 aliveMonsters[1] = SecondMonster.IsActuallyAlive;
                 aliveMonsters[2] = ThirdMonster.IsActuallyAlive;
