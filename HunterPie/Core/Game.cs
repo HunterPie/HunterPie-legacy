@@ -70,8 +70,9 @@ namespace HunterPie.Core
         private ThreadStart scanGameThreadingRef;
         private Thread scanGameThreading;
 
-        // Clock event
+        private readonly bool[] aliveMonsters = new bool[3];
 
+        // Clock event
         public delegate void ClockEvent(object source, EventArgs args);
 
         /* This Event is dispatched every 10 seconds to update the rich presence */
@@ -152,23 +153,17 @@ namespace HunterPie.Core
 
                 // Stack alloc is much faster than creating a new array on the heap
                 // so we use it then move the values to the AliveMonsters array
-                unsafe
-                {
-                    fixed (bool* aliveMonsters = stackalloc bool[3])
-                    {
-                        aliveMonsters[0] = FirstMonster.IsActuallyAlive;
-                        aliveMonsters[1] = SecondMonster.IsActuallyAlive;
-                        aliveMonsters[2] = ThirdMonster.IsActuallyAlive;
+                aliveMonsters[0] = FirstMonster.IsActuallyAlive;
+                aliveMonsters[1] = SecondMonster.IsActuallyAlive;
+                aliveMonsters[2] = ThirdMonster.IsActuallyAlive;
 
-                        for (int i = 0; i < 3; i++)
-                        {
-                            FirstMonster.AliveMonsters[i] = aliveMonsters[i];
-                            SecondMonster.AliveMonsters[i] = aliveMonsters[i];
-                            ThirdMonster.AliveMonsters[i] = aliveMonsters[i];
-                        }
-                    }
+                for (int i = 0; i < 3; i++)
+                {
+                    FirstMonster.AliveMonsters[i] = aliveMonsters[i];
+                    SecondMonster.AliveMonsters[i] = aliveMonsters[i];
+                    ThirdMonster.AliveMonsters[i] = aliveMonsters[i];
                 }
-                
+
                 Thread.Sleep(UserSettings.PlayerConfig.Overlay.GameScanDelay);
             }
             Thread.Sleep(1000);
