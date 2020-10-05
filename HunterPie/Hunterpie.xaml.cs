@@ -408,7 +408,7 @@ namespace HunterPie
         private bool CheckIfItsRunningFromWinrar()
         {
             string path = AppDomain.CurrentDomain.BaseDirectory;
-            return path.Contains("Temp\\Rar");
+            return path.Contains("AppData\\Local\\Temp\\");
         }
 
         private void LoadCustomTheme()

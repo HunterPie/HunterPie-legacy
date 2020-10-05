@@ -1178,7 +1178,7 @@ namespace HunterPie.Core
             int currentAmmo = Kernel.Read<int>(weaponAddress);
             int totalBigAmmo = Kernel.Read<int>(weaponAddress + 0x10);
             int currentBigAmmo = Kernel.Read<int>(weaponAddress + 0xC);
-            float wyvernsfire = Kernel.Read<float>(AbnormalitiesAddress + 0xBC0);
+            float wyvernsfire = Kernel.Read<float>(AbnormalitiesAddress + 0xC20);
             bool hasFirestakeLoaded = Kernel.Read<float>(weaponAddress + 0xBC) != 0f;
             float wyvernstakeMax = Kernel.Read<float>(weaponAddress + 0xC0);
             // Check if the Firestake timer ptr is 0
