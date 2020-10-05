@@ -1,6 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-namespace HunterPie.Core.Enums
+﻿namespace HunterPie.Core.Enums
 {
     public class Helper
     {

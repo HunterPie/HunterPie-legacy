@@ -4,7 +4,6 @@ using System.IO;
 using System.Linq;
 using System.Xml;
 using HunterPie.Core.Enums;
-using HunterPie.Core;
 using HunterPie.Logger;
 
 namespace HunterPie.Core

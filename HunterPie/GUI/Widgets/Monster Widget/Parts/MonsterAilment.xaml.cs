@@ -6,6 +6,7 @@ using System.Windows.Media;
 using HunterPie.Core;
 using Timer = System.Threading.Timer;
 using HunterPie.Core.Events;
+using static HunterPie.Core.UserSettings.Config;
 
 namespace HunterPie.GUI.Widgets.Monster_Widget.Parts
 {
@@ -16,7 +17,8 @@ namespace HunterPie.GUI.Widgets.Monster_Widget.Parts
     {
         Ailment Context;
         Timer VisibilityTimer;
-        bool IsAilmentGroupEnabled;
+        bool IsGroupEnabled;
+        Monsterscomponent Component = UserSettings.PlayerConfig.Overlay.MonstersComponent;
 
         public Brush AilmentGroupColor
         {
@@ -32,8 +34,8 @@ namespace HunterPie.GUI.Widgets.Monster_Widget.Parts
         public void SetContext(Ailment ctx, double MaxBarSize)
         {
             Context = ctx;
-            IsAilmentGroupEnabled = UserSettings.PlayerConfig.Overlay.MonstersComponent.EnabledAilmentGroups.Contains(Context.Group);
-            AilmentGroupColor = UserSettings.PlayerConfig.Overlay.MonstersComponent.EnableAilmentsBarColor ?
+            IsGroupEnabled = Component.EnabledAilmentGroups.Contains(Context.Group);
+            AilmentGroupColor = Component.EnableAilmentsBarColor ?
                     FindResource($"MONSTER_AILMENT_COLOR_{Context.Group}") as Brush :
                     FindResource("MONSTER_AILMENT_COLOR_UNKNOWN") as Brush;
             SetAilmentInformation(MaxBarSize);
@@ -62,25 +64,18 @@ namespace HunterPie.GUI.Widgets.Monster_Widget.Parts
         #region Settings
         public void ApplySettings()
         {
+            bool isHidden = Component.HidePartsAfterSeconds;
+            bool enabled = Component.EnableMonsterAilments;
 
-            Visibility visibility;
-            if (UserSettings.PlayerConfig.Overlay.MonstersComponent.EnableMonsterAilments &&
-                UserSettings.PlayerConfig.Overlay.MonstersComponent.EnabledAilmentGroups.Contains(Context.Group))
+            bool visible = !isHidden && enabled && IsGroupEnabled;
+            Dispatch(() =>
             {
-                visibility = Visibility.Visible;
-            }
-            else
-            {
-                visibility = Visibility.Collapsed;
-            }
-            if (UserSettings.PlayerConfig.Overlay.MonstersComponent.HidePartsAfterSeconds) visibility = Visibility.Collapsed;
-            Dispatch(() => {
-                Visibility = visibility;
-                AilmentGroupColor = UserSettings.PlayerConfig.Overlay.MonstersComponent.EnableAilmentsBarColor ?
+                Visibility = visible ? Visibility.Visible : Visibility.Collapsed;
+                AilmentGroupColor = Component.EnableAilmentsBarColor ?
                     FindResource($"MONSTER_AILMENT_COLOR_{Context.Group}") as Brush :
                     FindResource("MONSTER_AILMENT_COLOR_UNKNOWN") as Brush;
-                string format = Context.Duration > 0 ? UserSettings.PlayerConfig.Overlay.MonstersComponent.AilmentTimerTextFormat :
-                UserSettings.PlayerConfig.Overlay.MonstersComponent.AilmentBuildupTextFormat;
+                string format = Context.Duration > 0 ? Component.AilmentTimerTextFormat :
+                Component.AilmentBuildupTextFormat;
                 AilmentText.Text = FormatAilmentString(format, AilmentBar.Value, AilmentBar.MaxValue);
             });
         }
@@ -90,7 +85,7 @@ namespace HunterPie.GUI.Widgets.Monster_Widget.Parts
         #region Visibility timer
         private void StartVisibilityTimer()
         {
-            if (!UserSettings.PlayerConfig.Overlay.MonstersComponent.HidePartsAfterSeconds)
+            if (!Component.HidePartsAfterSeconds)
             {
                 ApplySettings();
                 return;
@@ -101,7 +96,7 @@ namespace HunterPie.GUI.Widgets.Monster_Widget.Parts
             }
             else
             {
-                VisibilityTimer.Change(UserSettings.PlayerConfig.Overlay.MonstersComponent.SecondsToHideParts * 1000, 0);
+                VisibilityTimer.Change(Component.SecondsToHideParts * 1000, 0);
             }
         }
 
@@ -121,43 +116,30 @@ namespace HunterPie.GUI.Widgets.Monster_Widget.Parts
 
         private void OnCounterChange(object source, MonsterAilmentEventArgs args)
         {
-            Visibility visibility;
-            if (UserSettings.PlayerConfig.Overlay.MonstersComponent.EnableMonsterAilments)
-            {
-                visibility = Visibility.Visible;
-            }
-            else
-            {
-                visibility = Visibility.Collapsed;
-            }
+            bool visible = Component.EnableMonsterAilments;
             Dispatcher.BeginInvoke(System.Windows.Threading.DispatcherPriority.Render, new Action(() =>
             {
                 AilmentCounter.Text = args.Counter.ToString();
-                Visibility = visibility;
+                Visibility = visible ? Visibility.Visible : Visibility.Collapsed;
                 StartVisibilityTimer();
             }));
         }
 
         private void OnDurationChange(object source, MonsterAilmentEventArgs args)
         {
-            if (args.MaxDuration <= 0) { return; }
-            Visibility visibility;
-            if (UserSettings.PlayerConfig.Overlay.MonstersComponent.EnableMonsterAilments && IsAilmentGroupEnabled)
-            {
-                visibility = Visibility.Visible;
-            }
-            else
-            {
-                visibility = Visibility.Collapsed;
-            }
+            if (args.MaxDuration <= 0) return;
+
+            bool enabled = Component.EnableMonsterAilments;
+            bool visible = enabled && IsGroupEnabled;
+
             if (args.Duration > 0)
             {
                 Dispatcher.BeginInvoke(System.Windows.Threading.DispatcherPriority.Render, new Action(() =>
                 {
                     AilmentBar.MaxValue = args.MaxDuration;
                     AilmentBar.Value = Math.Max(0, args.MaxDuration - args.Duration);
-                    AilmentText.Text = FormatAilmentString(UserSettings.PlayerConfig.Overlay.MonstersComponent.AilmentTimerTextFormat, AilmentBar.Value, AilmentBar.MaxValue); ;
-                    Visibility = visibility;
+                    AilmentText.Text = FormatAilmentString(Component.AilmentTimerTextFormat, AilmentBar.Value, AilmentBar.MaxValue); ;
+                    Visibility = visible ? Visibility.Visible : Visibility.Collapsed;
                     StartVisibilityTimer();
                 }));
             }
@@ -166,23 +148,18 @@ namespace HunterPie.GUI.Widgets.Monster_Widget.Parts
 
         private void OnBuildupChange(object source, MonsterAilmentEventArgs args)
         {
-            if (args.MaxBuildup <= 0) { return; }
-            Visibility visibility;
-            if (UserSettings.PlayerConfig.Overlay.MonstersComponent.EnableMonsterAilments && IsAilmentGroupEnabled)
-            {
-                visibility = Visibility.Visible;
-            }
-            else
-            {
-                visibility = Visibility.Collapsed;
-            }
+            if (args.MaxBuildup <= 0) return;
+
+            bool enabled = Component.EnableMonsterAilments;
+            bool visible = enabled && IsGroupEnabled;
+
             Dispatcher.BeginInvoke(System.Windows.Threading.DispatcherPriority.Render, new Action(() =>
             {
                 AilmentBar.MaxValue = Math.Max(1, args.MaxBuildup);
                 // Get the min between them so the buildup doesnt overflow
                 AilmentBar.Value = Math.Min(args.Buildup, args.MaxBuildup);
-                AilmentText.Text = FormatAilmentString(UserSettings.PlayerConfig.Overlay.MonstersComponent.AilmentBuildupTextFormat, AilmentBar.Value, AilmentBar.MaxValue);
-                Visibility = visibility;
+                AilmentText.Text = FormatAilmentString(Component.AilmentBuildupTextFormat, AilmentBar.Value, AilmentBar.MaxValue);
+                Visibility = visible ? Visibility.Visible : Visibility.Collapsed;
                 StartVisibilityTimer();
             }));
         }
@@ -201,8 +178,8 @@ namespace HunterPie.GUI.Widgets.Monster_Widget.Parts
                 AilmentBar.MaxValue = Math.Max(1, Context.MaxBuildup);
                 AilmentBar.Value = Math.Max(0, Context.MaxBuildup - Context.Buildup);
             }
-            string format = Context.Duration > 0 ? UserSettings.PlayerConfig.Overlay.MonstersComponent.AilmentTimerTextFormat :
-                UserSettings.PlayerConfig.Overlay.MonstersComponent.AilmentBuildupTextFormat;
+            string format = Context.Duration > 0 ? Component.AilmentTimerTextFormat :
+                Component.AilmentBuildupTextFormat;
             AilmentText.Text = FormatAilmentString(format, AilmentBar.Value, AilmentBar.MaxValue);
         }
 

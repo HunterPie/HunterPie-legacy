@@ -1,9 +1,7 @@
 ﻿using System;
-using System.Net;
 using System.Threading;
 using HunterPie.Logger;
 using HunterPie.Memory;
-using Microsoft.CodeAnalysis.CSharp.Syntax;
 
 namespace HunterPie.Core
 {

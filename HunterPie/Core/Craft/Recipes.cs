@@ -28,11 +28,12 @@ namespace HunterPie.Core.Craft
                 Debugger.Warn("Loaded crafting data!");
 
                 document = null;
-            } catch(Exception err)
+            }
+            catch (Exception err)
             {
                 Debugger.Error($"Failed to load crafting data.\n{err}");
             }
-            
+
         }
 
         public static Recipe XmlNodeToRecipe(XmlNode recipeData)
@@ -40,7 +41,7 @@ namespace HunterPie.Core.Craft
             if (recipeData?.Attributes is null)
             {
                 throw new ArgumentNullException(nameof(recipeData), "Crafting data cannot be null!");
-            } 
+            }
 
             Recipe recipe = new Recipe();
 
@@ -75,7 +76,8 @@ namespace HunterPie.Core.Craft
             if (List.ContainsKey(id))
             {
                 return List[id];
-            } else
+            }
+            else
             {
                 return null;
             }

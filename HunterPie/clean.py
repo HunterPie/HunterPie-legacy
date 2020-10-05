@@ -10,7 +10,8 @@ clean = [
     ".pdb"
 ]
 
-import os, shutil
+import os
+import shutil
 
 for shit in os.listdir():
     if (shit.endswith(".dll") and shit not in ignore_dlls):

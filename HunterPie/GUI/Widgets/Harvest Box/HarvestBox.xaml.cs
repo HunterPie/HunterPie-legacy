@@ -48,15 +48,10 @@ namespace HunterPie.GUI.Widgets
 
         public override void ApplySettings(bool FocusTrigger = false)
         {
-            bool ShowEverywhere = false;
-            if (UserSettings.PlayerConfig.Overlay.HarvestBoxComponent.AlwaysShow)
-            {
-                ShowEverywhere = true;
-            }
-            else
-            {
-                if (PlayerContext != null && PlayerContext.InHarvestZone) { ShowEverywhere = true; } else { ShowEverywhere = false; }
-            }
+            bool alwaysShow = UserSettings.PlayerConfig.Overlay.HarvestBoxComponent.AlwaysShow;
+            bool inHarverst = PlayerContext?.InHarvestZone ?? false;
+            bool shouldShow = alwaysShow || inHarverst;
+
             Dispatcher.BeginInvoke(System.Windows.Threading.DispatcherPriority.Background, new Action(() =>
             {
                 if (!FocusTrigger)
@@ -64,7 +59,7 @@ namespace HunterPie.GUI.Widgets
                     Top = UserSettings.PlayerConfig.Overlay.HarvestBoxComponent.Position[1] + UserSettings.PlayerConfig.Overlay.Position[1];
                     Left = UserSettings.PlayerConfig.Overlay.HarvestBoxComponent.Position[0] + UserSettings.PlayerConfig.Overlay.Position[0];
                     WidgetActive = UserSettings.PlayerConfig.Overlay.HarvestBoxComponent.Enabled;
-                    WidgetHasContent = ShowEverywhere;
+                    WidgetHasContent = shouldShow;
                     ScaleWidget(UserSettings.PlayerConfig.Overlay.HarvestBoxComponent.Scale, UserSettings.PlayerConfig.Overlay.HarvestBoxComponent.Scale);
                     SteamTracker.Visibility = UserSettings.PlayerConfig.Overlay.HarvestBoxComponent.ShowSteamTracker ? Visibility.Visible : Visibility.Collapsed;
                     ArgosyTracker.Visibility = UserSettings.PlayerConfig.Overlay.HarvestBoxComponent.ShowArgosyTracker ? Visibility.Visible : Visibility.Collapsed;
@@ -79,15 +74,8 @@ namespace HunterPie.GUI.Widgets
 
         private void SetMode(bool IsCompact)
         {
-            if (IsCompact)
-            {
-                BaseHeight = Height = 130;
-
-            }
-            else
-            {
-                BaseHeight = Height = 205;
-            }
+            int h = IsCompact ? 130 : 260;
+            BaseHeight = Height = h;
             foreach (FertilizerControl fC in HarvestBoxFertilizerHolder.Children)
             {
                 fC.SetMode(IsCompact);
@@ -180,15 +168,9 @@ namespace HunterPie.GUI.Widgets
 
         private void ChangeHarvestBoxState(object source, EventArgs args) => Dispatcher.BeginInvoke(System.Windows.Threading.DispatcherPriority.Background, new Action(() =>
         {
-            if (UserSettings.PlayerConfig.Overlay.HarvestBoxComponent.AlwaysShow)
-            {
-                WidgetHasContent = true;
-            }
-            else
-            {
-                if (PlayerContext.InHarvestZone) { WidgetHasContent = true; }
-                else { WidgetHasContent = false; }
-            }
+            bool alwaysShow = UserSettings.PlayerConfig.Overlay.HarvestBoxComponent.AlwaysShow;
+            bool inHarverst = PlayerContext?.InHarvestZone ?? false;
+            WidgetHasContent = alwaysShow || inHarverst;
             ChangeVisibility();
         }));
 
@@ -215,21 +197,17 @@ namespace HunterPie.GUI.Widgets
 
         private void OnMouseWheel(object sender, System.Windows.Input.MouseWheelEventArgs e)
         {
-            if (e.Delta > 0)
-            {
-                ScaleWidget(DefaultScaleX + 0.05, DefaultScaleY + 0.05);
-            }
-            else
-            {
-                ScaleWidget(DefaultScaleX - 0.05, DefaultScaleY - 0.05);
-            }
+            double delta = e.Delta > 0 ? 0.05 : -0.05;
+            ScaleWidget(DefaultScaleX + delta, DefaultScaleY + delta);
         }
 
         // Helper
         private string FormatToK(int value)
         {
-            if (value >= 1000000) return $"{(float)value / 1000000:0.0}M";
-            if (value >= 1000) return $"{(float)value / 1000:0.0}K";
+            if (value >= 1000000)
+                return $"{(float)value / 1000000:0.0}M";
+            if (value >= 1000)
+                return $"{(float)value / 1000:0.0}K";
             return value.ToString();
         }
     }

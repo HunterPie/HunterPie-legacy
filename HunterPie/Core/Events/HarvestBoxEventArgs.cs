@@ -1,5 +1,4 @@
 ﻿using System;
-using HunterPie.Core;
 
 namespace HunterPie.Core.Events
 {

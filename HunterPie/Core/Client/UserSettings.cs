@@ -2,7 +2,6 @@
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
-using System.Windows.Forms;
 using HunterPie.Logger;
 using Newtonsoft.Json;
 
@@ -344,7 +343,7 @@ namespace HunterPie.Core
         private static void OnConfigChanged(object source, FileSystemEventArgs e)
         {
             // Use try/catch because FileSystemWatcher sends the same event twice
-            // and one of them is when the file is still open 
+            // and one of them is when the file is still open
             try
             {
                 using (var fw = File.OpenRead(e.FullPath))

@@ -1,5 +1,4 @@
-﻿using HunterPie.Core;
-using AbnormalityType = HunterPie.Core.Enums.AbnormalityType;
+﻿using AbnormalityType = HunterPie.Core.Enums.AbnormalityType;
 using HunterPie.Core.Events;
 
 namespace HunterPie.Core

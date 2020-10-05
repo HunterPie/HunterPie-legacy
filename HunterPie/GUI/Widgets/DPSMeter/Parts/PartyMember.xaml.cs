@@ -3,7 +3,6 @@ using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Media;
 using HunterPie.Core;
-using HunterPie.Logger;
 using HunterPie.Core.Events;
 
 namespace HunterPie.GUI.Widgets.DPSMeter.Parts
@@ -182,66 +181,41 @@ namespace HunterPie.GUI.Widgets.DPSMeter.Parts
 
         public bool Equals(PartyMember other)
         {
-            if (other == null) return false;
-            else return Context.Damage.Equals(other.Context.Damage);
+            if (other != null)
+                return other.Context.Damage == Context.Damage;
+            return false;
         }
 
         public int CompareTo(PartyMember other)
         {
-            if (Context.Damage > other.Context.Damage) return -1;
-            else if (Context.Damage < other.Context.Damage) return 1;
-            else if (Equals(other)) return 0;
-            else return 0;
+            if (other != null)
+            {
+                int delta = other.Context.Damage - Context.Damage;
+                return delta == 0 ? 0 : delta > 0 ? 1 : -1;
+            }
+            return 0;
         }
 
         public void UpdateDamageTextSettings()
         {
-            bool DPSEnabled = UserSettings.PlayerConfig.Overlay.DPSMeter.ShowDPSWheneverPossible;
-            bool TotalEnabled = UserSettings.PlayerConfig.Overlay.DPSMeter.ShowTotalDamage;
-            // So many if and elses :peepoCry:
-            if (DPSEnabled)
-            {
-                if (TotalEnabled)
-                {
-                    TotalDamage.Height = 23;
-                    TotalDamage.Padding = new Thickness(0, 0, 0, 0);
-                    TotalDamage.Visibility = Visibility.Visible;
+            bool dpsEnabled = UserSettings.PlayerConfig.Overlay.DPSMeter.ShowDPSWheneverPossible;
+            bool totalEnabled = UserSettings.PlayerConfig.Overlay.DPSMeter.ShowTotalDamage;
 
-                    DamagePerSecond.Height = 23;
-                    DamagePerSecond.Padding = new Thickness(0, 0, 0, 0);
-                }
-                else
-                {
+            Percentage.Width = (dpsEnabled || totalEnabled) ? 54 : 132;
 
-                    DamagePerSecond.Height = 46;
-                    DamagePerSecond.Padding = new Thickness(0, 10, 0, 0);
-                }
-                DamagePerSecond.Visibility = Visibility.Visible;
-            }
-            else
+            DamagePerSecond.Visibility = dpsEnabled ? Visibility.Visible : Visibility.Collapsed;
+            TotalDamage.Visibility = totalEnabled ? Visibility.Visible : Visibility.Collapsed;
+
+            if (dpsEnabled || totalEnabled)
             {
-                DamagePerSecond.Visibility = Visibility.Collapsed;
-            }
-            if (TotalEnabled)
-            {
-                if (!DPSEnabled)
-                {
-                    TotalDamage.Height = 46;
-                    TotalDamage.Padding = new Thickness(0, 10, 0, 0);
-                }
-                TotalDamage.Visibility = Visibility.Visible;
-            }
-            else
-            {
-                TotalDamage.Visibility = Visibility.Collapsed;
-            }
-            if (!DPSEnabled && !TotalEnabled)
-            {
-                Percentage.Width = 132;
-            }
-            else
-            {
-                Percentage.Width = 54;
+                var noPadding = new Thickness(0, 0, 0, 0);
+                var padding = new Thickness(0, 10, 0, 0);
+
+                DamagePerSecond.Height = totalEnabled ? 23 : 46;
+                DamagePerSecond.Padding = totalEnabled ? noPadding : padding;
+
+                TotalDamage.Height = dpsEnabled ? 23 : 46;
+                TotalDamage.Padding = dpsEnabled ? noPadding : padding;
             }
         }
     }
