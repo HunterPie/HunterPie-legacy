@@ -9,7 +9,7 @@ using HunterPie.Logger;
 
 namespace HunterPie.Core
 {
-    class MonsterData
+    public class MonsterData
     {
         private static XmlDocument MonsterDataDocument;
         private static Dictionary<int, MonsterInfo> monstersInfo;
