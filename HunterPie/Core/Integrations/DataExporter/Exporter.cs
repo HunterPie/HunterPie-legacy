@@ -1,6 +1,5 @@
 ﻿using System;
 using System.IO;
-using HunterPie.Core.Definitions;
 using Helpers = HunterPie.Core.Definitions.Helpers;
 
 namespace HunterPie.Core.Integrations.DataExporter

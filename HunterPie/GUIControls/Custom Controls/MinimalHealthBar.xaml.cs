@@ -35,12 +35,12 @@ namespace HunterPie.GUIControls.Custom_Controls
         public static readonly DependencyProperty ColorProperty =
             DependencyProperty.Register("Color", typeof(Brush), typeof(MinimalHealthBar));
 
-        public Brush Background
+        public new Brush Background
         {
             get { return (Brush)GetValue(BackgroundProperty); }
             set { SetValue(BackgroundProperty, value); }
         }
-        public static readonly DependencyProperty BackgroundProperty =
+        public static new readonly DependencyProperty BackgroundProperty =
             DependencyProperty.Register("Background", typeof(Brush), typeof(MinimalHealthBar));
 
 

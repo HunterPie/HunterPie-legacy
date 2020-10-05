@@ -45,7 +45,8 @@ namespace HunterPie.Plugins
                     try
                     {
                         package.plugin.Initialize(ctx);
-                    } catch (Exception err)
+                    }
+                    catch (Exception err)
                     {
                         Debugger.Error(err);
                     }
@@ -57,7 +58,7 @@ namespace HunterPie.Plugins
         }
 
         public async Task<bool> PreloadPlugins()
-        {            
+        {
             Stopwatch benchmark = Stopwatch.StartNew();
             Debugger.Module("Pre loading modules");
             string[] modules = Directory.GetDirectories(Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "Modules"));
@@ -84,7 +85,8 @@ namespace HunterPie.Plugins
                             modInformation = JsonConvert.DeserializeObject<PluginInformation>(serializedModule);
 
                             Debugger.Module($"Updated plugin: {modInformation.Name}");
-                        } else
+                        }
+                        else
                         {
                             Debugger.Error($"Failed to update plugin: {modInformation.Name}");
                             continue;
@@ -117,7 +119,8 @@ namespace HunterPie.Plugins
                         dynamic mod = plugin.CreateInstance(entries.First().ToString());
                         packages.Add(new PluginPackage { plugin = mod, information = modInformation, settings = modSettings, path = module });
                     }
-                } catch (Exception err)
+                }
+                catch (Exception err)
                 {
                     Debugger.Error(err);
                     continue;
@@ -145,7 +148,7 @@ namespace HunterPie.Plugins
 
         public bool CompilePlugin(string pluginPath, PluginInformation information)
         {
-            
+
             var compiler = CSharpCompilation.Create($"{nameof(HunterPie)}{information.Name}", options: new CSharpCompilationOptions(OutputKind.DynamicallyLinkedLibrary)
                 .WithOptimizationLevel(OptimizationLevel.Release));
 
@@ -172,14 +175,14 @@ namespace HunterPie.Plugins
 
             // Load all basic dependencies
             List<MetadataReference> references = types.Select(type => MetadataReference.CreateFromFile(type.Assembly.Location)).ToList<MetadataReference>();
-            
+
             if (information.Dependencies != null)
             {
                 foreach (string extDependency in information.Dependencies)
                 {
                     references.Add(MetadataReference.CreateFromFile(Path.Combine(pluginPath, extDependency)));
                 }
-                
+
             }
             compiler = compiler.AddReferences(references);
             string code = File.ReadAllText(Path.Combine(pluginPath, information.EntryPoint));
@@ -203,14 +206,15 @@ namespace HunterPie.Plugins
             {
                 result = null;
                 return true;
-            } else
+            }
+            else
             {
                 Debugger.Error($"Failed to compile plugin: {information.Name}");
                 foreach (var exception in result.Diagnostics) Debugger.Error(exception);
                 result = null;
                 return false;
             }
-            
+
         }
 
         internal static PluginSettings GetPluginSettings(string path)
@@ -222,7 +226,8 @@ namespace HunterPie.Plugins
 
                 File.WriteAllText(Path.Combine(path, "plugin.settings.json"),
                     JsonConvert.SerializeObject(settings, Newtonsoft.Json.Formatting.Indented));
-            } else
+            }
+            else
             {
                 settings = JsonConvert.DeserializeObject<PluginSettings>(File.ReadAllText(Path.Combine(path, "plugin.settings.json")));
             }
@@ -252,7 +257,8 @@ namespace HunterPie.Plugins
 
                 plugin.Unload();
                 return true;
-            } catch(Exception err)
+            }
+            catch (Exception err)
             {
                 Debugger.Error(err);
                 return false;

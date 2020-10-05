@@ -25,12 +25,12 @@ This is the first monster context, it handles everything related to the first mo
 ### SecondMonster
 <params>Type: <a href="?p=Plugins/monster.md"><Type>Monster</Type></a></params>
 
-This is the second monster context, it handles everything related to the first monster.
+This is the second monster context, it handles everything related to the second monster.
 
 ### ThirdMonster
 <params>Type: <a href="?p=Plugins/monster.md"><Type>Monster</Type></a></params>
 
-This is the third monster context, it handles everything related to the first monster.
+This is the third monster context, it handles everything related to the third monster.
 
 ### HuntedMonster
 <params>Type: <a href="?p=Plugins/monster.md"><Type>Monster</Type></a></params>

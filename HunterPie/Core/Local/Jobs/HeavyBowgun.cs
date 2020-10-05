@@ -2,8 +2,6 @@
 using System.Collections.Generic;
 using HunterPie.Core.Definitions;
 using HunterPie.Core.Enums;
-using HunterPie.Logger;
-using Newtonsoft.Json;
 
 namespace HunterPie.Core.Jobs
 {
@@ -38,7 +36,7 @@ namespace HunterPie.Core.Jobs
         public HeavyBowgunEventArgs(HeavyBowgun weapon)
         {
             SpecialAmmoType = weapon.SpecialAmmoType;
-            
+
             WyvernheartTimer = weapon.WyvernheartTimer;
             WyvernheartMaxAmmo = HeavyBowgun.WyvernheartMaxAmmo;
 

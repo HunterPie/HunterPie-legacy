@@ -45,7 +45,7 @@ namespace HunterPie.GUIControls.Custom_Controls
             e.Handled = NumberRegex.IsMatch(e.Text);
         }
 
-        private void LostFocus(object sender, RoutedEventArgs e)
+        private new void LostFocus(object sender, RoutedEventArgs e)
         {
             TextBox s = sender as TextBox;
             if (string.IsNullOrEmpty(s.Text))
@@ -54,7 +54,7 @@ namespace HunterPie.GUIControls.Custom_Controls
             }
         }
 
-        private void GotFocus(object sender, RoutedEventArgs e)
+        private new void GotFocus(object sender, RoutedEventArgs e)
         {
             TextBox s = sender as TextBox;
             if (s.Text == "0")

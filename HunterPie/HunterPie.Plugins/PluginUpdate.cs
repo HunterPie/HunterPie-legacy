@@ -23,7 +23,7 @@ namespace HunterPie.Plugins
                 //Debugger.Error($"Failed to update plugin: {pInformation.Name}!");
                 return false;
             }
-            
+
             PluginInformation onlineInformation = JsonConvert.DeserializeObject<PluginInformation>(onlineSerializedInformation);
 
             if (!(Hunterpie.ParseVersion(Hunterpie.HUNTERPIE_VERSION) >= Hunterpie.ParseVersion(onlineInformation.Update.MinimumVersion)))
@@ -43,18 +43,19 @@ namespace HunterPie.Plugins
                 if (pInformation.Update.FileHashes.ContainsKey(filePath))
                 {
                     string localHash = pInformation.Update.FileHashes[filePath];
-                    
+
                     if (onlineHash.ToLower() != localHash.ToLower() || !File.Exists(Path.Combine(modPath, filePath)))
                     {
                         string updateurl = $"{pInformation.Update.UpdateUrl}/{filePath}";
                         string outputPath = Path.Combine(modPath, filePath);
-                        
+
                         if (!(await DownloadFileAsync(updateurl, outputPath, filePath)))
                         {
                             return false;
                         }
                     }
-                } else
+                }
+                else
                 {
                     string updateurl = $"{pInformation.Update.UpdateUrl}/{filePath}";
                     string outputPath = Path.Combine(modPath, filePath);
@@ -74,21 +75,22 @@ namespace HunterPie.Plugins
                 using (HttpClient client = new HttpClient())
                 {
                     byte[] data = await client.GetByteArrayAsync(new Uri(URL));
-                    
+
                     if (Path.GetDirectoryName(relFilepath).Length > 0)
                     {
                         string dirs = Path.GetDirectoryName(output);
-                        
+
                         if (!Directory.Exists(dirs))
                         {
                             Directory.CreateDirectory(dirs);
                         }
-                        
+
                     }
                     File.WriteAllBytes(output, data);
                     return true;
                 }
-            } catch(Exception err)
+            }
+            catch (Exception err)
             {
                 Debugger.Error(err);
                 return false;
@@ -108,7 +110,8 @@ namespace HunterPie.Plugins
                 {
                     return await client.GetStringAsync(new Uri(url));
                 }
-            } catch(Exception err)
+            }
+            catch (Exception err)
             {
                 Debugger.Error(err);
                 return null;

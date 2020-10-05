@@ -117,43 +117,41 @@ namespace HunterPie.GUI.Widgets.Abnormality_Widget.Parts
 
         private float ConvertPercentageIntoAngle(float percentage)
         {
-            float max = -269.999f;
             float angle = 90 - (360 * percentage);
-            if (angle < max) angle = max;
-            return angle;
+            float cap = -269.999f;
+            return Math.Max(angle, cap);
         }
 
         private string FormatToMinutes(int seconds)
         {
             TimeSpan TotalSeconds = TimeSpan.FromSeconds(seconds);
-            switch (AbnormalityTimerTextFormat)
-            {
-                case 0:
-                    return TotalSeconds.TotalSeconds >= 60 ? TotalSeconds.ToString(@"m\:ss") : TotalSeconds.ToString(@"ss");
-                case 1:
-                    return TotalSeconds.TotalSeconds >= 60 ? TotalSeconds.ToString(@"m\mss\s") : TotalSeconds.ToString(@"ss\s");
-                default:
-                    return TotalSeconds.TotalSeconds >= 60 ? TotalSeconds.ToString(@"m\:ss") : TotalSeconds.ToString(@"ss");
-            }
+            string secFormat = AbnormalityTimerTextFormat == 1 ? @"ss\s" : @"ss";
+            string minFormat = AbnormalityTimerTextFormat == 1 ? @"m\m" : @"m\:";
+            string formatter = TotalSeconds.TotalSeconds >= 60 ? (minFormat + secFormat) : secFormat;
+            return TotalSeconds.ToString(formatter);
         }
 
         public bool Equals(AbnormalityControl other)
         {
-            if (other == null) return false;
-            float ThisDurationPercentage = Context.Duration / Context.MaxDuration;
-            float OtherDurationPercentage = other.Context.Duration / other.Context.MaxDuration;
-            return ThisDurationPercentage.Equals(OtherDurationPercentage);
+            if (other != null)
+            {
+                float ThisDurationPercentage = Context.Duration / Context.MaxDuration;
+                float OtherDurationPercentage = other.Context.Duration / other.Context.MaxDuration;
+                return ThisDurationPercentage.Equals(OtherDurationPercentage);
+            }
+            return false;
         }
 
         public int CompareTo(AbnormalityControl other)
         {
-            float ThisDurationPercentage = Context.MaxDuration > 0 ? Context.Duration / Context.MaxDuration : 2;
-            float OtherDurationPercentage = other.Context.MaxDuration > 0 ? other.Context.Duration / other.Context.MaxDuration : 2;
-            if (ThisDurationPercentage > OtherDurationPercentage) return -1;
-            else if (ThisDurationPercentage < OtherDurationPercentage) return 1;
-            else if (Equals(other)) return 0;
-            else return 0;
+            if (other != null)
+            {
+                float ThisDurationPercentage = Context.MaxDuration > 0 ? Context.Duration / Context.MaxDuration : 2;
+                float OtherDurationPercentage = other.Context.MaxDuration > 0 ? other.Context.Duration / other.Context.MaxDuration : 2;
+                float delta = OtherDurationPercentage - ThisDurationPercentage;
+                return delta == 0 ? 0 : delta > 0 ? 1 : -1;
+            }
+            return 0;
         }
-
     }
 }

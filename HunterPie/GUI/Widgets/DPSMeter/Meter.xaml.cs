@@ -4,7 +4,6 @@ using System.Linq;
 using System.Windows;
 using System.Windows.Media;
 using HunterPie.Core;
-using HunterPie.Logger;
 
 namespace HunterPie.GUI.Widgets.DPSMeter
 {
@@ -124,7 +123,7 @@ namespace HunterPie.GUI.Widgets.DPSMeter
         private void OnTotalDamageChange(object source, EventArgs args) =>
             Dispatcher.BeginInvoke(System.Windows.Threading.DispatcherPriority.Render, new Action(() =>
         {
-            
+
             if (Context.TotalDamage > 0 && !UserSettings.PlayerConfig.Overlay.DPSMeter.ShowOnlyTimer)
             {
                 Party.Visibility = Visibility.Visible;
@@ -214,7 +213,7 @@ namespace HunterPie.GUI.Widgets.DPSMeter
                 TimerVisibility = UserSettings.PlayerConfig.Overlay.DPSMeter.ShowTimer ? Visibility.Visible : Visibility.Collapsed;
 
                 UpdatePlayersColor();
-                
+
                 ScaleWidget(UserSettings.PlayerConfig.Overlay.DPSMeter.Scale, UserSettings.PlayerConfig.Overlay.DPSMeter.Scale);
                 SnapWidget(UserSettings.PlayerConfig.Overlay.DPSMeter.Width);
 
