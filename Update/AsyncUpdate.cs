@@ -63,7 +63,7 @@ namespace Update
         }
 
         public async Task<bool> Start()
-        {   
+        {
             if (await GetOnlineFileHashes())
             {
                 GetLocalFileHashes();
@@ -82,7 +82,8 @@ namespace Update
             if (validBranches.Contains(updateBranch))
             {
                 validBranchUrl = $"{UpdateUrl}{updateBranch}/";
-            } else
+            }
+            else
             {
                 validBranchUrl = $"{UpdateUrl}master/";
             }
@@ -97,15 +98,16 @@ namespace Update
                 using (HttpClient client = new HttpClient())
                 {
                     string hashes = await client.GetStringAsync(new Uri($"{validBranchUrl}hashes.json?r={DateTime.UtcNow.GetHashCode()}"));
-                    
+
                     onlineFileHashes = JsonConvert.DeserializeObject<Dictionary<string, string>>(hashes);
                 }
                 return true;
-            } catch(Exception err)
+            }
+            catch (Exception err)
             {
                 Message("Failed to get online files.");
                 WriteToFile($"GetOnlineFileHashes Exception -> {err}");
-                OnUpdateFail?.Invoke(this, new UpdateFinished { IsLatestVersion=true, JustUpdated=false });
+                OnUpdateFail?.Invoke(this, new UpdateFinished { IsLatestVersion = true, JustUpdated = false });
                 return false;
             }
         }
@@ -114,7 +116,7 @@ namespace Update
         {
             Message("Calculating local hashes...");
             Dictionary<string, string>.KeyCollection fileNames = onlineFileHashes.Keys;
-            foreach(string fileName in fileNames)
+            foreach (string fileName in fileNames)
             {
                 // Create directories if needed
                 CreateDirectories(fileName);
@@ -154,7 +156,8 @@ namespace Update
                 if (online.ToLowerInvariant() == "installonly" && !string.IsNullOrEmpty(local))
                 {
                     continue;
-                } else
+                }
+                else
                 {
                     if (online != local)
                     {
@@ -169,36 +172,46 @@ namespace Update
 
         private async Task<bool> UpdateFiles(string[] files)
         {
+            string tmpDir = Path.Combine(BaseDirectory, "tmp");
             try
             {
+                if (!Directory.Exists(tmpDir))
+                {
+                    Directory.CreateDirectory(tmpDir);
+                }
+                Dictionary<string, string> fileMap = new Dictionary<string, string>();
+
                 foreach (string file in files)
                 {
+                    string tmpPath = Path.Combine(tmpDir, file);
+                    string dstPath = Path.Combine(BaseDirectory, file);
+                    fileMap.Add(tmpPath, dstPath);
+
                     Message($"Downloading {file.Replace("_", "__")}");
                     WriteToFile($"Downloading {file}");
                     Uri link = new Uri($"{validBranchUrl}{file}?r={DateTime.UtcNow.GetHashCode()}");
-                    using (WebClient client = new WebClient() {
-                        Timeout = 10000
-                    })
-                    {
-                        client.Headers.Add("user-agent", "Mozilla/4.0 (compatible; MSIE 6.0; Windows NT 5.2; .NET CLR 1.0.3705;)");
-                        client.Headers.Add(HttpRequestHeader.CacheControl, "no-store");
-                        client.CachePolicy = new System.Net.Cache.RequestCachePolicy(System.Net.Cache.RequestCacheLevel.NoCacheNoStore);
-                        client.DownloadProgressChanged += OnDownloadProgressChange;
-
-                        string localFilePath = Path.Combine(BaseDirectory, file);
-                        await client.DownloadFileTaskAsync(link, localFilePath);
-
-                        FilesUpdatedCounter++;
-                        client.DownloadProgressChanged -= OnDownloadProgressChange;
-                    }
+                    await Download(link, tmpPath).ConfigureAwait(false);
                 }
-            } catch(Exception err)
+
+                foreach (var pair in fileMap)
+                {
+                    File.Move(pair.Key, pair.Value);
+                }
+            }
+            catch (Exception err)
             {
                 WriteToFile(err.ToString());
                 OnUpdateFail?.Invoke(this, new UpdateFinished { IsLatestVersion = true, JustUpdated = false });
                 return false;
             }
-            
+            finally
+            {
+                if (Directory.Exists(tmpDir))
+                {
+                    Directory.Delete(tmpDir, true);
+                }
+            }
+
             return true;
         }
 
@@ -207,6 +220,20 @@ namespace Update
         private void OnDownloadProgressChange(object sender, DownloadProgressChangedEventArgs e)
         {
             OnDownloadProgressChanged?.Invoke(this, e);
+        }
+
+        private async Task Download(Uri uri, string dst)
+        {
+            using (WebClient client = new WebClient { Timeout = 10000 })
+            {
+                client.Headers.Add("user-agent", "Mozilla/4.0 (compatible; MSIE 6.0; Windows NT 5.2; .NET CLR 1.0.3705;)");
+                client.Headers.Add(HttpRequestHeader.CacheControl, "no-store");
+                client.CachePolicy = new System.Net.Cache.RequestCachePolicy(System.Net.Cache.RequestCacheLevel.NoCacheNoStore);
+                client.DownloadProgressChanged += OnDownloadProgressChange;
+                await client.DownloadFileTaskAsync(uri, dst);
+                FilesUpdatedCounter++;
+                client.DownloadProgressChanged -= OnDownloadProgressChange;
+            }
         }
     }
 }
