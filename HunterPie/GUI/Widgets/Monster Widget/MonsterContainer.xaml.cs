@@ -89,14 +89,16 @@ namespace HunterPie.GUI.Widgets
             Context = null;
         }
 
-        private void OnPeaceZoneLeave(object source, EventArgs args) => Dispatcher.BeginInvoke(System.Windows.Threading.DispatcherPriority.Render, new Action(() =>
+        private void OnPeaceZoneLeave(object source, EventArgs args) =>
+            Dispatcher.BeginInvoke(System.Windows.Threading.DispatcherPriority.Render, new Action(() =>
         {
             WidgetHasContent = true;
             CreateMonstersWidgets();
             ChangeVisibility();
         }));
 
-        private void OnPeaceZoneEnter(object source, EventArgs args) => Dispatcher.BeginInvoke(System.Windows.Threading.DispatcherPriority.Render, new Action(() =>
+        private void OnPeaceZoneEnter(object source, EventArgs args) =>
+            Dispatcher.BeginInvoke(System.Windows.Threading.DispatcherPriority.Render, new Action(() =>
         {
             WidgetHasContent = false;
             DestroyMonstersWidgets();

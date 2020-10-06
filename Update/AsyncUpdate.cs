@@ -195,7 +195,14 @@ namespace Update
 
                 foreach (var pair in fileMap)
                 {
-                    File.Move(pair.Key, pair.Value);
+                    if (!File.Exists(pair.Value))
+                    {
+                        File.Move(pair.Key, pair.Value);
+                    } else
+                    {
+                        File.Replace(pair.Key, pair.Value, null);
+                    }
+                    WriteToFile($"Moved {pair.Key} -> {pair.Value}");
                 }
             }
             catch (Exception err)
@@ -224,6 +231,9 @@ namespace Update
 
         private async Task Download(Uri uri, string dst)
         {
+            // Create folders if needed
+            CreateDirectories(dst);
+
             using (WebClient client = new WebClient { Timeout = 10000 })
             {
                 client.Headers.Add("user-agent", "Mozilla/4.0 (compatible; MSIE 6.0; Windows NT 5.2; .NET CLR 1.0.3705;)");
