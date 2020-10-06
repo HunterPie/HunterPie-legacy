@@ -190,7 +190,7 @@ namespace Update
                     Message($"Downloading {file.Replace("_", "__")}");
                     WriteToFile($"Downloading {file}");
                     Uri link = new Uri($"{validBranchUrl}{file}?r={DateTime.UtcNow.GetHashCode()}");
-                    await Download(link, tmpPath);
+                    await Download(link, tmpPath).ConfigureAwait(false);
                 }
 
                 foreach (var pair in fileMap)
@@ -224,7 +224,7 @@ namespace Update
 
         private async Task Download(Uri uri, string dst)
         {
-            using (WebClient client = new WebClient() { Timeout = 10000 })
+            using (WebClient client = new WebClient { Timeout = 10000 })
             {
                 client.Headers.Add("user-agent", "Mozilla/4.0 (compatible; MSIE 6.0; Windows NT 5.2; .NET CLR 1.0.3705;)");
                 client.Headers.Add(HttpRequestHeader.CacheControl, "no-store");
