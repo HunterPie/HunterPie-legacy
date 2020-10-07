@@ -190,7 +190,7 @@ namespace Update
                     Message($"Downloading {file.Replace("_", "__")}");
                     WriteToFile($"Downloading {file}");
                     Uri link = new Uri($"{validBranchUrl}{file}?r={DateTime.UtcNow.GetHashCode()}");
-                    await Download(link, tmpPath).ConfigureAwait(false);
+                    await Download(link, tmpPath);
                 }
 
                 foreach (var pair in fileMap)
