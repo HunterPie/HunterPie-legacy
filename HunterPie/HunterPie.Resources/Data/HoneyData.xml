@@ -1847,9 +1847,9 @@
       <Jewel HoneyID="399" ID="397" GameId="2267" Max="7"/>
       <Jewel HoneyID="400" ID="398" GameId="2268" Max="7"/>
       <Jewel HoneyID="401" ID="399" GameId="2269" Max="7"/>
-      <Jewel HoneyID="402" ID="403" GameId="2275" Max="7"/>
-      <Jewel HoneyID="403" ID="401" GameId="2273" Max="7"/>
-      <Jewel HoneyID="404" ID="402" GameId="2274" Max="7"/>
+      <Jewel HoneyID="402" ID="403" GameId="2275" Max="1"/>
+      <Jewel HoneyID="403" ID="401" GameId="2273" Max="1"/>
+      <Jewel HoneyID="404" ID="402" GameId="2274" Max="1"/>
     </Jewels>
     <Charms>
       <Charm HoneyID="1" ID="0" Level="1"/>
