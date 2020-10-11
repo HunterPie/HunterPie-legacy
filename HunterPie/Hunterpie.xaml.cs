@@ -100,9 +100,9 @@ namespace HunterPie
             CheckIfHunterPieOpen();
 
             AppDomain.CurrentDomain.UnhandledException += ExceptionLogger;
-            
+
             IsPlayerLoggedOn = false;
-            
+
             SetDPIAwareness();
             Buffers.Initialize(1024);
             Buffers.Add<byte>(64);
@@ -146,11 +146,11 @@ namespace HunterPie
             IEnumerable<Process> processes = Process.GetProcessesByName("HunterPie").Where(p => p.Id != instance.Id);
             foreach (Process p in processes) p.Kill();
         }
-            
+
 
         private void SetDPIAwareness()
         {
-            
+
             if (Environment.OSVersion.Version >= new Version(6, 3, 0))
             {
                 if (Environment.OSVersion.Version >= new Version(10, 0, 15063))
@@ -868,7 +868,7 @@ namespace HunterPie
                 TrayIcon.ContextMenu.MenuItems[1].Click -= OnTrayIconExitClick;
                 TrayIcon.Dispose();
             }
-            
+
             // Dispose stuff & stop scanning threads
             GameOverlay?.Dispose();
             if (MonsterHunter.IsActive) MonsterHunter?.StopScanning();
@@ -1023,7 +1023,7 @@ namespace HunterPie
             }
             if ((Keyboard.Modifiers & ModifierKeys.Control) != 0 && e.Key == Key.R)
             {
-                Reload();   
+                Reload();
             }
         }
         #endregion

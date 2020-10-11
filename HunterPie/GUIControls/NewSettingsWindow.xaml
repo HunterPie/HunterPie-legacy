@@ -1,9 +1,9 @@
 ﻿<UserControl x:Class="HunterPie.GUIControls.NewSettingsWindow"
              xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
-             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml" 
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
              xmlns:helper="clr-namespace:HunterPie.GUI.Helpers"
              xmlns:custom="clr-namespace:HunterPie.GUIControls.Custom_Controls"
-             xmlns:System="clr-namespace:System;assembly=mscorlib" 
+             xmlns:System="clr-namespace:System;assembly=mscorlib"
              DataContext="{StaticResource Localization}">
     <UserControl.Resources>
         <ResourceDictionary>
@@ -299,6 +299,10 @@
                             <TextBlock TextWrapping="Wrap" Text="{Binding Mode=OneTime, XPath=/Strings/Client/Settings/String[@ID\=\'STATIC_MONSTER_AILMENT_TIMER_STRING_FORMAT\']/@Name}" FontFamily="Segoe UI Light" Foreground="#FFF1F1F1" Canvas.Left="320" Canvas.Top="3" FontSize="16" Padding="0,0,10,0"/>
                             <TextBox x:Name="AilmentTimerTextFormat" TextWrapping="Wrap" Background="{x:Null}" Foreground="#FF9E9D9D" BorderBrush="#FFABADB3" BorderThickness="0,0,0,1" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" HorizontalAlignment="Stretch"/>
                         </DockPanel>
+                        <!-- <DockPanel Margin="10, 0, 10, 5" ToolTip="{Binding Mode=OneTime, XPath=/Strings/Client/Settings/String[@ID\=\'ENABLE_MONSTER_WIDGET_HIDE_HEALTH\']/@Name}"> -->
+                        <!--     <TextBlock TextWrapping="Wrap" Text="{Binding Mode=OneTime, XPath=/Strings/Client/Settings/String[@ID\=\'ENABLE_MONSTER_WIDGET_HIDE_HEALTH\']/@Name}" FontFamily="Segoe UI" Foreground="#FFF1F1F1" Canvas.Left="320" Canvas.Top="3" FontSize="16" Padding="0,0, 10, 0"/> -->
+                        <!--     <TextBox x:Name="HideHealthFormat" TextWrapping="Wrap" Background="{x:Null}" Foreground="#FF9E9D9D" BorderBrush="#FFABADB3" BorderThickness="0, 0, 0, 1" HorizontalContentAlignment="Center" VerticalContentAlignment="Stretch"/> -->
+                        <!-- </DockPanel> -->
                         <DockPanel Height="28" ToolTip="{Binding Mode=OneTime, XPath=/Strings/Client/Settings/String[@ID\=\'STATIC_MONSTER_BAR_MODE_DESC\']/@Name}" Margin="10,0,10,5">
                             <TextBlock FontFamily="Segoe UI Light" Foreground="WhiteSmoke" Padding="0,0,10,0">
                                 <TextBlock.Text>
@@ -338,6 +342,7 @@
                                 <Binding Mode="OneTime" XPath="Settings/String[@ID='ENABLE_BREAKABLE_PARTS_DESC']/@Name"/>
                             </custom:Switcher.ToolTip>
                         </custom:Switcher>
+                        <custom:Switcher x:Name="switchEnableHealthHiding" Text="{Binding Mode=OneTime, XPath=/Strings/Client/Settings/String[@ID\=\'ENABLE_HIDE_MONSTER_HEALTH\']/@Name}" ToolTip="{Binding Mode=OneTime, XPath=/Strings/Client/Settings/String[@ID\=\'ENABLE_HIDE_MONSTER_HEALTH_DESC\']/@Name}" Margin="10, 0, 10, 5" RestartVisibility="Collapsed"/>
                         <custom:Switcher x:Name="switchEnableAilmentsColor" Text="{Binding Mode=OneTime, XPath=/Strings/Client/Settings/String[@ID\=\'ENABLE_AILMENTS_BAR_COLOR\']/@Name, FallbackValue='Enable ailments bar color'}" ToolTip="{Binding Mode=OneTime, XPath=/Strings/Client/Settings/String[@ID\=\'ENABLE_AILMENTS_BAR_COLOR_DESC\']/@Name}" Margin="10,0,10,5" RestartVisibility="Collapsed"/>
                         <custom:Switcher x:Name="switchEnableAilments" Margin="10,0,10,5" RestartVisibility="Collapsed" MouseLeftButtonDown="SwitchEnableAilments_MouseDown">
                             <custom:Switcher.Text>
