@@ -162,7 +162,7 @@ namespace HunterPie.Core
 
             public class Update
             {
-                public bool Enabled { get; set; } = false;
+                public bool Enabled { get; set; } = true;
                 public string Branch { get; set; } = "master";
             }
 
