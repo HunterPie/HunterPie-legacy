@@ -106,17 +106,15 @@ namespace HunterPie.GUI.Widgets
         {
             Visibility = Visibility.Visible;
             MonsterName.Text = Monster.Name;
-            // Update monster health
             MonsterHealthBar.MaxSize = Width * 0.7833333333333333;
+            MonsterStaminaBar.MaxSize = Width - 72;
+
+            // Update monster health and stamina
             MonsterHealthBar.UpdateBar(Monster.Health, Monster.MaxHealth);
             SetMonsterHealthBarText(Monster.Health, Monster.MaxHealth);
-
-            if ((Monster.Health / Monster.MaxHealth * 100) < Monster.CaptureThreshold) CapturableIcon.Visibility = Visibility.Visible;
-
-            // Monster stamina
-            MonsterStaminaBar.MaxSize = Width - 72;
             MonsterStaminaBar.UpdateBar(Monster.Stamina, Monster.MaxStamina);
             SetMonsterStaminaText(Monster.Stamina, Monster.MaxStamina);
+            DisplayCapturableIcon(Monster.Health, Monster.MaxHealth, Monster.CaptureThreshold);
 
             // Gets monster icon
             MonsterIcon.Source = GetMonsterIcon(Monster.Id);
@@ -255,8 +253,7 @@ namespace HunterPie.GUI.Widgets
             MonsterHealthBar.MaxValue = args.MaxHealth;
             MonsterHealthBar.Value = args.Health;
             SetMonsterHealthBarText(args.Health, args.MaxHealth);
-            if ((args.Health / args.MaxHealth * 100) < Context.CaptureThreshold) CapturableIcon.Visibility = Visibility.Visible;
-            else { CapturableIcon.Visibility = Visibility.Collapsed; }
+            DisplayCapturableIcon(args.Health, args.MaxHealth, Context.CaptureThreshold);
             if (UserSettings.PlayerConfig.Overlay.MonstersComponent.ShowMonsterBarMode == 3)
             {
                 Visibility = Visibility.Visible;
@@ -399,7 +396,8 @@ namespace HunterPie.GUI.Widgets
         }
 
 
-        // Show all monsters but hide unactive
+        // Show all monsters but hide inactive
+        // FIXME: typo
         private void ShowAllMonsterAndHideUnactive()
         {
             if (Context == null || !Context.IsAlive) { Visibility = Visibility.Collapsed; return; }
@@ -483,7 +481,6 @@ namespace HunterPie.GUI.Widgets
             MonsterPartsContainer.MaxWidth = config.EnableMonsterAilments ? (NewSize - 2) / 2 : (NewSize - 1);
             MonsterAilmentsContainer.MaxWidth = config.EnableMonsterParts || config.EnableRemovableParts ? (NewSize - 2) / 2 : (NewSize - 1);
             UpdateContainerBarsSizeDynamically();
-            // Monster Bar
             MonsterHealthBar.MaxSize = NewSize - 69;
             MonsterStaminaBar.MaxSize = NewSize - 72;
             MonsterHealthBar.UpdateBar(Context.Health, Context.MaxHealth);
@@ -492,7 +489,6 @@ namespace HunterPie.GUI.Widgets
 
         private void UpdateContainerBarsSizeDynamically()
         {
-
             UserSettings.Config.Monsterscomponent config = UserSettings.PlayerConfig.Overlay.MonstersComponent;
             NumberOfPartsDisplayed = MonsterPartsContainer.Children.Cast<Monster_Widget.Parts.MonsterPart>()
                 .Where(p => p.IsVisible)
@@ -538,17 +534,28 @@ namespace HunterPie.GUI.Widgets
 
         private void SetMonsterHealthBarText(float Health, float TotalHealth)
         {
-            string HealthStringFormat = UserSettings.PlayerConfig.Overlay.MonstersComponent.HealthTextFormat;
-            HealthStringFormat = HealthStringFormat.Replace("{Health:0}", Health.ToString("0"))
-                .Replace("{Health:0.0}", Health.ToString("0.0"))
-                .Replace("{TotalHealth:0}", TotalHealth.ToString("0"))
-                .Replace("{TotalHealth:0.0}", TotalHealth.ToString("0.0"))
-                .Replace("{Percentage:0}", (Health / TotalHealth * 100).ToString("0"))
-                .Replace("{Percentage:0.0}", (Health / TotalHealth * 100).ToString("0.0"));
-            HealthText.Text = HealthStringFormat;
+            if (UserSettings.PlayerConfig.Overlay.MonstersComponent.HideHealthInformation)
+            {
+                HealthText.Text = string.Empty;
+            }
+            else
+            {
+                string HealthStringFormat = UserSettings.PlayerConfig.Overlay.MonstersComponent.HealthTextFormat;
+                HealthStringFormat = HealthStringFormat.Replace("{Health:0}", Health.ToString("0"))
+                    .Replace("{Health:0.0}", Health.ToString("0.0"))
+                    .Replace("{TotalHealth:0}", TotalHealth.ToString("0"))
+                    .Replace("{TotalHealth:0.0}", TotalHealth.ToString("0.0"))
+                    .Replace("{Percentage:0}", (Health / TotalHealth * 100).ToString("0"))
+                    .Replace("{Percentage:0.0}", (Health / TotalHealth * 100).ToString("0.0"));
+                HealthText.Text = HealthStringFormat;
+            }
+
         }
 
-        private void SetMonsterStaminaText(float stam, float max_stam) => StaminaText.Text = $"{stam:0}/{max_stam:0}";
+        private void SetMonsterStaminaText(float stam, float maxStam)
+        {
+            StaminaText.Text = UserSettings.PlayerConfig.Overlay.MonstersComponent.HideHealthInformation ? string.Empty : $"{stam:0}/{maxStam:0}";
+        }
 
         private BitmapImage GetMonsterIcon(string MonsterEm)
         {
@@ -557,6 +564,20 @@ namespace HunterPie.GUI.Widgets
             BitmapImage mIcon = new BitmapImage(ImageURI);
             mIcon.Freeze();
             return mIcon;
+        }
+
+        private void DisplayCapturableIcon(float monsterHealth, float monsterMaxHealth, float monsterCaptureThreshold)
+        {
+            bool captureable = (monsterHealth / monsterMaxHealth * 100) < monsterCaptureThreshold;
+            if (!UserSettings.PlayerConfig.Overlay.MonstersComponent.HideHealthInformation && captureable)
+            {
+                CapturableIcon.Visibility = Visibility.Visible;
+            }
+            else
+            {
+                CapturableIcon.Visibility = Visibility.Hidden;
+            }
+
         }
         #endregion
 

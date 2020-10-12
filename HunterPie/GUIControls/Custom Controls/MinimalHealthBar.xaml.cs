@@ -2,6 +2,7 @@
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Media;
+using HunterPie.Core;
 
 namespace HunterPie.GUIControls.Custom_Controls
 {
@@ -20,8 +21,9 @@ namespace HunterPie.GUIControls.Custom_Controls
             set
             {
                 valueProperty = value;
-                double v = Math.Max(MaxSize * (value / Math.Max(MaxValue, 1)), 0);
-                HealthBar.Width = v;
+                HealthBar.Width = UserSettings.PlayerConfig.Overlay.MonstersComponent.HideHealthInformation
+                    ? MaxSize
+                    : Math.Max(MaxSize * (value / Math.Max(MaxValue, 1)), 0);
             }
         }
 
