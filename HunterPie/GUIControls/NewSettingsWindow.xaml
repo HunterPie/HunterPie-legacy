@@ -299,10 +299,6 @@
                             <TextBlock TextWrapping="Wrap" Text="{Binding Mode=OneTime, XPath=/Strings/Client/Settings/String[@ID\=\'STATIC_MONSTER_AILMENT_TIMER_STRING_FORMAT\']/@Name}" FontFamily="Segoe UI Light" Foreground="#FFF1F1F1" Canvas.Left="320" Canvas.Top="3" FontSize="16" Padding="0,0,10,0"/>
                             <TextBox x:Name="AilmentTimerTextFormat" TextWrapping="Wrap" Background="{x:Null}" Foreground="#FF9E9D9D" BorderBrush="#FFABADB3" BorderThickness="0,0,0,1" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" HorizontalAlignment="Stretch"/>
                         </DockPanel>
-                        <!-- <DockPanel Margin="10, 0, 10, 5" ToolTip="{Binding Mode=OneTime, XPath=/Strings/Client/Settings/String[@ID\=\'ENABLE_MONSTER_WIDGET_HIDE_HEALTH\']/@Name}"> -->
-                        <!--     <TextBlock TextWrapping="Wrap" Text="{Binding Mode=OneTime, XPath=/Strings/Client/Settings/String[@ID\=\'ENABLE_MONSTER_WIDGET_HIDE_HEALTH\']/@Name}" FontFamily="Segoe UI" Foreground="#FFF1F1F1" Canvas.Left="320" Canvas.Top="3" FontSize="16" Padding="0,0, 10, 0"/> -->
-                        <!--     <TextBox x:Name="HideHealthFormat" TextWrapping="Wrap" Background="{x:Null}" Foreground="#FF9E9D9D" BorderBrush="#FFABADB3" BorderThickness="0, 0, 0, 1" HorizontalContentAlignment="Center" VerticalContentAlignment="Stretch"/> -->
-                        <!-- </DockPanel> -->
                         <DockPanel Height="28" ToolTip="{Binding Mode=OneTime, XPath=/Strings/Client/Settings/String[@ID\=\'STATIC_MONSTER_BAR_MODE_DESC\']/@Name}" Margin="10,0,10,5">
                             <TextBlock FontFamily="Segoe UI Light" Foreground="WhiteSmoke" Padding="0,0,10,0">
                                 <TextBlock.Text>
