@@ -530,8 +530,8 @@
       <String ID="STATIC_MONSTER_HEALTH_STRING_FORMAT_DESC" Name="Formato para la barra de vida del monstruo."/>
       <String ID="ENABLE_MONSTER_USE_LOCKON" Name="Fijar el monstruo para seleccionarlo"/>
       <String ID="ENABLE_MONSTER_USE_LOCKON_DESC" Name="Si lo activas, HunterPie tomará como objetivo al monstruo que tengas fijado (alterna entre seleccionar el monstruo mediante el mapa o mediante la función de fijado)."/>
-      <String ID="ENABLE_HIDE_MONSTER_HEALTH" Name="Esconder informacion de vida del monstruo"/>
-      <String ID="ENABLE_HIDE_MONSTER_HEALTH_DESC" Name="Activando esta opcion la Barra de informacion del Monstruo no mostrará detalles de la cantidad de vida del monstruo (incluye vida actual, vida total, resistencia actual y el icono de monstruo capturable)."/>
+      <String ID="ENABLE_HIDE_MONSTER_HEALTH" Name="Esconder información de vida del monstruo"/>
+      <String ID="ENABLE_HIDE_MONSTER_HEALTH_DESC" Name="Activando esta opción la Barra de información del Monstruo no mostrará detalles asociados la cantidad de vida del monstruo (incluye vida actual y total, resistencia, el icono de monstruo capturable y el estado y temporizador de ira)."/>
       <String ID="STATIC_MONSTER_BAR_MODE" Name="Modo de la barra de monstruo"/>
       <String ID="STATIC_MONSTER_BAR_MODE_DESC" Name="Cambia el modo de la barra del monstruo (la selección del monstruo objetivo se realiza desde el mapa, abajo a la izquierda)"/>
       <String ID="STATIC_MONSTER_BAR_MODE_0" Name="Mostrar todos los monstruos a la vez"/>

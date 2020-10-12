@@ -559,7 +559,7 @@
       <String ID="ENABLE_MONSTER_USE_LOCKON" Name="Use lockon instead of map pin to target monster"/>
       <String ID="ENABLE_MONSTER_USE_LOCKON_DESC" Name="If enabled, HunterPie will use the in-game monster lockon to select your target."/>
       <String ID="ENABLE_HIDE_MONSTER_HEALTH" Name="Hide Monster Bar health information"/>
-      <String ID="ENABLE_HIDE_MONSTER_HEALTH_DESC" Name="If enabled, the Monster Bar will not include HP details (total and remaining health, stamina and the capturable icon)."/>
+      <String ID="ENABLE_HIDE_MONSTER_HEALTH_DESC" Name="If enabled, the Monster Bar will not display HP-related details (total and remaining health, stamina, the capturable icon and enrage status and timer)."/>
       <String ID="STATIC_MONSTER_BAR_MODE" Name="Monster Bar Mode"/>
       <String ID="STATIC_MONSTER_BAR_MODE_DESC" Name="Changes the monster bar mode."/>
       <String ID="STATIC_MONSTER_BAR_MODE_0" Name="Show all monsters at once"/>

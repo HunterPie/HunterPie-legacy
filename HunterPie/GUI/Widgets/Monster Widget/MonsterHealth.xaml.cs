@@ -152,7 +152,7 @@ namespace HunterPie.GUI.Widgets
             }
 
             // Enrage
-            if (Monster.IsEnraged)
+            if (Monster.IsEnraged && !UserSettings.PlayerConfig.Overlay.MonstersComponent.HideHealthInformation)
             {
                 ANIM_ENRAGEDICON.Begin(MonsterHealthBar, true);
                 ANIM_ENRAGEDICON.Begin(HealthBossIcon, true);
@@ -198,13 +198,14 @@ namespace HunterPie.GUI.Widgets
 
         private void OnEnrage(object source, MonsterUpdateEventArgs args) => Dispatch(() =>
         {
+            if (UserSettings.PlayerConfig.Overlay.MonstersComponent.HideHealthInformation) return;
             ANIM_ENRAGEDICON.Begin(MonsterHealthBar, true);
             ANIM_ENRAGEDICON.Begin(HealthBossIcon, true);
         });
 
         private void OnEnrageTimerUpdate(object source, MonsterUpdateEventArgs args)
         {
-            if (Context == null) return;
+            if (Context == null || UserSettings.PlayerConfig.Overlay.MonstersComponent.HideHealthInformation) return;
             int EnrageTimer = (int)Context.EnrageTimerStatic - (int)Context.EnrageTimer;
             Dispatch(() =>
             {
