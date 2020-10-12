@@ -33,6 +33,7 @@
     - <a href="?p=Plugins/game.md"><Type>Game</Type></a>
     - <a href="?p=Plugins/player.md"><Type>Player</Type></a>
     - <a href="?p=Plugins/monster.md"><Type>Monster</Type></a>
+- <a href="?p=Plugins/HunterPie.Logger.md"><ns>HunterPie.Logger</ns></a>
 - <a href="?p=EventArgs/HunterPie.Core.Events.md"><ns>HunterPie.Core.Events</ns></a>
 ### Internals & Research
 - [Supported Abnormalities](?p=Internal/abnormalities.md)
