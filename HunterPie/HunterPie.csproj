@@ -266,6 +266,9 @@
     <Compile Include="GUIControls\Settings.xaml.cs">
       <DependentUpon>Settings.xaml</DependentUpon>
     </Compile>
+    <None Include="address\MonsterHunterWorld.420540.map">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
     <None Include="address\MonsterHunterWorld.419914.map">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
