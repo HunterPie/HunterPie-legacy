@@ -130,6 +130,14 @@
         </Setter>
     </Style>
 
+    <Style x:Key="OVERLAY_MONSTER_ENRAGE_TEXT_STYLE" TargetType="TextBlock">
+        <Setter Property="Foreground" Value="#eee6ff"/>
+        <Setter Property="FontWeight" Value="Medium"/>
+        <Setter Property="Margin" Value="0,16,27,15"/>
+        <Setter Property="TextAlignment" Value="Right"/>
+        <Setter Property="Width" Value="95"/>
+    </Style>
+    
     <Style x:Key="OVERLAY_MONSTER_STAMINA_TEXT_STYLE" TargetType="TextBlock">
         <Setter Property="Foreground" Value="#eee6ff"/>
         <Setter Property="FontWeight" Value="Medium"/>

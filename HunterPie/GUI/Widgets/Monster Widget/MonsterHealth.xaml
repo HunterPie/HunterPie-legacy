@@ -95,7 +95,7 @@
             </Canvas>
 
             <StackPanel x:Name="Weaknesses" Style="{StaticResource OVERLAY_MONSTER_WEAKNESS_DISPLAY}" VerticalAlignment="Top"/>
-            <TextBlock x:Name="EnrageTimerText" Visibility="Hidden" FontWeight="Normal" HorizontalAlignment="Left" Margin="10,49,0,0" TextWrapping="Wrap" Text="120s" VerticalAlignment="Top" TextAlignment="Center" Width="34" Height="16" Style="{StaticResource OVERLAY_MONSTER_STAMINA_TEXT_STYLE}"/>
+            <TextBlock x:Name="EnrageTimerText" Visibility="Hidden" FontWeight="Normal" HorizontalAlignment="Left" Margin="10,49,0,0" TextWrapping="Wrap" Text="120s" VerticalAlignment="Top" TextAlignment="Center" Width="34" Height="16" Style="{StaticResource OVERLAY_MONSTER_ENRAGE_TEXT_STYLE}"/>
         </Grid>
         <StackPanel x:Name="MonsterAdittionalInfoContainer" Style="{StaticResource OVERLAY_MONSTER_PARTS_DISPLAY}">
             <WrapPanel x:Name="MonsterPartsContainer" Orientation="Vertical" SizeChanged="OnMonsterPartsContainerSizeChange">
