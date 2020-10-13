@@ -1,5 +1,9 @@
 <img src="https://cdn.discordapp.com/attachments/402557384209203200/742459955315212288/banner.png" style="width: 100%;margin:0px;"/>
 
+<a href="https://www.paypal.com/cgi-bin/webscr?cmd=_s-xclick&hosted_button_id=F2QA6HEQZ366A&source=url"><img src="https://img.shields.io/badge/donate-Paypal-blue.svg?color=62b2fc&style=flat-square&label=Donate" style="width: 100px !important;"></a>
+<a href="https://www.patreon.com/HunterPie"><img src="https://img.shields.io/badge/Support-Patreon-blue.svg?color=fc8362&style=flat-square&logo=patreon&logoColor=white" style="width: 130px !important;"></a>
+
+
 ## Welcome to HunterPie Documentation!
 
 This documentation is made to answer the most asked questions, help you understand how each feature works and how to use them and auxiliate developers to create their own extensions for HunterPie.
