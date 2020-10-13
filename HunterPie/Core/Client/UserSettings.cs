@@ -68,6 +68,7 @@ namespace HunterPie.Core
                 public bool Enabled { get; set; } = true;
                 public double Scale { get; set; } = 1;
                 public string HealthTextFormat { get; set; } = "{Health:0}/{TotalHealth:0} ({Percentage:0}%)";
+                public bool HideHealthInformation { get; set; }
                 public byte ShowMonsterBarMode { get; set; } = 0;
                 public string SwitchMonsterBarModeHotkey = "Alt+Up";
                 public int[] Position { get; set; } = new int[] { 335, 10 };

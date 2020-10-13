@@ -477,7 +477,7 @@
       <String ID="MESSAGE_DISCORD_DISCONNECTED" Name="Closed connection to Discord"/>
       <String ID="MESSAGE_DISCORD_JOIN_REQUEST" Name="{Username} requested to join session."/>
       <String ID="MESSAGE_DISCORD_JOINING" Name="Joining session..."/>
-      
+
       <String ID="MESSAGE_MONSTER_DATA_LOAD" Name="Loaded monster data"/>
       <String ID="MESSAGE_ABNORMALITIES_DATA_LOAD" Name="Loaded abnormalities data"/>
       <String ID="MESSAGE_PLAYER_SCANNER_INITIALIZED" Name="Initialized player memory scanner"/>
@@ -558,6 +558,8 @@
       <String ID="STATIC_MONSTER_PART_HEALTH_STRING_FORMAT_DESC" Name="Text format for the monster part health."/>
       <String ID="ENABLE_MONSTER_USE_LOCKON" Name="Use lockon instead of map pin to target monster"/>
       <String ID="ENABLE_MONSTER_USE_LOCKON_DESC" Name="If enabled, HunterPie will use the in-game monster lockon to select your target."/>
+      <String ID="ENABLE_HIDE_MONSTER_HEALTH" Name="Hide Monster Bar health information"/>
+      <String ID="ENABLE_HIDE_MONSTER_HEALTH_DESC" Name="If enabled, the Monster Bar will not display HP-related details (total and remaining health, stamina, the capturable icon and enrage status and timer)."/>
       <String ID="STATIC_MONSTER_BAR_MODE" Name="Monster Bar Mode"/>
       <String ID="STATIC_MONSTER_BAR_MODE_DESC" Name="Changes the monster bar mode."/>
       <String ID="STATIC_MONSTER_BAR_MODE_0" Name="Show all monsters at once"/>

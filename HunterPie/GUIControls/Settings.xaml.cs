@@ -84,6 +84,7 @@ namespace HunterPie.GUIControls
             settingsUI.switchEnableMonsterComponent.IsEnabled = settings.Overlay.MonstersComponent.Enabled;
             settingsUI.HealthTextFormat.Text = settings.Overlay.MonstersComponent.HealthTextFormat;
             settingsUI.PartHealthTextFormat.Text = settings.Overlay.MonstersComponent.PartTextFormat;
+            settingsUI.switchEnableHealthHiding.IsEnabled = settings.Overlay.MonstersComponent.HideHealthInformation;
             settingsUI.AilmentBuildUpTextFormat.Text = settings.Overlay.MonstersComponent.AilmentBuildupTextFormat;
             settingsUI.AilmentTimerTextFormat.Text = settings.Overlay.MonstersComponent.AilmentTimerTextFormat;
             settingsUI.switchUseLockon.IsEnabled = settings.Overlay.MonstersComponent.UseLockonInsteadOfPin;
@@ -96,7 +97,7 @@ namespace HunterPie.GUIControls
             settingsUI.MonstersPosition.Y = settings.Overlay.MonstersComponent.Position[1];
             settingsUI.switchEnableParts.IsEnabled = settings.Overlay.MonstersComponent.EnableMonsterParts;
             settingsUI.PartsCustomizer.IsEnabled = settingsUI.switchEnableParts.IsEnabled;
-            
+
             settingsUI.switchEnableAilments.IsEnabled = settings.Overlay.MonstersComponent.EnableMonsterAilments;
             settingsUI.AilmentsCustomizer.IsEnabled = settingsUI.switchEnableAilments.IsEnabled;
             foreach (Custom_Controls.Switcher switcher in settingsUI.AilmentsCustomizer.Children)
@@ -232,6 +233,7 @@ namespace HunterPie.GUIControls
             settings.Overlay.MonstersComponent.Enabled = settingsUI.switchEnableMonsterComponent.IsEnabled;
             settings.Overlay.MonstersComponent.HealthTextFormat = settingsUI.HealthTextFormat.Text;
             settings.Overlay.MonstersComponent.PartTextFormat = settingsUI.PartHealthTextFormat.Text;
+            settings.Overlay.MonstersComponent.HideHealthInformation = settingsUI.switchEnableHealthHiding.IsEnabled;
             settings.Overlay.MonstersComponent.AilmentBuildupTextFormat = settingsUI.AilmentBuildUpTextFormat.Text;
             settings.Overlay.MonstersComponent.AilmentTimerTextFormat = settingsUI.AilmentTimerTextFormat.Text;
             settings.Overlay.MonstersComponent.UseLockonInsteadOfPin = settingsUI.switchUseLockon.IsEnabled;
