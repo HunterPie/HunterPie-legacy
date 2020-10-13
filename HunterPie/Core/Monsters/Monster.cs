@@ -22,6 +22,7 @@ namespace HunterPie.Core
         private int isSelect; //0 = None, 1 = This, 2 = Other
         private float enrageTimer = 0;
         private float sizeMultiplier;
+        private int actionId;
         private AlatreonState alatreonElement;
 
         private long MonsterAddress
@@ -189,6 +190,22 @@ namespace HunterPie.Core
 
         public readonly bool[] AliveMonsters = { false, false, false };
 
+        public int ActionId
+        {
+            get => actionId;
+            set
+            {
+                if (actionId != value)
+                {
+                    // Do event
+                    actionId = value;
+                    Debugger.Debug($"{Id} -> {ActionReferenceName} (Action: {value})");
+                }
+            }
+        }
+
+        public string ActionReferenceName { get; private set; }
+
         public AlatreonState AlatreonElement
         {
             get => alatreonElement;
@@ -294,6 +311,7 @@ namespace HunterPie.Core
                 GetMonsterAilments();
                 GetMonsterPartsInfo();
                 GetPartsTenderizeInfo();
+                GetMonsterAction();
                 GetMonsterEnrageTimer();
                 GetTargetMonsterAddress();
                 GetAlatreonCurrentElement();
@@ -409,6 +427,44 @@ namespace HunterPie.Core
             }
             Id = null;
 
+        }
+
+        /// <summary>
+        /// Gets the monster action
+        /// </summary>
+        private void GetMonsterAction()
+        {
+            if (!IsAlive)
+            {
+                return;
+            }
+            // This is our rcx
+            long actionPointer = MonsterAddress + 0x61C8;
+            
+
+            // This will give us the action id, we'll need it later on to get the action reference name
+            int actionId = Kernel.Read<int>(actionPointer + 0xB0);
+
+            // mov      rax,[rcx+rax*8+68] ;our rax is pretty much always 2
+            actionPointer = Kernel.Read<long>(actionPointer + (2 * 8) + 0x68);
+            
+            // mov      rax,[rax+rdx*8]
+            actionPointer = Kernel.Read<long>(actionPointer + actionId * 8);
+            actionPointer = Kernel.Read<long>(actionPointer);
+
+            // call     qword ptr [r8 + 20] ;r8 is our actionPointer
+            actionPointer = Kernel.Read<long>(actionPointer + 0x20);
+            uint actionOffset = Kernel.Read<uint>(actionPointer + 3);
+
+            // lea      rax,[actionRef]
+            long actionRef = actionPointer + actionOffset + 7;
+
+            // cmp      [rax+08],rcx
+            actionRef = Kernel.Read<long>(actionRef + 8);
+            string actionRefString = Kernel.ReadString(actionRef, 64);
+
+            ActionReferenceName = actionRefString;
+            ActionId = actionId;
         }
 
         /// <summary>

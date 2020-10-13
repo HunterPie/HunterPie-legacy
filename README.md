@@ -44,7 +44,7 @@ HunterPie is a modern and simple to use overlay with support for Discord Rich Pr
 - [Monster Widget](https://docs.hunterpie.me/?p=Overlay/monstersWidget.md)
 - [Harvest Box Widget](https://docs.hunterpie.me/?p=Overlay/harvestBoxWidget.md)
 - [Specialized Tools Widget](https://docs.hunterpie.me/?p=Overlay/specializedToolWidget.md)
-- [Abnormalities Tracker Widget](https://github.com/Haato3o/HunterPie/wiki/Abnormalities-Tray)
+- [Abnormalities Tracker Widget](https://docs.hunterpie.me/?p=Overlay/abnormalitiesWidget.md)
 - [Class Helper Widget](https://docs.hunterpie.me/?p=Overlay/classesWidget.md)
 - [Damage Meter Widget](https://docs.hunterpie.me/?p=Overlay/damageMeterWidget.md)
 
