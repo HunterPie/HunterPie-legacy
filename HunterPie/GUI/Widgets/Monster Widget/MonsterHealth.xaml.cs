@@ -110,9 +110,9 @@ namespace HunterPie.GUI.Widgets
             MonsterStaminaBar.MaxSize = Width - 72;
 
             // Update monster health and stamina
-            MonsterHealthBar.UpdateBar(Monster.Health, Monster.MaxHealth);
+            UpdateHealthBar(MonsterHealthBar, Monster.Health, Monster.MaxHealth);
+            UpdateHealthBar(MonsterStaminaBar, Monster.Stamina, Monster.MaxStamina);
             SetMonsterHealthBarText(Monster.Health, Monster.MaxHealth);
-            MonsterStaminaBar.UpdateBar(Monster.Stamina, Monster.MaxStamina);
             SetMonsterStaminaText(Monster.Stamina, Monster.MaxStamina);
             DisplayCapturableIcon(Monster.Health, Monster.MaxHealth, Monster.CaptureThreshold);
 
@@ -217,7 +217,7 @@ namespace HunterPie.GUI.Widgets
 
         private void OnStaminaUpdate(object source, MonsterUpdateEventArgs args) => Dispatch(() =>
         {
-            MonsterStaminaBar.UpdateBar(args.Stamina, args.MaxStamina);
+            UpdateHealthBar(MonsterStaminaBar, args.Stamina, args.MaxStamina);
             SetMonsterStaminaText(args.Stamina, args.MaxStamina);
         });
 
@@ -251,8 +251,7 @@ namespace HunterPie.GUI.Widgets
 
         private void OnMonsterUpdate(object source, MonsterUpdateEventArgs args) => Dispatch(() =>
         {
-            MonsterHealthBar.MaxValue = args.MaxHealth;
-            MonsterHealthBar.Value = args.Health;
+            UpdateHealthBar(MonsterHealthBar, args.Health, args.MaxHealth);
             SetMonsterHealthBarText(args.Health, args.MaxHealth);
             DisplayCapturableIcon(args.Health, args.MaxHealth, Context.CaptureThreshold);
             if (UserSettings.PlayerConfig.Overlay.MonstersComponent.ShowMonsterBarMode == 3)
@@ -484,8 +483,8 @@ namespace HunterPie.GUI.Widgets
             UpdateContainerBarsSizeDynamically();
             MonsterHealthBar.MaxSize = NewSize - 69;
             MonsterStaminaBar.MaxSize = NewSize - 72;
-            MonsterHealthBar.UpdateBar(Context.Health, Context.MaxHealth);
-            MonsterStaminaBar.UpdateBar(Context.Stamina, Context.MaxStamina);
+            UpdateHealthBar(MonsterHealthBar, Context.Health, Context.MaxHealth);
+            UpdateHealthBar(MonsterStaminaBar, Context.Stamina, Context.MaxStamina);
         }
 
         private void UpdateContainerBarsSizeDynamically()
@@ -579,6 +578,14 @@ namespace HunterPie.GUI.Widgets
                 CapturableIcon.Visibility = Visibility.Hidden;
             }
 
+        }
+
+        private void UpdateHealthBar(MinimalHealthBar healthBar, float newValue, float maxValue)
+        {
+            float updateValue = UserSettings.PlayerConfig.Overlay.MonstersComponent.HideHealthInformation
+                ? maxValue
+                : newValue;
+            healthBar.UpdateBar(updateValue, maxValue);
         }
         #endregion
 
