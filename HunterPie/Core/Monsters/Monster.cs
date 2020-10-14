@@ -23,6 +23,7 @@ namespace HunterPie.Core
         private float enrageTimer = 0;
         private float sizeMultiplier;
         private int actionId;
+        private bool isCaptured;
         private AlatreonState alatreonElement;
 
         private long MonsterAddress
@@ -68,14 +69,14 @@ namespace HunterPie.Core
                         CaptureThreshold = MonsterInfo.Capture;
 
                         IsActuallyAlive = true;
-                        _onMonsterSpawn();
+                        Dispatch(OnMonsterSpawn);
                     }
                 }
                 else if (string.IsNullOrEmpty(value) && id != value)
                 {
 
                     id = value;
-                    _onMonsterDespawn();
+                    Dispatch(OnMonsterDespawn);
                     DestroyParts();
                     IsAlive = IsActuallyAlive = false;
                 }
@@ -92,7 +93,7 @@ namespace HunterPie.Core
                 {
                     sizeMultiplier = value;
                     Debugger.Debug($"{Name} Size multiplier: {sizeMultiplier}");
-                    _onCrownChange();
+                    Dispatch(OnCrownChange);
                 }
             }
         }
@@ -106,14 +107,14 @@ namespace HunterPie.Core
                 if (value != health)
                 {
                     health = value;
-                    _onHPUpdate();
+                    Dispatch(OnHPUpdate);
                     if (value <= 0)
                     {
                         // Clears monster ID since it's dead
                         Id = null;
                         IsActuallyAlive = IsAlive = false;
                         DestroyParts();
-                        _onMonsterDeath();
+                        Dispatch(OnMonsterDeath);
                     }
                 }
             }
@@ -128,7 +129,7 @@ namespace HunterPie.Core
                 if (value != isTarget)
                 {
                     isTarget = value;
-                    _onTargetted();
+                    Dispatch(OnTargetted);
                 }
             }
         }
@@ -140,7 +141,7 @@ namespace HunterPie.Core
                 if (value != isSelect)
                 {
                     isSelect = value;
-                    _onTargetted();
+                    Dispatch(OnTargetted);
                 }
             }
         }
@@ -156,14 +157,14 @@ namespace HunterPie.Core
                 {
                     if (value > 0 && enrageTimer == 0)
                     {
-                        _onEnrage();
+                        Dispatch(OnEnrage);
                     }
                     else if (value == 0 && enrageTimer > 0)
                     {
-                        _onUnenrage();
+                        Dispatch(OnUnenrage);
                     }
                     enrageTimer = value;
-                    _OnEnrageUpdateTimerUpdate();
+                    Dispatch(OnEnrageTimerUpdate);
                 }
             }
         }
@@ -179,14 +180,26 @@ namespace HunterPie.Core
                 if ((int)value != (int)stamina)
                 {
                     stamina = value;
-                    _OnStaminaUpdate();
+                    Dispatch(OnStaminaUpdate);
                 }
             }
         }
         public float MaxStamina { get; private set; }
 
         public float CaptureThreshold { get; private set; }
-        public bool IsCaptured { get; private set; }
+        public bool IsCaptured
+        {
+            get => isCaptured;
+            set
+            {
+                if (value != isCaptured)
+                {
+                    isCaptured = value;
+                    IsActuallyAlive = IsAlive = !isCaptured;
+                    Dispatch(OnMonsterCapture);
+                }
+            }
+        }
 
         public readonly bool[] AliveMonsters = { false, false, false };
 
@@ -200,10 +213,12 @@ namespace HunterPie.Core
                     // Do event
                     actionId = value;
                     Debugger.Debug($"{Id} -> {ActionReferenceName} (Action: {value})");
+
                 }
             }
         }
 
+        public string ActionName { get; private set; }
         public string ActionReferenceName { get; private set; }
 
         public AlatreonState AlatreonElement
@@ -214,7 +229,7 @@ namespace HunterPie.Core
                 if (value != alatreonElement)
                 {
                     alatreonElement = value;
-                    _OnAlatreonElementShift();
+                    Dispatch(OnAlatreonElementShift);
                 }
             }
         }
@@ -236,11 +251,13 @@ namespace HunterPie.Core
         public event MonsterEvents OnMonsterAilmentsCreate;
         public event MonsterEvents OnMonsterDespawn;
         public event MonsterEvents OnMonsterDeath;
+        public event MonsterEvents OnMonsterCapture;
         public event MonsterEvents OnTargetted;
         public event MonsterEvents OnCrownChange;
 
         public event MonsterUpdateEvents OnHPUpdate;
         public event MonsterUpdateEvents OnStaminaUpdate;
+        public event MonsterUpdateEvents OnActionChange;
 
         public event MonsterEnrageEvents OnEnrage;
         public event MonsterEnrageEvents OnUnenrage;
@@ -249,34 +266,10 @@ namespace HunterPie.Core
         // Used ONLY by Alatreon
         public event MonsterEvents OnAlatreonElementShift;
 
-
-        protected virtual void _onMonsterSpawn()
-        {
-            MonsterSpawnEventArgs args = new MonsterSpawnEventArgs(this);
-            OnMonsterSpawn?.Invoke(this, args);
-        }
-
-        protected virtual void _onMonsterDespawn() => OnMonsterDespawn?.Invoke(this, EventArgs.Empty);
-
-        protected virtual void _onMonsterDeath() => OnMonsterDeath?.Invoke(this, EventArgs.Empty);
-
-        protected virtual void _onHPUpdate() => OnHPUpdate?.Invoke(this, new MonsterUpdateEventArgs(this));
-
-        protected virtual void _onTargetted() => OnTargetted?.Invoke(this, EventArgs.Empty);
-
-        protected virtual void _onCrownChange() => OnCrownChange?.Invoke(this, EventArgs.Empty);
-
-        protected virtual void _onEnrage() => OnEnrage?.Invoke(this, new MonsterUpdateEventArgs(this));
-
-        protected virtual void _onUnenrage() => OnUnenrage?.Invoke(this, new MonsterUpdateEventArgs(this));
-
-        protected virtual void _OnEnrageUpdateTimerUpdate() => OnEnrageTimerUpdate?.Invoke(this, new MonsterUpdateEventArgs(this));
-
-        protected virtual void _OnStaminaUpdate() => OnStaminaUpdate?.Invoke(this, new MonsterUpdateEventArgs(this));
-
-        protected virtual void _OnAlatreonElementShift() => OnAlatreonElementShift?.Invoke(this, EventArgs.Empty);
-
-        protected virtual void _OnMonsterAilmentsCreate() => OnMonsterAilmentsCreate?.Invoke(this, EventArgs.Empty);
+        protected virtual void Dispatch(MonsterSpawnEvents e) => e?.Invoke(this, new MonsterSpawnEventArgs(this));
+        protected virtual void Dispatch(MonsterEvents e) => e?.Invoke(this, EventArgs.Empty);
+        protected virtual void Dispatch(MonsterUpdateEvents e) => e?.Invoke(this, new MonsterUpdateEventArgs(this));
+        protected virtual void Dispatch(MonsterEnrageEvents e) => e?.Invoke(this, new MonsterUpdateEventArgs(this));
         #endregion
 
         public Monster(int initMonsterNumber) => MonsterNumber = initMonsterNumber;
@@ -441,7 +434,6 @@ namespace HunterPie.Core
             // This is our rcx
             long actionPointer = MonsterAddress + 0x61C8;
             
-
             // This will give us the action id, we'll need it later on to get the action reference name
             int actionId = Kernel.Read<int>(actionPointer + 0xB0);
 
@@ -464,6 +456,8 @@ namespace HunterPie.Core
             string actionRefString = Kernel.ReadString(actionRef, 64);
 
             ActionReferenceName = actionRefString;
+            ActionName = Monster.ParseActionString(actionRefString);
+            IsCaptured = actionRefString.Contains("Capture");
             ActionId = actionId;
         }
 
@@ -511,7 +505,7 @@ namespace HunterPie.Core
         {
             if (UserSettings.PlayerConfig.Overlay.MonstersComponent.UseLockonInsteadOfPin)
             {
-                Int64 LockonAddress = Kernel.ReadMultilevelPtr(Address.BASE + Address.EQUIPMENT_OFFSET, Address.Offsets.PlayerLockonOffsets);
+                long LockonAddress = Kernel.ReadMultilevelPtr(Address.BASE + Address.EQUIPMENT_OFFSET, Address.Offsets.PlayerLockonOffsets);
                 // This will give us the monster target index
                 int MonsterLockonIndex = Kernel.Read<int>(LockonAddress - 0x7C);
                 if (MonsterLockonIndex == -1)
@@ -561,10 +555,10 @@ namespace HunterPie.Core
             }
             else
             {
-                Int64 TargettedMonsterAddress = Kernel.ReadMultilevelPtr(Address.BASE + Address.MONSTER_SELECTED_OFFSET, Address.Offsets.MonsterSelectedOffsets);
-                Int64 selectedPtr = Kernel.Read<long>(Address.BASE + Address.MONSTER_TARGETED_OFFSET); //probably want an offset for this
+                long TargettedMonsterAddress = Kernel.ReadMultilevelPtr(Address.BASE + Address.MONSTER_SELECTED_OFFSET, Address.Offsets.MonsterSelectedOffsets);
+                long selectedPtr = Kernel.Read<long>(Address.BASE + Address.MONSTER_TARGETED_OFFSET); //probably want an offset for this
                 bool isSelect = Kernel.Read<long>(selectedPtr + 0x128) != 0x0 && Kernel.Read<long>(selectedPtr + 0x130) != 0x0 && Kernel.Read<long>(selectedPtr + 0x160) != 0x0;
-                Int64 SelectedMonsterAddress = Kernel.Read<long>(selectedPtr + 0x148);
+                long SelectedMonsterAddress = Kernel.Read<long>(selectedPtr + 0x148);
                 IsTarget = TargettedMonsterAddress == 0 ? SelectedMonsterAddress == MonsterAddress : TargettedMonsterAddress == MonsterAddress;
 
                 if (!isSelect)
@@ -763,7 +757,10 @@ namespace HunterPie.Core
                 }
                 // Depending on the scan delay, the OnMonsterSpawn event can be dispatched before the ailments are created.
                 // To fix that, we dispatch a OnMonsterAilmentsCreate too.
-                if (IsActuallyAlive && Ailments.Count > 0) _OnMonsterAilmentsCreate();
+                if (IsActuallyAlive && Ailments.Count > 0)
+                {
+                    Dispatch(OnMonsterAilmentsCreate);
+                }
             }
         }
 
@@ -798,6 +795,12 @@ namespace HunterPie.Core
                     }
                 }
             }
+        }
+
+        public static string ParseActionString(string actionRef)
+        {
+            string actionRefName = actionRef.Split('<').FirstOrDefault().Split(':').LastOrDefault();
+            return string.Concat(actionRefName.Select((c, i) => i > 0 && char.IsUpper(c) ? " " + c.ToString() : c.ToString()));
         }
 
     }

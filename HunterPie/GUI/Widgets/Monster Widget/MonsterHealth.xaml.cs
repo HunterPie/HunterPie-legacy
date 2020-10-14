@@ -60,6 +60,7 @@ namespace HunterPie.GUI.Widgets
             Context.OnMonsterSpawn += OnMonsterSpawn;
             Context.OnMonsterDespawn += OnMonsterDespawn;
             Context.OnMonsterDeath += OnMonsterDespawn;
+            Context.OnMonsterCapture += OnMonsterDespawn;
             Context.OnHPUpdate += OnMonsterUpdate;
             Context.OnStaminaUpdate += OnStaminaUpdate;
             Context.OnEnrage += OnEnrage;
@@ -89,6 +90,7 @@ namespace HunterPie.GUI.Widgets
             Context.OnMonsterSpawn -= OnMonsterSpawn;
             Context.OnMonsterDespawn -= OnMonsterDespawn;
             Context.OnMonsterDeath -= OnMonsterDespawn;
+            Context.OnMonsterCapture -= OnMonsterDespawn;
             Context.OnHPUpdate -= OnMonsterUpdate;
             Context.OnStaminaUpdate -= OnStaminaUpdate;
             Context.OnEnrage -= OnEnrage;

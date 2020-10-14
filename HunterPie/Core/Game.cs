@@ -163,9 +163,9 @@ namespace HunterPie.Core
                 // Since monsters are independent, we still need to sync them with eachother
                 // to use the lockon
 
-                aliveMonsters[0] = FirstMonster.IsActuallyAlive;
-                aliveMonsters[1] = SecondMonster.IsActuallyAlive;
-                aliveMonsters[2] = ThirdMonster.IsActuallyAlive;
+                aliveMonsters[0] = FirstMonster.IsActuallyAlive && !FirstMonster.IsCaptured;
+                aliveMonsters[1] = SecondMonster.IsActuallyAlive && !SecondMonster.IsCaptured;
+                aliveMonsters[2] = ThirdMonster.IsActuallyAlive && !ThirdMonster.IsCaptured;
 
                 for (int i = 0; i < 3; i++)
                 {

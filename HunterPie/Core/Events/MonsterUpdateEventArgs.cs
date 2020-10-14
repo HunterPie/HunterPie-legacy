@@ -32,6 +32,21 @@ namespace HunterPie.Core.Events
         /// </summary>
         public float Enrage { get; }
 
+        /// <summary>
+        /// Monster action name
+        /// </summary>
+        public string Action { get; }
+
+        /// <summary>
+        /// Monster raw action name
+        /// </summary>
+        public string RawAction { get; }
+
+        /// <summary>
+        /// Monster action id
+        /// </summary>
+        public int ActionId { get; }
+
         public MonsterUpdateEventArgs(Monster monster)
         {
             Health = monster.Health;
@@ -39,6 +54,9 @@ namespace HunterPie.Core.Events
             Enrage = monster.EnrageTimer;
             Stamina = monster.Stamina;
             MaxStamina = monster.MaxStamina;
+            Action = monster.ActionName;
+            RawAction = monster.ActionReferenceName;
+            ActionId = monster.ActionId;
         }
     }
 }
