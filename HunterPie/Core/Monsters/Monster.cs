@@ -69,6 +69,7 @@ namespace HunterPie.Core
                         CaptureThreshold = MonsterInfo.Capture;
 
                         IsActuallyAlive = true;
+                        IsCaptured = false;
                         Dispatch(OnMonsterSpawn);
                     }
                 }
@@ -192,11 +193,14 @@ namespace HunterPie.Core
             get => isCaptured;
             set
             {
-                if (value != isCaptured)
+                if (value && value != isCaptured)
                 {
                     isCaptured = value;
                     IsActuallyAlive = IsAlive = !isCaptured;
                     Dispatch(OnMonsterCapture);
+                } else if (!value && value != isCaptured)
+                {
+                    isCaptured = false;
                 }
             }
         }
