@@ -252,10 +252,15 @@ namespace HunterPie.Core
                 if (value != actionId)
                 {
                     actionId = value;
-                    Debugger.Debug($"Current Action ID: {value}");
+                    Debugger.Debug($"Player -> {PlayerActionRef} (ID: {value})");
                 }
             }
         }
+
+        /// <summary>
+        /// Gets the raw name for the player current action reference name
+        /// </summary>
+        public string PlayerActionRef { get; private set; }
 
         /// <summary>
         /// Player position
@@ -712,8 +717,17 @@ namespace HunterPie.Core
             MaxStamina = Kernel.Read<float>(address + 0x144);
             Stamina = Kernel.Read<float>(address + 0x13C);
 
-            ActionId = Kernel.Read<int>(address - 0x4B28);
+            // ActionId is our rcx
+            long characterPointer = Kernel.Read<long>(address + 0x30);
+            int actionId = Kernel.Read<int>(characterPointer + 0x6278);
+            // mov      rax,[r8+r9*8+68] ;Always VILLAGE::IDLE
+            // mov      rbx,[rax+rcx*8] ; will give us our player action ref name pointer
+            long playerActionRefPtr = Kernel.ReadMultilevelPtr(characterPointer + 0x6240, new int[] { actionId * 8, 0x20, 0x0 });
 
+            string playerActionRef = Kernel.ReadString(playerActionRefPtr, 64);
+
+            PlayerActionRef = playerActionRef;
+            ActionId = actionId;
             // Hacky way to update the eat timer
             if (!InHarvestZone)
             {

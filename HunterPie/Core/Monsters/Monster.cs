@@ -210,10 +210,9 @@ namespace HunterPie.Core
             {
                 if (actionId != value)
                 {
-                    // Do event
                     actionId = value;
-                    Debugger.Debug($"{Id} -> {ActionReferenceName} (Action: {value})");
-
+                    Dispatch(OnActionChange);
+                    Debugger.Debug($"{Name} -> {ActionReferenceName} (Action: {value})");
                 }
             }
         }
