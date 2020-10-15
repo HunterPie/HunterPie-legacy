@@ -59,6 +59,7 @@ namespace HunterPie.Core
                     if (Health > 0)
                     {
                         id = value;
+                        IsCaptured = false;
 
                         GetMonsterWeaknesses();
                         IsAlive = true;
@@ -69,7 +70,6 @@ namespace HunterPie.Core
                         CaptureThreshold = MonsterInfo.Capture;
 
                         IsActuallyAlive = true;
-                        IsCaptured = false;
                         Dispatch(OnMonsterSpawn);
                     }
                 }
@@ -275,7 +275,10 @@ namespace HunterPie.Core
         protected virtual void Dispatch(MonsterEnrageEvents e) => e?.Invoke(this, new MonsterUpdateEventArgs(this));
         #endregion
 
-        public Monster(int initMonsterNumber) => MonsterNumber = initMonsterNumber;
+        public Monster(int initMonsterNumber)
+        {
+            MonsterNumber = initMonsterNumber;
+        }
 
         ~Monster()
         {
@@ -595,7 +598,7 @@ namespace HunterPie.Core
 
         private void GetMonsterPartsInfo()
         {
-            if (!IsAlive) return;
+            if (!IsAlive || IsCaptured) return;
 
             long MonsterPartPtr = Kernel.Read<long>(MonsterAddress + 0x1D058);
 
