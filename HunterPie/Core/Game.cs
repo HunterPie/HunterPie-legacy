@@ -37,6 +37,9 @@ namespace HunterPie.Core
                 }
             }
         }
+
+        public readonly Monster[] Monsters = new Monster[3];
+
         private DateTime clock = DateTime.UtcNow;
         private DateTime Clock
         {
@@ -84,6 +87,11 @@ namespace HunterPie.Core
             FirstMonster = new Monster(1);
             SecondMonster = new Monster(2);
             ThirdMonster = new Monster(3);
+
+            Monsters[0] = FirstMonster;
+            Monsters[1] = SecondMonster;
+            Monsters[2] = ThirdMonster;
+
         }
 
         public void DestroyInstances()
@@ -92,6 +100,11 @@ namespace HunterPie.Core
             FirstMonster = null;
             SecondMonster = null;
             ThirdMonster = null;
+
+            for (int i = 0; i < Monsters.Length; i++)
+            {
+                Monsters[i] = null;
+            }
         }
 
         public void StartScanning()

@@ -76,11 +76,10 @@ namespace HunterPie.Core
                 }
                 else if (string.IsNullOrEmpty(value) && id != value)
                 {
-
-                    id = value;
+                    isAlive = IsActuallyAlive = false;
                     Dispatch(OnMonsterDespawn);
                     DestroyParts();
-                    IsAlive = IsActuallyAlive = false;
+                    id = value;
                 }
             }
         }
@@ -148,8 +147,6 @@ namespace HunterPie.Core
                 {
                     IsActuallyAlive = isAlive = value;
                     Dispatch(OnMonsterDeath);
-                    DestroyParts();
-                    Id = null;
                 } else
                 {
                     isAlive = value;
