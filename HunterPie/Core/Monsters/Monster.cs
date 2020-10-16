@@ -23,6 +23,7 @@ namespace HunterPie.Core
         private float enrageTimer = 0;
         private float sizeMultiplier;
         private int actionId;
+        private bool isAlive;
         private bool isCaptured;
         private AlatreonState alatreonElement;
 
@@ -109,14 +110,6 @@ namespace HunterPie.Core
                 {
                     health = value;
                     Dispatch(OnHPUpdate);
-                    if (value <= 0)
-                    {
-                        // Clears monster ID since it's dead
-                        Id = null;
-                        IsActuallyAlive = IsAlive = false;
-                        DestroyParts();
-                        Dispatch(OnMonsterDeath);
-                    }
                 }
             }
         }
@@ -146,7 +139,23 @@ namespace HunterPie.Core
                 }
             }
         }
-        public bool IsAlive { get; private set; }
+        public bool IsAlive
+        {
+            get => isAlive;
+            private set
+            {
+                if (!value && isAlive)
+                {
+                    IsActuallyAlive = isAlive = value;
+                    Dispatch(OnMonsterDeath);
+                    DestroyParts();
+                    Id = null;
+                } else
+                {
+                    isAlive = value;
+                }
+            }
+        }
         public bool IsActuallyAlive { get; private set; }
 
         public float EnrageTimer
@@ -463,6 +472,7 @@ namespace HunterPie.Core
 
             ActionReferenceName = actionRefString;
             ActionName = Monster.ParseActionString(actionRefString);
+            IsAlive = !actionRefString.Contains("Die");
             IsCaptured = actionRefString.Contains("Capture");
             ActionId = actionId;
         }
@@ -512,6 +522,7 @@ namespace HunterPie.Core
             if (UserSettings.PlayerConfig.Overlay.MonstersComponent.UseLockonInsteadOfPin)
             {
                 long LockonAddress = Kernel.ReadMultilevelPtr(Address.BASE + Address.EQUIPMENT_OFFSET, Address.Offsets.PlayerLockonOffsets);
+                
                 // This will give us the monster target index
                 int MonsterLockonIndex = Kernel.Read<int>(LockonAddress - 0x7C);
                 if (MonsterLockonIndex == -1)
