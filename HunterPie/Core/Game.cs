@@ -91,9 +91,27 @@ namespace HunterPie.Core
             Monsters[0] = FirstMonster;
             Monsters[1] = SecondMonster;
             Monsters[2] = ThirdMonster;
-
+        }
+#if DEBUG
+            foreach (Monster m in Monsters)
+            {
+                m.OnMonsterDeath += M_OnMonsterDeath;
+                m.OnMonsterDespawn += M_OnMonsterDespawn;
+            }
         }
 
+        private void M_OnMonsterDespawn(object source, EventArgs args)
+        {
+            Monster m = (Monster)source;
+            Debugger.Warn($"{m.Name} Despawn -> {m.ActionName}");
+        }
+
+        private void M_OnMonsterDeath(object source, EventArgs args)
+        {
+            Monster m = (Monster)source;
+            Debugger.Warn($"{m.Name} Death -> {m.ActionName}");
+        }
+#endif
         public void DestroyInstances()
         {
             Player = null;

@@ -469,7 +469,7 @@ namespace HunterPie.Core
 
             ActionReferenceName = actionRefString;
             ActionName = Monster.ParseActionString(actionRefString);
-            IsAlive = !actionRefString.Contains("Die");
+            IsAlive = !DetectDeath(actionRefString);
             IsCaptured = actionRefString.Contains("Capture");
             ActionId = actionId;
         }
@@ -815,6 +815,11 @@ namespace HunterPie.Core
         {
             string actionRefName = actionRef.Split('<').FirstOrDefault().Split(':').LastOrDefault();
             return string.Concat(actionRefName.Select((c, i) => i > 0 && char.IsUpper(c) ? " " + c.ToString() : c.ToString()));
+        }
+
+        public static bool DetectDeath(string actionRef)
+        {
+            return actionRef.Contains("Die") || (actionRef.Contains("Dead") && !actionRef.Contains("Deadly"));
         }
 
     }
