@@ -35,32 +35,33 @@
     - <a href="?p=Plugins/monster.md"><Type>Monster</Type></a>
 - <a href="?p=Plugins/HunterPie.Logger.md"><ns>HunterPie.Logger</ns></a>
 - <a href="?p=EventArgs/HunterPie.Core.Events.md"><ns>HunterPie.Core.Events</ns></a>
+
 ### Internals & Research
 - [Supported Abnormalities](?p=Internal/abnormalities.md)
-
+- [Player Actions](?p=Internal/playerActions.md)
 
 <details>
 <summary>v1.0.3.9x</summary>
 
-- [v1.0.3.97](?p=versions/v1.0.3.97.md)
-- [v1.0.3.96](?p=versions/v1.0.3.96.md)
-- [v1.0.3.95](?p=versions/v1.0.3.95.md)
-- [v1.0.3.94](?p=versions/v1.0.3.94.md)
-- [v1.0.3.93](?p=versions/v1.0.3.93.md)
-- [v1.0.3.92](?p=versions/v1.0.3.92.md)
-- [v1.0.3.91](?p=versions/v1.0.3.91.md)
-- [v1.0.3.90](?p=versions/v1.0.3.90.md)
+- [v1.0.3.97](?p=versions/v1.0.3.97.md) (29 sept, 2020)
+- [v1.0.3.96](?p=versions/v1.0.3.96.md) (14 Aug, 2020)
+- [v1.0.3.95](?p=versions/v1.0.3.95.md) (29 Jul, 2020)
+- [v1.0.3.94](?p=versions/v1.0.3.94.md) (08 Jul, 2020)
+- [v1.0.3.93](?p=versions/v1.0.3.93.md) (17 Jun, 2020)
+- [v1.0.3.92](?p=versions/v1.0.3.92.md) (02 Jun, 2020)
+- [v1.0.3.91](?p=versions/v1.0.3.91.md) (17 May, 2020)
+- [v1.0.3.90](?p=versions/v1.0.3.90.md) (29 Apr, 2020)
 
 </details>
 
 <details>
 <summary>v1.0.3.8x</summary>
 
-- [v1.0.3.89](?p=versions/v1.0.3.89.md)
-- [v1.0.3.88](?p=versions/v1.0.3.88.md)
-- [v1.0.3.87](?p=versions/v1.0.3.87.md)
-- [v1.0.3.86](?p=versions/v1.0.3.86.md)
-- [v1.0.3.85](?p=versions/v1.0.3.85.md)
+- [v1.0.3.89](?p=versions/v1.0.3.89.md) (24 Apr, 2020)
+- [v1.0.3.88](?p=versions/v1.0.3.88.md) (19 Apr 2020)
+- [v1.0.3.87](?p=versions/v1.0.3.87.md) (14 Apr, 2020)
+- [v1.0.3.86](?p=versions/v1.0.3.86.md) (07 Apr, 2020)
+- [v1.0.3.85](?p=versions/v1.0.3.85.md) (02 Apr, 2020)
 
 </details>
 
