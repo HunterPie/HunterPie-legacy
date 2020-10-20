@@ -21,8 +21,6 @@ namespace HunterPie.GUI.Widgets
     public partial class MonsterHealth : UserControl
     {
 
-
-
         public string ActionName
         {
             get { return (string)GetValue(ActionNameProperty); }
@@ -30,6 +28,14 @@ namespace HunterPie.GUI.Widgets
         }
         public static readonly DependencyProperty ActionNameProperty =
             DependencyProperty.Register("ActionName", typeof(string), typeof(MonsterHealth));
+
+        public Visibility ActionVisibility
+        {
+            get { return (Visibility)GetValue(ActionVisibilityProperty); }
+            set { SetValue(ActionVisibilityProperty, value); }
+        }
+        public static readonly DependencyProperty ActionVisibilityProperty =
+            DependencyProperty.Register("ActionVisibility", typeof(Visibility), typeof(MonsterHealth));
 
         private Monster Context;
         private Timer VisibilityTimer;
@@ -481,6 +487,7 @@ namespace HunterPie.GUI.Widgets
             UserSettings.Config.Monsterscomponent config = UserSettings.PlayerConfig.Overlay.MonstersComponent;
             MonsterPartsContainer.Visibility = !config.EnableMonsterParts && !config.EnableRemovableParts ? Visibility.Collapsed : Visibility.Visible;
             MonsterAilmentsContainer.Visibility = !config.EnableMonsterAilments ? Visibility.Collapsed : Visibility.Visible;
+            ActionVisibility = config.ShowMonsterActionName ? Visibility.Visible : Visibility.Collapsed;
             foreach (Monster_Widget.Parts.MonsterPart part in MonsterPartsContainer.Children)
             {
                 part.ApplySettings();
@@ -615,8 +622,6 @@ namespace HunterPie.GUI.Widgets
 
         private void OnMonsterPartsContainerSizeChange(object sender, SizeChangedEventArgs e) => UpdateContainerBarsSizeDynamically();
         private void OnMonsterAilmentsContainerSizeChange(object sender, SizeChangedEventArgs e) => UpdateContainerBarsSizeDynamically();
-
-
 
     }
 }

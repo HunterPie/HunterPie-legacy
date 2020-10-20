@@ -95,7 +95,7 @@
             </Canvas>
             <StackPanel Orientation="Horizontal" VerticalAlignment="Top" Margin="46,40,37,0" Height="24">
                 <StackPanel x:Name="Weaknesses" Style="{StaticResource OVERLAY_MONSTER_WEAKNESS_DISPLAY}"/>
-                <TextBlock Text="{Binding ElementName=MonsterComponent, Path=ActionName}" Style="{StaticResource OVERLAY_MONSTER_ACTION_TEXT}"/>
+                <TextBlock Text="{Binding ElementName=MonsterComponent, Path=ActionName}" Visibility="{Binding ElementName=MonsterComponent, Path=ActionVisibility}" Style="{StaticResource OVERLAY_MONSTER_ACTION_TEXT}"/>
             </StackPanel>
             <TextBlock x:Name="EnrageTimerText" Visibility="Hidden" FontWeight="Normal" HorizontalAlignment="Left" Margin="10,49,0,0" TextWrapping="Wrap" Text="120s" VerticalAlignment="Top" TextAlignment="Center" Width="34" Height="16" Style="{StaticResource OVERLAY_MONSTER_ENRAGE_TEXT_STYLE}"/>
         </Grid>

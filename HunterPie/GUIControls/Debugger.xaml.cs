@@ -80,6 +80,12 @@ namespace HunterPie.Logger
         private static void ScrollToEnd()
         {
             ScrollViewer scroll = Instance.console.Template.FindName("scroll", Instance.console) as ScrollViewer;
+
+            if (scroll is null)
+            {
+                return;
+            }
+
             double ScrollableSize = scroll.ViewportHeight;
             double ScrollPosition = scroll.VerticalOffset;
             double ExtentHeight = scroll.ExtentHeight;

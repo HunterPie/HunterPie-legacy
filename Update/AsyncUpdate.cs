@@ -233,17 +233,24 @@ namespace Update
         {
             // Create folders if needed
             CreateDirectories(dst);
-
-            using (WebClient client = new WebClient { Timeout = 10000 })
+            try
             {
-                client.Headers.Add("user-agent", "Mozilla/4.0 (compatible; MSIE 6.0; Windows NT 5.2; .NET CLR 1.0.3705;)");
-                client.Headers.Add(HttpRequestHeader.CacheControl, "no-store");
-                client.CachePolicy = new System.Net.Cache.RequestCachePolicy(System.Net.Cache.RequestCacheLevel.NoCacheNoStore);
-                client.DownloadProgressChanged += OnDownloadProgressChange;
-                await client.DownloadFileTaskAsync(uri, dst);
-                FilesUpdatedCounter++;
-                client.DownloadProgressChanged -= OnDownloadProgressChange;
+                using (WebClient client = new WebClient { Timeout = 10000 })
+                {
+                    client.Headers.Add("user-agent", "Mozilla/4.0 (compatible; MSIE 6.0; Windows NT 5.2; .NET CLR 1.0.3705;)");
+                    client.Headers.Add(HttpRequestHeader.CacheControl, "no-store");
+                    client.CachePolicy = new System.Net.Cache.RequestCachePolicy(System.Net.Cache.RequestCacheLevel.NoCacheNoStore);
+                    client.DownloadProgressChanged += OnDownloadProgressChange;
+                    await client.DownloadFileTaskAsync(uri, dst);
+                    FilesUpdatedCounter++;
+                    client.DownloadProgressChanged -= OnDownloadProgressChange;
+                }
+            } catch(Exception err)
+            {
+                WriteToFile(err.ToString());
+                OnUpdateFail?.Invoke(this, new UpdateFinished { IsLatestVersion = true, JustUpdated = false });
             }
+            
         }
     }
 }
