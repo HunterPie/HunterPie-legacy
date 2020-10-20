@@ -21,6 +21,16 @@ namespace HunterPie.GUI.Widgets
     public partial class MonsterHealth : UserControl
     {
 
+
+
+        public string ActionName
+        {
+            get { return (string)GetValue(ActionNameProperty); }
+            set { SetValue(ActionNameProperty, value); }
+        }
+        public static readonly DependencyProperty ActionNameProperty =
+            DependencyProperty.Register("ActionName", typeof(string), typeof(MonsterHealth));
+
         private Monster Context;
         private Timer VisibilityTimer;
 
@@ -30,6 +40,7 @@ namespace HunterPie.GUI.Widgets
         public MonsterHealth() => InitializeComponent();
         public int NumberOfPartsDisplayed = 0;
         public int NumberOfAilmentsDisplayed = 0;
+
         ~MonsterHealth()
         {
             ANIM_ENRAGEDICON = null;
@@ -70,6 +81,7 @@ namespace HunterPie.GUI.Widgets
             Context.OnCrownChange += OnMonsterCrownChange;
             Context.OnAlatreonElementShift += OnAlatreonElementShift;
             Context.OnMonsterAilmentsCreate += OnMonsterAilmentsCreate;
+            Context.OnActionChange += OnActionChange;
         }
 
         public void UnhookEvents()
@@ -100,6 +112,7 @@ namespace HunterPie.GUI.Widgets
             Context.OnCrownChange -= OnMonsterCrownChange;
             Context.OnAlatreonElementShift -= OnAlatreonElementShift;
             Context.OnMonsterAilmentsCreate -= OnMonsterAilmentsCreate;
+            Context.OnActionChange -= OnActionChange;
             Context = null;
         }
 
@@ -184,6 +197,15 @@ namespace HunterPie.GUI.Widgets
             }
             // Sometimes Alatreon's state changes before OnMonsterSpawn is dispatched
             if (Monster.GameId == 87) OnAlatreonElementShift(this, EventArgs.Empty);
+        }
+
+
+        private void OnActionChange(object source, MonsterUpdateEventArgs args)
+        {
+            Dispatch(() =>
+            {
+                ActionName = args.Action;
+            });
         }
 
         private void OnMonsterCrownChange(object source, EventArgs args) => Dispatch(() =>

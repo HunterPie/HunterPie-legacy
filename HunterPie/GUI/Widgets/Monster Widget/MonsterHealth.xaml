@@ -19,7 +19,7 @@
             </Custom:MinimalHealthBar>
             <StackPanel x:Name="MonsterInfoPanel" Style="{StaticResource OVERLAY_MONSTER_HEADER_DISPLAY}">
                 <Image x:Name="MonsterCrown" Source="{StaticResource CROWN_GOLD}" Visibility="Visible" Width="16" Margin="0,2,0,0" Height="14" VerticalAlignment="Top"/>
-                <TextBlock x:Name="MonsterName" Text="Monster name herg" Style="{StaticResource OVERLAY_MONSTER_NAME_TEXT_STYLE}"/>
+                <TextBlock x:Name="MonsterName" Text="UwU" Style="{StaticResource OVERLAY_MONSTER_NAME_TEXT_STYLE}"/>
             </StackPanel>
             <TextBlock x:Name="HealthText" Text="10000/10000 (100%)" Style="{StaticResource OVERLAY_MONSTER_BAR_TEXT_STYLE}" Height="20" VerticalAlignment="Top" HorizontalAlignment="Stretch" Width="Auto"/>
             <Custom:MinimalHealthBar x:Name="MonsterStaminaBar" VerticalAlignment="Top" RenderTransformOrigin="0.5,1" BorderThickness="0.2" Style="{StaticResource OVERLAY_MONSTER_STAMINA_BAR_STYLE}" Margin="46,31,21,0"/>
@@ -93,8 +93,10 @@
                     </Image.Style>
                 </Image>
             </Canvas>
-
-            <StackPanel x:Name="Weaknesses" Style="{StaticResource OVERLAY_MONSTER_WEAKNESS_DISPLAY}" VerticalAlignment="Top"/>
+            <StackPanel Orientation="Horizontal" VerticalAlignment="Top" Margin="46,40,37,0" Height="24">
+                <StackPanel x:Name="Weaknesses" Style="{StaticResource OVERLAY_MONSTER_WEAKNESS_DISPLAY}"/>
+                <TextBlock Text="{Binding ElementName=MonsterComponent, Path=ActionName}" Style="{StaticResource OVERLAY_MONSTER_ACTION_TEXT}"/>
+            </StackPanel>
             <TextBlock x:Name="EnrageTimerText" Visibility="Hidden" FontWeight="Normal" HorizontalAlignment="Left" Margin="10,49,0,0" TextWrapping="Wrap" Text="120s" VerticalAlignment="Top" TextAlignment="Center" Width="34" Height="16" Style="{StaticResource OVERLAY_MONSTER_ENRAGE_TEXT_STYLE}"/>
         </Grid>
         <StackPanel x:Name="MonsterAdittionalInfoContainer" Style="{StaticResource OVERLAY_MONSTER_PARTS_DISPLAY}">

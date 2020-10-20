@@ -112,6 +112,29 @@ namespace HunterPie.GUI.Widgets.Monster_Widget.Parts
             // Hide invalid parts, like the Vaal Hazaak unknown ones
             if (float.IsNaN(context.TotalHealth) || context.TotalHealth <= 0) return Visibility.Collapsed;
 
+            // Hide parts that cannot be broken
+            bool canBeBroken = context.BreakThresholds.Length > 0;
+            if (ComponentSettings.EnableOnlyPartsThatCanBeBroken)
+            {
+                if (canBeBroken)
+                {
+                    bool isBroken = context.BreakThresholds.LastOrDefault() < context.BrokenCounter;
+                    if (ComponentSettings.HidePartsThatHaveAlreadyBeenBroken && isBroken)
+                    {
+                        return Visibility.Collapsed;
+                    }
+                } else
+                {
+                    return Visibility.Collapsed;
+                }
+            }
+
+            if (canBeBroken && ComponentSettings.HidePartsThatHaveAlreadyBeenBroken)
+            {
+                bool isBroken = context.BreakThresholds.LastOrDefault() < context.BrokenCounter;
+                return isBroken ? Visibility.Collapsed : Visibility.Visible;
+            }
+
             if (context.IsRemovable)
             {
                 return ComponentSettings.EnableRemovableParts ? Visibility.Visible : Visibility.Collapsed;

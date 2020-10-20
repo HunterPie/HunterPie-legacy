@@ -79,12 +79,13 @@ namespace HunterPie.Logger
 
         private static void ScrollToEnd()
         {
-            double ScrollableSize = Instance.scroll.ViewportHeight;
-            double ScrollPosition = Instance.scroll.VerticalOffset;
-            double ExtentHeight = Instance.scroll.ExtentHeight;
+            ScrollViewer scroll = Instance.console.Template.FindName("scroll", Instance.console) as ScrollViewer;
+            double ScrollableSize = scroll.ViewportHeight;
+            double ScrollPosition = scroll.VerticalOffset;
+            double ExtentHeight = scroll.ExtentHeight;
             if (ScrollableSize + ScrollPosition == ExtentHeight || ExtentHeight < ScrollableSize)
             {
-                Instance.scroll.ScrollToEnd();
+                scroll.ScrollToEnd();
             }
         }
 
@@ -146,7 +147,7 @@ namespace HunterPie.Logger
             File.WriteAllText(Path.Combine(dir, "stacktrace.log"), $"Application exit code: {Environment.ExitCode}\n{Environment.StackTrace}");
         }
     }
-    class LogString
+    struct LogString
     {
         public string Text { get; set; }
         public object Color { get; set; }

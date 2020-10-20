@@ -82,6 +82,10 @@ namespace HunterPie.GUIControls
 
             // Monsters
             settingsUI.switchEnableMonsterComponent.IsEnabled = settings.Overlay.MonstersComponent.Enabled;
+            settingsUI.switchEnableMonsterAction.IsEnabled = settings.Overlay.MonstersComponent.ShowMonsterActionName;
+            settingsUI.switchEnableHideUnactiveAilments.IsEnabled = settings.Overlay.MonstersComponent.HideAilmentsAfterSeconds;
+            settingsUI.switchShowOnlyPartsThatCanBeBroken.IsEnabled = settings.Overlay.MonstersComponent.EnableOnlyPartsThatCanBeBroken;
+            settingsUI.switchShowOnlyPartsThatArentBroken.IsEnabled = settings.Overlay.MonstersComponent.HidePartsThatHaveAlreadyBeenBroken;
             settingsUI.HealthTextFormat.Text = settings.Overlay.MonstersComponent.HealthTextFormat;
             settingsUI.PartHealthTextFormat.Text = settings.Overlay.MonstersComponent.PartTextFormat;
             settingsUI.switchEnableHealthHiding.IsEnabled = settings.Overlay.MonstersComponent.HideHealthInformation;
@@ -231,6 +235,10 @@ namespace HunterPie.GUIControls
 
             // Monsters
             settings.Overlay.MonstersComponent.Enabled = settingsUI.switchEnableMonsterComponent.IsEnabled;
+            settings.Overlay.MonstersComponent.ShowMonsterActionName = settingsUI.switchEnableMonsterAction.IsEnabled;
+            settings.Overlay.MonstersComponent.HideAilmentsAfterSeconds = settingsUI.switchEnableHideUnactiveAilments.IsEnabled;
+            settings.Overlay.MonstersComponent.EnableOnlyPartsThatCanBeBroken = settingsUI.switchShowOnlyPartsThatCanBeBroken.IsEnabled;
+            settings.Overlay.MonstersComponent.HidePartsThatHaveAlreadyBeenBroken = settingsUI.switchShowOnlyPartsThatArentBroken.IsEnabled;
             settings.Overlay.MonstersComponent.HealthTextFormat = settingsUI.HealthTextFormat.Text;
             settings.Overlay.MonstersComponent.PartTextFormat = settingsUI.PartHealthTextFormat.Text;
             settings.Overlay.MonstersComponent.HideHealthInformation = settingsUI.switchEnableHealthHiding.IsEnabled;

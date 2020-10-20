@@ -252,6 +252,7 @@ namespace HunterPie.Core
                 if (value != actionId)
                 {
                     actionId = value;
+                    Dispatch(OnActionChange, new PlayerEventArgs(this));
                     Debugger.Debug($"Player -> {PlayerActionRef} (ID: {value})");
                 }
             }
@@ -331,6 +332,7 @@ namespace HunterPie.Core
         public event PlayerEvents OnWeaponChange;
         public event PlayerEvents OnSessionChange;
         public event PlayerEvents OnClassChange;
+        public event PlayerEvents OnActionChange;
 
         public event PlayerEvents OnCharacterLogin;
         public event PlayerEvents OnCharacterLogout;

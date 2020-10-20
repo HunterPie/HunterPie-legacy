@@ -6,15 +6,21 @@
              mc:Ignorable="d"
              d:DesignHeight="450" d:DesignWidth="800" Loaded="OnLoaded">
     <Grid>
-        <ScrollViewer Name="scroll" VirtualizingPanel.IsVirtualizing="True">
-            <ItemsControl Name="console" VirtualizingPanel.IsVirtualizing="True" VirtualizingPanel.VirtualizationMode="Recycling">
-                <ItemsControl.ItemTemplate>
-                    <DataTemplate>
-                        <TextBlock Text="{Binding Text, Mode=OneWay}" Foreground="{Binding Color, Mode=OneWay}" FontSize="13" FontFamily="Roboto, Segoe UI, Yu Gothic" TextOptions.TextHintingMode="Fixed" TextOptions.TextFormattingMode="Ideal" TextWrapping="WrapWithOverflow"/>
-                    </DataTemplate>
-                </ItemsControl.ItemTemplate>
-            </ItemsControl>
-        </ScrollViewer>
+        <ItemsControl Name="console" VirtualizingPanel.IsVirtualizing="True" ScrollViewer.CanContentScroll="True">
+            <ItemsControl.Template>
+                <ControlTemplate>
+                    <ScrollViewer x:Name="scroll" HorizontalScrollBarVisibility="Disabled" VerticalScrollBarVisibility="Auto" VirtualizingPanel.IsVirtualizing="True">
+                        <ItemsPresenter VirtualizingPanel.IsVirtualizing="True"/>
+                    </ScrollViewer>
+                </ControlTemplate>
+            </ItemsControl.Template>
+
+            <ItemsControl.ItemTemplate>
+                <DataTemplate>
+                    <TextBlock Text="{Binding Text, Mode=OneWay}" Foreground="{Binding Color, Mode=OneWay}" FontSize="13" FontFamily="Roboto, Segoe UI, Yu Gothic" TextOptions.TextHintingMode="Fixed" TextOptions.TextFormattingMode="Ideal" TextWrapping="WrapWithOverflow"/>
+                </DataTemplate>
+            </ItemsControl.ItemTemplate>
+        </ItemsControl>
         <Button Style="{StaticResource buttons_settings}" Cursor="Hand" FontFamily="Segoe UI" FontSize="13" FontWeight="Light" BorderBrush="{x:Null}" Foreground="{StaticResource GENERIC_BUTTON_FOREGROUND}"  Background="{StaticResource CONSOLE_HEADER_BACKGROUND}" Content="Clear" ToolTip="Clear console" HorizontalAlignment="Right" Width="42" Height="22" VerticalAlignment="Top" Click="OnClearConsoleButtonClick" IsTabStop="False" Focusable="False"/>
     </Grid>
 </UserControl>

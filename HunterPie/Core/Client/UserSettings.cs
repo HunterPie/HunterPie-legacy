@@ -77,9 +77,12 @@ namespace HunterPie.Core
                 public int MaxPartColumns { get; set; } = 1;
                 public bool ShowMonsterWeakness { get; set; } = true;
                 public bool HidePartsAfterSeconds { get; set; } = true;
+                public bool HideAilmentsAfterSeconds { get; set; } = true;
                 public int SecondsToHideParts { get; set; } = 10;
                 public bool EnableRemovableParts { get; set; } = true;
                 public bool EnableMonsterParts { get; set; } = true;
+                public bool EnableOnlyPartsThatCanBeBroken { get; set; } = false;
+                public bool HidePartsThatHaveAlreadyBeenBroken { get; set; } = false;
                 public bool EnableMonsterAilments { get; set; } = true;
                 public string[] EnabledPartGroups { get; set; } = new string[] { "HEAD", "BODY", "ARM", "WING", "LEG", "TAIL", "LIMB", "ABDOMEN", "CHEST", "REAR", "JAW", "BACK", "FIN", "HORN", "NECK", "SHELL", "ORGAN", "MISC", "MANE", "BONE" };
                 public string[] EnabledAilmentGroups { get; set; } = new string[] { "POISON", "PARALYSIS", "SLEEP", "BLAST", "MOUNT", "EXHAUSTION", "STUN", "TRANQUILIZE", "FLASH", "KNOCKDOWN", "DUNGPOD", "TRAP", "ELDERSEAL", "SMOKING", "CLAW", "MISC", "ENRAGE", "UNKNOWN" };
@@ -89,6 +92,7 @@ namespace HunterPie.Core
                 public string AilmentBuildupTextFormat { get; set; } = "{Current}/{Max}";
                 public string AilmentTimerTextFormat { get; set; } = "{Current}/{Max}";
                 public string PartTextFormat { get; set; } = "{Current}/{Max}";
+                public bool ShowMonsterActionName { get; set; } = true;
             }
 
             public class Harvestboxcomponent

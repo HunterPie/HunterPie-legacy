@@ -283,6 +283,7 @@
                                 <Binding Mode="OneTime" XPath="Settings/String[@ID='ENABLE_MONSTER_WIDGET_DESC']/@Name"/>
                             </custom:Switcher.ToolTip>
                         </custom:Switcher>
+                        <custom:Switcher x:Name="switchEnableMonsterAction" Text="{Binding Mode=OneTime, XPath=/Strings/Client/Settings/String[@ID\=\'ENABLE_MONSTER_ACTION\']/@Name}" ToolTip="{Binding Mode=OneTime, XPath=/Strings/Client/Settings/String[@ID\=\'ENABLE_MONSTER_ACTION_DESC\']/@Name}" Margin="10,0,10,5" RestartVisibility="Collapsed"/>
                         <DockPanel Margin="10,0,10,5" ToolTip="{Binding Mode=OneTime, XPath=/Strings/Client/Settings/String[@ID\=\'STATIC_MONSTER_HEALTH_STRING_FORMAT_DESC\']/@Name}">
                             <TextBlock TextWrapping="NoWrap" Text="{Binding Mode=OneTime, XPath=/Strings/Client/Settings/String[@ID\=\'STATIC_MONSTER_HEALTH_STRING_FORMAT\']/@Name}" FontFamily="Segoe UI Light" Foreground="#FFF1F1F1" Canvas.Left="320" Canvas.Top="3" FontSize="16" Padding="0,0,10,0"/>
                             <TextBox x:Name="HealthTextFormat" TextWrapping="Wrap" Background="{x:Null}" Foreground="#FF9E9D9D" BorderBrush="#FFABADB3" BorderThickness="0,0,0,1" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" HorizontalAlignment="Stretch" />
@@ -330,6 +331,8 @@
                                 <Binding Mode="OneTime" XPath="Settings/String[@ID='ENABLE_HIDE_INACTIVE_PARTS_DESC']/@Name"/>
                             </custom:Switcher.ToolTip>
                         </custom:Switcher>
+                        <custom:Switcher x:Name="switchShowOnlyPartsThatCanBeBroken" Text="{Binding Mode=OneTime, XPath=/Strings/Client/Settings/String[@ID\=\'ENABLE_SHOW_BROKEN_PARTS\']/@Name}" ToolTip="{Binding Mode=OneTime, XPath=/Strings/Client/Settings/String[@ID\=\'ENABLE_SHOW_BROKEN_PARTS_DESC\']/@Name}" Margin="10,0,10,5" RestartVisibility="Collapsed"/>
+                        <custom:Switcher x:Name="switchShowOnlyPartsThatArentBroken" Text="{Binding Mode=OneTime, XPath=/Strings/Client/Settings/String[@ID\=\'ENABLE_SHOW_UNBROKEN_PARTS\']/@Name}" ToolTip="{Binding Mode=OneTime, XPath=/Strings/Client/Settings/String[@ID\=\'ENABLE_SHOW_UNBROKEN_PARTS_DESC\']/@Name}" Margin="10,0,10,5" RestartVisibility="Collapsed"/>
                         <custom:Switcher x:Name="switchEnableRemovableParts" Margin="10,0,10,5" RestartVisibility="Collapsed">
                             <custom:Switcher.Text>
                                 <Binding Mode="OneTime" XPath="Settings/String[@ID='ENABLE_BREAKABLE_PARTS']/@Name"/>
@@ -338,7 +341,7 @@
                                 <Binding Mode="OneTime" XPath="Settings/String[@ID='ENABLE_BREAKABLE_PARTS_DESC']/@Name"/>
                             </custom:Switcher.ToolTip>
                         </custom:Switcher>
-                        <custom:Switcher x:Name="switchEnableHealthHiding" Text="{Binding Mode=OneTime, XPath=/Strings/Client/Settings/String[@ID\=\'ENABLE_HIDE_MONSTER_HEALTH\']/@Name}" ToolTip="{Binding Mode=OneTime, XPath=/Strings/Client/Settings/String[@ID\=\'ENABLE_HIDE_MONSTER_HEALTH_DESC\']/@Name}" Margin="10, 0, 10, 5" RestartVisibility="Collapsed"/>
+                        <custom:Switcher x:Name="switchEnableHealthHiding" Text="{Binding Mode=OneTime, XPath=/Strings/Client/Settings/String[@ID\=\'ENABLE_HIDE_MONSTER_HEALTH\']/@Name}" ToolTip="{Binding Mode=OneTime, XPath=/Strings/Client/Settings/String[@ID\=\'ENABLE_HIDE_MONSTER_HEALTH_DESC\']/@Name}" Margin="10,0,10,5" RestartVisibility="Collapsed"/>
                         <custom:Switcher x:Name="switchEnableAilmentsColor" Text="{Binding Mode=OneTime, XPath=/Strings/Client/Settings/String[@ID\=\'ENABLE_AILMENTS_BAR_COLOR\']/@Name, FallbackValue='Enable ailments bar color'}" ToolTip="{Binding Mode=OneTime, XPath=/Strings/Client/Settings/String[@ID\=\'ENABLE_AILMENTS_BAR_COLOR_DESC\']/@Name}" Margin="10,0,10,5" RestartVisibility="Collapsed"/>
                         <custom:Switcher x:Name="switchEnableAilments" Margin="10,0,10,5" RestartVisibility="Collapsed" MouseLeftButtonDown="SwitchEnableAilments_MouseDown">
                             <custom:Switcher.Text>
@@ -459,6 +462,7 @@
                                 </StackPanel.Style>
                             </StackPanel>
                         </ScrollViewer>
+                        <custom:Switcher x:Name="switchEnableHideUnactiveAilments" Text="{Binding Mode=OneTime, XPath=/Strings/Client/Settings/String[@ID\=\'ENABLE_HIDE_INACTIVE_AILMENTS\']/@Name}" ToolTip="{Binding Mode=OneTime, XPath=/Strings/Client/Settings/String[@ID\=\'ENABLE_HIDE_INACTIVE_AILMENTS_DESC\']/@Name}" Margin="10,0,10,5" RestartVisibility="Collapsed"/>
                         <custom:Switcher x:Name="switchEnableParts" Margin="10,0,10,5" MouseDown="SwitchEnableParts_MouseDown" RestartVisibility="Collapsed">
                             <custom:Switcher.Text>
                                 <Binding Mode="OneTime" XPath="Settings/String[@ID='ENABLE_MONSTER_PARTS']/@Name"/>

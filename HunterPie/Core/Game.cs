@@ -91,7 +91,9 @@ namespace HunterPie.Core
             Monsters[0] = FirstMonster;
             Monsters[1] = SecondMonster;
             Monsters[2] = ThirdMonster;
+#if !DEBUG
         }
+#endif
 #if DEBUG
             foreach (Monster m in Monsters)
             {

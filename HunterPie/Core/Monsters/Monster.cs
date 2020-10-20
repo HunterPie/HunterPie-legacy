@@ -147,6 +147,7 @@ namespace HunterPie.Core
                 {
                     IsActuallyAlive = isAlive = value;
                     Dispatch(OnMonsterDeath);
+                    DestroyParts();
                 } else
                 {
                     isAlive = value;
@@ -202,8 +203,9 @@ namespace HunterPie.Core
                 if (value && value != isCaptured)
                 {
                     isCaptured = value;
-                    IsActuallyAlive = IsAlive = !isCaptured;
+                    IsActuallyAlive = isAlive = !isCaptured;
                     Dispatch(OnMonsterCapture);
+                    DestroyParts();
                 } else if (!value && value != isCaptured)
                 {
                     isCaptured = false;

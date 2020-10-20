@@ -18,7 +18,7 @@ namespace HunterPie.GUI.Widgets.Monster_Widget.Parts
         Ailment Context;
         Timer VisibilityTimer;
         bool IsGroupEnabled;
-        Monsterscomponent Component = UserSettings.PlayerConfig.Overlay.MonstersComponent;
+        Monsterscomponent ComponentSettings => UserSettings.PlayerConfig.Overlay.MonstersComponent;
 
         public Brush AilmentGroupColor
         {
@@ -34,8 +34,8 @@ namespace HunterPie.GUI.Widgets.Monster_Widget.Parts
         public void SetContext(Ailment ctx, double MaxBarSize)
         {
             Context = ctx;
-            IsGroupEnabled = Component.EnabledAilmentGroups.Contains(Context.Group);
-            AilmentGroupColor = Component.EnableAilmentsBarColor ?
+            IsGroupEnabled = ComponentSettings.EnabledAilmentGroups.Contains(Context.Group);
+            AilmentGroupColor = ComponentSettings.EnableAilmentsBarColor ?
                     FindResource($"MONSTER_AILMENT_COLOR_{Context.Group}") as Brush :
                     FindResource("MONSTER_AILMENT_COLOR_UNKNOWN") as Brush;
             SetAilmentInformation(MaxBarSize);
@@ -64,18 +64,18 @@ namespace HunterPie.GUI.Widgets.Monster_Widget.Parts
         #region Settings
         public void ApplySettings()
         {
-            bool isHidden = Component.HidePartsAfterSeconds;
-            bool enabled = Component.EnableMonsterAilments;
+            bool isHidden = ComponentSettings.HideAilmentsAfterSeconds;
+            bool enabled = ComponentSettings.EnableMonsterAilments;
 
             bool visible = !isHidden && enabled && IsGroupEnabled;
             Dispatch(() =>
             {
                 Visibility = visible ? Visibility.Visible : Visibility.Collapsed;
-                AilmentGroupColor = Component.EnableAilmentsBarColor ?
+                AilmentGroupColor = ComponentSettings.EnableAilmentsBarColor ?
                     FindResource($"MONSTER_AILMENT_COLOR_{Context.Group}") as Brush :
                     FindResource("MONSTER_AILMENT_COLOR_UNKNOWN") as Brush;
-                string format = Context.Duration > 0 ? Component.AilmentTimerTextFormat :
-                Component.AilmentBuildupTextFormat;
+                string format = Context.Duration > 0 ? ComponentSettings.AilmentTimerTextFormat :
+                ComponentSettings.AilmentBuildupTextFormat;
                 AilmentText.Text = FormatAilmentString(format, AilmentBar.Value, AilmentBar.MaxValue);
             });
         }
@@ -85,7 +85,7 @@ namespace HunterPie.GUI.Widgets.Monster_Widget.Parts
         #region Visibility timer
         private void StartVisibilityTimer()
         {
-            if (!Component.HidePartsAfterSeconds)
+            if (!ComponentSettings.HideAilmentsAfterSeconds)
             {
                 ApplySettings();
                 return;
@@ -96,7 +96,7 @@ namespace HunterPie.GUI.Widgets.Monster_Widget.Parts
             }
             else
             {
-                VisibilityTimer.Change(Component.SecondsToHideParts * 1000, 0);
+                VisibilityTimer.Change(ComponentSettings.SecondsToHideParts * 1000, 0);
             }
         }
 
@@ -116,7 +116,7 @@ namespace HunterPie.GUI.Widgets.Monster_Widget.Parts
 
         private void OnCounterChange(object source, MonsterAilmentEventArgs args)
         {
-            bool visible = Component.EnableMonsterAilments;
+            bool visible = ComponentSettings.EnableMonsterAilments;
             Dispatcher.BeginInvoke(System.Windows.Threading.DispatcherPriority.Render, new Action(() =>
             {
                 AilmentCounter.Text = args.Counter.ToString();
@@ -129,7 +129,7 @@ namespace HunterPie.GUI.Widgets.Monster_Widget.Parts
         {
             if (args.MaxDuration <= 0) return;
 
-            bool enabled = Component.EnableMonsterAilments;
+            bool enabled = ComponentSettings.EnableMonsterAilments;
             bool visible = enabled && IsGroupEnabled;
 
             if (args.Duration > 0)
@@ -138,7 +138,7 @@ namespace HunterPie.GUI.Widgets.Monster_Widget.Parts
                 {
                     AilmentBar.MaxValue = args.MaxDuration;
                     AilmentBar.Value = Math.Max(0, args.MaxDuration - args.Duration);
-                    AilmentText.Text = FormatAilmentString(Component.AilmentTimerTextFormat, AilmentBar.Value, AilmentBar.MaxValue); ;
+                    AilmentText.Text = FormatAilmentString(ComponentSettings.AilmentTimerTextFormat, AilmentBar.Value, AilmentBar.MaxValue); ;
                     Visibility = visible ? Visibility.Visible : Visibility.Collapsed;
                     StartVisibilityTimer();
                 }));
@@ -150,7 +150,7 @@ namespace HunterPie.GUI.Widgets.Monster_Widget.Parts
         {
             if (args.MaxBuildup <= 0) return;
 
-            bool enabled = Component.EnableMonsterAilments;
+            bool enabled = ComponentSettings.EnableMonsterAilments;
             bool visible = enabled && IsGroupEnabled;
 
             Dispatcher.BeginInvoke(System.Windows.Threading.DispatcherPriority.Render, new Action(() =>
@@ -158,7 +158,7 @@ namespace HunterPie.GUI.Widgets.Monster_Widget.Parts
                 AilmentBar.MaxValue = Math.Max(1, args.MaxBuildup);
                 // Get the min between them so the buildup doesnt overflow
                 AilmentBar.Value = Math.Min(args.Buildup, args.MaxBuildup);
-                AilmentText.Text = FormatAilmentString(Component.AilmentBuildupTextFormat, AilmentBar.Value, AilmentBar.MaxValue);
+                AilmentText.Text = FormatAilmentString(ComponentSettings.AilmentBuildupTextFormat, AilmentBar.Value, AilmentBar.MaxValue);
                 Visibility = visible ? Visibility.Visible : Visibility.Collapsed;
                 StartVisibilityTimer();
             }));
@@ -178,8 +178,8 @@ namespace HunterPie.GUI.Widgets.Monster_Widget.Parts
                 AilmentBar.MaxValue = Math.Max(1, Context.MaxBuildup);
                 AilmentBar.Value = Math.Max(0, Context.MaxBuildup - Context.Buildup);
             }
-            string format = Context.Duration > 0 ? Component.AilmentTimerTextFormat :
-                Component.AilmentBuildupTextFormat;
+            string format = Context.Duration > 0 ? ComponentSettings.AilmentTimerTextFormat :
+                ComponentSettings.AilmentBuildupTextFormat;
             AilmentText.Text = FormatAilmentString(format, AilmentBar.Value, AilmentBar.MaxValue);
         }
 

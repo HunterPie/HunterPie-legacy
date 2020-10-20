@@ -573,10 +573,18 @@
       <String ID="STATIC_MONSTER_BAR_DOCK_DESC" Name="Changes monster bar dock."/>
       <String ID="STATIC_MONSTER_BAR_DOCK_0" Name="Top"/>
       <String ID="STATIC_MONSTER_BAR_DOCK_1" Name="Bottom"/>
+      <String ID="ENABLE_MONSTER_ACTION" Name="Show monster action name"/>
+      <String ID="ENABLE_MONSTER_ACTION_DESC" Name="If enabled, the monster action name will be displayed."/>
       <String ID="ENABLE_MONSTER_WEAKNESS" Name="Show Monster weaknesses"/>
       <String ID="ENABLE_MONSTER_WEAKNESS_DESC" Name="If enabled, monster weaknesses will become visible under their health bar."/>
-      <String ID="ENABLE_HIDE_INACTIVE_PARTS" Name="Hide inactive parts/ailments after a few seconds"/>
-      <String ID="ENABLE_HIDE_INACTIVE_PARTS_DESC" Name="If enabled, parts and ailments will be automatically hidden after some time without taking damage."/>
+      <String ID="ENABLE_HIDE_INACTIVE_PARTS" Name="Hide inactive parts after a few seconds"/>
+      <String ID="ENABLE_HIDE_INACTIVE_PARTS_DESC" Name="If enabled, parts will be automatically hidden after some time without taking damage."/>
+      <String ID="ENABLE_SHOW_UNBROKEN_PARTS" Name="Show only parts that haven't been broken"/>
+      <String ID="ENABLE_SHOW_UNBROKEN_PARTS_DESC" Name="If enabled, only parts that haven't been broken will be shown."/>
+      <String ID="ENABLE_SHOW_BROKEN_PARTS" Name="Show only parts that can be broken"/>
+      <String ID="ENABLE_SHOW_BROKEN_PARTS_DESC" Name="If enabled, only parts that can be broken and have a break threshold will be visible."/>
+      <String ID="ENABLE_HIDE_INACTIVE_AILMENTS" Name="Hide inactive ailments after a few seconds"/>
+      <String ID="ENABLE_HIDE_INACTIVE_AILMENTS_DESC" Name="If enabled, ailments will be automatically hidden after some time when inactive."/>
       <String ID="ENABLE_BREAKABLE_PARTS" Name="Show Monster breakable parts"/>
       <String ID="ENABLE_BREAKABLE_PARTS_DESC" Name="If enabled, severable, breakable and removable parts will be displayed under the monster bar."/>
       <String ID="ENABLE_AILMENTS_BAR_COLOR" Name="Enable ailments bar color"/>

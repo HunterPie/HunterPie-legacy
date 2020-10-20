@@ -54,6 +54,16 @@ namespace HunterPie.Core.Events
         /// </summary>
         public long SteamId { get; }
 
+        /// <summary>
+        /// Player action string
+        /// </summary>
+        public string Action { get; }
+
+        /// <summary>
+        /// Player action id
+        /// </summary>
+        public int ActionId { get; }
+
         public PlayerEventArgs(Player player)
         {
             Name = player.Name;
@@ -65,6 +75,8 @@ namespace HunterPie.Core.Events
             SessionId = player.SessionID;
             SteamSessionId = player.SteamSession;
             SteamId = player.SteamID;
+            Action = player.PlayerActionRef;
+            ActionId = player.ActionId;
         }
 
         private Job GetJobBasedOnClass(Player player)
