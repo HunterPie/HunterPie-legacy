@@ -288,18 +288,7 @@
                             <TextBlock TextWrapping="NoWrap" Text="{Binding Mode=OneTime, XPath=/Strings/Client/Settings/String[@ID\=\'STATIC_MONSTER_HEALTH_STRING_FORMAT\']/@Name}" FontFamily="Segoe UI Light" Foreground="#FFF1F1F1" Canvas.Left="320" Canvas.Top="3" FontSize="16" Padding="0,0,10,0"/>
                             <TextBox x:Name="HealthTextFormat" TextWrapping="Wrap" Background="{x:Null}" Foreground="#FF9E9D9D" BorderBrush="#FFABADB3" BorderThickness="0,0,0,1" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" HorizontalAlignment="Stretch" />
                         </DockPanel>
-                        <DockPanel Margin="10,0,10,5" ToolTip="{Binding Mode=OneTime, XPath=/Strings/Client/Settings/String[@ID\=\'STATIC_MONSTER_PART_HEALTH_STRING_FORMAT_DESC\']/@Name}">
-                            <TextBlock TextWrapping="Wrap" Text="{Binding Mode=OneTime, XPath=/Strings/Client/Settings/String[@ID\=\'STATIC_MONSTER_PART_HEALTH_STRING_FORMAT\']/@Name}" FontFamily="Segoe UI Light" Foreground="#FFF1F1F1" Canvas.Left="320" Canvas.Top="3" FontSize="16" Padding="0,0,10,0"/>
-                            <TextBox x:Name="PartHealthTextFormat" TextWrapping="NoWrap" Background="{x:Null}" Foreground="#FF9E9D9D" BorderBrush="#FFABADB3" BorderThickness="0,0,0,1" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" HorizontalAlignment="Stretch"/>
-                        </DockPanel>
-                        <DockPanel Margin="10,0,10,5" ToolTip="{Binding Mode=OneTime, XPath=/Strings/Client/Settings/String[@ID\=\'STATIC_MONSTER_AILMENT_BUILDUP_STRING_FORMAT_DESC\']/@Name}">
-                            <TextBlock TextWrapping="Wrap" Text="{Binding Mode=OneTime, XPath=/Strings/Client/Settings/String[@ID\=\'STATIC_MONSTER_AILMENT_BUILDUP_STRING_FORMAT\']/@Name}" FontFamily="Segoe UI Light" Foreground="#FFF1F1F1" FontSize="16" Padding="0,0,10,0"/>
-                            <TextBox x:Name="AilmentBuildUpTextFormat" TextWrapping="Wrap" Background="{x:Null}" Foreground="#FF9E9D9D" BorderBrush="#FFABADB3" BorderThickness="0,0,0,1" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" HorizontalAlignment="Stretch"/>
-                        </DockPanel>
-                        <DockPanel Margin="10,0,10,5" ToolTip="{Binding Mode=OneTime, XPath=/Strings/Client/Settings/String[@ID\=\'STATIC_MONSTER_AILMENT_TIMER_STRING_FORMAT_DESC\']/@Name}">
-                            <TextBlock TextWrapping="Wrap" Text="{Binding Mode=OneTime, XPath=/Strings/Client/Settings/String[@ID\=\'STATIC_MONSTER_AILMENT_TIMER_STRING_FORMAT\']/@Name}" FontFamily="Segoe UI Light" Foreground="#FFF1F1F1" Canvas.Left="320" Canvas.Top="3" FontSize="16" Padding="0,0,10,0"/>
-                            <TextBox x:Name="AilmentTimerTextFormat" TextWrapping="Wrap" Background="{x:Null}" Foreground="#FF9E9D9D" BorderBrush="#FFABADB3" BorderThickness="0,0,0,1" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" HorizontalAlignment="Stretch"/>
-                        </DockPanel>
+
                         <DockPanel Height="28" ToolTip="{Binding Mode=OneTime, XPath=/Strings/Client/Settings/String[@ID\=\'STATIC_MONSTER_BAR_MODE_DESC\']/@Name}" Margin="10,0,10,5">
                             <TextBlock FontFamily="Segoe UI Light" Foreground="WhiteSmoke" Padding="0,0,10,0">
                                 <TextBlock.Text>
@@ -323,285 +312,316 @@
                                 <Binding Mode="OneTime" XPath="Settings/String[@ID='ENABLE_MONSTER_WEAKNESS_DESC']/@Name"/>
                             </custom:Switcher.ToolTip>
                         </custom:Switcher>
-                        <custom:Switcher x:Name="switchEnableHideUnactiveParts" Margin="10,0,10,5" RestartVisibility="Collapsed">
-                            <custom:Switcher.Text>
-                                <Binding Mode="OneTime" XPath="Settings/String[@ID='ENABLE_HIDE_INACTIVE_PARTS']/@Name"/>
-                            </custom:Switcher.Text>
-                            <custom:Switcher.ToolTip>
-                                <Binding Mode="OneTime" XPath="Settings/String[@ID='ENABLE_HIDE_INACTIVE_PARTS_DESC']/@Name"/>
-                            </custom:Switcher.ToolTip>
-                        </custom:Switcher>
-                        <custom:Switcher x:Name="switchShowOnlyPartsThatCanBeBroken" Text="{Binding Mode=OneTime, XPath=/Strings/Client/Settings/String[@ID\=\'ENABLE_SHOW_BROKEN_PARTS\']/@Name}" ToolTip="{Binding Mode=OneTime, XPath=/Strings/Client/Settings/String[@ID\=\'ENABLE_SHOW_BROKEN_PARTS_DESC\']/@Name}" Margin="10,0,10,5" RestartVisibility="Collapsed"/>
-                        <custom:Switcher x:Name="switchShowOnlyPartsThatArentBroken" Text="{Binding Mode=OneTime, XPath=/Strings/Client/Settings/String[@ID\=\'ENABLE_SHOW_UNBROKEN_PARTS\']/@Name}" ToolTip="{Binding Mode=OneTime, XPath=/Strings/Client/Settings/String[@ID\=\'ENABLE_SHOW_UNBROKEN_PARTS_DESC\']/@Name}" Margin="10,0,10,5" RestartVisibility="Collapsed"/>
-                        <custom:Switcher x:Name="switchEnableRemovableParts" Margin="10,0,10,5" RestartVisibility="Collapsed">
-                            <custom:Switcher.Text>
-                                <Binding Mode="OneTime" XPath="Settings/String[@ID='ENABLE_BREAKABLE_PARTS']/@Name"/>
-                            </custom:Switcher.Text>
-                            <custom:Switcher.ToolTip>
-                                <Binding Mode="OneTime" XPath="Settings/String[@ID='ENABLE_BREAKABLE_PARTS_DESC']/@Name"/>
-                            </custom:Switcher.ToolTip>
-                        </custom:Switcher>
+
                         <custom:Switcher x:Name="switchEnableHealthHiding" Text="{Binding Mode=OneTime, XPath=/Strings/Client/Settings/String[@ID\=\'ENABLE_HIDE_MONSTER_HEALTH\']/@Name}" ToolTip="{Binding Mode=OneTime, XPath=/Strings/Client/Settings/String[@ID\=\'ENABLE_HIDE_MONSTER_HEALTH_DESC\']/@Name}" Margin="10,0,10,5" RestartVisibility="Collapsed"/>
-                        <custom:Switcher x:Name="switchEnableAilmentsColor" Text="{Binding Mode=OneTime, XPath=/Strings/Client/Settings/String[@ID\=\'ENABLE_AILMENTS_BAR_COLOR\']/@Name, FallbackValue='Enable ailments bar color'}" ToolTip="{Binding Mode=OneTime, XPath=/Strings/Client/Settings/String[@ID\=\'ENABLE_AILMENTS_BAR_COLOR_DESC\']/@Name}" Margin="10,0,10,5" RestartVisibility="Collapsed"/>
-                        <custom:Switcher x:Name="switchEnableAilments" Margin="10,0,10,5" RestartVisibility="Collapsed" MouseLeftButtonDown="SwitchEnableAilments_MouseDown">
-                            <custom:Switcher.Text>
-                                <Binding Mode="OneTime" XPath="Settings/String[@ID='ENABLE_AILMENTS']/@Name"/>
-                            </custom:Switcher.Text>
-                            <custom:Switcher.ToolTip>
-                                <Binding Mode="OneTime" XPath="Settings/String[@ID='ENABLE_AILMENTS_DESC']/@Name"/>
-                            </custom:Switcher.ToolTip>
-                        </custom:Switcher>
-                        <ScrollViewer MaxHeight="200" HorizontalAlignment="Center">
-                            <StackPanel x:Name="AilmentsCustomizer" Height="0" IsEnabled="False" MinWidth="300">
-                                <custom:Switcher x:Name="EnableAilment_POISON" RestartVisibility="Collapsed">
-                                    <custom:Switcher.Text>
-                                        <Binding Mode="OneTime" XPath="Settings/String[@ID='ENABLE_MONSTER_STATUS_POISON']/@Name"/>
-                                    </custom:Switcher.Text>
-                                </custom:Switcher>
-                                <custom:Switcher x:Name="EnableAilment_PARALYSIS" RestartVisibility="Collapsed">
-                                    <custom:Switcher.Text>
-                                        <Binding Mode="OneTime" XPath="Settings/String[@ID='ENABLE_MONSTER_STATUS_PARALYSIS']/@Name"/>
-                                    </custom:Switcher.Text>
-                                </custom:Switcher>
-                                <custom:Switcher x:Name="EnableAilment_SLEEP" RestartVisibility="Collapsed">
-                                    <custom:Switcher.Text>
-                                        <Binding Mode="OneTime" XPath="Settings/String[@ID='ENABLE_MONSTER_STATUS_SLEEP']/@Name"/>
-                                    </custom:Switcher.Text>
-                                </custom:Switcher>
-                                <custom:Switcher x:Name="EnableAilment_BLAST" RestartVisibility="Collapsed">
-                                    <custom:Switcher.Text>
-                                        <Binding Mode="OneTime" XPath="Settings/String[@ID='ENABLE_MONSTER_STATUS_BLAST']/@Name"/>
-                                    </custom:Switcher.Text>
-                                </custom:Switcher>
-                                <custom:Switcher x:Name="EnableAilment_MOUNT" RestartVisibility="Collapsed">
-                                    <custom:Switcher.Text>
-                                        <Binding Mode="OneTime" XPath="Settings/String[@ID='ENABLE_MONSTER_STATUS_MOUNT']/@Name"/>
-                                    </custom:Switcher.Text>
-                                </custom:Switcher>
-                                <custom:Switcher x:Name="EnableAilment_EXHAUSTION" RestartVisibility="Collapsed">
-                                    <custom:Switcher.Text>
-                                        <Binding Mode="OneTime" XPath="Settings/String[@ID='ENABLE_MONSTER_STATUS_EXHAUSTION']/@Name"/>
-                                    </custom:Switcher.Text>
-                                </custom:Switcher>
-                                <custom:Switcher x:Name="EnableAilment_STUN" RestartVisibility="Collapsed">
-                                    <custom:Switcher.Text>
-                                        <Binding Mode="OneTime" XPath="Settings/String[@ID='ENABLE_MONSTER_STATUS_STUN']/@Name"/>
-                                    </custom:Switcher.Text>
-                                </custom:Switcher>
-                                <custom:Switcher x:Name="EnableAilment_TRANQUILIZE" RestartVisibility="Collapsed">
-                                    <custom:Switcher.Text>
-                                        <Binding Mode="OneTime" XPath="Settings/String[@ID='ENABLE_MONSTER_STATUS_TRANQUILIZE']/@Name"/>
-                                    </custom:Switcher.Text>
-                                </custom:Switcher>
-                                <custom:Switcher x:Name="EnableAilment_FLASH" RestartVisibility="Collapsed">
-                                    <custom:Switcher.Text>
-                                        <Binding Mode="OneTime" XPath="Settings/String[@ID='ENABLE_MONSTER_STATUS_FLASH']/@Name"/>
-                                    </custom:Switcher.Text>
-                                </custom:Switcher>
-                                <custom:Switcher x:Name="EnableAilment_KNOCKDOWN" RestartVisibility="Collapsed">
-                                    <custom:Switcher.Text>
-                                        <Binding Mode="OneTime" XPath="Settings/String[@ID='ENABLE_MONSTER_STATUS_KNOCKDOWN']/@Name"/>
-                                    </custom:Switcher.Text>
-                                </custom:Switcher>
-                                <custom:Switcher x:Name="EnableAilment_DUNGPOD" RestartVisibility="Collapsed">
-                                    <custom:Switcher.Text>
-                                        <Binding Mode="OneTime" XPath="Settings/String[@ID='ENABLE_MONSTER_STATUS_DUNGPOD']/@Name"/>
-                                    </custom:Switcher.Text>
-                                </custom:Switcher>
-                                <custom:Switcher x:Name="EnableAilment_TRAP" RestartVisibility="Collapsed">
-                                    <custom:Switcher.Text>
-                                        <Binding Mode="OneTime" XPath="Settings/String[@ID='ENABLE_MONSTER_STATUS_TRAP']/@Name"/>
-                                    </custom:Switcher.Text>
-                                </custom:Switcher>
-                                <custom:Switcher x:Name="EnableAilment_ELDERSEAL" RestartVisibility="Collapsed">
-                                    <custom:Switcher.Text>
-                                        <Binding Mode="OneTime" XPath="Settings/String[@ID='ENABLE_MONSTER_STATUS_ELDERSEAL']/@Name"/>
-                                    </custom:Switcher.Text>
-                                </custom:Switcher>
-                                <custom:Switcher x:Name="EnableAilment_SMOKING" RestartVisibility="Collapsed">
-                                    <custom:Switcher.Text>
-                                        <Binding Mode="OneTime" XPath="Settings/String[@ID='ENABLE_MONSTER_STATUS_SMOKING']/@Name"/>
-                                    </custom:Switcher.Text>
-                                </custom:Switcher>
-                                <custom:Switcher x:Name="EnableAilment_CLAW" RestartVisibility="Collapsed">
-                                    <custom:Switcher.Text>
-                                        <Binding Mode="OneTime" XPath="Settings/String[@ID='ENABLE_MONSTER_STATUS_CLAW']/@Name"/>
-                                    </custom:Switcher.Text>
-                                </custom:Switcher>
-                                <custom:Switcher x:Name="EnableAilment_MISC" RestartVisibility="Collapsed">
-                                    <custom:Switcher.Text>
-                                        <Binding Mode="OneTime" XPath="Settings/String[@ID='ENABLE_MONSTER_STATUS_MISC']/@Name"/>
-                                    </custom:Switcher.Text>
-                                </custom:Switcher>
-                                <custom:Switcher x:Name="EnableAilment_ENRAGE" RestartVisibility="Collapsed">
-                                    <custom:Switcher.Text>
-                                        <Binding Mode="OneTime" XPath="Settings/String[@ID='ENABLE_MONSTER_STATUS_ENRAGE']/@Name"/>
-                                    </custom:Switcher.Text>
-                                </custom:Switcher>
-                                <StackPanel.Style>
-                                    <Style TargetType="StackPanel">
-                                        <Style.Triggers>
-                                            <Trigger Property="IsEnabled" Value="True">
-                                                <Trigger.EnterActions>
-                                                    <BeginStoryboard>
-                                                        <Storyboard Storyboard.TargetProperty="Height">
-                                                            <DoubleAnimation To="530" Duration="0:0:0.2"/>
-                                                        </Storyboard>
-                                                    </BeginStoryboard>
-                                                </Trigger.EnterActions>
-                                                <Trigger.ExitActions>
-                                                    <BeginStoryboard>
-                                                        <Storyboard Storyboard.TargetProperty="Height">
-                                                            <DoubleAnimation To="0" Duration="0:0:0.2"/>
-                                                        </Storyboard>
-                                                    </BeginStoryboard>
-                                                </Trigger.ExitActions>
-                                            </Trigger>
-                                        </Style.Triggers>
-                                    </Style>
-                                </StackPanel.Style>
-                            </StackPanel>
-                        </ScrollViewer>
-                        <custom:Switcher x:Name="switchEnableHideUnactiveAilments" Text="{Binding Mode=OneTime, XPath=/Strings/Client/Settings/String[@ID\=\'ENABLE_HIDE_INACTIVE_AILMENTS\']/@Name}" ToolTip="{Binding Mode=OneTime, XPath=/Strings/Client/Settings/String[@ID\=\'ENABLE_HIDE_INACTIVE_AILMENTS_DESC\']/@Name}" Margin="10,0,10,5" RestartVisibility="Collapsed"/>
-                        <custom:Switcher x:Name="switchEnableParts" Margin="10,0,10,5" MouseDown="SwitchEnableParts_MouseDown" RestartVisibility="Collapsed">
-                            <custom:Switcher.Text>
-                                <Binding Mode="OneTime" XPath="Settings/String[@ID='ENABLE_MONSTER_PARTS']/@Name"/>
-                            </custom:Switcher.Text>
-                            <custom:Switcher.ToolTip>
-                                <Binding Mode="OneTime" XPath="Settings/String[@ID='ENABLE_MONSTER_PARTS_DESC']/@Name"/>
-                            </custom:Switcher.ToolTip>
-                        </custom:Switcher>
-                        <ScrollViewer MaxHeight="350" HorizontalAlignment="Center">
-                            <StackPanel x:Name="PartsCustomizer" Height="0" IsEnabled="False" MinWidth="300">
-                                <custom:Switcher x:Name="EnablePartHead" RestartVisibility="Collapsed">
-                                    <custom:Switcher.Text>
-                                        <Binding Mode="OneTime" XPath="Settings/String[@ID='ENABLE_MONSTER_PART_HEAD']/@Name"/>
-                                    </custom:Switcher.Text>
-                                </custom:Switcher>
-                                <custom:Switcher x:Name="EnablePartBody" RestartVisibility="Collapsed">
-                                    <custom:Switcher.Text>
-                                        <Binding Mode="OneTime" XPath="Settings/String[@ID='ENABLE_MONSTER_PART_BODY']/@Name"/>
-                                    </custom:Switcher.Text>
-                                </custom:Switcher>
-                                <custom:Switcher x:Name="EnablePartArm" RestartVisibility="Collapsed">
-                                    <custom:Switcher.Text>
-                                        <Binding Mode="OneTime" XPath="Settings/String[@ID='ENABLE_MONSTER_PART_ARM']/@Name"/>
-                                    </custom:Switcher.Text>
-                                </custom:Switcher>
-                                <custom:Switcher x:Name="EnablePartWing" RestartVisibility="Collapsed">
-                                    <custom:Switcher.Text>
-                                        <Binding Mode="OneTime" XPath="Settings/String[@ID='ENABLE_MONSTER_PART_WING']/@Name"/>
-                                    </custom:Switcher.Text>
-                                </custom:Switcher>
-                                <custom:Switcher x:Name="EnablePartLeg" RestartVisibility="Collapsed">
-                                    <custom:Switcher.Text>
-                                        <Binding Mode="OneTime" XPath="Settings/String[@ID='ENABLE_MONSTER_PART_LEG']/@Name"/>
-                                    </custom:Switcher.Text>
-                                </custom:Switcher>
-                                <custom:Switcher x:Name="EnablePartTail" RestartVisibility="Collapsed">
-                                    <custom:Switcher.Text>
-                                        <Binding Mode="OneTime" XPath="Settings/String[@ID='ENABLE_MONSTER_PART_TAIL']/@Name"/>
-                                    </custom:Switcher.Text>
-                                </custom:Switcher>
-                                <custom:Switcher x:Name="EnablePartLimb" RestartVisibility="Collapsed">
-                                    <custom:Switcher.Text>
-                                        <Binding Mode="OneTime" XPath="Settings/String[@ID='ENABLE_MONSTER_PART_LIMB']/@Name"/>
-                                    </custom:Switcher.Text>
-                                </custom:Switcher>
-                                <custom:Switcher x:Name="EnablePartAbdomen" RestartVisibility="Collapsed">
-                                    <custom:Switcher.Text>
-                                        <Binding Mode="OneTime" XPath="Settings/String[@ID='ENABLE_MONSTER_PART_ABDOMEN']/@Name"/>
-                                    </custom:Switcher.Text>
-                                </custom:Switcher>
-                                <custom:Switcher x:Name="EnablePartChest" RestartVisibility="Collapsed">
-                                    <custom:Switcher.Text>
-                                        <Binding Mode="OneTime" XPath="Settings/String[@ID='ENABLE_MONSTER_PART_CHEST']/@Name"/>
-                                    </custom:Switcher.Text>
-                                </custom:Switcher>
-                                <custom:Switcher x:Name="EnablePartRear" RestartVisibility="Collapsed">
-                                    <custom:Switcher.Text>
-                                        <Binding Mode="OneTime" XPath="Settings/String[@ID='ENABLE_MONSTER_PART_REAR']/@Name"/>
-                                    </custom:Switcher.Text>
-                                </custom:Switcher>
-                                <custom:Switcher x:Name="EnablePartJaw" RestartVisibility="Collapsed">
-                                    <custom:Switcher.Text>
-                                        <Binding Mode="OneTime" XPath="Settings/String[@ID='ENABLE_MONSTER_PART_JAW']/@Name"/>
-                                    </custom:Switcher.Text>
-                                </custom:Switcher>
-                                <custom:Switcher x:Name="EnablePartBack" RestartVisibility="Collapsed">
-                                    <custom:Switcher.Text>
-                                        <Binding Mode="OneTime" XPath="Settings/String[@ID='ENABLE_MONSTER_PART_BACK']/@Name"/>
-                                    </custom:Switcher.Text>
-                                </custom:Switcher>
-                                <custom:Switcher x:Name="EnablePartFin" RestartVisibility="Collapsed">
-                                    <custom:Switcher.Text>
-                                        <Binding Mode="OneTime" XPath="Settings/String[@ID='ENABLE_MONSTER_PART_FIN']/@Name"/>
-                                    </custom:Switcher.Text>
-                                </custom:Switcher>
-                                <custom:Switcher x:Name="EnablePartHorn" RestartVisibility="Collapsed">
-                                    <custom:Switcher.Text>
-                                        <Binding Mode="OneTime" XPath="Settings/String[@ID='ENABLE_MONSTER_PART_HORN']/@Name"/>
-                                    </custom:Switcher.Text>
-                                </custom:Switcher>
-                                <custom:Switcher x:Name="EnablePartNeck" RestartVisibility="Collapsed">
-                                    <custom:Switcher.Text>
-                                        <Binding Mode="OneTime" XPath="Settings/String[@ID='ENABLE_MONSTER_PART_NECK']/@Name"/>
-                                    </custom:Switcher.Text>
-                                </custom:Switcher>
-                                <custom:Switcher x:Name="EnablePartShell" RestartVisibility="Collapsed">
-                                    <custom:Switcher.Text>
-                                        <Binding Mode="OneTime" XPath="Settings/String[@ID='ENABLE_MONSTER_PART_SHELL']/@Name"/>
-                                    </custom:Switcher.Text>
-                                </custom:Switcher>
-                                <custom:Switcher x:Name="EnablePartOrgan" RestartVisibility="Collapsed">
-                                    <custom:Switcher.Text>
-                                        <Binding Mode="OneTime" XPath="Settings/String[@ID='ENABLE_MONSTER_PART_ORGAN']/@Name"/>
-                                    </custom:Switcher.Text>
-                                </custom:Switcher>
-                                <custom:Switcher x:Name="EnablePartMane" RestartVisibility="Collapsed">
-                                    <custom:Switcher.Text>
-                                        <Binding Mode="OneTime" XPath="Settings/String[@ID='ENABLE_MONSTER_PART_MANE']/@Name"/>
-                                    </custom:Switcher.Text>
-                                </custom:Switcher>
-                                <custom:Switcher x:Name="EnablePartBone" RestartVisibility="Collapsed">
-                                    <custom:Switcher.Text>
-                                        <Binding Mode="OneTime" XPath="Settings/String[@ID='ENABLE_MONSTER_PART_BONE']/@Name"/>
-                                    </custom:Switcher.Text>
-                                </custom:Switcher>
-                                <custom:Switcher x:Name="EnablePartMisc" RestartVisibility="Collapsed">
-                                    <custom:Switcher.Text>
-                                        <Binding Mode="OneTime" XPath="Settings/String[@ID='ENABLE_MONSTER_PART_MISC']/@Name"/>
-                                    </custom:Switcher.Text>
-                                </custom:Switcher>
-                                <StackPanel.Style>
-                                    <Style TargetType="StackPanel">
-                                        <Style.Triggers>
-                                            <Trigger Property="IsEnabled" Value="True">
-                                                <Trigger.EnterActions>
-                                                    <BeginStoryboard>
-                                                        <Storyboard Storyboard.TargetProperty="Height">
-                                                            <DoubleAnimation To="630" Duration="0:0:0.2"/>
-                                                        </Storyboard>
-                                                    </BeginStoryboard>
-                                                </Trigger.EnterActions>
-                                                <Trigger.ExitActions>
-                                                    <BeginStoryboard>
-                                                        <Storyboard Storyboard.TargetProperty="Height">
-                                                            <DoubleAnimation To="0" Duration="0:0:0.2"/>
-                                                        </Storyboard>
-                                                    </BeginStoryboard>
-                                                </Trigger.ExitActions>
-                                            </Trigger>
-                                        </Style.Triggers>
-                                    </Style>
-                                </StackPanel.Style>
-                            </StackPanel>
-                        </ScrollViewer>
                         <custom:MinimalSlider x:Name="MaxNumberOfPartsAtOnce" MaxValue="16" MinValue="1" MinChange="1" Value="8" Text="{Binding Mode=OneTime, XPath=/Strings/Client/Settings/String[@ID\=\'STATIC_MONSTER_MAX_PARTS\']/@Name}" FontFamily="Segoe UI Light" Foreground="WhiteSmoke" ToolTip="{Binding Mode=OneTime, XPath=/Strings/Client/Settings/String[@ID\=\'STATIC_MONSTER_MAX_PARTS_DESC\']/@Name}" Margin="10,0,10,5"/>
                         <custom:MinimalSlider x:Name="MaxColumnsOfParts" MaxValue="4" MinValue="1" MinChange="1" Value="1" Text="{Binding Mode=OneTime, XPath=/Strings/Client/Settings/String[@ID\=\'STATIC_MONSTER_MAX_COLUMNS\']/@Name}" FontFamily="Segoe UI Light" Foreground="WhiteSmoke" ToolTip="{Binding Mode=OneTime, XPath=/Strings/Client/Settings/String[@ID\=\'STATIC_MONSTER_MAX_COLUMNS_DESC\']/@Name}" Margin="10,0,10,5"/>
                         <custom:MinimalSlider x:Name="HideSeconds" MaxValue="300" MinValue="1" MinChange="12" Value="1" Text="{Binding Mode=OneTime, XPath=/Strings/Client/Settings/String[@ID\=\'STATIC_MONSTER_PART_DELAY\']/@Name}" FontFamily="Segoe UI Light" Foreground="WhiteSmoke" ToolTip="{Binding Mode=OneTime, XPath=/Strings/Client/Settings/String[@ID\=\'STATIC_MONSTER_PART_DELAY_DESC\']/@Name}" Margin="10,0,10,5"/>
                         <custom:MinimalSlider x:Name="MonsterComponentOpacity" Text="{Binding XPath=/Strings/Client/Settings/String[@ID\=\'STATIC_OPACITY\']/@Name}" MinChange="0.1" MinValue="0" MaxValue="1" ValueText="{Binding Value, ElementName=MonsterComponentOpacity, StringFormat=\{0:P\}}" Foreground="WhiteSmoke" FontFamily="Segoe UI Light" Margin="10,0,10,5"/>
                         <custom:PositionControl x:Name="MonstersPosition" Margin="10,0,10,5" Height="38" ToolTip="{Binding Mode=OneTime, XPath=/Strings/Client/Settings/String[@ID\=\'STATIC_MONSTER_POSITION_DESC\']/@Name}"/>
+                        <TabControl Background="{x:Null}" BorderBrush="{x:Null}">
+                            <TabItem Width="150">
+                                <TabItem.Header>
+                                    <TextBlock Text="Parts" Padding="5,0,0,0"/>
+                                </TabItem.Header>
+
+                                <StackPanel>
+                                    <DockPanel Margin="10,0,10,5" ToolTip="{Binding Mode=OneTime, XPath=/Strings/Client/Settings/String[@ID\=\'STATIC_MONSTER_PART_HEALTH_STRING_FORMAT_DESC\']/@Name}">
+                                        <TextBlock TextWrapping="Wrap" Text="{Binding Mode=OneTime, XPath=/Strings/Client/Settings/String[@ID\=\'STATIC_MONSTER_PART_HEALTH_STRING_FORMAT\']/@Name}" FontFamily="Segoe UI Light" Foreground="#FFF1F1F1" Canvas.Left="320" Canvas.Top="3" FontSize="16" Padding="0,0,10,0"/>
+                                        <TextBox x:Name="PartHealthTextFormat" TextWrapping="NoWrap" Background="{x:Null}" Foreground="#FF9E9D9D" BorderBrush="#FFABADB3" BorderThickness="0,0,0,1" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" HorizontalAlignment="Stretch"/>
+                                    </DockPanel>
+                                    <custom:Switcher x:Name="switchEnableHideUnactiveParts" Margin="10,0,10,5" RestartVisibility="Collapsed">
+                                        <custom:Switcher.Text>
+                                            <Binding Mode="OneTime" XPath="Settings/String[@ID='ENABLE_HIDE_INACTIVE_PARTS']/@Name"/>
+                                        </custom:Switcher.Text>
+                                        <custom:Switcher.ToolTip>
+                                            <Binding Mode="OneTime" XPath="Settings/String[@ID='ENABLE_HIDE_INACTIVE_PARTS_DESC']/@Name"/>
+                                        </custom:Switcher.ToolTip>
+                                    </custom:Switcher>
+                                    <custom:Switcher x:Name="switchShowOnlyPartsThatCanBeBroken" Text="{Binding Mode=OneTime, XPath=/Strings/Client/Settings/String[@ID\=\'ENABLE_SHOW_BROKEN_PARTS\']/@Name}" ToolTip="{Binding Mode=OneTime, XPath=/Strings/Client/Settings/String[@ID\=\'ENABLE_SHOW_BROKEN_PARTS_DESC\']/@Name}" Margin="10,0,10,5" RestartVisibility="Collapsed"/>
+                                    <custom:Switcher x:Name="switchShowOnlyPartsThatArentBroken" Text="{Binding Mode=OneTime, XPath=/Strings/Client/Settings/String[@ID\=\'ENABLE_SHOW_UNBROKEN_PARTS\']/@Name}" ToolTip="{Binding Mode=OneTime, XPath=/Strings/Client/Settings/String[@ID\=\'ENABLE_SHOW_UNBROKEN_PARTS_DESC\']/@Name}" Margin="10,0,10,5" RestartVisibility="Collapsed"/>
+                                    <custom:Switcher x:Name="switchEnableRemovableParts" Margin="10,0,10,5" RestartVisibility="Collapsed">
+                                        <custom:Switcher.Text>
+                                            <Binding Mode="OneTime" XPath="Settings/String[@ID='ENABLE_BREAKABLE_PARTS']/@Name"/>
+                                        </custom:Switcher.Text>
+                                        <custom:Switcher.ToolTip>
+                                            <Binding Mode="OneTime" XPath="Settings/String[@ID='ENABLE_BREAKABLE_PARTS_DESC']/@Name"/>
+                                        </custom:Switcher.ToolTip>
+                                    </custom:Switcher>
+                                    <custom:Switcher x:Name="switchEnableParts" Margin="10,0,10,5" MouseDown="SwitchEnableParts_MouseDown" RestartVisibility="Collapsed">
+                                        <custom:Switcher.Text>
+                                            <Binding Mode="OneTime" XPath="Settings/String[@ID='ENABLE_MONSTER_PARTS']/@Name"/>
+                                        </custom:Switcher.Text>
+                                        <custom:Switcher.ToolTip>
+                                            <Binding Mode="OneTime" XPath="Settings/String[@ID='ENABLE_MONSTER_PARTS_DESC']/@Name"/>
+                                        </custom:Switcher.ToolTip>
+                                    </custom:Switcher>
+                                    <ScrollViewer MaxHeight="350" HorizontalAlignment="Center">
+                                        <StackPanel x:Name="PartsCustomizer" Height="0" IsEnabled="False" MinWidth="300">
+                                            <custom:Switcher x:Name="EnablePartHead" RestartVisibility="Collapsed">
+                                                <custom:Switcher.Text>
+                                                    <Binding Mode="OneTime" XPath="Settings/String[@ID='ENABLE_MONSTER_PART_HEAD']/@Name"/>
+                                                </custom:Switcher.Text>
+                                            </custom:Switcher>
+                                            <custom:Switcher x:Name="EnablePartBody" RestartVisibility="Collapsed">
+                                                <custom:Switcher.Text>
+                                                    <Binding Mode="OneTime" XPath="Settings/String[@ID='ENABLE_MONSTER_PART_BODY']/@Name"/>
+                                                </custom:Switcher.Text>
+                                            </custom:Switcher>
+                                            <custom:Switcher x:Name="EnablePartArm" RestartVisibility="Collapsed">
+                                                <custom:Switcher.Text>
+                                                    <Binding Mode="OneTime" XPath="Settings/String[@ID='ENABLE_MONSTER_PART_ARM']/@Name"/>
+                                                </custom:Switcher.Text>
+                                            </custom:Switcher>
+                                            <custom:Switcher x:Name="EnablePartWing" RestartVisibility="Collapsed">
+                                                <custom:Switcher.Text>
+                                                    <Binding Mode="OneTime" XPath="Settings/String[@ID='ENABLE_MONSTER_PART_WING']/@Name"/>
+                                                </custom:Switcher.Text>
+                                            </custom:Switcher>
+                                            <custom:Switcher x:Name="EnablePartLeg" RestartVisibility="Collapsed">
+                                                <custom:Switcher.Text>
+                                                    <Binding Mode="OneTime" XPath="Settings/String[@ID='ENABLE_MONSTER_PART_LEG']/@Name"/>
+                                                </custom:Switcher.Text>
+                                            </custom:Switcher>
+                                            <custom:Switcher x:Name="EnablePartTail" RestartVisibility="Collapsed">
+                                                <custom:Switcher.Text>
+                                                    <Binding Mode="OneTime" XPath="Settings/String[@ID='ENABLE_MONSTER_PART_TAIL']/@Name"/>
+                                                </custom:Switcher.Text>
+                                            </custom:Switcher>
+                                            <custom:Switcher x:Name="EnablePartLimb" RestartVisibility="Collapsed">
+                                                <custom:Switcher.Text>
+                                                    <Binding Mode="OneTime" XPath="Settings/String[@ID='ENABLE_MONSTER_PART_LIMB']/@Name"/>
+                                                </custom:Switcher.Text>
+                                            </custom:Switcher>
+                                            <custom:Switcher x:Name="EnablePartAbdomen" RestartVisibility="Collapsed">
+                                                <custom:Switcher.Text>
+                                                    <Binding Mode="OneTime" XPath="Settings/String[@ID='ENABLE_MONSTER_PART_ABDOMEN']/@Name"/>
+                                                </custom:Switcher.Text>
+                                            </custom:Switcher>
+                                            <custom:Switcher x:Name="EnablePartChest" RestartVisibility="Collapsed">
+                                                <custom:Switcher.Text>
+                                                    <Binding Mode="OneTime" XPath="Settings/String[@ID='ENABLE_MONSTER_PART_CHEST']/@Name"/>
+                                                </custom:Switcher.Text>
+                                            </custom:Switcher>
+                                            <custom:Switcher x:Name="EnablePartRear" RestartVisibility="Collapsed">
+                                                <custom:Switcher.Text>
+                                                    <Binding Mode="OneTime" XPath="Settings/String[@ID='ENABLE_MONSTER_PART_REAR']/@Name"/>
+                                                </custom:Switcher.Text>
+                                            </custom:Switcher>
+                                            <custom:Switcher x:Name="EnablePartJaw" RestartVisibility="Collapsed">
+                                                <custom:Switcher.Text>
+                                                    <Binding Mode="OneTime" XPath="Settings/String[@ID='ENABLE_MONSTER_PART_JAW']/@Name"/>
+                                                </custom:Switcher.Text>
+                                            </custom:Switcher>
+                                            <custom:Switcher x:Name="EnablePartBack" RestartVisibility="Collapsed">
+                                                <custom:Switcher.Text>
+                                                    <Binding Mode="OneTime" XPath="Settings/String[@ID='ENABLE_MONSTER_PART_BACK']/@Name"/>
+                                                </custom:Switcher.Text>
+                                            </custom:Switcher>
+                                            <custom:Switcher x:Name="EnablePartFin" RestartVisibility="Collapsed">
+                                                <custom:Switcher.Text>
+                                                    <Binding Mode="OneTime" XPath="Settings/String[@ID='ENABLE_MONSTER_PART_FIN']/@Name"/>
+                                                </custom:Switcher.Text>
+                                            </custom:Switcher>
+                                            <custom:Switcher x:Name="EnablePartHorn" RestartVisibility="Collapsed">
+                                                <custom:Switcher.Text>
+                                                    <Binding Mode="OneTime" XPath="Settings/String[@ID='ENABLE_MONSTER_PART_HORN']/@Name"/>
+                                                </custom:Switcher.Text>
+                                            </custom:Switcher>
+                                            <custom:Switcher x:Name="EnablePartNeck" RestartVisibility="Collapsed">
+                                                <custom:Switcher.Text>
+                                                    <Binding Mode="OneTime" XPath="Settings/String[@ID='ENABLE_MONSTER_PART_NECK']/@Name"/>
+                                                </custom:Switcher.Text>
+                                            </custom:Switcher>
+                                            <custom:Switcher x:Name="EnablePartShell" RestartVisibility="Collapsed">
+                                                <custom:Switcher.Text>
+                                                    <Binding Mode="OneTime" XPath="Settings/String[@ID='ENABLE_MONSTER_PART_SHELL']/@Name"/>
+                                                </custom:Switcher.Text>
+                                            </custom:Switcher>
+                                            <custom:Switcher x:Name="EnablePartOrgan" RestartVisibility="Collapsed">
+                                                <custom:Switcher.Text>
+                                                    <Binding Mode="OneTime" XPath="Settings/String[@ID='ENABLE_MONSTER_PART_ORGAN']/@Name"/>
+                                                </custom:Switcher.Text>
+                                            </custom:Switcher>
+                                            <custom:Switcher x:Name="EnablePartMane" RestartVisibility="Collapsed">
+                                                <custom:Switcher.Text>
+                                                    <Binding Mode="OneTime" XPath="Settings/String[@ID='ENABLE_MONSTER_PART_MANE']/@Name"/>
+                                                </custom:Switcher.Text>
+                                            </custom:Switcher>
+                                            <custom:Switcher x:Name="EnablePartBone" RestartVisibility="Collapsed">
+                                                <custom:Switcher.Text>
+                                                    <Binding Mode="OneTime" XPath="Settings/String[@ID='ENABLE_MONSTER_PART_BONE']/@Name"/>
+                                                </custom:Switcher.Text>
+                                            </custom:Switcher>
+                                            <custom:Switcher x:Name="EnablePartMisc" RestartVisibility="Collapsed">
+                                                <custom:Switcher.Text>
+                                                    <Binding Mode="OneTime" XPath="Settings/String[@ID='ENABLE_MONSTER_PART_MISC']/@Name"/>
+                                                </custom:Switcher.Text>
+                                            </custom:Switcher>
+                                            <StackPanel.Style>
+                                                <Style TargetType="StackPanel">
+                                                    <Style.Triggers>
+                                                        <Trigger Property="IsEnabled" Value="True">
+                                                            <Trigger.EnterActions>
+                                                                <BeginStoryboard>
+                                                                    <Storyboard Storyboard.TargetProperty="Height">
+                                                                        <DoubleAnimation To="630" Duration="0:0:0.2"/>
+                                                                    </Storyboard>
+                                                                </BeginStoryboard>
+                                                            </Trigger.EnterActions>
+                                                            <Trigger.ExitActions>
+                                                                <BeginStoryboard>
+                                                                    <Storyboard Storyboard.TargetProperty="Height">
+                                                                        <DoubleAnimation To="0" Duration="0:0:0.2"/>
+                                                                    </Storyboard>
+                                                                </BeginStoryboard>
+                                                            </Trigger.ExitActions>
+                                                        </Trigger>
+                                                    </Style.Triggers>
+                                                </Style>
+                                            </StackPanel.Style>
+                                        </StackPanel>
+                                    </ScrollViewer>
+                                </StackPanel>
+                            </TabItem>
+                            <TabItem Width="150" Margin="5,0,0,0" >
+                                <TabItem.Header>
+                                    <TextBlock Text="Ailments" Padding="5,0,0,0"/>
+                                </TabItem.Header>
+                                <StackPanel>
+                                    <DockPanel Margin="10,0,10,5" ToolTip="{Binding Mode=OneTime, XPath=/Strings/Client/Settings/String[@ID\=\'STATIC_MONSTER_AILMENT_BUILDUP_STRING_FORMAT_DESC\']/@Name}">
+                                        <TextBlock TextWrapping="Wrap" Text="{Binding Mode=OneTime, XPath=/Strings/Client/Settings/String[@ID\=\'STATIC_MONSTER_AILMENT_BUILDUP_STRING_FORMAT\']/@Name}" FontFamily="Segoe UI Light" Foreground="#FFF1F1F1" FontSize="16" Padding="0,0,10,0"/>
+                                        <TextBox x:Name="AilmentBuildUpTextFormat" TextWrapping="Wrap" Background="{x:Null}" Foreground="#FF9E9D9D" BorderBrush="#FFABADB3" BorderThickness="0,0,0,1" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" HorizontalAlignment="Stretch"/>
+                                    </DockPanel>
+                                    <DockPanel Margin="10,0,10,5" ToolTip="{Binding Mode=OneTime, XPath=/Strings/Client/Settings/String[@ID\=\'STATIC_MONSTER_AILMENT_TIMER_STRING_FORMAT_DESC\']/@Name}">
+                                        <TextBlock TextWrapping="Wrap" Text="{Binding Mode=OneTime, XPath=/Strings/Client/Settings/String[@ID\=\'STATIC_MONSTER_AILMENT_TIMER_STRING_FORMAT\']/@Name}" FontFamily="Segoe UI Light" Foreground="#FFF1F1F1" Canvas.Left="320" Canvas.Top="3" FontSize="16" Padding="0,0,10,0"/>
+                                        <TextBox x:Name="AilmentTimerTextFormat" TextWrapping="Wrap" Background="{x:Null}" Foreground="#FF9E9D9D" BorderBrush="#FFABADB3" BorderThickness="0,0,0,1" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" HorizontalAlignment="Stretch"/>
+                                    </DockPanel>
+                                    <custom:Switcher x:Name="switchEnableHideUnactiveAilments" Text="{Binding Mode=OneTime, XPath=/Strings/Client/Settings/String[@ID\=\'ENABLE_HIDE_INACTIVE_AILMENTS\']/@Name}" ToolTip="{Binding Mode=OneTime, XPath=/Strings/Client/Settings/String[@ID\=\'ENABLE_HIDE_INACTIVE_AILMENTS_DESC\']/@Name}" Margin="10,0,10,5" RestartVisibility="Collapsed"/>
+                                    <custom:Switcher x:Name="switchEnableAilmentsColor" Text="{Binding Mode=OneTime, XPath=/Strings/Client/Settings/String[@ID\=\'ENABLE_AILMENTS_BAR_COLOR\']/@Name}" ToolTip="{Binding Mode=OneTime, XPath=/Strings/Client/Settings/String[@ID\=\'ENABLE_AILMENTS_BAR_COLOR_DESC\']/@Name}" Margin="10,0,10,5" RestartVisibility="Collapsed"/>
+                                    <custom:Switcher x:Name="switchEnableAilments" Margin="10,0,10,5" RestartVisibility="Collapsed" MouseLeftButtonDown="SwitchEnableAilments_MouseDown">
+                                        <custom:Switcher.Text>
+                                            <Binding Mode="OneTime" XPath="Settings/String[@ID='ENABLE_AILMENTS']/@Name"/>
+                                        </custom:Switcher.Text>
+                                        <custom:Switcher.ToolTip>
+                                            <Binding Mode="OneTime" XPath="Settings/String[@ID='ENABLE_AILMENTS_DESC']/@Name"/>
+                                        </custom:Switcher.ToolTip>
+                                    </custom:Switcher>
+                                    <ScrollViewer MaxHeight="200" HorizontalAlignment="Center">
+                                        <StackPanel x:Name="AilmentsCustomizer" Height="0" IsEnabled="False" MinWidth="300">
+                                            <custom:Switcher x:Name="EnableAilment_POISON" RestartVisibility="Collapsed">
+                                                <custom:Switcher.Text>
+                                                    <Binding Mode="OneTime" XPath="Settings/String[@ID='ENABLE_MONSTER_STATUS_POISON']/@Name"/>
+                                                </custom:Switcher.Text>
+                                            </custom:Switcher>
+                                            <custom:Switcher x:Name="EnableAilment_PARALYSIS" RestartVisibility="Collapsed">
+                                                <custom:Switcher.Text>
+                                                    <Binding Mode="OneTime" XPath="Settings/String[@ID='ENABLE_MONSTER_STATUS_PARALYSIS']/@Name"/>
+                                                </custom:Switcher.Text>
+                                            </custom:Switcher>
+                                            <custom:Switcher x:Name="EnableAilment_SLEEP" RestartVisibility="Collapsed">
+                                                <custom:Switcher.Text>
+                                                    <Binding Mode="OneTime" XPath="Settings/String[@ID='ENABLE_MONSTER_STATUS_SLEEP']/@Name"/>
+                                                </custom:Switcher.Text>
+                                            </custom:Switcher>
+                                            <custom:Switcher x:Name="EnableAilment_BLAST" RestartVisibility="Collapsed">
+                                                <custom:Switcher.Text>
+                                                    <Binding Mode="OneTime" XPath="Settings/String[@ID='ENABLE_MONSTER_STATUS_BLAST']/@Name"/>
+                                                </custom:Switcher.Text>
+                                            </custom:Switcher>
+                                            <custom:Switcher x:Name="EnableAilment_MOUNT" RestartVisibility="Collapsed">
+                                                <custom:Switcher.Text>
+                                                    <Binding Mode="OneTime" XPath="Settings/String[@ID='ENABLE_MONSTER_STATUS_MOUNT']/@Name"/>
+                                                </custom:Switcher.Text>
+                                            </custom:Switcher>
+                                            <custom:Switcher x:Name="EnableAilment_EXHAUSTION" RestartVisibility="Collapsed">
+                                                <custom:Switcher.Text>
+                                                    <Binding Mode="OneTime" XPath="Settings/String[@ID='ENABLE_MONSTER_STATUS_EXHAUSTION']/@Name"/>
+                                                </custom:Switcher.Text>
+                                            </custom:Switcher>
+                                            <custom:Switcher x:Name="EnableAilment_STUN" RestartVisibility="Collapsed">
+                                                <custom:Switcher.Text>
+                                                    <Binding Mode="OneTime" XPath="Settings/String[@ID='ENABLE_MONSTER_STATUS_STUN']/@Name"/>
+                                                </custom:Switcher.Text>
+                                            </custom:Switcher>
+                                            <custom:Switcher x:Name="EnableAilment_TRANQUILIZE" RestartVisibility="Collapsed">
+                                                <custom:Switcher.Text>
+                                                    <Binding Mode="OneTime" XPath="Settings/String[@ID='ENABLE_MONSTER_STATUS_TRANQUILIZE']/@Name"/>
+                                                </custom:Switcher.Text>
+                                            </custom:Switcher>
+                                            <custom:Switcher x:Name="EnableAilment_FLASH" RestartVisibility="Collapsed">
+                                                <custom:Switcher.Text>
+                                                    <Binding Mode="OneTime" XPath="Settings/String[@ID='ENABLE_MONSTER_STATUS_FLASH']/@Name"/>
+                                                </custom:Switcher.Text>
+                                            </custom:Switcher>
+                                            <custom:Switcher x:Name="EnableAilment_KNOCKDOWN" RestartVisibility="Collapsed">
+                                                <custom:Switcher.Text>
+                                                    <Binding Mode="OneTime" XPath="Settings/String[@ID='ENABLE_MONSTER_STATUS_KNOCKDOWN']/@Name"/>
+                                                </custom:Switcher.Text>
+                                            </custom:Switcher>
+                                            <custom:Switcher x:Name="EnableAilment_DUNGPOD" RestartVisibility="Collapsed">
+                                                <custom:Switcher.Text>
+                                                    <Binding Mode="OneTime" XPath="Settings/String[@ID='ENABLE_MONSTER_STATUS_DUNGPOD']/@Name"/>
+                                                </custom:Switcher.Text>
+                                            </custom:Switcher>
+                                            <custom:Switcher x:Name="EnableAilment_TRAP" RestartVisibility="Collapsed">
+                                                <custom:Switcher.Text>
+                                                    <Binding Mode="OneTime" XPath="Settings/String[@ID='ENABLE_MONSTER_STATUS_TRAP']/@Name"/>
+                                                </custom:Switcher.Text>
+                                            </custom:Switcher>
+                                            <custom:Switcher x:Name="EnableAilment_ELDERSEAL" RestartVisibility="Collapsed">
+                                                <custom:Switcher.Text>
+                                                    <Binding Mode="OneTime" XPath="Settings/String[@ID='ENABLE_MONSTER_STATUS_ELDERSEAL']/@Name"/>
+                                                </custom:Switcher.Text>
+                                            </custom:Switcher>
+                                            <custom:Switcher x:Name="EnableAilment_SMOKING" RestartVisibility="Collapsed">
+                                                <custom:Switcher.Text>
+                                                    <Binding Mode="OneTime" XPath="Settings/String[@ID='ENABLE_MONSTER_STATUS_SMOKING']/@Name"/>
+                                                </custom:Switcher.Text>
+                                            </custom:Switcher>
+                                            <custom:Switcher x:Name="EnableAilment_CLAW" RestartVisibility="Collapsed">
+                                                <custom:Switcher.Text>
+                                                    <Binding Mode="OneTime" XPath="Settings/String[@ID='ENABLE_MONSTER_STATUS_CLAW']/@Name"/>
+                                                </custom:Switcher.Text>
+                                            </custom:Switcher>
+                                            <custom:Switcher x:Name="EnableAilment_MISC" RestartVisibility="Collapsed">
+                                                <custom:Switcher.Text>
+                                                    <Binding Mode="OneTime" XPath="Settings/String[@ID='ENABLE_MONSTER_STATUS_MISC']/@Name"/>
+                                                </custom:Switcher.Text>
+                                            </custom:Switcher>
+                                            <custom:Switcher x:Name="EnableAilment_ENRAGE" RestartVisibility="Collapsed">
+                                                <custom:Switcher.Text>
+                                                    <Binding Mode="OneTime" XPath="Settings/String[@ID='ENABLE_MONSTER_STATUS_ENRAGE']/@Name"/>
+                                                </custom:Switcher.Text>
+                                            </custom:Switcher>
+                                            <StackPanel.Style>
+                                                <Style TargetType="StackPanel">
+                                                    <Style.Triggers>
+                                                        <Trigger Property="IsEnabled" Value="True">
+                                                            <Trigger.EnterActions>
+                                                                <BeginStoryboard>
+                                                                    <Storyboard Storyboard.TargetProperty="Height">
+                                                                        <DoubleAnimation To="530" Duration="0:0:0.2"/>
+                                                                    </Storyboard>
+                                                                </BeginStoryboard>
+                                                            </Trigger.EnterActions>
+                                                            <Trigger.ExitActions>
+                                                                <BeginStoryboard>
+                                                                    <Storyboard Storyboard.TargetProperty="Height">
+                                                                        <DoubleAnimation To="0" Duration="0:0:0.2"/>
+                                                                    </Storyboard>
+                                                                </BeginStoryboard>
+                                                            </Trigger.ExitActions>
+                                                        </Trigger>
+                                                    </Style.Triggers>
+                                                </Style>
+                                            </StackPanel.Style>
+                                        </StackPanel>
+                                    </ScrollViewer>
+                                </StackPanel>
+                            </TabItem>
+                        </TabControl>
+                        
                     </StackPanel>
                 </ScrollViewer>
             </TabItem>
