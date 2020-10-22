@@ -324,7 +324,6 @@
                                 <TabItem.Header>
                                     <TextBlock Text="Parts" Padding="5,0,0,0"/>
                                 </TabItem.Header>
-
                                 <StackPanel>
                                     <DockPanel Margin="10,0,10,5" ToolTip="{Binding Mode=OneTime, XPath=/Strings/Client/Settings/String[@ID\=\'STATIC_MONSTER_PART_HEALTH_STRING_FORMAT_DESC\']/@Name}">
                                         <TextBlock TextWrapping="Wrap" Text="{Binding Mode=OneTime, XPath=/Strings/Client/Settings/String[@ID\=\'STATIC_MONSTER_PART_HEALTH_STRING_FORMAT\']/@Name}" FontFamily="Segoe UI Light" Foreground="#FFF1F1F1" Canvas.Left="320" Canvas.Top="3" FontSize="16" Padding="0,0,10,0"/>
@@ -338,6 +337,7 @@
                                             <Binding Mode="OneTime" XPath="Settings/String[@ID='ENABLE_HIDE_INACTIVE_PARTS_DESC']/@Name"/>
                                         </custom:Switcher.ToolTip>
                                     </custom:Switcher>
+                                    <custom:Switcher x:Name="switchSortParts" Text="{Binding Mode=OneTime, XPath=/Strings/Client/Settings/String[@ID\=\'ENABLE_AUTO_SORT_PARTS\']/@Name}" ToolTip="{Binding Mode=OneTime, XPath=/Strings/Client/Settings/String[@ID\=\'ENABLE_AUTO_SORT_PARTS_DESC\']/@Name}" Margin="10,0,10,5" RestartVisibility="Collapsed"/>
                                     <custom:Switcher x:Name="switchShowOnlyPartsThatCanBeBroken" Text="{Binding Mode=OneTime, XPath=/Strings/Client/Settings/String[@ID\=\'ENABLE_SHOW_BROKEN_PARTS\']/@Name}" ToolTip="{Binding Mode=OneTime, XPath=/Strings/Client/Settings/String[@ID\=\'ENABLE_SHOW_BROKEN_PARTS_DESC\']/@Name}" Margin="10,0,10,5" RestartVisibility="Collapsed"/>
                                     <custom:Switcher x:Name="switchShowOnlyPartsThatArentBroken" Text="{Binding Mode=OneTime, XPath=/Strings/Client/Settings/String[@ID\=\'ENABLE_SHOW_UNBROKEN_PARTS\']/@Name}" ToolTip="{Binding Mode=OneTime, XPath=/Strings/Client/Settings/String[@ID\=\'ENABLE_SHOW_UNBROKEN_PARTS_DESC\']/@Name}" Margin="10,0,10,5" RestartVisibility="Collapsed"/>
                                     <custom:Switcher x:Name="switchEnableRemovableParts" Margin="10,0,10,5" RestartVisibility="Collapsed">

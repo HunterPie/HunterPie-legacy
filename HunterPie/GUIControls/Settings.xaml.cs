@@ -83,6 +83,7 @@ namespace HunterPie.GUIControls
             // Monsters
             settingsUI.switchEnableMonsterComponent.IsEnabled = settings.Overlay.MonstersComponent.Enabled;
             settingsUI.switchEnableMonsterAction.IsEnabled = settings.Overlay.MonstersComponent.ShowMonsterActionName;
+            settingsUI.switchSortParts.IsEnabled = settings.Overlay.MonstersComponent.EnableSortParts;
             settingsUI.switchEnableHideUnactiveAilments.IsEnabled = settings.Overlay.MonstersComponent.HideAilmentsAfterSeconds;
             settingsUI.switchShowOnlyPartsThatCanBeBroken.IsEnabled = settings.Overlay.MonstersComponent.EnableOnlyPartsThatCanBeBroken;
             settingsUI.switchShowOnlyPartsThatArentBroken.IsEnabled = settings.Overlay.MonstersComponent.HidePartsThatHaveAlreadyBeenBroken;
@@ -236,6 +237,7 @@ namespace HunterPie.GUIControls
             // Monsters
             settings.Overlay.MonstersComponent.Enabled = settingsUI.switchEnableMonsterComponent.IsEnabled;
             settings.Overlay.MonstersComponent.ShowMonsterActionName = settingsUI.switchEnableMonsterAction.IsEnabled;
+            settings.Overlay.MonstersComponent.EnableSortParts = settingsUI.switchSortParts.IsEnabled;
             settings.Overlay.MonstersComponent.HideAilmentsAfterSeconds = settingsUI.switchEnableHideUnactiveAilments.IsEnabled;
             settings.Overlay.MonstersComponent.EnableOnlyPartsThatCanBeBroken = settingsUI.switchShowOnlyPartsThatCanBeBroken.IsEnabled;
             settings.Overlay.MonstersComponent.HidePartsThatHaveAlreadyBeenBroken = settingsUI.switchShowOnlyPartsThatArentBroken.IsEnabled;

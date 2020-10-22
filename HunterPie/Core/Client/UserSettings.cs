@@ -81,6 +81,7 @@ namespace HunterPie.Core
                 public int SecondsToHideParts { get; set; } = 10;
                 public bool EnableRemovableParts { get; set; } = true;
                 public bool EnableMonsterParts { get; set; } = true;
+                public bool EnableSortParts { get; set; } = true;
                 public bool EnableOnlyPartsThatCanBeBroken { get; set; } = false;
                 public bool HidePartsThatHaveAlreadyBeenBroken { get; set; } = false;
                 public bool EnableMonsterAilments { get; set; } = true;

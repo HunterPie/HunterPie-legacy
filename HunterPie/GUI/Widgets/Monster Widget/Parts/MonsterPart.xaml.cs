@@ -12,10 +12,11 @@ namespace HunterPie.GUI.Widgets.Monster_Widget.Parts
     /// <summary>
     /// Interaction logic for MonsterPart.xaml
     /// </summary>
-    public partial class MonsterPart : UserControl
+    public partial class MonsterPart : UserControl, IComparable<MonsterPart>
     {
-        private Part context;
+        public Part context;
         private Timer visibilityTimer;
+        public DateTime LastAppeared = DateTime.UtcNow;
 
         public MonsterPart() => InitializeComponent();
 
@@ -46,8 +47,6 @@ namespace HunterPie.GUI.Widgets.Monster_Widget.Parts
         public static readonly DependencyProperty PartHealthTextProperty =
             DependencyProperty.Register("PartHealthText", typeof(string), typeof(MonsterPart));
 
-
-
         public void SetContext(Part ctx, double MaxHealthBarSize)
         {
             context = ctx;
@@ -77,6 +76,7 @@ namespace HunterPie.GUI.Widgets.Monster_Widget.Parts
         #region Visibility timer
         private void StartVisibilityTimer()
         {
+            LastAppeared = DateTime.UtcNow;
             if (!ComponentSettings.HidePartsAfterSeconds)
             {
                 ApplySettings();
@@ -238,7 +238,25 @@ namespace HunterPie.GUI.Widgets.Monster_Widget.Parts
             string format = UserSettings.PlayerConfig.Overlay.MonstersComponent.PartTextFormat;
             PartHealthText = format.Replace("{Current}", $"{PartHealth.Value:0}")
                 .Replace("{Max}", $"{PartHealth.MaxValue:0}")
-                .Replace("{Percentage}", $"{percentage * 100:0}");
+                .Replace("{Percentage}", $"{percentage * 100:0}")
+                .Replace("{Tenderize}", $"{TimeSpan.FromSeconds(context.TenderizeMaxDuration - context.TenderizeDuration):mm\\:ss}");
+        }
+
+        public int CompareTo(MonsterPart other)
+        {
+            if (other.context.TenderizeDuration > context.TenderizeDuration)
+            {
+                return -1;
+            } else
+            {
+                if (other.context.TenderizeDuration == 0 && context.TenderizeDuration > 0)
+                {
+                    return 1;
+                } else
+                {
+                    return other.LastAppeared > LastAppeared ? -1 : 1;
+                }
+            }
         }
 
         #endregion

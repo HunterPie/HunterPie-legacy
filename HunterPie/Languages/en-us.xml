@@ -579,6 +579,8 @@
       <String ID="ENABLE_MONSTER_WEAKNESS_DESC" Name="If enabled, monster weaknesses will become visible under their health bar."/>
       <String ID="ENABLE_HIDE_INACTIVE_PARTS" Name="Hide inactive parts after a few seconds"/>
       <String ID="ENABLE_HIDE_INACTIVE_PARTS_DESC" Name="If enabled, parts will be automatically hidden after some time without taking damage."/>
+      <String ID="ENABLE_AUTO_SORT_PARTS" Name="Sort parts automatically"/>
+      <String ID="ENABLE_AUTO_SORT_PARTS_DESC" Name="If enabled, parts will be sorted whenever the monster takes damage, prioritizing wounded parts and then most recent damaged parts"/>
       <String ID="ENABLE_SHOW_UNBROKEN_PARTS" Name="Show only parts that haven't been broken"/>
       <String ID="ENABLE_SHOW_UNBROKEN_PARTS_DESC" Name="If enabled, only parts that haven't been broken will be shown."/>
       <String ID="ENABLE_SHOW_BROKEN_PARTS" Name="Show only parts that can be broken"/>

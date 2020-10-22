@@ -152,19 +152,7 @@
     </Style>
 
     <!-- Animation for when bars appear -->
-    <Style x:Key="OVERLAY_MONSTER_SUB_PART_STYLE" TargetType="Monster:MonsterPart">
-        <Style.Triggers>
-            <Trigger Property="IsVisible" Value="True">
-                <Trigger.EnterActions>
-                    <BeginStoryboard>
-                        <Storyboard>
-                            <DoubleAnimation Storyboard.TargetProperty="Opacity" From="0" To="1" Duration="0:0:0.150"/>
-                        </Storyboard>
-                    </BeginStoryboard>
-                </Trigger.EnterActions>
-            </Trigger>
-        </Style.Triggers>
-    </Style>
+    <Style x:Key="OVERLAY_MONSTER_SUB_PART_STYLE" TargetType="Monster:MonsterPart"/>
     <Style x:Key="OVERLAY_MONSTER_SUB_AILMENT_STYLE" TargetType="Monster:MonsterAilment">
         <Style.Triggers>
             <Trigger Property="IsVisible" Value="True">

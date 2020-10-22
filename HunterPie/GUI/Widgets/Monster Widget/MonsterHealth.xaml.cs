@@ -1,14 +1,18 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 using System.Windows;
 using System.Windows.Controls;
+using System.Windows.Documents;
 using System.Windows.Media;
 using System.Windows.Media.Animation;
 using HunterPie.Core;
 using HunterPie.Core.Enums;
 using HunterPie.Core.Events;
+using HunterPie.GUI.Widgets.Monster_Widget.Parts;
 using HunterPie.GUIControls.Custom_Controls;
+using Microsoft.CodeAnalysis;
 using AlatreonState = HunterPie.Core.Enums.AlatreonState;
 using BitmapImage = System.Windows.Media.Imaging.BitmapImage;
 using Timer = System.Threading.Timer;
@@ -148,7 +152,7 @@ namespace HunterPie.GUI.Widgets
             while (index < Monster.Parts.Count)
             {
                 Part mPart = Monster.Parts[index];
-                Monster_Widget.Parts.MonsterPart PartDisplay = new Monster_Widget.Parts.MonsterPart()
+                MonsterPart PartDisplay = new MonsterPart()
                 {
                     Style = FindResource("OVERLAY_MONSTER_SUB_PART_STYLE") as Style
                 };
@@ -163,7 +167,7 @@ namespace HunterPie.GUI.Widgets
             while (index < Monster.Ailments.Count)
             {
                 Ailment ailment = Monster.Ailments[index];
-                Monster_Widget.Parts.MonsterAilment AilmentDisplay = new Monster_Widget.Parts.MonsterAilment()
+                MonsterAilment AilmentDisplay = new MonsterAilment()
                 {
                     Style = FindResource("OVERLAY_MONSTER_SUB_AILMENT_STYLE") as Style
                 };
@@ -262,11 +266,11 @@ namespace HunterPie.GUI.Widgets
             MonsterCrown.Visibility = Visibility.Collapsed;
             Visibility = Visibility.Collapsed;
             Weaknesses.Children.Clear();
-            foreach (Monster_Widget.Parts.MonsterPart Part in MonsterPartsContainer.Children)
+            foreach (MonsterPart Part in MonsterPartsContainer.Children)
             {
                 Part.UnhookEvents();
             }
-            foreach (Monster_Widget.Parts.MonsterAilment Ailment in MonsterAilmentsContainer.Children)
+            foreach (MonsterAilment Ailment in MonsterAilmentsContainer.Children)
             {
                 Ailment.UnhookEvents();
             }
@@ -288,6 +292,10 @@ namespace HunterPie.GUI.Widgets
             {
                 Visibility = Visibility.Visible;
                 StartVisibilityTimer();
+            }
+            if (UserSettings.PlayerConfig.Overlay.MonstersComponent.EnableSortParts)
+            {
+                SortParts();
             }
         });
 
@@ -333,7 +341,7 @@ namespace HunterPie.GUI.Widgets
                 while (index < Context.Ailments.Count)
                 {
                     Ailment ailment = Context.Ailments[index];
-                    Monster_Widget.Parts.MonsterAilment AilmentDisplay = new Monster_Widget.Parts.MonsterAilment()
+                    MonsterAilment AilmentDisplay = new Monster_Widget.Parts.MonsterAilment()
                     {
                         Style = FindResource("OVERLAY_MONSTER_SUB_AILMENT_STYLE") as Style
                     };
@@ -488,11 +496,11 @@ namespace HunterPie.GUI.Widgets
             MonsterPartsContainer.Visibility = !config.EnableMonsterParts && !config.EnableRemovableParts ? Visibility.Collapsed : Visibility.Visible;
             MonsterAilmentsContainer.Visibility = !config.EnableMonsterAilments ? Visibility.Collapsed : Visibility.Visible;
             ActionVisibility = config.ShowMonsterActionName ? Visibility.Visible : Visibility.Collapsed;
-            foreach (Monster_Widget.Parts.MonsterPart part in MonsterPartsContainer.Children)
+            foreach (MonsterPart part in MonsterPartsContainer.Children)
             {
                 part.ApplySettings();
             }
-            foreach (Monster_Widget.Parts.MonsterAilment ailment in MonsterAilmentsContainer.Children)
+            foreach (MonsterAilment ailment in MonsterAilmentsContainer.Children)
             {
                 ailment.ApplySettings();
             }
@@ -504,6 +512,19 @@ namespace HunterPie.GUI.Widgets
         #endregion
 
         #region Helpers
+
+        private void SortParts()
+        {
+            List<MonsterPart> parts = new List<MonsterPart>();
+            foreach (MonsterPart part in MonsterPartsContainer.Children)
+            {
+                parts.Add(part);
+            }
+            parts.Sort((l, r) => r.CompareTo(l));
+            MonsterPartsContainer.Children.Clear();
+            parts.ForEach(part => MonsterPartsContainer.Children.Add(part));
+        }
+
         public void ChangeBarsSizes(double NewSize)
         {
 
