@@ -4,7 +4,6 @@ using System.IO;
 using System.Linq;
 using System.Windows;
 using System.Windows.Controls;
-using System.Windows.Documents;
 using System.Windows.Media;
 using System.Windows.Media.Animation;
 using HunterPie.Core;
@@ -12,7 +11,7 @@ using HunterPie.Core.Enums;
 using HunterPie.Core.Events;
 using HunterPie.GUI.Widgets.Monster_Widget.Parts;
 using HunterPie.GUIControls.Custom_Controls;
-using Microsoft.CodeAnalysis;
+
 using AlatreonState = HunterPie.Core.Enums.AlatreonState;
 using BitmapImage = System.Windows.Media.Imaging.BitmapImage;
 using Timer = System.Threading.Timer;
@@ -98,11 +97,11 @@ namespace HunterPie.GUI.Widgets
         {
             Dispatcher.Invoke(new Action(() =>
             {
-                foreach (Monster_Widget.Parts.MonsterPart Part in MonsterPartsContainer.Children)
+                foreach (MonsterPart Part in MonsterPartsContainer.Children)
                 {
                     Part.UnhookEvents();
                 }
-                foreach (Monster_Widget.Parts.MonsterAilment Ailment in MonsterAilmentsContainer.Children)
+                foreach (MonsterAilment Ailment in MonsterAilmentsContainer.Children)
                 {
                     Ailment.UnhookEvents();
                 }

@@ -114,8 +114,15 @@ namespace HunterPie.GUI.Widgets.Monster_Widget.Parts
 
             // Hide parts that cannot be broken
             bool canBeBroken = context.BreakThresholds.Length > 0;
+            bool isTenderized = context.TenderizeDuration > 0;
             if (ComponentSettings.EnableOnlyPartsThatCanBeBroken)
             {
+                // Shows tenderized parts
+                if (isTenderized)
+                {
+                    return Visibility.Visible;
+                }
+
                 if (canBeBroken)
                 {
                     bool isBroken = context.BreakThresholds.LastOrDefault() < context.BrokenCounter;
@@ -132,7 +139,7 @@ namespace HunterPie.GUI.Widgets.Monster_Widget.Parts
             if (canBeBroken && ComponentSettings.HidePartsThatHaveAlreadyBeenBroken)
             {
                 bool isBroken = context.BreakThresholds.LastOrDefault() < context.BrokenCounter;
-                return isBroken ? Visibility.Collapsed : Visibility.Visible;
+                return isBroken && !isTenderized ? Visibility.Collapsed : Visibility.Visible;
             }
 
             if (context.IsRemovable)
@@ -181,6 +188,7 @@ namespace HunterPie.GUI.Widgets.Monster_Widget.Parts
                 TenderizeBar.MaxValue = args.MaxDuration;
                 TenderizeBar.Visibility = visibility;
                 Visibility = GetVisibility();
+                UpdateHealthText();
                 StartVisibilityTimer();
             });
         }

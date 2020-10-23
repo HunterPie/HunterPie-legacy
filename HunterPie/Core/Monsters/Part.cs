@@ -109,8 +109,10 @@ namespace HunterPie.Core
 
         public void SetTenderizeInfo(sTenderizedPart data)
         {
+            float tenderize = data.Duration + data.ExtraDuration;
             TenderizeMaxDuration = data.MaxDuration + data.MaxExtraDuration;
-            TenderizeDuration = data.Duration + data.ExtraDuration;
+            // Reset the tenderize duration when it reaches the maximum duration
+            TenderizeDuration = tenderize == TenderizeMaxDuration ? 0 : tenderize;
         }
 
         private void UnhookEvents(MonsterPartEvents eventHandler)
