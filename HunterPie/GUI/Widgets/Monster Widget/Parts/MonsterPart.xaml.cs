@@ -114,7 +114,7 @@ namespace HunterPie.GUI.Widgets.Monster_Widget.Parts
 
             // Hide parts that cannot be broken
             bool canBeBroken = context.BreakThresholds.Length > 0;
-            bool isTenderized = context.TenderizeDuration > 0;
+            bool isTenderized = context.TenderizeDuration > 0 && context.TenderizeDuration < context.TenderizeMaxDuration;
             if (ComponentSettings.EnableOnlyPartsThatCanBeBroken)
             {
                 // Shows tenderized parts
@@ -125,7 +125,7 @@ namespace HunterPie.GUI.Widgets.Monster_Widget.Parts
 
                 if (canBeBroken)
                 {
-                    bool isBroken = context.BreakThresholds.LastOrDefault() < context.BrokenCounter;
+                    bool isBroken = context.BreakThresholds.LastOrDefault() <= context.BrokenCounter;
                     if (ComponentSettings.HidePartsThatHaveAlreadyBeenBroken && isBroken)
                     {
                         return Visibility.Collapsed;
@@ -138,7 +138,7 @@ namespace HunterPie.GUI.Widgets.Monster_Widget.Parts
 
             if (canBeBroken && ComponentSettings.HidePartsThatHaveAlreadyBeenBroken)
             {
-                bool isBroken = context.BreakThresholds.LastOrDefault() < context.BrokenCounter;
+                bool isBroken = context.BreakThresholds.LastOrDefault() <= context.BrokenCounter;
                 return isBroken && !isTenderized ? Visibility.Collapsed : Visibility.Visible;
             }
 
@@ -240,6 +240,10 @@ namespace HunterPie.GUI.Widgets.Monster_Widget.Parts
 
         private void UpdateHealthText()
         {
+            if (context is null)
+            {
+                return;
+            }
             PartHealth.MaxValue = context.TotalHealth;
             PartHealth.Value = context.Health;
             double percentage = PartHealth.Value / Math.Max(1, PartHealth.MaxValue);
@@ -252,12 +256,14 @@ namespace HunterPie.GUI.Widgets.Monster_Widget.Parts
 
         public int CompareTo(MonsterPart other)
         {
-            if (other.context.TenderizeDuration > context.TenderizeDuration)
+            float otherTenderize = other.context.TenderizeDuration % other.context.TenderizeMaxDuration;
+            float thisTenderize = context.TenderizeDuration % context.TenderizeMaxDuration;
+            if (otherTenderize > thisTenderize)
             {
                 return -1;
             } else
             {
-                if (other.context.TenderizeDuration == 0 && context.TenderizeDuration > 0)
+                if (otherTenderize == 0 && thisTenderize > 0)
                 {
                     return 1;
                 } else

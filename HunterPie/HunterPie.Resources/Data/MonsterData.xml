@@ -1874,16 +1874,16 @@
         <Break Threshold="1"/>
       </Part>
       <Part Name="MONSTER_PART_SKY_FALL" IsRemovable="True"/>
-      <Part Name="MONSTER_PART_HEAD" Group="HEAD">
+      <Part Name="MONSTER_PART_HEAD" Group="HEAD" TenderizeIds="0,3">
         <Break Threshold="2"/>
       </Part>
-      <Part Name="MONSTER_PART_HEAD_ICE" Group="HEAD" TenderizeIds="0,3"/>
+      <Part Name="MONSTER_PART_HEAD_ICE" Group="HEAD"/>
       <Part Name="MONSTER_PART_BODY" Group="BODY"/>
       <Part Name="MONSTER_PART_BODY_ICE" Group="BODY"/>
       <Part Name="MONSTER_PART_WINGS" Group="WING" TenderizeIds="1,4">
         <Break Threshold="2"/>
       </Part>
-      <Part Name="MONSTER_PART_WINGS_ICE" Group="WING" TenderizeIds="1,4"/>
+      <Part Name="MONSTER_PART_WINGS_ICE" Group="WING"/>
       <Part Name="MONSTER_PART_ARMS" Group="ARM"/>
       <Part Name="MONSTER_PART_ARMS_ICE" Group="ARM"/>
       <Part Name="MONSTER_PART_LEGS" Group="LEG"/>
