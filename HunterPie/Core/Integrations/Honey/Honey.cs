@@ -343,7 +343,7 @@ namespace HunterPie.Core
             }
 
             // Now we build the decoration string structure
-            const int MaxDecoId = 401;
+            const int MaxDecoId = 404;
             for (int i = 1; i <= MaxDecoId; i++)
             {
                 data.Append($"{(i != 1 ? "," : "")}{(sDecorations.ContainsKey(i) ? GetDecorationAmountLimit(i, sDecorations[i]) : 0)}");
