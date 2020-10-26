@@ -2,6 +2,7 @@
 using System.Windows.Input;
 using System.Windows.Media;
 using HunterPie.Core;
+using HunterPie.Core.Jobs;
 using HunterPie.GUI.Widgets.ClassWidget.Parts;
 using Classes = HunterPie.Core.Enums.Classes;
 
@@ -59,6 +60,9 @@ namespace HunterPie.GUI.Widgets.ClassWidget
             UserSettings.Config.IWeaponHelperStructure config;
             switch ((Classes)Context.Player.WeaponID)
             {
+                case Classes.Greatsword:
+                    config = classesConfig.GreatswordHelper;
+                    break;
                 case Classes.DualBlades:
                     config = classesConfig.DualBladesHelper;
                     break;
@@ -109,6 +113,9 @@ namespace HunterPie.GUI.Widgets.ClassWidget
             UserSettings.Config.IWeaponHelperStructure config;
             switch ((Classes)Context.Player.WeaponID)
             {
+                case Classes.Greatsword:
+                    config = classesConfig.GreatswordHelper;
+                    break;
                 case Classes.DualBlades:
                     config = classesConfig.DualBladesHelper;
                     break;
@@ -203,6 +210,9 @@ namespace HunterPie.GUI.Widgets.ClassWidget
                 WidgetHasContent = !Context.Player.InHarvestZone;
                 switch ((Classes)Context.Player.WeaponID)
                 {
+                    case Classes.Greatsword:
+                        SetClassToGreatsword();
+                        break;
                     case Classes.DualBlades:
                         SetClassToDualBlades();
                         break;
@@ -241,6 +251,15 @@ namespace HunterPie.GUI.Widgets.ClassWidget
                         break;
                 }
             }));
+        }
+
+        private void SetClassToGreatsword()
+        {
+            var control = new GreatswordControl();
+            control.SetContext(Context.Player.Greatsword);
+            Container.Children.Add(control);
+
+            ApplySettings();
         }
 
         private void SetClassToHeavyBowgun()

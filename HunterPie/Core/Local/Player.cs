@@ -1147,8 +1147,11 @@ namespace HunterPie.Core
 
         private void GetGreatswordInformation(long weaponAddress)
         {
+            float chargeTimer = Kernel.Read<float>(weaponAddress - 0x1C);
             uint chargeLevel = Kernel.Read<uint>(weaponAddress - 0x14);
+            Greatsword.IsWeaponSheated = Kernel.Read<byte>(weaponAddress - 0x18CB) == 0;
             Greatsword.ChargeLevel = chargeLevel;
+            Greatsword.ChargeTimer = chargeTimer;
         }
 
         private void GetDualBladesInformation(long weaponAddress)

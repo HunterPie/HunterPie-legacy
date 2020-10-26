@@ -206,6 +206,7 @@ namespace HunterPie.Core
 
             public class ClassesWidget
             {
+                public GreatswordHelper GreatswordHelper { get; set; } = new GreatswordHelper();
                 public DualBladesHelper DualBladesHelper { get; set; } = new DualBladesHelper();
                 public LongSwordHelper LongSwordHelper { get; set; } = new LongSwordHelper();
                 public HammerHelper HammerHelper { get; set; } = new HammerHelper();
@@ -217,6 +218,14 @@ namespace HunterPie.Core
                 public SwitchAxeHelper SwitchAxeHelper { get; set; } = new SwitchAxeHelper();
                 public BowHelper BowHelper { get; set; } = new BowHelper();
                 public HeavyBowgunHelper HeavyBowgunHelper { get; set; } = new HeavyBowgunHelper();
+            }
+
+            public class GreatswordHelper : IWeaponHelperStructure
+            {
+                public bool Enabled { get; set; } = true;
+                public int[] Position { get; set; } = new int[] { 683, 384 };
+                public float Opacity { get; set; } = 1;
+                public float Scale { get; set; } = 1;
             }
 
             public class HammerHelper : IWeaponHelperStructure {

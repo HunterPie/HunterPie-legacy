@@ -404,6 +404,10 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
+    <Page Include="GUI\Widgets\ClassWidget\Parts\GreatswordControl.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="GUI\Widgets\ClassWidget\Parts\GunLanceControl.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -535,6 +539,9 @@
     <Compile Include="GUI\Widgets\ClassWidget\Parts\ClassControl.cs" />
     <Compile Include="GUI\Widgets\ClassWidget\Parts\DualBladeControl.xaml.cs">
       <DependentUpon>DualBladeControl.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="GUI\Widgets\ClassWidget\Parts\GreatswordControl.xaml.cs">
+      <DependentUpon>GreatswordControl.xaml</DependentUpon>
     </Compile>
     <Compile Include="GUI\Widgets\ClassWidget\Parts\GunLanceControl.xaml.cs">
       <DependentUpon>GunLanceControl.xaml</DependentUpon>
