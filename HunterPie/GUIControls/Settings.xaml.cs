@@ -181,7 +181,7 @@ namespace HunterPie.GUIControls
             settingsUI.DamageComponentOpacity.Value = settings.Overlay.DPSMeter.Opacity;
 
             // Classes Widget
-            settingsUI.switchDualBladesHelper.IsEnabled = settings.Overlay.ClassesWidget.DualBladesHelper.Enabled;
+            settingsUI.switchGreatswordHelper.IsEnabled = settings.Overlay.ClassesWidget.GreatswordHelper.Enabled;
             settingsUI.switchLongswordHelper.IsEnabled = settings.Overlay.ClassesWidget.LongSwordHelper.Enabled;
             settingsUI.switchHammerHelper.IsEnabled = settings.Overlay.ClassesWidget.HammerHelper.Enabled;
             settingsUI.switchHuntingHornHelper.IsEnabled = settings.Overlay.ClassesWidget.HuntingHornHelper.Enabled;
@@ -324,6 +324,7 @@ namespace HunterPie.GUIControls
             settings.Overlay.DPSMeter.Opacity = (float)settingsUI.DamageComponentOpacity.Value;
 
             // Classes Widget
+            settings.Overlay.ClassesWidget.GreatswordHelper.Enabled = settingsUI.switchGreatswordHelper.IsEnabled;
             settings.Overlay.ClassesWidget.DualBladesHelper.Enabled = settingsUI.switchDualBladesHelper.IsEnabled;
             settings.Overlay.ClassesWidget.LongSwordHelper.Enabled = settingsUI.switchLongswordHelper.IsEnabled;
             settings.Overlay.ClassesWidget.HammerHelper.Enabled = settingsUI.switchHammerHelper.IsEnabled;
