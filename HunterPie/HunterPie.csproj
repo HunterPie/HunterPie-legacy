@@ -305,9 +305,6 @@
     <None Include="Changelog\changelog-en-us.md">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
-    <None Include="GUIControls\settingsWindow.xaml.cs">
-      <DependentUpon>settingsWindow.xaml</DependentUpon>
-    </None>
     <Compile Include="GUIControls\TrayIcon.cs" />
     <Compile Include="GUI\Helpers\Arc.cs" />
     <Compile Include="GUI\Helpers\Diamond.cs" />
@@ -621,10 +618,6 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <None Include="GUIControls\settingsWindow.xaml">
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
-    </None>
     <Page Include="Resources\DefaultTheme.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>

@@ -152,16 +152,9 @@
                                 <Binding Mode="OneTime" XPath="Settings/String[@ID='STATIC_GAMEPATH_DESC']/@Name"/>
                             </DockPanel.ToolTip>
                         </DockPanel>
-                        <DockPanel Height="30"  Margin="10,0,10,5">
+                        <DockPanel Height="30"  Margin="10,0,10,5" ToolTip="{Binding Mode=OneTime, XPath=/Strings/Client/Settings/String[@ID\=\'STATIC_GAMEPATH_DESC\']/@Name}">
                             <TextBlock Text="{Binding Mode=OneTime, XPath=/Strings/Client/Settings/String[@ID\=\'STATIC_LAUNCHARGS\']/@Name}" Foreground="WhiteSmoke" DockPanel.Dock="Left" FontFamily="Segoe UI Light" Padding="0,0,10,0"/>
-                            <TextBox x:Name="argsTextBox" DockPanel.Dock="Right" Background="{x:Null}" Foreground="#FF9E9D9D" BorderBrush="#FFABADB3" BorderThickness="0,0,0,1" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" Canvas.Left="158" Canvas.Top="35" SelectionBrush="#FFD31D1D" TextChanged="argsTextBox_TextChanged" GotFocus="argsTextBox_GotFocus" LostFocus="argsTextBox_LostFocus">
-                                <TextBox.Text>
-                                    <Binding Mode="OneTime" XPath="Settings/String[@ID='STATIC_LAUNCHARGS_NOARGS']/@Name"/>
-                                </TextBox.Text>
-                            </TextBox>
-                            <DockPanel.ToolTip>
-                                <Binding Mode="OneTime" XPath="Settings/String[@ID='STATIC_GAMEPATH_DESC']/@Name"/>
-                            </DockPanel.ToolTip>
+                            <TextBox x:Name="argsTextBox" Text="{Binding Mode=OneTime, XPath=/Strings/Client/Settings/String[@ID\=\'STATIC_LAUNCHARGS_NOARGS\']/@Name}" DockPanel.Dock="Right" Background="{x:Null}" Foreground="#FF9E9D9D" BorderBrush="#FFABADB3" BorderThickness="0,0,0,1" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" Canvas.Left="158" Canvas.Top="35" SelectionBrush="#FFD31D1D" TextChanged="argsTextBox_TextChanged" GotFocus="argsTextBox_GotFocus" LostFocus="argsTextBox_LostFocus"/>
                         </DockPanel>
                     </StackPanel>
                 </ScrollViewer>

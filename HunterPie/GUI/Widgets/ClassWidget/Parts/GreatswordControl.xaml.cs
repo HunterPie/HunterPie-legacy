@@ -48,6 +48,17 @@ namespace HunterPie.GUI.Widgets.ClassWidget.Parts
         {
             context = ctx;
             HookEvents();
+            InitializeData();
+        }
+
+        private void InitializeData()
+        {
+            JobEventArgs jobArgs = new JobEventArgs(context);
+            GreatswordEventArgs args = new GreatswordEventArgs(context);
+            OnChargeLevelChange(this, args);
+            OnChargeTimerChange(this, args);
+            OnWeaponSheathStateChange(this, jobArgs);
+            OnSafijiivaCounterUpdate(this, jobArgs);
         }
 
         private void HookEvents()
