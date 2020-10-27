@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <!--  
-  日本語訳担当：elappale#4205 です。（校正：miz0chi）
+  日本語訳担当：elappale#4205 です。（校正：miz0chi）（v1.0.3.97 翻訳：Wacha#7777）
   改善点やリクエストなどは HunterPie の Discord に参加して DM で送って頂ければ、
   できる範囲で受け付けていますので、気軽にいらしてください！
   This japanese localization file has been translated by elappale#4205.
@@ -19,6 +19,7 @@
     <Monster ID="em007_00" Name="ディアブロス"/>
     <Monster ID="em007_01" Name="ディアブロス亜種"/>
     <Monster ID="em011_00" Name="キリン"/>
+    <Monster ID="em013_00" Name="ミラボレアス"/> <!-- Wacha#7777 add -->
     <Monster ID="em018_00" Name="イャンガルルガ"/>
     <Monster ID="em018_05" Name="傷ついたイャンガルルガ"/>
     <Monster ID="em023_00" Name="ラージャン"/>
@@ -170,6 +171,7 @@
     <Part ID="MONSTER_PART_SILVER_SPIKES_LWING" Name="金剛棘（左翼）"/>
     <Part ID="MONSTER_PART_SILVER_SPIKES_RWING" Name="金剛棘（右翼）"/>
     <!-- Special parts -->
+    <Part ID="MONSTER_PART_KNOCKDOWN" Name="兵器ダウン"/> <!-- Wacha#7777 add -->
     <Part ID="MONSTER_PART_BIG_FLINCH" Name="特殊怯み"/>
     <Part ID="MONSTER_PART_RAGE" Name="怒り解除"/>
     <Part ID="MONSTER_PART_COUNTERATTACK" Name="反撃"/>
@@ -279,6 +281,7 @@
     <Stage ID="413" Name="淵源の孤島"/>
     <Stage ID="415" Name="幽境の谷"/>
     <Stage ID="416" Name="幽境の谷"/>
+    <Stage ID="417" Name="シュレイド城"/>　<!-- Wacha#7777 add -->
     <Stage ID="501" Name="二等マイハウス"/>
     <Stage ID="502" Name="一等マイハウス"/>
     <Stage ID="503" Name="特等マイハウス"/>
@@ -322,6 +325,10 @@
     <Abnormality ID="HUNTINGHORN_010_01" Name="防御力ＵＰ【特大】"/>
     <Abnormality ID="HUNTINGHORN_011_00" Name="特殊装具消費軽減【短】"/>
     <Abnormality ID="HUNTINGHORN_012_00" Name="特殊装具消費軽減【長】"/>
+    <Abnormality ID="HUNTINGHORN_013_00" Name="体力回復【小】"/> <!-- Wacha#7777 add -->
+    <Abnormality ID="HUNTINGHORN_014_00" Name="体力回復【大】"/> <!-- Wacha#7777 add -->
+    <Abnormality ID="HUNTINGHORN_015_00" Name="体力回復【小】＆解毒"/> <!-- Wacha#7777 add -->
+    <Abnormality ID="HUNTINGHORN_016_00" Name="体力回復【中】＆解毒"/> <!-- Wacha#7777 add -->
     <Abnormality ID="HUNTINGHORN_018_00" Name="体力回復速度ＵＰ【小】"/>
     <Abnormality ID="HUNTINGHORN_019_00" Name="体力回復速度ＵＰ【大】"/>
     <Abnormality ID="HUNTINGHORN_020_00" Name="聴覚保護【小】"/>
@@ -356,12 +363,15 @@
     <Abnormality ID="HUNTINGHORN_039_00" Name="属性攻撃力ＵＰ"/>
     <Abnormality ID="HUNTINGHORN_040_00" Name="全属性やられ無効"/>
     <Abnormality ID="HUNTINGHORN_041_00" Name="不明（笛）"/>
+    <Abnormality ID="HUNTINGHORN_042_00" Name="全旋律効果延長"/> <!-- Wacha#7777 add -->
     <Abnormality ID="HUNTINGHORN_043_00" Name="のけぞり無効"/>
     <Abnormality ID="HUNTINGHORN_045_00" Name="全属性耐性値ＵＰ"/>
     <Abnormality ID="HUNTINGHORN_046_00" Name="会心率ＵＰ【小】"/>
     <Abnormality ID="HUNTINGHORN_047_00" Name="全状態異常無効"/>
     <Abnormality ID="HUNTINGHORN_048_00" Name="聴覚保護【小】＆風圧無効"/>
     <Abnormality ID="HUNTINGHORN_049_00" Name="状態異常攻撃力ＵＰ"/>
+    <Abnormality ID="HUNTINGHORN_051_00" Name="響周波【打】"/> <!-- Wacha#7777 add -->
+    <Abnormality ID="HUNTINGHORN_052_00" Name="響周波【龍】"/> <!-- Wacha#7777 add -->
     <Abnormality ID="HUNTINGHORN_053_00" Name="スタミナ最大値ＵＰ＆回復"/>
     <Abnormality ID="HUNTINGHORN_054_00" Name="体力継続回復"/>
     <Abnormality ID="HUNTINGHORN_055_00" Name="自分強化【速】＆回避性能ＵＰ"/>
@@ -450,11 +460,19 @@
       <String ID="CONSOLE_SETTINGS" Name="設定"/>
       <String ID="CONSOLE_UPLOADBUILD" Name="装備をアップロード"/>
       <String ID="CONSOLE_EXPORTGEAR" Name="所持中の装飾品と護石をエクスポート"/>
+      <String ID="CONSOLE_PLUGINS" Name="プラグイン"/> <!-- Wacha#7777 add -->
       <String ID="CONSOLE_CHANGELOG" Name="パッチノート"/>
       <String ID="CONSOLE_DISCORD" Name="Discord"/>
       <String ID="CONSOLE_GITHUB" Name="GitHub"/>
       <String ID="CONSOLE_LAUNCH" Name="ゲーム起動"/>
       <String ID="CONSOLE_VERSION" Name="バージョン：{HunterPie_Version} ({HunterPie_Branch})"/>
+      <!-- Plugins --> <!-- Wacha#7777 add -->
+      <String ID="MESSAGE_GET_MORE_PLUGINS" Name="プラグインを入手"/> <!-- Wacha#7777 add -->
+      <String ID="MESSAGE_OPEN_PLUGINS_FOLDER" Name="プラグイン保存フォルダを開く"/> <!-- Wacha#7777 add -->
+      <String ID="MESSAGE_PLUGIN_INSTALL" Name="プラグインをインストール"/>
+      <String ID="MESSAGE_PLUGIN_INSTALL_DESC" Name="ここにmodule.jsonをドラッグ＆ドロップして、新しいプラグインをインストール"/> <!-- Wacha#7777 add -->
+      <String ID="MESSAGE_PLUGIN_INSTALLED" Name="プラグイン: {name} のインストール完了。 HunterPieを再起動してプラグインを有効にしてください。"/> <!-- Wacha#7777 add -->
+      <String ID="ERROR_PLUGIN_AUTO_UPDATE" Name="このプラグインは自動アップデートに対応していません。アップデートの際は、手動でプラグインをダウンロードしてください。"/> <!-- Wacha#7777 add -->
       <!-- Popups -->
       <String ID="MESSAGE_QUIT" Name="本当にHunterPieを終了しますか？"/>
       <String ID="TITLE_MISSING_PATH" Name="MONSTER HUNTER: WORLDの実行ファイルが見つかりませんでした。"/>
@@ -548,6 +566,8 @@
       <String ID="STATIC_MONSTER_PART_HEALTH_STRING_FORMAT_DESC" Name="モンスターの部位の怯み値の表示形式を変更できます。"/>
       <String ID="ENABLE_MONSTER_USE_LOCKON" Name="ロックオンでターゲットモンスターを選択"/>
       <String ID="ENABLE_MONSTER_USE_LOCKON_DESC" Name="無効な場合、マップのピンで注目モンスターを選択できます。"/>
+      <String ID="ENABLE_HIDE_MONSTER_HEALTH" Name="モンスターの基本情報"/>
+      <String ID="ENABLE_HIDE_MONSTER_HEALTH_DESC" Name="有効な場合、モンスターの［体力・スタミナ・怒り・捕獲可能］情報を非表示にします。"/>
       <String ID="STATIC_MONSTER_BAR_MODE" Name="モンスターウィジェットの表示タイプ"/>
       <String ID="STATIC_MONSTER_BAR_MODE_DESC" Name="モンスターウィジェットの表示方法を変更します。"/>
       <String ID="STATIC_MONSTER_BAR_MODE_0" Name="全モンスターを表示"/>
@@ -561,10 +581,20 @@
       <String ID="STATIC_MONSTER_BAR_DOCK_DESC" Name="ウィジェット内のモンスターの体力ゲージの位置を変更します。"/>
       <String ID="STATIC_MONSTER_BAR_DOCK_0" Name="上"/>
       <String ID="STATIC_MONSTER_BAR_DOCK_1" Name="下"/>
+      <String ID="ENABLE_MONSTER_ACTION" Name="モンスターのアクションIDを表示"/>
+      <String ID="ENABLE_MONSTER_ACTION_DESC" Name="有効な場合、モンスターが取っている行動を示すIDを表示します。"/>
       <String ID="ENABLE_MONSTER_WEAKNESS" Name="モンスターの弱点を表示"/>
       <String ID="ENABLE_MONSTER_WEAKNESS_DESC" Name="有効な場合、体力ゲージの下に弱点のアイコンを表示します。"/>
-      <String ID="ENABLE_HIDE_INACTIVE_PARTS" Name="更新が継続している部位や状態異常のみ表示する"/>
-      <String ID="ENABLE_HIDE_INACTIVE_PARTS_DESC" Name="有効な場合、攻撃していない部位や更新されていない状態異常値が自動的に非表示になります。"/>
+      <String ID="ENABLE_HIDE_INACTIVE_PARTS" Name="更新が継続している部位のみ表示する"/>
+      <String ID="ENABLE_HIDE_INACTIVE_PARTS_DESC" Name="有効な場合、攻撃していない部位が自動的に非表示になります。"/>
+      <String ID="ENABLE_AUTO_SORT_PARTS" Name="部位の自動並び変えをする"/>
+      <String ID="ENABLE_AUTO_SORT_PARTS_DESC" Name="有効な場合、モンスターがダメージを負う度に〈傷あり➡最後に怯み値が更新された〉の順に部位を並び変えます。"/>
+      <String ID="ENABLE_SHOW_UNBROKEN_PARTS" Name="未破壊の部位のみを表示"/>
+      <String ID="ENABLE_SHOW_UNBROKEN_PARTS_DESC" Name="有効な場合、破壊が完了していない、もしくは破壊できない部位のみを表示します。"/>
+      <String ID="ENABLE_SHOW_BROKEN_PARTS" Name="破壊可能な部位のみを表示"/>
+      <String ID="ENABLE_SHOW_BROKEN_PARTS_DESC" Name="有効な場合、部位破壊が認識される部位のみを表示します。"/>
+      <String ID="ENABLE_HIDE_INACTIVE_AILMENTS" Name="更新が継続している状態異常のみ表示する"/>
+      <String ID="ENABLE_HIDE_INACTIVE_AILMENTS_DESC" Name="有効な場合、更新されていない状態異常値が自動的に非表示になります。"/>
       <String ID="ENABLE_BREAKABLE_PARTS" Name="切断可能部位を表示"/>
       <String ID="ENABLE_BREAKABLE_PARTS_DESC" Name="有効な場合、破壊することで剥ぎ取り可能な部位の体力を表示します。"/>
       <String ID="ENABLE_AILMENTS_BAR_COLOR" Name="状態異常の色分けを有効にする"/>
@@ -686,6 +716,8 @@
       <String ID="ENABLE_CHARGE_BLADE_HELPER_DESC" Name="有効な場合、チャージアックスを装備中に強化時間やゲージ値などの情報が表示されます。"/>
       <String ID="ENABLE_SWITCH_AXE_HELPER" Name="【スラッシュアックス】の情報を表示する"/>
       <String ID="ENABLE_SWITCH_AXE_HELPER_DESC" Name="有効な場合、スラッシュアックスを装備中に強化時間やゲージ値などの情報が表示されます。"/>
+      <String ID="ENABLE_HUNTINGHORN_HELPER" Name="【狩猟笛】の情報を表示する"/> <!-- Wacha#7777 add -->
+      <String ID="ENABLE_HUNTINGHORN_HELPER_DESC" Name="有効な場合、狩猟笛を装備中に強化時間やゲージ値などの情報が表示されます。"/> <!-- Wacha#7777 add -->
       <String ID="ENABLE_GUN_LANCE_HELPER" Name="【ガンランス】の情報を表示する"/>
       <String ID="ENABLE_GUN_LANCE_HELPER_DESC" Name="有効な場合、ガンランスを装備中に強化時間やゲージ値などの情報が表示されます。"/>
       <String ID="ENABLE_LONGSWORD_HELPER" Name="【太刀】の情報を表示する"/>
@@ -698,6 +730,8 @@
       <String ID="ENABLE_DUALBLADES_HELPER_DESC" Name="有効な場合、双剣を装備中に強化時間やゲージ値などの情報が表示されます。"/>
       <String ID="ENABLE_LANCE_HELPER" Name="【ランス】の情報を表示する"/>
       <String ID="ENABLE_LANCE_HELPER_DESC" Name="有効な場合、ランスを装備中に強化時間やゲージ値などの情報が表示されます。"/>
+      <String ID="ENABLE_HEAVYBOWGUN_HELPER" Name="【ヘビィボウガン】の情報を表示する"/> <!-- Wacha#7777 add -->
+      <String ID="ENABLE_HEAVYBOWGUN_HELPER_DESC" Name="有効な場合、ヘビィボウガンを装備中に強化時間やゲージ値などの情報が表示されます。"/> <!-- Wacha#7777 add -->
       <String ID="STATIC_CLASSES_BETA_WARNING" Name="⚠注意：武器ウィジェットは現在まだ制作過程にあり、今後は他の武器種にも対応する予定です。このウィジェットは、武器種別に位置と大きさをデザインモードで設定できます。デザインモードは設定＞オーバーレイで指定したホットキーで起動できます。"/>
       <!-- Links -->
       <String ID="STATIC_HUNTERPIE_WIKI" Name="Wiki"/>
@@ -716,6 +750,8 @@
       <String ID="ENABLE_UNKNOWN_AILMENTS_DESC" Name="詳細が確認されていないモンスターの状態異常値を表示します。開発に関わっていない方は無効にしてください。開発者用のツールです。"/>
       <String ID="ENABLE_LOAD_CUSTOM_DATA" Name="カスタムモンスターデータを読み込む"/>
       <String ID="ENABLE_LOAD_CUSTOM_DATA_DESC" Name="有効な場合、HunterPieはカスタムモンスターのデータファイルを読み込もうとします。開発に関わっていない方は無効にしてください。開発者用のツールです。"/>
+      <String ID="ENABLE_SEND_CRASH_TO_DEV" Name="クラッシュログを作成者に送信"/> <!-- Wacha#7777 add -->
+      <String ID="ENABLE_SEND_CRASH_TO_DEV_DESC" Name="有効な場合、 HunterPieはクラッシュログを自動的に開発者へ送信します。このオプションを無効にすることもできますが、有効にしておくことでバグの発見と修正を速やかに行うことができます。"/> <!-- Wacha#7777 add -->
       <String ID="STATIC_LOAD_CUSTOM_DATA_PATH" Name="カスタムモンスターデータファイル："/>
       <String ID="STATIC_LOAD_CUSTOM_DATA_PATH_DESC" Name="カスタムモンスターデータのファイルパスを指定してください。"/>
       <!-- Generics -->

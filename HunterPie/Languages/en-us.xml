@@ -702,26 +702,28 @@
       <String ID="STATIC_PRIMARY_SPEC_TOOL_POSITION_DESC" Name="Changes the primary specialized tool widget position."/>
       <String ID="STATIC_SECONDARY_SPEC_TOOL_POSITION_DESC" Name="Changes the secondary specialized tool widget position."/>
       <!-- Class Widget -->
+      <String ID="ENABLE_GREATSWORD_HELPER" Name="Enable Greatsword Helper"/>
+      <String ID="ENABLE_GREATSWORD_HELPER_DESC" Name="If enabled, the Greatsword helper will be visible whenever you equip a Greatsword."/>
       <String ID="ENABLE_INSECT_GLAIVE_HELPER" Name="Enable Insect Glaive Helper"/>
       <String ID="ENABLE_INSECT_GLAIVE_HELPER_DESC" Name="If enabled, the Insect Glaive helper will be visible whenever you equip an Insect Glaive."/>
       <String ID="ENABLE_CHARGE_BLADE_HELPER" Name="Enable Charge Blade Helper"/>
-      <String ID="ENABLE_CHARGE_BLADE_HELPER_DESC" Name="If enabled, the Charge Blade helper will be visible whenever you equip an Charge Blade."/>
+      <String ID="ENABLE_CHARGE_BLADE_HELPER_DESC" Name="If enabled, the Charge Blade helper will be visible whenever you equip a Charge Blade."/>
       <String ID="ENABLE_SWITCH_AXE_HELPER" Name="Enable Switch Axe Helper"/>
-      <String ID="ENABLE_SWITCH_AXE_HELPER_DESC" Name="If enabled, the Switch Axe helper will be visible whenever you equip an Switch Axe."/>
+      <String ID="ENABLE_SWITCH_AXE_HELPER_DESC" Name="If enabled, the Switch Axe helper will be visible whenever you equip a Switch Axe."/>
       <String ID="ENABLE_HUNTINGHORN_HELPER" Name="Enable Hunting Horn Helper"/>
       <String ID="ENABLE_HUNTINGHORN_HELPER_DESC" Name="If enabled, the Hunting Horn helper will be visible whenever you equip a Hunting Horn."/>
       <String ID="ENABLE_GUN_LANCE_HELPER" Name="Enable Gun Lance Helper"/>
-      <String ID="ENABLE_GUN_LANCE_HELPER_DESC" Name="If enabled, the Gun Lance helper will be visible whenever you equip an Gun Lance."/>
+      <String ID="ENABLE_GUN_LANCE_HELPER_DESC" Name="If enabled, the Gun Lance helper will be visible whenever you equip a Gun Lance."/>
       <String ID="ENABLE_LONGSWORD_HELPER" Name="Enable Longsword Helper"/>
-      <String ID="ENABLE_LONGSWORD_HELPER_DESC" Name="If enabled, the Longsword helper will be visible whenever you equip an Longsword."/>
+      <String ID="ENABLE_LONGSWORD_HELPER_DESC" Name="If enabled, the Longsword helper will be visible whenever you equip a Longsword."/>
       <String ID="ENABLE_BOW_HELPER" Name="Enable Bow Helper"/>
-      <String ID="ENABLE_BOW_HELPER_DESC" Name="If enabled, the Bow helper will be visible whenever you equip an Bow."/>
+      <String ID="ENABLE_BOW_HELPER_DESC" Name="If enabled, the Bow helper will be visible whenever you equip a Bow."/>
       <String ID="ENABLE_HAMMER_HELPER" Name="Enable Hammer Helper"/>
-      <String ID="ENABLE_HAMMER_HELPER_DESC" Name="If enabled, the Hammer helper will be visible whenever you equip an Hammer."/>
+      <String ID="ENABLE_HAMMER_HELPER_DESC" Name="If enabled, the Hammer helper will be visible whenever you equip a Hammer."/>
       <String ID="ENABLE_DUALBLADES_HELPER" Name="Enable Dual Blades Helper"/>
       <String ID="ENABLE_DUALBLADES_HELPER_DESC" Name="If enabled, the Dual Blades helper will be visible whenever you equip Dual Blades."/>
       <String ID="ENABLE_LANCE_HELPER" Name="Enable Lance Helper"/>
-      <String ID="ENABLE_LANCE_HELPER_DESC" Name="If enabled, the Lance helper will be visible whenever you equip Lance."/>
+      <String ID="ENABLE_LANCE_HELPER_DESC" Name="If enabled, the Lance helper will be visible whenever you equip a Lance."/>
       <String ID="ENABLE_HEAVYBOWGUN_HELPER" Name="Enable Heavy Bowgun Helper"/>
       <String ID="ENABLE_HEAVYBOWGUN_HELPER_DESC" Name="If enabled, the Heavy Bowgun helper will be visible whenever you equip a Heavy Bowgun."/>
       <String ID="STATIC_CLASSES_BETA_WARNING" Name="Attention: Class helpers are still in development and more classes will be supported in the future. Each class helper has it's own settings, so you can have different positions for this widget depending on the class. Use the Design Mode feature to scale and move this widget."/>
