@@ -13,7 +13,7 @@ namespace HunterPie.GUI.Widgets.ClassWidget
     /// </summary>
     public partial class ClassWidgetContainer : Widget
     {
-        Game Context;
+        Game Context { get; set; }
 
         public ClassWidgetContainer(Game ctx)
         {
@@ -57,7 +57,7 @@ namespace HunterPie.GUI.Widgets.ClassWidget
         private void ApplySettingsBasedOnClass()
         {
             UserSettings.Config.ClassesWidget classesConfig = UserSettings.PlayerConfig.Overlay.ClassesWidget;
-            UserSettings.Config.IWeaponHelperStructure config;
+            UserSettings.Config.IWeaponHelper config;
             switch ((Classes)Context.Player.WeaponID)
             {
                 case Classes.Greatsword:
@@ -95,6 +95,9 @@ namespace HunterPie.GUI.Widgets.ClassWidget
                     break;
                 case Classes.HeavyBowgun:
                     config = classesConfig.HeavyBowgunHelper;
+                    break;
+                case Classes.LightBowgun:
+                    config = classesConfig.LightBowgunHelper;
                     break;
                 default:
                     return;
@@ -110,7 +113,7 @@ namespace HunterPie.GUI.Widgets.ClassWidget
         {
             if (Context == null) return;
             UserSettings.Config.ClassesWidget classesConfig = UserSettings.PlayerConfig.Overlay.ClassesWidget;
-            UserSettings.Config.IWeaponHelperStructure config;
+            UserSettings.Config.IWeaponHelper config;
             switch ((Classes)Context.Player.WeaponID)
             {
                 case Classes.Greatsword:
@@ -148,6 +151,9 @@ namespace HunterPie.GUI.Widgets.ClassWidget
                     break;
                 case Classes.HeavyBowgun:
                     config = classesConfig.HeavyBowgunHelper;
+                    break;
+                case Classes.LightBowgun:
+                    config = classesConfig.LightBowgunHelper;
                     break;
                 default:
                     return;
@@ -246,11 +252,23 @@ namespace HunterPie.GUI.Widgets.ClassWidget
                     case Classes.HeavyBowgun:
                         SetClassToHeavyBowgun();
                         break;
+                    case Classes.LightBowgun:
+                        SetClassToLightBowgun();
+                        break;
                     default:
                         WidgetHasContent = false;
                         break;
                 }
             }));
+        }
+
+        private void SetClassToLightBowgun()
+        {
+            var control = new LightBowgunControl();
+            control.SetContext(Context.Player.LightBowgun, Context.Player);
+            Container.Children.Add(control);
+
+            ApplySettings();
         }
 
         private void SetClassToGreatsword()

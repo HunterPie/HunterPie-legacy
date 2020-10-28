@@ -1,0 +1,157 @@
+﻿<local:ClassControl x:Name="LBGControl" x:Class="HunterPie.GUI.Widgets.ClassWidget.Parts.LightBowgunControl"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:local="clr-namespace:HunterPie.GUI.Widgets.ClassWidget.Parts"
+             xmlns:custom="clr-namespace:HunterPie.GUI.Helpers"
+             Height="120" Width="110" Loaded="LBGControl_Loaded">
+    <Grid>
+        <!-- Ground Ammo stuff -->
+        <Rectangle Height="36" Width="36" VerticalAlignment="Top" HorizontalAlignment="Left" RenderTransformOrigin="0.5,0.5" Margin="14,66,0,0" Stroke="#B2191919" >
+            <Rectangle.Fill>
+                <RadialGradientBrush>
+                    <GradientStop Color="#B20E0E0E" Offset="0"/>
+                    <GradientStop Color="#B2060606" Offset="1"/>
+                </RadialGradientBrush>
+            </Rectangle.Fill>
+            <Rectangle.RenderTransform>
+                <TransformGroup>
+                    <ScaleTransform/>
+                    <SkewTransform/>
+                    <RotateTransform Angle="45"/>
+                    <TranslateTransform/>
+                </TransformGroup>
+            </Rectangle.RenderTransform>
+        </Rectangle>
+        <custom:Diamond Percentage="{Binding ElementName=LBGControl, Path=SpecialAmmoPercentage}" Height="36" Width="36" VerticalAlignment="Top" HorizontalAlignment="Left" RenderTransformOrigin="0.5,0.5" Margin="14,66,0,0" Stroke="#FFC15AFB" StrokeThickness="2">
+            <custom:Diamond.Effect>
+                <DropShadowEffect ShadowDepth="0" Color="#FFC15AFB" BlurRadius="20"/>
+            </custom:Diamond.Effect>
+            <custom:Diamond.RenderTransform>
+                <TransformGroup>
+                    <ScaleTransform/>
+                    <SkewTransform/>
+                    <RotateTransform Angle="-45"/>
+                    <TranslateTransform/>
+                </TransformGroup>
+            </custom:Diamond.RenderTransform>
+        </custom:Diamond>
+        <TextBlock Text="{Binding ElementName=LBGControl, Path=GroundAmmoCounter}" Height="22" VerticalAlignment="Top" HorizontalAlignment="Left" Width="48" Margin="8,67,0,0" FontFamily="Roboto" TextAlignment="Center" Foreground="#FFBDBDBD" Padding="0,2,0,0" FontSize="14" FontWeight="SemiBold"/>
+        <TextBlock Text="{Binding ElementName=LBGControl, Path=SpecialAmmoTimer}" Height="22" VerticalAlignment="Top" HorizontalAlignment="Left" Width="48" Margin="8,81,0,0" FontFamily="Roboto" TextAlignment="Center" Foreground="#FFA0A0A0" Padding="0,2,0,0"/>
+
+        <!-- AMMO -->
+        <Rectangle Height="36" Width="36" VerticalAlignment="Top" HorizontalAlignment="Left" RenderTransformOrigin="0.5,0.5" Margin="14,14,0,0" Stroke="#B2191919" >
+            <Rectangle.Fill>
+                <RadialGradientBrush>
+                    <GradientStop Color="#B20E0E0E" Offset="0"/>
+                    <GradientStop Color="#B2060606" Offset="1"/>
+                </RadialGradientBrush>
+            </Rectangle.Fill>
+            <Rectangle.RenderTransform>
+                <TransformGroup>
+                    <ScaleTransform/>
+                    <SkewTransform/>
+                    <RotateTransform Angle="45"/>
+                    <TranslateTransform/>
+                </TransformGroup>
+            </Rectangle.RenderTransform>
+        </Rectangle>
+        <custom:Diamond Percentage="{Binding ElementName=LBGControl, Path=AmmoPercentage}" Height="36" Width="36" VerticalAlignment="Top" HorizontalAlignment="Left" RenderTransformOrigin="0.5,0.5" Margin="14,14,0,0" Stroke="#FFEE12EE" StrokeThickness="2">
+            <custom:Diamond.Effect>
+                <DropShadowEffect ShadowDepth="0" Color="#FFEE12EE" BlurRadius="20"/>
+            </custom:Diamond.Effect>
+            <custom:Diamond.RenderTransform>
+                <TransformGroup>
+                    <ScaleTransform/>
+                    <SkewTransform/>
+                    <RotateTransform Angle="-45"/>
+                    <TranslateTransform/>
+                </TransformGroup>
+            </custom:Diamond.RenderTransform>
+        </custom:Diamond>
+        <TextBlock Text="{Binding ElementName=LBGControl, Path=AmmoText}" Height="22" VerticalAlignment="Top" HorizontalAlignment="Left" Width="48" Margin="8,22,0,0" FontFamily="Roboto" TextAlignment="Center" Foreground="#FFBDBDBD" Padding="0,2,0,0" FontSize="13" FontWeight="SemiBold"/>
+        <TextBlock Text="{Binding ElementName=LBGControl, Path=TotalAmmoCounter}" Height="22" VerticalAlignment="Top" HorizontalAlignment="Left" Width="48" Margin="8,34,0,0" FontFamily="Roboto" TextAlignment="Center" Foreground="#FFBDBDBD" Padding="0,2,0,0" FontWeight="Light"/>
+
+        <!-- Crafting -->
+        <Rectangle Height="36" Width="36" VerticalAlignment="Top" HorizontalAlignment="Left" RenderTransformOrigin="0.5,0.5" Margin="41,40,0,0" Stroke="#B2191919" >
+            <Rectangle.Fill>
+                <RadialGradientBrush>
+                    <GradientStop Color="#B20E0E0E" Offset="0"/>
+                    <GradientStop Color="#B2060606" Offset="1"/>
+                </RadialGradientBrush>
+            </Rectangle.Fill>
+            <Rectangle.RenderTransform>
+                <TransformGroup>
+                    <ScaleTransform/>
+                    <SkewTransform/>
+                    <RotateTransform Angle="45"/>
+                    <TranslateTransform/>
+                </TransformGroup>
+            </Rectangle.RenderTransform>
+        </Rectangle>
+        <custom:Diamond Percentage="1" Height="36" Width="36" VerticalAlignment="Top" HorizontalAlignment="Left" RenderTransformOrigin="0.5,0.5" Margin="41,40,0,0" Stroke="#FFF977F9" StrokeThickness="2">
+            <custom:Diamond.Effect>
+                <DropShadowEffect ShadowDepth="0" Color="#FFF977F9" BlurRadius="20"/>
+            </custom:Diamond.Effect>
+            <custom:Diamond.RenderTransform>
+                <TransformGroup>
+                    <ScaleTransform/>
+                    <SkewTransform/>
+                    <RotateTransform Angle="45"/>
+                    <TranslateTransform/>
+                </TransformGroup>
+            </custom:Diamond.RenderTransform>
+        </custom:Diamond>
+        <TextBlock Text="{Binding ElementName=LBGControl, Path=CraftCount}" Height="20" VerticalAlignment="Top" HorizontalAlignment="Left" Width="48" Margin="35,41,0,0" FontFamily="Roboto" TextAlignment="Center" Foreground="#FFBDBDBD" Padding="0,2,0,0" FontSize="13" FontWeight="SemiBold"/>
+        <TextBlock Text="{Binding ElementName=LBGControl, Path=CraftCountChildren}" Height="20" VerticalAlignment="Top" HorizontalAlignment="Left" Width="48" Margin="35,57,0,0" FontFamily="Roboto" TextAlignment="Center" Foreground="#FFBDBDBD" Padding="0,2,0,0" FontSize="13" FontWeight="Medium"/>
+
+        <!-- Safi -->
+        <Canvas Opacity="0" HorizontalAlignment="Left" Width="46" Height="46" VerticalAlignment="Top" Margin="53,70,0,0">
+            <Rectangle Height="31" Width="31" VerticalAlignment="Top" HorizontalAlignment="Left" StrokeThickness="1.5" Canvas.Left="24" Canvas.Top="1" Opacity="0.5">
+                <Rectangle.Stroke>
+                    <LinearGradientBrush EndPoint="0,0.6" StartPoint="1,0.5">
+                        <GradientStop Color="#00000000" Offset="0"/>
+                        <GradientStop Color="#FF6F3AFF" Offset="1"/>
+                    </LinearGradientBrush>
+                </Rectangle.Stroke>
+                <Rectangle.Fill>
+                    <RadialGradientBrush>
+                        <GradientStop Color="#E5191623"/>
+                        <GradientStop Color="#E51A181D" Offset="1"/>
+                    </RadialGradientBrush>
+                </Rectangle.Fill>
+                <Rectangle.RenderTransform>
+                    <TransformGroup>
+                        <ScaleTransform/>
+                        <SkewTransform/>
+                        <RotateTransform Angle="45"/>
+                        <TranslateTransform/>
+                    </TransformGroup>
+                </Rectangle.RenderTransform>
+            </Rectangle>
+            <Image Source="{StaticResource ICON_SAFISKILL}" Width="18" Height="17" HorizontalAlignment="Left" VerticalAlignment="Top" Canvas.Left="15" Canvas.Top="9"/>
+            <TextBlock TextOptions.TextRenderingMode="ClearType" Text="{Binding ElementName=LBGControl, Path=SafiCounter}" Height="16" VerticalAlignment="Top" HorizontalAlignment="Left" Width="28" Foreground="White" FontSize="13" TextAlignment="Center" FontWeight="Light" Canvas.Top="23" Canvas.Left="10"/>
+            <Canvas.Style>
+                <Style TargetType="Canvas">
+                    <Style.Triggers>
+                        <DataTrigger Binding="{Binding ElementName=LBGControl, Path=HasSafiBuff}" Value="True">
+                            <DataTrigger.EnterActions>
+                                <BeginStoryboard>
+                                    <Storyboard Storyboard.TargetProperty="Opacity">
+                                        <DoubleAnimation To="1" Duration="0:0:0.2"/>
+                                    </Storyboard>
+                                </BeginStoryboard>
+                            </DataTrigger.EnterActions>
+                            <DataTrigger.ExitActions>
+                                <BeginStoryboard>
+                                    <Storyboard Storyboard.TargetProperty="Opacity">
+                                        <DoubleAnimation To="0" Duration="0:0:0.2"/>
+                                    </Storyboard>
+                                </BeginStoryboard>
+                            </DataTrigger.ExitActions>
+                        </DataTrigger>
+                    </Style.Triggers>
+                </Style>
+            </Canvas.Style>
+        </Canvas>
+    </Grid>
+</local:ClassControl>

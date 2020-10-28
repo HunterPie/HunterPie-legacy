@@ -1133,6 +1133,7 @@ namespace HunterPie.Core
                     break;
                 case Classes.LightBowgun:
                     GetLightBowgunInformation(weaponAddress);
+                    LightBowgun.SafijiivaRegenCounter = SafiCounter;
                     break;
             }
         }
@@ -1314,8 +1315,14 @@ namespace HunterPie.Core
 
         private void GetLightBowgunInformation(long weaponAddress)
         {
-            float specialAmmoTimer = Kernel.Read<float>(weaponAddress + 0x4E0);
-            LightBowgun.SpecialAmmoRegen = specialAmmoTimer;
+            sAmmo[] ammos = Kernel.ReadStructure<sAmmo>(weaponAddress + 0x34, 40);
+            LightBowgunInformation data = new LightBowgunInformation
+            {
+                SpecialAmmoRegen = Kernel.Read<float>(weaponAddress + 0x4E0),
+                GroundAmmo = Kernel.Read<int>(weaponAddress + 0x4DC),
+                EquippedAmmo = Kernel.ReadStructure<sEquippedAmmo>(weaponAddress + 0x454)
+            };
+            LightBowgun.UpdateInformation(data, ammos);
         }
 
         private void GetHeavyBowgunInformation(long weaponAddress)

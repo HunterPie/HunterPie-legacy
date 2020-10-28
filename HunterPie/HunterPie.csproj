@@ -413,6 +413,10 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
+    <Page Include="GUI\Widgets\ClassWidget\Parts\LightBowgunControl.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
     <Page Include="GUI\Widgets\ClassWidget\Parts\HeavyBowgunControl.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -545,6 +549,9 @@
     </Compile>
     <Compile Include="GUI\Widgets\ClassWidget\Parts\HammerControl.xaml.cs">
       <DependentUpon>HammerControl.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="GUI\Widgets\ClassWidget\Parts\LightBowgunControl.xaml.cs">
+      <DependentUpon>LightBowgunControl.xaml</DependentUpon>
     </Compile>
     <Compile Include="GUI\Widgets\ClassWidget\Parts\HeavyBowgunControl.xaml.cs">
       <DependentUpon>HeavyBowgunControl.xaml</DependentUpon>

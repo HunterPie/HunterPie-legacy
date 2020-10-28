@@ -68,7 +68,7 @@ namespace HunterPie.Core
                 public bool Enabled { get; set; } = true;
                 public double Scale { get; set; } = 1;
                 public string HealthTextFormat { get; set; } = "{Health:0}/{TotalHealth:0} ({Percentage:0}%)";
-                public bool HideHealthInformation { get; set; }
+                public bool HideHealthInformation { get; set; } = false;
                 public byte ShowMonsterBarMode { get; set; } = 0;
                 public string SwitchMonsterBarModeHotkey = "Alt+Up";
                 public int[] Position { get; set; } = new int[] { 335, 10 };
@@ -218,9 +218,10 @@ namespace HunterPie.Core
                 public SwitchAxeHelper SwitchAxeHelper { get; set; } = new SwitchAxeHelper();
                 public BowHelper BowHelper { get; set; } = new BowHelper();
                 public HeavyBowgunHelper HeavyBowgunHelper { get; set; } = new HeavyBowgunHelper();
+                public LightBowgunHelper LightBowgunHelper { get; set; } = new LightBowgunHelper();
             }
 
-            public class GreatswordHelper : IWeaponHelperStructure
+            public class GreatswordHelper : IWeaponHelper
             {
                 public bool Enabled { get; set; } = true;
                 public int[] Position { get; set; } = new int[] { 683, 384 };
@@ -228,63 +229,63 @@ namespace HunterPie.Core
                 public float Scale { get; set; } = 1;
             }
 
-            public class HammerHelper : IWeaponHelperStructure {
+            public class HammerHelper : IWeaponHelper {
                 public bool Enabled { get; set; } = true;
                 public int[] Position { get; set; } = new int[] { 683, 384 };
                 public float Opacity { get; set; } = 1;
                 public float Scale { get; set; } = 1;
             }
 
-            public class ChargeBladeHelper : IWeaponHelperStructure {
+            public class ChargeBladeHelper : IWeaponHelper {
                 public bool Enabled { get; set; } = true;
                 public int[] Position { get; set; } = new int[] { 683, 384 };
                 public float Opacity { get; set; } = 1;
                 public float Scale { get; set; } = 1;
             }
 
-            public class InsectGlaiveHelper : IWeaponHelperStructure {
+            public class InsectGlaiveHelper : IWeaponHelper {
                 public bool Enabled { get; set; } = true;
                 public int[] Position { get; set; } = new int[] { 683, 384 };
                 public float Opacity { get; set; } = 1;
                 public float Scale { get; set; } = 1;
             }
 
-            public class GunLanceHelper : IWeaponHelperStructure {
+            public class GunLanceHelper : IWeaponHelper {
                 public bool Enabled { get; set; } = true;
                 public int[] Position { get; set; } = new int[] { 683, 384 };
                 public float Opacity { get; set; } = 1;
                 public float Scale { get; set; } = 1;
             }
 
-            public class SwitchAxeHelper : IWeaponHelperStructure {
+            public class SwitchAxeHelper : IWeaponHelper {
                 public bool Enabled { get; set; } = true;
                 public int[] Position { get; set; } = new int[] { 683, 384 };
                 public float Opacity { get; set; } = 1;
                 public float Scale { get; set; } = 1;
             }
 
-            public class LongSwordHelper : IWeaponHelperStructure {
+            public class LongSwordHelper : IWeaponHelper {
                 public bool Enabled { get; set; } = true;
                 public int[] Position { get; set; } = new int[] { 683, 384 };
                 public float Opacity { get; set; } = 1;
                 public float Scale { get; set; } = 1;
             }
 
-            public class BowHelper : IWeaponHelperStructure {
+            public class BowHelper : IWeaponHelper {
                 public bool Enabled { get; set; } = true;
                 public int[] Position { get; set; } = new int[] { 683, 384 };
                 public float Opacity { get; set; } = 1;
                 public float Scale { get; set; } = 1;
             }
 
-            public class DualBladesHelper : IWeaponHelperStructure {
+            public class DualBladesHelper : IWeaponHelper {
                 public bool Enabled { get; set; } = true;
                 public int[] Position { get; set; } = new int[] { 683, 384 };
                 public float Opacity { get; set; } = 1;
                 public float Scale { get; set; } = 1;
             }
 
-            public class LanceHelper : IWeaponHelperStructure {
+            public class LanceHelper : IWeaponHelper {
                 public bool Enabled { get; set; } = true;
                 public int[] Position { get; set; } = new int[] { 683, 384 };
                 public float Opacity { get; set; } = 1;
@@ -292,14 +293,14 @@ namespace HunterPie.Core
             }
 
             // TODO: Add custom settings for the song list
-            public class HuntingHornHelper : IWeaponHelperStructure {
+            public class HuntingHornHelper : IWeaponHelper {
                 public bool Enabled { get; set; } = false;
                 public int[] Position { get; set; } = new int[] { 683, 384 };
                 public float Opacity { get; set; } = 1;
                 public float Scale { get; set; } = 1;
             }
 
-            public class HeavyBowgunHelper : IWeaponHelperStructure
+            public class HeavyBowgunHelper : IWeaponHelper
             {
                 public bool Enabled { get; set; } = true;
                 public int[] Position { get; set; } = new int[] { 683, 384 };
@@ -307,7 +308,15 @@ namespace HunterPie.Core
                 public float Scale { get; set; } = 1;
             }
 
-            public interface IWeaponHelperStructure
+            public class LightBowgunHelper : IWeaponHelper
+            {
+                public bool Enabled { get; set; } = true;
+                public int[] Position { get; set; } = new int[] { 683, 384 };
+                public float Opacity { get; set; } = 1;
+                public float Scale { get; set; } = 1;
+            }
+
+            public interface IWeaponHelper
             {
                 bool Enabled { get; set; }
                 int[] Position { get; set; }
