@@ -84,10 +84,10 @@
         </Image>
         <Rectangle Height="36" VerticalAlignment="Top" HorizontalAlignment="Left" Width="36" Margin="13,17,0,0" RenderTransformOrigin="0.5,0.5" Stroke="#7F444444" StrokeThickness="1.5">
             <Rectangle.Fill>
-                <LinearGradientBrush EndPoint="0.5,0.5" MappingMode="RelativeToBoundingBox" StartPoint="1,1">
-                    <GradientStop Color="#7F151515" Offset="1"/>
-                    <GradientStop Color="#7F0F0F0F"/>
-                </LinearGradientBrush>
+                <RadialGradientBrush>
+                    <GradientStop Color="#B20E0E0E" Offset="0"/>
+                    <GradientStop Color="#B2060606" Offset="1"/>
+                </RadialGradientBrush>
             </Rectangle.Fill>
             <Rectangle.RenderTransform>
                 <TransformGroup>
@@ -137,7 +137,7 @@
                 </TransformGroup>
             </h:Diamond.RenderTransform>
         </h:Diamond>
-        <TextBlock TextOptions.TextRenderingMode="ClearType" Text="{Binding ChargeLevel, ElementName=HControl}" Height="23" VerticalAlignment="Top" HorizontalAlignment="Left" Width="54" Foreground="White" FontSize="16" TextAlignment="Center" FontWeight="Light" Margin="4,23,0,0"/>
+        <TextBlock Text="{Binding ChargeLevel, ElementName=HControl}" Height="23" VerticalAlignment="Top" HorizontalAlignment="Left" Width="54" Foreground="#FFDADADA" FontSize="16" TextAlignment="Center" Margin="4,23,0,0" FontFamily="Roboto" FontWeight="Bold"/>
         <Grid.Style>
             <Style TargetType="Grid">
                 <Style.Triggers>
