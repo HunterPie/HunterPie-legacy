@@ -5,7 +5,7 @@
              xmlns:local="clr-namespace:HunterPie.GUI.Widgets.ClassWidget.Parts"
              xmlns:h="clr-namespace:HunterPie.GUI.Helpers"
              >
-    <Grid Width="150" Height="100">
+    <Grid Width="90" Height="90">
         <!-- Safi counter-->
         <Canvas Opacity="0" HorizontalAlignment="Left" Width="46" Height="46" VerticalAlignment="Top" Margin="32,37,0,0">
             <Rectangle Height="31" Width="31" VerticalAlignment="Top" HorizontalAlignment="Left" StrokeThickness="1.5" Canvas.Left="24" Canvas.Top="1" Opacity="0.5">
@@ -59,10 +59,10 @@
         <!-- Greatsword stuff -->
         <Rectangle Height="36" VerticalAlignment="Top" HorizontalAlignment="Left" Width="36" Margin="13,17,0,0" RenderTransformOrigin="0.5,0.5" Stroke="#7F444444" StrokeThickness="1.5">
             <Rectangle.Fill>
-                <LinearGradientBrush EndPoint="0.5,0.5" MappingMode="RelativeToBoundingBox" StartPoint="1,1">
-                    <GradientStop Color="#7F151515" Offset="1"/>
-                    <GradientStop Color="#7F0F0F0F"/>
-                </LinearGradientBrush>
+                <RadialGradientBrush>
+                    <GradientStop Color="#B20E0E0E" Offset="0"/>
+                    <GradientStop Color="#B2060606" Offset="1"/>
+                </RadialGradientBrush>
             </Rectangle.Fill>
             <Rectangle.RenderTransform>
                 <TransformGroup>
@@ -79,9 +79,9 @@
                             <DataTrigger.EnterActions>
                                 <BeginStoryboard>
                                     <Storyboard>
-                                        <ColorAnimationUsingKeyFrames RepeatBehavior="Forever" Storyboard.TargetProperty="(Rectangle.Fill).(LinearGradientBrush.GradientStops)[0].(GradientStop.Color)">
+                                        <ColorAnimationUsingKeyFrames RepeatBehavior="Forever" Storyboard.TargetProperty="(Rectangle.Fill).(LinearGradientBrush.GradientStops)[1].(GradientStop.Color)">
                                             <EasingColorKeyFrame KeyTime="0:0:0" Value="#7F151515"/>
-                                            <EasingColorKeyFrame KeyTime="0:0:0.300" Value="#FF0FDCB7"/>
+                                            <EasingColorKeyFrame KeyTime="0:0:0.300" Value="#FF9BDC0F"/>
                                             <EasingColorKeyFrame KeyTime="0:0:0.600" Value="#7F151515"/>
                                         </ColorAnimationUsingKeyFrames>
                                     </Storyboard>
@@ -89,7 +89,7 @@
                             </DataTrigger.EnterActions>
                             <DataTrigger.ExitActions>
                                 <BeginStoryboard>
-                                    <Storyboard Storyboard.TargetProperty="(Rectangle.Fill).(LinearGradientBrush.GradientStops)[0].(GradientStop.Color)">
+                                    <Storyboard Storyboard.TargetProperty="(Rectangle.Fill).(LinearGradientBrush.GradientStops)[1].(GradientStop.Color)">
                                         <ColorAnimation To="#7F151515" Duration="0:0:0.2"/>
                                     </Storyboard>
                                 </BeginStoryboard>
@@ -99,9 +99,9 @@
                 </Style>
             </Rectangle.Style>
         </Rectangle>
-        <h:Diamond Percentage="{Binding ElementName=GSControl, Path=ChargeTimer}" Height="36" Width="36" HorizontalAlignment="Left" Margin="13,17,0,0" VerticalAlignment="Top" RenderTransformOrigin="0.5,0.5" Stroke="#FF0FDCB7" StrokeThickness="2" StrokeEndLineCap="Round">
+        <h:Diamond Percentage="{Binding ElementName=GSControl, Path=ChargeTimer}" Height="36" Width="36" HorizontalAlignment="Left" Margin="13,17,0,0" VerticalAlignment="Top" RenderTransformOrigin="0.5,0.5" Stroke="#FF9BDC0F" StrokeThickness="2" StrokeEndLineCap="Round">
             <h:Diamond.Effect>
-                <DropShadowEffect Color="#FF0FDCB7" BlurRadius="20" ShadowDepth="0"/>
+                <DropShadowEffect Color="#FF9BDC0F" BlurRadius="20" ShadowDepth="0"/>
             </h:Diamond.Effect>
             <h:Diamond.RenderTransform>
                 <TransformGroup>
@@ -112,7 +112,7 @@
                 </TransformGroup>
             </h:Diamond.RenderTransform>
         </h:Diamond>
-        <TextBlock TextOptions.TextRenderingMode="ClearType" Text="{Binding ChargeLevel, ElementName=GSControl}" Height="23" VerticalAlignment="Top" HorizontalAlignment="Left" Width="54" Foreground="White" FontSize="16" TextAlignment="Center" FontWeight="Light" Margin="4,23,0,0" FontFamily="Roboto, Segoe UI"/>
+        <TextBlock Text="{Binding ChargeLevel, ElementName=GSControl}" Height="23" VerticalAlignment="Top" HorizontalAlignment="Left" Width="54" Foreground="#FFE4E4E4" FontSize="16" TextAlignment="Center" FontWeight="Medium" Margin="4,23,0,0" FontFamily="Roboto, Segoe UI"/>
         <Grid.Style>
             <Style TargetType="Grid">
                 <Style.Triggers>
