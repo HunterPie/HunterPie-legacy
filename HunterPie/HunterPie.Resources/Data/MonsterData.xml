@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8" ?>
 <Monsters>
-  <Ailments Max="19">
+  <Ailments Max="25">
     <Ailment Id="0" Name="0" Skip="True" Group="UNKNOWN"/>
     <Ailment Id="1" Name="STATUS_POISON" Skip="False" Group="POISON"/>
     <Ailment Id="2" Name="STATUS_PARALYSIS" Skip="False" Group="PARALYSIS"/>
@@ -25,7 +25,7 @@
     <Ailment Id="21" Name="STATUS_FELYNETRAP" Skip="False" Group="TRAP"/>
     <Ailment Id="22" Name="STATUS_CLAW" Skip="False" Group="CLAW"/>
     <Ailment Id="23" Name="STATUS_VIOLATED" Skip="False" Group="CLAW"/>
-    <Ailment Id="24" Name="STATUS_BANISHMENT_BALL" Skip="True" Group="MISC"/>
+    <Ailment Id="24" Name="STATUS_BANISHMENT_BALL" Skip="False" Group="MISC"/>
     <Ailment Id="999" Name="STATUS_ENRAGE" Skip="False" Group="ENRAGE" Type="1"/>
   </Ailments>
   <Monster ID="ems062_03" Capture="0" GameID="98">
