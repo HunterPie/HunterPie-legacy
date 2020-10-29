@@ -784,7 +784,7 @@
                     </Canvas>
                 </TabItem.Header>
                 <ScrollViewer>
-                    <StackPanel >
+                    <StackPanel>
                         <custom:Switcher x:Name="switchGreatswordHelper" Text="{Binding Mode=OneTime, XPath=/Strings/Client/Settings/String[@ID\=\'ENABLE_GREATSWORD_HELPER\']/@Name}"  Margin="10,0,10,5" ToolTip="{Binding Mode=OneTime, XPath=/Strings/Client/Settings/String[@ID\=\'ENABLE_GREATSWORD_HELPER_DESC\']/@Name}" RestartVisibility="Collapsed"/>
                         <custom:Switcher x:Name="switchDualBladesHelper" Text="{Binding Mode=OneTime, XPath=/Strings/Client/Settings/String[@ID\=\'ENABLE_DUALBLADES_HELPER\']/@Name}"  Margin="10,0,10,5" ToolTip="{Binding Mode=OneTime, XPath=/Strings/Client/Settings/String[@ID\=\'ENABLE_DUALBLADES_HELPER_DESC\']/@Name}" RestartVisibility="Collapsed"/>
                         <custom:Switcher x:Name="switchLongswordHelper" Text="{Binding Mode=OneTime, XPath=/Strings/Client/Settings/String[@ID\=\'ENABLE_LONGSWORD_HELPER\']/@Name}"  Margin="10,0,10,5" ToolTip="{Binding Mode=OneTime, XPath=/Strings/Client/Settings/String[@ID\=\'ENABLE_LONGSWORD_HELPER_DESC\']/@Name}" RestartVisibility="Collapsed"/>
@@ -797,7 +797,7 @@
                         <custom:Switcher x:Name="switchInsectGlaiveHelper" Text="{Binding Mode=OneTime, XPath=/Strings/Client/Settings/String[@ID\=\'ENABLE_INSECT_GLAIVE_HELPER\']/@Name}"  Margin="10,0,10,5" ToolTip="{Binding Mode=OneTime, XPath=/Strings/Client/Settings/String[@ID\=\'ENABLE_INSECT_GLAIVE_HELPER_DESC\']/@Name}" RestartVisibility="Collapsed"/>
                         <custom:Switcher x:Name="switchBowHelper" Text="{Binding Mode=OneTime, XPath=/Strings/Client/Settings/String[@ID\=\'ENABLE_BOW_HELPER\']/@Name}"  Margin="10,0,10,5" ToolTip="{Binding Mode=OneTime, XPath=/Strings/Client/Settings/String[@ID\=\'ENABLE_BOW_HELPER_DESC\']/@Name}" RestartVisibility="Collapsed"/>
                         <custom:Switcher x:Name="switchHBGHelper" Text="{Binding Mode=OneTime, XPath=/Strings/Client/Settings/String[@ID\=\'ENABLE_HEAVYBOWGUN_HELPER\']/@Name}"  Margin="10,0,10,5" ToolTip="{Binding Mode=OneTime, XPath=/Strings/Client/Settings/String[@ID\=\'ENABLE_HEAVYBOWGUN_HELPER_DESC\']/@Name}" RestartVisibility="Collapsed"/>
-                        <TextBlock Foreground="WhiteSmoke" FontWeight="Light" TextWrapping="WrapWithOverflow" Text="{Binding Mode=OneTime, XPath=/Strings/Client/Settings/String[@ID\=\'STATIC_CLASSES_BETA_WARNING\']/@Name}"/>
+                        <custom:Switcher x:Name="switchLBGHelper" Text="{Binding Mode=OneTime, XPath=/Strings/Client/Settings/String[@ID\=\'ENABLE_LIGHTBOWGUN_HELPER\']/@Name}"  Margin="10,0,10,5" ToolTip="{Binding Mode=OneTime, XPath=/Strings/Client/Settings/String[@ID\=\'ENABLE_LIGHTBOWGUN_HELPER_DESC\']/@Name}" RestartVisibility="Collapsed"/>
                     </StackPanel>
                 </ScrollViewer>
             </TabItem>

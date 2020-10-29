@@ -726,6 +726,8 @@
       <String ID="ENABLE_LANCE_HELPER_DESC" Name="If enabled, the Lance helper will be visible whenever you equip a Lance."/>
       <String ID="ENABLE_HEAVYBOWGUN_HELPER" Name="Enable Heavy Bowgun Helper"/>
       <String ID="ENABLE_HEAVYBOWGUN_HELPER_DESC" Name="If enabled, the Heavy Bowgun helper will be visible whenever you equip a Heavy Bowgun."/>
+      <String ID="ENABLE_LIGHTBOWGUN_HELPER" Name="Enable Light Bowgun Helper"/>
+      <String ID="ENABLE_LIGHTBOWGUN_HELPER_DESC" Name="If enabled, the Light Bowgun helper will be visible whenever you equip a Light Bowgun."/>
       <String ID="STATIC_CLASSES_BETA_WARNING" Name="Attention: Class helpers are still in development and more classes will be supported in the future. Each class helper has it's own settings, so you can have different positions for this widget depending on the class. Use the Design Mode feature to scale and move this widget."/>
       <!-- Links -->
       <String ID="STATIC_HUNTERPIE_WIKI" Name="Documentation"/>
