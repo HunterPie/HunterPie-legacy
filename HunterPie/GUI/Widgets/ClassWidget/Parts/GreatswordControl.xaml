@@ -5,6 +5,22 @@
              xmlns:local="clr-namespace:HunterPie.GUI.Widgets.ClassWidget.Parts"
              xmlns:h="clr-namespace:HunterPie.GUI.Helpers"
              >
+    <local:ClassControl.Resources>
+        <Storyboard x:Key="GS_ANIM_FULLCHARGE">
+            <ColorAnimationUsingKeyFrames RepeatBehavior="Forever" Storyboard.TargetProperty="(Rectangle.Fill).(LinearGradientBrush.GradientStops)[1].(GradientStop.Color)" FillBehavior="Stop">
+                <EasingColorKeyFrame KeyTime="0:0:0" Value="#7F151515"/>
+                <EasingColorKeyFrame KeyTime="0:0:0.300" Value="#FF9BDC0F"/>
+                <EasingColorKeyFrame KeyTime="0:0:0.600" Value="#7F151515"/>
+            </ColorAnimationUsingKeyFrames>
+        </Storyboard>
+        <Storyboard x:Key="GS_ANIM_OVERCHARGE">
+            <ColorAnimationUsingKeyFrames RepeatBehavior="Forever" Storyboard.TargetProperty="(Rectangle.Fill).(LinearGradientBrush.GradientStops)[1].(GradientStop.Color)" FillBehavior="Stop">
+                <EasingColorKeyFrame KeyTime="0:0:0" Value="#7F151515"/>
+                <EasingColorKeyFrame KeyTime="0:0:0.300" Value="#FF9BDC0F"/>
+                <EasingColorKeyFrame KeyTime="0:0:0.600" Value="#7F151515"/>
+            </ColorAnimationUsingKeyFrames>
+        </Storyboard>
+    </local:ClassControl.Resources>
     <Grid Width="90" Height="90">
         <!-- Safi counter-->
         <Canvas Opacity="0" HorizontalAlignment="Left" Width="46" Height="46" VerticalAlignment="Top" Margin="32,37,0,0">
@@ -77,22 +93,10 @@
                     <Style.Triggers>
                         <DataTrigger Binding="{Binding ElementName=GSControl, Path=IsChargeMaxedOut}" Value="True">
                             <DataTrigger.EnterActions>
-                                <BeginStoryboard>
-                                    <Storyboard>
-                                        <ColorAnimationUsingKeyFrames RepeatBehavior="Forever" Storyboard.TargetProperty="(Rectangle.Fill).(LinearGradientBrush.GradientStops)[1].(GradientStop.Color)">
-                                            <EasingColorKeyFrame KeyTime="0:0:0" Value="#7F151515"/>
-                                            <EasingColorKeyFrame KeyTime="0:0:0.300" Value="#FF9BDC0F"/>
-                                            <EasingColorKeyFrame KeyTime="0:0:0.600" Value="#7F151515"/>
-                                        </ColorAnimationUsingKeyFrames>
-                                    </Storyboard>
-                                </BeginStoryboard>
+                                <BeginStoryboard Name="fullCharge" Storyboard="{StaticResource GS_ANIM_FULLCHARGE}"/>
                             </DataTrigger.EnterActions>
                             <DataTrigger.ExitActions>
-                                <BeginStoryboard>
-                                    <Storyboard Storyboard.TargetProperty="(Rectangle.Fill).(LinearGradientBrush.GradientStops)[1].(GradientStop.Color)">
-                                        <ColorAnimation To="#7F151515" Duration="0:0:0.2"/>
-                                    </Storyboard>
-                                </BeginStoryboard>
+                                <RemoveStoryboard BeginStoryboardName="fullCharge"/>
                             </DataTrigger.ExitActions>
                         </DataTrigger>
                     </Style.Triggers>
@@ -111,6 +115,25 @@
                     <TranslateTransform/>
                 </TransformGroup>
             </h:Diamond.RenderTransform>
+            <h:Diamond.Style>
+                <Style TargetType="h:Diamond">
+                    <Style.Triggers>
+                        <DataTrigger Binding="{Binding ElementName=GSControl, Path=IsOvercharged}" Value="True">
+                            <DataTrigger.EnterActions>
+                                <BeginStoryboard x:Name="OverchargeAnim">
+                                    <Storyboard >
+                                        <ColorAnimation Storyboard.TargetProperty="(Stroke).(SolidColorBrush.Color)" To="#fc0303" Duration="0:0:0.2"/>
+                                        <ColorAnimation Storyboard.TargetProperty="(Effect).Color" To="#fc0303" Duration="0:0:0.2"/>
+                                    </Storyboard>
+                                </BeginStoryboard>
+                            </DataTrigger.EnterActions>
+                            <DataTrigger.ExitActions>
+                                <RemoveStoryboard BeginStoryboardName="OverchargeAnim"/>
+                            </DataTrigger.ExitActions>
+                        </DataTrigger>
+                    </Style.Triggers>
+                </Style>
+            </h:Diamond.Style>
         </h:Diamond>
         <TextBlock Text="{Binding ChargeLevel, ElementName=GSControl}" Height="23" VerticalAlignment="Top" HorizontalAlignment="Left" Width="54" Foreground="#FFE4E4E4" FontSize="16" TextAlignment="Center" FontWeight="Medium" Margin="4,23,0,0" FontFamily="Roboto, Segoe UI"/>
         <Grid.Style>

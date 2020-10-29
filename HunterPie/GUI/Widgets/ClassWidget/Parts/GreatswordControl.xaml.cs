@@ -37,7 +37,16 @@ namespace HunterPie.GUI.Widgets.ClassWidget.Parts
         public static readonly DependencyProperty IsChargeMaxedOutProperty =
             DependencyProperty.Register("IsChargeMaxedOut", typeof(bool), typeof(GreatswordControl));
 
-        Greatsword context;
+        public bool IsOvercharged
+        {
+            get { return (bool)GetValue(IsOverchargedProperty); }
+            set { SetValue(IsOverchargedProperty, value); }
+        }
+        public static readonly DependencyProperty IsOverchargedProperty =
+            DependencyProperty.Register("IsOvercharged", typeof(bool), typeof(GreatswordControl));
+
+
+        Greatsword context { get; set; }
 
         public GreatswordControl()
         {
@@ -107,10 +116,11 @@ namespace HunterPie.GUI.Widgets.ClassWidget.Parts
             }
             Dispatcher.BeginInvoke(DispatcherPriority.Render, new Action(() =>
             {
+                IsOvercharged = args.IsOvercharged;
                 if (args.ChargeLevel >= 3)
                 {
                     ChargeTimer = 1;
-                    IsChargeMaxedOut = true;
+                    IsChargeMaxedOut = true && !IsOvercharged;
                 } else
                 {
                     ChargeTimer = (args.ChargeTimer - minCharge) / (maxCharge - minCharge);

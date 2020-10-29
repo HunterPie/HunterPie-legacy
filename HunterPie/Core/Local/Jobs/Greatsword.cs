@@ -7,11 +7,13 @@ namespace HunterPie.Core.Jobs
     {
         public uint ChargeLevel { get; }
         public float ChargeTimer { get; }
+        public bool IsOvercharged { get; }
 
         public GreatswordEventArgs(Greatsword weapon)
         {
             ChargeLevel = weapon.ChargeLevel;
             ChargeTimer = weapon.ChargeTimer;
+            IsOvercharged = weapon.IsOvercharged;
         }
     }
     public class Greatsword : Job
@@ -35,11 +37,6 @@ namespace HunterPie.Core.Jobs
             get => chargeLevel;
             set
             {
-                // The game sets the charge level to 2 after the level 3 for some reason
-                if (chargeLevel == 3 && value == 2)
-                {
-                    return;
-                }
                 if (value != chargeLevel)
                 {
                     chargeLevel = value;
@@ -47,7 +44,7 @@ namespace HunterPie.Core.Jobs
                 }
             }
         }
-
+        public bool IsOvercharged { get; private set; }
         public float ChargeTimer
         {
             get => chargeTimer;
@@ -55,6 +52,7 @@ namespace HunterPie.Core.Jobs
             {
                 if (value != chargeTimer)
                 {
+                    IsOvercharged = value > 3.2f;
                     chargeTimer = value;
                     Dispatch(OnChargeTimerChange);
                 }

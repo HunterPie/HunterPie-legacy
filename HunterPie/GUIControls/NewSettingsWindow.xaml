@@ -315,7 +315,7 @@
                         <TabControl Background="{x:Null}" BorderBrush="{x:Null}">
                             <TabItem Width="150">
                                 <TabItem.Header>
-                                    <TextBlock Text="Parts" Padding="5,0,0,0"/>
+                                    <TextBlock Text="{Binding Mode=OneTime, XPath=/Strings/Client/Settings/String[@ID\=\'STATIC_MONSTER_PARTS_TAB\']/@Name}" Padding="5,0,0,0"/>
                                 </TabItem.Header>
                                 <StackPanel>
                                     <DockPanel Margin="10,0,10,5" ToolTip="{Binding Mode=OneTime, XPath=/Strings/Client/Settings/String[@ID\=\'STATIC_MONSTER_PART_HEALTH_STRING_FORMAT_DESC\']/@Name}">
@@ -479,7 +479,7 @@
                             </TabItem>
                             <TabItem Width="150" Margin="5,0,0,0" >
                                 <TabItem.Header>
-                                    <TextBlock Text="Ailments" Padding="5,0,0,0"/>
+                                    <TextBlock Text="{Binding Mode=OneTime, XPath=/Strings/Client/Settings/String[@ID\=\'STATIC_MONSTER_AILMENTS_TAB\']/@Name}" Padding="5,0,0,0"/>
                                 </TabItem.Header>
                                 <StackPanel>
                                     <DockPanel Margin="10,0,10,5" ToolTip="{Binding Mode=OneTime, XPath=/Strings/Client/Settings/String[@ID\=\'STATIC_MONSTER_AILMENT_BUILDUP_STRING_FORMAT_DESC\']/@Name}">

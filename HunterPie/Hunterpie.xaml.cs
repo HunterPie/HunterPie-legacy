@@ -56,7 +56,6 @@ namespace HunterPie
         private readonly List<int> registeredHotkeys = new List<int>();
 
         // Helpers
-
         public bool IsPlayerLoggedOn
         {
             get => (bool)GetValue(IsPlayerLoggedOnProperty);
@@ -236,7 +235,7 @@ namespace HunterPie
             }
         }
 
-        private void OnUpdaterDownloadComplete(object sender, System.ComponentModel.AsyncCompletedEventArgs e)
+        private void OnUpdaterDownloadComplete(object sender, AsyncCompletedEventArgs e)
         {
             if (e.Error != null)
             {
@@ -852,6 +851,8 @@ namespace HunterPie
 
         private void OnWindowClosing(object sender, CancelEventArgs e)
         {
+            Hide();
+
             Debugger.WriteStacktrace();
             pluginManager?.UnloadPlugins();
             UserSettings.PlayerConfig.HunterPie.PosX = Left;
@@ -859,7 +860,7 @@ namespace HunterPie
 
             if (!IsUpdating) UserSettings.SaveNewConfig();
             Debugger.DumpLog();
-            Hide();
+            
             // Dispose tray icon
             if (TrayIcon != null)
             {
