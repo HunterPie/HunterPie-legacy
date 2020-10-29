@@ -821,7 +821,7 @@ namespace HunterPie.Core
 
         public static bool DetectDeath(string actionRef)
         {
-            return actionRef.Contains("Die") || (actionRef.Contains("Dead") && !actionRef.Contains("Deadly"));
+            return (actionRef.Contains("Die") && !actionRef.Contains("DieSleep")) || (actionRef.Contains("Dead") && !actionRef.Contains("Deadly"));
         }
 
     }
