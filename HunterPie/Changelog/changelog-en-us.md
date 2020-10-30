@@ -14,7 +14,7 @@
 - Added option to hide parts that have already been broken.
 - Added option to automatically sort parts, keeping wounded and most recent damaged parts always at the top.
 - Separated the option to show parts and ailments after a few seconds. You can now always show parts while keeping ailments visible only when active.
-- Added {}{Tenderize} text for the parts text format.
+- Added {Tenderize} text for the parts text format.
 
 **Plugins**
 

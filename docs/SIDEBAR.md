@@ -43,6 +43,7 @@
 <details>
 <summary>v1.0.3.9x</summary>
 
+- [v1.0.3.98](?p=versions/v1.0.3.98.md) (30 oct, 2020)
 - [v1.0.3.97](?p=versions/v1.0.3.97.md) (29 sept, 2020)
 - [v1.0.3.96](?p=versions/v1.0.3.96.md) (14 Aug, 2020)
 - [v1.0.3.95](?p=versions/v1.0.3.95.md) (29 Jul, 2020)
