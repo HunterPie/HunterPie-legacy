@@ -2,6 +2,8 @@
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
+using System.Threading.Tasks;
+using System.Timers;
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Media;
@@ -294,7 +296,8 @@ namespace HunterPie.GUI.Widgets
             }
             if (UserSettings.PlayerConfig.Overlay.MonstersComponent.EnableSortParts)
             {
-                SortParts();
+                // Delay because the monster main health bar is updated before the parts health bars
+                Task.Delay(100).ContinueWith(_ => { SortParts(); });
             }
         });
 
@@ -514,14 +517,17 @@ namespace HunterPie.GUI.Widgets
 
         private void SortParts()
         {
-            List<MonsterPart> parts = new List<MonsterPart>();
-            foreach (MonsterPart part in MonsterPartsContainer.Children)
+            Dispatcher.BeginInvoke(System.Windows.Threading.DispatcherPriority.Render, new Action(() =>
             {
-                parts.Add(part);
-            }
-            parts.Sort((l, r) => r.CompareTo(l));
-            MonsterPartsContainer.Children.Clear();
-            parts.ForEach(part => MonsterPartsContainer.Children.Add(part));
+                List<MonsterPart> parts = new List<MonsterPart>();
+                foreach (MonsterPart part in MonsterPartsContainer.Children)
+                {
+                    parts.Add(part);
+                }
+                parts.Sort((l, r) => r.CompareTo(l));
+                MonsterPartsContainer.Children.Clear();
+                parts.ForEach(part => MonsterPartsContainer.Children.Add(part));
+            }));
         }
 
         public void ChangeBarsSizes(double NewSize)
