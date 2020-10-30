@@ -182,6 +182,7 @@ namespace HunterPie.GUIControls
 
             // Classes Widget
             settingsUI.switchGreatswordHelper.IsEnabled = settings.Overlay.ClassesWidget.GreatswordHelper.Enabled;
+            settingsUI.switchDualBladesHelper.IsEnabled = settings.Overlay.ClassesWidget.DualBladesHelper.Enabled;
             settingsUI.switchLongswordHelper.IsEnabled = settings.Overlay.ClassesWidget.LongSwordHelper.Enabled;
             settingsUI.switchHammerHelper.IsEnabled = settings.Overlay.ClassesWidget.HammerHelper.Enabled;
             settingsUI.switchHuntingHornHelper.IsEnabled = settings.Overlay.ClassesWidget.HuntingHornHelper.Enabled;

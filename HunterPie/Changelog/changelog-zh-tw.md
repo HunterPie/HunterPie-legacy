@@ -1,39 +1,31 @@
-﻿![banner](https://cdn.discordapp.com/attachments/402557384209203200/760175794407604265/v10397_banner.png)
+﻿![banner](https://cdn.discordapp.com/attachments/402557384209203200/771860106048176158/update10398.png)
 
 **Class Helpers**
 
-- Separated Iai Slash and Helm Breaker regen. buff timers since they stack.
-- Added Hunting Horn song queue, this has been added so the user can disable the in-game health bar in the future.
+- Added Greatsword helper, it displays the current charge progress, charge level and Safi'jiiva regen. hit counter.
+- Added Light Bowgun helper, it displays ammo information, crafting information and ground ammo timer and counters, and Safi'jiiva regen. hit counter.
+- Minor changes to the Hammer helper animation when charge is complete.
 
-![huntingHorn](https://cdn.discordapp.com/attachments/678287048200683572/755152760881676410/unknown.png)
+**Monster Widget**
 
-- Added Heavy Bowgun helper, it shows the current ammo, maximum ammo, total ammo, how much ammo you can craft with the current items in your inventory, wyvernheart and wyvernsniper timers, zoom percentage and Safi'jiiva regen. counter.
-
-![heavyBowgun](https://cdn.discordapp.com/attachments/678287048200683572/757639168506593400/unknown.png)
-
+- Added option to display Monster action name.
+- Added option to hide health, stamina, enrage informations.
+- Added option to only show parts that have a break threshold.
+- Added option to hide parts that have already been broken.
+- Added option to automatically sort parts, keeping wounded and most recent damaged parts always at the top.
+- Separated the option to show parts and ailments after a few seconds. You can now always show parts while keeping ailments visible only when active.
+- Added {}{Tenderize} text for the parts text format.
 
 **Plugins**
 
-- Added drag 'n drop way to install plugins, you can just drag the plugin "module.json" inside HunterPie and HunterPie will handle everything for you.
-- Added Plugin auto-update.
-- Plugins now have access to player inventory, player action id, hotkey API, etc.
-
-**GUI**
-
-- Added slider textbox to make it easier to set exact values.
-- Added blur-behind effect to console.
-- Refactored console for more performance.
+- Added monster action tracker.
+- Added player action tracker.
 
 **Other Changes**
 
-- Added option to send crash logs to the dev whenever HunterPie crashes.
-- Refactored updater for more performance.
-- Changed **GAME_VERSION_NOT_SUPPORTED** message to be more clear.
+- Refactored monster death detection.
 
 **Bug Fixes**
 
-- Fixed error when unloading disabled modules.
-- Fixed Windows detecting zombie MHW processes and making HunterPie wait for the process infinitely.
-- Fixed Presence crashing HunterPie on startup.
-- Fixed memory leak when choosing class in the arena weapon selection.
-- Fixed HunterPie crashing when quest timer value is invalid.
+- Fixed monster not disappearing when captured.
+- Fixed wrong maximum jewel id.
