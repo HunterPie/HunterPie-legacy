@@ -1,6 +1,6 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
 <Strings lang="Simplified Chinese">
-<!--1.0.3.97 update translate by 利维亚的白学家-->
+<!--1.0.3.98 update translate by 利维亚的白学家-->
   <Monsters>
     <Monster ID="ems062_03" Name="木质桶车"/>
     <Monster ID="em001_00" Name="雌火龙"/>
@@ -549,16 +549,20 @@
       <!-- Monster Widget -->
       <String ID="ENABLE_MONSTER_WIDGET" Name="怪物部件"/>
       <String ID="ENABLE_MONSTER_WIDGET_DESC" Name="如开启，只要有内容可以显示，怪物部件就将可见"/>
-      <String ID="STATIC_MONSTER_HEALTH_STRING_FORMAT" Name="血量文字格式:"/>
-      <String ID="STATIC_MONSTER_HEALTH_STRING_FORMAT_DESC" Name="怪物血量条的文字格式"/>
-      <String ID="STATIC_MONSTER_AILMENT_BUILDUP_STRING_FORMAT" Name="状态文字格式:"/>
-      <String ID="STATIC_MONSTER_AILMENT_BUILDUP_STRING_FORMAT_DESC" Name="怪物异常状态的文字格式"/>
-      <String ID="STATIC_MONSTER_AILMENT_TIMER_STRING_FORMAT" Name="状态计时器文字格式:"/>
-      <String ID="STATIC_MONSTER_AILMENT_TIMER_STRING_FORMAT_DESC" Name="怪物异常状态计时器的文字格式"/>
-      <String ID="STATIC_MONSTER_PART_HEALTH_STRING_FORMAT" Name="部位血量文字格式::"/>
-      <String ID="STATIC_MONSTER_PART_HEALTH_STRING_FORMAT_DESC" Name="怪物部位血量条的文字格式"/>
+      <String ID="STATIC_MONSTER_HEALTH_STRING_FORMAT" Name="血量文本格式:"/>
+      <String ID="STATIC_MONSTER_HEALTH_STRING_FORMAT_DESC" Name="怪物血量条的文本格式"/>
+      <String ID="STATIC_MONSTER_AILMENT_BUILDUP_STRING_FORMAT" Name="异常状态文本格式:"/>
+      <String ID="STATIC_MONSTER_AILMENT_BUILDUP_STRING_FORMAT_DESC" Name="怪物异常状态的文本格式"/>
+      <String ID="STATIC_MONSTER_AILMENT_TIMER_STRING_FORMAT" Name="状态计时器文本格式:"/>
+      <String ID="STATIC_MONSTER_AILMENT_TIMER_STRING_FORMAT_DESC" Name="怪物异常状态计时器的文本格式"/>
+      <String ID="STATIC_MONSTER_PART_HEALTH_STRING_FORMAT" Name="部位血量文本格式::"/>
+      <String ID="STATIC_MONSTER_PART_HEALTH_STRING_FORMAT_DESC" Name="怪物部位血量条的文本格式"/>
       <String ID="ENABLE_MONSTER_USE_LOCKON" Name="使用锁定选择目标怪物"/>
-      <String ID="ENABLE_MONSTER_USE_LOCKON_DESC" Name="如开启，HunterPie将使用游戏中的锁定选择目标怪物，而不使用地图标记"/>
+      <String ID="ENABLE_MONSTER_USE_LOCKON_DESC" Name="如开启，HunterPie将使用游戏中的锁定选择目标怪物，而不是使用地图标记"/>
+      <String ID="ENABLE_HIDE_MONSTER_HEALTH" Name="隐藏怪物血量"/>
+      <String ID="ENABLE_HIDE_MONSTER_HEALTH_DESC" Name="如开启，怪物显示栏将不会显示血量相关细节(包括总血量，剩余血量，耐力，可捕获状态图标，和愤怒状态与倒计时)"/>
+      <String ID="STATIC_MONSTER_AILMENTS_TAB" Name="异常状态"/>
+      <String ID="STATIC_MONSTER_PARTS_TAB" Name="部位"/>
       <String ID="STATIC_MONSTER_BAR_MODE" Name="怪物显示栏模式"/>
       <String ID="STATIC_MONSTER_BAR_MODE_DESC" Name="改变怪物显示栏模式"/>
       <String ID="STATIC_MONSTER_BAR_MODE_0" Name="显示所有怪物"/>
@@ -572,18 +576,28 @@
       <String ID="STATIC_MONSTER_BAR_DOCK_DESC" Name="请依照您放置怪物部件的位置选择"/>
       <String ID="STATIC_MONSTER_BAR_DOCK_0" Name="在上方"/>
       <String ID="STATIC_MONSTER_BAR_DOCK_1" Name="在下方"/>
+      <String ID="ENABLE_MONSTER_ACTION" Name="显示怪物动作名"/>
+      <String ID="ENABLE_MONSTER_ACTION_DESC" Name="如开启，将显示怪物动作名称"/>
       <String ID="ENABLE_MONSTER_WEAKNESS" Name="显示怪物的弱点"/>
       <String ID="ENABLE_MONSTER_WEAKNESS_DESC" Name="如开启，怪物的弱点将在其血条下显示"/>
-      <String ID="ENABLE_HIDE_INACTIVE_PARTS" Name="几秒钟后隐藏无变化的部位/异常状态"/>
-      <String ID="ENABLE_HIDE_INACTIVE_PARTS_DESC" Name="如开启，部位和异常状态将在一段时间无变化后自动隐藏"/>
+      <String ID="ENABLE_HIDE_INACTIVE_PARTS" Name="几秒钟后隐藏无变化的部位"/>
+      <String ID="ENABLE_HIDE_INACTIVE_PARTS_DESC" Name="如开启，部位将在一段时间无变化后自动隐藏"/>
+      <String ID="ENABLE_AUTO_SORT_PARTS" Name="开启部位自动排序"/>
+      <String ID="ENABLE_AUTO_SORT_PARTS_DESC" Name="如开启，当怪物收到伤害时将自动排列部位。将优先排列受伤部位，之后是最近收到伤害的部位"/>
+      <String ID="ENABLE_SHOW_UNBROKEN_PARTS" Name="只显示未被击破的部位"/>
+      <String ID="ENABLE_SHOW_UNBROKEN_PARTS_DESC" Name="如开启，将只显示还未被破坏的部位"/>
+      <String ID="ENABLE_SHOW_BROKEN_PARTS" Name="只显示可破坏部位"/>
+      <String ID="ENABLE_SHOW_BROKEN_PARTS_DESC" Name="如开启，将只显示可以破坏的部位，并同时显示破坏阈值"/>
+      <String ID="ENABLE_HIDE_INACTIVE_AILMENTS" Name="几秒钟后隐藏无变化的异常状态"/>
+      <String ID="ENABLE_HIDE_INACTIVE_AILMENTS_DESC" Name="如开启，异常状态将在一段时间无变化后自动隐藏"/>
       <String ID="ENABLE_BREAKABLE_PARTS" Name="显示怪物可破坏部位"/>
-      <String ID="ENABLE_BREAKABLE_PARTS_DESC" Name="如开启，可切断、破坏和移除的部位将显示在怪物显示栏下方或上方"/>
+      <String ID="ENABLE_BREAKABLE_PARTS_DESC" Name="如开启，可切断、破坏和移除的部位将显示在怪物显示栏下方"/>
       <String ID="ENABLE_AILMENTS_BAR_COLOR" Name="多彩化怪物异常状态条"/>
       <String ID="ENABLE_AILMENTS_BAR_COLOR_DESC" Name="如开启，怪物异常状态条根据其种类着色"/>
       <String ID="ENABLE_AILMENTS" Name="显示怪物异常状态"/>
-      <String ID="ENABLE_AILMENTS_DESC" Name="如开启，怪物异常状态将显示在怪物栏下方或上方"/>
+      <String ID="ENABLE_AILMENTS_DESC" Name="如开启，怪物异常状态将显示在怪物栏下方"/>
       <String ID="ENABLE_MONSTER_PARTS" Name="显示怪物部位"/>
-      <String ID="ENABLE_MONSTER_PARTS_DESC" Name="如开启，怪物可破坏部分将显示在怪物栏下方或上方"/>
+      <String ID="ENABLE_MONSTER_PARTS_DESC" Name="如开启，怪物部分将显示在怪物栏下方"/>
       <String ID="ENABLE_MONSTER_PART_HEAD" Name="头部血量"/>
       <String ID="ENABLE_MONSTER_PART_BODY" Name="身体血量"/>
       <String ID="ENABLE_MONSTER_PART_ARM" Name="前腿血量"/>
@@ -604,10 +618,10 @@
       <String ID="ENABLE_MONSTER_PART_MANE" Name="鬃毛血量"/>
       <String ID="ENABLE_MONSTER_PART_BONE" Name="骨头血量"/>
       <String ID="ENABLE_MONSTER_PART_MISC" Name="其他部位血量"/>
-      <String ID="STATIC_MONSTER_MAX_PARTS" Name="每行最大部位数量"/>
-      <String ID="STATIC_MONSTER_MAX_PARTS_DESC" Name="设置每一行显示部位的最大数量"/>
-      <String ID="STATIC_MONSTER_MAX_COLUMNS" Name="最大行数量"/>
-      <String ID="STATIC_MONSTER_MAX_COLUMNS_DESC" Name="设置部位/异常状态的最大行数"/>
+      <String ID="STATIC_MONSTER_MAX_PARTS" Name="每列最大部位数"/>
+      <String ID="STATIC_MONSTER_MAX_PARTS_DESC" Name="设置每一列显示部位的最大数量"/>
+      <String ID="STATIC_MONSTER_MAX_COLUMNS" Name="最大列数"/>
+      <String ID="STATIC_MONSTER_MAX_COLUMNS_DESC" Name="设置部位/异常状态的最大列数"/>
       <String ID="STATIC_MONSTER_PART_DELAY" Name="延迟隐藏无变化的部位"/>
       <String ID="STATIC_MONSTER_PART_DELAY_DESC" Name="当部位无变化或已破坏时，延迟隐藏部位"/>
       <String ID="STATIC_MONSTER_POSITION_DESC" Name="更改怪物部件的位置"/>
@@ -691,12 +705,16 @@
       <String ID="STATIC_PRIMARY_SPEC_TOOL_POSITION_DESC" Name="更改第一件特殊衣装部件的位置"/>
       <String ID="STATIC_SECONDARY_SPEC_TOOL_POSITION_DESC" Name="更改第二件特殊衣装部件的位置"/>
       <!-- Class Widget -->
+      <String ID="ENABLE_GREATSWORD_HELPER" Name="大剑组件"/>
+      <String ID="ENABLE_GREATSWORD_HELPER_DESC" Name="如开启，当您装备大剑时，小组件便会显示"/>
       <String ID="ENABLE_INSECT_GLAIVE_HELPER" Name="操虫棍组件"/>
       <String ID="ENABLE_INSECT_GLAIVE_HELPER_DESC" Name="如开启，当您装备操虫棍时，小组件便会显示"/>
-      <String ID="ENABLE_CHARGE_BLADE_HELPER" Name="充能斧组件"/>
-      <String ID="ENABLE_CHARGE_BLADE_HELPER_DESC" Name="如开启，当您装备充能斧时，小组件便会显示"/>
-      <String ID="ENABLE_SWITCH_AXE_HELPER" Name="斩击斧组件"/>
-      <String ID="ENABLE_SWITCH_AXE_HELPER_DESC" Name="如开启，当您装备斩击斧时，小组件便会显示"/>
+      <String ID="ENABLE_CHARGE_BLADE_HELPER" Name="盾斧组件"/>
+      <String ID="ENABLE_CHARGE_BLADE_HELPER_DESC" Name="如开启，当您装备盾斧时，小组件便会显示"/>
+      <String ID="ENABLE_SWITCH_AXE_HELPER" Name="斩斧组件"/>
+      <String ID="ENABLE_SWITCH_AXE_HELPER_DESC" Name="如开启，当您装备斩斧时，小组件便会显示"/>
+      <String ID="ENABLE_HUNTINGHORN_HELPER" Name="狩猎笛组件"/>
+      <String ID="ENABLE_HUNTINGHORN_HELPER_DESC" Name="如开启，当您装备狩猎笛时，小组件便会显示"/>
       <String ID="ENABLE_GUN_LANCE_HELPER" Name="铳枪组件"/>
       <String ID="ENABLE_GUN_LANCE_HELPER_DESC" Name="如开启，当您装备铳枪时，小组件便会显示"/>
       <String ID="ENABLE_LONGSWORD_HELPER" Name="太刀组件"/>
@@ -705,14 +723,14 @@
       <String ID="ENABLE_BOW_HELPER_DESC" Name="如开启，当您装备弓箭时，小组件便会显示"/>
       <String ID="ENABLE_HAMMER_HELPER" Name="大锤组件"/>
       <String ID="ENABLE_HAMMER_HELPER_DESC" Name="如开启，当您装备大锤时，小组件便会显示"/>
-      <String ID="ENABLE_DUALBLADES_HELPER" Name="双刀组件"/>
-      <String ID="ENABLE_DUALBLADES_HELPER_DESC" Name="如开启，当您装备双刀时，小组件便会显示"/>
+      <String ID="ENABLE_DUALBLADES_HELPER" Name="双剑组件"/>
+      <String ID="ENABLE_DUALBLADES_HELPER_DESC" Name="如开启，当您装备双剑时，小组件便会显示"/>
       <String ID="ENABLE_LANCE_HELPER" Name="长枪组件"/>
       <String ID="ENABLE_LANCE_HELPER_DESC" Name="如开启，当您装备长枪时，小组件便会显示"/>
       <String ID="ENABLE_HEAVYBOWGUN_HELPER" Name="重弩组件"/>
       <String ID="ENABLE_HEAVYBOWGUN_HELPER_DESC" Name="如开启，当您装备重弩时，小组件便会显示"/>
-      <String ID="ENABLE_HUNTINGHORN_HELPER" Name="狩猎笛组件"/>
-      <String ID="ENABLE_HUNTINGHORN_HELPER_DESC" Name="如开启，当您装备狩猎笛时，小组件便会显示"/>
+      <String ID="ENABLE_LIGHTBOWGUN_HELPER" Name="轻弩组件"/>
+      <String ID="ENABLE_LIGHTBOWGUN_HELPER_DESC" Name="如开启，当您装备轻弩时，小组件便会显示"/>
       <String ID="STATIC_CLASSES_BETA_WARNING" Name="请注意：武器组件仍在开发中，将来会支持更多武器。每种组件均有自己的位置，请在编辑模式中调整"/>
       <!-- Links -->
       <String ID="STATIC_HUNTERPIE_WIKI" Name="支持文件(英文)"/>
