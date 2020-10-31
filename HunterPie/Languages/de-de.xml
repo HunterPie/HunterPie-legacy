@@ -572,6 +572,10 @@ Gerade bei den Abnormalitäten / Statusveränderungen des Spielers gibt es mit (
       <String ID="STATIC_MONSTER_PART_HEALTH_STRING_FORMAT_DESC" Name="Text Format der Monster-Tiele Lebensbalken."/>
 	  <String ID="ENABLE_MONSTER_USE_LOCKON" Name="Verwende den Lockon statt dem Karten-Pin um ein Monster als Ziel zu setzen"/>
       <String ID="ENABLE_MONSTER_USE_LOCKON_DESC" Name="Wenn aktiv, wird HunterPie den ingame Monster-Lockon verwenden um ein Ziel zu verfolgen."/>
+	  <String ID="ENABLE_HIDE_MONSTER_HEALTH" Name="Verstecke Monster Lebensbalken"/>
+      <String ID="ENABLE_HIDE_MONSTER_HEALTH_DESC" Name="Wenn aktiv, werden keine HP-relevanten Informationen angezeigt (Gesamt- und Restleben, Ausdauer, das Fang-Icon sowie Enrage Status und Timer)."/>
+	  <String ID="STATIC_MONSTER_AILMENTS_TAB" Name="Statusveränderungen"/>
+      <String ID="STATIC_MONSTER_PARTS_TAB" Name="Teile"/>
 	  <String ID="STATIC_MONSTER_BAR_MODE" Name="Monsterleisten Modus"/>
       <String ID="STATIC_MONSTER_BAR_MODE_DESC" Name="Ändert den Modus der Monsterleiste."/>
       <String ID="STATIC_MONSTER_BAR_MODE_0" Name="Zeige alle Monster gleichzeitig"/>
@@ -585,10 +589,20 @@ Gerade bei den Abnormalitäten / Statusveränderungen des Spielers gibt es mit (
       <String ID="STATIC_MONSTER_BAR_DOCK_DESC" Name="Ändert die Ausrichtung der Monsterleiste."/>
       <String ID="STATIC_MONSTER_BAR_DOCK_0" Name="Oben"/>
       <String ID="STATIC_MONSTER_BAR_DOCK_1" Name="Unten"/>
+	  <String ID="ENABLE_MONSTER_ACTION" Name="Zeige Name der Monsteraktion"/>
+      <String ID="ENABLE_MONSTER_ACTION_DESC" Name="Wenn aktiv, wird der name der Monsteraktion angezeigt."/>
       <String ID="ENABLE_MONSTER_WEAKNESS" Name="Zeige Monster-Schwächen"/>
       <String ID="ENABLE_MONSTER_WEAKNESS_DESC" Name="Wenn aktiv, werden die Schwächen eines Monsters unter dessen Lebensleiste angezeigt."/>
       <String ID="ENABLE_HIDE_INACTIVE_PARTS" Name="Verstecke inaktive Teile/Statusveränderungen nach ein paar Sekunden"/>
       <String ID="ENABLE_HIDE_INACTIVE_PARTS_DESC" Name="Wenn aktiv, werden Teile und Statusveränderungen der Monster automatisch nach einer gewissen Zeit ausgeblendet."/>
+      <String ID="ENABLE_AUTO_SORT_PARTS" Name="Automatisches sortieren der Teile"/>
+      <String ID="ENABLE_AUTO_SORT_PARTS_DESC" Name="Wenn aktiv, werden die angezeigten Teile sortiert sobald das Monster Schaden nimmt, wobei zuerst verwundete Teile gefolgt von den zuletzt beschädigten Teilen priorisiert werden."/>
+      <String ID="ENABLE_SHOW_UNBROKEN_PARTS" Name="Zeige nur Teile die noch nicht gebrochen wurden"/>
+      <String ID="ENABLE_SHOW_UNBROKEN_PARTS_DESC" Name="Wenn aktiv, werden nur Teile gezeigt, die noch nicht gebrochen wurden."/>
+      <String ID="ENABLE_SHOW_BROKEN_PARTS" Name="Zeite nur Teile die gebrochen werden können"/>
+      <String ID="ENABLE_SHOW_BROKEN_PARTS_DESC" Name="Wenn aktiv, werden nur Teile gezeigt, die gebrochen werden können und eine Bruch-Schwelle besitzen."/>
+      <String ID="ENABLE_HIDE_INACTIVE_AILMENTS" Name="Verstecke inaktive Statusveränderungen nach kurzer Zeit"/>
+      <String ID="ENABLE_HIDE_INACTIVE_AILMENTS_DESC" Name="Wenn aktiv, werden Statusveränderungen automatisch ausgeblendet sobald sie eine gewisse Zeit inaktiv sind."/>
       <String ID="ENABLE_BREAKABLE_PARTS" Name="Zeige zerstörbare Monsterteile"/>
       <String ID="ENABLE_BREAKABLE_PARTS_DESC" Name="Wenn aktiv, werden abtrennbare, brechbare und entfernbare Teile unter der Monsterleiste angezeigt."/>
 	  <String ID="ENABLE_AILMENTS_BAR_COLOR" Name="Aktiviere farbige Statusveränderungsbalken"/>
@@ -704,12 +718,16 @@ Gerade bei den Abnormalitäten / Statusveränderungen des Spielers gibt es mit (
       <String ID="STATIC_PRIMARY_SPEC_TOOL_POSITION_DESC" Name="Ändert die Position des primären Spezialgerät-Widgets."/>
       <String ID="STATIC_SECONDARY_SPEC_TOOL_POSITION_DESC" Name="Ändert die Position des sekundären Spezialgerät-Widgets."/>
 	  <!-- Class Widget -->
+	  <String ID="ENABLE_GREATSWORD_HELPER" Name="Aktiviere Großschwert Hilfe"/>
+      <String ID="ENABLE_GREATSWORD_HELPER_DESC" Name="Wenn aktiv, wird das Großschwert Widget angezeigt, sobald du diese Waffenart ausrüstest."/>
       <String ID="ENABLE_INSECT_GLAIVE_HELPER" Name="Aktiviere Insektenglefen Hilfe"/>
       <String ID="ENABLE_INSECT_GLAIVE_HELPER_DESC" Name="Wenn aktiv, wird das Insektenglefen Widget angezeigt, sobald du diese Waffenart ausrüstest."/>
       <String ID="ENABLE_CHARGE_BLADE_HELPER" Name="Aktiviere Energieklingen Hilfe"/>
       <String ID="ENABLE_CHARGE_BLADE_HELPER_DESC" Name="Wenn aktiv, wird das Energieklingen Widget angezeigt, sobald du diese Waffenart ausrüstest."/>
       <String ID="ENABLE_SWITCH_AXE_HELPER" Name="Aktiviere Morph-Axt Hilfe"/>
       <String ID="ENABLE_SWITCH_AXE_HELPER_DESC" Name="Wenn aktiv, wird das Morph-Axt Widget angezeigt, sobald du diese Waffenart ausrüstest."/>
+	  <String ID="ENABLE_HUNTINGHORN_HELPER" Name="Aktiviere Jagdhorn Hilfe"/>
+      <String ID="ENABLE_HUNTINGHORN_HELPER_DESC" Name="Wenn aktiv, wird das Jagdhorn Widget angezeigt, sobald du diese Waffenart ausrüstest."/>
       <String ID="ENABLE_GUN_LANCE_HELPER" Name="Aktiviere Gewehrlanzen Hilfe"/>
       <String ID="ENABLE_GUN_LANCE_HELPER_DESC" Name="Wenn aktiv, wird das Gewehrlanzen Widget angezeigt, sobald du diese Waffenart ausrüstest."/>
 	  <String ID="ENABLE_LONGSWORD_HELPER" Name="Aktiviere Langschwert Hilfe"/>
@@ -724,6 +742,8 @@ Gerade bei den Abnormalitäten / Statusveränderungen des Spielers gibt es mit (
       <String ID="ENABLE_LANCE_HELPER_DESC" Name="Wenn aktiv, wird das Lanzen Widget angezeigt, sobald du diese Waffenart ausrüstest."/>
 	  <String ID="ENABLE_HEAVYBOWGUN_HELPER" Name="Aktiviere Schweres Bogengewehr Hilfe"/>
       <String ID="ENABLE_HEAVYBOWGUN_HELPER_DESC" Name="Wenn aktiv, wird das Schwere Bogengewehr Widget angezeigt, sobald du diese Waffenart ausrüstest."/>
+	  <String ID="ENABLE_LIGHTBOWGUN_HELPER" Name="Aktiviere Leichtes Bogengewehr Hilfe"/>
+      <String ID="ENABLE_LIGHTBOWGUN_HELPER_DESC" Name="Wenn aktiv, wird das Leichte Bogengewehr Widget angezeigt, sobald du diese Waffenart ausrüstest."/>
       
 	  <String ID="STATIC_CLASSES_BETA_WARNING" Name="Achtung: Die Klassenhelfer Widgets sind noch in der Entwicklung und weitere Klassen werden folgen. Jeder Klassenhelfer hat eigene Einstellungen, also ist es möglich die Positionen der Widgets für die jeweilge Klasse anzupassen. Verwende den Design Modus um dieses Widget zu skalieren und zu ebwegen."/> 
       <!-- Links -->

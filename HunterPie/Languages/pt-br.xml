@@ -11,6 +11,7 @@
     <Monster ID="em007_00" Name="Diablos"/>
     <Monster ID="em007_01" Name="Diablos Negra"/>
     <Monster ID="em011_00" Name="Kirin"/>
+    <Monster ID="em013_00" Name="Fatalis"/>
     <Monster ID="em018_00" Name="Yian Garuga"/>
     <Monster ID="em018_05" Name="Yian Garuga Escoriado"/>
     <Monster ID="em023_00" Name="Rajang"/>
@@ -171,6 +172,7 @@
     <Part ID="MONSTER_PART_SILVER_SPIKES_LWING" Name="Espinhos Prata (Asa Esq.)"/>
     <Part ID="MONSTER_PART_SILVER_SPIKES_RWING" Name="Espinhos Prata (Asa Dir.)"/>
     <!-- Special parts -->
+    <Part ID="MONSTER_PART_KNOCKDOWN" Name="Nocaute"/>
     <Part ID="MONSTER_PART_BIG_FLINCH" Name="Recuo Longo"/>
     <Part ID="MONSTER_PART_RAGE" Name="Raiva"/>
     <Part ID="MONSTER_PART_COUNTERATTACK" Name="Contra-Ataque"/>
@@ -280,6 +282,7 @@
     <Stage ID="413" Name="Ilha da Origem"/>
     <Stage ID="415" Name="Vale Isolado"/>
     <Stage ID="416" Name="Vale Isolado"/>
+    <Stage ID="417" Name="Castelo Schrade"/>
     <Stage ID="501" Name="Alojamento"/>
     <Stage ID="502" Name="Alojamento Privado"/>
     <Stage ID="503" Name="Suíte Privada"/>
@@ -323,6 +326,10 @@
     <Abnormality ID="HUNTINGHORN_010_01" Name="Mais Defesa (XG)"/>
     <Abnormality ID="HUNTINGHORN_011_00" Name="Uso de Ferramenta Reduzido (P)"/>
     <Abnormality ID="HUNTINGHORN_012_00" Name="Uso de Ferramenta Reduzido (G)"/>
+    <Abnormality ID="HUNTINGHORN_013_00" Name="Rec. Vida (P)"/>
+    <Abnormality ID="HUNTINGHORN_014_00" Name="Rec. Vida (G)"/>
+    <Abnormality ID="HUNTINGHORN_015_00" Name="Rec. Vida (P) + Antidoto"/>
+    <Abnormality ID="HUNTINGHORN_016_00" Name="Rec. Vida (M) + Antidoto"/>
     <Abnormality ID="HUNTINGHORN_018_00" Name="Regeneração de Vida (P)"/>
     <Abnormality ID="HUNTINGHORN_019_00" Name="Regeneração de Vida (G)"/>
     <Abnormality ID="HUNTINGHORN_020_00" Name="Tampões (P)"/>
@@ -356,13 +363,16 @@
     <Abnormality ID="HUNTINGHORN_038_01" Name="Reforço Resistência a Dragão (XG)"/>
     <Abnormality ID="HUNTINGHORN_039_00" Name="Reforço de Ataque Elemental"/>
     <Abnormality ID="HUNTINGHORN_040_00" Name="Flagelos Negados"/>
-    <Abnormality ID="HUNTINGHORN_041_00" Name="Desconhecido"/>
+    <Abnormality ID="HUNTINGHORN_041_00" Name="Ondas Sônicas"/>
+    <Abnormality ID="HUNTINGHORN_042_00" Name="Todas Melodias Extendidas"/>
     <Abnormality ID="HUNTINGHORN_043_00" Name="Empurrões Negados"/>
     <Abnormality ID="HUNTINGHORN_045_00" Name="Mais Resistência a Flagelo"/>
     <Abnormality ID="HUNTINGHORN_046_00" Name="Mais Afinidade (P)"/>
     <Abnormality ID="HUNTINGHORN_047_00" Name="Todo Efeito Negativo Negado"/>
     <Abnormality ID="HUNTINGHORN_048_00" Name="Tampões / Pressão de Vento Negada"/>
     <Abnormality ID="HUNTINGHORN_049_00" Name="Mais Ataque de Status Anormais"/>
+    <Abnormality ID="HUNTINGHORN_051_00" Name="Onda de Eco de Impacto"/>
+    <Abnormality ID="HUNTINGHORN_052_00" Name="Onda de Eco &quot;Dragão&quot;"/>
     <Abnormality ID="HUNTINGHORN_053_00" Name="Aumento Vigor Máximo + Recuperação"/>
     <Abnormality ID="HUNTINGHORN_054_00" Name="Regeneração de Vida Estendida"/>
     <Abnormality ID="HUNTINGHORN_055_00" Name="Ref. Velocid. + Mais Tempo Esquiva"/>
@@ -451,11 +461,19 @@
       <String ID="CONSOLE_SETTINGS" Name="OPÇÕES"/>
       <String ID="CONSOLE_UPLOADBUILD" Name="PUBLICAR BUILD"/>
       <String ID="CONSOLE_EXPORTGEAR" Name="EXPORTAR EQUIP."/>
+      <String ID="CONSOLE_PLUGINS" Name="EXTENSÕES"/>
       <String ID="CONSOLE_CHANGELOG" Name="ATUALIZAÇÕES"/>
       <String ID="CONSOLE_DISCORD" Name="DISCORD"/>
       <String ID="CONSOLE_GITHUB" Name="GITHUB"/>
       <String ID="CONSOLE_LAUNCH" Name="ABRIR JOGO"/>
       <String ID="CONSOLE_VERSION" Name="Versão: {HunterPie_Version} ({HunterPie_Branch})"/>
+      <!-- Plugins -->
+      <String ID="MESSAGE_GET_MORE_PLUGINS" Name="Encontrar mais extensões!"/>
+      <String ID="MESSAGE_OPEN_PLUGINS_FOLDER" Name="Abrir pasta de extensões"/>
+      <String ID="MESSAGE_PLUGIN_INSTALL" Name="INSTALAR EXTENSÃO"/>
+      <String ID="MESSAGE_PLUGIN_INSTALL_DESC" Name="Largue sua module.json aqui para instalar uma nova extensão."/>
+      <String ID="MESSAGE_PLUGIN_INSTALLED" Name="Extensão: {name} instalada! Reinicie seu HunterPie para carregar a extensão!"/>
+      <String ID="ERROR_PLUGIN_AUTO_UPDATE" Name="Esta extensão não suporta atualização automática. Você terá que instalar ela manualmente."/>
       <!-- Popups -->
       <String ID="MESSAGE_QUIT" Name="Você tem certeza que quer fechar o HunterPie?"/>
       <String ID="TITLE_MISSING_PATH" Name="Caminho para o Monster Hunter World não encontrado"/>
@@ -550,6 +568,10 @@
       <String ID="STATIC_MONSTER_PART_HEALTH_STRING_FORMAT_DESC" Name="Formato de texto dos membros do monstro."/>
       <String ID="ENABLE_MONSTER_USE_LOCKON" Name="Usar lock-on em vez do mapa para selecionar o monstro alvo"/>
       <String ID="ENABLE_MONSTER_USE_LOCKON_DESC" Name="Se habilitato, HunterPie usará a mira do jogo para selecionar o seu alvo."/>
+      <String ID="ENABLE_HIDE_MONSTER_HEALTH" Name="Esconder informação de vida"/>
+      <String ID="ENABLE_HIDE_MONSTER_HEALTH_DESC" Name="Se habilitado, a barra de vida não mostrará nenhuma informação relacionada a vida, stamina, captura e raiva do monstro."/>
+      <String ID="STATIC_MONSTER_AILMENTS_TAB" Name="Status"/>
+      <String ID="STATIC_MONSTER_PARTS_TAB" Name="Partes"/>
       <String ID="STATIC_MONSTER_BAR_MODE" Name="Modo da barra de monstro:"/>
       <String ID="STATIC_MONSTER_BAR_MODE_DESC" Name="Muda o modo da barra do monstro"/>
       <String ID="STATIC_MONSTER_BAR_MODE_0" Name="Exibir todos ao mesmo tempo"/>
@@ -563,10 +585,20 @@
       <String ID="STATIC_MONSTER_BAR_DOCK_DESC" Name="Muda a posilção da barra."/>
       <String ID="STATIC_MONSTER_BAR_DOCK_0" Name="Cima"/>
       <String ID="STATIC_MONSTER_BAR_DOCK_1" Name="Baixo"/>
+      <String ID="ENABLE_MONSTER_ACTION" Name="Mostrar ação do monstro"/>
+      <String ID="ENABLE_MONSTER_ACTION_DESC" Name="Se habilitado, a ação do monstro ficará visível."/>
       <String ID="ENABLE_MONSTER_WEAKNESS" Name="Exibir fraquezas"/>
       <String ID="ENABLE_MONSTER_WEAKNESS_DESC" Name="Se habilitado, fraquezas do montro será visivel em baixo de sua barra de vida."/>
-      <String ID="ENABLE_HIDE_INACTIVE_PARTS" Name="Esconder partes/status inativos depois de alguns segundos"/>
-      <String ID="ENABLE_HIDE_INACTIVE_PARTS_DESC" Name="Se habilitado, partes e status serão automaticamente escondidos depois de algum tempo sem tomar dano."/>
+      <String ID="ENABLE_HIDE_INACTIVE_PARTS" Name="Esconder partes inativas depois de alguns segundos"/>
+      <String ID="ENABLE_HIDE_INACTIVE_PARTS_DESC" Name="Se habilitado, partes serão automaticamente escondidas depois de algum tempo sem tomar dano."/>
+      <String ID="ENABLE_AUTO_SORT_PARTS" Name="Organizar partes automaticamente"/>
+      <String ID="ENABLE_AUTO_SORT_PARTS_DESC" Name="Se habilitado, as partes serão organizadas automaticamente, priorizando partes feridas e que tomaram dano recentemente."/>
+      <String ID="ENABLE_SHOW_UNBROKEN_PARTS" Name="Mostrar somente partes que não foram quebradas"/>
+      <String ID="ENABLE_SHOW_UNBROKEN_PARTS_DESC" Name="Se habilitado, partes que já foram quebradas serão escondidas."/>
+      <String ID="ENABLE_SHOW_BROKEN_PARTS" Name="Mostrar somente partes que podem ser quebradas"/>
+      <String ID="ENABLE_SHOW_BROKEN_PARTS_DESC" Name="Se habilitado, somente partes que podem ser quebradas ficarão visíveis."/>
+      <String ID="ENABLE_HIDE_INACTIVE_AILMENTS" Name="Esconder status inativos depois de alguns segundos"/>
+      <String ID="ENABLE_HIDE_INACTIVE_AILMENTS_DESC" Name="Se habilitado, status serão escondidos depois de um tempo que estejam inativos."/>
       <String ID="ENABLE_BREAKABLE_PARTS" Name="Exibir partes quebráveis"/>
       <String ID="ENABLE_BREAKABLE_PARTS_DESC" Name="Se habilitado, partes quebráveis, removíveis serão mostradas em baixo da barra de vida."/>
       <String ID="ENABLE_AILMENTS_BAR_COLOR" Name="Habilitar status coloridos"/>
@@ -682,12 +714,16 @@
       <String ID="STATIC_PRIMARY_SPEC_TOOL_POSITION_DESC" Name="Muda a posição do widget de ferramenta primária."/>
       <String ID="STATIC_SECONDARY_SPEC_TOOL_POSITION_DESC" Name="Muda a posição do widget de ferramenta secundária."/>
       <!-- Class Widget -->
+      <String ID="ENABLE_GREATSWORD_HELPER" Name="Habilitar widget do Espadão"/>
+      <String ID="ENABLE_GREATSWORD_HELPER_DESC" Name="Se habilitado, o widget do Espadão será mostrado sempre que você equipar o Espadão."/>
       <String ID="ENABLE_INSECT_GLAIVE_HELPER" Name="Habilitar widget da Glaive Inseto"/>
       <String ID="ENABLE_INSECT_GLAIVE_HELPER_DESC" Name="Se habilitado, o widget da Glaive Inseto será mostrado sempre que você equipar a Glaive Inseto."/>
       <String ID="ENABLE_CHARGE_BLADE_HELPER" Name="Habilitar widget da Lâmina Dínamo"/>
       <String ID="ENABLE_CHARGE_BLADE_HELPER_DESC" Name="Se habilitado, o widget da Lâmina Dínamo será mostrado sempre que você equipar a Lâmina Dínamo."/>
       <String ID="ENABLE_SWITCH_AXE_HELPER" Name="Habilitar widget do Transmachado"/>
       <String ID="ENABLE_SWITCH_AXE_HELPER_DESC" Name="Se habilitado, o widget do Transmachado será mostrado sempre que você equipar o Transmachado."/>
+      <String ID="ENABLE_HUNTINGHORN_HELPER" Name="Habilitar widget do Berrante de Caça"/>
+      <String ID="ENABLE_HUNTINGHORN_HELPER_DESC" Name="Se habilitado, o widget do Berrante de Caça será mostrado sempre que você equipar o Berrante de Caça."/>
       <String ID="ENABLE_GUN_LANCE_HELPER" Name="Habilitar widget da Lançarma"/>
       <String ID="ENABLE_GUN_LANCE_HELPER_DESC" Name="Se habilitado, o widget da Lançarma será mostrado sempre que você equipar a Lançarma."/>
       <String ID="ENABLE_LONGSWORD_HELPER" Name="Habilitar widget da Espada Longa"/>
@@ -700,6 +736,10 @@
       <String ID="ENABLE_DUALBLADES_HELPER_DESC" Name="Se habilitado, o widget das Lâminas Duplas será mostrado sempre que você equipar as Lâminas Duplas."/>
       <String ID="ENABLE_LANCE_HELPER" Name="Habilitar widget da Lança"/>
       <String ID="ENABLE_LANCE_HELPER_DESC" Name="Se habilitado, o widget da Lança será mostrado sempre que você equipar a Lança."/>
+      <String ID="ENABLE_HEAVYBOWGUN_HELPER" Name="Habilitar widget do Fuzilarco Pesado"/>
+      <String ID="ENABLE_HEAVYBOWGUN_HELPER_DESC" Name="Se habilitado, o widget do Fuzilarco Pesado será mostrado sempre que você equipar o Fuzilarco Pesado."/>
+      <String ID="ENABLE_LIGHTBOWGUN_HELPER" Name="Habilitar widget do Fuzilarco Leve"/>
+      <String ID="ENABLE_LIGHTBOWGUN_HELPER_DESC" Name="Se habilitado, o widget do Fuzilarco Leve será mostrado sempre que você equipar o Fuzilarco Leve."/>
       <String ID="STATIC_CLASSES_BETA_WARNING" Name="Atenção: O auxiliador de classe ainda está em desenvolvimento e mais classes serão suportadas no futuro. Cada classe tem sua própria configuração, então você pode ter diferentes posições para cada classe. Use o Modo de Design para aumentar, diminuir ou mover este widget."/>
       <!-- Links -->
       <String ID="STATIC_HUNTERPIE_WIKI" Name="Documentação"/>
@@ -718,6 +758,8 @@
       <String ID="ENABLE_UNKNOWN_AILMENTS_DESC" Name="Habilita status desconhecidos dos monstros. Não habilite essa função se você não tem ideia do que está fazendo. Isso é parte das ferramentas de desenvolvimento."/>
       <String ID="ENABLE_LOAD_CUSTOM_DATA" Name="Carregar informações customizadas de monstros"/>
       <String ID="ENABLE_LOAD_CUSTOM_DATA_DESC" Name="Se habilitado, HunterPie carregará informações customizadas de monstros. Não habilite essa função se você não tem ideia do que está fazendo. Isso é parte das ferramentas de desenvolvimento."/>
+      <String ID="ENABLE_SEND_CRASH_TO_DEV" Name="Mandar relatório de erros para o desenvolvedor"/>
+      <String ID="ENABLE_SEND_CRASH_TO_DEV_DESC" Name="Se habilitado, HunterPie mandará o relatório de erros e crashes para o desenvolvedor. Você pode desabilitar está função, porém, mantendo esta opção ativa me ajudará a corrigir bugs e erros mais rápido."/>
       <String ID="STATIC_LOAD_CUSTOM_DATA_PATH" Name="Caminho para informações customizadas:"/>
       <String ID="STATIC_LOAD_CUSTOM_DATA_PATH_DESC" Name="Selecione o caminho para as informações customizadas."/>
       <!-- Generics -->
