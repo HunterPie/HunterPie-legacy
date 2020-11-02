@@ -228,11 +228,10 @@
                 </Button.Content>
             </Button>
             <StackPanel Orientation="Horizontal" Height="59" VerticalAlignment="Top" HorizontalAlignment="Left" Margin="20,50,0,0">
-                <Image HorizontalAlignment="Right" Height="59" VerticalAlignment="Top" Width="59" Source="{StaticResource LOGO_HunterPie_HALLOWEEN}"/>
+                <Image HorizontalAlignment="Right" Height="59" VerticalAlignment="Top" Width="59" Source="{StaticResource LOGO_HunterPie}"/>
                 <TextBlock HorizontalAlignment="Right" TextWrapping="Wrap" Text="Hunter" VerticalAlignment="Bottom" Height="59" FontFamily="Roboto" FontWeight="Bold" FontSize="22" Padding="1,16,0,0" Foreground="{StaticResource CONSOLE_LOGO_FOREGROUND}"/>
                 <TextBlock HorizontalAlignment="Right" TextWrapping="Wrap" Text="Pie" VerticalAlignment="Bottom" Height="59" FontFamily="Roboto" FontWeight="Light" FontSize="22" Padding="0,16,0,0" Foreground="{StaticResource CONSOLE_LOGO_FOREGROUND}"/>
             </StackPanel>
-            <Image Source="{StaticResource SpiderWeb_HALLOWEEN}" HorizontalAlignment="Left" Width="228" Height="212" VerticalAlignment="Top" Stretch="UniformToFill" Margin="-71,-55,0,0"/>
             <Grid.Style>
                 <Style TargetType="Grid">
                     <Style.Triggers>
