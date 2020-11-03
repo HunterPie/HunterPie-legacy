@@ -1,0 +1,19 @@
+﻿<UserControl x:Class="HunterPie.GUI.Widgets.DPSMeter.Parts.DamagePlot"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+             xmlns:oxy="http://oxyplot.org/wpf"
+             mc:Ignorable="d"
+             Height="100">
+    <oxy:Plot Background="Transparent"
+              TextColor="Transparent"
+              x:Name="Plot"
+              PlotAreaBorderColor="Transparent" PlotMargins="0" Height="100">
+        <oxy:Plot.Axes>
+            <oxy:LinearAxis Position="Left" Title="Damage" TickStyle="None" StartPosition="0" Minimum="0" />
+            <oxy:LinearAxis Position="Bottom" Title="Time" TickStyle="None" StartPosition="0" Minimum="0"  />
+        </oxy:Plot.Axes>
+    </oxy:Plot>
+</UserControl>
+

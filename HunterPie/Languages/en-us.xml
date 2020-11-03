@@ -675,6 +675,8 @@
       <String ID="STATIC_METER_PLAYER_3" Name="Third Player"/>
       <String ID="STATIC_METER_PLAYER_4" Name="Fourth Player"/>
       <String ID="STATIC_METER_POSITION_DESC" Name="Changes the Damage Meter widget position."/>
+      <String ID="ENABLE_DAMAGE_PLOT" Name="Show damage plot"/>
+      <String ID="ENABLE_DAMAGE_PLOT_DESC" Name="If enabled, damage plot will be visible."/>
       <!-- Abnormalities Widget -->
       <String ID="STATIC_CREATE_ABNORM_BAR_DESC" Name="Create a new abnormality bar."/>
       <String ID="STATIC_REMOVE_ABNORM_BAR_DESC" Name="Remove last crated abnormality bar."/>

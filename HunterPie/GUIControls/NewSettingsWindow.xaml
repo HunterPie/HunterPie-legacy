@@ -614,7 +614,7 @@
                                 </StackPanel>
                             </TabItem>
                         </TabControl>
-                        
+
                     </StackPanel>
                 </ScrollViewer>
             </TabItem>
@@ -702,6 +702,7 @@
                         <custom:Switcher x:Name="switchEnableTimer" Text="{Binding Mode=OneTime, XPath=/Strings/Client/Settings/String[@ID\=\'ENABLE_TIMER\']/@Name}" Margin="10,0,10,5" ToolTip="{Binding Mode=OneTime, XPath=/Strings/Client/Settings/String[@ID\=\'ENABLE_TIMER_DESC\']/@Name}" RestartVisibility="Collapsed"/>
                         <custom:Switcher x:Name="switchEnableTimerInExpeditions" Text="{Binding Mode=OneTime, XPath=/Strings/Client/Settings/String[@ID\=\'ENABLE_TIMER_IN_GL\']/@Name}" Margin="10,0,10,5" ToolTip="{Binding Mode=OneTime, XPath=/Strings/Client/Settings/String[@ID\=\'ENABLE_TIMER_IN_GL_DESC\']/@Name}" RestartVisibility="Collapsed"/>
                         <custom:Switcher x:Name="switchEnableOnlyTimer" Text="{Binding Mode=OneTime, XPath=/Strings/Client/Settings/String[@ID\=\'ENABLE_ONLY_TIMER\']/@Name}" Margin="10,0,10,5" ToolTip="{Binding Mode=OneTime, XPath=/Strings/Client/Settings/String[@ID\=\'ENABLE_ONLY_TIMER_DESC\']/@Name}" RestartVisibility="Collapsed"/>
+                        <custom:Switcher x:Name="switchEnableDamagePlot" Text="{Binding Mode=OneTime, XPath=/Strings/Client/Settings/String[@ID\=\'ENABLE_DAMAGE_PLOT\']/@Name}" Margin="10,0,10,5" ToolTip="{Binding Mode=OneTime, XPath=/Strings/Client/Settings/String[@ID\=\'ENABLE_DAMAGE_PLOT_DESC\']/@Name}" RestartVisibility="Collapsed"/>
                         <custom:MinimalSlider x:Name="DamageBackgroundOpacity" Text="{Binding XPath=/Strings/Client/Settings/String[@ID\=\'STATIC_BACKGROUND_OPACITY\']/@Name}" MinChange="0.1" MinValue="0" MaxValue="1" ValueText="{Binding Value, ElementName=DamageBackgroundOpacity, StringFormat=\{0:P\}}" Foreground="WhiteSmoke" FontFamily="Segoe UI Light" Margin="10,0,10,5"/>
                         <custom:MinimalSlider x:Name="DamageComponentOpacity" Text="{Binding XPath=/Strings/Client/Settings/String[@ID\=\'STATIC_OPACITY\']/@Name}" MinChange="0.1" MinValue="0" MaxValue="1" ValueText="{Binding Value, ElementName=DamageComponentOpacity, StringFormat=\{0:P\}}" Foreground="WhiteSmoke" FontFamily="Segoe UI Light" Margin="10,0,10,5"/>
                         <custom:ColorPicker NameText="{Binding Mode=OneTime, XPath=/Strings/Client/Settings/String[@ID\=\'STATIC_METER_PLAYER_1\']/@Name}" x:Name="FirstPlayerColor" Margin="10,0,10,5"/>

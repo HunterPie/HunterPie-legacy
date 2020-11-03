@@ -135,6 +135,7 @@ namespace HunterPie.Core
                 public bool ShowOnlyTimer { get; set; } = false;
                 public bool ShowTimer { get; set; } = true;
                 public double Width { get; set; } = 1;
+                public bool EnableDamagePlot { get; set; } = true;
             }
 
             public class Players
