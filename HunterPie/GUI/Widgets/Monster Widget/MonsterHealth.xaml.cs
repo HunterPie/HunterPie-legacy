@@ -48,7 +48,11 @@ namespace HunterPie.GUI.Widgets
         // Animations
         private Storyboard ANIM_ENRAGEDICON;
 
-        public MonsterHealth() => InitializeComponent();
+        public MonsterHealth()
+        {
+            Visibility = Visibility.Collapsed;
+            InitializeComponent();
+        }
         public int NumberOfPartsDisplayed = 0;
         public int NumberOfAilmentsDisplayed = 0;
 

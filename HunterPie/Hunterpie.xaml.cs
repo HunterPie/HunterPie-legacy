@@ -795,6 +795,9 @@ namespace HunterPie
             // Initializes the Hotkey API
             Hotkey.Load();
 
+            // Support message :)
+            ShowSupportMessage();
+
             // Initializes the rest of HunterPie
             LoadData();
             Debugger.Warn(GStrings.GetLocalizationByXPath("/Console/String[@ID='MESSAGE_HUNTERPIE_INITIALIZED']"));
@@ -1034,6 +1037,32 @@ namespace HunterPie
         public static Version ParseVersion(string version)
         {
             return new Version(version);
+        }
+
+        private void ShowSupportMessage()
+        {
+            CNotification notification = new CNotification()
+            {
+                Text = "Do you like HunterPie and want to support its development? Consider donating!",
+                NIcon = FindResource("LOGO_HunterPie") as ImageSource,
+                FirstButtonImage = FindResource("ICON_PAYPAL") as ImageSource,
+                FirstButtonText = "PayPal",
+                FirstButtonVisibility = Visibility.Visible,
+                SecondButtonImage = FindResource("ICON_PATREON") as ImageSource,
+                SecondButtonText = "Patreon",
+                SecondButtonVisibility = Visibility.Visible,
+                Callback1 = new Action(() =>
+                {
+                    Process.Start("https://server.hunterpie.me/donate");
+                }),
+                Callback2 = new Action(() =>
+                {
+                    Process.Start("https://www.patreon.com/HunterPie");
+                }),
+                ShowTime = 20
+            };
+            NotificationsPanel.Children.Add(notification);
+            notification.ShowNotification();
         }
 
         #endregion
