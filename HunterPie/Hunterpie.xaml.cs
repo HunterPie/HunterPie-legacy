@@ -795,9 +795,6 @@ namespace HunterPie
             // Initializes the Hotkey API
             Hotkey.Load();
 
-            // Support message :)
-            ShowSupportMessage();
-
             // Initializes the rest of HunterPie
             LoadData();
             Debugger.Warn(GStrings.GetLocalizationByXPath("/Console/String[@ID='MESSAGE_HUNTERPIE_INITIALIZED']"));
@@ -812,6 +809,9 @@ namespace HunterPie
                     PluginDisplay.Instance.InitializePluginDisplayer(PluginManager.packages);
                 });
             });
+
+            // Support message :)
+            ShowSupportMessage();
         }
 
         private void OnCloseWindowButtonClick(object sender, MouseButtonEventArgs e)
