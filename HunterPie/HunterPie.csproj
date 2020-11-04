@@ -457,7 +457,7 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="GUI\Widgets\DPSMeter\Parts\DamagePlot.xaml" >
+    <Page Include="GUI\Widgets\DPSMeter\Parts\DamagePlot.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -587,7 +587,7 @@
     <Compile Include="GUI\Widgets\DPSMeter\Meter.xaml.cs">
       <DependentUpon>Meter.xaml</DependentUpon>
     </Compile>
-    <Compile Include="GUI\Widgets\DPSMeter\Parts\DamagePlot.xaml.cs" >
+    <Compile Include="GUI\Widgets\DPSMeter\Parts\DamagePlot.xaml.cs">
       <DependentUpon>DamagePlot.xaml</DependentUpon>
     </Compile>
     <Compile Include="GUI\Widgets\DPSMeter\Parts\MemberPlotModel.cs" />

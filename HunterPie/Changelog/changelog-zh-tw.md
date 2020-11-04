@@ -1,5 +1,11 @@
 ﻿![banner](https://cdn.discordapp.com/attachments/402557384209203200/771860106048176158/update10398.png)
 
+**Damage Widget**
+
+- Added damage plot graph.
+
+![plot](https://cdn.discordapp.com/attachments/678287048200683572/773627497757671474/damage_plot_poggers.png)
+
 **Class Helpers**
 
 - Added Greatsword helper, it displays the current charge progress, charge level and Safi'jiiva regen. hit counter.
@@ -14,7 +20,7 @@
 - Added option to hide parts that have already been broken.
 - Added option to automatically sort parts, keeping wounded and most recent damaged parts always at the top.
 - Separated the option to show parts and ailments after a few seconds. You can now always show parts while keeping ailments visible only when active.
-- Added {}{Tenderize} text for the parts text format.
+- Added {Tenderize} text for the parts text format.
 
 **Plugins**
 

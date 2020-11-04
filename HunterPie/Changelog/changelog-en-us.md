@@ -1,5 +1,11 @@
 ﻿![banner](https://cdn.discordapp.com/attachments/402557384209203200/771860106048176158/update10398.png)
 
+**Damage Widget**
+
+- Added damage plot graph.
+
+![plot](https://cdn.discordapp.com/attachments/678287048200683572/773627497757671474/damage_plot_poggers.png)
+
 **Class Helpers**
 
 - Added Greatsword helper, it displays the current charge progress, charge level and Safi'jiiva regen. hit counter.
