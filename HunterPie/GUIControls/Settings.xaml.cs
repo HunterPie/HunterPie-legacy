@@ -171,6 +171,7 @@ namespace HunterPie.GUIControls
             settingsUI.switchEnableTimerInExpeditions.IsEnabled = settings.Overlay.DPSMeter.ShowTimerInExpeditions;
             settingsUI.switchEnableOnlyTimer.IsEnabled = settings.Overlay.DPSMeter.ShowOnlyTimer;
             settingsUI.switchEnableOnlyMyself.IsEnabled = settings.Overlay.DPSMeter.ShowOnlyMyself;
+            settingsUI.switchEnableDamagePlot.IsEnabled = settings.Overlay.DPSMeter.EnableDamagePlot;
             settingsUI.DamageMeterPosition.X = settings.Overlay.DPSMeter.Position[0];
             settingsUI.DamageMeterPosition.Y = settings.Overlay.DPSMeter.Position[1];
             settingsUI.FirstPlayerColor.Color = settings.Overlay.DPSMeter.PartyMembers[0].Color;
@@ -314,6 +315,7 @@ namespace HunterPie.GUIControls
             settings.Overlay.DPSMeter.ShowDPSWheneverPossible = settingsUI.switchEnableDPSWheneverPossible.IsEnabled;
             settings.Overlay.DPSMeter.ShowTimer = settingsUI.switchEnableTimer.IsEnabled;
             settings.Overlay.DPSMeter.ShowTimerInExpeditions = settingsUI.switchEnableTimerInExpeditions.IsEnabled;
+            settings.Overlay.DPSMeter.EnableDamagePlot = settingsUI.switchEnableDamagePlot.IsEnabled;
             settings.Overlay.DPSMeter.ShowOnlyTimer = settingsUI.switchEnableOnlyTimer.IsEnabled;
             settings.Overlay.DPSMeter.ShowOnlyMyself = settingsUI.switchEnableOnlyMyself.IsEnabled;
             settings.Overlay.DPSMeter.Position[0] = settingsUI.DamageMeterPosition.X;

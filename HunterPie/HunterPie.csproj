@@ -457,6 +457,10 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
+    <Page Include="GUI\Widgets\DPSMeter\Parts\DamagePlot.xaml" >
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="GUI\Widgets\DPSMeter\Parts\PartyMember.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -583,6 +587,10 @@
     <Compile Include="GUI\Widgets\DPSMeter\Meter.xaml.cs">
       <DependentUpon>Meter.xaml</DependentUpon>
     </Compile>
+    <Compile Include="GUI\Widgets\DPSMeter\Parts\DamagePlot.xaml.cs" >
+      <DependentUpon>DamagePlot.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="GUI\Widgets\DPSMeter\Parts\MemberPlotModel.cs" />
     <Compile Include="GUI\Widgets\DPSMeter\Parts\PartyMember.xaml.cs">
       <DependentUpon>PartyMember.xaml</DependentUpon>
     </Compile>
@@ -1108,6 +1116,9 @@
     </PackageReference>
     <PackageReference Include="Newtonsoft.Json">
       <Version>12.0.3</Version>
+    </PackageReference>
+    <PackageReference Include="OxyPlot.Wpf">
+      <Version>2.0.0</Version>
     </PackageReference>
   </ItemGroup>
   <ItemGroup>

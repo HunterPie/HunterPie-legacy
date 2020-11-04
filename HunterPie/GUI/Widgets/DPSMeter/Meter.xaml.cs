@@ -46,6 +46,7 @@ namespace HunterPie.GUI.Widgets.DPSMeter
         {
             Context = ctx.Player.PlayerParty;
             GameContext = ctx;
+            DamagePlot.SetContext(ctx);
             HookEvents();
         }
 
@@ -115,6 +116,7 @@ namespace HunterPie.GUI.Widgets.DPSMeter
                 player.UnhookEvents();
             }
             Players.Clear();
+            DamagePlot.Dispose();
             Players = null;
             GameContext = null;
             Context = null;
@@ -212,6 +214,7 @@ namespace HunterPie.GUI.Widgets.DPSMeter
 
                 TimerVisibility = UserSettings.PlayerConfig.Overlay.DPSMeter.ShowTimer ? Visibility.Visible : Visibility.Collapsed;
 
+                DamagePlot.ApplySettings();
                 UpdatePlayersColor();
 
                 ScaleWidget(UserSettings.PlayerConfig.Overlay.DPSMeter.Scale, UserSettings.PlayerConfig.Overlay.DPSMeter.Scale);
@@ -279,20 +282,29 @@ namespace HunterPie.GUI.Widgets.DPSMeter
         private void SnapWidget(double newWidth)
         {
             double temp;
-            if (newWidth / (322 * DefaultScaleX) % 1 >= 0.5)
+            const int defaultWidth = 322;
+            const int memberItemHeight = 46;
+            const int plotHeight = 100;
+
+            if (newWidth / (defaultWidth * DefaultScaleX) % 1 >= 0.5)
             {
-                temp = (322 * DefaultScaleX) * Math.Ceiling(newWidth / (322 * DefaultScaleX));
+                temp = (defaultWidth * DefaultScaleX) * Math.Ceiling(newWidth / (defaultWidth * DefaultScaleX));
             } else
             {
-                temp = (322 * DefaultScaleX) * Math.Floor(newWidth / (322 * DefaultScaleX));
+                temp = (defaultWidth * DefaultScaleX) * Math.Floor(newWidth / (defaultWidth * DefaultScaleX));
             }
-            if (newWidth < (322 * DefaultScaleX))
+            if (newWidth < (defaultWidth * DefaultScaleX))
             {
-                temp = (322 * DefaultScaleX);
+                temp = (defaultWidth * DefaultScaleX);
             }
-            else if (newWidth > (322 * DefaultScaleX) * 4) temp = (322 * DefaultScaleX) * 4;
+            else if (newWidth > (defaultWidth * DefaultScaleX) * 4) temp = (defaultWidth * DefaultScaleX) * 4;
             Width = temp;
-            MaxHeight = MinHeight = (TimerContainer.ActualHeight + (Party.ActualHeight == 0 ? 46 * 4 : Party.ActualHeight) + 2) * DefaultScaleY;
+            MaxHeight = MinHeight = (
+                TimerContainer.ActualHeight
+                + (Party.ActualHeight == 0 ? memberItemHeight * 4 : Party.ActualHeight)
+                + 2
+                + (UserSettings.PlayerConfig.Overlay.DPSMeter.EnableDamagePlot ? plotHeight : 0)
+            ) * DefaultScaleY;
         }
     }
 }

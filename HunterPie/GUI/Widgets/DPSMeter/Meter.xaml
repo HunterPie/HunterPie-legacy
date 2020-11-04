@@ -18,6 +18,7 @@
                 <Image Source="{StaticResource ICON_STOPWATCH}" Width="20" Height="20" Margin="5,0,0,0"/>
                 <TextBlock x:Name="Timer" Width="295" Foreground="#FFEAEAEA" FontWeight="Normal" FontSize="16" Padding="3,4,0,4" />
             </StackPanel>
+            <p:DamagePlot x:Name="DamagePlot" MaxHeight="100" />
             <WrapPanel x:Name="Party" Visibility="Visible" Orientation="Horizontal" Canvas.Top="29">
             </WrapPanel>
         </StackPanel>
