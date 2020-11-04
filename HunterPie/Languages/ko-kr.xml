@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <Strings lang="한국어">
   <Monsters>
-    <Monster ID="ems062_03" Name="훈련용 허수아비"/>
+    <Monster ID="ems062_03" Name="짐수레"/>
     <Monster ID="em001_00" Name="리오레이아"/>
     <Monster ID="em001_01" Name="리오레이아 아종"/>
     <Monster ID="em001_02" Name="리오레이아 희소종"/>
@@ -84,10 +84,10 @@
     <Part ID="MONSTER_PART_RLEG" Name="오른쪽 다리"/>
     <Part ID="MONSTER_PART_TAIL" Name="꼬리"/>
     <Part ID="MONSTER_PART_TAIL_TIP" Name="꼬리 (끝)"/>
-    <Part ID="MONSTER_PART_ARMS" Name="팔/앞다리"/>
+    <Part ID="MONSTER_PART_ARMS" Name="앞다리"/>
     <Part ID="MONSTER_PART_LEGS" Name="다리"/>
-    <Part ID="MONSTER_PART_LARM" Name="왼쪽 팔/앞다리"/>
-    <Part ID="MONSTER_PART_RARM" Name="오른쪽 팔/앞다리"/>
+    <Part ID="MONSTER_PART_LARM" Name="왼쪽 앞다리"/>
+    <Part ID="MONSTER_PART_RARM" Name="오른쪽 앞다리"/>
     <Part ID="MONSTER_PART_LLIMBS" Name="왼쪽 팔다리"/>
     <Part ID="MONSTER_PART_RLIMBS" Name="오른쪽 팔다리"/>
     <Part ID="MONSTER_PART_WINGS" Name="날개"/>
@@ -97,7 +97,7 @@
     <Part ID="MONSTER_PART_REAR" Name="둔부"/>
     <Part ID="MONSTER_PART_HEAD_MUD" Name="머리 [진흙]"/>
     <Part ID="MONSTER_PART_BODY_MUD" Name="몸통 [진흙]"/>
-    <Part ID="MONSTER_PART_ARMS_MUD" Name="팔 [진흙]"/>
+    <Part ID="MONSTER_PART_ARMS_MUD" Name="앞다리 [진흙]"/>
     <Part ID="MONSTER_PART_LLEG_MUD" Name="왼쪽 다리 [진흙]"/>
     <Part ID="MONSTER_PART_RLEG_MUD" Name="오른쪽 다리 [진흙]"/>
     <Part ID="MONSTER_PART_TAIL_MUD" Name="꼬리 [진흙]"/>
@@ -149,14 +149,14 @@
     <Part ID="MONSTER_PART_ANTLERS" Name="머리 [뿔]"/>
     <Part ID="MONSTER_PART_HORN" Name="뿔"/>
     <!-- Removable parts -->
-    <Part ID="MONSTER_PART_REMOVABLE_TAIL" Name="꼬리 (절단 가능)"/>
+    <Part ID="MONSTER_PART_REMOVABLE_TAIL" Name="꼬리 (절단/파괴 가능)"/>
     <Part ID="MONSTER_PART_REMOVABLE_HORNS" Name="뿔 (파괴 가능)"/>
     <Part ID="MONSTER_PART_REMOVABLE_HEAD" Name="머리 (파괴 가능)"/>
     <Part ID="MONSTER_PART_REMOVABLE_HEAD_ROCK" Name="머리 (바위 파괴 가능)"/>
     <Part ID="MONSTER_PART_REMOVABLE_CHEST_ROCK" Name="가슴 (바위 파괴 가능)"/>
     <Part ID="MONSTER_PART_REMOVABLE_BALLOON" Name="목 주머니 (파괴 가능)"/>
     <Part ID="MONSTER_PART_REMOVABLE_HORNS_2" Name="두번째 뿔 (파괴 가능)"/>
-    <Part ID="MONSTER_PART_BODY_LEGS" Name="몸과 다리"/>
+    <Part ID="MONSTER_PART_BODY_LEGS" Name="몸(+다리)"/>
     <Part ID="MONSTER_PART_SILVER_SPIKES_HEAD" Name="금강 가시 (머리)"/>
     <Part ID="MONSTER_PART_SILVER_SPIKES_LARM" Name="금강 가시 (왼쪽 앞다리)"/>
     <Part ID="MONSTER_PART_SILVER_SPIKES_RARM" Name="금강 가시 (오른쪽 앞다리)"/>
@@ -198,14 +198,14 @@
     <Ailment ID="STATUS_TRANQUILIZE" Name="포획 마취"/>
     <Ailment ID="STATUS_FLASH" Name="섬광"/>
     <Ailment ID="STATUS_KNOCKDOWN" Name="넘어짐"/>
-    <Ailment ID="STATUS_DUNGPOD" Name="슬링어 거름탄"/>
+    <Ailment ID="STATUS_DUNGPOD" Name="거름탄"/>
     <Ailment ID="STATUS_SHOCKTRAP" Name="마비 덫"/>
     <Ailment ID="STATUS_PITFALLTRAP" Name="구멍 함정"/>
     <Ailment ID="STATUS_VINETRAP" Name="넝쿨 함정"/>
     <Ailment ID="STATUS_ELDERSEAL" Name="용봉력"/>
-    <Ailment ID="STATUS_SMOKING" Name="이블조의 브레스"/>
+    <Ailment ID="STATUS_SMOKING" Name="용속성 연기"/>
     <Ailment ID="STATUS_FELYNETRAP" Name="벌레장 함정"/>
-    <Ailment ID="STATUS_CLAW" Name="클처리 공격 분노치"/>
+    <Ailment ID="STATUS_CLAW" Name="클러치 공격 분노치"/>
     <Ailment ID="STATUS_VIOLATED" Name="클러치 경직"/>
     <Ailment ID="STATUS_BANISHMENT_BALL" Name="탈주옥"/>
     <Ailment ID="STATUS_ENRAGE" Name="분노"/>
@@ -479,7 +479,7 @@
       <String ID="MESSAGE_DISCORD_JOINING" Name="세션에 참가 중..."/>
 
       <String ID="MESSAGE_MONSTER_DATA_LOAD" Name="몬스터 데이터 로드 완료"/>
-      <String ID="MESSAGE_ABNORMALITIES_DATA_LOAD" Name="상태이상 데이터 로드 완료"/>
+      <String ID="MESSAGE_ABNORMALITIES_DATA_LOAD" Name="상태 이상 데이터 로드 완료"/>
       <String ID="MESSAGE_PLAYER_SCANNER_INITIALIZED" Name="플레이어 메모리 스캐너 초기화"/>
       <String ID="MESSAGE_HUNTERPIE_INITIALIZED" Name="HunterPie 초기화"/>
       <String ID="MESSAGE_GAME_SCANNER_INITIALIZED" Name="게임 메모리 스캐너 초기화"/>
@@ -535,7 +535,7 @@
       <String ID="STATIC_ANIMATION_FPS" Name="애니메이션 프레임레이트"/>
       <String ID="STATIC_ANIMATION_FPS_DESC" Name="HunterPie의 모든 애니메이션의 프레임레이트를 조정합니다. FPS에 문제가 있으면 이 옵션의 값을 낮추세요."/>
       <String ID="STATIC_GAME_SCAN_DELAY" Name="게임 스캔 간격:"/>
-      <String ID="STATIC_GAME_SCAN_DELAY_DESC" Name="스캔 사이의 딜레이, 이 수치가 낮을수록 스캔 사이의 간격이 짧아져 CPU 사용률이 높아집니다.&#13;(예시: 이 값을 200으로 설정하면 HunterPie는 초당 5번 게임을 스캔합니다)."/>
+      <String ID="STATIC_GAME_SCAN_DELAY_DESC" Name="스캔 사이의 간격, 이 수치가 낮을수록 스캔 사이의 간격이 짧아져 CPU 사용률이 높아집니다.&#13;(예시: 이 값을 200으로 설정하면 HunterPie는 초당 5번 게임을 스캔합니다)."/>
       <String ID="STATIC_IMAGE_QUALITY" Name="이미지 품질"/>
       <String ID="STATIC_IMAGE_QUALITY_DESC" Name="이미지의 품질을 변경합니다."/>
       <String ID="STATIC_TOGGLE_OVERLAY" Name="오버레이 토글 (단축키):"/>
@@ -550,17 +550,17 @@
       <String ID="ENABLE_MONSTER_WIDGET_DESC" Name="옵션이 켜져 있을 경우, 표시할 내용이 있을 때 몬스터 위젯이 표시됩니다."/>
       <String ID="STATIC_MONSTER_HEALTH_STRING_FORMAT" Name="체력 텍스트 형식:"/>
       <String ID="STATIC_MONSTER_HEALTH_STRING_FORMAT_DESC" Name="몬스터 체력 바의 텍스트 형식입니다."/>
-      <String ID="STATIC_MONSTER_AILMENT_BUILDUP_STRING_FORMAT" Name="상태이상 수치 텍스트 형식:"/>
-      <String ID="STATIC_MONSTER_AILMENT_BUILDUP_STRING_FORMAT_DESC" Name="몬스터 상태이상 수치의 텍스트 형식입니다."/>
-      <String ID="STATIC_MONSTER_AILMENT_TIMER_STRING_FORMAT" Name="상태이상 지속시간 텍스트 형식:"/>
-      <String ID="STATIC_MONSTER_AILMENT_TIMER_STRING_FORMAT_DESC" Name="몬스터 상태이상 지속시간의 텍스트 형식입니다."/>
+      <String ID="STATIC_MONSTER_AILMENT_BUILDUP_STRING_FORMAT" Name="상태 이상 수치 텍스트 형식:"/>
+      <String ID="STATIC_MONSTER_AILMENT_BUILDUP_STRING_FORMAT_DESC" Name="몬스터 상태 이상 수치의 텍스트 형식입니다."/>
+      <String ID="STATIC_MONSTER_AILMENT_TIMER_STRING_FORMAT" Name="상태 이상 지속시간 텍스트 형식:"/>
+      <String ID="STATIC_MONSTER_AILMENT_TIMER_STRING_FORMAT_DESC" Name="몬스터 상태 이상 지속시간의 텍스트 형식입니다."/>
       <String ID="STATIC_MONSTER_PART_HEALTH_STRING_FORMAT" Name="부위 체력 텍스트 형식:"/>
       <String ID="STATIC_MONSTER_PART_HEALTH_STRING_FORMAT_DESC" Name="몬스터 부위 체력의 텍스트 형식입니다."/>
       <String ID="ENABLE_MONSTER_USE_LOCKON" Name="대상 몬스터 지정에 락온 사용"/>
       <String ID="ENABLE_MONSTER_USE_LOCKON_DESC" Name="옵션이 켜져 있을 경우, HunterPie는 인-게임 몬스터 락온을 사용하여 몬스터를 선택합니다."/>
       <String ID="ENABLE_HIDE_MONSTER_HEALTH" Name="몬스터 바 체력 정보 숨기기"/>
       <String ID="ENABLE_HIDE_MONSTER_HEALTH_DESC" Name="옵션이 켜져 있을 경우, 몬스터 바에 체력 관련 상세 정보가 표시되지 않습니다 (총 체력/남은 체력, 스태미나, 포획 가능 아이콘, 분노 상태와 지속 시간)."/>
-      <String ID="STATIC_MONSTER_AILMENTS_TAB" Name="상태이상"/>
+      <String ID="STATIC_MONSTER_AILMENTS_TAB" Name="상태 이상"/>
       <String ID="STATIC_MONSTER_PARTS_TAB" Name="부위"/>
 	  <String ID="STATIC_MONSTER_BAR_MODE" Name="몬스터 바 모드"/>
       <String ID="STATIC_MONSTER_BAR_MODE_DESC" Name="몬스터 바 모드를 변경합니다."/>
@@ -571,10 +571,10 @@
       <String ID="STATIC_MONSTER_BAR_MODE_4" Name="몬스터가 선택되기 전까지 모두 표시"/>
       <String ID="STATIC_MONSTER_BAR_MODE_HOTKEY" Name="바 모드 변경 (단축키):"/>
       <String ID="STATIC_MONSTER_BAR_MODE_HOTKEY_DESC" Name="몬스터 바 모드를 변경하는 단축키입니다. 변경된 단축키는 재시작 시 적용됩니다."/>
-      <String ID="STATIC_MONSTER_BAR_DOCK" Name="몬스터 바 위치:"/>
-      <String ID="STATIC_MONSTER_BAR_DOCK_DESC" Name="몬스터 바의 위치를 변경합니다."/>
-      <String ID="STATIC_MONSTER_BAR_DOCK_0" Name="위"/>
-      <String ID="STATIC_MONSTER_BAR_DOCK_1" Name="아래"/>
+      <String ID="STATIC_MONSTER_BAR_DOCK" Name="몬스터 바 기준 위치:"/>
+      <String ID="STATIC_MONSTER_BAR_DOCK_DESC" Name="몬스터 바의 기준 위치를 변경합니다."/>
+      <String ID="STATIC_MONSTER_BAR_DOCK_0" Name="상단"/>
+      <String ID="STATIC_MONSTER_BAR_DOCK_1" Name="하단"/>
       <String ID="ENABLE_MONSTER_ACTION" Name="몬스터 행동 표시"/>
       <String ID="ENABLE_MONSTER_ACTION_DESC" Name="옵션이 켜져 있을 경우, 몬스터의 행동을 표시합니다."/>
       <String ID="ENABLE_MONSTER_WEAKNESS" Name="몬스터의 약점 속성 표시"/>
@@ -587,19 +587,19 @@
       <String ID="ENABLE_SHOW_UNBROKEN_PARTS_DESC" Name="옵션이 켜져 있을 경우, 파괴되지 않은 부위만 표시됩니다."/>
       <String ID="ENABLE_SHOW_BROKEN_PARTS" Name="파괴할 수 있는 부위만 표시"/>
       <String ID="ENABLE_SHOW_BROKEN_PARTS_DESC" Name="옵션이 켜져 있을 경우, 파괴할 수 있거나 파괴 임계치를 가진 부위만 표시됩니다."/>
-      <String ID="ENABLE_HIDE_INACTIVE_AILMENTS" Name="변경점이 없는 상태이상 몇 초 후 숨기기"/>
-      <String ID="ENABLE_HIDE_INACTIVE_AILMENTS_DESC" Name="옵션이 켜져 있을 경우, 변경점이 없는 상태이상은 몇 초 후 자동으로 숨깁니다."/>
+      <String ID="ENABLE_HIDE_INACTIVE_AILMENTS" Name="변경점이 없는 상태 이상 몇 초 후 숨기기"/>
+      <String ID="ENABLE_HIDE_INACTIVE_AILMENTS_DESC" Name="옵션이 켜져 있을 경우, 변경점이 없는 상태 이상은 몇 초 후 자동으로 숨깁니다."/>
 	  <String ID="ENABLE_BREAKABLE_PARTS" Name="몬스터의 파괴 가능 부위 표시"/>
       <String ID="ENABLE_BREAKABLE_PARTS_DESC" Name="옵션이 켜져 있을 경우, 절단/파괴/제거 가능한 부위들이 몬스터 바 아래에 표시됩니다."/>
-	  <String ID="ENABLE_AILMENTS_BAR_COLOR" Name="상태이상 바 색상 사용"/>
-      <String ID="ENABLE_AILMENTS_BAR_COLOR_DESC" Name="옵션이 켜져 있을 경우, 각 상태이상 표시는 속성에 기반한 개별적인 색상을 띄게 됩니다."/>
+	  <String ID="ENABLE_AILMENTS_BAR_COLOR" Name="상태 이상 바 색상 사용"/>
+      <String ID="ENABLE_AILMENTS_BAR_COLOR_DESC" Name="옵션이 켜져 있을 경우, 각 상태 이상 표시는 속성에 기반한 개별적인 색상을 띄게 됩니다."/>
       <String ID="ENABLE_AILMENTS" Name="몬스터 상태 이상 표시"/>
-      <String ID="ENABLE_AILMENTS_DESC" Name="옵션이 켜져 있을 경우, 몬스터의 상태이상 수치가 몬스터 바 아래에 표시됩니다."/>
+      <String ID="ENABLE_AILMENTS_DESC" Name="옵션이 켜져 있을 경우, 몬스터의 상태 이상 수치가 몬스터 바 아래에 표시됩니다."/>
       <String ID="ENABLE_MONSTER_PARTS" Name="몬스터의 부위 표시"/>
       <String ID="ENABLE_MONSTER_PARTS_DESC" Name="옵션이 켜져 있을 경우, 몬스터의 경직을 유발하는 부위가 몬스터 바 아래에 표시됩니다."/>
       <String ID="ENABLE_MONSTER_PART_HEAD" Name="머리의 체력 표시"/>
       <String ID="ENABLE_MONSTER_PART_BODY" Name="몸통의 체력 표시"/>
-      <String ID="ENABLE_MONSTER_PART_ARM" Name="팔/앞다리의 체력 표시"/>
+      <String ID="ENABLE_MONSTER_PART_ARM" Name="앞다리의 체력 표시"/>
       <String ID="ENABLE_MONSTER_PART_WING" Name="날개의 체력 표시"/>
       <String ID="ENABLE_MONSTER_PART_LEG" Name="다리의 체력 표시"/>
       <String ID="ENABLE_MONSTER_PART_TAIL" Name="꼬리의 체력 표시"/>
@@ -620,9 +620,9 @@
       <String ID="STATIC_MONSTER_MAX_PARTS" Name="한 행당 최대 표시 수"/>
       <String ID="STATIC_MONSTER_MAX_PARTS_DESC" Name="한 행마다 표시할 수 있는 부위의 최대 수를 설정합니다."/>
       <String ID="STATIC_MONSTER_MAX_COLUMNS" Name="최대 행 수"/>
-      <String ID="STATIC_MONSTER_MAX_COLUMNS_DESC" Name="부위/상태이상 바를 표시하는 행의 최대 수를 설정합니다."/>
+      <String ID="STATIC_MONSTER_MAX_COLUMNS_DESC" Name="부위/상태 이상 바를 표시하는 행의 최대 수를 설정합니다."/>
       <String ID="STATIC_MONSTER_PART_DELAY" Name="변경점 없는 부위의 숨기기 지연시간"/>
-      <String ID="STATIC_MONSTER_PART_DELAY_DESC" Name="변경점 없는 부위나 상태이상 수치를 숨기기까지의 지연 시간을 설정합니다."/>
+      <String ID="STATIC_MONSTER_PART_DELAY_DESC" Name="변경점 없는 부위나 상태 이상 수치를 숨기기까지의 지연 시간을 설정합니다."/>
       <String ID="STATIC_MONSTER_POSITION_DESC" Name="몬스터 위젯의 위치를 변경합니다."/>
       <String ID="ENABLE_MONSTER_STATUS_POISON" Name="독 표시"/>
       <String ID="ENABLE_MONSTER_STATUS_PARALYSIS" Name="마비 표시"/>
@@ -637,15 +637,15 @@
       <String ID="ENABLE_MONSTER_STATUS_DUNGPOD" Name="거름탄 표시"/>
       <String ID="ENABLE_MONSTER_STATUS_TRAP" Name="함정 표시"/>
       <String ID="ENABLE_MONSTER_STATUS_ELDERSEAL" Name="용봉력 표시"/>
-      <String ID="ENABLE_MONSTER_STATUS_SMOKING" Name="이블조의 브레스 표시"/>
+      <String ID="ENABLE_MONSTER_STATUS_SMOKING" Name="용속성 연기 표시"/>
       <String ID="ENABLE_MONSTER_STATUS_CLAW" Name="클러치 공격 분노치 표시"/>
       <String ID="ENABLE_MONSTER_STATUS_MISC" Name="기타 상태 표시"/>
       <String ID="ENABLE_MONSTER_STATUS_ENRAGE" Name="분노 표시"/>
       <!-- Harvest Box Widget -->
       <String ID="ENABLE_HARVEST_BOX" Name="수확 박스 위젯 사용"/>
       <String ID="ENABLE_HARVEST_BOX_DESC" Name="옵션이 켜져 있을 경우, 표시할 내용이 있으면 수확 박스 위젯을 표시합니다."/>
-      <String ID="ENABLE_STEAM_TRACKER" Name="증기기관 추적기 표시"/>
-      <String ID="ENABLE_STEAM_TRACKER_DESC" Name="옵션이 켜져 있을 경우, 증기기관 추적기는 위젯 하단에 표시됩니다."/>
+      <String ID="ENABLE_STEAM_TRACKER" Name="증기 기관 추적기 표시"/>
+      <String ID="ENABLE_STEAM_TRACKER_DESC" Name="옵션이 켜져 있을 경우, 증기 기관 추적기는 위젯 하단에 표시됩니다."/>
       <String ID="ENABLE_ARGOSY_TRACKER" Name="교역선 추적기"/>
       <String ID="ENABLE_ARGOSY_TRACKER_DESC" Name="옵션이 켜져 있을 경우, 교역선 추적기는 위젯 하단에 표시됩니다."/>
       <String ID="ENABLE_TAILRAIDERS_TRACKER" Name="동료탐험대 추적기"/>
