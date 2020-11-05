@@ -747,8 +747,8 @@
     </Style>
     <!-- Animations -->
     <!-- Monster Enraged -->
-    <Storyboard x:Key="ANIM_ENRAGED" RepeatBehavior="Forever" AutoReverse="True">
-        <DoubleAnimation Storyboard.TargetProperty="(Effect).Opacity" From="0" To="1"/>
+    <Storyboard x:Key="ANIM_ENRAGED" RepeatBehavior="Forever" AutoReverse="True" Duration="0:0:2">
+        <DoubleAnimation Storyboard.TargetProperty="(Effect).Opacity" From="0" To="1" Duration="0:0:0.5"/>
     </Storyboard>
 
     <Storyboard x:Key="EnragedIcon" RepeatBehavior="Forever">
