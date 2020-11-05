@@ -675,6 +675,8 @@
       <String ID="STATIC_METER_PLAYER_3" Name="세번째 플레이어"/>
       <String ID="STATIC_METER_PLAYER_4" Name="네번째 플레이어"/>
       <String ID="STATIC_METER_POSITION_DESC" Name="데미지 미터기 위젯의 위치를 변경합니다."/>
+      <String ID="ENABLE_DAMAGE_PLOT" Name="데미지 그래프 표시"/>
+      <String ID="ENABLE_DAMAGE_PLOT_DESC" Name="옵션이 켜져 있을 경우, 데미지 그래프가 표시됩니다."/>      
       <!-- Abnormalities Widget -->
       <String ID="STATIC_CREATE_ABNORM_BAR_DESC" Name="새로운 효과 바를 추가."/>
       <String ID="STATIC_REMOVE_ABNORM_BAR_DESC" Name="마지막으로 생성된 효과 바를 삭제합니다."/>
