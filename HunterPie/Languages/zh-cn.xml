@@ -1,6 +1,6 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
 <Strings lang="Simplified Chinese">
-<!--1.0.3.98 update translate by 利维亚的白学家-->
+<!--1.0.3.98 update translated by 利维亚的白学家-->
   <Monsters>
     <Monster ID="ems062_03" Name="木质桶车"/>
     <Monster ID="em001_00" Name="雌火龙"/>
@@ -666,7 +666,7 @@
       <String ID="ENABLE_METER_DPS" Name="显示DPS"/>
       <String ID="ENABLE_METER_DPS_DESC" Name="如启用，伤害部件会显示每个人的DPS(秒伤害)"/>
       <String ID="ENABLE_TIMER_IN_GL" Name="在探索/聚魔之地启用计时器"/>
-      <String ID="ENABLE_TIMER_IN_GL_DESC" Name="如启用，在探索/聚魔之地将会显示计时器."/>
+      <String ID="ENABLE_TIMER_IN_GL_DESC" Name="如启用，在探索/聚魔之地将会显示计时器"/>
       <String ID="ENABLE_ONLY_TIMER" Name="仅显示计时器"/>
       <String ID="ENABLE_ONLY_TIMER_DESC" Name="如启用，伤害部件将会仅显示计时，隐藏成员伤害统计"/>
       <String ID="ENABLE_METER_ONLY_MYSELF" Name="仅显示自己的伤害"/>
@@ -676,6 +676,8 @@
       <String ID="STATIC_METER_PLAYER_3" Name="第三个玩家"/>
       <String ID="STATIC_METER_PLAYER_4" Name="第四个玩家"/>
       <String ID="STATIC_METER_POSITION_DESC" Name="更改伤害部件的位置"/>
+      <String ID="ENABLE_DAMAGE_PLOT" Name="显示伤害统计图"/>
+      <String ID="ENABLE_DAMAGE_PLOT_DESC" Name="如开启，将显示各玩家总伤害统计图"/>
       <!-- Abnormalities Widget -->
       <String ID="STATIC_CREATE_ABNORM_BAR_DESC" Name="建立一个新的状态栏"/>
       <String ID="STATIC_REMOVE_ABNORM_BAR_DESC" Name="移除最后一个建立的状态栏"/>
