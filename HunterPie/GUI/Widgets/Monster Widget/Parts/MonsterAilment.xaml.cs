@@ -64,6 +64,11 @@ namespace HunterPie.GUI.Widgets.Monster_Widget.Parts
         #region Settings
         public void ApplySettings()
         {
+            if (Context is null)
+            {
+                return;
+            }
+
             bool isHidden = ComponentSettings.HideAilmentsAfterSeconds;
             bool enabled = ComponentSettings.EnableMonsterAilments;
 
@@ -87,7 +92,6 @@ namespace HunterPie.GUI.Widgets.Monster_Widget.Parts
         {
             if (!ComponentSettings.HideAilmentsAfterSeconds)
             {
-                ApplySettings();
                 return;
             }
             if (VisibilityTimer == null)
