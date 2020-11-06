@@ -45,7 +45,7 @@ namespace HunterPie.GUI.Widgets.DPSMeter.Parts
             }
 
             Timer.Interval = TimeSpan.FromMilliseconds(UserSettings.PlayerConfig.Overlay.DPSMeter.DamagePlotPollInterval);
-            if (!Timer.IsEnabled && !Context.Player.InPeaceZone)
+            if (Context?.Player != null && !Timer.IsEnabled && Context.Player.InPeaceZone)
             {
                 Timer.Start();
             }
