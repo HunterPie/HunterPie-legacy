@@ -19,7 +19,8 @@ namespace HunterPie.GUI.Widgets.DPSMeter.Parts
             InitializeComponent();
             Timer = new DispatcherTimer
             {
-                Interval = CalcTimerInterval(UserSettings.PlayerConfig.Overlay.DesiredAnimationFrameRate)
+
+                Interval = TimeSpan.FromMilliseconds(UserSettings.PlayerConfig.Overlay.DPSMeter.DamagePlotPollInterval)
             };
             Timer.Tick += OnTimerTick;
 
@@ -40,9 +41,14 @@ namespace HunterPie.GUI.Widgets.DPSMeter.Parts
             for (int i = 0; i < Members.Count; i++)
             {
                 Members[i].ChangeColor(UserSettings.PlayerConfig.Overlay.DPSMeter.PartyMembers[i].Color);
+                Members[i].ChangeMode(UserSettings.PlayerConfig.Overlay.DPSMeter.DamagePlotMode);
             }
 
-            Timer.Interval = CalcTimerInterval(UserSettings.PlayerConfig.Overlay.DesiredAnimationFrameRate);
+            Timer.Interval = TimeSpan.FromMilliseconds(UserSettings.PlayerConfig.Overlay.DPSMeter.DamagePlotPollInterval);
+            if (!Timer.IsEnabled && !Context.Player.InPeaceZone)
+            {
+                Timer.Start();
+            }
             UpdateVisibility();
         }
 
@@ -54,11 +60,6 @@ namespace HunterPie.GUI.Widgets.DPSMeter.Parts
             DestroyMemberPlots();
             Timer.Stop();
         }
-
-        /// <summary>
-        /// Update chart as often as needed to get desired framerate.
-        /// </summary>
-        private static TimeSpan CalcTimerInterval(int framerate) => TimeSpan.FromMilliseconds(1000 / framerate);
 
         private void OnTimerTick(object sender, EventArgs e)
         {
@@ -111,9 +112,10 @@ namespace HunterPie.GUI.Widgets.DPSMeter.Parts
         {
             Dispatch(() =>
             {
+                var plotMode = UserSettings.PlayerConfig.Overlay.DPSMeter.DamagePlotMode;
                 Members = Context.Player.PlayerParty.Members
                     .Select((m, idx) =>
-                        new MemberPlotModel(m, UserSettings.PlayerConfig.Overlay.DPSMeter.PartyMembers[idx].Color))
+                        new MemberPlotModel(m, UserSettings.PlayerConfig.Overlay.DPSMeter.PartyMembers[idx].Color, plotMode))
                     .ToList();
                 foreach (var node in Members)
                 {

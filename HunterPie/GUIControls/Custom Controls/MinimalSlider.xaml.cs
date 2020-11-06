@@ -1,8 +1,7 @@
-﻿using System;
-using System.Globalization;
+﻿using System.Globalization;
+using System.Linq;
 using System.Windows;
 using System.Windows.Controls;
-using HunterPie.Logger;
 
 namespace HunterPie.GUIControls.Custom_Controls
 {
@@ -72,27 +71,70 @@ namespace HunterPie.GUIControls.Custom_Controls
         public static readonly DependencyProperty ValueTextProperty =
             DependencyProperty.Register("ValueText", typeof(string), typeof(MinimalSlider));
 
+        public bool IsInteger
+        {
+            get => (bool)GetValue(IsIntegerProperty);
+            set => SetValue(IsIntegerProperty, value);
+        }
+
+        // Using a DependencyProperty as the backing store for ValueText.  This enables animation, styling, binding, etc...
+        public static readonly DependencyProperty IsIntegerProperty =
+            DependencyProperty.Register("IsInteger", typeof(bool), typeof(MinimalSlider));
+
         public MinimalSlider() => InitializeComponent();
 
-        private void TextBox_PreviewTextInput(object sender, System.Windows.Input.TextCompositionEventArgs e)
+        private void TextBox_OnLostFocus(object sender, RoutedEventArgs e)
         {
-            int caretIndex = ((TextBox)sender).CaretIndex;
-            string text;
-            if (((TextBox)sender).SelectionLength == ((TextBox)sender).Text.Length)
+            // - ensure value in provided range
+            // - if integer, floor
+
+            var textBox = (TextBox)sender;
+            if (double.TryParse(textBox.Text, NumberStyles.Float, CultureInfo.InvariantCulture, out double parsed))
             {
-                text = e.Text;
-            } else
-            {
-                text = ((TextBox)sender).Text.Insert(caretIndex, e.Text);
+                if (parsed < MinValue)
+                {
+                    Value = MinValue;
+                }
+                else if (parsed > MaxValue)
+                {
+                    Value = MaxValue;
+                }
+                else if (IsInteger)
+                {
+                    Value = (int)parsed;
+                }
             }
-            
-            if (!double.TryParse(text, NumberStyles.Float, CultureInfo.InvariantCulture, out double parsed))
+            else
             {
-                e.Handled = true;
-            } else
-            {
-                e.Handled = !(parsed <= MaxValue && parsed >= MinValue);
+                // value cannot be parsed: this should not occur because of TextChanged validation, keeping just in case
+                Value = MinValue;
             }
+
+            textBox.Text = Value.ToString(CultureInfo.InvariantCulture);
+        }
+
+        private void TextBoxBase_OnTextChanged(object sender, TextChangedEventArgs e)
+        {
+            // - don't allow dots for int values
+            // - remove all non-numeric characters
+            // - remove all dots after first one
+
+            var tb = (TextBox)sender;
+            var isDotAllowed = !IsInteger;
+            var sel = tb.SelectionStart;
+            tb.Text = string.Join("", tb.Text.Where(c =>
+            {
+                if (char.IsDigit(c)) return true;
+                if (isDotAllowed && c == '.')
+                {
+                    isDotAllowed = false;
+                    return true;
+                }
+
+                return false;
+            }));
+            tb.SelectionStart = sel;
+            e.Handled = true;
         }
     }
 }

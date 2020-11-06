@@ -4,6 +4,7 @@ using System.Linq;
 using System.Windows;
 using System.Windows.Controls;
 using HunterPie.Core;
+using HunterPie.Core.Enums;
 
 namespace HunterPie.GUIControls
 {
@@ -172,6 +173,8 @@ namespace HunterPie.GUIControls
             settingsUI.switchEnableOnlyTimer.IsEnabled = settings.Overlay.DPSMeter.ShowOnlyTimer;
             settingsUI.switchEnableOnlyMyself.IsEnabled = settings.Overlay.DPSMeter.ShowOnlyMyself;
             settingsUI.switchEnableDamagePlot.IsEnabled = settings.Overlay.DPSMeter.EnableDamagePlot;
+            settingsUI.comboDamagePlotMode.SelectedIndex = (int)settings.Overlay.DPSMeter.DamagePlotMode;
+            settingsUI.DamagePlotPollInterval.Value = settings.Overlay.DPSMeter.DamagePlotPollInterval;
             settingsUI.DamageMeterPosition.X = settings.Overlay.DPSMeter.Position[0];
             settingsUI.DamageMeterPosition.Y = settings.Overlay.DPSMeter.Position[1];
             settingsUI.FirstPlayerColor.Color = settings.Overlay.DPSMeter.PartyMembers[0].Color;
@@ -316,6 +319,8 @@ namespace HunterPie.GUIControls
             settings.Overlay.DPSMeter.ShowTimer = settingsUI.switchEnableTimer.IsEnabled;
             settings.Overlay.DPSMeter.ShowTimerInExpeditions = settingsUI.switchEnableTimerInExpeditions.IsEnabled;
             settings.Overlay.DPSMeter.EnableDamagePlot = settingsUI.switchEnableDamagePlot.IsEnabled;
+            settings.Overlay.DPSMeter.DamagePlotMode = (DamagePlotMode)settingsUI.comboDamagePlotMode.SelectedIndex;
+            settings.Overlay.DPSMeter.DamagePlotPollInterval = (int)settingsUI.DamagePlotPollInterval.Value;
             settings.Overlay.DPSMeter.ShowOnlyTimer = settingsUI.switchEnableOnlyTimer.IsEnabled;
             settings.Overlay.DPSMeter.ShowOnlyMyself = settingsUI.switchEnableOnlyMyself.IsEnabled;
             settings.Overlay.DPSMeter.Position[0] = settingsUI.DamageMeterPosition.X;

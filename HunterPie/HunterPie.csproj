@@ -160,6 +160,7 @@
     <Compile Include="Core\Enums\AilmentType.cs" />
     <Compile Include="Core\Enums\AlatreonState.cs" />
     <Compile Include="Core\Enums\Classes.cs" />
+    <Compile Include="Core\Enums\DamagePlotMode.cs" />
     <Compile Include="Core\Enums\GearType.cs" />
     <Compile Include="Core\Enums\HBGSpecialType.cs" />
     <Compile Include="Core\Enums\Helper.cs" />

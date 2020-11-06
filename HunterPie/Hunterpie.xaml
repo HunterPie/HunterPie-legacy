@@ -255,7 +255,7 @@
                 </Style>
             </Grid.Style>
         </Grid>
-        
+
         <Grid Background="#7F0C0C0C" Opacity="0" Visibility="Collapsed">
             <Border BorderThickness="3" Margin="100,150" CornerRadius="5">
                 <Border.BorderBrush>
@@ -301,7 +301,7 @@
                 </Style>
             </Grid.Style>
         </Grid>
-        
+
         <!-- Notifications -->
         <StackPanel x:Name="NotificationsPanel" VerticalAlignment="Bottom" HorizontalAlignment="Left" Margin="10,0,0,5"/>
     </Grid>

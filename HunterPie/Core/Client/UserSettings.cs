@@ -136,6 +136,8 @@ namespace HunterPie.Core
                 public bool ShowTimer { get; set; } = true;
                 public double Width { get; set; } = 1;
                 public bool EnableDamagePlot { get; set; } = true;
+                public Enums.DamagePlotMode DamagePlotMode { get; set; } = Enums.DamagePlotMode.CumulativeTotal;
+                public int DamagePlotPollInterval { get; set; } = 200;
             }
 
             public class Players

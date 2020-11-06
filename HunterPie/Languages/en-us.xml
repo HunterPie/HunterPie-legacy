@@ -677,6 +677,13 @@
       <String ID="STATIC_METER_POSITION_DESC" Name="Changes the Damage Meter widget position."/>
       <String ID="ENABLE_DAMAGE_PLOT" Name="Show damage plot"/>
       <String ID="ENABLE_DAMAGE_PLOT_DESC" Name="If enabled, damage plot will be visible."/>
+      <String ID="DAMAGE_PLOT_MODE" Name="Damage plot mode"/>
+      <String ID="DAMAGE_PLOT_MODE_DESC" Name="Changes the damage mode."/>
+      <String ID="DAMAGE_PLOT_MODE_0" Name="Cumulative damage total"/>
+      <String ID="DAMAGE_PLOT_MODE_1" Name="Damage per second"/>
+      <String ID="DAMAGE_PLOT_POLL_INTERVAL" Name="Damage plot poll interval"/>
+      <String ID="DAMAGE_PLOT_POLL_INTERVAL_DESC" Name="Delay between plot updates when there are no damage updates. Lower the value - higher CPU cost. &#13;(E.g: Setting this to 200 will make HunterPie update the plot 5 times per second)."/>
+
       <!-- Abnormalities Widget -->
       <String ID="STATIC_CREATE_ABNORM_BAR_DESC" Name="Create a new abnormality bar."/>
       <String ID="STATIC_REMOVE_ABNORM_BAR_DESC" Name="Remove last crated abnormality bar."/>

@@ -4,6 +4,7 @@ using System.Linq;
 using System.Windows.Controls;
 using System.Windows.Input;
 using HunterPie.Core;
+using HunterPie.Core.Enums;
 
 namespace HunterPie.GUIControls
 {
@@ -23,6 +24,7 @@ namespace HunterPie.GUIControls
             PopulateLanguageBox();
             PopulateThemesBox();
             PopulateMonsterBox();
+            PopulatePlotDisplayModeBox();
             PopulateDockBox();
         }
 
@@ -70,6 +72,15 @@ namespace HunterPie.GUIControls
             {
                 if (filename.EndsWith(".xaml"))
                     ThemeFilesCombobox.Items.Add(Path.GetFileName(filename));
+            }
+        }
+
+        private void PopulatePlotDisplayModeBox()
+        {
+            foreach (DamagePlotMode item in Enum.GetValues(typeof(DamagePlotMode)))
+            {
+                comboDamagePlotMode.Items.Add(
+                    GStrings.GetLocalizationByXPath($"/Settings/String[@ID='DAMAGE_PLOT_MODE_{(byte)item}']"));
             }
         }
 
