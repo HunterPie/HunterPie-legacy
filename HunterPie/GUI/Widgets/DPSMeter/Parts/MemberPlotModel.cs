@@ -1,7 +1,11 @@
-﻿using System.Collections.ObjectModel;
+﻿using System;
+using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using System.Linq;
+using System.Runtime.CompilerServices;
 using System.Windows.Media;
 using HunterPie.Core;
+using HunterPie.Core.Enums;
 using OxyPlot;
 using OxyPlot.Wpf;
 
@@ -10,14 +14,28 @@ namespace HunterPie.GUI.Widgets.DPSMeter.Parts
     public class MemberPlotModel
     {
         private readonly Member Member;
-        private readonly ObservableCollection<DataPoint> DataPoints = new ObservableCollection<DataPoint>();
-        public AreaSeries Series { get; }
-        public bool HasData => DataPoints.Any(dp => dp.Y > 0);
 
-        public MemberPlotModel(Member member, string color)
+        /// <summary>
+        /// All data points samples. This is exact data (same ref) that is used to display damage total plot.
+        /// This will be updated regardless of current mode.
+        /// </summary>
+        private readonly ObservableCollection<DataPoint> DamagePoints = new ObservableCollection<DataPoint>();
+
+        /// <summary>
+        /// Reference to collection that is used by Series as source.
+        /// </summary>
+        private ObservableCollection<DataPoint> Data;
+
+        public AreaSeries Series { get; }
+        public bool HasData => DamagePoints.Any(dp => dp.Y > 0);
+        public DamagePlotMode Mode { get; private set; }
+
+        public MemberPlotModel(Member member, string color, DamagePlotMode mode)
         {
             Member = member;
-            Series = new AreaSeries {ItemsSource = DataPoints};
+            Series = new AreaSeries();
+
+            ChangeMode(mode);
             ChangeColor(color);
         }
 
@@ -26,30 +44,75 @@ namespace HunterPie.GUI.Widgets.DPSMeter.Parts
             Series.Color = (Color)ColorConverter.ConvertFromString(hexColor);
         }
 
+        public void ChangeMode(DamagePlotMode mode)
+        {
+            if (Mode == mode) return;
+
+            switch (mode)
+            {
+                case DamagePlotMode.Dps:
+                    Data = new ObservableCollection<DataPoint>(DamageToDps(DamagePoints));
+                    Series.ItemsSource = Data;
+                    break;
+
+                case DamagePlotMode.CumulativeTotal:
+                    Data = new ObservableCollection<DataPoint>(DamagePoints);
+                    Series.ItemsSource = Data;
+                    break;
+
+                default:
+                    throw new ArgumentOutOfRangeException(nameof(mode), mode, null);
+            }
+
+            Mode = mode;
+        }
+
+        // ReSharper disable CompareOfFloatsByEqualityOperator - we're operating with int damage values, data loss is impossible here
+        private static IEnumerable<DataPoint> DamageToDps(IList<DataPoint> damagePoints)
+        {
+            for (int i = 0; i < damagePoints.Count; i++)
+            {
+                DataPoint currentPoint = damagePoints[i];
+
+                // skipping all but last of sequential points with same exact time.
+                bool isSynthetic = i < damagePoints.Count - 1 && currentPoint.X == damagePoints[i + 1].X;
+                if (isSynthetic && i != 0) continue;
+
+                yield return DmgToDps(currentPoint);
+            }
+        }
+
+        [MethodImpl(MethodImplOptions.AggressiveInlining)]
+        private static DataPoint DmgToDps(DataPoint dmgPoint) => dmgPoint.X == 0
+            // point with zero time should not be possible under normal conditions, but just to be safe...
+            ? dmgPoint
+            // using DPS * 1000, since we don't show any scales on UI. That way we can use integers instead of pesky doubles
+            : new DataPoint(dmgPoint.X, (int)(dmgPoint.Y / dmgPoint.X * 1000 * 1000));
+
 
         // ReSharper disable CompareOfFloatsByEqualityOperator - we're operating with int damage values, data loss is impossible here
         public void UpdateDamage(int now)
         {
             if (!Member.IsInParty)
             {
-                // member isn't present, don't update chart
+                // member isn't present, don't update plot
                 return;
             }
 
             int dmg = Member.Damage;
-            if (DataPoints.Count == 0)
+            if (DamagePoints.Count == 0)
             {
-                // first entry must start from bottom of the chart, otherwise area will not be enclosed
-                DataPoints.Add(new DataPoint(now, 0));
+                // first entry must start from bottom of the plot, otherwise area will not be enclosed
+                DamagePoints.Add(new DataPoint(now, 0));
             }
-            else if (DataPoints.Count > 1)
+            else if (DamagePoints.Count > 1)
             {
-                DataPoint last = DataPoints[DataPoints.Count - 1];
-                DataPoint beforeLast = DataPoints[DataPoints.Count - 2];
+                DataPoint last = DamagePoints[DamagePoints.Count - 1];
+                DataPoint beforeLast = DamagePoints[DamagePoints.Count - 2];
                 if (last.Y == dmg && beforeLast.Y == dmg)
                 {
                     // To avoid spawning a lot of nodes with same damage value, we'll just update last one
-                    DataPoints.RemoveAt(DataPoints.Count - 1);
+                    DamagePoints.RemoveAt(DamagePoints.Count - 1);
                 }
                 else
                 {
@@ -58,11 +121,36 @@ namespace HunterPie.GUI.Widgets.DPSMeter.Parts
                     //         -B--  >          B--
                     //       /       >          |
                     //  --A/         >    --A---B'
-                    DataPoints.Add(new DataPoint(now, last.Y));
+                    DamagePoints.Add(new DataPoint(now, last.Y));
+
+                    // DPS plot can use slopes, since it is continuous function of time, so no additional points are needed.
                 }
             }
 
-            DataPoints.Add(new DataPoint(now, dmg));
+            DataPoint newPoint = new DataPoint(now, dmg);
+            DamagePoints.Add(newPoint);
+
+            if (Mode == DamagePlotMode.Dps)
+            {
+                UpdateDpsData(now, ref newPoint);
+            }
+        }
+
+        private void UpdateDpsData(int now, ref DataPoint newPoint)
+        {
+            if (Data.Count == 0)
+            {
+                // first entry must start from bottom of the plot, otherwise area will not be enclosed
+                Data.Add(new DataPoint(now, 0));
+            }
+
+            var dpsPoint = DmgToDps(newPoint);
+            if (Data[Data.Count - 1].Y == dpsPoint.Y)
+            {
+                // To avoid spawning a lot of nodes with same damage value, we'll just update last one
+                Data.RemoveAt(Data.Count - 1);
+            }
+            Data.Add(dpsPoint);
         }
     }
 }

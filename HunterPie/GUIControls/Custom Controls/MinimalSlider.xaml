@@ -3,8 +3,23 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
              >
     <DockPanel>
-        <TextBlock Text="{Binding Text, ElementName=SliderControl}" Foreground="{Binding Path=Foreground, ElementName=SliderControl}" FontFamily="{Binding Path=FontFamily, ElementName=SliderControl}" Padding="0,0,10,0"/>
-        <TextBox Text="{Binding Value, ElementName=SliderControl, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged, NotifyOnValidationError=True}" Foreground="{Binding Path=Foreground, ElementName=SliderControl}" FontFamily="{Binding Path=FontFamily, ElementName=SliderControl}" Padding="5,0,0,0" DockPanel.Dock="Right" Width="48" TextAlignment="Right" Background="{x:Null}" BorderThickness="0,0,0,1" PreviewTextInput="TextBox_PreviewTextInput"/>
-        <Slider Value="{Binding Value, ElementName=SliderControl, Mode=TwoWay}" Maximum="{Binding Path=MaxValue, ElementName=SliderControl, Mode=OneWay}" Minimum="{Binding Path=MinValue, ElementName=SliderControl, Mode=OneWay}" SmallChange="{Binding Path=MinChange, ElementName=SliderControl, Mode=OneWay}" Style="{StaticResource Horizontal_Slider}" Padding="10,0,10,0" DockPanel.Dock="Right"/>
+        <TextBlock Text="{Binding Text, ElementName=SliderControl}"
+                   Foreground="{Binding Path=Foreground, ElementName=SliderControl}"
+                   FontFamily="{Binding Path=FontFamily, ElementName=SliderControl}"
+                   Padding="0,0,10,0"/>
+        <TextBox Text="{Binding Value, ElementName=SliderControl, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged, NotifyOnValidationError=True}"
+                 Foreground="{Binding Path=Foreground, ElementName=SliderControl}"
+                 FontFamily="{Binding Path=FontFamily, ElementName=SliderControl}"
+                 Padding="5,0,0,0" DockPanel.Dock="Right" Width="48" TextAlignment="Right" Background="{x:Null}" BorderThickness="0,0,0,1"
+                 TextChanged="TextBoxBase_OnTextChanged"
+                 LostFocus="TextBox_OnLostFocus"
+                 />
+        <Slider Value="{Binding Value, ElementName=SliderControl, Mode=TwoWay}"
+                Maximum="{Binding Path=MaxValue, ElementName=SliderControl, Mode=OneWay}"
+                Minimum="{Binding Path=MinValue, ElementName=SliderControl, Mode=OneWay}"
+                TickFrequency="{Binding Path=MinChange, ElementName=SliderControl, Mode=OneWay}"
+                IsSnapToTickEnabled="True"
+                SmallChange="{Binding Path=MinChange, ElementName=SliderControl, Mode=OneWay}"
+                Style="{StaticResource Horizontal_Slider}" Padding="10,0,10,0" DockPanel.Dock="Right"/>
     </DockPanel>
 </UserControl>

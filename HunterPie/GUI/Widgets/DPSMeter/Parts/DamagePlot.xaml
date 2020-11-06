@@ -11,8 +11,8 @@
               x:Name="Plot"
               PlotAreaBorderColor="Transparent" PlotMargins="0" Height="100">
         <oxy:Plot.Axes>
-            <oxy:LinearAxis Position="Left" Title="Damage" TickStyle="None" StartPosition="0" Minimum="0" />
-            <oxy:LinearAxis Position="Bottom" Title="Time" TickStyle="None" StartPosition="0" Minimum="0"  />
+            <oxy:LinearAxis Position="Left" Title="Damage" TickStyle="None" />
+            <oxy:LinearAxis Position="Bottom" Title="Time" TickStyle="None" />
         </oxy:Plot.Axes>
     </oxy:Plot>
 </UserControl>
