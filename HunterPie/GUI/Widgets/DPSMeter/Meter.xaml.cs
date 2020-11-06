@@ -237,7 +237,7 @@ namespace HunterPie.GUI.Widgets.DPSMeter
                     if (Context == null || Context.TotalDamage <= 0) Party.Visibility = Visibility.Collapsed;
                 }
                 WidgetHasContent = true;
-                if (Context != null) WidgetHasContent = UserSettings.PlayerConfig.Overlay.DPSMeter.ShowTimerInExpeditions && !GameContext.Player.InPeaceZone;
+                if (Context != null) WidgetHasContent = (UserSettings.PlayerConfig.Overlay.DPSMeter.ShowTimerInExpeditions || Context?.TotalDamage > 0) && !GameContext.Player.InPeaceZone;
                 if (Context != null) SortPlayersByDamage();
             }
             base.ApplySettings();
