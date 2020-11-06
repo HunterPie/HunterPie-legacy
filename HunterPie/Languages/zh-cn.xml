@@ -545,7 +545,7 @@
       <String ID="STATIC_TOGGLE_DESIGN_DESC" Name="使用热键开启/关闭编辑模式"/>
       <String ID="STATIC_OVERLAY_POSITION_DESC" Name="更改覆盖层的位置"/>
       <String ID="ENABLE_OVERLAY_FORCE_DIRECTX11_FULLSCREEN" Name="强制DirectX 11全屏显示覆盖层"/>
-      <String ID="ENABLE_OVERLAY_FORCE_DIRECTX11_FULLSCREEN_DESC" Name="此选项将强制游戏始终位于HunterPie的叠加层之后，因此即使在DirectX 11全屏中该叠加层也会出现。需要启用全屏优化。"/>
+      <String ID="ENABLE_OVERLAY_FORCE_DIRECTX11_FULLSCREEN_DESC" Name="此选项将强制游戏始终位于HunterPie的叠加层之后，因此即使在DirectX 11全屏中该叠加层也会出现。需要启用全屏优化"/>
       <!-- Monster Widget -->
       <String ID="ENABLE_MONSTER_WIDGET" Name="怪物部件"/>
       <String ID="ENABLE_MONSTER_WIDGET_DESC" Name="如开启，只要有内容可以显示，怪物部件就将可见"/>
@@ -583,7 +583,7 @@
       <String ID="ENABLE_HIDE_INACTIVE_PARTS" Name="几秒钟后隐藏无变化的部位"/>
       <String ID="ENABLE_HIDE_INACTIVE_PARTS_DESC" Name="如开启，部位将在一段时间无变化后自动隐藏"/>
       <String ID="ENABLE_AUTO_SORT_PARTS" Name="开启部位自动排序"/>
-      <String ID="ENABLE_AUTO_SORT_PARTS_DESC" Name="如开启，当怪物收到伤害时将自动排列部位。将优先排列受伤部位，之后是最近收到伤害的部位"/>
+      <String ID="ENABLE_AUTO_SORT_PARTS_DESC" Name="如开启，当怪物收到伤害时将自动排列部位。将优先排列受伤部位，之后是最新收到伤害的部位"/>
       <String ID="ENABLE_SHOW_UNBROKEN_PARTS" Name="只显示未被击破的部位"/>
       <String ID="ENABLE_SHOW_UNBROKEN_PARTS_DESC" Name="如开启，将只显示还未被破坏的部位"/>
       <String ID="ENABLE_SHOW_BROKEN_PARTS" Name="只显示可破坏部位"/>
@@ -676,8 +676,15 @@
       <String ID="STATIC_METER_PLAYER_3" Name="第三个玩家"/>
       <String ID="STATIC_METER_PLAYER_4" Name="第四个玩家"/>
       <String ID="STATIC_METER_POSITION_DESC" Name="更改伤害部件的位置"/>
-      <String ID="ENABLE_DAMAGE_PLOT" Name="显示伤害统计图"/>
-      <String ID="ENABLE_DAMAGE_PLOT_DESC" Name="如开启，将显示各玩家总伤害统计图"/>
+      <String ID="ENABLE_DAMAGE_PLOT" Name="显示伤害曲线图"/>
+      <String ID="ENABLE_DAMAGE_PLOT_DESC" Name="如开启，将显示伤害曲线图"/>
+      <String ID="DAMAGE_PLOT_MODE" Name="曲线图模式"/>
+      <String ID="DAMAGE_PLOT_MODE_DESC" Name="更改曲线图模式"/>
+      <String ID="DAMAGE_PLOT_MODE_0" Name="总伤害模式"/>
+      <String ID="DAMAGE_PLOT_MODE_1" Name="DPS模式"/>
+      <String ID="DAMAGE_PLOT_POLL_INTERVAL" Name="曲线图轮询间隔"/>
+      <String ID="DAMAGE_PLOT_POLL_INTERVAL_DESC" Name="没有伤害更新时，曲线图的刷新时间间隔. 此数值越低，CPU开销越高. &#13;(若设置为200，则将每秒更新5次)"/>
+
       <!-- Abnormalities Widget -->
       <String ID="STATIC_CREATE_ABNORM_BAR_DESC" Name="建立一个新的状态栏"/>
       <String ID="STATIC_REMOVE_ABNORM_BAR_DESC" Name="移除最后一个建立的状态栏"/>
