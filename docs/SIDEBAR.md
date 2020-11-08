@@ -39,7 +39,6 @@
 ### Internals & Research
 - [Supported Abnormalities](?p=Internal/abnormalities.md)
 - [Player Actions](?p=Internal/playerActions.md)
-- [Monster Actions](?p=Internal/monsterActions.md)
 
 <details>
 <summary>v1.0.3.9x</summary>
