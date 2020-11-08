@@ -27,3 +27,4 @@ The information that the damage meter widget displays are:
 - **Damage percentage:** Represented by the right most number.
 
 > **Note:** If you disable both total damage and damage per second, only the percentage will be visible.
+

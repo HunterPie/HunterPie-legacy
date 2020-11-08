@@ -190,3 +190,24 @@
     background: #1f1f1f;
     padding: 5px 10px 5px 10px;
 }
+
+.Markdown ClassDisplay {
+    background-color: #363636;
+    display: inline-flex;
+    border-radius: 5px;
+    width: 100%;
+    border: 1px solid #85c3ed;
+}
+
+.Markdown ClassDisplay li {
+    padding-right: 5px;
+    list-style: none;
+}
+
+.Markdown ClassDisplay img {
+    width: 100%;
+}
+
+.Markdown ClassDisplay li strong {
+    color: #85c3ed;
+}

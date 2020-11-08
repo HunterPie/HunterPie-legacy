@@ -9,6 +9,7 @@ Since it's a widget that is still in development, some weapons are not supported
 ## Class Widget Settings
 Each class has it's own separate setting, so if you want to place this widget for Charge Blade in (x, y) and for Insect Glaive in (x2, y2) you can! Use the Design Mode to rescale and move this widget. You can also disable them separately in your `HunterPie > Settings > Classes`.
 
+- [GreatSword](?p=Overlay/classesWidget.md#greatsword)
 - [Dual Blades](?p=Overlay/classesWidget.md#dual-blades);
 - [Long Sword](?p=Overlay/classesWidget.md#long-sword);
 - [Hammer](?p=Overlay/classesWidget.md#hammer)
@@ -19,35 +20,63 @@ Each class has it's own separate setting, so if you want to place this widget fo
 - [Charge Blade](?p=Overlay/classesWidget.md#charge-blade);
 - [Insect Glaive](?p=Overlay/classesWidget.md#insect-glaive);
 - [Bow](?p=Overlay/classesWidget.md#bow);
+- [Light Bowgun](?p=Overlay/classesWidget.md#light-bowgun);
 - [Heavy Bowgun](?p=Overlay/classesWidget.md#heavy-bowgun);
 
-## Dual Blades
-- **Features:**
-  - **Demon Gauge:** Represented by the sword gauge, it also has a blinking animation when the gauge is decreasing.
-  - **Demon Mode Indicator** The dual blades icon indicates whether your Demon Mode is on.
-  - **Safi'jiiva health regen. hit counter:** It's represented by the diamond with the Safi'jiiva skill icon, it shows how many hits until you actiave the health regeneration.
 
-<img src="https://cdn.discordapp.com/attachments/402557384209203200/721088634459258991/unknown.png" style="width:20%"/>
+## Greatsword
+
+<ClassDisplay>
+
+![gs](https://cdn.discordapp.com/attachments/402557384209203200/774857361352294410/gs.png)
+
+- **Charge Gauge:** Displays the current charge progress.
+- **Charge Level:** Displays the current charge level.
+- **Safi'jiiva regen. hit counter:** Displays how many hits left until the Safi'jiiva armor skill activates.
+
+</ClassDisplay>
+
+
+## Dual Blades
+
+<ClassDisplay>
+
+![db](https://cdn.discordapp.com/attachments/402557384209203200/774866776823300116/db.png)
+
+- **Demon Gauge:** Represented by the sword gauge, it also has a blinking animation when the gauge is decreasing.
+- **Demon Mode Indicator** The dual blades icon indicates whether your Demon Mode is on.
+- **Safi'jiiva health regen. hit counter:** It's represented by the diamond with the Safi'jiiva skill icon, it shows how many hits until you actiave the health regeneration.
+
+</ClassDisplay>
 
 ## Long Sword
-- **Features:**
-  - **Spirit gauge:** It's represented by the sword gauge, it also has a indicator located on 70% of the gauge, this is the exact required amount you need for the **Spirit Jumping Slash + Spirit Blade III + Spirit Roundslash** and **Spirit I, II, III + Roundslash** comboes.
-  - **Spirit Gauge blinking timer:** It's represented by the timer under the gauge, it's triggered by the Iai Slash and/or Helm Breaker.
-  - **Charge level and percentage**: It's represented by the diamond and it's number by the right side of the gauge.
-  - **Safi'jiiva health regen. hit counter:** It's represented by the diamond with the Safi'jiiva skill icon, it shows how many hits until you actiave the health regeneration.
 
-<img src="https://cdn.discordapp.com/attachments/678287048200683572/714161955807690782/class_p4.png" style="width:20%"/>
+<ClassDisplay>
+
+![ls](https://cdn.discordapp.com/attachments/402557384209203200/774873536510033940/ls.png)
+
+- **Spirit gauge:** It's represented by the sword gauge, it also has a indicator located on 70% of the gauge, this is the exact required amount you need for the *Spirit Jumping Slash + Spirit Blade III + Spirit Roundslash* and *Spirit I, II, III + Roundslash* comboes.
+- **Spirit Gauge blinking timer:** It's represented by the timer under the gauge, it's triggered by the Iai Slash and/or Helm Breaker.
+- **Charge level and percentage:** It's represented by the diamond and it's number by the right side of the gauge.
+- **Safi'jiiva health regen. hit counter:** It's represented by the diamond with the Safi'jiiva skill icon, it shows how many hits until you actiave the health regeneration.
+
+</ClassDisplay>
 
 ## Hammer
-- **Features:**
-  - **Charge Bar:** It's represented by the diamond progress bar, when it reaches the maximum charge level the diamond starts blinking.
-  > **Note:** The charging bar is affected by the scan delay you set in your HunterPie's settings, the default is 150ms, so it should not be a problem.
-  - **Power charge indicator:** It's represented by the hammer icon on top right of the diamond. When power mode is off, the icon fades away.
-  - **Charge level:** It's the number inside the diamond.
-  - **Auto hide:** This class helper automatically hides when the weapon is sheathed.
-  - **Safi'jiiva health regen. hit counter:** It's represented by the diamond with the Safi'jiiva skill icon, it shows how many hits until you actiave the health regeneration.
 
-<img src="https://cdn.discordapp.com/attachments/678287048200683572/716172353297711185/classes_p6.png" style="width:20%"/>
+<ClassDisplay>
+
+![hm](https://cdn.discordapp.com/attachments/402557384209203200/774876930443837460/hm.png)
+
+- **Charge Bar:** It's represented by the diamond progress bar, when it reaches the maximum charge level the diamond starts blinking.
+> **Note:** The charging bar is affected by the scan delay you set in your HunterPie's settings, the default is 150ms, so it should not be a problem.
+- **Power charge indicator:** It's represented by the hammer icon on top right of the diamond. When power mode is off, the icon fades away.
+- **Charge level:** It's the number inside the diamond.
+- **Auto hide:** This class helper automatically hides when the weapon is sheathed.
+- **Safi'jiiva health regen. hit counter:** It's represented by the diamond with the Safi'jiiva skill icon, it shows how many hits until you actiave the health regeneration.
+
+</ClassDisplay>
+
 
 ## Lance
 - **Features:**
