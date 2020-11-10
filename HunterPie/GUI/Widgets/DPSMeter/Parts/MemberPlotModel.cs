@@ -46,7 +46,7 @@ namespace HunterPie.GUI.Widgets.DPSMeter.Parts
 
         public void ChangeMode(DamagePlotMode mode)
         {
-            if (Mode == mode) return;
+            if (Mode == mode && Series.ItemsSource != null) return;
 
             switch (mode)
             {
@@ -56,8 +56,7 @@ namespace HunterPie.GUI.Widgets.DPSMeter.Parts
                     break;
 
                 case DamagePlotMode.CumulativeTotal:
-                    Data = new ObservableCollection<DataPoint>(DamagePoints);
-                    Series.ItemsSource = Data;
+                    Series.ItemsSource = Data = DamagePoints;
                     break;
 
                 default:
