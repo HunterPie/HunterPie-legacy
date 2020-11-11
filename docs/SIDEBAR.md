@@ -16,6 +16,7 @@
     - [Installing Plugins](?p=Plugins/install.md)
 
 ### Overlay
+- [Design Mode](?p=Overlay/designMode.md)
 - [Monsters Widget](?p=Overlay/monstersWidget.md)
 - [Harvest Box Widget](?p=Overlay/harvestBoxWidget.md)
 - [Abnormalities Widget](?p=Overlay/abnormalitiesWidget.md)

@@ -105,7 +105,8 @@
 }
 
 .Markdown kbd {
-    background-color: rgba(32, 32, 32, 0.424);
+    background-color: rgba(114, 114, 114, 0.424);
+    box-shadow: rgba(0, 0, 0, 0.1) 0px 2px 2px;
     padding: 3px 5px 3px 5px;
     border-radius: 5px;
     color: #eeeeee;
