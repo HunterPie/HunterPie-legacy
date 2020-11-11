@@ -17,7 +17,7 @@ namespace HunterPie.GUI.Widgets.Monster_Widget.Parts
     {
         Ailment Context;
         Timer VisibilityTimer;
-        bool IsGroupEnabled;
+        bool IsGroupEnabled => ComponentSettings?.EnabledAilmentGroups.Contains(Context.Group) ?? false;
         Monsterscomponent ComponentSettings => UserSettings.PlayerConfig.Overlay.MonstersComponent;
 
         public Brush AilmentGroupColor
@@ -34,12 +34,12 @@ namespace HunterPie.GUI.Widgets.Monster_Widget.Parts
         public void SetContext(Ailment ctx, double MaxBarSize)
         {
             Context = ctx;
-            IsGroupEnabled = ComponentSettings.EnabledAilmentGroups.Contains(Context.Group);
             AilmentGroupColor = ComponentSettings.EnableAilmentsBarColor ?
                     FindResource($"MONSTER_AILMENT_COLOR_{Context.Group}") as Brush :
                     FindResource("MONSTER_AILMENT_COLOR_UNKNOWN") as Brush;
             SetAilmentInformation(MaxBarSize);
             HookEvents();
+            ApplySettings();
             StartVisibilityTimer();
         }
 
