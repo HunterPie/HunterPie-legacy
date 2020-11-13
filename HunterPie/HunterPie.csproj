@@ -144,6 +144,7 @@
     <Compile Include="Core\Definitions\sAmmo.cs" />
     <Compile Include="Core\Definitions\sEquippedAmmo.cs" />
     <Compile Include="Core\Definitions\sGear.cs" />
+    <Compile Include="Core\Definitions\sHealingData.cs" />
     <Compile Include="Core\Definitions\sHuntingHornMechanics.cs" />
     <Compile Include="Core\Definitions\sHuntingHornSong.cs" />
     <Compile Include="Core\Definitions\sItem.cs" />
@@ -182,7 +183,9 @@
     <Compile Include="Core\Events\MonsterUpdateEventArgs.cs" />
     <Compile Include="Core\Events\PartyMemberEventArgs.cs" />
     <Compile Include="Core\Events\PlayerEventArgs.cs" />
+    <Compile Include="Core\Events\PlayerHealthEventArgs.cs" />
     <Compile Include="Core\Events\PlayerLocationEventArgs.cs" />
+    <Compile Include="Core\Events\PlayerStaminaEventArgs.cs" />
     <Compile Include="Core\Events\SteamFuelEventArgs.cs" />
     <Compile Include="Core\Craft\Crafting.cs" />
     <Compile Include="Core\Input\Hotkey.cs" />
@@ -474,6 +477,14 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
+    <Page Include="GUI\Widgets\HealthWidget\Parts\HealthBar.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="GUI\Widgets\HealthWidget\PlayerHealth.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="GUI\Widgets\MantleTimer.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -600,6 +611,12 @@
     </Compile>
     <Compile Include="GUI\Widgets\Harvest Box\Parts\FertilizerControl.xaml.cs">
       <DependentUpon>FertilizerControl.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="GUI\Widgets\HealthWidget\Parts\HealthBar.xaml.cs">
+      <DependentUpon>HealthBar.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="GUI\Widgets\HealthWidget\PlayerHealth.xaml.cs">
+      <DependentUpon>PlayerHealth.xaml</DependentUpon>
     </Compile>
     <Compile Include="GUI\Widgets\MantleTimer.xaml.cs">
       <DependentUpon>MantleTimer.xaml</DependentUpon>

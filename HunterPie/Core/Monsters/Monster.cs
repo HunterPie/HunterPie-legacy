@@ -129,7 +129,7 @@ namespace HunterPie.Core
         public int IsSelect
         {
             get => isSelect;
-            set
+            private set
             {
                 if (value != isSelect)
                 {
@@ -294,7 +294,7 @@ namespace HunterPie.Core
             Weaknesses?.Clear();
         }
 
-        public void StartThreadingScan()
+        internal void StartThreadingScan()
         {
             monsterInfoScanRef = new ThreadStart(ScanMonsterInfo);
             monsterInfoScan = new Thread(monsterInfoScanRef)
@@ -305,7 +305,7 @@ namespace HunterPie.Core
             monsterInfoScan.Start();
         }
 
-        public void StopThread() => monsterInfoScan.Abort();
+        internal void StopThread() => monsterInfoScan.Abort();
 
         private void ScanMonsterInfo()
         {

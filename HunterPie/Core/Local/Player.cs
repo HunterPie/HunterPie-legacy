@@ -11,6 +11,7 @@ using HunterPie.Core.Events;
 using Classes = HunterPie.Core.Enums.Classes;
 using AbnormalityType = HunterPie.Core.Enums.AbnormalityType;
 using HunterPie.Core.Enums;
+using System.Windows.Threading;
 
 namespace HunterPie.Core
 {
@@ -24,6 +25,12 @@ namespace HunterPie.Core
         private string sessionId;
         private long classAddress;
         private int actionId;
+        private float health;
+        private float maxHealth;
+        private float redHealth;
+        private sHealingData healHealth;
+        private float stamina;
+        private float maxStamina;
 
         private readonly int[] harvestBoxZones =
         {
@@ -224,22 +231,98 @@ namespace HunterPie.Core
         /// <summary>
         /// Player health
         /// </summary>
-        public float Health { get; private set; }
+        public float Health
+        {
+            get => health;
+            private set
+            {
+                if (health != value)
+                {
+                    health = value;
+                    Dispatch(OnHealthUpdate);
+                }
+            }
+        }
 
         /// <summary>
         /// Player maximum health
         /// </summary>
-        public float MaxHealth { get; private set; }
+        public float MaxHealth
+        {
+            get => maxHealth;
+            private set
+            {
+                if (value != maxHealth)
+                {
+                    maxHealth = value;
+                    Dispatch(OnMaxHealthUpdate);
+                }
+            }
+        }
+
+        /// <summary>
+        /// The red gauge in the player health bar
+        /// </summary>
+        public float RedHealth
+        {
+            get => redHealth;
+            private set
+            {
+                if (redHealth != value)
+                {
+                    redHealth = value;
+                    Dispatch(OnRedHealthUpdate);
+                }
+            }
+        }
+
+        /// <summary>
+        /// The heal gauge in the player health bar
+        /// </summary>
+        public sHealingData HealHealth
+        {
+            get => healHealth;
+            private set
+            {
+                if (!value.Equals(healHealth))
+                {
+                    healHealth = value;
+                    Dispatch(OnHealHealth);
+                }
+            }
+        }
 
         /// <summary>
         /// Player stamina
         /// </summary>
-        public float Stamina { get; private set; }
+        public float Stamina
+        {
+            get => stamina;
+            private set
+            {
+                if (value != stamina)
+                {
+                    stamina = value;
+                    Dispatch(OnStaminaUpdate);
+                }
+            }
+        }
 
         /// <summary>
         /// Player maximum stamina
         /// </summary>
-        public float MaxStamina { get; private set; }
+        public float MaxStamina
+        {
+            get => maxStamina;
+            private set
+            {
+                if (value != maxStamina)
+                {
+                    maxStamina = value;
+                    Dispatch(OnMaxStaminaUpdate);
+                }
+            }
+        }
 
         /// <summary>
         /// Player action id
@@ -327,6 +410,8 @@ namespace HunterPie.Core
         // Event handlers
 
         public delegate void PlayerEvents(object source, EventArgs args);
+        public delegate void PlayerHealthEvents(object source, PlayerHealthEventArgs args);
+        public delegate void PlayerStaminaEvents(object source, PlayerStaminaEventArgs args);
 
         public event PlayerEvents OnLevelChange;
         public event PlayerEvents OnWeaponChange;
@@ -343,11 +428,21 @@ namespace HunterPie.Core
         public event PlayerEvents OnPeaceZoneLeave;
         public event PlayerEvents OnVillageLeave;
 
+        public event PlayerHealthEvents OnHealthUpdate;
+        public event PlayerHealthEvents OnMaxHealthUpdate;
+        public event PlayerHealthEvents OnRedHealthUpdate;
+        public event PlayerHealthEvents OnHealHealth;
+
+        public event PlayerStaminaEvents OnStaminaUpdate;
+        public event PlayerStaminaEvents OnMaxStaminaUpdate;
+        
         private void Dispatch(PlayerEvents e, EventArgs args) => e?.Invoke(this, args);
+        private void Dispatch(PlayerHealthEvents e) => e?.Invoke(this, new PlayerHealthEventArgs(this));
+        private void Dispatch(PlayerStaminaEvents e) => e?.Invoke(this, new PlayerStaminaEventArgs(this));
         #endregion
 
         #region Scanner
-        public void StartScanning()
+        internal void StartScanning()
         {
             scanPlayerInfoRef = new ThreadStart(GetPlayerInfo);
             scanPlayerInfo = new Thread(scanPlayerInfoRef)
@@ -358,7 +453,7 @@ namespace HunterPie.Core
             scanPlayerInfo.Start();
         }
 
-        public void StopScanning() => scanPlayerInfo.Abort();
+        internal void StopScanning() => scanPlayerInfo.Abort();
         #endregion
 
         #region Manual Player Data
@@ -715,6 +810,8 @@ namespace HunterPie.Core
 
             MaxHealth = Kernel.Read<float>(address + 0x60);
             Health = Kernel.Read<float>(address + 0x64);
+            HealHealth = Kernel.ReadStructure<sHealingData>(Kernel.Read<long>(address + 0x30) + 0xEBB0);
+            RedHealth = Kernel.Read<float>(address + 0x2DE4);
 
             MaxStamina = Kernel.Read<float>(address + 0x144);
             Stamina = Kernel.Read<float>(address + 0x13C);

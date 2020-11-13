@@ -1,0 +1,47 @@
+﻿<local:Widget x:Class="HunterPie.GUI.Widgets.HealthWidget.PlayerHealth"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:local="clr-namespace:HunterPie.GUI"
+             xmlns:parts="clr-namespace:HunterPie.GUI.Widgets.HealthWidget.Parts"
+             xmlns:Custom="clr-namespace:HunterPie.GUIControls.Custom_Controls"
+             ResizeMode="NoResize" WindowStyle="None" AllowsTransparency="True" ShowInTaskbar="False" Topmost="True" Closing="OnClosing" MouseDown="OnMouseDown" MouseWheel="OnMouseWheel"
+             Style="{StaticResource OVERLAY_WIDGET_STYLE}" Width="470" Height="100" x:Name="PlayerHealthComponent" Background="{x:Null}">
+    <Grid Height="98" VerticalAlignment="Top" HorizontalAlignment="Left" Width="468">
+        <TextBlock RenderOptions.ClearTypeHint="Enabled" Text="Lv. 999 OwO" Height="20" VerticalAlignment="Top" Foreground="#FFE8E8E8" Margin="27,1,-2,0" FontSize="14" FontFamily="Roboto, Segoe UI, Yu Gothic UI">
+            <TextBlock.Effect>
+                <DropShadowEffect RenderingBias="Quality" ShadowDepth="0" Direction="0"/>
+            </TextBlock.Effect>
+        </TextBlock>
+
+        <!-- Player stamina bar -->
+        <Custom:MinimalHealthBar x:Name="StaminaBar" Height="3" VerticalAlignment="Top" RenderTransformOrigin="0.5,1" Foreground="{x:Null}" Margin="31,29,30,0" Background="#B21F1F1F" HorizontalAlignment="Left">
+            <Custom:MinimalHealthBar.Color>
+                <LinearGradientBrush EndPoint="1,1" StartPoint="0,0">
+                    <GradientStop Color="#FFC95B32" Offset="0"/>
+                    <GradientStop Color="#FFD3A541" Offset="1"/>
+                </LinearGradientBrush>
+            </Custom:MinimalHealthBar.Color>
+            <Custom:MinimalHealthBar.RenderTransform>
+                <TransformGroup>
+                    <ScaleTransform/>
+                    <SkewTransform AngleX="-45"/>
+                    <RotateTransform/>
+                    <TranslateTransform/>
+                </TransformGroup>
+            </Custom:MinimalHealthBar.RenderTransform>
+        </Custom:MinimalHealthBar>
+
+        <!-- Player Health Bar-->
+        <parts:HealthBar x:Name="HealthBar" Margin="28,19,0,0" VerticalAlignment="Top" HorizontalAlignment="Left" RenderTransformOrigin="0.5,0.5" Height="10">
+            <parts:HealthBar.RenderTransform>
+                <TransformGroup>
+                    <ScaleTransform/>
+                    <SkewTransform AngleX="45"/>
+                    <RotateTransform/>
+                    <TranslateTransform/>
+                </TransformGroup>
+            </parts:HealthBar.RenderTransform>
+        </parts:HealthBar>
+        
+    </Grid>
+</local:Widget>

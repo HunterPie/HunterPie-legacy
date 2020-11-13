@@ -53,6 +53,7 @@ namespace HunterPie.GUI
                 Widgets.Add(new Widgets.Abnormality_Widget.AbnormalityContainer(ctx.Player, AbnormTrayIndex));
             }
             Widgets.Add(new Widgets.ClassWidget.ClassWidgetContainer(ctx));
+            Widgets.Add(new Widgets.HealthWidget.PlayerHealth(ctx.Player));
         }
 
         private void DestroyWidgets()

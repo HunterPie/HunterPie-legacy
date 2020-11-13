@@ -127,7 +127,7 @@ namespace HunterPie.Core
             }
         }
 
-        public void StartScanning()
+        internal void StartScanning()
         {
             StartGameScanner();
             HookEvents();
@@ -139,7 +139,7 @@ namespace HunterPie.Core
             IsActive = true;
         }
 
-        public void StopScanning()
+        internal void StopScanning()
         {
             Debugger.Warn(GStrings.GetLocalizationByXPath("/Console/String[@ID='MESSAGE_GAME_SCANNER_STOP']"));
             UnhookEvents();
