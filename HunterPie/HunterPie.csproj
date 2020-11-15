@@ -162,6 +162,7 @@
     <Compile Include="Core\Enums\AlatreonState.cs" />
     <Compile Include="Core\Enums\Classes.cs" />
     <Compile Include="Core\Enums\DamagePlotMode.cs" />
+    <Compile Include="Core\Enums\DayTime.cs" />
     <Compile Include="Core\Enums\GearType.cs" />
     <Compile Include="Core\Enums\HBGSpecialType.cs" />
     <Compile Include="Core\Enums\Helper.cs" />
@@ -190,6 +191,7 @@
     <Compile Include="Core\Events\PlayerStaminaEventArgs.cs" />
     <Compile Include="Core\Events\SteamFuelEventArgs.cs" />
     <Compile Include="Core\Craft\Crafting.cs" />
+    <Compile Include="Core\Events\WorldEventArgs.cs" />
     <Compile Include="Core\Input\Hotkey.cs" />
     <Compile Include="Core\Integrations\DataExporter\Exporter.cs" />
     <Compile Include="Core\Integrations\Honey\Honey.cs" />
@@ -272,6 +274,7 @@
     <Compile Include="GUIControls\Settings.xaml.cs">
       <DependentUpon>Settings.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Utils\FloatExtensions.cs" />
     <None Include="address\MonsterHunterWorld.420540.map">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
@@ -1183,10 +1186,10 @@
     <None Include="HunterPie.Resources\UI\HUD\mr_time_day.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
-    <None Include="HunterPie.Resources\UI\HUD\mr_time_evening.png">
+    <None Include="HunterPie.Resources\UI\HUD\mr_time_morning.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
-    <None Include="HunterPie.Resources\UI\HUD\mr_time_morning.png">
+    <None Include="HunterPie.Resources\UI\HUD\mr_time_evening.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
     <None Include="HunterPie.Resources\UI\HUD\mr_time_night.png">

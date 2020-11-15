@@ -3,6 +3,7 @@ using System.Windows;
 using System.Windows.Threading;
 using HunterPie.Core;
 using HunterPie.Core.Events;
+using HunterPie.Core.Enums;
 
 namespace HunterPie.GUI.Widgets.HealthWidget
 {
@@ -21,6 +22,14 @@ namespace HunterPie.GUI.Widgets.HealthWidget
         }
         public static readonly DependencyProperty PlayerNameProperty =
             DependencyProperty.Register("PlayerName", typeof(string), typeof(PlayerHealth));
+
+        public string DayTimeIcon
+        {
+            get { return (string)GetValue(DayTimeIconProperty); }
+            set { SetValue(DayTimeIconProperty, value); }
+        }
+        public static readonly DependencyProperty DayTimeIconProperty =
+            DependencyProperty.Register("DayTimeIcon", typeof(string), typeof(PlayerHealth));
 
         public PlayerHealth(Game ctx)
         {
@@ -72,6 +81,7 @@ namespace HunterPie.GUI.Widgets.HealthWidget
 
         private void HookEvents()
         {
+            gContext.OnWorldDayTimeUpdate += OnWorldDayTimeUpdate;
             Context.OnHealthUpdate += OnHealthUpdate;
             Context.OnMaxHealthUpdate += OnMaxHealthUpdate;
             Context.OnHealHealth += OnHealHealth;
@@ -84,6 +94,7 @@ namespace HunterPie.GUI.Widgets.HealthWidget
 
         public void UnhookEvents()
         {
+            gContext.OnWorldDayTimeUpdate -= OnWorldDayTimeUpdate;
             Context.OnHealthUpdate -= OnHealthUpdate;
             Context.OnMaxHealthUpdate -= OnMaxHealthUpdate;
             Context.OnHealHealth -= OnHealHealth;
@@ -92,6 +103,31 @@ namespace HunterPie.GUI.Widgets.HealthWidget
             Context.OnMaxStaminaUpdate -= OnMaxStaminaUpdate;
             Context.OnAilmentUpdate -= OnAilmentUpdate;
             Context.OnLevelChange += OnLevelChange;
+        }
+
+        private void OnWorldDayTimeUpdate(object source, WorldEventArgs args)
+        {
+            Dispatcher.BeginInvoke(DispatcherPriority.Render, new Action(() =>
+            {
+                switch (args.DayTime)
+                {
+                    case DayTime.Morning:
+                        DayTimeIcon = "pack://siteoforigin:,,,/HunterPie.Resources/UI/HUD/mr_time_morning.png";
+                        break;
+                    case DayTime.Afternoon:
+                        DayTimeIcon = "pack://siteoforigin:,,,/HunterPie.Resources/UI/HUD/mr_time_day.png";
+                        break;
+                    case DayTime.Evening:
+                        DayTimeIcon = "pack://siteoforigin:,,,/HunterPie.Resources/UI/HUD/mr_time_evening.png";
+                        break;
+                    case DayTime.Night:
+                        DayTimeIcon = "pack://siteoforigin:,,,/HunterPie.Resources/UI/HUD/mr_time_night.png";
+                        break;
+                    default:
+                        DayTimeIcon = null;
+                        break;
+                }
+            }));
         }
 
         private void OnLevelChange(object source, EventArgs args)

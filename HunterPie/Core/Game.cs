@@ -249,11 +249,10 @@ namespace HunterPie.Core
             long address = Kernel.Read<long>(Address.BASE + Address.WORLD_DATA_OFFSET);
             float time = Kernel.Read<float>(address + 0x38);
 
-            
-            if (time.IsWithin(0, 4.99f) && time.IsWithin(19, 24))
+            if (time.IsWithin(17, 18.99f))
             {
-                // Night - 19:00 -> 4:59
-                DayTime = DayTime.Night;
+                // Evening - 17:00 -> 18:59
+                DayTime = DayTime.Evening;
             } else if (time.IsWithin(5, 6.99f))
             {
                 // Morning - 5:00 -> 6:59
@@ -264,8 +263,8 @@ namespace HunterPie.Core
                 DayTime = DayTime.Afternoon;
             } else
             {
-                // Evening - 17:00 -> 18:59
-                DayTime = DayTime.Evening;
+                // Night - 19:00 -> 4:59
+                DayTime = DayTime.Night;
             }
             WorldTime = time;
         }
