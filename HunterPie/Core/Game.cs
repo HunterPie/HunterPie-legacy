@@ -1,7 +1,11 @@
 ﻿using System;
 using System.Threading;
+using System.Windows.Forms;
+using HunterPie.Core.Enums;
+using HunterPie.Core.Events;
 using HunterPie.Logger;
 using HunterPie.Memory;
+using HunterPie.Utils;
 
 namespace HunterPie.Core
 {
@@ -56,7 +60,7 @@ namespace HunterPie.Core
         public DateTime? Time { get; private set; }
         public bool IsActive { get; private set; }
 
-        // Game window information
+        
         /// <summary>
         /// Whether the game window is focused or not
         /// </summary>
@@ -80,6 +84,44 @@ namespace HunterPie.Core
         public event ClockEvent OnClockChange;
 
         protected virtual void _onClockChange() => OnClockChange?.Invoke(this, EventArgs.Empty);
+
+        #region Game World data
+
+        private float worldTime;
+        private DayTime dayTime;
+
+        public float WorldTime
+        {
+            get => worldTime;
+            set
+            {
+                if (value != worldTime)
+                {
+                    worldTime = value;
+                    Dispatch(OnWorldTimeUpdate);
+                }
+            }
+        }
+
+        public DayTime DayTime
+        {
+            get => dayTime;
+            set
+            {
+                if (value != dayTime)
+                {
+                    dayTime = value;
+                    Dispatch(OnWorldDayTimeUpdate);
+                }
+            }
+        }
+
+        public delegate void WorldEvent(object source, WorldEventArgs args);
+        public event WorldEvent OnWorldTimeUpdate;
+        public event WorldEvent OnWorldDayTimeUpdate;
+
+        protected virtual void Dispatch(WorldEvent e) => e?.Invoke(this, new WorldEventArgs(this));
+        #endregion
 
         public void CreateInstances()
         {
@@ -193,24 +235,55 @@ namespace HunterPie.Core
             {
                 if ((DateTime.UtcNow - Clock).TotalSeconds >= 10) Clock = DateTime.UtcNow;
 
-                // Since monsters are independent, we still need to sync them with eachother
-                // to use the lockon
-
-                aliveMonsters[0] = FirstMonster.IsActuallyAlive && !FirstMonster.IsCaptured;
-                aliveMonsters[1] = SecondMonster.IsActuallyAlive && !SecondMonster.IsCaptured;
-                aliveMonsters[2] = ThirdMonster.IsActuallyAlive && !ThirdMonster.IsCaptured;
-
-                for (int i = 0; i < 3; i++)
-                {
-                    FirstMonster.AliveMonsters[i] = aliveMonsters[i];
-                    SecondMonster.AliveMonsters[i] = aliveMonsters[i];
-                    ThirdMonster.AliveMonsters[i] = aliveMonsters[i];
-                }
+                SyncMonstersStates();
+                GetWorldCurrentTime();
 
                 Thread.Sleep(UserSettings.PlayerConfig.Overlay.GameScanDelay);
             }
             Thread.Sleep(1000);
             GameScanner();
+        }
+
+        private void GetWorldCurrentTime()
+        {
+            long address = Kernel.Read<long>(Address.BASE + Address.WORLD_DATA_OFFSET);
+            float time = Kernel.Read<float>(address + 0x38);
+
+            
+            if (time.IsWithin(0, 4.99f) && time.IsWithin(19, 24))
+            {
+                // Night - 19:00 -> 4:59
+                DayTime = DayTime.Night;
+            } else if (time.IsWithin(5, 6.99f))
+            {
+                // Morning - 5:00 -> 6:59
+                DayTime = DayTime.Morning;
+            } else if (time.IsWithin(7, 16.99f))
+            {
+                // Afternoon - 7:00 -> 16:59
+                DayTime = DayTime.Afternoon;
+            } else
+            {
+                // Evening - 17:00 -> 18:59
+                DayTime = DayTime.Evening;
+            }
+            WorldTime = time;
+        }
+
+        private void SyncMonstersStates()
+        {
+            // Since monsters are independent, we still need to sync them with eachother
+            // to use the lockon
+            aliveMonsters[0] = FirstMonster.IsActuallyAlive && !FirstMonster.IsCaptured;
+            aliveMonsters[1] = SecondMonster.IsActuallyAlive && !SecondMonster.IsCaptured;
+            aliveMonsters[2] = ThirdMonster.IsActuallyAlive && !ThirdMonster.IsCaptured;
+
+            for (int i = 0; i < 3; i++)
+            {
+                FirstMonster.AliveMonsters[i] = aliveMonsters[i];
+                SecondMonster.AliveMonsters[i] = aliveMonsters[i];
+                ThirdMonster.AliveMonsters[i] = aliveMonsters[i];
+            }
         }
 
     }

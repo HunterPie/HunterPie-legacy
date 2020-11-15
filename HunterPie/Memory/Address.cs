@@ -50,20 +50,21 @@ namespace HunterPie.Memory
         public static int GAME_VERSION = 168031;
 
         // Static addresses
-        public static long BASE = 0x140000000;
-        public static long LEVEL_OFFSET = 0x0;
-        public static long ZONE_OFFSET = 0x0;
-        public static long MONSTER_OFFSET = 0x0;
-        public static long SESSION_OFFSET = 0x0;
-        public static long EQUIPMENT_OFFSET = 0x0;
-        public static long WEAPON_OFFSET = 0x0;
-        public static long PARTY_OFFSET = 0x0;
-        public static long DAMAGE_OFFSET = 0x0;
-        public static long ABNORMALITY_OFFSET = 0x0;
-        public static long MONSTER_SELECTED_OFFSET = 0x0;
-        public static long MONSTER_TARGETED_OFFSET = 0x0;
-        public static long WEAPON_MECHANICS_OFFSET = 0x0;
-        public static long CANTEEN_OFFSET = 0x0;
+        public static long BASE;
+        public static long LEVEL_OFFSET;
+        public static long ZONE_OFFSET;
+        public static long MONSTER_OFFSET;
+        public static long SESSION_OFFSET;
+        public static long EQUIPMENT_OFFSET;
+        public static long WEAPON_OFFSET;
+        public static long PARTY_OFFSET;
+        public static long DAMAGE_OFFSET;
+        public static long ABNORMALITY_OFFSET;
+        public static long MONSTER_SELECTED_OFFSET;
+        public static long MONSTER_TARGETED_OFFSET;
+        public static long WEAPON_MECHANICS_OFFSET;
+        public static long CANTEEN_OFFSET;
+        public static long WORLD_DATA_OFFSET;
 
         // Consts
         public const long CooldownFixed = 0x9EC;
@@ -180,6 +181,7 @@ namespace HunterPie.Memory
             LoadAddressFromDict(nameof(MONSTER_TARGETED_OFFSET), out MONSTER_TARGETED_OFFSET, MONSTER_TARGETED_OFFSET);
             LoadAddressFromDict(nameof(WEAPON_MECHANICS_OFFSET), out WEAPON_MECHANICS_OFFSET, WEAPON_MECHANICS_OFFSET);
             LoadAddressFromDict(nameof(CANTEEN_OFFSET), out CANTEEN_OFFSET, CANTEEN_OFFSET);
+            LoadAddressFromDict(nameof(WORLD_DATA_OFFSET), out WORLD_DATA_OFFSET, WORLD_DATA_OFFSET);
             // Load offsets
             LoadOffsetsFromDict("LevelOffsets", out Offsets.LevelOffsets);
             LoadOffsetsFromDict("ZoneOffsets", out Offsets.ZoneOffsets);
