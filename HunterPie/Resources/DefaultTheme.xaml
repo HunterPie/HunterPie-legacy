@@ -54,9 +54,9 @@
 
     <Visibility x:Key="OVERLAY_SHOW_MONSTER_ICON">Visible</Visibility>
 
-    <LinearGradientBrush x:Key="OVERLAY_MONSTER_HEALTH_BAR_COLOR" EndPoint="0.5,1" StartPoint="0.5,0">
-        <GradientStop Color="#FF32C985" Offset="0"/>
-        <GradientStop Color="#FF41D391" Offset="1"/>
+    <LinearGradientBrush x:Key="OVERLAY_MONSTER_HEALTH_BAR_COLOR" EndPoint="1,1" StartPoint="0,0">
+        <GradientStop Color="#FF337E00" Offset="0"/>
+        <GradientStop Color="#FF96C31D" Offset="0.446"/>
     </LinearGradientBrush>
 
     <Style x:Key="OVERLAY_MONSTER_HEALTH_BAR_STYLE" TargetType="{x:Type Custom:MinimalHealthBar}">
@@ -108,8 +108,9 @@
         <Setter Property="FontSize" Value="14"/>
     </Style>
 
-    <LinearGradientBrush x:Key="OVERLAY_MONSTER_STAMINA_BAR_COLOR" EndPoint="0.5,1" StartPoint="0.5,0">
-        <GradientStop Color="#FFFFC500"/>
+    <LinearGradientBrush x:Key="OVERLAY_MONSTER_STAMINA_BAR_COLOR"  EndPoint="1,1" StartPoint="0,0">
+        <GradientStop Color="#FFC95B32" Offset="0"/>
+        <GradientStop Color="#FFD3A541" Offset="1"/>
     </LinearGradientBrush>
 
     <Style x:Key="OVERLAY_MONSTER_STAMINA_BAR_STYLE" TargetType="Custom:MinimalHealthBar">

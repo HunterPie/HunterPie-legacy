@@ -7,8 +7,8 @@
         <Rectangle Width="{Binding ElementName=HealthBarControl, Path=Health}" HorizontalAlignment="Left" StrokeThickness="0">
             <Rectangle.Fill>
                 <LinearGradientBrush EndPoint="1,1" StartPoint="0,0">
-                    <GradientStop Color="#FF1DC38E" Offset="0"/>
-                    <GradientStop Color="#FF00DA95" Offset="1"/>
+                    <GradientStop Color="#FF337E00" Offset="0"/>
+                    <GradientStop Color="#FF96C31D" Offset="0.446"/>
                 </LinearGradientBrush>
             </Rectangle.Fill>
         </Rectangle>

@@ -11,7 +11,6 @@ using HunterPie.Core.Events;
 using Classes = HunterPie.Core.Enums.Classes;
 using AbnormalityType = HunterPie.Core.Enums.AbnormalityType;
 using HunterPie.Core.Enums;
-using System.Windows.Threading;
 
 namespace HunterPie.Core
 {
@@ -31,6 +30,7 @@ namespace HunterPie.Core
         private sHealingData healHealth;
         private float stamina;
         private float maxStamina;
+        private float ailmentTimer;
 
         private readonly int[] harvestBoxZones =
         {
@@ -330,7 +330,7 @@ namespace HunterPie.Core
         public int ActionId
         {
             get => actionId;
-            set
+            private set
             {
                 if (value != actionId)
                 {
@@ -340,6 +340,21 @@ namespace HunterPie.Core
                 }
             }
         }
+
+        public float AilmentTimer
+        {
+            get => ailmentTimer;
+            set
+            {
+                if (value != ailmentTimer)
+                {
+                    ailmentTimer = value;
+                    Dispatch(OnAilmentUpdate);
+                }
+            }
+        }
+
+        public PlayerAilment AilmentType { get; private set; }
 
         /// <summary>
         /// Gets the raw name for the player current action reference name
@@ -412,6 +427,7 @@ namespace HunterPie.Core
         public delegate void PlayerEvents(object source, EventArgs args);
         public delegate void PlayerHealthEvents(object source, PlayerHealthEventArgs args);
         public delegate void PlayerStaminaEvents(object source, PlayerStaminaEventArgs args);
+        public delegate void PlayerAilmentEvents(object source, PlayerAilmentEventArgs args);
 
         public event PlayerEvents OnLevelChange;
         public event PlayerEvents OnWeaponChange;
@@ -435,10 +451,13 @@ namespace HunterPie.Core
 
         public event PlayerStaminaEvents OnStaminaUpdate;
         public event PlayerStaminaEvents OnMaxStaminaUpdate;
-        
+
+        public event PlayerAilmentEvents OnAilmentUpdate;
+
         private void Dispatch(PlayerEvents e, EventArgs args) => e?.Invoke(this, args);
         private void Dispatch(PlayerHealthEvents e) => e?.Invoke(this, new PlayerHealthEventArgs(this));
         private void Dispatch(PlayerStaminaEvents e) => e?.Invoke(this, new PlayerStaminaEventArgs(this));
+        private void Dispatch(PlayerAilmentEvents e) => e?.Invoke(this, new PlayerAilmentEventArgs(this));
         #endregion
 
         #region Scanner
@@ -833,7 +852,31 @@ namespace HunterPie.Core
                 long EatTimerAddress = Kernel.ReadMultilevelPtr(Address.BASE + Address.CANTEEN_OFFSET, Address.Offsets.PlayerCanteenTimer);
                 UpdateAbnormality(AbnormalityData.MiscAbnormalities.Where(a => a.Id == 999).FirstOrDefault(), EatTimerAddress);
             }
-                
+            GetPlayerAilment(address);
+        }
+
+        /// <summary>
+        /// Gets the current player ailment if there's any
+        /// </summary>
+        private void GetPlayerAilment(long address)
+        {
+            float timer = Kernel.Read<float>(address + 0x2DF4);
+            if (PlayerActionRef.Contains("SLEEP"))
+            {
+                AilmentType = PlayerAilment.Sleep;
+            } else if (PlayerActionRef.Contains("PARALYSE"))
+            {
+                AilmentType = PlayerAilment.Paralysis;
+            } else if (PlayerActionRef.Contains("STUN"))
+            {
+                AilmentType = PlayerAilment.Stun;
+            } else
+            {
+                AilmentType = PlayerAilment.None;
+                AilmentTimer = 0;
+                return;
+            }
+            AilmentTimer = timer;
         }
 
         private void GetWeaponId()
