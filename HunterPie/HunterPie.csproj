@@ -1162,34 +1162,34 @@
     </None>
   </ItemGroup>
   <ItemGroup>
-    <None Include="HunterPie.Resources\UI\HUD\laurel_copper.png">
+    <None Include="HunterPie.Resources\UI\HUD\mr_laurel_copper.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
-    <None Include="HunterPie.Resources\UI\HUD\laurel_diamond.png">
+    <None Include="HunterPie.Resources\UI\HUD\mr_laurel_diamond.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
-    <None Include="HunterPie.Resources\UI\HUD\laurel_gold.png">
+    <None Include="HunterPie.Resources\UI\HUD\mr_laurel_gold.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
-    <None Include="HunterPie.Resources\UI\HUD\laurel_iron.png">
+    <None Include="HunterPie.Resources\UI\HUD\mr_laurel_iron.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
-    <None Include="HunterPie.Resources\UI\HUD\laurel_silver.png">
+    <None Include="HunterPie.Resources\UI\HUD\mr_laurel_silver.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
-    <None Include="HunterPie.Resources\UI\HUD\time_background.png">
+    <None Include="HunterPie.Resources\UI\HUD\mr_time_background.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
-    <None Include="HunterPie.Resources\UI\HUD\time_day.png">
+    <None Include="HunterPie.Resources\UI\HUD\mr_time_day.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
-    <None Include="HunterPie.Resources\UI\HUD\time_evening.png">
+    <None Include="HunterPie.Resources\UI\HUD\mr_time_evening.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
-    <None Include="HunterPie.Resources\UI\HUD\time_morning.png">
+    <None Include="HunterPie.Resources\UI\HUD\mr_time_morning.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
-    <None Include="HunterPie.Resources\UI\HUD\time_night.png">
+    <None Include="HunterPie.Resources\UI\HUD\mr_time_night.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
   </ItemGroup>

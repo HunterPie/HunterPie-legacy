@@ -5,10 +5,10 @@
              xmlns:parts="clr-namespace:HunterPie.GUI.Widgets.HealthWidget.Parts"
              xmlns:Custom="clr-namespace:HunterPie.GUIControls.Custom_Controls"
              ResizeMode="NoResize" WindowStyle="None" AllowsTransparency="True" ShowInTaskbar="False" Topmost="True" Closing="OnClosing" MouseDown="OnMouseDown" MouseWheel="OnMouseWheel"
-             Style="{StaticResource OVERLAY_WIDGET_STYLE}" Width="470" Height="100" x:Name="PlayerHealthComponent" Background="{x:Null}">
+             Style="{StaticResource OVERLAY_WIDGET_STYLE}" SizeToContent="Width" Height="100" x:Name="PlayerHealthComponent" Background="{x:Null}">
     <Grid Height="98" VerticalAlignment="Top" HorizontalAlignment="Left" Width="468">
 
-        <StackPanel Margin="57,1,0,0" Height="20" VerticalAlignment="Top" Orientation="Horizontal">
+        <StackPanel Margin="60,10,0,0" Height="20" VerticalAlignment="Top" Orientation="Horizontal">
             <TextBlock RenderOptions.ClearTypeHint="Enabled" Text="{Binding ElementName=PlayerHealthComponent, Path=PlayerName}" VerticalAlignment="Top" Foreground="#FFDADADA" FontSize="14" FontFamily="Roboto, Segoe UI, Yu Gothic UI" Height="20" HorizontalAlignment="Left">
                 <TextBlock.Effect>
                     <DropShadowEffect RenderingBias="Quality" ShadowDepth="0" Direction="0"/>
@@ -19,7 +19,7 @@
             </StackPanel>
         </StackPanel>
         <!-- Player stamina bar -->
-        <Custom:MinimalHealthBar x:Name="StaminaBar" Height="3" VerticalAlignment="Top" RenderTransformOrigin="0.5,1" Foreground="{x:Null}" Margin="61,29,30,0" Background="#B27E7E7E" HorizontalAlignment="Left">
+        <Custom:MinimalHealthBar x:Name="StaminaBar" Height="3" VerticalAlignment="Top" RenderTransformOrigin="0.5,1" Foreground="{x:Null}" Margin="66,39,30,0" Background="#B27E7E7E" HorizontalAlignment="Left">
             <Custom:MinimalHealthBar.Color>
                 <LinearGradientBrush EndPoint="1,1" StartPoint="0,0">
                     <GradientStop Color="#FFC95B32" Offset="0"/>
@@ -37,7 +37,7 @@
         </Custom:MinimalHealthBar>
 
         <!-- Player Health Bar-->
-        <parts:HealthBar x:Name="HealthBar" Margin="58,19,0,0" VerticalAlignment="Top" HorizontalAlignment="Left" RenderTransformOrigin="0.5,0.5" Height="10">
+        <parts:HealthBar x:Name="HealthBar" Margin="63,29,0,0" VerticalAlignment="Top" HorizontalAlignment="Left" RenderTransformOrigin="0.5,0.5" Height="10">
             <parts:HealthBar.RenderTransform>
                 <TransformGroup>
                     <ScaleTransform/>
@@ -48,9 +48,9 @@
             </parts:HealthBar.RenderTransform>
         </parts:HealthBar>
 
-        <Image Source="pack://siteoforigin:,,,/HunterPie.Resources/UI/HUD/time_background.png" HorizontalAlignment="Left" Width="57" Height="66" VerticalAlignment="Top" Margin="5,0,0,0"/>
-        <Image Source="pack://siteoforigin:,,,/HunterPie.Resources/UI/HUD/time_night.png" HorizontalAlignment="Left" Width="57" Height="66" VerticalAlignment="Top" Margin="5,0,0,0"/>
-        <Image Source="pack://siteoforigin:,,,/HunterPie.Resources/UI/HUD/laurel_diamond.png" HorizontalAlignment="Left" Width="57" Height="66" VerticalAlignment="Top" Margin="5,0,0,0" OpacityMask="#B2000000"/>
+        <Image Source="pack://siteoforigin:,,,/HunterPie.Resources/UI/HUD/mr_time_background.png" HorizontalAlignment="Left" Width="57" Height="60" VerticalAlignment="Top" Margin="2,1,0,0"/>
+        <Image Source="pack://siteoforigin:,,,/HunterPie.Resources/UI/HUD/mr_time_night.png" HorizontalAlignment="Left" Width="57" Height="60" VerticalAlignment="Top" Margin="2,1,0,0"/>
+        <Image Source="pack://siteoforigin:,,,/HunterPie.Resources/UI/HUD/mr_laurel_gold.png" HorizontalAlignment="Left" Width="57" Height="60" VerticalAlignment="Top" Margin="2,1,0,0" OpacityMask="#B2000000"/>
 
     </Grid>
 </local:Widget>
