@@ -7,14 +7,19 @@
              ResizeMode="NoResize" WindowStyle="None" AllowsTransparency="True" ShowInTaskbar="False" Topmost="True" Closing="OnClosing" MouseDown="OnMouseDown" MouseWheel="OnMouseWheel"
              Style="{StaticResource OVERLAY_WIDGET_STYLE}" Width="470" Height="100" x:Name="PlayerHealthComponent" Background="{x:Null}">
     <Grid Height="98" VerticalAlignment="Top" HorizontalAlignment="Left" Width="468">
-        <TextBlock RenderOptions.ClearTypeHint="Enabled" Text="Lv. 999 OwO" Height="20" VerticalAlignment="Top" Foreground="#FFE8E8E8" Margin="27,1,-2,0" FontSize="14" FontFamily="Roboto, Segoe UI, Yu Gothic UI">
-            <TextBlock.Effect>
-                <DropShadowEffect RenderingBias="Quality" ShadowDepth="0" Direction="0"/>
-            </TextBlock.Effect>
-        </TextBlock>
 
+        <StackPanel Margin="57,1,0,0" Height="20" VerticalAlignment="Top" Orientation="Horizontal">
+            <TextBlock RenderOptions.ClearTypeHint="Enabled" Text="{Binding ElementName=PlayerHealthComponent, Path=PlayerName}" VerticalAlignment="Top" Foreground="#FFDADADA" FontSize="14" FontFamily="Roboto, Segoe UI, Yu Gothic UI" Height="20" HorizontalAlignment="Left">
+                <TextBlock.Effect>
+                    <DropShadowEffect RenderingBias="Quality" ShadowDepth="0" Direction="0"/>
+                </TextBlock.Effect>
+            </TextBlock>
+            <StackPanel x:Name="AilmentDisplay" Orientation="Horizontal" Margin="10,0,0,0">
+                
+            </StackPanel>
+        </StackPanel>
         <!-- Player stamina bar -->
-        <Custom:MinimalHealthBar x:Name="StaminaBar" Height="3" VerticalAlignment="Top" RenderTransformOrigin="0.5,1" Foreground="{x:Null}" Margin="31,29,30,0" Background="#B21F1F1F" HorizontalAlignment="Left">
+        <Custom:MinimalHealthBar x:Name="StaminaBar" Height="3" VerticalAlignment="Top" RenderTransformOrigin="0.5,1" Foreground="{x:Null}" Margin="61,29,30,0" Background="#B27E7E7E" HorizontalAlignment="Left">
             <Custom:MinimalHealthBar.Color>
                 <LinearGradientBrush EndPoint="1,1" StartPoint="0,0">
                     <GradientStop Color="#FFC95B32" Offset="0"/>
@@ -32,7 +37,7 @@
         </Custom:MinimalHealthBar>
 
         <!-- Player Health Bar-->
-        <parts:HealthBar x:Name="HealthBar" Margin="28,19,0,0" VerticalAlignment="Top" HorizontalAlignment="Left" RenderTransformOrigin="0.5,0.5" Height="10">
+        <parts:HealthBar x:Name="HealthBar" Margin="58,19,0,0" VerticalAlignment="Top" HorizontalAlignment="Left" RenderTransformOrigin="0.5,0.5" Height="10">
             <parts:HealthBar.RenderTransform>
                 <TransformGroup>
                     <ScaleTransform/>
@@ -42,6 +47,10 @@
                 </TransformGroup>
             </parts:HealthBar.RenderTransform>
         </parts:HealthBar>
-        
+
+        <Image Source="pack://siteoforigin:,,,/HunterPie.Resources/UI/HUD/time_background.png" HorizontalAlignment="Left" Width="57" Height="66" VerticalAlignment="Top" Margin="5,0,0,0"/>
+        <Image Source="pack://siteoforigin:,,,/HunterPie.Resources/UI/HUD/time_night.png" HorizontalAlignment="Left" Width="57" Height="66" VerticalAlignment="Top" Margin="5,0,0,0"/>
+        <Image Source="pack://siteoforigin:,,,/HunterPie.Resources/UI/HUD/laurel_diamond.png" HorizontalAlignment="Left" Width="57" Height="66" VerticalAlignment="Top" Margin="5,0,0,0" OpacityMask="#B2000000"/>
+
     </Grid>
 </local:Widget>

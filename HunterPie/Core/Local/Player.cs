@@ -31,6 +31,7 @@ namespace HunterPie.Core
         private float stamina;
         private float maxStamina;
         private float ailmentTimer;
+        private int masterRank;
 
         private readonly int[] harvestBoxZones =
         {
@@ -104,7 +105,18 @@ namespace HunterPie.Core
         /// <summary>
         /// Player master rank
         /// </summary>
-        public int MasterRank { get; private set; }
+        public int MasterRank
+        {
+            get => masterRank;
+            private set
+            {
+                if (masterRank != value)
+                {
+                    masterRank = value;
+                    Dispatch(OnLevelChange, new PlayerEventArgs(this));
+                }
+            }
+        }
 
         /// <summary>
         /// Player playtime in seconds
@@ -777,9 +789,9 @@ namespace HunterPie.Core
             if (CurrentPlayerSaveHeader != PlayerAddress)
             {
                 LEVEL_ADDRESS = CurrentPlayerSaveHeader + 0x90;
+                GetPlayerName();
                 GetPlayerLevel();
                 GetPlayerMasterRank();
-                GetPlayerName();
                 PlayerAddress = CurrentPlayerSaveHeader;
             }
             return true;

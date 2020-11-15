@@ -1,15 +1,8 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Threading;
 using HunterPie.Core;
-using HunterPie.Logger;
 using HunterPie.Core.Events;
-using Newtonsoft.Json;
-using Microsoft.SqlServer.Server;
 
 namespace HunterPie.GUI.Widgets.HealthWidget
 {
@@ -20,6 +13,14 @@ namespace HunterPie.GUI.Widgets.HealthWidget
     {
         private Game gContext { get; set; }
         private Player Context => gContext.Player;
+
+        public string PlayerName
+        {
+            get { return (string)GetValue(PlayerNameProperty); }
+            set { SetValue(PlayerNameProperty, value); }
+        }
+        public static readonly DependencyProperty PlayerNameProperty =
+            DependencyProperty.Register("PlayerName", typeof(string), typeof(PlayerHealth));
 
         public PlayerHealth(Game ctx)
         {
@@ -77,6 +78,8 @@ namespace HunterPie.GUI.Widgets.HealthWidget
             Context.OnRedHealthUpdate += OnRedHealthUpdate;
             Context.OnStaminaUpdate += OnStaminaUpdate;
             Context.OnMaxStaminaUpdate += OnMaxStaminaUpdate;
+            Context.OnAilmentUpdate += OnAilmentUpdate;
+            Context.OnLevelChange += OnLevelChange;
         }
 
         public void UnhookEvents()
@@ -87,6 +90,26 @@ namespace HunterPie.GUI.Widgets.HealthWidget
             Context.OnRedHealthUpdate -= OnRedHealthUpdate;
             Context.OnStaminaUpdate -= OnStaminaUpdate;
             Context.OnMaxStaminaUpdate -= OnMaxStaminaUpdate;
+            Context.OnAilmentUpdate -= OnAilmentUpdate;
+            Context.OnLevelChange += OnLevelChange;
+        }
+
+        private void OnLevelChange(object source, EventArgs args)
+        {
+            Dispatcher.BeginInvoke(DispatcherPriority.Render, new Action(() =>
+            {
+                PlayerEventArgs e = (PlayerEventArgs)args;
+                // We update the name string
+                PlayerName = $"Lv. {e.Level} {e.Name}";
+            }));
+        }
+
+        private void OnAilmentUpdate(object source, PlayerAilmentEventArgs args)
+        {
+            Dispatcher.BeginInvoke(DispatcherPriority.Render, new Action(() =>
+            {
+
+            }));
         }
 
         private void OnMaxStaminaUpdate(object source, PlayerStaminaEventArgs args)

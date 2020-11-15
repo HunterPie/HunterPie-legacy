@@ -167,6 +167,7 @@
     <Compile Include="Core\Enums\Helper.cs" />
     <Compile Include="Core\Enums\MonsterBarMode.cs" />
     <Compile Include="Core\Enums\NoteColorId.cs" />
+    <Compile Include="Core\Enums\PlayerAilment.cs" />
     <Compile Include="Core\Events\AbnormalityEventArgs.cs" />
     <Compile Include="Core\Events\DaysLeftEventArgs.cs" />
     <Compile Include="Core\Events\FertilizerEventArgs.cs" />
@@ -182,6 +183,7 @@
     <Compile Include="Core\Events\MonsterSpawnEventArgs.cs" />
     <Compile Include="Core\Events\MonsterUpdateEventArgs.cs" />
     <Compile Include="Core\Events\PartyMemberEventArgs.cs" />
+    <Compile Include="Core\Events\PlayerAilmentEventArgs.cs" />
     <Compile Include="Core\Events\PlayerEventArgs.cs" />
     <Compile Include="Core\Events\PlayerHealthEventArgs.cs" />
     <Compile Include="Core\Events\PlayerLocationEventArgs.cs" />
@@ -1157,6 +1159,38 @@
   <ItemGroup>
     <None Include="HunterPie.Resources\Monsters\Icons\em013_00.png">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="HunterPie.Resources\UI\HUD\laurel_copper.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="HunterPie.Resources\UI\HUD\laurel_diamond.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="HunterPie.Resources\UI\HUD\laurel_gold.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="HunterPie.Resources\UI\HUD\laurel_iron.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="HunterPie.Resources\UI\HUD\laurel_silver.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="HunterPie.Resources\UI\HUD\time_background.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="HunterPie.Resources\UI\HUD\time_day.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="HunterPie.Resources\UI\HUD\time_evening.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="HunterPie.Resources\UI\HUD\time_morning.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="HunterPie.Resources\UI\HUD\time_night.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
