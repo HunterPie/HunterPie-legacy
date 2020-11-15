@@ -18,6 +18,7 @@ namespace HunterPie.Core.Events
         public WorldEventArgs(Game g)
         {
             WorldTime = g.WorldTime;
+            DayTime = g.DayTime;
         }
     }
 }
