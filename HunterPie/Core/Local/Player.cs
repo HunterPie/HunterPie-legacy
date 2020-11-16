@@ -353,6 +353,9 @@ namespace HunterPie.Core
             }
         }
 
+        /// <summary>
+        /// Player current ailment duration timer
+        /// </summary>
         public float AilmentTimer
         {
             get => ailmentTimer;
@@ -366,6 +369,9 @@ namespace HunterPie.Core
             }
         }
 
+        /// <summary>
+        /// Player current active ailment, if there's any
+        /// </summary>
         public PlayerAilment AilmentType { get; private set; }
 
         /// <summary>
@@ -465,6 +471,8 @@ namespace HunterPie.Core
         public event PlayerStaminaEvents OnMaxStaminaUpdate;
 
         public event PlayerAilmentEvents OnAilmentUpdate;
+
+        public event PlayerEvents OnPlayerScanFinished;
 
         private void Dispatch(PlayerEvents e, EventArgs args) => e?.Invoke(this, args);
         private void Dispatch(PlayerHealthEvents e) => e?.Invoke(this, new PlayerHealthEventArgs(this));
@@ -767,6 +775,8 @@ namespace HunterPie.Core
                 }
                 GetSessionId();
                 GetEquipmentAddress();
+
+                Dispatch(OnPlayerScanFinished, EventArgs.Empty);
                 Thread.Sleep(UserSettings.PlayerConfig.Overlay.GameScanDelay);
             }
             Thread.Sleep(1000);

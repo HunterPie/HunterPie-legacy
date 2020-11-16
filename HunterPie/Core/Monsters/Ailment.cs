@@ -66,7 +66,7 @@ namespace HunterPie.Core
 
         public Ailment(long address) => Address = address;
 
-        public void SetAilmentInfo(sMonsterAilment AilmentData, uint uId = 0xFFFFFF)
+        public void SetAilmentInfo(sMonsterAilment AilmentData, bool IsPartyHost, uint uId = 0xFFFFFF)
         {
             if (uId != 0xFFFFFF)
             {
@@ -78,7 +78,10 @@ namespace HunterPie.Core
             MaxDuration = AilmentData.MaxDuration;
             Duration = AilmentData.Duration;
             MaxBuildup = AilmentData.MaxBuildup;
-            Buildup = Math.Min(AilmentData.Buildup, AilmentData.MaxBuildup);
+            if (IsPartyHost)
+            {
+                Buildup = Math.Min(AilmentData.Buildup, AilmentData.MaxBuildup);
+            }
             Counter = AilmentData.Counter;
         }
 

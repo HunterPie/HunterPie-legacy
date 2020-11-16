@@ -235,6 +235,7 @@ namespace HunterPie.Core
             {
                 if ((DateTime.UtcNow - Clock).TotalSeconds >= 10) Clock = DateTime.UtcNow;
 
+                SyncMonsterAndPartyState();
                 SyncMonstersStates();
                 GetWorldCurrentTime();
 
@@ -285,5 +286,12 @@ namespace HunterPie.Core
             }
         }
 
+        private void SyncMonsterAndPartyState()
+        {
+            foreach (Monster monster in Monsters)
+            {
+                monster.IsLocalHost = Player.PlayerParty.IsLocalHost;
+            }
+        }
     }
 }

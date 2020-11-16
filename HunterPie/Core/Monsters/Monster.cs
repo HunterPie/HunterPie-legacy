@@ -245,6 +245,8 @@ namespace HunterPie.Core
             }
         }
 
+        public bool IsLocalHost { get; internal set; }
+
         public List<Part> Parts = new List<Part>();
         public List<Ailment> Ailments = new List<Ailment>();
         // Threading
@@ -274,6 +276,7 @@ namespace HunterPie.Core
         public event MonsterEnrageEvents OnUnenrage;
         public event MonsterEnrageEvents OnEnrageTimerUpdate;
 
+        public event MonsterEvents OnMonsterScanFinished;
         // Used ONLY by Alatreon
         public event MonsterEvents OnAlatreonElementShift;
 
@@ -322,6 +325,8 @@ namespace HunterPie.Core
                 GetMonsterEnrageTimer();
                 GetTargetMonsterAddress();
                 GetAlatreonCurrentElement();
+
+                Dispatch(OnMonsterScanFinished);
                 Thread.Sleep(UserSettings.PlayerConfig.Overlay.GameScanDelay);
             }
             Thread.Sleep(1000);
@@ -509,7 +514,7 @@ namespace HunterPie.Core
                     Group = info.Group,
                     Type = AilmentType.Status
                 };
-                enrageTracker.SetAilmentInfo(sMonsterStatus.Convert(enrage), 999);
+                enrageTracker.SetAilmentInfo(sMonsterStatus.Convert(enrage), IsLocalHost, 999);
                 Ailments.Add(enrageTracker);
                 FoundEnrageInMemory = true;
             }
@@ -638,7 +643,7 @@ namespace HunterPie.Core
                             MonsterRemovablePartData.Data.Counter = Kernel.Read<int>(MonsterAddress + 0x20920);
                         }
 
-                        CurrentPart.SetPartInfo(MonsterRemovablePartData.Data);
+                        CurrentPart.SetPartInfo(MonsterRemovablePartData.Data, IsLocalHost);
                     }
                     else
                     {
@@ -657,7 +662,7 @@ namespace HunterPie.Core
 
                                 CurrentPart.Address = MonsterRemovablePartAddress;
                                 CurrentPart.IsRemovable = true;
-                                CurrentPart.SetPartInfo(MonsterRemovablePartData.Data);
+                                CurrentPart.SetPartInfo(MonsterRemovablePartData.Data, IsLocalHost);
 
                                 Debugger.Debug($"Removable Part Structure <{Name}> ({CurrentPart.Name}) [0x{MonsterRemovablePartAddress:X}]");
                                 RemovablePartIndex++;
@@ -677,7 +682,7 @@ namespace HunterPie.Core
                     if (CurrentPart.Address > 0)
                     {
                         sMonsterPart MonsterPartData = Kernel.ReadStructure<sMonsterPart>(CurrentPart.Address);
-                        CurrentPart.SetPartInfo(MonsterPartData.Data);
+                        CurrentPart.SetPartInfo(MonsterPartData.Data, IsLocalHost);
 
                     }
                     else
@@ -687,7 +692,7 @@ namespace HunterPie.Core
                         CurrentPart.Group = CurrentPartInfo.GroupId;
                         CurrentPart.TenderizedIds = CurrentPartInfo.TenderizeIds;
 
-                        CurrentPart.SetPartInfo(MonsterPartData.Data);
+                        CurrentPart.SetPartInfo(MonsterPartData.Data, IsLocalHost);
 
                         Debugger.Debug($"Part Structure <{Name}> ({CurrentPart.Name}) [0x{CurrentPart.Address:X}]");
 
@@ -726,7 +731,7 @@ namespace HunterPie.Core
                             break;
                     }
                      
-                    ailment.SetAilmentInfo(updatedData);
+                    ailment.SetAilmentInfo(updatedData, IsLocalHost);
                 }
 
             }
@@ -763,7 +768,7 @@ namespace HunterPie.Core
                         Group = AilmentInfo.Group,
                         Type = AilmentType.Ailment
                     };
-                    MonsterAilment.SetAilmentInfo(AilmentData);
+                    MonsterAilment.SetAilmentInfo(AilmentData, IsLocalHost);
 
                     Debugger.Debug($"sMonsterAilment <{Name}> ({MonsterAilment.Name}) [0x{MonsterAilmentPtr + 0x148:X}]");
 

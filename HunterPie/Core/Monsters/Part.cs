@@ -100,7 +100,7 @@ namespace HunterPie.Core
         protected virtual void NotifyTenderizeStateChangd() => OnTenderizeStateChange?.Invoke(this, new MonsterPartEventArgs(this));
         #endregion
 
-        public void SetPartInfo(sMonsterPartData data)
+        public void SetPartInfo(sMonsterPartData data, bool IsPartyHost)
         {
             TotalHealth = data.MaxHealth;
             BrokenCounter = data.Counter;

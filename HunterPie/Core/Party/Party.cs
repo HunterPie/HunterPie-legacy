@@ -50,6 +50,7 @@ namespace HunterPie.Core
         }
         public int MaxLobbySize = 16;
         public int LobbySize { get; set; }
+        public bool IsLocalHost => this[0].IsMe;
         public Member this[int index]
         {
             get => Members[index];
