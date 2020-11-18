@@ -863,7 +863,7 @@ namespace HunterPie
 
             if (!IsUpdating) UserSettings.SaveNewConfig();
             Debugger.DumpLog();
-            
+
             // Dispose tray icon
             if (TrayIcon != null)
             {
@@ -1117,28 +1117,53 @@ namespace HunterPie
 
             if (PluginUpdate.PluginSupportsUpdate(moduleInformation))
             {
-                if (await PluginUpdate.UpdateAllFiles(moduleInformation, modPath))
+                switch (await PluginUpdate.UpdateAllFiles(moduleInformation, modPath))
                 {
-                    Debugger.Module($"Installed {moduleInformation.Name}!");
-                } else
-                {
-                    Debugger.Error($"Failed to install {moduleInformation.Name}.");
+                    case UpdateResult.Updated:
+                        Debugger.Module($"Installed {moduleInformation.Name}! (ver {moduleInformation.Version})");
+
+                        CNotification notification = new CNotification
+                        {
+                            Text = GStrings.GetLocalizationByXPath("/Console/String[@ID='MESSAGE_PLUGIN_INSTALLED']").Replace("{name}", moduleInformation.Name),
+                            NIcon = FindResource("ICON_PLUGIN") as ImageSource,
+
+                            FirstButtonVisibility = Visibility.Visible,
+                            Callback1 = Reload,
+                            FirstButtonImage = FindResource("ICON_RESTART") as ImageSource,
+                            FirstButtonText = GStrings.GetLocalizationByXPath("/Notifications/String[@ID='STATIC_RESTART']"),
+
+                            SecondButtonVisibility = Visibility.Collapsed,
+                            ShowTime = 15
+                        };
+                        NotificationsPanel.Children.Add(notification);
+                        notification.ShowNotification();
+                        break;
+
+                    case UpdateResult.Failed:
+                        Debugger.Error($"Failed to install {moduleInformation.Name}.");
+                        return;
+
+                    case UpdateResult.UpToDate:
+                        string uptodateText =
+                            $"Plugin {moduleInformation.Name} is already installed and up-to-date! (ver {moduleInformation.Version})";
+                        Debugger.Module(uptodateText);
+                        CNotification uptodateNotification = new CNotification
+                        {
+                            Text = uptodateText,
+                            NIcon = FindResource("ICON_PLUGIN") as ImageSource,
+
+                            FirstButtonVisibility = Visibility.Collapsed,
+                            SecondButtonVisibility = Visibility.Collapsed,
+                            ShowTime = 5
+                        };
+                        NotificationsPanel.Children.Add(uptodateNotification);
+                        uptodateNotification.ShowNotification();
+                        return;
                 }
             } else
             {
                 Debugger.Error(GStrings.GetLocalizationByXPath("/Console/String[@ID='ERROR_PLUGIN_AUTO_UPDATE']"));
             }
-
-            CNotification notification = new CNotification()
-            {
-                Text = GStrings.GetLocalizationByXPath("/Console/String[@ID='MESSAGE_PLUGIN_INSTALLED']").Replace("{name}", moduleInformation.Name),
-                NIcon = FindResource("ICON_PLUGIN") as ImageSource,
-                FirstButtonVisibility = Visibility.Collapsed,
-                SecondButtonVisibility = Visibility.Collapsed,
-                ShowTime = 5
-            };
-            NotificationsPanel.Children.Add(notification);
-            notification.ShowNotification();
         }
 
         private void window_DragEnter(object sender, DragEventArgs e)

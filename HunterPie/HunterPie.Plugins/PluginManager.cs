@@ -79,17 +79,22 @@ namespace HunterPie.Plugins
 
                     if (PluginUpdate.PluginSupportsUpdate(modInformation))
                     {
-                        if (await PluginUpdate.UpdateAllFiles(modInformation, module))
+                        switch (await PluginUpdate.UpdateAllFiles(modInformation, module))
                         {
-                            serializedModule = File.ReadAllText(Path.Combine(module, "module.json"));
-                            modInformation = JsonConvert.DeserializeObject<PluginInformation>(serializedModule);
+                            case UpdateResult.Updated:
+                                serializedModule = File.ReadAllText(Path.Combine(module, "module.json"));
+                                modInformation = JsonConvert.DeserializeObject<PluginInformation>(serializedModule);
 
-                            Debugger.Module($"Updated plugin: {modInformation.Name}");
-                        }
-                        else
-                        {
-                            Debugger.Error($"Failed to update plugin: {modInformation.Name}");
-                            continue;
+                                Debugger.Module($"Updated plugin: {modInformation.Name} (ver {modInformation.Version})");
+                                break;
+
+                            case UpdateResult.Failed:
+                                Debugger.Error($"Failed to update plugin: {modInformation.Name}");
+                                continue;
+
+                            case UpdateResult.UpToDate:
+                                Debugger.Module($"Plugin {modInformation.Name} is up-to-date (ver {modInformation.Version})");
+                                break;
                         }
                     }
 
