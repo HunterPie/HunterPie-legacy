@@ -163,11 +163,11 @@
     <Part ID="MONSTER_PART_SILVER_SPIKES_LWING" Name="금강 가시 (왼쪽 날개)"/>
     <Part ID="MONSTER_PART_SILVER_SPIKES_RWING" Name="금강 가시 (오른쪽 날개)"/>
     <!-- Special parts -->
-    <Part ID="MONSTER_PART_KNOCKDOWN" Name="넘어짐"/>
+    <Part ID="MONSTER_PART_KNOCKDOWN" Name="병기 데미지 대경직"/>
     <Part ID="MONSTER_PART_BIG_FLINCH" Name="대경직"/>
     <Part ID="MONSTER_PART_RAGE" Name="분노 해제"/>
     <Part ID="MONSTER_PART_COUNTERATTACK" Name="카운터 공격"/>
-    <Part ID="MONSTER_PART_CHARGE" Name="대전"/>
+    <Part ID="MONSTER_PART_CHARGE" Name="충전 상태 해제"/>
     <Part ID="MONSTER_PART_THROAT" Name="목"/>
     <Part ID="MONSTER_PART_INFLATED_TAIL" Name="팽창된 꼬리"/>
     <Part ID="MONSTER_PART_SKY_FALL" Name="격추"/>
@@ -192,7 +192,7 @@
     <Ailment ID="STATUS_PARALYSIS" Name="마비"/>
     <Ailment ID="STATUS_SLEEP" Name="수면"/>
     <Ailment ID="STATUS_BLAST" Name="폭파"/>
-    <Ailment ID="STATUS_MOUNT" Name="단차"/>
+    <Ailment ID="STATUS_MOUNT" Name="올라타기"/>
     <Ailment ID="STATUS_EXHAUSTION" Name="탈진"/>
     <Ailment ID="STATUS_STUN" Name="기절"/>
     <Ailment ID="STATUS_TRANQUILIZE" Name="포획 마취"/>
@@ -438,7 +438,7 @@
     <Abnormality ID="GEAR_006_00" Name="힘의 해방"/>
     <Abnormality ID="GEAR_007_00" Name="앙심"/>
     <Abnormality ID="GEAR_008_00" Name="분발"/>
-    <Abnormality ID="GEAR_009_00" Name="야옹 휴식술"/>
+    <Abnormality ID="GEAR_009_00" Name="야옹 단기최면술"/>
     <Abnormality ID="GEAR_010_00" Name="얼음연성"/>
     <Abnormality ID="GEAR_015_00" Name="공격적인 방어"/>
     <Abnormality ID="GEAR_016_00" Name="전화위복"/>
@@ -552,8 +552,8 @@
       <String ID="STATIC_MONSTER_HEALTH_STRING_FORMAT_DESC" Name="몬스터 체력 바의 텍스트 형식입니다."/>
       <String ID="STATIC_MONSTER_AILMENT_BUILDUP_STRING_FORMAT" Name="상태 이상 수치 텍스트 형식:"/>
       <String ID="STATIC_MONSTER_AILMENT_BUILDUP_STRING_FORMAT_DESC" Name="몬스터 상태 이상 수치의 텍스트 형식입니다."/>
-      <String ID="STATIC_MONSTER_AILMENT_TIMER_STRING_FORMAT" Name="상태 이상 지속시간 텍스트 형식:"/>
-      <String ID="STATIC_MONSTER_AILMENT_TIMER_STRING_FORMAT_DESC" Name="몬스터 상태 이상 지속시간의 텍스트 형식입니다."/>
+      <String ID="STATIC_MONSTER_AILMENT_TIMER_STRING_FORMAT" Name="상태 이상 타이머 텍스트 형식:"/>
+      <String ID="STATIC_MONSTER_AILMENT_TIMER_STRING_FORMAT_DESC" Name="몬스터 상태 이상 타이머의 텍스트 형식입니다."/>
       <String ID="STATIC_MONSTER_PART_HEALTH_STRING_FORMAT" Name="부위 체력 텍스트 형식:"/>
       <String ID="STATIC_MONSTER_PART_HEALTH_STRING_FORMAT_DESC" Name="몬스터 부위 체력의 텍스트 형식입니다."/>
       <String ID="ENABLE_MONSTER_USE_LOCKON" Name="대상 몬스터 지정에 락온 사용"/>
@@ -590,13 +590,13 @@
       <String ID="ENABLE_HIDE_INACTIVE_AILMENTS" Name="변경점이 없는 상태 이상 몇 초 후 숨기기"/>
       <String ID="ENABLE_HIDE_INACTIVE_AILMENTS_DESC" Name="옵션이 켜져 있을 경우, 변경점이 없는 상태 이상은 몇 초 후 자동으로 숨깁니다."/>
 	  <String ID="ENABLE_BREAKABLE_PARTS" Name="몬스터의 파괴 가능 부위 표시"/>
-      <String ID="ENABLE_BREAKABLE_PARTS_DESC" Name="옵션이 켜져 있을 경우, 절단/파괴/제거 가능한 부위들이 몬스터 바 아래에 표시됩니다."/>
+      <String ID="ENABLE_BREAKABLE_PARTS_DESC" Name="옵션이 켜져 있을 경우, 절단/파괴/제거 가능한 부위가 몬스터 바 아래에 표시됩니다."/>
 	  <String ID="ENABLE_AILMENTS_BAR_COLOR" Name="상태 이상 바 색상 사용"/>
       <String ID="ENABLE_AILMENTS_BAR_COLOR_DESC" Name="옵션이 켜져 있을 경우, 각 상태 이상 표시는 속성에 기반한 개별적인 색상을 띄게 됩니다."/>
       <String ID="ENABLE_AILMENTS" Name="몬스터 상태 이상 표시"/>
       <String ID="ENABLE_AILMENTS_DESC" Name="옵션이 켜져 있을 경우, 몬스터의 상태 이상 수치가 몬스터 바 아래에 표시됩니다."/>
       <String ID="ENABLE_MONSTER_PARTS" Name="몬스터의 부위 표시"/>
-      <String ID="ENABLE_MONSTER_PARTS_DESC" Name="옵션이 켜져 있을 경우, 몬스터의 경직을 유발하는 부위가 몬스터 바 아래에 표시됩니다."/>
+      <String ID="ENABLE_MONSTER_PARTS_DESC" Name="옵션이 켜져 있을 경우, 몬스터의 경직 부위가 몬스터 바 아래에 표시됩니다."/>
       <String ID="ENABLE_MONSTER_PART_HEAD" Name="머리의 체력 표시"/>
       <String ID="ENABLE_MONSTER_PART_BODY" Name="몸통의 체력 표시"/>
       <String ID="ENABLE_MONSTER_PART_ARM" Name="앞다리의 체력 표시"/>
@@ -628,7 +628,7 @@
       <String ID="ENABLE_MONSTER_STATUS_PARALYSIS" Name="마비 표시"/>
       <String ID="ENABLE_MONSTER_STATUS_SLEEP" Name="수면 표시"/>
       <String ID="ENABLE_MONSTER_STATUS_BLAST" Name="폭파 표시"/>
-      <String ID="ENABLE_MONSTER_STATUS_MOUNT" Name="단차 표시"/>
+      <String ID="ENABLE_MONSTER_STATUS_MOUNT" Name="올라타기 표시"/>
       <String ID="ENABLE_MONSTER_STATUS_EXHAUSTION" Name="탈진 표시"/>
       <String ID="ENABLE_MONSTER_STATUS_STUN" Name="기절 표시"/>
       <String ID="ENABLE_MONSTER_STATUS_TRANQUILIZE" Name="포획 마취 표시"/>
@@ -664,7 +664,7 @@
       <String ID="ENABLE_TOTAL_DAMAGE_DESC" Name="옵션이 켜져 있을 경우, 데미지 미터기 위젯은 개인의 총합 데미지를 표시합니다."/>
       <String ID="ENABLE_METER_DPS" Name="DPS 표시"/>
       <String ID="ENABLE_METER_DPS_DESC" Name="옵션이 켜져 있을 경우, 데미지 미터기 위젯은 개인의 DPS를 표시합니다."/>
-      <String ID="ENABLE_TIMER_IN_GL" Name="인도하는 땅/탐색에서의 타이머 사용"/>
+      <String ID="ENABLE_TIMER_IN_GL" Name="인도하는 땅/탐색에서 타이머 사용"/>
       <String ID="ENABLE_TIMER_IN_GL_DESC" Name="옵션이 켜져 있을 경우, 인도하는 땅/탐색에서 타이머가 표시됩니다."/>
       <String ID="ENABLE_ONLY_TIMER" Name="타이머만 표시"/>
       <String ID="ENABLE_ONLY_TIMER_DESC" Name="옵션이 켜져 있을 경우, 데미지 미터기 위젯은 파티의 데미지를 숨기고 타이머만 표시합니다."/>
@@ -676,7 +676,14 @@
       <String ID="STATIC_METER_PLAYER_4" Name="네번째 플레이어"/>
       <String ID="STATIC_METER_POSITION_DESC" Name="데미지 미터기 위젯의 위치를 변경합니다."/>
       <String ID="ENABLE_DAMAGE_PLOT" Name="데미지 그래프 표시"/>
-      <String ID="ENABLE_DAMAGE_PLOT_DESC" Name="옵션이 켜져 있을 경우, 데미지 그래프가 표시됩니다."/>      
+      <String ID="ENABLE_DAMAGE_PLOT_DESC" Name="옵션이 켜져 있을 경우, 데미지 그래프가 표시됩니다."/>
+      <String ID="DAMAGE_PLOT_MODE" Name="데미지 그래프 모드"/>
+      <String ID="DAMAGE_PLOT_MODE_DESC" Name="데미지 모드를 변경합니다."/>
+      <String ID="DAMAGE_PLOT_MODE_0" Name="총 누적 데미지"/>
+      <String ID="DAMAGE_PLOT_MODE_1" Name="DPS"/>
+      <String ID="DAMAGE_PLOT_POLL_INTERVAL" Name="데미지 그래프 갱신 간격"/>
+      <String ID="DAMAGE_PLOT_POLL_INTERVAL_DESC" Name="데미지 변화가 없을 때 그래프 갱신 간격입니다. 낮은 값 - 높은 CPU 사용량. &#13;(예시: 이 값을 200으로 설정하면 HunterPie는 초당 5번 갱신됩니다.)."/>
+
       <!-- Abnormalities Widget -->
       <String ID="STATIC_CREATE_ABNORM_BAR_DESC" Name="새로운 효과 바를 추가."/>
       <String ID="STATIC_REMOVE_ABNORM_BAR_DESC" Name="마지막으로 생성된 효과 바를 삭제합니다."/>
