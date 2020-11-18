@@ -274,6 +274,7 @@
     <Compile Include="GUIControls\Settings.xaml.cs">
       <DependentUpon>Settings.xaml</DependentUpon>
     </Compile>
+    <Compile Include="HunterPie.Plugins\UpdateResult.cs" />
     <Compile Include="Utils\FloatExtensions.cs" />
     <None Include="address\MonsterHunterWorld.420540.map">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>

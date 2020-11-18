@@ -14,22 +14,24 @@ namespace HunterPie.Plugins
             return !string.IsNullOrEmpty(pluginInformation.Update.UpdateUrl);
         }
 
-        public static async Task<bool> UpdateAllFiles(PluginInformation pInformation, string modPath)
+        public static async Task<UpdateResult> UpdateAllFiles(PluginInformation pInformation, string modPath)
         {
             string onlineSerializedInformation = await ReadOnlineModuleJson(pInformation.Update.UpdateUrl);
 
             if (onlineSerializedInformation is null)
             {
                 //Debugger.Error($"Failed to update plugin: {pInformation.Name}!");
-                return false;
+                return UpdateResult.Failed;
             }
 
             PluginInformation onlineInformation = JsonConvert.DeserializeObject<PluginInformation>(onlineSerializedInformation);
 
             if (!(Hunterpie.ParseVersion(Hunterpie.HUNTERPIE_VERSION) >= Hunterpie.ParseVersion(onlineInformation.Update.MinimumVersion)))
             {
-                return false;
+                return UpdateResult.Failed;
             }
+
+            var result = UpdateResult.UpToDate;
 
             foreach (string filePath in onlineInformation.Update.FileHashes.Keys)
             {
@@ -51,8 +53,10 @@ namespace HunterPie.Plugins
 
                         if (!(await DownloadFileAsync(updateurl, outputPath, filePath)))
                         {
-                            return false;
+                            return UpdateResult.Failed;
                         }
+
+                        result = UpdateResult.Updated;
                     }
                 }
                 else
@@ -61,11 +65,15 @@ namespace HunterPie.Plugins
                     string outputPath = Path.Combine(modPath, filePath);
                     if (!(await DownloadFileAsync(updateurl, outputPath, filePath)))
                     {
-                        return false;
+                        return UpdateResult.Failed;
                     }
+                    result = UpdateResult.Updated;
                 }
             }
-            return await DownloadFileAsync($"{pInformation.Update.UpdateUrl}/module.json", Path.Combine(modPath, "module.json"), "module.json");
+
+            return await DownloadFileAsync($"{pInformation.Update.UpdateUrl}/module.json", Path.Combine(modPath, "module.json"), "module.json")
+                ? result
+                : UpdateResult.Failed;
         }
 
         public static async Task<bool> DownloadFileAsync(string URL, string output, string relFilepath)

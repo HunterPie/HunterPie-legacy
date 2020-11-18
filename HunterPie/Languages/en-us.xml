@@ -794,6 +794,7 @@
       <String ID="STATIC_OPENFOLDER" Name="Open Folder"/>
       <String ID="MESSAGE_BUILD_UPLOADED" Name="Build uploaded to Honey Hunters World!"/>
       <String ID="MESSAGE_GEAR_EXPORTED" Name="Exported gear to ./DataExport!"/>
+      <String ID="STATIC_RESTART" Name="Restart now"/>
     </Notifications>
     <RichPresence>
       <String ID="RPC_DESCRIPTION_IN_MAIN_MENU" Name="In Main Menu"/>
