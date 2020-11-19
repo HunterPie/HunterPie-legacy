@@ -154,6 +154,7 @@
     <Compile Include="Core\Definitions\sMonsterRemovablePart.cs" />
     <Compile Include="Core\Definitions\sMonsterStatus.cs" />
     <Compile Include="Core\Definitions\sPlayerSkill.cs" />
+    <Compile Include="Core\Definitions\sSharpness.cs" />
     <Compile Include="Core\Definitions\sVector3.cs" />
     <Compile Include="Core\Definitions\sTenderizedPart.cs" />
     <Compile Include="Core\Definitions\Structures.cs" />
@@ -166,9 +167,11 @@
     <Compile Include="Core\Enums\GearType.cs" />
     <Compile Include="Core\Enums\HBGSpecialType.cs" />
     <Compile Include="Core\Enums\Helper.cs" />
+    <Compile Include="Core\Enums\Laurel.cs" />
     <Compile Include="Core\Enums\MonsterBarMode.cs" />
     <Compile Include="Core\Enums\NoteColorId.cs" />
     <Compile Include="Core\Enums\PlayerAilment.cs" />
+    <Compile Include="Core\Enums\SharpnessLevel.cs" />
     <Compile Include="Core\Events\AbnormalityEventArgs.cs" />
     <Compile Include="Core\Events\DaysLeftEventArgs.cs" />
     <Compile Include="Core\Events\FertilizerEventArgs.cs" />
@@ -275,7 +278,7 @@
       <DependentUpon>Settings.xaml</DependentUpon>
     </Compile>
     <Compile Include="HunterPie.Plugins\UpdateResult.cs" />
-    <Compile Include="Utils\FloatExtensions.cs" />
+    <Compile Include="Utils\GenericExtensions.cs" />
     <None Include="address\MonsterHunterWorld.420540.map">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>

@@ -17,7 +17,7 @@ namespace HunterPie.Core
 {
     public class Player
     {
-
+        #region PRIVATE
         private long playerAddress = 0x0;
         private int level;
         private int zoneId = -1;
@@ -33,6 +33,7 @@ namespace HunterPie.Core
         private float maxStamina;
         private float ailmentTimer;
         private int masterRank;
+        private Job currentWeapon;
 
         private readonly int[] harvestBoxZones =
         {
@@ -64,6 +65,7 @@ namespace HunterPie.Core
         private long LEVEL_ADDRESS { get; set; }
         private long EQUIPMENT_ADDRESS { get; set; }
         private long PlayerStructAddress { get; set; }
+        #endregion
 
         public long PlayerAddress
         {
@@ -149,6 +151,10 @@ namespace HunterPie.Core
         /// Player weapon name, in HunterPie's current localization
         /// </summary>
         public string WeaponName => GStrings.GetWeaponNameByID(WeaponID);
+
+        /// <summary>
+        /// Player weapon data memory address
+        /// </summary>
         public long ClassAddress
         {
             get => classAddress;
@@ -422,6 +428,7 @@ namespace HunterPie.Core
 
         #region Jobs
         public readonly Greatsword Greatsword = new Greatsword();
+        public readonly SwordAndShield SwordAndShield = new SwordAndShield();
         public readonly DualBlades DualBlades = new DualBlades();
         public readonly Longsword Longsword = new Longsword();
         public readonly Hammer Hammer = new Hammer();
@@ -434,6 +441,24 @@ namespace HunterPie.Core
         public readonly Bow Bow = new Bow();
         public readonly LightBowgun LightBowgun = new LightBowgun();
         public readonly HeavyBowgun HeavyBowgun = new HeavyBowgun();
+
+        /// <summary>
+        /// Pointer to the current weapon
+        /// </summary>
+        public Job CurrentWeapon
+        {
+            get => currentWeapon;
+            set
+            {
+                if (value.Type != currentWeapon.Type)
+                {
+                    LastWeapon = currentWeapon;
+                    currentWeapon = value;
+                }
+            }
+        }
+
+        public Job LastWeapon { get; private set; }
         #endregion
 
         // Threading
@@ -1242,63 +1267,94 @@ namespace HunterPie.Core
             bool HasSafiBuff = Kernel.Read<int>(AbnormAddress + 0xA04) >= 1;
             int SafiCounter = HasSafiBuff ? Kernel.Read<int>(AbnormAddress + 0x7A8) : -1;
             long weaponAddress = Kernel.ReadMultilevelPtr(Address.BASE + Address.WEAPON_MECHANICS_OFFSET, Address.Offsets.WeaponMechanicsOffsets);
-            ClassAddress = weaponAddress;
             switch ((Classes)WeaponID)
             {
                 case Classes.Greatsword:
                     GetGreatswordInformation(weaponAddress);
                     Greatsword.SafijiivaRegenCounter = SafiCounter;
+                    CurrentWeapon = Greatsword;
                     break;
                 case Classes.SwordAndShield:
+                    CurrentWeapon = SwordAndShield;
                     break;
                 case Classes.DualBlades:
                     GetDualBladesInformation(weaponAddress);
                     DualBlades.SafijiivaRegenCounter = SafiCounter;
+                    CurrentWeapon = DualBlades;
                     break;
                 case Classes.LongSword:
                     GetLongswordInformation(weaponAddress);
                     Longsword.SafijiivaRegenCounter = SafiCounter;
+                    CurrentWeapon = Longsword;
                     break;
                 case Classes.Hammer:
                     GetHammerInformation(weaponAddress);
                     Hammer.SafijiivaRegenCounter = SafiCounter;
+                    CurrentWeapon = Hammer;
                     break;
                 case Classes.HuntingHorn:
                     GetHuntingHornInformation(weaponAddress);
                     HuntingHorn.SafijiivaRegenCounter = SafiCounter;
+                    CurrentWeapon = HuntingHorn;
                     break;
                 case Classes.Lance:
                     Lance.SafijiivaRegenCounter = SafiCounter;
+                    CurrentWeapon = Lance;
                     break;
                 case Classes.GunLance:
                     GetGunLanceInformation(weaponAddress, AbnormAddress);
                     GunLance.SafijiivaRegenCounter = SafiCounter;
+                    CurrentWeapon = GunLance;
                     break;
                 case Classes.SwitchAxe:
                     GetSwitchAxeInformation(weaponAddress, AbnormAddress);
                     SwitchAxe.SafijiivaRegenCounter = SafiCounter;
+                    CurrentWeapon = SwitchAxe;
                     break;
                 case Classes.ChargeBlade:
                     GetChargeBladeInformation(weaponAddress);
                     ChargeBlade.SafijiivaRegenCounter = SafiCounter;
+                    CurrentWeapon = ChargeBlade;
                     break;
                 case Classes.InsectGlaive:
                     GetInsectGlaiveInformation(weaponAddress);
                     InsectGlaive.SafijiivaRegenCounter = SafiCounter;
+                    CurrentWeapon = InsectGlaive;
                     break;
                 case Classes.Bow:
                     GetBowInformation(weaponAddress);
                     Bow.SafijiivaRegenCounter = SafiCounter;
+                    CurrentWeapon = Bow;
                     break;
                 case Classes.HeavyBowgun:
                     GetHeavyBowgunInformation(weaponAddress);
                     HeavyBowgun.SafijiivaRegenCounter = SafiCounter;
+                    CurrentWeapon = HeavyBowgun;
                     break;
                 case Classes.LightBowgun:
                     GetLightBowgunInformation(weaponAddress);
                     LightBowgun.SafijiivaRegenCounter = SafiCounter;
+                    CurrentWeapon = LightBowgun;
                     break;
             }
+            GetWeaponSharpness(weaponAddress);
+            ClassAddress = weaponAddress;
+        }
+
+        private void GetWeaponSharpness(long weaponAddress)
+        {
+            long weaponDataPtr = Kernel.ReadMultilevelPtr(Address.BASE + Address.WEAPON_DATA_OFFSET, Address.Offsets.WeaponDataOffsets);
+            int rcx = Kernel.Read<int>(weaponAddress - 0x236C + 0x1D0C);
+            // weaponDataPtr is our rax
+            // mov  rax,[rax+rcx*8] ; This will give us the pointer to the weapon sharpness array
+            // Weapon sharpness data is located in rax + 0x0C
+            long weaponSharpnessPtr = Kernel.ReadMultilevelPtr(weaponDataPtr, new int[] { rcx * 8, 0x0C });
+            short[] weaponSharpnessData = Kernel.ReadStructure<short>(weaponSharpnessPtr, 7);
+            sSharpness weaponSharpness = Kernel.ReadStructure<sSharpness>(weaponAddress - 0x274);
+
+            CurrentWeapon.Sharpnesses = weaponSharpnessData;
+            CurrentWeapon.SharpnessLevel = weaponSharpness.Level;
+            CurrentWeapon.Sharpness = weaponSharpness.Sharpness;
         }
 
         private void GetHuntingHornInformation(long weaponAddress)
