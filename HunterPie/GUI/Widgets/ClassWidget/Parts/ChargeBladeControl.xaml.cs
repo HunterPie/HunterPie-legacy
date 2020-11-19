@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Windows;
 using HunterPie.Core.Jobs;
+using HunterPie.Core.Events;
 using ChargeBlade = HunterPie.Core.Jobs.ChargeBlade;
 using ChargeBladeEventArgs = HunterPie.Core.Jobs.ChargeBladeEventArgs;
 

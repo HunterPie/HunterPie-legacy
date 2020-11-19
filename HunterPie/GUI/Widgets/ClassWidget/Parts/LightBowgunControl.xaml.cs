@@ -7,6 +7,7 @@ using HunterPie.Core;
 using HunterPie.Core.Craft;
 using HunterPie.Core.Definitions;
 using HunterPie.Core.Jobs;
+using HunterPie.Core.Events;
 
 namespace HunterPie.GUI.Widgets.ClassWidget.Parts
 {

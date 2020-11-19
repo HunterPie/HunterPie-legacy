@@ -3,6 +3,7 @@ using System.Windows;
 using HunterPie.Core.Jobs;
 using SwitchAxe = HunterPie.Core.Jobs.SwitchAxe;
 using SwitchAxeEventArgs = HunterPie.Core.Jobs.SwitchAxeEventArgs;
+using HunterPie.Core.Events;
 
 namespace HunterPie.GUI.Widgets.ClassWidget.Parts
 {

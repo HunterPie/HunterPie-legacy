@@ -15,7 +15,7 @@
                 </TextBlock.Effect>
             </TextBlock>
             <StackPanel x:Name="AilmentDisplay" Orientation="Horizontal" Margin="10,0,0,0">
-                
+
             </StackPanel>
         </StackPanel>
         <!-- Player stamina bar -->
@@ -48,9 +48,22 @@
             </parts:HealthBar.RenderTransform>
         </parts:HealthBar>
 
+        <!-- Sharpness Component -->
+        <Image Source="pack://siteoforigin:,,,/HunterPie.Resources/UI/HUD/sharpness_background.png" HorizontalAlignment="Left" Width="78" Height="18" VerticalAlignment="Top" Margin="62,48,0,0" />
+        <Rectangle HorizontalAlignment="Left" Width="{Binding ElementName=PlayerHealthComponent, Path=Sharpness}" MaxWidth="52" Height="11" VerticalAlignment="Top" Margin="88,51,0,0" Fill="{Binding ElementName=PlayerHealthComponent, Path=SharpnessColor}" StrokeThickness="0" >
+            <Rectangle.OpacityMask>
+                <ImageBrush ImageSource="pack://siteoforigin:,,,/HunterPie.Resources/UI/HUD/sharpness_blade.png" AlignmentX="Left" ViewportUnits="Absolute" Viewport="0,0,49.5,11.5"/>
+            </Rectangle.OpacityMask>
+        </Rectangle>
+        <Rectangle HorizontalAlignment="Left" Width="79" Height="18" VerticalAlignment="Top" Margin="62,48,0,0" Fill="{Binding ElementName=PlayerHealthComponent, Path=SharpnessColor}" StrokeThickness="0" >
+            <Rectangle.OpacityMask>
+                <ImageBrush ImageSource="pack://siteoforigin:,,,/HunterPie.Resources/UI/HUD/sharpness_effect.png" AlignmentX="Left" ViewportUnits="Absolute" Viewport="0,0,77,17.5" Opacity="0.7"/>
+            </Rectangle.OpacityMask>
+        </Rectangle>
+        
         <Image Source="pack://siteoforigin:,,,/HunterPie.Resources/UI/HUD/mr_time_background.png" HorizontalAlignment="Left" Width="57" Height="60" VerticalAlignment="Top" Margin="2,1,0,0"/>
         <Image Source="{Binding ElementName=PlayerHealthComponent, Path=DayTimeIcon}" HorizontalAlignment="Left" Width="57" Height="60" VerticalAlignment="Top" Margin="2,1,0,0"/>
-        <Image Source="pack://siteoforigin:,,,/HunterPie.Resources/UI/HUD/mr_laurel_gold.png" HorizontalAlignment="Left" Width="57" Height="60" VerticalAlignment="Top" Margin="2,1,0,0" OpacityMask="#B2000000"/>
+        <Image Source="{Binding ElementName=PlayerHealthComponent, Path=PlayerLaurel}" HorizontalAlignment="Left" Width="57" Height="60" VerticalAlignment="Top" Margin="2,1,0,0" OpacityMask="#B2000000"/>
 
     </Grid>
 </local:Widget>

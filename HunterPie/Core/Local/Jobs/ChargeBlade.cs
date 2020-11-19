@@ -1,4 +1,5 @@
 ﻿using System;
+using HunterPie.Core.Enums;
 
 namespace HunterPie.Core.Jobs
 {
@@ -26,6 +27,9 @@ namespace HunterPie.Core.Jobs
         private float swordBuffTimer;
         private int vials;
         private float poweraxeTimer;
+
+        public override Classes Type => Classes.ChargeBlade;
+        public override bool IsMelee => true;
 
         public float VialChargeGauge
         {

@@ -1,4 +1,5 @@
 ﻿using System;
+using HunterPie.Core.Enums;
 
 namespace HunterPie.Core.Jobs
 {
@@ -26,6 +27,10 @@ namespace HunterPie.Core.Jobs
         private float outerGauge;
         private float helmBreakerBlink;
         private float iaiSlashBlink;
+
+        public override int SafijiivaMaxHits => 6;
+        public override Classes Type => Classes.LongSword;
+        public override bool IsMelee => true;
 
         public float InnerGauge
         {
@@ -87,7 +92,6 @@ namespace HunterPie.Core.Jobs
                 }
             }
         }
-        public override int SafijiivaMaxHits => 6;
 
         public delegate void LongswordEvents(object source, LongswordEventArgs args);
         public event LongswordEvents OnInnerGaugeChange;

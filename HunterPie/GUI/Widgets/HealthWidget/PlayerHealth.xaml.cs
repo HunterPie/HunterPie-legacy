@@ -4,6 +4,8 @@ using System.Windows.Threading;
 using HunterPie.Core;
 using HunterPie.Core.Events;
 using HunterPie.Core.Enums;
+using System.Windows.Media;
+using HunterPie.Logger;
 
 namespace HunterPie.GUI.Widgets.HealthWidget
 {
@@ -14,6 +16,8 @@ namespace HunterPie.GUI.Widgets.HealthWidget
     {
         private Game gContext { get; set; }
         private Player Context => gContext.Player;
+
+        private const double SharpnessMaxWidth = 50;
 
         public string PlayerName
         {
@@ -39,6 +43,21 @@ namespace HunterPie.GUI.Widgets.HealthWidget
         public static readonly DependencyProperty PlayerLaurelProperty =
             DependencyProperty.Register("PlayerLaurel", typeof(string), typeof(PlayerHealth));
 
+        public Brush SharpnessColor
+        {
+            get { return (Brush)GetValue(SharpnessColorProperty); }
+            set { SetValue(SharpnessColorProperty, value); }
+        }
+        public static readonly DependencyProperty SharpnessColorProperty =
+            DependencyProperty.Register("SharpnessColor", typeof(Brush), typeof(PlayerHealth));
+
+        public double Sharpness
+        {
+            get { return (double)GetValue(SharpnessProperty); }
+            set { SetValue(SharpnessProperty, value); }
+        }
+        public static readonly DependencyProperty SharpnessProperty =
+            DependencyProperty.Register("Sharpness", typeof(double), typeof(PlayerHealth));
 
         public PlayerHealth(Game ctx)
         {
@@ -86,6 +105,10 @@ namespace HunterPie.GUI.Widgets.HealthWidget
         {
             OnMaxStaminaUpdate(this, new PlayerStaminaEventArgs(Context));
             OnMaxHealthUpdate(this, new PlayerHealthEventArgs(Context));
+            if (Context.CurrentWeapon != null)
+            {
+                OnSharpnessLevelChange(this, new SharpnessEventArgs(Context.CurrentWeapon));
+            }
         }
 
         private void HookEvents()
@@ -99,6 +122,15 @@ namespace HunterPie.GUI.Widgets.HealthWidget
             Context.OnMaxStaminaUpdate += OnMaxStaminaUpdate;
             Context.OnAilmentUpdate += OnAilmentUpdate;
             Context.OnLevelChange += OnLevelChange;
+
+            if (Context.CurrentWeapon != null)
+            {
+                Context.CurrentWeapon.OnSharpnessChange += OnSharpnessChange;
+                Context.CurrentWeapon.OnSharpnessLevelChange += OnSharpnessLevelChange;
+            }
+
+            Context.OnClassChange += OnClassChange;
+
         }
 
         public void UnhookEvents()
@@ -112,6 +144,14 @@ namespace HunterPie.GUI.Widgets.HealthWidget
             Context.OnMaxStaminaUpdate -= OnMaxStaminaUpdate;
             Context.OnAilmentUpdate -= OnAilmentUpdate;
             Context.OnLevelChange += OnLevelChange;
+
+            if (Context.CurrentWeapon != null)
+            {
+                Context.CurrentWeapon.OnSharpnessChange -= OnSharpnessChange;
+                Context.CurrentWeapon.OnSharpnessLevelChange -= OnSharpnessLevelChange;
+            }
+
+            Context.OnClassChange -= OnClassChange;
         }
 
         private void OnWorldDayTimeUpdate(object source, WorldEventArgs args)
@@ -136,6 +176,49 @@ namespace HunterPie.GUI.Widgets.HealthWidget
                         DayTimeIcon = null;
                         break;
                 }
+            }));
+        }
+
+        private void OnClassChange(object source, EventArgs args)
+        {
+            Dispatcher.BeginInvoke(DispatcherPriority.Render, new Action(() =>
+            {
+                if (Context.LastWeapon != null)
+                {
+                    Context.LastWeapon.OnSharpnessChange -= OnSharpnessChange;
+                    Context.LastWeapon.OnSharpnessLevelChange -= OnSharpnessLevelChange;
+                }
+                // To avoid hooking twice
+                Context.CurrentWeapon.OnSharpnessChange -= OnSharpnessChange;
+                Context.CurrentWeapon.OnSharpnessLevelChange -= OnSharpnessLevelChange;
+                Context.CurrentWeapon.OnSharpnessChange += OnSharpnessChange;
+                Context.CurrentWeapon.OnSharpnessLevelChange += OnSharpnessLevelChange;
+
+                OnSharpnessLevelChange(this, new SharpnessEventArgs(Context.CurrentWeapon));
+            }));
+        }
+
+        private void OnSharpnessLevelChange(object source, SharpnessEventArgs args)
+        {
+            Dispatcher.BeginInvoke(DispatcherPriority.Render, new Action(() =>
+            {
+                object color = TryFindResource($"SHARPNESS_{(args.Level).ToString().ToUpperInvariant()}");
+
+                if (color != null)
+                {
+                    SharpnessColor = color as Brush;
+                }
+
+                Sharpness = (args.Sharpness / (double)args.Max) * SharpnessMaxWidth;
+            }));
+        }
+
+        private void OnSharpnessChange(object source, SharpnessEventArgs args)
+        {
+            Dispatcher.BeginInvoke(DispatcherPriority.Render, new Action(() =>
+            {
+                int min = Math.Min(args.MaximumSharpness, args.Max);
+                Sharpness = ((args.Sharpness - args.Min) / (double)(min - args.Min)) * SharpnessMaxWidth;
             }));
         }
 

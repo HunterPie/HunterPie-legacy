@@ -1,4 +1,5 @@
 ﻿using System;
+using HunterPie.Core.Enums;
 
 namespace HunterPie.Core.Jobs
 {
@@ -20,6 +21,10 @@ namespace HunterPie.Core.Jobs
         private bool isPowerCharged;
         private int chargeLevel;
         private float chargeProgress;
+
+        public override int SafijiivaMaxHits => 7;
+        public override Classes Type => Classes.Hammer;
+        public override bool IsMelee => true;
 
         public bool IsPowerCharged
         {
@@ -57,7 +62,6 @@ namespace HunterPie.Core.Jobs
                 }
             }
         }
-        public override int SafijiivaMaxHits => 7;
 
         public delegate void HammerEvents(object source, HammerEventArgs args);
         public event HammerEvents OnPowerChargeStateChange;

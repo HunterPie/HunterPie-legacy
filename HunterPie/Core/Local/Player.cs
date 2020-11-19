@@ -450,7 +450,7 @@ namespace HunterPie.Core
             get => currentWeapon;
             set
             {
-                if (value.Type != currentWeapon.Type)
+                if (currentWeapon is null || value.Type != currentWeapon.Type)
                 {
                     LastWeapon = currentWeapon;
                     currentWeapon = value;

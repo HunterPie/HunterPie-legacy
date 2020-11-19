@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Windows;
 using HunterPie.Core.Jobs;
+using HunterPie.Core.Events;
 
 namespace HunterPie.GUI.Widgets.ClassWidget.Parts
 {
@@ -10,7 +11,7 @@ namespace HunterPie.GUI.Widgets.ClassWidget.Parts
     public partial class BowControl : ClassControl
     {
 
-        Bow Context;
+        Bow Context { get; set; }
 
         public int MaxChargeLevel
         {

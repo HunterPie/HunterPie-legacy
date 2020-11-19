@@ -1,4 +1,5 @@
 ﻿using System;
+using HunterPie.Core.Enums;
 
 namespace HunterPie.Core.Jobs
 {
@@ -36,6 +37,11 @@ namespace HunterPie.Core.Jobs
         private float wyvernsFireTimer;
         private float wyvernstakeBlastTimer;
         private bool hasWyvernstakeLoaded;
+
+
+        public override int SafijiivaMaxHits => 8;
+        public override Classes Type => Classes.GunLance;
+        public override bool IsMelee => true;
 
         public int TotalAmmo
         {
@@ -123,7 +129,6 @@ namespace HunterPie.Core.Jobs
                 }
             }
         }
-        public override int SafijiivaMaxHits => 8;
 
         public delegate void GunLanceEvents(object source, GunLanceEventArgs args);
         public event GunLanceEvents OnTotalAmmoChange;

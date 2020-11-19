@@ -62,6 +62,10 @@ namespace HunterPie.Core.Jobs
         private sEquippedAmmo equippedAmmo;
         private sAmmo[] ammos;
 
+        public override int SafijiivaMaxHits => 7;
+        public override Classes Type => Classes.HeavyBowgun;
+        public override bool IsMelee => false;
+
         public IReadOnlyCollection<sAmmo> Ammos => ammos;
         public float ScopeZoomMultiplier
         {
@@ -140,7 +144,6 @@ namespace HunterPie.Core.Jobs
         }
         public float FocusMultiplier { get; private set; } = 1;
         public HBGSpecialType SpecialAmmoType { get; private set; }
-        public override int SafijiivaMaxHits => 7;
 
         public const float WyvernheartMaxAmmo = 50;
         public const float WyvernsniperMaxTimer = 80;

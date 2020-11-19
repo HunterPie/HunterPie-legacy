@@ -33,7 +33,13 @@
     <SolidColorBrush x:Key="MONSTER_AILMENT_COLOR_MISC">#97b3bf</SolidColorBrush>
     <SolidColorBrush x:Key="MONSTER_AILMENT_COLOR_ENRAGE">#c43939</SolidColorBrush>
 
-
+    <SolidColorBrush x:Key="SHARPNESS_RED">#bf615c</SolidColorBrush>
+    <SolidColorBrush x:Key="SHARPNESS_ORANGE">#d9682b</SolidColorBrush>
+    <SolidColorBrush x:Key="SHARPNESS_YELLOW">#d9b02b</SolidColorBrush>
+    <SolidColorBrush x:Key="SHARPNESS_GREEN">#7fd92b</SolidColorBrush>
+    <SolidColorBrush x:Key="SHARPNESS_BLUE">#5c8abf</SolidColorBrush>
+    <SolidColorBrush x:Key="SHARPNESS_WHITE">#ededed</SolidColorBrush>
+    <SolidColorBrush x:Key="SHARPNESS_PURPLE">#a07ad6</SolidColorBrush>
     <!-- Overlay -->
 
     <!-- Design mode debug text -->

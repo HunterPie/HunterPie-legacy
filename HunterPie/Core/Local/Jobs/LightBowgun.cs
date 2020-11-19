@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Security.Cryptography.X509Certificates;
 using HunterPie.Core.Definitions;
+using HunterPie.Core.Enums;
 
 namespace HunterPie.Core.Jobs
 {
@@ -37,6 +38,10 @@ namespace HunterPie.Core.Jobs
         private int ammo;
         private sEquippedAmmo equippedAmmo;
         private sAmmo[] ammos;
+
+        public override int SafijiivaMaxHits => 10;
+        public override Classes Type => Classes.LightBowgun;
+        public override bool IsMelee => false;
 
         public IReadOnlyCollection<sAmmo> Ammos => ammos;
         public int GroundAmmo
@@ -87,7 +92,6 @@ namespace HunterPie.Core.Jobs
                 }
             }
         }
-        public override int SafijiivaMaxHits => 10;
 
         internal void UpdateInformation(LightBowgunInformation rawData, sAmmo[] ammoList)
         {

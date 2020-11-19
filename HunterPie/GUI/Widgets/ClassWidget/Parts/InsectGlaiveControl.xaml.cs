@@ -4,6 +4,7 @@ using HunterPie.Core.Jobs;
 using InsectGlaive = HunterPie.Core.Jobs.InsectGlaive;
 using InsectGlaiveEventArgs = HunterPie.Core.Jobs.InsectGlaiveEventArgs;
 using KinsectChargeBuff = HunterPie.Core.Jobs.KinsectChargeBuff;
+using HunterPie.Core.Events;
 
 namespace HunterPie.GUI.Widgets.ClassWidget.Parts
 {

@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Linq;
 using System.Windows;
-using JobEventArgs = HunterPie.Core.Jobs.JobEventArgs;
+using JobEventArgs = HunterPie.Core.Events.JobEventArgs;
 using Longsword = HunterPie.Core.Jobs.Longsword;
 using LongswordEventArgs = HunterPie.Core.Jobs.LongswordEventArgs;
 

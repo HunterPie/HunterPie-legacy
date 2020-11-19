@@ -1,4 +1,5 @@
 ﻿using System;
+using HunterPie.Core.Enums;
 
 namespace HunterPie.Core.Jobs
 {
@@ -48,6 +49,10 @@ namespace HunterPie.Core.Jobs
         private int buffQueueSize;
         private int firstBuffQueued;
         private int secondBuffQueued;
+
+        public override int SafijiivaMaxHits => 10;
+        public override Classes Type => Classes.InsectGlaive;
+        public override bool IsMelee => true;
 
         public float RedBuff
         {
@@ -169,7 +174,6 @@ namespace HunterPie.Core.Jobs
                 }
             }
         }
-        public override int SafijiivaMaxHits => 10;
 
         public delegate void InsectGlaiveEvents(object source, InsectGlaiveEventArgs args);
         public event InsectGlaiveEvents OnRedBuffUpdate;

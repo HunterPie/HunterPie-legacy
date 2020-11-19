@@ -4,6 +4,7 @@ using System.Windows.Threading;
 using System;
 using System.Linq;
 using HunterPie.Logger;
+using HunterPie.Core.Events;
 
 namespace HunterPie.GUI.Widgets.ClassWidget.Parts
 {

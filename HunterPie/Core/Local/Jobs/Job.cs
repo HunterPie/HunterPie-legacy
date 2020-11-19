@@ -12,6 +12,8 @@ namespace HunterPie.Core.Jobs
         */
         private int safijiivaRegenCounter;
         private bool isWeaponSheathed;
+        private int sharpness;
+        private SharpnessLevel sharpnessLevel;
 
         public abstract Classes Type { get; }
 
@@ -41,8 +43,32 @@ namespace HunterPie.Core.Jobs
             }
         }
         public abstract bool IsMelee { get; }
-        public int Sharpness { get; internal set; }
-        public SharpnessLevel SharpnessLevel { get; internal set; }
+        public int Sharpness
+        {
+            get => sharpness;
+            internal set
+            {
+                if (value != sharpness)
+                {
+                    MaximumSharpness = Math.Max(MaximumSharpness, value);
+                    sharpness = value;
+                    Dispatch(OnSharpnessChange);
+                }
+            }
+        }
+        public int MaximumSharpness { get; private set; }
+        public SharpnessLevel SharpnessLevel
+        {
+            get => sharpnessLevel;
+            internal set
+            {
+                if (value != sharpnessLevel)
+                {
+                    sharpnessLevel = value;
+                    Dispatch(OnSharpnessLevelChange);
+                }
+            }
+        }
         public short[] Sharpnesses { get; internal set; }
         public int SharpnessMax
         {

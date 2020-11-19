@@ -1,4 +1,5 @@
 ﻿using System;
+using HunterPie.Core.Enums;
 using HunterPie.Logger;
 
 namespace HunterPie.Core.Jobs
@@ -32,6 +33,10 @@ namespace HunterPie.Core.Jobs
         private uint chargeLevel;
         private float chargeTimer;
 
+        public override int SafijiivaMaxHits => 5;
+        public override Classes Type => Classes.Greatsword;
+        public override bool IsMelee => true;
+
         public uint ChargeLevel
         {
             get => chargeLevel;
@@ -58,8 +63,6 @@ namespace HunterPie.Core.Jobs
                 }
             }
         }
-
-        public override int SafijiivaMaxHits => 5;
 
         public delegate void GreatswordEvents(object source, GreatswordEventArgs args);
         public event GreatswordEvents OnChargeLevelChange;

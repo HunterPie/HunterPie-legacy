@@ -1,4 +1,5 @@
 ﻿using System;
+using HunterPie.Core.Enums;
 
 namespace HunterPie.Core.Jobs
 {
@@ -20,6 +21,11 @@ namespace HunterPie.Core.Jobs
         private float chargeProgress;
         private int maxChargeLevel;
         private int chargeLevel;
+
+
+        public override int SafijiivaMaxHits => 8;
+        public override Classes Type => Classes.Bow;
+        public override bool IsMelee => false;
 
         public float ChargeProgress
         {
@@ -57,7 +63,6 @@ namespace HunterPie.Core.Jobs
                 }
             }
         }
-        public override int SafijiivaMaxHits => 8;
 
         public delegate void BowEvents(object source, BowEventArgs args);
         public event BowEvents OnChargeLevelChange;

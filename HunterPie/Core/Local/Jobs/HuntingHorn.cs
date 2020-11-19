@@ -33,6 +33,10 @@ namespace HunterPie.Core.Jobs
         #endregion
 
         #region Public properties
+        public override int SafijiivaMaxHits => 5;
+        public override Classes Type => Classes.HuntingHorn;
+        public override bool IsMelee => true;
+
         public sHuntingHornSong[] Songs => songs;
         public sHuntingHornSong[] SongCandidates => FindSongCandidates();
         
@@ -197,8 +201,6 @@ namespace HunterPie.Core.Jobs
             }
         }
         #endregion
-
-        public override int SafijiivaMaxHits => 5;
 
         #region Events
         public delegate void HuntingHornEvents(object source, HuntingHornEventArgs args);

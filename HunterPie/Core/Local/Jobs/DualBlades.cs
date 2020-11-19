@@ -1,4 +1,5 @@
 ﻿using System;
+using HunterPie.Core.Enums;
 
 namespace HunterPie.Core.Jobs
 {
@@ -20,6 +21,10 @@ namespace HunterPie.Core.Jobs
         private bool inDemonMode;
         private bool isReducing;
         private float demonGauge;
+
+        public override int SafijiivaMaxHits => 20;
+        public override Classes Type => Classes.DualBlades;
+        public override bool IsMelee => true;
 
         public bool InDemonMode
         {
@@ -57,8 +62,7 @@ namespace HunterPie.Core.Jobs
                 }
             }
         }
-        public override int SafijiivaMaxHits => 20;
-
+        
         public delegate void DualBladesEvents(object source, DualBladesEventArgs args);
         public event DualBladesEvents OnDemonModeToggle;
         public event DualBladesEvents OnDemonGaugeChange;

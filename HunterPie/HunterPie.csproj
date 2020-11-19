@@ -181,6 +181,7 @@
     <Compile Include="Core\Events\HuntingHornSongCastEventArgs.cs" />
     <Compile Include="Core\Events\HuntingHornSongEventArgs.cs" />
     <Compile Include="Core\Events\InventoryUpdatedEventArgs.cs" />
+    <Compile Include="Core\Events\JobEventArgs.cs" />
     <Compile Include="Core\Events\MantleEventArgs.cs" />
     <Compile Include="Core\Events\MonsterAilmentEventArgs.cs" />
     <Compile Include="Core\Events\MonsterPartEventArgs.cs" />
@@ -192,6 +193,7 @@
     <Compile Include="Core\Events\PlayerHealthEventArgs.cs" />
     <Compile Include="Core\Events\PlayerLocationEventArgs.cs" />
     <Compile Include="Core\Events\PlayerStaminaEventArgs.cs" />
+    <Compile Include="Core\Events\SharpnessEventArgs.cs" />
     <Compile Include="Core\Events\SteamFuelEventArgs.cs" />
     <Compile Include="Core\Craft\Crafting.cs" />
     <Compile Include="Core\Events\WorldEventArgs.cs" />
@@ -1197,6 +1199,17 @@
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
     <None Include="HunterPie.Resources\UI\HUD\mr_time_night.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="HunterPie.Resources\UI\HUD\sharpness_background.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="HunterPie.Resources\UI\HUD\sharpness_blade.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="HunterPie.Resources\UI\HUD\sharpness_effect.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
   </ItemGroup>

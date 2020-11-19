@@ -1,4 +1,5 @@
 ﻿using System;
+using HunterPie.Core.Enums;
 
 namespace HunterPie.Core.Jobs
 {
@@ -30,6 +31,10 @@ namespace HunterPie.Core.Jobs
         private float innerGauge;
         private float switchAxeBuffTimer;
         private bool isBuffActive;
+
+        public override int SafijiivaMaxHits => 6;
+        public override Classes Type => Classes.SwitchAxe;
+        public override bool IsMelee => true;
 
         public float OuterGauge
         {
@@ -93,7 +98,6 @@ namespace HunterPie.Core.Jobs
                 }
             }
         }
-        public override int SafijiivaMaxHits => 6;
 
         public delegate void SwitchAxeEvents(object source, SwitchAxeEventArgs args);
         public event SwitchAxeEvents OnOuterGaugeChange;
