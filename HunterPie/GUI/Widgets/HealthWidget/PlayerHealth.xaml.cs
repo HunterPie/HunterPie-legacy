@@ -31,6 +31,15 @@ namespace HunterPie.GUI.Widgets.HealthWidget
         public static readonly DependencyProperty DayTimeIconProperty =
             DependencyProperty.Register("DayTimeIcon", typeof(string), typeof(PlayerHealth));
 
+        public string PlayerLaurel
+        {
+            get { return (string)GetValue(PlayerLaurelProperty); }
+            set { SetValue(PlayerLaurelProperty, value); }
+        }
+        public static readonly DependencyProperty PlayerLaurelProperty =
+            DependencyProperty.Register("PlayerLaurel", typeof(string), typeof(PlayerHealth));
+
+
         public PlayerHealth(Game ctx)
         {
             WidgetType = 7;
@@ -137,6 +146,29 @@ namespace HunterPie.GUI.Widgets.HealthWidget
                 PlayerEventArgs e = (PlayerEventArgs)args;
                 // We update the name string
                 PlayerName = $"Lv. {e.Level} {e.Name}";
+                // And the laurel
+                string laurel = "pack://siteoforigin:,,,/HunterPie.Resources/UI/HUD/";
+
+                switch (Player.GetLaurelFromLevel(e.MasterRank))
+                {
+                    case Laurel.Copper:
+                        laurel += "mr_laurel_copper";
+                        break;
+                    case Laurel.Silver:
+                        laurel += "mr_laurel_silver";
+                        break;
+                    case Laurel.Gold:
+                        laurel += "mr_laurel_gold";
+                        break;
+                    case Laurel.Diamond:
+                        laurel += "mr_laurel_diamond";
+                        break;
+                    default:
+                        laurel += "mr_laurel_iron";
+                        break;
+                }
+                laurel += ".png";
+                PlayerLaurel = laurel;
             }));
         }
 

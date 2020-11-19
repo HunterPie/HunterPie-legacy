@@ -11,6 +11,7 @@ using HunterPie.Core.Events;
 using Classes = HunterPie.Core.Enums.Classes;
 using AbnormalityType = HunterPie.Core.Enums.AbnormalityType;
 using HunterPie.Core.Enums;
+using HunterPie.Utils;
 
 namespace HunterPie.Core
 {
@@ -1518,5 +1519,21 @@ namespace HunterPie.Core
                 return 1.0f + (float)Math.Pow(2, level - 1) / 10.0f;
             }
         }
+
+        #region Static Helpers
+
+        public static Laurel GetLaurelFromLevel(int level)
+        {
+            if (level.IsWithin(0, 15)) return Laurel.Iron;
+            if (level.IsWithin(16, 30)) return Laurel.Copper;
+            if (level.IsWithin(31, 80)) return Laurel.Silver;
+            if (level.IsWithin(81, 300)) return Laurel.Gold;
+            if (level.IsWithin(301, 1000)) return Laurel.Diamond;
+
+            return Laurel.Iron;
+        }
+
+        #endregion
+
     }
 }

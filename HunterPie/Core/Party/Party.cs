@@ -69,7 +69,7 @@ namespace HunterPie.Core
                 return x;
             }
         }
-        public int MaxSize = 4;
+        public int MaxSize => 4;
 
         public Party()
         {
