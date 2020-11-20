@@ -103,8 +103,8 @@ namespace HunterPie.GUI.Widgets.HealthWidget
 
         private void UpdateInformation()
         {
-            OnMaxStaminaUpdate(this, new PlayerStaminaEventArgs(Context));
-            OnMaxHealthUpdate(this, new PlayerHealthEventArgs(Context));
+            OnMaxStaminaUpdate(this, new PlayerStaminaEventArgs(Context.Stamina));
+            OnMaxHealthUpdate(this, new PlayerHealthEventArgs(Context.Health));
             if (Context.CurrentWeapon != null)
             {
                 OnSharpnessLevelChange(this, new SharpnessEventArgs(Context.CurrentWeapon));
@@ -114,12 +114,12 @@ namespace HunterPie.GUI.Widgets.HealthWidget
         private void HookEvents()
         {
             gContext.OnWorldDayTimeUpdate += OnWorldDayTimeUpdate;
-            Context.OnHealthUpdate += OnHealthUpdate;
-            Context.OnMaxHealthUpdate += OnMaxHealthUpdate;
-            Context.OnHealHealth += OnHealHealth;
-            Context.OnRedHealthUpdate += OnRedHealthUpdate;
-            Context.OnStaminaUpdate += OnStaminaUpdate;
-            Context.OnMaxStaminaUpdate += OnMaxStaminaUpdate;
+            Context.Health.OnHealthUpdate += OnHealthUpdate;
+            Context.Health.OnMaxHealthUpdate += OnMaxHealthUpdate;
+            Context.Health.OnHealHealth += OnHealHealth;
+            Context.Health.OnRedHealthUpdate += OnRedHealthUpdate;
+            Context.Stamina.OnStaminaUpdate += OnStaminaUpdate;
+            Context.Stamina.OnMaxStaminaUpdate += OnMaxStaminaUpdate;
             Context.OnAilmentUpdate += OnAilmentUpdate;
             Context.OnLevelChange += OnLevelChange;
 
@@ -136,12 +136,12 @@ namespace HunterPie.GUI.Widgets.HealthWidget
         public void UnhookEvents()
         {
             gContext.OnWorldDayTimeUpdate -= OnWorldDayTimeUpdate;
-            Context.OnHealthUpdate -= OnHealthUpdate;
-            Context.OnMaxHealthUpdate -= OnMaxHealthUpdate;
-            Context.OnHealHealth -= OnHealHealth;
-            Context.OnRedHealthUpdate -= OnRedHealthUpdate;
-            Context.OnStaminaUpdate -= OnStaminaUpdate;
-            Context.OnMaxStaminaUpdate -= OnMaxStaminaUpdate;
+            Context.Health.OnHealthUpdate -= OnHealthUpdate;
+            Context.Health.OnMaxHealthUpdate -= OnMaxHealthUpdate;
+            Context.Health.OnHealHealth -= OnHealHealth;
+            Context.Health.OnRedHealthUpdate -= OnRedHealthUpdate;
+            Context.Stamina.OnStaminaUpdate -= OnStaminaUpdate;
+            Context.Stamina.OnMaxStaminaUpdate -= OnMaxStaminaUpdate;
             Context.OnAilmentUpdate -= OnAilmentUpdate;
             Context.OnLevelChange += OnLevelChange;
 
@@ -209,7 +209,8 @@ namespace HunterPie.GUI.Widgets.HealthWidget
                     SharpnessColor = color as Brush;
                 }
 
-                Sharpness = (args.Sharpness / (double)args.Max) * SharpnessMaxWidth;
+                int min = Math.Min(args.MaximumSharpness, args.Max);
+                Sharpness = ((args.Sharpness - args.Min) / (double)(min - args.Min)) * SharpnessMaxWidth;
             }));
         }
 

@@ -1,5 +1,6 @@
 ﻿using System;
 using HunterPie.Core.Definitions;
+using HunterPie.Core.Local;
 
 namespace HunterPie.Core.Events
 {
@@ -29,7 +30,7 @@ namespace HunterPie.Core.Events
         /// </summary>
         public float RedHealth { get; }
 
-        public PlayerHealthEventArgs(Player p)
+        public PlayerHealthEventArgs(HealthComponent p)
         {
             Health = p.Health;
             MaxHealth = p.MaxHealth;

@@ -202,6 +202,7 @@
     <Compile Include="Core\Integrations\Honey\Honey.cs" />
     <Compile Include="Core\KeyboardHook.cs" />
     <Compile Include="Core\Local\AbnormalityInfo.cs" />
+    <Compile Include="Core\Local\HealthComponent.cs" />
     <Compile Include="Core\Local\Inventory.cs" />
     <Compile Include="Core\Local\Jobs\Bow.cs" />
     <Compile Include="Core\Local\Jobs\ChargeBlade.cs" />
@@ -218,6 +219,7 @@
     <Compile Include="Core\Local\Jobs\SwitchAxe.cs" />
     <Compile Include="Core\Local\Jobs\Greatsword.cs" />
     <Compile Include="Core\Local\Jobs\SwordAndShield.cs" />
+    <Compile Include="Core\Local\StaminaComponent.cs" />
     <Compile Include="Core\Monsters\Ailment.cs" />
     <Compile Include="Core\Monsters\AilmentInfo.cs" />
     <Compile Include="Core\Monsters\MonsterData.cs" />

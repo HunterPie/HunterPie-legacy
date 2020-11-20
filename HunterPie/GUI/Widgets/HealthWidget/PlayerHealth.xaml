@@ -18,35 +18,67 @@
 
             </StackPanel>
         </StackPanel>
+
         <!-- Player stamina bar -->
-        <Custom:MinimalHealthBar x:Name="StaminaBar" Height="3" VerticalAlignment="Top" RenderTransformOrigin="0.5,1" Foreground="{x:Null}" Margin="66,39,30,0" Background="#B27E7E7E" HorizontalAlignment="Left">
-            <Custom:MinimalHealthBar.Color>
-                <LinearGradientBrush EndPoint="1,1" StartPoint="0,0">
-                    <GradientStop Color="#FFC95B32" Offset="0"/>
-                    <GradientStop Color="#FFD3A541" Offset="1"/>
-                </LinearGradientBrush>
-            </Custom:MinimalHealthBar.Color>
-            <Custom:MinimalHealthBar.RenderTransform>
-                <TransformGroup>
-                    <ScaleTransform/>
-                    <SkewTransform AngleX="-45"/>
-                    <RotateTransform/>
-                    <TranslateTransform/>
-                </TransformGroup>
-            </Custom:MinimalHealthBar.RenderTransform>
-        </Custom:MinimalHealthBar>
+        <StackPanel Orientation="Horizontal" Height="3" VerticalAlignment="Top" Margin="66,39,30,0" HorizontalAlignment="Left">
+            <Custom:MinimalHealthBar x:Name="StaminaBar" RenderTransformOrigin="0.5,1" Foreground="{x:Null}" Background="#B27E7E7E">
+                <Custom:MinimalHealthBar.Color>
+                    <LinearGradientBrush EndPoint="1,1" StartPoint="0,0">
+                        <GradientStop Color="#FFC95B32" Offset="0"/>
+                        <GradientStop Color="#FFD3A541" Offset="1"/>
+                    </LinearGradientBrush>
+                </Custom:MinimalHealthBar.Color>
+                <Custom:MinimalHealthBar.RenderTransform>
+                    <TransformGroup>
+                        <ScaleTransform/>
+                        <SkewTransform AngleX="-45"/>
+                        <RotateTransform/>
+                        <TranslateTransform/>
+                    </TransformGroup>
+                </Custom:MinimalHealthBar.RenderTransform>
+            </Custom:MinimalHealthBar>
+            <Rectangle Width="50" Fill="Transparent" RenderTransformOrigin="0.5,0.5" Stroke="#FFD3A541">
+                <Rectangle.RenderTransform>
+                    <TransformGroup>
+                        <ScaleTransform/>
+                        <SkewTransform AngleX="-45"/>
+                        <RotateTransform/>
+                        <TranslateTransform/>
+                    </TransformGroup>
+                </Rectangle.RenderTransform>
+            </Rectangle>
+        </StackPanel>
+
 
         <!-- Player Health Bar-->
-        <parts:HealthBar x:Name="HealthBar" Margin="63,29,0,0" VerticalAlignment="Top" HorizontalAlignment="Left" RenderTransformOrigin="0.5,0.5" Height="10">
-            <parts:HealthBar.RenderTransform>
-                <TransformGroup>
-                    <ScaleTransform/>
-                    <SkewTransform AngleX="45"/>
-                    <RotateTransform/>
-                    <TranslateTransform/>
-                </TransformGroup>
-            </parts:HealthBar.RenderTransform>
-        </parts:HealthBar>
+        <StackPanel Orientation="Horizontal" Margin="63,29,0,0" VerticalAlignment="Top" HorizontalAlignment="Left" Height="10">
+            <parts:HealthBar x:Name="HealthBar" RenderTransformOrigin="0.5,0.5" Height="10">
+                <parts:HealthBar.RenderTransform>
+                    <TransformGroup>
+                        <ScaleTransform/>
+                        <SkewTransform AngleX="45"/>
+                        <RotateTransform/>
+                        <TranslateTransform/>
+                    </TransformGroup>
+                </parts:HealthBar.RenderTransform>
+            </parts:HealthBar>
+            <Rectangle Width="80" RenderTransformOrigin="0.5,0.5" StrokeThickness="1.5">
+                <Rectangle.Stroke>
+                    <LinearGradientBrush EndPoint="1,1" StartPoint="0,1">
+                        <GradientStop Color="#00000000" Offset="0"/>
+                        <GradientStop Color="#FF96C31D" Offset="1"/>
+                    </LinearGradientBrush>
+                </Rectangle.Stroke>
+                <Rectangle.RenderTransform>
+                    <TransformGroup>
+                        <ScaleTransform/>
+                        <SkewTransform AngleX="45"/>
+                        <RotateTransform/>
+                        <TranslateTransform/>
+                    </TransformGroup>
+                </Rectangle.RenderTransform>
+            </Rectangle>
+        </StackPanel>
 
         <!-- Sharpness Component -->
         <Image Source="pack://siteoforigin:,,,/HunterPie.Resources/UI/HUD/sharpness_background.png" HorizontalAlignment="Left" Width="78" Height="18" VerticalAlignment="Top" Margin="62,48,0,0" />
@@ -60,7 +92,7 @@
                 <ImageBrush ImageSource="pack://siteoforigin:,,,/HunterPie.Resources/UI/HUD/sharpness_effect.png" AlignmentX="Left" ViewportUnits="Absolute" Viewport="0,0,77,17.5" Opacity="0.7"/>
             </Rectangle.OpacityMask>
         </Rectangle>
-        
+
         <Image Source="pack://siteoforigin:,,,/HunterPie.Resources/UI/HUD/mr_time_background.png" HorizontalAlignment="Left" Width="57" Height="60" VerticalAlignment="Top" Margin="2,1,0,0"/>
         <Image Source="{Binding ElementName=PlayerHealthComponent, Path=DayTimeIcon}" HorizontalAlignment="Left" Width="57" Height="60" VerticalAlignment="Top" Margin="2,1,0,0"/>
         <Image Source="{Binding ElementName=PlayerHealthComponent, Path=PlayerLaurel}" HorizontalAlignment="Left" Width="57" Height="60" VerticalAlignment="Top" Margin="2,1,0,0" OpacityMask="#B2000000"/>

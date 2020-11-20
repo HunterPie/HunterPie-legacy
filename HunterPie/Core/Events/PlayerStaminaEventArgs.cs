@@ -1,4 +1,5 @@
 ﻿using System;
+using HunterPie.Core.Local;
 
 namespace HunterPie.Core.Events
 {
@@ -18,7 +19,7 @@ namespace HunterPie.Core.Events
         /// </summary>
         public float MaxStamina { get; }
 
-        public PlayerStaminaEventArgs(Player p)
+        public PlayerStaminaEventArgs(StaminaComponent p)
         {
             Stamina = p.Stamina;
             MaxStamina = p.MaxStamina;
