@@ -8,6 +8,7 @@ using System.Windows.Media;
 using HunterPie.Logger;
 using HunterPie.GUI.Widgets.HealthWidget.Parts;
 using System.Windows.Controls;
+using HunterPie.Core.Local;
 
 namespace HunterPie.GUI.Widgets.HealthWidget
 {
@@ -166,7 +167,9 @@ namespace HunterPie.GUI.Widgets.HealthWidget
                 if (args.IsHealthExtVisible && args.MaxPossibleHealth != args.MaxHealth)
                 {
                     HealthExt.Visibility = Visibility.Visible;
-                    HealthExt.Width = (1 - (args.MaxHealth / args.MaxPossibleHealth)) * HealthBar.CWidth * (HealthBar.CWidth / HealthBar.CHealth);
+
+                    float maxHealth = Math.Min(args.MaxHealth + HealthComponent.CanIncreaseMaxHealth[args.SelectedItemId], args.MaxPossibleHealth);
+                    HealthExt.Width = (1 - (args.MaxHealth / maxHealth)) * HealthBar.CWidth * (HealthBar.CWidth / HealthBar.CHealth);
                 } else
                 {
                     HealthExt.Width = 0;

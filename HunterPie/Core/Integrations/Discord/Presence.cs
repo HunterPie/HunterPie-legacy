@@ -4,10 +4,10 @@ using HunterPie.Logger;
 
 namespace HunterPie.Core.Integrations.Discord
 {
-    public class Presence : IDisposable
+    internal class Presence : IDisposable
     {
         public bool IsDisposed { get; private set; }
-        private readonly string AppId = "567152028070051859";
+        private const string AppId = "567152028070051859";
         private bool FailedToRegisterScheme { get; set; }
         private bool isOffline = false;
         private bool isVisible = true;

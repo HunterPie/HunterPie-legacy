@@ -1,4 +1,5 @@
-﻿using HunterPie.Core.Definitions;
+﻿using System.Collections.Generic;
+using HunterPie.Core.Definitions;
 using HunterPie.Core.Events;
 
 namespace HunterPie.Core.Local
@@ -8,6 +9,24 @@ namespace HunterPie.Core.Local
     /// </summary>
     public class HealthComponent
     {
+        #region Static data
+
+        public static readonly Dictionary<int, float> CanIncreaseMaxHealth = new Dictionary<int, float>()
+        {
+            // Max Potion
+            { 3, 50 },
+            // Ancient Potion
+            { 4, 50 },
+            // Nutrients
+            { 14, 10 },
+            // Mega Nutrients
+            { 15, 20 },
+            // EZ Max Potion
+            { 185, 50 }
+        };
+
+        #endregion
+
         /// <summary>
         /// Player health
         /// </summary>
@@ -75,14 +94,16 @@ namespace HunterPie.Core.Local
         public sGuiHealth sGuiRawData { get; private set; }
         public float MaxPossibleHealth { get; private set; }
 
-        public bool IsHealthExtVisible
+        public bool IsHealthExtVisible { get; private set; }
+
+        public int SelectedItemId
         {
-            get => isHealthExtVisible;
+            get => selectedItemId;
             set
             {
-                if (value != isHealthExtVisible)
+                if (value != selectedItemId)
                 {
-                    isHealthExtVisible = value;
+                    selectedItemId = value;
                     Dispatch(OnHealthExtStateUpdate);
                 }
             }
@@ -121,7 +142,7 @@ namespace HunterPie.Core.Local
         private float maxHealth;
         private float redHealth;
         private sHealingData healHealth;
-        private bool isHealthExtVisible;
+        private int selectedItemId;
 
         private void Dispatch(PlayerHealthEvents e) => e?.Invoke(this, new PlayerHealthEventArgs(this));
 
@@ -144,7 +165,9 @@ namespace HunterPie.Core.Local
         {
             sGuiRawData = guiData;
             MaxPossibleHealth = guiData.MaxPossibleHealth;
-            IsHealthExtVisible = guiData.IsHealthExtVisible == 1;
+
+            IsHealthExtVisible = CanIncreaseMaxHealth.ContainsKey(guiData.ItemIdSelected);
+            SelectedItemId = guiData.ItemIdSelected;
         }
         #endregion
     }

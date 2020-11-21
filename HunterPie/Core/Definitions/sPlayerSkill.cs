@@ -6,7 +6,8 @@ namespace HunterPie.Core.Definitions
     public struct sPlayerSkill
     {
         public long unk0;
-        public short Level;
+        public byte LevelGear;
+        public byte LevelMantle;
         public byte unk1;
         public byte unk2;
         public int unk3;

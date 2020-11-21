@@ -17,6 +17,18 @@ namespace HunterPie.Core
 {
     public class Player
     {
+        #region Static stuff
+
+        public static readonly float[] MaximumHealthPossible = {
+            0.0f,
+            15.0f,
+            30.0f,
+            50.0f
+        };
+
+
+        #endregion
+
         #region PRIVATE
         private long playerAddress = 0x0;
         private int level;
@@ -801,19 +813,34 @@ namespace HunterPie.Core
         private void GetPlayerHealth(long address)
         {
             long cGuiHealthAddress = Kernel.ReadMultilevelPtr(Address.BASE + Address.HUD_DATA_OFFSET, Address.Offsets.gHudHealthBarOffsets);
-
-            if (cGuiHealthAddress != Kernel.NULLPTR)
-            {
-                sGuiHealth guiData = Kernel.ReadStructure<sGuiHealth>(cGuiHealthAddress + 0x460);
-                Health.Update(guiData);
-            }
-
+                     
             Health.Update(
                 maxHealth: Kernel.Read<float>(address + 0x60),
                 health: Kernel.Read<float>(address + 0x64),
                 healData: Kernel.ReadStructure<sHealingData>(Kernel.Read<long>(address + 0x30) + 0xEBB0),
                 redHealth: Kernel.Read<float>(address + 0x2DE4)
             );
+
+            if (cGuiHealthAddress != Kernel.NULLPTR)
+            {
+                sGuiHealth guiData = Kernel.ReadStructure<sGuiHealth>(cGuiHealthAddress + 0x460);
+                guiData.MaxPossibleHealth = CalculatePlayerMaximumPossibleHealth();
+                Health.Update(guiData);
+            }
+        }
+
+        /// <summary>
+        /// Calculates the maximum possible health based on set skill level
+        /// </summary>
+        /// <returns>The maximum health the player can have</returns>
+        private float CalculatePlayerMaximumPossibleHealth()
+        {
+            if (Skills != null && Skills.Length > 0)
+            {
+                sPlayerSkill vitality = Skills[(int)SetSkills.Vitality];
+                return 150.0f + MaximumHealthPossible[Math.Min(vitality.LevelGear, MaximumHealthPossible.Length - 1)];
+            }
+            return 150.0f;
         }
 
         /// <summary>
@@ -967,7 +994,7 @@ namespace HunterPie.Core
                 float multiplier;
 
                 // Adjust timer based on Focus level, because fOR SOME REASON FOCUS AFFECTS IT?????
-                switch (Math.Min(3, Skills[52].Level % 256))
+                switch (Math.Min(3, (int)Skills[(int)SetSkills.Focus].LevelGear))
                 {
                     case 1:
                         multiplier = 0.95f;
@@ -1467,7 +1494,7 @@ namespace HunterPie.Core
                 ScopeZoomMultiplier = Kernel.Read<float>(weaponAddress + 0x4D0),
                 EquippedAmmo = Kernel.ReadStructure<sEquippedAmmo>(weaponAddress + 0x454),
                 SpecialAmmoType = (HBGSpecialType)Kernel.Read<int>(weaponAddress - 0x18),
-                FocusLevel = Math.Min(3, Skills[52].Level % 256)
+                FocusLevel = Math.Min(3, (int)Skills[(int)SetSkills.Focus].LevelGear)
             };
             sAmmo[] ammos = Kernel.ReadStructure<sAmmo>(weaponAddress + 0x34, 40);
             HeavyBowgun.UpdateInformation(data, ammos);
@@ -1476,8 +1503,7 @@ namespace HunterPie.Core
 
         private float CalculatePowerProlongerMultiplier()
         {
-            short level = (short)Math.Min(3, (Skills[53].Level % 512));
-            //Debugger.Log(level);
+            short level = (short)Math.Min(3, (int)(Skills[(int)SetSkills.PowerProlonger].LevelGear));
             if (level == 0) return 1.0f;
 
             if ((Classes)WeaponID == Classes.SwitchAxe || (Classes)WeaponID == Classes.DualBlades)

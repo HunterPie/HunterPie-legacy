@@ -45,6 +45,11 @@ namespace HunterPie.Core.Events
         /// </summary>
         public bool IsHealthExtVisible { get; }
 
+        /// <summary>
+        /// Currently selected item
+        /// </summary>
+        public int SelectedItemId { get; }
+
         public PlayerHealthEventArgs(HealthComponent p)
         {
             Health = p.Health;
@@ -54,6 +59,7 @@ namespace HunterPie.Core.Events
             MaxPossibleHealth = p.MaxPossibleHealth;
             sGuiRawData = p.sGuiRawData;
             IsHealthExtVisible = p.IsHealthExtVisible;
+            SelectedItemId = p.SelectedItemId;
         }
     }
 }
