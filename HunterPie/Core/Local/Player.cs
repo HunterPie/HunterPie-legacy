@@ -771,12 +771,7 @@ namespace HunterPie.Core
         {
             long address = Kernel.ReadMultilevelPtr(Address.BASE + Address.EQUIPMENT_OFFSET, Address.Offsets.PlayerBasicInformationOffsets);
 
-            Health.Update(
-                maxHealth: Kernel.Read<float>(address + 0x60),
-                health: Kernel.Read<float>(address + 0x64),
-                healData: Kernel.ReadStructure<sHealingData>(Kernel.Read<long>(address + 0x30) + 0xEBB0),
-                redHealth: Kernel.Read<float>(address + 0x2DE4)
-            );
+            GetPlayerHealth(address);
 
             Stamina.Update(
                 maxStamina: Kernel.Read<float>(address + 0x144),
@@ -801,6 +796,24 @@ namespace HunterPie.Core
                 UpdateAbnormality(AbnormalityData.MiscAbnormalities.Where(a => a.Id == 999).FirstOrDefault(), EatTimerAddress);
             }
             GetPlayerAilment(address);
+        }
+
+        private void GetPlayerHealth(long address)
+        {
+            long cGuiHealthAddress = Kernel.ReadMultilevelPtr(Address.BASE + Address.HUD_DATA_OFFSET, Address.Offsets.gHudHealthBarOffsets);
+
+            if (cGuiHealthAddress != Kernel.NULLPTR)
+            {
+                sGuiHealth guiData = Kernel.ReadStructure<sGuiHealth>(cGuiHealthAddress + 0x460);
+                Health.Update(guiData);
+            }
+
+            Health.Update(
+                maxHealth: Kernel.Read<float>(address + 0x60),
+                health: Kernel.Read<float>(address + 0x64),
+                healData: Kernel.ReadStructure<sHealingData>(Kernel.Read<long>(address + 0x30) + 0xEBB0),
+                redHealth: Kernel.Read<float>(address + 0x2DE4)
+            );
         }
 
         /// <summary>

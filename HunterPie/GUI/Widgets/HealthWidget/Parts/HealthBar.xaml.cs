@@ -22,8 +22,8 @@ namespace HunterPie.GUI.Widgets.HealthWidget.Parts
     /// </summary>
     public partial class HealthBar : UserControl
     {
-        private const double CWidth = 200.0;
-        private const double CHealth = 100.0;
+        public const double CWidth = 200.0;
+        public const double CHealth = 100.0;
 
         public double MaxHealth
         {

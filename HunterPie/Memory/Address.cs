@@ -5,7 +5,7 @@ using HunterPie.Logger;
 
 namespace HunterPie.Memory
 {
-    // TODO: Refactor this code
+    // TODO: Refactor this code and use dictionary instead of variables
     class Address
     {
         public class Offsets
@@ -28,6 +28,8 @@ namespace HunterPie.Memory
             public static int[] PlayerPositionOffsets;
             public static int[] PlayerBasicInformationOffsets;
             public static int[] WeaponDataOffsets;
+            public static int[] gHudStaminaBarOffsets;
+            public static int[] gHudHealthBarOffsets;
 
             public static readonly int FertilizersOffset = 0x102FE4;
             public static readonly int TailRaidersOffset = 0x10344C;
@@ -67,6 +69,7 @@ namespace HunterPie.Memory
         public static long CANTEEN_OFFSET;
         public static long WORLD_DATA_OFFSET;
         public static long WEAPON_DATA_OFFSET;
+        public static long HUD_DATA_OFFSET;
 
         // Consts
         public const long CooldownFixed = 0x9EC;
@@ -185,6 +188,7 @@ namespace HunterPie.Memory
             LoadAddressFromDict(nameof(CANTEEN_OFFSET), out CANTEEN_OFFSET, CANTEEN_OFFSET);
             LoadAddressFromDict(nameof(WORLD_DATA_OFFSET), out WORLD_DATA_OFFSET, WORLD_DATA_OFFSET);
             LoadAddressFromDict(nameof(WEAPON_DATA_OFFSET), out WEAPON_DATA_OFFSET, WEAPON_DATA_OFFSET);
+            LoadAddressFromDict(nameof(HUD_DATA_OFFSET), out HUD_DATA_OFFSET, HUD_DATA_OFFSET);
             // Load offsets
             LoadOffsetsFromDict("LevelOffsets", out Offsets.LevelOffsets);
             LoadOffsetsFromDict("ZoneOffsets", out Offsets.ZoneOffsets);
@@ -204,6 +208,8 @@ namespace HunterPie.Memory
             LoadOffsetsFromDict("PlayerPositionOffsets", out Offsets.PlayerPositionOffsets);
             LoadOffsetsFromDict("PlayerBasicInformationOffsets", out Offsets.PlayerBasicInformationOffsets);
             LoadOffsetsFromDict("WeaponDataOffsets", out Offsets.WeaponDataOffsets);
+            LoadOffsetsFromDict("gHudStaminaBarOffsets", out Offsets.gHudStaminaBarOffsets);
+            LoadOffsetsFromDict("gHudHealthBarOffsets", out Offsets.gHudHealthBarOffsets);
             // Clear addresses loaded into memory
             mappedAddresses.Clear();
             mappedOffsets.Clear();

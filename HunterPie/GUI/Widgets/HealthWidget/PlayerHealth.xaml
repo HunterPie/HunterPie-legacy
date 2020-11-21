@@ -62,7 +62,7 @@
                     </TransformGroup>
                 </parts:HealthBar.RenderTransform>
             </parts:HealthBar>
-            <Rectangle Width="80" RenderTransformOrigin="0.5,0.5" StrokeThickness="1.5">
+            <Rectangle x:Name="HealthExt" Visibility="Collapsed" RenderTransformOrigin="0.5,0.5" StrokeThickness="1.5">
                 <Rectangle.Stroke>
                     <LinearGradientBrush EndPoint="1,1" StartPoint="0,1">
                         <GradientStop Color="#00000000" Offset="0"/>
@@ -77,6 +77,24 @@
                         <TranslateTransform/>
                     </TransformGroup>
                 </Rectangle.RenderTransform>
+                <Rectangle.Style>
+                    <Style TargetType="Rectangle">
+                        <Style.Triggers>
+                            <Trigger Property="IsVisible" Value="True">
+                                <Trigger.EnterActions>
+                                    <BeginStoryboard Name="FadeInOutAnim">
+                                        <Storyboard Storyboard.TargetProperty="Opacity" Duration="0:0:0.8" RepeatBehavior="Forever">
+                                            <DoubleAnimation From="1" To="0.3" Duration="0:0:0.2" AutoReverse="True" />
+                                        </Storyboard>
+                                    </BeginStoryboard>
+                                </Trigger.EnterActions>
+                                <Trigger.ExitActions>
+                                    <RemoveStoryboard BeginStoryboardName="FadeInOutAnim"/>
+                                </Trigger.ExitActions>
+                            </Trigger>
+                        </Style.Triggers>
+                    </Style>
+                </Rectangle.Style>
             </Rectangle>
         </StackPanel>
 
@@ -98,4 +116,5 @@
         <Image Source="{Binding ElementName=PlayerHealthComponent, Path=PlayerLaurel}" HorizontalAlignment="Left" Width="57" Height="60" VerticalAlignment="Top" Margin="2,1,0,0" OpacityMask="#B2000000"/>
 
     </Grid>
+
 </local:Widget>

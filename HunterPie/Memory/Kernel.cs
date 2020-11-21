@@ -11,7 +11,7 @@ namespace HunterPie.Memory
 {
     public class Kernel
     {
-
+        public const long NULLPTR = 0x00000000;
         // Process info
         const int PROCESS_VM_READ = 0x0010;
         const string PROCESS_NAME = "MonsterHunterWorld";
@@ -215,6 +215,12 @@ namespace HunterPie.Memory
             for (int offsetIndex = 0; offsetIndex < offsets.Length; offsetIndex++)
             {
                 address = Read<long>(address) + offsets[offsetIndex];
+
+                // In case we get ptr to a null value
+                if (address == NULLPTR)
+                {
+                    return NULLPTR;
+                }
             }
 
             return address;

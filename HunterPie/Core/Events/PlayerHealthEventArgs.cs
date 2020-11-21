@@ -30,12 +30,30 @@ namespace HunterPie.Core.Events
         /// </summary>
         public float RedHealth { get; }
 
+        /// <summary>
+        /// Maximum health player can have
+        /// </summary>
+        public float MaxPossibleHealth { get; }
+
+        /// <summary>
+        /// raw HUD data
+        /// </summary>
+        public sGuiHealth sGuiRawData { get; }
+
+        /// <summary>
+        /// Whether the player is holding an item that can increase their maximum health
+        /// </summary>
+        public bool IsHealthExtVisible { get; }
+
         public PlayerHealthEventArgs(HealthComponent p)
         {
             Health = p.Health;
             MaxHealth = p.MaxHealth;
             HealingData = p.HealHealth;
             RedHealth = p.RedHealth;
+            MaxPossibleHealth = p.MaxPossibleHealth;
+            sGuiRawData = p.sGuiRawData;
+            IsHealthExtVisible = p.IsHealthExtVisible;
         }
     }
 }

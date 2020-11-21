@@ -72,6 +72,22 @@ namespace HunterPie.Core.Local
             }
         }
 
+        public sGuiHealth sGuiRawData { get; private set; }
+        public float MaxPossibleHealth { get; private set; }
+
+        public bool IsHealthExtVisible
+        {
+            get => isHealthExtVisible;
+            set
+            {
+                if (value != isHealthExtVisible)
+                {
+                    isHealthExtVisible = value;
+                    Dispatch(OnHealthExtStateUpdate);
+                }
+            }
+        }
+
         public delegate void PlayerHealthEvents(object source, PlayerHealthEventArgs args);
 
         /// <summary>
@@ -94,11 +110,18 @@ namespace HunterPie.Core.Local
         /// </summary>
         public event PlayerHealthEvents OnHealHealth;
 
+        /// <summary>
+        /// Dispatched whenever the player is holding an item that can increase
+        /// the player maximum health
+        /// </summary>
+        public event PlayerHealthEvents OnHealthExtStateUpdate;
+
         #region Private
         private float health;
         private float maxHealth;
         private float redHealth;
         private sHealingData healHealth;
+        private bool isHealthExtVisible;
 
         private void Dispatch(PlayerHealthEvents e) => e?.Invoke(this, new PlayerHealthEventArgs(this));
 
@@ -115,6 +138,13 @@ namespace HunterPie.Core.Local
             Health = health;
             HealHealth = healData;
             RedHealth = redHealth;
+        }
+
+        internal void Update(sGuiHealth guiData)
+        {
+            sGuiRawData = guiData;
+            MaxPossibleHealth = guiData.MaxPossibleHealth;
+            IsHealthExtVisible = guiData.IsHealthExtVisible == 1;
         }
         #endregion
     }

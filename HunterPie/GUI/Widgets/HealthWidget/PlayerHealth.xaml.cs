@@ -6,6 +6,8 @@ using HunterPie.Core.Events;
 using HunterPie.Core.Enums;
 using System.Windows.Media;
 using HunterPie.Logger;
+using HunterPie.GUI.Widgets.HealthWidget.Parts;
+using System.Windows.Controls;
 
 namespace HunterPie.GUI.Widgets.HealthWidget
 {
@@ -118,6 +120,7 @@ namespace HunterPie.GUI.Widgets.HealthWidget
             Context.Health.OnMaxHealthUpdate += OnMaxHealthUpdate;
             Context.Health.OnHealHealth += OnHealHealth;
             Context.Health.OnRedHealthUpdate += OnRedHealthUpdate;
+            Context.Health.OnHealthExtStateUpdate += OnHealthExtStateUpdate;
             Context.Stamina.OnStaminaUpdate += OnStaminaUpdate;
             Context.Stamina.OnMaxStaminaUpdate += OnMaxStaminaUpdate;
             Context.OnAilmentUpdate += OnAilmentUpdate;
@@ -140,6 +143,7 @@ namespace HunterPie.GUI.Widgets.HealthWidget
             Context.Health.OnMaxHealthUpdate -= OnMaxHealthUpdate;
             Context.Health.OnHealHealth -= OnHealHealth;
             Context.Health.OnRedHealthUpdate -= OnRedHealthUpdate;
+            Context.Health.OnHealthExtStateUpdate -= OnHealthExtStateUpdate;
             Context.Stamina.OnStaminaUpdate -= OnStaminaUpdate;
             Context.Stamina.OnMaxStaminaUpdate -= OnMaxStaminaUpdate;
             Context.OnAilmentUpdate -= OnAilmentUpdate;
@@ -152,6 +156,23 @@ namespace HunterPie.GUI.Widgets.HealthWidget
             }
 
             Context.OnClassChange -= OnClassChange;
+        }
+
+
+        private void OnHealthExtStateUpdate(object source, PlayerHealthEventArgs args)
+        {
+            Dispatcher.BeginInvoke(DispatcherPriority.Render, new Action(() =>
+            {
+                if (args.IsHealthExtVisible && args.MaxPossibleHealth != args.MaxHealth)
+                {
+                    HealthExt.Visibility = Visibility.Visible;
+                    HealthExt.Width = (1 - (args.MaxHealth / args.MaxPossibleHealth)) * HealthBar.CWidth * (HealthBar.CWidth / HealthBar.CHealth);
+                } else
+                {
+                    HealthExt.Width = 0;
+                    HealthExt.Visibility = Visibility.Collapsed;
+                }
+            }));
         }
 
         private void OnWorldDayTimeUpdate(object source, WorldEventArgs args)
