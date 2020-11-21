@@ -182,19 +182,20 @@ namespace HunterPie.GUI.Widgets.HealthWidget
         {
             Dispatcher.BeginInvoke(DispatcherPriority.Render, new Action(() =>
             {
+                string iconPath = "pack://siteoforigin:,,,/HunterPie.Resources/UI/HUD/";
                 switch (args.DayTime)
                 {
                     case DayTime.Morning:
-                        DayTimeIcon = "pack://siteoforigin:,,,/HunterPie.Resources/UI/HUD/mr_time_morning.png";
+                        DayTimeIcon = $"{iconPath}mr_time_morning.png";
                         break;
                     case DayTime.Afternoon:
-                        DayTimeIcon = "pack://siteoforigin:,,,/HunterPie.Resources/UI/HUD/mr_time_day.png";
+                        DayTimeIcon = $"{iconPath}mr_time_day.png";
                         break;
                     case DayTime.Evening:
-                        DayTimeIcon = "pack://siteoforigin:,,,/HunterPie.Resources/UI/HUD/mr_time_evening.png";
+                        DayTimeIcon = $"{iconPath}mr_time_evening.png";
                         break;
                     case DayTime.Night:
-                        DayTimeIcon = "pack://siteoforigin:,,,/HunterPie.Resources/UI/HUD/mr_time_night.png";
+                        DayTimeIcon = $"{iconPath}mr_time_night.png";
                         break;
                     default:
                         DayTimeIcon = null;

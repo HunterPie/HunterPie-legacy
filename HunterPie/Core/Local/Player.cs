@@ -699,8 +699,9 @@ namespace HunterPie.Core
                     GetSteamFuel();
                     GetPrimaryMantle();
                     GetSecondaryMantle();
-                    GetPrimaryMantleTimers();
-                    GetSecondaryMantleTimers();
+                    GetMantleTimers();
+                    //GetPrimaryMantleTimers();
+                    //GetSecondaryMantleTimers();
                     GetPlayerSkills();
                     GetParty();
                     GetPlayerAbnormalities();
@@ -912,6 +913,27 @@ namespace HunterPie.Core
             SecondaryMantle.SetID(mantleId);
         }
 
+        private void GetMantleTimers()
+        {
+            Mantle[] mantles = new Mantle[] { PrimaryMantle, SecondaryMantle };
+            foreach (Mantle mantle in mantles) {
+                long mantleTimerFixed = (mantle.ID * 4) + Address.TimerFixed;
+                long mantleTimer = (mantle.ID * 4) + Address.TimerDynamic;
+                long mantleCdFixed = (mantle.ID * 4) + Address.CooldownFixed;
+                long mantleCd = (mantle.ID * 4) + Address.CooldownDynamic;
+
+                mantle.SetCooldown(
+                    Kernel.Read<float>(EQUIPMENT_ADDRESS + mantleCd),
+                    Kernel.Read<float>(EQUIPMENT_ADDRESS + mantleCdFixed)
+                );
+
+                mantle.SetTimer(
+                    Kernel.Read<float>(EQUIPMENT_ADDRESS + mantleTimer),
+                    Kernel.Read<float>(EQUIPMENT_ADDRESS + mantleTimerFixed)
+                );
+            }
+        }
+        /*
         private void GetPrimaryMantleTimers()
         {
             long PrimaryMantleTimerFixed = (PrimaryMantle.ID * 4) + Address.TimerFixed;
@@ -930,7 +952,7 @@ namespace HunterPie.Core
             long SecondaryMantleCdDynamic = (SecondaryMantle.ID * 4) + Address.CooldownDynamic;
             SecondaryMantle.SetCooldown(Kernel.Read<float>(EQUIPMENT_ADDRESS + SecondaryMantleCdDynamic), Kernel.Read<float>(EQUIPMENT_ADDRESS + SecondaryMantleCdFixed));
             SecondaryMantle.SetTimer(Kernel.Read<float>(EQUIPMENT_ADDRESS + SecondaryMantleTimer), Kernel.Read<float>(EQUIPMENT_ADDRESS + SecondaryMantleTimerFixed));
-        }
+        }*/
 
         private void GetPlayerSkills()
         {
@@ -1211,7 +1233,6 @@ namespace HunterPie.Core
             {
                 case Classes.Greatsword:
                     GetGreatswordInformation(weaponAddress);
-                    Greatsword.SafijiivaRegenCounter = SafiCounter;
                     CurrentWeapon = Greatsword;
                     break;
                 case Classes.SwordAndShield:
@@ -1219,64 +1240,54 @@ namespace HunterPie.Core
                     break;
                 case Classes.DualBlades:
                     GetDualBladesInformation(weaponAddress);
-                    DualBlades.SafijiivaRegenCounter = SafiCounter;
                     CurrentWeapon = DualBlades;
                     break;
                 case Classes.LongSword:
                     GetLongswordInformation(weaponAddress);
-                    Longsword.SafijiivaRegenCounter = SafiCounter;
                     CurrentWeapon = Longsword;
                     break;
                 case Classes.Hammer:
                     GetHammerInformation(weaponAddress);
-                    Hammer.SafijiivaRegenCounter = SafiCounter;
                     CurrentWeapon = Hammer;
                     break;
                 case Classes.HuntingHorn:
                     GetHuntingHornInformation(weaponAddress);
-                    HuntingHorn.SafijiivaRegenCounter = SafiCounter;
                     CurrentWeapon = HuntingHorn;
                     break;
                 case Classes.Lance:
-                    Lance.SafijiivaRegenCounter = SafiCounter;
                     CurrentWeapon = Lance;
                     break;
                 case Classes.GunLance:
                     GetGunLanceInformation(weaponAddress, AbnormAddress);
-                    GunLance.SafijiivaRegenCounter = SafiCounter;
                     CurrentWeapon = GunLance;
                     break;
                 case Classes.SwitchAxe:
                     GetSwitchAxeInformation(weaponAddress, AbnormAddress);
-                    SwitchAxe.SafijiivaRegenCounter = SafiCounter;
                     CurrentWeapon = SwitchAxe;
                     break;
                 case Classes.ChargeBlade:
                     GetChargeBladeInformation(weaponAddress);
-                    ChargeBlade.SafijiivaRegenCounter = SafiCounter;
                     CurrentWeapon = ChargeBlade;
                     break;
                 case Classes.InsectGlaive:
                     GetInsectGlaiveInformation(weaponAddress);
-                    InsectGlaive.SafijiivaRegenCounter = SafiCounter;
                     CurrentWeapon = InsectGlaive;
                     break;
                 case Classes.Bow:
                     GetBowInformation(weaponAddress);
-                    Bow.SafijiivaRegenCounter = SafiCounter;
                     CurrentWeapon = Bow;
                     break;
                 case Classes.HeavyBowgun:
                     GetHeavyBowgunInformation(weaponAddress);
-                    HeavyBowgun.SafijiivaRegenCounter = SafiCounter;
                     CurrentWeapon = HeavyBowgun;
                     break;
                 case Classes.LightBowgun:
                     GetLightBowgunInformation(weaponAddress);
-                    LightBowgun.SafijiivaRegenCounter = SafiCounter;
                     CurrentWeapon = LightBowgun;
                     break;
             }
+            CurrentWeapon.SafijiivaRegenCounter = SafiCounter;
+
             GetWeaponSharpness(weaponAddress);
             ClassAddress = weaponAddress;
         }
