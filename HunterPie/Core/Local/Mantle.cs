@@ -10,14 +10,15 @@ namespace HunterPie.Core
         private float _staticCooldown;
         private float _staticTimer;
 
-        public string Name => GStrings.GetMantleNameByID(ID);
+        public string Name { get; private set; }
         public int ID
         {
             get => _id;
-            set
+            private set
             {
                 if (_id != value)
                 {
+                    Name = GStrings.GetMantleNameByID(value);
                     _id = value;
                     Dispatch(OnMantleChange);
                 }
@@ -25,7 +26,8 @@ namespace HunterPie.Core
         }
         public float Cooldown
         {
-            get => _cooldown; set
+            get => _cooldown;
+            private set
             {
                 if (_cooldown != value)
                 {
@@ -36,7 +38,8 @@ namespace HunterPie.Core
         }
         public float Timer
         {
-            get => _timer; set
+            get => _timer;
+            private set
             {
                 if (_timer != value)
                 {
@@ -47,16 +50,20 @@ namespace HunterPie.Core
         }
         public float staticCooldown
         {
-            get => _staticCooldown; set
+            get => _staticCooldown;
+            private set
             {
-                if (_staticCooldown != value) _staticCooldown = value;
+                if (_staticCooldown != value)
+                    _staticCooldown = value;
             }
         }
         public float staticTimer
         {
-            get => _staticTimer; set
+            get => _staticTimer;
+            private set
             {
-                if (_staticTimer != value) _staticTimer = value;
+                if (_staticTimer != value)
+                    _staticTimer = value;
             }
         }
 
