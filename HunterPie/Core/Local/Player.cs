@@ -286,7 +286,7 @@ namespace HunterPie.Core
         public float AilmentTimer
         {
             get => ailmentTimer;
-            set
+            private set
             {
                 if (value != ailmentTimer)
                 {

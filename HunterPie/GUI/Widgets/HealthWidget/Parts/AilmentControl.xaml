@@ -1,0 +1,9 @@
+﻿<UserControl x:Class="HunterPie.GUI.Widgets.HealthWidget.Parts.AilmentControl"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:Helpers="clr-namespace:HunterPie.GUI.Helpers" Width="20" Height="20">
+    <Grid>
+        <Image Source="{StaticResource ICON_SLEEP}"/>
+        <Helpers:Arc Stroke="#FF00FFB9" EndAngle="30" StartAngle="90" StrokeThickness="2"/>
+    </Grid>
+</UserControl>

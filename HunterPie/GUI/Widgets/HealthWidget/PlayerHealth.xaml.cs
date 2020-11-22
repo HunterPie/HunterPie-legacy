@@ -7,7 +7,7 @@ using HunterPie.Core.Enums;
 using System.Windows.Media;
 using HunterPie.GUI.Widgets.HealthWidget.Parts;
 using HunterPie.Core.Local;
-using HunterPie.Logger;
+using HunterPie.Core.Jobs;
 
 namespace HunterPie.GUI.Widgets.HealthWidget
 {
@@ -60,6 +60,14 @@ namespace HunterPie.GUI.Widgets.HealthWidget
         }
         public static readonly DependencyProperty SharpnessProperty =
             DependencyProperty.Register("Sharpness", typeof(double), typeof(PlayerHealth));
+
+        public Visibility SharpnessVisibility
+        {
+            get { return (Visibility)GetValue(SharpnessVisibilityProperty); }
+            set { SetValue(SharpnessVisibilityProperty, value); }
+        }
+        public static readonly DependencyProperty SharpnessVisibilityProperty =
+            DependencyProperty.Register("SharpnessVisibility", typeof(Visibility), typeof(PlayerHealth));
 
         public PlayerHealth(Game ctx)
         {
@@ -236,6 +244,8 @@ namespace HunterPie.GUI.Widgets.HealthWidget
                 Context.CurrentWeapon.OnSharpnessLevelChange -= OnSharpnessLevelChange;
                 Context.CurrentWeapon.OnSharpnessChange += OnSharpnessChange;
                 Context.CurrentWeapon.OnSharpnessLevelChange += OnSharpnessLevelChange;
+
+                SharpnessVisibility = Context.CurrentWeapon.IsMelee ? Visibility.Visible : Visibility.Collapsed;
 
                 OnSharpnessLevelChange(this, new SharpnessEventArgs(Context.CurrentWeapon));
             }));

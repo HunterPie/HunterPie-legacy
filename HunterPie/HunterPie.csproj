@@ -284,6 +284,9 @@
     <Compile Include="GUIControls\Settings.xaml.cs">
       <DependentUpon>Settings.xaml</DependentUpon>
     </Compile>
+    <Compile Include="GUI\Widgets\HealthWidget\Parts\AilmentControl.xaml.cs">
+      <DependentUpon>AilmentControl.xaml</DependentUpon>
+    </Compile>
     <Compile Include="HunterPie.Plugins\UpdateResult.cs" />
     <Compile Include="Utils\GenericExtensions.cs" />
     <None Include="address\MonsterHunterWorld.420540.map">
@@ -490,6 +493,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="GUI\Widgets\Harvest Box\Parts\FertilizerControl.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="GUI\Widgets\HealthWidget\Parts\AilmentControl.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
