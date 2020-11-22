@@ -145,6 +145,7 @@
     <Compile Include="Core\Definitions\sEquippedAmmo.cs" />
     <Compile Include="Core\Definitions\sGear.cs" />
     <Compile Include="Core\Definitions\sGuiHealth.cs" />
+    <Compile Include="Core\Definitions\sGuiStamina.cs" />
     <Compile Include="Core\Definitions\sHealingData.cs" />
     <Compile Include="Core\Definitions\sHuntingHornMechanics.cs" />
     <Compile Include="Core\Definitions\sHuntingHornSong.cs" />

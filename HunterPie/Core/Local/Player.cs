@@ -786,10 +786,7 @@ namespace HunterPie.Core
 
             GetPlayerHealth(address);
 
-            Stamina.Update(
-                maxStamina: Kernel.Read<float>(address + 0x144),
-                stamina: Kernel.Read<float>(address + 0x13C)
-            );
+            GetPlayerStamina(address);
 
             // ActionId is our rcx
             long characterPointer = Kernel.Read<long>(address + 0x30);
@@ -840,6 +837,38 @@ namespace HunterPie.Core
             {
                 sPlayerSkill vitality = Skills[(int)SetSkills.Vitality];
                 return 150.0f + MaximumHealthPossible[Math.Min(vitality.LevelGear, MaximumHealthPossible.Length - 1)];
+            }
+            return 150.0f;
+        }
+
+        private void GetPlayerStamina(long address)
+        {
+            long cGuiStaminaAddress = Kernel.ReadMultilevelPtr(Address.BASE + Address.HUD_DATA_OFFSET, Address.Offsets.gHudStaminaBarOffsets);
+
+            Stamina.Update(
+                maxStamina: Kernel.Read<float>(address + 0x144),
+                stamina: Kernel.Read<float>(address + 0x13C)
+            );
+
+            if (cGuiStaminaAddress != Kernel.NULLPTR)
+            {
+                sGuiStamina guiData = Kernel.ReadStructure<sGuiStamina>(cGuiStaminaAddress + 0x1F0);
+                guiData.maxPossibleStamina = CalculateMaxPossibleStamina();
+                Stamina.Update(guiData);
+            }
+
+        }
+
+        private float CalculateMaxPossibleStamina()
+        {
+            if (Skills != null && Skills.Length > 0)
+            {
+                bool lunaFavor = Skills[(int)SetSkills.LunastraStaminaCapUp].LevelGear >= 2;
+                bool anjaDominance = Skills[(int)SetSkills.AnjanathDominance].LevelGear >= 2;
+                bool anjaWill = Skills[(int)SetSkills.AnjanathWill].LevelGear >= 4;
+
+                bool stamCapActive = lunaFavor || anjaDominance || anjaWill;
+                return stamCapActive ? 200.0f : 150.0f;
             }
             return 150.0f;
         }
@@ -933,26 +962,6 @@ namespace HunterPie.Core
                 );
             }
         }
-        /*
-        private void GetPrimaryMantleTimers()
-        {
-            long PrimaryMantleTimerFixed = (PrimaryMantle.ID * 4) + Address.TimerFixed;
-            long PrimaryMantleTimer = (PrimaryMantle.ID * 4) + Address.TimerDynamic;
-            long PrimaryMantleCdFixed = (PrimaryMantle.ID * 4) + Address.CooldownFixed;
-            long PrimaryMantleCdDynamic = (PrimaryMantle.ID * 4) + Address.CooldownDynamic;
-            PrimaryMantle.SetCooldown(Kernel.Read<float>(EQUIPMENT_ADDRESS + PrimaryMantleCdDynamic), Kernel.Read<float>(EQUIPMENT_ADDRESS + PrimaryMantleCdFixed));
-            PrimaryMantle.SetTimer(Kernel.Read<float>(EQUIPMENT_ADDRESS + PrimaryMantleTimer), Kernel.Read<float>(EQUIPMENT_ADDRESS + PrimaryMantleTimerFixed));
-        }
-
-        private void GetSecondaryMantleTimers()
-        {
-            long SecondaryMantleTimerFixed = (SecondaryMantle.ID * 4) + Address.TimerFixed;
-            long SecondaryMantleTimer = (SecondaryMantle.ID * 4) + Address.TimerDynamic;
-            long SecondaryMantleCdFixed = (SecondaryMantle.ID * 4) + Address.CooldownFixed;
-            long SecondaryMantleCdDynamic = (SecondaryMantle.ID * 4) + Address.CooldownDynamic;
-            SecondaryMantle.SetCooldown(Kernel.Read<float>(EQUIPMENT_ADDRESS + SecondaryMantleCdDynamic), Kernel.Read<float>(EQUIPMENT_ADDRESS + SecondaryMantleCdFixed));
-            SecondaryMantle.SetTimer(Kernel.Read<float>(EQUIPMENT_ADDRESS + SecondaryMantleTimer), Kernel.Read<float>(EQUIPMENT_ADDRESS + SecondaryMantleTimerFixed));
-        }*/
 
         private void GetPlayerSkills()
         {

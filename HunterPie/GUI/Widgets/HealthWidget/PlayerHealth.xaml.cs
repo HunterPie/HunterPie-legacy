@@ -5,10 +5,9 @@ using HunterPie.Core;
 using HunterPie.Core.Events;
 using HunterPie.Core.Enums;
 using System.Windows.Media;
-using HunterPie.Logger;
 using HunterPie.GUI.Widgets.HealthWidget.Parts;
-using System.Windows.Controls;
 using HunterPie.Core.Local;
+using HunterPie.Logger;
 
 namespace HunterPie.GUI.Widgets.HealthWidget
 {
@@ -124,6 +123,7 @@ namespace HunterPie.GUI.Widgets.HealthWidget
             Context.Health.OnHealthExtStateUpdate += OnHealthExtStateUpdate;
             Context.Stamina.OnStaminaUpdate += OnStaminaUpdate;
             Context.Stamina.OnMaxStaminaUpdate += OnMaxStaminaUpdate;
+            Context.Stamina.OnStaminaExtStateUpdate += OnStaminaExtStateUpdate;
             Context.OnAilmentUpdate += OnAilmentUpdate;
             Context.OnLevelChange += OnLevelChange;
 
@@ -147,8 +147,9 @@ namespace HunterPie.GUI.Widgets.HealthWidget
             Context.Health.OnHealthExtStateUpdate -= OnHealthExtStateUpdate;
             Context.Stamina.OnStaminaUpdate -= OnStaminaUpdate;
             Context.Stamina.OnMaxStaminaUpdate -= OnMaxStaminaUpdate;
+            Context.Stamina.OnStaminaExtStateUpdate -= OnStaminaExtStateUpdate;
             Context.OnAilmentUpdate -= OnAilmentUpdate;
-            Context.OnLevelChange += OnLevelChange;
+            Context.OnLevelChange -= OnLevelChange;
 
             if (Context.CurrentWeapon != null)
             {
@@ -169,11 +170,28 @@ namespace HunterPie.GUI.Widgets.HealthWidget
                     HealthExt.Visibility = Visibility.Visible;
 
                     float maxHealth = Math.Min(args.MaxHealth + HealthComponent.CanIncreaseMaxHealth[args.SelectedItemId], args.MaxPossibleHealth);
-                    HealthExt.Width = (1 - (args.MaxHealth / maxHealth)) * HealthBar.CWidth * (HealthBar.CWidth / HealthBar.CHealth);
+                    HealthExt.Width = (maxHealth - args.MaxHealth) / args.MaxPossibleHealth * HealthBar.CWidth * (HealthBar.CWidth / HealthBar.CHealth);
                 } else
                 {
                     HealthExt.Width = 0;
                     HealthExt.Visibility = Visibility.Collapsed;
+                }
+            }));
+        }
+
+        private void OnStaminaExtStateUpdate(object source, PlayerStaminaEventArgs args)
+        {
+            Dispatcher.BeginInvoke(DispatcherPriority.Render, new Action(() =>
+            {
+                if (args.IsStaminaExtVisible && args.MaxPossibleStamina != args.MaxStamina)
+                {
+                    StaminaExt.Visibility = Visibility.Visible;
+                    float maxStamina = Math.Min(args.MaxStamina + StaminaComponent.CanIncreaseMaxStamina[args.SelectedItemId], args.MaxPossibleStamina);
+                    StaminaExt.Width = (maxStamina - args.MaxStamina) / args.MaxPossibleStamina * HealthBar.CWidth * (HealthBar.CWidth / HealthBar.CHealth);
+                } else
+                {
+                    StaminaExt.Width = 0;
+                    StaminaExt.Visibility = Visibility.Collapsed;
                 }
             }));
         }

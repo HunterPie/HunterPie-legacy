@@ -14,15 +14,15 @@ namespace HunterPie.Core.Local
         public static readonly Dictionary<int, float> CanIncreaseMaxHealth = new Dictionary<int, float>()
         {
             // Max Potion
-            { 3, 50 },
+            { 3, 100 },
             // Ancient Potion
-            { 4, 50 },
+            { 4, 100 },
             // Nutrients
             { 14, 10 },
             // Mega Nutrients
             { 15, 20 },
             // EZ Max Potion
-            { 185, 50 }
+            { 185, 100 }
         };
 
         #endregion
