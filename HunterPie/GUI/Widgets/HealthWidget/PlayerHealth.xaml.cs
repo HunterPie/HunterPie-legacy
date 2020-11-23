@@ -8,6 +8,9 @@ using System.Windows.Media;
 using HunterPie.GUI.Widgets.HealthWidget.Parts;
 using HunterPie.Core.Local;
 using HunterPie.Core.Jobs;
+using System.Linq;
+using System.Collections.Generic;
+using HunterPie.Logger;
 
 namespace HunterPie.GUI.Widgets.HealthWidget
 {
@@ -143,6 +146,9 @@ namespace HunterPie.GUI.Widgets.HealthWidget
 
             Context.OnClassChange += OnClassChange;
 
+            // To track debuffs
+            Context.Abnormalities.OnNewAbnormality += OnNewAbnormality;
+            Context.Abnormalities.OnAbnormalityRemove += OnAbnormalityEnd;
         }
 
         public void UnhookEvents()
@@ -166,8 +172,60 @@ namespace HunterPie.GUI.Widgets.HealthWidget
             }
 
             Context.OnClassChange -= OnClassChange;
+
+            Context.Abnormalities.OnNewAbnormality -= OnNewAbnormality;
+            Context.Abnormalities.OnAbnormalityRemove -= OnAbnormalityEnd;
         }
 
+        private void OnAbnormalityEnd(object source, AbnormalityEventArgs args)
+        {
+            HashSet<string> poison = new HashSet<string>()
+            {
+                "ICON_POISON", "ICON_VENOM"
+            };
+            Dispatcher.BeginInvoke(DispatcherPriority.Render, new Action(() =>
+            {
+                string abnormIcon = args.Abnormality.Icon;
+
+                if (args.Abnormality.IsDebuff)
+                {
+                    if (abnormIcon == "ELEMENT_FIRE") HealthBar.IsOnFire = false;
+                    else if (abnormIcon == "ICON_BLEED") HealthBar.IsBleeding = false;
+                    else if (poison.Contains(abnormIcon)) HealthBar.IsPoisoned = false;
+                    
+                    HealthBar.IsNormal = (!HealthBar.IsOnFire && !HealthBar.IsPoisoned && !HealthBar.IsBleeding);
+
+                } else
+                {
+                    HealthBar.IsHealing = !(abnormIcon == "ICON_NATURALHEALING");
+                }
+            }));
+        }
+
+        private void OnNewAbnormality(object source, AbnormalityEventArgs args)
+        {
+            HashSet<string> poison = new HashSet<string>()
+            {
+                "ICON_POISON", "ICON_VENOM"
+            };
+            Dispatcher.BeginInvoke(DispatcherPriority.Render, new Action(() =>
+            {
+                string abnormIcon = args.Abnormality.Icon;
+
+                if (args.Abnormality.IsDebuff)
+                {
+
+                    if (abnormIcon == "ELEMENT_FIRE") HealthBar.IsOnFire = true;
+                    else if (abnormIcon == "ICON_BLEED") HealthBar.IsBleeding = true;
+                    else if (poison.Contains(abnormIcon)) HealthBar.IsPoisoned = true;
+
+                    HealthBar.IsNormal = (!HealthBar.IsOnFire && !HealthBar.IsPoisoned && !HealthBar.IsBleeding);
+                } else
+                {
+                    HealthBar.IsHealing = abnormIcon == "ICON_NATURALHEALING";
+                }
+            }));
+        }
 
         private void OnHealthExtStateUpdate(object source, PlayerHealthEventArgs args)
         {

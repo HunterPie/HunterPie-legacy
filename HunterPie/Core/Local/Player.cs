@@ -1200,7 +1200,7 @@ namespace HunterPie.Core
                     break;
             }
 
-            if ((int)duration <= 0 && !(hasConditions && info.IsInfinite))
+            if (duration <= 0 && !(hasConditions && info.IsInfinite))
             {
                 if (Abnormalities[info.InternalId] != null)
                 {

@@ -1,11 +1,12 @@
 ﻿using AbnormalityType = HunterPie.Core.Enums.AbnormalityType;
 using HunterPie.Core.Events;
+using HunterPie.Logger;
 
 namespace HunterPie.Core
 {
     public class Abnormality
     {
-        private int duration;
+        private float duration;
         private byte stack;
 
         public Abnormality(AbnormalityInfo info)
@@ -40,7 +41,7 @@ namespace HunterPie.Core
 
         public string InternalID { get; private set; }
         public bool IsInfinite { get; private set; }
-        public int Duration
+        public float Duration
         {
             get => duration;
             private set
@@ -89,7 +90,7 @@ namespace HunterPie.Core
             Stack = newStack;
             MaxDuration = MaxDuration < newDuration ? newDuration : MaxDuration;
             DurationPercentage = MaxDuration > 0 ? newDuration / MaxDuration : 1;
-            Duration = (int)newDuration;
+            Duration = newDuration;
         }
 
         public void ResetDuration()

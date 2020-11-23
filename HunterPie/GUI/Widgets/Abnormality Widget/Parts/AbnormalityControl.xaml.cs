@@ -4,6 +4,7 @@ using System.Windows.Controls;
 using System.Windows.Media;
 using HunterPie.Core;
 using HunterPie.Core.Events;
+using HunterPie.GUI.Helpers;
 
 namespace HunterPie.GUI.Widgets.Abnormality_Widget.Parts
 {
@@ -54,7 +55,7 @@ namespace HunterPie.GUI.Widgets.Abnormality_Widget.Parts
         {
             float angle;
             if (Abnorm.IsInfinite || Abnorm.MaxDuration == 0) angle = 90;
-            else { angle = ConvertPercentageIntoAngle(Abnorm.Duration / (Abnorm.IsPercentageBuff ? Abnorm.MaxTimer : Abnorm.MaxDuration)); }
+            else { angle = Arc.ConvertPercentageIntoAngle(Abnorm.Duration / (Abnorm.IsPercentageBuff ? Abnorm.MaxTimer : Abnorm.MaxDuration)); }
             AbnormalityDurationArc.EndAngle = angle;
             if (ShowAbnormalityName)
             {
@@ -79,7 +80,7 @@ namespace HunterPie.GUI.Widgets.Abnormality_Widget.Parts
             }
             else
             {
-                TimeLeftText.Text = Abnorm.IsPercentageBuff ? $"{Abnorm.Duration / Abnorm.MaxTimer:P0}" : FormatToMinutes(Abnorm.Duration);
+                TimeLeftText.Text = Abnorm.IsPercentageBuff ? $"{Abnorm.Duration / Abnorm.MaxTimer:P0}" : FormatToMinutes((int)Abnorm.Duration);
             }
 
         }
@@ -96,7 +97,7 @@ namespace HunterPie.GUI.Widgets.Abnormality_Widget.Parts
         {
             float angle;
             if (args.Abnormality.IsInfinite || args.Abnormality.MaxDuration == 0) angle = 90;
-            else { angle = ConvertPercentageIntoAngle(args.Abnormality.Duration / (args.Abnormality.IsPercentageBuff ? args.Abnormality.MaxTimer : args.Abnormality.MaxDuration)); }
+            else { angle = Arc.ConvertPercentageIntoAngle(args.Abnormality.Duration / (args.Abnormality.IsPercentageBuff ? args.Abnormality.MaxTimer : args.Abnormality.MaxDuration)); }
             Dispatcher.BeginInvoke(System.Windows.Threading.DispatcherPriority.Render, new Action(() =>
             {
                 AbnormalityExpireWarning.Visibility = args.Abnormality.DurationPercentage <= 0.1 ? System.Windows.Visibility.Visible : System.Windows.Visibility.Hidden;
@@ -108,19 +109,12 @@ namespace HunterPie.GUI.Widgets.Abnormality_Widget.Parts
                 }
                 else
                 {
-                    TimeLeftText.Text = args.Abnormality.IsPercentageBuff ? $"{args.Abnormality.Duration / args.Abnormality.MaxTimer:P0}" : FormatToMinutes(args.Abnormality.Duration);
+                    TimeLeftText.Text = args.Abnormality.IsPercentageBuff ? $"{args.Abnormality.Duration / args.Abnormality.MaxTimer:P0}" : FormatToMinutes((int)args.Abnormality.Duration);
                 }
             }));
         }
 
         // Helper
-
-        private float ConvertPercentageIntoAngle(float percentage)
-        {
-            float angle = 90 - (360 * percentage);
-            float cap = -269.999f;
-            return Math.Max(angle, cap);
-        }
 
         private string FormatToMinutes(int seconds)
         {

@@ -2,28 +2,99 @@
              xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
              x:Name="HealthBarControl"
-             Height="20" Width="{Binding ElementName=HealthBarControl, Path=MaxHealth}" BorderBrush="#B2060606" BorderThickness="1.5">
-    <StackPanel Background="#B27E7E7E" Orientation="Horizontal">
-        <Rectangle Width="{Binding ElementName=HealthBarControl, Path=Health}" HorizontalAlignment="Left" StrokeThickness="0">
-            <Rectangle.Fill>
-                <LinearGradientBrush EndPoint="1,1" StartPoint="0,0">
-                    <GradientStop Color="#FF337E00" Offset="0"/>
-                    <GradientStop Color="#FF96C31D" Offset="0.446"/>
-                </LinearGradientBrush>
-            </Rectangle.Fill>
-        </Rectangle>
-        <Rectangle Width="{Binding ElementName=HealthBarControl, Path=HealHealth}" HorizontalAlignment="Left" Fill="#FFE4FFE4">
-            <Rectangle.Effect>
-                <DropShadowEffect Color="#FFE4FFE4" BlurRadius="10" ShadowDepth="0"/>
-            </Rectangle.Effect>
-        </Rectangle>
-        <Rectangle Width="{Binding ElementName=HealthBarControl, Path=RedHealth}" HorizontalAlignment="Left">
-            <Rectangle.Fill>
-                <LinearGradientBrush EndPoint="1,0.5" StartPoint="0,0.5">
-                    <GradientStop Color="#FFCB3838" Offset="1"/>
-                    <GradientStop Color="#FFED3838"/>
-                </LinearGradientBrush>
-            </Rectangle.Fill>
-        </Rectangle>
-    </StackPanel>
+             Height="20" Width="{Binding ElementName=HealthBarControl, Path=MaxHealth}">
+    <UserControl.Template>
+        <ControlTemplate>
+            <Border BorderBrush="#B2060606" BorderThickness="1.5">
+                <StackPanel Background="#B27E7E7E" Orientation="Horizontal">
+                    <Rectangle Width="{Binding ElementName=HealthBarControl, Path=Health}" HorizontalAlignment="Left" StrokeThickness="0">
+                        <Rectangle.Fill>
+                            <LinearGradientBrush EndPoint="1,1" StartPoint="0,0">
+                                <GradientStop Color="#FF337E00" Offset="0"/>
+                                <GradientStop Color="#FF96C31D" Offset="0.446"/>
+                            </LinearGradientBrush>
+                        </Rectangle.Fill>
+                        <Rectangle.Style>
+                            <Style TargetType="Rectangle">
+                                <Style.Triggers>
+                                    <DataTrigger Binding="{Binding ElementName=HealthBarControl, Path=IsBleeding}" Value="True">
+                                        <DataTrigger.EnterActions>
+                                            <BeginStoryboard Name="BleedAnim">
+                                                <Storyboard Duration="0:0:0.8" RepeatBehavior="Forever" AutoReverse="True">
+                                                    <ColorAnimation Storyboard.TargetProperty="(Rectangle.Fill).(LinearGradientBrush.GradientStops)[0].(GradientStop.Color)" To="#FF61001A" Duration="0:0:0.5"/>
+                                                    <ColorAnimation Storyboard.TargetProperty="(Rectangle.Fill).(LinearGradientBrush.GradientStops)[1].(GradientStop.Color)" To="#FF61003E" Duration="0:0:0.5"/>
+                                                </Storyboard>
+                                            </BeginStoryboard>
+                                        </DataTrigger.EnterActions>
+                                        <DataTrigger.ExitActions>
+                                            <RemoveStoryboard BeginStoryboardName="BleedAnim"/>
+                                        </DataTrigger.ExitActions>
+                                    </DataTrigger>
+                                    <DataTrigger Binding="{Binding ElementName=HealthBarControl, Path=IsOnFire}" Value="True">
+                                        <DataTrigger.EnterActions>
+                                            <BeginStoryboard Name="FireAnim">
+                                                <Storyboard Duration="0:0:0.8" RepeatBehavior="Forever" AutoReverse="True">
+                                                    <ColorAnimation Storyboard.TargetProperty="(Rectangle.Fill).(LinearGradientBrush.GradientStops)[0].(GradientStop.Color)" To="#FFB21414" Duration="0:0:0.5"/>
+                                                    <ColorAnimation Storyboard.TargetProperty="(Rectangle.Fill).(LinearGradientBrush.GradientStops)[1].(GradientStop.Color)" To="#FFE8633C" Duration="0:0:0.5"/>
+                                                </Storyboard>
+                                            </BeginStoryboard>
+                                        </DataTrigger.EnterActions>
+                                        <DataTrigger.ExitActions>
+                                            <RemoveStoryboard BeginStoryboardName="FireAnim"/>
+                                        </DataTrigger.ExitActions>
+                                    </DataTrigger>
+                                    <DataTrigger Binding="{Binding ElementName=HealthBarControl, Path=IsPoisoned}" Value="True">
+                                        <DataTrigger.EnterActions>
+                                            <BeginStoryboard Name="PoisonAnim">
+                                                <Storyboard Duration="0:0:0.8" RepeatBehavior="Forever" AutoReverse="True">
+                                                    <ColorAnimation Storyboard.TargetProperty="(Rectangle.Fill).(LinearGradientBrush.GradientStops)[0].(GradientStop.Color)" To="#FF4A0061" Duration="0:0:0.5"/>
+                                                    <ColorAnimation Storyboard.TargetProperty="(Rectangle.Fill).(LinearGradientBrush.GradientStops)[1].(GradientStop.Color)" To="#FFB93CE8" Duration="0:0:0.5"/>
+                                                </Storyboard> 
+                                            </BeginStoryboard>
+                                        </DataTrigger.EnterActions>
+                                        <DataTrigger.ExitActions>
+                                            <RemoveStoryboard BeginStoryboardName="PoisonAnim"/>
+                                        </DataTrigger.ExitActions>
+                                    </DataTrigger>
+                                </Style.Triggers>
+                            </Style>
+                        </Rectangle.Style>
+                    </Rectangle>
+                    <Rectangle Width="{Binding ElementName=HealthBarControl, Path=HealHealth}" HorizontalAlignment="Left" Fill="#FFE4FFE4">
+                        <Rectangle.Effect>
+                            <DropShadowEffect Color="#FFE4FFE4" BlurRadius="10" ShadowDepth="0"/>
+                        </Rectangle.Effect>
+                    </Rectangle>
+                    <Rectangle Width="{Binding ElementName=HealthBarControl, Path=RedHealth}" HorizontalAlignment="Left">
+                        <Rectangle.Style>
+                            <Style TargetType="Rectangle">
+                                <Style.Triggers>
+                                    <DataTrigger Binding="{Binding ElementName=HealthBarControl, Path=IsHealing}" Value="False">
+                                        <Setter Property="Fill">
+                                            <Setter.Value>
+                                                <LinearGradientBrush EndPoint="1,0.5" StartPoint="0,0.5">
+                                                    <GradientStop Color="#FFCB3838" Offset="1"/>
+                                                    <GradientStop Color="#FFED3838"/>
+                                                </LinearGradientBrush>
+                                            </Setter.Value>
+                                        </Setter>
+                                    </DataTrigger>
+                                    <DataTrigger Binding="{Binding ElementName=HealthBarControl, Path=IsHealing}" Value="True">
+                                        <Setter Property="Fill">
+                                            <Setter.Value>
+                                                <LinearGradientBrush EndPoint="1,1" StartPoint="0,0">
+                                                    <GradientStop Color="#FFFFB900" Offset="0"/>
+                                                    <GradientStop Color="#FFFFB900" Offset="1"/>
+                                                </LinearGradientBrush>
+                                            </Setter.Value>
+                                        </Setter>
+                                    </DataTrigger>
+                                </Style.Triggers>
+                            </Style>
+                        </Rectangle.Style>
+                    </Rectangle>
+                </StackPanel>
+            </Border>
+        </ControlTemplate>
+    </UserControl.Template>
 </UserControl>

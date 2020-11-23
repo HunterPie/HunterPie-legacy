@@ -69,6 +69,13 @@ namespace HunterPie.GUI.Helpers
             double y = yRadius - yRadius * Math.Sin(radAngle);
             return new Point(x, y);
         }
+
+        public static float ConvertPercentageIntoAngle(float percentage)
+        {
+            float angle = 90 - (360 * percentage);
+            float cap = -269.999f;
+            return Math.Max(angle, cap);
+        }
     }
 }
 

@@ -1,19 +1,6 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
-using System.Windows.Data;
-using System.Windows.Documents;
-using System.Windows.Input;
-using System.Windows.Media;
-using System.Windows.Media.Imaging;
-using System.Windows.Navigation;
-using System.Windows.Shapes;
-using HunterPie.Logger;
-using Newtonsoft.Json;
 
 namespace HunterPie.GUI.Widgets.HealthWidget.Parts
 {
@@ -22,8 +9,49 @@ namespace HunterPie.GUI.Widgets.HealthWidget.Parts
     /// </summary>
     public partial class HealthBar : UserControl
     {
+        // TODO: Replace these with customizable stuff
         public const double CWidth = 200.0;
         public const double CHealth = 100.0;
+
+        public bool IsNormal
+        {
+            get { return (bool)GetValue(IsNormalProperty); }
+            set { SetValue(IsNormalProperty, value); }
+        }
+        public static readonly DependencyProperty IsNormalProperty =
+            DependencyProperty.Register("IsNormal", typeof(bool), typeof(HealthBar));
+
+        public bool IsPoisoned
+        {
+            get { return (bool)GetValue(IsPoisonedProperty); }
+            set { SetValue(IsPoisonedProperty, value); }
+        }
+        public static readonly DependencyProperty IsPoisonedProperty =
+            DependencyProperty.Register("IsPoisoned", typeof(bool), typeof(HealthBar));
+
+        public bool IsBleeding
+        {
+            get { return (bool)GetValue(IsBleedingProperty); }
+            set { SetValue(IsBleedingProperty, value); }
+        }
+        public static readonly DependencyProperty IsBleedingProperty =
+            DependencyProperty.Register("IsBleeding", typeof(bool), typeof(HealthBar));
+
+        public bool IsHealing
+        {
+            get { return (bool)GetValue(IsHealingProperty); }
+            set { SetValue(IsHealingProperty, value); }
+        }
+        public static readonly DependencyProperty IsHealingProperty =
+            DependencyProperty.Register("IsHealing", typeof(bool), typeof(HealthBar));
+
+        public bool IsOnFire
+        {
+            get { return (bool)GetValue(IsOnFireProperty); }
+            set { SetValue(IsOnFireProperty, value); }
+        }
+        public static readonly DependencyProperty IsOnFireProperty =
+            DependencyProperty.Register("IsOnFire", typeof(bool), typeof(HealthBar));
 
         public double MaxHealth
         {
@@ -87,6 +115,7 @@ namespace HunterPie.GUI.Widgets.HealthWidget.Parts
 
         public HealthBar()
         {
+            IsNormal = true;
             InitializeComponent();
         }
     }
