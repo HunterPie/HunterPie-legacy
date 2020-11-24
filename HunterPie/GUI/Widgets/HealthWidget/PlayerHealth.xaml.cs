@@ -7,10 +7,9 @@ using HunterPie.Core.Enums;
 using System.Windows.Media;
 using HunterPie.GUI.Widgets.HealthWidget.Parts;
 using HunterPie.Core.Local;
-using HunterPie.Core.Jobs;
-using System.Linq;
 using System.Collections.Generic;
-using HunterPie.Logger;
+using HunterPie.GUIControls.Custom_Controls;
+using System.Windows.Shapes;
 
 namespace HunterPie.GUI.Widgets.HealthWidget
 {
@@ -72,11 +71,41 @@ namespace HunterPie.GUI.Widgets.HealthWidget
         public static readonly DependencyProperty SharpnessVisibilityProperty =
             DependencyProperty.Register("SharpnessVisibility", typeof(Visibility), typeof(PlayerHealth));
 
+        public bool IsStaminaNormal
+        {
+            get { return (bool)GetValue(IsStaminaNormalProperty); }
+            set { SetValue(IsStaminaNormalProperty, value); }
+        }
+        public static readonly DependencyProperty IsStaminaNormalProperty =
+            DependencyProperty.Register("IsStaminaNormal", typeof(bool), typeof(PlayerHealth));
+
+        public bool IsWet
+        {
+            get { return (bool)GetValue(IsWetProperty); }
+            set { SetValue(IsWetProperty, value); }
+        }
+        public static readonly DependencyProperty IsWetProperty =
+            DependencyProperty.Register("IsWet", typeof(bool), typeof(PlayerHealth));
+
+        public bool IsIcy
+        {
+            get { return (bool)GetValue(IsIcyProperty); }
+            set { SetValue(IsIcyProperty, value); }
+        }
+        public static readonly DependencyProperty IsIcyProperty =
+            DependencyProperty.Register("IsIcy", typeof(bool), typeof(PlayerHealth));
+
+        MinimalHealthBar StaminaBar { get; set; }
+        HealthBar HealthBar { get; set; }
+        Rectangle HealthExt { get; set; }
+        Rectangle StaminaExt { get; set; }
+
         public PlayerHealth(Game ctx)
         {
             WidgetType = 7;
             WidgetActive = true;
             WidgetHasContent = true;
+            IsStaminaNormal = true;
             InitializeComponent();
             SetContext(ctx);
         }
@@ -110,8 +139,6 @@ namespace HunterPie.GUI.Widgets.HealthWidget
         public void SetContext(Game ctx)
         {
             gContext = ctx;
-            HookEvents();
-            UpdateInformation();
         }
 
         private void UpdateInformation()
@@ -191,10 +218,13 @@ namespace HunterPie.GUI.Widgets.HealthWidget
                 {
                     if (abnormIcon == "ELEMENT_FIRE") HealthBar.IsOnFire = false;
                     else if (abnormIcon == "ICON_BLEED") HealthBar.IsBleeding = false;
+                    else if (abnormIcon == "ICON_EFFLUVIA") HealthBar.HasEffluvia = false;
+                    else if (abnormIcon == "ELEMENT_WATER") IsWet = false;
+                    else if (abnormIcon == "ELEMENT_ICE") IsIcy = false;
                     else if (poison.Contains(abnormIcon)) HealthBar.IsPoisoned = false;
                     
-                    HealthBar.IsNormal = (!HealthBar.IsOnFire && !HealthBar.IsPoisoned && !HealthBar.IsBleeding);
-
+                    HealthBar.IsNormal = (!HealthBar.IsOnFire && !HealthBar.IsPoisoned && !HealthBar.IsBleeding && !HealthBar.HasEffluvia);
+                    IsStaminaNormal = (!IsWet && !IsIcy);
                 } else
                 {
                     HealthBar.IsHealing = !(abnormIcon == "ICON_NATURALHEALING");
@@ -217,9 +247,11 @@ namespace HunterPie.GUI.Widgets.HealthWidget
 
                     if (abnormIcon == "ELEMENT_FIRE") HealthBar.IsOnFire = true;
                     else if (abnormIcon == "ICON_BLEED") HealthBar.IsBleeding = true;
+                    else if (abnormIcon == "ICON_EFFLUVIA") HealthBar.HasEffluvia = true;
+                    else if (abnormIcon == "ELEMENT_WATER") IsWet = true;
+                    else if (abnormIcon == "ELEMENT_ICE") IsIcy = true;
                     else if (poison.Contains(abnormIcon)) HealthBar.IsPoisoned = true;
 
-                    HealthBar.IsNormal = (!HealthBar.IsOnFire && !HealthBar.IsPoisoned && !HealthBar.IsBleeding);
                 } else
                 {
                     HealthBar.IsHealing = abnormIcon == "ICON_NATURALHEALING";
@@ -471,5 +503,15 @@ namespace HunterPie.GUI.Widgets.HealthWidget
             }
         }
 
+        private void OnLoad(object sender, RoutedEventArgs e)
+        {
+            StaminaBar = Template.FindName("StaminaBar", this) as MinimalHealthBar;
+            HealthBar = Template.FindName("HealthBar", this) as HealthBar;
+            HealthExt = Template.FindName("HealthExt", this) as Rectangle;
+            StaminaExt = Template.FindName("StaminaExt", this) as Rectangle;
+
+            HookEvents();
+            UpdateInformation();
+        }
     }
 }

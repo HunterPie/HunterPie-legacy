@@ -2,7 +2,7 @@
              xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
              x:Name="HealthBarControl"
-             Height="20" Width="{Binding ElementName=HealthBarControl, Path=MaxHealth}">
+             Width="{Binding ElementName=HealthBarControl, Path=MaxHealth}">
     <UserControl.Template>
         <ControlTemplate>
             <Border BorderBrush="#B2060606" BorderThickness="1.5">
@@ -17,12 +17,25 @@
                         <Rectangle.Style>
                             <Style TargetType="Rectangle">
                                 <Style.Triggers>
+                                    <DataTrigger Binding="{Binding ElementName=HealthBarControl, Path=HasEffluvia}" Value="True">
+                                        <DataTrigger.EnterActions>
+                                            <BeginStoryboard Name="EffluviaAnim">
+                                                <Storyboard Duration="0:0:0.8" RepeatBehavior="Forever" AutoReverse="True">
+                                                    <ColorAnimation Storyboard.TargetProperty="(Rectangle.Fill).(LinearGradientBrush.GradientStops)[0].(GradientStop.Color)" To="#72541c" Duration="0:0:0.5"/>
+                                                    <ColorAnimation Storyboard.TargetProperty="(Rectangle.Fill).(LinearGradientBrush.GradientStops)[1].(GradientStop.Color)" To="#b39a0e" Duration="0:0:0.5"/>
+                                                </Storyboard>
+                                            </BeginStoryboard>
+                                        </DataTrigger.EnterActions>
+                                        <DataTrigger.ExitActions>
+                                            <RemoveStoryboard BeginStoryboardName="EffluviaAnim"/>
+                                        </DataTrigger.ExitActions>
+                                    </DataTrigger>
                                     <DataTrigger Binding="{Binding ElementName=HealthBarControl, Path=IsBleeding}" Value="True">
                                         <DataTrigger.EnterActions>
                                             <BeginStoryboard Name="BleedAnim">
                                                 <Storyboard Duration="0:0:0.8" RepeatBehavior="Forever" AutoReverse="True">
-                                                    <ColorAnimation Storyboard.TargetProperty="(Rectangle.Fill).(LinearGradientBrush.GradientStops)[0].(GradientStop.Color)" To="#FF61001A" Duration="0:0:0.5"/>
-                                                    <ColorAnimation Storyboard.TargetProperty="(Rectangle.Fill).(LinearGradientBrush.GradientStops)[1].(GradientStop.Color)" To="#FF61003E" Duration="0:0:0.5"/>
+                                                    <ColorAnimation Storyboard.TargetProperty="(Rectangle.Fill).(LinearGradientBrush.GradientStops)[0].(GradientStop.Color)" To="#a10056" Duration="0:0:0.5"/>
+                                                    <ColorAnimation Storyboard.TargetProperty="(Rectangle.Fill).(LinearGradientBrush.GradientStops)[1].(GradientStop.Color)" To="#bf0066" Duration="0:0:0.5"/>
                                                 </Storyboard>
                                             </BeginStoryboard>
                                         </DataTrigger.EnterActions>
@@ -47,8 +60,8 @@
                                         <DataTrigger.EnterActions>
                                             <BeginStoryboard Name="PoisonAnim">
                                                 <Storyboard Duration="0:0:0.8" RepeatBehavior="Forever" AutoReverse="True">
-                                                    <ColorAnimation Storyboard.TargetProperty="(Rectangle.Fill).(LinearGradientBrush.GradientStops)[0].(GradientStop.Color)" To="#FF4A0061" Duration="0:0:0.5"/>
-                                                    <ColorAnimation Storyboard.TargetProperty="(Rectangle.Fill).(LinearGradientBrush.GradientStops)[1].(GradientStop.Color)" To="#FFB93CE8" Duration="0:0:0.5"/>
+                                                    <ColorAnimation Storyboard.TargetProperty="(Rectangle.Fill).(LinearGradientBrush.GradientStops)[0].(GradientStop.Color)" To="#690096" Duration="0:0:0.5"/>
+                                                    <ColorAnimation Storyboard.TargetProperty="(Rectangle.Fill).(LinearGradientBrush.GradientStops)[1].(GradientStop.Color)" To="#a705ed" Duration="0:0:0.5"/>
                                                 </Storyboard> 
                                             </BeginStoryboard>
                                         </DataTrigger.EnterActions>
@@ -83,8 +96,8 @@
                                         <Setter Property="Fill">
                                             <Setter.Value>
                                                 <LinearGradientBrush EndPoint="1,1" StartPoint="0,0">
-                                                    <GradientStop Color="#FFFFB900" Offset="0"/>
-                                                    <GradientStop Color="#FFFFB900" Offset="1"/>
+                                                    <GradientStop Color="#FFEBBB00" Offset="0"/>
+                                                    <GradientStop Color="#FFFCCA03" Offset="1"/>
                                                 </LinearGradientBrush>
                                             </Setter.Value>
                                         </Setter>

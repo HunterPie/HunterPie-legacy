@@ -53,6 +53,14 @@ namespace HunterPie.GUI.Widgets.HealthWidget.Parts
         public static readonly DependencyProperty IsOnFireProperty =
             DependencyProperty.Register("IsOnFire", typeof(bool), typeof(HealthBar));
 
+        public bool HasEffluvia
+        {
+            get { return (bool)GetValue(HasEffluviaProperty); }
+            set { SetValue(HasEffluviaProperty, value); }
+        }
+        public static readonly DependencyProperty HasEffluviaProperty =
+            DependencyProperty.Register("HasEffluvia", typeof(bool), typeof(HealthBar));
+
         public double MaxHealth
         {
             get { return (double)GetValue(MaxHealthProperty); }
