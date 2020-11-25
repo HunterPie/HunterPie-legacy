@@ -188,7 +188,7 @@ namespace HunterPie.GUI.Widgets
             UserSettings.PlayerConfig.Overlay.MonstersComponent.Scale = DefaultScaleX;
         }
 
-        public void ScaleWidget(double NewScaleX, double NewScaleY)
+        public override void ScaleWidget(double NewScaleX, double NewScaleY)
         {
             if (NewScaleX <= 0.2) return;
             Container.LayoutTransform = new ScaleTransform(NewScaleX, NewScaleY);

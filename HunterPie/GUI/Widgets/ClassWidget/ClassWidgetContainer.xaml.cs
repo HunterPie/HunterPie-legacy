@@ -188,7 +188,7 @@ namespace HunterPie.GUI.Widgets.ClassWidget
             Context = null;
         }
 
-        private void ScaleWidget(double newScaleX, double newScaleY)
+        public override void ScaleWidget(double newScaleX, double newScaleY)
         {
             if (newScaleX <= 0.2) return;
             Container.LayoutTransform = new ScaleTransform(newScaleX, newScaleY);

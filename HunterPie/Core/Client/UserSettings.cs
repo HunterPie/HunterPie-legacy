@@ -48,6 +48,7 @@ namespace HunterPie.Core
                 public bool EnableForceDirectX11Fullscreen { get; set; } = false;
                 public Monsterscomponent MonstersComponent { get; set; } = new Monsterscomponent();
                 public Harvestboxcomponent HarvestBoxComponent { get; set; } = new Harvestboxcomponent();
+                public PlayerHealthComponent PlayerHealthComponent { get; set; } = new PlayerHealthComponent();
                 public SpecializedTool PrimaryMantle { get; set; } = new SpecializedTool()
                 {
                     Color = "#FF80FFFF",
@@ -63,7 +64,7 @@ namespace HunterPie.Core
                 public ClassesWidget ClassesWidget { get; set; } = new ClassesWidget();
             }
 
-            public class Healthcomponent
+            public class PlayerHealthComponent
             {
                 public bool Enabled { get; set; } = true;
                 public double Scale { get; set; } = 1;

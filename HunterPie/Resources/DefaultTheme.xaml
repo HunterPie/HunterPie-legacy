@@ -810,8 +810,7 @@
             <Setter.Value>
                 <ControlTemplate>
                     <Border>
-                        <Grid VerticalAlignment="Top" HorizontalAlignment="Left" Width="468" Height="100">
-                            <TextBlock Text="{Binding ElementName=PlayerHealthComponent, Path=DesignModeDetails}" Visibility="{Binding ElementName=PlayerHealthComponent, Path=DesignModeDetailsVisibility}" VerticalAlignment="Top" HorizontalAlignment="Left" Style="{StaticResource OVERLAY_DESIGN_MODE_DEBUG}"/>
+                        <Grid x:Name="HudPanel" VerticalAlignment="Top" HorizontalAlignment="Left" Width="468" Height="100">
 
                             <StackPanel Margin="60,10,0,0" Height="20" VerticalAlignment="Top" Orientation="Horizontal">
                                 <TextBlock RenderOptions.ClearTypeHint="Enabled" Text="{Binding ElementName=PlayerHealthComponent, Path=PlayerName, FallbackValue='Lv.9999 UwU'}" VerticalAlignment="Top" Foreground="#FFDADADA" FontSize="14" Height="20" HorizontalAlignment="Left" FontFamily="Roboto, Segoe UI, Yu Gothic UI">
@@ -982,6 +981,8 @@
                             <Image Source="pack://siteoforigin:,,,/HunterPie.Resources/UI/HUD/mr_time_background.png" HorizontalAlignment="Left" Width="57" Height="60" VerticalAlignment="Top" Margin="2,1,0,0"/>
                             <Image Source="{Binding ElementName=PlayerHealthComponent, Path=DayTimeIcon}" HorizontalAlignment="Left" Width="57" Height="60" VerticalAlignment="Top" Margin="2,1,0,0"/>
                             <Image Source="{Binding ElementName=PlayerHealthComponent, Path=PlayerLaurel}" HorizontalAlignment="Left" Width="57" Height="60" VerticalAlignment="Top" Margin="2,1,0,0" OpacityMask="#B2000000"/>
+                            
+                            <TextBlock Text="{Binding ElementName=PlayerHealthComponent, Path=DesignModeDetails}" Visibility="{Binding ElementName=PlayerHealthComponent, Path=DesignModeDetailsVisibility}" VerticalAlignment="Top" HorizontalAlignment="Left" Style="{StaticResource OVERLAY_DESIGN_MODE_DEBUG}"/>
                         </Grid>
                         <Border.Style>
                             <!-- Kinda hacky, ngl but im kinda dumb -->

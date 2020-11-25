@@ -244,7 +244,7 @@ namespace HunterPie.GUI.Widgets.DPSMeter
             base.ApplySettings();
         }));
 
-        public void ScaleWidget(double NewScaleX, double NewScaleY)
+        public override void ScaleWidget(double NewScaleX, double NewScaleY)
         {
             if (NewScaleX <= 0.2) return;
             DamageContainer.LayoutTransform = new ScaleTransform(NewScaleX, NewScaleY);

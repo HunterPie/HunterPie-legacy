@@ -192,6 +192,14 @@ namespace HunterPie.GUI
             WindowsHelper.SetWindowPos(hwnd, -1, 0, 0, 0, 0, Flags);
         }
 
+        public virtual void ScaleWidget(double NewScaleX, double NewScaleY)
+        {
+            if (NewScaleX <= 0.2) return;
+            LayoutTransform = new ScaleTransform(NewScaleX, NewScaleY);
+            DefaultScaleX = NewScaleX;
+            DefaultScaleY = NewScaleY;
+        }
+
         public virtual void ApplySettings(bool FocusTrigger = false) => ChangeVisibility();
 
         public virtual void MoveWidget()

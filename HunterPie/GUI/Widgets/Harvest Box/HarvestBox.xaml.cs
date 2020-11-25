@@ -82,8 +82,8 @@ namespace HunterPie.GUI.Widgets
                 fC.SetMode(IsCompact);
             }
         }
-
-        public void ScaleWidget(double NewScaleX, double NewScaleY)
+        
+        public override void ScaleWidget(double NewScaleX, double NewScaleY)
         {
             if (NewScaleX <= 0.2) return;
             Width = BaseWidth * NewScaleX;

@@ -13,6 +13,7 @@ using System.Windows.Shapes;
 using System.Windows.Controls;
 using HunterPie.GUI.Helpers;
 using HunterPie.Logger;
+using static HunterPie.Core.UserSettings.Config;
 
 namespace HunterPie.GUI.Widgets.HealthWidget
 {
@@ -25,6 +26,8 @@ namespace HunterPie.GUI.Widgets.HealthWidget
 
         private Game gContext { get; set; }
         private Player Context => gContext.Player;
+
+        private PlayerHealthComponent Settings => UserSettings.PlayerConfig.Overlay.PlayerHealthComponent;
 
         private const double SharpnessMaxWidth = 50;
 
@@ -110,8 +113,6 @@ namespace HunterPie.GUI.Widgets.HealthWidget
 
         public PlayerHealth(Game ctx)
         {
-            WidgetActive = true;
-            WidgetHasContent = true;
             IsStaminaNormal = true;
             InitializeComponent();
             SetWindowFlags();
@@ -135,13 +136,20 @@ namespace HunterPie.GUI.Widgets.HealthWidget
         {
             Dispatcher.BeginInvoke(DispatcherPriority.Background, new Action(() =>
             {
+                WidgetActive = Settings.Enabled;
+
+                PlayerName = FormatNameString();
+
+                WidgetHasContent = !(Context?.InHarvestZone ?? true) && Settings.HideHealthInVillages;
+
+                ScaleWidget(Settings.Scale, Settings.Scale);
                 base.ApplySettings(FocusTrigger);
             }));
         }
 
         private void SaveSettings()
         {
-
+            
         }
 
         public void SetContext(Game ctx)
@@ -162,6 +170,7 @@ namespace HunterPie.GUI.Widgets.HealthWidget
         private void HookEvents()
         {
             gContext.OnWorldDayTimeUpdate += OnWorldDayTimeUpdate;
+            Context.OnZoneChange += OnZoneChange;
             Context.Health.OnHealthUpdate += OnHealthUpdate;
             Context.Health.OnMaxHealthUpdate += OnMaxHealthUpdate;
             Context.Health.OnHealHealth += OnHealHealth;
@@ -189,6 +198,7 @@ namespace HunterPie.GUI.Widgets.HealthWidget
         public void UnhookEvents()
         {
             gContext.OnWorldDayTimeUpdate -= OnWorldDayTimeUpdate;
+            Context.OnZoneChange -= OnZoneChange;
             Context.Health.OnHealthUpdate -= OnHealthUpdate;
             Context.Health.OnMaxHealthUpdate -= OnMaxHealthUpdate;
             Context.Health.OnHealHealth -= OnHealHealth;
@@ -210,6 +220,17 @@ namespace HunterPie.GUI.Widgets.HealthWidget
 
             Context.Abnormalities.OnNewAbnormality -= OnNewAbnormality;
             Context.Abnormalities.OnAbnormalityRemove -= OnAbnormalityEnd;
+        }
+
+
+        private void OnZoneChange(object source, EventArgs args)
+        {
+            PlayerLocationEventArgs e = (PlayerLocationEventArgs)args;
+            Dispatcher.BeginInvoke(DispatcherPriority.Render, new Action(() =>
+            {
+                WidgetHasContent = !e.InHarvestZone && Settings.HideHealthInVillages;
+                ChangeVisibility(false);
+            }));
         }
 
         private void OnAbnormalityEnd(object source, AbnormalityEventArgs args)
@@ -380,7 +401,7 @@ namespace HunterPie.GUI.Widgets.HealthWidget
             {
                 PlayerEventArgs e = (PlayerEventArgs)args;
                 // We update the name string
-                PlayerName = $"Lv. {e.Level} {e.Name}";
+                PlayerName = FormatNameString();
                 // And the laurel
                 string laurel = "pack://siteoforigin:,,,/HunterPie.Resources/UI/HUD/";
 
@@ -405,6 +426,19 @@ namespace HunterPie.GUI.Widgets.HealthWidget
                 laurel += ".png";
                 PlayerLaurel = laurel;
             }));
+        }
+
+        private string FormatNameString()
+        {
+            if (Context is null)
+            {
+                return null;
+            }
+
+            return Settings.NameTextFormat.Replace("{HR}", Context.Level.ToString())
+                .Replace("{MR}", Context.MasterRank.ToString())
+                .Replace("{Name}", Context.Name);
+
         }
 
         private void OnAilmentUpdate(object source, PlayerAilmentEventArgs args)
@@ -491,9 +525,17 @@ namespace HunterPie.GUI.Widgets.HealthWidget
             }));
         }
 
-        public void ScaleWidget(double NewScaleX, double NewScaleY)
+        public override void ScaleWidget(double NewScaleX, double NewScaleY)
         {
-            
+            if (NewScaleX <= 0.2) return;
+            FrameworkElement panel = (FrameworkElement)Template.FindName("HudPanel", this);
+            if (panel is null)
+            {
+                return;
+            }
+            panel.LayoutTransform = new ScaleTransform(NewScaleX, NewScaleY);
+            DefaultScaleX = NewScaleX;
+            DefaultScaleY = NewScaleY;
         }
 
         private void OnClosing(object sender, System.ComponentModel.CancelEventArgs e)
@@ -535,6 +577,7 @@ namespace HunterPie.GUI.Widgets.HealthWidget
 
             HookEvents();
             UpdateInformation();
+            ApplySettings();
         }
     }
 }
