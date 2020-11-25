@@ -1,30 +1,73 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Diagnostics;
 using System.Linq;
 using System.Windows;
 using System.Windows.Interop;
 using System.Windows.Media;
 using HunterPie.Core;
+using HunterPie.Logger;
 using HunterPie.Memory;
 
 namespace HunterPie.GUI
 {
-    class Overlay : IDisposable
+    public class Overlay : IDisposable
     {
         public bool IsDisposed { get; private set; }
 
-        readonly List<Widget> Widgets = new List<Widget>();
-        Game ctx;
+        private static readonly List<Widget> widgets = new List<Widget>();
 
-        public Overlay(Game Context)
+        public static IReadOnlyList<Widget> Widgets => widgets;
+
+        Game Context { get; set; }
+
+        public Overlay(Game ctx)
         {
-            ctx = Context;
+            Context = ctx;
             SetRenderMode();
             CreateWidgets();
         }
 
-        public void ToggleDesignMode()
+        #region Overlay static methods
+
+        /// <summary>
+        /// Registers a new widget to the overlay
+        /// </summary>
+        /// <param name="widget">Widget to register</param>
+        /// <returns>True if the widget was registered succesfully.</returns>
+        public static bool RegisterWidget(Widget widget)
+        {
+            try
+            {
+                widgets.Add(widget);
+                return true;
+            } catch (Exception err)
+            {
+                Debugger.Error(err);
+                return false;
+            }
+        }
+
+        /// <summary>
+        /// Unregisters a widget from the overlay
+        /// </summary>
+        /// <param name="widget">Widget to unregister</param>
+        /// <returns>True if the widget was unregistered succesfully.</returns>
+        public static bool UnregisterWidget(Widget widget)
+        {
+            try
+            {
+                widgets.Remove(widget);
+                return true;
+            } catch (Exception err)
+            {
+                Debugger.Error(err);
+                return false;
+            }
+        }
+
+        #endregion
+
+        internal void ToggleDesignMode()
         {
             foreach (Widget widget in Widgets)
             {
@@ -43,17 +86,17 @@ namespace HunterPie.GUI
 
         private void CreateWidgets()
         {
-            Widgets.Add(new Widgets.HarvestBox(ctx.Player));
-            Widgets.Add(new Widgets.MantleTimer(0, ctx.Player.PrimaryMantle));
-            Widgets.Add(new Widgets.MantleTimer(1, ctx.Player.SecondaryMantle));
-            Widgets.Add(new Widgets.MonsterContainer(ctx));
-            Widgets.Add(new Widgets.DPSMeter.Meter(ctx));
+            RegisterWidget(new Widgets.HarvestBox(Context.Player));
+            RegisterWidget(new Widgets.MantleTimer(0, Context.Player.PrimaryMantle));
+            RegisterWidget(new Widgets.MantleTimer(1, Context.Player.SecondaryMantle));
+            RegisterWidget(new Widgets.MonsterContainer(Context));
+            RegisterWidget(new Widgets.DPSMeter.Meter(Context));
             for (int AbnormTrayIndex = 0; AbnormTrayIndex < UserSettings.PlayerConfig.Overlay.AbnormalitiesWidget.ActiveBars; AbnormTrayIndex++)
             {
-                Widgets.Add(new Widgets.Abnormality_Widget.AbnormalityContainer(ctx.Player, AbnormTrayIndex));
+                RegisterWidget(new Widgets.Abnormality_Widget.AbnormalityContainer(Context.Player, AbnormTrayIndex));
             }
-            Widgets.Add(new Widgets.ClassWidget.ClassWidgetContainer(ctx));
-            Widgets.Add(new Widgets.HealthWidget.PlayerHealth(ctx));
+            RegisterWidget(new Widgets.ClassWidget.ClassWidgetContainer(Context));
+            RegisterWidget(new Widgets.HealthWidget.PlayerHealth(Context));
         }
 
         private void DestroyWidgets()
@@ -64,10 +107,10 @@ namespace HunterPie.GUI
                 widget.InDesignMode = false;
                 widget.Close();
             }
-            Widgets.Clear();
+            widgets.Clear();
         }
 
-        public void HookEvents()
+        internal void HookEvents()
         {
             Kernel.OnGameFocus += OnGameFocus;
             Kernel.OnGameUnfocus += OnGameUnfocus;
@@ -83,7 +126,7 @@ namespace HunterPie.GUI
         {
             DestroyWidgets();
             UnhookEvents();
-            ctx = null;
+            Context = null;
         }
 
         public void GlobalSettingsEventHandler(object source, EventArgs e)
@@ -102,7 +145,7 @@ namespace HunterPie.GUI
             int i = 0;
             foreach (Widget widget in Widgets)
             {
-                if (widget.WidgetType == 5)
+                if (widget.Type == WidgetType.AbnormalityWidget)
                 {
                     Widgets.Abnormality_Widget.AbnormalityContainer widgetConverted = (Widgets.Abnormality_Widget.AbnormalityContainer)widget;
                     if (widgetConverted.AbnormalityTrayIndex >= UserSettings.PlayerConfig.Overlay.AbnormalitiesWidget.ActiveBars)
@@ -115,7 +158,7 @@ namespace HunterPie.GUI
             }
             foreach (int index in IndexesToRemove)
             {
-                Widgets.RemoveAt(index);
+                widgets.RemoveAt(index);
             }
 
         }

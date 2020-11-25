@@ -18,6 +18,8 @@ namespace HunterPie.GUI.Widgets.HealthWidget
     /// </summary>
     public partial class PlayerHealth : Widget
     {
+        public new WidgetType Type => WidgetType.PlayerWidget;
+
         private Game gContext { get; set; }
         private Player Context => gContext.Player;
 
@@ -102,7 +104,6 @@ namespace HunterPie.GUI.Widgets.HealthWidget
 
         public PlayerHealth(Game ctx)
         {
-            WidgetType = 7;
             WidgetActive = true;
             WidgetHasContent = true;
             IsStaminaNormal = true;

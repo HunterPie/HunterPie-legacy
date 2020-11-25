@@ -8,11 +8,12 @@ using HunterPie.Memory;
 
 namespace HunterPie.GUI
 {
-
+    // TODO: REFACTOR THIS CODE, ITS DISGUSTING
     public partial class Widget : Window
     {
 
-        public byte WidgetType = 0;
+        public WidgetType Type { get; }
+
         public bool IsClosed { get; set; }
         private bool _InDesignMode { get; set; }
         public double DefaultScaleX { get; set; } = 1;
@@ -76,7 +77,7 @@ namespace HunterPie.GUI
             if (renderCounter >= 120)
             {
                 // Only force widgets on top if they are actually visible
-                if (InDesignMode || (WidgetHasContent &&
+                if ((WidgetHasContent &&
                     OverlayActive &&
                     WidgetActive &&
                     ((!OverlayFocusActive) ||

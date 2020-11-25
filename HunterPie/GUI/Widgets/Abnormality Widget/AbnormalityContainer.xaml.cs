@@ -15,6 +15,9 @@ namespace HunterPie.GUI.Widgets.Abnormality_Widget
     /// </summary>
     public partial class AbnormalityContainer : Widget
     {
+
+        public new WidgetType Type => WidgetType.AbnormalityWidget;
+
         readonly Dictionary<string, Parts.AbnormalityControl> ActiveAbnormalities = new Dictionary<string, Parts.AbnormalityControl>();
         Player Context { get; set; }
         public int AbnormalityTrayIndex { get; set; }
@@ -25,7 +28,6 @@ namespace HunterPie.GUI.Widgets.Abnormality_Widget
             InitializeComponent();
             BaseWidth = Width;
             BaseHeight = Height;
-            WidgetType = 5;
             AbnormalityTrayIndex = TrayIndex;
             ApplySettings();
             SetWindowFlags();

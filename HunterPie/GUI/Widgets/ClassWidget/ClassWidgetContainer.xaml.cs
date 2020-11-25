@@ -2,7 +2,6 @@
 using System.Windows.Input;
 using System.Windows.Media;
 using HunterPie.Core;
-using HunterPie.Core.Jobs;
 using HunterPie.GUI.Widgets.ClassWidget.Parts;
 using Classes = HunterPie.Core.Enums.Classes;
 
@@ -13,11 +12,13 @@ namespace HunterPie.GUI.Widgets.ClassWidget
     /// </summary>
     public partial class ClassWidgetContainer : Widget
     {
+
+        public new WidgetType Type => WidgetType.ClassWidget;
+
         Game Context { get; set; }
 
         public ClassWidgetContainer(Game ctx)
         {
-            WidgetType = 6;
             InitializeComponent();
             SetContext(ctx);
             SetWindowFlags();

@@ -12,6 +12,8 @@ namespace HunterPie.GUI.Widgets.DPSMeter
     /// </summary>
     public partial class Meter : Widget
     {
+        public new WidgetType Type => WidgetType.DamageWidget;
+
         List<Parts.PartyMember> Players = new List<Parts.PartyMember>();
         Game GameContext;
         Party Context;
@@ -31,7 +33,6 @@ namespace HunterPie.GUI.Widgets.DPSMeter
         {
             InitializeComponent();
             SetWindowFlags();
-            WidgetType = 4;
             SetContext(ctx);
             ApplySettings();
         }

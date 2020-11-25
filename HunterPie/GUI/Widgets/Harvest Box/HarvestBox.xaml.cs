@@ -11,6 +11,8 @@ namespace HunterPie.GUI.Widgets
     public partial class HarvestBox : Widget
     {
 
+        public new WidgetType Type => WidgetType.HarvestWidget;
+
         Player PlayerContext;
         Core.HarvestBox Context => PlayerContext?.Harvest;
 
@@ -19,7 +21,6 @@ namespace HunterPie.GUI.Widgets
             InitializeComponent();
             BaseWidth = Width;
             BaseHeight = Height;
-            WidgetType = 3;
             SetWindowFlags();
             SetContext(Context);
             CreateFertilizerControls();

@@ -287,6 +287,7 @@
     <Compile Include="GUI\Widgets\HealthWidget\Parts\AilmentControl.xaml.cs">
       <DependentUpon>AilmentControl.xaml</DependentUpon>
     </Compile>
+    <Compile Include="GUI\WidgetType.cs" />
     <Compile Include="HunterPie.Plugins\UpdateResult.cs" />
     <Compile Include="Utils\GenericExtensions.cs" />
     <None Include="address\MonsterHunterWorld.420540.map">

@@ -4,7 +4,6 @@ using System.Linq;
 using System.Windows;
 using System.Windows.Media;
 using HunterPie.Core;
-using HunterPie.Memory;
 
 namespace HunterPie.GUI.Widgets
 {
@@ -13,6 +12,8 @@ namespace HunterPie.GUI.Widgets
     /// </summary>
     public partial class MonsterContainer : Widget
     {
+
+        public new WidgetType Type => WidgetType.MonsterWidget;
 
         Game Context;
         MonsterHealth f_MonsterWidget;
@@ -27,7 +28,6 @@ namespace HunterPie.GUI.Widgets
         {
             LoadMonsterWidths();
             InitializeComponent();
-            WidgetType = 1;
             SetWindowFlags();
             SetContext(ctx);
             ApplySettings();

@@ -12,6 +12,9 @@ namespace HunterPie.GUI.Widgets.Notification_Widget
     /// </summary>
     public partial class DiscordNotify : Widget
     {
+
+        public new WidgetType Type => WidgetType.Custom;
+
         DiscordRPC.Message.JoinRequestMessage RequestInfo;
         Timer Timeout;
 
