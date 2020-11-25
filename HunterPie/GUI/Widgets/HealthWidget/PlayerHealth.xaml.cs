@@ -10,6 +10,9 @@ using HunterPie.Core.Local;
 using System.Collections.Generic;
 using HunterPie.GUIControls.Custom_Controls;
 using System.Windows.Shapes;
+using System.Windows.Controls;
+using HunterPie.GUI.Helpers;
+using HunterPie.Logger;
 
 namespace HunterPie.GUI.Widgets.HealthWidget
 {
@@ -102,12 +105,16 @@ namespace HunterPie.GUI.Widgets.HealthWidget
         Rectangle HealthExt { get; set; }
         Rectangle StaminaExt { get; set; }
 
+        Panel AilmentDisplay { get; set; }
+        AilmentControl ConstantAilment { get; set; }
+
         public PlayerHealth(Game ctx)
         {
             WidgetActive = true;
             WidgetHasContent = true;
             IsStaminaNormal = true;
             InitializeComponent();
+            SetWindowFlags();
             SetContext(ctx);
         }
 
@@ -269,7 +276,7 @@ namespace HunterPie.GUI.Widgets.HealthWidget
                     HealthExt.Visibility = Visibility.Visible;
 
                     float maxHealth = Math.Min(args.MaxHealth + HealthComponent.CanIncreaseMaxHealth[args.SelectedItemId], args.MaxPossibleHealth);
-                    HealthExt.Width = (maxHealth - args.MaxHealth) / args.MaxPossibleHealth * HealthBar.CWidth * (HealthBar.CWidth / HealthBar.CHealth);
+                    HealthExt.Width = (maxHealth - args.MaxHealth) / args.MaxPossibleHealth * HealthBar.ConstantWidth * (HealthBar.ConstantWidth / HealthBar.CHealth);
                 } else
                 {
                     HealthExt.Width = 0;
@@ -286,7 +293,7 @@ namespace HunterPie.GUI.Widgets.HealthWidget
                 {
                     StaminaExt.Visibility = Visibility.Visible;
                     float maxStamina = Math.Min(args.MaxStamina + StaminaComponent.CanIncreaseMaxStamina[args.SelectedItemId], args.MaxPossibleStamina);
-                    StaminaExt.Width = (maxStamina - args.MaxStamina) / args.MaxPossibleStamina * HealthBar.CWidth * (HealthBar.CWidth / HealthBar.CHealth);
+                    StaminaExt.Width = (maxStamina - args.MaxStamina) / args.MaxPossibleStamina * HealthBar.ConstantWidth * (HealthBar.ConstantWidth / HealthBar.CHealth);
                 } else
                 {
                     StaminaExt.Width = 0;
@@ -404,7 +411,19 @@ namespace HunterPie.GUI.Widgets.HealthWidget
         {
             Dispatcher.BeginInvoke(DispatcherPriority.Render, new Action(() =>
             {
+                if (args.AilmentType == PlayerAilment.None)
+                {
+                    ConstantAilment.Icon = null;
+                    ConstantAilment.Visibility = Visibility.Collapsed;
+                    return;
+                } else
+                {
+                    ConstantAilment.Visibility = Visibility.Visible;
+                    ImageSource icon = TryFindResource($"ICON_{args.AilmentType.ToString().ToUpperInvariant()}") as ImageSource;
+                    ConstantAilment.Icon = icon;
+                }
 
+                ConstantAilment.TimerEndAngle = Arc.ConvertPercentageIntoAngle(args.AilmentTimer / Math.Max(1, args.AilmentMaxTimer));
             }));
         }
 
@@ -510,6 +529,9 @@ namespace HunterPie.GUI.Widgets.HealthWidget
             HealthBar = Template.FindName("HealthBar", this) as HealthBar;
             HealthExt = Template.FindName("HealthExt", this) as Rectangle;
             StaminaExt = Template.FindName("StaminaExt", this) as Rectangle;
+
+            AilmentDisplay = Template.FindName("AilmentDisplay", this) as Panel;
+            ConstantAilment = Template.FindName("ConstantAilment", this) as AilmentControl;
 
             HookEvents();
             UpdateInformation();

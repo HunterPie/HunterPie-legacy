@@ -63,6 +63,16 @@ namespace HunterPie.Core
                 public ClassesWidget ClassesWidget { get; set; } = new ClassesWidget();
             }
 
+            public class Healthcomponent
+            {
+                public bool Enabled { get; set; } = true;
+                public double Scale { get; set; } = 1;
+                public string NameTextFormat { get; set; } = "Lv. {MR} {Name}";
+                public bool HideHealthInVillages { get; set; } = true;
+                public int[] Position { get; set; } = new int[] { 20, 20 };
+                public float Opacity { get; set; } = 1;
+            }
+
             public class Monsterscomponent
             {
                 public bool Enabled { get; set; } = true;

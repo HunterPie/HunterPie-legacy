@@ -10,8 +10,15 @@ namespace HunterPie.GUI.Widgets.HealthWidget.Parts
     public partial class HealthBar : UserControl
     {
         // TODO: Replace these with customizable stuff
-        public const double CWidth = 200.0;
         public const double CHealth = 100.0;
+
+        public double ConstantWidth
+        {
+            get { return (double)GetValue(ConstantWidthProperty); }
+            set { SetValue(ConstantWidthProperty, value); }
+        }
+        public static readonly DependencyProperty ConstantWidthProperty =
+            DependencyProperty.Register("ConstantWidth", typeof(double), typeof(HealthBar));
 
         public bool IsNormal
         {
@@ -67,7 +74,7 @@ namespace HunterPie.GUI.Widgets.HealthWidget.Parts
             set
             {
                 // Calculates the health bar max width based on the max health
-                value = CWidth * (value / CHealth);
+                value = ConstantWidth * (value / CHealth);
                 
                 SetValue(MaxHealthProperty, value);
             }
@@ -81,7 +88,7 @@ namespace HunterPie.GUI.Widgets.HealthWidget.Parts
             set
             {
                 // Calculates the health bar width based on health value
-                double maxHealth = MaxHealth / CWidth * CHealth;
+                double maxHealth = MaxHealth / ConstantWidth * CHealth;
                 value = value / maxHealth * MaxHealth;
                 SetValue(HealthProperty, value);
             }
@@ -94,11 +101,11 @@ namespace HunterPie.GUI.Widgets.HealthWidget.Parts
             get { return (double)GetValue(RedHealthProperty); }
             set
             {
-                double maxHealth = MaxHealth / CWidth * CHealth;
+                double maxHealth = MaxHealth / ConstantWidth * CHealth;
                 double health = Health * maxHealth / MaxHealth;
                 double heal = HealHealth > 0 ? HealHealth * 100 / 200 + health : 0;
 
-                value = Math.Max(0, (value - Math.Max(heal, health)) / CHealth * CWidth);
+                value = Math.Max(0, (value - Math.Max(heal, health)) / CHealth * ConstantWidth);
                 
                 SetValue(RedHealthProperty, value);
             }
@@ -111,9 +118,9 @@ namespace HunterPie.GUI.Widgets.HealthWidget.Parts
             get { return (double)GetValue(HealHealthProperty); }
             set
             {
-                double maxHealth = MaxHealth / CWidth * CHealth;
+                double maxHealth = MaxHealth / ConstantWidth * CHealth;
                 double health = Health * maxHealth / MaxHealth;
-                value = (value - health) / CHealth * CWidth;
+                value = (value - health) / CHealth * ConstantWidth;
                 value = Math.Max(0, value);
                 SetValue(HealHealthProperty, value);
             }

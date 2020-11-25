@@ -40,6 +40,7 @@ namespace HunterPie.Core
         private float ailmentTimer;
         private int masterRank;
         private Job currentWeapon;
+        private PlayerAilment ailmentType;
 
         private readonly int[] harvestBoxZones =
         {
@@ -297,9 +298,25 @@ namespace HunterPie.Core
         }
 
         /// <summary>
+        /// Player current ailment max duration
+        /// </summary>
+        public float MaxAilmentTimer { get; private set; }
+
+        /// <summary>
         /// Player current active ailment, if there's any
         /// </summary>
-        public PlayerAilment AilmentType { get; private set; }
+        public PlayerAilment AilmentType
+        {
+            get => ailmentType;
+            private set
+            {
+                if (value != ailmentType)
+                {
+                    ailmentType = value;
+                    Dispatch(OnAilmentUpdate);
+                }
+            }
+        }
 
         /// <summary>
         /// Gets the raw name for the player current action reference name
@@ -700,8 +717,6 @@ namespace HunterPie.Core
                     GetPrimaryMantle();
                     GetSecondaryMantle();
                     GetMantleTimers();
-                    //GetPrimaryMantleTimers();
-                    //GetSecondaryMantleTimers();
                     GetPlayerSkills();
                     GetParty();
                     GetPlayerAbnormalities();
@@ -879,6 +894,7 @@ namespace HunterPie.Core
         private void GetPlayerAilment(long address)
         {
             float timer = Kernel.Read<float>(address + 0x2DF4);
+            MaxAilmentTimer = Kernel.Read<float>(address + 0x2DF8);
             if (PlayerActionRef.Contains("SLEEP"))
             {
                 AilmentType = PlayerAilment.Sleep;

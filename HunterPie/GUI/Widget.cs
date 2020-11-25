@@ -77,7 +77,7 @@ namespace HunterPie.GUI
             if (renderCounter >= 120)
             {
                 // Only force widgets on top if they are actually visible
-                if ((WidgetHasContent &&
+                if (!InDesignMode && (WidgetHasContent &&
                     OverlayActive &&
                     WidgetActive &&
                     ((!OverlayFocusActive) ||
