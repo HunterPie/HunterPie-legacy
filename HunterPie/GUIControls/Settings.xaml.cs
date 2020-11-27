@@ -81,6 +81,14 @@ namespace HunterPie.GUIControls
             settingsUI.OverlayPosition.X = settings.Overlay.Position[0];
             settingsUI.OverlayPosition.Y = settings.Overlay.Position[1];
 
+            // Player
+            settingsUI.switchEnablePlayerWidget.IsEnabled = settings.Overlay.PlayerHealthComponent.Enabled;
+            settingsUI.PlayerNameTextFormat.Text = settings.Overlay.PlayerHealthComponent.NameTextFormat;
+            settingsUI.switchEnableHideInVillages.IsEnabled = settings.Overlay.PlayerHealthComponent.HideHealthInVillages;
+            settingsUI.PlayerComponentOpacity.Value = settings.Overlay.PlayerHealthComponent.Opacity;
+            settingsUI.PlayerWidgetPosition.X = settings.Overlay.PlayerHealthComponent.Position[0];
+            settingsUI.PlayerWidgetPosition.Y = settings.Overlay.PlayerHealthComponent.Position[1];
+
             // Monsters
             settingsUI.switchEnableMonsterComponent.IsEnabled = settings.Overlay.MonstersComponent.Enabled;
             settingsUI.switchEnableMonsterAction.IsEnabled = settings.Overlay.MonstersComponent.ShowMonsterActionName;
@@ -239,6 +247,14 @@ namespace HunterPie.GUIControls
             settings.Overlay.HideWhenGameIsUnfocused = settingsUI.switchHideWhenUnfocused.IsEnabled;
             settings.Overlay.Position[0] = settingsUI.OverlayPosition.X;
             settings.Overlay.Position[1] = settingsUI.OverlayPosition.Y;
+
+            // Player
+            settings.Overlay.PlayerHealthComponent.Enabled = settingsUI.switchEnablePlayerWidget.IsEnabled;
+            settings.Overlay.PlayerHealthComponent.NameTextFormat = settingsUI.PlayerNameTextFormat.Text;
+            settings.Overlay.PlayerHealthComponent.HideHealthInVillages = settingsUI.switchEnableHideInVillages.IsEnabled;
+            settings.Overlay.PlayerHealthComponent.Opacity = (float)settingsUI.PlayerComponentOpacity.Value;
+            settings.Overlay.PlayerHealthComponent.Position[0] = settingsUI.PlayerWidgetPosition.X;
+            settings.Overlay.PlayerHealthComponent.Position[1] = settingsUI.PlayerWidgetPosition.Y;
 
             // Monsters
             settings.Overlay.MonstersComponent.Enabled = settingsUI.switchEnableMonsterComponent.IsEnabled;

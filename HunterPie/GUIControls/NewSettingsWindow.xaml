@@ -258,6 +258,30 @@
             <TabItem>
                 <TabItem.Header>
                     <Canvas>
+                        <Image Source="{StaticResource ICON_BUILD}" Width="19" Height="20" Canvas.Top="3" Canvas.Left="1"/>
+                        <TextBlock Height="21" Width="181" Canvas.Left="20" FontWeight="Medium" Canvas.Top="2">
+                            <TextBlock.Text>
+                                <Binding Mode="OneTime" XPath="Settings/String[@ID='STATIC_PLAYER_SETTINGS']/@Name"/>
+                            </TextBlock.Text>
+                        </TextBlock>
+                    </Canvas>
+                </TabItem.Header>
+                <ScrollViewer>
+                    <StackPanel>
+                        <custom:Switcher x:Name="switchEnablePlayerWidget" Text="{Binding Mode=OneTime, XPath=/Strings/Client/Settings/String[@ID\=\'ENABLE_PLAYER_WIDGET\']/@Name}" ToolTip="{Binding Mode=OneTime, XPath=/Strings/Client/Settings/String[@ID\=\'ENABLE_PLAYER_WIDGET_DESC\']/@Name}"  RestartVisibility="Collapsed"/>
+                        <DockPanel Margin="10,0,10,5" ToolTip="{Binding Mode=OneTime, XPath=/Strings/Client/Settings/String[@ID\=\'STATIC_PLAYER_NAME_STRING_FORMAT_DESC\']/@Name}">
+                            <TextBlock TextWrapping="NoWrap" Text="{Binding Mode=OneTime, XPath=/Strings/Client/Settings/String[@ID\=\'STATIC_PLAYER_NAME_STRING_FORMAT\']/@Name}" FontFamily="Segoe UI Light" Foreground="#FFF1F1F1" Canvas.Left="320" Canvas.Top="3" FontSize="16" Padding="0,0,10,0"/>
+                            <TextBox x:Name="PlayerNameTextFormat" TextWrapping="Wrap" Background="{x:Null}" Foreground="#FF9E9D9D" BorderBrush="#FFABADB3" BorderThickness="0,0,0,1" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" HorizontalAlignment="Stretch" />
+                        </DockPanel>
+                        <custom:Switcher x:Name="switchEnableHideInVillages" Text="{Binding Mode=OneTime, XPath=/Strings/Client/Settings/String[@ID\=\'ENABLE_PLAYER_HIDE_IN_VILLAGES\']/@Name}" ToolTip="{Binding Mode=OneTime, XPath=/Strings/Client/Settings/String[@ID\=\'ENABLE_PLAYER_HIDE_IN_VILLAGES_DESC\']/@Name}"  RestartVisibility="Collapsed"/>
+                        <custom:MinimalSlider x:Name="PlayerComponentOpacity" Text="{Binding XPath=/Strings/Client/Settings/String[@ID\=\'STATIC_OPACITY\']/@Name}" MinChange="0.1" MinValue="0" MaxValue="1" ValueText="{Binding Value, ElementName=DamageComponentOpacity, StringFormat=\{0:P\}}" Foreground="WhiteSmoke" FontFamily="Segoe UI Light" Margin="10,0,10,5"/>
+                        <custom:PositionControl Height="38" x:Name="PlayerWidgetPosition" ToolTip="{Binding Mode=OneTime, XPath=/Strings/Client/Settings/String[@ID\=\'STATIC_PLAYER_POSITION_DESC\']/@Name}"/>
+                    </StackPanel>
+                </ScrollViewer>
+            </TabItem>
+            <TabItem>
+                <TabItem.Header>
+                    <Canvas>
                         <Image Source="{StaticResource ICON_MONSTERBAR}" Width="19" Height="20" Canvas.Top="3" Canvas.Left="1"/>
                         <TextBlock Height="21" Width="181" Canvas.Left="20" FontWeight="Medium" Canvas.Top="2">
                             <TextBlock.Text>
