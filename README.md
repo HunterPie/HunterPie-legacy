@@ -30,6 +30,21 @@ HunterPie is a modern and simple to use overlay with support for Discord Rich Pr
 
 - Delete HunterPie folder
 
+## Build instructions
+
+Visual Studio did not correctly install Python or NuGet for me... So if you need:
+- [Python](https://www.python.org/downloads/)
+- [NuGet](https://www.nuget.org/downloads)
+
+For the release build:
+
+```bash
+nuget restore HunterPie.sln
+msbuild HunterPie.sln -property:Configuration=Release
+```
+
+The apps will be in _{HunterPie|Update}/bin/Release_
+
 ## Features
 
 ### Core

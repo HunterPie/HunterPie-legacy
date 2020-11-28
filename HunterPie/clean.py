@@ -13,9 +13,14 @@ clean = [
 import os
 import shutil
 
+try:
+    os.mkdir("libs")
+except FileExistsError:
+    pass
+    
 for shit in os.listdir():
     if (shit.endswith(".dll") and shit not in ignore_dlls):
-        shutil.move(shit, f"libs\\{shit}")
+        shutil.move(shit, f"libs/{shit}")
     if (shit in shit_folders):
         shutil.rmtree(shit)
     if (shit[-4:] in clean):
