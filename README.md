@@ -32,7 +32,7 @@ HunterPie is a modern and simple to use overlay with support for Discord Rich Pr
 
 ## Build instructions
 
-Visual Studio did not correctly install Python or NuGet for me... So if you need:
+If you want to build HunterPie by yourself, you might need:
 - [Python](https://www.python.org/downloads/)
 - [NuGet](https://www.nuget.org/downloads)
 
@@ -44,6 +44,8 @@ msbuild HunterPie.sln -property:Configuration=Release
 ```
 
 The apps will be in _{HunterPie|Update}/bin/Release_
+
+> **ATTENTION:** Don't forget to disable auto-update, otherwise your local build will be overwritten by the files in HunterPie's update server.
 
 ## Features
 
@@ -70,3 +72,5 @@ Please, read the [FAQ](https://github.com/Haato3o/HunterPie/wiki/FAQ), if your i
 ## Suggestions & PRs
 
 You can use the #suggestions chat in HunterPie Discord server, open a ticket [here](https://github.com/Haato3o/HunterPie/issues) or make your own pull request. I'll gladly read them all.
+
+> **NOTE:** If you're making a pull request, please, point it to the **development** branch, not the master one.
