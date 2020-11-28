@@ -116,8 +116,8 @@
     <Part ID="MONSTER_PART_ROCK" Name="바위"/>
     <Part ID="MONSTER_PART_MANE" Name="갈기"/>
     <Part ID="MONSTER_PART_BALLOON" Name="목 주머니"/>
-    <Part ID="MONSTER_PART_LBONE" Name="왼쪽 뼈"/>
-    <Part ID="MONSTER_PART_RBONE" Name="오른쪽 뼈"/>
+    <Part ID="MONSTER_PART_LBONE" Name="왼쪽 뼈갑옷"/>
+    <Part ID="MONSTER_PART_RBONE" Name="오른쪽 뼈갑옷"/>
     <Part ID="MONSTER_PART_HORNS_GOLD" Name="큰뿔 [황금]"/>
     <Part ID="MONSTER_PART_MANE_GOLD" Name="갈기 [황금]"/>
     <Part ID="MONSTER_PART_LCHEST_GOLD" Name="왼쪽 가슴 [황금]"/>
@@ -166,7 +166,7 @@
     <Part ID="MONSTER_PART_KNOCKDOWN" Name="병기 데미지 대경직"/>
     <Part ID="MONSTER_PART_BIG_FLINCH" Name="대경직"/>
     <Part ID="MONSTER_PART_RAGE" Name="분노 해제"/>
-    <Part ID="MONSTER_PART_COUNTERATTACK" Name="카운터 공격"/>
+    <Part ID="MONSTER_PART_COUNTERATTACK" Name="반격"/>
     <Part ID="MONSTER_PART_CHARGE" Name="충전 상태 해제"/>
     <Part ID="MONSTER_PART_THROAT" Name="목"/>
     <Part ID="MONSTER_PART_INFLATED_TAIL" Name="팽창된 꼬리"/>
@@ -175,7 +175,7 @@
     <Part ID="MONSTER_PART_GLOWING_HEAD" Name="빛나는 머리"/>
     <Part ID="MONSTER_PART_GLOWING_TAIL" Name="빛나는 꼬리"/>
     <Part ID="MONSTER_PART_EMERGE_SNOW_HEAD" Name="눈 위로 떠오른 머리"/>
-    <Part ID="MONSTER_PART_EMERGE_SNOW_BODY" Name="눈 위로 떠오른 몸"/>
+    <Part ID="MONSTER_PART_EMERGE_SNOW_BODY" Name="눈 위로 떠오른 몸통"/>
     <Part ID="MONSTER_PART_EMERGE_SNOW_TAIL" Name="눈 위로 떠오른 꼬리"/>
     <Part ID="MONSTER_PART_SPIKES_HEAD" Name="가시 (머리)"/>
     <Part ID="MONSTER_PART_SPIKES_LARM" Name="가시 (왼쪽 앞다리)"/>
@@ -462,8 +462,8 @@
       <String ID="MESSAGE_GET_MORE_PLUGINS" Name="플러그인 받기"/>
       <String ID="MESSAGE_OPEN_PLUGINS_FOLDER" Name="플러그인 폴더 열기"/>
       <String ID="MESSAGE_PLUGIN_INSTALL" Name="플러그인 설치"/>
-      <String ID="MESSAGE_PLUGIN_INSTALL_DESC" Name="module.json 파일을 여기에 드래그 앤 드롭하여 플러그인을 설치 하세요."/>
-      <String ID="MESSAGE_PLUGIN_INSTALLED" Name="플러그인: {name} 이(가) 설치되었습니다! 헌터 파이를 재시작 하여 플러그인을 리로드 해주세요."/>
+      <String ID="MESSAGE_PLUGIN_INSTALL_DESC" Name="module.json 파일을 여기에 드래그 앤 드롭하여 플러그인을 설치하세요."/>
+      <String ID="MESSAGE_PLUGIN_INSTALLED" Name="플러그인: {name}이(가) 설치되었습니다! HunterPie를 재시작하여 플러그인을 리로드 해주세요."/>
       <String ID="ERROR_PLUGIN_AUTO_UPDATE" Name="이 플러그인은 자동 업데이트를 지원하지 않습니다. 수동으로 업데이트 파일을 받아주세요."/>
       <!-- Popups -->
       <String ID="MESSAGE_QUIT" Name="HunterPie를 종료하시겠습니까?"/>
@@ -490,7 +490,7 @@
       <String ID="MESSAGE_AUTOUPDATE_DISABLED_WARN" Name="자동 업데이트가 꺼져있습니다. 만약 HunterPie에 문제가 있거나 현 게임 버전을 지원하지 않을 경우, 자동 업데이트를 켜보십시오."/>
       <String ID="MESSAGE_THEME_LOAD_WARN" Name="커스텀 테마 로드 완료!"/>
       <!-- Errors -->
-      <String ID="MESSAGE_GAME_VERSION_UNSUPPORTED" Name="현 게임 버전 ({GAME_VERSION})은 아직 지원되지 않습니다. 구버전이 설치되었거나 아직 지원되지 않는 버전입니다."/>
+      <String ID="MESSAGE_GAME_VERSION_UNSUPPORTED" Name="현재 게임 버전 ({GAME_VERSION})은 아직 지원되지 않습니다. 구버전이 설치되었거나 아직 지원되지 않는 버전입니다."/>
       <String ID="MESSAGE_LAUNCH_ERROR" Name="Monster Hunter World의 실행에 실패했습니다."/>
       <String ID="MESSAGE_UPDATE_ERROR" Name="HunterPie의 업데이트에 실패했습니다, 인터넷 연결 상태를 확인하세요."/>
       <String ID="MESSAGE_THEME_NOT_FOUND_ERROR" Name="테마를 찾는데 실패했습니다: {THEME_NAME}"/>
@@ -499,15 +499,15 @@
     <Settings>
       <!-- General -->
       <String ID="ENABLE_AUTOUPDATE" Name="자동 업데이트 사용"/>
-      <String ID="ENABLE_AUTOUPDATE_DESC" Name="옵션이 켜져 있을 경우, HunterPie는 시작 시 새로운 업데이트를 확인합니다."/>
+      <String ID="ENABLE_AUTOUPDATE_DESC" Name="옵션을 켤 경우, HunterPie는 시작 시 새로운 업데이트를 확인합니다."/>
       <String ID="ENABLE_MINTOTRAY" Name="HunterPie를 시스템 트레이로 최소화"/>
-      <String ID="ENABLE_MINTOTRAY_DESC" Name="옵션이 켜져 있을 경우, HunterPie는 최소화 시 시스템 트레이로 숨겨지고, 백그라운드에서 작동합니다."/>
+      <String ID="ENABLE_MINTOTRAY_DESC" Name="옵션을 켤 경우, HunterPie는 최소화 시 시스템 트레이로 숨겨지고, 백그라운드에서 작동합니다."/>
       <String ID="ENABLE_STARTMIN" Name="HunterPie를 최소화 한 상태로 시작"/>
-      <String ID="ENABLE_STARTMIN_DESC" Name="옵션이 켜져 있을 경우, HunterPie는 시작 시 시스템 트레이에 숨겨진 채로 시작됩니다."/>
-      <String ID="ENABLE_AUTOCLOSE" Name="HunterPie를 게임 종료시 같이 종료"/>
-      <String ID="ENABLE_AUTOCLOSE_DESC" Name="옵션이 켜져 있을 경우, HunterPie는 게임이 작동하지 않을 때 자동으로 종료됩니다."/>
+      <String ID="ENABLE_STARTMIN_DESC" Name="옵션을 켤 경우, HunterPie는 시작 시 시스템 트레이에 숨겨진 채로 시작됩니다."/>
+      <String ID="ENABLE_AUTOCLOSE" Name="게임 종료 시 HunterPie 종료"/>
+      <String ID="ENABLE_AUTOCLOSE_DESC" Name="옵션을 켤 경우, HunterPie는 게임이 작동하지 않을 때 자동으로 종료됩니다."/>
       <String ID="STATIC_UPDATEBRANCH" Name="업데이트 버전:"/>
-      <String ID="STATIC_UPDATEBRANCH_DESC" Name="HunterPie의 업데이트를 가져올 버전을 선택하세요, BETA는 가장 최신의 기능들이 있고 master는 더 안정적입니다."/>
+      <String ID="STATIC_UPDATEBRANCH_DESC" Name="HunterPie의 업데이트를 가져올 버전을 선택하세요, BETA는 가장 최신 기능들이 있고 master는 더 안정적입니다."/>
       <String ID="STATIC_LANGUAGEFILE" Name="언어 파일:"/>
       <String ID="STATIC_LANGUAGEFILE_DESC" Name="HunterPie에서 사용할 언어 파일을 선택하세요."/>
       <String ID="STATIC_THEMEFILE" Name="테마 파일:"/>
@@ -520,16 +520,16 @@
       <String ID="STATIC_LAUNCHARGS_DESC" Name="시작 옵션은 게임을 시작할 때 사용됩니다, 뭘 하는건지 잘 모르겠으면 비워두십시오."/>
       <!-- Discord RPC -->
       <String ID="ENABLE_RPC" Name="Discord Rich Presence 사용"/>
-      <String ID="ENABLE_RPC_DESC" Name="옵션이 켜져 있을 경우, HunterPie는 당신의 게임 활동 내역을 Discord 상태에 표시해줍니다."/>
+      <String ID="ENABLE_RPC_DESC" Name="옵션을 켤 경우, HunterPie는 당신의 게임 활동 내역을 Discord 상태에 표시합니다."/>
       <String ID="ENABLE_RPC_HEALTH" Name="몬스터의 체력 퍼센트 표시"/>
-      <String ID="ENABLE_RPC_HEALTH_DESC" Name="옵션이 켜져 있을 경우, HunterPie는 사냥 중인 몬스터의 체력 퍼센트를 표시해줍니다."/>
+      <String ID="ENABLE_RPC_HEALTH_DESC" Name="옵션을 켤 경우, HunterPie는 사냥 중인 몬스터의 체력 퍼센트를 표시합니다."/>
       <String ID="ENABLE_PEOPLE_JOIN" Name="사람들이 내 온라인 세션에 참여 요청을 할 수 있게 허용"/>
-      <String ID="ENABLE_PEOPLE_JOIN_DESC" Name="옵션이 켜져 있을 경우, 사람들은 당신의 Monster Hunter 세션에 참가 요청을 보낼 수 있게 됩니다."/>
+      <String ID="ENABLE_PEOPLE_JOIN_DESC" Name="옵션을 켤 경우, 사람들은 당신의 Monster Hunter 세션에 참가 요청을 보낼 수 있습니다."/>
       <!-- Overlay -->
       <String ID="ENABLE_OVERLAY" Name="인-게임 오버레이 사용"/>
-      <String ID="ENABLE_OVERLAY_DESC" Name="옵션이 켜져 있을 경우, 인-게임 오버레이가 표시됩니다."/>
-      <String ID="ENABLE_HIDE_WHEN_UNFOCUS" Name="게임 비활성화시 오버레이 숨기기"/>
-      <String ID="ENABLE_HIDE_WHEN_UNFOCUS_DESC" Name="옵션이 켜져 있을 경우, HunterPie 오버레이는 게임이 비활성화시 자동으로 숨겨집니다. (예시: Alt+Tab을 할 때)"/>
+      <String ID="ENABLE_OVERLAY_DESC" Name="옵션을 켤 경우, 인-게임 오버레이가 표시됩니다."/>
+      <String ID="ENABLE_HIDE_WHEN_UNFOCUS" Name="게임 비활성화 시 오버레이 숨기기"/>
+      <String ID="ENABLE_HIDE_WHEN_UNFOCUS_DESC" Name="옵션을 켤 경우, HunterPie 오버레이는 게임이 비활성화시 자동으로 숨겨집니다. (예시: Alt+Tab을 할 때)"/>
       <String ID="ENABLE_HARDWARE_ACCELERATION" Name="하드웨어 가속 사용"/>
       <String ID="ENABLE_HARDWARE_ACCELERATION_DESC" Name="오버레이 렌더링에 그래픽 카드를 사용하도록 하드웨어 가속을 사용합니다. 비활성화 시 소프트웨어 렌더링으로 전환되며, CPU 자원을 더 많이 쓰게 됩니다, FPS에 문제가 있으면 이 옵션을 끄세요."/>
       <String ID="STATIC_ANIMATION_FPS" Name="애니메이션 프레임레이트"/>
@@ -547,22 +547,22 @@
       <String ID="ENABLE_OVERLAY_FORCE_DIRECTX11_FULLSCREEN_DESC" Name="이 옵션은 HunterPie 오버레이를 DirectX 11 전체화면에서도 강제로 표시합니다."/>
       <!-- Monster Widget -->
       <String ID="ENABLE_MONSTER_WIDGET" Name="몬스터 위젯 사용"/>
-      <String ID="ENABLE_MONSTER_WIDGET_DESC" Name="옵션이 켜져 있을 경우, 표시할 내용이 있을 때 몬스터 위젯이 표시됩니다."/>
+      <String ID="ENABLE_MONSTER_WIDGET_DESC" Name="옵션을 켤 경우, 표시할 내용이 있을 때 몬스터 위젯이 표시됩니다."/>
       <String ID="STATIC_MONSTER_HEALTH_STRING_FORMAT" Name="체력 텍스트 형식:"/>
       <String ID="STATIC_MONSTER_HEALTH_STRING_FORMAT_DESC" Name="몬스터 체력 바의 텍스트 형식입니다."/>
       <String ID="STATIC_MONSTER_AILMENT_BUILDUP_STRING_FORMAT" Name="상태 이상 수치 텍스트 형식:"/>
       <String ID="STATIC_MONSTER_AILMENT_BUILDUP_STRING_FORMAT_DESC" Name="몬스터 상태 이상 수치의 텍스트 형식입니다."/>
       <String ID="STATIC_MONSTER_AILMENT_TIMER_STRING_FORMAT" Name="상태 이상 타이머 텍스트 형식:"/>
       <String ID="STATIC_MONSTER_AILMENT_TIMER_STRING_FORMAT_DESC" Name="몬스터 상태 이상 타이머의 텍스트 형식입니다."/>
-      <String ID="STATIC_MONSTER_PART_HEALTH_STRING_FORMAT" Name="부위 체력 텍스트 형식:"/>
-      <String ID="STATIC_MONSTER_PART_HEALTH_STRING_FORMAT_DESC" Name="몬스터 부위 체력의 텍스트 형식입니다."/>
+      <String ID="STATIC_MONSTER_PART_HEALTH_STRING_FORMAT" Name="부위 내구도 텍스트 형식:"/>
+      <String ID="STATIC_MONSTER_PART_HEALTH_STRING_FORMAT_DESC" Name="몬스터 부위 내구도의 텍스트 형식입니다."/>
       <String ID="ENABLE_MONSTER_USE_LOCKON" Name="대상 몬스터 지정에 락온 사용"/>
-      <String ID="ENABLE_MONSTER_USE_LOCKON_DESC" Name="옵션이 켜져 있을 경우, HunterPie는 인-게임 몬스터 락온을 사용하여 몬스터를 선택합니다."/>
+      <String ID="ENABLE_MONSTER_USE_LOCKON_DESC" Name="옵션을 켤 경우, HunterPie는 인-게임 몬스터 락온을 사용하여 몬스터를 선택합니다."/>
       <String ID="ENABLE_HIDE_MONSTER_HEALTH" Name="몬스터 바 체력 정보 숨기기"/>
-      <String ID="ENABLE_HIDE_MONSTER_HEALTH_DESC" Name="옵션이 켜져 있을 경우, 몬스터 바에 체력 관련 상세 정보가 표시되지 않습니다 (총 체력/남은 체력, 스태미나, 포획 가능 아이콘, 분노 상태와 지속 시간)."/>
+      <String ID="ENABLE_HIDE_MONSTER_HEALTH_DESC" Name="옵션을 켤 경우, 몬스터 바에 체력 관련 상세 정보가 표시되지 않습니다 (총 체력/남은 체력, 스태미나, 포획 가능 아이콘, 분노 상태와 지속 시간)."/>
       <String ID="STATIC_MONSTER_AILMENTS_TAB" Name="상태 이상"/>
       <String ID="STATIC_MONSTER_PARTS_TAB" Name="부위"/>
-	  <String ID="STATIC_MONSTER_BAR_MODE" Name="몬스터 바 모드"/>
+      <String ID="STATIC_MONSTER_BAR_MODE" Name="몬스터 바 모드"/>
       <String ID="STATIC_MONSTER_BAR_MODE_DESC" Name="몬스터 바 모드를 변경합니다."/>
       <String ID="STATIC_MONSTER_BAR_MODE_0" Name="모든 몬스터 표시"/>
       <String ID="STATIC_MONSTER_BAR_MODE_1" Name="모든 몬스터를 표시하지만 나의 타겟만 강조"/>
@@ -576,47 +576,47 @@
       <String ID="STATIC_MONSTER_BAR_DOCK_0" Name="상단"/>
       <String ID="STATIC_MONSTER_BAR_DOCK_1" Name="하단"/>
       <String ID="ENABLE_MONSTER_ACTION" Name="몬스터 행동 표시"/>
-      <String ID="ENABLE_MONSTER_ACTION_DESC" Name="옵션이 켜져 있을 경우, 몬스터의 행동을 표시합니다."/>
+      <String ID="ENABLE_MONSTER_ACTION_DESC" Name="옵션을 켤 경우, 몬스터의 행동을 표시합니다."/>
       <String ID="ENABLE_MONSTER_WEAKNESS" Name="몬스터의 약점 속성 표시"/>
-      <String ID="ENABLE_MONSTER_WEAKNESS_DESC" Name="옵션이 켜져 있을 경우, 몬스터의 약점 속성이 체력바 아래에 표시됩니다."/>
+      <String ID="ENABLE_MONSTER_WEAKNESS_DESC" Name="옵션을 켤 경우, 몬스터의 약점 속성이 체력바 아래에 표시됩니다."/>
       <String ID="ENABLE_HIDE_INACTIVE_PARTS" Name="변경점이 없는 부위 몇 초 후 숨기기"/>
-      <String ID="ENABLE_HIDE_INACTIVE_PARTS_DESC" Name="옵션이 켜져 있을 경우, 데미지를 입지 않은 부위는 몇 초 후 자동으로 숨깁니다."/>
+      <String ID="ENABLE_HIDE_INACTIVE_PARTS_DESC" Name="옵션을 켤 경우, 데미지를 입지 않은 부위는 몇 초 후 자동으로 숨깁니다."/>
       <String ID="ENABLE_AUTO_SORT_PARTS" Name="부위 자동 정렬"/>
-      <String ID="ENABLE_AUTO_SORT_PARTS_DESC" Name="옵션이 켜져 있을 경우, 몬스터에게 데미지를 주면 상처난 부위와 최근 데미지 받은 부위 순으로 정렬됩니다."/>
+      <String ID="ENABLE_AUTO_SORT_PARTS_DESC" Name="옵션을 켤 경우, 몬스터에게 데미지를 주면 상처난 부위와 최근 데미지 받은 부위 순으로 정렬됩니다."/>
       <String ID="ENABLE_SHOW_UNBROKEN_PARTS" Name="파괴되지 않은 부위만 표시"/>
-      <String ID="ENABLE_SHOW_UNBROKEN_PARTS_DESC" Name="옵션이 켜져 있을 경우, 파괴되지 않은 부위만 표시됩니다."/>
+      <String ID="ENABLE_SHOW_UNBROKEN_PARTS_DESC" Name="옵션을 켤 경우, 파괴되지 않은 부위만 표시됩니다."/>
       <String ID="ENABLE_SHOW_BROKEN_PARTS" Name="파괴할 수 있는 부위만 표시"/>
-      <String ID="ENABLE_SHOW_BROKEN_PARTS_DESC" Name="옵션이 켜져 있을 경우, 파괴할 수 있거나 파괴 임계치를 가진 부위만 표시됩니다."/>
+      <String ID="ENABLE_SHOW_BROKEN_PARTS_DESC" Name="옵션을 켤 경우, 파괴할 수 있거나 파괴 임계치를 가진 부위만 표시됩니다."/>
       <String ID="ENABLE_HIDE_INACTIVE_AILMENTS" Name="변경점이 없는 상태 이상 몇 초 후 숨기기"/>
-      <String ID="ENABLE_HIDE_INACTIVE_AILMENTS_DESC" Name="옵션이 켜져 있을 경우, 변경점이 없는 상태 이상은 몇 초 후 자동으로 숨깁니다."/>
-	  <String ID="ENABLE_BREAKABLE_PARTS" Name="몬스터의 파괴 가능 부위 표시"/>
-      <String ID="ENABLE_BREAKABLE_PARTS_DESC" Name="옵션이 켜져 있을 경우, 절단/파괴/제거 가능한 부위가 몬스터 바 아래에 표시됩니다."/>
-	  <String ID="ENABLE_AILMENTS_BAR_COLOR" Name="상태 이상 바 색상 사용"/>
-      <String ID="ENABLE_AILMENTS_BAR_COLOR_DESC" Name="옵션이 켜져 있을 경우, 각 상태 이상 표시는 속성에 기반한 개별적인 색상을 띄게 됩니다."/>
+      <String ID="ENABLE_HIDE_INACTIVE_AILMENTS_DESC" Name="옵션을 켤 경우, 변경점이 없는 상태 이상은 몇 초 후 자동으로 숨깁니다."/>
+      <String ID="ENABLE_BREAKABLE_PARTS" Name="몬스터의 파괴 가능 부위 표시"/>
+      <String ID="ENABLE_BREAKABLE_PARTS_DESC" Name="옵션을 켤 경우, 절단/파괴/제거 가능한 부위가 몬스터 바 아래에 표시됩니다."/>
+      <String ID="ENABLE_AILMENTS_BAR_COLOR" Name="상태 이상 바 색상 사용"/>
+      <String ID="ENABLE_AILMENTS_BAR_COLOR_DESC" Name="옵션을 켤 경우, 각 상태 이상 표시는 속성에 기반한 개별적인 색상을 띄게 됩니다."/>
       <String ID="ENABLE_AILMENTS" Name="몬스터 상태 이상 표시"/>
-      <String ID="ENABLE_AILMENTS_DESC" Name="옵션이 켜져 있을 경우, 몬스터의 상태 이상 수치가 몬스터 바 아래에 표시됩니다."/>
+      <String ID="ENABLE_AILMENTS_DESC" Name="옵션을 켤 경우, 몬스터의 상태 이상 수치가 몬스터 바 아래에 표시됩니다."/>
       <String ID="ENABLE_MONSTER_PARTS" Name="몬스터의 부위 표시"/>
-      <String ID="ENABLE_MONSTER_PARTS_DESC" Name="옵션이 켜져 있을 경우, 몬스터의 경직 부위가 몬스터 바 아래에 표시됩니다."/>
-      <String ID="ENABLE_MONSTER_PART_HEAD" Name="머리의 체력 표시"/>
-      <String ID="ENABLE_MONSTER_PART_BODY" Name="몸통의 체력 표시"/>
-      <String ID="ENABLE_MONSTER_PART_ARM" Name="앞다리의 체력 표시"/>
-      <String ID="ENABLE_MONSTER_PART_WING" Name="날개의 체력 표시"/>
-      <String ID="ENABLE_MONSTER_PART_LEG" Name="다리의 체력 표시"/>
-      <String ID="ENABLE_MONSTER_PART_TAIL" Name="꼬리의 체력 표시"/>
-      <String ID="ENABLE_MONSTER_PART_LIMB" Name="팔다리의 체력 표시"/>
-      <String ID="ENABLE_MONSTER_PART_ABDOMEN" Name="복부의 체력 표시"/>
-      <String ID="ENABLE_MONSTER_PART_CHEST" Name="가슴의 체력 표시"/>
-      <String ID="ENABLE_MONSTER_PART_REAR" Name="둔부의 체력 표시"/>
-      <String ID="ENABLE_MONSTER_PART_JAW" Name="턱의 체력 표시"/>
-      <String ID="ENABLE_MONSTER_PART_BACK" Name="등의 체력 표시"/>
-      <String ID="ENABLE_MONSTER_PART_FIN" Name="등갑각의 체력 표시"/>
-      <String ID="ENABLE_MONSTER_PART_HORN" Name="뿔의 체력 표시"/>
-      <String ID="ENABLE_MONSTER_PART_NECK" Name="목의 체력 표시"/>
-      <String ID="ENABLE_MONSTER_PART_SHELL" Name="껍질의 체력 표시"/>
-      <String ID="ENABLE_MONSTER_PART_ORGAN" Name="배열기관의 체력 표시"/>
-      <String ID="ENABLE_MONSTER_PART_MANE" Name="갈기의 체력 표시"/>
-      <String ID="ENABLE_MONSTER_PART_BONE" Name="둘러싼 뼈의 체력 표시"/>
-      <String ID="ENABLE_MONSTER_PART_MISC" Name="기타 체력 표시"/>
+      <String ID="ENABLE_MONSTER_PARTS_DESC" Name="옵션을 켤 경우, 몬스터의 경직 부위가 몬스터 바 아래에 표시됩니다."/>
+      <String ID="ENABLE_MONSTER_PART_HEAD" Name="머리의 내구도 표시"/>
+      <String ID="ENABLE_MONSTER_PART_BODY" Name="몸통의 내구도 표시"/>
+      <String ID="ENABLE_MONSTER_PART_ARM" Name="앞다리의 내구도 표시"/>
+      <String ID="ENABLE_MONSTER_PART_WING" Name="날개의 내구도 표시"/>
+      <String ID="ENABLE_MONSTER_PART_LEG" Name="다리의 내구도 표시"/>
+      <String ID="ENABLE_MONSTER_PART_TAIL" Name="꼬리의 내구도 표시"/>
+      <String ID="ENABLE_MONSTER_PART_LIMB" Name="팔다리의 내구도 표시"/>
+      <String ID="ENABLE_MONSTER_PART_ABDOMEN" Name="복부의 내구도 표시"/>
+      <String ID="ENABLE_MONSTER_PART_CHEST" Name="가슴의 내구도 표시"/>
+      <String ID="ENABLE_MONSTER_PART_REAR" Name="둔부의 내구도 표시"/>
+      <String ID="ENABLE_MONSTER_PART_JAW" Name="턱의 내구도 표시"/>
+      <String ID="ENABLE_MONSTER_PART_BACK" Name="등의 내구도 표시"/>
+      <String ID="ENABLE_MONSTER_PART_FIN" Name="등갑각의 내구도 표시"/>
+      <String ID="ENABLE_MONSTER_PART_HORN" Name="뿔의 내구도 표시"/>
+      <String ID="ENABLE_MONSTER_PART_NECK" Name="목의 내구도 표시"/>
+      <String ID="ENABLE_MONSTER_PART_SHELL" Name="껍질의 내구도 표시"/>
+      <String ID="ENABLE_MONSTER_PART_ORGAN" Name="배열기관의 내구도 표시"/>
+      <String ID="ENABLE_MONSTER_PART_MANE" Name="갈기의 내구도 표시"/>
+      <String ID="ENABLE_MONSTER_PART_BONE" Name="뼈갑옷의 내구도 표시"/>
+      <String ID="ENABLE_MONSTER_PART_MISC" Name="기타 내구도 표시"/>
       <String ID="STATIC_MONSTER_MAX_PARTS" Name="한 행당 최대 표시 수"/>
       <String ID="STATIC_MONSTER_MAX_PARTS_DESC" Name="한 행마다 표시할 수 있는 부위의 최대 수를 설정합니다."/>
       <String ID="STATIC_MONSTER_MAX_COLUMNS" Name="최대 행 수"/>
@@ -641,42 +641,50 @@
       <String ID="ENABLE_MONSTER_STATUS_CLAW" Name="클러치 공격 분노치 표시"/>
       <String ID="ENABLE_MONSTER_STATUS_MISC" Name="기타 상태 표시"/>
       <String ID="ENABLE_MONSTER_STATUS_ENRAGE" Name="분노 표시"/>
+      <!-- Player Widget -->
+      <String ID="ENABLE_PLAYER_WIDGET" Name="플레이어 위젯 사용"/>
+      <String ID="ENABLE_PLAYER_WIDGET_DESC" Name="옵션을 켤 경우, 표시할 내용이 있으면 플레이어 위젯을 표시합니다."/>
+      <String ID="STATIC_PLAYER_NAME_STRING_FORMAT" Name="이름 문자열 형식:"/>
+      <String ID="STATIC_PLAYER_NAME_STRING_FORMAT_DESC" Name="체력 바 상단에 표시되는 문자열입니다. (예시: '{HR} | {MR} {Name}'는 '헌터 랭크' | '마스터 랭크' '캐릭터 이름'으로 표시됩니다)"/>
+      <String ID="ENABLE_PLAYER_HIDE_IN_VILLAGES" Name="도시/마을에서 숨기기"/>
+      <String ID="ENABLE_PLAYER_HIDE_IN_VILLAGES_DESC" Name="옵션을 켤 경우, 집회 구역과 마이 하우스, 아스테라 같은 안전한 지역으로 이동하면 플레이어 위젯을 숨깁니다."/>
+      <String ID="STATIC_PLAYER_POSITION_DESC" Name="플레이어 위젯의 위치를 변경합니다."/>
       <!-- Harvest Box Widget -->
       <String ID="ENABLE_HARVEST_BOX" Name="수확 박스 위젯 사용"/>
-      <String ID="ENABLE_HARVEST_BOX_DESC" Name="옵션이 켜져 있을 경우, 표시할 내용이 있으면 수확 박스 위젯을 표시합니다."/>
+      <String ID="ENABLE_HARVEST_BOX_DESC" Name="옵션을 켤 경우, 표시할 내용이 있으면 수확 박스 위젯을 표시합니다."/>
       <String ID="ENABLE_STEAM_TRACKER" Name="증기 기관 추적기 표시"/>
-      <String ID="ENABLE_STEAM_TRACKER_DESC" Name="옵션이 켜져 있을 경우, 증기 기관 추적기는 위젯 하단에 표시됩니다."/>
+      <String ID="ENABLE_STEAM_TRACKER_DESC" Name="옵션을 켤 경우, 위젯 하단에 증기 기관 추적기가 표시됩니다."/>
       <String ID="ENABLE_ARGOSY_TRACKER" Name="교역선 추적기"/>
-      <String ID="ENABLE_ARGOSY_TRACKER_DESC" Name="옵션이 켜져 있을 경우, 교역선 추적기는 위젯 하단에 표시됩니다."/>
+      <String ID="ENABLE_ARGOSY_TRACKER_DESC" Name="옵션을 켤 경우, 위젯 하단에 교역선 추적기가 표시됩니다."/>
       <String ID="ENABLE_TAILRAIDERS_TRACKER" Name="동료탐험대 추적기"/>
-      <String ID="ENABLE_TAILRAIDERS_TRACKER_DESC" Name="옵션이 켜져 있을 경우, 동료탐험대 추적기는 위젯 하단에 표시됩니다"/>
+      <String ID="ENABLE_TAILRAIDERS_TRACKER_DESC" Name="옵션을 켤 경우, 위젯 하단에 동료탐험대 추적기가 표시됩니다"/>
       <String ID="ENABLE_HARVEST_BOX_EVERYWHERE" Name="수확 박스 위젯을 어디에서나 표시"/>
-      <String ID="ENABLE_HARVEST_BOX_EVERYWHERE_DESC" Name="옵션이 켜져 있을 경우, 위젯은 탐색과 인도하는 땅을 포함한 모든 곳에서 표시됩니다."/>
+      <String ID="ENABLE_HARVEST_BOX_EVERYWHERE_DESC" Name="옵션을 켤 경우, 위젯은 탐색과 인도하는 땅을 포함한 모든 곳에서 표시됩니다."/>
       <String ID="STATIC_HARVEST_BOX_POSITION_DESC" Name="수확 박스 위젯의 위치를 변경합니다."/>
       <String ID="ENABLE_HARVEST_BOX_COMPACT_MODE" Name="소형 모드 사용"/>
-      <String ID="ENABLE_HARVEST_BOX_COMPACT_MODE_DESC" Name="옵션이 켜져 있을 경우, 수확 박스 위젯에 소형 디자인을 사용합니다."/>
+      <String ID="ENABLE_HARVEST_BOX_COMPACT_MODE_DESC" Name="옵션을 켤 경우, 수확 박스 위젯에 소형 디자인을 사용합니다."/>
       <!-- Damage Meter -->
       <String ID="ENABLE_METER" Name="데미지 미터기 위젯 사용"/>
-      <String ID="ENABLE_METER_DESC" Name="옵션이 켜져 있을 경우, 표시할 내용이 있으면 데미지 미터기 위젯을 표시합니다."/>
+      <String ID="ENABLE_METER_DESC" Name="옵션을 켤 경우, 표시할 내용이 있으면 데미지 미터기 위젯을 표시합니다."/>
       <String ID="ENABLE_TIMER" Name="타이머 사용"/>
-      <String ID="ENABLE_TIMER_DESC" Name="옵션이 켜져 있을 경우, 데미지 미터기의 타이머가 표시됩니다."/>
+      <String ID="ENABLE_TIMER_DESC" Name="옵션을 켤 경우, 데미지 미터기에 타이머가 표시됩니다."/>
       <String ID="ENABLE_TOTAL_DAMAGE" Name="데미지의 총합 표시"/>
-      <String ID="ENABLE_TOTAL_DAMAGE_DESC" Name="옵션이 켜져 있을 경우, 데미지 미터기 위젯은 개인의 총합 데미지를 표시합니다."/>
+      <String ID="ENABLE_TOTAL_DAMAGE_DESC" Name="옵션을 켤 경우, 데미지 미터기 위젯은 개인의 총합 데미지를 표시합니다."/>
       <String ID="ENABLE_METER_DPS" Name="DPS 표시"/>
-      <String ID="ENABLE_METER_DPS_DESC" Name="옵션이 켜져 있을 경우, 데미지 미터기 위젯은 개인의 DPS를 표시합니다."/>
+      <String ID="ENABLE_METER_DPS_DESC" Name="옵션을 켤 경우, 데미지 미터기 위젯은 개인의 DPS를 표시합니다."/>
       <String ID="ENABLE_TIMER_IN_GL" Name="인도하는 땅/탐색에서 타이머 사용"/>
-      <String ID="ENABLE_TIMER_IN_GL_DESC" Name="옵션이 켜져 있을 경우, 인도하는 땅/탐색에서 타이머가 표시됩니다."/>
+      <String ID="ENABLE_TIMER_IN_GL_DESC" Name="옵션을 켤 경우, 인도하는 땅/탐색에서 타이머가 표시됩니다."/>
       <String ID="ENABLE_ONLY_TIMER" Name="타이머만 표시"/>
-      <String ID="ENABLE_ONLY_TIMER_DESC" Name="옵션이 켜져 있을 경우, 데미지 미터기 위젯은 파티의 데미지를 숨기고 타이머만 표시합니다."/>
+      <String ID="ENABLE_ONLY_TIMER_DESC" Name="옵션을 켤 경우, 데미지 미터기 위젯은 파티의 데미지를 숨기고 타이머만 표시합니다."/>
       <String ID="ENABLE_METER_ONLY_MYSELF" Name="자신의 데미지만 표시"/>
-      <String ID="ENABLE_METER_ONLY_MYSELF_DESC" Name="옵션이 켜져 있을 경우, 오직 자신의 데미지만 표시합니다."/>
+      <String ID="ENABLE_METER_ONLY_MYSELF_DESC" Name="옵션을 켤 경우, 오직 자신의 데미지만 표시합니다."/>
       <String ID="STATIC_METER_PLAYER_1" Name="첫번째 플레이어"/>
       <String ID="STATIC_METER_PLAYER_2" Name="두번째 플레이어"/>
       <String ID="STATIC_METER_PLAYER_3" Name="세번째 플레이어"/>
       <String ID="STATIC_METER_PLAYER_4" Name="네번째 플레이어"/>
       <String ID="STATIC_METER_POSITION_DESC" Name="데미지 미터기 위젯의 위치를 변경합니다."/>
       <String ID="ENABLE_DAMAGE_PLOT" Name="데미지 그래프 표시"/>
-      <String ID="ENABLE_DAMAGE_PLOT_DESC" Name="옵션이 켜져 있을 경우, 데미지 그래프가 표시됩니다."/>
+      <String ID="ENABLE_DAMAGE_PLOT_DESC" Name="옵션을 켤 경우, 데미지 그래프가 표시됩니다."/>
       <String ID="DAMAGE_PLOT_MODE" Name="데미지 그래프 모드"/>
       <String ID="DAMAGE_PLOT_MODE_DESC" Name="데미지 모드를 변경합니다."/>
       <String ID="DAMAGE_PLOT_MODE_0" Name="총 누적 데미지"/>
@@ -685,13 +693,13 @@
       <String ID="DAMAGE_PLOT_POLL_INTERVAL_DESC" Name="데미지 변화가 없을 때 그래프 갱신 간격입니다. 낮은 값 - 높은 CPU 사용량. &#13;(예시: 이 값을 200으로 설정하면 HunterPie는 초당 5번 갱신됩니다.)."/>
 
       <!-- Abnormalities Widget -->
-      <String ID="STATIC_CREATE_ABNORM_BAR_DESC" Name="새로운 효과 바를 추가."/>
+      <String ID="STATIC_CREATE_ABNORM_BAR_DESC" Name="새로운 효과 바를 추가합니다."/>
       <String ID="STATIC_REMOVE_ABNORM_BAR_DESC" Name="마지막으로 생성된 효과 바를 삭제합니다."/>
       <String ID="STATIC_ENABLE_ABNORM_BAR" Name="사용"/>
       <String ID="ENABLE_ALLIGN_ABNORM_BAR_HORIZONTALLY" Name="효과 바를 가로로 정렬"/>
-      <String ID="ENABLE_ALLIGN_ABNORM_BAR_HORIZONTALLY_DESC" Name="옵션이 켜져 있을 경우, 효과 바를 가로로 정렬합니다, 만약 세로로 사용하고 싶다면 이 옵션을 꺼두십시오."/>
+      <String ID="ENABLE_ALLIGN_ABNORM_BAR_HORIZONTALLY_DESC" Name="옵션을 켤 경우, 효과 바를 가로로 정렬합니다, 만약 세로로 사용하고 싶다면 이 옵션을 끄세요."/>
       <String ID="ENABLE_ABNORM_BAR_TIME_LEFT" Name="효과의 남은 시간 표시"/>
-      <String ID="ENABLE_ABNORM_BAR_TIME_LEFT_DESC" Name="옵션이 켜져 있을 경우, 효과의 남은 시간이 아이콘 아래에 표시됩니다."/>
+      <String ID="ENABLE_ABNORM_BAR_TIME_LEFT_DESC" Name="옵션을 켤 경우, 효과의 남은 시간이 아이콘 아래에 표시됩니다."/>
       <String ID="STATIC_TIMER_TEXT_FORMAT" Name="타이머 텍스트 형식"/>
       <String ID="STATIC_BACKGROUND_OPACITY" Name="배경의 투명도"/>
       <String ID="STATIC_BACKGROUND_OPACITY_DESC" Name="이 위젯의 배경 투명도를 조절합니다."/>
@@ -701,52 +709,52 @@
       <String ID="STATIC_ABNORM_TAB_GEAR" Name="장비"/>
       <String ID="STATIC_ABNORM_TAB_CONSUMABLE" Name="소비 아이템"/>
       <String ID="ENABLE_SHOW_ABNORM_NAMES" Name="효과 이름 표시"/>
-      <String ID="ENABLE_SHOW_ABNORM_NAMES_DESC" Name="옵션이 켜져 있을 경우, 효과의 이름이 표시됩니다."/>
+      <String ID="ENABLE_SHOW_ABNORM_NAMES_DESC" Name="옵션을 켤 경우, 효과의 이름이 표시됩니다."/>
       <!-- Specialized Tool Widget-->
       <String ID="STATIC_PRIMARY_SPEC_TOOL" Name="첫번째 특수 장비"/>
       <String ID="STATIC_SECONDARY_SPEC_TOOL" Name="두번째 특수 장비"/>
       <String ID="ENABLE_PRIMARY_SPEC_TOOL" Name="위젯 사용"/>
-      <String ID="ENABLE_PRIMARY_SPEC_TOOL_DESC" Name="옵션이 켜져 있을 경우, 표시할 내용이 있으면 첫번째 특수 장비 위젯을 표시합니다."/>
+      <String ID="ENABLE_PRIMARY_SPEC_TOOL_DESC" Name="옵션을 켤 경우, 표시할 내용이 있으면 첫번째 특수 장비 위젯을 표시합니다."/>
       <String ID="ENABLE_SECONDARY_SPEC_TOOL" Name="위젯 사용"/>
-      <String ID="ENABLE_SECONDARY_SPEC_TOOL_DESC" Name="옵션이 켜져 있을 경우, 표시할 내용이 있으면 두번째 특수 장비 위젯을 표시합니다."/>
+      <String ID="ENABLE_SECONDARY_SPEC_TOOL_DESC" Name="옵션을 켤 경우, 표시할 내용이 있으면 두번째 특수 장비 위젯을 표시합니다."/>
       <String ID="STATIC_COLOR" Name="색상:"/>
       <String ID="STATIC_PRIMARY_SPEC_TOOL_POSITION_DESC" Name="첫번째 특수 장비 위젯의 위치를 변경합니다."/>
       <String ID="STATIC_SECONDARY_SPEC_TOOL_POSITION_DESC" Name="두번째 특수 장비 위젯의 위치를 변경합니다."/>
       <!-- Class Widget -->
       <String ID="ENABLE_GREATSWORD_HELPER" Name="대검 위젯 사용"/>
-      <String ID="ENABLE_GREATSWORD_HELPER_DESC" Name="옵션이 켜져 있을 경우, 대검을 장착하면 대검 위젯이 표시됩니다."/>
+      <String ID="ENABLE_GREATSWORD_HELPER_DESC" Name="옵션을 켤 경우, 대검을 장착하면 대검 위젯이 표시됩니다."/>
       <String ID="ENABLE_INSECT_GLAIVE_HELPER" Name="조충곤 위젯 사용"/>
-      <String ID="ENABLE_INSECT_GLAIVE_HELPER_DESC" Name="옵션이 켜져 있을 경우, 조충곤을 장착하면 조충곤 위젯이 표시됩니다."/>
+      <String ID="ENABLE_INSECT_GLAIVE_HELPER_DESC" Name="옵션을 켤 경우, 조충곤을 장착하면 조충곤 위젯이 표시됩니다."/>
       <String ID="ENABLE_CHARGE_BLADE_HELPER" Name="차지액스 위젯 사용"/>
-      <String ID="ENABLE_CHARGE_BLADE_HELPER_DESC" Name="옵션이 켜져 있을 경우, 차지액스를 장착하면 차지액스 위젯이 표시됩니다."/>
+      <String ID="ENABLE_CHARGE_BLADE_HELPER_DESC" Name="옵션을 켤 경우, 차지액스를 장착하면 차지액스 위젯이 표시됩니다."/>
       <String ID="ENABLE_SWITCH_AXE_HELPER" Name="슬래시액스 위젯 사용"/>
-      <String ID="ENABLE_SWITCH_AXE_HELPER_DESC" Name="옵션이 켜져 있을 경우, 슬래시액스를 장착하면 슬래시액스 위젯이 표시됩니다."/>
+      <String ID="ENABLE_SWITCH_AXE_HELPER_DESC" Name="옵션을 켤 경우, 슬래시액스를 장착하면 슬래시액스 위젯이 표시됩니다."/>
       <String ID="ENABLE_HUNTINGHORN_HELPER" Name="수렵피리 위젯 사용"/>
-      <String ID="ENABLE_HUNTINGHORN_HELPER_DESC" Name="옵션이 켜져 있을 경우, 수렵피리를 장착하면 수렵피리 위젯이 표시됩니다."/>
+      <String ID="ENABLE_HUNTINGHORN_HELPER_DESC" Name="옵션을 켤 경우, 수렵피리를 장착하면 수렵피리 위젯이 표시됩니다."/>
       <String ID="ENABLE_GUN_LANCE_HELPER" Name="건랜스 위젯 사용"/>
-      <String ID="ENABLE_GUN_LANCE_HELPER_DESC" Name="옵션이 켜져 있을 경우, 건랜스를 장착하면 건랜스 위젯이 표시됩니다."/>
+      <String ID="ENABLE_GUN_LANCE_HELPER_DESC" Name="옵션을 켤 경우, 건랜스를 장착하면 건랜스 위젯이 표시됩니다."/>
       <String ID="ENABLE_LONGSWORD_HELPER" Name="태도 위젯 사용"/>
-      <String ID="ENABLE_LONGSWORD_HELPER_DESC" Name="옵션이 켜져 있을 경우, 태도를 장착하면 태도 위젯이 표시됩니다."/>
+      <String ID="ENABLE_LONGSWORD_HELPER_DESC" Name="옵션을 켤 경우, 태도를 장착하면 태도 위젯이 표시됩니다."/>
       <String ID="ENABLE_BOW_HELPER" Name="활 위젯 사용"/>
-      <String ID="ENABLE_BOW_HELPER_DESC" Name="옵션이 켜져 있을 경우, 활을 장착하면 활 위젯이 표시됩니다."/>
+      <String ID="ENABLE_BOW_HELPER_DESC" Name="옵션을 켤 경우, 활을 장착하면 활 위젯이 표시됩니다."/>
       <String ID="ENABLE_HAMMER_HELPER" Name="해머 위젯 사용"/>
-      <String ID="ENABLE_HAMMER_HELPER_DESC" Name="옵션이 켜져 있을 경우, 해머를 장착하면 해머 위젯이 표시됩니다."/>      
+      <String ID="ENABLE_HAMMER_HELPER_DESC" Name="옵션을 켤 경우, 해머를 장착하면 해머 위젯이 표시됩니다."/>      
       <String ID="ENABLE_DUALBLADES_HELPER" Name="쌍검 위젯 사용"/>
-      <String ID="ENABLE_DUALBLADES_HELPER_DESC" Name="옵션이 켜져 있을 경우, 쌍검을 장착하면 쌍검 위젯이 표시됩니다."/>
+      <String ID="ENABLE_DUALBLADES_HELPER_DESC" Name="옵션을 켤 경우, 쌍검을 장착하면 쌍검 위젯이 표시됩니다."/>
       <String ID="ENABLE_LANCE_HELPER" Name="랜스 위젯 사용"/>
-      <String ID="ENABLE_LANCE_HELPER_DESC" Name="옵션이 켜져 있을 경우, 랜스를 장착하면 랜스 위젯이 표시됩니다."/>
+      <String ID="ENABLE_LANCE_HELPER_DESC" Name="옵션을 켤 경우, 랜스를 장착하면 랜스 위젯이 표시됩니다."/>
       <String ID="ENABLE_HEAVYBOWGUN_HELPER" Name="헤비보우건 위젯 사용"/>
-      <String ID="ENABLE_HEAVYBOWGUN_HELPER_DESC" Name="옵션이 켜져 있을 경우, 헤비보우건을 장착하면 헤비보우건 위젯이 표시됩니다."/>
+      <String ID="ENABLE_HEAVYBOWGUN_HELPER_DESC" Name="옵션을 켤 경우, 헤비보우건을 장착하면 헤비보우건 위젯이 표시됩니다."/>
       <String ID="ENABLE_LIGHTBOWGUN_HELPER" Name="라이트보우건 위젯 사용"/>
-      <String ID="ENABLE_LIGHTBOWGUN_HELPER_DESC" Name="옵션이 켜져 있을 경우, 라이트보우건을 장착하면 라이트보우건 위젯이 표시됩니다."/>
-      <String ID="STATIC_CLASSES_BETA_WARNING" Name="주의: 무기별 위젯는 아직 개발 단계에 있으며, 추후 더 많은 무기들이 지원 예정에 있습니다. 무기별 위젯 세팅이 가능하며, 무기에 따라 위젯의 크기나 위치를 다르게 설정할 수 있습니다. 디자인 모드를 활용하여 크기나 위치를 조정하십시오."/>
+      <String ID="ENABLE_LIGHTBOWGUN_HELPER_DESC" Name="옵션을 켤 경우, 라이트보우건을 장착하면 라이트보우건 위젯이 표시됩니다."/>
+      <String ID="STATIC_CLASSES_BETA_WARNING" Name="주의: 무기별 위젯은 아직 개발 단계에 있으며, 추후 더 많은 무기들이 지원 예정에 있습니다. 무기별 위젯 세팅이 가능하며, 무기에 따라 위젯의 크기나 위치를 다르게 설정할 수 있습니다. 디자인 모드를 활용하여 크기나 위치를 조정하세요."/>
       <!-- Links -->
       <String ID="STATIC_HUNTERPIE_WIKI" Name="문서"/>
-      <String ID="STATIC_HUNTERPIE_WIKI_DESC" Name="HunterPie의 공식 문서."/>
+      <String ID="STATIC_HUNTERPIE_WIKI_DESC" Name="HunterPie의 공식 문서입니다."/>
       <String ID="STATIC_HUNTERPIE_ISSUES" Name="기술/지원"/>
-      <String ID="STATIC_HUNTERPIE_ISSUES_DESC" Name="HunterPie GitHub 기술/지원 페이지."/>
+      <String ID="STATIC_HUNTERPIE_ISSUES_DESC" Name="HunterPie GitHub 기술/지원 페이지입니다."/>
       <String ID="STATIC_HUNTERPIE_DISCORD" Name="Discord 서버"/>
-      <String ID="STATIC_HUNTERPIE_DISCORD_DESC" Name="HunterPie 공식 Discord 서버."/>
+      <String ID="STATIC_HUNTERPIE_DISCORD_DESC" Name="HunterPie 공식 Discord 서버입니다."/>
       <String ID="STATIC_HUNTERPIE_DONATIONS" Name="후원"/>
       <String ID="STATIC_HUNTERPIE_PAYPAL" Name="PayPal"/>
       <String ID="STATIC_HUNTERPIE_PAYPAL_DESC" Name="HunterPie의 개발을 지원해주시고 싶으시다면 후원을 고려해주세요!"/>
@@ -756,9 +764,9 @@
       <String ID="ENABLE_UNKNOWN_AILMENTS" Name="알려지지 않은 몬스터의 수치 표시"/>
       <String ID="ENABLE_UNKNOWN_AILMENTS_DESC" Name="알려지지 않은 몬스터의 수치를 표시합니다. 개발 도구의 일부분이니, 자신이 무엇을 하는지 모르겠다면 이 옵션을 켜지 마십시오."/>
       <String ID="ENABLE_LOAD_CUSTOM_DATA" Name="커스텀 몬스터 데이터 로드"/>
-      <String ID="ENABLE_LOAD_CUSTOM_DATA_DESC" Name="옵션이 켜져 있을 경우, HunterPie는 커스텀 몬스터 데이터 불러오기를 시도합니다. 개발 도구의 일부분이니, 자신이 무엇을 하는지 모르겠다면 이 옵션을 켜지 마십시오."/>
+      <String ID="ENABLE_LOAD_CUSTOM_DATA_DESC" Name="옵션을 켤 경우, HunterPie는 커스텀 몬스터 데이터 불러오기를 시도합니다. 개발 도구의 일부분이니, 자신이 무엇을 하는지 모르겠다면 이 옵션을 켜지 마십시오."/>
       <String ID="ENABLE_SEND_CRASH_TO_DEV" Name="개발자에게 충돌 오류 보내기"/>
-      <String ID="ENABLE_SEND_CRASH_TO_DEV_DESC" Name="옵션이 켜져 있을 경우, 개발자에게 충돌 오류 로그파일을 보냅니다."/>
+      <String ID="ENABLE_SEND_CRASH_TO_DEV_DESC" Name="옵션을 켤 경우, 개발자에게 충돌 오류 로그파일을 보냅니다."/>
       <String ID="STATIC_LOAD_CUSTOM_DATA_PATH" Name="커스텀 몬스터 데이터 파일:"/>
       <String ID="STATIC_LOAD_CUSTOM_DATA_PATH_DESC" Name="커스텀 몬스터 데이터 파일의 경로를 선택하세요."/>
       <!-- Generics -->
@@ -773,6 +781,7 @@
       <String ID="STATIC_GENERAL_SETTINGS" Name="일반 설정"/>
       <String ID="STATIC_DISCORD_SETTINGS" Name="Discord"/>
       <String ID="STATIC_OVERLAY_SETTINGS" Name="오버레이"/>
+      <String ID="STATIC_PLAYER_SETTINGS" Name="플레이어 위젯"/>
       <String ID="STATIC_MONSTERS_SETTINGS" Name="몬스터 위젯"/>
       <String ID="STATIC_HARVEST_BOX_SETTINGS" Name="수확 박스 위젯"/>
       <String ID="STATIC_DAMAGE_METER_SETTINGS" Name="데미지 미터기 위젯"/>
@@ -786,14 +795,15 @@
       <String ID="STATIC_HARVEST_BOX_TITLE" Name="수확 박스"/>
     </Overlay>
     <Notifications>
-      <String ID="STATIC_DISCORD_JOIN_REQUEST" Name="{Username}(이)가 당신의 세션에 참가하려합니다, 수락하시겠습니까?"/>
+      <String ID="STATIC_DISCORD_JOIN_REQUEST" Name="{Username}(이)가 당신의 세션에 참가하려 합니다, 수락하시겠습니까?"/>
       <String ID="STATIC_ACCEPT" Name="수락"/>
       <String ID="STATIC_REJECT" Name="거절"/>
       <String ID="STATIC_SETTINGS_LOAD" Name="설정 불러옴"/>
       <String ID="STATIC_OPENDEFAULTBROWSER" Name="브라우저에서 열기"/>
       <String ID="STATIC_OPENFOLDER" Name="폴더 열기"/>
       <String ID="MESSAGE_BUILD_UPLOADED" Name="장비 커스텀이 Honey Hunters World에 업로드 되었습니다!"/>
-      <String ID="MESSAGE_GEAR_EXPORTED" Name="「./DataExport」소지중인 장식품을 내보내기 하였습니다."/>
+      <String ID="MESSAGE_GEAR_EXPORTED" Name="「./DataExport」소지 중인 장식품을 내보내기 했습니다."/>
+      <String ID="STATIC_RESTART" Name="지금 다시 시작"/>
     </Notifications>
     <RichPresence>
       <String ID="RPC_DESCRIPTION_IN_MAIN_MENU" Name="메인 메뉴"/>
