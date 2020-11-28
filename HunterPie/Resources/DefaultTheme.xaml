@@ -268,7 +268,7 @@
     <!-- MONSTER PART STYLES -->
     <Style x:Key="OVERLAY_MONSTER_PART_BAR_STYLE" TargetType="Custom:MinimalHealthBar">
         <Setter Property="Background" Value="#4C000000"/>
-        <Setter Property="Color" Value="#FF52C18F"/>
+        <Setter Property="Color" Value="{StaticResource OVERLAY_MONSTER_HEALTH_BAR_COLOR}"/>
         <Setter Property="Height" Value="2"/>
         <Setter Property="Margin" Value="32,14,6,0"/>
         <Setter Property="RenderTransform">
@@ -334,7 +334,7 @@
         <Setter Property="FontWeight" Value="Normal"/>
     </Style>
     <Style x:Key="OVERLAY_MONSTER_PART_COUNTER_BACKGROUND_STYLE" TargetType="{x:Type Polyline}">
-        <Setter Property="Stroke" Value="#FF52C18F"/>
+        <Setter Property="Stroke" Value="#FF337E00"/>
         <Setter Property="StrokeThickness" Value="2"/>
         <Setter Property="Margin" Value="5,0,-5,0"/>
         <Setter Property="Points" Value="27,15 22.5,28 3.5,28 5, 25"/>
@@ -805,7 +805,6 @@
     <!-- Player Health bar widget -->
 
     <Style x:Key="OVERLAY_PLAYER_HUD_WIDGET" TargetType="Overlay:Widget">
-        
         <Setter Property="Template">
             <Setter.Value>
                 <ControlTemplate>
@@ -824,7 +823,7 @@
                             </StackPanel>
 
                             <!-- Player stamina bar -->
-                            <StackPanel Orientation="Horizontal" Height="3" VerticalAlignment="Top" Margin="65,40,0,0" HorizontalAlignment="Left">
+                            <StackPanel Orientation="Horizontal" Height="3" VerticalAlignment="Top" Margin="65,40,0,0" HorizontalAlignment="Left" ClipToBounds="False">
                                 <Custom:MinimalHealthBar x:Name="StaminaBar" RenderTransformOrigin="0.5,1" Foreground="{x:Null}" Background="#B27E7E7E">
                                     <Custom:MinimalHealthBar.RenderTransform>
                                         <TransformGroup>
@@ -911,11 +910,19 @@
                                         </Style>
                                     </Rectangle.Style>
                                 </Rectangle>
+                                <TextBlock Margin="-50,0,0,-15" RenderOptions.ClearTypeHint="Enabled" VerticalAlignment="Bottom" Foreground="#FFDADADA" FontSize="12" HorizontalAlignment="Left" FontFamily="Roboto, Segoe UI, Yu Gothic UI" ClipToBounds="False">
+                                    <Run Text="{Binding PlayerCurrentStamina, ElementName=PlayerHealthComponent}"/>
+                                    <Run Text="/"/>
+                                    <Run Text="{Binding PlayerMaxStamina, ElementName=PlayerHealthComponent}"/>
+                                    <TextBlock.Effect>
+                                        <DropShadowEffect RenderingBias="Quality" ShadowDepth="0" Direction="0"/>
+                                    </TextBlock.Effect>
+                                </TextBlock>
                             </StackPanel>
 
 
                             <!-- Player Health Bar-->
-                            <StackPanel Orientation="Horizontal" Margin="63,29,0,0" VerticalAlignment="Top" HorizontalAlignment="Left" Height="11">
+                            <StackPanel Orientation="Horizontal" Margin="63,29,0,0" VerticalAlignment="Top" HorizontalAlignment="Left" Height="11" ClipToBounds="False">
                                 <PlayerHealthParts:HealthBar x:Name="HealthBar" RenderTransformOrigin="0.5,0.5" ConstantWidth="200">
                                     <PlayerHealthParts:HealthBar.RenderTransform>
                                         <TransformGroup>
@@ -960,10 +967,18 @@
                                         </Style>
                                     </Rectangle.Style>
                                 </Rectangle>
+                                <TextBlock Margin="-60,-14,0,0" RenderOptions.ClearTypeHint="Enabled" VerticalAlignment="Top" Foreground="#FFDADADA" FontSize="14" Height="20" HorizontalAlignment="Left" FontFamily="Roboto, Segoe UI, Yu Gothic UI">
+                                    <Run Text="{Binding PlayerCurrentHealth, ElementName=PlayerHealthComponent}"/>
+                                    <Run Text="/"/>
+                                    <Run Text="{Binding PlayerMaxHealth, ElementName=PlayerHealthComponent}"/>
+                                    <TextBlock.Effect>
+                                        <DropShadowEffect RenderingBias="Quality" ShadowDepth="0" Direction="0"/>
+                                    </TextBlock.Effect>
+                                </TextBlock>
                             </StackPanel>
 
                             <!-- Sharpness Component -->
-                            <Canvas Height="18" Width="78" Visibility="{Binding ElementName=PlayerHealthComponent, Path=SharpnessVisibility}" VerticalAlignment="Top" HorizontalAlignment="Left" Margin="70,51,0,0">
+                            <Canvas Height="25" Width="78" Visibility="{Binding ElementName=PlayerHealthComponent, Path=SharpnessVisibility}" VerticalAlignment="Top" HorizontalAlignment="Left" Margin="70,51,0,0">
                                 <Image Source="pack://siteoforigin:,,,/HunterPie.Resources/UI/HUD/sharpness_background.png" Width="78" Height="18" />
                                 <Rectangle Width="{Binding ElementName=PlayerHealthComponent, Path=Sharpness}" MaxWidth="52" Height="11" Fill="{Binding ElementName=PlayerHealthComponent, Path=SharpnessColor}" StrokeThickness="0" Canvas.Top="3" Canvas.Left="27" >
                                     <Rectangle.OpacityMask>
@@ -975,13 +990,21 @@
                                         <ImageBrush ImageSource="pack://siteoforigin:,,,/HunterPie.Resources/UI/HUD/sharpness_effect.png" AlignmentX="Left" ViewportUnits="Absolute" Viewport="0,0,77,17.5" Opacity="0.7"/>
                                     </Rectangle.OpacityMask>
                                 </Rectangle>
+                                <TextBlock Margin="12,15,0,0" RenderOptions.ClearTypeHint="Enabled" VerticalAlignment="Top" Foreground="#FFDADADA" FontSize="14" Height="20" HorizontalAlignment="Left" FontFamily="Roboto, Segoe UI, Yu Gothic UI">
+                                    <Run Text="{Binding PlayerMinSharpness, ElementName=PlayerHealthComponent}"/>
+                                    <Run Text="/"/>
+                                    <Run Text="{Binding PlayerCurrentSharpness, ElementName=PlayerHealthComponent}"/>
+                                    <TextBlock.Effect>
+                                        <DropShadowEffect RenderingBias="Quality" ShadowDepth="0" Direction="0"/>
+                                    </TextBlock.Effect>
+                                </TextBlock>
                             </Canvas>
 
 
                             <Image Source="pack://siteoforigin:,,,/HunterPie.Resources/UI/HUD/mr_time_background.png" HorizontalAlignment="Left" Width="57" Height="60" VerticalAlignment="Top" Margin="2,1,0,0"/>
                             <Image Source="{Binding ElementName=PlayerHealthComponent, Path=DayTimeIcon}" HorizontalAlignment="Left" Width="57" Height="60" VerticalAlignment="Top" Margin="2,1,0,0"/>
                             <Image Source="{Binding ElementName=PlayerHealthComponent, Path=PlayerLaurel}" HorizontalAlignment="Left" Width="57" Height="60" VerticalAlignment="Top" Margin="2,1,0,0" OpacityMask="#B2000000"/>
-                            
+
                             <TextBlock Text="{Binding ElementName=PlayerHealthComponent, Path=DesignModeDetails}" Visibility="{Binding ElementName=PlayerHealthComponent, Path=DesignModeDetailsVisibility}" VerticalAlignment="Top" HorizontalAlignment="Left" Style="{StaticResource OVERLAY_DESIGN_MODE_DEBUG}"/>
                         </Grid>
                         <Border.Style>

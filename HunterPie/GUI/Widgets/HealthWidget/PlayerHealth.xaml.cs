@@ -12,7 +12,6 @@ using HunterPie.GUIControls.Custom_Controls;
 using System.Windows.Shapes;
 using System.Windows.Controls;
 using HunterPie.GUI.Helpers;
-using HunterPie.Logger;
 using static HunterPie.Core.UserSettings.Config;
 
 namespace HunterPie.GUI.Widgets.HealthWidget
@@ -103,6 +102,62 @@ namespace HunterPie.GUI.Widgets.HealthWidget
         public static readonly DependencyProperty IsIcyProperty =
             DependencyProperty.Register("IsIcy", typeof(bool), typeof(PlayerHealth));
 
+        public int PlayerCurrentStamina
+        {
+            get { return (int)GetValue(PlayerCurrentStaminaProperty); }
+            set { SetValue(PlayerCurrentStaminaProperty, value); }
+        }
+        public static readonly DependencyProperty PlayerCurrentStaminaProperty =
+            DependencyProperty.Register("PlayerCurrentStamina", typeof(int), typeof(PlayerHealth));
+
+        public int PlayerMaxStamina
+        {
+            get { return (int)GetValue(PlayerMaxStaminaProperty); }
+            set { SetValue(PlayerMaxStaminaProperty, value); }
+        }
+        public static readonly DependencyProperty PlayerMaxStaminaProperty =
+            DependencyProperty.Register("PlayerMaxStamina", typeof(int), typeof(PlayerHealth));
+
+        public int PlayerCurrentHealth
+        {
+            get { return (int)GetValue(PlayerCurrentHealthProperty); }
+            set { SetValue(PlayerCurrentHealthProperty, value); }
+        }
+        public static readonly DependencyProperty PlayerCurrentHealthProperty =
+            DependencyProperty.Register("PlayerCurrentHealth", typeof(int), typeof(PlayerHealth));
+
+        public int PlayerMaxHealth
+        {
+            get { return (int)GetValue(PlayerMaxHealthProperty); }
+            set { SetValue(PlayerMaxHealthProperty, value); }
+        }
+        public static readonly DependencyProperty PlayerMaxHealthProperty =
+            DependencyProperty.Register("PlayerMaxHealth", typeof(int), typeof(PlayerHealth));
+
+        public int PlayerCurrentSharpness
+        {
+            get { return (int)GetValue(PlayerCurrentSharpnessProperty); }
+            set { SetValue(PlayerCurrentSharpnessProperty, value); }
+        }
+        public static readonly DependencyProperty PlayerCurrentSharpnessProperty =
+            DependencyProperty.Register("PlayerCurrentSharpness", typeof(int), typeof(PlayerHealth));
+
+        public int PlayerMaxSharpness
+        {
+            get { return (int)GetValue(PlayerMaxSharpnessProperty); }
+            set { SetValue(PlayerMaxSharpnessProperty, value); }
+        }
+        public static readonly DependencyProperty PlayerMaxSharpnessProperty =
+            DependencyProperty.Register("PlayerMaxSharpness", typeof(int), typeof(PlayerHealth));
+
+        public int PlayerMinSharpness
+        {
+            get { return (int)GetValue(PlayerMinSharpnessProperty); }
+            set { SetValue(PlayerMinSharpnessProperty, value); }
+        }
+        public static readonly DependencyProperty PlayerMinSharpnessProperty =
+            DependencyProperty.Register("PlayerMinSharpness", typeof(int), typeof(PlayerHealth));
+
         MinimalHealthBar StaminaBar { get; set; }
         HealthBar HealthBar { get; set; }
         Rectangle HealthExt { get; set; }
@@ -136,11 +191,16 @@ namespace HunterPie.GUI.Widgets.HealthWidget
         {
             Dispatcher.BeginInvoke(DispatcherPriority.Background, new Action(() =>
             {
+                Left = Settings.Position[0] + UserSettings.PlayerConfig.Overlay.Position[0];
+                Top = Settings.Position[1] + UserSettings.PlayerConfig.Overlay.Position[1];
+
                 WidgetActive = Settings.Enabled;
 
                 PlayerName = FormatNameString();
 
-                WidgetHasContent = !(Context?.InHarvestZone ?? true) && Settings.HideHealthInVillages;
+                WidgetHasContent = Settings.HideHealthInVillages ? !(Context?.InHarvestZone ?? true) : true;
+
+                Opacity = Settings.Opacity;
 
                 ScaleWidget(Settings.Scale, Settings.Scale);
                 base.ApplySettings(FocusTrigger);
@@ -149,7 +209,9 @@ namespace HunterPie.GUI.Widgets.HealthWidget
 
         private void SaveSettings()
         {
-            
+            Settings.Position = new int[2] { (int)Left - UserSettings.PlayerConfig.Overlay.Position[0], (int)Top - UserSettings.PlayerConfig.Overlay.Position[1] };
+
+            Settings.Scale = DefaultScaleX;
         }
 
         public void SetContext(Game ctx)
@@ -161,6 +223,7 @@ namespace HunterPie.GUI.Widgets.HealthWidget
         {
             OnMaxStaminaUpdate(this, new PlayerStaminaEventArgs(Context.Stamina));
             OnMaxHealthUpdate(this, new PlayerHealthEventArgs(Context.Health));
+            OnWorldDayTimeUpdate(this, new WorldEventArgs(gContext));
             if (Context.CurrentWeapon != null)
             {
                 OnSharpnessLevelChange(this, new SharpnessEventArgs(Context.CurrentWeapon));
@@ -228,7 +291,13 @@ namespace HunterPie.GUI.Widgets.HealthWidget
             PlayerLocationEventArgs e = (PlayerLocationEventArgs)args;
             Dispatcher.BeginInvoke(DispatcherPriority.Render, new Action(() =>
             {
-                WidgetHasContent = !e.InHarvestZone && Settings.HideHealthInVillages;
+                if (Context.ZoneID != 0)
+                {
+                    WidgetHasContent = Settings.HideHealthInVillages ? !e.InHarvestZone : true;
+                } else
+                {
+                    WidgetHasContent = false;
+                }
                 ChangeVisibility(false);
             }));
         }
@@ -382,6 +451,11 @@ namespace HunterPie.GUI.Widgets.HealthWidget
                 }
 
                 int min = Math.Min(args.MaximumSharpness, args.Max);
+
+                PlayerMinSharpness = args.Min;
+                PlayerCurrentSharpness = args.Sharpness;
+                PlayerMaxSharpness = min;
+
                 Sharpness = ((args.Sharpness - args.Min) / (double)(min - args.Min)) * SharpnessMaxWidth;
             }));
         }
@@ -391,6 +465,11 @@ namespace HunterPie.GUI.Widgets.HealthWidget
             Dispatcher.BeginInvoke(DispatcherPriority.Render, new Action(() =>
             {
                 int min = Math.Min(args.MaximumSharpness, args.Max);
+
+                PlayerMinSharpness = args.Min;
+                PlayerCurrentSharpness = args.Sharpness;
+                PlayerMaxSharpness = min;
+
                 Sharpness = ((args.Sharpness - args.Min) / (double)(min - args.Min)) * SharpnessMaxWidth;
             }));
         }
@@ -465,8 +544,13 @@ namespace HunterPie.GUI.Widgets.HealthWidget
         {
             Dispatcher.BeginInvoke(DispatcherPriority.Render, new Action(() =>
             {
-                StaminaBar.MaxWidth = args.MaxStamina / 100 * 200;
-                StaminaBar.MaxSize = args.MaxStamina / 100 * 200;
+                PlayerCurrentStamina = (int)args.Stamina;
+                PlayerMaxStamina = (int)args.MaxStamina;
+
+                StaminaBar.MaxWidth = args.MaxStamina / 100 * HealthBar.ConstantWidth;
+                StaminaBar.MaxSize = args.MaxStamina / 100 * HealthBar.ConstantWidth;
+
+                OnStaminaExtStateUpdate(source, args);
             }));
         }
 
@@ -474,6 +558,9 @@ namespace HunterPie.GUI.Widgets.HealthWidget
         {
             Dispatcher.BeginInvoke(DispatcherPriority.Render, new Action(() =>
             {
+                PlayerCurrentStamina = (int)args.Stamina;
+                PlayerMaxStamina = (int)args.MaxStamina;
+
                 StaminaBar.UpdateBar(args.Stamina, args.MaxStamina);
             }));
         }
@@ -507,8 +594,13 @@ namespace HunterPie.GUI.Widgets.HealthWidget
         {
             Dispatcher.BeginInvoke(DispatcherPriority.Render, new Action(() =>
             {
+                PlayerCurrentHealth = (int)args.Health;
+                PlayerMaxHealth = (int)args.MaxHealth;
+
                 HealthBar.MaxHealth = args.MaxHealth;
                 HealthBar.Health = args.Health;
+
+                OnHealthExtStateUpdate(source, args);
             }));
         }
 
@@ -516,6 +608,9 @@ namespace HunterPie.GUI.Widgets.HealthWidget
         {
             Dispatcher.BeginInvoke(DispatcherPriority.Render, new Action(() =>
             {
+                PlayerCurrentHealth = (int)args.Health;
+                PlayerMaxHealth = (int)args.MaxHealth;
+
                 HealthBar.MaxHealth = args.MaxHealth;
                 HealthBar.Health = args.Health;
                 if (args.RedHealth > 0)
