@@ -3,7 +3,7 @@ using System.Runtime.InteropServices;
 
 namespace HunterPie.Core.Definitions
 {
-    [StructLayout(LayoutKind.Sequential, Size = 0x3C)]
+    [StructLayout(LayoutKind.Sequential, Size = 0x40)]
     public struct sHealingData : IEquatable<sHealingData>
     {
         public ulong Ref1;

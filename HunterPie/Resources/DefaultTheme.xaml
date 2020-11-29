@@ -967,7 +967,7 @@
                                         </Style>
                                     </Rectangle.Style>
                                 </Rectangle>
-                                <TextBlock Margin="-60,-14,0,0" RenderOptions.ClearTypeHint="Enabled" VerticalAlignment="Top" Foreground="#FFDADADA" FontSize="14" Height="20" HorizontalAlignment="Left" FontFamily="Roboto, Segoe UI, Yu Gothic UI">
+                                <TextBlock Margin="-60,-15,0,0" RenderOptions.ClearTypeHint="Enabled" VerticalAlignment="Top" Foreground="#FFDADADA" FontSize="14" Height="20" HorizontalAlignment="Left" FontFamily="Roboto, Segoe UI, Yu Gothic UI">
                                     <Run Text="{Binding PlayerCurrentHealth, ElementName=PlayerHealthComponent}"/>
                                     <Run Text="/"/>
                                     <Run Text="{Binding PlayerMaxHealth, ElementName=PlayerHealthComponent}"/>
@@ -991,9 +991,9 @@
                                     </Rectangle.OpacityMask>
                                 </Rectangle>
                                 <TextBlock Margin="12,15,0,0" RenderOptions.ClearTypeHint="Enabled" VerticalAlignment="Top" Foreground="#FFDADADA" FontSize="14" Height="20" HorizontalAlignment="Left" FontFamily="Roboto, Segoe UI, Yu Gothic UI">
-                                    <Run Text="{Binding PlayerMinSharpness, ElementName=PlayerHealthComponent}"/>
-                                    <Run Text="/"/>
                                     <Run Text="{Binding PlayerCurrentSharpness, ElementName=PlayerHealthComponent}"/>
+                                    <Run Text="/"/>
+                                    <Run Text="{Binding PlayerMinSharpness, ElementName=PlayerHealthComponent}"/>
                                     <TextBlock.Effect>
                                         <DropShadowEffect RenderingBias="Quality" ShadowDepth="0" Direction="0"/>
                                     </TextBlock.Effect>

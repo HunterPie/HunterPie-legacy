@@ -221,8 +221,8 @@ namespace HunterPie.GUI.Widgets.HealthWidget
 
         private void UpdateInformation()
         {
-            OnMaxStaminaUpdate(this, new PlayerStaminaEventArgs(Context.Stamina));
             OnMaxHealthUpdate(this, new PlayerHealthEventArgs(Context.Health));
+            OnMaxStaminaUpdate(this, new PlayerStaminaEventArgs(Context.Stamina));
             OnWorldDayTimeUpdate(this, new WorldEventArgs(gContext));
             if (Context.CurrentWeapon != null)
             {
@@ -325,7 +325,7 @@ namespace HunterPie.GUI.Widgets.HealthWidget
                     IsStaminaNormal = (!IsWet && !IsIcy);
                 } else
                 {
-                    HealthBar.IsHealing = !(abnormIcon == "ICON_NATURALHEALING");
+                    if (abnormIcon == "ICON_NATURALHEALING") HealthBar.IsHealing = false;
                 }
             }));
         }
@@ -352,7 +352,7 @@ namespace HunterPie.GUI.Widgets.HealthWidget
 
                 } else
                 {
-                    HealthBar.IsHealing = abnormIcon == "ICON_NATURALHEALING";
+                    if (abnormIcon == "ICON_NATURALHEALING") HealthBar.IsHealing = true;
                 }
             }));
         }

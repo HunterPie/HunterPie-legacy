@@ -826,11 +826,13 @@ namespace HunterPie.Core
         private void GetPlayerHealth(long address)
         {
             long cGuiHealthAddress = Kernel.ReadMultilevelPtr(Address.BASE + Address.HUD_DATA_OFFSET, Address.Offsets.gHudHealthBarOffsets);
-                     
+
+            sHealingData[] healingArray = Kernel.ReadStructure<sHealingData>(Kernel.Read<long>(address + 0x30) + 0xEBB0, 4);
+
             Health.Update(
                 maxHealth: Kernel.Read<float>(address + 0x60),
                 health: Kernel.Read<float>(address + 0x64),
-                healData: Kernel.ReadStructure<sHealingData>(Kernel.Read<long>(address + 0x30) + 0xEBB0),
+                healData: CalcualteHealingData(healingArray),
                 redHealth: Kernel.Read<float>(address + 0x2DE4)
             );
 
@@ -840,6 +842,33 @@ namespace HunterPie.Core
                 guiData.MaxPossibleHealth = CalculatePlayerMaximumPossibleHealth();
                 Health.Update(guiData);
             }
+        }
+
+        private sHealingData CalcualteHealingData(sHealingData[] data)
+        {
+            sHealingData totalHealingData = new sHealingData
+            {
+                Ref1 = data[0].Ref1,
+                Ref2 = data[0].Ref2,
+                CurrentHeal = 0,
+                OldMaxHeal = 0,
+                MaxHeal = 0,
+                Stage = 2,
+            };
+
+            for (int i = 1; i < data.Length; i++)
+            {
+                sHealingData current = data[i];
+                float max = current.Stage == 1 ? current.MaxHeal * 2.5f : current.MaxHeal;
+                if (current.Stage != 0)
+                {
+                    totalHealingData.CurrentHeal += current.CurrentHeal;
+                    totalHealingData.MaxHeal += max;
+                }
+                
+            }
+
+            return totalHealingData;
         }
 
         /// <summary>
