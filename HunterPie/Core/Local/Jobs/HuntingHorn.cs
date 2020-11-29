@@ -13,8 +13,8 @@ namespace HunterPie.Core.Jobs
     {
 
         // Action Ids for when the player cast buffs from the queue
-        public static readonly int[] SongCastActionIds = { 77, 81, 82, 83, 84, 85, 86, 87, 88, 91, 92, 94, 95, 96, 97, 102 };
-        public static readonly int[] DoubleSongCastActionIds = { 91, 92, 94, 95, 96, 97, 102 };
+        public static readonly int[] SongCastActionIds = { 77, 80, 81, 82, 83, 84, 85, 86, 87, 88, 89, 91, 92, 94, 95, 96, 97, 102 };
+        public static readonly int[] DoubleSongCastActionIds = { 92, 93, 94, 95, 96, 97, 98, 102 };
         #region Private properties
         private sHuntingHornSong[] songs = new sHuntingHornSong[0];
         private long notesQueued = -1;

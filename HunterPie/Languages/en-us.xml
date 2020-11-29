@@ -321,6 +321,7 @@
     <Abnormality ID="HUNTINGHORN_014_00" Name="Health Rec. (L)"/>
     <Abnormality ID="HUNTINGHORN_015_00" Name="Health Rec. (S) + Antidote"/>
     <Abnormality ID="HUNTINGHORN_016_00" Name="Health Rec. (M) + Antidote"/>
+    <Abnormality ID="HUNTINGHORN_017_00" Name="Health Rec. (M)"/>
     <Abnormality ID="HUNTINGHORN_018_00" Name="Recovery Up (S)"/>
     <Abnormality ID="HUNTINGHORN_019_00" Name="Recovery Up (L)"/>
     <Abnormality ID="HUNTINGHORN_020_00" Name="Earplugs (S)"/>
@@ -357,17 +358,20 @@
     <Abnormality ID="HUNTINGHORN_041_00" Name="Sonic Waves"/>
     <Abnormality ID="HUNTINGHORN_042_00" Name="All Melody Effects Extended"/>
     <Abnormality ID="HUNTINGHORN_043_00" Name="Knockbacks Negated"/>
+    <Abnormality ID="HUNTINGHORN_044_00" Name="Attack and Defense Up (S)"/>
     <Abnormality ID="HUNTINGHORN_045_00" Name="Blights Resistance Up"/>
     <Abnormality ID="HUNTINGHORN_046_00" Name="Affinity Up (S)"/>
     <Abnormality ID="HUNTINGHORN_047_00" Name="All Ailments Negated"/>
     <Abnormality ID="HUNTINGHORN_048_00" Name="Wind res &amp; Earplugs"/>
-    <Abnormality ID="HUNTINGHORN_049_00" Name="Abnormal Status Attack Increase"/>
+    <Abnormality ID="HUNTINGHORN_049_00" Name="Abnormal Status Atk. Up (S)"/>
+    <Abnormality ID="HUNTINGHORN_050_00" Name="Health Recovery (M)"/>
     <Abnormality ID="HUNTINGHORN_051_00" Name="Impact Echo Wave"/>
     <Abnormality ID="HUNTINGHORN_052_00" Name="Echo Wave &quot;Dragon&quot;"/>
     <Abnormality ID="HUNTINGHORN_053_00" Name="Max Stamina Up + Recovery"/>
     <Abnormality ID="HUNTINGHORN_054_00" Name="Extended Health Recovery"/>
     <Abnormality ID="HUNTINGHORN_055_00" Name="Speed Boost + Evade Window Up"/>
     <Abnormality ID="HUNTINGHORN_056_00" Name="Elemental Effectiveness"/>
+    <Abnormality ID="HUNTINGHORN_057_00" Name="Evade Window Up"/>
     <Abnormality ID="HUNTINGHORN_943_00" Name="Elemental Effectiveness"/>
     <Abnormality ID="PALICO_000_00" Name="Resuscitate"/>
     <Abnormality ID="PALICO_001_00" Name="Attack Up (S)"/>

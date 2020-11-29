@@ -38,7 +38,6 @@
     <Abnormality ID="38" Offset="D0" Icon="ICON_DRAGONRES+"/>
     <Abnormality ID="39" Offset="D4" Icon="ICON_ELEATTACKUP"/>
     <Abnormality ID="40" Offset="D8" Icon="ICON_BLIGHTSNEG"/>
-    <Abnormality ID="41" Offset="DC"/>
     <Abnormality ID="43" Offset="E4" Icon="ICON_KNOCKBACKNEG"/>
     <Abnormality ID="45" Offset="EC" Icon="ICON_ALLRESUP"/>
     <Abnormality ID="46" Offset="F0" Icon="ICON_AFFINITY"/>
