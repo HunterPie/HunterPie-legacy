@@ -105,7 +105,6 @@
     <Abnormality ID="30" Offset="708" Icon="ICON_SNOWMANHEAD"/> <!-- Snowman Head-->
     <Abnormality ID="34" Offset="718" Icon="ICON_ATTACKUP"/>
     <Abnormality ID="35" Offset="71C" Icon="ICON_ICERES+"/>
-    <Abnormality ID="73" Offset="7B4"/>
     <Abnormality ID="999" Offset="E4" Icon="ICON_MEAT"/> <!-- Eat timer -->
   </MISC_Abnormalities>
   <GEAR_Abnormalities>

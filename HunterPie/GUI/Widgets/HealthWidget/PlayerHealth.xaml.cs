@@ -247,6 +247,7 @@ namespace HunterPie.GUI.Widgets.HealthWidget
         {
             OnMaxHealthUpdate(this, new PlayerHealthEventArgs(Context.Health));
             OnMaxStaminaUpdate(this, new PlayerStaminaEventArgs(Context.Stamina));
+            OnLevelChange(this, new PlayerEventArgs(Context));
             OnWorldDayTimeUpdate(this, new WorldEventArgs(gContext));
             if (Context.CurrentWeapon != null)
             {

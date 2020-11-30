@@ -876,7 +876,7 @@ namespace HunterPie.Core
                 Stage = 2,
             };
 
-            for (int i = 1; i < data.Length; i++)
+            for (int i = 0; i < data.Length; i++)
             {
                 sHealingData current = data[i];
                 float max = current.Stage == 1 ? current.MaxHeal * 2.5f : current.MaxHeal;
