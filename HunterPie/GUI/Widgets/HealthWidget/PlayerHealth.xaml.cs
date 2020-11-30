@@ -54,6 +54,14 @@ namespace HunterPie.GUI.Widgets.HealthWidget
         public static readonly DependencyProperty PlayerLaurelProperty =
             DependencyProperty.Register("PlayerLaurel", typeof(string), typeof(PlayerHealth));
 
+        public Brush SharpnessLowerColor
+        {
+            get { return (Brush)GetValue(SharpnessLowerColorProperty); }
+            set { SetValue(SharpnessLowerColorProperty, value); }
+        }
+        public static readonly DependencyProperty SharpnessLowerColorProperty =
+            DependencyProperty.Register("SharpnessLowerColor", typeof(Brush), typeof(PlayerHealth));
+
         public Brush SharpnessColor
         {
             get { return (Brush)GetValue(SharpnessColorProperty); }
@@ -158,6 +166,16 @@ namespace HunterPie.GUI.Widgets.HealthWidget
         public static readonly DependencyProperty PlayerMinSharpnessProperty =
             DependencyProperty.Register("PlayerMinSharpness", typeof(int), typeof(PlayerHealth));
 
+        public int PlayerSharpnessLeft
+        {
+            get { return (int)GetValue(PlayerSharpnessLeftProperty); }
+            set { SetValue(PlayerSharpnessLeftProperty, value); }
+        }
+        public static readonly DependencyProperty PlayerSharpnessLeftProperty =
+            DependencyProperty.Register("PlayerSharpnessLeft", typeof(int), typeof(PlayerHealth));
+
+
+
         MinimalHealthBar StaminaBar { get; set; }
         HealthBar HealthBar { get; set; }
         Rectangle HealthExt { get; set; }
@@ -198,7 +216,13 @@ namespace HunterPie.GUI.Widgets.HealthWidget
 
                 PlayerName = FormatNameString();
 
-                WidgetHasContent = Settings.HideHealthInVillages ? !(Context?.InHarvestZone ?? true) : true;
+                if ((Context?.ZoneID ?? 0) == 0)
+                {
+                    WidgetHasContent = false;
+                } else
+                {
+                    WidgetHasContent = Settings.HideHealthInVillages ? !(Context?.InHarvestZone ?? true) : true;
+                }
 
                 Opacity = Settings.Opacity;
 
@@ -443,6 +467,7 @@ namespace HunterPie.GUI.Widgets.HealthWidget
         {
             Dispatcher.BeginInvoke(DispatcherPriority.Render, new Action(() =>
             {
+                object downColor = TryFindResource($"SHARPNESS_{(args.Level - 1).ToString().ToUpperInvariant()}");
                 object color = TryFindResource($"SHARPNESS_{(args.Level).ToString().ToUpperInvariant()}");
 
                 if (color != null)
@@ -450,11 +475,14 @@ namespace HunterPie.GUI.Widgets.HealthWidget
                     SharpnessColor = color as Brush;
                 }
 
-                int min = Math.Min(args.MaximumSharpness, args.Max);
+                SharpnessLowerColor = downColor as Brush;
+
+                int min = args.Level == args.MaxLevel ? Math.Min(args.MaximumSharpness, args.Max) : args.Max;
 
                 PlayerMinSharpness = args.Min;
                 PlayerCurrentSharpness = args.Sharpness;
                 PlayerMaxSharpness = min;
+                PlayerSharpnessLeft = PlayerCurrentSharpness - PlayerMinSharpness;
 
                 Sharpness = ((args.Sharpness - args.Min) / (double)(min - args.Min)) * SharpnessMaxWidth;
             }));
@@ -464,11 +492,12 @@ namespace HunterPie.GUI.Widgets.HealthWidget
         {
             Dispatcher.BeginInvoke(DispatcherPriority.Render, new Action(() =>
             {
-                int min = Math.Min(args.MaximumSharpness, args.Max);
+                int min = args.Level == args.MaxLevel ? Math.Min(args.MaximumSharpness, args.Max) : args.Max;
 
                 PlayerMinSharpness = args.Min;
                 PlayerCurrentSharpness = args.Sharpness;
                 PlayerMaxSharpness = min;
+                PlayerSharpnessLeft = PlayerCurrentSharpness - PlayerMinSharpness;
 
                 Sharpness = ((args.Sharpness - args.Min) / (double)(min - args.Min)) * SharpnessMaxWidth;
             }));

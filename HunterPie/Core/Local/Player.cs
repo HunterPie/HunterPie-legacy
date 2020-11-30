@@ -429,6 +429,26 @@ namespace HunterPie.Core
 
         private void Dispatch(PlayerEvents e, EventArgs args) => e?.Invoke(this, args);
         private void Dispatch(PlayerAilmentEvents e) => e?.Invoke(this, new PlayerAilmentEventArgs(this));
+        private void DispatchScanFinished()
+        {
+            if (OnPlayerScanFinished == null)
+            {
+                return;
+            }
+
+            foreach (PlayerEvents sub in OnPlayerScanFinished.GetInvocationList())
+            {
+                try
+                {
+                    sub(this, EventArgs.Empty);
+                } catch (Exception err)
+                {
+                    Debugger.Error($"Exception in {sub.Method.Name}: {err.Message}");
+                    OnPlayerScanFinished -= sub;
+                }
+            }
+
+        } 
         #endregion
 
         #region Scanner
@@ -726,7 +746,7 @@ namespace HunterPie.Core
                 GetSessionId();
                 GetEquipmentAddress();
 
-                Dispatch(OnPlayerScanFinished, EventArgs.Empty);
+                DispatchScanFinished();
                 Thread.Sleep(UserSettings.PlayerConfig.Overlay.GameScanDelay);
             }
             Thread.Sleep(1000);

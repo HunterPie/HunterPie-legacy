@@ -69,6 +69,19 @@ namespace HunterPie.Core.Jobs
                 }
             }
         }
+        public SharpnessLevel MaxSharpnessLevel
+        {
+            get {
+                for (int i = Sharpnesses.Length - 1; i > 0; i--)
+                {
+                    if (Sharpnesses[i] == 0)
+                    {
+                        return (SharpnessLevel)(i - 1);
+                    }
+                }
+                return SharpnessLevel.Purple;
+            }
+        }
         public short[] Sharpnesses { get; internal set; }
         public int SharpnessMax
         {

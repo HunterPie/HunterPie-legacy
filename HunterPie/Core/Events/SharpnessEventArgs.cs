@@ -23,6 +23,11 @@ namespace HunterPie.Core.Events
         public SharpnessLevel Level { get; }
 
         /// <summary>
+        /// Maximum Sharpness Level
+        /// </summary>
+        public SharpnessLevel MaxLevel { get; }
+
+        /// <summary>
         /// Maximum sharpness for that level
         /// </summary>
         public int Max { get; }
@@ -45,6 +50,7 @@ namespace HunterPie.Core.Events
             Min = obj.SharpnessMin;
             SharpnessProgress = obj.Sharpnesses;
             MaximumSharpness = obj.MaximumSharpness;
+            MaxLevel = obj.MaxSharpnessLevel;
         }
     }
 }

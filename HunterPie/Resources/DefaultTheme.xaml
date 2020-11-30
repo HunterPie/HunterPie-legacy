@@ -978,26 +978,22 @@
                             </StackPanel>
 
                             <!-- Sharpness Component -->
-                            <Canvas Height="25" Width="78" Visibility="{Binding ElementName=PlayerHealthComponent, Path=SharpnessVisibility}" VerticalAlignment="Top" HorizontalAlignment="Left" Margin="70,51,0,0">
+                            <Canvas Height="25" Width="78" Visibility="{Binding ElementName=PlayerHealthComponent, Path=SharpnessVisibility}" VerticalAlignment="Top" HorizontalAlignment="Left" Margin="70,60,0,0">
                                 <Image Source="pack://siteoforigin:,,,/HunterPie.Resources/UI/HUD/sharpness_background.png" Width="78" Height="18" />
-                                <Rectangle Width="{Binding ElementName=PlayerHealthComponent, Path=Sharpness}" MaxWidth="52" Height="11" Fill="{Binding ElementName=PlayerHealthComponent, Path=SharpnessColor}" StrokeThickness="0" Canvas.Top="3" Canvas.Left="27" >
-                                    <Rectangle.OpacityMask>
-                                        <ImageBrush ImageSource="pack://siteoforigin:,,,/HunterPie.Resources/UI/HUD/sharpness_blade.png" AlignmentX="Left" ViewportUnits="Absolute" Viewport="0,0,49.5,11.5"/>
-                                    </Rectangle.OpacityMask>
-                                </Rectangle>
+
+                                <StackPanel Orientation="Horizontal" ClipToBounds="False" Canvas.Top="0" Canvas.Left="8">
+                                    <Rectangle Width="{Binding ElementName=PlayerHealthComponent, Path=Sharpness}" Margin="17,-12.5,0,0" MaxWidth="52" Height="11" Fill="{Binding ElementName=PlayerHealthComponent, Path=SharpnessColor}" StrokeThickness="0"  >
+                                        <Rectangle.OpacityMask>
+                                            <ImageBrush ImageSource="pack://siteoforigin:,,,/HunterPie.Resources/UI/HUD/sharpness_blade.png" AlignmentX="Left" ViewportUnits="Absolute" Viewport="0,0,49.5,11.5"/>
+                                        </Rectangle.OpacityMask>
+                                    </Rectangle>
+                                    <TextBlock Text="{Binding PlayerSharpnessLeft, ElementName=PlayerHealthComponent}" Margin="-15,15,0,0" Foreground="{Binding ElementName=PlayerHealthComponent, Path=SharpnessColor}" FontFamily="Roboto" FontWeight="Bold" Width="30" TextAlignment="Center"/>
+                                </StackPanel>
                                 <Rectangle Width="79" Height="18" Fill="{Binding ElementName=PlayerHealthComponent, Path=SharpnessColor}" StrokeThickness="0" >
                                     <Rectangle.OpacityMask>
                                         <ImageBrush ImageSource="pack://siteoforigin:,,,/HunterPie.Resources/UI/HUD/sharpness_effect.png" AlignmentX="Left" ViewportUnits="Absolute" Viewport="0,0,77,17.5" Opacity="0.7"/>
                                     </Rectangle.OpacityMask>
                                 </Rectangle>
-                                <TextBlock Margin="12,15,0,0" RenderOptions.ClearTypeHint="Enabled" VerticalAlignment="Top" Foreground="#FFDADADA" FontSize="14" Height="20" HorizontalAlignment="Left" FontFamily="Roboto, Segoe UI, Yu Gothic UI">
-                                    <Run Text="{Binding PlayerCurrentSharpness, ElementName=PlayerHealthComponent}"/>
-                                    <Run Text="/"/>
-                                    <Run Text="{Binding PlayerMinSharpness, ElementName=PlayerHealthComponent}"/>
-                                    <TextBlock.Effect>
-                                        <DropShadowEffect RenderingBias="Quality" ShadowDepth="0" Direction="0"/>
-                                    </TextBlock.Effect>
-                                </TextBlock>
                             </Canvas>
 
 

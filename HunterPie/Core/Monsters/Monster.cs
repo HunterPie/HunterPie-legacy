@@ -284,6 +284,28 @@ namespace HunterPie.Core
         protected virtual void Dispatch(MonsterEvents e) => e?.Invoke(this, EventArgs.Empty);
         protected virtual void Dispatch(MonsterUpdateEvents e) => e?.Invoke(this, new MonsterUpdateEventArgs(this));
         protected virtual void Dispatch(MonsterEnrageEvents e) => e?.Invoke(this, new MonsterUpdateEventArgs(this));
+
+        private void DispatchScanFinished()
+        {
+            if (OnMonsterScanFinished == null)
+            {
+                return;
+            }
+
+            foreach (MonsterEvents sub in OnMonsterScanFinished.GetInvocationList())
+            {
+                try
+                {
+                    sub(this, EventArgs.Empty);
+                }
+                catch (Exception err)
+                {
+                    Debugger.Error($"Exception in {sub.Method.Name}: {err.Message}");
+                    OnMonsterScanFinished -= sub;
+                }
+            }
+
+        }
         #endregion
 
         public Monster(int initMonsterNumber)
@@ -326,7 +348,7 @@ namespace HunterPie.Core
                 GetTargetMonsterAddress();
                 GetAlatreonCurrentElement();
 
-                Dispatch(OnMonsterScanFinished);
+                DispatchScanFinished();
                 Thread.Sleep(UserSettings.PlayerConfig.Overlay.GameScanDelay);
             }
             Thread.Sleep(1000);
