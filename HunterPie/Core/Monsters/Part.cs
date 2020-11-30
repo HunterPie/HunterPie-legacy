@@ -104,7 +104,11 @@ namespace HunterPie.Core
         {
             TotalHealth = data.MaxHealth;
             BrokenCounter = data.Counter;
-            Health = data.Health;
+
+            if (IsPartyHost)
+            {
+                Health = data.Health;
+            }
         }
 
         public void SetTenderizeInfo(sTenderizedPart data)
