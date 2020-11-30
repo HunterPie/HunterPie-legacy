@@ -1295,7 +1295,7 @@ namespace HunterPie.Core
         private void GetJobInformation()
         {
             // Fix for arena dumb memory leak when choosing the class
-            if (ActionId == 75)
+            if (PlayerActionRef == "Village::FIELD_GO_YOKURYU")
             {
                 return;
             }
@@ -1360,9 +1360,13 @@ namespace HunterPie.Core
                     CurrentWeapon = LightBowgun;
                     break;
             }
-            CurrentWeapon.SafijiivaRegenCounter = SafiCounter;
 
-            GetWeaponSharpness(weaponAddress);
+            if (CurrentWeapon != null)
+            {
+                CurrentWeapon.SafijiivaRegenCounter = SafiCounter;
+                GetWeaponSharpness(weaponAddress);
+            }
+            
             ClassAddress = weaponAddress;
         }
 
