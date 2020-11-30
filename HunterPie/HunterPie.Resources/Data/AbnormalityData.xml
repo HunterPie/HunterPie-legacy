@@ -60,7 +60,6 @@
     <Abnormality ID="6" Offset="134" Icon="ICON_NATURALHEALING"/>
     <Abnormality ID="7" Offset="138" Icon="ICON_HEALTHUP"/>
     <Abnormality ID="8" Offset="13C" Icon="ICON_STAMINAUP"/>
-    <Abnormality ID="9" Offset="140"/>
     <Abnormality ID="10" Offset="144" Icon="ICON_DIVINEPROTECTION"/>
     <Abnormality ID="11" Offset="148" Icon="ICON_DIVINEPROTECTION"/>
     <Abnormality ID="12" Offset="14C" Icon="ICON_STUNNEG"/>
@@ -69,7 +68,6 @@
     <Abnormality ID="15" Offset="158" Icon="ICON_EARPLUGS"/>
     <Abnormality ID="16" Offset="15C" Icon="ICON_WINDRES+"/>
     <Abnormality ID="17" Offset="160" Icon="ICON_ENVNEG"/>
-    <Abnormality ID="18" Offset="164"/>
   </PALICO_Abnormalities>
   <DEBUFF_Abnormalities>
     <Abnormality ID="0" IsDebuff="True" Offset="5DC" Icon="ICON_POISON"/>
