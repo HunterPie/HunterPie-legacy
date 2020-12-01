@@ -12,6 +12,8 @@ using Classes = HunterPie.Core.Enums.Classes;
 using AbnormalityType = HunterPie.Core.Enums.AbnormalityType;
 using HunterPie.Core.Enums;
 using HunterPie.Utils;
+using Stopwatch = System.Diagnostics.Stopwatch;
+using System.IO;
 
 namespace HunterPie.Core
 {
@@ -720,6 +722,7 @@ namespace HunterPie.Core
         {
             while (Kernel.GameIsRunning)
             {
+                
                 GetZoneId();
                 if (GetPlayerAddress())
                 {
@@ -745,8 +748,9 @@ namespace HunterPie.Core
                 }
                 GetSessionId();
                 GetEquipmentAddress();
-
+                
                 DispatchScanFinished();
+                
                 Thread.Sleep(UserSettings.PlayerConfig.Overlay.GameScanDelay);
             }
             Thread.Sleep(1000);
@@ -1177,6 +1181,7 @@ namespace HunterPie.Core
 
         private void GetPlayerAbnormalities()
         {
+            Stopwatch s = Stopwatch.StartNew();
             if (InHarvestZone)
             {
                 Abnormalities.ClearAbnormalities();
@@ -1184,27 +1189,35 @@ namespace HunterPie.Core
             }
             long abnormalityBaseAddress = Kernel.ReadMultilevelPtr(
                 Address.BASE + Address.ABNORMALITY_OFFSET, Address.Offsets.AbnormalityOffsets);
-            GetPlayerHuntingHornAbnormalities(abnormalityBaseAddress);
-            GetPlayerPalicoAbnormalities(abnormalityBaseAddress);
+
+            float[] abnormDurationArray = Kernel.ReadStructure<float>(abnormalityBaseAddress + 0x38, 75); 
+
+            GetPlayerHuntingHornAbnormalities(abnormalityBaseAddress, abnormDurationArray);
+            GetPlayerPalicoAbnormalities(abnormalityBaseAddress, abnormDurationArray);
             GetPlayerMiscAbnormalities(abnormalityBaseAddress);
             GetPlayerGearAbnormalities(abnormalityBaseAddress);
+            s.Stop();
+            using (var f = File.AppendText("benchmark.txt"))
+            {
+                f.WriteLine(s.ElapsedTicks / (TimeSpan.TicksPerMillisecond / 1000));
+            }
         }
 
-        private void GetPlayerHuntingHornAbnormalities(long abnormalityBaseAddress)
+        private void GetPlayerHuntingHornAbnormalities(long abnormalityBaseAddress, float[] cache)
         {
             // Gets the player abnormalities caused by HH
             foreach (AbnormalityInfo abnormality in AbnormalityData.HuntingHornAbnormalities)
             {
-                UpdateAbnormality(abnormality, abnormalityBaseAddress);
+                UpdateAbnormality(abnormality, abnormalityBaseAddress, cache);
             }
         }
 
-        private void GetPlayerPalicoAbnormalities(long abnormalityBaseAddress)
+        private void GetPlayerPalicoAbnormalities(long abnormalityBaseAddress, float[] cache)
         {
             // Gets the player abnormalities caused by palico's skills
             foreach (AbnormalityInfo abnormality in AbnormalityData.PalicoAbnormalities)
             {
-                UpdateAbnormality(abnormality, abnormalityBaseAddress);
+                UpdateAbnormality(abnormality, abnormalityBaseAddress, cache);
             }
         }
 
@@ -1234,11 +1247,19 @@ namespace HunterPie.Core
             }
         }
 
-        private void UpdateAbnormality(AbnormalityInfo info, long baseAddress)
+        private void UpdateAbnormality(AbnormalityInfo info, long baseAddress, float[] cached = null)
         {
             const int firstHornBuffOffset = 0x38;
             long abnormalityAddress = baseAddress + info.Offset;
-            float duration = Kernel.Read<float>(abnormalityAddress);
+            float duration;
+            if (info.Type == AbnormalityType.HuntingHorn || info.Type == AbnormalityType.Palico)
+            {
+                duration = cached[(info.Offset - firstHornBuffOffset) / sizeof(float)];
+            } else
+            {
+                duration = Kernel.Read<float>(abnormalityAddress);
+            }
+
 
             bool hasConditions = info.HasConditions;
             bool DebuffCondition = false;
