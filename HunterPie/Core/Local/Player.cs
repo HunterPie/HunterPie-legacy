@@ -1181,7 +1181,6 @@ namespace HunterPie.Core
 
         private void GetPlayerAbnormalities()
         {
-            Stopwatch s = Stopwatch.StartNew();
             if (InHarvestZone)
             {
                 Abnormalities.ClearAbnormalities();
@@ -1196,11 +1195,6 @@ namespace HunterPie.Core
             GetPlayerPalicoAbnormalities(abnormalityBaseAddress, abnormDurationArray);
             GetPlayerMiscAbnormalities(abnormalityBaseAddress);
             GetPlayerGearAbnormalities(abnormalityBaseAddress);
-            s.Stop();
-            using (var f = File.AppendText("benchmark.txt"))
-            {
-                f.WriteLine(s.ElapsedTicks / (TimeSpan.TicksPerMillisecond / 1000));
-            }
         }
 
         private void GetPlayerHuntingHornAbnormalities(long abnormalityBaseAddress, float[] cache)
