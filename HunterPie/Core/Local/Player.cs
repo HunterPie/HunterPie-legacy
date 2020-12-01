@@ -14,6 +14,7 @@ using HunterPie.Core.Enums;
 using HunterPie.Utils;
 using Stopwatch = System.Diagnostics.Stopwatch;
 using System.IO;
+using Microsoft.CodeAnalysis.CSharp.Syntax;
 
 namespace HunterPie.Core
 {
@@ -1189,8 +1190,7 @@ namespace HunterPie.Core
             long abnormalityBaseAddress = Kernel.ReadMultilevelPtr(
                 Address.BASE + Address.ABNORMALITY_OFFSET, Address.Offsets.AbnormalityOffsets);
 
-            float[] abnormDurationArray = Kernel.ReadStructure<float>(abnormalityBaseAddress + 0x38, 75); 
-
+            float[] abnormDurationArray = Kernel.ReadStructure<float>(abnormalityBaseAddress + 0x38, 75);
             GetPlayerHuntingHornAbnormalities(abnormalityBaseAddress, abnormDurationArray);
             GetPlayerPalicoAbnormalities(abnormalityBaseAddress, abnormDurationArray);
             GetPlayerMiscAbnormalities(abnormalityBaseAddress);
@@ -1246,7 +1246,7 @@ namespace HunterPie.Core
             const int firstHornBuffOffset = 0x38;
             long abnormalityAddress = baseAddress + info.Offset;
             float duration;
-            if (info.Type == AbnormalityType.HuntingHorn || info.Type == AbnormalityType.Palico)
+            if (cached != null)
             {
                 duration = cached[(info.Offset - firstHornBuffOffset) / sizeof(float)];
             } else
