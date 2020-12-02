@@ -42,7 +42,7 @@ namespace HunterPie
 
         // Classes
         TrayIcon TrayIcon;
-        readonly GameImpl MonsterHunter = new GameImpl();
+        readonly Game MonsterHunter = new Game();
         Presence Discord;
         Overlay GameOverlay;
         readonly Exporter dataExporter = new Exporter();
@@ -111,7 +111,7 @@ namespace HunterPie
             UserSettings.InitializePlayerConfig();
 
             // Initialize localization
-            GStrings.InitStrings(UserSettings.PlayerConfig.HunterPie.Language);
+            GStrings.InitStrings(UserSettings.PlayerConfig.HunterPie.Language, App.Current);
 
             // Load custom theme and console colors
             LoadCustomTheme();
