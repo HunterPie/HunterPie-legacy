@@ -1,0 +1,194 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="15.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{38DA002E-7A2D-46BA-8E31-4CD0ED8EC257}</ProjectGuid>
+    <OutputType>library</OutputType>
+    <RootNamespace>HunterPie.Core</RootNamespace>
+    <AssemblyName>HunterPie.Core</AssemblyName>
+    <TargetFrameworkVersion>v4.8</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+    <ProjectTypeGuids>{60dc8134-eba5-43b8-bcc9-bb4bc16c2548};{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}</ProjectTypeGuids>
+    <WarningLevel>4</WarningLevel>
+    <Deterministic>true</Deterministic>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="System" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Xml" />
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="System.Net.Http" />
+    <Reference Include="System.Xaml">
+      <RequiredTargetFramework>4.0</RequiredTargetFramework>
+    </Reference>
+    <Reference Include="WindowsBase" />
+    <Reference Include="PresentationCore" />
+    <Reference Include="PresentationFramework" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="Core\Definitions\sAmmo.cs" />
+    <Compile Include="Core\Definitions\sEquippedAmmo.cs" />
+    <Compile Include="Core\Definitions\sGear.cs" />
+    <Compile Include="Core\Definitions\sGuiHealth.cs" />
+    <Compile Include="Core\Definitions\sGuiStamina.cs" />
+    <Compile Include="Core\Definitions\sHealingData.cs" />
+    <Compile Include="Core\Definitions\sHuntingHornMechanics.cs" />
+    <Compile Include="Core\Definitions\sHuntingHornSong.cs" />
+    <Compile Include="Core\Definitions\sItem.cs" />
+    <Compile Include="Core\Definitions\sMonsterAilment.cs" />
+    <Compile Include="Core\Definitions\sMonsterPart.cs" />
+    <Compile Include="Core\Definitions\sMonsterPartData.cs" />
+    <Compile Include="Core\Definitions\sMonsterRemovablePart.cs" />
+    <Compile Include="Core\Definitions\sMonsterStatus.cs" />
+    <Compile Include="Core\Definitions\sPlayerSkill.cs" />
+    <Compile Include="Core\Definitions\sSharpness.cs" />
+    <Compile Include="Core\Definitions\sTenderizedPart.cs" />
+    <Compile Include="Core\Definitions\Structures.cs" />
+    <Compile Include="Core\Definitions\sVector3.cs" />
+    <Compile Include="Core\Enums\AbnormalityType.cs" />
+    <Compile Include="Core\Enums\AilmentType.cs" />
+    <Compile Include="Core\Enums\AlatreonState.cs" />
+    <Compile Include="Core\Enums\Classes.cs" />
+    <Compile Include="Core\Enums\DamagePlotMode.cs" />
+    <Compile Include="Core\Enums\DayTime.cs" />
+    <Compile Include="Core\Enums\GearType.cs" />
+    <Compile Include="Core\Enums\HBGSpecialType.cs" />
+    <Compile Include="Core\Enums\Helper.cs" />
+    <Compile Include="Core\Enums\Laurel.cs" />
+    <Compile Include="Core\Enums\MonsterBarMode.cs" />
+    <Compile Include="Core\Enums\NoteColorId.cs" />
+    <Compile Include="Core\Enums\PlayerAilment.cs" />
+    <Compile Include="Core\Enums\SetSkills.cs" />
+    <Compile Include="Core\Enums\SharpnessLevel.cs" />
+    <Compile Include="Core\Events\AbnormalityEventArgs.cs" />
+    <Compile Include="Core\Events\DaysLeftEventArgs.cs" />
+    <Compile Include="Core\Events\FertilizerEventArgs.cs" />
+    <Compile Include="Core\Events\HarvestBoxEventArgs.cs" />
+    <Compile Include="Core\Events\HuntingHornEventArgs.cs" />
+    <Compile Include="Core\Events\HuntingHornNoteEventArgs.cs" />
+    <Compile Include="Core\Events\HuntingHornSongCastEventArgs.cs" />
+    <Compile Include="Core\Events\HuntingHornSongEventArgs.cs" />
+    <Compile Include="Core\Events\InventoryUpdatedEventArgs.cs" />
+    <Compile Include="Core\Events\JobEventArgs.cs" />
+    <Compile Include="Core\Events\MantleEventArgs.cs" />
+    <Compile Include="Core\Events\MonsterAilmentEventArgs.cs" />
+    <Compile Include="Core\Events\MonsterPartEventArgs.cs" />
+    <Compile Include="Core\Events\MonsterSpawnEventArgs.cs" />
+    <Compile Include="Core\Events\MonsterUpdateEventArgs.cs" />
+    <Compile Include="Core\Events\PartyMemberEventArgs.cs" />
+    <Compile Include="Core\Events\PlayerAilmentEventArgs.cs" />
+    <Compile Include="Core\Events\PlayerEventArgs.cs" />
+    <Compile Include="Core\Events\PlayerHealthEventArgs.cs" />
+    <Compile Include="Core\Events\PlayerLocationEventArgs.cs" />
+    <Compile Include="Core\Events\PlayerStaminaEventArgs.cs" />
+    <Compile Include="Core\Events\SharpnessEventArgs.cs" />
+    <Compile Include="Core\Events\SteamFuelEventArgs.cs" />
+    <Compile Include="Core\Events\WorldEventArgs.cs" />
+    <Compile Include="Core\Game.cs" />
+    <Compile Include="Core\KeyboardHook.cs" />
+    <Compile Include="Core\Local\Abnormalities.cs" />
+    <Compile Include="Core\Local\Abnormality.cs" />
+    <Compile Include="Core\Local\AbnormalityData.cs" />
+    <Compile Include="Core\Local\AbnormalityInfo.cs" />
+    <Compile Include="Core\Local\Activities.cs" />
+    <Compile Include="Core\Local\Data.cs" />
+    <Compile Include="Core\Local\HarvestBox.cs" />
+    <Compile Include="Core\Local\HealthComponent.cs" />
+    <Compile Include="Core\Local\Inventory.cs" />
+    <Compile Include="Core\Local\Jobs\Bow.cs" />
+    <Compile Include="Core\Local\Jobs\ChargeBlade.cs" />
+    <Compile Include="Core\Local\Jobs\DualBlades.cs" />
+    <Compile Include="Core\Local\Jobs\Greatsword.cs" />
+    <Compile Include="Core\Local\Jobs\GunLance.cs" />
+    <Compile Include="Core\Local\Jobs\Hammer.cs" />
+    <Compile Include="Core\Local\Jobs\HeavyBowgun.cs" />
+    <Compile Include="Core\Local\Jobs\HuntingHorn.cs" />
+    <Compile Include="Core\Local\Jobs\InsectGlaive.cs" />
+    <Compile Include="Core\Local\Jobs\Job.cs" />
+    <Compile Include="Core\Local\Jobs\Lance.cs" />
+    <Compile Include="Core\Local\Jobs\LightBowgun.cs" />
+    <Compile Include="Core\Local\Jobs\Longsword.cs" />
+    <Compile Include="Core\Local\Jobs\SwitchAxe.cs" />
+    <Compile Include="Core\Local\Jobs\SwordAndShield.cs" />
+    <Compile Include="Core\Local\Mantle.cs" />
+    <Compile Include="Core\Local\Player.cs" />
+    <Compile Include="Core\Local\StaminaComponent.cs" />
+    <Compile Include="Core\Monsters\Ailment.cs" />
+    <Compile Include="Core\Monsters\AilmentInfo.cs" />
+    <Compile Include="Core\Monsters\Monster.cs" />
+    <Compile Include="Core\Monsters\MonsterInfo.cs" />
+    <Compile Include="Core\Monsters\Part.cs" />
+    <Compile Include="Core\Party\Member.cs" />
+    <Compile Include="Core\Party\Party.cs" />
+    <Compile Include="GUIControls\Debugger.xaml.cs">
+      <DependentUpon>Debugger.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="HunterPie.Plugins\IPlugin.cs" />
+    <Compile Include="HunterPie.Plugins\PluginInformation.cs" />
+    <Compile Include="HunterPie.Plugins\PluginPackage.cs" />
+    <Compile Include="HunterPie.Plugins\PluginSettings.cs" />
+    <Compile Include="HunterPie.Plugins\UpdateResult.cs" />
+    <Compile Include="Memory\Address.cs" />
+    <Compile Include="Memory\BufferPool.cs" />
+    <Compile Include="Memory\Buffers.cs" />
+    <Compile Include="Memory\Kernel.cs" />
+    <Compile Include="Memory\WindowsHelper.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Properties\Resources.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Resources.resx</DependentUpon>
+    </Compile>
+    <Compile Include="Properties\Settings.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DependentUpon>Settings.settings</DependentUpon>
+      <DesignTimeSharedInput>True</DesignTimeSharedInput>
+    </Compile>
+    <Compile Include="Utils\GenericExtensions.cs" />
+    <EmbeddedResource Include="Properties\Resources.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>Resources.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+    <None Include="Properties\Settings.settings">
+      <Generator>SettingsSingleFileGenerator</Generator>
+      <LastGenOutput>Settings.Designer.cs</LastGenOutput>
+    </None>
+  </ItemGroup>
+  <ItemGroup>
+    <PackageReference Include="Newtonsoft.Json">
+      <Version>12.0.3</Version>
+    </PackageReference>
+  </ItemGroup>
+  <ItemGroup />
+  <ItemGroup>
+    <Page Include="GUIControls\Debugger.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+</Project>

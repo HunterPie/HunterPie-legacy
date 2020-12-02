@@ -7,7 +7,7 @@ using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Threading;
 using DispatcherOperation = System.Windows.Threading.DispatcherOperation;
-using UserSettings = HunterPie.Core.UserSettings;
+// using UserSettings = HunterPie.Core.UserSettings;
 
 
 namespace HunterPie.Logger
@@ -73,7 +73,7 @@ namespace HunterPie.Logger
 
         public static void Debug(object message)
         {
-            if (!UserSettings.PlayerConfig.HunterPie.Debug.ShowDebugMessages) return;
+            // if (!UserSettings.PlayerConfig.HunterPie.Debug.ShowDebugMessages) return;
             PrintOnConsole($"[DEBUG] {message?.ToString()}", NORMAL, DispatcherPriority.ApplicationIdle);
         }
 

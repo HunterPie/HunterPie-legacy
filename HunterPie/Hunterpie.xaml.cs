@@ -42,7 +42,7 @@ namespace HunterPie
 
         // Classes
         TrayIcon TrayIcon;
-        readonly Game MonsterHunter = new Game();
+        readonly GameImpl MonsterHunter = new GameImpl();
         Presence Discord;
         Overlay GameOverlay;
         readonly Exporter dataExporter = new Exporter();

@@ -10,39 +10,23 @@ using HunterPie.Utils;
 namespace HunterPie.Core
 {
 
-    public class Game
+    public class GameImpl : Game
     {
-        // Game classes
-        public Player Player { get; private set; }
-
-        public Monster FirstMonster { get; private set; }
-        public Monster SecondMonster { get; private set; }
-        public Monster ThirdMonster { get; private set; }
-
-        public Monster HuntedMonster
+        public override Monster HuntedMonster
         {
             get
             {
-                if (FirstMonster.IsTarget)
-                {
+                if (FirstMonster.IsTarget) {
                     return FirstMonster;
-                }
-                else if (SecondMonster.IsTarget)
-                {
+                } else if (SecondMonster.IsTarget) {
                     return SecondMonster;
-                }
-                else if (ThirdMonster.IsTarget)
-                {
+                } else if (ThirdMonster.IsTarget) {
                     return ThirdMonster;
-                }
-                else
-                {
+                } else {
                     return null;
                 }
             }
         }
-
-        public readonly Monster[] Monsters = new Monster[3];
 
         private DateTime clock = DateTime.UtcNow;
         private DateTime Clock
@@ -57,19 +41,6 @@ namespace HunterPie.Core
                 }
             }
         }
-        public DateTime? Time { get; private set; }
-        public bool IsActive { get; private set; }
-
-        
-        /// <summary>
-        /// Whether the game window is focused or not
-        /// </summary>
-        public static bool IsWindowFocused => Kernel.IsForegroundWindow;
-
-        /// <summary>
-        /// The current game build version
-        /// </summary>
-        public static int Version => Kernel.GameVersion;
 
         // Threading
         private ThreadStart scanGameThreadingRef;
@@ -77,53 +48,7 @@ namespace HunterPie.Core
 
         private readonly bool[] aliveMonsters = new bool[3];
 
-        // Clock event
-        public delegate void ClockEvent(object source, EventArgs args);
-
-        /* This Event is dispatched every 10 seconds to update the rich presence */
-        public event ClockEvent OnClockChange;
-
-        protected virtual void _onClockChange() => OnClockChange?.Invoke(this, EventArgs.Empty);
-
-        #region Game World data
-
-        private float worldTime;
-        private DayTime dayTime;
-
-        public float WorldTime
-        {
-            get => worldTime;
-            set
-            {
-                if (value != worldTime)
-                {
-                    worldTime = value;
-                    Dispatch(OnWorldTimeUpdate);
-                }
-            }
-        }
-
-        public DayTime DayTime
-        {
-            get => dayTime;
-            set
-            {
-                if (value != dayTime)
-                {
-                    dayTime = value;
-                    Dispatch(OnWorldDayTimeUpdate);
-                }
-            }
-        }
-
-        public delegate void WorldEvent(object source, WorldEventArgs args);
-        public event WorldEvent OnWorldTimeUpdate;
-        public event WorldEvent OnWorldDayTimeUpdate;
-
-        protected virtual void Dispatch(WorldEvent e) => e?.Invoke(this, new WorldEventArgs(this));
-        #endregion
-
-        public void CreateInstances()
+        public override void CreateInstances()
         {
             Player = new Player();
             FirstMonster = new Monster(1);
@@ -156,7 +81,7 @@ namespace HunterPie.Core
             Debugger.Warn($"{m.Name} Death -> {m.ActionName}");
         }
 #endif
-        public void DestroyInstances()
+        public override void DestroyInstances()
         {
             Player = null;
             FirstMonster = null;
@@ -202,7 +127,7 @@ namespace HunterPie.Core
             Player.OnZoneChange += OnZoneChange;
         }
 
-        public void UnhookEvents()
+        public override void UnhookEvents()
         {
             if (Player is null)
             {
@@ -211,7 +136,7 @@ namespace HunterPie.Core
             Player.OnZoneChange -= OnZoneChange;
         }
 
-        public void OnZoneChange(object source, EventArgs e)
+        public override void OnZoneChange(object source, EventArgs e)
         {
             if (Player.InPeaceZone) Time = null;
             else { Time = DateTime.UtcNow; }
