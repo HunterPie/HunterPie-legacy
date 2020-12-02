@@ -17,7 +17,7 @@ namespace HunterPie.Core.Craft
 
         public int Calculate(sItem[] items)
         {
-            Span<int> temp = stackalloc int[MaterialsNeeded.Length];
+            int[] temp = new int[MaterialsNeeded.Length];
             int lowest = int.MaxValue;
             for (int i = 0; i < MaterialsNeeded.Length; i++)
             {
