@@ -51,6 +51,9 @@
   <ItemGroup>
     <Compile Include="Core\Client\GStrings.cs" />
     <Compile Include="Core\Client\UserSettings.cs" />
+    <Compile Include="Core\Craft\Crafting.cs" />
+    <Compile Include="Core\Craft\Recipe.cs" />
+    <Compile Include="Core\Craft\Recipes.cs" />
     <Compile Include="Core\Definitions\sAmmo.cs" />
     <Compile Include="Core\Definitions\sEquippedAmmo.cs" />
     <Compile Include="Core\Definitions\sGear.cs" />
@@ -110,6 +113,9 @@
     <Compile Include="Core\Events\SteamFuelEventArgs.cs" />
     <Compile Include="Core\Events\WorldEventArgs.cs" />
     <Compile Include="Core\Game.cs" />
+    <Compile Include="Core\Input\Hotkey.cs" />
+    <Compile Include="Core\Integrations\DataExporter\Exporter.cs" />
+    <Compile Include="Core\Integrations\Honey\Honey.cs" />
     <Compile Include="Core\KeyboardHook.cs" />
     <Compile Include="Core\Local\Abnormalities.cs" />
     <Compile Include="Core\Local\Abnormality.cs" />
@@ -146,7 +152,7 @@
     <Compile Include="Core\Monsters\Part.cs" />
     <Compile Include="Core\Party\Member.cs" />
     <Compile Include="Core\Party\Party.cs" />
-    <Compile Include="GUIControls\Debugger.xaml.cs">
+    <Compile Include="Logger\Debugger.xaml.cs">
       <DependentUpon>Debugger.xaml</DependentUpon>
     </Compile>
     <Compile Include="HunterPie.Plugins\IPlugin.cs" />
@@ -188,65 +194,10 @@
     </PackageReference>
   </ItemGroup>
   <ItemGroup>
-    <Resource Include="Languages\de-de.xml">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </Resource>
-  </ItemGroup>
-  <ItemGroup>
-    <Page Include="GUIControls\Debugger.xaml">
+    <Page Include="Logger\Debugger.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
-  </ItemGroup>
-  <ItemGroup>
-    <Resource Include="Languages\en-us.xml">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </Resource>
-  </ItemGroup>
-  <ItemGroup>
-    <Resource Include="Languages\es-es.xml">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </Resource>
-  </ItemGroup>
-  <ItemGroup>
-    <Resource Include="Languages\fr-fr.xml">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </Resource>
-  </ItemGroup>
-  <ItemGroup>
-    <Resource Include="Languages\ita-it.xml">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </Resource>
-  </ItemGroup>
-  <ItemGroup>
-    <Resource Include="Languages\jp-jp.xml">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </Resource>
-  </ItemGroup>
-  <ItemGroup>
-    <Resource Include="Languages\ko-kr.xml">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </Resource>
-  </ItemGroup>
-  <ItemGroup>
-    <Resource Include="Languages\pt-br.xml">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </Resource>
-  </ItemGroup>
-  <ItemGroup>
-    <Resource Include="Languages\ru-ru.xml">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </Resource>
-  </ItemGroup>
-  <ItemGroup>
-    <Resource Include="Languages\zh-cn.xml">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </Resource>
-  </ItemGroup>
-  <ItemGroup>
-    <Resource Include="Languages\zh-tw.xml">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </Resource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
