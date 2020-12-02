@@ -139,108 +139,10 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
-    <Compile Include="Core\Craft\Recipe.cs" />
-    <Compile Include="Core\Craft\Recipes.cs" />
-    <Compile Include="Core\Definitions\sAmmo.cs" />
-    <Compile Include="Core\Definitions\sEquippedAmmo.cs" />
-    <Compile Include="Core\Definitions\sGear.cs" />
-    <Compile Include="Core\Definitions\sGuiHealth.cs" />
-    <Compile Include="Core\Definitions\sGuiStamina.cs" />
-    <Compile Include="Core\Definitions\sHealingData.cs" />
-    <Compile Include="Core\Definitions\sHuntingHornMechanics.cs" />
-    <Compile Include="Core\Definitions\sHuntingHornSong.cs" />
-    <Compile Include="Core\Definitions\sItem.cs" />
-    <Compile Include="Core\Definitions\sMonsterAilment.cs" />
-    <Compile Include="Core\Definitions\sMonsterPart.cs" />
-    <Compile Include="Core\Definitions\sMonsterPartData.cs" />
-    <Compile Include="Core\Definitions\sMonsterRemovablePart.cs" />
-    <Compile Include="Core\Definitions\sMonsterStatus.cs" />
-    <Compile Include="Core\Definitions\sPlayerSkill.cs" />
-    <Compile Include="Core\Definitions\sSharpness.cs" />
-    <Compile Include="Core\Definitions\sVector3.cs" />
-    <Compile Include="Core\Definitions\sTenderizedPart.cs" />
-    <Compile Include="Core\Definitions\Structures.cs" />
-    <Compile Include="Core\Enums\AbnormalityType.cs" />
-    <Compile Include="Core\Enums\AilmentType.cs" />
-    <Compile Include="Core\Enums\AlatreonState.cs" />
-    <Compile Include="Core\Enums\Classes.cs" />
-    <Compile Include="Core\Enums\DamagePlotMode.cs" />
-    <Compile Include="Core\Enums\DayTime.cs" />
-    <Compile Include="Core\Enums\GearType.cs" />
-    <Compile Include="Core\Enums\HBGSpecialType.cs" />
-    <Compile Include="Core\Enums\Helper.cs" />
-    <Compile Include="Core\Enums\Laurel.cs" />
-    <Compile Include="Core\Enums\MonsterBarMode.cs" />
-    <Compile Include="Core\Enums\NoteColorId.cs" />
-    <Compile Include="Core\Enums\PlayerAilment.cs" />
-    <Compile Include="Core\Enums\SetSkills.cs" />
-    <Compile Include="Core\Enums\SharpnessLevel.cs" />
-    <Compile Include="Core\Events\AbnormalityEventArgs.cs" />
-    <Compile Include="Core\Events\DaysLeftEventArgs.cs" />
-    <Compile Include="Core\Events\FertilizerEventArgs.cs" />
-    <Compile Include="Core\Events\HarvestBoxEventArgs.cs" />
-    <Compile Include="Core\Events\HuntingHornEventArgs.cs" />
-    <Compile Include="Core\Events\HuntingHornNoteEventArgs.cs" />
-    <Compile Include="Core\Events\HuntingHornSongCastEventArgs.cs" />
-    <Compile Include="Core\Events\HuntingHornSongEventArgs.cs" />
-    <Compile Include="Core\Events\InventoryUpdatedEventArgs.cs" />
-    <Compile Include="Core\Events\JobEventArgs.cs" />
-    <Compile Include="Core\Events\MantleEventArgs.cs" />
-    <Compile Include="Core\Events\MonsterAilmentEventArgs.cs" />
-    <Compile Include="Core\Events\MonsterPartEventArgs.cs" />
-    <Compile Include="Core\Events\MonsterSpawnEventArgs.cs" />
-    <Compile Include="Core\Events\MonsterUpdateEventArgs.cs" />
-    <Compile Include="Core\Events\PartyMemberEventArgs.cs" />
-    <Compile Include="Core\Events\PlayerAilmentEventArgs.cs" />
-    <Compile Include="Core\Events\PlayerEventArgs.cs" />
-    <Compile Include="Core\Events\PlayerHealthEventArgs.cs" />
-    <Compile Include="Core\Events\PlayerLocationEventArgs.cs" />
-    <Compile Include="Core\Events\PlayerStaminaEventArgs.cs" />
-    <Compile Include="Core\Events\SharpnessEventArgs.cs" />
-    <Compile Include="Core\Events\SteamFuelEventArgs.cs" />
-    <Compile Include="Core\Craft\Crafting.cs" />
-    <Compile Include="Core\Events\WorldEventArgs.cs" />
-    <Compile Include="Core\Input\Hotkey.cs" />
-    <Compile Include="Core\Integrations\DataExporter\Exporter.cs" />
-    <Compile Include="Core\Integrations\Honey\Honey.cs" />
-    <Compile Include="Core\KeyboardHook.cs" />
-    <Compile Include="Core\Local\AbnormalityInfo.cs" />
-    <Compile Include="Core\Local\HealthComponent.cs" />
-    <Compile Include="Core\Local\Inventory.cs" />
-    <Compile Include="Core\Local\Jobs\Bow.cs" />
-    <Compile Include="Core\Local\Jobs\ChargeBlade.cs" />
-    <Compile Include="Core\Local\Jobs\DualBlades.cs" />
-    <Compile Include="Core\Local\Jobs\GunLance.cs" />
-    <Compile Include="Core\Local\Jobs\Hammer.cs" />
-    <Compile Include="Core\Local\Jobs\HeavyBowgun.cs" />
-    <Compile Include="Core\Local\Jobs\HuntingHorn.cs" />
-    <Compile Include="Core\Local\Jobs\InsectGlaive.cs" />
-    <Compile Include="Core\Local\Jobs\Job.cs" />
-    <Compile Include="Core\Local\Jobs\Lance.cs" />
-    <Compile Include="Core\Local\Jobs\LightBowgun.cs" />
-    <Compile Include="Core\Local\Jobs\Longsword.cs" />
-    <Compile Include="Core\Local\Jobs\SwitchAxe.cs" />
-    <Compile Include="Core\Local\Jobs\Greatsword.cs" />
-    <Compile Include="Core\Local\Jobs\SwordAndShield.cs" />
-    <Compile Include="Core\Local\StaminaComponent.cs" />
-    <Compile Include="Core\Monsters\Ailment.cs" />
-    <Compile Include="Core\Monsters\AilmentInfo.cs" />
-    <Compile Include="Core\Monsters\MonsterData.cs" />
-    <Compile Include="Core\Monsters\MonsterInfo.cs" />
-    <Compile Include="Core\Monsters\Part.cs" />
-    <Compile Include="Core\Party\Member.cs" />
-    <Compile Include="Core\Party\Party.cs" />
-    <Compile Include="Core\Local\Abnormalities.cs" />
-    <Compile Include="Core\Local\Abnormality.cs" />
-    <Compile Include="Core\Local\AbnormalityData.cs" />
-    <Compile Include="Core\Local\Activities.cs" />
-    <Compile Include="Core\Local\Data.cs" />
     <Compile Include="GUIControls\Changelog.xaml.cs">
       <DependentUpon>Changelog.xaml</DependentUpon>
     </Compile>
     <Compile Include="Core\Client\AutoUpdate.cs" />
-    <Compile Include="Core\Local\HarvestBox.cs" />
-    <Compile Include="Core\Local\Mantle.cs" />
     <Compile Include="Core\Integrations\Discord\Presence.cs" />
     <Compile Include="GUIControls\Custom Controls\BuffBarSettingControl.xaml.cs">
       <DependentUpon>BuffBarSettingControl.xaml</DependentUpon>
@@ -288,8 +190,6 @@
       <DependentUpon>AilmentControl.xaml</DependentUpon>
     </Compile>
     <Compile Include="GUI\WidgetType.cs" />
-    <Compile Include="HunterPie.Plugins\UpdateResult.cs" />
-    <Compile Include="Utils\GenericExtensions.cs" />
     <None Include="address\MonsterHunterWorld.420540.map">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
@@ -378,10 +278,6 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="GUIControls\Custom Controls\WeaknessDisplay.xaml">
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
-    <Page Include="GUIControls\Debugger.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -546,14 +442,6 @@
       <DependentUpon>App.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
-    <Compile Include="Core\Game.cs" />
-    <Compile Include="Core\Client\GStrings.cs" />
-    <Compile Include="Core\Monsters\Monster.cs" />
-    <Compile Include="Core\Local\Player.cs" />
-    <Compile Include="Core\Client\UserSettings.cs" />
-    <Compile Include="GUIControls\Debugger.xaml.cs">
-      <DependentUpon>Debugger.xaml</DependentUpon>
-    </Compile>
     <Compile Include="GUI\Overlay.cs" />
     <Compile Include="GUI\WidgetSettings.cs" />
     <Compile Include="GUI\Widgets\Abnormality Widget\AbnormalityContainer.xaml.cs">
@@ -661,11 +549,7 @@
     <Compile Include="GUI\Widgets\Notification Widget\DiscordNotify.xaml.cs">
       <DependentUpon>DiscordNotify.xaml</DependentUpon>
     </Compile>
-    <Compile Include="HunterPie.Plugins\PluginPackage.cs" />
-    <Compile Include="HunterPie.Plugins\IPlugin.cs" />
-    <Compile Include="HunterPie.Plugins\PluginSettings.cs" />
     <Compile Include="HunterPie.Plugins\PluginManager.cs" />
-    <Compile Include="HunterPie.Plugins\PluginInformation.cs" />
     <Compile Include="HunterPie.Plugins\PluginUpdate.cs" />
     <Compile Include="Hunterpie.xaml.cs">
       <DependentUpon>Hunterpie.xaml</DependentUpon>
@@ -721,11 +605,6 @@
     </None>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Memory\Address.cs" />
-    <Compile Include="Memory\BufferPool.cs" />
-    <Compile Include="Memory\Buffers.cs" />
-    <Compile Include="Memory\Kernel.cs" />
-    <Compile Include="Memory\WindowsHelper.cs" />
     <None Include="Modules\HotKeyExample\main.cs" />
     <Compile Include="Properties\AssemblyInfo.cs">
       <SubType>Code</SubType>
@@ -758,11 +637,6 @@
     </None>
   </ItemGroup>
   <ItemGroup>
-    <None Include="Languages\en-us.xml">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </None>
-  </ItemGroup>
-  <ItemGroup>
     <BootstrapperPackage Include=".NETFramework,Version=v4.6.1">
       <Visible>False</Visible>
       <ProductName>Microsoft .NET Framework 4.6.1 %28x86 and x64%29</ProductName>
@@ -787,33 +661,6 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="HunterPie.Resources\Data\AbnormalityData.xml">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </None>
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="Languages\fr-fr.xml">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </None>
-    <None Include="Languages\ita-it.xml">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </None>
-    <None Include="Languages\jp-jp.xml">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </None>
-    <None Include="Languages\zh-cn.xml">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </None>
-    <None Include="Languages\zh-tw.xml">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </None>
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="Languages\ko-kr.xml">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </None>
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="Languages\de-de.xml">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
   </ItemGroup>
@@ -1018,21 +865,6 @@
     </None>
   </ItemGroup>
   <ItemGroup>
-    <None Include="Languages\es-es.xml">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </None>
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="Languages\pt-br.xml">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </None>
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="Languages\ru-ru.xml">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </None>
-  </ItemGroup>
-  <ItemGroup>
     <None Include="HunterPie.Resources\Monsters\Icons\em023_05.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
@@ -1224,6 +1056,67 @@
     </None>
     <None Include="HunterPie.Resources\UI\HUD\sharpness_effect.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\HunterPie.Core\HunterPie.Core.csproj">
+      <Project>{38da002e-7a2d-46ba-8e31-4cd0ed8ec257}</Project>
+      <Name>HunterPie.Core</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Languages\de-de.xml">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Languages\en-us.xml">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Languages\es-es.xml">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Languages\fr-fr.xml">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Languages\ita-it.xml">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Languages\jp-jp.xml">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Languages\ko-kr.xml">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Languages\pt-br.xml">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Languages\ru-ru.xml">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Languages\zh-cn.xml">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Languages\zh-tw.xml">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

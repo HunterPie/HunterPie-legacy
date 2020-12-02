@@ -1,5 +1,6 @@
 ﻿using System;
 using System.IO;
+using System.Windows;
 using System.Windows.Data;
 using System.Xml;
 using HunterPie.Logger;
@@ -10,9 +11,9 @@ namespace HunterPie.Core
     {
         public static XmlDocument Translations { get; private set; } = new XmlDocument();
 
-        public static void InitStrings(string LangXml) => LoadTranslationXML(LangXml);
+        public static void InitStrings(string LangXml, Application App) => LoadTranslationXML(LangXml, App);
 
-        private static void LoadTranslationXML(string LangXML)
+        private static void LoadTranslationXML(string LangXML, Application App)
         {
             if (LangXML is null)
             {
@@ -51,7 +52,7 @@ namespace HunterPie.Core
                 Debugger.Error($"Failed to load {Path.GetFileName(LangXML)}");
                 Translations.Load(Path.Combine(AppDomain.CurrentDomain.BaseDirectory, @"Languages\en-us.xml"));
             }
-            XmlDataProvider LocDataProvider = (XmlDataProvider)App.Current.FindResource("Localization");
+            XmlDataProvider LocDataProvider = (XmlDataProvider)App.FindResource("Localization");
             LocDataProvider.Document = Translations;
             LocDataProvider.Refresh();
         }
