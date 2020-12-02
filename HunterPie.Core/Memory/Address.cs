@@ -6,7 +6,7 @@ using HunterPie.Logger;
 namespace HunterPie.Memory
 {
     // TODO: Refactor this code and use dictionary instead of variables
-    class Address
+    public class Address
     {
         public class Offsets
         {

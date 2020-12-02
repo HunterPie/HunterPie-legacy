@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Runtime.CompilerServices;
 using System.Threading;
 using System.Windows.Forms;
 using HunterPie.Core.Enums;
@@ -7,9 +8,10 @@ using HunterPie.Logger;
 using HunterPie.Memory;
 using HunterPie.Utils;
 
+// TODO: Probably overkill, but add a public key to this
+[assembly: InternalsVisibleTo("HunterPie")]
 namespace HunterPie.Core
 {
-
     public class Game
     {
         // Game classes

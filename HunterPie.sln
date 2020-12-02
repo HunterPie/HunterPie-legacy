@@ -4,8 +4,13 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 VisualStudioVersion = 16.0.30011.22
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "HunterPie", "HunterPie\HunterPie.csproj", "{23275082-2E7B-4CF2-9AF5-B792D333A671}"
+	ProjectSection(ProjectDependencies) = postProject
+		{38DA002E-7A2D-46BA-8E31-4CD0ED8EC257} = {38DA002E-7A2D-46BA-8E31-4CD0ED8EC257}
+	EndProjectSection
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Update", "Update\Update.csproj", "{201433DD-6743-407E-B44B-5DE9B5CB7F49}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "HunterPie.Core", "HunterPie.Core\HunterPie.Core.csproj", "{38DA002E-7A2D-46BA-8E31-4CD0ED8EC257}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -31,6 +36,14 @@ Global
 		{201433DD-6743-407E-B44B-5DE9B5CB7F49}.Release|Any CPU.Build.0 = Release|Any CPU
 		{201433DD-6743-407E-B44B-5DE9B5CB7F49}.Release|x64.ActiveCfg = Release|Any CPU
 		{201433DD-6743-407E-B44B-5DE9B5CB7F49}.Release|x64.Build.0 = Release|Any CPU
+		{38DA002E-7A2D-46BA-8E31-4CD0ED8EC257}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{38DA002E-7A2D-46BA-8E31-4CD0ED8EC257}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{38DA002E-7A2D-46BA-8E31-4CD0ED8EC257}.Debug|x64.ActiveCfg = Debug|Any CPU
+		{38DA002E-7A2D-46BA-8E31-4CD0ED8EC257}.Debug|x64.Build.0 = Debug|Any CPU
+		{38DA002E-7A2D-46BA-8E31-4CD0ED8EC257}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{38DA002E-7A2D-46BA-8E31-4CD0ED8EC257}.Release|Any CPU.Build.0 = Release|Any CPU
+		{38DA002E-7A2D-46BA-8E31-4CD0ED8EC257}.Release|x64.ActiveCfg = Release|Any CPU
+		{38DA002E-7A2D-46BA-8E31-4CD0ED8EC257}.Release|x64.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

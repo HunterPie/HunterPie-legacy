@@ -111,7 +111,7 @@ namespace HunterPie
             UserSettings.InitializePlayerConfig();
 
             // Initialize localization
-            GStrings.InitStrings(UserSettings.PlayerConfig.HunterPie.Language);
+            GStrings.InitStrings(UserSettings.PlayerConfig.HunterPie.Language, App.Current);
 
             // Load custom theme and console colors
             LoadCustomTheme();
