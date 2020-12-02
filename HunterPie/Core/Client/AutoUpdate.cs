@@ -55,7 +55,7 @@ namespace HunterPie.Core
         {
             try
             {
-                Debugger.Update("Checking for new versions of auto-updater");
+                Debugger.Write("Checking for new versions of auto-updater", Debugger.NORMAL);
                 return CheckOnlineHash(Instance.DownloadData($"{BranchURI}Update.exe"));
             }
             catch (Exception err)
@@ -84,7 +84,7 @@ namespace HunterPie.Core
                 offlineMode = false;
                 if (LocalUpdateHash == OnlineUpdateHash || offlineMode)
                 {
-                    Debugger.Update("No newer version found!");
+                    Debugger.Write("No newer version found!", Debugger.NORMAL);
                     Instance.Dispose();
                     return false;
                 }

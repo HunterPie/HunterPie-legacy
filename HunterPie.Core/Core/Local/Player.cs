@@ -12,9 +12,6 @@ using Classes = HunterPie.Core.Enums.Classes;
 using AbnormalityType = HunterPie.Core.Enums.AbnormalityType;
 using HunterPie.Core.Enums;
 using HunterPie.Utils;
-using Stopwatch = System.Diagnostics.Stopwatch;
-using System.IO;
-using Microsoft.CodeAnalysis.CSharp.Syntax;
 
 namespace HunterPie.Core
 {

@@ -152,9 +152,7 @@
     <Compile Include="Core\Monsters\Part.cs" />
     <Compile Include="Core\Party\Member.cs" />
     <Compile Include="Core\Party\Party.cs" />
-    <Compile Include="Logger\Debugger.xaml.cs">
-      <DependentUpon>Debugger.xaml</DependentUpon>
-    </Compile>
+    <Compile Include="Logger\Debugger.cs" />
     <Compile Include="HunterPie.Plugins\IPlugin.cs" />
     <Compile Include="HunterPie.Plugins\PluginInformation.cs" />
     <Compile Include="HunterPie.Plugins\PluginPackage.cs" />
@@ -192,12 +190,6 @@
     <PackageReference Include="Newtonsoft.Json">
       <Version>12.0.3</Version>
     </PackageReference>
-  </ItemGroup>
-  <ItemGroup>
-    <Page Include="Logger\Debugger.xaml">
-      <Generator>MSBuild:Compile</Generator>
-      <SubType>Designer</SubType>
-    </Page>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

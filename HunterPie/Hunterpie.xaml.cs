@@ -107,7 +107,7 @@ namespace HunterPie
             Buffers.Add<byte>(64);
 
             // Initialize debugger and player config
-            Debugger.InitializeDebugger();
+            DebuggerControl.InitializeDebugger();
             UserSettings.InitializePlayerConfig();
 
             // Initialize localization
@@ -116,7 +116,7 @@ namespace HunterPie
             // Load custom theme and console colors
             LoadCustomTheme();
             LoadOverwriteTheme();
-            Debugger.LoadNewColors();
+            DebuggerControl.LoadNewColors();
             AdministratorIconVisibility = IsRunningAsAdmin() ? Visibility.Visible : Visibility.Collapsed;
 
             Environment.CurrentDirectory = AppDomain.CurrentDomain.BaseDirectory;
@@ -476,7 +476,7 @@ namespace HunterPie
                     }
                 }
             }
-            Debugger.WriteStacktrace();
+            DebuggerControl.WriteStacktrace();
         }
 
         private void StartEverything()
@@ -521,6 +521,7 @@ namespace HunterPie
 
         public void SendToOverlay(object source, EventArgs e)
         {
+            Debugger.IsDebugEnabled = UserSettings.PlayerConfig.HunterPie.Debug.ShowDebugMessages;
             GameOverlay?.GlobalSettingsEventHandler(source, e);
             Dispatcher.BeginInvoke(System.Windows.Threading.DispatcherPriority.ApplicationIdle, new Action(() =>
             {
@@ -721,7 +722,7 @@ namespace HunterPie
             SwitchButtonOff(BUTTON_SETTINGS);
             SwitchButtonOff(BUTTON_PLUGINS);
             ConsolePanel.Children.Clear();
-            ConsolePanel.Children.Add(Debugger.Instance);
+            ConsolePanel.Children.Add(DebuggerControl.Instance);
         }
 
         private void OpenSettings()
@@ -798,7 +799,7 @@ namespace HunterPie
             // Initializes the rest of HunterPie
             LoadData();
             Debugger.Warn(GStrings.GetLocalizationByXPath("/Console/String[@ID='MESSAGE_HUNTERPIE_INITIALIZED']"));
-
+            
             StartEverything();
 
             Task.Factory.StartNew(async () =>
@@ -856,13 +857,13 @@ namespace HunterPie
         {
             Hide();
 
-            Debugger.WriteStacktrace();
+            DebuggerControl.WriteStacktrace();
             pluginManager?.UnloadPlugins();
             UserSettings.PlayerConfig.HunterPie.PosX = Left;
             UserSettings.PlayerConfig.HunterPie.PosY = Top;
 
             if (!IsUpdating) UserSettings.SaveNewConfig();
-            Debugger.DumpLog();
+            DebuggerControl.DumpLog();
 
             // Dispose tray icon
             if (TrayIcon != null)
