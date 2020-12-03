@@ -91,6 +91,15 @@ jobs:
       run: msbuild $env:Solution_Name -m /p:Configuration=$env:Configuration
       env:
         Configuration: ${{ matrix.configuration }}
+  
+    # Upload the release builds for next step
+    - name: Upload build artifacts
+      if: matrix.configuration == 'Release'
+      uses: actions/upload-artifact@v2
+      with:
+        name: MSIX Package
+        path: ./**/bin/Release/*
+
 
     # # Decode the base 64 encoded pfx and save the Signing_Certificate
     # - name: Decode the pfx
