@@ -159,7 +159,8 @@ namespace HunterPie.Plugins
 
             Type[] types = new[]
             {
-                typeof(Hunterpie),                  // HunterPie
+                typeof(Player),                  // HunterPie.Core.dll
+                typeof(Hunterpie),               // HunterPie
                 typeof(JObject),                 // Newtonsoft.Json.dll
                 typeof(Object),                  // mscorlib.dll
                 typeof(UIElement),               // PresentationCore.dll
