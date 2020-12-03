@@ -130,21 +130,21 @@ jobs:
       with:
         name: Hunter Pie Release
 
-    - name: Zip Hunter Pie
+    # TODO: Pack them together
+    - name: Zip Hunter Pie & Update
       run: |
-        cd HunterPie/bin/Release
-        7z a -tzip HunterPie.zip * -r
-
-    - name: Zip Update
-      run: |
-        cd Update/bin/Release
-        7z -tzip a Update.zip * -r
+        mkdir zip
+        mv HunterPie/bin/Release zip/HunterPie
+        mv -f Update/bin/Release/* zip/HunterPie
+        cd zip
+        7z a -tzip HunterPie.zip HunterPie/* -r
   
     - name: Update release with binaries
+      # this is a workaround because actions/upload-release-asset isn't allowed multiple times
+      # https://hub.github.com/hub-release.1.html
       run: |
         hub release create $GIT_REF --message "Release $GIT_REF"
-        hub release edit   $GIT_REF -m "" -a HunterPie/bin/Release/HunterPie.zip
-        hub release edit   $GIT_REF -m "" -a Update/bin/Release/Update.zip
+        hub release edit   $GIT_REF -m "" -a zip/HunterPie.zip
         hub release edit   $GIT_REF -m "" -a HunterPie.Core/bin/Release/HunterPie.Core.dll
       env:
         GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
