@@ -50,8 +50,8 @@ namespace HunterPie.GUI.Widgets
         public override void ApplySettings(bool FocusTrigger = false)
         {
             bool alwaysShow = UserSettings.PlayerConfig.Overlay.HarvestBoxComponent.AlwaysShow;
-            bool inHarverst = PlayerContext?.InHarvestZone ?? false;
-            bool shouldShow = alwaysShow || inHarverst;
+            bool inHarvest = PlayerContext?.InHarvestZone ?? false;
+            bool shouldShow = alwaysShow || inHarvest;
 
             Dispatcher.BeginInvoke(System.Windows.Threading.DispatcherPriority.Background, new Action(() =>
             {

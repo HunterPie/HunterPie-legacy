@@ -174,8 +174,6 @@ namespace HunterPie.GUI.Widgets.HealthWidget
         public static readonly DependencyProperty PlayerSharpnessLeftProperty =
             DependencyProperty.Register("PlayerSharpnessLeft", typeof(int), typeof(PlayerHealth));
 
-
-
         MinimalHealthBar StaminaBar { get; set; }
         HealthBar HealthBar { get; set; }
         Rectangle HealthExt { get; set; }
@@ -209,24 +207,29 @@ namespace HunterPie.GUI.Widgets.HealthWidget
         {
             Dispatcher.BeginInvoke(DispatcherPriority.Background, new Action(() =>
             {
-                Left = Settings.Position[0] + UserSettings.PlayerConfig.Overlay.Position[0];
-                Top = Settings.Position[1] + UserSettings.PlayerConfig.Overlay.Position[1];
-
-                WidgetActive = Settings.Enabled;
-
-                PlayerName = FormatNameString();
-
-                if ((Context?.ZoneID ?? 0) == 0)
+                if (!FocusTrigger)
                 {
-                    WidgetHasContent = false;
-                } else
-                {
-                    WidgetHasContent = Settings.HideHealthInVillages ? !(Context?.InHarvestZone ?? true) : true;
+                    Left = Settings.Position[0] + UserSettings.PlayerConfig.Overlay.Position[0];
+                    Top = Settings.Position[1] + UserSettings.PlayerConfig.Overlay.Position[1];
+
+                    WidgetActive = Settings.Enabled;
+
+                    PlayerName = FormatNameString();
+
+                    if ((Context?.ZoneID ?? 0) == 0)
+                    {
+                        WidgetHasContent = false;
+                    }
+                    else
+                    {
+                        WidgetHasContent = Settings.HideHealthInVillages ? !(Context?.InHarvestZone ?? true) : true;
+                    }
+
+                    Opacity = Settings.Opacity;
+
+                    ScaleWidget(Settings.Scale, Settings.Scale);
                 }
-
-                Opacity = Settings.Opacity;
-
-                ScaleWidget(Settings.Scale, Settings.Scale);
+                
                 base.ApplySettings(FocusTrigger);
             }));
         }
@@ -247,11 +250,13 @@ namespace HunterPie.GUI.Widgets.HealthWidget
         {
             OnMaxHealthUpdate(this, new PlayerHealthEventArgs(Context.Health));
             OnMaxStaminaUpdate(this, new PlayerStaminaEventArgs(Context.Stamina));
+            OnStaminaUpdate(this, new PlayerStaminaEventArgs(Context.Stamina));
             OnLevelChange(this, new PlayerEventArgs(Context));
             OnWorldDayTimeUpdate(this, new WorldEventArgs(gContext));
             if (Context.CurrentWeapon != null)
             {
                 OnSharpnessLevelChange(this, new SharpnessEventArgs(Context.CurrentWeapon));
+                OnSharpnessChange(this, new SharpnessEventArgs(Context.CurrentWeapon));
             }
         }
 

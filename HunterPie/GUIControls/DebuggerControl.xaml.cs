@@ -103,7 +103,6 @@ namespace HunterPie.GUIControls
         private void scroll_ScrollChanged(object sender, ScrollChangedEventArgs e)
         {
             ScrollToEnd();
-
         }
     }
 }
