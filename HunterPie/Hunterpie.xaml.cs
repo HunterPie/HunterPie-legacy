@@ -445,7 +445,11 @@ namespace HunterPie
         {
             try
             {
-                using (FileStream stream = new FileStream(Path.Combine(AppDomain.CurrentDomain.BaseDirectory, $@"HunterPie.Resources/UI/Overwrite.xaml"), FileMode.Open))
+                string overwritePath = Path.Combine(AppDomain.CurrentDomain.BaseDirectory, $@"HunterPie.Resources/UI/Overwrite.xaml");
+
+                PatchThemeAndValidate(overwritePath);
+
+                using (FileStream stream = new FileStream(overwritePath, FileMode.Open))
                 {
                     XamlReader reader = new XamlReader();
                     ResourceDictionary res = (ResourceDictionary)reader.LoadAsync(stream);
