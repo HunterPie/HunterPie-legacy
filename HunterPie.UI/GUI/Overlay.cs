@@ -20,6 +20,8 @@ namespace HunterPie.GUI
 
         public static IReadOnlyList<Widget> Widgets => widgets;
 
+        private UserSettings.Config.Overlay OverlaySettings => UserSettings.PlayerConfig.Overlay;
+
         Game Context { get; set; }
 
         public Overlay(Game ctx)
@@ -88,17 +90,66 @@ namespace HunterPie.GUI
 
         private void CreateWidgets()
         {
-            RegisterWidget(new Widgets.HarvestBox(Context.Player));
-            RegisterWidget(new Widgets.MantleTimer(0, Context.Player.PrimaryMantle));
-            RegisterWidget(new Widgets.MantleTimer(1, Context.Player.SecondaryMantle));
-            RegisterWidget(new Widgets.MonsterContainer(Context));
-            RegisterWidget(new Widgets.DPSMeter.Meter(Context));
-            for (int AbnormTrayIndex = 0; AbnormTrayIndex < UserSettings.PlayerConfig.Overlay.AbnormalitiesWidget.ActiveBars; AbnormTrayIndex++)
+            if (OverlaySettings.Initialize)
             {
-                RegisterWidget(new Widgets.Abnormality_Widget.AbnormalityContainer(Context.Player, AbnormTrayIndex));
+                int counter = 0;
+                if (OverlaySettings.HarvestBoxComponent.Initialize)
+                {
+                    RegisterWidget(new Widgets.HarvestBox(Context.Player));
+                    counter++;
+                }
+
+                if (OverlaySettings.PrimaryMantle.Initialize)
+                {
+                    RegisterWidget(new Widgets.MantleTimer(0, Context.Player.PrimaryMantle));
+                    counter++;
+                }
+
+                if (OverlaySettings.SecondaryMantle.Initialize)
+                {
+                    RegisterWidget(new Widgets.MantleTimer(1, Context.Player.SecondaryMantle));
+                    counter++;
+                }
+
+                if (OverlaySettings.MonstersComponent.Initialize)
+                {
+                    RegisterWidget(new Widgets.MonsterContainer(Context));
+                    counter++;
+                }
+
+                if (OverlaySettings.DPSMeter.Initialize)
+                {
+                    RegisterWidget(new Widgets.DPSMeter.Meter(Context));
+                    counter++;
+                }
+
+                for (int AbnormTrayIndex = 0; AbnormTrayIndex < UserSettings.PlayerConfig.Overlay.AbnormalitiesWidget.ActiveBars; AbnormTrayIndex++)
+                {
+                    if (OverlaySettings.AbnormalitiesWidget.BarPresets[AbnormTrayIndex].Initialize)
+                    {
+                        RegisterWidget(new Widgets.Abnormality_Widget.AbnormalityContainer(Context.Player, AbnormTrayIndex));
+                        counter++;
+                    }
+                }
+
+                if (OverlaySettings.ClassesWidget.Initialize)
+                {
+                    RegisterWidget(new Widgets.ClassWidget.ClassWidgetContainer(Context));
+                    counter++;
+                }
+
+                if (OverlaySettings.PlayerHealthComponent.Initialize)
+                {
+                    RegisterWidget(new Widgets.HealthWidget.PlayerHealth(Context));
+                    counter++;
+                }
+
+                Debugger.Warn($"Initialized overlay with {counter} widgets!");
+            } else
+            {
+                Debugger.Warn($"Skipped overlay initialization!");
             }
-            RegisterWidget(new Widgets.ClassWidget.ClassWidgetContainer(Context));
-            RegisterWidget(new Widgets.HealthWidget.PlayerHealth(Context));
+            
         }
 
         private void DestroyWidgets()

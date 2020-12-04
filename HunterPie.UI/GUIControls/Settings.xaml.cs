@@ -70,6 +70,7 @@ namespace HunterPie.GUIControls
             settingsUI.switchLetPeopleJoinSession.IsEnabled = settings.RichPresence.LetPeopleJoinSession;
 
             // Overlay
+            settingsUI.switchInitializeOverlay.IsEnabled = settings.Overlay.Initialize;
             settingsUI.switchEnableOverlay.IsEnabled = settings.Overlay.Enabled;
             settingsUI.DesiredFrameRateSlider.Value = settings.Overlay.DesiredAnimationFrameRate;
             settingsUI.DesiredScanPerSecond.Value = settings.Overlay.GameScanDelay;
@@ -82,6 +83,7 @@ namespace HunterPie.GUIControls
             settingsUI.OverlayPosition.Y = settings.Overlay.Position[1];
 
             // Player
+            settingsUI.switchInitializePlayerWidget.IsEnabled = settings.Overlay.PlayerHealthComponent.Initialize;
             settingsUI.switchEnablePlayerWidget.IsEnabled = settings.Overlay.PlayerHealthComponent.Enabled;
             settingsUI.PlayerNameTextFormat.Text = settings.Overlay.PlayerHealthComponent.NameTextFormat;
             settingsUI.switchEnableHideInVillages.IsEnabled = settings.Overlay.PlayerHealthComponent.HideHealthInVillages;
@@ -90,6 +92,7 @@ namespace HunterPie.GUIControls
             settingsUI.PlayerWidgetPosition.Y = settings.Overlay.PlayerHealthComponent.Position[1];
 
             // Monsters
+            settingsUI.switchInitializeMonsterWidget.IsEnabled = settings.Overlay.MonstersComponent.Initialize;
             settingsUI.switchEnableMonsterComponent.IsEnabled = settings.Overlay.MonstersComponent.Enabled;
             settingsUI.switchEnableMonsterAction.IsEnabled = settings.Overlay.MonstersComponent.ShowMonsterActionName;
             settingsUI.switchSortParts.IsEnabled = settings.Overlay.MonstersComponent.EnableSortParts;
@@ -145,6 +148,7 @@ namespace HunterPie.GUIControls
             settingsUI.switchEnableAilmentsColor.IsEnabled = settings.Overlay.MonstersComponent.EnableAilmentsBarColor;
 
             // Primary Mantle
+            settingsUI.switchInitializePrimaryMantleWidget.IsEnabled = settings.Overlay.PrimaryMantle.Initialize;
             settingsUI.switchEnablePrimaryMantle.IsEnabled = settings.Overlay.PrimaryMantle.Enabled;
             settingsUI.switchPrimaryMantleCompactMode.IsEnabled = settings.Overlay.PrimaryMantle.CompactMode;
             settingsUI.PrimaryMantlePosition.X = settings.Overlay.PrimaryMantle.Position[0];
@@ -153,6 +157,7 @@ namespace HunterPie.GUIControls
             settingsUI.PrimaryMantleComponentOpacity.Value = settings.Overlay.PrimaryMantle.Opacity;
 
             // Secondary Mantle
+            settingsUI.switchInitializeSecondaryMantleWidget.IsEnabled = settings.Overlay.SecondaryMantle.Initialize;
             settingsUI.switchEnableSecondaryMantle.IsEnabled = settings.Overlay.SecondaryMantle.Enabled;
             settingsUI.switchSecondaryMantleCompactMode.IsEnabled = settings.Overlay.SecondaryMantle.CompactMode;
             settingsUI.SecondaryMantlePosition.X = settings.Overlay.SecondaryMantle.Position[0];
@@ -161,6 +166,7 @@ namespace HunterPie.GUIControls
             settingsUI.SecondaryMantleComponentOpacity.Value = settings.Overlay.SecondaryMantle.Opacity;
 
             // Harvest Box
+            settingsUI.switchInitializeHarvestWidget.IsEnabled = settings.Overlay.HarvestBoxComponent.Initialize;
             settingsUI.switchEnableHarvestBox.IsEnabled = settings.Overlay.HarvestBoxComponent.Enabled;
             settingsUI.switchAlwaysShow.IsEnabled = settings.Overlay.HarvestBoxComponent.AlwaysShow;
             settingsUI.switchShowSteamTracker.IsEnabled = settings.Overlay.HarvestBoxComponent.ShowSteamTracker;
@@ -173,6 +179,7 @@ namespace HunterPie.GUIControls
             settingsUI.HarvestBoxComponentOpacity.Value = settings.Overlay.HarvestBoxComponent.Opacity;
 
             // DPS Meter
+            settingsUI.switchInitializeMeterWidget.IsEnabled = settings.Overlay.DPSMeter.Initialize;
             settingsUI.switchEnableDPSMeter.IsEnabled = settings.Overlay.DPSMeter.Enabled;
             settingsUI.switchEnableTotalDamage.IsEnabled = settings.Overlay.DPSMeter.ShowTotalDamage;
             settingsUI.switchEnableDPSWheneverPossible.IsEnabled = settings.Overlay.DPSMeter.ShowDPSWheneverPossible;
@@ -193,6 +200,7 @@ namespace HunterPie.GUIControls
             settingsUI.DamageComponentOpacity.Value = settings.Overlay.DPSMeter.Opacity;
 
             // Classes Widget
+            settingsUI.switchInitializeClassHelper.IsEnabled = settings.Overlay.ClassesWidget.Initialize;
             settingsUI.switchGreatswordHelper.IsEnabled = settings.Overlay.ClassesWidget.GreatswordHelper.Enabled;
             settingsUI.switchDualBladesHelper.IsEnabled = settings.Overlay.ClassesWidget.DualBladesHelper.Enabled;
             settingsUI.switchLongswordHelper.IsEnabled = settings.Overlay.ClassesWidget.LongSwordHelper.Enabled;
@@ -237,6 +245,7 @@ namespace HunterPie.GUIControls
             settings.RichPresence.LetPeopleJoinSession = settingsUI.switchLetPeopleJoinSession.IsEnabled;
 
             // Overlay
+            settings.Overlay.Initialize = settingsUI.switchInitializeOverlay.IsEnabled;
             settings.Overlay.Enabled = settingsUI.switchEnableOverlay.IsEnabled;
             settings.Overlay.DesiredAnimationFrameRate = (int)settingsUI.DesiredFrameRateSlider.Value;
             settings.Overlay.GameScanDelay = (int)settingsUI.DesiredScanPerSecond.Value;
@@ -249,6 +258,7 @@ namespace HunterPie.GUIControls
             settings.Overlay.Position[1] = settingsUI.OverlayPosition.Y;
 
             // Player
+            settings.Overlay.PlayerHealthComponent.Initialize = settingsUI.switchInitializePlayerWidget.IsEnabled;
             settings.Overlay.PlayerHealthComponent.Enabled = settingsUI.switchEnablePlayerWidget.IsEnabled;
             settings.Overlay.PlayerHealthComponent.NameTextFormat = settingsUI.PlayerNameTextFormat.Text;
             settings.Overlay.PlayerHealthComponent.HideHealthInVillages = settingsUI.switchEnableHideInVillages.IsEnabled;
@@ -257,6 +267,7 @@ namespace HunterPie.GUIControls
             settings.Overlay.PlayerHealthComponent.Position[1] = settingsUI.PlayerWidgetPosition.Y;
 
             // Monsters
+            settings.Overlay.MonstersComponent.Initialize = settingsUI.switchInitializeMonsterWidget.IsEnabled;
             settings.Overlay.MonstersComponent.Enabled = settingsUI.switchEnableMonsterComponent.IsEnabled;
             settings.Overlay.MonstersComponent.ShowMonsterActionName = settingsUI.switchEnableMonsterAction.IsEnabled;
             settings.Overlay.MonstersComponent.EnableSortParts = settingsUI.switchSortParts.IsEnabled;
@@ -300,6 +311,7 @@ namespace HunterPie.GUIControls
             settings.Overlay.MonstersComponent.EnableAilmentsBarColor = settingsUI.switchEnableAilmentsColor.IsEnabled;
 
             // Primary Mantle
+            settings.Overlay.PrimaryMantle.Initialize = settingsUI.switchInitializePrimaryMantleWidget.IsEnabled;
             settings.Overlay.PrimaryMantle.Enabled = settingsUI.switchEnablePrimaryMantle.IsEnabled;
             settings.Overlay.PrimaryMantle.CompactMode = settingsUI.switchPrimaryMantleCompactMode.IsEnabled;
             settings.Overlay.PrimaryMantle.Position[0] = settingsUI.PrimaryMantlePosition.X;
@@ -308,6 +320,7 @@ namespace HunterPie.GUIControls
             settings.Overlay.PrimaryMantle.Opacity = (float)settingsUI.PrimaryMantleComponentOpacity.Value;
 
             // Secondary Mantle
+            settings.Overlay.SecondaryMantle.Initialize = settingsUI.switchInitializeSecondaryMantleWidget.IsEnabled;
             settings.Overlay.SecondaryMantle.Enabled = settingsUI.switchEnableSecondaryMantle.IsEnabled;
             settings.Overlay.SecondaryMantle.CompactMode = settingsUI.switchSecondaryMantleCompactMode.IsEnabled;
             settings.Overlay.SecondaryMantle.Position[0] = settingsUI.SecondaryMantlePosition.X;
@@ -316,6 +329,7 @@ namespace HunterPie.GUIControls
             settings.Overlay.SecondaryMantle.Opacity = (float)settingsUI.SecondaryMantleComponentOpacity.Value;
 
             // Harvest Box
+            settings.Overlay.HarvestBoxComponent.Initialize = settingsUI.switchInitializeHarvestWidget.IsEnabled;
             settings.Overlay.HarvestBoxComponent.Enabled = settingsUI.switchEnableHarvestBox.IsEnabled;
             settings.Overlay.HarvestBoxComponent.AlwaysShow = settingsUI.switchAlwaysShow.IsEnabled;
             settings.Overlay.HarvestBoxComponent.ShowSteamTracker = settingsUI.switchShowSteamTracker.IsEnabled;
@@ -329,6 +343,7 @@ namespace HunterPie.GUIControls
 
 
             // DPS Meter
+            settings.Overlay.DPSMeter.Initialize = settingsUI.switchInitializeMeterWidget.IsEnabled;
             settings.Overlay.DPSMeter.Enabled = settingsUI.switchEnableDPSMeter.IsEnabled;
             settings.Overlay.DPSMeter.ShowTotalDamage = settingsUI.switchEnableTotalDamage.IsEnabled;
             settings.Overlay.DPSMeter.ShowDPSWheneverPossible = settingsUI.switchEnableDPSWheneverPossible.IsEnabled;
@@ -349,6 +364,7 @@ namespace HunterPie.GUIControls
             settings.Overlay.DPSMeter.Opacity = (float)settingsUI.DamageComponentOpacity.Value;
 
             // Classes Widget
+            settings.Overlay.ClassesWidget.Initialize = settingsUI.switchInitializeClassHelper.IsEnabled;
             settings.Overlay.ClassesWidget.GreatswordHelper.Enabled = settingsUI.switchGreatswordHelper.IsEnabled;
             settings.Overlay.ClassesWidget.DualBladesHelper.Enabled = settingsUI.switchDualBladesHelper.IsEnabled;
             settings.Overlay.ClassesWidget.LongSwordHelper.Enabled = settingsUI.switchLongswordHelper.IsEnabled;

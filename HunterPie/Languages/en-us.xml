@@ -530,6 +530,8 @@
       <String ID="ENABLE_PEOPLE_JOIN" Name="Let people ask to join my online session"/>
       <String ID="ENABLE_PEOPLE_JOIN_DESC" Name="If enabled, people will be able to ask to join your Monster Hunter session."/>
       <!-- Overlay -->
+      <String ID="ENABLE_INITIALIZE_OVERLAY" Name="Initialize Overlay"/>
+      <String ID="ENABLE_INITIALIZE_OVERLAY_DESC" Name="If enabled, the overlay will be created and initialize. If this option is disabled, all widgets won't be initialized."/>
       <String ID="ENABLE_OVERLAY" Name="Enable In-Game Overlay"/>
       <String ID="ENABLE_OVERLAY_DESC" Name="If enabled, the Overlay will be visible in-game."/>
       <String ID="ENABLE_HIDE_WHEN_UNFOCUS" Name="Hide Overlay when game is unfocused."/>
@@ -550,6 +552,8 @@
       <String ID="ENABLE_OVERLAY_FORCE_DIRECTX11_FULLSCREEN" Name="Force DirectX 11 Fullscreen to be behind overlay"/>
       <String ID="ENABLE_OVERLAY_FORCE_DIRECTX11_FULLSCREEN_DESC" Name="This option will force the game to always be behind HunterPie's overlay, as a result the overlay will appear even in DirectX 11 Fullscreen. REQUIRES FULLSCREEN OPTIMIZATIONS TO BE ENABLED."/>
       <!-- Monster Widget -->
+      <String ID="ENABLE_INITIALIZE_MONSTER_WIDGET" Name="Initialize Monster Widget"/>
+      <String ID="ENABLE_INITIALIZE_MONSTER_WIDGET_DESC" Name="If disabled, the monster widget won't be created at all."/>
       <String ID="ENABLE_MONSTER_WIDGET" Name="Enable Monster Widget"/>
       <String ID="ENABLE_MONSTER_WIDGET_DESC" Name="If enabled, the monster widget will be visible whenever it has content to show."/>
       <String ID="STATIC_MONSTER_HEALTH_STRING_FORMAT" Name="Health text format:"/>
@@ -646,6 +650,8 @@
       <String ID="ENABLE_MONSTER_STATUS_MISC" Name="Show Miscellaneous"/>
       <String ID="ENABLE_MONSTER_STATUS_ENRAGE" Name="Show Enrage"/>
       <!-- Player Widget -->
+      <String ID="ENABLE_INITIALIZE_PLAYER_WIDGET" Name="Initialize Player Widget"/>
+      <String ID="ENABLE_INITIALIZE_PLAYER_WIDGET_DESC" Name="If disabled, the player widget won't be created at all."/>
       <String ID="ENABLE_PLAYER_WIDGET" Name="Enable Player Widget"/>
       <String ID="ENABLE_PLAYER_WIDGET_DESC" Name="If enabled, the player widget will become visible whenever it has content."/>
       <String ID="STATIC_PLAYER_NAME_STRING_FORMAT" Name="Name String Format:"/>
@@ -654,6 +660,8 @@
       <String ID="ENABLE_PLAYER_HIDE_IN_VILLAGES_DESC" Name="If enabled, the player widget will be hidden when you enter peace zones like Astera, Gathering Hub and your room."/>
       <String ID="STATIC_PLAYER_POSITION_DESC" Name="Changes the Player widget position."/>
       <!-- Harvest Box Widget -->
+      <String ID="ENABLE_INITIALIZE_HARVEST_BOX" Name="Initialize Harvest Box Widget"/>
+      <String ID="ENABLE_INITIALIZE_HARVEST_BOX_DESC" Name="If disabled, the harvest box widget won't be created."/>
       <String ID="ENABLE_HARVEST_BOX" Name="Enable Harvest Box Widget"/>
       <String ID="ENABLE_HARVEST_BOX_DESC" Name="If enabled, the Harvest Box Widget will become visible whenever it has content."/>
       <String ID="ENABLE_STEAM_TRACKER" Name="Show Steam Tracker"/>
@@ -668,6 +676,8 @@
       <String ID="ENABLE_HARVEST_BOX_COMPACT_MODE" Name="Enable compact mode"/>
       <String ID="ENABLE_HARVEST_BOX_COMPACT_MODE_DESC" Name="If enabled, the Harvest Box Widget will use it's compact design."/>
       <!-- Damage Meter -->
+      <String ID="ENABLE_INITIALIZE_METER" Name="Initialize Damage Widget"/>
+      <String ID="ENABLE_INITIALIZE_METER_DESC" Name="If disabled, the damage widget will not be created."/>
       <String ID="ENABLE_METER" Name="Enable Damage Widget"/>
       <String ID="ENABLE_METER_DESC" Name="If enabled, the Damage Meter Widget will be visible whenever it has content."/>
       <String ID="ENABLE_TIMER" Name="Show timer"/>
@@ -715,6 +725,8 @@
       <String ID="ENABLE_SHOW_ABNORM_NAMES" Name="Show abnormality name"/>
       <String ID="ENABLE_SHOW_ABNORM_NAMES_DESC" Name="If enabled, abnormality names will be visible."/>
       <!-- Specialized Tool Widget-->
+      <String ID="ENABLE_INITIALIZE_SPEC_TOOL" Name="Initialize Specialized Tool Widget"/>
+      <String ID="ENABLE_INITIALIZE_SPEC_TOOL_DESC" Name="If disabled, the specialized tool widget will not be created."/>
       <String ID="STATIC_PRIMARY_SPEC_TOOL" Name="Primary Specialized Tool"/>
       <String ID="STATIC_SECONDARY_SPEC_TOOL" Name="Secondary Specialized Tool"/>
       <String ID="ENABLE_PRIMARY_SPEC_TOOL" Name="Enable Widget"/>
@@ -725,6 +737,8 @@
       <String ID="STATIC_PRIMARY_SPEC_TOOL_POSITION_DESC" Name="Changes the primary specialized tool widget position."/>
       <String ID="STATIC_SECONDARY_SPEC_TOOL_POSITION_DESC" Name="Changes the secondary specialized tool widget position."/>
       <!-- Class Widget -->
+      <String ID="ENABLE_INITIALIZE_CLASS_HELPER" Name="Initialize Class Widget"/>
+      <String ID="ENABLE_INITIALIZE_CLASS_HELPER_DESC" Name="If disabled, the class widget won't be initialized at all."/>
       <String ID="ENABLE_GREATSWORD_HELPER" Name="Enable Greatsword Helper"/>
       <String ID="ENABLE_GREATSWORD_HELPER_DESC" Name="If enabled, the Greatsword helper will be visible whenever you equip a Greatsword."/>
       <String ID="ENABLE_INSECT_GLAIVE_HELPER" Name="Enable Insect Glaive Helper"/>

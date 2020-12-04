@@ -36,6 +36,7 @@ namespace HunterPie.Core
 
             public class Overlay
             {
+                public bool Initialize { get; set; } = true;
                 public bool Enabled { get; set; } = true;
                 public int DesiredAnimationFrameRate { get; set; } = 30;
                 public int GameScanDelay { get; set; } = 150;
@@ -64,8 +65,17 @@ namespace HunterPie.Core
                 public ClassesWidget ClassesWidget { get; set; } = new ClassesWidget();
             }
 
-            public class PlayerHealthComponent
+            public interface IWidgetSettings
             {
+                bool Initialize { get; set; }
+                bool Enabled { get; set; }
+                int[] Position { get; set; }
+                float Opacity { get; set; }
+                double Scale { get; set; }
+            }
+            public class PlayerHealthComponent : IWidgetSettings
+            {
+                public bool Initialize { get; set; } = true;
                 public bool Enabled { get; set; } = true;
                 public double Scale { get; set; } = 1;
                 public string NameTextFormat { get; set; } = "Lv. {MR} {Name}";
@@ -74,8 +84,9 @@ namespace HunterPie.Core
                 public float Opacity { get; set; } = 1;
             }
 
-            public class Monsterscomponent
+            public class Monsterscomponent : IWidgetSettings
             {
+                public bool Initialize { get; set; } = true;
                 public bool Enabled { get; set; } = true;
                 public double Scale { get; set; } = 1;
                 public string HealthTextFormat { get; set; } = "{Health:0}/{TotalHealth:0} ({Percentage:0}%)";
@@ -107,8 +118,9 @@ namespace HunterPie.Core
                 public bool ShowMonsterActionName { get; set; } = true;
             }
 
-            public class Harvestboxcomponent
+            public class Harvestboxcomponent : IWidgetSettings
             {
+                public bool Initialize { get; set; } = true;
                 public bool Enabled { get; set; } = true;
                 public bool AlwaysShow { get; set; } = false;
                 public double Scale { get; set; } = 1;
@@ -121,8 +133,9 @@ namespace HunterPie.Core
                 public bool CompactMode { get; set; } = false;
             }
 
-            public class SpecializedTool
+            public class SpecializedTool : IWidgetSettings
             {
+                public bool Initialize { get; set; } = true;
                 public bool Enabled { get; set; } = true;
                 public double Scale { get; set; } = 1;
                 public int[] Position { get; set; }
@@ -131,8 +144,9 @@ namespace HunterPie.Core
                 public bool CompactMode { get; set; } = false;
             }
 
-            public class DPSMeter
+            public class DPSMeter : IWidgetSettings
             {
+                public bool Initialize { get; set; } = true;
                 public bool Enabled { get; set; } = true;
                 public bool ShowTotalDamage { get; set; } = true;
                 public bool ShowDPSWheneverPossible { get; set; } = true;
@@ -149,6 +163,24 @@ namespace HunterPie.Core
                 public bool EnableDamagePlot { get; set; } = true;
                 public Enums.DamagePlotMode DamagePlotMode { get; set; } = Enums.DamagePlotMode.CumulativeTotal;
                 public int DamagePlotPollInterval { get; set; } = 200;
+            }
+
+            public class AbnormalityBar : IWidgetSettings
+            {
+                public bool Initialize { get; set; } = true;
+                public string Name { get; set; } = "Abnormality Tray";
+                public int[] Position { get; set; } = new int[] { 500, 60 };
+                public string Orientation { get; set; } = "Horizontal";
+                public int MaxSize { get; set; } = 300;
+                public double Scale { get; set; } = 1;
+                public string[] AcceptedAbnormalities { get; set; } = new string[1] { "*" };
+                public bool Enabled { get; set; } = true;
+                public byte OrderBy { get; set; } = 0;
+                public bool ShowTimeLeftText { get; set; } = true;
+                public byte TimeLeftTextFormat { get; set; } = 0;
+                public float Opacity { get; set; } = 1;
+                public float BackgroundOpacity { get; set; } = 0.7f;
+                public bool ShowNames { get; set; } = false;
             }
 
             public class Players
@@ -202,24 +234,9 @@ namespace HunterPie.Core
                 public AbnormalityBar[] BarPresets { get; set; } = new AbnormalityBar[] { new AbnormalityBar() };
             }
 
-            public class AbnormalityBar
-            {
-                public string Name { get; set; } = "Abnormality Tray";
-                public int[] Position { get; set; } = new int[] { 500, 60 };
-                public string Orientation { get; set; } = "Horizontal";
-                public int MaxSize { get; set; } = 300;
-                public double Scale { get; set; } = 1;
-                public string[] AcceptedAbnormalities { get; set; } = new string[1] { "*" };
-                public bool Enabled { get; set; } = true;
-                public byte OrderBy { get; set; } = 0;
-                public bool ShowTimeLeftText { get; set; } = true;
-                public byte TimeLeftTextFormat { get; set; } = 0;
-                public float BackgroundOpacity { get; set; } = 0.7f;
-                public bool ShowNames { get; set; } = false;
-            }
-
             public class ClassesWidget
             {
+                public bool Initialize { get; set; } = true;
                 public GreatswordHelper GreatswordHelper { get; set; } = new GreatswordHelper();
                 public DualBladesHelper DualBladesHelper { get; set; } = new DualBladesHelper();
                 public LongSwordHelper LongSwordHelper { get; set; } = new LongSwordHelper();

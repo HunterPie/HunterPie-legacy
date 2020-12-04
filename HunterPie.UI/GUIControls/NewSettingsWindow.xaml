@@ -211,6 +211,7 @@
                 </TabItem.Header>
                 <ScrollViewer>
                     <StackPanel>
+                        <custom:Switcher Margin="10,0,10,5" x:Name="switchInitializeOverlay" Text="{Binding Mode=OneTime, XPath=/Strings/Client/Settings/String[@ID\=\'ENABLE_INITIALIZE_OVERLAY\']/@Name}" ToolTip="{Binding Mode=OneTime, XPath=/Strings/Client/Settings/String[@ID\=\'ENABLE_INITIALIZE_OVERLAY_DESC\']/@Name}"/>
                         <custom:Switcher x:Name="switchEnableOverlay"  Margin="10,0,10,5" RestartVisibility="Collapsed">
                             <custom:Switcher.Text>
                                 <Binding Mode="OneTime" XPath="Settings/String[@ID='ENABLE_OVERLAY']/@Name"/>
@@ -268,14 +269,15 @@
                 </TabItem.Header>
                 <ScrollViewer>
                     <StackPanel>
-                        <custom:Switcher x:Name="switchEnablePlayerWidget" Text="{Binding Mode=OneTime, XPath=/Strings/Client/Settings/String[@ID\=\'ENABLE_PLAYER_WIDGET\']/@Name}" ToolTip="{Binding Mode=OneTime, XPath=/Strings/Client/Settings/String[@ID\=\'ENABLE_PLAYER_WIDGET_DESC\']/@Name}"  RestartVisibility="Collapsed"/>
+                        <custom:Switcher Margin="10,0,10,5" x:Name="switchInitializePlayerWidget" Text="{Binding Mode=OneTime, XPath=/Strings/Client/Settings/String[@ID\=\'ENABLE_INITIALIZE_PLAYER_WIDGET\']/@Name}" ToolTip="{Binding Mode=OneTime, XPath=/Strings/Client/Settings/String[@ID\=\'ENABLE_INITIALIZE_PLAYER_WIDGET_DESC\']/@Name}"/>
+                        <custom:Switcher Margin="10,0,10,5" x:Name="switchEnablePlayerWidget" Text="{Binding Mode=OneTime, XPath=/Strings/Client/Settings/String[@ID\=\'ENABLE_PLAYER_WIDGET\']/@Name}" ToolTip="{Binding Mode=OneTime, XPath=/Strings/Client/Settings/String[@ID\=\'ENABLE_PLAYER_WIDGET_DESC\']/@Name}"  RestartVisibility="Collapsed"/>
                         <DockPanel Margin="10,0,10,5" ToolTip="{Binding Mode=OneTime, XPath=/Strings/Client/Settings/String[@ID\=\'STATIC_PLAYER_NAME_STRING_FORMAT_DESC\']/@Name}">
                             <TextBlock TextWrapping="NoWrap" Text="{Binding Mode=OneTime, XPath=/Strings/Client/Settings/String[@ID\=\'STATIC_PLAYER_NAME_STRING_FORMAT\']/@Name}" FontFamily="Segoe UI Light" Foreground="#FFF1F1F1" Canvas.Left="320" Canvas.Top="3" FontSize="16" Padding="0,0,10,0"/>
                             <TextBox x:Name="PlayerNameTextFormat" TextWrapping="Wrap" Background="{x:Null}" Foreground="#FF9E9D9D" BorderBrush="#FFABADB3" BorderThickness="0,0,0,1" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" HorizontalAlignment="Stretch" />
                         </DockPanel>
-                        <custom:Switcher x:Name="switchEnableHideInVillages" Text="{Binding Mode=OneTime, XPath=/Strings/Client/Settings/String[@ID\=\'ENABLE_PLAYER_HIDE_IN_VILLAGES\']/@Name}" ToolTip="{Binding Mode=OneTime, XPath=/Strings/Client/Settings/String[@ID\=\'ENABLE_PLAYER_HIDE_IN_VILLAGES_DESC\']/@Name}"  RestartVisibility="Collapsed"/>
+                        <custom:Switcher Margin="10,0,10,5" x:Name="switchEnableHideInVillages" Text="{Binding Mode=OneTime, XPath=/Strings/Client/Settings/String[@ID\=\'ENABLE_PLAYER_HIDE_IN_VILLAGES\']/@Name}" ToolTip="{Binding Mode=OneTime, XPath=/Strings/Client/Settings/String[@ID\=\'ENABLE_PLAYER_HIDE_IN_VILLAGES_DESC\']/@Name}"  RestartVisibility="Collapsed"/>
                         <custom:MinimalSlider x:Name="PlayerComponentOpacity" Text="{Binding XPath=/Strings/Client/Settings/String[@ID\=\'STATIC_OPACITY\']/@Name}" MinChange="0.1" MinValue="0" MaxValue="1" ValueText="{Binding Value, ElementName=DamageComponentOpacity, StringFormat=\{0:P\}}" Foreground="WhiteSmoke" FontFamily="Segoe UI Light" Margin="10,0,10,5"/>
-                        <custom:PositionControl Height="38" x:Name="PlayerWidgetPosition" ToolTip="{Binding Mode=OneTime, XPath=/Strings/Client/Settings/String[@ID\=\'STATIC_PLAYER_POSITION_DESC\']/@Name}"/>
+                        <custom:PositionControl Margin="10,0,10,5" Height="38" x:Name="PlayerWidgetPosition" ToolTip="{Binding Mode=OneTime, XPath=/Strings/Client/Settings/String[@ID\=\'STATIC_PLAYER_POSITION_DESC\']/@Name}"/>
                     </StackPanel>
                 </ScrollViewer>
             </TabItem>
@@ -292,6 +294,7 @@
                 </TabItem.Header>
                 <ScrollViewer>
                     <StackPanel>
+                        <custom:Switcher Margin="10,0,10,5" x:Name="switchInitializeMonsterWidget" Text="{Binding Mode=OneTime, XPath=/Strings/Client/Settings/String[@ID\=\'ENABLE_INITIALIZE_MONSTER_WIDGET\']/@Name}" ToolTip="{Binding Mode=OneTime, XPath=/Strings/Client/Settings/String[@ID\=\'ENABLE_INITIALIZE_MONSTER_WIDGET_DESC\']/@Name}"/>
                         <custom:Switcher x:Name="switchEnableMonsterComponent" Margin="10,0,10,5" RestartVisibility="Collapsed">
                             <custom:Switcher.Text>
                                 <Binding Mode="OneTime" XPath="Settings/String[@ID='ENABLE_MONSTER_WIDGET']/@Name"/>
@@ -655,6 +658,7 @@
                 </TabItem.Header>
                 <ScrollViewer>
                     <StackPanel>
+                        <custom:Switcher Margin="10,0,10,5" x:Name="switchInitializeHarvestWidget" Text="{Binding Mode=OneTime, XPath=/Strings/Client/Settings/String[@ID\=\'ENABLE_INITIALIZE_HARVEST_BOX\']/@Name}" ToolTip="{Binding Mode=OneTime, XPath=/Strings/Client/Settings/String[@ID\=\'ENABLE_INITIALIZE_HARVEST_BOX_DESC\']/@Name}"/>
                         <custom:Switcher x:Name="switchEnableHarvestBox"  Margin="10,0,10,5" RestartVisibility="Collapsed">
                             <custom:Switcher.Text>
                                 <Binding Mode="OneTime" XPath="Settings/String[@ID='ENABLE_HARVEST_BOX']/@Name"/>
@@ -719,6 +723,7 @@
                 </TabItem.Header>
                 <ScrollViewer>
                     <StackPanel>
+                        <custom:Switcher Margin="10,0,10,5" x:Name="switchInitializeMeterWidget" Text="{Binding Mode=OneTime, XPath=/Strings/Client/Settings/String[@ID\=\'ENABLE_INITIALIZE_METER\']/@Name}" ToolTip="{Binding Mode=OneTime, XPath=/Strings/Client/Settings/String[@ID\=\'ENABLE_INITIALIZE_METER_DESC\']/@Name}"/>
                         <custom:Switcher x:Name="switchEnableDPSMeter" Text="{Binding Mode=OneTime, XPath=/Strings/Client/Settings/String[@ID\=\'ENABLE_METER\']/@Name}" Margin="10,0,10,5" ToolTip="{Binding Mode=OneTime, XPath=/Strings/Client/Settings/String[@ID\=\'ENABLE_METER_DESC\']/@Name}" RestartVisibility="Collapsed"/>
                         <custom:Switcher x:Name="switchEnableTotalDamage" Text="{Binding Mode=OneTime, XPath=/Strings/Client/Settings/String[@ID\=\'ENABLE_TOTAL_DAMAGE\']/@Name}"  Margin="10,0,10,5" ToolTip="{Binding Mode=OneTime, XPath=/Strings/Client/Settings/String[@ID\=\'ENABLE_TOTAL_DAMAGE_DESC\']/@Name}" RestartVisibility="Collapsed"/>
                         <custom:Switcher x:Name="switchEnableDPSWheneverPossible" Text="{Binding Mode=OneTime, XPath=/Strings/Client/Settings/String[@ID\=\'ENABLE_METER_DPS\']/@Name}" Margin="10,0,10,5" ToolTip="{Binding Mode=OneTime, XPath=/Strings/Client/Settings/String[@ID\=\'ENABLE_METER_DPS_DESC\']/@Name}" RestartVisibility="Collapsed"/>
@@ -787,6 +792,7 @@
                     <StackPanel >
                         <GroupBox Header="{Binding Mode=OneTime, XPath=/Strings/Client/Settings/String[@ID\=\'STATIC_PRIMARY_SPEC_TOOL\']/@Name}" Foreground="WhiteSmoke" BorderBrush="{x:Null}" Margin="10,0,10,5">
                             <StackPanel Margin="0,32,-2,12" Orientation="Vertical">
+                                <custom:Switcher Margin="10,0,10,5" x:Name="switchInitializePrimaryMantleWidget" Text="{Binding Mode=OneTime, XPath=/Strings/Client/Settings/String[@ID\=\'ENABLE_INITIALIZE_SPEC_TOOL\']/@Name}" ToolTip="{Binding Mode=OneTime, XPath=/Strings/Client/Settings/String[@ID\=\'ENABLE_INITIALIZE_SPEC_TOOL_DESC\']/@Name}"/>
                                 <custom:Switcher x:Name="switchEnablePrimaryMantle" Text="{Binding Mode=OneTime, XPath=/Strings/Client/Settings/String[@ID\=\'ENABLE_PRIMARY_SPEC_TOOL\']/@Name}" ToolTip="{Binding Mode=OneTime, XPath=/Strings/Client/Settings/String[@ID\=\'ENABLE_PRIMARY_SPEC_TOOL_DESC\']/@Name}" RestartVisibility="Collapsed" Margin="10,0,10,5"/>
                                 <custom:Switcher x:Name="switchPrimaryMantleCompactMode" Text="{Binding XPath=/Strings/Client/Settings/String[@ID\=\'ENABLE_HARVEST_BOX_COMPACT_MODE\']/@Name, Mode=OneTime}" RestartVisibility="Collapsed" Margin="10,0,10,5"/>
                                 <custom:ColorPicker x:Name="PrimaryMantleColor" NameText="{Binding Mode=OneTime, XPath=/Strings/Client/Settings/String[@ID\=\'STATIC_COLOR\']/@Name}" Height="34" Margin="10,0,10,5"/>
@@ -796,6 +802,7 @@
                         </GroupBox>
                         <GroupBox Header="{Binding Mode=OneTime, XPath=/Strings/Client/Settings/String[@ID\=\'STATIC_SECONDARY_SPEC_TOOL\']/@Name}" Foreground="WhiteSmoke" BorderBrush="{x:Null}" Margin="10,0,10,5">
                             <StackPanel Margin="0,32,-2,4" Orientation="Vertical">
+                                <custom:Switcher Margin="10,0,10,5" x:Name="switchInitializeSecondaryMantleWidget" Text="{Binding Mode=OneTime, XPath=/Strings/Client/Settings/String[@ID\=\'ENABLE_INITIALIZE_SPEC_TOOL\']/@Name}" ToolTip="{Binding Mode=OneTime, XPath=/Strings/Client/Settings/String[@ID\=\'ENABLE_INITIALIZE_SPEC_TOOL_DESC\']/@Name}"/>
                                 <custom:Switcher x:Name="switchEnableSecondaryMantle" Text="{Binding Mode=OneTime, XPath=/Strings/Client/Settings/String[@ID\=\'ENABLE_SECONDARY_SPEC_TOOL\']/@Name}" ToolTip="{Binding Mode=OneTime, XPath=/Strings/Client/Settings/String[@ID\=\'ENABLE_SECONDARY_SPEC_TOOL_DESC\']/@Name}" RestartVisibility="Collapsed" Margin="10,0,10,5"/>
                                 <custom:Switcher x:Name="switchSecondaryMantleCompactMode" Text="{Binding XPath=/Strings/Client/Settings/String[@ID\=\'ENABLE_HARVEST_BOX_COMPACT_MODE\']/@Name, Mode=OneTime}" RestartVisibility="Collapsed" Margin="10,0,10,5"/>
                                 <custom:ColorPicker x:Name="SecondaryMantleColor" NameText="{Binding Mode=OneTime, XPath=/Strings/Client/Settings/String[@ID\=\'STATIC_COLOR\']/@Name}" Margin="10,0,10,5" Height="36"/>
@@ -819,6 +826,7 @@
                 </TabItem.Header>
                 <ScrollViewer>
                     <StackPanel>
+                        <custom:Switcher Margin="10,0,10,5" x:Name="switchInitializeClassHelper" Text="{Binding Mode=OneTime, XPath=/Strings/Client/Settings/String[@ID\=\'ENABLE_INITIALIZE_CLASS_HELPER\']/@Name}" ToolTip="{Binding Mode=OneTime, XPath=/Strings/Client/Settings/String[@ID\=\'ENABLE_INITIALIZE_CLASS_HELPER_DESC\']/@Name}"/>
                         <custom:Switcher x:Name="switchGreatswordHelper" Text="{Binding Mode=OneTime, XPath=/Strings/Client/Settings/String[@ID\=\'ENABLE_GREATSWORD_HELPER\']/@Name}"  Margin="10,0,10,5" ToolTip="{Binding Mode=OneTime, XPath=/Strings/Client/Settings/String[@ID\=\'ENABLE_GREATSWORD_HELPER_DESC\']/@Name}" RestartVisibility="Collapsed"/>
                         <custom:Switcher x:Name="switchDualBladesHelper" Text="{Binding Mode=OneTime, XPath=/Strings/Client/Settings/String[@ID\=\'ENABLE_DUALBLADES_HELPER\']/@Name}"  Margin="10,0,10,5" ToolTip="{Binding Mode=OneTime, XPath=/Strings/Client/Settings/String[@ID\=\'ENABLE_DUALBLADES_HELPER_DESC\']/@Name}" RestartVisibility="Collapsed"/>
                         <custom:Switcher x:Name="switchLongswordHelper" Text="{Binding Mode=OneTime, XPath=/Strings/Client/Settings/String[@ID\=\'ENABLE_LONGSWORD_HELPER\']/@Name}"  Margin="10,0,10,5" ToolTip="{Binding Mode=OneTime, XPath=/Strings/Client/Settings/String[@ID\=\'ENABLE_LONGSWORD_HELPER_DESC\']/@Name}" RestartVisibility="Collapsed"/>
