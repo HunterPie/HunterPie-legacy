@@ -31,6 +31,7 @@ using HunterPie.Core.Craft;
 using Newtonsoft.Json;
 using System.Diagnostics;
 using HunterPie.Core.Events;
+using System.Xml;
 
 namespace HunterPie
 {
@@ -422,7 +423,11 @@ namespace HunterPie
             }
             try
             {
-                using (FileStream stream = new FileStream(Path.Combine(AppDomain.CurrentDomain.BaseDirectory, $@"Themes/{UserSettings.PlayerConfig.HunterPie.Theme}"), FileMode.Open))
+                string themePath = Path.Combine(AppDomain.CurrentDomain.BaseDirectory, $@"Themes/{UserSettings.PlayerConfig.HunterPie.Theme}");
+
+                PatchThemeAndValidate(themePath);
+
+                using (FileStream stream = new FileStream(themePath, FileMode.Open))
                 {
                     XamlReader reader = new XamlReader();
                     ResourceDictionary ThemeDictionary = (ResourceDictionary)reader.LoadAsync(stream);
@@ -449,6 +454,41 @@ namespace HunterPie
             } catch (Exception err)
             {
                 Debugger.Error(err);
+            }
+        }
+        
+        private bool PatchThemeAndValidate(string path)
+        {
+            string theme = File.ReadAllText(path);
+
+            if (theme.Contains(";assembly=Hunterpie\""))
+            {
+                try
+                {
+
+                    XmlDocument xml = new XmlDocument();
+                    xml.LoadXml(theme);
+
+                    foreach (XmlAttribute e in xml.DocumentElement.Attributes)
+                    {
+                        if (!e.Value.Contains(";assembly=HunterPie.UI"))
+                        {
+                            e.Value = e.Value.Replace(";assembly=Hunterpie", ";assembly=HunterPie.UI");
+                        }
+                    }
+
+                    xml.Save(path);
+                    Debugger.Warn($"Patched theme");
+
+                    return true;
+                } catch (Exception err)
+                {
+                    Debugger.Error(err);
+                    return false;
+                }
+            } else
+            {
+                return true;
             }
         }
 
@@ -1122,7 +1162,7 @@ namespace HunterPie
                 Directory.CreateDirectory(modPath);
             }
 
-            File.WriteAllText(Path.Combine(modPath, "module.json"), JsonConvert.SerializeObject(moduleInformation, Formatting.Indented));
+            File.WriteAllText(Path.Combine(modPath, "module.json"), JsonConvert.SerializeObject(moduleInformation, Newtonsoft.Json.Formatting.Indented));
 
 
             if (PluginUpdate.PluginSupportsUpdate(moduleInformation))
