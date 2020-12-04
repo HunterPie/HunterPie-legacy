@@ -116,7 +116,7 @@ jobs:
 
   release:
     needs: build
-    runs-on: windows-latest
+    runs-on: ubuntu-latest
     if: startsWith(needs.build.outputs.git_ref, 'v')
     
     steps:
@@ -130,22 +130,23 @@ jobs:
       with:
         name: Hunter Pie Release
 
-    # TODO: Pack them together
     - name: Zip Hunter Pie & Update
       run: |
         mkdir zip
         mv HunterPie/bin/Release zip/HunterPie
         mv -f Update/bin/Release/* zip/HunterPie
         cd zip
-        7z a -tzip HunterPie.zip HunterPie/* -r
+        zip -r HunterPie.zip HunterPie
   
     - name: Update release with binaries
       # this is a workaround because actions/upload-release-asset isn't allowed multiple times
-      # https://hub.github.com/hub-release.1.html
+      # this looks neater, though
+      # https://cli.github.com/manual/gh_release_create
       run: |
-        hub release create $GIT_REF --message "Release $GIT_REF"
-        hub release edit   $GIT_REF -m "" -a zip/HunterPie.zip
-        hub release edit   $GIT_REF -m "" -a HunterPie.Core/bin/Release/HunterPie.Core.dll
+        gh release create $GIT_REF -t "Release $GIT_REF" \
+          zip/HunterPie.zip \
+          HunterPie.Core/bin/Release/HunterPie.Core.dll \
+          HunterPie.UI/bin/Release/HunterPie.UI.dll
       env:
         GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         GIT_REF: ${{ needs.build.outputs.git_ref }}
