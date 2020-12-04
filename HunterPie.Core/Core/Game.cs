@@ -251,7 +251,7 @@ namespace HunterPie.Core
         {
             long address = Kernel.Read<long>(Address.BASE + Address.WORLD_DATA_OFFSET);
             float time = Kernel.Read<float>(address + 0x38);
-
+            
             if (time.IsWithin(17, 18.99f))
             {
                 // Evening - 17:00 -> 18:59
