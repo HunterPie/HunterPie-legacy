@@ -679,12 +679,7 @@ namespace HunterPie.Core
         public sItem[] GetDecorationsFromStorage()
         {
             // We have up to 500 different slots in our decoration storage box
-            sItem[] decorations = new sItem[500];
-
-            for (long sStart = 0; sStart < 0x10 * 500; sStart += 0x10)
-            {
-                decorations[sStart / 0x10] = Kernel.ReadStructure<sItem>(PlayerAddress + 0x3F098 + sStart);
-            }
+            sItem[] decorations = Kernel.ReadStructure<sItem>(PlayerAddress + 0x3F098, 500);
 
             return decorations;
         }
@@ -696,15 +691,11 @@ namespace HunterPie.Core
             // And 127 in the mantle box?
             List<sGear> gear = new List<sGear>();
 
-            for (long sStart = 0; sStart < 0x98 * 2509; sStart += 0x98)
-            {
-                gear.Add(Kernel.ReadStructure<sGear>(LEVEL_ADDRESS + 0x40FD8 + sStart));
-            }
+            sGear[] gearBox = Kernel.ReadStructure<sGear>(LEVEL_ADDRESS + 0x40FD8, 2509);
+            sGear[] mantleBox = Kernel.ReadStructure<sGear>(LEVEL_ADDRESS + 0xE9258, 127);
 
-            for (long sStart = 0; sStart < 0x98 * 127; sStart += 0x98)
-            {
-                gear.Add(Kernel.ReadStructure<sGear>(LEVEL_ADDRESS + 0xE9258 + sStart));
-            }
+            gear.AddRange(gearBox);
+            gear.AddRange(mantleBox);
 
             return gear.ToArray();
         }

@@ -37,8 +37,7 @@ namespace HunterPie.GUI.Helpers
 
         private static void AnglesChanged(DependencyObject d, DependencyPropertyChangedEventArgs e)
         {
-            var arc = d as Arc;
-            if (arc != null)
+            if (d is Arc arc)
                 arc.InvalidateVisual();
         }
 

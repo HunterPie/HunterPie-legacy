@@ -11,6 +11,7 @@ using System.Xaml;
 using HunterPie.Core;
 using Markdig;
 using Markdig.Wpf;
+using Markdown = Markdig.Wpf.Markdown;
 using XamlReader = System.Windows.Markup.XamlReader;
 
 namespace HunterPie.GUIControls
@@ -54,8 +55,8 @@ namespace HunterPie.GUIControls
 
             if (!File.Exists(changelogPath)) return;
 
-            var markdown = File.ReadAllText(changelogPath);
-            var xaml = Markdig.Wpf.Markdown.ToXaml(markdown, BuildPipeline());
+            string markdown = File.ReadAllText(changelogPath);
+            string xaml = Markdown.ToXaml(markdown, BuildPipeline());
             using (var stream = new MemoryStream(Encoding.UTF8.GetBytes(xaml)))
             {
                 using (var reader = new XamlXmlReader(stream, new MyXamlSchemaContext()))

@@ -31,7 +31,7 @@ namespace HunterPie.Plugins
                 return UpdateResult.Failed;
             }
 
-            var result = UpdateResult.UpToDate;
+            UpdateResult result = UpdateResult.UpToDate;
 
             foreach (string filePath in onlineInformation.Update.FileHashes.Keys)
             {

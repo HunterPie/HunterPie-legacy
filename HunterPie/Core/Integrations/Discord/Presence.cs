@@ -103,7 +103,7 @@ namespace HunterPie.Core.Integrations.Discord
 
             App.Current.Dispatcher.BeginInvoke(System.Windows.Threading.DispatcherPriority.Render, new Action(() =>
             {
-                GUI.Widgets.Notification_Widget.DiscordNotify DiscordNotification = new GUI.Widgets.Notification_Widget.DiscordNotify(args);
+                GUI.Widgets.Notifications.DiscordNotify DiscordNotification = new GUI.Widgets.Notifications.DiscordNotify(args);
 
                 DiscordNotification.OnRequestAccepted += OnDiscordRequestAccepted;
                 DiscordNotification.OnRequestRejected += OnDiscordRequestRejected;
@@ -114,7 +114,7 @@ namespace HunterPie.Core.Integrations.Discord
 
         private void OnDiscordRequestRejected(object source, DiscordRPC.Message.JoinRequestMessage args)
         {
-            GUI.Widgets.Notification_Widget.DiscordNotify src = (GUI.Widgets.Notification_Widget.DiscordNotify)source;
+            GUI.Widgets.Notifications.DiscordNotify src = (GUI.Widgets.Notifications.DiscordNotify)source;
             src.OnRequestAccepted -= OnDiscordRequestAccepted;
             src.OnRequestRejected -= OnDiscordRequestRejected;
 
@@ -125,7 +125,7 @@ namespace HunterPie.Core.Integrations.Discord
 
         private void OnDiscordRequestAccepted(object source, DiscordRPC.Message.JoinRequestMessage args)
         {
-            GUI.Widgets.Notification_Widget.DiscordNotify src = (GUI.Widgets.Notification_Widget.DiscordNotify)source;
+            GUI.Widgets.Notifications.DiscordNotify src = (GUI.Widgets.Notifications.DiscordNotify)source;
             src.OnRequestAccepted -= OnDiscordRequestAccepted;
             src.OnRequestRejected -= OnDiscordRequestRejected;
 

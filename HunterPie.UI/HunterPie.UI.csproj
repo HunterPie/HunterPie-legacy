@@ -1,0 +1,426 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="15.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{9E9CCD04-0006-4ECF-A973-8776B638121C}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>HunterPie.UI</RootNamespace>
+    <AssemblyName>HunterPie.UI</AssemblyName>
+    <TargetFrameworkVersion>v4.8</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+    <Deterministic>true</Deterministic>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="PresentationCore" />
+    <Reference Include="System" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Drawing" />
+    <Reference Include="System.Windows.Forms" />
+    <Reference Include="System.Xaml" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Net.Http" />
+    <Reference Include="System.Xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="GUIControls\Changelog.xaml.cs">
+      <DependentUpon>Changelog.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="GUIControls\Custom Controls\BuffBarSettingControl.xaml.cs">
+      <DependentUpon>BuffBarSettingControl.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="GUIControls\Custom Controls\CHotKey.xaml.cs">
+      <DependentUpon>CHotKey.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="GUIControls\Custom Controls\CNotification.xaml.cs">
+      <DependentUpon>CNotification.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="GUIControls\Custom Controls\ColorPicker.xaml.cs">
+      <DependentUpon>ColorPicker.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="GUIControls\Custom Controls\MinimalButton.xaml.cs">
+      <DependentUpon>MinimalButton.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="GUIControls\Custom Controls\MinimalHealthBar.xaml.cs">
+      <DependentUpon>MinimalHealthBar.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="GUIControls\Custom Controls\MinimalSlider.xaml.cs">
+      <DependentUpon>MinimalSlider.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="GUIControls\Custom Controls\PositionControl.xaml.cs">
+      <DependentUpon>PositionControl.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="GUIControls\Custom Controls\Switcher.xaml.cs">
+      <DependentUpon>Switcher.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="GUIControls\Custom Controls\WeaknessDisplay.xaml.cs">
+      <DependentUpon>WeaknessDisplay.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="GUIControls\DebuggerControl.xaml.cs">
+      <DependentUpon>DebuggerControl.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="GUIControls\NewSettingsWindow.xaml.cs">
+      <DependentUpon>NewSettingsWindow.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="GUIControls\Settings.xaml.cs">
+      <DependentUpon>Settings.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="GUIControls\TrayIcon.cs" />
+    <Compile Include="GUI\Helpers\Arc.cs" />
+    <Compile Include="GUI\Helpers\Diamond.cs" />
+    <Compile Include="GUI\Helpers\StaticSecondsConverter.cs" />
+    <Compile Include="GUI\Overlay.cs" />
+    <Compile Include="GUI\Widget.cs" />
+    <Compile Include="GUI\WidgetSettings.cs" />
+    <Compile Include="GUI\Widgets\Abnormality Widget\AbnormalityContainer.xaml.cs">
+      <DependentUpon>AbnormalityContainer.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="GUI\Widgets\Abnormality Widget\AbnormalityTraySettings.xaml.cs">
+      <DependentUpon>AbnormalityTraySettings.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="GUI\Widgets\Abnormality Widget\Parts\AbnormalityControl.xaml.cs">
+      <DependentUpon>AbnormalityControl.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="GUI\Widgets\Abnormality Widget\Parts\AbnormalitySettingControl.xaml.cs">
+      <DependentUpon>AbnormalitySettingControl.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="GUI\Widgets\ClassWidget\ClassWidgetContainer.xaml.cs">
+      <DependentUpon>ClassWidgetContainer.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="GUI\Widgets\ClassWidget\Parts\BowControl.xaml.cs">
+      <DependentUpon>BowControl.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="GUI\Widgets\ClassWidget\Parts\ChargeBladeControl.xaml.cs">
+      <DependentUpon>ChargeBladeControl.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="GUI\Widgets\ClassWidget\Parts\ClassControl.cs" />
+    <Compile Include="GUI\Widgets\ClassWidget\Parts\DualBladeControl.xaml.cs">
+      <DependentUpon>DualBladeControl.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="GUI\Widgets\ClassWidget\Parts\GreatswordControl.xaml.cs">
+      <DependentUpon>GreatswordControl.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="GUI\Widgets\ClassWidget\Parts\GunLanceControl.xaml.cs">
+      <DependentUpon>GunLanceControl.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="GUI\Widgets\ClassWidget\Parts\HammerControl.xaml.cs">
+      <DependentUpon>HammerControl.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="GUI\Widgets\ClassWidget\Parts\HeavyBowgunControl.xaml.cs">
+      <DependentUpon>HeavyBowgunControl.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="GUI\Widgets\ClassWidget\Parts\HuntingHorn\Components\NoteComponent.xaml.cs">
+      <DependentUpon>NoteComponent.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="GUI\Widgets\ClassWidget\Parts\HuntingHorn\Components\SongComponent.xaml.cs">
+      <DependentUpon>SongComponent.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="GUI\Widgets\ClassWidget\Parts\HuntingHorn\Components\SongPredComponent.xaml.cs">
+      <DependentUpon>SongPredComponent.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="GUI\Widgets\ClassWidget\Parts\HuntingHorn\HuntingHornControl.xaml.cs">
+      <DependentUpon>HuntingHornControl.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="GUI\Widgets\ClassWidget\Parts\InsectGlaiveControl.xaml.cs">
+      <DependentUpon>InsectGlaiveControl.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="GUI\Widgets\ClassWidget\Parts\LanceControl.xaml.cs">
+      <DependentUpon>LanceControl.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="GUI\Widgets\ClassWidget\Parts\LightBowgunControl.xaml.cs">
+      <DependentUpon>LightBowgunControl.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="GUI\Widgets\ClassWidget\Parts\LongswordControl.xaml.cs">
+      <DependentUpon>LongswordControl.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="GUI\Widgets\ClassWidget\Parts\SwitchAxeControl.xaml.cs">
+      <DependentUpon>SwitchAxeControl.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="GUI\Widgets\DPSMeter\Meter.xaml.cs">
+      <DependentUpon>Meter.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="GUI\Widgets\DPSMeter\Parts\DamagePlot.xaml.cs">
+      <DependentUpon>DamagePlot.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="GUI\Widgets\DPSMeter\Parts\MemberPlotModel.cs" />
+    <Compile Include="GUI\Widgets\DPSMeter\Parts\PartyMember.xaml.cs">
+      <DependentUpon>PartyMember.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="GUI\Widgets\Harvest Box\HarvestBox.xaml.cs">
+      <DependentUpon>HarvestBox.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="GUI\Widgets\Harvest Box\Parts\FertilizerControl.xaml.cs">
+      <DependentUpon>FertilizerControl.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="GUI\Widgets\HealthWidget\Parts\AilmentControl.xaml.cs">
+      <DependentUpon>AilmentControl.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="GUI\Widgets\HealthWidget\Parts\HealthBar.xaml.cs">
+      <DependentUpon>HealthBar.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="GUI\Widgets\HealthWidget\PlayerHealth.xaml.cs">
+      <DependentUpon>PlayerHealth.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="GUI\Widgets\MantleTimer.xaml.cs">
+      <DependentUpon>MantleTimer.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="GUI\Widgets\Monster Widget\MonsterContainer.xaml.cs">
+      <DependentUpon>MonsterContainer.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="GUI\Widgets\Monster Widget\MonsterHealth.xaml.cs">
+      <DependentUpon>MonsterHealth.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="GUI\Widgets\Monster Widget\Parts\MonsterAilment.xaml.cs">
+      <DependentUpon>MonsterAilment.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="GUI\Widgets\Monster Widget\Parts\MonsterPart.xaml.cs">
+      <DependentUpon>MonsterPart.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="GUI\Widgets\Notifications\DiscordNotify.xaml.cs">
+      <DependentUpon>DiscordNotify.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="GUI\WidgetType.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <Page Include="GUIControls\Changelog.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="GUIControls\Custom Controls\BuffBarSettingControl.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="GUIControls\Custom Controls\CHotKey.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="GUIControls\Custom Controls\CNotification.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="GUIControls\Custom Controls\ColorPicker.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="GUIControls\Custom Controls\MinimalButton.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="GUIControls\Custom Controls\MinimalHealthBar.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="GUIControls\Custom Controls\MinimalSlider.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="GUIControls\Custom Controls\PositionControl.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="GUIControls\Custom Controls\Switcher.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="GUIControls\Custom Controls\WeaknessDisplay.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="GUIControls\DebuggerControl.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="GUIControls\NewSettingsWindow.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="GUIControls\Settings.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="GUI\Widgets\Abnormality Widget\AbnormalityContainer.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="GUI\Widgets\Abnormality Widget\AbnormalityTraySettings.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="GUI\Widgets\Abnormality Widget\Parts\AbnormalityControl.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="GUI\Widgets\Abnormality Widget\Parts\AbnormalitySettingControl.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="GUI\Widgets\ClassWidget\ClassWidgetContainer.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="GUI\Widgets\ClassWidget\Parts\BowControl.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="GUI\Widgets\ClassWidget\Parts\ChargeBladeControl.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="GUI\Widgets\ClassWidget\Parts\DualBladeControl.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="GUI\Widgets\ClassWidget\Parts\GreatswordControl.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="GUI\Widgets\ClassWidget\Parts\GunLanceControl.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="GUI\Widgets\ClassWidget\Parts\HammerControl.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="GUI\Widgets\ClassWidget\Parts\HeavyBowgunControl.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="GUI\Widgets\ClassWidget\Parts\HuntingHorn\Components\NoteComponent.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="GUI\Widgets\ClassWidget\Parts\HuntingHorn\Components\SongComponent.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="GUI\Widgets\ClassWidget\Parts\HuntingHorn\Components\SongPredComponent.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="GUI\Widgets\ClassWidget\Parts\HuntingHorn\HuntingHornControl.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="GUI\Widgets\ClassWidget\Parts\InsectGlaiveControl.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="GUI\Widgets\ClassWidget\Parts\LanceControl.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="GUI\Widgets\ClassWidget\Parts\LightBowgunControl.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="GUI\Widgets\ClassWidget\Parts\LongswordControl.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="GUI\Widgets\ClassWidget\Parts\SwitchAxeControl.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="GUI\Widgets\DPSMeter\Meter.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="GUI\Widgets\DPSMeter\Parts\DamagePlot.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="GUI\Widgets\DPSMeter\Parts\PartyMember.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="GUI\Widgets\Harvest Box\HarvestBox.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="GUI\Widgets\Harvest Box\Parts\FertilizerControl.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="GUI\Widgets\HealthWidget\Parts\AilmentControl.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="GUI\Widgets\HealthWidget\Parts\HealthBar.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="GUI\Widgets\HealthWidget\PlayerHealth.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="GUI\Widgets\MantleTimer.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="GUI\Widgets\Monster Widget\MonsterContainer.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="GUI\Widgets\Monster Widget\MonsterHealth.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="GUI\Widgets\Monster Widget\Parts\MonsterAilment.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="GUI\Widgets\Monster Widget\Parts\MonsterPart.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="GUI\Widgets\Notifications\DiscordNotify.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\HunterPie.Core\HunterPie.Core.csproj">
+      <Project>{38da002e-7a2d-46ba-8e31-4cd0ed8ec257}</Project>
+      <Name>HunterPie.Core</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <PackageReference Include="DiscordRichPresence">
+      <Version>1.0.166</Version>
+    </PackageReference>
+    <PackageReference Include="Markdig.Wpf">
+      <Version>0.4.0</Version>
+    </PackageReference>
+    <PackageReference Include="OxyPlot.Wpf">
+      <Version>2.0.0</Version>
+    </PackageReference>
+    <PackageReference Include="PresentationFramework">
+      <Version>4.6.0</Version>
+    </PackageReference>
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+</Project>

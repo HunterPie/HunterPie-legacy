@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Runtime.CompilerServices;
 using System.Windows;
 using System.Windows.Interop;
 using System.Windows.Media;
@@ -8,6 +9,7 @@ using HunterPie.Core;
 using HunterPie.Logger;
 using HunterPie.Memory;
 
+[assembly:InternalsVisibleTo("HunterPie")]
 namespace HunterPie.GUI
 {
     public class Overlay : IDisposable

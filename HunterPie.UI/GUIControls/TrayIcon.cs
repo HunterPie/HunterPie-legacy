@@ -1,10 +1,11 @@
 ﻿using System;
+using System.Runtime.CompilerServices;
 using System.Windows.Forms;
-
 
 namespace HunterPie.GUIControls
 {
-    internal class TrayIcon : IDisposable
+    
+    public class TrayIcon : IDisposable
     {
 
         public ContextMenu ContextMenu = new ContextMenu();

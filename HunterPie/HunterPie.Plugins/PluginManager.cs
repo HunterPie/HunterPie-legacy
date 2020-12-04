@@ -22,6 +22,7 @@ using Microsoft.CodeAnalysis;
 using Microsoft.CodeAnalysis.CSharp;
 using Microsoft.CodeAnalysis.Text;
 using System.Threading.Tasks;
+using HunterPie.GUI;
 
 namespace HunterPie.Plugins
 {
@@ -160,9 +161,9 @@ namespace HunterPie.Plugins
             Type[] types = new[]
             {
                 typeof(Player),                  // HunterPie.Core.dll
-                typeof(Hunterpie),               // HunterPie
+                typeof(Overlay),                 // HunterPie.UI.dll
                 typeof(JObject),                 // Newtonsoft.Json.dll
-                typeof(Object),                  // mscorlib.dll
+                typeof(object),                  // mscorlib.dll
                 typeof(UIElement),               // PresentationCore.dll
                 typeof(Window),                  // PresentationFramework.dll
                 typeof(Uri),                     // System.dll
@@ -216,7 +217,10 @@ namespace HunterPie.Plugins
             else
             {
                 Debugger.Error($"Failed to compile plugin: {information.Name}");
-                foreach (var exception in result.Diagnostics) Debugger.Error(exception);
+                foreach (Diagnostic exception in result.Diagnostics)
+                {
+                    Debugger.Error(exception);
+                }
                 result = null;
                 return false;
             }

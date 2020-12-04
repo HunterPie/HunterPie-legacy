@@ -1,4 +1,5 @@
 ﻿using System.Linq;
+using System.Windows;
 using System.Windows.Controls;
 using HunterPie.GUI.Widgets.Abnormality_Widget;
 
@@ -27,7 +28,7 @@ namespace HunterPie.GUIControls.Custom_Controls
         private void OnBuffTraySettingClick(object sender, System.Windows.Input.MouseButtonEventArgs e)
         {
 
-            bool SettingsWindowIsOpen = App.Current.Windows.Cast<System.Windows.Window>()
+            bool SettingsWindowIsOpen = Application.Current.Windows.Cast<Window>()
                 .Where(w => w.Title == "Abnormality Tray Settings")
                 .Count() > 0;
 

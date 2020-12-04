@@ -2,10 +2,11 @@
 using System.IO;
 using System.Net;
 using System.Windows;
+using DiscordRPC.Message;
 using BitmapImage = System.Windows.Media.Imaging.BitmapImage;
 using Timer = System.Threading.Timer;
 
-namespace HunterPie.GUI.Widgets.Notification_Widget
+namespace HunterPie.GUI.Widgets.Notifications
 {
     /// <summary>
     /// Interaction logic for DiscordNotify.xaml
@@ -15,8 +16,8 @@ namespace HunterPie.GUI.Widgets.Notification_Widget
 
         public new WidgetType Type => WidgetType.Custom;
 
-        DiscordRPC.Message.JoinRequestMessage RequestInfo;
-        Timer Timeout;
+        JoinRequestMessage requestInfo;
+        Timer timeout;
 
         public delegate void ConfirmationEvents(object source, DiscordRPC.Message.JoinRequestMessage args);
         public event ConfirmationEvents OnRequestAccepted;
@@ -28,9 +29,9 @@ namespace HunterPie.GUI.Widgets.Notification_Widget
             WidgetActive = true;
             WidgetHasContent = true;
             InitializeComponent();
-            RequestInfo = args;
+            requestInfo = args;
             SetInformation();
-            Timeout = new Timer(_ => RejectRequest(), null, 15000, 0);
+            timeout = new Timer(_ => RejectRequest(), null, 15000, 0);
         }
 
         ~DiscordNotify()
@@ -41,8 +42,8 @@ namespace HunterPie.GUI.Widgets.Notification_Widget
 
         private void SetInformation()
         {
-            Description.Text = Core.GStrings.GetLocalizationByXPath("/Notifications/String[@ID='STATIC_DISCORD_JOIN_REQUEST']").Replace("{Username}", RequestInfo.User.ToString());
-            GetProfilePicture(RequestInfo.User.GetAvatarURL(DiscordRPC.User.AvatarFormat.PNG, DiscordRPC.User.AvatarSize.x64));
+            Description.Text = Core.GStrings.GetLocalizationByXPath("/Notifications/String[@ID='STATIC_DISCORD_JOIN_REQUEST']").Replace("{Username}", requestInfo.User.ToString());
+            GetProfilePicture(requestInfo.User.GetAvatarURL(DiscordRPC.User.AvatarFormat.PNG, DiscordRPC.User.AvatarSize.x64));
         }
 
         private void GetProfilePicture(string AvatarURL)
@@ -75,19 +76,18 @@ namespace HunterPie.GUI.Widgets.Notification_Widget
             source.DownloadDataCompleted -= DownloadProfilePictureComplete;
         }
 
-        private void OnAccept(object sender, RoutedEventArgs e) => OnRequestAccepted?.Invoke(this, RequestInfo);
+        private void OnAccept(object sender, RoutedEventArgs e) => OnRequestAccepted?.Invoke(this, requestInfo);
 
         private void OnReject(object sender, RoutedEventArgs e) => RejectRequest();
 
-        private void RejectRequest() => OnRequestRejected?.Invoke(this, RequestInfo);
+        private void RejectRequest() => OnRequestRejected?.Invoke(this, requestInfo);
 
         private void OnClosing(object sender, System.ComponentModel.CancelEventArgs e)
         {
-            RequestInfo = null;
-            Timeout.Dispose();
-            Logger.Debugger.Debug("here");
+            requestInfo = null;
+            timeout.Dispose();
             Picture.Source = null;
-            Timeout = null;
+            timeout = null;
         }
     }
 }

@@ -18,7 +18,7 @@ namespace HunterPie.GUI.Widgets.Abnormality_Widget
 
         public new WidgetType Type => WidgetType.AbnormalityWidget;
 
-        readonly Dictionary<string, Parts.AbnormalityControl> ActiveAbnormalities = new Dictionary<string, Parts.AbnormalityControl>();
+        readonly Dictionary<string, Parts.AbnormalityControl> activeAbnormalities = new Dictionary<string, Parts.AbnormalityControl>();
         Player Context { get; set; }
         public int AbnormalityTrayIndex { get; set; }
         private int MaxSize { get; set; }
@@ -139,15 +139,15 @@ namespace HunterPie.GUI.Widgets.Abnormality_Widget
             Context.Abnormalities.OnAbnormalityRemove += OnPlayerAbnormalityEnd;
         }
 
-        int RenderCounter = 0;
+        int renderCounter = 0;
         private void OnAbnormalityTrayRender(object sender, EventArgs e)
         {
-            RenderCounter++;
+            renderCounter++;
             // Only redraws the component once every 60 render calls
-            if (RenderCounter >= 60)
+            if (renderCounter >= 60)
             {
                 RedrawComponent();
-                RenderCounter = 0;
+                renderCounter = 0;
             }
         }
 
@@ -160,7 +160,7 @@ namespace HunterPie.GUI.Widgets.Abnormality_Widget
 
         private void OnPlayerAbnormalityEnd(object source, AbnormalityEventArgs args) => Dispatcher.BeginInvoke(System.Windows.Threading.DispatcherPriority.Loaded, new Action(() =>
         {
-            ActiveAbnormalities.Remove(args.Abnormality.InternalID);
+            activeAbnormalities.Remove(args.Abnormality.InternalID);
         }));
 
         private void OnPlayerNewAbnormality(object source, AbnormalityEventArgs args)
@@ -178,7 +178,7 @@ namespace HunterPie.GUI.Widgets.Abnormality_Widget
                     ShowAbnormalityName = preset.ShowNames
                 };
                 AbnormalityBox.Initialize(args.Abnormality);
-                ActiveAbnormalities.Add(args.Abnormality.InternalID, AbnormalityBox);
+                activeAbnormalities.Add(args.Abnormality.InternalID, AbnormalityBox);
                 RedrawComponent();
             }));
         }
@@ -190,18 +190,18 @@ namespace HunterPie.GUI.Widgets.Abnormality_Widget
         private void RedrawComponent()
         {
             BuffTray.Children.Clear();
-            if (ActiveAbnormalities.Count == 0)
+            if (activeAbnormalities.Count == 0)
             {
                 WidgetHasContent = false;
             }
             ChangeVisibility(false);
-            foreach (Parts.AbnormalityControl Abnorm in ActiveAbnormalities.Values.OrderBy(abnormality => abnormality.Context?.Duration))
+            foreach (Parts.AbnormalityControl Abnorm in activeAbnormalities.Values.OrderBy(abnormality => abnormality.Context?.Duration))
             {
                 BuffTray.Children.Add(Abnorm);
             }
         }
 
-        public void ScaleWidget(double NewScaleX, double NewScaleY)
+        public new void ScaleWidget(double NewScaleX, double NewScaleY)
         {
             if (NewScaleX <= 0.2) return;
             BuffTray.LayoutTransform = new ScaleTransform(NewScaleX, NewScaleY);
@@ -278,7 +278,7 @@ namespace HunterPie.GUI.Widgets.Abnormality_Widget
 
         private void OnSettingsButtonClick(object sender, MouseButtonEventArgs e)
         {
-            bool SettingsWindowIsOpen = App.Current.Windows.Cast<Window>()
+            bool SettingsWindowIsOpen = Application.Current.Windows.Cast<Window>()
                 .Where(w => w.Title == "Abnormality Tray Settings")
                 .Count() > 0;
 
