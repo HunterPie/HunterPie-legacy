@@ -193,6 +193,9 @@
       <DependentUpon>AilmentControl.xaml</DependentUpon>
     </Compile>
     <Compile Include="GUI\WidgetType.cs" />
+    <None Include="address\MonsterHunterWorld.421409.map">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
     <None Include="address\MonsterHunterWorld.420540.map">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
