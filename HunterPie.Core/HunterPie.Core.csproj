@@ -56,6 +56,7 @@
     <Compile Include="Core\Craft\Recipes.cs" />
     <Compile Include="Core\Definitions\sAmmo.cs" />
     <Compile Include="Core\Definitions\sEquippedAmmo.cs" />
+    <Compile Include="Core\Definitions\sFoodData.cs" />
     <Compile Include="Core\Definitions\sGear.cs" />
     <Compile Include="Core\Definitions\sGuiHealth.cs" />
     <Compile Include="Core\Definitions\sGuiStamina.cs" />
@@ -79,6 +80,8 @@
     <Compile Include="Core\Enums\Classes.cs" />
     <Compile Include="Core\Enums\DamagePlotMode.cs" />
     <Compile Include="Core\Enums\DayTime.cs" />
+    <Compile Include="Core\Enums\FoodBuffType.cs" />
+    <Compile Include="Core\Enums\FoodSkills.cs" />
     <Compile Include="Core\Enums\GearType.cs" />
     <Compile Include="Core\Enums\HBGSpecialType.cs" />
     <Compile Include="Core\Enums\Helper.cs" />

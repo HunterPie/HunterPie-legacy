@@ -924,7 +924,7 @@
 
 
                             <!-- Player Health Bar-->
-                            <StackPanel Orientation="Horizontal" Margin="63,29,0,0" VerticalAlignment="Top" HorizontalAlignment="Left" Height="11" ClipToBounds="False">
+                            <StackPanel x:Name="HealthBarPanel" Orientation="Horizontal" Margin="63,29,0,0" VerticalAlignment="Top" HorizontalAlignment="Left" Height="11" ClipToBounds="False">
                                 <PlayerHealthParts:HealthBar x:Name="HealthBar" RenderTransformOrigin="0.5,0.5" ConstantWidth="200">
                                     <PlayerHealthParts:HealthBar.RenderTransform>
                                         <TransformGroup>
@@ -978,6 +978,7 @@
                                     </TextBlock.Effect>
                                 </TextBlock>
                             </StackPanel>
+                            <Rectangle Width="3" Fill="#7FFEFEFE" Height="11" Margin="{Binding MoxieMargin, ElementName=PlayerHealthComponent}" Visibility="{Binding MoxieVisibility, ElementName=PlayerHealthComponent}" VerticalAlignment="Top" HorizontalAlignment="Left"/>
 
                             <!-- Sharpness Component -->
                             <Canvas Height="25" Width="78" Visibility="{Binding ElementName=PlayerHealthComponent, Path=SharpnessVisibility}" VerticalAlignment="Top" HorizontalAlignment="Left" Margin="70,60,0,0">

@@ -13,6 +13,8 @@ using System.Windows.Shapes;
 using System.Windows.Controls;
 using HunterPie.GUI.Helpers;
 using static HunterPie.Core.UserSettings.Config;
+using System.Linq;
+using System.Windows.Forms.VisualStyles;
 
 namespace HunterPie.GUI.Widgets.HealthWidget
 {
@@ -174,12 +176,28 @@ namespace HunterPie.GUI.Widgets.HealthWidget
         public static readonly DependencyProperty PlayerSharpnessLeftProperty =
             DependencyProperty.Register("PlayerSharpnessLeft", typeof(int), typeof(PlayerHealth));
 
+        public Visibility MoxieVisibility
+        {
+            get { return (Visibility)GetValue(MoxieVisibilityProperty); }
+            set { SetValue(MoxieVisibilityProperty, value); }
+        }
+        public static readonly DependencyProperty MoxieVisibilityProperty =
+            DependencyProperty.Register("MoxieVisibility", typeof(Visibility), typeof(PlayerHealth));
+
+        public Thickness MoxieMargin
+        {
+            get { return (Thickness)GetValue(MoxieMarginProperty); }
+            set { SetValue(MoxieMarginProperty, value); }
+        }
+        public static readonly DependencyProperty MoxieMarginProperty =
+            DependencyProperty.Register("MoxieMargin", typeof(Thickness), typeof(PlayerHealth));
+
         MinimalHealthBar StaminaBar { get; set; }
         HealthBar HealthBar { get; set; }
         Rectangle HealthExt { get; set; }
         Rectangle StaminaExt { get; set; }
 
-        Panel AilmentDisplay { get; set; }
+        Panel HealthBarPanel { get; set; }
         AilmentControl ConstantAilment { get; set; }
 
         public PlayerHealth(Game ctx)
@@ -629,8 +647,17 @@ namespace HunterPie.GUI.Widgets.HealthWidget
 
         private void OnMaxHealthUpdate(object source, PlayerHealthEventArgs args)
         {
+            bool hasMoxie = Context?.FoodData.Skills?.Contains(FoodSkills.FelyneMoxie) ?? false;
             Dispatcher.BeginInvoke(DispatcherPriority.Render, new Action(() =>
             {
+
+                MoxieVisibility = hasMoxie ? Visibility.Visible : Visibility.Hidden;
+
+                double calculatedLeft =  60 * (HealthBar.ConstantWidth / HealthBar.CHealth);
+
+                MoxieMargin = new Thickness(HealthBarPanel.Margin.Left + calculatedLeft,
+                    HealthBarPanel.Margin.Top, 0, 0);
+
                 PlayerCurrentHealth = (int)args.Health;
                 PlayerMaxHealth = (int)args.MaxHealth;
 
@@ -704,7 +731,7 @@ namespace HunterPie.GUI.Widgets.HealthWidget
             HealthExt = Template.FindName("HealthExt", this) as Rectangle;
             StaminaExt = Template.FindName("StaminaExt", this) as Rectangle;
 
-            AilmentDisplay = Template.FindName("AilmentDisplay", this) as Panel;
+            HealthBarPanel = Template.FindName("HealthBarPanel", this) as Panel;
             ConstantAilment = Template.FindName("ConstantAilment", this) as AilmentControl;
 
             HookEvents();
