@@ -159,6 +159,8 @@ jobs:
       run: |
         hub release create $GIT_REF --message "Release $GIT_REF"
         hub release edit   $GIT_REF -m "" -a zip/HunterPie.zip
+        hub release edit   $GIT_REF -m "" -a HunterPie.Core/bin/Release/HunterPie.Core.dll
+        hub release edit   $GIT_REF -m "" -a HunterPie.UI/bin/Release/HunterPie.UI.dll
       env:
         GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         GIT_REF: ${{ needs.build.outputs.git_ref }}
