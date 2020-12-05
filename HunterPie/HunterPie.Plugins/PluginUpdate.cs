@@ -28,7 +28,8 @@ namespace HunterPie.Plugins
 
             if (!(Hunterpie.ParseVersion(Hunterpie.HUNTERPIE_VERSION) >= Hunterpie.ParseVersion(onlineInformation.Update.MinimumVersion)))
             {
-                return UpdateResult.Failed;
+                Debugger.Warn($"Newest version of {pInformation.Name} requires HunterPie v{onlineInformation.Update.MinimumVersion}!");
+                return UpdateResult.Skipped;
             }
 
             UpdateResult result = UpdateResult.UpToDate;

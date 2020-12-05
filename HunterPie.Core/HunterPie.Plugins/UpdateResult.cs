@@ -4,6 +4,7 @@
     {
         Updated,
         Failed,
-        UpToDate
+        UpToDate,
+        Skipped
     }
 }

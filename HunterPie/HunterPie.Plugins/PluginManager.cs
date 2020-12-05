@@ -89,6 +89,9 @@ namespace HunterPie.Plugins
                                 Debugger.Module($"Updated plugin: {modInformation.Name} (ver {modInformation.Version})");
                                 break;
 
+                            case UpdateResult.Skipped:
+                                continue;
+
                             case UpdateResult.Failed:
                                 Debugger.Error($"Failed to update plugin: {modInformation.Name}");
                                 continue;

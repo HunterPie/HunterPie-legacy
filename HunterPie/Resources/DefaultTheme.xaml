@@ -371,14 +371,16 @@
     <SolidColorBrush x:Key="CONSOLE_SIDEBAR_BACKGROUND">#BB151515</SolidColorBrush>
     <SolidColorBrush x:Key="CONSOLE_WINDOWBAR_BACKGROUND">#FF131313</SolidColorBrush>
 
-    <SolidColorBrush x:Key="BUTTON_LAUNCHGAME_BACKGROUND">#6dc0de</SolidColorBrush>
-    <SolidColorBrush x:Key="BUTTON_LAUNCHGAME_FOREGROUND">#edf8ff</SolidColorBrush>
+    <SolidColorBrush x:Key="BUTTON_LAUNCHGAME_FOREGROUND">#fefefe</SolidColorBrush>
+    <SolidColorBrush x:Key="BUTTON_LAUNCHGAME_BACKGROUND">#bd2a2c</SolidColorBrush>
+    <!--
+    <SolidColorBrush x:Key="BUTTON_LAUNCHGAME_FOREGROUND">#edf8ff</SolidColorBrush>-->
     <SolidColorBrush x:Key="BUTTON_TOPBUTTON_FOREGROUND">#FFD8D8D8</SolidColorBrush>
     <SolidColorBrush x:Key="BUTTON_TOPBUTTON_BACKGROUND">#00000000</SolidColorBrush>
-    <SolidColorBrush x:Key="BUTTON_CLOSEWINDOW_BACKGROUND">#6dc0de</SolidColorBrush>
+    <SolidColorBrush x:Key="BUTTON_CLOSEWINDOW_BACKGROUND">#bd2a2c</SolidColorBrush>
     <SolidColorBrush x:Key="BUTTON_COMMONBUTTON_FOREGROUND">#FFF3F3F3</SolidColorBrush>
     <SolidColorBrush x:Key="BUTTON_COMMONBUTTON_BACKGROUND">#E51B1B1B</SolidColorBrush>
-    <SolidColorBrush x:Key="BUTTON_COMMONBUTTON_BORDER">#6dc0de</SolidColorBrush>
+    <SolidColorBrush x:Key="BUTTON_COMMONBUTTON_BORDER">#bd2a2c</SolidColorBrush>
     <SolidColorBrush x:Key="BUTTON_ICON_FOREGROUND">#FFDEDEDE</SolidColorBrush>
     <SolidColorBrush x:Key="CONSOLE_VERSIONTEXT_FOREGROUND">#FFDEDEDE</SolidColorBrush>
 
@@ -388,12 +390,12 @@
     </LinearGradientBrush>
 
     <!-- Settings window -->
-    <Color x:Key="TOGGLABLE_BUTTON_BACKGROUND_ON">#71bfd9</Color>
+    <Color x:Key="TOGGLABLE_BUTTON_BACKGROUND_ON">#cc1414</Color>
     <Color x:Key="TOGGLABLE_BUTTON_BACKGROUND_OFF">#FF151515</Color>
     <Color x:Key="TOGGLABLE_BUTTON_FOREGROUND_ON">WhiteSmoke</Color>
     <Color x:Key="TOGGLABLE_BUTTON_FOREGROUND_OFF">#FF252525</Color>
 
-    <SolidColorBrush x:Key="GENERIC_BUTTON_BACKGROUND">#71bfd9</SolidColorBrush>
+    <SolidColorBrush x:Key="GENERIC_BUTTON_BACKGROUND">#cc1414</SolidColorBrush>
     <SolidColorBrush x:Key="GENERIC_BUTTON_FOREGROUND">#ededed</SolidColorBrush>
 
     <!-- Debugger colors -->
@@ -492,11 +494,11 @@
         <Setter Property="Template">
             <Setter.Value>
                 <ControlTemplate TargetType="RepeatButton">
-                    <Border SnapsToDevicePixels="True"  BorderThickness="1" Height="3" BorderBrush="#71bfd9">
+                    <Border SnapsToDevicePixels="True"  BorderThickness="1" Height="3" BorderBrush="#cc1414">
                         <Border.Background>
                             <LinearGradientBrush EndPoint="1,1" StartPoint="0.5,0" MappingMode="Absolute">
-                                <GradientStop Color="#71bfd9" Offset="0"/>
-                                <GradientStop Color="#71bfd9" Offset="1"/>
+                                <GradientStop Color="#cc1414" Offset="0"/>
+                                <GradientStop Color="#cc1414" Offset="1"/>
                             </LinearGradientBrush>
                         </Border.Background>
                     </Border>
