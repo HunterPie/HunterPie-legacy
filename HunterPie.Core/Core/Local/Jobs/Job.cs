@@ -50,13 +50,12 @@ namespace HunterPie.Core.Jobs
             {
                 if (value != sharpness)
                 {
-                    MaximumSharpness = Math.Max(MaximumSharpness, value);
                     sharpness = value;
                     Dispatch(OnSharpnessChange);
                 }
             }
         }
-        public int MaximumSharpness { get; private set; }
+        public int MaximumSharpness { get; internal set; }
         public SharpnessLevel SharpnessLevel
         {
             get => sharpnessLevel;

@@ -485,14 +485,12 @@ namespace HunterPie.GUI.Widgets.HealthWidget
 
                 SharpnessLowerColor = downColor as Brush;
 
-                int min = args.Level == args.MaxLevel ? Math.Min(args.MaximumSharpness, args.Max) : args.Max;
-
                 PlayerMinSharpness = args.Min;
                 PlayerCurrentSharpness = args.Sharpness;
-                PlayerMaxSharpness = min;
+                PlayerMaxSharpness = args.MaximumSharpness;
                 PlayerSharpnessLeft = PlayerCurrentSharpness - PlayerMinSharpness;
 
-                Sharpness = ((args.Sharpness - args.Min) / (double)(min - args.Min)) * SharpnessMaxWidth;
+                Sharpness = ((args.Sharpness - args.Min) / (double)(args.MaximumSharpness - args.Min)) * SharpnessMaxWidth;
             }));
         }
 
@@ -500,14 +498,12 @@ namespace HunterPie.GUI.Widgets.HealthWidget
         {
             Dispatcher.BeginInvoke(DispatcherPriority.Render, new Action(() =>
             {
-                int min = args.Level == args.MaxLevel ? Math.Min(args.MaximumSharpness, args.Max) : args.Max;
-
                 PlayerMinSharpness = args.Min;
                 PlayerCurrentSharpness = args.Sharpness;
-                PlayerMaxSharpness = min;
+                PlayerMaxSharpness = args.MaximumSharpness;
                 PlayerSharpnessLeft = PlayerCurrentSharpness - PlayerMinSharpness;
 
-                Sharpness = ((args.Sharpness - args.Min) / (double)(min - args.Min)) * SharpnessMaxWidth;
+                Sharpness = ((args.Sharpness - args.Min) / (double)(args.MaximumSharpness - args.Min)) * SharpnessMaxWidth;
             }));
         }
 

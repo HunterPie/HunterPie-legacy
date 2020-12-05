@@ -11,6 +11,6 @@ namespace HunterPie.Core.Definitions
         public byte unk1;
         public byte unk2;
         public int unk3;
-        public double unk4; // Probable not a double, but I don't know
+        public double unk4; // Probably not a double, but I don't know
     }
 }
