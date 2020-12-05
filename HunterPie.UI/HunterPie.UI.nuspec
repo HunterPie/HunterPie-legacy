@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="utf-8"?>
+<package >
+  <metadata>
+    <id>$id$</id>
+    <version>$version$</version>
+    <title>$title$</title>
+    <authors>$author$</authors>
+    <requireLicenseAcceptance>false</requireLicenseAcceptance>
+    <license type="expression">MIT</license>
+    <projectUrl>https://github.com/Haato3o/HunterPie</projectUrl>
+    <iconUrl>https://raw.githubusercontent.com/Haato3o/HunterPie/master/HunterPie/LOGO_HunterPie.ico</iconUrl>
+    <description>$description$</description>
+    <releaseNotes>First package since UI library was moved from the main application</releaseNotes>
+    <copyright>$copyright$</copyright>
+  </metadata>
+</package>
