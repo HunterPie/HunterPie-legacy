@@ -116,7 +116,7 @@ jobs:
 
   release:
     needs: build
-    runs-on: ubuntu-latest
+    runs-on: windows-latest
     if: startsWith(needs.build.outputs.git_ref, 'v')
     
     steps:
@@ -136,17 +136,29 @@ jobs:
         mv HunterPie/bin/Release zip/HunterPie
         mv -f Update/bin/Release/* zip/HunterPie
         cd zip
-        zip -r HunterPie.zip HunterPie
-  
+        7z a -tzip HunterPie.zip HunterPie/* -r
+        
+    - name: Push to Nuget repo
+      run: |
+        nuget sources add -name "Github" \
+              -Source https://nuget.pkg.github.com/$GITHUB_REPOSITORY_OWNER/index.json \
+              -Username $GITHUB_REPOSITORY_OWNER \
+              -Password $GITHUB_TOKEN
+        nuget pack HunterPie.Core -Prop Configuration=Release -properties repo=$GITHUB_REPOSITORY
+        nuget pack HunterPie.UI -Prop Configuration=Release -properties repo=$GITHUB_REPOSITORY
+
+        for pkg in *.nupkg; do nuget push $pkg -Source "Github" -ApiKey $GITHUB_TOKEN -SkipDuplicate; done
+      env:
+        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        GITHUB_REPOSITORY_OWNER: ${{ github.repository_owner }}
+
     - name: Update release with binaries
       # this is a workaround because actions/upload-release-asset isn't allowed multiple times
       # this looks neater, though
-      # https://cli.github.com/manual/gh_release_create
+      # https://hub.github.com/hub-release.1.html
       run: |
-        gh release create $GIT_REF -t "Release $GIT_REF" \
-          zip/HunterPie.zip \
-          HunterPie.Core/bin/Release/HunterPie.Core.dll \
-          HunterPie.UI/bin/Release/HunterPie.UI.dll
+        hub release create $GIT_REF --message "Release $GIT_REF"
+        hub release edit   $GIT_REF -m "" -a zip/HunterPie.zip
       env:
         GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         GIT_REF: ${{ needs.build.outputs.git_ref }}
