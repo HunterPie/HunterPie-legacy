@@ -12,7 +12,7 @@ namespace HunterPie.Core.Definitions
 
         public bool Equals(sItem other)
         {
-            return Amount == other.Amount;
+            return ItemId == other.ItemId && Amount == other.Amount;
         }
     }
 }
