@@ -59,7 +59,10 @@ namespace HunterPie.Logger
 
         public static void Clear()
         {
-            Logs.Clear();
+            Application.Current.Dispatcher.BeginInvoke(DispatcherPriority.ApplicationIdle, new Action(() =>
+            {
+                Logs.Clear();
+            }));
         }
 
         public static void Write(string message, object color)

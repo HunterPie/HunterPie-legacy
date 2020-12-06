@@ -26,7 +26,6 @@ namespace HunterPie.Core
             50.0f
         };
 
-
         #endregion
 
         #region PRIVATE
@@ -721,7 +720,7 @@ namespace HunterPie.Core
         {
             while (Kernel.GameIsRunning)
             {
-                
+
                 GetZoneId();
                 if (GetPlayerAddress())
                 {
@@ -749,9 +748,8 @@ namespace HunterPie.Core
                 }
                 GetSessionId();
                 GetEquipmentAddress();
-                
+
                 DispatchScanFinished();
-                
                 Thread.Sleep(UserSettings.PlayerConfig.Overlay.GameScanDelay);
             }
             Thread.Sleep(1000);
@@ -804,17 +802,18 @@ namespace HunterPie.Core
         {
             // I think this changes. I had a different value before the 12/2 update
             int offset = 0x38a08;
-            sItem[] consumables = Kernel.ReadStructure<sItem>(PlayerAddress + offset, 150);
+            sItem[] itemBox = Kernel.ReadStructure<sItem>(PlayerAddress + offset, 2150);
 
-            offset += 0xc80;
-            sItem[] ammo = Kernel.ReadStructure<sItem>(PlayerAddress + offset, 100);
+            sItem[] consumables = new sItem[200];
+            sItem[] ammo = new sItem[200];
+            sItem[] materials = new sItem[1250];
+            sItem[] decorations = new sItem[500];
 
-            offset += 0xc80;
-            sItem[] materials = Kernel.ReadStructure<sItem>(PlayerAddress + offset, 640);
-
-            offset += 0x4e30;
-            sItem[] decorations = Kernel.ReadStructure<sItem>(PlayerAddress + offset, 200);
-
+            Array.Copy(itemBox, 0, consumables, 0, consumables.Length);
+            Array.Copy(itemBox, 200, ammo, 0, ammo.Length);
+            Array.Copy(itemBox, 400, materials, 0, materials.Length);
+            Array.Copy(itemBox, 1650, decorations, 0, decorations.Length);
+            
             ItemBox.Refresh(consumables, ammo, materials, decorations);
         }
 
@@ -1677,6 +1676,5 @@ namespace HunterPie.Core
         }
 
         #endregion
-
     }
 }

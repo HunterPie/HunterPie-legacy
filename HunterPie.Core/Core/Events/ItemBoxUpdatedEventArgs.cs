@@ -1,23 +1,21 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Collections.Immutable;
-using HunterPie.Core.Definitions;
 
 namespace HunterPie.Core.Events
 {
     public class ItemBoxUpdatedEventArgs : EventArgs
     {
-        public IReadOnlyDictionary<int, sItem> consumables { get; private set; }
-        public IReadOnlyDictionary<int, sItem> ammo { get; private set; }
-        public IReadOnlyDictionary<int, sItem> materials { get; private set; }
-        public IReadOnlyDictionary<int, sItem> decorations { get; private set; }
+        public IReadOnlyDictionary<int, int> consumables { get; }
+        public IReadOnlyDictionary<int, int> ammo { get; }
+        public IReadOnlyDictionary<int, int> materials { get; }
+        public IReadOnlyDictionary<int, int> decorations { get; }
 
         public ItemBoxUpdatedEventArgs(ItemBox box)
         {
-            consumables = box.consumables;
-            ammo = box.ammo;
-            materials = box.materials;
-            decorations = box.decorations;
+            consumables = box.Consumables;
+            ammo = box.Ammo;
+            materials = box.Materials;
+            decorations = box.Decorations;
         }
     }
 }

@@ -9,6 +9,7 @@ namespace HunterPie.Core
         private int _Damage;
         private byte _Weapon = 255;
 
+        // TODO: Fix this spaghetti
         public string Name
         {
             get => _Name;

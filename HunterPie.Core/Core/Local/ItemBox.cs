@@ -1,21 +1,25 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Collections.Immutable;
 using System.Linq;
 using HunterPie.Core.Definitions;
 using HunterPie.Core.Events;
+using HunterPie.Utils;
 
 namespace HunterPie.Core
 {
     public class ItemBox
     {
-        public IReadOnlyDictionary<int, sItem> consumables { get; private set; }
-        public IReadOnlyDictionary<int, sItem> ammo { get; private set; }
-        public IReadOnlyDictionary<int, sItem> materials { get; private set; }
-        public IReadOnlyDictionary<int, sItem> decorations { get; private set; }
+        private Dictionary<int, int> consumables = new Dictionary<int, int>();
+        private Dictionary<int, int> ammo = new Dictionary<int, int>();
+        private Dictionary<int, int> materials = new Dictionary<int, int>();
+        private Dictionary<int, int> decorations = new Dictionary<int, int>();
+
+        public IReadOnlyDictionary<int, int> Consumables => consumables;
+        public IReadOnlyDictionary<int, int> Ammo => ammo;
+        public IReadOnlyDictionary<int, int> Materials => materials;
+        public IReadOnlyDictionary<int, int> Decorations => decorations;
 
         public event EventHandler<ItemBoxUpdatedEventArgs> OnItemBoxUpdate;
-
 
         /// <summary>
         /// Find multiple items in the given tab
@@ -26,30 +30,27 @@ namespace HunterPie.Core
         /// </param>
         /// <param name="ids">Hashset with all the item ids to be searched for</param>
         /// <returns>List with all the items found</returns>
-        public static List<sItem> FindItemsInTab(IReadOnlyDictionary<int, sItem> tab, HashSet<int> ids)
+        public static Dictionary<int, int> FindItemsInTab(IReadOnlyDictionary<int, int> tab, HashSet<int> ids)
         {
             return ids.Where(id => tab.ContainsKey(id))
-                      .Select(id => tab[id])
-                      .ToList();
+                      .Select(id => tab[id]) as Dictionary<int, int>;
         }
-
 
         /// <summary>
         /// Find multiple items in all 4 tabs of the box
         /// </summary>
         /// <param name="ids">Item ids to be searched for in the entire box</param>
         /// <returns>List with all the items found</returns>
-        public List<sItem> FindItemsInBox(HashSet<int> ids)
+        public Dictionary<int, int> FindItemsInBox(HashSet<int> ids)
         {
-            var foundConsumables = FindItemsInTab(consumables, ids);
-            var foundAmmo = FindItemsInTab(ammo, ids);
-            var foundMaterials = FindItemsInTab(materials, ids);
-            var foundDecorations = FindItemsInTab(decorations, ids);
+            var foundConsumables = FindItemsInTab(Consumables, ids);
+            var foundAmmo = FindItemsInTab(Ammo, ids);
+            var foundMaterials = FindItemsInTab(Materials, ids);
+            var foundDecorations = FindItemsInTab(Decorations, ids);
 
             return foundConsumables.Concat(foundAmmo)
                                    .Concat(foundMaterials)
-                                   .Concat(foundDecorations)
-                                   .ToList();
+                                   .Concat(foundDecorations) as Dictionary<int, int>;
         }
 
         /// <summary>
@@ -61,23 +62,30 @@ namespace HunterPie.Core
         /// <param name="aDecorations">Array with the decorations</param>
         internal void Refresh(sItem[] aConsumables, sItem[] aAmmo, sItem[] aMaterials, sItem[] aDecorations)
         {
-            var dConsumables = aConsumables.ToImmutableDictionary(i => i.ItemId, i => i);
-            var dAmmo = aAmmo.ToImmutableDictionary(i => i.ItemId, i => i);
-            var dMaterials = aMaterials.ToImmutableDictionary(i => i.ItemId, i => i);
-            var dDecorations = aDecorations.ToImmutableDictionary(i => i.ItemId, i => i);
+            var dConsumables = aConsumables.Where(i => i.ItemId != 0)
+                .ToDictionary(i => i.ItemId, i => i.Amount);
 
-            bool updateBox = !(dConsumables.Equals(consumables)
-                && dAmmo.Equals(ammo)
-                && dMaterials.Equals(materials)
-                && dDecorations.Equals(decorations));
+            var dAmmo = aAmmo.Where(i => i.ItemId != 0)
+                .ToDictionary(i => i.ItemId, i => i.Amount);
 
-            consumables = dConsumables;
-            ammo = dAmmo;
-            materials = dMaterials;
-            decorations = dDecorations;
+            var dMaterials = aMaterials.Where(i => i.ItemId != 0)
+                .ToDictionary(i => i.ItemId, i => i.Amount);
+
+            var dDecorations = aDecorations.Where(i => i.ItemId != 0)
+                .ToDictionary(i => i.ItemId, i => i.Amount);
+
+            bool updateBox = !(dConsumables.IsEqualTo(consumables)
+                && dAmmo.IsEqualTo(ammo)
+                && dMaterials.IsEqualTo(materials)
+                && dDecorations.IsEqualTo(decorations));
 
             if (updateBox)
             {
+                consumables = dConsumables;
+                ammo = dAmmo;
+                materials = dMaterials;
+                decorations = dDecorations;
+                
                 OnItemBoxUpdate?.Invoke(this, new ItemBoxUpdatedEventArgs(this));
             }
         }
