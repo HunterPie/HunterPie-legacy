@@ -300,7 +300,7 @@
   <Abnormalities>
     <Abnormality ID="UNKNOWN_ABNORMALITY" Name="알 수 없는 버프 (ID: {AbnormalityID})"/>
     <Abnormality ID="HUNTINGHORN_000_00" Name="자기 강화"/>
-    <Abnormality ID="HUNTINGHORN_999_00" Name="공격력 UP + 튕김 무효"/>
+    <Abnormality ID="HUNTINGHORN_999_00" Name="튕겨내기 무효&amp;공격력 UP"/>
     <Abnormality ID="HUNTINGHORN_001_00" Name="공격력 UP [소]"/>
     <Abnormality ID="HUNTINGHORN_001_01" Name="공격력 UP [대]"/>
     <Abnormality ID="HUNTINGHORN_002_00" Name="공격력 UP [대]"/>
@@ -315,14 +315,15 @@
     <Abnormality ID="HUNTINGHORN_009_01" Name="방어력 UP [대]"/>
     <Abnormality ID="HUNTINGHORN_010_00" Name="방어력 UP [대]"/>
     <Abnormality ID="HUNTINGHORN_010_01" Name="방어력 UP [특대]"/>
-    <Abnormality ID="HUNTINGHORN_011_00" Name="특수장비 소비 경감 [짧음]"/>
-    <Abnormality ID="HUNTINGHORN_012_00" Name="특수장비 소비 경감 [긺]"/>
+    <Abnormality ID="HUNTINGHORN_011_00" Name="특수 장비 소비 경감 [짧음]"/>
+    <Abnormality ID="HUNTINGHORN_012_00" Name="특수 장비 소비 경감 [긺]"/>
     <Abnormality ID="HUNTINGHORN_013_00" Name="체력 회복 [소]"/>
     <Abnormality ID="HUNTINGHORN_014_00" Name="체력 회복 [대]"/>
-    <Abnormality ID="HUNTINGHORN_015_00" Name="체력 회복 [소] + 해독"/>
-    <Abnormality ID="HUNTINGHORN_016_00" Name="체력 회복 [중] + 해독"/>
-    <Abnormality ID="HUNTINGHORN_018_00" Name="체력 회복속도 UP [소]"/>
-    <Abnormality ID="HUNTINGHORN_019_00" Name="체력 회복속도 UP [대]"/>
+    <Abnormality ID="HUNTINGHORN_015_00" Name="체력 회복 [소]&amp;해독"/>
+    <Abnormality ID="HUNTINGHORN_016_00" Name="체력 회복 [중]&amp;해독"/>
+    <Abnormality ID="HUNTINGHORN_017_00" Name="체력 회복 [중]"/>
+    <Abnormality ID="HUNTINGHORN_018_00" Name="체력 회복 속도 UP [소]"/>
+    <Abnormality ID="HUNTINGHORN_019_00" Name="체력 회복 속도 UP [대]"/>
     <Abnormality ID="HUNTINGHORN_020_00" Name="청각 보호 [소]"/>
     <Abnormality ID="HUNTINGHORN_021_00" Name="청각 보호 [대]"/>
     <Abnormality ID="HUNTINGHORN_022_00" Name="정령왕의 가호"/>
@@ -330,44 +331,47 @@
     <Abnormality ID="HUNTINGHORN_024_00" Name="지형 데미지 무효"/>
     <Abnormality ID="HUNTINGHORN_025_00" Name="기절 무효"/>
     <Abnormality ID="HUNTINGHORN_026_00" Name="마비 무효"/>
-    <Abnormality ID="HUNTINGHORN_027_00" Name="내진"/>
-    <Abnormality ID="HUNTINGHORN_028_00" Name="진흙 경감 + 물가/쌓인 눈 적응"/>
-    <Abnormality ID="HUNTINGHORN_029_00" Name="불속성 방어 강화 UP [소]"/>
-    <Abnormality ID="HUNTINGHORN_029_01" Name="불속성 방어 강화 UP [대]"/>
-    <Abnormality ID="HUNTINGHORN_030_00" Name="불속성 방어 강화 UP [대]"/>
-    <Abnormality ID="HUNTINGHORN_030_01" Name="불속성 방어 강화 UP [특대]"/>
+    <Abnormality ID="HUNTINGHORN_027_00" Name="진동 무효"/>
+    <Abnormality ID="HUNTINGHORN_028_00" Name="진흙 경감&amp;물가/쌓인 눈 적응"/>
+    <Abnormality ID="HUNTINGHORN_029_00" Name="불속성 방어 강화 [소]"/>
+    <Abnormality ID="HUNTINGHORN_029_01" Name="불속성 방어 강화 [대]"/>
+    <Abnormality ID="HUNTINGHORN_030_00" Name="불속성 방어 강화 [대]"/>
+    <Abnormality ID="HUNTINGHORN_030_01" Name="불속성 방어 강화 [특대]"/>
     <Abnormality ID="HUNTINGHORN_031_00" Name="물속성 방어 강화 [소]"/>
     <Abnormality ID="HUNTINGHORN_031_01" Name="물속성 방어 강화 [대]"/>
     <Abnormality ID="HUNTINGHORN_032_00" Name="물속성 방어 강화 [대]"/>
     <Abnormality ID="HUNTINGHORN_032_01" Name="물속성 방어 강화 [특대]"/>
-    <Abnormality ID="HUNTINGHORN_033_00" Name="번개속성 방어 강화 UP [소]"/>
-    <Abnormality ID="HUNTINGHORN_033_01" Name="번개속성 방어 강화 UP [대]"/>
-    <Abnormality ID="HUNTINGHORN_034_00" Name="번개속성 방어 강화 UP [대]"/>
-    <Abnormality ID="HUNTINGHORN_034_01" Name="번개속성 방어 강화 UP [특대]"/>
-    <Abnormality ID="HUNTINGHORN_035_00" Name="얼음속성 방어 강화 UP [소]"/>
-    <Abnormality ID="HUNTINGHORN_035_01" Name="얼음속성 방어 강화 UP [대]"/>
-    <Abnormality ID="HUNTINGHORN_036_00" Name="얼음속성 방어 강화 UP [대]"/>
-    <Abnormality ID="HUNTINGHORN_036_01" Name="얼음속성 방어 강화 UP [특대]"/>
-    <Abnormality ID="HUNTINGHORN_037_00" Name="용속성 방어 강화 UP [소]"/>
-    <Abnormality ID="HUNTINGHORN_037_01" Name="용속성 방어 강화 UP [대]"/>
-    <Abnormality ID="HUNTINGHORN_038_00" Name="용속성 방어 강화 UP [대]"/>
-    <Abnormality ID="HUNTINGHORN_038_01" Name="용속성 방어 강화 UP [특대]"/>
+    <Abnormality ID="HUNTINGHORN_033_00" Name="번개속성 방어 강화 [소]"/>
+    <Abnormality ID="HUNTINGHORN_033_01" Name="번개속성 방어 강화 [대]"/>
+    <Abnormality ID="HUNTINGHORN_034_00" Name="번개속성 방어 강화 [대]"/>
+    <Abnormality ID="HUNTINGHORN_034_01" Name="번개속성 방어 강화 [특대]"/>
+    <Abnormality ID="HUNTINGHORN_035_00" Name="얼음속성 방어 강화 [소]"/>
+    <Abnormality ID="HUNTINGHORN_035_01" Name="얼음속성 방어 강화 [대]"/>
+    <Abnormality ID="HUNTINGHORN_036_00" Name="얼음속성 방어 강화 [대]"/>
+    <Abnormality ID="HUNTINGHORN_036_01" Name="얼음속성 방어 강화 [특대]"/>
+    <Abnormality ID="HUNTINGHORN_037_00" Name="용속성 방어 강화 [소]"/>
+    <Abnormality ID="HUNTINGHORN_037_01" Name="용속성 방어 강화 [대]"/>
+    <Abnormality ID="HUNTINGHORN_038_00" Name="용속성 방어 강화 [대]"/>
+    <Abnormality ID="HUNTINGHORN_038_01" Name="용속성 방어 강화 [특대]"/>
     <Abnormality ID="HUNTINGHORN_039_00" Name="속성 공격력 UP"/>
     <Abnormality ID="HUNTINGHORN_040_00" Name="속성 피해 무효"/>
-    <Abnormality ID="HUNTINGHORN_041_00" Name="향음 선율"/>
+    <Abnormality ID="HUNTINGHORN_041_00" Name="고주파"/>
     <Abnormality ID="HUNTINGHORN_042_00" Name="모든 선율 효과 연장"/>
     <Abnormality ID="HUNTINGHORN_043_00" Name="움츠리기 무효"/>
-    <Abnormality ID="HUNTINGHORN_045_00" Name="모든 속성 내성 UP"/>
+    <Abnormality ID="HUNTINGHORN_044_00" Name="공격력 UP [소]&amp;방어력 UP [소]"/>
+    <Abnormality ID="HUNTINGHORN_045_00" Name="모든 속성 내성치 UP"/>
     <Abnormality ID="HUNTINGHORN_046_00" Name="회심률 UP [소]"/>
     <Abnormality ID="HUNTINGHORN_047_00" Name="모든 상태 이상 무효"/>
-    <Abnormality ID="HUNTINGHORN_048_00" Name="청각 보호 [소] &amp; 풍압 무효"/>
-    <Abnormality ID="HUNTINGHORN_049_00" Name="상태 이상 공격 UP"/>
-    <Abnormality ID="HUNTINGHORN_051_00" Name="향주파 [타]"/>
-    <Abnormality ID="HUNTINGHORN_052_00" Name="향주파 [용]"/>
-    <Abnormality ID="HUNTINGHORN_053_00" Name="스태미나 최대치 UP + 회복"/>
+    <Abnormality ID="HUNTINGHORN_048_00" Name="청각 보호 [소]&amp;풍압 무효"/>
+    <Abnormality ID="HUNTINGHORN_049_00" Name="상태 이상 공격력 UP [소]"/>
+    <Abnormality ID="HUNTINGHORN_050_00" Name="체력 회복 [중]"/>
+    <Abnormality ID="HUNTINGHORN_051_00" Name="향주파[타]"/>
+    <Abnormality ID="HUNTINGHORN_052_00" Name="향주파[용]"/>
+    <Abnormality ID="HUNTINGHORN_053_00" Name="스태미나 최대치 UP&amp;회복"/>
     <Abnormality ID="HUNTINGHORN_054_00" Name="체력 지속 회복"/>
-    <Abnormality ID="HUNTINGHORN_055_00" Name="자기 강화 [속] + 회피 성능 UP"/>
+    <Abnormality ID="HUNTINGHORN_055_00" Name="자기 강화 [속]&amp;회피 성능 UP"/>
     <Abnormality ID="HUNTINGHORN_056_00" Name="속성계 효과 UP"/>
+    <Abnormality ID="HUNTINGHORN_057_00" Name="회피 성능 UP"/>
     <Abnormality ID="HUNTINGHORN_943_00" Name="속성계 효과 UP"/>
     <Abnormality ID="PALICO_000_00" Name="꿀벌레 근성"/>
     <Abnormality ID="PALICO_001_00" Name="공격력 UP [소]"/>
@@ -375,7 +379,7 @@
     <Abnormality ID="PALICO_003_00" Name="방어력 UP [소]"/>
     <Abnormality ID="PALICO_004_00" Name="방어력 UP [대]"/>
     <Abnormality ID="PALICO_005_00" Name="회심률 UP"/>
-    <Abnormality ID="PALICO_006_00" Name="체력 회복속도 UP"/>
+    <Abnormality ID="PALICO_006_00" Name="체력 회복 속도 UP"/>
     <Abnormality ID="PALICO_007_00" Name="체력 UP"/>
     <Abnormality ID="PALICO_008_00" Name="스태미나 소비 경감"/>
     <Abnormality ID="PALICO_009_00" Name="알 수 없는 버프"/>
@@ -383,7 +387,7 @@
     <Abnormality ID="PALICO_011_00" Name="정령왕의 가호"/>
     <Abnormality ID="PALICO_012_00" Name="기절 무효"/>
     <Abnormality ID="PALICO_013_00" Name="마비 무효"/>
-    <Abnormality ID="PALICO_014_00" Name="내진"/>
+    <Abnormality ID="PALICO_014_00" Name="진동 무효"/>
     <Abnormality ID="PALICO_015_00" Name="청각 보호"/>
     <Abnormality ID="PALICO_016_00" Name="풍압 무효"/>
     <Abnormality ID="PALICO_017_00" Name="지형 데미지 무효"/>
@@ -398,10 +402,10 @@
     <Abnormality ID="DEBUFF_007_00" Name="얼음속성 피해"/>
     <Abnormality ID="DEBUFF_008_00" Name="용속성 피해"/>
     <Abnormality ID="DEBUFF_009_00" Name="열상 상태"/>
-    <Abnormality ID="DEBUFF_010_00" Name="자연 회복속도 UP(열상 회복)"/>
+    <Abnormality ID="DEBUFF_010_00" Name="자연 회복 속도 UP(열상 회복)"/>
     <Abnormality ID="DEBUFF_011_00" Name="독기 침식 상태"/>
     <Abnormality ID="DEBUFF_012_00" Name="방어력 DOWN"/>
-    <Abnormality ID="DEBUFF_014_00" Name="속성내성 DOWN"/>
+    <Abnormality ID="DEBUFF_014_00" Name="속성 내성 DOWN"/>
     <Abnormality ID="DEBUFF_016_00" Name="아이템 사용 불가"/>
     <Abnormality ID="DEBUFF_017_00" Name="폭파 피해"/>
     <Abnormality ID="DEBUFF_020_00" Name="강폭파 피해"/>
@@ -422,13 +426,13 @@
     <Abnormality ID="MISC_016_02" Name="그레이트 경화약"/>
     <Abnormality ID="MISC_023_00" Name="쿨드링크"/>
     <Abnormality ID="MISC_024_00" Name="핫드링크"/>
-    <Abnormality ID="MISC_026_00" Name="체력 지속회복"/>
+    <Abnormality ID="MISC_026_00" Name="체력 지속 회복"/>
     <Abnormality ID="MISC_027_00" Name="추위 저항"/>
     <Abnormality ID="MISC_030_00" Name="눈사람 머리"/>
     <Abnormality ID="MISC_034_00" Name="귀신방울"/>
-    <Abnormality ID="MISC_035_00" Name="얼음속성 방어 강화 UP [대]"/>
-    <Abnormality ID="MISC_073_00" Name="공격력 &amp; 방어력 UP [소]"/>
-    <Abnormality ID="MISC_999_00" Name="식사"/>
+    <Abnormality ID="MISC_035_00" Name="얼음속성 방어 강화 [대]"/>
+    <Abnormality ID="MISC_073_00" Name="공격력 UP [소]&amp;방어력 UP [소]"/>
+    <Abnormality ID="MISC_999_00" Name="식사 불가"/>
     <Abnormality ID="GEAR_000_00" Name="귀인탄"/>
     <Abnormality ID="GEAR_001_00" Name="경화탄"/>
     <Abnormality ID="GEAR_002_00" Name="불굴"/>
@@ -442,7 +446,7 @@
     <Abnormality ID="GEAR_010_00" Name="얼음연성"/>
     <Abnormality ID="GEAR_015_00" Name="공격적인 방어"/>
     <Abnormality ID="GEAR_016_00" Name="전화위복"/>
-    <Abnormality ID="GEAR_099_00" Name="회피 복장 (공격력 UP)"/>
+    <Abnormality ID="GEAR_099_00" Name="회피 복장(공격력 UP)"/>
     <Abnormality ID="GEAR_100_00" Name="달인의 연통"/>
   </Abnormalities>
   <!-- Client localization strings -->
@@ -471,30 +475,30 @@
       <String ID="MESSAGE_MISSING_PATH" Name="게임 설치 경로를 설정하지 않으셨습니다, 지금 설정하시겠습니까?"/>
       <String ID="MESSAGE_UPLOAD_BUILD" Name="현재 캐릭터의 장비 커스텀을 Honey Hunters World에 업로드 하시겠습니까?"/>
       <!-- Console Messages -->
-      <String ID="MESSAGE_MAP_LOAD" Name="{HunterPie_Map} 로드 완료"/>
+      <String ID="MESSAGE_MAP_LOAD" Name="{HunterPie_Map} 불러오기 완료"/>
       <String ID="MESSAGE_DISCORD_CONNECTED" Name="새로운 RPC 연결 시작"/>
       <String ID="MESSAGE_DISCORD_USER_CONNECTED" Name="Discord의 {Username}와(과) 연결 완료"/>
       <String ID="MESSAGE_DISCORD_DISCONNECTED" Name="Discord와의 연결 종료"/>
       <String ID="MESSAGE_DISCORD_JOIN_REQUEST" Name="{Username}(이)가 세션 참가를 요청했습니다."/>
       <String ID="MESSAGE_DISCORD_JOINING" Name="세션에 참가 중..."/>
 
-      <String ID="MESSAGE_MONSTER_DATA_LOAD" Name="몬스터 데이터 로드 완료"/>
-      <String ID="MESSAGE_ABNORMALITIES_DATA_LOAD" Name="상태 이상 데이터 로드 완료"/>
-      <String ID="MESSAGE_PLAYER_SCANNER_INITIALIZED" Name="플레이어 메모리 스캐너 초기화"/>
+      <String ID="MESSAGE_MONSTER_DATA_LOAD" Name="몬스터 데이터 불러오기 완료"/>
+      <String ID="MESSAGE_ABNORMALITIES_DATA_LOAD" Name="상태 이상 데이터 불러오기 완료"/>
+      <String ID="MESSAGE_PLAYER_SCANNER_INITIALIZED" Name="플레이어 메모리 스캐너 실행 완료"/>
       <String ID="MESSAGE_HUNTERPIE_INITIALIZED" Name="HunterPie 초기화"/>
-      <String ID="MESSAGE_GAME_SCANNER_INITIALIZED" Name="게임 메모리 스캐너 초기화"/>
-      <String ID="MESSAGE_MONSTER_SCANNER_INITIALIZED" Name="몬스터 스캐너({MonsterNumber}) 초기화"/>
+      <String ID="MESSAGE_GAME_SCANNER_INITIALIZED" Name="게임 메모리 스캐너 실행 완료"/>
+      <String ID="MESSAGE_MONSTER_SCANNER_INITIALIZED" Name="몬스터 스캐너({MonsterNumber}) 실행 완료"/>
       <String ID="MESSAGE_GAME_SCANNER_STOP" Name="게임 스캐너 작동 중지"/>
       <!-- Warnings -->
       <String ID="MESSAGE_OFFLINEMODE_WARN" Name="HunterPie가 지금 오프라인 모드입니다."/>
       <String ID="MESSAGE_AUTOUPDATE_DISABLED_WARN" Name="자동 업데이트가 꺼져있습니다. 만약 HunterPie에 문제가 있거나 현 게임 버전을 지원하지 않을 경우, 자동 업데이트를 켜보십시오."/>
-      <String ID="MESSAGE_THEME_LOAD_WARN" Name="커스텀 테마 로드 완료!"/>
+      <String ID="MESSAGE_THEME_LOAD_WARN" Name="커스텀 테마 불러오기 완료!"/>
       <!-- Errors -->
       <String ID="MESSAGE_GAME_VERSION_UNSUPPORTED" Name="현재 게임 버전 ({GAME_VERSION})은 아직 지원되지 않습니다. 구버전이 설치되었거나 아직 지원되지 않는 버전입니다."/>
       <String ID="MESSAGE_LAUNCH_ERROR" Name="Monster Hunter World의 실행에 실패했습니다."/>
       <String ID="MESSAGE_UPDATE_ERROR" Name="HunterPie의 업데이트에 실패했습니다, 인터넷 연결 상태를 확인하세요."/>
       <String ID="MESSAGE_THEME_NOT_FOUND_ERROR" Name="테마를 찾는데 실패했습니다: {THEME_NAME}"/>
-      <String ID="MESSAGE_THEME_NOT_LOAD_ERROR" Name="커스텀 테마의 로드에 실패했습니다!"/>
+      <String ID="MESSAGE_THEME_NOT_LOAD_ERROR" Name="커스텀 테마를 불러오는데 실패했습니다!"/>
     </Console>
     <Settings>
       <!-- General -->
@@ -514,7 +518,7 @@
       <String ID="STATIC_THEMEFILE_DESC" Name="HunterPie에서 사용할 테마 파일을 선택하세요."/>
       <String ID="STATIC_GAMEPATH" Name="게임 설치 경로:"/>
       <String ID="STATIC_GAMEPATH_UNSELECTED" Name="경로 선택"/>
-      <String ID="STATIC_GAMEPATH_DESC" Name="Monster Hunter World를 실행 할 수 있는 경로를 선택하세요."/>
+      <String ID="STATIC_GAMEPATH_DESC" Name="Monster Hunter World를 실행할 수 있는 경로를 선택하세요."/>
       <String ID="STATIC_LAUNCHARGS" Name="시작 옵션"/>
       <String ID="STATIC_LAUNCHARGS_NOARGS" Name="옵션 없음"/>
       <String ID="STATIC_LAUNCHARGS_DESC" Name="시작 옵션은 게임을 시작할 때 사용됩니다, 뭘 하는건지 잘 모르겠으면 비워두십시오."/>
@@ -526,12 +530,14 @@
       <String ID="ENABLE_PEOPLE_JOIN" Name="사람들이 내 온라인 세션에 참여 요청을 할 수 있게 허용"/>
       <String ID="ENABLE_PEOPLE_JOIN_DESC" Name="옵션을 켤 경우, 사람들은 당신의 Monster Hunter 세션에 참가 요청을 보낼 수 있습니다."/>
       <!-- Overlay -->
+      <String ID="ENABLE_INITIALIZE_OVERLAY" Name="오버레이 실행"/>
+      <String ID="ENABLE_INITIALIZE_OVERLAY_DESC" Name="옵션을 켤 경우, 오버레이가 실행되고 생성됩니다. 이 옵션을 끌 경우, 모든 위젯은 실행되지 않습니다."/>
       <String ID="ENABLE_OVERLAY" Name="인-게임 오버레이 사용"/>
       <String ID="ENABLE_OVERLAY_DESC" Name="옵션을 켤 경우, 인-게임 오버레이가 표시됩니다."/>
       <String ID="ENABLE_HIDE_WHEN_UNFOCUS" Name="게임 비활성화 시 오버레이 숨기기"/>
-      <String ID="ENABLE_HIDE_WHEN_UNFOCUS_DESC" Name="옵션을 켤 경우, HunterPie 오버레이는 게임이 비활성화시 자동으로 숨겨집니다. (예시: Alt+Tab을 할 때)"/>
+      <String ID="ENABLE_HIDE_WHEN_UNFOCUS_DESC" Name="옵션을 켤 경우, HunterPie 오버레이는 게임이 비활성화 시 자동으로 숨겨집니다. (예시: Alt+Tab을 할 때)"/>
       <String ID="ENABLE_HARDWARE_ACCELERATION" Name="하드웨어 가속 사용"/>
-      <String ID="ENABLE_HARDWARE_ACCELERATION_DESC" Name="오버레이 렌더링에 그래픽 카드를 사용하도록 하드웨어 가속을 사용합니다. 비활성화 시 소프트웨어 렌더링으로 전환되며, CPU 자원을 더 많이 쓰게 됩니다, FPS에 문제가 있으면 이 옵션을 끄세요."/>
+      <String ID="ENABLE_HARDWARE_ACCELERATION_DESC" Name="그래픽 카드가 오버레이를 렌더링하도록 하드웨어 가속을 사용합니다. 비활성화 시 소프트웨어 렌더링으로 전환되며, CPU 자원을 더 많이 쓰게 됩니다, FPS에 문제가 있으면 이 옵션을 끄세요."/>
       <String ID="STATIC_ANIMATION_FPS" Name="애니메이션 프레임레이트"/>
       <String ID="STATIC_ANIMATION_FPS_DESC" Name="HunterPie의 모든 애니메이션의 프레임레이트를 조정합니다. FPS에 문제가 있으면 이 옵션의 값을 낮추세요."/>
       <String ID="STATIC_GAME_SCAN_DELAY" Name="게임 스캔 간격:"/>
@@ -541,11 +547,13 @@
       <String ID="STATIC_TOGGLE_OVERLAY" Name="오버레이 토글 (단축키):"/>
       <String ID="STATIC_TOGGLE_OVERLAY_DESC" Name="오버레이를 숨기는 단축키입니다, 변경된 단축키는 재시작 시 적용됩니다."/>
       <String ID="STATIC_TOGGLE_DESIGN" Name="디자인 모드 토글 (단축키):"/>
-      <String ID="STATIC_TOGGLE_DESIGN_DESC" Name="디자인 모드의 토글 단축키입니다, 변경된 단축키는 재시작 시 적용됩니다."/>
+      <String ID="STATIC_TOGGLE_DESIGN_DESC" Name="디자인 모드의 토글 단축키입니다."/>
       <String ID="STATIC_OVERLAY_POSITION_DESC" Name="오버레이의 위치를 변경합니다."/>
       <String ID="ENABLE_OVERLAY_FORCE_DIRECTX11_FULLSCREEN" Name="DirectX 11 전체화면 오버레이 강제 활성화"/>
-      <String ID="ENABLE_OVERLAY_FORCE_DIRECTX11_FULLSCREEN_DESC" Name="이 옵션은 HunterPie 오버레이를 DirectX 11 전체화면에서도 강제로 표시합니다."/>
+      <String ID="ENABLE_OVERLAY_FORCE_DIRECTX11_FULLSCREEN_DESC" Name="이 옵션은 HunterPie 오버레이를 DirectX 11 전체화면에서도 강제로 표시합니다. 전체화면 최적화가 활성화되어야 합니다."/>
       <!-- Monster Widget -->
+      <String ID="ENABLE_INITIALIZE_MONSTER_WIDGET" Name="몬스터 위젯 실행"/>
+      <String ID="ENABLE_INITIALIZE_MONSTER_WIDGET_DESC" Name="옵션을 끌 경우, 모든 몬스터 위젯은 생성되지 않습니다."/>
       <String ID="ENABLE_MONSTER_WIDGET" Name="몬스터 위젯 사용"/>
       <String ID="ENABLE_MONSTER_WIDGET_DESC" Name="옵션을 켤 경우, 표시할 내용이 있을 때 몬스터 위젯이 표시됩니다."/>
       <String ID="STATIC_MONSTER_HEALTH_STRING_FORMAT" Name="체력 텍스트 형식:"/>
@@ -642,6 +650,8 @@
       <String ID="ENABLE_MONSTER_STATUS_MISC" Name="기타 상태 표시"/>
       <String ID="ENABLE_MONSTER_STATUS_ENRAGE" Name="분노 표시"/>
       <!-- Player Widget -->
+      <String ID="ENABLE_INITIALIZE_PLAYER_WIDGET" Name="플레이어 위젯 실행"/>
+      <String ID="ENABLE_INITIALIZE_PLAYER_WIDGET_DESC" Name="옵션을 끌 경우, 모든 플레이어 위젯은 생성되지 않습니다."/>
       <String ID="ENABLE_PLAYER_WIDGET" Name="플레이어 위젯 사용"/>
       <String ID="ENABLE_PLAYER_WIDGET_DESC" Name="옵션을 켤 경우, 표시할 내용이 있으면 플레이어 위젯을 표시합니다."/>
       <String ID="STATIC_PLAYER_NAME_STRING_FORMAT" Name="이름 문자열 형식:"/>
@@ -650,20 +660,24 @@
       <String ID="ENABLE_PLAYER_HIDE_IN_VILLAGES_DESC" Name="옵션을 켤 경우, 집회 구역과 마이 하우스, 아스테라 같은 안전한 지역으로 이동하면 플레이어 위젯을 숨깁니다."/>
       <String ID="STATIC_PLAYER_POSITION_DESC" Name="플레이어 위젯의 위치를 변경합니다."/>
       <!-- Harvest Box Widget -->
-      <String ID="ENABLE_HARVEST_BOX" Name="수확 박스 위젯 사용"/>
-      <String ID="ENABLE_HARVEST_BOX_DESC" Name="옵션을 켤 경우, 표시할 내용이 있으면 수확 박스 위젯을 표시합니다."/>
+      <String ID="ENABLE_INITIALIZE_HARVEST_BOX" Name="수확 상자 위젯 실행"/>
+      <String ID="ENABLE_INITIALIZE_HARVEST_BOX_DESC" Name="옵션을 끌 경우, 수확 상자 위젯은 생성되지 않습니다."/>
+      <String ID="ENABLE_HARVEST_BOX" Name="수확 상자 위젯 사용"/>
+      <String ID="ENABLE_HARVEST_BOX_DESC" Name="옵션을 켤 경우, 표시할 내용이 있으면 수확 상자 위젯을 표시합니다."/>
       <String ID="ENABLE_STEAM_TRACKER" Name="증기 기관 추적기 표시"/>
       <String ID="ENABLE_STEAM_TRACKER_DESC" Name="옵션을 켤 경우, 위젯 하단에 증기 기관 추적기가 표시됩니다."/>
-      <String ID="ENABLE_ARGOSY_TRACKER" Name="교역선 추적기"/>
+      <String ID="ENABLE_ARGOSY_TRACKER" Name="교역선 추적기 표시"/>
       <String ID="ENABLE_ARGOSY_TRACKER_DESC" Name="옵션을 켤 경우, 위젯 하단에 교역선 추적기가 표시됩니다."/>
-      <String ID="ENABLE_TAILRAIDERS_TRACKER" Name="동료탐험대 추적기"/>
+      <String ID="ENABLE_TAILRAIDERS_TRACKER" Name="동료탐험대 추적기 표시"/>
       <String ID="ENABLE_TAILRAIDERS_TRACKER_DESC" Name="옵션을 켤 경우, 위젯 하단에 동료탐험대 추적기가 표시됩니다"/>
-      <String ID="ENABLE_HARVEST_BOX_EVERYWHERE" Name="수확 박스 위젯을 어디에서나 표시"/>
+      <String ID="ENABLE_HARVEST_BOX_EVERYWHERE" Name="수확 상자 위젯을 어디에서나 표시"/>
       <String ID="ENABLE_HARVEST_BOX_EVERYWHERE_DESC" Name="옵션을 켤 경우, 위젯은 탐색과 인도하는 땅을 포함한 모든 곳에서 표시됩니다."/>
-      <String ID="STATIC_HARVEST_BOX_POSITION_DESC" Name="수확 박스 위젯의 위치를 변경합니다."/>
+      <String ID="STATIC_HARVEST_BOX_POSITION_DESC" Name="수확 상자 위젯의 위치를 변경합니다."/>
       <String ID="ENABLE_HARVEST_BOX_COMPACT_MODE" Name="소형 모드 사용"/>
-      <String ID="ENABLE_HARVEST_BOX_COMPACT_MODE_DESC" Name="옵션을 켤 경우, 수확 박스 위젯에 소형 디자인을 사용합니다."/>
+      <String ID="ENABLE_HARVEST_BOX_COMPACT_MODE_DESC" Name="옵션을 켤 경우, 수확 상자 위젯에 소형 디자인을 사용합니다."/>
       <!-- Damage Meter -->
+      <String ID="ENABLE_INITIALIZE_METER" Name="데미지 미터기 위젯 실행"/>
+      <String ID="ENABLE_INITIALIZE_METER_DESC" Name="옵션을 끌 경우, 데미지 미터기 위젯은 생성되지 않습니다."/>
       <String ID="ENABLE_METER" Name="데미지 미터기 위젯 사용"/>
       <String ID="ENABLE_METER_DESC" Name="옵션을 켤 경우, 표시할 내용이 있으면 데미지 미터기 위젯을 표시합니다."/>
       <String ID="ENABLE_TIMER" Name="타이머 사용"/>
@@ -711,6 +725,8 @@
       <String ID="ENABLE_SHOW_ABNORM_NAMES" Name="효과 이름 표시"/>
       <String ID="ENABLE_SHOW_ABNORM_NAMES_DESC" Name="옵션을 켤 경우, 효과의 이름이 표시됩니다."/>
       <!-- Specialized Tool Widget-->
+      <String ID="ENABLE_INITIALIZE_SPEC_TOOL" Name="특수 장비 위젯 실행"/>
+      <String ID="ENABLE_INITIALIZE_SPEC_TOOL_DESC" Name="옵션을 끌 경우, 특수 장비 위젯이 생성되지 않습니다."/>
       <String ID="STATIC_PRIMARY_SPEC_TOOL" Name="첫번째 특수 장비"/>
       <String ID="STATIC_SECONDARY_SPEC_TOOL" Name="두번째 특수 장비"/>
       <String ID="ENABLE_PRIMARY_SPEC_TOOL" Name="위젯 사용"/>
@@ -721,6 +737,8 @@
       <String ID="STATIC_PRIMARY_SPEC_TOOL_POSITION_DESC" Name="첫번째 특수 장비 위젯의 위치를 변경합니다."/>
       <String ID="STATIC_SECONDARY_SPEC_TOOL_POSITION_DESC" Name="두번째 특수 장비 위젯의 위치를 변경합니다."/>
       <!-- Class Widget -->
+      <String ID="ENABLE_INITIALIZE_CLASS_HELPER" Name="무기 위젯 실행"/>
+      <String ID="ENABLE_INITIALIZE_CLASS_HELPER_DESC" Name="옵션을 끌 경우, 모든 무기 위젯은 실행되지 않습니다."/>
       <String ID="ENABLE_GREATSWORD_HELPER" Name="대검 위젯 사용"/>
       <String ID="ENABLE_GREATSWORD_HELPER_DESC" Name="옵션을 켤 경우, 대검을 장착하면 대검 위젯이 표시됩니다."/>
       <String ID="ENABLE_INSECT_GLAIVE_HELPER" Name="조충곤 위젯 사용"/>
@@ -747,7 +765,7 @@
       <String ID="ENABLE_HEAVYBOWGUN_HELPER_DESC" Name="옵션을 켤 경우, 헤비보우건을 장착하면 헤비보우건 위젯이 표시됩니다."/>
       <String ID="ENABLE_LIGHTBOWGUN_HELPER" Name="라이트보우건 위젯 사용"/>
       <String ID="ENABLE_LIGHTBOWGUN_HELPER_DESC" Name="옵션을 켤 경우, 라이트보우건을 장착하면 라이트보우건 위젯이 표시됩니다."/>
-      <String ID="STATIC_CLASSES_BETA_WARNING" Name="주의: 무기별 위젯은 아직 개발 단계에 있으며, 추후 더 많은 무기들이 지원 예정에 있습니다. 무기별 위젯 세팅이 가능하며, 무기에 따라 위젯의 크기나 위치를 다르게 설정할 수 있습니다. 디자인 모드를 활용하여 크기나 위치를 조정하세요."/>
+      <String ID="STATIC_CLASSES_BETA_WARNING" Name="주의: 무기 위젯은 아직 개발 단계에 있으며, 추후 더 많은 무기들이 지원 예정에 있습니다. 무기별 위젯 세팅이 가능하며, 무기에 따라 위젯의 크기나 위치를 다르게 설정할 수 있습니다. 디자인 모드를 활용하여 크기나 위치를 조정하세요."/>
       <!-- Links -->
       <String ID="STATIC_HUNTERPIE_WIKI" Name="문서"/>
       <String ID="STATIC_HUNTERPIE_WIKI_DESC" Name="HunterPie의 공식 문서입니다."/>
@@ -761,12 +779,12 @@
       <!-- Debug -->
       <String ID="ENABLE_DEBUG_MESSAGES" Name="디버그 메시지 활성화"/>
       <String ID="ENABLE_DEBUG_MESSAGES_DESC" Name="디버그 메시지를 활성화합니다. 개발 도구의 일부분이니, 자신이 무엇을 하는지 모르겠다면 이 옵션을 켜지 마십시오."/>
-      <String ID="ENABLE_UNKNOWN_AILMENTS" Name="알려지지 않은 몬스터의 수치 표시"/>
-      <String ID="ENABLE_UNKNOWN_AILMENTS_DESC" Name="알려지지 않은 몬스터의 수치를 표시합니다. 개발 도구의 일부분이니, 자신이 무엇을 하는지 모르겠다면 이 옵션을 켜지 마십시오."/>
-      <String ID="ENABLE_LOAD_CUSTOM_DATA" Name="커스텀 몬스터 데이터 로드"/>
+      <String ID="ENABLE_UNKNOWN_AILMENTS" Name="알 수 없는 몬스터의 상태 이상 표시"/>
+      <String ID="ENABLE_UNKNOWN_AILMENTS_DESC" Name="알 수 없는 몬스터의 상태를 표시합니다. 개발 도구의 일부분이니, 자신이 무엇을 하는지 모르겠다면 이 옵션을 켜지 마십시오."/>
+      <String ID="ENABLE_LOAD_CUSTOM_DATA" Name="커스텀 몬스터 데이터 불러오기"/>
       <String ID="ENABLE_LOAD_CUSTOM_DATA_DESC" Name="옵션을 켤 경우, HunterPie는 커스텀 몬스터 데이터 불러오기를 시도합니다. 개발 도구의 일부분이니, 자신이 무엇을 하는지 모르겠다면 이 옵션을 켜지 마십시오."/>
       <String ID="ENABLE_SEND_CRASH_TO_DEV" Name="개발자에게 충돌 오류 보내기"/>
-      <String ID="ENABLE_SEND_CRASH_TO_DEV_DESC" Name="옵션을 켤 경우, 개발자에게 충돌 오류 로그파일을 보냅니다."/>
+      <String ID="ENABLE_SEND_CRASH_TO_DEV_DESC" Name="옵션을 켤 경우, 자동으로 개발자에게 충돌 오류 로그 파일을 보냅니다. 이 옵션을 끌 수 있지만, 옵션을 켜면 버그를 빨리 수정하는데 도움이 됩니다."/>
       <String ID="STATIC_LOAD_CUSTOM_DATA_PATH" Name="커스텀 몬스터 데이터 파일:"/>
       <String ID="STATIC_LOAD_CUSTOM_DATA_PATH_DESC" Name="커스텀 몬스터 데이터 파일의 경로를 선택하세요."/>
       <!-- Generics -->
@@ -783,7 +801,7 @@
       <String ID="STATIC_OVERLAY_SETTINGS" Name="오버레이"/>
       <String ID="STATIC_PLAYER_SETTINGS" Name="플레이어 위젯"/>
       <String ID="STATIC_MONSTERS_SETTINGS" Name="몬스터 위젯"/>
-      <String ID="STATIC_HARVEST_BOX_SETTINGS" Name="수확 박스 위젯"/>
+      <String ID="STATIC_HARVEST_BOX_SETTINGS" Name="수확 상자 위젯"/>
       <String ID="STATIC_DAMAGE_METER_SETTINGS" Name="데미지 미터기 위젯"/>
       <String ID="STATIC_ABNORM_BAR_SETTINGS" Name="효과 트레이"/>
       <String ID="STATIC_SPECIALIZED_TOOLS_SETTINGS" Name="특수 장비"/>
@@ -792,7 +810,7 @@
       <String ID="STATIC_DEBUG_SETTINGS" Name="디버그"/>
     </Settings>
     <Overlay>
-      <String ID="STATIC_HARVEST_BOX_TITLE" Name="수확 박스"/>
+      <String ID="STATIC_HARVEST_BOX_TITLE" Name="수확 상자"/>
     </Overlay>
     <Notifications>
       <String ID="STATIC_DISCORD_JOIN_REQUEST" Name="{Username}(이)가 당신의 세션에 참가하려 합니다, 수락하시겠습니까?"/>
@@ -810,7 +828,7 @@
       <String ID="RPC_DESCRIPTION_IN_LOADING_SCREEN" Name="로딩 화면"/>
       <String ID="RPC_DESCRIPTION_IN_TOWN" Name="대기 중"/>
       <String ID="RPC_DESCRIPTION_EXPLORING" Name="탐색 중"/>
-      <String ID="RPC_DESCRIPTION_HUNTING" Name="사냥 중 {Monster} ({Health})"/>
+      <String ID="RPC_DESCRIPTION_HUNTING" Name="{Monster} 사냥 중 ({Health})"/>
       <String ID="RPC_DESCRIPTION_TRAINING" Name="훈련 구역"/>
       <String ID="RPC_STATE_LOBBY" Name="집회 구역"/>
       <String ID="RPC_STATE_PARTY" Name="파티"/>
