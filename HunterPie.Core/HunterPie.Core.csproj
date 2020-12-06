@@ -99,6 +99,7 @@
     <Compile Include="Core\Events\HuntingHornNoteEventArgs.cs" />
     <Compile Include="Core\Events\HuntingHornSongCastEventArgs.cs" />
     <Compile Include="Core\Events\HuntingHornSongEventArgs.cs" />
+    <Compile Include="Core\Events\ItemBoxUpdatedEventArgs.cs" />
     <Compile Include="Core\Events\InventoryUpdatedEventArgs.cs" />
     <Compile Include="Core\Events\JobEventArgs.cs" />
     <Compile Include="Core\Events\MantleEventArgs.cs" />
@@ -128,6 +129,7 @@
     <Compile Include="Core\Local\Data.cs" />
     <Compile Include="Core\Local\HarvestBox.cs" />
     <Compile Include="Core\Local\HealthComponent.cs" />
+    <Compile Include="Core\Local\ItemBox.cs" />
     <Compile Include="Core\Local\Inventory.cs" />
     <Compile Include="Core\Local\Jobs\Bow.cs" />
     <Compile Include="Core\Local\Jobs\ChargeBlade.cs" />
@@ -192,6 +194,9 @@
   <ItemGroup>
     <PackageReference Include="Newtonsoft.Json">
       <Version>12.0.3</Version>
+    </PackageReference>
+    <PackageReference Include="System.Collections.Immutable">
+      <Version>5.0.0</Version>
     </PackageReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

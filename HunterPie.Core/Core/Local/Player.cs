@@ -339,6 +339,11 @@ namespace HunterPie.Core
         public readonly Inventory Inventory = new Inventory();
 
         /// <summary>
+        /// Player item box
+        /// </summary>
+        public readonly ItemBox ItemBox = new ItemBox();
+
+        /// <summary>
         /// Player current party
         /// </summary>
         public readonly Party PlayerParty = new Party();
@@ -740,6 +745,7 @@ namespace HunterPie.Core
                     GetPlayerAbnormalities();
                     GetJobInformation();
                     GetPlayerPosition();
+                    GetItemBox();
                 }
                 GetSessionId();
                 GetEquipmentAddress();
@@ -789,9 +795,27 @@ namespace HunterPie.Core
         private void GetPlayerPlaytime() => PlayTime = Kernel.Read<int>(LEVEL_ADDRESS + 0x10);
 
         private void GetPlayerInventory()
-        {            
+        {
             sItem[] inventoryItems = Kernel.ReadStructure<sItem>(PlayerAddress + 0x38080, 40);
             Inventory.RefreshPouch(inventoryItems);
+        }
+
+        private void GetItemBox()
+        {
+            // I think this changes. I had a different value before the 12/2 update
+            int offset = 0x38a08;
+            sItem[] consumables = Kernel.ReadStructure<sItem>(PlayerAddress + offset, 150);
+
+            offset += 0xc80;
+            sItem[] ammo = Kernel.ReadStructure<sItem>(PlayerAddress + offset, 100);
+
+            offset += 0xc80;
+            sItem[] materials = Kernel.ReadStructure<sItem>(PlayerAddress + offset, 640);
+
+            offset += 0x4e30;
+            sItem[] decorations = Kernel.ReadStructure<sItem>(PlayerAddress + offset, 200);
+
+            ItemBox.Refresh(consumables, ammo, materials, decorations);
         }
 
         private void GetPlayerPosition()
