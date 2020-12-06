@@ -249,7 +249,7 @@ namespace HunterPie.Core
 
         private void GetWorldCurrentTime()
         {
-            long address = Kernel.Read<long>(Address.Addresses["BASE"] + Address.Addresses["WORLD_DATA_OFFSET"]);
+            long address = Kernel.Read<long>(Address.GetAddress("BASE") + Address.GetAddress("WORLD_DATA_OFFSET"));
             float time = Kernel.Read<float>(address + 0x38);
             
             if (time.IsWithin(17, 18.99f))

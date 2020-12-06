@@ -478,7 +478,7 @@ namespace HunterPie.Core
         */
         public GameStructs.Gear GetPlayerGear()
         {
-            long PlayerGearBase = Kernel.ReadMultilevelPtr(Address.Addresses["BASE"] + Address.Addresses["EQUIPMENT_OFFSET"], Address.Offsets["PlayerGearOffsets"]);
+            long PlayerGearBase = Kernel.ReadMultilevelPtr(Address.GetAddress("BASE") + Address.GetAddress("EQUIPMENT_OFFSET"), Address.GetOffsets("PlayerGearOffsets"));
 
             // Helm
             GameStructs.Armor Helm = new GameStructs.Armor()
@@ -760,7 +760,7 @@ namespace HunterPie.Core
                 LEVEL_ADDRESS = 0;
                 return false;
             }
-            long FirstSaveAddress = Kernel.ReadMultilevelPtr(Address.Addresses["BASE"] + Address.Addresses["LEVEL_OFFSET"], Address.Offsets["LevelOffsets"]);
+            long FirstSaveAddress = Kernel.ReadMultilevelPtr(Address.GetAddress("BASE") + Address.GetAddress("LEVEL_OFFSET"), Address.GetOffsets("LevelOffsets"));
             uint CurrentSaveSlot = Kernel.Read<uint>(FirstSaveAddress + 0x44);
             long NextPlayerSave = 0x27E9F0;
             long CurrentPlayerSaveHeader = Kernel.Read<long>(FirstSaveAddress) + NextPlayerSave * CurrentSaveSlot;
@@ -796,14 +796,14 @@ namespace HunterPie.Core
 
         private void GetPlayerPosition()
         {
-            long address = Kernel.ReadMultilevelPtr(Address.Addresses["BASE"] + Address.Addresses["EQUIPMENT_OFFSET"], Address.Offsets["PlayerPositionOffsets"]);
+            long address = Kernel.ReadMultilevelPtr(Address.GetAddress("BASE") + Address.GetAddress("EQUIPMENT_OFFSET"), Address.GetOffsets("PlayerPositionOffsets"));
             sVector3 vector3 = Kernel.ReadStructure<sVector3>(address);
             Position.Update(vector3);
         }
 
         private void GetZoneId()
         {
-            long ZoneAddress = Kernel.ReadMultilevelPtr(Address.Addresses["BASE"] + Address.Addresses["ZONE_OFFSET"], Address.Offsets["ZoneOffsets"]);
+            long ZoneAddress = Kernel.ReadMultilevelPtr(Address.GetAddress("BASE") + Address.GetAddress("ZONE_OFFSET"), Address.GetOffsets("ZoneOffsets"));
             int zoneId = Kernel.Read<int>(ZoneAddress);
             if (zoneId != ZoneID)
             {
@@ -816,7 +816,7 @@ namespace HunterPie.Core
 
         private void GetPlayerBasicInfo()
         {
-            long address = Kernel.ReadMultilevelPtr(Address.Addresses["BASE"] + Address.Addresses["EQUIPMENT_OFFSET"], Address.Offsets["PlayerBasicInformationOffsets"]);
+            long address = Kernel.ReadMultilevelPtr(Address.GetAddress("BASE") + Address.GetAddress("EQUIPMENT_OFFSET"), Address.GetOffsets("PlayerBasicInformationOffsets"));
 
             GetPlayerHealth(address);
 
@@ -836,7 +836,7 @@ namespace HunterPie.Core
             // Hacky way to update the eat timer
             if (!InHarvestZone)
             {
-                long EatTimerAddress = Kernel.ReadMultilevelPtr(Address.Addresses["BASE"] + Address.Addresses["CANTEEN_OFFSET"], Address.Offsets["PlayerCanteenTimer"]);
+                long EatTimerAddress = Kernel.ReadMultilevelPtr(Address.GetAddress("BASE") + Address.GetAddress("CANTEEN_OFFSET"), Address.GetOffsets("PlayerCanteenTimer"));
                 UpdateAbnormality(AbnormalityData.MiscAbnormalities.Where(a => a.Id == 999).FirstOrDefault(), EatTimerAddress);
             }
             GetPlayerAilment(address);
@@ -844,7 +844,7 @@ namespace HunterPie.Core
 
         private void GetPlayerHealth(long address)
         {
-            long cGuiHealthAddress = Kernel.ReadMultilevelPtr(Address.Addresses["BASE"] + Address.Addresses["HUD_DATA_OFFSET"], Address.Offsets["gHudHealthBarOffsets"]);
+            long cGuiHealthAddress = Kernel.ReadMultilevelPtr(Address.GetAddress("BASE") + Address.GetAddress("HUD_DATA_OFFSET"), Address.GetOffsets("gHudHealthBarOffsets"));
 
             sHealingData[] healingArray = Kernel.ReadStructure<sHealingData>(Kernel.Read<long>(address + 0x30) + 0xEBB0, 4);
 
@@ -900,8 +900,8 @@ namespace HunterPie.Core
 
         private void GetPlayerFoodSkills()
         {
-            long address = Kernel.ReadMultilevelPtr(Address.Addresses["BASE"] + Address.Addresses["PLAYER_DATA_OFFSET"],
-                Address.Offsets["FoodDataOffsets"]);
+            long address = Kernel.ReadMultilevelPtr(Address.GetAddress("BASE") + Address.GetAddress("PLAYER_DATA_OFFSET"),
+                Address.GetOffsets("FoodDataOffsets"));
 
             FoodData = Kernel.ReadStructure<sFoodData>(address);
 
@@ -923,7 +923,7 @@ namespace HunterPie.Core
 
         private void GetPlayerStamina(long address)
         {
-            long cGuiStaminaAddress = Kernel.ReadMultilevelPtr(Address.Addresses["BASE"] + Address.Addresses["HUD_DATA_OFFSET"], Address.Offsets["gHudStaminaBarOffsets"]);
+            long cGuiStaminaAddress = Kernel.ReadMultilevelPtr(Address.GetAddress("BASE") + Address.GetAddress("HUD_DATA_OFFSET"), Address.GetOffsets("gHudStaminaBarOffsets"));
 
             Stamina.Update(
                 maxStamina: Kernel.Read<float>(address + 0x144),
@@ -980,16 +980,16 @@ namespace HunterPie.Core
 
         private void GetWeaponId()
         {
-            long address = Address.Addresses["BASE"] + Address.Addresses["WEAPON_OFFSET"];
-            address = Kernel.ReadMultilevelPtr(address, Address.Offsets["WeaponOffsets"]);
+            long address = Address.GetAddress("BASE") + Address.GetAddress("WEAPON_OFFSET");
+            address = Kernel.ReadMultilevelPtr(address, Address.GetOffsets("WeaponOffsets"));
             PlayerStructAddress = address;
             WeaponID = Kernel.Read<byte>(address);
         }
 
         private void GetSessionId()
         {
-            long address = Address.Addresses["BASE"] + Address.Addresses["SESSION_OFFSET"];
-            address = Kernel.ReadMultilevelPtr(address, Address.Offsets["SessionOffsets"]);
+            long address = Address.GetAddress("BASE") + Address.GetAddress("SESSION_OFFSET");
+            address = Kernel.ReadMultilevelPtr(address, Address.GetOffsets("SessionOffsets"));
             SESSION_ADDRESS = address;
             SessionID = Kernel.ReadString(SESSION_ADDRESS, 12);
         }
@@ -1003,8 +1003,8 @@ namespace HunterPie.Core
 
         private void GetEquipmentAddress()
         {
-            long address = Address.Addresses["BASE"] + Address.Addresses["EQUIPMENT_OFFSET"];
-            address = Kernel.ReadMultilevelPtr(address, Address.Offsets["EquipmentOffsets"]);
+            long address = Address.GetAddress("BASE") + Address.GetAddress("EQUIPMENT_OFFSET");
+            address = Kernel.ReadMultilevelPtr(address, Address.GetOffsets("EquipmentOffsets"));
             if (EQUIPMENT_ADDRESS != address) Debugger.Debug($"New equipment address found -> 0x{address:X}");
             EQUIPMENT_ADDRESS = address;
         }
@@ -1046,15 +1046,15 @@ namespace HunterPie.Core
 
         private void GetPlayerSkills()
         {
-            long address = Kernel.ReadMultilevelPtr(Address.Addresses["BASE"] + Address.Addresses["ABNORMALITY_OFFSET"], Address.Offsets["SkillOffsets"]);
+            long address = Kernel.ReadMultilevelPtr(Address.GetAddress("BASE") + Address.GetAddress("ABNORMALITY_OFFSET"), Address.GetOffsets("SkillOffsets"));
             Skills = Kernel.ReadStructure<sPlayerSkill>(address, 226);
         }
 
         private void GetParty()
         {
 
-            long address = Address.Addresses["BASE"] + Address.Addresses["PARTY_OFFSET"];
-            long PartyContainer = Kernel.ReadMultilevelPtr(address, Address.Offsets["PartyOffsets"]) - 0x22B7;
+            long address = Address.GetAddress("BASE") + Address.GetAddress("PARTY_OFFSET");
+            long PartyContainer = Kernel.ReadMultilevelPtr(address, Address.GetOffsets("PartyOffsets")) - 0x22B7;
             if (InPeaceZone)
             {
                 PlayerParty.LobbySize = Kernel.Read<int>(PartyContainer - 0xA961);
@@ -1098,7 +1098,7 @@ namespace HunterPie.Core
 
         private void GetQuestElapsedTime()
         {
-            long TimerAddress = Kernel.ReadMultilevelPtr(Address.Addresses["BASE"] + Address.Addresses["ABNORMALITY_OFFSET"], Address.Offsets["AbnormalityOffsets"]);
+            long TimerAddress = Kernel.ReadMultilevelPtr(Address.GetAddress("BASE") + Address.GetAddress("ABNORMALITY_OFFSET"), Address.GetOffsets("AbnormalityOffsets"));
             float Timer = Kernel.Read<float>(TimerAddress + 0xC24);
             PlayerParty.ShowDPS = true;
             if (Timer > 0)
@@ -1128,7 +1128,7 @@ namespace HunterPie.Core
 
         private int GetPartyMemberDamage(int playerIndex)
         {
-            long DPSAddress = Kernel.ReadMultilevelPtr(Address.Addresses["BASE"] + Address.Addresses["DAMAGE_OFFSET"], Address.Offsets["DamageOffsets"]);
+            long DPSAddress = Kernel.ReadMultilevelPtr(Address.GetAddress("BASE") + Address.GetAddress("DAMAGE_OFFSET"), Address.GetOffsets("DamageOffsets"));
             return Kernel.Read<int>(DPSAddress + (0x2A0 * playerIndex));
         }
 
@@ -1198,7 +1198,7 @@ namespace HunterPie.Core
                 return;
             }
             long abnormalityBaseAddress = Kernel.ReadMultilevelPtr(
-                Address.Addresses["BASE"] + Address.Addresses["ABNORMALITY_OFFSET"], Address.Offsets["AbnormalityOffsets"]);
+                Address.GetAddress("BASE") + Address.GetAddress("ABNORMALITY_OFFSET"), Address.GetOffsets("AbnormalityOffsets"));
 
             float[] abnormDurationArray = Kernel.ReadStructure<float>(abnormalityBaseAddress + 0x38, 75);
             GetPlayerHuntingHornAbnormalities(abnormalityBaseAddress, abnormDurationArray);
@@ -1243,8 +1243,8 @@ namespace HunterPie.Core
         private void GetPlayerGearAbnormalities(long abnormalityBaseAddress)
         {
             long abnormalityGearBase = Kernel.ReadMultilevelPtr(
-                Address.Addresses["BASE"] + Address.Addresses["ABNORMALITY_OFFSET"],
-                Address.Offsets["AbnormalityGearOffsets"]);
+                Address.GetAddress("BASE") + Address.GetAddress("ABNORMALITY_OFFSET"),
+                Address.GetOffsets("AbnormalityGearOffsets"));
             foreach (AbnormalityInfo abnormality in AbnormalityData.GearAbnormalities)
             {
                 UpdateAbnormality(abnormality, (abnormality.IsGearBuff ? abnormalityGearBase : abnormalityBaseAddress));
@@ -1324,10 +1324,10 @@ namespace HunterPie.Core
             {
                 return;
             }
-            long AbnormAddress = Kernel.ReadMultilevelPtr(Address.Addresses["BASE"] + Address.Addresses["ABNORMALITY_OFFSET"], Address.Offsets["AbnormalityOffsets"]);
+            long AbnormAddress = Kernel.ReadMultilevelPtr(Address.GetAddress("BASE") + Address.GetAddress("ABNORMALITY_OFFSET"), Address.GetOffsets("AbnormalityOffsets"));
             bool HasSafiBuff = Kernel.Read<int>(AbnormAddress + 0xA04) >= 1;
             int SafiCounter = HasSafiBuff ? Kernel.Read<int>(AbnormAddress + 0x7A8) : -1;
-            long weaponAddress = Kernel.ReadMultilevelPtr(Address.Addresses["BASE"] + Address.Addresses["WEAPON_MECHANICS_OFFSET"], Address.Offsets["WeaponMechanicsOffsets"]);
+            long weaponAddress = Kernel.ReadMultilevelPtr(Address.GetAddress("BASE") + Address.GetAddress("WEAPON_MECHANICS_OFFSET"), Address.GetOffsets("WeaponMechanicsOffsets"));
             switch ((Classes)WeaponID)
             {
                 case Classes.Greatsword:
@@ -1397,7 +1397,7 @@ namespace HunterPie.Core
 
         private void GetWeaponSharpness(long weaponAddress)
         {
-            long weaponDataPtr = Kernel.ReadMultilevelPtr(Address.Addresses["BASE"] + Address.Addresses["WEAPON_DATA_OFFSET"], Address.Offsets["WeaponDataOffsets"]);
+            long weaponDataPtr = Kernel.ReadMultilevelPtr(Address.GetAddress("BASE") + Address.GetAddress("WEAPON_DATA_OFFSET"), Address.GetOffsets("WeaponDataOffsets"));
             int rcx = Kernel.Read<int>(weaponAddress - 0x236C + 0x1D0C);
             // weaponDataPtr is our rax
             // mov  rax,[rax+rcx*8] ; This will give us the pointer to the weapon sharpness array

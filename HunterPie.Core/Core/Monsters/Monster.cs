@@ -374,9 +374,9 @@ namespace HunterPie.Core
 
         private void GetMonsterAddress()
         {
-            long address = Address.Addresses["BASE"] + Address.Addresses["MONSTER_OFFSET"];
+            long address = Address.GetAddress("BASE") + Address.GetAddress("MONSTER_OFFSET");
             // This will give us the third monster's address, so we can find the second and first monster with it
-            long ThirdMonsterAddress = Kernel.ReadMultilevelPtr(address, Address.Offsets["MonsterOffsets"]);
+            long ThirdMonsterAddress = Kernel.ReadMultilevelPtr(address, Address.GetOffsets("MonsterOffsets"));
             switch (MonsterNumber)
             {
                 case 3:
@@ -442,7 +442,7 @@ namespace HunterPie.Core
                     {
                         if (!MonsterEm.StartsWith("ems"))
                         {
-                            Debugger.Error($"Unknown Monster Detected: ID:{GameId} | ems: {MonsterEm}");
+                            Debugger.Debug($"Unknown Monster Detected: ID:{GameId} | ems: {MonsterEm}");
                         }
                         Id = null;
                         Health = 0;
@@ -453,7 +453,8 @@ namespace HunterPie.Core
                     else
                     {
                         GetMonsterHealth();
-                        if (Id != MonsterInfo.Em && Health > 0) Debugger.Debug($"Found new monster ID: {GameId} ({MonsterEm}) #{MonsterNumber} @ 0x{MonsterAddress:X}");
+                        if (Id != MonsterInfo.Em && Health > 0)
+                            Debugger.Debug($"Found new monster ID: {GameId} ({MonsterEm}) #{MonsterNumber} @ 0x{MonsterAddress:X}");
                         Id = MonsterInfo.Em;
                         return;
                     }
@@ -547,7 +548,7 @@ namespace HunterPie.Core
         {
             if (UserSettings.PlayerConfig.Overlay.MonstersComponent.UseLockonInsteadOfPin)
             {
-                long LockonAddress = Kernel.ReadMultilevelPtr(Address.Addresses["BASE"] + Address.Addresses["EQUIPMENT_OFFSET"], Address.Offsets["PlayerLockonOffsets"]);
+                long LockonAddress = Kernel.ReadMultilevelPtr(Address.GetAddress("BASE") + Address.GetAddress("EQUIPMENT_OFFSET"), Address.GetOffsets("PlayerLockonOffsets"));
                 
                 // This will give us the monster target index
                 int MonsterLockonIndex = Kernel.Read<int>(LockonAddress - 0x7C);
@@ -598,8 +599,8 @@ namespace HunterPie.Core
             }
             else
             {
-                long TargettedMonsterAddress = Kernel.ReadMultilevelPtr(Address.Addresses["BASE"] + Address.Addresses["MONSTER_SELECTED_OFFSET"], Address.Offsets["MonsterSelectedOffsets"]);
-                long selectedPtr = Kernel.Read<long>(Address.Addresses["BASE"] + Address.Addresses["MONSTER_TARGETED_OFFSET"]); //probably want an offset for this
+                long TargettedMonsterAddress = Kernel.ReadMultilevelPtr(Address.GetAddress("BASE") + Address.GetAddress("MONSTER_SELECTED_OFFSET"), Address.GetOffsets("MonsterSelectedOffsets"));
+                long selectedPtr = Kernel.Read<long>(Address.GetAddress("BASE") + Address.GetAddress("MONSTER_TARGETED_OFFSET")); //probably want an offset for this
                 bool isSelect = Kernel.Read<long>(selectedPtr + 0x128) != 0x0 && Kernel.Read<long>(selectedPtr + 0x130) != 0x0 && Kernel.Read<long>(selectedPtr + 0x160) != 0x0;
                 long SelectedMonsterAddress = Kernel.Read<long>(selectedPtr + 0x148);
                 IsTarget = TargettedMonsterAddress == 0 ? SelectedMonsterAddress == MonsterAddress : TargettedMonsterAddress == MonsterAddress;

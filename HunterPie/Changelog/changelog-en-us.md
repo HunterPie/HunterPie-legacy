@@ -1,37 +1,39 @@
-﻿![banner](https://cdn.discordapp.com/attachments/402557384209203200/771860106048176158/update10398.png)
+﻿![banner](https://cdn.discordapp.com/attachments/402557384209203200/784930643326926858/v10399.png)
 
-**Damage Widget**
+**Player Widget**
 
-- Added damage plot graph.
+![playerWidget](https://cdn.discordapp.com/attachments/402557384209203200/784922043530346516/unknown.png)
 
-![plot](https://cdn.discordapp.com/attachments/678287048200683572/773627497757671474/damage_plot_poggers.png)
+- Fully customizable through themes, also has some simple customization options in HunterPie settings.
+- Displays exact health, stamina and sharpness values. Also displays your character name, world daytime icon and a laurel based on your Master Rank.
 
-**Class Helpers**
+**Overlay**
 
-- Added Greatsword helper, it displays the current charge progress, charge level and Safi'jiiva regen. hit counter.
-- Added Light Bowgun helper, it displays ammo information, crafting information and ground ammo timer and counters, and Safi'jiiva regen. hit counter.
-- Minor changes to the Hammer helper animation when charge is complete.
+- Added option so you can choose not to initialize the overlay.
+- Added option so you can choose not to initialize individual widgets.
+- Plugins can now make their own widgets and add them to the overlay.
 
-**Monster Widget**
+**Note:** Not initializing widgets will make the overlay ignore that widget and not display nor create them at all, saving CPU and memory.
 
-- Added option to display Monster action name.
-- Added option to hide health, stamina, enrage informations.
-- Added option to only show parts that have a break threshold.
-- Added option to hide parts that have already been broken.
-- Added option to automatically sort parts, keeping wounded and most recent damaged parts always at the top.
-- Separated the option to show parts and ailments after a few seconds. You can now always show parts while keeping ailments visible only when active.
-- Added {Tenderize} text for the parts text format.
+**HunterPie Core & Plugins**
 
-**Plugins**
-
-- Added monster action tracker.
-- Added player action tracker.
+- Separated HunterPie into HunterPie.exe, HunterPie.UI.dll and HunterPie.Core. dll to make plugins development easier.
+- Added OnMonsterScanFinished & OnPlayerScanFinished.
+- Added Food Skills tracker.
+- Added Health, Stamina and Sharpness trackers.
+- Enhancements to the plugin experience.
 
 **Other Changes**
 
-- Refactored monster death detection.
+- Optimized Hunting Horn and Palico buffs scanning:
+
+![graph](https://cdn.discordapp.com/attachments/695356109464273026/783405724554231849/unknown.png)
+
+- Added missing Hunting Horn buff names.
+- Added support for build 421409 (Title Update Ver. 15.10.00).
 
 **Bug Fixes**
 
-- Fixed monster not disappearing when captured.
-- Fixed wrong maximum jewel id.
+- Fixed Teostra tail not displaying correctly.
+- Fixed Hunting Horn action IDs.
+- Removed unknown abnormalities that have no effect.

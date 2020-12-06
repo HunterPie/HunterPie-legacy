@@ -34,6 +34,9 @@ namespace HunterPie.Memory
         private static readonly Dictionary<string, long> addresses = new Dictionary<string, long>();
         private static readonly Dictionary<string, int[]> offsets = new Dictionary<string, int[]>();
 
+        public static IReadOnlyDictionary<string, long> Addresses => addresses;
+        public static IReadOnlyDictionary<string, int[]> Offsets => offsets;
+        
         /// <summary>
         /// Adds a static address to the Addresses dictionary
         /// </summary>
@@ -70,8 +73,21 @@ namespace HunterPie.Memory
             }
         }
 
-        public static IReadOnlyDictionary<string, long> Addresses => addresses;
-        public static IReadOnlyDictionary<string, int[]> Offsets => offsets;
+        public static long GetAddress(string name)
+        {
+            if (Addresses.ContainsKey(name))
+                return Addresses[name];
+            else
+                return Kernel.NULLPTR;
+        }
+
+        public static int[] GetOffsets(string name)
+        {
+            if (Offsets.ContainsKey(name))
+                return Offsets[name];
+            else
+                return Array.Empty<int>();
+        }
 
         // Consts
         public const long CooldownFixed = 0x9EC;
