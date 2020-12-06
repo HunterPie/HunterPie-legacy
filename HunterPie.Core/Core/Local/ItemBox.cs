@@ -63,19 +63,19 @@ namespace HunterPie.Core
         internal void Refresh(sItem[] aConsumables, sItem[] aAmmo, sItem[] aMaterials, sItem[] aDecorations)
         {
             var dConsumables = aConsumables.Where(i => i.ItemId != 0)
-                .Distinct()
+                .Distinct(new sItemEqualityComparer())
                 .ToDictionary(i => i.ItemId, i => i.Amount);
 
             var dAmmo = aAmmo.Where(i => i.ItemId != 0)
-                .Distinct()
+                .Distinct(new sItemEqualityComparer())
                 .ToDictionary(i => i.ItemId, i => i.Amount);
 
             var dMaterials = aMaterials.Where(i => i.ItemId != 0)
-                .Distinct()
+                .Distinct(new sItemEqualityComparer())
                 .ToDictionary(i => i.ItemId, i => i.Amount);
 
             var dDecorations = aDecorations.Where(i => i.ItemId != 0)
-                .Distinct()
+                .Distinct(new sItemEqualityComparer())
                 .ToDictionary(i => i.ItemId, i => i.Amount);
 
             bool updateBox = !(dConsumables.IsEqualTo(consumables)
