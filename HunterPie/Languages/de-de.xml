@@ -335,6 +335,7 @@ Gerade bei den Abnormalitäten / Statusveränderungen des Spielers gibt es mit (
     <Abnormality ID="HUNTINGHORN_014_00" Name="Lebenswiederherstellung (L)"/>
     <Abnormality ID="HUNTINGHORN_015_00" Name="Lebenswiederherstellung (S) + Gegengift"/>
     <Abnormality ID="HUNTINGHORN_016_00" Name="Lebenswiederherstellung (M) + Gegengift"/>
+	<Abnormality ID="HUNTINGHORN_017_00" Name="Lebenswiederherstellung (M)"/>
     <Abnormality ID="HUNTINGHORN_018_00" Name="Erholungsgeschwindigkeit (S)"/>
     <Abnormality ID="HUNTINGHORN_019_00" Name="Erholungsgeschwindigkeit (L)"/>
     <Abnormality ID="HUNTINGHORN_020_00" Name="Ohrstöpsel (S)"/>
@@ -371,17 +372,20 @@ Gerade bei den Abnormalitäten / Statusveränderungen des Spielers gibt es mit (
     <Abnormality ID="HUNTINGHORN_041_00" Name="Unbekannter Buff"/>
 	<Abnormality ID="HUNTINGHORN_042_00" Name="Alle Melodie-Effekte verlängern"/>
     <Abnormality ID="HUNTINGHORN_043_00" Name="Rückschläge negiert"/>
+	<Abnormality ID="HUNTINGHORN_044_00" Name="Angriff und Verteidigung hoch (S)"/>
     <Abnormality ID="HUNTINGHORN_045_00" Name="Pestwiderstand hoch"/>
     <Abnormality ID="HUNTINGHORN_046_00" Name="Affinität hoch (S)"/>
     <Abnormality ID="HUNTINGHORN_047_00" Name="Alle anorm. Status negiert"/>
     <Abnormality ID="HUNTINGHORN_048_00" Name="Ohrstöpsel (S) / Winddruck negiert (?)"/>
     <Abnormality ID="HUNTINGHORN_049_00" Name="Anormaler Statusangriff verbessert"/>
-	 <Abnormality ID="HUNTINGHORN_051_00" Name="Impact Echo Wave"/>
-     <Abnormality ID="HUNTINGHORN_052_00" Name="Echo Wave &quot;Dragon&quot;"/>
+	<Abnormality ID="HUNTINGHORN_050_00" Name="Lebenswiederherstellung (M)"/>
+	<Abnormality ID="HUNTINGHORN_051_00" Name="Impact Echo Wave"/>
+    <Abnormality ID="HUNTINGHORN_052_00" Name="Echo Wave &quot;Dragon&quot;"/>
     <Abnormality ID="HUNTINGHORN_053_00" Name="Max. Ausdauer hoch + Erholung"/>
     <Abnormality ID="HUNTINGHORN_054_00" Name="Verbesserte Gesundheitserholung"/>
     <Abnormality ID="HUNTINGHORN_055_00" Name="Geschw-Boost + Unverwundbarkeit hoch"/>
     <Abnormality ID="HUNTINGHORN_056_00" Name="Elementeffektivität hoch (?)"/>
+	<Abnormality ID="HUNTINGHORN_057_00" Name="Ausweichfenster hoch"/>
     <Abnormality ID="HUNTINGHORN_943_00" Name="Elementeffektivität hoch (?)"/>
     <Abnormality ID="PALICO_000_00" Name="Wiederbelebung"/>
     <Abnormality ID="PALICO_001_00" Name="Angriff hoch (S)"/>
@@ -540,6 +544,8 @@ Gerade bei den Abnormalitäten / Statusveränderungen des Spielers gibt es mit (
       <String ID="ENABLE_PEOPLE_JOIN" Name="Erlaube Anfragen zum Beitritt meiner Sitzung"/>
       <String ID="ENABLE_PEOPLE_JOIN_DESC" Name="Wenn aktiv, ist es anderen Discord Nutzern erlaubt dir eine Beitrittsanfrage für deine Monster Hunter Sitzung zu schicken."/>
       <!-- Overlay -->
+	  <String ID="ENABLE_INITIALIZE_OVERLAY" Name="Initialisiere Overlay"/>
+      <String ID="ENABLE_INITIALIZE_OVERLAY_DESC" Name="Wenn aktiv, wird das Overlay erstellt und initialisiert. Wenn diese Option deaktiviert ist, werden keine Widgets initialisiert."/>
       <String ID="ENABLE_OVERLAY" Name="Aktiviere In-Game Overlay"/>
       <String ID="ENABLE_OVERLAY_DESC" Name="Wenn aktiv, ist das Overlay im Spiel sichtbar."/>
       <String ID="ENABLE_HIDE_WHEN_UNFOCUS" Name="Verstecke Overlay wenn das Spiel nicht dein aktives Fenster ist."/>
@@ -560,6 +566,8 @@ Gerade bei den Abnormalitäten / Statusveränderungen des Spielers gibt es mit (
 	  <String ID="ENABLE_OVERLAY_FORCE_DIRECTX11_FULLSCREEN" Name="Zwinge die DirectX 11 Vollbild Anwendung hinter das Overlay"/>
       <String ID="ENABLE_OVERLAY_FORCE_DIRECTX11_FULLSCREEN_DESC" Name="Diese Option zwingt das Spiel jederzeit hinter dem Overlay angezeigt zu werden. Dies funktioniert ebenfalls für DirectX 11 Vollbild. BENÖTIGT DIE AKTIVIERUNG DER VOLLBILD OPTIMIERUNGEN."/>
       <!-- Monster Widget -->
+	  <String ID="ENABLE_INITIALIZE_MONSTER_WIDGET" Name="Initialisiere Monster Widget"/>
+      <String ID="ENABLE_INITIALIZE_MONSTER_WIDGET_DESC" Name="Wenn deaktiviert, wird das Monster Widget nicht erstellt."/>
       <String ID="ENABLE_MONSTER_WIDGET" Name="Aktiviere Monster Widget"/>
       <String ID="ENABLE_MONSTER_WIDGET_DESC" Name="Wenn aktiv, wird das Monster Widget sichtbar sein, sobald es etwas anzuzeigen hat."/>
       <String ID="STATIC_MONSTER_HEALTH_STRING_FORMAT" Name="Monsterleisten Text Format:"/>
@@ -655,7 +663,19 @@ Gerade bei den Abnormalitäten / Statusveränderungen des Spielers gibt es mit (
       <String ID="ENABLE_MONSTER_STATUS_CLAW" Name="Zeige Claw"/>
       <String ID="ENABLE_MONSTER_STATUS_MISC" Name="Zeige Sonstiges"/>
       <String ID="ENABLE_MONSTER_STATUS_ENRAGE" Name="Zeige Enrage"/>
+	  <!-- Player Widget -->
+      <String ID="ENABLE_INITIALIZE_PLAYER_WIDGET" Name="Initialisiere Spieler Widget"/>
+      <String ID="ENABLE_INITIALIZE_PLAYER_WIDGET_DESC" Name="Wenn deaktiviert, wird das Spieler Widget nicht erstellt."/>
+      <String ID="ENABLE_PLAYER_WIDGET" Name="Aktiviere Spieler Widget"/>
+      <String ID="ENABLE_PLAYER_WIDGET_DESC" Name="Wenn aktiv, wird das Spieler Widget angezeigt sobald es etwas zum anzeigen hat."/>
+      <String ID="STATIC_PLAYER_NAME_STRING_FORMAT" Name="Namensstring Format:"/>
+      <String ID="STATIC_PLAYER_NAME_STRING_FORMAT_DESC" Name="Der String der über dem Lebensbalken angezeigt wird. (Z.B. '{HR} | {MR} {Name}' wird angezeigt als 'Dein HR' | 'Dein MR' 'Dein Name')"/>
+      <String ID="ENABLE_PLAYER_HIDE_IN_VILLAGES" Name="Ausblenden wenn nicht auf der Jagd."/>
+      <String ID="ENABLE_PLAYER_HIDE_IN_VILLAGES_DESC" Name="Wenn aktiv, wird das Spieler Widget ausgeblendet sobald du friedliche zonen wie Astera, den Versammlungsplatz oder dein Zimmer betrittst."/>
+      <String ID="STATIC_PLAYER_POSITION_DESC" Name="Ändert die Position des Spieler Widgets."/>
       <!-- Harvest Box Widget -->
+	  <String ID="ENABLE_INITIALIZE_HARVEST_BOX" Name="Initialisiere ErnteBox Widget"/>
+      <String ID="ENABLE_INITIALIZE_HARVEST_BOX_DESC" Name="Wenn deaktiviert, wird das Erntebox Widget nicht erstellt."/>
       <String ID="ENABLE_HARVEST_BOX" Name="Aktiviere Erntebox Widget"/>
       <String ID="ENABLE_HARVEST_BOX_DESC" Name="Wenn aktiv, wird das Erntebox Widget angezeigt sobald es etwas anzuzeigen hat."/>
       <String ID="ENABLE_STEAM_TRACKER" Name="Zeige Dampfwerk-Tracker"/>
@@ -670,6 +690,8 @@ Gerade bei den Abnormalitäten / Statusveränderungen des Spielers gibt es mit (
 	    <String ID="ENABLE_HARVEST_BOX_COMPACT_MODE" Name="Kompaktmodus aktivieren"/>
       <String ID="ENABLE_HARVEST_BOX_COMPACT_MODE_DESC" Name="Wenn aktiv, verwendet das Erntebox Widget ein kompakteres Design."/>
       <!-- Damage Meter -->
+	  <String ID="ENABLE_INITIALIZE_METER" Name="Initialisiere Schadens-Widget"/>
+      <String ID="ENABLE_INITIALIZE_METER_DESC" Name="Wenn deaktiviert, wird das Schadens-Widget nicht erstellt."/>
       <String ID="ENABLE_METER" Name="Aktiviere Schadens-Widget"/>
       <String ID="ENABLE_METER_DESC" Name="Wenn aktiv, wird das Schadens-Widget angezeigt, sobald es etwas anzuzeigen hat."/>
 	  <String ID="ENABLE_TIMER" Name="Zeige Timer"/>
@@ -689,6 +711,14 @@ Gerade bei den Abnormalitäten / Statusveränderungen des Spielers gibt es mit (
       <String ID="STATIC_METER_PLAYER_3" Name="Dritter Spieler"/>
       <String ID="STATIC_METER_PLAYER_4" Name="Vierter Spieler"/>
       <String ID="STATIC_METER_POSITION_DESC" Name="Ändert die Position des Schadens-Widgets."/>
+	  <String ID="ENABLE_DAMAGE_PLOT" Name="Zeige den Schadens-Graphen"/>
+      <String ID="ENABLE_DAMAGE_PLOT_DESC" Name="Wenn aktiv, wird ein Graph der den Schaden zeigt angezeigt."/>
+      <String ID="DAMAGE_PLOT_MODE" Name="Schadens-Graph Modus"/>
+      <String ID="DAMAGE_PLOT_MODE_DESC" Name="Ändert den Schadens Modus."/>
+      <String ID="DAMAGE_PLOT_MODE_0" Name="Gesamtschaden"/>
+      <String ID="DAMAGE_PLOT_MODE_1" Name="Schaden pro Sekunde (DPS)"/>
+      <String ID="DAMAGE_PLOT_POLL_INTERVAL" Name="Schadens-Graph Update Intervall"/>
+      <String ID="DAMAGE_PLOT_POLL_INTERVAL_DESC" Name="Abstand zwischen Graphen-Updates wenn es keine Updates des Schadens gibt. Ein geringerer Wert bedeutet höhere CPU kosten! &#13;(Z.B. Ein Wert von 200 hat zur Folge, dass Hunterpie den Graphen 5 mal in der Sekunde aktualisiert)."/>
       <!-- Abnormalities Widget -->
       <String ID="STATIC_CREATE_ABNORM_BAR_DESC" Name="Erstelle eine neue Abnormalitäten-Leiste."/>
       <String ID="STATIC_REMOVE_ABNORM_BAR_DESC" Name="Entferne die zuletzt erstelle Abnormalitäten-Leiste."/>
@@ -708,6 +738,8 @@ Gerade bei den Abnormalitäten / Statusveränderungen des Spielers gibt es mit (
 	  <String ID="ENABLE_SHOW_ABNORM_NAMES" Name="Zeige Abnormalitäten-Namen"/>
       <String ID="ENABLE_SHOW_ABNORM_NAMES_DESC" Name="Wenn aktiv, werden die Namen von Abnormalitäten angezeigt."/>
       <!-- Specialized Tool Widget-->
+	  <String ID="ENABLE_INITIALIZE_SPEC_TOOL" Name="Initialisiere Spezialgerät-Widget"/>
+      <String ID="ENABLE_INITIALIZE_SPEC_TOOL_DESC" Name="Wenn deaktiviert, wird das Spezialgerät-Widget nicht erstellt."/>
       <String ID="STATIC_PRIMARY_SPEC_TOOL" Name="Primäres Spezialgerät"/>
       <String ID="STATIC_SECONDARY_SPEC_TOOL" Name="Sekundäres Spezialgerät"/>
       <String ID="ENABLE_PRIMARY_SPEC_TOOL" Name="Aktiviere Widget"/>
@@ -718,6 +750,8 @@ Gerade bei den Abnormalitäten / Statusveränderungen des Spielers gibt es mit (
       <String ID="STATIC_PRIMARY_SPEC_TOOL_POSITION_DESC" Name="Ändert die Position des primären Spezialgerät-Widgets."/>
       <String ID="STATIC_SECONDARY_SPEC_TOOL_POSITION_DESC" Name="Ändert die Position des sekundären Spezialgerät-Widgets."/>
 	  <!-- Class Widget -->
+	  <String ID="ENABLE_INITIALIZE_CLASS_HELPER" Name="Initialisiere Klassenhelfer Widget"/>
+      <String ID="ENABLE_INITIALIZE_CLASS_HELPER_DESC" Name="Wenn deaktiviert, wird das Klassenhelfer Widget nicht erstellt."/>
 	  <String ID="ENABLE_GREATSWORD_HELPER" Name="Aktiviere Großschwert Hilfe"/>
       <String ID="ENABLE_GREATSWORD_HELPER_DESC" Name="Wenn aktiv, wird das Großschwert Widget angezeigt, sobald du diese Waffenart ausrüstest."/>
       <String ID="ENABLE_INSECT_GLAIVE_HELPER" Name="Aktiviere Insektenglefen Hilfe"/>
@@ -779,6 +813,7 @@ Gerade bei den Abnormalitäten / Statusveränderungen des Spielers gibt es mit (
       <String ID="STATIC_GENERAL_SETTINGS" Name="Allgemein"/>
       <String ID="STATIC_DISCORD_SETTINGS" Name="Discord"/>
       <String ID="STATIC_OVERLAY_SETTINGS" Name="Overlay"/>
+	  <String ID="STATIC_PLAYER_SETTINGS" Name="Spieler Widget"/>
       <String ID="STATIC_MONSTERS_SETTINGS" Name="Monster"/>
       <String ID="STATIC_HARVEST_BOX_SETTINGS" Name="Erntebox"/>
       <String ID="STATIC_DAMAGE_METER_SETTINGS" Name="Schadens-Widget"/>
@@ -800,6 +835,7 @@ Gerade bei den Abnormalitäten / Statusveränderungen des Spielers gibt es mit (
 	  <String ID="STATIC_OPENFOLDER" Name="Ordner öffnen"/>
       <String ID="MESSAGE_BUILD_UPLOADED" Name="Build wurde zu Honey Hunters World hochgeladen!"/>
 	  <String ID="MESSAGE_GEAR_EXPORTED" Name="Ausrüstung wurde nach ./DataExport exportiert!"/>
+	  <String ID="STATIC_RESTART" Name="Jetzt neustarten"/>
     </Notifications>
     <RichPresence>
       <String ID="RPC_DESCRIPTION_IN_MAIN_MENU" Name="Im Hauptmenü"/>
