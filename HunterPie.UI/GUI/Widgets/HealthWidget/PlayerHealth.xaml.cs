@@ -14,8 +14,6 @@ using System.Windows.Controls;
 using HunterPie.GUI.Helpers;
 using static HunterPie.Core.UserSettings.Config;
 using System.Linq;
-using System.Windows.Forms.VisualStyles;
-using HunterPie.Logger;
 
 namespace HunterPie.GUI.Widgets.HealthWidget
 {
@@ -275,6 +273,7 @@ namespace HunterPie.GUI.Widgets.HealthWidget
             OnWorldDayTimeUpdate(this, new WorldEventArgs(gContext));
             if (Context.CurrentWeapon != null)
             {
+                SharpnessVisibility = Context.CurrentWeapon.IsMelee ? Visibility.Visible : Visibility.Collapsed;
                 OnSharpnessLevelChange(this, new SharpnessEventArgs(Context.CurrentWeapon));
                 OnSharpnessChange(this, new SharpnessEventArgs(Context.CurrentWeapon));
             }
