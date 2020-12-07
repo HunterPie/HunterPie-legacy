@@ -32,8 +32,8 @@ namespace HunterPie.Core
         /// <returns>List with all the items found</returns>
         public static Dictionary<int, int> FindItemsInTab(IReadOnlyDictionary<int, int> tab, HashSet<int> ids)
         {
-            return ids.Where(id => tab.ContainsKey(id))
-                      .Select(id => tab[id]) as Dictionary<int, int>;
+            return tab.Where(item => ids.Contains(item.Key))
+                      .ToDictionary(i => i.Key, i => i.Value);
         }
 
         /// <summary>
@@ -50,7 +50,8 @@ namespace HunterPie.Core
 
             return foundConsumables.Concat(foundAmmo)
                                    .Concat(foundMaterials)
-                                   .Concat(foundDecorations) as Dictionary<int, int>;
+                                   .Concat(foundDecorations)
+                                   .ToDictionary(i => i.Key, i => i.Value);
         }
 
         /// <summary>

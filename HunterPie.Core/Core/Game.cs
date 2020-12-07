@@ -10,6 +10,7 @@ using HunterPie.Utils;
 
 // TODO: Probably overkill, but add a public key to this
 [assembly: InternalsVisibleTo("HunterPie")]
+[assembly: InternalsVisibleTo("HunterPie.CoreTests")]
 namespace HunterPie.Core
 {
     public class Game
