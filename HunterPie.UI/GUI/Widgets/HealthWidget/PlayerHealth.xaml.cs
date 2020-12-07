@@ -15,6 +15,7 @@ using HunterPie.GUI.Helpers;
 using static HunterPie.Core.UserSettings.Config;
 using System.Linq;
 using System.Windows.Forms.VisualStyles;
+using HunterPie.Logger;
 
 namespace HunterPie.GUI.Widgets.HealthWidget
 {
@@ -203,6 +204,7 @@ namespace HunterPie.GUI.Widgets.HealthWidget
         public PlayerHealth(Game ctx)
         {
             IsStaminaNormal = true;
+            SharpnessVisibility = Visibility.Collapsed;
             InitializeComponent();
             SetWindowFlags();
             SetContext(ctx);
@@ -414,7 +416,7 @@ namespace HunterPie.GUI.Widgets.HealthWidget
                     HealthExt.Visibility = Visibility.Visible;
 
                     float maxHealth = Math.Min(args.MaxHealth + HealthComponent.CanIncreaseMaxHealth[args.SelectedItemId], args.MaxPossibleHealth);
-                    double extWidth = (maxHealth - args.MaxHealth) / args.MaxPossibleHealth * HealthBar.ConstantWidth * (HealthBar.ConstantWidth / HealthBar.CHealth);
+                    double extWidth = HealthBar.ConstantWidth * ((maxHealth - args.MaxHealth) / HealthBar.CHealth);
                     HealthExt.Width = Math.Max(0, extWidth);
                 } else
                 {
@@ -432,7 +434,7 @@ namespace HunterPie.GUI.Widgets.HealthWidget
                 {
                     StaminaExt.Visibility = Visibility.Visible;
                     float maxStamina = Math.Min(args.MaxStamina + StaminaComponent.CanIncreaseMaxStamina[args.SelectedItemId], args.MaxPossibleStamina);
-                    double extWidth = (maxStamina - args.MaxStamina) / args.MaxPossibleStamina * HealthBar.ConstantWidth * (HealthBar.ConstantWidth / HealthBar.CHealth);
+                    double extWidth = HealthBar.ConstantWidth * ((maxStamina - args.MaxStamina) / HealthBar.CHealth);
                     StaminaExt.Width = Math.Max(0, extWidth);
                 } else
                 {
