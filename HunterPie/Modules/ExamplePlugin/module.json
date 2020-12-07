@@ -1,0 +1,7 @@
+﻿{
+    "Name": "ExamplePlugin",
+    "EntryPoint": "ExamplePlugin.cs",
+    "Description": "Example plugin for HunterPie",
+    "Author": "Haato",
+    "Version": "1.0.1"
+}

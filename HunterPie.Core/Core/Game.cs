@@ -126,7 +126,7 @@ namespace HunterPie.Core
         protected virtual void Dispatch(WorldEvent e) => e?.Invoke(this, new WorldEventArgs(this));
         #endregion
 
-        public void CreateInstances()
+        internal void CreateInstances()
         {
             Player = new Player();
             FirstMonster = new Monster(1);
@@ -159,7 +159,7 @@ namespace HunterPie.Core
             Debugger.Warn($"{m.Name} Death -> {m.ActionName}");
         }
 #endif
-        public void DestroyInstances()
+        internal void DestroyInstances()
         {
             Player = null;
             FirstMonster = null;
@@ -205,7 +205,7 @@ namespace HunterPie.Core
             Player.OnZoneChange += OnZoneChange;
         }
 
-        public void UnhookEvents()
+        private void UnhookEvents()
         {
             if (Player is null)
             {
@@ -214,7 +214,7 @@ namespace HunterPie.Core
             Player.OnZoneChange -= OnZoneChange;
         }
 
-        public void OnZoneChange(object source, EventArgs e)
+        private void OnZoneChange(object source, EventArgs e)
         {
             if (Player.InPeaceZone) Time = null;
             else { Time = DateTime.UtcNow; }

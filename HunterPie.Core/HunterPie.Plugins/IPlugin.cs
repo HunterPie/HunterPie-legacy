@@ -1,6 +1,4 @@
-﻿using System;
-using System.IO;
-using System.Reflection;
+﻿using System.IO;
 using HunterPie.Core;
 using HunterPie.Logger;
 
