@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Linq;
 
 namespace HunterPie.Core
 {
@@ -50,7 +51,7 @@ namespace HunterPie.Core
         }
         public int MaxLobbySize = 16;
         public int LobbySize { get; set; }
-        public bool IsLocalHost => this[0].IsMe;
+        public bool IsLocalHost => this[0].IsMe || Size == 0;
         public Member this[int index]
         {
             get => Members[index];
@@ -61,12 +62,7 @@ namespace HunterPie.Core
         {
             get
             {
-                int x = 0;
-                foreach (Member member in Members)
-                {
-                    if (member.IsInParty == true) x++;
-                }
-                return x;
+                return Members.Where(m => m.IsInParty).Count();
             }
         }
         public int MaxSize => 4;

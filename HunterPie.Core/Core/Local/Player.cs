@@ -915,7 +915,6 @@ namespace HunterPie.Core
                     totalHealingData.CurrentHeal += current.CurrentHeal;
                     totalHealingData.MaxHeal += max;
                 }
-                
             }
 
             return totalHealingData;

@@ -17,10 +17,18 @@
         public string Id;
         public bool IsRemovable;
         public string GroupId;
-        public int[] BreakThresholds;
+        public ThresholdInfo[] BreakThresholds;
         public bool Skip;
         public uint Index;
         public uint[] TenderizeIds;
+    }
+    public struct ThresholdInfo
+    {
+        public int Threshold;
+        // Elder Dragons have conditions for parts
+        public bool HasConditions;
+        public float MinHealth;
+        public int MinFlinch;
     }
     #endregion
 

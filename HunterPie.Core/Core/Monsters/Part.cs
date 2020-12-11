@@ -26,7 +26,7 @@ namespace HunterPie.Core
 
         public string Name => GStrings.GetMonsterPartByID(partInfo.Id);
 
-        public int[] BreakThresholds => partInfo.BreakThresholds;
+        public ThresholdInfo[] BreakThresholds => partInfo.BreakThresholds;
 
         public int BrokenCounter
         {

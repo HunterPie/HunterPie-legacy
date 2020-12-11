@@ -47,6 +47,8 @@ namespace HunterPie.GUI.Widgets.Monster_Widget.Parts
         public static readonly DependencyProperty PartHealthTextProperty =
             DependencyProperty.Register("PartHealthText", typeof(string), typeof(MonsterPart));
 
+        int specialThreshold = 99;
+
         public void SetContext(Part ctx, double MaxHealthBarSize)
         {
             context = ctx;
@@ -110,7 +112,8 @@ namespace HunterPie.GUI.Widgets.Monster_Widget.Parts
         private Visibility GetVisibility()
         {
             // Hide invalid parts, like the Vaal Hazaak unknown ones
-            if (float.IsNaN(context.TotalHealth) || context.TotalHealth <= 0) return Visibility.Collapsed;
+            if (float.IsNaN(context.TotalHealth) || context.TotalHealth <= 0)
+                return Visibility.Collapsed;
 
             // Hide parts that cannot be broken
             bool canBeBroken = context.BreakThresholds.Length > 0;
@@ -125,7 +128,7 @@ namespace HunterPie.GUI.Widgets.Monster_Widget.Parts
 
                 if (canBeBroken)
                 {
-                    bool isBroken = context.BreakThresholds.LastOrDefault() <= context.BrokenCounter;
+                    bool isBroken = context.BreakThresholds.LastOrDefault().Threshold <= context.BrokenCounter;
                     if (ComponentSettings.HidePartsThatHaveAlreadyBeenBroken && isBroken)
                     {
                         return Visibility.Collapsed;
@@ -138,7 +141,7 @@ namespace HunterPie.GUI.Widgets.Monster_Widget.Parts
 
             if (canBeBroken && ComponentSettings.HidePartsThatHaveAlreadyBeenBroken)
             {
-                bool isBroken = context.BreakThresholds.LastOrDefault() <= context.BrokenCounter;
+                bool isBroken = context.BreakThresholds.LastOrDefault().Threshold <= context.BrokenCounter;
                 return isBroken && !isTenderized ? Visibility.Collapsed : Visibility.Visible;
             }
 
@@ -217,7 +220,7 @@ namespace HunterPie.GUI.Widgets.Monster_Widget.Parts
             string suffix = "";
             for (int i = context.BreakThresholds.Length - 1; i >= 0; i--)
             {
-                int threshold = context.BreakThresholds[i];
+                int threshold = context.BreakThresholds[i].Threshold;
                 if (context.BrokenCounter < threshold || i == context.BreakThresholds.Length - 1)
                 {
                     suffix = $"/{threshold}";

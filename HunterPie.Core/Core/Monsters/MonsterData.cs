@@ -135,14 +135,33 @@ namespace HunterPie.Core
                 if (pInfo.IsRemovable) RemovablePartIndex++;
 
                 XmlNodeList breaks = partData.SelectNodes("Break");
-                pInfo.BreakThresholds = breaks != null
-                    ? breaks.Cast<XmlNode>().Select(b => int.Parse(b.Attributes["Threshold"].Value)).ToArray()
-                    : Array.Empty<int>();
+                pInfo.BreakThresholds = ConvertToThresholdArray(breaks);
 
                 parts.Add(pInfo);
             }
 
             return parts.ToArray();
+        }
+
+        private static ThresholdInfo[] ConvertToThresholdArray(XmlNodeList dataList)
+        {
+            if (dataList == null)
+                return Array.Empty<ThresholdInfo>();
+
+            List<ThresholdInfo> info = new List<ThresholdInfo>(dataList.Count);
+            foreach (XmlNode node in dataList)
+            {
+                bool hasConditions = string.IsNullOrEmpty(node.Attributes["MinHealth"]?.Value ?? node.Attributes["MinHealth"]?.Value);
+                ThresholdInfo dummy = new ThresholdInfo
+                {
+                    Threshold = int.Parse(node.Attributes["Threshold"].Value),
+                    HasConditions = hasConditions,
+                    MinFlinch = hasConditions ? int.Parse(node.Attributes["MinFlinch"]?.Value ?? "0") : 0,
+                    MinHealth = hasConditions ? int.Parse(node.Attributes["MinHealth"]?.Value ?? "0") : 0
+                };
+                info.Add(dummy);
+            }
+            return info.ToArray();
         }
 
         static private void LoadMonsters()
@@ -180,11 +199,11 @@ namespace HunterPie.Core
         }
 
         /// <summary>
-        /// Gets Ailment based on it's Id
+        /// Gets Ailment based on its Id
         /// </summary>
         /// <param name="Id">Ailment Id</param>
         /// <returns></returns>
-        static public AilmentInfo GetAilmentInfoById(uint Id)
+        public static AilmentInfo GetAilmentInfoById(uint Id)
         {
             return AilmentsInfo.Where(a => a.Id == Id).FirstOrDefault();
         }

@@ -15,7 +15,7 @@ namespace HunterPie.Core
             get => _Name;
             set
             {
-                if (value == "" && "" == _Name && Damage > 0)
+                if (value == "" && value == _Name && Damage > 0)
                 {
                     _Name = "Player";
                     _OnSpawn();
@@ -23,15 +23,8 @@ namespace HunterPie.Core
                 }
                 else if (value != "" && value != _Name)
                 {
-                    if (value == "" && Damage > 0)
-                    {
-                        _OnSpawn();
-                    }
-                    else
-                    {
-                        _Name = value;
-                        _OnSpawn();
-                    }
+                    _Name = value;
+                    _OnSpawn();
                 }
                 else if (value == "" && value != _Name && Damage == 0)
                 {
