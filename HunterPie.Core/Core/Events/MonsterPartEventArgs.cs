@@ -7,6 +7,12 @@ namespace HunterPie.Core.Events
     /// </summary>
     public class MonsterPartEventArgs : EventArgs
     {
+
+        /// <summary>
+        /// The monster who has this part
+        /// </summary>
+        public Monster Owner { get; }
+
         /// <summary>
         /// Part current health
         /// </summary>
@@ -16,6 +22,11 @@ namespace HunterPie.Core.Events
         /// Part maximum health
         /// </summary>
         public float TotalHealth { get; }
+
+        /// <summary>
+        /// Whether this part has a special condition to be met before breaking
+        /// </summary>
+        public bool HasBreakConditions { get; }
 
         /// <summary>
         /// Part broken counter, increments whenever <b>Health</b> reaches 0
@@ -34,11 +45,13 @@ namespace HunterPie.Core.Events
 
         public MonsterPartEventArgs(Part part)
         {
+            Owner = part.Owner;
             Health = part.Health;
             TotalHealth = part.TotalHealth;
             BrokenCounter = part.BrokenCounter;
             Duration = part.TenderizeDuration;
             MaxDuration = part.TenderizeMaxDuration;
+            HasBreakConditions = part.HasBreakConditions;
         }
     }
 }

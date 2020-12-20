@@ -1,6 +1,8 @@
 ﻿using HunterPie.Core.Definitions;
 using HunterPie.Core.Monsters;
 using HunterPie.Core.Events;
+using System.Linq;
+using HunterPie.Logger;
 
 namespace HunterPie.Core
 {
@@ -15,18 +17,24 @@ namespace HunterPie.Core
         private int brokenCounter;
         private float tDuration;
 
-        public Part(MonsterInfo monsterInfo, PartInfo partInfo, int index)
+        public Part(Monster owner, MonsterInfo monsterInfo, PartInfo partInfo, int index)
         {
+            Owner = owner;
             this.monsterInfo = monsterInfo;
             this.partInfo = partInfo;
             id = index;
+            HasBreakConditions = BreakThresholds.Where(p => p.HasConditions).Count() > 0;
         }
+
+        public Monster Owner { get; private set; }
 
         public long Address { get; set; } // So we don't need to re-scan the address everytime
 
         public string Name => GStrings.GetMonsterPartByID(partInfo.Id);
 
         public ThresholdInfo[] BreakThresholds => partInfo.BreakThresholds;
+
+        public bool HasBreakConditions { get; private set; }
 
         public int BrokenCounter
         {

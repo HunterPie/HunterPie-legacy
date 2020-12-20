@@ -258,7 +258,9 @@
     </Weaknesses>
     <Crown Mini="0.9" Silver="1.15" Gold="1.23"/>
     <Parts Max="3">
-      <Part Name="MONSTER_PART_HORN" Group="HORN" TenderizeIds="0,2"/> <!-- Heath < 15% && Flinch Counter >= 1 -->
+      <Part Name="MONSTER_PART_HORN" Group="HORN" TenderizeIds="0,2">
+        <Break Threshold="1" HasConditions="True" MinFlinch="1" MinHealth="15"/>
+      </Part>
       <Part Name="MONSTER_PART_ARMS" Group="ARM" TenderizeIds="1,3"/>
       <Part Name="MONSTER_PART_LEGS" Group="LEG" TenderizeIds="1,3"/>
     </Parts>
@@ -418,7 +420,9 @@
       <Part Name="MONSTER_PART_REMOVABLE_TAIL" IsRemovable="True">
         <Break Threshold="1"/>
       </Part>
-      <Part Name="MONSTER_PART_HEAD" Group="HEAD" TenderizeIds="0,3"/> <!-- Heath < 15% && Flinch Counter >= 5 -->
+      <Part Name="MONSTER_PART_HEAD" Group="HEAD" TenderizeIds="0,3">
+        <Break Threshold="1" HasConditions="True" MinFlinch="5" MinHealth="15"/>
+      </Part>
       <Part Name="MONSTER_PART_BODY" Group="BODY"/>
       <Part Name="MONSTER_PART_TAIL" Group="TAIL" TenderizeIds="2,5"/>
       <Part Name="MONSTER_PART_LLIMBS" Group="LIMB"/>
@@ -438,7 +442,9 @@
       <Part Name="MONSTER_PART_REMOVABLE_TAIL" IsRemovable="True">
         <Break Threshold="1"/>
       </Part>
-      <Part Name="MONSTER_PART_HEAD" Group="HEAD" TenderizeIds="0,4"/> <!-- Heath < 15% && Flinch Counter >= 4 -->
+      <Part Name="MONSTER_PART_HEAD" Group="HEAD" TenderizeIds="0,4">
+        <Break Threshold="1" HasConditions="True" MinFlinch="4" MinHealth="15"/>
+      </Part>
       <Part Name="MONSTER_PART_BODY" Group="BODY"/>
       <Part Name="MONSTER_PART_LIMBS" Group="LIMB" TenderizeIds="1,5"/>
       <Part Name="MONSTER_PART_LWING" Group="WING" TenderizeIds="2">
@@ -460,8 +466,10 @@
       <Part Name="MONSTER_PART_REMOVABLE_TAIL" IsRemovable="True">
         <Break Threshold="1"/>
       </Part>
-      <Part Name="MONSTER_PART_UNKNOWN" IsRemovable="True"/>
-      <Part Name="MONSTER_PART_HEAD" Group="HEAD" TenderizeIds="0,3"/>  <!-- Heath < 20% && Flinch Counter >= 1 -->
+      <Part Name="MONSTER_PART_REMOVABLE_HORNS" IsRemovable="True"/>
+      <Part Name="MONSTER_PART_HEAD" Group="HEAD" TenderizeIds="0,3">
+        <Break Threshold="1" HasConditions="True" MinFlinch="1" MinHealth="20"/>
+      </Part>
       <Part Name="MONSTER_PART_BODY" Group="BODY"/>
       <Part Name="MONSTER_PART_ARMS" Group="ARM"/>
       <Part Name="MONSTER_PART_LEGS" Group="LEG"/>

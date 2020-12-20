@@ -629,7 +629,7 @@ namespace HunterPie.Core
         {
             for (int i = 0; i < numberOfParts; i++)
             {
-                Part part = new Part(MonsterInfo, MonsterInfo.Parts[i], i);
+                Part part = new Part(this, MonsterInfo, MonsterInfo.Parts[i], i);
                 Parts.Add(part);
             }
         }
@@ -641,7 +641,8 @@ namespace HunterPie.Core
             long MonsterPartPtr = Kernel.Read<long>(MonsterAddress + 0x1D058);
 
             // If the Monster Part Ptr is still 0, then the monster hasn't fully spawn yet
-            if (MonsterPartPtr == 0x00000000) return;
+            if (MonsterPartPtr == 0x00000000)
+                return;
 
             long MonsterPartAddress = MonsterPartPtr + 0x40;
             long MonsterRemovablePartAddress = MonsterPartPtr + 0x1FC8;
@@ -727,7 +728,9 @@ namespace HunterPie.Core
 
         private void GetMonsterStamina()
         {
-            if (!IsAlive) return;
+            if (!IsAlive)
+                return;
+
             long MonsterStaminaAddress = MonsterAddress + 0x1C0F0;
             MaxStamina = Kernel.Read<float>(MonsterStaminaAddress + 0x4);
             float stam = Kernel.Read<float>(MonsterStaminaAddress);
@@ -736,7 +739,8 @@ namespace HunterPie.Core
 
         private void GetMonsterAilments()
         {
-            if (!IsAlive) return;
+            if (!IsAlive)
+                return;
 
             if (Ailments.Count > 0)
             {

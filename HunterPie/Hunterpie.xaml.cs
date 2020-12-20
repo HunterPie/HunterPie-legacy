@@ -53,7 +53,7 @@ namespace HunterPie
         private bool isUpdating = true;
 
         // HunterPie version
-        public const string HUNTERPIE_VERSION = "1.0.3.99";
+        public const string HUNTERPIE_VERSION = "1.0.4";
 
         private readonly List<int> registeredHotkeys = new List<int>();
 

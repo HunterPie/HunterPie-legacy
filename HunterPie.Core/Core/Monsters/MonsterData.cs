@@ -151,13 +151,13 @@ namespace HunterPie.Core
             List<ThresholdInfo> info = new List<ThresholdInfo>(dataList.Count);
             foreach (XmlNode node in dataList)
             {
-                bool hasConditions = string.IsNullOrEmpty(node.Attributes["MinHealth"]?.Value ?? node.Attributes["MinHealth"]?.Value);
+                bool hasConditions = bool.Parse(node.Attributes["HasConditions"]?.Value ?? "False");
                 ThresholdInfo dummy = new ThresholdInfo
                 {
                     Threshold = int.Parse(node.Attributes["Threshold"].Value),
                     HasConditions = hasConditions,
                     MinFlinch = hasConditions ? int.Parse(node.Attributes["MinFlinch"]?.Value ?? "0") : 0,
-                    MinHealth = hasConditions ? int.Parse(node.Attributes["MinHealth"]?.Value ?? "0") : 0
+                    MinHealth = hasConditions ? int.Parse(node.Attributes["MinHealth"]?.Value ?? "100") : 100
                 };
                 info.Add(dummy);
             }

@@ -1,11 +1,12 @@
 ﻿using System;
 using System.Linq;
-using System.Text;
 using System.Windows;
 using System.Windows.Controls;
 using HunterPie.Core;
+using HunterPie.Core.Monsters;
 using HunterPie.Core.Events;
 using Timer = System.Threading.Timer;
+using HunterPie.Logger;
 
 namespace HunterPie.GUI.Widgets.Monster_Widget.Parts
 {
@@ -47,7 +48,7 @@ namespace HunterPie.GUI.Widgets.Monster_Widget.Parts
         public static readonly DependencyProperty PartHealthTextProperty =
             DependencyProperty.Register("PartHealthText", typeof(string), typeof(MonsterPart));
 
-        int specialThreshold = 99;
+        private int specialThreshold = int.MaxValue;
 
         public void SetContext(Part ctx, double MaxHealthBarSize)
         {
@@ -141,7 +142,8 @@ namespace HunterPie.GUI.Widgets.Monster_Widget.Parts
 
             if (canBeBroken && ComponentSettings.HidePartsThatHaveAlreadyBeenBroken)
             {
-                bool isBroken = context.BreakThresholds.LastOrDefault().Threshold <= context.BrokenCounter;
+                bool isBroken = context.HasBreakConditions ? specialThreshold <= context.BrokenCounter
+                    : context.BreakThresholds.LastOrDefault().Threshold <= context.BrokenCounter;
                 return isBroken && !isTenderized ? Visibility.Collapsed : Visibility.Visible;
             }
 
@@ -165,7 +167,13 @@ namespace HunterPie.GUI.Widgets.Monster_Widget.Parts
         private void SetPartInformation(double newSize)
         {
             PartName = $"{context.Name}";
-            UpdatePartBrokenCounter();
+            if (context.HasBreakConditions)
+            {
+                HandleSpecialBrokenCounter();
+            } else
+            {
+                UpdatePartBrokenCounter();
+            }
             UpdateHealthSize(newSize);
             UpdateHealthText();
             ApplySettings();
@@ -176,7 +184,13 @@ namespace HunterPie.GUI.Widgets.Monster_Widget.Parts
             Visibility visibility = GetVisibility();
             Dispatch(() =>
             {
-                UpdatePartBrokenCounter();
+                if (args.HasBreakConditions)
+                {
+                    HandleSpecialBrokenCounter();
+                } else
+                {
+                    UpdatePartBrokenCounter();
+                }
                 Visibility = visibility;
                 StartVisibilityTimer();
             });
@@ -201,6 +215,9 @@ namespace HunterPie.GUI.Widgets.Monster_Widget.Parts
             Visibility visibility = GetVisibility();
             Dispatch(() =>
             {
+                if (args.HasBreakConditions)
+                    HandleSpecialBrokenCounter();
+
                 UpdateHealthText();
                 Visibility = visibility;
                 StartVisibilityTimer();
@@ -231,6 +248,21 @@ namespace HunterPie.GUI.Widgets.Monster_Widget.Parts
                 }
             }
             PartBrokenCounter = $"{context.BrokenCounter}{suffix}";
+        }
+
+        private void HandleSpecialBrokenCounter()
+        {
+            int healthRatio = (int)((context.Owner.Health / context.Owner.MaxHealth) * 100);
+            ThresholdInfo threshold = context.BreakThresholds.First();
+
+            if (healthRatio < threshold.MinHealth && context.BrokenCounter >= threshold.MinFlinch)
+            {
+                specialThreshold = Math.Min(context.BrokenCounter + 1, specialThreshold);
+                PartBrokenCounter = $"{context.BrokenCounter}/{specialThreshold}";
+            } else
+            {
+                PartBrokenCounter = $"{context.BrokenCounter}";
+            }
         }
 
         public void UpdateHealthSize(double newSize)
