@@ -452,18 +452,21 @@ namespace HunterPie.Core
             {
                 configContent = File.ReadAllText(ConfigFileName);
                 if (configContent[0] == '\x00')
+                {
                     Debugger.Warn("config.json was corrupted. Trying to load backup config instead.");
 
-                if (File.Exists(ConfigBackupFileName))
-                {
-                    configContent = File.ReadAllText(ConfigBackupFileName);
+                    if (File.Exists(ConfigBackupFileName))
+                    {
+                        configContent = File.ReadAllText(ConfigBackupFileName);
 
-                    if (configContent[0] == '\x00')
-                        throw new Exception("Backup config was also corrupted!");
+                        if (configContent[0] == '\x00')
+                            throw new Exception("Backup config was also corrupted!");
 
-                } else
-                {
-                    throw new FileNotFoundException("No backup config found!");
+                    }
+                    else
+                    {
+                        throw new FileNotFoundException("No backup config found!");
+                    }
                 }
 
             }
