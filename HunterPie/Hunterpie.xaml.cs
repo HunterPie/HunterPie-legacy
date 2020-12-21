@@ -909,9 +909,6 @@ namespace HunterPie
             UserSettings.PlayerConfig.HunterPie.PosX = Left;
             UserSettings.PlayerConfig.HunterPie.PosY = Top;
 
-            if (!isUpdating)
-                UserSettings.SaveNewConfig();
-
             DebuggerControl.DumpLog();
 
             // Dispose tray icon
@@ -925,6 +922,7 @@ namespace HunterPie
 
             // Dispose stuff & stop scanning threads
             overlay?.Dispose();
+
             if (game.IsActive)
                 game?.StopScanning();
 
@@ -941,6 +939,8 @@ namespace HunterPie
 
             UnhookEvents();
             Hotkey.Unload();
+
+            UserSettings.SaveNewConfig();
         }
 
         private void OnGithubButtonClick(object sender, MouseButtonEventArgs e) => Process.Start("https://github.com/Haato3o/HunterPie");

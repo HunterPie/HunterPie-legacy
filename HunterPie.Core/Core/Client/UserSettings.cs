@@ -14,6 +14,7 @@ namespace HunterPie.Core
         private static FileSystemWatcher ConfigWatcher;
 
         private static readonly string ConfigFileName = Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "config.json");
+        private static readonly string ConfigBackupFileName = ConfigFileName + ".bak";
         public static Config.Rootobject PlayerConfig;
         private static string ConfigSerialized;
 
@@ -450,7 +451,21 @@ namespace HunterPie.Core
             try
             {
                 configContent = File.ReadAllText(ConfigFileName);
-                if (string.IsNullOrEmpty(configContent) || configContent == "null") throw new Exception("config.json was corrupted.");
+                if (configContent[0] == '\x00')
+                    Debugger.Warn("config.json was corrupted. Trying to load backup config instead.");
+
+                if (File.Exists(ConfigBackupFileName))
+                {
+                    configContent = File.ReadAllText(ConfigBackupFileName);
+
+                    if (configContent[0] == '\x00')
+                        throw new Exception("Backup config was also corrupted!");
+
+                } else
+                {
+                    throw new FileNotFoundException("No backup config found!");
+                }
+
             }
             catch (IOException err)
             {
@@ -478,7 +493,11 @@ namespace HunterPie.Core
             LoadPlayerSerializedConfig();
             try
             {
-                if (ConfigSerialized == null) return;
+                if (ConfigSerialized == null)
+                    return;
+
+                // Check if config is valid
+
                 PlayerConfig = JsonConvert.DeserializeObject<Config.Rootobject>(ConfigSerialized);
                 _onSettingsUpdate();
             }
@@ -493,8 +512,23 @@ namespace HunterPie.Core
             try
             {
                 string newPlayerConfig = JsonConvert.SerializeObject(PlayerConfig, Formatting.Indented);
-                if (string.IsNullOrEmpty(newPlayerConfig) || newPlayerConfig == "null") throw new Exception("Whoops! Something went wrong when trying to save your config!");
-                File.WriteAllText(ConfigFileName, newPlayerConfig);
+
+                if (newPlayerConfig[0] == '\x00')
+                    throw new Exception("Whoops! Something went wrong when trying to save your config!");
+
+                File.WriteAllText(ConfigBackupFileName, newPlayerConfig);
+
+                // Check if the config is valid, this is necessary so we don't overwrite the
+                // current config with a corrupted one
+
+                string backupConfig = File.ReadAllText(ConfigBackupFileName);
+
+                if (backupConfig[0] != '\x00')
+                {
+                    string backup = File.ReadAllText(ConfigBackupFileName);
+                    File.WriteAllText(ConfigFileName, backup);
+                }
+
             }
             catch (Exception err)
             {
