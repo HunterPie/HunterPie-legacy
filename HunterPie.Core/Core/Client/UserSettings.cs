@@ -451,7 +451,7 @@ namespace HunterPie.Core
             try
             {
                 configContent = File.ReadAllText(ConfigFileName);
-                if (configContent[0] == '\x00')
+                if (configContent[0] == '\x00' || string.IsNullOrEmpty(configContent) || configContent == "null")
                 {
                     Debugger.Warn("config.json was corrupted. Trying to load backup config instead.");
 
@@ -459,7 +459,7 @@ namespace HunterPie.Core
                     {
                         configContent = File.ReadAllText(ConfigBackupFileName);
 
-                        if (configContent[0] == '\x00')
+                        if (configContent[0] == '\x00' || string.IsNullOrEmpty(configContent) || configContent == "null")
                             throw new Exception("Backup config was also corrupted!");
 
                     }

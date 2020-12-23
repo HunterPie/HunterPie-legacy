@@ -34,6 +34,21 @@ namespace HunterPie.GUI.Widgets.DPSMeter.Parts
             ctx.Player.PlayerParty.OnTotalDamageChange += OnTotalDamageChanged;
             ctx.Player.OnPeaceZoneLeave += OnPeaceZoneLeave;
             ctx.Player.OnPeaceZoneEnter += OnPeaceZoneEnter;
+            ctx.Player.PlayerParty.OnTimerReset += OnTimerReset;
+        }
+
+        private void OnTimerReset(object source, EventArgs args)
+        {
+            Dispatch(() =>
+            {
+                // Restart plot chart so we discard damages that happened
+                // before we joined the quest
+                if (!Context?.Player.InPeaceZone ?? false)
+                {
+                    DestroyMemberPlots();
+                    CreateMemberPlots();
+                }
+            });
         }
 
         public void ApplySettings()
@@ -57,6 +72,7 @@ namespace HunterPie.GUI.Widgets.DPSMeter.Parts
             Context.Player.PlayerParty.OnTotalDamageChange -= OnTotalDamageChanged;
             Context.Player.OnPeaceZoneLeave -= OnPeaceZoneLeave;
             Context.Player.OnPeaceZoneEnter -= OnPeaceZoneEnter;
+            Context.Player.PlayerParty.OnTimerReset -= OnTimerReset;
             DestroyMemberPlots();
             Timer.Stop();
         }

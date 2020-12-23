@@ -20,6 +20,7 @@ namespace HunterPie.Core
                     if (value < epoch)
                     {
                         TimeDifference = TimeSpan.Zero;
+                        Dispatch(OnTimerReset);
                     }
                     epoch = value;
                 }
@@ -44,7 +45,7 @@ namespace HunterPie.Core
                         TimeDifference = TimeSpan.Zero;
                     }
                     totalDamage = value;
-                    _OnTotalDamageChange();
+                    Dispatch(OnTotalDamageChange);
                 }
 
             }
@@ -90,7 +91,8 @@ namespace HunterPie.Core
         // Timer event
         public delegate void PartyEvents(object source, EventArgs args);
         public event PartyEvents OnTotalDamageChange;
+        public event PartyEvents OnTimerReset;
 
-        protected virtual void _OnTotalDamageChange() => OnTotalDamageChange?.Invoke(this, EventArgs.Empty);
+        private void Dispatch(PartyEvents e) => e?.Invoke(this, EventArgs.Empty);
     }
 }

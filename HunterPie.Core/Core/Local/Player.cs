@@ -1428,13 +1428,15 @@ namespace HunterPie.Core
             short[] weaponSharpnessData = Kernel.ReadStructure<short>(weaponSharpnessPtr, 7);
             sSharpness weaponSharpness = Kernel.ReadStructure<sSharpness>(weaponAddress - 0x274);
             int maxLevel = weaponSharpnessData.Length - 1;
-            for (int i = maxLevel; i > 0; i--)
+            int lastSharpness = 0;
+            for (int i = 0; i < weaponSharpnessData.Length; i++)
             {
-                if (weaponSharpnessData[i] == 0)
+                if (weaponSharpnessData[i] == 0 || weaponSharpnessData[i] == lastSharpness)
                 {
                     maxLevel = i - 1;
                     break;
                 }
+                lastSharpness = weaponSharpnessData[i];
             }
 
             CurrentWeapon.Sharpnesses = weaponSharpnessData;

@@ -1,5 +1,4 @@
-﻿using System;
-using System.Linq;
+﻿using System.Linq;
 using HunterPie.Core.Events;
 using HunterPie.Core.Enums;
 
@@ -71,12 +70,14 @@ namespace HunterPie.Core.Jobs
         public SharpnessLevel MaxSharpnessLevel
         {
             get {
-                for (int i = Sharpnesses.Length - 1; i > 0; i--)
+                int lastSharpness = 0;
+                for (int i = 0; i < Sharpnesses.Length - 1; i++)
                 {
-                    if (Sharpnesses[i] == 0)
+                    if (Sharpnesses[i] == 0 || Sharpnesses[i] == lastSharpness)
                     {
                         return (SharpnessLevel)(i - 1);
                     }
+                    lastSharpness = Sharpnesses[i];
                 }
                 return SharpnessLevel.Purple;
             }

@@ -129,8 +129,8 @@ namespace HunterPie.GUI.Widgets.DPSMeter.Parts
             float TimeElapsed = (float)PartyContext.Epoch.TotalSeconds - (float)PartyContext.TimeDifference.TotalSeconds;
             Dispatch(() =>
             {
-                DPS = $"{Context.Damage / TimeElapsed:0.00}/s";
                 Damage = Context.Damage;
+                DPS = $"{Damage / TimeElapsed:0.00}/s";
                 DamagePercentage = Context.DamagePercentage;
                 PlayerDPSBar.Width = Context.DamagePercentage * PlayerDPSBar.MaxWidth;
                 if (UserSettings.PlayerConfig.Overlay.DPSMeter.ShowOnlyMyself)
@@ -152,9 +152,10 @@ namespace HunterPie.GUI.Widgets.DPSMeter.Parts
                 PlayerName = Context.Name;
                 MasterRank = Context.MR;
                 HighRank = Context.HR;
-                if (Context.IsPartyLeader) PartyLeader.Visibility = Visibility.Visible;
-                DPS = $"{Context.Damage / TimeElapsed:0.00}/s";
+                if (Context.IsPartyLeader)
+                    PartyLeader.Visibility = Visibility.Visible;
                 Damage = Context.Damage;
+                DPS = $"{Damage / TimeElapsed:0.00}/s";
                 DamagePercentage = Context.DamagePercentage;
                 ClassIcon = Context.WeaponIconName == null ? null : (ImageSource)TryFindResource(Context.WeaponIconName);
                 Visibility = Context.IsInParty ? Visibility.Visible : Visibility.Collapsed;

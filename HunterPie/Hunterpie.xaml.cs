@@ -940,7 +940,8 @@ namespace HunterPie
             UnhookEvents();
             Hotkey.Unload();
 
-            UserSettings.SaveNewConfig();
+            if (!isUpdating)
+                UserSettings.SaveNewConfig();
         }
 
         private void OnGithubButtonClick(object sender, MouseButtonEventArgs e) => Process.Start("https://github.com/Haato3o/HunterPie");

@@ -2,6 +2,7 @@
 using System.Collections.ObjectModel;
 using System.Windows;
 using System.Windows.Threading;
+using Newtonsoft.Json;
 
 namespace HunterPie.Logger
 {
@@ -55,6 +56,11 @@ namespace HunterPie.Logger
         public static void Discord(object message)
         {
             Write($"[DISCORD] {message?.ToString()}", DISCORD);
+        }
+
+        public static void LogObject(object obj)
+        {
+            Write(JsonConvert.SerializeObject(obj, Formatting.Indented), NORMAL);
         }
 
         public static void Clear()
