@@ -1094,25 +1094,25 @@ namespace HunterPie.Core
 
                 PlayerParty.TotalDamage = totalDamage;
                 GetQuestElapsedTime();
+
                 for (int i = 0; i < PlayerParty.MaxSize; i++)
                 {
-                    string playerName = GetPartyMemberName(PartyContainer + (i * 0x1C0));
-                    short HR = Kernel.Read<short>(PartyContainer + (i * 0x1C0 + 0x27));
-                    short MR = Kernel.Read<short>(PartyContainer + (i * 0x1C0 + 0x29));
-                    byte playerWeapon = playerName == Name && HR == Level ? WeaponID : Kernel.Read<byte>(PartyContainer + (i * 0x1C0 + 0x33));
-                    int playerDamage = playerDamages[i];
-                    float playerDamagePercentage = 0;
-                    if (totalDamage != 0)
+                    short[] levels = Kernel.ReadStructure<short>(PartyContainer + (i * 0x1C0 + 0x27), 2);
+                    MemberInfo dummy = new MemberInfo
                     {
-                        playerDamagePercentage = playerDamage / (float)totalDamage;
-                    }
+                        Name = GetPartyMemberName(PartyContainer + (i * 0x1C0)),
+                        HR = levels[0],
+                        MR = levels[1],
+                        Damage = playerDamages[i],
+                        DamagePercentage = playerDamages[i] > 0 ? playerDamages[i] / (float)totalDamage : 0,
+                        IsLeader = i == 0,
+                    };
+                    dummy.WeaponId = dummy.Name == Name && dummy.HR == Level ? WeaponID :
+                        Kernel.Read<byte>(PartyContainer + (i * 0x1C0 + 0x33));
 
-                    if (i == 0) PlayerParty[i].IsPartyLeader = true;
+                    dummy.IsLocalPlayer = dummy.Name == Name && dummy.HR == Level;
 
-                    PlayerParty[i].HR = HR;
-                    PlayerParty[i].MR = MR;
-                    PlayerParty[i].IsMe = playerName == Name && HR == Level;
-                    PlayerParty[i].SetPlayerInfo(playerName, playerWeapon, playerDamage, playerDamagePercentage);
+                    PlayerParty[i].SetPlayerInfo(dummy);
                 }
             }
 

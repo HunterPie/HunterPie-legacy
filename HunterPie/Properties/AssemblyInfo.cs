@@ -8,7 +8,7 @@ using System.Windows.Media;
 // set of attributes. Change these attribute values to modify the information
 // associated with an assembly.
 [assembly: AssemblyTitle("HunterPie")]
-[assembly: AssemblyDescription("Rich presence and overlay for Monster Hunter World")]
+[assembly: AssemblyDescription("Rich presence and Overlay for Monster Hunter World")]
 [assembly: AssemblyConfiguration("")]
 [assembly: AssemblyCompany("Haato")]
 [assembly: AssemblyProduct("HunterPie")]

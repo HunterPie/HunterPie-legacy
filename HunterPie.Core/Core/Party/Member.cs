@@ -2,97 +2,105 @@
 
 namespace HunterPie.Core
 {
+    public struct MemberInfo
+    {
+        public string Name;
+        public short HR;
+        public short MR;
+        public byte WeaponId;
+        public bool IsLocalPlayer;
+        public bool IsLeader;
+        public int Damage;
+        public float DamagePercentage;
+    }
     public class Member
     {
-
-        private string _Name = "";
-        private int _Damage;
-        private byte _Weapon = 255;
+        private string name = "";
+        private int damage;
+        private byte weapon = 255;
 
         // TODO: Fix this spaghetti
         public string Name
         {
-            get => _Name;
-            set
+            get => name;
+            private set
             {
-                if (value == "" && value == _Name && Damage > 0)
+                if (name != value)
                 {
-                    _Name = "Player";
-                    _OnSpawn();
-                    return;
-                }
-                else if (value != "" && value != _Name)
-                {
-                    _Name = value;
-                    _OnSpawn();
-                }
-                else if (value == "" && value != _Name && Damage == 0)
-                {
-                    _Name = value;
-                    _OnSpawn();
+                    name = value;
+                    if (IsInParty)
+                    {
+                        Dispatch(OnSpawn);
+                    } else
+                    {
+                        Dispatch(OnDespawn);
+                    }
                 }
             }
         }
         public float DamagePercentage { get; set; }
         public int Damage
         {
-            get => _Damage;
-            set
+            get => damage;
+            private set
             {
-                if (value != _Damage)
+                if (value != damage)
                 {
-                    _Damage = value;
-                    _OnDamageChange();
+                    damage = value;
+                    Dispatch(OnDamageChange);
                 }
             }
         }
         public byte Weapon
         {
-            get => _Weapon;
-            set
+            get => weapon;
+            private set
             {
-                if (value != _Weapon)
+                if (value != weapon)
                 {
-                    if (_Weapon != 255 && value == 255) return;
-                    _Weapon = value;
+                    if (weapon != 255 && value == 255)
+                        return;
+
+                    weapon = value;
                     WeaponIconName = GetWeaponIconNameByID(value);
-                    _OnWeaponChange();
+                    Dispatch(OnWeaponChange);
                 }
             }
         }
-        public string WeaponIconName;
-        public bool IsPartyLeader { get; set; }
-        public bool IsInParty { get; set; }
-        public short HR { get; set; }
-        public short MR { get; set; }
-        public bool IsMe { get; set; }
+        public string WeaponIconName { get; private set; }
+        public bool IsPartyLeader { get; internal set; }
+        public bool IsInParty { get; private set; }
+        public short HR { get; private set; }
+        public short MR { get; private set; }
+        public bool IsMe { get; private set; }
 
         public delegate void PartyMemberEvents(object source, PartyMemberEventArgs args);
         public event PartyMemberEvents OnDamageChange;
         public event PartyMemberEvents OnWeaponChange;
         public event PartyMemberEvents OnSpawn;
+        public event PartyMemberEvents OnDespawn;
 
-        protected virtual void _OnDamageChange() => OnDamageChange?.Invoke(this, new PartyMemberEventArgs(this));
+        private void Dispatch(PartyMemberEvents e) => e?.Invoke(this, new PartyMemberEventArgs(this));
 
-        protected virtual void _OnWeaponChange() => OnWeaponChange?.Invoke(this, new PartyMemberEventArgs(this));
-
-        protected virtual void _OnSpawn() => OnSpawn?.Invoke(this, new PartyMemberEventArgs(this));
-
-        public void SetPlayerInfo(string name, byte weapon_id, int damage, float damagePercentage)
+        public void SetPlayerInfo(MemberInfo info)
         {
-            if (string.IsNullOrEmpty(name) && weapon_id == 0)
+            if (!string.IsNullOrEmpty(info.Name) && info.WeaponId != 0)
             {
-                Weapon = Weapon;
+                Weapon = info.WeaponId;
             }
-            else
-            {
-                Weapon = weapon_id;
-            }
-            if (string.IsNullOrEmpty(name) && damage == 0) IsInParty = false;
-            else { IsInParty = true; }
-            DamagePercentage = damagePercentage;
-            Damage = damage;
-            Name = name;
+            IsInParty = !(string.IsNullOrEmpty(info.Name) && info.Damage == 0);
+            DamagePercentage = info.DamagePercentage;
+            HR = info.HR;
+            MR = info.MR;
+            IsMe = info.IsLocalPlayer;
+            IsPartyLeader = info.IsLeader;
+            Damage = info.Damage;
+
+            // When players leave party after quest ends
+            if (IsInParty && string.IsNullOrEmpty(info.Name))
+                info.Name = string.IsNullOrEmpty(Name) ? "Player" : Name;
+
+            Name = info.Name;
         }
 
         private string GetWeaponIconNameByID(int id)
