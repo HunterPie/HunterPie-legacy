@@ -80,26 +80,26 @@
     <Part ID="MONSTER_PART_BODY" Name="몸통"/>
     <Part ID="MONSTER_PART_LWING" Name="왼쪽 날개"/>
     <Part ID="MONSTER_PART_RWING" Name="오른쪽 날개"/>
-    <Part ID="MONSTER_PART_LLEG" Name="왼쪽 다리"/>
-    <Part ID="MONSTER_PART_RLEG" Name="오른쪽 다리"/>
+    <Part ID="MONSTER_PART_LLEG" Name="왼쪽 뒷다리"/>
+    <Part ID="MONSTER_PART_RLEG" Name="오른쪽 뒷다리"/>
     <Part ID="MONSTER_PART_TAIL" Name="꼬리"/>
     <Part ID="MONSTER_PART_TAIL_TIP" Name="꼬리 (끝)"/>
     <Part ID="MONSTER_PART_ARMS" Name="앞다리"/>
-    <Part ID="MONSTER_PART_LEGS" Name="다리"/>
+    <Part ID="MONSTER_PART_LEGS" Name="뒷다리"/>
     <Part ID="MONSTER_PART_LARM" Name="왼쪽 앞다리"/>
     <Part ID="MONSTER_PART_RARM" Name="오른쪽 앞다리"/>
-    <Part ID="MONSTER_PART_LLIMBS" Name="왼쪽 팔다리"/>
-    <Part ID="MONSTER_PART_RLIMBS" Name="오른쪽 팔다리"/>
+    <Part ID="MONSTER_PART_LLIMBS" Name="왼쪽 앞다리"/>
+    <Part ID="MONSTER_PART_RLIMBS" Name="오른쪽 앞다리"/>
     <Part ID="MONSTER_PART_WINGS" Name="날개"/>
-    <Part ID="MONSTER_PART_LIMBS" Name="팔다리"/>
+    <Part ID="MONSTER_PART_LIMBS" Name="앞다리"/>
     <Part ID="MONSTER_PART_ABDOMEN" Name="복부"/>
     <Part ID="MONSTER_PART_CHEST" Name="가슴"/>
     <Part ID="MONSTER_PART_REAR" Name="둔부"/>
     <Part ID="MONSTER_PART_HEAD_MUD" Name="머리 [진흙]"/>
     <Part ID="MONSTER_PART_BODY_MUD" Name="몸통 [진흙]"/>
     <Part ID="MONSTER_PART_ARMS_MUD" Name="앞다리 [진흙]"/>
-    <Part ID="MONSTER_PART_LLEG_MUD" Name="왼쪽 다리 [진흙]"/>
-    <Part ID="MONSTER_PART_RLEG_MUD" Name="오른쪽 다리 [진흙]"/>
+    <Part ID="MONSTER_PART_LLEG_MUD" Name="왼쪽 뒷다리 [진흙]"/>
+    <Part ID="MONSTER_PART_RLEG_MUD" Name="오른쪽 뒷다리 [진흙]"/>
     <Part ID="MONSTER_PART_TAIL_MUD" Name="꼬리 [진흙]"/>
     <Part ID="MONSTER_PART_JAW" Name="턱"/>
     <Part ID="MONSTER_PART_BACK" Name="등"/>
@@ -157,11 +157,11 @@
     <Part ID="MONSTER_PART_REMOVABLE_BALLOON" Name="목 주머니 (파괴 가능)"/>
     <Part ID="MONSTER_PART_REMOVABLE_HORNS_2" Name="두번째 뿔 (파괴 가능)"/>
     <Part ID="MONSTER_PART_BODY_LEGS" Name="몸(+다리)"/>
-    <Part ID="MONSTER_PART_SILVER_SPIKES_HEAD" Name="금강 가시 (머리)"/>
-    <Part ID="MONSTER_PART_SILVER_SPIKES_LARM" Name="금강 가시 (왼쪽 앞다리)"/>
-    <Part ID="MONSTER_PART_SILVER_SPIKES_RARM" Name="금강 가시 (오른쪽 앞다리)"/>
-    <Part ID="MONSTER_PART_SILVER_SPIKES_LWING" Name="금강 가시 (왼쪽 날개)"/>
-    <Part ID="MONSTER_PART_SILVER_SPIKES_RWING" Name="금강 가시 (오른쪽 날개)"/>
+    <Part ID="MONSTER_PART_SILVER_SPIKES_HEAD" Name="머리 [금강 가시]"/>
+    <Part ID="MONSTER_PART_SILVER_SPIKES_LARM" Name="왼쪽 앞다리 [금강 가시]"/>
+    <Part ID="MONSTER_PART_SILVER_SPIKES_RARM" Name="오른쪽 앞다리 [금강 가시]"/>
+    <Part ID="MONSTER_PART_SILVER_SPIKES_LWING" Name="왼쪽 날개 [금강 가시]"/>
+    <Part ID="MONSTER_PART_SILVER_SPIKES_RWING" Name="오른쪽 날개 [금강 가시]"/>
     <!-- Special parts -->
     <Part ID="MONSTER_PART_KNOCKDOWN" Name="병기 데미지 대경직"/>
     <Part ID="MONSTER_PART_BIG_FLINCH" Name="대경직"/>
@@ -177,12 +177,12 @@
     <Part ID="MONSTER_PART_EMERGE_SNOW_HEAD" Name="눈 위로 떠오른 머리"/>
     <Part ID="MONSTER_PART_EMERGE_SNOW_BODY" Name="눈 위로 떠오른 몸통"/>
     <Part ID="MONSTER_PART_EMERGE_SNOW_TAIL" Name="눈 위로 떠오른 꼬리"/>
-    <Part ID="MONSTER_PART_SPIKES_HEAD" Name="가시 (머리)"/>
-    <Part ID="MONSTER_PART_SPIKES_LARM" Name="가시 (왼쪽 앞다리)"/>
-    <Part ID="MONSTER_PART_SPIKES_RARM" Name="가시 (오른쪽 앞다리)"/>
-    <Part ID="MONSTER_PART_SPIKES_LWING" Name="가시 (왼쪽 날개)"/>
-    <Part ID="MONSTER_PART_SPIKES_RWING" Name="가시 (오른쪽 날개)"/>
-    <Part ID="MONSTER_PART_SPIKES_TAIL" Name="가시 (꼬리)"/>
+    <Part ID="MONSTER_PART_SPIKES_HEAD" Name="머리 [가시]"/>
+    <Part ID="MONSTER_PART_SPIKES_LARM" Name="왼쪽 앞다리 [가시]"/>
+    <Part ID="MONSTER_PART_SPIKES_RARM" Name="오른쪽 앞다리 [가시]"/>
+    <Part ID="MONSTER_PART_SPIKES_LWING" Name="왼쪽 날개 [가시]"/>
+    <Part ID="MONSTER_PART_SPIKES_RWING" Name="오른쪽 날개 [가시]"/>
+    <Part ID="MONSTER_PART_SPIKES_TAIL" Name="꼬리 [가시]"/>
     <Part ID="MONSTER_PART_REPEL" Name="격퇴"/>
     <Part ID="MONSTER_PART_EXPLOSION_WEAKENING" Name="에스카톤 약화"/>
   </Parts>
