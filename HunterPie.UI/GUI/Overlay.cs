@@ -14,6 +14,7 @@ namespace HunterPie.GUI
 {
     public class Overlay : IDisposable
     {
+
         public bool IsDisposed { get; private set; }
 
         private static readonly List<Widget> widgets = new List<Widget>();
@@ -29,6 +30,7 @@ namespace HunterPie.GUI
             Context = ctx;
             SetRenderMode();
             CreateWidgets();
+            SetAliasingMode();
         }
 
         #region Overlay static methods
@@ -85,6 +87,15 @@ namespace HunterPie.GUI
             if (!UserSettings.PlayerConfig.Overlay.EnableHardwareAcceleration)
             {
                 RenderOptions.ProcessRenderMode = RenderMode.SoftwareOnly;
+            }
+        }
+
+        private void SetAliasingMode()
+        {
+            EdgeMode mode = OverlaySettings.EnableAntiAliasing ? EdgeMode.Unspecified : EdgeMode.Aliased;
+            foreach (Widget widget in Widgets)
+            {
+                RenderOptions.SetEdgeMode(widget, mode);
             }
         }
 

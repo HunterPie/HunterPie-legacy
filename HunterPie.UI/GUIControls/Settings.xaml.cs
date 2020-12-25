@@ -74,6 +74,7 @@ namespace HunterPie.GUIControls
             settingsUI.switchEnableOverlay.IsEnabled = settings.Overlay.Enabled;
             settingsUI.DesiredFrameRateSlider.Value = settings.Overlay.DesiredAnimationFrameRate;
             settingsUI.DesiredScanPerSecond.Value = settings.Overlay.GameScanDelay;
+            settingsUI.switchAliasing.IsEnabled = settings.Overlay.EnableAntiAliasing;
             settingsUI.switchForceDirectX11Fullscreen.IsEnabled = settings.Overlay.EnableForceDirectX11Fullscreen;
             settingsUI.ToggleDesignHotkey.HotKey = settings.Overlay.ToggleDesignKeybind;
             settingsUI.ToggleOverlayHotkey.HotKey = settings.Overlay.ToggleOverlayKeybind;
@@ -249,6 +250,7 @@ namespace HunterPie.GUIControls
             settings.Overlay.Enabled = settingsUI.switchEnableOverlay.IsEnabled;
             settings.Overlay.DesiredAnimationFrameRate = (int)settingsUI.DesiredFrameRateSlider.Value;
             settings.Overlay.GameScanDelay = (int)settingsUI.DesiredScanPerSecond.Value;
+            settings.Overlay.EnableAntiAliasing = settingsUI.switchAliasing.IsEnabled;
             settings.Overlay.EnableForceDirectX11Fullscreen = settingsUI.switchForceDirectX11Fullscreen.IsEnabled;
             settings.Overlay.ToggleDesignKeybind = settingsUI.ToggleDesignHotkey.HotKey;
             settings.Overlay.ToggleOverlayKeybind = settingsUI.ToggleOverlayHotkey.HotKey;

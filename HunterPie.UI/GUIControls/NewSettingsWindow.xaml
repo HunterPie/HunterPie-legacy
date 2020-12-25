@@ -236,6 +236,14 @@
                                 <Binding Mode="OneTime" XPath="Settings/String[@ID='ENABLE_HARDWARE_ACCELERATION_DESC']/@Name"/>
                             </custom:Switcher.ToolTip>
                         </custom:Switcher>
+                        <custom:Switcher x:Name="switchAliasing" Margin="10,0,10,5" RestartVisibility="Visible">
+                            <custom:Switcher.Text>
+                                <Binding Mode="OneTime" XPath="Settings/String[@ID='ENABLE_ANTIALIASING']/@Name"/>
+                            </custom:Switcher.Text>
+                            <custom:Switcher.ToolTip>
+                                <Binding Mode="OneTime" XPath="Settings/String[@ID='ENABLE_ANTIALIASING_DESC']/@Name"/>
+                            </custom:Switcher.ToolTip>
+                        </custom:Switcher>
                         <custom:Switcher x:Name="switchForceDirectX11Fullscreen" Margin="10,0,10,5" RestartVisibility="Collapsed">
                             <custom:Switcher.Text>
                                 <Binding Mode="OneTime" XPath="Settings/String[@ID='ENABLE_OVERLAY_FORCE_DIRECTX11_FULLSCREEN']/@Name"/>

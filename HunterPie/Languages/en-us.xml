@@ -538,6 +538,8 @@
       <String ID="ENABLE_HIDE_WHEN_UNFOCUS_DESC" Name="If enabled, HunterPie overlay will be automatically hidden when the game loses focus. (e.g: When you Alt+Tab)"/>
       <String ID="ENABLE_HARDWARE_ACCELERATION" Name="Enable Hardware Acceleration"/>
       <String ID="ENABLE_HARDWARE_ACCELERATION_DESC" Name="Enabling Hardware acceleration will make the overlay be rendered by the graphics card. Turning this off will change the rendering mode to software rendering, which will use more CPU. Turn this option off if you're having FPS issues."/>
+      <String ID="ENABLE_ANTIALIASING" Name="Enable Anti-Aliasing"/>
+      <String ID="ENABLE_ANTIALIASING_DESC" Name="Enabling Anti-Aliasing will make the edges of rendered components smoother, disabling this option might increase performance."/>
       <String ID="STATIC_ANIMATION_FPS" Name="Animations framerate"/>
       <String ID="STATIC_ANIMATION_FPS_DESC" Name="Changes all HunterPie animations framerate. Set this to a lower value if you're having FPS issues."/>
       <String ID="STATIC_GAME_SCAN_DELAY" Name="Game scan delay:"/>
