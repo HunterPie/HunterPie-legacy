@@ -51,13 +51,23 @@ namespace HunterPie.Core.Integrations.Discord
 
         public void StartRPC()
         {
-            if (isOffline) return;
+            if (isOffline)
+                return;
 
             // Check if connection exists to avoid creating multiple connections
             Instance = new RichPresence();
             Debugger.Discord(GStrings.GetLocalizationByXPath("/Console/String[@ID='MESSAGE_DISCORD_CONNECTED']"));
             Instance.Secrets = new Secrets();
-            Client = new DiscordRpcClient(AppId, autoEvents: true);
+
+            try
+            {
+                Client = new DiscordRpcClient(AppId, autoEvents: true);
+            } catch (Exception err)
+            {
+                Debugger.Error($"Failed to create Rich Presence connection:\n{err}");
+                return;
+            }
+
 
             try
             {
@@ -153,12 +163,12 @@ namespace HunterPie.Core.Integrations.Discord
 
         public void HandlePresence(object source, EventArgs e)
         {
-            if (Instance is null) return;
-            if (ctx is null) return;
-            if (IsDisposed) return;
+            if (Instance is null || ctx is null || IsDisposed)
+                return;
 
             // Do nothing if RPC is disabled
-            if (!isVisible) return;
+            if (!isVisible)
+                return;
 
             if (!FailedToRegisterScheme)
             {
