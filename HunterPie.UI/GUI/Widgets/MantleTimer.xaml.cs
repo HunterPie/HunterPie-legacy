@@ -207,7 +207,7 @@ namespace HunterPie.GUI.Widgets
         }));
 
 
-        public void ScaleWidget(double NewScaleX, double NewScaleY)
+        override public void ScaleWidget(double NewScaleX, double NewScaleY)
         {
             if (NewScaleX <= 0.2) return;
             Width = BaseWidth * NewScaleX;

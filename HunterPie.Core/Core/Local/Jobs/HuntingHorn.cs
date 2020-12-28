@@ -208,7 +208,7 @@ namespace HunterPie.Core.Jobs
         public delegate void HuntingHornSongEvents(object source, HuntingHornSongEventArgs args);
         public delegate void HuntingHornSongCastEvents(object source, HuntingHornSongCastEventArgs args);
 
-        public event HuntingHornEvents OnSongsListUpdate;
+        // public event HuntingHornEvents OnSongsListUpdate;
         public event HuntingHornEvents OnNoteColorUpdate;
 
         public event HuntingHornNoteEvents OnNoteQueueUpdate;
