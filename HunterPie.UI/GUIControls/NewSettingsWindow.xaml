@@ -50,6 +50,25 @@
     </UserControl.Resources>
     <Grid>
         <TabControl Background="{x:Null}" BorderBrush="#FF0C0C0C" TabStripPlacement="Left" BorderThickness="4,0,0,0" Margin="0">
+            <TabControl.Template>
+                <ControlTemplate TargetType="TabControl">
+                    <DockPanel>
+                        <ScrollViewer DockPanel.Dock="Left" HorizontalScrollBarVisibility="Disabled" VerticalScrollBarVisibility="Visible" HorizontalAlignment="Left">
+                            <TabPanel x:Name="HeaderPanel"
+                              Panel.ZIndex ="1" 
+                              KeyboardNavigation.TabIndex="1"
+                              Grid.Column="0"
+                              Grid.Row="0"
+                              Margin="2,2,2,0"
+                              IsItemsHost="true"/>
+                        </ScrollViewer>
+                        <ContentPresenter DockPanel.Dock="Right" x:Name="PART_SelectedContentHost"
+                                          HorizontalAlignment="Stretch"
+                                          VerticalAlignment="Stretch"
+                                          ContentSource="SelectedContent"/>
+                    </DockPanel>
+                </ControlTemplate>
+            </TabControl.Template>
             <TabItem Background="Black">
                 <TabItem.Header>
                     <Canvas Cursor="Hand">

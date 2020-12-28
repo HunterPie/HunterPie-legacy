@@ -531,12 +531,7 @@ namespace HunterPie.Core
             if (!FoundEnrageInMemory && Ailments.Count > 0)
             {
                 AilmentInfo info = MonsterData.GetAilmentInfoById(999);
-                Ailment enrageTracker = new Ailment(MonsterAddress + 0x1BE30)
-                {
-                    Name = GStrings.GetAilmentNameByID(info.Name),
-                    Group = info.Group,
-                    Type = AilmentType.Status
-                };
+                Ailment enrageTracker = new Ailment(MonsterAddress + 0x1BE30, info);
                 enrageTracker.SetAilmentInfo(sMonsterStatus.Convert(enrage), IsLocalHost, 999);
                 Ailments.Add(enrageTracker);
                 FoundEnrageInMemory = true;
@@ -629,7 +624,7 @@ namespace HunterPie.Core
         {
             for (int i = 0; i < numberOfParts; i++)
             {
-                Part part = new Part(this, MonsterInfo, MonsterInfo.Parts[i], i);
+                Part part = new Part(this, MonsterInfo.Parts[i], i);
                 Parts.Add(part);
             }
         }
@@ -641,7 +636,7 @@ namespace HunterPie.Core
             long MonsterPartPtr = Kernel.Read<long>(MonsterAddress + 0x1D058);
 
             // If the Monster Part Ptr is still 0, then the monster hasn't fully spawn yet
-            if (MonsterPartPtr == 0x00000000)
+            if (MonsterPartPtr == Kernel.NULLPTR)
                 return;
 
             long MonsterPartAddress = MonsterPartPtr + 0x40;
@@ -789,12 +784,7 @@ namespace HunterPie.Core
                         continue;
                     }
 
-                    Ailment MonsterAilment = new Ailment(MonsterAilmentPtr + 0x148)
-                    {
-                        Name = GStrings.GetAilmentNameByID(AilmentInfo.Name),
-                        Group = AilmentInfo.Group,
-                        Type = AilmentType.Ailment
-                    };
+                    Ailment MonsterAilment = new Ailment(MonsterAilmentPtr + 0x148, AilmentInfo);
                     MonsterAilment.SetAilmentInfo(AilmentData, IsLocalHost);
 
                     Debugger.Debug($"sMonsterAilment <{Name}> ({MonsterAilment.Name}) [0x{MonsterAilmentPtr + 0x148:X}]");

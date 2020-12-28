@@ -2,13 +2,11 @@
 using HunterPie.Core.Monsters;
 using HunterPie.Core.Events;
 using System.Linq;
-using HunterPie.Logger;
 
 namespace HunterPie.Core
 {
     public class Part
     {
-        private readonly MonsterInfo monsterInfo;
         private readonly PartInfo partInfo;
         private readonly int id; // Part index
 
@@ -17,10 +15,13 @@ namespace HunterPie.Core
         private int brokenCounter;
         private float tDuration;
 
-        public Part(Monster owner, MonsterInfo monsterInfo, PartInfo partInfo, int index)
+        // For debugging purposes
+        public sMonsterPartData cMonsterPartData { get; private set; }
+        public sTenderizedPart cTenderizedPart { get; private set; }
+
+        public Part(Monster owner, PartInfo partInfo, int index)
         {
             Owner = owner;
-            this.monsterInfo = monsterInfo;
             this.partInfo = partInfo;
             id = index;
             HasBreakConditions = BreakThresholds.Where(p => p.HasConditions).Count() > 0;
@@ -44,7 +45,7 @@ namespace HunterPie.Core
                 if (value != brokenCounter)
                 {
                     brokenCounter = value;
-                    NotifyBrokenCounterChanged();
+                    Dispatch(OnBrokenCounterChange);
                 }
             }
         }
@@ -57,7 +58,7 @@ namespace HunterPie.Core
                 if (value != health)
                 {
                     health = value;
-                    NotifyHealthChanged();
+                    Dispatch(OnHealthChange);
                 }
             }
         }
@@ -86,7 +87,7 @@ namespace HunterPie.Core
                 if (value != tDuration)
                 {
                     tDuration = value;
-                    NotifyTenderizeStateChangd();
+                    Dispatch(OnTenderizeStateChange);
                 }
             }
         }
@@ -99,17 +100,15 @@ namespace HunterPie.Core
         public event MonsterPartEvents OnBrokenCounterChange;
         public event MonsterPartEvents OnTenderizeStateChange;
 
-        protected virtual void NotifyHealthChanged() => OnHealthChange?.Invoke(this, new MonsterPartEventArgs(this));
-        protected virtual void NotifyBrokenCounterChanged()
-        {
-            OnBrokenCounterChange?.Invoke(this, new MonsterPartEventArgs(this));
-            Logger.Debugger.Debug($"Broken {GStrings.GetMonsterNameByID(monsterInfo.Em)} ({monsterInfo.Id}) part {Name} ({id}), {TotalHealth} hp for {brokenCounter} time");
-        }
-        protected virtual void NotifyTenderizeStateChangd() => OnTenderizeStateChange?.Invoke(this, new MonsterPartEventArgs(this));
+        private void Dispatch(MonsterPartEvents e) =>
+            e?.Invoke(this, new MonsterPartEventArgs(this));
+
         #endregion
 
         public void SetPartInfo(sMonsterPartData data, bool IsPartyHost)
         {
+            cMonsterPartData = data;
+
             TotalHealth = data.MaxHealth;
             BrokenCounter = data.Counter;
 
@@ -121,6 +120,8 @@ namespace HunterPie.Core
 
         public void SetTenderizeInfo(sTenderizedPart data)
         {
+            cTenderizedPart = data;
+
             float tenderize = data.Duration + data.ExtraDuration;
             TenderizeMaxDuration = data.MaxDuration + data.MaxExtraDuration;
             // Reset the tenderize duration when it reaches the maximum duration

@@ -18,24 +18,6 @@
                 </DataTemplate>
             </ItemsControl.ItemTemplate>
         </ItemsControl>
-        <!--
-        <ItemsControl Name="console" VirtualizingPanel.IsVirtualizing="True" ScrollViewer.CanContentScroll="True">
-            <ItemsControl.Template>
-                <ControlTemplate>
-                    <ScrollViewer x:Name="scroll" HorizontalScrollBarVisibility="Disabled" VerticalScrollBarVisibility="Auto" VirtualizingPanel.IsVirtualizing="True" SizeChanged="SizeChanged">
-                        <ItemsPresenter VirtualizingPanel.IsVirtualizing="True">
-                            
-                        </ItemsPresenter>
-                    </ScrollViewer>
-                </ControlTemplate>
-            </ItemsControl.Template>
-
-            <ItemsControl.ItemTemplate>
-                <DataTemplate>
-                    <TextBlock Text="{Binding Message, Mode=OneWay}" Foreground="{Binding Color, Mode=OneWay}" FontSize="13" Width="10" Height="10" FontFamily="Roboto, Segoe UI, Yu Gothic" TextOptions.TextHintingMode="Fixed" TextOptions.TextFormattingMode="Ideal" TextWrapping="WrapWithOverflow"/>
-                </DataTemplate>
-            </ItemsControl.ItemTemplate>
-        </ItemsControl>-->
         <Button Style="{StaticResource buttons_settings}" Cursor="Hand" FontFamily="Segoe UI" FontSize="13" FontWeight="Light" BorderBrush="{x:Null}" Foreground="{StaticResource GENERIC_BUTTON_FOREGROUND}"  Background="{StaticResource CONSOLE_HEADER_BACKGROUND}" Content="Clear" ToolTip="Clear console" HorizontalAlignment="Right" Width="42" Height="22" VerticalAlignment="Top" Click="OnClearConsoleButtonClick" IsTabStop="False" Focusable="False"/>
     </Grid>
 </UserControl>

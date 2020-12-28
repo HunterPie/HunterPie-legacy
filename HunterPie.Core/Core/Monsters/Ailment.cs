@@ -2,20 +2,23 @@
 using HunterPie.Core.Definitions;
 using HunterPie.Core.Enums;
 using HunterPie.Core.Events;
+using HunterPie.Core.Monsters;
 
 namespace HunterPie.Core
 {
     public class Ailment
     {
-
         private float buildup;
         private float duration;
         private uint counter;
 
+        // For debugging purposes
+        public sMonsterAilment cMonsterAilment { get; private set; }
+
         public long Address { get; private set; }
-        public string Name { get; set; }
-        public string Group { get; set; }
-        public uint Id { get; set; }
+        public string Name { get; private set; }
+        public string Group { get; private set; }
+        public uint Id { get; private set; }
         public float Buildup
         {
             get => buildup;
@@ -54,7 +57,7 @@ namespace HunterPie.Core
                 }
             }
         }
-        public AilmentType Type { get; set; }
+        public AilmentType Type { get; private set; }
         #region Events
         public delegate void MonsterAilmentEvents(object source, MonsterAilmentEventArgs args);
         public event MonsterAilmentEvents OnBuildupChange;
@@ -64,7 +67,13 @@ namespace HunterPie.Core
         private void Dispatch(MonsterAilmentEvents e) => e?.Invoke(this, new MonsterAilmentEventArgs(this));
         #endregion
 
-        public Ailment(long address) => Address = address;
+        public Ailment(long address, AilmentInfo info)
+        {
+            Name = GStrings.GetAilmentNameByID(info.Name);
+            Group = info.Group;
+            Type = info.Type;
+            Address = address;
+        }
 
         public void SetAilmentInfo(sMonsterAilment AilmentData, bool IsPartyHost, uint uId = 0xFFFFFF)
         {
@@ -83,6 +92,7 @@ namespace HunterPie.Core
                 Buildup = Math.Min(AilmentData.Buildup, AilmentData.MaxBuildup);
             }
             Counter = AilmentData.Counter;
+            cMonsterAilment = AilmentData;
         }
 
         public override string ToString() => $"Ailment: {Name} ({Id}) | Duration: {Duration}/{MaxDuration} | Buildup: {Buildup}/{MaxBuildup} | {Counter}";
