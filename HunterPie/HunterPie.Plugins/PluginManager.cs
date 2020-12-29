@@ -102,7 +102,7 @@ namespace HunterPie.Plugins
                         }
                     }
 
-                    PluginSettings modSettings = GetPluginSettings(module);
+                    var modSettings = GetPluginSettingsJson(module);
 
                     if (!string.IsNullOrEmpty(modInformation.EntryPoint) && File.Exists(Path.Combine(module, modInformation.EntryPoint)))
                     {
@@ -126,7 +126,13 @@ namespace HunterPie.Plugins
                     if (entries.Count() > 0)
                     {
                         dynamic mod = plugin.CreateInstance(entries.First().ToString());
-                        packages.Add(new PluginPackage { plugin = mod, information = modInformation, settings = modSettings, path = module });
+                        packages.Add(new PluginPackage {
+                            plugin = mod,
+                            information = modInformation,
+                            settings = PluginSettingsHelper.GetPluginSettings(modSettings),
+                            settingsJson = modSettings,
+                            path = module
+                        });
                     }
                 }
                 catch (Exception err)
@@ -230,26 +236,23 @@ namespace HunterPie.Plugins
 
         }
 
-        internal static PluginSettings GetPluginSettings(string path)
+        internal static JObject GetPluginSettingsJson(string path)
         {
-            PluginSettings settings;
             if (!File.Exists(Path.Combine(path, "plugin.settings.json")))
             {
-                settings = new PluginSettings();
-
-                File.WriteAllText(Path.Combine(path, "plugin.settings.json"),
-                    JsonConvert.SerializeObject(settings, Newtonsoft.Json.Formatting.Indented));
+                var settings = JObject.FromObject(new PluginSettings());
+                UpdatePluginSettings(path, settings);
+                return settings;
             }
             else
             {
-                settings = JsonConvert.DeserializeObject<PluginSettings>(File.ReadAllText(Path.Combine(path, "plugin.settings.json")));
+                return JObject.Parse(File.ReadAllText(Path.Combine(path, "plugin.settings.json")));
             }
-            return settings;
         }
 
-        internal static void UpdatePluginSettings(string path, PluginSettings newSettings)
+        internal static void UpdatePluginSettings(string path, JObject newSettings)
         {
-            File.WriteAllText(Path.Combine(path, "plugin.settings.json"), JsonConvert.SerializeObject(newSettings, Newtonsoft.Json.Formatting.Indented));
+            File.WriteAllText(Path.Combine(path, "plugin.settings.json"), newSettings.ToString());
         }
 
         /// <summary>

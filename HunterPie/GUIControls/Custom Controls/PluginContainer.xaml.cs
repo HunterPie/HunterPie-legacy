@@ -96,7 +96,8 @@ namespace HunterPie.GUIControls.Custom_Controls
             e.Handled = true;
             IsPluginEnabled = !IsPluginEnabled;
             pluginPackage.settings.IsEnabled = IsPluginEnabled;
-            PluginManager.UpdatePluginSettings(pluginPackage.path, pluginPackage.settings);
+            PluginSettingsHelper.mergePluginSettings(pluginPackage.settingsJson, pluginPackage.settings);
+            PluginManager.UpdatePluginSettings(pluginPackage.path, pluginPackage.settingsJson);
             if (IsPluginEnabled)
             {
                 PluginManager.LoadPlugin(pluginPackage.plugin);

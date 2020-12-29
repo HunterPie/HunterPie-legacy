@@ -1,4 +1,6 @@
-﻿namespace HunterPie.Plugins
+﻿using Newtonsoft.Json.Linq;
+
+namespace HunterPie.Plugins
 {
     /// <summary>
     /// A package structure with all the plugin information
@@ -8,6 +10,7 @@
         public IPlugin plugin;
         public PluginInformation information;
         public PluginSettings settings;
+        public JObject settingsJson;
         public string path;
     }
 }
