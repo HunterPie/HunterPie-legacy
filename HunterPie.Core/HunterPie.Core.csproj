@@ -158,6 +158,7 @@
     <Compile Include="Core\Monsters\Part.cs" />
     <Compile Include="Core\Party\Member.cs" />
     <Compile Include="Core\Party\Party.cs" />
+    <Compile Include="HunterPie.Plugins\PluginSettingsHelper.cs" />
     <Compile Include="Logger\Debugger.cs" />
     <Compile Include="HunterPie.Plugins\IPlugin.cs" />
     <Compile Include="HunterPie.Plugins\PluginInformation.cs" />
