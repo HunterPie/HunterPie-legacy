@@ -178,7 +178,7 @@ namespace HunterPie.Core
         /// <summary>
         /// Player gear skill list
         /// </summary>
-        public sPlayerSkill[] Skills;
+        public readonly sPlayerSkill[] Skills = new sPlayerSkill[226];
 
         /// <summary>
         /// Current Zone Id
@@ -468,6 +468,7 @@ namespace HunterPie.Core
             {
                 Name = "Scanner_Player"
             };
+            scanPlayerInfo.SetApartmentState(ApartmentState.STA);
             Debugger.Warn(GStrings.GetLocalizationByXPath("/Console/String[@ID='MESSAGE_PLAYER_SCANNER_INITIALIZED']"));
             scanPlayerInfo.Start();
         }
@@ -1069,7 +1070,8 @@ namespace HunterPie.Core
         private void GetPlayerSkills()
         {
             long address = Kernel.ReadMultilevelPtr(Address.GetAddress("BASE") + Address.GetAddress("ABNORMALITY_OFFSET"), Address.GetOffsets("SkillOffsets"));
-            Skills = Kernel.ReadStructure<sPlayerSkill>(address, 226);
+            sPlayerSkill[] buffer = Kernel.ReadStructure<sPlayerSkill>(address, 226);
+            Array.Copy(buffer, Skills, buffer.Length);
         }
 
         private void GetParty()

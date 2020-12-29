@@ -249,6 +249,11 @@ namespace HunterPie.Core
 
         public List<Part> Parts = new List<Part>();
         public List<Ailment> Ailments = new List<Ailment>();
+
+        // Model Data & Position
+        readonly Vector3 Position = new Vector3();
+        public sMonsterModelData ModelData { get; private set; }
+
         // Threading
         ThreadStart monsterInfoScanRef;
         Thread monsterInfoScan;
@@ -326,6 +331,7 @@ namespace HunterPie.Core
             {
                 Name = $"Kernel_Monster.{MonsterNumber}"
             };
+            monsterInfoScan.SetApartmentState(ApartmentState.STA);
             Debugger.Warn(GStrings.GetLocalizationByXPath("/Console/String[@ID='MESSAGE_MONSTER_SCANNER_INITIALIZED']").Replace("{MonsterNumber}", MonsterNumber.ToString()));
             monsterInfoScan.Start();
         }
@@ -347,6 +353,7 @@ namespace HunterPie.Core
                 GetMonsterEnrageTimer();
                 GetTargetMonsterAddress();
                 GetAlatreonCurrentElement();
+                GetMonsterModelData();
 
                 DispatchScanFinished();
                 Thread.Sleep(UserSettings.PlayerConfig.Overlay.GameScanDelay);
@@ -462,6 +469,17 @@ namespace HunterPie.Core
             }
             Id = null;
 
+        }
+
+        private void GetMonsterModelData()
+        {
+            if (!IsAlive)
+                return;
+
+            sMonsterModelData data = Kernel.ReadStructure<sMonsterModelData>(MonsterAddress + 0x160);
+            Position.Update(data.pos);
+
+            ModelData = data;
         }
 
         /// <summary>

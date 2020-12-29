@@ -228,6 +228,7 @@ namespace HunterPie.Core
             {
                 Name = "Scanner_Game"
             };
+            scanGameThreading.SetApartmentState(ApartmentState.STA);
             scanGameThreading.Start();
         }
 
