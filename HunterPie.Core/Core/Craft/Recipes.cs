@@ -82,5 +82,24 @@ namespace HunterPie.Core.Craft
                 return null;
             }
         }
+
+        /// <summary>
+        /// Adds a new recipe to the Recipes list
+        /// </summary>
+        /// <param name="id">Id of the item that will be crafted by this recipe</param>
+        /// <param name="recipe">Recipe to craft the item</param>
+        /// <returns>True if the recipe has been added succesfully, false if not</returns>
+        public static bool AddNewRecipe(int id, Recipe recipe)
+        {
+            if (FindRecipe(id) is null)
+            {
+                list.Add(id, recipe);
+                return true;
+            } else
+            {
+                Debugger.Debug($"Recipe with id {id} already exists.");
+                return false;
+            }
+        }
     }
 }
