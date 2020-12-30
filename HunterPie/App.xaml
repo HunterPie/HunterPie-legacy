@@ -7,6 +7,7 @@
             <ResourceDictionary.MergedDictionaries>
                 <ResourceDictionary Source="pack://siteoforigin:,,,/HunterPie.Resources/UI/Icons.xaml"/>
                 <ResourceDictionary Source="/Resources/ScrollbarStyle.xaml"/>
+                <ResourceDictionary Source="/Resources/MarkdownStyles.xaml"/>
                 <ResourceDictionary Source="/Resources/DefaultTheme.xaml"/>
                 <ResourceDictionary Source="/Resources/Resources.xaml"/>
             </ResourceDictionary.MergedDictionaries>

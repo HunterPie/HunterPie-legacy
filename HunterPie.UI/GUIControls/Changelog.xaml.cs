@@ -21,16 +21,16 @@ namespace HunterPie.GUIControls
     /// </summary>
     public partial class Changelog : UserControl
     {
-        private static Changelog _Instance;
+        private static Changelog instance;
         public static Changelog Instance
         {
             get
             {
-                if (_Instance == null)
+                if (instance == null)
                 {
-                    _Instance = new Changelog();
+                    instance = new Changelog();
                 }
-                return _Instance;
+                return instance;
             }
         }
 

@@ -10,6 +10,6 @@
         <CommandBinding Command="{x:Static markdig:Commands.Hyperlink}" Executed="OpenHyperlink" />
     </FrameworkElement.CommandBindings>
     <Grid>
-        <FlowDocumentScrollViewer x:Name="Viewer" Foreground="#FFEEEEEE" FontSize="14" SelectionBrush="{DynamicResource {x:Static SystemColors.MenuHighlightBrushKey}}" />
+        <FlowDocumentScrollViewer x:Name="Viewer" Foreground="#FFEEEEEE" FontSize="14" SelectionBrush="{DynamicResource {x:Static SystemColors.MenuHighlightBrushKey}}"/>
     </Grid>
 </UserControl>
