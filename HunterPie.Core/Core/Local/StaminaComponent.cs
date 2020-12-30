@@ -29,8 +29,6 @@ namespace HunterPie.Core.Local
             
             // EZ Ration
             { 183, 25 },
-            // EZ Max Potion
-            { 185, 100 }
         };
 
         /// <summary>
