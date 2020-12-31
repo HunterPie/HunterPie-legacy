@@ -6,28 +6,37 @@
         <Setter Property="Foreground" Value="#FFECECEC" />
         <Setter Property="FontFamily" Value="Consolas, Lucida Sans Typewriter, Courier New" />
     </Style>
+    <Style TargetType="{x:Type Paragraph}" x:Key="{x:Static markdig:Styles.CodeBlockStyleKey}">
+        <Setter Property="Background" Value="#FF171717" />
+        <Setter Property="Foreground" Value="#FFECECEC" />
+        <Setter Property="BorderBrush" Value="{DynamicResource BUTTON_CLOSEWINDOW_BACKGROUND}"/>
+        <Setter Property="BorderThickness" Value="1.5"/>
+        <Setter Property="Padding" Value="5,0,0,5"/>
+        <Setter Property="FontFamily" Value="Consolas, Lucida Sans Typewriter, Courier New" />
+    </Style>
     <Style TargetType="{x:Type Paragraph}" x:Key="{x:Static markdig:Styles.Heading1StyleKey}">
         <Setter Property="FontSize" Value="42" />
-        <Setter Property="Foreground" Value="#FF54AAF1" />
+        <Setter Property="Foreground" Value="{DynamicResource BUTTON_CLOSEWINDOW_BACKGROUND}" />
         <Setter Property="FontWeight" Value="Bold" />
     </Style>
     <Style TargetType="{x:Type Paragraph}" x:Key="{x:Static markdig:Styles.Heading2StyleKey}">
         <Setter Property="FontSize" Value="20" />
-        <Setter Property="Foreground" Value="#FF54AAF1" />
+        <Setter Property="Foreground" Value="{DynamicResource BUTTON_CLOSEWINDOW_BACKGROUND}" />
         <Setter Property="FontWeight" Value="Bold" />
     </Style>
     <Style TargetType="{x:Type Paragraph}" x:Key="{x:Static markdig:Styles.Heading3StyleKey}">
         <Setter Property="FontSize" Value="18" />
-        <Setter Property="Foreground" Value="#FF54AAF1" />
+        <Setter Property="Foreground" Value="{DynamicResource BUTTON_CLOSEWINDOW_BACKGROUND}" />
         <Setter Property="FontWeight" Value="Bold" />
     </Style>
     <Style TargetType="{x:Type Hyperlink}" x:Key="{x:Static markdig:Styles.HyperlinkStyleKey}">
-        <Setter Property="Foreground" Value="#FF54AAF1" />
+        <Setter Property="Foreground" Value="{DynamicResource BUTTON_CLOSEWINDOW_BACKGROUND}" />
     </Style>
     <Style TargetType="{x:Type Section}" x:Key="{x:Static markdig:Styles.QuoteBlockStyleKey}">
-        <Setter Property="BorderBrush" Value="#FF54AAF1" />
+        <Setter Property="BorderBrush" Value="{DynamicResource BUTTON_CLOSEWINDOW_BACKGROUND}" />
         <Setter Property="BorderThickness" Value="4,0,0,0" />
         <Setter Property="Foreground" Value="#FFECECEC" />
-        <Setter Property="Padding" Value="16,0,0,0" />
+        <Setter Property="Background" Value="#FF171717"/>
+        <Setter Property="Padding" Value="16,0.1,0,0.1" />
     </Style>
 </ResourceDictionary>

@@ -12,6 +12,10 @@
 
 `hello`
 
+```
+code here
+```
+
 ![playerWidget](https://cdn.discordapp.com/attachments/402557384209203200/784922043530346516/unknown.png)
 
 - Fully customizable through themes, also has some simple customization options in HunterPie settings.
