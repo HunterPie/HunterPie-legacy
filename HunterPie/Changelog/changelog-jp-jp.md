@@ -1,38 +1,27 @@
-﻿![banner](https://cdn.discordapp.com/attachments/402557384209203200/784930643326926858/v10399.png)
+﻿![banner](https://cdn.discordapp.com/attachments/402557384209203200/794657766395478016/v104.png)
 
-**Player Widget**
+# HunterPie v1.0.4
 
-![playerWidget](https://cdn.discordapp.com/attachments/402557384209203200/784922043530346516/unknown.png)
-- Fully customizable through themes, also has some simple customization options in HunterPie settings.
-- Displays exact health, stamina and sharpness values. Also displays your character name, world daytime icon and a laurel based on your Master Rank.
+Happy New Year! HunterPie v1.0.4 is mainly focused on bug fixes and minor enhancements to the user experience.
 
-**Overlay**
+## Monster Widget
 
-- Added option so you can choose not to initialize the overlay.
-- Added option so you can choose not to initialize individual widgets.
-- Plugins can now make their own widgets and add them to the overlay.
+- Added special break threshold logic for Elder Dragons. Some elder dragons have a different part break behavior (e.g: You can only break Teostra's head if their Health is under 20%).
 
-**Note:** Not initializing widgets will make the overlay ignore that widget and not display nor create them at all, saving CPU and memory.
+## Core
 
-**HunterPie Core & Plugins**
+- Added option to automatically minimize HunterPie after launching the game.
+- Added option to disable Anti-Aliasing.
+- Added safety measures to avoid `config.json` corruption.
+- Added scrollbar to the settings tab when tabs overflow.
+- Added monster position tracker.
+- Added crafting data for every craftable item.
+- Added `Debugger.LogObject(object obj);`
+- Changed design for the changelog markdown.
 
-- Separated HunterPie into HunterPie.exe, HunterPie.UI.dll and HunterPie.Core. dll to make plugins development easier.
-- Added OnMonsterScanFinished & OnPlayerScanFinished.
-- Added Food Skills tracker.
-- Added Health, Stamina and Sharpness trackers.
-- Enhancements to the plugin experience.
+## Bug Fixes
 
-**Other Changes**
-
-- Optimized Hunting Horn and Palico buffs scanning:
-
-![graph](https://cdn.discordapp.com/attachments/695356109464273026/783405724554231849/unknown.png)
-
-- Added missing Hunting Horn buff names.
-- Added support for build 421409 (Title Update Ver. 15.10.00).
-
-**Bug Fixes**
-
-- Fixed Teostra tail not displaying correctly.
-- Fixed Hunting Horn action IDs.
-- Removed unknown abnormalities that have no effect.
+- Fixed Party & Party Members not displaying correctly when joining SOSes.
+- Fixed Damage chart when joining in-progress quests.
+- Fixed HunterPie crashing due to PID being under 10 when creating the Rich Presence connection.
+- Fixed bug where EZ Max Potion would increase stamina bar in the player widget.
