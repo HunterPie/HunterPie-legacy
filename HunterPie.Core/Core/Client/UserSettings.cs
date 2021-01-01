@@ -207,6 +207,7 @@ namespace HunterPie.Core
                 public float Height { get; set; } = 590;
                 public double PosX { get; set; } = 0;
                 public double PosY { get; set; } = 0;
+                public bool MinimizeAfterGameStart { get; set; } = false;
                 public Update Update { get; set; } = new Update();
                 public Launch Launch { get; set; } = new Launch();
                 public Options Options { get; set; } = new Options();

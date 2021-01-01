@@ -121,7 +121,6 @@
             </Grid.Effect>
             <!-- Console content -->
             <Grid x:Name="ConsolePanel" Margin="51,157,0,2"/>
-            <Image Height="130" VerticalAlignment="Top" Margin="0,22,0,0" Source="https://cdn.discordapp.com/attachments/402557384209203200/784635408716660766/christmas_uwu.png"/>
             <Rectangle Height="130" VerticalAlignment="Top" Margin="0,22,0,0" Fill="{StaticResource CONSOLE_HEADER_BACKGROUND}"/>
             <Rectangle Cursor="SizeAll" x:Name="WindowTopBar" Fill="{StaticResource CONSOLE_WINDOWBAR_BACKGROUND}" Height="22" VerticalAlignment="Top" MouseLeftButtonDown="OnWindowDrag"/>
             <Image Height="20" Width="20" Visibility="{Binding ElementName=window, Path=AdministratorIconVisibility}" ToolTip="HunterPie (Administrator)" Source="{StaticResource ICON_ADMINISTRATOR}" VerticalAlignment="Top" HorizontalAlignment="Left" Opacity="0.8" Margin="1,1,0,0"  />
@@ -229,12 +228,12 @@
                 </Button.Content>
             </Button>
             <StackPanel Orientation="Horizontal" Height="59" VerticalAlignment="Top" HorizontalAlignment="Left" Margin="20,50,0,0">
-                <Image HorizontalAlignment="Right" Height="59" VerticalAlignment="Top" Width="59" Source="{StaticResource HunterPieChristmasLogo}"/>
-                <Image Source="{StaticResource HunterPieChristmas}"/>
-                <!--
+                <Image HorizontalAlignment="Right" Height="59" VerticalAlignment="Top" Width="59" Source="{StaticResource LOGO_HunterPie}"/>
+                
+                
                 <TextBlock HorizontalAlignment="Right" TextWrapping="Wrap" Text="Hunter" VerticalAlignment="Bottom" Height="59" FontWeight="Bold" FontSize="22" Padding="1,16,0,0" Foreground="{StaticResource CONSOLE_LOGO_FOREGROUND}" FontFamily="Roboto"/>
                 <TextBlock HorizontalAlignment="Right" TextWrapping="Wrap" Text="Pie" VerticalAlignment="Bottom" Height="59" FontFamily="Roboto" FontWeight="Light" FontSize="22" Padding="0,16,0,0" Foreground="{StaticResource CONSOLE_LOGO_FOREGROUND}"/>
-                -->
+                
             </StackPanel>
             <Grid.Style>
                 <Style TargetType="Grid">

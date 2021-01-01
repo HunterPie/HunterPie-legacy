@@ -371,7 +371,7 @@
     <SolidColorBrush x:Key="CONSOLE_SIDEBAR_BACKGROUND">#BB151515</SolidColorBrush>
     <SolidColorBrush x:Key="CONSOLE_WINDOWBAR_BACKGROUND">#FF131313</SolidColorBrush>
 
-    <SolidColorBrush x:Key="CONSOLE_ACCENT_COLOR">#bd2a2c</SolidColorBrush>
+    <SolidColorBrush x:Key="CONSOLE_ACCENT_COLOR">#6dc0de</SolidColorBrush>
     
     <SolidColorBrush x:Key="BUTTON_LAUNCHGAME_FOREGROUND">#fefefe</SolidColorBrush>
     <SolidColorBrush x:Key="BUTTON_LAUNCHGAME_BACKGROUND" Color="{Binding Source={StaticResource CONSOLE_ACCENT_COLOR}, Path=Color}"/>
@@ -391,7 +391,7 @@
     </LinearGradientBrush>
 
     <!-- Settings window -->
-    <Color x:Key="TOGGLABLE_BUTTON_BACKGROUND_ON">#cc1414</Color>
+    <Color x:Key="TOGGLABLE_BUTTON_BACKGROUND_ON">#6dc0de</Color>
     <Color x:Key="TOGGLABLE_BUTTON_BACKGROUND_OFF">#FF151515</Color>
     <Color x:Key="TOGGLABLE_BUTTON_FOREGROUND_ON">WhiteSmoke</Color>
     <Color x:Key="TOGGLABLE_BUTTON_FOREGROUND_OFF">#FF252525</Color>

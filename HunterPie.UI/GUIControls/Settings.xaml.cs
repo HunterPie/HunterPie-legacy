@@ -57,6 +57,7 @@ namespace HunterPie.GUIControls
             settingsUI.LanguageFilesCombobox.SelectedItem = settings.HunterPie.Language;
             settingsUI.switchEnableMinimizeToSystemTray.IsEnabled = settings.HunterPie.MinimizeToSystemTray;
             settingsUI.switchEnableStartMinimized.IsEnabled = settings.HunterPie.StartHunterPieMinimized;
+            settingsUI.switchEnableAutoMinimize.IsEnabled = settings.HunterPie.MinimizeAfterGameStart;
 
             // Debug
             settingsUI.switchEnableDebugMessages.IsEnabled = settings.HunterPie.Debug.ShowDebugMessages;
@@ -233,6 +234,7 @@ namespace HunterPie.GUIControls
             settings.HunterPie.Language = (string)settingsUI.LanguageFilesCombobox.SelectedItem;
             settings.HunterPie.MinimizeToSystemTray = settingsUI.switchEnableMinimizeToSystemTray.IsEnabled;
             settings.HunterPie.StartHunterPieMinimized = settingsUI.switchEnableStartMinimized.IsEnabled;
+            settings.HunterPie.MinimizeAfterGameStart = settingsUI.switchEnableAutoMinimize.IsEnabled;
 
             // Debug
             settings.HunterPie.Debug.ShowDebugMessages = settingsUI.switchEnableDebugMessages.IsEnabled;

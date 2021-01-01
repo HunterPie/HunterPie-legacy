@@ -15,7 +15,7 @@
         <Setter Property="FontFamily" Value="Consolas, Lucida Sans Typewriter, Courier New" />
     </Style>
     <Style TargetType="{x:Type Paragraph}" x:Key="{x:Static markdig:Styles.Heading1StyleKey}">
-        <Setter Property="FontSize" Value="42" />
+        <Setter Property="FontSize" Value="30" />
         <Setter Property="Foreground" Value="{DynamicResource BUTTON_CLOSEWINDOW_BACKGROUND}" />
         <Setter Property="FontWeight" Value="Bold" />
     </Style>
