@@ -889,6 +889,11 @@ namespace HunterPie
 
         private void OnMinimizeButtonClick(object sender, MouseButtonEventArgs e)
         {
+            MinimizeWindow();
+        }
+
+        private void MinimizeWindow()
+        {
             if (UserSettings.PlayerConfig.HunterPie.MinimizeToSystemTray)
             {
                 WindowState = WindowState.Minimized;
@@ -1048,6 +1053,11 @@ namespace HunterPie
                     UseShellExecute = true
                 };
                 Process.Start(GameStartInfo);
+
+                if (UserSettings.PlayerConfig.HunterPie.MinimizeAfterGameStart)
+                {
+                    MinimizeWindow();
+                }
             }
             catch (Exception err)
             {

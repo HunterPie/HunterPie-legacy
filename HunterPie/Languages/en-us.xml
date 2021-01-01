@@ -504,6 +504,8 @@
       <!-- General -->
       <String ID="ENABLE_AUTOUPDATE" Name="Enable Auto-Update"/>
       <String ID="ENABLE_AUTOUPDATE_DESC" Name="If enabled, HunterPie will look for new updates on startup."/>
+      <String ID="ENABLE_MINAFTERGAMEOPEN" Name="Minimize HunterPie after launching the game"/>
+      <String ID="ENABLE_MINAFTERGAMEOPEN_DESC" Name="If enabled, HunterPie will be automatically minimized after launching the game."/>
       <String ID="ENABLE_MINTOTRAY" Name="Minimize HunterPie to system tray"/>
       <String ID="ENABLE_MINTOTRAY_DESC" Name="If enabled, HunterPie will hide in your system tray and run on background when it's minimized."/>
       <String ID="ENABLE_STARTMIN" Name="Start HunterPie minimized"/>
