@@ -9,9 +9,9 @@ namespace HunterPie.Core.Craft
 {
     public class Recipes
     {
-        private static Dictionary<int, Recipe> list;
+        private static readonly Dictionary<int, List<Recipe>> list = new Dictionary<int, List<Recipe>>();
 
-        public static IReadOnlyDictionary<int, Recipe> List => list;
+        public static IReadOnlyDictionary<int, List<Recipe>> List => list;
 
         internal static void LoadRecipes()
         {
@@ -21,11 +21,16 @@ namespace HunterPie.Core.Craft
                 document.Load(Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "HunterPie.Resources/Data/CraftingData.xml"));
 
                 XmlNodeList items = document.SelectNodes("//Crafting/Item");
-                list = items.Cast<XmlNode>()
-                    .Select(node => XmlNodeToRecipe(node))
-                    .ToDictionary(m => m.OutputId);
 
-                Debugger.Warn("Loaded crafting data!");
+                IEnumerable<Recipe> recipes = items.Cast<XmlNode>()
+                    .Select(node => XmlNodeToRecipe(node));
+
+                foreach (Recipe recipe in recipes)
+                {
+                    AddNewRecipe(recipe.OutputId, recipe);
+                }
+
+                Debugger.Warn($"Loaded {recipes.Count()} different item crafting recipes!");
 
                 document = null;
             }
@@ -75,9 +80,20 @@ namespace HunterPie.Core.Craft
         {
             if (List.ContainsKey(id))
             {
-                return List[id];
+                return List[id].First();
             }
             else
+            {
+                return null;
+            }
+        }
+
+        public static List<Recipe> FindRecipes(int id)
+        {
+            if (List.ContainsKey(id))
+            {
+                return List[id];
+            } else
             {
                 return null;
             }
@@ -93,12 +109,12 @@ namespace HunterPie.Core.Craft
         {
             if (FindRecipe(id) is null)
             {
-                list.Add(id, recipe);
+                list.Add(id, new List<Recipe> { recipe });
                 return true;
             } else
             {
-                Debugger.Debug($"Recipe with id {id} already exists.");
-                return false;
+                list[id].Add(recipe);
+                return true;
             }
         }
     }

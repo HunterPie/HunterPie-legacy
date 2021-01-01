@@ -4,10 +4,15 @@ using HunterPie.Core.Definitions;
 
 namespace HunterPie.Core.Craft
 {
-    public struct RecipeRequirement
+    public struct RecipeRequirement : IEquatable<RecipeRequirement>
     {
         public int ItemId;
         public int Amount;
+
+        public bool Equals(RecipeRequirement other)
+        {
+            return ItemId == other.ItemId && Amount == other.Amount;
+        }
     }
     public class Recipe
     {

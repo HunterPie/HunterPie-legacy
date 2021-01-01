@@ -1,150 +1,376 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
 <Crafting>
-  <!-- Tranq Ammo -->
+  <Item Output="1" OutMultiplier="1">
+    <Material Id="33" Amount="1"/>
+  </Item>
+  <Item Output="2" OutMultiplier="1">
+    <Material Id="1" Amount="1"/>
+    <Material Id="32" Amount="1"/>
+  </Item>
+  <Item Output="182" OutMultiplier="1">
+    <Material Id="181" Amount="1"/>
+    <Material Id="32" Amount="1"/>
+  </Item>
+  <Item Output="5" OutMultiplier="1">
+    <Material Id="34" Amount="1"/>
+  </Item>
+  <Item Output="6" OutMultiplier="1">
+    <Material Id="5" Amount="1"/>
+    <Material Id="42" Amount="1"/>
+  </Item>
+  <Item Output="14" OutMultiplier="1">
+    <Material Id="49" Amount="1"/>
+    <Material Id="42" Amount="1"/>
+  </Item>
+  <Item Output="15" OutMultiplier="1">
+    <Material Id="14" Amount="1"/>
+    <Material Id="32" Amount="1"/>
+  </Item>
+  <Item Output="3" OutMultiplier="1">
+    <Material Id="15" Amount="1"/>
+    <Material Id="43" Amount="1"/>
+  </Item>
+  <Item Output="58" OutMultiplier="1">
+    <Material Id="49" Amount="1"/>
+    <Material Id="32" Amount="1"/>
+  </Item>
+  <Item Output="16" OutMultiplier="1">
+    <Material Id="58" Amount="1"/>
+    <Material Id="43" Amount="1"/>
+  </Item>
+  <Item Output="4" OutMultiplier="1">
+    <Material Id="16" Amount="1"/>
+    <Material Id="54" Amount="1"/>
+  </Item>
+  <Item Output="4" OutMultiplier="1">
+    <Material Id="56" Amount="1"/>
+    <Material Id="54" Amount="1"/>
+  </Item>
+  <Item Output="28" OutMultiplier="1">
+    <Material Id="51" Amount="1"/>
+    <Material Id="42" Amount="1"/>
+  </Item>
+  <Item Output="1008" OutMultiplier="1">
+    <Material Id="51" Amount="1"/>
+    <Material Id="1007" Amount="1"/>
+  </Item>
+  <Item Output="29" OutMultiplier="1">
+    <Material Id="51" Amount="1"/>
+    <Material Id="6" Amount="1"/>
+  </Item>
+  <Item Output="8" OutMultiplier="1">
+    <Material Id="44" Amount="1"/>
+    <Material Id="32" Amount="1"/>
+  </Item>
+  <Item Output="13" OutMultiplier="1">
+    <Material Id="870" Amount="1"/>
+  </Item>
+  <Item Output="1000" OutMultiplier="1">
+    <Material Id="1006" Amount="1"/>
+  </Item>
+  <Item Output="18" OutMultiplier="1">
+    <Material Id="58" Amount="1"/>
+    <Material Id="55" Amount="1"/>
+  </Item>
+  <Item Output="21" OutMultiplier="1">
+    <Material Id="58" Amount="1"/>
+    <Material Id="20" Amount="1"/>
+  </Item>
+  <Item Output="22" OutMultiplier="1">
+    <Material Id="56" Amount="1"/>
+    <Material Id="21" Amount="1"/>
+  </Item>
+  <Item Output="30" OutMultiplier="1">
+    <Material Id="51" Amount="1"/>
+    <Material Id="20" Amount="1"/>
+  </Item>
+  <Item Output="23" OutMultiplier="1">
+    <Material Id="16" Amount="1"/>
+    <Material Id="20" Amount="1"/>
+  </Item>
+  <Item Output="25" OutMultiplier="1">
+    <Material Id="58" Amount="1"/>
+    <Material Id="24" Amount="1"/>
+  </Item>
+  <Item Output="26" OutMultiplier="1">
+    <Material Id="56" Amount="1"/>
+    <Material Id="25" Amount="1"/>
+  </Item>
+  <Item Output="31" OutMultiplier="1">
+    <Material Id="51" Amount="1"/>
+    <Material Id="24" Amount="1"/>
+  </Item>
+  <Item Output="27" OutMultiplier="1">
+    <Material Id="16" Amount="1"/>
+    <Material Id="24" Amount="1"/>
+  </Item>
+  <Item Output="64" OutMultiplier="1">
+    <Material Id="40" Amount="1"/>
+    <Material Id="48" Amount="1"/>
+  </Item>
+  <Item Output="69" OutMultiplier="1">
+    <Material Id="35" Amount="1"/>
+    <Material Id="44" Amount="1"/>
+  </Item>
+  <Item Output="71" OutMultiplier="1">
+    <Material Id="35" Amount="1"/>
+    <Material Id="70" Amount="1"/>
+  </Item>
+  <Item Output="72" OutMultiplier="1">
+    <Material Id="44" Amount="1"/>
+    <Material Id="70" Amount="1"/>
+  </Item>
+  <Item Output="73" OutMultiplier="1">
+    <Material Id="44" Amount="1"/>
+    <Material Id="72" Amount="1"/>
+  </Item>
+  <Item Output="75" OutMultiplier="1">
+    <Material Id="69" Amount="1"/>
+    <Material Id="74" Amount="1"/>
+  </Item>
+  <Item Output="76" OutMultiplier="1">
+    <Material Id="45" Amount="1"/>
+    <Material Id="75" Amount="1"/>
+  </Item>
+  <Item Output="76" OutMultiplier="1">
+    <Material Id="108" Amount="1"/>
+    <Material Id="75" Amount="1"/>
+  </Item>
+  <Item Output="76" OutMultiplier="1">
+    <Material Id="109" Amount="1"/>
+    <Material Id="74" Amount="1"/>
+  </Item>
+  <Item Output="62" OutMultiplier="1">
+    <Material Id="40" Amount="1"/>
+    <Material Id="39" Amount="1"/>
+  </Item>
+  <Item Output="63" OutMultiplier="1">
+    <Material Id="40" Amount="1"/>
+    <Material Id="47" Amount="1"/>
+  </Item>
+  <Item Output="60" OutMultiplier="1">
+    <Material Id="50" Amount="1"/>
+  </Item>
+  <Item Output="61" OutMultiplier="1">
+    <Material Id="57" Amount="1"/>
+  </Item>
+  <Item Output="84" OutMultiplier="1">
+    <Material Id="83" Amount="1"/>
+  </Item>
+  <Item Output="84" OutMultiplier="1">
+    <Material Id="82" Amount="1"/>
+  </Item>
+  <Item Output="66" OutMultiplier="1">
+    <Material Id="65" Amount="1"/>
+    <Material Id="47" Amount="1"/>
+  </Item>
+  <Item Output="67" OutMultiplier="1">
+    <Material Id="65" Amount="1"/>
+    <Material Id="46" Amount="1"/>
+  </Item>
+  <Item Output="68" OutMultiplier="1">
+    <Material Id="65" Amount="1"/>
+    <Material Id="38" Amount="1"/>
+  </Item>
+  <Item Output="78" OutMultiplier="1">
+    <Material Id="39" Amount="1"/>
+    <Material Id="77" Amount="1"/>
+  </Item>
+  <Item Output="80" OutMultiplier="1">
+    <Material Id="79" Amount="1"/>
+    <Material Id="78" Amount="1"/>
+  </Item>
+  <Item Output="81" OutMultiplier="1">
+    <Material Id="79" Amount="1"/>
+    <Material Id="52" Amount="1"/>
+  </Item>
+  <Item Output="59" OutMultiplier="1">
+    <Material Id="38" Amount="1"/>
+    <Material Id="46" Amount="1"/>
+  </Item>
   <Item Output="169" OutMultiplier="1">
     <Material Id="59" Amount="1"/>
   </Item>
-  <!-- Normal Ammo 2 -->
+  <Item Output="199" OutMultiplier="1">
+    <Material Id="59" Amount="1"/>
+    <Material Id="195" Amount="1"/>
+  </Item>
+  <Item Output="196" OutMultiplier="1">
+    <Material Id="195" Amount="1"/>
+    <Material Id="47" Amount="1"/>
+  </Item>
+  <Item Output="197" OutMultiplier="1">
+    <Material Id="195" Amount="1"/>
+    <Material Id="38" Amount="1"/>
+  </Item>
+  <Item Output="198" OutMultiplier="1">
+    <Material Id="195" Amount="1"/>
+    <Material Id="46" Amount="1"/>
+  </Item>
+  <Item Output="175" OutMultiplier="1">
+    <Material Id="174" Amount="1"/>
+    <Material Id="44" Amount="1"/>
+  </Item>
+  <Item Output="176" OutMultiplier="1">
+    <Material Id="174" Amount="1"/>
+    <Material Id="47" Amount="1"/>
+  </Item>
+  <Item Output="177" OutMultiplier="1">
+    <Material Id="174" Amount="1"/>
+    <Material Id="46" Amount="1"/>
+  </Item>
+  <Item Output="178" OutMultiplier="1">
+    <Material Id="174" Amount="1"/>
+    <Material Id="38" Amount="1"/>
+  </Item>
+  <Item Output="180" OutMultiplier="1">
+    <Material Id="174" Amount="1"/>
+    <Material Id="35" Amount="1"/>
+  </Item>
   <Item Output="138" OutMultiplier="4">
     <Material Id="102" Amount="1"/>
   </Item>
-  <!-- Normal Ammo 3 -->
   <Item Output="139" OutMultiplier="4">
     <Material Id="103" Amount="1"/>
   </Item>
-  <!-- Pierce Ammo 1 -->
   <Item Output="140" OutMultiplier="1">
     <Material Id="98" Amount="1"/>
   </Item>
-  <!-- Pierce Ammo 2 -->
   <Item Output="141" OutMultiplier="4">
     <Material Id="140" Amount="1"/>
     <Material Id="102" Amount="1"/>
   </Item>
-  <!-- Pierce Ammo 3 -->
   <Item Output="142" OutMultiplier="4">
     <Material Id="140" Amount="1"/>
     <Material Id="103" Amount="1"/>
   </Item>
-  <!-- Spread Ammo 1 -->
   <Item Output="143" OutMultiplier="1">
     <Material Id="94" Amount="1"/>
   </Item>
-  <!-- Spread Ammo 2 -->
   <Item Output="144" OutMultiplier="4">
     <Material Id="143" Amount="1"/>
     <Material Id="102" Amount="1"/>
   </Item>
-  <!-- Spread Ammo 3 -->
   <Item Output="145" OutMultiplier="4">
     <Material Id="143" Amount="1"/>
     <Material Id="103" Amount="1"/>
   </Item>
-  <!-- Sticky Ammo 1 -->
   <Item Output="146" OutMultiplier="1">
     <Material Id="95" Amount="1"/>
   </Item>
-  <!-- Sticky Ammo 2 -->
   <Item Output="147" OutMultiplier="2">
     <Material Id="146" Amount="1"/>
     <Material Id="102" Amount="1"/>
   </Item>
-  <!-- Sticky Ammo 3 -->
   <Item Output="148" OutMultiplier="2">
     <Material Id="146" Amount="1"/>
     <Material Id="103" Amount="1"/>
   </Item>
-  <!-- Cluster Bomb 1 -->
   <Item Output="149" OutMultiplier="1">
     <Material Id="99" Amount="1"/>
   </Item>
-  <!-- Cluster Bomb 2 -->
   <Item Output="150" OutMultiplier="1">
     <Material Id="149" Amount="1"/>
     <Material Id="102" Amount="1"/>
   </Item>
-  <!-- Cluster Bomb 3 -->
   <Item Output="151" OutMultiplier="1">
     <Material Id="149" Amount="1"/>
     <Material Id="103" Amount="1"/>
   </Item>
-  <!-- Slicing Ammo -->
   <Item Output="168" OutMultiplier="1">
     <Material Id="97" Amount="1"/>
   </Item>
-  <!-- Flaming Ammo -->
   <Item Output="152" OutMultiplier="6">
     <Material Id="35" Amount="1"/>
   </Item>
-  <!-- Water Ammo -->
   <Item Output="153" OutMultiplier="6">
     <Material Id="36" Amount="1"/>
   </Item>
-  <!-- Thunder Ammo -->
   <Item Output="154" OutMultiplier="12">
     <Material Id="52" Amount="1"/>
   </Item>
-  <!-- Freeze Ammo -->
   <Item Output="155" OutMultiplier="6">
     <Material Id="37" Amount="1"/>
   </Item>
-  <!-- Dragon Ammo -->
   <Item Output="156" OutMultiplier="1">
     <Material Id="41" Amount="1"/>
   </Item>
-  <!-- Poison Ammo 1 -->
   <Item Output="157" OutMultiplier="2">
     <Material Id="47" Amount="1"/>
   </Item>
-  <!-- Poison Ammo 2 -->
   <Item Output="158" OutMultiplier="1">
     <Material Id="157" Amount="1"/>
     <Material Id="58" Amount="1"/>
   </Item>
-  <!-- Paralysis Ammo 1 -->
   <Item Output="159" OutMultiplier="2">
     <Material Id="46" Amount="1"/>
   </Item>
-  <!-- Paralysis Ammo 2 -->
   <Item Output="160" OutMultiplier="1">
     <Material Id="159" Amount="1"/>
     <Material Id="58" Amount="1"/>
   </Item>
-  <!-- Sleep Ammo 1 -->
   <Item Output="161" OutMultiplier="1">
     <Material Id="38" Amount="1"/>
   </Item>
-  <!-- Sleep Ammo 2 -->
   <Item Output="162" OutMultiplier="1">
+    <Material Id="161" Amount="1"/>
     <Material Id="58" Amount="1"/>
   </Item>
-  <!-- Exhaust Ammo 1 -->
   <Item Output="163" OutMultiplier="2">
     <Material Id="48" Amount="1"/>
   </Item>
-  <!-- Exhaust Ammo 2 -->
   <Item Output="164" OutMultiplier="1">
     <Material Id="163" Amount="1"/>
     <Material Id="58" Amount="1"/>
   </Item>
-  <!-- Recover Ammo 1 -->
   <Item Output="165" OutMultiplier="2">
     <Material Id="1" Amount="1"/>
   </Item>
-  <!-- Recover Ammo 2 -->
   <Item Output="166" OutMultiplier="2">
+    <Material Id="165" Amount="1"/>
     <Material Id="58" Amount="1"/>
   </Item>
-  <!-- Demon Ammo -->
   <Item Output="170" OutMultiplier="3">
     <Material Id="21" Amount="1"/>
   </Item>
-  <!-- Armor Ammo -->
   <Item Output="171" OutMultiplier="3">
     <Material Id="25" Amount="1"/>
   </Item>
-  <!-- Wyvern Ammo -->
   <Item Output="167" OutMultiplier="1">
     <Material Id="96" Amount="1"/>
+  </Item>
+  <Item Output="102" OutMultiplier="1">
+    <Material Id="100" Amount="1"/>
+  </Item>
+  <Item Output="102" OutMultiplier="20">
+    <Material Id="110" Amount="1"/>
+    <Material Id="35" Amount="1"/>
+  </Item>
+  <Item Output="102" OutMultiplier="40">
+    <Material Id="111" Amount="1"/>
+    <Material Id="35" Amount="1"/>
+  </Item>
+  <Item Output="103" OutMultiplier="1">
+    <Material Id="101" Amount="1"/>
+  </Item>
+  <Item Output="103" OutMultiplier="20">
+    <Material Id="112" Amount="1"/>
+    <Material Id="35" Amount="1"/>
+  </Item>
+  <Item Output="103" OutMultiplier="40">
+    <Material Id="113" Amount="1"/>
+    <Material Id="35" Amount="1"/>
+  </Item>
+  <Item Output="91" OutMultiplier="1">
+    <Material Id="90" Amount="1"/>
+    <Material Id="494" Amount="1"/>
+  </Item>
+  <Item Output="93" OutMultiplier="1">
+    <Material Id="92" Amount="1"/>
+    <Material Id="494" Amount="1"/>
+  </Item>
+  <Item Output="2685" OutMultiplier="1">
+    <Material Id="2683" Amount="1"/>
+    <Material Id="2684" Amount="1"/>
   </Item>
 </Crafting>
