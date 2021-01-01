@@ -32,6 +32,7 @@ using Newtonsoft.Json;
 using System.Diagnostics;
 using HunterPie.Core.Events;
 using System.Xml;
+using System.Reflection;
 
 namespace HunterPie
 {
@@ -54,6 +55,7 @@ namespace HunterPie
 
         // HunterPie version
         public const string HUNTERPIE_VERSION = "1.0.4";
+        public static readonly Version AssemblyVersion = Assembly.GetEntryAssembly().GetName().Version;
 
         private readonly List<int> registeredHotkeys = new List<int>();
 

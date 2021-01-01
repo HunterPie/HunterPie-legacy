@@ -4,6 +4,7 @@ using System.IO;
 using System.Net.Http;
 using System.Threading.Tasks;
 using Newtonsoft.Json;
+using System.Reflection;
 
 namespace HunterPie.Plugins
 {
@@ -26,7 +27,7 @@ namespace HunterPie.Plugins
 
             PluginInformation onlineInformation = JsonConvert.DeserializeObject<PluginInformation>(onlineSerializedInformation);
 
-            if (!(Hunterpie.ParseVersion(Hunterpie.HUNTERPIE_VERSION) >= Hunterpie.ParseVersion(onlineInformation.Update.MinimumVersion)))
+            if (!(Hunterpie.AssemblyVersion >= Hunterpie.ParseVersion(onlineInformation.Update.MinimumVersion)))
             {
                 Debugger.Warn($"Newest version of {pInformation.Name} requires HunterPie v{onlineInformation.Update.MinimumVersion}!");
                 return UpdateResult.Skipped;
