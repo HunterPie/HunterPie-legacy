@@ -504,6 +504,8 @@
       <!-- General -->
       <String ID="ENABLE_AUTOUPDATE" Name="자동 업데이트 사용"/>
       <String ID="ENABLE_AUTOUPDATE_DESC" Name="옵션을 켤 경우, HunterPie는 시작 시 새로운 업데이트를 확인합니다."/>
+      <String ID="ENABLE_MINAFTERGAMEOPEN" Name="게임 실행 후 HunterPie 최소화"/>
+      <String ID="ENABLE_MINAFTERGAMEOPEN_DESC" Name="옵션을 켤 경우, 게임을 실행한 후 HunterPie를 자동으로 최소화합니다."/>
       <String ID="ENABLE_MINTOTRAY" Name="HunterPie를 시스템 트레이로 최소화"/>
       <String ID="ENABLE_MINTOTRAY_DESC" Name="옵션을 켤 경우, HunterPie는 최소화 시 시스템 트레이로 숨겨지고, 백그라운드에서 작동합니다."/>
       <String ID="ENABLE_STARTMIN" Name="HunterPie를 최소화 한 상태로 시작"/>
@@ -538,6 +540,8 @@
       <String ID="ENABLE_HIDE_WHEN_UNFOCUS_DESC" Name="옵션을 켤 경우, HunterPie 오버레이는 게임이 비활성화 시 자동으로 숨겨집니다. (예시: Alt+Tab을 할 때)"/>
       <String ID="ENABLE_HARDWARE_ACCELERATION" Name="하드웨어 가속 사용"/>
       <String ID="ENABLE_HARDWARE_ACCELERATION_DESC" Name="그래픽 카드가 오버레이를 렌더링하도록 하드웨어 가속을 사용합니다. 비활성화 시 소프트웨어 렌더링으로 전환되며, CPU 자원을 더 많이 쓰게 됩니다, FPS에 문제가 있으면 이 옵션을 끄세요."/>
+      <String ID="ENABLE_ANTIALIASING" Name="안티앨리어싱 사용"/>
+      <String ID="ENABLE_ANTIALIASING_DESC" Name="안티앨리어싱을 사용하면 렌더링 개체의 테두리가 부드러워집니다, 이 옵션을 끄면 성능이 향상됩니다."/>
       <String ID="STATIC_ANIMATION_FPS" Name="애니메이션 프레임레이트"/>
       <String ID="STATIC_ANIMATION_FPS_DESC" Name="HunterPie의 모든 애니메이션의 프레임레이트를 조정합니다. FPS에 문제가 있으면 이 옵션의 값을 낮추세요."/>
       <String ID="STATIC_GAME_SCAN_DELAY" Name="게임 스캔 간격:"/>
