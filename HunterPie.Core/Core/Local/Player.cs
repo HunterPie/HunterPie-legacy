@@ -1422,6 +1422,10 @@ namespace HunterPie.Core
         private void GetWeaponSharpness(long weaponAddress)
         {
             long weaponDataPtr = Kernel.ReadMultilevelPtr(Address.GetAddress("BASE") + Address.GetAddress("WEAPON_DATA_OFFSET"), Address.GetOffsets("WeaponDataOffsets"));
+
+            if (weaponDataPtr == Kernel.NULLPTR)
+                return;
+
             int rcx = Kernel.Read<int>(weaponAddress - 0x236C + 0x1D0C);
             // weaponDataPtr is our rax
             // mov  rax,[rax+rcx*8] ; This will give us the pointer to the weapon sharpness array
@@ -1430,15 +1434,13 @@ namespace HunterPie.Core
             short[] weaponSharpnessData = Kernel.ReadStructure<short>(weaponSharpnessPtr, 7);
             sSharpness weaponSharpness = Kernel.ReadStructure<sSharpness>(weaponAddress - 0x274);
             int maxLevel = weaponSharpnessData.Length - 1;
-            int lastSharpness = 0;
-            for (int i = 0; i < weaponSharpnessData.Length; i++)
+            for (int i = maxLevel; i > 0; i--)
             {
-                if (weaponSharpnessData[i] == 0 || weaponSharpnessData[i] == lastSharpness)
+                if (weaponSharpnessData[i] == 0)
                 {
                     maxLevel = i - 1;
                     break;
                 }
-                lastSharpness = weaponSharpnessData[i];
             }
 
             CurrentWeapon.Sharpnesses = weaponSharpnessData;
