@@ -1,6 +1,6 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
 <Strings lang="Simplified Chinese">
-<!--1.0.3.99 update translated by 利维亚的白学家-->
+<!--v1.0.4 update translated by 利维亚的白学家-->
   <Monsters>
     <Monster ID="ems062_03" Name="木质桶车"/>
     <Monster ID="em001_00" Name="雌火龙"/>
@@ -322,7 +322,7 @@
     <Abnormality ID="HUNTINGHORN_014_00" Name="体力回复·大"/>
     <Abnormality ID="HUNTINGHORN_015_00" Name="体力回复·小&amp;解毒"/>
     <Abnormality ID="HUNTINGHORN_016_00" Name="体力回复·中&amp;解毒"/>
-    <Abnormality ID="HUNTINGHORN_016_00" Name="体力回复·中"/>
+    <Abnormality ID="HUNTINGHORN_017_00" Name="体力回复·中"/>
     <Abnormality ID="HUNTINGHORN_018_00" Name="体力回复速度提升·小"/>
     <Abnormality ID="HUNTINGHORN_019_00" Name="体力回复速度提升·大"/>
     <Abnormality ID="HUNTINGHORN_020_00" Name="听觉保护·小"/>
@@ -504,8 +504,10 @@
     <Settings>
       <!-- General -->
       <String ID="ENABLE_AUTOUPDATE" Name="自动更新"/>
-      <String ID="ENABLE_AUTOUPDATE_DESC" Name="如开启，HunterPie将在启动时自动寻找更新"/>
-      <String ID="ENABLE_MINTOTRAY" Name="系统托盘"/>
+      <String ID="ENABLE_AUTOUPDATE_DESC" Name="如开启，HunterPie会在启动时自动寻找更新"/>
+      <String ID="ENABLE_MINAFTERGAMEOPEN" Name="启动游戏后最小化"/>
+      <String ID="ENABLE_MINAFTERGAMEOPEN_DESC" Name="如开启，开始游戏后HunterPie会自动最小化"/>
+      <String ID="ENABLE_MINTOTRAY" Name="最小化到系统托盘"/>
       <String ID="ENABLE_MINTOTRAY_DESC" Name="如开启，HunterPie最小化时将隐藏到系统托盘并在后台继续运行"/>
       <String ID="ENABLE_STARTMIN" Name="最小化启动HunterPie"/>
       <String ID="ENABLE_STARTMIN_DESC" Name="如开启，HunterPie启动时将自动隐藏到系统托盘"/>
@@ -539,6 +541,8 @@
       <String ID="ENABLE_HIDE_WHEN_UNFOCUS_DESC" Name="如开启，当游戏未在顶层时HunterPie覆盖层将自动隐藏(例如：按下Alt+Tab)"/>
       <String ID="ENABLE_HARDWARE_ACCELERATION" Name="硬件加速"/>
       <String ID="ENABLE_HARDWARE_ACCELERATION_DESC" Name="启用硬件加速将使用显卡渲染覆盖层，关闭此选项会将渲染模式更改为软件渲染，这将占用更多的CPU运算。如果遇到FPS异常问题，请关闭此选项"/>
+      <String ID="ENABLE_ANTIALIASING" Name="反锯齿"/>
+      <String ID="ENABLE_ANTIALIASING_DESC" Name="开启反锯齿会让组件边缘更加平滑，禁用此选项可能会提升性能"/>
       <String ID="STATIC_ANIMATION_FPS" Name="动画帧数"/>
       <String ID="STATIC_ANIMATION_FPS_DESC" Name="更改HunterPie所有动画的帧数，如果遇到FPS异常问题，请将其设置为较低的值"/>
       <String ID="STATIC_GAME_SCAN_DELAY" Name="游戏扫描延迟:"/>
