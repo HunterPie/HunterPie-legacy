@@ -518,6 +518,8 @@ Gerade bei den Abnormalitäten / Statusveränderungen des Spielers gibt es mit (
       <!-- General -->
       <String ID="ENABLE_AUTOUPDATE" Name="Automatische Updates aktivieren"/>
       <String ID="ENABLE_AUTOUPDATE_DESC" Name="Wenn aktiv, sucht HunterPie nach neuen Updates beim Start."/>
+	  <String ID="ENABLE_MINAFTERGAMEOPEN" Name="Minimiere HunterPie nach dem Starten des Spiels"/>
+      <String ID="ENABLE_MINAFTERGAMEOPEN_DESC" Name="Wenn aktiv, wird HunterPie automatisch minimiert nachdem du das Spiel gestartet hast."/>
       <String ID="ENABLE_MINTOTRAY" Name="Minimiere HunterPie in die Systemleiste"/>
       <String ID="ENABLE_MINTOTRAY_DESC" Name="Wenn aktiv, wird HunterPie in die Systemleiste minimiert und läuft im Hintergrund weiter."/>
       <String ID="ENABLE_STARTMIN" Name="Starte HunterPie minimiert"/>
@@ -552,6 +554,8 @@ Gerade bei den Abnormalitäten / Statusveränderungen des Spielers gibt es mit (
       <String ID="ENABLE_HIDE_WHEN_UNFOCUS_DESC" Name="Wenn aktiv, wird das HunterPie Overlay automatisch ausgeblendet wenn Monster Hunter World nicht mehr im Fokus ist (z.B. wenn du Alt+Tab verwendest)."/>
       <String ID="ENABLE_HARDWARE_ACCELERATION" Name="Aktiviere Hardware-Beschleunigung"/>
       <String ID="ENABLE_HARDWARE_ACCELERATION_DESC" Name="Aktivieren der Hardware-Beschleunigung hat zur Folge, dass das Overlay von deiner Grafikkarte gerendert wird. Wenn du die Option ausschaltest wird stattdessen Software-Rendering verwendet, welche mehr Last auf den Prozessor legt. Deaktiviere diese Option falls du FPS Probleme hast."/>
+      <String ID="ENABLE_ANTIALIASING" Name="Aktiviere Anti-Aliasing"/>
+      <String ID="ENABLE_ANTIALIASING_DESC" Name="Aktivieren des Anti-Aliasing hat eine Glättung der Kanten von gerenderten Kompoonenten zur Folge, eine Deaktivierung dieser Option könnte jedoch die Leistung erhöhen."/>
       <String ID="STATIC_ANIMATION_FPS" Name="Animations-Bildrate"/>
       <String ID="STATIC_ANIMATION_FPS_DESC" Name="Ändert alle Animations-Bildraten in HunterPie. Wähle einen niedrigeren Wert falls du FPS Probleme hast."/>
       <String ID="STATIC_GAME_SCAN_DELAY" Name="Spiel-Scan Intervall:"/>
