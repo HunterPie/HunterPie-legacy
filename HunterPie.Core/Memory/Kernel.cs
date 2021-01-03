@@ -11,9 +11,9 @@ namespace HunterPie.Memory
 {
     public class Kernel
     {
-        public const long NULLPTR = 0x00000000;
+        public const long NULLPTR = 0x00000000L;
         // Process info
-        const int PROCESS_VM_READ = 0x0010;
+        const int PROCESS_ALL_ACCESS = 0x001F0FFF;
         const string PROCESS_NAME = "MonsterHunterWorld";
         public static IntPtr WindowHandle { get; private set; }
         public static int GameVersion;
@@ -44,7 +44,10 @@ namespace HunterPie.Memory
 
         // Kernel32 DLL
         [DllImport("kernel32.dll")]
-        public static extern IntPtr OpenProcess(int dwDesiredAccess, bool bInheritHandle, int dwProcessId);
+        public static extern IntPtr OpenProcess(
+            int dwDesiredAccess,
+            bool bInheritHandle,
+            int dwProcessId);
 
         [DllImport("kernel32.dll")]
         public static extern bool ReadProcessMemory(
@@ -61,6 +64,15 @@ namespace HunterPie.Memory
             IntPtr lpBuffer,
             int dwSize,
             out int lpNumberOfBytesRead);
+
+        [DllImport("kernel32.dll", SetLastError = true)]
+        public static extern bool WriteProcessMemory(
+            IntPtr hProcess,
+            IntPtr lpBaseAddress,
+            byte[] lpBuffer,
+            int nSize,
+            out int lpNumberOfBytesWritten
+            );
 
         [DllImport("kernel32.dll")]
         public static extern bool CloseHandle(IntPtr hObject);
@@ -139,7 +151,7 @@ namespace HunterPie.Memory
                     MonsterHunter = MonsterHunterProcess;
 
                     PID = MonsterHunter.Id;
-                    ProcessHandle = OpenProcess(PROCESS_VM_READ, false, PID);
+                    ProcessHandle = OpenProcess(PROCESS_ALL_ACCESS, false, PID);
 
                     // Check if OpenProcess was successful
                     if (ProcessHandle == IntPtr.Zero)
@@ -214,13 +226,15 @@ namespace HunterPie.Memory
             long address = baseAddress;
             for (int offsetIndex = 0; offsetIndex < offsets.Length; offsetIndex++)
             {
-                address = Read<long>(address) + offsets[offsetIndex];
+                long temp = Read<long>(address);
 
                 // In case we get ptr to a null value
-                if (address == NULLPTR)
+                if (temp == NULLPTR)
                 {
                     return NULLPTR;
                 }
+
+                address = temp + offsets[offsetIndex];
             }
 
             return address;
@@ -276,7 +290,45 @@ namespace HunterPie.Memory
             ReadProcessMemory(ProcessHandle, (IntPtr)address, buffer, Marshal.SizeOf<T>() * count, out _);
             var structures = BufferToStructures<T>(buffer, count);
             Marshal.FreeHGlobal(buffer);
+            
             return structures;
+        }
+
+        public static bool Write<T>(long address, T data) where T : struct
+        {
+            int dataSize = Marshal.SizeOf(data);
+
+            byte[] buffer = new byte[dataSize];
+
+            IntPtr unmanagedPtr = Marshal.AllocHGlobal(dataSize);
+            Marshal.StructureToPtr(data, unmanagedPtr, true);
+            Marshal.Copy(unmanagedPtr, buffer, 0, dataSize);
+
+            Marshal.FreeHGlobal(unmanagedPtr);
+            return WriteProcessMemory(ProcessHandle, (IntPtr)address, buffer, buffer.Length, out _);
+        }
+
+        public static bool Write<T>(long address, T[] data) where T : struct
+        {
+            int dataSize = Marshal.SizeOf(data);
+
+            byte[] buffer = new byte[dataSize];
+
+            IntPtr unmanagedPtr = Marshal.AllocHGlobal(dataSize);
+            Marshal.StructureToPtr(data, unmanagedPtr, true);
+            Marshal.Copy(unmanagedPtr, buffer, 0, dataSize);
+
+            Marshal.FreeHGlobal(unmanagedPtr);
+            return WriteProcessMemory(ProcessHandle, (IntPtr)address, buffer, buffer.Length, out _);
+        }
+
+        public static bool Write(long address, string data)
+        {
+            if (!data.EndsWith("\x00"))
+                data += "\x00";
+
+            byte[] buffer = Encoding.UTF8.GetBytes(data);
+            return WriteProcessMemory(ProcessHandle, (IntPtr)address, buffer, buffer.Length, out _);
         }
 
         /// <summary>

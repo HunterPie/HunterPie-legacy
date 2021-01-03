@@ -1,12 +1,13 @@
 ﻿using System;
 using System.Runtime.CompilerServices;
 using System.Threading;
-using System.Windows.Forms;
 using HunterPie.Core.Enums;
 using HunterPie.Core.Events;
 using HunterPie.Logger;
 using HunterPie.Memory;
 using HunterPie.Utils;
+using HunterPie.Core.Native;
+using System.Runtime.InteropServices;
 
 // TODO: Probably overkill, but add a public key to this
 [assembly: InternalsVisibleTo("HunterPie")]
@@ -136,29 +137,9 @@ namespace HunterPie.Core
             Monsters[0] = FirstMonster;
             Monsters[1] = SecondMonster;
             Monsters[2] = ThirdMonster;
-#if !DEBUG
-        }
-#endif
-#if DEBUG
-            foreach (Monster m in Monsters)
-            {
-                m.OnMonsterDeath += M_OnMonsterDeath;
-                m.OnMonsterDespawn += M_OnMonsterDespawn;
-            }
+
         }
 
-        private void M_OnMonsterDespawn(object source, EventArgs args)
-        {
-            Monster m = (Monster)source;
-            Debugger.Warn($"{m.Name} Despawn -> {m.ActionName}");
-        }
-
-        private void M_OnMonsterDeath(object source, EventArgs args)
-        {
-            Monster m = (Monster)source;
-            Debugger.Warn($"{m.Name} Death -> {m.ActionName}");
-        }
-#endif
         internal void DestroyInstances()
         {
             Player = null;
@@ -174,6 +155,9 @@ namespace HunterPie.Core
 
         internal void StartScanning()
         {
+            GMD.InitializeGMDs();
+            MusicSkillData.Load();
+
             StartGameScanner();
             HookEvents();
             Player.StartScanning();
@@ -182,6 +166,7 @@ namespace HunterPie.Core
             ThirdMonster.StartThreadingScan();
             Debugger.Warn(GStrings.GetLocalizationByXPath("/Console/String[@ID='MESSAGE_GAME_SCANNER_INITIALIZED']"));
             IsActive = true;
+
         }
 
         internal void StopScanning()
@@ -235,9 +220,16 @@ namespace HunterPie.Core
         private void GameScanner()
         {
 
+            for (int i = 0; i < 57; i++)
+            {
+                string correct = GStrings.GetAbnormalityByID("HUNTINGHORN", i, 0);
+                string maybe = GMD.GetMusicSkillNameById(i);
+            }
+
             while (Kernel.GameIsRunning)
             {
-                if ((DateTime.UtcNow - Clock).TotalSeconds >= 10) Clock = DateTime.UtcNow;
+                if ((DateTime.UtcNow - Clock).TotalSeconds >= 10)
+                    Clock = DateTime.UtcNow;
 
                 SyncMonsterAndPartyState();
                 SyncMonstersStates();

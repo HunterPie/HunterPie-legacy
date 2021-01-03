@@ -32,6 +32,24 @@
     <WarningLevel>4</WarningLevel>
     <PlatformTarget>x64</PlatformTarget>
   </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Debug|x64'">
+    <DebugSymbols>true</DebugSymbols>
+    <OutputPath>bin\x64\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <DebugType>full</DebugType>
+    <PlatformTarget>x64</PlatformTarget>
+    <LangVersion>7.3</LangVersion>
+    <ErrorReport>prompt</ErrorReport>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Release|x64'">
+    <OutputPath>bin\x64\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <Optimize>true</Optimize>
+    <DebugType>pdbonly</DebugType>
+    <PlatformTarget>x64</PlatformTarget>
+    <LangVersion>7.3</LangVersion>
+    <ErrorReport>prompt</ErrorReport>
+  </PropertyGroup>
   <ItemGroup>
     <Reference Include="System" />
     <Reference Include="System.Data" />
@@ -55,6 +73,7 @@
     <Compile Include="Core\Craft\Crafting.cs" />
     <Compile Include="Core\Craft\Recipe.cs" />
     <Compile Include="Core\Craft\Recipes.cs" />
+    <Compile Include="Core\Definitions\cMusicSkillData.cs" />
     <Compile Include="Core\Definitions\sAmmo.cs" />
     <Compile Include="Core\Definitions\sEquippedAmmo.cs" />
     <Compile Include="Core\Definitions\sFoodData.cs" />
@@ -157,6 +176,8 @@
     <Compile Include="Core\Monsters\MonsterData.cs" />
     <Compile Include="Core\Monsters\MonsterInfo.cs" />
     <Compile Include="Core\Monsters\Part.cs" />
+    <Compile Include="Core\Native\MusicSkillData.cs" />
+    <Compile Include="Core\Native\GMD.cs" />
     <Compile Include="Core\Party\Member.cs" />
     <Compile Include="Core\Party\Party.cs" />
     <Compile Include="Logger\Debugger.cs" />

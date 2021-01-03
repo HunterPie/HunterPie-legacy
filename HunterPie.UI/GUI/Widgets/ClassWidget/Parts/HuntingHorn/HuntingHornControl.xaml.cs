@@ -8,6 +8,7 @@ using HunterPie.Core.Definitions;
 using HunterPie.Core;
 using System.Collections.Generic;
 using System.Linq;
+using HunterPie.Core.Native;
 
 namespace HunterPie.GUI.Widgets.ClassWidget.Parts
 {
@@ -167,7 +168,7 @@ namespace HunterPie.GUI.Widgets.ClassWidget.Parts
 
                     SongComponent songComponent = new SongComponent()
                     {
-                        SongName = GStrings.GetAbnormalityByID("HUNTINGHORN", song.BuffId, 0)
+                        SongName = GMD.GetMusicSkillNameById(song.BuffId)//GStrings.GetAbnormalityByID("HUNTINGHORN", song.BuffId, 0)
                     };
                     songComponent.SetSong(song.Notes, cachedBrushes);
                     SongQueue.Children.Insert(0, songComponent);
@@ -185,7 +186,7 @@ namespace HunterPie.GUI.Widgets.ClassWidget.Parts
 
                         SongComponent songComponent = new SongComponent()
                         {
-                            SongName = GStrings.GetAbnormalityByID("HUNTINGHORN", song.BuffId, 0)
+                            SongName = GMD.GetMusicSkillNameById(song.BuffId)
                         };
                         songComponent.SetSong(song.Notes, cachedBrushes);
 
@@ -210,7 +211,7 @@ namespace HunterPie.GUI.Widgets.ClassWidget.Parts
 
                 SongComponent songComponent = new SongComponent()
                 {
-                    SongName = GStrings.GetAbnormalityByID("HUNTINGHORN", song.BuffId, 0)
+                    SongName = GMD.GetMusicSkillNameById(song.BuffId)
                 };
                 songComponent.SetSong(song.Notes, cachedBrushes);
 
@@ -300,7 +301,7 @@ namespace HunterPie.GUI.Widgets.ClassWidget.Parts
             {
                 SongPredComponent predDisplay = new SongPredComponent()
                 {
-                    SongName = GStrings.GetAbnormalityByID("HUNTINGHORN", song.BuffId, 0)
+                    SongName = GMD.GetMusicSkillNameById(song.BuffId)
                 };
                 predDisplay.UpdateNote(song.Notes[song.NotesLength - 1], cachedBrushes[song.Notes[song.NotesLength - 1] - 1]);
                 PredictionSheet.Children.Add(predDisplay);

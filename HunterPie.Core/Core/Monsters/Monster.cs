@@ -8,6 +8,7 @@ using HunterPie.Core.Monsters;
 using HunterPie.Logger;
 using HunterPie.Memory;
 using HunterPie.Core.Events;
+using HunterPie.Core.Native;
 
 namespace HunterPie.Core
 {
@@ -46,7 +47,7 @@ namespace HunterPie.Core
         public int MonsterNumber { get; private set; }
 
         // Monster basic info
-        public string Name => GStrings.GetMonsterNameByID(Id) ?? "Missing Translation";
+        public string Name { get; private set; }
 
         private MonsterInfo MonsterInfo => MonsterData.MonstersInfo[GameId];
 
@@ -59,6 +60,7 @@ namespace HunterPie.Core
                 {
                     if (Health > 0)
                     {
+                        Name = GMD.GetMonsterNameByEm(value);
                         id = value;
                         IsCaptured = false;
 
@@ -83,7 +85,7 @@ namespace HunterPie.Core
                 }
             }
         }
-        public int GameId { get; set; }
+        public int GameId { get; private set; }
         public float SizeMultiplier
         {
             get => sizeMultiplier;
@@ -449,7 +451,7 @@ namespace HunterPie.Core
                     {
                         if (!MonsterEm.StartsWith("ems"))
                         {
-                            Debugger.Debug($"Unknown Monster Detected: ID:{GameId} | ems: {MonsterEm}");
+                            Debugger.Debug($"Unmapped monster Detected: ID:{GameId} | EM: {MonsterEm} | Name: {Name}");
                         }
                         Id = null;
                         Health = 0;
