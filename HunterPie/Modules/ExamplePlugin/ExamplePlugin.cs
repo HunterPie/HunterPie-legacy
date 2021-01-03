@@ -3,11 +3,22 @@ using HunterPie.Core;
 using HunterPie.Core.Input;
 using HunterPie.Logger;
 using HunterPie.Core.Events;
+using System.Runtime.InteropServices;
 
 namespace HunterPie.Plugins.Example
 {
     public class ExamplePlugin : IPlugin
     {
+        [StructLayout(LayoutKind.Sequential, Size = 24)]
+        public struct uwu
+        {
+            public int id;
+            public int unk;
+            public int equippedGear;
+            public int equippedSlot;
+            public int Quantity;
+            public int unk1;
+        }
         // This is your plugin name
         public string Name { get; set; } = "Example Plugin";
 
@@ -32,6 +43,7 @@ namespace HunterPie.Plugins.Example
 
             // Read Plugin Extensions Example
             PluginExtensionDemos();
+
         }
 
         // This is the function HunterPie will call when unloading your plugin, you MUST unhook all events

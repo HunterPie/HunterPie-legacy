@@ -308,17 +308,27 @@ namespace HunterPie.Memory
             return WriteProcessMemory(ProcessHandle, (IntPtr)address, buffer, buffer.Length, out _);
         }
 
+        private static byte[] StructureToBuffer<T>(ref T[] array, int size) where T : struct
+        {
+            IntPtr malloced = Marshal.AllocHGlobal(size);
+            byte[] buffer = new byte[size];
+
+            for (int i = 0; i < array.Length; i++)
+            {
+                int offset = i * Marshal.SizeOf<T>();
+                Marshal.StructureToPtr(array[i], malloced + offset, false);
+            }
+
+            Marshal.Copy(malloced, buffer, 0, size);
+            Marshal.FreeHGlobal(malloced);
+            return buffer;
+        }
+
         public static bool Write<T>(long address, T[] data) where T : struct
         {
-            int dataSize = Marshal.SizeOf(data);
+            int dataSize = Marshal.SizeOf<T>() * data.Length;
 
-            byte[] buffer = new byte[dataSize];
-
-            IntPtr unmanagedPtr = Marshal.AllocHGlobal(dataSize);
-            Marshal.StructureToPtr(data, unmanagedPtr, true);
-            Marshal.Copy(unmanagedPtr, buffer, 0, dataSize);
-
-            Marshal.FreeHGlobal(unmanagedPtr);
+            byte[] buffer = StructureToBuffer(ref data, dataSize);
             return WriteProcessMemory(ProcessHandle, (IntPtr)address, buffer, buffer.Length, out _);
         }
 
