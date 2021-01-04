@@ -6,8 +6,7 @@ using HunterPie.Core.Events;
 using HunterPie.Logger;
 using HunterPie.Memory;
 using HunterPie.Utils;
-using HunterPie.Core.Native;
-using System.Runtime.InteropServices;
+using System.Linq;
 
 // TODO: Probably overkill, but add a public key to this
 [assembly: InternalsVisibleTo("HunterPie")]
@@ -25,25 +24,7 @@ namespace HunterPie.Core
 
         public Monster HuntedMonster
         {
-            get
-            {
-                if (FirstMonster.IsTarget)
-                {
-                    return FirstMonster;
-                }
-                else if (SecondMonster.IsTarget)
-                {
-                    return SecondMonster;
-                }
-                else if (ThirdMonster.IsTarget)
-                {
-                    return ThirdMonster;
-                }
-                else
-                {
-                    return null;
-                }
-            }
+            get => Monsters.Where(m => m.IsTarget).FirstOrDefault();
         }
 
         public readonly Monster[] Monsters = new Monster[3];
@@ -63,7 +44,6 @@ namespace HunterPie.Core
         }
         public DateTime? Time { get; private set; }
         public bool IsActive { get; private set; }
-
         
         /// <summary>
         /// Whether the game window is focused or not
@@ -74,6 +54,17 @@ namespace HunterPie.Core
         /// The current game build version
         /// </summary>
         public static int Version => Kernel.GameVersion;
+
+        /// <summary>
+        /// Focus the game window
+        /// </summary>
+        /// <returns>True if the operation was successful, false otherwise</returns>
+        public static bool Focus()
+        {
+            return WindowsHelper.SetForegroundWindow(Kernel.WindowHandle);
+        }
+
+        #region Private
 
         // Threading
         private ThreadStart scanGameThreadingRef;
@@ -154,10 +145,8 @@ namespace HunterPie.Core
         }
 
         internal void StartScanning()
-        {
-            GMD.InitializeGMDs();
-            MusicSkillData.Load();
-
+        { 
+            
             StartGameScanner();
             HookEvents();
             Player.StartScanning();
@@ -219,13 +208,6 @@ namespace HunterPie.Core
 
         private void GameScanner()
         {
-
-            for (int i = 0; i < 57; i++)
-            {
-                string correct = GStrings.GetAbnormalityByID("HUNTINGHORN", i, 0);
-                string maybe = GMD.GetMusicSkillNameById(i);
-            }
-
             while (Kernel.GameIsRunning)
             {
                 if ((DateTime.UtcNow - Clock).TotalSeconds >= 10)
@@ -289,5 +271,6 @@ namespace HunterPie.Core
                 monster.IsLocalHost = Player.PlayerParty.IsLocalHost;
             }
         }
+        #endregion
     }
 }

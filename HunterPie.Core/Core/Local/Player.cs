@@ -436,8 +436,41 @@ namespace HunterPie.Core
 
         public event PlayerEvents OnPlayerScanFinished;
 
-        private void Dispatch(PlayerEvents e, EventArgs args) => e?.Invoke(this, args);
-        private void Dispatch(PlayerAilmentEvents e) => e?.Invoke(this, new PlayerAilmentEventArgs(this));
+        private void Dispatch(PlayerEvents e, EventArgs args)
+        {
+            if (e is null)
+                return;
+
+            foreach (PlayerEvents del in e.GetInvocationList())
+            {
+                try
+                {
+                    del(this, args);
+                } catch (Exception err)
+                {
+                    Debugger.Error($"Error on callback \"{del.Method.Name}\": {err.Message}");
+                }
+            }
+        }
+        private void Dispatch(PlayerAilmentEvents e)
+        {
+            if (e is null)
+                return;
+
+            PlayerAilmentEventArgs args = new PlayerAilmentEventArgs(this);
+            foreach (PlayerAilmentEvents del in e.GetInvocationList())
+            {
+                try
+                {
+                    del(this, args);
+                }
+                catch (Exception err)
+                {
+                    Debugger.Error($"Error on callback \"{del.Method.Name}\": {err.Message}");
+                }
+            }
+        }
+
         private void DispatchScanFinished()
         {
             if (OnPlayerScanFinished == null)

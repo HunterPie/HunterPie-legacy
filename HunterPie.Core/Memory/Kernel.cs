@@ -43,13 +43,13 @@ namespace HunterPie.Memory
         private static Thread scanGameMemory;
 
         // Kernel32 DLL
-        [DllImport("kernel32.dll")]
+        [DllImport("kernel32.dll", SetLastError = true)]
         public static extern IntPtr OpenProcess(
             int dwDesiredAccess,
             bool bInheritHandle,
             int dwProcessId);
 
-        [DllImport("kernel32.dll")]
+        [DllImport("kernel32.dll", SetLastError = true)]
         public static extern bool ReadProcessMemory(
             IntPtr hProcess,
             IntPtr lpBaseAddress,
@@ -57,7 +57,7 @@ namespace HunterPie.Memory
             int dwSize,
             out int lpNumberOfBytesRead);
 
-        [DllImport("kernel32.dll")]
+        [DllImport("kernel32.dll", SetLastError = true)]
         public static extern bool ReadProcessMemory(
             IntPtr hProcess,
             IntPtr lpBaseAddress,
@@ -84,7 +84,22 @@ namespace HunterPie.Memory
         public static event ProcessHandler OnGameFocus;
         public static event ProcessHandler OnGameUnfocus;
 
-        protected static void Dispatch(ProcessHandler e) => e?.Invoke(typeof(Kernel), EventArgs.Empty);
+        protected static void Dispatch(ProcessHandler e)
+        {
+            if (e is null)
+                return;
+
+            foreach (ProcessHandler sub in e.GetInvocationList())
+            {
+                try
+                {
+                    sub(nameof(Kernel), EventArgs.Empty);
+                } catch (Exception err)
+                {
+                    Debugger.Error($"Exception in {sub.Method.Name}: {err.Message}");
+                }
+            }
+        }
 
         /* Core code */
         public static void StartScanning()
@@ -100,7 +115,12 @@ namespace HunterPie.Memory
 
         public static void StopScanning()
         {
-            if (ProcessHandle != (IntPtr)0) CloseHandle(ProcessHandle);
+            if (ProcessHandle != (IntPtr)0)
+            {
+                CloseHandle(ProcessHandle);
+                ProcessHandle = IntPtr.Zero;
+            }
+
             scanGameMemory?.Abort();
         }
 
@@ -120,7 +140,9 @@ namespace HunterPie.Memory
                     continue;
                 }
                 
-                Process MonsterHunterProcess = Process.GetProcessesByName(PROCESS_NAME).Where(p => !string.IsNullOrEmpty(p.MainWindowTitle)).FirstOrDefault();
+                Process MonsterHunterProcess = Process.GetProcessesByName(PROCESS_NAME)
+                    .Where(p => !string.IsNullOrEmpty(p.MainWindowTitle))
+                    .FirstOrDefault();
 
                 // If there's no MHW instance of Monster Hunter: World running
                 if (MonsterHunterProcess == null)

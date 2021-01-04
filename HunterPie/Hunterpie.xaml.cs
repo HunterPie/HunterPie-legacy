@@ -33,6 +33,7 @@ using System.Diagnostics;
 using HunterPie.Core.Events;
 using System.Xml;
 using System.Reflection;
+using HunterPie.Core.Native;
 
 namespace HunterPie
 {
@@ -675,13 +676,32 @@ namespace HunterPie
         private void OnClassChange(object source, EventArgs args) => ExportGameData();
 
 
-        public void OnGameStart(object source, EventArgs e)
+        private async void OnGameStart(object source, EventArgs e)
         {
             // Set HunterPie hotkeys
             SetHotKeys();
 
             // Create game instances
             game.CreateInstances();
+
+            // Loads memory map
+            if (Address.LoadMemoryMap(Kernel.GameVersion) || Kernel.GameVersion == Address.GAME_VERSION)
+            {
+                Debugger.Warn(GStrings.GetLocalizationByXPath("/Console/String[@ID='MESSAGE_MAP_LOAD']").Replace("{HunterPie_Map}", $"'MonsterHunterWorld.{Kernel.GameVersion}.map'"));
+            }
+            else
+            {
+                Debugger.Error(GStrings.GetLocalizationByXPath("/Console/String[@ID='MESSAGE_GAME_VERSION_UNSUPPORTED']").Replace("{GAME_VERSION}", $"{Kernel.GameVersion}"));
+                return;
+            }
+
+            Honey.Load();
+
+            await Task.Run(() =>
+            {
+                GMD.InitializeGMDs();
+                MusicSkillData.Load();
+            });
 
             // Hook game events
             HookGameEvents();
@@ -708,17 +728,6 @@ namespace HunterPie
                 }
             }));
 
-            // Loads memory map
-            if (Address.LoadMemoryMap(Kernel.GameVersion) || Kernel.GameVersion == Address.GAME_VERSION)
-            {
-                Debugger.Warn(GStrings.GetLocalizationByXPath("/Console/String[@ID='MESSAGE_MAP_LOAD']").Replace("{HunterPie_Map}", $"'MonsterHunterWorld.{Kernel.GameVersion}.map'"));
-            }
-            else
-            {
-                Debugger.Error(GStrings.GetLocalizationByXPath("/Console/String[@ID='MESSAGE_GAME_VERSION_UNSUPPORTED']").Replace("{GAME_VERSION}", $"{Kernel.GameVersion}"));
-                return;
-            }
-
             // Starts scanning
             game.StartScanning();
 
@@ -733,7 +742,7 @@ namespace HunterPie
 
         }
 
-        public void OnGameClose(object source, EventArgs e)
+        private void OnGameClose(object source, EventArgs e)
         {
             // Remove global hotkeys
             RemoveHotKeys();

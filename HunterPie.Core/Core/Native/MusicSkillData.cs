@@ -2,6 +2,7 @@
 using HunterPie.Memory;
 using HunterPie.Core.Definitions;
 using System.Linq;
+using System.Runtime.CompilerServices;
 
 namespace HunterPie.Core.Native
 {
@@ -10,7 +11,7 @@ namespace HunterPie.Core.Native
         private static cMusicSkillData[] data;
         public static IReadOnlyCollection<cMusicSkillData> Data => data;
 
-        internal static void Load()
+        public static void Load()
         {
             long addr = Kernel.ReadMultilevelPtr(Address.GetAddress("BASE") + Address.GetAddress("MUSIC_SKILL_EFC_DATA_OFFSET"),
                 Address.GetOffsets("cMusicSkillEfcDataOffsets"));

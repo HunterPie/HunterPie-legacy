@@ -13,18 +13,13 @@ namespace HunterPie.Core
     public class Honey
     {
 
-        public static XmlDocument HoneyGearData;
-        private static readonly string HoneyLink = "https://honeyhunterworld.com/mhwbi/?";
+        public static readonly XmlDocument HoneyGearData = new XmlDocument();
+        public const string HoneyLink = "https://honeyhunterworld.com/mhwbi/?";
 
-        // Only calls this when needed
-        // since I don't want it to be allocated in memory 100% of the time
-        public static void LoadHoneyGearData()
+        internal static void Load()
         {
-            HoneyGearData = new XmlDocument();
             HoneyGearData.Load(Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "HunterPie.Resources/Data/HoneyData.xml"));
         }
-
-        public static void UnloadHoneyGearData() => HoneyGearData = null;
 
         /// <summary>
         /// Function to create player build link based on the in-game gear
@@ -34,8 +29,6 @@ namespace HunterPie.Core
         /// <returns>Link to the build in Honey Hunters World</returns>
         public static string LinkStructureBuilder(GameStructs.Gear Build, bool ShowErrors = false)
         {
-
-            if (HoneyGearData == null) LoadHoneyGearData();
 
             StringBuilder LinkBuilder = new StringBuilder();
 
@@ -106,9 +99,8 @@ namespace HunterPie.Core
                 }
             }
 
-            if (ShowErrors) Debugger.Debug(LinkBuilder);
-
-            UnloadHoneyGearData();
+            if (ShowErrors)
+                Debugger.Debug(LinkBuilder);
 
             return LinkBuilder.ToString();
         }
@@ -120,7 +112,8 @@ namespace HunterPie.Core
             if (WeaponType > nl.Count) return "0";
             XmlNode WeaponNode = nl[WeaponType];
             string wID = WeaponNode.SelectSingleNode($"Weapon[@ID='{WeaponID}']/@HoneyID")?.Value ?? "0";
-            if (wID == "0" && ShowErrors) Debugger.Error($"Unsupported weapon ID: {WeaponID}");
+            if (wID == "0" && ShowErrors)
+                Debugger.Error($"Unsupported weapon ID: {WeaponID}");
             return wID;
         }
 
@@ -286,8 +279,6 @@ namespace HunterPie.Core
         /// <returns>string structure</returns>
         public static string ExportDecorationsToHoney(sItem[] decorations, sGear[] gears)
         {
-
-            if (HoneyGearData == null) LoadHoneyGearData();
             StringBuilder data = new StringBuilder();
 
             // Merge decorations in box and decorations in gear
@@ -350,7 +341,6 @@ namespace HunterPie.Core
             }
             Debugger.Debug(data);
             Debugger.Debug($"Total unique decorations found: {sDecorations.Count}");
-            UnloadHoneyGearData();
             return data.ToString();
         }
 
@@ -361,8 +351,6 @@ namespace HunterPie.Core
         /// <returns>string structure</returns>
         public static string ExportCharmsToHoney(sGear[] gear)
         {
-            if (HoneyGearData == null) LoadHoneyGearData();
-
             StringBuilder data = new StringBuilder();
 
             // Filter based on only on charms
@@ -399,7 +387,6 @@ namespace HunterPie.Core
                 data.Append($"{(i != 1 ? "," : "")}{(sCharms.ContainsKey(i) ? sCharms[i] : 0)}");
             }
             Debugger.Debug(data);
-            UnloadHoneyGearData();
             return data.ToString();
         }
     }
