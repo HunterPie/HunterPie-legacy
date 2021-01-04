@@ -261,7 +261,6 @@ namespace HunterPie.Core
         Thread monsterInfoScan;
 
         #region Events
-        public delegate void MonsterEnrageEvents(object source, MonsterUpdateEventArgs args);
         public delegate void MonsterEvents(object source, EventArgs args);
         public delegate void MonsterSpawnEvents(object source, MonsterSpawnEventArgs args);
         public delegate void MonsterUpdateEvents(object source, MonsterUpdateEventArgs args);
@@ -279,18 +278,67 @@ namespace HunterPie.Core
         public event MonsterUpdateEvents OnStaminaUpdate;
         public event MonsterUpdateEvents OnActionChange;
 
-        public event MonsterEnrageEvents OnEnrage;
-        public event MonsterEnrageEvents OnUnenrage;
-        public event MonsterEnrageEvents OnEnrageTimerUpdate;
+        public event MonsterUpdateEvents OnEnrage;
+        public event MonsterUpdateEvents OnUnenrage;
+        public event MonsterUpdateEvents OnEnrageTimerUpdate;
 
         public event MonsterEvents OnMonsterScanFinished;
         // Used ONLY by Alatreon
         public event MonsterEvents OnAlatreonElementShift;
 
-        protected virtual void Dispatch(MonsterSpawnEvents e) => e?.Invoke(this, new MonsterSpawnEventArgs(this));
-        protected virtual void Dispatch(MonsterEvents e) => e?.Invoke(this, EventArgs.Empty);
-        protected virtual void Dispatch(MonsterUpdateEvents e) => e?.Invoke(this, new MonsterUpdateEventArgs(this));
-        protected virtual void Dispatch(MonsterEnrageEvents e) => e?.Invoke(this, new MonsterUpdateEventArgs(this));
+        protected virtual void Dispatch(MonsterSpawnEvents e)
+        {
+            if (e is null)
+                return;
+
+            MonsterSpawnEventArgs args = new MonsterSpawnEventArgs(this);
+            foreach (MonsterSpawnEvents del in e.GetInvocationList())
+            {
+                try
+                {
+                    del(this, args);
+                } catch (Exception err)
+                {
+                    Debugger.Error($"Error on callback \"{del.Method.Name}\": {err.Message}");
+                }
+            }
+        }
+
+        protected virtual void Dispatch(MonsterEvents e)
+        {
+            if (e is null)
+                return;
+
+            foreach (MonsterEvents del in e.GetInvocationList())
+            {
+                try
+                {
+                    del(this, EventArgs.Empty);
+                }
+                catch (Exception err)
+                {
+                    Debugger.Error($"Error on callback \"{del.Method.Name}\": {err.Message}");
+                }
+            }
+        }
+        protected virtual void Dispatch(MonsterUpdateEvents e)
+        {
+            if (e is null)
+                return;
+
+            MonsterUpdateEventArgs args = new MonsterUpdateEventArgs(this);
+            foreach (MonsterUpdateEvents del in e.GetInvocationList())
+            {
+                try
+                {
+                    del(this, args);
+                }
+                catch (Exception err)
+                {
+                    Debugger.Error($"Error on callback \"{del.Method.Name}\": {err.Message}");
+                }
+            }
+        }
 
         private void DispatchScanFinished()
         {
