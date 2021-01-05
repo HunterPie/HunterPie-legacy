@@ -14,7 +14,7 @@ namespace HunterPie.Core.Input
         private static readonly List<char> injectedInputs = new List<char>();
         private static bool isPatched = false;
         private static byte[] originalOps;
-        private static Task inputInjector;
+        private static bool isInjecting = false;
         private static CancellationTokenSource cToken;
 
         [DllImport("user32.dll")]
@@ -49,33 +49,35 @@ namespace HunterPie.Core.Input
         /// <returns>True when the operation is completed</returns>
         public static async Task<bool> SendInputAsync(char code, TimeSpan duration)
         {
+            // Adds our vk to the input list
             injectedInputs.Add(code);
 
+            // Patch the input reset operations
             PatchInputReset();
 
+            // Initialize our input injector to update the input array every 16ms
             InitializeInjector();
 
             await Task.Delay(duration).ContinueWith((_) =>
             {
-                lock (injectedInputs)
-                {
-                    injectedInputs.Remove(code);
-                }
+                injectedInputs.Remove(code);
             });
 
             return true;
         }
 
-        private static void InitializeInjector()
+        private static async Task InitializeInjector()
         {
-            if (inputInjector != null)
+            if (isInjecting)
                 return;
+
             cToken = new CancellationTokenSource();
-            
-            inputInjector = new Task(() =>
+
+            await Task.Factory.StartNew(() =>
             {
                 while (injectedInputs.Count > 0)
                 {
+                    isInjecting = true;
                     byte[] keyboardStates = GetBitShiftedInputs();
 
                     foreach (char code in injectedInputs)
@@ -88,9 +90,9 @@ namespace HunterPie.Core.Input
 
                     Thread.Sleep(16);
                 }
-                RestoreInputReset();
+
             }, cToken.Token);
-            inputInjector.Start();
+            RestoreInputReset();
         }
 
         /// <summary>
@@ -149,9 +151,7 @@ namespace HunterPie.Core.Input
                 Kernel.Write(addr, originalOps);
                 
                 isPatched = false;
-                
-                inputInjector.Dispose();
-                inputInjector = null;
+                isInjecting = false;
             }
         }
 
@@ -170,8 +170,7 @@ namespace HunterPie.Core.Input
 
                 cToken.Cancel();
 
-                inputInjector?.Dispose();
-                inputInjector = null;
+                isInjecting = false;
             } catch(Exception err)
             {
                 Debugger.Error(err);
