@@ -84,7 +84,7 @@ namespace HunterPie.Core
 
         public void SetPlayerInfo(MemberInfo info)
         {
-            if (!string.IsNullOrEmpty(info.Name) && info.WeaponId != 0)
+            if (!string.IsNullOrEmpty(info.Name))
             {
                 Weapon = info.WeaponId;
             }
