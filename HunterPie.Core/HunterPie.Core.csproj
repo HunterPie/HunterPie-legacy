@@ -139,6 +139,7 @@
     <Compile Include="Core\Events\WorldEventArgs.cs" />
     <Compile Include="Core\Game.cs" />
     <Compile Include="Core\Input\Hotkey.cs" />
+    <Compile Include="Core\Input\VirtualInput.cs" />
     <Compile Include="Core\Integrations\DataExporter\Exporter.cs" />
     <Compile Include="Core\Integrations\Honey\Honey.cs" />
     <Compile Include="Core\KeyboardHook.cs" />

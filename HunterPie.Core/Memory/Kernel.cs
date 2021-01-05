@@ -11,32 +11,35 @@ namespace HunterPie.Memory
 {
     public class Kernel
     {
-        public const long NULLPTR = 0x00000000L;
-        // Process info
         const int PROCESS_ALL_ACCESS = 0x001F0FFF;
         const string PROCESS_NAME = "MonsterHunterWorld";
+        public const long NULLPTR = 0x00000000L;
+
+        // Process info
         public static IntPtr WindowHandle { get; private set; }
-        public static int GameVersion;
-        public static int PID;
-        static Process MonsterHunter;
+        public static int GameVersion { get; private set; }
+        public static int PID { get; private set; }
         public static IntPtr ProcessHandle { get; private set; } = (IntPtr)0;
-        public static bool GameIsRunning = false;
-        private static bool _isForegroundWindow = false;
+        public static bool GameIsRunning { get; private set; }
+        public static Process Process => MonsterHunter;
         public static bool IsForegroundWindow
         {
-            get => _isForegroundWindow;
+            get => isForegroundWindow;
             private set
             {
-                if (value != _isForegroundWindow)
+                if (value != isForegroundWindow)
                 {
                     // Wait until there's a subscriber to dispatch the event
                     if (OnGameFocus == null || OnGameUnfocus == null) return;
-                    _isForegroundWindow = value;
-                    if (_isForegroundWindow) { Dispatch(OnGameFocus); }
+                    isForegroundWindow = value;
+                    if (isForegroundWindow) { Dispatch(OnGameFocus); }
                     else { Dispatch(OnGameUnfocus); }
                 }
             }
         }
+
+        private static Process MonsterHunter;
+        private static bool isForegroundWindow = false;
 
         // Scanner Thread
         private static ThreadStart scanGameMemoryRef;
@@ -73,6 +76,7 @@ namespace HunterPie.Memory
             int nSize,
             out int lpNumberOfBytesWritten
             );
+
 
         [DllImport("kernel32.dll")]
         public static extern bool CloseHandle(IntPtr hObject);
@@ -349,9 +353,9 @@ namespace HunterPie.Memory
         public static bool Write<T>(long address, T[] data) where T : struct
         {
             int dataSize = Marshal.SizeOf<T>() * data.Length;
-
             byte[] buffer = StructureToBuffer(ref data, dataSize);
-            return WriteProcessMemory(ProcessHandle, (IntPtr)address, buffer, buffer.Length, out _);
+            bool result = WriteProcessMemory(ProcessHandle, (IntPtr)address, buffer, buffer.Length, out _);
+            return result;
         }
 
         public static bool Write(long address, string data)

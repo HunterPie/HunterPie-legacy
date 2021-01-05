@@ -18,12 +18,15 @@ Address DAMAGE_OFFSET 0x05224BF8
 Address WORLD_DATA_OFFSET 0x05073D50
 Address WEAPON_DATA_OFFSET 0x050725A0
 Address HUD_DATA_OFFSET 0x0506F1A0
+Address GAME_INPUT_OFFSET 0x052258F8
 # Game Data
 Address MUSIC_SKILL_EFC_DATA_OFFSET 0x05072590
 # GMD Strings
 Address GMD_ITEMS_OFFSET 0x05073380
 Address GMD_BUFFS_OFFSET 0x050733B0
 Address GMD_MONSTERS_OFFSET 0x050733C0
+# Functions
+Address FUN_GAME_INPUT 0x02303DE0
 # Offsets
 Offset LevelOffsets 0xA8
 Offset ZoneOffsets 0xAED0
@@ -53,3 +56,4 @@ Offset cMusicSkillEfcDataOffsets 0xC8,0x0
 # GMD Offsets
 Offset GmdOffsets 0xF8
 Offset GmdItemsOffsets 0xF8
+Offset GameInputArrayOffsets 0x138
