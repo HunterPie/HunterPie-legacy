@@ -55,6 +55,35 @@ namespace HunterPie.Core
         /// </summary>
         public static int Version => Kernel.GameVersion;
 
+        public static ulong ElapsedFrames
+        {
+            get
+            {
+                long address = Address.GetAddress("BASE") + Address.GetAddress("GAME_FRAME_COUNT_OFFSET");
+                return Kernel.Read<ulong>(address);
+            }
+        }
+
+        private static long renderTimeAddress = Kernel.NULLPTR;
+
+        public static float RenderTime
+        {
+            get
+            {
+                if (renderTimeAddress == Kernel.NULLPTR)
+                {
+                    long address = Address.GetAddress("BASE") + Address.GetAddress("GAME_RENDER_INFO_OFFSET");
+                    renderTimeAddress = Kernel.Read<long>(address);
+                }
+
+                if (renderTimeAddress == Kernel.NULLPTR)
+                    return 16.4f;
+
+                return Kernel.Read<float>(renderTimeAddress + 0x58) / Kernel.Read<float>(renderTimeAddress + 0x94);
+
+            }
+        }
+
         /// <summary>
         /// Focus the game window
         /// </summary>

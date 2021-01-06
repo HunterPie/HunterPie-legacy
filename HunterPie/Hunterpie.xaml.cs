@@ -739,7 +739,21 @@ namespace HunterPie
                     presence.SetOfflineMode();
                 presence.StartRPC();
             }
+#if DEBUG
+            await TestInputs();
+#endif
         }
+
+#if DEBUG
+
+        private async Task TestInputs()
+        {
+            
+            await VirtualInput.HoldInputAsync('F', TimeSpan.FromSeconds(2));
+            Debugger.Log("Done!");
+        }
+
+#endif
 
         private void OnGameClose(object source, EventArgs e)
         {

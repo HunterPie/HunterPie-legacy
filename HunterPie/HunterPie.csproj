@@ -143,6 +143,9 @@
     </ApplicationDefinition>
     <Compile Include="Core\Client\AutoUpdate.cs" />
     <Compile Include="Core\Integrations\Discord\Presence.cs" />
+    <None Include="address\MonsterHunterWorld.421470.map">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
     <None Include="address\MonsterHunterWorld.421409.map">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
