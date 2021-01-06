@@ -24,7 +24,6 @@ namespace HunterPie.Core.Input
         private static byte[] originalOps;
         private static bool isInjecting = false;
         private static CancellationTokenSource cToken;
-        private static bool isFrameCounting = false;
 
         [DllImport("user32.dll")]
         private static extern int SendMessage(
@@ -91,17 +90,17 @@ namespace HunterPie.Core.Input
                 isFrameBased = true,
                 startedAt = frames,
                 // Inputs are processed after 2 frames, but we're gonna use 4 for safety
-                endsAt = frames + 4
+                endsAt = frames + 2
             };
+            
             injectedInputs.Add(input);
-
             PatchInputReset();
 
             InitializeInjector();
 
             await Task.Run(() =>
             {
-                while (Game.ElapsedFrames < input.endsAt)
+                while (Game.ElapsedFrames < input.endsAt + 10)
                     Thread.Sleep((int)Game.RenderTime);
             });
 
@@ -117,39 +116,53 @@ namespace HunterPie.Core.Input
 
             await Task.Factory.StartNew(() =>
             {
+                byte[] keyboardStates = new byte[32];
+                ulong frames = 0;
                 List<vINPUT> removeQueue = new List<vINPUT>();
+
+                long inputArr = Kernel.ReadMultilevelPtr(Address.GetAddress("BASE") + Address.GetAddress("GAME_INPUT_OFFSET"),
+                        Address.GetOffsets("GameInputArrayOffsets"));
+
                 while (injectedInputs.Count > 0)
                 {
-                    isInjecting = true;
-                    byte[] keyboardStates = GetBitShiftedInputs();
+                    if (frames == Game.ElapsedFrames)
+                        continue;
 
-                    foreach (vINPUT input in injectedInputs)
+                    frames = Game.ElapsedFrames;
+
+                    isInjecting = true;
+
+                    GetBitShiftedInputs(ref keyboardStates);
+
+                    Kernel.Write(inputArr + 0x20, keyboardStates);
+
+                    for (int i = 0; i < injectedInputs.Count; i++)
                     {
-                        if ((!input.isFrameBased) || (input.isFrameBased && Game.ElapsedFrames < input.endsAt))
+                        vINPUT input = injectedInputs[i];
+                        if ((!input.isFrameBased) || (input.isFrameBased && (frames - input.startedAt) < 3))
                             InjectInput(input.vK, ref keyboardStates);
                         else
                             removeQueue.Add(input);
-                            
+
                     }
 
-                    long inputArr = Kernel.ReadMultilevelPtr(Address.GetAddress("BASE") + Address.GetAddress("GAME_INPUT_OFFSET"),
-                        Address.GetOffsets("GameInputArrayOffsets"));
-
                     Kernel.Write(inputArr, keyboardStates);
-
+                    
                     if (removeQueue.Count > 0)
                     {
                         foreach (vINPUT input in removeQueue)
                             injectedInputs.Remove(input);
-                        removeQueue.Clear();
+                        
                     }
 
-                    Thread.Sleep((int)Game.RenderTime);
+                    Thread.Sleep(1);
+                    
                 }
 
             }, cToken.Token);
             RestoreInputReset();
         }
+
 
         /// <summary>
         /// Injects a input in the inputs array
@@ -165,14 +178,12 @@ namespace HunterPie.Core.Input
 
         /// The way how MHW handles input is by having a 32 bytes (256 bits) array
         /// and OR'ing the keys to see if they're pressed or not.
-        private static byte[] GetBitShiftedInputs()
+        private static void GetBitShiftedInputs(ref byte[] bitStates)
         {
-            byte[] bitStates = new byte[32];
             for (byte vK = 0; vK < 0xFF; vK++)
             {
                 bitStates[vK / 8] |= (byte)((byte)(GetAsyncKeyState(vK) & 0x8000) << (vK % 8));
             }
-            return bitStates;
         }
 
         /// Before handling the inputs, MHW also resets their values to default before calling GetAsyncKeyState
@@ -190,20 +201,36 @@ namespace HunterPie.Core.Input
 
             Dictionary<short, short> offsetsToPatch = new Dictionary<short, short>()
             {
+                // mov      [rcx+00000158],eax
+                { 0x28, 0x6 },
                 // mov      [rsi], edi
                 { 0x2E, 0x2 },
+                // mov      [rcx+0000015C],eax
+                { 0x36, 0x6 },
                 // mov      [rcx+0000013C],edi
                 { 0x3C, 0x6 },
+                // mov      [rcx+00000160],eax
+                { 0x48, 0x6 },
                 // mov      [rcx+00000140],edi
                 { 0x4E, 0x6 },
+                // mov      [rcx+00000164],eax
+                { 0x5A, 0x6 },
                 // mov      [rcx+00000144],edi
                 { 0x60, 0x6 },
+                // mov      [rcx+00000168],eax
+                { 0x6C, 0x6 },
                 // mov      [rcx+00000148],edi
                 { 0x72, 0x6 },
+                // mov      [rcx+0000016C],eax
+                { 0x7E, 0x6 },
                 // mov      [rcx+0000014C],edi
                 { 0x84, 0x6 },
+                // mov      [rcx+00000170],eax
+                { 0x90, 0x6 },
                 // mov      [rcx+00000150],edi
                 { 0x96, 0x6 },
+                // mov      [rcx+00000154],edi
+                { 0xA2, 0x6 },
                 // mov      [rcx+00000154],edi
                 { 0xA8, 0x6 },
             };

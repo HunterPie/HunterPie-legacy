@@ -140,9 +140,10 @@
     <Compile Include="Core\Game.cs" />
     <Compile Include="Core\Input\Hotkey.cs" />
     <Compile Include="Core\Input\VirtualInput.cs" />
+    <Compile Include="Core\Input\VKeys.cs" />
     <Compile Include="Core\Integrations\DataExporter\Exporter.cs" />
     <Compile Include="Core\Integrations\Honey\Honey.cs" />
-    <Compile Include="Core\KeyboardHook.cs" />
+    <Compile Include="Core\Input\KeyboardHook.cs" />
     <Compile Include="Core\Local\Abnormalities.cs" />
     <Compile Include="Core\Local\Abnormality.cs" />
     <Compile Include="Core\Local\AbnormalityData.cs" />
