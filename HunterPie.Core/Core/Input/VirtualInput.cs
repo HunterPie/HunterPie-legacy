@@ -6,12 +6,13 @@ using System.Threading.Tasks;
 using HunterPie.Logger;
 using HunterPie.Memory;
 using static HunterPie.Memory.WindowsHelper;
+// ReSharper disable All
 
 namespace HunterPie.Core.Input
 {
     public static class VirtualInput
     {
-        private struct vINPUT
+        private struct VInput
         {
             public char vK;
             public bool isFrameBased;
@@ -19,7 +20,7 @@ namespace HunterPie.Core.Input
             public ulong endsAt;
         };
 
-        private static readonly List<vINPUT> injectedInputs = new List<vINPUT>();
+        private static readonly List<VInput> injectedInputs = new List<VInput>();
         private static bool isPatched = false;
         private static byte[] originalOps;
         private static bool isInjecting = false;
@@ -57,7 +58,7 @@ namespace HunterPie.Core.Input
         /// <returns>True when the operation is completed</returns>
         public static async Task<bool> HoldInputAsync(char code, TimeSpan duration)
         {
-            vINPUT input = new vINPUT
+            VInput input = new VInput
             {
                 vK = code,
                 isFrameBased = false,
@@ -84,7 +85,7 @@ namespace HunterPie.Core.Input
         public static async Task<bool> PressInputAsync(char code)
         {
             ulong frames = Game.ElapsedFrames;
-            vINPUT input = new vINPUT
+            VInput input = new VInput
             {
                 vK = code,
                 isFrameBased = true,
@@ -118,7 +119,7 @@ namespace HunterPie.Core.Input
             {
                 byte[] keyboardStates = new byte[32];
                 ulong frames = 0;
-                List<vINPUT> removeQueue = new List<vINPUT>();
+                List<VInput> removeQueue = new List<VInput>();
 
                 long inputArr = Kernel.ReadMultilevelPtr(Address.GetAddress("BASE") + Address.GetAddress("GAME_INPUT_OFFSET"),
                         Address.GetOffsets("GameInputArrayOffsets"));
@@ -138,7 +139,7 @@ namespace HunterPie.Core.Input
 
                     for (int i = 0; i < injectedInputs.Count; i++)
                     {
-                        vINPUT input = injectedInputs[i];
+                        VInput input = injectedInputs[i];
                         if ((!input.isFrameBased) || (input.isFrameBased && (frames - input.startedAt) < 3))
                             InjectInput(input.vK, ref keyboardStates);
                         else
@@ -150,7 +151,7 @@ namespace HunterPie.Core.Input
                     
                     if (removeQueue.Count > 0)
                     {
-                        foreach (vINPUT input in removeQueue)
+                        foreach (VInput input in removeQueue)
                             injectedInputs.Remove(input);
                         
                     }
@@ -236,7 +237,7 @@ namespace HunterPie.Core.Input
             };
             byte[] NOPs = new byte[] { 0x90, 0x90, 0x90, 0x90, 0x90, 0x90 };
             // Now we patch these addresses with NOPs:
-            foreach (var offset in offsetsToPatch)
+            foreach (KeyValuePair<short, short> offset in offsetsToPatch)
                 Array.ConstrainedCopy(NOPs, 0, patchedOps, offset.Key, offset.Value);
 
             Kernel.Write(addr, patchedOps);

@@ -114,13 +114,10 @@
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="Microsoft.CSharp" />
-    <Reference Include="PresentationFramework.Aero2" />
     <Reference Include="System" />
-    <Reference Include="System.Configuration" />
     <Reference Include="System.Data" />
     <Reference Include="System.Drawing" />
     <Reference Include="System.Numerics" />
-    <Reference Include="System.Web" />
     <Reference Include="System.Windows.Forms" />
     <Reference Include="System.Xml" />
     <Reference Include="System.Core" />
@@ -130,11 +127,9 @@
     <Reference Include="System.Xaml">
       <RequiredTargetFramework>4.0</RequiredTargetFramework>
     </Reference>
-    <Reference Include="UIAutomationProvider" />
     <Reference Include="WindowsBase" />
     <Reference Include="PresentationCore" />
     <Reference Include="PresentationFramework" />
-    <Reference Include="WindowsFormsIntegration" />
   </ItemGroup>
   <ItemGroup>
     <ApplicationDefinition Include="App.xaml">
@@ -215,8 +210,8 @@
     <Compile Include="GUIControls\Plugins.xaml.cs">
       <DependentUpon>Plugins.xaml</DependentUpon>
     </Compile>
-    <Compile Include="HunterPie.Plugins\PluginManager.cs" />
-    <Compile Include="HunterPie.Plugins\PluginUpdate.cs" />
+    <Compile Include="Plugins\PluginManager.cs" />
+    <Compile Include="Plugins\PluginUpdate.cs" />
     <Compile Include="Hunterpie.xaml.cs">
       <DependentUpon>Hunterpie.xaml</DependentUpon>
       <SubType>Code</SubType>

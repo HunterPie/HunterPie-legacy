@@ -123,15 +123,16 @@ namespace HunterPie.GUI
             Opacity = oldOpacity;
         }
 
-        public void SetWidgetBaseSize(double Width, double Height)
+        public void SetWidgetBaseSize(double width, double height)
         {
-            BaseWidth = Width;
-            BaseHeight = Height;
+            BaseWidth = width;
+            BaseHeight = height;
         }
 
         public void RemoveWindowTransparencyFlag()
         {
-            if (IsClosed || this == null) return;
+            if (IsClosed)
+                return;
 
             IntPtr hwnd = new WindowInteropHelper(this).EnsureHandle();
             // Get overlay flags
@@ -145,12 +146,12 @@ namespace HunterPie.GUI
         {
             if (IsClosed || this == null) return;
 
-            IntPtr hwnd = new WindowInteropHelper(this).EnsureHandle();
+            IntPtr hWnd = new WindowInteropHelper(this).EnsureHandle();
             // Get overlay flags
-            int Styles = WindowsHelper.GetWindowLong(hwnd, WindowsHelper.GWL_EXSTYLE);
+            int styles = WindowsHelper.GetWindowLong(hWnd, WindowsHelper.GWL_EXSTYLE);
 
             // Apply new flags
-            WindowsHelper.SetWindowLong(hwnd, WindowsHelper.GWL_EXSTYLE, Styles | (int)WindowsHelper.EX_WINDOW_STYLES.WS_EX_TRANSPARENT);
+            WindowsHelper.SetWindowLong(hWnd, WindowsHelper.GWL_EXSTYLE, styles | (int)WindowsHelper.EX_WINDOW_STYLES.WS_EX_TRANSPARENT);
         }
 
         public void SetWindowFlags()

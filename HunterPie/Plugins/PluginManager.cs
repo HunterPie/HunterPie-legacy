@@ -123,7 +123,7 @@ namespace HunterPie.Plugins
                     }
                     Assembly plugin = AppDomain.CurrentDomain.Load(AssemblyName.GetAssemblyName(Path.Combine(module, $"{modInformation.Name}.dll")));
                     IEnumerable<Type> entries = plugin.ExportedTypes.Where(exp => exp.GetMethod("Initialize") != null);
-                    if (entries.Count() > 0)
+                    if (entries.Any())
                     {
                         dynamic mod = plugin.CreateInstance(entries.First().ToString());
                         packages.Add(new PluginPackage { plugin = mod, information = modInformation, settings = modSettings, path = module });
