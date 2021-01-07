@@ -1,0 +1,90 @@
+﻿<UserControl x:Class="HunterPie.GUIControls.PluginListControl"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+             xmlns:local="clr-namespace:HunterPie.GUIControls"
+             xmlns:plugins="clr-namespace:HunterPie.Plugins"
+             xmlns:converters="clr-namespace:HunterPie.UI.Infrastructure.Converters;assembly=HunterPie.UI"
+             xmlns:customControls="clr-namespace:HunterPie.GUIControls.Custom_Controls;assembly=HunterPie.UI"
+             mc:Ignorable="d"
+             d:DataContext="{d:DesignInstance plugins:PluginListViewModel, IsDesignTimeCreatable=True}"
+             d:DesignHeight="450" d:DesignWidth="800">
+    <Grid Margin="3">
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="*" MinWidth="350"/>
+            <ColumnDefinition Width="1" />
+            <ColumnDefinition Width="*" MinWidth="300" />
+        </Grid.ColumnDefinitions>
+
+        <!-- plugins list -->
+        <Grid Grid.Column="0">
+            <ScrollViewer>
+                <StackPanel Orientation="Vertical" >
+
+                    <!-- Installed plugins -->
+                    <local:PluginListCategoryControl IsBusy="{Binding IsLoadingLocalPlugins}"
+                                                     Title="{Binding Source={StaticResource Localization}, XPath='/Strings/Client/Console/String[@ID=\'MESSAGE_INSTALLED_PLUGINS\']/@Name'}"
+                                                     Collection="{Binding InstalledPlugins}"
+                                                     SelectedPlugin="{Binding SelectedInstalledPlugin, Mode=TwoWay}">
+                    </local:PluginListCategoryControl>
+
+                    <!-- Waiting for reload plugins -->
+                    <local:PluginListCategoryControl Title="{Binding Source={StaticResource Localization}, XPath='/Strings/Client/Console/String[@ID=\'MESSAGE_FRESH_PLUGINS\']/@Name'}"
+                                                     Collection="{Binding FreshPlugins}"
+                                                     Visibility="{Binding FreshPlugins.Count, Converter={converters:LengthToVisibilityConverter WhenEmpty=Collapsed, WhenValues=Visible}}"
+                                                     SelectedPlugin="{Binding SelectedFreshPlugin, Mode=TwoWay}">
+                    </local:PluginListCategoryControl>
+
+
+                    <!-- Waiting for remove plugins -->
+                    <local:PluginListCategoryControl Title="{Binding Source={StaticResource Localization}, XPath='/Strings/Client/Console/String[@ID=\'MESSAGE_TO_DELETE_PLUGINS\']/@Name'}"
+                                                     Collection="{Binding MarkedForRemovalPlugins}"
+                                                     Visibility="{Binding MarkedForRemovalPlugins.Count, Converter={converters:LengthToVisibilityConverter WhenEmpty=Collapsed, WhenValues=Visible}}"
+                                                     SelectedPlugin="{Binding SelectedMarkedForRemovalPlugin, Mode=TwoWay}">
+                    </local:PluginListCategoryControl>
+
+
+                    <!-- Available plugins -->
+                    <local:PluginListCategoryControl IsBusy="{Binding IsLoadingPlugins}"
+                                                     Title="{Binding Source={StaticResource Localization}, XPath='/Strings/Client/Console/String[@ID=\'MESSAGE_AVAILABLE_PLUGINS\']/@Name'}"
+                                                     Collection="{Binding AvailablePlugins}"
+                                                     SelectedPlugin="{Binding SelectedAvailablePlugin, Mode=TwoWay}">
+                    </local:PluginListCategoryControl>
+
+                </StackPanel>
+            </ScrollViewer>
+        </Grid>
+
+        <!-- defining splitter as GridSplitter and Grid to increase "grab width" -->
+        <GridSplitter Grid.Column="1" Margin="-5, 0" HorizontalAlignment="Center" VerticalAlignment="Stretch"
+                      BorderThickness="3,0"
+                      BorderBrush="Transparent" />
+        <Grid Column="1" Background="#99000000" Width="1" />
+
+        <!-- readme column -->
+        <Grid Grid.Column="2" Background="Transparent">
+            <FlowDocumentScrollViewer x:Name="Viewer" Foreground="#FFEEEEEE" FontSize="14" SelectionBrush="{DynamicResource {x:Static SystemColors.MenuHighlightBrushKey}}"
+                                      IsHitTestVisible="{Binding Readme.IsBusy, Converter={converters:InvertBoolConverter}}"
+                                      Document="{Binding Path=Readme.Document}">
+                <FlowDocumentScrollViewer.Style>
+                    <Style TargetType="FlowDocumentScrollViewer">
+                        <Style.Triggers>
+                            <DataTrigger Binding="{Binding Readme.IsBusy}" Value="True">
+                                <Setter Property="Effect">
+                                    <Setter.Value>
+                                        <BlurEffect Radius="20"/>
+                                    </Setter.Value>
+                                </Setter>
+                            </DataTrigger>
+                        </Style.Triggers>
+                    </Style>
+                </FlowDocumentScrollViewer.Style>
+            </FlowDocumentScrollViewer>
+
+            <customControls:BusyIndicator Height="30" Width="30"
+                                          Visibility="{Binding Readme.IsBusy, Converter={converters:BooleanToVisibilityConverter TrueValue=Visible, FalseValue=Hidden}}" />
+        </Grid>
+
+    </Grid>
+</UserControl>

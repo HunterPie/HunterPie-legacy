@@ -1,0 +1,102 @@
+﻿<UserControl x:Class="HunterPie.GUIControls.PluginListEntry"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+             xmlns:customControls="clr-namespace:HunterPie.GUIControls.Custom_Controls;assembly=HunterPie.UI"
+             xmlns:plugins="clr-namespace:HunterPie.Plugins"
+             xmlns:converters="clr-namespace:HunterPie.UI.Infrastructure.Converters;assembly=HunterPie.UI"
+             mc:Ignorable="d"
+             d:DataContext="{d:DesignInstance plugins:IPluginViewModel, IsDesignTimeCreatable=False}"
+             d:DesignHeight="450" d:DesignWidth="800">
+    <Grid>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="Auto"/>
+            <ColumnDefinition Width="*" MinWidth="150" />
+            <ColumnDefinition Width="Auto" />
+        </Grid.ColumnDefinitions>
+
+        <!-- image -->
+        <Grid HorizontalAlignment="Center" Width="50" Height="50" VerticalAlignment="Center">
+            <Image Panel.ZIndex="1" Source="{StaticResource ICON_PLUGIN}"
+                   Visibility="{Binding HasImage, Converter={converters:BooleanToVisibilityConverter FalseValue=Visible, TrueValue=Collapsed}}"
+                   HorizontalAlignment="Center" Width="25" VerticalAlignment="Center" />
+            <Image HorizontalAlignment="Center" VerticalAlignment="Center" MaxWidth="50" MaxHeight="50" Source="{Binding Image}" IsHitTestVisible="False" />
+        </Grid>
+
+        <!-- name, description, subtext -->
+        <StackPanel Grid.Column="1" Margin="5,0,0,0">
+            <TextBlock TextWrapping="Wrap" FontSize="16" FontFamily="Roboto, Segoe UI" FontWeight="Medium" Foreground="WhiteSmoke" Text="{Binding Name}" />
+            <TextBlock TextWrapping="Wrap" FontSize="13" FontFamily="Roboto, Segoe UI" Foreground="WhiteSmoke" Text="{Binding Description}"/>
+            <TextBlock FontSize="12" VerticalAlignment="Bottom" FontFamily="Roboto, Segoe UI" FontWeight="Medium" Foreground="Gray" Margin="0,0,5,0" Text="{Binding SubText}" />
+        </StackPanel>
+
+        <!-- buttons -->
+        <StackPanel Grid.Column="2" Orientation="Horizontal" Margin="0,0,5,0">
+
+            <!--remove-->
+            <customControls:FlatButton Icon="{StaticResource ICON_REMOVE}" Width="30"
+                                       Visibility="{Binding CanDelete, Converter={converters:BooleanToVisibilityConverter FalseValue=Collapsed}}"
+                                       Command="{Binding DeleteCommand}"
+                                       ToolTip="{Binding Mode=OneTime, Source={StaticResource Localization}, XPath=/Strings/Client/Console/String[@ID\=\'MESSAGE_PLUGIN_DELETE\']/@Name, FallbackValue='Delete plugin'}"
+            />
+
+            <!--restore-->
+            <customControls:FlatButton Icon="{StaticResource ICON_UNDO}" Width="30"
+                                       Visibility="{Binding CanRestore, Converter={converters:BooleanToVisibilityConverter FalseValue=Collapsed}}"
+                                       Command="{Binding RestoreCommand}"
+                                       ToolTip="{Binding Mode=OneTime, Source={StaticResource Localization}, XPath=/Strings/Client/Console/String[@ID\=\'MESSAGE_PLUGIN_RESTORE\']/@Name, FallbackValue='Restore plugin'}"/>
+
+            <!--download-->
+            <customControls:FlatButton Icon="{StaticResource ICON_DOWNLOAD}" Width="30"
+                                       Visibility="{Binding CanInstall, Converter={converters:BooleanToVisibilityConverter FalseValue=Collapsed}}"
+                                       Command="{Binding DownloadCommand}">
+                <customControls:FlatButton.Resources>
+                    <Style TargetType="customControls:FlatButton">
+                        <Style.Triggers>
+                            <DataTrigger Binding="{Binding IsVersionOk}" Value="False">
+                                <Setter Property="ToolTip">
+                                    <Setter.Value>
+                                        <Binding Source="{StaticResource Localization}" XPath="/Strings/Client/Console/String[@ID='MESSAGE_PLUGIN_INCOMPATIBLE_VERSION']/@Name" />
+                                    </Setter.Value>
+                                </Setter>
+                            </DataTrigger>
+
+                            <DataTrigger Binding="{Binding IsVersionOk}" Value="True">
+                                <Setter Property="ToolTip">
+                                    <Setter.Value>
+                                        <Binding Source="{StaticResource Localization}" XPath="/Strings/Client/Console/String[@ID='MESSAGE_PLUGIN_INSTALL']/@Name" />
+                                    </Setter.Value>
+                                </Setter>
+                            </DataTrigger>
+                        </Style.Triggers>
+                    </Style>
+                </customControls:FlatButton.Resources>
+            </customControls:FlatButton>
+
+
+            <!--busy-->
+            <Grid Width="30" Height="30"
+                  Margin="0,0,0,0"
+                  Visibility="{Binding IsBusy, Converter={converters:BooleanToVisibilityConverter TrueValue=Visible, FalseValue=Collapsed}}">
+                <customControls:BusyIndicator Height="17" Width="17"
+                                              HorizontalAlignment="Center"
+                                              Visibility="{Binding IsBusy, Converter={converters:BooleanToVisibilityConverter TrueValue=Visible, FalseValue=Collapsed}}" />
+            </Grid>
+
+            <!-- warning -->
+            <customControls:FlatButton Icon="{StaticResource ICON_WARN}" Width="30"
+                                       Visibility="{Binding IsFailed, Converter={converters:BooleanToVisibilityConverter FalseValue=Collapsed}}"
+                                       ToolTip="{Binding Mode=OneTime, Source={StaticResource Localization}, XPath='/Strings/Client/Console/String[@ID\=\'MESSAGE_PLUGIN_FAILED\']/@Name', FallbackValue='Plugin initialization failed.'}"/>
+
+
+            <!--enable-->
+            <customControls:Switcher IsEnabled="{Binding IsEnabled}"
+                                     Margin="0,4,0,0"
+                                     ToggleCommand="{Binding ToggleCommand}"
+                                     Visibility="{Binding CanToggle, Converter={converters:BooleanToVisibilityConverter FalseValue=Collapsed}}"
+                                     Width="53" HorizontalAlignment="Right" VerticalAlignment="Center"
+                                     DockPanel.Dock="Right" />
+        </StackPanel>
+    </Grid>
+</UserControl>

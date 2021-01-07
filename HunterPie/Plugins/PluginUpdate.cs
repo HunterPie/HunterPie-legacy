@@ -4,7 +4,6 @@ using System.IO;
 using System.Net.Http;
 using System.Threading.Tasks;
 using Newtonsoft.Json;
-using System.Reflection;
 
 namespace HunterPie.Plugins
 {
@@ -15,9 +14,12 @@ namespace HunterPie.Plugins
             return !string.IsNullOrEmpty(pluginInformation.Update.UpdateUrl);
         }
 
+        public static bool IsVersionOk(string minimumVersion) => Hunterpie.AssemblyVersion >= Hunterpie.ParseVersion(minimumVersion);
+
         public static async Task<UpdateResult> UpdateAllFiles(PluginInformation pInformation, string modPath)
         {
-            string onlineSerializedInformation = await ReadOnlineModuleJson(pInformation.Update.UpdateUrl);
+            var updateUrl = await PluginRegistryService.Instance.GetModuleUpdateUrl(pInformation);
+            string onlineSerializedInformation = await ReadOnlineModuleJson(updateUrl);
 
             if (onlineSerializedInformation is null)
             {
@@ -27,7 +29,7 @@ namespace HunterPie.Plugins
 
             PluginInformation onlineInformation = JsonConvert.DeserializeObject<PluginInformation>(onlineSerializedInformation);
 
-            if (!(Hunterpie.AssemblyVersion >= Hunterpie.ParseVersion(onlineInformation.Update.MinimumVersion)))
+            if (!IsVersionOk(onlineInformation.Update.MinimumVersion))
             {
                 Debugger.Warn($"Newest version of {pInformation.Name} requires HunterPie v{onlineInformation.Update.MinimumVersion}!");
                 return UpdateResult.Skipped;
@@ -50,10 +52,8 @@ namespace HunterPie.Plugins
 
                     if (onlineHash.ToLower() != localHash.ToLower() || !File.Exists(Path.Combine(modPath, filePath)))
                     {
-                        string updateurl = $"{pInformation.Update.UpdateUrl}/{filePath}";
                         string outputPath = Path.Combine(modPath, filePath);
-
-                        if (!(await DownloadFileAsync(updateurl, outputPath, filePath)))
+                        if (!(await DownloadFileAsync($"{updateUrl}/{filePath}", outputPath, filePath)))
                         {
                             return UpdateResult.Failed;
                         }
@@ -63,9 +63,8 @@ namespace HunterPie.Plugins
                 }
                 else
                 {
-                    string updateurl = $"{pInformation.Update.UpdateUrl}/{filePath}";
                     string outputPath = Path.Combine(modPath, filePath);
-                    if (!(await DownloadFileAsync(updateurl, outputPath, filePath)))
+                    if (!(await DownloadFileAsync($"{updateUrl}/{filePath}", outputPath, filePath)))
                     {
                         return UpdateResult.Failed;
                     }
@@ -73,7 +72,7 @@ namespace HunterPie.Plugins
                 }
             }
 
-            return await DownloadFileAsync($"{pInformation.Update.UpdateUrl}/module.json", Path.Combine(modPath, "module.json"), "module.json")
+            return await DownloadFileAsync($"{updateUrl}/module.json", Path.Combine(modPath, "module.json"), "module.json")
                 ? result
                 : UpdateResult.Failed;
         }

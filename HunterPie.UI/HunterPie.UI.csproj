@@ -67,6 +67,9 @@
     <Compile Include="GUIControls\Custom Controls\BuffBarSettingControl.xaml.cs">
       <DependentUpon>BuffBarSettingControl.xaml</DependentUpon>
     </Compile>
+    <Compile Include="GUIControls\Custom Controls\BusyIndicator.xaml.cs">
+      <DependentUpon>BusyIndicator.xaml</DependentUpon>
+    </Compile>
     <Compile Include="GUIControls\Custom Controls\CHotKey.xaml.cs">
       <DependentUpon>CHotKey.xaml</DependentUpon>
     </Compile>
@@ -75,6 +78,9 @@
     </Compile>
     <Compile Include="GUIControls\Custom Controls\ColorPicker.xaml.cs">
       <DependentUpon>ColorPicker.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="GUIControls\Custom Controls\FlatButton.xaml.cs">
+      <DependentUpon>FlatButton.xaml</DependentUpon>
     </Compile>
     <Compile Include="GUIControls\Custom Controls\MinimalButton.xaml.cs">
       <DependentUpon>MinimalButton.xaml</DependentUpon>
@@ -218,6 +224,15 @@
       <DependentUpon>DiscordNotify.xaml</DependentUpon>
     </Compile>
     <Compile Include="GUI\WidgetType.cs" />
+    <Compile Include="Infrastructure\BaseViewModel.cs" />
+    <Compile Include="Infrastructure\Converters\BooleanToVisibilityConverter.cs" />
+    <Compile Include="Infrastructure\Converters\GenericValueConverter.cs" />
+    <Compile Include="Infrastructure\Converters\InvertBoolConverter.cs" />
+    <Compile Include="Infrastructure\Converters\LengthToVisibilityConverter.cs" />
+    <Compile Include="Infrastructure\DisabledCommand.cs" />
+    <Compile Include="Infrastructure\NoOpCommand.cs" />
+    <Compile Include="Infrastructure\RelayCommand.cs" />
+    <Compile Include="Properties\Annotations.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
@@ -228,6 +243,10 @@
     <Page Include="GUIControls\Custom Controls\BuffBarSettingControl.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
+    </Page>
+    <Page Include="GUIControls\Custom Controls\BusyIndicator.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="GUIControls\Custom Controls\CHotKey.xaml">
       <Generator>MSBuild:Compile</Generator>
@@ -240,6 +259,10 @@
     <Page Include="GUIControls\Custom Controls\ColorPicker.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
+    </Page>
+    <Page Include="GUIControls\Custom Controls\FlatButton.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="GUIControls\Custom Controls\MinimalButton.xaml">
       <Generator>MSBuild:Compile</Generator>

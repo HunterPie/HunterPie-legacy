@@ -47,6 +47,7 @@
     <CodeAnalysisRuleSet>
     </CodeAnalysisRuleSet>
     <AllowUnsafeBlocks>true</AllowUnsafeBlocks>
+    <LangVersion>latest</LangVersion>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
     <PlatformTarget>x64</PlatformTarget>
@@ -59,6 +60,7 @@
     <CodeAnalysisRuleSet>
     </CodeAnalysisRuleSet>
     <AllowUnsafeBlocks>true</AllowUnsafeBlocks>
+    <LangVersion>latest</LangVersion>
   </PropertyGroup>
   <PropertyGroup>
     <ApplicationIcon>LOGO_HunterPie.ico</ApplicationIcon>
@@ -85,6 +87,7 @@
     </CodeAnalysisRuleSet>
     <AllowUnsafeBlocks>true</AllowUnsafeBlocks>
     <UseVSHostingProcess>true</UseVSHostingProcess>
+    <LangVersion>latest</LangVersion>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Release|x64'">
     <ExcludeFoldersFromDeployment>bin\ar;bin\cs;bin\de;bin\es;bin\fr;bin\he;bin\hi;bin\it;bin\ja;bin\ko;bin\nl;bin\pl;bin\pt;bin\ru;bin\tr-TR;bin\zh-Hans;bin\zh-Hant</ExcludeFoldersFromDeployment>
@@ -100,6 +103,7 @@
     <Prefer32Bit>true</Prefer32Bit>
     <AllowUnsafeBlocks>true</AllowUnsafeBlocks>
     <UseVSHostingProcess>true</UseVSHostingProcess>
+    <LangVersion>latest</LangVersion>
   </PropertyGroup>
   <PropertyGroup>
     <Win32Resource>
@@ -188,9 +192,17 @@
       <Generator>MSBuild:Compile</Generator>
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
-    <Page Include="GUIControls\Custom Controls\PluginContainer.xaml">
-      <Generator>MSBuild:Compile</Generator>
+    <Page Include="GUIControls\PluginListCategoryControl.xaml">
       <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="GUIControls\PluginListControl.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="GUIControls\PluginListEntry.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="GUIControls\Plugins.xaml">
       <Generator>MSBuild:Compile</Generator>
@@ -204,14 +216,28 @@
       <DependentUpon>App.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
-    <Compile Include="GUIControls\Custom Controls\PluginContainer.xaml.cs">
-      <DependentUpon>PluginContainer.xaml</DependentUpon>
+    <Compile Include="GUIControls\PluginListCategoryControl.xaml.cs">
+      <DependentUpon>PluginListCategoryControl.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="GUIControls\PluginListControl.xaml.cs">
+      <DependentUpon>PluginListControl.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="GUIControls\PluginListEntry.xaml.cs">
+      <DependentUpon>PluginListEntry.xaml</DependentUpon>
     </Compile>
     <Compile Include="GUIControls\Plugins.xaml.cs">
       <DependentUpon>Plugins.xaml</DependentUpon>
     </Compile>
+    <Compile Include="HunterPie.Plugins\PluginEntry.cs" />
     <Compile Include="Plugins\PluginManager.cs" />
+    <Compile Include="HunterPie.Plugins\PluginRegistryService.cs" />
     <Compile Include="Plugins\PluginUpdate.cs" />
+    <Compile Include="HunterPie.Plugins\ViewModel\ReadmeViewModel.cs" />
+    <Compile Include="HunterPie.Plugins\ViewModel\IPluginListProxy.cs" />
+    <Compile Include="HunterPie.Plugins\ViewModel\IPluginViewModel.cs" />
+    <Compile Include="HunterPie.Plugins\ViewModel\LoadedPluginViewModel.cs" />
+    <Compile Include="HunterPie.Plugins\ViewModel\PluginListViewModel.cs" />
+    <Compile Include="HunterPie.Plugins\ViewModel\RegistryPluginViewModel.cs" />
     <Compile Include="Hunterpie.xaml.cs">
       <DependentUpon>Hunterpie.xaml</DependentUpon>
       <SubType>Code</SubType>
@@ -267,6 +293,7 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="Modules\HotKeyExample\main.cs" />
+    <Compile Include="Properties\Annotations.cs" />
     <Compile Include="Properties\AssemblyInfo.cs">
       <SubType>Code</SubType>
     </Compile>

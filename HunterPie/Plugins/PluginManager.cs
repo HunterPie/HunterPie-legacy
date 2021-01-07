@@ -33,6 +33,10 @@ namespace HunterPie.Plugins
         internal bool QueueLoad { get; set; }
         internal static Game ctx;
 
+        private static readonly HashSet<string> failedPlugins = new HashSet<string>();
+        private static readonly TaskCompletionSource<object> tsc = new TaskCompletionSource<object>();
+        internal static readonly Task PreloadTask = tsc.Task;
+
         public void LoadPlugins()
         {
             Stopwatch benchmark = Stopwatch.StartNew();
@@ -62,77 +66,27 @@ namespace HunterPie.Plugins
         {
             Stopwatch benchmark = Stopwatch.StartNew();
             Debugger.Module("Pre loading modules");
-            string[] modules = Directory.GetDirectories(Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "Modules"));
-            foreach (string module in modules)
+            foreach (string module in IterateModules())
             {
-                // Skip modules without Module.json
-                if (!File.Exists(Path.Combine(module, "module.json"))) continue;
-
                 try
                 {
                     string serializedModule = File.ReadAllText(Path.Combine(module, "module.json"));
                     PluginInformation modInformation = JsonConvert.DeserializeObject<PluginInformation>(serializedModule);
 
-                    if (modInformation.Update.MinimumVersion is null)
+                    try
                     {
-                        Debugger.Error($"{modInformation.Name.ToUpper()} MIGHT BE OUTDATED! CONSIDER UPDATING IT.");
+                        await PreloadPlugin(module, modInformation);
+                        failedPlugins.Remove(modInformation.Name);
                     }
-
-                    if (PluginUpdate.PluginSupportsUpdate(modInformation))
+                    catch
                     {
-                        switch (await PluginUpdate.UpdateAllFiles(modInformation, module))
-                        {
-                            case UpdateResult.Updated:
-                                serializedModule = File.ReadAllText(Path.Combine(module, "module.json"));
-                                modInformation = JsonConvert.DeserializeObject<PluginInformation>(serializedModule);
-
-                                Debugger.Module($"Updated plugin: {modInformation.Name} (ver {modInformation.Version})");
-                                break;
-
-                            case UpdateResult.Skipped:
-                                break;
-
-                            case UpdateResult.Failed:
-                                Debugger.Error($"Failed to update plugin: {modInformation.Name}");
-                                continue;
-
-                            case UpdateResult.UpToDate:
-                                Debugger.Module($"Plugin {modInformation.Name} is up-to-date (ver {modInformation.Version})");
-                                break;
-                        }
-                    }
-
-                    PluginSettings modSettings = GetPluginSettings(module);
-
-                    if (!string.IsNullOrEmpty(modInformation.EntryPoint) && File.Exists(Path.Combine(module, modInformation.EntryPoint)))
-                    {
-                        Debugger.Module($"Compiling plugin: {modInformation.Name}");
-                        if (CompilePlugin(module, modInformation))
-                        {
-                            Debugger.Module($"{modInformation.Name} compiled successfully.");
-                        }
-                        else
-                        {
-                            continue;
-                        }
-                    }
-                    Stopwatch s = Stopwatch.StartNew();
-                    foreach (string required in modInformation.Dependencies)
-                    {
-                        AppDomain.CurrentDomain.Load(AssemblyName.GetAssemblyName(Path.Combine(module, required)));
-                    }
-                    Assembly plugin = AppDomain.CurrentDomain.Load(AssemblyName.GetAssemblyName(Path.Combine(module, $"{modInformation.Name}.dll")));
-                    IEnumerable<Type> entries = plugin.ExportedTypes.Where(exp => exp.GetMethod("Initialize") != null);
-                    if (entries.Any())
-                    {
-                        dynamic mod = plugin.CreateInstance(entries.First().ToString());
-                        packages.Add(new PluginPackage { plugin = mod, information = modInformation, settings = modSettings, path = module });
+                        failedPlugins.Add(modInformation.Name);
+                        throw;
                     }
                 }
                 catch (Exception err)
                 {
                     Debugger.Error(err);
-                    continue;
                 }
             }
 
@@ -143,7 +97,100 @@ namespace HunterPie.Plugins
             {
                 LoadPlugins();
             }
+
+            if (!tsc.Task.IsCompleted)
+            {
+                tsc.SetResult(null);
+            }
             return true;
+        }
+
+        /// <summary>
+        /// Returns paths to all valid module directories.
+        /// </summary>
+        private static IEnumerable<string> IterateModules() {
+
+            string[] modules = Directory.GetDirectories(Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "Modules"));
+            foreach (string module in modules)
+            {
+                // Skip modules without Module.json
+                if (!File.Exists(Path.Combine(module, "module.json"))) continue;
+                yield return module;
+            }
+        }
+
+        private async Task PreloadPlugin(string module, PluginInformation modInformation)
+        {
+            if (File.Exists(Path.Combine(module, ".remove")))
+            {
+                Directory.Delete(module, true);
+                Debugger.Module($"Plugin {modInformation.Name} removed.");
+                return;
+            }
+
+            if (modInformation.Update.MinimumVersion is null)
+            {
+                Debugger.Error($"{modInformation.Name.ToUpper()} MIGHT BE OUTDATED! CONSIDER UPDATING IT.");
+            }
+
+            if (PluginUpdate.PluginSupportsUpdate(modInformation))
+            {
+                switch (await PluginUpdate.UpdateAllFiles(modInformation, module))
+                {
+                    case UpdateResult.Updated:
+                        var serializedModule = File.ReadAllText(Path.Combine(module, "module.json"));
+                        modInformation = JsonConvert.DeserializeObject<PluginInformation>(serializedModule);
+
+                        Debugger.Module($"Updated plugin: {modInformation.Name} (ver {modInformation.Version})");
+                        break;
+
+                    case UpdateResult.Skipped:
+                        break;
+
+                    case UpdateResult.Failed:
+                        Debugger.Error($"Failed to update plugin: {modInformation.Name}");
+                        break;
+
+                    case UpdateResult.UpToDate:
+                        Debugger.Module($"Plugin {modInformation.Name} is up-to-date (ver {modInformation.Version})");
+                        break;
+                }
+            }
+
+            PluginSettings modSettings = GetPluginSettings(module);
+
+            if (!string.IsNullOrEmpty(modInformation.EntryPoint) &&
+                File.Exists(Path.Combine(module, modInformation.EntryPoint)))
+            {
+                Debugger.Module($"Compiling plugin: {modInformation.Name}");
+                if (CompilePlugin(module, modInformation))
+                {
+                    Debugger.Module($"{modInformation.Name} compiled successfully.");
+                }
+                else
+                {
+                    return;
+                }
+            }
+
+            foreach (string required in modInformation.Dependencies)
+            {
+                AppDomain.CurrentDomain.Load(AssemblyName.GetAssemblyName(Path.Combine(module, required)));
+            }
+
+            Assembly plugin =
+                AppDomain.CurrentDomain.Load(
+                    AssemblyName.GetAssemblyName(Path.Combine(module, $"{modInformation.Name}.dll")));
+            IEnumerable<Type> entries = plugin.ExportedTypes.Where(exp => exp.GetMethod("Initialize") != null);
+
+            if (entries.Any())
+            {
+                dynamic mod = plugin.CreateInstance(entries.First().ToString());
+                packages.Add(new PluginPackage
+                {
+                    plugin = mod, information = modInformation, settings = modSettings, path = module
+                });
+            }
         }
 
         public void UnloadPlugins()
@@ -286,8 +333,95 @@ namespace HunterPie.Plugins
         public static bool LoadPlugin(IPlugin plugin)
         {
             if (ctx == null) return false;
-            plugin.Initialize(ctx);
+            var name = packages.FirstOrDefault(p => p.plugin == plugin).information?.Name;
+            try
+            {
+                plugin.Initialize(ctx);
+                if (!string.IsNullOrEmpty(name)) failedPlugins.Remove(name);
+            }
+            catch (Exception ex)
+            {
+                Debugger.Error($"Error on initializing plugin {plugin.Name}: {ex}");
+                if (!string.IsNullOrEmpty(name)) failedPlugins.Add(name);
+                return false;
+            }
+
             return true;
         }
+
+        /// <summary>
+        /// Returns true if <plugin_name>/module.json is present
+        /// </summary>
+        internal static bool IsInstalled(string pluginName)
+        {
+            if (string.IsNullOrEmpty(pluginName)) return false;
+            return File.Exists(Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "Modules", pluginName, "module.json"));
+        }
+
+        /// <summary>
+        /// Returns true if <plugin_name>/.remove is present so plugin should be removed on next launch
+        /// </summary>
+        public static bool IsMarkedForRemoval(string pluginName)
+        {
+            if (string.IsNullOrEmpty(pluginName)) return false;
+            string path = Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "Modules", pluginName, ".remove");
+            return File.Exists(path);
+        }
+
+        /// <summary>
+        /// Deletes plugin directory. Can be safely done only if plugin isn't loaded into AppDomain since it's files will be in use
+        /// </summary>
+        public static void DeleteNonPreloadedPlugin(string pluginName)
+        {
+            string path = Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "Modules", pluginName);
+            if (Directory.Exists(path))
+            {
+                Directory.Delete(path, true);
+            }
+        }
+
+        /// <summary>
+        /// Marking file for removal, so it will be removed on next launch
+        /// </summary>
+        public static void MarkForRemoval(string pluginName, bool mark = true)
+        {
+            var pluginDir = Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "Modules", pluginName);
+            if (!Directory.Exists(pluginDir))
+            {
+                return;
+            }
+            string path = Path.Combine(pluginDir, ".remove");
+            if (mark)
+            {
+                File.WriteAllText(path, "");
+            }
+            else if (File.Exists(path))
+            {
+                File.Delete(path);
+            }
+        }
+
+        /// <summary>
+        /// Returns information about all installed modules
+        /// </summary>
+        public static IEnumerable<PluginEntry> GetAllPlugins()
+        {
+            foreach (var module in IterateModules())
+            {
+                var existing = packages.FirstOrDefault(p => p.path == module);
+                if (!existing.Equals(default(PluginPackage)))
+                {
+                    yield return new PluginEntry {Package = existing, PluginInformation = existing.information, RootPath = module, IsFailed = IsFailed(existing.information.Name)};
+                }
+                else
+                {
+                    string serializedModule = File.ReadAllText(Path.Combine(module, "module.json"));
+                    var modInformation = JsonConvert.DeserializeObject<PluginInformation>(serializedModule);
+                    yield return new PluginEntry {Package = null, PluginInformation = modInformation, RootPath = module, IsFailed = IsFailed(modInformation.Name)};
+                }
+            }
+        }
+
+        public static bool IsFailed(string pluginName) => failedPlugins.Contains(pluginName);
     }
 }

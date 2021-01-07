@@ -55,7 +55,7 @@
                     <DockPanel>
                         <ScrollViewer DockPanel.Dock="Left" HorizontalScrollBarVisibility="Disabled" VerticalScrollBarVisibility="Visible" HorizontalAlignment="Left">
                             <TabPanel x:Name="HeaderPanel"
-                              Panel.ZIndex ="1" 
+                              Panel.ZIndex ="1"
                               KeyboardNavigation.TabIndex="1"
                               Grid.Column="0"
                               Grid.Row="0"
@@ -137,6 +137,14 @@
                             <DockPanel.ToolTip>
                                 <Binding Mode="OneTime" XPath="Settings/String[@ID='STATIC_UPDATEBRANCH_DESC']/@Name"/>
                             </DockPanel.ToolTip>
+                        </DockPanel>
+                        <DockPanel Height="28" ToolTip="{Binding Mode=OneTime, XPath=/Strings/Client/Settings/String[@ID\=\'PLUGIN_PROXY_MODE_DESC\']/@Name}" Margin="10,0,10,5">
+                            <TextBlock FontFamily="Segoe UI Light" Foreground="WhiteSmoke" Padding="0,0,10,0">
+                                <TextBlock.Text>
+                                    <Binding Mode="OneTime" XPath="Settings/String[@ID='PLUGIN_PROXY_MODE']/@Name"/>
+                                </TextBlock.Text>
+                            </TextBlock>
+                            <ComboBox x:Name="comboPluginUpdateProxy" Style="{StaticResource ComboBoxFlatStyle}" IsReadOnly="True" Cursor="Hand" HorizontalAlignment="Stretch" FontSize="14" Foreground="#FFF9F9F9" SelectedIndex="0"/>
                         </DockPanel>
                         <DockPanel Height="30"  Margin="10,0,10,5">
                             <TextBlock Foreground="WhiteSmoke" Canvas.Top="2" FontFamily="Segoe UI Light" Padding="0,0,10,0">

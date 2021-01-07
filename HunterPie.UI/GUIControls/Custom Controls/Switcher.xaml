@@ -1,8 +1,7 @@
 ﻿<UserControl x:Name="switch" x:Class="HunterPie.GUIControls.Custom_Controls.Switcher"
              xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-             Height="30" Cursor="Hand" MouseLeftButtonDown="OnClick" Background="#00000000"
-             DataContext="{StaticResource Localization}">
+             Height="30" Cursor="Hand" MouseLeftButtonDown="OnClick" Background="#00000000">
     <UserControl.Resources>
         <Duration x:Key="AnimationDurations">0:0:0.15</Duration>
         <Storyboard x:Key="SwitchEllipseOn" Storyboard.TargetProperty="Margin">
@@ -85,6 +84,6 @@
             </Ellipse>
         </Grid>
 
-        <TextBlock Text="{Binding XPath=/Strings/Client/Settings/String[@ID\=\'STATIC_REQUIRES_RESTART\']/@Name, Mode=OneTime}" Visibility="{Binding ElementName=switch, Path=RestartVisibility}" Padding="0,9,3,0" Foreground="White" TextAlignment="Left" HorizontalAlignment="Left" FontSize="10" FontFamily="Segoe UI Light"/>
+        <TextBlock Text="{Binding Source={StaticResource Localization}, XPath=/Strings/Client/Settings/String[@ID\=\'STATIC_REQUIRES_RESTART\']/@Name, Mode=OneTime}" Visibility="{Binding ElementName=switch, Path=RestartVisibility}" Padding="0,9,3,0" Foreground="White" TextAlignment="Left" HorizontalAlignment="Left" FontSize="10" FontFamily="Segoe UI Light"/>
     </DockPanel>
 </UserControl>
