@@ -178,11 +178,11 @@
     <Compile Include="Core\Party\Member.cs" />
     <Compile Include="Core\Party\Party.cs" />
     <Compile Include="Logger\Debugger.cs" />
-    <Compile Include="HunterPie.Plugins\IPlugin.cs" />
-    <Compile Include="HunterPie.Plugins\PluginInformation.cs" />
-    <Compile Include="HunterPie.Plugins\PluginPackage.cs" />
-    <Compile Include="HunterPie.Plugins\PluginSettings.cs" />
-    <Compile Include="HunterPie.Plugins\UpdateResult.cs" />
+    <Compile Include="Plugins\IPlugin.cs" />
+    <Compile Include="Plugins\PluginInformation.cs" />
+    <Compile Include="Plugins\PluginPackage.cs" />
+    <Compile Include="Plugins\PluginSettings.cs" />
+    <Compile Include="Plugins\UpdateResult.cs" />
     <Compile Include="Memory\Address.cs" />
     <Compile Include="Memory\BufferPool.cs" />
     <Compile Include="Memory\Buffers.cs" />
@@ -219,4 +219,3 @@
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
-

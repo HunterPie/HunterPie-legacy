@@ -228,16 +228,16 @@
     <Compile Include="GUIControls\Plugins.xaml.cs">
       <DependentUpon>Plugins.xaml</DependentUpon>
     </Compile>
-    <Compile Include="HunterPie.Plugins\PluginEntry.cs" />
+    <Compile Include="Plugins\PluginEntry.cs" />
     <Compile Include="Plugins\PluginManager.cs" />
-    <Compile Include="HunterPie.Plugins\PluginRegistryService.cs" />
+    <Compile Include="Plugins\PluginRegistryService.cs" />
     <Compile Include="Plugins\PluginUpdate.cs" />
-    <Compile Include="HunterPie.Plugins\ViewModel\ReadmeViewModel.cs" />
-    <Compile Include="HunterPie.Plugins\ViewModel\IPluginListProxy.cs" />
-    <Compile Include="HunterPie.Plugins\ViewModel\IPluginViewModel.cs" />
-    <Compile Include="HunterPie.Plugins\ViewModel\LoadedPluginViewModel.cs" />
-    <Compile Include="HunterPie.Plugins\ViewModel\PluginListViewModel.cs" />
-    <Compile Include="HunterPie.Plugins\ViewModel\RegistryPluginViewModel.cs" />
+    <Compile Include="Plugins\ViewModel\ReadmeViewModel.cs" />
+    <Compile Include="Plugins\ViewModel\IPluginListProxy.cs" />
+    <Compile Include="Plugins\ViewModel\IPluginViewModel.cs" />
+    <Compile Include="Plugins\ViewModel\LoadedPluginViewModel.cs" />
+    <Compile Include="Plugins\ViewModel\PluginListViewModel.cs" />
+    <Compile Include="Plugins\ViewModel\RegistryPluginViewModel.cs" />
     <Compile Include="Hunterpie.xaml.cs">
       <DependentUpon>Hunterpie.xaml</DependentUpon>
       <SubType>Code</SubType>
