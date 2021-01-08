@@ -59,6 +59,8 @@ namespace HunterPie.Plugins
                 var moduleContent = await http.GetStringAsync(entry.Module);
 
                 var modulePath = await Hunterpie.Instance.InstallPlugin(moduleContent);
+                // we don't actually care if this request is failed, nor interested in value, so we will not await it
+                _ = PluginRegistryService.Instance.ReportInstall(entry.InternalName);
                 DownloadReadme(modulePath);
 
                 pluginList.UpdatePluginsArrangement();
@@ -130,7 +132,7 @@ namespace HunterPie.Plugins
         public bool IsVersionOk => PluginUpdate.IsVersionOk(entry.MinVersion);
 
         public bool CanToggle => false;
-        public bool CanDelete => !IsBusy && PluginManager.IsInstalled(entry.InternalName);
+        public bool CanDelete => !IsBusy && PluginManager.IsInstalled(entry.InternalName) && !PluginManager.IsMarkedForRemoval(entry.InternalName);
         public bool CanInstall => !IsBusy && !PluginManager.IsInstalled(entry.InternalName);
         public bool CanRestore => false;
         public bool IsFailed => false;
@@ -146,7 +148,8 @@ namespace HunterPie.Plugins
         public string Description => entry.Description;
         public string SubText => GStrings.GetLocalizationByXPath("/Console/String[@ID='MESSAGE_PLUGIN_SUBTITLE_ROW']")
             .Replace("{version}", entry.Version)
-            .Replace("{author}", entry.Author);
+            .Replace("{author}", entry.Author)
+            .Replace("{downloads}", entry.Downloads.ToString());
 
         public bool IsEnabled
         {

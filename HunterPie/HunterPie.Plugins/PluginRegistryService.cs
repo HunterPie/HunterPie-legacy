@@ -37,11 +37,19 @@ namespace HunterPie.Plugins
             return JsonConvert.DeserializeObject<List<PluginRegistryEntry>>(str);
         }
 
+        public async Task<int> ReportInstall(string pluginName)
+        {
+            var url = BuildUrl(UserSettings.PlayerConfig.HunterPie.PluginRegistryUrl, "plugin", Uri.EscapeUriString(pluginName), "install");
+            var rsp = await client.PostAsync(url, new StringContent(""));
+            rsp.EnsureSuccessStatusCode();
+            return int.Parse(await rsp.Content.ReadAsStringAsync());
+        }
+
         public async Task<string> GetModuleUpdateUrl(PluginInformation pInformation)
         {
             if (await ShouldUseProxy())
             {
-                return BuildUrl(UserSettings.PlayerConfig.HunterPie.PluginRegistryUrl, $"plugin/{pInformation.Name}/module");
+                return BuildUrl(UserSettings.PlayerConfig.HunterPie.PluginRegistryUrl, "plugin", Uri.EscapeUriString(pInformation.Name), "module");
             }
 
             return pInformation.Update.UpdateUrl;
@@ -108,5 +116,7 @@ namespace HunterPie.Plugins
 
         public string Author { get; set; }
         public string Version { get; set; }
+
+        public int Downloads { get; set; }
     }
 }

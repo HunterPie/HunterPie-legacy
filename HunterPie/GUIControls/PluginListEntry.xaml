@@ -28,7 +28,11 @@
         <StackPanel Grid.Column="1" Margin="5,0,0,0">
             <TextBlock TextWrapping="Wrap" FontSize="16" FontFamily="Roboto, Segoe UI" FontWeight="Medium" Foreground="WhiteSmoke" Text="{Binding Name}" />
             <TextBlock TextWrapping="Wrap" FontSize="13" FontFamily="Roboto, Segoe UI" Foreground="WhiteSmoke" Text="{Binding Description}"/>
-            <TextBlock FontSize="12" VerticalAlignment="Bottom" FontFamily="Roboto, Segoe UI" FontWeight="Medium" Foreground="Gray" Margin="0,0,5,0" Text="{Binding SubText}" />
+            <StackPanel Orientation="Horizontal" VerticalAlignment="Bottom">
+                <Image Source="{StaticResource ICON_DOWNLOAD_GRAY}" Width="10" Height="10" Margin="0,1,2,0" />
+                <TextBlock FontSize="12" FontFamily="Roboto, Segoe UI" FontWeight="Medium" Foreground="Gray"
+                           Text="{Binding SubText}"/>
+            </StackPanel>
         </StackPanel>
 
         <!-- buttons -->

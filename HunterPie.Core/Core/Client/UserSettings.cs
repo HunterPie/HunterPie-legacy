@@ -209,7 +209,7 @@ namespace HunterPie.Core
                 public double PosX { get; set; } = 0;
                 public double PosY { get; set; } = 0;
                 public PluginProxyMode PluginProxyMode { get; set; } = PluginProxyMode.Auto;
-                public string PluginRegistryUrl { get; set; } = "https://plugins.hunterpie.herokuapp.com/";
+                public string PluginRegistryUrl { get; set; } = "https://hunterpie-plugins.herokuapp.com/";
                 public bool MinimizeAfterGameStart { get; set; } = false;
                 public Update Update { get; set; } = new Update();
                 public Launch Launch { get; set; } = new Launch();

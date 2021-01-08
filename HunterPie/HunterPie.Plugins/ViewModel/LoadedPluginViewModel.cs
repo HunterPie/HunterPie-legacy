@@ -38,6 +38,8 @@ namespace HunterPie.Plugins
         private void OnRegistryPluginsLoaded(object sender, EventArgs e)
         {
             GetImage();
+            // handle downloads count change
+            OnPropertyChanged(nameof(SubText));
         }
 
         public void Delete()
@@ -131,7 +133,19 @@ namespace HunterPie.Plugins
         public string Description => plugin.PluginInformation.Description;
         public string SubText => GStrings.GetLocalizationByXPath("/Console/String[@ID='MESSAGE_PLUGIN_SUBTITLE_ROW']")
             .Replace("{version}", plugin.PluginInformation.Version)
-            .Replace("{author}", plugin.PluginInformation.Author);
+            .Replace("{author}", plugin.PluginInformation.Author)
+            .Replace("{downloads}", GetDownloadsCount());
+
+        private string GetDownloadsCount()
+        {
+            var val = pluginList.TryGetRegistryEntry(plugin.PluginInformation.Name)?.Downloads;
+            if (val == null)
+            {
+                return "-";
+            }
+
+            return val.ToString();
+        }
 
         public bool IsEnabled
         {

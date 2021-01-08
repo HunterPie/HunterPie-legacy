@@ -473,7 +473,7 @@
       <String ID="MESSAGE_FRESH_PLUGINS" Name="Will be enabled after restart"/>
       <String ID="MESSAGE_AVAILABLE_PLUGINS" Name="Available Plugins"/>
       <String ID="MESSAGE_TO_DELETE_PLUGINS" Name="Will be deleted after restart"/>
-      <String ID="MESSAGE_PLUGIN_SUBTITLE_ROW" Name="ver: {version}; author: {author}"/>
+      <String ID="MESSAGE_PLUGIN_SUBTITLE_ROW" Name="{downloads} | v{version} | by {author}"/>
       <String ID="MESSAGE_PLUGIN_INCOMPATIBLE_VERSION" Name="HunterPie version is incompatible with this plugin."/>
       <String ID="MESSAGE_REFRESH" Name="Refresh" />
       <String ID="MESSAGE_PLUGIN_DELETE" Name="Delete plugin" />
