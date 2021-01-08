@@ -20,7 +20,10 @@ Address WEAPON_DATA_OFFSET 0x050725B0
 Address HUD_DATA_OFFSET 0x0506F1B0
 Address GAME_INPUT_OFFSET 0x052258F8
 Address GAME_FRAME_COUNT_OFFSET 0x0522A098
+Address GAME_WINDOW_INFO_OFFSET 0x05225860
 Address GAME_RENDER_INFO_OFFSET 0x05224688
+Address GAME_MOUSE_INFO_OFFSET 0x05225938
+Address GAME_HUD_INFO_OFFSET 0x05224B80
 # Game Data
 Address MUSIC_SKILL_EFC_DATA_OFFSET 0x050725A0
 # GMD Strings
@@ -28,6 +31,7 @@ Address GMD_ITEMS_OFFSET 0x05073390
 Address GMD_BUFFS_OFFSET 0x050733C0
 Address GMD_MONSTERS_OFFSET 0x050733D0
 # Functions
+Address FUN_GAME_WINDOW 0x02300E30
 Address FUN_GAME_INPUT 0x02303E30
 # Offsets
 Offset LevelOffsets 0xA8
@@ -55,7 +59,9 @@ Offset FoodDataOffsets 0x80,0x7D20,0x18,0x0
 Offset PlayerCanteenTimer 0x0
 # Game Data
 Offset cMusicSkillEfcDataOffsets 0xC8,0x0
+Offset cMhMouseOffsets 0x170
 # GMD Offsets
 Offset GmdOffsets 0xF8
 Offset GmdItemsOffsets 0xF8
 Offset GameInputArrayOffsets 0x138
+Offset sMhGUIOffsets 0x14060,0x22C2

@@ -746,21 +746,9 @@ namespace HunterPie
 
 #if DEBUG
 
-        private async Task TestInputs()
+        private static async Task TestInputs()
         {
-            
-            //await VirtualInput.PressInputAsync((char)27);
-            
-            await VirtualInput.PressInputAsync((char)VK.Escape);
-            await Task.Delay(1000);
-            for (int i = 0; i < 4; i++) 
-                await VirtualInput.PressInputAsync((char)VK.Right);
-
-            for (int i = 0; i < 5; i++)
-                await VirtualInput.PressInputAsync((char)VK.Down);
-
-            await VirtualInput.PressInputAsync((char)VK.F);
-
+            await VirtualInput.PressInputAsync('F');
             Debugger.Log("Done!");
             
         }

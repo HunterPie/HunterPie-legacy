@@ -55,6 +55,9 @@ namespace HunterPie.Core
         /// </summary>
         public static int Version => Kernel.GameVersion;
 
+        /// <summary>
+        /// How many frames have elapsed since the game start
+        /// </summary>
         public static ulong ElapsedFrames
         {
             get
@@ -63,9 +66,12 @@ namespace HunterPie.Core
                 return Kernel.Read<ulong>(address);
             }
         }
-
+        
         private static long renderTimeAddress = Kernel.NULLPTR;
 
+        /// <summary>
+        /// Current render time
+        /// </summary>
         public static float RenderTime
         {
             get
@@ -81,6 +87,20 @@ namespace HunterPie.Core
 
                 return Kernel.Read<float>(renderTimeAddress + 0x58) / Kernel.Read<float>(renderTimeAddress + 0x94);
 
+            }
+        }
+
+        /// <summary>
+        /// Whether the mouse is visible in game
+        /// </summary>
+        public static bool IsGUIOpen
+        {
+            get
+            {
+                long sMhGUIPtr = Address.GetAddress("BASE") + Address.GetAddress("GAME_MOUSE_INFO_OFFSET");
+                long canControlPlayerPtr = Kernel.ReadMultilevelPtr(sMhGUIPtr, Address.GetOffsets("cMhMouseOffsets"));
+                
+                return Kernel.Read<byte>(canControlPlayerPtr) == 0;
             }
         }
 
