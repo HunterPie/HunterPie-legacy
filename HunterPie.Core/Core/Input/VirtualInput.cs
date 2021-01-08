@@ -23,6 +23,8 @@ namespace HunterPie.Core.Input
         private static readonly List<VInput> injectedInputs = new List<VInput>();
         private static bool isPatched = false;
         private static byte[] originalOps;
+        private static byte[] originalForegroundOps;
+        private static bool isInjectingForeground;
         private static bool isInjecting = false;
         private static CancellationTokenSource cToken;
 
@@ -90,8 +92,7 @@ namespace HunterPie.Core.Input
                 vK = code,
                 isFrameBased = true,
                 startedAt = frames,
-                // Inputs are processed after 2 frames, but we're gonna use 4 for safety
-                endsAt = frames + 2
+                endsAt = frames + 1
             };
             
             injectedInputs.Add(input);
@@ -114,7 +115,7 @@ namespace HunterPie.Core.Input
                 return;
 
             cToken = new CancellationTokenSource();
-
+            
             await Task.Factory.StartNew(() =>
             {
                 byte[] keyboardStates = new byte[32];
@@ -124,15 +125,17 @@ namespace HunterPie.Core.Input
                 long inputArr = Kernel.ReadMultilevelPtr(Address.GetAddress("BASE") + Address.GetAddress("GAME_INPUT_OFFSET"),
                         Address.GetOffsets("GameInputArrayOffsets"));
 
+                PatchIsWindowForeground();
+
                 while (injectedInputs.Count > 0)
                 {
-                    if (frames == Game.ElapsedFrames)
+                    if ((Game.ElapsedFrames - frames) < 2)
                         continue;
 
                     frames = Game.ElapsedFrames;
 
                     isInjecting = true;
-
+                    
                     GetBitShiftedInputs(ref keyboardStates);
 
                     Kernel.Write(inputArr + 0x20, keyboardStates);
@@ -140,7 +143,7 @@ namespace HunterPie.Core.Input
                     for (int i = 0; i < injectedInputs.Count; i++)
                     {
                         VInput input = injectedInputs[i];
-                        if ((!input.isFrameBased) || (input.isFrameBased && (frames - input.startedAt) < 3))
+                        if ((!input.isFrameBased) || (input.isFrameBased && (frames - input.startedAt) < 2))
                             InjectInput(input.vK, ref keyboardStates);
                         else
                             removeQueue.Add(input);
@@ -153,14 +156,14 @@ namespace HunterPie.Core.Input
                     {
                         foreach (VInput input in removeQueue)
                             injectedInputs.Remove(input);
-                        
                     }
-
+                    
                     Thread.Sleep(1);
                     
                 }
 
             }, cToken.Token);
+            UnpatchIsWindowForeground();
             RestoreInputReset();
         }
 
@@ -185,6 +188,56 @@ namespace HunterPie.Core.Input
             {
                 bitStates[vK / 8] |= (byte)((byte)(GetAsyncKeyState(vK) & 0x8000) << (vK % 8));
             }
+        }
+
+        /// This is required for inputs that need the window to be focused, and should be patched only if the player
+        /// HUD is actually open
+        private static void PatchIsWindowForeground()
+        {
+
+            if (isInjectingForeground)
+                return;
+
+            // mov      [rax+000029AD],sil ; That's what controls whether the game window is focused
+            short instructionsOffset = 0x120;
+            short instructionsLength = 0x7;
+
+            long foregroundFunAddress = Address.GetAddress("BASE") + Address.GetAddress("FUN_GAME_WINDOW");
+
+            originalForegroundOps = Kernel.ReadStructure<byte>(
+                foregroundFunAddress + instructionsOffset,
+                instructionsLength
+            );
+
+            byte[] NOPs = new byte[] { 0x90, 0x90, 0x90, 0x90, 0x90, 0x90, 0x90 };
+
+            if (Kernel.Write(foregroundFunAddress + instructionsOffset, NOPs))
+            {
+                isInjectingForeground = true;
+                long isForegroundFlagPtr = Kernel.Read<long>(Address.GetAddress("BASE") + Address.GetAddress("GAME_WINDOW_INFO_OFFSET"));
+
+                Kernel.Write<byte>(isForegroundFlagPtr + 0x29AD, 0x1);
+            } else
+            {
+                isInjectingForeground = false;
+                Debugger.Error("Failed to patch IsForegroundWindow");
+            }
+        }
+
+        private static void UnpatchIsWindowForeground()
+        {
+            if (!isInjectingForeground)
+                return;
+
+            short instructionsOffset = 0x120;
+
+            long foregroundFunAddress = Address.GetAddress("BASE") + Address.GetAddress("FUN_GAME_WINDOW");
+
+            Kernel.Write(foregroundFunAddress + instructionsOffset, originalForegroundOps);
+            long isForegroundFlagPtr = Kernel.Read<long>(Address.GetAddress("BASE") + Address.GetAddress("GAME_WINDOW_INFO_OFFSET"));
+
+            Kernel.Write<byte>(isForegroundFlagPtr + 0x29AD, 0x0);
+            isInjectingForeground = false;
         }
 
         /// Before handling the inputs, MHW also resets their values to default before calling GetAsyncKeyState
@@ -261,6 +314,9 @@ namespace HunterPie.Core.Input
         {
             try
             {
+                if (isInjectingForeground)
+                    UnpatchIsWindowForeground();
+
                 if (originalOps is null || !isPatched)
                     return;
 
