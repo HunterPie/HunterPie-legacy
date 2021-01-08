@@ -25,6 +25,7 @@ namespace HunterPie.GUIControls
             PopulateThemesBox();
             PopulateMonsterBox();
             PopulatePlotDisplayModeBox();
+            PopulateProxyModeBox();
             PopulateDockBox();
         }
 
@@ -81,6 +82,14 @@ namespace HunterPie.GUIControls
             {
                 comboDamagePlotMode.Items.Add(
                     GStrings.GetLocalizationByXPath($"/Settings/String[@ID='DAMAGE_PLOT_MODE_{(byte)item}']"));
+            }
+        }
+        private void PopulateProxyModeBox()
+        {
+            foreach (PluginProxyMode item in Enum.GetValues(typeof(PluginProxyMode)))
+            {
+                comboPluginUpdateProxy.Items.Add(
+                    GStrings.GetLocalizationByXPath($"/Settings/String[@ID='PLUGIN_PROXY_MODE_{item.ToString("G").ToUpperInvariant()}']"));
             }
         }
 

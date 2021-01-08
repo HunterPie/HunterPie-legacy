@@ -9,6 +9,7 @@ namespace HunterPie.Plugins
     public class PluginInformation
     {
         public string Name;
+        public string DisplayName { get; set; }
         public string EntryPoint;
         public string Description;
         public string Author;

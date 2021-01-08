@@ -54,6 +54,8 @@ namespace HunterPie
         private bool offlineMode = false;
         private bool isUpdating = true;
 
+        public static Hunterpie Instance;
+
         // HunterPie version
         public const string HUNTERPIE_VERSION = "1.0.4";
         public static readonly Version AssemblyVersion = Assembly.GetEntryAssembly().GetName().Version;
@@ -95,6 +97,8 @@ namespace HunterPie
 
         public Hunterpie()
         {
+            Instance = this;
+
             if (CheckIfItsRunningFromWinrar())
             {
                 MessageBox.Show("You must extract HunterPie files before running it, otherwise it will most likely crash due to missing files or not save your settings.", "Error", MessageBoxButton.OK, MessageBoxImage.Error);
@@ -463,7 +467,7 @@ namespace HunterPie
                 Debugger.Error(err);
             }
         }
-        
+
         private bool PatchThemeAndValidate(string path)
         {
             string theme = File.ReadAllText(path);
@@ -748,9 +752,20 @@ namespace HunterPie
 
         private static async Task TestInputs()
         {
-            await VirtualInput.PressInputAsync('F');
+            //await VirtualInput.PressInputAsync((char)27);
+
+            await VirtualInput.PressInputAsync((char)VK.Escape);
+            await Task.Delay(1000);
+            for (int i = 0; i < 4; i++)
+                await VirtualInput.PressInputAsync((char)VK.Right);
+
+            for (int i = 0; i < 5; i++)
+                await VirtualInput.PressInputAsync((char)VK.Down);
+
+            await VirtualInput.PressInputAsync((char)VK.F);
+
             Debugger.Log("Done!");
-            
+
         }
 
 #endif
@@ -871,17 +886,10 @@ namespace HunterPie
             // Initializes the rest of HunterPie
             LoadData();
             Debugger.Warn(GStrings.GetLocalizationByXPath("/Console/String[@ID='MESSAGE_HUNTERPIE_INITIALIZED']"));
-            
+
             StartEverything();
 
-            Task.Factory.StartNew(async () =>
-            {
-                await pluginManager.PreloadPlugins();
-                Dispatcher.Invoke(() =>
-                {
-                    PluginDisplay.Instance.InitializePluginDisplayer(PluginManager.packages);
-                });
-            });
+            Task.Factory.StartNew(() => pluginManager.PreloadPlugins());
 
             // Support message :)
             ShowSupportMessage();
@@ -1097,7 +1105,7 @@ namespace HunterPie
             UserSettings.PlayerConfig.HunterPie.Height = (float)e.NewSize.Height;
         }
 
-        private void Reload()
+        public void Reload()
         {
             // Welp
             Process.Start(Application.ResourceAssembly.Location, "latestVersion=True");
@@ -1158,42 +1166,15 @@ namespace HunterPie
 
         #endregion
 
-        private async void window_Drop(object sender, DragEventArgs e)
+        public async Task<string> InstallPlugin(string moduleContent)
         {
-            IsDragging = false;
-            string modulejson = ((string[])e.Data.GetData("FileName"))?.FirstOrDefault();
-            string moduleContent;
-            bool isOnline = false;
-            if (modulejson is null)
-            {
-                isOnline = true;
-                modulejson = e.Data.GetData("UnicodeText") as string;
-            }
-
-            if (!modulejson.ToLower().EndsWith("module.json"))
-            {
-                return;
-            }
-
-            if (isOnline)
-            {
-                if (!modulejson.StartsWith("http"))
-                {
-                    modulejson = $"https://{modulejson}";
-                }
-                moduleContent = await PluginUpdate.ReadOnlineModuleJson(modulejson);
-            } else
-            {
-                moduleContent = File.ReadAllText(modulejson);
-            }
-
             PluginInformation moduleInformation = JsonConvert.DeserializeObject<PluginInformation>(moduleContent);
 
 
             if (moduleInformation is null || string.IsNullOrEmpty(moduleInformation?.Name))
             {
                 Debugger.Log("Invalid module.json!");
-                return;
+                return null;
             }
 
             string modPath = Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "modules", moduleInformation.Name);
@@ -1232,7 +1213,7 @@ namespace HunterPie
 
                     case UpdateResult.Failed:
                         Debugger.Error($"Failed to install {moduleInformation.Name}.");
-                        return;
+                        return null;
 
                     case UpdateResult.UpToDate:
                         string uptodateText =
@@ -1249,12 +1230,48 @@ namespace HunterPie
                         };
                         NotificationsPanel.Children.Add(uptodateNotification);
                         uptodateNotification.ShowNotification();
-                        return;
+                        return modPath;
                 }
-            } else
+            }
+            else
             {
                 Debugger.Error(GStrings.GetLocalizationByXPath("/Console/String[@ID='ERROR_PLUGIN_AUTO_UPDATE']"));
+                return null;
             }
+
+            return modPath;
+        }
+
+        private async void window_Drop(object sender, DragEventArgs e)
+        {
+            IsDragging = false;
+            string modulejson = ((string[])e.Data.GetData("FileName"))?.FirstOrDefault();
+            string moduleContent;
+            bool isOnline = false;
+            if (modulejson is null)
+            {
+                isOnline = true;
+                modulejson = e.Data.GetData("UnicodeText") as string;
+            }
+
+            if (!modulejson.ToLower().EndsWith("module.json"))
+            {
+                return;
+            }
+
+            if (isOnline)
+            {
+                if (!modulejson.StartsWith("http"))
+                {
+                    modulejson = $"https://{modulejson}";
+                }
+                moduleContent = await PluginUpdate.ReadOnlineModuleJson(modulejson);
+            } else
+            {
+                moduleContent = File.ReadAllText(modulejson);
+            }
+
+            await InstallPlugin(moduleContent);
         }
 
         private void window_DragEnter(object sender, DragEventArgs e)

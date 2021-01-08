@@ -104,6 +104,7 @@
     <Compile Include="Core\Enums\MonsterBarMode.cs" />
     <Compile Include="Core\Enums\NoteColorId.cs" />
     <Compile Include="Core\Enums\PlayerAilment.cs" />
+    <Compile Include="Core\Enums\PluginProxyMode.cs" />
     <Compile Include="Core\Enums\SetSkills.cs" />
     <Compile Include="Core\Enums\SharpnessLevel.cs" />
     <Compile Include="Core\Events\AbnormalityEventArgs.cs" />
@@ -218,3 +219,4 @@
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
+

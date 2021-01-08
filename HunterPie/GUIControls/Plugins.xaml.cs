@@ -1,11 +1,10 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.Diagnostics;
 using System.IO;
-using System.Windows;
 using System.Windows.Controls;
-using HunterPie.GUIControls.Custom_Controls;
+using System.Windows.Input;
 using HunterPie.Plugins;
+using HunterPie.UI.Infrastructure;
 
 namespace HunterPie.GUIControls
 {
@@ -28,28 +27,23 @@ namespace HunterPie.GUIControls
             }
         }
 
+        public PluginListViewModel PluginList { get; set; }
 
-        public Plugins() => InitializeComponent();
+        public ICommand OpenPluginsFolderCommand { get; } = new RelayCommand(
+            _ => true,
+            _ => Process.Start(Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "modules"))
+        );
 
-        public void InitializePluginDisplayer(List<PluginPackage> pluginPackages)
+        public ICommand RestartCommand { get; } = new RelayCommand(
+            _ => true,
+            _ => Hunterpie.Instance.Reload()
+        );
+
+        public Plugins()
         {
-            foreach (PluginPackage package in pluginPackages)
-            {
-                PluginContainer container = new PluginContainer();
-                container.InitializePluginContainer(package);
-
-                PluginDisplay.Children.Add(container);
-            }
-        }
-
-        private void OpenPluginsFolder(object sender, RoutedEventArgs e)
-        {
-            Process.Start(Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "modules"));
-        }
-
-        private void OpenPluginsRepo(object sender, RoutedEventArgs e)
-        {
-            Process.Start("https://github.com/Haato3o/HunterPie.Plugins");
+            PluginList = new PluginListViewModel(PluginRegistryService.Instance);
+            InitializeComponent();
+            PluginList.Refresh();
         }
     }
 }

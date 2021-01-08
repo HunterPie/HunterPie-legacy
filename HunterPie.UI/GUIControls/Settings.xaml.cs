@@ -57,6 +57,7 @@ namespace HunterPie.GUIControls
             settingsUI.LanguageFilesCombobox.SelectedItem = settings.HunterPie.Language;
             settingsUI.switchEnableMinimizeToSystemTray.IsEnabled = settings.HunterPie.MinimizeToSystemTray;
             settingsUI.switchEnableStartMinimized.IsEnabled = settings.HunterPie.StartHunterPieMinimized;
+            settingsUI.comboPluginUpdateProxy.SelectedIndex = (int)settings.HunterPie.PluginProxyMode;
             settingsUI.switchEnableAutoMinimize.IsEnabled = settings.HunterPie.MinimizeAfterGameStart;
 
             // Debug
@@ -234,6 +235,7 @@ namespace HunterPie.GUIControls
             settings.HunterPie.Language = (string)settingsUI.LanguageFilesCombobox.SelectedItem;
             settings.HunterPie.MinimizeToSystemTray = settingsUI.switchEnableMinimizeToSystemTray.IsEnabled;
             settings.HunterPie.StartHunterPieMinimized = settingsUI.switchEnableStartMinimized.IsEnabled;
+            settings.HunterPie.PluginProxyMode = (PluginProxyMode)settingsUI.comboPluginUpdateProxy.SelectedIndex;
             settings.HunterPie.MinimizeAfterGameStart = settingsUI.switchEnableAutoMinimize.IsEnabled;
 
             // Debug

@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
+using HunterPie.Core.Enums;
 using HunterPie.Logger;
 using Newtonsoft.Json;
 
@@ -207,6 +208,8 @@ namespace HunterPie.Core
                 public float Height { get; set; } = 590;
                 public double PosX { get; set; } = 0;
                 public double PosY { get; set; } = 0;
+                public PluginProxyMode PluginProxyMode { get; set; } = PluginProxyMode.Auto;
+                public string PluginRegistryUrl { get; set; } = "https://hunterpie-plugins.herokuapp.com/";
                 public bool MinimizeAfterGameStart { get; set; } = false;
                 public Update Update { get; set; } = new Update();
                 public Launch Launch { get; set; } = new Launch();

@@ -1,6 +1,8 @@
-﻿using System.Windows;
+﻿using System;
+using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Input;
+using HunterPie.UI.Infrastructure;
 
 namespace HunterPie.GUIControls.Custom_Controls
 {
@@ -26,7 +28,7 @@ namespace HunterPie.GUIControls.Custom_Controls
         public static readonly DependencyProperty RestartVisibilityProperty =
             DependencyProperty.Register("RestartVisibility", typeof(Visibility), typeof(Switcher));
 
-        public new bool IsEnabled
+        public bool IsEnabled
         {
             get => (bool)GetValue(IsEnabledProperty);
             set => SetValue(IsEnabledProperty, value);
@@ -35,11 +37,27 @@ namespace HunterPie.GUIControls.Custom_Controls
             DependencyProperty.Register("IsEnabled", typeof(bool), typeof(Switcher));
 
 
-        public Switcher() => InitializeComponent();
+        public ICommand ToggleCommand
+        {
+            get => (ICommand)GetValue(ToggleCommandProperty);
+            set => SetValue(ToggleCommandProperty, value);
+        }
+        public static readonly DependencyProperty ToggleCommandProperty =
+            DependencyProperty.Register(nameof(ToggleCommand), typeof(ICommand), typeof(Switcher));
+
+
+        public Switcher()
+        {
+            InitializeComponent();
+            ToggleCommand = new RelayCommand(_ => true, _ => IsEnabled = !IsEnabled);
+        }
 
         private void OnClick(object sender, MouseButtonEventArgs e)
         {
-            IsEnabled = !IsEnabled;
+            if (ToggleCommand.CanExecute(IsEnabled))
+            {
+                ToggleCommand.Execute(!IsEnabled);
+            }
         }
 
     }

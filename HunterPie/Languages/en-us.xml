@@ -469,6 +469,17 @@
       <String ID="MESSAGE_PLUGIN_INSTALL_DESC" Name="Drop your module.json here to install a new plugin."/>
       <String ID="MESSAGE_PLUGIN_INSTALLED" Name="Plugin: {name} installed! Restart your HunterPie to load the plugin!"/>
       <String ID="ERROR_PLUGIN_AUTO_UPDATE" Name="This plugin does not support auto-update. You will need to manually download its files."/>
+      <String ID="MESSAGE_INSTALLED_PLUGINS" Name="Installed Plugins"/>
+      <String ID="MESSAGE_FRESH_PLUGINS" Name="Will be enabled after restart"/>
+      <String ID="MESSAGE_AVAILABLE_PLUGINS" Name="Available Plugins"/>
+      <String ID="MESSAGE_TO_DELETE_PLUGINS" Name="Will be deleted after restart"/>
+      <String ID="MESSAGE_PLUGIN_SUBTITLE_ROW" Name="{downloads} | v{version} | by {author}"/>
+      <String ID="MESSAGE_PLUGIN_INCOMPATIBLE_VERSION" Name="HunterPie version is incompatible with this plugin."/>
+      <String ID="MESSAGE_REFRESH" Name="Refresh" />
+      <String ID="MESSAGE_PLUGIN_DELETE" Name="Delete plugin" />
+      <String ID="MESSAGE_PLUGIN_RESTORE" Name="Restore plugin" />
+      <String ID="MESSAGE_PLUGIN_FAILED" Name="Plugin initialization failed. It will not be loaded util HunterPie restart." />
+      <String ID="MESSAGE_README_EMPTY" Name="Empty..." />
       <!-- Popups -->
       <String ID="MESSAGE_QUIT" Name="Are you sure you want to exit HunterPie?"/>
       <String ID="TITLE_MISSING_PATH" Name="Monster Hunter World Path not found"/>
@@ -524,6 +535,13 @@
       <String ID="STATIC_LAUNCHARGS" Name="Launch Arguments"/>
       <String ID="STATIC_LAUNCHARGS_NOARGS" Name="No Arguments"/>
       <String ID="STATIC_LAUNCHARGS_DESC" Name="Arguments to be used when launching the game. Leave this empty if you don't know what you are doing."/>
+      <String ID="PLUGIN_PROXY_MODE_DESC" Name="Changes plugin download proxy behavior"/>
+
+      <String ID="PLUGIN_PROXY_MODE" Name="Plugin registry proxy mode"/>
+      <String ID="PLUGIN_PROXY_MODE_DESC" Name="Changes plugin download proxy behavior"/>
+      <String ID="PLUGIN_PROXY_MODE_AUTO" Name="Auto"/>
+      <String ID="PLUGIN_PROXY_MODE_ENABLED" Name="Enabled"/>
+      <String ID="PLUGIN_PROXY_MODE_DISABLED" Name="Disabled"/>
       <!-- Discord RPC -->
       <String ID="ENABLE_RPC" Name="Enable Discord Rich Presence"/>
       <String ID="ENABLE_RPC_DESC" Name="If enabled, HunterPie will show your game activity on your Discord status."/>
