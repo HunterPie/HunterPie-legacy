@@ -3,8 +3,8 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
              Height="27">
     <Grid Cursor="Hand" MouseLeftButtonDown="OnClick">
-        <Rectangle x:Name="btnBackground" RadiusY="15" RadiusX="15" Fill="{Binding Path=Color, ElementName=btn}" Stroke="{Binding Path=BorderBrush, ElementName=btn}"/>
-        <StackPanel Orientation="Horizontal">
+        <Rectangle x:Name="btnBackground" RadiusY="15" RadiusX="15" Fill="{Binding Path=Color, ElementName=btn}" Stroke="{Binding Path=BorderBrush, ElementName=btn}" StrokeThickness="{Binding Path=BorderThickness, ElementName=btn}"/>
+        <StackPanel Orientation="Horizontal" HorizontalAlignment="Left">
             <Image x:Name="btnIcon" Source="{Binding Path=Icon, ElementName=btn}" Height="20" Width="20" Margin="19,3,0,2" HorizontalAlignment="Left"/>
             <TextBlock x:Name="btnText" Text="{Binding Path=Text, ElementName=btn}" Foreground="{Binding Path=Foreground, ElementName=btn}" FontSize="16" FontFamily="{Binding Path=FontFamily, ElementName=btn}" Padding="3,0,0,0"/>
         </StackPanel>

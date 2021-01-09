@@ -27,14 +27,18 @@ namespace HunterPie.Memory
             get => isForegroundWindow;
             private set
             {
-                if (value != isForegroundWindow)
+                if (value == isForegroundWindow)
                 {
-                    // Wait until there's a subscriber to dispatch the event
-                    if (OnGameFocus == null || OnGameUnfocus == null) return;
-                    isForegroundWindow = value;
-                    if (isForegroundWindow) { Dispatch(OnGameFocus); }
-                    else { Dispatch(OnGameUnfocus); }
+                    return;
                 }
+
+                // Wait until there's a subscriber to dispatch the event
+                if (OnGameFocus == null || OnGameUnfocus == null)
+                    return;
+
+                isForegroundWindow = value;
+
+                Dispatch(isForegroundWindow ? OnGameFocus : OnGameUnfocus);
             }
         }
 
@@ -77,6 +81,13 @@ namespace HunterPie.Memory
             out int lpNumberOfBytesWritten
             );
 
+        [DllImport("kernel32.dll", SetLastError = true)]
+        public static extern bool VirtualProtectEx(
+            IntPtr hProcess,
+            IntPtr lpAddress,
+            UIntPtr dwSize,
+            uint flNewProtect,
+            out uint lpflOldProtect);
 
         [DllImport("kernel32.dll")]
         public static extern bool CloseHandle(IntPtr hObject);
@@ -144,12 +155,12 @@ namespace HunterPie.Memory
                     continue;
                 }
                 
-                Process MonsterHunterProcess = Process.GetProcessesByName(PROCESS_NAME)
-                    .Where(p => !string.IsNullOrEmpty(p.MainWindowTitle))
-                    .FirstOrDefault();
+                Process monsterHunterProcess = Process
+                    .GetProcessesByName(PROCESS_NAME)
+                    .FirstOrDefault(p => !string.IsNullOrEmpty(p.MainWindowTitle));
 
                 // If there's no MHW instance of Monster Hunter: World running
-                if (MonsterHunterProcess == null)
+                if (monsterHunterProcess == null)
                 {
                     if (!lockSpam)
                     {
@@ -161,12 +172,12 @@ namespace HunterPie.Memory
                 }
                 else
                 {
-                    if (string.IsNullOrEmpty(MonsterHunterProcess.MainWindowTitle) ||
-                        !MonsterHunterProcess.MainWindowTitle.ToUpper().StartsWith("MONSTER HUNTER: WORLD"))
+                    if (string.IsNullOrEmpty(monsterHunterProcess.MainWindowTitle) ||
+                        !monsterHunterProcess.MainWindowTitle.ToUpper().StartsWith("MONSTER HUNTER: WORLD"))
                     {
-                        if (!lockSpam2 && string.IsNullOrEmpty(MonsterHunterProcess.MainWindowTitle))
+                        if (!lockSpam2 && string.IsNullOrEmpty(monsterHunterProcess.MainWindowTitle))
                         {
-                            Debugger.Error($"Found Monster Hunter: World process, but the window title returned \"{MonsterHunterProcess.MainWindowTitle}\"." +
+                            Debugger.Error($"Found Monster Hunter: World process, but the window title returned \"{monsterHunterProcess.MainWindowTitle}\"." +
                                 $"Common causes for this:\n- Window is still loading\n- Stracker's console is the main process window. Click on the game window to fix this issue.");
                             lockSpam2 = true;
                         }
@@ -174,7 +185,7 @@ namespace HunterPie.Memory
                         continue;
                     }
 
-                    MonsterHunter = MonsterHunterProcess;
+                    MonsterHunter = monsterHunterProcess;
 
                     PID = MonsterHunter.Id;
                     ProcessHandle = OpenProcess(PROCESS_ALL_ACCESS, false, PID);
@@ -250,7 +261,7 @@ namespace HunterPie.Memory
         public static long ReadMultilevelPtr(long baseAddress, int[] offsets)
         {
             long address = baseAddress;
-            for (int offsetIndex = 0; offsetIndex < offsets.Length; offsetIndex++)
+            foreach (int offset in offsets)
             {
                 long temp = Read<long>(address);
 
@@ -260,7 +271,7 @@ namespace HunterPie.Memory
                     return NULLPTR;
                 }
 
-                address = temp + offsets[offsetIndex];
+                address = temp + offset;
             }
 
             return address;
@@ -334,6 +345,44 @@ namespace HunterPie.Memory
             return WriteProcessMemory(ProcessHandle, (IntPtr)address, buffer, buffer.Length, out _);
         }
 
+        public static bool Write<T>(long address, T[] data) where T : struct
+        {
+            int dataSize = Marshal.SizeOf<T>() * data.Length;
+            byte[] buffer = StructureToBuffer(ref data, dataSize);
+            bool result = WriteProcessMemory(ProcessHandle, (IntPtr)address, buffer, buffer.Length, out _);
+            return result;
+        }
+
+        /// <summary>
+        /// Writes a UTF-8 string in the game's memory
+        /// </summary>
+        /// <param name="address">Address to write the string in</param>
+        /// <param name="data">string to write</param>
+        /// <returns>True if it was written succesfully</returns>
+        public static bool Write(long address, string data)
+        {
+            if (!data.EndsWith("\x00"))
+                data += "\x00";
+
+            byte[] buffer = Encoding.UTF8.GetBytes(data);
+            return WriteProcessMemory(ProcessHandle, (IntPtr)address, buffer, buffer.Length, out _);
+        }
+
+        /// <summary>
+        /// Writes a byte buffer to a protected area of the memory
+        /// </summary>
+        /// <param name="address">Address to be written in</param>
+        /// <param name="assembly">byte* to be injected</param>
+        /// <returns>True if the operation was successful</returns>
+        public static bool InjectAssembly(long address, byte[] assembly)
+        {
+            uint oldProtect;
+            VirtualProtectEx(ProcessHandle, (IntPtr)address, (UIntPtr)assembly.Length, 0x40, out oldProtect);
+            bool result = Write(address, assembly);
+            VirtualProtectEx(ProcessHandle, (IntPtr)address, (UIntPtr)assembly.Length, oldProtect, out oldProtect);
+            return result;
+        }
+
         private static byte[] StructureToBuffer<T>(ref T[] array, int size) where T : struct
         {
             IntPtr malloced = Marshal.AllocHGlobal(size);
@@ -348,23 +397,6 @@ namespace HunterPie.Memory
             Marshal.Copy(malloced, buffer, 0, size);
             Marshal.FreeHGlobal(malloced);
             return buffer;
-        }
-
-        public static bool Write<T>(long address, T[] data) where T : struct
-        {
-            int dataSize = Marshal.SizeOf<T>() * data.Length;
-            byte[] buffer = StructureToBuffer(ref data, dataSize);
-            bool result = WriteProcessMemory(ProcessHandle, (IntPtr)address, buffer, buffer.Length, out _);
-            return result;
-        }
-
-        public static bool Write(long address, string data)
-        {
-            if (!data.EndsWith("\x00"))
-                data += "\x00";
-
-            byte[] buffer = Encoding.UTF8.GetBytes(data);
-            return WriteProcessMemory(ProcessHandle, (IntPtr)address, buffer, buffer.Length, out _);
         }
 
         /// <summary>

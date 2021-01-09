@@ -1,10 +1,12 @@
 ﻿using System;
+using System.Diagnostics;
 using System.IO;
 using System.Linq;
 using System.Windows.Controls;
 using System.Windows.Input;
 using HunterPie.Core;
 using HunterPie.Core.Enums;
+using Debugger = HunterPie.Logger.Debugger;
 
 namespace HunterPie.GUIControls
 {
@@ -16,6 +18,8 @@ namespace HunterPie.GUIControls
         public string fullGamePath = "";
         public string fullMonsterDataPath = "";
         public string fullLaunchArgs = "";
+
+        public ICommand OpenLink { get; set; } = new OpenLink();
 
         public NewSettingsWindow()
         {
@@ -211,5 +215,27 @@ namespace HunterPie.GUIControls
         private void SwitchEnableParts_MouseDown(object sender, MouseButtonEventArgs e) => PartsCustomizer.IsEnabled = switchEnableParts.IsEnabled;
 
         private void SwitchEnableAilments_MouseDown(object sender, MouseButtonEventArgs e) => AilmentsCustomizer.IsEnabled = switchEnableAilments.IsEnabled;
+    }
+
+    public class OpenLink : ICommand
+    {
+        public event EventHandler CanExecuteChanged;
+
+        public bool CanExecute(object parameter)
+        {
+            Debugger.Log(parameter);
+            if (parameter?.GetType() == typeof(string))
+            {
+                if (((string)parameter).StartsWith("http"))
+                    return true;
+            }
+            
+            return false;
+        }
+
+        public void Execute(object parameter)
+        {
+            Process.Start((string)parameter);
+        }
     }
 }

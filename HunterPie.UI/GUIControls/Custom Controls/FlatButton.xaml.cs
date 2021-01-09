@@ -23,24 +23,33 @@ namespace HunterPie.GUIControls.Custom_Controls
             {
                 if (Command != null)
                 {
-                    IsButtonEnabled = Command.CanExecute(null);
+                    IsButtonEnabled = Command.CanExecute(CommandParameter);
                 }
                 SetValue(CommandProperty, value);
-                IsButtonEnabled = value.CanExecute(null);
+                IsButtonEnabled = value.CanExecute(CommandParameter);
                 value.CanExecuteChanged += OnCanExecuteChanged;
             }
         }
 
-        private void OnCanExecuteChanged(object sender, EventArgs e) => IsButtonEnabled = Command.CanExecute(null);
+        private void OnCanExecuteChanged(object sender, EventArgs e) => IsButtonEnabled = Command.CanExecute(CommandParameter);
 
         public static readonly DependencyProperty CommandProperty =
             DependencyProperty.Register("Command", typeof(ICommand), typeof(FlatButton), new PropertyMetadata(null, OnCommandChanged));
+
+        public object CommandParameter
+        {
+            get { return GetValue(CommandParameterProperty); }
+            set { SetValue(CommandParameterProperty, value); }
+        }
+
+        public static readonly DependencyProperty CommandParameterProperty =
+            DependencyProperty.Register("CommandParameter", typeof(object), typeof(FlatButton));
 
         private static void OnCommandChanged(DependencyObject d, DependencyPropertyChangedEventArgs e)
         {
             if (e.Property.Name == nameof(Command) && e.NewValue is ICommand command)
             {
-                d.SetValue(IsButtonEnabledProperty, command.CanExecute(null));
+                d.SetValue(IsButtonEnabledProperty, command.CanExecute(d.GetValue(CommandParameterProperty)));
             }
         }
 

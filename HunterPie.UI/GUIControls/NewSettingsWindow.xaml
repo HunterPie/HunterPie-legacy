@@ -4,6 +4,7 @@
              xmlns:helper="clr-namespace:HunterPie.GUI.Helpers"
              xmlns:custom="clr-namespace:HunterPie.GUIControls.Custom_Controls"
              xmlns:System="clr-namespace:System;assembly=mscorlib"
+             x:Name="SettingsCtrl"
              DataContext="{StaticResource Localization}">
     <UserControl.Resources>
         <ResourceDictionary>
@@ -899,65 +900,114 @@
                 </TabItem.Header>
                 <ScrollViewer>
                     <WrapPanel Orientation="Horizontal">
-                        <Grid Height="190" VerticalAlignment="Top" HorizontalAlignment="Left">
-                            <StackPanel Orientation="Horizontal">
-                                <TextBlock Text="GitHub" Padding="0,0,5,0" FontFamily="Segoe UI Light" Foreground="Gray" TextAlignment="Center"/>
-                                <Separator Width="298" Canvas.Left="72" Margin="0,3,0,0" Canvas.Top="12" Height="17" VerticalAlignment="Top"/>
+                        <GroupBox Header="Github" VerticalAlignment="Top" HorizontalAlignment="Left" Width="250" Margin="5,0,0,0">
+                            <StackPanel Orientation="Vertical">
+                                <custom:FlatButton Icon="{StaticResource ICON_GITHUB}"
+                                                   Cursor="Hand"
+                                                   Text="{Binding Mode=OneTime, XPath=/Strings/Client/Settings/String[@ID\=\'STATIC_HUNTERPIE_WIKI\']/@Name}"
+                                                   Height="27"
+                                                   ToolTip="{Binding Mode=OneTime, XPath=/Strings/Client/Settings/String[@ID\=\'STATIC_HUNTERPIE_WIKI_DESC\']/@Name}"
+                                                   Command="{Binding OpenLink, ElementName=SettingsCtrl}"
+                                                   CommandParameter="https://docs.hunterpie.me"
+                                                   Margin="0,5,0,0"
+                                                   VerticalAlignment="Top"
+                                                   BorderThickness="2"
+                                                   Padding="0,2"
+                                                   Background="#FF171717">
+                                    <custom:FlatButton.BorderBrush>
+                                        <LinearGradientBrush EndPoint="1,1" StartPoint="0,0.5">
+                                            <GradientStop Color="#FFFF0202" Offset="0"/>
+                                            <GradientStop Color="#FFF5358C" Offset="1"/>
+                                        </LinearGradientBrush>
+                                    </custom:FlatButton.BorderBrush>
+                                </custom:FlatButton>
+                                <custom:FlatButton Icon="{StaticResource ICON_GITHUB}"
+                                                   Cursor="Hand"
+                                                   Text="{Binding Mode=OneTime, XPath=/Strings/Client/Settings/String[@ID\=\'STATIC_HUNTERPIE_ISSUES\']/@Name}"
+                                                   Height="27"
+                                                   ToolTip="{Binding Mode=OneTime, XPath=/Strings/Client/Settings/String[@ID\=\'STATIC_HUNTERPIE_ISSUES_DESC\']/@Name}"
+                                                   Command="{Binding OpenLink, ElementName=SettingsCtrl}"
+                                                   CommandParameter="https://github.com/Haato3o/HunterPie/issues"
+                                                   Margin="0,5,0,0"
+                                                   VerticalAlignment="Top"
+                                                   BorderThickness="2"
+                                                   Padding="0,2"
+                                                   Background="#FF171717">
+                                    <custom:FlatButton.BorderBrush>
+                                        <LinearGradientBrush EndPoint="1,1" StartPoint="0,0.5">
+                                            <GradientStop Color="#FFFF0202" Offset="0"/>
+                                            <GradientStop Color="#FFF5358C" Offset="1"/>
+                                        </LinearGradientBrush>
+                                    </custom:FlatButton.BorderBrush>
+                                </custom:FlatButton>
                             </StackPanel>
-                            <custom:MinimalButton Icon="{StaticResource ICON_GITHUB}" Text="{Binding Mode=OneTime, XPath=/Strings/Client/Settings/String[@ID\=\'STATIC_HUNTERPIE_WIKI\']/@Name}" Link="https://hunterpie.me/HunterPie/" Canvas.Left="44" Canvas.Top="28" Foreground="#FFC7C5C5" Height="27" ToolTip="{Binding Mode=OneTime, XPath=/Strings/Client/Settings/String[@ID\=\'STATIC_HUNTERPIE_WIKI_DESC\']/@Name}" Margin="0,26,0,0" VerticalAlignment="Top">
-                                <custom:MinimalButton.Color>
-                                    <LinearGradientBrush EndPoint="1,1" StartPoint="0,0">
-                                        <GradientStop Color="#FF099BAA" Offset="1"/>
-                                        <GradientStop Color="#FF178DB9"/>
-                                    </LinearGradientBrush>
-                                </custom:MinimalButton.Color>
-                            </custom:MinimalButton>
-                            <custom:MinimalButton Icon="{StaticResource ICON_GITHUB}" BorderThickness="0" Text="{Binding Mode=OneTime, XPath=/Strings/Client/Settings/String[@ID\=\'STATIC_HUNTERPIE_ISSUES\']/@Name}" Link="https://github.com/Haato3o/HunterPie/issues" Canvas.Left="44" Canvas.Top="65" Foreground="#FFC7C5C5"  ToolTip="{Binding Mode=OneTime, XPath=/Strings/Client/Settings/String[@ID\=\'STATIC_HUNTERPIE_ISSUES_DESC\']/@Name}" Margin="0,59,0,0" VerticalAlignment="Top">
-                                <custom:MinimalButton.Color>
-                                    <LinearGradientBrush EndPoint="1,1" StartPoint="0,0">
-                                        <GradientStop Color="#FF099BAA" Offset="1"/>
-                                        <GradientStop Color="#FF178DB9"/>
-                                    </LinearGradientBrush>
-                                </custom:MinimalButton.Color>
-                            </custom:MinimalButton>
-                        </Grid>
-                        <Grid Height="190" VerticalAlignment="Top" HorizontalAlignment="Right" Margin="5,0,0,0">
-                            <StackPanel Orientation="Horizontal">
-                                <TextBlock Text="{Binding Mode=OneTime, XPath=/Strings/Client/Settings/String[@ID\=\'STATIC_HUNTERPIE_DONATIONS\']/@Name}" Padding="0,0,5,0" FontFamily="Segoe UI Light" Foreground="Gray" TextAlignment="Center"/>
-                                <Separator Width="298" Margin="0" Height="25" VerticalAlignment="Top"/>
+                            
+                        </GroupBox>
+                        <GroupBox Header="Support" VerticalAlignment="Top" HorizontalAlignment="Left" Width="250" Margin="5,0,0,0">
+                            <StackPanel Orientation="Vertical">
+                                <custom:FlatButton Icon="{StaticResource ICON_PAYPAL}"
+                                                   Text="{Binding Mode=OneTime, XPath=/Strings/Client/Settings/String[@ID\=\'STATIC_HUNTERPIE_PAYPAL\']/@Name}"
+                                                   Height="27"
+                                                   ToolTip="{Binding Mode=OneTime, XPath=/Strings/Client/Settings/String[@ID\=\'STATIC_HUNTERPIE_PAYPAL_DESC\']/@Name}"
+                                                   Command="{Binding OpenLink, ElementName=SettingsCtrl}"
+                                                   CommandParameter="https://server.hunterpie.me/donate"
+                                                   Margin="0,5,0,0"
+                                                   VerticalAlignment="Top"
+                                                   BorderThickness="2"
+                                                   Padding="0,2"
+                                                   Background="#FF171717"
+                                                   Cursor="Hand">
+                                    <custom:FlatButton.BorderBrush>
+                                        <LinearGradientBrush EndPoint="1,1" StartPoint="0,0.5">
+                                            <GradientStop Color="#FF0252FF" Offset="0"/>
+                                            <GradientStop Color="#FF07E5FB" Offset="1"/>
+                                        </LinearGradientBrush>
+                                    </custom:FlatButton.BorderBrush>
+                                </custom:FlatButton>
+                                <custom:FlatButton Icon="{StaticResource ICON_PATREON}"
+                                                   Text="{Binding Mode=OneTime, XPath=/Strings/Client/Settings/String[@ID\=\'STATIC_HUNTERPIE_PATREON\']/@Name}"
+                                                   Height="27"
+                                                   ToolTip="{Binding Mode=OneTime, XPath=/Strings/Client/Settings/String[@ID\=\'STATIC_HUNTERPIE_PAYPAL_DESC\']/@Name}"
+                                                   Command="{Binding OpenLink, ElementName=SettingsCtrl}"
+                                                   CommandParameter="https://www.patreon.com/HunterPie"
+                                                   Margin="0,5,0,0"
+                                                   VerticalAlignment="Top"
+                                                   BorderThickness="2"
+                                                   Padding="0,2"
+                                                   Background="#FF171717"
+                                                   Cursor="Hand">
+                                    <custom:FlatButton.BorderBrush>
+                                        <LinearGradientBrush EndPoint="1,1" StartPoint="0,0.5">
+                                            <GradientStop Color="#FFEB1900" Offset="0"/>
+                                            <GradientStop Color="#FFFF9700" Offset="1"/>
+                                        </LinearGradientBrush>
+                                    </custom:FlatButton.BorderBrush>
+                                </custom:FlatButton>
                             </StackPanel>
-
-                            <custom:MinimalButton MaxWidth="350" Icon="{StaticResource ICON_PAYPAL}" Text="{Binding Mode=OneTime, XPath=/Strings/Client/Settings/String[@ID\=\'STATIC_HUNTERPIE_PAYPAL\']/@Name}" Link="https://www.paypal.com/cgi-bin/webscr?cmd=_s-xclick&amp;hosted_button_id=F2QA6HEQZ366A&amp;source=url" Canvas.Left="44" Canvas.Top="28" Foreground="#FFE4E4E4" FontWeight="Bold" ToolTip="{Binding Mode=OneTime, XPath=/Strings/Client/Settings/String[@ID\=\'STATIC_HUNTERPIE_PAYPAL_DESC\']/@Name}" Margin="0,26,0,0" VerticalAlignment="Top">
-                                <custom:MinimalButton.Color>
-                                    <LinearGradientBrush EndPoint="1.5,-7" StartPoint="-0.1,-1">
-                                        <GradientStop Color="#FFF7C125" Offset="0"/>
-                                        <GradientStop Color="#FFF37335" Offset="1"/>
-                                    </LinearGradientBrush>
-                                </custom:MinimalButton.Color>
-                            </custom:MinimalButton>
-                            <custom:MinimalButton MaxWidth="350" Icon="{StaticResource ICON_PATREON}" Text="Patreon" Link="https://www.patreon.com/HunterPie" Canvas.Left="44" Canvas.Top="28" Foreground="#FFE4E4E4" FontWeight="Bold" ToolTip="{Binding Mode=OneTime, XPath=/Strings/Client/Settings/String[@ID\=\'STATIC_HUNTERPIE_PAYPAL_DESC\']/@Name}" Margin="0,58,0,0" VerticalAlignment="Top">
-                                <custom:MinimalButton.Color>
-                                    <LinearGradientBrush EndPoint="1.5,-7" StartPoint="-0.1,-1">
-                                        <GradientStop Color="#FFF77125" Offset="0.008"/>
-                                        <GradientStop Color="#FFE65A16" Offset="1"/>
-                                    </LinearGradientBrush>
-                                </custom:MinimalButton.Color>
-                            </custom:MinimalButton>
-                        </Grid>
-                        <Grid Height="190" VerticalAlignment="Top" HorizontalAlignment="Left" Margin="5,0,0,0">
-                            <StackPanel Orientation="Horizontal" Width="357">
-                                <TextBlock Text="Discord" Padding="0,0,5,0" FontFamily="Segoe UI Light" Foreground="Gray" TextAlignment="Center" Height="24" VerticalAlignment="Top"/>
-                                <Separator Width="298" Canvas.Left="72" Margin="0" Canvas.Top="12" Height="28" VerticalAlignment="Top"/>
+                        </GroupBox>
+                        <GroupBox Header="Discord" VerticalAlignment="Top" HorizontalAlignment="Left" Width="250" Margin="5,0,0,0">
+                            <StackPanel Orientation="Vertical">
+                                <custom:FlatButton Icon="{StaticResource ICON_DISCORD}"
+                                                   Text="{Binding Mode=OneTime, XPath=/Strings/Client/Settings/String[@ID\=\'STATIC_HUNTERPIE_DISCORD\']/@Name}"
+                                                   Height="27"
+                                                   ToolTip="{Binding Mode=OneTime, XPath=/Strings/Client/Settings/String[@ID\=\'STATIC_HUNTERPIE_DISCORD_DESC\']/@Name}"
+                                                   Command="{Binding OpenLink, ElementName=SettingsCtrl}"
+                                                   CommandParameter="https://discord.gg/5pdDq4Q"
+                                                   Margin="0,5,0,0"
+                                                   VerticalAlignment="Top"
+                                                   BorderThickness="2"
+                                                   Padding="0,2"
+                                                   Background="#FF171717"
+                                                   Cursor="Hand">
+                                    <custom:FlatButton.BorderBrush>
+                                        <LinearGradientBrush EndPoint="1,1" StartPoint="0,0.5">
+                                            <GradientStop Color="#FF667DCB" Offset="0"/>
+                                            <GradientStop Color="#FF93A6E8" Offset="1"/>
+                                        </LinearGradientBrush>
+                                    </custom:FlatButton.BorderBrush>
+                                </custom:FlatButton>
                             </StackPanel>
-                            <custom:MinimalButton MaxWidth="350" Icon="{StaticResource ICON_DISCORD}" Text="{Binding Mode=OneTime, XPath=/Strings/Client/Settings/String[@ID\=\'STATIC_HUNTERPIE_DISCORD\']/@Name}" Link="https://discord.gg/5pdDq4Q" Canvas.Left="44" Canvas.Top="28" Foreground="#FFC7C5C5" Height="27" ToolTip="{Binding Mode=OneTime, XPath=/Strings/Client/Settings/String[@ID\=\'STATIC_HUNTERPIE_DISCORD_DESC\']/@Name}" Margin="0,26,0,0" VerticalAlignment="Top">
-                                <custom:MinimalButton.Color>
-                                    <LinearGradientBrush EndPoint="1,1" StartPoint="0,0">
-                                        <GradientStop Color="#FF667DCB" Offset="0"/>
-                                        <GradientStop Color="#FF93A6E8" Offset="1"/>
-                                    </LinearGradientBrush>
-                                </custom:MinimalButton.Color>
-                            </custom:MinimalButton>
-                        </Grid>
+                        </GroupBox>
                     </WrapPanel>
                 </ScrollViewer>
             </TabItem>
@@ -973,7 +1023,7 @@
                     </Canvas>
                 </TabItem.Header>
                 <ScrollViewer>
-                    <StackPanel >
+                    <StackPanel>
                         <custom:Switcher x:Name="switchEnableDebugMessages" Text="{Binding Mode=OneTime, XPath=/Strings/Client/Settings/String[@ID\=\'ENABLE_DEBUG_MESSAGES\']/@Name}" RestartVisibility="Visible"  Margin="10,0,10,5" ToolTip="{Binding Mode=OneTime, XPath=/Strings/Client/Settings/String[@ID\=\'ENABLE_DEBUG_MESSAGES_DESC\']/@Name}"/>
                         <custom:Switcher x:Name="switchEnableUnknownStatuses" Text="{Binding Mode=OneTime, XPath=/Strings/Client/Settings/String[@ID\=\'ENABLE_UNKNOWN_AILMENTS\']/@Name}" RestartVisibility="Visible"  Margin="10,0,10,5" ToolTip="{Binding Mode=OneTime, XPath=/Strings/Client/Settings/String[@ID\=\'ENABLE_UNKNOWN_AILMENTS_DESC\']/@Name}"/>
                         <custom:Switcher x:Name="switchEnableLoadMonsterData" Text="{Binding Mode=OneTime, XPath=/Strings/Client/Settings/String[@ID\=\'ENABLE_LOAD_CUSTOM_DATA\']/@Name}" RestartVisibility="Visible"  Margin="10,0,10,5" ToolTip="{Binding Mode=OneTime, XPath=/Strings/Client/Settings/String[@ID\=\'ENABLE_LOAD_CUSTOM_DATA_DESC\']/@Name}"/>

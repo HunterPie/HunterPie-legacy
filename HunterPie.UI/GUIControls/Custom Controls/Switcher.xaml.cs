@@ -28,7 +28,7 @@ namespace HunterPie.GUIControls.Custom_Controls
         public static readonly DependencyProperty RestartVisibilityProperty =
             DependencyProperty.Register("RestartVisibility", typeof(Visibility), typeof(Switcher));
 
-        public bool IsEnabled
+        public new bool IsEnabled
         {
             get => (bool)GetValue(IsEnabledProperty);
             set => SetValue(IsEnabledProperty, value);

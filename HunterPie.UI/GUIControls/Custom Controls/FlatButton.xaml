@@ -26,7 +26,9 @@
                 x:Name="Button"
                 Padding="5,1" FontFamily="Roboto" FontWeight="Bold" FontSize="16"
                 Foreground="{StaticResource GENERIC_BUTTON_FOREGROUND}"
-                Command="{Binding Path=Command}" DataContext="{Binding RelativeSource={RelativeSource AncestorType=UserControl}}" OverridesDefaultStyle="True">
+                Command="{Binding Path=Command}"
+                CommandParameter="{Binding Path=CommandParameter, ElementName=btn}"
+                DataContext="{Binding RelativeSource={RelativeSource AncestorType=UserControl}}" OverridesDefaultStyle="True">
             <Button.Content>
                 <StackPanel Orientation="Horizontal">
                     <Image x:Name="btnIcon"
