@@ -63,7 +63,7 @@ namespace HunterPie.Core
         {
             get
             {
-                return Members.Where(m => m.IsInParty).Count();
+                return Members.Count(m => m.IsInParty);
             }
         }
         public int MaxSize => 4;
@@ -71,7 +71,8 @@ namespace HunterPie.Core
         public Party()
         {
             // Populates party with empty players
-            for (int i = 0; i < MaxSize; i++) AddMember(new Member());
+            for (int i = 0; i < MaxSize; i++)
+                AddMember(new Member());
         }
 
         ~Party()
@@ -81,10 +82,6 @@ namespace HunterPie.Core
         }
 
         public void AddMember(Member pMember) => Members.Add(pMember);
-
-        public void AddMemberAt(Member pMember, int index) => Members.Insert(index, pMember);
-
-        public void RemoveMemberAt(int index) => Members.RemoveAt(index);
 
         public void Clear() => Members.Clear();
 

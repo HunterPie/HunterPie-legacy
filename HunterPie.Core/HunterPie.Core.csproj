@@ -78,6 +78,7 @@
     <Compile Include="Core\Definitions\sHuntingHornMechanics.cs" />
     <Compile Include="Core\Definitions\sHuntingHornSong.cs" />
     <Compile Include="Core\Definitions\sItem.cs" />
+    <Compile Include="Core\Definitions\sKeyConfig.cs" />
     <Compile Include="Core\Definitions\sMonsterAilment.cs" />
     <Compile Include="Core\Definitions\sMonsterModelData.cs" />
     <Compile Include="Core\Definitions\sMonsterPart.cs" />
@@ -134,6 +135,7 @@
     <Compile Include="Core\Events\WorldEventArgs.cs" />
     <Compile Include="Core\Game.cs" />
     <Compile Include="Core\Input\Hotkey.cs" />
+    <Compile Include="Core\Input\PlayerKeyboard.cs" />
     <Compile Include="Core\Input\VirtualInput.cs" />
     <Compile Include="Core\Input\VKeys.cs" />
     <Compile Include="Core\Integrations\DataExporter\Exporter.cs" />

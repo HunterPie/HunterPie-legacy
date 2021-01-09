@@ -6,8 +6,9 @@ using System.Threading.Tasks;
 
 namespace HunterPie.Core.Input
 {
-    public enum VK : byte
+    public enum VK : uint
     {
+        None = 0x0,
         LeftButton = 0x01,
         RightButton = 0x02,
         Cancel = 0x03,

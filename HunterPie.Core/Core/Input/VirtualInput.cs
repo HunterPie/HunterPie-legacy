@@ -1,8 +1,10 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Linq;
 using System.Runtime.InteropServices;
 using System.Threading;
 using System.Threading.Tasks;
+using HunterPie.Core.Definitions;
 using HunterPie.Logger;
 using HunterPie.Memory;
 using static HunterPie.Memory.WindowsHelper;
@@ -16,6 +18,7 @@ namespace HunterPie.Core.Input
         {
             public char vK;
             public bool isFrameBased;
+            public bool Tap;
             public ulong startedAt;
             public ulong endsAt;
         };
@@ -23,9 +26,18 @@ namespace HunterPie.Core.Input
         private static readonly List<VInput> injectedInputs = new List<VInput>();
         private static bool isPatched = false;
         private static byte[] originalOps;
-        private static byte[] originalForegroundOps;
-        private static bool isInjectingForeground;
         private static bool isInjecting = false;
+        private static bool ignoreKeyboardInput;
+
+        private static char confirmKey
+        {
+            get
+            {
+                sKeyConfig key = PlayerKeyboard.Get(MenuControls.Confirm);
+                return (char)Math.Max(key.MainKey, key.SubKey);
+            }
+        }
+
         private static CancellationTokenSource cToken;
 
         [DllImport("user32.dll")]
@@ -55,25 +67,19 @@ namespace HunterPie.Core.Input
         /// <summary>
         /// Sends input to the game and keeps it pressed for the specified time duration
         /// </summary>
-        /// <param name="code">Virtual Key Code</param>
+        /// <param name="vK">Virtual Key Code</param>
         /// <param name="duration">How long to keep the key pressed</param>
         /// <returns>True when the operation is completed</returns>
-        public static async Task<bool> HoldInputAsync(char code, TimeSpan duration)
+        public static async Task<bool> HoldInputAsync(char vK, TimeSpan duration)
         {
             VInput input = new VInput
             {
-                vK = code,
+                vK = vK,
                 isFrameBased = false,
                 endsAt = (ulong)duration.TotalMilliseconds
             };
-            // Adds our vk to the input list
-            injectedInputs.Add(input);
 
-            // Patch the input reset operations
-            PatchInputReset();
-
-            // Initialize our input injector to update the input array every 16ms
-            InitializeInjector();
+            InjectRawInput(input);
 
             await Task.Delay(duration).ContinueWith((_) =>
             {
@@ -84,18 +90,83 @@ namespace HunterPie.Core.Input
             return true;
         }
 
-        public static async Task<bool> PressInputAsync(char code)
+        /// <summary>
+        /// Injects input into the game for 1 frame
+        /// </summary>
+        /// <param name="vK">Key code</param>
+        /// <returns>True when the operation is done</returns>
+        public static async Task<bool> PressInputAsync(char vK)
         {
             ulong frames = Game.ElapsedFrames;
+            
             VInput input = new VInput
             {
-                vK = code,
+                vK = vK,
                 isFrameBased = true,
                 startedAt = frames,
                 endsAt = frames + 1
             };
+
+            return await InjectRawInput(input);
+        }
+
+        /// <summary>
+        /// Injects input into the game for 2 frames
+        /// </summary>
+        /// <param name="vK">Key code</param>
+        /// <returns>True when the operation is done</returns>
+        public static async Task<bool> TapInputAsync(char vK)
+        {
+            ulong frames = Game.ElapsedFrames;
+            
+            VInput input = new VInput
+            {
+                vK = vK,
+                isFrameBased = true,
+                startedAt = frames,
+                Tap = true,
+                endsAt = frames + 2
+            };
+
+            return await InjectRawInput(input);
+        }
+
+
+        /// <summary>
+        /// Sends a confirmation to the game to accept dialogs.
+        /// </summary>
+        /// <returns>True when the operation is done</returns>
+        public static async Task<bool> SendConfirm()
+        {
+            ulong frames = Game.ElapsedFrames;
+            VInput confirmInput = new VInput()
+            {
+                vK = confirmKey,
+                isFrameBased = true,
+                startedAt = frames,
+                Tap = true,
+                endsAt = frames + 2
+            };
+
+            return await InjectRawInput(confirmInput);
+        }
+
+        /// <summary>
+        /// Sets the Ignore real keyboard input flag, when set to False, HunterPie will not care about
+        /// the real keyboard input, only the injected ones. This is useful when Alt+Tabbing out of the game
+        /// and letting HunterPie do the job in-game.
+        /// </summary>
+        /// <param name="newState">New state for the flag</param>
+        public static void SetIgnoreKeyboard(bool newState)
+        {
+            ignoreKeyboardInput = newState;
+        }
+
+        private static async Task<bool> InjectRawInput(VInput input)
+        {
             
             injectedInputs.Add(input);
+
             PatchInputReset();
 
             InitializeInjector();
@@ -119,26 +190,39 @@ namespace HunterPie.Core.Input
             await Task.Factory.StartNew(() =>
             {
                 byte[] keyboardStates = new byte[32];
+                GetBitShiftedInputs(ref keyboardStates);
+
+                byte[] lastKeyboardState = new byte[32];
+
                 ulong frames = 0;
+
                 List<VInput> removeQueue = new List<VInput>();
 
                 long inputArr = Kernel.ReadMultilevelPtr(Address.GetAddress("BASE") + Address.GetAddress("GAME_INPUT_OFFSET"),
                         Address.GetOffsets("GameInputArrayOffsets"));
-
-                PatchIsWindowForeground();
-
-                while (injectedInputs.Count > 0)
+                
+                while (injectedInputs.Any())
                 {
-                    if ((Game.ElapsedFrames - frames) < 2)
+                    if ((Game.ElapsedFrames - frames) < 1)
                         continue;
-
-                    frames = Game.ElapsedFrames;
 
                     isInjecting = true;
                     
-                    GetBitShiftedInputs(ref keyboardStates);
+                    // Confirmation keys take 2 frames to be processed
+                    if ((Game.ElapsedFrames - frames) < 2)
+                    {
+                        foreach (VInput input in injectedInputs.Where(i => i.Tap))
+                        if (IsKeyDown(ref keyboardStates, input.vK))
+                            RemoveInput(input.vK, ref keyboardStates);
+                    }
 
-                    Kernel.Write(inputArr + 0x20, keyboardStates);
+                    Array.Copy(keyboardStates, lastKeyboardState, keyboardStates.Length);
+
+                    Kernel.Write(inputArr + 0x20, lastKeyboardState);
+
+                    frames = Game.ElapsedFrames;
+
+                    GetBitShiftedInputs(ref keyboardStates);
 
                     for (int i = 0; i < injectedInputs.Count; i++)
                     {
@@ -163,81 +247,48 @@ namespace HunterPie.Core.Input
                 }
 
             }, cToken.Token);
-            UnpatchIsWindowForeground();
             RestoreInputReset();
         }
-
 
         /// <summary>
         /// Injects a input in the inputs array
         /// </summary>
-        /// <param name="code">Virtual key code</param>
+        /// <param name="vK">Virtual key code</param>
         /// <param name="bInputs">byte array with the GetAsyncKeyState states</param>
-        private static void InjectInput(char code, ref byte[] bInputs)
+        private static void InjectInput(char vK, ref byte[] bInputs)
         {
-            int idx = code / 8;
-            byte bitValue = (byte)(1 << (code % 8));
+            int idx = vK / 8;
+            byte bitValue = (byte)(1 << (vK % 8));
             bInputs[idx] |= bitValue;
         }
 
         /// The way how MHW handles input is by having a 32 bytes (256 bits) array
         /// and OR'ing the keys to see if they're pressed or not.
-        private static void GetBitShiftedInputs(ref byte[] bitStates)
+        private static void GetBitShiftedInputs(ref byte[] bInputs)
         {
+            if (ignoreKeyboardInput)
+            {
+                for (int i = 0; i < bInputs.Length; i++)
+                    bInputs[i] = 0;
+
+                return;
+            }
+
             for (byte vK = 0; vK < 0xFF; vK++)
             {
-                bitStates[vK / 8] |= (byte)((byte)(GetAsyncKeyState(vK) & 0x8000) << (vK % 8));
+                bInputs[vK / 8] |= (byte)((byte)(GetAsyncKeyState(vK) & 0x8000) << (vK % 8));
             }
         }
 
-        /// This is required for inputs that need the window to be focused, and should be patched only if the player
-        /// HUD is actually open
-        private static void PatchIsWindowForeground()
+        private static void RemoveInput(char vK, ref byte[] bInputs)
         {
-
-            if (isInjectingForeground)
-                return;
-
-            // mov      [rax+000029AD],sil ; That's what controls whether the game window is focused
-            short instructionsOffset = 0x120;
-            short instructionsLength = 0x7;
-
-            long foregroundFunAddress = Address.GetAddress("BASE") + Address.GetAddress("FUN_GAME_WINDOW");
-
-            originalForegroundOps = Kernel.ReadStructure<byte>(
-                foregroundFunAddress + instructionsOffset,
-                instructionsLength
-            );
-
-            byte[] NOPs = new byte[] { 0x90, 0x90, 0x90, 0x90, 0x90, 0x90, 0x90 };
-
-            if (Kernel.Write(foregroundFunAddress + instructionsOffset, NOPs))
-            {
-                isInjectingForeground = true;
-                long isForegroundFlagPtr = Kernel.Read<long>(Address.GetAddress("BASE") + Address.GetAddress("GAME_WINDOW_INFO_OFFSET"));
-
-                Kernel.Write<byte>(isForegroundFlagPtr + 0x29AD, 0x1);
-            } else
-            {
-                isInjectingForeground = false;
-                Debugger.Error("Failed to patch IsForegroundWindow");
-            }
+            bInputs[vK / 8] &= (byte)(~(1 << (byte)(vK % 8)));
         }
 
-        private static void UnpatchIsWindowForeground()
+        private static bool IsKeyDown(ref byte[] bInputs, char vK)
         {
-            if (!isInjectingForeground)
-                return;
-
-            short instructionsOffset = 0x120;
-
-            long foregroundFunAddress = Address.GetAddress("BASE") + Address.GetAddress("FUN_GAME_WINDOW");
-
-            Kernel.Write(foregroundFunAddress + instructionsOffset, originalForegroundOps);
-            long isForegroundFlagPtr = Kernel.Read<long>(Address.GetAddress("BASE") + Address.GetAddress("GAME_WINDOW_INFO_OFFSET"));
-
-            Kernel.Write<byte>(isForegroundFlagPtr + 0x29AD, 0x0);
-            isInjectingForeground = false;
+            byte extracted = bInputs[vK / 8];
+            return (extracted &= (byte)(1 << (vK % 8))) != 0;
         }
 
         /// Before handling the inputs, MHW also resets their values to default before calling GetAsyncKeyState
@@ -314,8 +365,6 @@ namespace HunterPie.Core.Input
         {
             try
             {
-                if (isInjectingForeground)
-                    UnpatchIsWindowForeground();
 
                 if (originalOps is null || !isPatched)
                     return;
