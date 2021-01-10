@@ -64,7 +64,8 @@ namespace HunterPie
 
         private readonly List<int> registeredHotkeys = new List<int>();
 
-        // Helpers
+        #region Properties
+
         public bool IsPlayerLoggedOn
         {
             get => (bool)GetValue(IsPlayerLoggedOnProperty);
@@ -96,6 +97,8 @@ namespace HunterPie
         }
         public static readonly DependencyProperty IsDraggingProperty =
             DependencyProperty.Register("IsDragging", typeof(bool), typeof(Hunterpie));
+
+        #endregion
 
         public Hunterpie()
         {
@@ -216,7 +219,9 @@ namespace HunterPie
                 }
                 if (justUpdated)
                 {
-                    OpenChangelog();
+                    UnclickButtons(ChangelogBtn.Parent as StackPanel, ChangelogBtn);
+                    ConsolePanel.Children.Clear();
+                    ConsolePanel.Children.Add(Changelog.Instance);
                     return true;
                 }
                 if (latestVersion)
@@ -309,7 +314,7 @@ namespace HunterPie
             {
                 string hotkey = hotkeys[i];
                 Action callback = callbacks[i];
-                if (hotkey == "None")
+                if (hotkey == "None" || hotkey is null)
                 {
                     continue;
                 }
@@ -383,16 +388,16 @@ namespace HunterPie
             // Menu items
             System.Windows.Forms.MenuItem ExitItem = new System.Windows.Forms.MenuItem()
             {
-                Text = "Close"
+                Text = GStrings.GetLocalizationByXPath("/TrayIcon/String[@ID='TRAYICON_CLOSE']")
             };
             ExitItem.Click += OnTrayIconExitClick;
-            System.Windows.Forms.MenuItem SettingsItem = new System.Windows.Forms.MenuItem()
+            System.Windows.Forms.MenuItem settingsItem = new System.Windows.Forms.MenuItem()
             {
-                Text = "Settings"
+                Text = GStrings.GetLocalizationByXPath("/TrayIcon/String[@ID='TRAYICON_SETTINGS']")
             };
-            SettingsItem.Click += OnTrayIconSettingsClick;
+            settingsItem.Click += OnTrayIconSettingsClick;
 
-            trayIcon.ContextMenu.MenuItems.AddRange(new System.Windows.Forms.MenuItem[] { SettingsItem, ExitItem });
+            trayIcon.ContextMenu.MenuItems.AddRange(new [] { settingsItem, ExitItem });
         }
 
         private void OnTrayIconSettingsClick(object sender, EventArgs e)
@@ -400,7 +405,11 @@ namespace HunterPie
             Show();
             WindowState = WindowState.Normal;
             Focus();
-            OpenSettings();
+
+            ConsolePanel.Children.Clear();
+            ConsolePanel.Children.Add(Settings.Instance);
+            UnclickButtons(SettingsBtn.Parent as StackPanel, SettingsBtn);
+            Settings.RefreshSettingsUI();
         }
 
         private void OnTrayIconExitClick(object sender, EventArgs e) => Close();
@@ -591,7 +600,6 @@ namespace HunterPie
                         ShowTime = 11
                     };
                     NotificationsPanel.Children.Add(notification);
-                    notification.ShowNotification();
                 }
                 Settings.RefreshSettingsUI();
             }));
@@ -776,51 +784,6 @@ namespace HunterPie
 
         #endregion
 
-        #region Sub Windows
-        /* Open sub windows */
-
-        private void OpenDebugger()
-        {
-            SwitchButtonOn(BUTTON_CONSOLE);
-            SwitchButtonOff(BUTTON_CHANGELOG);
-            SwitchButtonOff(BUTTON_SETTINGS);
-            SwitchButtonOff(BUTTON_PLUGINS);
-            ConsolePanel.Children.Clear();
-            ConsolePanel.Children.Add(DebuggerControl.Instance);
-        }
-
-        private void OpenSettings()
-        {
-            SwitchButtonOff(BUTTON_CONSOLE);
-            SwitchButtonOff(BUTTON_CHANGELOG);
-            SwitchButtonOn(BUTTON_SETTINGS);
-            SwitchButtonOff(BUTTON_PLUGINS);
-            ConsolePanel.Children.Clear();
-            ConsolePanel.Children.Add(Settings.Instance);
-            Settings.RefreshSettingsUI();
-        }
-
-        private void OpenPlugins()
-        {
-            SwitchButtonOff(BUTTON_CONSOLE);
-            SwitchButtonOff(BUTTON_CHANGELOG);
-            SwitchButtonOff(BUTTON_SETTINGS);
-            SwitchButtonOn(BUTTON_PLUGINS);
-            ConsolePanel.Children.Clear();
-            ConsolePanel.Children.Add(PluginDisplay.Instance);
-        }
-
-        private void OpenChangelog()
-        {
-            SwitchButtonOff(BUTTON_CONSOLE);
-            SwitchButtonOn(BUTTON_CHANGELOG);
-            SwitchButtonOff(BUTTON_SETTINGS);
-            SwitchButtonOff(BUTTON_PLUGINS);
-            ConsolePanel.Children.Clear();
-            ConsolePanel.Children.Add(Changelog.Instance);
-        }
-        #endregion
-
         #region Animations
         private void SwitchButtonOn(StackPanel buttonActive)
         {
@@ -845,7 +808,10 @@ namespace HunterPie
             Top = UserSettings.PlayerConfig.HunterPie.PosY;
             Left = UserSettings.PlayerConfig.HunterPie.PosX;
 
-            OpenDebugger();
+            ConsolePanel.Children.Clear();
+            ConsolePanel.Children.Add(DebuggerControl.Instance);
+            UnclickButtons(ConsoleBtn.Parent as StackPanel, ConsoleBtn);
+
             // Initialize everything under this line
             if (!CheckIfUpdateEnableAndStart()) return;
 
@@ -959,98 +925,7 @@ namespace HunterPie
             if (!isUpdating)
                 UserSettings.SaveNewConfig();
         }
-
-        private void OnGithubButtonClick(object sender, MouseButtonEventArgs e) => Process.Start("https://github.com/Haato3o/HunterPie");
-
-        private void OnConsoleButtonClick(object sender, MouseButtonEventArgs e) => OpenDebugger();
-
-        private void OnSettingsButtonClick(object sender, MouseButtonEventArgs e) => OpenSettings();
-
-        private void OnPluginsButtonClick(object sender, MouseButtonEventArgs e) => OpenPlugins();
-
-        private void OnChangelogButtonClick(object sender, MouseButtonEventArgs e) => OpenChangelog();
-
-        private void OnUploadBuildButtonClick(object sender, MouseButtonEventArgs e)
-        {
-            CNotification notification = new CNotification()
-            {
-                Text = GStrings.GetLocalizationByXPath("/Notifications/String[@ID='MESSAGE_BUILD_UPLOADED']"),
-                NIcon = FindResource("ICON_BUILD") as ImageSource,
-                FirstButtonImage = FindResource("ICON_COPY") as ImageSource,
-                FirstButtonText = GStrings.GetLocalizationByXPath("/Settings/String[@ID='STATIC_COPYCLIPBOARD']"),
-                FirstButtonVisibility = Visibility.Visible,
-                SecondButtonImage = FindResource("ICON_LINK") as ImageSource,
-                SecondButtonText = GStrings.GetLocalizationByXPath("/Notifications/String[@ID='STATIC_OPENDEFAULTBROWSER']"),
-                SecondButtonVisibility = Visibility.Visible,
-                Callback1 = new Action(() =>
-                {
-                    string BuildLink = Honey.LinkStructureBuilder(game.Player.GetPlayerGear(), true);
-                    Clipboard.SetData(DataFormats.Text, BuildLink);
-                }),
-                Callback2 = new Action(() =>
-                {
-                    string BuildLink = Honey.LinkStructureBuilder(game.Player.GetPlayerGear(), true);
-                    Process.Start(BuildLink);
-                }),
-                ShowTime = 11
-            };
-            NotificationsPanel.Children.Add(notification);
-            notification.ShowNotification();
-        }
-
-        private void OnExportGearButtonClick(object sender, MouseButtonEventArgs e)
-        {
-            // Task, so it doesnt freeze the UI
-            Task.Factory.StartNew(() =>
-            {
-
-                sItem[] decoration = game.Player.GetDecorationsFromStorage();
-                sGear[] gears = game.Player.GetGearFromStorage();
-
-                string exported = Honey.ExportDecorationsToHoney(decoration, gears);
-
-                if (dataExporter.ExportCustomData("Decorations-HoneyHuntersWorld.txt", exported))
-                {
-                    Debugger.Warn("Exported decorations to ./DataExport/Decorations-HoneyHuntersWorld.txt!");
-                }
-                else
-                {
-                    Debugger.Error("Failed to export decorations. Make sure HunterPie has permission to create/write to files.");
-                }
-
-                exported = Honey.ExportCharmsToHoney(gears);
-                if (dataExporter.ExportCustomData("Charms-HoneyHuntersWorld.txt", exported))
-                {
-                    Debugger.Warn("Exported charms to ./DataExport/Charms-HoneyHuntersWorld.txt!");
-                }
-                else
-                {
-                    Debugger.Error("Failed to export charms. Make sure HunterPie has permission to create/write to files.");
-                }
-                Dispatcher.Invoke(() =>
-                {
-                    CNotification notification = new CNotification()
-                    {
-                        NIcon = FindResource("ICON_DECORATION") as ImageSource,
-                        Text = GStrings.GetLocalizationByXPath("/Notifications/String[@ID='MESSAGE_GEAR_EXPORTED']"),
-                        FirstButtonImage = FindResource("ICON_LINK") as ImageSource,
-                        FirstButtonText = GStrings.GetLocalizationByXPath("/Notifications/String[@ID='STATIC_OPENFOLDER']"),
-                        FirstButtonVisibility = Visibility.Visible,
-                        SecondButtonVisibility = Visibility.Collapsed,
-                        ShowTime = 11,
-                        Callback1 = new Action(() =>
-                        {
-                            Process.Start(dataExporter.ExportPath);
-                        })
-                    };
-                    NotificationsPanel.Children.Add(notification);
-                    notification.ShowNotification();
-                });
-            });
-        }
-
-        private void OnDiscordButtonClick(object sender, MouseButtonEventArgs e) => Process.Start("https://discord.gg/5pdDq4Q");
-
+        
         private void OnLaunchGameButtonClick(object sender, RoutedEventArgs e) => LaunchGame();
 
         private void LaunchGame()
@@ -1138,7 +1013,6 @@ namespace HunterPie
                 ShowTime = 20
             };
             NotificationsPanel.Children.Add(notification);
-            notification.ShowNotification();
         }
 
         #endregion
@@ -1185,7 +1059,6 @@ namespace HunterPie
                             ShowTime = 15
                         };
                         NotificationsPanel.Children.Add(notification);
-                        notification.ShowNotification();
                         break;
 
                     case UpdateResult.Failed:
@@ -1206,7 +1079,6 @@ namespace HunterPie
                             ShowTime = 5
                         };
                         NotificationsPanel.Children.Add(uptodateNotification);
-                        uptodateNotification.ShowNotification();
                         return modPath;
                 }
             }
@@ -1259,6 +1131,141 @@ namespace HunterPie
         private void window_DragLeave(object sender, DragEventArgs e)
         {
             IsDragging = false;
+        }
+
+        private void OnDebuggerButtonClick(object sender, MouseButtonEventArgs e)
+        {
+            SideButton snd = (SideButton)sender;
+            StackPanel panel = snd.Parent as StackPanel;
+            UnclickButtons(panel, snd);
+
+            ConsolePanel.Children.Clear();
+            ConsolePanel.Children.Add(DebuggerControl.Instance);
+        }
+
+        private void OnSettingsButtonClick(object sender, MouseButtonEventArgs e)
+        {
+            SideButton snd = (SideButton)sender;
+            StackPanel panel = snd.Parent as StackPanel;
+            UnclickButtons(panel, snd);
+
+            ConsolePanel.Children.Clear();
+            ConsolePanel.Children.Add(Settings.Instance);
+            Settings.RefreshSettingsUI();
+        }
+
+        private void OnPluginsButtonClick(object sender, MouseButtonEventArgs e)
+        {
+            SideButton snd = (SideButton)sender;
+            StackPanel panel = snd.Parent as StackPanel;
+            UnclickButtons(panel, snd);
+
+            ConsolePanel.Children.Clear();
+            ConsolePanel.Children.Add(PluginDisplay.Instance);
+        }
+
+        private void OnBuildUploadButtonClick(object sender, MouseButtonEventArgs e)
+        {
+            CNotification notification = new CNotification()
+            {
+                Text = GStrings.GetLocalizationByXPath("/Notifications/String[@ID='MESSAGE_BUILD_UPLOADED']"),
+                NIcon = FindResource("ICON_BUILD") as ImageSource,
+                FirstButtonImage = FindResource("ICON_COPY") as ImageSource,
+                FirstButtonText = GStrings.GetLocalizationByXPath("/Settings/String[@ID='STATIC_COPYCLIPBOARD']"),
+                FirstButtonVisibility = Visibility.Visible,
+                SecondButtonImage = FindResource("ICON_LINK") as ImageSource,
+                SecondButtonText = GStrings.GetLocalizationByXPath("/Notifications/String[@ID='STATIC_OPENDEFAULTBROWSER']"),
+                SecondButtonVisibility = Visibility.Visible,
+                Callback1 = new Action(() =>
+                {
+                    string buildLink = Honey.LinkStructureBuilder(game.Player.GetPlayerGear(), true);
+                    Clipboard.SetData(DataFormats.Text, buildLink);
+                }),
+                Callback2 = new Action(() =>
+                {
+                    string buildLink = Honey.LinkStructureBuilder(game.Player.GetPlayerGear(), true);
+                    Process.Start(buildLink);
+                }),
+                ShowTime = 11
+            };
+            NotificationsPanel.Children.Add(notification);
+        }
+
+        private async void OnExportGearButtonClick(object sender, MouseButtonEventArgs e)
+        {
+            await Task.Factory.StartNew(() =>
+            {
+
+                sItem[] decoration = game.Player.GetDecorationsFromStorage();
+                sGear[] gears = game.Player.GetGearFromStorage();
+
+                string exported = Honey.ExportDecorationsToHoney(decoration, gears);
+
+                if (dataExporter.ExportCustomData("Decorations-HoneyHuntersWorld.txt", exported))
+                {
+                    Debugger.Warn("Exported decorations to ./DataExport/Decorations-HoneyHuntersWorld.txt!");
+                }
+                else
+                {
+                    Debugger.Error("Failed to export decorations. Make sure HunterPie has permission to create/write to files.");
+                }
+
+                exported = Honey.ExportCharmsToHoney(gears);
+                if (dataExporter.ExportCustomData("Charms-HoneyHuntersWorld.txt", exported))
+                {
+                    Debugger.Warn("Exported charms to ./DataExport/Charms-HoneyHuntersWorld.txt!");
+                }
+                else
+                {
+                    Debugger.Error("Failed to export charms. Make sure HunterPie has permission to create/write to files.");
+                }
+                Dispatcher.Invoke(() =>
+                {
+                    CNotification notification = new CNotification()
+                    {
+                        NIcon = FindResource("ICON_DECORATION") as ImageSource,
+                        Text = GStrings.GetLocalizationByXPath("/Notifications/String[@ID='MESSAGE_GEAR_EXPORTED']"),
+                        FirstButtonImage = FindResource("ICON_LINK") as ImageSource,
+                        FirstButtonText = GStrings.GetLocalizationByXPath("/Notifications/String[@ID='STATIC_OPENFOLDER']"),
+                        FirstButtonVisibility = Visibility.Visible,
+                        SecondButtonVisibility = Visibility.Collapsed,
+                        ShowTime = 11,
+                        Callback1 = new Action(() =>
+                        {
+                            Process.Start(dataExporter.ExportPath);
+                        })
+                    };
+                    NotificationsPanel.Children.Add(notification);
+                });
+            });
+        }
+
+        private void OnChangelogButtonClick(object sender, MouseButtonEventArgs e)
+        {
+            SideButton snd = (SideButton)sender;
+            StackPanel panel = snd.Parent as StackPanel;
+            UnclickButtons(panel, snd);
+
+            ConsolePanel.Children.Clear();
+            ConsolePanel.Children.Add(Changelog.Instance);
+        }
+
+        private void OnDiscordButtonClick(object sender, MouseButtonEventArgs e)
+        {
+            Process.Start("https://discord.gg/5pdDq4Q");
+        }
+
+        private void OnGithubButtonClick(object sender, MouseButtonEventArgs e)
+        {
+            Process.Start("https://github.com/Haato3o/HunterPie");
+        }
+
+        private static void UnclickButtons(StackPanel parent, SideButton exception = null)
+        {
+            foreach (SideButton btn in parent.Children.Cast<SideButton>())
+            {
+                btn.IsClicked = btn == exception;
+            }
         }
     }
 }

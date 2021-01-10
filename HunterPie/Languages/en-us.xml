@@ -451,6 +451,10 @@
   </Abnormalities>
   <!-- Client localization strings -->
   <Client>
+    <TrayIcon>
+      <String ID="TRAYICON_SETTINGS" Name="Settings"/>
+      <String ID="TRAYICON_CLOSE" Name="Close"/>
+    </TrayIcon>
     <Console>
       <String ID="CONSOLE_CONSOLE" Name="CONSOLE"/>
       <String ID="CONSOLE_SETTINGS" Name="SETTINGS"/>

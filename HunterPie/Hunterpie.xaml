@@ -1,6 +1,7 @@
 ﻿<Window xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         x:Name="window" x:Class="HunterPie.Hunterpie"
+        xmlns:custom="clr-namespace:HunterPie.GUIControls.Custom_Controls;assembly=HunterPie.UI"
         Title="HunterPie" MinWidth="800" MinHeight="500" WindowStyle="None" Closing="OnWindowClosing" AllowsTransparency="True" BorderBrush="{StaticResource BUTTON_CLOSEWINDOW_BACKGROUND}" BorderThickness="1" Background="{x:Null}" ResizeMode="CanResize" SizeChanged="OnWindowSizeChange" DataContext="{StaticResource Localization}" Initialized="OnWindowInitialized" PreviewKeyDown="OnKeyDown" AllowDrop="True" DragDrop.Drop="window_Drop" DragEnter="window_DragEnter" DragLeave="window_DragLeave">
     <WindowChrome.WindowChrome>
         <WindowChrome CaptionHeight="0"
@@ -131,66 +132,60 @@
 
             <!-- Side bar -->
             <StackPanel Orientation="Vertical" HorizontalAlignment="Left" Width="50" Margin="0,152,0,0" Background="{StaticResource CONSOLE_SIDEBAR_BACKGROUND}" ClipToBounds="True">
-                <StackPanel x:Name="BUTTON_CONSOLE" Style="{StaticResource STYLE_SIDEBARBUTTONS}" Background="{StaticResource BUTTON_COMMONBUTTON_BACKGROUND}" Cursor="Hand"  Width="300" Height="40" Orientation="Horizontal" HorizontalAlignment="Left" MouseDown="OnConsoleButtonClick" VerticalAlignment="Top">
-                    <Border BorderBrush="{StaticResource BUTTON_COMMONBUTTON_BORDER}" Width="4" BorderThickness="0,0,0,0" />
-                    <Image Panel.ZIndex="1" Source="{StaticResource ICON_CONSOLE}" HorizontalAlignment="Center" Width="25" VerticalAlignment="Center" Margin="6,0,0,0"/>
-                    <TextBlock DataContext="{StaticResource Localization}" TextTrimming="CharacterEllipsis" Padding="20,0,0,0" VerticalAlignment="Center" FontSize="16" Foreground="{StaticResource BUTTON_COMMONBUTTON_FOREGROUND}" FontWeight="Bold" FontFamily="Roboto">
-                        <TextBlock.Text>
-                            <Binding Mode="OneTime" XPath="Console/String[@ID='CONSOLE_CONSOLE']/@Name"/>
-                        </TextBlock.Text>
-                    </TextBlock>
-                </StackPanel>
-                <StackPanel x:Name="BUTTON_SETTINGS" Style="{StaticResource STYLE_SIDEBARBUTTONS}"  Background="{StaticResource BUTTON_COMMONBUTTON_BACKGROUND}" Cursor="Hand"  Width="300" Height="40" Orientation="Horizontal" HorizontalAlignment="Left" MouseDown="OnSettingsButtonClick" VerticalAlignment="Top">
-                    <Border BorderBrush="{StaticResource BUTTON_COMMONBUTTON_BORDER}" Width="4" BorderThickness="0,0,0,0" />
-                    <Image Panel.ZIndex="1" Source="{StaticResource ICON_SETTINGS}" HorizontalAlignment="Center" Width="25" VerticalAlignment="Center" Margin="6,0,0,0"/>
-                    <TextBlock DataContext="{StaticResource Localization}" TextTrimming="CharacterEllipsis" Padding="20,0,0,0" VerticalAlignment="Center" FontSize="16" Foreground="{StaticResource BUTTON_COMMONBUTTON_FOREGROUND}" FontWeight="Bold" FontFamily="Roboto">
-                        <TextBlock.Text>
-                            <Binding Mode="OneTime" XPath="Console/String[@ID='CONSOLE_SETTINGS']/@Name"/>
-                        </TextBlock.Text>
-                    </TextBlock>
-                </StackPanel>
-                <StackPanel x:Name="BUTTON_PLUGINS" Style="{StaticResource STYLE_SIDEBARBUTTONS}"  Background="{StaticResource BUTTON_COMMONBUTTON_BACKGROUND}" Cursor="Hand"  Width="300" Height="40" Orientation="Horizontal" HorizontalAlignment="Left" MouseDown="OnPluginsButtonClick" VerticalAlignment="Top">
-                    <Border BorderBrush="{StaticResource BUTTON_COMMONBUTTON_BORDER}" Width="4" BorderThickness="0,0,0,0" />
-                    <Image Panel.ZIndex="1" Source="{StaticResource ICON_PLUGIN}" HorizontalAlignment="Center" Width="24" VerticalAlignment="Center" Margin="9,8,0,8"/>
-                    <TextBlock DataContext="{StaticResource Localization}" Text="{Binding Mode=OneTime, XPath=/Strings/Client/Console/String[@ID\=\'CONSOLE_PLUGINS\']/@Name, FallbackValue='PLUGINS'}" TextTrimming="CharacterEllipsis" Padding="20,0,0,0" VerticalAlignment="Center" FontSize="16" Foreground="{StaticResource BUTTON_COMMONBUTTON_FOREGROUND}" FontWeight="Bold" FontFamily="Roboto"/>
-                </StackPanel>
-                <StackPanel x:Name="BUTTON_UPLOADBUILD" Style="{StaticResource TogglableButton}" Background="{StaticResource BUTTON_COMMONBUTTON_BACKGROUND}" Cursor="Hand"  Width="300" Height="40" Orientation="Horizontal" HorizontalAlignment="Left" MouseDown="OnUploadBuildButtonClick" VerticalAlignment="Top">
-                    <Image Panel.ZIndex="1" Source="{StaticResource ICON_BUILD}" HorizontalAlignment="Center" Width="25" VerticalAlignment="Center" Margin="9,8,0,8"/>
-                    <TextBlock DataContext="{StaticResource Localization}" TextTrimming="CharacterEllipsis" Padding="20,0,0,0" VerticalAlignment="Center" FontSize="16" Foreground="{StaticResource BUTTON_COMMONBUTTON_FOREGROUND}" FontWeight="Bold" FontFamily="Roboto">
-                        <TextBlock.Text>
-                            <Binding Mode="OneTime" XPath="Console/String[@ID='CONSOLE_UPLOADBUILD']/@Name"/>
-                        </TextBlock.Text>
-                    </TextBlock>
-                </StackPanel>
-                <StackPanel x:Name="BUTTON_EXPORTGEAR" Style="{StaticResource TogglableButton}"  Background="{StaticResource BUTTON_COMMONBUTTON_BACKGROUND}" Cursor="Hand"  Width="300" Height="40" Orientation="Horizontal" HorizontalAlignment="Left" MouseDown="OnExportGearButtonClick" VerticalAlignment="Top">
-                    <Image Panel.ZIndex="1" Source="{StaticResource ICON_DECORATION}" HorizontalAlignment="Center" Width="25" VerticalAlignment="Center" Margin="9,8,0,8"/>
-                    <TextBlock DataContext="{StaticResource Localization}" TextTrimming="CharacterEllipsis" Padding="20,0,0,0" VerticalAlignment="Center" FontSize="16" Foreground="{StaticResource BUTTON_COMMONBUTTON_FOREGROUND}" FontWeight="Bold" FontFamily="Roboto" Text="{Binding Mode=OneTime, XPath=Console/String[@ID\=\'CONSOLE_EXPORTGEAR\']/@Name, FallbackValue='EXPORT GEAR'}"/>
-                </StackPanel>
-                <StackPanel x:Name="BUTTON_CHANGELOG" Style="{StaticResource STYLE_SIDEBARBUTTONS}"  Background="{StaticResource BUTTON_COMMONBUTTON_BACKGROUND}" Cursor="Hand"  Width="300" Height="40" Orientation="Horizontal" HorizontalAlignment="Left" MouseDown="OnChangelogButtonClick" VerticalAlignment="Top">
-                    <Border BorderBrush="{StaticResource BUTTON_COMMONBUTTON_BORDER}" Width="4" BorderThickness="0,0,0,0" />
-                    <Image Panel.ZIndex="1" Source="{StaticResource ICON_CHANGELOG}" HorizontalAlignment="Center" Width="25" VerticalAlignment="Center" Margin="6,0,0,0"/>
-                    <TextBlock DataContext="{StaticResource Localization}" Padding="20,0,0,0" TextTrimming="CharacterEllipsis" VerticalAlignment="Center" FontSize="16" Foreground="{StaticResource BUTTON_COMMONBUTTON_FOREGROUND}" FontWeight="Bold" FontFamily="Roboto">
-                        <TextBlock.Text>
-                            <Binding Mode="OneTime" XPath="Console/String[@ID='CONSOLE_CHANGELOG']/@Name"/>
-                        </TextBlock.Text>
-                    </TextBlock>
-                </StackPanel>
-                <StackPanel Style="{StaticResource STYLE_SIDEBARBUTTONS}"  Background="{StaticResource BUTTON_COMMONBUTTON_BACKGROUND}" Cursor="Hand"  Width="300" Height="40" Orientation="Horizontal" HorizontalAlignment="Left" MouseDown="OnDiscordButtonClick" VerticalAlignment="Top">
-                    <Image Panel.ZIndex="1" Source="{StaticResource ICON_DISCORD}" HorizontalAlignment="Center" Width="25" VerticalAlignment="Center" Margin="10,0,0,0"/>
-                    <TextBlock DataContext="{StaticResource Localization}" TextTrimming="CharacterEllipsis" Padding="20,0,0,0" VerticalAlignment="Center" FontSize="16" Foreground="{StaticResource BUTTON_COMMONBUTTON_FOREGROUND}" FontWeight="Bold" FontFamily="Roboto">
-                        <TextBlock.Text>
-                            <Binding Mode="OneTime" XPath="Console/String[@ID='CONSOLE_DISCORD']/@Name"/>
-                        </TextBlock.Text>
-                    </TextBlock>
-                </StackPanel>
-                <StackPanel Style="{StaticResource STYLE_SIDEBARBUTTONS}"  Background="{StaticResource BUTTON_COMMONBUTTON_BACKGROUND}" Cursor="Hand"  Width="300" Height="40" Orientation="Horizontal" HorizontalAlignment="Left" MouseDown="OnGithubButtonClick" VerticalAlignment="Top">
-                    <Image Panel.ZIndex="1" Source="{StaticResource ICON_GITHUB}" HorizontalAlignment="Center" Width="25" VerticalAlignment="Center" Margin="10,0,0,0"/>
-                    <TextBlock DataContext="{StaticResource Localization}" TextTrimming="CharacterEllipsis" Padding="20,0,0,0" VerticalAlignment="Center" FontSize="16" Foreground="{StaticResource BUTTON_COMMONBUTTON_FOREGROUND}" FontWeight="Bold" FontFamily="Roboto">
-                        <TextBlock.Text>
-                            <Binding Mode="OneTime" XPath="Console/String[@ID='CONSOLE_GITHUB']/@Name"/>
-                        </TextBlock.Text>
-                    </TextBlock>
-                </StackPanel>
+                <custom:SideButton
+                    IsClicked="True"
+                    x:Name="ConsoleBtn"
+                    Height="40"
+                    Width="300"
+                    Text="{Binding Mode=OneTime, XPath=/Strings/Client/Console/String[@ID\=\'CONSOLE_CONSOLE\']/@Name}"
+                    Icon="{StaticResource ICON_CONSOLE}"
+                    MouseLeftButtonDown="OnDebuggerButtonClick"/>
+                <custom:SideButton
+                    x:Name="SettingsBtn"
+                    Height="40"
+                    Width="300"
+                    Text="{Binding Mode=OneTime, XPath=/Strings/Client/Console/String[@ID\=\'CONSOLE_SETTINGS\']/@Name}"
+                    Icon="{StaticResource ICON_SETTINGS}"
+                    MouseLeftButtonDown="OnSettingsButtonClick"/>
+                <custom:SideButton
+                    Height="40"
+                    Width="300"
+                    Text="{Binding Mode=OneTime, XPath=/Strings/Client/Console/String[@ID\=\'CONSOLE_PLUGINS\']/@Name}"
+                    Icon="{StaticResource ICON_PLUGIN}"
+                    MouseLeftButtonDown="OnPluginsButtonClick"/>
+                <custom:SideButton
+                    Height="40"
+                    Width="300"
+                    Text="{Binding Mode=OneTime, XPath=/Strings/Client/Console/String[@ID\=\'CONSOLE_UPLOADBUILD\']/@Name}"
+                    Icon="{StaticResource ICON_BUILD}"
+                    IsEnabled="{Binding IsPlayerLoggedOn, ElementName=window}"
+                    MouseLeftButtonDown="OnBuildUploadButtonClick"/>
+                <custom:SideButton
+                    Height="40"
+                    Width="300"
+                    Text="{Binding Mode=OneTime, XPath=/Strings/Client/Console/String[@ID\=\'CONSOLE_EXPORTGEAR\']/@Name}"
+                    Icon="{StaticResource ICON_DECORATION}"
+                    IsEnabled="{Binding IsPlayerLoggedOn, ElementName=window}"
+                    MouseLeftButtonDown="OnExportGearButtonClick"/>
+                <custom:SideButton
+                    x:Name="ChangelogBtn"
+                    Height="40"
+                    Width="300"
+                    Text="{Binding Mode=OneTime, XPath=/Strings/Client/Console/String[@ID\=\'CONSOLE_CHANGELOG\']/@Name}"
+                    Icon="{StaticResource ICON_CHANGELOG}"
+                    MouseLeftButtonDown="OnChangelogButtonClick"/>
+                <custom:SideButton
+                    Height="40"
+                    Width="300"
+                    Text="{Binding Mode=OneTime, XPath=/Strings/Client/Console/String[@ID\=\'CONSOLE_DISCORD\']/@Name}"
+                    Icon="{StaticResource ICON_DISCORD}"
+                    MouseLeftButtonDown="OnDiscordButtonClick"/>
+                <custom:SideButton
+                    Height="40"
+                    Width="300"
+                    Text="{Binding Mode=OneTime, XPath=/Strings/Client/Console/String[@ID\=\'CONSOLE_GITHUB\']/@Name}"
+                    Icon="{StaticResource ICON_GITHUB}"
+                    MouseLeftButtonDown="OnGithubButtonClick"/>
                 <StackPanel.Style>
                     <Style TargetType="StackPanel">
                         <Style.Triggers>
