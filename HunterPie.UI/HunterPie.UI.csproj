@@ -94,6 +94,9 @@
     <Compile Include="GUIControls\Custom Controls\PositionControl.xaml.cs">
       <DependentUpon>PositionControl.xaml</DependentUpon>
     </Compile>
+    <Compile Include="GUIControls\Custom Controls\SideButton.xaml.cs">
+      <DependentUpon>SideButton.xaml</DependentUpon>
+    </Compile>
     <Compile Include="GUIControls\Custom Controls\Switcher.xaml.cs">
       <DependentUpon>Switcher.xaml</DependentUpon>
     </Compile>
@@ -279,6 +282,10 @@
     <Page Include="GUIControls\Custom Controls\PositionControl.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
+    </Page>
+    <Page Include="GUIControls\Custom Controls\SideButton.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="GUIControls\Custom Controls\Switcher.xaml">
       <Generator>MSBuild:Compile</Generator>

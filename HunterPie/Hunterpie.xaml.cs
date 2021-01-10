@@ -36,6 +36,7 @@ using System.Reflection;
 using System.Threading;
 using HunterPie.Core.Monsters;
 using HunterPie.Core.Native;
+using Image = System.Drawing.Image;
 
 namespace HunterPie
 {
@@ -377,27 +378,24 @@ namespace HunterPie
         #region TRAY ICON
         private void InitializeTrayIcon()
         {
-            trayIcon = new TrayIcon();
             // Tray icon itself
-            trayIcon.NotifyIcon.BalloonTipTitle = "HunterPie";
-            trayIcon.NotifyIcon.Text = "HunterPie";
-            trayIcon.NotifyIcon.Icon = Properties.Resources.LOGO_HunterPie;
-            trayIcon.NotifyIcon.Visible = true;
-            trayIcon.NotifyIcon.MouseDoubleClick += OnTrayIconClick;
 
-            // Menu items
-            System.Windows.Forms.MenuItem ExitItem = new System.Windows.Forms.MenuItem()
-            {
-                Text = GStrings.GetLocalizationByXPath("/TrayIcon/String[@ID='TRAYICON_CLOSE']")
-            };
-            ExitItem.Click += OnTrayIconExitClick;
-            System.Windows.Forms.MenuItem settingsItem = new System.Windows.Forms.MenuItem()
-            {
-                Text = GStrings.GetLocalizationByXPath("/TrayIcon/String[@ID='TRAYICON_SETTINGS']")
-            };
+            trayIcon = new TrayIcon(
+                "HunterPie",
+                "HunterPie",
+                Properties.Resources.LOGO_HunterPie,
+                OnTrayIconClick
+            );
+
+            // Settings button
+            var settingsItem = trayIcon.AddItem(GStrings.GetLocalizationByXPath("/TrayIcon/String[@ID='TRAYICON_SETTINGS']"));
             settingsItem.Click += OnTrayIconSettingsClick;
 
-            trayIcon.ContextMenu.MenuItems.AddRange(new [] { settingsItem, ExitItem });
+            // Close button
+            var closeItem = trayIcon.AddItem(GStrings.GetLocalizationByXPath("/TrayIcon/String[@ID='TRAYICON_CLOSE']"));
+            closeItem.Click += OnTrayIconExitClick;
+
+            
         }
 
         private void OnTrayIconSettingsClick(object sender, EventArgs e)
@@ -894,13 +892,7 @@ namespace HunterPie
             DebuggerControl.DumpLog();
 
             // Dispose tray icon
-            if (trayIcon != null)
-            {
-                trayIcon.NotifyIcon.Click -= OnTrayIconClick;
-                trayIcon.ContextMenu.MenuItems[0].Click -= OnTrayIconSettingsClick;
-                trayIcon.ContextMenu.MenuItems[1].Click -= OnTrayIconExitClick;
-                trayIcon.Dispose();
-            }
+            trayIcon?.Dispose();
 
             // Dispose stuff & stop scanning threads
             overlay?.Dispose();

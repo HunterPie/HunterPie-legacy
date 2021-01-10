@@ -46,7 +46,13 @@ namespace HunterPie.GUIControls
 
         private void OnLoaded(object sender, RoutedEventArgs e)
         {
-            string language = UserSettings.PlayerConfig.HunterPie.Language.Split('\\').LastOrDefault().Replace(".xml", "");
+            string language;
+
+            if (UserSettings.PlayerConfig.HunterPie.Language is null)
+                language = "en-us";
+            else
+                language = UserSettings.PlayerConfig.HunterPie.Language.Split('\\').Last().Replace(".xml", "");
+
             string changelogPath = Path.Combine(AppDomain.CurrentDomain.BaseDirectory, $"Changelog\\changelog-{language}.md");
             if (!File.Exists(changelogPath))
             {

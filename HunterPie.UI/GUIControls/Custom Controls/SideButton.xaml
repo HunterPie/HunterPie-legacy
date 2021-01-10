@@ -1,0 +1,80 @@
+﻿<UserControl x:Class="HunterPie.GUIControls.Custom_Controls.SideButton"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             mc:Ignorable="d"
+             x:Name="SideButtonControl"
+             Background="{StaticResource BUTTON_COMMONBUTTON_BACKGROUND}"
+             Height="40" Width="300">
+    <UserControl.Resources>
+        <ResourceDictionary>
+            <Style x:Key="SideButtonBorderStyle" TargetType="Border">
+                <Style.Triggers>
+                    <DataTrigger Binding="{Binding IsClicked, ElementName=SideButtonControl}" Value="True">
+                        <Setter Property="BorderThickness" Value="4,0,0,0"/>
+                    </DataTrigger>
+                    <DataTrigger Binding="{Binding IsClicked, ElementName=SideButtonControl}" Value="False">
+                        <Setter Property="BorderThickness" Value="0,0,0,0"/>
+                    </DataTrigger>
+                </Style.Triggers>
+            </Style>
+        </ResourceDictionary>
+    </UserControl.Resources>
+    <Grid>
+         <StackPanel Orientation="Horizontal">
+             <Border
+                 BorderBrush="{StaticResource CONSOLE_ACCENT_COLOR}"
+                 Width="4"
+                 Style="{StaticResource SideButtonBorderStyle}"/>
+             <Image
+                 Source="{Binding Icon, RelativeSource={RelativeSource AncestorType=UserControl}}"
+                 Margin="6,0,0,0"
+                 Width="25"/>
+             <TextBlock
+                 Text="{Binding Text, RelativeSource={RelativeSource AncestorType=UserControl}}"
+                 TextTrimming="CharacterEllipsis"
+                 Padding="20,0,0,0"
+                 VerticalAlignment="Center"
+                 FontSize="16"
+                 Foreground="{StaticResource BUTTON_COMMONBUTTON_FOREGROUND}"
+                 FontWeight="Bold"
+                 FontFamily="Roboto, Segoe UI"/>
+         </StackPanel>   
+    </Grid>
+    <UserControl.Style>
+        <Style TargetType="UserControl">
+            <Style.Triggers>
+                <Trigger Property="IsEnabled" Value="False">
+                    <Trigger.EnterActions>
+                        <RemoveStoryboard BeginStoryboardName="hoverAnim"/>
+                        <RemoveStoryboard BeginStoryboardName="noHoverAnim"/>
+                    </Trigger.EnterActions>
+                    <Setter Property="Opacity" Value="0.6"/>
+                </Trigger>
+                <Trigger Property="IsEnabled" Value="True">
+                    <Setter Property="Opacity" Value="1"/>
+                    <Setter Property="Cursor" Value="Hand"/>
+                </Trigger>
+                <Trigger Property="IsMouseOver" Value="True">
+                    <Trigger.EnterActions>
+                        <RemoveStoryboard BeginStoryboardName="noHoverAnim"/>
+                        <BeginStoryboard Name="hoverAnim">
+                            <Storyboard Storyboard.TargetProperty="Opacity">
+                                <DoubleAnimation To="0.5" Duration="0:0:0.25"/>
+                            </Storyboard>
+                        </BeginStoryboard>
+                    </Trigger.EnterActions>
+                    <Trigger.ExitActions>
+                        <RemoveStoryboard BeginStoryboardName="hoverAnim"/>
+                        <BeginStoryboard Name="noHoverAnim">
+                            <Storyboard Storyboard.TargetProperty="Opacity">
+                                <DoubleAnimation To="1" Duration="0:0:0.25"/>
+                            </Storyboard>
+                        </BeginStoryboard>
+                    </Trigger.ExitActions>
+                </Trigger>
+            </Style.Triggers>
+        </Style>
+    </UserControl.Style>
+</UserControl>

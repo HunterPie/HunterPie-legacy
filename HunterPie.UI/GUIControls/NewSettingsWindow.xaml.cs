@@ -223,7 +223,6 @@ namespace HunterPie.GUIControls
 
         public bool CanExecute(object parameter)
         {
-            Debugger.Log(parameter);
             if (parameter?.GetType() == typeof(string))
             {
                 if (((string)parameter).StartsWith("http"))

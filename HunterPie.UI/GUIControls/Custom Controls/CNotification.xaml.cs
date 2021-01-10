@@ -106,21 +106,7 @@ namespace HunterPie.GUIControls.Custom_Controls
         private DispatcherTimer VisibilityTimer;
 
         public CNotification() => InitializeComponent();
-
-        public void ShowNotification()
-        {
-            IsShown = true;
-            VisibilityTimer = new DispatcherTimer()
-            {
-                Interval = TimeSpan.FromSeconds(ShowTime)
-            };
-            VisibilityTimer.Tick += (_, __) =>
-            {
-                IsShown = false;
-            };
-            VisibilityTimer.Start();
-        }
-
+        
         private void Close(object source, EventArgs e)
         {
             Dispose();
@@ -160,5 +146,19 @@ namespace HunterPie.GUIControls.Custom_Controls
             Dispose(true);
         }
         #endregion
+        
+        private void OnLoaded(object sender, RoutedEventArgs e)
+        {
+            IsShown = true;
+            VisibilityTimer = new DispatcherTimer()
+            {
+                Interval = TimeSpan.FromSeconds(ShowTime)
+            };
+            VisibilityTimer.Tick += (_, __) =>
+            {
+                IsShown = false;
+            };
+            VisibilityTimer.Start();
+        }
     }
 }

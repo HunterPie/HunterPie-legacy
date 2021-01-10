@@ -1,5 +1,5 @@
 ﻿using System;
-using System.Runtime.CompilerServices;
+using System.Drawing;
 using System.Windows.Forms;
 
 namespace HunterPie.GUIControls
@@ -8,22 +8,39 @@ namespace HunterPie.GUIControls
     public class TrayIcon : IDisposable
     {
 
-        public ContextMenu ContextMenu = new ContextMenu();
-        public NotifyIcon NotifyIcon = new NotifyIcon();
+        private readonly ContextMenuStrip contextMenuStrip = new ContextMenuStrip();
+        private readonly NotifyIcon notifyIcon = new NotifyIcon();
         private bool disposedValue = false;
 
-        public TrayIcon() => NotifyIcon.ContextMenu = ContextMenu;
+        public TrayIcon(
+            string tooltip,
+            string text,
+            Icon icon,
+            MouseEventHandler doubleClickCallback)
+        {
+            notifyIcon.BalloonTipTitle = tooltip;
+            notifyIcon.Text = text;
+            notifyIcon.Icon = icon;
+            notifyIcon.Visible = true;
+            notifyIcon.MouseDoubleClick += doubleClickCallback;
+            notifyIcon.ContextMenuStrip = contextMenuStrip;
+        }
+
+        public ToolStripItem AddItem(string name)
+        {
+            ToolStripItem newItem = contextMenuStrip.Items.Add(name);
+            return newItem;
+        }
 
         protected virtual void Dispose(bool disposing)
         {
             if (!disposedValue)
             {
-                NotifyIcon.Visible = false;
+                notifyIcon.Visible = false;
                 if (disposing)
                 {
-                    NotifyIcon.Dispose();
-                    ContextMenu.Dispose();
-                    foreach (MenuItem item in ContextMenu.MenuItems) { item.Dispose(); }
+                    notifyIcon.Dispose();
+                    contextMenuStrip.Dispose();
                 }
 
                 disposedValue = true;

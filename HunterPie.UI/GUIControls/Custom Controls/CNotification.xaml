@@ -2,7 +2,7 @@
              x:Class="HunterPie.GUIControls.Custom_Controls.CNotification"
              xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-             Height="40" BorderThickness="1" BorderBrush="#CC0A0A0A" HorizontalAlignment="Left">
+             Height="40" BorderThickness="1" BorderBrush="#CC0A0A0A" HorizontalAlignment="Left" Loaded="OnLoaded">
     <UserControl.Resources>
         <Storyboard x:Key="ShowNotificationAnim">
             <ThicknessAnimation Storyboard.TargetProperty="Margin" From="0,0,0,-10" To="0,0,0,0" Duration="0:0:0.2"/>
