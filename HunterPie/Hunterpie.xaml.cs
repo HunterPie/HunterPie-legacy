@@ -33,6 +33,7 @@ using System.Diagnostics;
 using HunterPie.Core.Events;
 using System.Xml;
 using System.Reflection;
+using HunterPie.Core.Monsters;
 using HunterPie.Core.Native;
 
 namespace HunterPie
@@ -743,8 +744,16 @@ namespace HunterPie
                     presence.SetOfflineMode();
                 presence.StartRPC();
             }
+
+            foreach (MonsterInfo info in MonsterData.MonstersInfo.Values)
+            {
+                string correct = GMD.GetMonsterNameByEm(info.Em);
+                string maybe = GMD.GetMonsterDescriptionByEm(info.Em);
+
+                Debugger.Log($"{correct} - {maybe}");
+            }
 #if DEBUG
-            await TestInputs();
+            //await TestInputs();
 #endif
         }
 
