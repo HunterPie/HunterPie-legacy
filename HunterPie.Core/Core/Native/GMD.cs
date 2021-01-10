@@ -6,6 +6,7 @@ using HunterPie.Logger;
 using HunterPie.Core.Definitions;
 using System.Threading;
 using System.Text;
+using HunterPie.Utils;
 
 namespace HunterPie.Core.Native
 {
@@ -32,6 +33,15 @@ namespace HunterPie.Core.Native
         public static ref readonly cGMD Buffs => ref cBuffsGmd;
         public static ref readonly cGMD Endemic => ref cMonsterGmd;
 
+        // BECAUSE CAPCOM IS ACTUALLY REEEEEEEEEEEEEEEEEEEEEEEEEEEEEE
+        private static readonly Dictionary<string, string> specialMonsterEms = new Dictionary<string, string>(4)
+        {
+            {"EM032_01", "EM_TEST_00002"},
+            {"EM043_05", "EM_TEST_00001"},
+            {"EM120_00", "EM107_01"},
+            {"EM121_00", "EM121_01"}
+        };
+
         /// <summary>
         /// Locks current thread until all GMDs are loaded to avoid
         /// invalid values.
@@ -44,9 +54,9 @@ namespace HunterPie.Core.Native
             List<int> initialized = new List<int>();
             List<Func<bool>> initializers = new List<Func<bool>>()
             {
-                InitializeItemsGMD,
-                InitializeBuffsGMD,
-                InitializeMonstersGMD
+                InitializeItemsGmd,
+                InitializeBuffsGmd,
+                InitializeMonstersGmd
             };
 
             while (!ready)
@@ -75,7 +85,7 @@ namespace HunterPie.Core.Native
             return true;
         } 
 
-        private static bool InitializeItemsGMD()
+        private static bool InitializeItemsGmd()
         {
             long addr = Kernel.ReadMultilevelPtr(Address.GetAddress("BASE") + Address.GetAddress("GMD_ITEMS_OFFSET"),
                 Address.GetOffsets("GmdItemsOffsets"));
@@ -83,7 +93,7 @@ namespace HunterPie.Core.Native
             return LoadGMD(ref cItemsGmd, addr);
         }
 
-        private static bool InitializeBuffsGMD()
+        private static bool InitializeBuffsGmd()
         {
             long addr = Kernel.ReadMultilevelPtr(Address.GetAddress("BASE") + Address.GetAddress("GMD_BUFFS_OFFSET"),
                 Address.GetOffsets("GmdOffsets"));
@@ -91,7 +101,7 @@ namespace HunterPie.Core.Native
             return LoadGMD(ref cBuffsGmd, addr);
         }
 
-        private static bool InitializeMonstersGMD()
+        private static bool InitializeMonstersGmd()
         {
             long addr = Kernel.ReadMultilevelPtr(Address.GetAddress("BASE") + Address.GetAddress("GMD_MONSTERS_OFFSET"),
                 Address.GetOffsets("GmdOffsets"));
@@ -125,9 +135,10 @@ namespace HunterPie.Core.Native
 
             // Calculates the offset of each string, this way we can just get the string lenght
             // and also where they start
-            gmd.gValuesOffsets = gValueStringsPtrs.Select(
-                ptr => (int)(ptr - gValueStringsPtrs[0])
-            ).ToArray<int>();
+            gmd.gValuesOffsets = gValueStringsPtrs
+                .Where(ptr => ((ptr & Address.GetAddress("BASE")) == 0))
+                .Select(ptr => (int)(ptr - gValueStringsPtrs[0]))
+                .ToArray();
 
             gmd.gValuesBaseAddress = Kernel.Read<long>(addrBase);
 
@@ -138,10 +149,7 @@ namespace HunterPie.Core.Native
 
         private static void LoadGMDKeys(ref cGMD gmd)
         {
-            if (gmd.gKeys != null)
-            {
-                gmd.gKeys.Clear();
-            }
+            gmd.gKeys?.Clear();
 
             gmd.gKeys = new Dictionary<string, int>(gmd.gkeysCount);
 
@@ -195,7 +203,7 @@ namespace HunterPie.Core.Native
             // Apparently this is faster than using Regex to replace
             string[] temp = rawDescription.Split(junk, StringSplitOptions.RemoveEmptyEntries);
 
-            return string.Join(" ", temp);
+            return GetRawValueString(cItemsGmd, itemId * 2 + 1).RemoveChars();
         }
 
         /// <summary>
@@ -214,15 +222,19 @@ namespace HunterPie.Core.Native
 
             if (!cMonsterGmd.gKeys.ContainsKey(monsterEm))
             {
-                monsterEm = monsterEm.Split('_').FirstOrDefault();
+                if (specialMonsterEms.ContainsKey(monsterEm))
+                    monsterEm = specialMonsterEms[monsterEm];
+                else
+                {
+                    monsterEm = monsterEm.Split('_').First();
 
-                if (!cMonsterGmd.gKeys.ContainsKey(monsterEm))
-                    return null;
-
+                    if (!cMonsterGmd.gKeys.ContainsKey(monsterEm))
+                        return null;
+                }
             }
 
             int idx = cMonsterGmd.gKeys[monsterEm];
-            return GetRawValueString(cMonsterGmd, idx + 1);
+            return GetRawValueString(cMonsterGmd, idx);
         }
 
         /// <summary>
@@ -239,15 +251,21 @@ namespace HunterPie.Core.Native
 
             if (!cMonsterGmd.gKeys.ContainsKey(monsterEm))
             {
-                monsterEm = monsterEm.Split('_').FirstOrDefault();
+                if (specialMonsterEms.ContainsKey(monsterEm))
+                    monsterEm = specialMonsterEms[monsterEm];
+                else
+                {
+                    monsterEm = monsterEm.Split('_').First();
 
-                if (!cMonsterGmd.gKeys.ContainsKey(monsterEm))
-                    return null;
-
+                    if (!cMonsterGmd.gKeys.ContainsKey(monsterEm))
+                        return null;
+                }
+                
             }
 
+            monsterEm += "_DESC";
             int idx = cMonsterGmd.gKeys[monsterEm];
-            return GetRawValueString(cMonsterGmd, idx + 2);
+            return GetRawValueString(cMonsterGmd, idx).RemoveChars();
         }
 
         /// <summary>
@@ -277,7 +295,6 @@ namespace HunterPie.Core.Native
         public static string GetRawValueString(cGMD gmd, int idx)
         {
             long length;
-
             if ((idx + 1) >= gmd.gValuesOffsets.Length)
             {
                 length = gmd.gValuesChunkSize - gmd.gValuesOffsets[idx];
@@ -288,10 +305,9 @@ namespace HunterPie.Core.Native
             }
 
             long stringAddress = gmd.gValuesBaseAddress + gmd.gValuesOffsets[idx];
-
+            
             return Kernel.ReadString(stringAddress, (int)length);
         }
-
         #endregion
     }
 }

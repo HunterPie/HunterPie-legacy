@@ -15,7 +15,7 @@ namespace HunterPie.GUI.Widgets.DPSMeter
     {
         public new WidgetType Type => WidgetType.DamageWidget;
 
-        public List<PartyMember> players { get; set; } = new List<PartyMember>();
+        private readonly List<PartyMember> players = new List<PartyMember>();
 
         private Game gContext;
 
@@ -120,7 +120,6 @@ namespace HunterPie.GUI.Widgets.DPSMeter
             }
             players.Clear();
             DamagePlot.Dispose();
-            players = null;
             gContext = null;
         }
 

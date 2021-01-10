@@ -205,6 +205,7 @@
     </Compile>
     <Compile Include="Utils\DictionaryExtensions.cs" />
     <Compile Include="Utils\GenericExtensions.cs" />
+    <Compile Include="Utils\StringExtensions.cs" />
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>
       <LastGenOutput>Resources.Designer.cs</LastGenOutput>
