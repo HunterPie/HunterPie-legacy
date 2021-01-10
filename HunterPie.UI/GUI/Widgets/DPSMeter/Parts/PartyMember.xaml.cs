@@ -14,7 +14,7 @@ namespace HunterPie.GUI.Widgets.DPSMeter.Parts
     {
 
         public Member Context { get; private set; }
-        Party PartyContext;
+        Party partyContext;
 
         public string PlayerName
         {
@@ -82,7 +82,7 @@ namespace HunterPie.GUI.Widgets.DPSMeter.Parts
         public void SetContext(Member ctx, Party pctx)
         {
             Context = ctx;
-            PartyContext = pctx;
+            partyContext = pctx;
             HookEvents();
             SetPlayerInformation();
         }
@@ -98,12 +98,12 @@ namespace HunterPie.GUI.Widgets.DPSMeter.Parts
             Context.OnSpawn -= OnPlayerSpawn;
             Context.OnWeaponChange -= OnPlayerWeaponChange;
             Context = null;
-            PartyContext = null;
+            partyContext = null;
         }
 
         private void OnPlayerSpawn(object source, PartyMemberEventArgs args)
         {
-            float TimeElapsed = (float)PartyContext.Epoch.TotalSeconds;
+            float TimeElapsed = (float)partyContext.Epoch.TotalSeconds;
             Dispatch(() =>
             {
                 PlayerName = args.Name;
@@ -126,7 +126,7 @@ namespace HunterPie.GUI.Widgets.DPSMeter.Parts
 
         public void UpdateDamage()
         {
-            float TimeElapsed = (float)PartyContext.Epoch.TotalSeconds - (float)PartyContext.TimeDifference.TotalSeconds;
+            float TimeElapsed = (float)partyContext.Epoch.TotalSeconds - (float)partyContext.TimeDifference.TotalSeconds;
             Dispatch(() =>
             {
                 Damage = Context.Damage;
@@ -146,7 +146,7 @@ namespace HunterPie.GUI.Widgets.DPSMeter.Parts
 
         public void SetPlayerInformation()
         {
-            float TimeElapsed = (float)PartyContext.Epoch.TotalSeconds;
+            float TimeElapsed = (float)partyContext.Epoch.TotalSeconds;
             Dispatch(() =>
             {
                 PlayerName = Context.Name;
