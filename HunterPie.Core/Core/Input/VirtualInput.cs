@@ -27,7 +27,7 @@ namespace HunterPie.Core.Input
         private static bool isPatched = false;
         private static byte[] originalOps;
         private static bool isInjecting = false;
-        private static bool ignoreKeyboardInput;
+        private static bool ignoreKeyboardInput = false;
 
         private static char confirmKey
         {
@@ -69,8 +69,12 @@ namespace HunterPie.Core.Input
         /// </summary>
         /// <param name="vK">Virtual Key Code</param>
         /// <param name="duration">How long to keep the key pressed</param>
+        /// <param name="cancellationTokenSrc">Token to cancel the key from being held</param>
         /// <returns>True when the operation is completed</returns>
-        public static async Task<bool> HoldInputAsync(char vK, TimeSpan duration)
+        public static async Task<bool> HoldInputAsync(
+            char vK,
+            TimeSpan duration,
+            CancellationTokenSource cancellationTokenSrc = null)
         {
             VInput input = new VInput
             {
@@ -80,12 +84,13 @@ namespace HunterPie.Core.Input
             };
 
             InjectRawInput(input);
-
-            await Task.Delay(duration).ContinueWith((_) =>
-            {
-                lock (injectedInputs)
-                    injectedInputs.Remove(input);
-            });
+            
+            await Task.Delay(duration, cancellationTokenSrc?.Token ?? CancellationToken.None)
+                .ContinueWith((_) =>
+                {
+                    lock (injectedInputs)
+                        injectedInputs.Remove(input);
+                });
 
             return true;
         }
@@ -162,6 +167,7 @@ namespace HunterPie.Core.Input
             ignoreKeyboardInput = newState;
         }
 
+        #region Private
         private static async Task<bool> InjectRawInput(VInput input)
         {
             
@@ -383,5 +389,6 @@ namespace HunterPie.Core.Input
                 Debugger.Error(err);
             }
         }
+        #endregion
     }
 }

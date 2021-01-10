@@ -33,6 +33,7 @@ using System.Diagnostics;
 using HunterPie.Core.Events;
 using System.Xml;
 using System.Reflection;
+using System.Threading;
 using HunterPie.Core.Monsters;
 using HunterPie.Core.Native;
 
@@ -744,57 +745,7 @@ namespace HunterPie
                     presence.SetOfflineMode();
                 presence.StartRPC();
             }
-
-            foreach (MonsterInfo info in MonsterData.MonstersInfo.Values)
-            {
-                string correct = GMD.GetMonsterNameByEm(info.Em);
-                string maybe = GMD.GetMonsterDescriptionByEm(info.Em);
-
-                Debugger.Log($"{correct} - {maybe}");
-            }
-#if DEBUG
-            //await TestInputs();
-#endif
         }
-
-#if DEBUG
-
-        private static async Task TestInputs()
-        {
-            await VirtualInput.PressInputAsync((char)VK.Escape);
-
-            await Task.Delay(1000);
-
-            await VirtualInput.PressInputAsync((char)VK.Right);
-            await VirtualInput.PressInputAsync((char)VK.Right);
-            await VirtualInput.PressInputAsync((char)VK.Right);
-            await VirtualInput.PressInputAsync((char)VK.Right);
-
-            await VirtualInput.PressInputAsync((char)VK.Down);
-            await VirtualInput.PressInputAsync((char)VK.Down);
-            await VirtualInput.PressInputAsync((char)VK.Down);
-            await VirtualInput.PressInputAsync((char)VK.Down);
-            await VirtualInput.PressInputAsync((char)VK.Down);
-
-            await VirtualInput.SendConfirm();
-
-            await Task.Delay(1000);
-
-            await VirtualInput.TapInputAsync((char)VK.Left);
-
-            await Task.Delay(1000);
-
-            await VirtualInput.SendConfirm();
-
-            await Task.Delay(1000);
-
-            await VirtualInput.SendConfirm();
-
-            Debugger.Log("Done!");
-
-        }
-
-#endif
 
         private void OnGameClose(object source, EventArgs e)
         {
