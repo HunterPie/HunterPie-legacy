@@ -5,7 +5,12 @@ Monster widget displays useful information about the current monsters in the map
 ### Table of content
 
 <ol id="content_table">
-    <li><a href="#design-structure">Design Structure</a></li>
+    <li><a href="#design-structure">Design Structure</a></li><li>
+    <a href="#string-formats">String Formats</a></li>
+    <ol>
+        <li><a href="#health-bar-formats">Health Bar Formats</a></li>
+        <li><a href="#part-health-bar-formats">Part health bar formats</a></li>
+    </ol>
     <li><a href="#monster-bar-modes">Monster Bar Modes</a></li>
     <ol>
         <li><a href="#show-all-monsters-at-once">Show all monsters at once</a></li>
@@ -28,6 +33,32 @@ Monster widget displays useful information about the current monsters in the map
 
 ## Design structure
 ![design-structure-image](https://cdn.discordapp.com/attachments/402557384209203200/732313125923192852/monster_widget_structure.png)
+
+## String formats
+
+### Health bar formats
+
+The monster health bar supports customizable string formatting, here's the list of the current supported special strings and what will replace them:
+
+Format              | Replaced by                               | Example
+--------------------|-------------------------------------------|----------
+{Health:0}          | Rounded down health                       | 14595
+{Health:0.0}        | Health with 1 decimal place               | 14595.5
+{TotalHealth:0}     | Rounded down total health                 | 15000
+{TotalHealth:0.0}   | Total health with 1 decimal place         | 15000.0
+{Percentage:0}      | Health percentage rounded down            | 97%
+{Percentage:0.0}    | Health percentage with 1 decimal place    | 97.3%
+
+### Part health bar formats
+
+The monster parts health bar also support customizable string formatting, here's the list:
+
+Format              | Replaced by                               | Example
+--------------------|-------------------------------------------|----------
+{Current}           | Current part health                       | 435
+{Max}               | Maximum part health                       | 600
+{Percentage}        | Percentage of health                      | 72%
+{Tenderize}         | Time left until tenderize effect expires  | 2:00
 
 ## Monster bar modes
 The monster widget has 5 different bar modes, each one has it's own behaviour and characteristics. You can switch between them by either going to HunterPie settings tab and clicking on the `Monster bar mode` box or pressing the <kbd>Alt</kbd>+<kbd>Up</kbd> hotkey.

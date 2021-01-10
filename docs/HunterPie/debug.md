@@ -17,4 +17,4 @@ This option lets you load a custom monster data file.
 > **WARNING:** The path must use either double backslashes or single slash.
 - Start HunterPie, go to the debug settings tab and enable the `Load custom monster data` option and then restart HunterPie.
 
-You can find the base Monster Data file [here](https://github.com/Haato3o/HunterPie/blob/master/HunterPie/Core/Monster/MonsterData.xml).
+You can find the base Monster Data file [here](https://github.com/Haato3o/HunterPie/blob/master/HunterPie/HunterPie.Resources/Data/MonsterData.xml).
