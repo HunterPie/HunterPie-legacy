@@ -76,23 +76,23 @@ namespace Update
                 return;
             }
             arguments.TryGetValue("branch", out string branch);
-            AsyncUpdate Updater = new AsyncUpdate(branch);
+            AsyncUpdate updater = new AsyncUpdate(branch);
             IsUpdating = true;
-            Updater.OnNewFileUpdate += (src, message) =>
+            updater.OnNewFileUpdate += (src, message) =>
             {
-                FilesUpdated = $"Files: {Updater.FilesUpdatedCounter}/{Updater.DifferentFilesCounter}";
+                FilesUpdated = $"Files: {updater.FilesUpdatedCounter}/{updater.DifferentFilesCounter}";
                 UpdateMessage = message;
             };
-            Updater.OnUpdateFail += (_, __) =>
+            updater.OnUpdateFail += (_, __) =>
             {
                 UpdateMessage = "Failed to update HunterPie";
                 LaunchHunterPie(__);
             };
-            Updater.OnUpdateSuccess += (_, __) =>
+            updater.OnUpdateSuccess += (_, __) =>
             {
                 LaunchHunterPie(__);
             };
-            Updater.OnDownloadProgressChanged += (object _, DownloadProgressChangedEventArgs args) =>
+            updater.OnDownloadProgressChanged += (object _, DownloadProgressChangedEventArgs args) =>
             {
                 long kBytesReceived = args.BytesReceived / 1024;
                 long kBytesToReceive = args.TotalBytesToReceive / 1024;
@@ -114,7 +114,7 @@ namespace Update
                 }
             };
 
-            await Updater.Start();
+            await updater.Start();
         }
 
         private void LaunchHunterPie(UpdateFinished args)
