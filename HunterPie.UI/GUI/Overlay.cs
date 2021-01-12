@@ -47,7 +47,7 @@ namespace HunterPie.GUI
                 widgets.Add(widget);
 
                 widget.OverlayActive = UserSettings.PlayerConfig.Overlay.Enabled;
-                widget.OverlayActive = UserSettings.PlayerConfig.Overlay.HideWhenGameIsUnfocused;
+                widget.OverlayFocusActive = UserSettings.PlayerConfig.Overlay.HideWhenGameIsUnfocused;
 
                 return true;
             } catch (Exception err)
