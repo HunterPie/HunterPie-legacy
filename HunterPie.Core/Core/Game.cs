@@ -24,7 +24,7 @@ namespace HunterPie.Core
 
         public Monster HuntedMonster
         {
-            get => Monsters.Where(m => m.IsTarget).FirstOrDefault();
+            get => Monsters.FirstOrDefault(m => m.IsTarget);
         }
 
         public readonly Monster[] Monsters = new Monster[3];
@@ -257,19 +257,21 @@ namespace HunterPie.Core
 
         private void GameScanner()
         {
-            while (Kernel.GameIsRunning)
+            while (true)
             {
-                if ((DateTime.UtcNow - Clock).TotalSeconds >= 10)
-                    Clock = DateTime.UtcNow;
+                while (Kernel.GameIsRunning)
+                {
+                    if ((DateTime.UtcNow - Clock).TotalSeconds >= 10) Clock = DateTime.UtcNow;
 
-                SyncMonsterAndPartyState();
-                SyncMonstersStates();
-                GetWorldCurrentTime();
+                    SyncMonsterAndPartyState();
+                    SyncMonstersStates();
+                    GetWorldCurrentTime();
 
-                Thread.Sleep(UserSettings.PlayerConfig.Overlay.GameScanDelay);
+                    Thread.Sleep(UserSettings.PlayerConfig.Overlay.GameScanDelay);
+                }
+
+                Thread.Sleep(1000);
             }
-            Thread.Sleep(1000);
-            GameScanner();
         }
 
         private void GetWorldCurrentTime()

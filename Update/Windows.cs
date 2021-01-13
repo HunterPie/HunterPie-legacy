@@ -20,11 +20,6 @@ namespace Update
             element.SetValue(IsEnabledProperty, value);
         }
 
-        public static bool GetIsEnabled(DependencyObject element)
-        {
-            return (bool)element.GetValue(IsEnabledProperty);
-        }
-
         private static void OnIsEnabledChanged(DependencyObject d, DependencyPropertyChangedEventArgs e)
         {
             if (d is Window window)
@@ -46,11 +41,6 @@ namespace Update
         public static readonly DependencyProperty WindowBlurProperty = DependencyProperty.RegisterAttached(
             "WindowBlur", typeof(WindowBlur), typeof(WindowBlur),
             new PropertyMetadata(null, OnWindowBlurChanged));
-
-        public static void SetWindowBlur(DependencyObject element, WindowBlur value)
-        {
-            element.SetValue(WindowBlurProperty, value);
-        }
 
         public static WindowBlur GetWindowBlur(DependencyObject element)
         {
@@ -144,11 +134,7 @@ namespace Update
     {
         internal enum AccentState
         {
-            ACCENT_DISABLED,
-            ACCENT_ENABLE_GRADIENT,
-            ACCENT_ENABLE_TRANSPARENTGRADIENT,
-            ACCENT_ENABLE_BLURBEHIND,
-            ACCENT_INVALID_STATE,
+            ACCENT_ENABLE_BLURBEHIND = 3,
         }
 
         [StructLayout(LayoutKind.Sequential)]
@@ -170,9 +156,7 @@ namespace Update
 
         internal enum WindowCompositionAttribute
         {
-            // 省略其他未使用的字段
             WCA_ACCENT_POLICY = 19,
-            // 省略其他未使用的字段
         }
     }
 }

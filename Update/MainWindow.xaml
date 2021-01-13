@@ -34,10 +34,10 @@
                                     <Rectangle.Fill>
                                         <LinearGradientBrush EndPoint="1,1" StartPoint="0,1">
                                             <GradientStop Color="#00000000" Offset="0"/>
-                                            <GradientStop Color="#FFFFFFFF" Offset="1"/>
-                                            <GradientStop Color="#EDFFFFFF" Offset="0.952"/>
-                                            <GradientStop Color="#C3FFFFFF" Offset="0.775"/>
-                                            <GradientStop Color="#FBFFFFFF" Offset="0.972"/>
+                                            <GradientStop Color="#FF93FFDC" Offset="1"/>
+                                            <GradientStop Color="#ED93FFDC" Offset="0.952"/>
+                                            <GradientStop Color="#C393FFDC" Offset="0.775"/>
+                                            <GradientStop Color="#FB93FFDC" Offset="0.972"/>
                                         </LinearGradientBrush>
                                     </Rectangle.Fill>
                                 </Rectangle>
@@ -65,7 +65,7 @@
 
         <Image VerticalAlignment="Top" Source="{StaticResource Emblem}" Stretch="UniformToFill" Height="138" MaxHeight="138" MaxWidth="138" Margin="24,71,0,0" HorizontalAlignment="Left" Width="139">
             <Image.Effect>
-                <DropShadowEffect ShadowDepth="0" BlurRadius="20" Color="#FFB2B2B2"/>
+                <DropShadowEffect ShadowDepth="0" BlurRadius="20" Color="#FFE9F1FF"/>
             </Image.Effect>
             <Image.Style>
                 <Style TargetType="Image">
@@ -135,7 +135,7 @@
                 </TextBlock.Foreground>
             </TextBlock>
         </StackPanel>
-        <TextBlock Text="{Binding ElementName=wnd, Path=Version}" Height="16" VerticalAlignment="Bottom" HorizontalAlignment="Right" Width="158" Margin="0,0,185,97" Foreground="#FFB9FF00" FontFamily="Roboto" TextAlignment="Right" Padding="0,0,2,0" TextDecorations="{x:Null}" FontSize="14" FontWeight="Bold"/>
+        <TextBlock Text="{Binding ElementName=wnd, Path=Version}" Height="16" VerticalAlignment="Bottom" HorizontalAlignment="Right" Width="158" Margin="0,0,185,97" Foreground="#FFB2DA46" FontFamily="Roboto" TextAlignment="Right" Padding="0,0,2,0" TextDecorations="{x:Null}" FontSize="14" FontWeight="Bold"/>
     </Grid>
     <Window.Style>
         <Style TargetType="Window">
