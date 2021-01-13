@@ -1,6 +1,8 @@
 ﻿using System;
 using System.IO;
 using System.Net.Http;
+using System.Threading;
+using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Input;
 using System.Windows.Media;
@@ -15,6 +17,7 @@ namespace HunterPie.Plugins
     {
         private readonly PluginEntry plugin;
         private readonly IPluginListProxy pluginList;
+        private Task pluginToggleTask = Task.CompletedTask;
 
         public LoadedPluginViewModel(PluginEntry plugin, IPluginListProxy pluginList)
         {
@@ -42,12 +45,10 @@ namespace HunterPie.Plugins
             OnPropertyChanged(nameof(SubText));
         }
 
-        public void Delete()
+        public async void Delete()
         {
             try
             {
-                IsEnabled = false;
-
                 if (plugin.IsFailed)
                 {
                     // if plugin loading failed, it can already been loaded into AppDomain, so it isn't safe to delete it right away
@@ -56,7 +57,13 @@ namespace HunterPie.Plugins
                 }
                 else if (plugin.IsLoaded && plugin.Package.HasValue)
                 {
-                    PluginManager.UnloadPlugin(plugin.Package.Value.plugin);
+                    // begin plugin toggle process in other thread
+                    await pluginToggleTask;
+                    pluginToggleTask = SetPluginEnabled(false);
+                    await pluginToggleTask.ConfigureAwait(false);
+                    // NOTE: synchronisation might be helpful here, but I don't anticipate multiple calls to this method
+                    //       in short succession, so it is kept simpler
+
                     PluginManager.MarkForRemoval(InternalName);
                 }
                 else
@@ -67,17 +74,21 @@ namespace HunterPie.Plugins
                     }
                     catch (Exception ex)
                     {
-                        MessageBox.Show(ex.Message);
+                        Dispatch(() => MessageBox.Show(ex.Message));
                         Debugger.Warn(ex);
                         PluginManager.MarkForRemoval(InternalName);
                     }
                 }
 
-                pluginList.UpdatePluginsArrangement();
+                Dispatch(() =>
+                {
+                    pluginList.UpdatePluginsArrangement();
+                    OnPropertyChanged(nameof(IsEnabled));
+                });
             }
             catch (Exception ex)
             {
-                MessageBox.Show(ex.Message);
+                Dispatch(() => MessageBox.Show(ex.Message));
             }
         }
 
@@ -94,9 +105,8 @@ namespace HunterPie.Plugins
             }
         }
 
-
-        public bool CanToggle => plugin.IsLoaded && !PluginManager.IsMarkedForRemoval(InternalName);
-        public bool CanDelete => !PluginManager.IsMarkedForRemoval(InternalName);
+        public bool CanToggle => !IsBusy && plugin.IsLoaded && !PluginManager.IsMarkedForRemoval(InternalName);
+        public bool CanDelete => !IsBusy && !PluginManager.IsMarkedForRemoval(InternalName);
         public bool CanInstall => false;
         public bool CanRestore => PluginManager.IsMarkedForRemoval(InternalName);
 
@@ -152,24 +162,73 @@ namespace HunterPie.Plugins
             get => plugin.Package?.settings.IsEnabled ?? false;
             set
             {
-                if (!plugin.Package.HasValue) return;
-                plugin.Package.Value.settings.IsEnabled = value;
-                PluginManager.UpdatePluginSettings(plugin.Package.Value.path, plugin.Package.Value.settings);
-                if (plugin.Package.Value.settings.IsEnabled)
-                {
-                    PluginManager.LoadPlugin(plugin.Package.Value.plugin);
-                }
-                else
-                {
-                    if (PluginManager.UnloadPlugin(plugin.Package.Value.plugin))
-                    {
-                        Debugger.Module($"Unloaded {plugin.PluginInformation.Name}");
-                    }
-                }
-                OnPropertyChanged();
+                // if previous toggle didn't finish, ignore value...
+                if (!pluginToggleTask.IsCompleted) return;
+
+                // ...otherwise start toggle
+                pluginToggleTask = SetPluginEnabled(value);
             }
         }
 
+        /// <summary>
+        /// Expected to be started from STA thread.
+        /// </summary>
+        private async Task SetPluginEnabled(bool value)
+        {
+            if (!plugin.Package.HasValue || plugin.Package.Value.settings.IsEnabled == value) return;
+            plugin.Package.Value.settings.IsEnabled = value;
+            IsBusy = true;
+            PluginManager.UpdatePluginSettings(plugin.Package.Value.path, plugin.Package.Value.settings);
+            try
+            {
+                // if plugin disabling take longer than what considered "instantaneous", trigger PropertyChanged, so
+                // spinner will be displayed. Probably will not fire most of the time.
+                var cts = new CancellationTokenSource();
+                _ = Task.Delay(300, cts.Token)
+                    .ContinueWith(t =>
+                    {
+                        if (t.IsCanceled) return;
+                        Dispatch(() =>
+                        {
+                            OnPropertyChanged(nameof(IsBusy));
+                            CommandManager.InvalidateRequerySuggested();
+                        });
+                    }, cts.Token);
+
+                // toggling plugin state in other thread
+                await Task.Run(() =>
+                {
+                    if (value)
+                    {
+                        if (PluginManager.LoadPlugin(plugin.Package.Value.plugin))
+                        {
+                            Debugger.Module($"Loaded {plugin.PluginInformation.Name}");
+                        }
+                    }
+                    else
+                    {
+                        if (PluginManager.UnloadPlugin(plugin.Package.Value.plugin))
+                        {
+                            Debugger.Module($"Unloaded {plugin.PluginInformation.Name}");
+                        }
+                    }
+
+                    // cancel spinner display when task is finished
+                    cts.Cancel();
+                });
+            }
+            finally
+            {
+                IsBusy = false;
+            }
+
+            Dispatch(() =>
+            {
+                OnPropertyChanged(nameof(IsEnabled));
+                OnPropertyChanged(nameof(IsBusy));
+                CommandManager.InvalidateRequerySuggested();
+            });
+        }
 
         private async void GetImage()
         {
@@ -224,7 +283,7 @@ namespace HunterPie.Plugins
             return image;
         }
 
-        public bool IsBusy => false;
+        public bool IsBusy { get; set; }
 
         ~LoadedPluginViewModel()
         {
