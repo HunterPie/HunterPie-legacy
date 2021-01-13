@@ -3,6 +3,7 @@
 .vs
 bin
 obj
+packages
 
 # Ignore local server files
 docs/server.js

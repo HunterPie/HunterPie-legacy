@@ -482,7 +482,7 @@
       <String ID="MESSAGE_REFRESH" Name="Refresh" />
       <String ID="MESSAGE_PLUGIN_DELETE" Name="Delete plugin" />
       <String ID="MESSAGE_PLUGIN_RESTORE" Name="Restore plugin" />
-      <String ID="MESSAGE_PLUGIN_FAILED" Name="Plugin initialization failed. It will not be loaded util HunterPie restart." />
+      <String ID="MESSAGE_PLUGIN_FAILED" Name="Plugin initialization failed. It will not be loaded until HunterPie restart." />
       <String ID="MESSAGE_README_EMPTY" Name="Empty..." />
       <!-- Popups -->
       <String ID="MESSAGE_QUIT" Name="Are you sure you want to exit HunterPie?"/>
