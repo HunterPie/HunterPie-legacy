@@ -172,7 +172,7 @@
             <DrawingGroup>
                 <GeometryDrawing Brush="{StaticResource CONSOLE_WINDOWBAR_BACKGROUND}"
                                  Geometry="M14.335,14.465c0,0-3.516-3.422-4.887-7.355V6.039h11.168V7.11c-1.782,4.343-4.887,7.355-4.887,7.355H14.335z" />
-                <GeometryDrawing Brush="{StaticResource BUTTON_ICON_FOREGROUND}"
+                <GeometryDrawing Brush="{StaticResource CONSOLE_ACCENT_COLOR}"
                                  Geometry="M1 21h22L12 2 1 21zm12-3h-2v-2h2v2zm0-4h-2v-4h2v4z" />
             </DrawingGroup>
         </DrawingImage.Drawing>

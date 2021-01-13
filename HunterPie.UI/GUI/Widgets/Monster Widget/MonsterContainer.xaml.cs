@@ -30,7 +30,6 @@ namespace HunterPie.GUI.Widgets
             InitializeComponent();
             SetWindowFlags();
             SetContext(ctx);
-            ApplySettings();
         }
 
         private void LoadMonsterWidths()
@@ -146,12 +145,11 @@ namespace HunterPie.GUI.Widgets
         private void OnClosing(object sender, System.ComponentModel.CancelEventArgs e)
         {
             UnhookEvents();
-            IsClosed = true;
         }
 
-        public override void ApplySettings(bool FocusTrigger = false) => Dispatcher.BeginInvoke(System.Windows.Threading.DispatcherPriority.Background, new Action(() =>
+        public override void ApplySettings()
         {
-            if (!FocusTrigger)
+            Dispatcher.BeginInvoke(System.Windows.Threading.DispatcherPriority.Background, new Action(() =>
             {
                 Top = UserSettings.PlayerConfig.Overlay.MonstersComponent.Position[1] + UserSettings.PlayerConfig.Overlay.Position[1];
                 Left = UserSettings.PlayerConfig.Overlay.MonstersComponent.Position[0] + UserSettings.PlayerConfig.Overlay.Position[0];
@@ -159,13 +157,16 @@ namespace HunterPie.GUI.Widgets
                 UpdateMonstersWidgetsSettings(UserSettings.PlayerConfig.Overlay.MonstersComponent.ShowMonsterWeakness, UserSettings.PlayerConfig.Overlay.MonstersComponent.MaxNumberOfPartsAtOnce, UserSettings.PlayerConfig.Overlay.MonstersComponent.MonsterBarDock);
                 ScaleWidget(UserSettings.PlayerConfig.Overlay.MonstersComponent.Scale, UserSettings.PlayerConfig.Overlay.MonstersComponent.Scale);
                 Opacity = UserSettings.PlayerConfig.Overlay.MonstersComponent.Opacity;
+
                 foreach (MonsterHealth HealthBar in Container.Children)
                 {
                     HealthBar.SwitchSizeBasedOnTarget();
                 }
-            }
-            base.ApplySettings();
-        }));
+                
+                base.ApplySettings();
+            }));
+        }
+            
 
         public override void EnterWidgetDesignMode()
         {
@@ -176,45 +177,25 @@ namespace HunterPie.GUI.Widgets
 
         public override void LeaveWidgetDesignMode()
         {
-            base.LeaveWidgetDesignMode();
             ApplyWindowTransparencyFlag();
-            SaveSettings();
+            base.LeaveWidgetDesignMode();
         }
 
-        private void SaveSettings()
+        public override void SaveSettings()
         {
             UserSettings.PlayerConfig.Overlay.MonstersComponent.Position[0] = (int)Left - UserSettings.PlayerConfig.Overlay.Position[0];
             UserSettings.PlayerConfig.Overlay.MonstersComponent.Position[1] = (int)Top - UserSettings.PlayerConfig.Overlay.Position[1];
             UserSettings.PlayerConfig.Overlay.MonstersComponent.Scale = DefaultScaleX;
         }
 
-        public override void ScaleWidget(double NewScaleX, double NewScaleY)
+        public override void ScaleWidget(double newScaleX, double newScaleY)
         {
-            if (NewScaleX <= 0.2) return;
-            Container.LayoutTransform = new ScaleTransform(NewScaleX, NewScaleY);
-            DefaultScaleX = NewScaleX;
-            DefaultScaleY = NewScaleY;
-        }
+            if (newScaleX <= 0.2)
+                return;
 
-        private void OnMouseDown(object sender, System.Windows.Input.MouseButtonEventArgs e)
-        {
-            if (e.LeftButton == System.Windows.Input.MouseButtonState.Pressed)
-            {
-                MoveWidget();
-                SaveSettings();
-            }
-        }
-
-        private void OnMouseWheel(object sender, System.Windows.Input.MouseWheelEventArgs e)
-        {
-            if (e.Delta > 0)
-            {
-                ScaleWidget(DefaultScaleX + 0.05, DefaultScaleY + 0.05);
-            }
-            else
-            {
-                ScaleWidget(DefaultScaleX - 0.05, DefaultScaleY - 0.05);
-            }
+            Container.LayoutTransform = new ScaleTransform(newScaleX, newScaleY);
+            DefaultScaleX = newScaleX;
+            DefaultScaleY = newScaleY;
         }
 
         private void OnSizeChange(object sender, SizeChangedEventArgs e)

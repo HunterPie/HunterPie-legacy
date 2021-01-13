@@ -16,6 +16,20 @@ namespace HunterPie.GUI.Widgets
         private Mantle Context { get; set; }
         private int MantleNumber { get; set; }
 
+        private UserSettings.Config.SpecializedTool Settings
+        {
+            get
+            {
+                switch (MantleNumber)
+                {
+                    case 1:
+                        return UserSettings.PlayerConfig.Overlay.SecondaryMantle;
+                    default:
+                        return UserSettings.PlayerConfig.Overlay.PrimaryMantle;
+                }
+            }
+        }
+
         public float Percentage
         {
             get { return (float)GetValue(PercentageProperty); }
@@ -75,26 +89,15 @@ namespace HunterPie.GUI.Widgets
 
         public override void LeaveWidgetDesignMode()
         {
-            base.LeaveWidgetDesignMode();
             ApplyWindowTransparencyFlag();
-            SaveSettings();
+            base.LeaveWidgetDesignMode();
         }
 
-        private void SaveSettings()
+        public override void SaveSettings()
         {
-            switch (MantleNumber)
-            {
-                case 0:
-                    UserSettings.PlayerConfig.Overlay.PrimaryMantle.Position[0] = (int)Left - UserSettings.PlayerConfig.Overlay.Position[0];
-                    UserSettings.PlayerConfig.Overlay.PrimaryMantle.Position[1] = (int)Top - UserSettings.PlayerConfig.Overlay.Position[1];
-                    UserSettings.PlayerConfig.Overlay.PrimaryMantle.Scale = DefaultScaleX;
-                    break;
-                case 1:
-                    UserSettings.PlayerConfig.Overlay.SecondaryMantle.Position[0] = (int)Left - UserSettings.PlayerConfig.Overlay.Position[0];
-                    UserSettings.PlayerConfig.Overlay.SecondaryMantle.Position[1] = (int)Top - UserSettings.PlayerConfig.Overlay.Position[1];
-                    UserSettings.PlayerConfig.Overlay.SecondaryMantle.Scale = DefaultScaleX;
-                    break;
-            }
+            Settings.Position[0] = (int)Left - UserSettings.PlayerConfig.Overlay.Position[0];
+            Settings.Position[1] = (int)Top - UserSettings.PlayerConfig.Overlay.Position[1];
+            Settings.Scale = DefaultScaleX;
 
         }
 
@@ -134,7 +137,7 @@ namespace HunterPie.GUI.Widgets
                 Dispatch(() =>
                 {
                     WidgetHasContent = false;
-                    ChangeVisibility(false);
+                    ChangeVisibility();
                 });
                 return;
             }
@@ -142,7 +145,7 @@ namespace HunterPie.GUI.Widgets
             Dispatch(() =>
             {
                 WidgetHasContent = true;
-                ChangeVisibility(false);
+                ChangeVisibility();
                 MantleName.Text = FormatMantleName;
                 DurationBar.Width = 181 * (args.Timer / args.MaxTimer);
                 Timer = TimeSpan.FromSeconds(args.Timer);
@@ -157,7 +160,7 @@ namespace HunterPie.GUI.Widgets
                 Dispatch(() =>
                 {
                     WidgetHasContent = false;
-                    ChangeVisibility(false);
+                    ChangeVisibility();
                 });
                 return;
             }
@@ -165,7 +168,7 @@ namespace HunterPie.GUI.Widgets
             Dispatch(() =>
             {
                 WidgetHasContent = true;
-                ChangeVisibility(false);
+                ChangeVisibility();
                 MantleName.Text = FormatMantleName;
                 DurationBar.Width = 181 * (1 - args.Cooldown / args.MaxCooldown);
                 Timer = TimeSpan.FromSeconds(args.Cooldown);
@@ -176,66 +179,47 @@ namespace HunterPie.GUI.Widgets
         private void OnClosing(object sender, System.ComponentModel.CancelEventArgs e)
         {
             UnhookEvents();
-            IsClosed = true;
         }
 
-        public override void ApplySettings(bool FocusTrigger = false) => Dispatcher.BeginInvoke(System.Windows.Threading.DispatcherPriority.Background, new Action(() =>
+        public override void ApplySettings()
         {
-            if (!FocusTrigger)
+            Dispatcher.BeginInvoke(System.Windows.Threading.DispatcherPriority.Background, new Action(() =>
             {
                 // Changes widget position
-                Top = (MantleNumber == 0 ? UserSettings.PlayerConfig.Overlay.PrimaryMantle.Position[1] : UserSettings.PlayerConfig.Overlay.SecondaryMantle.Position[1]) + UserSettings.PlayerConfig.Overlay.Position[1];
-                Left = (MantleNumber == 0 ? UserSettings.PlayerConfig.Overlay.PrimaryMantle.Position[0] : UserSettings.PlayerConfig.Overlay.SecondaryMantle.Position[0]) + UserSettings.PlayerConfig.Overlay.Position[0];
+                Top = Settings.Position[1] + UserSettings.PlayerConfig.Overlay.Position[1];
+                Left = Settings.Position[0] + UserSettings.PlayerConfig.Overlay.Position[0];
 
                 // Sets widget custom color
-                Color WidgetColor = (Color)ColorConverter.ConvertFromString(MantleNumber == 0 ? UserSettings.PlayerConfig.Overlay.PrimaryMantle.Color : UserSettings.PlayerConfig.Overlay.SecondaryMantle.Color);
+                Color widgetColor = (Color)ColorConverter.ConvertFromString(Settings.Color);
 
-                MantleColor = WidgetColor;
-                WidgetColor.A = 0x33;
-                MantleSecondaryColor = WidgetColor;
+                MantleColor = widgetColor;
+                widgetColor.A = 0x33;
+                MantleSecondaryColor = widgetColor;
 
-                double ScaleFactor = MantleNumber == 0 ? UserSettings.PlayerConfig.Overlay.PrimaryMantle.Scale : UserSettings.PlayerConfig.Overlay.SecondaryMantle.Scale;
-                ScaleWidget(ScaleFactor, ScaleFactor);
+                double scaleFactor = Settings.Scale;
+                ScaleWidget(scaleFactor, scaleFactor);
+
                 // Sets visibility if enabled/disabled
-                bool IsEnabled = MantleNumber == 0 ? UserSettings.PlayerConfig.Overlay.PrimaryMantle.Enabled : UserSettings.PlayerConfig.Overlay.SecondaryMantle.Enabled;
-                WidgetActive = IsEnabled;
+                WidgetActive = Settings.Enabled;
 
-                Opacity = (MantleNumber == 0 ? UserSettings.PlayerConfig.Overlay.PrimaryMantle.Opacity : UserSettings.PlayerConfig.Overlay.SecondaryMantle.Opacity);
-                IsCompactMode = (MantleNumber == 0 ? UserSettings.PlayerConfig.Overlay.PrimaryMantle.CompactMode : UserSettings.PlayerConfig.Overlay.SecondaryMantle.CompactMode);
-            }
-            base.ApplySettings();
-        }));
-
-
-        override public void ScaleWidget(double NewScaleX, double NewScaleY)
-        {
-            if (NewScaleX <= 0.2) return;
-            Width = BaseWidth * NewScaleX;
-            Height = BaseHeight * NewScaleY;
-            MantleContainer.LayoutTransform = new ScaleTransform(NewScaleX, NewScaleY);
-            DefaultScaleX = NewScaleX;
-            DefaultScaleY = NewScaleY;
+                Opacity = Settings.Opacity;
+                IsCompactMode = Settings.CompactMode;
+                base.ApplySettings();
+            }));
         }
+            
 
-        private void OnMouseDown(object sender, System.Windows.Input.MouseButtonEventArgs e)
-        {
-            if (e.LeftButton == System.Windows.Input.MouseButtonState.Pressed)
-            {
-                MoveWidget();
-                SaveSettings();
-            }
-        }
 
-        private void OnMouseWheel(object sender, System.Windows.Input.MouseWheelEventArgs e)
+        public override void ScaleWidget(double newScaleX, double newScaleY)
         {
-            if (e.Delta > 0)
-            {
-                ScaleWidget(DefaultScaleX + 0.05, DefaultScaleY + 0.05);
-            }
-            else
-            {
-                ScaleWidget(DefaultScaleX - 0.05, DefaultScaleY - 0.05);
-            }
+            if (newScaleX <= 0.2)
+                return;
+
+            Width *= newScaleX;
+            Height *= newScaleY;
+            MantleContainer.LayoutTransform = new ScaleTransform(newScaleX, newScaleY);
+            DefaultScaleX = newScaleX;
+            DefaultScaleY = newScaleY;
         }
 
         // Helper

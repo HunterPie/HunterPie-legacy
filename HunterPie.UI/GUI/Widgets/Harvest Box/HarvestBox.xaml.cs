@@ -3,6 +3,7 @@ using System.Windows;
 using System.Windows.Media;
 using HunterPie.Core;
 using HunterPie.Core.Events;
+using HunterPie.Memory;
 using FertilizerControl = HunterPie.GUI.Widgets.Harvest_Box.Parts.FertilizerControl;
 
 namespace HunterPie.GUI.Widgets
@@ -19,12 +20,9 @@ namespace HunterPie.GUI.Widgets
         public HarvestBox(Player Context)
         {
             InitializeComponent();
-            BaseWidth = Width;
-            BaseHeight = Height;
             SetWindowFlags();
             SetContext(Context);
             CreateFertilizerControls();
-            ApplySettings();
         }
 
         public override void EnterWidgetDesignMode()
@@ -35,19 +33,19 @@ namespace HunterPie.GUI.Widgets
 
         public override void LeaveWidgetDesignMode()
         {
-            base.LeaveWidgetDesignMode();
             ApplyWindowTransparencyFlag();
-            SaveSettings();
+            base.LeaveWidgetDesignMode();
         }
+        
 
-        private void SaveSettings()
+        public override void SaveSettings()
         {
             UserSettings.PlayerConfig.Overlay.HarvestBoxComponent.Position[0] = (int)Left - UserSettings.PlayerConfig.Overlay.Position[0];
             UserSettings.PlayerConfig.Overlay.HarvestBoxComponent.Position[1] = (int)Top - UserSettings.PlayerConfig.Overlay.Position[1];
             UserSettings.PlayerConfig.Overlay.HarvestBoxComponent.Scale = DefaultScaleX;
         }
 
-        public override void ApplySettings(bool FocusTrigger = false)
+        public override void ApplySettings()
         {
             bool alwaysShow = UserSettings.PlayerConfig.Overlay.HarvestBoxComponent.AlwaysShow;
             bool inHarvest = PlayerContext?.InHarvestZone ?? false;
@@ -55,42 +53,38 @@ namespace HunterPie.GUI.Widgets
 
             Dispatcher.BeginInvoke(System.Windows.Threading.DispatcherPriority.Background, new Action(() =>
             {
-                if (!FocusTrigger)
-                {
-                    Top = UserSettings.PlayerConfig.Overlay.HarvestBoxComponent.Position[1] + UserSettings.PlayerConfig.Overlay.Position[1];
-                    Left = UserSettings.PlayerConfig.Overlay.HarvestBoxComponent.Position[0] + UserSettings.PlayerConfig.Overlay.Position[0];
-                    WidgetActive = UserSettings.PlayerConfig.Overlay.HarvestBoxComponent.Enabled;
-                    WidgetHasContent = shouldShow;
-                    ScaleWidget(UserSettings.PlayerConfig.Overlay.HarvestBoxComponent.Scale, UserSettings.PlayerConfig.Overlay.HarvestBoxComponent.Scale);
-                    SteamTracker.Visibility = UserSettings.PlayerConfig.Overlay.HarvestBoxComponent.ShowSteamTracker ? Visibility.Visible : Visibility.Collapsed;
-                    ArgosyTracker.Visibility = UserSettings.PlayerConfig.Overlay.HarvestBoxComponent.ShowArgosyTracker ? Visibility.Visible : Visibility.Collapsed;
-                    TailraidersTracker.Visibility = UserSettings.PlayerConfig.Overlay.HarvestBoxComponent.ShowTailraidersTracker ? Visibility.Visible : Visibility.Collapsed;
-                    Opacity = UserSettings.PlayerConfig.Overlay.HarvestBoxComponent.Opacity;
-                    HarvestBoxContainer.Opacity = UserSettings.PlayerConfig.Overlay.HarvestBoxComponent.BackgroundOpacity;
-                    SetMode(UserSettings.PlayerConfig.Overlay.HarvestBoxComponent.CompactMode);
-                }
+                Top = UserSettings.PlayerConfig.Overlay.HarvestBoxComponent.Position[1] + UserSettings.PlayerConfig.Overlay.Position[1];
+                Left = UserSettings.PlayerConfig.Overlay.HarvestBoxComponent.Position[0] + UserSettings.PlayerConfig.Overlay.Position[0];
+                WidgetActive = UserSettings.PlayerConfig.Overlay.HarvestBoxComponent.Enabled;
+                WidgetHasContent = shouldShow;
+                ScaleWidget(UserSettings.PlayerConfig.Overlay.HarvestBoxComponent.Scale, UserSettings.PlayerConfig.Overlay.HarvestBoxComponent.Scale);
+                SteamTracker.Visibility = UserSettings.PlayerConfig.Overlay.HarvestBoxComponent.ShowSteamTracker ? Visibility.Visible : Visibility.Collapsed;
+                ArgosyTracker.Visibility = UserSettings.PlayerConfig.Overlay.HarvestBoxComponent.ShowArgosyTracker ? Visibility.Visible : Visibility.Collapsed;
+                TailraidersTracker.Visibility = UserSettings.PlayerConfig.Overlay.HarvestBoxComponent.ShowTailraidersTracker ? Visibility.Visible : Visibility.Collapsed;
+                Opacity = UserSettings.PlayerConfig.Overlay.HarvestBoxComponent.Opacity;
+                HarvestBoxContainer.Opacity = UserSettings.PlayerConfig.Overlay.HarvestBoxComponent.BackgroundOpacity;
+                SetMode(UserSettings.PlayerConfig.Overlay.HarvestBoxComponent.CompactMode);
+
                 base.ApplySettings();
             }));
         }
 
         private void SetMode(bool IsCompact)
         {
-            int h = IsCompact ? 130 : 260;
-            BaseHeight = Height = h;
             foreach (FertilizerControl fC in HarvestBoxFertilizerHolder.Children)
             {
                 fC.SetMode(IsCompact);
             }
         }
         
-        public override void ScaleWidget(double NewScaleX, double NewScaleY)
+        public override void ScaleWidget(double newScaleX, double newScaleY)
         {
-            if (NewScaleX <= 0.2) return;
-            Width = BaseWidth * NewScaleX;
-            //Height = BaseHeight * NewScaleY;
-            HarvestBoxComponent.LayoutTransform = new ScaleTransform(NewScaleX, NewScaleY);
-            DefaultScaleX = NewScaleX;
-            DefaultScaleY = NewScaleY;
+            if (newScaleX <= 0.2)
+                return;
+
+            HarvestBoxComponent.LayoutTransform = new ScaleTransform(newScaleX, newScaleY);
+            DefaultScaleX = newScaleX;
+            DefaultScaleY = newScaleY;
         }
 
         public void SetContext(Player ctx)
@@ -184,22 +178,6 @@ namespace HunterPie.GUI.Widgets
         {
             UnhookEvents();
             PlayerContext = null;
-            IsClosed = true;
-        }
-
-        private void OnMouseDown(object sender, System.Windows.Input.MouseButtonEventArgs e)
-        {
-            if (e.LeftButton == System.Windows.Input.MouseButtonState.Pressed)
-            {
-                MoveWidget();
-                SaveSettings();
-            }
-        }
-
-        private void OnMouseWheel(object sender, System.Windows.Input.MouseWheelEventArgs e)
-        {
-            double delta = e.Delta > 0 ? 0.05 : -0.05;
-            ScaleWidget(DefaultScaleX + delta, DefaultScaleY + delta);
         }
 
         // Helper

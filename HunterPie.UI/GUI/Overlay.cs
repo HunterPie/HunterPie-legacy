@@ -86,7 +86,7 @@ namespace HunterPie.GUI
             if (!Widgets.First().InDesignMode) UserSettings.SaveNewConfig();
         }
 
-        private void SetRenderMode()
+        private static void SetRenderMode()
         {
             if (!UserSettings.PlayerConfig.Overlay.EnableHardwareAcceleration)
             {
@@ -240,7 +240,7 @@ namespace HunterPie.GUI
                     widget.OverlayIsFocused = false;
                     if (!widget.InDesignMode)
                     {
-                        widget.ApplySettings(true);
+                        widget.ChangeVisibility();
                     }
                 }
             }));
@@ -255,7 +255,7 @@ namespace HunterPie.GUI
                     widget.OverlayIsFocused = true;
                     if (!widget.InDesignMode)
                     {
-                        widget.ApplySettings(true);
+                        widget.ChangeVisibility();
                     }
                 }
             }));

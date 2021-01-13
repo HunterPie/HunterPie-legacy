@@ -216,43 +216,37 @@ namespace HunterPie.GUI.Widgets.HealthWidget
 
         public override void LeaveWidgetDesignMode()
         {
-            base.LeaveWidgetDesignMode();
             ApplyWindowTransparencyFlag();
-            SaveSettings();
+            base.LeaveWidgetDesignMode();
         }
 
-        public override void ApplySettings(bool FocusTrigger = false)
+        public override void ApplySettings()
         {
             Dispatcher.BeginInvoke(DispatcherPriority.Background, new Action(() =>
             {
-                if (!FocusTrigger)
+                Left = Settings.Position[0] + UserSettings.PlayerConfig.Overlay.Position[0];
+                Top = Settings.Position[1] + UserSettings.PlayerConfig.Overlay.Position[1];
+
+                WidgetActive = Settings.Enabled;
+
+                PlayerName = FormatNameString();
+
+                if ((Context?.ZoneID ?? 0) == 0)
                 {
-                    Left = Settings.Position[0] + UserSettings.PlayerConfig.Overlay.Position[0];
-                    Top = Settings.Position[1] + UserSettings.PlayerConfig.Overlay.Position[1];
-
-                    WidgetActive = Settings.Enabled;
-
-                    PlayerName = FormatNameString();
-
-                    if ((Context?.ZoneID ?? 0) == 0)
-                    {
-                        WidgetHasContent = false;
-                    }
-                    else
-                    {
-                        WidgetHasContent = Settings.HideHealthInVillages ? !(Context?.InHarvestZone ?? true) : true;
-                    }
-
-                    Opacity = Settings.Opacity;
-
-                    ScaleWidget(Settings.Scale, Settings.Scale);
+                    WidgetHasContent = false;
                 }
+                else
+                    WidgetHasContent = !Settings.HideHealthInVillages || !(Context?.InHarvestZone ?? true);
+
+                Opacity = Settings.Opacity;
+
+                ScaleWidget(Settings.Scale, Settings.Scale);
                 
-                base.ApplySettings(FocusTrigger);
+                base.ApplySettings();
             }));
         }
 
-        private void SaveSettings()
+        public override void SaveSettings()
         {
             Settings.Position = new int[2] { (int)Left - UserSettings.PlayerConfig.Overlay.Position[0], (int)Top - UserSettings.PlayerConfig.Overlay.Position[1] };
 
@@ -342,12 +336,12 @@ namespace HunterPie.GUI.Widgets.HealthWidget
             {
                 if (Context.ZoneID != 0)
                 {
-                    WidgetHasContent = Settings.HideHealthInVillages ? !e.InHarvestZone : true;
+                    WidgetHasContent = !Settings.HideHealthInVillages || !e.InHarvestZone;
                 } else
                 {
                     WidgetHasContent = false;
                 }
-                ChangeVisibility(false);
+                ChangeVisibility();
             }));
         }
 
@@ -701,28 +695,6 @@ namespace HunterPie.GUI.Widgets.HealthWidget
         private void OnClosing(object sender, System.ComponentModel.CancelEventArgs e)
         {
             UnhookEvents();
-            IsClosed = true;
-        }
-
-        private void OnMouseDown(object sender, System.Windows.Input.MouseButtonEventArgs e)
-        {
-            if (e.LeftButton == System.Windows.Input.MouseButtonState.Pressed)
-            {
-                MoveWidget();
-                SaveSettings();
-            }
-        }
-
-        private void OnMouseWheel(object sender, System.Windows.Input.MouseWheelEventArgs e)
-        {
-            if (e.Delta > 0)
-            {
-                ScaleWidget(DefaultScaleX + 0.05, DefaultScaleY + 0.05);
-            }
-            else
-            {
-                ScaleWidget(DefaultScaleX - 0.05, DefaultScaleY - 0.05);
-            }
         }
 
         private void OnLoad(object sender, RoutedEventArgs e)

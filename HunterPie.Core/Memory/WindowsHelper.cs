@@ -27,6 +27,14 @@ namespace HunterPie.Memory
         [DllImport("user32.dll")]
         public static extern bool SetProcessDPIAware();
 
+        [DllImport("user32.dll")]
+        public static extern int SendMessage(
+            IntPtr hWnd,
+            WMessages wMsg,
+            char wParam,
+            IntPtr lParam
+        );
+
         /* DPI Awareness */
         public enum PROCESS_DPI_AWARENESS
         {

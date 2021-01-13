@@ -39,14 +39,7 @@ namespace HunterPie.Core.Input
         }
 
         private static CancellationTokenSource cToken;
-
-        [DllImport("user32.dll")]
-        private static extern int SendMessage(
-            IntPtr hWnd,
-            WMessages wMsg,
-            char wParam,
-            IntPtr lParam
-            );
+        
 
         [DllImport("user32.dll")]
         private static extern short GetAsyncKeyState(byte vKey);

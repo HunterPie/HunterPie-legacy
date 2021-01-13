@@ -32,26 +32,24 @@ namespace HunterPie.GUI.Widgets.ClassWidget
 
         public override void LeaveWidgetDesignMode()
         {
-            base.LeaveWidgetDesignMode();
             ApplyWindowTransparencyFlag();
-            SaveSettings();
+            base.LeaveWidgetDesignMode();
         }
 
-        private void SaveSettings()
+        public override void SaveSettings()
+        {
+            Dispatcher.BeginInvoke(System.Windows.Threading.DispatcherPriority.Render, new Action(SaveSettingsBasedOnClass));
+        }
+
+        public override void ApplySettings()
         {
             Dispatcher.BeginInvoke(System.Windows.Threading.DispatcherPriority.Render, new Action(() =>
             {
-                SaveSettingsBasedOnClass();
-            }));
-        }
+                if (IsClosed)
+                    return;
 
-        public override void ApplySettings(bool FocusTrigger = false)
-        {
-            Dispatcher.BeginInvoke(System.Windows.Threading.DispatcherPriority.Render, new Action(() =>
-            {
-                if (IsClosed) return;
                 ApplySettingsBasedOnClass();
-                base.ApplySettings(FocusTrigger);
+                base.ApplySettings();
             }));
         }
 
@@ -200,8 +198,8 @@ namespace HunterPie.GUI.Widgets.ClassWidget
         {
             Dispatcher.BeginInvoke(System.Windows.Threading.DispatcherPriority.Render, new Action(() =>
             {
-                WidgetHasContent = !Context.Player.InHarvestZone && !(Context.Player.ZoneID == 0);
-                ChangeVisibility(false);
+                WidgetHasContent = !Context.Player.InHarvestZone && Context.Player.ZoneID != 0;
+                ChangeVisibility();
             }));
         }
 
@@ -382,31 +380,9 @@ namespace HunterPie.GUI.Widgets.ClassWidget
             ApplySettings();
         }
 
-        private void OnMouseDown(object sender, MouseButtonEventArgs e)
-        {
-            if (e.LeftButton == MouseButtonState.Pressed)
-            {
-                MoveWidget();
-                SaveSettings();
-            }
-        }
-
-        private void OnMouseWheel(object sender, MouseWheelEventArgs e)
-        {
-            if (e.Delta > 0)
-            {
-                ScaleWidget(DefaultScaleX + 0.05, DefaultScaleY + 0.05);
-            }
-            else
-            {
-                ScaleWidget(DefaultScaleX - 0.05, DefaultScaleY - 0.05);
-            }
-        }
-
         private void OnClosing(object sender, System.ComponentModel.CancelEventArgs e)
         {
             UnhookEvents();
-            IsClosed = true;
         }
 
     }

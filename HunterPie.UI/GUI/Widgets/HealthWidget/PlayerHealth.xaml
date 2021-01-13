@@ -2,8 +2,6 @@
              xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
              xmlns:local="clr-namespace:HunterPie.GUI"
-             xmlns:Custom="clr-namespace:HunterPie.GUIControls.Custom_Controls"
-             xmlns:PlayerHealthParts="clr-namespace:HunterPie.GUI.Widgets.HealthWidget.Parts"
-             ResizeMode="NoResize" WindowStyle="None" AllowsTransparency="True" ShowInTaskbar="False" Topmost="True" Closing="OnClosing" MouseDown="OnMouseDown" MouseWheel="OnMouseWheel"
+             ResizeMode="NoResize" WindowStyle="None" AllowsTransparency="True" ShowInTaskbar="False" Topmost="True" Closing="OnClosing"
              SizeToContent="WidthAndHeight" x:Name="PlayerHealthComponent" Loaded="OnLoad" Style="{StaticResource OVERLAY_PLAYER_HUD_WIDGET}">
 </local:Widget>
