@@ -29,23 +29,22 @@ namespace HunterPie.Plugins
     class PluginManager
     {
         public static List<PluginPackage> packages = new List<PluginPackage>();
-        public bool IsReady { get; private set; }
-        internal bool QueueLoad { get; set; }
         internal static Game ctx;
 
         private static readonly HashSet<string> failedPlugins = new HashSet<string>();
         private static readonly TaskCompletionSource<object> tsc = new TaskCompletionSource<object>();
         internal static readonly Task PreloadTask = tsc.Task;
 
-        public void LoadPlugins()
+        public async Task LoadPlugins()
         {
+            await PreloadTask;
+
             Stopwatch benchmark = Stopwatch.StartNew();
             if (packages.Count > 0)
             {
                 // Quick load
-                foreach (PluginPackage package in packages)
+                foreach (PluginPackage package in packages.Where(p => p.settings.IsEnabled))
                 {
-                    if (!package.settings.IsEnabled) continue;
 
                     try
                     {
@@ -90,13 +89,8 @@ namespace HunterPie.Plugins
                 }
             }
 
-            IsReady = true;
             benchmark.Stop();
             Debugger.Module($"Pre loaded {packages.Count} module(s) in {benchmark.ElapsedMilliseconds}ms");
-            if (QueueLoad)
-            {
-                LoadPlugins();
-            }
 
             if (!tsc.Task.IsCompleted)
             {

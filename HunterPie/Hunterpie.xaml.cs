@@ -720,14 +720,7 @@ namespace HunterPie
 
             // Set game context and load the modules
             PluginManager.ctx = game;
-            if (pluginManager.IsReady)
-            {
-                pluginManager.LoadPlugins();
-            }
-            else
-            {
-                pluginManager.QueueLoad = true;
-            }
+            await pluginManager.LoadPlugins();
 
             // Creates new overlay
             Dispatcher.Invoke(System.Windows.Threading.DispatcherPriority.Background, new Action(() =>
@@ -798,7 +791,7 @@ namespace HunterPie
 
         #region WINDOW EVENTS
 
-        private void OnWindowInitialized(object sender, EventArgs e)
+        private async void OnWindowInitialized(object sender, EventArgs e)
         {
             Hide();
             Width = UserSettings.PlayerConfig.HunterPie.Width;
@@ -811,7 +804,8 @@ namespace HunterPie
             UnclickButtons(ConsoleBtn.Parent as StackPanel, ConsoleBtn);
 
             // Initialize everything under this line
-            if (!CheckIfUpdateEnableAndStart()) return;
+            if (!CheckIfUpdateEnableAndStart())
+                return;
 
             // Convert the old HotKey to the new one
             ConvertOldHotkeyToNew(UserSettings.PlayerConfig.Overlay.ToggleDesignModeKey);
@@ -830,7 +824,7 @@ namespace HunterPie
 
             StartEverything();
 
-            Task.Factory.StartNew(() => pluginManager.PreloadPlugins());
+            await pluginManager.PreloadPlugins();
 
             // Support message :)
             ShowSupportMessage();

@@ -16,7 +16,7 @@
         <StackPanel x:Name="ActivitiesPanel" Orientation="Horizontal" Height="31" VerticalAlignment="Bottom" HorizontalAlignment="Center" Margin="0,0,0,8">
             <Canvas x:Name="SteamTracker" Width="62" Margin="0,0,20,0">
                 <Image Source="{StaticResource ICON_STEAMWORKS}" Width="25" Canvas.Left="4" Canvas.Top="3" Height="25"/>
-                <Image x:Name="SteamFuelWarnIcon" Source="{StaticResource ICON_WARN}" Height="11" Canvas.Left="23" Canvas.Top="2" Visibility="Hidden" RenderTransformOrigin="0.5,0.5">
+                <Image x:Name="SteamFuelWarnIcon" Source="{StaticResource ICON_WARN_FERTILIZERS}" Height="11" Canvas.Left="23" Canvas.Top="2" Visibility="Hidden" RenderTransformOrigin="0.5,0.5">
                     <Image.RenderTransform>
                         <TransformGroup>
                             <ScaleTransform ScaleX="1" ScaleY="1"/>
@@ -45,7 +45,7 @@
             </Canvas>
             <Canvas x:Name="ArgosyTracker" Width="62" Margin="0,0,10,0">
                 <Image Source="{StaticResource ICON_ARGOSY}" Width="25" Canvas.Left="4" Canvas.Top="3" Height="25"/>
-                <Image x:Name="ArgosyWarnIcon" Source="{StaticResource ICON_WARN}" Height="11" Canvas.Left="21" Canvas.Top="3" Visibility="Hidden" RenderTransformOrigin="0.5,0.5">
+                <Image x:Name="ArgosyWarnIcon" Source="{StaticResource ICON_WARN_FERTILIZERS}" Height="11" Canvas.Left="21" Canvas.Top="3" Visibility="Hidden" RenderTransformOrigin="0.5,0.5">
                     <Image.RenderTransform>
                         <TransformGroup>
                             <ScaleTransform ScaleX="1" ScaleY="1"/>
@@ -73,7 +73,7 @@
             </Canvas>
             <Canvas x:Name="TailraidersTracker" Width="62" Margin="0">
                 <Image Source="{StaticResource ICON_TAILRAIDERS}" Width="25" Canvas.Left="4" Canvas.Top="3" Height="25"/>
-                <Image x:Name="TailraidersWarnIcon" Source="{StaticResource ICON_WARN}" Height="11" Canvas.Left="21" Canvas.Top="3" Visibility="Hidden" RenderTransformOrigin="0.5,0.5">
+                <Image x:Name="TailraidersWarnIcon" Source="{StaticResource ICON_WARN_FERTILIZERS}" Height="11" Canvas.Left="21" Canvas.Top="3" Visibility="Hidden" RenderTransformOrigin="0.5,0.5">
                     <Image.RenderTransform>
                         <TransformGroup>
                             <ScaleTransform ScaleX="1" ScaleY="1"/>
