@@ -51,7 +51,7 @@
     <Grid>
         <Image Stretch="UniformToFill">
             <Image.Source>
-                <BitmapImage UriSource="{Binding ElementName=wnd, Path=BackgroundUrl}" CacheOption="OnLoad" DownloadCompleted="OnImageLoaded" DownloadFailed="OnImageFail"/>
+                <BitmapImage UriSource="{Binding ElementName=wnd, Path=BackgroundUrl}" DownloadCompleted="OnImageLoaded" DownloadFailed="OnImageFail" CacheOption="None"/>
             </Image.Source>
         </Image>
         <Rectangle>

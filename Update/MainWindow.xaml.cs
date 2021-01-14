@@ -174,8 +174,8 @@ namespace Update
         {
             UpdateFiles();
         }
-
-        private void OnImageFail(object sender, ExceptionEventArgs e)
+        
+        private void OnImageFail(object sender, EventArgs e)
         {
             UpdateFiles();
         }
