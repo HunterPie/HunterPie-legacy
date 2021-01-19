@@ -443,7 +443,7 @@ namespace HunterPie.Memory
             return result;
         }
 
-        private static byte[] StructureToBuffer<T>(ref T[] array, int size) where T : struct
+        public static byte[] StructureToBuffer<T>(ref T[] array, int size) where T : struct
         {
             IntPtr malloced = Marshal.AllocHGlobal(size);
             byte[] buffer = new byte[size];

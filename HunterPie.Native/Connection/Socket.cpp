@@ -107,16 +107,23 @@ void Connection::Server::receivePackets(char buffer[DEFAULT_BUFFER_SIZE])
 
     I_PACKET packet = *reinterpret_cast<I_PACKET*>(buffer);
 
-    if (packet.header.opcode == OPCODE::Connect)
+    switch (packet.header.opcode)
     {
-        std::cout << "Received a connect!" << std::endl;
+    case OPCODE::Connect:
+        std::cout << "Received C_CONNECT!" << std::endl;
 
         S_CONNECT packet{};
         packet.header.opcode = OPCODE::Connect;
         packet.header.version = 1;
         packet.success = true;
-
         sendData(&packet, sizeof(packet));
+        break;
+    case OPCODE::Disconnect:
+        std::cout << "Received a C_DISCONNECT" << std::endl;
+
+        S_DISCONNECT packet{};
+        sendData(&packet, sizeof(packet));
+        break;
     }
 }
 

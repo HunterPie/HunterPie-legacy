@@ -33,11 +33,16 @@ using System.Diagnostics;
 using HunterPie.Core.Events;
 using System.Xml;
 using System.Reflection;
+using System.Runtime.InteropServices;
+using System.Runtime.Serialization.Formatters.Binary;
+using System.Text;
 using System.Threading;
 using HunterPie.Core.Monsters;
 using HunterPie.Core.Native;
 using Image = System.Drawing.Image;
 using HunterPie.Native;
+using HunterPie.Native.Connection;
+using HunterPie.Native.Connection.Packets;
 
 namespace HunterPie
 {
@@ -834,14 +839,17 @@ namespace HunterPie
 
             // Support message :)
             ShowSupportMessage();
-        }
 
+            await Client.Instance.Connect();
+        }
+        
         private void OnCloseWindowButtonClick(object sender, MouseButtonEventArgs e)
         {
             // X button function;
-            bool ExitConfirmation = MessageBox.Show(GStrings.GetLocalizationByXPath("/Console/String[@ID='MESSAGE_QUIT']"), "HunterPie", MessageBoxButton.YesNo, MessageBoxImage.Question) == MessageBoxResult.Yes;
+            bool exitConfirmation = MessageBox.Show(GStrings.GetLocalizationByXPath("/Console/String[@ID='MESSAGE_QUIT']"), "HunterPie", MessageBoxButton.YesNo, MessageBoxImage.Question) == MessageBoxResult.Yes;
 
-            if (ExitConfirmation) Close();
+            if (exitConfirmation)
+                Close();
         }
 
         private void OnWindowDrag(object sender, MouseButtonEventArgs e)

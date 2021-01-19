@@ -18,13 +18,13 @@ namespace Connection
             bool success;
         };
 
-        typedef struct C_DISCONNECT : I_PACKET
-        {
-        };
+        typedef struct C_DISCONNECT : I_PACKET {};
+
+        typedef struct S_DISCONNECT : I_PACKET {};
 
         typedef struct C_QUEUE_INPUT : I_PACKET
         {
-            Game::Input::input input;
+            Game::Input::input inputs;
         };
 
         typedef struct S_QUEUE_INPUT : I_PACKET

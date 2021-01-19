@@ -11,7 +11,7 @@ namespace Game
         {
             char inputArray[32];
             int nFrames;
-            int injectionId;
+            unsigned int injectionId;
             bool ignoreOriginalInputs;
         };
 

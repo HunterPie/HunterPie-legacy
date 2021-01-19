@@ -6,7 +6,7 @@
 #include <ws2tcpip.h>
 #pragma comment (lib, "Ws2_32.lib")
 
-#define DEFAULT_BUFFER_SIZE 1024
+#define DEFAULT_BUFFER_SIZE 8192
 
 namespace Connection
 {
