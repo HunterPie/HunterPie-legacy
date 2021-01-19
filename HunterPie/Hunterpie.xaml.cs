@@ -37,6 +37,7 @@ using System.Threading;
 using HunterPie.Core.Monsters;
 using HunterPie.Core.Native;
 using Image = System.Drawing.Image;
+using HunterPie.Native;
 
 namespace HunterPie
 {
@@ -744,6 +745,11 @@ namespace HunterPie
                     presence.SetOfflineMode();
                 presence.StartRPC();
             }
+
+            if (!Injection.InjectNative())
+                Debugger.Error("Failed to inject HunterPie.Native.dll");
+            else
+                Debugger.Write("Injected HunterPie.Native.dll succesfully!", "#FFC88DF2");
         }
 
         private void OnGameClose(object source, EventArgs e)

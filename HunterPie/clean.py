@@ -25,3 +25,7 @@ for shit in os.listdir():
         shutil.rmtree(shit)
     if (shit[-4:] in clean):
         os.remove(shit)
+
+for dll in os.listdir("libs"):
+    if not dll.endswith(".dll"):
+        os.remove(os.path.join("libs", dll))

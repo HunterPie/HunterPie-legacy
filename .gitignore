@@ -5,6 +5,8 @@ bin
 obj
 packages
 
+x64
+
 # Ignore local server files
 docs/server.js
 docs/package-lock.json

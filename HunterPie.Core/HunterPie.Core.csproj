@@ -180,6 +180,7 @@
     <Compile Include="Core\Party\Member.cs" />
     <Compile Include="Core\Party\Party.cs" />
     <Compile Include="Logger\Debugger.cs" />
+    <Compile Include="Native\Injection.cs" />
     <Compile Include="Plugins\IPlugin.cs" />
     <Compile Include="Plugins\PluginInformation.cs" />
     <Compile Include="Plugins\PluginPackage.cs" />

@@ -202,22 +202,40 @@ namespace HunterPie.Core.Input
                 
                 while (injectedInputs.Any())
                 {
+
                     if ((Game.ElapsedFrames - frames) < 1)
                         continue;
 
                     isInjecting = true;
-                    
+
+                    Debugger.Log($"Injecting {injectedInputs.Count} inputs");
+
                     // Confirmation keys take 2 frames to be processed
                     if ((Game.ElapsedFrames - frames) < 2)
                     {
                         foreach (VInput input in injectedInputs.Where(i => i.Tap))
-                        if (IsKeyDown(ref keyboardStates, input.vK))
-                            RemoveInput(input.vK, ref keyboardStates);
+                        {
+                            if (IsKeyDown(ref keyboardStates, input.vK))
+                                RemoveInput(input.vK, ref keyboardStates);
+                        }
                     }
 
                     Array.Copy(keyboardStates, lastKeyboardState, keyboardStates.Length);
 
                     Kernel.Write(inputArr + 0x20, lastKeyboardState);
+
+                    
+                    if (removeQueue.Count > 0)
+                    {
+                        lock (injectedInputs)
+                        {
+                            foreach (VInput input in removeQueue)
+                                injectedInputs.Remove(input);
+
+                            if (!injectedInputs.Any())
+                                break;
+                        }
+                    }
 
                     frames = Game.ElapsedFrames;
 
@@ -226,7 +244,7 @@ namespace HunterPie.Core.Input
                     for (int i = 0; i < injectedInputs.Count; i++)
                     {
                         VInput input = injectedInputs[i];
-                        if ((!input.isFrameBased) || (input.isFrameBased && (frames - input.startedAt) < 2))
+                        if ((!input.isFrameBased) || (input.isFrameBased && frames <= input.endsAt))
                             InjectInput(input.vK, ref keyboardStates);
                         else
                             removeQueue.Add(input);
@@ -235,11 +253,6 @@ namespace HunterPie.Core.Input
 
                     Kernel.Write(inputArr, keyboardStates);
                     
-                    if (removeQueue.Count > 0)
-                    {
-                        foreach (VInput input in removeQueue)
-                            injectedInputs.Remove(input);
-                    }
                     
                     Thread.Sleep(1);
                     
@@ -352,6 +365,7 @@ namespace HunterPie.Core.Input
         {
             if (injectedInputs.Count == 0 && isPatched)
             {
+                Debugger.Log("Restored");
                 long addr = Address.GetAddress("BASE") + Address.GetAddress("FUN_GAME_INPUT");
                 Kernel.Write(addr, originalOps);
 
