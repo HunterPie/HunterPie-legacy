@@ -203,6 +203,7 @@ namespace HunterPie.GUI
             MouseLeftButtonDown -= OnMouseLeftButtonDown;
             Closing -= OnClosing;
             Initialized -= OnInitialized;
+            IsClosed = true;
             base.Close();
         }
         #endregion

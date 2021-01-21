@@ -56,7 +56,7 @@ namespace HunterPie.Native.Connection.Packets
     public struct input
     {
         [MarshalAs(UnmanagedType.ByValArray, SizeConst = 32)]
-        public char[] inputArray;
+        public byte[] inputArray;
         public int nFrames;
         public uint injectionId;
         [MarshalAs(UnmanagedType.Bool)]

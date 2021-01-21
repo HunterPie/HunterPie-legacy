@@ -2,8 +2,6 @@
 #include "../../Connection/Socket.h"
 #include "input.h"
 #include "../../libs/MinHook/MinHook.h"
-#include <iostream>
-
 
 using namespace Game::Input;
 using namespace Connection::Packets;
@@ -17,30 +15,13 @@ void Game::Input::InitializeHooks()
         reinterpret_cast<LPVOID*>(&originalHandleInput));
 }
 
-void Game::Input::HunterPie_HandleKeyboardInput(sMhKeyboard* keyboard)
+void InjectInput(long long keyboardptr)
 {
-    originalHandleInput(keyboard);
-
-    std::mutex& inputQueueMtx = Server::getInstance()->inputQueueMutex;
-
-    if (inputQueueMtx.try_lock())
-    {
-        std::queue<input*>& sharedQueue = Server::getInstance()->inputInjectionToQueue;
-
-        while (!sharedQueue.empty())
-        {
-            input* toQueue = sharedQueue.front();
-            inputInjectionQueue.push(toQueue);
-            sharedQueue.pop();
-            std::cout << "Queued input " << toQueue->injectionId << std::endl;
-        }
-        inputQueueMtx.unlock();
-    }
-
+    sMhKeyboard* keyboard = reinterpret_cast<sMhKeyboard*>(keyboardptr);
     if (!inputInjectionQueue.empty())
     {
         input* currentInput = inputInjectionQueue.front();
-        
+
         if (currentInput->ignoreOriginalInputs)
         {
             memcpy(keyboard->firstArray, currentInput->inputArray, sizeof(keyboard->firstArray));
@@ -67,6 +48,30 @@ void Game::Input::HunterPie_HandleKeyboardInput(sMhKeyboard* keyboard)
             inputInjectionQueue.pop();
 
             Connection::Server::getInstance()->sendData(&packet, sizeof(packet));
+
+            keyboardInputElapsedFrames = 0;
         }
     }
+}
+
+void Game::Input::HunterPie_HandleKeyboardInput(long long keyboard)
+{
+    originalHandleInput(keyboard);
+
+    std::mutex& inputQueueMtx = Server::getInstance()->inputQueueMutex;
+    std::queue<input*>& sharedQueue = Server::getInstance()->inputInjectionToQueue;
+
+    if (inputQueueMtx.try_lock())
+    {
+        if (!sharedQueue.empty())
+        {
+            input* toQueue = sharedQueue.front();
+            inputInjectionQueue.push(toQueue);
+            sharedQueue.pop();
+        }
+
+        inputQueueMtx.unlock();
+    }
+
+    InjectInput(keyboard);
 }

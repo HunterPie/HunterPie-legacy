@@ -1,6 +1,5 @@
 #pragma once
 #include "Socket.h"
-#include <iostream>
 #include "../libs/MinHook/MinHook.h"
 
 using namespace Connection;
@@ -22,7 +21,6 @@ bool Connection::Server::initialize()
 
     if (WSAStartup(ver, &wsaData) != 0)
     {
-        std::cout << "[HunterPie.Native] Failed to initialize winsock" << std::endl;
         return false;
     }
 
@@ -30,7 +28,6 @@ bool Connection::Server::initialize()
     ListenSocket = socket(AF_INET, SOCK_STREAM, IPPROTO_TCP);
     if (ListenSocket == INVALID_SOCKET)
     {
-        std::cout << "[HunterPie.Native] INVALID_SOCKET" << std::endl;
         WSACleanup();
         return false;
     }
@@ -44,7 +41,6 @@ bool Connection::Server::initialize()
 
     if (bind(ListenSocket, (SOCKADDR*)&addrServer, sizeof(addrServer)) == SOCKET_ERROR)
     {
-        std::cout << "Bind failed error: " << WSAGetLastError() << std::endl;
         closesocket(ListenSocket);
         WSACleanup();
         return false;
@@ -54,7 +50,6 @@ bool Connection::Server::initialize()
 
     if (listen(ListenSocket, 5) == SOCKET_ERROR)
     {
-        std::cout << "Failed to listen" << std::endl;
         closesocket(ListenSocket);
         WSACleanup();
         return false;
@@ -64,7 +59,6 @@ bool Connection::Server::initialize()
 
     if (client == INVALID_SOCKET)
     {
-        std::cout << "Failed to accept socket | Error: " << WSAGetLastError() << std::endl;
         closesocket(ListenSocket);
         WSACleanup();
         return false;
@@ -86,17 +80,13 @@ bool Connection::Server::initialize()
 
                 if (recvSize > 0)
                 {
-                    std::cout << "Received data" << std::endl;
                     receivePackets(buffer);
                     ZeroMemory(buffer, sizeof(buffer));
                 }
 
                 std::this_thread::sleep_for(16ms);
             }
-            std::cout << "Client disconnected" << std::endl;
         }).detach();
-
-    std::cout << "Connection created" << std::endl;
 
     return true;
 }
@@ -111,8 +101,6 @@ void Connection::Server::receivePackets(char buffer[DEFAULT_BUFFER_SIZE])
     {
         case OPCODE::Connect:
         {
-            std::cout << "Received C_CONNECT!" << std::endl;
-
             S_CONNECT packet{};
             packet.header.opcode = OPCODE::Connect;
             packet.header.version = 1;
@@ -125,9 +113,6 @@ void Connection::Server::receivePackets(char buffer[DEFAULT_BUFFER_SIZE])
         }
             
         case OPCODE::Disconnect:
-            std::cout << "Received a C_DISCONNECT" << std::endl;
-
-            // TODO: Unhook all trampoulines
 
             sendData(new S_DISCONNECT{}, sizeof(packet));
 
@@ -137,7 +122,6 @@ void Connection::Server::receivePackets(char buffer[DEFAULT_BUFFER_SIZE])
             WSACleanup();
             isInitialized = false;
 
-            std::cout << "Connection closed" << std::endl;
             initialize();
             break;
         case OPCODE::QueueInput:
@@ -147,14 +131,14 @@ void Connection::Server::receivePackets(char buffer[DEFAULT_BUFFER_SIZE])
             C_QUEUE_INPUT pkt = *reinterpret_cast<C_QUEUE_INPUT*>(buffer);
 
             Packets::input* toInject = new Packets::input;
-            memcpy(toInject, &pkt.inputs, sizeof(Packets::input));
+
             ZeroMemory(toInject, sizeof(Packets::input));
+
+            memcpy(toInject, &pkt.inputs, sizeof(Packets::input));
 
             inputQueueMutex.lock();
 
             inputInjectionToQueue.push(toInject);
-            std::cout << "Received C_QUEUE_INPUT | Id: " << toInject->injectionId << std::endl;
-            std::cout << "InputInjectionToQueue size: " << inputInjectionToQueue.size() << std::endl;
 
             inputQueueMutex.unlock();
 
@@ -173,6 +157,7 @@ void Connection::Server::enableHooks()
 
 void Connection::Server::disableHooks()
 {
+    return;
     MH_DisableHook(MH_ALL_HOOKS);
     MH_Uninitialize();
 }

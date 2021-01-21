@@ -19,7 +19,7 @@ namespace HunterPie.GUI.Widgets.DPSMeter
 
         private Game gContext;
 
-        private Party Context => gContext.Player.PlayerParty;
+        private Party Context => gContext?.Player.PlayerParty;
 
         public Visibility TimerVisibility
         {

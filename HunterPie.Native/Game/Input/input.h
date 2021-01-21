@@ -10,10 +10,10 @@ namespace Game
     namespace Input
     {
 
-        static void (*originalHandleInput)(sMhKeyboard* keyboard);
+        static void (*originalHandleInput)(long long keyboard);
 
         static unsigned int keyboardInputElapsedFrames = 0;
-        void HunterPie_HandleKeyboardInput(sMhKeyboard* keyboard);
+        void HunterPie_HandleKeyboardInput(long long keyboard);
 
         void InitializeHooks();
 

@@ -1,4 +1,3 @@
-// dllmain.cpp : Defines the entry point for the DLL application.
 #pragma once
 #include "Connection/Socket.h"
 
@@ -9,10 +8,11 @@ void LoadNativeDll()
 {
 
     std::thread([]()
-        {
-            bool result = Server::getInstance()->initialize();
+    {
+
+        Server::getInstance()->initialize();
             
-        }).detach();
+    }).detach();
 
 }
 

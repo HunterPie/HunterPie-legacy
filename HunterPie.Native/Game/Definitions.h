@@ -16,8 +16,8 @@ namespace Game
             char sixthArray[32];
         };
 
-        static sMhKeyboard* keyboard = (sMhKeyboard*)0x1452258F8;
+        //static sMhKeyboard* keyboard = (sMhKeyboard*)0x1452258F8;
 
-        static void (*HandleKeyboardInput)(sMhKeyboard* keyboard) = (void(*)(sMhKeyboard*))0x142303E30;
+        static void (*HandleKeyboardInput)(long long keyboard) = (void(*)(long long))0x142303E30;
     }
 }

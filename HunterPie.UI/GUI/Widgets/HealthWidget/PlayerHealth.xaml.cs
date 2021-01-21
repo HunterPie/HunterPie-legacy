@@ -236,7 +236,7 @@ namespace HunterPie.GUI.Widgets.HealthWidget
                     WidgetHasContent = false;
                 }
                 else
-                    WidgetHasContent = !Settings.HideHealthInVillages || !(Context?.InHarvestZone ?? true);
+                    WidgetHasContent = Settings.HideHealthInVillages ? !(Context?.InHarvestZone ?? true) : true;
 
                 Opacity = Settings.Opacity;
 
@@ -336,7 +336,7 @@ namespace HunterPie.GUI.Widgets.HealthWidget
             {
                 if (Context.ZoneID != 0)
                 {
-                    WidgetHasContent = !Settings.HideHealthInVillages || !e.InHarvestZone;
+                    WidgetHasContent = Settings.HideHealthInVillages ? !e.InHarvestZone : true;
                 } else
                 {
                     WidgetHasContent = false;

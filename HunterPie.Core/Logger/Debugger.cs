@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.ObjectModel;
+using System.Text;
 using System.Windows;
 using System.Windows.Threading;
 using Newtonsoft.Json;
@@ -61,6 +62,15 @@ namespace HunterPie.Logger
         public static void LogObject(object obj)
         {
             Write(JsonConvert.SerializeObject(obj, Formatting.Indented), NORMAL);
+        }
+
+        public static void LogBuffer<T>(T[] obj)
+        {
+            StringBuilder builder = new StringBuilder();
+            foreach (T b in obj)
+                builder.Append($"{b:X02} ");
+
+            Write(builder.ToString(), NORMAL);
         }
 
         public static void Clear()

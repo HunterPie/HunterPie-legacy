@@ -980,7 +980,6 @@ namespace HunterPie
 
         private void OnKeyDown(object sender, KeyEventArgs e)
         {
-
             Key key = (e.Key == Key.System ? e.SystemKey : e.Key);
 
             if (key == Key.LeftShift || key == Key.RightShift

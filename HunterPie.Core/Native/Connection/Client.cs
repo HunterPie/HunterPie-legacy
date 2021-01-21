@@ -24,9 +24,15 @@ namespace HunterPie.Native.Connection
 
         public bool IsConnected => socket?.Connected ?? false;
 
-        private NetworkStream stream => socket?.GetStream();
+        private NetworkStream stream => IsConnected ? socket?.GetStream() : null;
 
         private static readonly SemaphoreSlim semaphoreSlim = new SemaphoreSlim(1, 1);
+
+        #region Events
+
+        public event EventHandler<S_QUEUE_INPUT> OnQueueInputResponse;
+
+        #endregion
 
         #region Wrappers
 
@@ -76,7 +82,9 @@ namespace HunterPie.Native.Connection
             if (packetType?.FieldType == typeof(Header))
             {
                 Log("Sending new packet");
+                
                 byte[] buffer = PacketParser.Serialize(packet);
+
                 return await SendRawAsync(buffer);
             } else
             {
@@ -140,8 +148,13 @@ namespace HunterPie.Native.Connection
                     Log("Received a S_DISCONNECT");
                     break;
                 case OPCODE.QueueInput:
+                {
                     Log("Received S_QUEUE_INPUT");
+                    S_QUEUE_INPUT pkt = PacketParser.Deserialize<S_QUEUE_INPUT>(buffer);
+                    OnQueueInputResponse?.Invoke(this, pkt);
                     break;
+                }
+                    
             }
         }
 
@@ -169,7 +182,9 @@ namespace HunterPie.Native.Connection
 
         private void Log(object message)
         {
+            #if DEBUG
             Debugger.Write($"[Socket] {message}", "#FFFF59E6");
+            #endif
         }
     }
 }
