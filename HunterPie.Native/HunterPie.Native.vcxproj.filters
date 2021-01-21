@@ -15,12 +15,6 @@
     </Filter>
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="framework.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="pch.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
     <ClInclude Include="Game\Input\input.h">
       <Filter>Header Files</Filter>
     </ClInclude>
@@ -36,12 +30,12 @@
     <ClInclude Include="Connection\Socket.h">
       <Filter>Header Files</Filter>
     </ClInclude>
+    <ClInclude Include="libs\MinHook\MinHook.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="dllmain.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="pch.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="Game\Input\input.cpp">
@@ -52,8 +46,6 @@
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
-    <Library Include="libs\MinHook\libMinHook-x64-v141-md.lib">
-      <Filter>Resource Files</Filter>
-    </Library>
+    <Library Include="libs\MinHook\libMinHook.x64.lib" />
   </ItemGroup>
 </Project>

@@ -751,10 +751,25 @@ namespace HunterPie
                 presence.StartRPC();
             }
 
-            if (!Injection.InjectNative())
-                Debugger.Error("Failed to inject HunterPie.Native.dll");
-            else
-                Debugger.Write("Injected HunterPie.Native.dll succesfully!", "#FFC88DF2");
+            await InitializeNative();
+        }
+
+        private async Task InitializeNative()
+        {
+            try
+            {
+                await Client.Initialize();
+            } catch
+            {
+                if (Injector.InjectNative())
+                {
+                    Debugger.Write("Injected HunterPie.Native.dll succesfully!", "#FFC88DF2");
+                    await Client.Initialize();
+                }
+                else
+                    Debugger.Error("Failed to inject HunterPie.Native.dll");
+            }
+            
         }
 
         private void OnGameClose(object source, EventArgs e)
@@ -839,8 +854,6 @@ namespace HunterPie
 
             // Support message :)
             ShowSupportMessage();
-
-            await Client.Instance.Connect();
         }
         
         private void OnCloseWindowButtonClick(object sender, MouseButtonEventArgs e)
@@ -889,8 +902,10 @@ namespace HunterPie
 
         private void OnWindowClosing(object sender, CancelEventArgs e)
         {
+            Hotkey.Unload();
+
             Hide();
-            VirtualInput.ForceUnPatch();
+            Client.Instance.Disconnect();
 
             DebuggerControl.WriteStacktrace();
             pluginManager?.UnloadPlugins();
@@ -920,7 +935,6 @@ namespace HunterPie
                 UnhookGameEvents();
 
             UnhookEvents();
-            Hotkey.Unload();
 
             if (!isUpdating)
                 UserSettings.SaveNewConfig();

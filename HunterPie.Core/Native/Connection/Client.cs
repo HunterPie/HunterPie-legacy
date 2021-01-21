@@ -1,7 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
 using System.Threading.Tasks;
 using System.Net.Sockets;
 using System.Reflection;
@@ -31,7 +28,21 @@ namespace HunterPie.Native.Connection
 
         private static readonly SemaphoreSlim semaphoreSlim = new SemaphoreSlim(1, 1);
 
-        public async Task<bool> Connect()
+        #region Wrappers
+
+        internal static async Task<bool> Initialize()
+        {
+            return await Instance.Connect();
+        }
+
+        public static async Task<bool> ToServer<T>(T data) where T : struct
+        {
+            return await Instance.SendAsync(data);
+        }
+
+        #endregion
+
+        private async Task<bool> Connect()
         {
             if (IsConnected)
                 return true;
@@ -64,10 +75,10 @@ namespace HunterPie.Native.Connection
 
             if (packetType?.FieldType == typeof(Header))
             {
+                Log("Sending new packet");
                 byte[] buffer = PacketParser.Serialize(packet);
                 return await SendRawAsync(buffer);
-            }
-            else
+            } else
             {
                 Debugger.Error("Invalid packet");
                 return false;
@@ -86,12 +97,10 @@ namespace HunterPie.Native.Connection
                 await stream.WriteAsync(buffer, 0, buffer.Length);
                 
                 return true;
-            }
-            catch (Exception err)
+            } catch (Exception err)
             {
                 Debugger.Error(err);
-            }
-            finally
+            } finally
             {
                 semaphoreSlim.Release();
             }
@@ -105,7 +114,7 @@ namespace HunterPie.Native.Connection
             Task.Run(async () =>
             {
                 byte[] buffer = new byte[8192];
-                while (true)
+                while (IsConnected)
                 {
                     if (stream.DataAvailable)
                     {
@@ -127,7 +136,35 @@ namespace HunterPie.Native.Connection
                 case OPCODE.Connect:
                     Log("Received a S_CONNECT");
                     return;
+                case OPCODE.Disconnect:
+                    Log("Received a S_DISCONNECT");
+                    break;
+                case OPCODE.QueueInput:
+                    Log("Received S_QUEUE_INPUT");
+                    break;
             }
+        }
+
+        internal void Disconnect()
+        {
+            try
+            {
+                SendAsync(new C_DISCONNECT
+                {
+                    header = new Header
+                    {
+                        opcode = OPCODE.Disconnect,
+                        version = 1
+                    }
+                }).RunSynchronously();
+            } catch {}
+            finally
+            {
+                stream?.Close();
+                socket?.Close();
+                socket?.Dispose();
+            }
+            
         }
 
         private void Log(object message)

@@ -1,13 +1,18 @@
 #pragma once
 #include "model.h"
-#include "../../Game/Input/input.h";
-#include <string>
-
 
 namespace Connection
 {
     namespace Packets
     {
+        typedef struct input
+        {
+            char inputArray[32];
+            int nFrames;
+            unsigned int injectionId;
+            bool ignoreOriginalInputs;
+        };
+
         typedef struct C_CONNECT : I_PACKET
         {
             char hunterpiepath[256];
@@ -24,7 +29,7 @@ namespace Connection
 
         typedef struct C_QUEUE_INPUT : I_PACKET
         {
-            Game::Input::input inputs;
+            input inputs;
         };
 
         typedef struct S_QUEUE_INPUT : I_PACKET

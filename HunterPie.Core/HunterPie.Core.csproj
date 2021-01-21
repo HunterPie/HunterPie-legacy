@@ -188,7 +188,7 @@
     <Compile Include="Native\Connection\Packets\PacketParser.cs" />
     <Compile Include="Native\Connection\Packets\Definitions.cs" />
     <Compile Include="Native\Connection\Packets\Opcodes.cs" />
-    <Compile Include="Native\Injection.cs" />
+    <Compile Include="Native\Injector.cs" />
     <Compile Include="Plugins\IPlugin.cs" />
     <Compile Include="Plugins\PluginInformation.cs" />
     <Compile Include="Plugins\PluginPackage.cs" />

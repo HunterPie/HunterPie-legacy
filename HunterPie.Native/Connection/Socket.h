@@ -1,18 +1,27 @@
-#define WIN32_LEAN_AND_MEAN
-
-#pragma once
-#include "Packets/Definitions.h"
-#include <WinSock2.h>
-#include <ws2tcpip.h>
-#pragma comment (lib, "Ws2_32.lib")
 
 #define DEFAULT_BUFFER_SIZE 8192
+#include <WinSock2.h>
+
+#include "Packets/Definitions.h"
+#include "../Game/Input/input.h"
+
+#include <mutex>
+#include <queue>
+
+#include <ws2tcpip.h>
+#pragma comment (lib, "ws2_32.lib")
+
+
+
 
 namespace Connection
 {
     class Server
     {
     public:
+        std::queue<Packets::input*> inputInjectionToQueue;
+        std::mutex inputQueueMutex;
+
         static Server* getInstance();
 
         void sendData(void* data, int size);
@@ -25,6 +34,9 @@ namespace Connection
         Server& operator=(Server const&);
 
         void receivePackets(char buffer[DEFAULT_BUFFER_SIZE]);
+
+        void enableHooks();
+        void disableHooks();
 
         bool isInitialized = false;
 

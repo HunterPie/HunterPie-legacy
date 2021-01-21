@@ -120,6 +120,7 @@ namespace HunterPie.Core.Input
             } else
             {
                 Debugger.Error($"Failed to unregister hotkey. {Marshal.GetLastWin32Error()}");
+                hotkeys.Remove(id);
                 return true;
             }
         }

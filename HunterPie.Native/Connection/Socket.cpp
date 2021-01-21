@@ -1,8 +1,7 @@
 #pragma once
 #include "Socket.h"
 #include <iostream>
-#include <thread>
-#include <chrono>
+#include "../libs/MinHook/MinHook.h"
 
 using namespace Connection;
 
@@ -94,6 +93,7 @@ bool Connection::Server::initialize()
 
                 std::this_thread::sleep_for(16ms);
             }
+            std::cout << "Client disconnected" << std::endl;
         }).detach();
 
     std::cout << "Connection created" << std::endl;
@@ -109,28 +109,78 @@ void Connection::Server::receivePackets(char buffer[DEFAULT_BUFFER_SIZE])
 
     switch (packet.header.opcode)
     {
-    case OPCODE::Connect:
-        std::cout << "Received C_CONNECT!" << std::endl;
+        case OPCODE::Connect:
+        {
+            std::cout << "Received C_CONNECT!" << std::endl;
 
-        S_CONNECT packet{};
-        packet.header.opcode = OPCODE::Connect;
-        packet.header.version = 1;
-        packet.success = true;
-        sendData(&packet, sizeof(packet));
-        break;
-    case OPCODE::Disconnect:
-        std::cout << "Received a C_DISCONNECT" << std::endl;
+            S_CONNECT packet{};
+            packet.header.opcode = OPCODE::Connect;
+            packet.header.version = 1;
+            packet.success = true;
 
-        S_DISCONNECT packet{};
-        sendData(&packet, sizeof(packet));
-        break;
+            enableHooks();
+
+            sendData(&packet, sizeof(packet));
+            break;
+        }
+            
+        case OPCODE::Disconnect:
+            std::cout << "Received a C_DISCONNECT" << std::endl;
+
+            // TODO: Unhook all trampoulines
+
+            sendData(new S_DISCONNECT{}, sizeof(packet));
+
+            disableHooks();
+
+            closesocket(client);
+            WSACleanup();
+            isInitialized = false;
+
+            std::cout << "Connection closed" << std::endl;
+            initialize();
+            break;
+        case OPCODE::QueueInput:
+        {
+            
+
+            C_QUEUE_INPUT pkt = *reinterpret_cast<C_QUEUE_INPUT*>(buffer);
+
+            Packets::input* toInject = new Packets::input;
+            memcpy(toInject, &pkt.inputs, sizeof(Packets::input));
+            ZeroMemory(toInject, sizeof(Packets::input));
+
+            inputQueueMutex.lock();
+
+            inputInjectionToQueue.push(toInject);
+            std::cout << "Received C_QUEUE_INPUT | Id: " << toInject->injectionId << std::endl;
+            std::cout << "InputInjectionToQueue size: " << inputInjectionToQueue.size() << std::endl;
+
+            inputQueueMutex.unlock();
+
+            break;
+        }
     }
+}
+
+void Connection::Server::enableHooks()
+{
+    MH_Initialize();
+    Game::Input::InitializeHooks();
+
+    MH_EnableHook(MH_ALL_HOOKS);
+}
+
+void Connection::Server::disableHooks()
+{
+    MH_DisableHook(MH_ALL_HOOKS);
+    MH_Uninitialize();
 }
 
 Server* Connection::Server::getInstance()
 {
     if (!_instance)
-        return new Server();
+        _instance = new Server();
 
     return _instance;
 }

@@ -1,21 +1,40 @@
-#include "../../pch.h"
 #pragma once
-#include "input.h"
 #include "../../Connection/Socket.h"
+#include "input.h"
+#include "../../libs/MinHook/MinHook.h"
+#include <iostream>
 
 
 using namespace Game::Input;
 using namespace Connection::Packets;
+using namespace Connection;
+
+void Game::Input::InitializeHooks()
+{
+    // Creates the input function hook
+    MH_CreateHook(Game::Input::HandleKeyboardInput,
+        &HunterPie_HandleKeyboardInput,
+        reinterpret_cast<LPVOID*>(&originalHandleInput));
+}
 
 void Game::Input::HunterPie_HandleKeyboardInput(sMhKeyboard* keyboard)
 {
     originalHandleInput(keyboard);
 
-    if (!inputInjectionToQueue.empty())
+    std::mutex& inputQueueMtx = Server::getInstance()->inputQueueMutex;
+
+    if (inputQueueMtx.try_lock())
     {
-        input* toQueue = inputInjectionToQueue.front();
-        inputInjectionQueue.push(toQueue);
-        inputInjectionToQueue.pop();
+        std::queue<input*>& sharedQueue = Server::getInstance()->inputInjectionToQueue;
+
+        while (!sharedQueue.empty())
+        {
+            input* toQueue = sharedQueue.front();
+            inputInjectionQueue.push(toQueue);
+            sharedQueue.pop();
+            std::cout << "Queued input " << toQueue->injectionId << std::endl;
+        }
+        inputQueueMtx.unlock();
     }
 
     if (!inputInjectionQueue.empty())
@@ -38,18 +57,16 @@ void Game::Input::HunterPie_HandleKeyboardInput(sMhKeyboard* keyboard)
         keyboardInputElapsedFrames++;
         if (currentInput->nFrames <= keyboardInputElapsedFrames)
         {
-
-
             S_QUEUE_INPUT packet{};
             packet.header.opcode = OPCODE::QueueInput;
             packet.header.version = 1;
             packet.inputId = inputInjectionQueue.front()->injectionId;
 
-            free(inputInjectionQueue.front());
+            delete inputInjectionQueue.front();
+
             inputInjectionQueue.pop();
 
             Connection::Server::getInstance()->sendData(&packet, sizeof(packet));
         }
     }
 }
-

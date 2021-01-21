@@ -1,5 +1,6 @@
 ﻿using System;
 using System.IO;
+using HunterPie.Core;
 using static HunterPie.Memory.Kernel;
 
 
@@ -8,7 +9,7 @@ namespace HunterPie.Native
     /// <summary>
     /// Injection will handle the HunterPie.Native.dll injection
     /// </summary>
-    internal static class Injection
+    internal static class Injector
     {
 
         internal static bool IsNativeEnabled { get; private set; }
@@ -16,8 +17,9 @@ namespace HunterPie.Native
         internal static bool InjectNative()
         {
             string nativeDllPath = Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "libs", "HunterPie.Native.dll");
+            bool isNativeFunctionsEnabled = UserSettings.PlayerConfig.HunterPie.EnableNativeFunctions;
 
-            if (!File.Exists(nativeDllPath))
+            if (!File.Exists(nativeDllPath) || !isNativeFunctionsEnabled)
             {
                 IsNativeEnabled = false;
                 return false;

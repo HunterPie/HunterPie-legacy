@@ -211,6 +211,7 @@ namespace HunterPie.Core
                 public PluginProxyMode PluginProxyMode { get; set; } = PluginProxyMode.Auto;
                 public string PluginRegistryUrl { get; set; } = "https://hunterpie-plugins.herokuapp.com/";
                 public bool MinimizeAfterGameStart { get; set; } = false;
+                public bool EnableNativeFunctions { get; set; } = true;
                 public Update Update { get; set; } = new Update();
                 public Launch Launch { get; set; } = new Launch();
                 public Options Options { get; set; } = new Options();
