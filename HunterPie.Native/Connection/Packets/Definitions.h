@@ -27,6 +27,9 @@ namespace Connection
 
         typedef struct S_DISCONNECT : I_PACKET {};
 
+        typedef struct C_ENABLE_HOOKS : I_PACKET {};
+        typedef struct C_DISABLE_HOOKS : I_PACKET {};
+
         typedef struct C_QUEUE_INPUT : I_PACKET
         {
             input inputs;

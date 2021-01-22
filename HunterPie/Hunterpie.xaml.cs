@@ -756,10 +756,10 @@ namespace HunterPie
 
         private async Task InitializeNative()
         {
-            try
+            if (Injector.CheckIfAlreadyInjected())
             {
                 await Client.Initialize();
-            } catch
+            } else
             {
                 if (Injector.InjectNative())
                 {

@@ -3,13 +3,16 @@
 
 using namespace Connection;
 
-
 void LoadNativeDll()
 {
 
     std::thread([]()
     {
-
+#if _DEBUG
+        AllocConsole();
+        FILE* newStdout;
+        freopen_s(&newStdout, "CONOUT$", "w", stdout);
+#endif
         Server::getInstance()->initialize();
             
     }).detach();

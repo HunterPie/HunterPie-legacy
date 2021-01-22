@@ -57,11 +57,9 @@ namespace HunterPie.Native.Connection
 
             await socket.ConnectAsync(address, port);
 
-            Listen();
-
             if (IsConnected)
             {
-                Log("Connected to HunterPie.Native!");
+                Debugger.Write($"[Socket] Connected to HunterPie.Native!", "#FFFF59E6");
                 Listen();
                 C_CONNECT connectPacket = new C_CONNECT()
                 {
@@ -81,7 +79,6 @@ namespace HunterPie.Native.Connection
 
             if (packetType?.FieldType == typeof(Header))
             {
-                Log("Sending new packet");
                 
                 byte[] buffer = PacketParser.Serialize(packet);
 
@@ -118,7 +115,6 @@ namespace HunterPie.Native.Connection
 
         private void Listen()
         {
-            Log("Listening for data!");
             Task.Run(async () =>
             {
                 byte[] buffer = new byte[8192];
@@ -142,8 +138,22 @@ namespace HunterPie.Native.Connection
             switch (packetHeader.opcode)
             {
                 case OPCODE.Connect:
+                {
                     Log("Received a S_CONNECT");
+                    S_CONNECT pkt = PacketParser.Deserialize<S_CONNECT>(buffer);
+                    
+                    if (Injector.CheckIfCRCBypassExists())
+                    {
+                        C_ENABLE_HOOKS enableHooks = new C_ENABLE_HOOKS
+                        {
+                            header = new Header { opcode = OPCODE.EnableHooks, version = 1}
+                        };
+                        SendAsync(enableHooks);
+                    }
+
                     return;
+                }
+                    
                 case OPCODE.Disconnect:
                     Log("Received a S_DISCONNECT");
                     break;

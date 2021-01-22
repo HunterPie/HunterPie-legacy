@@ -38,6 +38,18 @@ namespace HunterPie.Native.Connection.Packets
     }
 
     [StructLayout(LayoutKind.Sequential)]
+    struct C_ENABLE_HOOKS
+    {
+        public Header header;
+    }
+
+    [StructLayout(LayoutKind.Sequential)]
+    struct C_DISABLE_HOOKS
+    {
+        public Header header;
+    }
+
+    [StructLayout(LayoutKind.Sequential)]
     public struct C_QUEUE_INPUT
     {
         public Header header;

@@ -1,6 +1,8 @@
 #pragma once
 #include "Socket.h"
 #include "../libs/MinHook/MinHook.h"
+#include <psapi.h>
+#include <tchar.h>
 
 using namespace Connection;
 
@@ -45,8 +47,6 @@ bool Connection::Server::initialize()
         WSACleanup();
         return false;
     }
-
-    
 
     if (listen(ListenSocket, 5) == SOCKET_ERROR)
     {
@@ -106,13 +106,14 @@ void Connection::Server::receivePackets(char buffer[DEFAULT_BUFFER_SIZE])
             packet.header.version = 1;
             packet.success = true;
 
-            enableHooks();
-
+            LOG("-> C_CONNECT\n");
             sendData(&packet, sizeof(packet));
             break;
         }
-            
+
         case OPCODE::Disconnect:
+        {
+            LOG("-> C_DISCONNECT\n");
 
             sendData(new S_DISCONNECT{}, sizeof(packet));
 
@@ -124,10 +125,25 @@ void Connection::Server::receivePackets(char buffer[DEFAULT_BUFFER_SIZE])
 
             initialize();
             break;
+        }
+
+        case OPCODE::EnableHooks:
+        {
+            LOG("-> C_ENABLE_HOOKS\n");
+            enableHooks();
+            break;
+        }
+
+        case OPCODE::DisableHooks:
+        {
+            LOG("-> C_DISABLE_HOOKS\n");
+            disableHooks();
+            break;
+        }
+
         case OPCODE::QueueInput:
         {
-            
-
+            LOG("-> C_QUEUE_INPUT\n");
             C_QUEUE_INPUT pkt = *reinterpret_cast<C_QUEUE_INPUT*>(buffer);
 
             Packets::input* toInject = new Packets::input;
@@ -149,17 +165,26 @@ void Connection::Server::receivePackets(char buffer[DEFAULT_BUFFER_SIZE])
 
 void Connection::Server::enableHooks()
 {
+    if (hooksEnabled)
+        return;
+
     MH_Initialize();
     Game::Input::InitializeHooks();
 
     MH_EnableHook(MH_ALL_HOOKS);
+
+    hooksEnabled = true;
 }
 
 void Connection::Server::disableHooks()
 {
-    return;
+    if (!hooksEnabled)
+        return;
+
     MH_DisableHook(MH_ALL_HOOKS);
     MH_Uninitialize();
+
+    hooksEnabled = false;
 }
 
 Server* Connection::Server::getInstance()

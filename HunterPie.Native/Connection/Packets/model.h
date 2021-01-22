@@ -9,6 +9,8 @@ namespace Connection
             None,
             Connect,
             Disconnect,
+            EnableHooks,
+            DisableHooks,
             QueueInput
         };
 

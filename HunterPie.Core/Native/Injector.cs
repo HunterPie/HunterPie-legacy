@@ -1,7 +1,11 @@
 ﻿using System;
+using System.Diagnostics;
 using System.IO;
 using HunterPie.Core;
+using HunterPie.Memory;
+using Debugger = HunterPie.Logger.Debugger;
 using static HunterPie.Memory.Kernel;
+using System.Linq;
 
 
 namespace HunterPie.Native
@@ -58,6 +62,26 @@ namespace HunterPie.Native
             }
 
             return IsNativeEnabled;
+        }
+
+        internal static bool CheckIfCRCBypassExists()
+        {
+            // I wanted to get whether CRCBypass exists based on the game modules
+            // but for some reason they don't appear in the modules list?
+
+            string path = Path.GetDirectoryName(Kernel.Process.MainModule.FileName);
+
+            string dtdata = Path.Combine(path, "dtdata.dll");
+            string loader = Path.Combine(path, "loader.dll");
+            string crcBypass = Path.Combine(path, "nativePC", "plugins", "!CRCBypass.dll");
+
+            return File.Exists(dtdata) && File.Exists(loader) && File.Exists(crcBypass);
+        }
+
+        internal static bool CheckIfAlreadyInjected()
+        {
+            return Kernel.Process.Modules.Cast<ProcessModule>()
+                    .Any(m => m.ModuleName == "HunterPie.Native.dll");
         }
     }
 }

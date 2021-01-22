@@ -9,10 +9,8 @@
 #include <queue>
 
 #include <ws2tcpip.h>
+#include "Logger.h"
 #pragma comment (lib, "ws2_32.lib")
-
-
-
 
 namespace Connection
 {
@@ -27,7 +25,7 @@ namespace Connection
         void sendData(void* data, int size);
 
         bool initialize();
-
+        
     private:
         Server();
         Server(Server const&);
@@ -39,6 +37,7 @@ namespace Connection
         void disableHooks();
 
         bool isInitialized = false;
+        bool hooksEnabled = false;
 
         static Server* _instance;
         SOCKET client;

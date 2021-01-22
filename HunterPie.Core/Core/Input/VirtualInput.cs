@@ -35,11 +35,11 @@ namespace HunterPie.Core.Input
                 if (virtualInputTasks.ContainsKey(e.inputId))
                 {
                     virtualInputTasks[e.inputId].Cancel();
+                    virtualInputTasks[e.inputId].Dispose();
 
                     virtualInputTasks.Remove(e.inputId);
                 }
             }
-            Debugger.Log($"Finished injecting {e.inputId}");
         }
 
         /// <summary>
@@ -55,9 +55,50 @@ namespace HunterPie.Core.Input
                 SendMessage(Kernel.WindowHandle, WMessages.WM_CHAR, c, IntPtr.Zero);
         }
 
-        public Task PressKey(char key) 
+        /// <summary>
+        /// Press a single key for one frame
+        /// </summary>
+        /// <param name="key">Key Code</param>
+        /// <param name="ignoreOriginal">Whether original inputs should be overwritten</param>
+        /// <returns>An awaitable task</returns>
+        public static Task PressKey(char key, bool ignoreOriginal = true) 
         {
-            return InjectInputRaw(new [] { key });
+            return Instance.InjectInputRaw(new [] { key }, ignoreOriginalInputs: ignoreOriginal);
+        }
+
+        /// <summary>
+        /// Press multiple keys for one frame
+        /// </summary>
+        /// <param name="keys">key codes</param>
+        /// <param name="ignoreOriginal">Whether original inputs should be overwritten</param>
+        /// <returns>An awaitable task</returns>
+        public static Task PressKeys(char[] keys, bool ignoreOriginal = true)
+        {
+            return Instance.InjectInputRaw(keys, ignoreOriginalInputs: ignoreOriginal);
+        }
+
+        /// <summary>
+        /// Holds one key for multiple frames
+        /// </summary>
+        /// <param name="key">key code</param>
+        /// <param name="frameCount">Number of frames to hold inputs for</param>
+        /// <param name="ignoreOriginal">Whether original inputs should be overwritten</param>
+        /// <returns></returns>
+        public static Task HoldKey(char key, int frameCount, bool ignoreOriginal = true)
+        {
+            return Instance.InjectInputRaw(new [] { key }, frameCount, ignoreOriginal);
+        }
+
+        /// <summary>
+        /// Holds multiple keys for multiple frames
+        /// </summary>
+        /// <param name="keys">key codes</param>
+        /// <param name="frameCount">Number of frames to hold inputs for</param>
+        /// <param name="ignoreOriginal">Whether original inputs should be overwritten</param>
+        /// <returns></returns>
+        public static Task HoldKeys(char[] keys, int frameCount, bool ignoreOriginal = true)
+        {
+            return Instance.InjectInputRaw(keys, frameCount, ignoreOriginal);
         }
 
         private Task InjectInputRaw(
@@ -118,11 +159,18 @@ namespace HunterPie.Core.Input
             {
                 if (disposing)
                 {
-                    
-                }
+                    lock (virtualInputTasks)
+                    {
+                        foreach (CancellationTokenSource tk in virtualInputTasks.Values)
+                        {
+                            tk.Cancel();
+                            tk.Dispose();
+                        }
+                    }
+                    virtualInputTasks.Clear();
 
-                // TODO: free unmanaged resources (unmanaged objects) and override finalizer
-                // TODO: set large fields to null
+                    Client.Instance.OnQueueInputResponse -= Server_OnQueueInputResponse;
+                }
                 disposedValue = true;
             }
         }

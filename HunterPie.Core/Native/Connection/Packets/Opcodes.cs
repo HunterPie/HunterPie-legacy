@@ -5,6 +5,8 @@
         None,
         Connect,
         Disconnect,
+        EnableHooks,
+        DisableHooks,
         QueueInput
     }
 }
