@@ -4,6 +4,9 @@
 #include <psapi.h>
 #include <tchar.h>
 
+#include "../Game/Input/input.h"
+#include "../Game/Chat/chat.h"
+
 using namespace Connection;
 
 Server* Server::_instance;
@@ -158,6 +161,15 @@ void Connection::Server::receivePackets(char buffer[DEFAULT_BUFFER_SIZE])
 
             inputQueueMutex.unlock();
 
+            break;
+        }
+
+        case OPCODE::SendChatMessage:
+        {
+            C_SEND_CHAT pkt = *reinterpret_cast<C_SEND_CHAT*>(buffer);
+
+            LOG("-> C_SEND_CHAT\n");
+            Game::Chat::SendChatMessage(pkt.message);
             break;
         }
     }

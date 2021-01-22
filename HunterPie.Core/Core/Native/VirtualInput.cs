@@ -2,11 +2,8 @@
 using System.Collections.Generic;
 using System.Threading;
 using System.Threading.Tasks;
-using HunterPie.Memory;
 using HunterPie.Native.Connection;
 using HunterPie.Native.Connection.Packets;
-using HunterPie.Logger;
-using static HunterPie.Memory.WindowsHelper;
 // ReSharper disable All
 
 namespace HunterPie.Core.Input
@@ -40,19 +37,6 @@ namespace HunterPie.Core.Input
                     virtualInputTasks.Remove(e.inputId);
                 }
             }
-        }
-
-        /// <summary>
-        /// Sends a string to Monster Hunter: World
-        /// </summary>
-        /// <param name="characters">Text to be sent</param>
-        public static void SendText(string characters)
-        {
-            if (characters is null)
-                return;
-            
-            foreach (char c in characters)
-                SendMessage(Kernel.WindowHandle, WMessages.WM_CHAR, c, IntPtr.Zero);
         }
 
         /// <summary>
@@ -170,6 +154,7 @@ namespace HunterPie.Core.Input
                     virtualInputTasks.Clear();
 
                     Client.Instance.OnQueueInputResponse -= Server_OnQueueInputResponse;
+                    instance = null;
                 }
                 disposedValue = true;
             }

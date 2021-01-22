@@ -39,5 +39,10 @@ namespace Connection
         {
             unsigned int inputId;
         };
+
+        typedef struct C_SEND_CHAT : I_PACKET
+        {
+            char message[40];
+        };
     }
 }

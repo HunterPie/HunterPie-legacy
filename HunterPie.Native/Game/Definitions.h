@@ -20,4 +20,20 @@ namespace Game
 
         static void (*HandleKeyboardInput)(long long keyboard) = (void(*)(long long))0x142303E30;
     }
+
+    namespace Chat
+    {
+        typedef struct uGUIChat
+        {
+            long long* vtable_ref;
+            long long unkptrs[42]; // Most of them are pointers, but there's also some unk data there
+            int chatIndex;
+            int unk; // Probably either padding, or chatIndex is an uint64_t
+            int isTextBarVisible;
+            char space;
+            char chatBuffer[256];
+        };
+
+        static long long* ChatBase = (long long*)0x145224B80;
+    }
 }

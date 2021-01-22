@@ -56,10 +56,19 @@ namespace HunterPie.Native.Connection.Packets
         public input inputs;
     }
 
+    [StructLayout(LayoutKind.Sequential)]
     public struct S_QUEUE_INPUT
     {
         public Header header;
         public uint inputId;
+    }
+
+    [StructLayout(LayoutKind.Sequential, CharSet = CharSet.Ansi)]
+    public struct C_SEND_CHAT
+    {
+        public Header header;
+        [MarshalAs(UnmanagedType.ByValTStr, SizeConst = 40)]
+        public string message;
     }
 
     #region Other Data structures

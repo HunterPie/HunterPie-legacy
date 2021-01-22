@@ -7,6 +7,7 @@
         Disconnect,
         EnableHooks,
         DisableHooks,
-        QueueInput
+        QueueInput,
+        SendChatMessage
     }
 }

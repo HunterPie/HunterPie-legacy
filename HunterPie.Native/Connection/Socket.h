@@ -3,7 +3,6 @@
 #include <WinSock2.h>
 
 #include "Packets/Definitions.h"
-#include "../Game/Input/input.h"
 
 #include <mutex>
 #include <queue>
