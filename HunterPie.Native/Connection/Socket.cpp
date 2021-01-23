@@ -77,18 +77,19 @@ bool Connection::Server::initialize()
             char buffer[DEFAULT_BUFFER_SIZE];
             int recvSize;
 
-            while (client != INVALID_SOCKET)
+            while (true)
             {
                 recvSize = recv(client, buffer, sizeof(buffer), 0);
 
                 if (recvSize > 0)
                 {
+                    
                     receivePackets(buffer);
                     ZeroMemory(buffer, sizeof(buffer));
-                }
-
-                std::this_thread::sleep_for(16ms);
+                } else
+                    break;
             }
+            disconnectNative();
         }).detach();
 
     return true;
@@ -120,13 +121,7 @@ void Connection::Server::receivePackets(char buffer[DEFAULT_BUFFER_SIZE])
 
             sendData(new S_DISCONNECT{}, sizeof(packet));
 
-            disableHooks();
-
-            closesocket(client);
-            WSACleanup();
-            isInitialized = false;
-
-            initialize();
+            disconnectNative();
             break;
         }
 
@@ -172,7 +167,33 @@ void Connection::Server::receivePackets(char buffer[DEFAULT_BUFFER_SIZE])
             Game::Chat::SendChatMessage(pkt.message);
             break;
         }
+
+        case OPCODE::SendSystemMessage:
+        {
+            C_SEND_SYSTEM_CHAT pkt = *reinterpret_cast<C_SEND_SYSTEM_CHAT*>(buffer);
+
+            LOG("-> C_SEND_SYSTEM_CHAT\n");
+
+            Game::Chat::SendSystemMessage(pkt.message, pkt.unk1, pkt.unk2, pkt.unk3);
+            break;
+        }
     }
+}
+
+void Connection::Server::disconnectNative()
+{
+    if (!isInitialized)
+        return;
+
+    LOG("Socket disconnected\n");
+
+    disableHooks();
+
+    closesocket(client);
+    WSACleanup();
+    isInitialized = false;
+
+    initialize();
 }
 
 void Connection::Server::enableHooks()
@@ -216,3 +237,4 @@ Server& Connection::Server::operator=(Server const&)
 {
     return *this;
 }
+

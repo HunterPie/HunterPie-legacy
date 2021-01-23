@@ -8,6 +8,7 @@
         EnableHooks,
         DisableHooks,
         QueueInput,
-        SendChatMessage
+        SendChatMessage,
+        SendSystemMessage
     }
 }

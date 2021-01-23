@@ -5,6 +5,7 @@ using System.Reflection;
 using System.Threading;
 using HunterPie.Logger;
 using HunterPie.Native.Connection.Packets;
+using HunterPie.Core.Native;
 
 namespace HunterPie.Native.Connection
 {
@@ -172,6 +173,7 @@ namespace HunterPie.Native.Connection
         {
             try
             {
+                Chat.SystemMessage("<SIZE 30><STYL MOJI_YELLOW_DEFAULT>HunterPie Native</STYL>\nDisconnected.", -1, 0, 0);
                 SendAsync(new C_DISCONNECT
                 {
                     header = new Header

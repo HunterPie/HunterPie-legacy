@@ -67,8 +67,19 @@ namespace HunterPie.Native.Connection.Packets
     public struct C_SEND_CHAT
     {
         public Header header;
-        [MarshalAs(UnmanagedType.ByValTStr, SizeConst = 40)]
+        [MarshalAs(UnmanagedType.ByValTStr, SizeConst = 256)]
         public string message;
+    }
+
+    [StructLayout(LayoutKind.Sequential, CharSet = CharSet.Ansi)]
+    public struct C_SEND_SYSTEM_CHAT
+    {
+        public Header header;
+        [MarshalAs(UnmanagedType.ByValTStr, SizeConst = 256)]
+        public string message;
+        public float unk1;
+        public uint unk2;
+        public byte unk3;
     }
 
     #region Other Data structures

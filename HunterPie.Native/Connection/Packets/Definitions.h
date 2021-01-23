@@ -42,7 +42,15 @@ namespace Connection
 
         typedef struct C_SEND_CHAT : I_PACKET
         {
-            char message[40];
+            char message[256];
+        };
+
+        typedef struct C_SEND_SYSTEM_CHAT : I_PACKET
+        {
+            char message[256];
+            float unk1;
+            unsigned int unk2;
+            unsigned char unk3;
         };
     }
 }

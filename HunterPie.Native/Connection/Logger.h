@@ -1,5 +1,5 @@
 #if _DEBUG
 #define LOG(...) printf_s(__VA_ARGS__) 
 #else
-#define LOG(...) return
+#define LOG(...) 
 #endif

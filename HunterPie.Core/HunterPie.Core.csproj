@@ -140,7 +140,7 @@
     <Compile Include="Core\Game.cs" />
     <Compile Include="Core\Input\Hotkey.cs" />
     <Compile Include="Core\Input\PlayerKeyboard.cs" />
-    <Compile Include="Core\Input\VirtualInput.cs" />
+    <Compile Include="Core\Native\VirtualInput.cs" />
     <Compile Include="Core\Input\VKeys.cs" />
     <Compile Include="Core\Integrations\DataExporter\Exporter.cs" />
     <Compile Include="Core\Integrations\Honey\Honey.cs" />
@@ -179,6 +179,7 @@
     <Compile Include="Core\Monsters\MonsterData.cs" />
     <Compile Include="Core\Monsters\MonsterInfo.cs" />
     <Compile Include="Core\Monsters\Part.cs" />
+    <Compile Include="Core\Native\Chat.cs" />
     <Compile Include="Core\Native\MusicSkillData.cs" />
     <Compile Include="Core\Native\GMD.cs" />
     <Compile Include="Core\Party\Member.cs" />

@@ -33,16 +33,9 @@ using System.Diagnostics;
 using HunterPie.Core.Events;
 using System.Xml;
 using System.Reflection;
-using System.Runtime.InteropServices;
-using System.Runtime.Serialization.Formatters.Binary;
-using System.Text;
-using System.Threading;
-using HunterPie.Core.Monsters;
 using HunterPie.Core.Native;
-using Image = System.Drawing.Image;
 using HunterPie.Native;
 using HunterPie.Native.Connection;
-using HunterPie.Native.Connection.Packets;
 
 namespace HunterPie
 {
@@ -66,7 +59,7 @@ namespace HunterPie
         public static Hunterpie Instance;
 
         // HunterPie version
-        public const string HUNTERPIE_VERSION = "1.0.4";
+        public const string HUNTERPIE_VERSION = "1.0.5";
         public static readonly Version AssemblyVersion = Assembly.GetEntryAssembly().GetName().Version;
 
         private readonly List<int> registeredHotkeys = new List<int>();
@@ -667,12 +660,19 @@ namespace HunterPie
             }
         }
 
+        private bool alreadyShowConnectedMessage = false;
         public void OnZoneChange(object source, EventArgs e)
         {
             if (game.Player.IsLoggedOn)
             {
                 Debugger.Debug($"ZoneID: {game.Player.ZoneID}");
                 ExportGameData();
+            }
+
+            if (!alreadyShowConnectedMessage && game.Player.ZoneID != 0)
+            {
+                Chat.SystemMessage("<STYL MOJI_RED_SELECTED>HunterPie Native</STYL>\nConnected.", -1, 0, 0);
+                alreadyShowConnectedMessage = true;
             }
         }
 
@@ -728,6 +728,8 @@ namespace HunterPie
             PluginManager.ctx = game;
             await pluginManager.LoadPlugins();
 
+            await InitializeNative();
+
             // Creates new overlay
             Dispatcher.Invoke(System.Windows.Threading.DispatcherPriority.Background, new Action(() =>
             {
@@ -750,8 +752,6 @@ namespace HunterPie
                     presence.SetOfflineMode();
                 presence.StartRPC();
             }
-
-            await InitializeNative();
         }
 
         private async Task InitializeNative()
@@ -980,7 +980,6 @@ namespace HunterPie
 
         private void OnKeyDown(object sender, KeyEventArgs e)
         {
-            
             Key key = (e.Key == Key.System ? e.SystemKey : e.Key);
 
             if (key == Key.LeftShift || key == Key.RightShift

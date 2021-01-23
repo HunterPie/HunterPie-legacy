@@ -34,6 +34,13 @@ namespace Game
             char chatBuffer[256];
         };
 
-        static long long* ChatBase = (long long*)0x145224B80;
+        typedef struct sChat
+        {
+            long long vtable_ref;
+        };
+
+        static long long* uGuiChatBase = (long long*)0x145224B80;
+        static sChat** sChatBase = (sChat**)0x14506D340;
+        static void (*SendSystem)(sChat* _this, char* message, float unk, unsigned int unk1, unsigned char unk2) = (void(*)(sChat*, char*, float, unsigned int, unsigned char))0x141A671F0;
     }
 }

@@ -34,6 +34,7 @@ namespace Connection
 
         void enableHooks();
         void disableHooks();
+        void disconnectNative();
 
         bool isInitialized = false;
         bool hooksEnabled = false;
