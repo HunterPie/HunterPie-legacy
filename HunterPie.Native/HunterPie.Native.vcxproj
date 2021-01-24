@@ -155,8 +155,8 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClInclude Include="Connection\Logger.h" />
+    <ClInclude Include="Connection\Packets\address_map.h" />
     <ClInclude Include="Game\Chat\chat.h" />
-    <ClInclude Include="Game\Definitions.h" />
     <ClInclude Include="Game\Helpers.h" />
     <ClInclude Include="Game\Input\input.h" />
     <ClInclude Include="Connection\Socket.h" />

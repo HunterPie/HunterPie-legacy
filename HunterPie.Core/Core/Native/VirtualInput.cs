@@ -18,7 +18,7 @@ namespace HunterPie.Core.Input
             get { return instance ?? (instance = new VirtualInput());}
         }
 
-        private readonly Dictionary<uint, CancellationTokenSource> virtualInputTasks = new Dictionary<uint, CancellationTokenSource>();
+        private readonly Dictionary<uint, TaskCompletionSource<bool>> pendingRequests = new Dictionary<uint, TaskCompletionSource<bool>>();
 
         private VirtualInput()
         {
@@ -27,14 +27,13 @@ namespace HunterPie.Core.Input
 
         private void Server_OnQueueInputResponse(object sender, S_QUEUE_INPUT e)
         {
-            lock (virtualInputTasks)
+            lock (pendingRequests)
             {
-                if (virtualInputTasks.ContainsKey(e.inputId))
+                if (pendingRequests.ContainsKey(e.inputId))
                 {
-                    virtualInputTasks[e.inputId].Cancel();
-                    virtualInputTasks[e.inputId].Dispose();
+                    pendingRequests[e.inputId].SetResult(true);
 
-                    virtualInputTasks.Remove(e.inputId);
+                    pendingRequests.Remove(e.inputId);
                 }
             }
         }
@@ -85,46 +84,40 @@ namespace HunterPie.Core.Input
             return Instance.InjectInputRaw(keys, frameCount, ignoreOriginal);
         }
 
-        private Task InjectInputRaw(
+        private async Task<bool> InjectInputRaw(
             char[] keys,
             int numberOfFrames = 1,
             bool ignoreOriginalInputs = true)
         {
-            uint newInjId = (uint)(new Random().NextDouble() * uint.MaxValue);
-            CancellationTokenSource src = new CancellationTokenSource();
+            uint newInjId;
+
+            TaskCompletionSource<bool> src = new TaskCompletionSource<bool>();
             
-            lock (virtualInputTasks)
+            lock (pendingRequests)
             {
                 do
                 {
                     newInjId = (uint)(new Random().NextDouble() * uint.MaxValue);
-                } while (virtualInputTasks.ContainsKey(newInjId));
+                } while (pendingRequests.ContainsKey(newInjId));
 
-                virtualInputTasks.Add(newInjId, src);
+                pendingRequests.Add(newInjId, src);
             }
 
-            Task newTsk = Task.Run(async () => {
-                C_QUEUE_INPUT packet = new C_QUEUE_INPUT()
+            C_QUEUE_INPUT packet = new C_QUEUE_INPUT()
+            {
+                header = new Header() { opcode = OPCODE.QueueInput, version = 1 },
+                inputs = new input()
                 {
-                    header = new Header() { opcode = OPCODE.QueueInput, version = 1 },
-                    inputs = new input()
-                    {
-                        inputArray = CalculateInputs(keys),
-                        nFrames = numberOfFrames,
-                        injectionId = newInjId,
-                        ignoreOriginalInputs = ignoreOriginalInputs
-                    }
-                };
-                await Client.ToServer(packet);
-                
-                try
-                {
-                    await Task.Delay(-1, src.Token);
-                } catch { }
+                    inputArray = CalculateInputs(keys),
+                    nFrames = numberOfFrames,
+                    injectionId = newInjId,
+                    ignoreOriginalInputs = ignoreOriginalInputs
+                }
+            };
 
-            });
+            await Client.ToServer(packet);
 
-            return newTsk;
+            return await src.Task;
         }
 
         private static byte[] CalculateInputs(char[] keys)
@@ -143,17 +136,17 @@ namespace HunterPie.Core.Input
             {
                 if (disposing)
                 {
-                    lock (virtualInputTasks)
+                    Client.Instance.OnQueueInputResponse -= Server_OnQueueInputResponse;
+
+                    lock (pendingRequests)
                     {
-                        foreach (CancellationTokenSource tk in virtualInputTasks.Values)
+                        foreach (TaskCompletionSource<bool> tk in pendingRequests.Values)
                         {
-                            tk.Cancel();
-                            tk.Dispose();
+                            tk.SetResult(false);
                         }
                     }
-                    virtualInputTasks.Clear();
+                    pendingRequests.Clear();
 
-                    Client.Instance.OnQueueInputResponse -= Server_OnQueueInputResponse;
                     instance = null;
                 }
                 disposedValue = true;

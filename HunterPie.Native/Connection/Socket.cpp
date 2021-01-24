@@ -3,7 +3,6 @@
 #include "../libs/MinHook/MinHook.h"
 #include <psapi.h>
 #include <tchar.h>
-
 #include "../Game/Input/input.h"
 #include "../Game/Chat/chat.h"
 
@@ -26,6 +25,7 @@ bool Connection::Server::initialize()
 
     if (WSAStartup(ver, &wsaData) != 0)
     {
+        LOG("Error startup: %d\n", WSAGetLastError());
         return false;
     }
 
@@ -33,6 +33,7 @@ bool Connection::Server::initialize()
     ListenSocket = socket(AF_INET, SOCK_STREAM, IPPROTO_TCP);
     if (ListenSocket == INVALID_SOCKET)
     {
+        LOG("Error listen socket: %d\n", WSAGetLastError());
         WSACleanup();
         return false;
     }
@@ -46,6 +47,7 @@ bool Connection::Server::initialize()
 
     if (bind(ListenSocket, (SOCKADDR*)&addrServer, sizeof(addrServer)) == SOCKET_ERROR)
     {
+        LOG("Error bind: %d\n", WSAGetLastError());
         closesocket(ListenSocket);
         WSACleanup();
         return false;
@@ -53,6 +55,7 @@ bool Connection::Server::initialize()
 
     if (listen(ListenSocket, 5) == SOCKET_ERROR)
     {
+        LOG("Error listen: %d\n", WSAGetLastError());
         closesocket(ListenSocket);
         WSACleanup();
         return false;
@@ -62,6 +65,7 @@ bool Connection::Server::initialize()
 
     if (client == INVALID_SOCKET)
     {
+        LOG("Error accept: %d\n", WSAGetLastError());
         closesocket(ListenSocket);
         WSACleanup();
         return false;
@@ -71,28 +75,35 @@ bool Connection::Server::initialize()
 
     isInitialized = true;
 
-    std::thread([this]()
+    std::thread t([this]()
+    {
+        using namespace std::chrono;
+        char buffer[DEFAULT_BUFFER_SIZE];
+        int recvSize;
+
+        while (true)
         {
-            using namespace std::chrono;
-            char buffer[DEFAULT_BUFFER_SIZE];
-            int recvSize;
+            recvSize = recv(client, buffer, sizeof(buffer), 0);
 
-            while (true)
+            if (recvSize > 0)
             {
-                recvSize = recv(client, buffer, sizeof(buffer), 0);
+                receivePackets(buffer);
+                ZeroMemory(buffer, sizeof(buffer));
+            } else
+                break;
+        }
+        disconnectNative();
+    });
 
-                if (recvSize > 0)
-                {
-                    
-                    receivePackets(buffer);
-                    ZeroMemory(buffer, sizeof(buffer));
-                } else
-                    break;
-            }
-            disconnectNative();
-        }).detach();
+    t.join();
 
     return true;
+}
+
+void AssignPointers(uintptr_t arr[128])
+{
+    Game::Chat::LoadAddress(arr);
+    Game::Input::LoadAddress(arr);
 }
 
 void Connection::Server::receivePackets(char buffer[DEFAULT_BUFFER_SIZE])
@@ -105,10 +116,13 @@ void Connection::Server::receivePackets(char buffer[DEFAULT_BUFFER_SIZE])
     {
         case OPCODE::Connect:
         {
-            S_CONNECT packet{};
-            packet.header.opcode = OPCODE::Connect;
-            packet.header.version = 1;
-            packet.success = true;
+            C_CONNECT pkt = *reinterpret_cast<C_CONNECT*>(buffer);
+            S_CONNECT packet{
+                I_PACKET { OPCODE::Connect, 1},
+                true
+            };
+
+            AssignPointers(pkt.addresses);
 
             LOG("-> C_CONNECT\n");
             sendData(&packet, sizeof(packet));
@@ -117,11 +131,12 @@ void Connection::Server::receivePackets(char buffer[DEFAULT_BUFFER_SIZE])
 
         case OPCODE::Disconnect:
         {
+            C_DISCONNECT pkt = *reinterpret_cast<C_DISCONNECT*>(buffer);
             LOG("-> C_DISCONNECT\n");
 
-            sendData(new S_DISCONNECT{}, sizeof(packet));
+            Game::Chat::SendSystemMessage(pkt.message, pkt.unk1, pkt.unk2, pkt.unk3);
 
-            disconnectNative();
+            sendData(new S_DISCONNECT{}, sizeof(packet));
             break;
         }
 
@@ -191,6 +206,7 @@ void Connection::Server::disconnectNative()
 
     closesocket(client);
     WSACleanup();
+
     isInitialized = false;
 
     initialize();

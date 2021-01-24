@@ -1,9 +1,22 @@
 #pragma once
 #include "chat.h"
 #include "../Helpers.h"
-#include "../../Connection/Socket.h"
+#include "../../Connection/Logger.h"
+#include "../../Connection/Packets/address_map.h"
 
 using namespace Game::Chat;
+
+sChat** sChatBase = (sChat**)nullptr;
+long long* uGuiChatBase = (long long*)nullptr;
+uintptr_t SendSystemMsg = (uintptr_t)nullptr;
+
+bool Game::Chat::LoadAddress(uintptr_t ptrs[128])
+{
+    sChatBase = (sChat**)ptrs[GAME_CHAT_OFFSET];
+    uGuiChatBase = (long long*)ptrs[GAME_HUD_INFO_OFFSET];
+    SendSystemMsg = ptrs[FUN_CHAT_SYSTEM];
+    return true;
+}
 
 bool Game::Chat::SendChatMessage(char message[256])
 {
@@ -20,6 +33,6 @@ bool Game::Chat::SendChatMessage(char message[256])
 
 bool Game::Chat::SendSystemMessage(char message[256], float unk, unsigned int unk1, unsigned char unk2)
 {
-    Game::Chat::SendSystem(*sChatBase, message, unk, unk1, unk2);
+    ((fnSendSystemMsg)SendSystemMsg)(*sChatBase, message, unk, unk1, unk2);
     return true;
 }

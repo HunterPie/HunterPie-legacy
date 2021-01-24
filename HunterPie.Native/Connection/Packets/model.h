@@ -13,7 +13,7 @@ namespace Connection
             DisableHooks,
             QueueInput,
             SendChatMessage,
-            SendSystemMessage
+            SendSystemMessage,
         };
 
         typedef struct header

@@ -5,7 +5,7 @@ using System.Reflection;
 using System.Threading;
 using HunterPie.Logger;
 using HunterPie.Native.Connection.Packets;
-using HunterPie.Core.Native;
+using static HunterPie.Memory.Address;
 
 namespace HunterPie.Native.Connection
 {
@@ -18,8 +18,8 @@ namespace HunterPie.Native.Connection
             get { return instance ?? (instance = new Client()); }
         }
 
-        private const string address = "127.0.0.1";
-        private const int port = 16969;
+        private const string Address = "127.0.0.1";
+        private const int Port = 16969;
 
         private TcpClient socket;
 
@@ -56,7 +56,7 @@ namespace HunterPie.Native.Connection
 
             socket = new TcpClient();
 
-            await socket.ConnectAsync(address, port);
+            await socket.ConnectAsync(Address, Port);
 
             if (IsConnected)
             {
@@ -65,8 +65,15 @@ namespace HunterPie.Native.Connection
                 C_CONNECT connectPacket = new C_CONNECT()
                 {
                     header = new Header() {opcode = OPCODE.Connect, version = 1},
-                    hunterpiePath = AppDomain.CurrentDomain.BaseDirectory
+                    addresses = new UIntPtr[128]
                 };
+
+                // TODO: Make this less bad
+                connectPacket.addresses[0] = (UIntPtr)GetAbsoluteAddress("FUN_GAME_INPUT");
+                connectPacket.addresses[1] = (UIntPtr)GetAbsoluteAddress("GAME_INPUT_OFFSET");
+                connectPacket.addresses[2] = (UIntPtr)GetAbsoluteAddress("GAME_HUD_INFO_OFFSET");
+                connectPacket.addresses[3] = (UIntPtr)GetAbsoluteAddress("GAME_CHAT_OFFSET");
+                connectPacket.addresses[4] = (UIntPtr)GetAbsoluteAddress("FUN_CHAT_SYSTEM");
 
                 await SendAsync(connectPacket);
             }
@@ -132,7 +139,7 @@ namespace HunterPie.Native.Connection
             });
         }
 
-        private void HandlePackets(byte[] buffer)
+        private async void HandlePackets(byte[] buffer)
         {
             Header packetHeader = PacketParser.Deserialize<Header>(buffer);
 
@@ -149,15 +156,18 @@ namespace HunterPie.Native.Connection
                         {
                             header = new Header { opcode = OPCODE.EnableHooks, version = 1}
                         };
-                        SendAsync(enableHooks);
+                        await SendAsync(enableHooks);
                     }
 
                     return;
                 }
                     
                 case OPCODE.Disconnect:
+                {
                     Log("Received a S_DISCONNECT");
                     break;
+                }
+
                 case OPCODE.QueueInput:
                 {
                     Log("Received S_QUEUE_INPUT");
@@ -173,14 +183,17 @@ namespace HunterPie.Native.Connection
         {
             try
             {
-                Chat.SystemMessage("<SIZE 30><STYL MOJI_YELLOW_DEFAULT>HunterPie Native</STYL>\nDisconnected.", -1, 0, 0);
                 SendAsync(new C_DISCONNECT
                 {
                     header = new Header
                     {
                         opcode = OPCODE.Disconnect,
                         version = 1
-                    }
+                    },
+                    message = "<STYL MOJI_LIGHTBLUE_DEFAULT><ICON SLG_NEWS>HunterPie Native</STYL>\nDisconnected.",
+                    unk1 = -1,
+                    unk2 = 0,
+                    unk3 = 0
                 }).RunSynchronously();
             } catch {}
             finally

@@ -1,5 +1,6 @@
 ﻿using HunterPie.Native.Connection.Packets;
 using HunterPie.Native.Connection;
+using System.Threading.Tasks;
 
 namespace HunterPie.Core.Native
 {
@@ -11,10 +12,10 @@ namespace HunterPie.Core.Native
         /// Sends a string to Monster Hunter: World
         /// </summary>
         /// <param name="message">Text to be sent (Max: 256 characters)</param>
-        public static async void Say(string message)
+        public static async Task<bool> Say(string message)
         {
             if (message is null)
-                return;
+                return false;
 
             if (message.Length >= MaxLength)
                 message = message.Substring(0, MaxLength - 1);
@@ -26,13 +27,13 @@ namespace HunterPie.Core.Native
                 header = new Header { opcode = OPCODE.SendChatMessage, version = 1 },
                 message = message
             };
-            await Client.ToServer(pkt);
+            return await Client.ToServer(pkt);
         }
 
-        public static async void SystemMessage(string message, float unk1, uint unk2, byte unk3)
+        public static async Task<bool> SystemMessage(string message, float unk1, uint unk2, byte isPurple)
         {
             if (message is null)
-                return;
+                return false;
 
             if (message.Length >= MaxLength)
                 message = message.Substring(0, MaxLength - 1);
@@ -45,10 +46,10 @@ namespace HunterPie.Core.Native
                 message = message,
                 unk1 = unk1,
                 unk2 = unk2,
-                unk3 = unk3
+                unk3 = isPurple
             };
 
-            await Client.ToServer(pkt);
+            return await Client.ToServer(pkt);
         }
     }
 }

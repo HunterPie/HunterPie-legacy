@@ -660,7 +660,6 @@ namespace HunterPie
             }
         }
 
-        private bool alreadyShowConnectedMessage = false;
         public void OnZoneChange(object source, EventArgs e)
         {
             if (game.Player.IsLoggedOn)
@@ -668,21 +667,19 @@ namespace HunterPie
                 Debugger.Debug($"ZoneID: {game.Player.ZoneID}");
                 ExportGameData();
             }
-
-            if (!alreadyShowConnectedMessage && game.Player.ZoneID != 0)
-            {
-                Chat.SystemMessage("<STYL MOJI_RED_SELECTED>HunterPie Native</STYL>\nConnected.", -1, 0, 0);
-                alreadyShowConnectedMessage = true;
-            }
         }
 
-        public void OnLogin(object source, EventArgs e)
+        public async void OnLogin(object source, EventArgs e)
         {
             Debugger.Log($"Logged on {game.Player.Name}");
-            Dispatcher.BeginInvoke(System.Windows.Threading.DispatcherPriority.Render, new Action(() =>
+
+            await Dispatcher.BeginInvoke(System.Windows.Threading.DispatcherPriority.Render, new Action(() =>
             {
                 IsPlayerLoggedOn = true;
             }));
+
+            await Chat.SystemMessage("<STYL MOJI_LIGHTBLUE_DEFAULT><ICON SLG_NEWS>HunterPie Native</STYL>\nConnected.", -1, 0, 0);
+            
             ExportGameData();
         }
 

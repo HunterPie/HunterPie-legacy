@@ -1,4 +1,5 @@
-﻿using System.Runtime.InteropServices;
+﻿using System;
+using System.Runtime.InteropServices;
 
 namespace HunterPie.Native.Connection.Packets
 {
@@ -9,12 +10,12 @@ namespace HunterPie.Native.Connection.Packets
         public uint version;
     }
 
-    [StructLayout(LayoutKind.Sequential, CharSet = CharSet.Ansi)]
+    [StructLayout(LayoutKind.Sequential)]
     public struct C_CONNECT
     {
         public Header header;
-        [MarshalAs(UnmanagedType.ByValTStr, SizeConst = 256)]
-        public string hunterpiePath;
+        [MarshalAs(UnmanagedType.ByValArray, SizeConst = 128)]
+        public UIntPtr[] addresses;
     }
 
     [StructLayout(LayoutKind.Sequential)]
@@ -25,10 +26,15 @@ namespace HunterPie.Native.Connection.Packets
         public bool success;
     }
 
-    [StructLayout(LayoutKind.Sequential)]
+    [StructLayout(LayoutKind.Sequential, CharSet = CharSet.Ansi)]
     struct C_DISCONNECT
     {
         public Header header;
+        [MarshalAs(UnmanagedType.ByValTStr, SizeConst = 256)]
+        public string message;
+        public float unk1;
+        public uint unk2;
+        public byte unk3;
     }
 
     [StructLayout(LayoutKind.Sequential)]

@@ -15,7 +15,7 @@ namespace Connection
 
         typedef struct C_CONNECT : I_PACKET
         {
-            char hunterpiepath[256];
+            uintptr_t addresses[128];
         };
 
         typedef struct S_CONNECT : I_PACKET
@@ -23,7 +23,13 @@ namespace Connection
             bool success;
         };
 
-        typedef struct C_DISCONNECT : I_PACKET {};
+        typedef struct C_DISCONNECT : I_PACKET
+        {
+            char message[256];
+            float unk1;
+            unsigned int unk2;
+            unsigned char unk3;
+        };
 
         typedef struct S_DISCONNECT : I_PACKET {};
 
@@ -52,5 +58,6 @@ namespace Connection
             unsigned int unk2;
             unsigned char unk3;
         };
+
     }
 }

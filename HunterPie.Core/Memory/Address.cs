@@ -73,6 +73,11 @@ namespace HunterPie.Memory
             }
         }
 
+        /// <summary>
+        /// Gets a relative address from the <see cref="Addresses"/> map
+        /// </summary>
+        /// <param name="name">Address name</param>
+        /// <returns>Relative address</returns>
         public static long GetAddress(string name)
         {
             if (Addresses.ContainsKey(name))
@@ -81,6 +86,24 @@ namespace HunterPie.Memory
                 return Kernel.NULLPTR;
         }
 
+        /// <summary>
+        /// Gets an absoute address (BASE + Relative) from the <see cref="Addresses"/> map
+        /// </summary>
+        /// <param name="name">Address name</param>
+        /// <returns>Absolute address</returns>
+        public static long GetAbsoluteAddress(string name)
+        {
+            if (Addresses.ContainsKey(name))
+                return GetAddress("BASE") + GetAddress(name);
+            else
+                return Kernel.NULLPTR;
+        }
+
+        /// <summary>
+        /// Gets an array of offsets from the <see cref="Offsets"/> map
+        /// </summary>
+        /// <param name="name">Offsets array name</param>
+        /// <returns>Offsets array</returns>
         public static int[] GetOffsets(string name)
         {
             if (Offsets.ContainsKey(name))

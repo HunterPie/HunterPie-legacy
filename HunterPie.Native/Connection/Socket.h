@@ -1,15 +1,14 @@
-
 #define DEFAULT_BUFFER_SIZE 8192
+#define WIN32_LEAN_NO_MEAN
+#pragma once
 #include <WinSock2.h>
-
-#include "Packets/Definitions.h"
-
 #include <mutex>
 #include <queue>
-
+#include "Packets/Definitions.h"
 #include <ws2tcpip.h>
 #include "Logger.h"
 #pragma comment (lib, "ws2_32.lib")
+
 
 namespace Connection
 {
