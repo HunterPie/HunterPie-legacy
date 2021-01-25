@@ -738,9 +738,6 @@ namespace HunterPie
                 }
             }));
 
-            // Starts scanning
-            game.StartScanning();
-
             // Initializes rich presence
             if (presence is null)
             {
@@ -749,6 +746,9 @@ namespace HunterPie
                     presence.SetOfflineMode();
                 presence.StartRPC();
             }
+
+            // Starts scanning
+            game.StartScanning();
         }
 
         private async Task InitializeNative()

@@ -190,12 +190,22 @@ namespace HunterPie.Core
             {
                 if (zoneId != value)
                 {
-                    if ((zoneId == -1 || peaceZones.Contains(zoneId)) && !peaceZones.Contains(value)) Dispatch(OnPeaceZoneLeave, new PlayerLocationEventArgs(this));
-                    if (harvestBoxZones.Contains(zoneId) && !harvestBoxZones.Contains(value)) Dispatch(OnVillageLeave, new PlayerLocationEventArgs(this));
                     zoneId = value;
+
                     Dispatch(OnZoneChange, new PlayerLocationEventArgs(this));
-                    if (peaceZones.Contains(value)) Dispatch(OnPeaceZoneEnter, new PlayerLocationEventArgs(this));
-                    if (harvestBoxZones.Contains(value)) Dispatch(OnVillageEnter, new PlayerLocationEventArgs(this));
+
+                    if (peaceZones.Contains(LastZoneID) && !peaceZones.Contains(zoneId))
+                        Dispatch(OnPeaceZoneLeave, new PlayerLocationEventArgs(this));
+
+                    if (harvestBoxZones.Contains(LastZoneID) && !harvestBoxZones.Contains(zoneId))
+                        Dispatch(OnVillageLeave, new PlayerLocationEventArgs(this));
+                                        
+                    if (!peaceZones.Contains(LastZoneID) && peaceZones.Contains(zoneId))
+                        Dispatch(OnPeaceZoneEnter, new PlayerLocationEventArgs(this));
+
+                    if (!harvestBoxZones.Contains(LastZoneID) && harvestBoxZones.Contains(zoneId))
+                        Dispatch(OnVillageEnter, new PlayerLocationEventArgs(this));
+
                     if (value == 0 && LEVEL_ADDRESS != 0x0)
                     {
                         LEVEL_ADDRESS = 0x0;
@@ -440,7 +450,7 @@ namespace HunterPie.Core
         {
             if (e is null)
                 return;
-
+            Debugger.Log($"Dispatched {e.Method.Name}");
             foreach (PlayerEvents del in e.GetInvocationList())
             {
                 try

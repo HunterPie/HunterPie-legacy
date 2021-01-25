@@ -14,6 +14,7 @@ using System.Windows.Controls;
 using HunterPie.GUI.Helpers;
 using static HunterPie.Core.UserSettings.Config;
 using System.Linq;
+using HunterPie.Logger;
 
 namespace HunterPie.GUI.Widgets.HealthWidget
 {
@@ -332,6 +333,7 @@ namespace HunterPie.GUI.Widgets.HealthWidget
         private void OnZoneChange(object source, EventArgs args)
         {
             PlayerLocationEventArgs e = (PlayerLocationEventArgs)args;
+            
             Dispatcher.BeginInvoke(DispatcherPriority.Render, new Action(() =>
             {
                 if (Context.ZoneID != 0)
@@ -343,6 +345,7 @@ namespace HunterPie.GUI.Widgets.HealthWidget
                 }
                 ChangeVisibility();
             }));
+            Debugger.Log($"{this.WidgetHasContent} | {this.WidgetActive}");
         }
 
         private void OnAbnormalityEnd(object source, AbnormalityEventArgs args)
