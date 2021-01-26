@@ -13,7 +13,6 @@ using System.Windows.Media.Animation;
 using HunterPie.Core;
 using HunterPie.Core.Definitions;
 using HunterPie.Core.Integrations.DataExporter;
-using HunterPie.GUI;
 using HunterPie.GUIControls;
 using HunterPie.GUIControls.Custom_Controls;
 using HunterPie.Plugins;
@@ -175,7 +174,8 @@ namespace HunterPie
         #region AUTO UPDATE
         private bool StartUpdateProcess()
         {
-            if (!File.Exists(Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "Update.exe"))) return false;
+            if (!File.Exists(Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "Update.exe")))
+                return false;
 
             Process UpdateProcess = new Process();
             UpdateProcess.StartInfo.FileName = Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "Update.exe");
@@ -184,9 +184,18 @@ namespace HunterPie
             return true;
         }
 
-        private bool CheckIfUpdateEnableAndStart()
+        private async Task<bool> CheckIfUpdateEnableAndStart()
         {
-            if (config.HunterPie.Update.Enabled)
+            bool serverUp = true;
+            try
+            {
+                using (var httpGet = new HttpClient())
+                {
+                    await httpGet.GetAsync("https://hunterpie.herokuapp.com/ping");
+                }
+            } catch {serverUp = false; }
+            
+            if (config.HunterPie.Update.Enabled && serverUp)
             {
                 bool justUpdated = false;
                 bool latestVersion = false;
@@ -329,7 +338,7 @@ namespace HunterPie
             registeredHotkeys.Clear();
         }
 
-        private void ToggleOverlayCallback()
+        private async void ToggleOverlayCallback()
         {
             if (overlay == null)
             {
@@ -337,10 +346,10 @@ namespace HunterPie
             }
 
             config.Overlay.Enabled = !config.Overlay.Enabled;
-            ConfigManager.TrySaveSettingsAsync();
+            await ConfigManager.TrySaveSettingsAsync();
         }
 
-        private void SwitchMonsterBarModeCallback()
+        private async void SwitchMonsterBarModeCallback()
         {
             if (overlay == null)
             {
@@ -348,7 +357,7 @@ namespace HunterPie
             }
 
             config.Overlay.MonstersComponent.ShowMonsterBarMode = config.Overlay.MonstersComponent.ShowMonsterBarMode + 1 >= 5 ? (byte)0 : (byte)(config.Overlay.MonstersComponent.ShowMonsterBarMode + 1);
-            ConfigManager.TrySaveSettingsAsync();
+            await ConfigManager.TrySaveSettingsAsync();
         }
 
         private void ToggleDesignModeCallback()
@@ -831,7 +840,7 @@ namespace HunterPie
             UnclickButtons(ConsoleBtn.Parent as StackPanel, ConsoleBtn);
 
             // Initialize everything under this line
-            if (!CheckIfUpdateEnableAndStart())
+            if (!await CheckIfUpdateEnableAndStart())
                 return;
 
             // Convert the old HotKey to the new one
