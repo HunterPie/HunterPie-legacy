@@ -267,7 +267,7 @@ namespace HunterPie.Core
                     SyncMonstersStates();
                     GetWorldCurrentTime();
 
-                    Thread.Sleep(UserSettings.PlayerConfig.Overlay.GameScanDelay);
+                    Thread.Sleep(ConfigManager.Settings.Overlay.GameScanDelay);
                 }
 
                 Thread.Sleep(1000);

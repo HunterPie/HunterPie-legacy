@@ -3,6 +3,7 @@ using System.Windows;
 using System.Windows.Media;
 using HunterPie.Core;
 using HunterPie.Core.Events;
+using HunterPie.Core.Settings;
 
 namespace HunterPie.GUI.Widgets
 {
@@ -11,24 +12,26 @@ namespace HunterPie.GUI.Widgets
     /// </summary>
     public partial class MantleTimer : Widget
     {
-        public new WidgetType Type => WidgetType.MantleWidget;
+        public override WidgetType Type => WidgetType.MantleWidget;
 
         private Mantle Context { get; set; }
         private int MantleNumber { get; set; }
 
-        private UserSettings.Config.SpecializedTool Settings
+        public override IWidgetSettings Settings
         {
             get
             {
                 switch (MantleNumber)
                 {
                     case 1:
-                        return UserSettings.PlayerConfig.Overlay.SecondaryMantle;
+                        return ConfigManager.Settings.Overlay.SecondaryMantle;
                     default:
-                        return UserSettings.PlayerConfig.Overlay.PrimaryMantle;
+                        return ConfigManager.Settings.Overlay.PrimaryMantle;
                 }
             }
         }
+
+        private SpecializedTool settings => (SpecializedTool)Settings;
 
         public float Percentage
         {
@@ -91,14 +94,6 @@ namespace HunterPie.GUI.Widgets
         {
             ApplyWindowTransparencyFlag();
             base.LeaveWidgetDesignMode();
-        }
-
-        public override void SaveSettings()
-        {
-            Settings.Position[0] = (int)Left - UserSettings.PlayerConfig.Overlay.Position[0];
-            Settings.Position[1] = (int)Top - UserSettings.PlayerConfig.Overlay.Position[1];
-            Settings.Scale = DefaultScaleX;
-
         }
 
         public void SetContext(Mantle ctx)
@@ -183,32 +178,16 @@ namespace HunterPie.GUI.Widgets
 
         public override void ApplySettings()
         {
-            Dispatcher.BeginInvoke(System.Windows.Threading.DispatcherPriority.Background, new Action(() =>
-            {
-                // Changes widget position
-                Top = Settings.Position[1] + UserSettings.PlayerConfig.Overlay.Position[1];
-                Left = Settings.Position[0] + UserSettings.PlayerConfig.Overlay.Position[0];
+            // Sets widget custom color
+            Color widgetColor = (Color)ColorConverter.ConvertFromString(settings.Color);
 
-                // Sets widget custom color
-                Color widgetColor = (Color)ColorConverter.ConvertFromString(Settings.Color);
+            MantleColor = widgetColor;
+            widgetColor.A = 0x33;
+            MantleSecondaryColor = widgetColor;
 
-                MantleColor = widgetColor;
-                widgetColor.A = 0x33;
-                MantleSecondaryColor = widgetColor;
-
-                double scaleFactor = Settings.Scale;
-                ScaleWidget(scaleFactor, scaleFactor);
-
-                // Sets visibility if enabled/disabled
-                WidgetActive = Settings.Enabled;
-
-                Opacity = Settings.Opacity;
-                IsCompactMode = Settings.CompactMode;
-                base.ApplySettings();
-            }));
+            IsCompactMode = settings.CompactMode;
+            base.ApplySettings();
         }
-            
-
 
         public override void ScaleWidget(double newScaleX, double newScaleY)
         {

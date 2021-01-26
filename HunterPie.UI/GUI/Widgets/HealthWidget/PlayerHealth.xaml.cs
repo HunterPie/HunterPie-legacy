@@ -12,9 +12,9 @@ using HunterPie.GUIControls.Custom_Controls;
 using System.Windows.Shapes;
 using System.Windows.Controls;
 using HunterPie.GUI.Helpers;
-using static HunterPie.Core.UserSettings.Config;
 using System.Linq;
 using HunterPie.Logger;
+using HunterPie.Core.Settings;
 
 namespace HunterPie.GUI.Widgets.HealthWidget
 {
@@ -23,12 +23,13 @@ namespace HunterPie.GUI.Widgets.HealthWidget
     /// </summary>
     public partial class PlayerHealth : Widget
     {
-        public new WidgetType Type => WidgetType.PlayerWidget;
+        public override WidgetType Type => WidgetType.PlayerWidget;
 
         private Game gContext { get; set; }
         private Player Context => gContext.Player;
 
-        private PlayerHealthComponent Settings => UserSettings.PlayerConfig.Overlay.PlayerHealthComponent;
+        public override IWidgetSettings Settings => ConfigManager.Settings.Overlay.PlayerHealthComponent;
+        private new PlayerHealthComponent settings => (PlayerHealthComponent)Settings;
 
         private const double SharpnessMaxWidth = 50;
 
@@ -205,7 +206,6 @@ namespace HunterPie.GUI.Widgets.HealthWidget
             IsStaminaNormal = true;
             SharpnessVisibility = Visibility.Collapsed;
             InitializeComponent();
-            SetWindowFlags();
             SetContext(ctx);
         }
 
@@ -223,35 +223,16 @@ namespace HunterPie.GUI.Widgets.HealthWidget
 
         public override void ApplySettings()
         {
-            Dispatcher.BeginInvoke(DispatcherPriority.Background, new Action(() =>
+            PlayerName = FormatNameString();
+
+            if ((Context?.ZoneID ?? 0) == 0)
             {
-                Left = Settings.Position[0] + UserSettings.PlayerConfig.Overlay.Position[0];
-                Top = Settings.Position[1] + UserSettings.PlayerConfig.Overlay.Position[1];
+                WidgetHasContent = false;
+            }
+            else
+                WidgetHasContent = settings.HideHealthInVillages ? !(Context?.InHarvestZone ?? true) : true;
 
-                WidgetActive = Settings.Enabled;
-
-                PlayerName = FormatNameString();
-
-                if ((Context?.ZoneID ?? 0) == 0)
-                {
-                    WidgetHasContent = false;
-                }
-                else
-                    WidgetHasContent = Settings.HideHealthInVillages ? !(Context?.InHarvestZone ?? true) : true;
-
-                Opacity = Settings.Opacity;
-
-                ScaleWidget(Settings.Scale, Settings.Scale);
-                
-                base.ApplySettings();
-            }));
-        }
-
-        public override void SaveSettings()
-        {
-            Settings.Position = new int[2] { (int)Left - UserSettings.PlayerConfig.Overlay.Position[0], (int)Top - UserSettings.PlayerConfig.Overlay.Position[1] };
-
-            Settings.Scale = DefaultScaleX;
+            base.ApplySettings();
         }
 
         public void SetContext(Game ctx)
@@ -338,7 +319,7 @@ namespace HunterPie.GUI.Widgets.HealthWidget
             {
                 if (Context.ZoneID != 0)
                 {
-                    WidgetHasContent = Settings.HideHealthInVillages ? !e.InHarvestZone : true;
+                    WidgetHasContent = ((PlayerHealthComponent)Settings).HideHealthInVillages ? !e.InHarvestZone : true;
                 } else
                 {
                     WidgetHasContent = false;
@@ -567,7 +548,7 @@ namespace HunterPie.GUI.Widgets.HealthWidget
                 return null;
             }
 
-            return Settings.NameTextFormat.Replace("{HR}", Context.Level.ToString())
+            return settings.NameTextFormat.Replace("{HR}", Context.Level.ToString())
                 .Replace("{MR}", Context.MasterRank.ToString())
                 .Replace("{Name}", Context.Name);
 

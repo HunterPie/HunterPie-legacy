@@ -26,10 +26,14 @@ namespace HunterPie.GUIControls
             notifyIcon.ContextMenuStrip = contextMenuStrip;
         }
 
-        public ToolStripItem AddItem(string name)
+        public ToolStripMenuItem AddItem(string name)
         {
-            ToolStripItem newItem = contextMenuStrip.Items.Add(name);
-            return newItem;
+            return contextMenuStrip.Items.Add(name) as ToolStripMenuItem;
+        }
+
+        public ToolStripMenuItem AddMenuItem(string name, ToolStripMenuItem menu)
+        {
+            return menu.DropDownItems.Add(name) as ToolStripMenuItem;
         }
 
         protected virtual void Dispose(bool disposing)

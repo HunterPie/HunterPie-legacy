@@ -4,7 +4,7 @@
             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
             xmlns:Helpers="clr-namespace:HunterPie.GUI.Helpers"
             x:Name="MantleWidget"
-            ResizeMode="NoResize" SizeToContent="WidthAndHeight" WindowStyle="None" AllowsTransparency="True" ShowInTaskbar="False" Topmost="True" Closing="OnClosing"
+            ResizeMode="NoResize" SizeToContent="WidthAndHeight" WindowStyle="None" AllowsTransparency="True" Topmost="True" Closing="OnClosing"
             Style="{StaticResource OVERLAY_WIDGET_STYLE}">
     <Canvas x:Name="MantleContainer" Width="230">
         <Canvas Height="23" Width="204" Canvas.Top="8" Canvas.Left="16" ClipToBounds="True">

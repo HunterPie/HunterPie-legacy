@@ -5,6 +5,7 @@ using HunterPie.Core;
 using HunterPie.Core.Events;
 using HunterPie.Memory;
 using FertilizerControl = HunterPie.GUI.Widgets.Harvest_Box.Parts.FertilizerControl;
+using HunterPie.Core.Settings;
 
 namespace HunterPie.GUI.Widgets
 {
@@ -12,7 +13,9 @@ namespace HunterPie.GUI.Widgets
     public partial class HarvestBox : Widget
     {
 
-        public new WidgetType Type => WidgetType.HarvestWidget;
+        public override WidgetType Type => WidgetType.HarvestWidget;
+        public override IWidgetSettings Settings => ConfigManager.Settings.Overlay.HarvestBoxComponent;
+        private Harvestboxcomponent settings => (Harvestboxcomponent)Settings;
 
         Player PlayerContext;
         Core.HarvestBox Context => PlayerContext?.Harvest;
@@ -37,36 +40,20 @@ namespace HunterPie.GUI.Widgets
             base.LeaveWidgetDesignMode();
         }
         
-
-        public override void SaveSettings()
-        {
-            UserSettings.PlayerConfig.Overlay.HarvestBoxComponent.Position[0] = (int)Left - UserSettings.PlayerConfig.Overlay.Position[0];
-            UserSettings.PlayerConfig.Overlay.HarvestBoxComponent.Position[1] = (int)Top - UserSettings.PlayerConfig.Overlay.Position[1];
-            UserSettings.PlayerConfig.Overlay.HarvestBoxComponent.Scale = DefaultScaleX;
-        }
-
         public override void ApplySettings()
         {
-            bool alwaysShow = UserSettings.PlayerConfig.Overlay.HarvestBoxComponent.AlwaysShow;
+            bool alwaysShow = settings.AlwaysShow;
             bool inHarvest = PlayerContext?.InHarvestZone ?? false;
             bool shouldShow = alwaysShow || inHarvest;
 
-            Dispatcher.BeginInvoke(System.Windows.Threading.DispatcherPriority.Background, new Action(() =>
-            {
-                Top = UserSettings.PlayerConfig.Overlay.HarvestBoxComponent.Position[1] + UserSettings.PlayerConfig.Overlay.Position[1];
-                Left = UserSettings.PlayerConfig.Overlay.HarvestBoxComponent.Position[0] + UserSettings.PlayerConfig.Overlay.Position[0];
-                WidgetActive = UserSettings.PlayerConfig.Overlay.HarvestBoxComponent.Enabled;
-                WidgetHasContent = shouldShow;
-                ScaleWidget(UserSettings.PlayerConfig.Overlay.HarvestBoxComponent.Scale, UserSettings.PlayerConfig.Overlay.HarvestBoxComponent.Scale);
-                SteamTracker.Visibility = UserSettings.PlayerConfig.Overlay.HarvestBoxComponent.ShowSteamTracker ? Visibility.Visible : Visibility.Collapsed;
-                ArgosyTracker.Visibility = UserSettings.PlayerConfig.Overlay.HarvestBoxComponent.ShowArgosyTracker ? Visibility.Visible : Visibility.Collapsed;
-                TailraidersTracker.Visibility = UserSettings.PlayerConfig.Overlay.HarvestBoxComponent.ShowTailraidersTracker ? Visibility.Visible : Visibility.Collapsed;
-                Opacity = UserSettings.PlayerConfig.Overlay.HarvestBoxComponent.Opacity;
-                HarvestBoxContainer.Opacity = UserSettings.PlayerConfig.Overlay.HarvestBoxComponent.BackgroundOpacity;
-                SetMode(UserSettings.PlayerConfig.Overlay.HarvestBoxComponent.CompactMode);
+            WidgetHasContent = shouldShow;
+            SteamTracker.Visibility = settings.ShowSteamTracker ? Visibility.Visible : Visibility.Collapsed;
+            ArgosyTracker.Visibility = settings.ShowArgosyTracker ? Visibility.Visible : Visibility.Collapsed;
+            TailraidersTracker.Visibility = settings.ShowTailraidersTracker ? Visibility.Visible : Visibility.Collapsed;
+            HarvestBoxContainer.Opacity = settings.BackgroundOpacity;
+            SetMode(settings.CompactMode);
 
-                base.ApplySettings();
-            }));
+            base.ApplySettings();
         }
 
         private void SetMode(bool IsCompact)
@@ -163,7 +150,7 @@ namespace HunterPie.GUI.Widgets
 
         private void ChangeHarvestBoxState(object source, EventArgs args) => Dispatcher.BeginInvoke(System.Windows.Threading.DispatcherPriority.Background, new Action(() =>
         {
-            bool alwaysShow = UserSettings.PlayerConfig.Overlay.HarvestBoxComponent.AlwaysShow;
+            bool alwaysShow = settings.AlwaysShow;
             bool inHarverst = PlayerContext?.InHarvestZone ?? false;
             WidgetHasContent = alwaysShow || inHarverst;
             ChangeVisibility();

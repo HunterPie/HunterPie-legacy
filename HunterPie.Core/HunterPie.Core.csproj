@@ -66,8 +66,10 @@
     <Reference Include="PresentationFramework" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Core\Client\ConfigManager.cs" />
+    <Compile Include="Core\Client\Config\Model.cs" />
     <Compile Include="Core\Client\GStrings.cs" />
-    <Compile Include="Core\Client\UserSettings.cs" />
+    <Compile Include="Core\Client\oldUserSettings.cs" />
     <Compile Include="Core\Craft\Crafting.cs" />
     <Compile Include="Core\Craft\Recipe.cs" />
     <Compile Include="Core\Craft\Recipes.cs" />

@@ -406,7 +406,7 @@ namespace HunterPie.Core
                 GetMonsterModelData();
 
                 DispatchScanFinished();
-                Thread.Sleep(UserSettings.PlayerConfig.Overlay.GameScanDelay);
+                Thread.Sleep(ConfigManager.Settings.Overlay.GameScanDelay);
             }
             Thread.Sleep(1000);
             ScanMonsterInfo();
@@ -609,7 +609,7 @@ namespace HunterPie.Core
 
         private void GetTargetMonsterAddress()
         {
-            if (UserSettings.PlayerConfig.Overlay.MonstersComponent.UseLockonInsteadOfPin)
+            if (ConfigManager.Settings.Overlay.MonstersComponent.UseLockonInsteadOfPin)
             {
                 long LockonAddress = Kernel.ReadMultilevelPtr(Address.GetAddress("BASE") + Address.GetAddress("EQUIPMENT_OFFSET"), Address.GetOffsets("PlayerLockonOffsets"));
                 
@@ -845,7 +845,7 @@ namespace HunterPie.Core
                     var AilmentInfo = MonsterData.GetAilmentInfoById(AilmentData.Id);
                     // Check if this Ailment can be skipped and therefore not be tracked at all
                     bool SkipElderDragonTrap = MonsterInfo.Capture == 0 && AilmentInfo.Group == "TRAP";
-                    if (SkipElderDragonTrap || (AilmentInfo.CanSkip && !UserSettings.PlayerConfig.HunterPie.Debug.ShowUnknownStatuses))
+                    if (SkipElderDragonTrap || (AilmentInfo.CanSkip && !ConfigManager.Settings.HunterPie.Debug.ShowUnknownStatuses))
                     {
                         MonsterAilmentListPtrs += sizeof(long);
                         MonsterAilmentPtr = Kernel.Read<long>(MonsterAilmentListPtrs);

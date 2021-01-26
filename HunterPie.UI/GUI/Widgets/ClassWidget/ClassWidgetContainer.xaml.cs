@@ -4,6 +4,7 @@ using System.Windows.Media;
 using HunterPie.Core;
 using HunterPie.GUI.Widgets.ClassWidget.Parts;
 using Classes = HunterPie.Core.Enums.Classes;
+using HunterPie.Core.Settings;
 
 namespace HunterPie.GUI.Widgets.ClassWidget
 {
@@ -13,7 +14,8 @@ namespace HunterPie.GUI.Widgets.ClassWidget
     public partial class ClassWidgetContainer : Widget
     {
 
-        public new WidgetType Type => WidgetType.ClassWidget;
+        public override WidgetType Type => WidgetType.ClassWidget;
+        public override IWidgetSettings Settings => ConfigManager.Settings.Overlay.ClassesWidget;
 
         Game Context { get; set; }
 
@@ -38,25 +40,23 @@ namespace HunterPie.GUI.Widgets.ClassWidget
 
         public override void SaveSettings()
         {
-            Dispatcher.BeginInvoke(System.Windows.Threading.DispatcherPriority.Render, new Action(SaveSettingsBasedOnClass));
+            SaveSettingsBasedOnClass();
         }
 
         public override void ApplySettings()
         {
-            Dispatcher.BeginInvoke(System.Windows.Threading.DispatcherPriority.Render, new Action(() =>
-            {
-                if (IsClosed)
-                    return;
+            if (IsClosed)
+                return;
 
-                ApplySettingsBasedOnClass();
-                base.ApplySettings();
-            }));
+            ApplySettingsBasedOnClass();
+            SetWindowFlags();
+            ChangeVisibility();
         }
 
         private void ApplySettingsBasedOnClass()
         {
-            UserSettings.Config.ClassesWidget classesConfig = UserSettings.PlayerConfig.Overlay.ClassesWidget;
-            UserSettings.Config.IWeaponHelper config;
+            ClassesWidget classesConfig = ConfigManager.Settings.Overlay.ClassesWidget;
+            IWeaponHelper config;
             switch ((Classes)Context.Player.WeaponID)
             {
                 case Classes.Greatsword:
@@ -110,9 +110,11 @@ namespace HunterPie.GUI.Widgets.ClassWidget
 
         private void SaveSettingsBasedOnClass()
         {
-            if (Context == null) return;
-            UserSettings.Config.ClassesWidget classesConfig = UserSettings.PlayerConfig.Overlay.ClassesWidget;
-            UserSettings.Config.IWeaponHelper config;
+            if (Context == null)
+                return;
+
+            ClassesWidget classesConfig = ConfigManager.Settings.Overlay.ClassesWidget;
+            IWeaponHelper config;
             switch ((Classes)Context.Player.WeaponID)
             {
                 case Classes.Greatsword:

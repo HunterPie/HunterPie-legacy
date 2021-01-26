@@ -834,6 +834,8 @@
       <String ID="STATIC_CLASSES_SETTINGS" Name="Class Helpers"/>
       <String ID="STATIC_LINKS_SETTINGS" Name="Links"/>
       <String ID="STATIC_DEBUG_SETTINGS" Name="Debug"/>
+      <String ID="ENABLE_STREAMER_MODE" Name="Enable streamer mode"/>
+      <String ID="ENABLE_STREAMER_MODE_DESC" Name="Enabling streamer mode will make this widget visible for OBS and similar window capture softwares. Note that, enabling this will also make the window visible when you Alt+Tab."/>
     </Settings>
     <Overlay>
       <String ID="STATIC_HARVEST_BOX_TITLE" Name="HARVEST BOX"/>

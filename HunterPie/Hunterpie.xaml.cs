@@ -36,6 +36,9 @@ using System.Reflection;
 using HunterPie.Core.Native;
 using HunterPie.Native;
 using HunterPie.Native.Connection;
+using ConfigManager = HunterPie.Core.ConfigManager;
+using HunterPie.Core.Settings;
+using Overlay = HunterPie.GUI.Overlay;
 
 namespace HunterPie
 {
@@ -63,6 +66,8 @@ namespace HunterPie
         public static readonly Version AssemblyVersion = Assembly.GetEntryAssembly().GetName().Version;
 
         private readonly List<int> registeredHotkeys = new List<int>();
+
+        private Config config => ConfigManager.Settings;
 
         #region Properties
 
@@ -122,20 +127,6 @@ namespace HunterPie
 
             // Initialize debugger and player config
             DebuggerControl.InitializeDebugger();
-            UserSettings.InitializePlayerConfig();
-
-            // Initialize localization
-            GStrings.InitStrings(UserSettings.PlayerConfig.HunterPie.Language, App.Current);
-
-            // Load custom theme and console colors
-            LoadCustomTheme();
-            LoadOverwriteTheme();
-            DebuggerControl.LoadNewColors();
-            AdministratorIconVisibility = IsRunningAsAdmin() ? Visibility.Visible : Visibility.Collapsed;
-
-            Environment.CurrentDirectory = AppDomain.CurrentDomain.BaseDirectory;
-            InitializeComponent();
-            WindowBlur.SetIsEnabled(this, true);
         }
 
         private bool IsRunningAsAdmin()
@@ -188,14 +179,14 @@ namespace HunterPie
 
             Process UpdateProcess = new Process();
             UpdateProcess.StartInfo.FileName = Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "Update.exe");
-            UpdateProcess.StartInfo.Arguments = $"version={HUNTERPIE_VERSION} branch={UserSettings.PlayerConfig.HunterPie.Update.Branch}";
+            UpdateProcess.StartInfo.Arguments = $"version={HUNTERPIE_VERSION} branch={config.HunterPie.Update.Branch}";
             UpdateProcess.Start();
             return true;
         }
 
         private bool CheckIfUpdateEnableAndStart()
         {
-            if (UserSettings.PlayerConfig.HunterPie.Update.Enabled)
+            if (config.HunterPie.Update.Enabled)
             {
                 bool justUpdated = false;
                 bool latestVersion = false;
@@ -230,7 +221,7 @@ namespace HunterPie
                 }
                 Debugger.Log("Updating updater.exe");
                 // This will update Update.exe
-                AutoUpdate au = new AutoUpdate(UserSettings.PlayerConfig.HunterPie.Update.Branch);
+                AutoUpdate au = new AutoUpdate(config.HunterPie.Update.Branch);
                 au.Instance.DownloadFileCompleted += OnUpdaterDownloadComplete;
                 offlineMode = au.offlineMode;
                 if (!au.CheckAutoUpdate() && !au.offlineMode)
@@ -299,9 +290,9 @@ namespace HunterPie
         {
             string[] hotkeys =
             {
-                UserSettings.PlayerConfig.Overlay.ToggleOverlayKeybind,
-                UserSettings.PlayerConfig.Overlay.MonstersComponent.SwitchMonsterBarModeHotkey,
-                UserSettings.PlayerConfig.Overlay.ToggleDesignKeybind
+                config.Overlay.ToggleOverlayKeybind,
+                config.Overlay.MonstersComponent.SwitchMonsterBarModeHotkey,
+                config.Overlay.ToggleDesignKeybind
             };
             Action[] callbacks =
             {
@@ -345,8 +336,8 @@ namespace HunterPie
                 return;
             }
 
-            UserSettings.PlayerConfig.Overlay.Enabled = !UserSettings.PlayerConfig.Overlay.Enabled;
-            UserSettings.SaveNewConfig();
+            config.Overlay.Enabled = !config.Overlay.Enabled;
+            ConfigManager.TrySaveSettingsAsync();
         }
 
         private void SwitchMonsterBarModeCallback()
@@ -356,8 +347,8 @@ namespace HunterPie
                 return;
             }
 
-            UserSettings.PlayerConfig.Overlay.MonstersComponent.ShowMonsterBarMode = UserSettings.PlayerConfig.Overlay.MonstersComponent.ShowMonsterBarMode + 1 >= 5 ? (byte)0 : (byte)(UserSettings.PlayerConfig.Overlay.MonstersComponent.ShowMonsterBarMode + 1);
-            UserSettings.SaveNewConfig();
+            config.Overlay.MonstersComponent.ShowMonsterBarMode = config.Overlay.MonstersComponent.ShowMonsterBarMode + 1 >= 5 ? (byte)0 : (byte)(config.Overlay.MonstersComponent.ShowMonsterBarMode + 1);
+            ConfigManager.TrySaveSettingsAsync();
         }
 
         private void ToggleDesignModeCallback()
@@ -368,8 +359,8 @@ namespace HunterPie
         private void ConvertOldHotkeyToNew(int Key)
         {
             if (Key == 0) return;
-            UserSettings.PlayerConfig.Overlay.ToggleDesignKeybind = KeyboardHookHelper.GetKeyboardKeyByID(Key).ToString();
-            UserSettings.PlayerConfig.Overlay.ToggleDesignModeKey = 0;
+            config.Overlay.ToggleDesignKeybind = KeyboardHookHelper.GetKeyboardKeyByID(Key).ToString();
+            config.Overlay.ToggleDesignModeKey = 0;
         }
 
         #endregion
@@ -393,8 +384,6 @@ namespace HunterPie
             // Close button
             var closeItem = trayIcon.AddItem(GStrings.GetLocalizationByXPath("/TrayIcon/String[@ID='TRAYICON_CLOSE']"));
             closeItem.Click += OnTrayIconExitClick;
-
-            
         }
 
         private void OnTrayIconSettingsClick(object sender, EventArgs e)
@@ -429,16 +418,16 @@ namespace HunterPie
 
         private void LoadCustomTheme()
         {
-            if (UserSettings.PlayerConfig.HunterPie.Theme == null || UserSettings.PlayerConfig.HunterPie.Theme == "Default") return;
+            if (config.HunterPie.Theme == null || config.HunterPie.Theme == "Default") return;
             if (!Directory.Exists(Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "Themes"))) { Directory.CreateDirectory(Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "Themes")); }
-            if (!File.Exists(Path.Combine(AppDomain.CurrentDomain.BaseDirectory, $@"Themes/{UserSettings.PlayerConfig.HunterPie.Theme}")))
+            if (!File.Exists(Path.Combine(AppDomain.CurrentDomain.BaseDirectory, $@"Themes/{config.HunterPie.Theme}")))
             {
-                Debugger.Error(GStrings.GetLocalizationByXPath("/Console/String[@ID='MESSAGE_THEME_NOT_FOUND_ERROR']".Replace("{THEME_NAME}", UserSettings.PlayerConfig.HunterPie.Theme)));
+                Debugger.Error(GStrings.GetLocalizationByXPath("/Console/String[@ID='MESSAGE_THEME_NOT_FOUND_ERROR']".Replace("{THEME_NAME}", config.HunterPie.Theme)));
                 return;
             }
             try
             {
-                string themePath = Path.Combine(AppDomain.CurrentDomain.BaseDirectory, $@"Themes/{UserSettings.PlayerConfig.HunterPie.Theme}");
+                string themePath = Path.Combine(AppDomain.CurrentDomain.BaseDirectory, $@"Themes/{config.HunterPie.Theme}");
 
                 PatchThemeAndValidate(themePath);
 
@@ -515,7 +504,7 @@ namespace HunterPie
         {
             File.WriteAllText("crashes.txt", e.ExceptionObject.ToString());
 
-            if (UserSettings.PlayerConfig.HunterPie.Debug.SendCrashFileToDev)
+            if (config.HunterPie.Debug.SendCrashFileToDev)
             {
                 const string HunterPieCrashesWebhook = "https://discordapp.com/api/webhooks/756301992930050129/sTbp4PmjYZMlGGT0IYIhYtTiVw9hpaqwjo-n1Aawl2omWfnV-SD3NpH691xm4TleJ2p-";
                 // Also try to send the crash error to my webhook so I can fix it
@@ -526,7 +515,7 @@ namespace HunterPie
                         using (var content = new MultipartFormDataContent())
                         {
                             content.Add(new StringContent(""), "username");
-                            content.Add(new StringContent($"```Exception type: {e.ExceptionObject.GetType()}\n-----------------------------------\nBranch: {UserSettings.PlayerConfig.HunterPie.Update.Branch}\nVersion: {FileVersionInfo.GetVersionInfo(Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "HunterPie.exe")).FileVersion}\nGAME BUILD VERSION: {Game.Version}\nHunterPie elapsed time: {DateTime.UtcNow - Process.GetCurrentProcess().StartTime.ToUniversalTime()}```"), "content");
+                            content.Add(new StringContent($"```Exception type: {e.ExceptionObject.GetType()}\n-----------------------------------\nBranch: {config.HunterPie.Update.Branch}\nVersion: {FileVersionInfo.GetVersionInfo(Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "HunterPie.exe")).FileVersion}\nGAME BUILD VERSION: {Game.Version}\nHunterPie elapsed time: {DateTime.UtcNow - Process.GetCurrentProcess().StartTime.ToUniversalTime()}```"), "content");
                             content.Add(new StringContent(e.ExceptionObject.ToString()), "file", "crashes.txt");
                             req.Content = content;
 
@@ -544,7 +533,7 @@ namespace HunterPie
             SetAnimationsFramerate();
             HookEvents();
             Kernel.StartScanning(); // Scans game memory
-            if (UserSettings.PlayerConfig.HunterPie.StartHunterPieMinimized)
+            if (config.HunterPie.StartHunterPieMinimized)
             {
                 WindowState = WindowState.Minimized;
                 Hide();
@@ -556,7 +545,7 @@ namespace HunterPie
         }
 
         private void SetAnimationsFramerate() => Timeline.DesiredFrameRateProperty.OverrideMetadata(typeof(Timeline),
-                new FrameworkPropertyMetadata { DefaultValue = Math.Min(60, Math.Max(1, UserSettings.PlayerConfig.Overlay.DesiredAnimationFrameRate)) });
+                new FrameworkPropertyMetadata { DefaultValue = Math.Min(60, Math.Max(1, config.Overlay.DesiredAnimationFrameRate)) });
 
         #region Game & Client Events
         private void HookEvents()
@@ -565,7 +554,7 @@ namespace HunterPie
             Kernel.OnGameStart += OnGameStart;
             Kernel.OnGameClosed += OnGameClose;
             // Settings
-            UserSettings.OnSettingsUpdate += SendToOverlay;
+            ConfigManager.OnSettingsUpdate += SendToOverlay;
         }
 
         private void UnhookEvents()
@@ -576,12 +565,12 @@ namespace HunterPie
             Kernel.OnGameStart -= OnGameStart;
             Kernel.OnGameClosed -= OnGameClose;
             // Settings
-            UserSettings.OnSettingsUpdate -= SendToOverlay;
+            ConfigManager.OnSettingsUpdate -= SendToOverlay;
         }
 
         public void SendToOverlay(object source, EventArgs e)
         {
-            Debugger.IsDebugEnabled = UserSettings.PlayerConfig.HunterPie.Debug.ShowDebugMessages;
+            Debugger.IsDebugEnabled = config.HunterPie.Debug.ShowDebugMessages;
             overlay?.GlobalSettingsEventHandler(source, e);
             Dispatcher.BeginInvoke(System.Windows.Threading.DispatcherPriority.ApplicationIdle, new Action(() =>
             {
@@ -734,7 +723,7 @@ namespace HunterPie
                 {
                     overlay = new Overlay(game);
                     overlay.HookEvents();
-                    UserSettings.TriggerSettingsEvent();
+                    ConfigManager.TriggerSettingsEvent();
                 }
             }));
 
@@ -787,7 +776,7 @@ namespace HunterPie
                 overlay = null;
             }));
             game?.DestroyInstances();
-            if (UserSettings.PlayerConfig.HunterPie.Options.CloseWhenGameCloses)
+            if (config.HunterPie.Options.CloseWhenGameCloses)
             {
                 Dispatcher.Invoke(System.Windows.Threading.DispatcherPriority.Normal, new Action(() =>
                 {
@@ -816,11 +805,26 @@ namespace HunterPie
 
         private async void OnWindowInitialized(object sender, EventArgs e)
         {
+            await ConfigManager.Initialize();
+
+            // Initialize localization
+            GStrings.InitStrings(config.HunterPie.Language, App.Current);
+
+            // Load custom theme and console colors
+            LoadCustomTheme();
+            LoadOverwriteTheme();
+            DebuggerControl.LoadNewColors();
+            AdministratorIconVisibility = IsRunningAsAdmin() ? Visibility.Visible : Visibility.Collapsed;
+
+            Environment.CurrentDirectory = AppDomain.CurrentDomain.BaseDirectory;
+            InitializeComponent();
+            WindowBlur.SetIsEnabled(this, true);
+
             Hide();
-            Width = UserSettings.PlayerConfig.HunterPie.Width;
-            Height = UserSettings.PlayerConfig.HunterPie.Height;
-            Top = UserSettings.PlayerConfig.HunterPie.PosY;
-            Left = UserSettings.PlayerConfig.HunterPie.PosX;
+            Width = config.HunterPie.Width;
+            Height = config.HunterPie.Height;
+            Top = config.HunterPie.PosY;
+            Left = config.HunterPie.PosX;
 
             ConsolePanel.Children.Clear();
             ConsolePanel.Children.Add(DebuggerControl.Instance);
@@ -831,12 +835,12 @@ namespace HunterPie
                 return;
 
             // Convert the old HotKey to the new one
-            ConvertOldHotkeyToNew(UserSettings.PlayerConfig.Overlay.ToggleDesignModeKey);
+            ConvertOldHotkeyToNew(config.Overlay.ToggleDesignModeKey);
 
             isUpdating = false;
             InitializeTrayIcon();
             // Update version text
-            Version = GStrings.GetLocalizationByXPath("/Console/String[@ID='CONSOLE_VERSION']").Replace("{HunterPie_Version}", HUNTERPIE_VERSION).Replace("{HunterPie_Branch}", UserSettings.PlayerConfig.HunterPie.Update.Branch);
+            Version = GStrings.GetLocalizationByXPath("/Console/String[@ID='CONSOLE_VERSION']").Replace("{HunterPie_Version}", HUNTERPIE_VERSION).Replace("{HunterPie_Branch}", config.HunterPie.Update.Branch);
 
             // Initializes the Hotkey API
             Hotkey.Load();
@@ -853,10 +857,15 @@ namespace HunterPie
             ShowSupportMessage();
         }
         
-        private void OnCloseWindowButtonClick(object sender, MouseButtonEventArgs e)
+        private async void OnCloseWindowButtonClick(object sender, MouseButtonEventArgs e)
         {
             // X button function;
             bool exitConfirmation = MessageBox.Show(GStrings.GetLocalizationByXPath("/Console/String[@ID='MESSAGE_QUIT']"), "HunterPie", MessageBoxButton.YesNo, MessageBoxImage.Question) == MessageBoxResult.Yes;
+
+            config.HunterPie.PosX = Left;
+            config.HunterPie.PosY = Top;
+
+            await ConfigManager.TrySaveSettingsAsync();
 
             if (exitConfirmation)
                 Close();
@@ -886,7 +895,7 @@ namespace HunterPie
 
         private void MinimizeWindow()
         {
-            if (UserSettings.PlayerConfig.HunterPie.MinimizeToSystemTray)
+            if (config.HunterPie.MinimizeToSystemTray)
             {
                 WindowState = WindowState.Minimized;
                 Hide();
@@ -906,8 +915,6 @@ namespace HunterPie
 
             DebuggerControl.WriteStacktrace();
             pluginManager?.UnloadPlugins();
-            UserSettings.PlayerConfig.HunterPie.PosX = Left;
-            UserSettings.PlayerConfig.HunterPie.PosY = Top;
 
             DebuggerControl.DumpLog();
 
@@ -923,7 +930,6 @@ namespace HunterPie
             presence?.Dispose();
 
             Kernel.StopScanning();
-            UserSettings.RemoveFileWatcher();
 
             Settings.Instance?.UninstallKeyboardHook();
 
@@ -932,9 +938,6 @@ namespace HunterPie
                 UnhookGameEvents();
 
             UnhookEvents();
-
-            if (!isUpdating)
-                UserSettings.SaveNewConfig();
         }
         
         private void OnLaunchGameButtonClick(object sender, RoutedEventArgs e) => LaunchGame();
@@ -946,12 +949,12 @@ namespace HunterPie
                 ProcessStartInfo GameStartInfo = new ProcessStartInfo
                 {
                     FileName = "steam://run/582010",
-                    Arguments = UserSettings.PlayerConfig.HunterPie.Launch.LaunchArgs,
+                    Arguments = config.HunterPie.Launch.LaunchArgs,
                     UseShellExecute = true
                 };
                 Process.Start(GameStartInfo);
 
-                if (UserSettings.PlayerConfig.HunterPie.MinimizeAfterGameStart)
+                if (config.HunterPie.MinimizeAfterGameStart)
                 {
                     MinimizeWindow();
                 }
@@ -964,8 +967,10 @@ namespace HunterPie
 
         private void OnWindowSizeChange(object sender, SizeChangedEventArgs e)
         {
-            UserSettings.PlayerConfig.HunterPie.Width = (float)e.NewSize.Width;
-            UserSettings.PlayerConfig.HunterPie.Height = (float)e.NewSize.Height;
+            if (config is null)
+                return;
+            config.HunterPie.Width = (float)e.NewSize.Width;
+            config.HunterPie.Height = (float)e.NewSize.Height;
         }
 
         public void Reload()

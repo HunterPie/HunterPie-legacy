@@ -194,10 +194,10 @@ namespace HunterPie.Core
 
                     Dispatch(OnZoneChange, new PlayerLocationEventArgs(this));
 
-                    if (peaceZones.Contains(LastZoneID) && !peaceZones.Contains(zoneId))
+                    if ((LastZoneID == -1 || peaceZones.Contains(LastZoneID)) && !peaceZones.Contains(zoneId))
                         Dispatch(OnPeaceZoneLeave, new PlayerLocationEventArgs(this));
 
-                    if (harvestBoxZones.Contains(LastZoneID) && !harvestBoxZones.Contains(zoneId))
+                    if ((LastZoneID == -1 || harvestBoxZones.Contains(LastZoneID)) && !harvestBoxZones.Contains(zoneId))
                         Dispatch(OnVillageLeave, new PlayerLocationEventArgs(this));
                                         
                     if (!peaceZones.Contains(LastZoneID) && peaceZones.Contains(zoneId))
@@ -450,7 +450,7 @@ namespace HunterPie.Core
         {
             if (e is null)
                 return;
-            Debugger.Log($"Dispatched {e.Method.Name}");
+
             foreach (PlayerEvents del in e.GetInvocationList())
             {
                 try
@@ -794,7 +794,7 @@ namespace HunterPie.Core
                 GetEquipmentAddress();
 
                 DispatchScanFinished();
-                Thread.Sleep(UserSettings.PlayerConfig.Overlay.GameScanDelay);
+                Thread.Sleep(ConfigManager.Settings.Overlay.GameScanDelay);
             }
             Thread.Sleep(1000);
             GetPlayerInfo();

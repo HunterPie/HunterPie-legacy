@@ -7,6 +7,7 @@ using System.Windows.Media;
 using HunterPie.Core;
 using HunterPie.GUI.Widgets.Abnormality_Widget.Parts;
 using Helper = HunterPie.Core.Enums.Helper;
+using HunterPie.Core.Settings;
 
 namespace HunterPie.GUI.Widgets.Abnormality_Widget
 {
@@ -17,6 +18,7 @@ namespace HunterPie.GUI.Widgets.Abnormality_Widget
     {
         readonly List<AbnormalitySettingControl> abnormalityControls = new List<AbnormalitySettingControl>();
         readonly int buffTrayIndex;
+        AbnormalityBar settings => ConfigManager.Settings.Overlay.AbnormalitiesWidget.BarPresets[buffTrayIndex];
 
         public string wTitle
         {
@@ -28,14 +30,12 @@ namespace HunterPie.GUI.Widgets.Abnormality_Widget
         public static readonly DependencyProperty wTitleProperty =
             DependencyProperty.Register("wTitle", typeof(string), typeof(AbnormalityTraySettings));
 
-
-
         public AbnormalityTraySettings(int trayIndex = 0)
         {
             InitializeComponent();
 
             buffTrayIndex = trayIndex;
-            wTitle = $"Settings: {UserSettings.PlayerConfig.Overlay.AbnormalitiesWidget.BarPresets[buffTrayIndex].Name}";
+            wTitle = $"Settings: {ConfigManager.Settings.Overlay.AbnormalitiesWidget.BarPresets[buffTrayIndex].Name}";
             PopulateTimerTextBox();
             PopulateAbnormalities();
             ConfigureWindow();
@@ -61,11 +61,11 @@ namespace HunterPie.GUI.Widgets.Abnormality_Widget
 
         private void ConfigureWindow()
         {
-            EnableName.IsEnabled = UserSettings.PlayerConfig.Overlay.AbnormalitiesWidget.BarPresets[buffTrayIndex].ShowNames;
-            OrientationSwitcher.IsEnabled = UserSettings.PlayerConfig.Overlay.AbnormalitiesWidget.BarPresets[buffTrayIndex].Orientation == "Horizontal";
-            EnableTimeLeftSwitcher.IsEnabled = UserSettings.PlayerConfig.Overlay.AbnormalitiesWidget.BarPresets[buffTrayIndex].ShowTimeLeftText;
-            TimerTextFormatBox.SelectedIndex = UserSettings.PlayerConfig.Overlay.AbnormalitiesWidget.BarPresets[buffTrayIndex].TimeLeftTextFormat;
-            BackgroundOpacitySlider.Value = UserSettings.PlayerConfig.Overlay.AbnormalitiesWidget.BarPresets[buffTrayIndex].BackgroundOpacity;
+            EnableName.IsEnabled = settings.ShowNames;
+            OrientationSwitcher.IsEnabled = settings.Orientation == "Horizontal";
+            EnableTimeLeftSwitcher.IsEnabled = settings.ShowTimeLeftText;
+            TimerTextFormatBox.SelectedIndex = settings.TimeLeftTextFormat;
+            BackgroundOpacitySlider.Value = settings.BackgroundOpacity;
         }
 
         private void PopulateHuntingHornBuffs() =>
@@ -92,7 +92,7 @@ namespace HunterPie.GUI.Widgets.Abnormality_Widget
                     abnormality.Id,
                     0);
 
-                bool isEnabled = UserSettings.PlayerConfig.Overlay.AbnormalitiesWidget.BarPresets[buffTrayIndex].AcceptedAbnormalities.Contains(abnormality.InternalId);
+                bool isEnabled = settings.AcceptedAbnormalities.Contains(abnormality.InternalId);
 
                 ImageSource icon = (ImageSource)FindResource(abnormality.IconName);
                 icon?.Freeze();
@@ -108,20 +108,22 @@ namespace HunterPie.GUI.Widgets.Abnormality_Widget
 
         private void OnDragWindow(object sender, MouseButtonEventArgs e) => DragMove();
 
-        private void OnSaveButtonClick(object sender, RoutedEventArgs e)
+        private async void OnSaveButtonClick(object sender, RoutedEventArgs e)
         {
 
             string[] enabledAbnormalities = abnormalityControls
                 .Where(a => a.IsEnabled)
                 .Select(a => a.InternalID)
                 .ToArray();
-            UserSettings.PlayerConfig.Overlay.AbnormalitiesWidget.BarPresets[buffTrayIndex].ShowNames = EnableName.IsEnabled;
-            UserSettings.PlayerConfig.Overlay.AbnormalitiesWidget.BarPresets[buffTrayIndex].AcceptedAbnormalities = enabledAbnormalities;
-            UserSettings.PlayerConfig.Overlay.AbnormalitiesWidget.BarPresets[buffTrayIndex].Orientation = OrientationSwitcher.IsEnabled ? "Horizontal" : "Vertical";
-            UserSettings.PlayerConfig.Overlay.AbnormalitiesWidget.BarPresets[buffTrayIndex].ShowTimeLeftText = EnableTimeLeftSwitcher.IsEnabled;
-            UserSettings.PlayerConfig.Overlay.AbnormalitiesWidget.BarPresets[buffTrayIndex].TimeLeftTextFormat = (byte)TimerTextFormatBox.SelectedIndex;
-            UserSettings.PlayerConfig.Overlay.AbnormalitiesWidget.BarPresets[buffTrayIndex].BackgroundOpacity = (float)BackgroundOpacitySlider.Value;
-            UserSettings.SaveNewConfig();
+
+            settings.ShowNames = EnableName.IsEnabled;
+            settings.AcceptedAbnormalities = enabledAbnormalities;
+            settings.Orientation = OrientationSwitcher.IsEnabled ? "Horizontal" : "Vertical";
+            settings.ShowTimeLeftText = EnableTimeLeftSwitcher.IsEnabled;
+            settings.TimeLeftTextFormat = (byte)TimerTextFormatBox.SelectedIndex;
+            settings.BackgroundOpacity = (float)BackgroundOpacitySlider.Value;
+
+            await ConfigManager.TrySaveSettingsAsync();
         }
 
         private void OnSelectAllButtonClick(object sender, RoutedEventArgs e) => ToggleAllAbnormalitiesInTab(true);

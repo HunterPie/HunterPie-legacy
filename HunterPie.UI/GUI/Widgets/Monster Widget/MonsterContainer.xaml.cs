@@ -4,6 +4,7 @@ using System.Linq;
 using System.Windows;
 using System.Windows.Media;
 using HunterPie.Core;
+using HunterPie.Core.Settings;
 
 namespace HunterPie.GUI.Widgets
 {
@@ -13,7 +14,8 @@ namespace HunterPie.GUI.Widgets
     public partial class MonsterContainer : Widget
     {
 
-        public new WidgetType Type => WidgetType.MonsterWidget;
+        public override WidgetType Type => WidgetType.MonsterWidget;
+        public override IWidgetSettings Settings => ConfigManager.Settings.Overlay.MonstersComponent;
 
         Game Context;
         MonsterHealth f_MonsterWidget;
@@ -28,7 +30,6 @@ namespace HunterPie.GUI.Widgets
         {
             LoadMonsterWidths();
             InitializeComponent();
-            SetWindowFlags();
             SetContext(ctx);
         }
 
@@ -124,7 +125,7 @@ namespace HunterPie.GUI.Widgets
             Container.Children.Add(f_MonsterWidget);
             Container.Children.Add(s_MonsterWidget);
             Container.Children.Add(t_MonsterWidget);
-            UpdateMonstersWidgetsSettings(UserSettings.PlayerConfig.Overlay.MonstersComponent.ShowMonsterWeakness, UserSettings.PlayerConfig.Overlay.MonstersComponent.MaxNumberOfPartsAtOnce, UserSettings.PlayerConfig.Overlay.MonstersComponent.MonsterBarDock);
+            UpdateMonstersWidgetsSettings(ConfigManager.Settings.Overlay.MonstersComponent.ShowMonsterWeakness, ConfigManager.Settings.Overlay.MonstersComponent.MaxNumberOfPartsAtOnce, ConfigManager.Settings.Overlay.MonstersComponent.MonsterBarDock);
         }
 
         public void UpdateMonstersWidgetsSettings(bool weaknessEnabled, int MaxParts, byte dock)
@@ -149,22 +150,14 @@ namespace HunterPie.GUI.Widgets
 
         public override void ApplySettings()
         {
-            Dispatcher.BeginInvoke(System.Windows.Threading.DispatcherPriority.Background, new Action(() =>
-            {
-                Top = UserSettings.PlayerConfig.Overlay.MonstersComponent.Position[1] + UserSettings.PlayerConfig.Overlay.Position[1];
-                Left = UserSettings.PlayerConfig.Overlay.MonstersComponent.Position[0] + UserSettings.PlayerConfig.Overlay.Position[0];
-                WidgetActive = UserSettings.PlayerConfig.Overlay.MonstersComponent.Enabled;
-                UpdateMonstersWidgetsSettings(UserSettings.PlayerConfig.Overlay.MonstersComponent.ShowMonsterWeakness, UserSettings.PlayerConfig.Overlay.MonstersComponent.MaxNumberOfPartsAtOnce, UserSettings.PlayerConfig.Overlay.MonstersComponent.MonsterBarDock);
-                ScaleWidget(UserSettings.PlayerConfig.Overlay.MonstersComponent.Scale, UserSettings.PlayerConfig.Overlay.MonstersComponent.Scale);
-                Opacity = UserSettings.PlayerConfig.Overlay.MonstersComponent.Opacity;
+            UpdateMonstersWidgetsSettings(ConfigManager.Settings.Overlay.MonstersComponent.ShowMonsterWeakness, ConfigManager.Settings.Overlay.MonstersComponent.MaxNumberOfPartsAtOnce, ConfigManager.Settings.Overlay.MonstersComponent.MonsterBarDock);
 
-                foreach (MonsterHealth HealthBar in Container.Children)
-                {
-                    HealthBar.SwitchSizeBasedOnTarget();
-                }
-                
-                base.ApplySettings();
-            }));
+            foreach (MonsterHealth HealthBar in Container.Children)
+            {
+                HealthBar.SwitchSizeBasedOnTarget();
+            }
+
+            base.ApplySettings();
         }
             
 
@@ -181,13 +174,6 @@ namespace HunterPie.GUI.Widgets
             base.LeaveWidgetDesignMode();
         }
 
-        public override void SaveSettings()
-        {
-            UserSettings.PlayerConfig.Overlay.MonstersComponent.Position[0] = (int)Left - UserSettings.PlayerConfig.Overlay.Position[0];
-            UserSettings.PlayerConfig.Overlay.MonstersComponent.Position[1] = (int)Top - UserSettings.PlayerConfig.Overlay.Position[1];
-            UserSettings.PlayerConfig.Overlay.MonstersComponent.Scale = DefaultScaleX;
-        }
-
         public override void ScaleWidget(double newScaleX, double newScaleY)
         {
             if (newScaleX <= 0.2)
@@ -200,13 +186,13 @@ namespace HunterPie.GUI.Widgets
 
         private void OnSizeChange(object sender, SizeChangedEventArgs e)
         {
-            if (UserSettings.PlayerConfig.Overlay.MonstersComponent.MonsterBarDock != 1) return;
+            if (ConfigManager.Settings.Overlay.MonstersComponent.MonsterBarDock != 1) return;
             if (e.WidthChanged || !e.HeightChanged) return;
 
             double HeightDiff = e.PreviousSize.Height - e.NewSize.Height;
 
-            Top = UserSettings.PlayerConfig.Overlay.Position[1] + UserSettings.PlayerConfig.Overlay.MonstersComponent.Position[1] + HeightDiff;
-            UserSettings.PlayerConfig.Overlay.MonstersComponent.Position[1] = (int)Top - UserSettings.PlayerConfig.Overlay.Position[1];
+            Top = ConfigManager.Settings.Overlay.Position[1] + ConfigManager.Settings.Overlay.MonstersComponent.Position[1] + HeightDiff;
+            ConfigManager.Settings.Overlay.MonstersComponent.Position[1] = (int)Top - ConfigManager.Settings.Overlay.Position[1];
         }
 
     }

@@ -133,7 +133,7 @@ namespace HunterPie.GUI.Widgets.DPSMeter.Parts
                 DPS = $"{Damage / TimeElapsed:0.00}/s";
                 DamagePercentage = Context.DamagePercentage;
                 PlayerDPSBar.Width = Context.DamagePercentage * PlayerDPSBar.MaxWidth;
-                if (UserSettings.PlayerConfig.Overlay.DPSMeter.ShowOnlyMyself)
+                if (ConfigManager.Settings.Overlay.DPSMeter.ShowOnlyMyself)
                 {
                     Visibility = Context.IsMe ? Visibility.Visible : Visibility.Collapsed;
                 }
@@ -199,8 +199,8 @@ namespace HunterPie.GUI.Widgets.DPSMeter.Parts
 
         public void UpdateDamageTextSettings()
         {
-            bool dpsEnabled = UserSettings.PlayerConfig.Overlay.DPSMeter.ShowDPSWheneverPossible;
-            bool totalEnabled = UserSettings.PlayerConfig.Overlay.DPSMeter.ShowTotalDamage;
+            bool dpsEnabled = ConfigManager.Settings.Overlay.DPSMeter.ShowDPSWheneverPossible;
+            bool totalEnabled = ConfigManager.Settings.Overlay.DPSMeter.ShowTotalDamage;
 
             Percentage.Width = (dpsEnabled || totalEnabled) ? 54 : 132;
 

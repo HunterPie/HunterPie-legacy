@@ -6,7 +6,7 @@ using System.Windows.Media;
 using HunterPie.Core;
 using Timer = System.Threading.Timer;
 using HunterPie.Core.Events;
-using static HunterPie.Core.UserSettings.Config;
+using HunterPie.Core.Settings;
 
 namespace HunterPie.GUI.Widgets.Monster_Widget.Parts
 {
@@ -18,7 +18,7 @@ namespace HunterPie.GUI.Widgets.Monster_Widget.Parts
         Ailment Context;
         Timer VisibilityTimer;
         bool IsGroupEnabled => ComponentSettings?.EnabledAilmentGroups.Contains(Context.Group) ?? false;
-        Monsterscomponent ComponentSettings => UserSettings.PlayerConfig.Overlay.MonstersComponent;
+        Monsterscomponent ComponentSettings => ConfigManager.Settings.Overlay.MonstersComponent;
 
         public Brush AilmentGroupColor
         {

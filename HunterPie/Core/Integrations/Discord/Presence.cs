@@ -1,6 +1,7 @@
 ﻿using System;
 using DiscordRPC;
 using HunterPie.Logger;
+using HunterPie.Core.Settings;
 
 namespace HunterPie.Core.Integrations.Discord
 {
@@ -34,7 +35,7 @@ namespace HunterPie.Core.Integrations.Discord
 
         private void HookEvents()
         {
-            UserSettings.OnSettingsUpdate += HandleSettings;
+            ConfigManager.OnSettingsUpdate += HandleSettings;
             // Game context
             ctx.OnClockChange += HandlePresence;
             ctx.Player.OnZoneChange += HandlePresence;
@@ -42,7 +43,7 @@ namespace HunterPie.Core.Integrations.Discord
 
         private void UnhookEvents()
         {
-            UserSettings.OnSettingsUpdate -= HandleSettings;
+            ConfigManager.OnSettingsUpdate -= HandleSettings;
             ctx.OnClockChange -= HandlePresence;
             ctx.Player.OnZoneChange -= HandlePresence;
         }
@@ -91,7 +92,7 @@ namespace HunterPie.Core.Integrations.Discord
             }
 
             Client.Initialize();
-            if (!UserSettings.PlayerConfig.RichPresence.Enabled && isVisible)
+            if (!ConfigManager.Settings.RichPresence.Enabled && isVisible)
             {
                 Client?.ClearPresence();
                 isVisible = false;
@@ -146,11 +147,11 @@ namespace HunterPie.Core.Integrations.Discord
 
         public void HandleSettings(object source, EventArgs e)
         {
-            if (UserSettings.PlayerConfig.RichPresence.Enabled && !isVisible)
+            if (ConfigManager.Settings.RichPresence.Enabled && !isVisible)
             {
                 isVisible = true;
             }
-            else if (!UserSettings.PlayerConfig.RichPresence.Enabled && isVisible)
+            else if (!ConfigManager.Settings.RichPresence.Enabled && isVisible)
             {
                 try
                 {
@@ -172,7 +173,7 @@ namespace HunterPie.Core.Integrations.Discord
 
             if (!FailedToRegisterScheme)
             {
-                if (ctx.Player.SteamSession != 0 && UserSettings.PlayerConfig.RichPresence.LetPeopleJoinSession)
+                if (ctx.Player.SteamSession != 0 && ConfigManager.Settings.RichPresence.LetPeopleJoinSession)
                 {
                     Instance.Secrets.JoinSecret = $"{ctx.Player.SteamSession}/{ctx.Player.SteamID}";
                 }
@@ -242,7 +243,7 @@ namespace HunterPie.Core.Integrations.Discord
             else
             {
                 if (string.IsNullOrEmpty(ctx.HuntedMonster?.Name) || ctx.HuntedMonster?.Name == "Missing Translation") return GStrings.GetLocalizationByXPath("/RichPresence/String[@ID='RPC_DESCRIPTION_EXPLORING']");
-                return UserSettings.PlayerConfig.RichPresence.ShowMonsterHealth ? GStrings.GetLocalizationByXPath("/RichPresence/String[@ID='RPC_DESCRIPTION_HUNTING']").Replace("{Monster}", ctx.HuntedMonster.Name).Replace("{Health}", $"{(int)(ctx.HuntedMonster.HPPercentage * 100)}%") : GStrings.GetLocalizationByXPath("/RichPresence/String[@ID='RPC_DESCRIPTION_HUNTING']").Replace("{Monster}", ctx.HuntedMonster.Name).Replace("({Health})", null);
+                return ConfigManager.Settings.RichPresence.ShowMonsterHealth ? GStrings.GetLocalizationByXPath("/RichPresence/String[@ID='RPC_DESCRIPTION_HUNTING']").Replace("{Monster}", ctx.HuntedMonster.Name).Replace("{Health}", $"{(int)(ctx.HuntedMonster.HPPercentage * 100)}%") : GStrings.GetLocalizationByXPath("/RichPresence/String[@ID='RPC_DESCRIPTION_HUNTING']").Replace("{Monster}", ctx.HuntedMonster.Name).Replace("({Health})", null);
             }
         }
 

@@ -20,7 +20,7 @@ namespace HunterPie.GUI.Widgets.DPSMeter.Parts
             Timer = new DispatcherTimer
             {
 
-                Interval = TimeSpan.FromMilliseconds(UserSettings.PlayerConfig.Overlay.DPSMeter.DamagePlotPollInterval)
+                Interval = TimeSpan.FromMilliseconds(ConfigManager.Settings.Overlay.DPSMeter.DamagePlotPollInterval)
             };
             Timer.Tick += OnTimerTick;
 
@@ -55,11 +55,11 @@ namespace HunterPie.GUI.Widgets.DPSMeter.Parts
         {
             for (int i = 0; i < Members.Count; i++)
             {
-                Members[i].ChangeColor(UserSettings.PlayerConfig.Overlay.DPSMeter.PartyMembers[i].Color);
-                Members[i].ChangeMode(UserSettings.PlayerConfig.Overlay.DPSMeter.DamagePlotMode);
+                Members[i].ChangeColor(ConfigManager.Settings.Overlay.DPSMeter.PartyMembers[i].Color);
+                Members[i].ChangeMode(ConfigManager.Settings.Overlay.DPSMeter.DamagePlotMode);
             }
 
-            Timer.Interval = TimeSpan.FromMilliseconds(UserSettings.PlayerConfig.Overlay.DPSMeter.DamagePlotPollInterval);
+            Timer.Interval = TimeSpan.FromMilliseconds(ConfigManager.Settings.Overlay.DPSMeter.DamagePlotPollInterval);
             if (Context?.Player != null && !Timer.IsEnabled && Context.Player.InPeaceZone)
             {
                 Timer.Start();
@@ -128,10 +128,10 @@ namespace HunterPie.GUI.Widgets.DPSMeter.Parts
         {
             Dispatch(() =>
             {
-                var plotMode = UserSettings.PlayerConfig.Overlay.DPSMeter.DamagePlotMode;
+                var plotMode = ConfigManager.Settings.Overlay.DPSMeter.DamagePlotMode;
                 Members = Context.Player.PlayerParty.Members
                     .Select((m, idx) =>
-                        new MemberPlotModel(m, UserSettings.PlayerConfig.Overlay.DPSMeter.PartyMembers[idx].Color, plotMode))
+                        new MemberPlotModel(m, ConfigManager.Settings.Overlay.DPSMeter.PartyMembers[idx].Color, plotMode))
                     .ToList();
                 foreach (var node in Members)
                 {
@@ -156,7 +156,7 @@ namespace HunterPie.GUI.Widgets.DPSMeter.Parts
             Dispatch(() =>
             {
                 Visibility = Context.Player?.PlayerParty.TotalDamage > 0
-                             && UserSettings.PlayerConfig.Overlay.DPSMeter.EnableDamagePlot
+                             && ConfigManager.Settings.Overlay.DPSMeter.EnableDamagePlot
                              && Members.Any(m => m.HasData)
                     ? Visibility.Visible
                     : Visibility.Collapsed;

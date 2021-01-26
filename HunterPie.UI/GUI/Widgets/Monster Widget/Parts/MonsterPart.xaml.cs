@@ -7,6 +7,7 @@ using HunterPie.Core.Monsters;
 using HunterPie.Core.Events;
 using Timer = System.Threading.Timer;
 using HunterPie.Logger;
+using HunterPie.Core.Settings;
 
 namespace HunterPie.GUI.Widgets.Monster_Widget.Parts
 {
@@ -21,8 +22,8 @@ namespace HunterPie.GUI.Widgets.Monster_Widget.Parts
 
         public MonsterPart() => InitializeComponent();
 
-        private static UserSettings.Config.Monsterscomponent ComponentSettings =>
-            UserSettings.PlayerConfig.Overlay.MonstersComponent;
+        private static Monsterscomponent ComponentSettings =>
+            ConfigManager.Settings.Overlay.MonstersComponent;
 
         public string PartName
         {
@@ -282,7 +283,7 @@ namespace HunterPie.GUI.Widgets.Monster_Widget.Parts
             PartHealth.MaxValue = context.TotalHealth;
             PartHealth.Value = context.Health;
             double percentage = PartHealth.Value / Math.Max(1, PartHealth.MaxValue);
-            string format = UserSettings.PlayerConfig.Overlay.MonstersComponent.PartTextFormat;
+            string format = ConfigManager.Settings.Overlay.MonstersComponent.PartTextFormat;
             PartHealthText = format.Replace("{Current}", $"{PartHealth.Value:0}")
                 .Replace("{Max}", $"{PartHealth.MaxValue:0}")
                 .Replace("{Percentage}", $"{percentage * 100:0}")

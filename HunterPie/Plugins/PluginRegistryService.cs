@@ -26,7 +26,7 @@ namespace HunterPie.Plugins
 
         public async Task<List<PluginRegistryEntry>> GetAll()
         {
-            var url = BuildUrl(UserSettings.PlayerConfig.HunterPie.PluginRegistryUrl, "plugins");
+            var url = BuildUrl(ConfigManager.Settings.HunterPie.PluginRegistryUrl, "plugins");
             if (await ShouldUseProxy())
             {
                 url += "?proxy=true";
@@ -39,7 +39,7 @@ namespace HunterPie.Plugins
 
         public async Task<int> ReportInstall(string pluginName)
         {
-            var url = BuildUrl(UserSettings.PlayerConfig.HunterPie.PluginRegistryUrl, "plugin", Uri.EscapeUriString(pluginName), "install");
+            var url = BuildUrl(ConfigManager.Settings.HunterPie.PluginRegistryUrl, "plugin", Uri.EscapeUriString(pluginName), "install");
             var rsp = await client.PostAsync(url, new StringContent(""));
             rsp.EnsureSuccessStatusCode();
             return int.Parse(await rsp.Content.ReadAsStringAsync());
@@ -49,7 +49,7 @@ namespace HunterPie.Plugins
         {
             if (await ShouldUseProxy())
             {
-                return BuildUrl(UserSettings.PlayerConfig.HunterPie.PluginRegistryUrl, "plugin", Uri.EscapeUriString(pInformation.Name), "module");
+                return BuildUrl(ConfigManager.Settings.HunterPie.PluginRegistryUrl, "plugin", Uri.EscapeUriString(pInformation.Name), "module");
             }
 
             return pInformation.Update.UpdateUrl;
@@ -59,7 +59,7 @@ namespace HunterPie.Plugins
 
         private async Task<bool> ShouldUseProxy()
         {
-            var mode = UserSettings.PlayerConfig.HunterPie.PluginProxyMode;
+            var mode = ConfigManager.Settings.HunterPie.PluginProxyMode;
             if (mode == PluginProxyMode.Enabled)
             {
                 return true;
@@ -70,7 +70,7 @@ namespace HunterPie.Plugins
                 return false;
             }
 
-            var registryAccessible = await PingService(UserSettings.PlayerConfig.HunterPie.PluginRegistryUrl);
+            var registryAccessible = await PingService(ConfigManager.Settings.HunterPie.PluginRegistryUrl);
             if (!registryAccessible)
             {
                 return false;

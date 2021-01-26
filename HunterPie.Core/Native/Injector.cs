@@ -21,7 +21,7 @@ namespace HunterPie.Native
         internal static bool InjectNative()
         {
             string nativeDllPath = Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "libs", "HunterPie.Native.dll");
-            bool isNativeFunctionsEnabled = UserSettings.PlayerConfig.HunterPie.EnableNativeFunctions;
+            bool isNativeFunctionsEnabled = ConfigManager.Settings.HunterPie.EnableNativeFunctions;
 
             if (!File.Exists(nativeDllPath) || !isNativeFunctionsEnabled)
             {

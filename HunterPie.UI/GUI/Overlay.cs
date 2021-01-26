@@ -21,7 +21,7 @@ namespace HunterPie.GUI
 
         public static IReadOnlyList<Widget> Widgets => widgets;
 
-        private UserSettings.Config.Overlay OverlaySettings => UserSettings.PlayerConfig.Overlay;
+        private Core.Settings.Overlay OverlaySettings => ConfigManager.Settings.Overlay;
 
         Game Context { get; set; }
 
@@ -46,8 +46,8 @@ namespace HunterPie.GUI
             {
                 widgets.Add(widget);
 
-                widget.OverlayActive = UserSettings.PlayerConfig.Overlay.Enabled;
-                widget.OverlayFocusActive = UserSettings.PlayerConfig.Overlay.HideWhenGameIsUnfocused;
+                widget.OverlayActive = ConfigManager.Settings.Overlay.Enabled;
+                widget.OverlayFocusActive = ConfigManager.Settings.Overlay.HideWhenGameIsUnfocused;
 
                 return true;
             } catch (Exception err)
@@ -77,18 +77,19 @@ namespace HunterPie.GUI
 
         #endregion
 
-        internal void ToggleDesignMode()
+        internal async void ToggleDesignMode()
         {
             foreach (Widget widget in Widgets)
             {
                 widget.InDesignMode = !widget.InDesignMode;
             }
-            if (!Widgets.First().InDesignMode) UserSettings.SaveNewConfig();
+            if (!Widgets.First().InDesignMode)
+                await ConfigManager.TrySaveSettingsAsync();
         }
 
         private static void SetRenderMode()
         {
-            if (!UserSettings.PlayerConfig.Overlay.EnableHardwareAcceleration)
+            if (!ConfigManager.Settings.Overlay.EnableHardwareAcceleration)
             {
                 RenderOptions.ProcessRenderMode = RenderMode.SoftwareOnly;
             }
@@ -138,7 +139,7 @@ namespace HunterPie.GUI
                     counter++;
                 }
 
-                for (int AbnormTrayIndex = 0; AbnormTrayIndex < UserSettings.PlayerConfig.Overlay.AbnormalitiesWidget.ActiveBars; AbnormTrayIndex++)
+                for (int AbnormTrayIndex = 0; AbnormTrayIndex < ConfigManager.Settings.Overlay.AbnormalitiesWidget.ActiveBars; AbnormTrayIndex++)
                 {
                     if (OverlaySettings.AbnormalitiesWidget.BarPresets[AbnormTrayIndex].Initialize)
                     {
@@ -167,9 +168,10 @@ namespace HunterPie.GUI
             
         }
 
-        private void DestroyWidgets()
+        private async void DestroyWidgets()
         {
-            if (!Widgets.First().InDesignMode) UserSettings.SaveNewConfig();
+            if (!Widgets.First().InDesignMode)
+                await ConfigManager.TrySaveSettingsAsync();
             foreach (Widget widget in Widgets)
             {
                 widget.InDesignMode = false;
@@ -197,14 +199,18 @@ namespace HunterPie.GUI
             Context = null;
         }
 
-        public void GlobalSettingsEventHandler(object source, EventArgs e)
+        public async void GlobalSettingsEventHandler(object source, EventArgs e)
         {
-            ToggleOverlay();
-            DeleteAbnormWidgetsIfNeeded();
-            foreach (Widget widget in Widgets)
+            await Application.Current.Dispatcher.InvokeAsync(new Action(() =>
             {
-                widget.ApplySettings();
-            }
+                ToggleOverlay();
+                DeleteAbnormWidgetsIfNeeded();
+                foreach (Widget widget in Widgets)
+                {
+                    widget.ApplySettings();
+                }
+            }));
+            
         }
 
         private void DeleteAbnormWidgetsIfNeeded()
@@ -216,7 +222,7 @@ namespace HunterPie.GUI
                 if (widget.Type == WidgetType.AbnormalityWidget)
                 {
                     Widgets.Abnormality_Widget.AbnormalityContainer widgetConverted = (Widgets.Abnormality_Widget.AbnormalityContainer)widget;
-                    if (widgetConverted.AbnormalityTrayIndex >= UserSettings.PlayerConfig.Overlay.AbnormalitiesWidget.ActiveBars)
+                    if (widgetConverted.AbnormalityTrayIndex >= ConfigManager.Settings.Overlay.AbnormalitiesWidget.ActiveBars)
                     {
                         widgetConverted.Close();
                         IndexesToRemove.Add(i);
@@ -267,8 +273,8 @@ namespace HunterPie.GUI
         {
             foreach (Widget widget in Widgets)
             {
-                widget.OverlayActive = UserSettings.PlayerConfig.Overlay.Enabled;
-                widget.OverlayFocusActive = UserSettings.PlayerConfig.Overlay.HideWhenGameIsUnfocused;
+                widget.OverlayActive = ConfigManager.Settings.Overlay.Enabled;
+                widget.OverlayFocusActive = ConfigManager.Settings.Overlay.HideWhenGameIsUnfocused;
             }
         }
 

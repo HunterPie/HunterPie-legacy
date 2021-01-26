@@ -41,8 +41,10 @@ namespace HunterPie.GUIControls
 
         static public void RefreshSettingsUI()
         {
-            if (_Instance == null) return;
-            var settings = UserSettings.PlayerConfig;
+            if (_Instance == null)
+                return;
+
+            var settings = ConfigManager.Settings;
             var settingsUI = _Instance.SettingsBox;
             settingsUI.fullGamePath = settings.HunterPie.Launch.GamePath;
             settingsUI.fullLaunchArgs = settings.HunterPie.Launch.LaunchArgs;
@@ -88,6 +90,7 @@ namespace HunterPie.GUIControls
             // Player
             settingsUI.switchInitializePlayerWidget.IsEnabled = settings.Overlay.PlayerHealthComponent.Initialize;
             settingsUI.switchEnablePlayerWidget.IsEnabled = settings.Overlay.PlayerHealthComponent.Enabled;
+            settingsUI.switchEnablePlayerStreamerMode.IsEnabled = settings.Overlay.PlayerHealthComponent.StreamerMode;
             settingsUI.PlayerNameTextFormat.Text = settings.Overlay.PlayerHealthComponent.NameTextFormat;
             settingsUI.switchEnableHideInVillages.IsEnabled = settings.Overlay.PlayerHealthComponent.HideHealthInVillages;
             settingsUI.PlayerComponentOpacity.Value = settings.Overlay.PlayerHealthComponent.Opacity;
@@ -97,6 +100,7 @@ namespace HunterPie.GUIControls
             // Monsters
             settingsUI.switchInitializeMonsterWidget.IsEnabled = settings.Overlay.MonstersComponent.Initialize;
             settingsUI.switchEnableMonsterComponent.IsEnabled = settings.Overlay.MonstersComponent.Enabled;
+            settingsUI.switchEnableMonsterStreamerMode.IsEnabled = settings.Overlay.MonstersComponent.StreamerMode;
             settingsUI.switchEnableMonsterAction.IsEnabled = settings.Overlay.MonstersComponent.ShowMonsterActionName;
             settingsUI.switchSortParts.IsEnabled = settings.Overlay.MonstersComponent.EnableSortParts;
             settingsUI.switchEnableHideUnactiveAilments.IsEnabled = settings.Overlay.MonstersComponent.HideAilmentsAfterSeconds;
@@ -153,6 +157,7 @@ namespace HunterPie.GUIControls
             // Primary Mantle
             settingsUI.switchInitializePrimaryMantleWidget.IsEnabled = settings.Overlay.PrimaryMantle.Initialize;
             settingsUI.switchEnablePrimaryMantle.IsEnabled = settings.Overlay.PrimaryMantle.Enabled;
+            settingsUI.switchEnablePMantleStreamerMode.IsEnabled = settings.Overlay.PrimaryMantle.StreamerMode;
             settingsUI.switchPrimaryMantleCompactMode.IsEnabled = settings.Overlay.PrimaryMantle.CompactMode;
             settingsUI.PrimaryMantlePosition.X = settings.Overlay.PrimaryMantle.Position[0];
             settingsUI.PrimaryMantlePosition.Y = settings.Overlay.PrimaryMantle.Position[1];
@@ -162,6 +167,7 @@ namespace HunterPie.GUIControls
             // Secondary Mantle
             settingsUI.switchInitializeSecondaryMantleWidget.IsEnabled = settings.Overlay.SecondaryMantle.Initialize;
             settingsUI.switchEnableSecondaryMantle.IsEnabled = settings.Overlay.SecondaryMantle.Enabled;
+            settingsUI.switchEnableSMantleStreamerMode.IsEnabled = settings.Overlay.SecondaryMantle.StreamerMode;
             settingsUI.switchSecondaryMantleCompactMode.IsEnabled = settings.Overlay.SecondaryMantle.CompactMode;
             settingsUI.SecondaryMantlePosition.X = settings.Overlay.SecondaryMantle.Position[0];
             settingsUI.SecondaryMantlePosition.Y = settings.Overlay.SecondaryMantle.Position[1];
@@ -171,6 +177,7 @@ namespace HunterPie.GUIControls
             // Harvest Box
             settingsUI.switchInitializeHarvestWidget.IsEnabled = settings.Overlay.HarvestBoxComponent.Initialize;
             settingsUI.switchEnableHarvestBox.IsEnabled = settings.Overlay.HarvestBoxComponent.Enabled;
+            settingsUI.switchEnableHarvestStreamerMode.IsEnabled = settings.Overlay.HarvestBoxComponent.StreamerMode;
             settingsUI.switchAlwaysShow.IsEnabled = settings.Overlay.HarvestBoxComponent.AlwaysShow;
             settingsUI.switchShowSteamTracker.IsEnabled = settings.Overlay.HarvestBoxComponent.ShowSteamTracker;
             settingsUI.switchShowArgosyTracker.IsEnabled = settings.Overlay.HarvestBoxComponent.ShowArgosyTracker;
@@ -184,6 +191,7 @@ namespace HunterPie.GUIControls
             // DPS Meter
             settingsUI.switchInitializeMeterWidget.IsEnabled = settings.Overlay.DPSMeter.Initialize;
             settingsUI.switchEnableDPSMeter.IsEnabled = settings.Overlay.DPSMeter.Enabled;
+            settingsUI.switchEnableDPSMeterStreamerMode.IsEnabled = settings.Overlay.DPSMeter.StreamerMode;
             settingsUI.switchEnableTotalDamage.IsEnabled = settings.Overlay.DPSMeter.ShowTotalDamage;
             settingsUI.switchEnableDPSWheneverPossible.IsEnabled = settings.Overlay.DPSMeter.ShowDPSWheneverPossible;
             settingsUI.switchEnableTimer.IsEnabled = settings.Overlay.DPSMeter.ShowTimer;
@@ -204,6 +212,7 @@ namespace HunterPie.GUIControls
 
             // Classes Widget
             settingsUI.switchInitializeClassHelper.IsEnabled = settings.Overlay.ClassesWidget.Initialize;
+            settingsUI.switchEnableClassStreamerMode.IsEnabled = settings.Overlay.ClassesWidget.StreamerMode;
             settingsUI.switchGreatswordHelper.IsEnabled = settings.Overlay.ClassesWidget.GreatswordHelper.Enabled;
             settingsUI.switchDualBladesHelper.IsEnabled = settings.Overlay.ClassesWidget.DualBladesHelper.Enabled;
             settingsUI.switchLongswordHelper.IsEnabled = settings.Overlay.ClassesWidget.LongSwordHelper.Enabled;
@@ -221,9 +230,9 @@ namespace HunterPie.GUIControls
 
         }
 
-        private void saveSettings_Click(object sender, RoutedEventArgs e)
+        private async void saveSettings_Click(object sender, RoutedEventArgs e)
         {
-            var settings = UserSettings.PlayerConfig;
+            var settings = ConfigManager.Settings;
             var settingsUI = _Instance.SettingsBox;
             // HunterPie
             settings.HunterPie.Update.Enabled = settingsUI.switchEnableAutoUpdate.IsEnabled;
@@ -266,6 +275,7 @@ namespace HunterPie.GUIControls
             // Player
             settings.Overlay.PlayerHealthComponent.Initialize = settingsUI.switchInitializePlayerWidget.IsEnabled;
             settings.Overlay.PlayerHealthComponent.Enabled = settingsUI.switchEnablePlayerWidget.IsEnabled;
+            settings.Overlay.PlayerHealthComponent.StreamerMode = settingsUI.switchEnablePlayerStreamerMode.IsEnabled;
             settings.Overlay.PlayerHealthComponent.NameTextFormat = settingsUI.PlayerNameTextFormat.Text;
             settings.Overlay.PlayerHealthComponent.HideHealthInVillages = settingsUI.switchEnableHideInVillages.IsEnabled;
             settings.Overlay.PlayerHealthComponent.Opacity = (float)settingsUI.PlayerComponentOpacity.Value;
@@ -275,6 +285,7 @@ namespace HunterPie.GUIControls
             // Monsters
             settings.Overlay.MonstersComponent.Initialize = settingsUI.switchInitializeMonsterWidget.IsEnabled;
             settings.Overlay.MonstersComponent.Enabled = settingsUI.switchEnableMonsterComponent.IsEnabled;
+            settings.Overlay.MonstersComponent.StreamerMode = settingsUI.switchEnableMonsterStreamerMode.IsEnabled;
             settings.Overlay.MonstersComponent.ShowMonsterActionName = settingsUI.switchEnableMonsterAction.IsEnabled;
             settings.Overlay.MonstersComponent.EnableSortParts = settingsUI.switchSortParts.IsEnabled;
             settings.Overlay.MonstersComponent.HideAilmentsAfterSeconds = settingsUI.switchEnableHideUnactiveAilments.IsEnabled;
@@ -319,6 +330,7 @@ namespace HunterPie.GUIControls
             // Primary Mantle
             settings.Overlay.PrimaryMantle.Initialize = settingsUI.switchInitializePrimaryMantleWidget.IsEnabled;
             settings.Overlay.PrimaryMantle.Enabled = settingsUI.switchEnablePrimaryMantle.IsEnabled;
+            settings.Overlay.PrimaryMantle.StreamerMode = settingsUI.switchEnablePMantleStreamerMode.IsEnabled;
             settings.Overlay.PrimaryMantle.CompactMode = settingsUI.switchPrimaryMantleCompactMode.IsEnabled;
             settings.Overlay.PrimaryMantle.Position[0] = settingsUI.PrimaryMantlePosition.X;
             settings.Overlay.PrimaryMantle.Position[1] = settingsUI.PrimaryMantlePosition.Y;
@@ -328,6 +340,7 @@ namespace HunterPie.GUIControls
             // Secondary Mantle
             settings.Overlay.SecondaryMantle.Initialize = settingsUI.switchInitializeSecondaryMantleWidget.IsEnabled;
             settings.Overlay.SecondaryMantle.Enabled = settingsUI.switchEnableSecondaryMantle.IsEnabled;
+            settings.Overlay.SecondaryMantle.StreamerMode = settingsUI.switchEnableSMantleStreamerMode.IsEnabled;
             settings.Overlay.SecondaryMantle.CompactMode = settingsUI.switchSecondaryMantleCompactMode.IsEnabled;
             settings.Overlay.SecondaryMantle.Position[0] = settingsUI.SecondaryMantlePosition.X;
             settings.Overlay.SecondaryMantle.Position[1] = settingsUI.SecondaryMantlePosition.Y;
@@ -337,6 +350,7 @@ namespace HunterPie.GUIControls
             // Harvest Box
             settings.Overlay.HarvestBoxComponent.Initialize = settingsUI.switchInitializeHarvestWidget.IsEnabled;
             settings.Overlay.HarvestBoxComponent.Enabled = settingsUI.switchEnableHarvestBox.IsEnabled;
+            settings.Overlay.HarvestBoxComponent.StreamerMode = settingsUI.switchEnableHarvestStreamerMode.IsEnabled;
             settings.Overlay.HarvestBoxComponent.AlwaysShow = settingsUI.switchAlwaysShow.IsEnabled;
             settings.Overlay.HarvestBoxComponent.ShowSteamTracker = settingsUI.switchShowSteamTracker.IsEnabled;
             settings.Overlay.HarvestBoxComponent.ShowArgosyTracker = settingsUI.switchShowArgosyTracker.IsEnabled;
@@ -351,6 +365,7 @@ namespace HunterPie.GUIControls
             // DPS Meter
             settings.Overlay.DPSMeter.Initialize = settingsUI.switchInitializeMeterWidget.IsEnabled;
             settings.Overlay.DPSMeter.Enabled = settingsUI.switchEnableDPSMeter.IsEnabled;
+            settings.Overlay.DPSMeter.StreamerMode = settingsUI.switchEnableDPSMeterStreamerMode.IsEnabled;
             settings.Overlay.DPSMeter.ShowTotalDamage = settingsUI.switchEnableTotalDamage.IsEnabled;
             settings.Overlay.DPSMeter.ShowDPSWheneverPossible = settingsUI.switchEnableDPSWheneverPossible.IsEnabled;
             settings.Overlay.DPSMeter.ShowTimer = settingsUI.switchEnableTimer.IsEnabled;
@@ -371,6 +386,7 @@ namespace HunterPie.GUIControls
 
             // Classes Widget
             settings.Overlay.ClassesWidget.Initialize = settingsUI.switchInitializeClassHelper.IsEnabled;
+            settings.Overlay.ClassesWidget.Enabled = settingsUI.switchEnableClassStreamerMode.IsEnabled;
             settings.Overlay.ClassesWidget.GreatswordHelper.Enabled = settingsUI.switchGreatswordHelper.IsEnabled;
             settings.Overlay.ClassesWidget.DualBladesHelper.Enabled = settingsUI.switchDualBladesHelper.IsEnabled;
             settings.Overlay.ClassesWidget.LongSwordHelper.Enabled = settingsUI.switchLongswordHelper.IsEnabled;
@@ -395,7 +411,7 @@ namespace HunterPie.GUIControls
             }
 
             // and then save settings
-            UserSettings.SaveNewConfig();
+            await ConfigManager.TrySaveSettingsAsync();
         }
     }
 }

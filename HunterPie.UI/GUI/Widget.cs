@@ -9,6 +9,7 @@ using System.Windows.Media;
 using System.Windows.Threading;
 using HunterPie.Core;
 using HunterPie.Memory;
+using HunterPie.Core.Settings;
 
 namespace HunterPie.GUI
 {
@@ -18,7 +19,8 @@ namespace HunterPie.GUI
         #region Variables
         private readonly Stopwatch stopwatch = new Stopwatch();
 
-        public WidgetType Type { get; }
+        public virtual WidgetType Type { get; }
+        public virtual IWidgetSettings Settings { get; }
 
         public bool IsClosed { get; private set; }
         private bool inDesignMode;
@@ -85,14 +87,15 @@ namespace HunterPie.GUI
             Initialized += OnInitialized;
             Closing += OnClosing;
         }
-        
+
         #region Virtual
 
         private double oldOpacity;
         public virtual void EnterWidgetDesignMode()
         {
-            ChangeVisibility();
             oldOpacity = Opacity;
+            ChangeVisibility();
+            
         }
 
         public virtual void LeaveWidgetDesignMode()
@@ -104,9 +107,35 @@ namespace HunterPie.GUI
 
         public virtual void ApplySettings()
         {
+            if (Settings != null)
+            {
+                // OBS can't find windows that hide in from taskbar
+                ShowInTaskbar = Settings.StreamerMode;
+                Left = Settings.Position[0] + ConfigManager.Settings.Overlay.Position[0];
+                Top = Settings.Position[1] + ConfigManager.Settings.Overlay.Position[1];
+
+                ScaleWidget(Settings.Scale, Settings.Scale);
+
+                WidgetActive = Settings.Enabled;
+                Opacity = Settings.Opacity;
+            }
+            
+            SetWindowFlags();
             ChangeVisibility();
         }
-        public virtual void SaveSettings() {}
+
+        public virtual void SaveSettings()
+        {
+            if (Settings is null)
+                return;
+
+            Settings.Position = new int[2]
+            {
+                (int)Left - ConfigManager.Settings.Overlay.Position[0],
+                (int)Top - ConfigManager.Settings.Overlay.Position[1]
+            };
+            Settings.Scale = DefaultScaleX;
+        }
 
         public virtual void ScaleWidget(double newScaleX, double newScaleY)
         {
@@ -120,7 +149,8 @@ namespace HunterPie.GUI
 
         public virtual void MoveWidget()
         {
-            DragMove();
+            if (IsVisible)
+                DragMove();
         }
         #endregion
 
@@ -159,10 +189,15 @@ namespace HunterPie.GUI
             IntPtr hWnd = new WindowInteropHelper(this).EnsureHandle();
 
             int styles = WindowsHelper.GetWindowLong(hWnd, WindowsHelper.GWL_EXSTYLE);
-            int flags = (int)(WindowsHelper.EX_WINDOW_STYLES.WS_EX_TOOLWINDOW |
-                              WindowsHelper.EX_WINDOW_STYLES.WS_EX_TRANSPARENT |
+            int flags = (int)(WindowsHelper.EX_WINDOW_STYLES.WS_EX_TRANSPARENT |
                               WindowsHelper.EX_WINDOW_STYLES.WS_EX_TOPMOST |
                               WindowsHelper.EX_WINDOW_STYLES.WS_EX_NOACTIVATE);
+
+            if (!Settings?.StreamerMode ?? true)
+                flags |= (int)WindowsHelper.EX_WINDOW_STYLES.WS_EX_TOOLWINDOW;
+            else
+                flags &= ~(int)WindowsHelper.EX_WINDOW_STYLES.WS_EX_TOOLWINDOW;
+
             WindowsHelper.SetWindowLong(hWnd, WindowsHelper.GWL_EXSTYLE, styles | flags);
         }
 
@@ -170,11 +205,15 @@ namespace HunterPie.GUI
         {
             if (InDesignMode || (WidgetHasContent && OverlayActive && WidgetActive && ((!OverlayFocusActive) || (OverlayFocusActive && OverlayIsFocused))))
             {
+                Opacity = 1;
                 Show();
             }
             else
             {
-                Hide();
+                if (!Settings?.StreamerMode ?? true)
+                    Hide();
+                else
+                    Opacity = 0;
             }
         }
 
@@ -271,7 +310,7 @@ namespace HunterPie.GUI
                 return;
 
             IntPtr hWnd = new WindowInteropHelper(this).EnsureHandle();
-            if (Game.IsWindowFocused && UserSettings.PlayerConfig.Overlay.EnableForceDirectX11Fullscreen)
+            if (Game.IsWindowFocused && ConfigManager.Settings.Overlay.EnableForceDirectX11Fullscreen)
             {
                 uint gameWindowFlags = (uint)(WindowsHelper.SWP_WINDOWN_FLAGS.SWP_SHOWWINDOW |
                                               WindowsHelper.SWP_WINDOWN_FLAGS.SWP_NOMOVE);

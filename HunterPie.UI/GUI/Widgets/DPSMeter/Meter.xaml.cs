@@ -5,6 +5,7 @@ using System.Windows;
 using System.Windows.Media;
 using HunterPie.Core;
 using HunterPie.GUI.Widgets.DPSMeter.Parts;
+using HunterPie.Core.Settings;
 
 namespace HunterPie.GUI.Widgets.DPSMeter
 {
@@ -13,7 +14,8 @@ namespace HunterPie.GUI.Widgets.DPSMeter
     /// </summary>
     public partial class Meter : Widget
     {
-        public new WidgetType Type => WidgetType.DamageWidget;
+        public override WidgetType Type => WidgetType.DamageWidget;
+        public override IWidgetSettings Settings => ConfigManager.Settings.Overlay.DPSMeter;
 
         private readonly List<PartyMember> players = new List<PartyMember>();
 
@@ -41,7 +43,7 @@ namespace HunterPie.GUI.Widgets.DPSMeter
         {
             if (Context == null)
                 return;
-
+            
             Timer.Text = Context.Epoch.ToString(@"hh\:mm\:ss\.ff");
         }
 
@@ -75,10 +77,8 @@ namespace HunterPie.GUI.Widgets.DPSMeter
 
         public override void SaveSettings()
         {
-            UserSettings.PlayerConfig.Overlay.DPSMeter.Position[0] = (int)Left - UserSettings.PlayerConfig.Overlay.Position[0];
-            UserSettings.PlayerConfig.Overlay.DPSMeter.Position[1] = (int)Top - UserSettings.PlayerConfig.Overlay.Position[1];
-            UserSettings.PlayerConfig.Overlay.DPSMeter.Scale = DefaultScaleX;
-            UserSettings.PlayerConfig.Overlay.DPSMeter.Width = Width;
+            ConfigManager.Settings.Overlay.DPSMeter.Width = Width;
+            base.SaveSettings();
         }
 
         private void OnPeaceZoneLeave(object source, EventArgs args) =>
@@ -87,7 +87,7 @@ namespace HunterPie.GUI.Widgets.DPSMeter
             CompositionTarget.Rendering += OnMeterRender;
             CreatePlayerComponents();
             SortPlayersByDamage();
-            if (UserSettings.PlayerConfig.Overlay.DPSMeter.ShowTimerInExpeditions)
+            if (ConfigManager.Settings.Overlay.DPSMeter.ShowTimerInExpeditions)
             {
                 if (Context == null || Context.TotalDamage <= 0) Party.Visibility = Visibility.Collapsed;
                 WidgetHasContent = true;
@@ -125,14 +125,14 @@ namespace HunterPie.GUI.Widgets.DPSMeter
             Dispatcher.BeginInvoke(System.Windows.Threading.DispatcherPriority.Render, new Action(() =>
             {
 
-                if (Context.TotalDamage > 0 && !UserSettings.PlayerConfig.Overlay.DPSMeter.ShowOnlyTimer)
+                if (Context.TotalDamage > 0 && !ConfigManager.Settings.Overlay.DPSMeter.ShowOnlyTimer)
                 {
                     Party.Visibility = Visibility.Visible;
                     WidgetHasContent = true;
                 }
                 else
                 {
-                    WidgetHasContent = UserSettings.PlayerConfig.Overlay.DPSMeter.ShowTimerInExpeditions;
+                    WidgetHasContent = ConfigManager.Settings.Overlay.DPSMeter.ShowTimerInExpeditions;
                     Party.Visibility = Visibility.Collapsed;
                 }
                 ChangeVisibility();
@@ -143,7 +143,7 @@ namespace HunterPie.GUI.Widgets.DPSMeter
         {
             for (int i = 0; i < Context.MaxSize; i++)
             {
-                PartyMember pMember = new PartyMember(UserSettings.PlayerConfig.Overlay.DPSMeter.PartyMembers[i].Color);
+                PartyMember pMember = new PartyMember(ConfigManager.Settings.Overlay.DPSMeter.PartyMembers[i].Color);
                 pMember.SetContext(Context[i], Context);
                 players.Add(pMember);
             }
@@ -193,7 +193,7 @@ namespace HunterPie.GUI.Widgets.DPSMeter
 
             for (int i = 0; i < Context.MaxSize; i++)
             {
-                players[i].ChangeColor(UserSettings.PlayerConfig.Overlay.DPSMeter.PartyMembers[i].Color);
+                players[i].ChangeColor(ConfigManager.Settings.Overlay.DPSMeter.PartyMembers[i].Color);
                 players[i].UpdateDamageTextSettings();
             }
         }
@@ -205,47 +205,37 @@ namespace HunterPie.GUI.Widgets.DPSMeter
 
         public override void ApplySettings()
         {
-            Dispatcher.BeginInvoke(System.Windows.Threading.DispatcherPriority.Background, new Action(() =>
+            TimerVisibility = ConfigManager.Settings.Overlay.DPSMeter.ShowTimer ? Visibility.Visible : Visibility.Collapsed;
+
+            DamagePlot.ApplySettings();
+            UpdatePlayersColor();
+
+            SnapWidget(ConfigManager.Settings.Overlay.DPSMeter.Width);
+
+            Color partyBgColor = new Color()
             {
-                Top = UserSettings.PlayerConfig.Overlay.DPSMeter.Position[1] + UserSettings.PlayerConfig.Overlay.Position[1];
-                Left = UserSettings.PlayerConfig.Overlay.DPSMeter.Position[0] + UserSettings.PlayerConfig.Overlay.Position[0];
-                WidgetActive = UserSettings.PlayerConfig.Overlay.DPSMeter.Enabled;
-
-                TimerVisibility = UserSettings.PlayerConfig.Overlay.DPSMeter.ShowTimer ? Visibility.Visible : Visibility.Collapsed;
-
-                DamagePlot.ApplySettings();
-                UpdatePlayersColor();
-
-                ScaleWidget(UserSettings.PlayerConfig.Overlay.DPSMeter.Scale, UserSettings.PlayerConfig.Overlay.DPSMeter.Scale);
-                SnapWidget(UserSettings.PlayerConfig.Overlay.DPSMeter.Width);
-
-                Opacity = UserSettings.PlayerConfig.Overlay.DPSMeter.Opacity;
-                Color partyBgColor = new Color()
-                {
-                    R = 0x00,
-                    G = 0x00,
-                    B = 0x00,
-                    A = (byte)(int)(UserSettings.PlayerConfig.Overlay.DPSMeter.BackgroundOpacity * 0xFF)
-                };
-                SolidColorBrush brush = new SolidColorBrush(partyBgColor);
-                brush.Freeze();
-                DamageContainer.Background = brush;
-                Party.Visibility = UserSettings.PlayerConfig.Overlay.DPSMeter.ShowOnlyTimer ? Visibility.Collapsed : Visibility.Visible;
-                if (UserSettings.PlayerConfig.Overlay.DPSMeter.ShowTimerInExpeditions)
-                {
-                    if (Context == null || Context.TotalDamage <= 0)
-                        Party.Visibility = Visibility.Collapsed;
-                }
-                WidgetHasContent = true;
-                if (Context != null)
-                {
-                    WidgetHasContent = (UserSettings.PlayerConfig.Overlay.DPSMeter.ShowTimerInExpeditions || Context?.TotalDamage > 0) && !gContext.Player.InPeaceZone;
-                    SortPlayersByDamage();
-                }
-                base.ApplySettings();
-            }));
+                R = 0x00,
+                G = 0x00,
+                B = 0x00,
+                A = (byte)(int)(ConfigManager.Settings.Overlay.DPSMeter.BackgroundOpacity * 0xFF)
+            };
+            SolidColorBrush brush = new SolidColorBrush(partyBgColor);
+            brush.Freeze();
+            DamageContainer.Background = brush;
+            Party.Visibility = ConfigManager.Settings.Overlay.DPSMeter.ShowOnlyTimer ? Visibility.Collapsed : Visibility.Visible;
+            if (ConfigManager.Settings.Overlay.DPSMeter.ShowTimerInExpeditions)
+            {
+                if (Context == null || Context.TotalDamage <= 0)
+                    Party.Visibility = Visibility.Collapsed;
+            }
+            WidgetHasContent = true;
+            if (Context != null)
+            {
+                WidgetHasContent = (ConfigManager.Settings.Overlay.DPSMeter.ShowTimerInExpeditions || Context?.TotalDamage > 0) && !gContext.Player.InPeaceZone;
+                SortPlayersByDamage();
+            }
+            base.ApplySettings();
         }
-            
 
         public override void ScaleWidget(double newScaleX, double newScaleY)
         {
@@ -255,7 +245,7 @@ namespace HunterPie.GUI.Widgets.DPSMeter
             DamageContainer.LayoutTransform = new ScaleTransform(newScaleX, newScaleY);
             DefaultScaleX = newScaleX;
             DefaultScaleY = newScaleY;
-            SnapWidget(UserSettings.PlayerConfig.Overlay.DPSMeter.Width);
+            SnapWidget(ConfigManager.Settings.Overlay.DPSMeter.Width);
         }
 
         private void DamageMeter_SizeChanged(object sender, SizeChangedEventArgs e)
@@ -288,7 +278,7 @@ namespace HunterPie.GUI.Widgets.DPSMeter
                 TimerContainer.ActualHeight
                 + (Party.ActualHeight == 0 ? memberItemHeight * 4 : Party.ActualHeight)
                 + 2
-                + (UserSettings.PlayerConfig.Overlay.DPSMeter.EnableDamagePlot ? plotHeight : 0)
+                + (ConfigManager.Settings.Overlay.DPSMeter.EnableDamagePlot ? plotHeight : 0)
             ) * DefaultScaleY;
         }
     }
