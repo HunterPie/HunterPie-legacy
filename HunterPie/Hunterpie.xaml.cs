@@ -107,7 +107,7 @@ namespace HunterPie
         public Hunterpie()
         {
             Instance = this;
-
+            
             if (CheckIfItsRunningFromWinrar())
             {
                 MessageBox.Show("You must extract HunterPie files before running it, otherwise it will most likely crash due to missing files or not save your settings.", "Error", MessageBoxButton.OK, MessageBoxImage.Error);
@@ -126,6 +126,8 @@ namespace HunterPie
 
             // Initialize debugger and player config
             DebuggerControl.InitializeDebugger();
+
+            InitializeComponent();
         }
 
         private bool IsRunningAsAdmin()
@@ -367,7 +369,9 @@ namespace HunterPie
 
         private void ConvertOldHotkeyToNew(int Key)
         {
-            if (Key == 0) return;
+            if (Key == 0)
+                return;
+
             config.Overlay.ToggleDesignKeybind = KeyboardHookHelper.GetKeyboardKeyByID(Key).ToString();
             config.Overlay.ToggleDesignModeKey = 0;
         }
@@ -691,6 +695,7 @@ namespace HunterPie
 
         private async void OnGameStart(object source, EventArgs e)
         {
+            
             // Set HunterPie hotkeys
             SetHotKeys();
 
@@ -726,15 +731,15 @@ namespace HunterPie
             await InitializeNative();
 
             // Creates new overlay
-            Dispatcher.Invoke(System.Windows.Threading.DispatcherPriority.Background, new Action(() =>
+            Dispatcher.Invoke(() =>
             {
-                if (overlay == null)
+                if (overlay is null)
                 {
                     overlay = new Overlay(game);
                     overlay.HookEvents();
                     ConfigManager.TriggerSettingsEvent();
                 }
-            }));
+            });
 
             // Initializes rich presence
             if (presence is null)
@@ -814,6 +819,7 @@ namespace HunterPie
 
         private async void OnWindowInitialized(object sender, EventArgs e)
         {
+            Hide();
             await ConfigManager.Initialize();
 
             // Initialize localization
@@ -826,10 +832,9 @@ namespace HunterPie
             AdministratorIconVisibility = IsRunningAsAdmin() ? Visibility.Visible : Visibility.Collapsed;
 
             Environment.CurrentDirectory = AppDomain.CurrentDomain.BaseDirectory;
-            InitializeComponent();
+            
             WindowBlur.SetIsEnabled(this, true);
 
-            Hide();
             Width = config.HunterPie.Width;
             Height = config.HunterPie.Height;
             Top = config.HunterPie.PosY;
@@ -858,14 +863,14 @@ namespace HunterPie
             LoadData();
             Debugger.Warn(GStrings.GetLocalizationByXPath("/Console/String[@ID='MESSAGE_HUNTERPIE_INITIALIZED']"));
 
-            StartEverything();
-
+            
             await pluginManager.PreloadPlugins();
-
             // Support message :)
             ShowSupportMessage();
+
+            StartEverything();
         }
-        
+
         private async void OnCloseWindowButtonClick(object sender, MouseButtonEventArgs e)
         {
             // X button function;
