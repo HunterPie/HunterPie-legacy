@@ -47,7 +47,7 @@ namespace HunterPie.GUI.Widgets.ClassWidget
         {
             if (IsClosed)
                 return;
-
+            ShowInTaskbar = Settings.StreamerMode;
             ApplySettingsBasedOnClass();
             SetWindowFlags();
             ChangeVisibility();

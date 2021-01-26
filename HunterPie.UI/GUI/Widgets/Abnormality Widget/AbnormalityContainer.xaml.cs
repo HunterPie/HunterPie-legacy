@@ -17,7 +17,7 @@ namespace HunterPie.GUI.Widgets.Abnormality_Widget
     public partial class AbnormalityContainer : Widget
     {
 
-        public new WidgetType Type => WidgetType.AbnormalityWidget;
+        public override WidgetType Type => WidgetType.AbnormalityWidget;
 
         readonly Dictionary<string, Parts.AbnormalityControl> activeAbnormalities = new Dictionary<string, Parts.AbnormalityControl>();
 
@@ -194,11 +194,13 @@ namespace HunterPie.GUI.Widgets.Abnormality_Widget
             }
         }
 
-        public new void ScaleWidget(double NewScaleX, double NewScaleY)
+        public override void ScaleWidget(double newScaleX, double newScaleY)
         {
-            if (NewScaleX <= 0.2) return;
-            BuffTray.LayoutTransform = new ScaleTransform(NewScaleX, NewScaleY);
-            MinHeight = MinWidth = 40 * NewScaleX;
+            if (newScaleX <= 0.2)
+                return;
+
+            BuffTray.LayoutTransform = new ScaleTransform(newScaleX, newScaleY);
+            MinHeight = MinWidth = 40 * newScaleX;
             if (BuffTray.Orientation == Orientation.Horizontal)
             {
                 Height = MinHeight;
@@ -207,8 +209,8 @@ namespace HunterPie.GUI.Widgets.Abnormality_Widget
             {
                 Width = MinWidth;
             }
-            DefaultScaleX = NewScaleX;
-            DefaultScaleY = NewScaleY;
+            DefaultScaleX = newScaleX;
+            DefaultScaleY = newScaleY;
         }
 
         #endregion

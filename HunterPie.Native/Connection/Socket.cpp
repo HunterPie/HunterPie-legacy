@@ -117,11 +117,9 @@ void Connection::Server::receivePackets(char buffer[DEFAULT_BUFFER_SIZE])
         case OPCODE::Connect:
         {
             C_CONNECT pkt = *reinterpret_cast<C_CONNECT*>(buffer);
-            S_CONNECT packet{
-                I_PACKET { OPCODE::Connect, 1},
-                true
-            };
-
+            S_CONNECT packet;
+            packet.header = { OPCODE::Connect, 1 };
+            packet.success = true;
             AssignPointers(pkt.addresses);
 
             LOG("-> C_CONNECT\n");

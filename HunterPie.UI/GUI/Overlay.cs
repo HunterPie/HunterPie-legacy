@@ -29,8 +29,9 @@ namespace HunterPie.GUI
         {
             Context = ctx;
             SetRenderMode();
-            CreateWidgets();
             SetAliasingMode();
+
+            CreateWidgets();
         }
 
         #region Overlay static methods

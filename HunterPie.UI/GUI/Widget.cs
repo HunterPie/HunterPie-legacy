@@ -284,7 +284,7 @@ namespace HunterPie.GUI
         
         private void OnInitialized(object sender, EventArgs e)
         {
-            ApplySettings();
+            //ApplySettings();
         }
 
         private void OnClosing(object sender, CancelEventArgs e)
