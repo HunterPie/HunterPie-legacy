@@ -13,7 +13,6 @@ using System.Windows.Shapes;
 using System.Windows.Controls;
 using HunterPie.GUI.Helpers;
 using System.Linq;
-using HunterPie.Logger;
 using HunterPie.Core.Settings;
 
 namespace HunterPie.GUI.Widgets.HealthWidget
@@ -29,7 +28,7 @@ namespace HunterPie.GUI.Widgets.HealthWidget
         private Player Context => gContext.Player;
 
         public override IWidgetSettings Settings => ConfigManager.Settings.Overlay.PlayerHealthComponent;
-        private new PlayerHealthComponent settings => (PlayerHealthComponent)Settings;
+        private PlayerHealthComponent settings => (PlayerHealthComponent)Settings;
 
         private const double SharpnessMaxWidth = 50;
 
@@ -326,7 +325,6 @@ namespace HunterPie.GUI.Widgets.HealthWidget
                 }
                 ChangeVisibility();
             }));
-            Debugger.Log($"{this.WidgetHasContent} | {this.WidgetActive}");
         }
 
         private void OnAbnormalityEnd(object source, AbnormalityEventArgs args)
