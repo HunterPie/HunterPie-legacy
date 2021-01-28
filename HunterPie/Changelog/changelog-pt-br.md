@@ -1,27 +1,33 @@
-﻿![banner](https://cdn.discordapp.com/attachments/402557384209203200/794657766395478016/v104.png)
+﻿![banner](https://cdn.discordapp.com/attachments/402557384209203200/804141562182369310/v105.png)
 
-# HunterPie v1.0.4
+# HunterPie v1.0.5 [BETA]
 
-Happy New Year! HunterPie v1.0.4 is mainly focused on bug fixes and minor enhancements to the user experience.
+HunterPie v1.0.5 brings a lot of new features, including new plugin window to make it even easier to install plugins, HunterPie Native, new APIs and much more!
 
-## Monster Widget
+## HunterPie Native
 
-- Added special break threshold logic for Elder Dragons. Some elder dragons have a different part break behavior (e.g: You can only break Teostra's head if their Health is under 20%).
+HunterPie native is a native extension for HunterPie that gets injected into the game itself so HunterPie can interact with it natively (e.g call in-game functions, use the chat, receive events, etc). Some of the native functions require [CRCBypass](https://www.nexusmods.com/monsterhunterworld/mods/3473), so make sure to install them first if you want to use the game function hooking features.
 
-## Core
+### Native features
 
-- Added option to automatically minimize HunterPie after launching the game.
-- Added option to disable Anti-Aliasing.
-- Added safety measures to avoid `config.json` corruption.
-- Added scrollbar to the settings tab when tabs overflow.
-- Added monster position tracker.
-- Added crafting data for every craftable item.
-- Added `Debugger.LogObject(object obj);`
-- Changed design for the changelog markdown.
+- **Input injection:** HunterPie can now simulate inputs, this is useful if a plugin needs to interact with the game UI.
+- **Chat messages:** HunterPie can now send messages to the chat.
+- **System messages:** HunterPie can now send system messages to the game client.
+- **GMD parsing & indexing:** HunterPie can now get localized strings directly from the game.
+
+## Plugins
+
+The plugins window was completely redesigned, adding new functionalities and features. Official plugins are also indexed in this new plugins window. 
+
+> Credits to Amadare for implementing it.
+
+## Other Changes
+
+- Added WirteProcessMemory API.
+- Added streamer mode for widgets, it will let OBS and similar window capture softwares to detect & capture HunterPie's widgets.
+- Refactored the Widget class to make it easier for plugins to create their own widgets. 
 
 ## Bug Fixes
 
-- Fixed Party & Party Members not displaying correctly when joining SOSes.
-- Fixed Damage chart when joining in-progress quests.
-- Fixed HunterPie crashing due to PID being under 10 when creating the Rich Presence connection.
-- Fixed bug where EZ Max Potion would increase stamina bar in the player widget.
+- Fixed HunterPie creating Overlay and initialized game scanner when the game version isn't supported
+- HunterPie should no longer crash due to events callback

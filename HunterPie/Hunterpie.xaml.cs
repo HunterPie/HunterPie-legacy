@@ -769,7 +769,33 @@ namespace HunterPie
                 else
                     Debugger.Error("Failed to inject HunterPie.Native.dll");
             }
-            
+            await Dispatcher.InvokeAsync(() =>
+            {
+                if (!Injector.CheckIfCRCBypassExists())
+                {
+                    CNotification notification = new CNotification()
+                    {
+                        Text = "Some of HunterPie Native features require CRCBypass",
+                        NIcon = FindResource("ICON_WARN") as ImageSource,
+                        FirstButtonImage = FindResource("ICON_DOWNLOAD") as ImageSource,
+                        FirstButtonText = "Stracker's Loader",
+                        FirstButtonVisibility = Visibility.Visible,
+                        SecondButtonImage = FindResource("ICON_DOWNLOAD") as ImageSource,
+                        SecondButtonText = "CRCBypass",
+                        SecondButtonVisibility = Visibility.Visible,
+                        Callback1 = new Action(() =>
+                        {
+                            Process.Start("https://www.nexusmods.com/monsterhunterworld/mods/1982");
+                        }),
+                        Callback2 = new Action(() =>
+                        {
+                            Process.Start("https://www.nexusmods.com/monsterhunterworld/mods/3473");
+                        }),
+                        ShowTime = 20
+                    };
+                    NotificationsPanel.Children.Add(notification);
+                }
+            });
         }
 
         private void OnGameClose(object source, EventArgs e)

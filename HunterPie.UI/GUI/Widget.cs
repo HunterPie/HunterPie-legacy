@@ -34,11 +34,16 @@ namespace HunterPie.GUI
         public bool WidgetActive { get; set; }
         public bool WidgetHasContent { get; set; }
 
-        public uint Flags { get; } =
+        public virtual uint Flags { get; } =
             (uint)(WindowsHelper.SWP_WINDOWN_FLAGS.SWP_SHOWWINDOW |
                    WindowsHelper.SWP_WINDOWN_FLAGS.SWP_NOSIZE |
                    WindowsHelper.SWP_WINDOWN_FLAGS.SWP_NOMOVE |
                    WindowsHelper.SWP_WINDOWN_FLAGS.SWP_NOACTIVATE);
+
+        public virtual uint RenderFlags { get; } =
+            (int)(WindowsHelper.EX_WINDOW_STYLES.WS_EX_TRANSPARENT  |
+                  WindowsHelper.EX_WINDOW_STYLES.WS_EX_TOPMOST      |
+                  WindowsHelper.EX_WINDOW_STYLES.WS_EX_NOACTIVATE);
 
         public bool InDesignMode
         {
@@ -188,17 +193,16 @@ namespace HunterPie.GUI
         {
             IntPtr hWnd = new WindowInteropHelper(this).EnsureHandle();
 
-            int styles = WindowsHelper.GetWindowLong(hWnd, WindowsHelper.GWL_EXSTYLE);
-            int flags = (int)(WindowsHelper.EX_WINDOW_STYLES.WS_EX_TRANSPARENT |
-                              WindowsHelper.EX_WINDOW_STYLES.WS_EX_TOPMOST |
-                              WindowsHelper.EX_WINDOW_STYLES.WS_EX_NOACTIVATE);
+            uint styles = (uint)WindowsHelper.GetWindowLong(hWnd, WindowsHelper.GWL_EXSTYLE);
+
+            uint flags = RenderFlags;
 
             if (!Settings?.StreamerMode ?? true)
-                flags |= (int)WindowsHelper.EX_WINDOW_STYLES.WS_EX_TOOLWINDOW;
+                flags |= (uint)WindowsHelper.EX_WINDOW_STYLES.WS_EX_TOOLWINDOW;
             else
-                flags &= ~(int)WindowsHelper.EX_WINDOW_STYLES.WS_EX_TOOLWINDOW;
+                flags &= ~(uint)WindowsHelper.EX_WINDOW_STYLES.WS_EX_TOOLWINDOW;
 
-            WindowsHelper.SetWindowLong(hWnd, WindowsHelper.GWL_EXSTYLE, styles | flags);
+            WindowsHelper.SetWindowLong(hWnd, WindowsHelper.GWL_EXSTYLE, (int)(styles | flags));
         }
 
         public void ChangeVisibility()

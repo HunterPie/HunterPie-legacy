@@ -2,7 +2,7 @@
              x:Class="HunterPie.GUIControls.Custom_Controls.CNotification"
              xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-             Height="40" BorderThickness="1" BorderBrush="#CC0A0A0A" HorizontalAlignment="Left" Loaded="OnLoaded">
+             Height="40" BorderThickness="1" HorizontalAlignment="Left" Loaded="OnLoaded" Margin="0,3,0,0">
     <UserControl.Resources>
         <Storyboard x:Key="ShowNotificationAnim">
             <ThicknessAnimation Storyboard.TargetProperty="Margin" From="0,0,0,-10" To="0,0,0,0" Duration="0:0:0.2"/>
@@ -15,20 +15,20 @@
     </UserControl.Resources>
     <StackPanel Orientation="Horizontal" x:Name="cHolder" Background="#E5111111" DataContext="{StaticResource Localization}" MouseLeftButtonDown="OnNotificationClick">
         <Image x:Name="NotificationIcon" Width="25" Height="25" Margin="6,0,4,0" Source="{Binding ElementName=NotifyControl, Path=NIcon}"/>
-        <TextBlock x:Name="NotificationText"  Text="{Binding ElementName=NotifyControl, Path=Text}" Foreground="WhiteSmoke" Padding="0,3,5,5" Height="30" FontSize="16" FontWeight="Light"/>
-        <Button Style="{StaticResource buttons_settings}" BorderBrush="{x:Null}" Foreground="#FFECECEC" Background="#FF080808" Cursor="Hand" Padding="5,1" Click="OnFirstButtonClick" Visibility="{Binding ElementName=NotifyControl, Path=FirstButtonVisibility}">
+        <TextBlock x:Name="NotificationText"  Text="{Binding ElementName=NotifyControl, Path=Text}" Foreground="WhiteSmoke" Padding="0,3,5,5" FontSize="13" FontWeight="Light" FontFamily="Roboto" VerticalAlignment="Center"/>
+        <Button Style="{StaticResource buttons_settings}" BorderBrush="{x:Null}" Foreground="#FFECECEC" Background="#7F080808" Cursor="Hand" Padding="5,1" Click="OnFirstButtonClick" Visibility="{Binding ElementName=NotifyControl, Path=FirstButtonVisibility}" FontFamily="Roboto" FontSize="13">
             <Button.Content>
-                <StackPanel Orientation="Horizontal">
+                <StackPanel Orientation="Horizontal" VerticalAlignment="Center">
                     <Image Source="{Binding ElementName=NotifyControl, Path=FirstButtonImage}" Width="20" Height="20" Margin="0,0,3,0"/>
-                    <TextBlock Text="{Binding ElementName=NotifyControl, Path=FirstButtonText}"/>
+                    <TextBlock Text="{Binding ElementName=NotifyControl, Path=FirstButtonText}" VerticalAlignment="Center"/>
                 </StackPanel>
             </Button.Content>
         </Button>
-        <Button Style="{StaticResource buttons_settings}" BorderBrush="{x:Null}" Foreground="#FFECECEC" Background="#FF080808" Cursor="Hand" FontSize="14" FontWeight="Bold" Padding="5,1" Click="OnSecondButtonClick" Margin="5,0,0,0" Visibility="{Binding ElementName=NotifyControl, Path=SecondButtonVisibility}">
+        <Button Style="{StaticResource buttons_settings}" BorderBrush="{x:Null}" Foreground="#FFECECEC" Background="#7F080808" Cursor="Hand" FontSize="13" Padding="5,1" Click="OnSecondButtonClick" Margin="5,0,0,0" Visibility="{Binding ElementName=NotifyControl, Path=SecondButtonVisibility}" FontFamily="Roboto">
             <Button.Content>
-                <StackPanel Orientation="Horizontal">
+                <StackPanel Orientation="Horizontal" VerticalAlignment="Center">
                     <Image Source="{Binding ElementName=NotifyControl, Path=SecondButtonImage}" Width="20" Height="22" Margin="0,0,3,0"/>
-                    <TextBlock Text="{Binding ElementName=NotifyControl, Path=SecondButtonText}"/>
+                    <TextBlock Text="{Binding ElementName=NotifyControl, Path=SecondButtonText}" VerticalAlignment="Center"/>
                 </StackPanel>
             </Button.Content>
         </Button>
