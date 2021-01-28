@@ -56,7 +56,14 @@ namespace HunterPie.Native.Connection
 
             socket = new TcpClient();
 
-            await socket.ConnectAsync(Address, Port);
+            try
+            {
+                await socket.ConnectAsync(Address, Port);
+            } catch (Exception err)
+            {
+                Debugger.Error(err);
+                return false;
+            }
 
             if (IsConnected)
             {

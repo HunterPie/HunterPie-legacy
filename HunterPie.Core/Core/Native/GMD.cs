@@ -294,19 +294,25 @@ namespace HunterPie.Core.Native
         /// <returns>Raw string read from memory</returns>
         public static string GetRawValueString(cGMD gmd, int idx)
         {
-            long length;
-            if ((idx + 1) >= gmd.gValuesOffsets.Length)
+            try
             {
-                length = gmd.gValuesChunkSize - gmd.gValuesOffsets[idx];
-            }
-            else
-            {
-                length = gmd.gValuesOffsets[idx + 1] - gmd.gValuesOffsets[idx];
-            }
+                long length;
+                if ((idx + 1) >= gmd.gValuesOffsets.Length)
+                {
+                    length = gmd.gValuesChunkSize - gmd.gValuesOffsets[idx];
+                }
+                else
+                {
+                    length = gmd.gValuesOffsets[idx + 1] - gmd.gValuesOffsets[idx];
+                }
 
-            long stringAddress = gmd.gValuesBaseAddress + gmd.gValuesOffsets[idx];
-            
-            return Kernel.ReadString(stringAddress, (int)length);
+                long stringAddress = gmd.gValuesBaseAddress + gmd.gValuesOffsets[idx];
+
+                return Kernel.ReadString(stringAddress, (int)length);
+            }catch
+            {
+                return "Unknown";
+            }
         }
         #endregion
     }

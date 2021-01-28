@@ -2,9 +2,11 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Runtime.CompilerServices;
+using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Interop;
 using System.Windows.Media;
+using System.Windows.Threading;
 using HunterPie.Core;
 using HunterPie.Logger;
 using HunterPie.Memory;
@@ -12,7 +14,7 @@ using HunterPie.Memory;
 [assembly:InternalsVisibleTo("HunterPie")]
 namespace HunterPie.GUI
 {
-    public class Overlay : IDisposable
+    public class Overlay
     {
 
         public bool IsDisposed { get; private set; }
@@ -169,16 +171,19 @@ namespace HunterPie.GUI
             
         }
 
-        private async void DestroyWidgets()
+        private async Task DestroyWidgets()
         {
             if (!Widgets.First().InDesignMode)
                 await ConfigManager.TrySaveSettingsAsync();
-            foreach (Widget widget in Widgets)
-            {
-                widget.InDesignMode = false;
-                widget.Close();
-            }
-            widgets.Clear();
+
+            await Application.Current.Dispatcher.InvokeAsync(() => {
+                foreach (Widget widget in Widgets)
+                {
+                    widget.InDesignMode = false;
+                    widget.Close();
+                }
+                widgets.Clear();
+            });
         }
 
         internal void HookEvents()
@@ -193,9 +198,9 @@ namespace HunterPie.GUI
             Kernel.OnGameUnfocus -= OnGameUnfocus;
         }
 
-        public void Destroy()
+        public async Task Destroy()
         {
-            DestroyWidgets();
+            await DestroyWidgets();
             UnhookEvents();
             Context = null;
         }
@@ -279,18 +284,19 @@ namespace HunterPie.GUI
             }
         }
 
-        protected virtual void Dispose(bool disposing)
+        protected virtual async Task Dispose(bool disposing)
         {
             if (disposing)
             {
                 UnhookEvents();
-                Destroy();
+                await Destroy();
             }
+            return;
         }
 
-        public void Dispose()
+        public async Task Dispose()
         {
-            Dispose(true);
+            await Dispose(true);
         }
     }
 }

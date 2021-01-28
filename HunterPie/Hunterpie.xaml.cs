@@ -798,7 +798,7 @@ namespace HunterPie
             });
         }
 
-        private void OnGameClose(object source, EventArgs e)
+        private async void OnGameClose(object source, EventArgs e)
         {
 
             // Remove global hotkeys
@@ -810,12 +810,15 @@ namespace HunterPie
             presence = null;
 
             game?.StopScanning();
-            Dispatcher.Invoke(System.Windows.Threading.DispatcherPriority.Background, new Action(() =>
+            await Dispatcher.InvokeAsync(async () =>
             {
-                overlay?.Dispose();
+                if (overlay is null)
+                    return;
+
+                await overlay.Dispose().ContinueWith(task => game?.DestroyInstances());
                 overlay = null;
-            }));
-            game?.DestroyInstances();
+            });
+            
             if (config.HunterPie.Options.CloseWhenGameCloses)
             {
                 Dispatcher.Invoke(System.Windows.Threading.DispatcherPriority.Normal, new Action(() =>
