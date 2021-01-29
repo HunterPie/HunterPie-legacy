@@ -60,6 +60,7 @@ namespace HunterPie.Core
                 {
                     if (Health > 0)
                     {
+                        // Temporary until I figure out the crash reason
                         Name = GMD.GetMonsterNameByEm(value);
                         id = value;
                         IsCaptured = false;

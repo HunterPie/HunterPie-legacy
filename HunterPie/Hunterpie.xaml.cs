@@ -800,7 +800,7 @@ namespace HunterPie
 
         private async void OnGameClose(object source, EventArgs e)
         {
-
+            Client.Instance.Dispose();
             // Remove global hotkeys
             RemoveHotKeys();
 

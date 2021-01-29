@@ -69,7 +69,7 @@ namespace HunterPie.Core
             return Weapon?.Attributes["Name"].Value;
         }
 
-        [Obsolete("This method is deprecated, use GMD.GetMonsterDescriptionByEm(string monsterEm) instead.")]
+        [Obsolete("This method is deprecated, use GMD.GetMonsterNameByEm(string monsterEm) instead.")]
         public static string GetMonsterNameByID(string ID)
         {
             XmlNode Monster = Translations.SelectSingleNode($"//Strings/Monsters/Monster[@ID='{ID}']");

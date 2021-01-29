@@ -9,7 +9,7 @@ using static HunterPie.Memory.Address;
 
 namespace HunterPie.Native.Connection
 {
-    public class Client
+    public class Client : IDisposable
     {
         private static Client instance;
 
@@ -22,6 +22,7 @@ namespace HunterPie.Native.Connection
         private const int Port = 16969;
 
         private TcpClient socket;
+        private bool disposedValue;
 
         public bool IsConnected => socket?.Connected ?? false;
 
@@ -217,6 +218,28 @@ namespace HunterPie.Native.Connection
             #if DEBUG
             Debugger.Write($"[Socket] {message}", "#FFFF59E6");
             #endif
+        }
+
+        protected virtual void Dispose(bool disposing)
+        {
+            if (!disposedValue)
+            {
+                if (disposing)
+                {
+                    stream?.Close();
+                    socket?.Close();
+                    socket?.Dispose();
+                    instance = null;
+                }
+
+                disposedValue = true;
+            }
+        }
+
+        public void Dispose()
+        {
+            Dispose(disposing: true);
+            GC.SuppressFinalize(this);
         }
     }
 }

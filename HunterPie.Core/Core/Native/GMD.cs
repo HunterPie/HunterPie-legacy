@@ -7,6 +7,7 @@ using HunterPie.Core.Definitions;
 using System.Threading;
 using System.Text;
 using HunterPie.Utils;
+using System.Net.Http;
 
 namespace HunterPie.Core.Native
 {
@@ -136,7 +137,7 @@ namespace HunterPie.Core.Native
             // Calculates the offset of each string, this way we can just get the string lenght
             // and also where they start
             gmd.gValuesOffsets = gValueStringsPtrs
-                .Where(ptr => ((ptr & Address.GetAddress("BASE")) == 0))
+                .Where(ptr => ((ptr & Address.GetAddress("BASE")) != Address.GetAddress("BASE")))
                 .Select(ptr => (int)(ptr - gValueStringsPtrs[0]))
                 .ToArray();
 
@@ -294,25 +295,27 @@ namespace HunterPie.Core.Native
         /// <returns>Raw string read from memory</returns>
         public static string GetRawValueString(cGMD gmd, int idx)
         {
-            try
-            {
-                long length;
-                if ((idx + 1) >= gmd.gValuesOffsets.Length)
-                {
-                    length = gmd.gValuesChunkSize - gmd.gValuesOffsets[idx];
-                }
-                else
-                {
-                    length = gmd.gValuesOffsets[idx + 1] - gmd.gValuesOffsets[idx];
-                }
-
-                long stringAddress = gmd.gValuesBaseAddress + gmd.gValuesOffsets[idx];
-
-                return Kernel.ReadString(stringAddress, (int)length);
-            }catch
-            {
+            if (idx >= gmd.gValuesOffsets.Length || idx < 0)
                 return "Unknown";
+
+            if (idx >= gmd.gValuesOffsets.Length || idx < 0)
+            {
+                return "";
             }
+            long length;
+            if ((idx + 1) >= gmd.gValuesOffsets.Length)
+            {
+                length = gmd.gValuesChunkSize - gmd.gValuesOffsets[idx];
+            }
+            else
+            {
+                length = gmd.gValuesOffsets[idx + 1] - gmd.gValuesOffsets[idx];
+            }
+
+            long stringAddress = gmd.gValuesBaseAddress + gmd.gValuesOffsets[idx];
+
+            return Kernel.ReadString(stringAddress, (int)length);
+
         }
         #endregion
     }
