@@ -451,6 +451,10 @@
   </Abnormalities>
   <!-- Client localization strings -->
   <Client>
+    <TrayIcon>
+      <String ID="TRAYICON_SETTINGS" Name="설정"/>
+      <String ID="TRAYICON_CLOSE" Name="닫기"/>
+    </TrayIcon>
     <Console>
       <String ID="CONSOLE_CONSOLE" Name="콘솔"/>
       <String ID="CONSOLE_SETTINGS" Name="설정"/>
@@ -467,8 +471,19 @@
       <String ID="MESSAGE_OPEN_PLUGINS_FOLDER" Name="플러그인 폴더 열기"/>
       <String ID="MESSAGE_PLUGIN_INSTALL" Name="플러그인 설치"/>
       <String ID="MESSAGE_PLUGIN_INSTALL_DESC" Name="module.json 파일을 여기에 드래그 앤 드롭하여 플러그인을 설치하세요."/>
-      <String ID="MESSAGE_PLUGIN_INSTALLED" Name="플러그인: {name}이(가) 설치되었습니다! HunterPie를 재시작하여 플러그인을 리로드 해주세요."/>
+      <String ID="MESSAGE_PLUGIN_INSTALLED" Name="플러그인: {name}이(가) 설치되었습니다! 플러그인을 불러오기 위해 HunterPie를 재시작하세요."/>
       <String ID="ERROR_PLUGIN_AUTO_UPDATE" Name="이 플러그인은 자동 업데이트를 지원하지 않습니다. 수동으로 업데이트 파일을 받아주세요."/>
+      <String ID="MESSAGE_INSTALLED_PLUGINS" Name="설치된 플러그인"/>
+      <String ID="MESSAGE_FRESH_PLUGINS" Name="재시작 해야 활성화됩니다"/>
+      <String ID="MESSAGE_AVAILABLE_PLUGINS" Name="사용 가능한 플러그인"/>
+      <String ID="MESSAGE_TO_DELETE_PLUGINS" Name="재시작 해야 삭제됩니다"/>
+      <String ID="MESSAGE_PLUGIN_SUBTITLE_ROW" Name="{downloads} | v{version} | by {author}"/>
+      <String ID="MESSAGE_PLUGIN_INCOMPATIBLE_VERSION" Name="HunterPie 버전이 이 플러그인과 호환되지 않습니다."/>
+      <String ID="MESSAGE_REFRESH" Name="새로 고침" />
+      <String ID="MESSAGE_PLUGIN_DELETE" Name="플러그인 삭제" />
+      <String ID="MESSAGE_PLUGIN_RESTORE" Name="플러그인 복원" />
+      <String ID="MESSAGE_PLUGIN_FAILED" Name="플러그인 실행에 실패했습니다. HunterPie가 재시작될 때까지 불러오지 않습니다." />
+      <String ID="MESSAGE_README_EMPTY" Name="내용 없음..." />
       <!-- Popups -->
       <String ID="MESSAGE_QUIT" Name="HunterPie를 종료하시겠습니까?"/>
       <String ID="TITLE_MISSING_PATH" Name="게임 설치 경로를 찾을 수 없습니다."/>
@@ -524,6 +539,13 @@
       <String ID="STATIC_LAUNCHARGS" Name="시작 옵션"/>
       <String ID="STATIC_LAUNCHARGS_NOARGS" Name="옵션 없음"/>
       <String ID="STATIC_LAUNCHARGS_DESC" Name="시작 옵션은 게임을 시작할 때 사용됩니다, 뭘 하는건지 잘 모르겠으면 비워두십시오."/>
+      <String ID="PLUGIN_PROXY_MODE_DESC" Name="플러그인 다운로드 프록시 동작 변경"/>
+
+      <String ID="PLUGIN_PROXY_MODE" Name="플러그인 등록 목록 프록시 모드"/>
+      <String ID="PLUGIN_PROXY_MODE_DESC" Name="플러그인 다운로드 프록시 작동 여부를 변경합니다"/>
+      <String ID="PLUGIN_PROXY_MODE_AUTO" Name="자동"/>
+      <String ID="PLUGIN_PROXY_MODE_ENABLED" Name="사용"/>
+      <String ID="PLUGIN_PROXY_MODE_DISABLED" Name="사용 안함"/>
       <!-- Discord RPC -->
       <String ID="ENABLE_RPC" Name="Discord Rich Presence 사용"/>
       <String ID="ENABLE_RPC_DESC" Name="옵션을 켤 경우, HunterPie는 당신의 게임 활동 내역을 Discord 상태에 표시합니다."/>
@@ -812,6 +834,8 @@
       <String ID="STATIC_CLASSES_SETTINGS" Name="무기 위젯"/>
       <String ID="STATIC_LINKS_SETTINGS" Name="외부 링크"/>
       <String ID="STATIC_DEBUG_SETTINGS" Name="디버그"/>
+      <String ID="ENABLE_STREAMER_MODE" Name="스트리머 모드 사용"/>
+      <String ID="ENABLE_STREAMER_MODE_DESC" Name="스트리머 모드를 사용하면 이 위젯이 OBS나 유사한 화면 캡쳐 소프트웨어에 표시됩니다. 이 옵션을 사용하면 Alt+Tab을 해도 창이 표시됩니다."/>
     </Settings>
     <Overlay>
       <String ID="STATIC_HARVEST_BOX_TITLE" Name="수확 상자"/>
