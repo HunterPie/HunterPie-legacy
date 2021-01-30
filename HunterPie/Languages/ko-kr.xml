@@ -523,6 +523,8 @@
       <String ID="ENABLE_MINAFTERGAMEOPEN_DESC" Name="옵션을 켤 경우, 게임을 실행한 후 HunterPie를 자동으로 최소화합니다."/>
       <String ID="ENABLE_MINTOTRAY" Name="HunterPie를 시스템 트레이로 최소화"/>
       <String ID="ENABLE_MINTOTRAY_DESC" Name="옵션을 켤 경우, HunterPie는 최소화 시 시스템 트레이로 숨겨지고, 백그라운드에서 작동합니다."/>
+      <String ID="ENABLE_NATIVE" Name="HunterPie Native 사용"/>
+      <String ID="ENABLE_NATIVE_DESC" Name="옵션을 켤 경우, HunterPie Native 기능들을 사용할 수 있습니다."/>
       <String ID="ENABLE_STARTMIN" Name="HunterPie를 최소화 한 상태로 시작"/>
       <String ID="ENABLE_STARTMIN_DESC" Name="옵션을 켤 경우, HunterPie는 시작 시 시스템 트레이에 숨겨진 채로 시작됩니다."/>
       <String ID="ENABLE_AUTOCLOSE" Name="게임 종료 시 HunterPie 종료"/>
