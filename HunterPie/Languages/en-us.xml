@@ -523,6 +523,8 @@
       <String ID="ENABLE_MINAFTERGAMEOPEN_DESC" Name="If enabled, HunterPie will be automatically minimized after launching the game."/>
       <String ID="ENABLE_MINTOTRAY" Name="Minimize HunterPie to system tray"/>
       <String ID="ENABLE_MINTOTRAY_DESC" Name="If enabled, HunterPie will hide in your system tray and run on background when it's minimized."/>
+      <String ID="ENABLE_NATIVE" Name="Enable HunterPie Native"/>
+      <String ID="ENABLE_NATIVE_DESC" Name="If enabled, HunterPie Native features will be available."/>
       <String ID="ENABLE_STARTMIN" Name="Start HunterPie minimized"/>
       <String ID="ENABLE_STARTMIN_DESC" Name="If enabled, HunterPie will hide in your system tray on startup."/>
       <String ID="ENABLE_AUTOCLOSE" Name="Close HunterPie when game is closed"/>
