@@ -38,6 +38,7 @@ using HunterPie.Native.Connection;
 using ConfigManager = HunterPie.Core.ConfigManager;
 using HunterPie.Core.Settings;
 using Overlay = HunterPie.GUI.Overlay;
+using HunterPie.Utils;
 
 namespace HunterPie
 {
@@ -695,7 +696,6 @@ namespace HunterPie
 
         private async void OnGameStart(object source, EventArgs e)
         {
-            
             // Set HunterPie hotkeys
             SetHotKeys();
 

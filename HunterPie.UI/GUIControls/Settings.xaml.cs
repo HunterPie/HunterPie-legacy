@@ -51,6 +51,7 @@ namespace HunterPie.GUIControls
 
             // HunterPie
             settingsUI.switchEnableAutoUpdate.IsEnabled = settings.HunterPie.Update.Enabled;
+            settingsUI.switchEnableNative.IsEnabled = settings.HunterPie.EnableNativeFunctions;
             settingsUI.branchesCombobox.SelectedItem = _Instance.SettingsBox.branchesCombobox.Items.Contains(settings.HunterPie.Update.Branch) ? settings.HunterPie.Update.Branch : "master";
             settingsUI.ThemeFilesCombobox.SelectedItem = settings.HunterPie.Theme;
             settingsUI.selectPathBttn.Content = settings.HunterPie.Launch.GamePath == "" ? GStrings.GetLocalizationByXPath("/Settings/String[@ID='STATIC_GAMEPATH_UNSELECTED']") : settings.HunterPie.Launch.GamePath.Length > 15 ? "..." + settings.HunterPie.Launch.GamePath.Substring((settings.HunterPie.Launch.GamePath.Length / 2) - 10) : settings.HunterPie.Launch.GamePath;
@@ -237,6 +238,7 @@ namespace HunterPie.GUIControls
             var settingsUI = _Instance.SettingsBox;
             // HunterPie
             settings.HunterPie.Update.Enabled = settingsUI.switchEnableAutoUpdate.IsEnabled;
+            settings.HunterPie.EnableNativeFunctions = settingsUI.switchEnableNative.IsEnabled;
             settings.HunterPie.Update.Branch = (string)settingsUI.branchesCombobox.SelectedItem;
             settings.HunterPie.Theme = (string)settingsUI.ThemeFilesCombobox.SelectedItem;
             settings.HunterPie.Launch.GamePath = settingsUI.fullGamePath;

@@ -115,6 +115,14 @@
                                 <Binding Mode="OneTime" XPath="Settings/String[@ID='ENABLE_MINAFTERGAMEOPEN_DESC']/@Name"/>
                             </custom:Switcher.ToolTip>
                         </custom:Switcher>
+                        <custom:Switcher x:Name="switchEnableNative" Margin="10,0,10,5" RestartVisibility="Collapsed">
+                            <custom:Switcher.Text>
+                                <Binding Mode="OneTime" XPath="Settings/String[@ID='ENABLE_NATIVE']/@Name"/>
+                            </custom:Switcher.Text>
+                            <custom:Switcher.ToolTip>
+                                <Binding Mode="OneTime" XPath="Settings/String[@ID='ENABLE_NATIVE_DESC']/@Name"/>
+                            </custom:Switcher.ToolTip>
+                        </custom:Switcher>
                         <custom:Switcher x:Name="switchEnableCloseWhenExit" Margin="10,0,10,5" RestartVisibility="Collapsed">
                             <custom:Switcher.Text>
                                 <Binding Mode="OneTime" XPath="Settings/String[@ID='ENABLE_AUTOCLOSE']/@Name"/>
@@ -981,7 +989,7 @@
                                     </custom:FlatButton.BorderBrush>
                                 </custom:FlatButton>
                                 <custom:FlatButton Icon="{StaticResource ICON_PATREON}"
-                                                   Text="{Binding Mode=OneTime, XPath=/Strings/Client/Settings/String[@ID\=\'STATIC_HUNTERPIE_PATREON\']/@Name}"
+                                                   Text="Patreon"
                                                    Height="27"
                                                    ToolTip="{Binding Mode=OneTime, XPath=/Strings/Client/Settings/String[@ID\=\'STATIC_HUNTERPIE_PAYPAL_DESC\']/@Name}"
                                                    Command="{Binding OpenLink, ElementName=SettingsCtrl}"
