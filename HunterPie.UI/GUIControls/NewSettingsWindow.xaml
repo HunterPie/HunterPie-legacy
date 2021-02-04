@@ -980,7 +980,7 @@
                                     </custom:FlatButton.BorderBrush>
                                 </custom:FlatButton>
                                 <custom:FlatButton Icon="{StaticResource ICON_PATREON}"
-                                                   Text="{Binding Mode=OneTime, XPath=/Strings/Client/Settings/String[@ID\=\'STATIC_HUNTERPIE_PATREON\']/@Name}"
+                                                   Text="Patreon"
                                                    Height="27"
                                                    ToolTip="{Binding Mode=OneTime, XPath=/Strings/Client/Settings/String[@ID\=\'STATIC_HUNTERPIE_PAYPAL_DESC\']/@Name}"
                                                    Command="{Binding OpenLink, ElementName=SettingsCtrl}"

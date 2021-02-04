@@ -229,12 +229,12 @@ namespace HunterPie.Core
         /// <summary>
         /// Whether the player is in a peace zone or not. A zone is considered a peace zone when the player cannot use weapons in there.
         /// </summary>
-        public bool InPeaceZone => peaceZones.Contains(zoneId);
+        public bool InPeaceZone => peaceZones.Contains(ZoneID);
 
         /// <summary>
         /// Whether the player is in a zone where the Harvest Box can be accessed
         /// </summary>
-        public bool InHarvestZone => harvestBoxZones.Contains(zoneId);
+        public bool InHarvestZone => harvestBoxZones.Contains(ZoneID);
 
         /// <summary>
         /// Current Session Id

@@ -257,7 +257,8 @@ namespace HunterPie.GUI.Widgets.HealthWidget
         private void HookEvents()
         {
             gContext.OnWorldDayTimeUpdate += OnWorldDayTimeUpdate;
-            Context.OnZoneChange += OnZoneChange;
+            Context.OnVillageEnter += OnVillageEnter;
+            Context.OnVillageLeave += OnVillageLeave;
             Context.Health.OnHealthUpdate += OnHealthUpdate;
             Context.Health.OnMaxHealthUpdate += OnMaxHealthUpdate;
             Context.Health.OnHealHealth += OnHealHealth;
@@ -285,7 +286,8 @@ namespace HunterPie.GUI.Widgets.HealthWidget
         public void UnhookEvents()
         {
             gContext.OnWorldDayTimeUpdate -= OnWorldDayTimeUpdate;
-            Context.OnZoneChange -= OnZoneChange;
+            Context.OnVillageEnter -= OnVillageEnter;
+            Context.OnVillageLeave -= OnVillageLeave;
             Context.Health.OnHealthUpdate -= OnHealthUpdate;
             Context.Health.OnMaxHealthUpdate -= OnMaxHealthUpdate;
             Context.Health.OnHealHealth -= OnHealHealth;
@@ -309,22 +311,22 @@ namespace HunterPie.GUI.Widgets.HealthWidget
             Context.Abnormalities.OnAbnormalityRemove -= OnAbnormalityEnd;
         }
 
-
-        private void OnZoneChange(object source, EventArgs args)
+        private async void OnVillageLeave(object source, EventArgs args)
         {
-            PlayerLocationEventArgs e = (PlayerLocationEventArgs)args;
-            
-            Dispatcher.BeginInvoke(DispatcherPriority.Render, new Action(() =>
+            await Dispatcher.InvokeAsync(() =>
             {
-                if (Context.ZoneID != 0)
-                {
-                    WidgetHasContent = ((PlayerHealthComponent)Settings).HideHealthInVillages ? !e.InHarvestZone : true;
-                } else
-                {
-                    WidgetHasContent = false;
-                }
+                WidgetHasContent = true;
                 ChangeVisibility();
-            }));
+            });
+        }
+
+        private async void OnVillageEnter(object source, EventArgs args)
+        {
+            await Dispatcher.InvokeAsync(() =>
+            {
+                WidgetHasContent = !settings.HideHealthInVillages;
+                ChangeVisibility();
+            });
         }
 
         private void OnAbnormalityEnd(object source, AbnormalityEventArgs args)

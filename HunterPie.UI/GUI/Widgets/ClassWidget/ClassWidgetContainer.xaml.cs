@@ -5,6 +5,7 @@ using HunterPie.Core;
 using HunterPie.GUI.Widgets.ClassWidget.Parts;
 using Classes = HunterPie.Core.Enums.Classes;
 using HunterPie.Core.Settings;
+using HunterPie.Logger;
 
 namespace HunterPie.GUI.Widgets.ClassWidget
 {
@@ -24,16 +25,20 @@ namespace HunterPie.GUI.Widgets.ClassWidget
             InitializeComponent();
             SetContext(ctx);
             SetWindowFlags();
+
+            // Workaround for default setting that was troublesome
+            Settings.Opacity = 1;
         }
 
         public override void EnterWidgetDesignMode()
         {
-            base.EnterWidgetDesignMode();
             RemoveWindowTransparencyFlag();
+            base.EnterWidgetDesignMode();
         }
 
         public override void LeaveWidgetDesignMode()
         {
+            
             ApplyWindowTransparencyFlag();
             base.LeaveWidgetDesignMode();
         }
@@ -47,6 +52,7 @@ namespace HunterPie.GUI.Widgets.ClassWidget
         {
             if (IsClosed)
                 return;
+
             ShowInTaskbar = Settings.StreamerMode;
             ApplySettingsBasedOnClass();
             SetWindowFlags();
@@ -190,7 +196,9 @@ namespace HunterPie.GUI.Widgets.ClassWidget
 
         public override void ScaleWidget(double newScaleX, double newScaleY)
         {
-            if (newScaleX <= 0.2) return;
+            if (newScaleX <= 0.2)
+                return;
+
             Container.LayoutTransform = new ScaleTransform(newScaleX, newScaleY);
             DefaultScaleX = newScaleX;
             DefaultScaleY = newScaleY;
@@ -201,6 +209,7 @@ namespace HunterPie.GUI.Widgets.ClassWidget
             Dispatcher.BeginInvoke(System.Windows.Threading.DispatcherPriority.Render, new Action(() =>
             {
                 WidgetHasContent = !Context.Player.InHarvestZone && Context.Player.ZoneID != 0;
+                
                 ChangeVisibility();
             }));
         }
