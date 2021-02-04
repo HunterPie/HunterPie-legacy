@@ -323,6 +323,15 @@
                     <StackPanel>
                         <custom:Switcher Margin="10,0,10,5" x:Name="switchInitializePlayerWidget" Text="{Binding Mode=OneTime, XPath=/Strings/Client/Settings/String[@ID\=\'ENABLE_INITIALIZE_PLAYER_WIDGET\']/@Name}" ToolTip="{Binding Mode=OneTime, XPath=/Strings/Client/Settings/String[@ID\=\'ENABLE_INITIALIZE_PLAYER_WIDGET_DESC\']/@Name}"/>
                         <custom:Switcher Margin="10,0,10,5" x:Name="switchEnablePlayerWidget" Text="{Binding Mode=OneTime, XPath=/Strings/Client/Settings/String[@ID\=\'ENABLE_PLAYER_WIDGET\']/@Name}" ToolTip="{Binding Mode=OneTime, XPath=/Strings/Client/Settings/String[@ID\=\'ENABLE_PLAYER_WIDGET_DESC\']/@Name}"  RestartVisibility="Collapsed"/>
+                        <custom:Switcher Margin="10,0,10,5" x:Name="switchEnabledPlayerMinimalisticMode" Text="{Binding Mode=OneTime, XPath=/Strings/Client/Settings/String[@ID\=\'ENABLE_PLAYER_WIDGET_MINIMALISTIC_MODE\']/@Name}"
+                                         RestartVisibility="Visible">
+                            <custom:Switcher.ToolTip>
+                                <StackPanel Orientation="Vertical">
+                                    <TextBlock TextWrapping="Wrap" Text="{Binding Mode=OneTime, XPath=/Strings/Client/Settings/String[@ID\=\'ENABLE_PLAYER_WIDGET_MINIMALISTIC_MODE_DESC\']/@Name}" />
+                                    <Image Source="pack://siteoforigin:,,,/HunterPie.Resources/UI/minimalistic_player_widget.png" />
+                                </StackPanel>
+                            </custom:Switcher.ToolTip>
+                        </custom:Switcher>
                         <custom:Switcher Margin="10,0,10,5" x:Name="switchEnablePlayerStreamerMode" Text="{Binding Mode=OneTime, XPath=/Strings/Client/Settings/String[@ID\=\'ENABLE_STREAMER_MODE\']/@Name}" ToolTip="{Binding Mode=OneTime, XPath=/Strings/Client/Settings/String[@ID\=\'ENABLE_STREAMER_MODE_DESC\']/@Name}"/>
                         <DockPanel Margin="10,0,10,5" ToolTip="{Binding Mode=OneTime, XPath=/Strings/Client/Settings/String[@ID\=\'STATIC_PLAYER_NAME_STRING_FORMAT_DESC\']/@Name}">
                             <TextBlock TextWrapping="NoWrap" Text="{Binding Mode=OneTime, XPath=/Strings/Client/Settings/String[@ID\=\'STATIC_PLAYER_NAME_STRING_FORMAT\']/@Name}" FontFamily="Segoe UI Light" Foreground="#FFF1F1F1" Canvas.Left="320" Canvas.Top="3" FontSize="16" Padding="0,0,10,0"/>
@@ -956,7 +965,7 @@
                                     </custom:FlatButton.BorderBrush>
                                 </custom:FlatButton>
                             </StackPanel>
-                            
+
                         </GroupBox>
                         <GroupBox Header="Support" VerticalAlignment="Top" HorizontalAlignment="Left" Width="250" Margin="5,0,0,0">
                             <StackPanel Orientation="Vertical">

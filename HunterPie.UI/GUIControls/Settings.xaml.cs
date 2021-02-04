@@ -91,6 +91,7 @@ namespace HunterPie.GUIControls
             // Player
             settingsUI.switchInitializePlayerWidget.IsEnabled = settings.Overlay.PlayerHealthComponent.Initialize;
             settingsUI.switchEnablePlayerWidget.IsEnabled = settings.Overlay.PlayerHealthComponent.Enabled;
+            settingsUI.switchEnabledPlayerMinimalisticMode.IsEnabled = settings.Overlay.PlayerHealthComponent.MinimalisticMode;
             settingsUI.switchEnablePlayerStreamerMode.IsEnabled = settings.Overlay.PlayerHealthComponent.StreamerMode;
             settingsUI.PlayerNameTextFormat.Text = settings.Overlay.PlayerHealthComponent.NameTextFormat;
             settingsUI.switchEnableHideInVillages.IsEnabled = settings.Overlay.PlayerHealthComponent.HideHealthInVillages;
@@ -277,6 +278,7 @@ namespace HunterPie.GUIControls
             // Player
             settings.Overlay.PlayerHealthComponent.Initialize = settingsUI.switchInitializePlayerWidget.IsEnabled;
             settings.Overlay.PlayerHealthComponent.Enabled = settingsUI.switchEnablePlayerWidget.IsEnabled;
+            settings.Overlay.PlayerHealthComponent.MinimalisticMode = settingsUI.switchEnabledPlayerMinimalisticMode.IsEnabled;
             settings.Overlay.PlayerHealthComponent.StreamerMode = settingsUI.switchEnablePlayerStreamerMode.IsEnabled;
             settings.Overlay.PlayerHealthComponent.NameTextFormat = settingsUI.PlayerNameTextFormat.Text;
             settings.Overlay.PlayerHealthComponent.HideHealthInVillages = settingsUI.switchEnableHideInVillages.IsEnabled;
