@@ -680,6 +680,8 @@
       <String ID="ENABLE_INITIALIZE_PLAYER_WIDGET_DESC" Name="If disabled, the player widget won't be created at all."/>
       <String ID="ENABLE_PLAYER_WIDGET" Name="Enable Player Widget"/>
       <String ID="ENABLE_PLAYER_WIDGET_DESC" Name="If enabled, the player widget will become visible whenever it has content."/>
+      <String ID="ENABLE_PLAYER_WIDGET_MINIMALISTIC_MODE" Name="Enable Minimalistic Mode"/>
+      <String ID="ENABLE_PLAYER_WIDGET_MINIMALISTIC_MODE_DESC" Name="If enabled, the player widget will enhance in-game one, without existing elements duplication."/>
       <String ID="STATIC_PLAYER_NAME_STRING_FORMAT" Name="Name String Format:"/>
       <String ID="STATIC_PLAYER_NAME_STRING_FORMAT_DESC" Name="The string that will appear on top of the health bar. (E.g: '{HR} | {MR} {Name}' will be rendered as 'Your HR' | 'Your MR' 'Your Name')"/>
       <String ID="ENABLE_PLAYER_HIDE_IN_VILLAGES" Name="Hide when in town/villages."/>

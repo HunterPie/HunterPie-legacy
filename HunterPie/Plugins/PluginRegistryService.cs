@@ -6,6 +6,7 @@ using System.Net.NetworkInformation;
 using System.Threading.Tasks;
 using HunterPie.Core;
 using HunterPie.Core.Enums;
+using HunterPie.Logger;
 using Newtonsoft.Json;
 
 namespace HunterPie.Plugins
@@ -55,7 +56,7 @@ namespace HunterPie.Plugins
             return pInformation.Update.UpdateUrl;
         }
 
-        private string BuildUrl(params string[] parts) => string.Join("/", parts.Select(p => p.TrimEnd('/')));
+        private static string BuildUrl(params string[] parts) => string.Join("/", parts.Select(p => p.TrimEnd('/')));
 
         private async Task<bool> ShouldUseProxy()
         {
@@ -70,7 +71,7 @@ namespace HunterPie.Plugins
                 return false;
             }
 
-            var registryAccessible = await PingService(ConfigManager.Settings.HunterPie.PluginRegistryUrl);
+            var registryAccessible = await IsRegistryAccessible();
             if (!registryAccessible)
             {
                 return false;
@@ -78,6 +79,22 @@ namespace HunterPie.Plugins
 
             var githubAccessible = await PingService("github.com");
             return githubAccessible;
+        }
+
+        private async Task<bool> IsRegistryAccessible()
+        {
+            try
+            {
+                // heroku server doesn't support actual pings, so GET request is used
+                var registryHost = BuildUrl(ConfigManager.Settings.HunterPie.PluginRegistryUrl, "ping");
+                var text = await client.GetStringAsync(registryHost);
+                return text == "pong";
+            }
+            catch (Exception ex)
+            {
+                Debugger.Warn(ex);
+                return false;
+            }
         }
 
         private static async Task<bool> PingService(string address)
