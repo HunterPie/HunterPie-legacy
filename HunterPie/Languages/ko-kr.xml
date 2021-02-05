@@ -682,6 +682,8 @@
       <String ID="ENABLE_INITIALIZE_PLAYER_WIDGET_DESC" Name="옵션을 끌 경우, 모든 플레이어 위젯은 생성되지 않습니다."/>
       <String ID="ENABLE_PLAYER_WIDGET" Name="플레이어 위젯 사용"/>
       <String ID="ENABLE_PLAYER_WIDGET_DESC" Name="옵션을 켤 경우, 표시할 내용이 있으면 플레이어 위젯을 표시합니다."/>
+      <String ID="ENABLE_PLAYER_WIDGET_MINIMALISTIC_MODE" Name="미니멀리즘 모드 사용"/>
+      <String ID="ENABLE_PLAYER_WIDGET_MINIMALISTIC_MODE_DESC" Name="옵션을 켤 경우, 기존 요소를 유지하면서 인-게임 플레이어 위젯을 개선합니다."/>
       <String ID="STATIC_PLAYER_NAME_STRING_FORMAT" Name="이름 문자열 형식:"/>
       <String ID="STATIC_PLAYER_NAME_STRING_FORMAT_DESC" Name="체력 바 상단에 표시되는 문자열입니다. (예시: '{HR} | {MR} {Name}'는 '헌터 랭크' | '마스터 랭크' '캐릭터 이름'으로 표시됩니다)"/>
       <String ID="ENABLE_PLAYER_HIDE_IN_VILLAGES" Name="도시/마을에서 숨기기"/>
