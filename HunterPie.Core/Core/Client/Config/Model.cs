@@ -61,6 +61,7 @@ namespace HunterPie.Core.Settings
         public int[] Position { get; set; } = new int[] { 20, 20 };
         public float Opacity { get; set; } = 1;
         public bool StreamerMode { get; set; } = false;
+        public bool MinimalisticMode { get; set; } = false; 
     }
 
     public class Monsterscomponent : IWidgetSettings

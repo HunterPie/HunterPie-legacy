@@ -1,4 +1,5 @@
 ﻿using System.ComponentModel;
+using System.Diagnostics;
 using System.Windows;
 using System.Windows.Controls;
 using HunterPie.Plugins;
@@ -38,6 +39,11 @@ namespace HunterPie.GUIControls
                 var scrollViewer = Viewer.Template.FindName("PART_ContentHost", Viewer) as ScrollViewer;
                 scrollViewer?.ScrollToHome();
             }
+        }
+
+        private void OpenHyperlink(object sender, System.Windows.Input.ExecutedRoutedEventArgs e)
+        {
+            Process.Start(e.Parameter.ToString());
         }
     }
 }
