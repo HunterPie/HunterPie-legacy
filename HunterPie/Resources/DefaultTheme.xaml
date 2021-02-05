@@ -813,7 +813,7 @@
 
     <Style x:Key="OVERLAY_PLAYER_HUD_WIDGET" TargetType="PlayerHud:PlayerHealth">
         <Style.Triggers>
-            <Trigger Property="IsMinimalisticMode" Value="True">
+            <DataTrigger Binding="{Binding IsMinimalisticMode, ElementName=PlayerHealthComponent}" Value="True">
                 <Setter Property="Template">
                     <Setter.Value>
                         <ControlTemplate>
@@ -966,8 +966,8 @@
                         </ControlTemplate>
                     </Setter.Value>
                 </Setter>
-            </Trigger>
-            <Trigger Property="IsMinimalisticMode" Value="False">
+            </DataTrigger>
+            <DataTrigger Binding="{Binding IsMinimalisticMode, ElementName=PlayerHealthComponent}" Value="False">
                 <Setter Property="Template">
                     <Setter.Value>
                         <ControlTemplate>
@@ -1274,7 +1274,7 @@
                         </ControlTemplate>
                     </Setter.Value>
                 </Setter>
-            </Trigger>
+            </DataTrigger>
         </Style.Triggers>
     </Style>
 

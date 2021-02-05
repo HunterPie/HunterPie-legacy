@@ -547,15 +547,7 @@ namespace HunterPie
             SetAnimationsFramerate();
             HookEvents();
             Kernel.StartScanning(); // Scans game memory
-            if (config.HunterPie.StartHunterPieMinimized)
-            {
-                WindowState = WindowState.Minimized;
-                Hide();
-            }
-            else
-            {
-                Show();
-            }
+            
         }
 
         private void SetAnimationsFramerate() => Timeline.DesiredFrameRateProperty.OverrideMetadata(typeof(Timeline),
@@ -884,6 +876,16 @@ namespace HunterPie
             InitializeTrayIcon();
             // Update version text
             Version = GStrings.GetLocalizationByXPath("/Console/String[@ID='CONSOLE_VERSION']").Replace("{HunterPie_Version}", HUNTERPIE_VERSION).Replace("{HunterPie_Branch}", config.HunterPie.Update.Branch);
+
+            if (config.HunterPie.StartHunterPieMinimized)
+            {
+                WindowState = WindowState.Minimized;
+                Hide();
+            }
+            else
+            {
+                Show();
+            }
 
             // Initializes the Hotkey API
             Hotkey.Load();

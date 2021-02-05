@@ -78,7 +78,7 @@ namespace HunterPie.Plugins
             }
 
             var githubAccessible = await PingService("github.com");
-            return githubAccessible;
+            return !githubAccessible;
         }
 
         private async Task<bool> IsRegistryAccessible()

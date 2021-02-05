@@ -214,9 +214,9 @@ namespace HunterPie.GUI.Widgets.HealthWidget
         {
             IsStaminaNormal = true;
             SharpnessVisibility = Visibility.Collapsed;
+            IsMinimalisticMode = ConfigManager.Settings.Overlay.PlayerHealthComponent.MinimalisticMode;
             InitializeComponent();
             SetContext(ctx);
-            IsMinimalisticMode = ConfigManager.Settings.Overlay.PlayerHealthComponent.MinimalisticMode;
         }
 
         public override void EnterWidgetDesignMode()
@@ -326,7 +326,7 @@ namespace HunterPie.GUI.Widgets.HealthWidget
         {
             await Dispatcher.InvokeAsync(() =>
             {
-                WidgetHasContent = true;
+                WidgetHasContent = Context.ZoneID != 0;
                 ChangeVisibility();
             });
         }
