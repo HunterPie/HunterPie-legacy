@@ -322,7 +322,19 @@ namespace HunterPie.GUI.Widgets.HealthWidget
             PlayerLocationEventArgs e = args as PlayerLocationEventArgs;
             Dispatcher.InvokeAsync(() =>
             {
-                WidgetHasContent = e.ZoneId != 0 && (e.InHarvestZone ^ settings.HideHealthInVillages);
+                if (e.ZoneId != 0)
+                {
+                    if (settings.HideHealthInVillages)
+                    {
+                        WidgetHasContent = !e.InHarvestZone;
+                    } else
+                    {
+                        WidgetHasContent = true;
+                    }
+                } else
+                {
+                    WidgetHasContent = true;
+                }
                 ChangeVisibility();
             });
         }
