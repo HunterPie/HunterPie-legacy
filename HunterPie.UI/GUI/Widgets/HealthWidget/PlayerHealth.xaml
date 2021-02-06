@@ -3,5 +3,5 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
              xmlns:local="clr-namespace:HunterPie.GUI"
              ResizeMode="NoResize" WindowStyle="None" AllowsTransparency="True" Topmost="True" Closing="OnClosing"
-             SizeToContent="WidthAndHeight" x:Name="PlayerHealthComponent" Loaded="OnLoad" Style="{StaticResource OVERLAY_PLAYER_HUD_WIDGET}">
+             SizeToContent="WidthAndHeight" x:Name="PlayerHealthComponent" Style="{StaticResource OVERLAY_PLAYER_HUD_WIDGET}" Initialized="OnInitialized" Loaded="OnLoaded">
 </local:Widget>

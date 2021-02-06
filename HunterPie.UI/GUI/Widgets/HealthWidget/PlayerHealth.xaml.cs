@@ -215,8 +215,9 @@ namespace HunterPie.GUI.Widgets.HealthWidget
             IsStaminaNormal = true;
             SharpnessVisibility = Visibility.Collapsed;
             IsMinimalisticMode = ConfigManager.Settings.Overlay.PlayerHealthComponent.MinimalisticMode;
+            gContext = ctx;
             InitializeComponent();
-            SetContext(ctx);
+            
         }
 
         public override void EnterWidgetDesignMode()
@@ -245,14 +246,10 @@ namespace HunterPie.GUI.Widgets.HealthWidget
             base.ApplySettings();
         }
 
-        public void SetContext(Game ctx)
-        {
-            gContext = ctx;
-        }
-
         private void UpdateInformation()
         {
             OnMaxHealthUpdate(this, new PlayerHealthEventArgs(Context.Health));
+            OnZoneChange(this, new PlayerLocationEventArgs(Context));
             OnMaxStaminaUpdate(this, new PlayerStaminaEventArgs(Context.Stamina));
             OnStaminaUpdate(this, new PlayerStaminaEventArgs(Context.Stamina));
             OnLevelChange(this, new PlayerEventArgs(Context));
@@ -268,8 +265,7 @@ namespace HunterPie.GUI.Widgets.HealthWidget
         private void HookEvents()
         {
             gContext.OnWorldDayTimeUpdate += OnWorldDayTimeUpdate;
-            Context.OnVillageEnter += OnVillageEnter;
-            Context.OnVillageLeave += OnVillageLeave;
+            Context.OnZoneChange += OnZoneChange;
             Context.Health.OnHealthUpdate += OnHealthUpdate;
             Context.Health.OnMaxHealthUpdate += OnMaxHealthUpdate;
             Context.Health.OnHealHealth += OnHealHealth;
@@ -297,8 +293,7 @@ namespace HunterPie.GUI.Widgets.HealthWidget
         public void UnhookEvents()
         {
             gContext.OnWorldDayTimeUpdate -= OnWorldDayTimeUpdate;
-            Context.OnVillageEnter -= OnVillageEnter;
-            Context.OnVillageLeave -= OnVillageLeave;
+            Context.OnZoneChange -= OnZoneChange;
             Context.Health.OnHealthUpdate -= OnHealthUpdate;
             Context.Health.OnMaxHealthUpdate -= OnMaxHealthUpdate;
             Context.Health.OnHealHealth -= OnHealHealth;
@@ -322,20 +317,12 @@ namespace HunterPie.GUI.Widgets.HealthWidget
             Context.Abnormalities.OnAbnormalityRemove -= OnAbnormalityEnd;
         }
 
-        private async void OnVillageLeave(object source, EventArgs args)
+        private void OnZoneChange(object source, EventArgs args)
         {
-            await Dispatcher.InvokeAsync(() =>
+            PlayerLocationEventArgs e = args as PlayerLocationEventArgs;
+            Dispatcher.InvokeAsync(() =>
             {
-                WidgetHasContent = Context.ZoneID != 0;
-                ChangeVisibility();
-            });
-        }
-
-        private async void OnVillageEnter(object source, EventArgs args)
-        {
-            await Dispatcher.InvokeAsync(() =>
-            {
-                WidgetHasContent = !settings.HideHealthInVillages;
+                WidgetHasContent = e.ZoneId != 0 && (e.InHarvestZone ^ settings.HideHealthInVillages);
                 ChangeVisibility();
             });
         }
@@ -692,7 +679,7 @@ namespace HunterPie.GUI.Widgets.HealthWidget
             UnhookEvents();
         }
 
-        private void OnLoad(object sender, RoutedEventArgs e)
+        private void OnLoaded(object sender, RoutedEventArgs e)
         {
             StaminaBar = Template.FindName("StaminaBar", this) as MinimalHealthBar;
             HealthBar = Template.FindName("HealthBar", this) as HealthBar;
@@ -705,6 +692,11 @@ namespace HunterPie.GUI.Widgets.HealthWidget
             HookEvents();
             UpdateInformation();
             ApplySettings();
+        }
+
+        private void OnInitialized(object sender, EventArgs e)
+        {
+            Show();
         }
     }
 }
