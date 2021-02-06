@@ -44,13 +44,22 @@ namespace HunterPie.Core
                 }
             }
         }
+
+        /// <summary>
+        /// Number of this monster
+        /// </summary>
         public int MonsterNumber { get; private set; }
 
-        // Monster basic info
+        /// <summary>
+        /// Monster name
+        /// </summary>
         public string Name { get; private set; }
-
+        
         private MonsterInfo MonsterInfo => MonsterData.MonstersInfo[GameId];
 
+        /// <summary>
+        /// Monster EM Id
+        /// </summary>
         public string Id
         {
             get => id;
@@ -86,7 +95,15 @@ namespace HunterPie.Core
                 }
             }
         }
+
+        /// <summary>
+        /// Monster in-game Id
+        /// </summary>
         public int GameId { get; private set; }
+
+        /// <summary>
+        /// Monster size multiplier
+        /// </summary>
         public float SizeMultiplier
         {
             get => sizeMultiplier;
@@ -101,8 +118,20 @@ namespace HunterPie.Core
                 }
             }
         }
+
+        /// <summary>
+        /// Monster size crown name
+        /// </summary>
         public string Crown => MonsterInfo.GetCrownByMultiplier(SizeMultiplier);
+
+        /// <summary>
+        /// Monster maximum health
+        /// </summary>
         public float MaxHealth { get; private set; }
+
+        /// <summary>
+        /// Monster current health
+        /// </summary>
         public float Health
         {
             get => health;
@@ -115,8 +144,20 @@ namespace HunterPie.Core
                 }
             }
         }
+
+        /// <summary>
+        /// Monster weaknesses
+        /// </summary>
         public Dictionary<string, int> Weaknesses { get; private set; }
+
+        /// <summary>
+        /// Normalized health percentage (<see cref="Health"/> / <see cref="MaxHealth"/>)
+        /// </summary>
         public float HPPercentage { get; private set; } = 1;
+
+        /// <summary>
+        /// Whether this monster is the current target
+        /// </summary>
         public bool IsTarget
         {
             get => isTarget;
@@ -129,6 +170,10 @@ namespace HunterPie.Core
                 }
             }
         }
+
+        /// <summary>
+        /// Whether this monster is selected
+        /// </summary>
         public int IsSelect
         {
             get => isSelect;
@@ -141,6 +186,10 @@ namespace HunterPie.Core
                 }
             }
         }
+
+        /// <summary>
+        /// Whether this monster is alive
+        /// </summary>
         public bool IsAlive
         {
             get => isAlive;
@@ -157,8 +206,15 @@ namespace HunterPie.Core
                 }
             }
         }
+
+        /// <summary>
+        /// Same as <see cref="IsAlive"/> but is only set to true after everything is initialized
+        /// </summary>
         public bool IsActuallyAlive { get; private set; }
 
+        /// <summary>
+        /// Current enrage timer
+        /// </summary>
         public float EnrageTimer
         {
             get => enrageTimer;
@@ -179,10 +235,21 @@ namespace HunterPie.Core
                 }
             }
         }
+
+        /// <summary>
+        /// Enrage maximum duration
+        /// </summary>
         public float EnrageTimerStatic { get; private set; }
+
+        /// <summary>
+        /// Whether this monster is enraged
+        /// </summary>
         public bool IsEnraged => enrageTimer > 0;
         private bool FoundEnrageInMemory { get; set; }
 
+        /// <summary>
+        /// Current monster stamina
+        /// </summary>
         public float Stamina
         {
             get => stamina;
@@ -195,9 +262,20 @@ namespace HunterPie.Core
                 }
             }
         }
+
+        /// <summary>
+        /// Maximum monster stamina
+        /// </summary>
         public float MaxStamina { get; private set; }
 
+        /// <summary>
+        /// Monster threshold to be captured
+        /// </summary>
         public float CaptureThreshold { get; private set; }
+
+        /// <summary>
+        /// Whether this monster is captured
+        /// </summary>
         public bool IsCaptured
         {
             get => isCaptured;
@@ -218,6 +296,9 @@ namespace HunterPie.Core
 
         public readonly bool[] AliveMonsters = { false, false, false };
 
+        /// <summary>
+        /// Current action Id
+        /// </summary>
         public int ActionId
         {
             get => actionId;
@@ -232,9 +313,19 @@ namespace HunterPie.Core
             }
         }
 
+        /// <summary>
+        /// Filtered stringified action name
+        /// </summary>
         public string ActionName { get; private set; }
+
+        /// <summary>
+        /// Raw stringified action name
+        /// </summary>
         public string ActionReferenceName { get; private set; }
 
+        /// <summary>
+        /// Current Alatreon element, used only by Alatreon
+        /// </summary>
         public AlatreonState AlatreonElement
         {
             get => alatreonElement;
@@ -248,13 +339,29 @@ namespace HunterPie.Core
             }
         }
 
+        /// <summary>
+        /// Whether the local player is currently the party host
+        /// </summary>
         public bool IsLocalHost { get; internal set; }
 
+        /// <summary>
+        /// Current monster parts
+        /// </summary>
         public List<Part> Parts = new List<Part>();
+
+        /// <summary>
+        /// Current monster ailments
+        /// </summary>
         public List<Ailment> Ailments = new List<Ailment>();
 
-        // Model Data & Position
-        readonly Vector3 Position = new Vector3();
+        /// <summary>
+        /// Current monster position
+        /// </summary>
+        public readonly Vector3 Position = new Vector3(0, 0, 0);
+
+        /// <summary>
+        /// Current monster model data
+        /// </summary>
         public sMonsterModelData ModelData { get; private set; }
 
         // Threading
@@ -266,28 +373,83 @@ namespace HunterPie.Core
         public delegate void MonsterSpawnEvents(object source, MonsterSpawnEventArgs args);
         public delegate void MonsterUpdateEvents(object source, MonsterUpdateEventArgs args);
 
+        /// <summary>
+        /// Dispatched when a monster spawns
+        /// </summary>
         public event MonsterSpawnEvents OnMonsterSpawn;
 
+        /// <summary>
+        /// Dispatched when all monster ailments are loaded
+        /// </summary>
         public event MonsterEvents OnMonsterAilmentsCreate;
+
+        /// <summary>
+        /// Dispatched when a monster despawns (either leaves area or after it's dead/captured body despawns)
+        /// </summary>
         public event MonsterEvents OnMonsterDespawn;
+
+        /// <summary>
+        /// Dispatched when a monster is killed
+        /// </summary>
         public event MonsterEvents OnMonsterDeath;
+
+        /// <summary>
+        /// Dispatched when a monster is captured
+        /// </summary>
         public event MonsterEvents OnMonsterCapture;
+
+        /// <summary>
+        /// Dispatched when a monster is targeted by the local player
+        /// </summary>
         public event MonsterEvents OnTargetted;
+
+        /// <summary>
+        /// Dispatched when the monster crown size is changed
+        /// </summary>
         public event MonsterEvents OnCrownChange;
 
+        /// <summary>
+        /// Dispatched when the monster health value changes
+        /// </summary>
         public event MonsterUpdateEvents OnHPUpdate;
+
+        /// <summary>
+        /// Dispatched when the monster stamina value changes
+        /// </summary>
         public event MonsterUpdateEvents OnStaminaUpdate;
+
+        /// <summary>
+        /// Dispatched when a monster executes a new action
+        /// </summary>
         public event MonsterUpdateEvents OnActionChange;
 
+        /// <summary>
+        /// Dispatched when a monster becomes enraged
+        /// </summary>
         public event MonsterUpdateEvents OnEnrage;
+
+        /// <summary>
+        /// Dispatched when a monster becomes unenraged
+        /// </summary>
         public event MonsterUpdateEvents OnUnenrage;
+
+        /// <summary>
+        /// Dispatched when the monster enrage timer is updated
+        /// </summary>
         public event MonsterUpdateEvents OnEnrageTimerUpdate;
 
+        /// <summary>
+        /// Dispatched when the monster scan is finished
+        /// </summary>
         public event MonsterEvents OnMonsterScanFinished;
-        // Used ONLY by Alatreon
+
+        /// <summary>
+        /// Dispatched when Alatreon shifts to another element <br/>
+        /// <b>Used only by Alatreon.</b>
+        /// </summary>
         public event MonsterEvents OnAlatreonElementShift;
 
-        protected virtual void Dispatch(MonsterSpawnEvents e)
+        private void Dispatch(MonsterSpawnEvents e)
         {
             if (e is null)
                 return;
@@ -305,7 +467,7 @@ namespace HunterPie.Core
             }
         }
 
-        protected virtual void Dispatch(MonsterEvents e)
+        private void Dispatch(MonsterEvents e)
         {
             if (e is null)
                 return;
@@ -322,7 +484,8 @@ namespace HunterPie.Core
                 }
             }
         }
-        protected virtual void Dispatch(MonsterUpdateEvents e)
+
+        private void Dispatch(MonsterUpdateEvents e)
         {
             if (e is null)
                 return;
