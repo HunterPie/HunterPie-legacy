@@ -1,6 +1,6 @@
 ﻿![banner](https://cdn.discordapp.com/attachments/402557384209203200/804141562182369310/v105.png)
 
-# HunterPie v1.0.5 [BETA]
+# HunterPie v1.0.5
 
 HunterPie v1.0.5 brings a lot of new features, including new plugin window to make it even easier to install plugins, HunterPie Native, new APIs and much more!
 
@@ -23,7 +23,7 @@ The plugins window was completely redesigned, adding new functionalities and fea
 
 ## Other Changes
 
-- Added WirteProcessMemory API.
+- Added WriteProcessMemory API.
 - Added streamer mode for widgets, it will let OBS and similar window capture softwares to detect & capture HunterPie's widgets.
 - Refactored the Widget class to make it easier for plugins to create their own widgets. 
 
@@ -31,3 +31,4 @@ The plugins window was completely redesigned, adding new functionalities and fea
 
 - Fixed HunterPie creating Overlay and initialized game scanner when the game version isn't supported
 - HunterPie should no longer crash due to events callback
+- Fixed textless Patreon button in the Links tab.

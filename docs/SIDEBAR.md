@@ -42,8 +42,9 @@
 - [Player Actions](?p=Internal/playerActions.md)
 
 <details>
-<summary>v1.0.4</summary>
+<summary>v1.0.X</summary>
 
+- [v1.0.5](?p=versions/v1.0.5.md) (6 feb, 2021)
 - [v1.0.4](?p=versions/v1.0.4.md) (1 jan, 2021)
 
 </details>
