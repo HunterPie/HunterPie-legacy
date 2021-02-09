@@ -17,6 +17,7 @@
 
 ### Overlay
 - [Design Mode](?p=Overlay/designMode.md)
+- [Streamer Mode](?p=Overlay/streamerMode.md)
 - [Monsters Widget](?p=Overlay/monstersWidget.md)
 - [Harvest Box Widget](?p=Overlay/harvestBoxWidget.md)
 - [Abnormalities Widget](?p=Overlay/abnormalitiesWidget.md)
