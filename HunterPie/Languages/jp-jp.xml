@@ -379,6 +379,7 @@
     <Abnormality ID="HUNTINGHORN_054_00" Name="体力継続回復"/>
     <Abnormality ID="HUNTINGHORN_055_00" Name="自分強化【速】＆回避性能ＵＰ"/>
     <Abnormality ID="HUNTINGHORN_056_00" Name="属性系効果ＵＰ"/>
+    <Abnormality ID="HUNTINGHORN_057_00" Name="回避性能ＵＰ"/>
     <Abnormality ID="HUNTINGHORN_943_00" Name="属性系効果ＵＰ"/>
     <Abnormality ID="PALICO_000_00" Name="復活"/>
     <Abnormality ID="PALICO_001_00" Name="攻撃力ＵＰ【小】"/>
@@ -455,10 +456,13 @@
     <Abnormality ID="GEAR_016_00" Name="災禍転福"/>
     <Abnormality ID="GEAR_099_00" Name="回避の装衣【攻撃力ＵＰ】"/>
     <Abnormality ID="GEAR_100_00" Name="達人の煙筒"/>
-
   </Abnormalities>
   <!-- Client localization strings -->
   <Client>
+    <TrayIcon>
+      <String ID="TRAYICON_SETTINGS" Name="最小化を解除"/>
+      <String ID="TRAYICON_CLOSE" Name="終了"/>
+    </TrayIcon>
     <Console>
       <String ID="CONSOLE_CONSOLE" Name="コンソール"/>
       <String ID="CONSOLE_SETTINGS" Name="設定"/>
@@ -472,11 +476,22 @@
       <String ID="CONSOLE_VERSION" Name="バージョン：{HunterPie_Version} ({HunterPie_Branch})"/>
       <!-- Plugins -->
       <String ID="MESSAGE_GET_MORE_PLUGINS" Name="プラグインを入手"/>
-      <String ID="MESSAGE_OPEN_PLUGINS_FOLDER" Name="プラグイン保存フォルダを開く"/>
+      <String ID="MESSAGE_OPEN_PLUGINS_FOLDER" Name="プラグインのインストール場所を開く"/>
       <String ID="MESSAGE_PLUGIN_INSTALL" Name="プラグインをインストール"/>
       <String ID="MESSAGE_PLUGIN_INSTALL_DESC" Name="ここにmodule.jsonをドラッグ＆ドロップして、新しいプラグインをインストール"/>
-      <String ID="MESSAGE_PLUGIN_INSTALLED" Name="プラグイン: {name} のインストール完了。 HunterPieを再起動してプラグインを有効にしてください。"/>
+      <String ID="MESSAGE_PLUGIN_INSTALLED" Name="プラグイン: {name} のインストール完了！ HunterPieを再起動してプラグインを有効にしてください。"/>
       <String ID="ERROR_PLUGIN_AUTO_UPDATE" Name="このプラグインは自動アップデートに対応していません。アップデートの際は、手動でプラグインをダウンロードしてください。"/>
+      <String ID="MESSAGE_INSTALLED_PLUGINS" Name="インストール済み"/>
+      <String ID="MESSAGE_FRESH_PLUGINS" Name="再起動後に有効になります"/>
+      <String ID="MESSAGE_AVAILABLE_PLUGINS" Name="取得可能"/>
+      <String ID="MESSAGE_TO_DELETE_PLUGINS" Name="再起動後に削除されます"/>
+      <String ID="MESSAGE_PLUGIN_SUBTITLE_ROW" Name="{downloads} | v{version} | by {author}"/>
+      <String ID="MESSAGE_PLUGIN_INCOMPATIBLE_VERSION" Name="このプラグインはお使いのHunterPieのバージョンに対応していません。"/>
+      <String ID="MESSAGE_REFRESH" Name="リスト更新" />
+      <String ID="MESSAGE_PLUGIN_DELETE" Name="削除" />
+      <String ID="MESSAGE_PLUGIN_RESTORE" Name="再インストール" />
+      <String ID="MESSAGE_PLUGIN_FAILED" Name="プラグインの初期化に失敗しました。HunterPieの再起動後に有効になります。" />
+      <String ID="MESSAGE_README_EMPTY" Name="空..." />
       <!-- Popups -->
       <String ID="MESSAGE_QUIT" Name="本当にHunterPieを終了しますか？"/>
       <String ID="TITLE_MISSING_PATH" Name="MONSTER HUNTER: WORLDの実行ファイルが見つかりませんでした。"/>
@@ -512,8 +527,12 @@
       <!-- General -->
       <String ID="ENABLE_AUTOUPDATE" Name="自動アップデートを有効にする"/>
       <String ID="ENABLE_AUTOUPDATE_DESC" Name="有効な場合、HunterPie起動時に更新データを読み込みます。"/>
+      <String ID="ENABLE_MINAFTERGAMEOPEN" Name="ゲーム起動時にHunterPieを最小化"/>
+      <String ID="ENABLE_MINAFTERGAMEOPEN_DESC" Name="有効な場合、「ゲーム起動」ボタンよりゲームを起動した時にHunterPieは自動的に最小化されます。"/>
       <String ID="ENABLE_MINTOTRAY" Name="HunterPieをタスクトレイへ最小化"/>
       <String ID="ENABLE_MINTOTRAY_DESC" Name="有効な場合、HunterPieは最小化時にタスクトレイへ収納され、バックグラウンドで実行されます。"/>
+      <String ID="ENABLE_NATIVE" Name="HunterPie Native 有効化"/>
+      <String ID="ENABLE_NATIVE_DESC" Name="有効な場合、HunterPie Nativeの機能が利用可能になります。"/>
       <String ID="ENABLE_STARTMIN" Name="HunterPie 起動時に最小化"/>
       <String ID="ENABLE_STARTMIN_DESC" Name="有効な場合、HunterPieはタスクトレイに最小化された状態で起動します。"/>
       <String ID="ENABLE_AUTOCLOSE" Name="ゲーム終了時に HunterPie終了"/>
@@ -530,6 +549,11 @@
       <String ID="STATIC_LAUNCHARGS" Name="コマンドライン引数"/>
       <String ID="STATIC_LAUNCHARGS_NOARGS" Name="引数なし"/>
       <String ID="STATIC_LAUNCHARGS_DESC" Name="プログラム起動時に渡されるパラメータ。分からない場合は空白のままにしてください。"/>
+      <String ID="PLUGIN_PROXY_MODE" Name="プラグイン・レジストリのプロキシ設定"/>
+      <String ID="PLUGIN_PROXY_MODE_DESC" Name="プラグインのダウンロードに適応されるプロキシの設定を選択できます。"/>
+      <String ID="PLUGIN_PROXY_MODE_AUTO" Name="オート"/>
+      <String ID="PLUGIN_PROXY_MODE_ENABLED" Name="有効"/>
+      <String ID="PLUGIN_PROXY_MODE_DISABLED" Name="無効"/>
       <!-- Discord RPC -->
       <String ID="ENABLE_RPC" Name="Discordリッチプレゼンスを有効にする"/>
       <String ID="ENABLE_RPC_DESC" Name="有効な場合、HunterPieはDiscordのステータスにプレイ中の詳細情報を表示します"/>
@@ -546,6 +570,8 @@
       <String ID="ENABLE_HIDE_WHEN_UNFOCUS_DESC" Name="有効な場合、HunterPieはゲームが最前面でなければオーバーレイを表示しません。（Alt+Tabなどでゲーム画面を離れた場合)"/>
       <String ID="ENABLE_HARDWARE_ACCELERATION" Name="ハードウェア・アクセラレーションを有効にする"/>
       <String ID="ENABLE_HARDWARE_ACCELERATION_DESC" Name="有効な場合、オーバーレイをGPUで処理します。無効にすることでCPUが処理を肩代わりします。HunterPieによってコマ落ちが増していると感じたら、無効にしてみてください。"/>
+      <String ID="ENABLE_ANTIALIASING" Name="アンチエイリアスを有効にする"/>
+      <String ID="ENABLE_ANTIALIASING_DESC" Name="有効な場合、アンチエイリアスによって輪郭がスムーズに表示されますが、無効にすると処理が多少軽量化されます。"/>
       <String ID="STATIC_ANIMATION_FPS" Name="オーバーレイのフレームレート"/>
       <String ID="STATIC_ANIMATION_FPS_DESC" Name="オーバーレイの再描画頻度を変えます。HunterPieによってコマ落ちが増していると感じたら、この数値を下げてください。"/>
       <String ID="STATIC_GAME_SCAN_DELAY" Name="ゲームデータ更新間隔"/>
@@ -574,7 +600,7 @@
       <String ID="STATIC_MONSTER_PART_HEALTH_STRING_FORMAT_DESC" Name="モンスターの部位の怯み値の表示形式を変更できます。"/>
       <String ID="ENABLE_MONSTER_USE_LOCKON" Name="ロックオンでターゲットモンスターを選択"/>
       <String ID="ENABLE_MONSTER_USE_LOCKON_DESC" Name="無効な場合、マップのピンで注目モンスターを選択できます。"/>
-      <String ID="ENABLE_HIDE_MONSTER_HEALTH" Name="モンスターの基本情報"/>
+      <String ID="ENABLE_HIDE_MONSTER_HEALTH" Name="モンスターの基本情報を隠す"/>
       <String ID="ENABLE_HIDE_MONSTER_HEALTH_DESC" Name="有効な場合、モンスターの［体力・スタミナ・怒り・捕獲可能］情報を非表示にします。"/>
       <String ID="STATIC_MONSTER_AILMENTS_TAB" Name="状態異常"/>
       <String ID="STATIC_MONSTER_PARTS_TAB" Name="部位"/>
@@ -662,6 +688,8 @@
       <String ID="ENABLE_INITIALIZE_PLAYER_WIDGET_DESC" Name="無効な場合、プレイヤーウィジェットは生成されません。"/>
       <String ID="ENABLE_PLAYER_WIDGET" Name="プレイヤーウィジェットを有効にする"/>
       <String ID="ENABLE_PLAYER_WIDGET_DESC" Name="有効な場合、プレイヤーの体力・スタミナ、切れ味やハンター名などの情報を表示します。"/>
+      <String ID="ENABLE_PLAYER_WIDGET_MINIMALISTIC_MODE" Name="情報追記モード（最小限モード）を有効にする"/>
+      <String ID="ENABLE_PLAYER_WIDGET_MINIMALISTIC_MODE_DESC" Name="有効な場合、元からあるプレイヤーの情報に重ねるように情報を追加します。"/>
       <String ID="STATIC_PLAYER_NAME_STRING_FORMAT" Name="プレイヤー名フォーマット："/>
       <String ID="STATIC_PLAYER_NAME_STRING_FORMAT_DESC" Name="体力ゲージの上に表示される文を編集します（例：'{HR} | {MR} {Name}' は '999 | 999 名前'）の様に表示されます"/>
       <String ID="ENABLE_PLAYER_HIDE_IN_VILLAGES" Name="拠点で隠す"/>
@@ -816,6 +844,8 @@
       <String ID="STATIC_CLASSES_SETTINGS" Name="武器ウィジェット"/>
       <String ID="STATIC_LINKS_SETTINGS" Name="リンク一覧"/>
       <String ID="STATIC_DEBUG_SETTINGS" Name="デバッグ"/>
+      <String ID="ENABLE_STREAMER_MODE" Name="キャプチャーモードを有効にする"/>
+      <String ID="ENABLE_STREAMER_MODE_DESC" Name="有効な場合、このウィジェットをOBSなどのキャプチャソフトで撮ることができます。※Alt+Tabなどで別画面に移っても表示されたままになります。"/>
     </Settings>
     <Overlay>
       <String ID="STATIC_HARVEST_BOX_TITLE" Name="収穫ＢＯＸ"/>

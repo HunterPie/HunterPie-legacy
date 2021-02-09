@@ -3,6 +3,7 @@
             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
             xmlns:p="clr-namespace:HunterPie.GUI.Widgets.DPSMeter.Parts"
             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+            Title="HunterPie - Damage Meter"
             MinHeight="69" WindowStyle="None" AllowsTransparency="True" Topmost="True" Closing="OnClosing" SizeToContent="Height" SizeChanged="DamageMeter_SizeChanged"
             Style="{StaticResource OVERLAY_WIDGET_STYLE}">
     <WindowChrome.WindowChrome>
