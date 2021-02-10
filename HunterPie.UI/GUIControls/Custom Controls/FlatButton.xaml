@@ -33,7 +33,17 @@
                 <StackPanel Orientation="Horizontal">
                     <Image x:Name="btnIcon"
                            Source="{Binding Path=Icon}"
-                           MaxHeight="20" MaxWidth="20" VerticalAlignment="Center" Margin="0,0,5,0"/>
+                           MaxHeight="20" MaxWidth="20" VerticalAlignment="Center" Margin="0,0,5,0">
+                        <Image.Resources>
+                            <Style TargetType="Image">
+                                <Style.Triggers>
+                                    <DataTrigger Binding="{Binding Path=Text}" Value="{x:Null}">
+                                        <Setter Property="Margin" Value="0" />
+                                    </DataTrigger>
+                                </Style.Triggers>
+                            </Style>
+                        </Image.Resources>
+                    </Image>
                     <TextBlock Text="{Binding Path=Text}" VerticalAlignment="Center"/>
                 </StackPanel>
             </Button.Content>

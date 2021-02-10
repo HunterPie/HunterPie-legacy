@@ -15,6 +15,7 @@ namespace HunterPie.Plugins
         private readonly PluginRegistryEntry entry;
         private readonly IPluginListProxy pluginList;
         private bool isBusy;
+        private bool isFiltered;
 
         public RegistryPluginViewModel(PluginRegistryEntry entry, IPluginListProxy pluginList)
         {
@@ -127,6 +128,18 @@ namespace HunterPie.Plugins
         }
 
         public ImageSource Image { get; set; }
+
+        public bool IsFiltered
+        {
+            get => isFiltered;
+            set
+            {
+                if (value == isFiltered) return;
+                isFiltered = value;
+                OnPropertyChanged();
+            }
+        }
+
         public bool HasImage => Image != null;
 
         public bool IsVersionOk => PluginUpdate.IsVersionOk(entry.MinVersion);
@@ -171,5 +184,7 @@ namespace HunterPie.Plugins
                 }
             }
         }
+
+        public long SortValue => entry.Downloads;
     }
 }

@@ -34,7 +34,7 @@
     <BootstrapperEnabled>true</BootstrapperEnabled>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
-    <PlatformTarget>x64</PlatformTarget>
+    <PlatformTarget>AnyCPU</PlatformTarget>
     <DebugSymbols>true</DebugSymbols>
     <DebugType>full</DebugType>
     <Optimize>false</Optimize>
@@ -208,6 +208,10 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
+    <Page Include="GUIControls\SearchBar.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="Hunterpie.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
@@ -228,6 +232,10 @@
     <Compile Include="GUIControls\Plugins.xaml.cs">
       <DependentUpon>Plugins.xaml</DependentUpon>
     </Compile>
+    <Compile Include="GUIControls\SearchBar.xaml.cs">
+      <DependentUpon>SearchBar.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="HunterPieXmlDataProvider.cs" />
     <Compile Include="Plugins\PluginEntry.cs" />
     <Compile Include="Plugins\PluginManager.cs" />
     <Compile Include="Plugins\PluginRegistryService.cs" />
@@ -759,9 +767,9 @@
     </None>
   </ItemGroup>
   <ItemGroup>
-    <None Include="Languages\en-us.xml">
+    <EmbeddedResource Include="Languages\en-us.xml">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </None>
+    </EmbeddedResource>
   </ItemGroup>
   <ItemGroup>
     <None Include="Languages\es-es.xml">
@@ -815,6 +823,13 @@
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <PropertyGroup>
-    <PostBuildEvent>py $(TargetDir)clean.py</PostBuildEvent>
+    <!--    <PostBuildEvent>"$(MSBuildBinPath)\msbuild.exe" "$(ProjectDir)..\..\Plugin.Sync\Plugin.Sync\Plugin.Sync.csproj"</PostBuildEvent>-->
+    <!--    <PostBuildEvent>-->
+    <!--      "$(MSBuildBinPath)\msbuild.exe" "E:\Dev\Amadare\Plugin.CrownGrinder\Plugin.CrownGrinder\Plugin.CrownGrinder.csproj"-->
+    <!--    </PostBuildEvent>-->
+    <!-- <PostBuildEvent>
+      "$(MSBuildBinPath)\msbuild.exe" "E:\Dev\Amadare\Plugin.MonsterSizeBar\Plugin.MonsterSizeBar\Plugin.MonsterSizeBar.csproj"
+    </PostBuildEvent> -->
+    <!--    <PostBuildEvent>py $(TargetDir)clean.py</PostBuildEvent>-->
   </PropertyGroup>
 </Project>

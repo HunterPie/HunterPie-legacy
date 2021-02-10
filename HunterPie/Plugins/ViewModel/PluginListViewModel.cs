@@ -5,6 +5,7 @@ using System.Linq;
 using System.Threading.Tasks;
 using System.Windows.Input;
 using HunterPie.UI.Infrastructure;
+using HunterPie.Utils;
 
 namespace HunterPie.Plugins
 {
@@ -16,6 +17,7 @@ namespace HunterPie.Plugins
         private IPluginViewModel selectedPlugin;
         private Task refreshTask = Task.CompletedTask;
         private List<PluginRegistryEntry> pluginRegistryCache = new List<PluginRegistryEntry>();
+        private string searchQueryCache = null;
 
         private IEnumerable<IPluginViewModel> AllPlugins =>
             InstalledPlugins
@@ -24,17 +26,23 @@ namespace HunterPie.Plugins
             .Concat(MarkedForRemovalPlugins)
             .ToList();
 
-        public PluginListViewModel(PluginRegistryService service)
+
+        public PluginListViewModel(PluginRegistryService service) : this()
         {
             this.service = service;
 
+            RefreshCommand = new RelayCommand(
+                _ => !IsLoadingPlugins && !IsLoadingLocalPlugins && AllPlugins.All(p => !p.IsBusy),
+                _ => Refresh());
+            FilterCommand = new RelayCommand(_ => true, Filter);
+        }
+
+        public PluginListViewModel()
+        {
             AvailablePlugins = new ObservableCollection<IPluginViewModel>();
             FreshPlugins = new ObservableCollection<IPluginViewModel>();
             InstalledPlugins = new ObservableCollection<IPluginViewModel>();
             MarkedForRemovalPlugins = new ObservableCollection<IPluginViewModel>();
-            RefreshCommand = new RelayCommand(
-                _ => !IsLoadingPlugins && !IsLoadingLocalPlugins && AllPlugins.All(p => !p.IsBusy),
-                _ => Refresh());
         }
 
         public void MovePluginToCorrectCollection(IPluginViewModel plugin)
@@ -175,7 +183,7 @@ namespace HunterPie.Plugins
             }
             catch (Exception ex)
             {
-                PluginLoadingError = ex.Message;
+                PluginLoadingError = ex.GetBaseException().Message;
             }
             finally
             {
@@ -186,6 +194,7 @@ namespace HunterPie.Plugins
                     OnPropertyChanged(nameof(PluginLoadingError));
                     CommandManager.InvalidateRequerySuggested();
                     RegistryPluginsLoaded?.Invoke(this, EventArgs.Empty);
+                    Filter(this.searchQueryCache);
                 });
             }
         }
@@ -207,6 +216,27 @@ namespace HunterPie.Plugins
         {
             if (IsLoadingPlugins) return null;
             return pluginRegistryCache.FirstOrDefault(e => e.InternalName == pluginName);
+        }
+
+        private void Filter(object arg)
+        {
+            var query = arg as string;
+            foreach (IPluginViewModel plugin in AllPlugins)
+            {
+                if (string.IsNullOrEmpty(query))
+                {
+                    plugin.IsFiltered = false;
+                } else
+                {
+                    var isMatch = plugin.Name.Contains(query, StringComparison.CurrentCultureIgnoreCase)
+                                  || plugin.InternalName.Contains(query, StringComparison.CurrentCultureIgnoreCase)
+                                  || plugin.Description.Contains(query, StringComparison.CurrentCultureIgnoreCase);
+
+                    plugin.IsFiltered = !isMatch;
+                }
+            }
+
+            this.searchQueryCache = query;
         }
 
         public bool IsLoadingPlugins
@@ -236,6 +266,8 @@ namespace HunterPie.Plugins
         }
 
         public ICommand RefreshCommand { get; }
+
+        public ICommand FilterCommand { get; }
 
         public ReadmeViewModel Readme { get; } = new ReadmeViewModel();
 

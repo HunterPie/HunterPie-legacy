@@ -1,6 +1,7 @@
 ﻿<Application x:Class="HunterPie.App"
              xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:hunterPie="clr-namespace:HunterPie"
              StartupUri="Hunterpie.xaml" DispatcherUnhandledException="OnDispatcherUnhandledException" ShutdownMode="OnMainWindowClose">
     <Application.Resources>
         <ResourceDictionary>
@@ -11,7 +12,7 @@
                 <ResourceDictionary Source="/Resources/DefaultTheme.xaml"/>
                 <ResourceDictionary Source="/Resources/Resources.xaml"/>
             </ResourceDictionary.MergedDictionaries>
-            <XmlDataProvider x:Key="Localization" XPath="Strings/Client"/>
+            <hunterPie:HunterPieXmlDataProvider x:Key="Localization" XPath="Strings/Client"/>
         </ResourceDictionary>
     </Application.Resources>
 </Application>

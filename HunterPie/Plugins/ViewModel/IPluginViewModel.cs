@@ -30,5 +30,8 @@ namespace HunterPie.Plugins
         string InternalName { get; }
 
         ImageSource Image { get; }
+
+        bool IsFiltered { get; set; }
+        long SortValue { get; }
     }
 }

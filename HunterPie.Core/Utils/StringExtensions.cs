@@ -34,5 +34,13 @@ namespace HunterPie.Utils
             Regex tags = new Regex("<[(/\\w )]+>");
             return tags.Replace(value, string.Empty);
         }
+
+        /// <summary>
+        /// Allows case insensitive checks
+        /// </summary>
+        public static bool Contains(this string source, string toCheck, StringComparison comp)
+        {
+            return source.IndexOf(toCheck, comp) >= 0;
+        }
     }
 }

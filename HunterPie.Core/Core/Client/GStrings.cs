@@ -57,6 +57,13 @@ namespace HunterPie.Core
             LocDataProvider.Refresh();
         }
 
+        public static void LoadTranslationsFromStream(XmlDataProvider provider, Stream stream)
+        {
+            Translations.Load(stream);
+            provider.Document = Translations;
+            provider.Refresh();
+        }
+
         public static string GetMantleNameByID(int ID)
         {
             XmlNode Mantle = Translations.SelectSingleNode($"//Strings/Mantles/Mantle[@ID='{ID}']");

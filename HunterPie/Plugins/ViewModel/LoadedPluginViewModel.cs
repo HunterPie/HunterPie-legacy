@@ -18,6 +18,7 @@ namespace HunterPie.Plugins
         private readonly PluginEntry plugin;
         private readonly IPluginListProxy pluginList;
         private Task pluginToggleTask = Task.CompletedTask;
+        private bool isFiltered;
 
         public LoadedPluginViewModel(PluginEntry plugin, IPluginListProxy pluginList)
         {
@@ -284,6 +285,19 @@ namespace HunterPie.Plugins
         }
 
         public bool IsBusy { get; set; }
+
+        public bool IsFiltered
+        {
+            get => isFiltered;
+            set
+            {
+                if (value == isFiltered) return;
+                isFiltered = value;
+                OnPropertyChanged();
+            }
+        }
+
+        public long SortValue => PluginManager.GetInstallationTime(plugin.PluginInformation.Name)?.Ticks ?? -1;
 
         ~LoadedPluginViewModel()
         {
