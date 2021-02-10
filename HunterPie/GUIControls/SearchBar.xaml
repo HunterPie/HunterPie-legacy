@@ -53,7 +53,8 @@
 
             <Grid.Resources>
 
-                <Style TargetType="TextBox" BasedOn="{StaticResource TextBoxStyle}">
+                <Style TargetType="TextBox">
+                    <Setter Property="CaretBrush" Value="{StaticResource BUTTON_CLOSEWINDOW_BACKGROUND}"></Setter>
                     <Style.Triggers>
                         <DataTrigger Binding="{Binding IsSearchBarActive, ElementName=SearchBarControl}" Value="False">
                             <Setter Property="IsEnabled" Value="False" />

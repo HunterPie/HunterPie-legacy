@@ -629,7 +629,7 @@
         </Setter>
     </Style>
 
-    <Style TargetType="{x:Type TextBox}" x:Key="TextBoxStyle">
+    <Style TargetType="{x:Type TextBox}">
         <Setter Property="CaretBrush" Value="{StaticResource BUTTON_CLOSEWINDOW_BACKGROUND}"/>
     </Style>
     
