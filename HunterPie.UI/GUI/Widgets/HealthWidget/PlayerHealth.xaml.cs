@@ -192,6 +192,16 @@ namespace HunterPie.GUI.Widgets.HealthWidget
         public static readonly DependencyProperty MoxieMarginProperty =
             DependencyProperty.Register("MoxieMargin", typeof(Thickness), typeof(PlayerHealth));
 
+
+        public static readonly DependencyProperty IsMinimalisticModeProperty = DependencyProperty.Register(
+            "IsMinimalisticMode", typeof(bool), typeof(PlayerHealth), new PropertyMetadata(default(bool)));
+
+        public bool IsMinimalisticMode
+        {
+            get { return (bool)GetValue(IsMinimalisticModeProperty); }
+            set { SetValue(IsMinimalisticModeProperty, value); }
+        }
+
         MinimalHealthBar StaminaBar { get; set; }
         HealthBar HealthBar { get; set; }
         Rectangle HealthExt { get; set; }
@@ -204,8 +214,10 @@ namespace HunterPie.GUI.Widgets.HealthWidget
         {
             IsStaminaNormal = true;
             SharpnessVisibility = Visibility.Collapsed;
+            IsMinimalisticMode = ConfigManager.Settings.Overlay.PlayerHealthComponent.MinimalisticMode;
+            gContext = ctx;
             InitializeComponent();
-            SetContext(ctx);
+            
         }
 
         public override void EnterWidgetDesignMode()
@@ -234,14 +246,10 @@ namespace HunterPie.GUI.Widgets.HealthWidget
             base.ApplySettings();
         }
 
-        public void SetContext(Game ctx)
-        {
-            gContext = ctx;
-        }
-
         private void UpdateInformation()
         {
             OnMaxHealthUpdate(this, new PlayerHealthEventArgs(Context.Health));
+            OnZoneChange(this, new PlayerLocationEventArgs(Context));
             OnMaxStaminaUpdate(this, new PlayerStaminaEventArgs(Context.Stamina));
             OnStaminaUpdate(this, new PlayerStaminaEventArgs(Context.Stamina));
             OnLevelChange(this, new PlayerEventArgs(Context));
@@ -309,22 +317,26 @@ namespace HunterPie.GUI.Widgets.HealthWidget
             Context.Abnormalities.OnAbnormalityRemove -= OnAbnormalityEnd;
         }
 
-
         private void OnZoneChange(object source, EventArgs args)
         {
-            PlayerLocationEventArgs e = (PlayerLocationEventArgs)args;
-            
-            Dispatcher.BeginInvoke(DispatcherPriority.Render, new Action(() =>
+            PlayerLocationEventArgs e = args as PlayerLocationEventArgs;
+            Dispatcher.InvokeAsync(() =>
             {
-                if (Context.ZoneID != 0)
+                if (e.ZoneId != 0)
                 {
-                    WidgetHasContent = ((PlayerHealthComponent)Settings).HideHealthInVillages ? !e.InHarvestZone : true;
+                    if (settings.HideHealthInVillages)
+                    {
+                        WidgetHasContent = !e.InHarvestZone;
+                    } else
+                    {
+                        WidgetHasContent = true;
+                    }
                 } else
                 {
-                    WidgetHasContent = false;
+                    WidgetHasContent = true;
                 }
                 ChangeVisibility();
-            }));
+            });
         }
 
         private void OnAbnormalityEnd(object source, AbnormalityEventArgs args)
@@ -345,7 +357,7 @@ namespace HunterPie.GUI.Widgets.HealthWidget
                     else if (abnormIcon == "ELEMENT_WATER") IsWet = false;
                     else if (abnormIcon == "ELEMENT_ICE") IsIcy = false;
                     else if (poison.Contains(abnormIcon)) HealthBar.IsPoisoned = false;
-                    
+
                     HealthBar.IsNormal = (!HealthBar.IsOnFire && !HealthBar.IsPoisoned && !HealthBar.IsBleeding && !HealthBar.HasEffluvia);
                     IsStaminaNormal = (!IsWet && !IsIcy);
                 } else
@@ -614,7 +626,7 @@ namespace HunterPie.GUI.Widgets.HealthWidget
 
                 if (args.HealingData.Stage == 0)
                 {
-                    HealthBar.HealHealth = 0; 
+                    HealthBar.HealHealth = 0;
                 } else
                 {
                     HealthBar.HealHealth = Math.Min(args.Health + (healValue - args.HealingData.CurrentHeal), args.MaxHealth);
@@ -679,7 +691,7 @@ namespace HunterPie.GUI.Widgets.HealthWidget
             UnhookEvents();
         }
 
-        private void OnLoad(object sender, RoutedEventArgs e)
+        private void OnLoaded(object sender, RoutedEventArgs e)
         {
             StaminaBar = Template.FindName("StaminaBar", this) as MinimalHealthBar;
             HealthBar = Template.FindName("HealthBar", this) as HealthBar;
@@ -692,6 +704,11 @@ namespace HunterPie.GUI.Widgets.HealthWidget
             HookEvents();
             UpdateInformation();
             ApplySettings();
+        }
+
+        private void OnInitialized(object sender, EventArgs e)
+        {
+            Show();
         }
     }
 }

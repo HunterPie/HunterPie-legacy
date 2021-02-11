@@ -523,6 +523,8 @@
       <String ID="ENABLE_MINAFTERGAMEOPEN_DESC" Name="If enabled, HunterPie will be automatically minimized after launching the game."/>
       <String ID="ENABLE_MINTOTRAY" Name="Minimize HunterPie to system tray"/>
       <String ID="ENABLE_MINTOTRAY_DESC" Name="If enabled, HunterPie will hide in your system tray and run on background when it's minimized."/>
+      <String ID="ENABLE_NATIVE" Name="Enable HunterPie Native"/>
+      <String ID="ENABLE_NATIVE_DESC" Name="If enabled, HunterPie Native features will be available."/>
       <String ID="ENABLE_STARTMIN" Name="Start HunterPie minimized"/>
       <String ID="ENABLE_STARTMIN_DESC" Name="If enabled, HunterPie will hide in your system tray on startup."/>
       <String ID="ENABLE_AUTOCLOSE" Name="Close HunterPie when game is closed"/>
@@ -680,6 +682,8 @@
       <String ID="ENABLE_INITIALIZE_PLAYER_WIDGET_DESC" Name="If disabled, the player widget won't be created at all."/>
       <String ID="ENABLE_PLAYER_WIDGET" Name="Enable Player Widget"/>
       <String ID="ENABLE_PLAYER_WIDGET_DESC" Name="If enabled, the player widget will become visible whenever it has content."/>
+      <String ID="ENABLE_PLAYER_WIDGET_MINIMALISTIC_MODE" Name="Enable Minimalistic Mode"/>
+      <String ID="ENABLE_PLAYER_WIDGET_MINIMALISTIC_MODE_DESC" Name="If enabled, the player widget will enhance in-game one, without existing elements duplication."/>
       <String ID="STATIC_PLAYER_NAME_STRING_FORMAT" Name="Name String Format:"/>
       <String ID="STATIC_PLAYER_NAME_STRING_FORMAT_DESC" Name="The string that will appear on top of the health bar. (E.g: '{HR} | {MR} {Name}' will be rendered as 'Your HR' | 'Your MR' 'Your Name')"/>
       <String ID="ENABLE_PLAYER_HIDE_IN_VILLAGES" Name="Hide when in town/villages."/>

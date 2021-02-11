@@ -51,6 +51,7 @@ namespace HunterPie.GUIControls
 
             // HunterPie
             settingsUI.switchEnableAutoUpdate.IsEnabled = settings.HunterPie.Update.Enabled;
+            settingsUI.switchEnableNative.IsEnabled = settings.HunterPie.EnableNativeFunctions;
             settingsUI.branchesCombobox.SelectedItem = _Instance.SettingsBox.branchesCombobox.Items.Contains(settings.HunterPie.Update.Branch) ? settings.HunterPie.Update.Branch : "master";
             settingsUI.ThemeFilesCombobox.SelectedItem = settings.HunterPie.Theme;
             settingsUI.selectPathBttn.Content = settings.HunterPie.Launch.GamePath == "" ? GStrings.GetLocalizationByXPath("/Settings/String[@ID='STATIC_GAMEPATH_UNSELECTED']") : settings.HunterPie.Launch.GamePath.Length > 15 ? "..." + settings.HunterPie.Launch.GamePath.Substring((settings.HunterPie.Launch.GamePath.Length / 2) - 10) : settings.HunterPie.Launch.GamePath;
@@ -90,6 +91,7 @@ namespace HunterPie.GUIControls
             // Player
             settingsUI.switchInitializePlayerWidget.IsEnabled = settings.Overlay.PlayerHealthComponent.Initialize;
             settingsUI.switchEnablePlayerWidget.IsEnabled = settings.Overlay.PlayerHealthComponent.Enabled;
+            settingsUI.switchEnabledPlayerMinimalisticMode.IsEnabled = settings.Overlay.PlayerHealthComponent.MinimalisticMode;
             settingsUI.switchEnablePlayerStreamerMode.IsEnabled = settings.Overlay.PlayerHealthComponent.StreamerMode;
             settingsUI.PlayerNameTextFormat.Text = settings.Overlay.PlayerHealthComponent.NameTextFormat;
             settingsUI.switchEnableHideInVillages.IsEnabled = settings.Overlay.PlayerHealthComponent.HideHealthInVillages;
@@ -236,6 +238,7 @@ namespace HunterPie.GUIControls
             var settingsUI = _Instance.SettingsBox;
             // HunterPie
             settings.HunterPie.Update.Enabled = settingsUI.switchEnableAutoUpdate.IsEnabled;
+            settings.HunterPie.EnableNativeFunctions = settingsUI.switchEnableNative.IsEnabled;
             settings.HunterPie.Update.Branch = (string)settingsUI.branchesCombobox.SelectedItem;
             settings.HunterPie.Theme = (string)settingsUI.ThemeFilesCombobox.SelectedItem;
             settings.HunterPie.Launch.GamePath = settingsUI.fullGamePath;
@@ -275,6 +278,7 @@ namespace HunterPie.GUIControls
             // Player
             settings.Overlay.PlayerHealthComponent.Initialize = settingsUI.switchInitializePlayerWidget.IsEnabled;
             settings.Overlay.PlayerHealthComponent.Enabled = settingsUI.switchEnablePlayerWidget.IsEnabled;
+            settings.Overlay.PlayerHealthComponent.MinimalisticMode = settingsUI.switchEnabledPlayerMinimalisticMode.IsEnabled;
             settings.Overlay.PlayerHealthComponent.StreamerMode = settingsUI.switchEnablePlayerStreamerMode.IsEnabled;
             settings.Overlay.PlayerHealthComponent.NameTextFormat = settingsUI.PlayerNameTextFormat.Text;
             settings.Overlay.PlayerHealthComponent.HideHealthInVillages = settingsUI.switchEnableHideInVillages.IsEnabled;

@@ -15,3 +15,5 @@ docs/node_modules
 # Scripts to turn .cs into markdown
 dump
 dump.py
+
+.env

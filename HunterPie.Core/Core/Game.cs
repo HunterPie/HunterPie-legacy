@@ -15,34 +15,47 @@ namespace HunterPie.Core
 {
     public class Game
     {
-        // Game classes
+
+        #region Public
+        /// <summary>
+        /// Player object
+        /// </summary>
         public Player Player { get; private set; }
 
+        /// <summary>
+        /// First monster in the map
+        /// </summary>
         public Monster FirstMonster { get; private set; }
+
+        /// <summary>
+        /// Second monster in the map
+        /// </summary>
         public Monster SecondMonster { get; private set; }
+
+        /// <summary>
+        /// Third monster in the map
+        /// </summary>
         public Monster ThirdMonster { get; private set; }
 
+        /// <summary>
+        /// Current monster target by the local player
+        /// </summary>
         public Monster HuntedMonster
         {
             get => Monsters.FirstOrDefault(m => m.IsTarget);
         }
 
+        /// <summary>
+        /// Array with the <see cref="FirstMonster"/>, <see cref="SecondMonster"/> and <see cref="ThirdMonster"/>
+        /// </summary>
         public readonly Monster[] Monsters = new Monster[3];
 
-        private DateTime clock = DateTime.UtcNow;
-        private DateTime Clock
-        {
-            get => clock;
-            set
-            {
-                if (value != clock)
-                {
-                    clock = value;
-                    _onClockChange();
-                }
-            }
-        }
+        
         public DateTime? Time { get; private set; }
+
+        /// <summary>
+        /// Whether the game scanner is currently active
+        /// </summary>
         public bool IsActive { get; private set; }
         
         /// <summary>
@@ -105,7 +118,7 @@ namespace HunterPie.Core
         }
 
         /// <summary>
-        /// Focus the game window
+        /// Attempts to focus the game window
         /// </summary>
         /// <returns>True if the operation was successful, false otherwise</returns>
         public static bool Focus()
@@ -113,27 +126,11 @@ namespace HunterPie.Core
             return WindowsHelper.SetForegroundWindow(Kernel.WindowHandle);
         }
 
-        #region Private
+        
 
-        // Threading
-        private ThreadStart scanGameThreadingRef;
-        private Thread scanGameThreading;
-
-        private readonly bool[] aliveMonsters = new bool[3];
-
-        // Clock event
-        public delegate void ClockEvent(object source, EventArgs args);
-
-        /* This Event is dispatched every 10 seconds to update the rich presence */
-        public event ClockEvent OnClockChange;
-
-        protected virtual void _onClockChange() => OnClockChange?.Invoke(this, EventArgs.Empty);
-
-        #region Game World data
-
-        private float worldTime;
-        private DayTime dayTime;
-
+        /// <summary>
+        /// Current world time (e.g: 10.3 represents 10:18 AM)
+        /// </summary>
         public float WorldTime
         {
             get => worldTime;
@@ -147,6 +144,9 @@ namespace HunterPie.Core
             }
         }
 
+        /// <summary>
+        /// Current world <see cref="Enums.DayTime"/>
+        /// </summary>
         public DayTime DayTime
         {
             get => dayTime;
@@ -160,11 +160,65 @@ namespace HunterPie.Core
             }
         }
 
+        public delegate void ClockEvent(object source, EventArgs args);
         public delegate void WorldEvent(object source, WorldEventArgs args);
+
+        /// <summary>
+        /// Dispatched everytime the World time changes
+        /// </summary>
         public event WorldEvent OnWorldTimeUpdate;
+
+        /// <summary>
+        /// Dispatched everytime the World DayTime changes
+        /// </summary>
         public event WorldEvent OnWorldDayTimeUpdate;
 
-        protected virtual void Dispatch(WorldEvent e) => e?.Invoke(this, new WorldEventArgs(this));
+        /// <summary>
+        /// Dispatched every 10 seconds
+        /// </summary>
+        public event ClockEvent OnClockChange;
+
+        /// <summary>
+        /// Parses the float world time to a DateTime
+        /// </summary>
+        /// <param name="worldTime">World Time</param>
+        /// <returns>DateTime</returns>
+        public static DateTime ParseWorldTimeToDateTime(float worldTime)
+        {
+            return new DateTime(0, 0, 0, (int)Math.Abs(worldTime), (int)(60 * (worldTime % 1)), 0);
+        }
+
+        #endregion
+
+        #region Private
+
+        // Threading
+        private ThreadStart scanGameThreadingRef;
+        private Thread scanGameThreading;
+
+        private readonly bool[] aliveMonsters = new bool[3];
+        private void _onClockChange() => OnClockChange?.Invoke(this, EventArgs.Empty);
+
+        private DateTime clock = DateTime.UtcNow;
+        private DateTime Clock
+        {
+            get => clock;
+            set
+            {
+                if (value != clock)
+                {
+                    clock = value;
+                    _onClockChange();
+                }
+            }
+        }
+
+        #region Game World data
+
+        private float worldTime;
+        private DayTime dayTime;
+
+        private void Dispatch(WorldEvent e) => e?.Invoke(this, new WorldEventArgs(this));
         #endregion
 
         internal void CreateInstances()

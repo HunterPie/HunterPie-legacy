@@ -73,6 +73,9 @@ namespace HunterPie.Core
         private long PlayerStructAddress { get; set; }
         #endregion
 
+        /// <summary>
+        /// Current player save address
+        /// </summary>
         public long PlayerAddress
         {
             get => playerAddress;
@@ -340,7 +343,7 @@ namespace HunterPie.Core
         /// <summary>
         /// Player position
         /// </summary>
-        public readonly Vector3 Position = new Vector3();
+        public readonly Vector3 Position = new Vector3(0, 0, 0);
 
         /// <summary>
         /// Player item pouch

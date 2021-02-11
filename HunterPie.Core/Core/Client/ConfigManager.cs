@@ -54,7 +54,7 @@ namespace HunterPie.Core
 
         internal static async Task<bool> TryLoadSettings()
         {
-            string config, backup;
+            string config, backup = null;
             if (!File.Exists(AbsoluteConfigPath) && !File.Exists(AbsoluteBackupPath))
             {
                 Error("Config.json was missing. Creating a new one.");
@@ -63,7 +63,8 @@ namespace HunterPie.Core
 
             try
             {
-                backup = await ReadSerializedSettingsAsync(AbsoluteBackupPath);
+                if (File.Exists(AbsoluteBackupPath))
+                    backup = await ReadSerializedSettingsAsync(AbsoluteBackupPath);
                 config = await ReadSerializedSettingsAsync(AbsoluteConfigPath);
 
                 if (string.IsNullOrEmpty(config) && string.IsNullOrEmpty(backup))

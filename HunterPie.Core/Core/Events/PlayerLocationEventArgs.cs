@@ -24,11 +24,17 @@ namespace HunterPie.Core.Events
         /// </summary>
         public bool InHarvestZone { get; }
 
+        /// <summary>
+        /// Raw Zone Id
+        /// </summary>
+        public int ZoneId { get; }
+
         public PlayerLocationEventArgs(Player player)
         {
             ZoneName = player.ZoneName;
             InPeaceZone = player.InPeaceZone;
             InHarvestZone = player.InHarvestZone;
+            ZoneId = player.ZoneID;
         }
     }
 }

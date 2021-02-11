@@ -33,6 +33,12 @@
         <Setter Property="FontWeight" Value="Bold" />
         <Setter Property="FontFamily" Value="Roboto, Segoe UI"/>
     </Style>
+    <Style TargetType="{x:Type Paragraph}" x:Key="{x:Static markdig:Styles.Heading4StyleKey}">
+        <Setter Property="FontSize" Value="15" />
+        <Setter Property="Foreground" Value="{DynamicResource BUTTON_CLOSEWINDOW_BACKGROUND}" />
+        <Setter Property="FontWeight" Value="Bold" />
+        <Setter Property="FontFamily" Value="Roboto, Segoe UI"/>
+    </Style>
     <Style TargetType="{x:Type Hyperlink}" x:Key="{x:Static markdig:Styles.HyperlinkStyleKey}">
         <Setter Property="Foreground" Value="{DynamicResource BUTTON_CLOSEWINDOW_BACKGROUND}" />
         <Setter Property="FontFamily" Value="Roboto, Segoe UI"/>

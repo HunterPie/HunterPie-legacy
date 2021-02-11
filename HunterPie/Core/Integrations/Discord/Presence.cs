@@ -1,7 +1,6 @@
 ﻿using System;
 using DiscordRPC;
 using HunterPie.Logger;
-using HunterPie.Core.Settings;
 
 namespace HunterPie.Core.Integrations.Discord
 {

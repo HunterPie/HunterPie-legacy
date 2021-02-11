@@ -629,6 +629,10 @@
         </Setter>
     </Style>
 
+    <Style TargetType="{x:Type TextBox}">
+        <Setter Property="CaretBrush" Value="{StaticResource BUTTON_CLOSEWINDOW_BACKGROUND}"/>
+    </Style>
+    
     <SolidColorBrush x:Key="Button.Static.Background" Color="#FFDDDDDD"/>
     <SolidColorBrush x:Key="Button.Static.Border" Color="#FF707070"/>
     <SolidColorBrush x:Key="Button.MouseOver.Background" Color="#FFBEE6FD"/>
@@ -811,236 +815,471 @@
 
     <!-- Player Health bar widget -->
 
-    <Style x:Key="OVERLAY_PLAYER_HUD_WIDGET" TargetType="Overlay:Widget">
-        <Setter Property="Template">
-            <Setter.Value>
-                <ControlTemplate>
-                    <Border>
-                        <Grid x:Name="HudPanel" VerticalAlignment="Top" HorizontalAlignment="Left" Width="468" Height="100">
+    <Style x:Key="OVERLAY_PLAYER_HUD_WIDGET" TargetType="PlayerHud:PlayerHealth">
+        <Style.Triggers>
+            <DataTrigger Binding="{Binding IsMinimalisticMode, ElementName=PlayerHealthComponent}" Value="True">
+                <Setter Property="Template">
+                    <Setter.Value>
+                        <ControlTemplate>
+                            <Border>
+                                <Grid x:Name="HudPanel" VerticalAlignment="Top" HorizontalAlignment="Left" Width="500"
+                                      Height="100">
 
-                            <StackPanel Margin="60,10,0,0" Height="20" VerticalAlignment="Top" Orientation="Horizontal">
-                                <TextBlock RenderOptions.ClearTypeHint="Enabled" Text="{Binding ElementName=PlayerHealthComponent, Path=PlayerName, FallbackValue='Lv.9999 UwU'}" VerticalAlignment="Top" Foreground="#FFDADADA" FontSize="14" Height="20" HorizontalAlignment="Left" FontFamily="Roboto, Segoe UI, Yu Gothic UI">
-                                    <TextBlock.Effect>
-                                        <DropShadowEffect RenderingBias="Quality" ShadowDepth="0" Direction="0"/>
-                                    </TextBlock.Effect>
-                                </TextBlock>
-                                <StackPanel x:Name="AilmentDisplay" Orientation="Horizontal" Margin="10,0,0,0">
-                                    <PlayerHealthParts:AilmentControl x:Name="ConstantAilment" Visibility="Collapsed"/>
-                                </StackPanel>
-                            </StackPanel>
-
-                            <!-- Player stamina bar -->
-                            <StackPanel Orientation="Horizontal" Height="3" VerticalAlignment="Top" Margin="65,40,0,0" HorizontalAlignment="Left" ClipToBounds="False">
-                                <Custom:MinimalHealthBar x:Name="StaminaBar" RenderTransformOrigin="0.5,1" Foreground="{x:Null}" Background="#B27E7E7E">
-                                    <Custom:MinimalHealthBar.RenderTransform>
-                                        <TransformGroup>
-                                            <ScaleTransform/>
-                                            <SkewTransform AngleX="-45"/>
-                                            <RotateTransform/>
-                                            <TranslateTransform/>
-                                        </TransformGroup>
-                                    </Custom:MinimalHealthBar.RenderTransform>
-                                    <Custom:MinimalHealthBar.Style>
-                                        <Style TargetType="Custom:MinimalHealthBar">
-                                            <Style.Triggers>
-                                                <DataTrigger Binding="{Binding ElementName=PlayerHealthComponent, Path=IsStaminaNormal}" Value="True">
-                                                    <Setter Property="Color">
-                                                        <Setter.Value>
-                                                            <LinearGradientBrush EndPoint="1,1" StartPoint="0,0">
-                                                                <GradientStop Color="#FFC95B32" Offset="0"/>
-                                                                <GradientStop Color="#FFD3A541" Offset="1"/>
-                                                            </LinearGradientBrush>
-                                                        </Setter.Value>
-                                                    </Setter>
-                                                </DataTrigger>
-                                                <DataTrigger Binding="{Binding ElementName=PlayerHealthComponent, Path=IsIcy}" Value="True">
-                                                    <Setter Property="Color">
-                                                        <Setter.Value>
-                                                            <LinearGradientBrush EndPoint="1,1" StartPoint="0,0">
-                                                                <GradientStop Color="#FF32B4C9" Offset="0"/>
-                                                                <GradientStop Color="#FF41D3CC" Offset="1"/>
-                                                            </LinearGradientBrush>
-                                                        </Setter.Value>
-                                                    </Setter>
-                                                </DataTrigger>
-                                                <DataTrigger Binding="{Binding ElementName=PlayerHealthComponent, Path=IsWet}" Value="True">
-                                                    <Setter Property="Color">
-                                                        <Setter.Value>
-                                                            <LinearGradientBrush EndPoint="1,1" StartPoint="0,0">
-                                                                <GradientStop Color="#FF3270C9" Offset="0"/>
-                                                                <GradientStop Color="#FF41A5D3" Offset="1"/>
-                                                            </LinearGradientBrush>
-                                                        </Setter.Value>
-                                                    </Setter>
-                                                </DataTrigger>
-                                            </Style.Triggers>
-                                        </Style>
-                                    </Custom:MinimalHealthBar.Style>
-                                </Custom:MinimalHealthBar>
-                                <Rectangle x:Name="StaminaExt" Visibility="Collapsed" RenderTransformOrigin="0.5,0.5">
-                                    <Rectangle.Stroke>
-                                        <LinearGradientBrush EndPoint="0.5,1" StartPoint="0,0">
-                                            <GradientStop Color="#00000000" Offset="0"/>
-                                            <GradientStop Color="#FFD3A541" Offset="1"/>
-                                        </LinearGradientBrush>
-                                    </Rectangle.Stroke>
-                                    <Rectangle.Fill>
-                                        <LinearGradientBrush EndPoint="0,1" StartPoint="1,1">
-                                            <GradientStop Color="Black"/>
-                                            <GradientStop Color="#00000000" Offset="1"/>
-                                        </LinearGradientBrush>
-                                    </Rectangle.Fill>
-                                    <Rectangle.RenderTransform>
-                                        <TransformGroup>
-                                            <ScaleTransform/>
-                                            <SkewTransform AngleX="-45"/>
-                                            <RotateTransform/>
-                                            <TranslateTransform/>
-                                        </TransformGroup>
-                                    </Rectangle.RenderTransform>
-                                    <Rectangle.Style>
-                                        <Style TargetType="Rectangle">
-                                            <Style.Triggers>
-                                                <Trigger Property="IsVisible" Value="True">
-                                                    <Trigger.EnterActions>
-                                                        <BeginStoryboard Name="FadeInOutAnim">
-                                                            <Storyboard Storyboard.TargetProperty="Opacity" Duration="0:0:0.8" RepeatBehavior="Forever">
-                                                                <DoubleAnimation From="1" To="0.3" Duration="0:0:0.2" AutoReverse="True" />
-                                                            </Storyboard>
-                                                        </BeginStoryboard>
-                                                    </Trigger.EnterActions>
-                                                    <Trigger.ExitActions>
-                                                        <RemoveStoryboard BeginStoryboardName="FadeInOutAnim"/>
-                                                    </Trigger.ExitActions>
-                                                </Trigger>
-                                            </Style.Triggers>
-                                        </Style>
-                                    </Rectangle.Style>
-                                </Rectangle>
-                                <TextBlock Margin="-50,0,0,-15" RenderOptions.ClearTypeHint="Enabled" VerticalAlignment="Bottom" Foreground="#FFDADADA" FontSize="12" HorizontalAlignment="Left" FontFamily="Roboto, Segoe UI, Yu Gothic UI" ClipToBounds="False">
-                                    <Run Text="{Binding PlayerCurrentStamina, ElementName=PlayerHealthComponent}"/>
-                                    <Run Text="/"/>
-                                    <Run Text="{Binding PlayerMaxStamina, ElementName=PlayerHealthComponent}"/>
-                                    <TextBlock.Effect>
-                                        <DropShadowEffect RenderingBias="Quality" ShadowDepth="0" Direction="0"/>
-                                    </TextBlock.Effect>
-                                </TextBlock>
-                            </StackPanel>
+                                    <!-- Player stamina bar -->
+                                    <StackPanel Orientation="Horizontal" Height="3" VerticalAlignment="Top"
+                                                Margin="65,40,0,0" HorizontalAlignment="Left" ClipToBounds="False">
+                                        <Custom:MinimalHealthBar x:Name="StaminaBar" Visibility="Hidden"
+                                                                 RenderTransformOrigin="0.5,1" Foreground="{x:Null}"
+                                                                 Background="#B27E7E7E">
+                                            <Custom:MinimalHealthBar.RenderTransform>
+                                                <TransformGroup>
+                                                    <ScaleTransform />
+                                                    <SkewTransform AngleX="-45" />
+                                                    <RotateTransform />
+                                                    <TranslateTransform />
+                                                </TransformGroup>
+                                            </Custom:MinimalHealthBar.RenderTransform>
+                                        </Custom:MinimalHealthBar>
+                                        <Rectangle x:Name="StaminaExt" Visibility="Collapsed"
+                                                   RenderTransformOrigin="0.5,0.5" Stroke="#00000000" Fill="#00000000">
+                                            <Rectangle.RenderTransform>
+                                                <TransformGroup>
+                                                    <ScaleTransform />
+                                                    <SkewTransform AngleX="-45" />
+                                                    <RotateTransform />
+                                                    <TranslateTransform />
+                                                </TransformGroup>
+                                            </Rectangle.RenderTransform>
+                                        </Rectangle>
+                                        <TextBlock Margin="-40,0,0,-25" RenderOptions.ClearTypeHint="Enabled"
+                                                   VerticalAlignment="Bottom" Foreground="#FFDADADA" FontSize="12"
+                                                   HorizontalAlignment="Left" FontFamily="Segoe UI, Yu Gothic UI"
+                                                   ClipToBounds="False">
+                                            <Run
+                                                Text="{Binding PlayerCurrentStamina, ElementName=PlayerHealthComponent}" />
+                                            <Run Text="/" />
+                                            <Run Text="{Binding PlayerMaxStamina, ElementName=PlayerHealthComponent}" />
+                                            <TextBlock.Effect>
+                                                <DropShadowEffect RenderingBias="Quality" ShadowDepth="0" Direction="0" />
+                                            </TextBlock.Effect>
+                                        </TextBlock>
+                                    </StackPanel>
 
 
-                            <!-- Player Health Bar-->
-                            <StackPanel x:Name="HealthBarPanel" Orientation="Horizontal" Margin="63,29,0,0" VerticalAlignment="Top" HorizontalAlignment="Left" Height="11" ClipToBounds="False">
-                                <PlayerHealthParts:HealthBar x:Name="HealthBar" RenderTransformOrigin="0.5,0.5" ConstantWidth="200">
-                                    <PlayerHealthParts:HealthBar.RenderTransform>
-                                        <TransformGroup>
-                                            <ScaleTransform/>
-                                            <SkewTransform AngleX="45"/>
-                                            <RotateTransform/>
-                                            <TranslateTransform/>
-                                        </TransformGroup>
-                                    </PlayerHealthParts:HealthBar.RenderTransform>
-                                </PlayerHealthParts:HealthBar>
-                                <Rectangle x:Name="HealthExt" Visibility="Collapsed" RenderTransformOrigin="0.5,0.5" StrokeThickness="1.5">
-                                    <Rectangle.Stroke>
-                                        <LinearGradientBrush EndPoint="1,1" StartPoint="0,1">
-                                            <GradientStop Color="#00000000" Offset="0"/>
-                                            <GradientStop Color="#FF96C31D" Offset="1"/>
-                                        </LinearGradientBrush>
-                                    </Rectangle.Stroke>
-                                    <Rectangle.RenderTransform>
-                                        <TransformGroup>
-                                            <ScaleTransform/>
-                                            <SkewTransform AngleX="45"/>
-                                            <RotateTransform/>
-                                            <TranslateTransform/>
-                                        </TransformGroup>
-                                    </Rectangle.RenderTransform>
-                                    <Rectangle.Style>
-                                        <Style TargetType="Rectangle">
-                                            <Style.Triggers>
-                                                <Trigger Property="IsVisible" Value="True">
-                                                    <Trigger.EnterActions>
-                                                        <BeginStoryboard Name="FadeInOutAnim">
-                                                            <Storyboard Storyboard.TargetProperty="Opacity" Duration="0:0:0.8" RepeatBehavior="Forever">
-                                                                <DoubleAnimation From="1" To="0.3" Duration="0:0:0.2" AutoReverse="True" />
-                                                            </Storyboard>
-                                                        </BeginStoryboard>
-                                                    </Trigger.EnterActions>
-                                                    <Trigger.ExitActions>
-                                                        <RemoveStoryboard BeginStoryboardName="FadeInOutAnim"/>
-                                                    </Trigger.ExitActions>
-                                                </Trigger>
-                                            </Style.Triggers>
-                                        </Style>
-                                    </Rectangle.Style>
-                                </Rectangle>
-                                <TextBlock Margin="-60,-15,0,0" RenderOptions.ClearTypeHint="Enabled" VerticalAlignment="Top" Foreground="#FFDADADA" FontSize="14" Height="20" HorizontalAlignment="Left" FontFamily="Roboto, Segoe UI, Yu Gothic UI">
-                                    <Run Text="{Binding PlayerCurrentHealth, ElementName=PlayerHealthComponent}"/>
-                                    <Run Text="/"/>
-                                    <Run Text="{Binding PlayerMaxHealth, ElementName=PlayerHealthComponent}"/>
-                                    <TextBlock.Effect>
-                                        <DropShadowEffect RenderingBias="Quality" ShadowDepth="0" Direction="0"/>
-                                    </TextBlock.Effect>
-                                </TextBlock>
-                            </StackPanel>
-                            <Rectangle Width="3" Fill="#7FFEFEFE" Height="11" Margin="{Binding MoxieMargin, ElementName=PlayerHealthComponent}" Visibility="{Binding MoxieVisibility, ElementName=PlayerHealthComponent}" VerticalAlignment="Top" HorizontalAlignment="Left"/>
-
-                            <!-- Sharpness Component -->
-                            <Canvas Height="25" Width="78" Visibility="{Binding ElementName=PlayerHealthComponent, Path=SharpnessVisibility}" VerticalAlignment="Top" HorizontalAlignment="Left" Margin="70,60,0,0">
-                                <Image Source="pack://siteoforigin:,,,/HunterPie.Resources/UI/HUD/sharpness_background.png" Width="78" Height="18" />
-
-                                <StackPanel Orientation="Horizontal" ClipToBounds="False" Canvas.Top="0" Canvas.Left="8">
-                                    <Rectangle Width="{Binding ElementName=PlayerHealthComponent, Path=Sharpness}" Margin="17,-12.5,0,0" MaxWidth="52" Height="11" Fill="{Binding ElementName=PlayerHealthComponent, Path=SharpnessColor}" StrokeThickness="0"  >
-                                        <Rectangle.OpacityMask>
-                                            <ImageBrush ImageSource="pack://siteoforigin:,,,/HunterPie.Resources/UI/HUD/sharpness_blade.png" AlignmentX="Left" ViewportUnits="Absolute" Viewport="0,0,49.5,11.5"/>
-                                        </Rectangle.OpacityMask>
-                                    </Rectangle>
-                                    <TextBlock Text="{Binding PlayerSharpnessLeft, ElementName=PlayerHealthComponent}" Margin="-15,15,0,0" Foreground="{Binding ElementName=PlayerHealthComponent, Path=SharpnessColor}" FontFamily="Roboto" FontWeight="Bold" Width="30" TextAlignment="Center"/>
-                                </StackPanel>
-                                <Rectangle Width="79" Height="18" Fill="{Binding ElementName=PlayerHealthComponent, Path=SharpnessColor}" StrokeThickness="0" >
-                                    <Rectangle.OpacityMask>
-                                        <ImageBrush ImageSource="pack://siteoforigin:,,,/HunterPie.Resources/UI/HUD/sharpness_effect.png" AlignmentX="Left" ViewportUnits="Absolute" Viewport="0,0,77,17.5" Opacity="0.7"/>
-                                    </Rectangle.OpacityMask>
-                                </Rectangle>
-                            </Canvas>
+                                    <!-- Player Health Bar-->
+                                    <StackPanel x:Name="HealthBarPanel" Orientation="Horizontal" Margin="63,29,0,0"
+                                                VerticalAlignment="Top" HorizontalAlignment="Left" Height="11"
+                                                ClipToBounds="False">
+                                        <PlayerHealthParts:HealthBar x:Name="HealthBar" Visibility="Hidden"
+                                                                     RenderTransformOrigin="0.5,0.5"
+                                                                     ConstantWidth="200">
+                                            <PlayerHealthParts:HealthBar.RenderTransform>
+                                                <TransformGroup>
+                                                    <ScaleTransform />
+                                                    <SkewTransform AngleX="45" />
+                                                    <RotateTransform />
+                                                    <TranslateTransform />
+                                                </TransformGroup>
+                                            </PlayerHealthParts:HealthBar.RenderTransform>
+                                        </PlayerHealthParts:HealthBar>
+                                        <Rectangle x:Name="HealthExt" Visibility="Collapsed"
+                                                   RenderTransformOrigin="0.5,0.5" StrokeThickness="1.5"
+                                                   Stroke="#00000000">
+                                            <Rectangle.RenderTransform>
+                                                <TransformGroup>
+                                                    <ScaleTransform />
+                                                    <SkewTransform AngleX="45" />
+                                                    <RotateTransform />
+                                                    <TranslateTransform />
+                                                </TransformGroup>
+                                            </Rectangle.RenderTransform>
+                                        </Rectangle>
+                                        <TextBlock Margin="-50,-18,0,0" RenderOptions.ClearTypeHint="Enabled"
+                                                   VerticalAlignment="Top" Foreground="#FFDADADA" FontSize="14"
+                                                   Height="20" HorizontalAlignment="Left"
+                                                   FontFamily="Segoe UI, Yu Gothic UI">
+                                            <Run
+                                                Text="{Binding PlayerCurrentHealth, ElementName=PlayerHealthComponent}" />
+                                            <Run Text="/" />
+                                            <Run Text="{Binding PlayerMaxHealth, ElementName=PlayerHealthComponent}" />
+                                            <TextBlock.Effect>
+                                                <DropShadowEffect RenderingBias="Quality" ShadowDepth="0" Direction="0" />
+                                            </TextBlock.Effect>
+                                        </TextBlock>
+                                    </StackPanel>
 
 
-                            <Image Source="pack://siteoforigin:,,,/HunterPie.Resources/UI/HUD/mr_time_background.png" HorizontalAlignment="Left" Width="57" Height="60" VerticalAlignment="Top" Margin="2,1,0,0"/>
-                            <Image Source="{Binding ElementName=PlayerHealthComponent, Path=DayTimeIcon}" HorizontalAlignment="Left" Width="57" Height="60" VerticalAlignment="Top" Margin="2,1,0,0"/>
-                            <Image Source="{Binding ElementName=PlayerHealthComponent, Path=PlayerLaurel}" HorizontalAlignment="Left" Width="57" Height="60" VerticalAlignment="Top" Margin="2,1,0,0" OpacityMask="#B2000000"/>
+                                    <!-- Sharpness Component -->
+                                    <Canvas Height="25" Width="78"
+                                            Visibility="{Binding ElementName=PlayerHealthComponent, Path=SharpnessVisibility}"
+                                            VerticalAlignment="Top" HorizontalAlignment="Left" Margin="70,60,0,0">
 
-                            <TextBlock Text="{Binding ElementName=PlayerHealthComponent, Path=DesignModeDetails}" Visibility="{Binding ElementName=PlayerHealthComponent, Path=DesignModeDetailsVisibility}" VerticalAlignment="Top" HorizontalAlignment="Left" Style="{StaticResource OVERLAY_DESIGN_MODE_DEBUG}"/>
-                        </Grid>
-                        <Border.Style>
-                            <!-- Kinda hacky, ngl but im kinda dumb -->
-                            <Style TargetType="Border">
-                                <Setter Property="BorderThickness" Value="1"/>
-                                <Style.Triggers>
-                                    <DataTrigger Binding="{Binding ElementName=PlayerHealthComponent, Path=IsDesignModeEnabled}" Value="True">
-                                        <Setter Property="Background">
-                                            <Setter.Value>
-                                                <SolidColorBrush Color="#80E6E6E6"/>
-                                            </Setter.Value>
-                                        </Setter>
-                                        <Setter Property="Cursor" Value="SizeAll"/>
-                                        <Setter Property="BorderBrush" Value="#EDEDED"/>
-                                    </DataTrigger>
-                                    <DataTrigger Binding="{Binding ElementName=PlayerHealthComponent, Path=IsDesignModeEnabled}" Value="False">
-                                        <Setter Property="Background">
-                                            <Setter.Value>
-                                                <SolidColorBrush Color="Transparent"/>
-                                            </Setter.Value>
-                                        </Setter>
-                                        <Setter Property="Cursor" Value="SizeAll"/>
-                                        <Setter Property="BorderBrush" Value="Transparent"/>
-                                    </DataTrigger>
-                                </Style.Triggers>
-                            </Style>
-                        </Border.Style>
-                    </Border>
-                </ControlTemplate>
-            </Setter.Value>
-        </Setter>
+                                        <StackPanel Orientation="Horizontal" ClipToBounds="False" Canvas.Top="0"
+                                                    Canvas.Left="8">
+                                            <Rectangle
+                                                Width="{Binding ElementName=PlayerHealthComponent, Path=Sharpness}"
+                                                Margin="17,-12.5,0,0" MaxWidth="52" Height="11"
+                                                Fill="{Binding ElementName=PlayerHealthComponent, Path=SharpnessColor}"
+                                                StrokeThickness="0" Visibility="Hidden" />
+                                            <TextBlock
+                                                Text="{Binding PlayerSharpnessLeft, ElementName=PlayerHealthComponent}"
+                                                Margin="-15,15,0,0"
+                                                Foreground="{Binding ElementName=PlayerHealthComponent, Path=SharpnessColor}"
+                                                FontFamily="Segoe UI" FontWeight="Bold" Width="30"
+                                                TextAlignment="Center" />
+                                        </StackPanel>
+                                    </Canvas>
+
+                                    <TextBlock
+                                        Text="{Binding ElementName=PlayerHealthComponent, Path=DesignModeDetails}"
+                                        Visibility="{Binding ElementName=PlayerHealthComponent, Path=DesignModeDetailsVisibility}"
+                                        VerticalAlignment="Top" HorizontalAlignment="Left"
+                                        Style="{StaticResource OVERLAY_DESIGN_MODE_DEBUG}" />
+                                </Grid>
+                                <Border.Style>
+                                    <!-- Kinda hacky, ngl but im kinda dumb -->
+                                    <Style TargetType="Border">
+                                        <Setter Property="BorderThickness" Value="1" />
+                                        <Style.Triggers>
+                                            <DataTrigger
+                                                Binding="{Binding ElementName=PlayerHealthComponent, Path=IsDesignModeEnabled}"
+                                                Value="True">
+                                                <Setter Property="Background">
+                                                    <Setter.Value>
+                                                        <SolidColorBrush Color="#80E6E6E6" />
+                                                    </Setter.Value>
+                                                </Setter>
+                                                <Setter Property="Cursor" Value="SizeAll" />
+                                                <Setter Property="BorderBrush" Value="#EDEDED" />
+                                            </DataTrigger>
+                                            <DataTrigger
+                                                Binding="{Binding ElementName=PlayerHealthComponent, Path=IsDesignModeEnabled}"
+                                                Value="False">
+                                                <Setter Property="Background">
+                                                    <Setter.Value>
+                                                        <SolidColorBrush Color="Transparent" />
+                                                    </Setter.Value>
+                                                </Setter>
+                                                <Setter Property="Cursor" Value="SizeAll" />
+                                                <Setter Property="BorderBrush" Value="Transparent" />
+                                            </DataTrigger>
+                                        </Style.Triggers>
+                                    </Style>
+                                </Border.Style>
+                            </Border>
+                        </ControlTemplate>
+                    </Setter.Value>
+                </Setter>
+            </DataTrigger>
+            <DataTrigger Binding="{Binding IsMinimalisticMode, ElementName=PlayerHealthComponent}" Value="False">
+                <Setter Property="Template">
+                    <Setter.Value>
+                        <ControlTemplate>
+                            <Border>
+                                <Grid x:Name="HudPanel" VerticalAlignment="Top" HorizontalAlignment="Left" Width="468"
+                                      Height="100">
+                                    <Grid.LayoutTransform>
+                                        <ScaleTransform />
+                                    </Grid.LayoutTransform>
+
+                                    <StackPanel Margin="60,10,0,0" Height="20" VerticalAlignment="Top"
+                                                Orientation="Horizontal">
+                                        <TextBlock RenderOptions.ClearTypeHint="Enabled"
+                                                   Text="{Binding ElementName=PlayerHealthComponent, Path=PlayerName, FallbackValue='Lv.9999 UwU'}"
+                                                   VerticalAlignment="Top" Foreground="#FFDADADA" FontSize="14"
+                                                   Height="20" HorizontalAlignment="Left"
+                                                   FontFamily="Roboto, Segoe UI, Yu Gothic UI">
+                                            <TextBlock.Effect>
+                                                <DropShadowEffect RenderingBias="Quality" ShadowDepth="0" Direction="0" />
+                                            </TextBlock.Effect>
+                                        </TextBlock>
+                                        <StackPanel x:Name="AilmentDisplay" Orientation="Horizontal" Margin="10,0,0,0">
+                                            <PlayerHealthParts:AilmentControl x:Name="ConstantAilment"
+                                                                              Visibility="Collapsed" />
+                                        </StackPanel>
+                                    </StackPanel>
+
+                                    <!-- Player stamina bar -->
+                                    <StackPanel Orientation="Horizontal" Height="3" VerticalAlignment="Top"
+                                                Margin="65,40,0,0" HorizontalAlignment="Left" ClipToBounds="False">
+                                        <Custom:MinimalHealthBar x:Name="StaminaBar" RenderTransformOrigin="0.5,1"
+                                                                 Foreground="{x:Null}" Background="#B27E7E7E">
+                                            <Custom:MinimalHealthBar.RenderTransform>
+                                                <TransformGroup>
+                                                    <ScaleTransform />
+                                                    <SkewTransform AngleX="-45" />
+                                                    <RotateTransform />
+                                                    <TranslateTransform />
+                                                </TransformGroup>
+                                            </Custom:MinimalHealthBar.RenderTransform>
+                                            <Custom:MinimalHealthBar.Style>
+                                                <Style TargetType="Custom:MinimalHealthBar">
+                                                    <Style.Triggers>
+                                                        <DataTrigger
+                                                            Binding="{Binding ElementName=PlayerHealthComponent, Path=IsStaminaNormal}"
+                                                            Value="True">
+                                                            <Setter Property="Color">
+                                                                <Setter.Value>
+                                                                    <LinearGradientBrush EndPoint="1,1"
+                                                                        StartPoint="0,0">
+                                                                        <GradientStop Color="#FFC95B32" Offset="0" />
+                                                                        <GradientStop Color="#FFD3A541" Offset="1" />
+                                                                    </LinearGradientBrush>
+                                                                </Setter.Value>
+                                                            </Setter>
+                                                        </DataTrigger>
+                                                        <DataTrigger
+                                                            Binding="{Binding ElementName=PlayerHealthComponent, Path=IsIcy}"
+                                                            Value="True">
+                                                            <Setter Property="Color">
+                                                                <Setter.Value>
+                                                                    <LinearGradientBrush EndPoint="1,1"
+                                                                        StartPoint="0,0">
+                                                                        <GradientStop Color="#FF32B4C9" Offset="0" />
+                                                                        <GradientStop Color="#FF41D3CC" Offset="1" />
+                                                                    </LinearGradientBrush>
+                                                                </Setter.Value>
+                                                            </Setter>
+                                                        </DataTrigger>
+                                                        <DataTrigger
+                                                            Binding="{Binding ElementName=PlayerHealthComponent, Path=IsWet}"
+                                                            Value="True">
+                                                            <Setter Property="Color">
+                                                                <Setter.Value>
+                                                                    <LinearGradientBrush EndPoint="1,1"
+                                                                        StartPoint="0,0">
+                                                                        <GradientStop Color="#FF3270C9" Offset="0" />
+                                                                        <GradientStop Color="#FF41A5D3" Offset="1" />
+                                                                    </LinearGradientBrush>
+                                                                </Setter.Value>
+                                                            </Setter>
+                                                        </DataTrigger>
+                                                    </Style.Triggers>
+                                                </Style>
+                                            </Custom:MinimalHealthBar.Style>
+                                        </Custom:MinimalHealthBar>
+                                        <Rectangle x:Name="StaminaExt" Visibility="Collapsed"
+                                                   RenderTransformOrigin="0.5,0.5">
+                                            <Rectangle.Stroke>
+                                                <LinearGradientBrush EndPoint="0.5,1" StartPoint="0,0">
+                                                    <GradientStop Color="#00000000" Offset="0" />
+                                                    <GradientStop Color="#FFD3A541" Offset="1" />
+                                                </LinearGradientBrush>
+                                            </Rectangle.Stroke>
+                                            <Rectangle.Fill>
+                                                <LinearGradientBrush EndPoint="0,1" StartPoint="1,1">
+                                                    <GradientStop Color="Black" />
+                                                    <GradientStop Color="#00000000" Offset="1" />
+                                                </LinearGradientBrush>
+                                            </Rectangle.Fill>
+                                            <Rectangle.RenderTransform>
+                                                <TransformGroup>
+                                                    <ScaleTransform />
+                                                    <SkewTransform AngleX="-45" />
+                                                    <RotateTransform />
+                                                    <TranslateTransform />
+                                                </TransformGroup>
+                                            </Rectangle.RenderTransform>
+                                            <Rectangle.Style>
+                                                <Style TargetType="Rectangle">
+                                                    <Style.Triggers>
+                                                        <Trigger Property="IsVisible" Value="True">
+                                                            <Trigger.EnterActions>
+                                                                <BeginStoryboard Name="FadeInOutAnim">
+                                                                    <Storyboard Storyboard.TargetProperty="Opacity"
+                                                                        Duration="0:0:0.8" RepeatBehavior="Forever">
+                                                                        <DoubleAnimation From="1" To="0.3"
+                                                                            Duration="0:0:0.2" AutoReverse="True" />
+                                                                    </Storyboard>
+                                                                </BeginStoryboard>
+                                                            </Trigger.EnterActions>
+                                                            <Trigger.ExitActions>
+                                                                <RemoveStoryboard BeginStoryboardName="FadeInOutAnim" />
+                                                            </Trigger.ExitActions>
+                                                        </Trigger>
+                                                    </Style.Triggers>
+                                                </Style>
+                                            </Rectangle.Style>
+                                        </Rectangle>
+                                        <TextBlock Margin="-50,0,0,-15" RenderOptions.ClearTypeHint="Enabled"
+                                                   VerticalAlignment="Bottom" Foreground="#FFDADADA" FontSize="12"
+                                                   HorizontalAlignment="Left"
+                                                   FontFamily="Roboto, Segoe UI, Yu Gothic UI" ClipToBounds="False">
+                                            <Run
+                                                Text="{Binding PlayerCurrentStamina, ElementName=PlayerHealthComponent}" />
+                                            <Run Text="/" />
+                                            <Run Text="{Binding PlayerMaxStamina, ElementName=PlayerHealthComponent}" />
+                                            <TextBlock.Effect>
+                                                <DropShadowEffect RenderingBias="Quality" ShadowDepth="0" Direction="0" />
+                                            </TextBlock.Effect>
+                                        </TextBlock>
+                                    </StackPanel>
+
+
+                                    <!-- Player Health Bar-->
+                                    <StackPanel x:Name="HealthBarPanel" Orientation="Horizontal" Margin="63,29,0,0"
+                                                VerticalAlignment="Top" HorizontalAlignment="Left" Height="11"
+                                                ClipToBounds="False">
+                                        <PlayerHealthParts:HealthBar x:Name="HealthBar" RenderTransformOrigin="0.5,0.5"
+                                                                     ConstantWidth="200">
+                                            <PlayerHealthParts:HealthBar.RenderTransform>
+                                                <TransformGroup>
+                                                    <ScaleTransform />
+                                                    <SkewTransform AngleX="45" />
+                                                    <RotateTransform />
+                                                    <TranslateTransform />
+                                                </TransformGroup>
+                                            </PlayerHealthParts:HealthBar.RenderTransform>
+                                        </PlayerHealthParts:HealthBar>
+                                        <Rectangle x:Name="HealthExt" Visibility="Collapsed"
+                                                   RenderTransformOrigin="0.5,0.5" StrokeThickness="1.5">
+                                            <Rectangle.Stroke>
+                                                <LinearGradientBrush EndPoint="1,1" StartPoint="0,1">
+                                                    <GradientStop Color="#00000000" Offset="0" />
+                                                    <GradientStop Color="#FF96C31D" Offset="1" />
+                                                </LinearGradientBrush>
+                                            </Rectangle.Stroke>
+                                            <Rectangle.RenderTransform>
+                                                <TransformGroup>
+                                                    <ScaleTransform />
+                                                    <SkewTransform AngleX="45" />
+                                                    <RotateTransform />
+                                                    <TranslateTransform />
+                                                </TransformGroup>
+                                            </Rectangle.RenderTransform>
+                                            <Rectangle.Style>
+                                                <Style TargetType="Rectangle">
+                                                    <Style.Triggers>
+                                                        <Trigger Property="IsVisible" Value="True">
+                                                            <Trigger.EnterActions>
+                                                                <BeginStoryboard Name="FadeInOutAnim">
+                                                                    <Storyboard Storyboard.TargetProperty="Opacity"
+                                                                        Duration="0:0:0.8" RepeatBehavior="Forever">
+                                                                        <DoubleAnimation From="1" To="0.3"
+                                                                            Duration="0:0:0.2" AutoReverse="True" />
+                                                                    </Storyboard>
+                                                                </BeginStoryboard>
+                                                            </Trigger.EnterActions>
+                                                            <Trigger.ExitActions>
+                                                                <RemoveStoryboard BeginStoryboardName="FadeInOutAnim" />
+                                                            </Trigger.ExitActions>
+                                                        </Trigger>
+                                                    </Style.Triggers>
+                                                </Style>
+                                            </Rectangle.Style>
+                                        </Rectangle>
+                                        <TextBlock Margin="-60,-15,0,0" RenderOptions.ClearTypeHint="Enabled"
+                                                   VerticalAlignment="Top" Foreground="#FFDADADA" FontSize="14"
+                                                   Height="20" HorizontalAlignment="Left"
+                                                   FontFamily="Roboto, Segoe UI, Yu Gothic UI">
+                                            <Run
+                                                Text="{Binding PlayerCurrentHealth, ElementName=PlayerHealthComponent}" />
+                                            <Run Text="/" />
+                                            <Run Text="{Binding PlayerMaxHealth, ElementName=PlayerHealthComponent}" />
+                                            <TextBlock.Effect>
+                                                <DropShadowEffect RenderingBias="Quality" ShadowDepth="0" Direction="0" />
+                                            </TextBlock.Effect>
+                                        </TextBlock>
+                                    </StackPanel>
+                                    <Rectangle Width="3" Fill="#7FFEFEFE" Height="11"
+                                               Margin="{Binding MoxieMargin, ElementName=PlayerHealthComponent}"
+                                               Visibility="{Binding MoxieVisibility, ElementName=PlayerHealthComponent}"
+                                               VerticalAlignment="Top" HorizontalAlignment="Left" />
+
+                                    <!-- Sharpness Component -->
+                                    <Canvas Height="25" Width="78"
+                                            Visibility="{Binding ElementName=PlayerHealthComponent, Path=SharpnessVisibility}"
+                                            VerticalAlignment="Top" HorizontalAlignment="Left" Margin="70,60,0,0">
+                                        <Image
+                                            Source="pack://siteoforigin:,,,/HunterPie.Resources/UI/HUD/sharpness_background.png"
+                                            Width="78" Height="18" />
+
+                                        <StackPanel Orientation="Horizontal" ClipToBounds="False" Canvas.Top="0"
+                                                    Canvas.Left="8">
+                                            <Rectangle
+                                                Width="{Binding ElementName=PlayerHealthComponent, Path=Sharpness}"
+                                                Margin="17,-12.5,0,0" MaxWidth="52" Height="11"
+                                                Fill="{Binding ElementName=PlayerHealthComponent, Path=SharpnessColor}"
+                                                StrokeThickness="0">
+                                                <Rectangle.OpacityMask>
+                                                    <ImageBrush
+                                                        ImageSource="pack://siteoforigin:,,,/HunterPie.Resources/UI/HUD/sharpness_blade.png"
+                                                        AlignmentX="Left" ViewportUnits="Absolute"
+                                                        Viewport="0,0,49.5,11.5" />
+                                                </Rectangle.OpacityMask>
+                                            </Rectangle>
+                                            <TextBlock
+                                                Text="{Binding PlayerSharpnessLeft, ElementName=PlayerHealthComponent}"
+                                                Margin="-15,15,0,0"
+                                                Foreground="{Binding ElementName=PlayerHealthComponent, Path=SharpnessColor}"
+                                                FontFamily="Roboto" FontWeight="Bold" Width="30" TextAlignment="Center" />
+                                        </StackPanel>
+                                        <Rectangle Width="79" Height="18"
+                                                   Fill="{Binding ElementName=PlayerHealthComponent, Path=SharpnessColor}"
+                                                   StrokeThickness="0">
+                                            <Rectangle.OpacityMask>
+                                                <ImageBrush
+                                                    ImageSource="pack://siteoforigin:,,,/HunterPie.Resources/UI/HUD/sharpness_effect.png"
+                                                    AlignmentX="Left" ViewportUnits="Absolute" Viewport="0,0,77,17.5"
+                                                    Opacity="0.7" />
+                                            </Rectangle.OpacityMask>
+                                        </Rectangle>
+                                    </Canvas>
+
+
+                                    <Image
+                                        Source="pack://siteoforigin:,,,/HunterPie.Resources/UI/HUD/mr_time_background.png"
+                                        HorizontalAlignment="Left" Width="57" Height="60" VerticalAlignment="Top"
+                                        Margin="2,1,0,0" />
+                                    <Image Source="{Binding ElementName=PlayerHealthComponent, Path=DayTimeIcon}"
+                                           HorizontalAlignment="Left" Width="57" Height="60" VerticalAlignment="Top"
+                                           Margin="2,1,0,0" />
+                                    <Image Source="{Binding ElementName=PlayerHealthComponent, Path=PlayerLaurel}"
+                                           HorizontalAlignment="Left" Width="57" Height="60" VerticalAlignment="Top"
+                                           Margin="2,1,0,0" OpacityMask="#B2000000" />
+
+                                    <TextBlock
+                                        Text="{Binding ElementName=PlayerHealthComponent, Path=DesignModeDetails}"
+                                        Visibility="{Binding ElementName=PlayerHealthComponent, Path=DesignModeDetailsVisibility}"
+                                        VerticalAlignment="Top" HorizontalAlignment="Left"
+                                        Style="{StaticResource OVERLAY_DESIGN_MODE_DEBUG}" />
+                                </Grid>
+                                <Border.Style>
+                                    <!-- Kinda hacky, ngl but im kinda dumb -->
+                                    <Style TargetType="Border">
+                                        <Setter Property="BorderThickness" Value="1" />
+                                        <Style.Triggers>
+                                            <DataTrigger
+                                                Binding="{Binding ElementName=PlayerHealthComponent, Path=IsDesignModeEnabled}"
+                                                Value="True">
+                                                <Setter Property="Background">
+                                                    <Setter.Value>
+                                                        <SolidColorBrush Color="#80E6E6E6" />
+                                                    </Setter.Value>
+                                                </Setter>
+                                                <Setter Property="Cursor" Value="SizeAll" />
+                                                <Setter Property="BorderBrush" Value="#EDEDED" />
+                                            </DataTrigger>
+                                            <DataTrigger
+                                                Binding="{Binding ElementName=PlayerHealthComponent, Path=IsDesignModeEnabled}"
+                                                Value="False">
+                                                <Setter Property="Background">
+                                                    <Setter.Value>
+                                                        <SolidColorBrush Color="Transparent" />
+                                                    </Setter.Value>
+                                                </Setter>
+                                                <Setter Property="Cursor" Value="SizeAll" />
+                                                <Setter Property="BorderBrush" Value="Transparent" />
+                                            </DataTrigger>
+                                        </Style.Triggers>
+                                    </Style>
+                                </Border.Style>
+                            </Border>
+                        </ControlTemplate>
+                    </Setter.Value>
+                </Setter>
+            </DataTrigger>
+        </Style.Triggers>
     </Style>
 
     <Style x:Key="STYLE_FLATBUTTONS" TargetType="{x:Type Image}">

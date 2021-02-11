@@ -209,7 +209,8 @@ namespace HunterPie.GUI
         {
             if (InDesignMode || (WidgetHasContent && OverlayActive && WidgetActive && ((!OverlayFocusActive) || (OverlayFocusActive && OverlayIsFocused))))
             {
-                Opacity = 1;
+                if (Settings != null)
+                    Opacity = Settings.Opacity;
                 Show();
             }
             else

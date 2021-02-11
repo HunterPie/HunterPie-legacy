@@ -465,7 +465,11 @@ Gerade bei den Abnormalitäten / Statusveränderungen des Spielers gibt es mit (
   </Abnormalities>
    <!-- Client localization strings -->
   <Client>
-    <Console>
+	<TrayIcon>
+      <String ID="TRAYICON_SETTINGS" Name="Einstellungen"/>
+      <String ID="TRAYICON_CLOSE" Name="Schließen"/>
+    </TrayIcon>
+	<Console>
       <String ID="CONSOLE_CONSOLE" Name="KONSOLE"/>
       <String ID="CONSOLE_SETTINGS" Name="EINSTELLUNGEN"/>
       <String ID="CONSOLE_UPLOADBUILD" Name="BUILD HOCHLADEN"/>
@@ -483,6 +487,17 @@ Gerade bei den Abnormalitäten / Statusveränderungen des Spielers gibt es mit (
       <String ID="MESSAGE_PLUGIN_INSTALL_DESC" Name="Ziehe die module.json hierhin um ein neues Plugin zu installieren."/>
       <String ID="MESSAGE_PLUGIN_INSTALLED" Name="Plugin: {name} installiert! Starte HunterPie neu um das Plugin zu laden!"/>
       <String ID="ERROR_PLUGIN_AUTO_UPDATE" Name="Dieses Plugin unterstützt auto-update nicht. Du musst die neuen Dateien manuell herunterladen."/>
+	  <String ID="MESSAGE_INSTALLED_PLUGINS" Name="Installierte Plugins"/>
+      <String ID="MESSAGE_FRESH_PLUGINS" Name="Werden nach einem Neustart aktiviert"/>
+      <String ID="MESSAGE_AVAILABLE_PLUGINS" Name="Verfügbare Plugins"/>
+      <String ID="MESSAGE_TO_DELETE_PLUGINS" Name="Werden nach einem Neustart entfernt"/>
+      <String ID="MESSAGE_PLUGIN_SUBTITLE_ROW" Name="{downloads} | v{version} | von {author}"/>
+      <String ID="MESSAGE_PLUGIN_INCOMPATIBLE_VERSION" Name="Deine Version von HunterPie ist inkompatibel mit diesem Plugin."/>
+      <String ID="MESSAGE_REFRESH" Name="Aktualisieren" />
+      <String ID="MESSAGE_PLUGIN_DELETE" Name="Entferne Plugin" />
+      <String ID="MESSAGE_PLUGIN_RESTORE" Name="Plugin wiederherstellen" />
+      <String ID="MESSAGE_PLUGIN_FAILED" Name="Plugin Initialisierung fehlgeschlagen. Es wird nicht geladen werden bis du HunterPie neustartest." />
+      <String ID="MESSAGE_README_EMPTY" Name="Hier ist nichts..." />
       <!-- Popups -->
       <String ID="MESSAGE_QUIT" Name="Bist du sicher, dass du HunterPie beenden möchtest?"/>
       <String ID="TITLE_MISSING_PATH" Name="Monster Hunter World Pfad nicht gefunden"/>
@@ -522,6 +537,8 @@ Gerade bei den Abnormalitäten / Statusveränderungen des Spielers gibt es mit (
       <String ID="ENABLE_MINAFTERGAMEOPEN_DESC" Name="Wenn aktiv, wird HunterPie automatisch minimiert nachdem du das Spiel gestartet hast."/>
       <String ID="ENABLE_MINTOTRAY" Name="Minimiere HunterPie in die Systemleiste"/>
       <String ID="ENABLE_MINTOTRAY_DESC" Name="Wenn aktiv, wird HunterPie in die Systemleiste minimiert und läuft im Hintergrund weiter."/>
+	  <String ID="ENABLE_NATIVE" Name="Aktiviere HunterPie Native"/>
+      <String ID="ENABLE_NATIVE_DESC" Name="Wenn aktiv, sind die Features der HunterPie Native verfügbar."/>
       <String ID="ENABLE_STARTMIN" Name="Starte HunterPie minimiert"/>
       <String ID="ENABLE_STARTMIN_DESC" Name="Wenn aktiv, startet HunterPie minimiert."/>
       <String ID="ENABLE_AUTOCLOSE" Name="Schließe HunterPie wenn das Spiel beendet wird"/>
@@ -538,6 +555,11 @@ Gerade bei den Abnormalitäten / Statusveränderungen des Spielers gibt es mit (
       <String ID="STATIC_LAUNCHARGS" Name="Startargumente"/>
       <String ID="STATIC_LAUNCHARGS_NOARGS" Name="Keine Argumente"/>
       <String ID="STATIC_LAUNCHARGS_DESC" Name="Argumente die für den Start des Spiels verwendet werden sollen. Wenn du nicht weißt was du tust, lass das Feld lieber leer."/>
+      <String ID="PLUGIN_PROXY_MODE" Name="Plugin Registrierungs Proxy Modus"/>
+      <String ID="PLUGIN_PROXY_MODE_DESC" Name="Ändert das Verhalten des Plugin-Download Proxy"/>
+      <String ID="PLUGIN_PROXY_MODE_AUTO" Name="Automatisch"/>
+      <String ID="PLUGIN_PROXY_MODE_ENABLED" Name="Aktiviert"/>
+      <String ID="PLUGIN_PROXY_MODE_DISABLED" Name="Deaktiviert"/>
       <!-- Discord RPC -->
       <String ID="ENABLE_RPC" Name="Aktiviere Discord Rich Presence"/>
       <String ID="ENABLE_RPC_DESC" Name="Wenn aktiv, zeigt HunterPie deine Spiel-Aktivität in deinem Discord-Status."/>
@@ -672,6 +694,8 @@ Gerade bei den Abnormalitäten / Statusveränderungen des Spielers gibt es mit (
       <String ID="ENABLE_INITIALIZE_PLAYER_WIDGET_DESC" Name="Wenn deaktiviert, wird das Spieler Widget nicht erstellt."/>
       <String ID="ENABLE_PLAYER_WIDGET" Name="Aktiviere Spieler Widget"/>
       <String ID="ENABLE_PLAYER_WIDGET_DESC" Name="Wenn aktiv, wird das Spieler Widget angezeigt sobald es etwas zum anzeigen hat."/>
+	  <String ID="ENABLE_PLAYER_WIDGET_MINIMALISTIC_MODE" Name="Aktiviere minimalistischen Modus"/>
+      <String ID="ENABLE_PLAYER_WIDGET_MINIMALISTIC_MODE_DESC" Name="Wenn aktiv, erweitert das Spieler Widget das sich im Spiel befindliche ohne vorhandene Elemente zu duplizieren."/>
       <String ID="STATIC_PLAYER_NAME_STRING_FORMAT" Name="Namensstring Format:"/>
       <String ID="STATIC_PLAYER_NAME_STRING_FORMAT_DESC" Name="Der String der über dem Lebensbalken angezeigt wird. (Z.B. '{HR} | {MR} {Name}' wird angezeigt als 'Dein HR' | 'Dein MR' 'Dein Name')"/>
       <String ID="ENABLE_PLAYER_HIDE_IN_VILLAGES" Name="Ausblenden wenn nicht auf der Jagd."/>
@@ -826,6 +850,8 @@ Gerade bei den Abnormalitäten / Statusveränderungen des Spielers gibt es mit (
 	  <String ID="STATIC_CLASSES_SETTINGS" Name="Klassen"/>
       <String ID="STATIC_LINKS_SETTINGS" Name="Links"/>
       <String ID="STATIC_DEBUG_SETTINGS" Name="Debug"/>
+	  <String ID="ENABLE_STREAMER_MODE" Name="Aktiviere Streamer Modus"/>
+      <String ID="ENABLE_STREAMER_MODE_DESC" Name="Aktivieren des Streamer Modus macht das jeweile Widget für OBS und ähnliche Fenster-Erfassungen sichtbar. Bitte beachte, dass die Aktivierung dieser Option ebenfalls dazu fürt, dass das Fenster sichtbar ist wenn du Alt+Tab benutzt."/>
     </Settings>
     <Overlay>
       <String ID="STATIC_HARVEST_BOX_TITLE" Name="ERNTEBOX"/>

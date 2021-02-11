@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Text.RegularExpressions;
 
 namespace HunterPie.Utils
 {
@@ -22,5 +23,16 @@ namespace HunterPie.Utils
             return string.Join(" ", temp);
         }
 
+        /// <summary>
+        /// Filters style from a GMD string
+        /// </summary>
+        /// <param name="value">Text</param>
+        /// <returns>Filtered Text</returns>
+        public static string FilterStyles(this string value)
+        {
+            // STYL tag
+            Regex tags = new Regex("<[(/\\w )]+>");
+            return tags.Replace(value, string.Empty);
+        }
     }
 }

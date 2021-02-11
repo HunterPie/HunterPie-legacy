@@ -61,6 +61,7 @@ namespace HunterPie.Core.Settings
         public int[] Position { get; set; } = new int[] { 20, 20 };
         public float Opacity { get; set; } = 1;
         public bool StreamerMode { get; set; } = false;
+        public bool MinimalisticMode { get; set; } = false; 
     }
 
     public class Monsterscomponent : IWidgetSettings
@@ -228,10 +229,10 @@ namespace HunterPie.Core.Settings
         public BowHelper BowHelper { get; set; } = new BowHelper();
         public HeavyBowgunHelper HeavyBowgunHelper { get; set; } = new HeavyBowgunHelper();
         public LightBowgunHelper LightBowgunHelper { get; set; } = new LightBowgunHelper();
-        public bool Enabled { get; set; }
+        public bool Enabled { get; set; } = true;
         public int[] Position { get; set; }
-        public float Opacity { get; set; }
-        public double Scale { get; set; }
+        public float Opacity { get; set; } = 1;
+        public double Scale { get; set; } = 1;
         public bool StreamerMode { get; set; }
     }
 
