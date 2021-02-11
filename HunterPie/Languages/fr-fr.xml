@@ -164,7 +164,7 @@
     <Part ID="MONSTER_PART_SILVER_SPIKES_RWING" Name="Pics d&apos;Argent (Aile Droite)"/>
     <!-- Special parts -->
     <Part ID="MONSTER_PART_KNOCKDOWN" Name="À terre"/>
-    <Part ID="MONSTER_PART_BIG_FLINCH" Name="Big Flinch"/>
+    <Part ID="MONSTER_PART_BIG_FLINCH" Name="Tir de mitraille"/>
     <Part ID="MONSTER_PART_RAGE" Name="Rage Suppressible"/>
     <Part ID="MONSTER_PART_COUNTERATTACK" Name="Contre-attaque"/>
     <Part ID="MONSTER_PART_CHARGE" Name="Charge Suppressible"/>
@@ -205,7 +205,7 @@
     <Ailment ID="STATUS_ELDERSEAL" Name="Sceaux des anciens"/>
     <Ailment ID="STATUS_SMOKING" Name="Enfumé"/>
     <Ailment ID="STATUS_FELYNETRAP" Name="Piège Palico"/>
-    <Ailment ID="STATUS_CLAW" Name="Flinch grappin"/>
+    <Ailment ID="STATUS_CLAW" Name="Coup de griffe"/>
     <Ailment ID="STATUS_VIOLATED" Name="Blessé"/>
     <Ailment ID="STATUS_BANISHMENT_BALL" Name="Banishing Ball"/>
     <Ailment ID="STATUS_ENRAGE" Name="Enragé"/>
@@ -670,7 +670,7 @@
       <String ID="ENABLE_MONSTER_STATUS_TRAP" Name="Activation des Pièges"/>
       <String ID="ENABLE_MONSTER_STATUS_ELDERSEAL" Name="Activation de Sceaux des anciens"/>
       <String ID="ENABLE_MONSTER_STATUS_SMOKING" Name="Activation d'Enfumé"/>
-      <String ID="ENABLE_MONSTER_STATUS_CLAW" Name="Activation de Flinch grappin"/>
+      <String ID="ENABLE_MONSTER_STATUS_CLAW" Name="Activation de Coup de griffe"/>
       <String ID="ENABLE_MONSTER_STATUS_MISC" Name="Activation des Potions"/>
       <String ID="ENABLE_MONSTER_STATUS_ENRAGE" Name="Activation d'Enragé"/>
       <!-- Player Widget -->
