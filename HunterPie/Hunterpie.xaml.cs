@@ -759,7 +759,15 @@ namespace HunterPie
                     await Client.Initialize();
                 }
                 else
-                    Debugger.Error("Failed to inject HunterPie.Native.dll");
+                {
+                    if (ConfigManager.Settings.HunterPie.EnableNativeFunctions)
+                        Debugger.Error("Failed to inject HunterPie.Native.dll");
+                    else
+                    {
+                        Debugger.Warn("Skipped HunterPie.Native.dll load");
+                    }
+                    return;
+                }
             }
             await Dispatcher.InvokeAsync(() =>
             {
