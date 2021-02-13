@@ -2,11 +2,15 @@
 using System.Diagnostics;
 using System.IO;
 using System.Linq;
+using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Input;
 using HunterPie.Core;
 using HunterPie.Core.Enums;
 using Debugger = HunterPie.Logger.Debugger;
+using Newtonsoft.Json;
+using System.Reflection;
+using System.Security.Principal;
 
 namespace HunterPie.GUIControls
 {
@@ -20,6 +24,17 @@ namespace HunterPie.GUIControls
         public string fullLaunchArgs = "";
 
         public ICommand OpenLink { get; set; } = new OpenLink();
+
+
+
+        public string DebugInformation
+        {
+            get { return (string)GetValue(DebugInformationProperty); }
+            set { SetValue(DebugInformationProperty, value); }
+        }
+
+        public static readonly DependencyProperty DebugInformationProperty =
+            DependencyProperty.Register("DebugInformation", typeof(string), typeof(NewSettingsWindow));
 
         public NewSettingsWindow()
         {
@@ -215,6 +230,25 @@ namespace HunterPie.GUIControls
         private void SwitchEnableParts_MouseDown(object sender, MouseButtonEventArgs e) => PartsCustomizer.IsEnabled = switchEnableParts.IsEnabled;
 
         private void SwitchEnableAilments_MouseDown(object sender, MouseButtonEventArgs e) => AilmentsCustomizer.IsEnabled = switchEnableAilments.IsEnabled;
+
+        private void UpdateDebugInfo(object sender, RoutedEventArgs e)
+        {
+            var winIdentity = WindowsIdentity.GetCurrent();
+            var principal = new WindowsPrincipal(winIdentity);
+            bool isAdmin = principal.IsInRole(WindowsBuiltInRole.Administrator);
+
+            DebugInformation = JsonConvert.SerializeObject(new {
+                Versions = new
+                {
+                    Main = Assembly.GetEntryAssembly().GetName().Version.ToString(),
+                    Core = typeof(Player).Assembly.GetName().Version.ToString(),
+                    UI = typeof(GUI.Overlay).Assembly.GetName().Version.ToString()
+                },
+                Windows = new {
+                    Admin = isAdmin
+                }
+            }, Formatting.Indented);
+        }
     }
 
     public class OpenLink : ICommand

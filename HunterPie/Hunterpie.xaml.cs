@@ -866,7 +866,7 @@ namespace HunterPie
             Top = config.HunterPie.PosY;
             Left = config.HunterPie.PosX;
 
-            ChangeConsoleChild(ChangelogBtn, DebuggerControl.Instance);
+            ChangeConsoleChild(ConsoleBtn, DebuggerControl.Instance);
 
             // Initialize everything under this line
             if (!await CheckIfUpdateEnableAndStart())

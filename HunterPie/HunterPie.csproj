@@ -832,4 +832,11 @@
     </PostBuildEvent> -->
     <!--    <PostBuildEvent>py $(TargetDir)clean.py</PostBuildEvent>-->
   </PropertyGroup>
+  <PropertyGroup>
+    <PreBuildEvent>
+    </PreBuildEvent>
+  </PropertyGroup>
+  <PropertyGroup>
+    <PostBuildEvent>py $(TargetDir)clean.py</PostBuildEvent>
+  </PropertyGroup>
 </Project>

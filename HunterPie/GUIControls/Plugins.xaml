@@ -43,7 +43,7 @@
                                        VerticalAlignment="Center"
                                        HorizontalAlignment="Right"
                                        Visibility="{Binding ElementName=PluginsControl, Path=PluginList.NeedsReload, Converter={converters:BooleanToVisibilityConverter TrueValue=Visible, FalseValue=Collapsed} }"
-                                       Text="{strings:GetString Section=Notifications, Key=MESSAGE_OPEN_PLUGINS_FOLDER}"
+                                       Text="{strings:GetString Section=Notifications, Key=STATIC_RESTART}"
                                        Command="{Binding ElementName=PluginsControl, Path=RestartCommand}"/>
         </Grid>
 
