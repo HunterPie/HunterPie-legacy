@@ -8,6 +8,7 @@
              xmlns:markdig="clr-namespace:Markdig.Wpf;assembly=Markdig.Wpf"
              xmlns:converters="clr-namespace:HunterPie.UI.Infrastructure.Converters;assembly=HunterPie.UI"
              xmlns:customControls="clr-namespace:HunterPie.GUIControls.Custom_Controls;assembly=HunterPie.UI"
+             xmlns:strings="clr-namespace:HunterPie.Infrastructure.Strings;assembly=HunterPie.UI"
              mc:Ignorable="d"
              d:DataContext="{d:DesignInstance plugins:PluginListViewModel, IsDesignTimeCreatable=True}"
              d:DesignHeight="450" d:DesignWidth="800">
@@ -27,34 +28,37 @@
                 <StackPanel Orientation="Vertical" >
 
                     <!-- Installed plugins -->
-                    <local:PluginListCategoryControl IsBusy="{Binding IsLoadingLocalPlugins}"
-                                                     Title="{Binding Source={StaticResource Localization}, XPath='/Strings/Client/Console/String[@ID=\'MESSAGE_INSTALLED_PLUGINS\']/@Name'}"
-                                                     Collection="{Binding InstalledPlugins}"
-                                                     SelectedPlugin="{Binding SelectedInstalledPlugin, Mode=TwoWay}">
-                    </local:PluginListCategoryControl>
+                    <local:PluginListCategoryControl
+                        IsBusy="{Binding IsLoadingLocalPlugins}"
+                        Collection="{Binding InstalledPlugins}"
+                        Visibility="{Binding InstalledPlugins.Count, Converter={converters:LengthToVisibilityConverter WhenEmpty=Collapsed, WhenValues=Visible}}"
+                        SelectedPlugin="{Binding SelectedInstalledPlugin, Mode=TwoWay}"
+                        ErrorMessage=""
+                        Title="{strings:GetString MESSAGE_INSTALLED_PLUGINS}" />
 
                     <!-- Waiting for reload plugins -->
-                    <local:PluginListCategoryControl Title="{Binding Source={StaticResource Localization}, XPath='/Strings/Client/Console/String[@ID=\'MESSAGE_FRESH_PLUGINS\']/@Name'}"
-                                                     Collection="{Binding FreshPlugins}"
-                                                     Visibility="{Binding FreshPlugins.Count, Converter={converters:LengthToVisibilityConverter WhenEmpty=Collapsed, WhenValues=Visible}}"
-                                                     SelectedPlugin="{Binding SelectedFreshPlugin, Mode=TwoWay}">
-                    </local:PluginListCategoryControl>
-
+                    <local:PluginListCategoryControl
+                        Collection="{Binding FreshPlugins}"
+                        Visibility="{Binding FreshPlugins.Count, Converter={converters:LengthToVisibilityConverter WhenEmpty=Collapsed, WhenValues=Visible}}"
+                        SelectedPlugin="{Binding SelectedFreshPlugin, Mode=TwoWay}"
+                        ErrorMessage=""
+                        Title="{strings:GetString MESSAGE_FRESH_PLUGINS}" />
 
                     <!-- Waiting for remove plugins -->
-                    <local:PluginListCategoryControl Title="{Binding Source={StaticResource Localization}, XPath='/Strings/Client/Console/String[@ID=\'MESSAGE_TO_DELETE_PLUGINS\']/@Name'}"
-                                                     Collection="{Binding MarkedForRemovalPlugins}"
-                                                     Visibility="{Binding MarkedForRemovalPlugins.Count, Converter={converters:LengthToVisibilityConverter WhenEmpty=Collapsed, WhenValues=Visible}}"
-                                                     SelectedPlugin="{Binding SelectedMarkedForRemovalPlugin, Mode=TwoWay}">
-                    </local:PluginListCategoryControl>
-
+                    <local:PluginListCategoryControl
+                        Collection="{Binding MarkedForRemovalPlugins}"
+                        Visibility="{Binding MarkedForRemovalPlugins.Count, Converter={converters:LengthToVisibilityConverter WhenEmpty=Collapsed, WhenValues=Visible}}"
+                        SelectedPlugin="{Binding SelectedMarkedForRemovalPlugin, Mode=TwoWay}"
+                        ErrorMessage=""
+                        Title="{strings:GetString MESSAGE_TO_DELETE_PLUGINS}" />
 
                     <!-- Available plugins -->
-                    <local:PluginListCategoryControl IsBusy="{Binding IsLoadingPlugins}"
-                                                     Title="{Binding Source={StaticResource Localization}, XPath='/Strings/Client/Console/String[@ID=\'MESSAGE_AVAILABLE_PLUGINS\']/@Name'}"
-                                                     Collection="{Binding AvailablePlugins}"
-                                                     SelectedPlugin="{Binding SelectedAvailablePlugin, Mode=TwoWay}">
-                    </local:PluginListCategoryControl>
+                    <local:PluginListCategoryControl
+                        IsBusy="{Binding IsLoadingPlugins}"
+                        Collection="{Binding AvailablePlugins}"
+                        SelectedPlugin="{Binding SelectedAvailablePlugin, Mode=TwoWay}"
+                        ErrorMessage="{Binding PluginLoadingError}"
+                        Title="{strings:GetString MESSAGE_AVAILABLE_PLUGINS}" />
 
                 </StackPanel>
             </ScrollViewer>

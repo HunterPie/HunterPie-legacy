@@ -6,6 +6,7 @@
              xmlns:customControls="clr-namespace:HunterPie.GUIControls.Custom_Controls;assembly=HunterPie.UI"
              xmlns:guiControls="clr-namespace:HunterPie.GUIControls"
              xmlns:converters="clr-namespace:HunterPie.UI.Infrastructure.Converters;assembly=HunterPie.UI"
+             xmlns:strings="clr-namespace:HunterPie.Infrastructure.Strings;assembly=HunterPie.UI"
              mc:Ignorable="d"
              x:Name="PluginsControl"
              Margin="-1,0,0,0"
@@ -23,15 +24,17 @@
             </Grid.ColumnDefinitions>
 
             <StackPanel Orientation="Horizontal" Margin="7,0,0,0">
-                <customControls:FlatButton Icon="{StaticResource ICON_LINK}"
-                                       VerticalAlignment="Center"
-                                       Text="{Binding Mode=OneTime, XPath=/Strings/Client/Console/String[@ID\=\'MESSAGE_OPEN_PLUGINS_FOLDER\']/@Name, FallbackValue='Open plugins folder'}"
-                                       Command="{Binding ElementName=PluginsControl, Path=OpenPluginsFolderCommand}"/>
+                <guiControls:SearchBar
+                    x:Name="SearchBarControl"
+                    SearchQueryUpdatedCommand="{Binding ElementName=PluginsControl, Path=PluginList.FilterCommand}" />
                 <customControls:FlatButton Icon="{StaticResource ICON_REFRESH_2}"
-                                           Margin="7,0,0,0"
-                                       VerticalAlignment="Center"
-                                       Text="{Binding Mode=OneTime, XPath=/Strings/Client/Console/String[@ID\=\'MESSAGE_REFRESH\']/@Name, FallbackValue='Refresh'}"
-                                       Command="{Binding ElementName=PluginsControl, Path=PluginList.RefreshCommand}"/>
+                                           VerticalAlignment="Center"
+                                           Text="{strings:GetString MESSAGE_REFRESH}"
+                                           Command="{Binding ElementName=PluginsControl, Path=PluginList.RefreshCommand}"/>
+                <customControls:FlatButton Icon="{StaticResource ICON_LINK}"
+                                           VerticalAlignment="Center"
+                                           Text="{strings:GetString MESSAGE_OPEN_PLUGINS_FOLDER}"
+                                           Command="{Binding ElementName=PluginsControl, Path=OpenPluginsFolderCommand}"/>
             </StackPanel>
 
 
@@ -40,7 +43,7 @@
                                        VerticalAlignment="Center"
                                        HorizontalAlignment="Right"
                                        Visibility="{Binding ElementName=PluginsControl, Path=PluginList.NeedsReload, Converter={converters:BooleanToVisibilityConverter TrueValue=Visible, FalseValue=Collapsed} }"
-                                       Text="{Binding Mode=OneTime, XPath=/Strings/Client/Notifications/String[@ID\=\'STATIC_RESTART\']/@Name, FallbackValue='Restart now'}"
+                                       Text="{strings:GetString Section=Notifications, Key=MESSAGE_OPEN_PLUGINS_FOLDER}"
                                        Command="{Binding ElementName=PluginsControl, Path=RestartCommand}"/>
         </Grid>
 

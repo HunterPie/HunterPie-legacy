@@ -7,6 +7,7 @@ using System.Threading.Tasks;
 using Newtonsoft.Json;
 using static HunterPie.Logger.Debugger;
 using HunterPie.Core.Settings;
+using HunterPie.Utils;
 
 namespace HunterPie.Core
 {
@@ -32,8 +33,6 @@ namespace HunterPie.Core
 
         public static event EventHandler<EventArgs> OnSettingsUpdate;
 
-        private static bool CanWrite = false;
-
         private static void Dispatch(EventHandler<EventArgs> e)
         {
             e?.Invoke(nameof(ConfigManager), EventArgs.Empty);
@@ -42,71 +41,80 @@ namespace HunterPie.Core
         internal static async Task Initialize()
         {
             await TryLoadSettings();
-            fileSystemWatcher.Changed += async (src, args) =>
-            {
-                if (CanWrite)
-                {
-                    await TryLoadSettings();
-                }
-                CanWrite = !CanWrite;
-            };
+            Action loadSettings = async () => await TryLoadSettings();
+            var debounceLoadSettings = loadSettings.Debounce(100);
+
+            fileSystemWatcher.Changed += (_, _) => debounceLoadSettings();
         }
 
         internal static async Task<bool> TryLoadSettings()
         {
-            string config, backup = null;
+            // if there is no config nor backup, notify user
             if (!File.Exists(AbsoluteConfigPath) && !File.Exists(AbsoluteBackupPath))
             {
-                Error("Config.json was missing. Creating a new one.");
-                await TryCreateSettingsAsync();
+                Log("config.json is missing. Creating a new one...");
             }
 
             try
             {
-                if (File.Exists(AbsoluteBackupPath))
-                    backup = await ReadSerializedSettingsAsync(AbsoluteBackupPath);
-                config = await ReadSerializedSettingsAsync(AbsoluteConfigPath);
+                fileSystemWatcher.EnableRaisingEvents = false;
+                var loadingFailed = false;
+                var createConfig = false;
 
-                if (string.IsNullOrEmpty(config) && string.IsNullOrEmpty(backup))
-                    throw new NullReferenceException("Config was empty");
+                // try load config if present...
+                if (File.Exists(AbsoluteConfigPath))
+                {
+                    Settings = await ReadSettingsAsync(AbsoluteConfigPath);
+                    if (Settings == null)
+                    {
+                        loadingFailed = true;
+                    }
+                }
 
-                Settings = JsonConvert.DeserializeObject<Config>(config ?? backup);
+                // ...otherwise use one from backup
+                if (Settings == null && File.Exists(AbsoluteBackupPath))
+                {
+                    Settings = await ReadSettingsAsync(AbsoluteBackupPath);
+                    createConfig = true;
+                }
 
-                if (string.IsNullOrEmpty(config))
+                // ...if backup restore failed, use default settings
+                if (Settings == null)
+                {
+                    Settings = Default;
+                    createConfig = true;
+                }
+
+                // if cannot load config from both sources, throw error
+                if (Settings == null)
+                    throw new NullReferenceException("Cannot read config");
+
+                // at this point we're sure that we have at least some config, notify user
+                // that config restore was done
+                if (loadingFailed || createConfig)
+                {
                     await TrySaveSettingsAsync();
+                    Log(loadingFailed ? "Config restored from backup" : "Config created");
+                }
 
                 Dispatch(OnSettingsUpdate);
 
                 return true;
-            } catch(Exception err)
+            }
+            catch (Exception err)
             {
                 Error(err);
                 return false;
+            }
+            finally
+            {
+                fileSystemWatcher.EnableRaisingEvents = true;
             }
         }
 
         internal static void TriggerSettingsEvent()
         {
             Dispatch(OnSettingsUpdate);
-        }
-
-        private static async Task<bool> TryCreateSettingsAsync()
-        {
-            string serialized = JsonConvert.SerializeObject(Default, Formatting.Indented);
-            byte[] buffer = Encoding.UTF8.GetBytes(serialized);
-            try
-            {
-                using (FileStream stream = File.OpenWrite(AbsoluteBackupPath))
-                {
-                    stream.SetLength(0);
-                    await stream.WriteAsync(buffer, 0, buffer.Length);
-                }
-            } catch(Exception err)
-            {
-                Error(err);
-                return false;
-            }
-            return true;
         }
 
         public static async Task<bool> TrySaveSettingsAsync()
@@ -153,7 +161,7 @@ namespace HunterPie.Core
             return true;
         }
 
-        private static async Task<string> ReadSerializedSettingsAsync(string path)
+        private static async Task<Config> ReadSettingsAsync(string path)
         {
             try
             {
@@ -167,7 +175,7 @@ namespace HunterPie.Core
                     if (string.IsNullOrEmpty(str) || str[0] == '\x00' || str == "null")
                         throw new Exception("Config was empty");
 
-                    return str;
+                    return JsonConvert.DeserializeObject<Config>(str);
                 }
             } catch(Exception err)
             {

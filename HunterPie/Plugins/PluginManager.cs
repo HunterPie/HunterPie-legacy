@@ -102,9 +102,14 @@ namespace HunterPie.Plugins
         /// <summary>
         /// Returns paths to all valid module directories.
         /// </summary>
-        private static IEnumerable<string> IterateModules() {
-
-            string[] modules = Directory.GetDirectories(Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "Modules"));
+        private static IEnumerable<string> IterateModules()
+        {
+            var modulesDirPath = Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "Modules");
+            if (!Directory.Exists(modulesDirPath))
+            {
+                Directory.CreateDirectory(modulesDirPath);
+            }
+            string[] modules = Directory.GetDirectories(modulesDirPath);
             foreach (string module in modules)
             {
                 // Skip modules without Module.json
@@ -419,5 +424,16 @@ namespace HunterPie.Plugins
         }
 
         public static bool IsFailed(string pluginName) => failedPlugins.Contains(pluginName);
+
+        public static DateTime? GetInstallationTime(string pluginName)
+        {
+            var moduleJsonPath = Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "Modules", pluginName, "module.json");
+            if (File.Exists(moduleJsonPath))
+            {
+                return File.GetCreationTime(moduleJsonPath);
+            }
+
+            return null;
+        }
     }
 }

@@ -6,9 +6,10 @@
              xmlns:customControls="clr-namespace:HunterPie.GUIControls.Custom_Controls;assembly=HunterPie.UI"
              xmlns:plugins="clr-namespace:HunterPie.Plugins"
              xmlns:converters="clr-namespace:HunterPie.UI.Infrastructure.Converters;assembly=HunterPie.UI"
+             xmlns:strings="clr-namespace:HunterPie.Infrastructure.Strings;assembly=HunterPie.UI"
              mc:Ignorable="d"
              d:DataContext="{d:DesignInstance plugins:IPluginViewModel, IsDesignTimeCreatable=False}"
-             d:DesignHeight="450" d:DesignWidth="800">
+             d:DesignWidth="350">
     <Grid>
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="Auto"/>
@@ -41,15 +42,16 @@
             <!--remove-->
             <customControls:FlatButton Icon="{StaticResource ICON_REMOVE}" Width="30"
                                        Visibility="{Binding CanDelete, Converter={converters:BooleanToVisibilityConverter FalseValue=Collapsed}}"
-                                       Command="{Binding DeleteCommand}"
-                                       ToolTip="{Binding Mode=OneTime, Source={StaticResource Localization}, XPath=/Strings/Client/Console/String[@ID\=\'MESSAGE_PLUGIN_DELETE\']/@Name, FallbackValue='Delete plugin'}"
-            />
+                                       ToolTip="{strings:GetString MESSAGE_PLUGIN_DELETE}"
+                                       Command="{Binding DeleteCommand}">
+            </customControls:FlatButton>
 
             <!--restore-->
             <customControls:FlatButton Icon="{StaticResource ICON_UNDO}" Width="30"
                                        Visibility="{Binding CanRestore, Converter={converters:BooleanToVisibilityConverter FalseValue=Collapsed}}"
-                                       Command="{Binding RestoreCommand}"
-                                       ToolTip="{Binding Mode=OneTime, Source={StaticResource Localization}, XPath=/Strings/Client/Console/String[@ID\=\'MESSAGE_PLUGIN_RESTORE\']/@Name, FallbackValue='Restore plugin'}"/>
+                                       ToolTip="{strings:GetString MESSAGE_PLUGIN_RESTORE}"
+                                       Command="{Binding RestoreCommand}">
+            </customControls:FlatButton>
 
             <!--download-->
             <customControls:FlatButton Icon="{StaticResource ICON_DOWNLOAD}" Width="30"
@@ -59,19 +61,11 @@
                     <Style TargetType="customControls:FlatButton">
                         <Style.Triggers>
                             <DataTrigger Binding="{Binding IsVersionOk}" Value="False">
-                                <Setter Property="ToolTip">
-                                    <Setter.Value>
-                                        <Binding Source="{StaticResource Localization}" XPath="/Strings/Client/Console/String[@ID='MESSAGE_PLUGIN_INCOMPATIBLE_VERSION']/@Name" />
-                                    </Setter.Value>
-                                </Setter>
+                                <Setter Property="ToolTip" Value="{strings:GetString MESSAGE_PLUGIN_INCOMPATIBLE_VERSION}" />
                             </DataTrigger>
 
                             <DataTrigger Binding="{Binding IsVersionOk}" Value="True">
-                                <Setter Property="ToolTip">
-                                    <Setter.Value>
-                                        <Binding Source="{StaticResource Localization}" XPath="/Strings/Client/Console/String[@ID='MESSAGE_PLUGIN_INSTALL']/@Name" />
-                                    </Setter.Value>
-                                </Setter>
+                                <Setter Property="ToolTip" Value="{strings:GetString MESSAGE_PLUGIN_INSTALL}" />
                             </DataTrigger>
                         </Style.Triggers>
                     </Style>
@@ -90,8 +84,8 @@
 
             <!-- warning -->
             <customControls:FlatButton Icon="{StaticResource ICON_WARN}" Width="30"
-                                       Visibility="{Binding IsFailed, Converter={converters:BooleanToVisibilityConverter FalseValue=Collapsed}}"
-                                       ToolTip="{Binding Mode=OneTime, Source={StaticResource Localization}, XPath='/Strings/Client/Console/String[@ID\=\'MESSAGE_PLUGIN_FAILED\']/@Name', FallbackValue='Plugin initialization failed.'}"/>
+                                       ToolTip="{strings:GetString MESSAGE_PLUGIN_FAILED}"
+                                       Visibility="{Binding IsFailed, Converter={converters:BooleanToVisibilityConverter FalseValue=Collapsed}}"/>
 
 
             <!--enable-->

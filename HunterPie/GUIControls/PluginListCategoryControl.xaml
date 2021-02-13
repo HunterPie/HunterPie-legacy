@@ -7,8 +7,7 @@
              xmlns:customControls="clr-namespace:HunterPie.GUIControls.Custom_Controls;assembly=HunterPie.UI"
              xmlns:converters="clr-namespace:HunterPie.UI.Infrastructure.Converters;assembly=HunterPie.UI"
              x:Name="PluginsList"
-             mc:Ignorable="d"
-             d:DesignHeight="450" d:DesignWidth="800">
+             mc:Ignorable="d">
     <Grid>
         <Grid.RowDefinitions>
             <RowDefinition/>
@@ -16,8 +15,8 @@
         </Grid.RowDefinitions>
         <StackPanel Orientation="Horizontal">
             <TextBlock TextWrapping="Wrap" FontSize="13" FontFamily="Roboto, Segoe UI" Foreground="WhiteSmoke" Margin="10">
-                <Run Text="{Binding Title, ElementName=PluginsList}"/>
-                <Run Text="{Binding Mode=OneWay, StringFormat=({0}), Path=Collection.Count, ElementName=PluginsList}"/>
+                <Run Text="{Binding Title, ElementName=PluginsList, TargetNullValue='Plugins'}" />
+                <Run Text="{Binding Mode=OneWay, Path=Header, ElementName=PluginsList}"/>
             </TextBlock>
 
             <customControls:BusyIndicator Height="17" Width="17"
@@ -30,7 +29,8 @@
             <ListView ScrollViewer.HorizontalScrollBarVisibility="Disabled" HorizontalContentAlignment="Stretch" Background="Transparent" BorderBrush="Transparent"
                       PreviewMouseWheel="RouteMouseWheelToParent"
                       SelectedItem="{Binding SelectedPlugin, ElementName=PluginsList}"
-                      ItemsSource="{Binding Collection, ElementName=PluginsList}">
+                      Visibility="{Binding Collection.Count, ElementName=PluginsList, Converter={converters:LengthToVisibilityConverter}}"
+                      ItemsSource="{Binding CollectionView, ElementName=PluginsList}" >
                 <ListView.ItemTemplate>
                     <DataTemplate>
                         <local:PluginListEntry DataContext="{Binding}" />
@@ -38,7 +38,10 @@
                 </ListView.ItemTemplate>
             </ListView>
 
-            <TextBlock IsHitTestVisible="False" Margin="20,0,0,0" Foreground="IndianRed" Text="{Binding ErrorMessage, ElementName=PluginsList}" />
+            <TextBlock IsHitTestVisible="False" Margin="20,0,0,0" Foreground="IndianRed"
+                       Visibility="{Binding ErrorMessage,
+                ElementName=PluginsList, Converter={converters:StringPresenceToVisibilityConverter}, UpdateSourceTrigger=PropertyChanged}"
+                       Text="{Binding ErrorMessage, ElementName=PluginsList}" />
         </Grid>
     </Grid>
 </UserControl>
