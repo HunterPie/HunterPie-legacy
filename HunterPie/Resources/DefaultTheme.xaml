@@ -631,8 +631,11 @@
 
     <Style TargetType="{x:Type TextBox}">
         <Setter Property="CaretBrush" Value="{StaticResource BUTTON_CLOSEWINDOW_BACKGROUND}"/>
+        <Setter Property="Background" Value="Transparent"/>
+        <Setter Property="Foreground" Value="#ffbfbfbf"/>
+        <Setter Property="BorderThickness" Value="0,0,0,1"/>
     </Style>
-    
+
     <SolidColorBrush x:Key="Button.Static.Background" Color="#FFDDDDDD"/>
     <SolidColorBrush x:Key="Button.Static.Border" Color="#FF707070"/>
     <SolidColorBrush x:Key="Button.MouseOver.Background" Color="#FFBEE6FD"/>

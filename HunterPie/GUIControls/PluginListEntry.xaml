@@ -90,7 +90,7 @@
 
             <!--enable-->
             <customControls:Switcher IsEnabled="{Binding IsEnabled}"
-                                     Margin="0,4,0,0"
+                                     Margin="0,0,0,2"
                                      ToggleCommand="{Binding ToggleCommand}"
                                      Visibility="{Binding CanToggle, Converter={converters:BooleanToVisibilityConverter FalseValue=Collapsed}}"
                                      Width="53" HorizontalAlignment="Right" VerticalAlignment="Center"

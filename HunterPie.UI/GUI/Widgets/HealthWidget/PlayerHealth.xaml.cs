@@ -217,7 +217,7 @@ namespace HunterPie.GUI.Widgets.HealthWidget
             IsMinimalisticMode = ConfigManager.Settings.Overlay.PlayerHealthComponent.MinimalisticMode;
             gContext = ctx;
             InitializeComponent();
-            
+
         }
 
         public override void EnterWidgetDesignMode()
@@ -566,6 +566,11 @@ namespace HunterPie.GUI.Widgets.HealthWidget
 
         private void OnAilmentUpdate(object source, PlayerAilmentEventArgs args)
         {
+            if (ConstantAilment == null)
+            {
+                // Minimalistic widget might not have it
+                return;
+            }
             Dispatcher.BeginInvoke(DispatcherPriority.Render, new Action(() =>
             {
                 if (args.AilmentType == PlayerAilment.None)

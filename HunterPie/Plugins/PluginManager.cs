@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using Stopwatch = System.Diagnostics.Stopwatch;
 using System.IO;
 using System.Linq;
@@ -23,6 +24,8 @@ using Microsoft.CodeAnalysis.CSharp;
 using Microsoft.CodeAnalysis.Text;
 using System.Threading.Tasks;
 using HunterPie.GUI;
+using HunterPie.Settings;
+using Application = System.Windows.Application;
 
 namespace HunterPie.Plugins
 {
@@ -177,17 +180,53 @@ namespace HunterPie.Plugins
                 AppDomain.CurrentDomain.Load(AssemblyName.GetAssemblyName(Path.Combine(module, required)));
             }
 
-            Assembly plugin =
-                AppDomain.CurrentDomain.Load(
-                    AssemblyName.GetAssemblyName(Path.Combine(module, $"{modInformation.Name}.dll")));
-            IEnumerable<Type> entries = plugin.ExportedTypes.Where(exp => exp.GetMethod("Initialize") != null);
+            var moduleAssembly = AppDomain.CurrentDomain.Load(
+                AssemblyName.GetAssemblyName(Path.Combine(module, $"{modInformation.Name}.dll"))
+            );
+            var pluginType = moduleAssembly.ExportedTypes.FirstOrDefault(exp => exp.GetMethod("Initialize") != null);
 
-            if (entries.Any())
+            if (pluginType != null)
             {
-                dynamic mod = plugin.CreateInstance(entries.First().ToString());
-                packages.Add(new PluginPackage
+                var plugin = (IPlugin)moduleAssembly.CreateInstance(pluginType.FullName);
+                // making sure that name is matching modInformation, e.g. if plugin dev forgot to populate this value
+                plugin.Name = modInformation.Name;
+
+                var package = new PluginPackage
                 {
-                    plugin = mod, information = modInformation, settings = modSettings, path = module
+                    plugin = plugin, information = modInformation, settings = modSettings, path = module
+                };
+                packages.Add(package);
+
+                // if plugin is enabled, adding it's settings
+                if (modSettings.IsEnabled)
+                {
+                    AddPackageSettings(package);
+                }
+            }
+        }
+
+        public static ObservableCollection<ISettingsTab> PluginSettingsTabs { get; } = new();
+
+        public static void AddPackageSettings(PluginPackage package)
+        {
+            // ReSharper disable once SuspiciousTypeConversion.Global
+            if (package.plugin is ISettingsOwner settingsOwner)
+            {
+                Application.Current.Dispatcher.Invoke(() =>
+                {
+                    try
+                    {
+                        var builder = new SettingsBuilder(package);
+                        var tabs = settingsOwner.GetSettings(builder);
+                        foreach (var tab in tabs)
+                        {
+                            PluginSettingsTabs.Add(tab);
+                        }
+                    }
+                    catch (Exception ex)
+                    {
+                        Debugger.Error(ex);
+                    }
                 });
             }
         }
@@ -197,8 +236,38 @@ namespace HunterPie.Plugins
             foreach (PluginPackage package in packages)
             {
                 UnloadPlugin(package.plugin);
+                RemoveSettingsForModule(package.information.Name);
             }
             Debugger.Module("Unloaded all modules.");
+        }
+
+        /// <summary>
+        /// Remove all settings related to specified owner
+        /// </summary>
+        /// <param name="moduleName"></param>
+        public static void RemoveSettingsForModule(string moduleName)
+        {
+            for (var i = PluginSettingsTabs.Count - 1; i >= 0; i--)
+            {
+                var tab = PluginSettingsTabs[i];
+                if (tab.OwnerName == moduleName)
+                {
+                    PluginSettingsTabs.RemoveAt(i);
+
+                    // ReSharper disable once SuspiciousTypeConversion.Global
+                    if (tab.Settings is IDisposable disposable)
+                    {
+                        try
+                        {
+                            disposable.Dispose();
+                        }
+                        catch (Exception ex)
+                        {
+                            Debugger.Error($"Error on plugin settings disposal for '{tab.OwnerName}' plugin: {ex}");
+                        }
+                    }
+                }
+            }
         }
 
         public bool CompilePlugin(string pluginPath, PluginInformation information)
@@ -305,6 +374,10 @@ namespace HunterPie.Plugins
         /// <returns>True if the plugin was unloaded successfully, false otherwise</returns>
         public static bool UnloadPlugin(IPlugin plugin)
         {
+            // Unload module settings even if game isn't running
+            var package = packages.First(p => p.plugin == plugin);
+            RemoveSettingsForModule(package.information.Name);
+
             if (ctx is null)
                 return true;
 
@@ -333,8 +406,12 @@ namespace HunterPie.Plugins
         /// <returns>True if it was loaded successfully, false if not</returns>
         public static bool LoadPlugin(IPlugin plugin)
         {
-            if (ctx == null) return false;
-            var name = packages.FirstOrDefault(p => p.plugin == plugin).information?.Name;
+            PluginPackage package = packages.FirstOrDefault(p => p.plugin == plugin);
+            AddPackageSettings(package);
+
+            if (ctx == null)
+                return false;
+            var name = package.information?.Name;
             try
             {
                 plugin.Initialize(ctx);

@@ -81,6 +81,12 @@
     <Compile Include="GUIControls\Custom Controls\ColorPicker.xaml.cs">
       <DependentUpon>ColorPicker.xaml</DependentUpon>
     </Compile>
+    <Compile Include="GUIControls\Custom Controls\ComboBox.xaml.cs">
+      <DependentUpon>ComboBox.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="GUIControls\Custom Controls\FileSelect.xaml.cs">
+      <DependentUpon>FileSelect.xaml</DependentUpon>
+    </Compile>
     <Compile Include="GUIControls\Custom Controls\FlatButton.xaml.cs">
       <DependentUpon>FlatButton.xaml</DependentUpon>
     </Compile>
@@ -102,6 +108,9 @@
     <Compile Include="GUIControls\Custom Controls\Switcher.xaml.cs">
       <DependentUpon>Switcher.xaml</DependentUpon>
     </Compile>
+    <Compile Include="GUIControls\Custom Controls\TextInput.xaml.cs">
+      <DependentUpon>TextInput.xaml</DependentUpon>
+    </Compile>
     <Compile Include="GUIControls\Custom Controls\WeaknessDisplay.xaml.cs">
       <DependentUpon>WeaknessDisplay.xaml</DependentUpon>
     </Compile>
@@ -113,6 +122,9 @@
     </Compile>
     <Compile Include="GUIControls\Settings.xaml.cs">
       <DependentUpon>Settings.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="GUIControls\SettingsItem.xaml.cs">
+      <DependentUpon>SettingsItem.xaml</DependentUpon>
     </Compile>
     <Compile Include="GUIControls\TrayIcon.cs" />
     <Compile Include="GUI\Helpers\Arc.cs" />
@@ -268,6 +280,14 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
+    <Page Include="GUIControls\Custom Controls\ComboBox.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="GUIControls\Custom Controls\FileSelect.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="GUIControls\Custom Controls\FlatButton.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -296,6 +316,10 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
+    <Page Include="GUIControls\Custom Controls\TextInput.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="GUIControls\Custom Controls\WeaknessDisplay.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
@@ -312,6 +336,7 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
+    <Page Include="GUIControls\SettingsItem.xaml" />
     <Page Include="GUI\Widgets\Abnormality Widget\AbnormalityContainer.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>

@@ -26,4 +26,25 @@ namespace HunterPie.Infrastructure.Strings
             return GStrings.GetLocalizationByXPath($"/{Section}/String[@ID='{Key}']");
         }
     }
+
+    [MarkupExtensionReturnType(typeof(string))]
+    public class Settings : MarkupExtension
+    {
+        public string Key { get; set; }
+
+        public Settings()
+        {
+        }
+
+        public Settings(string key)
+        {
+            Key = key;
+        }
+
+        public override object ProvideValue(IServiceProvider serviceProvider)
+        {
+            // //Strings/Client/Settings/String[@ID='{Key}']/@Name
+            return GStrings.GetLocalizationByXPath($"/Settings/String[@ID='{Key}']");
+        }
+    }
 }

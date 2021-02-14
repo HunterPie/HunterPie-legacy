@@ -218,6 +218,13 @@
       <DependentUpon>Settings.settings</DependentUpon>
       <DesignTimeSharedInput>True</DesignTimeSharedInput>
     </Compile>
+    <Compile Include="Settings\ISettings.cs" />
+    <Compile Include="Settings\ISettingsOwner.cs" />
+    <Compile Include="Settings\ISettingsBuilder.cs" />
+    <Compile Include="Settings\ISettingsTab.cs" />
+    <Compile Include="Settings\SettingsBuilder.cs" />
+    <Compile Include="Settings\SettingsBuilderExtensions.cs" />
+    <Compile Include="Settings\SettingsTab.cs" />
     <Compile Include="Utils\DesignUtils.cs" />
     <Compile Include="Utils\DictionaryExtensions.cs" />
     <Compile Include="Utils\FunctionExtensions.cs" />
@@ -237,6 +244,5 @@
       <Version>12.0.3</Version>
     </PackageReference>
   </ItemGroup>
-  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

@@ -39,7 +39,7 @@ using ConfigManager = HunterPie.Core.ConfigManager;
 using HunterPie.Core.Settings;
 using HunterPie.UI.Infrastructure;
 using Overlay = HunterPie.GUI.Overlay;
-using HunterPie.Utils;
+using SettingsControl = HunterPie.GUIControls.Settings;
 
 namespace HunterPie
 {
@@ -405,8 +405,8 @@ namespace HunterPie
             WindowState = WindowState.Normal;
             Focus();
 
-            ChangeConsoleChild(SettingsBtn, Settings.Instance);
-            Settings.RefreshSettingsUI();
+            ChangeConsoleChild(SettingsBtn, SettingsControl.Instance);
+            SettingsControl.RefreshSettingsUI();
         }
 
         private void OnTrayIconExitClick(object sender, EventArgs e) => Close();
@@ -590,7 +590,7 @@ namespace HunterPie
                     };
                     NotificationsPanel.Children.Add(notification);
                 }
-                Settings.RefreshSettingsUI();
+                SettingsControl.RefreshSettingsUI();
             }));
         }
 
@@ -890,6 +890,9 @@ namespace HunterPie
                 Show();
             }
 
+            // Initialize settings control with plugin managed setting tabs
+            SettingsControl.Instantiate(PluginManager.PluginSettingsTabs);
+
             // Initializes the Hotkey API
             Hotkey.Load();
 
@@ -979,7 +982,7 @@ namespace HunterPie
 
             Kernel.StopScanning();
 
-            Settings.Instance?.UninstallKeyboardHook();
+            SettingsControl.Instance?.UninstallKeyboardHook();
 
             // Unhook events
             if (game.Player != null)
@@ -1203,8 +1206,8 @@ namespace HunterPie
 
         private void OnSettingsButtonClick(object sender, MouseButtonEventArgs e)
         {
-            ChangeConsoleChild(sender, Settings.Instance);
-            Settings.RefreshSettingsUI();
+            ChangeConsoleChild(sender, SettingsControl.Instance);
+            SettingsControl.RefreshSettingsUI();
         }
 
         private void OnPluginsButtonClick(object sender, MouseButtonEventArgs e)
