@@ -1,0 +1,22 @@
+﻿<UserControl x:Class="HunterPie.GUIControls.Custom_Controls.ComboBox"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:local="clr-namespace:HunterPie.GUIControls.Custom_Controls"
+             xmlns:system="clr-namespace:System;assembly=mscorlib"
+             mc:Ignorable="d"
+             Name="ComboBoxCtrl"
+             Height="30"
+             Margin="10,0,10,5">
+    <DockPanel>
+        <TextBlock Foreground="WhiteSmoke" FontFamily="Segoe UI Light" DockPanel.Dock="Left" Padding="0,0,10,0"
+                   VerticalAlignment="Center"
+                   Text="{Binding Label, ElementName=ComboBoxCtrl}">
+        </TextBlock>
+        <ComboBox x:Name="combobox" DockPanel.Dock="Right" Foreground="WhiteSmoke" Style="{StaticResource ComboBoxFlatStyle}" Height="27" HorizontalContentAlignment="Stretch"
+                  SelectedIndex="{Binding SelectedIndex, ElementName=ComboBoxCtrl}" 
+                  SelectedItem="{Binding SelectedItem, ElementName=ComboBoxCtrl}"
+                  ItemsSource="{Binding ItemsSource, ElementName=ComboBoxCtrl, Mode=OneWay}"/>
+    </DockPanel>
+</UserControl>

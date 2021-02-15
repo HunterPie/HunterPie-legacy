@@ -1,0 +1,32 @@
+﻿<UserControl x:Class="HunterPie.GUIControls.Custom_Controls.FileSelect"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:local="clr-namespace:HunterPie.GUIControls.Custom_Controls"
+             xmlns:converters="clr-namespace:HunterPie.UI.Infrastructure.Converters"
+             DataContext="{Binding RelativeSource={RelativeSource Self}}"
+             Name="FileSelectCtrl"
+             mc:Ignorable="d" 
+             Height="30" Margin="10,0,10,5">
+    <DockPanel>
+        <TextBlock Foreground="WhiteSmoke" DockPanel.Dock="Left" FontFamily="Segoe UI Light"
+                   Padding="0,0,10,0"
+                   Text="{Binding Label}"
+                   VerticalAlignment="Center"/>
+        <Grid>
+            <Button x:Name="SelectPathBtn" DockPanel.Dock="Right" Style="{StaticResource ToggleButtonStyle}"
+                    Foreground="WhiteSmoke" Background="#FF0F0F0F" Height="30" BorderBrush="{x:Null}"
+                    Content="{Binding SelectedPathDisplay}"
+                    LostFocus="SelectPathBtn_OnLostFocus" Click="SelectPathBtn_OnClick"
+                    Padding="20,0"
+                    ToolTip="{Binding FileToolTip}"
+                    Cursor="Hand" FontSize="14" />
+            <local:FlatButton Text="✕" HorizontalAlignment="Right"
+                              Command="{Binding ClearCommand, ElementName=FileSelectCtrl}"
+                              Visibility="{Binding SelectedPath,
+                                            TargetNullValue=Collapsed,
+                                            Converter={converters:StringPresenceToVisibilityConverter}, UpdateSourceTrigger=PropertyChanged}" />
+        </Grid>
+    </DockPanel>
+</UserControl>

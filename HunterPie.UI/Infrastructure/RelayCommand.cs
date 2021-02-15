@@ -5,12 +5,19 @@ namespace HunterPie.UI.Infrastructure
 {
     public class RelayCommand : ICommand
     {
+        private static Predicate<object> Allow = _ => true;
         private readonly Predicate<object> _canExecute;
         private readonly Action<object> _execute;
 
         public RelayCommand(Predicate<object> canExecute, Action<object> execute)
         {
             _canExecute = canExecute;
+            _execute = execute;
+        }
+
+        public RelayCommand(Action<object> execute)
+        {
+            _canExecute = Allow;
             _execute = execute;
         }
 
@@ -34,12 +41,19 @@ namespace HunterPie.UI.Infrastructure
 
     public class ArglessRelayCommand : ICommand
     {
+        private static Func<bool> Allow = () => true;
         private readonly Func<bool> _canExecute;
         private readonly Action _execute;
 
         public ArglessRelayCommand(Func<bool> canExecute, Action execute)
         {
             _canExecute = canExecute;
+            _execute = execute;
+        }
+
+        public ArglessRelayCommand(Action execute)
+        {
+            _canExecute = Allow;
             _execute = execute;
         }
 

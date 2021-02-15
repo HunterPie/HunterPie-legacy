@@ -1,10 +1,14 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
+using System.Collections.Specialized;
 using System.Linq;
 using System.Windows;
 using System.Windows.Controls;
 using HunterPie.Core;
 using HunterPie.Core.Enums;
+using HunterPie.Logger;
+using HunterPie.Settings;
 
 namespace HunterPie.GUIControls
 {
@@ -13,49 +17,83 @@ namespace HunterPie.GUIControls
     /// </summary>
     public partial class Settings : UserControl
     {
+        private readonly ObservableCollection<ISettingsTab> settingBlocks;
 
-        private static Settings _Instance;
         public static Settings Instance
         {
-            get
-            {
-                if (_Instance == null)
-                {
-                    _Instance = new Settings();
-                }
-                return _Instance;
-            }
+            get; private set;
         }
 
-        public Settings() => InitializeComponent();
+        public static Settings Instantiate(ObservableCollection<ISettingsTab> settingBlocks)
+        {
+            if (Instance != null)
+            {
+                throw new Exception("Instantiate shouldn't be created multiple times.");
+            }
+            return Instance = new Settings(settingBlocks);
+        }
 
-        public void UninstallKeyboardHook() => _Instance?.SettingsBox.UnhookEvents();
+        private Settings(ObservableCollection<ISettingsTab> settingBlocks)
+        {
+            InitializeComponent();
+            this.settingBlocks = settingBlocks;
+            this.settingBlocks.CollectionChanged += SettingBlocksOnCollectionChanged;
+        }
+
+        private void SettingBlocksOnCollectionChanged(object sender, NotifyCollectionChangedEventArgs e)
+        {
+            Dispatcher.Invoke(() =>
+            {
+                try
+                {
+                    if (e.Action == NotifyCollectionChangedAction.Add)
+                    {
+                        foreach (var block in e.NewItems.Cast<ISettingsTab>())
+                        {
+                            SettingsBox.AddSettingsBlock(block);
+                        }
+                    }
+
+                    if (e.Action == NotifyCollectionChangedAction.Remove)
+                    {
+                        foreach (var block in e.OldItems.Cast<ISettingsTab>())
+                        {
+                            SettingsBox.RemoveSettingsBlock(block);
+                        }
+                    }
+                }
+                catch (Exception ex)
+                {
+                    Debugger.Error(ex.ToString());
+                }
+            });
+        }
+
+        public void UninstallKeyboardHook() => Instance?.SettingsBox.UnhookEvents();
 
         internal static void Destroy()
         {
-            if (_Instance == null) return;
-            _Instance.UninstallKeyboardHook();
-            _Instance.SettingsBox = null;
-            _Instance = null;
+            if (Instance == null) return;
+            Instance.UninstallKeyboardHook();
+            Instance.SettingsBox = null;
+            Instance = null;
         }
 
         static public void RefreshSettingsUI()
         {
-            if (_Instance == null)
+            if (Instance == null)
                 return;
 
             var settings = ConfigManager.Settings;
-            var settingsUI = _Instance.SettingsBox;
-            settingsUI.fullGamePath = settings.HunterPie.Launch.GamePath;
-            settingsUI.fullLaunchArgs = settings.HunterPie.Launch.LaunchArgs;
+            var settingsUI = Instance.SettingsBox;
 
             // HunterPie
             settingsUI.switchEnableAutoUpdate.IsEnabled = settings.HunterPie.Update.Enabled;
             settingsUI.switchEnableNative.IsEnabled = settings.HunterPie.EnableNativeFunctions;
-            settingsUI.branchesCombobox.SelectedItem = _Instance.SettingsBox.branchesCombobox.Items.Contains(settings.HunterPie.Update.Branch) ? settings.HunterPie.Update.Branch : "master";
+            settingsUI.branchesCombobox.SelectedItem = Instance.SettingsBox.branchesCombobox.Items.Contains(settings.HunterPie.Update.Branch) ? settings.HunterPie.Update.Branch : "master";
             settingsUI.ThemeFilesCombobox.SelectedItem = settings.HunterPie.Theme;
-            settingsUI.selectPathBttn.Content = settings.HunterPie.Launch.GamePath == "" ? GStrings.GetLocalizationByXPath("/Settings/String[@ID='STATIC_GAMEPATH_UNSELECTED']") : settings.HunterPie.Launch.GamePath.Length > 15 ? "..." + settings.HunterPie.Launch.GamePath.Substring((settings.HunterPie.Launch.GamePath.Length / 2) - 10) : settings.HunterPie.Launch.GamePath;
-            settingsUI.argsTextBox.Text = settings.HunterPie.Launch.LaunchArgs == "" ? GStrings.GetLocalizationByXPath("/Settings/String[@ID='STATIC_LAUNCHARGS_NOARGS']") : settings.HunterPie.Launch.LaunchArgs;
+            settingsUI.GamePathFileSelect.SelectedPath = settings.HunterPie.Launch.GamePath;
+            settingsUI.gameLaunchArgsTb.Text = settings.HunterPie.Launch.LaunchArgs;
             settingsUI.switchEnableCloseWhenExit.IsEnabled = settings.HunterPie.Options.CloseWhenGameCloses;
             settingsUI.LanguageFilesCombobox.SelectedItem = settings.HunterPie.Language;
             settingsUI.switchEnableMinimizeToSystemTray.IsEnabled = settings.HunterPie.MinimizeToSystemTray;
@@ -235,14 +273,14 @@ namespace HunterPie.GUIControls
         private async void saveSettings_Click(object sender, RoutedEventArgs e)
         {
             var settings = ConfigManager.Settings;
-            var settingsUI = _Instance.SettingsBox;
+            var settingsUI = Instance.SettingsBox;
             // HunterPie
             settings.HunterPie.Update.Enabled = settingsUI.switchEnableAutoUpdate.IsEnabled;
             settings.HunterPie.EnableNativeFunctions = settingsUI.switchEnableNative.IsEnabled;
             settings.HunterPie.Update.Branch = (string)settingsUI.branchesCombobox.SelectedItem;
             settings.HunterPie.Theme = (string)settingsUI.ThemeFilesCombobox.SelectedItem;
-            settings.HunterPie.Launch.GamePath = settingsUI.fullGamePath;
-            settings.HunterPie.Launch.LaunchArgs = settingsUI.fullLaunchArgs == GStrings.GetLocalizationByXPath("/Settings/String[@ID='STATIC_LAUNCHARGS_NOARGS']") ? "" : settingsUI.fullLaunchArgs;
+            settings.HunterPie.Launch.GamePath = settingsUI.GamePathFileSelect.SelectedPath;
+            settings.HunterPie.Launch.LaunchArgs = settingsUI.gameLaunchArgsTb.Text;
             settings.HunterPie.Options.CloseWhenGameCloses = settingsUI.switchEnableCloseWhenExit.IsEnabled;
             settings.HunterPie.Language = (string)settingsUI.LanguageFilesCombobox.SelectedItem;
             settings.HunterPie.MinimizeToSystemTray = settingsUI.switchEnableMinimizeToSystemTray.IsEnabled;
@@ -413,6 +451,10 @@ namespace HunterPie.GUIControls
                 settings.Overlay.AbnormalitiesWidget.BarPresets[i].Enabled = abnormBar.Enabled;
                 i++;
             }
+
+            // save data from plugin tabs
+            // TODO: notify user
+            var hasErrors = settingsUI.Save();
 
             // and then save settings
             await ConfigManager.TrySaveSettingsAsync();

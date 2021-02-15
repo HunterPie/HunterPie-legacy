@@ -1,0 +1,38 @@
+﻿<TabItem x:Class="HunterPie.GUIControls.SettingsItem"
+         xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+         xmlns:converters="clr-namespace:HunterPie.UI.Infrastructure.Converters"
+         DataContext="{Binding RelativeSource={RelativeSource Self}}"
+         Name="SettingsItemCtrl"
+         mc:Ignorable="d"
+         d:DesignHeight="30" d:DesignWidth="252">
+    <TabItem.Header>
+        <Border BorderBrush="IndianRed">
+            <Border.Style>
+                <Style>
+                    <Style.Triggers>
+                        <DataTrigger Binding="{Binding ElementName=SettingsItemCtrl, Path=HasError}" Value="True">
+                            <Setter Property="Border.BorderThickness" Value="0,0,0,2" />
+                        </DataTrigger>
+                        <DataTrigger Binding="{Binding ElementName=SettingsItemCtrl, Path=HasError}" Value="False">
+                            <Setter Property="Border.BorderThickness" Value="0,0,0,0" />
+                        </DataTrigger>
+                    </Style.Triggers>
+                </Style>
+            </Border.Style>
+            <Canvas Cursor="Hand">
+                <Image Source="{Binding Tab.Image, ElementName=SettingsItemCtrl}" Width="15" Canvas.Top="6" Canvas.Left="3"/>
+                <TextBlock Height="21" Width="181" Canvas.Left="20" FontWeight="Medium" Canvas.Top="2" Text="{Binding Tab.DisplayName, ElementName=SettingsItemCtrl}" />
+                <Image Source="{StaticResource ICON_WARN}" Canvas.Right="10" Canvas.Bottom="5"
+                       Visibility="{Binding ElementName=SettingsItemCtrl, Path=HasError, Converter={converters:BooleanToVisibilityConverter TrueValue=Visible, FalseValue=Collapsed}}"
+                       ToolTip="{Binding ElementName=SettingsItemCtrl, Path=Error}" />
+            </Canvas>
+        </Border>
+    </TabItem.Header>
+    <ScrollViewer>
+        <ContentControl Content="{Binding Tab.Control}" />
+    </ScrollViewer>
+</TabItem>
+

@@ -1,40 +1,51 @@
 ﻿using System;
+using System.Collections.ObjectModel;
+using System.ComponentModel;
 using System.Diagnostics;
 using System.IO;
 using System.Linq;
+using System.Runtime.CompilerServices;
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Input;
 using HunterPie.Core;
 using HunterPie.Core.Enums;
-using Debugger = HunterPie.Logger.Debugger;
+using HunterPie.UI.Annotations;
 using Newtonsoft.Json;
 using System.Reflection;
 using System.Security.Principal;
+using HunterPie.Settings;
 
 namespace HunterPie.GUIControls
 {
     /// <summary>
     /// Interaction logic for NewSettingsWindow.xaml
     /// </summary>
-    public partial class NewSettingsWindow : UserControl
+    public partial class NewSettingsWindow : UserControl, INotifyPropertyChanged
     {
-        public string fullGamePath = "";
-        public string fullMonsterDataPath = "";
-        public string fullLaunchArgs = "";
-
         public ICommand OpenLink { get; set; } = new OpenLink();
-
-
 
         public string DebugInformation
         {
-            get { return (string)GetValue(DebugInformationProperty); }
-            set { SetValue(DebugInformationProperty, value); }
-        }
+            get
+            {
+                var winIdentity = WindowsIdentity.GetCurrent();
+                var principal = new WindowsPrincipal(winIdentity);
+                bool isAdmin = principal.IsInRole(WindowsBuiltInRole.Administrator);
 
-        public static readonly DependencyProperty DebugInformationProperty =
-            DependencyProperty.Register("DebugInformation", typeof(string), typeof(NewSettingsWindow));
+                return JsonConvert.SerializeObject(
+                    new
+                    {
+                        Versions = new
+                        {
+                            Main = Assembly.GetEntryAssembly().GetName().Version.ToString(),
+                            Core = typeof(Player).Assembly.GetName().Version.ToString(),
+                            UI = typeof(GUI.Overlay).Assembly.GetName().Version.ToString()
+                        },
+                        Windows = new {Admin = isAdmin}
+                    }, Formatting.Indented);
+            }
+        }
 
         public NewSettingsWindow()
         {
@@ -46,21 +57,17 @@ namespace HunterPie.GUIControls
             PopulatePlotDisplayModeBox();
             PopulateProxyModeBox();
             PopulateDockBox();
+            //debugInfoTb.Text = DebugInformation;
         }
 
         public void UnhookEvents()
         {
             switchEnableAilments.MouseLeftButtonDown -= SwitchEnableAilments_MouseDown;
             switchEnableParts.MouseDown -= SwitchEnableParts_MouseDown;
-            argsTextBox.LostFocus -= argsTextBox_LostFocus;
-            argsTextBox.GotFocus -= argsTextBox_GotFocus;
-            selectPathBttn.LostFocus -= SelectPathBttn_LostFocus;
-            selectPathBttn.Click -= selectPathBttn_Click;
             MonsterShowModeSelection.Items.Clear();
             LanguageFilesCombobox.Items.Clear();
             ThemeFilesCombobox.Items.Clear();
             MonsterBarDock.Items.Clear();
-
         }
 
         private void PopulateMonsterBox()
@@ -111,49 +118,6 @@ namespace HunterPie.GUIControls
                     GStrings.GetLocalizationByXPath($"/Settings/String[@ID='PLUGIN_PROXY_MODE_{item.ToString("G").ToUpperInvariant()}']"));
             }
         }
-
-        private void selectPathBttn_Click(object sender, System.Windows.RoutedEventArgs e)
-        {
-            using (var filePicker = new System.Windows.Forms.OpenFileDialog())
-            {
-                Button source = (Button)sender;
-
-                filePicker.Filter = "Executable|MonsterHunterWorld.exe";
-                System.Windows.Forms.DialogResult result = filePicker.ShowDialog();
-
-                if (result == System.Windows.Forms.DialogResult.OK)
-                {
-
-                    fullGamePath = filePicker.FileName;
-                    if (filePicker.FileName.Length > 15)
-                    {
-                        int i = (fullGamePath.Length / 2) - 10;
-                        source.Content = "..." + fullGamePath.Substring(i);
-                        source.Focusable = false;
-                        return;
-                    }
-                    source.Content = fullGamePath;
-
-
-                }
-                source.Focusable = false;
-            }
-
-        }
-
-        private void argsTextBox_TextChanged(object sender, TextChangedEventArgs e) => fullLaunchArgs = argsTextBox.Text;
-
-        private void argsTextBox_GotFocus(object sender, System.Windows.RoutedEventArgs e)
-        {
-            if (argsTextBox.Text == "No arguments" || argsTextBox.Text == GStrings.GetLocalizationByXPath("/Settings/String[@ID='STATIC_LAUNCHARGS_NOARGS']")) argsTextBox.Text = "";
-        }
-
-        private void argsTextBox_LostFocus(object sender, System.Windows.RoutedEventArgs e)
-        {
-            if (argsTextBox.Text == "") argsTextBox.Text = GStrings.GetLocalizationByXPath("/Settings/String[@ID='STATIC_LAUNCHARGS_NOARGS']");
-        }
-
-        private void SelectPathBttn_LostFocus(object sender, System.Windows.RoutedEventArgs e) => selectPathBttn.Focusable = true;
 
         private void PopulateBuffTrays()
         {
@@ -229,25 +193,59 @@ namespace HunterPie.GUIControls
 
         private void SwitchEnableParts_MouseDown(object sender, MouseButtonEventArgs e) => PartsCustomizer.IsEnabled = switchEnableParts.IsEnabled;
 
-        private void SwitchEnableAilments_MouseDown(object sender, MouseButtonEventArgs e) => AilmentsCustomizer.IsEnabled = switchEnableAilments.IsEnabled;
-
-        private void UpdateDebugInfo(object sender, RoutedEventArgs e)
+        private void SwitchEnableAilments_MouseDown(object sender, MouseButtonEventArgs e)
         {
-            var winIdentity = WindowsIdentity.GetCurrent();
-            var principal = new WindowsPrincipal(winIdentity);
-            bool isAdmin = principal.IsInRole(WindowsBuiltInRole.Administrator);
+            AilmentsCustomizer.IsEnabled = switchEnableAilments.IsEnabled;
+            foreach (SettingsItem settingsItem in SettingItems)
+            {
+                settingsItem.UpdateDefaultStyle();
+            }
+        }
 
-            DebugInformation = JsonConvert.SerializeObject(new {
-                Versions = new
-                {
-                    Main = Assembly.GetEntryAssembly().GetName().Version.ToString(),
-                    Core = typeof(Player).Assembly.GetName().Version.ToString(),
-                    UI = typeof(GUI.Overlay).Assembly.GetName().Version.ToString()
-                },
-                Windows = new {
-                    Admin = isAdmin
-                }
-            }, Formatting.Indented);
+        public ObservableCollection<SettingsItem> SettingItems { get; set; } = new();
+
+        public void AddSettingsBlock(ISettingsTab tab)
+        {
+            var item = new SettingsItem(tab)
+            {
+                // HACK: styles may not be applied correctly for dynamically added control, so we're assigning style explicitly
+                Style = Resources.Values.OfType<Style>().FirstOrDefault(s => s.TargetType == typeof(TabItem))
+            };
+            SettingItems.Add(item);
+            TabContainer.Items.Add(item);
+            OnPropertyChanged(nameof(HasPlugins));
+        }
+
+        public bool HasPlugins => SettingItems.Any();
+
+        public void RemoveSettingsBlock(ISettingsTab tab)
+        {
+            var itemToRemove = SettingItems.FirstOrDefault(item => item.Tab == tab);
+            if (itemToRemove != null)
+            {
+                SettingItems.Remove(itemToRemove);
+                TabContainer.Items.Remove(itemToRemove);
+                OnPropertyChanged(nameof(HasPlugins));
+            }
+        }
+
+        public bool Save()
+        {
+            var hasErrors = false;
+            foreach (var settingsItem in SettingItems)
+            {
+                hasErrors |= settingsItem.Save();
+            }
+
+            return hasErrors;
+        }
+
+        public event PropertyChangedEventHandler PropertyChanged;
+
+        [NotifyPropertyChangedInvocator]
+        protected virtual void OnPropertyChanged([CallerMemberName] string propertyName = null)
+        {
+            PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
         }
     }
 
@@ -262,7 +260,7 @@ namespace HunterPie.GUIControls
                 if (((string)parameter).StartsWith("http"))
                     return true;
             }
-            
+
             return false;
         }
 
