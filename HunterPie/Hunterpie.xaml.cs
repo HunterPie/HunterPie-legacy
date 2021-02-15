@@ -104,6 +104,8 @@ namespace HunterPie
         public static readonly DependencyProperty IsDraggingProperty =
             DependencyProperty.Register("IsDragging", typeof(bool), typeof(Hunterpie));
 
+        public ICommand MaximizeCommand { get; }
+
         #endregion
 
         public Hunterpie()
@@ -117,6 +119,8 @@ namespace HunterPie
                 return;
             }
             CheckIfHunterPieOpen();
+
+            MaximizeCommand = new ArglessRelayCommand(() => WindowState = WindowState.Maximized);
 
             AppDomain.CurrentDomain.UnhandledException += ExceptionLogger;
 

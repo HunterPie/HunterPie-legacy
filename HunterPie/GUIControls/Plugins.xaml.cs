@@ -4,6 +4,7 @@ using System.IO;
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Input;
+using System.Windows.Media;
 using HunterPie.Plugins;
 using HunterPie.UI.Infrastructure;
 
@@ -28,6 +29,29 @@ namespace HunterPie.GUIControls
             }
         }
 
+        public static readonly DependencyProperty PreviewImgProperty = DependencyProperty.Register(
+            "PreviewImg", typeof(ImageSource), typeof(Plugins), new PropertyMetadata(default(ImageSource)));
+
+        public ImageSource PreviewImg
+        {
+            get { return (ImageSource)GetValue(PreviewImgProperty); }
+            set
+            {
+                SetValue(PreviewImgProperty, value);
+                IsPreviewVisible = value != null;
+                CommandManager.InvalidateRequerySuggested();
+            }
+        }
+
+        public static readonly DependencyProperty IsPreviewVisibleProperty = DependencyProperty.Register(
+            "IsPreviewVisible", typeof(bool), typeof(Plugins), new PropertyMetadata(default(bool)));
+
+        public bool IsPreviewVisible
+        {
+            get { return (bool)GetValue(IsPreviewVisibleProperty); }
+            set { SetValue(IsPreviewVisibleProperty, value); }
+        }
+
         public PluginListViewModel PluginList { get; set; }
 
         public ICommand OpenPluginsFolderCommand { get; } = new RelayCommand(
@@ -40,35 +64,53 @@ namespace HunterPie.GUIControls
             _ => Hunterpie.Instance.Reload()
         );
 
-        public static readonly DependencyProperty SearchOpenedProperty = DependencyProperty.Register(
-            "SearchOpened", typeof(bool), typeof(Plugins), new PropertyMetadata(default(bool)));
 
-        private KeyBinding SearchBinding { get; }
-        public KeyBinding RefreshBinding { get; }
+        public ICommand MagnifyImageCommand { get; }
+
+        public ICommand CloseImagePreviewCommand { get; }
+
+
+        private KeyBinding[] KeyBindings { get; }
 
         public Plugins()
         {
             PluginList = new PluginListViewModel(PluginRegistryService.Instance);
+
+            // commands
+            MagnifyImageCommand = new RelayCommand(Magnify);
+            CloseImagePreviewCommand = new ArglessRelayCommand(ClearMagnify);
+
             InitializeComponent();
-            SearchBinding = new KeyBinding(SearchBarControl.ToggleSearchCommand, Key.F, ModifierKeys.Control)
-            {
-                CommandParameter = true
-            };
-            RefreshBinding = new KeyBinding(PluginList.RefreshCommand, Key.F5, ModifierKeys.None);
+            KeyBindings = CreateKeyBindings();
             PluginList.Refresh();
         }
+
+        private KeyBinding[] CreateKeyBindings() => new[]
+            {
+                new KeyBinding(SearchBarControl.ToggleSearchCommand, Key.F, ModifierKeys.Control)
+                {
+                    CommandParameter = true
+                },
+                new KeyBinding(PluginList.RefreshCommand, Key.F5, ModifierKeys.None),
+                new KeyBinding(CloseImagePreviewCommand, Key.Escape, ModifierKeys.None)
+            };
 
 
         public void OnActivate()
         {
-            Hunterpie.Instance.InputBindings.Add(SearchBinding);
-            Hunterpie.Instance.InputBindings.Add(RefreshBinding);
+            Hunterpie.Instance.InputBindings.AddRange(KeyBindings);
         }
 
         public void OnDeactivate()
         {
-            Hunterpie.Instance.InputBindings.Remove(SearchBinding);
-            Hunterpie.Instance.InputBindings.Remove(RefreshBinding);
+            foreach (var binding in KeyBindings)
+            {
+                Hunterpie.Instance.InputBindings.Remove(binding);
+            }
         }
+
+        public void Magnify(object arg) => PreviewImg = arg as ImageSource;
+
+        public void ClearMagnify() => PreviewImg = null;
     }
 }

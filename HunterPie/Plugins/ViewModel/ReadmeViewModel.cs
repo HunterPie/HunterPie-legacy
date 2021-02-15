@@ -1,13 +1,19 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.IO;
+using System.Linq;
 using System.Net.Http;
 using System.Text;
 using System.Text.RegularExpressions;
 using System.Threading;
 using System.Threading.Tasks;
+using System.Windows;
+using System.Windows.Controls;
 using System.Windows.Documents;
+using System.Windows.Input;
 using System.Xaml;
 using HunterPie.Core;
+using HunterPie.Logger;
 using HunterPie.UI.Infrastructure;
 using Markdig;
 using Markdig.Helpers;
@@ -18,6 +24,7 @@ using Markdig.Syntax.Inlines;
 using Markdig.Wpf;
 using Markdown = Markdig.Wpf.Markdown;
 using XamlReader = System.Windows.Markup.XamlReader;
+using PluginsControl = HunterPie.GUIControls.Plugins;
 
 namespace HunterPie.Plugins
 {
@@ -148,8 +155,58 @@ namespace HunterPie.Plugins
                 {
                     Document = document;
                     OnPropertyChanged(nameof(Document));
+                    AddImagesZoom();
                 }
             });
+        }
+
+        public void AddImagesZoom()
+        {
+            foreach (var image in FindElementOfType<Image>(Document))
+            {
+                var bind = new InputBinding(PluginsControl.Instance.MagnifyImageCommand, new MouseGesture(MouseAction.LeftClick))
+                {
+                    CommandParameter = image.Source
+                };
+                image.InputBindings.Add(bind);
+                image.Cursor = Application.Current.TryFindResource("CURSOR_MAGNIFY") as Cursor;
+            }
+        }
+
+        public IEnumerable<T> FindElementOfType<T>(FlowDocument document) where T : class
+        {
+            return document.Blocks.SelectMany(FindElementOfType<T>);
+        }
+
+        public IEnumerable<T> FindElementOfType<T>(Block block) where T : class
+        {
+            switch (block)
+            {
+                case Table table:
+                    return table.RowGroups
+                        .SelectMany(x => x.Rows)
+                        .SelectMany(x => x.Cells)
+                        .SelectMany(x => x.Blocks)
+                        .SelectMany(FindElementOfType<T>);
+                case Paragraph paragraph:
+                    return paragraph.Inlines
+                        .OfType<InlineUIContainer>()
+                        .Where(x => x.Child is T)
+                        .Select(x => x.Child as T);
+                case BlockUIContainer container:
+                    return container.Child is T child
+                        ? new[] {child}
+                        : new T[0];
+                case System.Windows.Documents.List list:
+                    return list.ListItems
+                        .SelectMany(li => li.Blocks)
+                        .SelectMany(FindElementOfType<T>);
+                case System.Windows.Documents.Section section:
+                    return section.Blocks.SelectMany(FindElementOfType<T>);
+                default:
+                    Debugger.Warn("Unknown block type: " + block.GetType());
+                    return new T[0];
+            }
         }
 
         private static MarkdownPipeline BuildPipeline(string root) => new MarkdownPipelineBuilder()
