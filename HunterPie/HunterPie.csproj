@@ -836,6 +836,9 @@
     <Content Include="HunterPie.Resources\UI\damage_plot.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
+    <None Include="HunterPie.Resources\UI\magnifying-glass-white.cur">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <PropertyGroup>

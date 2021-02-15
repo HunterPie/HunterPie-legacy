@@ -6,10 +6,10 @@
         Title="HunterPie" MinWidth="800" MinHeight="500" WindowStyle="None" Closing="OnWindowClosing" AllowsTransparency="True" BorderBrush="{StaticResource BUTTON_CLOSEWINDOW_BACKGROUND}" BorderThickness="1" Background="{x:Null}" ResizeMode="CanResize" SizeChanged="OnWindowSizeChange" DataContext="{StaticResource Localization}" PreviewKeyDown="OnKeyDown" AllowDrop="True" DragDrop.Drop="window_Drop" DragEnter="window_DragEnter" DragLeave="window_DragLeave">
     <WindowChrome.WindowChrome>
         <WindowChrome CaptionHeight="0"
-                              CornerRadius="0"
-                              GlassFrameThickness="5"
-                              ResizeBorderThickness="5"
-                              UseAeroCaptionButtons="False"/>
+                      CornerRadius="0"
+                      GlassFrameThickness="5"
+                      ResizeBorderThickness="5"
+                      UseAeroCaptionButtons="False" />
     </WindowChrome.WindowChrome>
     <Window.Resources>
         <ResourceDictionary>
@@ -124,7 +124,11 @@
             <!-- Console content -->
             <Grid x:Name="ConsolePanel" Margin="51,157,0,2"/>
             <Rectangle Height="130" VerticalAlignment="Top" Margin="0,22,0,0" Fill="{StaticResource CONSOLE_HEADER_BACKGROUND}"/>
-            <Rectangle Cursor="SizeAll" x:Name="WindowTopBar" Fill="{StaticResource CONSOLE_WINDOWBAR_BACKGROUND}" Height="22" VerticalAlignment="Top" MouseLeftButtonDown="OnWindowDrag"/>
+            <Rectangle Cursor="SizeAll" x:Name="WindowTopBar" Fill="{StaticResource CONSOLE_WINDOWBAR_BACKGROUND}" Height="22" VerticalAlignment="Top" MouseLeftButtonDown="OnWindowDrag">
+                <Rectangle.InputBindings>
+                    <MouseBinding Gesture="LeftDoubleClick" Command="{Binding ElementName=window, Path=MaximizeCommand}"/>
+                </Rectangle.InputBindings>
+            </Rectangle>
             <Image Height="20" Width="20" Visibility="{Binding ElementName=window, Path=AdministratorIconVisibility}" ToolTip="HunterPie (Administrator)" Source="{StaticResource ICON_ADMINISTRATOR}" VerticalAlignment="Top" HorizontalAlignment="Left" Opacity="0.8" Margin="1,1,0,0"  />
 
             <!-- Top buttons -->

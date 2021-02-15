@@ -403,6 +403,7 @@
             </DrawingGroup>
         </DrawingImage.Drawing>
     </DrawingImage>
+    <Cursor x:Key="CURSOR_MAGNIFY">pack://siteoforigin:,,,/HunterPie.Resources/UI/magnifying-glass-white.cur</Cursor>
     <!-- Styles -->
     <Style x:Key="WidgetStyle" TargetType="{x:Type Window}">
         <Style.Triggers>
