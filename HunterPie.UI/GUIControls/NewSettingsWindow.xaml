@@ -640,7 +640,7 @@
                         <custom:Switcher x:Name="switchEnableUnknownStatuses" Text="{strings:Settings ENABLE_UNKNOWN_AILMENTS}" RestartVisibility="Visible"  Margin="10,0,10,5" ToolTip="{strings:Settings ENABLE_UNKNOWN_AILMENTS_DESC}"/>
                         <custom:Switcher x:Name="switchEnableLoadMonsterData" Text="{strings:Settings ENABLE_LOAD_CUSTOM_DATA}" RestartVisibility="Visible"  Margin="10,0,10,5" ToolTip="{strings:Settings ENABLE_LOAD_CUSTOM_DATA_DESC}"/>
                         <custom:Switcher x:Name="switchEnableSendLogsToDev" Text="{strings:Settings ENABLE_SEND_CRASH_TO_DEV}" RestartVisibility="Hidden"  Margin="10,0,10,5" ToolTip="{strings:Settings ENABLE_SEND_CRASH_TO_DEV_DESC}"/>
-                        <TextBox Text="{Binding ElementName=SettingsCtrl, Path=DebugInformation, Mode=OneTime}" IsReadOnly="True" Margin="10,0,10,5" />
+                        <TextBox Text="{Binding ElementName=SettingsCtrl, Path=DebugInformation, Mode=OneTime}" IsReadOnly="True" Margin="10,0,10,5" BorderThickness="1" />
             </StackPanel>
                 </ScrollViewer>
             </TabItem>

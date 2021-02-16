@@ -207,15 +207,19 @@ namespace HunterPie.GUI
 
         public async void GlobalSettingsEventHandler(object source, EventArgs e)
         {
-            await Application.Current.Dispatcher.InvokeAsync(new Action(() =>
+            try
             {
-                ToggleOverlay();
-                DeleteAbnormWidgetsIfNeeded();
-                foreach (Widget widget in Widgets)
+                await Application.Current.Dispatcher.InvokeAsync(new Action(() =>
                 {
-                    widget.ApplySettings();
-                }
-            }));
+                    ToggleOverlay();
+                    DeleteAbnormWidgetsIfNeeded();
+                    foreach (Widget widget in Widgets)
+                    {
+                        widget.ApplySettings();
+                    }
+                }));
+            } catch(TaskCanceledException) {}
+            
             
         }
 

@@ -19,8 +19,21 @@ namespace HunterPie.GUI
         #region Variables
         private readonly Stopwatch stopwatch = new Stopwatch();
 
-        public virtual WidgetType Type { get; }
+        /// <summary>
+        /// This widget type
+        /// </summary>
+        public virtual WidgetType Type { get; } = WidgetType.Custom;
+
+        /// <summary>
+        /// This widget settings
+        /// </summary>
         public virtual IWidgetSettings Settings { get; }
+
+        /// <summary>
+        /// Whether this widget should be hidden when game is unfocused and the
+        /// Hide overlay when unfocused setting is enabled
+        /// </summary>
+        public virtual bool ShouldHideWhenUnfocused { get; } = true;
 
         public bool IsClosed { get; private set; }
         private bool inDesignMode;
@@ -207,7 +220,9 @@ namespace HunterPie.GUI
 
         public void ChangeVisibility()
         {
-            if (InDesignMode || (WidgetHasContent && OverlayActive && WidgetActive && ((!OverlayFocusActive) || (OverlayFocusActive && OverlayIsFocused))))
+            if (InDesignMode ||
+                (WidgetHasContent && OverlayActive && WidgetActive &&
+                ((!OverlayFocusActive) || (OverlayFocusActive && OverlayIsFocused && ShouldHideWhenUnfocused))))
             {
                 if (Settings != null)
                     Opacity = Settings.Opacity;
@@ -264,7 +279,7 @@ namespace HunterPie.GUI
                 // Someone send me a karnaugh map please
                 if (!InDesignMode &&
                     (WidgetHasContent && OverlayActive && WidgetActive &&
-                    (!OverlayFocusActive || (OverlayFocusActive && OverlayIsFocused))))
+                    (!OverlayFocusActive || (OverlayFocusActive && OverlayIsFocused && ShouldHideWhenUnfocused))))
                 {
                     ForceAlwaysOnTop();
                 }

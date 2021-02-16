@@ -17,7 +17,9 @@
                 <RowDefinition Height="Auto" />
                 <RowDefinition Height="*" />
             </Grid.RowDefinitions>
-
+            <Grid.Effect>
+                <BlurEffect Radius="0" KernelType="Gaussian"/>
+            </Grid.Effect>
             <Grid Height="36" VerticalAlignment="Top" HorizontalAlignment="Stretch" Background="#55000000">
                 <Grid.ColumnDefinitions>
                     <ColumnDefinition Width="*" />
@@ -49,6 +51,29 @@
             </Grid>
 
             <guiControls:PluginListControl Grid.Row="1" DataContext="{Binding ElementName=PluginsControl, Path=PluginList}"/>
+
+            <Grid.Style>
+                <Style TargetType="Grid">
+                    <Style.Triggers>
+                        <DataTrigger Binding="{Binding IsPreviewVisible}" Value="True">
+                            <DataTrigger.EnterActions>
+                                <BeginStoryboard>
+                                    <Storyboard>
+                                        <DoubleAnimation Storyboard.TargetProperty="(Effect).Radius" From="0" To="5" Duration="0:0:.2" />
+                                    </Storyboard>
+                                </BeginStoryboard>
+                            </DataTrigger.EnterActions>
+                            <DataTrigger.ExitActions>
+                                <BeginStoryboard>
+                                    <Storyboard>
+                                        <DoubleAnimation Storyboard.TargetProperty="(Effect).Radius" From="5" To="0" Duration="0:0:.2" />
+                                    </Storyboard>
+                                </BeginStoryboard>
+                            </DataTrigger.ExitActions>
+                        </DataTrigger>
+                    </Style.Triggers>
+                </Style>
+            </Grid.Style>
         </Grid>
 
         <!-- image preview -->

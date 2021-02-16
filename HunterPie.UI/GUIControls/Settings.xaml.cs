@@ -26,10 +26,9 @@ namespace HunterPie.GUIControls
 
         public static Settings Instantiate(ObservableCollection<ISettingsTab> settingBlocks)
         {
-            if (Instance != null)
-            {
-                throw new Exception("Instantiate shouldn't be created multiple times.");
-            }
+            if (Instance is not null)
+                return Instance;
+
             return Instance = new Settings(settingBlocks);
         }
 

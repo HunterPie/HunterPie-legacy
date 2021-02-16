@@ -42,7 +42,11 @@ namespace HunterPie.GUIControls
                             Core = typeof(Player).Assembly.GetName().Version.ToString(),
                             UI = typeof(GUI.Overlay).Assembly.GetName().Version.ToString()
                         },
-                        Windows = new {Admin = isAdmin}
+                        Windows = new {Admin = isAdmin},
+                        Native = new
+                        {
+                            Enabled = ConfigManager.Settings.HunterPie.EnableNativeFunctions
+                        }
                     }, Formatting.Indented);
             }
         }

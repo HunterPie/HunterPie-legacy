@@ -894,16 +894,12 @@ namespace HunterPie
                 Show();
             }
 
-            // Initialize settings control with plugin managed setting tabs
-            SettingsControl.Instantiate(PluginManager.PluginSettingsTabs);
-
             // Initializes the Hotkey API
             Hotkey.Load();
 
             // Initializes the rest of HunterPie
             LoadData();
             Debugger.Warn(GStrings.GetLocalizationByXPath("/Console/String[@ID='MESSAGE_HUNTERPIE_INITIALIZED']"));
-
 
             await pluginManager.PreloadPlugins();
             // Support message :)
@@ -1210,6 +1206,8 @@ namespace HunterPie
 
         private void OnSettingsButtonClick(object sender, MouseButtonEventArgs e)
         {
+            SettingsControl.Instantiate(PluginManager.PluginSettingsTabs);
+
             ChangeConsoleChild(sender, SettingsControl.Instance);
             SettingsControl.RefreshSettingsUI();
         }
