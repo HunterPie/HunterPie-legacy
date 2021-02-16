@@ -222,7 +222,7 @@ namespace HunterPie.GUI
         {
             if (InDesignMode ||
                 (WidgetHasContent && OverlayActive && WidgetActive &&
-                ((!OverlayFocusActive) || (OverlayFocusActive && OverlayIsFocused && ShouldHideWhenUnfocused))))
+                ((!OverlayFocusActive) || (!ShouldHideWhenUnfocused || (OverlayFocusActive && OverlayIsFocused && ShouldHideWhenUnfocused)))))
             {
                 if (Settings != null)
                     Opacity = Settings.Opacity;
@@ -279,7 +279,7 @@ namespace HunterPie.GUI
                 // Someone send me a karnaugh map please
                 if (!InDesignMode &&
                     (WidgetHasContent && OverlayActive && WidgetActive &&
-                    (!OverlayFocusActive || (OverlayFocusActive && OverlayIsFocused && ShouldHideWhenUnfocused))))
+                    (!OverlayFocusActive || (!ShouldHideWhenUnfocused || (OverlayFocusActive && OverlayIsFocused && ShouldHideWhenUnfocused)))))
                 {
                     ForceAlwaysOnTop();
                 }
