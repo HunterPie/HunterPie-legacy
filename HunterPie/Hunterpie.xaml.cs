@@ -409,6 +409,8 @@ namespace HunterPie
             WindowState = WindowState.Normal;
             Focus();
 
+            SettingsControl.Instantiate(PluginManager.PluginSettingsTabs);
+
             ChangeConsoleChild(SettingsBtn, SettingsControl.Instance);
             SettingsControl.RefreshSettingsUI();
         }
