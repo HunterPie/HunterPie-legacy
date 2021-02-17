@@ -1,6 +1,7 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
 <Strings lang="Simplified Chinese">
-<!--v1.0.4 update translated by 利维亚的白学家-->
+<!--v1.0.5 update translated by l0snight-->
+<!--感谢 利维亚的白学家-->
   <Monsters>
     <Monster ID="ems062_03" Name="木质桶车"/>
     <Monster ID="em001_00" Name="雌火龙"/>
@@ -452,6 +453,10 @@
   </Abnormalities>
   <!-- Client localization strings -->
   <Client>
+    <TrayIcon>
+      <String ID="TRAYICON_SETTINGS" Name="设置"/>
+      <String ID="TRAYICON_CLOSE" Name="退出"/>
+    </TrayIcon>
     <Console>
       <String ID="CONSOLE_CONSOLE" Name="控制台"/>
       <String ID="CONSOLE_SETTINGS" Name="设置"/>
@@ -470,6 +475,17 @@
       <String ID="MESSAGE_PLUGIN_INSTALL_DESC" Name="把你的module.json放在这里来安装插件."/>
       <String ID="MESSAGE_PLUGIN_INSTALLED" Name="插件: {name} 已安装! 重启Hunterpie以加载插件!"/>
       <String ID="ERROR_PLUGIN_AUTO_UPDATE" Name="这个插件不支持自动更新. 您需要手动下载它的文件."/>
+      <String ID="MESSAGE_INSTALLED_PLUGINS" Name="已安装的插件"/>
+      <String ID="MESSAGE_FRESH_PLUGINS" Name="将在重启后启用插件"/>
+      <String ID="MESSAGE_AVAILABLE_PLUGINS" Name="可用的插件"/>
+      <String ID="MESSAGE_TO_DELETE_PLUGINS" Name="将在重启后删除插件"/>
+      <String ID="MESSAGE_PLUGIN_SUBTITLE_ROW" Name="{downloads} | v{version} | by {author}"/>
+      <String ID="MESSAGE_PLUGIN_INCOMPATIBLE_VERSION" Name="HunterPie的版本与此插件所需求的不一致"/>
+      <String ID="MESSAGE_REFRESH" Name="刷新" />
+      <String ID="MESSAGE_PLUGIN_DELETE" Name="删除插件" />
+      <String ID="MESSAGE_PLUGIN_RESTORE" Name="重载插件" />
+      <String ID="MESSAGE_PLUGIN_FAILED" Name="插件初始化失败. 直到 HunterPiei 重启前它不会启用." />
+      <String ID="MESSAGE_README_EMPTY" Name="空" />
       <!-- Popups -->
       <String ID="MESSAGE_QUIT" Name="确定要退出HunterPie吗?"/>
       <String ID="TITLE_MISSING_PATH" Name="未找到《怪物猎人：世界》路径"/>
@@ -525,6 +541,12 @@
       <String ID="STATIC_LAUNCHARGS" Name="启动参数"/>
       <String ID="STATIC_LAUNCHARGS_NOARGS" Name="无参数"/>
       <String ID="STATIC_LAUNCHARGS_DESC" Name="启动游戏时使用参数，如果您不知道如何做，请将其留空"/>
+
+      <String ID="PLUGIN_PROXY_MODE" Name="插件注册代理模式"/>
+      <String ID="PLUGIN_PROXY_MODE_DESC" Name="更改插件下载的代理模式"/>
+      <String ID="PLUGIN_PROXY_MODE_AUTO" Name="自动"/>
+      <String ID="PLUGIN_PROXY_MODE_ENABLED" Name="启用"/>
+      <String ID="PLUGIN_PROXY_MODE_DISABLED" Name="禁用"/>
       <!-- Discord RPC -->
       <String ID="ENABLE_RPC" Name="Discord状态信息共享"/>
       <String ID="ENABLE_RPC_DESC" Name="如开启，HunterPie将在Discord状态中实时显示您的游戏动态"/>
@@ -659,6 +681,8 @@
       <String ID="ENABLE_INITIALIZE_PLAYER_WIDGET_DESC" Name="如关闭，玩家部件将不会被创建"/>
       <String ID="ENABLE_PLAYER_WIDGET" Name="开启玩家部件"/>
       <String ID="ENABLE_PLAYER_WIDGET_DESC" Name="如开启，只要有内容可以显示，玩家部件就将可见"/>
+      <String ID="ENABLE_PLAYER_WIDGET_MINIMALISTIC_MODE" Name="启用简约模式"/>
+      <String ID="ENABLE_PLAYER_WIDGET_MINIMALISTIC_MODE_DESC" Name="如果启用，玩家小部件将增强游戏内建的小部件,而不需重复现有元素."/>
       <String ID="STATIC_PLAYER_NAME_STRING_FORMAT" Name="玩家名称文本格式:"/>
       <String ID="STATIC_PLAYER_NAME_STRING_FORMAT_DESC" Name="血条上方的文本. (例如: '{HR} | {MR} {Name}' 将会显示为 '猎人等级' | '大师等级' '玩家名称')"/>
       <String ID="ENABLE_PLAYER_HIDE_IN_VILLAGES" Name="在据点时隐藏部件"/>
@@ -772,8 +796,8 @@
       <String ID="ENABLE_LIGHTBOWGUN_HELPER_DESC" Name="如开启，当您装备轻弩时，小组件便会显示"/>
       <String ID="STATIC_CLASSES_BETA_WARNING" Name="请注意：武器组件仍在开发中，将来会支持更多武器。每种组件均有自己的位置，请在编辑模式中调整"/>
       <!-- Links -->
-      <String ID="STATIC_HUNTERPIE_WIKI" Name="支持文件(英文)"/>
-      <String ID="STATIC_HUNTERPIE_WIKI_DESC" Name="HunterPie官方文件"/>
+      <String ID="STATIC_HUNTERPIE_WIKI" Name="文档(英文)"/>
+      <String ID="STATIC_HUNTERPIE_WIKI_DESC" Name="HunterPie官方文档"/>
       <String ID="STATIC_HUNTERPIE_ISSUES" Name="GitHub问题"/>
       <String ID="STATIC_HUNTERPIE_ISSUES_DESC" Name="HunterPie GitHub问题页面"/>
       <String ID="STATIC_HUNTERPIE_DISCORD" Name="Discord服务器"/>
@@ -796,13 +820,13 @@
       <String ID="STATIC_BUTTON_SELECT_ALL" Name="全选"/>
       <String ID="STATIC_BUTTON_UNSELECT_ALL" Name="取消全选"/>
       <String ID="STATIC_BUTTON_SAVE" Name="保存"/>
-      <String ID="STATIC_REQUIRES_RESTART" Name="(重新启动)"/>
+      <String ID="STATIC_REQUIRES_RESTART" Name="(需要重新启动)"/>
       <String ID="STATIC_POSITION" Name="位置"/>
       <String ID="STATIC_COPYCLIPBOARD" Name="复制到剪贴板"/>
       <String ID="STATIC_OPACITY" Name="不透明度"/>
       <!-- Settings Side bar-->
       <String ID="STATIC_GENERAL_SETTINGS" Name="一般设置"/>
-      <String ID="STATIC_DISCORD_SETTINGS" Name="Discord设置"/>
+      <String ID="STATIC_DISCORD_SETTINGS" Name="Discord"/>
       <String ID="STATIC_OVERLAY_SETTINGS" Name="覆盖层设置"/>
       <String ID="STATIC_PLAYER_SETTINGS" Name="玩家部件"/>
       <String ID="STATIC_MONSTERS_SETTINGS" Name="怪物部件"/>
@@ -813,6 +837,8 @@
       <String ID="STATIC_CLASSES_SETTINGS" Name="武器部件"/>
       <String ID="STATIC_LINKS_SETTINGS" Name="相关链接"/>
       <String ID="STATIC_DEBUG_SETTINGS" Name="纠错工具"/>
+      <String ID="ENABLE_STREAMER_MODE" Name="开启直播模式"/>
+      <String ID="ENABLE_STREAMER_MODE_DESC" Name="启用直播模式将使OBS和类似的窗口捕获软件可捕捉此部件。请注意，启用此选项还会使您在Alt + Tab时看到该窗口."/>
     </Settings>
     <Overlay>
       <String ID="STATIC_HARVEST_BOX_TITLE" Name="收获箱"/>
