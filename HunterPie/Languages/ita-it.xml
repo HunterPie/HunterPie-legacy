@@ -1,8 +1,8 @@
-﻿<?xml version="1.0" encoding="utf-8" ?>
+<?xml version="1.0" encoding="utf-8" ?>
 <!--Translation Made By M1S0#5093-->
 <Strings lang="Italian">
   <Monsters>
-	<Monster ID="ems062_03" Name="Manichino Da Allenamento"/>
+	  <Monster ID="ems062_03" Name="Manichino Da Allenamento"/>
     <Monster ID="em001_00" Name="Rathian"/>
     <Monster ID="em001_01" Name="Rathian Rosa"/>
     <Monster ID="em001_02" Name="Rathian Dortata"/>
@@ -83,7 +83,7 @@
     <Part ID="MONSTER_PART_LLEG" Name="Zampa Posteriore (L)"/>
     <Part ID="MONSTER_PART_RLEG" Name="Zampa Posteriore (R)"/>
     <Part ID="MONSTER_PART_TAIL" Name="Coda"/>
-	 <Part ID="MONSTER_PART_TAIL_TIP" Name="Coda (Punta)"/>
+	  <Part ID="MONSTER_PART_TAIL_TIP" Name="Coda (Punta)"/>
     <Part ID="MONSTER_PART_ARMS" Name="Zampe Anteriori"/>
     <Part ID="MONSTER_PART_LEGS" Name="Zampe Posteriori"/>
     <Part ID="MONSTER_PART_LARM" Name="Zampa Anteriore (L)"/>
@@ -156,21 +156,21 @@
 	  <Part ID="MONSTER_PART_ANTLERS" Name="Corna"/>
 	  <Part ID="MONSTER_PART_HORN" Name="Corno"/>
     <!-- Removable parts -->
-    <Part ID="MONSTER_PART_REMOVABLE_TAIL" Name="Coda rimovibili"/>
-    <Part ID="MONSTER_PART_REMOVABLE_HORNS" Name="Corna Removibili"/>
-    <Part ID="MONSTER_PART_REMOVABLE_HEAD" Name="Testa Rompibile"/>
-	  <Part ID="MONSTER_PART_REMOVABLE_HEAD_ROCK" Name="Testa Rompibile (Roccia)"/>
-	  <Part ID="MONSTER_PART_REMOVABLE_CHEST_ROCK" Name="Petto Rompibile (Roccia)"/>
-    <Part ID="MONSTER_PART_REMOVABLE_BALLOON" Name="Pallone Removable"/>
-    <Part ID="MONSTER_PART_REMOVABLE_HORNS_2" Name="Corna Removibili #2"/>
+    <Part ID="MONSTER_PART_REMOVABLE_TAIL" Name="Coda tagliabile"/>
+    <Part ID="MONSTER_PART_REMOVABLE_HORNS" Name="Corna rompibile"/>
+    <Part ID="MONSTER_PART_REMOVABLE_HEAD" Name="Testa rompibile"/>
+	  <Part ID="MONSTER_PART_REMOVABLE_HEAD_ROCK" Name="Testa rompibile (Roccia)"/>
+	  <Part ID="MONSTER_PART_REMOVABLE_CHEST_ROCK" Name="Petto rompibile (Roccia)"/>
+    <Part ID="MONSTER_PART_REMOVABLE_BALLOON" Name="Pallone rimovibile"/>
+    <Part ID="MONSTER_PART_REMOVABLE_HORNS_2" Name="Corna rompibile 2"/>
 	  <Part ID="MONSTER_PART_BODY_LEGS" Name="Corpo e Gambe"/>
     <Part ID="MONSTER_PART_SILVER_SPIKES_HEAD" Name="Spine Argentate (Testa)"/>
     <Part ID="MONSTER_PART_SILVER_SPIKES_LARM" Name="Spine Argentate (Braccio Sinistro)"/>
     <Part ID="MONSTER_PART_SILVER_SPIKES_RARM" Name="Spine Argentate (Braccio Destro)"/>
     <Part ID="MONSTER_PART_SILVER_SPIKES_LWING" Name="Spine Argentate (Ala Sisnistra)"/>
     <Part ID="MONSTER_PART_SILVER_SPIKES_RWING" Name="Spine Argentate (Ala Destra)"/>
-    <Part ID="MONSTER_PART_REMOVABLE_LANTLER" Name="Ramificazione Sinistra rimovibile"/>
-    <Part ID="MONSTER_PART_REMOVABLE_RANTLER" Name="Ramificazione Destra rimovibile"/>
+    <Part ID="MONSTER_PART_REMOVABLE_LANTLER" Name="Ramificazione sinistra rimovibile"/>
+    <Part ID="MONSTER_PART_REMOVABLE_RANTLER" Name="Ramificazione destra rimovibile"/>
     <!-- Special parts -->
     <Part ID="MONSTER_PART_BIG_FLINCH" Name="Flinch Grande"/>
     <Part ID="MONSTER_PART_RAGE" Name="Rage Rimovibile"/>
@@ -447,8 +447,8 @@
     <Console>
       <String ID="CONSOLE_CONSOLE" Name="CONSOLE"/>
       <String ID="CONSOLE_SETTINGS" Name="IMPOSTAZIONI"/>
-	  <String ID="CONSOLE_UPLOADBUILD" Name="CARICA BUILD"/>
-	  <String ID="CONSOLE_EXPORTGEAR" Name="ESPOERTA EQUIPAGGIAMENTO"/>
+	    <String ID="CONSOLE_UPLOADBUILD" Name="CARICA BUILD"/>
+	    <String ID="CONSOLE_EXPORTGEAR" Name="ESPOERTA EQUIPAGGIAMENTO"/>
       <String ID="CONSOLE_CHANGELOG" Name="CHANGELOGS"/>
       <String ID="CONSOLE_DISCORD" Name="DISCORD"/>
       <String ID="CONSOLE_GITHUB" Name="GITHUB"/>
@@ -457,8 +457,8 @@
       <!-- Popups -->
       <String ID="MESSAGE_QUIT" Name="Sei sicuro di voler chiudere HunterPie?"/>
       <String ID="TITLE_MISSING_PATH" Name="Il percorso per Monster Hunter World non è stato trovato"/>
-      <String ID="MESSAGE_MISSING_PATH" Name="Non hai aggiunto il percorso per Monster Hunter World, Vuoi farlo ora?"/>
-	  <String ID="MESSAGE_UPLOAD_BUILD" Name="Vuoi caricare la tua build su Honey Hunters World?"/>
+      <String ID="MESSAGE_MISSING_PATH" Name="Non hai aggiunto il percorso per Monster Hunter World. Vuoi farlo ora?"/>
+	    <String ID="MESSAGE_UPLOAD_BUILD" Name="Vuoi caricare la tua build su Honey Hunters World?"/>
       <!-- Console Messages -->
       <String ID="MESSAGE_MAP_LOAD" Name="Caricata: {HunterPie_Map}"/>
       <String ID="MESSAGE_DISCORD_CONNECTED" Name="Avviando nuova connessione RCP"/>
@@ -479,7 +479,7 @@
       <String ID="MESSAGE_AUTOUPDATE_DISABLED_WARN" Name="l'Update Automatico è Disattivato, Se HunterPie ha qualche problema o non supporta la versione del gioco, prova a riattivarlo."/>
       <String ID="MESSAGE_THEME_LOAD_WARN" Name="Tema customizzato caricato!"/>
       <!-- Errors -->
-      <String ID="MESSAGE_GAME_VERSION_UNSUPPORTED" Name="La versione di gioco ({GAME_VERSION}) non è ancora stata mappata!"/>
+      <String ID="MESSAGE_GAME_VERSION_UNSUPPORTED" Name="La versione di gioco ({GAME_VERSION}) non è ancora supportata!"/>
       <String ID="MESSAGE_LAUNCH_ERROR" Name="Lancio di Monster Hunter World fallito."/>
       <String ID="MESSAGE_UPDATE_ERROR" Name="Update di HunterPie Fallito, Controlla la connessione internet."/>
       <String ID="MESSAGE_THEME_NOT_FOUND_ERROR" Name="Tema non trovato: {THEME_NAME}"/>
@@ -487,18 +487,18 @@
     </Console>
     <Settings>
       <!-- General -->
-      <String ID="ENABLE_AUTOUPDATE" Name="Attiva Auto-Update"/>
-      <String ID="ENABLE_AUTOUPDATE_DESC" Name="Se attivo HunterPie cercherà nuovi aggiornamenti ogni volta che si avvia."/>
+      <String ID="ENABLE_AUTOUPDATE" Name="Attiva aggiornamenti automatici"/>
+      <String ID="ENABLE_AUTOUPDATE_DESC" Name="Se attivo, HunterPie cercherà nuovi aggiornamenti ogni volta che si avvia."/>
       <String ID="ENABLE_MINTOTRAY" Name="Nascondi HunterPie dentro la Tray di sistema"/>
-      <String ID="ENABLE_MINTOTRAY_DESC" Name="Se attivo, HunterPie si nascondera dentro la Tray di sistema e continuera a funzionare in background."/>
-      <String ID="ENABLE_STARTMIN" Name="Avvia HunterPie Nascosto"/>
-      <String ID="ENABLE_STARTMIN_DESC" Name="Se attivo, HunterPie si Nascondera automaticamente all'avvio."/>
+      <String ID="ENABLE_MINTOTRAY_DESC" Name="Se attivo, HunterPie si nascondera dentro la tray di sistema e continuera a funzionare in background."/>
+      <String ID="ENABLE_STARTMIN" Name="Avvia HunterPie nascosto"/>
+      <String ID="ENABLE_STARTMIN_DESC" Name="Se attivo, HunterPie si nasconderà automaticamente all'avvio."/>
       <String ID="ENABLE_AUTOCLOSE" Name="Chiudi HunterPie con il gioco"/>
       <String ID="ENABLE_AUTOCLOSE_DESC" Name="Se attivo, HunterPie si chiudera quando chiudi il gioco."/>
-      <String ID="STATIC_UPDATEBRANCH" Name="Rama di aggiornamento:"/>
-      <String ID="STATIC_UPDATEBRANCH_DESC" Name="Scegli che ramo di aggiornamento prendere, Beta ha tutte le nuove funzioni, Master è più stabile (La traduzione italiana è solo per il ramo Master)."/>
-      <String ID="STATIC_LANGUAGEFILE" Name="Language File:"/>
-      <String ID="STATIC_LANGUAGEFILE_DESC" Name="Choose the language file you want HunterPie to use."/>
+      <String ID="STATIC_UPDATEBRANCH" Name="Branch di aggiornamento:"/>
+      <String ID="STATIC_UPDATEBRANCH_DESC" Name="Scegli che branch di aggiornamento prendere. Beta implementa le nuove funzionalità, ma è meno stabile e non ha una traduzione italiana. Master è più stabile."/>
+      <String ID="STATIC_LANGUAGEFILE" Name="File di lingua:"/>
+      <String ID="STATIC_LANGUAGEFILE_DESC" Name="Scegli il file lingua che vuoi che HunterPie utilizzi."/>
       <String ID="STATIC_THEMEFILE" Name="File del tema:"/>
       <String ID="STATIC_THEMEFILE_DESC" Name="Scegli che tema vuoi usare per HunterPie."/>
       <String ID="STATIC_GAMEPATH" Name="Percorso del gioco:"/>
@@ -506,60 +506,60 @@
       <String ID="STATIC_GAMEPATH_DESC" Name="Seleziona il percorso del file eseguibile di Monster Hunter World."/>
       <String ID="STATIC_LAUNCHARGS" Name="Argomenti di lancio"/>
       <String ID="STATIC_LAUNCHARGS_NOARGS" Name="Nessun Argomento"/>
-      <String ID="STATIC_LAUNCHARGS_DESC" Name="Argumenti da usare quando lanci il gioco, lascare vuoto se non sai cosa stai faccendo."/>
+      <String ID="STATIC_LAUNCHARGS_DESC" Name="Argumenti da usare quando lanci il gioco, lascare vuoto se non sai cosa stai facendo."/>
       <!-- Discord RPC -->
       <String ID="ENABLE_RPC" Name="Attiva Discord Rich Presence"/>
       <String ID="ENABLE_RPC_DESC" Name="Se attivo, HunterPie mostrera la tua attività di gioco su discord."/>
       <String ID="ENABLE_RPC_HEALTH" Name="Mostra percentuale mostro"/>
       <String ID="ENABLE_RPC_HEALTH_DESC" Name="Se attivo, la percentuale del mostro sarà mostrata nella attivita di gioco di discord."/>
-      <String ID="ENABLE_PEOPLE_JOIN" Name="Lascia che la gente possa chiederti di unirti a te"/>
+      <String ID="ENABLE_PEOPLE_JOIN" Name="Lascia che la gente possa chiedere di unirsi a te"/>
       <String ID="ENABLE_PEOPLE_JOIN_DESC" Name="Se attivo, gli altri giocatori potrano inviarti una richiesta per unirsi nella tua sessione."/>
       <!-- Overlay -->
-      <String ID="ENABLE_OVERLAY" Name="Attiva overlay in-game"/>
-      <String ID="ENABLE_OVERLAY_DESC" Name="Se attivo, la overlay sarà mostrata in gioco."/>
-      <String ID="ENABLE_HIDE_WHEN_UNFOCUS" Name="nascondi overlay quando il gioco non è in primo piano."/>
-      <String ID="ENABLE_HIDE_WHEN_UNFOCUS_DESC" Name="Se attivo, HunterPie nascondera la overlay quando il gioco non è in primo piano (esempio: quando fai alt+tab)"/>
+      <String ID="ENABLE_OVERLAY" Name="Attiva overlay in gioco"/>
+      <String ID="ENABLE_OVERLAY_DESC" Name="Se attivo, l'overlay sarà mostrato in gioco."/>
+      <String ID="ENABLE_HIDE_WHEN_UNFOCUS" Name="Nascondi overlay quando il gioco non è in primo piano."/>
+      <String ID="ENABLE_HIDE_WHEN_UNFOCUS_DESC" Name="Se attivo, HunterPie nascondera la overlay quando il gioco non è in primo piano."/>
       <String ID="ENABLE_HARDWARE_ACCELERATION" Name="Attiva accelerazione Hardware"/>
-      <String ID="ENABLE_HARDWARE_ACCELERATION_DESC" Name="Attivare la accelerazione hardware fara in modo che la overlay sia renderizzata dalla tua scheda grafica. Disattivare questa opzione cambiera la modailta di rendering in software rendering, che usera più CPU. Disattiva questa opzione se hai problemi di FPS."/>
+      <String ID="ENABLE_HARDWARE_ACCELERATION_DESC" Name="Attivare l'accelerazione hardware farà in modo che l'overlay sia renderizzato dalla tua scheda grafica. Disattivare quest'opzione cambierà la modailta di rendering in software rendering, che userà più CPU. Disattiva quest'opzione se hai problemi di FPS."/>
       <String ID="STATIC_ANIMATION_FPS" Name="FPS Animazioni"/>
-      <String ID="STATIC_ANIMATION_FPS_DESC" Name="Cambia le FPS delle animazione, Abbassa questa opzione se il gioco ha cali di frame rate."/>
-      <String ID="STATIC_GAME_SCAN_DELAY" Name="Delay del scanner:"/>
-      <String ID="STATIC_GAME_SCAN_DELAY_DESC" Name="il Delay tra scan. Impostare questa impostazione in un valore molto basso fara in modo che HunterPie scannerizi il gioco più spesso a costo della CPU. (esempio, impostare questo a 200 fara in modo che HunterPie scannerizi il gioco 5 volte al secondo)."/>
+      <String ID="STATIC_ANIMATION_FPS_DESC" Name="Cambia il frame rate delle animazioni. Abbassa il valore se il gioco ha cali di frame."/>
+      <String ID="STATIC_GAME_SCAN_DELAY" Name="Delay di scan:"/>
+      <String ID="STATIC_GAME_SCAN_DELAY_DESC" Name="Delay in ms tra gli scan sul gioco. Valori più bassi aumenteranno il numero di scan per secondo al costo di utilizzo di CPU."/>
       <String ID="STATIC_IMAGE_QUALITY" Name="Qualità immagini"/>
       <String ID="STATIC_IMAGE_QUALITY_DESC" Name="Cambia la qualità delle immagini."/>
-      <String ID="STATIC_TOGGLE_OVERLAY" Name="Hotkey Overlay:"/>
-      <String ID="STATIC_TOGGLE_OVERLAY_DESC" Name="Una Hotkey che ti permette attivare e disattivare la overlay."/>
-      <String ID="STATIC_TOGGLE_DESIGN" Name="Hotkey per Modalita Desing:"/>
-      <String ID="STATIC_TOGGLE_DESIGN_DESC" Name="Hotkey per attivare e disattivare la modalita desing."/>
+      <String ID="STATIC_TOGGLE_OVERLAY" Name="Hotkey overlay:"/>
+      <String ID="STATIC_TOGGLE_OVERLAY_DESC" Name="Una hotkey che ti permette attivare e disattivare l'overlay."/>
+      <String ID="STATIC_TOGGLE_DESIGN" Name="Hotkey per Modalità Design:"/>
+      <String ID="STATIC_TOGGLE_DESIGN_DESC" Name="Hotkey per attivare e disattivare la modalita design."/>
       <String ID="STATIC_OVERLAY_POSITION_DESC" Name="Cambia posizione overlay."/>
       <!-- Monster Widget -->
       <String ID="ENABLE_MONSTER_WIDGET" Name="Attiva widget mostri"/>
-      <String ID="ENABLE_MONSTER_WIDGET_DESC" Name="Se attivato, il widget dei mostri sarà visible in sieme a i suoi contenuti."/>
-      <String ID="STATIC_MONSTER_HEALTH_STRING_FORMAT" Name="Formato testo vita:"/>
-      <String ID="STATIC_MONSTER_HEALTH_STRING_FORMAT_DESC" Name="Cambia il formato testo della barra di vita."/>
+      <String ID="ENABLE_MONSTER_WIDGET_DESC" Name="Se attivato, il widget dei mostri sarà visible insieme ai suoi contenuti."/>
+      <String ID="STATIC_MONSTER_HEALTH_STRING_FORMAT" Name="Formato testo HP:"/>
+      <String ID="STATIC_MONSTER_HEALTH_STRING_FORMAT_DESC" Name="Cambia il formato testo della barra della vita dei mostri."/>
       <String ID="ENABLE_MONSTER_USE_LOCKON" Name="Usa il blocca telecamera su mostro per selezionare il besaglio"/>
-      <String ID="ENABLE_MONSTER_USE_LOCKON_DESC" Name="se attivato, hunterpie utilizera il bersaglio selezionato dal blocca telecamera in-game."/>
-      <String ID="STATIC_MONSTER_BAR_MODE" Name="Modalità barra di vita del mostro"/>
-      <String ID="STATIC_MONSTER_BAR_MODE_DESC" Name="Cambia la modalità della barra di vita del mostro."/>
-      <String ID="STATIC_MONSTER_BAR_MODE_0" Name="Mostra tutti i mostri a lo stesso tempo"/>
-      <String ID="STATIC_MONSTER_BAR_MODE_1" Name="Mostra tutti i mostri ma evidenzia il mio obiettivo (in spedizione pinnalo nella mappa)"/>
-      <String ID="STATIC_MONSTER_BAR_MODE_2" Name="Mostra solo il mostro che sto cacciando (in spedizione pinnalo nella mappa)"/>
+      <String ID="ENABLE_MONSTER_USE_LOCKON_DESC" Name="Se attivato, HunterPie utilizzerà il bersaglio selezionato dalla telecamera in gioco."/>
+      <String ID="STATIC_MONSTER_BAR_MODE" Name="Barre di vita multiple"/>
+      <String ID="STATIC_MONSTER_BAR_MODE_DESC" Name="Cambia come vengono visualizzate multiple barre di vita in game."/>
+      <String ID="STATIC_MONSTER_BAR_MODE_0" Name="Mostra tutti i mostri allo stesso tempo"/>
+      <String ID="STATIC_MONSTER_BAR_MODE_1" Name="Mostra tutti i mostri ma evidenzia quello selezionato"/>
+      <String ID="STATIC_MONSTER_BAR_MODE_2" Name="Mostra solo il mostro che sto cacciando"/>
       <String ID="STATIC_MONSTER_BAR_MODE_3" Name="Mostra tutti ma nascondi inattivi dopo 15 secondi"/>
-	  <String ID="STATIC_MONSTER_BAR_MODE_4" Name="Mostra tutti finche un mostro non è selezionato"/>
-      <String ID="STATIC_MONSTER_BAR_MODE_HOTKEY" Name=" la modalità della barra di vita (HotKey):"/>
-      <String ID="STATIC_MONSTER_BAR_MODE_HOTKEY_DESC" Name="Hotkey per la modalità della barra di vita. cambiare la Hotkey richiede il riavvio di HunterPie."/>
+	    <String ID="STATIC_MONSTER_BAR_MODE_4" Name="Mostra tutti finché un mostro non è selezionato"/>
+      <String ID="STATIC_MONSTER_BAR_MODE_HOTKEY" Name="Cambia barre di vita multiple (HotKey):"/>
+      <String ID="STATIC_MONSTER_BAR_MODE_HOTKEY_DESC" Name="Hotkey per cambiare come vengono visualizzate le barre di vita multiple."/>
       <String ID="STATIC_MONSTER_BAR_DOCK" Name="Dock della barra di vita:"/>
       <String ID="STATIC_MONSTER_BAR_DOCK_DESC" Name="Cambia il dock della barra di vita."/>
       <String ID="STATIC_MONSTER_BAR_DOCK_0" Name="Sopra"/>
       <String ID="STATIC_MONSTER_BAR_DOCK_1" Name="Sotto"/>
       <String ID="ENABLE_MONSTER_WEAKNESS" Name="Mostra vulnerabilità mostro"/>
       <String ID="ENABLE_MONSTER_WEAKNESS_DESC" Name="Se attivo, la vulnerabilità del mostro sarà mostrata sotto la barra di vita."/>
-      <String ID="ENABLE_HIDE_INACTIVE_PARTS" Name="Nasondi le parti e status se inattivi"/>
-      <String ID="ENABLE_HIDE_INACTIVE_PARTS_DESC" Name="Se attivo, le parti e gli status che non sono stati daneggiati saranno nascosti dopo un qualche secondo."/>
+      <String ID="ENABLE_HIDE_INACTIVE_PARTS" Name="Nasondi parti e status inattivi"/>
+      <String ID="ENABLE_HIDE_INACTIVE_PARTS_DESC" Name="Se attivo, le parti non danneggiate e gli status non sfruttati saranno nascosti dopo un qualche secondo."/>
       <String ID="ENABLE_BREAKABLE_PARTS" Name="Mostra parti rompibili del mostro"/>
-      <String ID="ENABLE_BREAKABLE_PARTS_DESC" Name="Se attivo, parti rimuovibili, rompibili o tagliabili saranno mostrate."/>
+      <String ID="ENABLE_BREAKABLE_PARTS_DESC" Name="Se attivo, parti rimovibili, rompibili o tagliabili saranno mostrate."/>
       <String ID="ENABLE_AILMENTS" Name="Mostra status del mostro"/>
-      <String ID="ENABLE_AILMENTS_DESC" Name="Se attivo, i stato del mostro saranno mostrati sotto la barra della vita."/>
+      <String ID="ENABLE_AILMENTS_DESC" Name="Se attivo, lo status del mostro sarà mostrato sotto la sua barra della vita."/>
       <String ID="ENABLE_MONSTER_PARTS" Name="Mostra parti del mostro"/>
       <String ID="ENABLE_MONSTER_PARTS_DESC" Name="Se attivo, mostera le parti del mostro."/>
       <String ID="ENABLE_MONSTER_PART_HEAD" Name="Attiva vita testa"/>
@@ -568,7 +568,7 @@
       <String ID="ENABLE_MONSTER_PART_WING" Name="Attiva vita ali"/>
       <String ID="ENABLE_MONSTER_PART_LEG" Name="Attiva vita zampe posteriori"/>
       <String ID="ENABLE_MONSTER_PART_TAIL" Name="Attiva vita coda"/>
-      <String ID="ENABLE_MONSTER_PART_LIMB" Name="Attiva vita Estremità"/>
+      <String ID="ENABLE_MONSTER_PART_LIMB" Name="Attiva vita estremità"/>
       <String ID="ENABLE_MONSTER_PART_ABDOMEN" Name="Attiva vita addome"/>
       <String ID="ENABLE_MONSTER_PART_CHEST" Name="Attiva vita petto"/>
       <String ID="ENABLE_MONSTER_PART_REAR" Name="Attiva vita posteriore"/>
@@ -587,73 +587,73 @@
       <String ID="STATIC_MONSTER_MAX_COLUMNS" Name="numero massimo di colonne"/>
       <String ID="STATIC_MONSTER_MAX_COLUMNS_DESC" Name="Imposta il massimo numero di colonne."/>
       <String ID="STATIC_MONSTER_PART_DELAY" Name="Delay per nascondere le parti inattive"/>
-      <String ID="STATIC_MONSTER_PART_DELAY_DESC" Name="Il delay che c'è prima che una parte sia nascosta per inatività."/>
+      <String ID="STATIC_MONSTER_PART_DELAY_DESC" Name="Il delay che c'è prima che una parte sia nascosta per inattività."/>
       <String ID="STATIC_MONSTER_POSITION_DESC" Name="Cambia la posizione del widget."/>
       <!-- Harvest Box Widget -->
       <String ID="ENABLE_HARVEST_BOX" Name="Attiva widget botanico"/>
       <String ID="ENABLE_HARVEST_BOX_DESC" Name="Se attivo il widget botanico sarà visibile."/>
       <String ID="ENABLE_STEAM_TRACKER" Name="Mostra vapore rimanente"/>
-      <String ID="ENABLE_STEAM_TRACKER_DESC" Name="Se attivo, un basso al widget botanico sarà mostrato il vapore rimanente."/>
+      <String ID="ENABLE_STEAM_TRACKER_DESC" Name="Se attivo, in basso al widget botanico sarà mostrato il vapore rimanente."/>
       <String ID="ENABLE_ARGOSY_TRACKER" Name="Mostra attività mercantile"/>
       <String ID="ENABLE_ARGOSY_TRACKER_DESC" Name="Se attivo, lo stato del mercantile sarà mostrato in basso al widget botanico."/>
       <String ID="ENABLE_TAILRAIDERS_TRACKER" Name="Mostra stato cacciaprede"/>
-      <String ID="ENABLE_TAILRAIDERS_TRACKER_DESC" Name="Se attivo, in basso a la barra sarà mostrato lo stato dei cacciaprede"/>
-      <String ID="ENABLE_HARVEST_BOX_EVERYWHERE" Name="Mostra widget botanico da per tutto"/>
-      <String ID="ENABLE_HARVEST_BOX_EVERYWHERE_DESC" Name="Se attivo, il widget botanico sarà visibile in tutte le zone, incluse le eccezioni."/>
+      <String ID="ENABLE_TAILRAIDERS_TRACKER_DESC" Name="Se attivo, in basso al widget sarà mostrato lo stato dei cacciaprede"/>
+      <String ID="ENABLE_HARVEST_BOX_EVERYWHERE" Name="Mostra widget botanico dappertutto"/>
+      <String ID="ENABLE_HARVEST_BOX_EVERYWHERE_DESC" Name="Se attivo, il widget botanico sarà visibile in tutte le zone."/>
       <String ID="STATIC_HARVEST_BOX_POSITION_DESC" Name="Cambia posizione del widget botanico."/>
-      <String ID="ENABLE_HARVEST_BOX_COMPACT_MODE" Name="Enable Modalità Compatta"/>
-      <String ID="ENABLE_HARVEST_BOX_COMPACT_MODE_DESC" Name="Se attivo, il widget botanico cambiera in modalita compatta."/>
+      <String ID="ENABLE_HARVEST_BOX_COMPACT_MODE" Name="Abilità modalità compatta"/>
+      <String ID="ENABLE_HARVEST_BOX_COMPACT_MODE_DESC" Name="Se attivata, il widget botanico cambierà in modalita compatta."/>
       <!-- Damage Meter -->
       <String ID="ENABLE_METER" Name="Attiva widget danno"/>
       <String ID="ENABLE_METER_DESC" Name="Se attivo, il widget del danno sarà visibile."/>
       <String ID="ENABLE_TOTAL_DAMAGE" Name="Mostra danno totale"/>
       <String ID="ENABLE_TOTAL_DAMAGE_DESC" Name="Se attivo, il danno totale individuale per giocatore sarà mostrato."/>
       <String ID="ENABLE_METER_DPS" Name="Mostra DPS "/>
-      <String ID="ENABLE_METER_DPS_DESC" Name="Se attivo, il widget del danno mostrera i danni per secondo."/>
-	  <String ID="ENABLE_TIMER" Name="Mostra Timer"/>
+      <String ID="ENABLE_METER_DPS_DESC" Name="Se attivo, il widget del danno mostrerà i danni al secondo."/>
+	    <String ID="ENABLE_TIMER" Name="Mostra Timer"/>
       <String ID="ENABLE_TIMER_DESC" Name="Se attivato, il timer sarà visibile."/>
       <String ID="ENABLE_TIMER_IN_GL" Name="Attiva timer in Spedizioni/Terre Guida"/>
       <String ID="ENABLE_TIMER_IN_GL_DESC" Name="Se attivato, il timer sarà visibile in Spedizioni/Terre Guida."/>
-      <String ID="ENABLE_ONLY_TIMER" Name="Mostra solo timer timer"/>
-      <String ID="ENABLE_ONLY_TIMER_DESC" Name="Se attivo, il widget danno, mostrera solo il timer, senza mostrare i danni della squadra."/>
+      <String ID="ENABLE_ONLY_TIMER" Name="Mostra solo timer"/>
+      <String ID="ENABLE_ONLY_TIMER_DESC" Name="Se attivo, il widget danno mostrerà solo il timer, senza mostrare i danni della squadra."/>
       <String ID="ENABLE_METER_ONLY_MYSELF" Name="Mostra solo il mio danno"/>
-      <String ID="ENABLE_METER_ONLY_MYSELF_DESC" Name="Se attivo, il widget danni mostrera solo i danni fatti da te."/>
-      <String ID="STATIC_METER_PLAYER_1" Name="Primo Giocatore"/>
-      <String ID="STATIC_METER_PLAYER_2" Name="Secondo Giocatore"/>
-      <String ID="STATIC_METER_PLAYER_3" Name="Terzo Giocatore"/>
-      <String ID="STATIC_METER_PLAYER_4" Name="Quarto Giocatore"/>
+      <String ID="ENABLE_METER_ONLY_MYSELF_DESC" Name="Se attivo, il widget danni mostrerà solo i danni inflitti da te."/>
+      <String ID="STATIC_METER_PLAYER_1" Name="Primo cacciatore"/>
+      <String ID="STATIC_METER_PLAYER_2" Name="Secondo cacciatore"/>
+      <String ID="STATIC_METER_PLAYER_3" Name="Terzo cacciatore"/>
+      <String ID="STATIC_METER_PLAYER_4" Name="Quarto cacciatore"/>
       <String ID="STATIC_METER_POSITION_DESC" Name="Cambia posizione del widget danno."/>
       <!-- Class Widget -->
-      <String ID="ENABLE_INSECT_GLAIVE_HELPER" Name="Attiva Overlay Lancia Insetto"/>
-      <String ID="ENABLE_INSECT_GLAIVE_HELPER_DESC" Name="Se attivato, l'Overlay Lancia Insetto sarà visibile quando hai una lancia insetto equipaggiata."/>
+      <String ID="ENABLE_INSECT_GLAIVE_HELPER" Name="Attiva Overlay Falcione Insetto"/>
+      <String ID="ENABLE_INSECT_GLAIVE_HELPER_DESC" Name="Se attivato, l'Overlay per Falcione Insetto sarà visibile quando hai un falcione insetto equipaggiato."/>
       <String ID="ENABLE_CHARGE_BLADE_HELPER" Name="Attiva Overlay Lama Caricata"/>
-      <String ID="ENABLE_CHARGE_BLADE_HELPER_DESC" Name="Se attivato, l'Overlay Lama Caricata sarà visibile quando hai una lama caricata equipaggiata."/>
+      <String ID="ENABLE_CHARGE_BLADE_HELPER_DESC" Name="Se attivato, l'Overlay per Lama Caricata sarà visibile quando hai una lama caricata equipaggiata."/>
       <String ID="ENABLE_SWITCH_AXE_HELPER" Name="Attiva Overlay Spadascia "/>
-      <String ID="ENABLE_SWITCH_AXE_HELPER_DESC" Name="Se attivato, l'Overlay Spadascia sarà visibile quando hai una spadascia equipaggiata."/>
+      <String ID="ENABLE_SWITCH_AXE_HELPER_DESC" Name="Se attivato, l'Overlay per Spadascia sarà visibile quando hai una spadascia equipaggiata."/>
       <String ID="ENABLE_GUN_LANCE_HELPER" Name="Attiva Overlay Lancia Fucile"/>
-      <String ID="ENABLE_GUN_LANCE_HELPER_DESC" Name="Se attivato, l'Overlay Lancia Fucile sarà visibile quando hai una lancia fucile equipaggiata."/>
+      <String ID="ENABLE_GUN_LANCE_HELPER_DESC" Name="Se attivato, l'Overlay per Lancia Fucile sarà visibile quando hai una lancia fucile equipaggiata."/>
       <String ID="ENABLE_LONGSWORD_HELPER" Name="Attiva Overlay Spada Lunga"/>
-      <String ID="ENABLE_LONGSWORD_HELPER_DESC" Name="Se attivato, l'Overlay Spada Lunga sarà visibile quando hai una spada lunga equipaggiata."/>
+      <String ID="ENABLE_LONGSWORD_HELPER_DESC" Name="Se attivato, l'Overlay per Spada Lunga sarà visibile quando hai una spada lunga equipaggiata."/>
       <String ID="ENABLE_BOW_HELPER" Name="Attiva Overlay Arco"/>
-      <String ID="ENABLE_BOW_HELPER_DESC" Name="Se attivato, l'Overlay Arco sarà visibile quando hai un Arco equipaggiata."/>
+      <String ID="ENABLE_BOW_HELPER_DESC" Name="Se attivato, l'Overlay Arco sarà visibile quando hai un Arco equipaggiato."/>
       <String ID="ENABLE_HAMMER_HELPER" Name="Attiva Overlay Martello"/>
-      <String ID="ENABLE_HAMMER_HELPER_DESC" Name="Se attivato, l'Overlay Martello sarà visibile quando hai un martello equipaggiata."/>
+      <String ID="ENABLE_HAMMER_HELPER_DESC" Name="Se attivato, l'Overlay Martello sarà visibile quando hai un martello equipaggiato."/>
       <String ID="ENABLE_DUALBLADES_HELPER" Name="Attiva Overlay Doppie Lame"/>
       <String ID="ENABLE_DUALBLADES_HELPER_DESC" Name="Se attivato, l'Overlay Doppie Lame sarà visibile quando hai delle doppie lame equipaggiate."/>
       <String ID="ENABLE_LANCE_HELPER" Name="Attiva Overlay Lancia"/>
       <String ID="ENABLE_LANCE_HELPER_DESC" Name="Se attivato, l'Overlay Lancia sarà visibile quando hai una lancia equipaggiata."/>
-      <String ID="STATIC_CLASSES_BETA_WARNING" Name="Attenzione: le overlay di classe stanno ancora sotto sviluppo, più classi saranno aggiunte in futuro, ogni overlay ha le sue propie impostazioni, quindi puoi averle in posizione diverse dipendendo dalla classe, usa la modalità desing per muovere o scalare l'overlay."/>
+      <String ID="STATIC_CLASSES_BETA_WARNING" Name="Attenzione: le overlay di classe sono ancora sotto sviluppo, verranno aggiunte più classi in futuro. Ogni overlay ha le sue impostazioni, quindi puoi averle in posizione diverse dipendendo dalla classe. Utilizza la modalità design per muovere o scalare l'overlay."/>
       <!-- Abnormalities Widget -->
       <String ID="STATIC_CREATE_ABNORM_BAR_DESC" Name="Crea nuova barra anormalità."/>
       <String ID="STATIC_REMOVE_ABNORM_BAR_DESC" Name="Rimuovi la barra anormalità."/>
       <String ID="STATIC_ENABLE_ABNORM_BAR" Name="Attiva"/>
-      <String ID="ENABLE_ALLIGN_ABNORM_BAR_HORIZONTALLY" Name="Alinea anormalita orizzontalmente."/>
-      <String ID="ENABLE_ALLIGN_ABNORM_BAR_HORIZONTALLY_DESC" Name="Se attivo, le anormalita saranno alineati orizzontalmente."/>
+      <String ID="ENABLE_ALLIGN_ABNORM_BAR_HORIZONTALLY" Name="Allinea anormalità orizzontalmente."/>
+      <String ID="ENABLE_ALLIGN_ABNORM_BAR_HORIZONTALLY_DESC" Name="Se attivo, le anormalità saranno allineate orizzontalmente."/>
       <String ID="ENABLE_ABNORM_BAR_TIME_LEFT" Name="Mostra tempo rimanente delle anormalità"/>
-      <String ID="ENABLE_ABNORM_BAR_TIME_LEFT_DESC" Name="Se attivo, le anormalità avranno un contatore in basso al'icona."/>
-      <String ID="STATIC_TIMER_TEXT_FORMAT" Name="Formato testo del contatore"/>
-      <String ID="STATIC_BACKGROUND_OPACITY" Name="Opacità background"/>
-      <String ID="STATIC_BACKGROUND_OPACITY_DESC" Name="Cambia la Opacità del background."/>
+      <String ID="ENABLE_ABNORM_BAR_TIME_LEFT_DESC" Name="Se attivo, le anormalità avranno un contatore in basso all'icona."/>
+      <String ID="STATIC_TIMER_TEXT_FORMAT" Name="Formato testo del timer"/>
+      <String ID="STATIC_BACKGROUND_OPACITY" Name="Opacità sfondo"/>
+      <String ID="STATIC_BACKGROUND_OPACITY_DESC" Name="Cambia l'opacità dello sfondo."/>
       <String ID="STATIC_ABNORM_TAB_HH" Name="Corno da caccia"/>
       <String ID="STATIC_ABNORM_TAB_ORCHESTRA" Name="Orchestra"/>
       <String ID="STATIC_ABNORM_TAB_DEBUFF" Name="Debuffs"/>
@@ -662,8 +662,8 @@
       <String ID="ENABLE_SHOW_ABNORM_NAMES" Name="Mostra nome anormalità"/>
       <String ID="ENABLE_SHOW_ABNORM_NAMES_DESC" Name="Se attivo, il nome del'anormalità sarà mostrato."/>
       <!-- Specialized Tool Widget-->
-      <String ID="STATIC_PRIMARY_SPEC_TOOL" Name="Attrezzo Specializato Primario"/>
-      <String ID="STATIC_SECONDARY_SPEC_TOOL" Name="Attrezzo Specializato Secondario"/>
+      <String ID="STATIC_PRIMARY_SPEC_TOOL" Name="Attrezzo Specializzato Primario"/>
+      <String ID="STATIC_SECONDARY_SPEC_TOOL" Name="Attrezzo Specializzato Secondario"/>
       <String ID="ENABLE_PRIMARY_SPEC_TOOL" Name="Attiva widget"/>
       <String ID="ENABLE_PRIMARY_SPEC_TOOL_DESC" Name="Se attivo, il widget attrezzi specializzati primari sarà visibile."/>
       <String ID="ENABLE_SECONDARY_SPEC_TOOL" Name="Attiva widget"/>
@@ -671,16 +671,6 @@
       <String ID="STATIC_COLOR" Name="Colore:"/>
       <String ID="STATIC_PRIMARY_SPEC_TOOL_POSITION_DESC" Name="Cambia la posizione del  widget attrezzi specializzati primari."/>
       <String ID="STATIC_SECONDARY_SPEC_TOOL_POSITION_DESC" Name="Cambia la posizione del  widget attrezzi specializzati Secondari."/>
-      <!-- Class Widget -->
-      <String ID="ENABLE_INSECT_GLAIVE_HELPER" Name="Enable Insect Glaive Helper"/>
-      <String ID="ENABLE_INSECT_GLAIVE_HELPER_DESC" Name="If enabled, the Insect Glaive helper will be visible whenever you equip an Insect Glaive."/>
-      <String ID="ENABLE_CHARGE_BLADE_HELPER" Name="Enable Charge Blade Helper"/>
-      <String ID="ENABLE_CHARGE_BLADE_HELPER_DESC" Name="If enabled, the Charge Blade helper will be visible whenever you equip an Charge Blade."/>
-      <String ID="ENABLE_SWITCH_AXE_HELPER" Name="Enable Switch Axe Helper"/>
-      <String ID="ENABLE_SWITCH_AXE_HELPER_DESC" Name="If enabled, the Switch Axe helper will be visible whenever you equip an Switch Axe."/>
-      <String ID="ENABLE_GUN_LANCE_HELPER" Name="Enable Gun Lance Helper"/>
-      <String ID="ENABLE_GUN_LANCE_HELPER_DESC" Name="If enabled, the Gun Lance helper will be visible whenever you equip an Gun Lance."/>
-      <String ID="STATIC_CLASSES_BETA_WARNING" Name="Attention: Class helpers are still in development and more classes will be supported in the future. Each class helper has it's own settings, so you can have different positions for this widget depending on the class. Use the Design Mode feature to scale and move this widget."/>
       <!-- Links -->
       <String ID="STATIC_HUNTERPIE_WIKI" Name="Documentazione"/>
       <String ID="STATIC_HUNTERPIE_WIKI_DESC" Name="documentazione officiale di HunterPie."/>
@@ -690,15 +680,15 @@
       <String ID="STATIC_HUNTERPIE_DISCORD_DESC" Name="Discord officiale di HunterPie."/>
       <String ID="STATIC_HUNTERPIE_DONATIONS" Name="Donazioni"/>
       <String ID="STATIC_HUNTERPIE_PAYPAL" Name="PayPal"/>
-      <String ID="STATIC_HUNTERPIE_PAYPAL_DESC" Name="Compra un caffè a lo sviluppatore"/>
+      <String ID="STATIC_HUNTERPIE_PAYPAL_DESC" Name="Compra un caffè allo sviluppatore"/>
       <!-- Debug -->
       <String ID="ENABLE_DEBUG_MESSAGES" Name="Attiva messaggi di debug"/>
-      <String ID="ENABLE_DEBUG_MESSAGES_DESC" Name="Attiva i messaggi di debug, se non sai cosa stai faccendo non attivare questa opzione."/>
+      <String ID="ENABLE_DEBUG_MESSAGES_DESC" Name="Attiva i messaggi di debug, se non sai cosa stai facendo non attivare questa opzione."/>
       <String ID="ENABLE_UNKNOWN_AILMENTS" Name="Attiva status sconoscuti per i mostri"/>
-      <String ID="ENABLE_UNKNOWN_AILMENTS_DESC" Name="Attiva status sconoscuti per i mostri. se non sai cosa stai faccendo non attivare questa opzione."/>
-      <String ID="ENABLE_LOAD_CUSTOM_DATA" Name="Carica dati mostri customizzati"/>
-      <String ID="ENABLE_LOAD_CUSTOM_DATA_DESC" Name="Se attivo, HunterPie provera a carica il file di mostri customizzato. se non sai cosa stai faccendo non attivare questa opzione."/>
-      <String ID="STATIC_LOAD_CUSTOM_DATA_PATH" Name="File di mostri customizzato:"/>
+      <String ID="ENABLE_UNKNOWN_AILMENTS_DESC" Name="Attiva status sconoscuti per i mostri. Se non sai cosa stai facendo non attivare questa opzione."/>
+      <String ID="ENABLE_LOAD_CUSTOM_DATA" Name="Carica dati mostri personalizzati"/>
+      <String ID="ENABLE_LOAD_CUSTOM_DATA_DESC" Name="Se attivo, HunterPie proverà a caricare il file dei mostri personalizzato. Se non sai cosa stai faccendo non attivare questa opzione."/>
+      <String ID="STATIC_LOAD_CUSTOM_DATA_PATH" Name="File di mostri personalizzato:"/>
       <String ID="STATIC_LOAD_CUSTOM_DATA_PATH_DESC" Name="Seleziona il percorso."/>
       <!-- Generics -->
       <String ID="STATIC_BUTTON_SELECT_ALL" Name="Seleziona Tutto"/>
@@ -716,8 +706,8 @@
       <String ID="STATIC_HARVEST_BOX_SETTINGS" Name="Widget Botanico"/>
       <String ID="STATIC_DAMAGE_METER_SETTINGS" Name="Widegt Danno/DPS"/>
       <String ID="STATIC_ABNORM_BAR_SETTINGS" Name="Widget Anormalità"/>
-      <String ID="STATIC_SPECIALIZED_TOOLS_SETTINGS" Name="Widget Atterzzi Specializati"/>
-      <String ID="STATIC_CLASSES_SETTINGS" Name="Classes"/>
+      <String ID="STATIC_SPECIALIZED_TOOLS_SETTINGS" Name="Widget Attrezzi Specializzati"/>
+      <String ID="STATIC_CLASSES_SETTINGS" Name="Classi"/>
       <String ID="STATIC_LINKS_SETTINGS" Name="Links"/>
       <String ID="STATIC_DEBUG_SETTINGS" Name="Debug"/>
     </Settings>
@@ -725,7 +715,7 @@
       <String ID="STATIC_HARVEST_BOX_TITLE" Name="WIDGET BOTANICO"/>
     </Overlay>
     <Notifications>
-      <String ID="STATIC_DISCORD_JOIN_REQUEST" Name="{Username} vuole unirsi a la tua sessione, lo accetti?"/>
+      <String ID="STATIC_DISCORD_JOIN_REQUEST" Name="{Username} vuole unirsi alla tua sessione, lo accetti?"/>
       <String ID="STATIC_ACCEPT" Name="Accetta richiesta"/>
       <String ID="STATIC_REJECT" Name="Respingi richiesta"/>
 	  <String ID="STATIC_OPENFOLDER" Name="Apri Cartella"/>
