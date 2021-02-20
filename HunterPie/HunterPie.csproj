@@ -141,7 +141,6 @@
       <SubType>Designer</SubType>
     </ApplicationDefinition>
     <Compile Include="Core\Client\AutoUpdate.cs" />
-    <Compile Include="Core\Integrations\Discord\Presence.cs" />
     <None Include="address\MonsterHunterWorld.421470.map">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
@@ -220,6 +219,7 @@
       <DependentUpon>App.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
+    <Compile Include="Core\Integrations\Discord\Presence.cs" />
     <Compile Include="GUIControls\PluginListCategoryControl.xaml.cs">
       <DependentUpon>PluginListCategoryControl.xaml</DependentUpon>
     </Compile>
@@ -676,7 +676,7 @@
   </ItemGroup>
   <ItemGroup>
     <PackageReference Include="DiscordRichPresence">
-      <Version>1.0.166</Version>
+      <Version>1.0.175</Version>
     </PackageReference>
     <PackageReference Include="Markdig.Wpf">
       <Version>0.4.0</Version>

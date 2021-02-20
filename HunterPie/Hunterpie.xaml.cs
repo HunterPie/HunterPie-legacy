@@ -742,7 +742,8 @@ namespace HunterPie
                 presence = new Presence(game);
                 if (offlineMode)
                     presence.SetOfflineMode();
-                presence.StartRPC();
+
+                presence.Initialize();
             }
 
             // Starts scanning

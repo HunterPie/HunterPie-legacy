@@ -1,320 +1,353 @@
 ﻿using System;
+using System.Windows;
 using DiscordRPC;
+using DiscordRPC.Message;
+using HunterPie.GUI.Widgets.Notifications;
 using HunterPie.Logger;
+
 
 namespace HunterPie.Core.Integrations.Discord
 {
     internal class Presence : IDisposable
     {
-        public bool IsDisposed { get; private set; }
-        private const string AppId = "567152028070051859";
-        private bool FailedToRegisterScheme { get; set; }
-        private bool isOffline = false;
-        private bool isVisible = true;
-        private RichPresence Instance;
-        public DiscordRpcClient Client;
-        public Game ctx;
+        const string AppId = "567152028070051859";
 
-        /* Constructor and base functions */
+        private RichPresence instance;
+        private DiscordRpcClient client;
+        private Game context;
+        private bool disposedValue;
+        private bool isOffline;
+        private bool failedToRegisterScheme;
+        private bool isVisible = ConfigManager.Settings.RichPresence.Enabled;
 
+        /// <summary>
+        /// Initializes a new Presence instance
+        /// </summary>
+        /// <param name="context">Context of the game</param>
         public Presence(Game context)
         {
-            ctx = context;
+            this.context = context;
+
             HookEvents();
         }
 
-        public void SetOfflineMode() => isOffline = true;
-
-        ~Presence()
-        {
-            Dispose(false);
-        }
-
-        /* Event handlers */
-
-        private void HookEvents()
-        {
-            ConfigManager.OnSettingsUpdate += HandleSettings;
-            // Game context
-            ctx.OnClockChange += HandlePresence;
-            ctx.Player.OnZoneChange += HandlePresence;
-        }
-
-        private void UnhookEvents()
-        {
-            ConfigManager.OnSettingsUpdate -= HandleSettings;
-            ctx.OnClockChange -= HandlePresence;
-            ctx.Player.OnZoneChange -= HandlePresence;
-        }
-
-        /* Connection */
-
-        public void StartRPC()
+        public void Initialize()
         {
             if (isOffline)
                 return;
 
-            // Check if connection exists to avoid creating multiple connections
-            Instance = new RichPresence();
+            if (!InitializeDiscordClient())
+                return;
+
+            InitializeJoinScheme();
+
+            client.Initialize();
+
+            if (!isVisible)
+                client.ClearPresence();
+        }
+
+        private bool InitializeDiscordClient()
+        {
+            instance = new RichPresence();
             Debugger.Discord(GStrings.GetLocalizationByXPath("/Console/String[@ID='MESSAGE_DISCORD_CONNECTED']"));
-            Instance.Secrets = new Secrets();
+
+            instance.Secrets = new Secrets();
 
             try
             {
-                Client = new DiscordRpcClient(AppId, autoEvents: true);
-            } catch (Exception err)
+                client = new DiscordRpcClient(AppId, autoEvents: true);
+            }
+            catch (Exception err)
             {
                 Debugger.Error($"Failed to create Rich Presence connection:\n{err}");
-                return;
+                return false;
             }
+            return true;
+        }
 
-
+        private void InitializeJoinScheme()
+        {
             try
             {
-                Client.RegisterUriScheme("582010");
-
+                client.RegisterUriScheme("582010");
             }
             catch (Exception err)
             {
                 Debugger.Error(err);
-                FailedToRegisterScheme = true;
+                failedToRegisterScheme = true;
             }
 
-            if (!FailedToRegisterScheme)
+            if (!failedToRegisterScheme)
             {
-                // Events
-                Client.OnReady += Client_OnReady;
-                Client.OnJoinRequested += Client_OnJoinRequested;
-                Client.OnJoin += Client_OnJoin;
+                client.OnReady += OnReady;
+                client.OnJoinRequested += OnJoinRequested;
+                client.OnJoin += OnJoin;
 
-                Client.SetSubscription(EventType.JoinRequest | EventType.Join);
-            }
-
-            Client.Initialize();
-            if (!ConfigManager.Settings.RichPresence.Enabled && isVisible)
-            {
-                Client?.ClearPresence();
-                isVisible = false;
+                client.SetSubscription(EventType.JoinRequest | EventType.Join);
             }
         }
 
-        private void Client_OnJoin(object sender, DiscordRPC.Message.JoinMessage args)
+        private void OnJoin(object sender, JoinMessage args)
         {
             Debugger.Discord(GStrings.GetLocalizationByXPath("/Console/String[@ID='MESSAGE_DISCORD_JOINING']"));
             System.Diagnostics.Process.Start($"steam://joinlobby/582010/{args.Secret}");
             Debugger.Debug($"steam://joinlobby/582010/{args.Secret}");
         }
 
-        private void Client_OnReady(object sender, DiscordRPC.Message.ReadyMessage args) => Debugger.Discord(GStrings.GetLocalizationByXPath("/Console/String[@ID='MESSAGE_DISCORD_USER_CONNECTED']").Replace("{Username}", args.User.ToString()));
-
-        private void Client_OnJoinRequested(object sender, DiscordRPC.Message.JoinRequestMessage args)
+        private void OnJoinRequested(object sender, JoinRequestMessage args)
         {
-            Debugger.Discord(GStrings.GetLocalizationByXPath("/Console/String[@ID='MESSAGE_DISCORD_JOIN_REQUEST']").Replace("{Username}", args.User.ToString()));
+            Debugger.Discord(
+                GStrings.GetLocalizationByXPath("/Console/String[@ID='MESSAGE_DISCORD_JOIN_REQUEST']")
+                .Replace("{Username}", args.User.ToString())
+                );
 
-            App.Current.Dispatcher.BeginInvoke(System.Windows.Threading.DispatcherPriority.Render, new Action(() =>
+            Application.Current.Dispatcher.InvokeAsync(() =>
             {
-                GUI.Widgets.Notifications.DiscordNotify DiscordNotification = new GUI.Widgets.Notifications.DiscordNotify(args);
-
-                DiscordNotification.OnRequestAccepted += OnDiscordRequestAccepted;
-                DiscordNotification.OnRequestRejected += OnDiscordRequestRejected;
-
-                DiscordNotification.Show();
-            }));
-        }
-
-        private void OnDiscordRequestRejected(object source, DiscordRPC.Message.JoinRequestMessage args)
-        {
-            GUI.Widgets.Notifications.DiscordNotify src = (GUI.Widgets.Notifications.DiscordNotify)source;
-            src.OnRequestAccepted -= OnDiscordRequestAccepted;
-            src.OnRequestRejected -= OnDiscordRequestRejected;
-
-            Client.Respond(args, false);
-
-            App.Current.Dispatcher.Invoke(new Action(() => { src.Close(); }));
-        }
-
-        private void OnDiscordRequestAccepted(object source, DiscordRPC.Message.JoinRequestMessage args)
-        {
-            GUI.Widgets.Notifications.DiscordNotify src = (GUI.Widgets.Notifications.DiscordNotify)source;
-            src.OnRequestAccepted -= OnDiscordRequestAccepted;
-            src.OnRequestRejected -= OnDiscordRequestRejected;
-
-            Client.Respond(args, true);
-
-            src.Close();
-        }
-
-        public void HandleSettings(object source, EventArgs e)
-        {
-            if (ConfigManager.Settings.RichPresence.Enabled && !isVisible)
-            {
-                isVisible = true;
-            }
-            else if (!ConfigManager.Settings.RichPresence.Enabled && isVisible)
-            {
-                try
+                DiscordNotify discordNotify = new DiscordNotify(args);
+                discordNotify.OnRequestAccepted += (src, args) =>
                 {
-                    Client.ClearPresence();
-                }
-                catch { }
-                isVisible = false;
-            }
+                    client.Respond(args, true);
+                };
+                discordNotify.OnRequestRejected += (src, args) =>
+                {
+                    client.Respond(args, false);
+                };
+                discordNotify.Show();
+            });
         }
 
-        public void HandlePresence(object source, EventArgs e)
+        private void OnReady(object sender, ReadyMessage args)
         {
-            if (Instance is null || ctx is null || IsDisposed)
+            Debugger.Discord(
+                GStrings.GetLocalizationByXPath("/Console/String[@ID='MESSAGE_DISCORD_USER_CONNECTED']")
+                .Replace("{Username}", args.User.ToString())
+                );
+        }
+
+        public void SetOfflineMode()
+        {
+            isOffline = true;
+        }
+
+        private void UpdatePresenceInstance()
+        {
+            if (instance is null || context is null)
                 return;
 
             // Do nothing if RPC is disabled
             if (!isVisible)
                 return;
 
-            if (!FailedToRegisterScheme)
-            {
-                if (ctx.Player.SteamSession != 0 && ConfigManager.Settings.RichPresence.LetPeopleJoinSession)
-                {
-                    Instance.Secrets.JoinSecret = $"{ctx.Player.SteamSession}/{ctx.Player.SteamID}";
-                }
-                else
-                {
-                    Instance.Secrets.JoinSecret = null;
-                }
-            }
+            UpdatePresenceJoin();
 
-            // Only update RPC if player isn't in loading screen
-            switch (ctx.Player.ZoneID)
-            {
-                case 0:
-                    Instance.Details = ctx.Player.PlayerAddress == 0 ? GStrings.GetLocalizationByXPath("/RichPresence/String[@ID='RPC_DESCRIPTION_IN_MAIN_MENU']") : GStrings.GetLocalizationByXPath("/RichPresence/String[@ID='RPC_DESCRIPTION_IN_LOADING_SCREEN']");
-                    Instance.State = null;
-                    GenerateAssets("main-menu", null, null, null);
-                    Instance.Party = null;
-                    break;
-                default:
-                    if (ctx.Player.PlayerAddress == 0)
-                    {
-                        Instance.Details = GStrings.GetLocalizationByXPath("/RichPresence/String[@ID='RPC_DESCRIPTION_IN_MAIN_MENU']");
-                        Instance.State = null;
-                        GenerateAssets("main-menu", null, null, null);
-                        Instance.Party = null;
-                        break;
-                    }
+            UpdatePresenceDetails();
 
-                    try
-                    {
-                        Instance.Details = GetDescription();
-                        Instance.State = GetState();
-                    } catch
-                    {
-                        return;
-                    }
-                    
-                    GenerateAssets(ctx.Player.ZoneName == null ? "main-menu" : $"st{ctx.Player.ZoneID}", ctx.Player.ZoneID == 0 ? null : ctx.Player.ZoneName, ctx.Player.WeaponName == null ? "hunter-rank" : $"weap{ctx.Player.WeaponID}", $"{ctx.Player.Name} | HR: {ctx.Player.Level} | MR: {ctx.Player.MasterRank}");
-                    if (!ctx.Player.InPeaceZone)
-                    {
-                        MakeParty(ctx.Player.PlayerParty.Size, ctx.Player.PlayerParty.MaxSize, ctx.Player.PlayerParty.PartyHash);
-                    }
-                    else
-                    {
-                        MakeParty(ctx.Player.PlayerParty.LobbySize, ctx.Player.PlayerParty.MaxLobbySize, ctx.Player.SteamSession.ToString());
-                    }
-                    Instance.Timestamps = NewTimestamp(ctx.Time);
-                    break;
-            }
-            Client.SetPresence(Instance);
+            client.SetPresence(instance);
         }
 
-        private string GetDescription()
+        private void UpdatePresenceJoin()
         {
-            if (ctx is null || ctx?.Player is null || IsDisposed)
+            if (!failedToRegisterScheme)
             {
-                return "";
+                if (context.Player.SteamSession != 0 &&
+                    ConfigManager.Settings.RichPresence.LetPeopleJoinSession)
+                    instance.Secrets.JoinSecret = $"{context.Player.SteamSession}/{context.Player.SteamID}";
+                else
+                    instance.Secrets.JoinSecret = null;
             }
-            // Custom description for special zones
-            switch (ctx.Player.ZoneID)
+        }
+
+        private void UpdatePresenceDetails()
+        {
+            if (context.Player.ZoneID == 0)
+            {
+                string description = context.Player.IsLoggedOn ?
+                    GStrings.GetLocalizationByXPath("/RichPresence/String[@ID='RPC_DESCRIPTION_IN_LOADING_SCREEN']") :
+                    GStrings.GetLocalizationByXPath("/RichPresence/String[@ID='RPC_DESCRIPTION_IN_MAIN_MENU']");
+
+                instance.WithDetails(description)
+                    .WithState(null)
+                    .WithParty(null)
+                    .WithAssets(new Assets() {
+                        LargeImageKey = "main-menu",
+                        LargeImageText = null,
+                        SmallImageKey = null,
+                        SmallImageText = null
+                    });
+            } else
+            {
+                if (!context.Player.IsLoggedOn)
+                    instance.WithDetails(
+                        GStrings.GetLocalizationByXPath("/RichPresence/String[@ID='RPC_DESCRIPTION_IN_MAIN_MENU']")
+                        )
+                        .WithState(null)
+                        .WithParty(null)
+                        .WithAssets(new Assets()
+                        {
+                            LargeImageKey = "main-menu",
+                            LargeImageText = null,
+                            SmallImageKey = null,
+                            SmallImageText = null
+                        });
+                else
+                {
+                    string description = GetDescriptionBasedOnContext();
+                    string state = GetStateBasedOnContext();
+
+                    if (description is null || state is null)
+                        return;
+
+                    var party = GetPartyBasedOnContext();
+
+                    instance.WithDetails(description)
+                        .WithState(state)
+                        .WithParty(party)
+                        .WithParty(party)
+                        .WithAssets(new Assets()
+                        {
+                            LargeImageKey = context.Player.ZoneName == null ? "main-menu" : $"st{context.Player.ZoneID}",
+                            LargeImageText = context.Player.ZoneID == 0 ? null : context.Player.ZoneName,
+                            SmallImageKey = context.Player.WeaponName == null ? "hunter-rank" : $"weap{context.Player.WeaponID}",
+                            SmallImageText = $"{context.Player.Name} | HR: {context.Player.Level} | MR: {context.Player.MasterRank}"
+                        })
+                        .WithTimestamps(GetTimestamps(context.Time));
+                }
+            }
+        }
+
+        private string GetDescriptionBasedOnContext()
+        {
+            if (context is null || context.Player is null)
+                return string.Empty;
+
+            // Special cases
+            switch (context.Player.ZoneID)
             {
                 case 504:
                     return GStrings.GetLocalizationByXPath("/RichPresence/String[@ID='RPC_DESCRIPTION_TRAINING']");
             }
-            if (ctx.Player.InPeaceZone) return GStrings.GetLocalizationByXPath("/RichPresence/String[@ID='RPC_DESCRIPTION_IN_TOWN']");
-            if (ctx.HuntedMonster == null) return GStrings.GetLocalizationByXPath("/RichPresence/String[@ID='RPC_DESCRIPTION_EXPLORING']");
-            else
-            {
-                if (string.IsNullOrEmpty(ctx.HuntedMonster?.Name) || ctx.HuntedMonster?.Name == "Missing Translation") return GStrings.GetLocalizationByXPath("/RichPresence/String[@ID='RPC_DESCRIPTION_EXPLORING']");
-                return ConfigManager.Settings.RichPresence.ShowMonsterHealth ? GStrings.GetLocalizationByXPath("/RichPresence/String[@ID='RPC_DESCRIPTION_HUNTING']").Replace("{Monster}", ctx.HuntedMonster.Name).Replace("{Health}", $"{(int)(ctx.HuntedMonster.HPPercentage * 100)}%") : GStrings.GetLocalizationByXPath("/RichPresence/String[@ID='RPC_DESCRIPTION_HUNTING']").Replace("{Monster}", ctx.HuntedMonster.Name).Replace("({Health})", null);
-            }
+
+            // Chilling in village
+            if (context.Player.InPeaceZone)
+                return GStrings.GetLocalizationByXPath("/RichPresence/String[@ID='RPC_DESCRIPTION_IN_TOWN']");
+
+            // Exploring
+            if (context.HuntedMonster is null)
+                return GStrings.GetLocalizationByXPath("/RichPresence/String[@ID='RPC_DESCRIPTION_EXPLORING']");
+
+            // Hunting a monster
+            if (string.IsNullOrEmpty(context.HuntedMonster.Name))
+                return GStrings.GetLocalizationByXPath("/RichPresence/String[@ID='RPC_DESCRIPTION_EXPLORING']");
+
+            return ConfigManager.Settings.RichPresence.ShowMonsterHealth ?
+                GStrings.GetLocalizationByXPath("/RichPresence/String[@ID='RPC_DESCRIPTION_HUNTING']")
+                .Replace("{Monster}", context.HuntedMonster.Name)
+                .Replace("{Health}", $"{(int)(context.HuntedMonster.HPPercentage * 100)}%") :
+                GStrings.GetLocalizationByXPath("/RichPresence/String[@ID='RPC_DESCRIPTION_HUNTING']")
+                .Replace("{Monster}", context.HuntedMonster.Name)
+                .Replace("({Health})", null);
         }
 
-        private string GetState()
+        private string GetStateBasedOnContext()
         {
-            if (ctx.Player.PlayerParty.Size > 1 || ctx.Player.PlayerParty.LobbySize > 1)
+            if (context is null || context.Player is null)
+                return string.Empty;
+
+            if (context.Player.PlayerParty.Size > 1 ||
+                context.Player.PlayerParty.LobbySize > 1)
             {
-                if (ctx.Player.InPeaceZone)
-                {
+                if (context.Player.InPeaceZone)
                     return GStrings.GetLocalizationByXPath("/RichPresence/String[@ID='RPC_STATE_LOBBY']");
-                }
-                else { return GStrings.GetLocalizationByXPath("/RichPresence/String[@ID='RPC_STATE_PARTY']"); }
+                else
+                    return GStrings.GetLocalizationByXPath("/RichPresence/String[@ID='RPC_STATE_PARTY']");
             }
-            else { return GStrings.GetLocalizationByXPath("/RichPresence/String[@ID='RPC_STATE_SOLO']"); }
+            return GStrings.GetLocalizationByXPath("/RichPresence/String[@ID='RPC_STATE_SOLO']");
         }
 
-        /* Helpers */
-
-        public void GenerateAssets(string largeImage, string largeImageText, string smallImage, string smallImageText)
+        private DiscordRPC.Party GetPartyBasedOnContext()
         {
-            if (Instance.Assets == null) { Instance.Assets = new Assets(); }
-            Instance.Assets.LargeImageKey = largeImage;
-            Instance.Assets.LargeImageText = largeImageText;
-            Instance.Assets.SmallImageKey = smallImage;
-            Instance.Assets.SmallImageText = smallImageText;
+            int nMax = context.Player.InPeaceZone ? context.Player.PlayerParty.MaxLobbySize :
+                context.Player.PlayerParty.MaxSize;
+            string hash = context.Player.InPeaceZone ? context.Player.SteamSession.ToString() :
+                context.Player.PlayerParty.PartyHash;
+
+            return new DiscordRPC.Party()
+            {
+                Size = context.Player.PlayerParty.Size,
+                Max = nMax,
+                ID = hash
+            };
         }
 
-        public void MakeParty(int partySize, int maxParty, string partyHash)
+        private Timestamps GetTimestamps(DateTime? start)
         {
-            if (Instance.Party == null) { Instance.Party = new DiscordRPC.Party(); }
-            Instance.Party.Size = partySize;
-            Instance.Party.Max = maxParty;
-            Instance.Party.ID = partyHash == "0" ? "USER_IN_OFFLINE_MODE" : partyHash;
-        }
-
-        public Timestamps NewTimestamp(DateTime? start)
-        {
-            Timestamps timestamp = new Timestamps();
+            Timestamps timestamps = new Timestamps();
             try
             {
-                timestamp.Start = start;
-            }
-            catch
+                timestamps.Start = start;
+            } catch
             {
-                timestamp.Start = null;
+                timestamps.Start = null;
             }
-            return timestamp;
+            return timestamps;
         }
 
-
-        /* Dispose */
-        public void Dispose()
+        private void HookEvents()
         {
-            Debugger.Discord(GStrings.GetLocalizationByXPath("/Console/String[@ID='MESSAGE_DISCORD_DISCONNECTED']"));
-            Dispose(true);
-            GC.SuppressFinalize(this);
+            ConfigManager.OnSettingsUpdate += OnSettingsUpdate;
+
+            context.OnClockChange += OnClockChange;
+            context.Player.OnZoneChange += OnZoneChange;
+        }
+
+        private void UnhookEvents()
+        {
+            ConfigManager.OnSettingsUpdate -= OnSettingsUpdate;
+
+            context.OnClockChange -= OnClockChange;
+            context.Player.OnZoneChange -= OnZoneChange;
+        }
+
+        private void OnZoneChange(object source, EventArgs args)
+        {
+            UpdatePresenceInstance();
+        }
+
+        private void OnClockChange(object source, EventArgs args)
+        {
+            UpdatePresenceInstance();
+        }
+
+        private void OnSettingsUpdate(object sender, EventArgs e)
+        {
+            isVisible = ConfigManager.Settings.RichPresence.Enabled;
+
+            if (!isVisible)
+                try
+                {
+                    client.ClearPresence();
+                } catch { }
+
         }
 
         protected virtual void Dispose(bool disposing)
         {
-            if (IsDisposed) return;
-            if (disposing)
+            if (!disposedValue)
             {
-                UnhookEvents();
-                if (!(Client is null) && Client.IsInitialized)
+                if (disposing)
                 {
-                    Client.ClearPresence();
-                    Client.Dispose();
+                    UnhookEvents();
+                    client?.Dispose();
                 }
-                Instance = null;
+                disposedValue = true;
             }
-            IsDisposed = true;
+        }
+
+        public void Dispose()
+        {
+            Dispose(true);
+            GC.SuppressFinalize(this);
         }
     }
 }

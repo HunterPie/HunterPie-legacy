@@ -4,6 +4,7 @@
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        x:Name="discordNotificationCtrl"
         mc:Ignorable="d"
         Title="Notification - Discord" Height="150" Width="300"  ResizeMode="NoResize" WindowStyle="None" AllowsTransparency="True" ShowInTaskbar="False" Topmost="True" BorderBrush="#CC000000" Foreground="Black" BorderThickness="2" Left="0" Top="-300" Background="{x:Null}" DataContext="{StaticResource Localization}" Closing="OnClosing">
     <src:Widget.Resources>
@@ -39,7 +40,7 @@
         </Style>
     </src:Widget.Resources>
     <Grid Background="#CC0A0A0A">
-        <Image x:Name="Picture" HorizontalAlignment="Left" Width="64" Height="64" VerticalAlignment="Top" Margin="108,0,0,0">
+        <Image Source="{Binding ImageUrl, ElementName=discordNotificationCtrl}" HorizontalAlignment="Left" Width="64" Height="64" VerticalAlignment="Top" Margin="108,0,0,0">
             <Image.OpacityMask>
                 <RadialGradientBrush>
                     <GradientStop Color="Black" Offset="0.913"/>
@@ -49,16 +50,16 @@
             </Image.OpacityMask>
         </Image>
         <WrapPanel Orientation="Horizontal" VerticalAlignment="Top" HorizontalAlignment="Left" Width="297" Margin="-1,64,0,0" Height="82">
-            <TextBlock x:Name="Description" Text="{Binding XPath=/Strings/Client/Notifications/String[@ID\=\'STATIC_DISCORD_JOIN_REQUEST\']/@Name}" TextWrapping="WrapWithOverflow" Foreground="WhiteSmoke" VerticalAlignment="Top" HorizontalAlignment="Left" Width="297" Padding="5,0,5,7" Height="57" FontSize="14" />
-            <Button Width="148" Margin="0,0,1,0" Height="24" Content="{Binding XPath=/Strings/Client/Notifications/String[@ID\=\'STATIC_ACCEPT\']/@Name}" Click="OnAccept"/>
-            <Button Content="{Binding XPath=/Strings/Client/Notifications/String[@ID\=\'STATIC_REJECT\']/@Name}" Width="148" Click="OnReject"/>
+            <TextBlock Text="{Binding Description, ElementName=discordNotificationCtrl}" TextWrapping="WrapWithOverflow" Foreground="WhiteSmoke" VerticalAlignment="Top" HorizontalAlignment="Left" Width="297" Padding="5,0,5,7" Height="57" FontSize="14" FontFamily="Roboto" />
+            <Button Width="148" Margin="0,0,1,0" Height="24" Content="{Binding XPath=/Strings/Client/Notifications/String[@ID\=\'STATIC_ACCEPT\']/@Name}" Click="OnAccept" FontFamily="Roboto"/>
+            <Button Content="{Binding XPath=/Strings/Client/Notifications/String[@ID\=\'STATIC_REJECT\']/@Name}" Width="148" Click="OnReject" FontFamily="Roboto"/>
         </WrapPanel>
         <Rectangle Height="22" VerticalAlignment="Top" HorizontalAlignment="Left" Width="296" Margin="0,0,0,0" >
             <Rectangle.Fill>
                 <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
-                    <GradientStop Color="#FFB40000" Offset="0.07"/>
+                    <GradientStop Color="{StaticResource TOGGLABLE_BUTTON_BACKGROUND_ON}" Offset="0.07"/>
                     <GradientStop Offset="1" Color="#00000000"/>
-                    <GradientStop Color="#7FBA1616" Offset="0.083"/>
+                    <GradientStop Color="#7F16ABBA" Offset="0.083"/>
                 </LinearGradientBrush>
             </Rectangle.Fill>
             <Rectangle.Style>
