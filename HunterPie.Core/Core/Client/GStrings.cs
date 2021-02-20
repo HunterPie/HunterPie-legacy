@@ -64,12 +64,22 @@ namespace HunterPie.Core
             provider.Refresh();
         }
 
+        /// <summary>
+        /// Gets the mantle name by their id
+        /// </summary>
+        /// <param name="ID">Mantle id</param>
+        /// <returns>Mantle name</returns>
         public static string GetMantleNameByID(int ID)
         {
             XmlNode Mantle = Translations.SelectSingleNode($"//Strings/Mantles/Mantle[@ID='{ID}']");
             return Mantle?.Attributes["Name"].Value;
         }
 
+        /// <summary>
+        /// Gets weapon name by their id
+        /// </summary>
+        /// <param name="ID"></param>
+        /// <returns>Weapon name</returns>
         public static string GetWeaponNameByID(int ID)
         {
             XmlNode Weapon = Translations.SelectSingleNode($"//Strings/Weapons/Weapon[@ID='{ID}']");
@@ -83,18 +93,36 @@ namespace HunterPie.Core
             return Monster?.Attributes["Name"].Value;
         }
 
+        /// <summary>
+        /// Gets fertilizer name by id
+        /// </summary>
+        /// <param name="ID">Fertilizer id</param>
+        /// <returns>Fertilizer name</returns>
         public static string GetFertilizerNameByID(int ID)
         {
             XmlNode Fertilizer = Translations.SelectSingleNode($"//Strings/Fertilizers/Fertilizer[@ID='{ID}']");
             return Fertilizer?.Attributes["Name"].Value;
         }
 
+        /// <summary>
+        /// Gets stage name by id
+        /// </summary>
+        /// <param name="ID">Stage id</param>
+        /// <returns>Stage name</returns>
         public static string GetStageNameByID(int ID)
         {
             XmlNode Stage = Translations.SelectSingleNode($"//Strings/Stages/Stage[@ID='{ID}']");
             return Stage?.Attributes["Name"].Value;
         }
 
+        /// <summary>
+        /// Gets abnormality name by type, id and stack.<br/>
+        /// <b>NOTE:</b> FOR HUNTING HORN BUFFS, USE <see cref="Native.GMD.GetMusicSkillNameById(int)"/> INSTEAD!
+        /// </summary>
+        /// <param name="Type">Abnormality type</param>
+        /// <param name="ID">Abnormality id</param>
+        /// <param name="Stack">Stack</param>
+        /// <returns>Abnormality name</returns>
         public static string GetAbnormalityByID(string Type, int ID, int Stack)
         {
             XmlNode Abnormality = Translations.SelectSingleNode($"//Strings/Abnormalities/Abnormality[@ID='{Type}_{ID:000}_{Stack:00}']");
@@ -109,6 +137,11 @@ namespace HunterPie.Core
             return Abnormality?.Attributes["Name"].Value.Replace("{AbnormalityID}", ID.ToString());
         }
 
+        /// <summary>
+        /// Gets monster part name by their stringified id
+        /// </summary>
+        /// <param name="PartStringID">Part id</param>
+        /// <returns>Part name</returns>
         public static string GetMonsterPartByID(string PartStringID)
         {
             XmlNode PartName = Translations.SelectSingleNode($"//Strings/Parts/Part[@ID='{PartStringID}']");
@@ -116,6 +149,11 @@ namespace HunterPie.Core
             return PartName.Attributes["Name"].Value;
         }
 
+        /// <summary>
+        /// Gets monster ailment by id
+        /// </summary>
+        /// <param name="AilmentID">Ailment id</param>
+        /// <returns>Ailment name</returns>
         public static string GetAilmentNameByID(string AilmentID)
         {
             XmlNode AilmentName = Translations.SelectSingleNode($"//Strings/Ailments/Ailment[@ID='{AilmentID}']");
@@ -123,6 +161,11 @@ namespace HunterPie.Core
             return AilmentName.Attributes["Name"].Value;
         }
 
+        /// <summary>
+        /// Gets localization strings from //Strings/Client
+        /// </summary>
+        /// <param name="XPath">XPath</param>
+        /// <returns>String</returns>
         public static string GetLocalizationByXPath(string XPath)
         {
             XmlNode LocString = Translations.SelectSingleNode($"//Strings/Client{XPath}");
