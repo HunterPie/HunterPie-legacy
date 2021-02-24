@@ -484,6 +484,11 @@
       <String ID="MESSAGE_PLUGIN_RESTORE" Name="Restore plugin" />
       <String ID="MESSAGE_PLUGIN_FAILED" Name="Plugin initialization failed. It will not be loaded until HunterPie restart." />
       <String ID="MESSAGE_README_EMPTY" Name="Empty..." />
+      <String ID="MESSAGE_PLUGIN_DIRECTORY" Name="Plugin Directory" />
+      <String ID="MESSAGE_PLUGIN_HOMEPAGE" Name="Homepage" />
+      <String ID="MESSAGE_PLUGIN_LAST_UPDATE_STRING" Name="Last update: {UpdateTime} ({TimeAgo})" />
+      <String ID="MESSAGE_PLUGIN_LAST_UPDATE_STRING_DAYS_PART" Name="{DaysAgo} day(s) ago" />
+      <String ID="MESSAGE_PLUGIN_LAST_UPDATE_STRING_HOURS_PART" Name="{HoursAgo} hour(s) ago" />
       <!-- Popups -->
       <String ID="MESSAGE_QUIT" Name="Are you sure you want to exit HunterPie?"/>
       <String ID="TITLE_MISSING_PATH" Name="Monster Hunter World Path not found"/>

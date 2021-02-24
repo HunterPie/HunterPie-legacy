@@ -2,8 +2,10 @@
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Linq;
+using System.Net.Http;
 using System.Threading.Tasks;
 using System.Windows.Input;
+using HunterPie.Core.Readme;
 using HunterPie.UI.Infrastructure;
 using HunterPie.Utils;
 
@@ -12,12 +14,13 @@ namespace HunterPie.Plugins
     public class PluginListViewModel : BaseViewModel, IPluginListProxy
     {
         private readonly PluginRegistryService service;
+        private readonly ReadmeService readmeService;
         private bool isLoadingPlugins;
         private bool isLoadingLocalPlugins;
-        private IPluginViewModel selectedPlugin;
         private Task refreshTask = Task.CompletedTask;
-        private List<PluginRegistryEntry> pluginRegistryCache = new List<PluginRegistryEntry>();
+        private List<PluginRegistryEntry> pluginRegistryCache = new();
         private string searchQueryCache = null;
+        private HttpClient http;
 
         private IEnumerable<IPluginViewModel> AllPlugins =>
             InstalledPlugins
@@ -30,11 +33,14 @@ namespace HunterPie.Plugins
         public PluginListViewModel(PluginRegistryService service) : this()
         {
             this.service = service;
+            http = new HttpClient();
+            readmeService = new ReadmeService(http);
+            Readme = new ReadmeViewModel(readmeService);
 
-            RefreshCommand = new RelayCommand(
-                _ => !IsLoadingPlugins && !IsLoadingLocalPlugins && AllPlugins.All(p => !p.IsBusy),
-                _ => Refresh());
-            FilterCommand = new RelayCommand(_ => true, Filter);
+            RefreshCommand = new ArglessRelayCommand(
+                () => !IsLoadingPlugins && !IsLoadingLocalPlugins && AllPlugins.All(p => !p.IsBusy),
+                Refresh);
+            FilterCommand = new RelayCommand<string>(Filter);
         }
 
         public PluginListViewModel()
@@ -43,6 +49,11 @@ namespace HunterPie.Plugins
             FreshPlugins = new ObservableCollection<IPluginViewModel>();
             InstalledPlugins = new ObservableCollection<IPluginViewModel>();
             MarkedForRemovalPlugins = new ObservableCollection<IPluginViewModel>();
+        }
+
+        ~PluginListViewModel()
+        {
+            ClearPlugins();
         }
 
         public void MovePluginToCorrectCollection(IPluginViewModel plugin)
@@ -96,16 +107,28 @@ namespace HunterPie.Plugins
             refreshTask = InternalRefresh();
         }
 
+        public void ClearPlugins()
+        {
+            SelectedPlugin = null;
+
+            // dispose already created entries so they can be garbage collected
+            foreach (var plugin in AllPlugins) plugin.Dispose();
+
+            Dispatch(() =>
+            {
+                InstalledPlugins.Clear();
+                AvailablePlugins.Clear();
+                FreshPlugins.Clear();
+                MarkedForRemovalPlugins.Clear();
+            });
+        }
+
         private async Task InternalRefresh()
         {
             // should be called from STA
-            var wasSelected = selectedPlugin?.InternalName;
+            var wasSelected = SelectedPlugin?.InternalName;
 
-            selectedPlugin = null;
-            InstalledPlugins.Clear();
-            AvailablePlugins.Clear();
-            FreshPlugins.Clear();
-            MarkedForRemovalPlugins.Clear();
+            ClearPlugins();
 
             try
             {
@@ -139,14 +162,14 @@ namespace HunterPie.Plugins
 
         private void RestorePluginSelection(string wasSelected)
         {
-            if (selectedPlugin == null)
+            // if user selected plugin during refresh, don't change selection
+            if (SelectedPlugin != null) return;
+
+            foreach (var plugin in AllPlugins)
             {
-                foreach (var plugin in AllPlugins)
+                if (plugin.Name == wasSelected)
                 {
-                    if (plugin.Name == wasSelected)
-                    {
-                        Dispatch(() => UpdatePluginSelection(plugin));
-                    }
+                    Dispatch(() => SelectedPlugin = plugin);
                 }
             }
         }
@@ -177,7 +200,7 @@ namespace HunterPie.Plugins
                             continue;
                         }
 
-                        AvailablePlugins.Add(new RegistryPluginViewModel(plugin, this));
+                        AvailablePlugins.Add(new RegistryPluginViewModel(plugin, this, readmeService, http));
                     }
                 });
             }
@@ -218,9 +241,8 @@ namespace HunterPie.Plugins
             return pluginRegistryCache.FirstOrDefault(e => e.InternalName == pluginName);
         }
 
-        private void Filter(object arg)
+        public void Filter(string query)
         {
-            var query = arg as string;
             foreach (IPluginViewModel plugin in AllPlugins)
             {
                 if (string.IsNullOrEmpty(query))
@@ -269,7 +291,7 @@ namespace HunterPie.Plugins
 
         public ICommand FilterCommand { get; }
 
-        public ReadmeViewModel Readme { get; } = new ReadmeViewModel();
+        public ReadmeViewModel Readme { get; }
 
         public ObservableCollection<IPluginViewModel> InstalledPlugins { get; set; }
         public ObservableCollection<IPluginViewModel> MarkedForRemovalPlugins { get; set; }
@@ -278,35 +300,41 @@ namespace HunterPie.Plugins
 
         public bool NeedsReload => MarkedForRemovalPlugins.Count > 0 || FreshPlugins.Count > 0;
 
-        public IPluginViewModel SelectedInstalledPlugin
-        {
-            get => InstalledPlugins.Contains(selectedPlugin) ? selectedPlugin : null;
-            set => UpdatePluginSelection(value);
-        }
-        public IPluginViewModel SelectedAvailablePlugin
-        {
-            get => AvailablePlugins.Contains(selectedPlugin) ? selectedPlugin : null;
-            set => UpdatePluginSelection(value);
-        }
-        public IPluginViewModel SelectedFreshPlugin
-        {
-            get => FreshPlugins.Contains(selectedPlugin) ? selectedPlugin : null;
-            set => UpdatePluginSelection(value);
-        }
-        public IPluginViewModel SelectedMarkedForRemovalPlugin
-        {
-            get => MarkedForRemovalPlugins.Contains(selectedPlugin) ? selectedPlugin : null;
-            set => UpdatePluginSelection(value);
-        }
+        private IPluginViewModel selectedPlugin;
 
-        private void UpdatePluginSelection(IPluginViewModel value)
+        public bool HasSelectedPlugin => selectedPlugin != null;
+
+        public IPluginViewModel SelectedPlugin
         {
-            if (selectedPlugin != value)
+            get => selectedPlugin;
+            set
             {
+                if (selectedPlugin == value) return;
                 selectedPlugin = value;
                 Readme.Load(value?.ReadmeUrl);
                 OnListsChanged();
             }
+        }
+
+        public IPluginViewModel SelectedInstalledPlugin
+        {
+            get => InstalledPlugins.Contains(SelectedPlugin) ? SelectedPlugin : null;
+            set => SelectedPlugin = value;
+        }
+        public IPluginViewModel SelectedAvailablePlugin
+        {
+            get => AvailablePlugins.Contains(SelectedPlugin) ? SelectedPlugin : null;
+            set => SelectedPlugin = value;
+        }
+        public IPluginViewModel SelectedFreshPlugin
+        {
+            get => FreshPlugins.Contains(SelectedPlugin) ? SelectedPlugin : null;
+            set => SelectedPlugin = value;
+        }
+        public IPluginViewModel SelectedMarkedForRemovalPlugin
+        {
+            get => MarkedForRemovalPlugins.Contains(SelectedPlugin) ? SelectedPlugin : null;
+            set => SelectedPlugin = value;
         }
 
         private void OnListsChanged()
@@ -316,6 +344,8 @@ namespace HunterPie.Plugins
             OnPropertyChanged(nameof(SelectedFreshPlugin));
             OnPropertyChanged(nameof(SelectedMarkedForRemovalPlugin));
             OnPropertyChanged(nameof(NeedsReload));
+            OnPropertyChanged(nameof(SelectedPlugin));
+            OnPropertyChanged(nameof(HasSelectedPlugin));
         }
     }
 }

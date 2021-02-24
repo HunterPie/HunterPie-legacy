@@ -6,18 +6,18 @@ using HunterPie.UI.Infrastructure;
 namespace HunterPie.GUIControls
 {
     /// <summary>
-    /// Interaction logic for PluginListEntry.xaml
+    /// Interaction logic for PluginCard.xaml
     /// </summary>
-    public partial class PluginListEntry : UserControl
+    public partial class PluginCard : UserControl
     {
-        public PluginListEntry()
+        public PluginCard()
         {
             InitializeComponent();
             ToggleModeCommand = new ArglessRelayCommand(ToggleMode);
         }
 
         public static readonly DependencyProperty IsExpandedProperty = DependencyProperty.Register(
-            "IsExpanded", typeof(bool), typeof(PluginListEntry), new PropertyMetadata(default(bool)));
+            "IsExpanded", typeof(bool), typeof(PluginCard), new PropertyMetadata(default(bool)));
 
         public bool IsExpanded
         {
@@ -26,7 +26,7 @@ namespace HunterPie.GUIControls
         }
 
         public static readonly DependencyProperty ToggleModeCommandProperty = DependencyProperty.Register(
-            "ToggleModeCommand", typeof(ICommand), typeof(PluginListEntry), new PropertyMetadata(default(ICommand)));
+            "ToggleModeCommand", typeof(ICommand), typeof(PluginCard), new PropertyMetadata(default(ICommand)));
 
         public ICommand ToggleModeCommand
         {

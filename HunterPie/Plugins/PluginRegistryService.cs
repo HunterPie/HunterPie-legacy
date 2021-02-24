@@ -16,7 +16,7 @@ namespace HunterPie.Plugins
         private readonly HttpClient client;
 
         private static readonly Lazy<PluginRegistryService> lazyInstance =
-            new Lazy<PluginRegistryService>(() => new PluginRegistryService());
+            new(() => new PluginRegistryService());
 
         public static PluginRegistryService Instance => lazyInstance.Value;
 
@@ -135,5 +135,8 @@ namespace HunterPie.Plugins
         public string Version { get; set; }
 
         public int Downloads { get; set; }
+
+        public DateTime? ReleaseDate { get; set; }
+        public List<string> Links { get; set; }
     }
 }

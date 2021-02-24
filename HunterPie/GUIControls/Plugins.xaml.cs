@@ -54,15 +54,10 @@ namespace HunterPie.GUIControls
 
         public PluginListViewModel PluginList { get; set; }
 
-        public ICommand OpenPluginsFolderCommand { get; } = new RelayCommand(
-            _ => true,
-            _ => Process.Start(Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "modules"))
-        );
+        public ICommand OpenPluginsFolderCommand { get; } = new ArglessRelayCommand(
+            () => Process.Start(Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "modules")));
 
-        public ICommand RestartCommand { get; } = new RelayCommand(
-            _ => true,
-            _ => Hunterpie.Instance.Reload()
-        );
+        public ICommand RestartCommand { get; } = new ArglessRelayCommand(Hunterpie.Instance.Reload);
 
 
         public ICommand MagnifyImageCommand { get; }

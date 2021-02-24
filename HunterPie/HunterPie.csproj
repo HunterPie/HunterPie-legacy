@@ -191,6 +191,10 @@
       <Generator>MSBuild:Compile</Generator>
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
+    <Page Include="GUIControls\PluginCard.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="GUIControls\PluginListCategoryControl.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -220,6 +224,16 @@
       <SubType>Code</SubType>
     </Compile>
     <Compile Include="Core\Integrations\Discord\Presence.cs" />
+    <Compile Include="Core\Readme\DownloadedUrlResolver.cs" />
+    <Compile Include="Core\Readme\ExternalUrlResolver.cs" />
+    <Compile Include="Core\Readme\IUrlResolver.cs" />
+    <Compile Include="Core\Readme\PassthroughUrlResolver.cs" />
+    <Compile Include="Core\Readme\ReadmeDownloadHelper.cs" />
+    <Compile Include="Core\Readme\ReadmeIndex.cs" />
+    <Compile Include="Core\Readme\ReadmeModel.cs" />
+    <Compile Include="GUIControls\PluginCard.xaml.cs">
+      <DependentUpon>PluginCard.xaml</DependentUpon>
+    </Compile>
     <Compile Include="GUIControls\PluginListCategoryControl.xaml.cs">
       <DependentUpon>PluginListCategoryControl.xaml</DependentUpon>
     </Compile>
@@ -240,6 +254,9 @@
     <Compile Include="Plugins\PluginManager.cs" />
     <Compile Include="Plugins\PluginRegistryService.cs" />
     <Compile Include="Plugins\PluginUpdate.cs" />
+    <Compile Include="Plugins\ViewModel\PluginViewModelHelper.cs" />
+    <Compile Include="Plugins\ViewModel\PluginActionViewModel.cs" />
+    <Compile Include="Core\Readme\ReadmeService.cs" />
     <Compile Include="Plugins\ViewModel\ReadmeViewModel.cs" />
     <Compile Include="Plugins\ViewModel\IPluginListProxy.cs" />
     <Compile Include="Plugins\ViewModel\IPluginViewModel.cs" />

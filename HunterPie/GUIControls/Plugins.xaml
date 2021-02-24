@@ -34,10 +34,11 @@
                                                VerticalAlignment="Center"
                                                Text="{strings:GetString MESSAGE_REFRESH}"
                                                Command="{Binding ElementName=PluginsControl, Path=PluginList.RefreshCommand}"/>
-                    <customControls:FlatButton Icon="{StaticResource ICON_LINK}"
+                    <customControls:FlatButton Icon="{StaticResource ICON_FOLDER}"
                                                VerticalAlignment="Center"
                                                Text="{strings:GetString MESSAGE_OPEN_PLUGINS_FOLDER}"
                                                Command="{Binding ElementName=PluginsControl, Path=OpenPluginsFolderCommand}"/>
+
                 </StackPanel>
 
 

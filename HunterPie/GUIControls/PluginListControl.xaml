@@ -17,9 +17,9 @@
     </FrameworkElement.CommandBindings>
     <Grid Margin="3">
         <Grid.ColumnDefinitions>
-            <ColumnDefinition Width="*" MinWidth="350"/>
+            <ColumnDefinition Width="2*" MinWidth="350"/>
             <ColumnDefinition Width="1" />
-            <ColumnDefinition Width="*" MinWidth="300" />
+            <ColumnDefinition Width="3*" MinWidth="360" />
         </Grid.ColumnDefinitions>
 
         <!-- plugins list -->
@@ -31,7 +31,6 @@
                     <local:PluginListCategoryControl
                         IsBusy="{Binding IsLoadingLocalPlugins}"
                         Collection="{Binding InstalledPlugins}"
-                        Visibility="{Binding InstalledPlugins.Count, Converter={converters:LengthToVisibilityConverter WhenEmpty=Collapsed, WhenValues=Visible}}"
                         SelectedPlugin="{Binding SelectedInstalledPlugin, Mode=TwoWay}"
                         ErrorMessage=""
                         Title="{strings:GetString MESSAGE_INSTALLED_PLUGINS}" />
@@ -70,25 +69,38 @@
                       BorderBrush="Transparent" />
         <Grid Column="1" Background="#99000000" Width="1" />
 
-        <!-- readme column -->
+        <!-- preview column -->
         <Grid Grid.Column="2" Background="Transparent">
-            <FlowDocumentScrollViewer x:Name="Viewer" Foreground="#FFEEEEEE" FontSize="14" SelectionBrush="{DynamicResource {x:Static SystemColors.MenuHighlightBrushKey}}"
-                                      IsHitTestVisible="{Binding Readme.IsBusy, Converter={converters:InvertBoolConverter}}"
-                                      Document="{Binding Path=Readme.Document}">
-                <FlowDocumentScrollViewer.Style>
-                    <Style TargetType="FlowDocumentScrollViewer">
-                        <Style.Triggers>
-                            <DataTrigger Binding="{Binding Readme.IsBusy}" Value="True">
-                                <Setter Property="Effect">
-                                    <Setter.Value>
-                                        <BlurEffect Radius="20"/>
-                                    </Setter.Value>
-                                </Setter>
-                            </DataTrigger>
-                        </Style.Triggers>
-                    </Style>
-                </FlowDocumentScrollViewer.Style>
-            </FlowDocumentScrollViewer>
+            <Grid>
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="Auto"/>
+                    <RowDefinition Height="*"/>
+                </Grid.RowDefinitions>
+
+                <!--header-->
+                <local:PluginCard Grid.Row="0" DataContext="{Binding SelectedPlugin}" Margin="5,5,5,0" IsExpanded="True"
+                                  Visibility="{Binding Path=DataContext.HasSelectedPlugin, RelativeSource={RelativeSource AncestorType=local:PluginListControl}, Converter={converters:BooleanToVisibilityConverter FalseValue=Collapsed}}"
+                                  />
+
+                <!-- readme -->
+                <FlowDocumentScrollViewer x:Name="Viewer" Grid.Row="1" Foreground="#FFEEEEEE" FontSize="14" SelectionBrush="{DynamicResource {x:Static SystemColors.MenuHighlightBrushKey}}"
+                                          IsHitTestVisible="{Binding Readme.IsBusy, Converter={converters:InvertBoolConverter}}"
+                                          Document="{Binding Path=Readme.Document}">
+                    <FlowDocumentScrollViewer.Style>
+                        <Style TargetType="FlowDocumentScrollViewer">
+                            <Style.Triggers>
+                                <DataTrigger Binding="{Binding Readme.IsBusy}" Value="True">
+                                    <Setter Property="Effect">
+                                        <Setter.Value>
+                                            <BlurEffect Radius="20"/>
+                                        </Setter.Value>
+                                    </Setter>
+                                </DataTrigger>
+                            </Style.Triggers>
+                        </Style>
+                    </FlowDocumentScrollViewer.Style>
+                </FlowDocumentScrollViewer>
+            </Grid>
 
             <customControls:BusyIndicator Height="30" Width="30"
                                           Visibility="{Binding Readme.IsBusy, Converter={converters:BooleanToVisibilityConverter TrueValue=Visible, FalseValue=Hidden}}" />

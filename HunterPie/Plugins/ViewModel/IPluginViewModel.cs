@@ -1,9 +1,11 @@
-﻿using System.Windows.Input;
+﻿using System;
+using System.Collections.ObjectModel;
+using System.Windows.Input;
 using System.Windows.Media;
 
 namespace HunterPie.Plugins
 {
-    public interface IPluginViewModel
+    public interface IPluginViewModel : IDisposable
     {
         bool CanToggle { get; }
         bool CanDelete { get; }
@@ -33,5 +35,10 @@ namespace HunterPie.Plugins
 
         bool IsFiltered { get; set; }
         long SortValue { get; }
+
+        ObservableCollection<PluginActionViewModel> Actions { get; }
+
+        string LastUpdateShort { get; }
+        string LastUpdateLong { get; }
     }
 }

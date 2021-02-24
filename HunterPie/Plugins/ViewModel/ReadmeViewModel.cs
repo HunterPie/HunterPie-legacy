@@ -4,7 +4,6 @@ using System.IO;
 using System.Linq;
 using System.Net.Http;
 using System.Text;
-using System.Text.RegularExpressions;
 using System.Threading;
 using System.Threading.Tasks;
 using System.Windows;
@@ -13,16 +12,10 @@ using System.Windows.Documents;
 using System.Windows.Input;
 using System.Xaml;
 using HunterPie.Core;
+using HunterPie.Core.Readme;
 using HunterPie.Logger;
 using HunterPie.UI.Infrastructure;
-using Markdig;
-using Markdig.Helpers;
-using Markdig.Parsers;
-using Markdig.Parsers.Inlines;
-using Markdig.Renderers;
-using Markdig.Syntax.Inlines;
-using Markdig.Wpf;
-using Markdown = Markdig.Wpf.Markdown;
+using HunterPie.Utils;
 using XamlReader = System.Windows.Markup.XamlReader;
 using PluginsControl = HunterPie.GUIControls.Plugins;
 
@@ -30,12 +23,11 @@ namespace HunterPie.Plugins
 {
     public class ReadmeViewModel : BaseViewModel
     {
-        private CancellationTokenSource cts = new CancellationTokenSource();
-
-        private readonly SemaphoreSlim semaphore = new SemaphoreSlim(1);
+        private CancellationTokenSource cts = new();
+        private readonly SemaphoreSlim semaphore = new(1);
+        private readonly ReadmeService readmeService;
 
         private bool isBusy;
-
         public bool IsBusy
         {
             get => isBusy;
@@ -50,8 +42,9 @@ namespace HunterPie.Plugins
         }
 
 
-        public ReadmeViewModel()
+        public ReadmeViewModel(ReadmeService readmeService)
         {
+            this.readmeService = readmeService;
             SetEmpty();
         }
 
@@ -87,9 +80,8 @@ namespace HunterPie.Plugins
                     } else
                     {
                         content = await LoadFromUrl(path, token);
-
                     }
-                    await SetContent(content, GetBasePath(path));
+                    await SetContent(content, UriUtilities.GetBasePath(path));
                 }
             }
             catch (TaskCanceledException)
@@ -105,18 +97,6 @@ namespace HunterPie.Plugins
                 IsBusy = false;
                 semaphore.Release();
             }
-        }
-
-        private string GetBasePath(string path)
-        {
-            // returning path without last part:
-            //  http://foo.bar/baz/module.json -> http://foo.bar/baz
-            //  file://C:\\foo\bar\module.json -> file://C://foo/bar
-
-            path = path.Replace('\\', '/');
-            var match = Regex.Match(path, @"[\\\/]", RegexOptions.RightToLeft);
-            if (!match.Success) return path;
-            return path.Substring(0, match.Index);
         }
 
         public Task SetEmpty() => SetContent(GStrings.GetLocalizationByXPath("/Console/String[@ID='MESSAGE_README_EMPTY']"));
@@ -142,8 +122,7 @@ namespace HunterPie.Plugins
         {
             using var reader = await Task.Run(() =>
             {
-                var pipeline = BuildPipeline(basePath);
-                string xaml = Markdown.ToXaml(content, pipeline);
+                var xaml = readmeService.MdToXaml(basePath, content);
                 var stream = new MemoryStream(Encoding.UTF8.GetBytes(xaml));
                 return new XamlXmlReader(stream);
             }).ConfigureAwait(false);
@@ -209,68 +188,5 @@ namespace HunterPie.Plugins
             }
         }
 
-        private static MarkdownPipeline BuildPipeline(string root) => new MarkdownPipelineBuilder()
-            .UseSupportedExtensions()
-            // this is needed so images with relative paths will be resolved correctly
-            .Use(new RelativeLinkParserMdExtension(root))
-            .Build();
-    }
-
-    public class RelativeLinkParserMdExtension : IMarkdownExtension
-    {
-        private readonly string root;
-
-        public RelativeLinkParserMdExtension(string root)
-        {
-            this.root = root;
-        }
-
-        public void Setup(MarkdownPipelineBuilder pipeline)
-        {
-            if (string.IsNullOrEmpty(root))
-            {
-                return;
-            }
-            pipeline.InlineParsers.Replace<LinkInlineParser>(new RelativeLinkInlineParser(root));
-        }
-
-        public void Setup(MarkdownPipeline pipeline, IMarkdownRenderer renderer)
-        {
-        }
-    }
-
-    public class RelativeLinkInlineParser : LinkInlineParser
-    {
-        private readonly string root;
-
-        public RelativeLinkInlineParser(string root)
-        {
-            this.root = root;
-        }
-
-        public override bool Match(InlineProcessor processor, ref StringSlice slice)
-        {
-            var r = base.Match(processor, ref slice);
-
-            // only replace links to images
-            if (r && processor.Inline is LinkInline {IsImage: true} link && !string.IsNullOrEmpty(link.Url))
-            {
-                // only replace relative links
-                if (IsAbsoluteUrl(link.Url)) return true;
-
-                var newUrl = root + "/" + link.Url;
-
-                // wpf will throw error if cannot load image from FS, so we will only replace references if file is actually present
-                if (newUrl.StartsWith("file://") && !File.Exists(newUrl.Substring(7)))
-                {
-                    return true;
-                }
-
-                link.Url = newUrl;
-            }
-            return r;
-        }
-
-        public static bool IsAbsoluteUrl(string url) => Uri.TryCreate(url, UriKind.Absolute, out Uri _);
     }
 }

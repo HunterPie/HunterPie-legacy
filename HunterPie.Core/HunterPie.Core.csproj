@@ -230,6 +230,7 @@
     <Compile Include="Utils\FunctionExtensions.cs" />
     <Compile Include="Utils\GenericExtensions.cs" />
     <Compile Include="Utils\StringExtensions.cs" />
+    <Compile Include="Utils\UriUtilities.cs" />
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>
       <LastGenOutput>Resources.Designer.cs</LastGenOutput>

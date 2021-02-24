@@ -399,6 +399,8 @@
     <SolidColorBrush x:Key="GENERIC_BUTTON_BACKGROUND" Color="{Binding Source={StaticResource CONSOLE_ACCENT_COLOR}, Path=Color}"/>
     <SolidColorBrush x:Key="GENERIC_BUTTON_FOREGROUND">#ededed</SolidColorBrush>
 
+    <SolidColorBrush x:Key="GENERIC_SUBTEXT_FOREGROUND">Gray</SolidColorBrush>
+
     <!-- Debugger colors -->
     <SolidColorBrush x:Key="DEBUGGER_ERROR">#FF6459</SolidColorBrush>
     <SolidColorBrush x:Key="DEBUGGER_LOG">#FFFFFF</SolidColorBrush>
