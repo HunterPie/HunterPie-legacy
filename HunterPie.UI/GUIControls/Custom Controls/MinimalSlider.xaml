@@ -14,7 +14,7 @@
                  TextChanged="TextBoxBase_OnTextChanged"
                  LostFocus="TextBox_OnLostFocus"
                  />
-        <Slider Value="{Binding Value, ElementName=SliderControl, Mode=TwoWay}"
+        <Slider Value="{Binding Value, ElementName=SliderControl, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
                 Maximum="{Binding Path=MaxValue, ElementName=SliderControl, Mode=OneWay}"
                 Minimum="{Binding Path=MinValue, ElementName=SliderControl, Mode=OneWay}"
                 TickFrequency="{Binding Path=MinChange, ElementName=SliderControl, Mode=OneWay}"
