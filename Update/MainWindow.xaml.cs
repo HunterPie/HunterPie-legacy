@@ -55,7 +55,6 @@ namespace Update
 
         public MainWindow()
         {
-            GetRandomBackgroundImage();
             WindowBlur.SetIsEnabled(this, true);
             if (!GetAndParseArgs())
             {
@@ -170,13 +169,10 @@ namespace Update
             }
         }
 
-        private void OnImageLoaded(object sender, EventArgs e)
+        private void OnInitialized(object sender, EventArgs e)
         {
-            UpdateFiles();
-        }
-        
-        private void OnImageFail(object sender, EventArgs e)
-        {
+            GetRandomBackgroundImage();
+
             UpdateFiles();
         }
     }
