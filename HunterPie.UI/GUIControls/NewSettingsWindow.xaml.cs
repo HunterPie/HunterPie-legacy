@@ -15,6 +15,7 @@ using Newtonsoft.Json;
 using System.Reflection;
 using System.Security.Principal;
 using HunterPie.Settings;
+using HunterPie.UI.Infrastructure;
 
 namespace HunterPie.GUIControls
 {
@@ -23,6 +24,7 @@ namespace HunterPie.GUIControls
     /// </summary>
     public partial class NewSettingsWindow : UserControl, INotifyPropertyChanged
     {
+        private object selectedTab;
         public ICommand OpenLink { get; set; } = new OpenLink();
 
         public string DebugInformation
@@ -221,6 +223,19 @@ namespace HunterPie.GUIControls
         }
 
         public bool HasPlugins => SettingItems.Any();
+
+        public ICommand GarbageCollectCommand => new ArglessRelayCommand(() => GC.Collect());
+
+        public object SelectedTab
+        {
+            get => selectedTab;
+            set
+            {
+                if (Equals(value, selectedTab)) return;
+                selectedTab = value;
+                OnPropertyChanged();
+            }
+        }
 
         public void RemoveSettingsBlock(ISettingsTab tab)
         {

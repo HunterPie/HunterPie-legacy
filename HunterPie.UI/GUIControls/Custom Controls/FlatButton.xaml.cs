@@ -83,5 +83,26 @@ namespace HunterPie.GUIControls.Custom_Controls
                 btnIcon.Source = value;
             }
         }
+
+        public static readonly DependencyProperty IconBindingProperty = DependencyProperty.Register("IconBinding", typeof(ImageSource), typeof(FlatButton),
+            new PropertyMetadata(default(ImageSource), IconChangedCallback));
+
+        private static void IconChangedCallback(DependencyObject d, DependencyPropertyChangedEventArgs e)
+        {
+            if (e.NewValue is ImageSource img)
+            {
+                ((FlatButton)d).btnIcon.Source = img;
+            }
+        }
+
+        public ImageSource IconBinding
+        {
+            get { return (ImageSource)GetValue(IconBindingProperty); }
+            set
+            {
+                SetValue(IconBindingProperty, value);
+                this.btnIcon.Source = value;
+            }
+        }
     }
 }

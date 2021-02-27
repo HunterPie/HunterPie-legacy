@@ -1,6 +1,11 @@
 ﻿using System;
+using System.Collections.Generic;
+using System.Collections.ObjectModel;
+using System.Diagnostics;
 using System.IO;
+using System.Linq;
 using System.Net.Http;
+using System.Text.RegularExpressions;
 using System.Threading;
 using System.Threading.Tasks;
 using System.Windows;
@@ -8,15 +13,16 @@ using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using HunterPie.Core;
-using HunterPie.Logger;
+using HunterPie.Settings;
 using HunterPie.UI.Infrastructure;
+using Debugger = HunterPie.Logger.Debugger;
 
 namespace HunterPie.Plugins
 {
     public class LoadedPluginViewModel : BaseViewModel, IPluginViewModel
     {
         private readonly PluginEntry plugin;
-        private readonly IPluginListProxy pluginList;
+        private IPluginListProxy pluginList;
         private Task pluginToggleTask = Task.CompletedTask;
         private bool isFiltered;
 
@@ -37,6 +43,9 @@ namespace HunterPie.Plugins
             );
             pluginList.RegistryPluginsLoaded += OnRegistryPluginsLoaded;
             GetImage();
+            Actions = new ObservableCollection<PluginActionViewModel>(GetActions());
+            LastUpdateLong = PluginViewModelHelper.FormatLongDate(plugin.PluginInformation.ReleaseDate);
+            LastUpdateShort = PluginViewModelHelper.FormatShortDate(plugin.PluginInformation.ReleaseDate);
         }
 
         private void OnRegistryPluginsLoaded(object sender, EventArgs e)
@@ -114,10 +123,10 @@ namespace HunterPie.Plugins
         public bool IsVersionOk => true;
         public bool IsFailed => plugin.IsFailed;
 
-        public ICommand DownloadCommand => DisabledCommand.Instance;
-        public ICommand DeleteCommand { get; }
-        public ICommand ToggleCommand { get; }
-        public ICommand RestoreCommand { get; }
+        public ICommand DownloadCommand { get; set; } = DisabledCommand.Instance;
+        public ICommand DeleteCommand { get; set; }
+        public ICommand ToggleCommand { get; set; }
+        public ICommand RestoreCommand { get; set; }
 
         public string InternalName => plugin.PluginInformation.Name;
         public ImageSource Image { get; set; }
@@ -236,10 +245,16 @@ namespace HunterPie.Plugins
             try
             {
                 // trying to display local icon
-                string path = $"{plugin.RootPath}/icon.png";
-                if (File.Exists(path))
+                string rootPath = $"{plugin.RootPath}/icon.png";
+                string cachedPath = Path.Combine(plugin.RootPath, ".cache", "icon.png");
+                if (File.Exists(rootPath))
                 {
-                    var bytes = File.ReadAllBytes(path);
+                    var bytes = File.ReadAllBytes(rootPath);
+                    Image = LoadImage(bytes);
+                }
+                else if (File.Exists(cachedPath))
+                {
+                    var bytes = File.ReadAllBytes(cachedPath);
                     Image = LoadImage(bytes);
                 }
                 else
@@ -298,10 +313,64 @@ namespace HunterPie.Plugins
         }
 
         public long SortValue => PluginManager.GetInstallationTime(plugin.PluginInformation.Name)?.Ticks ?? -1;
+        public ObservableCollection<PluginActionViewModel> Actions { get; }
 
-        ~LoadedPluginViewModel()
+        private IEnumerable<PluginActionViewModel> GetActions()
         {
-            pluginList.RegistryPluginsLoaded -= OnRegistryPluginsLoaded;
+            // Plugin directory
+            yield return new PluginActionViewModel(
+                GStrings.GetLocalizationByXPath("/Console/String[@ID='MESSAGE_PLUGIN_DIRECTORY']"),
+                Application.Current.FindResource("ICON_FOLDER") as ImageSource,
+                new ArglessRelayCommand(() => Process.Start(Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "modules", plugin.PluginInformation.Name)))
+            );
+
+            // custom links
+            if (this.plugin.PluginInformation.Links != null)
+            {
+                foreach (var action in this.plugin.PluginInformation.Links.Select(PluginViewModelHelper.ParseLink))
+                {
+                    yield return action;
+                }
+            }
+            else if (PluginViewModelHelper.TryParseGithubLink(this.plugin.PluginInformation.Update?.UpdateUrl, out var action))
+            {
+                yield return action;
+            }
+
+            // plugin settings
+            if (plugin.Package?.plugin is ISettingsOwner)
+            {
+                yield return new PluginActionViewModel(
+                    GStrings.GetLocalizationByXPath("/TrayIcon/String[@ID='TRAYICON_SETTINGS']"),
+                    Application.Current.FindResource("ICON_SETTINGS") as ImageSource,
+                    new ArglessRelayCommand(() => Hunterpie.Instance.OpenSettingsForOwner(plugin.Package.Value.plugin.Name))
+                );
+            }
         }
+
+        public string LastUpdateShort { get; }
+
+        public string LastUpdateLong { get; }
+
+        private bool isDisposed = false;
+
+        private void Dispose(bool disposing)
+        {
+            if (isDisposed) return;
+
+            pluginToggleTask?.Dispose();
+            pluginList.RegistryPluginsLoaded -= OnRegistryPluginsLoaded;
+            pluginList = null;
+            ToggleCommand = DeleteCommand = RestoreCommand = DownloadCommand = null;
+            isDisposed = true;
+        }
+
+        public void Dispose()
+        {
+            Dispose(true);
+            GC.SuppressFinalize(this);
+        }
+
+        ~LoadedPluginViewModel() => Dispose(false);
     }
 }

@@ -8,9 +8,6 @@ using HunterPie.Memory;
 using HunterPie.Utils;
 using System.Linq;
 
-// TODO: Probably overkill, but add a public key to this
-[assembly: InternalsVisibleTo("HunterPie")]
-[assembly: InternalsVisibleTo("HunterPie.CoreTests")]
 namespace HunterPie.Core
 {
     public class Game
@@ -50,14 +47,14 @@ namespace HunterPie.Core
         /// </summary>
         public readonly Monster[] Monsters = new Monster[3];
 
-        
+
         public DateTime? Time { get; private set; }
 
         /// <summary>
         /// Whether the game scanner is currently active
         /// </summary>
         public bool IsActive { get; private set; }
-        
+
         /// <summary>
         /// Whether the game window is focused or not
         /// </summary>
@@ -79,7 +76,7 @@ namespace HunterPie.Core
                 return Kernel.Read<ulong>(address);
             }
         }
-        
+
         private static long renderTimeAddress = Kernel.NULLPTR;
 
         /// <summary>
@@ -112,7 +109,7 @@ namespace HunterPie.Core
             {
                 long sMhGUIPtr = Address.GetAddress("BASE") + Address.GetAddress("GAME_MOUSE_INFO_OFFSET");
                 long canControlPlayerPtr = Kernel.ReadMultilevelPtr(sMhGUIPtr, Address.GetOffsets("cMhMouseOffsets"));
-                
+
                 return Kernel.Read<byte>(canControlPlayerPtr) == 0;
             }
         }
@@ -126,7 +123,7 @@ namespace HunterPie.Core
             return WindowsHelper.SetForegroundWindow(Kernel.WindowHandle);
         }
 
-        
+
 
         /// <summary>
         /// Current world time (e.g: 10.3 represents 10:18 AM)
@@ -248,8 +245,8 @@ namespace HunterPie.Core
         }
 
         internal void StartScanning()
-        { 
-            
+        {
+
             StartGameScanner();
             HookEvents();
             Player.StartScanning();
@@ -332,7 +329,7 @@ namespace HunterPie.Core
         {
             long address = Kernel.Read<long>(Address.GetAddress("BASE") + Address.GetAddress("WORLD_DATA_OFFSET"));
             float time = Kernel.Read<float>(address + 0x38);
-            
+
             if (time.IsWithin(17, 18.99f))
             {
                 // Evening - 17:00 -> 18:59

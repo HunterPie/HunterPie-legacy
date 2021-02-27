@@ -17,29 +17,33 @@ namespace HunterPie.GUIControls
     /// </summary>
     public partial class Settings : UserControl
     {
-        private readonly ObservableCollection<ISettingsTab> settingBlocks;
+        private readonly ObservableCollection<ISettingsTab> settingTabs;
 
         public static Settings Instance
         {
             get; private set;
         }
 
-        public static Settings Instantiate(ObservableCollection<ISettingsTab> settingBlocks)
+        public static Settings Instantiate(ObservableCollection<ISettingsTab> settingTabs)
         {
             if (Instance is not null)
                 return Instance;
 
-            return Instance = new Settings(settingBlocks);
+            return Instance = new Settings(settingTabs);
         }
 
-        private Settings(ObservableCollection<ISettingsTab> settingBlocks)
+        private Settings(ObservableCollection<ISettingsTab> settingTabs)
         {
             InitializeComponent();
-            this.settingBlocks = settingBlocks;
-            this.settingBlocks.CollectionChanged += SettingBlocksOnCollectionChanged;
+            this.settingTabs = settingTabs;
+            foreach (var tab in settingTabs)
+            {
+                SettingsBox.AddSettingsBlock(tab);
+            }
+            this.settingTabs.CollectionChanged += SettingTabsOnCollectionChanged;
         }
 
-        private void SettingBlocksOnCollectionChanged(object sender, NotifyCollectionChangedEventArgs e)
+        private void SettingTabsOnCollectionChanged(object sender, NotifyCollectionChangedEventArgs e)
         {
             Dispatcher.Invoke(() =>
             {
@@ -69,6 +73,15 @@ namespace HunterPie.GUIControls
         }
 
         public void UninstallKeyboardHook() => Instance?.SettingsBox.UnhookEvents();
+
+        public void OpenSettingsForOwner(string owner)
+        {
+            var tab = SettingsBox.SettingItems.FirstOrDefault(si => si.Tab.OwnerName == owner);
+            if (tab != null)
+            {
+                SettingsBox.SelectedTab = tab;
+            }
+        }
 
         internal static void Destroy()
         {

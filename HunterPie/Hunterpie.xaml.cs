@@ -1220,6 +1220,14 @@ namespace HunterPie
             ChangeConsoleChild(sender, PluginDisplay.Instance);
         }
 
+        public void OpenSettingsForOwner(string name)
+        {
+            SettingsControl.Instantiate(PluginManager.PluginSettingsTabs);
+
+            ChangeConsoleChild(SettingsBtn, SettingsControl.Instance);
+            SettingsControl.Instance.OpenSettingsForOwner(name);
+        }
+
         private void ChangeConsoleChild(object sender, UIElement newChild)
         {
             // if sender is button, depress all other buttons

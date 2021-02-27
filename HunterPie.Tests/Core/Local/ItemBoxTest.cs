@@ -1,8 +1,9 @@
 ﻿using NUnit.Framework;
 using System.Collections.Generic;
+using HunterPie.Core;
 using HunterPie.Core.Definitions;
 
-namespace HunterPie.Core.Tests
+namespace HunterPie.Tests.Core.Local
 {
     [TestFixture]
     [System.Diagnostics.CodeAnalysis.SuppressMessage("CodeQuality", "IDE0051:Remove unused private members",

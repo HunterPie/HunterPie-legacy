@@ -1,8 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.IO;
 using Newtonsoft.Json;
-using Newtonsoft.Json.Linq;
+using Newtonsoft.Json.Converters;
 
 namespace HunterPie.Plugins
 {
@@ -15,8 +14,11 @@ namespace HunterPie.Plugins
         public string Author;
         public string Version;
         public string[] Dependencies { get; set; } = Array.Empty<string>();
+        public List<string> Links { get; set; } = null;
 
         public PluginUpdateInformation Update { get; set; } = new PluginUpdateInformation();
+
+        public DateTime? ReleaseDate { get; set; }
 
         internal PluginSettings InternalSettings { get; set; } = new PluginSettings();
 
@@ -33,6 +35,4 @@ namespace HunterPie.Plugins
             public string Sha256 { get; set; }
         }
     }
-
-
 }

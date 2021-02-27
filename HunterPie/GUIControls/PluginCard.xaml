@@ -1,28 +1,59 @@
-﻿<UserControl x:Class="HunterPie.GUIControls.PluginListEntry"
+﻿<UserControl x:Class="HunterPie.GUIControls.PluginCard"
              xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
              xmlns:customControls="clr-namespace:HunterPie.GUIControls.Custom_Controls;assembly=HunterPie.UI"
-             xmlns:plugins="clr-namespace:HunterPie.Plugins"
              xmlns:converters="clr-namespace:HunterPie.UI.Infrastructure.Converters;assembly=HunterPie.UI"
+             xmlns:plugins="clr-namespace:HunterPie.Plugins"
              xmlns:strings="clr-namespace:HunterPie.Infrastructure.Strings;assembly=HunterPie.UI"
              mc:Ignorable="d"
-             d:DesignWidth="400"
              d:DataContext="{d:DesignInstance plugins:IPluginViewModel, IsDesignTimeCreatable=False}">
+    <UserControl.LayoutTransform>
+        <ScaleTransform ScaleX="1.2" ScaleY="1.2" />
+    </UserControl.LayoutTransform>
     <Grid>
 
         <Grid.ColumnDefinitions>
-            <ColumnDefinition Width="Auto" MaxWidth="50"/>
+            <ColumnDefinition Width="Auto" MaxWidth="50">
+                <ColumnDefinition.Style>
+                    <Style TargetType="ColumnDefinition">
+                        <Style.Triggers>
+                            <DataTrigger Binding="{Binding IsExpanded, RelativeSource={RelativeSource AncestorType=UserControl, Mode=FindAncestor}}" Value="False">
+                                <Setter Property="MaxWidth" Value="25"/>
+                            </DataTrigger>
+                            <DataTrigger Binding="{Binding IsExpanded, RelativeSource={RelativeSource AncestorType=UserControl, Mode=FindAncestor}}" Value="True">
+                                <Setter Property="MaxWidth" Value="50"/>
+                            </DataTrigger>
+                        </Style.Triggers>
+                    </Style>
+                </ColumnDefinition.Style>
+            </ColumnDefinition>
 
             <ColumnDefinition Width="*" MinWidth="150" />
 
-            <ColumnDefinition Width="Auto" />
+            <ColumnDefinition Width="Auto">
+                <ColumnDefinition.Style>
+                    <Style TargetType="ColumnDefinition">
+                        <Style.Triggers>
+                            <DataTrigger Binding="{Binding IsExpanded, RelativeSource={RelativeSource AncestorType=UserControl, Mode=FindAncestor}}" Value="False">
+                                <Setter Property="MaxWidth" Value="0"></Setter>
+                            </DataTrigger>
+                        </Style.Triggers>
+                    </Style>
+                </ColumnDefinition.Style>
+            </ColumnDefinition>
+
         </Grid.ColumnDefinitions>
 
         <Grid.RowDefinitions>
+            <!--title & description-->
             <RowDefinition Height="Auto"/>
-            <RowDefinition Height="Auto"/>
+
+            <!--subtext-->
+            <RowDefinition Height="Auto" />
+
+            <!--extended buttons-->
             <RowDefinition Height="Auto">
                 <RowDefinition.Style>
                     <Style TargetType="RowDefinition">
@@ -37,27 +68,43 @@
         </Grid.RowDefinitions>
 
         <!-- image -->
-        <Grid Height="50" Grid.RowSpan="2" HorizontalAlignment="Stretch" VerticalAlignment="Center">
+        <Grid Grid.RowSpan="2" HorizontalAlignment="Stretch" VerticalAlignment="Stretch">
             <Image Panel.ZIndex="1" Source="{StaticResource ICON_PLUGIN}"
                    Visibility="{Binding HasImage, Converter={converters:BooleanToVisibilityConverter FalseValue=Visible, TrueValue=Collapsed}}"
                    Width="50" Height="25"
                    HorizontalAlignment="Center" VerticalAlignment="Center" />
             <Image HorizontalAlignment="Center" VerticalAlignment="Center" Source="{Binding Image}"
-                    IsHitTestVisible="False" />
+                   IsHitTestVisible="False">
+
+                <Image.Style>
+                    <Style TargetType="Image">
+                        <Style.Triggers>
+                            <DataTrigger Binding="{Binding IsExpanded, RelativeSource={RelativeSource AncestorType=UserControl, Mode=FindAncestor}}" Value="False">
+                                <Setter Property="MaxHeight" Value="25"/>
+                            </DataTrigger>
+                            <DataTrigger Binding="{Binding IsExpanded, RelativeSource={RelativeSource AncestorType=UserControl, Mode=FindAncestor}}" Value="True">
+                                <Setter Property="MaxHeight" Value="50"/>
+                            </DataTrigger>
+                        </Style.Triggers>
+                    </Style>
+                </Image.Style>
+            </Image>
         </Grid>
 
-        <!-- name, description, subtext -->
-        <StackPanel Grid.Column="1" Margin="5,0,0,0">
+        <!-- name, description -->
+        <StackPanel Grid.Column="1" Margin="5,0,0,0" VerticalAlignment="Top">
             <!-- header-->
-            <TextBlock TextWrapping="Wrap" FontSize="16" FontFamily="Roboto, Segoe UI" FontWeight="Medium" Foreground="WhiteSmoke" Text="{Binding Name}" />
+            <TextBlock TextWrapping="Wrap" FontSize="16" FontFamily="Roboto, Segoe UI" FontWeight="Medium" Foreground="{StaticResource GENERIC_BUTTON_FOREGROUND}" Text="{Binding Name}" />
 
             <!-- description-->
-            <TextBlock TextWrapping="Wrap" FontSize="13" FontFamily="Roboto, Segoe UI" Foreground="{StaticResource GENERIC_BUTTON_FOREGROUND}" Text="{Binding Description}"/>
-
+            <TextBlock TextWrapping="Wrap" FontSize="13" FontFamily="Roboto, Segoe UI" Foreground="{StaticResource GENERIC_BUTTON_FOREGROUND}" Text="{Binding Description}"
+                       Visibility="{Binding IsExpanded,
+                            Converter={converters:BooleanToVisibilityConverter FalseValue=Collapsed, TrueValue=Visible},
+                            RelativeSource={RelativeSource AncestorType=UserControl, Mode=FindAncestor}}"/>
         </StackPanel>
 
         <!-- subtext-->
-        <WrapPanel Grid.Column="1" Grid.Row="1" Grid.ColumnSpan="2" VerticalAlignment="Top" Orientation="Horizontal" Margin="5,0,0,0">
+        <WrapPanel Grid.Column="1" Grid.Row="1" Grid.ColumnSpan="2" Margin="5,0,0,0"  VerticalAlignment="Top" Orientation="Horizontal">
             <WrapPanel.Resources>
                 <Style TargetType="TextBlock">
                     <Setter Property="Foreground" Value="{StaticResource GENERIC_SUBTEXT_FOREGROUND}" />
@@ -80,10 +127,13 @@
 
                 <TextBlock TextWrapping="Wrap" Text="{Binding SubText}"/>
             </StackPanel>
+
         </WrapPanel>
 
         <!-- buttons -->
-        <StackPanel Grid.Column="2" Grid.RowSpan="2" Orientation="Horizontal" Margin="0,0,5,0">
+        <StackPanel Grid.Column="2" Grid.RowSpan="1" Orientation="Horizontal" Margin="0,0,5,0" Visibility="{Binding IsExpanded,
+                Converter={converters:BooleanToVisibilityConverter FalseValue=Collapsed},
+                RelativeSource={RelativeSource AncestorType=UserControl, Mode=FindAncestor}}">
 
             <!--remove-->
             <customControls:FlatButton Icon="{StaticResource ICON_REMOVE}" Width="30"
@@ -141,21 +191,26 @@
         </StackPanel>
 
         <!--extended members-->
-
-        <StackPanel Grid.Row="2" Grid.ColumnSpan="3" Orientation="Vertical">
+        <StackPanel Grid.Row="2" Grid.ColumnSpan="3" Orientation="Vertical" Margin="0,0,0,12" Visibility="{Binding Actions.Count, Converter={converters:LengthToVisibilityConverter WhenEmpty=Collapsed, WhenValues=Visible}}">
 
             <!--top line-->
-            <Rectangle Fill="{StaticResource GENERIC_SUBTEXT_FOREGROUND}" HorizontalAlignment="Stretch" Height="1" Margin="0,5,0,0" VerticalAlignment="Top"  Visibility="{Binding IsExpanded,
+            <Rectangle Fill="#ff777777" HorizontalAlignment="Stretch" Height="1" Margin="0,5,0,0" VerticalAlignment="Top" Visibility="{Binding IsExpanded,
                 Converter={converters:BooleanToVisibilityConverter FalseValue=Collapsed},
                 RelativeSource={RelativeSource AncestorType=UserControl, Mode=FindAncestor}}"/>
 
             <!--buttons-->
-
-            <ItemsControl Margin="0,5,10,5" Visibility="{Binding IsExpanded,
+            <ItemsControl Margin="0,5,10,0" Visibility="{Binding IsExpanded,
                 Converter={converters:BooleanToVisibilityConverter FalseValue=Collapsed},
                 RelativeSource={RelativeSource AncestorType=UserControl, Mode=FindAncestor}}"
                           ItemsSource="{Binding Actions}"
                           HorizontalContentAlignment="Center" HorizontalAlignment="Stretch">
+                <ItemsControl.Resources>
+                    <Style TargetType="TextBlock">
+                        <Setter Property="FontWeight" Value="Normal"></Setter>
+                        <Setter Property="FontSize" Value="14"></Setter>
+                    </Style>
+                </ItemsControl.Resources>
+
                 <ItemsControl.ItemsPanel>
                     <ItemsPanelTemplate>
                         <customControls:AlignableWrapPanel HorizontalContentAlignment="Center">
@@ -167,7 +222,7 @@
                 </ItemsControl.ItemsPanel>
                 <ItemsControl.ItemTemplate>
                     <DataTemplate DataType="plugins:PluginActionViewModel">
-                        <customControls:FlatButton ToolTip="{Binding Name}"
+                        <customControls:FlatButton Text="{Binding Name}"
                                                    IconBinding="{Binding Icon}"
                                                    Command="{Binding Command}" />
                     </DataTemplate>
@@ -175,5 +230,53 @@
             </ItemsControl>
 
         </StackPanel>
+
+        <!--bottom line-->
+        <Grid Grid.Row="1" Grid.RowSpan="2" Grid.ColumnSpan="3" VerticalAlignment="Bottom" Margin="0,20,0,-3" >
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="*"/>
+                <ColumnDefinition Width="Auto"/>
+                <ColumnDefinition Width="*"/>
+            </Grid.ColumnDefinitions>
+
+            <Rectangle Grid.Column="0" Fill="{StaticResource GENERIC_SUBTEXT_FOREGROUND}" Height="1" VerticalAlignment="Center" />
+
+            <Button Grid.Column="1" BorderBrush="Transparent" Background="Transparent" Template="{DynamicResource ButtonStyle}" Padding="0" VerticalAlignment="Bottom" Margin="-1,0,-1,-1" x:Name="CollapseButton"
+                    Command="{Binding ToggleModeCommand, RelativeSource={RelativeSource AncestorType=UserControl, Mode=FindAncestor}}"
+                    >
+                <Grid>
+                    <Grid.Style>
+                        <Style TargetType="Grid">
+                            <Setter Property="Cursor" Value="Hand"></Setter>
+                        </Style>
+                    </Grid.Style>
+                    <TextBlock>
+                        <TextBlock.Style>
+                            <Style TargetType="TextBlock">
+                                <Setter Property="Margin" Value="1,-1,0,0"></Setter>
+                                <Style.Triggers>
+                                    <DataTrigger Binding="{Binding RelativeSource={RelativeSource AncestorType=UserControl, Mode=FindAncestor}, Path=IsExpanded}" Value="True">
+                                        <Setter Property="Text" Value="⯅"/>
+                                        <Setter Property="Margin" Value="1,0,0,0"/>
+                                    </DataTrigger>
+                                    <DataTrigger Binding="{Binding RelativeSource={RelativeSource AncestorType=UserControl, Mode=FindAncestor}, Path=IsExpanded}" Value="False">
+                                        <Setter Property="Text" Value="▼"/>
+                                    </DataTrigger>
+                                    <Trigger Property="IsMouseOver" Value="True">
+                                        <Setter Property="Foreground" Value="{StaticResource GENERIC_BUTTON_FOREGROUND}"/>
+                                    </Trigger>
+                                    <Trigger Property="IsMouseOver" Value="False">
+                                        <Setter Property="Foreground" Value="{StaticResource GENERIC_SUBTEXT_FOREGROUND}"/>
+                                    </Trigger>
+                                </Style.Triggers>
+                            </Style>
+                        </TextBlock.Style>
+                    </TextBlock>
+                </Grid>
+            </Button>
+
+            <Rectangle Grid.Column="2" Fill="{StaticResource GENERIC_SUBTEXT_FOREGROUND}" Height="1" VerticalAlignment="Center" />
+
+        </Grid>
     </Grid>
 </UserControl>

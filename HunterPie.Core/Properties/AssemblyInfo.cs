@@ -40,6 +40,10 @@ using System.Windows;
                                       // app, or any theme specific resource dictionaries)
 )]
 
+// TODO: Probably overkill, but add a public key to this
+[assembly: InternalsVisibleTo("HunterPie")]
+[assembly: InternalsVisibleTo("HunterPie.Tests")]
+
 
 // Version information for an assembly consists of the following four values:
 //
