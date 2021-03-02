@@ -6,8 +6,8 @@ using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Interop;
 using System.Windows.Media;
-using System.Windows.Threading;
 using HunterPie.Core;
+using HunterPie.GUI.Widgets;
 using HunterPie.Logger;
 using HunterPie.Memory;
 
@@ -163,12 +163,18 @@ namespace HunterPie.GUI
                     counter++;
                 }
 
+                if (OverlaySettings.NotificationsWidget.Initialize)
+                {
+                    RegisterWidget(new NotificationsWidget());
+                    counter++;
+                }
+
                 Debugger.Warn($"Initialized overlay with {counter} widgets!");
             } else
             {
                 Debugger.Warn($"Skipped overlay initialization!");
             }
-            
+
         }
 
         private async Task DestroyWidgets()
@@ -219,8 +225,8 @@ namespace HunterPie.GUI
                     }
                 }));
             } catch(TaskCanceledException) {}
-            
-            
+
+
         }
 
         private void DeleteAbnormWidgetsIfNeeded()
