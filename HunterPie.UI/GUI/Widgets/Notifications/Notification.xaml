@@ -1,0 +1,36 @@
+﻿<UserControl x:Class="HunterPie.GUI.Widgets.Notifications.Notification"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+             xmlns:core="clr-namespace:HunterPie.Notifications;assembly=HunterPie.Core"
+             mc:Ignorable="d" 
+             DataContext="{Binding RelativeSource={RelativeSource Self}}"
+             d:DataContext="{core:NotificationModel Text='Some example notification text', Header='Notification header'}"
+             Style="{StaticResource NOTIFICATION_STYLE}"
+             MinWidth="400"
+             MaxWidth="600">
+    <UserControl.RenderTransform>
+        <TranslateTransform />
+    </UserControl.RenderTransform>
+
+    <Grid>
+        <!--background-->
+        <ContentControl Template="{StaticResource NOTIFICATION_BKG_TEMPLATE}"/>
+
+        <!--body-->
+        <Grid Style="{StaticResource NOTIFICATION_BODY_STYLE}">
+
+            <Grid.RowDefinitions>
+                <RowDefinition Height="Auto" />
+                <RowDefinition Height="*" />
+            </Grid.RowDefinitions>
+
+            <!--title-->
+            <TextBlock Text="{Binding Header, Mode=OneTime}" Style="{StaticResource NOTIFICATION_HEADER_TEXTBLOCK_STYLE}" />
+
+            <!--message-->
+            <TextBlock Grid.Row="1" Text="{Binding Text, Mode=OneTime}" Style="{StaticResource NOTIFICATION_TEXT_TEXTBLOCK_STYLE}" />
+        </Grid>
+    </Grid>
+</UserControl>

@@ -510,6 +510,23 @@
             <TabItem>
                 <TabItem.Header>
                     <Canvas>
+                        <Image Source="{StaticResource ICON_NOTIFICATIONS}" Width="15" Height="15" Canvas.Top="6" Canvas.Left="2"/>
+                        <TextBlock Height="21" Width="181" Canvas.Left="20" FontWeight="Medium" Canvas.Top="2" Text="{strings:Settings NOTIFICATIONS_TEXT}" />
+                    </Canvas>
+                </TabItem.Header>
+                <ScrollViewer>
+                    <StackPanel>
+                        <custom:Switcher x:Name="switchNotificationsInitialize" Text="{strings:Settings ENABLE_INITIALIZE_NOTIFICATIONS}" RestartVisibility="Visible"  ToolTip="{strings:Settings ENABLE_INITIALIZE_NOTIFICATIONS_DESC}"/>
+                        <custom:Switcher x:Name="switchEnableNotifications" Text="{strings:Settings ENABLE_NOTIFICATIONS}" Margin="10,0,10,5" ToolTip="{strings:Settings ENABLE_NOTIFICATIONS_DESC}" RestartVisibility="Collapsed"/>
+                        <custom:MinimalSlider x:Name="NotificationsWidgetOpacity" Text="{strings:Settings STATIC_OPACITY}" MinChange="0.01" MinValue="0" MaxValue="1" ValueText="{Binding Value, RelativeSource={RelativeSource Self}, StringFormat=\{0:P\}}" Foreground="WhiteSmoke" FontFamily="Segoe UI Light" Margin="10,0,10,5" />
+                        <custom:Switcher Margin="10,0,10,5" x:Name="switchNotificationStreamerMode" Text="{strings:Settings ENABLE_STREAMER_MODE}" ToolTip="{strings:Settings ENABLE_STREAMER_MODE_DESC}" RestartVisibility="Visible"/>
+                    </StackPanel>
+                </ScrollViewer>
+            </TabItem>
+
+            <TabItem>
+                <TabItem.Header>
+                    <Canvas>
                         <Image Source="{StaticResource ICON_LINK}" Width="15" Height="15" Canvas.Top="8" Canvas.Left="1"/>
                         <TextBlock Height="21" Width="181" Canvas.Left="20" FontWeight="Medium" Canvas.Top="2" Text="{strings:Settings STATIC_LINKS_SETTINGS}" />
                     </Canvas>
