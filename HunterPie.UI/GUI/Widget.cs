@@ -113,7 +113,7 @@ namespace HunterPie.GUI
         {
             oldOpacity = Opacity;
             ChangeVisibility();
-            
+
         }
 
         public virtual void LeaveWidgetDesignMode()
@@ -137,7 +137,7 @@ namespace HunterPie.GUI
                 WidgetActive = Settings.Enabled;
                 Opacity = Settings.Opacity;
             }
-            
+
             SetWindowFlags();
             ChangeVisibility();
         }
@@ -289,7 +289,7 @@ namespace HunterPie.GUI
 
             if (InDesignMode)
             {
-                DesignModeDetails = $"{Left}x{Top} ({DefaultScaleX * 100:0.0}%) ({stopwatch.ElapsedMilliseconds}ms)";
+                DesignModeDetails = $"{Left:0.0}x{Top:0.0} ({DefaultScaleX * 100:0.0}%) ({stopwatch.ElapsedMilliseconds}ms)";
                 DesignModeDetailsVisibility = Visibility.Visible;
                 stopwatch.Restart();
             }
@@ -301,7 +301,7 @@ namespace HunterPie.GUI
             }
         }
 
-        
+
         private void OnInitialized(object sender, EventArgs e)
         {
             //ApplySettings();

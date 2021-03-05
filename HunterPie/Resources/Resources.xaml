@@ -448,6 +448,31 @@
             </DrawingGroup>
         </DrawingImage.Drawing>
     </DrawingImage>
+    <DrawingImage x:Key="ICON_NOTIFICATIONS">
+        <DrawingImage.Drawing>
+            <DrawingGroup>
+                <DrawingGroup.Transform>
+                    <ScaleTransform ScaleX="1" ScaleY="-1" />
+                </DrawingGroup.Transform>
+                <DrawingGroup.Children>
+                    <GeometryDrawing Brush="{StaticResource CONSOLE_LOGO_PRIMARY}" Geometry="M944 5985 c-115 -21 -213 -54 -319 -106 -332 -164 -559 -480 -615
+-859 -8 -53 -10 -487 -8 -1505 l3 -1430 23 -85 c71 -268 207 -480 412 -642 55
+-43 216 -136 250 -145 14 -3 44 -14 67 -24 23 -10 75 -26 115 -36 67 -16 175
+-18 1288 -23 l1215 -5 370 -557 c204 -306 375 -557 380 -557 6 0 177 251 380
+557 l370 557 40 2 c194 11 368 61 520 149 272 158 452 400 537 724 l23 85 3
+1430 c2 1018 0 1452 -8 1505 -75 501 -440 878 -937 965 -77 13 -329 15 -2063
+14 -1569 -1 -1990 -4 -2046 -14z m3934 -1297 l2 -188 -1880 0 -1880 0 0 183
+c0 101 3 187 7 190 3 4 848 6 1877 5 l1871 -3 3 -187z m0 -750 l2 -188 -1880
+0 -1880 0 0 183 c0 101 3 187 7 190 3 4 848 6 1877 5 l1871 -3 3 -187z m-14
+-564 c14 -5 16 -32 16 -190 l0 -184 -1880 0 -1880 0 0 184 c0 138 3 186 13
+189 18 8 3712 8 3731 1z m-1864 -934 l0 -190 -940 0 -940 0 0 190 0 190 940 0
+940 0 0 -190z"/>
+                    </DrawingGroup.Children>
+                </DrawingGroup>
+            </DrawingImage.Drawing>
+    </DrawingImage>
+
+
     <!-- Styles -->
     <Style x:Key="WidgetStyle" TargetType="{x:Type Window}">
         <Style.Triggers>
