@@ -107,5 +107,6 @@ namespace HunterPie.GUIControls
         public void Magnify(object arg) => PreviewImg = arg as ImageSource;
 
         public void ClearMagnify() => PreviewImg = null;
+
     }
 }

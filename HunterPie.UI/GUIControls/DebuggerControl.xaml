@@ -14,7 +14,7 @@
 
             <ItemsControl.ItemTemplate>
                 <DataTemplate>
-                    <TextBlock Text="{Binding Message, Mode=OneWay}" Foreground="{Binding Color, Mode=OneWay}" FontSize="13" FontFamily="Roboto, Segoe UI, Yu Gothic" TextOptions.TextHintingMode="Fixed" TextOptions.TextFormattingMode="Ideal" TextWrapping="WrapWithOverflow"/>
+                    <TextBlock Text="{Binding Message, Mode=OneTime}" Foreground="{Binding Color, Mode=OneTime}" FontSize="13" FontFamily="Roboto, Segoe UI, Yu Gothic" TextOptions.TextHintingMode="Fixed" TextOptions.TextFormattingMode="Ideal" TextWrapping="WrapWithOverflow"/>
                 </DataTemplate>
             </ItemsControl.ItemTemplate>
         </ItemsControl>

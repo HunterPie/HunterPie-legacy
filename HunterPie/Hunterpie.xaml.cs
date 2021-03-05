@@ -1230,6 +1230,10 @@ namespace HunterPie
 
         private void ChangeConsoleChild(object sender, UIElement newChild)
         {
+            // Ignore if the current selected tab is already open
+            if (ConsolePanel.Children.Contains(newChild))
+                return;
+
             // if sender is button, depress all other buttons
             if (sender is SideButton {Parent: StackPanel panel} snd)
             {

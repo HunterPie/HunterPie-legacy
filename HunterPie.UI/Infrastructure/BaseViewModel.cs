@@ -8,7 +8,7 @@ namespace HunterPie.UI.Infrastructure
 {
     public class BaseViewModel : INotifyPropertyChanged
     {
-        protected void Dispatch(Action act) => Application.Current.Dispatcher.Invoke(act);
+        protected void Dispatch(Action act) => Application.Current?.Dispatcher.Invoke(act);
         public event PropertyChangedEventHandler PropertyChanged;
 
         [NotifyPropertyChangedInvocator]
