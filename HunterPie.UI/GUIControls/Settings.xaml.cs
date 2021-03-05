@@ -279,11 +279,7 @@ namespace HunterPie.GUIControls
             settingsUI.switchHBGHelper.IsEnabled = settings.Overlay.ClassesWidget.HeavyBowgunHelper.Enabled;
             settingsUI.switchLBGHelper.IsEnabled = settings.Overlay.ClassesWidget.LightBowgunHelper.Enabled;
 
-            // Notifications
-            settingsUI.switchEnableNotifications.IsEnabled = settings.Overlay.NotificationsWidget.Enabled;
-            settingsUI.switchNotificationsInitialize.IsEnabled = settings.Overlay.NotificationsWidget.Initialize;
-            settingsUI.NotificationsWidgetOpacity.Value = settings.Overlay.NotificationsWidget.Opacity;
-            settingsUI.switchNotificationStreamerMode.IsEnabled = settings.Overlay.NotificationsWidget.StreamerMode;
+
         }
 
         private async void saveSettings_Click(object sender, RoutedEventArgs e)
@@ -467,12 +463,6 @@ namespace HunterPie.GUIControls
                 settings.Overlay.AbnormalitiesWidget.BarPresets[i].Enabled = abnormBar.Enabled;
                 i++;
             }
-
-            // Notifications
-            settings.Overlay.NotificationsWidget.Enabled = settingsUI.switchEnableNotifications.IsEnabled;
-            settings.Overlay.NotificationsWidget.Initialize = settingsUI.switchNotificationsInitialize.IsEnabled;
-            settings.Overlay.NotificationsWidget.Opacity = (float)settingsUI.NotificationsWidgetOpacity.Value;
-            settings.Overlay.NotificationsWidget.StreamerMode = settingsUI.switchNotificationStreamerMode.IsEnabled;
 
             // save data from plugin tabs
             // TODO: notify user

@@ -801,16 +801,6 @@
       <String ID="ENABLE_LIGHTBOWGUN_HELPER" Name="Enable Light Bowgun Helper"/>
       <String ID="ENABLE_LIGHTBOWGUN_HELPER_DESC" Name="If enabled, the Light Bowgun helper will be visible whenever you equip a Light Bowgun."/>
       <String ID="STATIC_CLASSES_BETA_WARNING" Name="Attention: Class helpers are still in development and more classes will be supported in the future. Each class helper has it's own settings, so you can have different positions for this widget depending on the class. Use the Design Mode feature to scale and move this widget."/>
-
-      <!-- Notifications Widget -->
-      <String ID="NOTIFICATIONS_TEXT" Name="Notifications"/>
-
-      <String ID="ENABLE_NOTIFICATIONS" Name="Enable Notifications Widget"/>
-      <String ID="ENABLE_NOTIFICATIONS_DESC" Name="If enabled notifications will be shown"/>
-
-      <String ID="ENABLE_INITIALIZE_NOTIFICATIONS" Name="Initialize Notifications Widget"/>
-      <String ID="ENABLE_INITIALIZE_NOTIFICATIONS_DESC" Name="If disabled, the notifications widget won't be initialized at all."/>
-
       <!-- Links -->
       <String ID="STATIC_HUNTERPIE_WIKI" Name="Documentation"/>
       <String ID="STATIC_HUNTERPIE_WIKI_DESC" Name="HunterPie official documentation."/>

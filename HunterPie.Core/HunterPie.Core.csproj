@@ -195,10 +195,6 @@
     <Compile Include="Native\Connection\Packets\Definitions.cs" />
     <Compile Include="Native\Connection\Packets\Opcodes.cs" />
     <Compile Include="Native\Injector.cs" />
-    <Compile Include="Notifications\INotificationsService.cs" />
-    <Compile Include="Notifications\NotificationModel.cs" />
-    <Compile Include="Notifications\NotificationService.cs" />
-    <Compile Include="Notifications\NotificationsServiceExtensions.cs" />
     <Compile Include="Plugins\IPlugin.cs" />
     <Compile Include="Plugins\PluginInformation.cs" />
     <Compile Include="Plugins\PluginPackage.cs" />
