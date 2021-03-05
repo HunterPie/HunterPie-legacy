@@ -5,6 +5,7 @@
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
     <ProjectGuid>{9E9CCD04-0006-4ECF-A973-8776B638121C}</ProjectGuid>
+    <ProjectTypeGuids>{60dc8134-eba5-43b8-bcc9-bb4bc16c2548};{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}</ProjectTypeGuids>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
     <RootNamespace>HunterPie</RootNamespace>
@@ -240,6 +241,12 @@
     </Compile>
     <Compile Include="GUI\Widgets\Notifications\DiscordNotify.xaml.cs">
       <DependentUpon>DiscordNotify.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="GUI\Widgets\Notifications\Notification.xaml.cs">
+      <DependentUpon>Notification.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="GUI\Widgets\Notifications\NotificationsWidget.xaml.cs">
+      <DependentUpon>NotificationsWidget.xaml</DependentUpon>
     </Compile>
     <Compile Include="GUI\WidgetType.cs" />
     <Compile Include="Infrastructure\BaseViewModel.cs" />
@@ -477,6 +484,14 @@
     <Page Include="GUI\Widgets\Notifications\DiscordNotify.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
+    </Page>
+    <Page Include="GUI\Widgets\Notifications\Notification.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="GUI\Widgets\Notifications\NotificationsWidget.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
     </Page>
   </ItemGroup>
   <ItemGroup>
