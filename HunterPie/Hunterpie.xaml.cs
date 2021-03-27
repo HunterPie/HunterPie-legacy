@@ -906,7 +906,7 @@ namespace HunterPie
 
             await pluginManager.PreloadPlugins();
             // Support message :)
-            ShowSupportMessage();
+            //ShowSupportMessage();
 
             StartEverything();
         }
