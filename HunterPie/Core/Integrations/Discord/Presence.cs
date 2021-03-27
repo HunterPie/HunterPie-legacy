@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Reflection;
 using System.Windows;
 using DiscordRPC;
 using DiscordRPC.Message;
@@ -36,6 +37,12 @@ namespace HunterPie.Core.Integrations.Discord
             if (isOffline)
                 return;
 
+            if (!CheckForLibraryVersion())
+            {
+                Debugger.Error("Detected outdated DiscordRPC library. Skipping Rich Presence initialization.");
+                return;
+            }
+
             if (!InitializeDiscordClient())
                 return;
 
@@ -64,6 +71,12 @@ namespace HunterPie.Core.Integrations.Discord
                 return false;
             }
             return true;
+        }
+
+        private bool CheckForLibraryVersion()
+        {
+            Assembly library = typeof(RichPresence).Assembly;
+            return library.GetName().Version >= new Version(1, 0, 175, 0);
         }
 
         private void InitializeJoinScheme()
