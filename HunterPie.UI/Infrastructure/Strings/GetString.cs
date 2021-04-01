@@ -2,6 +2,7 @@
 using System.ComponentModel;
 using System.Windows.Markup;
 using HunterPie.Core;
+using HunterPie.Utils;
 
 namespace HunterPie.Infrastructure.Strings
 {
@@ -23,7 +24,7 @@ namespace HunterPie.Infrastructure.Strings
 
         public override object ProvideValue(IServiceProvider serviceProvider)
         {
-            return GStrings.GetLocalizationByXPath($"/{Section}/String[@ID='{Key}']");
+            return GStrings.GetLocalizationByXPath($"/{Section}/String[@ID='{Key}']").AprilFoolsify();
         }
     }
 
@@ -44,7 +45,7 @@ namespace HunterPie.Infrastructure.Strings
         public override object ProvideValue(IServiceProvider serviceProvider)
         {
             // //Strings/Client/Settings/String[@ID='{Key}']/@Name
-            return GStrings.GetLocalizationByXPath($"/Settings/String[@ID='{Key}']");
+            return GStrings.GetLocalizationByXPath($"/Settings/String[@ID='{Key}']").AprilFoolsify();
         }
     }
 }

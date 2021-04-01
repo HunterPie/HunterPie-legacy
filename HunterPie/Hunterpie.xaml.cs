@@ -748,6 +748,7 @@ namespace HunterPie
 
             // Starts scanning
             game.StartScanning();
+
         }
 
         private async Task InitializeNative()

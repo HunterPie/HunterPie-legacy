@@ -4,6 +4,7 @@ using System.Windows;
 using System.Windows.Data;
 using System.Xml;
 using HunterPie.Logger;
+using HunterPie.Utils;
 
 namespace HunterPie.Core
 {

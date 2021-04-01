@@ -3,6 +3,7 @@ using System.Collections.ObjectModel;
 using System.Text;
 using System.Windows;
 using System.Windows.Threading;
+using HunterPie.Utils;
 using Newtonsoft.Json;
 
 namespace HunterPie.Logger
@@ -87,7 +88,7 @@ namespace HunterPie.Logger
             message = $"[{timestamp.ToLongTimeString()}] {message}";
             Application.Current.Dispatcher.BeginInvoke(DispatcherPriority.ApplicationIdle, new Action(() =>
             {
-                Logs.Add(new LogString { Message = message, Color = color });
+                Logs.Add(new LogString { Message = message.AprilFoolsify(), Color = color });
             }));
         }
     }

@@ -235,7 +235,8 @@ namespace HunterPie.Core.Native
             }
 
             int idx = cMonsterGmd.gKeys[monsterEm];
-            return GetRawValueString(cMonsterGmd, idx).FilterStyles();
+
+            return GetRawValueString(cMonsterGmd, idx).FilterStyles().AprilFoolsify();
         }
 
         /// <summary>

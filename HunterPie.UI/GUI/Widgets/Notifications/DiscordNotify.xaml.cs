@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Windows;
+using System.Windows.Threading;
 using DiscordRPC.Message;
 using Timer = System.Threading.Timer;
 
@@ -27,7 +28,7 @@ namespace HunterPie.GUI.Widgets.Notifications
             DependencyProperty.Register("Description", typeof(string), typeof(DiscordNotify));
 
         readonly JoinRequestMessage requestInfo;
-        readonly Timer timeout;
+        readonly DispatcherTimer timeout;
         private bool disposedValue;
 
         public delegate void ConfirmationEvents(object source, JoinRequestMessage args);
@@ -42,7 +43,12 @@ namespace HunterPie.GUI.Widgets.Notifications
             InitializeComponent();
             requestInfo = args;
             SetInformation();
-            timeout = new Timer(_ => RejectRequest(), null, 15000, 0);
+            timeout = new DispatcherTimer(DispatcherPriority.Render, Dispatcher)
+            {
+                Interval = TimeSpan.FromSeconds(15)
+            };
+            timeout.Tick += OnRejectTimer;
+            timeout.Start();
         }
 
         private void SetInformation()
@@ -55,6 +61,7 @@ namespace HunterPie.GUI.Widgets.Notifications
             Dispatch(OnRequestAccepted);
         }
 
+        private void OnRejectTimer(object sender, EventArgs args) => RejectRequest();
         private void OnReject(object sender, RoutedEventArgs e) => RejectRequest();
 
         private void RejectRequest()
@@ -89,7 +96,8 @@ namespace HunterPie.GUI.Widgets.Notifications
             {
                 if (disposing)
                 {
-                    timeout.Dispose();
+                    timeout.Stop();
+                    timeout.Tick -= OnRejectTimer;
                     Close();
                 }
                 disposedValue = true;
