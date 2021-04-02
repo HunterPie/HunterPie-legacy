@@ -228,10 +228,9 @@
                 </Button.Content>
             </Button>
             <StackPanel Orientation="Horizontal" Height="59" VerticalAlignment="Top" HorizontalAlignment="Left" Margin="20,50,0,0">
-                <Image HorizontalAlignment="Right" Height="59" VerticalAlignment="Top" Width="59" Source="https://cdn.discordapp.com/emojis/765686006304604210.png"/>
+                <Image HorizontalAlignment="Right" Height="59" VerticalAlignment="Top" Width="59" Source="{StaticResource LOGO_HunterPie}"/>
 
-
-                <TextBlock HorizontalAlignment="Right" TextWrapping="Wrap" Text="Huwunter" VerticalAlignment="Bottom" Height="59" FontWeight="Bold" FontSize="22" Padding="1,16,0,0" Foreground="{StaticResource CONSOLE_LOGO_FOREGROUND}" FontFamily="Roboto"/>
+                <TextBlock HorizontalAlignment="Right" TextWrapping="Wrap" Text="Hunter" VerticalAlignment="Bottom" Height="59" FontWeight="Bold" FontSize="22" Padding="1,16,0,0" Foreground="{StaticResource CONSOLE_LOGO_FOREGROUND}" FontFamily="Roboto"/>
                 <TextBlock HorizontalAlignment="Right" TextWrapping="Wrap" Text="Pie" VerticalAlignment="Bottom" Height="59" FontFamily="Roboto" FontWeight="Light" FontSize="22" Padding="0,16,0,0" Foreground="{StaticResource CONSOLE_LOGO_FOREGROUND}"/>
 
             </StackPanel>

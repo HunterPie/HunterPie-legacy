@@ -43,6 +43,11 @@ namespace HunterPie.Utils
             return source.IndexOf(toCheck, comp) >= 0;
         }
 
+        /// <summary>
+        /// OwO what's this?
+        /// </summary>
+        /// <param name="source">Text</param>
+        /// <returns>A harder-to-read text</returns>
         public static string AprilFoolsify(this string source)
         {
 

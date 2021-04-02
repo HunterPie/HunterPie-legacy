@@ -88,7 +88,7 @@ namespace HunterPie.Logger
             message = $"[{timestamp.ToLongTimeString()}] {message}";
             Application.Current.Dispatcher.BeginInvoke(DispatcherPriority.ApplicationIdle, new Action(() =>
             {
-                Logs.Add(new LogString { Message = message.AprilFoolsify(), Color = color });
+                Logs.Add(new LogString { Message = message, Color = color });
             }));
         }
     }
