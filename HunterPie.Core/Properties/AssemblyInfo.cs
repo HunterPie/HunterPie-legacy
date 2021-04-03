@@ -8,11 +8,11 @@ using System.Windows;
 // set of attributes. Change these attribute values to modify the information
 // associated with an assembly.
 [assembly: AssemblyTitle("HunterPie.Core")]
-[assembly: AssemblyDescription("HunterPie core logic")]
+[assembly: AssemblyDescription("HunterPie Core features")]
 [assembly: AssemblyConfiguration("")]
 [assembly: AssemblyCompany("Haato")]
 [assembly: AssemblyProduct("HunterPie.Core")]
-[assembly: AssemblyCopyright("Copyright ©  2020")]
+[assembly: AssemblyCopyright("Copyright ©  2021")]
 [assembly: AssemblyTrademark("")]
 [assembly: AssemblyCulture("")]
 
@@ -55,5 +55,7 @@ using System.Windows;
 // You can specify all the values or you can default the Build and Revision Numbers
 // by using the '*' as shown below:
 // [assembly: AssemblyVersion("1.0.*")]
-[assembly: AssemblyVersion("1.0.5.10")]
-[assembly: AssemblyFileVersion("1.0.5.10")]
+[assembly: AssemblyVersion("1.0.5.11")]
+[assembly: AssemblyFileVersion("1.0.5.11")]
+[assembly: Guid("e688b55e-9431-11eb-a142-d017c28e3396")]
+[assembly: NeutralResourcesLanguage("en")]

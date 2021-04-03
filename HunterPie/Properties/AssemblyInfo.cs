@@ -12,7 +12,7 @@ using System.Windows.Media;
 [assembly: AssemblyConfiguration("")]
 [assembly: AssemblyCompany("Haato")]
 [assembly: AssemblyProduct("HunterPie")]
-[assembly: AssemblyCopyright("Copyright ©  2020")]
+[assembly: AssemblyCopyright("Copyright ©  2021")]
 [assembly: AssemblyTrademark("")]
 [assembly: AssemblyCulture("")]
 
@@ -53,7 +53,7 @@ using System.Windows.Media;
 // You can specify all the values or you can default the Build and Revision Numbers
 // by using the '*' as shown below:
 // [assembly: AssemblyVersion("1.0.*")]
-[assembly: AssemblyVersion("1.0.5.16")]
-[assembly: AssemblyFileVersion("1.0.5.16")]
+[assembly: AssemblyVersion("1.0.5.17")]
+[assembly: AssemblyFileVersion("1.0.5.17")]
 [assembly: NeutralResourcesLanguage("en")]
 [assembly: Guid("84334de6-935b-11eb-9b81-d017c28e3396")]

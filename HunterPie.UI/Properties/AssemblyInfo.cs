@@ -1,4 +1,5 @@
-﻿using System.Reflection;
+﻿using System.Resources;
+using System.Reflection;
 using System.Runtime.CompilerServices;
 using System.Runtime.InteropServices;
 
@@ -10,7 +11,7 @@ using System.Runtime.InteropServices;
 [assembly: AssemblyConfiguration("")]
 [assembly: AssemblyCompany("Haato")]
 [assembly: AssemblyProduct("HunterPie.UI")]
-[assembly: AssemblyCopyright("Copyright ©  2020")]
+[assembly: AssemblyCopyright("Copyright ©  2021")]
 [assembly: AssemblyTrademark("")]
 [assembly: AssemblyCulture("")]
 
@@ -20,7 +21,7 @@ using System.Runtime.InteropServices;
 [assembly: ComVisible(false)]
 
 // The following GUID is for the ID of the typelib if this project is exposed to COM
-[assembly: Guid("9e9ccd04-0006-4ecf-a973-8776b638121c")]
+[assembly: Guid("00925012-9432-11eb-9a62-d017c28e3396")]
 
 // Version information for an assembly consists of the following four values:
 //
@@ -32,5 +33,6 @@ using System.Runtime.InteropServices;
 // You can specify all the values or you can default the Build and Revision Numbers
 // by using the '*' as shown below:
 // [assembly: AssemblyVersion("1.0.*")]
-[assembly: AssemblyVersion("1.0.5.12")]
-[assembly: AssemblyFileVersion("1.0.5.12")]
+[assembly: AssemblyVersion("1.0.5.13")]
+[assembly: AssemblyFileVersion("1.0.5.13")]
+[assembly: NeutralResourcesLanguage("en")]

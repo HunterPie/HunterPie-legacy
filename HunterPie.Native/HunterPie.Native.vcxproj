@@ -163,6 +163,7 @@
     <ClInclude Include="Connection\Packets\Definitions.h" />
     <ClInclude Include="Connection\Packets\model.h" />
     <ClInclude Include="libs\MinHook\MinHook.h" />
+    <ClInclude Include="resource.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Connection\Socket.cpp" />
@@ -172,6 +173,9 @@
   </ItemGroup>
   <ItemGroup>
     <Library Include="libs\MinHook\libMinHook.x64.lib" />
+  </ItemGroup>
+  <ItemGroup>
+    <ResourceCompile Include="HunterPie.Native.rc" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
