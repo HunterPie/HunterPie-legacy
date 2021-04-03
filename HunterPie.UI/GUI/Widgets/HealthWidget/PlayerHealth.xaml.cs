@@ -333,7 +333,7 @@ namespace HunterPie.GUI.Widgets.HealthWidget
                     }
                 } else
                 {
-                    WidgetHasContent = true;
+                    WidgetHasContent = false;
                 }
                 ChangeVisibility();
             });
