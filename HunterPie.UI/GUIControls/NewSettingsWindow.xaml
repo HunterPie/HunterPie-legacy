@@ -215,8 +215,8 @@
                         <custom:Switcher x:Name="switchEnableMonsterComponent" Margin="10,0,10,5" RestartVisibility="Collapsed" Text="{strings:Settings ENABLE_MONSTER_WIDGET}" ToolTip="{strings:Settings ENABLE_MONSTER_WIDGET_DESC}" />
                         <custom:Switcher x:Name="switchEnableMonsterStreamerMode" Text="{strings:Settings ENABLE_STREAMER_MODE}" ToolTip="{strings:Settings ENABLE_STREAMER_MODE_DESC}" Margin="10,0,10,5" RestartVisibility="Visible"/>
                         <custom:Switcher x:Name="switchEnableMonsterAction" Text="{strings:Settings ENABLE_MONSTER_ACTION}" ToolTip="{strings:Settings ENABLE_MONSTER_ACTION_DESC}" Margin="10,0,10,5" RestartVisibility="Collapsed"/>
+                        <custom:Switcher x:Name="switchEnableOwOfy" Text="{strings:Settings ENABLE_OWOFY_MONSTER_NAMES}" ToolTip="{strings:Settings ENABLE_OWOFY_MONSTER_NAMES_DESC}" Margin="10,0,10,5" RestartVisibility="Collapsed"/>
                         <custom:TextInput x:Name="HealthTextFormat" Label="{strings:Settings STATIC_MONSTER_HEALTH_STRING_FORMAT}" ToolTip="{strings:Settings STATIC_MONSTER_HEALTH_STRING_FORMAT_DESC}" />
-
                         <custom:ComboBox x:Name="MonsterShowModeSelection" ToolTip="{strings:Settings STATIC_MONSTER_BAR_MODE_DESC}" Label="{strings:Settings STATIC_MONSTER_BAR_MODE}" />
                         <custom:CHotKey x:Name="ToggleMonsterBarModeHotKey" Text="{strings:Settings STATIC_MONSTER_BAR_MODE_HOTKEY}" ToolTip="{strings:Settings STATIC_MONSTER_BAR_MODE_HOTKEY}" Margin="10,0,10,5"/>
                         <StackPanel Visibility="Collapsed" Orientation="Horizontal" Height="28" ToolTip="{strings:Settings STATIC_MONSTER_BAR_DOCK_DESC}" Margin="10,0,10,5">

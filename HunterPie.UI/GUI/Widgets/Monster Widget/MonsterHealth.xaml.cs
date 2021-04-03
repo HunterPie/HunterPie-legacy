@@ -17,6 +17,7 @@ using AlatreonState = HunterPie.Core.Enums.AlatreonState;
 using BitmapImage = System.Windows.Media.Imaging.BitmapImage;
 using Timer = System.Threading.Timer;
 using HunterPie.Core.Settings;
+using HunterPie.Utils;
 
 namespace HunterPie.GUI.Widgets
 {
@@ -135,7 +136,12 @@ namespace HunterPie.GUI.Widgets
         private void UpdateMonsterInfo(Monster Monster)
         {
             Visibility = Visibility.Visible;
-            MonsterName.Text = Monster.Name;
+
+            if (ConfigManager.Settings.Overlay.MonstersComponent.EnableNameOwofy)
+                MonsterName.Text = Monster.Name.AprilFoolsify();
+            else
+                MonsterName.Text = Monster.Name;
+
             MonsterHealthBar.MaxSize = Width * 0.7833333333333333;
             MonsterStaminaBar.MaxSize = Width - 72;
 

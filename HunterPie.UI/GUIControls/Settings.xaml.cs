@@ -152,6 +152,7 @@ namespace HunterPie.GUIControls
             // Monsters
             settingsUI.switchInitializeMonsterWidget.IsEnabled = settings.Overlay.MonstersComponent.Initialize;
             settingsUI.switchEnableMonsterComponent.IsEnabled = settings.Overlay.MonstersComponent.Enabled;
+            settingsUI.switchEnableOwOfy.IsEnabled = settings.Overlay.MonstersComponent.EnableNameOwofy;
             settingsUI.switchEnableMonsterStreamerMode.IsEnabled = settings.Overlay.MonstersComponent.StreamerMode;
             settingsUI.switchEnableMonsterAction.IsEnabled = settings.Overlay.MonstersComponent.ShowMonsterActionName;
             settingsUI.switchSortParts.IsEnabled = settings.Overlay.MonstersComponent.EnableSortParts;
@@ -343,6 +344,7 @@ namespace HunterPie.GUIControls
             // Monsters
             settings.Overlay.MonstersComponent.Initialize = settingsUI.switchInitializeMonsterWidget.IsEnabled;
             settings.Overlay.MonstersComponent.Enabled = settingsUI.switchEnableMonsterComponent.IsEnabled;
+            settings.Overlay.MonstersComponent.EnableNameOwofy = settingsUI.switchEnableOwOfy.IsEnabled;
             settings.Overlay.MonstersComponent.StreamerMode = settingsUI.switchEnableMonsterStreamerMode.IsEnabled;
             settings.Overlay.MonstersComponent.ShowMonsterActionName = settingsUI.switchEnableMonsterAction.IsEnabled;
             settings.Overlay.MonstersComponent.EnableSortParts = settingsUI.switchSortParts.IsEnabled;

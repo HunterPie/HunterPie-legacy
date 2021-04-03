@@ -591,6 +591,8 @@
       <String ID="ENABLE_MONSTER_WIDGET_DESC" Name="If enabled, the monster widget will be visible whenever it has content to show."/>
       <String ID="STATIC_MONSTER_HEALTH_STRING_FORMAT" Name="Health text format:"/>
       <String ID="STATIC_MONSTER_HEALTH_STRING_FORMAT_DESC" Name="Text format for the monster health bar."/>
+      <String ID="ENABLE_OWOFY_MONSTER_NAMES" Name="Enable Monster name OwOfier"/>
+      <String ID="ENABLE_OWOFY_MONSTER_NAMES_DESC" Name="This is part of the April fools day. Replaces all o's and u's with OwO's and UwU's"/>
       <String ID="STATIC_MONSTER_AILMENT_BUILDUP_STRING_FORMAT" Name="Ailment buildup text format:"/>
       <String ID="STATIC_MONSTER_AILMENT_BUILDUP_STRING_FORMAT_DESC" Name="Text format for the monster ailment buildup."/>
       <String ID="STATIC_MONSTER_AILMENT_TIMER_STRING_FORMAT" Name="Ailment timer text format:"/>
