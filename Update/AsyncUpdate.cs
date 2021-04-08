@@ -70,6 +70,13 @@ namespace Update
                 string[] files = GetDifferentFiles();
                 if (await UpdateFiles(files))
                 {
+                    string[] toBeDeleted = GetFilesToBeDeleted();
+                    if (toBeDeleted.Length > 0)
+                    {
+                        foreach (string file in toBeDeleted)
+                            DeleteFile(file);
+                    }
+
                     OnUpdateSuccess?.Invoke(this, new UpdateFinished { JustUpdated = files.Length > 0, IsLatestVersion = files.Length == 0 });
                     WriteToFile("Update successful!");
                 }
@@ -168,6 +175,26 @@ namespace Update
                 }
             }
             return files.ToArray();
+        }
+
+        private string[] GetFilesToBeDeleted()
+        {
+            string[] files = onlineFileHashes.Keys
+                .Where(filename => filename.ToLowerInvariant() == "delete" && FileExists(filename))
+                .ToArray();
+
+            return files;
+        }
+
+        private static bool FileExists(string relativePath)
+        {
+            string path = Path.Combine(BaseDirectory, relativePath);
+            return File.Exists(path);
+        }
+
+        private static void DeleteFile(string relativePath)
+        {
+            File.Delete(Path.Combine(BaseDirectory, relativePath));
         }
 
         private async Task<bool> UpdateFiles(string[] files)
