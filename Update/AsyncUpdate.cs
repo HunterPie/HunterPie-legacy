@@ -68,15 +68,18 @@ namespace Update
             {
                 GetLocalFileHashes();
                 string[] files = GetDifferentFiles();
-                if (await UpdateFiles(files))
-                {
-                    string[] toBeDeleted = GetFilesToBeDeleted();
-                    if (toBeDeleted.Length > 0)
-                    {
-                        foreach (string file in toBeDeleted)
-                            DeleteFile(file);
-                    }
 
+                bool updated = await UpdateFiles(files);
+
+                string[] toBeDeleted = GetFilesToBeDeleted();
+                if (toBeDeleted.Length > 0)
+                {
+                    foreach (string file in toBeDeleted)
+                        DeleteFile(file);
+                }
+
+                if (updated)
+                {
                     OnUpdateSuccess?.Invoke(this, new UpdateFinished { JustUpdated = files.Length > 0, IsLatestVersion = files.Length == 0 });
                     WriteToFile("Update successful!");
                 }
@@ -160,6 +163,9 @@ namespace Update
                 string online = onlineFileHashes[fileName];
                 string local = localFileHashes[fileName];
 
+                if (online.ToLowerInvariant() == "delete")
+                    continue;
+
                 if (online.ToLowerInvariant() == "installonly" && !string.IsNullOrEmpty(local))
                 {
                     continue;
@@ -179,8 +185,9 @@ namespace Update
 
         private string[] GetFilesToBeDeleted()
         {
-            string[] files = onlineFileHashes.Keys
-                .Where(filename => filename.ToLowerInvariant() == "delete" && FileExists(filename))
+            string[] files = onlineFileHashes
+                .Where(dict => dict.Value.ToLowerInvariant() == "delete" && FileExists(dict.Key))
+                .Select(found => found.Key)
                 .ToArray();
 
             return files;

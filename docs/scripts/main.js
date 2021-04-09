@@ -79,7 +79,7 @@ function RenderMarkdown(markdown) {
                 }
             )
         } else {
-            window.location.href = "https://hunterpie.me/HunterPie/404.html";
+            window.location.href = "https://hunterpie.haato.dev/HunterPie/404.html";
         }
     });
 }

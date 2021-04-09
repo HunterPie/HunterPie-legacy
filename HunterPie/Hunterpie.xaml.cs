@@ -1074,7 +1074,7 @@ namespace HunterPie
                 SecondButtonVisibility = Visibility.Visible,
                 Callback1 = new Action(() =>
                 {
-                    Process.Start("https://server.hunterpie.me/donate");
+                    Process.Start("https://server.haato.dev/donate");
                 }),
                 Callback2 = new Action(() =>
                 {

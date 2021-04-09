@@ -1,14 +1,14 @@
 
 ## HunterPie
 ### Why is my HunterPie crashing on startup?
-If you use RivaTuner make sure to update it to the latest version, it has a bug that makes HunterPie crash because it uses Direct3D. Also make sure you have all the [**requirements**](https://hunterpie.me/HunterPie/?p=HunterPie/installation.md#requirements) to run HunterPie.
+If you use RivaTuner make sure to update it to the latest version, it has a bug that makes HunterPie crash because it uses Direct3D. Also make sure you have all the [**requirements**](https://hunterpie.haato.dev/HunterPie/?p=HunterPie/installation.md#requirements) to run HunterPie.
 
 ### I'm getting an error about MonsterHunterWorld.XXXXXX.map
 
 Due to how HunterPie works, I have to map all static addresses manually, so it usually takes ~1 to 2 hours after a new Monster Hunter World patch hits for everything to work properly again. Also, always make sure auto-update is enabled when we get a new MHW version so HunterPie can always get the latest map version.
 
 ### Can I translate HunterPie's interface?
-Yes! Just make sure to read [**this**](https://hunterpie.me/HunterPie/?p=HunterPie/localization.md) so you know how to get started.
+Yes! Just make sure to read [**this**](https://hunterpie.haato.dev/HunterPie/?p=HunterPie/localization.md) so you know how to get started.
 
 ## Overlay
 
@@ -40,10 +40,10 @@ Yes! A design mode was introduced on version 1.0.3.3, now you can press ScrollLo
 
 
 ### How do I use the abnormalities tray widget (player buff/debuff)?
-HunterPie *v1.0.3.6* introduced an abnormality widget. Please, make sure to read the [**documentation**](https://hunterpie.me/HunterPie/?p=Overlay/abnormalitiesWidget.md) before using it.
+HunterPie *v1.0.3.6* introduced an abnormality widget. Please, make sure to read the [**documentation**](https://hunterpie.haato.dev/HunterPie/?p=Overlay/abnormalitiesWidget.md) before using it.
 
 ### Monster parts, ailments, capture notification when?
-That was introduced in version v1.0.3.80. Read the new monster widget [**documentation**](https://hunterpie.me/HunterPie/?p=Overlay/monstersWidget.md) to learn about the new features.
+That was introduced in version v1.0.3.80. Read the new monster widget [**documentation**](https://hunterpie.haato.dev/HunterPie/?p=Overlay/monstersWidget.md) to learn about the new features.
 
 ### I can't see monster parts
 Due to how the game works, only the quest host can see the monster parts health while the other party members only have access to the flinch/break counter.

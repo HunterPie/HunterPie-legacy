@@ -109,7 +109,7 @@ namespace HunterPie.Plugins.Example
             // source will always be a Player type, so we can cast it to Player if we want
             Player src = (Player)source;
 
-            // Player actions have an unique name, you can find them all here: https://docs.hunterpie.me/?p=Internal/playerActions.md
+            // Player actions have an unique name, you can find them all here: https://hunterpie.haato.dev/?p=Internal/playerActions.md
             switch (src.PlayerActionRef)
             {
                 case "Common::DAMAGE_SLEEP_IDLE":
