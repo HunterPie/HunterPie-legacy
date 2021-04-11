@@ -484,6 +484,11 @@
       <String ID="MESSAGE_PLUGIN_RESTORE" Name="플러그인 복원" />
       <String ID="MESSAGE_PLUGIN_FAILED" Name="플러그인 실행에 실패했습니다. HunterPie가 재시작될 때까지 불러오지 않습니다." />
       <String ID="MESSAGE_README_EMPTY" Name="내용 없음..." />
+      <String ID="MESSAGE_PLUGIN_DIRECTORY" Name="플러그인 디렉토리" />
+      <String ID="MESSAGE_PLUGIN_HOMEPAGE" Name="홈페이지" />
+      <String ID="MESSAGE_PLUGIN_LAST_UPDATE_STRING" Name="마지막 업데이트: {UpdateTime} ({TimeAgo})" />
+      <String ID="MESSAGE_PLUGIN_LAST_UPDATE_STRING_DAYS_PART" Name="{DaysAgo}일 전" />
+      <String ID="MESSAGE_PLUGIN_LAST_UPDATE_STRING_HOURS_PART" Name="{HoursAgo}시간 전" />
       <!-- Popups -->
       <String ID="MESSAGE_QUIT" Name="HunterPie를 종료하시겠습니까?"/>
       <String ID="TITLE_MISSING_PATH" Name="게임 설치 경로를 찾을 수 없습니다."/>
@@ -586,6 +591,8 @@
       <String ID="ENABLE_MONSTER_WIDGET_DESC" Name="옵션을 켤 경우, 표시할 내용이 있을 때 몬스터 위젯이 표시됩니다."/>
       <String ID="STATIC_MONSTER_HEALTH_STRING_FORMAT" Name="체력 텍스트 형식:"/>
       <String ID="STATIC_MONSTER_HEALTH_STRING_FORMAT_DESC" Name="몬스터 체력 바의 텍스트 형식입니다."/>
+      <String ID="ENABLE_OWOFY_MONSTER_NAMES" Name="몬스터 이름 OwOfier 사용"/>
+      <String ID="ENABLE_OWOFY_MONSTER_NAMES_DESC" Name="만우절에 몬스터 이름을 바꿉니다. 모든 o's와 u's를 OwO's와 UwU's로 바꿉니다"/>
       <String ID="STATIC_MONSTER_AILMENT_BUILDUP_STRING_FORMAT" Name="상태 이상 수치 텍스트 형식:"/>
       <String ID="STATIC_MONSTER_AILMENT_BUILDUP_STRING_FORMAT_DESC" Name="몬스터 상태 이상 수치의 텍스트 형식입니다."/>
       <String ID="STATIC_MONSTER_AILMENT_TIMER_STRING_FORMAT" Name="상태 이상 타이머 텍스트 형식:"/>
@@ -796,6 +803,16 @@
       <String ID="ENABLE_LIGHTBOWGUN_HELPER" Name="라이트보우건 위젯 사용"/>
       <String ID="ENABLE_LIGHTBOWGUN_HELPER_DESC" Name="옵션을 켤 경우, 라이트보우건을 장착하면 라이트보우건 위젯이 표시됩니다."/>
       <String ID="STATIC_CLASSES_BETA_WARNING" Name="주의: 무기 위젯은 아직 개발 단계에 있으며, 추후 더 많은 무기들이 지원 예정에 있습니다. 무기별 위젯 세팅이 가능하며, 무기에 따라 위젯의 크기나 위치를 다르게 설정할 수 있습니다. 디자인 모드를 활용하여 크기나 위치를 조정하세요."/>
+
+      <!-- Notifications Widget -->
+      <String ID="NOTIFICATIONS_TEXT" Name="알림"/>
+
+      <String ID="ENABLE_NOTIFICATIONS" Name="알림 위젯 사용"/>
+      <String ID="ENABLE_NOTIFICATIONS_DESC" Name="옵션을 켤 경우, 알림이 표시됩니다"/>
+
+      <String ID="ENABLE_INITIALIZE_NOTIFICATIONS" Name="알림 위젯 실행"/>
+      <String ID="ENABLE_INITIALIZE_NOTIFICATIONS_DESC" Name="옵션을 끌 경우, 알림 위젯은 실행되지 않습니다."/>
+
       <!-- Links -->
       <String ID="STATIC_HUNTERPIE_WIKI" Name="문서"/>
       <String ID="STATIC_HUNTERPIE_WIKI_DESC" Name="HunterPie의 공식 문서입니다."/>
