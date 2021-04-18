@@ -1007,106 +1007,108 @@
                                     <!-- Player stamina bar -->
                                     <StackPanel Orientation="Horizontal" Height="3" VerticalAlignment="Top"
                                                 Margin="65,40,0,0" HorizontalAlignment="Left" ClipToBounds="False">
-                                        <Custom:MinimalHealthBar x:Name="StaminaBar" RenderTransformOrigin="0.5,1"
+                                        <Border BorderBrush="CadetBlue" BorderThickness="0"> 
+                                            <StackPanel Orientation="Horizontal">
+                                                <Custom:MinimalHealthBar x:Name="StaminaBar" RenderTransformOrigin="0.5,1"
                                                                  Foreground="{x:Null}" Background="#B27E7E7E">
-                                            <Custom:MinimalHealthBar.RenderTransform>
-                                                <TransformGroup>
-                                                    <ScaleTransform />
-                                                    <SkewTransform AngleX="-45" />
-                                                    <RotateTransform />
-                                                    <TranslateTransform />
-                                                </TransformGroup>
-                                            </Custom:MinimalHealthBar.RenderTransform>
-                                            <Custom:MinimalHealthBar.Style>
-                                                <Style TargetType="Custom:MinimalHealthBar">
-                                                    <Style.Triggers>
-                                                        <DataTrigger
+                                                    <Custom:MinimalHealthBar.RenderTransform>
+                                                        <TransformGroup>
+                                                            <ScaleTransform />
+                                                            <SkewTransform AngleX="-45" />
+                                                            <RotateTransform />
+                                                            <TranslateTransform />
+                                                        </TransformGroup>
+                                                    </Custom:MinimalHealthBar.RenderTransform>
+                                                    <Custom:MinimalHealthBar.Style>
+                                                        <Style TargetType="Custom:MinimalHealthBar">
+                                                            <Style.Triggers>
+                                                                <DataTrigger
                                                             Binding="{Binding ElementName=PlayerHealthComponent, Path=IsStaminaNormal}"
                                                             Value="True">
-                                                            <Setter Property="Color">
-                                                                <Setter.Value>
-                                                                    <LinearGradientBrush EndPoint="1,1"
+                                                                    <Setter Property="Color">
+                                                                        <Setter.Value>
+                                                                            <LinearGradientBrush EndPoint="1,1"
                                                                         StartPoint="0,0">
-                                                                        <GradientStop Color="#FFC95B32" Offset="0" />
-                                                                        <GradientStop Color="#FFD3A541" Offset="1" />
-                                                                    </LinearGradientBrush>
-                                                                </Setter.Value>
-                                                            </Setter>
-                                                        </DataTrigger>
-                                                        <DataTrigger
+                                                                                <GradientStop Color="#FFC95B32" Offset="0" />
+                                                                                <GradientStop Color="#FFD3A541" Offset="1" />
+                                                                            </LinearGradientBrush>
+                                                                        </Setter.Value>
+                                                                    </Setter>
+                                                                </DataTrigger>
+                                                                <DataTrigger
                                                             Binding="{Binding ElementName=PlayerHealthComponent, Path=IsIcy}"
                                                             Value="True">
-                                                            <Setter Property="Color">
-                                                                <Setter.Value>
-                                                                    <LinearGradientBrush EndPoint="1,1"
+                                                                    <Setter Property="Color">
+                                                                        <Setter.Value>
+                                                                            <LinearGradientBrush EndPoint="1,1"
                                                                         StartPoint="0,0">
-                                                                        <GradientStop Color="#FF32B4C9" Offset="0" />
-                                                                        <GradientStop Color="#FF41D3CC" Offset="1" />
-                                                                    </LinearGradientBrush>
-                                                                </Setter.Value>
-                                                            </Setter>
-                                                        </DataTrigger>
-                                                        <DataTrigger
+                                                                                <GradientStop Color="#FF32B4C9" Offset="0" />
+                                                                                <GradientStop Color="#FF41D3CC" Offset="1" />
+                                                                            </LinearGradientBrush>
+                                                                        </Setter.Value>
+                                                                    </Setter>
+                                                                </DataTrigger>
+                                                                <DataTrigger
                                                             Binding="{Binding ElementName=PlayerHealthComponent, Path=IsWet}"
                                                             Value="True">
-                                                            <Setter Property="Color">
-                                                                <Setter.Value>
-                                                                    <LinearGradientBrush EndPoint="1,1"
+                                                                    <Setter Property="Color">
+                                                                        <Setter.Value>
+                                                                            <LinearGradientBrush EndPoint="1,1"
                                                                         StartPoint="0,0">
-                                                                        <GradientStop Color="#FF3270C9" Offset="0" />
-                                                                        <GradientStop Color="#FF41A5D3" Offset="1" />
-                                                                    </LinearGradientBrush>
-                                                                </Setter.Value>
-                                                            </Setter>
-                                                        </DataTrigger>
-                                                    </Style.Triggers>
-                                                </Style>
-                                            </Custom:MinimalHealthBar.Style>
-                                        </Custom:MinimalHealthBar>
-                                        <Rectangle x:Name="StaminaExt" Visibility="Collapsed"
+                                                                                <GradientStop Color="#FF3270C9" Offset="0" />
+                                                                                <GradientStop Color="#FF41A5D3" Offset="1" />
+                                                                            </LinearGradientBrush>
+                                                                        </Setter.Value>
+                                                                    </Setter>
+                                                                </DataTrigger>
+                                                            </Style.Triggers>
+                                                        </Style>
+                                                    </Custom:MinimalHealthBar.Style>
+                                                </Custom:MinimalHealthBar>
+                                                <Rectangle x:Name="StaminaExt" Visibility="Collapsed"
                                                    RenderTransformOrigin="0.5,0.5">
-                                            <Rectangle.Stroke>
-                                                <LinearGradientBrush EndPoint="0.5,1" StartPoint="0,0">
-                                                    <GradientStop Color="#00000000" Offset="0" />
-                                                    <GradientStop Color="#FFD3A541" Offset="1" />
-                                                </LinearGradientBrush>
-                                            </Rectangle.Stroke>
-                                            <Rectangle.Fill>
-                                                <LinearGradientBrush EndPoint="0,1" StartPoint="1,1">
-                                                    <GradientStop Color="Black" />
-                                                    <GradientStop Color="#00000000" Offset="1" />
-                                                </LinearGradientBrush>
-                                            </Rectangle.Fill>
-                                            <Rectangle.RenderTransform>
-                                                <TransformGroup>
-                                                    <ScaleTransform />
-                                                    <SkewTransform AngleX="-45" />
-                                                    <RotateTransform />
-                                                    <TranslateTransform />
-                                                </TransformGroup>
-                                            </Rectangle.RenderTransform>
-                                            <Rectangle.Style>
-                                                <Style TargetType="Rectangle">
-                                                    <Style.Triggers>
-                                                        <Trigger Property="IsVisible" Value="True">
-                                                            <Trigger.EnterActions>
-                                                                <BeginStoryboard Name="FadeInOutAnim">
-                                                                    <Storyboard Storyboard.TargetProperty="Opacity"
+                                                    <Rectangle.Stroke>
+                                                        <LinearGradientBrush EndPoint="0.5,1" StartPoint="0,0">
+                                                            <GradientStop Color="#00000000" Offset="0" />
+                                                            <GradientStop Color="#FFD3A541" Offset="1" />
+                                                        </LinearGradientBrush>
+                                                    </Rectangle.Stroke>
+                                                    <Rectangle.Fill>
+                                                        <LinearGradientBrush EndPoint="0,1" StartPoint="1,1">
+                                                            <GradientStop Color="Black" />
+                                                            <GradientStop Color="#00000000" Offset="1" />
+                                                        </LinearGradientBrush>
+                                                    </Rectangle.Fill>
+                                                    <Rectangle.RenderTransform>
+                                                        <TransformGroup>
+                                                            <ScaleTransform />
+                                                            <SkewTransform AngleX="-45" />
+                                                            <RotateTransform />
+                                                            <TranslateTransform />
+                                                        </TransformGroup>
+                                                    </Rectangle.RenderTransform>
+                                                    <Rectangle.Style>
+                                                        <Style TargetType="Rectangle">
+                                                            <Style.Triggers>
+                                                                <Trigger Property="IsVisible" Value="True">
+                                                                    <Trigger.EnterActions>
+                                                                        <BeginStoryboard Name="FadeInOutAnim">
+                                                                            <Storyboard Storyboard.TargetProperty="Opacity"
                                                                         Duration="0:0:0.8" RepeatBehavior="Forever">
-                                                                        <DoubleAnimation From="1" To="0.3"
+                                                                                <DoubleAnimation From="1" To="0.3"
                                                                             Duration="0:0:0.2" AutoReverse="True" />
-                                                                    </Storyboard>
-                                                                </BeginStoryboard>
-                                                            </Trigger.EnterActions>
-                                                            <Trigger.ExitActions>
-                                                                <RemoveStoryboard BeginStoryboardName="FadeInOutAnim" />
-                                                            </Trigger.ExitActions>
-                                                        </Trigger>
-                                                    </Style.Triggers>
-                                                </Style>
-                                            </Rectangle.Style>
-                                        </Rectangle>
-                                        <TextBlock Margin="-50,0,0,-15" RenderOptions.ClearTypeHint="Enabled"
+                                                                            </Storyboard>
+                                                                        </BeginStoryboard>
+                                                                    </Trigger.EnterActions>
+                                                                    <Trigger.ExitActions>
+                                                                        <RemoveStoryboard BeginStoryboardName="FadeInOutAnim" />
+                                                                    </Trigger.ExitActions>
+                                                                </Trigger>
+                                                            </Style.Triggers>
+                                                        </Style>
+                                                    </Rectangle.Style>
+                                                </Rectangle>
+                                                <TextBlock Margin="-50,0,0,-15" RenderOptions.ClearTypeHint="Enabled"
                                                    VerticalAlignment="Bottom" Foreground="#FFDADADA" FontSize="12"
                                                    HorizontalAlignment="Left"
                                                    FontFamily="Roboto, Segoe UI, Yu Gothic UI" ClipToBounds="False">
@@ -1114,10 +1116,32 @@
                                                 Text="{Binding PlayerCurrentStamina, ElementName=PlayerHealthComponent}" />
                                             <Run Text="/" />
                                             <Run Text="{Binding PlayerMaxStamina, ElementName=PlayerHealthComponent}" />
-                                            <TextBlock.Effect>
-                                                <DropShadowEffect RenderingBias="Quality" ShadowDepth="0" Direction="0" />
-                                            </TextBlock.Effect>
-                                        </TextBlock>
+                                                    <TextBlock.Effect>
+                                                        <DropShadowEffect RenderingBias="Quality" ShadowDepth="0" Direction="0" />
+                                                    </TextBlock.Effect>
+                                                </TextBlock>
+                                            </StackPanel>
+                                            <Border.Style>
+                                                <Style TargetType="Border">
+                                                    <Style.Triggers>
+                                                        <DataTrigger
+                                                            Binding="{Binding ElementName=PlayerHealthComponent, Path=HasHotDrink}"
+                                                            Value="False">
+                                                            <DataTrigger.EnterActions>
+                                                                <BeginStoryboard Name="NoHotDrink">
+                                                                    <Storyboard Storyboard.TargetProperty="BorderThickness" AutoReverse="True" RepeatBehavior="Forever" FillBehavior="Stop">
+                                                                        <ThicknessAnimation From="0" To="1" Duration="0:0:0.500"/>
+                                                                    </Storyboard>
+                                                                </BeginStoryboard>
+                                                            </DataTrigger.EnterActions>
+                                                            <DataTrigger.ExitActions>
+                                                                <RemoveStoryboard BeginStoryboardName="NoHotDrink"/>
+                                                            </DataTrigger.ExitActions>
+                                                        </DataTrigger>
+                                                    </Style.Triggers>
+                                                </Style>
+                                            </Border.Style>
+                                        </Border>
                                     </StackPanel>
 
 

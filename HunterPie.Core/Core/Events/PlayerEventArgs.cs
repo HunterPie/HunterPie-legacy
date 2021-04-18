@@ -64,6 +64,11 @@ namespace HunterPie.Core.Events
         /// </summary>
         public int ActionId { get; }
 
+        /// <summary>
+        /// Whether the player has the hot drink effect
+        /// </summary>
+        public bool HasHotDrink { get; }
+
         public PlayerEventArgs(Player player)
         {
             Name = player.Name;
@@ -77,6 +82,7 @@ namespace HunterPie.Core.Events
             SteamId = player.SteamID;
             Action = player.PlayerActionRef;
             ActionId = player.ActionId;
+            HasHotDrink = player.HasHotDrink;
         }
 
         private Job GetJobBasedOnClass(Player player)

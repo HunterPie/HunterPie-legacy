@@ -39,6 +39,7 @@ namespace HunterPie.Core
         private float ailmentTimer;
         private int masterRank;
         private Job currentWeapon;
+        private bool hasHotDrink;
         private PlayerAilment ailmentType;
 
         private readonly int[] harvestBoxZones =
@@ -336,6 +337,22 @@ namespace HunterPie.Core
         }
 
         /// <summary>
+        /// Whether the player has drank hot drink or not while in snow stages
+        /// </summary>
+        public bool HasHotDrink
+        {
+            get => hasHotDrink;
+            private set
+            {
+                if (value != hasHotDrink)
+                {
+                    hasHotDrink = value;
+                    Dispatch(OnHotDrinkStateChange, new PlayerEventArgs(this));
+                }
+            }
+        }
+
+        /// <summary>
         /// Gets the raw name for the player current action reference name
         /// </summary>
         public string PlayerActionRef { get; private set; }
@@ -444,6 +461,7 @@ namespace HunterPie.Core
         public event PlayerEvents OnVillageEnter;
         public event PlayerEvents OnPeaceZoneLeave;
         public event PlayerEvents OnVillageLeave;
+        public event PlayerEvents OnHotDrinkStateChange;
 
         public event PlayerAilmentEvents OnAilmentUpdate;
 
@@ -788,6 +806,7 @@ namespace HunterPie.Core
                     GetMantleTimers();
                     GetPlayerSkills();
                     GetParty();
+                    GetPlayerEffects();
                     GetPlayerAbnormalities();
                     GetJobInformation();
                     GetPlayerPosition();
@@ -801,6 +820,14 @@ namespace HunterPie.Core
             }
             Thread.Sleep(1000);
             GetPlayerInfo();
+        }
+
+        private void GetPlayerEffects()
+        {
+            long hotDrinkFlagAddress = Kernel.ReadMultilevelPtr(EQUIPMENT_ADDRESS + 0x920, new [] { 0x13D58, 0x8, 0xA24 });
+            bool hotDrinkFlag = Kernel.Read<byte>(hotDrinkFlagAddress) == 0;
+
+            HasHotDrink = hotDrinkFlag;
         }
 
         private bool GetPlayerAddress()

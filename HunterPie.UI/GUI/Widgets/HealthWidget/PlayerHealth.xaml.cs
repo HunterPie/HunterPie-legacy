@@ -14,6 +14,7 @@ using System.Windows.Controls;
 using HunterPie.GUI.Helpers;
 using System.Linq;
 using HunterPie.Core.Settings;
+using HunterPie.Core.Native;
 
 namespace HunterPie.GUI.Widgets.HealthWidget
 {
@@ -202,6 +203,15 @@ namespace HunterPie.GUI.Widgets.HealthWidget
             set { SetValue(IsMinimalisticModeProperty, value); }
         }
 
+        public bool HasHotDrink
+        {
+            get { return (bool)GetValue(HasHotDrinkProperty); }
+            set { SetValue(HasHotDrinkProperty, value); }
+        }
+
+        public static readonly DependencyProperty HasHotDrinkProperty =
+            DependencyProperty.Register("HasHotDrink", typeof(bool), typeof(PlayerHealth));
+
         MinimalHealthBar StaminaBar { get; set; }
         HealthBar HealthBar { get; set; }
         Rectangle HealthExt { get; set; }
@@ -276,6 +286,7 @@ namespace HunterPie.GUI.Widgets.HealthWidget
             Context.Stamina.OnStaminaExtStateUpdate += OnStaminaExtStateUpdate;
             Context.OnAilmentUpdate += OnAilmentUpdate;
             Context.OnLevelChange += OnLevelChange;
+            Context.OnHotDrinkStateChange += OnHotDrinkStateChange;
 
             if (Context.CurrentWeapon != null)
             {
@@ -304,6 +315,7 @@ namespace HunterPie.GUI.Widgets.HealthWidget
             Context.Stamina.OnStaminaExtStateUpdate -= OnStaminaExtStateUpdate;
             Context.OnAilmentUpdate -= OnAilmentUpdate;
             Context.OnLevelChange -= OnLevelChange;
+            Context.OnHotDrinkStateChange -= OnHotDrinkStateChange;
 
             if (Context.CurrentWeapon != null)
             {
@@ -315,6 +327,20 @@ namespace HunterPie.GUI.Widgets.HealthWidget
 
             Context.Abnormalities.OnNewAbnormality -= OnNewAbnormality;
             Context.Abnormalities.OnAbnormalityRemove -= OnAbnormalityEnd;
+        }
+
+
+        private void OnHotDrinkStateChange(object source, EventArgs args)
+        {
+            Dispatcher.InvokeAsync(async () =>
+            {
+                PlayerEventArgs e = (PlayerEventArgs)args;
+                if (!e.HasHotDrink)
+                    await Chat.SystemMessage("<STYL MOJI_RED_SELECTED><ICON SLG_NEWS> Warning:</STYL>\nMissing Hot Drink!", 0, 0, 0);
+
+                HasHotDrink = e.HasHotDrink;
+            });
+
         }
 
         private void OnZoneChange(object source, EventArgs args)
