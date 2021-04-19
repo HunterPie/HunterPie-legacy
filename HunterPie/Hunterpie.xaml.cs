@@ -814,7 +814,10 @@ namespace HunterPie
             presence?.Dispose();
             presence = null;
 
-            game?.StopScanning();
+            // For some reason it crashes here if we stop scanning when the game is closed before it is initialized?
+            try { game?.StopScanning(); }
+            catch {}
+
             await Dispatcher.InvokeAsync(async () =>
             {
                 if (overlay is null)
