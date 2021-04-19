@@ -51,19 +51,19 @@ The apps will be in _{HunterPie|Update}/bin/Release_
 
 ### Core
 - Automatic updates
-- [Build exporter to Honey Hunters World](https://docs.hunterpie.me/?p=Integrations/honeyHuntersWorld.md)
-- [Decoration & Charms exporter to Honey Hunters World](https://docs.hunterpie.me/?p=Integrations/honeyHuntersWorld.md)
-- [Automatic Player Data Exporter](https://docs.hunterpie.me/?p=HunterPie/playerDataExporter.md)
-- [Discord Rich Presence Support](https://docs.hunterpie.me/?p=Integrations/discord.md)
+- [Build exporter to Honey Hunters World](https://hunterpie.haato.dev/?p=Integrations/honeyHuntersWorld.md)
+- [Decoration & Charms exporter to Honey Hunters World](https://hunterpie.haato.dev/?p=Integrations/honeyHuntersWorld.md)
+- [Automatic Player Data Exporter](https://hunterpie.haato.dev/?p=HunterPie/playerDataExporter.md)
+- [Discord Rich Presence Support](https://hunterpie.haato.dev/?p=Integrations/discord.md)
 - [Plugin Support](https://github.com/Haato3o/HunterPie.Plugins)
 
 ### Overlay
-- [Monster Widget](https://docs.hunterpie.me/?p=Overlay/monstersWidget.md)
-- [Harvest Box Widget](https://docs.hunterpie.me/?p=Overlay/harvestBoxWidget.md)
-- [Specialized Tools Widget](https://docs.hunterpie.me/?p=Overlay/specializedToolWidget.md)
-- [Abnormalities Tracker Widget](https://docs.hunterpie.me/?p=Overlay/abnormalitiesWidget.md)
-- [Class Helper Widget](https://docs.hunterpie.me/?p=Overlay/classesWidget.md)
-- [Damage Meter Widget](https://docs.hunterpie.me/?p=Overlay/damageMeterWidget.md)
+- [Monster Widget](https://hunterpie.haato.dev/?p=Overlay/monstersWidget.md)
+- [Harvest Box Widget](https://hunterpie.haato.dev/?p=Overlay/harvestBoxWidget.md)
+- [Specialized Tools Widget](https://hunterpie.haato.dev/?p=Overlay/specializedToolWidget.md)
+- [Abnormalities Tracker Widget](https://hunterpie.haato.dev/?p=Overlay/abnormalitiesWidget.md)
+- [Class Helper Widget](https://hunterpie.haato.dev/?p=Overlay/classesWidget.md)
+- [Damage Meter Widget](https://hunterpie.haato.dev/?p=Overlay/damageMeterWidget.md)
 
 ## Troubleshooting & Bugs
 
