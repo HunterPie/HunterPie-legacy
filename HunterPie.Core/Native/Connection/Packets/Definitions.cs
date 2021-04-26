@@ -88,6 +88,19 @@ namespace HunterPie.Native.Connection.Packets
         public byte unk3;
     }
 
+    [StructLayout(LayoutKind.Sequential)]
+    public struct S_DEAL_DAMAGE
+    {
+        public Header header;
+        public ulong target;
+        public uint index;
+        public int damage;
+        [MarshalAs(UnmanagedType.Bool)]
+        public bool isCrit;
+        [MarshalAs(UnmanagedType.Bool)]
+        public bool isTenderized;
+    }
+
     #region Other Data structures
 
     [StructLayout(LayoutKind.Sequential)]
