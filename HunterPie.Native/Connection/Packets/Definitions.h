@@ -59,5 +59,14 @@ namespace Connection
             unsigned char unk3;
         };
 
+        typedef struct S_DEAL_DAMAGE : I_PACKET
+        {
+            uintptr_t target;
+            unsigned int index;
+            int damage;
+            bool isCrit;
+            bool isTenderized;
+        };
+
     }
 }

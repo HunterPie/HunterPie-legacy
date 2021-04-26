@@ -40,6 +40,7 @@ using HunterPie.Core.Settings;
 using HunterPie.UI.Infrastructure;
 using Overlay = HunterPie.GUI.Overlay;
 using SettingsControl = HunterPie.GUIControls.Settings;
+using HunterPie.Utils;
 
 namespace HunterPie
 {
