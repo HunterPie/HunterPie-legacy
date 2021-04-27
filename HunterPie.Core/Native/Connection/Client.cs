@@ -151,12 +151,9 @@ namespace HunterPie.Native.Connection
                 byte[] buffer = new byte[8192];
                 while (IsConnected)
                 {
-                    if (stream.DataAvailable)
-                    {
-                        await stream.ReadAsync(buffer, 0, buffer.Length);
+                    await stream.ReadAsync(buffer, 0, buffer.Length);
 
-                        HandlePackets(buffer.Clone() as byte[]);
-                    }
+                    HandlePackets(buffer.Clone() as byte[]);
                 }
             });
         }
