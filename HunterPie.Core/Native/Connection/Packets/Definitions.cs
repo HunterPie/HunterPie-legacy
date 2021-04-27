@@ -93,12 +93,12 @@ namespace HunterPie.Native.Connection.Packets
     {
         public Header header;
         public ulong target;
-        public uint index;
         public int damage;
         [MarshalAs(UnmanagedType.Bool)]
         public bool isCrit;
         [MarshalAs(UnmanagedType.Bool)]
         public bool isTenderized;
+        public int attackId;
     }
 
     #region Other Data structures

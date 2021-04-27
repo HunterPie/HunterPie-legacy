@@ -14,7 +14,7 @@ namespace Connection
             QueueInput,
             SendChatMessage,
             SendSystemMessage,
-            SendDamage
+            DealDamage
         };
 
         typedef struct header

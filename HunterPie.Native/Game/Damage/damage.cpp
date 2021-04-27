@@ -1,38 +1,37 @@
 #pragma once
 #include "damage.h"
 #include "../Helpers.h"
-#include "../../libs/MinHook/MinHook.h"
 #include "../../Connection/Logger.h"
 #include "../../Connection/Socket.h"
 #include "../../Connection/Packets/address_map.h"
+#include "../../libs/MinHook/MinHook.h"
 
 using namespace Game::Damage;
 using namespace Connection::Packets;
 
-uintptr_t DrawDamageOnScreen = (uintptr_t)nullptr;
+uintptr_t FunDealDamage = (uintptr_t)nullptr;
 
-void Game::Damage::HunterPie_DrawDamageOnScreen(
+void Game::Damage::HunterPie_DealDamage(
     void* target,
-    unsigned int index,
-    char unk3,
     int damage,
-    float* unk4,
-    int unk5,
-    unsigned int isCrit,
-    int unk6,
+    Vec3* position,
     int isTenderized,
-    char unk7)
+    int isCrit,
+    int unk0,
+    int unk1,
+    char unk2,
+    int attackId)
 {
 
     S_DEAL_DAMAGE packet
     {
-        OPCODE::SendDamage,
+        OPCODE::DealDamage,
         1,
         (uintptr_t)target,
-        index,
         damage,
         isCrit != 0,
-        isTenderized != 0
+        isTenderized != 0,
+        attackId
     };
 
 
@@ -42,32 +41,31 @@ void Game::Damage::HunterPie_DrawDamageOnScreen(
     );
 
     // Calls original function
-    originalDrawDamageOnScreen(
+    originalDealDamage(
         target,
-        index,
-        unk3,
         damage,
-        unk4,
-        unk5,
-        isCrit,
-        unk6,
+        position,
         isTenderized,
-        unk7
+        isCrit,
+        unk0,
+        unk1,
+        unk2,
+        attackId
     );
 }
 
 void Game::Damage::InitializeHooks()
 {
     MH_CreateHook(
-        (fnDrawDamageOnScreen)DrawDamageOnScreen,
-        &HunterPie_DrawDamageOnScreen,
-        reinterpret_cast<LPVOID*>(&originalDrawDamageOnScreen)
+        (fnDealDamage)FunDealDamage,
+        &HunterPie_DealDamage,
+        reinterpret_cast<LPVOID*>(&originalDealDamage)
     );
 
 }
 
 bool Game::Damage::LoadAddress(uintptr_t ptrs[128])
 {
-    DrawDamageOnScreen = ptrs[FUN_DRAW_DAMAGE];
+    FunDealDamage = ptrs[FUN_DEAL_DAMAGE];
     return true;
 }

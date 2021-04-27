@@ -4,4 +4,4 @@
 #define GAME_HUD_INFO_OFFSET    2
 #define GAME_CHAT_OFFSET        3
 #define FUN_CHAT_SYSTEM         4
-#define FUN_DRAW_DAMAGE         5
+#define FUN_DEAL_DAMAGE         5

@@ -5,6 +5,7 @@
 #include <tchar.h>
 #include "../Game/Input/input.h"
 #include "../Game/Chat/chat.h"
+#include "../Game/Damage/damage.h"
 
 using namespace Connection;
 
@@ -104,6 +105,7 @@ void AssignPointers(uintptr_t arr[128])
 {
     Game::Chat::LoadAddress(arr);
     Game::Input::LoadAddress(arr);
+    Game::Damage::LoadAddress(arr);
 }
 
 void Connection::Server::receivePackets(char buffer[DEFAULT_BUFFER_SIZE])
@@ -217,6 +219,7 @@ void Connection::Server::enableHooks()
 
     MH_Initialize();
     Game::Input::InitializeHooks();
+    Game::Damage::InitializeHooks();
 
     MH_EnableHook(MH_ALL_HOOKS);
 

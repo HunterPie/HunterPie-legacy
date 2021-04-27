@@ -9,6 +9,7 @@
         DisableHooks,
         QueueInput,
         SendChatMessage,
-        SendSystemMessage
+        SendSystemMessage,
+        DealDamage
     }
 }

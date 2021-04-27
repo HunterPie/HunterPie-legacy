@@ -95,7 +95,7 @@ namespace HunterPie.Native.Connection
                 "GAME_HUD_INFO_OFFSET",
                 "GAME_CHAT_OFFSET",
                 "FUN_CHAT_SYSTEM",
-                "FUN_DRAW_DAMAGE"
+                "FUN_DEAL_DAMAGE"
             };
 
             for (int i = 0; i < names.Length; i++)
@@ -154,10 +154,9 @@ namespace HunterPie.Native.Connection
                     if (stream.DataAvailable)
                     {
                         await stream.ReadAsync(buffer, 0, buffer.Length);
-                        HandlePackets(buffer);
-                        Array.Clear(buffer, 0, buffer.Length);
+
+                        HandlePackets(buffer.Clone() as byte[]);
                     }
-                    await Task.Delay(16);
                 }
             });
         }
@@ -198,7 +197,15 @@ namespace HunterPie.Native.Connection
                     OnQueueInputResponse?.Invoke(this, pkt);
                     break;
                 }
-                    
+
+                case OPCODE.DealDamage:
+                {
+                    Log("Received S_DEAL_DAMAGE");
+                    S_DEAL_DAMAGE pkt = PacketParser.Deserialize<S_DEAL_DAMAGE>(buffer);
+                    Debugger.LogObject(pkt);
+                    OnDamageDealResponse?.Invoke(this, pkt);
+                    break;
+                }
             }
         }
 
