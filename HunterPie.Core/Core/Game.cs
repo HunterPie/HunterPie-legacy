@@ -294,13 +294,14 @@ namespace HunterPie.Core
 
         private void OnDamageDeal(object sender, S_DEAL_DAMAGE info)
         {
-            if (!IsMonster((long)info.target))
+            if (Player.ZoneID != 504 && !IsMonster((long)info.target))
                 return;
 
             Member local = Player.PlayerParty.Player;
             if (Player.PlayerParty.IsExpedition)
             {
-                Player.PlayerParty.TotalDamage += info.damage;
+                int newDamage = local.Damage + info.damage;
+                Player.PlayerParty.TotalDamage = newDamage;
                 local.SetPlayerInfo(new MemberInfo
                 {
                     Name = Player.Name,
@@ -309,9 +310,10 @@ namespace HunterPie.Core
                     WeaponId = Player.WeaponID,
                     IsLocalPlayer = true,
                     IsLeader = true,
-                    Damage = local.Damage + info.damage,
+                    Damage = newDamage,
                     DamagePercentage = 1
                 }, true);
+                
             }
         }
 

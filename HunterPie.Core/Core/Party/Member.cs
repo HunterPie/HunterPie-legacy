@@ -90,15 +90,15 @@ namespace HunterPie.Core
             }
             IsInParty = !(string.IsNullOrEmpty(info.Name) && info.Damage == 0);
 
-            
-            DamagePercentage = info.DamagePercentage;
-
             HR = info.HR;
             MR = info.MR;
             IsMe = info.IsLocalPlayer;
             IsPartyLeader = info.IsLeader;
             if (ApplyDamage)
+            {
+                DamagePercentage = info.DamagePercentage;
                 Damage = info.Damage;
+            }
 
             // When players leave party after quest ends
             if (IsInParty && string.IsNullOrEmpty(info.Name))
