@@ -199,7 +199,6 @@ namespace HunterPie.Native.Connection
                 {
                     Log("Received S_DEAL_DAMAGE");
                     S_DEAL_DAMAGE pkt = PacketParser.Deserialize<S_DEAL_DAMAGE>(buffer);
-                    Debugger.LogObject(pkt);
                     OnDamageDealResponse?.Invoke(this, pkt);
                     break;
                 }
