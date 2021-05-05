@@ -6,6 +6,7 @@ using System.Threading;
 using HunterPie.Logger;
 using HunterPie.Native.Connection.Packets;
 using static HunterPie.Memory.Address;
+using System.Collections.Generic;
 
 namespace HunterPie.Native.Connection
 {
