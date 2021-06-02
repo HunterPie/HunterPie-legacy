@@ -203,6 +203,13 @@ namespace HunterPie.Native.Connection
                     OnDamageDealResponse?.Invoke(this, pkt);
                     break;
                 }
+
+                case OPCODE.LogMessage:
+                {
+                    S_LOG_MESSAGE pkt = PacketParser.Deserialize<S_LOG_MESSAGE>(buffer);
+                    Debugger.Write("[Native] " + pkt.message, "#FFC88DF2");
+                    break;
+                }
             }
         }
 

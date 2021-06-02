@@ -46,6 +46,18 @@ namespace Connection
             unsigned int inputId;
         };
 
+        enum INPUT_INTERRUPT_TYPE
+        {
+            last,
+            by_id,
+            clear
+        };
+        typedef struct C_INTERRUPT_INPUT : I_PACKET
+        {
+            INPUT_INTERRUPT_TYPE type;
+            unsigned int inputId;
+        };
+
         typedef struct C_SEND_CHAT : I_PACKET
         {
             char message[256];
@@ -66,6 +78,11 @@ namespace Connection
             bool isCrit;
             bool isTenderized;
             int attackId;
+        };
+
+        typedef struct S_LOG_MESSAGE : I_PACKET
+        {
+            char message[256];
         };
 
     }

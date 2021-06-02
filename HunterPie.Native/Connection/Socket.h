@@ -16,6 +16,7 @@ namespace Connection
     {
     public:
         std::queue<Packets::input*> inputInjectionToQueue;
+        std::queue<Packets::C_INTERRUPT_INPUT*> inputInterruptQueue;
         std::mutex inputQueueMutex;
 
         static Server* getInstance();

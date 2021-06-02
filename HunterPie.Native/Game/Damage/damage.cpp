@@ -56,11 +56,32 @@ void Game::Damage::HunterPie_DealDamage(
 
 void Game::Damage::InitializeHooks()
 {
-    MH_CreateHook(
+    MH_STATUS s = MH_CreateHook(
         (fnDealDamage)FunDealDamage,
         &HunterPie_DealDamage,
         reinterpret_cast<LPVOID*>(&originalDealDamage)
     );
+
+    S_LOG_MESSAGE packet{};
+    packet.header.opcode = OPCODE::LogMessage;
+    packet.header.version = 1;
+
+    if (s != MH_OK) {
+        LOG("Game::Damage::InitializeHooks %s\n", MH_StatusToString(s));
+
+        sprintf_s(packet.message
+            , sizeof(packet.message)
+            , "Error on Damage hook %s", MH_StatusToString(s)
+        );
+    }
+    else
+    {
+        sprintf_s(packet.message
+            , sizeof(packet.message)
+            , "Damage Hook initialized successfully"
+        );
+    }
+    Connection::Server::getInstance()->sendData(&packet, sizeof(packet));
 
 }
 

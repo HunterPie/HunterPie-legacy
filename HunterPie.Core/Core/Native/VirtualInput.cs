@@ -12,6 +12,10 @@ namespace HunterPie.Core.Input
     {
         private static VirtualInput instance;
         private bool disposedValue;
+        private Random random = new Random();
+
+        private uint lastInputId = 0;
+        public static uint LastInputId => Instance.lastInputId;
 
         public static VirtualInput Instance
         {
@@ -97,10 +101,11 @@ namespace HunterPie.Core.Input
             {
                 do
                 {
-                    newInjId = (uint)(new Random().NextDouble() * uint.MaxValue);
+                    newInjId = (uint)(random.NextDouble() * uint.MaxValue);
                 } while (pendingRequests.ContainsKey(newInjId));
 
                 pendingRequests.Add(newInjId, src);
+                this.lastInputId = newInjId;
             }
 
             C_QUEUE_INPUT packet = new C_QUEUE_INPUT()
@@ -118,6 +123,42 @@ namespace HunterPie.Core.Input
             await Client.ToServer(packet);
 
             return await src.Task;
+        }
+
+        public static async Task InterruptInput(uint id)
+        {
+            var packet = new C_INTERRUPT_INPUT()
+            {
+                header = new Header() { opcode = OPCODE.InterruptInput, version = 1 },
+                type = INPUT_INTERRUPT_TYPE.by_id,
+                inputId = id
+            };
+            
+            await Client.ToServer(packet);
+        }
+
+        public static async Task InterruptAllInput()
+        {
+            var packet = new C_INTERRUPT_INPUT()
+            {
+                header = new Header() { opcode = OPCODE.InterruptInput, version = 1 },
+                type = INPUT_INTERRUPT_TYPE.clear,
+                inputId = 0
+            };
+
+            await Client.ToServer(packet);
+        }
+
+        public static async Task InterruptLastInput()
+        {
+            var packet = new C_INTERRUPT_INPUT()
+            {
+                header = new Header() { opcode = OPCODE.InterruptInput, version = 1 },
+                type = INPUT_INTERRUPT_TYPE.last,
+                inputId = 0
+            };
+
+            await Client.ToServer(packet);
         }
 
         private static byte[] CalculateInputs(char[] keys)

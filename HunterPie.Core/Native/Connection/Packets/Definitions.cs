@@ -100,6 +100,27 @@ namespace HunterPie.Native.Connection.Packets
         public bool isTenderized;
         public int attackId;
     }
+    public enum INPUT_INTERRUPT_TYPE
+    {
+        last,
+        by_id,
+        clear
+    };
+    [StructLayout(LayoutKind.Sequential)]
+    public struct C_INTERRUPT_INPUT
+    {
+        public Header header;
+        public INPUT_INTERRUPT_TYPE type;
+        public uint inputId;
+    }
+
+    [StructLayout(LayoutKind.Sequential, CharSet = CharSet.Ansi)]
+    public struct S_LOG_MESSAGE
+    {
+        public Header header;
+        [MarshalAs(UnmanagedType.ByValTStr, SizeConst = 256)]
+        public string message;
+    }
 
     #region Other Data structures
 
