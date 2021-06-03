@@ -174,6 +174,17 @@ void Connection::Server::receivePackets(char buffer[DEFAULT_BUFFER_SIZE])
             break;
         }
 
+        case OPCODE::InterruptInput:
+        {
+            LOG("-> C_INTERRUPT_INPUT\n");
+            C_INTERRUPT_INPUT pkt = *reinterpret_cast<C_INTERRUPT_INPUT*>(buffer);            
+
+            inputQueueMutex.lock();
+            inputInterruptQueue.push(&pkt);
+            inputQueueMutex.unlock();
+            break;
+        }
+
         case OPCODE::SendChatMessage:
         {
             C_SEND_CHAT pkt = *reinterpret_cast<C_SEND_CHAT*>(buffer);

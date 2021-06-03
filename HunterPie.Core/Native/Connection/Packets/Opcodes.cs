@@ -10,6 +10,8 @@
         QueueInput,
         SendChatMessage,
         SendSystemMessage,
-        DealDamage
+        DealDamage,
+        InterruptInput,
+        LogMessage
     }
 }
