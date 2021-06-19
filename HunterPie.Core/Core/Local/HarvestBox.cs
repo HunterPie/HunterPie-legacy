@@ -69,7 +69,7 @@ namespace HunterPie.Core
                 }
             }
         }
-        public int Max = 50;
+        public int Max { get; set; } = 50;
 
         public HarvestBox() => PopulateBox();
 
