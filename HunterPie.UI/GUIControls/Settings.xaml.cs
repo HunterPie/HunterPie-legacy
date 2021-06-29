@@ -113,6 +113,9 @@ namespace HunterPie.GUIControls
             settingsUI.comboPluginUpdateProxy.SelectedIndex = (int)settings.HunterPie.PluginProxyMode;
             settingsUI.switchEnableAutoMinimize.IsEnabled = settings.HunterPie.MinimizeAfterGameStart;
 
+            // Notifs
+            settingsUI.switchNotifyHotDrink.IsEnabled = settings.NativeNotifications.NotifyHotDrinksMissing;
+
             // Debug
             settingsUI.switchEnableDebugMessages.IsEnabled = settings.HunterPie.Debug.ShowDebugMessages;
             settingsUI.switchEnableUnknownStatuses.IsEnabled = settings.HunterPie.Debug.ShowUnknownStatuses;
@@ -304,6 +307,9 @@ namespace HunterPie.GUIControls
             settings.HunterPie.StartHunterPieMinimized = settingsUI.switchEnableStartMinimized.IsEnabled;
             settings.HunterPie.PluginProxyMode = (PluginProxyMode)settingsUI.comboPluginUpdateProxy.SelectedIndex;
             settings.HunterPie.MinimizeAfterGameStart = settingsUI.switchEnableAutoMinimize.IsEnabled;
+
+            // Notifs
+            settings.NativeNotifications.NotifyHotDrinksMissing = settingsUI.switchNotifyHotDrink.IsEnabled;
 
             // Debug
             settings.HunterPie.Debug.ShowDebugMessages = settingsUI.switchEnableDebugMessages.IsEnabled;

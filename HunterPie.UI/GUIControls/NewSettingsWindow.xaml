@@ -97,6 +97,9 @@
                         <custom:Switcher x:Name="switchEnableNative"
                                          Text="{strings:Settings ENABLE_NATIVE}"
                                          ToolTip="{strings:Settings ENABLE_NATIVE_DESC}" />
+                        <custom:Switcher x:Name="switchNotifyHotDrink"
+                                         Text="{strings:Settings NOTIFY_HOT_DRINK}"
+                                         ToolTip="{strings:Settings NOTIFY_HOT_DRINK_DESC}" />
                         <custom:Switcher x:Name="switchEnableCloseWhenExit"
                                          Text="{strings:Settings ENABLE_AUTOCLOSE}"
                                          ToolTip="{strings:Settings ENABLE_AUTOCLOSE_DESC}"/>

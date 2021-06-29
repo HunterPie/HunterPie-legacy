@@ -72,6 +72,7 @@
   <ItemGroup>
     <Compile Include="Core\Client\ConfigManager.cs" />
     <Compile Include="Core\Client\Config\Model.cs" />
+    <Compile Include="Core\Client\Config\NativeNotifications.cs" />
     <Compile Include="Core\Client\GStrings.cs" />
     <Compile Include="Core\Craft\Crafting.cs" />
     <Compile Include="Core\Craft\Recipe.cs" />
