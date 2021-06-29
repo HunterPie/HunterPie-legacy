@@ -1265,11 +1265,6 @@ namespace HunterPie.Core
 
         private int GetHarvestBoxSize()
         {
-            var noob = Kernel.Read<long>(Address.GetAddress("BASE") + Address.GetAddress("NOOB_OFFSET"));
-            if (Kernel.Read<char>(noob + 0x4d3) == 0x1) {
-                return 10;
-            }
-
             var saveBase = LEVEL_ADDRESS - 0x90;
             var firstBits = Kernel.Read<uint>(saveBase + 0x102454) >> 0xd & 0b11;
             var lastBits = Kernel.Read<uint>(saveBase + 0x102570) >> 0x17 & 0b11;
