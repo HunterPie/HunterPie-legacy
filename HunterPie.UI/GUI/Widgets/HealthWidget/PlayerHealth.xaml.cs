@@ -30,6 +30,7 @@ namespace HunterPie.GUI.Widgets.HealthWidget
 
         public override IWidgetSettings Settings => ConfigManager.Settings.Overlay.PlayerHealthComponent;
         private PlayerHealthComponent settings => (PlayerHealthComponent)Settings;
+        private NativeNotifications Notifs => ConfigManager.Settings.NativeNotifications;
 
         private const double SharpnessMaxWidth = 50;
 
@@ -335,7 +336,7 @@ namespace HunterPie.GUI.Widgets.HealthWidget
             Dispatcher.InvokeAsync(async () =>
             {
                 PlayerEventArgs e = (PlayerEventArgs)args;
-                if (!e.HasHotDrink)
+                if (!e.HasHotDrink && Notifs.NotifyHotDrinksMissing)
                     await Chat.SystemMessage("<STYL MOJI_RED_SELECTED><ICON SLG_NEWS> Warning:</STYL>\nMissing Hot Drink!", 0, 0, 0);
 
                 HasHotDrink = e.HasHotDrink;

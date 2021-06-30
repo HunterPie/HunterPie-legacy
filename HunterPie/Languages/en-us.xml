@@ -534,6 +534,8 @@
       <String ID="ENABLE_STARTMIN_DESC" Name="If enabled, HunterPie will hide in your system tray on startup."/>
       <String ID="ENABLE_AUTOCLOSE" Name="Close HunterPie when game is closed"/>
       <String ID="ENABLE_AUTOCLOSE_DESC" Name="If enabled, HunterPie will automatically shutdown when the game is no longer running."/>
+      <String ID="NOTIFY_HOT_DRINK" Name="Notify when hot drink wears off"/>
+      <String ID="NOTIFY_HOT_DRINK_DESC" Name="If enabled, an in game notification will tell you when you are in the cold without a hot drink"/>
       <String ID="STATIC_UPDATEBRANCH" Name="Update Branch:"/>
       <String ID="STATIC_UPDATEBRANCH_DESC" Name="Choose the branch you want HunterPie to update from. BETA has the latest features while master is more stable."/>
       <String ID="STATIC_LANGUAGEFILE" Name="Language File:"/>

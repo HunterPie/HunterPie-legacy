@@ -17,6 +17,7 @@ namespace HunterPie.Core.Settings
         public Overlay Overlay { get; set; } = new Overlay();
         public Richpresence RichPresence { get; set; } = new Richpresence();
         public Hunterpie HunterPie { get; set; } = new Hunterpie();
+        public NativeNotifications NativeNotifications { get; set; } = new();
     }
 
     public class Overlay
@@ -62,7 +63,7 @@ namespace HunterPie.Core.Settings
         public int[] Position { get; set; } = new int[] { 20, 20 };
         public float Opacity { get; set; } = 1;
         public bool StreamerMode { get; set; } = false;
-        public bool MinimalisticMode { get; set; } = false; 
+        public bool MinimalisticMode { get; set; } = false;
     }
 
     public class Monsterscomponent : IWidgetSettings
