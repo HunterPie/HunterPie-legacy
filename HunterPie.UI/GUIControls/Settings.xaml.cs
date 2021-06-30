@@ -127,6 +127,7 @@ namespace HunterPie.GUIControls
             // Overlay
             settingsUI.switchInitializeOverlay.IsEnabled = settings.Overlay.Initialize;
             settingsUI.switchEnableOverlay.IsEnabled = settings.Overlay.Enabled;
+            settingsUI.switchToggleOverlayWithHUD.IsEnabled = settings.Overlay.ToggleOverlayWithHUD;
             settingsUI.DesiredFrameRateSlider.Value = settings.Overlay.DesiredAnimationFrameRate;
             settingsUI.DesiredScanPerSecond.Value = settings.Overlay.GameScanDelay;
             settingsUI.switchAliasing.IsEnabled = settings.Overlay.EnableAntiAliasing;
@@ -319,6 +320,7 @@ namespace HunterPie.GUIControls
             // Overlay
             settings.Overlay.Initialize = settingsUI.switchInitializeOverlay.IsEnabled;
             settings.Overlay.Enabled = settingsUI.switchEnableOverlay.IsEnabled;
+            settings.Overlay.ToggleOverlayWithHUD = settingsUI.switchToggleOverlayWithHUD.IsEnabled;
             settings.Overlay.DesiredAnimationFrameRate = (int)settingsUI.DesiredFrameRateSlider.Value;
             settings.Overlay.GameScanDelay = (int)settingsUI.DesiredScanPerSecond.Value;
             settings.Overlay.EnableAntiAliasing = settingsUI.switchAliasing.IsEnabled;

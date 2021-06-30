@@ -40,6 +40,7 @@ namespace HunterPie.Core
         private int masterRank;
         private Job currentWeapon;
         private bool hasHotDrink;
+        private bool hasHUDActive;
         private PlayerAilment ailmentType;
 
         private readonly int[] harvestBoxZones =
@@ -203,7 +204,7 @@ namespace HunterPie.Core
 
                     if ((LastZoneID == -1 || harvestBoxZones.Contains(LastZoneID)) && !harvestBoxZones.Contains(zoneId))
                         Dispatch(OnVillageLeave, new PlayerLocationEventArgs(this));
-                                        
+
                     if (!peaceZones.Contains(LastZoneID) && peaceZones.Contains(zoneId))
                         Dispatch(OnPeaceZoneEnter, new PlayerLocationEventArgs(this));
 
@@ -281,7 +282,7 @@ namespace HunterPie.Core
         /// Food data
         /// </summary>
         public sFoodData FoodData = new sFoodData();
-        
+
         /// <summary>
         /// Player action id
         /// </summary>
@@ -348,6 +349,22 @@ namespace HunterPie.Core
                 {
                     hasHotDrink = value;
                     Dispatch(OnHotDrinkStateChange, new PlayerEventArgs(this));
+                }
+            }
+        }
+
+        /// <summary>
+        /// Whether the player has drank hot drink or not while in snow stages
+        /// </summary>
+        public bool HasHUDActive
+        {
+            get => hasHUDActive;
+            private set
+            {
+                if (value != hasHUDActive)
+                {
+                    hasHUDActive = value;
+                    Dispatch(OnHUDActiveChange, new PlayerEventArgs(this));
                 }
             }
         }
@@ -462,6 +479,7 @@ namespace HunterPie.Core
         public event PlayerEvents OnPeaceZoneLeave;
         public event PlayerEvents OnVillageLeave;
         public event PlayerEvents OnHotDrinkStateChange;
+        public event PlayerEvents OnHUDActiveChange;
 
         public event PlayerAilmentEvents OnAilmentUpdate;
 
@@ -521,7 +539,7 @@ namespace HunterPie.Core
                 }
             }
 
-        } 
+        }
         #endregion
 
         #region Scanner
@@ -649,7 +667,7 @@ namespace HunterPie.Core
         private GameStructs.NewAugment[] GetWeaponNewAugments(long BaseAddress)
         {
             GameStructs.NewAugment[] NewAugments = new GameStructs.NewAugment[7];
-            // New augments can be determined by their index, so we use their index as 
+            // New augments can be determined by their index, so we use their index as
             // an ID. Their value is a byte that holds the augment level.
             for (int AugmentIndex = 0; AugmentIndex < 7; AugmentIndex++)
             {
@@ -811,6 +829,7 @@ namespace HunterPie.Core
                     GetJobInformation();
                     GetPlayerPosition();
                     GetItemBox();
+                    GetHUDState();
                 }
                 GetSessionId();
                 GetEquipmentAddress();
@@ -828,6 +847,17 @@ namespace HunterPie.Core
             bool hotDrinkFlag = Kernel.Read<byte>(hotDrinkFlagAddress) == 0;
 
             HasHotDrink = hotDrinkFlag;
+        }
+
+        private void GetHUDState()
+        {
+            // Could read in other HUD details if that matters to anyone
+
+            var hasHUDActiveAddress = Kernel.ReadMultilevelPtr(
+                Address.GetAddress("BASE") + Address.GetAddress("GAME_HUD_INFO_OFFSET"),
+                new[] { 0x14300, 0x2900 });
+
+            HasHUDActive = (Kernel.Read<byte>(hasHUDActiveAddress) == 1);
         }
 
         private bool GetPlayerAddress()
@@ -887,7 +917,7 @@ namespace HunterPie.Core
             Array.Copy(itemBox, 200, ammo, 0, ammo.Length);
             Array.Copy(itemBox, 400, materials, 0, materials.Length);
             Array.Copy(itemBox, 1650, decorations, 0, decorations.Length);
-            
+
             ItemBox.Refresh(consumables, ammo, materials, decorations);
         }
 
@@ -1238,7 +1268,7 @@ namespace HunterPie.Core
         private void GetFertilizers()
         {
             long address = LEVEL_ADDRESS + Offsets.FertilizersOffset - 0xC;
-                       
+
             sItem[] fertilizers = Kernel.ReadStructure<sItem>(address, 4);
 
             for (int i = 0; i < fertilizers.Length; i++)
@@ -1488,7 +1518,7 @@ namespace HunterPie.Core
                 CurrentWeapon.SafijiivaRegenCounter = SafiCounter;
                 GetWeaponSharpness(weaponAddress);
             }
-            
+
             ClassAddress = weaponAddress;
         }
 
