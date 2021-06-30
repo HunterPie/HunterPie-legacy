@@ -40,7 +40,7 @@ namespace HunterPie.Core
         private int masterRank;
         private Job currentWeapon;
         private bool hasHotDrink;
-        private bool hasHUDActive;
+        private bool hasHUDActive = true;
         private PlayerAilment ailmentType;
 
         private readonly int[] harvestBoxZones =
@@ -852,7 +852,6 @@ namespace HunterPie.Core
         private void GetHUDState()
         {
             // Could read in other HUD details if that matters to anyone
-
             var hasHUDActiveAddress = Kernel.ReadMultilevelPtr(
                 Address.GetAddress("BASE") + Address.GetAddress("GAME_HUD_INFO_OFFSET"),
                 Address.GetOffsets("HudActiveOffsets"));
