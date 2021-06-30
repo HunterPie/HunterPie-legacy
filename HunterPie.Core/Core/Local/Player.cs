@@ -855,7 +855,7 @@ namespace HunterPie.Core
 
             var hasHUDActiveAddress = Kernel.ReadMultilevelPtr(
                 Address.GetAddress("BASE") + Address.GetAddress("GAME_HUD_INFO_OFFSET"),
-                new[] { 0x14300, 0x2900 });
+                Address.GetOffsets("HudActiveOffsets"));
 
             HasHUDActive = (Kernel.Read<byte>(hasHUDActiveAddress) == 1);
         }
