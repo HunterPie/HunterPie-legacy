@@ -229,6 +229,7 @@
     <Compile Include="Settings\SettingsBuilder.cs" />
     <Compile Include="Settings\SettingsBuilderExtensions.cs" />
     <Compile Include="Settings\SettingsTab.cs" />
+    <Compile Include="Utils\BitUtils.cs" />
     <Compile Include="Utils\DesignUtils.cs" />
     <Compile Include="Utils\DictionaryExtensions.cs" />
     <Compile Include="Utils\FunctionExtensions.cs" />

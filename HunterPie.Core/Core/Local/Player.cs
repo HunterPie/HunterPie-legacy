@@ -203,7 +203,7 @@ namespace HunterPie.Core
 
                     if ((LastZoneID == -1 || harvestBoxZones.Contains(LastZoneID)) && !harvestBoxZones.Contains(zoneId))
                         Dispatch(OnVillageLeave, new PlayerLocationEventArgs(this));
-                                        
+
                     if (!peaceZones.Contains(LastZoneID) && peaceZones.Contains(zoneId))
                         Dispatch(OnPeaceZoneEnter, new PlayerLocationEventArgs(this));
 
@@ -281,7 +281,7 @@ namespace HunterPie.Core
         /// Food data
         /// </summary>
         public sFoodData FoodData = new sFoodData();
-        
+
         /// <summary>
         /// Player action id
         /// </summary>
@@ -521,7 +521,7 @@ namespace HunterPie.Core
                 }
             }
 
-        } 
+        }
         #endregion
 
         #region Scanner
@@ -649,7 +649,7 @@ namespace HunterPie.Core
         private GameStructs.NewAugment[] GetWeaponNewAugments(long BaseAddress)
         {
             GameStructs.NewAugment[] NewAugments = new GameStructs.NewAugment[7];
-            // New augments can be determined by their index, so we use their index as 
+            // New augments can be determined by their index, so we use their index as
             // an ID. Their value is a byte that holds the augment level.
             for (int AugmentIndex = 0; AugmentIndex < 7; AugmentIndex++)
             {
@@ -887,7 +887,7 @@ namespace HunterPie.Core
             Array.Copy(itemBox, 200, ammo, 0, ammo.Length);
             Array.Copy(itemBox, 400, materials, 0, materials.Length);
             Array.Copy(itemBox, 1650, decorations, 0, decorations.Length);
-            
+
             ItemBox.Refresh(consumables, ammo, materials, decorations);
         }
 
@@ -1238,7 +1238,7 @@ namespace HunterPie.Core
         private void GetFertilizers()
         {
             long address = LEVEL_ADDRESS + Offsets.FertilizersOffset - 0xC;
-                       
+
             sItem[] fertilizers = Kernel.ReadStructure<sItem>(address, 4);
 
             for (int i = 0; i < fertilizers.Length; i++)
@@ -1252,14 +1252,25 @@ namespace HunterPie.Core
         private void UpdateHarvestBoxCounter(long LastFertAddress)
         {
             long address = LastFertAddress + Offsets.HarvestBoxOffset;
+            Harvest.Max = GetHarvestBoxSize();
             int counter = 0;
-            sItem[] elements = Kernel.ReadStructure<sItem>(address, 50);
+            sItem[] elements = Kernel.ReadStructure<sItem>(address, Harvest.Max);
             foreach (sItem element in elements)
             {
                 if (element.Amount > 0)
                     counter++;
             }
             Harvest.Counter = counter;
+        }
+
+        private int GetHarvestBoxSize()
+        {
+            var saveBase = LEVEL_ADDRESS - 0x90;
+            var firstBits = Kernel.Read<uint>(saveBase + 0x102454) >> 0xd & 0b11;
+            var lastBits = Kernel.Read<uint>(saveBase + 0x102570) >> 0x17 & 0b11;
+
+            var upgrades = (firstBits << 2) | lastBits;
+            return (BitUtils.CountBits(upgrades) + 1) * 10;
         }
 
         private void GetSteamFuel()
@@ -1488,7 +1499,7 @@ namespace HunterPie.Core
                 CurrentWeapon.SafijiivaRegenCounter = SafiCounter;
                 GetWeaponSharpness(weaponAddress);
             }
-            
+
             ClassAddress = weaponAddress;
         }
 
