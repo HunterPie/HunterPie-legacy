@@ -608,6 +608,7 @@ namespace HunterPie
             game.Player.OnCharacterLogout += OnLogout;
             game.Player.OnSessionChange += OnSessionChange;
             game.Player.OnClassChange += OnClassChange;
+            game.Player.OnHUDActiveChange += OnHUDActiveChange;
         }
 
         private void UnhookGameEvents()
@@ -617,6 +618,7 @@ namespace HunterPie
             game.Player.OnCharacterLogout -= OnLogout;
             game.Player.OnSessionChange -= OnSessionChange;
             game.Player.OnClassChange -= OnClassChange;
+            game.Player.OnHUDActiveChange -= OnHUDActiveChange;
         }
 
         private void ExportGameData()
@@ -664,6 +666,15 @@ namespace HunterPie
             {
                 Debugger.Debug($"ZoneID: {game.Player.ZoneID}");
                 ExportGameData();
+            }
+        }
+
+        public async void OnHUDActiveChange(object source, EventArgs e)
+        {
+            if (config.Overlay.ToggleOverlayWithHUD)
+            {
+                config.Overlay.Enabled = game.Player.HasHUDActive;
+                await ConfigManager.TrySaveSettingsAsync();
             }
         }
 

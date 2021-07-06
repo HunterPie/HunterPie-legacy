@@ -40,6 +40,7 @@ namespace HunterPie.Core
         private int masterRank;
         private Job currentWeapon;
         private bool hasHotDrink;
+        private bool hasHUDActive = true;
         private PlayerAilment ailmentType;
 
         private readonly int[] harvestBoxZones =
@@ -353,6 +354,22 @@ namespace HunterPie.Core
         }
 
         /// <summary>
+        /// Whether the player has drank hot drink or not while in snow stages
+        /// </summary>
+        public bool HasHUDActive
+        {
+            get => hasHUDActive;
+            private set
+            {
+                if (value != hasHUDActive)
+                {
+                    hasHUDActive = value;
+                    Dispatch(OnHUDActiveChange, new PlayerEventArgs(this));
+                }
+            }
+        }
+
+        /// <summary>
         /// Gets the raw name for the player current action reference name
         /// </summary>
         public string PlayerActionRef { get; private set; }
@@ -462,6 +479,7 @@ namespace HunterPie.Core
         public event PlayerEvents OnPeaceZoneLeave;
         public event PlayerEvents OnVillageLeave;
         public event PlayerEvents OnHotDrinkStateChange;
+        public event PlayerEvents OnHUDActiveChange;
 
         public event PlayerAilmentEvents OnAilmentUpdate;
 
@@ -811,6 +829,7 @@ namespace HunterPie.Core
                     GetJobInformation();
                     GetPlayerPosition();
                     GetItemBox();
+                    GetHUDState();
                 }
                 GetSessionId();
                 GetEquipmentAddress();
@@ -828,6 +847,16 @@ namespace HunterPie.Core
             bool hotDrinkFlag = Kernel.Read<byte>(hotDrinkFlagAddress) == 0;
 
             HasHotDrink = hotDrinkFlag;
+        }
+
+        private void GetHUDState()
+        {
+            // Could read in other HUD details if that matters to anyone
+            var hasHUDActiveAddress = Kernel.ReadMultilevelPtr(
+                Address.GetAddress("BASE") + Address.GetAddress("GAME_HUD_INFO_OFFSET"),
+                Address.GetOffsets("HudActiveOffsets"));
+
+            HasHUDActive = (Kernel.Read<byte>(hasHUDActiveAddress) == 1);
         }
 
         private bool GetPlayerAddress()

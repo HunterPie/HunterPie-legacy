@@ -166,6 +166,7 @@
                     <StackPanel>
                         <custom:Switcher Margin="10,0,10,5" x:Name="switchInitializeOverlay" Text="{strings:Settings ENABLE_INITIALIZE_OVERLAY}" ToolTip="{strings:Settings ENABLE_INITIALIZE_OVERLAY_DESC}" RestartVisibility="Visible"/>
                         <custom:Switcher x:Name="switchEnableOverlay"  Margin="10,0,10,5" RestartVisibility="Collapsed" Text="{strings:Settings ENABLE_OVERLAY}" ToolTip="{strings:Settings ENABLE_OVERLAY_DESC}" />
+                        <custom:Switcher x:Name="switchToggleOverlayWithHUD"  Margin="10,0,10,5" RestartVisibility="Collapsed" Text="{strings:Settings TOGGLE_OVERLAY_WITH_HUD}" ToolTip="{strings:Settings TOGGLE_OVERLAY_WITH_HUD_DESC}" />
                         <custom:Switcher x:Name="switchHideWhenUnfocused" Margin="10,0,10,5" RestartVisibility="Collapsed" Text="{strings:Settings ENABLE_HIDE_WHEN_UNFOCUS}" ToolTip="{strings:Settings ENABLE_HIDE_WHEN_UNFOCUS}" />
                         <custom:Switcher x:Name="switchHardwareAcceleration" Margin="10,0,10,5" RestartVisibility="Visible" Text="{strings:Settings ENABLE_HARDWARE_ACCELERATION}" ToolTip="{strings:Settings ENABLE_HARDWARE_ACCELERATION_DESC}" />
                         <custom:Switcher x:Name="switchAliasing" Margin="10,0,10,5" RestartVisibility="Visible" Text="{strings:Settings ENABLE_ANTIALIASING}" ToolTip="{strings:Settings ENABLE_ANTIALIASING_DESC}" />

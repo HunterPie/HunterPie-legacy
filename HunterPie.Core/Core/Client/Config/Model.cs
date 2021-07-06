@@ -28,6 +28,7 @@ namespace HunterPie.Core.Settings
         public int GameScanDelay { get; set; } = 150;
         public int[] Position { get; set; } = new int[] { 0, 0 };
         public string ToggleOverlayKeybind { get; set; } = "Ctrl+Alt+Z";
+        public bool ToggleOverlayWithHUD { get; set; } = false;
         public bool EnableHardwareAcceleration { get; set; } = false;
         public bool EnableAntiAliasing { get; set; } = true;
         public bool HideWhenGameIsUnfocused { get; set; } = false;

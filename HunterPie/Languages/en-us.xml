@@ -567,6 +567,8 @@
       <String ID="ENABLE_INITIALIZE_OVERLAY_DESC" Name="If enabled, the overlay will be created and initialize. If this option is disabled, all widgets won't be initialized."/>
       <String ID="ENABLE_OVERLAY" Name="Enable In-Game Overlay"/>
       <String ID="ENABLE_OVERLAY_DESC" Name="If enabled, the Overlay will be visible in-game."/>
+      <String ID="TOGGLE_OVERLAY_WITH_HUD" Name="Toggle Overlay with HUD"/>
+      <String ID="TOGGLE_OVERLAY_WITH_HUD_DESC" Name="If enabled, the Overlay will be visible when the HUD is in use. i.e. while scrolling the item bar or looking at the slightly larger map (L1/Ctrl by default). Enabling this setting effectively disables the hotkey used to toggle the overlay."/>
       <String ID="ENABLE_HIDE_WHEN_UNFOCUS" Name="Hide Overlay when game is unfocused."/>
       <String ID="ENABLE_HIDE_WHEN_UNFOCUS_DESC" Name="If enabled, HunterPie overlay will be automatically hidden when the game loses focus. (e.g: When you Alt+Tab)"/>
       <String ID="ENABLE_HARDWARE_ACCELERATION" Name="Enable Hardware Acceleration"/>
