@@ -131,7 +131,7 @@ namespace HunterPie.GUI.Widgets.DPSMeter.Parts
                 var plotMode = ConfigManager.Settings.Overlay.DPSMeter.DamagePlotMode;
                 Members = Context.Player.PlayerParty.Members
                     .Select((m, idx) =>
-                        new MemberPlotModel(m, ConfigManager.Settings.Overlay.DPSMeter.PartyMembers[idx].Color, plotMode))
+                        new MemberPlotModel(Context.Player.PlayerParty, m, ConfigManager.Settings.Overlay.DPSMeter.PartyMembers[idx].Color, plotMode))
                     .ToList();
                 foreach (var node in Members)
                 {

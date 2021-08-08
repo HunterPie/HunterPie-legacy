@@ -1196,9 +1196,6 @@ namespace HunterPie.Core
                     playerDamages[i] = playerDamage;
                 }
 
-                PlayerParty.TotalDamage = totalDamage;
-                GetQuestElapsedTime();
-
                 for (int i = 0; i < PlayerParty.MaxSize; i++)
                 {
                     short[] levels = Kernel.ReadStructure<short>(PartyContainer + (i * 0x1C0 + 0x27), 2);
@@ -1218,6 +1215,9 @@ namespace HunterPie.Core
 
                     PlayerParty[i].SetPlayerInfo(dummy);
                 }
+
+                PlayerParty.TotalDamage = totalDamage;
+                GetQuestElapsedTime();
             }
 
         }

@@ -14,6 +14,8 @@ namespace HunterPie.GUI.Widgets.DPSMeter
     /// </summary>
     public partial class Meter : Widget
     {
+        public static readonly int MIN_DPS_TIME_PERIOD_SECONDS = 15;
+
         public override WidgetType Type => WidgetType.DamageWidget;
         public override IWidgetSettings Settings => ConfigManager.Settings.Overlay.DPSMeter;
 

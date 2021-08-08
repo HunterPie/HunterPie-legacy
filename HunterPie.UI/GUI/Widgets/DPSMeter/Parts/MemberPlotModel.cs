@@ -13,6 +13,7 @@ namespace HunterPie.GUI.Widgets.DPSMeter.Parts
 {
     public class MemberPlotModel
     {
+        private readonly Party Party;
         private readonly Member Member;
 
         /// <summary>
@@ -30,8 +31,9 @@ namespace HunterPie.GUI.Widgets.DPSMeter.Parts
         public bool HasData => DamagePoints.Any(dp => dp.Y > 0);
         public DamagePlotMode Mode { get; private set; }
 
-        public MemberPlotModel(Member member, string color, DamagePlotMode mode)
+        public MemberPlotModel(Party party, Member member, string color, DamagePlotMode mode)
         {
+            Party = party;
             Member = member;
             Series = new AreaSeries();
 
@@ -67,7 +69,7 @@ namespace HunterPie.GUI.Widgets.DPSMeter.Parts
         }
 
         // ReSharper disable CompareOfFloatsByEqualityOperator - we're operating with int damage values, data loss is impossible here
-        private static IEnumerable<DataPoint> DamageToDps(IList<DataPoint> damagePoints)
+        private IEnumerable<DataPoint> DamageToDps(IList<DataPoint> damagePoints)
         {
             for (int i = 0; i < damagePoints.Count; i++)
             {
@@ -82,12 +84,13 @@ namespace HunterPie.GUI.Widgets.DPSMeter.Parts
         }
 
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
-        private static DataPoint DmgToDps(DataPoint dmgPoint) => dmgPoint.X == 0
-            // point with zero time should not be possible under normal conditions, but just to be safe...
-            ? dmgPoint
-            // using DPS * 1000, since we don't show any scales on UI. That way we can use integers instead of pesky doubles
-            : new DataPoint(dmgPoint.X, (int)(dmgPoint.Y / dmgPoint.X * 1000 * 1000));
-
+        private DataPoint DmgToDps(DataPoint dmgPoint)
+        {
+            var damage = dmgPoint.Y;
+            var time = (dmgPoint.X - Party.TimeDifference.TotalMilliseconds) / 1000;
+            time = Math.Max(time, Meter.MIN_DPS_TIME_PERIOD_SECONDS);
+            return new DataPoint(dmgPoint.X, damage / time);
+        }
 
         // ReSharper disable CompareOfFloatsByEqualityOperator - we're operating with int damage values, data loss is impossible here
         public void UpdateDamage(int now)
