@@ -171,6 +171,9 @@ namespace HunterPie.Memory
             }
 
             Debugger.Warn(GStrings.GetLocalizationByXPath("/Console/String[@ID='MESSAGE_MAP_LOAD']").Replace("{HunterPie_Map}", $"'{filename}'"));
+
+            // Should fix ASLR issues
+            addresses["BASE"] = (long)Kernel.BaseAddress;
         }
 
         private static void AddValueToMap(string type, string[] values)

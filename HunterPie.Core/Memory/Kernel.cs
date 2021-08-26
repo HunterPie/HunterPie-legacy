@@ -22,6 +22,7 @@ namespace HunterPie.Memory
         public static IntPtr ProcessHandle { get; private set; } = (IntPtr)0;
         public static bool GameIsRunning { get; private set; }
         public static Process Process => MonsterHunter;
+        public static IntPtr BaseAddress => Process?.MainModule.BaseAddress ?? IntPtr.Zero;
         public static bool IsForegroundWindow
         {
             get => isForegroundWindow;
