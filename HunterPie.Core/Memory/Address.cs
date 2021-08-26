@@ -1,6 +1,8 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.IO;
+using System.Linq;
+using HunterPie.Core;
 using HunterPie.Logger;
 
 namespace HunterPie.Memory
@@ -29,6 +31,10 @@ namespace HunterPie.Memory
     {
         
         public const int PREICEBORNE_VERSION = 168031;
+
+        /// Game version used by Iceborne Community Edition
+        private const int ICE_MIN_GAME_VERSION = 300000;
+
         public static int GAME_VERSION = 168031;
 
         private static readonly Dictionary<string, long> addresses = new Dictionary<string, long>();
@@ -120,13 +126,16 @@ namespace HunterPie.Memory
 
         public static bool LoadMemoryMap(int version)
         {
-            string FILE_NAME = $"MonsterHunterWorld.{version}.map";
+            if (IsICEdition(version))
+                version = GetLatestMap();
+
+            string fileName = $"MonsterHunterWorld.{version}.map";
 
             // If dir or file doesn't exist
             if (!Directory.Exists(Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "address")))
                 return false;
 
-            if (!File.Exists(Path.Combine(AppDomain.CurrentDomain.BaseDirectory, $"address/{FILE_NAME}")))
+            if (!File.Exists(Path.Combine(AppDomain.CurrentDomain.BaseDirectory, $"address/{fileName}")))
                 return false;
 
             // Check if game build version is older than Iceborne
@@ -134,9 +143,9 @@ namespace HunterPie.Memory
             {
                 return false;
             }
-            
+
             // Load file
-            LoadMemoryAddresses(FILE_NAME);
+            LoadMemoryAddresses(fileName);
             GAME_VERSION = version;
             
             return true;
@@ -160,6 +169,8 @@ namespace HunterPie.Memory
                 // parsed[2]: value
                 AddValueToMap(parsed[0], parsed);
             }
+
+            Debugger.Warn(GStrings.GetLocalizationByXPath("/Console/String[@ID='MESSAGE_MAP_LOAD']").Replace("{HunterPie_Map}", $"'{filename}'"));
         }
 
         private static void AddValueToMap(string type, string[] values)
@@ -222,6 +233,25 @@ namespace HunterPie.Memory
                 Debugger.Error("Pre-Iceborne game not supported anymore.");
             }
             return gameVersion <= PREICEBORNE_VERSION;
+        }
+
+        private static bool IsICEdition(int gameVersion)
+        {
+            if (gameVersion >= ICE_MIN_GAME_VERSION)
+            {
+                int latestMap = GetLatestMap();
+                Debugger.Warn($"Iceborne Community Edition detected. Loading map version '{latestMap}'.");
+            }
+
+            return gameVersion >= ICE_MIN_GAME_VERSION;
+        }
+
+        public static int GetLatestMap()
+        {
+            int[] mapFiles = Directory.GetFiles(Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "address"))
+                .Where(filename => filename.EndsWith(".map"))
+                .Select(filename => Convert.ToInt32(filename.Split('.')[1])).ToArray();
+            return mapFiles.OrderBy(version => version).Last();
         }
     }
 }
