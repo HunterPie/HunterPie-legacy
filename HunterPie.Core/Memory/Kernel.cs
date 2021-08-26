@@ -266,7 +266,7 @@ namespace HunterPie.Memory
                         Debugger.Error($"Failed to get Monster Hunter: World build version. Loading latest map version instead. Common reasons for this are:" +
                             $"\r- Stracker's Loader is the game process main window.\n" +
                             $"Click on the Monster Hunter: World window and then open HunterPie.");
-                        GameVersion = GetLatestMap();
+                        GameVersion = Address.GetLatestMap();
                     }
                     MonsterHunter.EnableRaisingEvents = true;
                     MonsterHunter.Exited += OnGameProcessExit;
@@ -280,13 +280,6 @@ namespace HunterPie.Memory
             }
         }
 
-        private static int GetLatestMap()
-        {
-            int[] mapFiles = Directory.GetFiles(Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "address"))
-                .Where(filename => filename.EndsWith(".map"))
-                .Select(filename => Convert.ToInt32(filename.Split('.')[1])).ToArray();
-            return mapFiles.OrderBy(version => version).Last();
-        }
 
         private static void OnGameProcessExit(object sender, EventArgs e)
         {
