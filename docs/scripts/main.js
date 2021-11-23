@@ -4,7 +4,7 @@ const getScrollYPosition = () => window.scrollY;
 
 const scrollDetection = (homeCallback, downCallback, upCallback) => {
     let currentYPosition = getScrollYPosition();
-    
+
     if (currentYPosition === 0) {
         homeCallback();
     } else if (currentYPosition > lastScrollYPosition) {
@@ -26,7 +26,7 @@ function navbar_collapse() {
     navbar.remove("show");
     navbar.remove("opaque");
     navbar.add("collapse");
-    
+
 }
 
 function navbar_opaque() {
@@ -62,7 +62,7 @@ function RenderMarkdown(markdown) {
             res.blob().then(
                 (blob) => {
                     blob.text().then(content => {
-                        document.getElementById("sidebar_display").innerHTML = marked(content)
+                        document.getElementById("sidebar_display").innerHTML = marked.parse(content);
                     });
                 }
             )
@@ -74,7 +74,7 @@ function RenderMarkdown(markdown) {
             res.blob().then(
                 (blob) => {
                     blob.text().then(content => {
-                        document.getElementById("MarkdownBox").innerHTML = marked(content)
+                        document.getElementById("MarkdownBox").innerHTML = marked.parse(content);
                     });
                 }
             )
