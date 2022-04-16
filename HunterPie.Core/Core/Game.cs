@@ -7,6 +7,8 @@ using HunterPie.Logger;
 using HunterPie.Memory;
 using HunterPie.Utils;
 using System.Linq;
+using HunterPie.Native.Connection;
+using HunterPie.Native.Connection.Packets;
 
 namespace HunterPie.Core
 {
@@ -277,6 +279,7 @@ namespace HunterPie.Core
                 return;
             }
             Player.OnZoneChange += OnZoneChange;
+            Client.Instance.OnDamageDealResponse += OnDamageDeal;
         }
 
         private void UnhookEvents()
@@ -286,6 +289,37 @@ namespace HunterPie.Core
                 return;
             }
             Player.OnZoneChange -= OnZoneChange;
+            Client.Instance.OnDamageDealResponse -= OnDamageDeal;
+        }
+
+        private void OnDamageDeal(object sender, S_DEAL_DAMAGE info)
+        {
+            if (Player.ZoneID != 504 && !IsMonster((long)info.target))
+                return;
+
+            Member local = Player.PlayerParty.Player;
+            if (Player.PlayerParty.IsExpedition)
+            {
+                int newDamage = local.Damage + info.damage;
+                Player.PlayerParty.TotalDamage = newDamage;
+                local.SetPlayerInfo(new MemberInfo
+                {
+                    Name = Player.Name,
+                    HR = (short)Player.Level,
+                    MR = (short)Player.MasterRank,
+                    WeaponId = Player.WeaponID,
+                    IsLocalPlayer = true,
+                    IsLeader = true,
+                    Damage = newDamage,
+                    DamagePercentage = 1
+                }, true);
+                
+            }
+        }
+
+        private bool IsMonster(long address)
+        {
+            return Monsters.Count(m => m.MonsterAddress == address) > 0;
         }
 
         private void OnZoneChange(object source, EventArgs e)

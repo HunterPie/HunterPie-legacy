@@ -8,7 +8,9 @@ namespace HunterPie.Core
     {
         private TimeSpan epoch;
 
-        public List<Member> Members = new List<Member>();
+        public List<Member> Members = new List<Member>(4);
+        public Member Player => Members.First(m => m.IsMe);
+        public bool IsExpedition = false;
         public TimeSpan Epoch
         {
             get => epoch;

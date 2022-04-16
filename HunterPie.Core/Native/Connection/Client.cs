@@ -6,6 +6,7 @@ using System.Threading;
 using HunterPie.Logger;
 using HunterPie.Native.Connection.Packets;
 using static HunterPie.Memory.Address;
+using System.Collections.Generic;
 
 namespace HunterPie.Native.Connection
 {
@@ -33,6 +34,7 @@ namespace HunterPie.Native.Connection
         #region Events
 
         public event EventHandler<S_QUEUE_INPUT> OnQueueInputResponse;
+        public event EventHandler<S_DEAL_DAMAGE> OnDamageDealResponse;
 
         #endregion
 
@@ -70,23 +72,37 @@ namespace HunterPie.Native.Connection
             {
                 Debugger.Write($"[Socket] Connected to HunterPie.Native!", "#FFFF59E6");
                 Listen();
-                C_CONNECT connectPacket = new C_CONNECT()
-                {
-                    header = new Header() {opcode = OPCODE.Connect, version = 1},
-                    addresses = new UIntPtr[128]
-                };
 
-                // TODO: Make this less bad
-                connectPacket.addresses[0] = (UIntPtr)GetAbsoluteAddress("FUN_GAME_INPUT");
-                connectPacket.addresses[1] = (UIntPtr)GetAbsoluteAddress("GAME_INPUT_OFFSET");
-                connectPacket.addresses[2] = (UIntPtr)GetAbsoluteAddress("GAME_HUD_INFO_OFFSET");
-                connectPacket.addresses[3] = (UIntPtr)GetAbsoluteAddress("GAME_CHAT_OFFSET");
-                connectPacket.addresses[4] = (UIntPtr)GetAbsoluteAddress("FUN_CHAT_SYSTEM");
-
-                await SendAsync(connectPacket);
+                await SendAsync(
+                        GenerateCConnect()
+                    );
             }
 
             return IsConnected;
+        }
+
+        private C_CONNECT GenerateCConnect()
+        {
+            C_CONNECT connectPacket = new C_CONNECT()
+            {
+                header = new Header() { opcode = OPCODE.Connect, version = 1 },
+                addresses = new UIntPtr[128]
+            };
+
+            string[] names =
+            {
+                "FUN_GAME_INPUT",
+                "GAME_INPUT_OFFSET",
+                "GAME_HUD_INFO_OFFSET",
+                "GAME_CHAT_OFFSET",
+                "FUN_CHAT_SYSTEM",
+                "FUN_DEAL_DAMAGE"
+            };
+
+            for (int i = 0; i < names.Length; i++)
+                connectPacket.addresses[i] = (UIntPtr)GetAbsoluteAddress(names[i]);
+
+            return connectPacket;
         }
 
         public async Task<bool> SendAsync<T>(T packet) where T : struct
@@ -136,13 +152,9 @@ namespace HunterPie.Native.Connection
                 byte[] buffer = new byte[8192];
                 while (IsConnected)
                 {
-                    if (stream.DataAvailable)
-                    {
-                        await stream.ReadAsync(buffer, 0, buffer.Length);
-                        HandlePackets(buffer);
-                        Array.Clear(buffer, 0, buffer.Length);
-                    }
-                    await Task.Delay(16);
+                    await stream.ReadAsync(buffer, 0, buffer.Length);
+
+                    HandlePackets(buffer.Clone() as byte[]);
                 }
             });
         }
@@ -183,7 +195,21 @@ namespace HunterPie.Native.Connection
                     OnQueueInputResponse?.Invoke(this, pkt);
                     break;
                 }
-                    
+
+                case OPCODE.DealDamage:
+                {
+                    Log("Received S_DEAL_DAMAGE");
+                    S_DEAL_DAMAGE pkt = PacketParser.Deserialize<S_DEAL_DAMAGE>(buffer);
+                    OnDamageDealResponse?.Invoke(this, pkt);
+                    break;
+                }
+
+                case OPCODE.LogMessage:
+                {
+                    S_LOG_MESSAGE pkt = PacketParser.Deserialize<S_LOG_MESSAGE>(buffer);
+                    Debugger.Write("[Native] " + pkt.message, "#FFC88DF2");
+                    break;
+                }
             }
         }
 

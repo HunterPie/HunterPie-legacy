@@ -3,7 +3,6 @@ using System.Diagnostics;
 using System.IO;
 using HunterPie.Core;
 using HunterPie.Memory;
-using Debugger = HunterPie.Logger.Debugger;
 using static HunterPie.Memory.Kernel;
 using System.Linq;
 
@@ -71,7 +70,7 @@ namespace HunterPie.Native
 
             string path = Path.GetDirectoryName(Kernel.Process.MainModule.FileName);
 
-            string dtdata = Path.Combine(path, "dtdata.dll");
+            string dtdata = Path.Combine(path, "hid.dll");
             string loader = Path.Combine(path, "loader.dll");
             string crcBypass = Path.Combine(path, "nativePC", "plugins", "!CRCBypass.dll");
 
