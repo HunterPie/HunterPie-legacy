@@ -167,7 +167,8 @@ namespace HunterPie.Core.Native
                     sb.Append(chars[i]);
                 } else
                 {
-                    gmd.gKeys.Add(sb.ToString(), idx);
+                    if (!gmd.gKeys.ContainsKey(sb.ToString()))
+                        gmd.gKeys.Add(sb.ToString(), idx);
                     idx++;
                     sb.Clear();
                     continue;
