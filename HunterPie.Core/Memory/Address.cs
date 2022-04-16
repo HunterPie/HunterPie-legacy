@@ -237,13 +237,14 @@ namespace HunterPie.Memory
 
         private static bool IsICEdition(int gameVersion)
         {
-            if (gameVersion >= ICE_MIN_GAME_VERSION)
+            bool isIce = gameVersion >= ICE_MIN_GAME_VERSION && gameVersion < 400000;
+            if (isIce)
             {
                 int latestMap = GetLatestMap();
                 Debugger.Warn($"Iceborne Community Edition detected. Loading map version '{latestMap}'.");
             }
 
-            return gameVersion >= ICE_MIN_GAME_VERSION;
+            return isIce;
         }
 
         public static int GetLatestMap()
