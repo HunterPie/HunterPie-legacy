@@ -226,7 +226,12 @@
       <DependentUpon>App.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
+    <Compile Include="Core\Http\Poogie.cs" />
+    <Compile Include="Core\Http\PoogieBuilder.cs" />
+    <Compile Include="Core\Http\PoogieDownloadEventArgs.cs" />
+    <Compile Include="Core\Http\PoogieResponse.cs" />
     <Compile Include="Core\Integrations\Discord\Presence.cs" />
+    <Compile Include="Core\Local\LocalConfig.cs" />
     <Compile Include="Core\Readme\DownloadedUrlResolver.cs" />
     <Compile Include="Core\Readme\ExternalUrlResolver.cs" />
     <Compile Include="Core\Readme\IUrlResolver.cs" />

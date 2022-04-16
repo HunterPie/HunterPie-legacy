@@ -1,4 +1,4 @@
-﻿using System.Reflection;
+using System.Reflection;
 using System.Resources;
 using System.Runtime.CompilerServices;
 using System.Runtime.InteropServices;
@@ -55,7 +55,7 @@ using System.Windows;
 // You can specify all the values or you can default the Build and Revision Numbers
 // by using the '*' as shown below:
 // [assembly: AssemblyVersion("1.0.*")]
-[assembly: AssemblyVersion("1.0.5.14")]
-[assembly: AssemblyFileVersion("1.0.5.14")]
-[assembly: Guid("e688b55e-9431-11eb-a142-d017c28e3396")]
+[assembly: AssemblyVersion("1.0.5.15")]
+[assembly: AssemblyFileVersion("1.0.5.15")]
+assembly: Guid("e688b55e-9431-11eb-a142-d017c28e3396")]
 [assembly: NeutralResourcesLanguage("en")]
