@@ -14,7 +14,7 @@ namespace HunterPie.Core
     {
 
         public static readonly XmlDocument HoneyGearData = new XmlDocument();
-        public const string HoneyLink = "https://honeyhunterworld.com/mhwbi/?";
+        public const string HoneyLink = "https://mhw.honeyhunterworld.com/mhwbi/?";
 
         internal static void Load()
         {

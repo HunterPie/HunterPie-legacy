@@ -26,7 +26,7 @@ Example of an exported data:
   "Name": "Lyss",
   "HR": 254,
   "MR": 93,
-  "BuildURL": "https://honeyhunterworld.com/mhwbi/?1962,277,235,264,169,244,65,-;;;;-at6;at5;de4;el4;el4,0,0,209,0,0,209,96,0,96,19,0,224,64,16,96,0,0,224,90,90,3:16:10:0:0:0:0",
+  "BuildURL": "https://mhw.honeyhunterworld.com/mhwbi/?1962,277,235,264,169,244,65,-;;;;-at6;at5;de4;el4;el4,0,0,209,0,0,209,96,0,96,19,0,224,64,16,96,0,0,224,90,90,3:16:10:0:0:0:0",
   "Session": "j68fMsjZv2@W",
   "SteamSession": "steam://joinlobby/582010/109775241132541949/76561198067758630",
   "Playtime": 365015,
