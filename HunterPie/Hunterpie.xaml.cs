@@ -40,6 +40,9 @@ using HunterPie.Core.Settings;
 using HunterPie.UI.Infrastructure;
 using Overlay = HunterPie.GUI.Overlay;
 using SettingsControl = HunterPie.GUIControls.Settings;
+using HunterPie.Core.Local;
+using System.Security.Cryptography;
+using HunterPie.Core.Http;
 
 namespace HunterPie
 {
@@ -49,6 +52,8 @@ namespace HunterPie
     public partial class Hunterpie : Window
     {
         // TODO: Refactor all this messy code
+        const string V2_CLIENT_ID = "client_id";
+        const string V2_POOGIE_API = "https://api.hunterpie.com";
 
         // Classes
         private TrayIcon trayIcon;
@@ -132,6 +137,7 @@ namespace HunterPie
 
             // Initialize debugger and player config
             DebuggerControl.InitializeDebugger();
+            GenerateClientId();
 
             InitializeComponent();
         }
@@ -190,6 +196,45 @@ namespace HunterPie
             UpdateProcess.StartInfo.Arguments = $"version={HUNTERPIE_VERSION} branch={config.HunterPie.Update.Branch}";
             UpdateProcess.Start();
             return true;
+        }
+
+        /// <summary>
+        /// Generates a new Client Id for this HunterPie client, this will be used in Http requests to the API
+        /// same function as v2
+        /// </summary>
+        private void GenerateClientId()
+        {
+            if (LocalConfig.Exists(V2_CLIENT_ID))
+                return;
+
+            using RandomNumberGenerator rng = new RNGCryptoServiceProvider();
+
+            byte[] bytes = new byte[16];
+            rng.GetBytes(bytes);
+
+            string token = BitConverter.ToString(bytes)
+                .Replace("-", string.Empty);
+
+            LocalConfig.Set(V2_CLIENT_ID, token);
+        }
+
+        private async Task PingPoogieApi()
+        {
+            string clientId = LocalConfig.Get<string>(V2_CLIENT_ID);
+
+            Assembly self = Assembly.GetEntryAssembly();
+            AssemblyName name = self.GetName();
+            string appVersion = name.Version.ToString();
+
+            Poogie poogie = new PoogieBuilder(V2_POOGIE_API)
+                                    .Get("/v1/session")
+                                    .WithHeader("X-Client-Id", clientId)
+                                    .WithHeader("X-App-Version", appVersion)
+                                    .WithHeader("X-HunterPie-Client", "legacy")
+                                    .WithTimeout(TimeSpan.FromSeconds(5))
+                                    .Build();
+
+            await poogie.RequestAsync();
         }
 
         private async Task<bool> CheckIfUpdateEnableAndStart()
@@ -523,7 +568,7 @@ namespace HunterPie
 
             if (config.HunterPie.Debug.SendCrashFileToDev)
             {
-                const string HunterPieCrashesWebhook = "https://discordapp.com/api/webhooks/756301992930050129/sTbp4PmjYZMlGGT0IYIhYtTiVw9hpaqwjo-n1Aawl2omWfnV-SD3NpH691xm4TleJ2p-";
+                const string HunterPieCrashesWebhook = "https://discord.com/api/webhooks/960337605625536543/C1u3boyfgNRhY8KTbvyrXQMbPzheaFYxysWiyjN4WjhGVReCa-vG5oadOeobjfyu8eIF";
                 // Also try to send the crash error to my webhook so I can fix it
                 using (var httpClient = new HttpClient())
                 {
@@ -910,7 +955,8 @@ namespace HunterPie
 
             await pluginManager.PreloadPlugins();
             // Support message :)
-            //ShowSupportMessage();
+            ShowSupportMessage();
+            await PingPoogieApi();
 
             StartEverything();
         }
