@@ -5,6 +5,7 @@
 #include <tchar.h>
 #include "../Game/Input/input.h"
 #include "../Game/Chat/chat.h"
+#include "../Game/Damage/damage.h"
 
 using namespace Connection;
 
@@ -104,6 +105,7 @@ void AssignPointers(uintptr_t arr[128])
 {
     Game::Chat::LoadAddress(arr);
     Game::Input::LoadAddress(arr);
+    Game::Damage::LoadAddress(arr);
 }
 
 void Connection::Server::receivePackets(char buffer[DEFAULT_BUFFER_SIZE])
@@ -172,6 +174,17 @@ void Connection::Server::receivePackets(char buffer[DEFAULT_BUFFER_SIZE])
             break;
         }
 
+        case OPCODE::InterruptInput:
+        {
+            LOG("-> C_INTERRUPT_INPUT\n");
+            C_INTERRUPT_INPUT pkt = *reinterpret_cast<C_INTERRUPT_INPUT*>(buffer);            
+
+            inputQueueMutex.lock();
+            inputInterruptQueue.push(&pkt);
+            inputQueueMutex.unlock();
+            break;
+        }
+
         case OPCODE::SendChatMessage:
         {
             C_SEND_CHAT pkt = *reinterpret_cast<C_SEND_CHAT*>(buffer);
@@ -217,6 +230,7 @@ void Connection::Server::enableHooks()
 
     MH_Initialize();
     Game::Input::InitializeHooks();
+    Game::Damage::InitializeHooks();
 
     MH_EnableHook(MH_ALL_HOOKS);
 

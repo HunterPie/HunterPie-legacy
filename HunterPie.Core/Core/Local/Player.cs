@@ -12,6 +12,9 @@ using Classes = HunterPie.Core.Enums.Classes;
 using AbnormalityType = HunterPie.Core.Enums.AbnormalityType;
 using HunterPie.Core.Enums;
 using HunterPie.Utils;
+using HunterPie.Native.Connection;
+using HunterPie.Native.Connection.Packets;
+using System.Threading.Tasks;
 
 namespace HunterPie.Core
 {
@@ -483,6 +486,7 @@ namespace HunterPie.Core
                 }
             }
         }
+
         private void Dispatch(PlayerAilmentEvents e)
         {
             if (e is null)
@@ -537,7 +541,10 @@ namespace HunterPie.Core
             scanPlayerInfo.Start();
         }
 
-        internal void StopScanning() => scanPlayerInfo.Abort();
+        internal void StopScanning()
+        {
+            scanPlayerInfo.Abort();
+        }
         #endregion
 
         #region Manual Player Data
@@ -1152,43 +1159,54 @@ namespace HunterPie.Core
 
             long address = Address.GetAddress("BASE") + Address.GetAddress("PARTY_OFFSET");
             long PartyContainer = Kernel.ReadMultilevelPtr(address, Address.GetOffsets("PartyOffsets")) - 0x22B7;
+
             if (InPeaceZone)
             {
                 PlayerParty.LobbySize = Kernel.Read<int>(PartyContainer - 0xA961);
+                return;
             }
-            else
+
+            int totalDamage = 0;
+            int[] playerDamages = new int[PlayerParty.MaxSize];
+            for (int i = 0; i < PlayerParty.MaxSize; i++)
             {
-                int totalDamage = 0;
-                int[] playerDamages = new int[PlayerParty.MaxSize];
-                for (int i = 0; i < PlayerParty.MaxSize; i++)
-                {
-                    int playerDamage = GetPartyMemberDamage(i);
-                    totalDamage += playerDamage;
-                    playerDamages[i] = playerDamage;
-                }
+                int playerDamage = GetPartyMemberDamage(i);
+                totalDamage += playerDamage;
+                playerDamages[i] = playerDamage;
+            }
+            PlayerParty.IsExpedition = totalDamage <= 0;
 
+            if (!PlayerParty.IsExpedition)
                 PlayerParty.TotalDamage = totalDamage;
-                GetQuestElapsedTime();
 
-                for (int i = 0; i < PlayerParty.MaxSize; i++)
+            GetQuestElapsedTime();
+
+            for (int i = 0; i < PlayerParty.MaxSize; i++)
+            {
+                short[] levels = Kernel.ReadStructure<short>(PartyContainer + (i * 0x1C0 + 0x27), 2);
+                MemberInfo dummy = new MemberInfo
                 {
-                    short[] levels = Kernel.ReadStructure<short>(PartyContainer + (i * 0x1C0 + 0x27), 2);
-                    MemberInfo dummy = new MemberInfo
-                    {
-                        Name = GetPartyMemberName(PartyContainer + (i * 0x1C0)),
-                        HR = levels[0],
-                        MR = levels[1],
-                        Damage = playerDamages[i],
-                        DamagePercentage = playerDamages[i] > 0 ? playerDamages[i] / (float)totalDamage : 0,
-                        IsLeader = i == 0,
-                    };
-                    dummy.WeaponId = dummy.Name == Name && dummy.HR == Level ? WeaponID :
-                        Kernel.Read<byte>(PartyContainer + (i * 0x1C0 + 0x33));
+                    Name = GetPartyMemberName(PartyContainer + (i * 0x1C0)),
+                    HR = levels[0],
+                    MR = levels[1],
+                    Damage = playerDamages[i],
+                    DamagePercentage = playerDamages[i] > 0 ? playerDamages[i] / (float)totalDamage : 0,
+                    IsLeader = i == 0,
+                };
+                dummy.WeaponId = dummy.Name == Name && dummy.HR == Level ? WeaponID :
+                    Kernel.Read<byte>(PartyContainer + (i * 0x1C0 + 0x33));
 
-                    dummy.IsLocalPlayer = dummy.Name == Name && dummy.HR == Level;
+                dummy.IsLocalPlayer = dummy.Name == Name && dummy.HR == Level || (string.IsNullOrEmpty(dummy.Name) && dummy.IsLeader);
 
-                    PlayerParty[i].SetPlayerInfo(dummy);
+                if (dummy.IsLocalPlayer)
+                {
+                    dummy.Name = Name;
+                    dummy.HR = (short)Level;
+                    dummy.MR = (short)MasterRank;
+                    dummy.WeaponId = WeaponID;
                 }
+
+                PlayerParty[i].SetPlayerInfo(dummy, !PlayerParty.IsExpedition);
             }
 
         }

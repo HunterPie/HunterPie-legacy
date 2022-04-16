@@ -82,19 +82,23 @@ namespace HunterPie.Core
 
         private void Dispatch(PartyMemberEvents e) => e?.Invoke(this, new PartyMemberEventArgs(this));
 
-        public void SetPlayerInfo(MemberInfo info)
+        public void SetPlayerInfo(MemberInfo info, bool ApplyDamage)
         {
             if (!string.IsNullOrEmpty(info.Name))
             {
                 Weapon = info.WeaponId;
             }
             IsInParty = !(string.IsNullOrEmpty(info.Name) && info.Damage == 0);
-            DamagePercentage = info.DamagePercentage;
+
             HR = info.HR;
             MR = info.MR;
             IsMe = info.IsLocalPlayer;
             IsPartyLeader = info.IsLeader;
-            Damage = info.Damage;
+            if (ApplyDamage)
+            {
+                DamagePercentage = info.DamagePercentage;
+                Damage = info.Damage;
+            }
 
             // When players leave party after quest ends
             if (IsInParty && string.IsNullOrEmpty(info.Name))

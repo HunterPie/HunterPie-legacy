@@ -29,6 +29,6 @@ namespace Game
         void InitializeHooks();
         bool LoadAddress(uintptr_t ptrs[128]);
 
-        static std::queue<Connection::Packets::input*> inputInjectionQueue;
+        static std::deque<Connection::Packets::input*> inputInjectionQueue;
     }
 }

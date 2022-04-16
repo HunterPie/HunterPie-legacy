@@ -55,5 +55,5 @@ using System.Windows.Media;
 // [assembly: AssemblyVersion("1.0.*")]
 [assembly: AssemblyVersion("1.0.5.30")]
 [assembly: AssemblyFileVersion("1.0.5.30")]
-[assembly: NeutralResourcesLanguage("en")]
+assembly: NeutralResourcesLanguage("en")]
 [assembly: Guid("84334de6-935b-11eb-9b81-d017c28e3396")]

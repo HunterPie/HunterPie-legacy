@@ -28,10 +28,10 @@ namespace HunterPie.Core
         private bool isCaptured;
         private AlatreonState alatreonElement;
 
-        private long MonsterAddress
+        public long MonsterAddress
         {
             get => monsterAddress;
-            set
+            private set
             {
                 if (value != monsterAddress)
                 {
