@@ -146,6 +146,10 @@ namespace HunterPie.Memory
 
             // Load file
             LoadMemoryAddresses(fileName);
+
+            // Override base address to bypass ASLR
+            addresses["BASE"] = (long)Kernel.Process.MainModule.BaseAddress;
+
             GAME_VERSION = version;
             
             return true;
