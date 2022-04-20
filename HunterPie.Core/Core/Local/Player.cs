@@ -1198,14 +1198,6 @@ namespace HunterPie.Core
 
                 dummy.IsLocalPlayer = dummy.Name == Name && dummy.HR == Level || (string.IsNullOrEmpty(dummy.Name) && dummy.IsLeader);
 
-                if (dummy.IsLocalPlayer)
-                {
-                    dummy.Name = Name;
-                    dummy.HR = (short)Level;
-                    dummy.MR = (short)MasterRank;
-                    dummy.WeaponId = WeaponID;
-                }
-
                 PlayerParty[i].SetPlayerInfo(dummy, !PlayerParty.IsExpedition);
             }
 
