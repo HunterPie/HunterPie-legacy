@@ -8,7 +8,7 @@ namespace HunterPie.Core
     {
         private TimeSpan epoch;
 
-        public List<Member> Members = new List<Member>(4);
+        public readonly List<Member> Members = new List<Member>(4);
         public Member Player => Members.First(m => m.IsMe);
         public bool IsExpedition = false;
         public TimeSpan Epoch
@@ -54,7 +54,7 @@ namespace HunterPie.Core
         }
         public int MaxLobbySize = 16;
         public int LobbySize { get; set; }
-        public bool IsLocalHost => (this[0]?.IsMe ?? true) || Size == 0;
+        public bool IsLocalHost => (Members.ElementAtOrDefault(0)?.IsMe ?? true) || Size == 0;
         public Member this[int index]
         {
             get => Members[index];
@@ -80,7 +80,6 @@ namespace HunterPie.Core
         ~Party()
         {
             Members.Clear();
-            Members = null;
         }
 
         public void AddMember(Member pMember) => Members.Add(pMember);

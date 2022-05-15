@@ -1176,9 +1176,6 @@ namespace HunterPie.Core
             }
             PlayerParty.IsExpedition = totalDamage <= 0;
 
-            if (!PlayerParty.IsExpedition)
-                PlayerParty.TotalDamage = totalDamage;
-
             GetQuestElapsedTime();
 
             for (int i = 0; i < PlayerParty.MaxSize; i++)
@@ -1201,6 +1198,8 @@ namespace HunterPie.Core
                 PlayerParty[i].SetPlayerInfo(dummy, !PlayerParty.IsExpedition);
             }
 
+            if(!PlayerParty.IsExpedition)
+                PlayerParty.TotalDamage = totalDamage;
         }
 
         private void GetQuestElapsedTime()
