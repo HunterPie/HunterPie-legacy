@@ -1,6 +1,4 @@
-
-
-<img src="https://cdn.discordapp.com/attachments/402557384209203200/735695965461151894/hunterpie_patreon_banner.png" Width="1200">
+![image](https://user-images.githubusercontent.com/35552782/181646644-2ee86197-1c6a-4447-ab27-b9ec5b93a34a.png)
 
 [![Discord](https://img.shields.io/discord/678286768046342147?color=7289DA&label=Discord&logo=discord&logoColor=white&style=flat-square)](https://discord.gg/5pdDq4Q)
 [![NexusMods](https://img.shields.io/badge/Download-Nexus-white.svg?color=da8e35&style=flat-square&logo=nexusmods&logoColor=white)](https://www.nexusmods.com/monsterhunterworld/mods/2645)
@@ -10,6 +8,11 @@
 [![GitHub license](https://img.shields.io/github/license/Haato3o/HunterPie?color=c20067&style=flat-square)](https://github.com/Haato3o/HunterPie/blob/master/LICENSE)
 [![GitHub stars](https://img.shields.io/github/stars/Haato3o/HunterPie?color=b440de&style=flat-square)](https://github.com/Haato3o/HunterPie/stargazers)
 
+<div align=center>
+
+**Attention:** This version of HunterPie is no longer maintained and instead has been replaced by [HunterPie v2](https://github.com/Haato3o/HunterPie-v2).
+
+</div>
 
 ## About
 HunterPie is a modern and simple to use overlay with support for Discord Rich Presence for Monster Hunter: World.
