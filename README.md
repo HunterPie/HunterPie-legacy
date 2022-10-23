@@ -8,11 +8,9 @@
 [![GitHub license](https://img.shields.io/github/license/Haato3o/HunterPie?color=c20067&style=flat-square)](https://github.com/Haato3o/HunterPie/blob/master/LICENSE)
 [![GitHub stars](https://img.shields.io/github/stars/Haato3o/HunterPie?color=b440de&style=flat-square)](https://github.com/Haato3o/HunterPie/stargazers)
 
-<div align=center>
+> **Warning**: 
+> This version of HunterPie is no longer maintained and instead has been replaced by [HunterPie v2](https://github.com/HunterPie/HunterPie).
 
-**Attention:** This version of HunterPie is no longer maintained and instead has been replaced by [HunterPie v2](https://github.com/Haato3o/HunterPie-v2).
-
-</div>
 
 ## About
 HunterPie is a modern and simple to use overlay with support for Discord Rich Presence for Monster Hunter: World.
@@ -67,13 +65,3 @@ The apps will be in _{HunterPie|Update}/bin/Release_
 - [Abnormalities Tracker Widget](https://hunterpie.haato.dev/?p=Overlay/abnormalitiesWidget.md)
 - [Class Helper Widget](https://hunterpie.haato.dev/?p=Overlay/classesWidget.md)
 - [Damage Meter Widget](https://hunterpie.haato.dev/?p=Overlay/damageMeterWidget.md)
-
-## Troubleshooting & Bugs
-
-Please, read the [FAQ](https://github.com/Haato3o/HunterPie/wiki/FAQ), if your issue isn't listed there, contact me on [Discord](https://discord.gg/5pdDq4Q).
-
-## Suggestions & PRs
-
-You can use the #suggestions chat in HunterPie Discord server, open a ticket [here](https://github.com/Haato3o/HunterPie/issues) or make your own pull request. I'll gladly read them all.
-
-> **NOTE:** If you're making a pull request, please, point it to the **development** branch, not the master one.
