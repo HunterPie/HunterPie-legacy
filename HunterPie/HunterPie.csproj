@@ -141,6 +141,9 @@
       <SubType>Designer</SubType>
     </ApplicationDefinition>
     <Compile Include="Core\Client\AutoUpdate.cs" />
+    <None Include="address\MonsterHunterWorld.421631.map">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
     <None Include="address\MonsterHunterWorld.421471.map">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
