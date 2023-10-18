@@ -846,7 +846,7 @@ namespace HunterPie.Core
             }
             long FirstSaveAddress = Kernel.ReadMultilevelPtr(Address.GetAddress("BASE") + Address.GetAddress("LEVEL_OFFSET"), Address.GetOffsets("LevelOffsets"));
             uint CurrentSaveSlot = Kernel.Read<uint>(FirstSaveAddress + 0x44);
-            long NextPlayerSave = 0x27E9F0;
+            long NextPlayerSave = 0x26CC00;
             long CurrentPlayerSaveHeader = Kernel.Read<long>(FirstSaveAddress) + NextPlayerSave * CurrentSaveSlot;
 
             if (CurrentPlayerSaveHeader != PlayerAddress)
