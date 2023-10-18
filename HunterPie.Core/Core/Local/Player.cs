@@ -3,18 +3,15 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading;
 using HunterPie.Core.Definitions;
+using HunterPie.Core.Enums;
+using HunterPie.Core.Events;
 using HunterPie.Core.Jobs;
+using HunterPie.Core.Local;
 using HunterPie.Logger;
 using HunterPie.Memory;
-using HunterPie.Core.Local;
-using HunterPie.Core.Events;
-using Classes = HunterPie.Core.Enums.Classes;
-using AbnormalityType = HunterPie.Core.Enums.AbnormalityType;
-using HunterPie.Core.Enums;
 using HunterPie.Utils;
-using HunterPie.Native.Connection;
-using HunterPie.Native.Connection.Packets;
-using System.Threading.Tasks;
+using AbnormalityType = HunterPie.Core.Enums.AbnormalityType;
+using Classes = HunterPie.Core.Enums.Classes;
 
 namespace HunterPie.Core
 {
@@ -206,7 +203,7 @@ namespace HunterPie.Core
 
                     if ((LastZoneID == -1 || harvestBoxZones.Contains(LastZoneID)) && !harvestBoxZones.Contains(zoneId))
                         Dispatch(OnVillageLeave, new PlayerLocationEventArgs(this));
-                                        
+
                     if (!peaceZones.Contains(LastZoneID) && peaceZones.Contains(zoneId))
                         Dispatch(OnPeaceZoneEnter, new PlayerLocationEventArgs(this));
 
@@ -284,7 +281,7 @@ namespace HunterPie.Core
         /// Food data
         /// </summary>
         public sFoodData FoodData = new sFoodData();
-        
+
         /// <summary>
         /// Player action id
         /// </summary>
@@ -480,7 +477,8 @@ namespace HunterPie.Core
                 try
                 {
                     del(this, args);
-                } catch (Exception err)
+                }
+                catch (Exception err)
                 {
                     Debugger.Error($"Error on callback \"{del.Method.Name}\": {err.Message}");
                 }
@@ -518,14 +516,15 @@ namespace HunterPie.Core
                 try
                 {
                     sub(this, EventArgs.Empty);
-                } catch (Exception err)
+                }
+                catch (Exception err)
                 {
                     Debugger.Error($"Exception in {sub.Method.Name}: {err.Message}");
                     OnPlayerScanFinished -= sub;
                 }
             }
 
-        } 
+        }
         #endregion
 
         #region Scanner
@@ -831,7 +830,7 @@ namespace HunterPie.Core
 
         private void GetPlayerEffects()
         {
-            long hotDrinkFlagAddress = Kernel.ReadMultilevelPtr(EQUIPMENT_ADDRESS + 0x920, new [] { 0x13D58, 0x8, 0xA24 });
+            long hotDrinkFlagAddress = Kernel.ReadMultilevelPtr(EQUIPMENT_ADDRESS + 0x920, new[] { 0x13D58, 0x8, 0xA24 });
             bool hotDrinkFlag = Kernel.Read<byte>(hotDrinkFlagAddress) == 0;
 
             HasHotDrink = hotDrinkFlag;
@@ -894,7 +893,7 @@ namespace HunterPie.Core
             Array.Copy(itemBox, 200, ammo, 0, ammo.Length);
             Array.Copy(itemBox, 400, materials, 0, materials.Length);
             Array.Copy(itemBox, 1650, decorations, 0, decorations.Length);
-            
+
             ItemBox.Refresh(consumables, ammo, materials, decorations);
         }
 
@@ -1029,8 +1028,8 @@ namespace HunterPie.Core
             long cGuiStaminaAddress = Kernel.ReadMultilevelPtr(Address.GetAddress("BASE") + Address.GetAddress("HUD_DATA_OFFSET"), Address.GetOffsets("gHudStaminaBarOffsets"));
 
             Stamina.Update(
-                maxStamina: Kernel.Read<float>(address + 0x144),
-                stamina: Kernel.Read<float>(address + 0x13C)
+                maxStamina: Kernel.Read<float>(address + 0x130),
+                stamina: Kernel.Read<float>(address + 0x12C)
             );
 
             if (cGuiStaminaAddress != Kernel.NULLPTR)
@@ -1066,13 +1065,16 @@ namespace HunterPie.Core
             if (PlayerActionRef.Contains("SLEEP"))
             {
                 AilmentType = PlayerAilment.Sleep;
-            } else if (PlayerActionRef.Contains("PARALYSE"))
+            }
+            else if (PlayerActionRef.Contains("PARALYSE"))
             {
                 AilmentType = PlayerAilment.Paralysis;
-            } else if (PlayerActionRef.Contains("STUN"))
+            }
+            else if (PlayerActionRef.Contains("STUN"))
             {
                 AilmentType = PlayerAilment.Stun;
-            } else
+            }
+            else
             {
                 AilmentType = PlayerAilment.None;
                 AilmentTimer = 0;
@@ -1129,7 +1131,8 @@ namespace HunterPie.Core
         private void GetMantleTimers()
         {
             Mantle[] mantles = new Mantle[] { PrimaryMantle, SecondaryMantle };
-            foreach (Mantle mantle in mantles) {
+            foreach (Mantle mantle in mantles)
+            {
                 long mantleTimerFixed = (mantle.ID * 4) + Address.TimerFixed;
                 long mantleTimer = (mantle.ID * 4) + Address.TimerDynamic;
                 long mantleCdFixed = (mantle.ID * 4) + Address.CooldownFixed;
@@ -1198,7 +1201,7 @@ namespace HunterPie.Core
                 PlayerParty[i].SetPlayerInfo(dummy, !PlayerParty.IsExpedition);
             }
 
-            if(!PlayerParty.IsExpedition)
+            if (!PlayerParty.IsExpedition)
                 PlayerParty.TotalDamage = totalDamage;
         }
 
@@ -1247,7 +1250,7 @@ namespace HunterPie.Core
         private void GetFertilizers()
         {
             long address = LEVEL_ADDRESS + Offsets.FertilizersOffset - 0xC;
-                       
+
             sItem[] fertilizers = Kernel.ReadStructure<sItem>(address, 4);
 
             for (int i = 0; i < fertilizers.Length; i++)
@@ -1365,7 +1368,8 @@ namespace HunterPie.Core
             if (cached != null)
             {
                 duration = cached[(info.Offset - firstHornBuffOffset) / sizeof(float)];
-            } else
+            }
+            else
             {
                 duration = Kernel.Read<float>(abnormalityAddress);
             }
@@ -1497,7 +1501,7 @@ namespace HunterPie.Core
                 CurrentWeapon.SafijiivaRegenCounter = SafiCounter;
                 GetWeaponSharpness(weaponAddress);
             }
-            
+
             ClassAddress = weaponAddress;
         }
 
@@ -1733,7 +1737,7 @@ namespace HunterPie.Core
             sAmmo[] ammos = Kernel.ReadStructure<sAmmo>(weaponAddress + 0x34, 40);
             HeavyBowgun.UpdateInformation(data, ammos);
         }
-#endregion
+        #endregion
 
         private float CalculatePowerProlongerMultiplier()
         {
@@ -1743,7 +1747,8 @@ namespace HunterPie.Core
             if ((Classes)WeaponID == Classes.SwitchAxe || (Classes)WeaponID == Classes.DualBlades)
             {
                 return 1.0f + ((float)Math.Pow(2, level - 1) / 10.0f) + (2 * (float)level / 10);
-            } else
+            }
+            else
             {
                 return 1.0f + (float)Math.Pow(2, level - 1) / 10.0f;
             }
