@@ -1,49 +1,48 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.ComponentModel;
+using System.Diagnostics;
 using System.IO;
 using System.Linq;
+using System.Net.Http;
+using System.Reflection;
+using System.Security.Cryptography;
 using System.Security.Principal;
+using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Input;
 using System.Windows.Markup;
 using System.Windows.Media;
 using System.Windows.Media.Animation;
+using System.Xml;
 using HunterPie.Core;
+using HunterPie.Core.Craft;
 using HunterPie.Core.Definitions;
+using HunterPie.Core.Events;
+using HunterPie.Core.Http;
+using HunterPie.Core.Input;
 using HunterPie.Core.Integrations.DataExporter;
+using HunterPie.Core.Local;
+using HunterPie.Core.Native;
+using HunterPie.Core.Settings;
 using HunterPie.GUIControls;
 using HunterPie.GUIControls.Custom_Controls;
-using HunterPie.Plugins;
-using Debugger = HunterPie.Logger.Debugger;
-using PluginDisplay = HunterPie.GUIControls.Plugins;
-using HunterPie.Core.Input;
 // HunterPie
 using HunterPie.Memory;
+using HunterPie.Native;
+using HunterPie.Native.Connection;
+using HunterPie.Plugins;
+using HunterPie.UI.Infrastructure;
+using Newtonsoft.Json;
+using ConfigManager = HunterPie.Core.ConfigManager;
+using Debugger = HunterPie.Logger.Debugger;
+using Overlay = HunterPie.GUI.Overlay;
+using PluginDisplay = HunterPie.GUIControls.Plugins;
 using Presence = HunterPie.Core.Integrations.Discord.Presence;
 using Process = System.Diagnostics.Process;
 using ProcessStartInfo = System.Diagnostics.ProcessStartInfo;
-using System.Threading.Tasks;
-using System.Net.Http;
-using HunterPie.Core.Craft;
-using Newtonsoft.Json;
-using System.Diagnostics;
-using HunterPie.Core.Events;
-using System.Xml;
-using System.Reflection;
-using HunterPie.Core.Native;
-using HunterPie.Native;
-using HunterPie.Native.Connection;
-using ConfigManager = HunterPie.Core.ConfigManager;
-using HunterPie.Core.Settings;
-using HunterPie.UI.Infrastructure;
-using Overlay = HunterPie.GUI.Overlay;
 using SettingsControl = HunterPie.GUIControls.Settings;
-using HunterPie.Utils;
-using HunterPie.Core.Local;
-using System.Security.Cryptography;
-using HunterPie.Core.Http;
 
 namespace HunterPie
 {
@@ -69,7 +68,7 @@ namespace HunterPie
         public static Hunterpie Instance;
 
         // HunterPie version
-        public const string HUNTERPIE_VERSION = "1.0.5";
+        public const string HUNTERPIE_VERSION = "1.0.6";
         public static readonly Version AssemblyVersion = Assembly.GetEntryAssembly().GetName().Version;
 
         private readonly List<int> registeredHotkeys = new List<int>();
@@ -247,7 +246,8 @@ namespace HunterPie
                 {
                     await httpGet.GetAsync("https://hunterpie.herokuapp.com/ping");
                 }
-            } catch {serverUp = false; }
+            }
+            catch { serverUp = false; }
 
             if (config.HunterPie.Update.Enabled && serverUp)
             {
@@ -374,7 +374,8 @@ namespace HunterPie
                 if (id > 0)
                 {
                     registeredHotkeys.Add(id);
-                } else
+                }
+                else
                 {
                     Debugger.Error("Failed to register hotkey");
                 }
@@ -441,11 +442,11 @@ namespace HunterPie
             );
 
             // Settings button
-            var settingsItem = trayIcon.AddItem(GStrings.GetLocalizationByXPath("/TrayIcon/String[@ID='TRAYICON_SETTINGS']"));
+            System.Windows.Forms.ToolStripMenuItem settingsItem = trayIcon.AddItem(GStrings.GetLocalizationByXPath("/TrayIcon/String[@ID='TRAYICON_SETTINGS']"));
             settingsItem.Click += OnTrayIconSettingsClick;
 
             // Close button
-            var closeItem = trayIcon.AddItem(GStrings.GetLocalizationByXPath("/TrayIcon/String[@ID='TRAYICON_CLOSE']"));
+            System.Windows.Forms.ToolStripMenuItem closeItem = trayIcon.AddItem(GStrings.GetLocalizationByXPath("/TrayIcon/String[@ID='TRAYICON_CLOSE']"));
             closeItem.Click += OnTrayIconExitClick;
         }
 
@@ -522,7 +523,8 @@ namespace HunterPie
                     ResourceDictionary res = (ResourceDictionary)reader.LoadAsync(stream);
                     Application.Current.Resources.MergedDictionaries.Add(res);
                 }
-            } catch (Exception err)
+            }
+            catch (Exception err)
             {
                 Debugger.Error(err);
             }
@@ -552,12 +554,14 @@ namespace HunterPie
                     Debugger.Warn($"Patched theme");
 
                     return true;
-                } catch (Exception err)
+                }
+                catch (Exception err)
                 {
                     Debugger.Error(err);
                     return false;
                 }
-            } else
+            }
+            else
             {
                 return true;
             }
@@ -697,7 +701,8 @@ namespace HunterPie
                 try
                 {
                     File.WriteAllText(Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "Sessions.txt"), e.SessionId);
-                } catch
+                }
+                catch
                 {
                     Debugger.Error("Missing permissions to write to files.");
                 }
@@ -799,7 +804,8 @@ namespace HunterPie
             if (Injector.CheckIfAlreadyInjected())
             {
                 await Client.Initialize();
-            } else
+            }
+            else
             {
                 if (Injector.InjectNative())
                 {
@@ -859,7 +865,7 @@ namespace HunterPie
 
             // For some reason it crashes here if we stop scanning when the game is closed before it is initialized?
             try { game?.StopScanning(); }
-            catch {}
+            catch { }
 
             await Dispatcher.InvokeAsync(async () =>
             {
@@ -1232,7 +1238,8 @@ namespace HunterPie
                     modulejson = $"https://{modulejson}";
                 }
                 moduleContent = await PluginUpdate.ReadOnlineModuleJson(modulejson);
-            } else
+            }
+            else
             {
                 moduleContent = File.ReadAllText(modulejson);
             }
@@ -1283,7 +1290,7 @@ namespace HunterPie
                 return;
 
             // if sender is button, depress all other buttons
-            if (sender is SideButton {Parent: StackPanel panel} snd)
+            if (sender is SideButton { Parent: StackPanel panel } snd)
             {
                 UnclickButtons(panel, snd);
             }

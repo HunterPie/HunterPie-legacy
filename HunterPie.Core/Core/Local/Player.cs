@@ -963,7 +963,7 @@ namespace HunterPie.Core
                 maxHealth: health[0],
                 health: health[1],
                 healData: CalculateHealingData(healingArray),
-                redHealth: Kernel.Read<float>(address + 0x2DE4)
+                redHealth: Kernel.Read<float>(address + 0x2DD4)
             );
 
             if (cGuiHealthAddress != Kernel.NULLPTR)
