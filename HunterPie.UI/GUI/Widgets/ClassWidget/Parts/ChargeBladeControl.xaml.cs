@@ -1,6 +1,5 @@
 ﻿using System;
 using System.Windows;
-using HunterPie.Core.Jobs;
 using HunterPie.Core.Events;
 using ChargeBlade = HunterPie.Core.Jobs.ChargeBlade;
 using ChargeBladeEventArgs = HunterPie.Core.Jobs.ChargeBladeEventArgs;
@@ -180,8 +179,8 @@ namespace HunterPie.GUI.Widgets.ClassWidget.Parts
             {
                 HiddenGaugeSize = 77 * args.VialChargeGauge / 100;
                 HiddenGaugeColor = args.VialChargeGauge < 30 ? "#FFD6CBB8" :
-                args.VialChargeGauge > 70 ? "#FFFF0202" :
-                args.VialChargeGauge > 45 ? "#FFA41515" : "#FFD68800";
+                args.VialChargeGauge >= 72 ? "#FFFF0202" :
+                args.VialChargeGauge >= 46 ? "#FFA41515" : "#FFD68800";
 
             }));
         }
